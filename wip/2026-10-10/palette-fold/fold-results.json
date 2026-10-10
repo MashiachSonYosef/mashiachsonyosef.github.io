@@ -1,0 +1,666 @@
+[
+ {
+  "family": "RED and BLUE (tola'at shani, the corpus's letters; tekhelet, the readings)",
+  "keep": [
+   {
+    "token": "--shani (same value under --shani-ink, --c-word, --en-word; --halo-shani is this red at 75%)",
+    "hex": "#9d4355",
+    "tier": "regular",
+    "why": "This is the red every Hebrew word is written in: the line, the titles, the word at the top of a card, the commentary's Hebrew, and the word 'fire' in the logo. It is the most-used red, so keeping it means nothing on the page moves. Measured: 4.68:1 on bare linen, 4.94:1 on a card."
+   },
+   {
+    "token": "--shani-dim",
+    "hex": "#b76670",
+    "tier": "dim",
+    "why": "The quiet red. It is never a word, only the small things beside or between words: the maqaf (the little hyphen) between the two halves of a joined word at the top of a card, the red rail down the side of a commentary, the edge of a source's tag, and a commentary bar's edge when hovered. In the logo it becomes the light in each red thread. It is too pale to read a word in (3.06:1 on linen), so it stays on marks only. The big bold maqaf on the card measures 3.23:1, which passes the 3:1 that large marks need."
+   },
+   {
+    "token": "--tekhelet (same value under --tekhelet-ink; --halo-tekhelet is this blue at 75%)",
+    "hex": "#34649a",
+    "tier": "regular",
+    "why": "This is the blue every reading is written in: the English under each word in both readers, the reading and the pills on a card, the attested English names in titles and on the door, and the word 'hail' in the logo. After the fold, a pressed reading uses it too, still in bold. It is the most-used blue. Measured: 4.59:1 on bare linen, 4.85:1 on a card."
+   },
+   {
+    "token": "--tekhelet-dim",
+    "hex": "#7f8ba8",
+    "tier": "dim",
+    "why": "The quiet blue. It is never a reading. It is only the + that stands between a reading's pieces under a run, as in 'and + emptiness  +  formlessness'. Because it is lighter, it tells that + apart from the + signs inside a reading's own words, which are in the regular blue. In the logo it becomes the light in each blue thread and the glint on the hailstone. The fold does not change it. It is too pale for a word: 2.56:1 on linen and 2.32:1 in a word's cell."
+   }
+  ],
+  "fold": [
+   {
+    "from": "--tekhelet-bold",
+    "from_hex": "#22508a",
+    "to": "--tekhelet-ink (#34649a), still worn bold (font-weight 700 / bold is kept on every rule)",
+    "roles": "zone.html: '#hud .r-pills button[aria-pressed=\"true\"]' (the reading pressed on a word's card) and '#hud .r-overflow select.on' (a reading chosen from the card's overflow menu). Door CSS: '#wcard .r-pills button[aria-pressed=\"true\"]' (the reading pressed on the door's word card), '.pc-hudwrap .r-pills button[aria-pressed=\"true\"]' and '.pc-hudwrap .r-overflow select.on' (the door's demonstration cards; these already get weight 700 from the door rule 'a pressed control is purple worn bold'). The color contract's channels.reading_as_shown.pressed_as. Nothing else in the site uses this blue. Measured on Genesis (both readers, card open), Amos with commentary, and the door: the pressed pill is the only element whose paint changes.",
+    "contrast_after": "3.83:1 on the pressed linen #dccbaa, for a 12.2px bold label (it was 5.10:1). That FAILS the 4.5:1 body-text floor and passes 3:1. This exact pairing already ships today: the open word's own reading on the line sits on the same pressed linen in the same regular blue at 3.83:1, so after the fold the card matches the line. No blue the site keeps reaches 4.5:1 on #dccbaa. Only a lighter pressed linen could hold 4.5:1 (#34649a needs a ground at relative luminance 0.72 or more, which is about the bare linen), and that is the linen family's call."
+   },
+   {
+    "from": "--wash-shani",
+    "from_hex": "#eedcd6",
+    "to": "deleted: no rule reads it",
+    "roles": "None. It is declared in zone.html :root and the door :root, which is why /palette/ prints it. A grep of var() across zone.html, DOOR_CSS, the engine CSS, the tools and the built pages finds zero uses, and no element on any measured page paints it. It is left over from the 2026-09-10 washes, which were retired on 2026-09-11.",
+    "contrast_after": "n/a (no role)"
+   },
+   {
+    "from": "--held-shani",
+    "from_hex": "#dbb9b6",
+    "to": "deleted: no rule reads it",
+    "roles": "None. It is declared in zone.html :root only. It is left over from the 2026-09-11 'more opaque red and blue' held word, which was replaced the same day by the gold box.",
+    "contrast_after": "n/a (no role)"
+   },
+   {
+    "from": "--wash-tekhelet",
+    "from_hex": "#dfe4f1",
+    "to": "deleted: no rule reads it",
+    "roles": "None. It is declared in zone.html :root and the door :root (so /palette/ prints it). Zero uses anywhere.",
+    "contrast_after": "n/a (no role)"
+   },
+   {
+    "from": "--held-tekhelet",
+    "from_hex": "#b9c6e6",
+    "to": "deleted: no rule reads it",
+    "roles": "None. It is declared in zone.html :root only. Zero uses.",
+    "contrast_after": "n/a (no role)"
+   },
+   {
+    "from": "logo thread dark edge, red (build-wordmark-v1.py shade(S,.74))",
+    "from_hex": "#74323f",
+    "to": "#9d4355 (red regular)",
+    "roles": "The edges of every thread in 'fire' and in the flame, in mark/fireandhail.com-woven-v1.svg. That file is the door's logo and the home button on every reader page (img.wm-mark-s).",
+    "contrast_after": "The thread fill is the regular, at 4.68:1 against linen as a mark (3:1 needed)."
+   },
+   {
+    "from": "logo thread light, red (tint(S,.17))",
+    "from_hex": "#ab5f6b",
+    "to": "#b76670 (red dim)",
+    "roles": "The light center of every red thread in the woven name.",
+    "contrast_after": "Inside the letter, not against the ground. The letter's edge is the regular."
+   },
+   {
+    "from": "logo thread dark edge, blue (shade(B,.74))",
+    "from_hex": "#264a72",
+    "to": "#34649a (blue regular)",
+    "roles": "The edges of every thread in 'hail' and the hailstone.",
+    "contrast_after": "The thread fill is the regular, 4.59:1 against linen as a mark."
+   },
+   {
+    "from": "logo thread light, blue (tint(B,.17))",
+    "from_hex": "#547ba5",
+    "to": "#7f8ba8 (blue dim)",
+    "roles": "The light center of every blue thread in the woven name.",
+    "contrast_after": "Inside the letter. Note that the blue dim is greyer than this derived shade (saturation 0.19 against about 0.33), so the threads in 'hail' read a little greyer."
+   },
+   {
+    "from": "hailstone glint (mix(B,#fff,.72))",
+    "from_hex": "#c6d4e3",
+    "to": "#7f8ba8 (blue dim)",
+    "roles": "The small highlight on hail's i-dot.",
+    "contrast_after": "Inside the dot. The glint becomes much quieter (see logo-before-after.png)."
+   }
+  ],
+  "grounds": "Red and blue have NO live tinted grounds. --wash-shani #eedcd6 and --wash-tekhelet #dfe4f1 (in zone and door :root) and --held-shani #dbb9b6 and --held-tekhelet #b9c6e6 (zone only) are declared but nothing reads them. No var() anywhere uses them, and no element on any measured page paints them. They are what remains of the 2026-09-10 washes and the 2026-09-11 'more opaque red and blue' held word, both retired on 2026-09-11 according to the color contract. They are not counted and not folded: they are deleted, so /palette/ stops printing them as if they were colors of the site. --halo-shani rgba(157,67,85,.75) and --halo-tekhelet rgba(52,100,154,.75) are not grounds. They are the red and blue regulars at 75%, used as a text glow, and are read only under :root[data-accent=\"halo\"], which nothing in the site sets. They count as the regulars and stay (they could also go together with their three dormant rules at zone.html ~352-356). No chip, shadow or border-wash in the site is red or blue: the reading's license chip is gold (--chip-line) and the shadows are brown. Every ground a red or blue word stands on belongs to linen. Measured contrast of the KEPT inks on those linen grounds: (1) Bare linen #ebdec3: red 4.68, blue 4.59, red dim 3.06, blue dim 2.56. (2) Card or rail #efe4cd/#ecdfc5: red 4.94/4.73, blue 4.85/4.64. (3) The word cell (rgba(74,48,8,.06) on linen, about rgb(225,212,184)): red 4.25, blue 4.17, blue dim + 2.32. (4) The run's tie (.08 more, about rgb(213,199,170)): red 3.74, blue 3.66. (5) The pressed linen #dccbaa: red 3.91, blue 3.83, blue dim 2.14. (6) Parchment #e8d9bc: red 4.48, red dim rail 2.93. (7) The door shelf card rgb(225,211,179): red 4.21, blue 4.12. All of these numbers were the same before the fold. The steer asks that a family's text read at 4.5:1 on linen AND on the word cell. In the word cell, NEITHER regular reaches 4.5:1 today (red 4.25 at 21px, blue 4.17 at 10.6px). The only red or blue that did was the bold blue being folded away (5.54). So that floor depends on the cell's linen, not on red or blue. For the same reason, red's and blue's running text cannot move to the dim (dims are 2.8:1 and 2.3:1 in the cell). In these two families the words stay in the regular and the dim stays on marks.",
+  "distinctions_lost": [
+   "A pressed reading vs a reading at rest, on the reader's card and the door's card: before, the pressed one had a deeper blue, bold letters, a doubled gold border and darker linen. After, it keeps the bold letters, doubled gold border and darker linen, and loses only the deeper blue. It is still clearly pressed, because three cues remain and color was never the only one. The shots show the difference is slight. This matters only for contrast, which drops from 5.10:1 to 3.83:1 (see fold).",
+   "The pressed reading on the card vs the open word's reading on the line: these used to be two different blues, and now they are one. This is a gain in uniformity, not a loss.",
+   "On the door's word card, pressed pill vs resting pills: the resting pills there are purple (--muted), so hue still separates them. Nothing is lost.",
+   "The + between a reading's pieces vs the + inside a reading's own words ('and + the + earth'): KEPT apart, dim vs regular. If the + were folded into the regular blue, this distinction would be lost (see line-he-alt-plus-regular.png and pressed-and-plus-before-after.png). That is why the + stays dim even though it measures 2.32:1 in the word cell, under the 3:1 a mark needs. That shortfall is not caused by the fold. If 3:1 must hold for the +, the only kept blue that clears it is the regular, and then only spacing tells the two kinds of + apart.",
+   "Red: nothing is lost. Red was already exactly two shades, and the fold moves no red.",
+   "Titles vs running text in red and blue: there is no color split here, and there has been none since 2026-10-02 ('no title has a color of its own'). The steer's 'titles regular, text dim' cannot apply to these two families with existing values, because neither dim can carry a word (red dim 3.06:1, blue dim 2.56:1 on linen). Hebrew titles and Hebrew text, attested English names and readings all stay in the regular.",
+   "The logo: the red and blue threads lose their darker edge (#74323f, #264a72 were in effect a 'bold'), so the woven letters read a touch lighter and flatter. The light threads in 'hail' turn greyer, because the site's blue dim is a grey-blue (saturation 0.19; by the color check's own measure that is below the 0.25 tekhelet floor). The glint on the hailstone almost disappears. Whether that matters is the owner's eye; see logo-before-after.png."
+  ],
+  "rulings_superseded": [
+   "zone.html :root comment above --tekhelet-bold and the color contract's reading_as_shown.pressed_as: \"TWO BLUES, AS THE NAME HAS (the owner, 2026-10-03: \\\"id avoid blue as a highlight. similar to our logo id have 2 blues: a bold and a regular, maybe the letters bold too not just the color\\\")\". The color half is superseded by the 2026-10-10 steer (\"id probably go regular and dim. i dont like our bold that much\"). The 'letters bold too' half survives as the weight.",
+   "zone.html :root comment above --press-wash, the pressed-cell rule as written into CSS: \"A PRESSED CELL, ONE RULE EVERYWHERE (the owner, 2026-10-03: \\\"... 3. bolden the blue text\\\"): ... its letters are bold in their own ink, the bold blue for a reading\". Steps 1 and 2 and the bold weight stand. Only the reading of 'bolden the blue' as a deeper blue color is superseded, so 'bolden' is now weight only. The same wording appears in the door CSS #wcard comment ('a pressed cell, one rule everywhere (the owner, 2026-10-03): ... the bold blue for a reading'), in the zone comment above '#hud .r-pills button[aria-pressed]' ('its letters the bold blue'), and in the color contract's reader_selection.pressed_cell.",
+   "zone.html :root: \"the held word: its own wash, more opaque \u2014 never a third color (owner, 2026-09-11: \\\"move away from gold as the highlighting itself and move toward just a more opaque red and blue\\\")\" (--held-shani, --held-tekhelet). This was already superseded the same day by the gold box (color contract: 'Later on 2026-09-11 the held word stopped lifting and took the gold box instead'). The fold deletes the two tokens it left behind.",
+   "The washes of 2026-09-10 (--wash-shani, --wash-tekhelet), retired 2026-09-11 (color contract: 'The washes of 2026-09-10 are retired'). The fold deletes the leftover tokens.",
+   "Not superseded but adjusted: the woven mark (build-wordmark-v1.py, the owner 2026-10-03: \"lets do this one with the 2 stylized i dots\"). The weave stays, but its red and blue threads are dyed only in the site's regular and dim (the owner 2026-10-10 on the logo: \"it can add 2 or 3 types of the same color, our bold or dim or regular\") instead of shades the script derived (x0.74 darker, 17% lighter)."
+  ],
+  "checks_to_change": [
+   "reader/data/color-contract-v1.json, channels.reading_as_shown.pressed_as: replace the text with: \"One blue at two shades, a regular and a dim, and no bold (the owner, 2026-10-10: \\\"id probably go regular and dim. i dont like our bold that much\\\"; this supersedes 2026-10-03, \\\"similar to our logo id have 2 blues: a bold and a regular\\\"). A reading at rest and a reading pressed are the same regular blue (--tekhelet). Pressed, it is worn bold inside the pressed cell (channels.reader_selection.pressed_cell). The dim blue (--tekhelet-dim) is never a reading, only the + between a reading's parts. Never a blue fill.\"",
+   "reader/data/color-contract-v1.json, channels.reader_selection.pressed_cell: change \"its letters are bold in their own ink, the bold blue for a reading, the purple for a control\" to \"its letters are bold in their own ink at its regular shade: the regular blue for a reading, the purple for a control\". Optional: add channels.text_as_written.dim_as = \"The dim red (--shani-dim) is never a word: it is the maqaf between a compound's pieces on a card's head, the rail along a commentary, the edge of a source's tag\" and channels.reading_as_shown.dim_as = \"The dim blue (--tekhelet-dim) is never a reading: it is the + between a reading's parts\". The check reads only material/borne_as from each channel, so extra keys are harmless.",
+   "reader/tools/check-color-channels-v1.mjs: NO change is required. It samples the Hebrew and the reading at rest (#9d4355 and #34649a, unchanged), and its 'every token a rule asks for is declared' check passes on the patched reader (validated by serving the patched zone.html: zero orphans). Optional guard so a bold blue cannot creep back: open a card and assert that the pressed reading's color equals a resting reading's color and that its weight is 600 or more, and that every red or blue painted on the page is one of #9d4355, #b76670, #34649a, #7f8ba8. Note: #7f8ba8 would fail this check's own 'tekhelet' box (saturation 0.19 < 0.25) if it were ever sampled as the reading channel. It is not sampled (the check reads .g:not(.bare)).",
+   "reader/tools/build-wordmark-v1.py (line 43 and thread()): dye the red and blue threads with the regular and dim only. After line 43 add DIM = {S: '#b76670', B: '#7f8ba8'}. In thread() after 'e = shade(c, edge); h = tint(c, hi)' add 'if c in DIM: e = c; h = DIM[c]'. Change the hailstone glint fill from mix(B, \"#ffffff\", 0.72) to DIM[B]. Then rebuild mark/fireandhail.com-woven-v1.svg (python3 tools/build-wordmark-v1.py from reader/). The gold and purple families add their own G and U entries to DIM. A working preview built this way, written only to the scratch dir: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/logo-preview/fireandhail.com-woven-preview.svg (builder copy: .../fold-wf/red-blue/wordmark-preview.py).",
+   "reader/tools/build-front-door-v1.mjs DOOR_CSS: see door_changes. Rebuilding re-emits index.html, palette/index.html and reader/engine-<hash>.css (the extracted zone stylesheet the chapter pages load, currently engine-539dc1706b10.css). Those are derived files and are not hand-edited.",
+   "No other check names a red or blue value: a grep of reader/tools/check-*.mjs found none. reader/tools/build-chain-book-v1.mjs line 63 (--tekhelet:#34649a) and reader/tools/build-toggle-design-v1.mjs line 180 (--tekhelet:#34649a; --shani:#9d4355) hand-type only the regulars, so they need no change."
+  ],
+  "door_changes": "DOOR_CSS (reader/tools/build-front-door-v1.mjs line 196) is a JSON-escaped string: edit the CSS and re-escape, or edit the escaped text in place. The anchors below each occur exactly once, and all were applied and validated on a copy of the built index.html (zero new orphans; the only orphan, --shadow-hud used by .pc-hudwrap and never declared on the door, was already there before the patch). (1) :root: replace \"--wash-shani:#eedcd6; --shani-ink:#9d4355; --tekhelet-ink:#34649a; --tekhelet-bold:#22508a; --press-wash:#dccbaa; --wash-tekhelet:#dfe4f1; --shesh:#561f86;\" with \"--shani-ink:var(--shani); --tekhelet-ink:var(--tekhelet); --press-wash:#dccbaa; --shesh:#561f86;\". Keep \"--shani:#9d4355; --shani-dim:#b76670;\" and \"--tekhelet:#34649a; --tekhelet-dim:#7f8ba8;\" as they are. The door paints neither dim today, but they stay declared so the palette page lists the same two shades the logo is dyed in. (2) '.pc-hudwrap .r-pills button[aria-pressed=\"true\"] { color: var(--tekhelet-bold);' becomes '... { color: var(--tekhelet-ink);'. (3) '.pc-hudwrap .r-overflow select.on { color: var(--tekhelet-bold);' becomes '... { color: var(--tekhelet-ink);'. Rules (2) and (3) already get font-weight 700 from the door's '/* a pressed control is purple worn bold */' rule, so no weight needs adding. (4) The '#wcard' comment 'own ink, the bold blue for a reading */' becomes 'own ink, the regular blue, worn bold, for a reading */', and '#wcard .r-pills button[aria-pressed=\"true\"] { color:var(--tekhelet-bold);' becomes '... { color:var(--tekhelet-ink);' (font-weight:bold stays). The door's woven name and the text-name fallback (.wordmark .wm-fire var(--shani), .wm-hail var(--tekhelet), the .com gradient from var(--tekhelet)) already use only the regulars, so the CSS for them needs no change. The logo image itself changes through build-wordmark-v1.py. Visible result on the door: only the pressed pill on the word card, which goes from #22508a bold to #34649a bold (door-card-before/after.png). Noticed, but NOT part of the fold, left for a separate decision: the door's word card writes its Hebrew head (#wcard .head b) and its reading (#wcard .r-now .v) in purple --ink-strong and its resting pills in --muted purple, while the reader's card writes these in red and blue. If 'uniform between site and logo' should reach the door's card, those rules would take var(--shani) and var(--tekhelet-ink), as the reader's card does.",
+  "logo": "Red ('fire', the flame body): threads in the red regular #9d4355, with the red dim #b76670 as the light along each thread. Blue ('hail', the hailstone): threads in the blue regular #34649a, with the blue dim #7f8ba8 as the light, and the hailstone's glint in #7f8ba8. The .com dot still turns from #34649a into the purple regular, as now. Nothing in the weave is darker than the regular any more: the derived dark edges #74323f and #264a72, the derived lights #ab5f6b and #547ba5, and the glint #c6d4e3 all go (see the fold). The home button on every reader page is the same file (img.wm-mark-s pointing to /mark/fireandhail.com-woven-v1.svg), so it changes with the rebuild. Its text fallback (#home a.home .wm-fire var(--shani), .wm-hail var(--tekhelet), the .wm-tld gradient from var(--tekhelet); #home a.home color var(--shani-ink)) and the door's .wordmark fallback already use only the two regulars, so they need no change. Preview, regular and dim only: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/logo-before-after.png. Seen side by side, the red weave stays warm, slightly lighter and flatter. The blue weave turns visibly greyer, because the site's blue dim is a grey-blue. If the owner dislikes the grey in 'hail', the only fix that stays within existing values is to weave the blue threads in the regular alone.",
+  "css_patch": "=== reader/zone.html :root (applied and validated on a copy: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/zone-patched.html, built by apply-patch.py in the same folder; served by interception, it shows zero orphan tokens, the aliases resolve to the same hex, and the only paint change is the pressed reading) ===\n\n1) REPLACE\n    --shani-ink: #9d4355; --tekhelet-ink: #34649a;\n    /* TWO BLUES, AS THE NAME HAS (the owner, 2026-10-03: \"id avoid blue as a\n       highlight. similar to our logo id have 2 blues: a bold and a regular,\n       maybe the letters bold too not just the color\"): a reading at rest is\n       the regular blue; the reading pressed is this one, worn bold. Nothing\n       is ever filled with a color (\"we shouldnt ever have to full fill\"). */\n    --tekhelet-bold: #22508a;\nWITH\n    --shani-ink: var(--shani); --tekhelet-ink: var(--tekhelet);\n    /* A REGULAR AND A DIM, AND NO BOLD (the owner, 2026-10-10: \"personally i\n       dont see a gain from more than 2/2/2/2 and 3 linen\", then \"id probably\n       go regular and dim. i dont like our bold that much\" and \"but you get\n       how uniform it can be and also all in the logo matching\"). The red and\n       the blue are two shades each, the same two the woven name is dyed in.\n       The regular carries every word: the corpus's letters, every reading,\n       and a reading pressed, which is the regular worn bold. The deeper blue\n       a pressed reading wore since 2026-10-03 (\"similar to our logo id have\n       2 blues: a bold and a regular, maybe the letters bold too not just the\n       color\") is gone; the bold letters stay. The dim carries only what\n       stands between pieces and beside them: the maqaf on a card's head, the\n       + between a reading's parts, the red rail along a commentary. Nothing\n       is ever filled with a color (\"we shouldnt ever have to full fill\"). */\n\n2) REPLACE\n       linen darkens one step, and its letters are bold in their own ink, the\n       bold blue for a reading, the purple for a control. */\n    --press-wash: #dccbaa;\n    --wash-shani: #eedcd6;\n    /* the held word: its own wash, more opaque \u2014 never a third color (owner,\n       2026-09-11: \"move away from gold as the highlighting itself and move\n       toward just a more opaque red and blue\") */\n    --held-shani: #dbb9b6;\n    --held-tekhelet: #b9c6e6;\n    --halo-shani: rgba(157, 67, 85, 0.75);\nWITH\n       linen darkens one step, and its letters are bold in their own ink: the\n       regular blue, worn bold, for a reading; the purple for a control. */\n    --press-wash: #dccbaa;\n    /* the regular red and blue at three quarters, a glow for the halo accent\n       (:root[data-accent=\"halo\"]), which nothing turns on */\n    --halo-shani: rgba(157, 67, 85, 0.75);\n(--press-wash's value is the linen family's. Only its comment changes here.)\n\n3) REPLACE\n    --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;\n    --wash-tekhelet: #dfe4f1;\nWITH\n    --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;\n\n4) REPLACE   --c-word: #9d4355; --en-word: #9d4355;\n   WITH      --c-word: var(--shani); --en-word: var(--shani);\n(Steps 1 and 4 change no paint: they make the aliases follow the two kept shades. The comment above --c-word, 'darkened to the AAA floor ... need 7:1', is already false at 4.68:1 and is left for whoever owns it.)\n\n=== reader/zone.html rules ===\n5) REPLACE\n  /* the pressed reading: the pressed-cell rule (--press-wash, above), its\n     letters the bold blue */\n  #hud .r-pills button[aria-pressed=\"true\"] { color: var(--tekhelet-bold);\nWITH\n  /* the pressed reading: the pressed-cell rule (--press-wash, above), its\n     letters the regular blue, worn bold */\n  #hud .r-pills button[aria-pressed=\"true\"] { color: var(--tekhelet-ink);\n(the rest of the rule, font-weight: 700 and the gold and linen, is unchanged)\n\n6) REPLACE   #hud .r-overflow select.on { color: var(--tekhelet-bold);\n   WITH      #hud .r-overflow select.on { color: var(--tekhelet-ink);\n\nUnchanged and confirmed: '.wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); }' (the + between a reading's parts) and '.g .g-join { color: var(--tekhelet-dim); }' (no element ever gets class g-join, so this rule is dead). '.mq { color: var(--shani-dim); }' (the maqaf on a card's head). The red dim borders: .c-inline, .hoh-prose, .rail .src-tag, .c-mark, .c-mark-slot, .c-bar:hover. Every other var(--shani*/--tekhelet*/--c-word/--en-word) rule: the regulars, unchanged.\n\n=== DOOR_CSS (build-front-door-v1.mjs line 196, JSON-escaped; validated on a copy: .../fold-wf/red-blue/door-patched.css and index-patched.html via apply-door.py) ===\n7) REPLACE  --wash-shani:#eedcd6; --shani-ink:#9d4355; --tekhelet-ink:#34649a; --tekhelet-bold:#22508a; --press-wash:#dccbaa; --wash-tekhelet:#dfe4f1; --shesh:#561f86;\n   WITH     --shani-ink:var(--shani); --tekhelet-ink:var(--tekhelet); --press-wash:#dccbaa; --shesh:#561f86;\n8) REPLACE  .pc-hudwrap .r-pills button[aria-pressed=\"true\"] { color: var(--tekhelet-bold);\n   WITH     .pc-hudwrap .r-pills button[aria-pressed=\"true\"] { color: var(--tekhelet-ink);\n9) REPLACE  .pc-hudwrap .r-overflow select.on { color: var(--tekhelet-bold);\n   WITH     .pc-hudwrap .r-overflow select.on { color: var(--tekhelet-ink);\n10) REPLACE own ink, the bold blue for a reading */\n    WITH    own ink, the regular blue, worn bold, for a reading */\n11) REPLACE #wcard .r-pills button[aria-pressed=\"true\"] { color:var(--tekhelet-bold);\n    WITH    #wcard .r-pills button[aria-pressed=\"true\"] { color:var(--tekhelet-ink);\n(The weights are already there: #wcard has font-weight:bold, and the .pc-hudwrap pair get 700 from the door's 'a pressed control is purple worn bold' rule.)\n\nStyle injection used for the 'after' shots (paints the same as the patch): :root{--tekhelet-bold:#34649a !important}",
+  "shots": [
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/pressed-and-plus-before-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/logo-before-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/line-he-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/line-he-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/line-en-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/line-en-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/line-he-alt-plus-regular.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/line-en-alt-plus-regular.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/card-he-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/card-he-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/card-pills-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/card-pills-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/card-he-patched.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/door-card-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/door-card-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/door-card-patched.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/home-button-now.png"
+  ]
+ },
+ {
+  "family": "gold (the frame)",
+  "keep": [
+   {
+    "token": "--gold",
+    "hex": "#93661a",
+    "tier": "regular",
+    "why": "This is the gold the reader's hand brings out. It is used for a hovered edge, a pressed cell's edge (drawn twice as heavy), the box round a held word and its two lines to the card, the heavier line under a run or a ketiv-qere pair, and a hovered word's letters. It is not a new color: it is today's --line, the gold of every box at rest, which is the most-used gold on the site (56 rules in the reader, 60 on the door). It is the darker of the two kept golds and reads at 3.17:1 or better on every ground, including the dark linen inside a pressed cell, where today's pressed edge reads only 2.83:1. The token name --gold stays; only its value changes, from #a06c10 to #93661a."
+   },
+   {
+    "token": "--gold-dim",
+    "hex": "#a06c10",
+    "tier": "dim",
+    "why": "This is the gold at rest: every box and pill edge, every word's underline, every chip, the verse-number box, the Masoretic marks, and the 'and' of the logo. It is today's --gold, the gold the owner picked for the marks ('the same gold as the borders and logo'). After the fold, the marks, the borders and the logo really are one gold. Contrast: 3.39:1 on linen, 3.58 on the panel, 3.43 on panel2, 3.08 in a word's cell. Today's dim (#a3762a) cannot take this job: it falls to 2.76:1 in a word's cell and 2.54 on chips there. This one clears 3:1 everywhere except inside a pressed word's cell (2.83:1). The marks already sit at that level today, and the underline and chip there go up from 2.54 and 1.38."
+   }
+  ],
+  "fold": [
+   {
+    "from": "--line (every 1px frame at rest)",
+    "from_hex": "#93661a",
+    "to": "--gold-dim #a06c10 (alias kept: --line: var(--gold-dim)). The value #93661a itself survives as the new --gold.",
+    "roles": "Reader (56 rules): header.top bottom rule, #home a.home and button.face pills, #bookEnd rule, #stamp/#toc panels, #secPanel and its grid links, #chPick and its buttons, the nav pills, .rail frame and its inner rules, .more-switches, .src-fold, .shelve-opt, .shelf rules, the .shelf-sw track, .src-row chips, the .decl-* boxes and branches, .mode-btn, card head rule (#hud .head), .def-order .dfp, .r-overflow select, #hud .d-card/.c-card/.d-also dividers, s-pills, c-pills, r-unreachable buttons, .c-choice, #cIndex input and hits, .d-grow, .xp, footer rule, the scrollbar thumb, and the line through a struck source name (.src-row.off .src-name). Door (60 rules): .countboard, the book rows and cards, #find input, the column-head rule, the chips (span.chip, .att), and every pill.",
+    "contrast_after": "3.39:1 on linen, 3.58 on panel, 3.43 on panel2, 3.21 on wash, 3.08 in a word's cell. On the door, chips are 3.08 and row and card frames 3.39 or better. The struck-name line is 3.43. Every role clears 3:1, against today's 3.41 to 4.01."
+   },
+   {
+    "from": "--gold, in its hand roles (moved to the darker value)",
+    "from_hex": "#a06c10",
+    "to": "--gold #93661a",
+    "roles": "Every hover edge: button:hover, #home hovers, header.top a:hover, #toc/#stamp heads, .chs a, #secPanel, #chPick, .rail summaries, .shelve-opt, .shelf-sw, .decl-more, .declp, .dfp, .r-overflow select, a.lic-chip, s-pills, r-unreachable, .c-mark, .c-choice, #cIndex focus and hits, .xp; door .bookcard, #find focus, .fp, .dfp, s-pills, #poc .pc-word. Every pressed edge plus its 1px ring: .chs a.on, #chPick .on, .vnum.at, .lic-chip.on, .shelve-opt[aria-pressed], .shelf-sw[aria-checked], .mode-btn.on, .dfp.on, r-pills, r-overflow .on, s-pills, c-pills, .c-mark/.c-bar expanded, .xp.armed, and the door's equivalents. The held word's 1.5px outline (.wb.active, .wjoin.active) and #tether lines. The heavier one-card lines: .wb.kq underline and bracket, .wjoin.lic .wj-ink. The brick-gap hairline and ticks (line and card head), the EMPTY_VERSE rule, .hoh-quote frame, #secPanel .sp-top, and the edition mark (body.ed-mark dotted underline). Door: #poc .pc-under, .pc-word separators, .atlas-row.g24, the open family's head row.",
+    "contrast_after": "3.79:1 on linen, 4.01 on panel, 3.44 in a word's cell, 3.32 on the blob's linen, 3.17 inside a pressed cell (was 2.83). The held box reads 3.79."
+   },
+   {
+    "from": "--gold-dim (old dim)",
+    "from_hex": "#a3762a",
+    "to": "--gold-dim #a06c10",
+    "roles": "Every word's one-card underline (.wb > .w, .wjoin .wj-ink, .wjoin.apart; about 6,200 elements on Genesis), the .vnum verse box (the color check's structure sample), the #stamp/#toc left edges and #stampBody rules, the stamp arrow, .part-head double rule, the dotted underlines of the text buttons (.receipts-btn, .d-more, .c-more, .c-shut), the blob outline (window.__tie stroke), and scrollbar hover. Door: the wordmark underline, .count edge, titleway .g underline, the attest pill edge, .book-group frames, the .d-more dotted line, #poc .pc-site/.pc-word lines, the .rd-part-typed dashed edge, and the attested-name underline.",
+    "contrast_after": "Word underline in its cell: 3.08 (was 2.76). Verse box on linen: 3.39 (was 3.04; the color check now reports 3.4:1). Inside a pressed word's cell: 2.83 (was 2.54). The blob outline goes to full strength: 3.08 against the cell and 2.97 against the blob's own linen (was the old dim at 70%, about 2.3)."
+   },
+   {
+    "from": "--amber (alias)",
+    "from_hex": "#a06c10",
+    "to": "deleted; the door's .d-cut edge takes --gold-dim. Door text in amber (.pc-hudwrap .d-cut, .rd-part-typed) moves to the purple dim (today --muted)",
+    "roles": "Not used in the reader. On the door: .pc-hudwrap .d-cut text and its 2px edge, and .rd-part-typed text.",
+    "contrast_after": "Edge 3.39 on linen. The text that leaves gold reads 5.97:1 in --muted (it was 3.39, too faint for small text)."
+   },
+   {
+    "from": "--mark-gold (the name's bright gold)",
+    "from_hex": "#c4921c",
+    "to": "--gold-dim #a06c10 for the name; --gold #93661a for the pressed run line",
+    "roles": "The 'and' of the text wordmark in the reader's home button (#home a.home .wm-and) and on the door (.wordmark .wm-and); the woven logo's 'and' and the flame's heart (build-wordmark-v1.py G). The line under a pressed named run (.wjoin.lic.active .wj-ink) takes the regular.",
+    "contrast_after": "The 'and' reads 3.39:1 on linen (was 2.11). The pressed run line is 3.17 on the pressed cell."
+   },
+   {
+    "from": "--hover-ink",
+    "from_hex": "#704c0f",
+    "to": "--gold #93661a",
+    "roles": "A hovered word's letters (.wb:hover .w) and a hovered half of a ketiv-qere pair (.wr:hover).",
+    "contrast_after": "3.44:1 in a word's cell. The Hebrew is 24px in both readers, which counts as large text, so 3:1 is enough (it was 5.24). Hover shows plainly: the red letters turn gold."
+   },
+   {
+    "from": "--hover-line",
+    "from_hex": "#c19f66",
+    "to": "--gold #93661a",
+    "roles": "A hovered word's underline (.wb:hover .w, .wr:hover).",
+    "contrast_after": "3.44:1 in a word's cell (was 1.56). On hover the line gets darker instead of lighter."
+   },
+   {
+    "from": "--line-c (commentary frames)",
+    "from_hex": "#bea983",
+    "to": "--gold-dim #a06c10 (alias kept: --line-c: var(--gold-dim))",
+    "roles": "Frames and inner rules of .parts, .parts-src, .hoh, .hoh-src, .vol (the volume divider on every card), .c-mark-slot and its select, #cIndex. Its one use as a fill, the off knob of .rail .shelf-sw::after, becomes a ring (gold may not be a ground, and the color check would flag a dim-gold fill).",
+    "contrast_after": "3.58:1 on the card panel (.vol), 3.25 on today's parchment (--surface-c), 2.83 on --panel-c (the commentary select's own fill, the same value as the pressed linen; the select's edge still reads 3.25 against the parchment around it). Was 1.72 or less. The knob ring is 3.4 on the rail. No served work carries a commentary today, so only .vol shows."
+   },
+   {
+    "from": "--chip-line (reader), gold at 34%",
+    "from_hex": "rgba(160,108,16,.34)",
+    "to": "--gold-dim #a06c10, solid",
+    "roles": "The license chip under every reading on the line (.g .g-lic, about 500 a page), the book's license chips (.lic-chip), header.top link underlines, #porch chapter chips, the dotted divider under the card's records, the reading pills on the card (#hud .r-pills button at rest), and the .wb.ov chips.",
+    "contrast_after": "3.08:1 in a word's cell and 3.39 on linen and panels (was 1.38 to 1.45). 2.83 on the chip of a pressed word."
+   },
+   {
+    "from": "door --chip-line, an old olive-brown at 32%",
+    "from_hex": "rgba(107,90,53,.32)",
+    "to": "--gold-dim #a06c10, solid",
+    "roles": "Door .lic-chip, .rd-carried, #poc .pc-m, #wcard chips, .pc-hudwrap chips.",
+    "contrast_after": "3.14:1 (was 1.52)."
+   },
+   {
+    "from": "--sel-text (the name's gold at 30%)",
+    "from_hex": "rgba(196,146,28,.3)",
+    "to": "the dim at 20%: rgba(160,108,16,.2)",
+    "roles": "The tint behind text the reader drags across (::selection). It is a ground, not a line.",
+    "contrast_after": "Selected red text 3.78:1 and selected blue 3.70, the same as today. 30% would drop them to 3.38 and 3.31. No gold tint can bring red above 4.5, because red on bare linen is only 4.68."
+   },
+   {
+    "from": "#8b7f69 (the hard-coded fallback for --rule, which no stylesheet defines)",
+    "from_hex": "#8b7f69",
+    "to": "--gold-dim",
+    "roles": "The 3px left edge of an omission block (.omission).",
+    "contrast_after": "3.39:1 at full strength. The block is drawn at 82% opacity, which gives 2.64 (was 2.36)."
+   },
+   {
+    "from": "logo thread shades (computed by shade() and tint())",
+    "from_hex": "#9d7516 / #d3b05c",
+    "to": "thread edges in --gold #93661a; body and highlight in --gold-dim #a06c10",
+    "roles": "The woven 'and' and the flame's heart in mark/fireandhail.com-woven-v1.svg.",
+    "contrast_after": "The 'and' is 3.39:1 on linen, its edges 3.79 (was 2.11, edges 3.16, highlight 1.56)."
+   },
+   {
+    "from": "chain pages --sel (gold used as text) and --line",
+    "from_hex": "#8d5e0c / #d8cdbc",
+    "to": "--line becomes the dim #a06c10. --sel leaves gold, because gold is never text: titles take the purple regular and links take --link (argaman #772ba3)",
+    "roles": "build-chain-book-v1.mjs line 63 (the live /chain/ pages, linked from the door) and build-toggle-design-v1.mjs line 179: h2 titles, recipe dt, links, and all section and recipe rules.",
+    "contrast_after": "Rules 3.74:1 on their #f1e9d8 paper (was 1.30). Links in argaman 6.54."
+   }
+  ],
+  "grounds": "Kept as grounds, with no new value. (1) ::selection stays a tint, now the dim at 20%: rgba(160,108,16,.2). It reads as plainly as today (red 3.78, blue 3.70); at 30% the selected text would get worse. (2) The door's --hover-wash rgba(138,107,38,.10) rests on #8a6b26, which the site uses nowhere else. It is a ground, so it goes to the linen family. I propose, and rendered, the reader's own cell glaze rgba(74,48,8,.06): a hovered door row becomes the same linen as a word's cell, a step 3.6 from the ground (was 4.8), with every ink on it still above 4.2:1. (3) The door's --chip-bg rgba(107,90,53,.10) is a ground on an old olive-brown base. I left it alone; it belongs to the linen agent (the reader's --chip-bg rgba(43,35,56,.05) is a purple-grey and is not gold). (4) The pressed linen (--press-wash #dccbaa), the cell and blob glazes (rgba(74,48,8,.06/.08)), the weave grain (rgba(110,84,46,.03/.035)) and parchment (--surface-c, --panel-c) are linen's and untouched. The --line-c value is no longer a fill anywhere: the off knob of the shelf switch becomes a ring of the dim gold (inset 1.5px), because a solid dim-gold disc would trip the check's 'no gold is laid down as a ground'. (5) The brown shadows rgba(96,80,48,.20-.35), including the door's --shade scrim, stay shadows. (6) The blob outline (window.__tie stroke) was the old dim at 70%. I set it to the dim at full strength, so no translucent gold line remains. If the owner prefers the softer outline he approved on 2026-10-09, put strokeOp back to 0.7; it then reads about 2.3:1. (7) The only translucent gold left anywhere is the selection tint, which is a ground.",
+  "distinctions_lost": [
+   "The logo's 'and' against the frame. It used to be a brighter, sunnier gold than any line on the page; now it is the same gold as the borders and the marks. That is the owner's point ('uniform coloring between logo and site'). What it costs: the 'and' looks deeper and browner, and its threads show only faintly because the two golds are close (shot 11). It stays clearly apart from the red and blue beside it: color distance 53 to the red and 89 to the blue.",
+   "A hovered word's letters against its marks. Hover used to turn the letters dark brown-gold with the marks a lighter gold. Now the letters take the regular and the marks the dim, so during a hover the word reads as nearly one gold. This happens only under the pointer, and the hover is still plain: red letters turn gold (shot 03).",
+   "Which way a hover goes. Bordered controls and the word underline used to lighten on hover (rest #93661a to #a06c10; underline #a3762a to #c19f66). Now they darken (dim to regular). The step is the same size as today's: color distance 7.5, the same faint change it is today (shots 05). It reads as the gold getting bolder.",
+   "Faint chips against solid pills. License chips, reading pills on the card and header link lines were a faint 34% hairline. Now they are the solid dim like every other pill (shots 02, 07). Every frame is now one gold, as the owner's 2026-10-03 'i would keep all borders gold' asks. The cost is that a reading line's license chips are more visible than before.",
+   "Commentary frames against other frames. The commentary panels were paler than every other box. Now they share the dim, and commentary stays set apart by its parchment ground and its red edge. No served work shows a commentary today.",
+   "The pressed run's line. Under an open named run the line turned the name's bright gold; now it is the regular. The pressed state still shows through the gold box, the darker linen and bold letters.",
+   "Nothing is lost between a word's line and a run's or pair's line. It used to be 1px old dim against 1.5px gold; now it is 1px dim against 1.5px regular, which differs in weight and shade.",
+   "Rest against pressed. A pressed control used to have the same gold as a hovered one, drawn twice. Now it is the darker regular drawn twice, on darker linen, in bold, so it stands out more (shot 04)."
+  ],
+  "rulings_superseded": [
+   "Superseded: \"the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else\". This is the comment over --mark-gold in reader/zone.html :root and in the door's :root (DOOR_CSS). It gives way to the owner on 2026-10-10: \"my main point is uniform coloring between logo and site\" and \"id just use the same gold as the borders and logo was bro\".",
+   "Wording only, no owner ruling reversed: the color contract's reader_selection.in_process, \"the page's own controls take gold at its amber value while the reader is pressing them\", and held_word, \"The page's controls keep amber\". These describe the 2026-09-09 amber, later replaced by the owner on 2026-10-03: \"idk if turning purple to gold is a clear way to highlight toggle pills et al, maybe bold purple would be better?\". No amber value remains; a pressed control's edge is the regular gold drawn twice. The text should say so.",
+   "Changed in appearance, owner's words kept: the blob outline. The owner said on 2026-10-09: \"linen is our blob color to connect the hebrew and english. and the dimmed gold is around that blob, not the full card\", and of the mockups, \"now you got it\". It is still the dim gold, but at full strength rather than the 70% he saw. To keep exactly the approved look, put strokeOp back to 0.7.",
+   "Not superseded, only renamed: the marks comment \"So this is --gold itself, the gold of every border, rule and underline\" (owner, relayed 2026-10-11; ruled 2026-10-10). The marks keep #a06c10 exactly, now as --gold-dim, which really is every border and underline after the fold.",
+   "Kept and honored more closely: \"EVERY EDGE GOLD (the owner, 2026-10-03: 'i would keep all borders gold')\", now true of the chips too. Also the pressed-cell rule (2026-10-03: \"1. darken the linen backdrop on a highlighted cell, 2. bolden the gold, 3. bolden the blue text\"), where the pressed gold is now both heavier and darker. Also \"EVERY WORD IS UNDERLINED ... thin and dim\" (2026-10-03), and the warming off olive (2026-10-03: \"also is our gold a bit too olive?\"): both kept values are from the warmed family, at a 38 degree hue."
+  ],
+  "checks_to_change": [
+   "reader/tools/check-color-channels-v1.mjs needs no change. I ran a copy with the fold injected: 32 ok, 0 FAIL. Structure (.vnum border) goes from 3.0:1 to 3.4:1 and stays in the gold family (hue 38, sat 0.82, light 0.35); the held box outline is #93661a, also gold. Optional tidy: its FAMILY entry \"gold, at its amber value\" and the comments at lines 10 and 92-96 refer to amber, which no channel uses any more.",
+   "reader/tools/check-masoretic-gold-v1.mjs needs no change. I ran a copy with the fold injected: all ok. The marks are still rgb(160,108,16), now through --mark-ink: var(--gold-dim); G3 still sets --mark-ink inline and passes.",
+   "reader/data/color-contract-v1.json holds no hex values, so the check's channels and borne_as are unchanged. Rewrite the amber wording in channels.reader_selection (in_process, held_word, reads_as \"a held word shows no amber\") to say: a pressed or hovered control's edge is the regular gold, a pressed one drawn twice. Add a line to what_changed_after_v2_was_written for the 2026-10-10 fold to two golds. The /palette/ page prints this text.",
+   "check-gloss-whole-v1, check-hoh-in-card-v1 and check-hud-runs-v1 mention gold only by meaning (an outline is solid, a box is gold). No change.",
+   "reader/tools/build-wordmark-v1.py line 43: G = '#a06c10', add GR = '#93661a', and in thread() add `if c == G: e, h = GR, G`. Then rebuild mark/fireandhail.com-woven-v1.svg. My scratch build of it contains only #93661a and #a06c10 for gold, and no #c4921c, #9d7516 or #d3b05c.",
+   "reader/engine-539dc1706b10.css is zone.html's stylesheet copied out for the static book pages, built by build-front-door-v1.mjs. It still carries #704c0f, #c19f66 and #bea983. Rebuild it after the zone.html edit.",
+   "reader/tools/build-chain-book-v1.mjs line 63 and build-toggle-design-v1.mjs line 179 carry their own palette: --sel:#8d5e0c is gold used as title and link text, and --line:#d8cdbc. See the fold entry.",
+   "Stale copies that are not sources still carry the old golds: reader/zone-geo-*.html, reader/zone-*-tmp.html, and reader/deploy-root/* (deploy-root/1kings even has a #96700f). Nothing to fold there, but the hex greps will keep finding them."
+  ],
+  "door_changes": "In the door's :root (DOOR_CSS in reader/tools/build-front-door-v1.mjs, about line 196): --line goes from #93661a to var(--gold-dim); --gold goes from #a06c10 to #93661a; --gold-dim goes from #a3762a to #a06c10. Delete --amber and --mark-gold, along with the mark-gold comment. --chip-line goes from rgba(107,90,53,.32) to var(--gold-dim). --hover-wash rgba(138,107,38,.10) is a ground and belongs to the linen family; I propose rgba(74,48,8,.06), the reader's cell glaze. --chip-bg is a ground; leave it to the linen family. Rules: `.wordmark .wm-and` takes var(--gold-dim); `.pc-hudwrap .d-cut` and `.rd-part-typed` text take var(--muted) (gold is never small text); the .d-cut edge takes var(--gold-dim); `*::-webkit-scrollbar-thumb:hover` takes var(--gold), so a hover still shows. The woven logo image changes through build-wordmark-v1.py (see logo). On screen, the door's frames get very slightly brighter, the chips go from faint hairlines to solid dim gold, the book card's pressed pill is darker, and the logo's 'and' becomes the frame's gold (shots 09, 10, 11). The door's own CSS has --press-wash and --muted, so everything referenced is defined. After editing, rebuild the door and the engine CSS.",
+  "logo": "The woven logo (mark/fireandhail.com-woven-v1.svg from build-wordmark-v1.py) draws the 'and' and the flame's heart in the dim, #a06c10: the gold of every frame, every word's line and the Masoretic marks. Its thread edges are the regular, #93661a, the gold of the hand. No other shade is mixed in: the old shade() edge #9d7516 and tint() highlight #d3b05c are gone, and so is the bright #c4921c. Because the two golds are close, the gold threads show only faintly. That is the real cost of 'uniform with the site' (shot 11). The text wordmarks (the reader's home button .wm-and and the door's .wordmark .wm-and) also use the dim, and the door wordmark's underline is the dim, so the line under the name matches its 'and'. The red, blue and purple threads are left to their own families' folds; I changed only gold. The builder's LINEN #f1e9d8 is the linen family's to settle.",
+  "css_patch": "=== reader/zone.html :root ===\n-    --line: #93661a; --wash: #e6d8bb;\n+    --line: var(--gold-dim); --wash: #e6d8bb;          /* every frame at rest is the dim */\n-    --surface-c: #e8d9bc; --panel-c: #dccbaa; --line-c: #bea983;\n+    --surface-c: #e8d9bc; --panel-c: #dccbaa; --line-c: var(--gold-dim);\n-    --gold: #a06c10; --gold-dim: #a3762a; --amber: #a06c10;\n+    /* TWO GOLDS, A REGULAR AND A DIM (the owner, 2026-10-10: \"id probably go\n+       regular and dim. i dont like our bold that much\"; \"my main point is\n+       uniform coloring between logo and site\"). The dim is gold at rest:\n+       every frame, every word's line, every chip, the Masoretic marks and\n+       the and of the name. The regular is gold under the reader's hand: a\n+       hover, a pressed cell's edge drawn twice as heavy, the box round a\n+       held word and its lines to the card, and the heavier line under a run\n+       or a ketiv-qere pair. Both are the warmed golds of 2026-10-03. */\n+    --gold: #93661a; --gold-dim: #a06c10;\n-    --sel-text: rgba(196, 146, 28, 0.3);\n+    --sel-text: rgba(160, 108, 16, 0.2);             /* the dim, as a tint */\n-    /* the mark's own gold, brighter than the frame's ... (the owner, 2026-10-02); used by the name and nothing else */\n-    --mark-gold: #c4921c;\n-    --mark-ink: var(--gold);\n+    --mark-ink: var(--gold-dim);                     /* the marks keep #a06c10 */\n-    --hover-ink: #704c0f; --hover-line: #c19f66;\n-    --chip-bg: rgba(43, 35, 56, 0.05); --chip-line: rgba(160, 108, 16, 0.34);\n+    --chip-bg: rgba(43, 35, 56, 0.05); --chip-line: var(--gold-dim);\n(Also rewrite the marks comment \"So this is --gold itself\" to \"--gold-dim, the gold of every frame at rest and of the name's and\". The olive comment stays.)\n\n=== reader/zone.html rules ===\nL183  #home a.home .wm-and { color:var(--gold-dim); }\nL602  #porch .r i { font-style: normal; color: var(--muted); font-size: 0.72em; letter-spacing: 0.02em; }   /* purple dim: gold is never small text */\nL603  #porch sup { font-size: 0.62em; color: var(--muted); margin-left: 0.1em; }\nL663  .omission { ... border-inline-start: 3px solid var(--gold-dim); opacity: .82; }\nL739  .hoh-ref { ... color: var(--muted); background: var(--surface-c); ... }\nL770  .wb:hover .w { color: var(--gold); border-bottom-color: var(--gold); }\nL837  .wjoin.lic.active .wj-ink { border-bottom-color: var(--gold); }\nL950  .wr:hover { color: var(--gold); border-bottom-color: var(--gold); }\nL1128 .rail .shelf-sw::after { ... border-radius: 50%; background: none; box-shadow: inset 0 0 0 1.5px var(--gold-dim); transition: left 0.12s; }\nL1130 .rail .shelf-sw[aria-checked=\"true\"]::after { left: 0.95rem; background: var(--sel); box-shadow: none; }\nL1132 .rail .shelf-sw[aria-checked=\"mixed\"]::after { left: 0.52rem; background: var(--muted); box-shadow: none; }\nL1822 *::-webkit-scrollbar-thumb:hover { background: var(--gold); }\nL7670 const T = window.__tie || { fill: \"var(--tie-wash)\", stroke: \"var(--gold-dim)\", strokeW: 1, strokeOp: 1, round: 8 };\n(var(--muted) stands for the purple family's dim; use whichever token the purple fold keeps.)\n\n=== door :root (DOOR_CSS in build-front-door-v1.mjs) ===\n-    --bg:#ebdec3; --panel:#efe4cd; --panel2:#ecdfc5; --line:#93661a;\n+    --bg:#ebdec3; --panel:#efe4cd; --panel2:#ecdfc5; --line:var(--gold-dim);\n-    --gold:#a06c10; --gold-dim:#a3762a; --amber:#a06c10;\n+    --gold:#93661a; --gold-dim:#a06c10;\n-    /* the mark's own gold, ... */\n-    --mark-gold:#c4921c;\n-    --chip-bg:rgba(107,90,53,.10); --chip-line:rgba(107,90,53,.32);\n+    --chip-bg:rgba(107,90,53,.10); --chip-line:var(--gold-dim);   /* chip-bg: the linen family's call */\n-    --hover-wash:rgba(138,107,38,.10); --shade:rgba(96,80,48,.35);\n+    --hover-wash:rgba(74,48,8,.06); --shade:rgba(96,80,48,.35);   /* proposed; the linen family's call */\n=== door rules ===\n  .wordmark .wm-and { color:var(--gold-dim); }\n  .pc-hudwrap .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--muted); border-inline-start: 2px solid var(--gold-dim); padding-inline-start: 0.5rem; }\n  .rd-part-typed { color: var(--muted); border: 1px dashed var(--gold-dim); background: var(--hover-wash); }\n  *::-webkit-scrollbar-thumb:hover { background: var(--gold); }\n\n=== reader/tools/build-wordmark-v1.py ===\n- S = '#9d4355'; G = '#c4921c'; B = '#34649a'; U = '#772ba3'; LINEN = '#f1e9d8'\n+ S = '#9d4355'; G = '#a06c10'; GR = '#93661a'; B = '#34649a'; U = '#772ba3'; LINEN = '#f1e9d8'   # gold: --gold-dim, its thread edges --gold\n  def thread(id, c, angle, edge, hi, P):\n      e = shade(c, edge); h = tint(c, hi)\n+     if c == G: e, h = GR, G   # the gold weaves the regular and the dim, nothing mixed\n\n=== chain / toggle-design builders ===\n  build-chain-book-v1.mjs:63 and build-toggle-design-v1.mjs:179: --line:#d8cdbc becomes #a06c10. --sel:#8d5e0c (titles, dt, links) leaves gold: links take #772ba3 (argaman), titles the purple regular.\n\nThe exact injected overrides used for every 'after' shot are in /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/shots.mjs (ZONE_AFTER, DOOR_AFTER, and the blob scene's window.__tie). The logo built for the shots is /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/logo-after/fireandhail.com-woven-v1.svg.",
+  "shots": [
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/01-reader-top-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/01-reader-top-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/02-line-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/02-line-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/03-hover-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/03-hover-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/04-rail-pressed-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/04-rail-pressed-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/05-rest-control-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/05-rest-control-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/05-hover-control-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/05-hover-control-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/06-card-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/06-card-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/07-card-zoom-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/07-card-zoom-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/08-english-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/08-english-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/09-door-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/09-door-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/10-door-card-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/10-door-card-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/10-door-hover-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/10-door-hover-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/11-logo-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/11-logo-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/12-phone-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/12-phone-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/14-blob-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/gold/14-blob-after.png"
+  ]
+ },
+ {
+  "family": "purple (argaman, our own voice; the ink and argaman lines folded into one family)",
+  "keep": [
+   {
+    "token": "--argaman (regular; --ink, --ink-strong, --shesh, --shesh-bright and --sel all point to it)",
+    "hex": "#561f86",
+    "tier": "regular",
+    "why": "It is already the page's own ink. Every letter with no color of its own uses it, and so do the Hebrew verse numerals, the source names and the values. The book and chapter titles move onto it from #44166c, which is only a hair darker (dE 10.7), and pressed controls move from #4f1789, which looks almost the same (dE 6.0). It is the darkest purple the color check still accepts as argaman (lightness 0.32, and the floor is 0.30). Contrast is 8.2:1 on the linen, 7.4:1 in a word's cell and 6.8:1 on a pressed cell."
+   },
+   {
+    "token": "--argaman-dim (dim; --muted, --faint, --sel-dim and --link all point to it)",
+    "hex": "#6c359e",
+    "tier": "dim",
+    "why": "It is already the purple of the page's running text: bylines, notes, rail descriptions, controls at rest, and the very line the color check samples as 'our own voice' (header p#meta). It is the most-used purple in the rules (70) and has the same hue as the regular (271 vs 272), so it reads as a lighter step of the same color rather than a different purple. It reads as body text: 6.0:1 on the linen, 5.4:1 in a word's cell, and 5.0:1 at worst (a pressed cell or the commentary panel). The bright argaman #772ba3 sits at exactly the same lightness, so it folds in with almost no visible change."
+   }
+  ],
+  "fold": [
+   {
+    "from": "--ink-strong / --shesh-bright (the deep title purple)",
+    "from_hex": "#44166c",
+    "to": "--argaman #561f86 (regular)",
+    "roles": "Reader: header.top h1 and .en-t (book title row), .nh-en and .node-head .en (chapter names, about 50 per book page), .vnum (verse numbers 1:1, about 1,533 per Genesis page), #toc .chs a and #toc .part b, #porch h2, .rail .shelf-title (on), #stamp .desk .v and .exact, #stamp tr.exact delta and glyph (w600), .c-mark, #cIndex .ci-head b, #secPanel .sp-top, #chPick .ch-top, .byline .lic, and #hud .d-more expanded. It is also every hover that steps up: #home a.home and button.face, header.top a, .receipts-btn, .sp-grid a, #nav button, #placeBack, .c-shut, #hud .c-back, .d-more, #tocHead and #stampHead. Door: h1, .count .num, .rd-kind, .rd-kv, #wcard .head b, .r-now .v, details.fam summary .en, #demo .demo-lab, .g24-name, .face.is-here, #poc .pc-pick pressed, and every a, .aw and .face hover. The door's ::selection text also used it; that rule is replaced (see grounds).",
+    "contrast_after": "8.15:1 linen, 8.60 panel, 7.39 word cell, 6.80 pressed cell / commentary panel (#dccbaa); was 10.0 / 8.35. Titles lose nothing a reader needs."
+   },
+   {
+    "from": "--sel (the pressed purple)",
+    "from_hex": "#4f1789",
+    "to": "--argaman #561f86 (regular), worn bold",
+    "roles": "Every pressed or armed control. Reader: .mode-btn.on, .dfp.on, .rail .shelve-opt pressed, #chPick .on, #toc .chs a.on, .vnum.at, .c-mark expanded, .c-bar expanded, .xp.armed, s-pills and c-pills pressed, .hoh-head .lic-chip.on, .rail .now b, .d-sense.on, .mq-open.on, and #placeBack:active. These are already bold through the shared rule at zone.html ~1227-1229 plus their own rules. Also: the check marks and borders of .decl-bx and the src-list .dfp, the expanded text and start border of #tocHead and #stampHead, the shelf switch's 'on' knob (a small fill), and the :focus-visible ring. Door: .dfp.on, .filing-pick .fp.on, s-pills and c-pills pressed, and the focus ring.",
+    "contrast_after": "8.15:1 linen, 6.80:1 on the pressed cell; focus ring and check borders 8.15:1 (rule floor 3:1). Was 8.68 / 7.25."
+   },
+   {
+    "from": "--faint, and --sel-dim (the faint label purple)",
+    "from_hex": "#845ba7",
+    "to": "--argaman-dim #6c359e (dim)",
+    "roles": "Every small label and note. Reader: 'book title', 'commonly force read as', 'chapter title', 'chapter \u00b7 verse', 'export', 'home:', 'source', 'from', 'right to left', 'this page answers'; the rail's .k, .voice, .why, unpressed .dfp pills, switched-off shelf titles and source names, .decl-*; the card's .r-label, .kq-key, .k, .prov and .c-note; the count's .k, .cls, td.why and .stamp-note; the 'CC BY 4.0' chip under every word (.g-lic), .nh-of '31 verses', receipts, footer#prov, .toc-note, .xp-note and .xp-lab. JS sets var(--faint) inline on the card head's unlit pieces (zone.html ~5653, 5670, 8799). Door: column heads, .of lines, the 'find a book' placeholder, .chip.att arrows, #poc notes, #bkcard and #wcard labels, footer. As --sel-dim it also draws the card's 1px frame (#hud border), the moved card's ring, the count rows' flash, the expanded .declp underline, the .d-also-m hover border, and on the door the .pc-hudwrap and #wcard frames.",
+    "contrast_after": "5.97:1 linen, 5.42 word cell, 6.03 rail, 6.31 card panel, 4.99 pressed cell; frames and rings 5.97 (rule floor 3:1). Was 3.26-4.13: 48 text roles under 4.5:1, every one of which now passes."
+   },
+   {
+    "from": "--argaman and --link (the bright argaman)",
+    "from_hex": "#772ba3",
+    "to": "--argaman-dim #6c359e (dim). The name keeps --argaman, which now holds the regular, so 21 reader rules and 10 door rules are re-pointed to var(--argaman-dim).",
+    "roles": "Links at rest: a, header.top a, .receipts-btn, the card's x button, .att a, .r-more, .c-back, #porch links, .c-mark-slot .lab a, and the arrow on a band label. Lines saying something is absent, withheld or does not reconcile: .he-t and .en-t.unnamed, .c-head-he.unnamed, #hud .r-now .v.none, .c-noen, .c-inline.c-held, .xp-note .held, .omission .om-what, .c-undeclared, .c-two-counts, .c-how-whose.c-suggested. Flags: '2 differ', the -1 and the hollow glyph in the count (w600), .stamp-warn, #demoLine, .drift-chip, and the .wb.typed-here dashed underline. Door: .he.none and .en.none, the n-chip ('text: Miqra according to the Masorah'), .pc-hudwrap .none, .v.none, and the titleway gloss. NOT folded to the dim: the home button's text '.com' (#home a.home .wm-tld and the door's .wordmark .wm-tld). Those keep var(--argaman) and become the regular, to match the drawn logo.",
+    "contrast_after": "5.97:1 linen (was 5.93). The same lightness as before (L* 34.4 vs 34.6, dE 8.6), only a touch less red."
+   },
+   {
+    "from": "--argaman-dim (the pale argaman)",
+    "from_hex": "#9c69b9",
+    "to": "--argaman-dim #6c359e (the name stays; the value changes)",
+    "roles": "Reader: .nh-he.unnamed (the chapter head's 'no name is on record', about 50 per book page, italic), .omission .om-why, #stamp tr.no_witness rows, the .drift-chip dashed border, and the start borders of .c-undeclared and .c-two-counts.",
+    "contrast_after": "5.97:1 linen; was 3.07:1, which failed body text."
+   }
+  ],
+  "grounds": "There are no purple washes, halos or tinted panels; the purple family is ink and line. The few purple grounds are handled this way.\n\n(1) The shelf switch knob is a small fill. 'On' (--sel) becomes the regular and 'mixed' (--muted) becomes the dim. The knob's position still tells them apart.\n\n(2) The rings and box-shadows drawn with --sel-dim (#hud.moved, the stamp-flash keyframe) become the dim.\n\n(3) The door's ::selection had to change. Today it is a #845ba7 ground with #44166c text, which is only 2.6:1. After the fold it would be dim behind regular text, 1.36:1, so it can't stay. It becomes the reader's own selection: background var(--sel-text), color inherit. That means adding --sel-text: rgba(196,146,28,.3) to the door's :root. The door's own comment already promises 'selection in the reader's own amber'. The value is the mark-gold at 30%, so its final value belongs to the gold fold.\n\n(4) The omission block (reader, latent: no served work has one today) faded itself with opacity: .omission .82, .om-mark .55, .om-why .75. That pushed its text to 2.3-4.2:1. The opacity comes off and the dim does the dimming (5.97:1).\n\n(5) --chip-bg rgba(43,35,56,.05) is a near-black cool grey (hue 263). It is not one of the seven purples: at 5% on linen it lands at rgb(225,213,188), a linen shade within a step of --cell-wash. I left it as a ground for the linen fold. The door's --chip-bg and --chip-line are brown and gold, not purple.\n\n(6) The card frame (#hud border, and on the door .pc-hudwrap and #wcard) stays purple, now the dim. It gets darker: 3.9:1 becomes 6.0:1 on linen. This is an open choice for the parent. The owner ruled 'EVERY EDGE GOLD (the owner, 2026-10-03: \"i would keep all borders gold\")', and the card frame and the focus ring were already holdouts from it. They could go to --line gold instead; I kept them purple as the smaller visible change.",
+  "distinctions_lost": [
+   "Titles vs running text: still apart, but closer. Today the gap from title to label is 2.56:1 (#44166c vs #845ba7); after it is 1.36:1 (regular vs dim, dE 8.6). This is what the owner chose ('titles get regular and text gets dim'). Chapter heads look a little flatter; labels are still set apart by small capitals and letter-spacing. Matters a little.",
+   "Labels (faint) vs running text (muted) are now one color. Size, capitals and italics already carry the difference. Does not matter.",
+   "Pressed vs at-rest for controls that were already in the ink (shelve-opt, #chPick buttons, .vnum vs .vnum.at, .c-mark, #toc .chs a): same color now. Before, the difference was invisible anyway (dE 6-11). The press is carried by bold, the darker linen and the doubled gold, exactly as the 2026-10-03 rule says. Does not matter.",
+   "Expanded vs shut Contents and Count heads: the text color is now the same (the difference was dE 6-11 before). The purple start border, the turned arrow and the opened body still say it. Low.",
+   "Hovers that stepped faint to muted would have gone flat. They are re-pointed to the regular so a hover still darkens: zone .byline-fold summary, .receipts-fold summary, .rail .decl-more, .decl-where-fold summary, .rail .def-order .declp, the .dfp hover group, #toc a (link becomes ink-strong), and #hud .b-q pressed .q-role; door .filing-pick .fp, .def-order .dfp, .workgroup details.fold summary. Nothing lost.",
+   "Hovers that went from ink to sel (.rail .src-open:hover .src-name) and the door's details.fam summary:hover .en (ink-strong to shesh) no longer change color. The cursor, arrow and gold borders remain. Low.",
+   "Absent or withheld notes no longer have a brighter purple of their own: they are the dim, like other notes. Most are italic (.he-t, .en-t, .nh-he and .c-head-he .unnamed; .v.none; .he.none and .en.none), so they still read as absences. The non-italic ones lean on their words or marks: '2 differ' and -1 are bold with a hollow glyph; .c-undeclared and .c-two-counts keep their left rule; .stamp-warn is upright where .stamp-note is italic. .c-how-whose.c-suggested is now the same as plain .c-how-whose, and .c-noen, .om-what and #demoLine look like ordinary notes. Medium-low: the words say what they are.",
+   "Count: exact (+0, filled dot) is the regular and differs (-1, hollow dot) is the dim. This is the same relationship as today, when exact was the darker one. Kept.",
+   "Rail: a dead row's label (.row.dead .lab) looks like a live one; .decl-reach for the source looks like the others; .decl-partial looks like .decl-silent (both italic). The disabled pills and the text carry these. Low.",
+   "Shelf switched on (regular title) vs off (dim title): still apart (1.36:1), and the switch knob also shows it. Kept.",
+   "Gained: the logo's .com and the site's purple are now the same two values. And the page paints exactly two purples: the audit counted 12,837 regular and 2,182 dim text elements across the reader, card, count, contents and door, and nothing else. Before, it painted 7 purples, with 48 roles under 4.5:1."
+  ],
+  "rulings_superseded": [
+   "The value under 'A PRESSED CONTROL IS PURPLE, WORN BOLD (the owner, 2026-10-03: \"idk if turning purple to gold is a clear way to highlight toggle pills et al, maybe bold purple would be better?\")', where our own note added 'A purple deeper than the page's own ink at rest' (#4f1789). The owner's words stand: a pressed control is still purple and still bold. Only the separate deeper purple goes. A pressed control is now the regular, worn bold.",
+   "The color contract's our_own_voice, decided 2026-09-10: 'The saturated argaman is kept for the narrow case where the page says something is absent, withheld, refused, or does not reconcile.' The owner's 2026-10-10 rulings ('personally i dont see a gain from more than 2/2/2/2 and 3 linen'; 'titles get regular and text gets dim ... id probably go regular and dim') supersede it. Those lines are now the dim.",
+   "Not superseded, only re-valued: 'THE NAME IS THE MARK, in four colors (the owner, 2026-10-02, and 2026-10-03: \"... and .com should be purple\")' and the builder's 'The owner, 2026-10-03 ... on the dot of .com: \"keep the normal transition we already had there because purple and blue blend nicely and it can be on just the .\"'. The .com stays purple and its dot still turns out of the blue. The purple moves from #772ba3 to the site's regular #561f86, woven with the dim #6c359e.",
+   "Not superseded: 'four colors, ruled 2026-10-02 ... the purple alone at its full depth'. The kept regular #561f86 is that full-depth purple, the page's ink.",
+   "Left as is but noted: 'EVERY EDGE GOLD (the owner, 2026-10-03: \"i would keep all borders gold\")'. The card's frame (--sel-dim) and the focus ring (--sel) were purple before this fold and stay purple (now dim and regular). Moving them to gold would honor that ruling fully, but it is a gold-family call."
+  ],
+  "checks_to_change": [
+   "reader/tools/check-color-channels-v1.mjs: no existing assertion breaks. I replicated its measurements on genesis before and after (scratchpad fold-wf/purple/verify.mjs). 'Our own voice' (header.top p#meta) stays #6c359e: in the argaman box (hue 271, sat .50, light .41), 6.0:1. The selection (.mode-btn.on) goes #4f1789 to #561f86: hue 272, sat .62, light .32, inside light [0.30, 0.92] with 0.02 to spare, 8.2:1. The three final channels are still apart (voice vs shani 77 degrees, voice vs tekhelet 60). No orphaned tokens on the reader. The held word's ink is still not the selection ink.",
+   "check-color-channels-v1.mjs (proposed new assertion): 'our own voice is two purples'. Every text-bearing element whose color falls in the argaman family must paint exactly --argaman or --argaman-dim, read off :root, so a third purple can't creep back. Measured after: 12,837 regular + 2,182 dim and nothing else; before: 7 values. A companion check for the floor: every dim text reaches 4.5:1 on its composited ground. Measured after: minimum 4.99:1; before: 48 roles under it.",
+   "check-color-channels-v1.mjs (pre-existing, unrelated to the fold): in this worktree it can't run. zonesOnDisk() and zonesWithCommentary() return [], so it opens ?b=undefined&c=open and times out at waitForSelector. This is the same before and after; it needs a fallback zone (e.g. genesis) to be a real gate.",
+   "reader/tools/check-contents-shut-v1.mjs: passes unchanged. #tocHead is #561f86, and getPropertyValue('--faint') resolves the alias to '#6c359e', which differs.",
+   "reader/tools/check-maqaf-lattice-v1.mjs (`style.color.includes(\"faint\")`) and check-kq-lead-follows-switch-v1.mjs: they read the inline 'var(--faint)' by its name. --faint stays as an alias, so no change.",
+   "reader/data/color-contract-v1.json: no hex to change; it names channels by material. (1) Rewrite channels.our_own_voice.how_it_is_carried to: 'The ink, everywhere, in two purples and no more (the owner, 2026-10-10: \"personally i dont see a gain from more than 2/2/2/2 and 3 linen\"; \"titles get regular and text gets dim ... id probably go regular and dim\"): the regular (--argaman) for titles, values and what is under the reader's hand; the dim (--argaman-dim) for running text, notes, labels, and links and controls at rest, held at body-text contrast. A line saying something is absent, withheld, refused or does not reconcile is the dim, in italic where it stands in for a name or a value; it no longer has a brighter purple of its own.' (2) Append to channels.reader_selection.moved_from: 'From 2026-10-10 it is the regular purple itself, worn bold; the press is carried by the weight and the pressed cell, not by a purple deeper than the ink.' (3) held_apart_from_our_voice_by already says 'a selection is the same purple pressed bold' and is now literally true; leave it.",
+   "reader/tools/build-front-door-v1.mjs CC_TOKEN (~line 1576): our_own_voice stays '--argaman'. The /palette/ swatch then shows #561f86, the page's real ink; today it shows #772ba3, which was never the ink. reader_selection '--sel' shows the same #561f86, told apart by weight. Optional: add a second swatch for '--argaman-dim', and set CC_WEARS.our_own_voice to 'titles and values in the regular; running text, notes, labels, and every line saying a record holds nothing here, in the dim'."
+  ],
+  "door_changes": "These edits go inside DOOR_CSS, the JSON-escaped string at reader/tools/build-front-door-v1.mjs line 196. None of the changed text contains quotes, so the strings carry over as written.\n\n:root:\n- '--ink:#561f86; --ink-strong:#44166c; --muted:#6c359e; --faint:#845ba7;' becomes '--ink:var(--argaman); --ink-strong:var(--argaman); --muted:var(--argaman-dim); --faint:var(--argaman-dim);'\n- '--sel:#4f1789; --sel-dim:#845ba7;' becomes '--sel:var(--argaman); --sel-dim:var(--argaman-dim);'\n- '--shesh:#561f86; --shesh-bright:#44166c;' becomes '--shesh:var(--argaman); --shesh-bright:var(--argaman);'\n- '--argaman:#772ba3; --argaman-dim:#9c69b9; --link:#772ba3;' becomes '--argaman:#561f86; --argaman-dim:#6c359e; --link:var(--argaman-dim);' plus a new line '--sel-text:rgba(196, 146, 28, 0.3);' (the gold fold sets its final value).\n\nRules:\n- var(--argaman) becomes var(--argaman-dim) in: a.titleway .g; .bookcard .he.none, a.sub-work .he.none; details.fam > summary .n-row span.n-chip; #demo .dw .g; .pc-hudwrap .r-now .v.none; .pc-hudwrap .s-pills button .none; details.fam > summary .he.none; #wcard .r-now .v.none; #bkcard .he.none; and '.he.none, .en.none, .fam-he .he.none, #bkcard .he.none'.\n- These keep var(--argaman), now the regular: .wordmark .wm-tld (the text .com and its gradient), a.titleway:hover .he (a hover), and .bookcard .he / a.sub-work .he at line ~120 (a title, and overridden to shani later anyway).\n- Hovers:\n  - '.filing-pick .fp:hover { color:var(--muted);' becomes var(--ink)\n  - '.def-order .dfp:hover:not(:disabled) { color:var(--muted);' becomes var(--ink)\n  - '.workgroup details.fold > summary:hover { color:var(--muted); }' becomes var(--ink)\n- '::selection { background: var(--sel-dim); color: var(--ink-strong); }' becomes '::selection { background: var(--sel-text); color: inherit; }'\n\nThe inline pages in the same builder:\n- line ~3050: '.prov{font-size:.82em;color:#845ba7}' becomes #6c359e (body #6c359e stays).\n- line ~3280: 'a{color:#772ba3}' becomes #6c359e (body #561f86 and .prov/.lics #6c359e stay).\n- line ~3351 is already #6c359e.\n\nOther builders:\n- reader/tools/build-chain-book-v1.mjs:63 and build-toggle-design-v1.mjs:179: '--faint:#845ba7' becomes '--faint:#6c359e'.\n- build-toggle-design-v1.mjs: also '--argaman:#772ba3' becomes '--argaman:#561f86'. It is declared but unused there; this keeps the name matching across files.\n\nRebuild index.html, palette/, census/, demonstrations/, reader/engine-*.css and reader/deploy-root/* (these copies carry the old values today).\n\nThe untracked reader/zone-*-tmp.html and zone-geo-*.html copies also hold the old values; they are scratch and should not be patched.\n\nPre-existing, unrelated: the door asks for var(--shadow-hud) in .pc-hudwrap but never declares it.\n\nSeen after the fold: the door looks nearly unchanged. The column heads, 'find a book' and the .of lines are a step darker; the chips and n-chip are the same. Shots: view-door-zoom.png, view-door-shelf.png.",
+  "logo": "The woven mark's .com becomes the site's regular purple #561f86, woven with the dim #6c359e: thread body #561f86, glint #6c359e, edge #561f86, and no shade() or tint() mixes. Its dot still turns from the blue regular #34649a into #561f86. This replaces today's hand-typed #772ba3 and the derived values #582079 and #8c4bac, none of which the site uses.\n\nIn reader/tools/build-wordmark-v1.py line 43, U = '#772ba3' becomes U = '#561f86', with a new UD = '#6c359e'. The purple thread() should take (edge U, body U, glint UD) instead of shade(U, .74) and tint(U, .17); the same regular/dim pattern applies to each family under task #62.\n\nThis reads a step darker than today's .com (L* 26 vs 35, beside red and blue at about 41), because purple is the ink and the deepest of the four. If that is too heavy, the alternative weaves the .com dim-bodied: body #6c359e, edges #561f86, and the dot ending at #6c359e. That lands within a hair of today's look, since today's edge #582079 is about #561f86 and its body #772ba3 has the same lightness as #6c359e. Both are rendered in logo-variants.png (variants built from a copy of the builder: logo/after-regular-body.svg and logo/after-dim-body.svg).\n\nThe home button's text wordmark (zone #home a.home .wm-tld and the door's .wordmark .wm-tld) keeps var(--argaman), which is now #561f86, with its tekhelet-to-argaman gradient. It matches the drawn mark with no rule change. If the dim-bodied variant is chosen, point those two rules at var(--argaman-dim) instead.",
+  "css_patch": "Full unified diffs are at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/zone.diff and door.diff. Patched copies, served and audited, are zone-after.html, door-after.css and index-after.html in the same folder. The script that makes them is patch.py.\n\n== reader/zone.html :root ==\nL41-42\n  --ink: #561f86; --ink-strong: #44166c; --muted: #6c359e; --faint: #845ba7;\n  --shesh: #561f86; --shesh-bright: #44166c;\nbecomes:\n  /* TWO PURPLES, A REGULAR AND A DIM (the owner, 2026-10-10: \"personally i dont see a gain from more than 2/2/2/2 and 3 linen\", and \"either titles get bold and text gets regular, or titles get regular and text gets dim ... id probably go regular and dim. i dont like our bold that much\"). The regular, --argaman, is the page's own ink: titles, values, anything under the hand, and anything pressed, which is worn bold. The dim, --argaman-dim, is running text, notes, labels, and links and controls at rest; it reads as body text, 6.0:1 on the linen and 5.4:1 in a word's cell. The deep title purple, the pressed purple, the faint label purple and the bright and pale argaman are folded into these two. The old names stay, pointing at the two, so no rule had to learn a new one. */\n  --ink: var(--argaman); --ink-strong: var(--argaman); --muted: var(--argaman-dim); --faint: var(--argaman-dim);\n  --shesh: var(--argaman); --shesh-bright: var(--argaman);\n\nL55-58 (end of the PRESSED CONTROL comment)\n  \"... amber until then. A purple deeper than the page's own ink at rest, still inside the argaman the color contract measures. */ --sel: #4f1789; --sel-dim: #845ba7;\"\nbecomes:\n  \"... amber until then. Since 2026-10-10 it is the page's own ink itself, the regular: the press is carried by the weight, the pressed cell's darker linen and its doubled gold, and not by a purple of its own. */ --sel: var(--argaman); --sel-dim: var(--argaman-dim);\"\n\nL113  --argaman: #772ba3; --argaman-dim: #9c69b9;  becomes  --argaman: #561f86; --argaman-dim: #6c359e;\n\nL115 (link comment)  \"...so it is argaman like the rest of our voice.\"  becomes  \"...so it is argaman like the rest of our voice: at rest the dim, like every control at rest, and the regular under the hand.\"\n\nL127  --link: var(--argaman);  becomes  --link: var(--argaman-dim);\n\n== reader/zone.html rules ==\nvar(--argaman) becomes var(--argaman-dim) on these lines:\n  288 .wb.typed-here .w (dashed underline)\n  408 #stampHead .toc-n .differs\n  433 #stamp .desk .d .differs\n  444 #stamp tr.differs td.delta/td.glyph\n  458 .stamp-warn\n  459 #demoLine\n  469 h1 .he-t.unnamed\n  471 h1 .en-t.unnamed\n  665 .omission .om-what\n  671 .drift-chip (color)\n  756 .c-inline.c-held\n  1401 #hud .r-now .v.none\n  1652 .c-head-he.unnamed\n  1665 .c-how-whose.c-suggested\n  1679 .c-undeclared (color)\n  1681 .c-two-counts (color)\n  1685 .c-att .c-how-whose.c-suggested\n  1737 .c-noen\n  1918 .xp-note .held\nLine 183, the #home a.home .wm-tld color and gradient, stays var(--argaman).\n\nHovers re-pointed to the regular:\n  270 .byline-fold > summary:hover { color: var(--muted) } becomes var(--ink)\n  283 .receipts-fold > summary:hover var(--muted) becomes var(--ink)\n  584 #toc a:hover { color: var(--link) } becomes var(--ink-strong)\n  1196 .rail .decl-more:hover var(--muted) becomes var(--ink)\n  1202 .rail .decl-where-fold > summary:hover var(--muted) becomes var(--ink)\n  1216 .rail .def-order .declp:hover var(--muted) becomes var(--ink)\n  1497 '#hud .def-order .dfp:hover:not(:disabled), #modeRow ..., .rail ...' var(--muted) becomes var(--ink)\n  1594 #hud .b-q button[aria-pressed=\"true\"] .q-role var(--muted) becomes var(--ink)\n\nOmission block: the dim replaces the opacity.\n  663 '.omission { ... border-inline-start: 3px solid var(--rule, #8b7f69); opacity: .82; }': drop 'opacity: .82'\n  664 '.omission .om-mark { letter-spacing: .12em; opacity: .55; }' becomes '.omission .om-mark { letter-spacing: .12em; color: var(--argaman-dim); }'\n  666 '.omission .om-why { font-size: .84em; opacity: .75; font-style: italic; color: var(--argaman-dim); }': drop 'opacity: .75;'\n\n== DOOR_CSS (build-front-door-v1.mjs line 196) ==\n:root\n  --ink:var(--argaman); --ink-strong:var(--argaman); --muted:var(--argaman-dim); --faint:var(--argaman-dim);\n  --sel:var(--argaman); --sel-dim:var(--argaman-dim);\n  ... --shesh:var(--argaman); --shesh-bright:var(--argaman);\n  --argaman:#561f86; --argaman-dim:#6c359e; --link:var(--argaman-dim);\n  --sel-text:rgba(196, 146, 28, 0.3);\nRules\n- var(--argaman) becomes var(--argaman-dim) in: a.titleway .g; .bookcard .he.none, a.sub-work .he.none; details.fam > summary .n-row span.n-chip; #demo .dw .g; .pc-hudwrap .r-now .v.none; .pc-hudwrap .s-pills button .none; details.fam > summary .he.none; #wcard .r-now .v.none; #bkcard .he.none; '.he.none, .en.none, .fam-he .he.none, #bkcard .he.none'.\n- These keep var(--argaman): .wordmark .wm-tld, a.titleway:hover .he, and .bookcard .he / a.sub-work .he.\n- .filing-pick .fp:hover, .def-order .dfp:hover:not(:disabled) and .workgroup details.fold > summary:hover: var(--muted) becomes var(--ink).\n- ::selection { background: var(--sel-text); color: inherit; }\n\n== elsewhere ==\n- build-front-door-v1.mjs ~3050: .prov color #845ba7 becomes #6c359e\n- build-front-door-v1.mjs ~3280: a{color:#772ba3} becomes #6c359e\n- build-chain-book-v1.mjs:63 and build-toggle-design-v1.mjs:179: --faint:#845ba7 becomes #6c359e\n- build-toggle-design-v1.mjs:179: --argaman:#772ba3 becomes #561f86\n- build-wordmark-v1.py:43: U = '#561f86'; add UD = '#6c359e' (see logo)\n- color-contract-v1.json: text only (see checks_to_change)",
+  "shots": [
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-1-header.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/view-rail-top.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-2-rail.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/view-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/view-card-bottom.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/view-english-zoom.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/view-count.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/view-door-zoom.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/view-door-shelf.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/view-phone.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/logo-variants.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-altB-4-english.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-altB-1-header.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-altB-3-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-3-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-4-english.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-5-count.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-6-door-top.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-7-door-shelf.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/purple/shots/cmp-before-after-8-phone.png"
+  ]
+ },
+ {
+  "family": "linen (the grounds)",
+  "keep": [
+   {
+    "token": "--bg",
+    "hex": "#ebdec3",
+    "tier": "linen 1: the ground (the page ground is one of the three)",
+    "why": "This is the page itself and covers most of the screen. After the fold, everything that sits still also stands on it: the word card, the chapter picker, every pill and button at rest, the rail, the floating bar (the ground at 94%), the commentary and its index, and the door's cards. The value does not change, so the page does not move."
+   },
+   {
+    "token": "--cell-wash",
+    "hex": "rgba(74, 48, 8, 0.06), which lays down about #e1d4b8 on the ground",
+    "tier": "linen 2: the cell",
+    "why": "The owner's second linen (2026-10-09): the cell a word and its English share, behind every word on every page. It stays see-through so the weave shows inside the cell, and it does not change. A hover and a license chip now wear this same linen. A see-through wash counts as the color it makes on the ground it sits on."
+   },
+   {
+    "token": "--press-wash",
+    "hex": "#dccbaa",
+    "tier": "linen 3: pressed",
+    "why": "The owner's third linen and his pressed-cell rule (2026-10-03: \"darken the linen backdrop on a highlighted cell\"). It is used on every pressed pill, cell, verse number and switch, and it does not change. The blob also wears it now. At rest the blob was already within 2.9 \u0394E of this value, so the eye barely sees a change."
+   }
+  ],
+  "fold": [
+   {
+    "from": "--panel",
+    "from_hex": "#efe4cd",
+    "to": "--bg (#ebdec3)",
+    "roles": "zone.html: #hud (the word card), #hud .d-foot (its sticky foot), #chPick (chapter picker popover), #secPanel .sp-grid a (section tiles), .vnum (verse-number chip), .c-choice (commentary choices), #cIndex input[type=search] and #cIndex .ci-hit (commentary index rows). Door: .bookcard, .workgroup, #demo, .pc-hudwrap and its .d-foot, #wcard, #bkcard, .tip. Change: 3.1 \u0394E darker (the card stops being a step brighter than the page).",
+    "contrast_after": "On #ebdec3 (before, on #efe4cd): ink 8.15 (8.60), ink-strong 10.00, muted 5.97 (6.31), sel 8.68, argaman 5.93, shani 4.68 (4.94), tekhelet 4.59 (4.85), tekhelet-bold 6.11, hover-ink 5.78. faint goes from 4.13 to 3.91, and it was under 4.5 for small labels before the fold too: the purple fold has to move small text to a dim of at least 4.5 (muted #6c359e gives 5.97). Rules: line 3.79, card border sel-dim 3.91, gold 3.39, gold-dim 3.04, all at or above 3."
+   },
+   {
+    "from": "--panel2",
+    "from_hex": "#ecdfc5",
+    "to": "--bg (#ebdec3)",
+    "roles": "Pills and buttons at rest. zone.html: #home a.home (home button), #stamp #stampHead, #toc #tocHead, #toc .chs a, #secPanel, #chPick button, .mode-btn, #hud .r-overflow select, #hud .d-also-m, #hud .d-also-more, #hud .s-pills button, #hud .r-unreachable button, #hud .c-pills button, #hud .d-grow, .c-bar, .xp. Door: .countgrid, the card pills (.r-pills, .s-pills, .c-pills, .d-grow, .d-also-*), .tg and .tg-frame on /toggles/. Change: 0.65 \u0394E, which nobody can see.",
+    "contrast_after": "muted 5.97 (6.03), ink 8.15 (8.23), sel 8.68 (8.77), tekhelet 4.59 (4.64), mark-gold on the home pill 2.11 (2.13; it is the logo, and the gold fold decides it). Borders: line 3.79."
+   },
+   {
+    "from": "--nav-veil",
+    "from_hex": "rgba(239, 228, 205, 0.94)",
+    "to": "rgba(235, 222, 195, 0.94), the ground veiled",
+    "roles": "#nav, the floating bar at the bottom. Its dead night fallback rgba(21, 18, 13, 0.94) in var(--nav-veil, \u2026) goes too.",
+    "contrast_after": "Over the ground: muted 5.97 (6.3 before), ink-strong 10.0. Its hover is the cell (below)."
+   },
+   {
+    "from": ".rail literal",
+    "from_hex": "rgba(236, 223, 197, 0.55) (--panel2 at 55%)",
+    "to": "rgba(235, 222, 195, 0.55), the ground at 55%",
+    "roles": "details.rail#rail, the toggle block. The weave still shows through it, as the owner asked on 2026-10-03 (\"so bright white\").",
+    "contrast_after": "Unchanged within 0.4 \u0394E: ink 8.15, muted 5.97, sel 8.68."
+   },
+   {
+    "from": "--wash",
+    "from_hex": "#e6d8bb",
+    "to": "--cell-wash (the cell, about #e1d4b8 on the ground)",
+    "roles": "Hover: #toc .chs a:hover, #nav button:hover, #chPick button:hover. Change: 1.7 \u0394E darker.",
+    "contrast_after": "On the cell: ink 7.37, ink-strong 9.05, muted 5.41. Border on hover is gold, 3.07."
+   },
+   {
+    "from": "--surface-c",
+    "from_hex": "#e8d9bc",
+    "to": "--bg (#ebdec3)",
+    "roles": "The commentary parchment. .c-inline (a commentary under its verse), .c-mark-slot and its sticky .lab, .c-mark (commentary handle pill), #cIndex (commentary index), and in the card .parts and .hoh (the boxes for a word's parts and a dictionary's Hebrew entry), plus .hoh-ref (the label set into the quote box's border). Change: 2.2 \u0394E lighter. The commentary is now told apart by its frame: the tan border and the red edge.",
+    "contrast_after": "Contrast goes up on the ground: shani 4.68 (4.48), muted 5.97 (5.71), ink-strong 10.0, argaman 5.93, faint 3.91 (3.74). .hoh-ref is gold text 3.39 (3.25); small text under 4.5 before and after, which the gold fold has to fix. Rules: commentary edge shani-dim 3.06 (2.93, now passes 3), line-c border 1.72 (1.64; fails 3 before and after, which the gold fold has to fix)."
+   },
+   {
+    "from": "--panel-c",
+    "from_hex": "#dccbaa",
+    "to": "--bg (#ebdec3)",
+    "roles": ".c-mark-slot .c-pick select, the commentary chooser's select at rest. Before the fold it wore the pressed linen while not pressed. Now it wears the ground, like every other select at rest.",
+    "contrast_after": "muted 5.97 (4.99). Border line-c 1.72, a gold-family issue."
+   },
+   {
+    "from": "--tie-wash",
+    "from_hex": "rgba(74, 48, 8, 0.08) (laid on the cell it showed about #d5c6aa)",
+    "to": "--press-wash (#dccbaa), opaque",
+    "roles": "The blob, svg.wj-tie path fill (JS default T.fill at zone.html about line 7670), drawn inside a maqaf or run cell to connect each Hebrew word to its English. Its dim-gold outline stays. On a pressed run its fill now equals the pressed cell, so only the outline shows.",
+    "contrast_after": "Text over the blob: tekhelet 3.83 (3.65), tekhelet-bold 5.10, shani on the Hebrew (large) 3.91 (3.72, passes 3 for large text). The dim-gold outline is unchanged."
+   },
+   {
+    "from": "--chip-bg (zone)",
+    "from_hex": "rgba(43, 35, 56, 0.05)",
+    "to": "--cell-wash for .lic-chip; --press-wash for .wb.ov .w",
+    "roles": ".lic-chip (license chip on the card and in the header, e.g. #workLic): on the ground it now lays down the cell. .wb.ov .w (the band behind a commentary's opening words, inside a cell): it would stack a glaze on a glaze, so it takes the pressed linen instead.",
+    "contrast_after": "Chip text --shesh 7.37 on the cell (7.86 before). Overlay band: shani (large Hebrew) 3.91 on the pressed linen."
+   },
+   {
+    "from": "--chip-bg (door)",
+    "from_hex": "rgba(107, 90, 53, 0.10)",
+    "to": "--cell-wash",
+    "roles": "Door .lic-chip, #wcard .lic-chip, .rd-carried. Change: 2.2 \u0394E.",
+    "contrast_after": "shesh 7.37 on the cell."
+   },
+   {
+    "from": "--hover-wash (door)",
+    "from_hex": "rgba(138, 107, 38, 0.10)",
+    "to": "--cell-wash",
+    "roles": "Door: a.sub-work:hover, a.sub-book:hover, details.fam > summary .row:first-child (the shelf head row), .atlas-row.g24 .g24-files, .rd-part-typed. Change: 1.5 \u0394E.",
+    "contrast_after": "ink 7.37, muted 5.41, tekhelet on the head row 4.16 (about 4.3 before; its large title is fine, small English is short of 4.5 before and after). .rd-part-typed amber text 3.07, under 4.5 before and after, which the gold fold has to fix."
+   },
+   {
+    "from": "--paper (chain pages and the switches sheet)",
+    "from_hex": "#f1e9d8",
+    "to": "--bg (#ebdec3)",
+    "roles": "body of /chain/ and /chain/<book>/ (CHAIN_CSS in reader/tools/build-chain-book-v1.mjs line 63) and the switches design sheet (reader/tools/build-toggle-design-v1.mjs line 179). This was a paler fourth linen, 6.7 \u0394E off the site ground.",
+    "contrast_after": "ink 8.15 (8.98), muted 5.97 (6.58), tekhelet 4.59 (5.06). Two roles drop below 4.5: faint 3.91 (4.31) on .nums, and the chain's own amber --sel #8d5e0c 4.22 (4.65) on its h2 headings and dt. Land this only together with the purple fold (faint folds to a dim of at least 4.5) and the gold fold (--sel #8d5e0c has to become an ink). The chain's --line #d8cdbc is 1.18 as a rule, a gold-family issue."
+   },
+   {
+    "from": "LINEN in build-wordmark-v1.py",
+    "from_hex": "#f1e9d8",
+    "to": "none (or --bg #ebdec3 if any highlight survives)",
+    "roles": "tint() target for the bright middle stop of every thread in the woven logo (stops #d3b05c, #ab5f6b, #547ba5, #8c4bac in mark/fireandhail.com-woven-v1.svg). It is not a site value.",
+    "contrast_after": "No text role; the logo stands on the ground #ebdec3."
+   }
+  ],
+  "grounds": "I chose these three linens: the ground (#ebdec3, and yes, the page ground is one of the three), the cell (the --cell-wash glaze on the ground, about #e1d4b8), and the pressed linen (#dccbaa). Rule for see-through washes: a wash counts as the color it lays down on the ground under it. A veil of the ground at any strength (the floating bar at 94%, the rail at 55%) is the ground. A glaze on the ground is the cell. No glaze may stack on another glaze or on the pressed linen, because that would make a fourth linen. For that reason the blob and the overlay band, which both sit inside a cell, become the opaque pressed linen and not a second glaze. Anything sticky that has to hide text scrolling under it (.c-mark-slot .lab, #hud .d-foot) uses the opaque ground. Chips are grounds: a chip is a small cell that holds text, so the zone's purple-gray chip tint and the door's brown chip tint both fold to the cell. Shadows are not grounds. --shadow-pop/--shadow-card/--shadow-hud rgba(96,80,48,.20-.32) and the door's scrim --shade rgba(96,80,48,.35) are depth under a floating card, never a surface anything is written on, so they stay as one shadow color. The weave is thread, not ground, and stays: the SVG noise on body and the card's rgba(110,84,46,.035/.03) lines (the owner, 2026-10-03: \"id also add woven to huds\"). I checked this by walking every element's painted background on Genesis with a card open, Amos with its commentary and index open, and the door. Before the fold there were nine distinct grounds; after it there are exactly the ground (opaque, plus its 0.94 and 0.55 veils), the 0.06 glaze, and #dccbaa, plus the door scrim. The probe is in fold-wf/linen/grounds.mjs. Things in other families that I found along the way: --wash-shani, --held-shani, --held-tekhelet and --wash-tekhelet are declared but painted nowhere in zone.html or the door (dead tokens, for red and blue). --sel-text (gold tint on dragged text) is gold. --line-c #bea983 is painted as a fill on the off-knob of .rail .shelf-sw::after (gold). .omission paints var(--rule, #8b7f69), and since --rule is undefined that stray fallback color is what shows (gold). The door's .pc-hudwrap calls var(--shadow-hud), which the door never defines. The hailstone glint in the logo mixes blue toward #ffffff (blue).",
+  "distinctions_lost": [
+   "Card vs page: the word card, the chapter picker and the door's word and book cards were one step lighter than the page (3.1 \u0394E). Now they are the same linen and are told apart by their border, shadow and finer weave. This is a small loss and goes the way the owner asked on 2026-10-03 (\"id avoid how bright the hud is still\").",
+   "Pill at rest vs page: --panel2 was only 0.65 \u0394E off the ground, so nothing visible is lost.",
+   "Commentary vs verse text: the parchment was 2.2 \u0394E darker than the page. Now the commentary sits on the page's own linen inside its tan border and red edge. It still reads as a separate block in the shots. The only thing that notices is the color check's 'a commentary does not sit on the text's own surface'.",
+   "Commentary index rows vs the index panel: the rows were lighter than the panel; now both are the ground and each row is drawn by its gold border. It still reads clearly (see compare-sheet).",
+   "Blob vs pressed cell: the blob now is the pressed linen. On a run at rest it looks the same as before (it was already 2.9 \u0394E from #dccbaa). On a pressed run the blob's fill merges with the cell and only its dim-gold outline shows; before, it was a shade darker inside the pressed cell. This matters little: the outline still ties each Hebrew word to its English.",
+   "Overlay band vs pressed word: the band behind a commentary's opening words and a pressed word now share the pressed linen. The pressed word keeps its gold outline and bold, so they are still told apart. This case is rare.",
+   "Hover vs word cell: a hovered chapter tile or bar button wears exactly the cell's linen (before it was 1.7 \u0394E lighter). They are different objects, so this does not matter.",
+   "License chip vs word cell: same linen. The chip keeps its border, so this does not matter.",
+   "Commentary select at rest vs pressed: before, it wore the pressed linen at rest. Now it wears the ground like every select at rest. This is a gain, not a loss.",
+   "Chain pages vs site: the chain's paler paper is gone, so the chain matches the site."
+  ],
+  "rulings_superseded": [
+   "The owner, 2026-10-03: \"id avoid how bright the hud is still\". The comment at zone.html line 29 implemented it as \"the panel a step above the ground, not a sheet of white on it\". The step above the ground is superseded: the card is now the ground itself. The owner's wish, a less bright card, is carried further, not reversed.",
+   "The owner, 2026-10-09, on the blob: \"linen is our blob color to connect the hebrew and english. and the dimmed gold is around that blob, not the full card\" (zone.html about line 7648). His words hold: the blob is linen with dim gold around it. Superseded is our own reading of them, \"the cell's linen, a shade bolder\" (--tie-wash, its own 0.08 glaze). The blob is now the third linen exactly, and its fill no longer shows inside a pressed run.",
+   "Not an owner quote: color-contract-v1.json faces.day.commentary_surface \"parchment\" (decided 2026-09-10, carried from the v1 fixture). The commentary now sits on linen.",
+   "Upheld, not superseded: THREE LINENS (the owner, 2026-10-09: \"maybe linen should have 3 shades?\"); A PRESSED CELL, ONE RULE EVERYWHERE (the owner, 2026-10-03); the rail's \"so bright white\" (the owner, 2026-10-03); the shelf switch \"what about a darker linen even\" (the owner, 2026-10-03); THE CARD IS WOVEN TOO (the owner, 2026-10-03); THE SCROLL'S GROUND IS WOVEN LINEN (the owner, 2026-10-03)."
+  ],
+  "checks_to_change": [
+   "reader/tools/check-color-channels-v1.mjs lines 336-342, 'a commentary does not sit on the text's own surface' (needs at least 3 apart in one channel): it fails by design after the fold. Replace it with: the commentary surface equals the base surface, and the commentary carries a frame (a non-zero border and the shani-dim edge).",
+   "reader/tools/check-color-channels-v1.mjs: add a THREE LINENS assertion. With a card open and a commentary open, walk every element's computed background-color and every svg.wj-tie path fill. Each must be one of: the ground at any alpha (rgb of --bg), the glaze --cell-wash, or --press-wash, all read from :root so the check names roles and not hex values. fold-wf/linen/grounds.mjs already does this walk: before the fold it finds #efe4cd, #ecdfc5, #e8d9bc, two chip tints and the 0.08 tie glaze; after, only the three. The door's #wshade scrim is exempt as a shadow.",
+   "reader/tools/check-color-channels-v1.mjs FAMILY: the 'parchment' entry becomes unused once the contract says linen; drop it or keep it as history.",
+   "reader/data/color-contract-v1.json: faces.day.commentary_surface 'parchment' becomes 'linen'. Add a record of the three linens (the ground --bg, the cell --cell-wash laid on the ground, pressed --press-wash) with the 2026-10-09 and 2026-10-10 rulings, and say that the blob and a pressed control share the pressed linen. channels.reader_selection.pressed_cell already names --press-wash; keep it.",
+   "Contrast gate for the other families, decided by these grounds: body text in a cell must reach 4.5 on #e1d4b8. Measured on the cell: tekhelet #34649a 4.16 and shani #9d4355 4.24 both fail for small text; tekhelet-bold #22508a 5.53 and muted #6c359e 5.41 pass. On the pressed linen #dccbaa, a pressed reading worn bold in #34649a is 3.83 and fails, while #22508a gives 5.10. No linen the site has can rescue #34649a or #9d4355: even the bare ground gives only 4.59 and 4.68.",
+   "No other check names a linen token or hex (grep of reader/tools/check-*.mjs). reader/engine-539dc1706b10.css is extracted from zone.html by build-front-door-v1.mjs, so it must be rebuilt (new hash) after the zone edit, and the chapter pages follow."
+  ],
+  "door_changes": "In DOOR_CSS (reader/tools/build-front-door-v1.mjs, the JSON-escaped string at line 196), :root becomes: --bg:#ebdec3; --cell-wash:rgba(74,48,8,.06); --press-wash:#dccbaa; with --shade:rgba(96,80,48,.35) and --shadow-card kept as shadows. Delete --panel:#efe4cd, --panel2:#ecdfc5, --chip-bg:rgba(107,90,53,.10) and --hover-wash:rgba(138,107,38,.10). Then: every var(--panel) and var(--panel2) becomes var(--bg) (.countgrid, .bookcard, .workgroup, #demo, .pc-hudwrap and its .d-foot, the card pills, .tip, #wcard and its pills, #bkcard, plus .tg and .tg-frame on the toggles bench at builder lines 2969 and 2980). var(--chip-bg) becomes var(--cell-wash) (.lic-chip, .rd-carried, #wcard .lic-chip). var(--hover-wash) becomes var(--cell-wash) (a.sub-work:hover, a.sub-book:hover, the shelf head row details.fam > summary .row:first-child, .atlas-row.g24 .g24-files, .rd-part-typed). The three standalone pages at builder lines 3048, 3278 and 3350 already paint #ebdec3. What changes visibly on the door: an open word or book card and its pills go 3.1 \u0394E darker, to the ground; the shelf-head tint changes by 1.5 \u0394E, which nobody will see. The door's front page at rest looks identical (door-top before/after). Separately, outside DOOR_CSS: --paper:#f1e9d8 becomes #ebdec3 in CHAIN_CSS (build-chain-book-v1.mjs line 63) and in build-toggle-design-v1.mjs line 179, landed together with the purple and gold folds (see the fold entry).",
+  "logo": "No linen is woven into the logo's letters. The woven logo stands on the door's ground (linen 1, #ebdec3). On book pages the home button's pill (#home a.home, now var(--bg) instead of --panel2) is the ground too, inside its gold border. The one linen in the logo builder is LINEN = '#f1e9d8' (reader/tools/build-wordmark-v1.py line 43), a value the site never paints. tint() mixes each thread's bright middle stop toward it. Under the owner's steer, each family's threads use only its regular and its dim, so this tint toward linen should go away. If a highlight survives, it should mix toward the ground #ebdec3, never #f1e9d8. Nothing in the logo uses the cell linen or the pressed linen.",
+  "css_patch": "zone.html :root. Replace the linen declarations (lines 29-40 and 97-100) with:\n\n    /* THREE LINENS, AND NO MORE (the owner, 2026-10-09: \"maybe linen should\n       have 3 shades?\"; 2026-10-10: \"personally i dont see a gain from more\n       than 2/2/2/2 and 3 linen\"): the ground, the cell a word and its reading\n       share, and the pressed cell. A card, a pill, a panel and a commentary at\n       rest stand on the ground; a hover and a chip are the cell; anything\n       pressed, and the blob, are the pressed linen. The cell is a glaze laid\n       on the ground (about #e1d4b8), so the weave shows through it; it is never\n       laid on another glaze. */\n    --bg: #ebdec3;\n    --cell-wash: rgba(74, 48, 8, 0.06);\n    --press-wash: #dccbaa;\n    --nav-veil: rgba(235, 222, 195, 0.94);   /* the ground, veiled */\n    --line: #93661a; --line-c: #bea983;      /* lines: the gold fold's to decide */\n\nDELETE: --panel, --panel2, --wash, --tie-wash, --surface-c, --panel-c, --chip-bg (and the old second --press-wash line at 100; keep its PRESSED CELL comment). Keep the shadows as they are.\n\nzone.html rules:\n  var(--panel)     -> var(--bg)        lines 526, 547, 669, 1242, 1373, 1692, 1718, 1725\n  var(--panel2)    -> var(--bg)        lines 175, 402, 489, 509, 516, 552, 1223, 1523, 1536, 1541, 1574, 1581, 1739, 1797, 1840, 1911\n  var(--wash)      -> var(--cell-wash) lines 512, 542, 554\n  var(--surface-c) -> var(--bg)        lines 680, 694, 710, 739, 1618, 1631, 1641, 1706\n  var(--panel-c)   -> var(--bg)        line 1635\n  var(--chip-bg)   -> var(--cell-wash) line 1598 (.lic-chip)\n  .wb.ov .w { background: var(--press-wash); }                    line 285\n  #nav { \u2026 background: var(--nav-veil); \u2026 }                        line 536 (drop the rgba(21, 18, 13, 0.94) fallback)\n  .rail { \u2026 background: rgba(235, 222, 195, 0.55); \u2026 }             line 1054\n  JS line 7670: fill: \"var(--press-wash)\"  (was \"var(--tie-wash)\")\n\nDoor (DOOR_CSS in build-front-door-v1.mjs line 196) :root:\n    --bg:#ebdec3; --cell-wash:rgba(74,48,8,.06); --press-wash:#dccbaa; --line:#93661a;\n    --shade:rgba(96,80,48,.35); --shadow-card:0 14px 40px rgba(96,80,48,.30);\nDELETE --panel, --panel2, --chip-bg, --hover-wash. Then var(--panel)/var(--panel2) -> var(--bg) everywhere in DOOR_CSS and in the .tg/.tg-frame rules (lines 2969, 2980); var(--chip-bg) -> var(--cell-wash); var(--hover-wash) -> var(--cell-wash).\n\nChain and switches sheet: build-chain-book-v1.mjs:63 and build-toggle-design-v1.mjs:179  --paper:#f1e9d8 -> --paper:#ebdec3 (with the purple and gold folds).\nWordmark: build-wordmark-v1.py:43  LINEN = '#f1e9d8' -> removed, or '#ebdec3' if a highlight survives.\n\nInterim alternative with fewer edits, if wanted: keep the old names as aliases (--panel: var(--bg); --panel2: var(--bg); --wash: var(--cell-wash); --tie-wash: var(--press-wash); --surface-c: var(--bg); --panel-c: var(--bg); --chip-bg: var(--cell-wash)) plus the .wb.ov, .rail and #nav edits. This is what the after shots inject.",
+  "shots": [
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/compare-sheet.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-blob-closeup.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-blob-closeup.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-line-he.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-line-he.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-line-he-hover.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-line-he-hover.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-line-en.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-line-en.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-pressed-and-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-pressed-and-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-pressed-single-and-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-pressed-single-and-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-en-pressed-and-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-en-pressed-and-card.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-header-rail.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-header-rail.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-nav-chapter-picker.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-nav-chapter-picker.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-commentary-inline.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-commentary-inline.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-commentary-index.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-commentary-index.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-commentary-index-open.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-commentary-index-open.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-door-top.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-door-top.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-door-shelf.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-door-shelf.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-door-wordcard.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-door-wordcard.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/before-chain-page.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/linen/after-chain-page.png"
+  ]
+ },
+ {
+  "family": "RED and BLUE (tola'at shani, the corpus's letters; tekhelet, the readings)",
+  "holds": false,
+  "blockers": [
+   "The pressed reading drops below the 4.5:1 floor for body text. On the reader's card ('#hud .r-pills button[aria-pressed=\"true\"]', zone.html:1518) and on the door's card ('#wcard .r-pills button[aria-pressed=\"true\"]' in DOOR_CSS), the pressed reading is 12.16px at weight 700, which is not large text. Today it is #22508a on the pressed linen #dccbaa at 5.10:1. After the fold it is #34649a on the same linen at 3.83:1. I measured the computed styles on Genesis 1:1, the word for God (87 readings), in both readers and on the door card. The proposal says so itself, but saying so does not meet the hard rule ('every text role must still read'). No blue the site keeps can hold 4.5:1 on any pressed linen that is visibly darker than the ground: #34649a needs a ground of relative luminance at least 0.723, and the bare linen is only 0.739. So taking away the bold blue costs the pressed reading its AA contrast. That is a trade the owner has to accept knowingly. The proposal currently passes it off as harmless because it 'matches the line'.",
+   "The logo still carries a blue darker than the regular, and the proposal says it does not. In reader/tools/build-wordmark-v1.py, lines 187-193 lay threads over the .com dot's blue-to-purple gradient (lines 183-184): #000 at 24% and #fff at 17%. On the dot's blue end that paints #284c75, a darker blue that works as a bold, and #577eab, a lighter derived blue. On its purple end it paints #5a217c and #8e4fb3. The proposed builder patch does not touch this code, and the proposal's own preview SVG still contains the overlay (gradient 'twl'). So the sentence 'Nothing in the weave is darker than the regular any more' is false, and the logo breaks the steer ('NO BOLD color anywhere', 'the woven logo will then use each family's regular and dim only') without the proposal saying so. The fix is small: see the amendments and shot skeptic-logo.png, section 7."
+  ],
+  "missed_uses": [
+   "reader/tools/build-wordmark-v1.py:187-193: the threads over the .com dot (black at 24%, white at 17%) over the B-to-U gradient at :183-184. They produce #284c75 and #577eab on the dot's blue half, and #5a217c and #8e4fb3 on its purple half. They ship as gradient 'twl' in mark/fireandhail.com-woven-v1.svg and are still in the proposal's preview SVG. The dot is half purple, so this needs coordinating with the purple family.",
+   "census/index.html:46 (:root, --wash-shani, --tekhelet-bold, --wash-tekhelet), :426 and :434 (.pc-hudwrap pressed pill and select.on use var(--tekhelet-bold)), :900 (#wcard pressed pill, var(--tekhelet-bold)). This is a built copy of DOOR_CSS, written by build-front-door-v1.mjs:2817. The census page also has a live #wcard. The proposal's list of re-emitted files leaves it out.",
+   "demonstrations/index.html:33, :413, :421, :887: the same DOOR_CSS copy, written by build-front-door-v1.mjs:2919. The proposal leaves it out.",
+   "The engine stylesheet's hash changes on rebuild (reader/engine-539dc1706b10.css:73,81,85,86,91,1498,1506 carry the folded tokens). 976 tracked pages load it by that hashed name, so the rebuild rewrites the stylesheet link in all of them. The proposal names only index.html, palette/index.html and the engine CSS.",
+   "Not missed, but overstated as live roles: '#hud .r-overflow select.on' (zone.html:1526) and every '.pc-hudwrap' rule in DOOR_CSS (extracted copy lines 407, 415) are dead CSS. No element ever gets the class r-overflow: neither zone.html's JS nor the engine JS creates one. No built page contains pc-hudwrap markup; the 112 occurrences in index.html are all in CSS. Only two paint changes are live: the r-pills pressed pill on the reader's card and the one on the door's #wcard.",
+   "No other use was missed. I grepped every folded token, hex and rgb/rgba form (tekhelet-bold/#22508a, wash-shani/#eedcd6, held-shani/#dbb9b6, wash-tekhelet/#dfe4f1, held-tekhelet/#b9c6e6, #74323f, #ab5f6b, #264a72, #547ba5, #c6d4e3) across the whole worktree. I also ran a hue classifier over every literal in zone.html and in all of build-front-door-v1.mjs, and checked the engine JS and every check-*.mjs. Outside the files the proposal names, plus the untracked zone-*-tmp.html scratch copies and the gitignored reader/deploy-root, nothing else uses them."
+  ],
+  "contrast_failures": [
+   "Caused by the fold: the pressed reading pill (zone.html:1518; DOOR_CSS #wcard) is #34649a, weight 700, 12.16px on #dccbaa: 3.83:1, below 4.5:1. It was 5.10:1 in #22508a.",
+   "Already true today, and the fold neither causes nor fixes it: the open word's cell on the line (zone.html:796, .wb.active on #dccbaa). Its Hebrew #9d4355 is 3.91:1 and its reading #34649a at 10.56px weight 500 is 3.83:1, both below 4.5:1.",
+   "Already true today and unchanged: the + between a run's parts (zone.html:925) is #7f8ba8 at 10.56px on the word cell (rgba(74,48,8,.06) over linen): 2.32:1, below the 3:1 a mark needs. The proposal flags this.",
+   "Already true today and unchanged: a commentary's red rail (.c-inline border-inline-end, zone.html:679) is #b76670 on parchment #e8d9bc: 2.93:1, below the 3:1 a border needs. The proposal prints 2.93 but does not mark it as a failure.",
+   "Already true today and unchanged, and it bears on the steer's floor of 4.5:1 in the word cell: Hebrew #9d4355 is 4.24:1 and readings #34649a are 4.16:1 in the cell; in a run's tie they are 3.72:1 and 3.65:1. No kept red or blue reaches 4.5:1 in the cell. The only existing values that do are the three bold shades this fold removes: #22508a 5.53, #74323f 6.29, #264a72 6.19. The proposal says 'the only red or blue that did was the bold blue', which leaves out the two logo edges, but its conclusion stands.",
+   "I recomputed every other number in the proposal (WCAG relative luminance, composited grounds): linen red 4.68 / blue 4.59 / red dim 3.06 / blue dim 2.56; card 4.94/4.85; rail 4.73/4.64; parchment red 4.48; door shelf 4.21/4.12; maqaf on the card 3.23 (24.8px bold, so it is large and needs 3:1, which it passes). All reproduce within 0.02; the cell and tie figures differ only by rounding of the composite."
+  ],
+  "amendments": [
+   "Pressed reading: put the 3.83:1 trade to the owner as a decision of its own. He said 'i dont like our bold that much', but the bold blue is the only thing holding the pressed reading at 4.5:1. There are two options within the kept values. (a) Accept it, and write the number where it is ruled: the zone :root comment, the door #wcard comment, and the contract's reading_as_shown.pressed_as, e.g. 'worn bold, 3.83:1 on the pressed linen, the same as the open word on the line'. (b) For a pressed reading only, keep the card's linen (#efe4cd, 4.85:1) and mark it with the doubled gold border and the bold weight. Option (b) departs from step 1 of the 2026-10-03 pressed-cell rule ('1. darken the linen backdrop on a highlighted cell'), which would have to be named as superseded. A lighter pressed linen from the linen family cannot fix this, because any visible step darker than #ebdec3 fails.",
+   "Logo: also fold the .com dot's thread overlay (build-wordmark-v1.py:187-193). Either delete it, so the dot is only the smooth blue-to-purple the owner asked for on 2026-10-03 ('keep the normal transition ... it can be on just the .'); variant A is built at skeptic/fireandhail.com-woven-skeptic-A.svg and reads fine. Or redraw its light thread in the two dims. Agree it with the purple family, then correct the sentence 'Nothing in the weave is darker than the regular any more'.",
+   "Correct the claim that 'the only fix that stays within existing values is to weave the blue threads in the regular alone'. The logo already ships #547ba5 and #ab5f6b (see better_pair).",
+   "Add census/index.html, demonstrations/index.html and the 976 chapter and book pages whose engine-CSS link changes to the list of files the door rebuild rewrites. reader/deploy-root is gitignored build output.",
+   "Mark '#hud .r-overflow select.on' and every '.pc-hudwrap' rule as dead CSS in the roles. Patching them is harmless, but the only paint changes a reader can see are the two r-pills pressed pills.",
+   "While rewriting the :root block, fix the two false contrast comments next to it. zone.html:109 says 'both above the AAA floor on linen', but the blue is 4.59:1. zone.html:128 says 'darkened to the AAA floor ... thin niqqud marks need 7:1', but the red is 4.68:1. The proposal adds a new comment that is true, so the old ones beside it should not stay false.",
+   "check-color-channels-v1.mjs: no change is needed. I ran it rather than reasoning about it. I served the patched zone-patched.html from a scratch tree on a temporary port and ran the check against today's reader and the patched one. The output was identical: every check passed, exit 0, including 'every token a rule asks for is declared'. From outside reader/, set ZONES_DIR=<worktree>/reader/data/zones, or the check opens ?b= with no book and times out. The proposed optional guard (the pressed reading's color equals a resting reading's, weight 600 or more) is worth adding; it would also catch a bold blue creeping back."
+  ],
+  "better_pair": "Not clearly better, but worth showing the owner (alternative B). Keep both regulars (#9d4355, #34649a), and take the dims from the logo's own light threads, #ab5f6b and #547ba5, which the site already ships in mark/fireandhail.com-woven-v1.svg. In its favor: (1) the woven name barely changes. The average blue of a thread in 'hail' becomes about rgb(61,106,157), against today's rgb(58,101,148); the proposal's is a greyer rgb(73,111,158), visibly lighter on the home button at 1x, 2x and 3x (skeptic-logo.png). The hailstone stays blue. (2) The page's marks gain contrast: the + between parts goes from 2.32 to about 3.0:1 in the cell (just meeting the 3:1 a mark needs), the commentary rail on parchment from 2.93 to 3.29, the card's maqaf from 3.23 to 3.63. (3) #547ba5 sits inside the color check's tekhelet box (saturation 0.33), and #7f8ba8 does not (0.19). Against it: (1) the page's small marks change instead of the logo, which goes against 'prefer the values that carry the most-used roles'. (2) Both values were made by mixing the regular with #f1e9d8, a linen the site does not otherwise use. (3) The + between a reading's parts gets hard to tell from the + inside a reading's own words: 1.38:1 against the regular, against 1.79:1 for #7f8ba8 (skeptic-dims.png, section 8). The proposal's pair (#9d4355/#b76670, #34649a/#7f8ba8) remains the one the rules prefer. If the owner dislikes the grey 'hail', B is the fix within existing values, not threads in the regular alone. A darker regular (#22508a or #74323f as the regular and today's inks as the dim) would satisfy 'titles regular, text dim' only by keeping the bold the owner said he dislikes, so it is rejected.",
+  "shots": [
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic-pressed.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic-logo.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic-dims.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic/pills-he-dpr1-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic/pills-he-dpr1-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic/home-built-dpr1-before.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic/home-built-dpr1-after.png",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic/fireandhail.com-woven-skeptic-A.svg",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic/fireandhail.com-woven-skeptic-B.svg",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/fold-wf/red-blue/skeptic/cc-after.txt"
+  ]
+ }
+]

@@ -1,0 +1,552 @@
+{
+  "summary": "Map the palette tiers and logo surfaces, draft two logo variants in the site own bold/dim/regular colors, verify each",
+  "agentCount": 6,
+  "logs": [
+    "palette: 5 channels; logo: 10 surfaces"
+  ],
+  "result": {
+    "palette": {
+      "channels": [
+        {
+          "channel": "red (shani, the corpus)",
+          "tiers": [
+            {
+              "tier": "regular",
+              "token": "--shani",
+              "hex": "#9d4355",
+              "used_for": "Titles in red: part and node heads (.part-head, .node-head), the section panel's Hebrew (#secPanel .sp-he), dotted letters (.lm-dotted), the commentary mark text, .c-choice .c-on, and 'fire' in the home button's text fallback (.wm-fire). The logo's S is this value. Door: atlas and book-card Hebrew, card head.",
+              "ruling": "2026-10-02: 'four colors... one soft red'. 2026-10-03: \"our sites red is actually just one tone too muted\" and \"just 1 notch more electric to match the blue\". Logo header 2026-10-03: fire in shani."
+            },
+            {
+              "tier": "regular (alias)",
+              "token": "--shani-ink",
+              "hex": "#9d4355",
+              "used_for": "The Hebrew words on the line (.wb .w), the HUD card head, .pw/.hoh-hw/.vol-n, the rail's 'text' voice, src-tag text, and the home pill's base color. Same value as --shani.",
+              "ruling": "2026-09-11, mockup 4: \"i still might make that red like a little more muted somehow\" (the ink carries the channel, held muted). Later raised 2026-10-03 (see --shani)."
+            },
+            {
+              "tier": "regular (alias)",
+              "token": "--c-word / --en-word",
+              "hex": "#9d4355",
+              "used_for": "A word quoted inline in commentary (.c-inline .w); the word in English mode (body.en .w) and the porch reading (#porch .r). Pure aliases of --shani.",
+              "ruling": "none of its own"
+            },
+            {
+              "tier": "dim",
+              "token": "--shani-dim",
+              "hex": "#b76670",
+              "used_for": "Mostly line work in red: the commentary inline border, .hoh-prose edge, the src-tag border, commentary slot edges, the .c-bar hover border. Text only in .mq (a mark question). 3.06:1 on the linen.",
+              "ruling": "none quoted; it rides with the 2026-10-02 'one soft red' ruling"
+            }
+          ],
+          "gaps": "No bold red. Nothing is darker or heavier than #9d4355 (shani and shani-ink are the same value), and there is no shani-bold or pressed red. The logo's thread edge shade for S (#74323f, derived in the builder) is the only darker red anywhere, and it is not a site token."
+        },
+        {
+          "channel": "blue (tekhelet, a reading)",
+          "tiers": [
+            {
+              "tier": "bold",
+              "token": "--tekhelet-bold",
+              "hex": "#22508a",
+              "used_for": "A pressed reading on the card: the pressed R pill (#hud .r-pills button[aria-pressed=true]) and the chosen overflow select (.r-overflow select.on), set at font-weight 700 inside the pressed cell (gold drawn double, --press-wash linen). The door uses it for the same pills. 6.11:1 on the linen.",
+              "ruling": "2026-10-03: \"id avoid blue as a highlight. similar to our logo id have 2 blues: a bold and a regular, maybe the letters bold too not just the color\" and \"we shouldnt ever have to full fill\". Pressed cell, 2026-10-03: \"...3. bolden the blue text\"."
+            },
+            {
+              "tier": "regular",
+              "token": "--tekhelet-ink",
+              "hex": "#34649a",
+              "used_for": "A reading at rest: the gloss under each word (.wb > .g), the attested English book name, .pen, the rail's 'them' voice, HUD reading text (.r-now .v, .r-piece, .d-text), and R pills and the select at rest. All set in Source Serif 4 at 500. 4.59:1.",
+              "ruling": "2026-09-11, mockup 4: a quiet blue (contract, no direct quote). 2026-10-02: an attested name is blue (paraphrased, no quote). 2026-10-02: the reading face, because Georgia's hairlines 'let the soft blue fade toward gray' (paraphrased)."
+            },
+            {
+              "tier": "regular (alias)",
+              "token": "--tekhelet",
+              "hex": "#34649a",
+              "used_for": "'hail' in the home button's text fallback (.wm-hail) and the start of the .com gradient; English-mode glosses (body.en .g); .rail .decl-says; a small label at line ~997. The logo's B is this value.",
+              "ruling": "Logo header 2026-10-03: hail in tekhelet; the dot of .com turns from blue into purple (\"keep the normal transition we already had there because purple and blue blend nicely and it can be on just the .\")."
+            },
+            {
+              "tier": "dim",
+              "token": "--tekhelet-dim",
+              "hex": "#7f8ba8",
+              "used_for": "Only separators between the pieces of a reading (.wjoin > .g.parts .g-sep, .g .g-join). A grayed blue (s19), 2.56:1.",
+              "ruling": "none"
+            }
+          ],
+          "gaps": "None by name: blue is the one channel with all three of bold, regular and dim. The logo, though, uses only the regular #34649a and shades it itself (thread edge #264a72, highlight #547ba5, hailstone glint #c6d4e3). The site's own bold #22508a and dim #7f8ba8 are not in it, even though the owner's 2026-10-03 quote says 'similar to our logo... 2 blues: a bold and a regular'."
+        },
+        {
+          "channel": "gold (frame, selection, the name's gold, the marks)",
+          "tiers": [
+            {
+              "tier": "regular",
+              "token": "--gold",
+              "hex": "#a06c10",
+              "used_for": "The frame at full strength: hover and focus borders, a pressed cell's border drawn twice (border plus box-shadow 0 0 0 1px), the held-word outline (.wb.active, .wjoin.active), the license-run underline (1.5px), ketiv/qere brackets, brick-gap and empty-verse rules, porch sup/i marks. 3.39:1.",
+              "ruling": "2026-10-03: \"also is our gold a bit too olive?\" (warmed from hue 43 to 38). 2026-10-03: \"i would keep all borders gold\"."
+            },
+            {
+              "tier": "bold (weight only, no token)",
+              "token": "(--gold at double width)",
+              "hex": "#a06c10",
+              "used_for": "The pressed cell's 'bolder gold' is --gold drawn twice as heavy. No darker gold token stands for 'bold'.",
+              "ruling": "2026-10-03: \"i wouldnt retrace pills from gold to blue. you keep jumping rules. id: 1. darken the linen backdrop on a highlighted cell, 2. bolden the gold, 3. bolden the blue text\"."
+            },
+            {
+              "tier": "dim",
+              "token": "--gold-dim",
+              "hex": "#a3762a",
+              "used_for": "Thin, dim gold line work: the 1px underline under every word, the scribal-mark tile outline (.wb.mark .w), stamp and toc edges, .vnum border, the part-head double rule, dotted 'more' and receipts underlines, the blob stroke (__tie). On the door: the wordmark's text-fallback underline and card borders. 3.04:1.",
+              "ruling": "2026-10-03: \"i think underlining is nondistracting and can be added to every word for now\" (thin and dim, gold). The mark tile outline was approved 2026-09-11 on the demonstration sheet (no quote)."
+            },
+            {
+              "tier": "other: the name's gold",
+              "token": "--mark-gold",
+              "hex": "#c4921c",
+              "used_for": "'and' in the name: the logo's G (woven threads, the flame's heart) and .wm-and in the text fallback. Also the license-run underline when active (.wjoin.lic.active .wj-ink). The comment says the name uses it and nothing else, but line 837 uses it too.",
+              "ruling": "2026-10-02: brighter than the frame's gold 'so the .com never reads as the red beside it' (paraphrased, no quote). 2026-10-03: \"remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple\". 2026-10-08: \"still the old logo with that green sneaking in\" (so 'and' is gold through, with no gold-to-blue blend). Today, relayed by the harness: \"you can do the site name gold either way i'm not good with colors. just not that dark gold\"."
+            },
+            {
+              "tier": "other: the marks' ink",
+              "token": "--mark-ink",
+              "hex": "#bd890f",
+              "used_for": "Masoretic marks (vowels and accents) on the Hebrew, under :root[data-mark-ink=gold] .he-text .mg/.mg-all. It is the only gold that is ink at rest. 2.34:1. Not uncommitted yet: HEAD still has #76500c and the working tree has #bd890f (task #63).",
+              "ruling": "2026-10-10: \"im actually right now leaning toward making all masoretic marks gold\". The deep #76500c \"just barely looks gold to my eye\". Then 2026-10-10: \"i like D tbh\" (the brightest of four). The vote \"every mark gold, vowels included\" is dated 2026-10-11 in the comment (see notes)."
+            },
+            {
+              "tier": "other: frame rule (darker than regular)",
+              "token": "--line",
+              "hex": "#93661a",
+              "used_for": "Every structural 1px border: header and book-end rules, pills, panels, the rail, the chapter picker. It is darker than --gold (l34 against l35, less saturated), so in practice it is the strong frame line. 3.79:1.",
+              "ruling": "2026-10-03: \"i would keep all borders gold\"."
+            },
+            {
+              "tier": "other: hover text (darkest gold)",
+              "token": "--hover-ink",
+              "hex": "#704c0f",
+              "used_for": "A word's letters on hover (.wb:hover .w, .wr:hover). This is the darkest gold on the site (l25), close to the retired deep mark gold #76500c. 5.78:1.",
+              "ruling": "none"
+            },
+            {
+              "tier": "other: hover underline (lightest gold line)",
+              "token": "--hover-line",
+              "hex": "#c19f66",
+              "used_for": "The underline under a hovered word. 1.87:1.",
+              "ruling": "none"
+            },
+            {
+              "tier": "other: alias",
+              "token": "--amber",
+              "hex": "#a06c10",
+              "used_for": "An alias of --gold, the selection's 'in-process' amber. Zone.html defines it but never uses it. The door uses it 3 times (.d-cut text and edge, .rd-part-typed).",
+              "ruling": "Contract: amber stays with the page's own controls (2026-09-11). It was superseded for pressed controls by 2026-10-03: \"maybe bold purple would be better?\""
+            },
+            {
+              "tier": "other: translucent chip line",
+              "token": "--chip-line",
+              "hex": "rgba(160,108,16,0.34)",
+              "used_for": "Chip and pill borders, the header link underline, porch chapter chips. The door defines it differently, as an olive-brown rgba(107,90,53,.32).",
+              "ruling": "none"
+            },
+            {
+              "tier": "other: commentary-surface line",
+              "token": "--line-c",
+              "hex": "#bea983",
+              "used_for": "Borders inside commentary/parchment panels (.parts-src, .vol, #cIndex, the shelf-switch knob track). A pale tan at hue 39.",
+              "ruling": "none"
+            }
+          ],
+          "gaps": "There is no named bold gold: 'bolden the gold' is --gold at double weight, and the darker values (--line #93661a, --hover-ink #704c0f) are separate roles, not a bold tier. The name's own gold, --mark-gold, has no dim or bold sibling. Its nearest neighbor is --mark-ink #bd890f, one step darker and the owner's chosen bright gold. The owner has rejected the dark end (#76500c, and by extension anything near --hover-ink #704c0f) for the name: 'just not that dark gold'. The logo's own gold thread edge (shade .80 gives #9d7516) is a derived value, not a token."
+        },
+        {
+          "channel": "purple (argaman, our own voice; ink/shesh)",
+          "tiers": [
+            {
+              "tier": "strong (darkest)",
+              "token": "--ink-strong",
+              "hex": "#44166c",
+              "used_for": "Headings and emphasis in our voice: the book h1, the English title (.en-t), the license label, stamp figures, shelf titles, and hover text on controls and links. 10:1.",
+              "ruling": "2026-10-02: 'the purple alone at its full depth' (paraphrased in the four-colors comment)."
+            },
+            {
+              "tier": "strong (alias)",
+              "token": "--shesh-bright",
+              "hex": "#44166c",
+              "used_for": "An alias of --ink-strong. Defined but unused in zone.html and on the door.",
+              "ruling": "none"
+            },
+            {
+              "tier": "bold",
+              "token": "--sel",
+              "hex": "#4f1789",
+              "used_for": "A pressed control's letters, worn at weight 700: chapter chips (.chs a.on, #chPick button.on), .vnum.at, the license chip when on, shelve options, the expanded toc and stamp heads, the shelf-switch knob, :focus-visible on the door. 8.68:1.",
+              "ruling": "2026-10-03: \"idk if turning purple to gold is a clear way to highlight toggle pills et al, maybe bold purple would be better?\" and \"idk about purple fill, id avoid that / id keep purple as text\"."
+            },
+            {
+              "tier": "regular (the page's one ink)",
+              "token": "--ink",
+              "hex": "#561f86",
+              "used_for": "Body text, the rail's claim voice, stamp numbers, selects. This is the unmarked voice of the page. 8.15:1.",
+              "ruling": "2026-10-02: 'the neutral's olive-brown text is the purple ink, since gold is never text at rest' (paraphrased, no quote). Contract, 2026-09-10: argaman is our own voice (the owner's ruling, no quote)."
+            },
+            {
+              "tier": "regular (alias)",
+              "token": "--shesh",
+              "hex": "#561f86",
+              "used_for": "An alias of --ink for hover text on cards and chips, .seg-row .v-he, .c-head-en, and the counter edge in commentary.",
+              "ruling": "none"
+            },
+            {
+              "tier": "regular (saturated argaman)",
+              "token": "--argaman",
+              "hex": "#772ba3",
+              "used_for": "Where the page says something is absent, withheld, differs or is unnamed (.differs, .unnamed, .om-what, .v.none, .stamp-warn, #demoLine), the dashed border on a typed word, every link (--link = var(--argaman)), and '.com' in the name (.wm-tld). The logo's U is this value, not --ink. 5.93:1.",
+              "ruling": "Logo header 2026-10-03: .com in argaman; \"and .com should be purple\". The .com transition: \"a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple\" (undated in zone.html)."
+            },
+            {
+              "tier": "dim",
+              "token": "--muted",
+              "hex": "#6c359e",
+              "used_for": "Secondary text: bylines, notes, chip text, summaries, unpressed face buttons, scribal-mark glyphs. 5.97:1.",
+              "ruling": "none"
+            },
+            {
+              "tier": "dim (dimmer)",
+              "token": "--faint",
+              "hex": "#845ba7",
+              "used_for": "Small uppercase labels (.t-lab, .nav-lab, fold summaries), receipts text, an off shelf's title. 3.91:1.",
+              "ruling": "none"
+            },
+            {
+              "tier": "dim (alias)",
+              "token": "--sel-dim",
+              "hex": "#845ba7",
+              "used_for": "The same value as --faint, used as line work for the selection: the HUD 'moved' ring, the stamp flash, the decl-open underline, a popover border.",
+              "ruling": "none"
+            },
+            {
+              "tier": "dim (argaman)",
+              "token": "--argaman-dim",
+              "hex": "#9c69b9",
+              "used_for": "Quieter absence: no-witness stamp rows, an unnamed node head, .om-why, the drift-chip dashed border, commentary undeclared and two-count edges. 3.07:1.",
+              "ruling": "none"
+            }
+          ],
+          "gaps": "Purple runs as two ladders. Ink: ink-strong #44166c, then sel #4f1789 (bold), ink #561f86, muted #6c359e, faint #845ba7. Argaman: argaman #772ba3 and argaman-dim #9c69b9, with no argaman-bold. The logo's .com uses the argaman regular only. Its derived thread edge (#582079) almost exactly matches --ink #561f86, so the logo already brushes the ink tier by accident, but no ink token is placed in it on purpose."
+        },
+        {
+          "channel": "other: linen/parchment neutral (shesh ground)",
+          "tiers": [],
+          "gaps": "This is not an ink channel. All of its tokens are grounds or shadows (listed in notes). The tokens named 'shesh' are purple ink aliases (see purple)."
+        }
+      ],
+      "notes": "SOURCES. reader/zone.html :root (lines 27-137, the only :root block). The door :root inside DOOR_CSS in reader/tools/build-front-door-v1.mjs (line 196, a JSON-escaped string). reader/data/color-contract-v1.json. reader/tools/build-wordmark-v1.py line 43. No files were written.\n\nGROUNDS, WASHES, HALOS AND SHADOWS (not ink):\n- Linen: --bg #ebdec3, --panel #efe4cd, --panel2 #ecdfc5, --nav-veil rgba(239,228,205,.94). Line 536 falls back to rgba(21,18,13,.94), a leftover from the dark face.\n- The three linens (owner, 2026-10-09: \"maybe linen should have 3 shades?\"): --wash #e6d8bb, --cell-wash rgba(74,48,8,.06), --tie-wash rgba(74,48,8,.08), --press-wash #dccbaa. The pressed cell's darker linen comes from 2026-10-03, \"1. darken the linen backdrop\".\n- Parchment: --surface-c #e8d9bc, --panel-c #dccbaa.\n- Red grounds: --wash-shani #eedcd6, --held-shani #dbb9b6, --halo-shani rgba(157,67,85,.75). The halo is used only under :root[data-accent=halo].\n- Blue grounds: --wash-tekhelet #dfe4f1, --held-tekhelet #b9c6e6, --halo-tekhelet rgba(52,100,154,.75).\n- Gold ground: --sel-text rgba(196,146,28,.3), the drag selection (owner, 2026-10-03, on a word highlighted solid dark gold: \"is that ideal?\").\n- Chips and shadows: --chip-bg rgba(43,35,56,.05); the door's is rgba(107,90,53,.10). --shadow-pop, --shadow-card, --shadow-hud. The door adds --hover-wash rgba(138,107,38,.10) and --shade rgba(96,80,48,.35).\n- Unused in zone.html: --wash-shani, --held-shani, --held-tekhelet, --wash-tekhelet, --amber, --shesh-bright are each defined once and never read through var().\n- The 2026-09-11 held-word ruling (\"move away from gold as the highlighting itself and move toward just a more opaque red and blue\") belongs to the held-* grounds.\n\nWHAT THE LOGO HAS NOW (build-wordmark-v1.py):\n- Base colors: only the four regulars, S #9d4355 (--shani), G #c4921c (--mark-gold), B #34649a (--tekhelet), U #772ba3 (--argaman).\n- Each thread gradient adds two derived shades, which are not tokens:\n  - S: edge #74323f, highlight #ab5f6b\n  - G: edge #9d7516, highlight #d3b05c (edge .80, highlight .34)\n  - B: edge #264a72, highlight #547ba5\n  - U: edge #582079, highlight #8c4bac\n  - Others use edge .74 and highlight .17. Highlights are tinted toward LINEN #f1e9d8, which is not a site token (--bg is #ebdec3).\n- The hailstone glint is #c6d4e3. The .com dot is a B to U gradient.\n- No site bold or dim token appears in the logo: not shani-dim, tekhelet-bold, tekhelet-dim, gold, gold-dim, line, mark-ink, ink-strong, sel, ink, muted, faint or argaman-dim.\n- Closest accidental matches: the U edge #582079 is about --ink #561f86, and the B edge #264a72 sits near --tekhelet-bold #22508a. The G edge #9d7516 sits between --gold #a06c10 and --gold-dim #a3762a.\n- Red has no site bold for the logo to borrow.\n\nLUMINANCE ORDER, with contrast on --bg:\n- Red: shani #9d4355 4.68, then shani-dim 3.06.\n- Blue: tekhelet-bold 6.11, then tekhelet 4.59, then tekhelet-dim 2.56.\n- Gold, darkest to lightest: hover-ink #704c0f 5.78, line 3.79, gold 3.39, gold-dim 3.04, mark-ink #bd890f 2.34, mark-gold #c4921c 2.11, hover-line 1.87. The retired deep mark gold #76500c is about 5.6.\n- Purple: ink-strong 10.0, sel 8.68, ink 8.15, muted 5.97, argaman 5.93, faint 3.91, argaman-dim 3.07.\n\nFOR THE OWNER'S GOLD REQUEST. The harness relays: \"you can do the site name gold either way i'm not good with colors. just not that dark gold\". 'That dark gold' is most likely #76500c, the deep mark gold the owner said \"just barely looks gold to my eye\". The bright choices already ruled are #bd890f (marks, D) and #c4921c (the name). Avoid anything near --hover-ink #704c0f or #76500c for the name.\n\nANOMALIES:\n(1) A future date. zone.html lines 65-66 and 7982 say the owner's vote was \"relayed by Moses on 2026-10-11\", and line 361 dates it 2026-10-11. Today is 2026-10-10.\n(2) The --mark-gold comment says \"used by the name and nothing else\", but zone.html line 837 also uses it for .wjoin.lic.active .wj-ink.\n(3) The door CSS calls var(--shadow-hud) at DOOR_CSS line ~504 but never defines it.\n(4) --chip-bg and --chip-line hold different values on the door (olive-brown) and in zone.html (gold). CLAUDE.md says a shared name must match.\n(5) --mark-ink is uncommitted in the ghp worktree: HEAD has #76500c and the working tree has #bd890f.\n(6) The contract and a comment use British spelling in identifiers: schema_version COLOUR_CONTRACT_V2, colour-role-rule-v1. These are identifiers, flagged only for CLAUDE.md awareness."
+    },
+    "logo": {
+      "surfaces": [
+        {
+          "surface": "Door masthead: the woven mark at full size (the logo)",
+          "where": "index.html line 1170: <h1 class=\"wordmark\"><img class=\"wm-mark\" src=\"/mark/fireandhail.com-woven-v1.svg\" alt=\"fireandhail.com\" width=\"710\" height=\"88\"></h1>. The CSS is at index.html lines 60-72, emitted from the DOOR_CSS string at build-front-door-v1.mjs line 196: width 26rem, capped at min(100%, 100vw - 2.5rem). Measured at 416x51px on desktop and 372x46px on a 412px phone. The h1 also draws a 1px border-bottom in var(--gold-dim). The mark appears only on the home page (/). An untracked build copy sits at reader/deploy-root/index.html, which is the builder's default --out.",
+          "built_by": "reader/tools/build-wordmark-v1.py builds mark/fireandhail.com-woven-v1.svg (11,212 bytes, viewBox -14 -845 7102 879) from the outlines in fonts/outfit-wordmark-600.woff2 (Outfit 600, SIL OFL) and the name in CNAME. build-front-door-v1.mjs places it: line 272 sets MARK_FILE, line 273 sets MARK_WOVEN only if the file exists and CNAME is present, line 274 builds the WORDMARK_DOOR img, and line 1830 emits the masthead. The colors are baked into the SVG file. Because it is an <img>, no CSS token reaches inside it.",
+          "colors_now": "Base colors, each a hand-typed copy of a token value at builder line 43. Shani #9d4355 (= --shani) fills f,i,r,e, the flame, and the first part of the a. Gold #c4921c (= --mark-gold) fills the n, half of the a, half of the d, and the flame's heart. Tekhelet #34649a (= --tekhelet) fills h,a,i,l, the hailstone, and the end of the d. Argaman #772ba3 (= --argaman) fills c,o,m. Hand-mixed thread shades (rim / sheen): shani #74323f / #ab5f6b, gold #9d7516 / #d3b05c, tekhelet #264a72 / #547ba5, argaman #582079 / #8c4bac. The hailstone glint is a solid hand-mixed #c6d4e3 (tekhelet mixed 72% toward white). The dot of .com is a gradient from #34649a to #772ba3 (token values), overlaid with #000 at 0.24 opacity on the thread rims and #fff at 0.17 at the sheen; these overlays are not tokens. The tint target LINEN #f1e9d8 is not a site token: the site's --bg is #ebdec3. The masthead hairline under the mark is #a3762a (= --gold-dim, a token). Measured mean ink at 416px: fire #9a4858, n #c2962e, hail #3b6697, .com #78339f. The a splits shani/gold and the d splits gold/tekhelet along a thread line. Zero green pixels in the d at the door, census or pill sizes."
+        },
+        {
+          "surface": "Door's other page (census): the woven mark, small, as the way home",
+          "where": "census/index.html: <a class=\"wordmark\" href=\"/\"><img class=\"wm-mark wm-mark-s\" ...>. The CSS is a.wordmark img.wm-mark-s { height:1.5rem }, so the mark renders at 194x24px. a.wordmark has no border. Today this is the only door page whose h1 is not the site name.",
+          "built_by": "build-front-door-v1.mjs line 279 (WORDMARK_SMALL) and line 1830. It uses the same SVG built by build-wordmark-v1.py.",
+          "colors_now": "The same baked SVG colors as the door (all hex listed above). At 24px tall each thread is about 1.1px wide. Measured means: fire #9a4858, n #c2962e, hail #3b6697, .com #78339f."
+        },
+        {
+          "surface": "Book, chapter and demonstration-zone pages: the home button (#home a.home pill), now carrying the woven mark",
+          "where": "reader/zone.html. Pill CSS at lines 174-177, image size at 181-182 (img.wm-mark-s height 1.15em = 15.6px, so 126x15.6px; max-width min(12rem, 60vw)), hover at 184, header border at 475. The script at lines 2091-2105 reads <meta name=\"site-mark\"> and replaces the pill's text with <img class=\"wm-mark-s\" width=710 height=88>. The page is served through reader/engine-<hash>.css/js. 976 pages carry the site-mark meta: the 39 books (/genesis/), their chapter pages (/genesis/1/) and the demonstration zones (/demonstrations/kq/ and others).",
+          "built_by": "The engine in zone.html, plus build-front-door-v1.mjs lines 2748-2749, which write <meta name=\"site-name\"> and <meta name=\"site-mark\" content=\"/mark/fireandhail.com-woven-v1.svg\"> into each page. The SVG comes from build-wordmark-v1.py.",
+          "colors_now": "All pill colors are tokens: border --line #93661a, background --panel2 #ecdfc5, text color --shani-ink #9d4355 (the img ignores it), and on hover border --gold #a06c10 with color --ink-strong #44166c. Inside the pill are the baked SVG colors (as on the door). At 15.6px tall a thread is about 0.74 css px, so the threads blur to near-flat base colors. Measured means: fire #9e4657, n #c69523, hail #38669b, .com #792fa4."
+        },
+        {
+          "surface": "The name as text in four colors (fallback form; no published page shows it today)",
+          "where": "Reader: zone.html line 183 (#home a.home .wm-fire / .wm-and / .wm-hail / .wm-tld) and script line 2104, used when a page has no site-mark meta but the name matches fire|and|hail|.tld. Door: index.html line 72, from DOOR_CSS line 196, with spans built at build-front-door-v1.mjs lines 262-265. The door uses them only if the SVG file is missing. The font is @font-face 'wordmark' (Outfit 600) at zone.html line 179 and index.html line 60, with Georgia as the fallback.",
+          "built_by": "CSS plus spans: zone.html in the reader, and build-front-door-v1.mjs WORDMARK in the door.",
+          "colors_now": "All tokens, each word solid: fire var(--shani) #9d4355, and var(--mark-gold) #c4921c, hail var(--tekhelet) #34649a, .com var(--argaman) #772ba3. The .com also has a background-clip:text gradient at 90deg: var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%. These were verified rendered with the form forced on. The door duplicates the token values by hand in DOOR_CSS :root."
+        },
+        {
+          "surface": "Bare reader instrument (reader/zone.html with no metas): the home pill reads 'The Tabernacle'",
+          "where": "/reader/zone.html?b=<book>. Line 2094 sets SITE = META(\"site-name\") || \"The Tabernacle\". The name does not match fire|and|hail, so it prints whole. This is the page that check-color-channels and check-contents-shut load.",
+          "built_by": "zone.html script, lines 2094-2105.",
+          "colors_now": "The whole name is in --shani-ink #9d4355 (token), in the Outfit 'wordmark' face at weight 600. The pill uses the same tokens as on book pages: --line #93661a and --panel2 #ecdfc5."
+        },
+        {
+          "surface": "Plain-text name link on the palette and demonstrations index pages",
+          "where": "palette/index.html and demonstrations/index.html line 1126: <p class=\"poc-back\"><a href=\"/\">fireandhail.com</a></p>.",
+          "built_by": "build-front-door-v1.mjs lines 2905 and 2924, using ${SITE_NAME}.",
+          "colors_now": "DOOR_CSS `a { color:var(--muted) }` gives #6c359e (token), Georgia 400. On hover it is --ink-strong #44166c (token)."
+        },
+        {
+          "surface": "Plain-text name link on withheld/held-address pages",
+          "where": "1kings/index.html and targum-1kings/index.html (around line 26): <a href=\"/\">fireandhail.com</a>.",
+          "built_by": "build-front-door-v1.mjs heldPage, lines 3030-3056. The style is at line 3050.",
+          "colors_now": "The color is hand-typed, not a token. The built files still serve #96700f. The builder source now writes #a06c10, which is the --gold value typed by hand. Georgia 400. This makes the name gold ink at rest."
+        },
+        {
+          "surface": "Toggles page title link (stale working name)",
+          "where": "toggles/index.html line 227: <h1><a href=\"/\">The Tabernacle</a> · the switches</h1>.",
+          "built_by": "reader/tools/build-toggle-design-v1.mjs, line 227, where the name is typed by hand. The page's own :root is at line 179 and h1 a is styled at line 187.",
+          "colors_now": "h1 a { color:var(--sel) }, but this page defines its own local --sel:#8d5e0c, an old amber that is not the site's --sel #4f1789. It is bold (700) Georgia. The page's --paper is #f1e9d8, the same hex as the builder's LINEN."
+        },
+        {
+          "surface": "Reference-group pages (code path only; no such page is built now)",
+          "where": "build-front-door-v1.mjs lines 3280 and 3291: <p><a href=\"/\">${SITE_NAME}</a></p>.",
+          "built_by": "build-front-door-v1.mjs.",
+          "colors_now": "a{color:#772ba3}, which is the --argaman value typed by hand."
+        },
+        {
+          "surface": "Tab titles, favicon, social image",
+          "where": "Every page's <title> carries 'fireandhail.com' as plain text. git grep over html/mjs/py/js finds no rel=icon, apple-touch-icon, manifest, og:image or twitter:image. mark/ holds only the woven SVG; mark/fireandhail.com-flat-v1.svg was deleted 2026-10-03 in commit f00914544.",
+          "built_by": "build-front-door-v1.mjs builds the titles (SITE_NAME read from CNAME at lines 243-252). There is no favicon or social image builder.",
+          "colors_now": "None. The site has no favicon and no social image."
+        }
+      ],
+      "rulings": [
+        "2026-10-02 (build-front-door-v1.mjs line 253, zone.html line 178, commit d04d2e64c): \"The name's four parts, for the mark's four colors (the owner, 2026-10-02)\". The commit records: \"The split is the owner's ruling on this one name, read off it; any other name stands whole.\" At that time and was argaman and .com was gold.",
+        "2026-10-02 (zone.html line 64, --mark-gold, a paraphrase rather than a quote): \"the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else\". Two parts of this comment are now out of date: .com is purple, and zone.html line 837 also uses --mark-gold for .wjoin.lic.active.",
+        "2026-10-02 (zone.html around line 77): \"four colors, ruled 2026-10-02: one soft red, one soft blue, the gold and the purple, the purple alone at its full depth.\"",
+        "2026-10-03 (zone.html line 178; build-front-door-v1.mjs DOOR_CSS; commit 656f6d372): \"remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple\"",
+        "Undated in source, recorded 2026-10-03 in commit 656f6d372 (zone.html line 178): \"a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple\"",
+        "2026-10-03 (zone.html around lines 80-82, on the red that fills fire): \"our sites red is actually just one tone too muted\" and \"just 1 notch more electric to match the blue\". The red moved #8b5560 -> #944c5b -> #9d4355.",
+        "2026-10-03 (build-wordmark-v1.py lines 12-15; commit 61d11eb8c, choosing among six drawn concepts): \"lets do this one with the 2 stylized i dots\", and on the dot of .com: \"keep the normal transition we already had there because purple and blue blend nicely and it can be on just the .\". The builder header records what follows from this: fire in shani, and in gold, hail in tekhelet, .com in argaman; diagonal threads (Exodus 39:3); colors hand off at the a and the d of and, so gold and blue never blend into green; fire's i is a flame with a gold heart and hail's i is a hailstone.",
+        "2026-10-03 (undated in builder header lines 7-8 and build-front-door-v1.mjs lines 270-271; recorded by commit f00914544 at 09:26 UTC): \"just our 1 logo on the homepage alone\". The 2026-10-08 ruling below partly reverses this. The comments that still say \"every other page prints the name as text\" are stale.",
+        "2026-10-03 (zone.html around lines 88-90; reader/data/color-contract-v1.json channels.reading_as_shown.pressed_as; commit 6af9651f0 at 17:23 UTC): \"id avoid blue as a highlight. similar to our logo id have 2 blues: a bold and a regular, maybe the letters bold too not just the color\". This is the owner's only recorded tie between the site's tiers and the logo. It does not say which two blues the owner saw. At that moment the woven mark stood on the door only.",
+        "2026-10-03 (zone.html around lines 43-49): \"also is our gold a bit too olive?\" This warmed the frame gold to hue 38, described as \"the bronze of the name's own gold\". --mark-gold #c4921c itself has not changed since 2026-10-02.",
+        "2026-10-08 (zone.html line 180; build-front-door-v1.mjs lines 276-277; commit 5b8100c9e): the book pages' home button was \"still the old logo with that green sneaking in ... it looks like the pride flag\". After this, the home button became the one woven mark, small, and the text fallback became solid per word.",
+        "2026-10-10 (zone.html lines 65-76, uncommitted in the worktree; commit 51f91d1c6), on the Masoretic marks rather than the logo but setting the gold the owner likes: \"im actually right now leaning toward making all masoretic marks gold\". Relayed by Moses \"on 2026-10-11\" (sic, as written in zone.html and check-color-channels line 390): \"every mark gold, vowels included\". On the deep #76500c: \"just barely looks gold to my eye\". Then \"i like D tbh\", which set --mark-ink #bd890f, hue 42, a step darker than the name's #c4921c.",
+        "2026-09-10 (check-color-channels-v1.mjs lines 377-389): gold is never ink at rest. The name is exempted by the owner's 2026-10-02 ruling (\"the site's name, whose .com is gold as a mark, not as ink\"). That comment is stale since 2026-10-03: the gold part is now and.",
+        "Today, 2026-10-10 (current request): \"can we make sure all our bold/dim/regular colorings make it into the logo too?\" and \"i'm not good with colors\". Also, relayed by the harness: \"you can do the site name gold either way i'm not good with colors. just not that dark gold\"."
+      ],
+      "guards": [
+        "reader/tools/check-color-channels-v1.mjs loads the bare /reader/zone.html?b=<first zone>&c=open. Its pill reads 'The Tabernacle', so this check never renders the SVG or the four-span form. Line 411, 'no glyph is left gold at rest': every text element's fill must stay out of the gold range (hue 30-62, sat >= 0.45, light 0.20-0.80), except elements inside '.rail .now, #home a.home, .wordmark' (line 389). That exemption is what lets the name's gold 'and' stand at rest, and it also excuses .he-text .mg/.mg-all. Line 374, 'no gold is laid down as a ground': no element's background may be a saturated gold, which covers the home pill (--panel2). Line 440, 'every token a rule asks for is declared': the var(--shani)/var(--mark-gold)/var(--tekhelet)/var(--argaman) calls in the #home rules must resolve. Nothing looks inside the SVG.",
+        "reader/tools/check-clean-address-v1.mjs serves the deployed tree with its own static server, sending .svg as image/svg+xml and .woff2 as font/woff2 (line 75, so the mark and face load). Line 142, 'it names the site': the door's <title> contains the CNAME name. Lines 322-323, 'the site's own name carries no Hebrew that nothing recorded': no h1 [lang=he]. On book pages, where the pill holds the woven img, lines 522-526 assert that the header offers one way out (only '/'), that its label says 'home', that it sits in the corner the eye goes to (#home a.home right edge within a third of the header width, top within 90px), and that the nav prints no Hebrew title. It does not check the mark's colors or whether the img loaded.",
+        "reader/tools/check-contents-shut-v1.mjs (lines 221-242) loads the bare zone.html?b=<book> for each served book, where the pill holds text. It asserts that header.top nav a.home is on screen, links to '/', and is shaped like a button: at least 26px tall with padding-left of at least 8px.",
+        "Gaps: no check reads mark/*.svg, runs or diffs build-wordmark-v1.py, or compares its hand-typed S/G/B/U to the zone.html tokens. check-nothing-hard-wired-v1 scans only .mjs builders. check-nothing-hand-typed-v1 scans served index.html and zone.html only for corpus-script characters. check-masoretic-gold-v1 tests --mark-ink on the Masoretic marks, not the logo."
+      ],
+      "builder_color_hooks": "WHERE COLORS ENTER. Everything comes from one line, reader/tools/build-wordmark-v1.py line 43: S='#9d4355' (shani), G='#c4921c' (the name's gold, = --mark-gold), B='#34649a' (tekhelet), U='#772ba3' (argaman), LINEN='#f1e9d8'. These are typed copies. The comment above them says 'the site's own values (zone.html :root)', but nothing reads zone.html and no check compares them. A token change in zone.html never reaches the SVG until line 43 is edited, the builder is rerun and mark/fireandhail.com-woven-v1.svg is committed. LINEN is not a site token (the site's --bg is #ebdec3 and --panel is #efe4cd). It is the --paper of the toggles and chain pages.\n\nHELPERS (lines 59-63). hx and toh parse and format hex, rounding and clamping to 0-255. mix(a,b,t) is a + (b - a) * t per sRGB channel, with no linearization. shade(c,f) multiplies each sRGB channel by f, which moves toward black. tint(c,t) is mix(c, LINEN, t).\n\nEDGE AND HIGHLIGHT. thread(id, c, angle, edge, hi, P) at lines 102-108 sets e = shade(c, edge) and h = tint(c, hi). It builds a vertical objectBoundingBox linearGradient with stops 0 e, .22 c, .46 h, .78 c, 1 e: a round thread with a dark rim, the base color, and an off-center sheen. That gradient fills a userSpaceOnUse pattern 400 x P (P=42 font units, about 2.5px at the door's 416px), rotated by the given angle. The factors are set at line 150 with `(.80, .34) if c == G else (.74, .17)`: the gold's rim is 80% of the base and its sheen is 34% toward LINEN; every other color's rim is 74% and its sheen is 17%. The results are:\n- shani #74323f / #9d4355 / #ab5f6b\n- gold #9d7516 / #c4921c / #d3b05c\n- tekhelet #264a72 / #34649a / #547ba5\n- argaman #582079 / #772ba3 / #8c4bac\n\nAll four were verified by hand against the SVG.\n\nPATTERNS AND FILLS. Lines 147-152 make two patterns for each entry of NAME = {S:'S', G:'G', B:'B', U:'U'}:\n- p{uid}{letter} at ANGLE=60. fill() at line 153 uses it for the single-color regions, the flame (line 196, S), the heart (line 197, G) and the hailstone (line 200, B).\n- q{uid}{letter} at 0 degrees, used inside a rotate(60) group for the two turn letters.\n\nREGIONS AND TURNS. Line 139 assigns f,i,r,e to S; the a turns S->G; the n is G; the d turns G->B; h,a,i,l are B; c,o,m are U. Lines 158-178 draw a turn letter: a clipPath of the glyph is filled with whole-thread bands. Each band is the old or new color depending on whether the thread's x at yref=-246 passes turn_x (1884 for the a, 2964 for the d; X0 is at line 93). One thread is swapped across the boundary, the 'tight' crossover. Because whole threads change color, gold and blue never mix within a pixel run.\n\nDOT AND GLINT. The dot of .com (lines 179-193) is a userSpaceOnUse gradient from B to U across the dot's x extent (4968 to 5131), with an overlay pattern of #000 at 0.24 (rims) and #fff at 0.17 (sheen). The overlay adds only light and shadow, never a third hue. The hailstone glint (line 204) is a solid mix(B, '#ffffff', .72) = #c6d4e3, mixed toward pure white rather than LINEN.\n\nHAZARDS WHEN CHANGING COLORS.\n- NAME is a dict keyed by hex, so two parts given the same hex collapse to one pattern id.\n- A new color, such as a tier like --tekhelet-bold #22508a, must be added to NAME or fill() raises KeyError.\n- The gold factors apply only to the color that equals G.\n- mark(uid, False) draws a flat version, but __main__ (lines 209-214) writes only the woven file.\n- The img tags hard-code width=710 and height=88 (build-front-door-v1.mjs lines 274 and 279; zone.html line 2102). That matches viewBox 7102x879 divided by 10, so any geometry change must be carried there.\n\nRUNNING A COPY (done and verified). Paths resolve from the script file: ROOT = HERE/../.., FONT = ROOT/fonts/outfit-wordmark-600.woff2, CNAME = ROOT/CNAME, OUT = ROOT/mark. So mirror that tree:\n\n  W=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/<key>\n  G=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/ghp\n  mkdir -p $W/reader/tools $W/fonts\n  cp $G/reader/tools/build-wordmark-v1.py $W/reader/tools/\n  cp $G/fonts/outfit-wordmark-600.woff2 $W/fonts/\n  cp $G/CNAME $W/\n  python3 $W/reader/tools/build-wordmark-v1.py\n\nThis writes $W/mark/fireandhail.com-woven-v1.svg and prints '11,212 bytes · viewBox -14 -845 7102 879'. cmp with $G/mark/ shows it byte-identical, so the committed SVG is current with the builder. It needs fontTools (4.66.1 is installed, with brotli for woff2). The working directory does not matter. Without CNAME the builder exits 0 and draws nothing.\n\nTo try colors without editing the file, load the builder as a module (importlib.util.spec_from_file_location('wm', path) then exec_module). Import reads the font, CNAME and layout, but __main__ does not run, so nothing is written. Then set wm.S, wm.G, wm.B, wm.U or wm.LINEN; mark, thread and tint read them at call time. Call svg, box = wm.mark('<uid>', True), with a distinct uid per variant if several share one page.\n\nA working copy is at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/inventory/:\n- geom.py exports letter x-ranges, turn_x, the flame and hail x, and the x-height (483).\n- render.mjs serves the worktree read-only, renders every name surface and measures the mark's mean colors per part; results are in render-report.json.\n- green.mjs counts green pixels in the d.\n- Screenshots: door-phone.png, door-desktop.png, census-phone.png, home-book.png, home-bare-reader.png, home-text-form.png.\n\nTIER TOKENS AVAILABLE (zone.html :root, working tree), with contrast on --bg #ebdec3:\n- shani: --shani = --shani-ink #9d4355 (4.7:1); --shani-dim #b76670 (3.1:1). There is no bold or strong shani token.\n- tekhelet: --tekhelet = --tekhelet-ink #34649a (4.6:1); --tekhelet-dim #7f8ba8 (2.6:1); --tekhelet-bold #22508a (6.1:1).\n- gold: --mark-gold #c4921c (hue 42, 2.1:1); --mark-ink #bd890f (hue 42, 2.3:1); the served engine CSS still has #76500c (5.4:1) until the build ships. Frame gold: --gold = --amber #a06c10 (3.4:1), --gold-dim #a3762a, --line #93661a, --hover-ink #704c0f, --hover-line #c19f66.\n- argaman / ink: --argaman #772ba3 (5.9:1); --argaman-dim #9c69b9; --ink #561f86; --ink-strong = --shesh-bright #44166c; --sel #4f1789 (pressed, worn bold); --sel-dim = --faint #845ba7; --muted #6c359e.\n\nThe 'dark gold' the owner rejected is #76500c; both #c4921c and #bd890f are the bright family."
+    },
+    "drafts": [
+      {
+        "draft": {
+          "key": "threads-are-tiers",
+          "summary": "The logo keeps its letters, weave, flame, hailstone and dots, but every thread is now colored only with the site's own shades of each color: a darker shade at the thread's edge, the everyday shade in the middle, and a lighter shade as the shine. The \"and\" now uses the same gold as the site's borders and the Hebrew vowel marks, so the logo is a little deeper gold and the \"fire\" a little lighter red, but it still reads as the same logo.",
+          "mapping": "Each thread is a gradient across its width: edge, then the main color, then the shine, then the main color, then the edge. The stop positions are the same as before. Only the colors changed.\n\nRED (fire, the flame, and the red threads in the a of \"and\"):\n- Edge: --shani #9d4355. The site has no bold or darker red, so the edge is the regular red.\n- Main: --shani #9d4355.\n- Shine: --shani-dim #b76670.\n- Two tiers only. Fire loses its dark edge, so it reads a little lighter: the measured mean of the f went from #984757 to #a54d5d.\n\nGOLD (\"and\": the n, the gold threads in the a and the d, and the flame's heart):\n- Edge: --line #93661a. This is the borders' rule gold, the one darker frame gold the site has. It stands in for the bold gold the site lacks.\n- Main: --gold #a06c10. This is the borders' gold, which --mark-ink now also points to for the vowels and accents.\n- Shine: --mark-gold #c4921c. This is the name's own gold. The palette map shows the site uses it outside the logo too: the name's text form (.wm-and) and the active license-run underline (.wjoin.lic.active .wj-ink). Used as the shine, it keeps the word reading as gold.\n- Not used: --gold-dim #a3762a. It is no lighter than --gold (3.0:1 against 3.4:1 on the linen) and it is grayer. I tried it as the shine (variant v2, in try/sheet.png), and \"and\" went flat and olive-brown. That is the dark look the owner rejected.\n- Result: the mean of the n went from #c0942d to #a87616.\n\nBLUE (hail, the blue threads in the d, the hailstone, and the left side of the .com dot):\n- Edge: --tekhelet-bold #22508a.\n- Main: --tekhelet #34649a.\n- Shine: --tekhelet-dim #7f8ba8.\n- The hailstone's glint: --held-tekhelet #b9c6e6. This is an existing blue-channel token (the held-word ground), declared in zone.html :root. No CSS rule reads it today. I tried --tekhelet-dim as the glint (variant v4) and it read as a gray smudge, not a glint.\n- Result: the mean of the h went from #3a6595 to #466b9b.\n\nPURPLE (.com, and the right side of its dot):\n- Edge: --sel #4f1789. This is the site's bold purple, the one pressed controls wear.\n- Main: --argaman #772ba3.\n- Shine: --argaman-dim #9c69b9.\n- Result: the mean of the m went from #76329c to #7939a4.\n\nTHE .COM DOT: the full blue thread pattern sits underneath, and the full purple thread pattern lies over it. A left-to-right alpha mask fades the purple in (mask-type alpha, gradient stop-color --argaman, opacity 0 to 1, so only its transparency is used). This keeps the owner's smooth blue-to-purple turn and keeps the dot woven. It replaces the old #000 and #fff light-and-shadow overlay.\n\nUNCHANGED: the hand-offs at the a and the d (whole threads swap color). The door's hairline under the mark stays --gold-dim #a3762a.\n\nREMOVED FROM THE LOGO:\n- LINEN #f1e9d8.\n- Every mixed shade: #74323f, #ab5f6b, #9d7516, #d3b05c, #264a72, #547ba5, #582079 and #8c4bac.\n- The old glint #c6d4e3.\n- The #000 and #fff overlays.\n- The builder's mixing helpers (hx, toh, mix, shade, tint).\n\nCHECKS:\n- #bd890f appears nowhere.\n- Every hex in woven.svg is an exact token value: #9d4355, #b76670, #93661a, #a06c10, #c4921c, #22508a, #34649a, #7f8ba8, #b9c6e6, #4f1789, #772ba3, #9c69b9.\n- The d has zero green pixels at door size (416px wide), census size (24px tall) and home-pill size (15.6px tall).\n- Live-vs-draft comparison, at door size and small: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/threads-are-tiers/compare.png.\n- The rejected variants are under try/.",
+          "new_values": "",
+          "svg": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/threads-are-tiers/woven.svg",
+          "door_png": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/threads-are-tiers/door.png",
+          "small_png": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/threads-are-tiers/small.png",
+          "home_png": "",
+          "builder_copy": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/threads-are-tiers/reader/tools/build-wordmark-v1.py",
+          "builder_diff": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/threads-are-tiers/builder.diff",
+          "css_change": ""
+        },
+        "verdict": {
+          "key": "threads-are-tiers",
+          "every_color_is_a_token": true,
+          "stray_colors": [],
+          "tiers_present": "I parsed woven.svg. It has 42 stop-colors, 27 fills, 1 stop-opacity and 1 mask, with no rgb() or hsl() colors, no strokes and no filters. It uses exactly 12 hex values, and each one matches the value declared in the working tree's zone.html :root. #bd890f, LINEN, #000/#fff and every old mixed shade are gone.\n\nRED (fire, the flame, the red threads in the a): --shani #9d4355 is the regular and also stands in for the rim, so the gradient is rim = body. --shani-dim #b76670 is the sheen. That makes two tiers: regular and dim.\n\nGOLD (the n, the gold threads in the a and the d, the flame's heart): --line #93661a is the rim, as the darker frame gold. --gold #a06c10 is the body; it is the borders' gold, and --mark-ink now equals var(--gold). --mark-gold #c4921c is the sheen. Three golds.\n\nBLUE (hail, the blue threads in the d, the hailstone, the left of the .com dot): --tekhelet-bold #22508a is the rim, --tekhelet #34649a the body and --tekhelet-dim #7f8ba8 the sheen. The glint is --held-tekhelet #b9c6e6, which is a held-word ground token, not an ink tier. Bold, regular and dim are all there, plus the ground.\n\nPURPLE (.com and the right of its dot): --sel #4f1789 is the rim, as the bold or pressed purple. --argaman #772ba3 is the body and --argaman-dim #9c69b9 the sheen. Bold, regular and dim.\n\nThe .com dot is a mask-type:alpha mask whose gradient is #772ba3 with stop-opacity 0 to 1. Only its alpha is used and the color is never painted. Where the purple threads lie over the blue threads at partial alpha, the composite in the middle of the dot is a blend of blue and purple tiers. That blend is the owner's ruled transition (\"purple and blue blend nicely\"), not a new value.",
+          "tiers_missing": "RED: there is no bold or strong red token on the site, so red has no darker tier. The draft states this, and it uses the rim = body construction instead of inventing a shade. That is correct.\n\nGOLD: --gold-dim #a3762a is not used. The draft explains why: it is about as light as --gold and grayer. --hover-ink #704c0f and --hover-line #c19f66 are also not used. The site has no named bold gold, so --line stands in for one.\n\nBLUE: none missing.\n\nPURPLE: none of the ink ladder's own values are used: --ink #561f86 (the page's one ink), --ink-strong #44166c, --muted #6c359e and --faint #845ba7. The thread takes its bold from the ink ladder (--sel) and its regular and dim from the argaman ladder. Both are real tokens, but they come from two ladders.",
+          "rulings_kept": false,
+          "rulings_broken": [
+            "Kept: the 2026-10-03 shape rulings. fire is red, and is gold, hail is blue and .com is purple. The threads still run diagonally at 60 degrees, with the same patterns and P=42. The flame has a gold heart, the i of hail has a hailstone, and the .com dot turns from blue into purple. I parsed both files: every path d attribute is identical in the live and draft SVGs, so the letter shapes, flame, hailstone, hand-off rects and viewBox are unchanged. The colors still hand off by whole threads at the a and the d. I found 0 green pixels in any letter, the d or the dot at nine sizes (door 416px at dpr 1 and 2, 28px at dpr 1 and 2, census 24px, pill 15.6px at dpr 1 and 2, and 2400px).",
+            "At risk, which I am counting as broken because the owner gave the instruction today (2026-10-10). The instructions were 'dont change everything by my eye', 'id just use the same gold as the borders and logo was', 'just not that dark gold' and 'keep the logo looking like itself'. The draft did not keep the logo's own gold. It moved the body of 'and' from --mark-gold #c4921c to --gold #a06c10. Measured at large size, the n's mean went from #c0952f to #a87719. In luminance that is about 62% of the way from the live gold (L 0.32) toward the rejected #76500c (L 0.10). The difference is plainly visible on the contact sheet: 'and' reads as a deeper ochre-brown at every size. This was a choice, not forced. The tokens could keep the live look: body --mark-gold #c4921c, rim --gold #a06c10 (almost the live's mixed rim #9d7516), and either no separate sheen or --hover-line #c19f66 as the sheen. That would also tie the logo to the borders' gold."
+          ],
+          "legible_small": true,
+          "issues": [
+            "THE NAME'S GOLD GOT DARKER (main issue). 'and' drops from the live bright gold to a deeper bronze. Measured means: n at door 416px #c49a35 -> #ac7b1e; n at 28px #c59b39 -> #ae7e23; whole 'and' at door #9e8357 -> #95744c. This goes against 'keep the logo looking like itself' and 'dont change everything by my eye', and it moves toward the 'dark gold' the owner rejected. Suggested fix, using tokens only: body --mark-gold #c4921c, rim --gold #a06c10, and either a two-tier gradient or --hover-line #c19f66 as the sheen.",
+            "THE FLAME'S HEART LOST CONTRAST. I measured the heart against the surrounding flame. Luminance contrast drops from 2.24 to 1.39 at 88px, from 2.06 to 1.33 at 28px dpr 2, and from 1.88 to 1.24 at 28px dpr 1. The red got lighter (no rim) and the gold got darker, so now only hue separates the heart from the flame. At 28px dpr 1 the heart is about 6 device px of #a46e15 inside #a45159, and it reads as a brown smudge rather than a gold heart.",
+            "FIRE AND 'AND' NOW HAVE NEARLY EQUAL LIGHTNESS. Red L is about 0.14 and gold about 0.21 (ratio about 1.37); in the live mark it was about 2.2. At pill and 28px sizes the a of 'and' (red and gold threads) reads reddish-brown, and the fire/and boundary is softer. This is the very thing the --mark-gold comment of 2026-10-02 guarded against: 'brighter than the frame's so [it] never reads as the red beside it'.",
+            "THE TEXT FORM AND THE WOVEN MARK NO LONGER MATCH. css_change is empty. The text fallback for the name still paints 'and' in var(--mark-gold) #c4921c (zone.html line 183 #home a.home .wm-and, and the .wm-and rule in DOOR_CSS), while the woven 'and' body is now --gold #a06c10. This works against the owner's 'uniform coloring between logo and site'. The zone.html comment on --mark-gold ('the mark's own gold ... used by the name and nothing else') also becomes untrue, because the mark's gold is now --gold and --mark-gold is only its sheen. Keeping the body at --mark-gold would avoid both.",
+            "RED IS FLATTER. With rim = body, the red threads lose their round, dark edge and read as stripes. 'fire' is lighter: f at door 416px #9f515e -> #a85562. This is unavoidable with no bold red token, and the draft states it. It is still a visible change to the logo.",
+            "THE BLUE SHEEN IS GRAY. --tekhelet-dim #7f8ba8 (a grayed blue, s19) puts gray-lilac stripes into hail. The h mean goes #3d6795 -> #486d9b at large size. This is minor, but hail looks slightly duller up close.",
+            "THE GLINT USES A GROUND TOKEN. --held-tekhelet #b9c6e6 is the held-word ground, not an ink tier, and no CSS rule in zone.html reads it. Its value is exact, but the logo now depends on a token the palette map lists as unused. A palette cleanup (the pending 'fold the palette to 2/2/2/2') could delete it and leave the glint as an orphan value. The builder header also says 'each value one the pages already write' and 'its sheen in the dim', which is inaccurate for the glint and for gold, whose sheen is the brighter --mark-gold.",
+            "NOTHING KEEPS THE COLORS IN SYNC. The builder's TIERS table hand-types 12 hex values copied from zone.html, up from 4, and nothing reads zone.html or compares the two. Every value matches today, but they will drift silently on the next token change, and that defeats the uniformity goal. A check that compares TIERS and GLINT to zone.html :root would close this.",
+            "THE .COM DOT HAS A ROBUSTNESS RISK. It relies on mask-type:alpha with a mask colored #772ba3. Chromium renders it correctly. A renderer that ignores mask-type would apply a luminance mask with about 10% opacity, so the dot would come out almost all blue. I verified Chromium only, as instructed. This is low risk for browsers but worth knowing if the SVG is ever rasterized for a favicon or social image.",
+            "VERIFIED. The draft builder copy reproduces woven.svg byte for byte. builder.diff matches the actual diff against the ghp builder. The draft's measured means are confirmed (f #994a58 -> #a64f5e, n #c0952f -> #a87719, h #3d6795 -> #486d9b at large size). No British spellings and no #bd890f appear in the draft's builder or SVG."
+          ],
+          "contact_sheet": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/threads-are-tiers/contact.png",
+          "score": 6
+        }
+      },
+      {
+        "draft": {
+          "key": "three-thread-weave",
+          "summary": "Each word of the logo is still woven from the same diagonal threads. Now every third thread takes the next of the site's own shades of that word's color (dark, middle, light), so each word shows two or three of the tones the site already uses, and no color is mixed or invented. The letters, the flame, the hailstone, the color change at the \"a\" and \"d\" of \"and\" (still no green), and the blue-into-purple dot of \".com\" are all where they were, but the stripes show more than on the live logo, \"fire\" and \"hail\" come out a little lighter, and \"and\" is a little deeper, the gold of the site's borders.",
+          "mapping": "The threads repeat in groups of three, darkest to lightest. Thread j of the whole mark wears tier (j mod 3) of its own color, so the light thread is the same thread in every word and runs straight on through the hand-offs.\n- RED, \"fire\" and the flame: --shani #9d4355, --shani #9d4355, --shani-dim #b76670. The site has no bold red, so the regular takes the bold's place and red uses two tiers (one regular-wide band, then one dim thread).\n- GOLD, \"n\", the gold halves of \"a\" and \"d\", and the flame's heart: --gold #a06c10 (the borders' gold), --gold-dim #a3762a (the borders' dim gold), --mark-gold #c4921c (the name's own gold, the logo's old gold). These are ordered by lightness, because the site's \"dim\" gold is not lighter than --gold. --mark-gold is kept as the light thread: the site uses it (.wm-and, and .wjoin.lic.active .wj-ink at zone.html line ~837), and the owner asked for \"the same gold as the borders and logo was\".\n- BLUE, \"hail\", the hailstone, and the blue half of \"d\": --tekhelet-bold #22508a, --tekhelet #34649a, --tekhelet-dim #7f8ba8. All three tiers.\n- PURPLE, \"c\", \"o\", \"m\": --sel #4f1789 (the site's \"bold purple\", worn by pressed controls; argaman has no bold of its own), --argaman #772ba3, --argaman-dim #9c69b9.\n- THE DOT OF .COM: woven the same way. Each thread runs from its blue to the purple of the same tier: #22508a to #4f1789, #34649a to #772ba3, #7f8ba8 to #9c69b9.\n- THE HAILSTONE'S GLINT: --held-tekhelet #b9c6e6.\n- THE DOOR HAIRLINE: still --gold-dim #a3762a (not part of the SVG).\n- UNCHANGED: the letter shapes, the 42-unit thread spacing, the 60-degree angle, the hand-offs with their one crossover thread, the viewBox (-14 -845 7102 879), and img width=710 height=88.\n- MEASURED: zero green pixels in the \"d\" at door, 28px and pill sizes. Mean ink at the door compared with live: fire #a95662 vs #9d505b, and #96744d vs #9b8053, hail #4e6f9b vs #436b97, .com #7b40a3 vs #7c3a9e. Fire and hail are a little lighter, \"and\" a little deeper, .com about the same.\n- RETIRED: #bd890f appears nowhere. All derived shades, LINEN #f1e9d8, the old glint #c6d4e3 and the black and white overlays are gone. The SVG holds exactly 12 hex values, each the exact hex of a zone.html :root token.",
+          "new_values": "None. Every fill and gradient stop is a token's exact hex. Three choices need a flag:\n(1) The dot of .com is still a gradient, as the owner ruled on 2026-10-03 (\"keep the normal transition...\"), so the pixels between its two ends are blends. Both ends of each gradient are tokens.\n(2) The purple's bold is --sel #4f1789, taken from the ink ladder, because argaman has no bold token.\n(3) The hailstone's glint is --held-tekhelet #b9c6e6, a blue ground token that zone.html defines but never reads. It is the existing token nearest the old mixed glint #c6d4e3. The other choice is to drop the glint.",
+          "svg": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/three-thread-weave/woven.svg",
+          "door_png": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/three-thread-weave/door.png",
+          "small_png": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/three-thread-weave/small.png",
+          "home_png": "",
+          "builder_copy": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/three-thread-weave/reader/tools/build-wordmark-v1.py",
+          "builder_diff": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/three-thread-weave/builder.diff",
+          "css_change": ""
+        },
+        "verdict": {
+          "key": "three-thread-weave",
+          "every_color_is_a_token": true,
+          "stray_colors": [],
+          "tiers_present": "I parsed woven.svg (10,383 bytes). It reproduces byte for byte from the draft's builder copy, and builder.diff is the full diff against the ghp builder. It has exactly 12 hex values, all flat fills or gradient stops. There are no opacity attributes, no #000 or #fff overlays, no LINEN, no #c6d4e3 and no #bd890f. Each value is the exact hex of a zone.html :root token.\n\nRED (\"fire\" and the flame): --shani #9d4355 is regular and fills 2 of every 3 threads. --shani-dim #b76670 is dim.\n\nGOLD (\"n\", the gold halves of \"a\" and \"d\", and the flame's heart): --gold #a06c10 is the regular gold of hover, focus and pressed borders. --gold-dim #a3762a is dim. --mark-gold #c4921c is the name's own gold.\n\nBLUE (\"hail\", the hailstone and the blue half of \"d\"): --tekhelet-bold #22508a is bold, --tekhelet #34649a is regular and --tekhelet-dim #7f8ba8 is dim. The hailstone's glint is --held-tekhelet #b9c6e6, which is a blue ground token, not an ink tier.\n\nPURPLE (\".com\"): --sel #4f1789 is the bold, borrowed from the ink ladder. --argaman #772ba3 is regular and --argaman-dim #9c69b9 is dim.\n\nTHE DOT OF .COM: three gradients, one per tier: #22508a to #4f1789, #34649a to #772ba3, and #7f8ba8 to #9c69b9. The ends are tokens. The pixels between are blends, which the 2026-10-03 transition ruling allows.\n\nTIER SURVIVAL: in renders, each tier is a distinct color. At door size at DPR 2, roughly 27-30% of ink pixels sit within RGB distance 14 of each blue and each purple tier, and the same of each gold tier in \"n\". At 28px at DPR 2 the shares are 22-26%.",
+          "tiers_missing": "RED: there is no bold. No such token exists, so the regular fills the bold's slot and red shows 2 tiers. This is honest, and the draft says so.\n\nGOLD: there is no named bold gold token. --line #93661a, the gold of every structural 1px border (header rules, pills, panels), is not used, even though the owner said \"the same gold as the borders\". The draft reads \"borders\" as --gold #a06c10, which is the hover, focus and pressed border gold, as the computed task directed. Also unused: --hover-ink #704c0f and --hover-line #c19f66. --mark-ink is now var(--gold), so it is covered.\n\nIn practice gold reads as 2 tones, not 3. --gold and --gold-dim are only dE 8 apart (L* 49.8 vs 52.9), and the site's \"dim\" gold is not lighter than its regular.\n\nPURPLE: argaman has no bold token, so --sel from the ink ladder stands in. Also unused: --ink #561f86, --ink-strong #44166c, --muted #6c359e and --faint #845ba7.\n\nBLUE: nothing is missing.",
+          "rulings_kept": true,
+          "rulings_broken": [],
+          "legible_small": true,
+          "issues": [
+            "The texture of the weave the owner likes has changed in character. The live mark has fine round threads, each 42 units wide with its own rim and sheen, a period of about 2.5px at the door. The draft has flat bands. Because neighboring tiers merge (red: regular, regular, dim; blue: bold and regular only dE 9 apart; gold: --gold and --gold-dim only dE 8 apart), the eye sees a light stripe every 3 threads, a period of about 7.4px at the door. At door size it reads as bold diagonal candy stripes, not fine cloth. It is still recognizably the same logo, but it does not look 'like itself' in texture. The owner said \"thats why i like the logo weave design\" and \"dont change everything by my eye\".",
+            "'and' is visibly deeper and browner, not 'a little'. The mean ink of the 'n' at door size goes from #c49934 to #b08125: dE 9.6, L* 65.6 to 57.1. The draft's summary understates this. It follows from the owner's 'same gold as the borders', but it is the largest single shift in the mark. Fire changes by dE 3.3, hail by 2.7 and .com by 2.8.",
+            "At small sizes the mark is busier than live. At 28px, 24px and the 15.6px home pill, live blurs to near-flat color. The draft's dim threads stay visible as hatching across the strokes, most of all in 'hail', where --tekhelet-dim #7f8ba8 is a grayish blue at 2.56:1 on linen and cuts the thin i and l into segments. Every word still reads at 28px, but legibility at pill size is a step below live.",
+            "The hailstone's glint is --held-tekhelet #b9c6e6. That is a ground token which zone.html defines but never reads. It is not an ink tier. If the pending palette fold (task #64, 'Fold the palette to 2/2/2/2 and 3 linen') removes unused tokens, the glint becomes a stray with nothing tracking it. Dropping the glint, or using --tekhelet-dim, would be safer.",
+            "The bold purple is --sel #4f1789 from the ink ladder, not from argaman. The owner ruled '.com in argaman'. This is defensible as the site's 'bold purple' (2026-10-03: \"maybe bold purple would be better?\"), but it mixes the two purple ladders inside one word, and the owner should be told.",
+            "The draft reads 'the borders' gold' as --gold #a06c10. The site's structural borders, though, are --line #93661a, and the masthead hairline directly under the logo is --gold-dim #a3762a. The draft follows the computed task's reading. The term is ambiguous for an owner who is not a color person.",
+            "The builder still hand-types every tier hex in TIERS. Nothing reads zone.html, and no check compares the SVG to the :root tokens, so the 'uniform coloring' goal is unguarded: the next token change, for example the pending palette fold, silently desynchronizes the logo. This gap predates the draft, but the draft depends on it more than live did, since 12 values are copied by hand instead of 4.",
+            "A minor doc nit in the builder header: the new 'THE SITE'S OWN TIERS' block was inserted above the existing '- mark(uid, False) draws the same mark without threads...' bullet, so that bullet now sits under the new header. The bullet's 'every other page prints the name as text' was already stale before this draft (the home pill carries the mark since 2026-10-08).",
+            "The checks found nothing wrong in these: zero green pixels in the 'd' or any part at door, door@2, 28px, 28px@2, 24px@2, pill and pill@2, by the inventory's green metric (hue 65-170, sat > 0.12). A 50/50 blend of any blue tier with any gold tier lands at hue 34-67 with saturation 0.05-0.26, olive-gray rather than green, the same family as live. The thread phase is continuous across the a and d hand-offs, each with its one crossover thread. The flame's heart reads gold. The .com dot reads blue into purple. The viewBox -14 -845 7102 879 and width 710.2 and height 87.9 are unchanged."
+          ],
+          "contact_sheet": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/logo-wf/three-thread-weave/contact.png",
+          "score": 6
+        }
+      }
+    ]
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Map"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Draft"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Verify"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "map:palette",
+      "phaseIndex": 1,
+      "phaseTitle": "Map",
+      "agentId": "a8802b0b28735c69c",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1791624932480,
+      "lastProgressAt": 1791624932480,
+      "cached": true,
+      "resultPreview": "{\"channels\":[{\"channel\":\"red (shani, the corpus)\",\"tiers\":[{\"tier\":\"regular\",\"token\":\"--shani\",\"hex\":\"#9d4355\",\"used_for\":\"Titles in red: part and node heads (.part-head, .node-head), the section panel's Hebrew (#secPanel .sp-he), dotted letters (.lm-dotted), the commentary mark text, .c-choice .c-on, and 'fire' in the home button's text fallback (.wm-fire). The logo's S is this value. Door: atlas…",
+      "promptPreview": "CONTEXT. The site fireandhail.com is a Hebrew Bible reader. Its repository worktree is at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/ghp (READ ONLY for you: a build is running there; never write, checkout, or run builders in it). Write only under /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratch…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "map:logo",
+      "phaseIndex": 1,
+      "phaseTitle": "Map",
+      "agentId": "a60800540be64b98b",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1791624932481,
+      "lastProgressAt": 1791624932481,
+      "cached": true,
+      "resultPreview": "{\"surfaces\":[{\"surface\":\"Door masthead: the woven mark at full size (the logo)\",\"where\":\"index.html line 1170: <h1 class=\\\"wordmark\\\"><img class=\\\"wm-mark\\\" src=\\\"/mark/fireandhail.com-woven-v1.svg\\\" alt=\\\"fireandhail.com\\\" width=\\\"710\\\" height=\\\"88\\\"></h1>. The CSS is at index.html lines 60-72, emitted from the DOOR_CSS string at build-front-door-v1.mjs line 196: width 26rem, capped at min(100%, …",
+      "promptPreview": "CONTEXT. The site fireandhail.com is a Hebrew Bible reader. Its repository worktree is at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/ghp (READ ONLY for you: a build is running there; never write, checkout, or run builders in it). Write only under /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratch…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "draft:threads-are-tiers",
+      "phaseIndex": 2,
+      "phaseTitle": "Draft",
+      "agentId": "a3d3d7a69881727c7",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1791624932522,
+      "queuedAt": 1791624932483,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "threads-are-tiers",
+      "promptPreview": "CONTEXT. The site fireandhail.com is a Hebrew Bible reader. Its repository worktree is at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/ghp (READ ONLY for you: a build is running there; never write, checkout, or run builders in it). Write only under /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratch…",
+      "promptFramed": true,
+      "lastProgressAt": 1791625347886,
+      "tokens": 139955,
+      "toolCalls": 25,
+      "durationMs": 415363,
+      "resultPreview": "{\"key\":\"threads-are-tiers\",\"summary\":\"The logo keeps its letters, weave, flame, hailstone and dots, but every thread is now colored only with the site's own shades of each color: a darker shade at the thread's edge, the everyday shade in the middle, and a lighter shade as the shine. The \\\"and\\\" now uses the same gold as the site's borders and the Hebrew vowel marks, so the logo is a little deeper …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "draft:three-thread-weave",
+      "phaseIndex": 2,
+      "phaseTitle": "Draft",
+      "agentId": "ace6277b03c9e8467",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1791624932523,
+      "queuedAt": 1791624932483,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "three-thread-weave",
+      "promptPreview": "CONTEXT. The site fireandhail.com is a Hebrew Bible reader. Its repository worktree is at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/ghp (READ ONLY for you: a build is running there; never write, checkout, or run builders in it). Write only under /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratch…",
+      "promptFramed": true,
+      "lastProgressAt": 1791625368482,
+      "tokens": 143397,
+      "toolCalls": 28,
+      "durationMs": 435958,
+      "resultPreview": "{\"key\":\"three-thread-weave\",\"summary\":\"Each word of the logo is still woven from the same diagonal threads. Now every third thread takes the next of the site's own shades of that word's color (dark, middle, light), so each word shows two or three of the tones the site already uses, and no color is mixed or invented. The letters, the flame, the hailstone, the color change at the \\\"a\\\" and \\\"d\\\" of …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "verify:threads-are-tiers",
+      "phaseIndex": 3,
+      "phaseTitle": "Verify",
+      "agentId": "a6e4ec472cea058e9",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1791625349926,
+      "queuedAt": 1791625349887,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "threads-are-tiers",
+      "promptPreview": "CONTEXT. The site fireandhail.com is a Hebrew Bible reader. Its repository worktree is at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/ghp (READ ONLY for you: a build is running there; never write, checkout, or run builders in it). Write only under /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratch…",
+      "promptFramed": true,
+      "lastProgressAt": 1791625693462,
+      "tokens": 143655,
+      "toolCalls": 21,
+      "durationMs": 343535,
+      "resultPreview": "{\"key\":\"threads-are-tiers\",\"every_color_is_a_token\":true,\"stray_colors\":[],\"tiers_present\":\"I parsed woven.svg. It has 42 stop-colors, 27 fills, 1 stop-opacity and 1 mask, with no rgb() or hsl() colors, no strokes and no filters. It uses exactly 12 hex values, and each one matches the value declared in the working tree's zone.html :root. #bd890f, LINEN, #000/#fff and every old mixed shade are gone…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "verify:three-thread-weave",
+      "phaseIndex": 3,
+      "phaseTitle": "Verify",
+      "agentId": "afeac1ad6abd9a079",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1791625370364,
+      "queuedAt": 1791625370361,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "three-thread-weave",
+      "promptPreview": "CONTEXT. The site fireandhail.com is a Hebrew Bible reader. Its repository worktree is at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/ghp (READ ONLY for you: a build is running there; never write, checkout, or run builders in it). Write only under /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratch…",
+      "promptFramed": true,
+      "lastProgressAt": 1791625698822,
+      "tokens": 132234,
+      "toolCalls": 24,
+      "durationMs": 328458,
+      "resultPreview": "{\"key\":\"three-thread-weave\",\"every_color_is_a_token\":true,\"stray_colors\":[],\"tiers_present\":\"I parsed woven.svg (10,383 bytes). It reproduces byte for byte from the draft's builder copy, and builder.diff is the full diff against the ghp builder. It has exactly 12 hex values, all flat fills or gradient stops. There are no opacity attributes, no #000 or #fff overlays, no LINEN, no #c6d4e3 and no #bd…"
+    }
+  ],
+  "totalTokens": 559241,
+  "totalToolCalls": 98
+}

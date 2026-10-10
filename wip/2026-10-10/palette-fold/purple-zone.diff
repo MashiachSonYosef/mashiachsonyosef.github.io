@@ -1,0 +1,124 @@
+--- a/reader/zone.html
++++ b/reader/zone.html
+@@ -41,2 +41,13 @@
+-    --ink: #561f86; --ink-strong: #44166c; --muted: #6c359e; --faint: #845ba7;
+-    --shesh: #561f86; --shesh-bright: #44166c;
++    /* TWO PURPLES, A REGULAR AND A DIM (the owner, 2026-10-10: "personally i
++       dont see a gain from more than 2/2/2/2 and 3 linen", and "either titles
++       get bold and text gets regular, or titles get regular and text gets
++       dim ... id probably go regular and dim. i dont like our bold that
++       much"). The regular, --argaman, is the page's own ink: titles, values,
++       anything under the hand, and anything pressed, which is worn bold. The
++       dim, --argaman-dim, is running text, notes, labels, and links and
++       controls at rest; it reads as body text, 6.0:1 on the linen and 5.4:1
++       in a word's cell. The deep title purple, the pressed purple, the faint
++       label purple and the bright and pale argaman are folded into these two.
++       The old names stay, pointing at the two, so no rule had to learn a new one. */
++    --ink: var(--argaman); --ink-strong: var(--argaman); --muted: var(--argaman-dim); --faint: var(--argaman-dim);
++    --shesh: var(--argaman); --shesh-bright: var(--argaman);
+@@ -55,4 +66,5 @@
+-       maybe bold purple would be better?"); amber until then. A purple
+-       deeper than the page's own ink at rest, still inside the argaman the
+-       color contract measures. */
+-    --sel: #4f1789; --sel-dim: #845ba7;
++       maybe bold purple would be better?"); amber until then. Since
++       2026-10-10 it is the page's own ink itself, the regular: the press is
++       carried by the weight, the pressed cell's darker linen and its doubled
++       gold, and not by a purple of its own. */
++    --sel: var(--argaman); --sel-dim: var(--argaman-dim);
+@@ -113 +125 @@
+-    --argaman: #772ba3; --argaman-dim: #9c69b9;
++    --argaman: #561f86; --argaman-dim: #6c359e;
+@@ -115 +127,2 @@
+-       speaking, so it is argaman like the rest of our voice.
++       speaking, so it is argaman like the rest of our voice: at rest the dim,
++       like every control at rest, and the regular under the hand.
+@@ -127 +140 @@
+-    --link: var(--argaman);
++    --link: var(--argaman-dim);
+@@ -270 +283 @@
+-  .byline-fold > summary:hover { color: var(--muted); }
++  .byline-fold > summary:hover { color: var(--ink); }
+@@ -283 +296 @@
+-  .receipts-fold > summary:hover { color: var(--muted); }
++  .receipts-fold > summary:hover { color: var(--ink); }
+@@ -288 +301 @@
+-  .wb.typed-here .w { border-bottom: 1px dashed var(--argaman); }
++  .wb.typed-here .w { border-bottom: 1px dashed var(--argaman-dim); }
+@@ -408 +421 @@
+-  #stamp #stampHead .toc-n .differs { color: var(--argaman); font-weight: 600; }
++  #stamp #stampHead .toc-n .differs { color: var(--argaman-dim); font-weight: 600; }
+@@ -433 +446 @@
+-  #stamp .desk .d .differs { color: var(--argaman); font-weight: 600; }
++  #stamp .desk .d .differs { color: var(--argaman-dim); font-weight: 600; }
+@@ -444 +457 @@
+-  #stamp tr.differs td.delta, #stamp tr.differs td.glyph { color: var(--argaman); font-weight: 600; }
++  #stamp tr.differs td.delta, #stamp tr.differs td.glyph { color: var(--argaman-dim); font-weight: 600; }
+@@ -458,2 +471,2 @@
+-  #stamp .stamp-warn { color: var(--argaman); margin: 0.3rem 0 0; }
+-  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman); line-height: 1.55; }
++  #stamp .stamp-warn { color: var(--argaman-dim); margin: 0.3rem 0 0; }
++  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman-dim); line-height: 1.55; }
+@@ -469 +482 @@
+-  header.top h1 .he-t.unnamed { color: var(--argaman); font-size: 0.92rem; font-style: italic; }
++  header.top h1 .he-t.unnamed { color: var(--argaman-dim); font-size: 0.92rem; font-style: italic; }
+@@ -471 +484 @@
+-  header.top h1 .en-t.unnamed { color: var(--argaman); font-size: 0.92rem; font-style: italic;
++  header.top h1 .en-t.unnamed { color: var(--argaman-dim); font-size: 0.92rem; font-style: italic;
+@@ -584 +597 @@
+-  #toc a:hover { color: var(--link); }
++  #toc a:hover { color: var(--ink-strong); }
+@@ -663,4 +676,4 @@
+-    border-inline-start: 3px solid var(--rule, #8b7f69); opacity: .82; }
+-  .omission .om-mark { letter-spacing: .12em; opacity: .55; }
+-  .omission .om-what { font-size: .92em; color: var(--argaman); }
+-  .omission .om-why { font-size: .84em; opacity: .75; font-style: italic; color: var(--argaman-dim); }
++    border-inline-start: 3px solid var(--rule, #8b7f69); }
++  .omission .om-mark { letter-spacing: .12em; color: var(--argaman-dim); }
++  .omission .om-what { font-size: .92em; color: var(--argaman-dim); }
++  .omission .om-why { font-size: .84em; font-style: italic; color: var(--argaman-dim); }
+@@ -671 +684 @@
+-  .drift-chip { font-size: 0.68rem; color: var(--argaman); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
++  .drift-chip { font-size: 0.68rem; color: var(--argaman-dim); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
+@@ -756 +769 @@
+-    color: var(--argaman); font-style: italic; }
++    color: var(--argaman-dim); font-style: italic; }
+@@ -1196 +1209 @@
+-  .rail .decl-more:hover { color: var(--muted); border-bottom-color: var(--gold); }
++  .rail .decl-more:hover { color: var(--ink); border-bottom-color: var(--gold); }
+@@ -1202 +1215 @@
+-  .rail .decl-where-fold > summary:hover { color: var(--muted); }
++  .rail .decl-where-fold > summary:hover { color: var(--ink); }
+@@ -1216 +1229 @@
+-  .rail .def-order .declp:hover { color: var(--muted); border-bottom-color: var(--gold); }
++  .rail .def-order .declp:hover { color: var(--ink); border-bottom-color: var(--gold); }
+@@ -1401 +1414 @@
+-  #hud .r-now .v.none { color: var(--argaman); font-style: italic; }
++  #hud .r-now .v.none { color: var(--argaman-dim); font-style: italic; }
+@@ -1497 +1510 @@
+-  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled), .rail .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--gold); }
++  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled), .rail .def-order .dfp:hover:not(:disabled) { color: var(--ink); border-color: var(--gold); }
+@@ -1594 +1607 @@
+-  #hud .b-q button[aria-pressed="true"] .q-role { color: var(--muted); }
++  #hud .b-q button[aria-pressed="true"] .q-role { color: var(--ink); }
+@@ -1652 +1665 @@
+-  .c-head-he.unnamed { color: var(--argaman); font-style: italic; font-family: Georgia, serif; font-size: 0.8rem; }
++  .c-head-he.unnamed { color: var(--argaman-dim); font-style: italic; font-family: Georgia, serif; font-size: 0.8rem; }
+@@ -1665 +1678 @@
+-  .c-how-whose.c-suggested { color: var(--argaman); }
++  .c-how-whose.c-suggested { color: var(--argaman-dim); }
+@@ -1679 +1692 @@
+-  .c-mark-slot .c-undeclared { color: var(--argaman); border-inline-start: 2px solid var(--argaman-dim);
++  .c-mark-slot .c-undeclared { color: var(--argaman-dim); border-inline-start: 2px solid var(--argaman-dim);
+@@ -1681 +1694 @@
+-  .c-mark-slot .c-two-counts { color: var(--argaman); border-inline-start: 2px solid var(--argaman-dim);
++  .c-mark-slot .c-two-counts { color: var(--argaman-dim); border-inline-start: 2px solid var(--argaman-dim);
+@@ -1685 +1698 @@
+-  .c-att .c-how-whose.c-suggested { color: var(--argaman); }
++  .c-att .c-how-whose.c-suggested { color: var(--argaman-dim); }
+@@ -1737 +1750 @@
+-  .c-noen { color: var(--argaman); }
++  .c-noen { color: var(--argaman-dim); }
+@@ -1918 +1931 @@
+-  .xp-note .held { color: var(--argaman); }
++  .xp-note .held { color: var(--argaman-dim); }
