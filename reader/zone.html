@@ -26,93 +26,76 @@
      dark does not hand its own dark chrome to a light page. */
   :root {
     color-scheme: light;
-    /* the panel a step above the ground, not a sheet of white on it (the
-       owner, 2026-10-03: "id avoid how bright the hud is still") */
-    --bg: #ebdec3; --panel: #efe4cd; --panel2: #ecdfc5;
-    --nav-veil: rgba(239, 228, 205, 0.94);
-    --line: #93661a; --wash: #e6d8bb;
-    /* THREE LINENS (the owner, 2026-10-09: "maybe linen should have 3
-       shades?"): the ground, the cell a word and its reading share, and
-       the pressed cell (--press-wash, below). The cell is the wash laid as
-       a glaze, so the weave shows through it as it does through the rest. */
+    /* THE PALETTE, FOLDED BY FAMILY (the owner, 2026-10-10: "personally i dont
+       see a gain from more than 2/2/2/2 and 3 linen"; "id probably go regular
+       and dim. i dont like our bold that much"; "my main point is uniform
+       coloring between logo and site"; "just fold it and do it by zone, im
+       not good at colors anyway, if its bad ill note it"). Three linens, and
+       for each of the four colors a regular and a dim and nothing bolder; a
+       pressed control is still worn bold, in its weight and not in a color of
+       its own. Every color below is one the site already painted, and every
+       older name points at one of them, so no rule had to learn a new name.
+       The woven name is dyed in the same pairs (tools/build-wordmark-v1.py),
+       and the door's stylesheet carries the same values. */
+    /* THREE LINENS, AND NO MORE (the owner, 2026-10-09: "maybe linen should
+       have 3 shades?"; 2026-10-10: "personally i dont see a gain from more
+       than 2/2/2/2 and 3 linen"): the ground, the cell a word and its
+       reading share, and the pressed cell. A card, a pill, a panel, the rail,
+       the bar and a commentary at rest stand on the ground; a hover and a
+       chip are the cell; anything pressed, and the blob, are the pressed
+       linen. The cell is a glaze laid on the ground, a shade under it, so
+       the weave shows through it as it does through the rest, and it is
+       never laid on another glaze: the blob and the band under a
+       commentary's opening words, which stand inside a cell, are the pressed
+       linen and not a second glaze. A veil of the ground, the bar at 94% or
+       the rail at 55%, is the ground. Folded in: the card's own linen a step
+       above the ground (2026-10-03, "id avoid how bright the hud is still";
+       the card is now the ground itself, told from it by its frame, its
+       shadow and its finer weave), the pill's, the hover's, the blob's glaze
+       a shade bolder than the cell, the chip's tint, and the commentary's
+       parchment, which a commentary no longer needs: its red rail and its
+       frame set it apart, not a fourth linen. */
+    --bg: #ebdec3;
     --cell-wash: rgba(74, 48, 8, 0.06);
-    --tie-wash: rgba(74, 48, 8, 0.08);   /* the blob from a word to its English: the cell's linen, a shade bolder */
-    --surface-c: #e8d9bc; --panel-c: #dccbaa; --line-c: #bea983;
-    --ink: #561f86; --ink-strong: #44166c; --muted: #6c359e; --faint: #845ba7;
-    --shesh: #561f86; --shesh-bright: #44166c;
-    /* on linen, bright means saturated and not light: a pale gold vanishes
-       into the ground, and a deep one reads as leaf. Both clear the 3:1 a
-       rule needs, which a lighter gold did not. Warmed off olive (the owner,
-       2026-10-03: "also is our gold a bit too olive?"): the family stood at
-       a 43 degree hue, a dark yellow with no red in it; at 38 it is the
-       bronze of the name's own gold, each value at the same luminance, so
-       every contrast it held it still holds. */
-    --gold: #a06c10; --gold-dim: #a3762a; --amber: #a06c10;
-    /* selection is amber on this face too — gold's in-process value, filled,
-       with the tent's own ink on top of it */
-    /* A PRESSED CONTROL IS PURPLE, WORN BOLD (the owner, 2026-10-03: "idk if
-       turning purple to gold is a clear way to highlight toggle pills et al,
-       maybe bold purple would be better?"); amber until then. A purple
-       deeper than the page's own ink at rest, still inside the argaman the
-       color contract measures. */
-    --sel: #4f1789; --sel-dim: #845ba7;
-    /* text the reader drags across: the same amber, as a tint the word reads
-       through (the owner, 2026-10-03, on a word highlighted solid dark gold:
-       "is that ideal?") */
-    --sel-text: rgba(196, 146, 28, 0.3);
-    /* the mark's own gold, brighter than the frame's so the .com never reads as the red beside it (the owner, 2026-10-02); used by the name and nothing else */
-    --mark-gold: #c4921c;
-    /* THE MASORETIC MARKS ARE THE BORDERS' GOLD (the owner's vote, relayed
-       by Moses on 2026-10-11: "every mark gold, vowels included"). Not a
-       gold of their own: two were tried on 2026-10-10, a deep one and then
-       a bright one the owner picked by eye, and the owner then ruled it
-       back to the page's own: "id just use the same gold as the borders
-       and logo was bro. i am really not a colors person dont change
-       everything by my eye", and "my main point is uniform coloring
-       between logo and site". So this is --gold itself, the gold of every
-       border, rule and underline, named here only so the marks can be
-       found: 3.4:1 on the linen, 3.1:1 in a word's cell. It is the one
-       place gold is ink at rest, and it is ink only on a mark. */
-    --mark-ink: var(--gold);
-    /* four colors, ruled 2026-10-02: one soft red, one soft blue, the gold and the purple,
-       the purple alone at its full depth.
-       the deep red the titles wore and the royal blue are retired, and the deep names
-       carry the soft values; the neutral's olive-brown text is the purple ink, since gold is never text at rest. no title has
-       a color of its own. the red raised one step, same lightness, more color (owner, 2026-10-03:
-       "our sites red is actually just one tone too muted"), and one notch more toward the blue's own saturation ("just 1 notch more electric to match the blue", 2026-10-03). */
-    --shani: #9d4355; --shani-dim: #b76670;
-    /* the inks the channels are written in, held muted: the corpus a quiet
-       rose-red, the reading a quiet blue (owner, 2026-09-11: mockup 4, "i
-       still might make that red like a little more muted somehow") */
-    --shani-ink: #9d4355; --tekhelet-ink: #34649a;
-    /* TWO BLUES, AS THE NAME HAS (the owner, 2026-10-03: "id avoid blue as a
-       highlight. similar to our logo id have 2 blues: a bold and a regular,
-       maybe the letters bold too not just the color"): a reading at rest is
-       the regular blue; the reading pressed is this one, worn bold. Nothing
-       is ever filled with a color ("we shouldnt ever have to full fill"). */
-    --tekhelet-bold: #22508a;
+    --nav-veil: rgba(235, 222, 195, 0.94);
     /* A PRESSED CELL, ONE RULE EVERYWHERE (the owner, 2026-10-03: "i wouldnt
        retrace pills from gold to blue. you keep jumping rules. id: 1. darken
        the linen backdrop on a highlighted cell, 2. bolden the gold, 3. bolden
-       the blue text"): its border stays gold and is drawn twice as heavy, its
-       linen darkens one step, and its letters are bold in their own ink, the
-       bold blue for a reading, the purple for a control. */
+       the blue text"): its border stays gold, the regular, and is drawn twice
+       as heavy; its linen is the third linen, one step darker; and its
+       letters are bold in their own ink at its regular shade: the regular
+       blue for a reading, the purple for a control. */
     --press-wash: #dccbaa;
-    --wash-shani: #eedcd6;
-    /* the held word: its own wash, more opaque — never a third color (owner,
-       2026-09-11: "move away from gold as the highlighting itself and move
-       toward just a more opaque red and blue") */
-    --held-shani: #dbb9b6;
-    --held-tekhelet: #b9c6e6;
-    --halo-shani: rgba(157, 67, 85, 0.75);
-    /* tekhelet the reading, argaman our own voice — both taken down for
-       daylight, both above the AAA floor on linen */
-    --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;
-    --wash-tekhelet: #dfe4f1;
-    --halo-tekhelet: rgba(52, 100, 154, 0.75);
-    --argaman: #772ba3; --argaman-dim: #9c69b9;
+    /* TWO PURPLES, A REGULAR AND A DIM (the owner, 2026-10-10: "personally i
+       dont see a gain from more than 2/2/2/2 and 3 linen"; "either titles
+       get bold and text gets regular, or titles get regular and text gets
+       dim ... id probably go regular and dim. i dont like our bold that
+       much"; and "the purple and gold while not bold are fairly electric
+       which is fine"). The regular, --argaman, is the page's own ink: titles
+       and values, what is under the reader's hand, and what is pressed, which
+       is worn bold. The dim, --argaman-dim, is running text, notes, labels,
+       and links and controls at rest, held at body-text contrast: 6.0:1 on
+       the linen, 5.4:1 in a word's cell, 5.0:1 on the pressed linen. The
+       regular is 8.2:1 on the linen. A line saying something is absent,
+       withheld or does not reconcile is the dim, in italic where it stands in
+       for a name or a value; it no longer has a brighter purple of its own
+       (the saturated argaman of 2026-09-10). Folded in: the deep title purple,
+       the pressed purple, the faint label purple, and the bright and pale
+       argaman; the old names stay, pointing at the two, so no rule had to
+       learn a new one. */
+    --argaman: #561f86; --argaman-dim: #6c359e;
+    --ink: var(--argaman); --ink-strong: var(--argaman); --muted: var(--argaman-dim); --faint: var(--argaman-dim);
+    --shesh: var(--argaman); --shesh-bright: var(--argaman);
+    /* A PRESSED CONTROL IS PURPLE, WORN BOLD (the owner, 2026-10-03: "idk if
+       turning purple to gold is a clear way to highlight toggle pills et al,
+       maybe bold purple would be better?"); amber until then. Since
+       2026-10-10 it is the page's own ink, the regular: the press is carried
+       by the weight, the pressed cell's darker linen and its doubled gold,
+       and not by a purple deeper than the ink. */
+    --sel: var(--argaman); --sel-dim: var(--argaman-dim);
     /* A link is the page offering a reader somewhere to go, which is the page
-       speaking, so it is argaman like the rest of our voice.
+       speaking, so it is argaman like the rest of our voice: at rest the dim,
+       like every control at rest, and the regular under the hand.
        It had been declared in the night block and nowhere else, so deleting
        that block left nine rules calling var(--link) with nothing behind it.
        What that cost, measured rather than assumed: nothing visible. Setting
@@ -124,13 +107,86 @@
        #hud .att a, #hud .c-back — which a snapshot of a page at rest does not
        reach. A token that governs nothing today is also a rule that will
        silently do nothing the day someone leans on it. */
-    --link: var(--argaman);
-    /* the scripture's own ink, darkened to the AAA floor the contrast judge
-       holds body text to — still warm, never black; linen is not glare and
-       ink is not tar, but thin niqqud marks need 7:1 to stay marks */
-    --c-word: #9d4355; --en-word: #9d4355;
-    --hover-ink: #704c0f; --hover-line: #c19f66;
-    --chip-bg: rgba(43, 35, 56, 0.05); --chip-line: rgba(160, 108, 16, 0.34);
+    --link: var(--argaman-dim);
+    /* TWO GOLDS, A REGULAR AND A DIM (the owner, 2026-10-10: "id probably go
+       regular and dim. i dont like our bold that much", and "my main point
+       is uniform coloring between logo and site"). The dim is gold at rest:
+       every frame and rule, every word's line, every chip, the Masoretic
+       marks, and the and of the name, woven and typed. The regular is gold
+       under the reader's hand: a hover, a pressed cell's edge drawn twice as
+       heavy, the box round a held word and its two lines to the card, and the
+       heavier line under a run or a ketiv-qere pair. Nothing new was mixed:
+       the regular is the frame's own gold of before, the dim the gold the
+       marks were given, both the warmed golds of 2026-10-03 ("also is our
+       gold a bit too olive?": the family turned from a 43 degree hue to 38,
+       each value at the same luminance). On linen, bright means saturated
+       and not light, and both clear the 3:1 a rule needs: the dim 3.4:1 on
+       the linen and 3.1:1 in a word's cell, the regular 3.8:1 and 3.4:1.
+       Folded in: the paler old dim, the hover's brown letters and its
+       light line, the commentary's tan frame, the chips' gold at a third, and
+       the name's own brighter gold, "brighter than the frame's so the .com
+       never reads as the red beside it" (2026-10-02), which the owner's
+       uniform ruling retires. A hover now steps the dim up to the regular,
+       where it used to step the other way. */
+    --gold: #93661a; --gold-dim: #a06c10;
+    --line: var(--gold-dim); --line-c: var(--gold-dim); --chip-line: var(--gold-dim);
+    /* text the reader drags across: the dim gold as a tint the word reads
+       through (the owner, 2026-10-03, on a word highlighted solid dark gold:
+       "is that ideal?"), at a fifth, so the red and the blue read through it
+       as plainly as they read through the name's bright gold at three tenths */
+    --sel-text: rgba(160, 108, 16, 0.2);
+    /* THE MASORETIC MARKS ARE THE BORDERS' GOLD (the owner's vote, relayed
+       by Moses on 2026-10-11: "every mark gold, vowels included"). Not a
+       gold of their own: two were tried on 2026-10-10, a deep one and then
+       a bright one the owner picked by eye, and the owner then ruled it
+       back to the page's own: "id just use the same gold as the borders
+       and logo was bro. i am really not a colors person dont change
+       everything by my eye", and "my main point is uniform coloring
+       between logo and site". So this is --gold-dim itself, the gold of
+       every frame and rule at rest and of the name's and, named here only
+       so the marks can be found: 3.4:1 on the linen, 3.1:1 in a word's
+       cell. It is the one place gold is ink at rest, and it is ink only on
+       a mark. */
+    --mark-ink: var(--gold-dim);
+    /* four colors, ruled 2026-10-02: one soft red, one soft blue, the gold and the purple,
+       the purple alone at its full depth.
+       the deep red the titles wore and the royal blue are retired, and the deep names
+       carry the soft values; the neutral's olive-brown text is the purple ink, since gold is never text at rest. no title has
+       a color of its own. the red raised one step, same lightness, more color (owner, 2026-10-03:
+       "our sites red is actually just one tone too muted"), and one notch more toward the blue's own saturation ("just 1 notch more electric to match the blue", 2026-10-03). */
+    /* THE RED AND THE BLUE, A REGULAR AND A DIM EACH, AND NO BOLD (the owner,
+       2026-10-10: "personally i dont see a gain from more than 2/2/2/2 and 3
+       linen", "id probably go regular and dim. i dont like our bold that
+       much", and "my main point is uniform coloring between logo and site").
+       Each is two shades, the same two the woven name is dyed in. The regular
+       carries every word: the corpus's letters in the red, every reading in
+       the blue, and a reading pressed, which is the regular blue worn bold.
+       The deeper blue a pressed reading wore from 2026-10-03 ("similar to our
+       logo id have 2 blues: a bold and a regular, maybe the letters bold too
+       not just the color") is gone and the bold letters stay. On the pressed
+       linen a pressed reading now reads 3.83:1 (it read 5.1:1 in the deeper
+       blue), the same as the open word's own reading on the line. The dim is
+       never a word, only what stands between pieces or beside them: the +
+       between a reading's parts, the red rail along a commentary, the edge of
+       a source's tag, and the maqaf on a card's head in a work whose marks
+       are not gold. The regulars read 4.68:1 (red) and 4.59:1 (blue) on the
+       linen; the dims, 3.06:1 and 2.56:1, are too pale for a word. Nothing
+       is ever filled with a color ("we shouldnt ever have to full fill").
+       The inks the channels are written in were held muted on 2026-09-11
+       (mockup 4, "i still might make that red like a little more muted
+       somehow"); every older name for them points here. */
+    --shani: #9d4355; --shani-dim: #b76670;
+    --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;
+    --shani-ink: var(--shani); --tekhelet-ink: var(--tekhelet);
+    --c-word: var(--shani); --en-word: var(--shani);
+    /* the two regulars at three quarters, a glow for the halo accent
+       (:root[data-accent="halo"]), which nothing turns on */
+    --halo-shani: rgba(157, 67, 85, 0.75); --halo-tekhelet: rgba(52, 100, 154, 0.75);
+    /* (The washes of 2026-09-10 and the held word's opaque red and blue of
+       2026-09-11, all retired that day, were still declared here until
+       2026-10-10 with nothing reading them; they are gone.) */
+    /* shadows are depth under a card that floats, never a ground anything
+       is written on, so they are not a fourth linen */
     --shadow-pop: 0 8px 24px rgba(96, 80, 48, 0.28);
     --shadow-card: 0 14px 40px rgba(96, 80, 48, 0.30);
     --shadow-hud: 0 18px 48px rgba(96, 80, 48, 0.32), 0 2px 8px rgba(96, 80, 48, 0.20);
@@ -172,15 +228,15 @@
   #home .nav-lab { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--faint); }
   #home a.home { border: 1px solid var(--line); border-radius: 999px;
-    padding: 0.3rem 0.95rem; background: var(--panel2); color: var(--shani-ink);
+    padding: 0.3rem 0.95rem; background: var(--bg); color: var(--shani-ink);
     font-family: 'wordmark', Georgia, serif; font-weight: 600; letter-spacing: -0.01em;
     text-decoration: none; white-space: nowrap; }
-  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02, and 2026-10-03: "remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple"): fire in shani, and in gold, hail in tekhelet, the .com in argaman, its dot still turning out of the blue (the owner: "a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple"), each word its own color, solid: the and once turned red into gold into blue, and the turn from gold to blue passed through a green no thread of the mark is dyed (the owner, 2026-10-08), so it is gold through. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The and is the one gold a page shows at rest, and the color check names the mark. */
+  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02, and 2026-10-03: "remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple"): fire in shani, and in gold, hail in tekhelet, the .com in argaman, its dot still turning out of the blue (the owner: "a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple"), each word its own color, solid: the and once turned red into gold into blue, and the turn from gold to blue passed through a green no thread of the mark is dyed (the owner, 2026-10-08), so it is gold through. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. Each word wears its color's regular, and the and the dim gold every frame wears at rest, the very pairs the drawn mark is woven in (the owner, 2026-10-10: "my main point is uniform coloring between logo and site"); the name's own brighter gold is folded away. The and is gold at rest by the owner's ruling on the name, and the color check names the mark. */
   @font-face { font-family: 'wordmark'; src: url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
   /* THE ONE MARK, SMALL, IS THE WAY HOME (the owner, 2026-10-08: the book pages' home button was "still the old logo with that green sneaking in" — the text name blended its gold into its blue through a green no thread of the mark is dyed). The door's drawn mark rides in at the height of the text it replaces; a site with no drawn mark prints the name in its four colors, each solid, only the dot of .com turning blue to purple. */
   #home a.home { display: inline-flex; align-items: center; }
   #home a.home img.wm-mark-s { display: block; height: 1.15em; width: auto; max-width: min(12rem, 60vw); }
-  #home a.home .wm-fire { color:var(--shani); } #home a.home .wm-and { color:var(--mark-gold); } #home a.home .wm-hail { color:var(--tekhelet); } #home a.home .wm-tld { color:var(--argaman); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { #home a.home .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } }
+  #home a.home .wm-fire { color:var(--shani); } #home a.home .wm-and { color:var(--gold-dim); } #home a.home .wm-hail { color:var(--tekhelet); } #home a.home .wm-tld { color:var(--argaman); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { #home a.home .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } }
   #home a.home:hover { color: var(--ink-strong); border-color: var(--gold); }
   /* the other face, one press away — the button names where it takes you */
   #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
@@ -267,7 +323,7 @@
   #workLic:not([aria-expanded="true"]) .att-v { display: none; }
   #workLic:not([aria-expanded="true"])::after { content: " \25B8"; font-size: 0.8em; }
   .byline-fold > summary .lic { color: var(--ink-strong); }
-  .byline-fold > summary:hover { color: var(--muted); }
+  .byline-fold > summary:hover { color: var(--ink); }
   #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
   /* the page's own gutter, and room under it for the floating chapter bar */
   #bookEnd { margin: 2.4rem 0 0; padding: 1rem 1.5rem 6rem; border-top: 1px solid var(--line); }
@@ -280,12 +336,12 @@
   .byline-fold > #basisLine, .byline-fold > #holdsLine, .byline-fold > #rightsLine { margin: 0.45rem 0 0; }
   .receipts-fold { margin: 0.8rem 0 0; }
   .receipts-fold > summary { cursor: pointer; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
-  .receipts-fold > summary:hover { color: var(--muted); }
+  .receipts-fold > summary:hover { color: var(--ink); }
   .receipts-fold .receipts-full { margin: 0.5rem 0 0; font-size: 0.78rem; color: var(--faint); }
-  .wb.ov .w { background: var(--chip-bg); }
+  .wb.ov .w { background: var(--press-wash); }
   .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
   .wb.ov-last .w { border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem; padding-inline-end: 0.15rem; }
-  .wb.typed-here .w { border-bottom: 1px dashed var(--argaman); }
+  .wb.typed-here .w { border-bottom: 1px dashed var(--argaman-dim); }
   /* a mark is corpus, so it wears the corpus channel like any other word —
      the one ink and the wash behind it — and is told apart by being smaller
      and letter-spaced, not by being painted a second color */
@@ -374,10 +430,14 @@
      word stays one color, as before. A mark that stands alone (the maqaf
      between a word's parts, the sof pasuq, a paseq) is simply gold. A
      leaf's ::before is the gold's: nothing else may draw one there. */
+  /* The card's head is the same word made large, so it wears the same gold
+     by the same leaves (the owner, 2026-10-10: "if you can do the vowels in
+     gold in the same push go for it"). */
   @supports (content: "x" / "") {
-    :root[data-mark-ink="gold"] .he-text .mg, :root[data-mark-ink="gold"] .he-text .mg-all { -webkit-text-fill-color: var(--mark-ink); }
-    :root[data-mark-ink="gold"] .he-text .mg { white-space: nowrap; }
-    :root[data-mark-ink="gold"] .he-text .mg::before { content: attr(data-l) / ""; display: inline-block; width: 0;
+    :root[data-mark-ink="gold"] .he-text .mg, :root[data-mark-ink="gold"] .he-text .mg-all,
+    :root[data-mark-ink="gold"] #hud .head .mg, :root[data-mark-ink="gold"] #hud .head .mg-all { -webkit-text-fill-color: var(--mark-ink); }
+    :root[data-mark-ink="gold"] .he-text .mg, :root[data-mark-ink="gold"] #hud .head .mg { white-space: nowrap; }
+    :root[data-mark-ink="gold"] .he-text .mg::before, :root[data-mark-ink="gold"] #hud .head .mg::before { content: attr(data-l) / ""; display: inline-block; width: 0;
       white-space: nowrap; -webkit-text-fill-color: currentColor; text-shadow: none; pointer-events: none;
       user-select: none; -webkit-user-select: none; }
   }
@@ -399,13 +459,13 @@
      first ran. Shut, this says what it is and what the witnesses made of it;
      pressed, the whole comparison is there, unchanged. */
   #stamp #stampHead { display: flex; align-items: center; gap: 0.55rem; width: 100%; text-align: left;
-    background: var(--panel2); border: 1px solid var(--line);
+    background: var(--bg); border: 1px solid var(--line);
     border-inline-start: 3px solid var(--gold-dim); border-radius: 0.5rem;
     padding: 0.5rem 0.85rem; margin: 0; cursor: pointer;
     font: inherit; color: var(--shesh); }
   #stamp #stampHead .toc-t { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; }
   #stamp #stampHead .toc-n { font-size: 0.78rem; color: var(--muted); }
-  #stamp #stampHead .toc-n .differs { color: var(--argaman); font-weight: 600; }
+  #stamp #stampHead .toc-n .differs { color: var(--argaman-dim); font-weight: 600; }
   #stamp #stampHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.9rem;
     color: var(--gold-dim); transform: rotate(-90deg); transition: transform 0.12s; }
   #stamp #stampHead[aria-expanded="true"] { color: var(--sel); border-inline-start-color: var(--sel); }
@@ -430,7 +490,7 @@
   #stamp .desk .d { font-family: ui-monospace, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums;
     font-size: 0.7rem; color: var(--faint); display: flex; gap: 0.45rem; flex-wrap: wrap; }
   #stamp .desk .d .exact { color: var(--ink-strong); }
-  #stamp .desk .d .differs { color: var(--argaman); font-weight: 600; }
+  #stamp .desk .d .differs { color: var(--argaman-dim); font-weight: 600; }
   @media (max-width: 560px) { #stamp .desk { grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); }
     #stamp .desk .v { font-size: 1.2rem; } }
   #stamp table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
@@ -441,7 +501,7 @@
   #stamp td.why { color: var(--faint); font-style: italic; white-space: normal; max-width: 16rem; }
   #stamp .cls { font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-inline-end: 0.45rem; }
   #stamp tr.exact td.delta, #stamp tr.exact td.glyph { color: var(--ink-strong); font-weight: 600; }
-  #stamp tr.differs td.delta, #stamp tr.differs td.glyph { color: var(--argaman); font-weight: 600; }
+  #stamp tr.differs td.delta, #stamp tr.differs td.glyph { color: var(--argaman-dim); font-weight: 600; }
   #stamp tr.no_witness td { color: var(--argaman-dim); }
   #stamp tr { animation: stamp-flash 1100ms ease-out both; }
   @keyframes stamp-flash { 0% { box-shadow: inset 0 0 0 1px var(--sel-dim); } 100% { box-shadow: inset 0 0 0 1px transparent; } }
@@ -455,8 +515,8 @@
     #stamp td { padding-right: 0.45rem; }
   }
   #stamp .stamp-note { color: var(--faint); font-style: italic; margin: 0.3rem 0 0; }
-  #stamp .stamp-warn { color: var(--argaman); margin: 0.3rem 0 0; }
-  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman); line-height: 1.55; }
+  #stamp .stamp-warn { color: var(--argaman-dim); margin: 0.3rem 0 0; }
+  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman-dim); line-height: 1.55; }
   #demoLine .demo-credit { color: var(--faint); overflow-wrap: anywhere; }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
   .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
@@ -466,9 +526,9 @@
   .receipts-full[hidden] { display: none; }
   /* A work the ledger has not named in Hebrew keeps its English locator, but
      the locator does not get to look like a title. */
-  header.top h1 .he-t.unnamed { color: var(--argaman); font-size: 0.92rem; font-style: italic; }
+  header.top h1 .he-t.unnamed { color: var(--argaman-dim); font-size: 0.92rem; font-style: italic; }
   /* the name slot's absence, same voice as the title slot's */
-  header.top h1 .en-t.unnamed { color: var(--argaman); font-size: 0.92rem; font-style: italic;
+  header.top h1 .en-t.unnamed { color: var(--argaman-dim); font-size: 0.92rem; font-style: italic;
     font-variant: normal; letter-spacing: normal; }
   a { color: var(--link); }
   header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--chip-line); }
@@ -486,7 +546,7 @@
      linen — and it carries the count, so the press is worth making before it
      is made. */
   #toc #tocHead { display: flex; align-items: center; gap: 0.55rem; text-align: left;
-    background: var(--panel2); border: 1px solid var(--line);
+    background: var(--bg); border: 1px solid var(--line);
     border-inline-start: 3px solid var(--gold-dim); border-radius: 0.5rem;
     padding: 0.5rem 0.85rem; margin: 0 0 0.4rem; cursor: pointer;
     font: inherit; color: var(--shesh); }
@@ -506,14 +566,14 @@
   #toc .chs { display: grid; gap: 0.28rem; margin-top: 0.3rem;
     grid-template-columns: repeat(auto-fill, minmax(2.35rem, 1fr)); }
   #toc .chs a { display: flex; align-items: center; justify-content: center; min-height: 2.05rem;
-    border: 1px solid var(--line); border-radius: 0.35rem; background: var(--panel2);
+    border: 1px solid var(--line); border-radius: 0.35rem; background: var(--bg);
     text-decoration: none; font: 0.92rem/1 Georgia, serif; color: var(--ink-strong);
     font-variant-numeric: tabular-nums; transition: border-color 120ms, background 120ms; }
-  #toc .chs a:hover { border-color: var(--gold); background: var(--wash); }
+  #toc .chs a:hover { border-color: var(--gold); background: var(--cell-wash); }
   #toc .chs a.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   /* the sections of one chapter, opened in place under the grid */
   #secPanel { margin-top: 0.7rem; border: 1px solid var(--line); border-radius: 0.5rem;
-    background: var(--panel2); padding: 0.6rem 0.7rem; }
+    background: var(--bg); padding: 0.6rem 0.7rem; }
   #secPanel[hidden] { display: none; }
   #secPanel .sp-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.5rem;
     font-size: 0.74rem; letter-spacing: 0.14em; font-variant: small-caps; color: var(--faint); }
@@ -523,35 +583,35 @@
   #secPanel .sp-grid { display: grid; gap: 0.26rem;
     grid-template-columns: repeat(auto-fill, minmax(2.9rem, 1fr)); }
   #secPanel .sp-grid a { display: flex; align-items: center; justify-content: center; min-height: 1.85rem;
-    border: 1px solid var(--line); border-radius: 0.32rem; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 0.32rem; background: var(--bg);
     color: var(--muted); text-decoration: none; font-size: 0.76rem; font-variant-numeric: tabular-nums; }
   #secPanel .sp-grid a:hover { border-color: var(--gold); color: var(--ink-strong); }
   #secPanel .sp-grid a.sp-top { grid-column: span 2; color: var(--ink-strong); font-variant: small-caps;
     letter-spacing: 0.1em; border-color: var(--gold); }
 
   /* one floating bar, not chrome on every section */
-  /* the bar wears the scheme's own panel, veiled — a hard-coded night
-     background stood black over the day parchment */
+  /* the bar wears the ground, veiled (a hard-coded night background once
+     stood black over the day's linen, so the veil names no fallback) */
   #nav { position: fixed; z-index: 60; right: 0.9rem; bottom: 0.9rem; display: flex; gap: 0.3rem;
-    background: var(--nav-veil, rgba(21, 18, 13, 0.94)); border: 1px solid var(--line); border-radius: 999px;
+    background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
     padding: 0.3rem; box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); }
   #nav[hidden] { display: none; }
   #nav button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 0.75rem;
     letter-spacing: 0.08em; font-variant: small-caps; cursor: pointer; border-radius: 999px;
     padding: 0.24rem 0.7rem; white-space: nowrap; }
-  #nav button:hover:not(:disabled) { color: var(--ink-strong); background: var(--wash); }
+  #nav button:hover:not(:disabled) { color: var(--ink-strong); background: var(--cell-wash); }
   #nav button:disabled { opacity: 0.35; cursor: default; }
   #navPrev, #navNext { font-size: 1rem; padding: 0.14rem 0.55rem; }
   /* the chapters, above the bar: the same cells as the contents grid */
   #chPick { position: fixed; z-index: 61; right: 0.9rem; bottom: 3.3rem; width: min(22rem, calc(100vw - 1.8rem));
-    max-height: min(50vh, 24rem); overflow-y: auto; background: var(--panel); border: 1px solid var(--line);
+    max-height: min(50vh, 24rem); overflow-y: auto; background: var(--bg); border: 1px solid var(--line);
     border-radius: 0.7rem; padding: 0.55rem; box-shadow: var(--shadow-pop);
     display: grid; grid-template-columns: repeat(auto-fill, minmax(2.7rem, 1fr)); gap: 0.28rem; }
   #chPick[hidden] { display: none; }
   #chPick button { display: flex; align-items: center; justify-content: center; min-height: 2.05rem;
-    border: 1px solid var(--line); border-radius: 0.4rem; background: var(--panel2); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 0.4rem; background: var(--bg); color: var(--ink);
     font: inherit; font-size: 0.8rem; font-variant-numeric: tabular-nums; cursor: pointer; padding: 0 0.3rem; }
-  #chPick button:hover { border-color: var(--gold); background: var(--wash); }
+  #chPick button:hover { border-color: var(--gold); background: var(--cell-wash); }
   #chPick button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); font-weight: 700; }
   #chPick button.ch-top { grid-column: 1 / -1; font-variant: small-caps; letter-spacing: 0.06em; color: var(--ink-strong); }
   @media (max-width: 520px) { #nav { left: 0.9rem; right: 0.9rem; justify-content: center; } }
@@ -581,7 +641,7 @@
     font-weight: normal; font-size: 0.92rem; margin-bottom: 0.15rem; }
   #toc .part b .he-small { color: var(--ink); font-size: 1rem; margin-left: 0.6rem; }
   #toc a { color: var(--muted); text-decoration: none; font-size: 0.84rem; }
-  #toc a:hover { color: var(--link); }
+  #toc a:hover { color: var(--ink-strong); }
 
   main { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 5rem; }
 
@@ -599,8 +659,8 @@
   #porch h3 { font-size: 1rem; color: var(--muted); margin: 1.3rem 0 0.25rem; font-weight: 600; }
   #porch .r { margin: 0 0 0.3rem; line-height: 1.75; color: var(--en-word); }
   #porch .r span { overflow-wrap: anywhere; }
-  #porch .r i { font-style: normal; color: var(--gold); font-size: 0.72em; letter-spacing: 0.02em; }
-  #porch sup { font-size: 0.62em; color: var(--gold); margin-left: 0.1em; }
+  #porch .r i { font-style: normal; color: var(--muted); font-size: 0.72em; letter-spacing: 0.02em; }
+  #porch sup { font-size: 0.62em; color: var(--muted); margin-left: 0.1em; }
   #porch .porch-nav { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; font-size: 0.9rem; margin: 1.6rem 0 0; }
   #porch .porch-nav a, #porch .porch-chs a, #porch footer a { color: var(--link); }
   #porch .porch-chs { display: flex; flex-wrap: wrap; gap: 0.35rem 0.55rem; margin: 0.4rem 0 1rem; font-size: 0.9rem; }
@@ -660,15 +720,15 @@
      statement that this work is served in part and this is where the part
      is missing. */
   .omission { margin: 1.1rem 0 1.35rem; padding: .7rem .9rem; display: grid; gap: .28rem;
-    border-inline-start: 3px solid var(--rule, #8b7f69); opacity: .82; }
-  .omission .om-mark { letter-spacing: .12em; opacity: .55; }
-  .omission .om-what { font-size: .92em; color: var(--argaman); }
-  .omission .om-why { font-size: .84em; opacity: .75; font-style: italic; color: var(--argaman-dim); }
+    border-inline-start: 3px solid var(--gold-dim); }
+  .omission .om-mark { letter-spacing: .12em; color: var(--argaman-dim); }
+  .omission .om-what { font-size: .92em; color: var(--argaman-dim); }
+  .omission .om-why { font-size: .84em; font-style: italic; color: var(--argaman-dim); }
   .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
   .vnum { font-size: 0.72rem; color: var(--ink-strong); border: 1px solid var(--gold-dim);
-    background: var(--panel); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
+    background: var(--bg); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
   .vnum.at { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
-  .drift-chip { font-size: 0.68rem; color: var(--argaman); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
+  .drift-chip { font-size: 0.68rem; color: var(--argaman-dim); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -677,7 +737,7 @@
      blocks, a size down, so the base text stays the text. */
   .c-inline { direction: rtl; text-align: right; margin: 0.15rem 0 0; padding: 0.35rem 0.5rem 0.2rem;
     border-inline-end: 2px solid var(--shani-dim); border-radius: 0.4rem;
-    background: var(--surface-c); }
+    background: var(--bg); }
   .c-inline .wb { margin: 0 0.14rem 0.45rem; }
   .c-inline .w { font-size: 1.12rem; color: var(--c-word);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -691,7 +751,7 @@
   /* the parts of a word nothing defines: blocks like any other, Hebrew over
      its English, two witnesses stacked where they differ */
   .parts-slot:empty { display: none; }
-  .parts { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.35rem; background: var(--surface-c);
+  .parts { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.35rem; background: var(--bg);
     border: 1px solid var(--line-c); border-radius: 0.6rem; }
   .parts .r-label { margin: 0 0 0.2rem; }
   .parts-say, .parts-src { font-size: 0.7rem; line-height: 1.45; color: var(--muted); margin: 0.2rem 0 0; direction: ltr; text-align: left; }
@@ -707,7 +767,7 @@
   /* the edition mark: a word the Leningrad codex spells otherwise wears a
      dotted gold rule while the toggle asks for it — gold is line work */
   body.ed-mark .wb[data-ld] .w { text-decoration: underline dotted var(--gold); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-  .hoh { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.3rem; background: var(--surface-c);
+  .hoh { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.3rem; background: var(--bg);
     border: 1px solid var(--line-c); border-radius: 0.6rem; max-height: 42vh; overflow: auto; }
   .hoh .r-label { margin: 0 0 0.3rem; }
   .hoh-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem; }
@@ -736,7 +796,7 @@
   .hoh-quote { border: 1px solid var(--gold); border-radius: 0.6rem; }
   .hoh-prose { border-inline-end: 2px solid var(--shani-dim); }
   .hoh-ref { position: absolute; top: -0.55rem; left: 0.5rem; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gold); background: var(--surface-c); padding: 0 0.3rem; direction: ltr; }
+    color: var(--muted); background: var(--bg); padding: 0 0.3rem; direction: ltr; }
   .hoh-run .wb { margin: 0 0.14rem 0.45rem; }
   .hoh-run .w { font-size: 1.05rem; }
   .hoh-run .g { font-size: 0.58rem; max-width: 8em; }
@@ -753,7 +813,7 @@
      it is the page saying what it is holding and why, in the place the text
      would have stood. */
   .c-inline.c-held { direction: ltr; text-align: left; font-size: 0.74rem;
-    color: var(--argaman); font-style: italic; }
+    color: var(--argaman-dim); font-style: italic; }
   body.en .c-inline { direction: ltr; text-align: left; }
   body.en .c-inline .g { font-size: 0.86rem; max-width: 11em; }
   body.en .c-inline .w { font-size: 0.92rem; }
@@ -767,7 +827,7 @@
   .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
     margin: 0 0.16rem 0.55rem; cursor: pointer; }
   .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
-  .wb:hover .w { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
+  .wb:hover .w { color: var(--gold); border-bottom-color: var(--gold); }
   /* A word the chain holds is printed as the chain has it and not touched. But
      some of what it holds is not a word — the Miqra source's section markers
      arrive as a run of markup with no break in it, and an unbreakable run wider
@@ -834,7 +894,7 @@
   .wjoin { max-width: 100%; }
   .wjoin .wj-ink { flex-wrap: wrap; justify-content: center; }
   .wjoin > .g.parts { flex-wrap: wrap; }
-  .wjoin.lic.active .wj-ink { border-bottom-color: var(--mark-gold); }
+  .wjoin.lic.active .wj-ink { border-bottom-color: var(--gold); }
   .wb.active .w { background: none; }
   .wb.mark.active .w { background: none; border-color: var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
@@ -932,6 +992,30 @@
   .wjoin { position: relative; }
   .wjoin > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
   .wjoin > .wj-ink, .wjoin > .g { position: relative; z-index: 1; }
+  .wb.tied { position: relative; }
+  /* a split reading: one column per piece, in the Hebrew's direction, each
+     piece read left to right in itself */
+  .g-pcs { display: inline-flex; direction: rtl; align-items: baseline; justify-content: center; white-space: nowrap; }
+  .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
+  .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
+  /* THE ENGLISH READER KEEPS ITS OWN ORDER (the owner, 2026-10-10, on the
+     first word of Genesis: "for hebrew reader it would be non zig zag. for
+     english reader it would be zig zag"). In the Hebrew reader a split
+     reading's pieces stand right to left, each under its own Hebrew, and
+     nothing crosses. In the English reader they keep the English order, and
+     each piece's blob crosses to its own Hebrew. The license chip rides
+     above the English there, so the crossing holds the ties alone, and a
+     line that can cross takes the height a gentle cross needs, no more. The
+     chip stays in the line's flow, so a word's cell still widens to hold it;
+     only a line made of its English and its chip is turned over, and a line
+     holding anything else keeps today's order. */
+  body.en .g-pcs { direction: ltr; }
+  body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
+  body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
+  body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
+  body.en .he-text > .wb.tied > .g:has(> .g-pcs), body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
+  .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+  .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
      body.en .w order 2). A run's ink wrapper carries no order of its own, so
      a joined word printed its reading BELOW its ink while every word beside
@@ -947,7 +1031,7 @@
   .wb.multi:not(.kq):hover .w { border-bottom-color: transparent; }
   .wb.multi.active:not(.kq) .w { border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
-  .wr:hover { color: var(--hover-ink); border-bottom-color: var(--hover-line); }
+  .wr:hover { color: var(--gold); border-bottom-color: var(--gold); }
   /* AN UNDERLINE IS ONLY EVER ON THE HEBREW, AND MEANS ONE CARD HERE (the
      owner, 2026-10-03): every word, thin and dim (above, with the runs); a
      maqaf run or a span across words, one line under the whole; a ketiv-qere
@@ -1049,9 +1133,10 @@
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
   /* the rail: the page's toggles as one control block (see the header) */
   /* the cloth shows through it: the panel's lightest tone stood out as the
-     brightest thing on the page (the owner, 2026-10-03: "so bright white") */
+     brightest thing on the page (the owner, 2026-10-03: "so bright white"),
+     so it is the ground itself, veiled at a little over half */
   .rail { max-width: 62rem; margin: 0.6rem 0 0.2rem; border: 1px solid var(--line); border-radius: 0.6rem;
-    background: rgba(236, 223, 197, 0.55); padding: 0.45rem 0.7rem; }
+    background: rgba(235, 222, 195, 0.55); padding: 0.45rem 0.7rem; }
   .rail > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.6rem; }
   .rail > summary::-webkit-details-marker { display: none; }
   .rail .k { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
@@ -1125,11 +1210,11 @@
   .rail .shelf-sw { position: relative; width: 1.9rem; height: 1.05rem; flex: 0 0 1.9rem; padding: 0;
     border: 1px solid var(--line); border-radius: 0.55rem; background: none; cursor: pointer; font-size: 0; }
   .rail .shelf-sw::after { content: ""; position: absolute; top: 0.1rem; left: 0.1rem; width: 0.75rem; height: 0.75rem;
-    border-radius: 50%; background: var(--line-c); transition: left 0.12s; }
+    border-radius: 50%; background: none; box-shadow: inset 0 0 0 1.5px var(--gold-dim); transition: left 0.12s; }
   .rail .shelf-sw[aria-checked="true"] { background: var(--press-wash); border-color: var(--gold); }
-  .rail .shelf-sw[aria-checked="true"]::after { left: 0.95rem; background: var(--sel); }
+  .rail .shelf-sw[aria-checked="true"]::after { left: 0.95rem; background: var(--sel); box-shadow: none; }
   .rail .shelf-sw[aria-checked="mixed"] { border-color: var(--gold); border-style: dashed; }
-  .rail .shelf-sw[aria-checked="mixed"]::after { left: 0.52rem; background: var(--muted); }
+  .rail .shelf-sw[aria-checked="mixed"]::after { left: 0.52rem; background: var(--muted); box-shadow: none; }
   .rail .shelf-sw:hover { border-color: var(--gold); }
   /* the strip: chips wrapping, each a box and a short name */
   .rail .src-strip { display: flex; flex-wrap: wrap; gap: 0.3rem; }
@@ -1193,13 +1278,13 @@
   .rail .decl-lead-in { color: var(--ink); }
   .rail .decl-more { font: inherit; font-size: 0.66rem; color: var(--faint); background: none;
     border: none; border-bottom: 1px solid var(--line); padding: 0; cursor: pointer; }
-  .rail .decl-more:hover { color: var(--muted); border-bottom-color: var(--gold); }
+  .rail .decl-more:hover { color: var(--ink); border-bottom-color: var(--gold); }
   .rail .decl-head { margin: 0.5rem 0 0.3rem; font-size: 0.6rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--muted); }
   .rail .decl-where-fold { margin: 0.06rem 0 0; }
   .rail .decl-where-fold > summary { list-style: none; cursor: pointer; font-size: 0.6rem; color: var(--faint); width: fit-content; }
   .rail .decl-where-fold > summary::-webkit-details-marker { display: none; }
-  .rail .decl-where-fold > summary:hover { color: var(--muted); }
+  .rail .decl-where-fold > summary:hover { color: var(--ink); }
   .rail .decl-v i { font-style: normal; color: var(--faint); font-size: 0.66rem; padding-left: 0.14rem; }
   .rail .decl-where { margin: 0; font-size: 0.62rem; color: var(--faint); word-break: break-word; }
   .rail .decl-reach { margin: 0.12rem 0 0; font-size: 0.64rem; color: var(--faint); line-height: 1.45; }
@@ -1213,14 +1298,14 @@
     border-radius: 0; padding: 0 0 0.04rem; cursor: pointer; }
   .rail .def-order .declp::after { content: " \25be"; }
   .rail .def-order .declp[aria-expanded="true"]::after { content: " \25b4"; }
-  .rail .def-order .declp:hover { color: var(--muted); border-bottom-color: var(--gold); }
+  .rail .def-order .declp:hover { color: var(--ink); border-bottom-color: var(--gold); }
   .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-bottom-color: var(--sel-dim); }
   @media (max-width: 30rem) { .rail .row { grid-template-columns: 1fr; } .rail .row .why { grid-column: 1; } }
   /* Which way the words run, and nothing else. The two readers differ in the
      direction of the flow, so that is what is said under them. */
   .mode-pick { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
   .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); }
-  .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+  .mode-btn { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
   .mode-btn.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   /* pressed, opened, armed: the selection is worn bold */
@@ -1239,7 +1324,7 @@
      nothing has to. */
   #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(84vh, 50rem);
     display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
-    background: var(--panel); border: 1px solid var(--sel-dim); border-radius: 0.7rem;
+    background: var(--bg); border: 1px solid var(--sel-dim); border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: var(--shadow-card); }
   /* what scrolls, and what does not */
   /* The card is a stack of bands, and each keeps its own share.
@@ -1370,7 +1455,7 @@
      floor a long record keeps when the card is short is fitBands' to hold,
      counted in the record's own lines. */
   #hud .d-body { min-height: 0; }
-  #hud .d-foot { position: sticky; bottom: 0; background: var(--panel); padding-top: 0.15rem; }
+  #hud .d-foot { position: sticky; bottom: 0; background: var(--bg); padding-top: 0.15rem; }
   /* THE CARD IS WOVEN TOO (the owner, 2026-10-03: "id also add woven to huds"):
      the page's warp and weft, finer and fainter, on the card and on its sticky
      foot alike, so the foot meets the card with no seam (the period is 3px, so
@@ -1398,7 +1483,7 @@
     padding: 0.15rem 0.45rem; border-radius: 0.4em; font-size: 0.94rem;
     line-height: 1.3; overflow-wrap: anywhere;
     max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
-  #hud .r-now .v.none { color: var(--argaman); font-style: italic; }
+  #hud .r-now .v.none { color: var(--argaman-dim); font-style: italic; }
   #hud .r-now .n { display: block; color: var(--faint); font-size: 0.72rem; font-style: italic; line-height: 1.35; margin-top: 0.15rem; }
   #hud[hidden] { display: none; }
   /* the brick gap's head on the card is the ruled span the line draws, not the
@@ -1426,8 +1511,21 @@
      selection brought forward, not something that appeared over it. A fifth
      of a second; a drag, a scroll or a re-anchor moves them with no animation. */
   #tether .line { transition: stroke-dashoffset 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  /* THE CARD STANDS AT ITS OWN SIZE BY THE TIME ITS READINGS CAN BE PRESSED.
+     The grow and the tilt are done in the first 60 ms (30%) of the fifth of
+     a second, eased as before, and the fade runs the whole fifth. Eased over
+     the whole fifth, the card was still drawn at 98.4 to 99.6% of its
+     laid-out size 90 ms after its readings showed (the readings are on the
+     card by the frame the pop starts), so a card 750 px tall was drawn 3 to
+     12 px shorter than what it holds, by where that frame fell, and
+     check-usable-card-v1 read that, on some runs and not others, as a card
+     spilling off its own edges. Nothing inside the card moved; only the
+     scale had not yet come home. Most of the motion was already in those
+     first 60 ms (83% of it); what goes is the tail of scale creeping in
+     under the eye. */
   @keyframes hud-pop {
     from { opacity: 0; transform: perspective(900px) rotateX(-7deg) scale(0.93) translateY(6px); }
+    30% { transform: none; }
     to { opacity: 1; transform: none; }
   }
   #hud.pop { transform-origin: var(--pop-x, 50%) var(--pop-y, 0%);
@@ -1494,7 +1592,7 @@
   #hud .def-order .dfp, #modeRow .def-order .dfp, .rail .def-order .dfp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--faint); background: none;
     border: 1px solid var(--line); border-radius: 999px; padding: 0.14rem 0.5rem; cursor: pointer; }
-  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled), .rail .def-order .dfp:hover:not(:disabled) { color: var(--muted); border-color: var(--gold); }
+  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled), .rail .def-order .dfp:hover:not(:disabled) { color: var(--ink); border-color: var(--gold); }
   /* THE POSITION IN FORCE IS A READER'S SELECTION, so it wears the role the
      contract gives a reader's selection. It wore gold until 2026-09-09,
      which is the structure role \u2014 the color of the frame, not of a choice
@@ -1514,16 +1612,17 @@
      reading, and the rows are fitted from where the pills actually end, so a
      tall pill is a tall row, never a cut one.) */
   /* the pressed reading: the pressed-cell rule (--press-wash, above), its
-     letters the bold blue */
-  #hud .r-pills button[aria-pressed="true"] { color: var(--tekhelet-bold); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+     letters the regular blue, worn bold (the owner, 2026-10-10: "i dont
+     like our bold that much"; the bold is the weight, not a deeper blue) */
+  #hud .r-pills button[aria-pressed="true"] { color: var(--tekhelet-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
   #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--tekhelet-ink);
-    background: var(--panel2); border: 1px solid var(--line); border-radius: 0.45rem;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
   #hud .r-overflow select:hover { border-color: var(--gold); }
-  #hud .r-overflow select.on { color: var(--tekhelet-bold); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  #hud .r-overflow select.on { color: var(--tekhelet-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
   /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -1533,12 +1632,12 @@
   #hud .d-also-lab { flex: 1 0 100%; color: var(--faint); font-size: 0.66rem;
     letter-spacing: 0.08em; text-transform: uppercase; }
   #hud .d-also-m { font: inherit; font-size: 0.74rem; color: var(--muted); cursor: pointer;
-    background: var(--panel2); border: 1px solid var(--line); border-radius: 0.6rem;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.6rem;
     padding: 0.16rem 0.55rem; text-align: left; max-width: 100%; }
   #hud .d-also-m:hover { border-color: var(--sel-dim); color: var(--ink); }
   #hud .d-also-read { display: block; color: var(--faint); font-size: 0.68rem; }
   #hud .d-also-more { font: inherit; font-size: 0.72rem; color: var(--muted);
-    background: var(--panel2); border: 1px solid var(--line); border-radius: 0.5rem;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.5rem;
     padding: 0.16rem 0.4rem; cursor: pointer; max-width: 100%; }
   #hud a.lic-chip { color: inherit; text-decoration: none; }
   #hud a.lic-chip:hover { border-color: var(--gold); }
@@ -1571,14 +1670,14 @@
      check-parts-read-right-to-left-v1 measures where the parts landed, in
      pixels, rather than trusting this attribute. */
   #hud .s-pills[dir="rtl"] { direction: rtl; }
-  #hud .s-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+  #hud .s-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
   #hud .s-pills button:hover { border-color: var(--gold); color: var(--shesh); }
   /* the "try again" of a block or a fold the shelf could not answer: the
      card's own pill, not the browser's grey bevel */
-  #hud .r-unreachable button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+  #hud .r-unreachable button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 0.4rem; padding: 0.1rem 0.6rem; font: inherit; font-size: 0.85rem; cursor: pointer; }
   #hud .r-unreachable button:hover { border-color: var(--gold); color: var(--shesh); }
   /* a line the shelf could not answer under a switch: dotted, so a phone
@@ -1591,11 +1690,11 @@
   #hud .b-q { flex: 0 0 auto; min-height: 0; }
   #hud .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--faint); margin-inline-start: 0.4rem; }
-  #hud .b-q button[aria-pressed="true"] .q-role { color: var(--muted); }
+  #hud .b-q button[aria-pressed="true"] .q-role { color: var(--ink); }
   #hud .prov { color: var(--faint); font-size: 0.72rem; margin: 0.35rem 0 0; }
   .att .ov-mark { font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted); }
   .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
-    border-radius: 999px; background: var(--chip-bg); border: 1px solid var(--chip-line);
+    border-radius: 999px; background: var(--cell-wash); border: 1px solid var(--chip-line);
     color: var(--shesh); font-size: 0.72rem; }
   /* Commentary rides in the same register as the readings: same pill, same
      selected treatment, same card. It is named by its label, not by a color
@@ -1615,7 +1714,7 @@
   body.en .c-mark-row { text-align: left; }
   .c-mark { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle;
     direction: ltr; margin: 0; padding: 0.1rem 0.5rem;
-    border: 1px solid var(--shani-dim); border-radius: 999px; background: var(--surface-c);
+    border: 1px solid var(--shani-dim); border-radius: 999px; background: var(--bg);
     color: var(--ink-strong); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
     letter-spacing: 0.04em; cursor: pointer; }
   .c-mark:hover { color: var(--ink-strong); border-color: var(--gold); }
@@ -1628,17 +1727,17 @@
     max-height: min(22rem, 46vh); overflow-y: auto; overflow-x: hidden;
     margin: 0.15rem 0 0.6rem; padding: 0.5rem 0.7rem;
     border: 1px solid var(--line-c); border-inline-start: 2px solid var(--shani-dim);
-    border-radius: 0.5rem; background: var(--surface-c); }
+    border-radius: 0.5rem; background: var(--bg); }
   .c-mark-slot[hidden] { display: none; }
   .c-mark-slot .c-pick { display: block; color: var(--faint); font-size: 0.72rem; margin-bottom: 0.45rem; }
   .c-mark-slot .c-pick select { font: inherit; font-size: 0.76rem; color: var(--muted);
-    background: var(--panel-c); border: 1px solid var(--line-c); border-radius: 0.4rem;
+    background: var(--bg); border: 1px solid var(--line-c); border-radius: 0.4rem;
     padding: 0.16rem 0.4rem; max-width: 100%; }
   /* the reference and the license stay put while the commentary scrolls under
      them: a text whose source has scrolled away is a text standing on nothing */
   .c-mark-slot .lab { display: block; color: var(--muted); font-size: 0.74rem;
     letter-spacing: 0.03em; margin-bottom: 0.3rem;
-    position: sticky; top: -0.5rem; background: var(--surface-c); padding: 0.35rem 0 0.25rem; z-index: 1; }
+    position: sticky; top: -0.5rem; background: var(--bg); padding: 0.35rem 0 0.25rem; z-index: 1; }
   .c-mark-slot .lab a { color: var(--link); }
   /* Three plain rows: what it is, what it is commonly read as, and where the
      chain puts it. Same register as the masthead above the book. */
@@ -1649,7 +1748,7 @@
   .c-head-he.title-row { display: flex; gap: 0.1rem; }
   /* Same voice as the masthead's unnamed title: dimmed, italic, plainly a
      statement about the record rather than a name. */
-  .c-head-he.unnamed { color: var(--argaman); font-style: italic; font-family: Georgia, serif; font-size: 0.8rem; }
+  .c-head-he.unnamed { color: var(--argaman-dim); font-style: italic; font-family: Georgia, serif; font-size: 0.8rem; }
   .c-head-en { color: var(--shesh); font-size: 0.94rem; }
   .c-head-on { color: var(--muted); font-size: 0.82rem; }
   /* Said once, in English, before the names — because "what is this thing"
@@ -1662,7 +1761,7 @@
      five words long, in the one place a reader looks to see whose it is. */
   .c-how-whose { display: block; margin-top: 0.2rem; font-size: 0.62rem;
     letter-spacing: 0.04em; color: var(--faint); }
-  .c-how-whose.c-suggested { color: var(--argaman); }
+  .c-how-whose.c-suggested { color: var(--argaman-dim); }
   .c-how-basis { display: block; margin-top: 0.15rem; font-size: 0.6rem;
     letter-spacing: 0.06em; color: var(--faint); }
   .c-mark-body { display: block; }
@@ -1676,20 +1775,20 @@
   /* Scarlet, by the rule at the top of this file: the page is refusing to draw
      a shape it has not been given, and says so where the shape would have
      been. It is not saying the commentary is wrong. */
-  .c-mark-slot .c-undeclared { color: var(--argaman); border-inline-start: 2px solid var(--argaman-dim);
+  .c-mark-slot .c-undeclared { color: var(--argaman-dim); border-inline-start: 2px solid var(--argaman-dim);
     padding-inline-start: 0.5rem; }
-  .c-mark-slot .c-two-counts { color: var(--argaman); border-inline-start: 2px solid var(--argaman-dim);
+  .c-mark-slot .c-two-counts { color: var(--argaman-dim); border-inline-start: 2px solid var(--argaman-dim);
     padding-inline-start: 0.5rem; }
   /* Same rule where the commentary reads in line: the sentence stays linen and
      the tail carries the color. */
-  .c-att .c-how-whose.c-suggested { color: var(--argaman); }
+  .c-att .c-how-whose.c-suggested { color: var(--argaman-dim); }
   /* The chooser: everything attached to this line, named by its work and by
      the word it sits on, because a line's handle covers words and this is the
      reader deciding between them. */
   .c-choose .lab { color: var(--faint); }
   .c-choices { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
   .c-choice { display: inline-flex; align-items: baseline; gap: 0.35rem; direction: ltr;
-    border: 1px solid var(--line); background: var(--panel); color: var(--muted);
+    border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 999px; padding: 0.2rem 0.7rem; font: inherit; font-size: 0.74rem; cursor: pointer; }
   .c-choice:hover { border-color: var(--gold); color: var(--shesh); }
   .c-more { font: inherit; font-size: 0.72rem; color: var(--faint); background: none;
@@ -1703,7 +1802,7 @@
   .c-shut:hover { color: var(--ink-strong); }
   /* Every commentary the book carries, in one place, before the text starts. */
   #cIndex { margin: 0 0 1.6rem; border: 1px solid var(--line-c); border-radius: 0.6rem;
-    background: var(--surface-c); overflow: hidden; }
+    background: var(--bg); overflow: hidden; }
   #cIndex .ci-head { display: flex; flex-direction: column; gap: 0.2rem; width: 100%;
     text-align: left; direction: ltr; background: none; border: 0; color: var(--muted);
     font: inherit; padding: 0.7rem 0.9rem; cursor: pointer; }
@@ -1715,14 +1814,14 @@
   #cIndex .ci-body[hidden] { display: none; }
   #cIndex .ci-bar { display: flex; gap: 0.5rem; align-items: center; padding: 0 0.9rem 0.5rem; }
   #cIndex input[type="search"] { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 0.82rem;
-    color: var(--ink); background: var(--panel); border: 1px solid var(--line);
+    color: var(--ink); background: var(--bg); border: 1px solid var(--line);
     border-radius: 0.45rem; padding: 0.35rem 0.6rem; }
   #cIndex input[type="search"]:focus { outline: none; border-color: var(--gold); }
   #cIndex .ci-count { color: var(--faint); font-size: 0.72rem; white-space: nowrap; }
   #cIndex .ci-list { max-height: min(24rem, 50vh); overflow-y: auto; overflow-x: hidden;
     padding: 0 0.9rem 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; }
   #cIndex .ci-hit { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.45rem;
-    text-align: left; direction: ltr; background: var(--panel); border: 1px solid var(--line);
+    text-align: left; direction: ltr; background: var(--bg); border: 1px solid var(--line);
     border-radius: 0.45rem; padding: 0.32rem 0.6rem; color: var(--muted);
     font: inherit; font-size: 0.78rem; cursor: pointer; }
   #cIndex .ci-hit:hover { border-color: var(--gold); color: var(--shesh); }
@@ -1734,9 +1833,9 @@
   .c-counter-row { display: block; margin-top: 0.5rem; }
   .c-counter-mark { font-size: 0.66rem; }
   .c-mark-slot.c-counter { margin-inline-start: 1.1rem; border-inline-start: 2px solid var(--shesh); }
-  .c-noen { color: var(--argaman); }
+  .c-noen { color: var(--argaman-dim); }
   #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
-  #hud .c-pills button { border: 1px solid var(--line); background: var(--panel2); color: var(--muted);
+  #hud .c-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #hud .c-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
@@ -1794,7 +1893,7 @@
      foot beside the M, where the record's own furniture lives. */
   #hud .d-slot.whole { max-height: min(72vh, 36rem); overflow-y: auto; }
   #hud .d-slot.whole .d-body { max-height: none; overflow-y: visible; }
-  #hud .d-grow { margin-left: auto; border: 1px solid var(--line); background: var(--panel2);
+  #hud .d-grow { margin-left: auto; border: 1px solid var(--line); background: var(--bg);
     color: var(--muted); border-radius: 999px; font: inherit; font-size: 0.72rem;
     padding: 0.02rem 0.55rem; cursor: pointer; white-space: nowrap; }
   #hud .d-foot { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
@@ -1819,7 +1918,7 @@
   * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
   *::-webkit-scrollbar { width: 8px; height: 8px; }
   *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
-  *::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+  *::-webkit-scrollbar-thumb:hover { background: var(--gold); }
   *::-webkit-scrollbar-track { background: transparent; }
   #hud { box-shadow: var(--shadow-hud); }
   #hud .r-pills button[aria-pressed="true"], #hud .s-pills button[aria-pressed="true"] {
@@ -1837,7 +1936,7 @@
   .c-slot:empty { display: none; }
   .c-bar { display: flex; align-items: center; gap: 0.5rem; width: 100%;
     margin: 0.55rem 0 0.32rem; padding: 0.36rem 0.62rem; border: 1px solid var(--line);
-    border-radius: 0.55rem; background: var(--panel2); color: var(--muted);
+    border-radius: 0.55rem; background: var(--bg); color: var(--muted);
     font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer;
     direction: ltr; text-align: left; }
   .c-bar:hover { border-color: var(--shani-dim); color: var(--shesh); }
@@ -1908,14 +2007,14 @@
   .xp-row { display: flex; gap: 0.4rem; margin: 0.55rem 0 0.2rem; direction: ltr;
     flex-wrap: wrap; align-items: center; }
   .xp { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line);
-    background: var(--panel2); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
+    background: var(--bg); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
     letter-spacing: 0.04em; cursor: pointer; font-family: inherit; }
   .xp:hover { border-color: var(--gold); color: var(--shesh); }
   .xp.armed { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   .xp.busy { opacity: 0.6; cursor: progress; }
   .xp-note { font-size: 0.66rem; color: var(--faint); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
   .xp-note b { color: var(--shesh); font-weight: normal; }
-  .xp-note .held { color: var(--argaman); }
+  .xp-note .held { color: var(--argaman-dim); }
   .xp-lab { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--faint); margin-inline-end: 0.15rem; }
   #bookExport { max-width: 48rem; margin: 2.2rem auto 0; padding: 0 1.5rem; direction: ltr; }
@@ -2509,8 +2608,12 @@
   const placeShown = (at) => {
     if (!at || signsPref !== "off") return at;
     const pieces = String(at.text).split("/");
-    const keep = trimSigns(pieces);
-    return keep.length === pieces.length ? at : { ...at, text: keep.join("/").trim(), full: at.text };
+    // the pieces left drawn, and with them the sources the chip names
+    let keep = pieces.map((x, i) => i).filter((i) => !signOnly(pieces[i]));
+    if (!keep.length) keep = pieces.map((x, i) => i);
+    if (keep.length === pieces.length) return at;
+    const rs = at.rs && at.rs.length === pieces.length ? keep.map((i) => at.rs[i]) : at.rs;
+    return { ...at, text: keep.map((i) => pieces[i]).join("/").trim(), full: at.text, rs };
   };
   let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
   let defOrder = (() => {
@@ -3603,6 +3706,8 @@
     return m;
   };
   const cutKey = (c) => c.map((x) => x.surface).join("+");
+  // the cell TAHOT's set is remembered under: its one pill, on its division
+  const SET_CELL = "\u0002set";
   // Every place a form stands, recorded as the words are built. A ruling
   // repaints the places already standing; a section built later asks the
   // memory itself, so the ruling reaches it too.
@@ -3642,6 +3747,17 @@
     if (alt && Array.isArray(alt.by) && alt.by.length && !alt.by.every((id) => sourcesOff.has(id)) && alt.text) return spanJoin(alt.text);
     return "\u2014";
   };
+  // and whose reading that is, for its chip (licenseChipFor): the baked
+  // witness, its alternate's, or none where the column reads a dash; null
+  // where the bake names no license for it
+  const switchedReadings = (k, g) => {
+    if (!g) return [];
+    const gm = zone.gloss_m ? zone.gloss_m[k] : null;
+    if (!carriersOff(k)) return gm && gm.lic ? [gm] : null;
+    const alt = gm.alt;
+    if (alt && Array.isArray(alt.by) && alt.by.length && !alt.by.every((id) => sourcesOff.has(id)) && alt.text) return alt.lic ? [alt] : null;
+    return [];
+  };
   // THE LICENSE RIDES THE CHOSEN READING TOO (the owner, 2026-10-08: "if i
   // select a new R pill ... doesnt show the CC license on the english
   // runner"). A pick remembers the record it was pressed on; the chip under
@@ -3650,31 +3766,46 @@
   // witness cannot be named leaves the whole line without a chip — absent
   // over wrong, as ever.
   const mOfPick = (p) => {
-    const m = p && p.mId && index && index.m_sources ? index.m_sources[p.mId] : null;
-    return m ? { lic: licenseName(m.licensePosture), m: m.label, y: m.sourceYear, wy: p.wy } : null;
+    const r = p && p.mId ? readingOfId(p.mId, p.wy) : null;
+    // a place's own reading chosen (TAHOT's set, or the place's own row
+    // where no store row prints it) stands on the place's pieces' line
+    if (r && p.place) r.line = pieceLineOfM(p.mId) || r.line;
+    return r;
   };
+  // TAHOT'S SET, CHOSEN WHOLE on its own division, is the ruling while that
+  // division stands (or while no division was pressed, and the card opens
+  // on the set): the set's words under the set's source. Read block by
+  // block as forms of their own, it printed "describe + both" under
+  // Strong's where the reader had chosen TAHOT's "and + [the] two".
+  const setRuling = (m) => { const s = m.cells.get(SET_CELL); return s && (!m.cut || s.cut === m.cut) ? s : null; };
+  // the readings a ruled line shows, block by block as ruledLine reads them
   const ruledMs = (k, table) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
+    const set = setRuling(m);
+    if (set) { const r = mOfPick(set); return r ? [r] : null; }
     const run = k.includes("\u05be") && !(table && table[k]);
     const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
     const ms = [];
     for (const s of surfaces) {
       const p = m.cells.get(s);
       if (p) { const w = mOfPick(p); if (!w) return null; ms.push(w); continue; }
-      const gm = table === zone.gloss && zone.gloss_m ? zone.gloss_m[s] : null;
-      if (!gm) return null;
-      const alt = carriersOff(s) ? gm.alt : null;
-      const use = alt && alt.by && !alt.by.every((id) => sourcesOff.has(id)) ? alt : carriersOff(s) ? null : gm;
-      if (!use || !use.lic) return null;
-      ms.push({ lic: use.lic, m: use.m, y: use.y, wy: use.wy });
+      // a block left alone: the baked table under the switches, or a dash,
+      // which carries no chip of its own
+      const g = table ? table[s] : null;
+      if (!g) continue;
+      if (table !== zone.gloss) return null;
+      const rs = switchedReadings(s, g);
+      if (!rs) return null;
+      ms.push(...rs);
     }
     return ms.length ? ms : null;
   };
-  const ruledChip = (k, table) => { const ms = ruledMs(k, table); return ms ? chipOfMs(ms) : null; };
+  const ruledChip = (k, table) => { const ms = ruledMs(k, table); return ms ? licenseChipFor(ms) : null; };
   const ruledLine = (k, table) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
+    { const set = setRuling(m); if (set) return spanJoin(set.text); }
     // a maqaf run ruled cell by cell, its division never pressed, stands
     // under the division its card opened on: as written where the table
     // reads the run whole, else word by word. Read as one form it printed a
@@ -3773,14 +3904,12 @@
     const named = (r) => (r && r.role === "KETIV" ? "the ketiv" : r ? "the qere" : "the half you asked for");
     return { i: alt, fellFrom: named(regions[wanted]) };
   };
-  /** The witness chip that rides a reading. Built in one place because the
-      order toggle repaints readings, and a reading whose chip stayed behind
-      would be wearing another witness's terms. */
+  /** The witness chip that rides the baked readings of these keys. The keys
+      are the ones whose readings the line prints (under "look up by: the
+      headword", the headword's key, not the form's). */
   const licChipFor = (ks) => {
     if (!ks || !ks.length || !zone.gloss_m) return null;
-    const ms = ks.map((k) => zone.gloss_m[k]).filter(Boolean);
-    if (ms.length !== ks.length) return null;
-    return chipOfMs(ms);
+    return licenseChipFor(ks.map((k) => zone.gloss_m[k] || null));
   };
   // TWO YEARS, SAID APART. Since the year repair (store 3411c86e94e7) a row's
   // own year is the year its WORDING was written — a collector repeating an
@@ -3795,11 +3924,85 @@
   // CE — and every year a source prints of itself is an AD year
   const adYear = (y) => (/^\d{3,4}$/.test(String(y)) ? `${y} AD` : String(y));
   const yearTag = (y, axis) => (hasYear(y) ? ` \u00b7 ${axis} ${adYear(y)}` : "");
-  // the same chip from witness records already in hand — a reading a toggle
-  // moved onto the line carries its own M, not the baked column's
-  const chipOfMs = (ms) => {
-    const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
+  /* THE LICENSE CHIP OF THE READING SHOWN, MADE IN ONE PLACE. The owner,
+     2026-10-10: "the license ledger main purpose is to try to politely
+     shove you into showing the license when i change the english showing".
+     So every path that changes the English under a word, a chain or a run
+     asks for its chip here, and hands over the identity of the reading it
+     now shows, never a key whose reading something else has replaced.
+     A reading's identity is one of:
+       { line, posture, m }  a source line: a store row's m_id or a chosen
+                             pill's (readingOfId, readingOfRow), or
+                             PIECE:TAHOT / PIECE:MACULA for a place's own
+                             pieces, by each piece's own source (readingOfPiece);
+       { lic, m, by }        a baked entry (gloss_m, an order column's
+                             gloss_m_orders, an .alt), which names its
+                             source by label among its carriers;
+       { posture, m }        a lattice leader or the headword's hm, which
+                             carry a label and a posture and no id.
+     The chip's text stays what it was: licenseTextOf gives the name the
+     bake wrote, or licenseName(posture). The corpus lane's pill table
+     (source_line -> pill_text) is not wired yet, because some of its rows
+     wait on the lane; when it is, it goes into licenseTextOf, looked up by
+     sourceLineOf(reading), and nothing else on the page has to change.
+     Each chip also says which source lines it stands for (data-line).
+     A list holding a reading the page cannot name gets no chip at all:
+     absent over wrong, as ever. */
+  const licenseTextOf = (r) => (r && r.lic ? String(r.lic) : licenseName(r && r.posture));
+  let LINES_BY_LABEL = null;
+  const sourceLineOf = (r) => {
+    if (!r) return null;
+    if (r.line) return r.line;
+    if (!LINES_BY_LABEL) {
+      LINES_BY_LABEL = new Map();
+      for (const [id, s] of Object.entries((index && index.m_sources) || {})) {
+        if (!LINES_BY_LABEL.has(s.label)) LINES_BY_LABEL.set(s.label, []);
+        LINES_BY_LABEL.get(s.label).push(id);
+      }
+    }
+    const ids = LINES_BY_LABEL.get(r.m) || [];
+    // a baked entry's source is its label among its carriers (one id on all
+    // 39 books); a lattice leader's or a headword's, its label and posture
+    const hit = Array.isArray(r.by) ? ids.filter((id) => r.by.includes(id))
+      : r.posture ? ids.filter((id) => index.m_sources[id].licensePosture === r.posture) : ids;
+    return hit.length === 1 ? hit[0] : null;
+  };
+  // the lattice's witness records for a place's pieces, by source code
+  const pieceWitnesses = () => {
+    const pc = (((zone || {}).emitted_from || {}).toggles || {}).lattice;
+    return (pc && pc.pieces && pc.pieces.witnesses) || {};
+  };
+  // a place's piece, credited to the source that wrote it (pg[].s): TAHOT's
+  // pieces are PIECE:TAHOT, MACULA's PIECE:MACULA
+  const readingOfPiece = (s) => {
+    const w = s ? pieceWitnesses()[`english_${s}`] : null;
+    if (!w) return null;
+    const m = w.m && index && index.m_sources ? index.m_sources[w.m] : null;
+    return { line: `PIECE:${String(s).toUpperCase()}`, mId: w.m, posture: w.licence, m: m ? m.label : w.label, y: null };
+  };
+  // the piece line a witness's m_id stands behind (M4 is TAHOT's pieces)
+  const pieceLineOfM = (mId) => {
+    const w = pieceWitnesses();
+    const k = Object.keys(w).find((x) => /^english_/u.test(x) && w[x] && w[x].m === mId);
+    return k ? `PIECE:${k.slice(8).toUpperCase()}` : null;
+  };
+  const readingOfId = (id, wy) => {
+    const s = id && index && index.m_sources ? index.m_sources[id] : null;
+    return s ? { line: id, posture: s.licensePosture, m: s.label, y: s.sourceYear, wy } : null;
+  };
+  // a record of the store (or an overlay's) by its m_id; the place's own
+  // row (PLACE_ROWS: no store row prints the place's reading) by its pieces'
+  const readingOfRow = (rec) => {
+    const s = (index && index.m_sources && index.m_sources[rec[3]]) || {};
+    return { line: (PLACE_ROWS.has(rec) && pieceLineOfM(rec[3])) || rec[3], posture: s.licensePosture, m: s.label || rec[3], y: s.sourceYear || "", wy: rec[4] };
+  };
+  const licenseChipFor = (rs) => {
+    if (!rs || !rs.length || rs.some((r) => !r)) return null;
+    const ms = rs.map((r) => ({ ...r, lic: licenseTextOf(r) }));
+    const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
     const chip = document.createElement("span"); chip.className = "g-lic";
+    const lines = uniq.map(sourceLineOf);
+    if (lines.every(Boolean)) chip.dataset.line = [...new Set(lines)].join(" ");
     if (uniq.length === 1) {
       const terms = String(uniq[0].lic).split(" + ");
       terms.forEach((x, i) => {
@@ -3836,7 +4039,7 @@
       s.ge.title = line;
       const ruled = s.regions.findIndex((r) => ruledLine(r.k, s.table) !== null) >= 0;
       if (line && !ruled && s.table === zone.gloss) {
-        const chip = at ? (at.m ? chipOfMs([at.m]) : null) : licChipFor([s.regions[i].k]);
+        const chip = at ? licenseChipFor(at.rs) : licChipFor([s.regions[i].k]);
         if (chip) s.ge.append(chip);
       } else if (line && ruled && i >= 0 && s.table === zone.gloss) {
         const chip = ruledChip(s.regions[i].k, s.table);
@@ -3937,22 +4140,50 @@
   };
   const leadRecord = (route) => [...route.records].sort(EARLIEST_FIRST)[0];
 
-  const attributionFor = async (surface, shownText, at = null) => {
+  // THE RECORD THE LINE CREDITS, read off the line's own chip: the store
+  // row's m_id licenseChipFor wrote on it (data-line), when it names exactly
+  // one. gatherSection asks for it only on a line the reader ruled, and the
+  // file then cites that row or says why not, never another carrier of the
+  // same words: a file that credits another source and license than the page
+  // it came from is worse than one that cites none.
+  const lineNamed = (g) => {
+    const chip = g && g.querySelector(".g-lic");
+    const lines = chip && chip.dataset.line ? chip.dataset.line.split(" ") : [];
+    return lines.length === 1 && index && index.m_sources && index.m_sources[lines[0]] ? { mId: lines[0] } : null;
+  };
+  // named: lineNamed's answer, or null to credit the oldest carrier, the
+  // record the card's foot shows. everySource: ask the pool with the switches
+  // lifted (poolFor). An answer with miss set found nothing to cite under
+  // this key, so another may be asked.
+  const attributionFor = async (surface, shownText, at = null, named = null, everySource = false) => {
     let pool = null;
-    try { pool = await poolFor(surface, at && spanJoin(at.text) === shownText ? { place: at } : {}); }
+    try { pool = await poolFor(surface, { ...(at && spanJoin(at.text) === shownText ? { place: at } : {}), everySource }); }
     catch { return { ok: false, unreachable: true, why: "the catalog could not be reached for this form; export again" }; }
-    if (!pool || !pool.length) return { ok: false, why: "no record in the catalog for this form" };
-    const hit = pool.find((r) => spanJoin(r.text) === shownText) ||
-                pool.find((r) => r.text === shownText);
-    if (!hit) return { ok: false, why: "the reading on the page does not match any record in the store" };
-    const lead = leadRecord(hit);
+    if (!pool || !pool.length) return { ok: false, miss: true, why: "no record in the catalog for this form" };
+    // every pill that prints the words shown: the store keeps "name" and
+    // "name." apart, and the record the line credits can stand in either.
+    // Under the signs switch the line leaves a reading's sign-only pieces
+    // undrawn ("<the> + Gilead" stands as "Gilead"), so a reading drawn so is
+    // one of them too, after those printed as shown.
+    const hits = pool.filter((r) => spanJoin(r.text) === shownText);
+    if (!hits.length) { const h = pool.find((r) => r.text === shownText); if (h) hits.push(h); }
+    if (signsPref === "off") hits.push(...pool.filter((r) => !hits.includes(r) && signsOffLine(spanJoin(r.text)) === shownText));
+    if (!hits.length) return { ok: false, miss: true, why: "the reading on the page does not match any record in the store" };
+    const own = named ? hits.map((h) => [...h.records].sort(EARLIEST_FIRST).find((r) => r[3] === named.mId)).find(Boolean) : null;
+    if (named && !own) {
+      const who = index.m_sources[named.mId];
+      return { ok: false, miss: true, unnamed: true, why: `the record the line credits for this reading (${who ? who.label : named.mId}) is not among the store's records of it` };
+    }
+    const hit = own ? hits.find((h) => h.records.includes(own)) : hits[0];
+    const lead = own || leadRecord(hit);
     const mId = lead[3];
     // the lead record's own bytes for this reading: the pool groups readings
     // case-blind across records, so hit.text can be another record's casing
     const want = spanJoin(hit.text).toLowerCase();
     const ownText = senseSplit(lead[1]).flatMap((s) => { const r = readingSplit(s); return r.damaged ? [s] : r.readings; })
       .find((x) => spanJoin(x).toLowerCase() === want) || hit.text;
-    const also = [...hit.records].sort(EARLIEST_FIRST).slice(1)
+    // the reading's other carriers, those the reader has not switched off
+    const also = [...hit.records].sort(EARLIEST_FIRST).filter((r) => r !== lead && !(everySource && sourcesOff.has(r[3])))
       .map((r) => index.m_sources[r[3]]).filter(Boolean);
     const m = index.m_sources[mId] || {};
     const post = exportPosture(m.licensePosture);
@@ -4006,7 +4237,31 @@
         const at = placeLine(w);
         const drawn = at && placeShown(at);
         const asked = drawn && drawn.full && spanJoin(drawn.text) === shown ? spanJoin(at.text) : shown;
-        const a = await attributionFor(w.k, asked, at);
+        // The file cites the reading under the key the line was read from.
+        // Under "look up by: the headword" that is the headword's key, but a
+        // reading ruled under the form, or a lattice order's leader, still
+        // reads the form's, so both are asked, the lookup's first.
+        const keys = [...new Set([lookupKey(w, w.k, zone.gloss), w.k])];
+        // A line the reader ruled is cited from the record its chip credits
+        // (lineNamed): a witness pressed on the card, or an overlay's row
+        // whose source was switched off after, stands on a record the
+        // oldest-carrier rule would not pick, and the file named another
+        // source and license than the line. That record, where the switches
+        // withhold it, is asked for again with them lifted, as a ruling
+        // outranks a switch. An unruled line is cited from the reading's
+        // oldest carrier, the record its card shows.
+        const ruled = keys.some((k) => ruledLine(k, zone.gloss) !== null);
+        const named = ruled ? lineNamed(wb.querySelector(".g")) : null;
+        const tries = keys.map((k) => [k, false]).concat(named && sourcesOff.size ? keys.map((k) => [k, true]) : []);
+        let a = null, missed = null;
+        for (const [k, every] of tries) {
+          const r = await attributionFor(k, asked, at, named, every);
+          if (!r.miss) { a = r; break; }
+          // the reason kept is the most telling one: a reading found without
+          // the record the line credits says more than a reading not found
+          if (!missed || (r.unnamed && !missed.unnamed)) missed = r;
+        }
+        a = a || missed;
         if (a.ok) { rec.en = a.text; rec.source = a; }
         else { rec.held = a.why; if (a.unreachable) rec.unreachable = true; }
       } else if (!w.k) rec.held = "held by the ledger; no reading is offered";
@@ -5299,6 +5554,10 @@
   // line under a word asks it when a switch moves the line (repaintLive), so the
   // live line lands where the bake would, and an overlay's reading stands on the
   // card, sorted like any other, not on the line
+  // opts.everySource: the pool with the source switches lifted, for the
+  // exporter only. A reading the reader chose outranks the switch that would
+  // withhold it, so the line can show a record the switched pool no longer
+  // holds, and the file has to find that record to cite what the line shows.
   // the rows the page stands up for a place's own reading, so a record can say
   // where it came from and a check can tell them from the store's
   const PLACE_ROWS = new WeakSet();
@@ -5351,7 +5610,7 @@
     // source the reader turned off is not asked. Counted apart from the
     // pointing's count so the card can say which switch withheld what.
     let withheldBySources = 0;
-    if (sourcesOff.size) {
+    if (sourcesOff.size && !opts.everySource) {
       const kept = routes.filter((row) => !sourcesOff.has(row[3]));
       withheldBySources = routes.length - kept.length;
       routes = kept;
@@ -5677,6 +5936,19 @@
     // box (owner, 2026-09-11: "on the hud shows an actual box, but on the
     // reader it doesn't")
     if (word.mark) b.dataset.mark = word.mark.kind;
+    // THE CARD'S HEAD WEARS THE SAME GOLD (the owner, 2026-10-10: "if you
+    // can do the vowels in gold in the same push go for it"): the big Hebrew
+    // word at the top of the card is the line's word made large, so its
+    // marks are the line's gold and its letters keep the head's own ink,
+    // laid over by the same leaves (EVERY MARK GOLD). Only for a word of
+    // this book, in a book the marks record carries (markSets says which);
+    // a commentary's or a dictionary's word keeps one color, and so does a
+    // mark the scribes set between words, whose head is drawn as the line
+    // draws the mark (a brick gap's is a ruled span of its own).
+    if (bin === zone && !word.mark) {
+      const sets = markSets();
+      if (sets) goldLeaves(b, sets.word);
+    }
     const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close");
     x.addEventListener("click", closeHud);
     head.append(b, x);
@@ -5993,7 +6265,7 @@
     // is pressed and no piece of the set is offered as a reading on its own.
     // Pressing a block is asking about that piece alone, and a piece alone is
     // the dictionaries'. Pressing the division again stands on the set again.
-    const SET_KEY = "\u0002set";
+    const SET_KEY = SET_CELL;
     let setWhole = !!(setCut && cover === setCut);
     // a run opens on the form its line reads: as written where a dictionary
     // published that, else word by word on the word pressed — never on a
@@ -6082,6 +6354,35 @@
       if (g && bin === zone) return switchedReading(surface, g);
       return g ? spanJoin(g) : "—";
     };
+    // WHOSE READING EACH CELL SHOWS, read the way textOfCell reads its words
+    // and in the same order, so the chip painted under the line is the chip
+    // of the words painted there (the owner, 2026-10-10: "the license ledger
+    // main purpose is to try to politely shove you into showing the license
+    // when i change the english showing"). Pressing a division alone printed
+    // the whole form's first reading under TAHOT's chip, or a dash wearing
+    // one. [] where the cell reads a dash; null where the page cannot name
+    // the reading, and then no new chip is given (a line whose words did not
+    // change keeps its own).
+    const readingsOfCell = (surface) => {
+      const p = picked.get(surface);
+      if (p) { const r = mOfPick(p); return r ? [r] : null; }
+      const lead = (pl) => (pl && pl.length && pl[0].records && pl[0].records[0] ? [readingOfRow(pl[0].records[0])] : []);
+      if (setCut && surface === region.k) return lead(cache.get(poolKey(surface)));
+      { const at = placeOfCell(surface); if (at) return at.rs.length ? at.rs : null; }
+      const led = bin === zone && word && region && surface === region.k ? lineUnder(word, bin.gloss) : null;
+      if (led) return led.text ? (led.rs.length ? led.rs : null) : [];
+      if (sourcesOff.size && bin === zone && word && region && surface === region.k && partNeedsLive({ word }, surface, null)) {
+        const pl = cache.get(poolKey(surface));
+        if (pl && pl.length) return lead(pl);
+        if (glossEl && glossEl.dataset.live === "sources") {
+          const c = glossEl.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+          if (c.textContent.trim()) return null;   // the line's own live chip stands
+        }
+      }
+      const g = bin.gloss ? bin.gloss[surface] : null;
+      if (g && bin === zone) return switchedReadings(surface, g);
+      return g ? null : [];
+    };
     // What is standing under the word right now, said on the card. The reader
     // used to have to close the card to find out whether their choice held,
     // because the only answer was which pill was lit — and in a row of two
@@ -6125,6 +6426,12 @@
     const pendingNow = () => !setWhole && cover.some((c) => !picked.get(c.surface) && !cache.has(poolKey(c.surface)) && !(bin.gloss && bin.gloss[c.surface]));
     // what the open cover reads: the set whole, or its blocks joined
     const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c) => textOfCell(c.surface)).join(" + "));
+    // and the chip of what it reads: the set's own source, or each block's
+    const coverChip = () => {
+      let rs = setWhole ? (placeSet.rs.length ? placeSet.rs : null) : [];
+      if (!setWhole) for (const c of cover) { const r = readingsOfCell(c.surface); if (r === null) { rs = null; break; } rs.push(...r); }
+      return rs && rs.length ? licenseChipFor(rs) : null;
+    };
     const ASKING = "asking the catalog for this block\u2026";
     // say it from the moment the card renders, not only once the readings
     // have come back from the shard
@@ -6216,6 +6523,7 @@
       // element as it always did, and the run's line is made again from it.
       const run = box.closest && box.closest(".wjoin");
       if (run) refreshJoinGloss(run);
+      else tieAgain(box);
     };
 
     const paintGloss = () => {
@@ -6231,7 +6539,7 @@
           const t = textOfCell(c.surface);
           const own = mOfPick(memoryOf(c.surface).cells.get(c.surface));
           for (const st of standsOf.get(c.surface) || []) {
-            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : chipOfMs([own]));
+            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : licenseChipFor([own]));
             st.wb.classList.add("chosen");
             if (j === cellIdx && selectedRecordRef.m) {
               st.wb.dataset.source = selectedRecordRef.m.label || "";
@@ -6253,7 +6561,9 @@
       // An open only repaints its own line; nothing was ruled, so nothing
       // else on the page is owed a repaint.
       if (!ruled) {
-        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine);
+        // with the chip of the words it paints: opening a card may paint
+        // other words (a pair's other half, the division the card opens on)
+        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts ? null : coverChip());
         // on a pair, the provenance mark follows the half that is open: the
         // English now reads from it, and both ends of the claim wear the mark
         if (opts.kqEls && regionIndex >= 0) {
@@ -6267,7 +6577,10 @@
       // same form card by card is not a way to work through a book. Places
       // in sections not yet built recall the ruling as they are built.
       const stands = standsOf.get(region.k) || [];
-      const ruledM = ruledChip(region.k, bin.gloss);
+      // the chip of the words painted (mine), read cell by cell as they were:
+      // the ruling's own chip read the division's blocks as forms of their
+      // own even where the card painted TAHOT's set or the whole form's pool
+      const ruledM = coverChip();
       for (const s of stands) {
         const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
         holdAndPaint(s.glossEl, line, s.glossParts || !ruledM ? null : ruledM.cloneNode(true));
@@ -6566,7 +6879,7 @@
           const val = document.createElement("b"); val.textContent = hit.g;
           line.append(lab2, val);
           if (whoM) {
-            const chip = chipOfMs([{ lic: licenseName(whoM.licensePosture), m: whoM.label || who.label || who.m, y: whoM.sourceYear || "" }]);
+            const chip = licenseChipFor([readingOfPiece(hit.s)]);
             if (chip) { chip.title = `${whoM.label || who.label} — the source that reads this word so at this place${hasYear(whoM.sourceYear) ? ` · edition ${whoM.sourceYear}` : ""}`; line.append(" ", chip); }
           }
           readRow.append(line);
@@ -6596,7 +6909,8 @@
           line.append(lab2, val);
           const m = SUGGESTED_IX && SUGGESTED_IX.m;
           if (m) {
-            const chip = chipOfMs([{ lic: licenseName("public_domain"), m: m.credit_line, y: m.year, ya: "dedication" }]);
+            // the BSB is a ledger line of its own (no store row, no pill row yet)
+            const chip = licenseChipFor([{ line: "BSB", posture: "public_domain", m: m.credit_line, y: m.year, ya: "dedication" }]);
             if (chip) { chip.title = `${m.name} — ${(m.licence_text || []).join(" ")}`; line.append(" ", chip); }
           }
           readRow.append(line);
@@ -6782,7 +7096,8 @@
           if (!d.childNodes.length) d.textContent = spanJoin(text);
           return d;
         };
-        const mLine = ([, , , mId, year]) => {
+        const mLine = (row) => {
+          const [, , , mId, year] = row;
           const m = index.m_sources[mId];
           const att = document.createElement("p"); att.className = "att";
           att.append(`${m.label} · ${hasYear(year) ? `wording ${year}` : "wording year not supplied"} `);
@@ -6791,7 +7106,9 @@
           const deed = licenseDeed(m.licensePosture);
           const lic = document.createElement(deed ? "a" : "span"); lic.className = "lic-chip";
           if (deed) { lic.href = deed; lic.target = "_blank"; lic.rel = "license noreferrer"; }
-          lic.textContent = licenseName(m.licensePosture);
+          // the row's own reading, so a place's own row is named by its
+          // pieces' line (PIECE:TAHOT) here as it is on the line under the word
+          lic.textContent = licenseTextOf(readingOfRow(row));
           // The chain's pointer is the audit's business, not the reading
           // surface's: a ledger path printed here spent a third of the card
           // on plumbing no reader can follow. It rides on the chip —
@@ -6897,21 +7214,34 @@
           const line = document.createElement("p"); line.className = "d-also";
           line.append(Object.assign(document.createElement("span"),
             { className: "d-also-lab", textContent: labelText }));
+          // pressing a witness here chooses its reading as a pill does, and
+          // the line follows at once, credited to the witness pressed: it
+          // waited for some later repaint, which then credited the reading's
+          // oldest carrier rather than the record the reader pressed
+          const goTo = (group, row) => {
+            // remembered as a pill press is (choose): a place's own row stands
+            // on its pieces' line, and TAHOT's set on the division it was
+            // chosen on
+            selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
+              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null });
+            if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
+            [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
+            markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
+            renderDCard(); paintGloss(); clampHud();
+          };
           const one = ({ row, group, text }) => {
             const m = index.m_sources[row[3]];
             const b = document.createElement("button"); b.type = "button"; b.className = "d-also-m";
             b.append(`${m.label.split(/[,(]/)[0].trim()} · ${hasYear(row[4]) ? `wording ${row[4]}` : "no wording year"}`);
             const lic = document.createElement("span"); lic.className = "lic-chip";
-            lic.textContent = licenseName(m.licensePosture); b.append(lic);
+            lic.textContent = licenseTextOf(readingOfRow(row)); b.append(lic);
             if (text && text !== firstText)
               b.append(Object.assign(document.createElement("span"),
                 { className: "d-also-read", textContent: `reads it “${text}”` }));
             b.title = `${m.label} — go to this reading`;
             b.addEventListener("click", (ev) => {
               ev.stopPropagation();
-              selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: group.records[0][3], wy: group.records[0][4] });
-              [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
-              paintNow(group.text); renderDCard(); clampHud();
+              goTo(group, row);
             });
             return b;
           };
@@ -6931,9 +7261,7 @@
               ev.stopPropagation();
               const x = more[Number(sel.value)];
               if (!x) return;
-              selected = x.group; picked.set(surface, { key: routeKey(x.group.records[0]), text: x.group.text, mId: x.group.records[0][3], wy: x.group.records[0][4] });
-              [...pills.children].forEach((y) => y.setAttribute("aria-pressed", String(y.textContent === x.group.text)));
-              paintNow(x.group.text); renderDCard(); clampHud();
+              goTo(x.group, x.row);
             });
             line.append(sel);
           }
@@ -6955,7 +7283,7 @@
         // on the card.
         const rest = groups.slice(1).flatMap((g) => g.rows.map((r) => [g.text, r]));
         if (!rest.length) return;
-        const licenses = [...new Set(rest.map(([, r]) => licenseName(index.m_sources[r[3]].licensePosture)))];
+        const licenses = [...new Set(rest.map(([, r]) => licenseTextOf(readingOfRow(r))))];
         const more = document.createElement("button"); more.type = "button"; more.className = "d-more";
         const drawer = document.createElement("div"); drawer.className = "d-drawer"; drawer.hidden = true;
         more.textContent = `${rest.length} further record${rest.length === 1 ? "" : "s"} · ${licenses.join(", ")}`;
@@ -6976,7 +7304,10 @@
         body.append(more, drawer);
       };
       const choose = (route) => {
-        selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4] });
+        selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
+          place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null });
+        // any other reading chosen: the set stands whole no longer
+        if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
         markRuled();
         selectedRecordRef.m = index.m_sources[route.records[0][3]] || null;
         renderDCard(); paintGloss(); clampHud();
@@ -7528,7 +7859,7 @@
   const refreshJoinGloss = (run) => {
     if (!run || !run.__ink) return;
     // the reader ruled on the run itself: its line is that ruling, as any
-    // ruled word's line is, with no chip (absent over wrong)
+    // ruled word's line is, with the chip of what the ruling reads
     const heldRun = run.__key ? ruledLine(run.__key, run.__table || zone.gloss) : null;
     const memRun = heldRun !== null ? pickedByForm.get(run.__key) : null;
     const lineEl = () => { let l = run.__gloss; if (!l) { l = document.createElement("span"); l.className = "g"; run.append(l); run.__gloss = l; } return l; };
@@ -7540,6 +7871,7 @@
       const l = lineEl();
       delete l.dataset.off;
       l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare", "parts");
+      { const chip = ruledChip(run.__key, run.__table || zone.gloss); if (chip) l.append(chip); }
       run.classList.add("chosen");
       drawTies(run);
       return;
@@ -7567,7 +7899,7 @@
         const text = spanJoin(table[form]);
         l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare", "parts");
         l.dataset.form = form;
-        const chip = gmT && gmT[form] ? chipOfMs([gmT[form]]) : null;
+        const chip = gmT && gmT[form] ? licenseChipFor([gmT[form]]) : null;
         if (chip) l.append(chip);
         drawTies(run);
         return;
@@ -7580,7 +7912,7 @@
       const chosen = memRun && run.__words && run.__words[j] ? memRun.cells.get(run.__words[j].k) : null;
       if (chosen && chosen.text) {
         const wm = mOfPick(chosen);
-        parts.push({ t: spanJoin(chosen.text), lic: wm ? chipOfMs([wm]) : null, wi: j });
+        parts.push({ t: spanJoin(chosen.text), lic: wm ? licenseChipFor([wm]) : null, wi: j });
         continue;
       }
       const g = wb.querySelector(":scope > .g");
@@ -7635,25 +7967,337 @@
       cell.className = "g-part";
       cell.dataset.wi = String(part.wi);   // the word of the run this part reads, for the tie
       cell.append(document.createTextNode(part.t || "\u2014"));
+      pieceLine(cell, (run.__words || [])[part.wi]);
       if (part.lic) cell.append(part.lic.cloneNode(true));
       line.append(cell);
     });
     drawTies(run);
   };
-  // THE TIE, DRAWN FROM WHERE THINGS STAND. One blob per word of a run:
-  // the word's own width at the letters (the box's, less a breath so two
-  // words' blobs stay apart), hugging the letters' top, flowing to the
-  // width of the word's English at its far edge, its corners rounded. The
-  // blob is linen a shade bolder than the cell, with the dim gold around
-  // it and not around the cell (the owner, 2026-10-09: "linen is our blob
-  // color to connect the hebrew and english. and the dimmed gold is around
-  // that blob, not the full card"; of the second round of mockups, "now you
-  // got it"). Drawn again whenever the geometry moves: a section placed,
-  // the reader switched, the window resized, the face arriving, the run's
-  // line made again.
+  // RULE: blob-precision-rule-v1-a-blob-is-cut-to-the-ink-and-split-where-the-word-divides
+  // THE TIE, DRAWN FROM WHERE THINGS STAND. One blob per piece of a word:
+  // a word whose English has a + in it is as many pieces as its English has
+  // parts, cut between the letters where its own division cuts it (the
+  // owner, 2026-10-09, on Genesis 1:2: "splitting between characters", the
+  // vav to "and", the rest to "emptiness"); a word whose division does not
+  // answer its English part for part is one piece, whole. Each blob is the
+  // piece's ink, the face's own glyph bounds and not the box the line gives
+  // the letters ("not cutting off tops of words": the line's box stood below
+  // a holam or a pashta), flowing to the width of the piece's English and
+  // around it, its corners rounded. The blob is the pressed linen, the third
+  // of the three (a glaze on the cell's glaze would have made a fourth), with
+  // the dim gold around it at its full strength and not around the cell (the
+  // owner, 2026-10-09: "linen is our blob color to connect the hebrew and
+  // english. and the dimmed gold is around that blob, not the full card";
+  // 2026-10-10: "3 linen").
+  // Drawn again whenever the geometry moves: a section placed, the reader
+  // switched, the window resized, the face arriving, the run's line made
+  // again.
   const TIE_NS = "http://www.w3.org/2000/svg";
-  // the shapes for a host (a maqaf run, or one word of a run) from its pairs
-  // of [Hebrew word element, English element]
+  // THE INK OF A STRETCH OF LETTERS: each stretch of text in its own font,
+  // its height from the glyphs' bounds about the baseline (the baseline is
+  // the line box's top less the font's ascent), its sides where the line set
+  // it, widened where a mark hangs past
+  const INK_CV = document.createElement("canvas").getContext("2d");
+  const fontOf = (el) => { const cs = getComputedStyle(el); return `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; };
+  const textMap = (el) => {
+    const nodes = []; const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n, at = 0;
+    while ((n = tw.nextNode())) { if (!n.data.length) continue; nodes.push({ n, at, len: n.data.length }); at += n.data.length; }
+    return { nodes, text: nodes.map((x) => x.n.data).join("") };
+  };
+  const unionOf = (rs) => rs.reduce((u, r) => (u ? { L: Math.min(u.L, r.left), R: Math.max(u.R, r.right), T: Math.min(u.T, r.top), B: Math.max(u.B, r.bottom) } : { L: r.left, R: r.right, T: r.top, B: r.bottom }), null);
+  // THE INK IN THREE BANDS, as the face paints it: above the letters (the
+  // accents and points over them, a lamed's flag, a maqaf), the letters,
+  // and below them (the vowels, a final letter's tail). A stretch is painted
+  // on a canvas three times finer than the screen and its sides read off
+  // the pixels band by band, so a seam can step where one piece reaches over
+  // or under its neighbor and cut through neither.
+  const BAND_CV = document.createElement("canvas");
+  const BAND_CX = BAND_CV.getContext("2d", { willReadFrequently: true });
+  const BAND_S = 3;
+  // what a stretch of text looks like in a face, measured once: its glyph
+  // bounds, the letters' band (a he's top to its foot), and its ink band by
+  // band, all about the point the line aligns it on and its baseline. A book
+  // repeats its forms, so the measure is kept by face and text.
+  const GLYPHS = new Map();
+  // THE LETTERS' TOP LINE in a face (the owner, 2026-10-09: "measure the
+  // juttingest consonant and make that the hug spec"): the tallest of the
+  // twenty-seven letter forms but the lamed, whose tower rises above the
+  // line as the points do and is drawn as they are, a jut. Measured once per
+  // face, with the deepest foot among them for the letters' band below.
+  const CAPS = new Map();
+  // how far a form's ink rises over the baseline, painted alone three times
+  // finer than the screen and read off the pixels (the face's metrics round
+  // up: a he it calls 15 px tall paints to 14.33)
+  const inkTopOf = (str, font) => {
+    INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
+    const m = INK_CV.measureText(str);
+    if (!Number.isFinite(m.actualBoundingBoxAscent)) return null;
+    const oy = Math.ceil(m.actualBoundingBoxAscent) + 2, ox = Math.ceil(Math.max(0, m.actualBoundingBoxLeft)) + 2;
+    const W = (ox + Math.ceil(Math.max(0, m.actualBoundingBoxRight)) + 2) * BAND_S, H = (oy + 2) * BAND_S;
+    if (BAND_CV.width < W) BAND_CV.width = W;
+    if (BAND_CV.height < H) BAND_CV.height = H;
+    BAND_CX.setTransform(1, 0, 0, 1, 0, 0); BAND_CX.clearRect(0, 0, W, H);
+    BAND_CX.setTransform(BAND_S, 0, 0, BAND_S, 0, 0);
+    BAND_CX.font = font; BAND_CX.direction = "rtl"; BAND_CX.textAlign = "right"; BAND_CX.textBaseline = "alphabetic"; BAND_CX.fillStyle = "#000";
+    BAND_CX.fillText(str, ox, oy);
+    const px = BAND_CX.getImageData(0, 0, W, H).data;
+    for (let y = 0; y < H; y += 1) for (let x = 0; x < W; x += 1) if (px[(y * W + x) * 4 + 3] > 64) return oy - y / BAND_S;
+    return null;
+  };
+  // THE TWO SET HEIGHTS of the blob's top in a face (the owner, 2026-10-09:
+  // "flat top for consonants et al, and raised to a set height for vowels
+  // that need it", "the highest possible needed + 2 pixels"): the line of
+  // the consonants et al (the tallest letter but the lamed, or the maqaf,
+  // whichever stands higher), and the highest the text reaches at all (a
+  // vav with a holam under a segolta, the tallest form on the shelf by the
+  // pixels, as high as a lamed's tower or an upper dot stands or higher)
+  const TALLEST = ["\u05d5\u05b9\u0592", "\u05dc", "\u05d0\u05c4"];
+  // how far a form's ink reaches under the baseline, read off the pixels as
+  // the top is
+  const inkBottomOf = (str, font) => {
+    INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
+    const m = INK_CV.measureText(str);
+    if (!Number.isFinite(m.actualBoundingBoxDescent)) return null;
+    const oy = Math.ceil(Math.max(0, m.actualBoundingBoxAscent)) + 2, ox = Math.ceil(Math.max(0, m.actualBoundingBoxLeft)) + 2;
+    const W = (ox + Math.ceil(Math.max(0, m.actualBoundingBoxRight)) + 2) * BAND_S, H = (oy + Math.ceil(Math.max(0, m.actualBoundingBoxDescent)) + 2) * BAND_S;
+    if (BAND_CV.width < W) BAND_CV.width = W;
+    if (BAND_CV.height < H) BAND_CV.height = H;
+    BAND_CX.setTransform(1, 0, 0, 1, 0, 0); BAND_CX.clearRect(0, 0, W, H);
+    BAND_CX.setTransform(BAND_S, 0, 0, BAND_S, 0, 0);
+    BAND_CX.font = font; BAND_CX.direction = "rtl"; BAND_CX.textAlign = "right"; BAND_CX.textBaseline = "alphabetic"; BAND_CX.fillStyle = "#000";
+    BAND_CX.fillText(str, ox, oy);
+    const px = BAND_CX.getImageData(0, 0, W, H).data;
+    for (let y = H - 1; y >= 0; y -= 1) for (let x = 0; x < W; x += 1) if (px[(y * W + x) * 4 + 3] > 64) return (y + 1) / BAND_S - oy;
+    return null;
+  };
+  // THE TWO SET DEPTHS of the blob's foot, for the English reader, where the
+  // Hebrew's far side is its bottom (the owner, 2026-10-10: "you missed
+  // raising (lowering) it for a few vowels", and then, of a foot that ran
+  // flat under the vowel row to reach them: "you lost the raise just for
+  // vowels but otherwise it looks nice"): the mirror of the two heights, as
+  // the top has them. The foot runs flat a breath under the consonants (the
+  // letters that stand on the line; the final forms and the qof reach below
+  // it as the lamed's tower reaches above), and drops to one set depth
+  // wherever ink reaches lower: every vowel, a final letter's tail or a
+  // qof's leg, an accent under a vowel, a letter the scribes wrote large.
+  // The set depth is a breath under the deepest the text reaches at all (the
+  // vowel row, or an accent under a vowel, whichever is lower), and the foot
+  // stops at no depth between. Each set is painted as one string, so a face
+  // is measured in a handful of scans.
+  const PLAIN_LETTERS = [];
+  for (let c = 0x05d0; c <= 0x05ea; c += 1) if (![0x05da, 0x05df, 0x05e3, 0x05e5, 0x05e7].includes(c)) PLAIN_LETTERS.push(String.fromCharCode(c));
+  const ROW_VOWELS = [0x05b0, 0x05b1, 0x05b2, 0x05b3, 0x05b4, 0x05b5, 0x05b6, 0x05b7, 0x05b8, 0x05bb, 0x05c7];
+  const DEEPEST = "\u05da \u05df \u05e3 \u05e5 \u05e7 \u05e7\u05b8\u0591 \u05da\u05b0 \u05e5\u05b5\u0596 \u05d1\u05b0\u05a5 \u05d0\u05b2\u059b \u05df\u05b0\u05a3";
+  const capOf = (font) => {
+    if (CAPS.has(font)) return CAPS.get(font);
+    let asc = 0;
+    for (let c = 0x05d0; c <= 0x05ea; c += 1) {
+      if (c === 0x05dc) continue;
+      const t = inkTopOf(String.fromCharCode(c), font);
+      if (t != null) asc = Math.max(asc, t);
+    }
+    const line = Math.max(asc, inkTopOf("\u05be", font) || 0);
+    const lift = Math.max(line, ...TALLEST.map((s) => inkTopOf(s, font) || 0));
+    INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
+    const he = INK_CV.measureText("\u05d4");
+    const foot = inkBottomOf(PLAIN_LETTERS.join(" "), font) || 0;
+    let drop = Math.max(foot, inkBottomOf(DEEPEST, font) || 0);
+    for (const v of ROW_VOWELS) drop = Math.max(drop, inkBottomOf(PLAIN_LETTERS.map((ch) => ch + String.fromCharCode(v)).join(" "), font) || 0);
+    const cap = { actualBoundingBoxAscent: asc, actualBoundingBoxDescent: Number.isFinite(he.actualBoundingBoxDescent) ? he.actualBoundingBoxDescent : 0, line, lift, foot, drop };
+    CAPS.set(font, cap);
+    return cap;
+  };
+  const glyphInk = (str, font) => {
+    const key = `${font}\u0000${str}`;
+    const had = GLYPHS.get(key);
+    if (had) return had;
+    INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
+    const m = INK_CV.measureText(str), hm = capOf(font);
+    const ok = Number.isFinite(m.fontBoundingBoxAscent) && Number.isFinite(m.actualBoundingBoxAscent);
+    const g = { ok, fasc: ok ? m.fontBoundingBoxAscent : 0, asc: ok ? m.actualBoundingBoxAscent : 0, desc: ok ? m.actualBoundingBoxDescent : 0, left: ok ? m.actualBoundingBoxLeft : 0, right: ok ? m.actualBoundingBoxRight : 0,
+      yA: -((ok && Number.isFinite(hm.actualBoundingBoxAscent)) ? hm.actualBoundingBoxAscent : 0) - 0.5, yB: Math.max(0, (ok && Number.isFinite(hm.actualBoundingBoxDescent)) ? hm.actualBoundingBoxDescent : 0) + 0.5, cap: -((ok && Number.isFinite(hm.actualBoundingBoxAscent)) ? hm.actualBoundingBoxAscent : 0),
+      line: ok && Number.isFinite(hm.line) ? -hm.line : null, lift: ok && Number.isFinite(hm.lift) ? -hm.lift : null,
+      foot: ok && Number.isFinite(hm.foot) ? hm.foot : null, drop: ok && Number.isFinite(hm.drop) ? hm.drop : null, bands: null };
+    if (ok) {
+      const ox = Math.ceil(Math.max(0, g.left)) + 2, oy = Math.ceil(Math.max(0, g.asc)) + 2;
+      const W = (ox + Math.ceil(Math.max(0, g.right)) + 2) * BAND_S, H = (oy + Math.ceil(Math.max(0, g.desc)) + 2) * BAND_S;
+      if (W > 0 && H > 0 && W <= 6000 && H <= 1200) {
+        if (BAND_CV.width < W) BAND_CV.width = W;
+        if (BAND_CV.height < H) BAND_CV.height = H;
+        BAND_CX.setTransform(1, 0, 0, 1, 0, 0); BAND_CX.clearRect(0, 0, W, H);
+        BAND_CX.setTransform(BAND_S, 0, 0, BAND_S, 0, 0);
+        BAND_CX.font = font; BAND_CX.direction = "rtl"; BAND_CX.textAlign = "right"; BAND_CX.textBaseline = "alphabetic"; BAND_CX.fillStyle = "#000";
+        BAND_CX.fillText(str, ox, oy);
+        const px = BAND_CX.getImageData(0, 0, W, H).data;
+        const bands = [null, null, null];
+        const top = new Array(W).fill(-1), bot = new Array(W).fill(-1);
+        for (let y = 0; y < H; y += 1) {
+          let lo = -1, hi = -1;
+          for (let x = 0; x < W; x += 1) if (px[(y * W + x) * 4 + 3] > 64) { if (lo < 0) lo = x; hi = x; if (top[x] < 0) top[x] = y; bot[x] = y; }
+          if (lo < 0) continue;
+          const cy = (y + 0.5) / BAND_S - oy, k = cy < g.yA ? 0 : cy < g.yB ? 1 : 2;
+          const L = lo / BAND_S - ox, R = (hi + 1) / BAND_S - ox, T = y / BAND_S - oy, B = (y + 1) / BAND_S - oy;
+          const o = bands[k]; bands[k] = o ? { iL: Math.min(o.iL, L), iR: Math.max(o.iR, R), iT: Math.min(o.iT, T), iB: Math.max(o.iB, B) } : { iL: L, iR: R, iT: T, iB: B };
+        }
+        g.bands = bands;
+        // the ink's skyline and its floor, column by column: where each
+        // column's ink begins and ends, about the alignment point and the
+        // baseline, for an outline that follows the letters
+        g.cols = [];
+        for (let x = 0; x < W; x += 1) if (top[x] >= 0) g.cols.push([(x + 0.5) / BAND_S - ox, top[x] / BAND_S - oy, (bot[x] + 1) / BAND_S - oy]);
+      }
+    }
+    if (GLYPHS.size > 40000) GLYPHS.clear();
+    GLYPHS.set(key, g);
+    return g;
+  };
+  const joinBand = (x, y) => (!x ? y : !y ? x : { iL: Math.min(x.iL, y.iL), iR: Math.max(x.iR, y.iR), iT: Math.min(x.iT, y.iT), iB: Math.max(x.iB, y.iB) });
+  // A STRETCH IS ONE FACE'S TEXT, HOWEVER MANY NODES HOLD IT. A word with a
+  // letter the scribes marked is cut into a node per character (RULE 12,
+  // appendLettered), so each point after an unmarked letter stands in a
+  // node of its own, which the line sets in no width; and the gold cuts a
+  // maqaf out of its word (EVERY MARK GOLD). Measured node by node, such a
+  // point was never painted: the shin's dot in the first word of Genesis
+  // had no raise over it, and the zaqef among the dotted letters of Genesis
+  // 18:9 stood outside its blob. And with one letter to a node, the first
+  // letter set its word's lines, so the small he of Genesis 2:4 set them for
+  // the letters beside it. So the nodes that run on in one face are
+  // measured as one stretch, the points painted on their letters, as the
+  // line sets them.
+  const inkBox = (map, a, b) => {
+    let box = null;
+    const stretches = [];
+    for (const t of map.nodes) {
+      const s = Math.max(a, t.at), e = Math.min(b, t.at + t.len);
+      if (s >= e) continue;
+      const font = fontOf(t.n.parentElement), last = stretches[stretches.length - 1];
+      if (last && last.font === font && last.e === s) { last.e = e; last.to = t; } else stretches.push({ font, s, e, from: t, to: t });
+    }
+    for (const { font, s, e, from, to } of stretches) {
+      const rg = document.createRange(); rg.setStart(from.n, s - from.at); rg.setEnd(to.n, e - to.at);
+      const adv = unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
+      if (!adv) continue;
+      const str = map.text.slice(s, e);
+      const gi = glyphInk(str, font);
+      const base = adv.T + gi.fasc, yA = base + gi.yA, yB = base + gi.yB, capY = base + gi.cap;
+      const bands = gi.bands ? gi.bands.map((x) => (x ? { iL: adv.R + x.iL, iR: adv.R + x.iR, iT: base + x.iT, iB: base + x.iB } : null)) : null;
+      const all = bands ? bands.reduce(joinBand, null) : null;
+      // the glyphs' own sides (iL, iR) beside the line's (aL, aR); the box
+      // holds both, and a seam is cut by the glyphs' own, band by band
+      const iL = all ? all.iL : gi.ok ? adv.R - gi.left : adv.L, iR = all ? all.iR : gi.ok ? adv.R + gi.right : adv.R;
+      const iT = all ? Math.min(all.iT, base - gi.asc) : gi.ok ? base - gi.asc : adv.T;
+      const iB = all ? Math.max(all.iB, base + gi.desc) : gi.ok ? base + gi.desc : adv.B;
+      const cols = gi.cols ? gi.cols.map(([x, t, b2]) => [adv.R + x, base + t, base + b2]) : [];
+      const lineY = gi.line != null ? base + gi.line : null, liftY = gi.lift != null ? base + gi.lift : null;
+      // the set lines come from the stretch with the most letters, so a
+      // letter the scribes wrote large does not set the line of its word
+      const footY = gi.foot != null ? base + gi.foot : null, dropY = gi.drop != null ? base + gi.drop : null;
+      const nL = (str.match(/[\u05d0-\u05ea]/gu) || []).length;
+      const ink = { L: Math.min(adv.L, iL), R: Math.max(adv.R, iR), T: iT, B: iB, iL, iR, aL: adv.L, aR: adv.R, yA, yB, capY, lineY, liftY, footY, dropY, nL, bands: bands || [null, { iL, iR, iT, iB }, null], cols };
+      box = box ? { L: Math.min(box.L, ink.L), R: Math.max(box.R, ink.R), T: Math.min(box.T, ink.T), B: Math.max(box.B, ink.B), iL: Math.min(box.iL, ink.iL), iR: Math.max(box.iR, ink.iR),
+        aL: Math.min(box.aL, ink.aL), aR: Math.max(box.aR, ink.aR), yA: box.yA, yB: box.yB, capY: box.capY, ...(ink.nL > box.nL ? { lineY: ink.lineY, liftY: ink.liftY, footY: ink.footY, dropY: ink.dropY, nL: ink.nL } : { lineY: box.lineY, liftY: box.liftY, footY: box.footY, dropY: box.dropY, nL: box.nL }), bands: box.bands.map((x, k) => joinBand(x, ink.bands[k])), cols: box.cols.concat(ink.cols) } : ink;
+    }
+    return box;
+  };
+  // THE PIECES OF A WORD, by the division that answers its English part for
+  // part: TAHOT's own pieces where the line is theirs word for word, the
+  // book's span row for the form where its cells are as many as the parts,
+  // TAHOT's pieces where only the count agrees; none where nothing agrees
+  const HEB_LETTER = /[\u05d0-\u05ea]/u;
+  const lettersIn = (s) => [...String(s || "")].filter((c) => HEB_LETTER.test(c)).join("");
+  const divisionFor = (word, parts) => {
+    if (!word || parts.length < 2 || word.kq) return null;
+    const own = lettersIn(word.s);
+    const fits = (cells) => !!cells && cells.length === parts.length && cells.every(Boolean) && cells.join("") === own;
+    const pg = Array.isArray(word.pg) ? word.pg.map((p) => lettersIn(p && p.k)) : null;
+    const said = Array.isArray(word.pg) && word.pg.length === parts.length && word.pg.every((p, i) => spanJoin(String((p && p.g) || "")) === parts[i]);
+    if (said && fits(pg)) return pg.map((c) => c.length);
+    const row = zone && zone.spans && word.k ? zone.spans[word.k] : null;
+    const cells = row && Array.isArray(row[0]) ? row[0].map(lettersIn) : null;
+    if (fits(cells)) return cells.map((c) => c.length);
+    if (fits(pg)) return pg.map((c) => c.length);
+    return null;
+  };
+  // where each piece's characters start and end in the printed word: a piece
+  // starts at its first letter, and the points and accents after a letter
+  // are that letter's (the vav's qamats is the vav's)
+  const pieceSpans = (text, counts) => {
+    const at = []; for (let i = 0; i < text.length; i += 1) if (HEB_LETTER.test(text[i])) at.push(i);
+    if (at.length !== counts.reduce((x, y) => x + y, 0)) return null;
+    const spans = []; let c = 0;
+    counts.forEach((n, p) => { const a = p ? at[c] : 0; c += n; spans.push([a, p < counts.length - 1 ? at[c] : text.length]); });
+    return spans;
+  };
+  // A SPLIT READING STANDS UNDER ITS PIECES. A word's English whose parts
+  // its own division answers is set one column per piece, in the Hebrew's
+  // direction, as a run's words' parts already stand under their words: the
+  // vav's "and" under the vav, the rest's "emptiness" under the rest, the +
+  // between them. The reading's text is not touched (the same characters in
+  // the same order, read from the Hebrew's side, as a run is read); only
+  // where each piece stands moves, so no tie crosses another.
+  const pieceLine = (el, word) => {
+    if (!el) return null;
+    // A ROW ALREADY LAID IS LAID AGAIN FROM THE WORDS NOW SHOWN (the owner,
+    // 2026-10-10, of the blob: "same with blobs it should apply when changed
+    // too"). A row kept because it was there could stand under a reading its
+    // word no longer shows, split where that reading never splits. So it
+    // stands only while no other English stands beside it and the word's
+    // division still answers its words as it did; otherwise its words go
+    // back to one line, and that line is laid as any other.
+    const had = el.querySelector(":scope > .g-pcs");
+    if (had) {
+      const words = [...had.querySelectorAll(":scope > .g-pc")].map((x) => x.textContent);
+      const other = [...el.childNodes].some((n) => n.nodeType === 3 && n.data.trim());
+      const counts = other ? null : divisionFor(word, words.map((x) => x.trim()));
+      if (counts && counts.join(",") === had.dataset.counts) return had;
+      if (other) had.remove(); else had.replaceWith(document.createTextNode(words.join(" + ")));
+    }
+    const tn = [...el.childNodes].find((n) => n.nodeType === 3 && n.data.trim());
+    if (!tn || !tn.data.includes(" + ")) return null;
+    const raw = tn.data.split(" + ");
+    const counts = divisionFor(word, raw.map((x) => x.trim()));
+    if (!counts) return null;
+    const row = document.createElement("span"); row.className = "g-pcs";
+    row.dataset.counts = counts.join(",");
+    raw.forEach((t, i) => {
+      if (i) { const sep = document.createElement("span"); sep.className = "g-pp"; sep.textContent = " + "; row.append(sep); }
+      const pc = document.createElement("span"); pc.className = "g-pc"; pc.textContent = t; row.append(pc);
+    });
+    tn.replaceWith(row);
+    return row;
+  };
+  // the box the line sets an English reading's letters in, the license chip
+  // apart: its pieces where it stands in pieces, else its text whole
+  const rectOf = (el) => unionOf([...el.getClientRects()].filter((r) => r.width > 0));
+  const enWhole = (el) => {
+    if (!el) return null;
+    const row = el.querySelector(":scope > .g-pcs");
+    if (row) return rectOf(row);
+    const tn = [...el.childNodes].find((n) => n.nodeType === 3 && n.data.trim());
+    if (!tn) return null;
+    let a = 0, b = tn.data.length; while (a < b && /\s/u.test(tn.data[a])) a += 1; while (b > a && /\s/u.test(tn.data[b - 1])) b -= 1;
+    const rg = document.createRange(); rg.setStart(tn, a); rg.setEnd(tn, b);
+    return unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
+  };
+  // a word to its English: one pair per piece where the reading stands in
+  // pieces, or one for the word whole
+  const piecePairs = (wEl, enEl, wi) => {
+    const map = textMap(wEl);
+    const whole = inkBox(map, 0, map.text.length);
+    if (!whole) return [];
+    const row = enEl ? enEl.querySelector(":scope > .g-pcs") : null;
+    const pcs = row ? [...row.querySelectorAll(":scope > .g-pc")] : [];
+    const counts = row ? String(row.dataset.counts || "").split(",").map(Number) : null;
+    const spans = counts && counts.length === pcs.length && counts.length > 1 ? pieceSpans(map.text, counts) : null;
+    const boxes = spans ? spans.map(([a, b]) => inkBox(map, a, b)) : null;
+    const enBoxes = spans ? pcs.map(rectOf) : null;
+    if (!boxes || boxes.some((x) => !x) || enBoxes.some((x) => !x)) { const e = enWhole(enEl); return e ? [{ he: whole, en: e, wi, piece: 0, n: 1 }] : []; }
+    // one height for the word, its ink's
+    for (const x of boxes) { x.T = whole.T; x.B = whole.B; }
+    return boxes.map((x, i) => ({ he: x, en: enBoxes[i], wi, piece: i, n: boxes.length }));
+  };
+  // the shapes for a host (a run, or one word) from its pairs, each a box of
+  // Hebrew ink and a box of English in the window's frame
   const drawPairs = (host, pairs) => {
     let svg = host.querySelector(":scope > svg.wj-tie");
     if (!pairs.length) { if (svg) svg.remove(); return; }
@@ -7662,42 +8306,340 @@
     if (!R.width || !R.height) return;
     svg.setAttribute("viewBox", `0 0 ${R.width} ${R.height}`);
     const en = document.body.classList.contains("en");
-    const INSET = 3, HUG = 3;
-    const inkOf = (el) => { const rg = document.createRange(); rg.selectNodeContents(el); const rs = [...rg.getClientRects()].filter((r) => r.width > 0); return rs.length ? rs[0] : el.getBoundingClientRect(); };
+    // ONE LINE AT A SEAM (the owner, 2026-10-10, drawing it between two
+    // pieces of one word: "see how it could be 1 line?"): two pieces that
+    // meet share the one line between them, band by band, with no hair of
+    // linen between two outlines; so the half-hair GAP is nothing now.
+    const PAD = 2, GAP = 0, GRAIN = 0.75;   // the breath outside the ink; half the hair between two boxes at a seam (none: they share the line); the measure's grain
     const out = [];
     // the blob's dress; a screenshot probe may set a trial one on window.__tie
     // (a fill, an outline, walls, the corners' radius), the live page never does
-    const T = window.__tie || { fill: "var(--tie-wash)", stroke: "var(--gold-dim)", strokeW: 1, strokeOp: 0.7, round: 8 };
+    const T = window.__tie || { fill: "var(--press-wash)", stroke: "var(--gold-dim)", strokeW: 1, strokeOp: 1, round: 8 };
+    const g = T.grow || 0;
     const boxes = [];
-    pairs.forEach(([w, part]) => {
-      const a = w.getBoundingClientRect(), ink = inkOf(w), tr = inkOf(part);
-      // the word's edge, and the English's, each in the run's own frame
-      const wL = a.left - R.left + INSET, wR = a.right - R.left - INSET;
-      const eL = tr.left - R.left - 2, eR = tr.right - R.left + 2;
-      const wFar = en ? ink.bottom - R.top - HUG : ink.top - R.top + HUG;   // the hugged edge of the letters
-      const eFar = en ? tr.top - R.top - 1 : tr.bottom - R.top + 1;         // the far edge of the English
-      const yMid = en ? (tr.bottom + a.top) / 2 - R.top : (a.bottom + tr.top) / 2 - R.top;
-      const top = en ? { L: eL, R: eR, y: eFar } : { L: wL, R: wR, y: wFar };
-      const bot = en ? { L: wL, R: wR, y: wFar } : { L: eL, R: eR, y: eFar };
-      const shape = (grow, r) => {
-        const tL = top.L - grow, tR = top.R + grow, tY = top.y - grow, bL = bot.L - grow, bR = bot.R + grow, bY = bot.y + grow;
-        if (!r) return `M${tL} ${tY} L${tR} ${tY} C ${tR} ${yMid}, ${bR} ${yMid}, ${bR} ${bY} L${bL} ${bY} C ${bL} ${yMid}, ${tL} ${yMid}, ${tL} ${tY} Z`;
-        // the corners rounded by r: a blob, not a tent
-        return `M${tL + r} ${tY} L${tR - r} ${tY} Q ${tR} ${tY}, ${tR} ${tY + r} C ${tR} ${yMid}, ${bR} ${yMid}, ${bR} ${bY - r} Q ${bR} ${bY}, ${bR - r} ${bY} L${bL + r} ${bY} Q ${bL} ${bY}, ${bL} ${bY - r} C ${bL} ${yMid}, ${tL} ${yMid}, ${tL} ${tY + r} Q ${tL} ${tY}, ${tL + r} ${tY} Z`;
-      };
-      const g = T.grow || 0;
-      out.push(`<path d="${shape(g, T.round || 0)}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
-      if (T.sides && T.stroke) {
-        for (const d of [`M${top.L - g} ${top.y - g} C ${top.L - g} ${yMid}, ${bot.L - g} ${yMid}, ${bot.L - g} ${bot.y + g}`, `M${top.R + g} ${top.y - g} C ${top.R + g} ${yMid}, ${bot.R + g} ${yMid}, ${bot.R + g} ${bot.y + g}`])
-          out.push(`<path d="${d}" fill="none" stroke="${T.stroke}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linecap="round"/>`);
+    const f = (n) => Math.round(n * 10) / 10;
+    // each box in the host's own frame, a breath outside its ink, with its
+    // ink band by band (an English reading is one band, its letters')
+    const frame = (b, padX, padY, banded) => {
+      const L = b.L - R.left - padX - g, Rr = b.R - R.left + padX + g;
+      const bands = banded && b.bands ? b.bands.map((x) => (x ? { iL: x.iL - R.left, iR: x.iR - R.left, iT: x.iT - R.top, iB: x.iB - R.top } : null)) : [null, { iL: b.L - R.left, iR: b.R - R.left, iT: b.T - R.top, iB: b.B - R.top }, null];
+      return { L, R: Rr, T: b.T - R.top - padY - g, B: b.B - R.top + padY + g, banded: !!(banded && b.bands),
+        iL: (b.iL == null ? b.L : b.iL) - R.left, iR: (b.iR == null ? b.R : b.iR) - R.left, iT: b.T - R.top, iB: b.B - R.top,
+        aL: (b.aL == null ? b.L : b.aL) - R.left, aR: (b.aR == null ? b.R : b.aR) - R.left,
+        yA: banded && b.yA != null ? b.yA - R.top : b.T - R.top, yB: banded && b.yB != null ? b.yB - R.top : b.B - R.top, capY: banded && b.capY != null ? b.capY - R.top : null,
+        lineY: banded && b.lineY != null ? b.lineY - R.top : null, liftY: banded && b.liftY != null ? b.liftY - R.top : null,
+        footY: banded && b.footY != null ? b.footY - R.top : null, dropY: banded && b.dropY != null ? b.dropY - R.top : null,
+        bands, Lb: [L, L, L], Rb: [Rr, Rr, Rr],
+        cols: banded && b.cols ? b.cols.map(([x, t, b2]) => [x - R.left, t - R.top, b2 - R.top]).sort((p, q) => p[0] - q[0]) : null };
+    };
+    const hebs = pairs.map((pr) => frame(pr.he, PAD, PAD, true)), engs = pairs.map((pr) => frame(pr.en, 2, 1, false));
+    // THE SEAMS: two boxes side by side in one row never overlap, band by
+    // band. Where their inks stand apart in a band the seam is the middle
+    // of the space between; where only one has ink in a band (a lamed's
+    // flag over its neighbor, a vowel under it) the other steps back from
+    // it there; where they stand closer than the grain the two share the
+    // difference; where they lie over one another in one band the seam is
+    // where the line set the one's letters against the other's. Each keeps
+    // a hair on its own side.
+    const seam = (row) => {
+      for (let i = 0; i < row.length; i += 1) for (let j = 0; j < row.length; j += 1) {
+        const p = row[i], q = row[j];
+        if (i === j || p.iL + p.iR > q.iL + q.iR) continue;   // p stands left of q
+        if (p.B <= q.T || q.B <= p.T || p.R + GAP <= q.L - GAP) continue;
+        // the two share a seam: the corners that stand on it are square
+        p.seamR = true; q.seamL = true;
+        // ONE STRAIGHT SEAM where the two inks part at all, however narrowly
+        // (a vav and a bet a fifth of a pixel apart): in the middle of the
+        // space, a hair each side where the space allows one, and where it
+        // does not, the two blobs share the one line and never overlap
+        const P = p.bands.reduce(joinBand, null) || { iL: p.iL, iR: p.iR }, Q = q.bands.reduce(joinBand, null) || { iL: q.iL, iR: q.iR };
+        const space = Q.iL - P.iR;
+        if (space > -0.3) {
+          const x = (P.iR + Q.iL) / 2, h = space >= 2 * GRAIN ? Math.min(GAP, space / 2 - GRAIN) : 0;
+          for (let k = 0; k < 3; k += 1) { p.Rb[k] = Math.min(p.Rb[k], x - h); q.Lb[k] = Math.max(q.Lb[k], x + h); }
+          continue;
+        }
+        // where one ink reaches over or under the other (a lamed's flag, a
+        // maqaf's stroke, a vowel under the next letter), band by band
+        for (let k = 0; k < 3; k += 1) {
+          const pi = p.bands[k], qi = q.bands[k];
+          let pr, ql;
+          if (!pi && !qi) { const x = (p.aR + q.aL) / 2; pr = x - GAP; ql = x + GAP; }
+          else if (!pi) { ql = qi.iL - GRAIN; pr = ql - 2 * GAP; }
+          else if (!qi) { pr = pi.iR + GRAIN; ql = pr + 2 * GAP; }
+          else {
+            const sp = qi.iL - pi.iR;
+            if (sp >= 2 * GRAIN) { const x = (pi.iR + qi.iL) / 2, h = Math.min(GAP, sp / 2 - GRAIN); pr = x - h; ql = x + h; }
+            else if (sp > -0.3) { pr = ql = (pi.iR + qi.iL) / 2; }
+            else { const x = (p.aR + q.aL) / 2; pr = x - GAP; ql = x + GAP; }
+          }
+          p.Rb[k] = Math.min(p.Rb[k], pr); q.Lb[k] = Math.max(q.Lb[k], ql);
+        }
       }
-      boxes.push({ L: Math.min(top.L, bot.L) - g, R: Math.max(top.R, bot.R) + g, y0: top.y - g, y1: bot.y + g });
-    });
+      // a box with no bands of its own keeps its letters' band's sides
+      for (const x of row) if (!x.banded) { x.Lb = [x.Lb[1], x.Lb[1], x.Lb[1]]; x.Rb = [x.Rb[1], x.Rb[1], x.Rb[1]]; }
+    };
+    seam(hebs); seam(engs);
+    // the level the outline keeps: a breath off the tallest letter of the
+    // row it stands in (the boxes that share its height), and off the lowest
+    // foot; a run that wraps keeps one level per line
+    for (const b of hebs) {
+      const row = hebs.filter((o) => o.B > b.T && o.T < b.B);
+      const lt = Math.min(...row.map((o) => (o.bands[1] ? o.bands[1].iT : o.iT))), lf = Math.max(...row.map((o) => (o.bands[1] ? o.bands[1].iB : o.iB)));
+      b.flatTop = lt - PAD; b.flatFoot = lf + PAD;
+    }
+    // THE HEBREW'S OUTLINE: A FLAT LINE, AND AN ARCH OVER EACH MARK (the
+    // owner, 2026-10-09, drawn twice on Genesis 1:2: "see how its a flat
+    // line"). On its far side (the tops in the Hebrew reader, the feet in the
+    // English one) the outline runs level a breath off the row's tallest
+    // letter, and rises in an arch over each point, accent, flag or maqaf
+    // that stands above the letters (or dips under each vowel and tail below
+    // them), a breath off its ink, its shoulders eased into the line. Its
+    // sides stand where the seams put them, band by band; the side the neck
+    // leaves from is flat; a column outside a band's sides gives that band up.
+    const STEP = 0.5, ROLL = 4, CORNER = 6, CLEAR = 1.2;
+    const hebrewEdge = (bx, far, yNeck) => {
+      const xL = Math.min(...bx.Lb), xR = Math.max(...bx.Rb);
+      const yA = bx.yA, yB = bx.yB;
+      const top = far === "top", sgn = top ? -1 : 1;   // sgn: the direction away from the ink
+      const inB = (x, k) => x >= bx.Lb[k] - 0.01 && x <= bx.Rb[k] + 0.01;
+      const cols = bx.cols || [];
+      const flat = top ? bx.flatTop : bx.flatFoot;
+      // the marks: the columns whose ink stands above the letters (or below)
+      const marks = cols.filter(([, ct, cb]) => (top ? ct < yA : cb > yB));
+      // a circle of radius r about every column's end, asked left to right
+      const reacher = (list, r) => {
+        let from = 0;
+        return (x) => {
+          let v = null;
+          while (from < list.length && list[from][0] < x - r) from += 1;
+          for (let i = from; i < list.length; i += 1) {
+            const [cx, ct, cb] = list[i], dx = cx - x; if (dx > r) break;
+            const h = Math.sqrt(r * r - dx * dx), y = top ? ct - h : cb + h;
+            if (v === null || sgn * y > sgn * v) v = y;
+          }
+          return v;
+        };
+      };
+      // the sides band by band: where a column's band gives out
+      const wall = (x) => (top
+        ? { lim: inB(x, 0) ? -Infinity : inB(x, 1) ? yA : inB(x, 2) ? yB : Infinity, base: inB(x, 2) ? yNeck : inB(x, 1) ? yB : inB(x, 0) ? yA : null }
+        : { lim: inB(x, 2) ? Infinity : inB(x, 1) ? yB : inB(x, 0) ? yA : -Infinity, base: inB(x, 0) ? yNeck : inB(x, 1) ? yA : inB(x, 2) ? yB : null });
+      const breaks = [...new Set([...bx.Lb, ...bx.Rb].map((v) => Math.round(v * 1000) / 1000))].filter((v) => v > xL && v < xR);
+      const xs = [];
+      for (let x = xL; x < xR; x += STEP) xs.push(x);
+      for (const v of breaks) xs.push(v - 0.002, v + 0.002);
+      xs.push(xR); xs.sort((p, q) => p - q);
+      const pts = xs.map((x) => ({ x, w: wall(x) }));
+      const archOf = reacher(marks, PAD);
+      let ys = pts.map((p) => { const r = archOf(p.x); return r === null ? flat : (sgn * r > sgn * flat ? r : flat); });
+      // the shoulders eased as a ball rolls: a closing by a circle of ROLL
+      // fills a notch too narrow for it, then a light average takes out the
+      // pixel stairs; both only ever move the line away from the ink
+      const roll = (vals, dir) => vals.map((_, i) => {
+        let v = null;
+        for (let j = i - Math.ceil(ROLL / STEP); j <= i + Math.ceil(ROLL / STEP); j += 1) {
+          if (j < 0 || j >= vals.length) continue;
+          const du = pts[j].x - pts[i].x; if (Math.abs(du) > ROLL) continue;
+          const y = vals[j] + dir * Math.sqrt(ROLL * ROLL - du * du);
+          if (v === null || (dir === sgn ? sgn * y > sgn * v : sgn * y < sgn * v)) v = y;
+        }
+        return v === null ? vals[i] : v;
+      });
+      ys = roll(roll(ys, sgn), -sgn);
+      ys = ys.map((y, i) => { let a2 = 0, n = 0; for (let j = i - 2; j <= i + 2; j += 1) if (j >= 0 && j < ys.length) { a2 += ys[j]; n += 1; } const m = a2 / n; return sgn * m > sgn * y ? m : y; });
+      // the two far corners round, never nearer the ink than CLEAR
+      const clearOf = reacher(cols, CLEAR);
+      ys = ys.map((y, i) => {
+        const x = pts[i].x, dl = x - xL, dr = xR - x, d = Math.min(dl, dr);
+        if (d >= CORNER) return y;
+        const c = flat - sgn * (CORNER - Math.sqrt(Math.max(0, CORNER * CORNER - (CORNER - d) * (CORNER - d))));
+        let v = sgn * c < sgn * y ? c : y;   // the nearer of the two to the ink
+        const k = clearOf(x); if (k !== null && sgn * v < sgn * k) v = k;
+        return v;
+      });
+      const out = pts.map((p, i) => {
+        let y = ys[i];
+        y = top ? Math.max(y, p.w.lim, bx.T) : Math.min(y, p.w.lim, bx.B);
+        if (p.w.base != null) y = top ? Math.min(y, p.w.base - 0.5) : Math.max(y, p.w.base + 0.5);
+        return [p.x, y];
+      });
+      // the far edge, thinned where it runs straight
+      const edge = [];
+      for (const q of out) {
+        if (edge.length >= 2) { const a = edge[edge.length - 2], b2 = edge[edge.length - 1]; if (Math.abs((b2[1] - a[1]) * (q[0] - a[0]) - (q[1] - a[1]) * (b2[0] - a[0])) < 0.05 * Math.max(1e-6, q[0] - a[0])) edge.pop(); }
+        edge.push(q);
+      }
+      // the base: band by band from the far edge's right end to the neck, and
+      // from the neck back to the far edge's left end
+      const nk = far === "top" ? 2 : 0, nL = bx.Lb[nk], nR = bx.Rb[nk];
+      const baseAt = (x) => wall(x).base;
+      const stops = [...new Set([xL, xR, ...breaks])].sort((p, q) => p - q);
+      const walk = (from, to) => {   // along the base, from one x to another, stepping at the bands' sides
+        const res = [], dir = to < from ? -1 : 1;
+        const inner = stops.filter((v) => (dir < 0 ? v < from - 0.001 && v > to + 0.001 : v > from + 0.001 && v < to - 0.001));
+        if (dir < 0) inner.reverse();
+        let x = from;
+        for (const v of inner) { const y0 = baseAt((x + v) / 2); if (y0 != null) res.push([v, y0]); const y1b = baseAt(v + dir * 0.004); if (y1b != null) res.push([v, y1b]); x = v; }
+        return res;
+      };
+      return { edge, nL, nR, toNeck: (far === "top" ? [[xR, baseAt(xR - 0.004)], ...walk(xR, nR)] : [[xR, baseAt(xR - 0.004)]]).filter((q) => q[1] != null),
+        fromNeck: walk(nL, xL).concat([[xL, baseAt(xL + 0.004)]]).filter((q) => q[1] != null), walk, baseAt, xL, xR };
+    };
+    // THE TOP AT TWO SET HEIGHTS (the owner, 2026-10-09: "flat top for
+    // consonants et al, and raised to a set height for vowels that need it",
+    // "i wouldnt even modify around the vowel height just the highest
+    // possible needed + 2 pixels", "2 set heights is easier and moses maps
+    // where to raise"). The top runs flat a breath (J.pad) over the line of
+    // the consonants et al in this face, so every word on a line shares it.
+    // Where ink stands above that line (a point, an accent, a lamed's tower)
+    // it rises in a tab to the one raised height, a breath over the highest
+    // the text reaches, and to no height between. A tab spans that ink and a
+    // breath either side. Drawn as geometry, not traced; until the corpus
+    // lane's ledger names each raise, the ink says where.
+    const topPath = (bx) => {
+      const J = Object.assign({ pad: 2, fillet: 2, round: 3, corner: 6, tol: 0.05, minw: 1.5 }, T.top || {});
+      const xL = Math.min(...bx.Lb), xR = Math.max(...bx.Rb);
+      const line = bx.lineY != null ? bx.lineY : bx.capY != null ? bx.capY : bx.yA + 0.5, flat = line - J.pad;
+      const F = (n) => Math.round(n * 10) / 10;
+      // the inked columns standing above the line, and the raised height: a
+      // breath over the highest the face reaches (or over this ink, should a
+      // face other than the measured one reach higher still)
+      const cols = (bx.cols || []).filter(([x, t]) => t < line - 0.05 && x >= xL - J.pad && x <= xR + J.pad);
+      const lift = Math.min(bx.liftY != null ? bx.liftY : line, ...cols.map(([, t]) => t)) - J.pad;
+      // WHAT EACH COLUMN NEEDS: the raised height within J.pad of such ink,
+      // the flat line everywhere else
+      const xs = []; for (let x = xL; x < xR; x += STEP) xs.push(x); xs.push(xR);
+      let from = 0;
+      const need = xs.map((x) => {
+        while (from < cols.length && cols[from][0] < x - J.pad) from += 1;
+        return from < cols.length && cols[from][0] <= x + J.pad ? lift : flat;
+      });
+      // THE STEPS: runs of columns that need the same height within J.tol,
+      // each standing at the highest its columns need; a step narrower than
+      // J.minw goes to the higher of its neighbors; a dip between two juts
+      // too narrow for two fillets is filled to the lower of them
+      // THE BAND WALLS, where the caller gives them (the foot does): where
+      // this box has given up a band to a neighbor's ink (an accent of the
+      // next letter reaching over, a vowel reaching under), the edge stops at
+      // that band's side, so the shape never closes over the neighbor's
+      // letters; and a step the walls set is never smoothed away
+      const capAt = typeof bx.capAt === "function" ? bx.capAt : null;
+      const hardAt = xs.map(() => false);
+      if (capAt) xs.forEach((x, i) => { const c = capAt(x); if (c != null && Number.isFinite(c) && c > need[i] + 0.05) { need[i] = c; hardAt[i] = true; } });
+      let st = [];
+      for (let i = 0; i < xs.length; i += 1) {
+        const y = need[i], last = st[st.length - 1];
+        if (last && Math.abs(y - last.y0) <= J.tol && Math.abs(y - last.y) <= J.tol) { last.R = xs[i]; last.y = Math.min(last.y, y); last.hard = last.hard || hardAt[i]; }
+        else st.push({ L: last ? (xs[i - 1] + xs[i]) / 2 : xs[i], R: xs[i], y, y0: y, hard: hardAt[i] });
+        if (last && st[st.length - 1] !== last) last.R = st[st.length - 1].L;
+      }
+      st[st.length - 1].R = xR;
+      for (let pass = 0; pass < 3; pass += 1) {
+        for (let i = 0; i < st.length; i += 1) {
+          const p = st[i], w = p.R - p.L, a2 = st[i - 1], b2 = st[i + 1];
+          const narrow = w < J.minw;
+          const dip = a2 && b2 && p.y > a2.y && p.y > b2.y && w < 2 * J.fillet + 1;
+          if (!narrow && !dip) continue;
+          if (p.hard) continue;
+          if (dip) { if (a2.hard || b2.hard) continue; p.y = Math.max(a2.y, b2.y); continue; }
+          const A = a2 && !a2.hard ? a2 : null, B = b2 && !b2.hard ? b2 : null;
+          const to = !A ? B : !B ? A : (A.y < B.y ? A : B);
+          if (!to) continue;
+          to.y = Math.min(to.y, p.y); if (to === a2) a2.R = p.R; else b2.L = p.L; st.splice(i, 1); i -= 1;
+        }
+        // neighbors at one height become one step
+        st = st.reduce((acc, p) => { const l = acc[acc.length - 1]; if (l && Math.abs(l.y - p.y) < 0.05) { l.R = p.R; l.hard = l.hard || p.hard; return acc; } acc.push(p); return acc; }, []);
+      }
+      // THE OUTLINE: up and down the steps with a fillet where it leaves a
+      // lower step and a round where it reaches a higher one, each no larger
+      // than half the step it turns on; the two far corners round as far as
+      // the ink leaves them room
+      const room = (x, y) => { const a2 = Math.sqrt(Math.max(0, x - 0.4)), b2 = Math.sqrt(Math.max(0, y - 0.4)); return (a2 + b2) * (a2 + b2); };
+      const b1 = bx.bands[1] || { iL: bx.iL, iR: bx.iR };
+      const first = st[0], last = st[st.length - 1];
+      // a step the band walls set stands square, at its ends and where it
+      // turns, so it runs on the very line its neighbor's side runs on
+      const rL = first.hard || bx.seamL ? 0 : Math.max(0, Math.min(first.y < flat - 0.05 ? J.round : J.corner, (first.R - first.L) / 2, first.y < flat - 0.05 ? J.corner : room(b1.iL - xL, PAD)));
+      const rR = last.hard || bx.seamR ? 0 : Math.max(0, Math.min(last.y < flat - 0.05 ? J.round : J.corner, (last.R - last.L) / 2, last.y < flat - 0.05 ? J.corner : room(xR - b1.iR, PAD)));
+      const cmd = [`M${F(xL)} ${F(first.y + rL)} Q${F(xL)} ${F(first.y)} ${F(xL + rL)} ${F(first.y)}`];
+      for (let i = 0; i < st.length - 1; i += 1) {
+        const p = st[i], q = st[i + 1], x = p.R, h = Math.abs(q.y - p.y);
+        if (h < 0.05) continue;
+        const sq = p.hard || q.hard ? 0 : 1;
+        const wp = sq * (p.R - p.L) / 2, wq = sq * (q.R - q.L) / 2;
+        if (q.y < p.y) {   // up: a fillet off the lower step, a round onto the higher
+          const fi = Math.min(J.fillet, h / 2, wp), ro = Math.min(J.round, h / 2, wq);
+          cmd.push(`L${F(x - fi)} ${F(p.y)} Q${F(x)} ${F(p.y)} ${F(x)} ${F(p.y - fi)} L${F(x)} ${F(q.y + ro)} Q${F(x)} ${F(q.y)} ${F(x + ro)} ${F(q.y)}`);
+        } else {           // down: a round off the higher step, a fillet onto the lower
+          const ro = Math.min(J.round, h / 2, wp), fi = Math.min(J.fillet, h / 2, wq);
+          cmd.push(`L${F(x - ro)} ${F(p.y)} Q${F(x)} ${F(p.y)} ${F(x)} ${F(p.y + ro)} L${F(x)} ${F(q.y - fi)} Q${F(x)} ${F(q.y)} ${F(x + fi)} ${F(q.y)}`);
+        }
+      }
+      cmd.push(`L${F(xR - rR)} ${F(last.y)} Q${F(xR)} ${F(last.y)} ${F(xR)} ${F(last.y + rR)}`);
+      return cmd.join(" ");
+    };
+    // THE FOOT AT TWO SET DEPTHS: the same outline as the top, drawn on the
+    // box seen in a mirror (every y turned about the baseline's side) and
+    // turned back, so the foot keeps the top's flat line, its one set depth,
+    // its tabs, fillets and corners, with no second geometry to drift.
+    const footPath = (bx) => {
+      const flip = (y) => -y;
+      // the deepest the foot may go at x, band by band, as the shape's sides
+      // step: no lower than the letters where this box has given up the band
+      // beneath them, no lower than their top where it has given up the
+      // letters as well
+      // (a column within the measure's grain of a band's side still counts
+      // as inside it, as the seams allow)
+      const inB = (x, k) => x >= bx.Lb[k] - GRAIN && x <= bx.Rb[k] + GRAIN;
+      const deepest = (x) => (inB(x, 2) ? null : inB(x, 1) ? bx.yB : inB(x, 0) ? bx.yA : null);
+      const mirror = { ...bx, lineY: bx.footY != null ? flip(bx.footY) : flip(bx.yB), liftY: bx.dropY != null ? flip(bx.dropY) : null, capY: null,
+        yA: flip(bx.yB), cols: (bx.cols || []).map(([x, t, b2]) => [x, flip(b2), flip(t)]),
+        capAt: (x) => { const d2 = deepest(x); return d2 == null ? null : flip(d2); } };
+      const F = (n) => Math.round(n * 10) / 10;
+      return topPath(mirror).replace(/([MLQ])([^MLQ]*)/g, (m, c, nums) => (c === "M" ? "L" : c) + nums.trim().split(/\s+/).map((v, i) => (i % 2 ? F(flip(Number(v))) : v)).join(" ") + " ");
+    };
+    for (const [k, pr] of pairs.entries()) {
+      const he = hebs[k], eB = engs[k];
+      const U = en ? eB : he, D = en ? he : eB;
+      const y1 = Math.min(U.B, D.T), y2 = Math.max(U.B, D.T), ym = (y1 + y2) / 2;
+      const P = (pts) => pts.map(([x, y]) => `L${f(x)} ${f(y)}`).join(" ");
+      // the English box's corners round as far as the room its letters leave
+      const room = (x, y) => { const a2 = Math.sqrt(Math.max(0, x - 0.4)), b2 = Math.sqrt(Math.max(0, y - 0.4)); return (a2 + b2) * (a2 + b2); };
+      const r0 = T.round || 0;
+      let d;
+      if (!en) {
+        const h = hebrewEdge(he, "top", y1);
+        const rd = Math.max(0, Math.min(r0, (D.R - D.L) / 2, (D.B - y2) / 2, room(D.iL - D.L, D.B - D.iB), room(D.R - D.iR, D.B - D.iB)));
+        // the top keeps the band walls too: where a neighbor's mark reaches
+        // over this piece (a telisha, a lamed's flag), the top steps down to
+        // this piece's own letters there, on the line the two now share
+        const inBand = (x, k) => x >= he.Lb[k] - GRAIN && x <= he.Rb[k] + GRAIN;
+        const topCap = (x) => (inBand(x, 0) ? null : inBand(x, 1) ? he.yA : inBand(x, 2) ? he.yB : null);
+        d = `${topPath({ ...he, capAt: topCap })} ${P(h.toNeck)} L${f(h.nR)} ${f(y1)}`
+          + ` C${f(h.nR)} ${f(ym)} ${f(D.R)} ${f(ym)} ${f(D.R)} ${f(y2)} L${f(D.R)} ${f(D.B - rd)} Q${f(D.R)} ${f(D.B)} ${f(D.R - rd)} ${f(D.B)}`
+          + ` L${f(D.L + rd)} ${f(D.B)} Q${f(D.L)} ${f(D.B)} ${f(D.L)} ${f(D.B - rd)} L${f(D.L)} ${f(y2)} C${f(D.L)} ${f(ym)} ${f(h.nL)} ${f(ym)} ${f(h.nL)} ${f(y1)}`
+          + ` ${P(h.fromNeck)} Z`;
+      } else {
+        const h = hebrewEdge(he, "bottom", y2);
+        const ru = Math.max(0, Math.min(r0, (U.R - U.L) / 2, (y1 - U.T) / 2, room(U.iL - U.L, U.iT - U.T), room(U.R - U.iR, U.iT - U.T)));
+        // drawn the other way round, so the foot runs left to right as the top does
+        const downLeft = [...h.walk(h.nL, h.xL), [h.xL, h.baseAt(h.xL + 0.004)]].filter((q) => q[1] != null);
+        const upRight = [[h.xR, h.baseAt(h.xR - 0.004)], ...h.walk(h.xR, h.nR), [h.nR, y2]].filter((q) => q[1] != null);
+        d = `M${f(U.R - ru)} ${f(U.T)} L${f(U.L + ru)} ${f(U.T)} Q${f(U.L)} ${f(U.T)} ${f(U.L)} ${f(U.T + ru)} L${f(U.L)} ${f(y1)}`
+          + ` C${f(U.L)} ${f(ym)} ${f(h.nL)} ${f(ym)} ${f(h.nL)} ${f(y2)} ${P(downLeft)} ${footPath(he)} ${P(upRight)}`
+          + ` C${f(h.nR)} ${f(ym)} ${f(U.R)} ${f(ym)} ${f(U.R)} ${f(y1)} L${f(U.R)} ${f(U.T + ru)} Q${f(U.R)} ${f(U.T)} ${f(U.R - ru)} ${f(U.T)} Z`;
+      }
+      he.L = Math.min(...he.Lb); he.R = Math.max(...he.Rb);
+      const tag = `data-wi="${pr.wi}" data-piece="${pr.piece}" data-n="${pr.n}" data-he="${f(he.L)},${f(he.R)},${f(he.T)},${f(he.B)}" data-en="${f(eB.L)},${f(eB.R)},${f(eB.T)},${f(eB.B)}"`;
+      out.push(`<path ${tag} d="${d}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
+      boxes.push({ L: Math.min(he.L, eB.L), R: Math.max(he.R, eB.R), y0: U.T, y1: D.B });
+    }
     if (T.sep && boxes.length > 1) {
       boxes.sort((p, q) => p.L - q.L);
       for (let i = 0; i < boxes.length - 1; i += 1) {
         const x = (boxes[i].R + boxes[i + 1].L) / 2, y0 = Math.min(boxes[i].y0, boxes[i + 1].y0), y1 = Math.max(boxes[i].y1, boxes[i + 1].y1);
-        out.push(`<path d="M${x} ${y0} L${x} ${y1}" fill="none" stroke="${T.sep}" stroke-width="${T.sepW || 1}" stroke-opacity="${T.sepOp == null ? 1 : T.sepOp}" stroke-linecap="round"/>`);
+        out.push(`<path d="M${f(x)} ${f(y0)} L${f(x)} ${f(y1)}" fill="none" stroke="${T.sep}" stroke-width="${T.sepW || 1}" stroke-opacity="${T.sepOp == null ? 1 : T.sepOp}" stroke-linecap="round"/>`);
       }
     }
     svg.innerHTML = out.join("");
@@ -7707,15 +8649,103 @@
     const g = run.__gloss;
     const words = [...run.__ink.querySelectorAll(":scope > .wb > .w")];
     const parts = g && g.classList.contains("parts") ? [...g.querySelectorAll(":scope > .g-part")] : [];
-    // each part to the word it reads; a part dropped under the signs switch
-    // leaves its word with no tie, and the others keep theirs
-    drawPairs(run, parts.map((p) => [words[Number(p.dataset.wi)], p]).filter(([w]) => w));
+    // each part to the word it reads, piece by piece where the word's own
+    // division answers the part's + for +; a part dropped under the signs
+    // switch leaves its word with no tie, and the others keep theirs
+    const pairs = [];
+    for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); }
+    drawPairs(run, pairs);
+  };
+  // EVERY WORD, AS A PREVIEW (?blobs=every): the same blob on a word that
+  // stands alone, piece by piece, for the owner to see before the corpus
+  // lane's blob ledger says which words wear one; the live page draws them
+  // on runs alone until then
+  const TIE_EVERY = QUERY.get("blobs") === "every";
+  const drawWordTie = (wb) => {
+    if (!wb || !wb.isConnected || wb.closest(".wjoin") || wb.classList.contains("mark") || wb.classList.contains("kq")) return;
+    const w = wb.querySelector(":scope > .w"), ge = wb.querySelector(":scope > .g");
+    if (!w || !ge) return;
+    // A BLOB ONLY WHERE THERE IS SOMETHING TO TIE (the owner, 2026-10-10:
+    // "if theres a single hebrew to single english with no + sign
+    // seperator, probably not"; and that it comes and goes with the
+    // English, "2. right"): a word wears one only while the reading shown
+    // splits into pieces its own division answers. A word reading whole, or
+    // split where no division answers (the places where the Leningrad
+    // codex and this text spell the word apart), wears none, and loses the
+    // one it wore when its English changes to such a reading.
+    // (measured tied, since the tie gives a split English line its room)
+    pieceLine(ge, wb.__word);
+    wb.classList.add("tied");
+    const pairs = piecePairs(w, ge, 0);
+    if (pairs.length < 2) { wb.classList.remove("tied"); drawPairs(wb, []); return; }
+    drawPairs(wb, pairs);
   };
   let tieTimer = 0;
-  const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => { for (const r of document.querySelectorAll(".he-text .wjoin")) drawTies(r); }, 60); };
+  const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => {
+    const t0 = performance.now(); let n = 0;
+    for (const r of document.querySelectorAll(".he-text .wjoin")) { drawTies(r); n += 1; }
+    if (TIE_EVERY) for (const wb of document.querySelectorAll(".he-text > .wb")) { drawWordTie(wb); n += 1; }
+    window.__tieMs = { ms: Math.round(performance.now() - t0), cells: n };   // what a redraw of every built tie costs, for the check
+  }, 60); };
   try { if (document.fonts) document.fonts.addEventListener("loadingdone", drawAllTies); } catch { /* no font events: the next draw is the window's */ }
   window.addEventListener("resize", drawAllTies);
   window.__drawAllTies = drawAllTies;   // for a screenshot probe trying a dress on the tie
+  // A LONE WORD'S BLOB IS DRAWN AGAIN WHEN ITS LINE IS PAINTED AGAIN (the
+  // owner, 2026-10-10: "same with blobs it should apply when changed too").
+  // Every repaint of a line (a card, an order, a source switch, the signs)
+  // replaces its children, which took its split row with them and left the
+  // old shape standing behind the new English. So each repaint asks for its
+  // word's blob again, from the reading it now shows, and the asks are drawn
+  // together once the new English is laid out, or, where a repaint of the
+  // whole page is done, at once near the screen and in slices elsewhere
+  // (tieAgainNow). A run's blob is drawn by the run (refreshJoinGloss); a
+  // pair wears none (drawWordTie).
+  const TIE_AGAIN = new Set();
+  let tieAgainTimer = 0;
+  // one word's blob that cannot be drawn leaves the others to be drawn
+  const drawTieSafe = (x) => { try { drawWordTie(x); } catch (e) { console.error(e); } };
+  // The words near the screen are drawn at once, so the reader never sees an
+  // old shape behind a new reading. The rest are drawn after, in slices,
+  // those nearest where the reader is looking first, so a switch that moves
+  // a whole book's lines does not hold the page: drawn in one loop,
+  // Genesis's 3,026 built lines held an order switch for eight seconds.
+  // window.__tiePending counts the words still to draw, for a probe to wait on.
+  const TIE_LATER = new Map();   // a word still to draw -> where it stood on the page
+  let tieLaterTimer = 0;
+  const tieLaterStep = () => {
+    tieLaterTimer = 0;
+    const mid = (window.scrollY || 0) + (window.innerHeight || 800) / 2;
+    const order = [...TIE_LATER].sort((a, b) => Math.abs(a[1] - mid) - Math.abs(b[1] - mid));
+    // a slice holds the page for about 40 ms: between slices the browser
+    // lays out and paints the page, so 12 ms slices took twice as long to
+    // finish
+    const t0 = performance.now(); let n = 0;
+    for (const [x] of order) { TIE_LATER.delete(x); drawTieSafe(x); n += 1; if (n >= 8 && performance.now() - t0 > 40) break; }
+    window.__tiePending = TIE_LATER.size;
+    if (TIE_LATER.size) tieLaterTimer = setTimeout(tieLaterStep, 0);
+  };
+  const tieAgainNow = () => {
+    clearTimeout(tieAgainTimer);
+    const all = [...TIE_AGAIN]; TIE_AGAIN.clear();
+    const vh = window.innerHeight || 800, sy = window.scrollY || 0;
+    // every box is read before any is drawn, so the page is laid out once
+    const near = [];
+    for (const x of all) {
+      if (!x.isConnected) { TIE_LATER.delete(x); continue; }
+      const r = x.getBoundingClientRect();
+      if (r.bottom > -vh && r.top < 2 * vh) near.push(x); else TIE_LATER.set(x, r.top + sy);
+    }
+    for (const x of near) { TIE_LATER.delete(x); drawTieSafe(x); }
+    window.__tiePending = TIE_LATER.size;
+    if (TIE_LATER.size && !tieLaterTimer) tieLaterTimer = setTimeout(tieLaterStep, 0);
+  };
+  const tieAgain = (ge) => {
+    const wb = TIE_EVERY && ge && ge.closest ? ge.closest(".wb") : null;
+    if (!wb || !wb.matches(".he-text > .wb")) return;
+    TIE_AGAIN.add(wb);
+    clearTimeout(tieAgainTimer);
+    tieAgainTimer = setTimeout(tieAgainNow, 60);
+  };
 
   // A RUN IS BUILT AS A MAQAF CHAIN IS (the owner, 2026-10-09: the strip of
   // fused cells "arent as clear as our maqaf ones ... id really just make it
@@ -7847,13 +8877,23 @@
     if (who && sourcesOff.has(who.m)) return null;
     const parts = word.pg.map((p) => String((p && p.g) || "").trim());
     if (parts.some((t) => !t)) return null;
-    const m = who && index && index.m_sources ? index.m_sources[who.m] : null;
-    return { text: parts.join("/"), m: who ? { lic: licenseName(who.licence), m: m ? m.label : who.label, y: null } : null, why: "place", mId: who ? who.m : null };
+    // each piece credited to the source that wrote it (pg[].s): MACULA's
+    // pieces, which stand on 45 plain words and 9 pairs of 21 books, were
+    // credited to TAHOT with the rest
+    const rs = word.pg.map((p) => readingOfPiece(p && p.s));
+    // and a piece whose own source the reader switched off gives the word
+    // back, as TAHOT switched off does, by the rule the card's "here the
+    // source reads" line keeps piece by piece. Once MACULA's pieces were
+    // credited to MACULA, switching MACULA off left them on the line under
+    // a chip naming the source switched off, while the card's pool, which
+    // asks each source's switch, pressed another reading.
+    if (rs.some((r) => r && r.mId && sourcesOff.has(r.mId))) return null;
+    return { text: parts.join("/"), rs: rs.every(Boolean) ? rs : [], why: "place", mId: rs[0] ? rs[0].mId : null };
   };
   const lineUnder = (word, table) => {
     if (!word || table !== zone.gloss) return null;
     if (lookup === "headword" && word.hg && word.h && table[word.h])
-      return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y, ya: "wording" } : null, why: "headword" };
+      return { text: word.hg, rs: word.hm ? [{ posture: word.hm.lic, m: word.hm.m, y: word.hm.y, ya: "wording" }] : [], why: "headword" };
     { const at = placeLine(word); if (at) return placeShown(at); }
     // THE SOURCE SWITCHES FIRST. A source the reader turned off cannot lead
     // the line. Every carrier of the printed reading is baked on the key
@@ -7866,8 +8906,8 @@
       if (gm && Array.isArray(gm.by) && gm.by.length && gm.by.every((m) => sourcesOff.has(m))) {
         const alt = gm.alt;
         if (alt && Array.isArray(alt.by) && !alt.by.every((m) => sourcesOff.has(m)))
-          return { text: alt.text, m: { lic: alt.lic, m: alt.m, y: alt.y }, why: "sources" };
-        return { text: "", m: null, why: "sources-bare" };
+          return { text: alt.text, rs: [{ lic: alt.lic, m: alt.m, y: alt.y, by: alt.by }], why: "sources" };
+        return { text: "", rs: [], why: "sources-bare" };
       }
     }
     // THE LICENCE PREFERENCE, a baked column per class (regloss-zone,
@@ -7885,7 +8925,7 @@
         if (Object.prototype.hasOwnProperty.call(col, k)) {
           const gm = zone.gloss_m_orders && zone.gloss_m_orders[colId] ? zone.gloss_m_orders[colId][k] : null;
           const off = !!(gm && Array.isArray(gm.by) && gm.by.length && gm.by.every((m) => sourcesOff.has(m)));
-          if (!off) return { text: col[k], m: gm ? { lic: gm.lic, m: gm.m, y: gm.wy || gm.y } : null, why: "licence" };
+          if (!off) return { text: col[k], rs: gm ? [{ lic: gm.lic, m: gm.m, y: gm.wy || gm.y, by: gm.by }] : [], why: "licence" };
         }
       }
     }
@@ -7895,10 +8935,10 @@
     if (masorah === "only" && latticeStore && latticeStore.grades && word.s) {
       const gr = latticeStore.grades[word.s];
       const first = gr && gr.o && gr.o.l;
-      if (first) return { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: "masorah" };
+      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: "masorah" };
       // graded, and nothing survives the filter: the word goes bare here,
       // which the frame calls a finding and not an error
-      if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) return { text: "", m: null, why: "masorah-bare" };
+      if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) return { text: "", rs: [], why: "masorah-bare" };
     }
     // THE LETTERS SWITCH lifts the pointing on the card and leads with the
     // readings whose source points this word otherwise (sortPool); the line
@@ -7908,13 +8948,13 @@
     if (masorah === "letters") {
       const gr = latticeStore && latticeStore.grades && word.s ? latticeStore.grades[word.s] : null;
       const first = gr && gr.o && gr.o.x;
-      return first ? { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: "letters" } : null;
+      return first ? { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: "letters" } : null;
     }
     const pos = DEF_POS.find((p) => p.id === defOrder);
     if (pos && pos.needs === "lattice" && latticeStore && latticeStore.grades && word.s) {
       const gr = latticeStore.grades[word.s];
       const first = gr && gr.o && gr.o[pos.lattice];
-      if (first) return { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: pos.id };
+      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: pos.id };
     }
     return null;
   };
@@ -7964,17 +9004,26 @@
     }
     box.append(run);
     const foot = document.createElement("p"); foot.className = "parts-src";
-    const names = [wit.witnesses && wit.witnesses.english_tahot, wit.witnesses && wit.witnesses.english_macula].filter(Boolean);
+    const codes = ["tahot", "macula"].filter((s) => wit.witnesses && wit.witnesses[`english_${s}`]);
+    const names = codes.map((s) => wit.witnesses[`english_${s}`]);
     foot.append(names.length ? names.map((w) => w.label).join("  ·  ") : "the corpus lane\u2019s two witnesses");
-    const licKey = names.length ? names[0].licence : null;
-    if (licKey) {
+    // Each witness's chip is asked for by its own source line (readingOfPiece:
+    // english_tahot is PIECE:TAHOT, english_macula is PIECE:MACULA), never by
+    // its place in this list. A second chip is drawn only where it would read
+    // otherwise than the first. Comparing postures would hide a difference
+    // that the pill table, once plugged into licenseTextOf, can draw between
+    // two lines under one posture.
+    const said = new Set();
+    for (const s of codes) {
+      const r = readingOfPiece(s);
+      if (!r || !r.posture) continue;
+      const text = licenseTextOf(r);
+      if (said.has(text)) continue;
+      said.add(text);
       const chip = document.createElement("span"); chip.className = "lic-chip";
-      chip.textContent = licenseName(licKey);
-      chip.title = (POSTURES && POSTURES.postures && POSTURES.postures[licKey] && (POSTURES.postures[licKey].obligations || []).join(" ")) || "";
+      chip.textContent = text;
+      chip.title = (POSTURES && POSTURES.postures && POSTURES.postures[r.posture] && (POSTURES.postures[r.posture].obligations || []).join(" ")) || "";
       foot.append(" ", chip);
-    }
-    if (names.length === 2 && names[0].licence !== names[1].licence) {
-      foot.append(" ", Object.assign(document.createElement("span"), { className: "lic-chip", textContent: licenseName(names[1].licence) }));
     }
     box.append(foot);
     slot.append(box);
@@ -8042,12 +9091,10 @@
     }
     return MARK_INK.fit.get(text);
   };
-  const goldMarks = (wb, word) => {
-    const sets = markSets();
-    if (!sets) return;
-    const gold = word.mark ? sets.mark : sets.word;
-    const w = wb.querySelector(":scope > .w");
-    if (!w) return;
+  // goldLeaves makes the leaves of one element that holds a word's text, by
+  // one gold set: the line's word (goldMarks, below) and the card's head
+  // (THE CARD'S HEAD WEARS THE SAME GOLD, in openHud) call it alike.
+  const goldLeaves = (w, gold) => {
     const texts = [];
     const walk = document.createTreeWalker(w, NodeFilter.SHOW_TEXT);
     for (let n = walk.nextNode(); n; n = walk.nextNode()) texts.push(n);
@@ -8082,6 +9129,13 @@
       }
       t.replaceWith(frag);
     }
+  };
+  const goldMarks = (wb, word) => {
+    const sets = markSets();
+    if (!sets) return;
+    const w = wb.querySelector(":scope > .w");
+    if (!w) return;
+    goldLeaves(w, word.mark ? sets.mark : sets.word);
   };
   const wordBlock = (word, table) => {
     const wb = document.createElement("span");
@@ -8200,6 +9254,9 @@
     // A word holding several W reads them joined, the same join a span uses.
     let wasRuled = false;
     let lineMoved = null;      // a toggle moved this line past the baked column, with its own M
+    // the key a region's line is read from: under "look up by: the headword"
+    // a one-form word reads its headword's, and wears that reading's chip
+    const shownKey = (r) => (regions && regions.length > 1 ? r.k : lookupKey(word, r.k, table));
     const parts = (regions || (word.k ? [{ k: word.k }] : [])).map((r) => {
       // a form the reader has already ruled on reads under its ruling, even
       // in a section built after the ruling was made
@@ -8208,7 +9265,7 @@
       // one region only: a headword is projected onto a position, and a
       // position with two forms on it keeps its forms
       if (!(regions && regions.length > 1)) { const ov = lineUnder(word, table); if (ov) { lineMoved = ov; return spanJoin(ov.text); } }
-      const g = table ? table[regions && regions.length > 1 ? r.k : lookupKey(word, r.k, table)] : null;
+      const g = table ? table[shownKey(r)] : null;
       return g ? spanJoin(g) : "—";
     });
     // a ruling made on a joined interval spoke for the whole line
@@ -8248,12 +9305,20 @@
     // chip over a wrong one, always. A repaint under a ruling replaces the
     // text node and the chip goes with it, by the same law.
     if (line && !wasRuled && table === zone.gloss && zone.gloss_m) {
-      const ks = word.kq && regions ? (kqShown >= 0 ? [regions[kqShown].k] : [])
-        : regions ? regions.filter((r, i) => parts[i] !== "—" && ruledLine(r.k, table) == null).map((r) => r.k)
-        : word.k ? [word.k] : [];
+      // each key whose reading the line prints (the form's own chip stood
+      // under the headword's reading on 29,032 lines, 13,018 of them naming
+      // another license)
+      const ks = word.kq && regions ? (kqShown >= 0 ? [shownKey(regions[kqShown])] : [])
+        : regions ? regions.filter((r, i) => parts[i] !== "—" && ruledLine(r.k, table) == null).map(shownKey)
+        : word.k ? [shownKey({ k: word.k })] : [];
       // a moved line wears the M of what it now says, or no chip at all —
       // absent over wrong, always
-      const chip = lineMoved ? (lineMoved.m ? chipOfMs([lineMoved.m]) : null) : licChipFor(ks);
+      const chip = lineMoved ? licenseChipFor(lineMoved.rs) : licChipFor(ks);
+      if (chip) ge.append(chip);
+    } else if (line && wasRuled && heldJoint != null && table === zone.gloss) {
+      // a ruling on a joined interval speaks for the line, with its own chip
+      const jr = joined.find((r) => ruledLine(r.k, table) != null);
+      const chip = jr ? ruledChip(jr.k, table) : null;
       if (chip) ge.append(chip);
     } else if (line && wasRuled && heldJoint == null && table === zone.gloss) {
       const rk = word.kq && regions ? (kqShown >= 0 ? regions[kqShown].k : null)
@@ -8516,6 +9581,22 @@
     }
   };
 
+  // A LINE THE REPAINT WOULD PAINT AS IT STANDS IS LEFT STANDING, with its
+  // words, its chip, its split row and the blob drawn from them. Painting
+  // every line again dropped every split row, and under ?blobs=every every
+  // blob was drawn again inside the click: a source chip that moved none of
+  // Genesis's 3,026 built lines held the click for seven seconds. A line a
+  // live answer painted (data-off, data-live) is always painted again, since
+  // the repaint is a fresh answer for it.
+  const lineStands = (ge, line, chip) => {
+    if (ge.dataset.off || ge.dataset.live) return false;
+    const was = ge.querySelector(":scope > .g-lic");
+    if ((was ? was.outerHTML : "") !== (chip ? chip.outerHTML : "")) return false;
+    if (!line) return ge.classList.contains("bare") && ge.textContent === " ";
+    if (ge.classList.contains("bare") || ge.title !== line) return false;
+    const c = ge.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+    return c.textContent === line;
+  };
   /** Redraw every enrolled word's line under the table as it now stands. */
   const repaintGlossOrder = () => {
     const runs = new Set();
@@ -8529,27 +9610,34 @@
       // opened again
       const held = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss) : null;
       if (held !== null) {
-        st.ge.replaceChildren(); delete st.ge.dataset.off; delete st.ge.dataset.live;
-        st.ge.textContent = held; st.ge.title = held; st.ge.classList.remove("bare");
-        { const chip = ruledChip(st.word.k, zone.gloss); if (chip) st.ge.append(chip); }
+        const chip = ruledChip(st.word.k, zone.gloss);
         const run0 = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
         if (run0) runs.add(run0);
+        if (held && lineStands(st.ge, held, chip)) continue;
+        st.ge.replaceChildren(); delete st.ge.dataset.off; delete st.ge.dataset.live;
+        st.ge.textContent = held; st.ge.title = held; st.ge.classList.remove("bare");
+        if (chip) st.ge.append(chip);
+        if (!run0) tieAgain(st.ge);
         continue;
       }
       const moved = st.ks.length === 1 ? lineUnder(st.word, zone.gloss) : null;
       const parts = moved ? [spanJoin(moved.text)]
         : st.ks.map((k) => { const g = zone.gloss[lookupKey(st.word, k, zone.gloss)]; return g ? spanJoin(g) : "\u2014"; });
       const line = signsOffLine(parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "");
+      // the keys the line was read from: under the headword lookup, the
+      // headword's, as the parts above read them
+      const chip = line && zone.gloss_m
+        ? (moved ? licenseChipFor(moved.rs) : licChipFor(st.ks.map((k) => lookupKey(st.word, k, zone.gloss)).filter((k, i) => parts[i] !== "\u2014")))
+        : null;
+      const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
+      if (run) runs.add(run);
+      if (lineStands(st.ge, line, chip)) continue;
       st.ge.replaceChildren();
       delete st.ge.dataset.off; delete st.ge.dataset.live;   // a repaint from the table is a fresh answer
       if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); }
       else { st.ge.textContent = " "; st.ge.classList.add("bare"); }
-      if (line && zone.gloss_m) {
-        const chip = moved ? (moved.m ? chipOfMs([moved.m]) : null) : licChipFor(st.ks.filter((k, i) => parts[i] !== "\u2014"));
-        if (chip) st.ge.append(chip);
-      }
-      const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
-      if (run) runs.add(run);
+      if (chip) st.ge.append(chip);
+      if (!run) tieAgain(st.ge);
     }
     // a joined run prints its pieces once, together, so it is made again from
     // the pieces this repaint just changed
@@ -8557,6 +9645,10 @@
     // the pairs are enrolled apart (their line reads ONE half), and move with
     // the table the same way
     paintPairs();
+    // every line is painted: the lone words' blobs near the screen are drawn
+    // from them now, in the same turn, as the runs' were above, and the rest
+    // follow (tieAgainNow)
+    tieAgainNow();
     switchGen += 1;
     repaintLive(GLOSS_STANDS);
   };
@@ -8617,16 +9709,12 @@
     if (!sourcesOff.size) return false;
     if (moved) {
       if (moved.why === "sources" || moved.why === "sources-bare") return true;
-      return !!(moved.m && moved.m.m && anyOff(idsOfLabel(moved.m.m)));
+      return (moved.rs || []).some((r) => r && r.m && anyOff(idsOfLabel(r.m)));
     }
     const gm = zone.gloss_m && zone.gloss_m[lookupKey(st.word, k, zone.gloss)];
     if (!gm) return false;
     if (Array.isArray(gm.by) && gm.by.length) return anyOff(gm.by);
     return !!(gm.m && anyOff(idsOfLabel(gm.m)));
-  };
-  const chipMOf = (rec) => {
-    const s = (index && index.m_sources && index.m_sources[rec[3]]) || {};
-    return { lic: licenseName(s.licensePosture), m: s.label || rec[3], y: s.sourceYear || "", wy: rec[4] };
   };
   const repaintLive = async (stands, again = false) => {
     if (!sourcesOff.size || !zone.gloss) return;
@@ -8645,7 +9733,7 @@
         if (!need[i]) {
           const g = moved ? moved.text : zone.gloss[k];
           parts.push(g ? spanJoin(g) : "\u2014");
-          ms.push(moved ? moved.m : (zone.gloss_m ? zone.gloss_m[k] : null));
+          ms.push(moved ? moved.rs : (zone.gloss_m && zone.gloss_m[k] ? [zone.gloss_m[k]] : []));
           continue;
         }
         let pool = null;
@@ -8669,32 +9757,32 @@
             if (old) {
               old.remove();
               if (on.length) {
-                const chip = chipOfMs(on.map((id) => { const s = (index && index.m_sources && index.m_sources[id]) || {}; return { lic: licenseName(s.licensePosture), m: s.label || id, y: s.sourceYear || "" }; }));
+                const chip = licenseChipFor(on.map((id) => readingOfId(id)));
                 if (chip) st.ge.append(chip);
               }
             }
           }
           // a run's visible line is made from its words' lines; it is made again
           const runEl = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
-          if (runEl) refreshJoinGloss(runEl);
+          if (runEl) refreshJoinGloss(runEl); else tieAgain(st.ge);
           failed.push(st);
           return;
         }
         if (gen !== switchGen) return;
         const top = pool && pool[0];
         parts.push(top ? spanJoin(top.text) : "\u2014");
-        ms.push(top && top.records && top.records[0] ? chipMOf(top.records[0]) : null);
+        ms.push(top && top.records && top.records[0] ? [readingOfRow(top.records[0])] : []);
       }
       if (gen !== switchGen || !st.ge.isConnected) return;
       const line = parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "";
       st.ge.replaceChildren();
       if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); delete st.ge.dataset.off; }
       else { st.ge.textContent = " "; st.ge.classList.add("bare"); st.ge.dataset.off = "sources"; st.ge.title = "no source that is switched on answers this word"; }
-      const shown = ms.filter((m, i) => m && parts[i] !== "\u2014");
-      if (line && shown.length) { const chip = chipOfMs(shown); if (chip) st.ge.append(chip); }
+      const shown = ms.filter((m, i) => m && parts[i] !== "\u2014").flat();
+      if (line && shown.length) { const chip = licenseChipFor(shown); if (chip) st.ge.append(chip); }
       st.ge.dataset.live = "sources";
       const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
-      if (run) refreshJoinGloss(run);
+      if (run) refreshJoinGloss(run); else tieAgain(st.ge);
     };
     // the words on screen first, then outward: a reader looking at a verse
     // sees it settle before the rest of the book does. A few at a time — the
@@ -10909,6 +11997,7 @@
       const link = rc || prev || next ? { rc, prev, next } : null;
       appendWord(he, built, word, link);
       if (rc) { built.wb.__run = rc; rc.__els.set(myIdx, built.wb); }
+      built.wb.__word = word;
       // A commentary attached at this word gets its handle here, standing in
       // the line right after the words it covers, and it opens here too — a
       // reader should not have to look anywhere else to find what they pressed.
@@ -11149,6 +12238,7 @@
       if (bar) bar.setAttribute("aria-expanded", "true");
     }
     if (el.__place) el.__place(el);
+    if (TIE_EVERY) requestAnimationFrame(() => { for (const wb of el.querySelectorAll(".he-text > .wb")) drawWordTie(wb); });
     return true;
   };
   const REACH = 1400;

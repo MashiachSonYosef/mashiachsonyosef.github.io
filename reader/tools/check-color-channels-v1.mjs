@@ -7,8 +7,8 @@
 // A channel is not a decoration: it says who is speaking. The corpus speaks in
 // tola'at shani, the reading offered for one of its words speaks in tekhelet
 // because a dictionary said it and not the source, and this project speaks in
-// argaman. Gold is the frame around any of them, and gold at its amber value
-// is the reader's own hand on it.
+// argaman. Gold is the frame around any of them: at rest its dim, and its
+// regular where the reader's hand is on it.
 //
 // WHAT THIS CHECK STOPPED ASSERTING, AND WHY.
 // Under v1 the load-bearing assertion was that structure and reader selection
@@ -89,11 +89,9 @@ const channels = contract.channels || {};
 // from the argaman ground, which are the same angle.
 const FAMILY = {
   "gold": { hue: [35, 60], minSat: 0.25, light: [0.30, 0.85] },
-  // amber is allowed darker than gold, and on the day face it has to be: a
-  // selection is normal-size text and holds the 4.5 floor on linen, where
-  // structure sits at display sizes and holds 4. So the value that keeps the
-  // selection legible is the same value that holds it apart from the frame.
-  "gold, at its amber value": { hue: [35, 60], minSat: 0.25, light: [0.26, 0.85] },
+  // (gold at its amber value was measured here while a selection was amber;
+  // it has been purple since 2026-10-03 and the amber was folded away on
+  // 2026-10-10, so no channel names it)
   "tola'at shani": { hue: [-15, 25], minSat: 0.20, light: [0.25, 0.75] },
   "tekhelet": { hue: [185, 235], minSat: 0.25, light: [0.30, 0.85] },
   // the field ink is argaman too, brought down to a neutral, so the box has
@@ -103,7 +101,8 @@ const FAMILY = {
   "purple": { hue: [250, 320], minSat: 0.05, light: [0.01, 0.30] },
   "brown": { hue: [15, 50], minSat: 0.05, light: [0.01, 0.30] },
   "linen": { hue: [30, 60], minSat: 0.03, light: [0.82, 0.97] },
-  "parchment": { hue: [30, 60], minSat: 0.03, light: [0.76, 0.95] },
+  // (parchment, the commentary's own ground, was folded into the linen on
+  // 2026-10-10; the record no longer names it)
 };
 
 const rgb = (s) => {
@@ -224,7 +223,10 @@ const painted = await p.evaluate((sample) => {
   for (const [k, [sel, prop]] of Object.entries(sample)) out[k] = cs(sel, prop);
   out.base_surface = cs("body", "backgroundColor");
   // a word's commentary opens in a slot, a section's in its own line; either is the surface
-  out.commentary_surface = cs("section.seg .c-mark-slot:not(.c-choose)", "backgroundColor") || cs("section.seg .c-inline:not([hidden])", "backgroundColor") || cs("#cIndex", "backgroundColor");
+  const cEl = ["section.seg .c-mark-slot:not(.c-choose)", "section.seg .c-inline:not([hidden])", "#cIndex"].map((s) => document.querySelector(s)).find(Boolean);
+  out.commentary_surface = cEl ? getComputedStyle(cEl).backgroundColor : null;
+  out.commentary_where = cEl ? (cEl.id ? `#${cEl.id}` : `.${[...cEl.classList].join(".")}`) : null;
+  out.commentary_edges = cEl ? ["Top", "Right", "Bottom", "Left"].map((s) => ({ w: parseFloat(getComputedStyle(cEl)[`border${s}Width`]) || 0, c: getComputedStyle(cEl)[`border${s}Color`], st: getComputedStyle(cEl)[`border${s}Style`] })) : [];
   return out;
 }, SAMPLE);
 
@@ -334,11 +336,24 @@ for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; 
     check(`  ${what} reads (>= ${floor}:1)`, r2 >= floor, `${r2.toFixed(1)}:1`);
   }
 }
+// THREE LINENS (the owner, 2026-10-09: "maybe linen should have 3 shades?";
+// 2026-10-10: "personally i dont see a gain from more than 2/2/2/2 and 3
+// linen"). Until 2026-10-10 a commentary stood on a parchment of its own and
+// this asserted that it did not sit on the text's surface. The parchment was
+// a fourth linen, so it is folded into the ground, and what sets a commentary
+// apart is what the owner's ruling leaves it: its red rail where it reads
+// under its verse (a frame, where it is the book's index of commentaries),
+// never a ground of its own.
 if (commentaryHere) {
   const a = rgb(painted.base_surface), c = rgb(painted.commentary_surface);
-  const apart = a && c && a.some((x, i) => Math.abs(x - c[i]) >= 3);
-  check("  a commentary does not sit on the text's own surface", apart,
-    `${painted.base_surface} vs ${painted.commentary_surface}`);
+  const same = !!a && !!c && a.every((x, i) => Math.abs(x - c[i]) < 3) && alphaOf(painted.commentary_surface) > 0.98;
+  check("  a commentary stands on the text's own linen, not a fourth", same,
+    `${painted.base_surface} vs ${painted.commentary_surface} (${painted.commentary_where})`);
+  const edges = (painted.commentary_edges || []).filter((e) => e.st !== "none" && e.w > 0 && alphaOf(e.c) > 0.5);
+  const rail = edges.find((e) => e.w >= 2 && inFamily(e.c, (channels.text_as_written || {}).material || "tola'at shani").ok);
+  const isIndex = painted.commentary_where === "#cIndex";
+  check("  and is set apart by its red rail (or, as the index, by its frame)", !!rail || (isIndex && edges.length > 0),
+    edges.map((e) => `${e.w}px ${e.c}`).join(" · ") || "no edge");
 }
 }
 
@@ -390,9 +405,10 @@ if (commentaryHere) {
       // and one the owner voted (relayed by Moses, 2026-10-11): "every mark
       // gold, vowels included". A Masoretic mark is gold at rest, by its
       // class (masoretic-marks-rule-v1); the letters laid over it keep the
-      // corpus's ink, and check-masoretic-gold-v1 holds both. Nothing else
-      // on the page is excused by it.
-      if (e.closest('.he-text .mg, .he-text .mg-all')) continue;
+      // corpus's ink, and check-masoretic-gold-v1 holds both. The card's
+      // head is the same word made large and wears the same gold (the
+      // owner, 2026-10-10). Nothing else on the page is excused by it.
+      if (e.closest('.he-text .mg, .he-text .mg-all, #hud .head .mg, #hud .head .mg-all')) continue;
       if (![...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
       // the ink a glyph is filled with, which is its color unless a fill
       // says otherwise: a gold fill under a red color is a gold glyph
@@ -499,6 +515,69 @@ if (commentaryHere) {
   const mat = (channels.text_as_written || {}).material || "tola'at shani";
   const r = inFamily(atRest.ink, mat);
   check(`so the color it settles at is its own channel, ${mat}, never gold`, r.ok, `${atRest.ink} · ${r.why}`);
+}
+
+// TWO OF EACH COLOR AND THREE LINENS (the owner, 2026-10-10: "personally i
+// dont see a gain from more than 2/2/2/2 and 3 linen"; "id probably go regular
+// and dim. i dont like our bold that much"; "my main point is uniform coloring
+// between logo and site"). Asked of the page as painted, with a card open over
+// the line (and a commentary open, where a work carries one), so a third shade
+// cannot creep back in under a new name: every glyph is one of the eight inks
+// the four families keep, every ground is one of the three linens, and a
+// pressed reading is the resting reading's own blue, worn bold. The values are
+// read off :root by name, so what is checked is the roles and not a hex.
+{
+  await p.evaluate(() => document.querySelector("section.seg .he-text .wb .w")?.click());
+  await p.waitForTimeout(900);
+  const got = await p.evaluate(() => {
+    const probe = document.createElement("i"); document.body.append(probe);
+    const as = (prop, v) => { probe.style[prop] = v; return getComputedStyle(probe)[prop]; };
+    const INKS = ["--shani", "--shani-dim", "--tekhelet", "--tekhelet-dim", "--argaman", "--argaman-dim", "--gold", "--gold-dim"];
+    const inks = Object.fromEntries(INKS.map((t) => [as("color", `var(${t})`), t]));
+    const ground = { bg: as("backgroundColor", "var(--bg)"), cell: as("backgroundColor", "var(--cell-wash)"), press: as("backgroundColor", "var(--press-wash)") };
+    probe.remove();
+    const trip = (c) => (String(c).match(/[\d.]+/gu) || []).slice(0, 3).join(",");
+    const alpha = (c) => { const m = String(c).match(/[\d.]+/gu) || []; return m.length > 3 ? Number(m[3]) : 1; };
+    const nm = (e) => e.tagName.toLowerCase() + (e.id ? `#${e.id}` : "") + (typeof e.className === "string" && e.className.trim() ? `.${e.className.trim().split(/\s+/u).join(".")}` : "");
+    const strayInk = [], strayGround = [];
+    let glyphs = 0, grounds = 0;
+    for (const e of document.querySelectorAll("body *")) {
+      const cs = getComputedStyle(e);
+      if (cs.display === "none" || cs.visibility === "hidden") continue;
+      if (alpha(cs.backgroundColor) >= 0.02) {
+        grounds += 1;
+        const bgc = cs.backgroundColor;
+        const ok = trip(bgc) === trip(ground.bg) || bgc === ground.cell || bgc === ground.press;
+        if (!ok && strayGround.length < 6) strayGround.push(`${nm(e)} ${bgc}`);
+      }
+      if (![...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
+      const c = cs.webkitTextFillColor && cs.webkitTextFillColor !== "currentcolor" ? cs.webkitTextFillColor : cs.color;
+      if (alpha(c) === 0) continue;                     // a glyph drawn by its background (the name's .com) has no ink of its own
+      glyphs += 1;
+      if (!inks[c] && strayInk.length < 6) strayInk.push(`${nm(e)} ${c}`);
+    }
+    for (const path of document.querySelectorAll("svg.wj-tie path")) {
+      grounds += 1;
+      const f = getComputedStyle(path).fill;
+      if (f !== ground.press && trip(f) !== trip(ground.bg) && f !== ground.cell && strayGround.length < 6) strayGround.push(`svg.wj-tie path ${f}`);
+    }
+    const on = document.querySelector('#hud .r-pills button[aria-pressed="true"]');
+    const off = document.querySelector('#hud .r-pills button:not([aria-pressed="true"])');
+    const pressed = on ? { on: getComputedStyle(on).color, weight: Number(getComputedStyle(on).fontWeight), off: off ? getComputedStyle(off).color : null, reading: inks[getComputedStyle(on).color] || null } : null;
+    return { glyphs, grounds, strayInk, strayGround, pressed, card: !!document.querySelector("#hud:not([hidden])") };
+  });
+  check("every glyph is one of the eight inks: a regular and a dim of each of the four colors",
+    got.glyphs > 0 && got.strayInk.length === 0,
+    got.strayInk.length ? `off the palette: ${got.strayInk.join(" · ")}` : `${got.glyphs} glyphs read, a card ${got.card ? "open" : "not open"}`);
+  check("every ground is one of the three linens: the ground (or a veil of it), the cell, the pressed linen",
+    got.grounds > 0 && got.strayGround.length === 0,
+    got.strayGround.length ? `a fourth ground: ${got.strayGround.join(" · ")}` : `${got.grounds} grounds read, the blobs among them`);
+  if (got.pressed) {
+    check("a pressed reading is the resting reading's own blue, worn bold, and not a blue of its own",
+      got.pressed.reading === "--tekhelet" && (!got.pressed.off || got.pressed.off === got.pressed.on) && got.pressed.weight >= 600,
+      `pressed ${got.pressed.on} (${got.pressed.reading}) at ${got.pressed.weight}, at rest ${got.pressed.off}`);
+  } else console.log("  --    no reading is pressed on the card this word opens, so the pressed reading has nothing to show");
+  await p.keyboard.press("Escape");
 }
 
 await p.close(); await b.close();

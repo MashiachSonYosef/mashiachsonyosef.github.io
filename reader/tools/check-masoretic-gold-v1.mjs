@@ -24,6 +24,12 @@
 //     the edge pixels a glyph drawn twice darkens (no pixel moves by more
 //     than 60 of 255 in any channel)
 // G4  a work the record does not carry is one color, as before
+// G5  the card's head (the owner, 2026-10-10: "if you can do the vowels in
+//     gold in the same push go for it"): a card opened on a word that holds
+//     a mark wears the gold at its head, each run with its letters laid over
+//     in the head's own ink and silent to a screen reader, the head's text
+//     still the word byte for byte, and drawn in one ink it is the plain head
+//     to within its edge pixels
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
@@ -142,6 +148,61 @@ const g3 = await p.evaluate(async ([a, c]) => {
 }, [twice, plain]);
 check("G3  the letters laid over lie on the word's own: drawn in one ink, the opening verse is the plain verse to within its edge pixels",
   !g3.size && g3.moved === 0, g3.size ? `the shots differ in size: ${g3.size}` : `${g3.moved} pixels moved · the largest change ${g3.worst} of 255`);
+
+// G5 — the card's head wears the same gold
+const hit = await p.evaluate(() => {
+  const w = [...document.querySelectorAll("section.seg .he-text .wb:not(.mark) > .w")].find((x) => x.matches(".mg") || x.querySelector(".mg"));
+  if (!w) return null;
+  w.scrollIntoView({ block: "center" }); w.click();
+  return w.textContent;
+});
+let g5 = null;
+if (hit) {
+  await p.waitForSelector("#hud .head b", { timeout: 15000 }).catch(() => null);
+  await p.waitForTimeout(700);
+  g5 = await p.evaluate(([gp, word]) => {
+    const gold = new Set(gp.map((h) => String.fromCodePoint(parseInt(h, 16))));
+    const b = document.querySelector("#hud .head b");
+    if (!b) return { none: true };
+    const probe = document.createElement("span"); probe.style.color = "var(--mark-ink)"; document.body.append(probe);
+    const inkRgb = getComputedStyle(probe).color; probe.remove();
+    const own = getComputedStyle(b).color;
+    let leaves = 0, laid = 0, wrongL = 0, wrongInk = 0, loud = 0;
+    // the head itself is the leaf when it holds one run, as a word's own element is on the line
+    for (const leaf of [b, ...b.querySelectorAll(".mg, .mg-all")].filter((e) => e.matches(".mg, .mg-all"))) {
+      leaves += 1;
+      const cs = getComputedStyle(leaf);
+      if (cs.webkitTextFillColor !== inkRgb) wrongInk += 1;
+      if (!leaf.classList.contains("mg")) continue;
+      laid += 1;
+      if (leaf.dataset.l !== [...leaf.textContent].filter((ch) => !gold.has(ch)).join("")) wrongL += 1;
+      const bs = getComputedStyle(leaf, "::before");
+      if (bs.webkitTextFillColor !== own) wrongInk += 1;
+      if (!/\/\s*""\s*$/u.test(bs.content)) loud += 1;
+    }
+    return { leaves, laid, wrongL, wrongInk, loud, inkRgb, own, same: b.textContent === word, text: b.textContent };
+  }, [R.gold.places, hit]);
+  if (g5 && !g5.none) {
+    // drawn in one ink, the head is the plain head
+    const head = await p.$("#hud .head b");
+    await p.evaluate(() => { const r = document.documentElement; r.style.setProperty("--mark-ink", getComputedStyle(document.querySelector("#hud .head b")).color); });
+    const one = (await head.screenshot()).toString("base64");
+    await p.evaluate(() => { document.documentElement.dataset.markInk = "none"; });
+    const bare = (await head.screenshot()).toString("base64");
+    await p.evaluate(() => { const r = document.documentElement; r.style.removeProperty("--mark-ink"); r.dataset.markInk = "gold"; });
+    g5.px = await p.evaluate(async ([a, c]) => {
+      const load = async (b64) => { const img = new Image(); img.src = `data:image/png;base64,${b64}`; await img.decode(); const cv = document.createElement("canvas"); cv.width = img.width; cv.height = img.height; const x = cv.getContext("2d"); x.drawImage(img, 0, 0); return x.getImageData(0, 0, img.width, img.height); };
+      const A = await load(a), C = await load(c);
+      if (A.width !== C.width || A.height !== C.height) return { size: `${A.width}x${A.height} against ${C.width}x${C.height}` };
+      let moved = 0;
+      for (let i = 0; i < A.data.length; i += 4) if (Math.max(Math.abs(A.data[i] - C.data[i]), Math.abs(A.data[i + 1] - C.data[i + 1]), Math.abs(A.data[i + 2] - C.data[i + 2])) > 60) moved += 1;
+      return { moved };
+    }, [one, bare]);
+  }
+}
+check("G5  an opened card's head wears the gold, its letters laid over in the head's own ink, silent, the word byte for byte, lying on their own",
+  !!g5 && !g5.none && g5.leaves > 0 && g5.laid > 0 && g5.wrongL === 0 && g5.wrongInk === 0 && g5.loud === 0 && g5.same && !!g5.px && !g5.px.size && g5.px.moved === 0,
+  !hit ? "no word of the opening sections holds a mark" : !g5 || g5.none ? "no card opened" : `${g5.leaves} gold runs at the head · ${g5.laid} with letters laid over · ${g5.wrongL} laid-over strings astray · ${g5.wrongInk} in the wrong ink (gold ${g5.inkRgb}, the head's own ${g5.own}) · ${g5.loud} spoken · text ${g5.same ? "the word's" : `"${g5.text}" against "${hit}"`} · ${g5.px ? (g5.px.size ? `shots differ in size: ${g5.px.size}` : `${g5.px.moved} pixels moved in one ink`) : "not drawn"}`);
 await p.close();
 
 // G4 — a work the record does not carry

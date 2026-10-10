@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-10.
 
-**126 rules declared · 119 named by a check · 7 unguarded.**
+**127 rules declared · 120 named by a check · 7 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -18,6 +18,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 |---|---|---|
 | `apparatus-baseline-rule-v1-arithmetic-over-positions-cannot-see-a-label-that-is-gone` | tools/emit-apparatus-baseline-v1.mjs | check-apparatus-not-stripped-v1 |
 | `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
+| `blob-precision-rule-v1-a-blob-is-cut-to-the-ink-and-split-where-the-word-divides` | zone.html | check-blob-precision-v1 |
 | `book-order-rule-v1-the-door-files-the-books-in-the-order-the-record-names` | tools/build-front-door-v1.mjs | **UNGUARDED** |
 | `bookword-measure-rule-v1-every-count-names-its-axis` | tools/bookword-measure-v1.mjs, tools/serve-from-restore-v5.mjs | check-bookword-count-v1 |
 | `chain-book-rule-v1-the-same-book-with-the-meaning-taken-out-so-only-the-joins-are-left` | tools/build-chain-book-v1.mjs | check-chain-book-v1 |
