@@ -1,6 +1,10 @@
 # Handoff, 10 October 2026: saved, not live
 
-This branch saves work the owner has seen in screenshots but has not yet asked to ship. Nothing here is on main or gh-pages. Before shipping: run the suite, run the door build (book and chapter addresses load the built engine, so they show none of this until it runs), and delete this `wip/` folder.
+**Shipped since (main 51f91d1c6, gh-pages 070cd17f7, 10 October):** the reading place (item 1 below) and every Masoretic mark gold by Moses's classes (relay v72.2.1; data/masoretic-marks-v1.json, tools/project-masoretic-marks-v1.mjs, tools/check-masoretic-gold-v1.mjs, --mark-ink #76500c). The owner said the live gold "just barely looks gold"; four candidates (#76500c, #9c670d, #aa7b0e, #bd890f) were shown and the pick is owed. A pick is the one token --mark-ink in reader/zone.html, then the door build. The reader here does not have the gold yet: bring main in before shipping anything from this branch (zone.html will conflict around the reading place, which both carry).
+
+Moses, 11 October: READY and not yet wired are word order (moses-word-order-v1, relay v70), word numbering (moses-word-numbering-v1, relay v71.1.1) and set-apart letters and paragraph marks (moses-set-apart-v1, relay v73). Still being checked, not to be wired: the license ledger v1.2.3 (relay v67.4.3) and accent types (relay v74). MAM's license per Moses: Sefaria's version record says "CC-BY-SA" with no version; the page's source line says "CC-BY-SA 4.0".
+
+This branch saves work the owner has seen in screenshots but has not yet asked to ship. Apart from the two pieces above, nothing here is on main or gh-pages. Before shipping: run the suite, run the door build (book and chapter addresses load the built engine, so they show none of this until it runs), and delete this `wip/` folder.
 
 ## What the reader change holds (reader/zone.html)
 
