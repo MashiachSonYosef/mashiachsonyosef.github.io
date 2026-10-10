@@ -60,8 +60,13 @@ const esc = (s) => String(s).replace(/&/gu, "&amp;").replace(/</gu, "&lt;").repl
  *  the same publication and a reader who follows a link from one to the other
  *  should not be able to tell they were built by different code paths. */
 export const CHAIN_CSS = `
- :root { --ink:#561f86; --faint:#845ba7; --muted:#6c359e; --line:#d8cdbc; --paper:#f1e9d8; --sel:#8d5e0c; --tekhelet:#34649a; }
- /* one face, linen, since 2026-09-10; the dark face came off this sheet 2026-10-02 */
+ :root { --ink:#561f86; --faint:#6c359e; --muted:#6c359e; --line:#a06c10; --paper:#ebdec3; --sel:#561f86; --tekhelet:#34649a; }
+ /* one face, linen, since 2026-09-10; the dark face came off this sheet 2026-10-02.
+    The reader's own values since 2026-10-10 (the owner: "personally i dont see a
+    gain from more than 2/2/2/2 and 3 linen"; "my main point is uniform coloring
+    between logo and site"): the page's ground, the purple regular for titles
+    and the dim for text and links, the dim gold for every rule. The paler paper,
+    the faint label purple and the gold used as a title's ink are folded in. */
  * { box-sizing: border-box; }
  body { margin:0; padding:1rem 16px 4rem; background:var(--paper); color:var(--ink);
    font:15px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
@@ -89,7 +94,7 @@ export const CHAIN_CSS = `
  .w .none { margin:.15rem 0 0; font-size:.72rem; color:var(--faint); }
  .w li.more { color:var(--faint); font-size:.7rem; }
  footer { margin-top:2rem; font-size:.72rem; color:var(--faint); line-height:1.6; max-width:44rem; }
- a { color:var(--sel); }
+ a { color:var(--muted); }
  ul.books { list-style:none; margin:.2rem 0 0; padding:0; }
  ul.books li { border-top:1px solid var(--line); padding:.55rem 0; display:flex; flex-wrap:wrap; gap:.15rem .7rem; align-items:baseline; }
  ul.books li a { font-size:.9rem; text-decoration:none; }

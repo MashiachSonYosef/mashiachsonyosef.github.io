@@ -3792,6 +3792,19 @@
     // box (owner, 2026-09-11: "on the hud shows an actual box, but on the
     // reader it doesn't")
     if (word.mark) b.dataset.mark = word.mark.kind;
+    // THE CARD'S HEAD WEARS THE SAME GOLD (the owner, 2026-10-10: "if you
+    // can do the vowels in gold in the same push go for it"): the big Hebrew
+    // word at the top of the card is the line's word made large, so its
+    // marks are the line's gold and its letters keep the head's own ink,
+    // laid over by the same leaves (EVERY MARK GOLD). Only for a word of
+    // this book, in a book the marks record carries (markSets says which);
+    // a commentary's or a dictionary's word keeps one color, and so does a
+    // mark the scribes set between words, whose head is drawn as the line
+    // draws the mark (a brick gap's is a ruled span of its own).
+    if (bin === zone && !word.mark) {
+      const sets = markSets();
+      if (sets) goldLeaves(b, sets.word);
+    }
     const x = document.createElement("button"); x.textContent = "×"; x.setAttribute("aria-label", "Close");
     x.addEventListener("click", closeHud);
     head.append(b, x);
@@ -5826,10 +5839,12 @@
   // piece's ink, the face's own glyph bounds and not the box the line gives
   // the letters ("not cutting off tops of words": the line's box stood below
   // a holam or a pashta), flowing to the width of the piece's English and
-  // around it, its corners rounded. The blob is linen a shade bolder than
-  // the cell, with the dim gold around it and not around the cell (the
+  // around it, its corners rounded. The blob is the pressed linen, the third
+  // of the three (a glaze on the cell's glaze would have made a fourth), with
+  // the dim gold around it at its full strength and not around the cell (the
   // owner, 2026-10-09: "linen is our blob color to connect the hebrew and
-  // english. and the dimmed gold is around that blob, not the full card").
+  // english. and the dimmed gold is around that blob, not the full card";
+  // 2026-10-10: "3 linen").
   // Drawn again whenever the geometry moves: a section placed, the reader
   // switched, the window resized, the face arriving, the run's line made
   // again.
@@ -5913,13 +5928,18 @@
   };
   // THE TWO SET DEPTHS of the blob's foot, for the English reader, where the
   // Hebrew's far side is its bottom (the owner, 2026-10-10: "you missed
-  // raising (lowering) it for a few vowels"): the mirror of the two heights.
-  // The foot runs flat a breath under the letters and the ordinary vowel row
-  // beneath them, whichever reaches lower, and drops to one set depth where
-  // ink reaches deeper still: a final letter's tail or a qof's leg in a face
-  // that draws them past the vowels, an accent under a vowel, a letter the
-  // scribes wrote large. Each set is painted as one string, so a face is
-  // measured in a handful of scans.
+  // raising (lowering) it for a few vowels", and then, of a foot that ran
+  // flat under the vowel row to reach them: "you lost the raise just for
+  // vowels but otherwise it looks nice"): the mirror of the two heights, as
+  // the top has them. The foot runs flat a breath under the consonants (the
+  // letters that stand on the line; the final forms and the qof reach below
+  // it as the lamed's tower reaches above), and drops to one set depth
+  // wherever ink reaches lower: every vowel, a final letter's tail or a
+  // qof's leg, an accent under a vowel, a letter the scribes wrote large.
+  // The set depth is a breath under the deepest the text reaches at all (the
+  // vowel row, or an accent under a vowel, whichever is lower), and the foot
+  // stops at no depth between. Each set is painted as one string, so a face
+  // is measured in a handful of scans.
   const PLAIN_LETTERS = [];
   for (let c = 0x05d0; c <= 0x05ea; c += 1) if (![0x05da, 0x05df, 0x05e3, 0x05e5, 0x05e7].includes(c)) PLAIN_LETTERS.push(String.fromCharCode(c));
   const ROW_VOWELS = [0x05b0, 0x05b1, 0x05b2, 0x05b3, 0x05b4, 0x05b5, 0x05b6, 0x05b7, 0x05b8, 0x05bb, 0x05c7];
@@ -5936,9 +5956,9 @@
     const lift = Math.max(line, ...TALLEST.map((s) => inkTopOf(s, font) || 0));
     INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
     const he = INK_CV.measureText("\u05d4");
-    let foot = inkBottomOf(PLAIN_LETTERS.join(" "), font) || 0;
-    for (const v of ROW_VOWELS) foot = Math.max(foot, inkBottomOf(PLAIN_LETTERS.map((ch) => ch + String.fromCharCode(v)).join(" "), font) || 0);
-    const drop = Math.max(foot, inkBottomOf(DEEPEST, font) || 0);
+    const foot = inkBottomOf(PLAIN_LETTERS.join(" "), font) || 0;
+    let drop = Math.max(foot, inkBottomOf(DEEPEST, font) || 0);
+    for (const v of ROW_VOWELS) drop = Math.max(drop, inkBottomOf(PLAIN_LETTERS.map((ch) => ch + String.fromCharCode(v)).join(" "), font) || 0);
     const cap = { actualBoundingBoxAscent: asc, actualBoundingBoxDescent: Number.isFinite(he.actualBoundingBoxDescent) ? he.actualBoundingBoxDescent : 0, line, lift, foot, drop };
     CAPS.set(font, cap);
     return cap;
@@ -5988,15 +6008,32 @@
     return g;
   };
   const joinBand = (x, y) => (!x ? y : !y ? x : { iL: Math.min(x.iL, y.iL), iR: Math.max(x.iR, y.iR), iT: Math.min(x.iT, y.iT), iB: Math.max(x.iB, y.iB) });
+  // A STRETCH IS ONE FACE'S TEXT, HOWEVER MANY NODES HOLD IT. A word with a
+  // letter the scribes marked is cut into a node per character (RULE 12,
+  // appendLettered), so each point after an unmarked letter stands in a
+  // node of its own, which the line sets in no width; and the gold cuts a
+  // maqaf out of its word (EVERY MARK GOLD). Measured node by node, such a
+  // point was never painted: the shin's dot in the first word of Genesis
+  // had no raise over it, and the zaqef among the dotted letters of Genesis
+  // 18:9 stood outside its blob. And with one letter to a node, the first
+  // letter set its word's lines, so the small he of Genesis 2:4 set them for
+  // the letters beside it. So the nodes that run on in one face are
+  // measured as one stretch, the points painted on their letters, as the
+  // line sets them.
   const inkBox = (map, a, b) => {
     let box = null;
+    const stretches = [];
     for (const t of map.nodes) {
       const s = Math.max(a, t.at), e = Math.min(b, t.at + t.len);
       if (s >= e) continue;
-      const rg = document.createRange(); rg.setStart(t.n, s - t.at); rg.setEnd(t.n, e - t.at);
+      const font = fontOf(t.n.parentElement), last = stretches[stretches.length - 1];
+      if (last && last.font === font && last.e === s) { last.e = e; last.to = t; } else stretches.push({ font, s, e, from: t, to: t });
+    }
+    for (const { font, s, e, from, to } of stretches) {
+      const rg = document.createRange(); rg.setStart(from.n, s - from.at); rg.setEnd(to.n, e - to.at);
       const adv = unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
       if (!adv) continue;
-      const font = fontOf(t.n.parentElement), str = t.n.data.slice(s - t.at, e - t.at);
+      const str = map.text.slice(s, e);
       const gi = glyphInk(str, font);
       const base = adv.T + gi.fasc, yA = base + gi.yA, yB = base + gi.yB, capY = base + gi.cap;
       const bands = gi.bands ? gi.bands.map((x) => (x ? { iL: adv.R + x.iL, iR: adv.R + x.iR, iT: base + x.iT, iB: base + x.iB } : null)) : null;
@@ -6133,7 +6170,7 @@
     const out = [];
     // the blob's dress; a screenshot probe may set a trial one on window.__tie
     // (a fill, an outline, walls, the corners' radius), the live page never does
-    const T = window.__tie || { fill: "var(--tie-wash)", stroke: "var(--gold-dim)", strokeW: 1, strokeOp: 0.7, round: 8 };
+    const T = window.__tie || { fill: "var(--press-wash)", stroke: "var(--gold-dim)", strokeW: 1, strokeOp: 1, round: 8 };
     const g = T.grow || 0;
     const boxes = [];
     const f = (n) => Math.round(n * 10) / 10;
@@ -6910,12 +6947,10 @@
     }
     return MARK_INK.fit.get(text);
   };
-  const goldMarks = (wb, word) => {
-    const sets = markSets();
-    if (!sets) return;
-    const gold = word.mark ? sets.mark : sets.word;
-    const w = wb.querySelector(":scope > .w");
-    if (!w) return;
+  // goldLeaves makes the leaves of one element that holds a word's text, by
+  // one gold set: the line's word (goldMarks, below) and the card's head
+  // (THE CARD'S HEAD WEARS THE SAME GOLD, in openHud) call it alike.
+  const goldLeaves = (w, gold) => {
     const texts = [];
     const walk = document.createTreeWalker(w, NodeFilter.SHOW_TEXT);
     for (let n = walk.nextNode(); n; n = walk.nextNode()) texts.push(n);
@@ -6950,6 +6985,13 @@
       }
       t.replaceWith(frag);
     }
+  };
+  const goldMarks = (wb, word) => {
+    const sets = markSets();
+    if (!sets) return;
+    const w = wb.querySelector(":scope > .w");
+    if (!w) return;
+    goldLeaves(w, word.mark ? sets.mark : sets.word);
   };
   const wordBlock = (word, table) => {
     const wb = document.createElement("span");

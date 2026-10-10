@@ -27,6 +27,28 @@
 #     now, since the mark stands on the door alone and every other page prints
 #     the name as text
 #
+# DYED IN THE SITE'S OWN PAIRS (the owner, 2026-10-10: "personally i dont see
+# a gain from more than 2/2/2/2 and 3 linen", "id probably go regular and dim.
+# i dont like our bold that much", "my main point is uniform coloring between
+# logo and site", and "id just use the same gold as the borders and logo
+# was"). Each word's threads are its color's regular and dim and nothing else,
+# the very values the pages paint:
+#
+#   - fire and the flame: the red regular, its dim the light along each thread
+#   - and and the flame's heart: the gold's dim as the body, the gold every
+#     frame on the site wears at rest, and its regular as the thread's edge
+#   - hail and the hailstone: the blue regular, its dim the light along each
+#     thread and the hailstone's glint
+#   - .com: the purple regular, its dim the light along each thread; its dot
+#     still turns from the blue regular into the purple regular, smoothly
+#
+# No shade is mixed: the darker edges and the lighter middles this drew from
+# each color by multiplying it down or mixing it toward a linen the site never
+# paints are gone, and so are the name's own brighter gold of 2026-10-02 and
+# the black and white threads that lay over the dot of .com. The hand-offs at
+# the a and the d of and are kept, so gold and blue still never blend into
+# green.
+#
 # Run: python3 tools/build-wordmark-v1.py   (from reader/; needs fontTools)
 import math, os, re, sys
 from fontTools.ttLib import TTFont
@@ -39,8 +61,16 @@ FONT = os.path.join(ROOT, 'fonts', 'outfit-wordmark-600.woff2')
 OUT = os.path.join(ROOT, 'mark')
 CNAME = os.path.join(ROOT, 'CNAME')
 
-# the site's own values (zone.html :root): shani, the mark's gold, tekhelet, argaman
-S = '#9d4355'; G = '#c4921c'; B = '#34649a'; U = '#772ba3'; LINEN = '#f1e9d8'
+# the site's own pairs (zone.html :root), a regular and a dim of each color
+S = '#9d4355'; S_DIM = '#b76670'   # shani: --shani, --shani-dim
+G = '#93661a'; G_DIM = '#a06c10'   # gold: --gold, --gold-dim
+B = '#34649a'; B_DIM = '#7f8ba8'   # tekhelet: --tekhelet, --tekhelet-dim
+U = '#561f86'; U_DIM = '#6c359e'   # argaman: --argaman, --argaman-dim
+# each color's thread: its edge, its body, and the light along its middle.
+# The gold's body is its dim, since the and is the gold the frames wear at
+# rest, and its edge the regular; every other color's body and edge are its
+# regular, with its dim for the light.
+THREAD = {'S': (S, S, S_DIM), 'G': (G, G_DIM, G_DIM), 'B': (B, B, B_DIM), 'U': (U, U, U_DIM)}
 TEXT = open(CNAME).read().split()[0] if os.path.exists(CNAME) else ''
 PARTS = re.match(r'^(fire)(and)(hail)(\..+)$', TEXT)
 if not PARTS:
@@ -56,11 +86,6 @@ EXTRA = {0: 18}   # room after the f for the flame
 ANGLE = 60
 
 def fmt(v): return ('%.1f' % v).rstrip('0').rstrip('.')
-def hx(c): c = c.lstrip('#'); return tuple(int(c[i:i + 2], 16) for i in (0, 2, 4))
-def toh(t): return '#%02x%02x%02x' % tuple(max(0, min(255, round(v))) for v in t)
-def mix(a, b, t): a = hx(a); b = hx(b); return toh(tuple(a[i] + (b[i] - a[i]) * t for i in range(3)))
-def shade(c, f): return toh(tuple(v * f for v in hx(c)))
-def tint(c, t): return mix(c, LINEN, t)
 
 F = TTFont(FONT); GS = F.getGlyphSet(); CM = F.getBestCmap(); HM = F['hmtx']
 
@@ -99,8 +124,8 @@ def turn_x(i):
         if k + 1 < len(TEXT): x += KERN.get((ch, TEXT[k + 1]), 0)
     return X0[i] + (L[i][1] - x)
 
-def thread(id, c, angle, edge, hi, P):
-    e = shade(c, edge); h = tint(c, hi)
+def thread(id, n, angle, P):
+    e, c, h = THREAD[n]
     return (f'<linearGradient id="{id}l" x1="0" y1="0" x2="0" y2="1">'
             f'<stop offset="0" stop-color="{e}"/><stop offset=".22" stop-color="{c}"/><stop offset=".46" stop-color="{h}"/>'
             f'<stop offset=".78" stop-color="{c}"/><stop offset="1" stop-color="{e}"/></linearGradient>'
@@ -136,7 +161,7 @@ STEM_MID = 124   # the i's stem, from its left side bearing
 
 def mark(uid, woven, P=42):
     # the a of and turns from shani to gold, its d from gold to tekhelet
-    regions = [(FIRE, S), ([AND[0]], ('turn', S, G)), (AND[1:-1], G), ([AND[-1]], ('turn', G, B)), (HAIL, B), (TLD, U)]
+    regions = [(FIRE, 'S'), ([AND[0]], ('turn', 'S', 'G')), (AND[1:-1], 'G'), ([AND[-1]], ('turn', 'G', 'B')), (HAIL, 'B'), (TLD, 'U')]
     th = math.radians(ANGLE); sn = math.sin(th); cs = math.cos(th)
     ink0 = 10; ink1 = L[-1][1] + HM[CM[ord(TEXT[-1])]][0] - 6
     flame_top = FLAME_BASE + 300 * FLAME_S
@@ -144,13 +169,11 @@ def mark(uid, woven, P=42):
     vx0 = ink0 - pad; vx1 = ink1 + pad; vy0 = -math.ceil(flame_top) - pad; vy1 = 10 + pad
     vw = vx1 - vx0; vh = vy1 - vy0
     defs = []; body = []
-    NAME = {S: 'S', G: 'G', B: 'B', U: 'U'}
     if woven:
-        for c, n in NAME.items():
-            e_, h_ = (.80, .34) if c == G else (.74, .17)
-            defs.append(thread(f'p{uid}{n}', c, ANGLE, e_, h_, P))
-            defs.append(thread(f'q{uid}{n}', c, 0, e_, h_, P))
-    fill = (lambda c: f'url(#p{uid}{NAME[c]})') if woven else (lambda c: c)
+        for n in THREAD:
+            defs.append(thread(f'p{uid}{n}', n, ANGLE, P))
+            defs.append(thread(f'q{uid}{n}', n, 0, P))
+    fill = (lambda n: f'url(#p{uid}{n})') if woven else (lambda n: THREAD[n][1])
     corners = [(vx0, vy0), (vx1, vy0), (vx0, vy1), (vx1, vy1)]
     vs = [-x * sn + y * cs for x, y in corners]; us = [x * cs + y * sn for x, y in corners]
     j0 = math.floor(min(vs) / P) - 1; j1 = math.ceil(max(vs) / P) + 1
@@ -169,39 +192,32 @@ def mark(uid, woven, P=42):
         col[order[k - 1]] = b; col[order[k]] = a
         defs.append(f'<clipPath id="c{uid}r{ri}"><path d="{d}"/></clipPath>')
         js = sorted(col); rects = []; start = js[0]; cur = col[js[0]]
-        def emit(s_, e_, c):
-            if woven: rects.append(f'<rect x="{fmt(u0)}" y="{fmt(s_ * P)}" width="{fmt(u1 - u0)}" height="{fmt((e_ - s_) * P)}" fill="url(#q{uid}{NAME[c]})"/>')
-            else: rects.append(f'<rect x="{fmt(u0)}" y="{fmt(s_ * P)}" width="{fmt(u1 - u0)}" height="{fmt((e_ - s_) * P + 0.6)}" fill="{c}"/>')
+        def emit(s_, e_, n):
+            if woven: rects.append(f'<rect x="{fmt(u0)}" y="{fmt(s_ * P)}" width="{fmt(u1 - u0)}" height="{fmt((e_ - s_) * P)}" fill="url(#q{uid}{n})"/>')
+            else: rects.append(f'<rect x="{fmt(u0)}" y="{fmt(s_ * P)}" width="{fmt(u1 - u0)}" height="{fmt((e_ - s_) * P + 0.6)}" fill="{THREAD[n][1]}"/>')
         for j in js[1:]:
             if col[j] != cur: emit(start, j, cur); start = j; cur = col[j]
         emit(start, js[-1] + 1, cur)
         body.append(f'<g clip-path="url(#c{uid}r{ri})"><g transform="rotate({ANGLE})">' + ''.join(rects) + '</g></g>')
-    # the dot of .com, blue turning purple across it, smoothly
+    # the dot of .com, the blue regular turning into the purple regular
+    # across it, smoothly, and nothing laid over it
     dot = gpath(DOT)
     nums = [float(v) for v in re.findall(r'-?\d+(?:\.\d+)?', dot)]
     dx0, dx1 = min(nums[0::2]), max(nums[0::2])
     defs.append(f'<linearGradient id="d{uid}" gradientUnits="userSpaceOnUse" x1="{fmt(dx0)}" y1="0" x2="{fmt(dx1)}" y2="0">'
                 f'<stop offset="0" stop-color="{B}"/><stop offset="1" stop-color="{U}"/></linearGradient>')
     body.append(f'<path d="{dot}" fill="url(#d{uid})"/>')
-    if woven:
-        # the threads over it, in light and shadow only, so the blend stays smooth
-        defs.append(f'<linearGradient id="t{uid}l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".24"/>'
-                    f'<stop offset=".22" stop-color="#000" stop-opacity="0"/><stop offset=".46" stop-color="#fff" stop-opacity=".17"/>'
-                    f'<stop offset=".78" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".24"/></linearGradient>'
-                    f'<pattern id="t{uid}" patternUnits="userSpaceOnUse" width="400" height="{P}" patternTransform="rotate({ANGLE})">'
-                    f'<rect width="400" height="{P}" fill="url(#t{uid}l)"/></pattern>')
-        body.append(f'<path d="{dot}" fill="url(#t{uid})"/>')
     # fire's i: a flame with a gold heart
     fx = L[I_FIRE][1] + STEM_MID
-    body.append(f'<path d="{place(FLAME, FLAME_S, fx, FLAME_BASE)}" fill="{fill(S)}"/>')
-    body.append(f'<path d="{place(HEART, FLAME_S, fx + 2 * FLAME_S, FLAME_BASE + 16 * FLAME_S)}" fill="{fill(G)}"/>')
-    # hail's i: a hailstone, with its glint where the threads are drawn
+    body.append(f'<path d="{place(FLAME, FLAME_S, fx, FLAME_BASE)}" fill="{fill("S")}"/>')
+    body.append(f'<path d="{place(HEART, FLAME_S, fx + 2 * FLAME_S, FLAME_BASE + 16 * FLAME_S)}" fill="{fill("G")}"/>')
+    # hail's i: a hailstone, with its glint, the blue's dim, where the threads are drawn
     hxc = L[I_HAIL][1] + STEM_MID
-    body.append(f'<path d="{circle(hxc, -HAIL_Y, HAIL_R)}" fill="{fill(B)}"/>')
+    body.append(f'<path d="{circle(hxc, -HAIL_Y, HAIL_R)}" fill="{fill("B")}"/>')
     if woven:
         gx, gy = hxc - HAIL_R * 0.36, -HAIL_Y - HAIL_R * 0.36
         body.append(f'<ellipse cx="{fmt(gx)}" cy="{fmt(gy)}" rx="{fmt(HAIL_R * 0.30)}" ry="{fmt(HAIL_R * 0.15)}" '
-                    f'transform="rotate(-45 {fmt(gx)} {fmt(gy)})" fill="{mix(B, "#ffffff", 0.72)}"/>')
+                    f'transform="rotate(-45 {fmt(gx)} {fmt(gy)})" fill="{B_DIM}"/>')
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{fmt(vx0)} {fmt(vy0)} {fmt(vw)} {fmt(vh)}" '
             f'width="{fmt(vw / 10)}" height="{fmt(vh / 10)}" role="img" aria-label="{TEXT}">'
             f'<title>{TEXT}</title><defs>{"".join(defs)}</defs>{"".join(body)}</svg>\n'), (vx0, vy0, vw, vh)
