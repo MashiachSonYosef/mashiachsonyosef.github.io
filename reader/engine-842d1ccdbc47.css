@@ -912,6 +912,30 @@
   .wjoin { position: relative; }
   .wjoin > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
   .wjoin > .wj-ink, .wjoin > .g { position: relative; z-index: 1; }
+  .wb.tied { position: relative; }
+  /* a split reading: one column per piece, in the Hebrew's direction, each
+     piece read left to right in itself */
+  .g-pcs { display: inline-flex; direction: rtl; align-items: baseline; justify-content: center; white-space: nowrap; }
+  .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
+  .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
+  /* THE ENGLISH READER KEEPS ITS OWN ORDER (the owner, 2026-10-10, on the
+     first word of Genesis: "for hebrew reader it would be non zig zag. for
+     english reader it would be zig zag"). In the Hebrew reader a split
+     reading's pieces stand right to left, each under its own Hebrew, and
+     nothing crosses. In the English reader they keep the English order, and
+     each piece's blob crosses to its own Hebrew. The license chip rides
+     above the English there, so the crossing holds the ties alone, and a
+     line that can cross takes the height a gentle cross needs, no more. The
+     chip stays in the line's flow, so a word's cell still widens to hold it;
+     only a line made of its English and its chip is turned over, and a line
+     holding anything else keeps today's order. */
+  body.en .g-pcs { direction: ltr; }
+  body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
+  body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
+  body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
+  body.en .he-text > .wb.tied > .g:has(> .g-pcs), body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
+  .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+  .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
      body.en .w order 2). A run's ink wrapper carries no order of its own, so
      a joined word printed its reading BELOW its ink while every word beside

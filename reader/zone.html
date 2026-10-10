@@ -932,6 +932,30 @@
   .wjoin { position: relative; }
   .wjoin > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
   .wjoin > .wj-ink, .wjoin > .g { position: relative; z-index: 1; }
+  .wb.tied { position: relative; }
+  /* a split reading: one column per piece, in the Hebrew's direction, each
+     piece read left to right in itself */
+  .g-pcs { display: inline-flex; direction: rtl; align-items: baseline; justify-content: center; white-space: nowrap; }
+  .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
+  .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
+  /* THE ENGLISH READER KEEPS ITS OWN ORDER (the owner, 2026-10-10, on the
+     first word of Genesis: "for hebrew reader it would be non zig zag. for
+     english reader it would be zig zag"). In the Hebrew reader a split
+     reading's pieces stand right to left, each under its own Hebrew, and
+     nothing crosses. In the English reader they keep the English order, and
+     each piece's blob crosses to its own Hebrew. The license chip rides
+     above the English there, so the crossing holds the ties alone, and a
+     line that can cross takes the height a gentle cross needs, no more. The
+     chip stays in the line's flow, so a word's cell still widens to hold it;
+     only a line made of its English and its chip is turned over, and a line
+     holding anything else keeps today's order. */
+  body.en .g-pcs { direction: ltr; }
+  body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
+  body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
+  body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
+  body.en .he-text > .wb.tied > .g:has(> .g-pcs), body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
+  .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+  .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
      body.en .w order 2). A run's ink wrapper carries no order of its own, so
      a joined word printed its reading BELOW its ink while every word beside
@@ -2509,8 +2533,12 @@
   const placeShown = (at) => {
     if (!at || signsPref !== "off") return at;
     const pieces = String(at.text).split("/");
-    const keep = trimSigns(pieces);
-    return keep.length === pieces.length ? at : { ...at, text: keep.join("/").trim(), full: at.text };
+    // the pieces left drawn, and with them the sources the chip names
+    let keep = pieces.map((x, i) => i).filter((i) => !signOnly(pieces[i]));
+    if (!keep.length) keep = pieces.map((x, i) => i);
+    if (keep.length === pieces.length) return at;
+    const rs = at.rs && at.rs.length === pieces.length ? keep.map((i) => at.rs[i]) : at.rs;
+    return { ...at, text: keep.map((i) => pieces[i]).join("/").trim(), full: at.text, rs };
   };
   let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
   let defOrder = (() => {
@@ -3603,6 +3631,8 @@
     return m;
   };
   const cutKey = (c) => c.map((x) => x.surface).join("+");
+  // the cell TAHOT's set is remembered under: its one pill, on its division
+  const SET_CELL = "\u0002set";
   // Every place a form stands, recorded as the words are built. A ruling
   // repaints the places already standing; a section built later asks the
   // memory itself, so the ruling reaches it too.
@@ -3642,6 +3672,17 @@
     if (alt && Array.isArray(alt.by) && alt.by.length && !alt.by.every((id) => sourcesOff.has(id)) && alt.text) return spanJoin(alt.text);
     return "\u2014";
   };
+  // and whose reading that is, for its chip (licenseChipFor): the baked
+  // witness, its alternate's, or none where the column reads a dash; null
+  // where the bake names no license for it
+  const switchedReadings = (k, g) => {
+    if (!g) return [];
+    const gm = zone.gloss_m ? zone.gloss_m[k] : null;
+    if (!carriersOff(k)) return gm && gm.lic ? [gm] : null;
+    const alt = gm.alt;
+    if (alt && Array.isArray(alt.by) && alt.by.length && !alt.by.every((id) => sourcesOff.has(id)) && alt.text) return alt.lic ? [alt] : null;
+    return [];
+  };
   // THE LICENSE RIDES THE CHOSEN READING TOO (the owner, 2026-10-08: "if i
   // select a new R pill ... doesnt show the CC license on the english
   // runner"). A pick remembers the record it was pressed on; the chip under
@@ -3650,31 +3691,46 @@
   // witness cannot be named leaves the whole line without a chip — absent
   // over wrong, as ever.
   const mOfPick = (p) => {
-    const m = p && p.mId && index && index.m_sources ? index.m_sources[p.mId] : null;
-    return m ? { lic: licenseName(m.licensePosture), m: m.label, y: m.sourceYear, wy: p.wy } : null;
+    const r = p && p.mId ? readingOfId(p.mId, p.wy) : null;
+    // a place's own reading chosen (TAHOT's set, or the place's own row
+    // where no store row prints it) stands on the place's pieces' line
+    if (r && p.place) r.line = pieceLineOfM(p.mId) || r.line;
+    return r;
   };
+  // TAHOT'S SET, CHOSEN WHOLE on its own division, is the ruling while that
+  // division stands (or while no division was pressed, and the card opens
+  // on the set): the set's words under the set's source. Read block by
+  // block as forms of their own, it printed "describe + both" under
+  // Strong's where the reader had chosen TAHOT's "and + [the] two".
+  const setRuling = (m) => { const s = m.cells.get(SET_CELL); return s && (!m.cut || s.cut === m.cut) ? s : null; };
+  // the readings a ruled line shows, block by block as ruledLine reads them
   const ruledMs = (k, table) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
+    const set = setRuling(m);
+    if (set) { const r = mOfPick(set); return r ? [r] : null; }
     const run = k.includes("\u05be") && !(table && table[k]);
     const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
     const ms = [];
     for (const s of surfaces) {
       const p = m.cells.get(s);
       if (p) { const w = mOfPick(p); if (!w) return null; ms.push(w); continue; }
-      const gm = table === zone.gloss && zone.gloss_m ? zone.gloss_m[s] : null;
-      if (!gm) return null;
-      const alt = carriersOff(s) ? gm.alt : null;
-      const use = alt && alt.by && !alt.by.every((id) => sourcesOff.has(id)) ? alt : carriersOff(s) ? null : gm;
-      if (!use || !use.lic) return null;
-      ms.push({ lic: use.lic, m: use.m, y: use.y, wy: use.wy });
+      // a block left alone: the baked table under the switches, or a dash,
+      // which carries no chip of its own
+      const g = table ? table[s] : null;
+      if (!g) continue;
+      if (table !== zone.gloss) return null;
+      const rs = switchedReadings(s, g);
+      if (!rs) return null;
+      ms.push(...rs);
     }
     return ms.length ? ms : null;
   };
-  const ruledChip = (k, table) => { const ms = ruledMs(k, table); return ms ? chipOfMs(ms) : null; };
+  const ruledChip = (k, table) => { const ms = ruledMs(k, table); return ms ? licenseChipFor(ms) : null; };
   const ruledLine = (k, table) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
+    { const set = setRuling(m); if (set) return spanJoin(set.text); }
     // a maqaf run ruled cell by cell, its division never pressed, stands
     // under the division its card opened on: as written where the table
     // reads the run whole, else word by word. Read as one form it printed a
@@ -3773,14 +3829,12 @@
     const named = (r) => (r && r.role === "KETIV" ? "the ketiv" : r ? "the qere" : "the half you asked for");
     return { i: alt, fellFrom: named(regions[wanted]) };
   };
-  /** The witness chip that rides a reading. Built in one place because the
-      order toggle repaints readings, and a reading whose chip stayed behind
-      would be wearing another witness's terms. */
+  /** The witness chip that rides the baked readings of these keys. The keys
+      are the ones whose readings the line prints (under "look up by: the
+      headword", the headword's key, not the form's). */
   const licChipFor = (ks) => {
     if (!ks || !ks.length || !zone.gloss_m) return null;
-    const ms = ks.map((k) => zone.gloss_m[k]).filter(Boolean);
-    if (ms.length !== ks.length) return null;
-    return chipOfMs(ms);
+    return licenseChipFor(ks.map((k) => zone.gloss_m[k] || null));
   };
   // TWO YEARS, SAID APART. Since the year repair (store 3411c86e94e7) a row's
   // own year is the year its WORDING was written — a collector repeating an
@@ -3795,11 +3849,85 @@
   // CE — and every year a source prints of itself is an AD year
   const adYear = (y) => (/^\d{3,4}$/.test(String(y)) ? `${y} AD` : String(y));
   const yearTag = (y, axis) => (hasYear(y) ? ` \u00b7 ${axis} ${adYear(y)}` : "");
-  // the same chip from witness records already in hand — a reading a toggle
-  // moved onto the line carries its own M, not the baked column's
-  const chipOfMs = (ms) => {
-    const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
+  /* THE LICENSE CHIP OF THE READING SHOWN, MADE IN ONE PLACE. The owner,
+     2026-10-10: "the license ledger main purpose is to try to politely
+     shove you into showing the license when i change the english showing".
+     So every path that changes the English under a word, a chain or a run
+     asks for its chip here, and hands over the identity of the reading it
+     now shows, never a key whose reading something else has replaced.
+     A reading's identity is one of:
+       { line, posture, m }  a source line: a store row's m_id or a chosen
+                             pill's (readingOfId, readingOfRow), or
+                             PIECE:TAHOT / PIECE:MACULA for a place's own
+                             pieces, by each piece's own source (readingOfPiece);
+       { lic, m, by }        a baked entry (gloss_m, an order column's
+                             gloss_m_orders, an .alt), which names its
+                             source by label among its carriers;
+       { posture, m }        a lattice leader or the headword's hm, which
+                             carry a label and a posture and no id.
+     The chip's text stays what it was: licenseTextOf gives the name the
+     bake wrote, or licenseName(posture). The corpus lane's pill table
+     (source_line -> pill_text) is not wired yet, because some of its rows
+     wait on the lane; when it is, it goes into licenseTextOf, looked up by
+     sourceLineOf(reading), and nothing else on the page has to change.
+     Each chip also says which source lines it stands for (data-line).
+     A list holding a reading the page cannot name gets no chip at all:
+     absent over wrong, as ever. */
+  const licenseTextOf = (r) => (r && r.lic ? String(r.lic) : licenseName(r && r.posture));
+  let LINES_BY_LABEL = null;
+  const sourceLineOf = (r) => {
+    if (!r) return null;
+    if (r.line) return r.line;
+    if (!LINES_BY_LABEL) {
+      LINES_BY_LABEL = new Map();
+      for (const [id, s] of Object.entries((index && index.m_sources) || {})) {
+        if (!LINES_BY_LABEL.has(s.label)) LINES_BY_LABEL.set(s.label, []);
+        LINES_BY_LABEL.get(s.label).push(id);
+      }
+    }
+    const ids = LINES_BY_LABEL.get(r.m) || [];
+    // a baked entry's source is its label among its carriers (one id on all
+    // 39 books); a lattice leader's or a headword's, its label and posture
+    const hit = Array.isArray(r.by) ? ids.filter((id) => r.by.includes(id))
+      : r.posture ? ids.filter((id) => index.m_sources[id].licensePosture === r.posture) : ids;
+    return hit.length === 1 ? hit[0] : null;
+  };
+  // the lattice's witness records for a place's pieces, by source code
+  const pieceWitnesses = () => {
+    const pc = (((zone || {}).emitted_from || {}).toggles || {}).lattice;
+    return (pc && pc.pieces && pc.pieces.witnesses) || {};
+  };
+  // a place's piece, credited to the source that wrote it (pg[].s): TAHOT's
+  // pieces are PIECE:TAHOT, MACULA's PIECE:MACULA
+  const readingOfPiece = (s) => {
+    const w = s ? pieceWitnesses()[`english_${s}`] : null;
+    if (!w) return null;
+    const m = w.m && index && index.m_sources ? index.m_sources[w.m] : null;
+    return { line: `PIECE:${String(s).toUpperCase()}`, mId: w.m, posture: w.licence, m: m ? m.label : w.label, y: null };
+  };
+  // the piece line a witness's m_id stands behind (M4 is TAHOT's pieces)
+  const pieceLineOfM = (mId) => {
+    const w = pieceWitnesses();
+    const k = Object.keys(w).find((x) => /^english_/u.test(x) && w[x] && w[x].m === mId);
+    return k ? `PIECE:${k.slice(8).toUpperCase()}` : null;
+  };
+  const readingOfId = (id, wy) => {
+    const s = id && index && index.m_sources ? index.m_sources[id] : null;
+    return s ? { line: id, posture: s.licensePosture, m: s.label, y: s.sourceYear, wy } : null;
+  };
+  // a record of the store (or an overlay's) by its m_id; the place's own
+  // row (PLACE_ROWS: no store row prints the place's reading) by its pieces'
+  const readingOfRow = (rec) => {
+    const s = (index && index.m_sources && index.m_sources[rec[3]]) || {};
+    return { line: (PLACE_ROWS.has(rec) && pieceLineOfM(rec[3])) || rec[3], posture: s.licensePosture, m: s.label || rec[3], y: s.sourceYear || "", wy: rec[4] };
+  };
+  const licenseChipFor = (rs) => {
+    if (!rs || !rs.length || rs.some((r) => !r)) return null;
+    const ms = rs.map((r) => ({ ...r, lic: licenseTextOf(r) }));
+    const uniq = [...new Map(ms.map((m) => [`${m.lic} ${m.m}`, m])).values()];
     const chip = document.createElement("span"); chip.className = "g-lic";
+    const lines = uniq.map(sourceLineOf);
+    if (lines.every(Boolean)) chip.dataset.line = [...new Set(lines)].join(" ");
     if (uniq.length === 1) {
       const terms = String(uniq[0].lic).split(" + ");
       terms.forEach((x, i) => {
@@ -3836,7 +3964,7 @@
       s.ge.title = line;
       const ruled = s.regions.findIndex((r) => ruledLine(r.k, s.table) !== null) >= 0;
       if (line && !ruled && s.table === zone.gloss) {
-        const chip = at ? (at.m ? chipOfMs([at.m]) : null) : licChipFor([s.regions[i].k]);
+        const chip = at ? licenseChipFor(at.rs) : licChipFor([s.regions[i].k]);
         if (chip) s.ge.append(chip);
       } else if (line && ruled && i >= 0 && s.table === zone.gloss) {
         const chip = ruledChip(s.regions[i].k, s.table);
@@ -3937,22 +4065,50 @@
   };
   const leadRecord = (route) => [...route.records].sort(EARLIEST_FIRST)[0];
 
-  const attributionFor = async (surface, shownText, at = null) => {
+  // THE RECORD THE LINE CREDITS, read off the line's own chip: the store
+  // row's m_id licenseChipFor wrote on it (data-line), when it names exactly
+  // one. gatherSection asks for it only on a line the reader ruled, and the
+  // file then cites that row or says why not, never another carrier of the
+  // same words: a file that credits another source and license than the page
+  // it came from is worse than one that cites none.
+  const lineNamed = (g) => {
+    const chip = g && g.querySelector(".g-lic");
+    const lines = chip && chip.dataset.line ? chip.dataset.line.split(" ") : [];
+    return lines.length === 1 && index && index.m_sources && index.m_sources[lines[0]] ? { mId: lines[0] } : null;
+  };
+  // named: lineNamed's answer, or null to credit the oldest carrier, the
+  // record the card's foot shows. everySource: ask the pool with the switches
+  // lifted (poolFor). An answer with miss set found nothing to cite under
+  // this key, so another may be asked.
+  const attributionFor = async (surface, shownText, at = null, named = null, everySource = false) => {
     let pool = null;
-    try { pool = await poolFor(surface, at && spanJoin(at.text) === shownText ? { place: at } : {}); }
+    try { pool = await poolFor(surface, { ...(at && spanJoin(at.text) === shownText ? { place: at } : {}), everySource }); }
     catch { return { ok: false, unreachable: true, why: "the catalog could not be reached for this form; export again" }; }
-    if (!pool || !pool.length) return { ok: false, why: "no record in the catalog for this form" };
-    const hit = pool.find((r) => spanJoin(r.text) === shownText) ||
-                pool.find((r) => r.text === shownText);
-    if (!hit) return { ok: false, why: "the reading on the page does not match any record in the store" };
-    const lead = leadRecord(hit);
+    if (!pool || !pool.length) return { ok: false, miss: true, why: "no record in the catalog for this form" };
+    // every pill that prints the words shown: the store keeps "name" and
+    // "name." apart, and the record the line credits can stand in either.
+    // Under the signs switch the line leaves a reading's sign-only pieces
+    // undrawn ("<the> + Gilead" stands as "Gilead"), so a reading drawn so is
+    // one of them too, after those printed as shown.
+    const hits = pool.filter((r) => spanJoin(r.text) === shownText);
+    if (!hits.length) { const h = pool.find((r) => r.text === shownText); if (h) hits.push(h); }
+    if (signsPref === "off") hits.push(...pool.filter((r) => !hits.includes(r) && signsOffLine(spanJoin(r.text)) === shownText));
+    if (!hits.length) return { ok: false, miss: true, why: "the reading on the page does not match any record in the store" };
+    const own = named ? hits.map((h) => [...h.records].sort(EARLIEST_FIRST).find((r) => r[3] === named.mId)).find(Boolean) : null;
+    if (named && !own) {
+      const who = index.m_sources[named.mId];
+      return { ok: false, miss: true, unnamed: true, why: `the record the line credits for this reading (${who ? who.label : named.mId}) is not among the store's records of it` };
+    }
+    const hit = own ? hits.find((h) => h.records.includes(own)) : hits[0];
+    const lead = own || leadRecord(hit);
     const mId = lead[3];
     // the lead record's own bytes for this reading: the pool groups readings
     // case-blind across records, so hit.text can be another record's casing
     const want = spanJoin(hit.text).toLowerCase();
     const ownText = senseSplit(lead[1]).flatMap((s) => { const r = readingSplit(s); return r.damaged ? [s] : r.readings; })
       .find((x) => spanJoin(x).toLowerCase() === want) || hit.text;
-    const also = [...hit.records].sort(EARLIEST_FIRST).slice(1)
+    // the reading's other carriers, those the reader has not switched off
+    const also = [...hit.records].sort(EARLIEST_FIRST).filter((r) => r !== lead && !(everySource && sourcesOff.has(r[3])))
       .map((r) => index.m_sources[r[3]]).filter(Boolean);
     const m = index.m_sources[mId] || {};
     const post = exportPosture(m.licensePosture);
@@ -4006,7 +4162,31 @@
         const at = placeLine(w);
         const drawn = at && placeShown(at);
         const asked = drawn && drawn.full && spanJoin(drawn.text) === shown ? spanJoin(at.text) : shown;
-        const a = await attributionFor(w.k, asked, at);
+        // The file cites the reading under the key the line was read from.
+        // Under "look up by: the headword" that is the headword's key, but a
+        // reading ruled under the form, or a lattice order's leader, still
+        // reads the form's, so both are asked, the lookup's first.
+        const keys = [...new Set([lookupKey(w, w.k, zone.gloss), w.k])];
+        // A line the reader ruled is cited from the record its chip credits
+        // (lineNamed): a witness pressed on the card, or an overlay's row
+        // whose source was switched off after, stands on a record the
+        // oldest-carrier rule would not pick, and the file named another
+        // source and license than the line. That record, where the switches
+        // withhold it, is asked for again with them lifted, as a ruling
+        // outranks a switch. An unruled line is cited from the reading's
+        // oldest carrier, the record its card shows.
+        const ruled = keys.some((k) => ruledLine(k, zone.gloss) !== null);
+        const named = ruled ? lineNamed(wb.querySelector(".g")) : null;
+        const tries = keys.map((k) => [k, false]).concat(named && sourcesOff.size ? keys.map((k) => [k, true]) : []);
+        let a = null, missed = null;
+        for (const [k, every] of tries) {
+          const r = await attributionFor(k, asked, at, named, every);
+          if (!r.miss) { a = r; break; }
+          // the reason kept is the most telling one: a reading found without
+          // the record the line credits says more than a reading not found
+          if (!missed || (r.unnamed && !missed.unnamed)) missed = r;
+        }
+        a = a || missed;
         if (a.ok) { rec.en = a.text; rec.source = a; }
         else { rec.held = a.why; if (a.unreachable) rec.unreachable = true; }
       } else if (!w.k) rec.held = "held by the ledger; no reading is offered";
@@ -5299,6 +5479,10 @@
   // line under a word asks it when a switch moves the line (repaintLive), so the
   // live line lands where the bake would, and an overlay's reading stands on the
   // card, sorted like any other, not on the line
+  // opts.everySource: the pool with the source switches lifted, for the
+  // exporter only. A reading the reader chose outranks the switch that would
+  // withhold it, so the line can show a record the switched pool no longer
+  // holds, and the file has to find that record to cite what the line shows.
   // the rows the page stands up for a place's own reading, so a record can say
   // where it came from and a check can tell them from the store's
   const PLACE_ROWS = new WeakSet();
@@ -5351,7 +5535,7 @@
     // source the reader turned off is not asked. Counted apart from the
     // pointing's count so the card can say which switch withheld what.
     let withheldBySources = 0;
-    if (sourcesOff.size) {
+    if (sourcesOff.size && !opts.everySource) {
       const kept = routes.filter((row) => !sourcesOff.has(row[3]));
       withheldBySources = routes.length - kept.length;
       routes = kept;
@@ -5993,7 +6177,7 @@
     // is pressed and no piece of the set is offered as a reading on its own.
     // Pressing a block is asking about that piece alone, and a piece alone is
     // the dictionaries'. Pressing the division again stands on the set again.
-    const SET_KEY = "\u0002set";
+    const SET_KEY = SET_CELL;
     let setWhole = !!(setCut && cover === setCut);
     // a run opens on the form its line reads: as written where a dictionary
     // published that, else word by word on the word pressed — never on a
@@ -6082,6 +6266,35 @@
       if (g && bin === zone) return switchedReading(surface, g);
       return g ? spanJoin(g) : "—";
     };
+    // WHOSE READING EACH CELL SHOWS, read the way textOfCell reads its words
+    // and in the same order, so the chip painted under the line is the chip
+    // of the words painted there (the owner, 2026-10-10: "the license ledger
+    // main purpose is to try to politely shove you into showing the license
+    // when i change the english showing"). Pressing a division alone printed
+    // the whole form's first reading under TAHOT's chip, or a dash wearing
+    // one. [] where the cell reads a dash; null where the page cannot name
+    // the reading, and then no new chip is given (a line whose words did not
+    // change keeps its own).
+    const readingsOfCell = (surface) => {
+      const p = picked.get(surface);
+      if (p) { const r = mOfPick(p); return r ? [r] : null; }
+      const lead = (pl) => (pl && pl.length && pl[0].records && pl[0].records[0] ? [readingOfRow(pl[0].records[0])] : []);
+      if (setCut && surface === region.k) return lead(cache.get(poolKey(surface)));
+      { const at = placeOfCell(surface); if (at) return at.rs.length ? at.rs : null; }
+      const led = bin === zone && word && region && surface === region.k ? lineUnder(word, bin.gloss) : null;
+      if (led) return led.text ? (led.rs.length ? led.rs : null) : [];
+      if (sourcesOff.size && bin === zone && word && region && surface === region.k && partNeedsLive({ word }, surface, null)) {
+        const pl = cache.get(poolKey(surface));
+        if (pl && pl.length) return lead(pl);
+        if (glossEl && glossEl.dataset.live === "sources") {
+          const c = glossEl.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+          if (c.textContent.trim()) return null;   // the line's own live chip stands
+        }
+      }
+      const g = bin.gloss ? bin.gloss[surface] : null;
+      if (g && bin === zone) return switchedReadings(surface, g);
+      return g ? null : [];
+    };
     // What is standing under the word right now, said on the card. The reader
     // used to have to close the card to find out whether their choice held,
     // because the only answer was which pill was lit — and in a row of two
@@ -6125,6 +6338,12 @@
     const pendingNow = () => !setWhole && cover.some((c) => !picked.get(c.surface) && !cache.has(poolKey(c.surface)) && !(bin.gloss && bin.gloss[c.surface]));
     // what the open cover reads: the set whole, or its blocks joined
     const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c) => textOfCell(c.surface)).join(" + "));
+    // and the chip of what it reads: the set's own source, or each block's
+    const coverChip = () => {
+      let rs = setWhole ? (placeSet.rs.length ? placeSet.rs : null) : [];
+      if (!setWhole) for (const c of cover) { const r = readingsOfCell(c.surface); if (r === null) { rs = null; break; } rs.push(...r); }
+      return rs && rs.length ? licenseChipFor(rs) : null;
+    };
     const ASKING = "asking the catalog for this block\u2026";
     // say it from the moment the card renders, not only once the readings
     // have come back from the shard
@@ -6216,6 +6435,7 @@
       // element as it always did, and the run's line is made again from it.
       const run = box.closest && box.closest(".wjoin");
       if (run) refreshJoinGloss(run);
+      else tieAgain(box);
     };
 
     const paintGloss = () => {
@@ -6231,7 +6451,7 @@
           const t = textOfCell(c.surface);
           const own = mOfPick(memoryOf(c.surface).cells.get(c.surface));
           for (const st of standsOf.get(c.surface) || []) {
-            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : chipOfMs([own]));
+            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : licenseChipFor([own]));
             st.wb.classList.add("chosen");
             if (j === cellIdx && selectedRecordRef.m) {
               st.wb.dataset.source = selectedRecordRef.m.label || "";
@@ -6253,7 +6473,9 @@
       // An open only repaints its own line; nothing was ruled, so nothing
       // else on the page is owed a repaint.
       if (!ruled) {
-        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine);
+        // with the chip of the words it paints: opening a card may paint
+        // other words (a pair's other half, the division the card opens on)
+        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts ? null : coverChip());
         // on a pair, the provenance mark follows the half that is open: the
         // English now reads from it, and both ends of the claim wear the mark
         if (opts.kqEls && regionIndex >= 0) {
@@ -6267,7 +6489,10 @@
       // same form card by card is not a way to work through a book. Places
       // in sections not yet built recall the ruling as they are built.
       const stands = standsOf.get(region.k) || [];
-      const ruledM = ruledChip(region.k, bin.gloss);
+      // the chip of the words painted (mine), read cell by cell as they were:
+      // the ruling's own chip read the division's blocks as forms of their
+      // own even where the card painted TAHOT's set or the whole form's pool
+      const ruledM = coverChip();
       for (const s of stands) {
         const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
         holdAndPaint(s.glossEl, line, s.glossParts || !ruledM ? null : ruledM.cloneNode(true));
@@ -6566,7 +6791,7 @@
           const val = document.createElement("b"); val.textContent = hit.g;
           line.append(lab2, val);
           if (whoM) {
-            const chip = chipOfMs([{ lic: licenseName(whoM.licensePosture), m: whoM.label || who.label || who.m, y: whoM.sourceYear || "" }]);
+            const chip = licenseChipFor([readingOfPiece(hit.s)]);
             if (chip) { chip.title = `${whoM.label || who.label} — the source that reads this word so at this place${hasYear(whoM.sourceYear) ? ` · edition ${whoM.sourceYear}` : ""}`; line.append(" ", chip); }
           }
           readRow.append(line);
@@ -6596,7 +6821,8 @@
           line.append(lab2, val);
           const m = SUGGESTED_IX && SUGGESTED_IX.m;
           if (m) {
-            const chip = chipOfMs([{ lic: licenseName("public_domain"), m: m.credit_line, y: m.year, ya: "dedication" }]);
+            // the BSB is a ledger line of its own (no store row, no pill row yet)
+            const chip = licenseChipFor([{ line: "BSB", posture: "public_domain", m: m.credit_line, y: m.year, ya: "dedication" }]);
             if (chip) { chip.title = `${m.name} — ${(m.licence_text || []).join(" ")}`; line.append(" ", chip); }
           }
           readRow.append(line);
@@ -6782,7 +7008,8 @@
           if (!d.childNodes.length) d.textContent = spanJoin(text);
           return d;
         };
-        const mLine = ([, , , mId, year]) => {
+        const mLine = (row) => {
+          const [, , , mId, year] = row;
           const m = index.m_sources[mId];
           const att = document.createElement("p"); att.className = "att";
           att.append(`${m.label} · ${hasYear(year) ? `wording ${year}` : "wording year not supplied"} `);
@@ -6791,7 +7018,9 @@
           const deed = licenseDeed(m.licensePosture);
           const lic = document.createElement(deed ? "a" : "span"); lic.className = "lic-chip";
           if (deed) { lic.href = deed; lic.target = "_blank"; lic.rel = "license noreferrer"; }
-          lic.textContent = licenseName(m.licensePosture);
+          // the row's own reading, so a place's own row is named by its
+          // pieces' line (PIECE:TAHOT) here as it is on the line under the word
+          lic.textContent = licenseTextOf(readingOfRow(row));
           // The chain's pointer is the audit's business, not the reading
           // surface's: a ledger path printed here spent a third of the card
           // on plumbing no reader can follow. It rides on the chip —
@@ -6897,21 +7126,34 @@
           const line = document.createElement("p"); line.className = "d-also";
           line.append(Object.assign(document.createElement("span"),
             { className: "d-also-lab", textContent: labelText }));
+          // pressing a witness here chooses its reading as a pill does, and
+          // the line follows at once, credited to the witness pressed: it
+          // waited for some later repaint, which then credited the reading's
+          // oldest carrier rather than the record the reader pressed
+          const goTo = (group, row) => {
+            // remembered as a pill press is (choose): a place's own row stands
+            // on its pieces' line, and TAHOT's set on the division it was
+            // chosen on
+            selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
+              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null });
+            if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
+            [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
+            markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
+            renderDCard(); paintGloss(); clampHud();
+          };
           const one = ({ row, group, text }) => {
             const m = index.m_sources[row[3]];
             const b = document.createElement("button"); b.type = "button"; b.className = "d-also-m";
             b.append(`${m.label.split(/[,(]/)[0].trim()} · ${hasYear(row[4]) ? `wording ${row[4]}` : "no wording year"}`);
             const lic = document.createElement("span"); lic.className = "lic-chip";
-            lic.textContent = licenseName(m.licensePosture); b.append(lic);
+            lic.textContent = licenseTextOf(readingOfRow(row)); b.append(lic);
             if (text && text !== firstText)
               b.append(Object.assign(document.createElement("span"),
                 { className: "d-also-read", textContent: `reads it “${text}”` }));
             b.title = `${m.label} — go to this reading`;
             b.addEventListener("click", (ev) => {
               ev.stopPropagation();
-              selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: group.records[0][3], wy: group.records[0][4] });
-              [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
-              paintNow(group.text); renderDCard(); clampHud();
+              goTo(group, row);
             });
             return b;
           };
@@ -6931,9 +7173,7 @@
               ev.stopPropagation();
               const x = more[Number(sel.value)];
               if (!x) return;
-              selected = x.group; picked.set(surface, { key: routeKey(x.group.records[0]), text: x.group.text, mId: x.group.records[0][3], wy: x.group.records[0][4] });
-              [...pills.children].forEach((y) => y.setAttribute("aria-pressed", String(y.textContent === x.group.text)));
-              paintNow(x.group.text); renderDCard(); clampHud();
+              goTo(x.group, x.row);
             });
             line.append(sel);
           }
@@ -6955,7 +7195,7 @@
         // on the card.
         const rest = groups.slice(1).flatMap((g) => g.rows.map((r) => [g.text, r]));
         if (!rest.length) return;
-        const licenses = [...new Set(rest.map(([, r]) => licenseName(index.m_sources[r[3]].licensePosture)))];
+        const licenses = [...new Set(rest.map(([, r]) => licenseTextOf(readingOfRow(r))))];
         const more = document.createElement("button"); more.type = "button"; more.className = "d-more";
         const drawer = document.createElement("div"); drawer.className = "d-drawer"; drawer.hidden = true;
         more.textContent = `${rest.length} further record${rest.length === 1 ? "" : "s"} · ${licenses.join(", ")}`;
@@ -6976,7 +7216,10 @@
         body.append(more, drawer);
       };
       const choose = (route) => {
-        selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4] });
+        selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
+          place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null });
+        // any other reading chosen: the set stands whole no longer
+        if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
         markRuled();
         selectedRecordRef.m = index.m_sources[route.records[0][3]] || null;
         renderDCard(); paintGloss(); clampHud();
@@ -7528,7 +7771,7 @@
   const refreshJoinGloss = (run) => {
     if (!run || !run.__ink) return;
     // the reader ruled on the run itself: its line is that ruling, as any
-    // ruled word's line is, with no chip (absent over wrong)
+    // ruled word's line is, with the chip of what the ruling reads
     const heldRun = run.__key ? ruledLine(run.__key, run.__table || zone.gloss) : null;
     const memRun = heldRun !== null ? pickedByForm.get(run.__key) : null;
     const lineEl = () => { let l = run.__gloss; if (!l) { l = document.createElement("span"); l.className = "g"; run.append(l); run.__gloss = l; } return l; };
@@ -7540,6 +7783,7 @@
       const l = lineEl();
       delete l.dataset.off;
       l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare", "parts");
+      { const chip = ruledChip(run.__key, run.__table || zone.gloss); if (chip) l.append(chip); }
       run.classList.add("chosen");
       drawTies(run);
       return;
@@ -7567,7 +7811,7 @@
         const text = spanJoin(table[form]);
         l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare", "parts");
         l.dataset.form = form;
-        const chip = gmT && gmT[form] ? chipOfMs([gmT[form]]) : null;
+        const chip = gmT && gmT[form] ? licenseChipFor([gmT[form]]) : null;
         if (chip) l.append(chip);
         drawTies(run);
         return;
@@ -7580,7 +7824,7 @@
       const chosen = memRun && run.__words && run.__words[j] ? memRun.cells.get(run.__words[j].k) : null;
       if (chosen && chosen.text) {
         const wm = mOfPick(chosen);
-        parts.push({ t: spanJoin(chosen.text), lic: wm ? chipOfMs([wm]) : null, wi: j });
+        parts.push({ t: spanJoin(chosen.text), lic: wm ? licenseChipFor([wm]) : null, wi: j });
         continue;
       }
       const g = wb.querySelector(":scope > .g");
@@ -7635,25 +7879,313 @@
       cell.className = "g-part";
       cell.dataset.wi = String(part.wi);   // the word of the run this part reads, for the tie
       cell.append(document.createTextNode(part.t || "\u2014"));
+      pieceLine(cell, (run.__words || [])[part.wi]);
       if (part.lic) cell.append(part.lic.cloneNode(true));
       line.append(cell);
     });
     drawTies(run);
   };
-  // THE TIE, DRAWN FROM WHERE THINGS STAND. One blob per word of a run:
-  // the word's own width at the letters (the box's, less a breath so two
-  // words' blobs stay apart), hugging the letters' top, flowing to the
-  // width of the word's English at its far edge, its corners rounded. The
-  // blob is linen a shade bolder than the cell, with the dim gold around
-  // it and not around the cell (the owner, 2026-10-09: "linen is our blob
-  // color to connect the hebrew and english. and the dimmed gold is around
-  // that blob, not the full card"; of the second round of mockups, "now you
-  // got it"). Drawn again whenever the geometry moves: a section placed,
-  // the reader switched, the window resized, the face arriving, the run's
-  // line made again.
+  // RULE: blob-precision-rule-v1-a-blob-is-cut-to-the-ink-and-split-where-the-word-divides
+  // THE TIE, DRAWN FROM WHERE THINGS STAND. One blob per piece of a word:
+  // a word whose English has a + in it is as many pieces as its English has
+  // parts, cut between the letters where its own division cuts it (the
+  // owner, 2026-10-09, on Genesis 1:2: "splitting between characters", the
+  // vav to "and", the rest to "emptiness"); a word whose division does not
+  // answer its English part for part is one piece, whole. Each blob is the
+  // piece's ink, the face's own glyph bounds and not the box the line gives
+  // the letters ("not cutting off tops of words": the line's box stood below
+  // a holam or a pashta), flowing to the width of the piece's English and
+  // around it, its corners rounded. The blob is linen a shade bolder than
+  // the cell, with the dim gold around it and not around the cell (the
+  // owner, 2026-10-09: "linen is our blob color to connect the hebrew and
+  // english. and the dimmed gold is around that blob, not the full card").
+  // Drawn again whenever the geometry moves: a section placed, the reader
+  // switched, the window resized, the face arriving, the run's line made
+  // again.
   const TIE_NS = "http://www.w3.org/2000/svg";
-  // the shapes for a host (a maqaf run, or one word of a run) from its pairs
-  // of [Hebrew word element, English element]
+  // THE INK OF A STRETCH OF LETTERS: each stretch of text in its own font,
+  // its height from the glyphs' bounds about the baseline (the baseline is
+  // the line box's top less the font's ascent), its sides where the line set
+  // it, widened where a mark hangs past
+  const INK_CV = document.createElement("canvas").getContext("2d");
+  const fontOf = (el) => { const cs = getComputedStyle(el); return `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; };
+  const textMap = (el) => {
+    const nodes = []; const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n, at = 0;
+    while ((n = tw.nextNode())) { if (!n.data.length) continue; nodes.push({ n, at, len: n.data.length }); at += n.data.length; }
+    return { nodes, text: nodes.map((x) => x.n.data).join("") };
+  };
+  const unionOf = (rs) => rs.reduce((u, r) => (u ? { L: Math.min(u.L, r.left), R: Math.max(u.R, r.right), T: Math.min(u.T, r.top), B: Math.max(u.B, r.bottom) } : { L: r.left, R: r.right, T: r.top, B: r.bottom }), null);
+  // THE INK IN THREE BANDS, as the face paints it: above the letters (the
+  // accents and points over them, a lamed's flag, a maqaf), the letters,
+  // and below them (the vowels, a final letter's tail). A stretch is painted
+  // on a canvas three times finer than the screen and its sides read off
+  // the pixels band by band, so a seam can step where one piece reaches over
+  // or under its neighbor and cut through neither.
+  const BAND_CV = document.createElement("canvas");
+  const BAND_CX = BAND_CV.getContext("2d", { willReadFrequently: true });
+  const BAND_S = 3;
+  // what a stretch of text looks like in a face, measured once: its glyph
+  // bounds, the letters' band (a he's top to its foot), and its ink band by
+  // band, all about the point the line aligns it on and its baseline. A book
+  // repeats its forms, so the measure is kept by face and text.
+  const GLYPHS = new Map();
+  // THE LETTERS' TOP LINE in a face (the owner, 2026-10-09: "measure the
+  // juttingest consonant and make that the hug spec"): the tallest of the
+  // twenty-seven letter forms but the lamed, whose tower rises above the
+  // line as the points do and is drawn as they are, a jut. Measured once per
+  // face, with the deepest foot among them for the letters' band below.
+  const CAPS = new Map();
+  // how far a form's ink rises over the baseline, painted alone three times
+  // finer than the screen and read off the pixels (the face's metrics round
+  // up: a he it calls 15 px tall paints to 14.33)
+  const inkTopOf = (str, font) => {
+    INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
+    const m = INK_CV.measureText(str);
+    if (!Number.isFinite(m.actualBoundingBoxAscent)) return null;
+    const oy = Math.ceil(m.actualBoundingBoxAscent) + 2, ox = Math.ceil(Math.max(0, m.actualBoundingBoxLeft)) + 2;
+    const W = (ox + Math.ceil(Math.max(0, m.actualBoundingBoxRight)) + 2) * BAND_S, H = (oy + 2) * BAND_S;
+    if (BAND_CV.width < W) BAND_CV.width = W;
+    if (BAND_CV.height < H) BAND_CV.height = H;
+    BAND_CX.setTransform(1, 0, 0, 1, 0, 0); BAND_CX.clearRect(0, 0, W, H);
+    BAND_CX.setTransform(BAND_S, 0, 0, BAND_S, 0, 0);
+    BAND_CX.font = font; BAND_CX.direction = "rtl"; BAND_CX.textAlign = "right"; BAND_CX.textBaseline = "alphabetic"; BAND_CX.fillStyle = "#000";
+    BAND_CX.fillText(str, ox, oy);
+    const px = BAND_CX.getImageData(0, 0, W, H).data;
+    for (let y = 0; y < H; y += 1) for (let x = 0; x < W; x += 1) if (px[(y * W + x) * 4 + 3] > 64) return oy - y / BAND_S;
+    return null;
+  };
+  // THE TWO SET HEIGHTS of the blob's top in a face (the owner, 2026-10-09:
+  // "flat top for consonants et al, and raised to a set height for vowels
+  // that need it", "the highest possible needed + 2 pixels"): the line of
+  // the consonants et al (the tallest letter but the lamed, or the maqaf,
+  // whichever stands higher), and the highest the text reaches at all (a
+  // vav with a holam under a segolta, the tallest form on the shelf by the
+  // pixels, as high as a lamed's tower or an upper dot stands or higher)
+  const TALLEST = ["\u05d5\u05b9\u0592", "\u05dc", "\u05d0\u05c4"];
+  // how far a form's ink reaches under the baseline, read off the pixels as
+  // the top is
+  const inkBottomOf = (str, font) => {
+    INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
+    const m = INK_CV.measureText(str);
+    if (!Number.isFinite(m.actualBoundingBoxDescent)) return null;
+    const oy = Math.ceil(Math.max(0, m.actualBoundingBoxAscent)) + 2, ox = Math.ceil(Math.max(0, m.actualBoundingBoxLeft)) + 2;
+    const W = (ox + Math.ceil(Math.max(0, m.actualBoundingBoxRight)) + 2) * BAND_S, H = (oy + Math.ceil(Math.max(0, m.actualBoundingBoxDescent)) + 2) * BAND_S;
+    if (BAND_CV.width < W) BAND_CV.width = W;
+    if (BAND_CV.height < H) BAND_CV.height = H;
+    BAND_CX.setTransform(1, 0, 0, 1, 0, 0); BAND_CX.clearRect(0, 0, W, H);
+    BAND_CX.setTransform(BAND_S, 0, 0, BAND_S, 0, 0);
+    BAND_CX.font = font; BAND_CX.direction = "rtl"; BAND_CX.textAlign = "right"; BAND_CX.textBaseline = "alphabetic"; BAND_CX.fillStyle = "#000";
+    BAND_CX.fillText(str, ox, oy);
+    const px = BAND_CX.getImageData(0, 0, W, H).data;
+    for (let y = H - 1; y >= 0; y -= 1) for (let x = 0; x < W; x += 1) if (px[(y * W + x) * 4 + 3] > 64) return (y + 1) / BAND_S - oy;
+    return null;
+  };
+  // THE TWO SET DEPTHS of the blob's foot, for the English reader, where the
+  // Hebrew's far side is its bottom (the owner, 2026-10-10: "you missed
+  // raising (lowering) it for a few vowels"): the mirror of the two heights.
+  // The foot runs flat a breath under the letters and the ordinary vowel row
+  // beneath them, whichever reaches lower, and drops to one set depth where
+  // ink reaches deeper still: a final letter's tail or a qof's leg in a face
+  // that draws them past the vowels, an accent under a vowel, a letter the
+  // scribes wrote large. Each set is painted as one string, so a face is
+  // measured in a handful of scans.
+  const PLAIN_LETTERS = [];
+  for (let c = 0x05d0; c <= 0x05ea; c += 1) if (![0x05da, 0x05df, 0x05e3, 0x05e5, 0x05e7].includes(c)) PLAIN_LETTERS.push(String.fromCharCode(c));
+  const ROW_VOWELS = [0x05b0, 0x05b1, 0x05b2, 0x05b3, 0x05b4, 0x05b5, 0x05b6, 0x05b7, 0x05b8, 0x05bb, 0x05c7];
+  const DEEPEST = "\u05da \u05df \u05e3 \u05e5 \u05e7 \u05e7\u05b8\u0591 \u05da\u05b0 \u05e5\u05b5\u0596 \u05d1\u05b0\u05a5 \u05d0\u05b2\u059b \u05df\u05b0\u05a3";
+  const capOf = (font) => {
+    if (CAPS.has(font)) return CAPS.get(font);
+    let asc = 0;
+    for (let c = 0x05d0; c <= 0x05ea; c += 1) {
+      if (c === 0x05dc) continue;
+      const t = inkTopOf(String.fromCharCode(c), font);
+      if (t != null) asc = Math.max(asc, t);
+    }
+    const line = Math.max(asc, inkTopOf("\u05be", font) || 0);
+    const lift = Math.max(line, ...TALLEST.map((s) => inkTopOf(s, font) || 0));
+    INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
+    const he = INK_CV.measureText("\u05d4");
+    let foot = inkBottomOf(PLAIN_LETTERS.join(" "), font) || 0;
+    for (const v of ROW_VOWELS) foot = Math.max(foot, inkBottomOf(PLAIN_LETTERS.map((ch) => ch + String.fromCharCode(v)).join(" "), font) || 0);
+    const drop = Math.max(foot, inkBottomOf(DEEPEST, font) || 0);
+    const cap = { actualBoundingBoxAscent: asc, actualBoundingBoxDescent: Number.isFinite(he.actualBoundingBoxDescent) ? he.actualBoundingBoxDescent : 0, line, lift, foot, drop };
+    CAPS.set(font, cap);
+    return cap;
+  };
+  const glyphInk = (str, font) => {
+    const key = `${font}\u0000${str}`;
+    const had = GLYPHS.get(key);
+    if (had) return had;
+    INK_CV.font = font; INK_CV.direction = "rtl"; INK_CV.textAlign = "right";
+    const m = INK_CV.measureText(str), hm = capOf(font);
+    const ok = Number.isFinite(m.fontBoundingBoxAscent) && Number.isFinite(m.actualBoundingBoxAscent);
+    const g = { ok, fasc: ok ? m.fontBoundingBoxAscent : 0, asc: ok ? m.actualBoundingBoxAscent : 0, desc: ok ? m.actualBoundingBoxDescent : 0, left: ok ? m.actualBoundingBoxLeft : 0, right: ok ? m.actualBoundingBoxRight : 0,
+      yA: -((ok && Number.isFinite(hm.actualBoundingBoxAscent)) ? hm.actualBoundingBoxAscent : 0) - 0.5, yB: Math.max(0, (ok && Number.isFinite(hm.actualBoundingBoxDescent)) ? hm.actualBoundingBoxDescent : 0) + 0.5, cap: -((ok && Number.isFinite(hm.actualBoundingBoxAscent)) ? hm.actualBoundingBoxAscent : 0),
+      line: ok && Number.isFinite(hm.line) ? -hm.line : null, lift: ok && Number.isFinite(hm.lift) ? -hm.lift : null,
+      foot: ok && Number.isFinite(hm.foot) ? hm.foot : null, drop: ok && Number.isFinite(hm.drop) ? hm.drop : null, bands: null };
+    if (ok) {
+      const ox = Math.ceil(Math.max(0, g.left)) + 2, oy = Math.ceil(Math.max(0, g.asc)) + 2;
+      const W = (ox + Math.ceil(Math.max(0, g.right)) + 2) * BAND_S, H = (oy + Math.ceil(Math.max(0, g.desc)) + 2) * BAND_S;
+      if (W > 0 && H > 0 && W <= 6000 && H <= 1200) {
+        if (BAND_CV.width < W) BAND_CV.width = W;
+        if (BAND_CV.height < H) BAND_CV.height = H;
+        BAND_CX.setTransform(1, 0, 0, 1, 0, 0); BAND_CX.clearRect(0, 0, W, H);
+        BAND_CX.setTransform(BAND_S, 0, 0, BAND_S, 0, 0);
+        BAND_CX.font = font; BAND_CX.direction = "rtl"; BAND_CX.textAlign = "right"; BAND_CX.textBaseline = "alphabetic"; BAND_CX.fillStyle = "#000";
+        BAND_CX.fillText(str, ox, oy);
+        const px = BAND_CX.getImageData(0, 0, W, H).data;
+        const bands = [null, null, null];
+        const top = new Array(W).fill(-1), bot = new Array(W).fill(-1);
+        for (let y = 0; y < H; y += 1) {
+          let lo = -1, hi = -1;
+          for (let x = 0; x < W; x += 1) if (px[(y * W + x) * 4 + 3] > 64) { if (lo < 0) lo = x; hi = x; if (top[x] < 0) top[x] = y; bot[x] = y; }
+          if (lo < 0) continue;
+          const cy = (y + 0.5) / BAND_S - oy, k = cy < g.yA ? 0 : cy < g.yB ? 1 : 2;
+          const L = lo / BAND_S - ox, R = (hi + 1) / BAND_S - ox, T = y / BAND_S - oy, B = (y + 1) / BAND_S - oy;
+          const o = bands[k]; bands[k] = o ? { iL: Math.min(o.iL, L), iR: Math.max(o.iR, R), iT: Math.min(o.iT, T), iB: Math.max(o.iB, B) } : { iL: L, iR: R, iT: T, iB: B };
+        }
+        g.bands = bands;
+        // the ink's skyline and its floor, column by column: where each
+        // column's ink begins and ends, about the alignment point and the
+        // baseline, for an outline that follows the letters
+        g.cols = [];
+        for (let x = 0; x < W; x += 1) if (top[x] >= 0) g.cols.push([(x + 0.5) / BAND_S - ox, top[x] / BAND_S - oy, (bot[x] + 1) / BAND_S - oy]);
+      }
+    }
+    if (GLYPHS.size > 40000) GLYPHS.clear();
+    GLYPHS.set(key, g);
+    return g;
+  };
+  const joinBand = (x, y) => (!x ? y : !y ? x : { iL: Math.min(x.iL, y.iL), iR: Math.max(x.iR, y.iR), iT: Math.min(x.iT, y.iT), iB: Math.max(x.iB, y.iB) });
+  const inkBox = (map, a, b) => {
+    let box = null;
+    for (const t of map.nodes) {
+      const s = Math.max(a, t.at), e = Math.min(b, t.at + t.len);
+      if (s >= e) continue;
+      const rg = document.createRange(); rg.setStart(t.n, s - t.at); rg.setEnd(t.n, e - t.at);
+      const adv = unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
+      if (!adv) continue;
+      const font = fontOf(t.n.parentElement), str = t.n.data.slice(s - t.at, e - t.at);
+      const gi = glyphInk(str, font);
+      const base = adv.T + gi.fasc, yA = base + gi.yA, yB = base + gi.yB, capY = base + gi.cap;
+      const bands = gi.bands ? gi.bands.map((x) => (x ? { iL: adv.R + x.iL, iR: adv.R + x.iR, iT: base + x.iT, iB: base + x.iB } : null)) : null;
+      const all = bands ? bands.reduce(joinBand, null) : null;
+      // the glyphs' own sides (iL, iR) beside the line's (aL, aR); the box
+      // holds both, and a seam is cut by the glyphs' own, band by band
+      const iL = all ? all.iL : gi.ok ? adv.R - gi.left : adv.L, iR = all ? all.iR : gi.ok ? adv.R + gi.right : adv.R;
+      const iT = all ? Math.min(all.iT, base - gi.asc) : gi.ok ? base - gi.asc : adv.T;
+      const iB = all ? Math.max(all.iB, base + gi.desc) : gi.ok ? base + gi.desc : adv.B;
+      const cols = gi.cols ? gi.cols.map(([x, t, b2]) => [adv.R + x, base + t, base + b2]) : [];
+      const lineY = gi.line != null ? base + gi.line : null, liftY = gi.lift != null ? base + gi.lift : null;
+      // the set lines come from the stretch with the most letters, so a
+      // letter the scribes wrote large does not set the line of its word
+      const footY = gi.foot != null ? base + gi.foot : null, dropY = gi.drop != null ? base + gi.drop : null;
+      const nL = (str.match(/[\u05d0-\u05ea]/gu) || []).length;
+      const ink = { L: Math.min(adv.L, iL), R: Math.max(adv.R, iR), T: iT, B: iB, iL, iR, aL: adv.L, aR: adv.R, yA, yB, capY, lineY, liftY, footY, dropY, nL, bands: bands || [null, { iL, iR, iT, iB }, null], cols };
+      box = box ? { L: Math.min(box.L, ink.L), R: Math.max(box.R, ink.R), T: Math.min(box.T, ink.T), B: Math.max(box.B, ink.B), iL: Math.min(box.iL, ink.iL), iR: Math.max(box.iR, ink.iR),
+        aL: Math.min(box.aL, ink.aL), aR: Math.max(box.aR, ink.aR), yA: box.yA, yB: box.yB, capY: box.capY, ...(ink.nL > box.nL ? { lineY: ink.lineY, liftY: ink.liftY, footY: ink.footY, dropY: ink.dropY, nL: ink.nL } : { lineY: box.lineY, liftY: box.liftY, footY: box.footY, dropY: box.dropY, nL: box.nL }), bands: box.bands.map((x, k) => joinBand(x, ink.bands[k])), cols: box.cols.concat(ink.cols) } : ink;
+    }
+    return box;
+  };
+  // THE PIECES OF A WORD, by the division that answers its English part for
+  // part: TAHOT's own pieces where the line is theirs word for word, the
+  // book's span row for the form where its cells are as many as the parts,
+  // TAHOT's pieces where only the count agrees; none where nothing agrees
+  const HEB_LETTER = /[\u05d0-\u05ea]/u;
+  const lettersIn = (s) => [...String(s || "")].filter((c) => HEB_LETTER.test(c)).join("");
+  const divisionFor = (word, parts) => {
+    if (!word || parts.length < 2 || word.kq) return null;
+    const own = lettersIn(word.s);
+    const fits = (cells) => !!cells && cells.length === parts.length && cells.every(Boolean) && cells.join("") === own;
+    const pg = Array.isArray(word.pg) ? word.pg.map((p) => lettersIn(p && p.k)) : null;
+    const said = Array.isArray(word.pg) && word.pg.length === parts.length && word.pg.every((p, i) => spanJoin(String((p && p.g) || "")) === parts[i]);
+    if (said && fits(pg)) return pg.map((c) => c.length);
+    const row = zone && zone.spans && word.k ? zone.spans[word.k] : null;
+    const cells = row && Array.isArray(row[0]) ? row[0].map(lettersIn) : null;
+    if (fits(cells)) return cells.map((c) => c.length);
+    if (fits(pg)) return pg.map((c) => c.length);
+    return null;
+  };
+  // where each piece's characters start and end in the printed word: a piece
+  // starts at its first letter, and the points and accents after a letter
+  // are that letter's (the vav's qamats is the vav's)
+  const pieceSpans = (text, counts) => {
+    const at = []; for (let i = 0; i < text.length; i += 1) if (HEB_LETTER.test(text[i])) at.push(i);
+    if (at.length !== counts.reduce((x, y) => x + y, 0)) return null;
+    const spans = []; let c = 0;
+    counts.forEach((n, p) => { const a = p ? at[c] : 0; c += n; spans.push([a, p < counts.length - 1 ? at[c] : text.length]); });
+    return spans;
+  };
+  // A SPLIT READING STANDS UNDER ITS PIECES. A word's English whose parts
+  // its own division answers is set one column per piece, in the Hebrew's
+  // direction, as a run's words' parts already stand under their words: the
+  // vav's "and" under the vav, the rest's "emptiness" under the rest, the +
+  // between them. The reading's text is not touched (the same characters in
+  // the same order, read from the Hebrew's side, as a run is read); only
+  // where each piece stands moves, so no tie crosses another.
+  const pieceLine = (el, word) => {
+    if (!el) return null;
+    // A ROW ALREADY LAID IS LAID AGAIN FROM THE WORDS NOW SHOWN (the owner,
+    // 2026-10-10, of the blob: "same with blobs it should apply when changed
+    // too"). A row kept because it was there could stand under a reading its
+    // word no longer shows, split where that reading never splits. So it
+    // stands only while no other English stands beside it and the word's
+    // division still answers its words as it did; otherwise its words go
+    // back to one line, and that line is laid as any other.
+    const had = el.querySelector(":scope > .g-pcs");
+    if (had) {
+      const words = [...had.querySelectorAll(":scope > .g-pc")].map((x) => x.textContent);
+      const other = [...el.childNodes].some((n) => n.nodeType === 3 && n.data.trim());
+      const counts = other ? null : divisionFor(word, words.map((x) => x.trim()));
+      if (counts && counts.join(",") === had.dataset.counts) return had;
+      if (other) had.remove(); else had.replaceWith(document.createTextNode(words.join(" + ")));
+    }
+    const tn = [...el.childNodes].find((n) => n.nodeType === 3 && n.data.trim());
+    if (!tn || !tn.data.includes(" + ")) return null;
+    const raw = tn.data.split(" + ");
+    const counts = divisionFor(word, raw.map((x) => x.trim()));
+    if (!counts) return null;
+    const row = document.createElement("span"); row.className = "g-pcs";
+    row.dataset.counts = counts.join(",");
+    raw.forEach((t, i) => {
+      if (i) { const sep = document.createElement("span"); sep.className = "g-pp"; sep.textContent = " + "; row.append(sep); }
+      const pc = document.createElement("span"); pc.className = "g-pc"; pc.textContent = t; row.append(pc);
+    });
+    tn.replaceWith(row);
+    return row;
+  };
+  // the box the line sets an English reading's letters in, the license chip
+  // apart: its pieces where it stands in pieces, else its text whole
+  const rectOf = (el) => unionOf([...el.getClientRects()].filter((r) => r.width > 0));
+  const enWhole = (el) => {
+    if (!el) return null;
+    const row = el.querySelector(":scope > .g-pcs");
+    if (row) return rectOf(row);
+    const tn = [...el.childNodes].find((n) => n.nodeType === 3 && n.data.trim());
+    if (!tn) return null;
+    let a = 0, b = tn.data.length; while (a < b && /\s/u.test(tn.data[a])) a += 1; while (b > a && /\s/u.test(tn.data[b - 1])) b -= 1;
+    const rg = document.createRange(); rg.setStart(tn, a); rg.setEnd(tn, b);
+    return unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
+  };
+  // a word to its English: one pair per piece where the reading stands in
+  // pieces, or one for the word whole
+  const piecePairs = (wEl, enEl, wi) => {
+    const map = textMap(wEl);
+    const whole = inkBox(map, 0, map.text.length);
+    if (!whole) return [];
+    const row = enEl ? enEl.querySelector(":scope > .g-pcs") : null;
+    const pcs = row ? [...row.querySelectorAll(":scope > .g-pc")] : [];
+    const counts = row ? String(row.dataset.counts || "").split(",").map(Number) : null;
+    const spans = counts && counts.length === pcs.length && counts.length > 1 ? pieceSpans(map.text, counts) : null;
+    const boxes = spans ? spans.map(([a, b]) => inkBox(map, a, b)) : null;
+    const enBoxes = spans ? pcs.map(rectOf) : null;
+    if (!boxes || boxes.some((x) => !x) || enBoxes.some((x) => !x)) { const e = enWhole(enEl); return e ? [{ he: whole, en: e, wi, piece: 0, n: 1 }] : []; }
+    // one height for the word, its ink's
+    for (const x of boxes) { x.T = whole.T; x.B = whole.B; }
+    return boxes.map((x, i) => ({ he: x, en: enBoxes[i], wi, piece: i, n: boxes.length }));
+  };
+  // the shapes for a host (a run, or one word) from its pairs, each a box of
+  // Hebrew ink and a box of English in the window's frame
   const drawPairs = (host, pairs) => {
     let svg = host.querySelector(":scope > svg.wj-tie");
     if (!pairs.length) { if (svg) svg.remove(); return; }
@@ -7662,42 +8194,340 @@
     if (!R.width || !R.height) return;
     svg.setAttribute("viewBox", `0 0 ${R.width} ${R.height}`);
     const en = document.body.classList.contains("en");
-    const INSET = 3, HUG = 3;
-    const inkOf = (el) => { const rg = document.createRange(); rg.selectNodeContents(el); const rs = [...rg.getClientRects()].filter((r) => r.width > 0); return rs.length ? rs[0] : el.getBoundingClientRect(); };
+    // ONE LINE AT A SEAM (the owner, 2026-10-10, drawing it between two
+    // pieces of one word: "see how it could be 1 line?"): two pieces that
+    // meet share the one line between them, band by band, with no hair of
+    // linen between two outlines; so the half-hair GAP is nothing now.
+    const PAD = 2, GAP = 0, GRAIN = 0.75;   // the breath outside the ink; half the hair between two boxes at a seam (none: they share the line); the measure's grain
     const out = [];
     // the blob's dress; a screenshot probe may set a trial one on window.__tie
     // (a fill, an outline, walls, the corners' radius), the live page never does
     const T = window.__tie || { fill: "var(--tie-wash)", stroke: "var(--gold-dim)", strokeW: 1, strokeOp: 0.7, round: 8 };
+    const g = T.grow || 0;
     const boxes = [];
-    pairs.forEach(([w, part]) => {
-      const a = w.getBoundingClientRect(), ink = inkOf(w), tr = inkOf(part);
-      // the word's edge, and the English's, each in the run's own frame
-      const wL = a.left - R.left + INSET, wR = a.right - R.left - INSET;
-      const eL = tr.left - R.left - 2, eR = tr.right - R.left + 2;
-      const wFar = en ? ink.bottom - R.top - HUG : ink.top - R.top + HUG;   // the hugged edge of the letters
-      const eFar = en ? tr.top - R.top - 1 : tr.bottom - R.top + 1;         // the far edge of the English
-      const yMid = en ? (tr.bottom + a.top) / 2 - R.top : (a.bottom + tr.top) / 2 - R.top;
-      const top = en ? { L: eL, R: eR, y: eFar } : { L: wL, R: wR, y: wFar };
-      const bot = en ? { L: wL, R: wR, y: wFar } : { L: eL, R: eR, y: eFar };
-      const shape = (grow, r) => {
-        const tL = top.L - grow, tR = top.R + grow, tY = top.y - grow, bL = bot.L - grow, bR = bot.R + grow, bY = bot.y + grow;
-        if (!r) return `M${tL} ${tY} L${tR} ${tY} C ${tR} ${yMid}, ${bR} ${yMid}, ${bR} ${bY} L${bL} ${bY} C ${bL} ${yMid}, ${tL} ${yMid}, ${tL} ${tY} Z`;
-        // the corners rounded by r: a blob, not a tent
-        return `M${tL + r} ${tY} L${tR - r} ${tY} Q ${tR} ${tY}, ${tR} ${tY + r} C ${tR} ${yMid}, ${bR} ${yMid}, ${bR} ${bY - r} Q ${bR} ${bY}, ${bR - r} ${bY} L${bL + r} ${bY} Q ${bL} ${bY}, ${bL} ${bY - r} C ${bL} ${yMid}, ${tL} ${yMid}, ${tL} ${tY + r} Q ${tL} ${tY}, ${tL + r} ${tY} Z`;
-      };
-      const g = T.grow || 0;
-      out.push(`<path d="${shape(g, T.round || 0)}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
-      if (T.sides && T.stroke) {
-        for (const d of [`M${top.L - g} ${top.y - g} C ${top.L - g} ${yMid}, ${bot.L - g} ${yMid}, ${bot.L - g} ${bot.y + g}`, `M${top.R + g} ${top.y - g} C ${top.R + g} ${yMid}, ${bot.R + g} ${yMid}, ${bot.R + g} ${bot.y + g}`])
-          out.push(`<path d="${d}" fill="none" stroke="${T.stroke}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linecap="round"/>`);
+    const f = (n) => Math.round(n * 10) / 10;
+    // each box in the host's own frame, a breath outside its ink, with its
+    // ink band by band (an English reading is one band, its letters')
+    const frame = (b, padX, padY, banded) => {
+      const L = b.L - R.left - padX - g, Rr = b.R - R.left + padX + g;
+      const bands = banded && b.bands ? b.bands.map((x) => (x ? { iL: x.iL - R.left, iR: x.iR - R.left, iT: x.iT - R.top, iB: x.iB - R.top } : null)) : [null, { iL: b.L - R.left, iR: b.R - R.left, iT: b.T - R.top, iB: b.B - R.top }, null];
+      return { L, R: Rr, T: b.T - R.top - padY - g, B: b.B - R.top + padY + g, banded: !!(banded && b.bands),
+        iL: (b.iL == null ? b.L : b.iL) - R.left, iR: (b.iR == null ? b.R : b.iR) - R.left, iT: b.T - R.top, iB: b.B - R.top,
+        aL: (b.aL == null ? b.L : b.aL) - R.left, aR: (b.aR == null ? b.R : b.aR) - R.left,
+        yA: banded && b.yA != null ? b.yA - R.top : b.T - R.top, yB: banded && b.yB != null ? b.yB - R.top : b.B - R.top, capY: banded && b.capY != null ? b.capY - R.top : null,
+        lineY: banded && b.lineY != null ? b.lineY - R.top : null, liftY: banded && b.liftY != null ? b.liftY - R.top : null,
+        footY: banded && b.footY != null ? b.footY - R.top : null, dropY: banded && b.dropY != null ? b.dropY - R.top : null,
+        bands, Lb: [L, L, L], Rb: [Rr, Rr, Rr],
+        cols: banded && b.cols ? b.cols.map(([x, t, b2]) => [x - R.left, t - R.top, b2 - R.top]).sort((p, q) => p[0] - q[0]) : null };
+    };
+    const hebs = pairs.map((pr) => frame(pr.he, PAD, PAD, true)), engs = pairs.map((pr) => frame(pr.en, 2, 1, false));
+    // THE SEAMS: two boxes side by side in one row never overlap, band by
+    // band. Where their inks stand apart in a band the seam is the middle
+    // of the space between; where only one has ink in a band (a lamed's
+    // flag over its neighbor, a vowel under it) the other steps back from
+    // it there; where they stand closer than the grain the two share the
+    // difference; where they lie over one another in one band the seam is
+    // where the line set the one's letters against the other's. Each keeps
+    // a hair on its own side.
+    const seam = (row) => {
+      for (let i = 0; i < row.length; i += 1) for (let j = 0; j < row.length; j += 1) {
+        const p = row[i], q = row[j];
+        if (i === j || p.iL + p.iR > q.iL + q.iR) continue;   // p stands left of q
+        if (p.B <= q.T || q.B <= p.T || p.R + GAP <= q.L - GAP) continue;
+        // the two share a seam: the corners that stand on it are square
+        p.seamR = true; q.seamL = true;
+        // ONE STRAIGHT SEAM where the two inks part at all, however narrowly
+        // (a vav and a bet a fifth of a pixel apart): in the middle of the
+        // space, a hair each side where the space allows one, and where it
+        // does not, the two blobs share the one line and never overlap
+        const P = p.bands.reduce(joinBand, null) || { iL: p.iL, iR: p.iR }, Q = q.bands.reduce(joinBand, null) || { iL: q.iL, iR: q.iR };
+        const space = Q.iL - P.iR;
+        if (space > -0.3) {
+          const x = (P.iR + Q.iL) / 2, h = space >= 2 * GRAIN ? Math.min(GAP, space / 2 - GRAIN) : 0;
+          for (let k = 0; k < 3; k += 1) { p.Rb[k] = Math.min(p.Rb[k], x - h); q.Lb[k] = Math.max(q.Lb[k], x + h); }
+          continue;
+        }
+        // where one ink reaches over or under the other (a lamed's flag, a
+        // maqaf's stroke, a vowel under the next letter), band by band
+        for (let k = 0; k < 3; k += 1) {
+          const pi = p.bands[k], qi = q.bands[k];
+          let pr, ql;
+          if (!pi && !qi) { const x = (p.aR + q.aL) / 2; pr = x - GAP; ql = x + GAP; }
+          else if (!pi) { ql = qi.iL - GRAIN; pr = ql - 2 * GAP; }
+          else if (!qi) { pr = pi.iR + GRAIN; ql = pr + 2 * GAP; }
+          else {
+            const sp = qi.iL - pi.iR;
+            if (sp >= 2 * GRAIN) { const x = (pi.iR + qi.iL) / 2, h = Math.min(GAP, sp / 2 - GRAIN); pr = x - h; ql = x + h; }
+            else if (sp > -0.3) { pr = ql = (pi.iR + qi.iL) / 2; }
+            else { const x = (p.aR + q.aL) / 2; pr = x - GAP; ql = x + GAP; }
+          }
+          p.Rb[k] = Math.min(p.Rb[k], pr); q.Lb[k] = Math.max(q.Lb[k], ql);
+        }
       }
-      boxes.push({ L: Math.min(top.L, bot.L) - g, R: Math.max(top.R, bot.R) + g, y0: top.y - g, y1: bot.y + g });
-    });
+      // a box with no bands of its own keeps its letters' band's sides
+      for (const x of row) if (!x.banded) { x.Lb = [x.Lb[1], x.Lb[1], x.Lb[1]]; x.Rb = [x.Rb[1], x.Rb[1], x.Rb[1]]; }
+    };
+    seam(hebs); seam(engs);
+    // the level the outline keeps: a breath off the tallest letter of the
+    // row it stands in (the boxes that share its height), and off the lowest
+    // foot; a run that wraps keeps one level per line
+    for (const b of hebs) {
+      const row = hebs.filter((o) => o.B > b.T && o.T < b.B);
+      const lt = Math.min(...row.map((o) => (o.bands[1] ? o.bands[1].iT : o.iT))), lf = Math.max(...row.map((o) => (o.bands[1] ? o.bands[1].iB : o.iB)));
+      b.flatTop = lt - PAD; b.flatFoot = lf + PAD;
+    }
+    // THE HEBREW'S OUTLINE: A FLAT LINE, AND AN ARCH OVER EACH MARK (the
+    // owner, 2026-10-09, drawn twice on Genesis 1:2: "see how its a flat
+    // line"). On its far side (the tops in the Hebrew reader, the feet in the
+    // English one) the outline runs level a breath off the row's tallest
+    // letter, and rises in an arch over each point, accent, flag or maqaf
+    // that stands above the letters (or dips under each vowel and tail below
+    // them), a breath off its ink, its shoulders eased into the line. Its
+    // sides stand where the seams put them, band by band; the side the neck
+    // leaves from is flat; a column outside a band's sides gives that band up.
+    const STEP = 0.5, ROLL = 4, CORNER = 6, CLEAR = 1.2;
+    const hebrewEdge = (bx, far, yNeck) => {
+      const xL = Math.min(...bx.Lb), xR = Math.max(...bx.Rb);
+      const yA = bx.yA, yB = bx.yB;
+      const top = far === "top", sgn = top ? -1 : 1;   // sgn: the direction away from the ink
+      const inB = (x, k) => x >= bx.Lb[k] - 0.01 && x <= bx.Rb[k] + 0.01;
+      const cols = bx.cols || [];
+      const flat = top ? bx.flatTop : bx.flatFoot;
+      // the marks: the columns whose ink stands above the letters (or below)
+      const marks = cols.filter(([, ct, cb]) => (top ? ct < yA : cb > yB));
+      // a circle of radius r about every column's end, asked left to right
+      const reacher = (list, r) => {
+        let from = 0;
+        return (x) => {
+          let v = null;
+          while (from < list.length && list[from][0] < x - r) from += 1;
+          for (let i = from; i < list.length; i += 1) {
+            const [cx, ct, cb] = list[i], dx = cx - x; if (dx > r) break;
+            const h = Math.sqrt(r * r - dx * dx), y = top ? ct - h : cb + h;
+            if (v === null || sgn * y > sgn * v) v = y;
+          }
+          return v;
+        };
+      };
+      // the sides band by band: where a column's band gives out
+      const wall = (x) => (top
+        ? { lim: inB(x, 0) ? -Infinity : inB(x, 1) ? yA : inB(x, 2) ? yB : Infinity, base: inB(x, 2) ? yNeck : inB(x, 1) ? yB : inB(x, 0) ? yA : null }
+        : { lim: inB(x, 2) ? Infinity : inB(x, 1) ? yB : inB(x, 0) ? yA : -Infinity, base: inB(x, 0) ? yNeck : inB(x, 1) ? yA : inB(x, 2) ? yB : null });
+      const breaks = [...new Set([...bx.Lb, ...bx.Rb].map((v) => Math.round(v * 1000) / 1000))].filter((v) => v > xL && v < xR);
+      const xs = [];
+      for (let x = xL; x < xR; x += STEP) xs.push(x);
+      for (const v of breaks) xs.push(v - 0.002, v + 0.002);
+      xs.push(xR); xs.sort((p, q) => p - q);
+      const pts = xs.map((x) => ({ x, w: wall(x) }));
+      const archOf = reacher(marks, PAD);
+      let ys = pts.map((p) => { const r = archOf(p.x); return r === null ? flat : (sgn * r > sgn * flat ? r : flat); });
+      // the shoulders eased as a ball rolls: a closing by a circle of ROLL
+      // fills a notch too narrow for it, then a light average takes out the
+      // pixel stairs; both only ever move the line away from the ink
+      const roll = (vals, dir) => vals.map((_, i) => {
+        let v = null;
+        for (let j = i - Math.ceil(ROLL / STEP); j <= i + Math.ceil(ROLL / STEP); j += 1) {
+          if (j < 0 || j >= vals.length) continue;
+          const du = pts[j].x - pts[i].x; if (Math.abs(du) > ROLL) continue;
+          const y = vals[j] + dir * Math.sqrt(ROLL * ROLL - du * du);
+          if (v === null || (dir === sgn ? sgn * y > sgn * v : sgn * y < sgn * v)) v = y;
+        }
+        return v === null ? vals[i] : v;
+      });
+      ys = roll(roll(ys, sgn), -sgn);
+      ys = ys.map((y, i) => { let a2 = 0, n = 0; for (let j = i - 2; j <= i + 2; j += 1) if (j >= 0 && j < ys.length) { a2 += ys[j]; n += 1; } const m = a2 / n; return sgn * m > sgn * y ? m : y; });
+      // the two far corners round, never nearer the ink than CLEAR
+      const clearOf = reacher(cols, CLEAR);
+      ys = ys.map((y, i) => {
+        const x = pts[i].x, dl = x - xL, dr = xR - x, d = Math.min(dl, dr);
+        if (d >= CORNER) return y;
+        const c = flat - sgn * (CORNER - Math.sqrt(Math.max(0, CORNER * CORNER - (CORNER - d) * (CORNER - d))));
+        let v = sgn * c < sgn * y ? c : y;   // the nearer of the two to the ink
+        const k = clearOf(x); if (k !== null && sgn * v < sgn * k) v = k;
+        return v;
+      });
+      const out = pts.map((p, i) => {
+        let y = ys[i];
+        y = top ? Math.max(y, p.w.lim, bx.T) : Math.min(y, p.w.lim, bx.B);
+        if (p.w.base != null) y = top ? Math.min(y, p.w.base - 0.5) : Math.max(y, p.w.base + 0.5);
+        return [p.x, y];
+      });
+      // the far edge, thinned where it runs straight
+      const edge = [];
+      for (const q of out) {
+        if (edge.length >= 2) { const a = edge[edge.length - 2], b2 = edge[edge.length - 1]; if (Math.abs((b2[1] - a[1]) * (q[0] - a[0]) - (q[1] - a[1]) * (b2[0] - a[0])) < 0.05 * Math.max(1e-6, q[0] - a[0])) edge.pop(); }
+        edge.push(q);
+      }
+      // the base: band by band from the far edge's right end to the neck, and
+      // from the neck back to the far edge's left end
+      const nk = far === "top" ? 2 : 0, nL = bx.Lb[nk], nR = bx.Rb[nk];
+      const baseAt = (x) => wall(x).base;
+      const stops = [...new Set([xL, xR, ...breaks])].sort((p, q) => p - q);
+      const walk = (from, to) => {   // along the base, from one x to another, stepping at the bands' sides
+        const res = [], dir = to < from ? -1 : 1;
+        const inner = stops.filter((v) => (dir < 0 ? v < from - 0.001 && v > to + 0.001 : v > from + 0.001 && v < to - 0.001));
+        if (dir < 0) inner.reverse();
+        let x = from;
+        for (const v of inner) { const y0 = baseAt((x + v) / 2); if (y0 != null) res.push([v, y0]); const y1b = baseAt(v + dir * 0.004); if (y1b != null) res.push([v, y1b]); x = v; }
+        return res;
+      };
+      return { edge, nL, nR, toNeck: (far === "top" ? [[xR, baseAt(xR - 0.004)], ...walk(xR, nR)] : [[xR, baseAt(xR - 0.004)]]).filter((q) => q[1] != null),
+        fromNeck: walk(nL, xL).concat([[xL, baseAt(xL + 0.004)]]).filter((q) => q[1] != null), walk, baseAt, xL, xR };
+    };
+    // THE TOP AT TWO SET HEIGHTS (the owner, 2026-10-09: "flat top for
+    // consonants et al, and raised to a set height for vowels that need it",
+    // "i wouldnt even modify around the vowel height just the highest
+    // possible needed + 2 pixels", "2 set heights is easier and moses maps
+    // where to raise"). The top runs flat a breath (J.pad) over the line of
+    // the consonants et al in this face, so every word on a line shares it.
+    // Where ink stands above that line (a point, an accent, a lamed's tower)
+    // it rises in a tab to the one raised height, a breath over the highest
+    // the text reaches, and to no height between. A tab spans that ink and a
+    // breath either side. Drawn as geometry, not traced; until the corpus
+    // lane's ledger names each raise, the ink says where.
+    const topPath = (bx) => {
+      const J = Object.assign({ pad: 2, fillet: 2, round: 3, corner: 6, tol: 0.05, minw: 1.5 }, T.top || {});
+      const xL = Math.min(...bx.Lb), xR = Math.max(...bx.Rb);
+      const line = bx.lineY != null ? bx.lineY : bx.capY != null ? bx.capY : bx.yA + 0.5, flat = line - J.pad;
+      const F = (n) => Math.round(n * 10) / 10;
+      // the inked columns standing above the line, and the raised height: a
+      // breath over the highest the face reaches (or over this ink, should a
+      // face other than the measured one reach higher still)
+      const cols = (bx.cols || []).filter(([x, t]) => t < line - 0.05 && x >= xL - J.pad && x <= xR + J.pad);
+      const lift = Math.min(bx.liftY != null ? bx.liftY : line, ...cols.map(([, t]) => t)) - J.pad;
+      // WHAT EACH COLUMN NEEDS: the raised height within J.pad of such ink,
+      // the flat line everywhere else
+      const xs = []; for (let x = xL; x < xR; x += STEP) xs.push(x); xs.push(xR);
+      let from = 0;
+      const need = xs.map((x) => {
+        while (from < cols.length && cols[from][0] < x - J.pad) from += 1;
+        return from < cols.length && cols[from][0] <= x + J.pad ? lift : flat;
+      });
+      // THE STEPS: runs of columns that need the same height within J.tol,
+      // each standing at the highest its columns need; a step narrower than
+      // J.minw goes to the higher of its neighbors; a dip between two juts
+      // too narrow for two fillets is filled to the lower of them
+      // THE BAND WALLS, where the caller gives them (the foot does): where
+      // this box has given up a band to a neighbor's ink (an accent of the
+      // next letter reaching over, a vowel reaching under), the edge stops at
+      // that band's side, so the shape never closes over the neighbor's
+      // letters; and a step the walls set is never smoothed away
+      const capAt = typeof bx.capAt === "function" ? bx.capAt : null;
+      const hardAt = xs.map(() => false);
+      if (capAt) xs.forEach((x, i) => { const c = capAt(x); if (c != null && Number.isFinite(c) && c > need[i] + 0.05) { need[i] = c; hardAt[i] = true; } });
+      let st = [];
+      for (let i = 0; i < xs.length; i += 1) {
+        const y = need[i], last = st[st.length - 1];
+        if (last && Math.abs(y - last.y0) <= J.tol && Math.abs(y - last.y) <= J.tol) { last.R = xs[i]; last.y = Math.min(last.y, y); last.hard = last.hard || hardAt[i]; }
+        else st.push({ L: last ? (xs[i - 1] + xs[i]) / 2 : xs[i], R: xs[i], y, y0: y, hard: hardAt[i] });
+        if (last && st[st.length - 1] !== last) last.R = st[st.length - 1].L;
+      }
+      st[st.length - 1].R = xR;
+      for (let pass = 0; pass < 3; pass += 1) {
+        for (let i = 0; i < st.length; i += 1) {
+          const p = st[i], w = p.R - p.L, a2 = st[i - 1], b2 = st[i + 1];
+          const narrow = w < J.minw;
+          const dip = a2 && b2 && p.y > a2.y && p.y > b2.y && w < 2 * J.fillet + 1;
+          if (!narrow && !dip) continue;
+          if (p.hard) continue;
+          if (dip) { if (a2.hard || b2.hard) continue; p.y = Math.max(a2.y, b2.y); continue; }
+          const A = a2 && !a2.hard ? a2 : null, B = b2 && !b2.hard ? b2 : null;
+          const to = !A ? B : !B ? A : (A.y < B.y ? A : B);
+          if (!to) continue;
+          to.y = Math.min(to.y, p.y); if (to === a2) a2.R = p.R; else b2.L = p.L; st.splice(i, 1); i -= 1;
+        }
+        // neighbors at one height become one step
+        st = st.reduce((acc, p) => { const l = acc[acc.length - 1]; if (l && Math.abs(l.y - p.y) < 0.05) { l.R = p.R; l.hard = l.hard || p.hard; return acc; } acc.push(p); return acc; }, []);
+      }
+      // THE OUTLINE: up and down the steps with a fillet where it leaves a
+      // lower step and a round where it reaches a higher one, each no larger
+      // than half the step it turns on; the two far corners round as far as
+      // the ink leaves them room
+      const room = (x, y) => { const a2 = Math.sqrt(Math.max(0, x - 0.4)), b2 = Math.sqrt(Math.max(0, y - 0.4)); return (a2 + b2) * (a2 + b2); };
+      const b1 = bx.bands[1] || { iL: bx.iL, iR: bx.iR };
+      const first = st[0], last = st[st.length - 1];
+      // a step the band walls set stands square, at its ends and where it
+      // turns, so it runs on the very line its neighbor's side runs on
+      const rL = first.hard || bx.seamL ? 0 : Math.max(0, Math.min(first.y < flat - 0.05 ? J.round : J.corner, (first.R - first.L) / 2, first.y < flat - 0.05 ? J.corner : room(b1.iL - xL, PAD)));
+      const rR = last.hard || bx.seamR ? 0 : Math.max(0, Math.min(last.y < flat - 0.05 ? J.round : J.corner, (last.R - last.L) / 2, last.y < flat - 0.05 ? J.corner : room(xR - b1.iR, PAD)));
+      const cmd = [`M${F(xL)} ${F(first.y + rL)} Q${F(xL)} ${F(first.y)} ${F(xL + rL)} ${F(first.y)}`];
+      for (let i = 0; i < st.length - 1; i += 1) {
+        const p = st[i], q = st[i + 1], x = p.R, h = Math.abs(q.y - p.y);
+        if (h < 0.05) continue;
+        const sq = p.hard || q.hard ? 0 : 1;
+        const wp = sq * (p.R - p.L) / 2, wq = sq * (q.R - q.L) / 2;
+        if (q.y < p.y) {   // up: a fillet off the lower step, a round onto the higher
+          const fi = Math.min(J.fillet, h / 2, wp), ro = Math.min(J.round, h / 2, wq);
+          cmd.push(`L${F(x - fi)} ${F(p.y)} Q${F(x)} ${F(p.y)} ${F(x)} ${F(p.y - fi)} L${F(x)} ${F(q.y + ro)} Q${F(x)} ${F(q.y)} ${F(x + ro)} ${F(q.y)}`);
+        } else {           // down: a round off the higher step, a fillet onto the lower
+          const ro = Math.min(J.round, h / 2, wp), fi = Math.min(J.fillet, h / 2, wq);
+          cmd.push(`L${F(x - ro)} ${F(p.y)} Q${F(x)} ${F(p.y)} ${F(x)} ${F(p.y + ro)} L${F(x)} ${F(q.y - fi)} Q${F(x)} ${F(q.y)} ${F(x + fi)} ${F(q.y)}`);
+        }
+      }
+      cmd.push(`L${F(xR - rR)} ${F(last.y)} Q${F(xR)} ${F(last.y)} ${F(xR)} ${F(last.y + rR)}`);
+      return cmd.join(" ");
+    };
+    // THE FOOT AT TWO SET DEPTHS: the same outline as the top, drawn on the
+    // box seen in a mirror (every y turned about the baseline's side) and
+    // turned back, so the foot keeps the top's flat line, its one set depth,
+    // its tabs, fillets and corners, with no second geometry to drift.
+    const footPath = (bx) => {
+      const flip = (y) => -y;
+      // the deepest the foot may go at x, band by band, as the shape's sides
+      // step: no lower than the letters where this box has given up the band
+      // beneath them, no lower than their top where it has given up the
+      // letters as well
+      // (a column within the measure's grain of a band's side still counts
+      // as inside it, as the seams allow)
+      const inB = (x, k) => x >= bx.Lb[k] - GRAIN && x <= bx.Rb[k] + GRAIN;
+      const deepest = (x) => (inB(x, 2) ? null : inB(x, 1) ? bx.yB : inB(x, 0) ? bx.yA : null);
+      const mirror = { ...bx, lineY: bx.footY != null ? flip(bx.footY) : flip(bx.yB), liftY: bx.dropY != null ? flip(bx.dropY) : null, capY: null,
+        yA: flip(bx.yB), cols: (bx.cols || []).map(([x, t, b2]) => [x, flip(b2), flip(t)]),
+        capAt: (x) => { const d2 = deepest(x); return d2 == null ? null : flip(d2); } };
+      const F = (n) => Math.round(n * 10) / 10;
+      return topPath(mirror).replace(/([MLQ])([^MLQ]*)/g, (m, c, nums) => (c === "M" ? "L" : c) + nums.trim().split(/\s+/).map((v, i) => (i % 2 ? F(flip(Number(v))) : v)).join(" ") + " ");
+    };
+    for (const [k, pr] of pairs.entries()) {
+      const he = hebs[k], eB = engs[k];
+      const U = en ? eB : he, D = en ? he : eB;
+      const y1 = Math.min(U.B, D.T), y2 = Math.max(U.B, D.T), ym = (y1 + y2) / 2;
+      const P = (pts) => pts.map(([x, y]) => `L${f(x)} ${f(y)}`).join(" ");
+      // the English box's corners round as far as the room its letters leave
+      const room = (x, y) => { const a2 = Math.sqrt(Math.max(0, x - 0.4)), b2 = Math.sqrt(Math.max(0, y - 0.4)); return (a2 + b2) * (a2 + b2); };
+      const r0 = T.round || 0;
+      let d;
+      if (!en) {
+        const h = hebrewEdge(he, "top", y1);
+        const rd = Math.max(0, Math.min(r0, (D.R - D.L) / 2, (D.B - y2) / 2, room(D.iL - D.L, D.B - D.iB), room(D.R - D.iR, D.B - D.iB)));
+        // the top keeps the band walls too: where a neighbor's mark reaches
+        // over this piece (a telisha, a lamed's flag), the top steps down to
+        // this piece's own letters there, on the line the two now share
+        const inBand = (x, k) => x >= he.Lb[k] - GRAIN && x <= he.Rb[k] + GRAIN;
+        const topCap = (x) => (inBand(x, 0) ? null : inBand(x, 1) ? he.yA : inBand(x, 2) ? he.yB : null);
+        d = `${topPath({ ...he, capAt: topCap })} ${P(h.toNeck)} L${f(h.nR)} ${f(y1)}`
+          + ` C${f(h.nR)} ${f(ym)} ${f(D.R)} ${f(ym)} ${f(D.R)} ${f(y2)} L${f(D.R)} ${f(D.B - rd)} Q${f(D.R)} ${f(D.B)} ${f(D.R - rd)} ${f(D.B)}`
+          + ` L${f(D.L + rd)} ${f(D.B)} Q${f(D.L)} ${f(D.B)} ${f(D.L)} ${f(D.B - rd)} L${f(D.L)} ${f(y2)} C${f(D.L)} ${f(ym)} ${f(h.nL)} ${f(ym)} ${f(h.nL)} ${f(y1)}`
+          + ` ${P(h.fromNeck)} Z`;
+      } else {
+        const h = hebrewEdge(he, "bottom", y2);
+        const ru = Math.max(0, Math.min(r0, (U.R - U.L) / 2, (y1 - U.T) / 2, room(U.iL - U.L, U.iT - U.T), room(U.R - U.iR, U.iT - U.T)));
+        // drawn the other way round, so the foot runs left to right as the top does
+        const downLeft = [...h.walk(h.nL, h.xL), [h.xL, h.baseAt(h.xL + 0.004)]].filter((q) => q[1] != null);
+        const upRight = [[h.xR, h.baseAt(h.xR - 0.004)], ...h.walk(h.xR, h.nR), [h.nR, y2]].filter((q) => q[1] != null);
+        d = `M${f(U.R - ru)} ${f(U.T)} L${f(U.L + ru)} ${f(U.T)} Q${f(U.L)} ${f(U.T)} ${f(U.L)} ${f(U.T + ru)} L${f(U.L)} ${f(y1)}`
+          + ` C${f(U.L)} ${f(ym)} ${f(h.nL)} ${f(ym)} ${f(h.nL)} ${f(y2)} ${P(downLeft)} ${footPath(he)} ${P(upRight)}`
+          + ` C${f(h.nR)} ${f(ym)} ${f(U.R)} ${f(ym)} ${f(U.R)} ${f(y1)} L${f(U.R)} ${f(U.T + ru)} Q${f(U.R)} ${f(U.T)} ${f(U.R - ru)} ${f(U.T)} Z`;
+      }
+      he.L = Math.min(...he.Lb); he.R = Math.max(...he.Rb);
+      const tag = `data-wi="${pr.wi}" data-piece="${pr.piece}" data-n="${pr.n}" data-he="${f(he.L)},${f(he.R)},${f(he.T)},${f(he.B)}" data-en="${f(eB.L)},${f(eB.R)},${f(eB.T)},${f(eB.B)}"`;
+      out.push(`<path ${tag} d="${d}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
+      boxes.push({ L: Math.min(he.L, eB.L), R: Math.max(he.R, eB.R), y0: U.T, y1: D.B });
+    }
     if (T.sep && boxes.length > 1) {
       boxes.sort((p, q) => p.L - q.L);
       for (let i = 0; i < boxes.length - 1; i += 1) {
         const x = (boxes[i].R + boxes[i + 1].L) / 2, y0 = Math.min(boxes[i].y0, boxes[i + 1].y0), y1 = Math.max(boxes[i].y1, boxes[i + 1].y1);
-        out.push(`<path d="M${x} ${y0} L${x} ${y1}" fill="none" stroke="${T.sep}" stroke-width="${T.sepW || 1}" stroke-opacity="${T.sepOp == null ? 1 : T.sepOp}" stroke-linecap="round"/>`);
+        out.push(`<path d="M${f(x)} ${f(y0)} L${f(x)} ${f(y1)}" fill="none" stroke="${T.sep}" stroke-width="${T.sepW || 1}" stroke-opacity="${T.sepOp == null ? 1 : T.sepOp}" stroke-linecap="round"/>`);
       }
     }
     svg.innerHTML = out.join("");
@@ -7707,15 +8537,103 @@
     const g = run.__gloss;
     const words = [...run.__ink.querySelectorAll(":scope > .wb > .w")];
     const parts = g && g.classList.contains("parts") ? [...g.querySelectorAll(":scope > .g-part")] : [];
-    // each part to the word it reads; a part dropped under the signs switch
-    // leaves its word with no tie, and the others keep theirs
-    drawPairs(run, parts.map((p) => [words[Number(p.dataset.wi)], p]).filter(([w]) => w));
+    // each part to the word it reads, piece by piece where the word's own
+    // division answers the part's + for +; a part dropped under the signs
+    // switch leaves its word with no tie, and the others keep theirs
+    const pairs = [];
+    for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); }
+    drawPairs(run, pairs);
+  };
+  // EVERY WORD, AS A PREVIEW (?blobs=every): the same blob on a word that
+  // stands alone, piece by piece, for the owner to see before the corpus
+  // lane's blob ledger says which words wear one; the live page draws them
+  // on runs alone until then
+  const TIE_EVERY = QUERY.get("blobs") === "every";
+  const drawWordTie = (wb) => {
+    if (!wb || !wb.isConnected || wb.closest(".wjoin") || wb.classList.contains("mark") || wb.classList.contains("kq")) return;
+    const w = wb.querySelector(":scope > .w"), ge = wb.querySelector(":scope > .g");
+    if (!w || !ge) return;
+    // A BLOB ONLY WHERE THERE IS SOMETHING TO TIE (the owner, 2026-10-10:
+    // "if theres a single hebrew to single english with no + sign
+    // seperator, probably not"; and that it comes and goes with the
+    // English, "2. right"): a word wears one only while the reading shown
+    // splits into pieces its own division answers. A word reading whole, or
+    // split where no division answers (the places where the Leningrad
+    // codex and this text spell the word apart), wears none, and loses the
+    // one it wore when its English changes to such a reading.
+    // (measured tied, since the tie gives a split English line its room)
+    pieceLine(ge, wb.__word);
+    wb.classList.add("tied");
+    const pairs = piecePairs(w, ge, 0);
+    if (pairs.length < 2) { wb.classList.remove("tied"); drawPairs(wb, []); return; }
+    drawPairs(wb, pairs);
   };
   let tieTimer = 0;
-  const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => { for (const r of document.querySelectorAll(".he-text .wjoin")) drawTies(r); }, 60); };
+  const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => {
+    const t0 = performance.now(); let n = 0;
+    for (const r of document.querySelectorAll(".he-text .wjoin")) { drawTies(r); n += 1; }
+    if (TIE_EVERY) for (const wb of document.querySelectorAll(".he-text > .wb")) { drawWordTie(wb); n += 1; }
+    window.__tieMs = { ms: Math.round(performance.now() - t0), cells: n };   // what a redraw of every built tie costs, for the check
+  }, 60); };
   try { if (document.fonts) document.fonts.addEventListener("loadingdone", drawAllTies); } catch { /* no font events: the next draw is the window's */ }
   window.addEventListener("resize", drawAllTies);
   window.__drawAllTies = drawAllTies;   // for a screenshot probe trying a dress on the tie
+  // A LONE WORD'S BLOB IS DRAWN AGAIN WHEN ITS LINE IS PAINTED AGAIN (the
+  // owner, 2026-10-10: "same with blobs it should apply when changed too").
+  // Every repaint of a line (a card, an order, a source switch, the signs)
+  // replaces its children, which took its split row with them and left the
+  // old shape standing behind the new English. So each repaint asks for its
+  // word's blob again, from the reading it now shows, and the asks are drawn
+  // together once the new English is laid out, or, where a repaint of the
+  // whole page is done, at once near the screen and in slices elsewhere
+  // (tieAgainNow). A run's blob is drawn by the run (refreshJoinGloss); a
+  // pair wears none (drawWordTie).
+  const TIE_AGAIN = new Set();
+  let tieAgainTimer = 0;
+  // one word's blob that cannot be drawn leaves the others to be drawn
+  const drawTieSafe = (x) => { try { drawWordTie(x); } catch (e) { console.error(e); } };
+  // The words near the screen are drawn at once, so the reader never sees an
+  // old shape behind a new reading. The rest are drawn after, in slices,
+  // those nearest where the reader is looking first, so a switch that moves
+  // a whole book's lines does not hold the page: drawn in one loop,
+  // Genesis's 3,026 built lines held an order switch for eight seconds.
+  // window.__tiePending counts the words still to draw, for a probe to wait on.
+  const TIE_LATER = new Map();   // a word still to draw -> where it stood on the page
+  let tieLaterTimer = 0;
+  const tieLaterStep = () => {
+    tieLaterTimer = 0;
+    const mid = (window.scrollY || 0) + (window.innerHeight || 800) / 2;
+    const order = [...TIE_LATER].sort((a, b) => Math.abs(a[1] - mid) - Math.abs(b[1] - mid));
+    // a slice holds the page for about 40 ms: between slices the browser
+    // lays out and paints the page, so 12 ms slices took twice as long to
+    // finish
+    const t0 = performance.now(); let n = 0;
+    for (const [x] of order) { TIE_LATER.delete(x); drawTieSafe(x); n += 1; if (n >= 8 && performance.now() - t0 > 40) break; }
+    window.__tiePending = TIE_LATER.size;
+    if (TIE_LATER.size) tieLaterTimer = setTimeout(tieLaterStep, 0);
+  };
+  const tieAgainNow = () => {
+    clearTimeout(tieAgainTimer);
+    const all = [...TIE_AGAIN]; TIE_AGAIN.clear();
+    const vh = window.innerHeight || 800, sy = window.scrollY || 0;
+    // every box is read before any is drawn, so the page is laid out once
+    const near = [];
+    for (const x of all) {
+      if (!x.isConnected) { TIE_LATER.delete(x); continue; }
+      const r = x.getBoundingClientRect();
+      if (r.bottom > -vh && r.top < 2 * vh) near.push(x); else TIE_LATER.set(x, r.top + sy);
+    }
+    for (const x of near) { TIE_LATER.delete(x); drawTieSafe(x); }
+    window.__tiePending = TIE_LATER.size;
+    if (TIE_LATER.size && !tieLaterTimer) tieLaterTimer = setTimeout(tieLaterStep, 0);
+  };
+  const tieAgain = (ge) => {
+    const wb = TIE_EVERY && ge && ge.closest ? ge.closest(".wb") : null;
+    if (!wb || !wb.matches(".he-text > .wb")) return;
+    TIE_AGAIN.add(wb);
+    clearTimeout(tieAgainTimer);
+    tieAgainTimer = setTimeout(tieAgainNow, 60);
+  };
 
   // A RUN IS BUILT AS A MAQAF CHAIN IS (the owner, 2026-10-09: the strip of
   // fused cells "arent as clear as our maqaf ones ... id really just make it
@@ -7847,13 +8765,23 @@
     if (who && sourcesOff.has(who.m)) return null;
     const parts = word.pg.map((p) => String((p && p.g) || "").trim());
     if (parts.some((t) => !t)) return null;
-    const m = who && index && index.m_sources ? index.m_sources[who.m] : null;
-    return { text: parts.join("/"), m: who ? { lic: licenseName(who.licence), m: m ? m.label : who.label, y: null } : null, why: "place", mId: who ? who.m : null };
+    // each piece credited to the source that wrote it (pg[].s): MACULA's
+    // pieces, which stand on 45 plain words and 9 pairs of 21 books, were
+    // credited to TAHOT with the rest
+    const rs = word.pg.map((p) => readingOfPiece(p && p.s));
+    // and a piece whose own source the reader switched off gives the word
+    // back, as TAHOT switched off does, by the rule the card's "here the
+    // source reads" line keeps piece by piece. Once MACULA's pieces were
+    // credited to MACULA, switching MACULA off left them on the line under
+    // a chip naming the source switched off, while the card's pool, which
+    // asks each source's switch, pressed another reading.
+    if (rs.some((r) => r && r.mId && sourcesOff.has(r.mId))) return null;
+    return { text: parts.join("/"), rs: rs.every(Boolean) ? rs : [], why: "place", mId: rs[0] ? rs[0].mId : null };
   };
   const lineUnder = (word, table) => {
     if (!word || table !== zone.gloss) return null;
     if (lookup === "headword" && word.hg && word.h && table[word.h])
-      return { text: word.hg, m: word.hm ? { lic: licenseName(word.hm.lic), m: word.hm.m, y: word.hm.y, ya: "wording" } : null, why: "headword" };
+      return { text: word.hg, rs: word.hm ? [{ posture: word.hm.lic, m: word.hm.m, y: word.hm.y, ya: "wording" }] : [], why: "headword" };
     { const at = placeLine(word); if (at) return placeShown(at); }
     // THE SOURCE SWITCHES FIRST. A source the reader turned off cannot lead
     // the line. Every carrier of the printed reading is baked on the key
@@ -7866,8 +8794,8 @@
       if (gm && Array.isArray(gm.by) && gm.by.length && gm.by.every((m) => sourcesOff.has(m))) {
         const alt = gm.alt;
         if (alt && Array.isArray(alt.by) && !alt.by.every((m) => sourcesOff.has(m)))
-          return { text: alt.text, m: { lic: alt.lic, m: alt.m, y: alt.y }, why: "sources" };
-        return { text: "", m: null, why: "sources-bare" };
+          return { text: alt.text, rs: [{ lic: alt.lic, m: alt.m, y: alt.y, by: alt.by }], why: "sources" };
+        return { text: "", rs: [], why: "sources-bare" };
       }
     }
     // THE LICENCE PREFERENCE, a baked column per class (regloss-zone,
@@ -7885,7 +8813,7 @@
         if (Object.prototype.hasOwnProperty.call(col, k)) {
           const gm = zone.gloss_m_orders && zone.gloss_m_orders[colId] ? zone.gloss_m_orders[colId][k] : null;
           const off = !!(gm && Array.isArray(gm.by) && gm.by.length && gm.by.every((m) => sourcesOff.has(m)));
-          if (!off) return { text: col[k], m: gm ? { lic: gm.lic, m: gm.m, y: gm.wy || gm.y } : null, why: "licence" };
+          if (!off) return { text: col[k], rs: gm ? [{ lic: gm.lic, m: gm.m, y: gm.wy || gm.y, by: gm.by }] : [], why: "licence" };
         }
       }
     }
@@ -7895,10 +8823,10 @@
     if (masorah === "only" && latticeStore && latticeStore.grades && word.s) {
       const gr = latticeStore.grades[word.s];
       const first = gr && gr.o && gr.o.l;
-      if (first) return { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: "masorah" };
+      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: "masorah" };
       // graded, and nothing survives the filter: the word goes bare here,
       // which the frame calls a finding and not an error
-      if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) return { text: "", m: null, why: "masorah-bare" };
+      if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) return { text: "", rs: [], why: "masorah-bare" };
     }
     // THE LETTERS SWITCH lifts the pointing on the card and leads with the
     // readings whose source points this word otherwise (sortPool); the line
@@ -7908,13 +8836,13 @@
     if (masorah === "letters") {
       const gr = latticeStore && latticeStore.grades && word.s ? latticeStore.grades[word.s] : null;
       const first = gr && gr.o && gr.o.x;
-      return first ? { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: "letters" } : null;
+      return first ? { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: "letters" } : null;
     }
     const pos = DEF_POS.find((p) => p.id === defOrder);
     if (pos && pos.needs === "lattice" && latticeStore && latticeStore.grades && word.s) {
       const gr = latticeStore.grades[word.s];
       const first = gr && gr.o && gr.o[pos.lattice];
-      if (first) return { text: first[0], m: { lic: licenseName(first[2]), m: first[1], y: first[3] }, why: pos.id };
+      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: pos.id };
     }
     return null;
   };
@@ -7964,17 +8892,26 @@
     }
     box.append(run);
     const foot = document.createElement("p"); foot.className = "parts-src";
-    const names = [wit.witnesses && wit.witnesses.english_tahot, wit.witnesses && wit.witnesses.english_macula].filter(Boolean);
+    const codes = ["tahot", "macula"].filter((s) => wit.witnesses && wit.witnesses[`english_${s}`]);
+    const names = codes.map((s) => wit.witnesses[`english_${s}`]);
     foot.append(names.length ? names.map((w) => w.label).join("  ·  ") : "the corpus lane\u2019s two witnesses");
-    const licKey = names.length ? names[0].licence : null;
-    if (licKey) {
+    // Each witness's chip is asked for by its own source line (readingOfPiece:
+    // english_tahot is PIECE:TAHOT, english_macula is PIECE:MACULA), never by
+    // its place in this list. A second chip is drawn only where it would read
+    // otherwise than the first. Comparing postures would hide a difference
+    // that the pill table, once plugged into licenseTextOf, can draw between
+    // two lines under one posture.
+    const said = new Set();
+    for (const s of codes) {
+      const r = readingOfPiece(s);
+      if (!r || !r.posture) continue;
+      const text = licenseTextOf(r);
+      if (said.has(text)) continue;
+      said.add(text);
       const chip = document.createElement("span"); chip.className = "lic-chip";
-      chip.textContent = licenseName(licKey);
-      chip.title = (POSTURES && POSTURES.postures && POSTURES.postures[licKey] && (POSTURES.postures[licKey].obligations || []).join(" ")) || "";
+      chip.textContent = text;
+      chip.title = (POSTURES && POSTURES.postures && POSTURES.postures[r.posture] && (POSTURES.postures[r.posture].obligations || []).join(" ")) || "";
       foot.append(" ", chip);
-    }
-    if (names.length === 2 && names[0].licence !== names[1].licence) {
-      foot.append(" ", Object.assign(document.createElement("span"), { className: "lic-chip", textContent: licenseName(names[1].licence) }));
     }
     box.append(foot);
     slot.append(box);
@@ -8200,6 +9137,9 @@
     // A word holding several W reads them joined, the same join a span uses.
     let wasRuled = false;
     let lineMoved = null;      // a toggle moved this line past the baked column, with its own M
+    // the key a region's line is read from: under "look up by: the headword"
+    // a one-form word reads its headword's, and wears that reading's chip
+    const shownKey = (r) => (regions && regions.length > 1 ? r.k : lookupKey(word, r.k, table));
     const parts = (regions || (word.k ? [{ k: word.k }] : [])).map((r) => {
       // a form the reader has already ruled on reads under its ruling, even
       // in a section built after the ruling was made
@@ -8208,7 +9148,7 @@
       // one region only: a headword is projected onto a position, and a
       // position with two forms on it keeps its forms
       if (!(regions && regions.length > 1)) { const ov = lineUnder(word, table); if (ov) { lineMoved = ov; return spanJoin(ov.text); } }
-      const g = table ? table[regions && regions.length > 1 ? r.k : lookupKey(word, r.k, table)] : null;
+      const g = table ? table[shownKey(r)] : null;
       return g ? spanJoin(g) : "—";
     });
     // a ruling made on a joined interval spoke for the whole line
@@ -8248,12 +9188,20 @@
     // chip over a wrong one, always. A repaint under a ruling replaces the
     // text node and the chip goes with it, by the same law.
     if (line && !wasRuled && table === zone.gloss && zone.gloss_m) {
-      const ks = word.kq && regions ? (kqShown >= 0 ? [regions[kqShown].k] : [])
-        : regions ? regions.filter((r, i) => parts[i] !== "—" && ruledLine(r.k, table) == null).map((r) => r.k)
-        : word.k ? [word.k] : [];
+      // each key whose reading the line prints (the form's own chip stood
+      // under the headword's reading on 29,032 lines, 13,018 of them naming
+      // another license)
+      const ks = word.kq && regions ? (kqShown >= 0 ? [shownKey(regions[kqShown])] : [])
+        : regions ? regions.filter((r, i) => parts[i] !== "—" && ruledLine(r.k, table) == null).map(shownKey)
+        : word.k ? [shownKey({ k: word.k })] : [];
       // a moved line wears the M of what it now says, or no chip at all —
       // absent over wrong, always
-      const chip = lineMoved ? (lineMoved.m ? chipOfMs([lineMoved.m]) : null) : licChipFor(ks);
+      const chip = lineMoved ? licenseChipFor(lineMoved.rs) : licChipFor(ks);
+      if (chip) ge.append(chip);
+    } else if (line && wasRuled && heldJoint != null && table === zone.gloss) {
+      // a ruling on a joined interval speaks for the line, with its own chip
+      const jr = joined.find((r) => ruledLine(r.k, table) != null);
+      const chip = jr ? ruledChip(jr.k, table) : null;
       if (chip) ge.append(chip);
     } else if (line && wasRuled && heldJoint == null && table === zone.gloss) {
       const rk = word.kq && regions ? (kqShown >= 0 ? regions[kqShown].k : null)
@@ -8516,6 +9464,22 @@
     }
   };
 
+  // A LINE THE REPAINT WOULD PAINT AS IT STANDS IS LEFT STANDING, with its
+  // words, its chip, its split row and the blob drawn from them. Painting
+  // every line again dropped every split row, and under ?blobs=every every
+  // blob was drawn again inside the click: a source chip that moved none of
+  // Genesis's 3,026 built lines held the click for seven seconds. A line a
+  // live answer painted (data-off, data-live) is always painted again, since
+  // the repaint is a fresh answer for it.
+  const lineStands = (ge, line, chip) => {
+    if (ge.dataset.off || ge.dataset.live) return false;
+    const was = ge.querySelector(":scope > .g-lic");
+    if ((was ? was.outerHTML : "") !== (chip ? chip.outerHTML : "")) return false;
+    if (!line) return ge.classList.contains("bare") && ge.textContent === " ";
+    if (ge.classList.contains("bare") || ge.title !== line) return false;
+    const c = ge.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+    return c.textContent === line;
+  };
   /** Redraw every enrolled word's line under the table as it now stands. */
   const repaintGlossOrder = () => {
     const runs = new Set();
@@ -8529,27 +9493,34 @@
       // opened again
       const held = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss) : null;
       if (held !== null) {
-        st.ge.replaceChildren(); delete st.ge.dataset.off; delete st.ge.dataset.live;
-        st.ge.textContent = held; st.ge.title = held; st.ge.classList.remove("bare");
-        { const chip = ruledChip(st.word.k, zone.gloss); if (chip) st.ge.append(chip); }
+        const chip = ruledChip(st.word.k, zone.gloss);
         const run0 = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
         if (run0) runs.add(run0);
+        if (held && lineStands(st.ge, held, chip)) continue;
+        st.ge.replaceChildren(); delete st.ge.dataset.off; delete st.ge.dataset.live;
+        st.ge.textContent = held; st.ge.title = held; st.ge.classList.remove("bare");
+        if (chip) st.ge.append(chip);
+        if (!run0) tieAgain(st.ge);
         continue;
       }
       const moved = st.ks.length === 1 ? lineUnder(st.word, zone.gloss) : null;
       const parts = moved ? [spanJoin(moved.text)]
         : st.ks.map((k) => { const g = zone.gloss[lookupKey(st.word, k, zone.gloss)]; return g ? spanJoin(g) : "\u2014"; });
       const line = signsOffLine(parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "");
+      // the keys the line was read from: under the headword lookup, the
+      // headword's, as the parts above read them
+      const chip = line && zone.gloss_m
+        ? (moved ? licenseChipFor(moved.rs) : licChipFor(st.ks.map((k) => lookupKey(st.word, k, zone.gloss)).filter((k, i) => parts[i] !== "\u2014")))
+        : null;
+      const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
+      if (run) runs.add(run);
+      if (lineStands(st.ge, line, chip)) continue;
       st.ge.replaceChildren();
       delete st.ge.dataset.off; delete st.ge.dataset.live;   // a repaint from the table is a fresh answer
       if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); }
       else { st.ge.textContent = " "; st.ge.classList.add("bare"); }
-      if (line && zone.gloss_m) {
-        const chip = moved ? (moved.m ? chipOfMs([moved.m]) : null) : licChipFor(st.ks.filter((k, i) => parts[i] !== "\u2014"));
-        if (chip) st.ge.append(chip);
-      }
-      const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
-      if (run) runs.add(run);
+      if (chip) st.ge.append(chip);
+      if (!run) tieAgain(st.ge);
     }
     // a joined run prints its pieces once, together, so it is made again from
     // the pieces this repaint just changed
@@ -8557,6 +9528,10 @@
     // the pairs are enrolled apart (their line reads ONE half), and move with
     // the table the same way
     paintPairs();
+    // every line is painted: the lone words' blobs near the screen are drawn
+    // from them now, in the same turn, as the runs' were above, and the rest
+    // follow (tieAgainNow)
+    tieAgainNow();
     switchGen += 1;
     repaintLive(GLOSS_STANDS);
   };
@@ -8617,16 +9592,12 @@
     if (!sourcesOff.size) return false;
     if (moved) {
       if (moved.why === "sources" || moved.why === "sources-bare") return true;
-      return !!(moved.m && moved.m.m && anyOff(idsOfLabel(moved.m.m)));
+      return (moved.rs || []).some((r) => r && r.m && anyOff(idsOfLabel(r.m)));
     }
     const gm = zone.gloss_m && zone.gloss_m[lookupKey(st.word, k, zone.gloss)];
     if (!gm) return false;
     if (Array.isArray(gm.by) && gm.by.length) return anyOff(gm.by);
     return !!(gm.m && anyOff(idsOfLabel(gm.m)));
-  };
-  const chipMOf = (rec) => {
-    const s = (index && index.m_sources && index.m_sources[rec[3]]) || {};
-    return { lic: licenseName(s.licensePosture), m: s.label || rec[3], y: s.sourceYear || "", wy: rec[4] };
   };
   const repaintLive = async (stands, again = false) => {
     if (!sourcesOff.size || !zone.gloss) return;
@@ -8645,7 +9616,7 @@
         if (!need[i]) {
           const g = moved ? moved.text : zone.gloss[k];
           parts.push(g ? spanJoin(g) : "\u2014");
-          ms.push(moved ? moved.m : (zone.gloss_m ? zone.gloss_m[k] : null));
+          ms.push(moved ? moved.rs : (zone.gloss_m && zone.gloss_m[k] ? [zone.gloss_m[k]] : []));
           continue;
         }
         let pool = null;
@@ -8669,32 +9640,32 @@
             if (old) {
               old.remove();
               if (on.length) {
-                const chip = chipOfMs(on.map((id) => { const s = (index && index.m_sources && index.m_sources[id]) || {}; return { lic: licenseName(s.licensePosture), m: s.label || id, y: s.sourceYear || "" }; }));
+                const chip = licenseChipFor(on.map((id) => readingOfId(id)));
                 if (chip) st.ge.append(chip);
               }
             }
           }
           // a run's visible line is made from its words' lines; it is made again
           const runEl = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
-          if (runEl) refreshJoinGloss(runEl);
+          if (runEl) refreshJoinGloss(runEl); else tieAgain(st.ge);
           failed.push(st);
           return;
         }
         if (gen !== switchGen) return;
         const top = pool && pool[0];
         parts.push(top ? spanJoin(top.text) : "\u2014");
-        ms.push(top && top.records && top.records[0] ? chipMOf(top.records[0]) : null);
+        ms.push(top && top.records && top.records[0] ? [readingOfRow(top.records[0])] : []);
       }
       if (gen !== switchGen || !st.ge.isConnected) return;
       const line = parts.filter((x) => x !== "\u2014").length ? parts.join(" + ") : "";
       st.ge.replaceChildren();
       if (line) { st.ge.textContent = line; st.ge.title = line; st.ge.classList.remove("bare"); delete st.ge.dataset.off; }
       else { st.ge.textContent = " "; st.ge.classList.add("bare"); st.ge.dataset.off = "sources"; st.ge.title = "no source that is switched on answers this word"; }
-      const shown = ms.filter((m, i) => m && parts[i] !== "\u2014");
-      if (line && shown.length) { const chip = chipOfMs(shown); if (chip) st.ge.append(chip); }
+      const shown = ms.filter((m, i) => m && parts[i] !== "\u2014").flat();
+      if (line && shown.length) { const chip = licenseChipFor(shown); if (chip) st.ge.append(chip); }
       st.ge.dataset.live = "sources";
       const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
-      if (run) refreshJoinGloss(run);
+      if (run) refreshJoinGloss(run); else tieAgain(st.ge);
     };
     // the words on screen first, then outward: a reader looking at a verse
     // sees it settle before the rest of the book does. A few at a time — the
@@ -10909,6 +11880,7 @@
       const link = rc || prev || next ? { rc, prev, next } : null;
       appendWord(he, built, word, link);
       if (rc) { built.wb.__run = rc; rc.__els.set(myIdx, built.wb); }
+      built.wb.__word = word;
       // A commentary attached at this word gets its handle here, standing in
       // the line right after the words it covers, and it opens here too — a
       // reader should not have to look anywhere else to find what they pressed.
@@ -11149,6 +12121,7 @@
       if (bar) bar.setAttribute("aria-expanded", "true");
     }
     if (el.__place) el.__place(el);
+    if (TIE_EVERY) requestAnimationFrame(() => { for (const wb of el.querySelectorAll(".he-text > .wb")) drawWordTie(wb); });
     return true;
   };
   const REACH = 1400;
