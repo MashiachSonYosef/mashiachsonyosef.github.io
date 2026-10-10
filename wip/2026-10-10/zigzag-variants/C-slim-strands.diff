@@ -1,0 +1,286 @@
+--- zone-zig-tmp.html	2026-10-10 02:48:50.635134245 +0000
++++ zone-geo-C.html	2026-10-10 06:10:21.320608985 +0000
+@@ -904,6 +904,22 @@
+   .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
+   .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
+   body.en .g-pcs { direction: ltr; }
++  /* THE CHIP ABOVE ITS ENGLISH, IN THE ENGLISH READER (2026-10-10). The
++     Hebrew reader keeps the chip outside the blob, under the English; the
++     English reader stood it under the English too, which there is between
++     the English and the Hebrew, in the very space the blob crosses. So it
++     stands over the English, outside the blob, as the Hebrew reader's
++     stands under it. The English and the Hebrew keep the space between
++     them for the crossing, as tall as three slim strands need to cross
++     gently (--en-cross) and no taller: eight whole pixels over the line's
++     own breath, so every line below moves by whole pixels and its letters
++     land on the pixel grid as they did before. */
++  body.en .he-text > .wb > .g { display: flex; flex-direction: column; align-items: safe center; }
++  body.en .he-text > .wb > .g > .g-lic, body.en .wjoin > .g.parts .g-part > .g-lic { order: -1; margin: 0 auto 0.12em; }
++  /* a run's joiner stays on the line of the English it joins, under the chips */
++  body.en .wjoin > .g.parts .g-sep { align-self: flex-end; }
++  body.en { --en-cross: calc(0.04rem + 8px); }
++  body.en .he-text > .wb > .w, body.en .wjoin > .wj-ink { margin-top: var(--en-cross); }
+   .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+   .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
+   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
+@@ -8221,11 +8237,10 @@
+     // the text reaches, and to no height between. A tab spans that ink and a
+     // breath either side. Drawn as geometry, not traced; until the corpus
+     // lane's ledger names each raise, the ink says where.
+-    const topPath = (bx) => {
++    const topSteps = (bx) => {
+       const J = Object.assign({ pad: 2, fillet: 2, round: 3, corner: 6, tol: 0.05, minw: 1.5 }, T.top || {});
+       const xL = Math.min(...bx.Lb), xR = Math.max(...bx.Rb);
+       const line = bx.lineY != null ? bx.lineY : bx.capY != null ? bx.capY : bx.yA + 0.5, flat = line - J.pad;
+-      const F = (n) => Math.round(n * 10) / 10;
+       // the inked columns standing above the line, and the raised height: a
+       // breath over the highest the face reaches (or over this ink, should a
+       // face other than the measured one reach higher still)
+@@ -8274,22 +8289,200 @@
+       const first = st[0], last = st[st.length - 1];
+       const rL = Math.max(0, Math.min(first.y < flat - 0.05 ? J.round : J.corner, (first.R - first.L) / 2, first.y < flat - 0.05 ? J.corner : room(b1.iL - xL, PAD)));
+       const rR = Math.max(0, Math.min(last.y < flat - 0.05 ? J.round : J.corner, (last.R - last.L) / 2, last.y < flat - 0.05 ? J.corner : room(xR - b1.iR, PAD)));
+-      const cmd = [`M${F(xL)} ${F(first.y + rL)} Q${F(xL)} ${F(first.y)} ${F(xL + rL)} ${F(first.y)}`];
+-      for (let i = 0; i < st.length - 1; i += 1) {
+-        const p = st[i], q = st[i + 1], x = p.R, h = Math.abs(q.y - p.y);
+-        if (h < 0.05) continue;
+-        const wp = (p.R - p.L) / 2, wq = (q.R - q.L) / 2;
+-        if (q.y < p.y) {   // up: a fillet off the lower step, a round onto the higher
+-          const fi = Math.min(J.fillet, h / 2, wp), ro = Math.min(J.round, h / 2, wq);
+-          cmd.push(`L${F(x - fi)} ${F(p.y)} Q${F(x)} ${F(p.y)} ${F(x)} ${F(p.y - fi)} L${F(x)} ${F(q.y + ro)} Q${F(x)} ${F(q.y)} ${F(x + ro)} ${F(q.y)}`);
+-        } else {           // down: a round off the higher step, a fillet onto the lower
+-          const ro = Math.min(J.round, h / 2, wp), fi = Math.min(J.fillet, h / 2, wq);
+-          cmd.push(`L${F(x - ro)} ${F(p.y)} Q${F(x)} ${F(p.y)} ${F(x)} ${F(p.y + ro)} L${F(x)} ${F(q.y - fi)} Q${F(x)} ${F(q.y)} ${F(x + fi)} ${F(q.y)}`);
++      return { J, xL, xR, flat, st, rL, rR };
++    };
++    // a turn of the top from one step to the next, at the first one's right
++    // end: how far it reaches back along the one (a) and on along the other
++    // (b), and its outline
++    const stepTurn = (p, q, J) => {
++      const F = (n) => Math.round(n * 10) / 10;
++      const x = p.R, h = Math.abs(q.y - p.y);
++      if (h < 0.05) return { a: 0, b: 0, cmd: null };
++      const wp = (p.R - p.L) / 2, wq = (q.R - q.L) / 2;
++      if (q.y < p.y) {   // up: a fillet off the lower step, a round onto the higher
++        const fi = Math.min(J.fillet, h / 2, wp), ro = Math.min(J.round, h / 2, wq);
++        return { a: fi, b: ro, cmd: `L${F(x - fi)} ${F(p.y)} Q${F(x)} ${F(p.y)} ${F(x)} ${F(p.y - fi)} L${F(x)} ${F(q.y + ro)} Q${F(x)} ${F(q.y)} ${F(x + ro)} ${F(q.y)}` };
++      }
++      // down: a round off the higher step, a fillet onto the lower
++      const ro = Math.min(J.round, h / 2, wp), fi = Math.min(J.fillet, h / 2, wq);
++      return { a: ro, b: fi, cmd: `L${F(x - ro)} ${F(p.y)} Q${F(x)} ${F(p.y)} ${F(x)} ${F(p.y + ro)} L${F(x)} ${F(q.y - fi)} Q${F(x)} ${F(q.y)} ${F(x + fi)} ${F(q.y)}` };
++    };
++    // the top's outline, or a stretch of it: from its left corner along the
++    // steps to x on step k (topTo), or on from step k to its right corner
++    // (topOn); the two together, cut nowhere, are the whole top (topPath)
++    const topTo = (tp, k, x, lead = "M") => {
++      const F = (n) => Math.round(n * 10) / 10, first = tp.st[0];
++      const cmd = [`${lead}${F(tp.xL)} ${F(first.y + tp.rL)} Q${F(tp.xL)} ${F(first.y)} ${F(tp.xL + tp.rL)} ${F(first.y)}`];
++      for (let i = 0; i < k; i += 1) { const t = stepTurn(tp.st[i], tp.st[i + 1], tp.J); if (t.cmd) cmd.push(t.cmd); }
++      if (x != null) cmd.push(`L${F(x)} ${F(tp.st[k].y)}`);
++      return cmd;
++    };
++    const topOn = (tp, k) => {
++      const F = (n) => Math.round(n * 10) / 10, last = tp.st[tp.st.length - 1], cmd = [];
++      for (let i = k; i < tp.st.length - 1; i += 1) { const t = stepTurn(tp.st[i], tp.st[i + 1], tp.J); if (t.cmd) cmd.push(t.cmd); }
++      cmd.push(`L${F(tp.xR - tp.rR)} ${F(last.y)} Q${F(tp.xR)} ${F(last.y)} ${F(tp.xR)} ${F(last.y + tp.rR)}`);
++      return cmd;
++    };
++    const topPath = (bx) => { const tp = topSteps(bx); const n = tp.st.length - 1; return topTo(tp, n, null).concat(topOn(tp, n)).join(" "); };
++    // THE SLIM STRAND (variant C, 2026-10-10). In the English reader a split
++    // word's English keeps its reading order, left to right, and each piece's
++    // blob runs to its own Hebrew piece, so the blobs cross ("in" on the left
++    // to the bet on the right; the owner: "for english reader it would be zig
++    // zag"). Each piece keeps a whole shape around its English and a whole
++    // shape around its Hebrew (the flat top at the two set heights, the feet
++    // as ever), and between them only a slim strand, a few pixels wide and
++    // rounded: down from the English, along a lane of its own over the
++    // Hebrew tops, and down onto its own Hebrew piece. Strands cross one
++    // another square, so two hold in common no more than a strand's width
++    // squared, and the two boxes read as tied by a cord. A word with one
++    // piece keeps the full neck; nothing crosses there.
++    const SL = Object.assign({ w: 3.5, rf: 2, bend: 3, clear: 1, gap: 1 }, T.strand || {});
++    const roomOf = (x, y) => { const a2 = Math.sqrt(Math.max(0, x - 0.4)), b2 = Math.sqrt(Math.max(0, y - 0.4)); return (a2 + b2) * (a2 + b2); };
++    const engCorner = (U) => Math.max(0, Math.min(T.round || 0, (U.R - U.L) / 2, (U.B - U.T) / 2, roomOf(U.iL - U.L, U.iT - U.T), roomOf(U.R - U.iR, U.iT - U.T), roomOf(U.iL - U.L, U.B - U.iB), roomOf(U.R - U.iR, U.B - U.iB)));
++    // THE HEBREW'S OWN TOP, band by band as the seams leave it: the top at
++    // the two set heights stands only where the band over the letters is
++    // the piece's own; beyond it, where a neighbor's mark has that band, the
++    // piece's letters keep a shoulder a breath over their tops, and a vowel
++    // reaching out under a neighbor is held at the foot, as the neck holds
++    // them in the English reader. A strand never lands on a shoulder.
++    const shoulder = (hb, tp) => {
++      const st = tp.st.slice(); let { xL, xR, rL, rR } = tp;
++      if (hb.Rb[1] > xR + 0.01) { st.push({ L: xR, R: hb.Rb[1], y: hb.yA, y0: hb.yA, sh: true }); xR = hb.Rb[1]; rR = 0; }
++      if (hb.Lb[1] < xL - 0.01) { st.unshift({ L: hb.Lb[1], R: xL, y: hb.yA, y0: hb.yA, sh: true }); xL = hb.Lb[1]; rL = 0; }
++      return { ...tp, st, xL, xR, rL, rR };
++    };
++    const cores = en && pairs.some((pr) => pr.n > 1) ? hebs.map((hb) => topSteps({ ...hb, Lb: [hb.Lb[0]], Rb: [hb.Rb[0]] })) : null;
++    const tops = cores ? cores.map((tp, i) => shoulder(hebs[i], tp)) : null;
++    const cordOf = new Map();
++    if (tops) {
++      const hw = SL.w / 2;
++      const words = new Map();
++      pairs.forEach((pr, k) => { if (pr.n > 1) { if (!words.has(pr.wi)) words.set(pr.wi, []); words.get(pr.wi).push(k); } });
++      for (const ks of words.values()) {
++        const cords = ks.map((k) => {
++          const U = engs[k], tp = tops[k], ru = engCorner(U);
++          // where the strand leaves the English: its flat foot, the corners
++          // and a fillet apart
++          let rfE = SL.rf, eLo = U.L + ru + rfE + hw, eHi = U.R - ru - rfE - hw;
++          if (eLo > eHi) { const c = (U.L + U.R) / 2; rfE = Math.max(0, Math.min(SL.rf, (U.R - U.L) / 2 - ru - hw)); eLo = eHi = c; }
++          // where it lands: a step of the Hebrew's top, its turns and a
++          // fillet apart, as near the English as the step allows
++          const land = (tq, need) => {
++            let best = null;
++            tq.st.forEach((p, i) => {
++              if (p.sh) return;
++              const a = i === 0 ? tq.xL + tq.rL : p.L + stepTurn(tq.st[i - 1], p, tq.J).b;
++              const b = i === tq.st.length - 1 ? tq.xR - tq.rR : p.R - stepTurn(p, tq.st[i + 1], tq.J).a;
++              if (b - a < need) return;
++              let rfH = SL.rf, lo = a + rfH + hw, hi = b - rfH - hw;
++              if (lo > hi) { rfH = Math.max(0, (b - a) / 2 - hw); lo = hi = (a + b) / 2; }
++              const oL = Math.max(lo, eLo), oR = Math.min(hi, eHi);
++              const [xe, xh] = oL <= oR ? [(oL + oR) / 2, (oL + oR) / 2] : hi < eLo ? [eLo, hi] : [eHi, lo];
++              const score = Math.abs(xh - xe) - (b - a) * 0.001;
++              if (!best || score < best.score) best = { score, xe, xh, step: i, yh: p.y, rfH, tp: tq, hLo: lo, hHi: hi };
++            });
++            return best;
++          };
++          // a piece too narrow for its corners and a strand between them (a
++          // vav, a he) rounds its corners less, as far as the strand needs;
++          // one whose steps are each too narrow (a lamed, its
++          // tower and its foot) stands at the raised height across, the
++          // higher of the two set heights, its ink under it as ever
++          let best = land(tp, SL.w + 1);
++          if (!best) {
++            const core = cores[k], yTop = Math.min(...core.st.map((p) => p.y));
++            const top1 = core.st.length === 1 ? core : { ...core, st: [{ L: core.xL, R: core.xR, y: yTop, y0: yTop }], rL: Math.min(core.J.round, core.rL), rR: Math.min(core.J.round, core.rR) };
++            const spare = (top1.xR - top1.xL - SL.w - 1.5) / 2;
++            if (spare >= 0) best = land(shoulder(hebs[k], { ...top1, rL: Math.min(top1.rL, spare), rR: Math.min(top1.rR, spare) }), SL.w);
++          }
++          if (!best) best = land(tp, SL.w);
++          return best ? { k, ru, y1: U.B, rfE, eLo, eHi, ...best } : null;
++        });
++        if (cords.some((c) => !c)) continue;   // a piece with no room to land a strand: the word keeps its full necks
++        // THE ROOTS STAND APART: no strand's stub stands close beside another's,
++        // or on its line, where the eye could take the one strand on as the
++        // other; within the room each root has, the run as short as that leaves
++        const SEP = SL.w + 2 * SL.bend + 1;
++        const costOf = (c, xe, xh) => {
++          // a strand all but upright stands upright where its roots allow
++          let pen = Math.abs(xh - xe) * 0.25 + (Math.abs(xh - xe) > 0.01 && Math.abs(xh - xe) < SL.w + 1 ? 40 : 0);
++          for (const o of cords) {
++            if (o === c) continue;
++            for (const x of [xe, xh]) for (const y of [o.xe, o.xh]) { const dd = Math.abs(x - y); if (dd < SEP) pen += (SEP - dd) * (SEP - dd); }
++          }
++          return pen;
++        };
++        const grid = (lo, hi) => { const n = Math.max(1, Math.ceil((hi - lo) / 0.5)); return Array.from({ length: n + 1 }, (_, i) => lo + ((hi - lo) * i) / n); };
++        const crowded = () => cords.some((c) => { const dx = Math.abs(c.xh - c.xe); return (dx > 0.01 && dx < SL.w + 1) || cords.some((o) => o !== c && [c.xe, c.xh].some((x) => Math.abs(x - o.xe) < SEP || Math.abs(x - o.xh) < SEP)); });
++        for (let round = 0; round < 3 && crowded(); round += 1) {
++          for (const c of cords) {
++            let at = { cost: costOf(c, c.xe, c.xh), xe: c.xe, xh: c.xh };
++            for (const xe of grid(c.eLo, c.eHi)) for (const xh of grid(c.hLo, c.hHi)) { const v = costOf(c, xe, xh); if (v < at.cost - 1e-9) at = { cost: v, xe, xh }; }
++            c.xe = at.xe; c.xh = at.xh;
++          }
++        }
++        for (const c of cords) {
++          const dx = c.xh - c.xe;
++          c.g = Math.abs(dx) < SL.w + 1 ? 0 : Math.sign(dx);
++          // a strand that need travel no further than its bends would take
++          // leans straight down instead, where it passes clear of every top
++          if (c.g && Math.abs(dx) < 2 * SL.bend + SL.w) {
++            const yT = c.y1 + c.rfE, yB = c.yh - c.rfH;
++            let clear = yB > yT;
++            for (let y = yT; clear && y <= yB; y += 0.5) {
++              const xc = c.xe + ((y - yT) / (yB - yT)) * dx;
++              tops.forEach((tq, j) => tq.st.forEach((p, i) => { if ((j !== c.k || i !== c.step) && p.L < xc + hw && p.R > xc - hw && y + hw > p.y - SL.clear) clear = false; }));
++            }
++            if (clear) c.g = 0;
++          }
++          c.span = [Math.min(c.xe, c.xh) - hw - SL.bend, Math.max(c.xe, c.xh) + hw + SL.bend];
++          // the highest Hebrew top the lane passes over, but the step it lands on
++          c.over = Infinity;
++          tops.forEach((tq, j) => tq.st.forEach((p, i) => { if ((j !== c.k || i !== c.step) && p.R > c.span[0] && p.L < c.span[1]) c.over = Math.min(c.over, p.y); }));
++        }
++        // THE LANES: each strand that travels runs along a lane of its own,
++        // below the one before it where their runs overlap; of every order the
++        // one that keeps each lane clear of the tops below it and lets no stub
++        // run down along another's; where the room is short the lanes close
++        // up and the bends tighten before a lane is let down onto a top
++        const movers = cords.filter((c) => c.g);
++        const perms = (q) => (q.length <= 1 ? [q] : q.flatMap((x, i) => perms([...q.slice(0, i), ...q.slice(i + 1)]).map((o) => [x, ...o])));
++        const bounds = (c, bend) => { c.r = c.g ? Math.min(bend, Math.abs(c.xh - c.xe) / 2) : 0; c.lo = c.y1 + c.rfE + c.r; c.hi = Math.min(c.yh - c.rfH - c.r, c.over - hw - SL.clear); };
++        let pick = null;
++        for (const [gap, bend] of [[SL.gap, SL.bend], [SL.gap / 2, SL.bend * 0.8], [0, SL.bend * 0.6]]) {
++          for (const c of cords) bounds(c, bend);
++          for (const order of perms(movers)) {
++            const lane = new Map(); let bad = 0;
++            for (const c of order) {
++              let y = c.lo;
++              for (const o of order) { if (o === c) break; if (o.span[0] < c.span[1] && c.span[0] < o.span[1]) y = Math.max(y, lane.get(o) + SL.w + gap); }
++              lane.set(c, y); bad += Math.max(0, y - c.hi);
++            }
++            let clash = 0;
++            for (const c of cords) for (const o of cords) {
++              if (c === o) continue;
++              const cl = c.g ? lane.get(c) : c.yh, ol = o.g ? lane.get(o) : o.y1;
++              if (Math.abs(c.xe - o.xh) < SL.w + 1 && ol < cl) clash += 1;
++            }
++            const score = clash * 1000 + bad;
++            if (!pick || score < pick.score - 1e-6) pick = { score, lane, bend };
++          }
++          if (pick && pick.score < 0.01) break;
++        }
++        for (const c of cords) bounds(c, pick.bend);
++        // the lanes stand in the middle of the room they leave
++        const slack = movers.length ? Math.max(0, Math.min(...movers.map((c) => c.hi - pick.lane.get(c)))) : 0;
++        for (const c of cords) {
++          if (c.g) {
++            let y = pick.lane.get(c) + slack / 2;
++            if (y > c.hi) y = Math.max(c.lo, c.hi);
++            c.lane = y;
++            c.r = Math.max(0, Math.min(c.r, y - c.y1 - c.rfE, c.yh - c.rfH - y));
++          }
++          cordOf.set(c.k, c);
+         }
+       }
+-      cmd.push(`L${F(xR - rR)} ${F(last.y)} Q${F(xR)} ${F(last.y)} ${F(xR)} ${F(last.y + rR)}`);
+-      return cmd.join(" ");
+-    };
++    }
+     for (const [k, pr] of pairs.entries()) {
+       const he = hebs[k], eB = engs[k];
+       const U = en ? eB : he, D = en ? he : eB;
+@@ -8306,6 +8499,32 @@
+           + ` C${f(h.nR)} ${f(ym)} ${f(D.R)} ${f(ym)} ${f(D.R)} ${f(y2)} L${f(D.R)} ${f(D.B - rd)} Q${f(D.R)} ${f(D.B)} ${f(D.R - rd)} ${f(D.B)}`
+           + ` L${f(D.L + rd)} ${f(D.B)} Q${f(D.L)} ${f(D.B)} ${f(D.L)} ${f(D.B - rd)} L${f(D.L)} ${f(y2)} C${f(D.L)} ${f(ym)} ${f(h.nL)} ${f(ym)} ${f(h.nL)} ${f(y1)}`
+           + ` ${P(h.fromNeck)} Z`;
++      } else if (cordOf.has(k)) {
++        // the English box whole, down the strand's one side, the Hebrew's top
++        // on from where it lands, its feet, its top up to the strand again,
++        // up the strand's other side, and back round the English box
++        const c = cordOf.get(k), tp = c.tp, hw = SL.w / 2, { xe, xh, g, lane, r, rfE, rfH, yh, ru } = c, yE = U.B;
++        const h = hebrewEdge(he, "bottom", he.T);
++        const edgeBack = h.edge.slice().reverse().filter((q) => Number.isFinite(q[1]));
++        // beyond the top, the sides step down band by band as the neck's do
++        const right = (h.xR > tp.xR + 0.01 ? [...h.walk(tp.xR, h.xR), [h.xR, h.baseAt(h.xR - 0.004)]] : []).filter((q) => q[1] != null);
++        const left = (h.xL < tp.xL - 0.01 ? [[h.xL, h.baseAt(h.xL + 0.004)], ...h.walk(h.xL, tp.xL)] : []).filter((q) => q[1] != null);
++        const down = [], up = [];
++        if (g) {
++          const c1 = [xe + hw, lane - g * hw], p1 = Math.max(0, r - g * hw), c2 = [xh + hw, lane - g * hw], p2 = Math.max(0, r + g * hw);
++          down.push(`L${f(c1[0])} ${f(c1[1] - p1)} Q${f(c1[0])} ${f(c1[1])} ${f(c1[0] + g * p1)} ${f(c1[1])} L${f(c2[0] - g * p2)} ${f(c2[1])} Q${f(c2[0])} ${f(c2[1])} ${f(c2[0])} ${f(c2[1] + p2)}`);
++          const d1 = [xe - hw, lane + g * hw], q1 = Math.max(0, r + g * hw), d2 = [xh - hw, lane + g * hw], q2 = Math.max(0, r - g * hw);
++          up.push(`L${f(d2[0])} ${f(d2[1] + q2)} Q${f(d2[0])} ${f(d2[1])} ${f(d2[0] - g * q2)} ${f(d2[1])} L${f(d1[0] + g * q1)} ${f(d1[1])} Q${f(d1[0])} ${f(d1[1])} ${f(d1[0])} ${f(d1[1] - q1)}`);
++        }
++        d = [
++          `M${f(U.L + ru)} ${f(U.T)} L${f(U.R - ru)} ${f(U.T)} Q${f(U.R)} ${f(U.T)} ${f(U.R)} ${f(U.T + ru)} L${f(U.R)} ${f(yE - ru)} Q${f(U.R)} ${f(yE)} ${f(U.R - ru)} ${f(yE)}`,
++          `L${f(xe + hw + rfE)} ${f(yE)} Q${f(xe + hw)} ${f(yE)} ${f(xe + hw)} ${f(yE + rfE)}`, ...down,
++          `L${f(xh + hw)} ${f(yh - rfH)} Q${f(xh + hw)} ${f(yh)} ${f(xh + hw + rfH)} ${f(yh)}`,
++          ...topOn(tp, c.step), P(right), P(edgeBack), P(left), ...topTo(tp, c.step, xh - hw - rfH, "L"),
++          `Q${f(xh - hw)} ${f(yh)} ${f(xh - hw)} ${f(yh - rfH)}`, ...up,
++          `L${f(xe - hw)} ${f(yE + rfE)} Q${f(xe - hw)} ${f(yE)} ${f(xe - hw - rfE)} ${f(yE)}`,
++          `L${f(U.L + ru)} ${f(yE)} Q${f(U.L)} ${f(yE)} ${f(U.L)} ${f(yE - ru)} L${f(U.L)} ${f(U.T + ru)} Q${f(U.L)} ${f(U.T)} ${f(U.L + ru)} ${f(U.T)} Z`,
++        ].filter(Boolean).join(" ");
+       } else {
+         const h = hebrewEdge(he, "bottom", y2);
+         const ru = Math.max(0, Math.min(r0, (U.R - U.L) / 2, (y1 - U.T) / 2, room(U.iL - U.L, U.iT - U.T), room(U.R - U.iR, U.iT - U.T)));

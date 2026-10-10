@@ -1,0 +1,172 @@
+--- ghp/reader/zone-zig-tmp.html	2026-10-10 02:48:50.635134245 +0000
++++ ghp/reader/zone-geo-A.html	2026-10-10 04:00:44.299390662 +0000
+@@ -1017,6 +1017,26 @@
+      from its own word, so what belongs to what stays plain by nearness. */
+   body.en .wb, body.en .wjoin { vertical-align: bottom; }
+   body.en .wb.active .g { background: none; }
++  /* THE CHIP STANDS OUTSIDE THE BLOB IN THE ENGLISH READER TOO (the owner,
++     2026-10-10, Genesis 1:1: the English keeps its reading order and each
++     piece's blob runs to its own Hebrew piece, so the blobs cross between
++     the English and the Hebrew, where the chip stood). The block is the
++     Hebrew reader's turned over: the chip, the reading, the Hebrew. The
++     reading and its chip stay together, the chip on the far side of the
++     reading from the word, as it is in the Hebrew reader; a box held at
++     the height it painted at keeps its room on that far side too. */
++  body.en .he-text > .wb > .g { display: flex; flex-direction: column; align-items: safe center; justify-content: flex-end; }
++  body.en .he-text > .wb > .g > .g-lic,
++  body.en .he-text .wjoin > .g.parts .g-part > .g-lic { order: -1; margin: 0 auto 0.12em; }
++  body.en .he-text .wjoin > .g.parts { align-items: flex-end; }
++  body.en .he-text .wjoin > .g.parts .g-sep { align-self: flex-end; }
++  /* THE ROOM A CROSSING NEEDS: where a word's pieces cross on their way to
++     the Hebrew, the word asks (--cross, set by the tie) for the height that
++     lets them cross at a gentle angle, and no more; a word whose pieces do
++     not cross asks none. The Hebrew keeps the line's common foot; the
++     reading rises. */
++  body.en .he-text > .wb > .w { margin-top: calc(0.04rem + var(--cross, 0px)); }
++  body.en .he-text .wjoin > .wj-ink { margin-top: var(--cross, 0px); }
+ 
+   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
+   /* the rail: the page's toggles as one control block (see the header) */
+@@ -8023,6 +8043,24 @@
+     const boxes = spans ? spans.map(([a, b]) => inkBox(map, a, b)) : null;
+     const enBoxes = spans ? pcs.map(rectOf) : null;
+     if (!boxes || boxes.some((x) => !x) || enBoxes.some((x) => !x)) { const e = enWhole(enEl); return e ? [{ he: whole, en: e, wi, piece: 0, n: 1 }] : []; }
++    // A ROW WIDER THAN ITS READING'S CAP IS CUT AT THE CAP (the 11em the
++    // line holds a reading to, and a split row never wraps), so in the
++    // English reader, where the pieces' blobs cross and ask the room their
++    // travel needs, each piece's box stops where its letters stop showing:
++    // no blob runs on past the cell over the word beside it, and no letters
++    // the reader cannot see ask for room. A piece cut away whole has no
++    // letters to tie, so such a word wears one blob, whole, from what shows.
++    if (document.body.classList.contains("en")) {
++      const cap = row.closest(".g");
++      const cs = cap ? getComputedStyle(cap) : null;
++      const cr = cap ? cap.getBoundingClientRect() : null;
++      if (cr && cs.overflowX !== "visible") {
++        const cL = cr.left + parseFloat(cs.borderLeftWidth || 0), cR = cr.right - parseFloat(cs.borderRightWidth || 0);
++        const cut = (e) => ({ ...e, L: Math.max(e.L, cL), R: Math.min(e.R, cR) });
++        if (enBoxes.some((e) => e.L >= cR - 1 || e.R <= cL + 1)) return [{ he: whole, en: cut(rectOf(row)), wi, piece: 0, n: 1 }];
++        for (const [i, e] of enBoxes.entries()) if (e.L < cL - 0.5 || e.R > cR + 0.5) enBoxes[i] = cut(e);
++      }
++    }
+     // one height for the word, its ink's
+     for (const x of boxes) { x.T = whole.T; x.B = whole.B; }
+     return boxes.map((x, i) => ({ he: x, en: enBoxes[i], wi, piece: i, n: boxes.length }));
+@@ -8290,6 +8328,51 @@
+       cmd.push(`L${F(xR - rR)} ${F(last.y)} Q${F(xR)} ${F(last.y)} ${F(xR)} ${F(last.y + rR)}`);
+       return cmd.join(" ");
+     };
++    // THE CROSSING (the owner, 2026-10-10, Genesis 1:1: "for hebrew reader it
++    // would be non zig zag. for english reader it would be zig zag"). In the
++    // English reader the reading keeps its order, left to right, and each
++    // piece's blob runs to its own Hebrew piece, so the blobs of a word in
++    // pieces cross between the two lines. Each neck leaves its box straight
++    // down, turns in a short bend, runs straight across at one steady angle,
++    // and turns straight down again into the other box: two ribbons, their
++    // fills simply laid one over the other where they cross. The room
++    // between the two lines is what keeps the steepest neck of the word no
++    // flatter than X.slope across for one down (its straight run), and no
++    // more: the word asks for it (the return), and the tie's caller gives it.
++    const X = Object.assign({ slope: 3, bend: 0.25, floor: 6, center: true }, T.cross || {});
++    // the pieces that cross: two whose readings stand in one order and whose
++    // Hebrew stands in the other (each judged by its middle, the reading's
++    // and the neck's at the Hebrew); a run of whole words never crosses
++    const mids = en ? pairs.map((_, k) => [(engs[k].L + engs[k].R) / 2, (hebs[k].Lb[0] + hebs[k].Rb[0]) / 2]) : [];
++    const crossers = new Set(), at = [];
++    for (let i = 0; i < mids.length; i += 1) for (let j = i + 1; j < mids.length; j += 1) {
++      const a = mids[j][0] - mids[i][0], c = mids[j][1] - mids[i][1];
++      if (a * c < 0) { crossers.add(i); crossers.add(j); at.push(a / (a - c)); }
++    }
++    const crossing = crossers.size > 0;
++    // a neck from (x0, ya) to (x1, yb): straight down for a bend of bA of the
++    // room at its start and bB at its end, and straight across between
++    const neckTo = (x0, ya, x1, yb, bA, bB) => {
++      const H = yb - ya, s = H < 0 ? -1 : 1, A = Math.abs(H) * bA, B = Math.abs(H) * bB;
++      if (Math.abs(x1 - x0) < 0.3 || A + B >= Math.abs(H) || A <= 0 || B <= 0) return `L${f(x1)} ${f(yb)}`;
++      const c0x = x0, c0y = ya + s * A, c1x = x1, c1y = yb - s * B;
++      const ux = c1x - c0x, uy = c1y - c0y, len = Math.hypot(ux, uy) || 1, l0 = Math.min(A, len / 2), l1 = Math.min(B, len / 2);
++      const a0x = c0x + (ux / len) * l0, a0y = c0y + (uy / len) * l0, a1x = c1x - (ux / len) * l1, a1y = c1y - (uy / len) * l1;
++      return `Q${f(c0x)} ${f(c0y)} ${f(a0x)} ${f(a0y)} L${f(a1x)} ${f(a1y)} Q${f(c1x)} ${f(c1y)} ${f(x1)} ${f(yb)}`;
++    };
++    // WHERE THEY CROSS: about the middle of the room. A reading wider than
++    // its word draws its pieces together as they go down, so straight runs
++    // of one length at each end would cross low, by the Hebrew; the bend
++    // the two ends share is given more to the end the crossing would crowd,
++    // so the pieces' middles cross about halfway down, and the angle stays
++    // what the room was asked for
++    let bTop = X.bend, bFoot = X.bend;
++    if (crossing && X.center) {
++      const sAt = at.reduce((p, q) => p + q, 0) / at.length, lo = 0.4 * X.bend;
++      bTop = Math.min(2 * X.bend - lo, Math.max(lo, 0.5 - sAt * (1 - 2 * X.bend)));
++      bFoot = 2 * X.bend - bTop;
++    }
++    let ask = null;
+     for (const [k, pr] of pairs.entries()) {
+       const he = hebs[k], eB = engs[k];
+       const U = en ? eB : he, D = en ? he : eB;
+@@ -8312,9 +8395,19 @@
+         const right = [[h.nR, y2], ...h.walk(h.nR, h.xR), [h.xR, h.baseAt(h.xR - 0.004)]].filter((q) => q[1] != null);
+         const left = [[h.xL, h.baseAt(h.xL + 0.004)], ...h.walk(h.xL, h.nL), [h.nL, y2]].filter((q) => q[1] != null);
+         const edgeBack = h.edge.slice().reverse();
++        const downR = crossing ? neckTo(U.R, y1, h.nR, y2, bTop, bFoot) : `C${f(U.R)} ${f(ym)} ${f(h.nR)} ${f(ym)} ${f(h.nR)} ${f(y2)}`;
++        const upL = crossing ? neckTo(h.nL, y2, U.L, y1, bFoot, bTop) : `C${f(h.nL)} ${f(ym)} ${f(U.L)} ${f(ym)} ${f(U.L)} ${f(y1)}`;
+         d = `M${f(U.L + ru)} ${f(U.T)} L${f(U.R - ru)} ${f(U.T)} Q${f(U.R)} ${f(U.T)} ${f(U.R)} ${f(U.T + ru)} L${f(U.R)} ${f(y1)}`
+-          + ` C${f(U.R)} ${f(ym)} ${f(h.nR)} ${f(ym)} ${f(h.nR)} ${f(y2)} ${P(right.slice(1))} ${P(edgeBack)} ${P(left)}`
+-          + ` C${f(h.nL)} ${f(ym)} ${f(U.L)} ${f(ym)} ${f(U.L)} ${f(y1)} L${f(U.L)} ${f(U.T + ru)} Q${f(U.L)} ${f(U.T)} ${f(U.L + ru)} ${f(U.T)} Z`;
++          + ` ${downR} ${P(right.slice(1))} ${P(edgeBack)} ${P(left)}`
++          + ` ${upL} L${f(U.L)} ${f(U.T + ru)} Q${f(U.L)} ${f(U.T)} ${f(U.L + ru)} ${f(U.T)} Z`;
++        // the room this neck asks, where it crosses another: its steepest
++        // side's travel across, over the steady angle's run, less the room
++        // it has; a neck of the word that crosses none asks nothing
++        if (crossers.has(k)) {
++          const travel = Math.max(Math.abs(h.nR - U.R), Math.abs(h.nL - U.L));
++          const need = Math.max(X.floor, travel / (X.slope * (1 - 2 * X.bend)));
++          ask = Math.max(ask == null ? -Infinity : ask, need - (D.T - U.B));
++        }
+       }
+       he.L = Math.min(...he.Lb); he.R = Math.max(...he.Rb);
+       const tag = `data-wi="${pr.wi}" data-piece="${pr.piece}" data-n="${pr.n}" data-he="${f(he.L)},${f(he.R)},${f(he.T)},${f(he.B)}" data-en="${f(eB.L)},${f(eB.R)},${f(eB.T)},${f(eB.B)}"`;
+@@ -8329,6 +8422,22 @@
+       }
+     }
+     svg.innerHTML = out.join("");
++    return ask;
++  };
++  // the room a crossing asks for, given: the host's --cross grows or gives
++  // back what its pieces asked, and the tie is drawn again from where the
++  // lines then stand (the English reader only; the Hebrew reader's lines
++  // never cross and never ask). A reading held at the height it painted at
++  // (a card open on it) keeps the room it had: it may grow for a crossing
++  // the new reading makes, and gives none back until the hold is let go.
++  const giveRoom = (host, ask, draw) => {
++    if (ask === undefined || !document.body.classList.contains("en")) return;   // not drawn, or the Hebrew reader
++    const had = parseFloat(host.style.getPropertyValue("--cross")) || 0;
++    const held = !!host.querySelector(":scope > .g[style*=\"height\"]");
++    const want = Math.max(held ? had : 0, ask == null ? 0 : Math.ceil((had + ask) * 4) / 4);
++    if (Math.abs(want - had) < 0.25) return;
++    if (want) host.style.setProperty("--cross", `${want}px`); else host.style.removeProperty("--cross");
++    draw();
+   };
+   const drawTies = (run) => {
+     if (!run || !run.__ink || !run.isConnected) return;
+@@ -8338,9 +8447,8 @@
+     // each part to the word it reads, piece by piece where the word's own
+     // division answers the part's + for +; a part dropped under the signs
+     // switch leaves its word with no tie, and the others keep theirs
+-    const pairs = [];
+-    for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); }
+-    drawPairs(run, pairs);
++    const measure = () => { const pairs = []; for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); } return pairs; };
++    giveRoom(run, drawPairs(run, measure()), () => drawPairs(run, measure()));
+   };
+   // EVERY WORD, AS A PREVIEW (?blobs=every): the same blob on a word that
+   // stands alone, piece by piece, for the owner to see before the corpus
+@@ -8353,7 +8461,7 @@
+     if (!w || !ge) return;
+     wb.classList.add("tied");
+     pieceLine(ge, wb.__word);
+-    drawPairs(wb, piecePairs(w, ge, 0));
++    giveRoom(wb, drawPairs(wb, piecePairs(w, ge, 0)), () => drawPairs(wb, piecePairs(w, ge, 0)));
+   };
+   let tieTimer = 0;
+   const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => {

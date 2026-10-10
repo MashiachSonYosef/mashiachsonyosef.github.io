@@ -4,10 +4,25 @@
 // The site's own root is a splash: the books that are finished, and nothing
 // else clickable. Each is reached at a clean address derived from its work id —
 // which serves the one reader itself, told in its own head which work it is
-// and where the reader's files live. There is no second hop and no rewrite:
-// the address in the bar is the work's own from the first byte, and this is
-// the check that it stays that way — the page at the address, the readings
-// arriving, and nothing rewriting anything.
+// and where the reader's files live. There is no second hop and no
+// handshake: the address a reader arrives at is the page served there (a
+// slashless or republished address answers by a redirect to it, below), and
+// this is the check that it stays that way — the page at the address, the
+// readings arriving, and the bar still naming the address arrived at.
+//
+// After arrival the engine changes the bar in place in two ways only, both
+// by history.replaceState, never a reload or a back-button step. The reading
+// place (the owner, 2026-10-09; zone.html, THE READING PLACE): on a
+// chaptered book's own address or one of its chapter addresses, the bar
+// names /<book>/<chapter>/ once the reader's own input (isTrusted) has
+// moved the page and it rests in another chapter, or still carries a
+// link's ?at=; and at landing, with no input, when the book's own address
+// (not ?c=open or ?t=open) opens on the place the device kept. And, older,
+// the kept verse (rememberSpot) drops a hash whose place is out of view,
+// likewise only once the reader's own input has moved the page, the only
+// time the device keeps a place at all. Every address asserted
+// here is read before any input of the reader's on that page, on a book for
+// which the walk has kept no place, so it is still the arrival address.
 //
 // It serves the publication itself — the repository root is the deployed
 // tree, address pages and reader and data exactly as Pages serves them — so

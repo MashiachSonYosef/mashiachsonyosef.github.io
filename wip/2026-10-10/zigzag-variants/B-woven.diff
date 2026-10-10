@@ -1,0 +1,181 @@
+--- zone-zig-tmp.html	2026-10-10 02:48:50.635134245 +0000
++++ zone-geo-B.html	2026-10-10 03:51:43.575444012 +0000
+@@ -904,6 +904,26 @@
+   .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
+   .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
+   body.en .g-pcs { direction: ltr; }
++  /* THE CROSSING IN THE ENGLISH READER (the owner, 2026-10-10, Genesis 1:1:
++     "for english reader it would be zig zag"): the reading keeps its order,
++     so a piece's blob runs across to its own Hebrew piece and the blobs
++     cross between the reading and the word. Nothing stands in the crossing:
++     the license chip stands above the reading, outside the blob, as it
++     stands under the reading in the Hebrew reader; and a word whose pieces
++     cross steps down from its reading by what the crossing needs
++     (--tie-cross, set as its blob is drawn), and no more. A reading split
++     in pieces stands whole on its one line, as wide as its pieces: the cap
++     cut "and + to + breadth + its" to "and + to + breadth + i", the last
++     piece's ink outside the box its blob was drawn to. */
++  body.en .he-text > .wb > .g:not(.bare) { display: flex; flex-direction: column; align-items: safe center; }
++  body.en .he-text > .wb > .g:has(> .g-pcs) { max-width: none; }
++  body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts .g-part > .g-lic { order: -1; margin: 0 auto 0.12em; }
++  /* a run's parts stand on their readings' line, each chip above its own,
++     and the + between the parts on that line */
++  body.en .he-text .wjoin > .g.parts { align-items: flex-end; }
++  body.en .he-text .wjoin > .g.parts .g-sep { align-self: flex-end; }
++  body.en .he-text > .wb.tied > .w { margin-top: calc(0.04rem + var(--tie-cross, 0px)); }
++  body.en .he-text .wjoin > .wj-ink { margin-top: var(--tie-cross, 0px); }
+   .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+   .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
+   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
+@@ -6302,7 +6322,10 @@
+         // the chip's line rides along whole when one is present — grown
+         // height owes the text its lines AND the chip its own row
+         const chipEl2 = box.querySelector(".g-lic");
+-        const chipH2 = chipEl2 ? chipEl2.getBoundingClientRect().height + (parseFloat(getComputedStyle(chipEl2).marginTop) || 0) : 0;
++        // (its margin on either side: under the reading in the Hebrew
++        // reader, above it in the English one)
++        const chipCs = chipEl2 ? getComputedStyle(chipEl2) : null;
++        const chipH2 = chipEl2 ? chipEl2.getBoundingClientRect().height + (parseFloat(chipCs.marginTop) || 0) + (parseFloat(chipCs.marginBottom) || 0) : 0;
+         // GROW UNTIL IT IS WHOLE, don't predict it whole. One pass computed
+         // the lines from the height the text wanted BEFORE the box changed,
+         // and a box that grows re-wraps: at the second word of Genesis the
+@@ -7785,6 +7808,16 @@
+   // switched, the window resized, the face arriving, the run's line made
+   // again.
+   const TIE_NS = "http://www.w3.org/2000/svg";
++  // THE CROSSING'S MEASURE (the English reader): a crossing neck's handles
++  // stand bend of the drop from either end, so it runs straight through the
++  // middle of the drop, and it is steepest there; the drop from a reading to
++  // its word is what keeps the neck that travels farthest across no flatter
++  // than lean degrees from the upright there, held between min and max
++  // pixels; the outline of the blob under stops ko pixels short of the blob
++  // over, on either side. A probe may try others on window.__tie.cross.
++  const TIE_X = { lean: 75, bend: 0.4, min: 12, max: 42, ko: 2.5 };
++  const tieX = () => Object.assign({}, TIE_X, (window.__tie && window.__tie.cross) || {});
++  let TIE_X_SEQ = 0;
+   // THE INK OF A STRETCH OF LETTERS: each stretch of text in its own font,
+   // its height from the glyphs' bounds about the baseline (the baseline is
+   // the line box's top less the font's ascent), its sides where the line set
+@@ -8290,10 +8323,38 @@
+       cmd.push(`L${F(xR - rR)} ${F(last.y)} Q${F(xR)} ${F(last.y)} ${F(xR)} ${F(last.y + rR)}`);
+       return cmd.join(" ");
+     };
++    // THE CROSSING, WOVEN (the English reader; the owner, 2026-10-10: "for
++    // english reader it would be zig zag"): where a piece's reading stands
++    // on the other side of a neighbor's from where its Hebrew stands, the two
++    // blobs cross on the way down, and they cross as a thread does in linen,
++    // one over and one under: the one over is drawn whole, and the outline of
++    // the one under breaks a few pixels either side of it. The pieces take
++    // turns, over, under, over, under, in their reading's order within the
++    // word: the first and third lie over, the second and fourth under, and
++    // of two on one side the earlier lies higher. (Each blob taking turns
++    // along its own length cannot be drawn here: three such turns close a
++    // ring, the first over the second over the third over the first, and
++    // blobs as wide as their words cross all at one place, where no outline
++    // could show.)
++    const crosses = [];
++    if (en && pairs.length > 1) {
++      const eC = engs.map((b) => (b.L + b.R) / 2), hC = hebs.map((b) => (b.Lb[0] + b.Rb[0]) / 2);
++      const at = pairs.map((pr, k) => pairs.filter((o, m) => o.wi === pr.wi && eC[m] < eC[k]).length);
++      const rank = at.map((a) => (a % 2) * pairs.length + a);
++      for (let i = 0; i < pairs.length; i += 1) for (let j = i + 1; j < pairs.length; j += 1) {
++        if ((eC[j] - eC[i]) * (hC[j] - hC[i]) >= 0) continue;
++        const over = rank[i] < rank[j] || (rank[i] === rank[j] && eC[i] < eC[j]) ? i : j;
++        crosses.push({ i, j, over, under: over === i ? j : i });
++      }
++    }
++    const woven = crosses.length > 0, X = tieX(), ribs = [];
++    let bandT = Infinity, bandB = -Infinity, drop = Infinity, travel = 0;
+     for (const [k, pr] of pairs.entries()) {
+       const he = hebs[k], eB = engs[k];
+       const U = en ? eB : he, D = en ? he : eB;
+       const y1 = Math.min(U.B, D.T), y2 = Math.max(U.B, D.T), ym = (y1 + y2) / 2;
++      // a crossing's necks hold their handles bend of the drop from either end
++      const ya = woven ? y1 + X.bend * (y2 - y1) : ym, yb = woven ? y2 - X.bend * (y2 - y1) : ym;
+       const P = (pts) => pts.map(([x, y]) => `L${f(x)} ${f(y)}`).join(" ");
+       // the English box's corners round as far as the room its letters leave
+       const room = (x, y) => { const a2 = Math.sqrt(Math.max(0, x - 0.4)), b2 = Math.sqrt(Math.max(0, y - 0.4)); return (a2 + b2) * (a2 + b2); };
+@@ -8313,14 +8374,37 @@
+         const left = [[h.xL, h.baseAt(h.xL + 0.004)], ...h.walk(h.xL, h.nL), [h.nL, y2]].filter((q) => q[1] != null);
+         const edgeBack = h.edge.slice().reverse();
+         d = `M${f(U.L + ru)} ${f(U.T)} L${f(U.R - ru)} ${f(U.T)} Q${f(U.R)} ${f(U.T)} ${f(U.R)} ${f(U.T + ru)} L${f(U.R)} ${f(y1)}`
+-          + ` C${f(U.R)} ${f(ym)} ${f(h.nR)} ${f(ym)} ${f(h.nR)} ${f(y2)} ${P(right.slice(1))} ${P(edgeBack)} ${P(left)}`
+-          + ` C${f(h.nL)} ${f(ym)} ${f(U.L)} ${f(ym)} ${f(U.L)} ${f(y1)} L${f(U.L)} ${f(U.T + ru)} Q${f(U.L)} ${f(U.T)} ${f(U.L + ru)} ${f(U.T)} Z`;
++          + ` C${f(U.R)} ${f(ya)} ${f(h.nR)} ${f(yb)} ${f(h.nR)} ${f(y2)} ${P(right.slice(1))} ${P(edgeBack)} ${P(left)}`
++          + ` C${f(h.nL)} ${f(yb)} ${f(U.L)} ${f(ya)} ${f(U.L)} ${f(y1)} L${f(U.L)} ${f(U.T + ru)} Q${f(U.L)} ${f(U.T)} ${f(U.L + ru)} ${f(U.T)} Z`;
++        if (woven && crosses.some((c) => c.i === k || c.j === k)) {
++          drop = Math.min(drop, y2 - y1); travel = Math.max(travel, Math.abs(h.nL - U.L), Math.abs(h.nR - U.R));
++          bandT = Math.min(bandT, y1); bandB = Math.max(bandB, y2);
++        }
+       }
+       he.L = Math.min(...he.Lb); he.R = Math.max(...he.Rb);
+       const tag = `data-wi="${pr.wi}" data-piece="${pr.piece}" data-n="${pr.n}" data-he="${f(he.L)},${f(he.R)},${f(he.T)},${f(he.B)}" data-en="${f(eB.L)},${f(eB.R)},${f(eB.T)},${f(eB.B)}"`;
+-      out.push(`<path ${tag} d="${d}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
++      if (woven) ribs.push({ tag, d });
++      else out.push(`<path ${tag} d="${d}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
+       boxes.push({ L: Math.min(he.L, eB.L), R: Math.max(he.R, eB.R), y0: U.T, y1: D.B });
+     }
++    // the weave: the linen laid once over every blob of the word, so where
++    // two cross it is one cloth and not two; then each outline, the one
++    // under masked, in the crossing's band alone, wherever the one over
++    // lies and a few pixels either side of its edge
++    if (woven) {
++      const id = `tie-x${++TIE_X_SEQ}`, M = 24, sw = T.strokeW || 1;
++      const area = `x="${f(-M)}" y="${f(-M)}" width="${f(R.width + 2 * M)}" height="${f(R.height + 2 * M)}"`;
++      const defs = [`<clipPath id="${id}-band"><rect x="${f(-M)}" y="${f(bandT)}" width="${f(R.width + 2 * M)}" height="${f(Math.max(0, bandB - bandT))}"/></clipPath>`];
++      ribs.forEach((r, k) => {
++        const ups = crosses.filter((c) => c.under === k).map((c) => ribs[c.over].d);
++        if (!ups.length) return;
++        r.mask = `${id}-${k}`;
++        defs.push(`<mask id="${r.mask}" maskUnits="userSpaceOnUse" ${area}><rect ${area} fill="#fff"/><g clip-path="url(#${id}-band)">${ups.map((d) => `<path d="${d}" fill="#000" stroke="#000" stroke-width="${f(sw + 2 * X.ko)}" stroke-linejoin="round"/>`).join("")}</g></mask>`);
++      });
++      out.push(`<defs>${defs.join("")}</defs>`);
++      out.push(`<path class="wj-wash" d="${ribs.map((r) => r.d).join(" ")}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="none"/>`);
++      for (const r of ribs) out.push(`<path ${r.tag} d="${r.d}" fill="none" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${sw}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"${r.mask ? ` mask="url(#${r.mask})"` : ""}/>`);
++    }
+     if (T.sep && boxes.length > 1) {
+       boxes.sort((p, q) => p.L - q.L);
+       for (let i = 0; i < boxes.length - 1; i += 1) {
+@@ -8329,6 +8413,21 @@
+       }
+     }
+     svg.innerHTML = out.join("");
++    return woven ? { drop, travel } : null;
++  };
++  // THE CROSSING'S HEIGHT: a word whose blobs cross steps down from its
++  // reading until the drop is what the crossing needs (the farthest neck no
++  // flatter than the lean), so the cross is gentle and the line no taller
++  // than that; a word whose blobs do not cross, or the Hebrew reader, keeps
++  // its own height
++  const tieCross = (host, x, redraw) => {
++    const was = parseFloat(host.style.getPropertyValue("--tie-cross")) || 0;
++    const X = tieX();
++    const need = x ? x.travel / ((1 - X.bend) * Math.tan((X.lean * Math.PI) / 180)) : 0;
++    const want = x ? Math.max(0, Math.ceil((Math.min(X.max, Math.max(X.min, need)) - (x.drop - was)) * 2) / 2) : 0;
++    if (Math.abs(want - was) < 0.25) return;
++    if (want) host.style.setProperty("--tie-cross", `${want}px`); else host.style.removeProperty("--tie-cross");
++    redraw();
+   };
+   const drawTies = (run) => {
+     if (!run || !run.__ink || !run.isConnected) return;
+@@ -8338,9 +8437,8 @@
+     // each part to the word it reads, piece by piece where the word's own
+     // division answers the part's + for +; a part dropped under the signs
+     // switch leaves its word with no tie, and the others keep theirs
+-    const pairs = [];
+-    for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); }
+-    drawPairs(run, pairs);
++    const measure = () => { const pairs = []; for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); } return pairs; };
++    tieCross(run, drawPairs(run, measure()), () => drawPairs(run, measure()));
+   };
+   // EVERY WORD, AS A PREVIEW (?blobs=every): the same blob on a word that
+   // stands alone, piece by piece, for the owner to see before the corpus
+@@ -8353,7 +8451,7 @@
+     if (!w || !ge) return;
+     wb.classList.add("tied");
+     pieceLine(ge, wb.__word);
+-    drawPairs(wb, piecePairs(w, ge, 0));
++    tieCross(wb, drawPairs(wb, piecePairs(w, ge, 0)), () => drawPairs(wb, piecePairs(w, ge, 0)));
+   };
+   let tieTimer = 0;
+   const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => {
