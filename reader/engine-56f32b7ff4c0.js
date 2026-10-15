@@ -2402,7 +2402,12 @@
   };
 
   const saveFile = (name, text) => {
-    const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+    // THE FILE SAYS ITS OWN ENCODING. A phone's text viewer read the export
+    // as Latin-1 and showed its headwords as "×Ö°×" (the owner, 2026-10-14:
+    // "your headwords didnt export to the export file?"; the file held them,
+    // UTF-8, byte for byte). A byte order mark at the head tells any viewer
+    // the bytes are UTF-8; a Markdown reader passes over it.
+    const blob = new Blob([`\uFEFF${text}`], { type: "text/markdown;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url; a.download = name;
@@ -6167,7 +6172,7 @@
     // meet share the one line between them, band by band, with no hair of
     // linen between two outlines; so the half-hair GAP is nothing now.
     const PAD = 2, GAP = 0, GRAIN = 0.75;   // the breath outside the ink; half the hair between two boxes at a seam (none: they share the line); the measure's grain
-    const out = [];
+    const out = [], lines = [];
     // the blob's dress; a screenshot probe may set a trial one on window.__tie
     // (a fill, an outline, walls, the corners' radius), the live page never does
     const T = window.__tie || { fill: "var(--press-wash)", stroke: "var(--gold-dim)", strokeW: 1, strokeOp: 1, round: 8 };
@@ -6488,7 +6493,14 @@
       }
       he.L = Math.min(...he.Lb); he.R = Math.max(...he.Rb);
       const tag = `data-wi="${pr.wi}" data-piece="${pr.piece}" data-n="${pr.n}" data-he="${f(he.L)},${f(he.R)},${f(he.T)},${f(he.B)}" data-en="${f(eB.L)},${f(eB.R)},${f(eB.T)},${f(eB.B)}"`;
-      out.push(`<path ${tag} d="${d}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="${!T.sides && T.stroke ? T.stroke : "none"}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
+      // THE FILL UNDER, THE LINE OVER (the owner, 2026-10-10, ringing where
+      // two blobs cross: "the overlap drops one of the blob lining"): since
+      // the blob took the pressed linen, solid, a blob drawn later covered the
+      // line of one drawn before it wherever the two cross. So every fill is
+      // laid first and every line after them, and each blob keeps its whole
+      // line over any fill.
+      out.push(`<path ${tag} d="${d}" fill="${T.fill || "none"}" fill-opacity="${T.fillOp == null ? 1 : T.fillOp}" stroke="none"/>`);
+      if (!T.sides && T.stroke) lines.push(`<path class="wj-line" d="${d}" fill="none" stroke="${T.stroke}" stroke-width="${T.strokeW || 1}" stroke-opacity="${T.strokeOp == null ? 1 : T.strokeOp}" stroke-linejoin="round"/>`);
       boxes.push({ L: Math.min(he.L, eB.L), R: Math.max(he.R, eB.R), y0: U.T, y1: D.B });
     }
     if (T.sep && boxes.length > 1) {
@@ -6498,7 +6510,7 @@
         out.push(`<path d="M${f(x)} ${f(y0)} L${f(x)} ${f(y1)}" fill="none" stroke="${T.sep}" stroke-width="${T.sepW || 1}" stroke-opacity="${T.sepOp == null ? 1 : T.sepOp}" stroke-linecap="round"/>`);
       }
     }
-    svg.innerHTML = out.join("");
+    svg.innerHTML = out.concat(lines).join("");
   };
   const drawTies = (run) => {
     if (!run || !run.__ink || !run.isConnected) return;
@@ -6512,11 +6524,13 @@
     for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); }
     drawPairs(run, pairs);
   };
-  // EVERY WORD, AS A PREVIEW (?blobs=every): the same blob on a word that
-  // stands alone, piece by piece, for the owner to see before the corpus
-  // lane's blob ledger says which words wear one; the live page draws them
-  // on runs alone until then
-  const TIE_EVERY = QUERY.get("blobs") === "every";
+  // EVERY WORD (the owner, 2026-10-10, of "and + he said" standing bare under
+  // its word on the live page: "no blobs on + signed words?"): the same blob
+  // on a word that stands alone, piece by piece, wherever its English splits
+  // at "+" into pieces its own division answers (drawWordTie decides). It was
+  // a preview behind ?blobs=every until the owner asked for it; ?blobs=runs
+  // draws them on runs alone, as before.
+  const TIE_EVERY = QUERY.get("blobs") !== "runs";
   const drawWordTie = (wb) => {
     if (!wb || !wb.isConnected || wb.closest(".wjoin") || wb.classList.contains("mark") || wb.classList.contains("kq")) return;
     const w = wb.querySelector(":scope > .w"), ge = wb.querySelector(":scope > .g");
@@ -6540,7 +6554,11 @@
   const drawAllTies = () => { clearTimeout(tieTimer); tieTimer = setTimeout(() => {
     const t0 = performance.now(); let n = 0;
     for (const r of document.querySelectorAll(".he-text .wjoin")) { drawTies(r); n += 1; }
-    if (TIE_EVERY) for (const wb of document.querySelectorAll(".he-text > .wb")) { drawWordTie(wb); n += 1; }
+    // every word's blob, near the screen now and the rest in slices
+    // (tieAgainNow): drawn in one loop, a work of 73,140 words in 17
+    // sections (adam-min-haadamah, 11,675 words in one section) held its
+    // page past a minute, once every split word wore a blob (2026-10-15)
+    if (TIE_EVERY) { for (const wb of document.querySelectorAll(".he-text > .wb")) TIE_AGAIN.add(wb); n += tieAgainNow(); }
     window.__tieMs = { ms: Math.round(performance.now() - t0), cells: n };   // what a redraw of every built tie costs, for the check
   }, 60); };
   try { if (document.fonts) document.fonts.addEventListener("loadingdone", drawAllTies); } catch { /* no font events: the next draw is the window's */ }
@@ -6594,6 +6612,7 @@
     for (const x of near) { TIE_LATER.delete(x); drawTieSafe(x); }
     window.__tiePending = TIE_LATER.size;
     if (TIE_LATER.size && !tieLaterTimer) tieLaterTimer = setTimeout(tieLaterStep, 0);
+    return near.length;   // how many were drawn now, for the cost measure
   };
   const tieAgain = (ge) => {
     const wb = TIE_EVERY && ge && ge.closest ? ge.closest(".wb") : null;
@@ -10094,7 +10113,9 @@
       if (bar) bar.setAttribute("aria-expanded", "true");
     }
     if (el.__place) el.__place(el);
-    if (TIE_EVERY) requestAnimationFrame(() => { for (const wb of el.querySelectorAll(".he-text > .wb")) drawWordTie(wb); });
+    // a built section's words are tied near the screen now and elsewhere in
+    // slices (tieAgainNow), never all in one loop: see drawAllTies
+    if (TIE_EVERY) { for (const wb of el.querySelectorAll(".he-text > .wb")) TIE_AGAIN.add(wb); clearTimeout(tieAgainTimer); tieAgainTimer = setTimeout(tieAgainNow, 60); }
     return true;
   };
   const REACH = 1400;

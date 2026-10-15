@@ -990,10 +990,22 @@
      only a line made of its English and its chip is turned over, and a line
      holding anything else keeps today's order. */
   body.en .g-pcs { direction: ltr; }
+  /* A word whose English is split into pieces keeps every piece in sight.
+     Its row never wraps, because a tie runs to each piece, so the reading's
+     own width cap (.g, 11em, clipped) gives way to the row and the cell grows
+     to hold it. Under the cap it clipped "and + <to> the + darkness" at both
+     ends (Genesis 1:4), once every split word wore its blob (2026-10-10). */
+  .he-text > .wb.tied > .g:has(> .g-pcs) { max-width: none; }
   body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
   body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
   body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
-  body.en .he-text > .wb.tied > .g:has(> .g-pcs), body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
+  /* THE ROOM UNDER A TIED WORD KEYS ON THE TIE, NOT ON THE PIECES. A press
+     repaints the word's line, and for the 60 ms until its blob is drawn again
+     the pieces are gone: keyed on the pieces, the room went with them, the
+     card was placed under a block 12px short, and the block grew back under
+     it, over the Hebrew line (the overlaps gate, 2026-10-15, once every split
+     word wore its blob). The tie stays on through a repaint. */
+  body.en .he-text > .wb.tied > .g, body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
   .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
   .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,

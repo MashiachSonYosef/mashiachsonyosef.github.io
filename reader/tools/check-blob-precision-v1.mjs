@@ -23,8 +23,10 @@
 //     word's own line, character for character
 // B4  under any naming (the record's ALL): as B1 and B2, with words split
 // B5  the English reader: as B1
-// B6  the preview of every word (?blobs=every): as B1 on lone words; and at
-//     the default no lone word wears a blob (the live page draws on runs)
+// B6  every word (the default since 2026-10-10, the owner: "no blobs on +
+//     signed words?"; "id blob everything, everything except literally a
+//     1:1"): as B1 on lone words; ?blobs=runs draws on runs alone, and no
+//     lone word wears a blob there
 // B7  the cost: a redraw of every built blob stays under 4 ms a cell
 // Every book and section is read off the served index, never typed.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -43,12 +45,12 @@ const PASSES = {
        .he-text .wjoin > .g, .he-text .wjoin > .g *, .he-text > .wb.tied > .g, .he-text > .wb.tied > .g * { color: #000 !important; } .he-text .wjoin .wj-ink, .he-text > .wb.tied > .w { visibility: hidden !important; }
        .he-text .g-lic, .he-text .g-sep, .he-text .g-pp { visibility: hidden !important; } .he-text svg.wj-tie { visibility: hidden !important; }`,
 };
-const run = async ({ runs, mode, every, sections }) => {
+const run = async ({ runs, mode, every, runsOnly, sections }) => {
   const ctx = await b.newContext({ viewport: { width: 412, height: 900 }, deviceScaleFactor: 2 });
   await ctx.addInitScript((runs) => { try { localStorage.setItem("fh.runs", runs); localStorage.setItem("fh.maqaf-join", "maqaf"); } catch { /* a device that remembers nothing still reads */ } }, runs);
   const p = await ctx.newPage();
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`http://127.0.0.1:${PORT}/zone.html?b=${BOOK}${mode === "en" ? "&mode=en" : ""}${every ? "&blobs=every" : ""}`, { waitUntil: "networkidle", timeout: 90000 });
+  await p.goto(`http://127.0.0.1:${PORT}/zone.html?b=${BOOK}${mode === "en" ? "&mode=en" : ""}${every ? "&blobs=every" : ""}${runsOnly ? "&blobs=runs" : ""}`, { waitUntil: "networkidle", timeout: 90000 });
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
   await p.evaluate(async (n) => { for (const s of [...document.querySelectorAll("section.seg")].slice(0, n)) { s.scrollIntoView(); await new Promise((x) => setTimeout(x, 60)); } window.scrollTo(0, 0); await new Promise((x) => setTimeout(x, 900)); }, sections);
   const tot = { cells: await p.$$eval(CELLS, (els) => els.length), he: { ink: 0, outside: 0, twice: 0 }, en: { ink: 0, outside: 0, twice: 0 }, worst: [] };
@@ -129,9 +131,10 @@ const all = await run({ runs: "all", sections: 12 });
 check(`B4  under any naming: every ink pixel inside its blob, words split and uncrossed`, clean(all) && all.split.words > 0 && all.split.wrongCount === 0 && all.split.crossed === 0, `${say(all)} · ${all.split.words} words in pieces`);
 const enr = await run({ runs: "own", mode: "en", sections: 12 });
 check("B5  the English reader: every ink pixel inside its blob", clean(enr), say(enr));
-const every = await run({ runs: "own", every: true, sections: 4 });
-check("B6  the preview of every word: every lone word's ink inside its blob, split where its English is", clean(every) && every.lone > 0 && every.split.words > 0 && every.split.crossed === 0, `${say(every)} · ${every.lone} lone words with a blob · ${every.split.words} in pieces`);
-check("    and at the default no lone word wears a blob", live.lone === 0 && all.lone === 0, `${live.lone} at the default`);
+const every = await run({ runs: "own", sections: 4 });
+check("B6  every word, at the default: every lone word's ink inside its blob, split where its English is", clean(every) && every.lone > 0 && every.split.words > 0 && every.split.crossed === 0, `${say(every)} · ${every.lone} lone words with a blob · ${every.split.words} in pieces`);
+const runsOnly = await run({ runs: "own", runsOnly: true, sections: 4 });
+check("    and under ?blobs=runs no lone word wears a blob", runsOnly.lone === 0 && live.lone > 0, `${runsOnly.lone} under ?blobs=runs · ${live.lone} at the default`);
 const per = (t) => (t.cost && t.cost.cells ? t.cost.ms / t.cost.cells : null);
 check("B7  a redraw of every built blob stays under 4 ms a cell", [live, all, every].every((t) => per(t) !== null && per(t) < 4),
   [live, all, every].map((t) => (t.cost ? `${t.cost.cells} cells in ${t.cost.ms} ms` : "no measure")).join(" · "));
