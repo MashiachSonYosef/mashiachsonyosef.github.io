@@ -1369,7 +1369,7 @@
   /* Which way the words run, and nothing else. The two readers differ in the
      direction of the flow, so that is what is said under them. */
   .mode-pick { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
-  .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); }
+  .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); max-width: 10.5rem; text-align: center; }
   .mode-btn, .blob-btn { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
   .mode-btn.on, .blob-btn.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
@@ -1768,6 +1768,16 @@
      of its own — a commentator is one more voice on the card, not a louder
      kind of thing than the catalog it sits beside. */
   .wb { position: relative; }
+  /* THE CARD'S NUMBER ON THE PAGE (the numbers pill): small, in the card's
+     top corner, the card head's gold, with the arrow the way this reader
+     reads; drawn only while the pill is on */
+  .cn { position: absolute; top: 0.05rem; inset-inline-start: 0.22rem; font: 0.56rem/1 Georgia, serif; letter-spacing: 0.04em; color: var(--gold); pointer-events: none; user-select: none; z-index: 2; }
+  .cn::after { content: " \25C2"; }
+  body.en .cn::after { content: " \25B8"; }
+  /* the English reader prints the reading above the letters, so the number
+     moves to the card's bottom corner, under the letters */
+  body.en .cn { top: auto; bottom: 0.12rem; }
+  body:not(.nums) .cn { display: none; }
   /* A commentary handle standing in the line of the verse, after the words it
      covers. It is inline, so it reads as part of the line; what it opens is
      block-level, so the words after it fall below and the words above it are
@@ -2183,12 +2193,20 @@
        one thing on the page nothing stands behind. -->
 
   <div id="modeRow">
-    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
-    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE PILL FOR THE READER (the owner, 2026-10-16: "if its just 1 shade
+         and flips from hebrew to english that works too. you could call it on
+         and off still where english is on"): the English reader on, or off,
+         which is the Hebrew reader, the page as it opens. -->
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-pressed="false" aria-describedby="dirEn" title="the positioning layer applied to the Hebrew cards: the same cards, placed in English reading order; turn the numbers on to see each card’s place as written">English reader</button><span class="mode-dir" id="dirEn">off, right to left</span></span>
     <!-- THE BLOB PILL (the owner, 2026-10-16: "just do it as a nice pill like
          the english reader toggle ... this one can sit live ... on off"): one
          pill beside the readers, on or off, kept on this device. -->
     <span class="mode-pick"><button type="button" class="blob-btn on" id="blobPill" aria-pressed="true" aria-describedby="blobState">blobs</button><span class="mode-dir" id="blobState">on</span></span>
+    <!-- THE NUMBERS PILL (the owner, 2026-10-16: "id also move the numbering
+         and arrow to the book page runner cards and add that as a toggle
+         too"): each card's number in its verse as written, with the arrow the
+         way this reader reads, on the page's cards; kept on this device. -->
+    <span class="mode-pick"><button type="button" class="blob-btn" id="numsPill" aria-pressed="false" aria-describedby="numsState" title="each card’s number in its verse as the scribes wrote it, first word 1, and the arrow the way this reader reads">numbers</button><span class="mode-dir" id="numsState">off</span></span>
     <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
          a megatoggle at the top that opens all of it, without losing the drop
          down"). It always did open every verse's commentary; it was labelled
@@ -9938,7 +9956,7 @@
 
   // Hebrew / English reader toggle. Same words, same order, same receipts —
   // the English mode flips the flow LTR and lets the gloss line lead.
-  const btnHe = document.getElementById("modeHe"), btnEn = document.getElementById("modeEn");
+  const btnEn = document.getElementById("modeEn"), dirEn = document.getElementById("dirEn");
   // Which of the two layers a drag takes. It follows the word the reader
   // presses, so nothing is ever locked away: press a Hebrew word and the drag
   // takes Hebrew, press a reading and it takes readings. The reader you are in
@@ -10988,13 +11006,14 @@
     document.querySelectorAll(".he-text .wb .g[style]").forEach((g) => { g.removeAttribute("style"); });
     document.querySelectorAll(".he-text .wb[style]").forEach((w) => { w.style.width = ""; });
     document.body.classList.toggle("en", m === "en");
-    btnHe.classList.toggle("on", m !== "en");
     btnEn.classList.toggle("on", m === "en");
+    btnEn.setAttribute("aria-pressed", String(m === "en"));
+    dirEn.textContent = m === "en" ? "positioning layer on, left to right" : "off, right to left";
     pick(m === "en" ? "en" : "he");
     drawAllTies();
   };
-  btnHe.addEventListener("click", () => setMode("he"));
-  btnEn.addEventListener("click", () => setMode("en"));
+  // the one pill flips the reader: English on, or off, the Hebrew reader
+  btnEn.addEventListener("click", () => setMode(document.body.classList.contains("en") ? "he" : "en"));
   // the blob pill: on or off, like the readers' pills, and it says which
   const blobPill = document.getElementById("blobPill"), blobState = document.getElementById("blobState");
   const paintBlobPill = () => {
@@ -11004,6 +11023,30 @@
   };
   blobPill.addEventListener("click", () => chooseBlobs(blobsPref === "off" ? "every" : "off"));
   onBlobsChange = paintBlobPill; paintBlobPill();
+  // THE NUMBERS PILL: each card's number in its verse as written (the first
+  // word 1; a chain's words each their own, as the card's head counts them),
+  // drawn on the page's cards with the arrow the way this reader reads (the
+  // sheet), and kept on this device; ?nums= sets the load alone
+  const NUMS_KEY = "fh.nums";
+  let numsPref = (() => { const q = QUERY.get("nums"); if (q === "on" || q === "off") return q; try { return localStorage.getItem(NUMS_KEY) === "on" ? "on" : "off"; } catch { return "off"; } })();
+  const numberCells = (root) => {
+    const secs = root.matches && root.matches("section.seg") ? [root] : root.querySelectorAll("section.seg");
+    for (const sec of secs) sec.querySelectorAll(".he-text .wb:not(.mark)").forEach((wb, i) => {
+      if (wb.querySelector(":scope > .cn")) return;
+      const n = document.createElement("span"); n.className = "cn"; n.textContent = String(i + 1); n.setAttribute("aria-hidden", "true");
+      wb.prepend(n);
+    });
+  };
+  const numsPill = document.getElementById("numsPill"), numsState = document.getElementById("numsState");
+  const paintNums = () => {
+    const on = numsPref === "on";
+    document.body.classList.toggle("nums", on);
+    numsPill.classList.toggle("on", on); numsPill.setAttribute("aria-pressed", String(on));
+    numsState.textContent = on ? "on" : "off";
+    if (on) numberCells(document);
+  };
+  numsPill.addEventListener("click", () => { numsPref = numsPref === "on" ? "off" : "on"; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); });
+  paintNums();
   if (QUERY.get("mode") === "en") setMode("en");
   else if (!QUERY.has("mode")) { try { if (localStorage.getItem(MODE_KEY) === "en") setMode("en"); } catch { /* a device that remembers nothing opens the Hebrew reader */ } }
   if (QUERY.get("chain") === "ltr") document.body.dataset.chain = "ltr";   // the preview above
@@ -12753,6 +12796,7 @@
       if (bar) bar.setAttribute("aria-expanded", "true");
     }
     if (el.__place) el.__place(el);
+    if (numsPref === "on") numberCells(el);   // the numbers pill reaches a section built later
     // a built section's words are tied near the screen now and elsewhere in
     // slices (tieAgainNow), never all in one loop: see drawAllTies
     { for (const wb of el.querySelectorAll(".he-text > .wb")) TIE_AGAIN.add(wb); clearTimeout(tieAgainTimer); tieAgainTimer = setTimeout(tieAgainNow, 60); }

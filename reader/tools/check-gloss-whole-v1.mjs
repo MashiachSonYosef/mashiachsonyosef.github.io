@@ -211,7 +211,7 @@ const en = await clip();
 check("nor in the English reader", en.clipped === 0,
   `${en.clipped} of ${en.n} · longest ${en.longest} chars`);
 { const { mkdirSync } = await import("node:fs"); const { dirname: dn, join: jn } = await import("node:path"); const { fileURLToPath: fu } = await import("node:url"); const sh = jn(dn(fu(import.meta.url)), "..", "build", "shots"); mkdirSync(sh, { recursive: true }); await p.screenshot({ path: jn(sh, "gloss-whole-en.png") }); }
-await p.click("#modeHe");
+await p.evaluate(() => { const b = document.getElementById("modeEn"); if (b.classList.contains("on")) b.click(); });   // the one reader pill: off is the Hebrew reader
 await p.waitForTimeout(500);
 await p.evaluate(() => document.querySelector("section.seg").scrollIntoView({ block: "start" }));
 await p.waitForTimeout(200);
