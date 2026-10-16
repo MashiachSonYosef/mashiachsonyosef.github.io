@@ -1018,6 +1018,7 @@
   .g-pcs { display: inline-flex; direction: rtl; align-items: baseline; justify-content: center; white-space: nowrap; }
   .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
   .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
+  .g-pc.gap, .g-part.gap { display: inline-block; min-width: 0.55em; }   /* a hidden sign's place */
   /* THE ENGLISH READER KEEPS ITS OWN ORDER (the owner, 2026-10-10, on the
      first word of Genesis: "for hebrew reader it would be non zig zag. for
      english reader it would be zig zag"). In the Hebrew reader a split
@@ -1046,7 +1047,15 @@
      card was placed under a block 12px short, and the block grew back under
      it, over the Hebrew line (the overlaps gate, 2026-10-15, once every split
      word wore its blob). The tie stays on through a repaint. */
-  body.en .he-text > .wb.tied > .g, body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
+  /* THE SAME ROOM IN EVERY CELL (the owner, 2026-10-16, of a lone word beside
+     a chain in the English reader: "there doesnt seem to be any reason the
+     english would be heighted differently when both english and hebrew are
+     1 line each"). The 12px under a tied word's English, the blob's room,
+     stood only under tied cells, so the English of a bare word sat 12px
+     lower than its neighbor's while the Hebrew lines stayed level. Every
+     cell keeps the room now, tied or not: the English rows level, the
+     Hebrew rows level. */
+  body.en .he-text > .wb > .g, body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
   .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
   .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
@@ -2696,7 +2705,15 @@
   // sign, the sign is the source's whole reading and stands, so the switch
   // never leaves a word with nothing under it (the owner, 2026-10-03: "the
   // 4th word of genesis loaded blank due to set default <obj>").
-  const trimSigns = (pieces) => { const keep = pieces.filter((x) => !signOnly(x)); return keep.length ? keep : pieces; };
+  // A HIDDEN SIGN KEEPS ITS PLACE (the owner, 2026-10-16, of "and + <the> +
+  // well-being" under signs off: "my vote is to leave it like that: and + +
+  // well-being, rather than leave stuff out"). The sign is not drawn, but its
+  // piece stays as a gap, so the line still has one part per piece of the
+  // source's division, and the gap's letters wear their own blob. The gap is
+  // a zero-width space, which no trim removes; the row gives it a little
+  // width to tie to. Where every piece is a sign, the signs stand.
+  const SIGN_GAP = "\u200b";
+  const trimSigns = (pieces) => (pieces.every(signOnly) ? pieces : pieces.map((x) => (signOnly(x) ? SIGN_GAP : x)));
   // a line as the page prints it under the signs switch: its sign-only pieces
   // undrawn when the signs are off, whatever order led it there (the owner,
   // 2026-10-08, Judges 1:31 under oldest first: "and + <obj.> + Ahlab")
@@ -2706,12 +2723,10 @@
   const placeShown = (at) => {
     if (!at || signsPref !== "off") return at;
     const pieces = String(at.text).split("/");
-    // the pieces left drawn, and with them the sources the chip names
-    let keep = pieces.map((x, i) => i).filter((i) => !signOnly(pieces[i]));
-    if (!keep.length) keep = pieces.map((x, i) => i);
-    if (keep.length === pieces.length) return at;
-    const rs = at.rs && at.rs.length === pieces.length ? keep.map((i) => at.rs[i]) : at.rs;
-    return { ...at, text: keep.map((i) => pieces[i]).join("/").trim(), full: at.text, rs };
+    // every piece keeps its place; a sign piece is drawn as a gap, and the
+    // sources the chip names stay in step with the pieces
+    if (pieces.every(signOnly) || !pieces.some(signOnly)) return at;
+    return { ...at, text: pieces.map((x) => (signOnly(x) ? SIGN_GAP : x)).join("/"), full: at.text, rs: at.rs };
   };
   let editionMark = (() => { try { return localStorage.getItem(ED_KEY) === "diff" ? "diff" : "mam"; } catch { return "mam"; } })();
   let defOrder = (() => {
@@ -8020,7 +8035,13 @@
     // words' lines, each chosen word with the chip of the record it was
     // chosen from (the owner, 2026-10-08); a run ruled on a division of its
     // whole form reads that ruling as one line
-    if (heldRun !== null && memRun && memRun.cut) {
+    // A RUN RULED APART KEEPS ITS PARTS (the owner, 2026-10-16, of a chain
+    // ruled word by word on its card: the line and its blobs "went to the
+    // singular blob"). A ruling on the division "A + B" is a ruling on the
+    // cells, and the cells stand under their words, piece by piece, with a
+    // blob each; only a ruling on a whole form (as written, or welded) is one
+    // line with one blob.
+    if (heldRun !== null && memRun && memRun.cut && !memRun.cut.includes("+")) {
       const l = lineEl();
       delete l.dataset.off;
       l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare", "parts");
@@ -8093,8 +8114,9 @@
       // first inside each word's own line ("and + <obj.>" reads "and"), then
       // across the words of the run
       for (const p of parts) if (p.t) p.t = signsOffLine(p.t);
-      const keep = parts.filter((p) => !p.t || !signOnly(p.t));
-      if (keep.some((p) => p.t)) parts.splice(0, parts.length, ...keep);
+      // a part that is a sign alone keeps its place as a gap (the owner,
+      // 2026-10-16: "rather than leave stuff out"), unless every part is one
+      if (!parts.every((p) => !p.t || signOnly(p.t))) for (const p of parts) if (p.t && signOnly(p.t)) p.t = SIGN_GAP;
     }
     const text = parts.map((p) => p.t || "\u2014").join(" + ");
     line.replaceChildren();
@@ -8119,6 +8141,7 @@
       const cell = document.createElement("span");
       cell.className = "g-part";
       cell.dataset.wi = String(part.wi);   // the word of the run this part reads, for the tie
+      if (part.t === SIGN_GAP) cell.classList.add("gap");
       cell.append(document.createTextNode(part.t || "\u2014"));
       pieceLine(cell, (run.__words || [])[part.wi]);
       if (part.lic) cell.append(part.lic.cloneNode(true));
@@ -8414,7 +8437,7 @@
     row.dataset.counts = counts.join(",");
     raw.forEach((t, i) => {
       if (i) { const sep = document.createElement("span"); sep.className = "g-pp"; sep.textContent = " + "; row.append(sep); }
-      const pc = document.createElement("span"); pc.className = "g-pc"; pc.textContent = t; row.append(pc);
+      const pc = document.createElement("span"); pc.className = "g-pc" + (t.trim() === SIGN_GAP ? " gap" : ""); pc.textContent = t; row.append(pc);
     });
     hopPossessive(row);
     tn.replaceWith(row);
