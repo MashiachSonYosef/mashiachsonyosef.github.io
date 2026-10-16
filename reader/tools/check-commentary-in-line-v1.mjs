@@ -26,6 +26,7 @@
 // Each part says SKIPPED, by name, when the shelf carries nothing of that
 // grain, rather than failing every assertion against a page with nothing on
 // it or — worse — passing over nothing.
+// the commentary waits behind ?commentary=on since 2026-10-16 (the owner: "commentary to toggles for now"); every address here asks for it
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesWithCommentary } from "./zones-on-disk-v1.mjs";
@@ -80,7 +81,7 @@ if (!FIXTURE_ZONE) {
 } else for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the English reader"]]) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${FIXTURE_ZONE}${mode}`, { waitUntil: "networkidle" });
+  await p.goto(`${BASE}?b=${FIXTURE_ZONE}${mode}&commentary=on`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   await p.waitForTimeout(400);
   console.log(`— ${reader} —`);
@@ -258,7 +259,7 @@ if (!SECTION_ZONE) {
 } else for (const [mode, reader] of [["", "the Hebrew reader"], ["&mode=en", "the English reader"]]) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${SECTION_ZONE}${mode}`, { waitUntil: "networkidle" });
+  await p.goto(`${BASE}?b=${SECTION_ZONE}${mode}&commentary=on`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .c-bar");
   await p.waitForTimeout(500);
   console.log(`— ${SECTION_ZONE}, section-level commentary, ${reader} —`);
@@ -382,7 +383,7 @@ if (!SECTION_ZONE) {
 for (const book of WITH_COMMENTARY) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });
+  await p.goto(`${BASE}?b=${book}&commentary=on`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   await p.waitForTimeout(800);
   const t = await p.evaluate(() => window.__scopeCensus);
@@ -430,7 +431,7 @@ if (!WORD_ZONE) {
 } else {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${WORD_ZONE}`, { waitUntil: "networkidle" });
+  await p.goto(`${BASE}?b=${WORD_ZONE}&commentary=on`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .c-mark");
   await p.waitForTimeout(700);
   console.log("— a commentary covers the span the chain recorded —");
@@ -520,7 +521,7 @@ if (!WORD_ZONE) {
   {
     const p2 = await b.newPage({ viewport: { width: 412, height: 915 } });
     p2.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-    await p2.goto(`${BASE}?b=${WORD_ZONE}`, { waitUntil: "networkidle" });
+    await p2.goto(`${BASE}?b=${WORD_ZONE}&commentary=on`, { waitUntil: "networkidle" });
     await p2.waitForSelector("section.seg .c-mark");
     await p2.waitForTimeout(800);
     console.log("— a commentary's own words open —");
@@ -674,7 +675,7 @@ if (!WORD_ZONE) {
   {
     const p3 = await b.newPage({ viewport: { width: 412, height: 915 } });
     p3.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-    await p3.goto(`${BASE}?b=${WORD_ZONE}`, { waitUntil: "networkidle" });
+    await p3.goto(`${BASE}?b=${WORD_ZONE}&commentary=on`, { waitUntil: "networkidle" });
     await p3.waitForSelector("section.seg .c-mark");
     await p3.waitForTimeout(800);
     console.log("— what stands on a word, in the order the chain records —");

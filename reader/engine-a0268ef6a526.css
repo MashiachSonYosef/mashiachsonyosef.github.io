@@ -821,7 +821,13 @@
   .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
     margin: 0 0.16rem 0.55rem; cursor: pointer; }
   .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
-  .wb:hover .w { color: var(--gold); border-bottom-color: var(--gold); }
+  /* UNDER THE HAND THE LINE GOES GOLD, NOT THE LETTERS (the owner, 2026-10-16,
+     of a pressed word on a phone, where a tap leaves the word hovered: "you
+     made the entire hebrew word gold now thats not right"). Since the marks
+     wear the gold at rest and the letters laid over them take the word's
+     own color, a hover that turned the word gold turned the letters gold
+     with it. The hover keeps the ink and says itself by the line beneath. */
+  .wb:hover .w { border-bottom-color: var(--gold); }
   /* A word the chain holds is printed as the chain has it and not touched. But
      some of what it holds is not a word — the Miqra source's section markers
      arrive as a run of markup with no break in it, and an unbreakable run wider
@@ -1057,7 +1063,7 @@
   .wb.multi:not(.kq):hover .w { border-bottom-color: transparent; }
   .wb.multi.active:not(.kq) .w { border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
-  .wr:hover { color: var(--gold); border-bottom-color: var(--gold); }
+  .wr:hover { border-bottom-color: var(--gold); }
   /* AN UNDERLINE IS ONLY EVER ON THE HEBREW, AND MEANS ONE CARD HERE (the
      owner, 2026-10-03): every word, thin and dim (above, with the runs); a
      maqaf run or a span across words, one line under the whole; a ketiv-qere
