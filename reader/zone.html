@@ -3187,6 +3187,15 @@
       const name = hudSetFor();
       let cards = hudRunCards;
       if (name) { const f = await hudTogglesReady(); cards = f ? hudCardsOf(name) : hudRunCards; }
+      // AN UNDERLINE IS ONE READING (the owner, 2026-10-14 and 16: a
+      // double-word underline stands only where "a single license defining
+      // both words" stands under it; "the weld of a non maqaf is not
+      // something we do"). With the license runs off, no spaced run is laid
+      // at all: not the entry's naming, and not the sixteen Bethlehems a
+      // dictionary printed closed up (the lattice's weld runs), since the
+      // shelf answers none of their spans with one reading yet. A chain the
+      // scribes joined is one cell as ever; it is built from the text.
+      if (runsPref === "off") cards = [];
       const laid = layRunLanes(cards, runsPref !== "off" || !name);
       window.__hudToggles = { maqaf: HUD_TOGGLES_IX ? maqafJoin : "maqaf", runs: HUD_TOGGLES_IX ? runsPref : "own", set: name || "hud-runs", laid, file: !!HUD_TOGGLES };
       return laid;
