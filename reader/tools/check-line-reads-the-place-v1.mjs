@@ -58,13 +58,15 @@ const LINES = () => {
       // that is a sign and nothing else is not drawn on the line, unless every
       // piece is one, and then the sign is the whole reading and stands
       const all = w.pg.map((p) => String(p.g || "").trim());
-      const plain = all.filter((t) => !(window.__signs === "off" && /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(t)));
+      // since 2026-10-16 a hidden sign keeps its place as a gap (a zero-width space)
+      const isSignT = (t) => window.__signs === "off" && /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(t);
+      const plain = all.every(isSignT) ? all : all.map((t) => (isSignT(t) ? "\u200b" : t));
       // the baked line wears the same signs switch as the place's (2026-10-08:
       // a sign-only piece is undrawn under every order, not only "the source
       // here"), so the expectation is trimmed the same way
       const isSign = (x) => window.__signs === "off" && /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(x);
       const baseAll = z.gloss && z.gloss[w.k] ? String(z.gloss[w.k]).split("/").map((x) => x.trim()).filter(Boolean) : null;
-      const basePlain = baseAll ? baseAll.filter((x) => !isSign(x)) : null;
+      const basePlain = baseAll ? (baseAll.every(isSign) ? baseAll : baseAll.map((x) => (isSign(x) ? "\u200b" : x))) : null;
       out.push({ si, i, k: w.k, line: lineOf(wb), place: spanJoin((plain.length ? plain : all).join("/")), base: baseAll ? spanJoin((basePlain.length ? basePlain : baseAll).join("/")) : null, by: (z.gloss_m && z.gloss_m[w.k] && z.gloss_m[w.k].by) || [] });
     });
   }
@@ -104,7 +106,8 @@ const ready = async (p) => {
     // sign-only pieces (all of them a sign, it draws them), so the pill is
     // read the way the line draws it
     const r = await p.evaluate(() => {
-      const trim = (all) => { const keep = all.filter((x) => !/^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(x.trim())); return keep.length ? keep : all; };
+      const isS = (x) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(x.trim());
+      const trim = (all) => (all.every(isS) ? all : all.map((x) => (isS(x) ? "\u200b" : x)));   // a hidden sign keeps its place as a gap (2026-10-16)
       const drawn = (t) => (t && window.__signs === "off" ? trim(t.split(" + ")).join(" + ") : t);
       return { pressed: drawn(document.querySelector('#hud .r-pills button[aria-pressed="true"]')?.textContent.trim()), first: drawn(document.querySelector("#hud .r-pills button")?.textContent.trim()) };
     });
