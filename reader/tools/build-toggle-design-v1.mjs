@@ -119,7 +119,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   // photographs them all, so it opens the reader that way
   const URL0 = arg("--url", `http://127.0.0.1:8899/zone.html?b=${zonesOnDisk()[0]}`);
   const URL = URL0.includes("rail=all") ? URL0 : `${URL0}${URL0.includes("?") ? "&" : "?"}rail=all`;
-  const toggles = togglesFrom(PAGE), voices = voicesFrom(PAGE);
+  // A SWITCH KEPT AS A PLACEHOLDER (the owner, 2026-10-16: "oldest first toggle
+  // can go to toggle page as a placeholder"): listed below with the other
+  // things waiting, not drawn as a live switch; the page reads the source at
+  // this place, and the row stays in the rail's fold under ?rail=all for the
+  // checks that are written against the other orders.
+  const PLACEHOLDER_IDS = new Set(["order"]);
+  const toggles = togglesFrom(PAGE).filter((t) => !PLACEHOLDER_IDS.has(t.id)), voices = voicesFrom(PAGE);
   // THE OPEN QUESTION, AS A FILE THAT EMPTIES. A proposal is wording this lane
   // suggests for a switch; it is drawn beside what the rail says today and is
   // not live anywhere. When the owner accepts one it is written into TOGGLES
@@ -266,6 +272,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <ul class="ph-list">
 <li><b>The commentary.</b> Each verse's bar with its works list, the word-anchored marks and the book's open-all switch. Drawn only under <a href="/${esc(BOOK)}/?commentary=on">?commentary=on</a>; the door's own way in, <code>?c=open</code>, still opens it. The owner: "id even potentially move the targum jonathan off for now".</li>
 <li><b>Two-word underlines.</b> One cell, one card and one blob over two or more spaced words, only where one dictionary record defines the span as one thing. None is drawn: the record that named the spans was wrong ("the data is wrong lets leave it out for now"), and the shelf answers two spans in all. Comes back span by span when the run store lands.</li>
+<li><b>The reading order.</b> The "reads first" switch: the source at this place, or the oldest witness for the form, or another order of the records. The page reads the source at this place; the other orders wait here (16 October: "oldest first toggle can go to toggle page as a placeholder").</li>
 <li><b>The order legend.</b> A small legend, in a layman's words, that says the Hebrew sets which card is first and shows the English reader's order as a row of numbers; with gold arrows on the line for the reading direction. The card's own number and arrow are the first piece of it.</li>
 <li><b>The rebuild tool.</b> One command that recreates the whole site from the ledgers, offered at the end ("is there a way at the end of it all to offer a compressed tool that can recreate all of it").</li>
 </ul>
