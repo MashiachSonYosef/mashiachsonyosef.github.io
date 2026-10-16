@@ -158,12 +158,18 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (missing.length) throw new Error(`the rail drew no row for ${missing.map((t) => t.id).join(", ")} — refusing to publish a page about switches it could not photograph`);
 
   const live = toggles.filter((t) => !t.dead), dark = toggles.filter((t) => t.dead);
+  // where a reader tries each switch: the book this page photographed, with
+  // every switch drawn (?rail=all); the two the book page serves are said so
+  const BOOK = (() => { try { return new URL(URL).searchParams.get("b") || "genesis"; } catch { return "genesis"; } })();
+  const SERVED = new Set(["sources", "suggested"]);
+  const tryIt = (t) => `<p class="try">${SERVED.has(t.id) ? "on every book page" : "drawn only with the switches"} · <a href="/${esc(BOOK)}/?rail=all#rail">try it on ${esc(BOOK)}</a></p>`;
   const openCount = toggles.filter((t) => props[t.id]).length;
   const card = (t) => {
     const pr = props[t.id];
     return `<section class="sw${pr ? " open" : ""}" id="${esc(t.id)}">
   <h3>${esc(t.lab)}${pr ? `<em class="flag">wording open</em>` : ""}</h3>
   <p class="shot"><img src="shots/row-${esc(t.id)}.png" alt="the ${esc(t.lab)} row of the rail, as a reader sees it" loading="lazy"></p>
+  ${tryIt(t)}
   ${t.positions.length ? `<p class="pos">it offers · ${t.positions.map((x) => `<b>${esc(x)}</b>`).join(" · ")}</p>` : ""}
   ${t.dead ? `<p class="dark">drawn, and dark. It waits on ${esc(t.waits)}.</p>` : ""}
   ${pr ? `<div class="prop">
@@ -231,6 +237,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
  .prop .pl { margin:0; color:var(--ink); }
  .prop .pn { margin:.35rem 0 0; font-size:.82rem; color:var(--faint); }
  .settled { font-size:.82rem; color:var(--faint); margin:.6rem 0 0; }
+ .try { font-size:.8rem; color:var(--muted); margin:.3rem 0 0; }
  footer { margin-top:2.4rem; border-top:1px solid var(--line); padding-top:.9rem; font-size:.82rem; color:var(--faint); }
  a { color:var(--muted); }
 </style></head><body><div class="wrap">
@@ -247,6 +254,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
 <p class="lede" style="margin-top:1.1rem">${live.length} switch${live.length === 1 ? "" : "es"} a reader can press today${dark.length ? `, and ${dark.length} drawn and dark` : ""}. Each picture is the rail itself, photographed; this page holds no typed copy of any switch.</p>
 <p class="lede">Since 14 October 2026 a book page draws two rows of this rail, the sources and the label <b>source suggested</b>, which is forced on while the readings are checked (the owner: "move most of our toggle controls into the /toggles/ branch of the website until we have checked most of them"). Every other switch still works and is reachable live on any book under <code>?rail=all</code>, for example <a href="/genesis/?rail=all">/genesis/?rail=all</a>.</p>
+<div class="law">
+<p class="big">Previews, by address.</p>
+<p>Besides the switches, a few ways of drawing the page are behind an address flag while the owner checks them: <a href="/${esc(BOOK)}/?mode=en">?mode=en</a> opens the English reader (the last reader chosen on a device is remembered); <a href="/${esc(BOOK)}/?mode=en&amp;chain=ltr">?chain=ltr</a> lays a maqaf chain's Hebrew words left to right in the English reader, each under its English, instead of as written; <a href="/${esc(BOOK)}/?blobs=runs">?blobs=runs</a> draws the blobs on runs alone, as before 10 October; <a href="/${esc(BOOK)}/?rail=all#rail">?rail=all</a> draws every switch below.</p>
+</div>
+
 <p class="lede"><b>${openCount} of ${toggles.length} have their wording open.</b> Where a switch is marked so, this lane is proposing different words and the ruling is the owner's. An accepted proposal is written into the reader and deleted from <code>data/toggle-wording-proposals-v1.json</code>, so that file empties as the language settles and its length is the size of what is still unsettled.</p>
 
 ${VOICE_ORDER.filter((v) => toggles.some((t) => t.voice === v)).map((v) => `<div class="grp" id="voice-${esc(v)}">
