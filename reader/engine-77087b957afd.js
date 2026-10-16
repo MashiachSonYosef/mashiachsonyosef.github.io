@@ -495,7 +495,12 @@
   // 2026-10-03: "we can use BSB as primary source suggested". Off until a
   // reader turns it on; the book's file is fetched the first time it is.
   const SUGGESTED_KEY = "fh.suggested";
-  let suggested = (() => { try { return localStorage.getItem(SUGGESTED_KEY) === "bsb" ? "bsb" : "off"; } catch { return "off"; } })();
+  // FORCED ON (the owner, 2026-10-14: "leave a toggle that isnt toggleable
+  // that just says 'source suggested' or whatever to tell them we are forcing
+  // the source suggested currently"; "i really want to just start by serving
+  // 'source recommended' for the 39"). The switch's positions stay declared
+  // for the page about the switches; the rail draws a label in their place.
+  let suggested = "bsb";
   let SUGGESTED_IX = null, SUGGESTED = null, suggestedWait = null;
   const WORD_N = new WeakMap();   // each word of the zone -> its place: one-based over every entry, marks included, in section order
   const suggestedReady = () => {
@@ -523,7 +528,13 @@
   // the first time a switch leaves the default.
   const MAQAF_JOIN_KEY = "fh.maqaf-join", RUNS_KEY = "fh.runs";
   let maqafJoin = (() => { try { return localStorage.getItem(MAQAF_JOIN_KEY) === "pieces" ? "pieces" : "maqaf"; } catch { return "maqaf"; } })();
-  let runsPref = (() => { try { const v = localStorage.getItem(RUNS_KEY); return ["off", "own", "all"].includes(v) ? v : "own"; } catch { return "own"; } })();
+  // THE LICENSE RUNS REST OFF (the owner, 2026-10-14, of YHWH tseva'ot, Kadesh Barnea (Deuteronomy 1:2)
+  // and kekhol asher-tsivanu (Deuteronomy 1:41): "i think for now all the double word underlines need to
+  // go we just dont seem to grasp it as a concept well enough"; "the weld of
+  // a non maqaf is not something we do"). A chain the scribes joined is one
+  // cell as ever (part P1); a spaced run a dictionary names (P2) stands only
+  // where a reader moves the switch, which the book page no longer draws.
+  let runsPref = (() => { try { const v = localStorage.getItem(RUNS_KEY); return ["off", "own", "all"].includes(v) ? v : "off"; } catch { return "off"; } })();
   let HUD_TOGGLES_IX = null, HUD_TOGGLES = null, hudTogglesWait = null;
   let MARKS_REC = null;
   const HUD_LANES = { lay: null, relaySections: null };
@@ -697,8 +708,9 @@
     // SOURCE SUGGESTED — see the note above SUGGESTED_KEY. A source's own
     // reading of the whole word at this place, credited and licensed as the
     // BSB; the card shows it beside the readings, the line never moves.
-    { id: "suggested", voice: "them", lab: "source suggested", why: "how a running English Bible puts the whole word into its sentence at this place: the Berean Standard Bible's own cell, byte for byte, on the card under the readings — never on the line",
+    { id: "suggested", voice: "them", lab: "source suggested", why: "how a running English Bible puts the whole word into its sentence at this place: the Berean Standard Bible's own cell, byte for byte, on the card under the readings — never on the line. On for now, on every card, while the readings are checked",
       positions: [{ id: "off", lab: "off" }, { id: "bsb", lab: "the BSB" }],
+      forced: "the BSB, for now",
       live: () => !!SUGGESTED_IX,
       waits: "the corpus lane's source-suggested ledger laid on this book (tools/project-source-suggested-v1.mjs)",
       get: () => suggested,
@@ -3755,6 +3767,27 @@
     placeHud(el);
 
     const head = document.createElement("div"); head.className = "head";
+    // THE CARD'S NUMBER (the owner, 2026-10-14: "it appears the cards still
+    // arent numbered too"; "the arrow could be small and next to the number";
+    // 2026-10-13: the Hebrew dictates which card is first). The word's count
+    // in its verse as the scribes wrote it, first word 1, and a small arrow
+    // the way the open reader reads; a chain's card counts its first word to
+    // its last. Gold alone: "the red and gold together looks a bit
+    // orangeish".
+    {
+      const sec = el && el.closest ? el.closest("section.seg") : null;
+      const all = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
+      const host = el && el.closest ? (el.closest(".wjoin") || el.closest(".wb")) : null;
+      const mine = host ? (host.classList.contains("wjoin") ? [...host.querySelectorAll(".wb:not(.mark)")] : [host]) : [];
+      const nums = mine.map((x) => all.indexOf(x) + 1).filter((n) => n > 0);
+      if (nums.length) {
+        const wn = document.createElement("span"); wn.className = "wn";
+        const lo = Math.min(...nums), hi = Math.max(...nums);
+        wn.textContent = `${lo}${hi > lo ? `\u2013${hi}` : ""} ${document.body.classList.contains("en") ? "\u25B8" : "\u25C2"}`;
+        wn.title = `word ${lo}${hi > lo ? ` to ${hi}` : ""} of this verse as written; the arrow is the way this reader reads`;
+        head.append(wn);
+      }
+    }
     const b = document.createElement("b"); b.lang = "he"; b.dir = "rtl";
     // the whole occurrence in the header, with the W you opened marked, so a
     // maqaf'd word never loses the half you are not reading
@@ -6124,8 +6157,32 @@
       if (i) { const sep = document.createElement("span"); sep.className = "g-pp"; sep.textContent = " + "; row.append(sep); }
       const pc = document.createElement("span"); pc.className = "g-pc"; pc.textContent = t; row.append(pc);
     });
+    hopPossessive(row);
     tn.replaceWith(row);
     return row;
+  };
+  // THE ONE HOP (the owner, 2026-10-14: le-veitekha (Habakkuk 2:10) "to + house + your" reads "1 3 2";
+  // al-mishmarti (Habakkuk 2:1) "appears to want to say at + my + post"; ve-ad-mevo'o (Malachi 1:11) "'its' in
+  // english would come first eventhough technically the hebrew asks it to
+  // come second"; al-me'oreihem (Habakkuk 2:15), al-kevodekha (Habakkuk 2:16) "the possessive their... same for
+  // your"). In the English reader a possessive suffix stands before the
+  // piece it is written after, and nothing else moves: the pieces keep the
+  // Hebrew's order in the row (the tie reads them by that order), and only
+  // their places on the screen change (body.en .g-pcs > * { order }). The
+  // Hebrew reader keeps every piece under its own letters. OPEN (the owner:
+  // "although uniform rules applied could be argued should be kept at +
+  // post + my"): the uniform order is this with the hop off.
+  const POSSESSIVE = /^(my|your|his|her|its|our|their)$/iu;
+  const hopPossessive = (row) => {
+    const nodes = [...row.children];
+    nodes.forEach((n, i) => n.style.setProperty("--o", String(10 * i)));
+    const pcs = nodes.filter((n) => n.classList.contains("g-pc"));
+    pcs.forEach((pc, k) => {
+      if (k === 0 || !POSSESSIVE.test(pc.textContent.trim())) return;
+      const at = nodes.indexOf(pcs[k - 1]), sep = pc.previousElementSibling;
+      pc.style.setProperty("--o", String(10 * at - 5));
+      if (sep && sep.classList.contains("g-pp")) sep.style.setProperty("--o", String(10 * at - 3));
+    });
   };
   // the box the line sets an English reading's letters in, the license chip
   // apart: its pieces where it stands in pieces, else its text whole
@@ -6142,10 +6199,21 @@
   };
   // a word to its English: one pair per piece where the reading stands in
   // pieces, or one for the word whole
+  // where a maqaf stands in a stretch of ink: the box of each U+05BE glyph
+  const maqafsIn = (map) => {
+    const out = [];
+    for (const t of map.nodes) for (let i = 0; i < t.len; i += 1) {
+      if (t.n.data[i] !== "\u05be") continue;
+      const rg = document.createRange(); rg.setStart(t.n, i); rg.setEnd(t.n, i + 1);
+      const r = rg.getBoundingClientRect(); if (r.width > 0) out.push({ L: r.left, R: r.right });
+    }
+    return out;
+  };
   const piecePairs = (wEl, enEl, wi) => {
     const map = textMap(wEl);
     const whole = inkBox(map, 0, map.text.length);
     if (!whole) return [];
+    whole.maqafs = maqafsIn(map);
     const row = enEl ? enEl.querySelector(":scope > .g-pcs") : null;
     const pcs = row ? [...row.querySelectorAll(":scope > .g-pc")] : [];
     const counts = row ? String(row.dataset.counts || "").split(",").map(Number) : null;
@@ -6153,8 +6221,8 @@
     const boxes = spans ? spans.map(([a, b]) => inkBox(map, a, b)) : null;
     const enBoxes = spans ? pcs.map(rectOf) : null;
     if (!boxes || boxes.some((x) => !x) || enBoxes.some((x) => !x)) { const e = enWhole(enEl); return e ? [{ he: whole, en: e, wi, piece: 0, n: 1 }] : []; }
-    // one height for the word, its ink's
-    for (const x of boxes) { x.T = whole.T; x.B = whole.B; }
+    // one height for the word, its ink's; a maqaf belongs to the piece it stands in
+    for (const x of boxes) { x.T = whole.T; x.B = whole.B; x.maqafs = whole.maqafs.filter((m) => m.R > x.L && m.L < x.R); }
     return boxes.map((x, i) => ({ he: x, en: enBoxes[i], wi, piece: i, n: boxes.length }));
   };
   // the shapes for a host (a run, or one word) from its pairs, each a box of
@@ -6185,6 +6253,7 @@
       const L = b.L - R.left - padX - g, Rr = b.R - R.left + padX + g;
       const bands = banded && b.bands ? b.bands.map((x) => (x ? { iL: x.iL - R.left, iR: x.iR - R.left, iT: x.iT - R.top, iB: x.iB - R.top } : null)) : [null, { iL: b.L - R.left, iR: b.R - R.left, iT: b.T - R.top, iB: b.B - R.top }, null];
       return { L, R: Rr, T: b.T - R.top - padY - g, B: b.B - R.top + padY + g, banded: !!(banded && b.bands),
+        maqafs: (b.maqafs || []).map((m) => ({ L: m.L - R.left, R: m.R - R.left })),
         iL: (b.iL == null ? b.L : b.iL) - R.left, iR: (b.iR == null ? b.R : b.iR) - R.left, iT: b.T - R.top, iB: b.B - R.top,
         aL: (b.aL == null ? b.L : b.aL) - R.left, aR: (b.aR == null ? b.R : b.aR) - R.left,
         yA: banded && b.yA != null ? b.yA - R.top : b.T - R.top, yB: banded && b.yB != null ? b.yB - R.top : b.B - R.top, capY: banded && b.capY != null ? b.capY - R.top : null,
@@ -6309,6 +6378,31 @@
       });
       ys = roll(roll(ys, sgn), -sgn);
       ys = ys.map((y, i) => { let a2 = 0, n = 0; for (let j = i - 2; j <= i + 2; j += 1) if (j >= 0 && j < ys.length) { a2 += ys[j]; n += 1; } const m = a2 / n; return sgn * m > sgn * y ? m : y; });
+      // THE THIRD, DROPPED HEIGHT AT A MAQAF (the owner, 2026-10-10: "i would
+      // also maybe add a third dropped height for maqafs", "even just a lil
+      // brief dip it doesn't have to be perfect but something indicating the
+      // break", "artists choice"). Over the maqaf's own stroke, where no
+      // letter stands, the top line comes down to a breath off the stroke,
+      // its shoulders eased over DIP_EASE each side; it never comes nearer
+      // any ink than CLEAR. The foot (the English reader's far side) keeps
+      // its level: the stroke stands above the letters, not below.
+      if (top && bx.maqafs && bx.maqafs.length) {
+        const DIP_EASE = 3, clearDip = reacher(cols, CLEAR);
+        for (const m of bx.maqafs) {
+          const own = cols.filter(([cx]) => cx >= m.L - 0.5 && cx <= m.R + 0.5);
+          if (!own.length) continue;
+          const yd = Math.min(...own.map(([, ct]) => ct)) - PAD;
+          if (!(yd > flat)) continue;   // the stroke stands no lower than the line
+          ys = ys.map((y, i) => {
+            const x = pts[i].x, d = x < m.L ? m.L - x : x > m.R ? x - m.R : 0;
+            if (d >= DIP_EASE) return y;
+            let v = flat + (yd - flat) * (1 - d / DIP_EASE);
+            if (!(v > y)) return y;
+            const k = clearDip(x); if (k !== null && v > k) v = k;
+            return v > y ? v : y;
+          });
+        }
+      }
       // the two far corners round, never nearer the ink than CLEAR
       const clearOf = reacher(cols, CLEAR);
       ys = ys.map((y, i) => {
@@ -6522,6 +6616,13 @@
     // switch leaves its word with no tie, and the others keep theirs
     const pairs = [];
     for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); }
+    // ONE BLOB FOR A RUN READ WHOLE (the owner, 2026-10-14, of et-haraqia (Genesis 1:7):
+    // "when i have the megacompspan weld or full form it should
+    // automatically merge the blob and get rid of the + sign in
+    // anticipation. it's all formulaic"): a run whose line is one reading
+    // (the weld or the full form chosen on its card, or a dictionary's
+    // whole entry) wears one blob over all its ink, tied to that one line.
+    if (!parts.length && g && !g.classList.contains("bare") && g.textContent.trim() && words.length) pairs.push(...piecePairs(run.__ink, g, 0));
     drawPairs(run, pairs);
   };
   // EVERY WORD (the owner, 2026-10-10, of "and + he said" standing bare under
@@ -7753,7 +7854,11 @@
     // starting with the ones we have outside"): the line's order, the
     // sources, the license sort. What waits under the fold still works and
     // says its own position there; this line no longer recites it.
-    const lead = ["reads", "sources", "licence", "signs"].map((id) => TOGGLES.find((t) => t.id === id)).filter(Boolean);
+    // since 2026-10-14 the sources and the forced source suggested label
+    // the line's order first, as a statement of what the page answers (the
+    // switch itself is under the fold since 2026-10-14), then the sources
+    // and the forced source suggested label
+    const lead = ["reads", "sources", "suggested"].map((id) => TOGGLES.find((t) => t.id === id)).filter(Boolean);
     lead.forEach((t, i) => {
       if (i) now.append(Object.assign(document.createElement("i"), { textContent: "·" }));
       const b = document.createElement("b"); b.textContent = t.now() || t.lab;
@@ -8347,10 +8452,19 @@
     // 2026-10-03: "move the license toggle out too ... so i can find my own SA")
     // and the source signs, starting off (the owner, 2026-10-03: "lets move
     // source signs out to its own toggle that starts off")
-    const LEAD = new Set(["sources", "reads", "licence", "signs"]);
+    // THE BOOK PAGE SERVES TWO ROWS (the owner, 2026-10-14: "move most of
+    // our toggle controls into the /toggles/ branch of the website until we
+    // have checked most of them"; "id leave the toggle on and off set
+    // dictionarys, and leave a toggle that isnt toggleable that just says
+    // 'source suggested'"): the sources, and the forced label. Every other
+    // switch stands under the fold as before, and the fold is drawn only
+    // under ?rail=all, which the page about the switches links to; every
+    // check still reaches each row by its id.
+    const LEAD = new Set(["sources", "suggested"]);
     const waiting = TOGGLES.filter((t) => !LEAD.has(t.id));
     moreSum.textContent = `${waiting.length} more switches, not yet fleshed out`;
     more.append(moreSum);
+    more.hidden = QUERY.get("rail") !== "all";
     for (const t of TOGGLES) {
       const row = document.createElement("div"); row.className = "row" + (t.live() ? "" : " dead"); row.dataset.toggle = t.id;
       if (t.voice) row.dataset.voice = t.voice;
@@ -8360,6 +8474,7 @@
       else if (t.id === "pairs") host.id = "pairRow";
       else if (t.id === "sources") host.id = "sourcesRow";
       else if (t.id === "reads") host.id = "readsRow";
+      else if (t.forced) { const f = document.createElement("span"); f.className = "dfp on forced"; f.textContent = t.forced; f.title = "not a switch yet: this stands on every card while the readings are checked"; host.append(f); }
       else host.append(segRow(t, t.positions || [], t.get ? t.get() : null, (id) => { if (t.set) t.set(id); }));
       const v = VOICE[t.voice];
       if (v) {
@@ -8385,8 +8500,13 @@
     readsSwitch();
     railSay();
   };
+  // THE READER IS REMEMBERED (the owner, 2026-10-14: "the cache should carry
+  // the english toggle too"): the last reader chosen on this device opens
+  // next time; an address that says ?mode= wins over it.
+  const MODE_KEY = "fh.mode";
   const setMode = (m) => {
     closeHud();
+    try { localStorage.setItem(MODE_KEY, m === "en" ? "en" : "he"); } catch { /* the choice still stands on this page */ }
     // a box fixed at one reader's size is not the other reader's box
     document.querySelectorAll(".he-text .wb .g[style]").forEach((g) => { g.removeAttribute("style"); });
     document.querySelectorAll(".he-text .wb[style]").forEach((w) => { w.style.width = ""; });
@@ -8399,6 +8519,8 @@
   btnHe.addEventListener("click", () => setMode("he"));
   btnEn.addEventListener("click", () => setMode("en"));
   if (QUERY.get("mode") === "en") setMode("en");
+  else if (!QUERY.has("mode")) { try { if (localStorage.getItem(MODE_KEY) === "en") setMode("en"); } catch { /* a device that remembers nothing opens the Hebrew reader */ } }
+  if (QUERY.get("chain") === "ltr") document.body.dataset.chain = "ltr";   // the preview above
 
   // Copying is the reader's act. There is no control on this page that writes
   // to a clipboard, because a control doing that is the site redistributing on
@@ -8920,6 +9042,7 @@
       const p = document.createElement("p"); p.className = "c-inline";
       p.lang = "he"; p.dir = "rtl"; p.hidden = true;
       const w = commentaryWorkOf(e);
+      p.dataset.work = w.family_en || "commentary";   // which work, for the works list
       const lab = document.createElement("span"); lab.className = "lab";
       lab.append(`${w.family_en || w.title || e.ref} · ${e.ref}${w.b_n ? ` · ${w.b_n}` : ""} `);
       const lic = document.createElement("span"); lic.className = "lic-chip";
@@ -9309,7 +9432,7 @@
     // rather than a letter. It is the section's other text; a letter beside a
     // verse number was the wrong size for that.
     const secCm = sectionCommentaryFor(sec.unit);
-    let cbar = null;
+    let cbar = null, cworksBtn = null, cworks = null;
     if (secCm) {
       cbar = document.createElement("button"); cbar.type = "button"; cbar.className = "c-bar";
       // One name per work, not one per unit, and a bound on how many are read
@@ -9342,6 +9465,37 @@
         e.stopPropagation();
         cbar.setAttribute("aria-expanded", String(toggleSectionInline(sec, s)));
       });
+      // EACH WORK SELECTABLE (the owner, 2026-10-14: "lets say there are 130
+      // commentarys like genesis 1... make the pill with each selectable...
+      // when clicked it drops down open"). Beside the bar a small button
+      // drops the list of the works on this verse, each with its count; one
+      // pressed opens that work's commentary alone, under the bar as ever;
+      // "all" opens every one, as the bar itself does.
+      const counts = new Map();
+      for (const e of secCm) { const n = commentaryWorkOf(e).family_en || "commentary"; counts.set(n, (counts.get(n) || 0) + 1); }
+      cworksBtn = document.createElement("button"); cworksBtn.type = "button"; cworksBtn.className = "c-works-btn";
+      cworksBtn.textContent = `\u25BE ${famAll.length} work${famAll.length === 1 ? "" : "s"}`;
+      cworksBtn.setAttribute("aria-haspopup", "true"); cworksBtn.setAttribute("aria-expanded", "false");
+      cworksBtn.title = "choose one work of commentary to open on this verse";
+      cworks = document.createElement("div"); cworks.className = "c-works"; cworks.hidden = true;
+      const showWork = (fam) => {
+        buildSectionInline(sec, s);
+        holdingSection(cbar, () => { for (const x of s.querySelectorAll(".c-inline")) x.hidden = !(fam === null || x.dataset.work === fam); });
+        cbar.setAttribute("aria-expanded", "true");
+        for (const x of cworks.querySelectorAll("button")) x.classList.toggle("on", x.dataset.work === String(fam));
+        cworks.hidden = true; cworksBtn.setAttribute("aria-expanded", "false");
+      };
+      const allBtn = document.createElement("button"); allBtn.type = "button"; allBtn.dataset.work = "null";
+      allBtn.textContent = `all ${secCm.length}`;
+      allBtn.addEventListener("click", (e) => { e.stopPropagation(); showWork(null); });
+      cworks.append(allBtn);
+      for (const n of famAll) {
+        const wb2 = document.createElement("button"); wb2.type = "button"; wb2.dataset.work = n;
+        wb2.textContent = `${n} (${counts.get(n)})`;
+        wb2.addEventListener("click", (e) => { e.stopPropagation(); showWork(n); });
+        cworks.append(wb2);
+      }
+      cworksBtn.addEventListener("click", (e) => { e.stopPropagation(); cworks.hidden = !cworks.hidden; cworksBtn.setAttribute("aria-expanded", String(!cworks.hidden)); });
     }
     // Commentary, in the line it belongs to.
     //
@@ -9905,7 +10059,7 @@
     xpRow.append(xpNote);
     // The number, the text, the section's other text where it opens, and the
     // one act that hands anything over.
-    if (cbar) s.append(he, cbar, cSlot, xpRow);
+    if (cbar) { const row = document.createElement("div"); row.className = "c-barrow"; row.append(cbar, cworksBtn); s.append(he, row, cworks, cSlot, xpRow); }
     else s.append(he, xpRow);
     };
     // The number is here from the start: it is what the section is called and
@@ -10409,13 +10563,14 @@
     navPrev.disabled = atNode === 0;
     navNext.disabled = atNode >= heads.length - 1;
     nav.hidden = window.scrollY < 200 || !hud.hidden;
-    if (nav.hidden) closeChPick();
+    if (nav.hidden) { closeChPick(); closeMenu(); }
   };
   document.getElementById("navTop").addEventListener("click", () => goTo(0));
   // "Chapter N" opens the chapters (the owner, 2026-10-08); the chapter's own
   // top is the first cell of the picker, so nothing was lost
   const chPick = document.getElementById("chPick");
   const closeChPick = () => { if (chPick.hidden) return; chPick.hidden = true; navChapter.setAttribute("aria-expanded", "false"); };
+  const closeMenu = () => { const m = document.getElementById("menuPick"); if (!m || m.hidden) return; m.hidden = true; document.getElementById("navMenu").setAttribute("aria-expanded", "false"); };
   const openChPick = () => {
     chPick.replaceChildren();
     const here = nodes[heads[atNode].node] || {};
@@ -10436,8 +10591,15 @@
     const on = chPick.querySelector("button.on");
     if (on) chPick.scrollTop = Math.max(0, on.offsetTop - chPick.clientHeight / 2);
   };
-  navChapter.addEventListener("click", () => { if (chPick.hidden) openChPick(); else closeChPick(); });
+  navChapter.addEventListener("click", () => { closeMenu(); if (chPick.hidden) openChPick(); else closeChPick(); });
   document.addEventListener("click", (e) => { if (!chPick.hidden && !chPick.contains(e.target) && !navChapter.contains(e.target)) closeChPick(); });
+  // THE MENU: the reader (Hebrew or English), and the way to the switches
+  const navMenu = document.getElementById("navMenu"), menuPick = document.getElementById("menuPick");
+  const paintMenu = () => { for (const b of menuPick.querySelectorAll("button[data-mode]")) { const on = (b.dataset.mode === "en") === document.body.classList.contains("en"); b.classList.toggle("on", on); b.setAttribute("aria-pressed", String(on)); } };
+  const openMenu = () => { closeChPick(); paintMenu(); menuPick.hidden = false; navMenu.setAttribute("aria-expanded", "true"); };
+  navMenu.addEventListener("click", () => { if (menuPick.hidden) openMenu(); else closeMenu(); });
+  menuPick.querySelectorAll("button[data-mode]").forEach((b) => b.addEventListener("click", () => { setMode(b.dataset.mode); closeMenu(); }));
+  document.addEventListener("click", (e) => { if (!menuPick.hidden && !menuPick.contains(e.target) && !navMenu.contains(e.target)) closeMenu(); });
   navPrev.addEventListener("click", () => { if (atNode > 0) jump(heads[atNode - 1].el); });
   navNext.addEventListener("click", () => { if (atNode < heads.length - 1) jump(heads[atNode + 1].el); });
   // a page this size can starve requestAnimationFrame, so the bar repaints

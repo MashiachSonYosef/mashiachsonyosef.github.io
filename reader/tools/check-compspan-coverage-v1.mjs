@@ -75,6 +75,8 @@ check("C1  every word its source divides has a division the card can offer",
   (rec.uncovered.length ? ` · UNCOVERED ${rec.uncovered.length}: ${rec.uncovered.slice(0, 4).join("; ")}` : "") +
   (rec.excused.length ? ` · excused ${rec.excused.length}: ${rec.excused.slice(0, 3).join("; ")}` : ""));
 
+// the BSB's own row (source suggested, forced on since 2026-10-14) stands on
+// every card as .r-piece.r-sug and is not the source's line: passed over here
 // C2 and C3, on real cards: candidates from rendered sections whose blocks
 // line up one to one with the record's words
 const picks = await p.evaluate(async (per) => {
@@ -125,7 +127,7 @@ for (const c of picks) {
         cut: (document.querySelector('#hud .b-cut .s-pills button[aria-pressed="true"]') || {}).textContent || null,
         blocks: document.querySelectorAll('#hud .b-cell .s-pills button[aria-pressed="true"]').length,
         pills: [...document.querySelectorAll("#hud .r-pills button")].map((x) => (x.getAttribute("aria-pressed") === "true" ? "*" : "") + x.textContent.trim()),
-        line: (document.querySelector("#hud .r-piece b") || {}).textContent || null }));
+        line: (document.querySelector("#hud .r-piece:not(.r-sug) b") || {}).textContent || null }));
       if (opened.cut !== finest) notLed.push(`${c.label} ${c.s}: opens on ${opened.cut}, owed ${finest}`);
       else if (opened.blocks) notLed.push(`${c.label} ${c.s}: opens with a block pressed`);
       else if (opened.pills.length !== 1 || opened.pills[0] !== `*${set}`) notLed.push(`${c.label} ${c.s}: opens on ${opened.pills.slice(0, 3).join(", ")}, owed the one pill *${set}`);
@@ -136,7 +138,7 @@ for (const c of picks) {
           await p.evaluate((i2) => { const x = document.querySelectorAll("#hud .b-cell .s-pills button")[i2]; if (x) x.click(); }, i);
           try { await p.waitForFunction((k) => (document.querySelector("#hud .b-read .r-label") || {}).textContent?.includes(`· ${k} ·`), c.pieces[i], { timeout: 15000 }); } catch { /* read below */ }
           await p.waitForTimeout(150);
-          const blk = await p.evaluate(() => ({ line: (document.querySelector("#hud .r-piece") || {}).textContent || null, pills: [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()) }));
+          const blk = await p.evaluate(() => ({ line: (document.querySelector("#hud .r-piece:not(.r-sug)") || {}).textContent || null, pills: [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()) }));
           if (blk.line) notLed.push(`${c.label} ${c.s} block ${c.pieces[i]} alone: "${blk.line.trim()}"`);
           if (blk.pills.includes(set)) notLed.push(`${c.label} ${c.s} block ${c.pieces[i]} alone offers the set`);
         }
@@ -150,14 +152,14 @@ for (const c of picks) {
       await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, c.pieces.join(""));
       try { await p.waitForFunction(() => !document.querySelector("#hud .b-cell .s-pills button"), null, { timeout: 15000 }); } catch { /* read below */ }
       await p.waitForTimeout(700);
-      const whole = await p.evaluate(() => ({ marked: [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()).filter((t) => / \+ /u.test(t)), line: (document.querySelector("#hud .r-piece") || {}).textContent || null }));
+      const whole = await p.evaluate(() => ({ marked: [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()).filter((t) => / \+ /u.test(t)), line: (document.querySelector("#hud .r-piece:not(.r-sug)") || {}).textContent || null }));
       if (whole.marked.length) notLed.push(`${c.label} ${c.s} whole form: offers ${whole.marked.slice(0, 2).join(", ")}`);
       if (whole.line) notLed.push(`${c.label} ${c.s} whole form: "${whole.line.trim()}"`);
       // any other division: no block carries the source's line
       for (const other of cuts.slice(1, -1)) {
         await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, other);
         await p.waitForTimeout(700);
-        const line = await p.evaluate(() => (document.querySelector("#hud .r-piece") || {}).textContent || null);
+        const line = await p.evaluate(() => (document.querySelector("#hud .r-piece:not(.r-sug)") || {}).textContent || null);
         if (line) notLed.push(`${c.label} ${c.s} on ${other}: "${line.trim()}"`);
       }
     }

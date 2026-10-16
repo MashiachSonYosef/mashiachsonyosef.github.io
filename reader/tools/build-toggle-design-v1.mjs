@@ -114,7 +114,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   // The book is asked of the shelf, never named here. A tool that types a slug
   // goes dormant the day that work is withdrawn, and a dormant tool reports
   // nothing, which reads exactly like green (check-scope-derived-v1 S1).
-  const URL = arg("--url", `http://127.0.0.1:8899/zone.html?b=${zonesOnDisk()[0]}`);
+  // every switch is drawn only under ?rail=all since 2026-10-14 (the book page
+  // serves the sources and the forced source suggested label); this page
+  // photographs them all, so it opens the reader that way
+  const URL0 = arg("--url", `http://127.0.0.1:8899/zone.html?b=${zonesOnDisk()[0]}`);
+  const URL = URL0.includes("rail=all") ? URL0 : `${URL0}${URL0.includes("?") ? "&" : "?"}rail=all`;
   const toggles = togglesFrom(PAGE), voices = voicesFrom(PAGE);
   // THE OPEN QUESTION, AS A FILE THAT EMPTIES. A proposal is wording this lane
   // suggests for a switch; it is drawn beside what the rail says today and is
@@ -242,6 +246,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <p class="lede">And every control says <b>whose statement it is</b>, because a reader should never have to guess whether they are reading a dictionary's opinion, a scribe's mark, this site's arrangement, or a claim this project is making on its own account. The switches below are grouped that way and run in that order — <b>least us to most us</b>.</p>
 
 <p class="lede" style="margin-top:1.1rem">${live.length} switch${live.length === 1 ? "" : "es"} a reader can press today${dark.length ? `, and ${dark.length} drawn and dark` : ""}. Each picture is the rail itself, photographed; this page holds no typed copy of any switch.</p>
+<p class="lede">Since 14 October 2026 a book page draws two rows of this rail, the sources and the label <b>source suggested</b>, which is forced on while the readings are checked (the owner: "move most of our toggle controls into the /toggles/ branch of the website until we have checked most of them"). Every other switch still works and is reachable live on any book under <code>?rail=all</code>, for example <a href="/genesis/?rail=all">/genesis/?rail=all</a>.</p>
 <p class="lede"><b>${openCount} of ${toggles.length} have their wording open.</b> Where a switch is marked so, this lane is proposing different words and the ruling is the owner's. An accepted proposal is written into the reader and deleted from <code>data/toggle-wording-proposals-v1.json</code>, so that file empties as the language settles and its length is the size of what is still unsettled.</p>
 
 ${VOICE_ORDER.filter((v) => toggles.some((t) => t.voice === v)).map((v) => `<div class="grp" id="voice-${esc(v)}">

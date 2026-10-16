@@ -25,7 +25,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-cd1fb32e9a8a.css">
+<link rel="stylesheet" href="/reader/engine-bcb46bc94c31.css">
 </head>
 <body>
 <header class="top">
@@ -113,7 +113,17 @@
   </details>
 </header>
 <div id="toc" hidden><button type="button" id="tocHead" aria-expanded="false" aria-controls="tocBody"><span class="toc-t">Contents</span><span class="toc-n"></span></button><div id="tocBody" hidden></div><div id="secPanel" hidden></div></div>
+<!-- HOME AND THE READER AT THE BAR'S LEFT (the owner, 2026-10-14: "what if we
+     put the logo/return to splash page to select a book right here [the
+     empty left of the bottom bar] instead of stuck in the top right corner";
+     "an entire menu button that can be decollapsed next to the main bar
+     that holds at the bottom of the screen, english reader toggle, other
+     toggles?"). The header's own way home stays for a reader at the top,
+     where the bar is not drawn. -->
 <div id="nav" hidden>
+  <a id="navHome" href="/" title="Home: choose a book">Home</a>
+  <button id="navMenu" type="button" title="The reader, and the switches" aria-haspopup="true" aria-expanded="false" aria-controls="menuPick">Menu</button>
+  <span class="nav-gap" aria-hidden="true"></span>
   <button id="navTop" type="button" title="Back to the top of the page">Top</button>
   <button id="navChapter" type="button" title="Choose a chapter" aria-haspopup="true" aria-expanded="false" aria-controls="chPick">Chapter</button>
   <button id="navPrev" type="button" aria-label="Previous chapter" title="Previous chapter">&lsaquo;</button>
@@ -124,6 +134,11 @@
      chapter's top is the first cell; the page scrolls only when a cell is
      pressed. -->
 <div id="chPick" hidden role="dialog" aria-label="chapters"></div>
+<div id="menuPick" hidden role="dialog" aria-label="the reader">
+  <button type="button" data-mode="he">Hebrew reader <span class="mode-dir">right to left</span></button>
+  <button type="button" data-mode="en">English reader <span class="mode-dir">left to right</span></button>
+  <a href="/toggles/">the switches, on their own page</a>
+</div>
 <main id="text"></main>
 <section id="porch" lang="en" dir="ltr">
   <h2>Psalms 103</h2>
@@ -193,6 +208,6 @@
 <section id="bookEnd">
   <p id="cc0Line" class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Every carried text and reading keeps its own license, named with it; nothing here relicenses it. What this site adds of its own — its code, layout, receipts and the words it writes — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>. Where it adapts a share-alike record (the Hebrew as laid out here, a reading cut or joined for display), the adaptation stays under that record’s license.</p>
 </section>
-<script src="/reader/engine-56f32b7ff4c0.js"></script>
+<script src="/reader/engine-77087b957afd.js"></script>
 </body>
 </html>
