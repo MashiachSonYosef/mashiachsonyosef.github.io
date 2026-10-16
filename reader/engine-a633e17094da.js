@@ -7855,18 +7855,21 @@
     // sources, the license sort. What waits under the fold still works and
     // says its own position there; this line no longer recites it.
     // since 2026-10-14 the sources and the forced source suggested label
-    // the line's order first, as a statement of what the page answers (the
-    // switch itself is under the fold since 2026-10-14), then the sources
-    // and the forced source suggested label
-    const lead = ["reads", "sources", "suggested"].map((id) => TOGGLES.find((t) => t.id === id)).filter(Boolean);
-    lead.forEach((t, i) => {
-      if (i) now.append(Object.assign(document.createElement("i"), { textContent: "·" }));
-      const b = document.createElement("b"); b.textContent = t.now() || t.lab;
-      // the line's order keeps the token the order has always answered to
-      b.dataset.toggle = t.id === "reads" ? "order" : t.id;
-      if (!t.live()) b.style.color = "var(--faint)";
-      now.append(b);
-    });
+    // TWO INDICATORS, NOT A SENTENCE (the owner, 2026-10-16: "toggles still
+    // look a mess, we need less on the page and more specialized
+    // indicators"). The summary shows the dictionaries, with how many are
+    // off, which opens their list; and the forced source suggested. The
+    // line's order keeps its token, unseen, for the checks that read it.
+    const reads = TOGGLES.find((t) => t.id === "reads");
+    if (reads) { const o = document.createElement("b"); o.dataset.toggle = "order"; o.textContent = reads.now() || reads.lab; o.hidden = true; now.append(o); }
+    const drawn = window.__sourcesShelved || 0;
+    const s = document.createElement("b"); s.dataset.toggle = "sources";
+    s.textContent = `${drawn ? `${drawn} ` : ""}dictionaries${sourcesOff.size ? ` \u00b7 ${sourcesOff.size} off` : ""} \u25BE`;
+    s.title = "the dictionaries this book's readings stand on; press to switch any off";
+    const g = document.createElement("b"); g.dataset.toggle = "suggested"; g.classList.add("still");
+    g.textContent = "source suggested: the BSB";
+    g.title = "the Berean Standard Bible's own cell stands on every card, for now";
+    now.append(s, g);
   };
   // one segmented row of positions, the position in force in amber
   // a megacompspan switch moved: remember it, lay the lanes from the lattice
@@ -8430,6 +8433,8 @@
     draw(); sayFold();
     fold.append(sum, seg);
     host.append(fold);
+    window.__sourcesShelved = ordered.length;   // for the rail's indicator
+    railSay();
     const why = host.parentElement && host.parentElement.querySelector(".why");
     if (why) why.textContent = `${ordered.length} sources stand behind this book's readings (${Object.keys(table).length} ledger ids), on shelves. A shelf's switch flips every dictionary on it; a chip's box flips one. Shelve them by century, by which Hebrew they are about, or by license — the same sources every way. A source off is not asked on any card; the line under a word follows. Press a name to open what the source says about itself, in its own words.`;
   };

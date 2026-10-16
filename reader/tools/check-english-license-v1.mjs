@@ -3,11 +3,14 @@
 // degree — the owner's ruling, 2026-08-30.
 // GUARDS: gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed
 //
-// In the English reader, a gloss the baked table answers for wears its M's
-// license inline. In the Hebrew reader the chip stays quiet (every license
-// one tap away on the word's card). A chip never rides a copy — it is
-// frame, not text. And a repaint under a ruling drops the baked chip with
-// the text it rode on: an absent chip over a wrong one.
+// A gloss the baked table answers for carries its M's license in its own
+// record, in both readers, and the card says it in full. Since 2026-10-16
+// the chip is not drawn on the line in either reader (the owner, seeing it
+// go: "i do see you removed the CC BY 4.0 (hopefully to inside the hud), so
+// thats good toward the final product mentality"); it is still there, read
+// by the export and these checks. A chip never rides a copy — it is frame,
+// not text. And a repaint under a ruling drops the baked chip with the text
+// it rode on: an absent chip over a wrong one.
 //
 // Run: node tools/check-english-license-v1.mjs [zone-url]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -32,8 +35,8 @@ const heMode = await p.evaluate(() => {
   return { chips: chips.length,
     visible: chips.filter((c) => getComputedStyle(c).display !== "none").length };
 });
-check("the Hebrew reader wears the chips too — the demonstration look",
-  heMode.chips > 0 && heMode.visible === heMode.chips,
+check("the Hebrew reader carries the chips in the record, and draws none on the line",
+  heMode.chips > 0 && heMode.visible === 0,
   `${heMode.chips} chips carried, ${heMode.visible} showing`);
 
 // 2 · English reader: every chip shows, and glossed words overwhelmingly wear one
@@ -41,15 +44,15 @@ await p.click("#modeEn");
 await p.waitForTimeout(600);
 const enMode = await p.evaluate(() => {
   const gs = [...document.querySelectorAll("section.seg .he-text .wb .g:not(.bare)")];
-  const chipped = gs.filter((g) => { const c = g.querySelector(".g-lic");
-    return c && getComputedStyle(c).display !== "none"; });
+  const chipped = gs.filter((g) => g.querySelector(".g-lic"));
+  const showing = chipped.filter((g) => getComputedStyle(g.querySelector(".g-lic")).display !== "none").length;
   const sample = chipped[0] ? { lic: chipped[0].querySelector(".g-lic").textContent,
     title: chipped[0].querySelector(".g-lic").title } : null;
-  return { glossed: gs.length, chipped: chipped.length, sample };
+  return { glossed: gs.length, chipped: chipped.length, showing, sample };
 });
-check("in the English reader the license rides the reading",
-  enMode.chipped > 0 && enMode.chipped >= enMode.glossed * 0.5,
-  `${enMode.chipped} of ${enMode.glossed} glossed words wear their chip`);
+check("in the English reader the license rides the reading in its record, and none is drawn on the line",
+  enMode.chipped > 0 && enMode.chipped >= enMode.glossed * 0.5 && enMode.showing === 0,
+  `${enMode.chipped} of ${enMode.glossed} glossed words carry their chip · ${enMode.showing} showing`);
 check("the chip is a license name and the witness rides its hover",
   !!enMode.sample && enMode.sample.lic.length > 1 && /witness|licenses —|·/.test(enMode.sample.title),
   enMode.sample ? `${enMode.sample.lic} · ${enMode.sample.title.slice(0, 50)}` : "no chip to read");
@@ -58,7 +61,7 @@ check("the chip is a license name and the witness rides its hover",
 // triple-tap and read the clipboard — frame text stays out of copies
 const copied = await p.evaluate(async () => {
   const g = [...document.querySelectorAll("section.seg .he-text .wb .g:not(.bare)")]
-    .find((x) => { const c = x.querySelector(".g-lic"); return c && getComputedStyle(c).display !== "none"; });
+    .find((x) => x.querySelector(".g-lic"));   // the chip is in the line's record and off the line since 2026-10-16
   if (!g) return null;
   const lic = g.querySelector(".g-lic").textContent;
   const sel = window.getSelection(); sel.removeAllRanges();
