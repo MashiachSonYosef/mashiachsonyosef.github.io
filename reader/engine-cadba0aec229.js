@@ -5614,13 +5614,21 @@
   // whole section. It decides one line of help: a section's commentary now
   // names itself on its own line, so the only thing left needing a word of
   // explanation is the mark that sits on a single word.
+  // THE COMMENTARY WAITS (the owner, 2026-10-16: "commentary to toggles for
+  // now tbh id even potentially move the targum jonathan off for now"). A
+  // book page draws no commentary bar, handle or switch unless the address
+  // asks: ?commentary=on, ?c=open (the door's way in), or ?rail=all. The
+  // sidecars are still fetched and the checks still reach every piece of it
+  // through the flag; the page about the switches names it as a placeholder.
+  const COMMENTARY_ON = ["commentary", "c", "rail"].some((k) => ["on", "open", "all"].includes(QUERY.get(k) || ""));
   const hasWordAnchoredCommentary = () => {
-    const us = commentaryStore && commentaryStore.units;
+    const us = COMMENTARY_ON && commentaryStore && commentaryStore.units;
     if (!us) return false;
     for (const u of Object.values(us)) if (u && u.words && Object.keys(u.words).length) return true;
     return false;
   };
   const sectionCommentaryFor = (unitId) => {
+    if (!COMMENTARY_ON) return null;
     const u = commentaryStore && commentaryStore.units && commentaryStore.units[unitId];
     if (!u || !u.section || !u.section.length) return null;
     return u.section;
@@ -10424,7 +10432,7 @@
     sayLayer(false);
     document.getElementById("dirC").textContent = name;
     layerBtn.hidden = false;
-    document.getElementById("layerCPick").hidden = false;
+    document.getElementById("layerCPick").hidden = !COMMENTARY_ON;
     layerBtn.addEventListener("click", () => {
       commentaryLayerOn = !commentaryLayerOn;
       const on = commentaryLayerOn;
