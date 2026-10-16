@@ -1662,17 +1662,19 @@
   // Strong's where the reader had chosen TAHOT's "and + [the] two".
   const setRuling = (m) => { const s = m.cells.get(SET_CELL); return s && (!m.cut || s.cut === m.cut) ? s : null; };
   // the readings a ruled line shows, block by block as ruledLine reads them
-  const ruledMs = (k, table) => {
+  const ruledMs = (k, table, word) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
     const set = setRuling(m);
     if (set) { const r = mOfPick(set); return r ? [r] : null; }
     const run = k.includes("\u05be") && !(table && table[k]);
     const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
+    const pg = piecesAt(word, k, m);
     const ms = [];
-    for (const s of surfaces) {
+    for (const [i, s] of surfaces.entries()) {
       const p = m.cells.get(s);
       if (p) { const w = mOfPick(p); if (!w) return null; ms.push(w); continue; }
+      if (pg && pg[i] && pg[i].g) { const r = readingOfPiece(pg[i].s); if (!r) return null; ms.push(r); continue; }
       // a block left alone: the baked table under the switches, or a dash,
       // which carries no chip of its own
       const g = table ? table[s] : null;
@@ -1684,20 +1686,35 @@
     }
     return ms.length ? ms : null;
   };
-  const ruledChip = (k, table) => { const ms = ruledMs(k, table); return ms ? licenseChipFor(ms) : null; };
-  const ruledLine = (k, table) => {
+  const ruledChip = (k, table, word) => { const ms = ruledMs(k, table, word); return ms ? licenseChipFor(ms) : null; };
+  // THE SOURCE'S PIECES UNDER A RULING ON ITS DIVISION (2026-10-16): a word
+  // ruled on the division its source drew, one piece chosen, reads the
+  // source's own piece at every position the reader left alone ("and + add
+  // + them"), never the dictionaries' first word for the letters alone
+  // ("describe" for the vav, "beat" for the he). Only on the source's
+  // division, at a place that carries the source's pieces, with the source
+  // switched on.
+  const piecesAt = (word, k, m) => {
+    if (!word || word.k !== k || !m || !m.cut || !Array.isArray(word.pg) || word.pg.length < 2) return null;
+    if (m.cut !== word.pg.map((p) => (p && p.k) || "").join("+")) return null;
+    if (word.pg.some((p) => { const r = readingOfPiece(p && p.s); return r && r.mId && sourcesOff.has(r.mId); })) return null;
+    return word.pg;
+  };
+  const ruledLine = (k, table, word) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
     { const set = setRuling(m); if (set) return spanJoin(set.text); }
+    const pg = piecesAt(word, k, m);
     // a maqaf run ruled cell by cell, its division never pressed, stands
     // under the division its card opened on: as written where the table
     // reads the run whole, else word by word. Read as one form it printed a
     // dash for the whole run the moment one word of it was chosen.
     const run = k.includes("\u05be") && !(table && table[k]);
     const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
-    const parts = surfaces.map((s) => {
+    const parts = surfaces.map((s, i) => {
       const p = m.cells.get(s);
       if (p) return spanJoin(p.text);
+      if (pg && pg[i] && pg[i].g) return spanJoin(String(pg[i].g).trim());
       const g = table ? table[s] : null;
       // a baked reading whose every carrier the reader switched off is not
       // read here either: a source turned off is not quoted on the line;
@@ -2577,6 +2594,8 @@
     // every pill present and none pressable
     if (readBand && read) { readBand.style.height = ""; readBand.style.maxHeight = ""; }
     const bands = [
+      { el: hud.querySelector(".b-chain"), box: hud.querySelector(".b-chain .s-pills") },
+      { el: hud.querySelector(".b-chain-cell"), box: hud.querySelector(".b-chain-cell .s-pills") },
       { el: hud.querySelector(".b-cut"), box: hud.querySelector(".b-cut .s-pills") },
       { el: hud.querySelector(".b-cell"), box: hud.querySelector(".b-cell .s-pills") },
       { el: readBand, box: read || readBand },
@@ -3756,6 +3775,59 @@
   // presses in the head is remembered for that place until the switch moves.
   const kqPicks = new Map();
 
+  // THE RUNGS OF A RUN'S CARD, for the run's own card and for the chain kept
+  // at the top of its word's card (the nesting, 2026-10-16).
+  // THE LATTICE HOLDS ITS THREE RUNGS WHATEVER THE SHELF ANSWERS (the
+  // owner, 2026-09-25: "missing AMB and AB in megacompspan"): the run as
+  // written, the run joined into one, and the words one by one are always
+  // on the card. A rung no dictionary here answers says so when pressed;
+  // it is not hidden. A fold, a joined spelling with a seam letter written
+  // final, is offered only where a dictionary published it, and a fold
+  // whose shard did not arrive is left off rather than guessed.
+  // A named run holds the same rungs a maqaf run does (the owner,
+  // 2026-10-03: "AMB / AB / A+B is maqaf specific with AB added from
+  // regular megacompspans"): the run as the licence names it, the run
+  // welded into one word whatever the shelf answers, a fold where a
+  // dictionary published one, then every mix, then the words one by one.
+  // A chain a license also names keeps the chain's own whole forms first,
+  // its named rungs after them, and the words one by one last.
+  const coversOfRun = async (run) => {
+    const keys = run.keys, n = keys.length;
+    const whole = (surface) => [{ surface, from: 0, to: n - 1 }];
+    const forms = runWholeForms(keys);   // as written, joined, then the folds
+    const tilings = run.named ? runTilings(keys, run.named) : null;
+    const ask = (fs) => Promise.all(fs.map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false, has: false }; } }));
+    const foldTry = await ask(forms.slice(2));
+    const folds = foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f));
+    const foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
+    if (tilings && !run.chain) {
+      const named = tilings[0] && tilings[0].length === 1 ? [tilings[0]] : [];
+      return { covers: [...named, whole(keys.join("")), ...folds, ...tilings.slice(named.length)], foldsUnreached, tilings };
+    }
+    const namedRungs = tilings ? tilings.filter((c) => c.length < n) : [];
+    return { covers: [...forms.slice(0, 2).map(whole), ...folds, ...namedRungs, keys.map((k, j) => ({ surface: k, from: j, to: j }))], foldsUnreached, tilings };
+  };
+  // WHETHER A CHAIN'S LINE READS A WHOLE RUNG: a ruling on one, or the
+  // as-written form a dictionary published, as refreshJoinGloss draws it. A
+  // chain reading whole opens the chain's card; one reading word by word
+  // opens the pressed word's own card (the card opens on the line's reading).
+  const chainReadsWhole = (run) => {
+    if (!run || !run.__key || !run.__words) return false;
+    const m = pickedByForm.get(run.__key);
+    // a ruling on the chain is the chain's: a whole rung pressed opens the
+    // chain's card on it, even while its records are withheld by a switch
+    // and the line reads the words meanwhile; the words' division opens the
+    // words' cards
+    if (m && m.cut) return !m.cut.includes("+");
+    if (run.__table == null && run.__words.every((w) => placeLine(w))) return false;
+    const table = run.__table || zone.gloss || {};
+    const gmT = run.__table ? null : zone.gloss_m;
+    return !!runWholeForms(run.__words.map((w) => w.k)).slice(0, 1).find((f) => {
+      if (!table[f]) return false;
+      const gm = gmT && gmT[f];
+      return !(gm && Array.isArray(gm.by) && gm.by.length && gm.by.some((id) => sourcesOff.has(id)));
+    });
+  };
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
     closeHud(false);
     const myGen = ++hudGen;
@@ -3776,7 +3848,7 @@
     const atomsOf = (w) => (w && w.w)
       ? w.w.filter((r) => !String((r.s || r.k) || "").includes("\u05be"))
       : null;
-    const regions = atomsOf(word) || [region];
+    const regions = opts.headRegions || atomsOf(word) || [region];
     const openSurfaces = String((region && (region.s || region.k)) || "").split("\u05be");
     if (opts.mark) opts.mark();
     placeHud(el);
@@ -3808,7 +3880,7 @@
     // maqaf'd word never loses the half you are not reading
     if (regions.length > 1) {
       // the marks that stand between the regions, taken off the occurrence
-      const marks = String(word.s || "").split(MAQAF_SPLIT).filter((_, i) => i % 2 === 1);
+      const marks = String(opts.headS || word.s || "").split(MAQAF_SPLIT).filter((_, i) => i % 2 === 1);
       // a named run's head stands as the ink wrote it, maqaf or space, and
       // the whole run is what the card is about
       const gaps = opts.run && opts.run.gaps ? opts.run.gaps : null;
@@ -3817,11 +3889,16 @@
           { className: "mq", textContent: (gaps ? gaps[i - 1] : marks[i - 1]) || "" }));
         const seg = document.createElement("span");
         seg.textContent = r.s;
-        const lit = gaps ? true : regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
+        const lit = gaps ? true : opts.headIndex != null ? i === opts.headIndex : regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
         if (!lit) seg.style.color = "var(--faint)";
         // on a pair, the half that is not open is one press away, here in the
         // head where it already stands; the card then reads from it
-        if (!lit && opts.kqOpenAt) {
+        if (!lit && opts.chain) {
+          // the chain's other words, in the head where they already stand
+          seg.setAttribute("role", "button"); seg.tabIndex = 0; seg.style.cursor = "pointer";
+          seg.title = "open this word of the chain";
+          seg.addEventListener("click", (ev) => { ev.stopPropagation(); opts.chain.openWord(i); });
+        } else if (!lit && opts.kqOpenAt) {
           seg.setAttribute("role", "button"); seg.tabIndex = 0; seg.style.cursor = "pointer";
           seg.title = r.role === "KETIV" ? "open the ketiv \u2014 the written form" : "open the qere \u2014 the read form";
           seg.addEventListener("click", (ev) => { ev.stopPropagation(); opts.kqOpenAt(i); });
@@ -4089,41 +4166,25 @@
     let runSpan = null;
     if (opts.run) {
       const keys = opts.run.keys;
-      const n = keys.length;
-      const whole = (surface) => [{ surface, from: 0, to: n - 1 }];
-      const forms = runWholeForms(keys);   // as written, joined, then the folds
-      // THE LATTICE HOLDS ITS THREE RUNGS WHATEVER THE SHELF ANSWERS (the
-      // owner, 2026-09-25: "missing AMB and AB in megacompspan"): the run as
-      // written, the run joined into one, and the words one by one are always
-      // on the card. A rung no dictionary here answers says so when pressed;
-      // it is not hidden. A fold — a joined spelling with a seam letter
-      // written final — is offered only where a dictionary published it, and
-      // a fold whose shard did not arrive is left off rather than guessed.
-      const tilings = opts.run.named ? runTilings(keys, opts.run.named) : null;
-      if (tilings && !opts.run.chain) {
-        // a named run holds the same rungs a maqaf run does (the owner,
-        // 2026-10-03: "AMB / AB / A+B is maqaf specific with AB added from
-        // regular megacompspans"): the run as the licence names it, the run
-        // welded into one word whatever the shelf answers, a fold where a
-        // dictionary published one, then every mix, then the words one by one
-        const weld = keys.join("");
-        const folds = runWholeForms(keys).slice(2);
-        const foldTry = await Promise.all(folds.map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false, has: false }; } }));
-        if (myGen !== hudGen) return;
-        foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
-        const named = tilings[0] && tilings[0].length === 1 ? [tilings[0]] : [];
-        covers = [...named, whole(weld), ...foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f)), ...tilings.slice(named.length)];
-      } else {
-        const foldTry = await Promise.all(forms.slice(2).map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false, has: false }; } }));
-        if (myGen !== hudGen) return;
-        foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
-        // a chain a license also names: its named rungs stand after the
-        // chain's own whole forms and before the words one by one
-        const namedRungs = tilings ? tilings.filter((c) => c.length < n) : [];
-        covers = [...forms.slice(0, 2).map(whole), ...foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f)), ...namedRungs, keys.map((k, j) => ({ surface: k, from: j, to: j }))];
-      }
+      const got = await coversOfRun(opts.run);
+      if (myGen !== hudGen) return;
+      covers = got.covers; foldsUnreached = got.foldsUnreached;
       comps = keys; established = true;
-      runSpan = { comps: keys, rule: tilings ? "named_run_v1" : "maqaf_run_v1", conf: "established" };
+      runSpan = { comps: keys, rule: got.tilings ? "named_run_v1" : "maqaf_run_v1", conf: "established" };
+    }
+    // THE CHAIN AT THE TOP OF ITS WORD'S CARD (the owner, 2026-10-16, of a
+    // two-word chain at Malachi 2:5: "i see 5 words that should be
+    // selectable. 2 by megacompspan (maqaf) and 3 by compspan"). A chain's
+    // block is itself a compspan: a word of a chain opens its own card, its
+    // divisions and its blocks, and the chain's lattice stands at the top of
+    // it, its rungs as the chain's own card offers them and its words with
+    // this one pressed. A rung pressed there opens the chain's card on that
+    // rung; a word pressed there opens that word's card.
+    let chainCovers = null;
+    if (opts.chain) {
+      const got = await coversOfRun(opts.chain);
+      if (myGen !== hudGen) return;
+      chainCovers = got.covers;
     }
 
     // What the reader chose, kept where they chose it. This lived inside the
@@ -4175,7 +4236,7 @@
     // Pressing a block is asking about that piece alone, and a piece alone is
     // the dictionaries'. Pressing the division again stands on the set again.
     const SET_KEY = SET_CELL;
-    let setWhole = !!(setCut && cover === setCut);
+    let setWhole = !!(setCut && cover === setCut && !(cover.some((c) => mem.cells.get(c.surface)) && !mem.cells.get(SET_KEY)));
     // a run opens on the form its line reads: as written where a dictionary
     // published that, else word by word on the word pressed — never on a
     // weld, which the reader may press but the page does not choose
@@ -4189,6 +4250,10 @@
     }
     let cellIdx = 0;
     if (opts.run && cover.length === opts.run.keys.length && cover.length > 1) cellIdx = Math.max(0, Math.min(cover.length - 1, opts.run.clicked || 0));
+    // the run's words one by one, as a division of its card
+    const isWordsCover = (c) => !!(opts.run && c.length === opts.run.keys.length && c.length > 1 && c.every((x) => x.from === x.to));
+    // a card reopened after a piece of the set was ruled opens on that piece
+    if (setCut && cover === setCut && !setWhole) { const i = cover.findIndex((c) => mem.cells.get(c.surface)); if (i >= 0) cellIdx = i; }
     const selectedRecordRef = { m: null };
     // A route object is rebuilt from the shard every time the card opens, so
     // remembering the object itself remembers nothing — the new pool holds
@@ -4218,6 +4283,13 @@
     const poolKey = (surface) => (placeOfCell(surface) ? `${surface}\u0001set` : surface);
     const tried = new Map();           // cell surface -> fetches that did not arrive
     let pressedCut = null;             // a run's whole rung the reader pressed, remembered once read
+    // A RUNG PRESSED ON A WORD'S CARD (the chain at the top of it) opens the
+    // chain's card on that rung, as pressed here: a whole rung is remembered
+    // once read, a named rung at once (below, once the card can mark it)
+    if (opts.run && opts.run.on) {
+      const c = covers.find((x) => cutKey(x) === opts.run.on);
+      if (c) { cover = c; cellIdx = 0; if (c.length === 1) pressedCut = c; }
+    }
 
     // The gloss under the word follows the whole card: every cell of the cut
     // you have open, joined the way the reader joins a span. A cell the
@@ -4228,6 +4300,10 @@
     const textOfCell = (surface) => {
       const p = picked.get(surface);
       if (p) return spanJoin(p.text);
+      // on the source's own division, a block the reader left alone reads
+      // the source's piece at its position (piecesAt), never the letters'
+      // own first word
+      if (setCut && cover === setCut) { const i = cover.findIndex((c) => c.surface === surface); const pc = i >= 0 ? word.pg[i] : null; if (pc && pc.g) return spanJoin(String(pc.g).trim()); }
       // the whole form, where the set stands on its division: what the form
       // as one word reads, never the set
       if (setCut && surface === region.k) {
@@ -4275,6 +4351,7 @@
     const readingsOfCell = (surface) => {
       const p = picked.get(surface);
       if (p) { const r = mOfPick(p); return r ? [r] : null; }
+      if (setCut && cover === setCut) { const i = cover.findIndex((c) => c.surface === surface); const pc = i >= 0 ? word.pg[i] : null; if (pc && pc.g) { const r = readingOfPiece(pc.s); return r ? [r] : null; } }
       const lead = (pl) => (pl && pl.length && pl[0].records && pl[0].records[0] ? [readingOfRow(pl[0].records[0])] : []);
       if (setCut && surface === region.k) return lead(cache.get(poolKey(surface)));
       { const at = placeOfCell(surface); if (at) return at.rs.length ? at.rs : null; }
@@ -4352,6 +4429,7 @@
     // opening a word and closing it again changes nothing and leaves no mark.
     let ruled = false;
     const markRuled = () => { ruled = true; if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands"; };
+    if (opts.run && opts.run.on && cover.length > 1 && cutKey(cover) === opts.run.on && mem.cut !== opts.run.on) { mem.cut = opts.run.on; markRuled(); }
 
     // The page's own reading is printed whole — that is why the ellipsis came
     // off. But a reading the reader chooses can be longer than the one the
@@ -4536,6 +4614,9 @@
     const rows = document.createElement("div"); rows.className = "rows";
     const qRow = document.createElement("div"); qRow.className = "band b-q";
     rows.append(qRow, cutRow, cellRow, readRow);
+    const chainCut = document.createElement("div"); chainCut.className = "band b-chain";
+    const chainCell = document.createElement("div"); chainCell.className = "band b-chain-cell";
+    if (opts.chain) { rows.insertBefore(chainCut, cutRow); rows.insertBefore(chainCell, cutRow); }
 
     // --- row 0 · which form the source transmits here ------------------
     // A Q sits above the divisions, not instead of them: pick the form first,
@@ -4603,6 +4684,34 @@
     renderVolume(volSlot, bin === zone ? unitId : null);
 
     // --- row 1 · how the form divides ---------------------------------
+    // --- the chain at the top of its word's card ---------------------------
+    const renderChain = () => {
+      if (!opts.chain || !chainCovers) return;
+      const ch = opts.chain, n = ch.keys.length;
+      const wordsCover = (c) => c.length === n && c.every((x) => x.from === x.to);
+      chainCut.replaceChildren(); chainCell.replaceChildren();
+      const label = document.createElement("p"); label.className = "r-label";
+      label.textContent = `Chain \u00b7 complete divisions \u00b7 ${chainCovers.length}`;
+      const pills = document.createElement("div"); pills.className = "s-pills"; pills.dir = "rtl";
+      chainCovers.forEach((c) => {
+        const btn = document.createElement("button"); btn.type = "button";
+        btn.lang = "he"; btn.dir = "rtl"; btn.textContent = joinCut(c);
+        btn.setAttribute("aria-pressed", String(wordsCover(c)));
+        btn.addEventListener("click", () => { if (!wordsCover(c)) ch.openRung(cutKey(c)); });
+        pills.append(btn);
+      });
+      chainCut.append(label, pills);
+      const label2 = document.createElement("p"); label2.className = "r-label"; label2.textContent = "Chain \u00b7 word";
+      const pills2 = document.createElement("div"); pills2.className = "s-pills"; pills2.dir = "rtl";
+      ch.keys.forEach((k, j) => {
+        const btn = document.createElement("button"); btn.type = "button";
+        btn.lang = "he"; btn.dir = "rtl"; btn.textContent = k;
+        btn.setAttribute("aria-pressed", String(j === ch.j));
+        btn.addEventListener("click", () => { if (j !== ch.j) ch.openWord(j); });
+        pills2.append(btn);
+      });
+      chainCell.append(label2, pills2);
+    };
     const renderCuts = () => {
       cutRow.replaceChildren();
       if (covers.length < 2) return;
@@ -4618,6 +4727,10 @@
         btn.lang = "he"; btn.dir = "rtl"; btn.textContent = joinCut(c);
         btn.setAttribute("aria-pressed", String(c === cover));
         btn.addEventListener("click", () => {
+          // THE WORDS ONE BY ONE ARE THE WORDS' OWN CARDS (the nesting,
+          // 2026-10-16): the words' division of a chain opens the pressed
+          // word's card, the chain kept at the top of it
+          if (opts.run && opts.run.openWord && isWordsCover(c)) { opts.run.openWord(Math.max(0, opts.run.clicked || 0)); return; }
           cover = c; cellIdx = 0; setWhole = !!setCut && c === setCut;
           // a run's whole rung is remembered once it has been READ (the
           // readings band, on arrival), never on the press: remembered on the
@@ -4669,7 +4782,11 @@
           if (roles) btn.title = roles;
         }
         btn.setAttribute("aria-pressed", String(!setWhole && i === cellIdx));
-        btn.addEventListener("click", () => { setWhole = false; cellIdx = i; renderCells(); renderReadings(); });
+        btn.addEventListener("click", () => {
+          // a word of a chain, pressed on the chain's card: its own card
+          if (opts.run && opts.run.openWord && isWordsCover(cover)) { opts.run.openWord(i); return; }
+          setWhole = false; cellIdx = i; renderCells(); renderReadings();
+        });
         pills.append(btn);
       });
       cellRow.append(label, pills);
@@ -5358,7 +5475,7 @@
       prov.textContent = "No source on this shelf divides this form into parts.";
     } else prov.remove();     // this zone carries none at all; say nothing
 
-    renderCuts(); renderCells();
+    renderChain(); renderCuts(); renderCells();
     await renderReadings();
     if (myGen !== hudGen) return;   // a dead card places nothing
     placeHud();
@@ -6134,6 +6251,12 @@
     if (!word || parts.length < 2 || word.kq) return null;
     const own = lettersIn(word.s);
     const fits = (cells) => !!cells && cells.length === parts.length && cells.every(Boolean) && cells.join("") === own;
+    // THE READER'S OWN DIVISION LEADS where the line reads it (a word ruled
+    // on a division of its card, 2026-10-16: "a blob each if that is the
+    // current compspan selected"): its cells, where they tile the letters
+    // one cell per part
+    const ruledCut = word.k ? pickedByForm.get(word.k) : null;
+    if (ruledCut && ruledCut.cut && ruledCut.cut.includes("+")) { const cells = ruledCut.cut.split("+").map(lettersIn); if (fits(cells)) return cells.map((c) => c.length); }
     const pg = Array.isArray(word.pg) ? word.pg.map((p) => lettersIn(p && p.k)) : null;
     const said = Array.isArray(word.pg) && word.pg.length === parts.length && word.pg.every((p, i) => spanJoin(String((p && p.g) || "")) === parts[i]);
     if (said && fits(pg)) return pg.map((c) => c.length);
@@ -7267,7 +7390,7 @@
     const parts = (regions || (word.k ? [{ k: word.k }] : [])).map((r) => {
       // a form the reader has already ruled on reads under its ruling, even
       // in a section built after the ruling was made
-      const held = ruledLine(r.k, table);
+      const held = ruledLine(r.k, table, word);
       if (held !== null) { wasRuled = true; return held; }
       // one region only: a headword is projected onto a position, and a
       // position with two forms on it keeps its forms
@@ -7330,7 +7453,7 @@
     } else if (line && wasRuled && heldJoint == null && table === zone.gloss) {
       const rk = word.kq && regions ? (kqShown >= 0 ? regions[kqShown].k : null)
         : regions && regions.length === 1 ? regions[0].k : !regions && word.k ? word.k : null;
-      const chip = rk ? ruledChip(rk, table) : null;
+      const chip = rk ? ruledChip(rk, table, word) : null;
       if (chip) ge.append(chip);
     }
     if (table === zone.gloss && !wasRuled && !word.kq) {
@@ -7383,21 +7506,21 @@
     // the line fell back to when the switch's half has no reading. The other
     // half stands in the head as it always did, one press away.
     const site = `${unitId}:${wordPos}`;
-    const openRun = (runEl, clicked) => {
+    const openRun = (runEl, clicked, on = null) => {
       const words = runEl.__words;
       const s = words.map((w) => w.s).join("");
       const atoms = words.map((w) => ({ s: String(w.s).replace(/\u05be+$/u, ""), k: w.k }));
       const region = { s, k: runEl.__key };
       openHud(runEl, region, unitId, wordPos, {
         ...opts, bin, word: { s, k: runEl.__key, w: atoms }, regionIndex: -1, glossParts: null,
-        run: { keys: words.map((w) => w.k), clicked, el: runEl, words },
+        run: { keys: words.map((w) => w.k), clicked, el: runEl, words, on, openWord: (j) => openWordOfChain(runEl, j) },
         mark: () => { runEl.classList.add("active"); },
       });
     };
     // A NAMED RUN, ONE CARD. Its key is its words' keys joined by one space,
     // whatever gap the ink or the source wrote; a run that is exactly a maqaf
     // chain opens the chain's own card, with the named rungs added to it.
-    const openNamedRun = (rc, clicked, runEl) => {
+    const openNamedRun = (rc, clicked, runEl, on = null) => {
       const words = rc.idx.map((i) => rc.__sec.words[i]);
       const s = words.map((w) => w.s).join(" ");
       const atoms = words.map((w) => ({ s: String(w.s).replace(/\u05be+$/u, ""), k: w.k }));
@@ -7410,8 +7533,35 @@
         ...opts, bin, word: { s, k, w: atoms }, regionIndex: -1, glossParts: null,
         run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain, words,
           gaps: chain ? null : words.slice(0, -1).map((w) => (/\u05be$/u.test(String(w.s)) ? "\u05be" : " ")),
-          wbs: rc.idx.map((i) => rc.__els.get(i) || null) },
+          wbs: rc.idx.map((i) => rc.__els.get(i) || null),
+          on: chain ? on : null, openWord: chain ? (j) => openWordOfChain(chain, j) : null },
         mark: () => { for (const el of rc.__els.values()) el.classList.add("active"); if (chain || cell) (chain || cell).classList.add("active"); },
+      });
+    };
+    // THE WORD'S OWN CARD INSIDE ITS CHAIN (the owner, 2026-10-16: "i see 5
+    // words that should be selectable. 2 by megacompspan (maqaf) and 3 by
+    // compspan"). A chain's block is itself a compspan: a word pressed in a
+    // chain whose line reads word by word opens the word's own card, with the
+    // chain's lattice at the top of it (openHud, opts.chain). A chain whose
+    // line reads a whole rung opens the chain's card, as the line reads.
+    const chainIs = (rc, runEl) => !!(rc && runEl && runEl.__chain && runEl.__key && runEl.__words && runEl.__words.length === rc.idx.length && rc.idx.every((ix, j) => rc.__sec.words[ix] === runEl.__words[j]));
+    const openWordOfChain = (runEl, j) => { const wb = [...runEl.__ink.querySelectorAll(":scope > .wb")][j]; if (wb && wb.__openWord) wb.__openWord(j); };
+    built.wb.__openWord = (j) => {
+      const runEl = built.wb.closest(".wjoin");
+      const lead = built.kqStand ? kqLead().i : 0;
+      const target = built.regionEls[lead] || targets[0];
+      if (!runEl || !runEl.__words || !runEl.__ink) { openAt(lead, target); return; }
+      const rc = built.wb.__run && chainIs(built.wb.__run, runEl) ? built.wb.__run : null;
+      const ctx = { el: runEl, j, keys: runEl.__words.map((w) => w.k), words: runEl.__words, named: rc ? rc.named || [] : null, chain: true,
+        openRung: (on) => (rc ? openNamedRun(rc, j, runEl, on) : openRun(runEl, j, on)),
+        openWord: (j2) => openWordOfChain(runEl, j2) };
+      // the head is the whole chain with this word lit, for a plain word; a
+      // pair keeps its own head, both halves one press apart
+      const plain = !built.kqStand && !built.regionEls.length;
+      openAt(lead, target, {
+        chain: ctx, headIndex: plain ? j : undefined, headS: plain ? runEl.__words.map((w) => w.s).join("") : undefined,
+        headRegions: plain ? runEl.__words.map((w) => ({ s: String(w.s).replace(/\u05be+$/u, ""), k: w.k })) : undefined,
+        markMore: () => { runEl.classList.add("active"); if (rc) for (const el of rc.__els.values()) el.classList.add("active"); },
       });
     };
     const kqLead = () => {
@@ -7426,7 +7576,7 @@
         : kqOrder === "SOURCE" ? 0 : st.regions.findIndex((r) => r.role === "KETIV");
       return { i: Math.max(0, wanted) };
     };
-    const openAt = (i, target) => {
+    const openAt = (i, target, extra = {}) => {
       built.regionEls.forEach((r) => r.classList.remove("on"));
       // a pair's halves are alternatives: the line under a pair carries ONE
       // reading, never the two joined, and the half you open is the half it
@@ -7440,8 +7590,9 @@
         ...opts, bin, word, regionIndex: i,
         glossParts: built.regionEls.length && !word.kq ? built.glossParts : null,
         kqEls: word.kq && built.regionEls.length ? built.regionEls : null,
-        kqOpenAt: built.kqStand ? (j) => { kqPicks.set(site, j); openAt(j, built.regionEls[j] || target); } : null,
-        mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); },
+        kqOpenAt: built.kqStand ? (j) => { kqPicks.set(site, j); openAt(j, built.regionEls[j] || target, extra); } : null,
+        ...extra,
+        mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); if (extra.markMore) extra.markMore(); },
       });
     };
     targets.forEach((target, i) => {
@@ -7451,8 +7602,15 @@
         // run's card; the word pressed is the one it opens on when the run is
         // shown word by word.
         const runEl = built.wb.closest && built.wb.closest(".wjoin");
-        if (built.wb.__run && bin === zone && wordPos != null) { openNamedRun(built.wb.__run, built.wb.__run.idx.indexOf(wordPos), runEl); return; }
-        if (runEl && runEl.__chain && runEl.__key && runEl.__words && runEl.__words.length > 1) { openRun(runEl, runEl.__words.indexOf(word)); return; }
+        const inChain = !!(runEl && runEl.__chain && runEl.__key && runEl.__words && runEl.__words.length > 1);
+        if (built.wb.__run && bin === zone && wordPos != null) {
+          const rc = built.wb.__run;
+          // a named run that is exactly a maqaf chain reads as the chain
+          // does: whole, the chain's card; word by word, the word's own
+          if (inChain && chainIs(rc, runEl) && !chainReadsWhole(runEl)) { built.wb.__openWord(runEl.__words.indexOf(word)); return; }
+          openNamedRun(rc, rc.idx.indexOf(wordPos), runEl); return;
+        }
+        if (inChain) { const j = runEl.__words.indexOf(word); if (chainReadsWhole(runEl)) openRun(runEl, j); else built.wb.__openWord(j); return; }
         if (built.kqStand) { const lead = kqLead(); openAt(lead.i, built.regionEls[lead.i] || target); return; }
         openAt(i, target);
       });
@@ -7615,9 +7773,9 @@
       // ruling outranks every toggle (the precedence above), and a repaint
       // from the table painted the table back over it until the card was
       // opened again
-      const held = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss) : null;
+      const held = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss, st.word) : null;
       if (held !== null) {
-        const chip = ruledChip(st.word.k, zone.gloss);
+        const chip = ruledChip(st.word.k, zone.gloss, st.word);
         const run0 = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
         if (run0) runs.add(run0);
         if (held && lineStands(st.ge, held, chip)) continue;

@@ -95,26 +95,43 @@ const picks = await p.evaluate(async (per) => {
     const words = (z.sections[si] || {}).words || [];
     if (wbs.length !== words.length) continue;
     words.forEach((w, wi) => {
-      if (!Array.isArray(w.pg) || w.pg.length < 2 || w.w || wbs[wi].closest(".wjoin")) return;
+      if (!Array.isArray(w.pg) || w.pg.length < 2 || w.w) return;
+      // a word of a chain whose line reads word by word opens its own card
+      // too, the chain at the top of it (the nesting, 2026-10-16); a chain
+      // reading a whole rung opens the chain's card and is not this claim
+      const chainEl = wbs[wi].closest(".wjoin");
+      if (chainEl && !chainEl.querySelector(":scope > .g.parts")) return;
+      const chain = !!chainEl;
+      if (chain && (want.get("chain") || 0) >= per) return;
       if (w.pg.map((x) => x.k).join("") !== w.k || !w.pg.every((x) => x.g && x.s === w.pg[0].s)) return;
       const row = !!(z.spans && z.spans[w.k]);
       if (row && z.spans[w.k][0].join("|") !== w.pg.map((x) => x.k).join("|")) return;   // a ledger division unlike the place's: not this claim
-      const key = `${w.pg.length}|${row}`;
+      const key = chain ? "chain" : `${w.pg.length}|${row}`;
       if ((want.get(key) || 0) >= per || seenForm.has(w.k)) return;
       seenForm.add(w.k);
       want.set(key, (want.get(key) || 0) + 1);
-      out.push({ si, wi, n: w.pg.length, row, label: z.sections[si].label, s: w.s, pieces: w.pg.map((x) => x.k), glosses: w.pg.map((x) => String(x.g).trim()) });
+      out.push({ si, wi, n: w.pg.length, row, chain, label: z.sections[si].label, s: w.s, k: w.k, pieces: w.pg.map((x) => x.k), glosses: w.pg.map((x) => String(x.g).trim()) });
     });
   }
   return out;
 }, PER);
 
-const noDiv = [], wrongFinest = [], notLed = [];
+const noDiv = [], wrongFinest = [], notLed = [], chainBad = [];
 for (const c of picks) {
   await p.evaluate(([si, wi]) => { const s = document.querySelectorAll("section.seg")[si]; s.scrollIntoView(); s.querySelectorAll(".he-text .wb")[wi].querySelector(".w").click(); }, [c.si, c.wi]);
   try { await p.waitForSelector("#hud .r-pills button, #hud .b-cut .s-pills button", { timeout: 20000 }); } catch { noDiv.push(`${c.label} ${c.s}: the card did not open`); continue; }
   await p.waitForTimeout(400);
   const cuts = await p.evaluate(() => [...document.querySelectorAll("#hud .b-cut .s-pills button")].map((x) => x.textContent));
+  // C4: a chain's word carries the chain at the top of its card, its words
+  // one by one pressed among the rungs, this word pressed among the words
+  if (c.chain) {
+    const top = await p.evaluate(() => ({
+      rung: (document.querySelector('#hud .b-chain .s-pills button[aria-pressed="true"]') || {}).textContent || null,
+      rungs: document.querySelectorAll("#hud .b-chain .s-pills button").length,
+      word: (document.querySelector('#hud .b-chain-cell .s-pills button[aria-pressed="true"]') || {}).textContent || null }));
+    if (top.rungs < 3 || !top.rung || !top.rung.includes("+")) chainBad.push(`${c.label} ${c.s}: chain row ${top.rungs} rungs, pressed ${top.rung}`);
+    else if (top.word !== c.k) chainBad.push(`${c.label} ${c.s}: chain word pressed ${top.word}, owed ${c.k}`);
+  }
   const expect = 2 ** (c.n - 1);
   if (cuts.length !== expect) { noDiv.push(`${c.label} ${c.s}: ${cuts.length} divisions, ${expect} owed`); }
   else {
@@ -167,7 +184,11 @@ for (const c of picks) {
   await p.keyboard.press("Escape");
   await p.waitForTimeout(150);
 }
-const kinds = [...new Set(picks.map((c) => `${c.n} pieces${c.row ? " (ledger row)" : " (no row)"}`))];
+const kinds = [...new Set(picks.map((c) => `${c.n} pieces${c.row ? " (ledger row)" : " (no row)"}${c.chain ? " in a chain" : ""}`))];
+const chainPicks = picks.filter((c) => c.chain);
+check("C4  a word of a chain opens its own divisions under the chain's lattice: the chain's rungs with the words one by one pressed, and this word pressed among its words",
+  chainPicks.length > 0 && chainBad.length === 0,
+  chainPicks.length ? `${chainPicks.length} chain words` + (chainBad.length ? ` · ${chainBad.slice(0, 3).join("; ")}` : "") : "no chain word its source divides on this page");
 check("C2  each card opens offering every complete division, its finest the source's pieces",
   picks.length > 0 && noDiv.length === 0 && wrongFinest.length === 0,
   `${picks.length} cards: ${kinds.join(", ")}` + (noDiv.length ? ` · ${noDiv.slice(0, 3).join("; ")}` : "") + (wrongFinest.length ? ` · ${wrongFinest.slice(0, 3).join("; ")}` : ""));

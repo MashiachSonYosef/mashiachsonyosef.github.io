@@ -112,9 +112,11 @@ if (expected.length) {
   const cardNow = () => page.evaluate(() => {
     const h = document.querySelector("#hud"); if (!h || h.hidden) return null;
     const head = h.querySelector(".head");
-    const cells = [...h.querySelectorAll(".b-cell .s-pills button")];
-    const cuts = [...h.querySelectorAll(".b-cut .s-pills button")];
-    return { b: (head.querySelector("b") || {}).textContent || "", text: h.textContent,
+    // the run's lattice: on the run's own card its rows, on a word's card the chain rows at the top (the nesting, 2026-10-16)
+    const nested = !!h.querySelector(".b-chain");
+    const cells = [...h.querySelectorAll(nested ? ".b-chain-cell .s-pills button" : ".b-cell .s-pills button")];
+    const cuts = [...h.querySelectorAll(nested ? ".b-chain .s-pills button" : ".b-cut .s-pills button")];
+    return { b: (head.querySelector("b") || {}).textContent || "", text: h.textContent, nested,
       cuts: cuts.map((x) => x.textContent), cells: cells.map((x) => x.textContent), cellOn: cells.findIndex((x) => x.getAttribute("aria-pressed") === "true") };
   });
   const whole = expected[0].first + (expected[0].second || "");
@@ -125,14 +127,14 @@ if (expected.length) {
     const c = await cardNow();
     if (!c) { l3.push(`no card opened on the ${label} word`); continue; }
     if (c.b.trim() !== whole) l3.push(`${label} word's card headed ${esc(c.b)}, not the run ${esc(whole)}`);
-    if (!/one card for the run/iu.test(c.text)) l3.push(`${label} word's card does not say it is one card for the run`);
+    if (!c.nested && !/one card for the run/iu.test(c.text)) l3.push(`${label} word's card does not say it is one card for the run`);
     const wordByWord = c.cuts.length === 0 || c.cuts.some((x) => x.includes("+"));
     if (!wordByWord) l3.push(`${label} word's card does not offer the words one by one`);
     if (c.cells.length > 1 && c.cellOn !== n) l3.push(`${label} word's card opened on cell ${c.cellOn}, not the word pressed`);
     await page.keyboard.press("Escape"); await page.waitForTimeout(250);
   }
 }
-check("L3  either word of a run opens ONE card, headed by the whole run, offering the words one by one", l3.length === 0, l3.length ? few(l3) : "both words open the run's card");
+check("L3  either word of a run opens a card headed by the whole run, carrying its lattice, the words one by one offered, the word pressed the one open", l3.length === 0, l3.length ? few(l3) : "both words open a card headed by the run");
 if (errs.length) check("  no page error", false, errs[0].slice(0, 120));
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
