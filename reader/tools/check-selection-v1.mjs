@@ -292,8 +292,8 @@ const showing = async (nth = 0) => p.evaluate((i) => {
   // empty, and a drag begun on nothing takes whatever stands beside it
   const W = ".he-text .wb:has(.g:not(.bare)) .w";
   const G = ".he-text .wb:has(.g:not(.bare)) .g";
-  for (const [mode, btn] of [["the Hebrew reader", "#modeHe"], ["the English reader", "#modeEn"]]) {
-    await p.click(btn); await p.waitForTimeout(300);
+  for (const [mode, wantEn] of [["the Hebrew reader", false], ["the English reader", true]]) {
+    await p.evaluate((on) => { const b = document.getElementById("modeEn"); if (b.classList.contains("on") !== on) b.click(); }, wantEn); await p.waitForTimeout(300);
     const he = await dragFrom(W), en = await dragFrom(G);
     check(`in ${mode}, a drag begun on a Hebrew word takes Hebrew`,
       HE.test(he) && !LAT.test(he), he.slice(0, 34));
@@ -303,7 +303,7 @@ const showing = async (nth = 0) => p.evaluate((i) => {
 }
 
 // ---- the English reader copies English -------------------------------
-await p.click("#modeEn");
+await p.evaluate(() => { const b = document.getElementById("modeEn"); if (!b.classList.contains("on")) b.click(); });
 await p.waitForTimeout(350);
 {
   check("the page can be read in English", await p.evaluate(() => document.body.classList.contains("en")));
@@ -333,8 +333,8 @@ await p.waitForTimeout(350);
 // wrote. The Hebrew needs no help here: its own characters carry their
 // direction, so it lands on the page it is pasted into laid out as it was
 // here. The readings cannot, being English words arranged in Hebrew's order.
-for (const [mode, btn, agree] of [["the Hebrew reader", "#modeHe", false], ["the English reader", "#modeEn", true]]) {
-  await p.click(btn); await p.waitForTimeout(300);
+for (const [mode, wantEn, agree] of [["the Hebrew reader", false, false], ["the English reader", true, true]]) {
+  await p.evaluate((on) => { const b = document.getElementById("modeEn"); if (b.classList.contains("on") !== on) b.click(); }, wantEn); await p.waitForTimeout(300);
   const o = await p.evaluate((ix) => {
     const s = document.querySelectorAll("section.seg")[ix];
     const els = [...s.querySelectorAll(".he-text .wb .g, .he-text .wjoin > .g")].filter((x) => x.getClientRects().length);

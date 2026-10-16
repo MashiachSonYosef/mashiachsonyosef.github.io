@@ -1349,7 +1349,7 @@
   /* Which way the words run, and nothing else. The two readers differ in the
      direction of the flow, so that is what is said under them. */
   .mode-pick { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
-  .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); }
+  .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); max-width: 10.5rem; text-align: center; }
   .mode-btn, .blob-btn { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
   .mode-btn.on, .blob-btn.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
@@ -1748,6 +1748,16 @@
      of its own — a commentator is one more voice on the card, not a louder
      kind of thing than the catalog it sits beside. */
   .wb { position: relative; }
+  /* THE CARD'S NUMBER ON THE PAGE (the numbers pill): small, in the card's
+     top corner, the card head's gold, with the arrow the way this reader
+     reads; drawn only while the pill is on */
+  .cn { position: absolute; top: 0.05rem; inset-inline-start: 0.22rem; font: 0.56rem/1 Georgia, serif; letter-spacing: 0.04em; color: var(--gold); pointer-events: none; user-select: none; z-index: 2; }
+  .cn::after { content: " \25C2"; }
+  body.en .cn::after { content: " \25B8"; }
+  /* the English reader prints the reading above the letters, so the number
+     moves to the card's bottom corner, under the letters */
+  body.en .cn { top: auto; bottom: 0.12rem; }
+  body:not(.nums) .cn { display: none; }
   /* A commentary handle standing in the line of the verse, after the words it
      covers. It is inline, so it reads as part of the line; what it opens is
      block-level, so the words after it fall below and the words above it are

@@ -80,7 +80,7 @@ check("a copy carries the reading and never the chip",
 // (the owner, 2026-10-08: "if i select a new R pill ... doesnt show the CC
 // license on the english runner"). Before that day a ruled line wore no
 // chip at all — absent over wrong; now the chip is the chosen record's own.
-await p.click("#modeHe");
+await p.evaluate(() => { const b = document.getElementById("modeEn"); if (b.classList.contains("on")) b.click(); });   // the one reader pill: off is the Hebrew reader
 await p.waitForTimeout(400);
 const ruled = await p.evaluate(async () => {
   const wbs = [...document.querySelectorAll("section.seg .he-text .wb:has(.g:not(.bare))")].slice(0, 40);

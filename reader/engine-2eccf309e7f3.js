@@ -7683,7 +7683,7 @@
 
   // Hebrew / English reader toggle. Same words, same order, same receipts —
   // the English mode flips the flow LTR and lets the gloss line lead.
-  const btnHe = document.getElementById("modeHe"), btnEn = document.getElementById("modeEn");
+  const btnEn = document.getElementById("modeEn"), dirEn = document.getElementById("dirEn");
   // Which of the two layers a drag takes. It follows the word the reader
   // presses, so nothing is ever locked away: press a Hebrew word and the drag
   // takes Hebrew, press a reading and it takes readings. The reader you are in
@@ -8733,13 +8733,14 @@
     document.querySelectorAll(".he-text .wb .g[style]").forEach((g) => { g.removeAttribute("style"); });
     document.querySelectorAll(".he-text .wb[style]").forEach((w) => { w.style.width = ""; });
     document.body.classList.toggle("en", m === "en");
-    btnHe.classList.toggle("on", m !== "en");
     btnEn.classList.toggle("on", m === "en");
+    btnEn.setAttribute("aria-pressed", String(m === "en"));
+    dirEn.textContent = m === "en" ? "positioning layer on, left to right" : "off, right to left";
     pick(m === "en" ? "en" : "he");
     drawAllTies();
   };
-  btnHe.addEventListener("click", () => setMode("he"));
-  btnEn.addEventListener("click", () => setMode("en"));
+  // the one pill flips the reader: English on, or off, the Hebrew reader
+  btnEn.addEventListener("click", () => setMode(document.body.classList.contains("en") ? "he" : "en"));
   // the blob pill: on or off, like the readers' pills, and it says which
   const blobPill = document.getElementById("blobPill"), blobState = document.getElementById("blobState");
   const paintBlobPill = () => {
@@ -8749,6 +8750,30 @@
   };
   blobPill.addEventListener("click", () => chooseBlobs(blobsPref === "off" ? "every" : "off"));
   onBlobsChange = paintBlobPill; paintBlobPill();
+  // THE NUMBERS PILL: each card's number in its verse as written (the first
+  // word 1; a chain's words each their own, as the card's head counts them),
+  // drawn on the page's cards with the arrow the way this reader reads (the
+  // sheet), and kept on this device; ?nums= sets the load alone
+  const NUMS_KEY = "fh.nums";
+  let numsPref = (() => { const q = QUERY.get("nums"); if (q === "on" || q === "off") return q; try { return localStorage.getItem(NUMS_KEY) === "on" ? "on" : "off"; } catch { return "off"; } })();
+  const numberCells = (root) => {
+    const secs = root.matches && root.matches("section.seg") ? [root] : root.querySelectorAll("section.seg");
+    for (const sec of secs) sec.querySelectorAll(".he-text .wb:not(.mark)").forEach((wb, i) => {
+      if (wb.querySelector(":scope > .cn")) return;
+      const n = document.createElement("span"); n.className = "cn"; n.textContent = String(i + 1); n.setAttribute("aria-hidden", "true");
+      wb.prepend(n);
+    });
+  };
+  const numsPill = document.getElementById("numsPill"), numsState = document.getElementById("numsState");
+  const paintNums = () => {
+    const on = numsPref === "on";
+    document.body.classList.toggle("nums", on);
+    numsPill.classList.toggle("on", on); numsPill.setAttribute("aria-pressed", String(on));
+    numsState.textContent = on ? "on" : "off";
+    if (on) numberCells(document);
+  };
+  numsPill.addEventListener("click", () => { numsPref = numsPref === "on" ? "off" : "on"; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); });
+  paintNums();
   if (QUERY.get("mode") === "en") setMode("en");
   else if (!QUERY.has("mode")) { try { if (localStorage.getItem(MODE_KEY) === "en") setMode("en"); } catch { /* a device that remembers nothing opens the Hebrew reader */ } }
   if (QUERY.get("chain") === "ltr") document.body.dataset.chain = "ltr";   // the preview above
@@ -10498,6 +10523,7 @@
       if (bar) bar.setAttribute("aria-expanded", "true");
     }
     if (el.__place) el.__place(el);
+    if (numsPref === "on") numberCells(el);   // the numbers pill reaches a section built later
     // a built section's words are tied near the screen now and elsewhere in
     // slices (tieAgainNow), never all in one loop: see drawAllTies
     { for (const wb of el.querySelectorAll(".he-text > .wb")) TIE_AGAIN.add(wb); clearTimeout(tieAgainTimer); tieAgainTimer = setTimeout(tieAgainNow, 60); }

@@ -25,7 +25,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-2cbf60308b3d.css">
+<link rel="stylesheet" href="/reader/engine-7b61d197dcb4.css">
 </head>
 <body>
 <header class="top">
@@ -83,12 +83,20 @@
        one thing on the page nothing stands behind. -->
 
   <div id="modeRow">
-    <span class="mode-pick"><button type="button" class="mode-btn on" id="modeHe" aria-describedby="dirHe">Hebrew reader</button><span class="mode-dir" id="dirHe">right to left</span></span>
-    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-describedby="dirEn">English reader</button><span class="mode-dir" id="dirEn">left to right</span></span>
+    <!-- ONE PILL FOR THE READER (the owner, 2026-10-16: "if its just 1 shade
+         and flips from hebrew to english that works too. you could call it on
+         and off still where english is on"): the English reader on, or off,
+         which is the Hebrew reader, the page as it opens. -->
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-pressed="false" aria-describedby="dirEn" title="the positioning layer applied to the Hebrew cards: the same cards, placed in English reading order; turn the numbers on to see each card’s place as written">English reader</button><span class="mode-dir" id="dirEn">off, right to left</span></span>
     <!-- THE BLOB PILL (the owner, 2026-10-16: "just do it as a nice pill like
          the english reader toggle ... this one can sit live ... on off"): one
          pill beside the readers, on or off, kept on this device. -->
     <span class="mode-pick"><button type="button" class="blob-btn on" id="blobPill" aria-pressed="true" aria-describedby="blobState">blobs</button><span class="mode-dir" id="blobState">on</span></span>
+    <!-- THE NUMBERS PILL (the owner, 2026-10-16: "id also move the numbering
+         and arrow to the book page runner cards and add that as a toggle
+         too"): each card's number in its verse as written, with the arrow the
+         way this reader reads, on the page's cards; kept on this device. -->
+    <span class="mode-pick"><button type="button" class="blob-btn" id="numsPill" aria-pressed="false" aria-describedby="numsState" title="each card’s number in its verse as the scribes wrote it, first word 1, and the arrow the way this reader reads">numbers</button><span class="mode-dir" id="numsState">off</span></span>
     <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
          a megatoggle at the top that opens all of it, without losing the drop
          down"). It always did open every verse's commentary; it was labelled
@@ -253,6 +261,6 @@
 <section id="bookEnd">
   <p id="cc0Line" class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Every carried text and reading keeps its own license, named with it; nothing here relicenses it. What this site adds of its own — its code, layout, receipts and the words it writes — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>. Where it adapts a share-alike record (the Hebrew as laid out here, a reading cut or joined for display), the adaptation stays under that record’s license.</p>
 </section>
-<script src="/reader/engine-98b6214e44f4.js"></script>
+<script src="/reader/engine-2eccf309e7f3.js"></script>
 </body>
 </html>

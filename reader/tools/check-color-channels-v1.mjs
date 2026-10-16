@@ -185,7 +185,7 @@ const SAMPLE = {
   reading_ink: ["section.seg .he-text .g:not(.bare)", "color"],
   our_own_voice: ["header.top p#meta", "color"],
   structure: [".vnum", "borderColor"],
-  reader_selection: [".mode-btn.on", "color"],
+  reader_selection: [".mode-btn.on, .blob-btn.on", "color"],
 };
 const FINAL = ["text_as_written", "reading_as_shown", "our_own_voice"];
 
@@ -209,7 +209,7 @@ for (const face of ["day"]) {
 // the face as painted, so the read waits until two frames 100ms apart paint
 // the same colors, up to 3s.
 await p.waitForFunction(() => new Promise((resolve) => {
-  const paint = () => [document.body, document.querySelector(".mode-btn.on"), document.querySelector(".vnum")]
+  const paint = () => [document.body, document.querySelector(".mode-btn.on, .blob-btn.on"), document.querySelector(".vnum")]
     .map((e) => (e ? getComputedStyle(e).backgroundColor + "/" + getComputedStyle(e).color : "")).join("|");
   const a = paint();
   setTimeout(() => resolve(paint() === a), 100);
@@ -503,7 +503,7 @@ if (commentaryHere) {
   const boxed = !!held && held.box !== "none" ? inFamily(held.box, "gold") : { ok: false, why: "no outline" };
   check("and is boxed in gold, the whole block, rather than being filled", boxed.ok && !!held && alphaOf(held.wash) < 0.02,
     `outline ${held && held.box} · ${boxed.why} · ground ${held && held.wash}`);
-  const selInk = await p.evaluate(() => { const e = document.querySelector(".mode-btn.on"); return e ? getComputedStyle(e).color : null; });
+  const selInk = await p.evaluate(() => { const e = document.querySelector(".mode-btn.on, .blob-btn.on"); return e ? getComputedStyle(e).color : null; });
   check("and nothing about the held word is the amber the page keeps for its own controls",
     !!held && held.ink !== selInk && triplet(held.wash) !== triplet(selInk || ""), `held ${held && held.ink} on ${held && held.wash}; amber is ${selInk}`);
   // let go: press Escape, which the reader binds to closing the card
