@@ -74,7 +74,7 @@ check("nothing is left ellipsising", he.clamp === "none", `line-clamp ${he.clamp
 // The box grows by whole lines — a reading costs its own word a few lines,
 // never the reader the reading — its width stays held so nothing re-wraps
 // beside it, and the vertical room it takes is the lawful cost.
-const before = await p.evaluate(() => ({
+let before = await p.evaluate(() => ({
   docWidth: document.documentElement.scrollWidth,
   docHeight: document.body.scrollHeight,
 }));
@@ -108,7 +108,15 @@ for (let i = 0; i < Math.min(glossedCount, 10); i++) {
     const longest = Math.max(...bs.map((b) => b.textContent.trim().length));
     return longest - now;
   }, i);
-  if (grew > 40) { ruledIx = i; await p.evaluate(() => {
+  if (grew > 40) { ruledIx = i;
+    // the page's height the moment before the ruling, with the card open and
+    // the layout settled: sections the read-through reached keep settling
+    // for a while after it, and a height taken at the start read their
+    // settling as the ruling's doing (58316 → 58294 under a parallel suite,
+    // 2026-10-16; the same ruling grew the page 58303 → 58398 run alone)
+    await p.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
+    before.docHeight = await p.evaluate(() => document.body.scrollHeight);
+    await p.evaluate(() => {
       const bs = [...document.querySelectorAll("#hud .r-pills button")];
       bs.sort((a, b) => b.textContent.length - a.textContent.length)[0].click();
     }); break; }

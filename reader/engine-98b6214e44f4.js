@@ -541,6 +541,16 @@
   // cell as ever (part P1); a spaced run a dictionary names (P2) stands only
   // where a reader moves the switch, which the book page no longer draws.
   let runsPref = (() => { try { const v = localStorage.getItem(RUNS_KEY); return ["off", "own", "all"].includes(v) ? v : "off"; } catch { return "off"; } })();
+  // THE BLOB SWITCH (the owner, 2026-10-16: "blob toggle, some people might
+  // hate that shit"; "a high value easy add"): the gold shapes on every word,
+  // on joined words and runs only, or none, remembered on this device; an
+  // address that says ?blobs= sets it for that load alone (the checks ask
+  // ?blobs=runs). The English keeps its columns under the letters either way.
+  const BLOBS_KEY = "fh.blobs", BLOBS = ["every", "runs", "off"];
+  let blobsPref = (() => {
+    const q = QUERY.get("blobs"); if (BLOBS.includes(q)) return q;
+    try { const v = localStorage.getItem(BLOBS_KEY); return BLOBS.includes(v) ? v : "every"; } catch { return "every"; }
+  })();
   let HUD_TOGGLES_IX = null, HUD_TOGGLES = null, hudTogglesWait = null;
   let MARKS_REC = null;
   const HUD_LANES = { lay: null, relaySections: null };
@@ -6762,6 +6772,8 @@
   };
   const drawTies = (run) => {
     if (!run || !run.__ink || !run.isConnected) return;
+    // the switch off: a run wears no blob, its parts stay in their columns
+    if (blobsPref === "off") { drawPairs(run, []); return; }
     const g = run.__gloss;
     const words = [...run.__ink.querySelectorAll(":scope > .wb > .w")];
     const parts = g && g.classList.contains("parts") ? [...g.querySelectorAll(":scope > .g-part")] : [];
@@ -6784,8 +6796,9 @@
   // on a word that stands alone, piece by piece, wherever its English splits
   // at "+" into pieces its own division answers (drawWordTie decides). It was
   // a preview behind ?blobs=every until the owner asked for it; ?blobs=runs
-  // draws them on runs alone, as before.
-  const TIE_EVERY = QUERY.get("blobs") !== "runs";
+  // draws them on runs alone, as before. The blob switch (blobsPref) says
+  // which now: every word, runs only, or none.
+  const TIE_EVERY = () => blobsPref === "every";
   const drawWordTie = (wb) => {
     if (!wb || !wb.isConnected || wb.closest(".wjoin") || wb.classList.contains("mark") || wb.classList.contains("kq")) return;
     const w = wb.querySelector(":scope > .w"), ge = wb.querySelector(":scope > .g");
@@ -6800,6 +6813,9 @@
     // one it wore when its English changes to such a reading.
     // (measured tied, since the tie gives a split English line its room)
     pieceLine(ge, wb.__word);
+    // the switch off every word: the English keeps its columns under the
+    // letters, and a blob the word wore goes
+    if (!TIE_EVERY()) { if (wb.classList.contains("tied")) { drawPairs(wb, []); wb.classList.remove("tied"); } return; }
     wb.classList.add("tied");
     const pairs = piecePairs(w, ge, 0);
     if (pairs.length < 2) { wb.classList.remove("tied"); drawPairs(wb, []); return; }
@@ -6813,12 +6829,24 @@
     // (tieAgainNow): drawn in one loop, a work of 73,140 words in 17
     // sections (adam-min-haadamah, 11,675 words in one section) held its
     // page past a minute, once every split word wore a blob (2026-10-15)
-    if (TIE_EVERY) { for (const wb of document.querySelectorAll(".he-text > .wb")) TIE_AGAIN.add(wb); n += tieAgainNow(); }
+    { for (const wb of document.querySelectorAll(".he-text > .wb")) TIE_AGAIN.add(wb); n += tieAgainNow(); }
     window.__tieMs = { ms: Math.round(performance.now() - t0), cells: n };   // what a redraw of every built tie costs, for the check
   }, 60); };
   try { if (document.fonts) document.fonts.addEventListener("loadingdone", drawAllTies); } catch { /* no font events: the next draw is the window's */ }
   window.addEventListener("resize", drawAllTies);
   window.__drawAllTies = drawAllTies;   // for a screenshot probe trying a dress on the tie
+  // the blob pill, pressed: what it takes away goes at once, what it
+  // gives is drawn again, and the choice is kept on this device
+  let onBlobsChange = null;   // the pill repaints itself (below, with the readers)
+  const chooseBlobs = (id) => {
+    if (!BLOBS.includes(id)) return;
+    blobsPref = id;
+    try { localStorage.setItem(BLOBS_KEY, id); } catch { /* the choice still stands on this page */ }
+    if (id !== "every") for (const wb of document.querySelectorAll(".he-text > .wb.tied")) { drawPairs(wb, []); wb.classList.remove("tied"); }
+    if (id === "off") for (const r of document.querySelectorAll(".he-text .wjoin")) drawPairs(r, []);
+    drawAllTies();
+    if (onBlobsChange) onBlobsChange();
+  };
   // A LONE WORD'S BLOB IS DRAWN AGAIN WHEN ITS LINE IS PAINTED AGAIN (the
   // owner, 2026-10-10: "same with blobs it should apply when changed too").
   // Every repaint of a line (a card, an order, a source switch, the signs)
@@ -6870,7 +6898,7 @@
     return near.length;   // how many were drawn now, for the cost measure
   };
   const tieAgain = (ge) => {
-    const wb = TIE_EVERY && ge && ge.closest ? ge.closest(".wb") : null;
+    const wb = ge && ge.closest ? ge.closest(".wb") : null;
     if (!wb || !wb.matches(".he-text > .wb")) return;
     TIE_AGAIN.add(wb);
     clearTimeout(tieAgainTimer);
@@ -8712,6 +8740,15 @@
   };
   btnHe.addEventListener("click", () => setMode("he"));
   btnEn.addEventListener("click", () => setMode("en"));
+  // the blob pill: on or off, like the readers' pills, and it says which
+  const blobPill = document.getElementById("blobPill"), blobState = document.getElementById("blobState");
+  const paintBlobPill = () => {
+    const on = blobsPref !== "off";
+    blobPill.classList.toggle("on", on); blobPill.setAttribute("aria-pressed", String(on));
+    blobState.textContent = blobsPref === "runs" ? "runs only" : on ? "on" : "off";
+  };
+  blobPill.addEventListener("click", () => chooseBlobs(blobsPref === "off" ? "every" : "off"));
+  onBlobsChange = paintBlobPill; paintBlobPill();
   if (QUERY.get("mode") === "en") setMode("en");
   else if (!QUERY.has("mode")) { try { if (localStorage.getItem(MODE_KEY) === "en") setMode("en"); } catch { /* a device that remembers nothing opens the Hebrew reader */ } }
   if (QUERY.get("chain") === "ltr") document.body.dataset.chain = "ltr";   // the preview above
@@ -10463,7 +10500,7 @@
     if (el.__place) el.__place(el);
     // a built section's words are tied near the screen now and elsewhere in
     // slices (tieAgainNow), never all in one loop: see drawAllTies
-    if (TIE_EVERY) { for (const wb of el.querySelectorAll(".he-text > .wb")) TIE_AGAIN.add(wb); clearTimeout(tieAgainTimer); tieAgainTimer = setTimeout(tieAgainNow, 60); }
+    { for (const wb of el.querySelectorAll(".he-text > .wb")) TIE_AGAIN.add(wb); clearTimeout(tieAgainTimer); tieAgainTimer = setTimeout(tieAgainNow, 60); }
     return true;
   };
   const REACH = 1400;
