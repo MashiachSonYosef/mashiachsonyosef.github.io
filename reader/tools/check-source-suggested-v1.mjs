@@ -96,15 +96,17 @@ const open = async (on) => {
     if (ds && !ds.querySelector(".he-text")) { ds.scrollIntoView({ block: "center" }); const t0 = Date.now(); while (Date.now() - t0 < 8000 && !ds.querySelector(".he-text")) await wait(100); await wait(300); }
     const dwb = ds ? [...ds.querySelectorAll(".he-text .wb")][dashIdx] : null;
     const rail = [...document.querySelectorAll('.rail .row[data-toggle="suggested"] button')].map((x) => ({ t: x.textContent, on: x.getAttribute("aria-pressed") === "true", dead: x.disabled }));
-    return { lines, first: await cardOf(wbs[0]), dash: dwb ? await cardOf(dwb) : { has: false, text: "no such word built" }, rail, state: window.__suggested || null };
+    const forced = (document.querySelector('.rail .row[data-toggle="suggested"] .forced') || {}).textContent || "";
+    return { lines, first: await cardOf(wbs[0]), dash: dwb ? await cardOf(dwb) : { has: false, text: "no such word built" }, rail, forced, state: window.__suggested || null };
   }, [firstLabel, dash ? dash.label : "", dash ? dash.wordIdx : 0]);
   await ctx.close();
   return r;
 };
 const off = await open(false), on = await open(true);
 const shown = String(firstCell[0]).trim();
-check("S2  switched off: no card carries the BSB's row, and the rail's row stands off", !off.first.has && !off.dash.has && off.rail.some((x) => x.t === "off" && x.on) && !off.rail.some((x) => x.dead),
-  `rail ${off.rail.map((x) => `${x.t}${x.on ? " (on)" : ""}${x.dead ? " (dead)" : ""}`).join(" | ")}`);
+// forced on since 2026-10-14 (the owner: "a toggle that isnt toggleable that just says 'source suggested'"): a device that remembers off still gets the row
+check("S2  forced on: a device that remembers off still gets the BSB's row, and the rail's row is a label, not a switch", off.first.has && off.dash.has && off.rail.length === 0 && /for now/.test(off.forced),
+  `rail label "${off.forced}" · ${off.rail.length} buttons`);
 check(`S3  switched on: ${BOOK} ${firstLabel}'s first word reads the BSB's own cell, credited BSB, Public Domain`,
   on.first.has && on.first.text.includes(shown) && on.first.title.includes(JSON.stringify(String(firstCell[0]))) && on.first.chip === "Public Domain" && /Berean Standard Bible/.test(on.first.chipTitle),
   `${on.first.text.slice(0, 90)} · title ${on.first.title.slice(0, 60)} · chip ${on.first.chip}`);

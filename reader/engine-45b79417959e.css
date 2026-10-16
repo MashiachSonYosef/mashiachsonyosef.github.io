@@ -576,9 +576,23 @@
     background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
     padding: 0.3rem; box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); }
   #nav[hidden] { display: none; }
-  #nav button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 0.75rem;
+  #nav button, #nav a { border: 0; background: none; color: var(--muted); font: inherit; font-size: 0.75rem;
     letter-spacing: 0.08em; font-variant: small-caps; cursor: pointer; border-radius: 999px;
-    padding: 0.24rem 0.7rem; white-space: nowrap; }
+    padding: 0.24rem 0.7rem; white-space: nowrap; text-decoration: none; }
+  #nav a:hover { color: var(--ink-strong); background: var(--cell-wash); }
+  #nav .nav-gap { flex: 1 0 0; min-width: 0.2rem; }
+  /* the reader, one press from the bar's left */
+  #menuPick { position: fixed; z-index: 61; left: 0.9rem; bottom: 3.3rem; width: min(16rem, calc(100vw - 1.8rem));
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.7rem; padding: 0.55rem;
+    box-shadow: var(--shadow-pop); display: grid; gap: 0.28rem; }
+  #menuPick[hidden] { display: none; }
+  #menuPick button { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; min-height: 2.05rem;
+    border: 1px solid var(--line); border-radius: 0.4rem; background: var(--bg); color: var(--ink);
+    font: inherit; font-size: 0.85rem; cursor: pointer; padding: 0.2rem 0.6rem; text-align: left; }
+  #menuPick button .mode-dir { font-size: 0.62rem; color: var(--faint); letter-spacing: 0.06em; }
+  #menuPick button:hover { border-color: var(--gold); background: var(--cell-wash); }
+  #menuPick button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); font-weight: 700; }
+  #menuPick a { font-size: 0.72rem; color: var(--muted); padding: 0.2rem 0.3rem 0; }
   #nav button:hover:not(:disabled) { color: var(--ink-strong); background: var(--cell-wash); }
   #nav button:disabled { opacity: 0.35; cursor: default; }
   #navPrev, #navNext { font-size: 1rem; padding: 0.14rem 0.55rem; }
@@ -990,10 +1004,23 @@
      only a line made of its English and its chip is turned over, and a line
      holding anything else keeps today's order. */
   body.en .g-pcs { direction: ltr; }
+  body.en .g-pcs > * { order: var(--o, 0); }   /* the one hop (hopPossessive) */
+  /* A word whose English is split into pieces keeps every piece in sight.
+     Its row never wraps, because a tie runs to each piece, so the reading's
+     own width cap (.g, 11em, clipped) gives way to the row and the cell grows
+     to hold it. Under the cap it clipped "and + <to> the + darkness" at both
+     ends (Genesis 1:4), once every split word wore its blob (2026-10-10). */
+  .he-text > .wb.tied > .g:has(> .g-pcs) { max-width: none; }
   body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
   body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
   body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
-  body.en .he-text > .wb.tied > .g:has(> .g-pcs), body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
+  /* THE ROOM UNDER A TIED WORD KEYS ON THE TIE, NOT ON THE PIECES. A press
+     repaints the word's line, and for the 60 ms until its blob is drawn again
+     the pieces are gone: keyed on the pieces, the room went with them, the
+     card was placed under a block 12px short, and the block grew back under
+     it, over the Hebrew line (the overlaps gate, 2026-10-15, once every split
+     word wore its blob). The tie stays on through a repaint. */
+  body.en .he-text > .wb.tied > .g, body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
   .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
   .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
@@ -1002,6 +1029,25 @@
      it printed above, and the eye met the readings out of the order the
      corpus emitted them in. The wrapper takes the swap too. */
   body.en .wjoin .wj-ink { order: 3; }
+  /* A MAQAF NEVER TURNS THE ENGLISH READER AROUND (the owner, 2026-10-14:
+     "i think the maqaf flip is happening everywhere"; "maqafs are like
+     reverse unos"; of ve-el-kol-asher (Joshua 1:16), "the middle maqaf would indeed just stay
+     in the middle so obviously joshua the son of nun in joshua 2:1 is how
+     it should read"; el-kol-yisrael (Deuteronomy 1:1) reads "to all Israel"). The English reader
+     lays the verse's words left to right in reading order; a chain or a
+     run kept its ink and its parts right to left inside that flow, so its
+     English read backwards ("Israel | all | to") and the eye met "did he
+     say | that | indeed?". In the English reader the run's English takes
+     the reader's direction and its ink stays as the scribes wrote it, right
+     to left with each maqaf between the words it joins, so the ties cross
+     as they do inside one word ("in + beginning" over bereshit (Genesis 1:1)): the English
+     moves, the Hebrew never does. The Hebrew reader is as it was
+     (parts-direction-rule-v1). A preview for the owner, ?chain=ltr, lays
+     the chain's words left to right too, each under its English; it puts
+     every maqaf at the left edge of its word, one slot from where the text
+     writes it. */
+  body.en .wjoin > .g.parts { direction: ltr; }
+  body.en[data-chain="ltr"] .wjoin .wj-ink { direction: ltr; }
   .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
     margin-inline-start: 0.1em; cursor: help; }
   /* the halves of a pair hover on their own, so the pair as a whole takes no
@@ -1120,8 +1166,12 @@
   .rail > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.6rem; }
   .rail > summary::-webkit-details-marker { display: none; }
   .rail .k { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
-  .rail .now { font-size: 0.8rem; color: var(--ink); }
-  .rail .now b { font-weight: normal; color: var(--sel); }
+  .rail .now { font-size: 0.8rem; color: var(--ink); display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .rail .now b { font-weight: normal; color: var(--sel); font-size: 0.68rem; letter-spacing: 0.06em;
+    border: 1px solid var(--line); border-radius: 999px; padding: 0.12rem 0.6rem; white-space: nowrap; }
+  .rail .now b.still { color: var(--muted); border-style: dotted; }
+  .rail .now b[hidden] { display: none; }
+  .rail > summary .k { display: none; }
   .rail .now i { color: var(--faint); font-style: normal; padding: 0 0.2rem; }
   .rail .row { display: grid; grid-template-columns: 6.2rem 1fr; gap: 0.35rem 0.6rem; align-items: baseline;
     padding: 0.42rem 0 0; margin-top: 0.42rem; border-top: 1px dotted var(--chip-line); }
@@ -1559,6 +1609,8 @@
   /* its chip rides the same line: a line of its own took a readings row */
   #hud .r-piece .g-lic { display: inline; margin: 0 0 0 0.35em; padding: 0 0.3em; font-size: 0.62rem; line-height: 1; vertical-align: baseline; }
   #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+  #hud .head .wn { font-size: 0.82rem; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
+    margin-inline-end: 0.55em; align-self: center; white-space: nowrap; }
   /* A pill shows its whole reading. It used to clamp at two lines, which made
      the card claim a reading it was not showing — the code beneath says R is
      "never truncated away" and the clamp was quietly making that false. A long
@@ -1920,6 +1972,18 @@
     font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer;
     direction: ltr; text-align: left; }
   .c-bar:hover { border-color: var(--shani-dim); color: var(--shesh); }
+  /* the bar and, beside it, the list of the works (each selectable) */
+  .c-barrow { display: flex; align-items: stretch; gap: 0.35rem; margin: 0.55rem 0 0.32rem; }
+  .c-barrow .c-bar { margin: 0; flex: 1 1 auto; min-width: 0; }
+  .c-works-btn { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 0.55rem; background: var(--bg); color: var(--muted);
+    font-family: inherit; font-size: 0.72rem; letter-spacing: 0.04em; padding: 0 0.55rem; cursor: pointer; white-space: nowrap; }
+  .c-works-btn:hover, .c-works-btn[aria-expanded="true"] { border-color: var(--gold); color: var(--sel); }
+  .c-works { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 0.25rem; margin: 0 0 0.4rem; direction: ltr; }
+  .c-works[hidden] { display: none; }
+  .c-works button { text-align: left; font-family: inherit; font-size: 0.74rem; border: 1px solid var(--line); border-radius: 0.4rem;
+    background: var(--bg); color: var(--muted); padding: 0.22rem 0.5rem; cursor: pointer; }
+  .c-works button:hover { border-color: var(--gold); }
+  .c-works button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); }
   .c-bar[aria-expanded="true"] { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   .c-bar .c-glyph { font-variant: small-caps; letter-spacing: 0.12em; font-size: 0.7rem;
     border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
@@ -1941,10 +2005,23 @@
      ruling, "english and license reader… never let them separate even by a
      display degree" — quiet in the Hebrew reader, where every license is
      one tap away on the word's card; never in a copy, by the frame law */
-  .g .g-lic { display: block; width: fit-content; margin: 0.12em auto 0;
-    user-select: none; -webkit-user-select: none; padding: 0 0.32em;
-    border: 1px solid var(--chip-line); border-radius: 0.6em; font-size: 0.8em;
-    color: var(--faint); max-width: 100%; box-sizing: border-box; text-align: center; }
+  /* CONDENSED (the owner, 2026-10-14: "we could probably make the entire cc
+     by 4.0 pill more condensed, maybe even just inside the hud when
+     clicked"). The chip stays on the line, since every reading carries its
+     license there (the owner, 2026-10-10: the license "was to lightly shove
+     you into tagging newly selected english with a license tag"), but it is
+     a small, quiet mark now: smaller, closer, no box of its own; the card
+     says the license in full. */
+  .g .g-lic { display: block; width: fit-content; margin: 0.02em auto 0;
+    user-select: none; -webkit-user-select: none; padding: 0 0.2em;
+    border: 0; border-radius: 0.6em; font-size: 0.62em; letter-spacing: 0.04em; line-height: 1.25;
+    color: var(--faint); opacity: 0.85; max-width: 100%; box-sizing: border-box; text-align: center; }
+  /* OFF THE LINE (the owner, 2026-10-16, seeing it go small: "i do see you
+     removed the CC BY 4.0 (hopefully to inside the hud), so thats good
+     toward the final product mentality"). The chip stays in the line's
+     record, so the export, the copy guard and the checks read it, and the
+     card says every reading's license in full; the line itself shows none. */
+  .he-text .g .g-lic { display: none; }
   /* a source under two terms names both ("WordNet Notices + CC BY 4.0"), and
      under a narrow word that chip stood wider than the word and was cut; it
      breaks between the terms, never inside one */
@@ -1980,7 +2057,7 @@
   body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
   body.pick-en .wb .w { user-select: none; -webkit-user-select: none; }
   /* the chrome is not text anyone wants in a copy */
-  .seg-row, .c-bar, .c-mark, .c-choose, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
+  .seg-row, .c-bar, .c-barrow, .c-works, .c-mark, .c-choose, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
   /* Taking the text away for good. A copy is a convenience; an export is the
      final stop, so it says what it is about to hand over before it hands it
      over, and it obeys the license of every record it would carry. */

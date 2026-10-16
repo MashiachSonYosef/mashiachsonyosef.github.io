@@ -559,6 +559,9 @@ if (commentaryHere) {
     for (const path of document.querySelectorAll("svg.wj-tie path")) {
       grounds += 1;
       const f = getComputedStyle(path).fill;
+      // a blob's line is drawn on its own over every fill (drawPairs), and a
+      // line lays no ground
+      if (f === "none") continue;
       if (f !== ground.press && trip(f) !== trip(ground.bg) && f !== ground.cell && strayGround.length < 6) strayGround.push(`svg.wj-tie path ${f}`);
     }
     const on = document.querySelector('#hud .r-pills button[aria-pressed="true"]');

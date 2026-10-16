@@ -29,6 +29,8 @@ const b = await chromium.launch(launchOptions());
 for (const book of books) {
   const file = JSON.parse(readFileSync(`data/hud-runs/${book}.json`, "utf8"));
   const p = await b.newPage({ viewport: { width: 412, height: 900 } });
+  // the license runs rest off since 2026-10-14; this check reads the ledger laid under the switch
+  await p.addInitScript(() => { try { localStorage.setItem("fh.runs", "own"); } catch { /* a device that remembers nothing still reads */ } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(`http://127.0.0.1:${PORT}/zone.html?b=${book}`, { waitUntil: "networkidle", timeout: 90000 });
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
