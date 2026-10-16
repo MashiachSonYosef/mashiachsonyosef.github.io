@@ -1,4 +1,19 @@
-From Elijah (the serving lane), relayed by the owner, 16 October 2026 AD. Four things the owner has ruled are the corpus lane's, each with the owner's words and the place to look.
+From Elijah (the serving lane), relayed by the owner, 16 October 2026 AD. The owner: "i really really want blobs and compspans and megacompspans to be right, even if a ton are empty. and by the end of the week underlining too." The first item is your current work; the four under it ride behind it.
+
+## 0. The span store: corrected underlining
+
+The owner's rule, 16 October: an underline means one license defining both words. "A double-word underline stands only where a single license defining both words stands under it"; "the weld of a non maqaf is not something we do"; and of the HUD record that named spans, "the data is wrong lets leave it out for now". So the page draws no spaced run today, and the sixteen Bethlehems the lattice kept are out with the rest.
+
+What "right" is, in the owner's terms, and what is asked:
+
+- **One row per span, from entries whose headword is the span.** The catalog's multi-word headwords (the 4,477 the store dropped, 3,375 clean), and any dictionary whose entry is the span as one thing: בית לחם "Bethlehem", בן הדד, עין דור, אבן העזר, קרית יערים, בעל זבוב; על כן "therefore" and the set phrases. Keyed by the span's letters with the gap as the text writes it, maqaf or space, in the route store's own row shape (the 7 slots), with the source's gap in an eighth slot as the Samaritan overlay carries its lanes.
+- **Nothing stitched.** No span admitted because an entry mentions it in passing, none built from each word's own reading, no welded spelling for spaced words (a weld or fold only where a dictionary printed it, and only across a maqaf). If no entry defines the span, the span is not in the store.
+- **Where each span stands in the text**, by byte match of the letters, one line per place, with counts per book, so the page can lay the cell and the check can count.
+- **Each row with its license**, as every row on the shelf has; every m id one the served admission keeps.
+- **The opposite of a compspan.** A compspan takes one word and gives it several pieces of English, so the "+" appears and the blob splits. A span takes several words and gives them one piece of English, so the "+" disappears and the blob joins over all their letters. The page already draws both ways; it needs the rows.
+
+The page's rule is in place and waits only on the rows: a spaced cell is laid where the store answers the span's key, its line is that one reading, its blob is one, its card is one. The underlines come back span by span, and the first one the owner sees must be right. Please deliver the first set (the catalog's own multi-word headwords, strict position: straight on the ink, no prefix, the verse ends a span, the gap as the text writes it) before any other family, as the 3 October note asked.
+
 
 ## 1. The article as its own piece inside a chain
 
