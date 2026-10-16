@@ -46,6 +46,12 @@
 // Expected forms are computed here from the run's own keys with the corpus
 // lane's enumeration (weld-forms-v1.formsOfRun) and asked of the store on
 // disk — never read off the page it judges.
+// THE CHAIN AT THE TOP OF ITS WORD'S CARD (the nesting, 2026-10-16): a word
+// pressed in a chain whose line reads word by word opens the word's own card,
+// its divisions and blocks, with the chain's rungs (.b-chain) and words
+// (.b-chain-cell) kept at the top of it; a chain whose line reads a whole
+// rung opens the chain's card as before. The rungs are read from whichever
+// row carries them, and a word of the chain is pressed on the chain's row.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 import { formsOfRun, MAQAF } from "./weld-forms-v1.mjs";
@@ -73,7 +79,7 @@ for (const sec of zone.sections || []) {
       const forms = formsOfRun(keys).filter((f) => f.form !== "pieces");
       const published = forms.filter((f) => (store.routesFor(f.key) || []).length).map((f) => ({ ...f }));
       const weld = forms.find((f) => f.form === "weld");
-      runs.push({ keys, key: keys.join(MAQAF), weld: weld ? weld.key : keys.join(""), forms, published,
+      runs.push({ keys, key: keys.join(MAQAF), weld: weld ? weld.key : keys.join(""), forms, published, words: run.map((x) => x),
         folds: published.filter((f) => f.form !== "maqaf" && f.form !== "weld").map((f) => f.key) });
     }
     run = [];
@@ -117,7 +123,9 @@ for (const run of sample) {
     const t0 = Date.now(); while (Date.now() - t0 < 4000 && !document.querySelector("#hud .r-pills button, #hud .b-read p:not(.r-label)")) await new Promise((x) => setTimeout(x, 50));
     await new Promise((x) => setTimeout(x, 300));
     const h = document.getElementById("hud");
-    const cuts = [...h.querySelectorAll(".b-cut .s-pills button")].map((x) => ({ t: x.textContent, on: x.getAttribute("aria-pressed") === "true" }));
+    // the chain's rungs: on the chain's own card its divisions row, on a word's card the chain row at the top
+    const rungRow = h.querySelector(".b-chain") || h.querySelector(".b-cut");
+    const cuts = [...(rungRow ? rungRow.querySelectorAll(".s-pills button") : [])].map((x) => ({ t: x.textContent, on: x.getAttribute("aria-pressed") === "true" }));
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
     await new Promise((x) => setTimeout(x, 150));
     return { form, cuts };
@@ -154,9 +162,10 @@ if (plain) {
     const esc = async () => { document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })); await new Promise((x) => setTimeout(x, 200)); };
     run.scrollIntoView({ block: "center" });
     run.querySelectorAll(".wb .w")[0].click(); await wait("#hud .r-pills button");
-    const cells = [...document.querySelectorAll("#hud .b-cell .s-pills button")];
-    if (cells.length < 2) { await esc(); return { err: "no cells" }; }
-    cells[1].click(); await new Promise((x) => setTimeout(x, 500));
+    // the chain's words, on the chain row at the top of the word's card; the second opens its own card
+    const cells = [...document.querySelectorAll("#hud .b-chain-cell .s-pills button")];
+    if (cells.length < 2) { await esc(); return { err: "no chain words" }; }
+    cells[1].click(); await wait("#hud .r-pills button");
     const pool = [...document.querySelectorAll("#hud .b-read .r-pills button")];
     const pick = pool[Math.min(1, pool.length - 1)];
     const picked = pick.textContent.trim(); pick.click(); await new Promise((x) => setTimeout(x, 400));
@@ -174,7 +183,8 @@ if (plain) {
 
 // R6, on a run whose first word the store answers: its shard fails twice,
 // then arrives; and on a rung nothing publishes
-const target = runs.find((r) => (store.routesFor(r.keys[0]) || []).length && !r.published.some((f) => f.form === "weld"));
+// a first word its source does not divide: a divided word's card opens on the source's set, which needs no shard
+const target = runs.find((r) => (store.routesFor(r.keys[0]) || []).length && !r.published.some((f) => f.form === "weld") && !(Array.isArray(r.words[0].pg) && r.words[0].pg.length > 1));
 if (target) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(target.keys[0]));
   const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
@@ -198,9 +208,9 @@ if (target) {
     await wait(1500);
     const back = state();
     // now the joined rung, which nothing publishes
-    const joined = [...h.querySelectorAll(".b-cut .s-pills button")].find((x) => x.textContent === weld);
+    const joined = [...h.querySelectorAll(".b-chain .s-pills button, .b-cut .s-pills button")].find((x) => x.textContent === weld);
     if (joined) joined.click();
-    await wait(800);
+    await wait(1200);
     const rung = state();
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
     await wait(300);
@@ -328,7 +338,7 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
       const wait = (ms) => new Promise((x) => setTimeout(x, ms));
       const waitFor = async (q) => { const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector(q)) await wait(50); await wait(400); };
       run.scrollIntoView({ block: "center" }); run.querySelector(".wb .w").click(); await waitFor("#hud .r-pills button");
-      const rung = [...h.querySelectorAll(".b-cut .s-pills button")].find((x) => x.textContent === weld); if (!rung) return { err: "weld rung not offered" };
+      const rung = [...h.querySelectorAll(".b-chain .s-pills button, .b-cut .s-pills button")].find((x) => x.textContent === weld); if (!rung) return { err: "weld rung not offered" };
       rung.click(); await waitFor("#hud .r-pills button");
       const ids = new Set([...h.querySelectorAll(".r-pills button")].flatMap((x) => (x.dataset.by || "").split(" ").filter(Boolean)));
       const n = h.querySelectorAll(".r-pills button").length;

@@ -81,11 +81,19 @@ await p.evaluate((i) => {
 }, wordIx);
 await p.waitForSelector("#hud .s-pills button, #hud .r-pills button", { timeout: 20000 });
 await p.waitForTimeout(400);
-const other = await p.evaluate(() => {
-  const cs = [...document.querySelectorAll("#hud .s-pills button")];
-  return { firstLit: cs.length ? cs[0].getAttribute("aria-pressed") === "true" : true };
-});
-check("another word still opens on the whole form", other.firstLit);
+// untouched: not ruled, and standing where its own card stands by default,
+// on the whole form or on the source's own division (the set is filed under
+// its division, the owner 2026-10-03; its card opens there, standing whole)
+const other = await p.evaluate((i) => {
+  const inRun = (wb) => { const r = wb.closest(".wjoin"); return !!(r && r.__words && r.__words.length > 1); };
+  const wbs = [...document.querySelectorAll("section.seg .he-text .wb")];
+  const next = wbs.slice(i + 1).find((w) => !inRun(w)) || wbs[i + 1];
+  const cs = [...document.querySelectorAll("#hud .b-cut .s-pills button")];
+  const on = cs.find((b) => b.getAttribute("aria-pressed") === "true");
+  return { chosen: next.classList.contains("chosen"), cuts: cs.length, on: on ? on.textContent.trim() : null,
+    whole: cs.length ? cs[0].textContent.trim() : null, finest: cs.length ? cs[cs.length - 1].textContent.trim() : null };
+}, wordIx);
+check("another word is untouched: not ruled, standing on its own default", !other.chosen && (!other.cuts || other.on === other.whole || other.on === other.finest), other.cuts ? `opens on ${other.on}` : "no divisions");
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);
