@@ -68,3 +68,21 @@ are kept as record-to-record edges.
 4. Explain the stem (what Qal or Piel is) by citing a public domain grammar
    as a record, e.g. Gesenius' Hebrew Grammar (1910). Never in our own words.
 5. Show both years, and sort by one of them. Which one: the owner's call.
+
+## Agreed with the owner, 17 October (design step)
+
+- Less is more. The dictionary table is a search bar, a "dictionary" toggle
+  beside it, sortable column headers (text order by default, A–Z on a
+  tap), and rows that start collapsed. A closed row shows the word, its
+  form, one reading and the number of places. An open row shows its form
+  and where else it is used. Mock: shots/dictionary-table-simple.png.
+- With the toggle on, tapping a word in the reader (bara at 1:1:2) opens
+  the same card as always, and the card also lists the word's forms
+  (Qal, Piel), each a row that opens to its places. Tapping a place jumps
+  there, in any book, with that word's card open (the short address,
+  e.g. /ezekiel/21:24:17).
+- Return: the jump is a step in the browser's history (the phone's back
+  gesture returns), and the "Back to" pill above the bottom bar, which
+  today only works within a book, reads "Back to Genesis 1:1:2" across
+  books. It stays until it is tapped or another jump replaces it (owner:
+  "agree keep it").
