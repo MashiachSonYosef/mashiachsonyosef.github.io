@@ -1,4 +1,4 @@
-# Plan for Opus: finish the piece store ship (17 October 2026)
+# Plan for Opus: finish the piece store ship (17 October 2026) — DONE, see STATUS-2026-10-16.md, 17 October night
 
 Written by Elijah (the serving lane) at 5% of the week's tokens. The code is
 done and pushed; what remains is running the suite to green, the build, the
