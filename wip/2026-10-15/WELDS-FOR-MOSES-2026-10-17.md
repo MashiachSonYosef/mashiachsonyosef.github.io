@@ -78,4 +78,4 @@ Columns: ink key · closed-up form · rows judged same (good) / same (fragment) 
 - רב־סריס · רבסריס · 1/0/0 · Bolls 1
 - שר־סכים · שרסכים · 9/0/0 · Strong's 3, Bolls 3, STEP 1, BiblicalTools 1, Unabridged 1
 
-The rows themselves, with the judges' votes, are in the lane's hand-off folder as weld-keys.json and weld-majority.json (Elijah's scratch; ask and I push them to R2).
+The rows themselves, with the judges' votes: r2:mishkan/serving-lane-handoffs/elijah-welds-v1/weld-keys.json (the 71 keys, each with its closed-up form, the store's readings, and every catalog row under the closed-up form: R, D, M) and r2:mishkan/serving-lane-handoffs/elijah-welds-v1/weld-majority.json (per row, keyed id:row, the majority verdict and the three votes). This note is FOR-MOSES-v1.md beside them.
