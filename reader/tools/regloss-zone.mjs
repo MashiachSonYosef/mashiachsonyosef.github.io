@@ -189,7 +189,27 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
   const shipped = new Set(Object.keys((zone.emitted_from.witnessed_order || {}).columns || {}));
   for (const [o, table] of Object.entries(zone.gloss_orders)) {
     if (!table || typeof table !== "object") continue;
-    ordersM[o] = shipped.has(o) ? { gloss_m: prevOM[o] || {}, drift: 0 } : glossMFor(store, table);
+    if (shipped.has(o)) {
+      // A STRUCK CREDIT IS NOT KEPT (2026-10-17, Bolls M20): a shipped
+      // column's reading stands on the source the lane credited it to; a
+      // source the store no longer holds cannot stand under a reading, so
+      // the entry leaves the column, reading and credit together, and the
+      // line falls back to the base reading there. Counted, never silent.
+      // An entry whose credit names a struck source anywhere (its carriers
+      // or its alternate's) is re-credited from the store as an unshipped
+      // column's would be; where no route stands on the reading any more it
+      // leaves the column, reading and credit together.
+      const kept = {}; let struckOut = 0, recredited = 0;
+      for (const [k, m] of Object.entries(prevOM[o] || {})) {
+        const ids = typeof m === "string" ? [m] : (m && Array.isArray(m.by) ? m.by : []);
+        const altIds = m && m.alt && Array.isArray(m.alt.by) ? m.alt.by : [];
+        const touched = [...ids, ...altIds].some((id) => !store.index.m_sources[id]);
+        if (!touched) { kept[k] = m; continue; }
+        const re = table[k] !== undefined ? glossMFor(store, { [k]: table[k] }).gloss_m[k] : null;
+        if (re) { kept[k] = re; recredited += 1; } else { delete table[k]; struckOut += 1; }
+      }
+      ordersM[o] = { gloss_m: kept, drift: 0, struck_credit_dropped: struckOut, struck_credit_recredited: recredited };
+    } else ordersM[o] = glossMFor(store, table);
   }
   zone.gloss_m_orders = Object.fromEntries(Object.entries(ordersM).map(([o, r]) => [o, r.gloss_m]));
   zone.emitted_from.gloss_m_orders_layer = {
@@ -198,6 +218,8 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
       readings: Object.keys(zone.gloss_orders[o] || {}).length,
       carry_their_m: Object.keys(r.gloss_m).length,
       no_route_stands_on: r.drift,
+      ...(r.struck_credit_dropped ? { struck_credit_dropped: r.struck_credit_dropped } : {}),
+      ...(r.struck_credit_recredited ? { struck_credit_recredited: r.struck_credit_recredited } : {}),
       had_m_before: Object.keys(prevOM[o] || {}).length,
     }])),
   };

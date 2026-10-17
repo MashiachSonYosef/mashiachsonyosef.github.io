@@ -137,13 +137,6 @@
    "licensePointer": "https://github.com/STEPBible/STEPBible-Data/blob/b86d26cdb1f51729e73b5b4eb7f7ccadc5dfba39/README.md",
    "sourceYear": "S_NO_SOURCE_YEAR"
   },
-  "M20": {
-   "key": "bolls_bdbt_brown_driver_briggs_hebrew_1906",
-   "label": "Bolls byte-pinned reformatted Brown-Driver-Briggs Hebrew definition frame",
-   "licensePosture": "public_domain_document_reformatted_source",
-   "licensePointer": "ledgers/work/ldmprs/source-cache/bolls-bdbt-hebrew-2026-07-14/source-manifest-v1.json",
-   "sourceYear": "S_NO_SOURCE_YEAR"
-  },
   "M21": {
    "key": "panlex_hebrew_english_meanings_20240301",
    "label": "PanLex 2024 exact same-meaning Hebrew-English lexical expression",
@@ -1049,12 +1042,12 @@
   }
  },
  "counts": {
-  "keys": 124935,
-  "routes": 676463,
+  "keys": 124911,
+  "routes": 654456,
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 15347670,
+  "shard_bytes_total": 14803925,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1142,7 +1135,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "3411c86e94e7",
+ "store_version": "7310e81ba017",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1255,6 +1248,12 @@
    "now": "3411c86e94e7",
    "why": "year-ruling-v1.1-owner-rulings-E1-E3-W1-W5-with-determinations-D1-D5-2026-09-23: row slot 4 set to the ruled wording year and m_sources[].sourceYear to the ruled edition year (moses-year-repair-v1.1: the v1 rulings with determinations D1 the two WordNets, D2 the ETCBC gloss file, D3 the Lexibank edition, D4 Harkavy, D5 Strongs via Open Scriptures as a copy that names its work; applied to parent 94bc125695bf); store_version = first 12 hex of sha256(the 256 shard sha256 hex digests in 00..ff order + \"\\n\" + JSON.stringify(route_row) + \"\\n\" + \"94bc125695bf\")",
    "on": "2026-09-23"
+  },
+  {
+   "was": "3411c86e94e7",
+   "now": "7310e81ba017",
+   "why": "source-strike-rule-v1-a-source-whose-text-needs-a-providers-permission-is-struck-whole-and-the-hole-is-typed",
+   "on": "2026-10-17T12:16:27.317Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -1275,5 +1274,19 @@
    "with_headword": 676463,
    "with_pointed_headword": 363330
   }
+ },
+ "source_strikes": {
+  "rule_id": "source-strike-rule-v1-a-source-whose-text-needs-a-providers-permission-is-struck-whole-and-the-hole-is-typed",
+  "record": "reader/data/source-strikes-v1.json",
+  "struck_m_ids": [
+   "M20"
+  ],
+  "cumulative": {
+   "sources_struck": 1,
+   "routes_struck": 22007,
+   "keys_touched": 5527,
+   "routes_before_first_round": 676463
+  },
+  "rounds": 1
  }
 }

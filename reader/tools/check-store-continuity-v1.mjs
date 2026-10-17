@@ -72,7 +72,17 @@ if (PRE && existsSync(PRE)) { const p = JSON.parse(readFileSync(PRE, "utf8")); p
 else if (rec && rec.cumulative && rec.cumulative.routes_before !== undefined) { preRoutes = num(rec.cumulative.routes_before); preFrom = "the admission record's cumulative block"; }
 
 const served = num(index.counts && index.counts.routes);
-const cumStruck = num(rec && rec.cumulative && rec.cumulative.routes_struck) ?? num(la.cumulative && la.cumulative.routes_struck);
+// A SECOND KIND OF STRIKE (2026-10-17): a source struck for its licence
+// posture, by tools/strike-source-v1.mjs, with its own cumulative record
+// beside the admission record. The arithmetic below counts both: rows
+// before, less what the admission struck, less what the licence strike
+// struck, are the rows served.
+const ssPath = (index.source_strikes && index.source_strikes.record && existsSync(index.source_strikes.record)) ? index.source_strikes.record : "data/source-strikes-v1.json";
+const ss = existsSync(ssPath) ? JSON.parse(readFileSync(ssPath, "utf8")) : null;
+const licenceStruck = num(ss && ss.cumulative && ss.cumulative.routes_struck) || 0;
+const admissionStruck = num(rec && rec.cumulative && rec.cumulative.routes_struck) ?? num(la.cumulative && la.cumulative.routes_struck);
+const cumStruck = admissionStruck === null ? null : admissionStruck + licenceStruck;
+if (ss) console.log(`  licence strike on the shelf: ${(ss.struck_sources || []).map((s) => s.m_id).join(", ")} · ${n(licenceStruck)} routes in ${(ss.rounds || []).length} round(s)`);
 
 // C1 — the whole strike closes
 if (preRoutes === null) note("C1  the whole strike closes: rows before − rows struck = rows served",
@@ -94,21 +104,31 @@ else {
   // are the cumulative less that round. Two rounds is what this can check
   // without a per-round routes figure on every round.
   const lastBefore = num(roundCounts.routes_before), lastStruck = num(roundCounts.routes_struck);
-  const earlierStruck = (cumStruck ?? 0) - (lastStruck ?? 0);
+  // the admission rounds ran before any licence strike: their chain is
+  // judged on the store as it stood then, the licence strike's rows added
+  // back to what is served now
+  const earlierStruck = (admissionStruck ?? 0) - (lastStruck ?? 0);
   const shouldBe = preRoutes - earlierStruck;
   const gap = shouldBe - lastBefore;
   check("C2  the last round was handed what the rounds before it left, not a shorter copy",
     gap === 0,
     `rounds before it struck ${n(earlierStruck)} of ${n(preRoutes)}, leaving ${n(shouldBe)}; the last round records ${n(lastBefore)} in front of it${gap === 0 ? "" : ` · SHORT BY ${n(gap)} — the loss is at or before this round's input`}`);
-  check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served,
-    `${n(lastBefore)} − ${n(lastStruck)} = ${n(lastBefore - (lastStruck ?? 0))}, served ${n(served)}`);
+  check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served + licenceStruck,
+    `${n(lastBefore)} − ${n(lastStruck)} = ${n(lastBefore - (lastStruck ?? 0))}, served ${n(served)}${licenceStruck ? ` + ${n(licenceStruck)} the licence strike took since` : ""}`);
+  // and the licence strike's own rounds, each handed what stood before it
+  if (ss && Array.isArray(ss.rounds) && ss.rounds.length) {
+    let stood = lastBefore - (lastStruck ?? 0), ok = true;
+    for (const r of ss.rounds) { if (num(r.counts && r.counts.routes_before) !== stood) ok = false; stood -= num(r.counts && r.counts.routes_struck) || 0; }
+    check("  and each licence round was handed what the round before it left, down to the rows served", ok && stood === served,
+      `${ss.rounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)} (${(r.struck_m_ids || []).join(",")})`).join(" → ")} = ${n(stood)}, served ${n(served)}`);
+  }
 }
 
 // C3 — the two records agree
 if (!sr || !rec) note("C3  the struck-ranks record and the admission record agree", `${sr ? "" : "no struck-ranks record"}${!sr && !rec ? " and " : ""}${rec ? "" : "no admission record"} beside the store`);
 else {
   const srRanks = num(sr.counts && sr.counts.ranks), made = (sr.made || [])[0] || {};
-  const sameCount = srRanks === cumStruck;
+  const sameCount = srRanks === cumStruck;   // the admission strike's ranks and the licence strike's, in the one record
   const sameAfter = made.after_store_version && (made.after_store_version === index.store_version || (index.store_version_history || []).some((h) => h.was === made.after_store_version || h.now === made.after_store_version));
   check("C3  the struck-ranks record and the admission record agree on the strike, and name the store it ran between",
     sameCount && !!made.before_store_version && !!sameAfter,

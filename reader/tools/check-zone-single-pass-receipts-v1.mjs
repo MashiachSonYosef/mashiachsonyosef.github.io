@@ -144,6 +144,7 @@ const SPAN_LAYER_KEYS = ["rule", "source", "rows_scanned", "forms_with_a_compone
 // leaves behind. Named so a red line says who to look at, not only that
 // something is there.
 const PATCH_MARKS = {
+  "bolls_scrub": "tools/strike-source-v1.mjs",   // 2026-10-17: a struck source's headword readings and alternates dropped from the zone
   "gloss_m": "tools/enrich-gloss-m-v1.mjs",
   "gloss_m_orders_layer": "tools/regloss-zone.mjs",
   "licence_orders_layer": "tools/regloss-zone.mjs",

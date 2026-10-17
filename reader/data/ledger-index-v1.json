@@ -52,7 +52,8 @@
    "emit-mam-restore-v5-rights-v1.mjs",
    "emit-source-corpus-v1.mjs",
    "emit-struck-ranks-v1.mjs",
-   "strike-language-v1.mjs"
+   "strike-language-v1.mjs",
+   "strike-source-v1.mjs"
   ],
   "N": [
    "build-front-door-v1.mjs",
@@ -73,7 +74,8 @@
   ],
   "R": [
    "project-lattice-v12-v1.mjs",
-   "strike-language-v1.mjs"
+   "strike-language-v1.mjs",
+   "strike-source-v1.mjs"
   ],
   "U": [
    "emit-work-attachment-v1.mjs",
@@ -577,7 +579,8 @@
    "why": "no frame letter. This writes no A, N, R, M or D and changes nothing any letter stands on; it reads what the other writers already wrote and says where they stand. A record ABOUT the ledgers is not a ledger, and declaring a letter here would make this file look like a place a letter can be changed — which is the whole reason the declaration is required.",
    "writes": [
     "lane-state-v1.json",
-    "language-admission-v1.json"
+    "language-admission-v1.json",
+    "source-strikes-v1.json"
    ]
   },
   "emit-language-sweep-record-v1.mjs": {
@@ -913,6 +916,18 @@
    "updates_no_letter": false,
    "why": "the source record and the readings hanging off it. This tool removes M records and the R routes they carry. It does not touch an A span or an N license: what it changes is WHICH sources are permitted to answer for an A.",
    "writes": [
+    "language-admission-v1.json"
+   ]
+  },
+  "strike-source-v1.mjs": {
+   "letters": [
+    "M",
+    "R"
+   ],
+   "updates_no_letter": false,
+   "why": "Strikes named M records and the R routes they carry from the served route store, for a reason the owner ruled on. The first use (17 October 2026): M20, \"Bolls byte-pinned reformatted Brown-Driver-Briggs\" — its text is Online Bible's abridged BDB, © Larry Pierce, word for word TBESH's Meaning column, which TBESH says needs Online Bible's permission; the owner's 8 October ruling puts permission-asking text out permanently. Open Scriptures' BDB (M5) and the Unabridged BDB (M46) remain as the 1906 print.",
+   "writes": [
+    "source-strikes-v1.json",
     "language-admission-v1.json"
    ]
   },
