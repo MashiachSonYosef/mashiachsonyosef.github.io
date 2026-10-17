@@ -162,12 +162,13 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 100 tools that are not checks.
+`build.sh` calls 19 of the 101 tools that are not checks.
 
 Not called by any build stage:
 
 - `tools/apply-span-ledger-v1.mjs`
 - `tools/bake-overlay-book-counts-v1.mjs`
+- `tools/bake-piece-store-v1.mjs`
 - `tools/bake-span-store-v1.mjs`
 - `tools/bake-witnessed-order-v1.mjs`
 - `tools/bookword-measure-v1.mjs`
