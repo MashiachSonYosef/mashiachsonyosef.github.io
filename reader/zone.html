@@ -5980,9 +5980,13 @@
         split.readings.forEach((reading) => {
           const key = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : reading.toLowerCase();
           const g = groups.get(key);
-          if (!g) groups.set(key, { text: reading, year: yr, ledger: Number(rank), records: [row] });
+          // a piece store row neither dates nor ranks its group (it witnesses
+          // the reading only; sortPool's rk): the group keeps the store's year
+          // and catalog rank
+          const pr = OVERLAY_ROWS.get(row) === "piece-store";
+          if (!g) groups.set(key, { text: reading, year: pr ? Infinity : yr, ledger: pr ? Infinity : Number(rank), records: [row] });
           else {
-            g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
+            if (!pr) { g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank)); }
             if (!g.records.includes(row)) g.records.push(row);
           }
         });
