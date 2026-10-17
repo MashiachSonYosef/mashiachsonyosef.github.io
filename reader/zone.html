@@ -2886,16 +2886,23 @@
     // THE PIECE STORE (Moses, FOR-ELIJAH-v77, 2026-10-17; the owner, 2026-10-16:
     // "each piece in the + sign is RMD (r pill, M license, D definition)"):
     // the lane's normalized records and claims, served per book
-    // (tools/bake-piece-store-v1.mjs) and read at the open place: a claim
-    // whose letters are the cell's letters stands as a row — its English a
-    // slice of its record's D, its M PIECE:TAHOT or PIECE:MACULA, its D the
-    // record as received
+    // (tools/bake-piece-store-v1.mjs) and read at one cell's own place: a
+    // claim at that word, those letters and that reading stands as a row,
+    // its English a slice of its record's D, its M PIECE:TAHOT or
+    // PIECE:MACULA, the text under it the record's own reading (R). It
+    // witnesses readings and never leads one (EARLIEST_FIRST, sortPool)
     { id: "piece-store", dir: "data/piece-store/", local: true, place: true, was: "fh.overlay.piece-store", mark: "pieces", shelf: "a word's pieces as TAHOT and MACULA divide it, each piece a record" },
   ];
   let SPAN_BOOK = null;                 // this book's places and rows (data/span-store/<book>.json)
-  // the piece store's book file, fetched once, the first time a card asks
-  let PIECE_BOOK = null, pieceBookP = null, openPlace = null;
-  const pieceBookReady = () => pieceBookP || (pieceBookP = fetch(`${ROOT}data/piece-store/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).then((j) => { PIECE_BOOK = j; return j; }).catch(() => null));
+  // the piece store's book file, fetched once, the first time a cell can use
+  // it, and only for a book the store's index lists. A fetch that did not
+  // arrive is not kept as "no pieces": the next card asks again.
+  let PIECE_BOOK = null, pieceBookP = null;
+  const pieceBookListed = () => { const ix = OVERLAYS["piece-store"]; return !!(ix && Array.isArray(ix.books) && ix.books.includes(BOOK)); };
+  const pieceBookReady = () => pieceBookP || (pieceBookP = fetch(`${ROOT}data/piece-store/${BOOK}.json`)
+    .then((r) => { if (!r.ok) throw new Error(`piece store ${r.status}`); return r.json(); })
+    .then((j) => { PIECE_BOOK = j; return j; })
+    .catch(() => { pieceBookP = null; return null; }));
   const SPAN_BY_KEY = new Map();        // ink key -> rows, in the store's order (NAME rows first)
   const spanRowsOn = (key) => (SPAN_BY_KEY.get(key) || []).filter((r) => !sourcesOff.has(r.slots[3]));
   const OVERLAYS = {};
@@ -3880,33 +3887,41 @@
   // every row is folded to the store's seven slots. A shard that did not arrive
   // adds nothing: the store answers alone, as it does with every chip off.
   const overlayShards = new Map();
-  const overlayRowsFor = async (o, key) => {
+  const overlayRowsFor = async (o, key, piecePlace = null) => {
     const ix = OVERLAYS[o.id];
     if (!ix) return [];
     // the span store's rows stand in the book's file, the seven slots as the
     // lane wrote them
     if (o.place) {
-      // the piece store answers at the open place only: the claims at the
-      // open word(s) whose letters are this key's letters, each with its
-      // record (piece-store-serve-v1): the pill is the claim's slice, the
-      // text under it the record's whole reading (R), served as
-      // [m, headword, R, year]; the record's source line stays in the lane's
-      // store under the same rid
+      // THE PIECE STORE ANSWERS AT ONE CELL'S OWN PLACE (piece-store-serve-v1;
+      // the owner, 2026-10-16: "each piece in the + sign is RMD"). The card
+      // passes the cell's place: the verse, the word's number as written
+      // (marks not counted), the cell's letters [a, b] in that word, and the
+      // reading (the form, or the ketiv or the qere). A claim stands only
+      // where the lane put it, at that word, those letters and that reading:
+      // never by letters alone, never from a neighbor in a maqaf chain, never
+      // for the other half of a ketiv and qere (review, 2026-10-17). No place,
+      // no rows: the export and every caller but an open cell get none. The
+      // pill is the claim's slice; the text under it is the record's own
+      // reading (R), served as [m, headword, R, year]; the record's source
+      // line stays in the lane's store under the same rid.
+      if (!piecePlace || !pieceBookListed()) return [];
+      if (Object.keys(ix.m_sources || {}).every((m) => sourcesOff.has(m))) return [];
       const pb = await pieceBookReady();
-      if (!pb || !openPlace || !pb.places) return [];
+      if (!pb || !pb.places) return [];
       const want = [...String(key || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
+      const { ref, n, a: A, b: B, reading } = piecePlace;
       const out = [];
-      for (const { n, w } of openPlace.words) {
-        const L = [...String((w && w.s) || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
-        for (const c of pb.places[`${openPlace.ref}:${n}`] || []) {
-          const [, , , , a, b, R, rid, , sign] = c;
-          if (!R || sign || a == null || L.slice(a, b + 1) !== want) continue; // letters [a, b] inclusive, as the lane counts
-          const rec = pb.records[rid]; if (!rec) continue;
-          const row = [0, R, rec[2], rec[0], rec[3] || "S_NO_SOURCE_YEAR", 0, null];
-          OVERLAY_ROWS.set(row, o.id); out.push(row);
-        }
+      for (const c of pb.places[`${ref}:${n}`] || []) {
+        const [, , , rd, a, b, R, rid, , sign] = c;
+        if (!R || sign || a !== A || b !== B || rd !== reading) continue;   // letters [a, b] inclusive, as the lane counts
+        const rec = pb.records[rid]; if (!rec) continue;
+        const row = [0, R, rec[2], rec[0], rec[3] || "S_NO_SOURCE_YEAR", 0, null];
+        OVERLAY_ROWS.set(row, o.id); out.push(row);
       }
-      return out;
+      // the letters say the same: a cell whose surface is not the claim's
+      // letters is not its cell (a guard; the place already decided)
+      return want.length === B - A + 1 ? out : [];
     }
     if (o.local) return (SPAN_BY_KEY.get(key) || []).map((r) => { const row = r.slots.slice(0, 7); OVERLAY_ROWS.set(row, o.id); return row; });
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
@@ -4444,7 +4459,14 @@
   // by year and showed Davidson 1855, the export took the store's first row and
   // named a 2023 dictionary, for the same word. A file that cites a different
   // record than the page it came from is worse than one that cites none.
+  // A PIECE ROW NEVER LEADS ITS GROUP (piece-store-serve-v1): it witnesses a
+  // reading another row prints, so it stands after every other record, and
+  // the record shown, its M, its license and the line's credit stay theirs.
+  // MACULA's records are dated 2022, which put them before every undated row
+  // and the 2023 SDBH (review, 2026-10-17: Obadiah 1:1:2 credited MACULA).
   const EARLIEST_FIRST = (a, c) => {
+    const pa = OVERLAY_ROWS.get(a) === "piece-store" ? 1 : 0, pc = OVERLAY_ROWS.get(c) === "piece-store" ? 1 : 0;
+    if (pa !== pc) return pa - pc;
     const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
     return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
   };
@@ -4459,7 +4481,13 @@
   const lineNamed = (g) => {
     const chip = g && g.querySelector(".g-lic");
     const lines = chip && chip.dataset.line ? chip.dataset.line.split(" ") : [];
-    return lines.length === 1 && index && index.m_sources && index.m_sources[lines[0]] ? { mId: lines[0] } : null;
+    // PIECE:TAHOT and PIECE:MACULA on a line are the place's own pieces
+    // (readingOfPiece), credited by the oldest carrier as ever: the piece
+    // store's sources share those names (the lane's m ids) and are never a
+    // line's record, so they are not taken for one (review, 2026-10-17: the
+    // export of a ruled TAHOT line said its record was missing)
+    const m = lines.length === 1 && index && index.m_sources ? index.m_sources[lines[0]] : null;
+    return m && m.overlay !== "piece-store" ? { mId: lines[0] } : null;
   };
   // named: lineNamed's answer, or null to credit the oldest carrier, the
   // record the card's foot shows. everySource: ask the pool with the switches
@@ -5886,7 +5914,7 @@
   const poolFor = async (surface, opts = {}) => {
     const stored = await routesFor(surface);
     let extra = [];
-    if (!opts.storeOnly) for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface).catch(() => []));
+    if (!opts.storeOnly) for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface, opts.piecePlace || null).catch(() => []));
     if (!stored && !extra.length) return null;
     const all = stored || [];
     // every record asked for this word, the overlays' with the store's, before
@@ -6297,15 +6325,15 @@
     // stands open, and apply to its whole form only (bin === zone: a
     // commentary's or a dictionary's words are not positions of this book)
     openPointed = bin === zone && region && region.s ? region.s : null;
-    // the place the card stands at, for the piece store: the verse's label
-    // and the number of each word under the card as written, marks not counted
-    {
-      const sec = el && el.closest ? el.closest("section.seg") : null;
-      const host = el && el.closest ? (el.closest(".wjoin") || el.closest(".wb")) : null;
-      const all = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
-      const mine = host ? (host.classList.contains("wjoin") ? [...host.querySelectorAll(".wb:not(.mark)")] : [host]) : [];
-      openPlace = bin === zone && sec && sec.__sec ? { ref: sec.__sec.label, words: mine.map((x) => ({ n: all.indexOf(x) + 1, w: x.__word })).filter((x) => x.n > 0 && x.w) } : null;
-    }
+    // THE SITE THE CARD STANDS AT, for the piece store: the verse's label and
+    // its words as written, marks not counted, so a cell can name its own
+    // word's number (piecePlaceOf, below). It belongs to this card alone.
+    const openSite = (() => {
+      const sec = bin === zone && el && el.closest ? el.closest("section.seg") : null;
+      if (!sec || !sec.__sec) return null;
+      const all = [...sec.querySelectorAll(".he-text .wb:not(.mark)")];
+      return { ref: sec.__sec.label, numberOf: (w) => { const i = all.findIndex((x) => x.__word === w); return i >= 0 ? i + 1 : 0; }, wordOf: el.closest(".wb") ? el.closest(".wb").__word : null };
+    })();
     openKey = bin === zone && region ? (region.form_k || region.k || null) : null;
     // Only the atoms tile the occurrence, so only the atoms may be laid out in
     // the header. Drawing the whole lattice printed each joined interval again
@@ -6748,9 +6776,41 @@
       if (setCut) return null;
       return surface === region.k ? placeLine(word) : null;
     };
+    // THE CELL'S OWN PLACE, for the piece store: the word under the cell (its
+    // number in the verse as written), the cell's letters [a, b] in it, and
+    // the reading (the form, or the ketiv or the qere the card stands on). A
+    // surface that stands twice in the division open (the conjunction and
+    // the suffix of one word, both a vav) cannot say which of the two it is,
+    // since the card asks once per surface, so it claims nothing: the page's
+    // own rule for TAHOT's pieces (MATCHED BY PLACE, NOT BY LETTER). A cell
+    // of several words claims nothing either: no claim spans words.
+    const piecePlaceOf = (surface) => {
+      if (!openSite) return null;
+      const same = cover.filter((c) => c.surface === surface);
+      if (same.length !== 1) return null;
+      const c = same[0];
+      if (opts.run) {
+        if (c.from !== c.to || !opts.run.words) return null;
+        const w = opts.run.words[c.from]; const n = w ? openSite.numberOf(w) : 0;
+        const L = lettersIn(surface).length;
+        return n && L ? { ref: openSite.ref, n, a: 0, b: L - 1, reading: "form" } : null;
+      }
+      const n = openSite.wordOf ? openSite.numberOf(openSite.wordOf) : 0;
+      if (!n) return null;
+      const i = cover.indexOf(c);
+      const a = cover.slice(0, i).reduce((t, x) => t + lettersIn(x.surface).length, 0);
+      const L = lettersIn(surface).length;
+      const role = String((region && region.role) || "").toLowerCase();
+      return L ? { ref: openSite.ref, n, a, b: a + L - 1, reading: role === "ketiv" || role === "qere" ? role : "form" } : null;
+    };
     // a block's pool is asked once per standing: the same letters stand for
-    // the set's piece on the set's division and for themselves on any other
-    const poolKey = (surface) => (placeOfCell(surface) ? `${surface}\u0001set` : surface);
+    // the set's piece on the set's division and for themselves on any other,
+    // and a cell the piece store answers is asked at its own place
+    const poolKey = (surface) => {
+      const base = placeOfCell(surface) ? `${surface}\u0001set` : surface;
+      const pp = piecePlaceOf(surface);
+      return pp ? `${base}\u0002${pp.n}:${pp.a}-${pp.b}:${pp.reading}` : base;
+    };
     const tried = new Map();           // cell surface -> fetches that did not arrive
     let pressedCut = null;             // a run's whole rung the reader pressed, remembered once read
     // A RUNG PRESSED ON A WORD'S CARD (the chain at the top of it) opens the
@@ -7325,7 +7385,7 @@
       if (!cache.has(poolKey(surface))) {
         try {
           const at = placeOfCell(surface);
-          let got = await poolFor(surface, at ? { place: at } : {});
+          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(surface) });
           // the whole form, where the set has its division: the set is not a
           // reading of the form as one word, and stands on its division
           if (got && setCut && surface === region.k) {
@@ -7865,7 +7925,7 @@
           } else if (sn) sn.remove(); }
         // the pool as sorted, said on the row and exposed, so a check can ask
         // the page what it offered rather than read it off the pills
-        const classOf = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
+        const classOf = (r) => { const own = r.records.filter((row) => OVERLAY_ROWS.get(row) !== "piece-store"); return Math.min(...(own.length ? own : r.records).map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture))); };
         // as the pills print it (spanJoin: pieces joined, a closing period
         // not drawn), so what a check reads here is what a reader sees
         window.__pool = sorted.map((r) => spanJoin(r.text));
@@ -10054,7 +10114,10 @@
       const k = chain ? chain.__key : rc.spanKey || rc.keys.join(" ");
       openHud(chain || cell || built.wb, { s, k }, unitId, wordPos, {
         ...opts, bin, word: { s, k, w: atoms }, regionIndex: -1, glossParts: null,
-        run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain, words, spanKey: rc.spanKey || null,
+        // spanInner: a place inside the span reads its rung by its own key
+        // (coversOfRun); without it a maqaf inner place read "\u05d1\u05d9\u05ea \u05e2\u05e7\u05d3" with a space,
+        // a key the store does not hold (II Kings 10:12)
+        run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain, words, spanKey: rc.spanKey || null, spanInner: rc.spanInner || null,
           gaps: chain ? null : words.slice(0, -1).map((w) => (/\u05be$/u.test(String(w.s)) ? "\u05be" : " ")),
           wbs: rc.idx.map((i) => rc.__els.get(i) || null),
           on: chain ? on : null, openWord: chain ? (j) => openWordOfChain(chain, j) : null },
