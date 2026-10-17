@@ -6023,8 +6023,10 @@
           split.readings.forEach((reading) => {
             const d = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : drawn(reading);
             let g = byDrawn.get(d);
-            if (!g) { g = { text: reading, year: yr, ledger: Number(rank), records: [] }; byDrawn.set(d, g); groups.set(`\u0000${d}`, g); }
-            g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank));
+            // a piece store row neither dates nor ranks its group (as above)
+            const pr = OVERLAY_ROWS.get(row) === "piece-store";
+            if (!g) { g = { text: reading, year: pr ? Infinity : yr, ledger: pr ? Infinity : Number(rank), records: [] }; byDrawn.set(d, g); groups.set(`\u0000${d}`, g); }
+            if (!pr) { g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank)); }
             if (!g.records.includes(row)) g.records.push(row);
           });
         });
