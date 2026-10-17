@@ -4737,6 +4737,33 @@
       // (ruledChip); the same words back keep the chip they had
       if (chipIn && String(line).trim()) box.append(chipIn);
       else if (chip && was === String(line).trim()) box.append(chip);
+      // A SPLIT READING IS LAID AS ITS ROW BEFORE THE BOX IS MEASURED (the
+      // owner, 2026-10-17, of "and + plowshare" at Genesis 1:1: "selecting
+      // plowshare glitched out the shading and width"). The box was grown by
+      // the lines its plain text wrapped to in the held width, and 60 ms
+      // later the row was laid (drawWordTie): a row never wraps, since a tie
+      // runs to each piece, so it ran past the cell into its neighbors and
+      // the box kept two lines nobody filled, its shading standing out of
+      // the row. So the row is laid now, and where it is wider than the held
+      // width the cell takes the row's width, the one way a cell widens
+      // (.g:has(> .g-pcs) { max-width: none }, 2026-10-10); a reading in one
+      // piece keeps its width held, as ever.
+      if (host && host.matches(".he-text > .wb") && !box.closest(".wjoin") && String(line).trim()) {
+        const row = pieceLine(box, host.__word);
+        box.classList.remove("g-pcs-wrap");
+        if (row) {
+          const cs = getComputedStyle(host);
+          const pad = ["paddingLeft", "paddingRight", "borderLeftWidth", "borderRightWidth"].reduce((t, k) => t + (parseFloat(cs[k]) || 0), 0);
+          const need = Math.ceil(box.getBoundingClientRect().width + pad);
+          // never wider than the text's own column: there the row keeps its
+          // pieces side by side, a tie to each, and the long piece wraps in
+          // its own column, the box growing by its lines
+          const col = host.parentElement ? host.parentElement.clientWidth - (parseFloat(getComputedStyle(host).marginLeft) || 0) - (parseFloat(getComputedStyle(host).marginRight) || 0) : need;
+          const width = Math.min(need, Math.floor(col));
+          if (width > host.getBoundingClientRect().width + 0.5) host.style.width = `${width}px`;
+          if (need > width) box.classList.add("g-pcs-wrap");
+        }
+      }
       // Shown whole outranks held still. The clamp above was settled for
       // the line that painted first, and a ruled compspan reading joins its
       // cells with " + " — longer than the gloss it replaced, and clipped
@@ -4746,26 +4773,19 @@
       // so nothing re-wraps beside it. A reading costs its own word a few
       // lines; it never costs the reader the reading.
       if (box.style.height && box.scrollHeight > box.clientHeight + 1) {
-        const lh = parseFloat(getComputedStyle(box).lineHeight) || box.scrollHeight;
-        // the chip's line rides along whole when one is present — grown
-        // height owes the text its lines AND the chip its own row
-        const chipEl2 = box.querySelector(".g-lic");
-        const chipH2 = chipEl2 ? chipEl2.getBoundingClientRect().height + (parseFloat(getComputedStyle(chipEl2).marginTop) || 0) : 0;
-        // GROW UNTIL IT IS WHOLE, don't predict it whole. One pass computed
-        // the lines from the height the text wanted BEFORE the box changed,
-        // and a box that grows re-wraps: at the second word of Genesis the
-        // arithmetic landed on 146px for content that then reflowed to 147,
-        // and the reader's own chosen reading was cut by three pixels — the
-        // one thing this box
-        // exists to prevent. So it is measured again after each growth and
-        // grows another line while it is still short. The bound is the
-        // reading's own lines and nothing is ever shrunk.
-        let lines = Math.max(1, Math.ceil((box.scrollHeight - chipH2 - 1) / lh));
-        for (let pass = 0; pass < 40; pass += 1) {
-          box.style.height = `${Math.ceil(lines * lh + chipH2)}px`;
-          if (box.scrollHeight <= box.clientHeight + 1) break;
-          lines += 1;
-        }
+        // GROW TO WHAT IT SHOWS, MEASURED (2026-10-17). The lines were
+        // counted from the box's scroll height, and that height holds the
+        // box's padding too, so a reading two lines tall was given three: a
+        // ruled split reading at the start of Amos stood over a line nobody
+        // filled. Before that the count was made once and fell three pixels
+        // short at the second word of Genesis, since a box that grows
+        // re-wraps. So the box is let go for one measure, at the width it is
+        // held at, and takes the height its reading and its chip lay to,
+        // never less than the height it was held at.
+        const held = parseFloat(box.style.height) || 0;
+        box.style.height = "";
+        const whole = box.getBoundingClientRect().height;
+        box.style.height = `${Math.max(held, Math.ceil(whole))}px`;
       }
       // A word inside a maqaf run does not print its own reading — the run
       // prints them once, together. So a ruling repaints the word's hidden
@@ -6609,6 +6629,11 @@
       if (i) { const sep = document.createElement("span"); sep.className = "g-pp"; sep.textContent = " + "; row.append(sep); }
       const pc = document.createElement("span"); pc.className = "g-pc" + (t.trim() === SIGN_GAP ? " gap" : ""); pc.textContent = t; row.append(pc);
     });
+    // the piece that wraps when the row is wider than the text's column
+    // (holdAndPaint): the longest, so a short piece beside it keeps its line
+    const pcs = [...row.querySelectorAll(":scope > .g-pc")];
+    const longest = pcs.reduce((a, x) => (x.textContent.length > a.textContent.length ? x : a), pcs[0]);
+    if (longest) longest.classList.add("long");
     hopPossessive(row);
     tn.replaceWith(row);
     return row;

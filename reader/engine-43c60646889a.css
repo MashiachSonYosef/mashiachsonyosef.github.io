@@ -1018,6 +1018,12 @@
      to hold it. Under the cap it clipped "and + <to> the + darkness" at both
      ends (Genesis 1:4), once every split word wore its blob (2026-10-10). */
   .he-text > .wb.tied > .g:has(> .g-pcs) { max-width: none; }
+  /* a ruled split reading wider than the text's column keeps its pieces side
+     by side and wraps the long one in its own column (holdAndPaint) */
+  .he-text > .wb > .g.g-pcs-wrap { max-width: 100%; }
+  .g.g-pcs-wrap > .g-pcs { display: flex; white-space: normal; max-width: 100%; }
+  .g.g-pcs-wrap > .g-pcs > .g-pc { flex: none; }
+  .g.g-pcs-wrap > .g-pcs > .g-pc.long { flex: 0 1 auto; white-space: normal; min-width: 0; overflow-wrap: anywhere; }
   body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
   body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
   body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
