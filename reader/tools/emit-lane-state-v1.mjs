@@ -167,6 +167,14 @@ export const laneState = () => {
         })()
         : null,
     },
+    // A LICENCE STRIKE, APART FROM THE ADMISSION (2026-10-17, Bolls M20): the
+    // sources struck for their rights posture by tools/strike-source-v1.mjs,
+    // with their record, so a peer lane sees both strikes and their cost
+    source_strikes: (() => {
+      const ss = index && index.source_strikes;
+      if (!ss) return null;
+      return { rule_id: ss.rule_id, struck_m_ids: ss.struck_m_ids || [], sources_struck: (ss.cumulative || {}).sources_struck || 0, routes_struck: (ss.cumulative || {}).routes_struck || 0, rounds: ss.rounds || 0, record: ss.record || "reader/data/source-strikes-v1.json" };
+    })(),
 
     shelf: {
       scope: "the zone files beside the reader, and what rides with them",

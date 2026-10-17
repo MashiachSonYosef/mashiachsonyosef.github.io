@@ -85,8 +85,12 @@ const srv = createServer(async (req, res) => {
   try {
     let file = join(site, p);
     if (!extname(p)) {
-      // Pages answers a directory with its index.html; so does this.
+      // Pages answers a directory with its index.html; so does this. A path
+      // that is no directory and no file is answered with 404.html at the
+      // address asked for, as Pages answers it (the word's short address,
+      // /genesis/1:1:2, rides in on that page).
       if (p.endsWith("/")) file = join(file, "index.html");
+      else if (!existsSync(file)) { const nf = join(site, "404.html"); if (existsSync(nf)) { res.writeHead(404, { "content-type": TYPES[".html"] }); return res.end(await readFile(nf)); } res.writeHead(404); return res.end("no"); }
       // The Location header is percent-encoded, because a header value may not
       // carry a raw non-ASCII byte: Node throws ERR_INVALID_CHAR on writeHead,
       // the throw lands in the catch below, and the reader is handed a 404
@@ -548,6 +552,22 @@ for (const [href, ...expected] of WALK) {
   await p.keyboard.press("Escape");
 }
 
+// THE WORD'S SHORT ADDRESS (the owner, 2026-10-17: "id make it just
+// genesis/1:1:2"): a path that is no page, answered by 404.html, which sends
+// the reader to the chapter with the word after the hash; the page lands on
+// the verse, opens the card, and the address is the chapter's clean one
+{
+  await p.goto(`${B}/genesis/1:1:2`, { waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 }).catch(() => null);
+  const t0 = Date.now(); while (Date.now() - t0 < 12000 && !(await p.$("#hud .head .wn"))) await p.waitForTimeout(100);
+  const r = await p.evaluate(() => ({ head: ((document.querySelector("#hud .head .wn") || {}).textContent || "").trim(), path: location.pathname, hash: location.hash }));
+  check("a word's short address lands on its card and leaves the chapter's clean address", r.head === "1:1:2 \u25c2" && r.path === "/genesis/1/" && r.hash === "", `/genesis/1:1:2 → ${r.path}${r.hash} · head "${r.head}"`);
+  await p.goto(`${B}/genesis/1:3`, { waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 }).catch(() => null);
+  await p.waitForTimeout(800);
+  const v = await p.evaluate(() => ({ at: ((document.querySelector(".vnum.at") || {}).textContent || ""), path: location.pathname }));
+  check("    and a verse's short address lands on the verse", v.at === "1:3" && v.path === "/genesis/1/", `/genesis/1:3 → ${v.path} · marked ${v.at || "none"}`);
+}
 console.log("— the addresses on their own —");
 // the curated tier can be empty (owner's ruling, 2026-08-30); the probe
 // address comes from the shelf itself then — the last SERVED zone in sort
