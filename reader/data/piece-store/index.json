@@ -1,0 +1,69 @@
+{
+ "rule": "piece-store-serve-v1-a-claim-carries-no-text-its-english-is-a-slice-of-its-records-d",
+ "from": {
+  "relay": "FOR-ELIJAH-v77",
+  "build": "RULE-piece-store-v2.md",
+  "recipe": "THE ID RECIPE: id = lowercase hex sha256 of the UTF-8 bytes of: m, U+001F, year, U+001F, headwords joined by U+001E, U+001F, gap, U+001F, R, U+001F, g (empty for TAHOT), U+001F, D. rid = the first 16 hex of id; the build proves every rid unique across all records [records] and stops if not.",
+  "date": "17 October 2026 AD"
+ },
+ "m_sources": {
+  "PIECE:TAHOT": {
+   "key": "stepbible_tahot_aligned_translation",
+   "label": "STEPBible TAHOT: the aligned translation's pieces (PIECE:TAHOT)",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "moses-licence-ledger-v1/build-v1.1/licence-ledger-v1.1/sources-v1.1.jsonl#L151",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "from": "piece-store-v2",
+   "licence_label": "# STEPBible Data Repository  **CC BY 4.0**  "
+  },
+  "PIECE:MACULA": {
+   "key": "macula_hebrew_cherith_surface_english_2022",
+   "label": "MACULA Hebrew: the morphology's pieces (PIECE:MACULA)",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "moses-licence-ledger-v1/build-v1.1/licence-ledger-v1.1/sources-v1.1.jsonl#L152",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "from": "piece-store-v2",
+   "licence_label": "is licensed under [CC BY 4.0 ](http://creativecommons.org/licenses/by/4.0/)"
+  }
+ },
+ "counts": {
+  "claims_received": {
+   "value": 1296994,
+   "axis": "claims"
+  },
+  "claims": {
+   "value": 934323,
+   "axis": "claims",
+   "what": "served: the received claims less the lane's joins"
+  },
+  "joins_not_served": {
+   "value": 362671,
+   "axis": "claims",
+   "why": "a whole-word claim naming two or more records is the lane's join of their slices, not a source's reading; its pieces are served",
+   "per_source": {
+    "macula": 181579,
+    "tahot": 181092
+   }
+  },
+  "claims_with_english": {
+   "value": 931199,
+   "axis": "claims"
+  },
+  "records_named": {
+   "value": 771665,
+   "axis": "records"
+  },
+  "places": {
+   "value": 304337,
+   "axis": "places"
+  },
+  "books": {
+   "value": 39,
+   "axis": "books"
+  },
+  "per_source": {
+   "macula": 648981,
+   "tahot": 648013
+  }
+ }
+}

@@ -40,7 +40,7 @@ for (const [id, m] of Object.entries(ix.m_sources || {})) {
 }
 const slim = (r) => ({ row_id: r.row_id, keys: r.keys, slots: r.slots, gap: r.gap, order_kind: r.order_kind, kind: r.span && r.span.row_kind ? r.span.row_kind : null });
 const books = [];
-let placesTotal = 0, nested = 0, overlaps = 0;
+let placesTotal = 0, nested = 0, overlaps = 0, withheld = 0; const emptied = [];
 for (const f of readdirSync(join(FROM, "places")).sort()) {
   if (!f.endsWith(".jsonl")) continue;
   const book = basename(f, ".jsonl");
@@ -48,7 +48,12 @@ for (const f of readdirSync(join(FROM, "places")).sort()) {
   const header = lines[0] && lines[0].header ? lines.shift() : null;
   const keys = {};
   for (const p of lines) {
-    if (!keys[p.key]) keys[p.key] = (ix.by_key[p.key] || p.row_ids).map((id) => slim(rows.get(id))).filter(Boolean);
+    // NO WELD (the owner, 2026-10-16/17: "drop welding", "and weld fix"): a
+    // row whose gap is NONE is a source's closed-up spelling of the words
+    // (weld) or fold; the ink wrote them apart, so the row is withheld from
+    // the page and counted here (rows_closed_up_withheld)
+    if (!keys[p.key]) keys[p.key] = (ix.by_key[p.key] || p.row_ids).map((id) => slim(rows.get(id))).filter(Boolean).filter((r) => { if (r.gap === "NONE") { withheld += 1; return false; } return true; });
+    if (keys[p.key].length === 0) emptied.push(`${book} ${p.ref} ${p.key}`);
     if (p.inside_of) nested += 1;
     if (p.overlaps && p.overlaps.length) overlaps += 1;
   }
@@ -62,10 +67,12 @@ for (const f of readdirSync(join(FROM, "places")).sort()) {
 const index = {
   schema_version: "span-store-served-v1", from: "span-store-v1.3", relay: "FOR-ELIJAH-v75.3.md", date: ix.date, rule: ix.rule, rule_sha256_before_any_script: ix.rule_sha256_before_any_script,
   what_a_row_is: ix.what_a_row_is, ink_key: ix.ink_key, gap_values: ix.gap_values, by_key_rule: ix.by_key_rule, instruction_lines: ix.instruction_lines,
-  counts: { rows: { value: rows.size, axis: "store rows" }, ink_keys: { value: Object.keys(ix.by_key).length, axis: "keys" }, places: { value: placesTotal, axis: "places" }, nested_places: { value: nested, axis: "places" }, places_overlapping: { value: overlaps, axis: "places" }, books: { value: books.length, axis: "books" } },
+  counts: { rows: { value: rows.size, axis: "store rows" }, ink_keys: { value: Object.keys(ix.by_key).length, axis: "keys" }, places: { value: placesTotal, axis: "places" }, nested_places: { value: nested, axis: "places" }, places_overlapping: { value: overlaps, axis: "places" }, books: { value: books.length, axis: "books" }, rows_closed_up_withheld: { value: withheld, axis: "store rows", why: "gap NONE: the source printed the words closed up; the ink did not (no weld)" } },
   books: Object.fromEntries(books.map((b) => [b.book, { places: b.places, keys: b.keys }])),
   rows_sha256: sha(rowsText), index_sha256: sha(readFileSync(join(FROM, "index.json"))),
   m_sources,
 };
 writeFileSync(join(OUT, "index.json"), JSON.stringify(index, null, 1));
 console.log(`${OUT}: ${rows.size} rows · ${Object.keys(ix.by_key).length} keys · ${placesTotal} places in ${books.length} books · ${nested} nested · ${overlaps} overlapping · sources added ${Object.keys(m_sources).join(", ") || "none"}`);
+if (emptied.length) console.log(`places left without a row by the NONE withholding: ${emptied.length} · ${emptied.join(" | ")}`);
+console.log(`closed-up rows withheld: ${withheld}`);

@@ -2883,8 +2883,19 @@
     // file (data/span-store/<book>.json, tools/bake-span-store-v1.mjs), not
     // from shards; its places lay the cells (spanCardsOf, below).
     { id: "span-store", dir: "data/span-store/", local: true, was: "fh.overlay.span-store", mark: "spans", shelf: "spans a dictionary names as one thing" },
+    // THE PIECE STORE (Moses, FOR-ELIJAH-v77, 2026-10-17; the owner, 2026-10-16:
+    // "each piece in the + sign is RMD (r pill, M license, D definition)"):
+    // the lane's normalized records and claims, served per book
+    // (tools/bake-piece-store-v1.mjs) and read at the open place: a claim
+    // whose letters are the cell's letters stands as a row — its English a
+    // slice of its record's D, its M PIECE:TAHOT or PIECE:MACULA, its D the
+    // record as received
+    { id: "piece-store", dir: "data/piece-store/", local: true, place: true, was: "fh.overlay.piece-store", mark: "pieces", shelf: "a word's pieces as TAHOT and MACULA divide it, each piece a record" },
   ];
   let SPAN_BOOK = null;                 // this book's places and rows (data/span-store/<book>.json)
+  // the piece store's book file, fetched once, the first time a card asks
+  let PIECE_BOOK = null, pieceBookP = null, openPlace = null;
+  const pieceBookReady = () => pieceBookP || (pieceBookP = fetch(`${ROOT}data/piece-store/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).then((j) => { PIECE_BOOK = j; return j; }).catch(() => null));
   const SPAN_BY_KEY = new Map();        // ink key -> rows, in the store's order (NAME rows first)
   const spanRowsOn = (key) => (SPAN_BY_KEY.get(key) || []).filter((r) => !sourcesOff.has(r.slots[3]));
   const OVERLAYS = {};
@@ -3874,6 +3885,29 @@
     if (!ix) return [];
     // the span store's rows stand in the book's file, the seven slots as the
     // lane wrote them
+    if (o.place) {
+      // the piece store answers at the open place only: the claims at the
+      // open word(s) whose letters are this key's letters, each with its
+      // record (piece-store-serve-v1): the pill is the claim's slice, the
+      // text under it the record's whole reading (R), served as
+      // [m, headword, R, year]; the record's source line stays in the lane's
+      // store under the same rid
+      const pb = await pieceBookReady();
+      if (!pb || !openPlace || !pb.places) return [];
+      const want = [...String(key || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
+      const out = [];
+      for (const { n, w } of openPlace.words) {
+        const L = [...String((w && w.s) || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
+        for (const c of pb.places[`${openPlace.ref}:${n}`] || []) {
+          const [, , , , a, b, R, rid, , sign] = c;
+          if (!R || sign || a == null || L.slice(a, b + 1) !== want) continue; // letters [a, b] inclusive, as the lane counts
+          const rec = pb.records[rid]; if (!rec) continue;
+          const row = [0, R, rec[2], rec[0], rec[3] || "S_NO_SOURCE_YEAR", 0, null];
+          OVERLAY_ROWS.set(row, o.id); out.push(row);
+        }
+      }
+      return out;
+    }
     if (o.local) return (SPAN_BY_KEY.get(key) || []).map((r) => { const row = r.slots.slice(0, 7); OVERLAY_ROWS.set(row, o.id); return row; });
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
@@ -6002,6 +6036,13 @@
     if (opts.place && opts.place.text && opts.place.mId && index.m_sources[opts.place.mId] && !sourcesOff.has(opts.place.mId)) {
       const d = drawn(opts.place.text);
       placeG = [...groups.values()].find((g) => drawn(g.text) === d) || null;
+      // a group the piece store alone reads is not a row of the store printing
+      // it: TAHOT's own row still stands, first in that group, the piece
+      // store's rows its witnesses (piece-store-serve-v1)
+      if (placeG && placeG.records.length && placeG.records.every((row) => OVERLAY_ROWS.get(row) === "piece-store")) {
+        const row = [0, opts.place.text, opts.place.text, opts.place.mId, null, null, null];
+        PLACE_ROWS.add(row); placeG.records.unshift(row); placeG.ov = undefined; placeG.place = true;
+      }
       // one reading, one pill, case folded: the pill that is the place's
       // prints it as the line prints it (TAHOT's "Yahweh", not another
       // row's "yahweh")
@@ -6050,7 +6091,15 @@
       return i === undefined ? -1 : i;
     };
     // what a reading sorts by: every record behind it, an overlay's as much as
-    // the store's (overlay-rule-v2)
+    // the store's (overlay-rule-v2) — except the piece store's rows, which
+    // witness a reading but never rank it or lead the card: the line is baked
+    // from the store and the overlays, not yet from the piece store, and the
+    // card's first pill is the line (piece-store-serve-v1; the owner,
+    // 2026-10-16: "no default outside the system"). A group only the piece
+    // store reads sorts after every other.
+    const rk = (r) => r.ranked || (r.ranked = r.records.filter((row) => OVERLAY_ROWS.get(row) !== "piece-store"));
+    const pieceOnly = (r) => r.records.length > 0 && rk(r).length === 0;
+    const pieceLast = (a, b) => (pieceOnly(a) ? 1 : 0) - (pieceOnly(b) ? 1 : 0);
     const TIER = { m: 0, n: 1, x: 2 };
     // the grade of one record: its own headwords against the open word when
     // it carries them (pointing-grade-rule-v1), the lattice card's grade
@@ -6059,16 +6108,16 @@
     const gradeOf = (row) => { const sg = own ? gradeRow(row, openPointed) : "-"; if (sg !== "-") return sg; const i = idxOf(row); return i >= 0 ? (gr.g[i] || "-") : "-"; };
     // whether anything here is graded at all: the lattice's card, or rows
     // that brought their own headwords
-    const graded = !!gr || (own && list.some((r) => r.records.some(rowCarriesHeadwords)));
+    const graded = !!gr || (own && list.some((r) => rk(r).some(rowCarriesHeadwords)));
     // a group can rest on several records; it takes the best tier any of
     // them earned, and counts as citing, the era's own, or a transliteration
     // if any witness under it is
-    const tierOf = (r) => { let best = 3; for (const row of r.records) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
-    const cites = (r) => (gr && r.records.some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
-    const era = (r) => (r.records.some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
-    const outside = (r) => (r.records.some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
-    const lic = (r) => Math.min(...r.records.map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture)));
-    const tr = (r) => (lat && lat.t && r.records.some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
+    const tierOf = (r) => { let best = 3; for (const row of rk(r)) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
+    const cites = (r) => (gr && rk(r).some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
+    const era = (r) => (rk(r).some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
+    const outside = (r) => (rk(r).some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
+    const lic = (r) => (rk(r).length ? Math.min(...rk(r).map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture))) : 9);
+    const tr = (r) => (lat && lat.t && rk(r).some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
     const wCol = pos.needs === "witnessed" && surface && zone && zone.gloss_orders && zone.gloss_orders[pos.id] ? zone.gloss_orders[pos.id][surface] : null;
     const wText = wCol ? String(wCol).toLowerCase() : null;
     const witnessed = (r) => (!wText ? 0 : String(r.text).toLowerCase() === wText ? 0 : 1);
@@ -6130,7 +6179,7 @@
     // the source signs, after plain readings where the reader asked so (an
     // order, never a filter: every reading stays on the card as printed)
     const signLast = (a, b) => (signsPref !== "below" ? 0 : (hasSourceSign(a.text) ? 1 : 0) - (hasSourceSign(b.text) ? 1 : 0));
-    return list.sort((a, b) => placeLead(a, b) || licPref(a, b) || signLast(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
+    return list.sort((a, b) => placeLead(a, b) || pieceLast(a, b) || licPref(a, b) || signLast(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -6242,6 +6291,15 @@
     // stands open, and apply to its whole form only (bin === zone: a
     // commentary's or a dictionary's words are not positions of this book)
     openPointed = bin === zone && region && region.s ? region.s : null;
+    // the place the card stands at, for the piece store: the verse's label
+    // and the number of each word under the card as written, marks not counted
+    {
+      const sec = el && el.closest ? el.closest("section.seg") : null;
+      const host = el && el.closest ? (el.closest(".wjoin") || el.closest(".wb")) : null;
+      const all = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
+      const mine = host ? (host.classList.contains("wjoin") ? [...host.querySelectorAll(".wb:not(.mark)")] : [host]) : [];
+      openPlace = bin === zone && sec && sec.__sec ? { ref: sec.__sec.label, words: mine.map((x) => ({ n: all.indexOf(x) + 1, w: x.__word })).filter((x) => x.n > 0 && x.w) } : null;
+    }
     openKey = bin === zone && region ? (region.form_k || region.k || null) : null;
     // Only the atoms tile the occurrence, so only the atoms may be laid out in
     // the header. Drawing the whole lattice printed each joined interval again
