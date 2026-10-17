@@ -1000,8 +1000,12 @@
      own column under its own word, the + between them, and the English of
      a run is read from the Hebrew's side, inside the one card; nothing is
      reordered. The cell grows to the row. */
-  .wjoin > .g.parts { display: flex; direction: rtl; justify-content: space-around; align-items: flex-start; gap: 0.35rem; width: max-content; max-width: none; }
-  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: nowrap; margin: 0; }
+  .wjoin > .g.parts { display: flex; direction: rtl; justify-content: space-around; align-items: flex-start; gap: 0.35rem; width: max-content; max-width: 100%; }
+  /* a part ruled to a long reading wraps inside the run's cell, never past
+     the page (the run's line ran 573px on a 412px phone and the page
+     scrolled sideways, after a ruling and at first paint alike; one paint
+     path, 2026-10-17); a part that fits keeps its line */
+  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: normal; min-width: 0; overflow-wrap: anywhere; margin: 0; }
   .wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); align-self: flex-start; }
   /* THE TIE: a soft gold shape behind each word of a run, as wide as the
      word at the letters, hugging their top, flowing down to sit around the
@@ -1037,13 +1041,16 @@
      own width cap (.g, 11em, clipped) gives way to the row and the cell grows
      to hold it. Under the cap it clipped "and + <to> the + darkness" at both
      ends (Genesis 1:4), once every split word wore its blob (2026-10-10). */
-  .he-text > .wb.tied > .g:has(> .g-pcs) { max-width: none; }
-  /* a ruled split reading wider than the text's column keeps its pieces side
-     by side and wraps the long one in its own column (holdAndPaint) */
-  .he-text > .wb > .g.g-pcs-wrap { max-width: 100%; }
-  .g.g-pcs-wrap > .g-pcs { display: flex; white-space: normal; max-width: 100%; }
-  .g.g-pcs-wrap > .g-pcs > .g-pc { flex: none; }
-  .g.g-pcs-wrap > .g-pcs > .g-pc.long { flex: 0 1 auto; white-space: normal; min-width: 0; overflow-wrap: anywhere; }
+  .he-text > .wb > .g:has(> .g-pcs) { max-width: none; }
+  /* A ROW WIDER THAN THE TEXT'S COLUMN keeps its pieces side by side and
+     wraps the longest in its own column, in the stylesheet, so the page's
+     first paint and a ruling lay it alike (one paint path, 2026-10-17): the
+     cap stood in the ruling's script alone, and the same long reading laid
+     fresh at Genesis 1:2 ran 643px off the screen. The cap keys on the row,
+     not on the tie, so with blobs off a row is no longer cut at 11em. */
+  .he-text > .wb > .g > .g-pcs { display: flex; white-space: normal; max-width: 100%; }
+  .he-text > .wb > .g > .g-pcs > .g-pc { flex: none; }
+  .he-text > .wb > .g > .g-pcs > .g-pc.long { flex: 0 1 auto; white-space: normal; min-width: 0; overflow-wrap: anywhere; }
   body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
   body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
   body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
@@ -5370,11 +5377,16 @@
     // it stand anywhere else.
     if (hudAnchor && hudAnchor.isConnected) {
       const newTop = Math.max(pad, Math.min(top, window.innerHeight - h - pad));
-      const a = hudAnchor.getBoundingClientRect();
+      // the word's whole block and the gold box it wears while its card is
+      // open (4.5px): a ruling lays the block as the page draws it (one paint
+      // path, 2026-10-17), so its line can re-wrap under a card already
+      // placed, and a card that stood 1px off the block lost its tether
+      const a = ((hudAnchor.closest && hudAnchor.closest(".wb")) || hudAnchor).getBoundingClientRect();
+      const BOX = 4.5;
       // a card standing above its word that grew downward reaches the word
       // without the clamp moving it at all (2026-10-08), so any card that
       // would stand on its word is placed again under the whole law
-      if (a.bottom > newTop + 0.5 && a.top < newTop + h - 0.5) { placeHud(); return; }
+      if (a.bottom + BOX > newTop + 0.5 && a.top - BOX < newTop + h - 0.5) { placeHud(); return; }
     }
     hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - h - pad))}px`;
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
@@ -5533,7 +5545,16 @@
     if (!rs.length) return;
     const a = { left: Math.min(...rs.map((r) => r.left)), top: Math.min(...rs.map((r) => r.top)),
       right: Math.max(...rs.map((r) => r.right)), bottom: Math.max(...rs.map((r) => r.bottom)) };
-    const h = hud.getBoundingClientRect();
+    let h = hud.getBoundingClientRect();
+    // A card placed above its word is placed 8px clear of it, then grows a
+    // few pixels as its bands settle on their rows (snapBands), and can come
+    // to stand on the word's gold box: no tether can be drawn then, and the
+    // box runs under the card's edge. It is lifted clear again, never down
+    // onto the word, and a card the reader has moved is the reader's.
+    if (!hudMoved && h.top < a.top && h.bottom > a.top - OUT) {
+      const t = parseFloat(hud.style.top) || 0, lift = h.bottom - (a.top - OUT) + 1;
+      if (t - lift >= 8) { hud.style.top = `${t - lift}px`; h = hud.getBoundingClientRect(); }
+    }
     const f = frustumFor(a, h);
     const key = f ? f.lines.map((l) => l.map(Math.round).join(",")).join(";") : "-";
     if (key === tetherKey) return;
@@ -6972,38 +6993,31 @@
     const markRuled = () => { ruled = true; if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands"; };
     if (opts.run && opts.run.on && cover.length > 1 && cutKey(cover) === opts.run.on && mem.cut !== opts.run.on) { mem.cut = opts.run.on; markRuled(); }
 
-    // The page's own reading is printed whole — that is why the ellipsis came
-    // off. But a reading the reader chooses can be longer than the one the
-    // page painted, and letting the line grow would move every Hebrew word
-    // below it. So the moment before a word's reading is first changed, its
-    // box is fixed at the height it was painted at, and it grows below only
-    // when what it now says needs the room.
-    // NO CLAMP. The box used to turn into a -webkit-box clamped to its painted
-    // lines, and that display sizes its own width differently from the block
-    // it replaced: "in + beginning", which painted on one line, re-wrapped
-    // inside the narrower box the moment its word was pressed and printed as
-    // "in + beginni…", and on a phone the cut line spilled over the
-    // license chip. The ellipsis stayed after the card closed (the owner,
-    // 2026-10-03, Genesis 1:1 and 1:2). The display is never changed now.
-    const holdAndPaint = (box, lineIn, chipIn = null) => {
+    // ONE PAINT PATH (the owner, 2026-10-17, of the cells after a pick: "the
+    // default serve is specialized or hand selected and in the systems after
+    // you dive in such as selected gloss it immediately relies on the actual
+    // pipeline and isnt tailored the same way as the default ... what about
+    // all cards sizing after selected gloss changes"). Asked whether a picked
+    // cell keeps its width or sizes as the page draws it at load, the owner
+    // chose "Same as default". So a ruling holds nothing: the cell is the cell
+    // the page draws for that reading, and its line re-wraps once, at the
+    // pick. Retired with it: the width and height held since 2026-08-29 so
+    // that nothing beside a ruling moved, the grow by lines, and the column
+    // measure of a split row (the stylesheet caps a row at the text's column
+    // for both paths now). An open that painted the same words back held its
+    // cell too, and a later switch painted into the frozen box: "night" at
+    // Genesis 1:5, under the headword lookup, wrapped in 57.8px and clipped.
+    // NO CLAMP, as before: the box's display is never changed (2026-10-03,
+    // "in + beginni…" cut inside a clamped box at Genesis 1:1).
+    const paintRuling = (box, lineIn, chipIn = null) => {
       // signs off: the card paints the line as the page does, its sign-only
       // pieces undrawn ("<obj.>" stood back on the object marker's line the moment its card
       // opened, the owner, 2026-10-03)
       const line = signsOffLine(lineIn);
-      if (!box.style.height) {
-        const h = box.getBoundingClientRect().height;
-        if (h) box.style.height = `${h}px`;
-      }
-      // The height alone was not the whole promise: a wider reading widens
-      // its word's box up to the reading's own cap, and one word widening
-      // re-wraps every line after it. The word's box is held at the width it
-      // painted at, so a ruling repainted at a hundred places moves none of
-      // them.
+      // a size held by an earlier page is let go
       const host = box.closest(".wb");
-      if (host && !host.style.width) {
-        const w = host.getBoundingClientRect().width;
-        if (w) host.style.width = `${w}px`;
-      }
+      box.style.height = "";
+      if (host) host.style.width = "";
       // The license chip stays with a reading that has not changed: an open
       // that paints the same words back was dropping the chip with them, and
       // the reading and its license are never to separate (owner, 2026-08-30).
@@ -7016,56 +7030,10 @@
       // (ruledChip); the same words back keep the chip they had
       if (chipIn && String(line).trim()) box.append(chipIn);
       else if (chip && was === String(line).trim()) box.append(chip);
-      // A SPLIT READING IS LAID AS ITS ROW BEFORE THE BOX IS MEASURED (the
-      // owner, 2026-10-17, of "and + plowshare" at Genesis 1:1: "selecting
-      // plowshare glitched out the shading and width"). The box was grown by
-      // the lines its plain text wrapped to in the held width, and 60 ms
-      // later the row was laid (drawWordTie): a row never wraps, since a tie
-      // runs to each piece, so it ran past the cell into its neighbors and
-      // the box kept two lines nobody filled, its shading standing out of
-      // the row. So the row is laid now, and where it is wider than the held
-      // width the cell takes the row's width, the one way a cell widens
-      // (.g:has(> .g-pcs) { max-width: none }, 2026-10-10); a reading in one
-      // piece keeps its width held, as ever.
-      if (host && host.matches(".he-text > .wb") && !box.closest(".wjoin") && String(line).trim()) {
-        const row = pieceLine(box, host.__word);
-        box.classList.remove("g-pcs-wrap");
-        if (row) {
-          const cs = getComputedStyle(host);
-          const pad = ["paddingLeft", "paddingRight", "borderLeftWidth", "borderRightWidth"].reduce((t, k) => t + (parseFloat(cs[k]) || 0), 0);
-          const need = Math.ceil(box.getBoundingClientRect().width + pad);
-          // never wider than the text's own column: there the row keeps its
-          // pieces side by side, a tie to each, and the long piece wraps in
-          // its own column, the box growing by its lines
-          const col = host.parentElement ? host.parentElement.clientWidth - (parseFloat(getComputedStyle(host).marginLeft) || 0) - (parseFloat(getComputedStyle(host).marginRight) || 0) : need;
-          const width = Math.min(need, Math.floor(col));
-          if (width > host.getBoundingClientRect().width + 0.5) host.style.width = `${width}px`;
-          if (need > width) box.classList.add("g-pcs-wrap");
-        }
-      }
-      // Shown whole outranks held still. The clamp above was settled for
-      // the line that painted first, and a ruled compspan reading joins its
-      // cells with " + " — longer than the gloss it replaced, and clipped
-      // by the old clamp to "both…": the reader's own ruling was the one
-      // reading the page refused to show. The box grows to fit what it now
-      // says — by whole lines, never shrinking back, its width still held
-      // so nothing re-wraps beside it. A reading costs its own word a few
-      // lines; it never costs the reader the reading.
-      if (box.style.height && box.scrollHeight > box.clientHeight + 1) {
-        // GROW TO WHAT IT SHOWS, MEASURED (2026-10-17). The lines were
-        // counted from the box's scroll height, and that height holds the
-        // box's padding too, so a reading two lines tall was given three: a
-        // ruled split reading at the start of Amos stood over a line nobody
-        // filled. Before that the count was made once and fell three pixels
-        // short at the second word of Genesis, since a box that grows
-        // re-wraps. So the box is let go for one measure, at the width it is
-        // held at, and takes the height its reading and its chip lay to,
-        // never less than the height it was held at.
-        const held = parseFloat(box.style.height) || 0;
-        box.style.height = "";
-        const whole = box.getBoundingClientRect().height;
-        box.style.height = `${Math.max(held, Math.ceil(whole))}px`;
-      }
+      // a split reading is laid as its row now, as the first paint's tie pass
+      // lays it, so the cell never stands for a moment as plain text the row
+      // then outgrows (the plowshare of 2026-10-17)
+      if (host && host.matches(".he-text > .wb") && !box.closest(".wjoin") && String(line).trim()) pieceLine(box, host.__word);
       // A word inside a maqaf run does not print its own reading — the run
       // prints them once, together. So a ruling repaints the word's hidden
       // element as it always did, and the run's line is made again from it.
@@ -7087,7 +7055,7 @@
           const t = textOfCell(c.surface);
           const own = mOfPick(memoryOf(c.surface).cells.get(c.surface));
           for (const st of standsOf.get(c.surface) || []) {
-            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : licenseChipFor([own]));
+            paintRuling(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : licenseChipFor([own]));
             st.wb.classList.add("chosen");
             if (j === cellIdx && selectedRecordRef.m) {
               st.wb.dataset.source = selectedRecordRef.m.label || "";
@@ -7111,7 +7079,7 @@
       if (!ruled) {
         // with the chip of the words it paints: opening a card may paint
         // other words (a pair's other half, the division the card opens on)
-        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts ? null : coverChip());
+        paintRuling(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts ? null : coverChip());
         // on a pair, the provenance mark follows the half that is open: the
         // English now reads from it, and both ends of the claim wear the mark
         if (opts.kqEls && regionIndex >= 0) {
@@ -7131,7 +7099,7 @@
       const ruledM = coverChip();
       for (const s of stands) {
         const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
-        holdAndPaint(s.glossEl, line, s.glossParts || !ruledM ? null : ruledM.cloneNode(true));
+        paintRuling(s.glossEl, line, s.glossParts || !ruledM ? null : ruledM.cloneNode(true));
         // a ruling on one half of a pair moves the provenance mark with it:
         // the English now reads from the ruled branch, everywhere it stands —
         // and the English wears the matching mark, the other end of the claim
@@ -7148,7 +7116,7 @@
       }
       // a tapped word outside the registry (a commentary word) still paints
       if (!stands.some((s) => s.glossEl === glossEl)) {
-        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts || !ruledM ? null : ruledM.cloneNode(true));
+        paintRuling(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts || !ruledM ? null : ruledM.cloneNode(true));
         const wbEl2 = glossEl.closest(".wb");
         if (wbEl2 && selectedRecordRef.m) {
           wbEl2.dataset.source = selectedRecordRef.m.label || "";
@@ -8909,7 +8877,8 @@
       const pc = document.createElement("span"); pc.className = "g-pc" + (t.trim() === SIGN_GAP ? " gap" : ""); pc.textContent = t; row.append(pc);
     });
     // the piece that wraps when the row is wider than the text's column
-    // (holdAndPaint): the longest, so a short piece beside it keeps its line
+    // (the stylesheet's cap at the column): the longest, so a short piece
+    // beside it keeps its line
     const pcs = [...row.querySelectorAll(":scope > .g-pc")];
     const longest = pcs.reduce((a, x) => (x.textContent.length > a.textContent.length ? x : a), pcs[0]);
     if (longest) longest.classList.add("long");
@@ -10399,7 +10368,10 @@
       // ruling outranks every toggle (the precedence above), and a repaint
       // from the table painted the table back over it until the card was
       // opened again
-      const held = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss, st.word) : null;
+      // with its sign-only pieces undrawn, as the first paint draws it (a
+      // switch set "record + <obj.>" back over "record + <gap>")
+      const held0 = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss, st.word) : null;
+      const held = held0 === null ? null : signsOffLine(held0);
       if (held !== null) {
         const chip = ruledChip(st.word.k, zone.gloss, st.word);
         const run0 = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
