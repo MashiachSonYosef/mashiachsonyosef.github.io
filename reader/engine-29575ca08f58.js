@@ -602,7 +602,18 @@
   const OVERLAY_DEFS = [
     { id: "jastrow", dir: "data/overlays/jastrow/", was: "fh.overlay.jastrow", mark: "rabbinic", shelf: "rabbinic Hebrew and Aramaic" },
     { id: "samaritan", dir: "data/overlays/samaritan/", was: "fh.overlay.samaritan", mark: "Samaritan", shelf: "Samaritan Hebrew and Aramaic" },
+    // THE SPAN STORE (Moses, relay v75.3, 16 October 2026; the owner: "an
+    // underline is one license defining both words"): one row per dictionary
+    // entry whose headword is two or more words as one thing, keyed by the
+    // ink's letters joined by the gap as the ink writes it. Its rows answer a
+    // run's or a chain's card as any overlay's do, read from the book's own
+    // file (data/span-store/<book>.json, tools/bake-span-store-v1.mjs), not
+    // from shards; its places lay the cells (spanCardsOf, below).
+    { id: "span-store", dir: "data/span-store/", local: true, was: "fh.overlay.span-store", mark: "spans", shelf: "spans a dictionary names as one thing" },
   ];
+  let SPAN_BOOK = null;                 // this book's places and rows (data/span-store/<book>.json)
+  const SPAN_BY_KEY = new Map();        // ink key -> rows, in the store's order (NAME rows first)
+  const spanRowsOn = (key) => (SPAN_BY_KEY.get(key) || []).filter((r) => !sourcesOff.has(r.slots[3]));
   const OVERLAYS = {};
   const OVERLAY_ROWS = new WeakMap();   // a row the card holds -> the overlay it came from
   let OVERLAY_IX = [];
@@ -906,8 +917,29 @@
     // same lane is laid from the lattice the switches reach instead
     // (hud-toggles-rule-v1): license runs off takes the run cards off too,
     // since a run card is a run a dictionary names.
+    // the run cards drawn: each laid as its own cell, or carried as a naming
+    // inside the cell of a span the store names over its words (the span
+    // leads there; the card's names ride inside it)
+    let RUNS_WITH_CARDS = false;
+    // a run card sharing some words with a place the store names, not inside
+    // it and not around it (Numbers 33:7, Pi-hahiroth beside al-pi): the
+    // place's cell stands and the card is held, named here for the checks
+    const RUNS_HELD = new Set();
+    const countRunCards = () => {
+      window.__runCardsHeld = RUNS_WITH_CARDS ? [...RUNS_HELD].map((rc) => `${rc.unit}:${rc.idx.join(",")}`) : [];
+      const laid = new Set();
+      for (const m of RUNS_AT.values()) for (const rc of m.values()) laid.add(rc);
+      let n = 0;
+      for (const rc of laid) if (!rc.spanKey) n += 1;
+      if (RUNS_WITH_CARDS && RUN_CARDS && RUN_CARDS.book === BOOK && Array.isArray(RUN_CARDS.cards)) for (const rc of RUN_CARDS.cards) {
+        if (laid.has(rc) || !Array.isArray(rc.idx)) continue;
+        const m = RUNS_AT.get(rc.unit), at = m && m.get(rc.idx[0]);
+        if (at && at.spanKey && rc.idx.every((i) => at.idx.includes(i))) n += 1;
+      }
+      return n;
+    };
     const layRunLanes = (hudCards, withRunCards) => {
-      RUNS_AT.clear();
+      RUNS_AT.clear(); RUNS_HELD.clear();
       const secs = new Map((zone.sections || []).map((sec) => [sec.unit, sec]));
       if (withRunCards && RUN_CARDS && RUN_CARDS.book === BOOK && Array.isArray(RUN_CARDS.cards)) {
         for (const rc of RUN_CARDS.cards) {
@@ -924,29 +956,80 @@
         const sec = secs.get(rc.unit);
         if (!sec || !Array.isArray(rc.idx) || rc.idx.length < 2 || rc.idx.some((i, j) => !sec.words[i] || sec.words[i].k !== rc.keys[j])) continue;
         const m = RUNS_AT.get(rc.unit) || new Map();
-        // the same words under a run card already: the card stands, with its names
+        // the same words under a run card already: the card stands, with its
+        // names — unless this is a place the span store names (its cell
+        // leads: the store's line, blob and card), and then the card's names
+        // ride inside it
         const same = m.get(rc.idx[0]);
-        if (same && same.idx.length === rc.idx.length && same.idx.every((i, j) => i === rc.idx[j])) continue;
+        if (same && same.idx.length === rc.idx.length && same.idx.every((i, j) => i === rc.idx[j]) && !(rc.spanKey && !same.spanKey)) continue;
         rc.__sec = sec; rc.__els = new Map(); rc.named = rc.named || [];
+        if (rc.spanKey) for (const had of new Set(rc.idx.map((i) => m.get(i)).filter(Boolean))) {
+          if (had.spanKey || had.idx.every((i) => rc.idx.includes(i)) || rc.idx.every((i) => had.idx.includes(i))) continue;
+          for (const i of had.idx) if (m.get(i) === had) m.delete(i);
+          RUNS_HELD.add(had);
+        }
         // a run card inside this longer run is one of its names: the card's
         // whole span, and the names the card carries, at their place in the run
         for (const had of new Set(rc.idx.map((i) => m.get(i)).filter(Boolean))) {
-          if (had.idx.length >= rc.idx.length || !had.idx.every((i) => rc.idx.includes(i))) continue;
+          if (had.idx.length > rc.idx.length || (had.idx.length === rc.idx.length && !rc.spanKey) || !had.idx.every((i) => rc.idx.includes(i))) continue;
           const off = rc.idx.indexOf(had.idx[0]);
           for (const [f, t] of [[0, had.idx.length - 1], ...(had.named || [])]) {
             if (!rc.named.some(([a, b]) => a === f + off && b === t + off)) rc.named.push([f + off, t + off]);
           }
         }
-        for (const i of rc.idx) { const had = m.get(i); if (!had || had.idx.length < rc.idx.length) m.set(i, rc); }
-        RUNS_AT.set(rc.unit, m); hudLaid += 1;
+        for (const i of rc.idx) { const had = m.get(i); if (!had || had.idx.length < rc.idx.length || (rc.spanKey && !had.spanKey && had.idx.length === rc.idx.length)) m.set(i, rc); }
+        RUNS_AT.set(rc.unit, m); if (!rc.spanKey) hudLaid += 1;
       }
-      window.__hudRuns = { laid: hudLaid, cards: (hudCards || []).length, branch: HUD_RUNS ? HUD_RUNS.branch : null };
-      window.__runCards = [...RUNS_AT.values()].reduce((n, m) => n + new Set(m.values()).size, 0);
+      RUNS_WITH_CARDS = !!withRunCards;
+      // the counts a check reads are the HUD runs' alone: the span store's
+      // cells are the dictionaries' places, not runs of the lattice
+      window.__hudRuns = { laid: hudLaid, cards: (hudCards || []).filter((rc) => !rc.spanKey).length, branch: HUD_RUNS ? HUD_RUNS.branch : null };
+      window.__runCards = countRunCards();
       return hudLaid;
     };
     HUD_RUNS = HUD_RUNS && HUD_RUNS.books && HUD_RUNS.books[BOOK] && HUD_RUNS.books[BOOK].runs
       ? await fetch(`${ROOT}data/hud-runs/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
     const hudRunCards = HUD_RUNS && HUD_RUNS.book === BOOK && Array.isArray(HUD_RUNS.cards) ? HUD_RUNS.cards : [];
+    // THE SPAN STORE'S PLACES, AS CELLS (I1: underline a span only where the
+    // store's by_key has the ink's key; I3: a place inside another key's
+    // place is drawn too, as a named rung of the longer cell). A place is
+    // found by its verse and its word numbers (1 = the verse's first word,
+    // the scribes' marks not counted), and laid only where the words'
+    // letters joined by the gaps the ink writes equal the key byte for
+    // byte; a place that overlaps a laid one without containing it, or
+    // whose words are not where the record says, is not laid and is named.
+    SPAN_BOOK = OVERLAYS["span-store"] ? await fetch(`${ROOT}data/span-store/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
+    SPAN_BY_KEY.clear();
+    if (SPAN_BOOK && SPAN_BOOK.book === BOOK && SPAN_BOOK.keys) for (const [k, rs] of Object.entries(SPAN_BOOK.keys)) SPAN_BY_KEY.set(k, rs);
+    const spanCardsOf = () => {
+      const out = [], skipped = [];
+      if (!SPAN_BOOK || !Array.isArray(SPAN_BOOK.placesList)) return { cards: out, skipped };
+      const byLabel = new Map((zone.sections || []).map((sec) => [sec.label, sec]));
+      const taken = new Map();   // unit -> Map(word index -> card)
+      for (const pl of SPAN_BOOK.placesList) {
+        const sec = byLabel.get(pl.ref);
+        if (!sec) { skipped.push({ ...pl, why: "no section" }); continue; }
+        const numbered = []; let n = 0;
+        (sec.words || []).forEach((w, i) => { if (!w.mark) { n += 1; numbered.push({ i, n }); } });
+        const idx = numbered.filter((x) => x.n >= pl.first && x.n <= pl.last).map((x) => x.i);
+        const gapOf = (i) => (sec.words[i].presentation_join && sec.words[i].presentation_join.join_next_without_separator ? "\u05be" : " ");
+        // (the letters by their code points here: lettersIn stands later in this file, and the lay runs before it is reached)
+        const written = idx.map((i, j) => [...String(sec.words[i].s || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("") + (j < idx.length - 1 ? gapOf(i) : "")).join("");
+        if (idx.length < 2 || written !== pl.key || idx.some((i) => !sec.words[i].k)) { skipped.push({ ...pl, why: `the words at ${pl.first}-${pl.last} read ${written}` }); continue; }
+        const m = taken.get(sec.unit) || new Map();
+        const others = new Set(idx.map((i) => m.get(i)).filter(Boolean));
+        const clash = [...others].some((o) => !(o.idx.every((i) => idx.includes(i)) || idx.every((i) => o.idx.includes(i))));
+        if (clash) { skipped.push({ ...pl, why: "overlaps a laid span" }); continue; }
+        // the span is its own naming: the whole rung leads its card; a place
+        // inside it (store I3: both drawn) is a rung of this card, by its own key
+        const inner = (pl.contains || []).map((k) => SPAN_BOOK.placesList.find((q) => q.ref === pl.ref && q.key === k && q.first >= pl.first && q.last <= pl.last)).filter(Boolean).map((q) => ({ key: q.key, from: q.first - pl.first, to: q.last - pl.first }));
+        const rc = { unit: sec.unit, idx, keys: idx.map((i) => sec.words[i].k), label: pl.ref, text: idx.map((i) => sec.words[i].s).join(" "), named: [[0, idx.length - 1], ...inner.map((q) => [q.from, q.to])], spanKey: pl.key, span: pl, spanInner: inner };
+        for (const i of idx) { const had = m.get(i); if (!had || had.idx.length < idx.length) m.set(i, rc); }
+        taken.set(sec.unit, m);
+        out.push(rc);
+      }
+      return { cards: out, skipped };
+    };
     // the toggle ledger's runs of one lattice, in the HUD runs' own shape
     const hudToggleCards = new Map();
     const hudCardsOf = (name) => {
@@ -976,7 +1059,14 @@
       // shelf answers none of their spans with one reading yet. A chain the
       // scribes joined is one cell as ever; it is built from the text.
       if (runsPref === "off") cards = [];
-      const laid = layRunLanes(cards, runsPref !== "off" || !name);
+      // the span store's cells are laid whatever the runs switch says: they
+      // are the underlines the owner asked for, each one license over its words
+      const spans = spanCardsOf();
+      const laid = layRunLanes([...spans.cards, ...cards], runsPref !== "off" || !name);
+      // a place is laid as its own cell, or stands inside the cell of a
+      // longer place the store names over its words (I3: both drawn)
+      const laidSpans = spans.cards.filter((rc) => { const m = RUNS_AT.get(rc.unit); const at = m && m.get(rc.idx[0]); return !!at && (at === rc || (!!at.spanKey && rc.idx.every((i) => at.idx.includes(i)))); }).length;
+      window.__spanStore = { places: SPAN_BOOK ? SPAN_BOOK.places : 0, cards: spans.cards.length, laid: laidSpans, skipped: spans.skipped };
       window.__hudToggles = { maqaf: HUD_TOGGLES_IX ? maqafJoin : "maqaf", runs: HUD_TOGGLES_IX ? runsPref : "own", set: name || "hud-runs", laid, file: !!HUD_TOGGLES };
       return laid;
     };
@@ -987,7 +1077,7 @@
     { let n = 0; for (const sec of zone.sections || []) for (const w of sec.words || []) WORD_N.set(w, ++n); }
     if (!(SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK])) SUGGESTED_IX = null;
     if (suggested === "bsb" && SUGGESTED_IX) suggestedReady();
-    window.__runCards = [...RUNS_AT.values()].reduce((n, m) => n + new Set(m.values()).size, 0);
+    window.__runCards = countRunCards();
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
     // rather than ask the page what it decided. A check that reads its answer
@@ -1509,6 +1599,9 @@
   const overlayRowsFor = async (o, key) => {
     const ix = OVERLAYS[o.id];
     if (!ix) return [];
+    // the span store's rows stand in the book's file, the seven slots as the
+    // lane wrote them
+    if (o.local) return (SPAN_BY_KEY.get(key) || []).map((r) => { const row = r.slots.slice(0, 7); OVERLAY_ROWS.set(row, o.id); return row; });
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
     const ck = `${o.id}/${shard}`;
@@ -3806,16 +3899,43 @@
     const whole = (surface) => [{ surface, from: 0, to: n - 1 }];
     const forms = runWholeForms(keys);   // as written, joined, then the folds
     const tilings = run.named ? runTilings(keys, run.named) : null;
+    // a span the ink writes with mixed gaps: its whole rung is the ink key
+    if (tilings && run.spanKey) for (const t of tilings) for (const c of t) {
+      if (c.from === 0 && c.to === n - 1) c.surface = run.spanKey;
+      const inner = (run.spanInner || []).find((q) => q.from === c.from && q.to === c.to);
+      if (inner) c.surface = inner.key;   // a place inside the span: its rung reads by its own key
+    }
     const ask = (fs) => Promise.all(fs.map(async (f) => { try { const r = await routesFor(f); return { f, ok: true, has: !!(r && r.length) }; } catch { return { f, ok: false, has: false }; } }));
     const foldTry = await ask(forms.slice(2));
     const folds = foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f));
     const foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
+    // THE WELD IS A RUNG ONLY WHERE A SOURCE WROTE IT (the owner, 2026-10-17,
+    // on Bethlehem's card offering the two words closed up: "do you not see
+    // how this is a weld?"; 2026-10-16: "move away from this default is
+    // outside the system mentality"). The closed-up form stands on the card
+    // where a dictionary published it (a route under it, or a store row
+    // whose gap slot says the source wrote it closed) and nowhere else: a
+    // rung with no R, M and D behind it is the page's own, and the page
+    // makes no form of its own.
+    // Where the span store names the run, its rows decide (the lane: "a
+    // closed-up weld answers only across a maqaf"): the weld is a rung where
+    // a row under the ink's key carries the gap NONE, and the catalog is not
+    // asked for a closed-up key the ink never wrote. Where the store names
+    // nothing, the catalog's own row for the closed-up form still stands it.
+    const inkKeys = [run.spanKey, keys.join("\u05be"), keys.join(" ")].filter(Boolean);
+    const storeNames = inkKeys.some((k) => SPAN_BY_KEY.has(k));
+    const weldWritten = inkKeys.some((k) => spanRowsOn(k).some((r) => r.gap === "NONE"));
+    const weldTry = forms[1] && !storeNames ? await ask([forms[1]]) : [];
+    const weld = forms[1] && (weldWritten || weldTry.some((x) => x.ok && x.has)) ? [whole(forms[1])] : [];
+    if (weldTry.some((x) => !x.ok)) foldsUnreached.push(forms[1]);
     if (tilings && !run.chain) {
       const named = tilings[0] && tilings[0].length === 1 ? [tilings[0]] : [];
-      return { covers: [...named, whole(keys.join("")), ...folds, ...tilings.slice(named.length)], foldsUnreached, tilings };
+      return { covers: [...named, ...weld, ...folds, ...tilings.slice(named.length)], foldsUnreached, tilings };
     }
-    const namedRungs = tilings ? tilings.filter((c) => c.length < n) : [];
-    return { covers: [...forms.slice(0, 2).map(whole), ...folds, ...namedRungs, keys.map((k, j) => ({ surface: k, from: j, to: j }))], foldsUnreached, tilings };
+    // a named rung that is the chain's own whole form (a span the store names
+    // by the chain's key) stands once
+    const namedRungs = tilings ? tilings.filter((c) => c.length < n && !(c.length === 1 && forms.includes(c[0].surface))) : [];
+    return { covers: [whole(forms[0]), ...weld, ...folds, ...namedRungs, keys.map((k, j) => ({ surface: k, from: j, to: j }))], foldsUnreached, tilings };
   };
   // WHETHER A CHAIN'S LINE READS A WHOLE RUNG: a ruling on one, or the
   // as-written form a dictionary published, as refreshJoinGloss draws it. A
@@ -3829,6 +3949,7 @@
     // and the line reads the words meanwhile; the words' division opens the
     // words' cards
     if (m && m.cut) return !m.cut.includes("+");
+    if (!run.__table && spanRowsOn(run.__key).length) return true;
     if (run.__table == null && run.__words.every((w) => placeLine(w))) return false;
     const table = run.__table || zone.gloss || {};
     const gmT = run.__table ? null : zone.gloss_m;
@@ -4253,7 +4374,7 @@
     if (opts.run && !mem.cut) {
       // the as-written rung is always on the card now; the card opens on it
       // only where the shelf reads it (the line's own test: the baked table)
-      const asWritten = bin.gloss && bin.gloss[region.k] ? covers.find((c) => c.length === 1 && c[0].surface === region.k) : null;
+      const asWritten = (bin.gloss && bin.gloss[region.k]) || spanRowsOn(region.k).length ? covers.find((c) => c.length === 1 && c[0].surface === region.k) : null;
       // a named run opens the same way: the line reads it word by word, so
       // the card opens on the word pressed, and the whole run is one press away
       cover = asWritten || covers[covers.length - 1];
@@ -4310,6 +4431,8 @@
     const textOfCell = (surface) => {
       const p = picked.get(surface);
       if (p) return spanJoin(p.text);
+      // a span the store names: its first row's reading, as the line reads it
+      { const rows = spanRowsOn(surface); if (rows.length) return spanJoin(rows[0].slots[1]); }
       // on the source's own division, a block the reader left alone reads
       // the source's piece at its position (piecesAt), never the letters'
       // own first word
@@ -4361,6 +4484,7 @@
     const readingsOfCell = (surface) => {
       const p = picked.get(surface);
       if (p) { const r = mOfPick(p); return r ? [r] : null; }
+      { const rows = spanRowsOn(surface); if (rows.length) return [readingOfRow(rows[0].slots)]; }
       if (setCut && cover === setCut) { const i = cover.findIndex((c) => c.surface === surface); const pc = i >= 0 ? word.pg[i] : null; if (pc && pc.g) { const r = readingOfPiece(pc.s); return r ? [r] : null; } }
       const lead = (pl) => (pl && pl.length && pl[0].records && pl[0].records[0] ? [readingOfRow(pl[0].records[0])] : []);
       if (setCut && surface === region.k) return lead(cache.get(poolKey(surface)));
@@ -5034,6 +5158,10 @@
       // opens, wherever the sort put it: a pressed pill that is not first
       // says the sort moved the row, and the line is still what it answers.
       const lineSaid = (() => {
+        // a span the store names opens on the store's first row, the one the
+        // line under the cell prints (span-store I1: by_key, in the store's
+        // order) — whatever the pool's sort put first among its rows
+        { const rows = spanRowsOn(surface); if (rows.length) return spanJoin(rows[0].slots[1]).toLowerCase(); }
         // a named run's word opens on what the line under that word prints
         if (wordsOwn) {
           const cell = cover.find((c) => c.surface === surface && c.from === c.to);
@@ -5935,6 +6063,25 @@
     // compound's weld from a homograph. The welded and folded forms stay on
     // the card, offered and never chosen for the reader, until the corpus
     // lane's run ledger says which are the compound.
+    // THE SPAN STORE'S LINE (I2): a run or chain whose ink key a dictionary
+    // entry names as one thing reads that entry's R under its M, one line and
+    // one blob over all its words; several rows, the first by the store's
+    // order (NAME rows first), a row whose source the reader switched off
+    // giving way to the next
+    if (heldRun === null && run.__key && !run.__table && SPAN_BY_KEY.has(run.__key)) {
+      const rows = spanRowsOn(run.__key);
+      if (rows.length) {
+        const l = lineEl();
+        delete l.dataset.off;
+        const text = spanJoin(rows[0].slots[1]);
+        l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare", "parts");
+        l.dataset.span = run.__key;
+        const chip = licenseChipFor([readingOfRow(rows[0].slots)]);
+        if (chip) l.append(chip);
+        drawTies(run);
+        return;
+      }
+    }
     if (heldRun === null && run.__key && run.__words && !(run.__table == null && run.__words.every((w) => placeLine(w)))) {
       const table = run.__table || zone.gloss || {};
       const gmT = run.__table ? null : zone.gloss_m;
@@ -6223,7 +6370,16 @@
       const s = Math.max(a, t.at), e = Math.min(b, t.at + t.len);
       if (s >= e) continue;
       const font = fontOf(t.n.parentElement), last = stretches[stretches.length - 1];
-      if (last && last.font === font && last.e === s) { last.e = e; last.to = t; } else stretches.push({ font, s, e, from: t, to: t });
+      // ONE WORD, ONE STRETCH. A cell's words stand in boxes of their own,
+      // each with its padding and a space span between (Bethlehem at Genesis
+      // 35:19: sixteen pixels between the two words' ink, where one string
+      // sets a space of five), so a stretch measured across them put the
+      // second word's columns ten pixels off and the raise over its lamed
+      // beside the lamed (the owner, 2026-10-17: "the blob on your
+      // screenshot for bethlehem has a bad raise"). A stretch runs on
+      // through the nodes of one word box and stops at the next.
+      const host = t.n.parentElement.closest(".w, .wj-sp") || t.n.parentElement;
+      if (last && last.font === font && last.host === host && last.e === s) { last.e = e; last.to = t; } else stretches.push({ font, host, s, e, from: t, to: t });
     }
     for (const { font, s, e, from, to } of stretches) {
       const rg = document.createRange(); rg.setStart(from.n, s - from.at); rg.setEnd(to.n, e - to.at);
@@ -6956,7 +7112,7 @@
       const rs = host.__wjoin.__runs || [];
       host.__wjoin.__run = rs.length && rs[0] && rs.every((r) => r === rs[0]) ? rs[0] : null;
       if (chain && ws.every((w) => w.k && !w.kq)) host.__wjoin.__key = ws.map((w) => w.k).join("\u05be");
-      else if (host.__wjoin.__run) host.__wjoin.__key = host.__wjoin.__run.keys.join(" ");
+      else if (host.__wjoin.__run) host.__wjoin.__key = host.__wjoin.__run.spanKey || host.__wjoin.__run.keys.join(" ");
       else if (host.__wjoin.classList.contains("lic") && ws.every((w) => w.k)) host.__wjoin.__key = ws.map((w) => w.k).join(" ");
       // a run with no key of its own (a pair inside it) is one breath and
       // several cards, and wears the one-card underline under each word
@@ -7556,10 +7712,10 @@
       // the run's cell (the one wrapper whose run this is), so its one line
       // turns the pressed gold with its words
       const cell = runEl && runEl.__run === rc ? runEl : null;
-      const k = chain ? chain.__key : rc.keys.join(" ");
+      const k = chain ? chain.__key : rc.spanKey || rc.keys.join(" ");
       openHud(chain || cell || built.wb, { s, k }, unitId, wordPos, {
         ...opts, bin, word: { s, k, w: atoms }, regionIndex: -1, glossParts: null,
-        run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain, words,
+        run: { keys: rc.keys, clicked: Math.max(0, clicked), el: chain || built.wb, named: rc.named || [], chain: !!chain, words, spanKey: rc.spanKey || null,
           gaps: chain ? null : words.slice(0, -1).map((w) => (/\u05be$/u.test(String(w.s)) ? "\u05be" : " ")),
           wbs: rc.idx.map((i) => rc.__els.get(i) || null),
           on: chain ? on : null, openWord: chain ? (j) => openWordOfChain(chain, j) : null },
@@ -10276,10 +10432,16 @@
       // or the neighbor's where two runs share a word (Numbers 33:7, al-pi
       // and Pi-hahiroth: one cell over the three, as the HUD record unions
       // partial overlaps)
-      const rcPrev = runAt(sec.unit, myIdx - 1), rcNext = runAt(sec.unit, myIdx + 1);
-      const prev = !!((rc && rc.idx.includes(myIdx - 1)) || (rcPrev && rcPrev.idx.includes(myIdx)));
-      const next = !!((rc && rc.idx.includes(myIdx + 1)) || (rcNext && rcNext.idx.includes(myIdx)));
-      const link = rc || prev || next ? { rc, prev, next } : null;
+      // a mark between two words of one place the span store names (a paseq
+      // inside ki al-ken, Numbers 10:31; the store numbers the words and
+      // skips the marks) rides inside the place's cell, as the text writes it
+      const bridgeAt = (i) => { const w = sec.words[i]; if (!w || !w.mark) return null; const a = runAt(sec.unit, i - 1), b = runAt(sec.unit, i + 1); return a && a === b && a.spanKey && a.idx.includes(i - 1) && a.idx.includes(i + 1) ? a : null; };
+      const covers = (r, i) => r.idx.includes(i) || bridgeAt(i) === r;
+      const rcHere = rc || bridgeAt(myIdx);
+      const rcPrev = runAt(sec.unit, myIdx - 1) || bridgeAt(myIdx - 1), rcNext = runAt(sec.unit, myIdx + 1) || bridgeAt(myIdx + 1);
+      const prev = !!((rcHere && covers(rcHere, myIdx - 1)) || (rcPrev && covers(rcPrev, myIdx)));
+      const next = !!((rcHere && covers(rcHere, myIdx + 1)) || (rcNext && covers(rcNext, myIdx)));
+      const link = rcHere || prev || next ? { rc: rcHere, prev, next } : null;
       appendWord(he, built, word, link);
       if (rc) { built.wb.__run = rc; rc.__els.set(myIdx, built.wb); }
       built.wb.__word = word;

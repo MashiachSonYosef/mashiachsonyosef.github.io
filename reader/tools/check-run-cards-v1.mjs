@@ -86,7 +86,7 @@ await p.addInitScript(() => { try { localStorage.setItem("fh.runs", "own"); } ca
 // the whole book built, so every card's words exist on the page
 // the HUD record's runs (data/hud-runs, check-hud-runs-v1) ride the same lane;
 // this check reads the run cards alone, so both loads go without them
-const load = async (withRuns) => {
+const load0 = async (withRuns, cards) => {
   await p.unroute("**/data/run-cards/**").catch(() => {});
   await p.unroute("**/data/hud-runs/**").catch(() => {});
   await p.route("**/data/hud-runs/**", (r) => r.fulfill({ status: 404, body: "" }));
@@ -99,7 +99,8 @@ const load = async (withRuns) => {
   await p.waitForTimeout(500);
   // word by word: each word's own line (in a cell, the part under it; a part
   // the signs switch drops reads as none), and each word's Hebrew
-  return p.evaluate(() => ({
+  return p.evaluate((cards) => ({
+    at: [...document.querySelectorAll("section.seg .he-text .wb")].map((wb) => `${((wb.closest("section.seg") || {}).querySelector(".vnum") || {}).textContent || "?"} ${(wb.querySelector(":scope > .w") || {}).textContent || ""}`),
     lines: [...document.querySelectorAll("section.seg .he-text .wb")].map((wb) => {
       const j = wb.closest(".wjoin");
       if (!j) return (wb.querySelector(":scope > .g") || { textContent: "" }).textContent;
@@ -109,23 +110,42 @@ const load = async (withRuns) => {
     }),
     ink: [...document.querySelectorAll("section.seg .he-text .wb > .w")].map((w) => w.textContent).join("\n"),
     cards: window.__runCards || 0,
-    marked: [...document.querySelectorAll(".wjoin.lic .wb")].filter((w) => w.__run).length,
-  }));
+    held: window.__runCardsHeld || [],
+    // a card's word is marked by the card's own cell, or by the cell of a
+    // span the store names over the card's words (the span leads there, the
+    // card's names inside it); a span's cell marks no word for a card
+    marked: (() => {
+      const labels = new Map(((window.__zone || {}).sections || []).map((s) => [s.unit, s.label]));
+      const secs = new Map([...document.querySelectorAll("section.seg")].map((s) => [(s.querySelector(".vnum") || {}).textContent, s]));
+      const seen = new Set();
+      for (const c of cards) { const el = secs.get(labels.get(c.unit)); const wbs = el ? [...el.querySelectorAll(".he-text .wb")] : []; for (const i of c.idx) if (wbs[i] && wbs[i].__run && wbs[i].closest(".wjoin.lic")) seen.add(`${c.unit}:${i}`); }
+      return seen.size;
+    })(),
+    byCards: [...document.querySelectorAll(".wjoin.lic .wb")].filter((w) => w.__run && !w.__run.spanKey).length,
+  }), cards);
 };
+const cardsOfBook = bookCards[BOOK].map((c) => ({ unit: c.unit, idx: c.idx }));
+const load = ((f) => (withRuns) => f(withRuns, cardsOfBook))(load0);
 const without = await load(false);
 const withR = await load(true);
-const wantWords = new Set(bookCards[BOOK].flatMap((c) => c.idx.map((i) => `${c.unit}:${i}`))).size;
-check("R2  the page draws every card of its book and marks its words", withR.cards === bookCards[BOOK].length && withR.marked === wantWords && without.marked === 0,
-  `${BOOK}: ${withR.cards} of ${bookCards[BOOK].length} cards · ${withR.marked} of ${wantWords} words marked · ${without.marked} marked without the file`);
-const diff = withR.lines.filter((t, i) => t !== without.lines[i]).length;
+// a card the page holds (it shares words with a place the span store names,
+// neither inside it nor around it) is not drawn; the place's cell stands
+const heldSet = new Set(withR.held);
+const drawn = bookCards[BOOK].filter((c) => !heldSet.has(`${c.unit}:${c.idx.join(",")}`));
+const wantWords = new Set(drawn.flatMap((c) => c.idx.map((i) => `${c.unit}:${i}`))).size;
+check("R2  the page draws every card of its book and marks its words", withR.cards + withR.held.length === bookCards[BOOK].length && withR.marked >= wantWords && without.byCards === 0,
+  `${BOOK}: ${withR.cards} of ${bookCards[BOOK].length} cards${withR.held.length ? ` (${withR.held.length} held beside a place the store names)` : ""} · ${withR.marked} of ${wantWords} words marked · ${without.byCards} marked by a card without the file`);
+const diffs = withR.lines.map((t, i) => (t !== without.lines[i] ? i : -1)).filter((i) => i >= 0);
+const diff = diffs.length;
 check("R3  the line under every word and the Hebrew are the same with run cards and without", diff === 0 && withR.lines.length === without.lines.length && withR.ink === without.ink,
-  `${withR.lines.length} lines · ${diff} differ · Hebrew ${withR.ink === without.ink ? "identical" : "CHANGED"}`);
+  `${withR.lines.length} lines · ${diff} differ · Hebrew ${withR.ink === without.ink ? "identical" : "CHANGED"}${diff ? ` · ${diffs.slice(0, 3).map((i) => `${withR.at[i]}: "${without.lines[i]}" → "${withR.lines[i]}"`).join(" | ")}` : ""}`);
 
 // R4 and R5: open cards, the space runs and the chains apart
 const opened = await p.evaluate(async () => {
   const out = [];
   // a run's first word, from its cell; a chain is a run that is exactly a maqaf chain
-  const firsts = [...document.querySelectorAll(".wjoin.lic")].filter((j) => j.__run).map((j) => j.__run.__els.get(j.__run.idx[0])).filter(Boolean);
+  // the run cards' own cells; a span the store names is judged by check-span-store-v1
+  const firsts = [...document.querySelectorAll(".wjoin.lic")].filter((j) => j.__run && !j.__run.spanKey && j.__run.__els).map((j) => j.__run.__els.get(j.__run.idx[0])).filter((w) => w && w.isConnected && w.closest(".wjoin"));
   const pick = [...firsts.filter((w) => !w.closest(".wjoin").__chain).slice(0, 8), ...firsts.filter((w) => w.closest(".wjoin").__chain).slice(0, 4)];
   for (const w of pick) {
     const rc = w.__run;
