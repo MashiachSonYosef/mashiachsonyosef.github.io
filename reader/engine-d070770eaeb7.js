@@ -2221,9 +2221,11 @@
   const gatherSection = async (sec, el) => {
     const words = [];
     const wbs = [...el.querySelectorAll(".he-text .wb")];
+    let wordN = 0;   // the word's number in its verse, the marks not counted (the address: 1:1:3)
     for (let i = 0; i < sec.words.length; i += 1) {
       const w = sec.words[i];
       const wb = wbs[i];
+      if (!w.mark) wordN += 1;
       const shown = wb ? (() => {
         // the reading as shown, without its frame: the license chip rides
         // inside .g for display, but it is frame, not text — an export that
@@ -2235,7 +2237,7 @@
         c.querySelectorAll(".g-lic").forEach((x) => x.remove());
         return (c.textContent || "").trim();
       })() : "";
-      const rec = { he: w.s, joinNext: !!(w.presentation_join && w.presentation_join.join_next_without_separator), en: null, held: null, source: null };
+      const rec = { he: w.s, joinNext: !!(w.presentation_join && w.presentation_join.join_next_without_separator), en: null, held: null, source: null, at: w.mark ? null : `${sec.label || ""}:${wordN}` };
       if (w.k && shown && shown !== "—") {
         const at = placeLine(w);
         const drawn = at && placeShown(at);
@@ -2367,7 +2369,7 @@
       : "Citations: [H] marks the Hebrew; [1] [2] … mark each reading. Every mark has an entry under Sources naming the license that reading is released under, and the entry is the record the reading is cited from — the earliest attestation the store carries, the same one the reader sees on the card. The same source keeps the same number wherever it appears. Where a reading is attested by further records, they are named under the entry; they are not what it was cited from.");
     if (kind !== "he") {
       L.push("");
-      L.push("AS RECEIVED. This file holds two things, never meshed: the Hebrew text, and then the dictionary records behind the readings on the page, listed one after another, each exactly as this site received it \u2014 the source's own headword, reading and definition, byte for byte, never cut, joined, reworded or reordered. Nothing here connects a Hebrew word to an English reading; the page does that for reading, and this file does not. Each record carries its own source, license and addresses. What this file adds of its own \u2014 headings, numbering and these notes \u2014 is CC0 1.0.");
+      L.push("AS RECEIVED. This file holds two things, never meshed: the Hebrew text, and then the dictionary records behind the readings on the page, listed one after another, each exactly as this site received it \u2014 the source's own headword, reading and definition, byte for byte, never cut, joined, reworded or reordered. No reading is placed under a Hebrew word here; the page does that for reading, and this file does not. Each record names, in this site's own words, the word it was cited for (book, chapter, verse and word, the marks not counted), so it can be walked back to the page. Each record carries its own source, license and addresses. What this file adds of its own \u2014 headings, numbering and these notes \u2014 is CC0 1.0.");
     }
     L.push("");
     const allObl = new Set(); let held = 0, notReached = 0;
@@ -2395,7 +2397,7 @@
       }
       for (const w of b.words) {
         if (w.unreachable) notReached += 1; else if (w.held) held += 1;
-        else if (w.source && w.source.received) recs.push(w.source);
+        else if (w.source && w.source.received) recs.push({ ...w.source, at: w.at || null });
       }
       b.obligations.forEach((o) => allObl.add(o));
     }
@@ -2422,6 +2424,9 @@
         if (r.definition && r.definition !== r.route) head.push(`definition: ${r.definition}`);
         L.push(`${i + 1}. ${head[0]}`);
         head.slice(1).forEach((h) => L.push(`    ${h}`));
+        // the word this record was cited for, in this site's own words (the
+        // owner, 2026-10-17: "genesis 1:1:3"): book, chapter, verse and word
+        if (src.at) L.push(`    for: ${zone.work || ""} ${src.at}`.replace(/\s+/gu, " "));
         L.push(`    source: [${cite(src)}] ${src.label}${src.year ? ` \u00b7 wording ${src.year}` : " \u00b7 wording year not supplied"}`);
         const deed = licenseDeed(src.posture);
         L.push(`    license: ${licenseName(src.posture)}${deed ? ` \u2014 ${deed}` : ""}`);
@@ -3999,10 +4004,14 @@
       const mine = host ? (host.classList.contains("wjoin") ? [...host.querySelectorAll(".wb:not(.mark)")] : [host]) : [];
       const nums = mine.map((x) => all.indexOf(x) + 1).filter((n) => n > 0);
       if (nums.length) {
+        // THE WORD'S ADDRESS (the owner, 2026-10-17: "genesis 1:1:3"): the
+        // verse's label and the word's number in it, as the lane names a
+        // place and as a reader would cite one; a span's, its first to its last
         const wn = document.createElement("span"); wn.className = "wn";
         const lo = Math.min(...nums), hi = Math.max(...nums);
-        wn.textContent = `${lo}${hi > lo ? `\u2013${hi}` : ""} ${document.body.classList.contains("en") ? "\u25B8" : "\u25C2"}`;
-        wn.title = `word ${lo}${hi > lo ? ` to ${hi}` : ""} of this verse as written; the arrow is the way this reader reads`;
+        const label = sec && sec.__sec && sec.__sec.label ? `${sec.__sec.label}:` : "";
+        wn.textContent = `${label}${lo}${hi > lo ? `\u2013${hi}` : ""} ${document.body.classList.contains("en") ? "\u25B8" : "\u25C2"}`;
+        wn.title = `${zone.work || ""} ${label}${lo}${hi > lo ? `\u2013${hi}` : ""}: chapter, verse and word${hi > lo ? "s" : ""} as written, the marks not counted; the arrow is the way this reader reads`.trim();
         head.append(wn);
       }
     }
@@ -9399,7 +9408,14 @@
   // door's own meta names the chapter this address is: a chapter, not a
   // verse, so the page lands on the chapter head and marks nothing.
   const hashAt = decodeURIComponent(location.hash || "").replace(/^#/, "");
-  const openAt = (QUERY.get("at") || (/^v[0-9a-z-]+$/i.test(hashAt) ? hashAt : "") || META("reader-at") || "").trim();
+  // A WORD'S ADDRESS (the owner, 2026-10-17: "genesis 1:1:3"): chapter, verse
+  // and the word's number in the verse as written, the marks not counted; a
+  // span's as 35:19:7-8. The page lands on the verse and opens the card on
+  // the word. The clean address stays the chapter's: the word rides after
+  // the hash and is read once, here.
+  const WORD_AT = /^(\d+:\d+):(\d+)(?:[-\u2013](\d+))?$/u;
+  const wordAt = WORD_AT.exec(hashAt);
+  const openAt = (QUERY.get("at") || (wordAt ? wordAt[1] : "") || (/^v[0-9a-z-]+$/i.test(hashAt) ? hashAt : "") || META("reader-at") || "").trim();
   // THE PLACE THIS DEVICE KEEPS FOR THIS BOOK (the owner, 2026-10-08: "we
   // should think about scroll control. such as can we cache spots?"): the
   // verse the reader was at, written as they read, kept on the device per
@@ -10765,6 +10781,12 @@
   }, true);
   window.addEventListener("hashchange", () => {
     const id = decodeURIComponent(location.hash.slice(1));
+    const w = WORD_AT.exec(id);
+    if (w && byLabel.has(w[1])) {
+      const target = document.getElementById(byLabel.get(w[1]));
+      if (target) { landOn(target, 80); openWordAt(target, Number(w[2])); }
+      return;
+    }
     const el = id && document.getElementById(id);
     if (el && materialise(el)) el.scrollIntoView({ block: "start" });
   });
@@ -10884,6 +10906,23 @@
   // where the arrival landed, at which line, in which chapter, and whether
   // on the kept place: THE READING PLACE, below, works from these
   let landedEl = null, landedLine = 0, landedCh = "", landedKept = false;
+  // the card on the word an address names, once the lanes are laid and the
+  // verse is built (a card opened before the lanes would close when they lay)
+  const openWordAt = (target, n) => {
+    const t0 = Date.now();
+    const tick = () => {
+      const wb = [...target.querySelectorAll(".he-text .wb:not(.mark)")][n - 1];
+      if (wb && window.__hudToggles && !target.__body) {
+        (wb.querySelector(".w span") || wb.querySelector(".w"))?.click();
+        // the card is open: the address goes back to the chapter's, as a
+        // hash the reader has moved away from does (THE READING PLACE)
+        try { if (WORD_AT.test(decodeURIComponent(location.hash.slice(1)))) history.replaceState(null, "", location.pathname + location.search); } catch { /* the hash stays */ }
+        return;
+      }
+      if (Date.now() - t0 < 6000) setTimeout(tick, 60);
+    };
+    setTimeout(tick, 0);
+  };
   if (openAt || openSpot) {
     // the kept verse leads where no address names a place, and where a
     // chapter address's own chapter holds it (keptInChapter, above), while
@@ -10903,6 +10942,7 @@
         // for, so it wears no mark
         if (!kept) target.querySelector(".vnum")?.classList.add("at");
         landedEl = target; landedLine = 80; landedCh = verseChapterOf(label); landedKept = !!kept;
+        if (wordAt && !kept) openWordAt(target, Number(wordAt[2]));
       }
     } else {
       // a chapter: the first section whose label is the chapter's own or
