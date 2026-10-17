@@ -7,8 +7,9 @@ no typed Hebrew in zone.html or tools, gh-pages follows main).
 
 ## Where the work is
 
-Branch `piece-store-2026-10-17` on origin, one commit (0940eab54) on top of
-`finale-2026-10-10` (= main, 6a3f532e1). It carries:
+Branch `piece-store-2026-10-17` on origin, three commits (0940eab54,
+7d0cd9fa8, a4253dc6d) on top of `finale-2026-10-10` (= main, 6a3f532e1).
+It carries:
 
 - `reader/zone.html`: OVERLAY_DEFS entry `piece-store` (place: true);
   globals PIECE_BOOK / pieceBookP / openPlace / pieceBookReady; the `o.place`
@@ -39,11 +40,15 @@ Branch `piece-store-2026-10-17` on origin, one commit (0940eab54) on top of
 Passing on the patched page: check-piece-store-v1, check-pointing-grade-v1,
 check-nothing-hand-typed-v1. Of the full suite run started before the last
 two page patches, 26 of 41 had finished: all green except the four named
-above and below. Still to confirm on the final page (runs were in flight when
-tokens ran out): check-line-reads-the-place-v1 (its failure was "none of 11
-... lead PIECE:MACULA"; the poolFor patch targets it) and
-check-card-opens-on-the-line-v1 (C2: first pill vs line; the sortPool patch
-targets it).
+above and below. check-line-reads-the-place-v1 passes after the poolFor patch.
+check-card-opens-on-the-line-v1 C2 still failed after the sortPool patch
+(אשר: first "which", line "that" under corpus, masoretic, cites): the
+cause was poolFor's grouping, where a piece row's catalog rank 0 and year
+lowered its group's `ledger` and `year`, the very fields oldestFirst breaks
+ties on. Fixed in 7d0cd9fa8 and a4253dc6d (both grouping sites: a piece
+row neither dates nor ranks its group). A rerun of card-opens-on-the-line,
+piece-store and line-reads-the-place against that page was in flight when
+tokens ran out; confirm it first (step 2).
 
 ## Steps
 
