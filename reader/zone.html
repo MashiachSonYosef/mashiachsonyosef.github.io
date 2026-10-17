@@ -6187,25 +6187,18 @@
     const foldTry = await ask(forms.slice(2));
     const folds = foldTry.filter((x) => x.ok && x.has).map((x) => whole(x.f));
     const foldsUnreached = foldTry.filter((x) => !x.ok).map((x) => x.f);
-    // THE WELD IS A RUNG ONLY WHERE A SOURCE WROTE IT (the owner, 2026-10-17,
-    // on Bethlehem's card offering the two words closed up: "do you not see
-    // how this is a weld?"; 2026-10-16: "move away from this default is
-    // outside the system mentality"). The closed-up form stands on the card
-    // where a dictionary published it (a route under it, or a store row
-    // whose gap slot says the source wrote it closed) and nowhere else: a
-    // rung with no R, M and D behind it is the page's own, and the page
-    // makes no form of its own.
-    // Where the span store names the run, its rows decide (the lane: "a
-    // closed-up weld answers only across a maqaf"): the weld is a rung where
-    // a row under the ink's key carries the gap NONE, and the catalog is not
-    // asked for a closed-up key the ink never wrote. Where the store names
-    // nothing, the catalog's own row for the closed-up form still stands it.
-    const inkKeys = [run.spanKey, keys.join("\u05be"), keys.join(" ")].filter(Boolean);
-    const storeNames = inkKeys.some((k) => SPAN_BY_KEY.has(k));
-    const weldWritten = inkKeys.some((k) => spanRowsOn(k).some((r) => r.gap === "NONE"));
-    const weldTry = forms[1] && !storeNames ? await ask([forms[1]]) : [];
-    const weld = forms[1] && (weldWritten || weldTry.some((x) => x.ok && x.has)) ? [whole(forms[1])] : [];
-    if (weldTry.some((x) => !x.ok)) foldsUnreached.push(forms[1]);
+    // NO WELD (the owner, 2026-10-17: "drop welding ... no exceptions"; on
+    // Bethlehem's card offering the two words closed up: "do you not see how
+    // this is a weld?"). The page never closes a run's words into a string
+    // the ink did not write, and never asks the catalog for one. Where a
+    // dictionary prints a compound name as one headword (BDB's Benhadad,
+    // Bethel), that is the lane's to match: a row under the ink's key whose
+    // gap slot is NONE, judged entry by entry, and it reads as a pill on the
+    // rung as written. The catalog's rows under a closed-up key answered
+    // 71 of the store's 462 keys, 62 of them the same name and 5 another
+    // word (yoke for al-ken, to faint for al-pi), and the page cannot tell
+    // which is which; so none of them is a rung.
+    const weld = [];
     if (tilings && !run.chain) {
       const named = tilings[0] && tilings[0].length === 1 ? [tilings[0]] : [];
       return { covers: [...named, ...weld, ...folds, ...tilings.slice(named.length)], foldsUnreached, tilings };
@@ -7877,7 +7870,7 @@
     // --- row 4 · where the boundaries came from ------------------------
     if (runSpan) {
       prov.textContent = runSpan && runSpan.rule === "named_run_v1" && !(opts.run && opts.run.chain)
-        ? `One card for the run: ${comps.length} words a dictionary names as one · the whole as named, welded into one, every split into runs it names, and word by word are its divisions; a welded spelling is offered, never chosen: it can be another word`
+        ? `One card for the run: ${comps.length} words a dictionary names as one · the whole as named, every split into runs it names, and word by word are its divisions`
         : `One card for the run: ${comps.length} words, joined by a maqaf · as written, joined into one, and word by word are its divisions; a joined spelling is offered, never chosen: it can be another word`;
     } else if (span && !established) {
       // the division is withheld above, so this line says so rather than

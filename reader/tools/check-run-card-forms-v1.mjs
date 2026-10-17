@@ -10,9 +10,8 @@
 // are always on the card, whatever the shelf answers; a fold (a joined
 // spelling with a seam letter written final) only where it is published.
 //
-//   R1  every run's card offers the run as written, the run joined where a
-//       dictionary published it closed up, the folds a dictionary published
-//       and no form it did not
+//   R1  every run's card offers the run as written, the folds a dictionary
+//       published, and no form it did not; never the run closed up
 //   R2  the words one by one are always offered
 //   R3  the card never opens on a joined or folded spelling (a weld can be a
 //       different word: al-pi "according to" welds to a verb "to faint"),
@@ -24,9 +23,9 @@
 //       (read as one form, a run ruled cell by cell printed "—" whole)
 //   R6  a shard that did not arrive is not an absence: the card says the
 //       catalog could not be reached, offers to ask again, and the readings
-//       come when it can; a rung nothing publishes says so in the run's
-//       terms; under either the record slot stands empty, never holding
-//       the last block's record; and the line under the run is never a dash
+//       come when it can; meanwhile the record slot stands empty, never
+//       holding the last block's record; the line under the run is never a
+//       dash; and the run closed up is offered nowhere (2026-10-17)
 //   R7  the run's ink is printed as one word: no line is drawn between its
 //       words and no padding stands at the seam — the maqaf the text writes
 //       is the only thing between them (the owner, 2026-09-25)
@@ -65,10 +64,6 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
 const ZONE = arg("zone", "amos");
 const zone = JSON.parse(gunzipSync(readFileSync(`data/zones/${ZONE}.bin`)).toString("utf8"));
-// where the span store names a run, its rows say whether a source wrote the
-// run closed up (the gap slot NONE); the catalog is not asked for that key
-const spanFile = existsSync(`data/span-store/${ZONE}.json`) ? JSON.parse(readFileSync(`data/span-store/${ZONE}.json`, "utf8")) : null;
-const storeRows = (k) => (spanFile && spanFile.keys && spanFile.keys[k]) || [];
 const store = openRouteStore("data/route-store");
 
 // the runs, from the zone's own join records
@@ -141,10 +136,9 @@ for (const run of sample) {
   // the chain's card by the run cards (run-cards-rule-v1) and judged there,
   // by check-run-cards-v1 R5; the chain's own whole forms are judged here
   const offeredWhole = c.cuts.filter((x) => !x.t.includes("+") && !/ /u.test(x.t)).map((x) => x.t);
-  // the closed-up form is a rung only where a source published it (the
-  // owner, 2026-10-17: "do you not see how this is a weld?")
-  const weldStands = storeRows(run.key).length ? storeRows(run.key).some((r) => r.gap === "NONE") : run.published.some((f) => f.form === "weld");
-  const want = [run.key, ...(weldStands ? [run.weld] : []), ...run.folds];
+  // no weld (the owner, 2026-10-17: "drop welding ... no exceptions"): the
+  // closed-up form is never a rung, whatever the catalog holds under it
+  const want = [run.key, ...run.folds];
   const missing = want.filter((k) => !offeredWhole.includes(k));
   const extra = offeredWhole.filter((k) => !want.includes(k));
   if (missing.length || extra.length) r1.push(`${run.key}: missing ${missing.join(",") || "-"} extra ${extra.join(",") || "-"}`);
@@ -195,9 +189,10 @@ if (plain) {
 }
 
 // R6, on a run whose first word the store answers: its shard fails twice,
-// then arrives; and on a rung nothing publishes
+// then arrives (the closed-up rung this once also tried is no rung since
+// 2026-10-17: the page welds nothing)
 // a first word its source does not divide: a divided word's card opens on the source's set, which needs no shard
-const target = runs.find((r) => (store.routesFor(r.keys[0]) || []).length && !r.published.some((f) => f.form === "weld") && !(Array.isArray(r.words[0].pg) && r.words[0].pg.length > 1));
+const target = runs.find((r) => (store.routesFor(r.keys[0]) || []).length && !(Array.isArray(r.words[0].pg) && r.words[0].pg.length > 1));
 if (target) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(target.keys[0]));
   const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
@@ -217,28 +212,34 @@ if (target) {
     run.querySelectorAll(".wb .w")[0].click();
     await wait(3500);
     const unreachable = state();
-    const again = h.querySelector(".b-read button"); if (again) again.click();
-    await wait(1500);
-    const back = state();
-    // now the joined rung, which nothing publishes
+    // the reader asks again as often as it takes: the shard is set to fail
+    // twice, and whether the page's first ask was at load or at the card
+    // depends on the book, so up to two presses are allowed before it comes
+    let back = unreachable;
+    for (let press = 0; press < 2 && back.read === 0; press += 1) {
+      const again = h.querySelector(".b-read button"); if (!again) break;
+      again.click();
+      // a big shard under a book read through takes its time: wait for the
+      // readings, up to six seconds, rather than a fixed breath
+      const t1 = Date.now(); while (Date.now() - t1 < 6000 && !h.querySelector(".b-read .r-pills button")) await wait(100);
+      await wait(400); back = state();
+    }
+    // the closed-up form is offered nowhere on the card
     const joined = [...h.querySelectorAll(".b-chain .s-pills button, .b-cut .s-pills button")].find((x) => x.textContent === weld);
-    if (joined) joined.click();
-    await wait(1200);
-    const rung = state();
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
     await wait(300);
     // and the line under the run is its words again, never a dash
     const c = (run.querySelector(":scope > .g") || document.createElement("i")).cloneNode(true);
     c.querySelectorAll(".g-lic").forEach((x) => x.remove());
-    return { unreachable, back, rung, joinedOffered: !!joined, lineAfter: c.textContent.trim() };
+    return { unreachable, back, joinedOffered: !!joined, lineAfter: c.textContent.trim() };
   }, [target.key, target.weld]);
   const ok6 = !r6.err
     && r6.unreachable.read === 0 && /could not be reached/u.test(r6.unreachable.msg) && r6.unreachable.again && r6.unreachable.rec === 0
     && r6.back.read > 0 && r6.back.rec > 0
-    && r6.joinedOffered && r6.rung.read === 0 && /No dictionary on this shelf gives the run joined/u.test(r6.rung.msg) && r6.rung.rec === 0
+    && !r6.joinedOffered
     && r6.lineAfter && !/\u2014/u.test(r6.lineAfter);
-  check("R6  a shard that did not arrive is said and asked again, a rung nothing publishes says so, and the record slot stands empty under both", ok6,
-    r6.err ? `${target.key}: ${r6.err}` : `${target.key}: unreachable → ${r6.unreachable.read} readings, "${r6.unreachable.msg.slice(0, 40)}…", record ${r6.unreachable.rec}, again ${r6.unreachable.again} · asked again → ${r6.back.read} readings, record ${r6.back.rec} · joined rung → ${r6.rung.read} readings, record ${r6.rung.rec}, "${r6.rung.msg.slice(0, 40)}…" · line after "${r6.lineAfter}" · shard failed ${fails}×`);
+  check("R6  a shard that did not arrive is said and asked again, the record slot stands empty meanwhile, and the run closed up is no rung", ok6,
+    r6.err ? `${target.key}: ${r6.err}` : `${target.key}: unreachable → ${r6.unreachable.read} readings, "${r6.unreachable.msg.slice(0, 40)}…", record ${r6.unreachable.rec}, again ${r6.unreachable.again} · asked again → ${r6.back.read} readings, record ${r6.back.rec} · closed-up rung offered ${r6.joinedOffered} · line after "${r6.lineAfter}" · shard failed ${fails}×`);
 }
 // R7, on every drawn run of the sample
 const r7 = await p.evaluate((keys) => {
@@ -338,9 +339,12 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
   } else console.log("  --  R11 no run published as written in this book; skipped");
 }
 
-// R9 · a rung the reader's switches emptied
+// R9 · a rung the reader's switches emptied: the run as written, on a run
+// whose as-written form a dictionary published (the closed-up form this
+// once used is no rung since 2026-10-17)
 {
-  const weldRun = runs.find((r) => r.published.some((f) => f.form === "weld"));
+  const weldRun = runs.find((r) => r.published.some((f) => f.form === "maqaf"));
+  if (weldRun) weldRun.weld = weldRun.key;
   if (weldRun) {
     await p.reload({ waitUntil: "networkidle" });
     await p.waitForSelector("section.seg .he-text .wb"); await readThrough();
@@ -351,7 +355,7 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
       const wait = (ms) => new Promise((x) => setTimeout(x, ms));
       const waitFor = async (q) => { const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector(q)) await wait(50); await wait(400); };
       run.scrollIntoView({ block: "center" }); run.querySelector(".wb .w").click(); await waitFor("#hud .r-pills button");
-      const rung = [...h.querySelectorAll(".b-chain .s-pills button, .b-cut .s-pills button")].find((x) => x.textContent === weld); if (!rung) return { err: "weld rung not offered" };
+      const rung = [...h.querySelectorAll(".b-chain .s-pills button, .b-cut .s-pills button")].find((x) => x.textContent === weld); if (!rung) return { err: "the rung as written not offered" };
       rung.click(); await waitFor("#hud .r-pills button");
       const ids = new Set([...h.querySelectorAll(".r-pills button")].flatMap((x) => (x.dataset.by || "").split(" ").filter(Boolean)));
       const n = h.querySelectorAll(".r-pills button").length;
@@ -378,7 +382,7 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
       && /withheld/u.test(r9.off.now || "") && r9.off.runLine && !r9.off.runLine.includes(r9.rungText || "\u0000");
     check("R9  a block the reader's switches emptied says so, keeps its rung, reads nothing of the off source (R12), and reads again when they come back", ok9,
       r9.err ? `${weldRun.key}: ${r9.err}` : `${weldRun.key} joined ${weldRun.weld}: ${r9.n} readings by ${r9.ids.join(",")} · ${r9.chips} chips off → ${r9.off.read} readings, "${r9.off.msg.slice(0, 60)}…", rung ${r9.off.cutOn}, chosen ${r9.off.chosen}, record ${r9.off.rec}, row "${(r9.off.now || "").slice(0, 40)}", run line "${r9.off.runLine.slice(0, 40)}" · on → ${r9.on.read} readings on ${r9.on.cutOn}`);
-  } else console.log("  --  R9  no run with a published joined form in this book; skipped");
+  } else console.log("  --  R9  no run with a published as-written form in this book; skipped");
 }
 
 // R10 · the export under a shard that did not arrive
