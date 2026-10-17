@@ -2813,6 +2813,27 @@ if (HEBREW.test(readme)) throw new Error("the README printed a character of the 
 
 mkdirSync(OUT, { recursive: true });
 writeFileSync(join(OUT, "index.html"), doc); listed("/");
+// THE WORD'S SHORT ADDRESS (the owner, 2026-10-17: "id make it just
+// genesis/1:1:2"). Pages serves 404.html, at the address asked for, for any
+// path that is no file; so /genesis/1:1:2 and /genesis/1:1 arrive here and
+// are sent on to the chapter's page, which lands on the verse and opens the
+// card on the word. The clean address stays the chapter's. Any other missing
+// path gets a plain page that says so, with one way home; nothing external.
+const notFound = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Not here · fireandhail.com</title>
+<style>body{margin:0;padding:2rem 1rem;font:1rem/1.6 Georgia,serif;color:#2b2420;background:#efe6d3;max-width:34rem}a{color:#5a3e8f}code{font-size:.95em}</style>
+<script>
+(function () {
+  var m = /^\\/([a-z0-9-]+)\\/(\\d+):(\\d+)(?::(\\d+(?:[-\\u2013]\\d+)?))?\\/?$/.exec(location.pathname);
+  if (m) location.replace("/" + m[1] + "/" + m[2] + (m[4] ? "#" + m[2] + ":" + m[3] + ":" + m[4] : "#v" + m[2] + "-" + m[3]));
+})();
+</script></head>
+<body><p><b>Nothing stands at this address.</b></p>
+<p>A word's address is the book, chapter, verse and word, as in <code>/genesis/1:1:2</code>; a verse's is <code>/genesis/1:1</code>; a chapter's is <code>/genesis/1</code>.</p>
+<p><a href="/">The door</a></p></body></html>
+`;
+writeFileSync(join(OUT, "404.html"), notFound);
 mkdirSync(join(OUT, "census"), { recursive: true });
 writeFileSync(join(OUT, "census", "index.html"), censusPageDoc); listed("/census/");
 // The demonstrations, at their own address.
