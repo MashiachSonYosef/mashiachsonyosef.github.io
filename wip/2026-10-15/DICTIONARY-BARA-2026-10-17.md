@@ -86,3 +86,21 @@ are kept as record-to-record edges.
   today only works within a book, reads "Back to Genesis 1:1:2" across
   books. It stays until it is tapped or another jump replaces it (owner:
   "agree keep it").
+
+## Agreed with the owner, 17 October, evening (the table HUD)
+
+"simple toggle, cards unchanged, hud opens to a table hud". The design, as
+agreed on the real Genesis page (shots/dictionary-toggle.png,
+dictionary-hud-table-2.png, dictionary-hud-table-3.png):
+- A "dictionary" pill beside English reader, blobs and numbers, on or off.
+- The word cells are unchanged.
+- With the toggle on, tapping a word opens its HUD as a table. The head
+  stays (address, Hebrew, close). The columns are hebrew, form, reads and
+  places, and they sort.
+- One row per form, e.g. בָּרָא · Qal · he created · 9 and בָּרֵא · Piel ·
+  cut down · 2. The reading heading a row is the one at this place where
+  there is one, else the first in its dropdown.
+- Both are openable (owner: "yes both should be openable"): "reads" opens
+  the other readings of that form, each exactly as its source prints it,
+  with source and license; "places" opens the other places, each a link,
+  with what TAHOT reads there.
