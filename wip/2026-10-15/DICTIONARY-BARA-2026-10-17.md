@@ -104,3 +104,11 @@ dictionary-hud-table-2.png, dictionary-hud-table-3.png):
   the other readings of that form, each exactly as its source prints it,
   with source and license; "places" opens the other places, each a link,
   with what TAHOT reads there.
+- Places are exact (owner: "it would just be he created places, not
+  close"). The count is the places where that exact reading stands, here
+  included: "he created" is 4 (Genesis 1:1:2, 1:27:8, 1:27:12, Deuteronomy
+  4:32:12), not the 9 Qal places with near readings ("he had created", "did
+  he create"). Picking another reading in the reads dropdown shows its own
+  places. A row with no place here is led by the reading that stands at the
+  most places (Piel: "make", Ezekiel 21:24:17). Mock:
+  shots/dictionary-hud-table-4.png.
