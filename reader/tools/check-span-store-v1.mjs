@@ -5,20 +5,40 @@
 //       places pointing at rows the file holds, every row's M a licensed
 //       source the page can name
 //   S2  every place of a book is laid as one cell whose ink is the key, with
-//       one line reading the store's first row under a chip, and one blob
+//       one line reading the store's first row under a chip, and one blob;
+//       a place whose first or last word is half of a maqaf compound is
+//       drawn inside the compound's cell, its line word by word, and is
+//       counted and named here, not passed in silence (an open question for
+//       the owner, 2026-10-17: 650 of the 2,845 places)
 //   S3  a cell's card opens on the span whole: the pills are the rows'
 //       readings, the record under the first is that row's D, and a place
-//       inside another's is a rung of the longer cell's card
+//       inside another's is a rung of the longer cell's card, by its own
+//       key; a place drawn inside a compound's cell opens the same card from
+//       its first word. Places the page does not lay (overlapping a laid
+//       one, as the store marks them) are not picked
 //   S4  the two sources the shelf lacked (M197, M199) resolve with a license
-// Usage: node tools/check-span-store-v1.mjs [url] [--books amos,genesis]
+//   S5  the chain at the top of a word's card names a place the store holds
+//       and its inner place by the store's own keys: a rung piece written
+//       with a space is a key the store holds (the second review, 2026-10-17:
+//       the chain at Genesis 18:5 offered the place spaced)
+// The books are found in the data, never named here (check-scope-derived
+// S1): the first served book with places, and the first whose nested place
+// holds an inner key written with a maqaf inside an outer written with a
+// space, where the rung's own key differs from its words joined by spaces.
+// Usage: node tools/check-span-store-v1.mjs [url] [--books <book>,<book>]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
-import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
-const BOOKS = arg("books", "amos,genesis").split(",");
 const DIR = "data/span-store";
+const spanBooks = zonesServed("data/zones").filter((bk) => existsSync(`${DIR}/${bk}.json`));
+const placesOf = (bk) => JSON.parse(readFileSync(`${DIR}/${bk}.json`, "utf8")).placesList || [];
+const firstWithPlaces = spanBooks.find((bk) => placesOf(bk).length > 0);
+const firstMaqafInner = spanBooks.find((bk) => placesOf(bk).some((x) => / /u.test(x.key) && (x.contains || []).some((k) => k.includes("\u05be"))));
+const firstChainNest = spanBooks.find((bk) => placesOf(bk).some((x) => !/ /u.test(x.key) && (x.contains || []).length));
+const BOOKS = arg("books", "") ? arg("books", "").split(",") : [...new Set([firstWithPlaces, firstMaqafInner, firstChainNest].filter(Boolean))];
 const ix = JSON.parse(readFileSync(`${DIR}/index.json`, "utf8"));
 const served = JSON.parse(readFileSync("data/route-store/index.json", "utf8")).m_sources;
 const postures = JSON.parse(readFileSync("data/license-postures-v1.json", "utf8")).postures || {};
@@ -52,12 +72,13 @@ for (const book of BOOKS) {
   await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   await p.evaluate(async () => { let g = 0; while (g < 4000) { const n = document.querySelector("section.seg.seg-wait"); if (!n) break; n.scrollIntoView({ block: "center" }); await new Promise((r) => setTimeout(r, 5)); g += 1; } window.scrollTo(0, 0); await new Promise((r) => setTimeout(r, 400)); });
-  const r2 = await p.evaluate(() => {
+  const onDisk = JSON.parse(readFileSync(`${DIR}/${book}.json`, "utf8"));
+  const r2 = await p.evaluate((placesList) => {
     const st = window.__spanStore || { places: 0, laid: 0, skipped: [] };
     const file = window.__spanBook || null;
     // two places the store itself marks as overlapping (neither inside the
     // other) cannot both be cells: the first laid stands, the other is skipped
-    const out = { places: st.places, laid: st.laid, overlapped: st.skipped.filter((x) => x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length).length, skipped: st.skipped.filter((x) => !(x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length)).map((x) => `${x.ref} ${x.key}: ${x.why}`), cells: 0, noCell: [], lineBad: [], blobBad: [], chipBad: [] };
+    const out = { skippedAt: st.skipped.map((x) => `${x.ref}\u0001${x.key}`), absorbed: [], absorbedLoose: [], inner: 0, places: st.places, laid: st.laid, overlapped: st.skipped.filter((x) => x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length).length, skipped: st.skipped.filter((x) => !(x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length)).map((x) => `${x.ref} ${x.key}: ${x.why}`), cells: 0, noCell: [], lineBad: [], blobBad: [], chipBad: [] };
     const letters = (t) => [...String(t || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
     const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
     const cells = [...document.querySelectorAll("section.seg .he-text .wjoin")].filter((c) => c.__run && c.__run.spanKey);
@@ -74,20 +95,48 @@ for (const book of BOOKS) {
       if (g && !g.querySelector(".g-lic")) out.chipBad.push(`${c.__run.label} ${key}`);
       if (c.querySelectorAll(":scope > svg.wj-tie").length !== 1) out.blobBad.push(`${c.__run.label} ${key}: ${c.querySelectorAll(":scope > svg.wj-tie").length} blobs`);
     }
+    // a laid place with no cell of its own: its words must stand inside one
+    // cell (the maqaf compound's), and its first or last word must be half
+    // of a compound, or it is lost
+    const skippedAt = new Set(out.skippedAt);
+    const spanCells = new Set(cells.map((c) => `${c.__run.label}\u0001${c.__run.spanKey}`));
+    const secOf = new Map([...document.querySelectorAll("section.seg")].map((s) => [(s.querySelector(".vnum") || {}).textContent, s]));
+    for (const pl of placesList) {
+      const at = `${pl.ref}\u0001${pl.key}`;
+      if (skippedAt.has(at) || spanCells.has(at)) continue;
+      const sec = secOf.get(pl.ref);
+      const wbs = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
+      const mine = wbs.slice(pl.first - 1, pl.last);
+      const host = mine.length && mine[0].closest(".wjoin");
+      const half = (w) => !!w && /\u05be$/u.test(((w.querySelector(".w") || {}).textContent || "").trim());
+      const inCompound = half(mine[mine.length - 1]) || half(wbs[pl.first - 2]);
+      // a place inside another (store I3) is a rung of the outer cell's card,
+      // never a cell of its own: its words stand in the outer cell (S3 judges
+      // the rung)
+      // (the outer place's cell, or, where the outer place is itself drawn
+      // inside a maqaf compound's cell, that cell)
+      if (pl.inside_of && host && mine.every((w) => host.contains(w))) { out.inner += 1; continue; }
+      if (host && mine.every((w) => host.contains(w)) && inCompound) out.absorbed.push(`${pl.ref} ${pl.key}`);
+      else out.absorbedLoose.push(`${pl.ref} ${pl.key}`);
+    }
     return out;
-  });
-  check(`S2  ${book}: every place laid as one cell whose ink is the key, one line from the store under a chip, one blob`, r2.laid + r2.overlapped === r2.places && r2.skipped.length === 0 && r2.noCell.length === 0 && r2.lineBad.length === 0 && r2.chipBad.length === 0 && r2.blobBad.length === 0,
-    `${r2.laid} of ${r2.places} places laid [places]${r2.overlapped ? ` (${r2.overlapped} overlapping another, as the store marks them, not laid)` : ""} · ${r2.cells} cells on the page` + (r2.skipped.length ? ` · skipped: ${r2.skipped.slice(0, 2).join(" | ")}` : "") + (r2.noCell.length ? ` · ink: ${r2.noCell.slice(0, 2).join(" | ")}` : "") + (r2.lineBad.length ? ` · line: ${r2.lineBad.slice(0, 2).join(" | ")}` : "") + (r2.chipBad.length ? ` · no chip: ${r2.chipBad.slice(0, 2).join(" | ")}` : "") + (r2.blobBad.length ? ` · blob: ${r2.blobBad.slice(0, 2).join(" | ")}` : ""));
+  }, onDisk.placesList);
+  check(`S2  ${book}: every place laid as one cell whose ink is the key, one line from the store under a chip, one blob`, r2.laid + r2.overlapped === r2.places && r2.skipped.length === 0 && r2.absorbedLoose.length === 0 && r2.noCell.length === 0 && r2.lineBad.length === 0 && r2.chipBad.length === 0 && r2.blobBad.length === 0,
+    `${r2.laid} of ${r2.places} places laid [places]${r2.overlapped ? ` (${r2.overlapped} overlapping another, as the store marks them, not laid)` : ""} · ${r2.cells} cells on the page` + (r2.inner ? ` · ${r2.inner} inside another place, a rung of its cell` : "") + (r2.absorbed.length ? ` · ${r2.absorbed.length} drawn inside a maqaf compound's cell, the line word by word (open question): ${r2.absorbed.slice(0, 3).join(" | ")}` : "") + (r2.absorbedLoose.length ? ` · LOST, no cell and no compound: ${r2.absorbedLoose.slice(0, 3).join(" | ")}` : "") + (r2.skipped.length ? ` · skipped: ${r2.skipped.slice(0, 2).join(" | ")}` : "") + (r2.noCell.length ? ` · ink: ${r2.noCell.slice(0, 2).join(" | ")}` : "") + (r2.lineBad.length ? ` · line: ${r2.lineBad.slice(0, 2).join(" | ")}` : "") + (r2.chipBad.length ? ` · no chip: ${r2.chipBad.slice(0, 2).join(" | ")}` : "") + (r2.blobBad.length ? ` · blob: ${r2.blobBad.slice(0, 2).join(" | ")}` : ""));
   // S3: the first spaced place, the first maqaf place, the first nested place
-  const file = JSON.parse(readFileSync(`${DIR}/${book}.json`, "utf8"));
-  const picks = [file.placesList.find((x) => x.key.includes(" ") && !x.inside_of && !x.contains.length), file.placesList.find((x) => x.key.includes("\u05be") && !x.inside_of && !x.contains.length), file.placesList.find((x) => x.contains && x.contains.length)].filter(Boolean);
+  const file = onDisk;
+  const drawnAlone = (x) => !r2.skippedAt.includes(`${x.ref}\u0001${x.key}`) && !r2.absorbed.includes(`${x.ref} ${x.key}`);
+  const absorbedPick = file.placesList.find((x) => r2.absorbed.includes(`${x.ref} ${x.key}`) && !x.inside_of && !x.contains.length);
+  const picks = [file.placesList.find((x) => drawnAlone(x) && x.key.includes(" ") && !x.inside_of && !x.contains.length), file.placesList.find((x) => drawnAlone(x) && x.key.includes("\u05be") && !x.inside_of && !x.contains.length), (file.placesList.find((x) => drawnAlone(x) && / /u.test(x.key) && (x.contains || []).some((k) => k.includes("\u05be"))) || file.placesList.find((x) => drawnAlone(x) && x.contains && x.contains.length)), absorbedPick ? { ...absorbedPick, absorbed: true } : null].filter(Boolean);
   const r3 = [];
   for (const pl of picks) {
     const got = await p.evaluate(async (pl) => {
       const sec = [...document.querySelectorAll("section.seg")].find((s) => (s.querySelector(".vnum") || {}).textContent === pl.ref);
       const c = sec && [...sec.querySelectorAll(".wjoin")].find((c) => c.__run && c.__run.spanKey === pl.key);
-      if (!c) return { err: "no cell" };
-      c.scrollIntoView({ block: "center" }); c.querySelector(".wb .w").click();
+      // a place drawn inside a compound's cell opens from its first word
+      const first = sec && pl.absorbed ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")][pl.first - 1] : null;
+      if (!c && !first) return { err: "no cell" };
+      (c || first).scrollIntoView({ block: "center" }); (c ? c.querySelector(".wb .w") : first.querySelector(".w")).click();
       const t0 = Date.now(); while (Date.now() - t0 < 8000 && !document.querySelector("#hud .r-pills button")) await new Promise((r) => setTimeout(r, 60));
       await new Promise((r) => setTimeout(r, 600));
       const h = document.getElementById("hud");
@@ -110,18 +159,37 @@ for (const book of BOOKS) {
     // as its pieces, case aside
     const low = (t) => String(t).toLowerCase();
     const pills = (got.pills || []).map(low);
-    const asPills = (t) => pills.includes(low(t)) || (t.includes(",") && t.split(",").map((x) => x.trim()).filter(Boolean).every((x) => pills.includes(low(x))));
+    // the page's senseSplit: at a ";" outside parentheses, each sense trimmed
+    const senses = (t) => { const out = []; let st = 0, d = 0; for (let i = 0; i < t.length; i += 1) { if (t[i] === "(") d += 1; else if (t[i] === ")") { if (d > 0) d -= 1; } else if (t[i] === ";" && d === 0) { out.push(t.slice(st, i)); st = i + 1; } } out.push(t.slice(st)); return out.map((x) => x.trim()).filter(Boolean); };
+    const oneSense = (t) => pills.includes(low(t)) || (t.includes(",") && t.split(",").map((x) => x.trim()).filter(Boolean).every((x) => pills.includes(low(x))));
+    const asPills = (t) => oneSense(t) || senses(t).every(oneSense);
     const wantR = [...new Set(rows.map((r) => spanJoin(r.slots[1])))];
+    // a row reads as a pill whole, or as one of its pieces (a sense, or a
+    // comma piece of one), as the page splits it
+    const piecesOf = (t) => senses(String(t)).flatMap((x) => [x, ...x.split(",").map((y) => y.trim())]).filter(Boolean).map(low);
+    const reads = (r, t) => low(spanJoin(r.slots[1])) === low(t) || piecesOf(spanJoin(r.slots[1])).includes(low(t));
     const on = got.cuts && got.cuts.find((x) => x.on);
-    const litRows = rows.filter((r) => low(spanJoin(r.slots[1])) === low(got.lit));
+    const litRows = rows.filter((r) => reads(r, got.lit));
     const dOk = litRows.some((r) => r.slots[2].trim() === got.d.trim());
     // an inner place stands as a piece of a division of the outer card
     // ("outer + inner"), by its own key
     const rungsOk = pl.contains.every((k) => got.cuts.some((x) => x.t.split(" + ").includes(k)));
-    const ok = !got.err && on && on.t === pl.key && rows.length > 0 && low(got.lit) === low(spanJoin(rows[0].slots[1])) && wantR.every(asPills) && dOk && rungsOk;
-    r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the store's first: "${rows.length ? spanJoin(rows[0].slots[1]) : "none on"}") · ${wantR.filter(asPills).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
+    const ok = !got.err && on && on.t === pl.key && rows.length > 0 && reads(rows[0], got.lit) && wantR.every(asPills) && dOk && rungsOk;
+    r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}${pl.absorbed ? " (inside a maqaf compound's cell)" : ""}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the store's first: "${rows.length ? spanJoin(rows[0].slots[1]) : "none on"}") · ${wantR.filter(asPills).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
   }
   check(`S3  ${book}: a cell's card opens on the span whole, its pills the rows' readings, the record the first row's D, an inner place a rung of the outer card`, r3.length > 0 && r3.every((x) => x.ok), r3.map((x) => x.say).join(" ‖ "));
+  // S5: a nested place the ink writes as one maqaf chain, its first word's card
+  const chainNest = file.placesList.find((x) => !/ /u.test(x.key) && (x.contains || []).length);
+  if (chainNest) {
+    await p.goto(`${BASE}?b=${book}#${chainNest.ref}:${chainNest.first}`, { waitUntil: "networkidle" });
+    await p.waitForSelector("section.seg .he-text .wb");
+    const t0 = Date.now(); while (Date.now() - t0 < 12000 && !(await p.$("#hud .s-pills button"))) await p.waitForTimeout(100);
+    await p.waitForTimeout(600);
+    const rows = await p.evaluate(() => [...document.querySelectorAll("#hud .b-chain .s-pills button, #hud .b-cut .s-pills button")].map((x) => x.textContent.trim()));
+    const keys = new Set(Object.keys(file.keys || {}));
+    const spaced = rows.flatMap((t) => t.split(" + ")).filter((piece) => / /u.test(piece) && !keys.has(piece));
+    check(`S5  ${book} ${chainNest.ref} ${chainNest.key}: the chain's rungs name the place and its inner place by the store's keys`, rows.length > 0 && spaced.length === 0, `${rows.join(" | ")}${spaced.length ? ` · not a key: ${[...new Set(spaced)].join(", ")}` : ""}`);
+  }
 }
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

@@ -52,9 +52,12 @@ const rec = zone.emitted_from.toggles.sources;
 // Samaritan dictionaries' sources stand on the strip beside the receipt's, one
 // chip per source key that carries something on this book, from their own
 // per-book record. They never carry the line, so each costs nothing on it.
+// The piece store's sources (data/piece-store, 2026-10-17) are counted in the
+// same record; they share their keys with the store's TAHOT and MACULA, so
+// they ride those chips (one chip per source key) and add none of their own.
 const ovRec = existsSync("data/overlay-book-counts-v1.json") ? JSON.parse(readFileSync("data/overlay-book-counts-v1.json", "utf8")) : null;
 const ovBook = Object.fromEntries(Object.entries((ovRec && ovRec.books && ovRec.books[ZONE]) || {})
-  .filter(([, e]) => e.carries > 0 && existsSync(`data/overlays/${e.overlay}/index.json`)));
+  .filter(([, e]) => e.carries > 0 && (existsSync(`data/overlays/${e.overlay}/index.json`) || existsSync(`data/${e.overlay}/index.json`))));
 const ovIds = new Set(Object.keys(ovBook));
 const ovKeys = new Set(Object.entries(ovBook).map(([id, e]) => e.key || id));
 
@@ -110,7 +113,8 @@ const rail = await p.evaluate(() => {
     dead: row.classList.contains("dead"),
     n: chips.length,
     allOn: chips.every((c) => c.getAttribute("aria-pressed") === "true"),
-    withIds: chips.filter((c) => /^M[A-Z]*\d+( M[A-Z]*\d+)*$/u.test(c.dataset.ids || "")).length,
+    // a ledger id (M12, MSAM1) or the piece store's (PIECE:TAHOT, the lane's m id)
+    withIds: chips.filter((c) => /^(M[A-Z]*\d+|PIECE:[A-Z]+)( (M[A-Z]*\d+|PIECE:[A-Z]+))*$/u.test(c.dataset.ids || "")).length,
     keys: chips.map((c) => c.dataset.key),
     // what each chip says its switch costs, read off the chip — the two
     // numbers by value, in whatever words, never by the shape of a separator.
@@ -136,7 +140,9 @@ for (const [id, s] of Object.entries(rec.sources)) { const k = s.key || id; if (
 const costOf = new Map();
 const said = (j) => (typeof j.lines_change === "number" ? { changes: Number(j.lines_change) || 0, darkens: Number(j.lines_bare) || 0 } : { changes: Number(j.changes) || 0, darkens: Number(j.darkens) || 0 });
 for (const [k, ids] of idsByKey) { const j = joint && joint[[...ids].sort().join(" ")]; if (j) costOf.set(k, said(j)); }
-for (const k of ovKeys) costOf.set(k, { changes: 0, darkens: 0 });
+// a key only beside the store costs nothing on the line; a key the store
+// also carries keeps the store's price (its piece rows move no line)
+for (const k of ovKeys) if (!idsByKey.has(k)) costOf.set(k, { changes: 0, darkens: 0 });
 const wrongCost = rail ? rail.keys.filter((k) => {
   const want = costOf.get(k), said = (rail.said || {})[k] || [];
   if (!want) return !!joint;   // no joint price baked: not judged
@@ -249,8 +255,8 @@ check("S1e a shelf switch turns off exactly its shelf, says mixed when one comes
 // S2
 const byCount = Object.values(zone.gloss_m || {}).filter((e) => Array.isArray(e.by) && e.by.length).length;
 check("S2  the receipt agrees with the chips and with gloss_m",
-  rail && rail.n === keysInReceipt.size + ovKeys.size && rec.counts.keys_with_carriers === byCount && byCount > 0,
-  `${rail ? rail.n : "?"} chips vs ${keysInReceipt.size} source keys + ${ovKeys.size} beside the store · ${byCount} keys carry their carriers (receipt ${rec.counts.keys_with_carriers})`);
+  rail && rail.n === new Set([...keysInReceipt, ...ovKeys]).size && rec.counts.keys_with_carriers === byCount && byCount > 0,
+  `${rail ? rail.n : "?"} chips vs ${keysInReceipt.size} source keys + ${[...ovKeys].filter((k) => !keysInReceipt.has(k)).length} beside the store only${[...ovKeys].some((k) => keysInReceipt.has(k)) ? ` (${[...ovKeys].filter((k) => keysInReceipt.has(k)).length} riding a store chip)` : ""} · ${byCount} keys carry their carriers (receipt ${rec.counts.keys_with_carriers})`);
 
 // pick the switch: a source key whose ids solely carry some visible line with
 // a baked alternate, AND carry some other visible line with a second carrier

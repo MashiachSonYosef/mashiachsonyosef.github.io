@@ -13,10 +13,14 @@
 //       it, and the index lists exactly the books that have a file
 //   R2  the page draws every card of the book it opens, and marks its words
 //   R3  the line under every word, and the Hebrew, are the same with the run
-//       cards and without them
+//       cards and without them (known red since the span store, 2026-10-16:
+//       a run card around a place the store names, as at Numbers 33:7, reads
+//       its line word by word where the place's own cell read the span; the
+//       run cards are off for readers, and the owner's word is awaited)
 //   R4  pressing a run's word opens one card for the whole run: its divisions
-//       are the run as named, the run welded into one word, a fold only where
-//       a dictionary published one, then every other tiling of its words by
+//       are the run as named, a fold only where a dictionary published one
+//       (never the run welded into one word: no weld, 2026-10-17), then
+//       every other tiling of its words by
 //       its named runs and single words, the words one by one last; it opens
 //       word by word on the word pressed, as the line reads it, and every word
 //       of the run wears the selection
@@ -173,14 +177,17 @@ const unfinal = (t) => [...t].map((c) => FINAL[c] || c).join("");
 const r4bad = spaceRuns.filter((o) => {
   const tilings = tilingsOf(o.n, o.named).sort((a, b) => a.length - b.length).map((t) => asText(o.keys, t.join(" ")));
   const named = tilings[0] && !tilings[0].includes("+") ? [tilings[0]] : [];
+  // NO WELD (the owner, 2026-10-17: "drop welding ... no exceptions";
+  // coversOfRun, check-run-card-forms R1): the card never offers the run's
+  // words closed up; a fold a dictionary published still stands
   const weld = o.keys.join("");
   const got = o.cuts.map((c) => c.t);
-  const folds = got.slice(named.length + 1, got.length - (tilings.length - named.length));
-  const want = [...named, weld, ...folds, ...tilings.slice(named.length)];
+  const folds = got.slice(named.length, got.length - (tilings.length - named.length));
+  const want = [...named, ...folds, ...tilings.slice(named.length)];
   const foldsOk = folds.every((f) => f !== weld && unfinal(f) === unfinal(weld));
   return JSON.stringify(got) !== JSON.stringify(want) || !foldsOk || !o.cuts[o.cuts.length - 1].on || !o.active;
 });
-check("R4  a run's word opens one card for the whole run: as named, welded, published folds, every tiling, words last, opened on the word as the line reads it, every word selected",
+check("R4  a run's word opens one card for the whole run: as named, published folds (never welded), every tiling, words last, opened on the word as the line reads it, every word selected",
   spaceRuns.length > 0 && r4bad.length === 0,
   `${spaceRuns.length} cards opened${r4bad.length ? ` · astray: ${r4bad.slice(0, 2).map((o) => `${o.keys.join(" ")} [${o.cuts.map((c) => c.t).join(" | ")}]`).join(" ; ")}` : ""}`);
 const r5bad = chains.filter((o) => {

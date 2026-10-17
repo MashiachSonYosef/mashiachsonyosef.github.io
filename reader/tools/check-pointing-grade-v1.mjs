@@ -117,7 +117,8 @@ const expectFor = (s, off) => {
   const grades = rows.filter((r) => store.index.m_sources[r[3]]).map((r) => { const sg = gradeRow(r, s); if (sg !== "-") return sg; if (!fp) return "-"; const src = store.index.m_sources[r[3]]; const i = fp.get(fnv1a(`${r[1]}|${src.label}`)); return i === undefined ? "-" : (gr.g[i] || "-"); });
   const ov = gr ? overlayRowsFor(gr.k) : [];
   const ovX = ov.filter((r) => !off.has(r[3]) && gradeRow(r, s) === "x").length;
-  return { rows: rows.length + ov.length, x: grades.filter((g) => g === "x").length + ovX, fromHeadwords: rows.filter(rowCarriesHeadwords).length, overlay: ov.length, overlayX: ovX };
+  const pc = target ? pieceRowsAt(target.ref, target.n, s) : 0;
+  return { rows: rows.length + ov.length + pc, piece: pc, x: grades.filter((g) => g === "x").length + ovX, fromHeadwords: rows.filter(rowCarriesHeadwords).length, overlay: ov.length, overlayX: ovX };
 };
 const target = await p.evaluate((grades) => {
   const wbs = [...document.querySelectorAll("section.seg .he-text .wb")];
@@ -126,10 +127,20 @@ const target = await p.evaluate((grades) => {
     const s = wbs[i].querySelector(".w").textContent.trim();
     if (s.includes(String.fromCodePoint(0x05be)) || wbs[i].querySelectorAll(".wr").length > 1) continue;
     const gr = grades[s]; if (!gr || !gr.g.includes("x")) continue;
-    return { i, s };
+    const sec = wbs[i].closest("section.seg");
+    const all = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
+    return { i, s, ref: sec && sec.__sec ? sec.__sec.label : null, n: all.indexOf(wbs[i]) + 1 };
   }
   return null;
 }, side.grades);
+// the piece store's rows at the place (data/piece-store/<book>.json, served by
+// tools/bake-piece-store-v1.mjs): the whole word's claims with English and no
+// sign, as the page stands them up; they carry no headwords, so none is graded
+const pieceRowsAt = (ref, n, surface) => {
+  const f = `data/piece-store/${ZONE}.json`; if (!ref || !n || !existsSync(f)) return 0;
+  const pb = JSON.parse(readFileSync(f, "utf8")); const L = [...String(surface)].filter((c) => c >= "\u05d0" && c <= "\u05ea").length;
+  return (pb.places[`${ref}:${n}`] || []).filter((c) => c[6] && !c[9] && c[4] === 0 && c[5] === L - 1 && pb.records[c[7]]).length;
+};
 check("  a word with a reading and a mismatch card stands on the page", !!target, target ? `word ${target.i + 1} · ${target.s}` : "");
 const cardNow = () => p.evaluate(() => {
   const h = document.querySelector("#hud"); if (!h || h.hidden) return null;
@@ -154,7 +165,7 @@ if (target) {
   const want = expectFor(target.s, new Set(await p.evaluate(() => window.__sourcesOff || [])));
   check("P5b under only, no pill graded x survives, and the card's withheld count is this check's own count from the shard",
     pressed && only && !only.grades.includes("x") && only.withheld === want.x && only.rows === want.rows,
-    only ? `withheld ${only.withheld} of ${only.rows} · counted ${want.x} of ${want.rows} (${want.overlayX} of ${want.overlay} overlay rows) · ${want.fromHeadwords} store rows graded from their own headwords${v2 ? "" : " (v1 store: the lattice graded every row)"}` : "no card");
+    only ? `withheld ${only.withheld} of ${only.rows} · counted ${want.x} of ${want.rows} (${want.overlayX} of ${want.overlay} overlay rows, ${want.piece} piece rows) · ${want.fromHeadwords} store rows graded from their own headwords${v2 ? "" : " (v1 store: the lattice graded every row)"}` : "no card");
   await press("keep");
 }
 await b.close();

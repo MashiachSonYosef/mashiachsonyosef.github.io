@@ -1,0 +1,161 @@
+{
+ "rule": "piece-store-serve-v1-a-claim-carries-no-text-its-english-is-a-slice-of-its-records-d",
+ "from": {
+  "relay": "FOR-ELIJAH-v77.md",
+  "build": "piece-store-v2",
+  "rule": "RULE-piece-store-v2.md",
+  "recipe": "THE ID RECIPE: id = lowercase hex sha256 of the UTF-8 bytes of: m, U+001F, year, U+001F, headwords joined by U+001E, U+001F, gap, U+001F, R, U+001F, g (empty for TAHOT), U+001F, D. rid = the first 16 hex of id; the build proves every rid unique across all records [records] and stops if not.",
+  "date": "17 October 2026 AD"
+ },
+ "books": [
+  "amos",
+  "daniel",
+  "deuteronomy",
+  "ecclesiastes",
+  "esther",
+  "exodus",
+  "ezekiel",
+  "ezra",
+  "genesis",
+  "habakkuk",
+  "haggai",
+  "hosea",
+  "i-chronicles",
+  "i-kings",
+  "i-samuel",
+  "ii-chronicles",
+  "ii-kings",
+  "ii-samuel",
+  "isaiah",
+  "jeremiah",
+  "job",
+  "joel",
+  "jonah",
+  "joshua",
+  "judges",
+  "lamentations",
+  "leviticus",
+  "malachi",
+  "micah",
+  "nahum",
+  "nehemiah",
+  "numbers",
+  "obadiah",
+  "proverbs",
+  "psalms",
+  "ruth",
+  "song-of-songs",
+  "zechariah",
+  "zephaniah"
+ ],
+ "m_sources": {
+  "PIECE:TAHOT": {
+   "key": "stepbible_tahot_aligned_translation",
+   "label": "STEPBible TAHOT: the aligned translation's pieces (PIECE:TAHOT)",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "moses-licence-ledger-v1/build-v1.1/licence-ledger-v1.1/sources-v1.1.jsonl#L151",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "from": "piece-store-v2",
+   "licence_label": "# STEPBible Data Repository  **CC BY 4.0**  "
+  },
+  "PIECE:MACULA": {
+   "key": "macula_hebrew_cherith_surface_english_2022",
+   "label": "MACULA Hebrew: the morphology's pieces (PIECE:MACULA)",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "moses-licence-ledger-v1/build-v1.1/licence-ledger-v1.1/sources-v1.1.jsonl#L152",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "from": "piece-store-v2",
+   "licence_label": "is licensed under [CC BY 4.0 ](http://creativecommons.org/licenses/by/4.0/)"
+  }
+ },
+ "counts": {
+  "claims_received": {
+   "value": 1296994,
+   "axis": "claims",
+   "per_source": {
+    "macula": 648981,
+    "tahot": 648013
+   }
+  },
+  "claims": {
+   "value": 934288,
+   "axis": "claims",
+   "what": "served: the received claims less every rule below"
+  },
+  "withheld": {
+   "joins_whole_word": {
+    "value": 290064,
+    "axis": "claims",
+    "why": "a whole-word claim on a word its source divides names two or more records (MACULA) or two or more ranges of one record (TAHOT): the lane's join of the pieces' slices, not a reading the source prints; the pieces are served",
+    "per_source": {
+     "macula": 145254,
+     "tahot": 144810
+    },
+    "per_kind": {
+     "WHOLE_WORD": 290064
+    }
+   },
+   "joins_run": {
+    "value": 72607,
+    "axis": "claims",
+    "why": "a run claim (a tile of two or more pieces) is likewise the lane's join of its pieces' slices; the pieces are served",
+    "per_source": {
+     "macula": 36325,
+     "tahot": 36282
+    },
+    "per_kind": {
+     "RUN": 72607
+    }
+   },
+   "tahot_two_word_line": {
+    "value": 29,
+    "axis": "claims",
+    "why": "one TAHOT line over two ink words (a maqaf pair, a qere read but not written, or words TAHOT writes with only a slash between them): its record is named at more than one word of the verse, and the later word's claims point into the first word's part of the line, so they are withheld and the first word's kept; and on a line TAHOT splits over one ink word, a whole-word claim that takes only part of the line (Numbers 7:59, Pedah of Pedah/ /zur)",
+    "per_source": {
+     "tahot": 29
+    },
+    "per_kind": {
+     "WHOLE_WORD": 18,
+     "DIVISION": 11
+    }
+   },
+   "tahot_division_not_its_own": {
+    "value": 6,
+    "axis": "claims",
+    "why": "a TAHOT claim filed under a division declared alongside (MACULA's cut) where TAHOT keeps the word whole: TAHOT's English for the whole word would stand on one piece",
+    "per_source": {
+     "tahot": 6
+    },
+    "per_kind": {
+     "DIVISION": 6
+    }
+   }
+  },
+  "claims_with_english": {
+   "value": 931169,
+   "axis": "claims"
+  },
+  "records_received": {
+   "value": 778083,
+   "axis": "records"
+  },
+  "records_named": {
+   "value": 771664,
+   "axis": "records",
+   "what": "served: the records a served claim names"
+  },
+  "records_not_named": {
+   "value": 6419,
+   "axis": "records",
+   "why": "every claim naming them is withheld (most are MACULA records named only by a whole-word or run join); they stay in the lane's store"
+  },
+  "places": {
+   "value": 304336,
+   "axis": "places"
+  },
+  "books": {
+   "value": 39,
+   "axis": "books"
+  }
+ }
+}

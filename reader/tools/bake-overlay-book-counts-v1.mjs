@@ -23,17 +23,26 @@
 // A source that carries nothing on a book is not listed for it, so a book
 // draws no chip that switches nothing.
 //
+// THE PIECE STORE'S SOURCES (piece-store-serve-v1, 2026-10-17): PIECE:TAHOT
+// and PIECE:MACULA stand on the cards beside the store and never carry the
+// line, as an overlay's never do, so they are chips by the same rule. Their
+// rows answer at a place, not under a key, so on each book carries counts
+// the words (places) where a served claim with English and no source sign
+// stands, and rows counts those claims.
+//
 // Run: node tools/bake-overlay-book-counts-v1.mjs   (from reader/)
 import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
-import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { zonesServed } from "./zones-on-disk-v1.mjs";
 
 const RULE = "overlay-book-counts-rule-v1-a-dictionary-beside-the-store-is-counted-per-book-like-every-other";
 const OUT = "data/overlay-book-counts-v1.json";
 const OVERLAY_DIR = "data/overlays";
 const ZONES = "data/zones";
+const PIECE_DIR = "data/piece-store";
+const pieceIx = existsSync(join(PIECE_DIR, "index.json")) ? JSON.parse(readFileSync(join(PIECE_DIR, "index.json"), "utf8")) : null;
 
 const overlays = {};
 for (const id of readdirSync(OVERLAY_DIR).sort()) {
@@ -72,7 +81,12 @@ const keysOf = (zone) => {
 };
 
 const books = {};
-for (const slug of zonesOnDisk(ZONES)) {
+// the books the door serves (the serve gate's receipt): a work on disk the
+// door does not offer has no sources row to draw chips on, and every page
+// fetches this record, so it holds the served books only
+const SERVED = zonesServed(ZONES);
+if (!SERVED.length) { console.error("no serve gate receipt beside data/zones: nothing is served, nothing to count"); process.exit(2); }
+for (const slug of SERVED) {
   const zone = JSON.parse(gunzipSync(readFileSync(join(ZONES, `${slug}.bin`))).toString("utf8"));
   const keys = keysOf(zone);
   const book = {};
@@ -91,6 +105,27 @@ for (const slug of zonesOnDisk(ZONES)) {
       }
     }
   }
+  const pf = join(PIECE_DIR, `${slug}.json`);
+  if (pieceIx && existsSync(pf)) {
+    const pb = JSON.parse(readFileSync(pf, "utf8"));
+    for (const claims of Object.values(pb.places || {})) {
+      const seen = new Set();
+      for (const c of claims) {
+        const [, , , , , , R, rid, , sign] = c;
+        const rec = R && !sign && rid ? pb.records[rid] : null;
+        const src = rec && pieceIx.m_sources[rec[0]];
+        if (!src) continue;
+        const m = rec[0];
+        const e = book[m] || (book[m] = { overlay: "piece-store", key: src.key, label: src.label, posture: src.licensePosture, y: src.sourceYear, carries: 0, rows: 0 });
+        e.rows += 1;
+        // the year the rows carry, as the card dates them (the record's own)
+        const yr = String(rec[3] || "S_NO_SOURCE_YEAR"); (e.years = e.years || {})[yr] = (e.years[yr] || 0) + 1;
+        if (!seen.has(m)) { seen.add(m); e.carries += 1; }
+      }
+    }
+    // a piece source's chip dates its rows by the year most of them carry
+    for (const e of Object.values(book)) if (e.overlay === "piece-store" && e.years) { e.y = Object.entries(e.years).sort((x, z) => z[1] - x[1] || x[0].localeCompare(z[0]))[0][0]; delete e.years; }
+  }
   if (Object.keys(book).length) books[slug] = book;
 }
 
@@ -99,12 +134,12 @@ const record = {
   rule_id: RULE,
   generated_by: "tools/bake-overlay-book-counts-v1.mjs",
   what_this_is: "per book, per overlay source: the keys of that book it gives a reading for (carries) and the rows behind them (rows), in the lanes its index marks ruled; the overlay half of the per-book source table regloss bakes into each zone",
-  axes: "carries counts keys, rows counts overlay rows; never summed across axes",
-  overlays: Object.fromEntries(Object.entries(overlays).map(([id, o]) => [id, {
+  axes: "carries counts keys (an overlay's) or words (the piece store's), rows counts their rows; never summed across axes",
+  overlays: { ...Object.fromEntries(Object.entries(overlays).map(([id, o]) => [id, {
     store_version: o.ix.store_version || null,
     lanes_ruled: o.ruled ? [...o.ruled].sort() : null,
     index_sha256: createHash("sha256").update(readFileSync(join(OVERLAY_DIR, id, "index.json"))).digest("hex"),
-  }])),
+  }])), ...(pieceIx ? { "piece-store": { store_version: null, lanes_ruled: null, carries_axis: "words", index_sha256: createHash("sha256").update(readFileSync(join(PIECE_DIR, "index.json"))).digest("hex") } } : {}) },
   books,
 };
 writeFileSync(OUT, `${JSON.stringify(record, null, 1)}\n`);
