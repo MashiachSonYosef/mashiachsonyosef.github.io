@@ -17,15 +17,28 @@
 //       its first word. Places the page does not lay (overlapping a laid
 //       one, as the store marks them) are not picked
 //   S4  the two sources the shelf lacked (M197, M199) resolve with a license
-// Usage: node tools/check-span-store-v1.mjs [url] [--books amos,genesis]
+//   S5  the chain at the top of a word's card names a place the store holds
+//       and its inner place by the store's own keys: a rung piece written
+//       with a space is a key the store holds (the second review, 2026-10-17:
+//       the chain at Genesis 18:5 offered the place spaced)
+// The books are found in the data, never named here (check-scope-derived
+// S1): the first served book with places, and the first whose nested place
+// holds an inner key written with a maqaf inside an outer written with a
+// space, where the rung's own key differs from its words joined by spaces.
+// Usage: node tools/check-span-store-v1.mjs [url] [--books <book>,<book>]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
-import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
-const BOOKS = arg("books", "amos,genesis").split(",");
 const DIR = "data/span-store";
+const spanBooks = zonesServed("data/zones").filter((bk) => existsSync(`${DIR}/${bk}.json`));
+const placesOf = (bk) => JSON.parse(readFileSync(`${DIR}/${bk}.json`, "utf8")).placesList || [];
+const firstWithPlaces = spanBooks.find((bk) => placesOf(bk).length > 0);
+const firstMaqafInner = spanBooks.find((bk) => placesOf(bk).some((x) => / /u.test(x.key) && (x.contains || []).some((k) => k.includes("\u05be"))));
+const firstChainNest = spanBooks.find((bk) => placesOf(bk).some((x) => !/ /u.test(x.key) && (x.contains || []).length));
+const BOOKS = arg("books", "") ? arg("books", "").split(",") : [...new Set([firstWithPlaces, firstMaqafInner, firstChainNest].filter(Boolean))];
 const ix = JSON.parse(readFileSync(`${DIR}/index.json`, "utf8"));
 const served = JSON.parse(readFileSync("data/route-store/index.json", "utf8")).m_sources;
 const postures = JSON.parse(readFileSync("data/license-postures-v1.json", "utf8")).postures || {};
@@ -114,7 +127,7 @@ for (const book of BOOKS) {
   const file = onDisk;
   const drawnAlone = (x) => !r2.skippedAt.includes(`${x.ref}\u0001${x.key}`) && !r2.absorbed.includes(`${x.ref} ${x.key}`);
   const absorbedPick = file.placesList.find((x) => r2.absorbed.includes(`${x.ref} ${x.key}`) && !x.inside_of && !x.contains.length);
-  const picks = [file.placesList.find((x) => drawnAlone(x) && x.key.includes(" ") && !x.inside_of && !x.contains.length), file.placesList.find((x) => drawnAlone(x) && x.key.includes("\u05be") && !x.inside_of && !x.contains.length), file.placesList.find((x) => drawnAlone(x) && x.contains && x.contains.length), absorbedPick ? { ...absorbedPick, absorbed: true } : null].filter(Boolean);
+  const picks = [file.placesList.find((x) => drawnAlone(x) && x.key.includes(" ") && !x.inside_of && !x.contains.length), file.placesList.find((x) => drawnAlone(x) && x.key.includes("\u05be") && !x.inside_of && !x.contains.length), (file.placesList.find((x) => drawnAlone(x) && / /u.test(x.key) && (x.contains || []).some((k) => k.includes("\u05be"))) || file.placesList.find((x) => drawnAlone(x) && x.contains && x.contains.length)), absorbedPick ? { ...absorbedPick, absorbed: true } : null].filter(Boolean);
   const r3 = [];
   for (const pl of picks) {
     const got = await p.evaluate(async (pl) => {
@@ -165,6 +178,18 @@ for (const book of BOOKS) {
     r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}${pl.absorbed ? " (inside a maqaf compound's cell)" : ""}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the store's first: "${rows.length ? spanJoin(rows[0].slots[1]) : "none on"}") · ${wantR.filter(asPills).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
   }
   check(`S3  ${book}: a cell's card opens on the span whole, its pills the rows' readings, the record the first row's D, an inner place a rung of the outer card`, r3.length > 0 && r3.every((x) => x.ok), r3.map((x) => x.say).join(" ‖ "));
+  // S5: a nested place the ink writes as one maqaf chain, its first word's card
+  const chainNest = file.placesList.find((x) => !/ /u.test(x.key) && (x.contains || []).length);
+  if (chainNest) {
+    await p.goto(`${BASE}?b=${book}#${chainNest.ref}:${chainNest.first}`, { waitUntil: "networkidle" });
+    await p.waitForSelector("section.seg .he-text .wb");
+    const t0 = Date.now(); while (Date.now() - t0 < 12000 && !(await p.$("#hud .s-pills button"))) await p.waitForTimeout(100);
+    await p.waitForTimeout(600);
+    const rows = await p.evaluate(() => [...document.querySelectorAll("#hud .b-chain .s-pills button, #hud .b-cut .s-pills button")].map((x) => x.textContent.trim()));
+    const keys = new Set(Object.keys(file.keys || {}));
+    const spaced = rows.flatMap((t) => t.split(" + ")).filter((piece) => / /u.test(piece) && !keys.has(piece));
+    check(`S5  ${book} ${chainNest.ref} ${chainNest.key}: the chain's rungs name the place and its inner place by the store's keys`, rows.length > 0 && spaced.length === 0, `${rows.join(" | ")}${spaced.length ? ` · not a key: ${[...new Set(spaced)].join(", ")}` : ""}`);
+  }
 }
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

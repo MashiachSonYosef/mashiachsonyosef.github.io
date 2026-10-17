@@ -118,9 +118,13 @@ for (const slug of SERVED) {
         const m = rec[0];
         const e = book[m] || (book[m] = { overlay: "piece-store", key: src.key, label: src.label, posture: src.licensePosture, y: src.sourceYear, carries: 0, rows: 0 });
         e.rows += 1;
+        // the year the rows carry, as the card dates them (the record's own)
+        const yr = String(rec[3] || "S_NO_SOURCE_YEAR"); (e.years = e.years || {})[yr] = (e.years[yr] || 0) + 1;
         if (!seen.has(m)) { seen.add(m); e.carries += 1; }
       }
     }
+    // a piece source's chip dates its rows by the year most of them carry
+    for (const e of Object.values(book)) if (e.overlay === "piece-store" && e.years) { e.y = Object.entries(e.years).sort((x, z) => z[1] - x[1] || x[0].localeCompare(z[0]))[0][0]; delete e.years; }
   }
   if (Object.keys(book).length) books[slug] = book;
 }

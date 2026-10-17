@@ -3905,8 +3905,10 @@
       // pill is the claim's slice; the text under it is the record's own
       // reading (R), served as [m, headword, R, year]; the record's source
       // line stays in the lane's store under the same rid.
+      // (asked even when both piece sources are off: poolFor's switch filter
+      // withholds them and counts them in the card's "of N", as it does every
+      // overlay's rows)
       if (!piecePlace || !pieceBookListed()) return [];
-      if (Object.keys(ix.m_sources || {}).every((m) => sourcesOff.has(m))) return [];
       const pb = await pieceBookReady();
       if (!pb || !pb.places) return [];
       const want = [...String(key || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
@@ -7382,10 +7384,14 @@
       if (!cache.has(poolKey(surface))) { dSlot.replaceChildren(); selectedRecordRef.m = null; }
       clampHud();
       let unreachable = null;
-      if (!cache.has(poolKey(surface))) {
+      // the key and the place read once, before the fetch: a division the
+      // reader presses meanwhile must not file this cell's pool under another
+      // cell's place
+      const askKey = poolKey(surface), askPlace = piecePlaceOf(surface);
+      if (!cache.has(askKey)) {
         try {
           const at = placeOfCell(surface);
-          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(surface) });
+          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace });
           // the whole form, where the set has its division: the set is not a
           // reading of the form as one word, and stands on its division
           if (got && setCut && surface === region.k) {
@@ -7393,7 +7399,7 @@
             kept.withheld = got.withheld; kept.withheldBySources = got.withheldBySources; kept.rows = got.rows;
             got = kept;
           }
-          cache.set(poolKey(surface), got);
+          cache.set(askKey, got);
         }
         catch (e) { unreachable = e; }
       }
@@ -10138,7 +10144,10 @@
       const target = built.regionEls[lead] || targets[0];
       if (!runEl || !runEl.__words || !runEl.__ink) { openAt(lead, target); return; }
       const rc = built.wb.__run && chainIs(built.wb.__run, runEl) ? built.wb.__run : null;
-      const ctx = { el: runEl, j, keys: runEl.__words.map((w) => w.k), words: runEl.__words, named: rc ? rc.named || [] : null, chain: true,
+      // the span's own keys ride with its rungs, so the chain at the top of
+      // the word's card names the place and its inner place as the store does
+      // ("\u05db\u05d9\u05be\u05e2\u05dc\u05be\u05db\u05df" at Genesis 18:5, not with spaces; the second review, 2026-10-17)
+      const ctx = { el: runEl, j, keys: runEl.__words.map((w) => w.k), words: runEl.__words, named: rc ? rc.named || [] : null, spanKey: rc ? rc.spanKey || null : null, spanInner: rc ? rc.spanInner || null : null, chain: true,
         openRung: (on) => (rc ? openNamedRun(rc, j, runEl, on) : openRun(runEl, j, on)),
         openWord: (j2) => openWordOfChain(runEl, j2) };
       // the head is the whole chain with this word lit, for a plain word; a
@@ -11064,7 +11073,11 @@
       const gk = e.key || id;
       const lic = (POSTURES && POSTURES.postures && POSTURES.postures[e.posture] && POSTURES.postures[e.posture].name) || e.posture || "";
       const g = groups.get(gk) || { key: gk, ids: [], labels: [], lic, y: e.y, leads: 0, carries: 0, changes: 0, darkens: 0, overlay: e.overlay };
-      g.ids.push(id); g.labels.push(e.label); g.carries += e.carries;
+      // the piece store's carries are words, not keys: on a store source's
+      // chip they ride with its ids and are not added to its key count
+      // ("never summed across axes")
+      const rides = e.overlay === "piece-store" && groups.has(gk) && g.ids.some((x) => !isOverlayId(x));
+      g.ids.push(id); g.labels.push(e.label); if (!rides) g.carries += e.carries;
       const c = centuryAM(e.y);
       g.wc = g.wc || {};
       g.wc[c ? String(c) : "none"] = (g.wc[c ? String(c) : "none"] || 0) + e.rows;

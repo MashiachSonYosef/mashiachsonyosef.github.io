@@ -40,7 +40,7 @@ const perSrc = {};
 const WITHHELD = {
   joins_whole_word: { value: 0, axis: "claims", why: "a whole-word claim on a word its source divides names two or more records (MACULA) or two or more ranges of one record (TAHOT): the lane's join of the pieces' slices, not a reading the source prints; the pieces are served", per_source: {} },
   joins_run: { value: 0, axis: "claims", why: "a run claim (a tile of two or more pieces) is likewise the lane's join of its pieces' slices; the pieces are served", per_source: {} },
-  tahot_two_word_line: { value: 0, axis: "claims", why: "a TAHOT record whose gap is not NONE is one TAHOT line over two ink words (a qere read but not written, or a maqaf pair), and the lane's ranges give the second word the first word's English", per_source: {} },
+  tahot_two_word_line: { value: 0, axis: "claims", why: "one TAHOT line over two ink words (a maqaf pair, a qere read but not written, or words TAHOT writes with only a slash between them): its record is named at more than one word of the verse, and the later word's claims point into the first word's part of the line, so they are withheld and the first word's kept; and on a line TAHOT splits over one ink word, a whole-word claim that takes only part of the line (Numbers 7:59, Pedah of Pedah/ /zur)", per_source: {} },
   tahot_division_not_its_own: { value: 0, axis: "claims", why: "a TAHOT claim filed under a division declared alongside (MACULA's cut) where TAHOT keeps the word whole: TAHOT's English for the whole word would stand on one piece", per_source: {} },
 };
 for (const w of Object.values(WITHHELD)) w.per_kind = {};
@@ -53,9 +53,19 @@ for (const book of ix.books) {
     for (const line of readFileSync(f, "utf8").split("\n")) { if (!line) continue; const r = JSON.parse(line); byRid.set(r.rid, r); recsReceived += 1; }
   }
   const places = {}, records = {};
-  for (const line of readFileSync(join(FROM, "claims", `${book}.jsonl`), "utf8").split("\n")) {
-    if (!line) continue;
-    const c = JSON.parse(line);
+  const claimLines = readFileSync(join(FROM, "claims", `${book}.jsonl`), "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
+  // which words of a verse each TAHOT record is named at, and under which
+  // obj at one place (words[0], words[1]): a record named at two words is a
+  // line over two ink words; its first word is the lowest w in the verse
+  const firstWordOf = new Map(), objsAt = new Map();
+  for (const c of claimLines) {
+    if (c[4] !== "tahot" || !c[7] || !c[7][0]) continue;
+    const rid = c[7][0], at = `${rid}\u0001${c[1]}`;
+    const fw = firstWordOf.get(at); if (fw === undefined || c[2] < fw.min) firstWordOf.set(at, { min: c[2], words: new Set([...(fw ? fw.words : []), c[2]]) }); else fw.words.add(c[2]);
+    const o = c[15] && typeof c[15].obj === "string" ? c[15].obj : null;
+    if (o) { const k = `${at}\u0001${c[2]}`; if (!objsAt.has(k)) objsAt.set(k, new Set()); objsAt.get(k).add(o); }
+  }
+  for (const c of claimLines) {
     const [p, ref, w, pi, src, kind, reading, rec, r, cut, sign, cell, letters] = c;
     claimsAll += 1; perSrc[src] = (perSrc[src] || 0) + 1;
     // THE LANE'S JOINS ARE NOT READINGS: a whole-word or run claim that names
@@ -71,9 +81,23 @@ for (const book of ix.books) {
     const opt = c[15];
     if (src === "tahot" && kind === "DIVISION" && opt && typeof opt.obj === "string" && /^declared_alongside\[/u.test(opt.obj)) { withhold("tahot_division_not_its_own", src, kind); continue; }
     const rid = rec && rec[0]; const R0 = rid ? byRid.get(rid) : null;
-    // A TAHOT LINE OVER TWO INK WORDS (its record's gap not NONE): the second
-    // word's claims point into the first word's part of the line
-    if (src === "tahot" && R0 && R0.gap && R0.gap !== "NONE") { withhold("tahot_two_word_line", src, kind); continue; }
+    // A TAHOT LINE OVER TWO INK WORDS, found by what it covers: the record is
+    // named at more than one word of the verse, or at one place under both
+    // words[0] and words[1]. The later word's claims point into the first
+    // word's part of the line; the first word's claims are its own.
+    if (src === "tahot" && rid) {
+      const fw = firstWordOf.get(`${rid}\u0001${ref}`);
+      const objs = objsAt.get(`${rid}\u0001${ref}\u0001${w}`);
+      const opt16 = c[15] && typeof c[15].obj === "string" ? c[15].obj : null;
+      if ((fw && fw.words.size > 1 && w !== fw.min) || (opt16 === "words[1]" && objs && objs.has("words[0]"))) { withhold("tahot_two_word_line", src, kind); continue; }
+      // a line TAHOT splits over one ink word (its gap not NONE): a whole-word
+      // claim must take the whole line, not one part of it
+      const oneWord = (!fw || fw.words.size === 1) && !(objs && objs.has("words[0]") && objs.has("words[1]"));
+      if (oneWord && R0 && R0.gap && R0.gap !== "NONE" && kind === "WHOLE_WORD") {
+        const whole = sliceD(R0.D, r, rec, byRid);
+        if (!whole || whole.replace(/\s+/gu, " ").trim() !== String(R0.R).replace(/\s+/gu, " ").trim()) { withhold("tahot_two_word_line", src, kind); continue; }
+      }
+    }
     const R = R0 ? sliceD(R0.D, r, rec, byRid) : null;
     if (R) withR += 1;
     const key = `${ref}:${w}`;
