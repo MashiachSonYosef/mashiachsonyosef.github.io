@@ -59,7 +59,11 @@ for (const book of books) {
       const cs = ink && getComputedStyle(ink);
       if (!cs || parseFloat(cs.borderBottomWidth) <= 0 || cs.borderBottomStyle === "none" || /rgba\(.*,\s*0\)$/.test(cs.borderBottomColor) || cs.borderBottomColor === "transparent") { out.lineBad += 1; if (out.astray.length < 3) out.astray.push(`line ${c.text}`); }
       const parts = [...cell.querySelectorAll(":scope > .g.parts > .g-part")];
-      const want = els.filter((e) => e.querySelector(":scope > .g") && e.querySelector(":scope > .g").textContent.trim()).length;
+      // a run the span store names, or one a dictionary published whole,
+      // reads as one line over all its ink (the store's first row; the
+      // ruling), not part by part: no parts row is owed under it
+      const g = cell.querySelector(":scope > .g"), whole = !!(g && (g.dataset.span || g.dataset.form));
+      const want = whole ? 0 : els.filter((e) => e.querySelector(":scope > .g") && e.querySelector(":scope > .g").textContent.trim()).length;
       if (parts.length < Math.min(want, 1) || parts.length > els.length) { out.partsBad += 1; if (out.astray.length < 3) out.astray.push(`parts ${c.text} (${parts.length} of ${els.length})`); }
       // H3: the cell inside the page; a wide run wraps inside it
       const box = cell.getBoundingClientRect();

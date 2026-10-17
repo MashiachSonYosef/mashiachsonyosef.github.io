@@ -10,8 +10,9 @@
 // are always on the card, whatever the shelf answers; a fold (a joined
 // spelling with a seam letter written final) only where it is published.
 //
-//   R1  every run's card offers the run as written and the run joined, the
-//       folds a dictionary published and no fold it did not
+//   R1  every run's card offers the run as written, the run joined where a
+//       dictionary published it closed up, the folds a dictionary published
+//       and no form it did not
 //   R2  the words one by one are always offered
 //   R3  the card never opens on a joined or folded spelling (a weld can be a
 //       different word: al-pi "according to" welds to a verb "to faint"),
@@ -56,7 +57,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 import { formsOfRun, MAQAF } from "./weld-forms-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
 let bad = 0;
@@ -64,6 +65,10 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
 const ZONE = arg("zone", "amos");
 const zone = JSON.parse(gunzipSync(readFileSync(`data/zones/${ZONE}.bin`)).toString("utf8"));
+// where the span store names a run, its rows say whether a source wrote the
+// run closed up (the gap slot NONE); the catalog is not asked for that key
+const spanFile = existsSync(`data/span-store/${ZONE}.json`) ? JSON.parse(readFileSync(`data/span-store/${ZONE}.json`, "utf8")) : null;
+const storeRows = (k) => (spanFile && spanFile.keys && spanFile.keys[k]) || [];
 const store = openRouteStore("data/route-store");
 
 // the runs, from the zone's own join records
@@ -118,6 +123,7 @@ for (const run of sample) {
     if (!r) return null;
     const line = r.querySelector(":scope > .g");
     const form = line ? line.dataset.form || "" : "";
+    const span = line ? line.dataset.span || "" : "";
     r.scrollIntoView({ block: "center" });
     r.querySelector(".wb .w").click();
     const t0 = Date.now(); while (Date.now() - t0 < 4000 && !document.querySelector("#hud .r-pills button, #hud .b-read p:not(.r-label)")) await new Promise((x) => setTimeout(x, 50));
@@ -128,14 +134,17 @@ for (const run of sample) {
     const cuts = [...(rungRow ? rungRow.querySelectorAll(".s-pills button") : [])].map((x) => ({ t: x.textContent, on: x.getAttribute("aria-pressed") === "true" }));
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
     await new Promise((x) => setTimeout(x, 150));
-    return { form, cuts };
+    return { form, span, cuts };
   }, run.key);
   if (!c) { r1.push(`${run.key}: run not drawn`); continue; }
   // a rung of words joined by a space is a run a dictionary names, added to
   // the chain's card by the run cards (run-cards-rule-v1) and judged there,
   // by check-run-cards-v1 R5; the chain's own whole forms are judged here
   const offeredWhole = c.cuts.filter((x) => !x.t.includes("+") && !/ /u.test(x.t)).map((x) => x.t);
-  const want = [run.key, run.weld, ...run.folds];
+  // the closed-up form is a rung only where a source published it (the
+  // owner, 2026-10-17: "do you not see how this is a weld?")
+  const weldStands = storeRows(run.key).length ? storeRows(run.key).some((r) => r.gap === "NONE") : run.published.some((f) => f.form === "weld");
+  const want = [run.key, ...(weldStands ? [run.weld] : []), ...run.folds];
   const missing = want.filter((k) => !offeredWhole.includes(k));
   const extra = offeredWhole.filter((k) => !want.includes(k));
   if (missing.length || extra.length) r1.push(`${run.key}: missing ${missing.join(",") || "-"} extra ${extra.join(",") || "-"}`);
@@ -143,6 +152,10 @@ for (const run of sample) {
   const onWhole = c.cuts.find((x) => x.on && !x.t.includes("+") && !/ /u.test(x.t));
   if (onWhole && onWhole.t !== run.key) r3.push(`${run.key}: card opened on ${onWhole.t}`);
   if (c.form && c.form !== run.key) r3.push(`${run.key}: line reads ${c.form}`);
+  // a run the span store names reads the store's first row on its line and
+  // its card opens on the run (span-store I1, I2), whatever the zone's own
+  // table published; the as-written rule judges the rest
+  if (c.span) { if (c.span !== run.key || !onWhole) r4.push(`${run.key}: the store names it, yet line "${c.span}", card on ${onWhole ? onWhole.t : "the words"}`); continue; }
   const asWritten = run.published.find((f) => f.form === "maqaf");
   if (asWritten && (c.form !== run.key || !onWhole)) r4.push(`${run.key}: published as written but line "${c.form || "words"}", card on ${onWhole ? onWhole.t : "the words"}`);
   if (!asWritten && onWhole) r4.push(`${run.key}: not published as written, yet the card opened on ${onWhole.t}`);

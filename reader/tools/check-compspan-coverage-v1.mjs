@@ -129,7 +129,9 @@ for (const c of picks) {
       rung: (document.querySelector('#hud .b-chain .s-pills button[aria-pressed="true"]') || {}).textContent || null,
       rungs: document.querySelectorAll("#hud .b-chain .s-pills button").length,
       word: (document.querySelector('#hud .b-chain-cell .s-pills button[aria-pressed="true"]') || {}).textContent || null }));
-    if (top.rungs < 3 || !top.rung || !top.rung.includes("+")) chainBad.push(`${c.label} ${c.s}: chain row ${top.rungs} rungs, pressed ${top.rung}`);
+    // the chain's rungs: as written and the words at least; the closed-up
+    // form only where a source wrote it (the owner, 2026-10-17)
+    if (top.rungs < 2 || !top.rung || !top.rung.includes("+")) chainBad.push(`${c.label} ${c.s}: chain row ${top.rungs} rungs, pressed ${top.rung}`);
     else if (top.word !== c.k) chainBad.push(`${c.label} ${c.s}: chain word pressed ${top.word}, owed ${c.k}`);
   }
   const expect = 2 ** (c.n - 1);

@@ -1,0 +1,229 @@
+{
+ "schema_version": "span-store-served-v1",
+ "from": "span-store-v1.3",
+ "relay": "FOR-ELIJAH-v75.3.md",
+ "date": "16 October 2026 AD",
+ "rule": "RULE-span-store-v1.2.md",
+ "rule_sha256_before_any_script": "3f0f7c40febcd6befb2bd585b406a0b816301613035e95f939fddf71a8be9e3e",
+ "what_a_row_is": "one dictionary entry (M id, entry) whose own headword field holds two or more words as one thing; R, D and every headword spelling are the source's own bytes at the cite",
+ "ink_key": "the ink words' letters (U+05D0–U+05EA only) joined by the gap as the INK writes it: U+05BE for a maqaf, U+0020 for a space; for 3+ words each gap as written. The page looks up ink keys only",
+ "gap_values": {
+  "MAQAF": "the source writes a maqaf between the words",
+  "SPACE": "the source writes a space (U+0020 or U+00A0; gap_chars says which)",
+  "NONE": "the source printed the words closed up (weld) or closed up with a seam final set medial (fold); such a row stands only under MAQAF ink keys",
+  "MIXED": "a maqaf and a space in different gaps, or both in one gap"
+ },
+ "by_key_rule": "ink key → row ids, NAME rows first, then PHRASE, each in rows.jsonl order; only keys with at least one row and one place",
+ "instruction_lines": [
+  "I1. Underline a span only where this store’s by_key index has the ink’s key: the span’s letters joined by the gap as the ink writes it.",
+  "I2. Draw each row under that key as one line, one blob and one card over all its words, with the row’s R, M and D; where several rows stand under one key, one pill per row, each with its own M.",
+  "I3. Where a place lies inside another key’s place, draw both; the places file marks it.",
+  "I4. Take the licence pill from the licence ledger by the row’s m id."
+ ],
+ "counts": {
+  "rows": {
+   "value": 1717,
+   "axis": "store rows"
+  },
+  "ink_keys": {
+   "value": 462,
+   "axis": "keys"
+  },
+  "places": {
+   "value": 2845,
+   "axis": "places"
+  },
+  "nested_places": {
+   "value": 23,
+   "axis": "places"
+  },
+  "places_overlapping": {
+   "value": 10,
+   "axis": "places"
+  },
+  "books": {
+   "value": 39,
+   "axis": "books"
+  }
+ },
+ "books": {
+  "amos": {
+   "places": 20,
+   "keys": 11
+  },
+  "daniel": {
+   "places": 27,
+   "keys": 11
+  },
+  "deuteronomy": {
+   "places": 80,
+   "keys": 35
+  },
+  "ecclesiastes": {
+   "places": 15,
+   "keys": 7
+  },
+  "esther": {
+   "places": 24,
+   "keys": 12
+  },
+  "exodus": {
+   "places": 188,
+   "keys": 40
+  },
+  "ezekiel": {
+   "places": 203,
+   "keys": 37
+  },
+  "ezra": {
+   "places": 53,
+   "keys": 26
+  },
+  "genesis": {
+   "places": 169,
+   "keys": 80
+  },
+  "habakkuk": {
+   "places": 5,
+   "keys": 2
+  },
+  "haggai": {
+   "places": 16,
+   "keys": 3
+  },
+  "hosea": {
+   "places": 26,
+   "keys": 14
+  },
+  "i-chronicles": {
+   "places": 134,
+   "keys": 70
+  },
+  "i-kings": {
+   "places": 117,
+   "keys": 53
+  },
+  "i-samuel": {
+   "places": 84,
+   "keys": 45
+  },
+  "ii-chronicles": {
+   "places": 108,
+   "keys": 52
+  },
+  "ii-kings": {
+   "places": 130,
+   "keys": 49
+  },
+  "ii-samuel": {
+   "places": 98,
+   "keys": 54
+  },
+  "isaiah": {
+   "places": 139,
+   "keys": 34
+  },
+  "jeremiah": {
+   "places": 208,
+   "keys": 60
+  },
+  "job": {
+   "places": 35,
+   "keys": 15
+  },
+  "joel": {
+   "places": 1,
+   "keys": 1
+  },
+  "jonah": {
+   "places": 1,
+   "keys": 1
+  },
+  "joshua": {
+   "places": 184,
+   "keys": 79
+  },
+  "judges": {
+   "places": 141,
+   "keys": 56
+  },
+  "lamentations": {
+   "places": 8,
+   "keys": 5
+  },
+  "leviticus": {
+   "places": 72,
+   "keys": 17
+  },
+  "malachi": {
+   "places": 25,
+   "keys": 3
+  },
+  "micah": {
+   "places": 8,
+   "keys": 8
+  },
+  "nahum": {
+   "places": 4,
+   "keys": 3
+  },
+  "nehemiah": {
+   "places": 57,
+   "keys": 34
+  },
+  "numbers": {
+   "places": 267,
+   "keys": 56
+  },
+  "obadiah": {
+   "places": 0,
+   "keys": 0
+  },
+  "proverbs": {
+   "places": 40,
+   "keys": 19
+  },
+  "psalms": {
+   "places": 84,
+   "keys": 35
+  },
+  "ruth": {
+   "places": 4,
+   "keys": 2
+  },
+  "song-of-songs": {
+   "places": 7,
+   "keys": 7
+  },
+  "zechariah": {
+   "places": 61,
+   "keys": 10
+  },
+  "zephaniah": {
+   "places": 2,
+   "keys": 1
+  }
+ },
+ "rows_sha256": "11c43f0b96d96afae245ad8c175f8560f4ee654c0b045796235bc9318c8cabde",
+ "index_sha256": "50c99867ead8610f73844cd998f050a766d2ad30742858d1e78bd93940862962",
+ "m_sources": {
+  "M197": {
+   "key": "stepbible_tahot_expanded_strong",
+   "label": "STEP Bible TAHOT source-explicit Expanded Strong lexical definition frame",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "FOOT/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/README.md#L1",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "from": "span-store-v1.3",
+   "licence_label": "# STEPBible Data Repository  **CC BY 4.0**  "
+  },
+  "M199": {
+   "key": "etcbc_bhsa_2021",
+   "label": "ETCBC Biblia Hebraica Stuttgartensia Amstelodamensis context-free lexeme gloss",
+   "licensePosture": "cc_by_nc_4_0_noncommercial",
+   "licensePointer": "FOOT/ledgers/work/ldmprs/source-cache/etcbc-bhsa-2026-07-14/README.md#L61",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "from": "span-store-v1.3",
+   "licence_label": "This work is licensed under a\n[Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/)."
+  }
+ }
+}

@@ -69,7 +69,9 @@ await openRail();
 // what every sampled line says now: text, chip ids, and whether it is bare
 const SAMPLE = 160;
 const lines = () => p.evaluate((n) => {
-  const wbs = [...document.querySelectorAll("section.seg .he-text .wb:not(.kq)")].filter((w) => w.querySelector(":scope > .g"));
+  // the line the reader sees: a word inside a cell that reads whole (a span
+  // the store names) keeps its own line out of sight, and the cell's stands
+  const wbs = [...document.querySelectorAll("section.seg .he-text .wb:not(.kq)")].filter((w) => w.querySelector(":scope > .g") && w.querySelector(":scope > .g").getClientRects().length);
   const step = Math.max(1, Math.floor(wbs.length / n));
   const pick = wbs.filter((_, i) => i % step === 0).slice(0, n);
   return pick.map((w) => {

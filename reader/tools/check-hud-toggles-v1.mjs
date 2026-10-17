@@ -75,6 +75,8 @@ const open = async (book, pref) => {
   await p.waitForTimeout(500);
   return { ctx, p };
 };
+// a span store cell (a dictionary's place, with its own switch) is not a
+// run of the lattice: the counts here leave it out, as the page's do
 const cellsOf = (p, label) => p.evaluate(([label]) => {
   const strip = (t) => String(t || "").replace(/[\u0591-\u05bd\u05bf-\u05c7]/gu, "");
   const s = [...document.querySelectorAll("section.seg")].find((s) => s.querySelector(".vnum")?.textContent === label);
@@ -85,7 +87,7 @@ const cellsOf = (p, label) => p.evaluate(([label]) => {
     else if (el.classList.contains("wb") && !el.classList.contains("mark")) out.push({ word: strip((el.querySelector(":scope > .w") || {}).textContent), line: !!el.querySelector(":scope > .g") });
   }
   const built = [...document.querySelectorAll("section.seg .he-text")];
-  return { cells: out, toggles: window.__hudToggles || null, runs: window.__hudRuns || null, runCards: window.__runCards, builtSections: built.length, runCells: built.reduce((n, h) => n + h.querySelectorAll(".wjoin.lic").length, 0), words: built.reduce((n, h) => n + h.querySelectorAll(".wb:not(.mark)").length, 0) };
+  return { cells: out, toggles: window.__hudToggles || null, runs: window.__hudRuns || null, runCards: window.__runCards, builtSections: built.length, runCells: built.reduce((n, h) => n + [...h.querySelectorAll(".wjoin.lic")].filter((c) => !(c.__run && c.__run.spanKey)).length, 0), words: built.reduce((n, h) => n + h.querySelectorAll(".wb:not(.mark)").length, 0) };
 }, [label]);
 const find = (cells, words) => cells.find((c) => c.join && c.words.join(" ") === words.join(" "));
 const alone = (cells, word) => cells.find((c) => c.word === word);
