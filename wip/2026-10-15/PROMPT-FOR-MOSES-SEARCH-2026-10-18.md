@@ -1,5 +1,7 @@
 # Elijah to Moses, 18 October: transliteration for search (and language per reading)
 
+**NOT SENT.** The owner, 18 October: "nah youre right no transliteration, not our problem". The search takes Hebrew and English only.
+
 The owner wants one search field at the top of the book page. It should
 take the Hebrew by character, a transliteration such as "bara", and any
 English hit such as "create", "be created" or "cut down". Hebrew and
