@@ -1791,8 +1791,15 @@
   #hud .rows .band > .kq-role { margin: 0.05rem 0 0.3rem; font-size: 0.66rem; line-height: 1.35; color: var(--faint); }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
+  /* The record is a dictionary's words, so it is the blue throughout, and
+     the lit sense is that blue worn bold, as a pressed reading is (the
+     owner, 2026-10-18: "the english definitionals should still be blue even
+     the M's D card"). From 2026-10-03 it took the pressed control's purple,
+     which said the sense was ours. */
   #hud .d-card .d-text { margin: 0.25rem 0; color: var(--tekhelet-ink); }
-  #hud .d-card .d-sense.on { color: var(--sel); }
+  #hud .d-card .d-sense.on { color: var(--tekhelet-ink); font-weight: 700; }
+  /* the corpus's letters a label of ours quotes */
+  #hud .he-q { color: var(--shani-ink); }
   #hud .d-card .d-sep { color: var(--faint); }
   #hud .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
@@ -1814,11 +1821,17 @@
      check-parts-read-right-to-left-v1 measures where the parts landed, in
      pixels, rather than trusting this attribute. */
   #hud .s-pills[dir="rtl"] { direction: rtl; }
-  #hud .s-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
+  /* A division pill is the corpus's own letters cut a way, so it is the
+     red, at rest and pressed, and the press is carried by the weight, the
+     pressed linen and the doubled gold (the owner, 2026-10-18: "the hebrew
+     should still be red even the compspans and megacompspans"). It had been
+     the page's purple at rest and pressed. Its small labels (.none, .q-role)
+     are the page speaking and keep the purple. */
+  #hud .s-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--shani-ink);
     border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
-  #hud .s-pills button:hover { border-color: var(--gold); color: var(--shesh); }
+  #hud .s-pills button:hover { border-color: var(--gold); }
   /* the "try again" of a block or a fold the shelf could not answer: the
      card's own pill, not the browser's grey bevel */
   #hud .r-unreachable button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
@@ -1829,7 +1842,7 @@
 
   /* said again below the frame rule that gives every line a transparent
      border, which outranked this one and hid the mark */
-  #hud .s-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  #hud .s-pills button[aria-pressed="true"] { color: var(--shani-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
   #hud .b-q { flex: 0 0 auto; min-height: 0; }
   #hud .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
@@ -6710,7 +6723,7 @@
         box.append(r);
       });
       const label = hud.querySelector(":scope > .rows .b-read .r-label");
-      if (label) { const l = document.createElement("p"); l.className = "note card-label"; l.textContent = label.textContent; box.append(l); }
+      if (label) { const l = document.createElement("p"); l.className = "note card-label"; l.append(...[...label.childNodes].map((n) => n.cloneNode(true))); box.append(l); }
       // the card's own notes for the block, in its words; its "try again" is
       // a press on the card's own
       cardNotes().forEach((m, j) => {
@@ -6956,7 +6969,11 @@
         const seg = document.createElement("span");
         seg.textContent = r.s;
         const lit = gaps ? true : opts.headIndex != null ? i === opts.headIndex : regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
-        if (!lit) seg.style.color = "var(--faint)";
+        // the word the card is not open on stands in the red all the same, at
+        // the regular weight beside the open word's bold (the owner,
+        // 2026-10-18: "the hebrew should still be red"); it had been the
+        // page's faint purple
+        if (!lit) seg.style.fontWeight = "400";
         // on a pair, the half that is not open is one press away, here in the
         // head where it already stands; the card then reads from it
         if (!lit && opts.chain) {
@@ -7905,7 +7922,12 @@
       const surface = setWhole ? SET_KEY : cover[cellIdx].surface;
       readRow.replaceChildren();
       const label = document.createElement("p"); label.className = "r-label";
-      label.textContent = setWhole ? `Exact selectable routes · ${joinCut(cover)}` : cover.length > 1 ? `Exact selectable routes · ${surface}` : "Exact selectable routes";
+      // the label is the page speaking and the block it names is the corpus's
+      // letters, so the letters it quotes stand in the red (the owner,
+      // 2026-10-18: "the hebrew should still be red")
+      label.append("Exact selectable routes");
+      const quoted = setWhole ? joinCut(cover) : cover.length > 1 ? surface : "";
+      if (quoted) label.append(" · ", Object.assign(document.createElement("span"), { className: "he-q", lang: "he", dir: "rtl", textContent: quoted }));
       // the set, one reading of the division whole: its source's own row at
       // this place, the place's words byte for byte, one record, one license
       if (setWhole && !cache.has(SET_KEY)) {
@@ -8081,7 +8103,7 @@
       // looks at the same card from different scroll positions read as two
       // different sets of routes. The number is what makes the row honest
       // about being a window.
-      if (pool.length > 1) label.textContent += ` · ${pool.length}`;
+      if (pool.length > 1) label.append(` · ${pool.length}`);
       // a run's whole rung the reader PRESSED, now read: it is the reader's
       // division, remembered and painted at every place the run stands. The
       // rung the card merely opened on is not a ruling: opening a word and
