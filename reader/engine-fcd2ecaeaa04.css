@@ -671,8 +671,11 @@
   #hud .dict-tab .r-pills button.off-card { opacity: 0.6; }
   #hud .dict-tab .r-pills button[aria-expanded]::after { content: " \25BE"; font-size: 0.8em; }
   #hud .dict-tab .r-pills button[aria-expanded="true"]::after { content: " \25B4"; }
-  #hud .dict-tab .item.opt { display: flex; align-items: center; gap: 0.6rem; }
-  #hud .dict-tab .item.opt .r-pills { display: inline-block; }
+  #hud .dict-tab .menu > .s-pills { margin: 0.25rem 0 0.4rem; }
+  #hud .dict-tab .opts { display: flex; flex-wrap: wrap; gap: 0.35rem 0.55rem; margin: 0.2rem 0 0.5rem; }
+  #hud .dict-tab .opt { display: inline-flex; align-items: center; gap: 0.18rem; }
+  #hud .dict-tab .opt .r-pills { display: inline-block; }
+  #hud .dict-tab .opt .n { font-size: 0.66rem; color: var(--muted); }
 
   #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--faint); }
   #toc .part { margin: 0 0 0.65rem; }
@@ -1412,6 +1415,7 @@
     border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
   .mode-btn.on, .blob-btn.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   /* pressed, opened, armed: the selection is worn bold */
+  .blob-btn:disabled { opacity: 0.5; cursor: default; }
   .mode-btn.on, .blob-btn.on, #hud .def-order .dfp.on, #modeRow .def-order .dfp.on, .rail .def-order .dfp.on,
   .rail .now b, .xp.armed, .vnum.at, #toc .chs a.on, .c-bar[aria-expanded="true"],
   .c-mark[aria-expanded="true"], .hoh-head .lic-chip.on, .rail .decl-bx[aria-pressed="true"] { font-weight: 700; }
