@@ -1,0 +1,40 @@
+Commands used for the overlap survey (18 October 2026). Everything ran from /tmp with absolute paths.
+S = /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad
+M = $S/meta/overlap
+R2 access was READ ONLY: GET, ranged GET, and ListObjectsV2 (r2cat.mjs, fetchmany.mjs, r2heads.mjs, r2list-etag.mjs).
+Credentials were loaded inside each shell command with:  set -a; . $S/r2.env; set +a   (never printed).
+
+1. Census, no network
+   python3 -I $M/scripts/10-census.py                      L0, L1 per family and per extension
+   python3 -I $M/scripts/13-compressed.py                  compressed and media types
+2. The 5,636 keys without an md5
+   node $M/scripts/r2list-etag.mjs corpus-lane-builds/moses-dictionary-store-v1/   (and .../moses-delete-ledger-v1/)
+       > $M/tables/12-etag-nomd5-prefixes.tsv
+   python3 -I $M/scripts/12-nomd5.py
+3. Sample selection and runs
+   python3 -I $M/scripts/15-select.py
+   gcc -O2 -o $M/scripts/ovl $M/scripts/ovl-v1.c -lz -llzma         (first runs)
+   gcc -O2 -o $M/scripts/ovl2 $M/scripts/ovl.c -lz -llzma           (per-file zlib bytes; staging2, compspan2, cold2)
+   gcc -O2 -o $M/scripts/tabmerge $M/scripts/tabmerge.c
+   XZCAP=<bytes> [OVL_BIN=$M/scripts/ovl2] [OVL_ARGS="--min 2048 --avgbits 14 --max 65536"] \
+       python3 -I $M/scripts/20-drive.py RUN $M/tables/sel-RUN.tsv 8
+     runs: licence (xz prefix 256 MiB), cold, witnessed, compspan, census, iawave, staging, runback, hud (32 MiB),
+           editions, witnessed-c16 (small chunks), staging2, compspan2, cold2 (8 MiB)
+   $M/scripts/watchdog.sh <fetcher pids>   kept the download folder under the 6 GB budget (pause above 5000 MiB)
+4. Analysis, no network
+   python3 -I $M/scripts/40-analyze.py licence cold witnessed compspan census iawave staging runback hud editions witnessed-c16
+   python3 -I $M/scripts/41-gztwins.py licence cold witnessed compspan census iawave staging runback hud editions
+   python3 -I $M/scripts/42-analyze-v2.py cold2 staging2 compspan2
+   python3 -I $M/scripts/45-classes.py licence,cold,witnessed,compspan,census,iawave,staging,runback,hud,editions
+   python3 -I $M/scripts/46-class-sample.py 40 2097152        (network: ranged GETs of the unsampled part)
+   $M/scripts/55-union.sh
+   python3 -I $M/scripts/50-extrapolate.py
+   python3 -I $M/scripts/60-tar-members.py
+5. gzip tests
+   node $M/scripts/r2heads.mjs 4095 < $M/tables/31-gzhead-sample-keys.txt > $M/tables/31-gzhead-raw.tsv
+   python3 -I $M/scripts/31-gzhead.py
+   python3 -I $M/scripts/32-gztest.py 10 3000000               (whole-object rebuilds; uses gzrepro.mjs, gzip)
+   python3 -I $M/scripts/33-gzprefix.py 8388608                (8 MiB prefix test of large objects)
+6. Meta-file size model and the licence delta test were one-off shell commands; see REPORT.md sections 6 and 4.
+7. Clean-up: all downloads under $M/dl were deleted; the raw per-line hash dumps (ovl.line.tab, 3.2 GB) were
+   deleted after 55-union.sh had used them. The chunk tables (ovl.cdc.tab) are kept.
