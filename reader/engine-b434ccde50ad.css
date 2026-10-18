@@ -628,6 +628,51 @@
   #placeBack:hover { color: var(--ink-strong); }
   #placeBack:active { color: var(--sel); }
   @media (max-width: 520px) { #placeBack { right: auto; left: 50%; transform: translateX(-50%); } }
+  /* THE WAY BACK FROM A DICTIONARY JUMP: the "Back to" pill, across books
+     (the owner, 2026-10-17: "agree keep it": it stays until it is tapped or
+     another jump replaces it) */
+  #dictBack { position: fixed; z-index: 60; right: 0.9rem; bottom: 3.6rem;
+    background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
+    box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); color: var(--muted);
+    font: inherit; font-size: 0.75rem; letter-spacing: 0.08em; font-variant: small-caps;
+    padding: 0.42rem 0.95rem; cursor: pointer; white-space: nowrap; }
+  #nav[hidden] + #dictBack { bottom: 0.9rem; }
+  #dictBack[hidden] { display: none; }
+  #placeBack:not([hidden]) ~ #dictBack { bottom: 6.2rem; }
+  @media (max-width: 520px) { #dictBack { right: auto; left: 50%; transform: translateX(-50%); } }
+  /* THE TABLE HUD (the dictionary pill): the card's head stays, and the
+     table stands for the rest of the card */
+  #hud.dict > :not(.head):not(.dict-tab):not(.c-back) { display: none !important; }
+  #hud .dict-tab { margin-top: 0.5rem; max-height: 62vh; overflow: auto; }
+  #hud .dict-tab table { width: 100%; border-collapse: collapse; }
+  #hud .dict-tab th { text-align: left; font-weight: normal; padding: 0.3rem 0.25rem; border-bottom: 1px solid var(--line); }
+  #hud .dict-tab th button { all: unset; cursor: pointer; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--argaman); }
+  #hud .dict-tab th button[aria-pressed="true"] { font-weight: bold; }
+  #hud .dict-tab td { padding: 0.45rem 0.25rem; border-bottom: 1px dotted var(--line); vertical-align: top; }
+  #hud .dict-tab td.he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); font-size: 1.2rem; direction: rtl; white-space: normal; }
+  #hud .dict-tab tbody tr.pick > td:nth-child(2) { min-width: 7rem; }
+  #hud .dict-tab th button:focus-visible, #hud .dict-tab button.dd:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  #hud .dict-tab button.more { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--argaman); }
+  #hud .dict-tab .rd { color: var(--tekhelet); font-family: 'reading', Georgia, serif; }
+  #hud .dict-tab .who, #hud .dict-tab .note { font-size: 0.7rem; color: var(--muted); }
+  #hud .dict-tab .lic { display: inline-block; border: 1px solid var(--chip-line); border-radius: 0.6rem; padding: 0 0.35rem; font-size: 0.62rem; color: var(--tekhelet); margin-left: 0.2rem; white-space: nowrap; }
+  #hud .dict-tab button.dd { all: unset; cursor: pointer; color: inherit; }
+  #hud .dict-tab button.dd::after { content: " \25BE"; color: var(--gold-dim); font-size: 0.8em; }
+  #hud .dict-tab button.dd[aria-expanded="true"]::after { content: " \25B4"; }
+  #hud .dict-tab tr.here > td { background: var(--cell-wash); }
+  #hud .dict-tab tr.sub > td { background: var(--cell-wash); padding: 0.2rem 0.6rem 0.6rem; }
+  #hud .dict-tab .item { padding: 0.25rem 0; line-height: 1.45; }
+  #hud .dict-tab .item a { color: var(--argaman); text-decoration-color: var(--gold-dim); }
+  #hud .dict-tab .r-pills { display: block; }
+  #hud .dict-tab .ex-he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); direction: rtl; text-align: right; font-size: 1.02rem; line-height: 1.6; margin-top: 0.15rem; }
+  #hud .dict-tab .ex-he .hit { font-weight: 700; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 0.25em; }
+  #hud .dict-tab .item { border-bottom: 1px dotted var(--line); }
+  #hud .dict-tab .item:last-child { border-bottom: none; }
+  #hud .dict-tab .r-pills button.off-card { opacity: 0.6; }
+  #hud .dict-tab .r-pills button[aria-expanded]::after { content: " \25BE"; font-size: 0.8em; }
+  #hud .dict-tab .r-pills button[aria-expanded="true"]::after { content: " \25B4"; }
+  #hud .dict-tab .item.opt { display: flex; align-items: center; gap: 0.6rem; }
+  #hud .dict-tab .item.opt .r-pills { display: inline-block; }
 
   #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--faint); }
   #toc .part { margin: 0 0 0.65rem; }
@@ -980,8 +1025,12 @@
      own column under its own word, the + between them, and the English of
      a run is read from the Hebrew's side, inside the one card; nothing is
      reordered. The cell grows to the row. */
-  .wjoin > .g.parts { display: flex; direction: rtl; justify-content: space-around; align-items: flex-start; gap: 0.35rem; width: max-content; max-width: none; }
-  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: nowrap; margin: 0; }
+  .wjoin > .g.parts { display: flex; direction: rtl; justify-content: space-around; align-items: flex-start; gap: 0.35rem; width: max-content; max-width: 100%; }
+  /* a part ruled to a long reading wraps inside the run's cell, never past
+     the page (the run's line ran 573px on a 412px phone and the page
+     scrolled sideways, after a ruling and at first paint alike; one paint
+     path, 2026-10-17); a part that fits keeps its line */
+  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: normal; min-width: 0; overflow-wrap: anywhere; margin: 0; }
   .wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); align-self: flex-start; }
   /* THE TIE: a soft gold shape behind each word of a run, as wide as the
      word at the letters, hugging their top, flowing down to sit around the
@@ -1017,13 +1066,16 @@
      own width cap (.g, 11em, clipped) gives way to the row and the cell grows
      to hold it. Under the cap it clipped "and + <to> the + darkness" at both
      ends (Genesis 1:4), once every split word wore its blob (2026-10-10). */
-  .he-text > .wb.tied > .g:has(> .g-pcs) { max-width: none; }
-  /* a ruled split reading wider than the text's column keeps its pieces side
-     by side and wraps the long one in its own column (holdAndPaint) */
-  .he-text > .wb > .g.g-pcs-wrap { max-width: 100%; }
-  .g.g-pcs-wrap > .g-pcs { display: flex; white-space: normal; max-width: 100%; }
-  .g.g-pcs-wrap > .g-pcs > .g-pc { flex: none; }
-  .g.g-pcs-wrap > .g-pcs > .g-pc.long { flex: 0 1 auto; white-space: normal; min-width: 0; overflow-wrap: anywhere; }
+  .he-text > .wb > .g:has(> .g-pcs) { max-width: none; }
+  /* A ROW WIDER THAN THE TEXT'S COLUMN keeps its pieces side by side and
+     wraps the longest in its own column, in the stylesheet, so the page's
+     first paint and a ruling lay it alike (one paint path, 2026-10-17): the
+     cap stood in the ruling's script alone, and the same long reading laid
+     fresh at Genesis 1:2 ran 643px off the screen. The cap keys on the row,
+     not on the tie, so with blobs off a row is no longer cut at 11em. */
+  .he-text > .wb > .g > .g-pcs { display: flex; white-space: normal; max-width: 100%; }
+  .he-text > .wb > .g > .g-pcs > .g-pc { flex: none; }
+  .he-text > .wb > .g > .g-pcs > .g-pc.long { flex: 0 1 auto; white-space: normal; min-width: 0; overflow-wrap: anywhere; }
   body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
   body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
   body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
