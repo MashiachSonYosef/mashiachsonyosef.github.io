@@ -5,8 +5,10 @@
 // concordance", "see how many r pills i can find for bara? it should all be
 // in the blue english dropdown"). Dictionary store v1.1 (Moses,
 // FOR-ELIJAH-v79), baked by tools/bake-dictionary-store-v1.mjs.
-//   D1  the pill stands beside the readers' pills, off; with it off a card is
-//       the card (its readings showing, no table)
+//   D1  the pill stands beside the readers' pills, off by default and saying
+//       nothing more (the owner, 2026-10-18: "we default off so that already
+//       says that"); with it off a card is the card (its readings showing, no
+//       table)
 //   D2  with it on, a word's card keeps its head and opens to a table of one
 //       row: the card's pressed pill, which is the store's reading at this
 //       place from the source that reads it (TAHOT first), naming its source
@@ -119,13 +121,13 @@ const storeHere = () => p.evaluate(async () => {
 });
 
 // D1: off by default, and a card is the card
-const pill0 = await p.evaluate(() => { const x = document.getElementById("dictPill"); return x ? { on: x.classList.contains("on"), state: (document.getElementById("dictState") || {}).textContent, label: x.textContent.trim(), inRow: !!x.closest("#modeRow") } : null; });
+const pill0 = await p.evaluate(() => { const x = document.getElementById("dictPill"); return x ? { on: x.classList.contains("on"), state: (document.getElementById("dictState") || {}).textContent, label: x.textContent.trim(), pressed: x.getAttribute("aria-pressed"), inRow: !!x.closest("#modeRow") } : null; });
 await tap(0); const plain = await waitFor("#hud .r-pills button");
 const off = await p.evaluate(() => { const hud = document.getElementById("hud"); const rows = hud.querySelector(":scope > .rows");
   return { dict: hud.classList.contains("dict"), tab: !!hud.querySelector(".dict-tab"), rows: rows ? getComputedStyle(rows).display : "none", vis: [...hud.querySelectorAll(":scope > .rows .r-pills button")].some((x) => x.offsetParent !== null) }; });
 await esc();
 check("D1  the concordance pill stands beside the readers' pills, off; with it off a card is the card, its readings showing and no table",
-  !!pill0 && pill0.inRow && !pill0.on && pill0.state === "off" && pill0.label === "concordance" && plain && !off.dict && !off.tab && off.rows !== "none" && off.vis, JSON.stringify({ ...pill0, ...off }));
+  !!pill0 && pill0.inRow && !pill0.on && pill0.state === "" && pill0.pressed === "false" && pill0.label === "concordance hud" && plain && !off.dict && !off.tab && off.rows !== "none" && off.vis, JSON.stringify({ ...pill0, ...off }));
 
 // D2: on, a word's card opens to its one row; find a word whose reading here
 // stands at two places or more, with a dropdown of more than one pill

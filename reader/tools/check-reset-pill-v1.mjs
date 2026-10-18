@@ -1,14 +1,18 @@
 // THE RESET PILL (the owner, 2026-10-18: "maybe we need a reset to default
-// toggling button", a pill in the toggles row).
-//   R1  the pill stands in the toggles row, says "default" and is not
-//       pressable while nothing is picked
+// toggling button", a pill in the toggles row; "it would be: english toggle
+// off, blobs off, numbers on, concordance off").
+//   R1  the pill stands in the toggles row; it says "default" and cannot be
+//       pressed only while the switches stand at their default and nothing
+//       is picked
 //   R2  a reading pressed on a word's card moves the word's line, and the
 //       pill counts the pick
 //   R3  reset forgets it: the card closes, every line drawn on the page is
 //       the line it opened as, and the pill says "default" again
-//   R4  the switches in the row keep their settings over a reset
+//   R4  reset puts the switches at their default: the English reader off,
+//       blobs off, card numbering on, the concordance hud off, whatever they
+//       stood at
 //   R5  with the concordance on, a pick from its dropdown is counted too, and
-//       reset puts that line back as well
+//       reset puts that line back as well, and the concordance off
 //   R6  the book's title word, which stands outside the sections, goes back
 //       too, its chosen mark with it
 // The words are found on the page, never named here (check-scope-derived S1).
@@ -57,9 +61,12 @@ const pickOnCard = async (from = 0) => {
   return null;
 };
 
-const p0 = await pill();
-check("R1  the pill stands in the toggles row, says \"default\" and cannot be pressed while nothing is picked",
-  !!p0 && p0.inRow && p0.disabled && p0.state === "default", JSON.stringify(p0));
+// the row's switches, as their pills say they stand
+const switches = () => p.evaluate(() => { const on = (id) => (document.getElementById(id) || { getAttribute: () => null }).getAttribute("aria-pressed") === "true"; return { en: on("modeEn"), blobs: on("blobPill"), nums: on("numsPill"), dict: on("dictPill") }; });
+const atDefault = (w) => !w.en && !w.blobs && w.nums && !w.dict;
+const p0 = await pill(), w0 = await switches();
+check("R1  the pill stands in the toggles row; it says \"default\" and cannot be pressed only while the switches stand at their default and nothing is picked",
+  !!p0 && p0.inRow && p0.disabled === atDefault(w0) && p0.state === (atDefault(w0) ? "default" : ""), `${JSON.stringify(p0)} · switches ${JSON.stringify(w0)}`);
 
 const first = await lines();
 const pk = await pickOnCard(0);
@@ -69,7 +76,9 @@ check("R2  a reading pressed on a word's card moves the word's line, and the pil
   !!pk && pk.after !== pk.before && pk.after.includes(pk.text) && !p1.disabled && /^1 picked$/u.test(p1.state),
   pk ? `"${pk.before}" -> "${pk.after}" · pill ${JSON.stringify(p1)}` : "no word offered another reading");
 
-const settingsBefore = await p.evaluate(() => [...document.querySelectorAll("#modeRow button[aria-pressed]")].map((x) => `${x.id}:${x.getAttribute("aria-pressed")}`).join(" "));
+// every switch away from its default before the press
+for (const [id, want] of [["modeEn", true], ["blobPill", true], ["numsPill", false]]) { const w = await switches(); const k = { modeEn: "en", blobPill: "blobs", numsPill: "nums" }[id]; if (w[k] !== want) { await p.click(`#${id}`); await p.waitForTimeout(400); } }
+const settingsBefore = await switches();
 await p.click("#resetPill"); await p.waitForTimeout(1500);
 const after = await lines();
 const p2 = await pill();
@@ -77,8 +86,11 @@ const hudOpen = await p.evaluate(() => !document.getElementById("hud").hidden);
 check("R3  reset forgets the pick: the card is closed, every line on the page is the line it opened as, and the pill says \"default\"",
   !!pk && same(first, after) && !hudOpen && p2.disabled && p2.state === "default",
   `${diff(first, after).slice(0, 3).join("; ") || "lines as first drawn"} · ${Object.keys(after).length} sections · pill ${JSON.stringify(p2)}`);
-const settingsAfter = await p.evaluate(() => [...document.querySelectorAll("#modeRow button[aria-pressed]")].map((x) => `${x.id}:${x.getAttribute("aria-pressed")}`).join(" "));
-check("R4  the switches in the row keep their settings over a reset", settingsBefore === settingsAfter, settingsAfter);
+const settingsAfter = await switches();
+const stored = await p.evaluate(() => { try { return { mode: localStorage.getItem("fh.mode"), nums: localStorage.getItem("fh.nums"), dict: localStorage.getItem("fh.dict") }; } catch { return null; } });
+check("R4  reset puts the switches at their default: the English reader off, blobs off, card numbering on, the concordance hud off",
+  settingsBefore.en && settingsBefore.blobs && !settingsBefore.nums && atDefault(settingsAfter) && !!stored && stored.mode === "he" && stored.nums === "on",
+  `before ${JSON.stringify(settingsBefore)} · after ${JSON.stringify(settingsAfter)} · kept ${JSON.stringify(stored)}`);
 
 // R5: the concordance's dropdown
 await p.click("#dictPill"); await p.waitForTimeout(200);
@@ -100,9 +112,9 @@ for (let i = 0; i < 30 && !r5; i += 1) {
   await p.click("#resetPill"); await p.waitForTimeout(1500);
   r5 = { before, text, moved, counted, back: await lines(), p3: await pill(), dict: await p.evaluate(() => document.getElementById("dictPill").getAttribute("aria-pressed")) };
 }
-check("R5  with the concordance on, a pick from its dropdown is counted, and reset puts the line back",
-  !!r5 && r5.moved.includes(r5.text) && /^1 picked$/u.test(r5.counted.state) && same(first, r5.back) && r5.p3.state === "default" && r5.dict === "true",
-  r5 ? `"${r5.before}" -> "${r5.moved}" · counted ${r5.counted.state} · after reset ${diff(first, r5.back).slice(0, 2).join("; ") || "lines as first drawn"} · concordance still ${r5.dict}` : "no dropdown pick found");
+check("R5  with the concordance on, a pick from its dropdown is counted, and reset puts the line back and the concordance off",
+  !!r5 && r5.moved.includes(r5.text) && /^1 picked$/u.test(r5.counted.state) && same(first, r5.back) && r5.p3.state === "default" && r5.dict === "false",
+  r5 ? `"${r5.before}" -> "${r5.moved}" · counted ${r5.counted.state} · after reset ${diff(first, r5.back).slice(0, 2).join("; ") || "lines as first drawn"} · concordance ${r5.dict === "true" ? "still on" : "off"}` : "no dropdown pick found");
 // R6: the title's word
 const titleNow = () => p.evaluate(() => { const wb = document.querySelector("#workTitle .he-t .wb"); if (!wb) return null; const g = wb.querySelector(":scope > .g"); const c = g ? g.cloneNode(true) : null; if (c) c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return { line: c ? c.textContent.trim() : "", chosen: wb.classList.contains("chosen") }; });
 let r6 = null;

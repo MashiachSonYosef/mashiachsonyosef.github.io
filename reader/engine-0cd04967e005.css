@@ -586,6 +586,7 @@
     background: var(--bg); border: 1px solid var(--line); border-radius: 0.7rem; padding: 0.55rem;
     box-shadow: var(--shadow-pop); display: grid; gap: 0.28rem; }
   #menuPick[hidden] { display: none; }
+  #layerCPick[hidden] { display: none; }
   #menuPick button { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; min-height: 2.05rem;
     border: 1px solid var(--line); border-radius: 0.4rem; background: var(--bg); color: var(--ink);
     font: inherit; font-size: 0.85rem; cursor: pointer; padding: 0.2rem 0.6rem; text-align: left; }
@@ -1091,12 +1092,13 @@
   /* THE SAME ROOM IN EVERY CELL (the owner, 2026-10-16, of a lone word beside
      a chain in the English reader: "there doesnt seem to be any reason the
      english would be heighted differently when both english and hebrew are
-     1 line each"). The 12px under a tied word's English, the blob's room,
-     stood only under tied cells, so the English of a bare word sat 12px
-     lower than its neighbor's while the Hebrew lines stayed level. Every
-     cell keeps the room now, tied or not: the English rows level, the
-     Hebrew rows level. */
-  body.en .he-text > .wb > .g, body.en .he-text .wjoin > .g.parts { margin-bottom: 12px; }
+     1 line each"), and that room none: the English stands right over its
+     Hebrew, as a run read whole stands (the owner, 2026-10-18, of "the
+     Jewish people": "that one is the only correct spacing"). It was 12px
+     under every English, the blob's room; a blob is drawn from the boxes as
+     they stand, so it closes up with them. The English rows stay level, and
+     the Hebrew rows. */
+  body.en .he-text > .wb > .g, body.en .he-text .wjoin > .g.parts { margin-bottom: 0; }
   .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
   .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
   /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
@@ -1232,6 +1234,19 @@
   body.en .wb, body.en .wjoin { vertical-align: bottom; }
   body.en .wb.active .g { background: none; }
 
+  #searchBox { margin-top: 0.75rem; }
+  #searchIn { width: 100%; box-sizing: border-box; font: inherit; font-size: 1rem; padding: 0.5rem 0.9rem; border: 1px solid var(--gold); border-radius: 1.4rem; background: var(--bg); color: var(--ink); }
+  #searchIn:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; }
+  #searchOut { margin-top: 0.4rem; border: 1px solid var(--line); border-radius: 0.8rem; background: var(--bg); padding: 0.4rem 0.7rem; max-height: 60vh; overflow: auto; }
+  #searchOut .lab { font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--argaman); margin: 0.35rem 0 0.15rem; }
+  #searchOut button.hit { all: unset; cursor: pointer; display: grid; grid-template-columns: auto 1fr; gap: 0.1rem 0.7rem; align-items: baseline; padding: 0.35rem 0; border-bottom: 1px dotted var(--line); width: 100%; box-sizing: border-box; }
+  #searchOut button.hit:focus-visible, #searchOut button.more:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  #searchOut .he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); font-size: 1.25rem; direction: rtl; }
+  #searchOut .meta { font-size: 0.78rem; color: var(--muted); }
+  #searchOut .rd { color: var(--tekhelet); font-size: 0.85rem; grid-column: 2; }
+  #searchOut .note { font-size: 0.78rem; color: var(--muted); font-style: italic; padding: 0.3rem 0; margin: 0; }
+  #searchOut button.more { all: unset; cursor: pointer; display: block; margin: 0.4rem 0 0.2rem; font-size: 0.8rem; color: var(--argaman); }
+  #searchOut button.more::after { content: " \25BE"; color: var(--gold-dim); }
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
   /* the rail: the page's toggles as one control block (see the header) */
   /* the cloth shows through it: the panel's lightest tone stood out as the
@@ -1810,15 +1825,25 @@
      of its own — a commentator is one more voice on the card, not a louder
      kind of thing than the catalog it sits beside. */
   .wb { position: relative; }
-  /* THE CARD'S NUMBER ON THE PAGE (the numbers pill): small, in the card's
-     top corner, the card head's gold, with the arrow the way this reader
-     reads; drawn only while the pill is on */
-  .cn { position: absolute; top: 0.05rem; inset-inline-start: 0.22rem; font: 0.56rem/1 Georgia, serif; letter-spacing: 0.04em; color: var(--gold); pointer-events: none; user-select: none; z-index: 2; }
-  .cn::after { content: " \25C2"; }
+  /* THE CARD'S NUMBER ON THE PAGE (card numbering): small, the card head's
+     gold, with the arrow the way this reader reads; drawn only while the pill
+     is on. Every card wears its own number, a run's words each theirs, at
+     the card's left edge, at the top of its letters (the owner, 2026-10-18:
+     "each card should get its own number, no 3-4, and id not add extra
+     space"; of the run card so drawn, "this card is how they all should
+     look"; "id move it furrher left a tad"). It stands in the card's column
+     just before the letters, as tall as nothing, so it takes no room, and
+     over a blob's fill and under the letters. It stood in the card's top corner, where a run's
+     blob rises over the letters and ran into it. The number is written left
+     to right in itself. */
+  .cn { display: block; order: 1; align-self: self-start; height: 0; position: relative; z-index: 1; direction: ltr; unicode-bidi: isolate; white-space: nowrap; font: 0.56rem/1 Georgia, serif; letter-spacing: 0.04em; color: var(--gold); pointer-events: none; user-select: none; }
+  body.en .cn { order: 2; }
+  /* where it meets the letters (a lamed's flag, an accent over the first
+     letter) the letters are drawn over it: the ink is lifted above it */
+  body.nums .he-text .wb:not(.mark) > .w { position: relative; z-index: 2; }
+  .cn::before { content: "\25C2\00a0"; }
+  body.en .cn::before { content: none; }
   body.en .cn::after { content: " \25B8"; }
-  /* the English reader prints the reading above the letters, so the number
-     moves to the card's bottom corner, under the letters */
-  body.en .cn { top: auto; bottom: 0.12rem; }
   body:not(.nums) .cn { display: none; }
   /* A commentary handle standing in the line of the verse, after the words it
      covers. It is inline, so it reads as part of the line; what it opens is
