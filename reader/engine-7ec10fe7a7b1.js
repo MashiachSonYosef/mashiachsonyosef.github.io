@@ -1703,7 +1703,7 @@
   // card parked out of the way would jump back the moment the next word was
   // tapped, which is the whole thing being fixed.
   const closeHud = (release = true) => {
-    hud.hidden = true; hud.replaceChildren();
+    hud.hidden = true; hud.replaceChildren(); hud.classList.remove("dict");
     hudGen += 1;
     redrawReadings = null;
     // a hidden card that keeps its pop replays it the moment it is shown
@@ -3091,11 +3091,16 @@
     // it stand anywhere else.
     if (hudAnchor && hudAnchor.isConnected) {
       const newTop = Math.max(pad, Math.min(top, window.innerHeight - h - pad));
-      const a = hudAnchor.getBoundingClientRect();
+      // the word's whole block and the gold box it wears while its card is
+      // open (4.5px): a ruling lays the block as the page draws it (one paint
+      // path, 2026-10-17), so its line can re-wrap under a card already
+      // placed, and a card that stood 1px off the block lost its tether
+      const a = ((hudAnchor.closest && hudAnchor.closest(".wb")) || hudAnchor).getBoundingClientRect();
+      const BOX = 4.5;
       // a card standing above its word that grew downward reaches the word
       // without the clamp moving it at all (2026-10-08), so any card that
       // would stand on its word is placed again under the whole law
-      if (a.bottom > newTop + 0.5 && a.top < newTop + h - 0.5) { placeHud(); return; }
+      if (a.bottom + BOX > newTop + 0.5 && a.top - BOX < newTop + h - 0.5) { placeHud(); return; }
     }
     hud.style.top = `${Math.max(pad, Math.min(top, window.innerHeight - h - pad))}px`;
     hud.style.left = `${Math.max(pad, Math.min(left, window.innerWidth - w - pad))}px`;
@@ -3254,7 +3259,16 @@
     if (!rs.length) return;
     const a = { left: Math.min(...rs.map((r) => r.left)), top: Math.min(...rs.map((r) => r.top)),
       right: Math.max(...rs.map((r) => r.right)), bottom: Math.max(...rs.map((r) => r.bottom)) };
-    const h = hud.getBoundingClientRect();
+    let h = hud.getBoundingClientRect();
+    // A card placed above its word is placed 8px clear of it, then grows a
+    // few pixels as its bands settle on their rows (snapBands), and can come
+    // to stand on the word's gold box: no tether can be drawn then, and the
+    // box runs under the card's edge. It is lifted clear again, never down
+    // onto the word, and a card the reader has moved is the reader's.
+    if (!hudMoved && h.top < a.top && h.bottom > a.top - OUT) {
+      const t = parseFloat(hud.style.top) || 0, lift = h.bottom - (a.top - OUT) + 1;
+      if (t - lift >= 8) { hud.style.top = `${t - lift}px`; h = hud.getBoundingClientRect(); }
+    }
     const f = frustumFor(a, h);
     const key = f ? f.lines.map((l) => l.map(Math.round).join(",")).join(";") : "-";
     if (key === tetherKey) return;
@@ -4042,6 +4056,297 @@
       return !(gm && Array.isArray(gm.by) && gm.by.length && gm.by.some((id) => sourcesOff.has(id)));
     });
   };
+  // THE DICTIONARY TABLE (the dictionary pill; dictionary store v1.1, Moses,
+  // FOR-ELIJAH-v79). With the pill on, a word's card keeps its head and
+  // opens to a table of one row: the exact reading the line stands on, as
+  // the card's own R pill (the owner, 2026-10-18: "this can just be the R
+  // pills we already have"; "you only need the 1 r pill showing, the rest
+  // would be drop downs from that"). Under it, open, every place that exact
+  // reading stands, each a link with its verse. The pill opens the other
+  // readings the line's source gives at a place with these letters; a pick
+  // becomes the row with its own places, and presses the card's pill of the
+  // same words where the card has one, so a pick takes the card's one path. Exact is byte equality (the owner: "just he created
+  // places, not close"). The headers sort, as a sheet does. Nothing here is
+  // the site's own voice: the readings, the entries and the places are the
+  // sources' and the lane's, the order and the counts are arithmetic.
+  const DICT = {
+    pref: (() => { const q = QUERY.get("dict"); if (q === "on" || q === "off") return q; try { return localStorage.getItem("fh.dict") === "on" ? "on" : "off"; } catch { return "off"; } })(),
+    ixP: null, shards: new Map(), booksP: null, zones: new Map(),
+  };
+  const dictOn = () => DICT.pref === "on";
+  // the LETTERS KEY v1.1: the canonical decomposition, its letters alone
+  const lettersOf = (s) => [...String(s || "").normalize("NFD")].filter((c) => { const n = c.codePointAt(0); return n >= 0x5d0 && n <= 0x5ea; }).join("");
+  const dictIndex = () => DICT.ixP || (DICT.ixP = fetch(`${ROOT}data/dictionary-store/index.json`, { cache: "no-cache" })
+    .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return r.json(); })
+    .catch((e) => { DICT.ixP = null; throw e; }));
+  // a shard that did not arrive is not an empty shard: it leaves the cache
+  const dictKey = async (key) => {
+    const ix = await dictIndex();
+    const hex = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key)))[0].toString(16).padStart(2, "0");
+    if (!DICT.shards.has(hex)) DICT.shards.set(hex, fetch(`${ROOT}data/dictionary-store/shards/${hex}.bin?v=${ix.store_version}`)
+      .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return unpack(r); })
+      .catch((e) => { DICT.shards.delete(hex); throw e; }));
+    const data = await DICT.shards.get(hex);
+    return { ix, v: data ? data[key] || null : null };
+  };
+  // the books' names as the grouping record gives them, and their order
+  const dictBooks = () => DICT.booksP || (DICT.booksP = Promise.all([
+    fetch(`${ROOT}data/book-grouping-v1.json`).then((r) => r.json()),
+    fetch(`${ROOT}data/book-order-v1.json`).then((r) => r.json()),
+  ]).then(([g, o]) => {
+    const names = {}; for (const gr of g.groups || []) for (const f of gr.file_names || []) names[f.file] = f.en;
+    return { names, order: o.files || [] };
+  }).catch((e) => { DICT.booksP = null; throw e; }));
+  // a place's address: the book's own page on the site, the bare reader here
+  // (a ?dict= the page was opened with rides along, so the page reached
+  // opens the same way)
+  const dictHref = (book, ref, w) => {
+    const dq = QUERY.get("dict") === "on" || QUERY.get("dict") === "off" ? QUERY.get("dict") : "";
+    return META("reader-book")
+      ? `/${book}/${String(ref).split(":")[0]}/${dq ? `?dict=${dq}` : ""}#${ref}:${w}`
+      : `${location.pathname}?b=${encodeURIComponent(book)}${dq ? `&dict=${dq}` : ""}#${ref}:${w}`;
+  };
+  const dictLic = (posture) => {
+    const row = POSTURES && POSTURES.postures && POSTURES.postures[posture];
+    const c = document.createElement("span"); c.className = "lic"; c.textContent = row ? row.name : String(posture || "");
+    return c;
+  };
+  const renderDictTab = async (k, site, gen) => {
+    hud.classList.add("dict");
+    const tab = document.createElement("div"); tab.className = "dict-tab";
+    const say = (t) => { const p = document.createElement("p"); p.className = "note"; p.textContent = t; tab.replaceChildren(p); };
+    say("asking the dictionary store\u2026");
+    hud.append(tab);
+    const key = lettersOf(k);
+    let got = null, books = null;
+    try { [got, books] = await Promise.all([dictKey(key), dictBooks()]); }
+    catch { if (gen === hudGen) say("the dictionary store did not answer; close the card and open it again"); return; }
+    if (gen !== hudGen) return;
+    const { ix, v } = got;
+    const name = (b) => books.names[b] || b;
+    const at = (p) => { const [c, vs] = String(p.ref).split(":").map(Number); return books.order.indexOf(p.book) * 1e8 + c * 1e5 + vs * 100 + p.w_page; };
+    const hereW = site && site.wordOf ? site.numberOf(site.wordOf) : 0;
+    const isHere = (p) => !!site && p.book === BOOK && p.ref === site.ref && p.w_page === hereW;
+    const hereLabel = site ? `${name(BOOK)} ${site.ref}:${hereW}` : "";
+    // the way back: this place's address (a page the store holds no book
+    // for, such as a demonstration page, is its own address)
+    const backHref = !site ? location.href
+      : books.order.includes(BOOK) ? dictHref(BOOK, site.ref, hereW)
+      : `${location.pathname}${location.search}#${site.ref}:${hereW}`;
+    // THE ROWS FOLLOW THE LINE'S SOURCE (the owner, 2026-10-18, of "he
+    // created" 4 and "created" 7: "how do we reconcile the 4 vs the 7").
+    // TAHOT translates each place in its sentence, MACULA glosses the word,
+    // so MACULA's seven are TAHOT's 4 + 1 + 1 + 1 at the same places. The
+    // rows are TAHOT's readings, the line's own; what MACULA reads stands
+    // inside each place. A word TAHOT gives nothing for is read by MACULA.
+    // The lead is the source that reads this place, TAHOT first; where
+    // neither reads it, TAHOT if it reads these letters anywhere.
+    const all = (v && v.readings) || [];
+    const lead = ["tahot", "macula"].find((s2) => all.some((g) => g.src === s2 && g.places.some(isHere)))
+      || (all.some((g) => g.src === "tahot") ? "tahot" : "macula");
+    const placeKey = (q) => `${q.book}|${q.ref}|${q.w_page}|${q.side || ""}`;
+    const besideAt = new Map();
+    for (const g of all) if (g.src !== lead) for (const q of g.places) {
+      const k2 = placeKey(q); if (!besideAt.has(k2)) besideAt.set(k2, []); besideAt.get(k2).push(g.reading);
+    }
+    const beside = ix.readings_sources[lead === "tahot" ? "macula" : "tahot"] || {};
+    const rows = all.filter((g) => g.src === lead).map((g) => {
+      const here = g.places.find(isHere);
+      return { g, here: !!here, pointed: (here || g.places[0] || {}).pointed || "", first: g.places.length ? Math.min(...g.places.map(at)) : Infinity };
+    });
+    if (!rows.length) { say("no per-place source gives a reading at a place with these letters"); return; }
+    const table = document.createElement("table");
+    const head = document.createElement("tr");
+    let sort = "text";
+    const sorts = [["text", "hebrew"], ["az", "reads"], ["count", "places"]];
+    const body = document.createElement("tbody");
+    // the card's own R pills, read when pressed (the card's readings arrive
+    // after its head, and the table may stand before they do)
+    // (the card prints a divided reading joined, spanJoin: "in/ beginning"
+    // is its pill "in + beginning", so both sides are read that way)
+    const cardPill = (text) => [...hud.querySelectorAll(":scope > .rows .r-pills button")].find((x) => x.textContent.trim() === spanJoin(text)) || null;
+    const mirror = () => {
+      for (const x of tab.querySelectorAll(".r-pills button")) {
+        const c = cardPill(x.dataset.reading || x.textContent.trim());
+        x.classList.toggle("off-card", !c);
+        x.setAttribute("aria-pressed", c ? c.getAttribute("aria-pressed") || "false" : "false");
+      }
+    };
+    const verseOf = (z, ref, w) => {
+      const sec = z && (z.sections || []).find((x) => x.label === ref);
+      if (!sec) return null;
+      const out = document.createElement("div"); out.className = "ex-he";
+      let n = 0;
+      for (const word of sec.words) {
+        if (!word.mark) n += 1;
+        const sp = document.createElement("span"); sp.textContent = word.s;
+        if (!word.mark && n === w) sp.className = "hit";
+        out.append(sp);
+        if (!String(word.s).endsWith("\u05be")) out.append(" ");
+      }
+      return out;
+    };
+    const exSeen = "IntersectionObserver" in window ? new IntersectionObserver((seen) => {
+      for (const e of seen) {
+        if (!e.isIntersecting) continue;
+        const ex = e.target; exSeen.unobserve(ex);
+        const book = ex.dataset.book;
+        let zp = book === BOOK ? Promise.resolve(zone) : DICT.zones.get(book);
+        if (!zp) zp = fetchBin(book).catch((err) => { DICT.zones.delete(book); throw err; });
+        // the last three books read stay; an older one is read again if asked
+        if (book !== BOOK) { DICT.zones.delete(book); DICT.zones.set(book, zp); while (DICT.zones.size > 3) DICT.zones.delete(DICT.zones.keys().next().value); }
+        zp.then((z) => { if (gen !== hudGen) return; const v2 = verseOf(z, ex.dataset.ref, Number(ex.dataset.w)); if (v2) ex.replaceChildren(v2); })
+          .catch(() => { /* the address still leads there */ });
+      }
+    }, { root: tab }) : null;
+    // every place that exact reading stands, each a link; this place, said
+    const PAGE = 50;
+    const placesOf = (g) => {
+      const box = document.createElement("div");
+      const list = [...g.places].sort((a, b) => (isHere(b) - isHere(a)) || at(a) - at(b));
+      const more = document.createElement("button"); more.type = "button"; more.className = "dd more";
+      let shown = 0;
+      const step = () => {
+        for (const p of list.slice(shown, shown + PAGE)) box.insertBefore(itemOf(p), more);
+        shown = Math.min(list.length, shown + PAGE);
+        if (shown < list.length) more.textContent = `${list.length - shown} more`; else more.remove();
+      };
+      more.addEventListener("click", (e) => { e.stopPropagation(); step(); });
+      box.append(more);
+      step();
+      return box;
+    };
+    const itemOf = (p) => {
+      const it = document.createElement("div"); it.className = "item";
+      const label = `${name(p.book)} ${p.ref}:${p.w_page}${p.side ? ` (${p.side === "k" ? "as written" : "as read"})` : ""}`;
+      if (isHere(p)) { it.append(`here \u00b7 ${label}`); }
+      else {
+        const a = document.createElement("a"); a.href = dictHref(p.book, p.ref, p.w_page); a.textContent = label;
+        a.addEventListener("click", () => { try { localStorage.setItem("fh.dict.back", JSON.stringify({ href: backHref, label: hereLabel })); } catch { /* the jump still works; the way back is the browser's */ } });
+        it.append(a);
+      }
+      const other = besideAt.get(placeKey(p));
+      if (other && other.length) {
+        const o = document.createElement("div"); o.className = "who";
+        o.append(`${(SHORT_REC && SHORT_REC.names && SHORT_REC.names[beside.key]) || beside.label || ""}: `);
+        const t = document.createElement("span"); t.className = "rd"; t.textContent = other.join(" \u00b7 ");
+        o.append(t, dictLic(beside.licence));
+        it.append(o);
+      }
+      // the verse around it, as the book's own pinned text gives it, read
+      // when the place comes into view
+      const ex = document.createElement("div"); ex.className = "ex"; ex.dataset.book = p.book; ex.dataset.ref = p.ref; ex.dataset.w = String(p.w_page);
+      it.append(ex);
+      if (exSeen) exSeen.observe(ex);
+      return it;
+    };
+    // the readings in the order the headers ask: this place's first, then
+    // where each first stands in the books' order; A to Z; by count
+    const order = () => {
+      const list = [...rows];
+      if (sort === "az") list.sort((a, b) => spanJoin(a.g.reading).localeCompare(spanJoin(b.g.reading)) || a.first - b.first);
+      else if (sort === "count") list.sort((a, b) => b.g.count - a.g.count || a.first - b.first);
+      else list.sort((a, b) => (b.here - a.here) || a.first - b.first);
+      return list;
+    };
+    // the one row: what the reader picked here, else the card's pressed
+    // reading, else this place's. Its places stand open: the pill is
+    // selected, so its passages are already showing (the owner, 2026-10-18:
+    // "its already expanded by way of that r pill being selected").
+    let chosen = null, picked = false, open = "places";
+    const pressedRow = () => {
+      const c = hud.querySelector(':scope > .rows .r-pills button[aria-pressed="true"]');
+      const t = c ? c.textContent.trim() : "";
+      return rows.find((r) => spanJoin(r.g.reading) === t) || null;
+    };
+    const choose = () => (picked && chosen) || pressedRow() || rows.find((r) => r.here) || null;
+    const pressCard = (reading) => { const c = cardPill(reading); if (c && c.getAttribute("aria-pressed") !== "true") c.click(); };
+    const pill = (reading) => {
+      const pills = document.createElement("div"); pills.className = "r-pills";
+      const x = document.createElement("button"); x.type = "button"; x.textContent = spanJoin(reading); x.dataset.reading = reading; x.setAttribute("aria-pressed", "false");
+      pills.append(x);
+      return [pills, x];
+    };
+    // the other readings, each its R pill and its count; a pick becomes the row
+    const readsOf = (others) => {
+      const box = document.createElement("div");
+      for (const x of others) {
+        const it = document.createElement("div"); it.className = "item opt";
+        const [ps, ob] = pill(x.g.reading);
+        ob.addEventListener("click", (e) => { e.stopPropagation(); chosen = x; picked = true; open = "places"; pressCard(x.g.reading); paint("pill"); });
+        const c = document.createElement("span"); c.className = "who"; c.textContent = `${x.g.count} location${x.g.count === 1 ? "" : "s"}`;
+        it.append(ps, c);
+        box.append(it);
+      }
+      return box;
+    };
+    // a rebuilt row keeps the reader's place on the keyboard
+    const paint = (focus = null) => {
+      const ae = document.activeElement;
+      const f = focus || (ae && body.contains(ae) ? (ae.classList.contains("dd") && !ae.classList.contains("more") ? "dd" : "pill") : null);
+      const r = chosen = choose();
+      const others = order().filter((x) => x !== r);
+      const sub = document.createElement("tr"); sub.className = "sub";
+      const cell = document.createElement("td"); cell.colSpan = 3; sub.append(cell);
+      if (!r) {
+        const tr = document.createElement("tr"); tr.className = "pick none";
+        const td = document.createElement("td"); td.colSpan = 3; td.className = "note";
+        td.textContent = "no source in the store reads this place; these letters read elsewhere as";
+        tr.append(td);
+        sub.classList.add("reads"); cell.append(readsOf(others));
+        body.replaceChildren(tr, sub);
+        mirror();
+        const first = cell.querySelector("button");
+        if (f && first) first.focus({ preventScroll: true });
+        return;
+      }
+      const src = ix.readings_sources[r.g.src] || {};
+      const tr = document.createElement("tr"); tr.className = r.here ? "pick here" : "pick";
+      const he = document.createElement("td"); he.className = "he"; he.textContent = r.pointed;
+      const rd = document.createElement("td");
+      const [pills, rb] = pill(r.g.reading);
+      if (others.length) rb.setAttribute("aria-expanded", String(open === "reads"));
+      rb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!others.length) { pressCard(r.g.reading); requestAnimationFrame(mirror); return; }
+        open = open === "reads" ? "places" : "reads"; paint("pill");
+      });
+      const who = document.createElement("div"); who.className = "who"; who.append((SHORT_REC && SHORT_REC.names && SHORT_REC.names[src.key]) || src.label || r.g.src, dictLic(src.licence));
+      rd.append(pills, who);
+      const n = document.createElement("td");
+      const nb = document.createElement("button"); nb.type = "button"; nb.className = "dd"; nb.textContent = `${r.g.count} location${r.g.count === 1 ? "" : "s"}`; nb.setAttribute("aria-expanded", String(open === "places"));
+      nb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "places" ? null : "places"; paint("dd"); });
+      n.append(nb);
+      tr.append(he, rd, n);
+      if (open === "reads" && others.length) { sub.classList.add("reads"); cell.append(readsOf(others)); }
+      else if (open === "places") cell.append(placesOf(r.g));
+      else sub.hidden = true;
+      body.replaceChildren(tr, sub);
+      mirror();
+      if (f) (f === "dd" ? nb : rb).focus({ preventScroll: true });
+    };
+    for (const [id, label] of sorts) {
+      const th = document.createElement("th");
+      const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.dataset.sort = id;
+      b.setAttribute("aria-pressed", String(id === sort));
+      b.addEventListener("click", (e) => { e.stopPropagation(); sort = id; if (rows.length > 1) open = "reads"; head.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.sort === sort))); paint(); });
+      th.append(b); head.append(th);
+    }
+    const thead = document.createElement("thead"); thead.append(head);
+    table.append(thead, body);
+    tab.replaceChildren(table); paint();
+    // the card's pills arrive and change under the table: it follows them
+    const cardRows = hud.querySelector(":scope > .rows");
+    if (cardRows) {
+      let queued = false;
+      const mo = new MutationObserver(() => {
+        if (gen !== hudGen) { mo.disconnect(); return; }
+        if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; if (!picked && choose() !== chosen) paint(); else mirror(); }); }
+      });
+      mo.observe(cardRows, { childList: true, subtree: true, attributes: true, attributeFilter: ["aria-pressed"] });
+    }
+    placeHud();
+  };
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
     closeHud(false);
     const myGen = ++hudGen;
@@ -4693,38 +4998,31 @@
     const markRuled = () => { ruled = true; if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands"; };
     if (opts.run && opts.run.on && cover.length > 1 && cutKey(cover) === opts.run.on && mem.cut !== opts.run.on) { mem.cut = opts.run.on; markRuled(); }
 
-    // The page's own reading is printed whole — that is why the ellipsis came
-    // off. But a reading the reader chooses can be longer than the one the
-    // page painted, and letting the line grow would move every Hebrew word
-    // below it. So the moment before a word's reading is first changed, its
-    // box is fixed at the height it was painted at, and it grows below only
-    // when what it now says needs the room.
-    // NO CLAMP. The box used to turn into a -webkit-box clamped to its painted
-    // lines, and that display sizes its own width differently from the block
-    // it replaced: "in + beginning", which painted on one line, re-wrapped
-    // inside the narrower box the moment its word was pressed and printed as
-    // "in + beginni…", and on a phone the cut line spilled over the
-    // license chip. The ellipsis stayed after the card closed (the owner,
-    // 2026-10-03, Genesis 1:1 and 1:2). The display is never changed now.
-    const holdAndPaint = (box, lineIn, chipIn = null) => {
+    // ONE PAINT PATH (the owner, 2026-10-17, of the cells after a pick: "the
+    // default serve is specialized or hand selected and in the systems after
+    // you dive in such as selected gloss it immediately relies on the actual
+    // pipeline and isnt tailored the same way as the default ... what about
+    // all cards sizing after selected gloss changes"). Asked whether a picked
+    // cell keeps its width or sizes as the page draws it at load, the owner
+    // chose "Same as default". So a ruling holds nothing: the cell is the cell
+    // the page draws for that reading, and its line re-wraps once, at the
+    // pick. Retired with it: the width and height held since 2026-08-29 so
+    // that nothing beside a ruling moved, the grow by lines, and the column
+    // measure of a split row (the stylesheet caps a row at the text's column
+    // for both paths now). An open that painted the same words back held its
+    // cell too, and a later switch painted into the frozen box: "night" at
+    // Genesis 1:5, under the headword lookup, wrapped in 57.8px and clipped.
+    // NO CLAMP, as before: the box's display is never changed (2026-10-03,
+    // "in + beginni…" cut inside a clamped box at Genesis 1:1).
+    const paintRuling = (box, lineIn, chipIn = null) => {
       // signs off: the card paints the line as the page does, its sign-only
       // pieces undrawn ("<obj.>" stood back on the object marker's line the moment its card
       // opened, the owner, 2026-10-03)
       const line = signsOffLine(lineIn);
-      if (!box.style.height) {
-        const h = box.getBoundingClientRect().height;
-        if (h) box.style.height = `${h}px`;
-      }
-      // The height alone was not the whole promise: a wider reading widens
-      // its word's box up to the reading's own cap, and one word widening
-      // re-wraps every line after it. The word's box is held at the width it
-      // painted at, so a ruling repainted at a hundred places moves none of
-      // them.
+      // a size held by an earlier page is let go
       const host = box.closest(".wb");
-      if (host && !host.style.width) {
-        const w = host.getBoundingClientRect().width;
-        if (w) host.style.width = `${w}px`;
-      }
+      box.style.height = "";
+      if (host) host.style.width = "";
       // The license chip stays with a reading that has not changed: an open
       // that paints the same words back was dropping the chip with them, and
       // the reading and its license are never to separate (owner, 2026-08-30).
@@ -4737,56 +5035,10 @@
       // (ruledChip); the same words back keep the chip they had
       if (chipIn && String(line).trim()) box.append(chipIn);
       else if (chip && was === String(line).trim()) box.append(chip);
-      // A SPLIT READING IS LAID AS ITS ROW BEFORE THE BOX IS MEASURED (the
-      // owner, 2026-10-17, of "and + plowshare" at Genesis 1:1: "selecting
-      // plowshare glitched out the shading and width"). The box was grown by
-      // the lines its plain text wrapped to in the held width, and 60 ms
-      // later the row was laid (drawWordTie): a row never wraps, since a tie
-      // runs to each piece, so it ran past the cell into its neighbors and
-      // the box kept two lines nobody filled, its shading standing out of
-      // the row. So the row is laid now, and where it is wider than the held
-      // width the cell takes the row's width, the one way a cell widens
-      // (.g:has(> .g-pcs) { max-width: none }, 2026-10-10); a reading in one
-      // piece keeps its width held, as ever.
-      if (host && host.matches(".he-text > .wb") && !box.closest(".wjoin") && String(line).trim()) {
-        const row = pieceLine(box, host.__word);
-        box.classList.remove("g-pcs-wrap");
-        if (row) {
-          const cs = getComputedStyle(host);
-          const pad = ["paddingLeft", "paddingRight", "borderLeftWidth", "borderRightWidth"].reduce((t, k) => t + (parseFloat(cs[k]) || 0), 0);
-          const need = Math.ceil(box.getBoundingClientRect().width + pad);
-          // never wider than the text's own column: there the row keeps its
-          // pieces side by side, a tie to each, and the long piece wraps in
-          // its own column, the box growing by its lines
-          const col = host.parentElement ? host.parentElement.clientWidth - (parseFloat(getComputedStyle(host).marginLeft) || 0) - (parseFloat(getComputedStyle(host).marginRight) || 0) : need;
-          const width = Math.min(need, Math.floor(col));
-          if (width > host.getBoundingClientRect().width + 0.5) host.style.width = `${width}px`;
-          if (need > width) box.classList.add("g-pcs-wrap");
-        }
-      }
-      // Shown whole outranks held still. The clamp above was settled for
-      // the line that painted first, and a ruled compspan reading joins its
-      // cells with " + " — longer than the gloss it replaced, and clipped
-      // by the old clamp to "both…": the reader's own ruling was the one
-      // reading the page refused to show. The box grows to fit what it now
-      // says — by whole lines, never shrinking back, its width still held
-      // so nothing re-wraps beside it. A reading costs its own word a few
-      // lines; it never costs the reader the reading.
-      if (box.style.height && box.scrollHeight > box.clientHeight + 1) {
-        // GROW TO WHAT IT SHOWS, MEASURED (2026-10-17). The lines were
-        // counted from the box's scroll height, and that height holds the
-        // box's padding too, so a reading two lines tall was given three: a
-        // ruled split reading at the start of Amos stood over a line nobody
-        // filled. Before that the count was made once and fell three pixels
-        // short at the second word of Genesis, since a box that grows
-        // re-wraps. So the box is let go for one measure, at the width it is
-        // held at, and takes the height its reading and its chip lay to,
-        // never less than the height it was held at.
-        const held = parseFloat(box.style.height) || 0;
-        box.style.height = "";
-        const whole = box.getBoundingClientRect().height;
-        box.style.height = `${Math.max(held, Math.ceil(whole))}px`;
-      }
+      // a split reading is laid as its row now, as the first paint's tie pass
+      // lays it, so the cell never stands for a moment as plain text the row
+      // then outgrows (the plowshare of 2026-10-17)
+      if (host && host.matches(".he-text > .wb") && !box.closest(".wjoin") && String(line).trim()) pieceLine(box, host.__word);
       // A word inside a maqaf run does not print its own reading — the run
       // prints them once, together. So a ruling repaints the word's hidden
       // element as it always did, and the run's line is made again from it.
@@ -4808,7 +5060,7 @@
           const t = textOfCell(c.surface);
           const own = mOfPick(memoryOf(c.surface).cells.get(c.surface));
           for (const st of standsOf.get(c.surface) || []) {
-            holdAndPaint(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : licenseChipFor([own]));
+            paintRuling(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : licenseChipFor([own]));
             st.wb.classList.add("chosen");
             if (j === cellIdx && selectedRecordRef.m) {
               st.wb.dataset.source = selectedRecordRef.m.label || "";
@@ -4832,7 +5084,7 @@
       if (!ruled) {
         // with the chip of the words it paints: opening a card may paint
         // other words (a pair's other half, the division the card opens on)
-        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts ? null : coverChip());
+        paintRuling(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts ? null : coverChip());
         // on a pair, the provenance mark follows the half that is open: the
         // English now reads from it, and both ends of the claim wear the mark
         if (opts.kqEls && regionIndex >= 0) {
@@ -4852,7 +5104,7 @@
       const ruledM = coverChip();
       for (const s of stands) {
         const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
-        holdAndPaint(s.glossEl, line, s.glossParts || !ruledM ? null : ruledM.cloneNode(true));
+        paintRuling(s.glossEl, line, s.glossParts || !ruledM ? null : ruledM.cloneNode(true));
         // a ruling on one half of a pair moves the provenance mark with it:
         // the English now reads from the ruled branch, everywhere it stands —
         // and the English wears the matching mark, the other end of the claim
@@ -4869,7 +5121,7 @@
       }
       // a tapped word outside the registry (a commentary word) still paints
       if (!stands.some((s) => s.glossEl === glossEl)) {
-        holdAndPaint(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts || !ruledM ? null : ruledM.cloneNode(true));
+        paintRuling(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts || !ruledM ? null : ruledM.cloneNode(true));
         const wbEl2 = glossEl.closest(".wb");
         if (wbEl2 && selectedRecordRef.m) {
           wbEl2.dataset.source = selectedRecordRef.m.label || "";
@@ -4961,6 +5213,8 @@
     // link, because nothing here opens
     const volSlot = document.createElement("div"); volSlot.className = "vol-slot";
     hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, partsSlot, hohSlot, volSlot, prov);
+    hud.classList.remove("dict");
+    if (dictOn() && bin === zone && region && region.k && !opts.run && regionIndex !== -1) renderDictTab(region.form_k || region.k, openSite, myGen);
     renderParts(partsSlot, bin === zone ? (opts.word || word) : null);
     renderHoh(hohSlot, region, opts.word || word);
     renderVolume(volSlot, bin === zone ? unitId : null);
@@ -6630,7 +6884,8 @@
       const pc = document.createElement("span"); pc.className = "g-pc" + (t.trim() === SIGN_GAP ? " gap" : ""); pc.textContent = t; row.append(pc);
     });
     // the piece that wraps when the row is wider than the text's column
-    // (holdAndPaint): the longest, so a short piece beside it keeps its line
+    // (the stylesheet's cap at the column): the longest, so a short piece
+    // beside it keeps its line
     const pcs = [...row.querySelectorAll(":scope > .g-pc")];
     const longest = pcs.reduce((a, x) => (x.textContent.length > a.textContent.length ? x : a), pcs[0]);
     if (longest) longest.classList.add("long");
@@ -8120,7 +8375,10 @@
       // ruling outranks every toggle (the precedence above), and a repaint
       // from the table painted the table back over it until the card was
       // opened again
-      const held = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss, st.word) : null;
+      // with its sign-only pieces undrawn, as the first paint draws it (a
+      // switch set "record + <obj.>" back over "record + <gap>")
+      const held0 = st.ks.length === 1 && st.word && st.word.k ? ruledLine(st.word.k, zone.gloss, st.word) : null;
+      const held = held0 === null ? null : signsOffLine(held0);
       if (held !== null) {
         const chip = ruledChip(st.word.k, zone.gloss, st.word);
         const run0 = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
@@ -9097,6 +9355,21 @@
   };
   numsPill.addEventListener("click", () => { numsPref = numsPref === "on" ? "off" : "on"; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); });
   paintNums();
+  const dictPill = document.getElementById("dictPill"), dictState = document.getElementById("dictState");
+  const paintDict = () => {
+    const on = dictOn();
+    dictPill.classList.toggle("on", on); dictPill.setAttribute("aria-pressed", String(on));
+    dictState.textContent = on ? "on" : "off";
+  };
+  dictPill.addEventListener("click", (e) => {
+    e.stopPropagation();
+    DICT.pref = dictOn() ? "off" : "on";
+    try { localStorage.setItem("fh.dict", DICT.pref); } catch { /* the choice still stands on this page */ }
+    paintDict();
+    // an open card is the other kind of card now: it is opened again
+    if (!hud.hidden && activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+  });
+  paintDict();
   if (QUERY.get("mode") === "en") setMode("en");
   else if (!QUERY.has("mode")) { try { if (localStorage.getItem(MODE_KEY) === "en") setMode("en"); } catch { /* a device that remembers nothing opens the Hebrew reader */ } }
   if (QUERY.get("chain") === "ltr") document.body.dataset.chain = "ltr";   // the preview above
@@ -11373,6 +11646,38 @@
   // about a window's height from where the link landed, measured on what
   // the link landed on, so the browser holding its place while sections fill
   // in does not count as reading on.
+  // THE WAY BACK FROM A DICTIONARY JUMP (the owner, 2026-10-17: "if we went
+  // that way wed need to consider adding a return button"; "agree keep it").
+  // A place followed from the table leaves its way back on this device; the
+  // page it lands on offers "Back to" it until it is tapped or another jump
+  // replaces it. The browser's own back does the same. A place in the same
+  // book is a jump within the page (the address's # alone), so the way back
+  // is offered on that jump too, not only when a page loads.
+  {
+    let mo = null;
+    const showDictBack = () => {
+      const old = document.getElementById("dictBack");
+      if (old) old.remove();
+      if (mo) { mo.disconnect(); mo = null; }
+      let back = null;
+      try { back = JSON.parse(localStorage.getItem("fh.dict.back") || "null"); } catch { back = null; }
+      const atOrigin = back && back.href && (() => { try { const u = new URL(back.href, location.href); return u.pathname === location.pathname && u.search === location.search && u.hash === location.hash; } catch { return false; } })();
+      if (!(back && back.href && back.label && !atOrigin)) return;
+      const b = document.createElement("button"); b.type = "button"; b.id = "dictBack";
+      b.textContent = `Back to ${back.label}`;
+      b.addEventListener("click", () => {
+        try { localStorage.removeItem("fh.dict.back"); } catch { /* gone with the page */ }
+        b.remove(); if (mo) { mo.disconnect(); mo = null; }
+        location.href = back.href;
+      });
+      b.hidden = !hud.hidden;
+      mo = new MutationObserver(() => { b.hidden = !hud.hidden; });
+      mo.observe(hud, { attributes: true, attributeFilter: ["hidden"] });
+      (document.getElementById("placeBack") || nav).after(b);
+    };
+    showDictBack();
+    window.addEventListener("hashchange", showDictBack);
+  }
   let placeBack = null, backGone = () => false;
   if (BAR_FOLLOWS && openAt && !landedKept && byLabel.has(spotKept) && verseChapterOf(spotKept) && verseChapterOf(spotKept) !== landedCh) {
     placeBack = document.createElement("button");

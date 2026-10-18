@@ -72,8 +72,9 @@ check("nothing is left ellipsising", he.clamp === "none", `line-clamp ${he.clamp
 // clipped to "both…" — the one reading on the page the page refused to
 // show. The law now (owner, 2026-08-29): shown whole outranks held still.
 // The box grows by whole lines — a reading costs its own word a few lines,
-// never the reader the reading — its width stays held so nothing re-wraps
-// beside it, and the vertical room it takes is the lawful cost.
+// never the reader the reading. Its width was held so nothing re-wrapped
+// beside it until 2026-10-17, when the owner chose "Same as default": a
+// ruled cell is the cell the page draws for that reading, one paint path.
 let before = await p.evaluate(() => ({
   docWidth: document.documentElement.scrollWidth,
   docHeight: document.body.scrollHeight,
@@ -140,9 +141,15 @@ const after = await p.evaluate((i) => {
 }, ruledIx);
 check("the ruled reading is shown whole — the box grows to fit what the reader chose",
   ruledIx >= 0 && !after.clipped, `${after.text} chars, none clipped`);
-check("its word's width is held, so nothing re-wraps beside it",
-  after.widthHeld && after.docWidth === before.docWidth,
-  `page ${before.docWidth}px wide → ${after.docWidth}px`);
+// The width held since 2026-08-29 so that nothing re-wrapped beside a ruling
+// is retired (the owner, 2026-10-17, "Same as default": a ruled cell is the
+// cell the page draws for that reading, one paint path). What stays is the
+// page: a ruling never makes it scroll sideways, and the cell holds no size
+// of its own (check-ruled-equals-first-paint-v1 compares it with the first
+// paint).
+check("its word sizes as the page draws it, holding no width of its own, and the page never scrolls sideways",
+  !after.widthHeld && after.docWidth === before.docWidth,
+  `page ${before.docWidth}px wide → ${after.docWidth}px · width held: ${after.widthHeld}`);
 check("the page grew only downward, the reading's own lawful cost",
   after.docHeight >= before.docHeight,
   `page ${before.docHeight} → ${after.docHeight}`);

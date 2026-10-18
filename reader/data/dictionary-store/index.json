@@ -1,0 +1,755 @@
+{
+ "rule": "dictionary-store-serve-v1-the-lanes-shards-byte-for-byte-a-card-reads-one-key",
+ "from": {
+  "relay": "FOR-ELIJAH-v79.md",
+  "store": "dictionary store v1.1",
+  "date": "17 October 2026 AD",
+  "build": "corpus-lane-builds/moses-dictionary-store-v1/v1.1/build/dictionary-store-v1.1/serve/shards/"
+ },
+ "standing_rule": "SHARE THE RECORD, NEVER SHARE THE CLAIM",
+ "letters_key": "LETTERS KEY v1.1: take the string's canonical decomposition (Unicode NFD), then keep only U+05D0–U+05EA, in order. Applies to every headword, every ink word, every key, every index, every shard.",
+ "exact_reading": "EXACT READING: the bytes of the reading a per-place source gives for the WHOLE ink word at a place — TAHOT: the record's R (column 4, as received) of the word's line; MACULA: the reading piece store v2's WHOLE_WORD claim rebuilds for that word (english-else-gloss of the word's rows, as the piece store RULE writes it). Where a reading is a list, each element is its own exact reading. Two readings are the same row only if their bytes are equal.",
+ "page_numbering": "PAGE NUMBERING: the word number the page uses — the served zones' numbering (each Tanakh book's zone from https://fireandhail.com/reader/data/zones/<name>.bin, named in https://fireandhail.com/reader/data/zone-store-v1.json; decode the format as the served engine https://fireandhail.com/reader/engine-d60445a76ff9.js reads it): marks not counted, each maqaf piece a word. w_page is that number; w_lane is the word numbering ledger's / piece store v2's w; the map (book, ref, w_lane) → w_page is a file.",
+ "served_version": "7310e81ba017",
+ "shard_rule": "the first two hex of the lowercase sha256 of the key's UTF-8 bytes",
+ "key_rule": "every non-empty LETTERS KEY v1.1 of a headword of a record, and every letters of a line of index/readings-by-letters.jsonl; no key \"\"",
+ "store_version": "1e52a1f1e143",
+ "m_sources": {
+  "M1": {
+   "key": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0",
+   "label": "ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge)",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 10023
+  },
+  "M2": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licence": "cc0_public_domain",
+   "records_served": 88
+  },
+  "M3": {
+   "key": "macula_hebrew_cherith_surface_english_2022",
+   "label": "MACULA exact Hebrew morph surfaces with Cherith English definitions",
+   "licence": "cc_by_4_0",
+   "records_served": 43304
+  },
+  "M4": {
+   "key": "stepbible_tahot_aligned_translation",
+   "label": "STEP Bible Translators Amalgamated Hebrew OT aligned component translation",
+   "licence": "cc_by_4_0",
+   "records_served": 64402
+  },
+  "M5": {
+   "key": "openscriptures_bdb_1906",
+   "label": "Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures",
+   "licence": "cc_by_4_0_underlying_public_domain",
+   "records_served": 6251
+  },
+  "M6": {
+   "key": "muse_hebrew_english_ground_truth_dictionary",
+   "label": "MUSE large-scale ground-truth Hebrew-English bilingual dictionary",
+   "licence": "cc_by_nc_4_0",
+   "records_served": 23065
+  },
+  "M7": {
+   "key": "unfoldingword_uhal",
+   "label": "unfoldingWord Hebrew-Aramaic Lexicon",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 151
+  },
+  "M9": {
+   "key": "openscriptures_strongs",
+   "label": "Strong's Hebrew Dictionary via Open Scriptures",
+   "licence": "cc_by_4_0_underlying_public_domain",
+   "records_served": 9190
+  },
+  "M10": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licence": "cc0_public_domain",
+   "records_served": 9948
+  },
+  "M11": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 2625
+  },
+  "M13": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary from English Wiktionary",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 14313
+  },
+  "M14": {
+   "key": "wikisource_strongs_explicit_forms",
+   "label": "Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource",
+   "licence": "cc_by_sa_4_0_underlying_public_domain",
+   "records_served": 5806
+  },
+  "M15": {
+   "key": "wikimedia_hebrew_english_interlanguage_title_20260701",
+   "label": "Hebrew Wikipedia 20260701 direct English interlanguage title",
+   "licence": "cc_by_sa_4_0_and_gfdl",
+   "records_served": 12355
+  },
+  "M17": {
+   "key": "hiperbiblia_sdbh",
+   "label": "Semantic Dictionary of Biblical Hebrew via HiperBiblia",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 5830
+  },
+  "M18": {
+   "key": "ubs_sdbh_hebrew_v0_9_2",
+   "label": "UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 8534
+  },
+  "M19": {
+   "key": "stepbible_tbesh_gloss",
+   "label": "STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column",
+   "licence": "cc_by_4_0",
+   "records_served": 2870
+  },
+  "M21": {
+   "key": "panlex_hebrew_english_meanings_20240301",
+   "label": "PanLex 2024 exact same-meaning Hebrew-English lexical expression",
+   "licence": "cc_by_nc_sa_4_0_conservative_current",
+   "records_served": 28439
+  },
+  "M22": {
+   "key": "conceptnet_5_7_hebrew_english_cc_by_4_0",
+   "label": "ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY 4.0 edge)",
+   "licence": "cc_by_4_0",
+   "records_served": 3961
+  },
+  "M23": {
+   "key": "classical_hebrew_words",
+   "label": "Classical Hebrew Words database",
+   "licence": "public_domain",
+   "records_served": 7207
+  },
+  "M25": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 7814
+  },
+  "M27": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 567
+  },
+  "M28": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licence": "cc0_public_domain",
+   "records_served": 9205
+  },
+  "M29": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2008
+  },
+  "M32": {
+   "key": "omegawiki_structured_defined_meaning",
+   "label": "OmegaWiki structured Hebrew-English DefinedMeaning relations and definitions",
+   "licence": "cc_by_chosen_from_dual_cc_by_and_gfdl",
+   "records_served": 5697
+  },
+  "M33": {
+   "key": "openscriptures_lexical_index",
+   "label": "Open Scriptures Hebrew Lexical Index",
+   "licence": "cc_by_4_0",
+   "records_served": 339
+  },
+  "M34": {
+   "key": "kaikki_english_wiktionary_hebrew_translation_table",
+   "label": "Kaikki English Wiktionary source-explicit Hebrew translation tables",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 809
+  },
+  "M36": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1243
+  },
+  "M37": {
+   "key": "dbnary_english_wiktionary_hebrew_translation_gloss",
+   "label": "DBnary English Wiktionary source-explicit Hebrew translations and English glosses",
+   "licence": "cc_by_sa_3_0",
+   "records_served": 6604
+  },
+  "M38": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1678
+  },
+  "M41": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1424
+  },
+  "M42": {
+   "key": "panlex_hebrew_english_definitions_20250201",
+   "label": "PanLex 2025 explicit English definition joined to continuity-confirmed Hebrew meaning",
+   "licence": "cc_by_nc_sa_4_0_conservative_current",
+   "records_served": 9831
+  },
+  "M43": {
+   "key": "omw_hebrew_pwn30",
+   "label": "Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss",
+   "licence": "dual_open_wordnet_style_licenses_attribution_notice_required",
+   "records_served": 4199
+  },
+  "M44": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 296
+  },
+  "M45": {
+   "key": "biblicaltools_living_lexicon",
+   "label": "BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas",
+   "licence": "public_domain_strongs_definitions_plus_cc_by_4_0_stepbible_lemma_data",
+   "records_served": 781
+  },
+  "M46": {
+   "key": "unabridged_bdb_1906",
+   "label": "Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source",
+   "licence": "public_domain_document_reformatted_source",
+   "records_served": 4828
+  },
+  "M48": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licence": "cc0_public_domain",
+   "records_served": 4779
+  },
+  "M50": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 2656
+  },
+  "M53": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licence": "cc0_public_domain",
+   "records_served": 4659
+  },
+  "M54": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 958
+  },
+  "M55": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 704
+  },
+  "M57": {
+   "key": "omw_hebrew_oewn2025_permanent_sense_key_bridge",
+   "label": "Hebrew WordNet PWN 3.0 alignment bridged to Open English WordNet 2025 by complete permanent-sense-key agreement",
+   "licence": "omw_wordnet_notice_plus_princeton_wordnet_notice_plus_cc_by_4_0",
+   "records_served": 315
+  },
+  "M58": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 405
+  },
+  "M59": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1586
+  },
+  "M60": {
+   "key": "kaikki_wiktionary_aramaic",
+   "label": "Kaikki machine-readable Aramaic dictionary from English Wiktionary",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 1616
+  },
+  "M61": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licence": "cc0_public_domain",
+   "records_served": 117
+  },
+  "M62": {
+   "key": "muse_hebrew_english_ground_truth_dictionary",
+   "label": "MUSE large-scale ground-truth Hebrew-English bilingual dictionary",
+   "licence": "cc_by_nc_4_0",
+   "records_served": 1449
+  },
+  "M64": {
+   "key": "lexibank_analysed_v2_2_northeuralex_hebrew",
+   "label": "Lexibank Analysed v2.2 NorthEuraLex literal Hebrew source values with Concepticon English glosses",
+   "licence": "cc_by_4_0",
+   "records_served": 983
+  },
+  "M68": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 180
+  },
+  "M69": {
+   "key": "kaikki_wiktionary_hebrew",
+   "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 1873
+  },
+  "M71": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 62
+  },
+  "M72": {
+   "key": "kaikki_wiktionary_aramaic",
+   "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 167
+  },
+  "M73": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licence": "cc0_public_domain",
+   "records_served": 19
+  },
+  "M74": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1174
+  },
+  "M76": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licence": "cc0_public_domain",
+   "records_served": 62
+  },
+  "M79": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 237
+  },
+  "M80": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 840
+  },
+  "M81": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licence": "cc0_public_domain",
+   "records_served": 8
+  },
+  "M85": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 748
+  },
+  "M86": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 211
+  },
+  "M87": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licence": "cc0_public_domain",
+   "records_served": 133
+  },
+  "M90": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 224
+  },
+  "M92": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 363
+  },
+  "M93": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 93
+  },
+  "M94": {
+   "key": "wikidata_hebrew_lexeme_gloss",
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "licence": "cc0_public_domain",
+   "records_served": 12
+  },
+  "M95": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 617
+  },
+  "M96": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 534
+  },
+  "M98": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 66
+  },
+  "M102": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 247
+  },
+  "M105": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 86
+  },
+  "M110": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 8
+  },
+  "M111": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 27
+  },
+  "M116": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 728
+  },
+  "M123": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 53
+  },
+  "M128": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 64
+  },
+  "M129": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 64
+  },
+  "M130": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 31
+  },
+  "M132": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 5
+  },
+  "M133": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 49
+  },
+  "M135": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 156
+  },
+  "M137": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 8
+  },
+  "M138": {
+   "key": "wikidata_hebrew_explicit_form_english_sense",
+   "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+   "licence": "cc0_public_domain",
+   "records_served": 79
+  },
+  "M139": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 8
+  },
+  "M142": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 11
+  },
+  "M144": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 3
+  },
+  "M145": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2
+  },
+  "M148": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 22
+  },
+  "M149": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 52
+  },
+  "M150": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 9
+  },
+  "M151": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 24
+  },
+  "M152": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 32
+  },
+  "M154": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 15
+  },
+  "M155": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 19
+  },
+  "M157": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 13
+  },
+  "M160": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 14
+  },
+  "M161": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 8
+  },
+  "M162": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 41
+  },
+  "M163": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2
+  },
+  "M164": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 7
+  },
+  "M165": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 18
+  },
+  "M167": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 5
+  },
+  "M169": {
+   "key": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+   "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2
+  },
+  "M170": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1
+  },
+  "M171": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 5
+  },
+  "M173": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 6
+  },
+  "M174": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 7
+  },
+  "M177": {
+   "key": "kaikki_wiktionary_aramaic",
+   "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+   "licence": "cc_by_sa_gfdl",
+   "records_served": 7
+  },
+  "M179": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1
+  },
+  "M180": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2
+  },
+  "M182": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1
+  },
+  "M183": {
+   "key": "hewiktionary_hebrew_exact_english_translation",
+   "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 4
+  },
+  "M185": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2
+  },
+  "M187": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 6
+  },
+  "M188": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2
+  },
+  "M189": {
+   "key": "hewiktionary_hebrew_explicit_inflection_english_translation",
+   "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 1
+  },
+  "M191": {
+   "key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+   "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 3
+  },
+  "M192": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2
+  },
+  "M195": {
+   "key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+   "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+   "licence": "cc_by_sa_4_0",
+   "records_served": 2
+  },
+  "M197": {
+   "key": "stepbible_tahot_expanded_strong",
+   "label": "STEP Bible TAHOT source-explicit Expanded Strong lexical definition frame",
+   "licence": "cc_by_4_0",
+   "records_served": 185
+  },
+  "M199": {
+   "key": "etcbc_bhsa_2021",
+   "label": "ETCBC Biblia Hebraica Stuttgartensia Amstelodamensis context-free lexeme gloss",
+   "licence": "cc_by_nc_4_0_noncommercial",
+   "records_served": 149
+  }
+ },
+ "readings_sources": {
+  "tahot": {
+   "m": "PIECE:TAHOT",
+   "key": "stepbible_tahot_aligned_translation",
+   "label": "STEPBible TAHOT: the aligned translation's pieces (PIECE:TAHOT)",
+   "licence": "cc_by_4_0"
+  },
+  "macula": {
+   "m": "PIECE:MACULA",
+   "key": "macula_hebrew_cherith_surface_english_2022",
+   "label": "MACULA Hebrew: the morphology's pieces (PIECE:MACULA)",
+   "licence": "cc_by_4_0"
+  }
+ },
+ "counts": {
+  "shards": 256,
+  "keys": 86045,
+  "records": 345833,
+  "readings": 195341,
+  "places": 768272,
+  "bytes": 57585716
+ }
+}
