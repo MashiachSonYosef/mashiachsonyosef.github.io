@@ -4335,7 +4335,7 @@
         box.append(r);
       });
       const label = hud.querySelector(":scope > .rows .b-read .r-label");
-      if (label) { const l = document.createElement("p"); l.className = "note card-label"; l.textContent = label.textContent; box.append(l); }
+      if (label) { const l = document.createElement("p"); l.className = "note card-label"; l.append(...[...label.childNodes].map((n) => n.cloneNode(true))); box.append(l); }
       // the card's own notes for the block, in its words; its "try again" is
       // a press on the card's own
       cardNotes().forEach((m, j) => {
@@ -4581,7 +4581,11 @@
         const seg = document.createElement("span");
         seg.textContent = r.s;
         const lit = gaps ? true : opts.headIndex != null ? i === opts.headIndex : regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
-        if (!lit) seg.style.color = "var(--faint)";
+        // the word the card is not open on stands in the red all the same, at
+        // the regular weight beside the open word's bold (the owner,
+        // 2026-10-18: "the hebrew should still be red"); it had been the
+        // page's faint purple
+        if (!lit) seg.style.fontWeight = "400";
         // on a pair, the half that is not open is one press away, here in the
         // head where it already stands; the card then reads from it
         if (!lit && opts.chain) {
@@ -5530,7 +5534,12 @@
       const surface = setWhole ? SET_KEY : cover[cellIdx].surface;
       readRow.replaceChildren();
       const label = document.createElement("p"); label.className = "r-label";
-      label.textContent = setWhole ? `Exact selectable routes · ${joinCut(cover)}` : cover.length > 1 ? `Exact selectable routes · ${surface}` : "Exact selectable routes";
+      // the label is the page speaking and the block it names is the corpus's
+      // letters, so the letters it quotes stand in the red (the owner,
+      // 2026-10-18: "the hebrew should still be red")
+      label.append("Exact selectable routes");
+      const quoted = setWhole ? joinCut(cover) : cover.length > 1 ? surface : "";
+      if (quoted) label.append(" · ", Object.assign(document.createElement("span"), { className: "he-q", lang: "he", dir: "rtl", textContent: quoted }));
       // the set, one reading of the division whole: its source's own row at
       // this place, the place's words byte for byte, one record, one license
       if (setWhole && !cache.has(SET_KEY)) {
@@ -5706,7 +5715,7 @@
       // looks at the same card from different scroll positions read as two
       // different sets of routes. The number is what makes the row honest
       // about being a window.
-      if (pool.length > 1) label.textContent += ` · ${pool.length}`;
+      if (pool.length > 1) label.append(` · ${pool.length}`);
       // a run's whole rung the reader PRESSED, now read: it is the reader's
       // division, remembered and painted at every place the run stands. The
       // rung the card merely opened on is not a ruling: opening a word and

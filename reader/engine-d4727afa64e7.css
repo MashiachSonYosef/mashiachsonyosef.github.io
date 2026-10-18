@@ -1771,8 +1771,15 @@
   #hud .rows .band > .kq-role { margin: 0.05rem 0 0.3rem; font-size: 0.66rem; line-height: 1.35; color: var(--faint); }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
+  /* The record is a dictionary's words, so it is the blue throughout, and
+     the lit sense is that blue worn bold, as a pressed reading is (the
+     owner, 2026-10-18: "the english definitionals should still be blue even
+     the M's D card"). From 2026-10-03 it took the pressed control's purple,
+     which said the sense was ours. */
   #hud .d-card .d-text { margin: 0.25rem 0; color: var(--tekhelet-ink); }
-  #hud .d-card .d-sense.on { color: var(--sel); }
+  #hud .d-card .d-sense.on { color: var(--tekhelet-ink); font-weight: 700; }
+  /* the corpus's letters a label of ours quotes */
+  #hud .he-q { color: var(--shani-ink); }
   #hud .d-card .d-sep { color: var(--faint); }
   #hud .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
     color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
@@ -1794,11 +1801,17 @@
      check-parts-read-right-to-left-v1 measures where the parts landed, in
      pixels, rather than trusting this attribute. */
   #hud .s-pills[dir="rtl"] { direction: rtl; }
-  #hud .s-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
+  /* A division pill is the corpus's own letters cut a way, so it is the
+     red, at rest and pressed, and the press is carried by the weight, the
+     pressed linen and the doubled gold (the owner, 2026-10-18: "the hebrew
+     should still be red even the compspans and megacompspans"). It had been
+     the page's purple at rest and pressed. Its small labels (.none, .q-role)
+     are the page speaking and keep the purple. */
+  #hud .s-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--shani-ink);
     border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
-  #hud .s-pills button:hover { border-color: var(--gold); color: var(--shesh); }
+  #hud .s-pills button:hover { border-color: var(--gold); }
   /* the "try again" of a block or a fold the shelf could not answer: the
      card's own pill, not the browser's grey bevel */
   #hud .r-unreachable button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
@@ -1809,7 +1822,7 @@
 
   /* said again below the frame rule that gives every line a transparent
      border, which outranked this one and hid the mark */
-  #hud .s-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  #hud .s-pills button[aria-pressed="true"] { color: var(--shani-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
   #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
   #hud .b-q { flex: 0 0 auto; min-height: 0; }
   #hud .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
