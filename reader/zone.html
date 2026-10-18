@@ -648,6 +648,51 @@
   #placeBack:hover { color: var(--ink-strong); }
   #placeBack:active { color: var(--sel); }
   @media (max-width: 520px) { #placeBack { right: auto; left: 50%; transform: translateX(-50%); } }
+  /* THE WAY BACK FROM A DICTIONARY JUMP: the "Back to" pill, across books
+     (the owner, 2026-10-17: "agree keep it": it stays until it is tapped or
+     another jump replaces it) */
+  #dictBack { position: fixed; z-index: 60; right: 0.9rem; bottom: 3.6rem;
+    background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
+    box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); color: var(--muted);
+    font: inherit; font-size: 0.75rem; letter-spacing: 0.08em; font-variant: small-caps;
+    padding: 0.42rem 0.95rem; cursor: pointer; white-space: nowrap; }
+  #nav[hidden] + #dictBack { bottom: 0.9rem; }
+  #dictBack[hidden] { display: none; }
+  #placeBack:not([hidden]) ~ #dictBack { bottom: 6.2rem; }
+  @media (max-width: 520px) { #dictBack { right: auto; left: 50%; transform: translateX(-50%); } }
+  /* THE TABLE HUD (the dictionary pill): the card's head stays, and the
+     table stands for the rest of the card */
+  #hud.dict > :not(.head):not(.dict-tab):not(.c-back) { display: none !important; }
+  #hud .dict-tab { margin-top: 0.5rem; max-height: 62vh; overflow: auto; }
+  #hud .dict-tab table { width: 100%; border-collapse: collapse; }
+  #hud .dict-tab th { text-align: left; font-weight: normal; padding: 0.3rem 0.25rem; border-bottom: 1px solid var(--line); }
+  #hud .dict-tab th button { all: unset; cursor: pointer; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--argaman); }
+  #hud .dict-tab th button[aria-pressed="true"] { font-weight: bold; }
+  #hud .dict-tab td { padding: 0.45rem 0.25rem; border-bottom: 1px dotted var(--line); vertical-align: top; }
+  #hud .dict-tab td.he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); font-size: 1.2rem; direction: rtl; white-space: normal; }
+  #hud .dict-tab tbody tr.pick > td:nth-child(2) { min-width: 7rem; }
+  #hud .dict-tab th button:focus-visible, #hud .dict-tab button.dd:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  #hud .dict-tab button.more { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--argaman); }
+  #hud .dict-tab .rd { color: var(--tekhelet); font-family: 'reading', Georgia, serif; }
+  #hud .dict-tab .who, #hud .dict-tab .note { font-size: 0.7rem; color: var(--muted); }
+  #hud .dict-tab .lic { display: inline-block; border: 1px solid var(--chip-line); border-radius: 0.6rem; padding: 0 0.35rem; font-size: 0.62rem; color: var(--tekhelet); margin-left: 0.2rem; white-space: nowrap; }
+  #hud .dict-tab button.dd { all: unset; cursor: pointer; color: inherit; }
+  #hud .dict-tab button.dd::after { content: " \25BE"; color: var(--gold-dim); font-size: 0.8em; }
+  #hud .dict-tab button.dd[aria-expanded="true"]::after { content: " \25B4"; }
+  #hud .dict-tab tr.here > td { background: var(--cell-wash); }
+  #hud .dict-tab tr.sub > td { background: var(--cell-wash); padding: 0.2rem 0.6rem 0.6rem; }
+  #hud .dict-tab .item { padding: 0.25rem 0; line-height: 1.45; }
+  #hud .dict-tab .item a { color: var(--argaman); text-decoration-color: var(--gold-dim); }
+  #hud .dict-tab .r-pills { display: block; }
+  #hud .dict-tab .ex-he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); direction: rtl; text-align: right; font-size: 1.02rem; line-height: 1.6; margin-top: 0.15rem; }
+  #hud .dict-tab .ex-he .hit { font-weight: 700; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 0.25em; }
+  #hud .dict-tab .item { border-bottom: 1px dotted var(--line); }
+  #hud .dict-tab .item:last-child { border-bottom: none; }
+  #hud .dict-tab .r-pills button.off-card { opacity: 0.6; }
+  #hud .dict-tab .r-pills button[aria-expanded]::after { content: " \25BE"; font-size: 0.8em; }
+  #hud .dict-tab .r-pills button[aria-expanded="true"]::after { content: " \25B4"; }
+  #hud .dict-tab .item.opt { display: flex; align-items: center; gap: 0.6rem; }
+  #hud .dict-tab .item.opt .r-pills { display: inline-block; }
 
   #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--faint); }
   #toc .part { margin: 0 0 0.65rem; }
@@ -2220,6 +2265,12 @@
          too"): each card's number in its verse as written, with the arrow the
          way this reader reads, on the page's cards; kept on this device. -->
     <span class="mode-pick"><button type="button" class="blob-btn" id="numsPill" aria-pressed="false" aria-describedby="numsState" title="each card’s number in its verse as the scribes wrote it, first word 1, and the arrow the way this reader reads">numbers</button><span class="mode-dir" id="numsState">off</span></span>
+    <!-- THE DICTIONARY PILL (the owner, 2026-10-17: "simple toggle, cards
+         unchanged, hud opens to a table hud"; 2026-10-18: "lets go live with
+         the toggle"). Off, a word's card is the card. On, it opens to the table
+         of the word's exact readings and where each stands, from the corpus
+         lane's dictionary store (data/dictionary-store/). Kept on this device. -->
+    <span class="mode-pick"><button type="button" class="blob-btn" id="dictPill" aria-pressed="false" aria-describedby="dictState" title="a word&#8217;s card opens to its exact reading and every place it stands, and the other readings of its letters">concordance</button><span class="mode-dir" id="dictState">off</span></span>
     <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
          a megatoggle at the top that opens all of it, without losing the drop
          down"). It always did open every verse's commentary; it was labelled
@@ -3989,7 +4040,7 @@
   // card parked out of the way would jump back the moment the next word was
   // tapped, which is the whole thing being fixed.
   const closeHud = (release = true) => {
-    hud.hidden = true; hud.replaceChildren();
+    hud.hidden = true; hud.replaceChildren(); hud.classList.remove("dict");
     hudGen += 1;
     redrawReadings = null;
     // a hidden card that keeps its pop replays it the moment it is shown
@@ -6342,6 +6393,297 @@
       return !(gm && Array.isArray(gm.by) && gm.by.length && gm.by.some((id) => sourcesOff.has(id)));
     });
   };
+  // THE DICTIONARY TABLE (the dictionary pill; dictionary store v1.1, Moses,
+  // FOR-ELIJAH-v79). With the pill on, a word's card keeps its head and
+  // opens to a table of one row: the exact reading the line stands on, as
+  // the card's own R pill (the owner, 2026-10-18: "this can just be the R
+  // pills we already have"; "you only need the 1 r pill showing, the rest
+  // would be drop downs from that"). Under it, open, every place that exact
+  // reading stands, each a link with its verse. The pill opens the other
+  // readings the line's source gives at a place with these letters; a pick
+  // becomes the row with its own places, and presses the card's pill of the
+  // same words where the card has one, so a pick takes the card's one path. Exact is byte equality (the owner: "just he created
+  // places, not close"). The headers sort, as a sheet does. Nothing here is
+  // the site's own voice: the readings, the entries and the places are the
+  // sources' and the lane's, the order and the counts are arithmetic.
+  const DICT = {
+    pref: (() => { const q = QUERY.get("dict"); if (q === "on" || q === "off") return q; try { return localStorage.getItem("fh.dict") === "on" ? "on" : "off"; } catch { return "off"; } })(),
+    ixP: null, shards: new Map(), booksP: null, zones: new Map(),
+  };
+  const dictOn = () => DICT.pref === "on";
+  // the LETTERS KEY v1.1: the canonical decomposition, its letters alone
+  const lettersOf = (s) => [...String(s || "").normalize("NFD")].filter((c) => { const n = c.codePointAt(0); return n >= 0x5d0 && n <= 0x5ea; }).join("");
+  const dictIndex = () => DICT.ixP || (DICT.ixP = fetch(`${ROOT}data/dictionary-store/index.json`, { cache: "no-cache" })
+    .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return r.json(); })
+    .catch((e) => { DICT.ixP = null; throw e; }));
+  // a shard that did not arrive is not an empty shard: it leaves the cache
+  const dictKey = async (key) => {
+    const ix = await dictIndex();
+    const hex = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key)))[0].toString(16).padStart(2, "0");
+    if (!DICT.shards.has(hex)) DICT.shards.set(hex, fetch(`${ROOT}data/dictionary-store/shards/${hex}.bin?v=${ix.store_version}`)
+      .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return unpack(r); })
+      .catch((e) => { DICT.shards.delete(hex); throw e; }));
+    const data = await DICT.shards.get(hex);
+    return { ix, v: data ? data[key] || null : null };
+  };
+  // the books' names as the grouping record gives them, and their order
+  const dictBooks = () => DICT.booksP || (DICT.booksP = Promise.all([
+    fetch(`${ROOT}data/book-grouping-v1.json`).then((r) => r.json()),
+    fetch(`${ROOT}data/book-order-v1.json`).then((r) => r.json()),
+  ]).then(([g, o]) => {
+    const names = {}; for (const gr of g.groups || []) for (const f of gr.file_names || []) names[f.file] = f.en;
+    return { names, order: o.files || [] };
+  }).catch((e) => { DICT.booksP = null; throw e; }));
+  // a place's address: the book's own page on the site, the bare reader here
+  // (a ?dict= the page was opened with rides along, so the page reached
+  // opens the same way)
+  const dictHref = (book, ref, w) => {
+    const dq = QUERY.get("dict") === "on" || QUERY.get("dict") === "off" ? QUERY.get("dict") : "";
+    return META("reader-book")
+      ? `/${book}/${String(ref).split(":")[0]}/${dq ? `?dict=${dq}` : ""}#${ref}:${w}`
+      : `${location.pathname}?b=${encodeURIComponent(book)}${dq ? `&dict=${dq}` : ""}#${ref}:${w}`;
+  };
+  const dictLic = (posture) => {
+    const row = POSTURES && POSTURES.postures && POSTURES.postures[posture];
+    const c = document.createElement("span"); c.className = "lic"; c.textContent = row ? row.name : String(posture || "");
+    return c;
+  };
+  const renderDictTab = async (k, site, gen) => {
+    hud.classList.add("dict");
+    const tab = document.createElement("div"); tab.className = "dict-tab";
+    const say = (t) => { const p = document.createElement("p"); p.className = "note"; p.textContent = t; tab.replaceChildren(p); };
+    say("asking the dictionary store\u2026");
+    hud.append(tab);
+    const key = lettersOf(k);
+    let got = null, books = null;
+    try { [got, books] = await Promise.all([dictKey(key), dictBooks()]); }
+    catch { if (gen === hudGen) say("the dictionary store did not answer; close the card and open it again"); return; }
+    if (gen !== hudGen) return;
+    const { ix, v } = got;
+    const name = (b) => books.names[b] || b;
+    const at = (p) => { const [c, vs] = String(p.ref).split(":").map(Number); return books.order.indexOf(p.book) * 1e8 + c * 1e5 + vs * 100 + p.w_page; };
+    const hereW = site && site.wordOf ? site.numberOf(site.wordOf) : 0;
+    const isHere = (p) => !!site && p.book === BOOK && p.ref === site.ref && p.w_page === hereW;
+    const hereLabel = site ? `${name(BOOK)} ${site.ref}:${hereW}` : "";
+    // the way back: this place's address (a page the store holds no book
+    // for, such as a demonstration page, is its own address)
+    const backHref = !site ? location.href
+      : books.order.includes(BOOK) ? dictHref(BOOK, site.ref, hereW)
+      : `${location.pathname}${location.search}#${site.ref}:${hereW}`;
+    // THE ROWS FOLLOW THE LINE'S SOURCE (the owner, 2026-10-18, of "he
+    // created" 4 and "created" 7: "how do we reconcile the 4 vs the 7").
+    // TAHOT translates each place in its sentence, MACULA glosses the word,
+    // so MACULA's seven are TAHOT's 4 + 1 + 1 + 1 at the same places. The
+    // rows are TAHOT's readings, the line's own; what MACULA reads stands
+    // inside each place. A word TAHOT gives nothing for is read by MACULA.
+    // The lead is the source that reads this place, TAHOT first; where
+    // neither reads it, TAHOT if it reads these letters anywhere.
+    const all = (v && v.readings) || [];
+    const lead = ["tahot", "macula"].find((s2) => all.some((g) => g.src === s2 && g.places.some(isHere)))
+      || (all.some((g) => g.src === "tahot") ? "tahot" : "macula");
+    const placeKey = (q) => `${q.book}|${q.ref}|${q.w_page}|${q.side || ""}`;
+    const besideAt = new Map();
+    for (const g of all) if (g.src !== lead) for (const q of g.places) {
+      const k2 = placeKey(q); if (!besideAt.has(k2)) besideAt.set(k2, []); besideAt.get(k2).push(g.reading);
+    }
+    const beside = ix.readings_sources[lead === "tahot" ? "macula" : "tahot"] || {};
+    const rows = all.filter((g) => g.src === lead).map((g) => {
+      const here = g.places.find(isHere);
+      return { g, here: !!here, pointed: (here || g.places[0] || {}).pointed || "", first: g.places.length ? Math.min(...g.places.map(at)) : Infinity };
+    });
+    if (!rows.length) { say("no per-place source gives a reading at a place with these letters"); return; }
+    const table = document.createElement("table");
+    const head = document.createElement("tr");
+    let sort = "text";
+    const sorts = [["text", "hebrew"], ["az", "reads"], ["count", "places"]];
+    const body = document.createElement("tbody");
+    // the card's own R pills, read when pressed (the card's readings arrive
+    // after its head, and the table may stand before they do)
+    // (the card prints a divided reading joined, spanJoin: "in/ beginning"
+    // is its pill "in + beginning", so both sides are read that way)
+    const cardPill = (text) => [...hud.querySelectorAll(":scope > .rows .r-pills button")].find((x) => x.textContent.trim() === spanJoin(text)) || null;
+    const mirror = () => {
+      for (const x of tab.querySelectorAll(".r-pills button")) {
+        const c = cardPill(x.dataset.reading || x.textContent.trim());
+        x.classList.toggle("off-card", !c);
+        x.setAttribute("aria-pressed", c ? c.getAttribute("aria-pressed") || "false" : "false");
+      }
+    };
+    const verseOf = (z, ref, w) => {
+      const sec = z && (z.sections || []).find((x) => x.label === ref);
+      if (!sec) return null;
+      const out = document.createElement("div"); out.className = "ex-he";
+      let n = 0;
+      for (const word of sec.words) {
+        if (!word.mark) n += 1;
+        const sp = document.createElement("span"); sp.textContent = word.s;
+        if (!word.mark && n === w) sp.className = "hit";
+        out.append(sp);
+        if (!String(word.s).endsWith("\u05be")) out.append(" ");
+      }
+      return out;
+    };
+    const exSeen = "IntersectionObserver" in window ? new IntersectionObserver((seen) => {
+      for (const e of seen) {
+        if (!e.isIntersecting) continue;
+        const ex = e.target; exSeen.unobserve(ex);
+        const book = ex.dataset.book;
+        let zp = book === BOOK ? Promise.resolve(zone) : DICT.zones.get(book);
+        if (!zp) zp = fetchBin(book).catch((err) => { DICT.zones.delete(book); throw err; });
+        // the last three books read stay; an older one is read again if asked
+        if (book !== BOOK) { DICT.zones.delete(book); DICT.zones.set(book, zp); while (DICT.zones.size > 3) DICT.zones.delete(DICT.zones.keys().next().value); }
+        zp.then((z) => { if (gen !== hudGen) return; const v2 = verseOf(z, ex.dataset.ref, Number(ex.dataset.w)); if (v2) ex.replaceChildren(v2); })
+          .catch(() => { /* the address still leads there */ });
+      }
+    }, { root: tab }) : null;
+    // every place that exact reading stands, each a link; this place, said
+    const PAGE = 50;
+    const placesOf = (g) => {
+      const box = document.createElement("div");
+      const list = [...g.places].sort((a, b) => (isHere(b) - isHere(a)) || at(a) - at(b));
+      const more = document.createElement("button"); more.type = "button"; more.className = "dd more";
+      let shown = 0;
+      const step = () => {
+        for (const p of list.slice(shown, shown + PAGE)) box.insertBefore(itemOf(p), more);
+        shown = Math.min(list.length, shown + PAGE);
+        if (shown < list.length) more.textContent = `${list.length - shown} more`; else more.remove();
+      };
+      more.addEventListener("click", (e) => { e.stopPropagation(); step(); });
+      box.append(more);
+      step();
+      return box;
+    };
+    const itemOf = (p) => {
+      const it = document.createElement("div"); it.className = "item";
+      const label = `${name(p.book)} ${p.ref}:${p.w_page}${p.side ? ` (${p.side === "k" ? "as written" : "as read"})` : ""}`;
+      if (isHere(p)) { it.append(`here \u00b7 ${label}`); }
+      else {
+        const a = document.createElement("a"); a.href = dictHref(p.book, p.ref, p.w_page); a.textContent = label;
+        a.addEventListener("click", () => { try { localStorage.setItem("fh.dict.back", JSON.stringify({ href: backHref, label: hereLabel })); } catch { /* the jump still works; the way back is the browser's */ } });
+        it.append(a);
+      }
+      const other = besideAt.get(placeKey(p));
+      if (other && other.length) {
+        const o = document.createElement("div"); o.className = "who";
+        o.append(`${(SHORT_REC && SHORT_REC.names && SHORT_REC.names[beside.key]) || beside.label || ""}: `);
+        const t = document.createElement("span"); t.className = "rd"; t.textContent = other.join(" \u00b7 ");
+        o.append(t, dictLic(beside.licence));
+        it.append(o);
+      }
+      // the verse around it, as the book's own pinned text gives it, read
+      // when the place comes into view
+      const ex = document.createElement("div"); ex.className = "ex"; ex.dataset.book = p.book; ex.dataset.ref = p.ref; ex.dataset.w = String(p.w_page);
+      it.append(ex);
+      if (exSeen) exSeen.observe(ex);
+      return it;
+    };
+    // the readings in the order the headers ask: this place's first, then
+    // where each first stands in the books' order; A to Z; by count
+    const order = () => {
+      const list = [...rows];
+      if (sort === "az") list.sort((a, b) => spanJoin(a.g.reading).localeCompare(spanJoin(b.g.reading)) || a.first - b.first);
+      else if (sort === "count") list.sort((a, b) => b.g.count - a.g.count || a.first - b.first);
+      else list.sort((a, b) => (b.here - a.here) || a.first - b.first);
+      return list;
+    };
+    // the one row: what the reader picked here, else the card's pressed
+    // reading, else this place's. Its places stand open: the pill is
+    // selected, so its passages are already showing (the owner, 2026-10-18:
+    // "its already expanded by way of that r pill being selected").
+    let chosen = null, picked = false, open = "places";
+    const pressedRow = () => {
+      const c = hud.querySelector(':scope > .rows .r-pills button[aria-pressed="true"]');
+      const t = c ? c.textContent.trim() : "";
+      return rows.find((r) => spanJoin(r.g.reading) === t) || null;
+    };
+    const choose = () => (picked && chosen) || pressedRow() || rows.find((r) => r.here) || null;
+    const pressCard = (reading) => { const c = cardPill(reading); if (c && c.getAttribute("aria-pressed") !== "true") c.click(); };
+    const pill = (reading) => {
+      const pills = document.createElement("div"); pills.className = "r-pills";
+      const x = document.createElement("button"); x.type = "button"; x.textContent = spanJoin(reading); x.dataset.reading = reading; x.setAttribute("aria-pressed", "false");
+      pills.append(x);
+      return [pills, x];
+    };
+    // the other readings, each its R pill and its count; a pick becomes the row
+    const readsOf = (others) => {
+      const box = document.createElement("div");
+      for (const x of others) {
+        const it = document.createElement("div"); it.className = "item opt";
+        const [ps, ob] = pill(x.g.reading);
+        ob.addEventListener("click", (e) => { e.stopPropagation(); chosen = x; picked = true; open = "places"; pressCard(x.g.reading); paint("pill"); });
+        const c = document.createElement("span"); c.className = "who"; c.textContent = `${x.g.count} location${x.g.count === 1 ? "" : "s"}`;
+        it.append(ps, c);
+        box.append(it);
+      }
+      return box;
+    };
+    // a rebuilt row keeps the reader's place on the keyboard
+    const paint = (focus = null) => {
+      const ae = document.activeElement;
+      const f = focus || (ae && body.contains(ae) ? (ae.classList.contains("dd") && !ae.classList.contains("more") ? "dd" : "pill") : null);
+      const r = chosen = choose();
+      const others = order().filter((x) => x !== r);
+      const sub = document.createElement("tr"); sub.className = "sub";
+      const cell = document.createElement("td"); cell.colSpan = 3; sub.append(cell);
+      if (!r) {
+        const tr = document.createElement("tr"); tr.className = "pick none";
+        const td = document.createElement("td"); td.colSpan = 3; td.className = "note";
+        td.textContent = "no source in the store reads this place; these letters read elsewhere as";
+        tr.append(td);
+        sub.classList.add("reads"); cell.append(readsOf(others));
+        body.replaceChildren(tr, sub);
+        mirror();
+        const first = cell.querySelector("button");
+        if (f && first) first.focus({ preventScroll: true });
+        return;
+      }
+      const src = ix.readings_sources[r.g.src] || {};
+      const tr = document.createElement("tr"); tr.className = r.here ? "pick here" : "pick";
+      const he = document.createElement("td"); he.className = "he"; he.textContent = r.pointed;
+      const rd = document.createElement("td");
+      const [pills, rb] = pill(r.g.reading);
+      if (others.length) rb.setAttribute("aria-expanded", String(open === "reads"));
+      rb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!others.length) { pressCard(r.g.reading); requestAnimationFrame(mirror); return; }
+        open = open === "reads" ? "places" : "reads"; paint("pill");
+      });
+      const who = document.createElement("div"); who.className = "who"; who.append((SHORT_REC && SHORT_REC.names && SHORT_REC.names[src.key]) || src.label || r.g.src, dictLic(src.licence));
+      rd.append(pills, who);
+      const n = document.createElement("td");
+      const nb = document.createElement("button"); nb.type = "button"; nb.className = "dd"; nb.textContent = `${r.g.count} location${r.g.count === 1 ? "" : "s"}`; nb.setAttribute("aria-expanded", String(open === "places"));
+      nb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "places" ? null : "places"; paint("dd"); });
+      n.append(nb);
+      tr.append(he, rd, n);
+      if (open === "reads" && others.length) { sub.classList.add("reads"); cell.append(readsOf(others)); }
+      else if (open === "places") cell.append(placesOf(r.g));
+      else sub.hidden = true;
+      body.replaceChildren(tr, sub);
+      mirror();
+      if (f) (f === "dd" ? nb : rb).focus({ preventScroll: true });
+    };
+    for (const [id, label] of sorts) {
+      const th = document.createElement("th");
+      const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.dataset.sort = id;
+      b.setAttribute("aria-pressed", String(id === sort));
+      b.addEventListener("click", (e) => { e.stopPropagation(); sort = id; if (rows.length > 1) open = "reads"; head.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.sort === sort))); paint(); });
+      th.append(b); head.append(th);
+    }
+    const thead = document.createElement("thead"); thead.append(head);
+    table.append(thead, body);
+    tab.replaceChildren(table); paint();
+    // the card's pills arrive and change under the table: it follows them
+    const cardRows = hud.querySelector(":scope > .rows");
+    if (cardRows) {
+      let queued = false;
+      const mo = new MutationObserver(() => {
+        if (gen !== hudGen) { mo.disconnect(); return; }
+        if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; if (!picked && choose() !== chosen) paint(); else mirror(); }); }
+      });
+      mo.observe(cardRows, { childList: true, subtree: true, attributes: true, attributeFilter: ["aria-pressed"] });
+    }
+    placeHud();
+  };
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
     closeHud(false);
     const myGen = ++hudGen;
@@ -7208,6 +7550,8 @@
     // link, because nothing here opens
     const volSlot = document.createElement("div"); volSlot.className = "vol-slot";
     hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, partsSlot, hohSlot, volSlot, prov);
+    hud.classList.remove("dict");
+    if (dictOn() && bin === zone && region && region.k && !opts.run && regionIndex !== -1) renderDictTab(region.form_k || region.k, openSite, myGen);
     renderParts(partsSlot, bin === zone ? (opts.word || word) : null);
     renderHoh(hohSlot, region, opts.word || word);
     renderVolume(volSlot, bin === zone ? unitId : null);
@@ -11348,6 +11692,21 @@
   };
   numsPill.addEventListener("click", () => { numsPref = numsPref === "on" ? "off" : "on"; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); });
   paintNums();
+  const dictPill = document.getElementById("dictPill"), dictState = document.getElementById("dictState");
+  const paintDict = () => {
+    const on = dictOn();
+    dictPill.classList.toggle("on", on); dictPill.setAttribute("aria-pressed", String(on));
+    dictState.textContent = on ? "on" : "off";
+  };
+  dictPill.addEventListener("click", (e) => {
+    e.stopPropagation();
+    DICT.pref = dictOn() ? "off" : "on";
+    try { localStorage.setItem("fh.dict", DICT.pref); } catch { /* the choice still stands on this page */ }
+    paintDict();
+    // an open card is the other kind of card now: it is opened again
+    if (!hud.hidden && activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+  });
+  paintDict();
   if (QUERY.get("mode") === "en") setMode("en");
   else if (!QUERY.has("mode")) { try { if (localStorage.getItem(MODE_KEY) === "en") setMode("en"); } catch { /* a device that remembers nothing opens the Hebrew reader */ } }
   if (QUERY.get("chain") === "ltr") document.body.dataset.chain = "ltr";   // the preview above
@@ -13624,6 +13983,38 @@
   // about a window's height from where the link landed, measured on what
   // the link landed on, so the browser holding its place while sections fill
   // in does not count as reading on.
+  // THE WAY BACK FROM A DICTIONARY JUMP (the owner, 2026-10-17: "if we went
+  // that way wed need to consider adding a return button"; "agree keep it").
+  // A place followed from the table leaves its way back on this device; the
+  // page it lands on offers "Back to" it until it is tapped or another jump
+  // replaces it. The browser's own back does the same. A place in the same
+  // book is a jump within the page (the address's # alone), so the way back
+  // is offered on that jump too, not only when a page loads.
+  {
+    let mo = null;
+    const showDictBack = () => {
+      const old = document.getElementById("dictBack");
+      if (old) old.remove();
+      if (mo) { mo.disconnect(); mo = null; }
+      let back = null;
+      try { back = JSON.parse(localStorage.getItem("fh.dict.back") || "null"); } catch { back = null; }
+      const atOrigin = back && back.href && (() => { try { const u = new URL(back.href, location.href); return u.pathname === location.pathname && u.search === location.search && u.hash === location.hash; } catch { return false; } })();
+      if (!(back && back.href && back.label && !atOrigin)) return;
+      const b = document.createElement("button"); b.type = "button"; b.id = "dictBack";
+      b.textContent = `Back to ${back.label}`;
+      b.addEventListener("click", () => {
+        try { localStorage.removeItem("fh.dict.back"); } catch { /* gone with the page */ }
+        b.remove(); if (mo) { mo.disconnect(); mo = null; }
+        location.href = back.href;
+      });
+      b.hidden = !hud.hidden;
+      mo = new MutationObserver(() => { b.hidden = !hud.hidden; });
+      mo.observe(hud, { attributes: true, attributeFilter: ["hidden"] });
+      (document.getElementById("placeBack") || nav).after(b);
+    };
+    showDictBack();
+    window.addEventListener("hashchange", showDictBack);
+  }
   let placeBack = null, backGone = () => false;
   if (BAR_FOLLOWS && openAt && !landedKept && byLabel.has(spotKept) && verseChapterOf(spotKept) && verseChapterOf(spotKept) !== landedCh) {
     placeBack = document.createElement("button");
