@@ -4056,25 +4056,28 @@
       return !(gm && Array.isArray(gm.by) && gm.by.length && gm.by.some((id) => sourcesOff.has(id)));
     });
   };
-  // THE DICTIONARY TABLE (the dictionary pill; dictionary store v1.1, Moses,
+  // THE CONCORDANCE (the concordance pill; dictionary store v1.1, Moses,
   // FOR-ELIJAH-v79). With the pill on, a word's card keeps its head and
-  // opens to a table of one row: the exact reading the line stands on, as
-  // the card's own R pill (the owner, 2026-10-18: "this can just be the R
-  // pills we already have"; "you only need the 1 r pill showing, the rest
-  // would be drop downs from that"). Under it, open, every place that exact
-  // reading stands, each a link with its verse. The pill opens the other
-  // readings the line's source gives at a place with these letters; a pick
-  // becomes the row with its own places, and presses the card's pill of the
-  // same words where the card has one, so a pick takes the card's one path. Exact is byte equality (the owner: "just he created
-  // places, not close"). The headers sort, as a sheet does. Nothing here is
-  // the site's own voice: the readings, the entries and the places are the
-  // sources' and the lane's, the order and the counts are arithmetic.
+  // opens to a table of one row: the reading the card stands on, as its own
+  // R pill (the owner, 2026-10-18: "this can just be the R pills we already
+  // have"; "you only need the 1 r pill showing, the rest would be drop downs
+  // from that"), its sources and license, and under it, open, every place a
+  // source reads exactly those words, each a link with its verse. The pill
+  // opens every pill the card has, its divisions and blocks with them, and
+  // the readings of these letters at other places the card has no pill for.
+  // Exact is byte equality (the owner: "just he created places, not close").
+  // The headers sort, as a sheet does. Nothing here is the site's own voice:
+  // the readings and the places are the sources' and the lane's, the order
+  // and the counts are arithmetic.
   const DICT = {
     pref: (() => { const q = QUERY.get("dict"); if (q === "on" || q === "off") return q; try { return localStorage.getItem("fh.dict") === "on" ? "on" : "off"; } catch { return "off"; } })(),
     ixP: null, shards: new Map(), booksP: null, zones: new Map(),
   };
   const dictOn = () => DICT.pref === "on";
   // the LETTERS KEY v1.1: the canonical decomposition, its letters alone
+  // the two sides of a ketiv/qere site as the text marks them: the read side
+  // drops the written (in parentheses), the written side drops the read
+  const kqSides = (s) => { const t = String(s || "").normalize("NFC"); return [t.replace(/\([^()]*\)/g, "").replace(/[\[\]]/g, ""), t.replace(/\[[^\[\]]*\]/g, "").replace(/[()]/g, "")]; };
   const lettersOf = (s) => [...String(s || "").normalize("NFD")].filter((c) => { const n = c.codePointAt(0); return n >= 0x5d0 && n <= 0x5ea; }).join("");
   const dictIndex = () => DICT.ixP || (DICT.ixP = fetch(`${ROOT}data/dictionary-store/index.json`, { cache: "no-cache" })
     .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return r.json(); })
@@ -4111,16 +4114,18 @@
     const c = document.createElement("span"); c.className = "lic"; c.textContent = row ? row.name : String(posture || "");
     return c;
   };
-  const renderDictTab = async (k, site, gen) => {
+  const renderDictTab = async (k, site, gen, cardRead, altKeys = []) => {
     hud.classList.add("dict");
     const tab = document.createElement("div"); tab.className = "dict-tab";
     const say = (t) => { const p = document.createElement("p"); p.className = "note"; p.textContent = t; tab.replaceChildren(p); };
     say("asking the dictionary store\u2026");
     hud.append(tab);
     const key = lettersOf(k);
-    let got = null, books = null;
-    try { [got, books] = await Promise.all([dictKey(key), dictBooks()]); }
+    let got = null, books = null, alts = [];
+    try { [got, books, alts] = await Promise.all([dictKey(key), dictBooks(), Promise.all(altKeys.filter((x) => x && x !== key).map((x) => dictKey(x).catch(() => null)))]); }
     catch { if (gen === hudGen) say("the dictionary store did not answer; close the card and open it again"); return; }
+    // the card's own readings arrive after its head; the table stands on them
+    await Promise.race([cardRead, new Promise((r) => setTimeout(r, 6000))]);
     if (gen !== hudGen) return;
     const { ix, v } = got;
     const name = (b) => books.names[b] || b;
@@ -4133,44 +4138,68 @@
     const backHref = !site ? location.href
       : books.order.includes(BOOK) ? dictHref(BOOK, site.ref, hereW)
       : `${location.pathname}${location.search}#${site.ref}:${hereW}`;
-    // THE ROWS FOLLOW THE LINE'S SOURCE (the owner, 2026-10-18, of "he
-    // created" 4 and "created" 7: "how do we reconcile the 4 vs the 7").
-    // TAHOT translates each place in its sentence, MACULA glosses the word,
-    // so MACULA's seven are TAHOT's 4 + 1 + 1 + 1 at the same places. The
-    // rows are TAHOT's readings, the line's own; what MACULA reads stands
-    // inside each place. A word TAHOT gives nothing for is read by MACULA.
-    // The lead is the source that reads this place, TAHOT first; where
-    // neither reads it, TAHOT if it reads these letters anywhere.
-    const all = (v && v.readings) || [];
-    const lead = ["tahot", "macula"].find((s2) => all.some((g) => g.src === s2 && g.places.some(isHere)))
-      || (all.some((g) => g.src === "tahot") ? "tahot" : "macula");
-    const placeKey = (q) => `${q.book}|${q.ref}|${q.w_page}|${q.side || ""}`;
-    const besideAt = new Map();
-    for (const g of all) if (g.src !== lead) for (const q of g.places) {
-      const k2 = placeKey(q); if (!besideAt.has(k2)) besideAt.set(k2, []); besideAt.get(k2).push(g.reading);
-    }
-    const beside = ix.readings_sources[lead === "tahot" ? "macula" : "tahot"] || {};
-    const rows = all.filter((g) => g.src === lead).map((g) => {
-      const here = g.places.find(isHere);
-      return { g, here: !!here, pointed: (here || g.places[0] || {}).pointed || "", first: g.places.length ? Math.min(...g.places.map(at)) : Infinity };
-    });
-    if (!rows.length) { say("no per-place source gives a reading at a place with these letters"); return; }
-    const table = document.createElement("table");
-    const head = document.createElement("tr");
-    let sort = "text";
-    const sorts = [["text", "hebrew"], ["az", "reads"], ["count", "places"]];
-    const body = document.createElement("tbody");
-    // the card's own R pills, read when pressed (the card's readings arrive
-    // after its head, and the table may stand before they do)
-    // (the card prints a divided reading joined, spanJoin: "in/ beginning"
-    // is its pill "in + beginning", so both sides are read that way)
-    const cardPill = (text) => [...hud.querySelectorAll(":scope > .rows .r-pills button")].find((x) => x.textContent.trim() === spanJoin(text)) || null;
-    const mirror = () => {
-      for (const x of tab.querySelectorAll(".r-pills button")) {
-        const c = cardPill(x.dataset.reading || x.textContent.trim());
-        x.classList.toggle("off-card", !c);
-        x.setAttribute("aria-pressed", c ? c.getAttribute("aria-pressed") || "false" : "false");
+    // EVERY PLACE A SOURCE READS THESE LETTERS, filed by the reading's words
+    // as the card prints them (spanJoin: TAHOT's "in/ beginning" is the
+    // card's "in + beginning"), so a card's pill and a source's reading of
+    // the same words are one entry. Exact is byte equality after that join
+    // (the owner: "just he created places, not close"). A place is a word of
+    // a verse: its written and read sides are one place. At a ketiv/qere site
+    // the store may file this place under the other side's letters: those
+    // readings join here for this place only.
+    const placeKey = (q) => `${q.book}|${q.ref}|${q.w_page}`;
+    const byText = new Map();      // words -> { places, srcs, first, raw }
+    const readsAt = new Map();     // place -> [{ src, t }]
+    const file = (g, q) => {
+      const t = spanJoin(g.reading);
+      if (!byText.has(t)) byText.set(t, { places: new Map(), srcs: new Set(), first: Infinity, raw: g.reading });
+      const e = byText.get(t); e.srcs.add(g.src);
+      const pk = placeKey(q);
+      if (!e.places.has(pk)) { e.places.set(pk, q); e.first = Math.min(e.first, at(q)); }
+      if (!readsAt.has(pk)) readsAt.set(pk, []);
+      if (!readsAt.get(pk).some((r) => r.src === g.src && r.t === t)) readsAt.get(pk).push({ src: g.src, t });
+    };
+    for (const g of (v && v.readings) || []) for (const q of g.places) file(g, q);
+    for (const a of alts) for (const g of (a && a.v && a.v.readings) || []) for (const q of g.places) if (isHere(q)) file(g, q);
+    const placesOfText = (t) => { const e = byText.get(t); return e ? [...e.places.values()] : []; };
+    const countOf = (t) => { const e = byText.get(t); return e ? e.places.size : 0; };
+    const srcName = (src) => { const s = ix.readings_sources[src] || {}; return (SHORT_REC && SHORT_REC.names && SHORT_REC.names[s.key]) || s.label || src; };
+    // THE CARD, READ WHERE IT STANDS. Its rows are hidden under the table,
+    // never gone: every pill the card offers is in the dropdown (the owner,
+    // 2026-10-18: "see how many r pills i can find for bara? it should all be
+    // in the blue english dropdown"), every band of it with them (the ketiv
+    // and qere forms, the chain, the divisions, the blocks), and a pick here
+    // is a press there, so a pick takes the card's one path. The card's own
+    // buttons are found when pressed: the card redraws them often.
+    const cardPills = () => [...hud.querySelectorAll(":scope > .rows .b-read .r-pills button")];
+    const cardPressed = () => cardPills().find((x) => x.getAttribute("aria-pressed") === "true") || null;
+    const cardBands = () => [...hud.querySelectorAll(":scope > .rows > .band:not(.b-read)")].map((b) => [...b.querySelectorAll(".s-pills button")]).filter((bs) => bs.length);
+    const cardNotes = () => [...hud.querySelectorAll(":scope > .rows .b-read > p:not(.r-label):not(.r-piece)")];
+    const cardPending = () => !!hud.querySelector(":scope > .rows .b-read > p.r-wait");
+    const cardUnreached = () => !!hud.querySelector(":scope > .rows .b-read > p.r-unreachable");
+    // the n-th pill of these words, as the card stands now
+    const livePill = (t, n) => cardPills().filter((x) => x.textContent.trim() === t)[n] || null;
+    // who carries a card's pill: each source, as short as the page names it,
+    // with its own license
+    const whoOfPill = (x) => {
+      const out = document.createElement("div"); out.className = "who";
+      const seen = new Set();
+      for (const m of (x.dataset.by || "").split(" ").filter(Boolean)) {
+        const pm = /^PIECE:(.+)$/u.exec(m);
+        const s = pm ? ix.readings_sources[pm[1].toLowerCase()] : (index && index.m_sources && index.m_sources[m]) || null;
+        const nm = s && ((SHORT_REC && SHORT_REC.names && SHORT_REC.names[s.key]) || s.label);
+        if (!nm || seen.has(nm)) continue;
+        seen.add(nm);
+        if (seen.size > 1) out.append(" \u00b7 ");
+        out.append(nm, dictLic(pm ? s.licence : s.licensePosture));
       }
+      if (!seen.size) out.append(String(x.title || "").replace(/^[^\u00b7]*\u00b7\s*/u, ""));
+      return out;
+    };
+    const whoOfStore = (t) => {
+      const out = document.createElement("div"); out.className = "who";
+      const e = byText.get(t);
+      for (const src of e ? [...e.srcs] : []) out.append(srcName(src), dictLic((ix.readings_sources[src] || {}).licence), " ");
+      return out;
     };
     const verseOf = (z, ref, w) => {
       const sec = z && (z.sections || []).find((x) => x.label === ref);
@@ -4199,24 +4228,9 @@
           .catch(() => { /* the address still leads there */ });
       }
     }, { root: tab }) : null;
-    // every place that exact reading stands, each a link; this place, said
-    const PAGE = 50;
-    const placesOf = (g) => {
-      const box = document.createElement("div");
-      const list = [...g.places].sort((a, b) => (isHere(b) - isHere(a)) || at(a) - at(b));
-      const more = document.createElement("button"); more.type = "button"; more.className = "dd more";
-      let shown = 0;
-      const step = () => {
-        for (const p of list.slice(shown, shown + PAGE)) box.insertBefore(itemOf(p), more);
-        shown = Math.min(list.length, shown + PAGE);
-        if (shown < list.length) more.textContent = `${list.length - shown} more`; else more.remove();
-      };
-      more.addEventListener("click", (e) => { e.stopPropagation(); step(); });
-      box.append(more);
-      step();
-      return box;
-    };
-    const itemOf = (p) => {
+    // a place: this one said, every other a link; what the other sources
+    // read there; the verse, read when it comes into view
+    const itemOf = (p, t) => {
       const it = document.createElement("div"); it.className = "item";
       const label = `${name(p.book)} ${p.ref}:${p.w_page}${p.side ? ` (${p.side === "k" ? "as written" : "as read"})` : ""}`;
       if (isHere(p)) { it.append(`here \u00b7 ${label}`); }
@@ -4225,126 +4239,257 @@
         a.addEventListener("click", () => { try { localStorage.setItem("fh.dict.back", JSON.stringify({ href: backHref, label: hereLabel })); } catch { /* the jump still works; the way back is the browser's */ } });
         it.append(a);
       }
-      const other = besideAt.get(placeKey(p));
-      if (other && other.length) {
+      const bySrc = new Map();
+      for (const r of readsAt.get(placeKey(p)) || []) if (r.t !== t) { if (!bySrc.has(r.src)) bySrc.set(r.src, new Set()); bySrc.get(r.src).add(r.t); }
+      for (const [src, ts] of bySrc) {
         const o = document.createElement("div"); o.className = "who";
-        o.append(`${(SHORT_REC && SHORT_REC.names && SHORT_REC.names[beside.key]) || beside.label || ""}: `);
-        const t = document.createElement("span"); t.className = "rd"; t.textContent = other.join(" \u00b7 ");
-        o.append(t, dictLic(beside.licence));
+        o.append(`${srcName(src)}: `);
+        const s2 = document.createElement("span"); s2.className = "rd"; s2.textContent = [...ts].join(" \u00b7 ");
+        o.append(s2, dictLic((ix.readings_sources[src] || {}).licence));
         it.append(o);
       }
-      // the verse around it, as the book's own pinned text gives it, read
-      // when the place comes into view
       const ex = document.createElement("div"); ex.className = "ex"; ex.dataset.book = p.book; ex.dataset.ref = p.ref; ex.dataset.w = String(p.w_page);
       it.append(ex);
       if (exSeen) exSeen.observe(ex);
       return it;
     };
-    // the readings in the order the headers ask: this place's first, then
-    // where each first stands in the books' order; A to Z; by count
-    const order = () => {
-      const list = [...rows];
-      if (sort === "az") list.sort((a, b) => spanJoin(a.g.reading).localeCompare(spanJoin(b.g.reading)) || a.first - b.first);
-      else if (sort === "count") list.sort((a, b) => b.g.count - a.g.count || a.first - b.first);
-      else list.sort((a, b) => (b.here - a.here) || a.first - b.first);
-      return list;
+    // every place that exact reading stands: this place first, then the
+    // books' order, fifty at a time
+    const PAGE = 50;
+    const placesBox = (t) => {
+      const box = document.createElement("div");
+      const list = placesOfText(t).sort((a, b) => (isHere(b) - isHere(a)) || at(a) - at(b));
+      const more = document.createElement("button"); more.type = "button"; more.className = "dd more";
+      let shown = 0;
+      const step = () => {
+        for (const p of list.slice(shown, shown + PAGE)) box.insertBefore(itemOf(p, t), more);
+        shown = Math.min(list.length, shown + PAGE);
+        if (shown < list.length) more.textContent = `${list.length - shown} more`; else more.remove();
+      };
+      more.addEventListener("click", (e) => { e.stopPropagation(); step(); });
+      box.append(more);
+      step();
+      return box;
     };
-    // the one row: what the reader picked here, else the card's pressed
-    // reading, else this place's. Its places stand open: the pill is
-    // selected, so its passages are already showing (the owner, 2026-10-18:
-    // "its already expanded by way of that r pill being selected").
-    let chosen = null, picked = false, open = "places";
-    const pressedRow = () => {
-      const c = hud.querySelector(':scope > .rows .r-pills button[aria-pressed="true"]');
-      const t = c ? c.textContent.trim() : "";
-      return rows.find((r) => spanJoin(r.g.reading) === t) || null;
+    let sort = "text", open = "places", extra = null, toTop = false, refocus = null;
+    // the headers' order: as the card lists them, A to Z, or by places
+    const sorted = (list, textOf) => {
+      const l = [...list];
+      if (sort === "az") l.sort((a, b) => textOf(a).localeCompare(textOf(b)));
+      else if (sort === "count") l.sort((a, b) => countOf(textOf(b)) - countOf(textOf(a)));
+      return l;
     };
-    const choose = () => (picked && chosen) || pressedRow() || rows.find((r) => r.here) || null;
-    const pressCard = (reading) => { const c = cardPill(reading); if (c && c.getAttribute("aria-pressed") !== "true") c.click(); };
-    const pill = (reading) => {
+    const pill = (t) => {
       const pills = document.createElement("div"); pills.className = "r-pills";
-      const x = document.createElement("button"); x.type = "button"; x.textContent = spanJoin(reading); x.dataset.reading = reading; x.setAttribute("aria-pressed", "false");
+      const x = document.createElement("button"); x.type = "button"; x.textContent = t; x.setAttribute("aria-pressed", "false");
+      const e = byText.get(t); if (e) x.dataset.reading = e.raw;
       pills.append(x);
       return [pills, x];
     };
-    // the other readings, each its R pill and its count; a pick becomes the row
-    const readsOf = (others) => {
-      const box = document.createElement("div");
-      for (const x of others) {
-        const it = document.createElement("div"); it.className = "item opt";
-        const [ps, ob] = pill(x.g.reading);
-        ob.addEventListener("click", (e) => { e.stopPropagation(); chosen = x; picked = true; open = "places"; pressCard(x.g.reading); paint("pill"); });
-        const c = document.createElement("span"); c.className = "who"; c.textContent = `${x.g.count} location${x.g.count === 1 ? "" : "s"}`;
-        it.append(ps, c);
-        box.append(it);
+    const optOf = (t, pressed, onCard, pick) => {
+      const o = document.createElement("span"); o.className = "opt";
+      const [ps, b] = pill(t);
+      if (onCard) b.setAttribute("aria-pressed", pressed); else b.classList.add("off-card");
+      b.addEventListener("click", (e) => { e.stopPropagation(); pick(); });
+      o.append(ps);
+      const n = countOf(t);
+      if (n) { const c = document.createElement("span"); c.className = "n"; c.textContent = String(n); c.title = `${n} location${n === 1 ? "" : "s"}`; o.append(c); }
+      return o;
+    };
+    // THE DROPDOWN: the card's bands, its notes, every pill of the block it
+    // stands on, and after them what the per-place sources read that the
+    // card has no pill for
+    const menuOf = () => {
+      const box = document.createElement("div"); box.className = "menu";
+      cardBands().forEach((bs, row) => {
+        const r = document.createElement("div"); r.className = "s-pills"; r.dir = "rtl";
+        bs.forEach((bb, i) => {
+          const x = document.createElement("button"); x.type = "button"; x.lang = "he"; x.dir = "rtl"; x.textContent = bb.textContent;
+          x.setAttribute("aria-pressed", bb.getAttribute("aria-pressed") || "false");
+          x.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const live = (cardBands()[row] || [])[i];
+            if (!live) return;
+            extra = null; refocus = { row, i };
+            // a band that opens another card (a chain's word or rung): the
+            // keyboard goes to that card's table when it stands
+            DICT.focusAt = Date.now();
+            live.click();
+          });
+          r.append(x);
+        });
+        box.append(r);
+      });
+      const label = hud.querySelector(":scope > .rows .b-read .r-label");
+      if (label) { const l = document.createElement("p"); l.className = "note card-label"; l.textContent = label.textContent; box.append(l); }
+      // the card's own notes for the block, in its words; its "try again" is
+      // a press on the card's own
+      cardNotes().forEach((m, j) => {
+        const q = document.createElement("p"); q.className = "note card-note";
+        q.append(m.firstChild ? m.firstChild.textContent : m.textContent);
+        if (m.querySelector("button")) {
+          const again = document.createElement("button"); again.type = "button"; again.className = "dd more"; again.textContent = m.querySelector("button").textContent;
+          again.addEventListener("click", (e) => { e.stopPropagation(); const live = cardNotes()[j]; const b2 = live && live.querySelector("button"); if (b2) b2.click(); });
+          q.append(" ", again);
+        }
+        box.append(q);
+      });
+      const cps = cardPills();
+      const seen = new Map();
+      const opts = document.createElement("div"); opts.className = "opts";
+      for (const cp of sorted(cps, (x) => x.textContent.trim())) {
+        const t = cp.textContent.trim(); const n = seen.get(t) || 0; seen.set(t, n + 1);
+        opts.append(optOf(t, cp.getAttribute("aria-pressed") || "false", true, () => {
+          const live = livePill(t, n);
+          if (!live) return;
+          extra = null; open = "places"; toTop = true;
+          if (live.getAttribute("aria-pressed") !== "true") live.click();
+          paint("pill");
+        }));
+      }
+      if (cps.length) box.append(opts);
+      // a block the card is still reading, or could not read, offers nothing
+      // else yet: its own readings would stand there as no pill of the card
+      if (cardPending() || cardUnreached()) return box;
+      const onCard = new Set(cps.map((x) => x.textContent.trim()));
+      const rest = [...byText.keys()].filter((t) => !onCard.has(t)).sort((a, b) => byText.get(a).first - byText.get(b).first);
+      if (rest.length) {
+        const l2 = document.createElement("p"); l2.className = "note";
+        l2.textContent = `read by the sources, no pill on the card \u00b7 ${[...new Set(rest.flatMap((t) => [...byText.get(t).srcs]))].map(srcName).join(" \u00b7 ")}`;
+        const o2 = document.createElement("div"); o2.className = "opts rest";
+        for (const t of sorted(rest, (x) => x)) o2.append(optOf(t, "false", false, () => { extra = t; open = "places"; toTop = true; paint("pill"); }));
+        box.append(l2, o2);
       }
       return box;
     };
-    // a rebuilt row keeps the reader's place on the keyboard
-    const paint = (focus = null) => {
+    const table = document.createElement("table");
+    const head = document.createElement("tr");
+    const sorts = [["text", "hebrew"], ["az", "reads"], ["count", "places"]];
+    const body = document.createElement("tbody");
+    // what the table stands on, so a change in the card redraws it: its
+    // pressed pill, its pills in order, its bands, its notes, and a count of
+    // its redraws (a redraw of the same words is still new buttons)
+    let redraws = 0, sig = "";
+    const signature = () => {
+      const cp = cardPressed();
+      return [cp ? cp.textContent.trim() : "", cardPills().map((x) => x.textContent.trim()).join("|"),
+        cardBands().flat().map((x) => `${x.textContent}${x.getAttribute("aria-pressed")}`).join("|"),
+        cardNotes().map((x) => x.textContent).join("|"), redraws].join("\u0001");
+    };
+    // where the keyboard stands in the dropdown, to stand there again
+    const focusIn = () => {
       const ae = document.activeElement;
-      const f = focus || (ae && body.contains(ae) ? (ae.classList.contains("dd") && !ae.classList.contains("more") ? "dd" : "pill") : null);
-      const r = chosen = choose();
-      const others = order().filter((x) => x !== r);
+      if (!ae || !body.contains(ae)) return null;
+      const menu = ae.closest(".menu");
+      if (menu) {
+        const bandRow = ae.closest(".menu > .s-pills");
+        if (bandRow) return { band: [...menu.querySelectorAll(":scope > .s-pills")].indexOf(bandRow), i: [...bandRow.children].indexOf(ae) };
+        const o = ae.closest(".opts");
+        if (o) return { group: o.classList.contains("rest") ? "rest" : "card", t: ae.textContent.trim() };
+      }
+      return { row: ae.classList.contains("dd") && !ae.classList.contains("more") ? "dd" : "pill" };
+    };
+    const focusBack = (fk, rb, nb) => {
+      const menu = body.querySelector(".menu");
+      let el = null;
+      if (fk && fk.band != null && menu) { const rowEl = menu.querySelectorAll(":scope > .s-pills")[fk.band]; el = rowEl ? rowEl.children[fk.i] : null; }
+      else if (fk && fk.group && menu) el = [...menu.querySelectorAll(`${fk.group === "rest" ? ".opts.rest" : ".opts:not(.rest)"} .opt button`)].find((x) => x.textContent.trim() === fk.t) || null;
+      else if (fk && fk.row) el = fk.row === "dd" && nb ? nb : rb;
+      if (!el && fk) el = rb || (menu && menu.querySelector("button")) || head.querySelector('button[aria-pressed="true"]');
+      if (el) el.focus({ preventScroll: true });
+    };
+    // ONE ROW: the reading the card stands on (or a reading the sources give
+    // that the card has no pill for), its sources, its places open under it
+    // (the owner, 2026-10-18: "its already expanded by way of that r pill
+    // being selected"); a rebuilt row keeps the reader's place on the keyboard
+    const paint = (focus = null) => {
+      let fk = focusIn();
+      if (refocus) { fk = { band: refocus.row, i: refocus.i }; refocus = null; DICT.focusAt = 0; }
+      else if (focus) fk = { row: focus };
+      const keep = tab.scrollTop;
+      sig = signature();
+      // a reading picked from the sources stands until the card is pressed on it
+      if (extra && cardPills().some((x) => x.textContent.trim() === extra)) extra = null;
+      const cp = extra ? null : cardPressed();
+      const t = extra || (cp ? cp.textContent.trim() : null);
       const sub = document.createElement("tr"); sub.className = "sub";
       const cell = document.createElement("td"); cell.colSpan = 3; sub.append(cell);
-      if (!r) {
+      if (!t) {
         const tr = document.createElement("tr"); tr.className = "pick none";
         const td = document.createElement("td"); td.colSpan = 3; td.className = "note";
-        td.textContent = "no source in the store reads this place; these letters read elsewhere as";
+        td.textContent = cardPending() ? "the card is reading this block\u2026"
+          : cardUnreached() ? "the card's catalog did not answer for this block; nothing here says the catalog lacks it"
+          : byText.size ? "the card has no reading here; the sources read these letters as"
+          : "neither the card nor the store has a reading for these letters";
         tr.append(td);
-        sub.classList.add("reads"); cell.append(readsOf(others));
+        sub.classList.add("reads"); cell.append(menuOf());
         body.replaceChildren(tr, sub);
-        mirror();
-        const first = cell.querySelector("button");
-        if (f && first) first.focus({ preventScroll: true });
+        tab.scrollTop = keep;
+        focusBack(fk, null, null);
         return;
       }
-      const src = ix.readings_sources[r.g.src] || {};
-      const tr = document.createElement("tr"); tr.className = r.here ? "pick here" : "pick";
-      const he = document.createElement("td"); he.className = "he"; he.textContent = r.pointed;
+      const places = placesOfText(t);
+      const tr = document.createElement("tr"); tr.className = places.some(isHere) ? "pick here" : "pick";
+      const he = document.createElement("td"); he.className = "he";
+      const blk = hud.querySelector(':scope > .rows .b-cell .s-pills button[aria-pressed="true"]');
+      const hp = places.find(isHere);
+      const headHe = hud.querySelector(":scope > .head b[lang=he]");
+      he.textContent = extra ? (hp ? hp.pointed : places[0] ? places[0].pointed : headHe ? headHe.textContent : "")
+        : blk ? blk.textContent : hp ? hp.pointed : headHe ? headHe.textContent : "";
       const rd = document.createElement("td");
-      const [pills, rb] = pill(r.g.reading);
-      if (others.length) rb.setAttribute("aria-expanded", String(open === "reads"));
-      rb.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (!others.length) { pressCard(r.g.reading); requestAnimationFrame(mirror); return; }
-        open = open === "reads" ? "places" : "reads"; paint("pill");
-      });
-      const who = document.createElement("div"); who.className = "who"; who.append((SHORT_REC && SHORT_REC.names && SHORT_REC.names[src.key]) || src.label || r.g.src, dictLic(src.licence));
-      rd.append(pills, who);
+      const [pills, rb] = pill(t);
+      if (cp) rb.setAttribute("aria-pressed", cp.getAttribute("aria-pressed") || "false"); else rb.classList.add("off-card");
+      rb.setAttribute("aria-expanded", String(open === "reads"));
+      rb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "reads" ? "places" : "reads"; if (open !== "reads") toTop = true; paint("pill"); });
+      rd.append(pills, cp ? whoOfPill(cp) : whoOfStore(t));
       const n = document.createElement("td");
-      const nb = document.createElement("button"); nb.type = "button"; nb.className = "dd"; nb.textContent = `${r.g.count} location${r.g.count === 1 ? "" : "s"}`; nb.setAttribute("aria-expanded", String(open === "places"));
-      nb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "places" ? null : "places"; paint("dd"); });
-      n.append(nb);
+      const label = `${places.length} location${places.length === 1 ? "" : "s"}`;
+      let nb = null;
+      if (places.length) {
+        nb = document.createElement("button"); nb.type = "button"; nb.className = "dd"; nb.textContent = label; nb.setAttribute("aria-expanded", String(open === "places"));
+        nb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "places" ? null : "places"; paint("dd"); });
+        n.append(nb);
+      } else { const z = document.createElement("span"); z.className = "who"; z.textContent = label; n.append(z); }
       tr.append(he, rd, n);
-      if (open === "reads" && others.length) { sub.classList.add("reads"); cell.append(readsOf(others)); }
-      else if (open === "places") cell.append(placesOf(r.g));
+      if (open === "reads") { sub.classList.add("reads"); cell.append(menuOf()); }
+      else if (open === "places" && places.length) cell.append(placesBox(t));
       else sub.hidden = true;
       body.replaceChildren(tr, sub);
-      mirror();
-      if (f) (f === "dd" ? nb : rb).focus({ preventScroll: true });
+      // a pick that closes the dropdown shows its row from the top
+      if (toTop) { tab.scrollTop = 0; toTop = false; } else if (open === "reads") tab.scrollTop = keep;
+      focusBack(fk, rb, nb);
     };
     for (const [id, label] of sorts) {
       const th = document.createElement("th");
       const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.dataset.sort = id;
       b.setAttribute("aria-pressed", String(id === sort));
-      b.addEventListener("click", (e) => { e.stopPropagation(); sort = id; if (rows.length > 1) open = "reads"; head.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.sort === sort))); paint(); });
+      b.addEventListener("click", (e) => {
+        e.stopPropagation(); sort = id;
+        // a header sorts the dropdown, and opens it where there is more than one reading
+        if (cardPills().length + [...byText.keys()].length > 1) open = "reads";
+        head.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.sort === sort)));
+        paint();
+      });
       th.append(b); head.append(th);
     }
     const thead = document.createElement("thead"); thead.append(head);
     table.append(thead, body);
     tab.replaceChildren(table); paint();
-    // the card's pills arrive and change under the table: it follows them
-    const cardRows = hud.querySelector(":scope > .rows");
-    if (cardRows) {
-      let queued = false;
-      const mo = new MutationObserver(() => {
-        if (gen !== hudGen) { mo.disconnect(); return; }
-        if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; if (!picked && choose() !== chosen) paint(); else mirror(); }); }
-      });
-      mo.observe(cardRows, { childList: true, subtree: true, attributes: true, attributeFilter: ["aria-pressed"] });
+    if (DICT.focusAt && Date.now() - DICT.focusAt < 4000 && !tab.contains(document.activeElement)) {
+      const rb0 = body.querySelector("tr.pick .r-pills button") || head.querySelector("button");
+      if (rb0) rb0.focus({ preventScroll: true });
     }
+    DICT.focusAt = 0;
+    // the card changes under the table (a band pressed, a pill pressed, its
+    // readings arriving, a rail switch redrawing its pills): the table follows
+    let queued = false;
+    const mo = new MutationObserver((records) => {
+      if (gen !== hudGen) { mo.disconnect(); return; }
+      if (records.some((r) => r.type === "childList")) redraws += 1;
+      if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; if (gen === hudGen && signature() !== sig) paint(); }); }
+    });
+    const rowsEl = hud.querySelector(":scope > .rows");
+    if (rowsEl) mo.observe(rowsEl, { childList: true, subtree: true, attributes: true, attributeFilter: ["aria-pressed"] });
     placeHud();
   };
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
@@ -5214,7 +5359,12 @@
     const volSlot = document.createElement("div"); volSlot.className = "vol-slot";
     hud.replaceChildren(...(opts.back ? [backButton(opts.back)] : []), head, now, rows, dSlot, partsSlot, hohSlot, volSlot, prov);
     hud.classList.remove("dict");
-    if (dictOn() && bin === zone && region && region.k && !opts.run && regionIndex !== -1) renderDictTab(region.form_k || region.k, openSite, myGen);
+    // the table stands on the card's own readings, which arrive after its head
+    let cardReadDone = () => {};
+    const cardRead = new Promise((r) => { cardReadDone = r; });
+    // a ketiv/qere site: the store may file this place under either side's letters
+    const kqAlt = word && word.kq ? (word.kq.k || word.kq.q ? [word.kq.k, word.kq.q] : kqSides(word.s)).map(lettersOf) : [];
+    if (dictOn() && bin === zone && region && region.k && !opts.run && regionIndex !== -1) renderDictTab(region.form_k || region.k, openSite, myGen, cardRead, kqAlt);
     renderParts(partsSlot, bin === zone ? (opts.word || word) : null);
     renderHoh(hohSlot, region, opts.word || word);
     renderVolume(volSlot, bin === zone ? unitId : null);
@@ -5376,7 +5526,7 @@
         one.withheld = 0; one.withheldBySources = 0; one.rows = 1;
         cache.set(SET_KEY, one);
       }
-      const wait = document.createElement("p"); wait.textContent = "Fetching one shard…";
+      const wait = document.createElement("p"); wait.className = "r-wait"; wait.textContent = "Fetching one shard…";
       readRow.append(label, wait);
       // THE RECORD SLOT IS THIS BLOCK'S from the moment the block is pressed:
       // the last block's record stood under "Fetching one shard…" for the
@@ -5412,7 +5562,7 @@
         const n = (tried.get(surface) || 0) + 1; tried.set(surface, n);
         if (n === 1) {
           await new Promise((r) => setTimeout(r, 1200));
-          if (myGen === hudGen && surface === (setWhole ? SET_KEY : cover[cellIdx].surface)) renderReadings();
+          if (myGen === hudGen && surface === (setWhole ? SET_KEY : cover[cellIdx].surface)) await renderReadings();
           return;
         }
       }
@@ -6021,6 +6171,7 @@
 
     renderChain(); renderCuts(); renderCells();
     await renderReadings();
+    cardReadDone();
     if (myGen !== hudGen) return;   // a dead card places nothing
     placeHud();
   };
@@ -9370,6 +9521,33 @@
     if (!hud.hidden && activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
   });
   paintDict();
+  // THE RESET PILL: what the reader has picked on this page (a reading or a
+  // division of a form, at every place it stands; a half of a pair; a form
+  // of an apparatus site), counted, and forgotten at a press. The lines are
+  // laid again through the page's one first paint, so each is the line it
+  // opened as; the switches keep their settings.
+  const resetPill = document.getElementById("resetPill"), resetState = document.getElementById("resetState");
+  const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + kqPicks.size + pickedQForm.size;
+  const paintReset = () => {
+    const n = picksNow();
+    resetPill.disabled = !n;
+    resetState.textContent = n ? `${n} picked` : "default";
+  };
+  resetPill.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (!picksNow()) return;
+    pickedByForm.clear(); kqPicks.clear(); pickedQForm.clear();
+    relayBuiltSections();
+    // the book's title word stands outside the sections: its line and its
+    // chosen mark go back with the rest
+    document.querySelectorAll(".wb.chosen, .wjoin.chosen").forEach((x) => x.classList.remove("chosen"));
+    repaintGlossOrder();
+    paintReset();
+  });
+  // a pick is made inside a card; the count follows any press on the page
+  document.addEventListener("click", () => requestAnimationFrame(paintReset), true);
+  new MutationObserver(() => requestAnimationFrame(paintReset)).observe(hud, { attributes: true, attributeFilter: ["hidden"] });
+  paintReset();
   if (QUERY.get("mode") === "en") setMode("en");
   else if (!QUERY.has("mode")) { try { if (localStorage.getItem(MODE_KEY) === "en") setMode("en"); } catch { /* a device that remembers nothing opens the Hebrew reader */ } }
   if (QUERY.get("chain") === "ltr") document.body.dataset.chain = "ltr";   // the preview above
