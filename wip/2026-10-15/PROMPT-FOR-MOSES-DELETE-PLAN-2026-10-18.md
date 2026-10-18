@@ -1,3 +1,7 @@
+# ON HOLD: NOT SENT
+
+The owner, 18 October: "remake the several hundreds of builds into 1 single overlapped build ... in future weeks, so until then no deletion". The plan on R2 carries ON-HOLD-2026-10-18.md.
+
 # SEND THIS (the owner, 18 October: tokens are short, "8% of weekly")
 
 > The owner names T1 and T3. Tokens are short: run the plan as commands only, no new build and no new verify rounds. Read `r2:mishkan/serving-lane-handoffs/elijah-delete-plan-v1/FOR-MOSES.md`, then `PLAN.md`. Run step 1 (freeze, re-check, dry runs). Skip step 3, the R2 duplicates (about $0.03 a month, not worth your lenses). Run step 4's check, then steps 5 and 6, each right after its rclone hash check, deleting only `=` files, then step 7, and write the step 8 RECEIPT. Stop and report if any condition fails. My 17 Oct R2 clearing list is withdrawn; don't run any of it.
