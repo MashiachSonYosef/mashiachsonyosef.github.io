@@ -4074,6 +4074,19 @@
     ixP: null, shards: new Map(), booksP: null, zones: new Map(),
   };
   const dictOn = () => DICT.pref === "on";
+  // A SEARCH'S HIT, WAITING TO BE OPENED where it lands, on this page or the
+  // one it goes to (the second review of the search, 2026-10-18): which book
+  // and place, and whether the keys chose it. A landing takes it once; one
+  // that lands anywhere else lets it go.
+  const SEARCH_LAND = "fh.search.land";
+  let searchLanding = null;
+  const searchLand = (x) => { searchLanding = x; try { sessionStorage.setItem(SEARCH_LAND, JSON.stringify(x)); } catch { /* this page still lands it */ } };
+  const takeLand = (at) => {
+    let x = searchLanding;
+    try { const v = sessionStorage.getItem(SEARCH_LAND); if (v) x = JSON.parse(v); sessionStorage.removeItem(SEARCH_LAND); } catch { /* the one in hand */ }
+    searchLanding = null;
+    return x && x.book === BOOK && x.at === at ? x : null;
+  };
   // the LETTERS KEY v1.1: the canonical decomposition, its letters alone
   // the two sides of a ketiv/qere site as the text marks them: the read side
   // drops the written (in parentheses), the written side drops the read
@@ -4104,7 +4117,8 @@
   // (a ?dict= the page was opened with rides along, so the page reached
   // opens the same way)
   const dictHref = (book, ref, w) => {
-    const dq = QUERY.get("dict") === "on" || QUERY.get("dict") === "off" ? QUERY.get("dict") : "";
+    // as the concordance stands now, which a search's hit may have turned on
+    const dq = QUERY.get("dict") === "on" || QUERY.get("dict") === "off" ? DICT.pref : "";
     return META("reader-book")
       ? `/${book}/${String(ref).split(":")[0]}/${dq ? `?dict=${dq}` : ""}#${ref}:${w}`
       : `${location.pathname}?b=${encodeURIComponent(book)}${dq ? `&dict=${dq}` : ""}#${ref}:${w}`;
@@ -6755,8 +6769,10 @@
   // it, widened where a mark hangs past
   const INK_CV = document.createElement("canvas").getContext("2d");
   const fontOf = (el) => { const cs = getComputedStyle(el); return `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; };
+  // a card's number (card numbering) is no ink of the word's: a blob is the
+  // same with the numbers on or off
   const textMap = (el) => {
-    const nodes = []; const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); let n, at = 0;
+    const nodes = []; const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, { acceptNode: (t) => (t.parentElement && t.parentElement.closest(".cn") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT) }); let n, at = 0;
     while ((n = tw.nextNode())) { if (!n.data.length) continue; nodes.push({ n, at, len: n.data.length }); at += n.data.length; }
     return { nodes, text: nodes.map((x) => x.n.data).join("") };
   };
@@ -9467,7 +9483,9 @@
     document.body.classList.toggle("en", m === "en");
     btnEn.classList.toggle("on", m === "en");
     btnEn.setAttribute("aria-pressed", String(m === "en"));
-    dirEn.textContent = m === "en" ? "positioning layer on, left to right" : "off, right to left";
+    // the pill's look says on or off (the owner, 2026-10-18: "our pills are
+    // clear enough as on and off"); the line under it says what it does
+    dirEn.textContent = m === "en" ? "positioning layer, left to right" : "right to left";
     pick(m === "en" ? "en" : "he");
     drawAllTies();
   };
@@ -9478,7 +9496,7 @@
   const paintBlobPill = () => {
     const on = blobsPref !== "off";
     blobPill.classList.toggle("on", on); blobPill.setAttribute("aria-pressed", String(on));
-    blobState.textContent = blobsPref === "runs" ? "runs only" : on ? "on" : "off";
+    blobState.textContent = blobsPref === "runs" ? "runs only" : "";
   };
   blobPill.addEventListener("click", () => chooseBlobs(blobsPref === "off" ? "every" : "off"));
   onBlobsChange = paintBlobPill; paintBlobPill();
@@ -9501,7 +9519,7 @@
     const on = numsPref === "on";
     document.body.classList.toggle("nums", on);
     numsPill.classList.toggle("on", on); numsPill.setAttribute("aria-pressed", String(on));
-    numsState.textContent = on ? "on" : "off";
+    numsState.textContent = "";
     if (on) numberCells(document);
   };
   numsPill.addEventListener("click", () => { numsPref = numsPref === "on" ? "off" : "on"; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); });
@@ -9510,7 +9528,9 @@
   const paintDict = () => {
     const on = dictOn();
     dictPill.classList.toggle("on", on); dictPill.setAttribute("aria-pressed", String(on));
-    dictState.textContent = on ? "on" : "off";
+    // off by default, so the pill says so itself (the owner, 2026-10-18: "we
+    // default off so that already says that")
+    dictState.textContent = "";
   };
   dictPill.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -9521,33 +9541,265 @@
     if (!hud.hidden && activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
   });
   paintDict();
-  // THE RESET PILL: what the reader has picked on this page (a reading or a
-  // division of a form, at every place it stands; a half of a pair; a form
-  // of an apparatus site), counted, and forgotten at a press. The lines are
-  // laid again through the page's one first paint, so each is the line it
-  // opened as; the switches keep their settings.
+  // THE RESET PILL: the row's switches back to their default, and what the
+  // reader has picked on this page (a reading or a division of a form, at
+  // every place it stands; a half of a pair; a form of an apparatus site),
+  // counted and forgotten, at one press (the owner, 2026-10-18: "the reset
+  // default button is not working btw. it would be: english toggle off,
+  // blobs off, numbers on, concordance off"). The lines are laid again
+  // through the page's one first paint, so each is the line it opened as.
+  // It cannot be pressed while there is nothing to put back.
+  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off" };
   const resetPill = document.getElementById("resetPill"), resetState = document.getElementById("resetState");
   const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + kqPicks.size + pickedQForm.size;
+  const switchesAtDefault = () => (document.body.classList.contains("en") ? "en" : "he") === SWITCHES_DEFAULT.mode
+    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict;
   const paintReset = () => {
-    const n = picksNow();
-    resetPill.disabled = !n;
-    resetState.textContent = n ? `${n} picked` : "default";
+    const n = picksNow(), at = switchesAtDefault();
+    resetPill.disabled = !n && at;
+    resetState.textContent = n ? `${n} picked` : at ? "default" : "";
   };
   resetPill.addEventListener("click", (e) => {
     e.stopPropagation();
-    if (!picksNow()) return;
-    pickedByForm.clear(); kqPicks.clear(); pickedQForm.clear();
-    relayBuiltSections();
-    // the book's title word stands outside the sections: its line and its
-    // chosen mark go back with the rest
-    document.querySelectorAll(".wb.chosen, .wjoin.chosen").forEach((x) => x.classList.remove("chosen"));
-    repaintGlossOrder();
+    if (picksNow()) {
+      pickedByForm.clear(); kqPicks.clear(); pickedQForm.clear();
+      relayBuiltSections();
+      // the book's title word stands outside the sections: its line and its
+      // chosen mark go back with the rest
+      document.querySelectorAll(".wb.chosen, .wjoin.chosen").forEach((x) => x.classList.remove("chosen"));
+      repaintGlossOrder();
+    }
+    if (!hud.hidden) closeHud();
+    if ((document.body.classList.contains("en") ? "en" : "he") !== SWITCHES_DEFAULT.mode) setMode(SWITCHES_DEFAULT.mode);
+    if (blobsPref !== SWITCHES_DEFAULT.blobs) chooseBlobs(SWITCHES_DEFAULT.blobs);
+    if (numsPref !== SWITCHES_DEFAULT.nums) { numsPref = SWITCHES_DEFAULT.nums; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); }
+    if (DICT.pref !== SWITCHES_DEFAULT.dict) { DICT.pref = SWITCHES_DEFAULT.dict; try { localStorage.setItem("fh.dict", DICT.pref); } catch { /* the choice still stands on this page */ } paintDict(); }
     paintReset();
   });
   // a pick is made inside a card; the count follows any press on the page
   document.addEventListener("click", () => requestAnimationFrame(paintReset), true);
   new MutationObserver(() => requestAnimationFrame(paintReset)).observe(hud, { attributes: true, attributeFilter: ["hidden"] });
   paintReset();
+  // THE SEARCH (the owner, 2026-10-18: "hebrew by character ... and any
+  // english hits like create or be created or cut down", at the top of the
+  // book page; no transliteration: "not our problem"). Hebrew letters find
+  // these letters and the words that begin with them; anything else is an
+  // English reading, folded as the index folds it
+  // (tools/bake-search-index-v1.mjs), and finds every word a dictionary or a
+  // per-place source reads so. A hit opens the word's card where it stands,
+  // in this book when it stands here, as the concordance.
+  {
+    const box = document.getElementById("searchIn"), out = document.getElementById("searchOut");
+    const SIX = { ixP: null, he: new Map(), en: new Map() };
+    const sIndex = () => SIX.ixP || (SIX.ixP = fetch(`${ROOT}data/search-index/index.json`, { cache: "no-cache" })
+      .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return r.json(); })
+      .catch((e) => { SIX.ixP = null; throw e; }));
+    // a ketiv/qere text, "(ketiv) [qere]", is read by its qere
+    const sQere = (s2) => { const m = /\[([^\]]*)\]/u.exec(String(s2 || "")); return m ? m[1] : String(s2 || ""); };
+    // a pointing, as the index reads one: the letters and their points,
+    // canonically ordered, no cantillation, no meteg
+    const sPoint = (s2) => [...sQere(s2).normalize("NFD")].filter((c) => { const n = c.codePointAt(0); return (n >= 0x5d0 && n <= 0x5ea) || (n >= 0x5b0 && n <= 0x5bc) || n === 0x5bf || n === 0x5c1 || n === 0x5c2 || n === 0x5c7; }).join("").normalize("NFD");
+    // a run is typed as its words: their letters, one space between (a maqaf
+    // is a gap between words as a space is)
+    const sWords = (s2) => String(s2 || "").split(/[\s\u05be]+/u).map(lettersOf).filter(Boolean).join(" ");
+    // the index's fold, the same steps in the same order
+    const sFold = (t) => String(t || "").normalize("NFKC").toLowerCase()
+      .replace(/[\u2018\u2019\u201b\u2032\u02bc]/gu, "'").replace(/[\u201c\u201d\u201e\u2033]/gu, "\"")
+      .replace(/[/+]/gu, " ").replace(/[[\]()<>]/gu, "").split(/\s+/u).filter(Boolean).join(" ").replace(/\.$/u, "");
+    // ONE CONSONANT, ONE LETTER: a final form is its letter at a word's end,
+    // so for finding, the five finals are their medial letters (a word typed
+    // whole with its final also finds the longer words that go on past it)
+    const sFin = (s2) => s2.replace(/[\u05da\u05dd\u05df\u05e3\u05e5]/gu, (c) => String.fromCharCode(c.charCodeAt(0) + 1));
+    // a shard that did not arrive is not an empty shard: it leaves the cache
+    const sShard = (map, path) => {
+      if (!map.has(path)) map.set(path, sIndex()
+        .then((ix) => fetch(`${ROOT}data/search-index/${path}?v=${ix.index_version}`))
+        .then((r) => { if (!r.ok) throw new Error(`${r.status}`); return unpack(r); })
+        .catch((e) => { map.delete(path); throw e; }));
+      return map.get(path);
+    };
+    // no word begins with a final letter, and a letter no word begins with has
+    // no shard: that is an answer, not a failure
+    const heShard = async (L) => {
+      const path = `he/${sFin(L).codePointAt(0).toString(16).padStart(4, "0")}.bin`;
+      const ix = await sIndex();
+      if (!Array.isArray(ix.files)) throw new Error("the index lists no files");
+      return ix.files.some((f) => f.path === path) ? sShard(SIX.he, path) : [];
+    };
+    const heRow = async (L) => {
+      const rows = await heShard(L);
+      let lo = 0, hi = rows.length - 1;
+      while (lo <= hi) { const mid = (lo + hi) >> 1; if (rows[mid][0] === L) return rows[mid]; if (rows[mid][0] < L) lo = mid + 1; else hi = mid - 1; }
+      return null;
+    };
+    // THE CONSONANTS FIND; THE POINTING TYPED RANKS (the owner, 2026-10-18:
+    // "always find despite voweling, go off consonants only with voweling as
+    // best match preferencing"): a word stood in the pointing typed, or one
+    // that begins so, comes first
+    const formOf = (row, qv) => (qv ? (row[6] || []).find(([f]) => f === qv) || (row[6] || []).find(([f]) => f.startsWith(qv)) || null : null);
+    const hebrew = async (L, qv) => {
+      const rows = await heShard(L), F = sFin(L);
+      // the letters as typed, then with each word's last letter final, then
+      // any that are these letters; the others that are these letters are
+      // the same letters, so none of them begins with them
+      const ending = L.replace(/[\u05db\u05de\u05e0\u05e4\u05e6](?=\s|$)/gu, (c) => String.fromCharCode(c.charCodeAt(0) - 1));
+      const exact = rows.find((r) => r[0] === L) || rows.find((r) => r[0] === ending) || rows.find((r) => sFin(r[0]) === F) || null;
+      const starts = rows.filter((r) => sFin(r[0]) !== F && sFin(r[0]).startsWith(F))
+        .sort((a, b) => (!!formOf(b, qv) - !!formOf(a, qv)) || b[1] - a[1] || (a[0] < b[0] ? -1 : 1));
+      return { exact, starts };
+    };
+    const english = async (f, dix) => {
+      const hex = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(f)))[0].toString(16).padStart(2, "0");
+      const shard = await sShard(SIX.en, `en/${hex}.bin`);
+      const hits = (shard && Object.hasOwn(shard, f) && shard[f]) || [];
+      // a source the reader switched off does not answer here either: a
+      // per-place source (TAHOT, MACULA) is switched by the M that carries
+      // its key, and its places leave the count with it
+      const off = (id) => {
+        if (sourcesOff.has(id)) return true;
+        const rs = ((dix && dix.readings_sources) || {})[id];
+        return !!rs && Object.entries((index && index.m_sources) || {}).some(([m, s2]) => s2.key === rs.key && sourcesOff.has(m));
+      };
+      const live = hits.map(([L, by, exact, per]) => {
+        const keep = by.filter((m) => !off(m));
+        const gone = Object.keys(per || {}).filter((id) => off(id));
+        const n = !gone.length ? exact : Object.entries(per || {}).filter(([id]) => !gone.includes(id)).reduce((t, [, k]) => Math.max(t, k), 0);
+        return [L, keep, n];
+      }).filter(([, by, exact]) => by.length || exact);
+      const rows = await Promise.all(live.map(async ([L, by, exact]) => ({ row: await heRow(L), by, exact })));
+      return rows.filter((x) => x.row).sort((a, b) => b.exact - a.exact || b.row[1] - a.row[1] || (a.row[0] < b.row[0] ? -1 : 1));
+    };
+    // who reads it so, as short as the page names them
+    const nameOf = (m, ix) => {
+      const s = m === "tahot" || m === "macula" ? (ix.readings_sources || {})[m] : (index && index.m_sources && index.m_sources[m]);
+      return (s && ((SHORT_REC && SHORT_REC.names && SHORT_REC.names[s.key]) || s.label)) || m;
+    };
+    const say = (t) => { const p = document.createElement("p"); p.className = "note"; p.textContent = t; out.replaceChildren(p); out.hidden = false; };
+    const label = (t) => { const p = document.createElement("p"); p.className = "lab"; p.textContent = t; return p; };
+    const go = async (row, form = null, byKeys = false, read = "") => {
+      // a hit chosen ends any search still on its way, and any hit chosen
+      // before it; the list goes, so nothing else is chosen while it lands
+      clearTimeout(timer); seq += 1;
+      const mine = ++goGen;
+      out.hidden = true;
+      let [L, , , book, ref, w] = row;
+      // the pointing found first, then this book first: the first place these
+      // letters stand, pointed so, here; else pointed so anywhere; else here
+      try {
+        const { v } = await dictKey(L);
+        const books = await dictBooks();
+        const key = (q) => { const i = books.order.indexOf(q.book); return [i < 0 ? 1e9 : i, ...String(q.ref).split(":").map(Number), q.w_page]; };
+        const all = [];
+        for (const g of (v && v.readings) || []) for (const q of g.places) all.push(q);
+        all.sort((a, b) => { const x = key(a), y = key(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2] || x[3] - y[3]; });
+        // an English hit lands where a source reads it so, where one does
+        const readSo = read ? new Set(((v && v.readings) || []).filter((g) => sFold(spanJoin(g.reading)) === read).flatMap((g) => g.places)) : null;
+        const so = form ? all.filter((q) => sPoint(q.pointed) === form) : readSo && readSo.size ? all.filter((q) => readSo.has(q)) : [];
+        const pick = so.find((q) => q.book === BOOK) || so[0] || all.find((q) => q.book === BOOK) || null;
+        if (pick) { book = pick.book; ref = pick.ref; w = pick.w_page; }
+        // a run is no key of the dictionary store: its first place in this
+        // book is the span store's, when this book holds it
+        else if (L.includes(" ") && SPAN_BOOK && SPAN_BOOK.book === BOOK && Array.isArray(SPAN_BOOK.placesList)) {
+          const here = SPAN_BOOK.placesList.filter((pl) => sWords(pl.key) === L).sort((a, b) => { const x = String(a.ref).split(":").map(Number), y = String(b.ref).split(":").map(Number); return x[0] - y[0] || x[1] - y[1] || a.first - b.first; })[0];
+          if (here) { book = BOOK; ref = here.ref; w = here.first; }
+        }
+      } catch { /* the first place in the books' order still leads there */ }
+      if (mine !== goGen) return;
+      // a hit opens as the concordance
+      if (!dictOn()) { DICT.pref = "on"; try { localStorage.setItem("fh.dict", "on"); } catch { /* on for this page */ } paintDict(); }
+      // it opens the word's own card even where the word is one of a run's,
+      // and, chosen from the keys, the keys go on into it, on this page or
+      // the next (SEARCH_LAND)
+      searchLand({ book, at: `${ref}:${w}`, keys: byKeys });
+      if (book === BOOK) {
+        const h = `#${ref}:${w}`;
+        if (location.hash === h) window.dispatchEvent(new HashChangeEvent("hashchange")); else location.hash = h;
+      } else {
+        // another book's page opens as the concordance too, whatever this
+        // page was opened with
+        location.href = META("reader-book")
+          ? `/${book}/${String(ref).split(":")[0]}/?dict=on#${ref}:${w}`
+          : `${location.pathname}?b=${encodeURIComponent(book)}&dict=on#${ref}:${w}`;
+      }
+    };
+    const hitEl = (row, names, meta2, reads, form = null, read = "") => {
+      const [, n, pointed0, book, ref, w] = row;
+      const pointed = form ? form[0] : pointed0;
+      if (form) meta2 = `${form[1]} pointed so${meta2 ? ` \u00b7 ${meta2}` : ""}`;
+      const b = document.createElement("button"); b.type = "button"; b.className = "hit";
+      const he = document.createElement("span"); he.className = "he"; he.lang = "he"; he.dir = "rtl"; he.textContent = pointed;
+      const meta = document.createElement("span"); meta.className = "meta";
+      meta.textContent = `${meta2 ? `${meta2} \u00b7 ` : ""}${n} place${n === 1 ? "" : "s"} in all \u00b7 first ${names[book] || book} ${ref}:${w}`;
+      b.append(he, meta);
+      if (reads) { const r = document.createElement("span"); r.className = "rd"; r.textContent = reads; b.append(r); }
+      b.addEventListener("click", (e) => { e.stopPropagation(); go(row, form ? form[0] : null, e.detail === 0, read); });
+      return b;
+    };
+    const PAGE = 12;
+    const list = (rows, make) => {
+      const wrap = document.createElement("div");
+      const more = document.createElement("button"); more.type = "button"; more.className = "more";
+      let shown = 0;
+      const step = () => {
+        const held = document.activeElement === more;
+        const made = rows.slice(shown, shown + PAGE).map((r) => { const el = make(r); wrap.insertBefore(el, more); return el; });
+        shown = Math.min(rows.length, shown + PAGE);
+        if (shown < rows.length) more.textContent = `${rows.length - shown} more`;
+        else { more.remove(); if (held && made[0]) made[0].focus(); }
+      };
+      more.addEventListener("click", (e) => { e.stopPropagation(); step(); });
+      wrap.append(more); step();
+      return wrap;
+    };
+    let seq = 0, timer = 0, goGen = 0;
+    const run = async () => {
+      const q = box.value, my = ++seq;
+      goGen += 1;
+      if (!q.trim()) { out.hidden = true; out.replaceChildren(); return; }
+      // a ketiv/qere pasted from the page is read by its qere; two words or
+      // more are a run, and a run has no pointing of its own to rank by
+      const L = sWords(sQere(q));
+      const qv = L && !L.includes(" ") && sPoint(q) !== L ? sPoint(q) : "";
+      const f = L ? "" : sFold(q);
+      if (!L && f.length < 2) { out.hidden = true; out.replaceChildren(); return; }
+      say("searching\u2026");
+      try {
+        const [books, dix] = await Promise.all([dictBooks(), dictIndex()]);
+        if (L) {
+          const r = await hebrew(L, qv);
+          if (my !== seq) return;
+          let reads = null;
+          if (r.exact) {
+            try {
+              const { v } = await dictKey(L);
+              const n = new Map();
+              for (const g of (v && v.readings) || []) { const t = spanJoin(g.reading); n.set(t, (n.get(t) || 0) + g.places.length); }
+              reads = [...n].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([t]) => t).join(" \u00b7 ");
+            } catch { /* the hit still opens */ }
+            if (my !== seq) return;
+          }
+          const parts = [label("these letters")];
+          parts.push(r.exact ? hitEl(r.exact, books.names, null, reads, formOf(r.exact, qv)) : Object.assign(document.createElement("p"), { className: "note", textContent: "no word of these letters stands in the books" }));
+          if (r.starts.length) parts.push(label(`starting with these letters \u00b7 ${r.starts.length}`), list(r.starts, (row) => hitEl(row, books.names, null, null, formOf(row, qv))));
+          out.replaceChildren(...parts);
+        } else {
+          const hits = await english(f, dix);
+          if (my !== seq) return;
+          if (!hits.length) { say(`no word is read \u201c${q.trim()}\u201d by a source on this shelf`); return; }
+          out.replaceChildren(label(`read \u201c${q.trim()}\u201d \u00b7 ${hits.length} Hebrew word${hits.length === 1 ? "" : "s"}`),
+            list(hits, (h) => hitEl(h.row, books.names, h.exact ? `read so at ${h.exact} place${h.exact === 1 ? "" : "s"}` : "a dictionary reads it so", [...new Set(h.by.map((m) => nameOf(m, dix)))].join(" \u00b7 "), null, f)));
+        }
+        out.hidden = false;
+      } catch { if (my === seq) say("the search index did not answer; try again"); }
+    };
+    box.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(run, 250); });
+    box.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); clearTimeout(timer); run(); }
+      if (e.key === "Escape") { e.stopPropagation(); clearTimeout(timer); seq += 1; goGen += 1; box.value = ""; out.hidden = true; out.replaceChildren(); }
+    });
+    // what was typed before the box was listened to is asked now
+    if (box.value.trim()) run();
+  }
   if (QUERY.get("mode") === "en") setMode("en");
   else if (!QUERY.has("mode")) { try { if (localStorage.getItem(MODE_KEY) === "en") setMode("en"); } catch { /* a device that remembers nothing opens the Hebrew reader */ } }
   if (QUERY.get("chain") === "ltr") document.body.dataset.chain = "ltr";   // the preview above
@@ -11393,7 +11645,7 @@
     const w = WORD_AT.exec(id);
     if (w && byLabel.has(w[1])) {
       const target = document.getElementById(byLabel.get(w[1]));
-      if (target) { landOn(target, 80); openWordAt(target, Number(w[2])); }
+      if (target) { landOn(target, 80); openWordAt(target, Number(w[2]), takeLand(`${w[1]}:${w[2]}`)); }
       return;
     }
     const el = id && document.getElementById(id);
@@ -11517,12 +11769,17 @@
   let landedEl = null, landedLine = 0, landedCh = "", landedKept = false;
   // the card on the word an address names, once the lanes are laid and the
   // verse is built (a card opened before the lanes would close when they lay)
-  const openWordAt = (target, n) => {
+  const openWordAt = (target, n, land = null) => {
     const t0 = Date.now();
     const tick = () => {
       const wb = [...target.querySelectorAll(".he-text .wb:not(.mark)")][n - 1];
       if (wb && window.__hudToggles && !target.__body) {
-        (wb.querySelector(".w span") || wb.querySelector(".w"))?.click();
+        // a search's hit opens the word's own card, the concordance's, where
+        // a click on a run's word opens the run's
+        const runEl = land && wb.__openWord && wb.closest(".wjoin");
+        if (land && land.keys) DICT.focusAt = Date.now();
+        if (runEl && runEl.__ink) wb.__openWord([...runEl.__ink.querySelectorAll(":scope > .wb")].indexOf(wb));
+        else (wb.querySelector(".w span") || wb.querySelector(".w"))?.click();
         // the card is open: the address goes back to the chapter's, as a
         // hash the reader has moved away from does (THE READING PLACE)
         try { if (WORD_AT.test(decodeURIComponent(location.hash.slice(1)))) history.replaceState(null, "", location.pathname + location.search); } catch { /* the hash stays */ }
@@ -11551,7 +11808,7 @@
         // for, so it wears no mark
         if (!kept) target.querySelector(".vnum")?.classList.add("at");
         landedEl = target; landedLine = 80; landedCh = verseChapterOf(label); landedKept = !!kept;
-        if (wordAt && !kept) openWordAt(target, Number(wordAt[2]));
+        if (wordAt && !kept) openWordAt(target, Number(wordAt[2]), takeLand(`${wordAt[1]}:${wordAt[2]}`));
       }
     } else {
       // a chapter: the first section whose label is the chapter's own or

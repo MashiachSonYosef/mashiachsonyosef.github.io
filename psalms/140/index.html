@@ -25,7 +25,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-fcd2ecaeaa04.css">
+<link rel="stylesheet" href="/reader/engine-0cd04967e005.css">
 </head>
 <body>
 <header class="top">
@@ -82,32 +82,36 @@
        a copy I typed: it matched, but a copy is not a source, and a copy is the
        one thing on the page nothing stands behind. -->
 
+  <!-- THE SEARCH (the owner, 2026-10-18: "hebrew by character ... and any
+       english hits like create or be created or cut down"). Hebrew letters,
+       or an English reading; a hit opens the word's card where it stands. -->
+  <div id="searchBox"><input id="searchIn" type="search" dir="auto" autocomplete="off" spellcheck="false" aria-label="search the books: Hebrew letters or an English reading" aria-controls="searchOut" placeholder="Hebrew letters or English"><div id="searchOut" role="region" aria-live="polite" hidden></div></div>
   <div id="modeRow">
     <!-- ONE PILL FOR THE READER (the owner, 2026-10-16: "if its just 1 shade
          and flips from hebrew to english that works too. you could call it on
          and off still where english is on"): the English reader on, or off,
          which is the Hebrew reader, the page as it opens. -->
-    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-pressed="false" aria-describedby="dirEn" title="the positioning layer applied to the Hebrew cards: the same cards, placed in English reading order; turn the numbers on to see each card’s place as written">English reader</button><span class="mode-dir" id="dirEn">off, right to left</span></span>
+    <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-pressed="false" aria-describedby="dirEn" title="the positioning layer applied to the Hebrew cards: the same cards, placed in English reading order; turn the numbers on to see each card’s place as written">English reader</button><span class="mode-dir" id="dirEn">right to left</span></span>
     <!-- THE BLOB PILL (the owner, 2026-10-16: "just do it as a nice pill like
          the english reader toggle ... this one can sit live ... on off"): one
          pill beside the readers, on or off, kept on this device. -->
-    <span class="mode-pick"><button type="button" class="blob-btn on" id="blobPill" aria-pressed="true" aria-describedby="blobState">blobs</button><span class="mode-dir" id="blobState">on</span></span>
+    <span class="mode-pick"><button type="button" class="blob-btn on" id="blobPill" aria-pressed="true" aria-describedby="blobState">blobs</button><span class="mode-dir" id="blobState"></span></span>
     <!-- THE NUMBERS PILL (the owner, 2026-10-16: "id also move the numbering
          and arrow to the book page runner cards and add that as a toggle
          too"): each card's number in its verse as written, with the arrow the
          way this reader reads, on the page's cards; kept on this device. -->
-    <span class="mode-pick"><button type="button" class="blob-btn" id="numsPill" aria-pressed="false" aria-describedby="numsState" title="each card’s number in its verse as the scribes wrote it, first word 1, and the arrow the way this reader reads">numbers</button><span class="mode-dir" id="numsState">off</span></span>
+    <span class="mode-pick"><button type="button" class="blob-btn" id="numsPill" aria-pressed="false" aria-describedby="numsState" title="each card’s number in its verse as the scribes wrote it, first word 1, and the arrow the way this reader reads">card numbering</button><span class="mode-dir" id="numsState"></span></span>
     <!-- THE DICTIONARY PILL (the owner, 2026-10-17: "simple toggle, cards
          unchanged, hud opens to a table hud"; 2026-10-18: "lets go live with
          the toggle"). Off, a word's card is the card. On, it opens to the table
          of the word's exact readings and where each stands, from the corpus
          lane's dictionary store (data/dictionary-store/). Kept on this device. -->
-    <span class="mode-pick"><button type="button" class="blob-btn" id="dictPill" aria-pressed="false" aria-describedby="dictState" title="a word&#8217;s card opens to its exact reading and every place it stands, and the other readings of its letters">concordance</button><span class="mode-dir" id="dictState">off</span></span>
+    <span class="mode-pick"><button type="button" class="blob-btn" id="dictPill" aria-pressed="false" aria-describedby="dictState" title="a word&#8217;s card opens to its exact reading and every place it stands, and the other readings of its letters">concordance hud</button><span class="mode-dir" id="dictState"></span></span>
     <!-- RESET TO DEFAULT (the owner, 2026-10-18: "maybe we need a reset to
          default toggling button", a pill in this row). It forgets every pick
          made on this page, and every line is drawn again as it was drawn at
          load. The switches in this row keep their settings. -->
-    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="forget every reading picked on this page: every line back to the reading it opened with" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
+    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, blobs off, card numbering on, the concordance hud off) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
     <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
          a megatoggle at the top that opens all of it, without losing the drop
          down"). It always did open every verse's commentary; it was labelled
@@ -215,6 +219,6 @@
 <section id="bookEnd">
   <p id="cc0Line" class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Every carried text and reading keeps its own license, named with it; nothing here relicenses it. What this site adds of its own — its code, layout, receipts and the words it writes — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>. Where it adapts a share-alike record (the Hebrew as laid out here, a reading cut or joined for display), the adaptation stays under that record’s license.</p>
 </section>
-<script src="/reader/engine-1c66e41181da.js"></script>
+<script src="/reader/engine-96c50476c4ef.js"></script>
 </body>
 </html>

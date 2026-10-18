@@ -5451,10 +5451,19 @@
   // inside; here a reader may type that name any way hands actually type it —
   // "1 kings", "1-kings", "i-kings" — and reach the same address. The loose
   // matching is ours and lives only in this box.
+  //
+  // A Hebrew name is found by its letters (the owner, 2026-10-18: "for books
+  // also by exact hebrew or english answers"; "the splash page one would more
+  // be like ezekiel"): the name and the box are both read by their letters,
+  // so a name typed with its points or without, or pasted with its accents,
+  // lands on the same book.
+  // A final letter is its letter at a word's end, so the box reads the five
+  // finals as their letters, as the reader's own search does.
   var norm = function (t) {
-    t = String(t).toLowerCase();
+    t = String(t).normalize("NFD").toLowerCase();
     t = t.replace(/\b(iii)\b/g, "3").replace(/\b(ii)\b/g, "2").replace(/\b(i)\b/g, "1");
-    return t.replace(/[^a-z0-9\u0590-\u05FF]+/g, "");
+    t = t.replace(/[\u05DA\u05DD\u05DF\u05E3\u05E5]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) + 1); });
+    return t.replace(/[^a-z0-9\u05D0-\u05EA]+/g, "");
   };
   // THE FILING THE READER COUNTS IN, remembered on this device. The shelf ships
   // both shapes; this only says which one is shown, and it says it on the body
@@ -5489,8 +5498,20 @@
     // way in is the row's own link, which Enter follows
     var he = r.querySelector(".he:not(.none)");
     var link = r.querySelector("a.aw") || (r.matches("a[href]") ? r : null);
-    return { el: r, link: link, key: norm((r.getAttribute("data-p") || "") + " " + (aw ? aw.textContent : "") + " " + (link ? link.getAttribute("href") || "" : "") + " " + (he ? he.textContent : "")) };
+    // each of its names apart, so a part of one is never found across the
+    // join of two; its family's key is a name to find it by in part, never
+    // a whole name of its own
+    var names = [aw ? aw.textContent : "", link ? (link.getAttribute("href") || "").replace(/^\//, "").replace(/\?.*$/, "") : "", he ? he.textContent : ""].map(norm).filter(Boolean);
+    return { el: r, link: link, names: names, parts: names.concat([norm(r.getAttribute("data-p") || "")]).filter(Boolean),
+      // what the Hebrew name is read as, printed under it (a ruling repaints it)
+      g: r.querySelector(".fam-he .g") };
   });
+  // a family is found by its own name, English or Hebrew, as its heading prints it
+  var families = [].slice.call(document.querySelectorAll("section.family")).map(function (fs) {
+    var sum = fs.querySelector("details.fam > summary");
+    return { el: fs, names: sum ? [].slice.call(sum.querySelectorAll(".en, .he:not(.none)")).map(function (e) { return norm(e.textContent); }).filter(Boolean) : [] };
+  });
+  atlasRows.forEach(function (r) { r.fam = -1; families.forEach(function (f, i) { if (f.el.contains(r.el)) r.fam = i; }); });
   var groups = [].slice.call(document.querySelectorAll(".workgroup")).map(function (g) {
     var names = [].slice.call(g.querySelectorAll(".en")).map(function (e) { return e.textContent; });
     [].slice.call(g.querySelectorAll(".he:not(.none)")).forEach(function (e) { names.push(e.textContent); });
@@ -5501,8 +5522,31 @@
   });
   function sift() {
     var q = norm(document.getElementById("q").value);
+    // A NAME TYPED WHOLE IS THAT BOOK (the owner, 2026-10-18: "exact hebrew
+    // or english answers"): where the box holds some book's whole name, in
+    // either language, the books whose names only hold it inside step back,
+    // as Joshua's Hebrew name holds Hosea's whole. A part of a name still
+    // finds every book it is part of. The door's books only (data-whole): on
+    // the census a work's name stands inside its commentaries' names, and a
+    // reader who types it is after them too.
+    // A BOOK IS FOUND BY WHAT ITS NAME MEANS TOO (the owner, 2026-10-18: "or
+    // 'beginning' could bring up genesis"): the reading its row prints under
+    // the Hebrew name, as it stands now, a reading the reader ruled included,
+    // typed whole, or one of its words typed from its start (four letters at
+    // least, so "the" is no meaning).
+    var meant = atlasRows.map(function (r) {
+      if (!r.g) return null;
+      var t = r.g.textContent;
+      return { whole: norm(t), words: t.toLowerCase().split(/[\s\/+,;:()\[\]]+/).map(norm).filter(Boolean) };
+    });
+    var means = function (m) { return !!m && (m.whole === q || (q.length >= 4 && m.words.some(function (w) { return w.indexOf(q) === 0; }))); };
+    var inPart = function (ns) { return ns.some(function (n) { return n.indexOf(q) >= 0; }); };
+    // a family's name typed, or its start (three letters at least), shows
+    // the family whole
+    var famHit = families.map(function (f) { return !!q && f.names.some(function (n) { return n === q || (q.length >= 3 && n.indexOf(q) === 0); }); });
+    var whole = !!q && document.getElementById("find").hasAttribute("data-whole") && (atlasRows.some(function (r, i) { return r.names.indexOf(q) >= 0 || (!!meant[i] && meant[i].whole === q); }) || groups.some(function (g) { return g.keys.indexOf(q) >= 0; }));
     groups.forEach(function (g) {
-      g.el.hidden = !!q && !g.keys.some(function (k) { return k.indexOf(q) >= 0; });
+      g.el.hidden = !!q && (whole ? g.keys.indexOf(q) < 0 : !g.keys.some(function (k) { return k.indexOf(q) >= 0; }));
       // A live search opens the fold: the row that matched may stand behind
       // it, and a hit the reader cannot see is a miss. An emptied box folds
       // the groups back to rest.
@@ -5512,14 +5556,17 @@
     // The atlas rows sift like the groups do: a row is hidden when it does
     // not match, so an opened family shows the matches and not the thousands
     // around them.
-    atlasRows.forEach(function (r) {
-      r.el.hidden = !!q && r.key.indexOf(q) < 0;
+    atlasRows.forEach(function (r, i) {
+      var fam = r.fam >= 0 && famHit[r.fam];
+      r.el.hidden = !!q && !fam && (whole ? r.names.indexOf(q) < 0 && !(meant[i] && meant[i].whole === q) : !inPart(r.parts) && !means(meant[i]));
     });
     // The family frame follows its contents: hidden when everything inside
     // is, opened by a live match, restored to its resting state — carried on
     // the element itself — when the box empties.
-    [].slice.call(document.querySelectorAll("section.family")).forEach(function (fs) {
-      var any = [].slice.call(fs.querySelectorAll(".workgroup, .atlas-row")).some(function (g) { return !g.hidden; });
+    families.forEach(function (f, i) {
+      var fs = f.el;
+      if (famHit[i]) [].slice.call(fs.querySelectorAll(".workgroup")).forEach(function (g) { g.hidden = false; });
+      var any = famHit[i] || [].slice.call(fs.querySelectorAll(".workgroup, .atlas-row")).some(function (g) { return !g.hidden; });
       fs.hidden = !!q && !any;
       var d = fs.querySelector("details.fam");
       if (d) d.open = q ? any : d.hasAttribute("data-rest-open");
