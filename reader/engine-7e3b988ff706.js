@@ -9518,9 +9518,9 @@
   const numberCells = (root) => {
     const secs = root.matches && root.matches("section.seg") ? [root] : root.querySelectorAll("section.seg");
     for (const sec of secs) sec.querySelectorAll(".he-text .wb:not(.mark)").forEach((wb, i) => {
-      if (wb.querySelector(":scope > .cn")) return;
-      const n = document.createElement("span"); n.className = "cn"; n.textContent = String(i + 1); n.setAttribute("aria-hidden", "true");
-      wb.prepend(n);
+      // the card carries it and its letters' box draws it, so the letters
+      // drawn again still wear it, and it is no text of the page's
+      if (!wb.style.getPropertyValue("--cn")) wb.style.setProperty("--cn", JSON.stringify(String(i + 1)));
     });
   };
   const numsPill = document.getElementById("numsPill"), numsState = document.getElementById("numsState");
@@ -11927,13 +11927,49 @@
   };
   navChapter.addEventListener("click", () => { closeMenu(); if (chPick.hidden) openChPick(); else closeChPick(); });
   document.addEventListener("click", (e) => { if (!chPick.hidden && !chPick.contains(e.target) && !navChapter.contains(e.target)) closeChPick(); });
-  // THE MENU: the reader (Hebrew or English), and the way to the switches
+  // THE MENU HOLDS THE TOP ROW'S SWITCHES (the owner, 2026-10-19: "we would
+  // want the same toggles on the menu bar at the bottom"): the English
+  // reader, blobs, card numbering, the concordance hud and reset, and any
+  // other switch the row shows on this page, in the row's order. Each is a
+  // mirror of its pill: it wears the pill's words and state and presses the
+  // pill itself, so the row stays the one place a switch is decided. The
+  // menu stays open for the next press. It held only the two readers before.
   const navMenu = document.getElementById("navMenu"), menuPick = document.getElementById("menuPick");
-  const paintMenu = () => { for (const b of menuPick.querySelectorAll("button[data-mode]")) { const on = (b.dataset.mode === "en") === document.body.classList.contains("en"); b.classList.toggle("on", on); b.setAttribute("aria-pressed", String(on)); } };
+  const menuWay = menuPick.querySelector("a");
+  const mirrors = new Map();
+  // a press passed to the row is a click on the row's pill, which would
+  // otherwise read as a click outside the menu and close it
+  let passing = false;
+  const rowPills = () => [...document.querySelectorAll("#modeRow button")].filter((x) => x.id && !x.hidden && !x.closest("[hidden]"));
+  const paintMenu = () => {
+    const live = rowPills();
+    for (const [id, m] of mirrors) if (!live.some((x) => x.id === id)) { m.remove(); mirrors.delete(id); }
+    let next = menuWay;
+    [...live].reverse().forEach((pill) => {
+      let m = mirrors.get(pill.id);
+      if (!m) {
+        m = document.createElement("button"); m.type = "button"; m.dataset.for = pill.id;
+        m.append(document.createElement("span"), Object.assign(document.createElement("span"), { className: "mode-dir" }));
+        m.addEventListener("click", () => { passing = true; try { pill.click(); } finally { passing = false; } paintMenu(); });
+        mirrors.set(pill.id, m);
+      }
+      if (m.nextSibling !== next) menuPick.insertBefore(m, next);
+      next = m;
+      const said = document.getElementById(pill.getAttribute("aria-describedby") || "");
+      m.firstChild.textContent = pill.textContent;
+      m.lastChild.textContent = said ? said.textContent : "";
+      const pressed = pill.getAttribute("aria-pressed");
+      if (pressed == null) m.removeAttribute("aria-pressed"); else m.setAttribute("aria-pressed", pressed);
+      m.classList.toggle("on", pressed === "true" || pill.classList.contains("on"));
+      m.disabled = pill.disabled;
+      m.title = pill.title || "";
+    });
+  };
+  new MutationObserver(() => { if (!menuPick.hidden) paintMenu(); })
+    .observe(document.getElementById("modeRow"), { subtree: true, attributes: true, childList: true, characterData: true });
   const openMenu = () => { closeChPick(); paintMenu(); menuPick.hidden = false; navMenu.setAttribute("aria-expanded", "true"); };
   navMenu.addEventListener("click", () => { if (menuPick.hidden) openMenu(); else closeMenu(); });
-  menuPick.querySelectorAll("button[data-mode]").forEach((b) => b.addEventListener("click", () => { setMode(b.dataset.mode); closeMenu(); }));
-  document.addEventListener("click", (e) => { if (!menuPick.hidden && !menuPick.contains(e.target) && !navMenu.contains(e.target)) closeMenu(); });
+  document.addEventListener("click", (e) => { if (passing) return; if (!menuPick.hidden && !menuPick.contains(e.target) && !navMenu.contains(e.target)) closeMenu(); });
   navPrev.addEventListener("click", () => { if (atNode > 0) jump(heads[atNode - 1].el); });
   navNext.addEventListener("click", () => { if (atNode < heads.length - 1) jump(heads[atNode + 1].el); });
   // a page this size can starve requestAnimationFrame, so the bar repaints

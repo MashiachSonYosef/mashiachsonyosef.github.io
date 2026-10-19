@@ -611,7 +611,8 @@
     border: 1px solid var(--line); border-radius: 0.4rem; background: var(--bg); color: var(--ink);
     font: inherit; font-size: 0.85rem; cursor: pointer; padding: 0.2rem 0.6rem; text-align: left; }
   #menuPick button .mode-dir { font-size: 0.62rem; color: var(--faint); letter-spacing: 0.06em; }
-  #menuPick button:hover { border-color: var(--gold); background: var(--cell-wash); }
+  #menuPick button:hover:not(:disabled) { border-color: var(--gold); background: var(--cell-wash); }
+  #menuPick button:disabled { opacity: 0.5; cursor: default; }
   #menuPick button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); font-weight: 700; }
   #menuPick a { font-size: 0.72rem; color: var(--muted); padding: 0.2rem 0.3rem 0; }
   #nav button:hover:not(:disabled) { color: var(--ink-strong); background: var(--cell-wash); }
@@ -932,13 +933,21 @@
   /* a named run: a license names these words as one thing. A thin blue rule
      under each of its words, the reading's own color; open, the run's words
      wear the selection together. */
-  /* EVERY WORD IS UNDERLINED, for now (the owner, 2026-10-03: "i think
-     underlining is nondistracting and can be added to every word for now",
-     an underlining ledger to follow): every word opens one card, so every
-     word wears the one-card line, thin and dim, as a maqaf compound does. A
-     compound keeps its one line under the whole; a named run and a
-     ketiv-qere pair keep their heavier gold; a scribe's mark is not a word. */
+  /* A LINE ONLY UNDER WORDS ONE CARD JOINS (the owner, 2026-10-19: "lets
+     move to only underlining when it actually combines words / same as how
+     we do no blob if its a single 1:1, we do no underline if its a 1:1
+     (word:hud)"). A word that opens its own card alone draws no line under
+     it, at rest or under the hand: a ketiv-qere pair, which is one word in
+     two forms, and each word of a run that has no card of its own, alike. A
+     card that joins words (a maqaf compound, a named run, a span) keeps its
+     one line under the whole. The line keeps its room, unseen, so nothing
+     moves and a card's number sits where it sat. From 2026-10-03 every word
+     wore it ("i think underlining is nondistracting and can be added to
+     every word for now"). A word the page typed keeps its dashed mark,
+     which says that and is no card's line. */
   .wb > .w { border-bottom: 1px solid var(--gold-dim); border-radius: 0; }
+  .he-text .wb:not(.wjoin .wb):not(.typed-here) > .w, .he-text .wb:not(.wjoin .wb):not(.typed-here):hover > .w,
+  .he-text .wjoin.apart .wb:not(.typed-here) > .w { border-bottom-color: transparent; }
   .wjoin .wb > .w, .wb.mark > .w { border-bottom-color: transparent; }
   /* a run with no card of its own (a pair inside it: each word its own card)
      draws no line under the whole; each word keeps its own */
@@ -1869,15 +1878,42 @@
      over a blob's fill and under the letters. It stood in the card's top corner, where a run's
      blob rises over the letters and ran into it. The number is written left
      to right in itself. */
-  .cn { display: block; order: 1; align-self: self-start; height: 0; position: relative; z-index: 1; direction: ltr; unicode-bidi: isolate; white-space: nowrap; font: 0.56rem/1 Georgia, serif; letter-spacing: 0.04em; color: var(--gold); pointer-events: none; user-select: none; }
-  body.en .cn { order: 2; }
-  /* where it meets the letters (a lamed's flag, an accent over the first
-     letter) the letters are drawn over it: the ink is lifted above it */
+  /* ON THE LINE (the owner, 2026-10-19: "1. back to the bottom, 2. if the
+     card has 2 words put their corresponding numbers in each corner, 3. if
+     the card has a 3rd or more words put them aligned to the bottom left
+     side of the hebrew word, 4. make them take precedence over underline
+     whether that means sitting atop it, the underline briefly gaps, or
+     theyre offset height wise but without making the card any bigger").
+     The number is drawn by the word's own letters' box, at its bottom left,
+     sitting on the line under it, so the line never runs through it. Every
+     word's number stands at its own word's left, a card of two words alike
+     (the owner, the same day, of point 2: "we should just forget rule 2 the
+     opposite corner thing and align all per rule 3"). Placed
+     absolutely, it takes no room. Where it meets the letters (a final
+     letter's tail, a vowel under the last letter) it lies under their ink.
+     The line does not gap: a card's linen is a veil over the woven ground,
+     so a band of it would not hide the line, and a band of solid color
+     would show as a patch on the weave. It had stood at the card's top
+     left, before the letters.
+     THE READER DECIDES THE EDGE (the owner, 2026-10-19: "on hebrew toggle
+     id put numbers at the top, on english toggle id put them at the card
+     bottom, they shouldnt be in the way of blobs ... we can overlap unless
+     absolutely needed like blobs crisscrossing themselves is unavoidable").
+     In the Hebrew reader the number stands at the card's top, in the strip
+     above the letters' highest mark, where no blob reaches, set small
+     enough to fit it; in the English reader the letters are the card's foot
+     and the number sits at the bottom, on the line or where the line would
+     be. Each number stands at its word's left in both. */
   body.nums .he-text .wb:not(.mark) > .w { position: relative; z-index: 2; }
-  .cn::before { content: "\25C2\00a0"; }
-  body.en .cn::before { content: none; }
-  body.en .cn::after { content: " \25B8"; }
-  body:not(.nums) .cn { display: none; }
+  /* a card carries its number in --cn (numberCells); one not yet numbered
+     carries none, which draws nothing, not a lone arrow */
+  .he-text .wb { --cn: none; }
+  body.nums .he-text .wb:not(.mark) > .w::after { content: "\25C2\00a0" var(--cn); position: absolute; z-index: -1;
+    left: 0; bottom: -0.04rem; padding: 0 0.1rem; direction: ltr; unicode-bidi: isolate; white-space: nowrap;
+    font: 0.56rem/1 Georgia, serif; font-weight: 400; letter-spacing: 0.04em; font-variant-numeric: lining-nums; color: var(--gold); -webkit-text-fill-color: var(--gold); text-shadow: none;
+    pointer-events: none; user-select: none; -webkit-user-select: none; }
+  body.en.nums .he-text .wb:not(.mark) > .w::after { content: var(--cn) "\00a0\25B8"; }
+  body.nums:not(.en) .he-text .wb:not(.mark) > .w::after { bottom: auto; top: var(--cn-top, -0.05rem); font-size: 0.5rem; line-height: 0.9; }
   /* A commentary handle standing in the line of the verse, after the words it
      covers. It is inline, so it reads as part of the line; what it opens is
      block-level, so the words after it fall below and the words above it are
@@ -2359,7 +2395,7 @@
      where the bar is not drawn. -->
 <div id="nav" hidden>
   <a id="navHome" href="/" title="Home: choose a book">Home</a>
-  <button id="navMenu" type="button" title="The reader, and the switches" aria-haspopup="true" aria-expanded="false" aria-controls="menuPick">Menu</button>
+  <button id="navMenu" type="button" title="The switches" aria-haspopup="true" aria-expanded="false" aria-controls="menuPick">Menu</button>
   <span class="nav-gap" aria-hidden="true"></span>
   <button id="navTop" type="button" title="Back to the top of the page">Top</button>
   <button id="navChapter" type="button" title="Choose a chapter" aria-haspopup="true" aria-expanded="false" aria-controls="chPick">Chapter</button>
@@ -2371,9 +2407,7 @@
      chapter's top is the first cell; the page scrolls only when a cell is
      pressed. -->
 <div id="chPick" hidden role="dialog" aria-label="chapters"></div>
-<div id="menuPick" hidden role="dialog" aria-label="the reader">
-  <button type="button" data-mode="he">Hebrew reader <span class="mode-dir">right to left</span></button>
-  <button type="button" data-mode="en">English reader <span class="mode-dir">left to right</span></button>
+<div id="menuPick" hidden role="dialog" aria-label="the switches">
   <a href="/toggles/">the switches, on their own page</a>
 </div>
 <main id="text"></main>
@@ -11906,9 +11940,9 @@
   const numberCells = (root) => {
     const secs = root.matches && root.matches("section.seg") ? [root] : root.querySelectorAll("section.seg");
     for (const sec of secs) sec.querySelectorAll(".he-text .wb:not(.mark)").forEach((wb, i) => {
-      if (wb.querySelector(":scope > .cn")) return;
-      const n = document.createElement("span"); n.className = "cn"; n.textContent = String(i + 1); n.setAttribute("aria-hidden", "true");
-      wb.prepend(n);
+      // the card carries it and its letters' box draws it, so the letters
+      // drawn again still wear it, and it is no text of the page's
+      if (!wb.style.getPropertyValue("--cn")) wb.style.setProperty("--cn", JSON.stringify(String(i + 1)));
     });
   };
   const numsPill = document.getElementById("numsPill"), numsState = document.getElementById("numsState");
@@ -14315,13 +14349,49 @@
   };
   navChapter.addEventListener("click", () => { closeMenu(); if (chPick.hidden) openChPick(); else closeChPick(); });
   document.addEventListener("click", (e) => { if (!chPick.hidden && !chPick.contains(e.target) && !navChapter.contains(e.target)) closeChPick(); });
-  // THE MENU: the reader (Hebrew or English), and the way to the switches
+  // THE MENU HOLDS THE TOP ROW'S SWITCHES (the owner, 2026-10-19: "we would
+  // want the same toggles on the menu bar at the bottom"): the English
+  // reader, blobs, card numbering, the concordance hud and reset, and any
+  // other switch the row shows on this page, in the row's order. Each is a
+  // mirror of its pill: it wears the pill's words and state and presses the
+  // pill itself, so the row stays the one place a switch is decided. The
+  // menu stays open for the next press. It held only the two readers before.
   const navMenu = document.getElementById("navMenu"), menuPick = document.getElementById("menuPick");
-  const paintMenu = () => { for (const b of menuPick.querySelectorAll("button[data-mode]")) { const on = (b.dataset.mode === "en") === document.body.classList.contains("en"); b.classList.toggle("on", on); b.setAttribute("aria-pressed", String(on)); } };
+  const menuWay = menuPick.querySelector("a");
+  const mirrors = new Map();
+  // a press passed to the row is a click on the row's pill, which would
+  // otherwise read as a click outside the menu and close it
+  let passing = false;
+  const rowPills = () => [...document.querySelectorAll("#modeRow button")].filter((x) => x.id && !x.hidden && !x.closest("[hidden]"));
+  const paintMenu = () => {
+    const live = rowPills();
+    for (const [id, m] of mirrors) if (!live.some((x) => x.id === id)) { m.remove(); mirrors.delete(id); }
+    let next = menuWay;
+    [...live].reverse().forEach((pill) => {
+      let m = mirrors.get(pill.id);
+      if (!m) {
+        m = document.createElement("button"); m.type = "button"; m.dataset.for = pill.id;
+        m.append(document.createElement("span"), Object.assign(document.createElement("span"), { className: "mode-dir" }));
+        m.addEventListener("click", () => { passing = true; try { pill.click(); } finally { passing = false; } paintMenu(); });
+        mirrors.set(pill.id, m);
+      }
+      if (m.nextSibling !== next) menuPick.insertBefore(m, next);
+      next = m;
+      const said = document.getElementById(pill.getAttribute("aria-describedby") || "");
+      m.firstChild.textContent = pill.textContent;
+      m.lastChild.textContent = said ? said.textContent : "";
+      const pressed = pill.getAttribute("aria-pressed");
+      if (pressed == null) m.removeAttribute("aria-pressed"); else m.setAttribute("aria-pressed", pressed);
+      m.classList.toggle("on", pressed === "true" || pill.classList.contains("on"));
+      m.disabled = pill.disabled;
+      m.title = pill.title || "";
+    });
+  };
+  new MutationObserver(() => { if (!menuPick.hidden) paintMenu(); })
+    .observe(document.getElementById("modeRow"), { subtree: true, attributes: true, childList: true, characterData: true });
   const openMenu = () => { closeChPick(); paintMenu(); menuPick.hidden = false; navMenu.setAttribute("aria-expanded", "true"); };
   navMenu.addEventListener("click", () => { if (menuPick.hidden) openMenu(); else closeMenu(); });
-  menuPick.querySelectorAll("button[data-mode]").forEach((b) => b.addEventListener("click", () => { setMode(b.dataset.mode); closeMenu(); }));
-  document.addEventListener("click", (e) => { if (!menuPick.hidden && !menuPick.contains(e.target) && !navMenu.contains(e.target)) closeMenu(); });
+  document.addEventListener("click", (e) => { if (passing) return; if (!menuPick.hidden && !menuPick.contains(e.target) && !navMenu.contains(e.target)) closeMenu(); });
   navPrev.addEventListener("click", () => { if (atNode > 0) jump(heads[atNode - 1].el); });
   navNext.addEventListener("click", () => { if (atNode < heads.length - 1) jump(heads[atNode + 1].el); });
   // a page this size can starve requestAnimationFrame, so the bar repaints

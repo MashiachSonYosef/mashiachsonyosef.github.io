@@ -84,7 +84,10 @@ const openPair = async (n, h) => {
   return p.evaluate((n) => {
     const w = document.querySelectorAll("section.seg .he-text .wb.kq")[n];
     const hud = document.getElementById("hud");
-    const headSegs = [...hud.querySelectorAll(".head b span:not(.mq)")].map((s) => ({ t: s.textContent, lit: !s.style.color, pressable: s.getAttribute("role") === "button" }));
+    // the half the card is not open on stands at the regular weight beside
+    // the open half's bold, in the same red (the owner, 2026-10-18: "the
+    // hebrew should still be red"); it had been the faint purple
+    const headSegs = [...hud.querySelectorAll(".head b span:not(.mq)")].map((s) => ({ t: s.textContent, lit: !s.style.color && s.style.fontWeight !== "400", pressable: s.getAttribute("role") === "button" }));
     const halves = [...w.querySelectorAll(".wr")];
     const litIdx = headSegs.findIndex((s) => s.lit);
     const roleLine = (hud.querySelector(".head .kq-role") || {}).textContent || "";
@@ -140,7 +143,7 @@ const flipped = await p.evaluate(() => {
   const w = document.querySelectorAll("section.seg .he-text .wb.kq")[0];
   const hud = document.getElementById("hud");
   const segs = [...hud.querySelectorAll(".head b span:not(.mq)")];
-  const lit = segs.findIndex((s) => !s.style.color);
+  const lit = segs.findIndex((s) => !s.style.color && s.style.fontWeight !== "400");
   const halves = [...w.querySelectorAll(".wr")];
   return { open: !hud.hidden, segs: segs.length, lit,
     underline: halves.findIndex((x) => x.classList.contains("backs-en")), line: ((w.querySelector(":scope > .g") || {}).textContent || "").replace(/\s+/g, " ").trim() };
