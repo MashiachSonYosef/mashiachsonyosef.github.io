@@ -30,10 +30,12 @@ const land = async (book, hash) => {
     const he = h && h.querySelector(".head b");
     const active = document.querySelector("section.seg .wb.active");
     const sec = active && active.closest("section.seg");
-    const cn = active && active.querySelector(":scope > .cn");
+    // a card's number is carried by the card (its --cn), drawn by its letters' box
+    const num = (wb) => { const v = wb && wb.style.getPropertyValue("--cn"); return v ? JSON.parse(v) : null; };
+    const cn = num(active);
     const words = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
-    const cns = words.map((w) => (w.querySelector(":scope > .cn") || {}).textContent || "");
-    return { head: wn ? wn.textContent.trim() : null, he: he ? he.textContent.trim() : null, verse: sec ? (sec.querySelector(".vnum") || {}).textContent : null, cn: cn ? cn.textContent : null, cns, hash: location.hash, path: location.pathname + location.search, marked: !!document.querySelector(".vnum.at") };
+    const cns = words.map((w) => num(w) || "");
+    return { head: wn ? wn.textContent.trim() : null, he: he ? he.textContent.trim() : null, verse: sec ? (sec.querySelector(".vnum") || {}).textContent : null, cn, cns, hash: location.hash, path: location.pathname + location.search, marked: !!document.querySelector(".vnum.at") };
   });
 };
 const alef = "\u05d0\u05dc\u05d4\u05d9\u05dd";
