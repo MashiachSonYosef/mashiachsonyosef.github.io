@@ -1,10 +1,11 @@
 {
  "rule": "dictionary-store-serve-v1-the-lanes-shards-byte-for-byte-a-card-reads-one-key",
  "from": {
-  "relay": "FOR-ELIJAH-v79.md",
-  "store": "dictionary store v1.1",
-  "date": "17 October 2026 AD",
-  "build": "corpus-lane-builds/moses-dictionary-store-v1/v1.1/build/dictionary-store-v1.1/serve/shards/"
+  "relay": "FOR-ELIJAH-v79.1.md",
+  "store": "dictionary store v1.2",
+  "date": "22 October 2026 AD",
+  "build": "corpus-lane-builds/moses-dictionary-store-v1/v1.2/build/dictionary-store-v1.2/serve/shards/",
+  "version_of": "dictionary store v1.1"
  },
  "standing_rule": "SHARE THE RECORD, NEVER SHARE THE CLAIM",
  "letters_key": "LETTERS KEY v1.1: take the string's canonical decomposition (Unicode NFD), then keep only U+05D0–U+05EA, in order. Applies to every headword, every ink word, every key, every index, every shard.",
@@ -13,7 +14,21 @@
  "served_version": "7310e81ba017",
  "shard_rule": "the first two hex of the lowercase sha256 of the key's UTF-8 bytes",
  "key_rule": "every non-empty LETTERS KEY v1.1 of a headword of a record, and every letters of a line of index/readings-by-letters.jsonl; no key \"\"",
- "store_version": "1e52a1f1e143",
+ "language_at_a_place": "LANGUAGE AT A PLACE, per source: TAHOT — read from the morphology column of the word's own line by the file's legend; MACULA — the lang column of the word's own row(s); value HEBREW | ARAMAIC | the source's own value if neither; a place where the two sources differ is listed [places].",
+ "language_rules": {
+  "tahot": "THE TAHOT RULE: the word's line is the line the piece store record names (file, line, 1-based, LF-split, a trailing CR removed); its column 6 (1-based; \"Grammar\" of the header line) is the morphology; the value is HEBREW when the column's first character is \"H\", ARAMAIC when it is \"A\", else the column's own bytes as the value. The line's own bytes are asserted equal to the record's D.",
+  "macula": "THE MACULA RULE: the word's rows are the rows the piece store records name (file, line, 1-based); the value of each row's lang column (column 17, 1-based) is HEBREW when it is \"H\", ARAMAIC when it is \"A\", else the column's own bytes. The row's bytes are asserted equal to the record's D.",
+  "several_values": "several values at one place are sorted by UTF-8 bytes and joined by \"|\" (LANG_MIXED_AT_A_PLACE, listed)",
+  "legend_lines": [
+   "TAHOT: \"Grammar\tMorphology is from ETCBC, with Ketiv forms parsed by Tyndale scholars - see e.g. Deu.33.2-15.   For the source of ETCBC and conversion method by Tyndale House, see https://goo.gl/yKaXQq#HebMorph2\"",
+   "TAHOT: \"\tMorphology codes follow the form defined by OpenScriptures at http://openscriptures.github.io/morphhb/parsing/HebrewMorphologyCodes.html#vt with some adaptations - see TinyURL.com/HebMorph\"",
+   "TAHOT header: \"Eng (Heb) Ref & Type\tHebrew\tTransliteration\tTranslation\tdStrongs\tGrammar\tMeaning Variants\tSpelling Variants\tRoot dStrong+Instance\tAlternative Strongs+Instance\tConjoin word\tExpanded Strong tags\"",
+   "TAHOT in-file example: \"#_Word+Grammar\tH9003/H7225G=HR/Ncfsa\tH1254A=HVqp3ms\t…\" — the code after \"=\" begins with the language letter",
+   "MACULA header: column 17 is \"lang\""
+  ],
+  "rule": "RULE-dictionary-store-v1.2.md clause 2"
+ },
+ "store_version": "cedd7c44cf95",
  "m_sources": {
   "M1": {
    "key": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0",
@@ -750,6 +765,6 @@
   "records": 345833,
   "readings": 195341,
   "places": 768272,
-  "bytes": 57585716
+  "bytes": 58163190
  }
 }
