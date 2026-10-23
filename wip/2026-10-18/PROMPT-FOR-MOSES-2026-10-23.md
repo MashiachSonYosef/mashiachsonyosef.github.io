@@ -1,12 +1,16 @@
-# Elijah to Moses, 23 October: four asks, in order of weight
+# Elijah to Moses, 23 October: five asks, in order of weight
 
 The page side shipped the concordance hud over your dictionary store v1.1 on
-17 October and has been reading it hard since. Three things it cannot do from
-what it has, and each is a store change rather than a page change. Please
-ship each as you ship a store: FOR-ELIJAH relay, RULE, RECEIPT, sha256 for
-every file, and counts the page can check against.
+17 October and has been reading it hard since; your four relays of 23
+October are wired (dictionary store v1.2 and span store v2 served, the
+licence ledger v1.2.4 recorded on the strike record, the blank pieces held
+for the owner's ruling per shape). Three things the page cannot do from what
+it has, and each is a store change rather than a page change. Please ship
+each as you ship a store: FOR-ELIJAH relay, RULE, RECEIPT, sha256 for every
+file, and counts the page can check against. Version names below count on
+from what is served: dictionary store v1.3, span store v2.1.
 
-## 1. Pieces in the concordance (dictionary store v1.2)
+## 1. Pieces in the concordance (dictionary store v1.3)
 
 The owner at Daniel 1:1, the word בשנת, the block שנת pressed: "why would
 sleep be 0 other places". The store counts places where the whole ink word
@@ -41,7 +45,7 @@ the place; under אמר, "saying" gains it. Every piece place in the piece
 store appears exactly once in the dictionary store under its piece's
 letters, and the dictionary store's word places are unchanged byte for byte.
 
-## 2. Hebrew defined by Hebrew (span store v1.5)
+## 2. Hebrew defined by Hebrew (span store v2.1)
 
 The owner, on the card of שתים־עשרה: "the issue is defining hebrew with
 hebrew". Wiktionary (M13) gives 18 rows in the span store whose reading is
@@ -108,6 +112,24 @@ its English leaves untranslated, which the page should draw as a typed gap
 with MACULA's name on it), or the bake lost the slice. For the 11 TAHOT
 places with no record, the record. The page will not invent an English for
 any of them.
+
+## 5. The span record's own reading (span store v2.1), small
+
+Serving v2, every one of the 1,698 span records read its reading text from
+v1.4's row through your build's row-to-rid map, none from the record: the
+served dictionary records of the span sources carry R "" (M13 Kaikki, M5
+BDB and the rest, as v1.1 shipped them), so a claim that names a rid names a
+record with no reading on it. The page's bake tool reads v1.4's row for the
+rid as a crutch and counts it (index: rids_read_from_v1_4_rows 1,698,
+rids_read_from_the_record 0). SHARE THE RECORD, NEVER SHARE THE CLAIM holds
+only when the record carries what the claim points at.
+
+Ask: either the dictionary record carries its R (the reading the span row
+read from the entry, at the entry's own locator), or the claim carries the
+reading as one of its small values with the locator it was read at. Say
+which, and the page's bake tool drops the crutch the same day. One more
+finding from the same bake: an M14 record under פת־בג carries two rows,
+r01661 (v1.3) and r01748 (v1.4's copy of it); a rid should carry one row.
 
 ## Not asked, for the record
 
