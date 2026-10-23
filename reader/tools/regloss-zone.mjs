@@ -113,6 +113,17 @@ const { table: gloss, counts, sha256: baseSha256 } = store.tableFor([...cells]);
 // the reader meets. The keys led are listed beside it (gloss_names), so the
 // card's sort can put the same reading first and say why.
 const names = nameLeadsFor(store, zone, gloss);
+// ---- no names (the owner, 2026-10-23: "no names and no blanks, if i flip
+// them on or off it should just change those select cells") -------------
+// The reading each name displaced, kept beside the names as an order column
+// (gloss_orders.noname): the base table's own reading for the key, the
+// derivation the oldest entry gives first, so the page's "no names" pill can
+// lay it back over the line without a fetch, and over those lines alone.
+// Only keys the name moved are listed; a key whose base reading is the name
+// itself has nothing to put back. Its M is derived below with the other
+// columns' (gloss_m_orders.noname).
+const noname = {};
+for (const [k, t] of Object.entries(names.leads)) if (gloss[k] !== undefined && gloss[k] !== t) noname[k] = gloss[k];
 for (const [k, t] of Object.entries(names.leads)) gloss[k] = t;
 const sha256 = createHash("sha256").update(JSON.stringify(gloss)).digest("hex");
 
@@ -180,6 +191,17 @@ zone.emitted_from.proper_names_layer = {
     columns: lc.counts,
   };
 }
+if (Object.keys(noname).length || (zone.gloss_orders && typeof zone.gloss_orders === "object")) {
+  zone.gloss_orders = zone.gloss_orders && typeof zone.gloss_orders === "object" ? zone.gloss_orders : {};
+  delete zone.gloss_orders.noname;
+  if (Object.keys(noname).length) zone.gloss_orders.noname = noname;
+}
+zone.emitted_from.no_names_layer = {
+  rule: "no-names-rule-v1-the-reading-a-name-displaced-is-kept-beside-the-name-so-a-switch-puts-it-back-on-that-line-alone",
+  projected_on: stamp, projected_by: "tools/regloss-zone.mjs",
+  what_the_zone_carries: "gloss_orders.noname — for every key of gloss_names whose base reading the name displaced, that base reading (the table store.tableFor projects, the derivation the oldest entry gives first); its M in gloss_m_orders.noname, derived with the other columns'; the page's \"no names\" switch lays it over the line of every word the name still leads under the order in force",
+  counts: { names: Object.keys(names.leads).length, displaced: Object.keys(noname).length, base_is_the_name: Object.keys(names.leads).length - Object.keys(noname).length },
+};
 let ordersM = null;
 if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
   ordersM = {};
@@ -302,7 +324,7 @@ zone.emitted_from.toggles.sources = {
   const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
   const me = "tools/regloss-zone.mjs";
   pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "gloss_names", "emitted_from.proper_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : [])]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : [])]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
   const why = "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected";
   pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
   const exp = "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass";
