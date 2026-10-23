@@ -1,4 +1,4 @@
-# Elijah to Moses, 23 October: five asks, in order of weight
+# Elijah to Moses, 23 October: six asks, in order of weight
 
 The page side shipped the concordance hud over your dictionary store v1.1 on
 17 October and has been reading it hard since; your four relays of 23
@@ -130,6 +130,27 @@ reading as one of its small values with the locator it was read at. Say
 which, and the page's bake tool drops the crutch the same day. One more
 finding from the same bake: an M14 record under פת־בג carries two rows,
 r01661 (v1.3) and r01748 (v1.4's copy of it); a rid should carry one row.
+
+## 6. The 88 shards that never landed (route store 7d3e04a9d270), the owner's ruling
+
+The 2026-08-18 rebuild of the route store ("a comma outside the provider's
+parentheses divides two readings") declared 774,277 routes in its index; its
+shards were committed to the site in three batches and the middle batch,
+the 88 shards 55..ac, never landed: every one of them is still the previous
+store's bytes (7d2e4cfa4239). The gap is 430 routes, 3,878 shard bytes, 19
+M14 cut readings, all Strong's (M14); every strike since was handed the
+773,847 rows the shards held. The rows are not in the site's history and
+not in either R2 pointing-store shipment (both carry 773,847). They are in
+your pinned copy of the rebuild.
+
+The owner, 23 October: include them ("if its licensed we want it").
+
+Ask: ship the 88 shards 55..ac of 7d3e04a9d270 as the rebuild wrote them
+(or the whole rebuild output), pinned with a receipt and the sha256 of each
+file. The page side brings them through the four moves since (two admission
+rounds, the pointing-store landing, the year repair, the M20 strike) with
+a tool that replays each strike on the 88 shards, and re-emits the index.
+check-store-continuity-v1 C0 alarms until they land.
 
 ## Not asked, for the record
 
