@@ -459,7 +459,7 @@
   // lines alone. Kept on the device; the name leads on a fresh visit.
   const NONAMES_KEY = "fh.nonames";
   let nonamesPref = (() => { try { return localStorage.getItem(NONAMES_KEY) === "yield" ? "yield" : "lead"; } catch { return "lead"; } })();
-  let paintNames = null;    // the row's "no names" pill repaints itself (below, with the readers)
+  let paintNames = null;    // no pill in the row since the evening of 2026-10-23 (the owner: "just have it on /toggles/ for now"); the rail's row is the switch
   Object.defineProperty(window, "__nonames", { get: () => nonamesPref });
   const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
   const hasSourceSign = (t) => SOURCE_SIGN.some((re) => re.test(String(t)));
@@ -832,7 +832,9 @@
       set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); if (paintBlanks) paintBlanks(); },
       now: () => ({ off: "signs off", below: "signs after plain" })[signsPref] || "signs as printed" },
     // NAMES LEAD, OR THE READING THE NAME DISPLACED (the owner, 2026-10-23,
-    // "no names"): the row's "no names" pill is this switch. On "yield" the
+    // "no names"): a row pill was this switch for a day; the owner took it
+    // off the row that evening ("just have it on /toggles/ for now"), so the
+    // rail (?rail=all) and /toggles/ are where it is reached. On "yield" the
     // line of every word the name still leads under the order in force reads
     // the entry's first reading, as it read before names led (the noname
     // column), and no other line moves; the name stays on the card, and the
@@ -9902,21 +9904,11 @@
   const chooseBlanks = (id) => { signsSwitch.set(id); if (document.getElementById("railRows")) railSwitch(); };
   blanksPill.addEventListener("click", () => chooseBlanks(signsPref === "printed" ? "off" : "printed"));
   paintBlanks();
-  // THE NO-NAMES PILL (the owner, 2026-10-23): the names-lead switch,
-  // promoted to the row beside no blanks. It is live where the book carries
-  // the readings its names displaced; elsewhere it stands disabled and says
-  // so, and a press changes nothing.
-  const namesPill = document.getElementById("namesPill"), namesState = document.getElementById("namesState");
+  // NO NAMES: no pill in the row (the owner, the evening of 2026-10-23: "id
+  // remove no names toggle and just have it on /toggles/ for now"). The
+  // rail's row is the switch; reset still puts it back to "the name leads".
   const nameleadSwitch = TOGGLES.find((t) => t.id === "namelead");
-  paintNames = () => {
-    const on = nonamesPref === "yield", live = nameleadSwitch.live();
-    namesPill.classList.toggle("on", on); namesPill.setAttribute("aria-pressed", String(on));
-    namesPill.disabled = !live;
-    namesState.textContent = live ? "" : "no names led on this book";
-  };
   const chooseNames = (id) => { nameleadSwitch.set(id); if (document.getElementById("railRows")) railSwitch(); };
-  namesPill.addEventListener("click", () => chooseNames(nonamesPref === "yield" ? "lead" : "yield"));
-  paintNames();
   // THE RESET PILL: the row's switches back to their default, and what the
   // reader has picked on this page (a reading or a division of a form, at
   // every place it stands; a half of a pair; a form of an apparatus site),
