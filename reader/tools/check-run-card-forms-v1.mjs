@@ -196,12 +196,17 @@ const target = runs.find((r) => (store.routesFor(r.keys[0]) || []).length && !(A
 if (target) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(target.keys[0]));
   const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
-  let fails = 0, failFor = 2;
-  await p.route(new RegExp(`shards/${shard}\\.bin`), (route) => { if (fails < failFor) { fails += 1; route.abort("failed"); } else route.continue(); });
+  // the shard is held back until the card has been seen without it, then
+  // released: since the first card of a page opens itself again when the
+  // source-suggested layer arrives (2026-10-23), a count of failures is
+  // not a count of the card's asks, and a shard set to fail twice came on
+  // the third ask before the card was looked at
+  let fails = 0, hold = true;
+  await p.route(new RegExp(`shards/${shard}\\.bin`), (route) => { if (hold) { fails += 1; route.abort("failed"); } else route.continue(); });
   // a fresh page, so the shard is not already in hand
   await p.reload({ waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb"); await readThrough();
-  const r6 = await p.evaluate(async ([key, weld]) => {
+  const r6a = await p.evaluate(async ([key]) => {
     const run = [...document.querySelectorAll(".wjoin")].find((x) => x.__key === key);
     if (!run) return { err: "run not drawn" };
     const h = document.getElementById("hud");
@@ -211,11 +216,17 @@ if (target) {
     // words cover, first word: the line reads it, but its shard will not come
     run.querySelectorAll(".wb .w")[0].click();
     await wait(3500);
-    const unreachable = state();
-    // the reader asks again as often as it takes: the shard is set to fail
-    // twice, and whether the page's first ask was at load or at the card
-    // depends on the book, so up to two presses are allowed before it comes
-    let back = unreachable;
+    return { unreachable: state() };
+  }, [target.key]);
+  hold = false;   // the catalog can be reached again
+  const r6b = r6a.err ? null : await p.evaluate(async ([key, weld]) => {
+    const run = [...document.querySelectorAll(".wjoin")].find((x) => x.__key === key);
+    const h = document.getElementById("hud");
+    const state = () => ({ read: h.querySelectorAll(".b-read .r-pills button").length, msg: [...h.querySelectorAll(".b-read p:not(.r-label)")].map((x) => x.textContent).join(" "), rec: h.querySelector(".d-slot").children.length, again: !!h.querySelector(".b-read button") });
+    const wait = async (ms) => new Promise((x) => setTimeout(x, ms));
+    // the reader asks again: up to two presses, the first may land while the
+    // card is still re-opening itself
+    let back = state();
     for (let press = 0; press < 2 && back.read === 0; press += 1) {
       const again = h.querySelector(".b-read button"); if (!again) break;
       again.click();
@@ -231,15 +242,16 @@ if (target) {
     // and the line under the run is its words again, never a dash
     const c = (run.querySelector(":scope > .g") || document.createElement("i")).cloneNode(true);
     c.querySelectorAll(".g-lic").forEach((x) => x.remove());
-    return { unreachable, back, joinedOffered: !!joined, lineAfter: c.textContent.trim() };
+    return { back, joinedOffered: !!joined, lineAfter: c.textContent.trim() };
   }, [target.key, target.weld]);
+  const r6 = r6a.err ? r6a : { ...r6a, ...r6b };
   const ok6 = !r6.err
     && r6.unreachable.read === 0 && /could not be reached/u.test(r6.unreachable.msg) && r6.unreachable.again && r6.unreachable.rec === 0
     && r6.back.read > 0 && r6.back.rec > 0
     && !r6.joinedOffered
     && r6.lineAfter && !/\u2014/u.test(r6.lineAfter);
   check("R6  a shard that did not arrive is said and asked again, the record slot stands empty meanwhile, and the run closed up is no rung", ok6,
-    r6.err ? `${target.key}: ${r6.err}` : `${target.key}: unreachable → ${r6.unreachable.read} readings, "${r6.unreachable.msg.slice(0, 40)}…", record ${r6.unreachable.rec}, again ${r6.unreachable.again} · asked again → ${r6.back.read} readings, record ${r6.back.rec} · closed-up rung offered ${r6.joinedOffered} · line after "${r6.lineAfter}" · shard failed ${fails}×`);
+    r6.err ? `${target.key}: ${r6.err}` : `${target.key}: unreachable → ${r6.unreachable.read} readings, "${r6.unreachable.msg.slice(0, 40)}…", record ${r6.unreachable.rec}, again ${r6.unreachable.again} · asked again → ${r6.back.read} readings, record ${r6.back.rec} · closed-up rung offered ${r6.joinedOffered} · line after "${r6.lineAfter}" · shard held back ${fails}×`);
 }
 // R7, on every drawn run of the sample
 const r7 = await p.evaluate((keys) => {
