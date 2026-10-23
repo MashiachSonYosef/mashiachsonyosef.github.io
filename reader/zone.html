@@ -263,7 +263,12 @@
      carries records, it carries licenses. Rendered through the same row the
      chapter titles use, so there is one way a title is drawn. */
   header.top h1 .he-t .title-row { display: inline-block; text-align: right; }
-  header.top h1 .he-t .title-row .wb { margin-bottom: 0; }
+  /* and it looks like one (the owner, 2026-10-23: "i didnt even know the
+     hebrew is clickable up top, it should be pilled like normal"): the same
+     cell wash, corners and padding as every word of the text, pressed the
+     same way */
+  header.top h1 .he-t .title-row .wb { margin-bottom: 0; background: var(--cell-wash); border-radius: 0.4rem; padding: 0.08rem 0.4rem 0.16rem; cursor: pointer; }
+  header.top h1 .he-t .title-row .wb.active { background: var(--press-wash); }
   header.top h1 .he-t .title-row .w { font-size: 2.1rem; }
   header.top h1 .he-t .title-row .g { font-size: 0.82rem; max-width: 12em; overflow-wrap: break-word; }
   header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
@@ -1541,6 +1546,11 @@
   #hud .rows.tight .band > .r-label { display: none; }
   /* except the readings' own: it is the one that says the row scrolls */
   #hud .rows.tight .band.b-read > .r-label { display: block; }
+  /* UNDER THE FLOOR (fitBands): a region shorter than one row of readings
+     gives up the head's note and the "reading now" line, which say what
+     the pressed pill and the record already say, before the record lends
+     its last line */
+  #hud.floor .head > .kq-role, #hud.floor > .r-now { display: none; }
   /* the cue's room is always kept and only its ink comes and goes, so saying
      it never moves a card already fitted */
   #hud .band.b-read > .r-label::after { content: " \00b7  scroll \2193"; color: var(--link); visibility: hidden; }
@@ -5260,6 +5270,9 @@
     // every pill present and none pressable
     if (readBand && read) { readBand.style.height = ""; readBand.style.maxHeight = ""; }
     let bands = [
+      // the form row first: a pair's two forms, or the source's transmitted
+      // forms, stand above the divisions and are owed a row like them
+      { el: hud.querySelector(".b-q"), box: hud.querySelector(".b-q .s-pills") },
       { el: hud.querySelector(".b-chain"), box: hud.querySelector(".b-chain .s-pills") },
       { el: hud.querySelector(".b-chain-cell"), box: hud.querySelector(".b-chain-cell .s-pills") },
       { el: hud.querySelector(".b-cut"), box: hud.querySelector(".b-cut .s-pills") },
@@ -5284,7 +5297,7 @@
     const oneRow = hud.querySelector(":scope > .rows .band.b-cell.one");
     if (oneRow) oneRow.style.display = "";
     rowsEl.classList.remove("tight");
-    hud.classList.remove("tight");
+    hud.classList.remove("tight", "floor");
     for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
     // what a band holds besides its box, summed child by child: a band in a
     // column that overflows is shrunk by the flex layout, and its height less
@@ -5536,6 +5549,61 @@
       oneRow.style.display = "none";   // the band's own display rule outranks the hidden attribute
       bands = bands.filter((x) => x.el !== oneRow);
       lastResort = true; handOut();
+    }
+    // THE FLOOR UNDER EVERYTHING ELSE: ONE WHOLE ROW OF READINGS, ON SCREEN
+    // (the owner, 2026-10-23: "did you ever once and for all force a fix for
+    // our R pills never being less than a row, it feels like its our primary
+    // product hidden"). Every yielder above yields in order and the fit still
+    // ends short where the window is: a phone held sideways (640x360) gave
+    // the region 38px under a card's head and its record's floor, the
+    // division bands took the 38, and the readings stood under the region's
+    // edge, present and dead, on every card of the page; a phone of ordinary
+    // height brought its word up and capped the card to the room, and the
+    // one row of readings ended two pixels under the edge. So the region
+    // itself is the last yielder: it scrolls to the readings. Where it can
+    // show two or more whole rows with the box at its top, the box is cut
+    // to those rows and stands at the top, the division bands a scroll
+    // away above it; where it can show one, the first row's foot stands on
+    // the region's edge and the label stays. A region whose content fits is
+    // stood at its top, whatever a past fit scrolled it to. The outcome is
+    // written on the card for a check to read, and a fit that needed this
+    // still answers "did not fit".
+    // And a region shorter than one row of readings has two more yielders
+    // before it scrolls, because scrolling a 9px region shows 9px: the
+    // head's note and the "reading now" line, which say what the pressed
+    // pill and the record already say (a phone held sideways: a 64px head,
+    // a 19px note, a 29px reading-now line and a 132px record left the
+    // region 9px), and after them the record's last line, down to its
+    // source — the one line the owner ranks under the readings. A record
+    // opened whole yields the same way, its text still whole a scroll away
+    // inside its own slot.
+    delete hud.dataset.readFloor;
+    if (read && read.children.length && rowsEl.clientHeight > 0) {
+      const sy = (() => { const hb = hud.getBoundingClientRect().height; const k = hud.offsetHeight && hb ? hb / hud.offsetHeight : 1; return Math.abs(k - 1) < 0.002 ? 1 : k; })();
+      const shortOfRow = () => { const r0 = rowsOf(read)[0]; return r0 ? r0.bottom - rowsEl.clientHeight : 0; };
+      if (shortOfRow() > 0.5) { hud.classList.add("floor"); handOut(); lastResort = true; }
+      if (shortOfRow() > 0.5 && dSlot) {
+        const give = Math.min(Math.ceil(shortOfRow()), Math.max(0, dSlot.clientHeight - recordFloor(0)));
+        if (give > 0) { dSlot.style.maxHeight = `${Math.floor(dSlot.clientHeight - give)}px`; handOut(); lastResort = true; }
+      }
+      const Rh = rowsEl.clientHeight;
+      if (rowsEl.scrollHeight <= Rh + 1) rowsEl.scrollTop = 0;
+      const boxTop = () => (read.getBoundingClientRect().top - rowsEl.getBoundingClientRect().top) / sy + rowsEl.scrollTop;
+      let rs = rowsOf(read);
+      if (rs.length && boxTop() + rs[0].bottom > rowsEl.scrollTop + Rh + 0.5) {
+        const fit = rs.filter((r) => r.bottom <= Rh + 0.5);
+        if (fit.length >= 2 || rs[0].bottom > Rh) {
+          const px = `${Math.ceil((fit.length ? fit[fit.length - 1] : rs[0]).bottom)}px`;
+          read.style.height = px; read.style.maxHeight = px;
+          rs = rowsOf(read);
+          rowsEl.scrollTop = Math.ceil(boxTop());
+          hud.dataset.readFloor = `box:${fit.length || 1}`;
+        } else {
+          rowsEl.scrollTop = Math.ceil(boxTop() + rs[0].bottom - Rh);
+          hud.dataset.readFloor = "row:1";
+        }
+        lastResort = true;
+      }
     }
     // did every band end up with the row it is owed, in the space it actually
     // has, with nothing given up? The caller decides what to do about it —
@@ -7291,7 +7359,7 @@
       // attested and the motive is disputed: the received letters were not
       // to be altered, so the reading was recorded beside them, never over
       // them. Every pair on the page is a scribe's refusal to edit.
-      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read — press either half. "
+      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read — press either half, or its pill below. "
         + "Where the reading differed from the received letters, the scribes changed nothing: "
         + "the written form kept, the read form recorded beside it.";
       head.append(key);
@@ -7978,6 +8046,33 @@
         });
         qRow.append(label, pills);
       }
+    }
+    // THE PAIR'S TWO FORMS AS PILLS (the owner, 2026-10-23, of a pair's card
+    // with the big word circled and an arrow drawn to the lone block pill:
+    // "the selection happens at the wrong place"): the ketiv and the qere
+    // stand in the form row as two pills, the open one pressed, and pressing
+    // the other opens that form — the press the head's halves answer, now
+    // where every other choice on the card is made. The head keeps its
+    // halves and its role line; the block row goes on showing the open
+    // form's block. A form row of the source's transmitted forms (above)
+    // is a different record and draws instead.
+    if (!qFlag && !opts.chain && opts.kqOpenAt && regions.length > 1 && regions.every((r) => r.role === "KETIV" || r.role === "QERE")) {
+      const label = document.createElement("p"); label.className = "r-label";
+      label.textContent = `Ketiv and qere \u00b7 ${regions.length}`;
+      const pills = document.createElement("div"); pills.className = "s-pills"; pills.dir = "rtl";
+      regions.forEach((r, i) => {
+        const lit = opts.headIndex != null ? i === opts.headIndex : regionIndex >= 0 ? i === regionIndex : openSurfaces.includes(r.s);
+        const btn = document.createElement("button"); btn.type = "button";
+        btn.setAttribute("aria-pressed", String(lit));
+        btn.title = r.role === "KETIV" ? "the ketiv \u2014 the written form" : "the qere \u2014 the read form";
+        const he = document.createElement("span"); he.lang = "he"; he.dir = "rtl"; he.textContent = r.s;
+        const rl = document.createElement("span"); rl.className = "q-role";
+        rl.textContent = r.role === "KETIV" ? "ketiv \u2014 written" : "qere \u2014 read";
+        btn.append(he, rl);
+        btn.addEventListener("click", (ev) => { ev.stopPropagation(); if (lit) return; opts.kqOpenAt(i); });
+        pills.append(btn);
+      });
+      qRow.append(label, pills);
     }
     const dSlot = document.createElement("div"); dSlot.className = "d-slot";
     // what a dictionary says about this word in Hebrew, under the record and

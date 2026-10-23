@@ -7,6 +7,16 @@
 //       short phone and a phone of ordinary height
 //   R2  and the card still stands clear of its word: beneath it or above it,
 //       never over it
+//   R3  THE FLOOR: one whole row of readings stands on screen on every card,
+//       whatever the window — a phone held sideways, a desktop window
+//       squashed flat, the record opened whole — inside the pills box, the
+//       card's scrolling region, the card and the window at once (the
+//       owner, 2026-10-23: "did you ever once and for all force a fix for
+//       our R pills never being less than a row, it feels like its our
+//       primary product hidden"). Measured on the first words of the page,
+//       its deepest card and its first chain, with the word high and low on
+//       the screen. How often the region had to scroll to the readings is
+//       said, not failed.
 // How often the page had to bring the word up to give the readings their
 // rows is said, not failed. The word is the first of the first served page
 // whose card holds the most readings, never named here (check-scope-derived
@@ -79,11 +89,61 @@ for (const [w, h] of VIEWPORTS) {
   }
   await p.close();
 }
+// R3: the floor, across the windows the three-row rule is not held to
+const FLOORS = [[320, 568], [390, 664], [412, 915], [640, 360], [1024, 500]];
+const FLOOR_STATES = ["default", "whole"];
+const under = [], scrolled = [];
+let floorCards = 0;
+if (word && word.i >= 0) for (const [w, h] of FLOORS) for (const state of FLOOR_STATES) {
+  const ctx = await b.newContext({ viewport: { width: w, height: h } });
+  const p = await ctx.newPage();
+  p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+  await p.goto(URL, { waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb");
+  const n = await p.evaluate(() => document.querySelectorAll(".he-text .wb:not(.mark)").length);
+  const chain = await p.evaluate(() => [...document.querySelectorAll(".he-text .wb:not(.mark)")].findIndex((x) => x.closest(".wjoin")));
+  const words = [...new Set([0, 1, 2, 3, word.i, chain].filter((i) => i >= 0 && i < n))];
+  for (const i of words) for (const at of [100, h - 60]) {
+    await p.evaluate(({ i, at }) => {
+      const wb = document.querySelectorAll(".he-text .wb:not(.mark)")[i];
+      wb.scrollIntoView({ block: "center" });
+      window.scrollBy(0, wb.getBoundingClientRect().bottom - at);
+      (wb.querySelector(".w span") || wb.querySelector(".w")).click();
+    }, { i, at });
+    await p.waitForTimeout(800);
+    if (state === "whole") { const did = await p.evaluate(() => { const g = document.querySelector("#hud .d-foot .d-grow"); if (g) g.click(); return !!g; }); if (did) await p.waitForTimeout(400); }
+    const r = await p.evaluate(() => {
+      const hud = document.getElementById("hud");
+      if (!hud || hud.hidden) return null;
+      const box = hud.querySelector(":scope > .rows .b-read .r-pills"), rowsEl = hud.querySelector(":scope > .rows");
+      if (!box || !box.children.length) return null;
+      const br = box.getBoundingClientRect(), rr = rowsEl.getBoundingClientRect(), hr = hud.getBoundingClientRect();
+      const clipTop = Math.max(br.top, rr.top, hr.top, 0), clipBot = Math.min(br.bottom, rr.bottom, hr.bottom, innerHeight);
+      const rows = [];
+      for (const el of box.children) {
+        const q = el.getBoundingClientRect(), row = rows.find((x) => Math.abs(x.top - q.top) < 2);
+        if (row) row.bottom = Math.max(row.bottom, q.bottom); else rows.push({ top: q.top, bottom: q.bottom });
+      }
+      const onScreen = rows.filter((x) => x.top >= clipTop - 1 && x.bottom <= clipBot + 1).length;
+      return { onScreen, rows: rows.length, floor: hud.dataset.readFloor || "", cut: Math.round(br.bottom - clipBot) };
+    });
+    await p.keyboard.press("Escape"); await p.waitForTimeout(120);
+    if (!r) continue;
+    floorCards += 1;
+    const tag = `${w}x${h} ${state}, word ${i + 1} at ${at}px`;
+    if (r.onScreen < 1) under.push(`${tag}: ${r.onScreen} of ${r.rows} rows on screen (${r.cut}px under the edge)`);
+    if (r.floor) scrolled.push(`${tag} (${r.floor})`);
+  }
+  await ctx.close();
+}
 await b.close();
 console.log(`the word: number ${word ? word.i + 1 : "-"} of the page, ${word ? word.n : 0} readings; ${opened} cards opened`);
 check("R1 the readings stand three whole rows high wherever the card opens", opened > 0 && deep > 0 && word && word.n > 3 && !short.length,
   short.length ? `${short.length} short: ${short.slice(0, 4).join("; ")}` : deep ? `${opened} cards, ${deep} with readings past three rows, every one three rows or more` : `${opened} cards, none with readings running to three rows: nothing to hold to`);
 check("R2 the card stands clear of its word", opened > 0 && !over.length, over.length ? `${over.length} over the word: ${over.slice(0, 4).join("; ")}` : "beneath it or above it, every time");
+check("R3 one whole row of readings stands on screen on every card, whatever the window", floorCards > 0 && !under.length,
+  under.length ? `${under.length} under: ${under.slice(0, 5).join("; ")}` : `${floorCards} cards over ${FLOORS.length} windows and ${FLOOR_STATES.length} states, a whole row on screen in every one`);
+console.log(`  --  the region scrolled to the readings on ${scrolled.length} of ${floorCards}${scrolled.length ? `: ${scrolled.slice(0, 6).join("; ")}` : ""}`);
 console.log(`  --  the page brought the word up ${moved.length} time${moved.length === 1 ? "" : "s"} of ${opened}${moved.length ? `: ${moved.slice(0, 6).join("; ")}` : ""}`);
 console.log(bad ? `\n${bad} failing` : "\nall checks passed");
 process.exit(bad ? 1 : 0);
