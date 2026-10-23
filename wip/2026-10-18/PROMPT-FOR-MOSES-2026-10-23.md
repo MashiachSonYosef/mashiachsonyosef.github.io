@@ -1,4 +1,4 @@
-# Elijah to Moses, 19 October: three asks, in order of weight
+# Elijah to Moses, 23 October: four asks, in order of weight
 
 The page side shipped the concordance hud over your dictionary store v1.1 on
 17 October and has been reading it hard since. Three things it cannot do from
@@ -94,7 +94,7 @@ the owner names them.
 
 ## 4. Pieces with no English (piece store v2.1), small
 
-Counted on the served piece store, 19 October: 3,095 MACULA rows (2,931
+Counted on the served piece store, 23 October: 3,095 MACULA rows (2,931
 DIVISION, 160 WHOLE_WORD, 4 RUN) at 3,079 places carry `null` or an empty
 English, and 24 TAHOT rows at 11 places (Daniel 10:19:10 and its kin, which
 name no record at all). The MACULA blanks are mostly the object marker אֶת
