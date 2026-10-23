@@ -1,4 +1,4 @@
-# Elijah to Moses, 23 October: six asks, in order of weight
+# Elijah to Moses, 23 October: seven asks, in order of weight
 
 The page side shipped the concordance hud over your dictionary store v1.1 on
 17 October and has been reading it hard since; your four relays of 23
@@ -151,6 +151,34 @@ file. The page side brings them through the four moves since (two admission
 rounds, the pointing-store landing, the year repair, the M20 strike) with
 a tool that replays each strike on the 88 shards, and re-emits the index.
 check-store-continuity-v1 C0 alarms until they land.
+
+## 7. Two test works beyond the 39: Tikkunei Zohar and Delitzsch's Hebrew New Testament
+
+The owner, 23 October: "tikkunei zohar and ... new testament lets start there".
+Neither is on the shelf. The dictionary layer reads any work by its letters;
+the per-place layers (TAHOT, MACULA) exist for the 39 alone, so these two
+would read from the dictionaries only. Intake is your lane (sealed units, the
+C0 serve); the page side builds the zones from them as for every other work.
+
+Sources found from here (the build container reaches GitHub and Google
+storage, not sefaria.org or ebible.org):
+
+- Tikkunei Zohar: Sefaria's Hebrew version "Tikkunei Zohar - Vocalized"
+  (versionSource toratemetfreeware.com), license field "Public Domain",
+  pointed, in the public export bucket:
+  storage.googleapis.com/sefaria-export/json/Kabbalah/Zohar/Tikkunei%20Zohar/Hebrew/Tikkunei%20Zohar%20-%20Vocalized.json
+  (2.3 MB). The other Hebrew version, "Constantinople, 1740" (Margalya), is
+  CC-BY-NC; the "Hebrew Wikipedia" one is a fragment with license unknown.
+  Ask: intake the Vocalized version as units, with its receipt.
+- Delitzsch: no clean machine text found. github.com/HebrewNewTestament/HebDelitzsch
+  holds a pointed OSIS of all 27 books but says "based on the Delitzsch
+  translation from 1885 and on the version of Streams in the Negev 2003" with
+  no license file, so it carries a modern revision of unknown terms. The
+  National Library of Israel holds the 1892 (11th) edition scanned, public
+  domain in Israel; the Bible Society in Israel's Delitzsch is under copyright.
+  Ask: a public-domain Delitzsch edition as text (an OCR of the 1892 scan, or
+  a digitization whose source and terms are on record), or the maintainer's
+  terms for the GitHub text; intake under the licence ledger as any source.
 
 ## Not asked, for the record
 
