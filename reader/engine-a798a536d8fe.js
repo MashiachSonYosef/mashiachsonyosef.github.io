@@ -10569,7 +10569,14 @@
   // the hash and is read once, here.
   const WORD_AT = /^(\d+:\d+):(\d+)(?:[-\u2013](\d+))?$/u;
   const wordAt = WORD_AT.exec(hashAt);
-  const openAt = (QUERY.get("at") || (wordAt ? wordAt[1] : "") || (/^v[0-9a-z-]+$/i.test(hashAt) ? hashAt : "") || META("reader-at") || "").trim();
+  // THE LOGICAL ADDRESS (the owner, 2026-10-23: "why isnt it just
+  // fireandhail.com/genesis/#8:17:14 then seems like the logical url"): the
+  // book's address with a hash names the place. #8:17:14 is a word (the card
+  // opens on it), #8:17 a verse, #8 a chapter; each opens the book there, as
+  // ?at= and a chapter address do. A verse or chapter hash is kept in the
+  // bar; a word hash is dropped once the card is open (the clean address).
+  const VERSE_AT = /^\d+:\d+$/u, CHAPTER_AT = /^\d+$/u;
+  const openAt = (QUERY.get("at") || (wordAt ? wordAt[1] : "") || (VERSE_AT.test(hashAt) || CHAPTER_AT.test(hashAt) ? hashAt : "") || (/^v[0-9a-z-]+$/i.test(hashAt) ? hashAt : "") || META("reader-at") || "").trim();
   // THE PLACE THIS DEVICE KEEPS FOR THIS BOOK (the owner, 2026-10-08: "we
   // should think about scroll control. such as can we cache spots?"): the
   // verse the reader was at, written as they read, kept on the device per
