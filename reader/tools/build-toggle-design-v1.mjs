@@ -133,6 +133,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   // still unsettled, and the page is a decision instrument rather than a
   // description of itself.
   const PROP = join(HERE, "..", "data", "toggle-wording-proposals-v1.json");
+  // THE SWITCHES THE OWNER HAS NAMED AND NOT ASKED FOR (the owner, 2026-10-23:
+  // "just put them all as placeholders on /toggles/ i will get there
+  // eventually"): a record, never typed here, drawn as a list of what is
+  // waiting; a toggle built leaves the record and appears above as a switch.
+  const NAMED = (() => { try { return JSON.parse(readFileSync(arg("--named", join(HERE, "..", "data", "toggles-named-v1.json")), "utf8")); } catch { return { named: [] }; } })();
   const props = existsSync(PROP) ? JSON.parse(readFileSync(PROP, "utf8")) : {};
   mkdirSync(SHOTS, { recursive: true });
 
@@ -276,6 +281,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <li><b>Two-word underlines.</b> One cell, one card and one blob over two or more spaced words, only where one dictionary record defines the span as one thing. None is drawn: the record that named the spans was wrong ("the data is wrong lets leave it out for now"), and the shelf answers two spans in all. Comes back span by span when the run store lands.</li>
 <li id="order"><b>The reading order.</b> The "reads first" switch: the source at this place, or the oldest witness for the form, or another order of the records. The page reads the source at this place; the other orders wait here (16 October: "oldest first toggle can go to toggle page as a placeholder").</li>
 <li><b>The order legend.</b> A small legend, in a layman's words, that says the Hebrew sets which card is first and shows the English reader's order as a row of numbers; with gold arrows on the line for the reading direction. The card's own number and arrow are the first piece of it.</li>
+${(NAMED.named || []).length ? `</ul>
+<p class="big">Named by the owner, not built${NAMED._named_on ? ` (${esc(NAMED._named_on)})` : ""}.</p>
+<p>Each one is a switch the owner has named; none is asked for yet, and nothing is built until it is. The record is <code>data/toggles-named-v1.json</code>.</p>
+<ul class="ph-list">
+${(NAMED.named || []).map((t) => `<li id="named-${esc(t.id)}"><b>${esc(t.lab)}.</b> ${esc(t.what)}. <i>Needs: ${esc(t.needs)}.</i></li>`).join("\n")}
+</ul>
+<ul class="ph-list">` : ""}
 <li><b>The rebuild tool.</b> One command that recreates the whole site from the ledgers, offered at the end ("is there a way at the end of it all to offer a compressed tool that can recreate all of it").</li>
 </ul>
 </div>
