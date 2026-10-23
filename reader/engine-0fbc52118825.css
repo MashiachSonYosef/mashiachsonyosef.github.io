@@ -243,7 +243,12 @@
      carries records, it carries licenses. Rendered through the same row the
      chapter titles use, so there is one way a title is drawn. */
   header.top h1 .he-t .title-row { display: inline-block; text-align: right; }
-  header.top h1 .he-t .title-row .wb { margin-bottom: 0; }
+  /* and it looks like one (the owner, 2026-10-23: "i didnt even know the
+     hebrew is clickable up top, it should be pilled like normal"): the same
+     cell wash, corners and padding as every word of the text, pressed the
+     same way */
+  header.top h1 .he-t .title-row .wb { margin-bottom: 0; background: var(--cell-wash); border-radius: 0.4rem; padding: 0.08rem 0.4rem 0.16rem; cursor: pointer; }
+  header.top h1 .he-t .title-row .wb.active { background: var(--press-wash); }
   header.top h1 .he-t .title-row .w { font-size: 2.1rem; }
   header.top h1 .he-t .title-row .g { font-size: 0.82rem; max-width: 12em; overflow-wrap: break-word; }
   header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
@@ -1521,6 +1526,11 @@
   #hud .rows.tight .band > .r-label { display: none; }
   /* except the readings' own: it is the one that says the row scrolls */
   #hud .rows.tight .band.b-read > .r-label { display: block; }
+  /* UNDER THE FLOOR (fitBands): a region shorter than one row of readings
+     gives up the head's note and the "reading now" line, which say what
+     the pressed pill and the record already say, before the record lends
+     its last line */
+  #hud.floor .head > .kq-role, #hud.floor > .r-now { display: none; }
   /* the cue's room is always kept and only its ink comes and goes, so saying
      it never moves a card already fitted */
   #hud .band.b-read > .r-label::after { content: " \00b7  scroll \2193"; color: var(--link); visibility: hidden; }

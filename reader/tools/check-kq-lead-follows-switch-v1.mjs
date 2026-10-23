@@ -15,12 +15,17 @@
 //       switch's half — both halves in the head as always, the open one
 //       lit — or, where the switch's half has no reading, on the half the
 //       line fell back to; the underline on the line sits under the same
-//       half the card is about. Nothing else on the card changes.
+//       half the card is about; the form row holds the two forms as pills,
+//       the open one pressed (the owner, 2026-10-23: "the selection happens
+//       at the wrong place"). Nothing else on the card changes.
 //   K3  pressing the other half in the head keeps the one card, lights it
 //       instead, and moves the line's underline with it
 //   K4  moving the switch forgets that press: the pair opens on the switch's
 //       half again
 //   K5  the Hebrew of every pair never changed by a byte through all of it
+//   K6  pressing the other form's pill in the form row does what pressing
+//       the other half in the head does: the one card, that form lit, its
+//       pill pressed, the underline moved
 //
 // Runs against the first served zone that counts pairs. Skips, and says so,
 // when none does.
@@ -96,6 +101,9 @@ const openPair = async (n, h) => {
       otherPressable: headSegs.some((s) => !s.lit && s.pressable),
       litRole: roleLine.startsWith("ketiv") ? "KETIV" : roleLine.startsWith("qere") ? "QERE" : null,
       extras: hud.querySelectorAll(".b-q *").length,
+      // the pair's two forms as pills in the form row, the open one pressed
+      // (the owner, 2026-10-23: "the selection happens at the wrong place")
+      formPills: [...hud.querySelectorAll(".b-q .s-pills button")].map((q) => q.getAttribute("aria-pressed") === "true"),
       underline: halves.findIndex((x) => x.classList.contains("backs-en")),
       on: halves.findIndex((x) => x.classList.contains("on")),
       roles: halves.map((x) => (x.title.startsWith("ketiv") ? "KETIV" : "QERE")),
@@ -126,8 +134,9 @@ for (const [label, id] of POSITIONS) {
         `lit ${r.roles[r.litIdx]} · wanted ${want}${fell ? " (the line fell back; the card followed it)" : ""} · line "${r.line.slice(0, 30)}"`);
       check(`K2  ${label} · pair ${n + 1} half ${h + 1} · the underline and the open mark sit under the half the card is about`,
         r.litIdx >= 0 && r.underline === r.litIdx && r.on === r.litIdx, `underline ${r.underline} · on ${r.on} · lit ${r.litIdx}`);
-      check(`K2  ${label} · pair ${n + 1} half ${h + 1} · nothing was added to the card for this; the other half is pressable where it stands`,
-        r.extras === 0 && r.otherPressable, `extras ${r.extras} · pressable ${r.otherPressable}`);
+      check(`K2  ${label} · pair ${n + 1} half ${h + 1} · the form row holds the two forms as pills, the open one pressed; the other half is pressable where it stands`,
+        r.formPills.length === 2 && r.formPills.filter(Boolean).length === 1 && r.formPills.indexOf(true) === r.litIdx && r.otherPressable,
+        `form pills ${r.formPills.length}, pressed ${r.formPills.indexOf(true)} · lit ${r.litIdx} · pressable ${r.otherPressable}`);
       await closeCard();
     }
   }
@@ -167,6 +176,28 @@ await closeCard();
 // K5
 const heAfter = await p.evaluate(() => [...document.querySelectorAll("section.seg .he-text .wb.kq")].map((w) => w.querySelector(".w").textContent));
 check("K5  the Hebrew of every pair never changed by a byte", heAfter.length === heBefore.length && heAfter.every((t, i) => t === heBefore[i]));
+
+// K6 — the other form's pill
+await setSwitch("written (ketiv)"); await p.waitForTimeout(300);
+const before6 = await openPair(0, 0);
+const other6 = before6.litIdx === 0 ? 1 : 0;
+await p.evaluate((j) => { document.querySelectorAll("#hud .b-q .s-pills button")[j].click(); }, other6);
+await p.waitForTimeout(900);
+const flipped6 = await p.evaluate(() => {
+  const w = document.querySelectorAll("section.seg .he-text .wb.kq")[0];
+  const hud = document.getElementById("hud");
+  const segs = [...hud.querySelectorAll(".head b span:not(.mq)")];
+  const lit = segs.findIndex((s) => !s.style.color && s.style.fontWeight !== "400");
+  const pills = [...hud.querySelectorAll(".b-q .s-pills button")].map((q) => q.getAttribute("aria-pressed") === "true");
+  const halves = [...w.querySelectorAll(".wr")];
+  return { open: !hud.hidden, segs: segs.length, lit, pressed: pills.indexOf(true), pills: pills.length,
+    underline: halves.findIndex((x) => x.classList.contains("backs-en")) };
+});
+check("K6  pressing the other form's pill keeps the one card, lights that form in the head and presses its pill",
+  flipped6.open && flipped6.segs === 2 && flipped6.lit === other6 && flipped6.pills === 2 && flipped6.pressed === other6,
+  `lit ${flipped6.lit} · pressed ${flipped6.pressed} · wanted ${other6}`);
+check("K6  the line's underline moved with it", flipped6.underline === other6, `underline ${flipped6.underline}`);
+await closeCard();
 
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall green");
