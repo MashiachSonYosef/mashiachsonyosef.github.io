@@ -642,6 +642,8 @@
     margin:.2rem 0 .5rem; padding-bottom:.3rem; border-bottom:1px solid var(--line); }
   .colheads .ch { font-size:.6rem; letter-spacing:.14em; text-transform:uppercase;
     color:var(--faint); }
+  /* the reading's head spans the row's last two tracks, as the reading does (.col-he) */
+  .colheads .ch:nth-child(3) { grid-column:3 / -1; }
   details.fam > summary .row:first-child, .atlas-row.built, .bookcard .row {
     display:grid; grid-template-columns:minmax(0,7rem) minmax(0,1fr) minmax(0,7rem) minmax(0,1fr);
     gap:0 .9rem; align-items:baseline; }
@@ -716,13 +718,12 @@
   .atlas-row.built:not(.g24) { position:relative; }
   .atlas-row.built:not(.g24) .col-en a.aw::after { content:""; position:absolute; inset:0; border-radius:inherit; }
   .atlas-row.built:not(.g24) .chip, .atlas-row.built:not(.g24) .col-he a, .atlas-row.built:not(.g24) .col-he button,
-  .atlas-row.built:not(.g24) .col-he [role="button"], .atlas-row.built:not(.g24) .col-lic a,
+  .atlas-row.built:not(.g24) .col-he [role="button"],
   .atlas-row.built:not(.g24) .fam-he > .g { position:relative; z-index:1; }
   /* the reading under the Hebrew opens the word's card, as the word does */
   .fam-he > .g { cursor:pointer; }
   .col-att { grid-column:2; }
-  .col-he { grid-column:3; }
-  .col-lic { grid-column:4; }
+  .col-he { grid-column:3 / -1; }
   /* THE FILING SWITCH. Two shapes of one shelf, and the reader says which.
      Neither is default-by-nature: the page opens on the thirty-nine because
      those are the addresses that serve, and remembers whichever the reader
@@ -747,12 +748,12 @@
     background:var(--cell-wash); max-width:100%; min-width:0; }
   .atlas-row.g24 .col-en .aw { font-size:.82rem; color:var(--muted); }
   .atlas-row.g24 .col-en .aw:hover { color:var(--ink-strong); }
-  .col-att, .col-lic { min-width:0; display:flex; flex-wrap:wrap; align-items:baseline;
+  .col-att { min-width:0; display:flex; flex-wrap:wrap; align-items:baseline;
     gap:.1rem .4rem; }
   /* a chip that rides beside a reading is spaced off it; a chip that IS
      the whole cell must start where its column starts, or the column is
      strict everywhere except to the eye */
-  .col-att > .chip:first-child, .col-lic > .chip:first-child { margin-inline-start:0; }
+  .col-att > .chip:first-child { margin-inline-start:0; }
   .atlas-row .fam-he { margin-inline-start:0; }
   /* THE PHONE KEEPS ITS COLUMNS. This block used to dissolve the four
      cells into one wrapping flex line, and the result was that every
@@ -778,7 +779,7 @@
       display:flex; align-items:flex-start; gap:0 .7rem; }
     .pair { display:flex; flex-direction:column; align-items:flex-start;
       gap:.1rem; flex:1 1 0; min-width:0; }
-    .col-en, .col-he, .col-att, .col-lic { grid-column:auto; grid-row:auto; max-width:100%; }
+    .col-en, .col-he, .col-att { grid-column:auto; grid-row:auto; max-width:100%; }
     /* the attestation sits under the name, so it carries the name’s
        indent with it or the nesting reads as broken */
     .atlas-row.built .col-att { padding-inline-start:1.9rem; }
@@ -795,7 +796,7 @@
   .col-he .fam-he .g, details.fam > summary .fam-he .g { font-size:.7rem; color:var(--tekhelet-ink); }
   /* the license rides beside every printed reading and every backed
      force-read, in the same quiet chip the reader's card uses */
-  details.fam > summary .chip, .col-att .chip, .col-lic .chip, .fam-he .g .chip, .demo-he .g .chip, #bkcard .chip, #census-demo .chip {
+  details.fam > summary .chip, .col-att .chip, .demo-he .g .chip, #bkcard .chip, #census-demo .chip {
     display:inline-block; margin-inline-start:.45rem; font-size:.6rem; letter-spacing:.06em;
     font-variant:normal; font-style:normal; color:var(--muted);
     border:1px solid var(--line); border-radius:.6rem; padding:.06rem .45rem; white-space:nowrap;

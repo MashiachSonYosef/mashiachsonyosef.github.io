@@ -652,6 +652,13 @@
   #hud .dict-tab th button[aria-pressed="true"] { font-weight: bold; }
   #hud .dict-tab td { padding: 0.45rem 0.25rem; border-bottom: 1px dotted var(--line); vertical-align: top; }
   #hud .dict-tab td.he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); font-size: 1.2rem; direction: rtl; white-space: normal; }
+  /* a block pressed: the whole word's blocks, the pressed one worn bold, and
+     the line's pieces with the pressed block's pill among them */
+  #hud .dict-tab td.he .on { font-weight: 700; }
+  #hud .dict-tab td.he .pp { color: var(--shani-dim); }
+  #hud .dict-tab .rd-whole { display: flex; flex-wrap: wrap; align-items: center; gap: 0 0.1rem; direction: ltr; }
+  #hud .dict-tab .rd-whole .pp { color: var(--tekhelet-dim); white-space: pre; }
+  #hud .dict-tab .rd-piece { color: var(--tekhelet-ink); font-family: 'reading', Georgia, serif; font-weight: 500; }
   #hud .dict-tab tbody tr.pick > td:nth-child(2) { min-width: 7rem; }
   #hud .dict-tab th button:focus-visible, #hud .dict-tab button.dd:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
   #hud .dict-tab button.more { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--argaman); }
@@ -945,6 +952,18 @@
      gold; a spacer stands where the text writes a space between its words.
      A run too wide for the page wraps inside its cell rather than past it. */
   .wjoin.lic .wj-ink { border-bottom: 1.5px solid var(--gold); }
+  /* OVER THE WORDS IN THE HEBREW READER (the owner, 2026-10-19, of a joined
+     card's line crossing its blob where the blob runs down from the letters
+     to the English: "put it as an overline, right"). The one-card line
+     stands on the letters' side away from the English: over them in the
+     Hebrew reader, where the English hangs below, and under them in the
+     English reader, where the letters are the card's foot and nothing runs
+     below them. Over, it is drawn as a shadow just outside the ink row's top
+     edge, in the card's own top padding, so it takes no room; the row's
+     bottom border keeps its room unseen. The card's numbers hang under it. */
+  body:not(.en) .he-text .wjoin > .wj-ink { border-bottom-color: transparent; box-shadow: 0 -1px 0 var(--gold-dim); }
+  body:not(.en) .he-text .wjoin.lic > .wj-ink { box-shadow: 0 -1.25px 0 var(--gold); }
+  body:not(.en) .he-text .wjoin.apart > .wj-ink { box-shadow: none; }
   /* the space the text writes between a run's words: a real space (so a copy
      of the line keeps it) held at a word gap's width inside the flex row,
      which would drop a bare one */
