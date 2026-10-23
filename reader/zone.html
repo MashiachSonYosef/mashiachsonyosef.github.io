@@ -3938,7 +3938,7 @@
     // book rather than decorated per occurrence: apparatus at the grain
     // where it varies, instruction once per witness.
     `${(() => { const n = (zone.sections || []).reduce((a, s) => a + ((s.words || []).filter((w) => w.kq).length), 0);
-      return n ? `${n.toLocaleString()} places carry a source-marked pair, printed exactly as the source writes it — the ketiv, as written, in parentheses; the qere, as read, in brackets; either half opens its own record, and the half the shown English reads from is underlined · ` : ""; })()}` +
+      return n ? `${n.toLocaleString()} places carry a source-marked pair, printed exactly as the source writes it — the ketiv, as written, in parentheses; the qere, as read, in brackets; either half opens the one card, on the half the line reads from, with both forms a press away, and the half the shown English reads from is underlined · ` : ""; })()}` +
     `${(() => { const n = (zone.sections || []).reduce((a, s) => a + ((s.words || []).filter((w) => w.vs).length), 0);
       return n ? `${n.toLocaleString()} place${n === 1 ? " carries" : "s carry"} a source-marked variant site, printed exactly as the source writes it, with its record one tap away (${VS_RULE}) · ` : ""; })()}` +
     `${zone.counts.w_regions_with_a_component_system
@@ -4353,6 +4353,20 @@
     if (word.pg.some((p) => { const r = readingOfPiece(p && p.s); return r && r.mId && sourcesOff.has(r.mId); })) return null;
     return word.pg;
   };
+  // THE ORDER THE RULINGS WERE MADE IN, by form key. A pair's two halves are
+  // alternatives and a reader may rule each in turn; the line can carry one,
+  // and it carries the one ruled last, wherever it is asked (the line's
+  // painter below, the card's opener): read by region order, a switch move
+  // repainted the line from the earlier ruling and undid the later one
+  // (the review of 2026-10-23).
+  let ruledSeq = 0;
+  const ruledAt = new Map();
+  const noteRuled = (k) => { if (k) ruledAt.set(k, ++ruledSeq); };
+  const latestRuled = (regions, table) => {
+    let best = -1, when = -1;
+    regions.forEach((r, i) => { if (ruledLine(r.k, table) === null) return; const at = ruledAt.get(r.k) || 0; if (best < 0 || at > when) { best = i; when = at; } });
+    return best;
+  };
   const ruledLine = (k, table, word) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
@@ -4444,7 +4458,7 @@
       `at` where the source's own reading of the place is what it backs. */
   const kqPick = (regions, parts, table, word) => {
     const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
-    const ruledIdx = regions.findIndex((r) => ruledLine(r.k, table) !== null);
+    const ruledIdx = latestRuled(regions, table);
     if (ruledIdx >= 0) return { i: ruledIdx, fellFrom: null };
     const pl = kqPlace(word, regions, table);
     if (pl) return { i: pl.i, fellFrom: null, at: pl.at };
@@ -6563,9 +6577,12 @@
   // clicked qere, when you meet a qere word, the qere megacompspan would
   // already be selected for you." Both halves print, both halves stand in the
   // head of the one card as they always did; the pairs switch only says which
-  // one the card opens on and which one backs the English. A half the reader
-  // presses in the head is remembered for that place until the switch moves.
-  const kqPicks = new Map();
+  // one the card opens on and which one backs the English. A half pressed
+  // on the card (in the head or in the form row) moves the card alone and
+  // is not remembered: the switch and a ruling say which half the line
+  // reads from and which the card opens on (the owner, 2026-10-23: a pair
+  // "is just a regular megacompspan, the only difference is it doesnt
+  // select the hebrew showing").
 
   // THE RUNGS OF A RUN'S CARD, for the run's own card and for the chain kept
   // at the top of its word's card (the nesting, 2026-10-16).
@@ -7364,7 +7381,7 @@
       // attested and the motive is disputed: the received letters were not
       // to be altered, so the reading was recorded beside them, never over
       // them. Every pair on the page is a scribe's refusal to edit.
-      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read — press either half, or its pill below. "
+      key.textContent = "( ) holds the ketiv, as written · [ ] holds the qere, as read — press either half, or its pill below: the card is then about that form, and no character of the line moves; the English under the word follows a reading you rule, else the pairs switch. "
         + "Where the reading differed from the received letters, the scribes changed nothing: "
         + "the written form kept, the read form recorded beside it.";
       head.append(key);
@@ -7836,7 +7853,7 @@
     // not holding that list in their head. It marks a ruling, not a visit:
     // opening a word and closing it again changes nothing and leaves no mark.
     let ruled = false;
-    const markRuled = () => { ruled = true; if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands"; };
+    const markRuled = () => { ruled = true; noteRuled(region && region.k); if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands"; };
     // A READING PRESSED ON A RUN'S WHOLE RUNG RULES THE RUNG (the owner,
     // 2026-10-22, of a joined card: "same error i cant change the selected
     // gloss"). The rung the card merely opened on is no ruling, but a reading
@@ -7932,6 +7949,11 @@
       // An open only repaints its own line; nothing was ruled, so nothing
       // else on the page is owed a repaint.
       if (!ruled) {
+        // a pair's card moved to its other form by a press on the card: the
+        // line is not the card's to move (rule 1, kq-shapes), so nothing is
+        // painted and the provenance mark stays with the half the line
+        // reads from
+        if (opts.kqNav) return;
         // with the chip of the words it paints: opening a card may paint
         // other words (a pair's other half, the division the card opens on)
         paintRuling(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts ? null : coverChip());
@@ -8057,8 +8079,11 @@
     // "the selection happens at the wrong place"): the ketiv and the qere
     // stand in the form row as two pills, the open one pressed, and pressing
     // the other opens that form — the press the head's halves answer, now
-    // where every other choice on the card is made. The head keeps its
-    // halves and its role line; the block row goes on showing the open
+    // where every other choice on the card is made — and opens it only: a
+    // pair is a mega span whose blocks are alternatives, and a form pressed
+    // here moves the card, never the line (rule 1, kq-shapes; the owner,
+    // 2026-10-23: "it doesnt select the hebrew showing"). The head keeps
+    // its halves and its role line; the block row goes on showing the open
     // form's block. A form row of the source's transmitted forms (above)
     // is a different record and draws instead.
     if (!qFlag && !opts.chain && opts.kqOpenAt && regions.length > 1 && regions.every((r) => r.role === "KETIV" || r.role === "QERE")) {
@@ -10887,8 +10912,8 @@
         const seg = document.createElement("span"); seg.className = "wr";
         appendLettered(seg, r.s, lmMarked, lmState);
         seg.title = r.role === "KETIV"
-          ? "ketiv \u2014 the form the source writes; opens its own record"
-          : "qere \u2014 the form the source reads; opens its own record";
+          ? "ketiv \u2014 the form the source writes; opens the card, on the half the line reads from"
+          : "qere \u2014 the form the source reads; opens the card, on the half the line reads from";
         w.append(seg); regionEls.push(seg);
       });
       if (rest) appendLettered(w, rest, lmMarked, lmState);
@@ -11108,6 +11133,12 @@
       const lead = built.kqStand ? kqLead().i : 0;
       const target = built.regionEls[lead] || targets[0];
       if (!runEl || !runEl.__words || !runEl.__ink) { openAt(lead, target); return; }
+      // a pair inside a chain the page holds apart (no chain key: one breath,
+      // several cards) opens as the line opens it, its own head and form row,
+      // whether a reader pressed it or a search landed on it; under the
+      // chain's head its other half was a chain press that reopened the
+      // lead half, and the ketiv never opened
+      if (built.kqStand && !runEl.__key) { openAt(lead, target); return; }
       const rc = built.wb.__run && chainIs(built.wb.__run, runEl) ? built.wb.__run : null;
       // the span's own keys ride with its rungs, so the chain at the top of
       // the word's card names the place and its inner place as the store does
@@ -11126,10 +11157,18 @@
     };
     const kqLead = () => {
       const st = built.kqStand;
-      const picked = kqPicks.get(site);
-      if (picked != null && picked < st.regions.length) return { i: picked };
-      const ruled = st.regions.findIndex((r) => ruledLine(r.k, st.table) !== null);
-      if (ruled >= 0) return { i: ruled };
+      // the half the line reads from: a ruling, the source's own place, the
+      // pairs switch — never a half pressed on the card (rule 1, kq-shapes:
+      // "choosing a branch changes what the card is about and moves no
+      // character of the line"; the owner, 2026-10-23: a pair "is just a
+      // regular megacompspan, the only difference is it doesnt select the
+      // hebrew showing"), so a card closed and opened again opens on the
+      // half the line reads from
+      // a ruled half; with both halves ruled (they are alternatives, and a
+      // reader may rule each in turn), the one ruled last, as the line's
+      // painter reads it, so a reopen never undoes the later ruling
+      const ruledIdx = latestRuled(st.regions, st.table);
+      if (ruledIdx >= 0) return { i: ruledIdx };
       const { i } = kqPick(st.regions, st.parts, st.table, st.word);
       if (i >= 0) return { i };
       const wanted = kqOrder === "QERE" ? st.regions.findIndex((r) => r.role !== "KETIV")
@@ -11139,9 +11178,19 @@
     const openAt = (i, target, extra = {}) => {
       built.regionEls.forEach((r) => r.classList.remove("on"));
       // a pair's halves are alternatives: the line under a pair carries ONE
-      // reading, never the two joined, and the half you open is the half it
+      // reading, never the two joined, and the card opens on the half it
       // reads from (owner, 2026-09-11: "a single showing definition with the
-      // underline pointing to which variation is currently being served")
+      // underline pointing to which variation is currently being served").
+      // THE OTHER HALF, PRESSED ON THE CARD (its half in the head or its pill
+      // in the form row), is a move of the card alone, as a chain's word
+      // pressed on a chain's card is: the card is about that form, its
+      // readings and its record; the line keeps reading from the half it
+      // read from, its provenance mark stays where it stands (the open mark
+      // follows the card, as a chain's does), and nothing is remembered
+      // (rule 1, kq-shapes; the owner, 2026-10-23: a pair "is
+      // just a regular megacompspan, the only difference is it doesnt
+      // select the hebrew showing"). A reading pressed on that form rules
+      // the form and moves the line, as a reading on a chain's word does.
       // under "look up by: the headword" a one-form word opens under its
       // headword's key and says so on the card; the form key rides along
       const hk = regions.length === 1 && bin && bin.gloss ? lookupKey(word, regions[i].k, bin.gloss) : regions[i].k;
@@ -11150,7 +11199,7 @@
         ...opts, bin, word, regionIndex: i,
         glossParts: built.regionEls.length && !word.kq ? built.glossParts : null,
         kqEls: word.kq && built.regionEls.length ? built.regionEls : null,
-        kqOpenAt: built.kqStand ? (j) => { kqPicks.set(site, j); openAt(j, built.regionEls[j] || target, extra); } : null,
+        kqOpenAt: built.kqStand ? (j) => openAt(j, built.regionEls[j] || target, { ...extra, kqNav: true }) : null,
         ...extra,
         mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); if (extra.markMore) extra.markMore(); },
       });
@@ -11675,7 +11724,6 @@
     host.replaceChildren(segRow(t, positions, kqOrder, (id) => {
       kqOrder = id;
       try { localStorage.setItem(ORDER_KEY, kqOrder); } catch { /* a reader who blocks storage still gets the toggle, just not the memory of it */ }
-      kqPicks.clear();
       paintPairs();
     }));
     const why = host.parentElement && host.parentElement.querySelector(".why");
@@ -12377,7 +12425,7 @@
   // It cannot be pressed while there is nothing to put back.
   const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off", namelead: "lead" };
   const resetPill = document.getElementById("resetPill"), resetState = document.getElementById("resetState");
-  const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + kqPicks.size + pickedQForm.size;
+  const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + pickedQForm.size;
   const switchesAtDefault = () => (document.body.classList.contains("en") ? "en" : "he") === SWITCHES_DEFAULT.mode
     && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs && nonamesPref === SWITCHES_DEFAULT.namelead;
   const paintReset = () => {
@@ -12388,7 +12436,7 @@
   resetPill.addEventListener("click", (e) => {
     e.stopPropagation();
     if (picksNow()) {
-      pickedByForm.clear(); kqPicks.clear(); pickedQForm.clear();
+      pickedByForm.clear(); pickedQForm.clear(); ruledAt.clear();
       relayBuiltSections();
       // the book's title word stands outside the sections: its line and its
       // chosen mark go back with the rest
