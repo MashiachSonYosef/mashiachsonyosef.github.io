@@ -169,7 +169,24 @@ storage, not sefaria.org or ebible.org):
   storage.googleapis.com/sefaria-export/json/Kabbalah/Zohar/Tikkunei%20Zohar/Hebrew/Tikkunei%20Zohar%20-%20Vocalized.json
   (2.3 MB). The other Hebrew version, "Constantinople, 1740" (Margalya), is
   CC-BY-NC; the "Hebrew Wikipedia" one is a fragment with license unknown.
-  Ask: intake the Vocalized version as units, with its receipt.
+  Ask: intake the Vocalized version as units, with its receipt. The owner,
+  later the same day: "just do tikkunei zohar then", so this one first.
+  Pre-judged here against the gate's lines, on the file as fetched (sha256
+  75ccb53b58f546b3...): 295 dapim, 3,364 segments (31 empty), 148,282
+  tokens, 414,483 vowel points, no HTML tag, no Latin letter, no maqaf at
+  all (the edition writes none), 5 tokens that are punctuation alone (".",
+  "(", ")") which C0.non-hebrew-token would refuse, and modern punctuation
+  attached to words throughout (22,945 commas, 6,081 double quotes, 4,184
+  parentheses, 2,016 periods, 32 square brackets, 16 geresh, 4 gershayim).
+  The frame has no line for a comma or a quote on a word; the intake needs
+  your ruling on them (not ink, stripped and receipted, or marks the frame
+  learns). Section names: Daf, Paragraph. Proposed slug tikkunei-zohar,
+  title Tikkunei Zohar, Hebrew title as the source gives it (תקוני הזהר).
+  The page side cannot build the zone here: the sealed workspace (the
+  compact shards, the binding seals, the identity bridge) is not on this
+  machine, and the site's law serves no work the gate has not judged from
+  the sealed chain. Once sealed, the zone is one build.sh run wherever the
+  mirror is staged.
 - Delitzsch: no clean machine text found. github.com/HebrewNewTestament/HebDelitzsch
   holds a pointed OSIS of all 27 books but says "based on the Delitzsch
   translation from 1885 and on the version of Streams in the Negev 2003" with
