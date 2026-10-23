@@ -4244,6 +4244,18 @@
     };
     const placesOfText = (t) => { const e = byText.get(t); return e ? [...e.places.values()] : []; };
     const countOf = (t) => { const e = byText.get(t); return e ? e.places.size : 0; };
+    // THE LANGUAGE OF A PLACE (dictionary store v1.2, Moses's relay
+    // FOR-ELIJAH-v79.1, 22 October 2026): every place of a reading carries
+    // the language its source's own line gives, HEBREW or ARAMAIC (TAHOT's
+    // morphology column by the file's legend, MACULA's lang column), else the
+    // source's own value as it stands. The row says it under its count and
+    // the count's hover in one breath, "Hebrew \u00b7 4 locations"; where the
+    // places divide, "Hebrew 3 \u00b7 Aramaic 1", and the places list then
+    // says each place's language.
+    const LANG_NAME = { HEBREW: "Hebrew", ARAMAIC: "Aramaic" };
+    const langName = (v) => String(v || "").split("|").map((x) => LANG_NAME[x] || x).join("/");
+    const langsOf = (places) => { const c = new Map(); for (const q of places) if (q.lang) c.set(q.lang, (c.get(q.lang) || 0) + 1); return [...c].sort((a, b) => b[1] - a[1]); };
+    const langLabel = (places) => { const ls = langsOf(places); return ls.length === 1 ? langName(ls[0][0]) : ls.map(([l, k]) => `${langName(l)}\u00a0${k}`).join(" \u00b7 "); };
     const srcName = (src) => { const s = ix.readings_sources[src] || {}; return (SHORT_REC && SHORT_REC.names && SHORT_REC.names[s.key]) || s.label || src; };
     // THE CARD, READ WHERE IT STANDS. Its rows are hidden under the table,
     // never gone: every pill the card offers is in the dropdown (the owner,
@@ -4312,7 +4324,7 @@
     }, { root: tab }) : null;
     // a place: this one said, every other a link; what the other sources
     // read there; the verse, read when it comes into view
-    const itemOf = (p, t) => {
+    const itemOf = (p, t, sayLang) => {
       const it = document.createElement("div"); it.className = "item";
       const label = `${name(p.book)} ${p.ref}:${p.w_page}${p.side ? ` (${p.side === "k" ? "as written" : "as read"})` : ""}`;
       if (isHere(p)) { it.append(`here \u00b7 ${label}`); }
@@ -4321,6 +4333,7 @@
         a.addEventListener("click", () => { try { localStorage.setItem("fh.dict.back", JSON.stringify({ href: backHref, label: hereLabel })); } catch { /* the jump still works; the way back is the browser's */ } });
         it.append(a);
       }
+      if (sayLang && p.lang) { const lg = document.createElement("span"); lg.className = "lg"; lg.textContent = ` \u00b7 ${langName(p.lang)}`; it.append(lg); }
       const bySrc = new Map();
       for (const r of readsAt.get(placeKey(p)) || []) if (r.t !== t) { if (!bySrc.has(r.src)) bySrc.set(r.src, new Set()); bySrc.get(r.src).add(r.t); }
       for (const [src, ts] of bySrc) {
@@ -4341,10 +4354,11 @@
     const placesBox = (t) => {
       const box = document.createElement("div");
       const list = placesOfText(t).sort((a, b) => (isHere(b) - isHere(a)) || at(a) - at(b));
+      const divided = langsOf(list).length > 1;
       const more = document.createElement("button"); more.type = "button"; more.className = "dd more";
       let shown = 0;
       const step = () => {
-        for (const p of list.slice(shown, shown + PAGE)) box.insertBefore(itemOf(p, t), more);
+        for (const p of list.slice(shown, shown + PAGE)) box.insertBefore(itemOf(p, t, divided), more);
         shown = Math.min(list.length, shown + PAGE);
         if (shown < list.length) more.textContent = `${list.length - shown} more`; else more.remove();
       };
@@ -4375,7 +4389,7 @@
       b.addEventListener("click", (e) => { e.stopPropagation(); pick(); });
       o.append(ps);
       const n = countOf(t);
-      if (n) { const c = document.createElement("span"); c.className = "n"; c.textContent = String(n); c.title = `${n} location${n === 1 ? "" : "s"}`; o.append(c); }
+      if (n) { const c = document.createElement("span"); c.className = "n"; c.textContent = String(n); const lg = langLabel(placesOfText(t)); c.title = `${lg ? `${lg} \u00b7 ` : ""}${n} location${n === 1 ? "" : "s"}`; o.append(c); }
       return o;
     };
     // THE DROPDOWN: the card's bands, its notes, every pill of the block it
@@ -4561,13 +4575,17 @@
       const n = document.createElement("td");
       const label = bl && blockFailed.has(bl) ? "the dictionary store did not answer; press the block again" : `${places.length} location${places.length === 1 ? "" : "s"}`;
       const where = bl && !extra ? `where ${blk ? blk.textContent : bl} stands as a word, read so` : "";
+      // the language under the count: "Hebrew", or "Hebrew 58 \u00b7 Aramaic 3"
+      // where the places divide; the count's hover says both in one breath
+      const lg = langLabel(places);
       let nb = null;
       if (places.length) {
         nb = document.createElement("button"); nb.type = "button"; nb.className = "dd"; nb.textContent = label; nb.setAttribute("aria-expanded", String(open === "places"));
         nb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "places" ? null : "places"; paint("dd"); });
         n.append(nb);
       } else { const z = document.createElement("span"); z.className = "who"; z.textContent = label; n.append(z); }
-      if (where) n.title = where;
+      if (lg) { const z = document.createElement("div"); z.className = "lg"; z.textContent = lg; n.append(z); }
+      n.title = [lg ? `${lg} \u00b7 ${label}` : "", where].filter(Boolean).join("; ");
       tr.append(he, rd, n);
       if (open === "reads") { sub.classList.add("reads"); cell.append(menuOf()); }
       else if (open === "places" && places.length) cell.append(placesBox(t));
