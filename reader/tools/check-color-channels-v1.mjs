@@ -199,7 +199,12 @@ await p.goto(`${BASE}?b=${zonesWithCommentary()[0] || zonesOnDisk()[0]}&c=open`,
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(2600);
 
-const commentaryHere = zonesWithCommentary().length > 0;
+// and whether THIS page carries one: a built chapter page of a work without
+// a commentary has no commentary surface to read, whatever the shelf holds
+// elsewhere, and failed its three commentary lines for want of one
+const commentaryHere = zonesWithCommentary().length > 0
+  && await p.evaluate(() => !!document.querySelector("section.seg .c-mark, section.seg .c-mark-slot, section.seg .c-inline, #cIndex, #cwork, .c-choose"));
+if (zonesWithCommentary().length > 0 && !commentaryHere) console.log("  --  this page carries no commentary; its surface is checked on a page that does");
 // ONE FACE since 2026-09-10. The loop is kept at one pass rather than
 // unrolled, so that a second face costs one line here if one is ever
 // wanted again, and so every message below still says which face it read.

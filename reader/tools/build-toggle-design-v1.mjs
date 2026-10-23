@@ -38,7 +38,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk, zoneIdOf, defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 
 export const TOGGLE_DESIGN_RULE_ID = "toggle-design-rule-v1-the-page-about-the-switches-is-built-from-the-switches";
 
@@ -166,7 +166,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const live = toggles.filter((t) => !t.dead), dark = toggles.filter((t) => t.dead);
   // where a reader tries each switch: the book this page photographed, with
   // every switch drawn (?rail=all); the two the book page serves are said so
-  const BOOK = (() => { try { return new URL(URL).searchParams.get("b") || "genesis"; } catch { return "genesis"; } })();
+  // the book is the photographed page's, else the first zone on disk: a slug
+  // typed here is a claim about the future (check-scope-derived S1)
+  const BOOK = (() => { try { return new URL(URL).searchParams.get("b") || zoneIdOf(defaultZoneUrl("")); } catch { return zoneIdOf(defaultZoneUrl("")); } })();
   const SERVED = new Set(["sources", "suggested"]);
   const tryIt = (t) => `<p class="try">${SERVED.has(t.id) ? "on every book page" : "drawn only with the switches"} · <a href="/${esc(BOOK)}/?rail=all#rail">try it on ${esc(BOOK)}</a></p>`;
   const openCount = toggles.filter((t) => props[t.id]).length;
