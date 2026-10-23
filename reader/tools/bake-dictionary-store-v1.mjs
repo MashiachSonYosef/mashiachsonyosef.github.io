@@ -14,7 +14,11 @@
 // admission strike, the source strikes), and a record whose source names a
 // licence the page has no posture for.
 //
-// Usage: node tools/bake-dictionary-store-v1.mjs --from <dictionary-store-v1.1 build dir>
+// Usage: node tools/bake-dictionary-store-v1.mjs --from <dictionary-store-v1.N build dir>
+//          [--relay <the relay that hands the build over>] [--build <the R2 prefix the shards were read from>]
+// v1.2 (FOR-ELIJAH-v79.1, 22 October 2026): every place carries lang
+// (HEBREW | ARAMAIC, from its own source's line) and every row langs; nothing
+// else differs from v1.1 (its I10). The index's language fields ride along.
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
@@ -22,7 +26,9 @@ import { join } from "node:path";
 
 const arg = (k) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
 const FROM = arg("--from");
-if (!FROM) { console.error("usage: --from <dictionary-store-v1.1 build dir>"); process.exit(2); }
+if (!FROM) { console.error("usage: --from <dictionary-store-v1.N build dir> [--relay <relay>] [--build <prefix>]"); process.exit(2); }
+const RELAY = arg("--relay") || "FOR-ELIJAH-v79.md";
+const BUILD = arg("--build") || "corpus-lane-builds/moses-dictionary-store-v1/v1.1/build/dictionary-store-v1.1/serve/shards/";
 // The store is written beside the served one and put in its place only when
 // whole: a refused bake leaves the served store as it was.
 const OUT = new URL("../data/dictionary-store/", import.meta.url).pathname;
@@ -85,7 +91,7 @@ for (const [src, m] of [["tahot", "PIECE:TAHOT"], ["macula", "PIECE:MACULA"]]) {
 
 const index = {
   rule: "dictionary-store-serve-v1-the-lanes-shards-byte-for-byte-a-card-reads-one-key",
-  from: { relay: "FOR-ELIJAH-v79.md", store: dix.store, date: dix.date, build: "corpus-lane-builds/moses-dictionary-store-v1/v1.1/build/dictionary-store-v1.1/serve/shards/" },
+  from: { relay: RELAY, store: dix.store, date: dix.date, build: BUILD, version_of: dix.version_of || null },
   standing_rule: dix.standing_rule,
   letters_key: dix.letters_key,
   exact_reading: dix.exact_reading,
@@ -93,6 +99,9 @@ const index = {
   served_version: dix.served_version,
   shard_rule: (dix.serve || {}).shard_rule,
   key_rule: (dix.serve || {}).key_rule,
+  // v1.2: the language at a place, as the lane defines and reads it
+  language_at_a_place: dix.language_at_a_place || null,
+  language_rules: dix.language_rules || null,
   store_version: sha(Buffer.from(sums.join("\n"))).slice(0, 12),
   m_sources,
   readings_sources,

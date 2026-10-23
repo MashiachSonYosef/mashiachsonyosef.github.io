@@ -143,7 +143,10 @@ const wbDiv = divIx >= 0 ? wbs[divIx] : null;
                    : `fewest ${worst.pressable} on ${worst.word} (${worst.readings} readings)`);
   check("  a form that divides shows a division to press", noDiv.length === 0,
     noDiv.slice(0, 2).map((s) => `${s.word}: ${s.divisions} divisions, none pressable`).join("; ") || "all showing");
-  const noBlock = seen.filter((s) => s.blocks > 0 && s.blocksPressable < 1);
+  // a division of one block is the word itself: its row repeats the division
+  // and the fit gives it up on a window too short for it (2026-10-23), so a
+  // block to press is owed where a division has two or more
+  const noBlock = seen.filter((s) => s.blocks > 1 && s.blocksPressable < 1);
   check("  a division with blocks shows a block to press", noBlock.length === 0,
     noBlock.slice(0, 2).map((s) => `${s.word}: ${s.blocks} blocks, none pressable`).join("; ") || "all showing");
   const sliced = seen.filter((s) => s.sliced > 0);

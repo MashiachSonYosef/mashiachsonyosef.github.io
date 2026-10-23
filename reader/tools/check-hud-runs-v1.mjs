@@ -10,8 +10,9 @@
 //     are the zone's stands as one run on the page (the run cards' lane), or
 //     under a run card on the same words
 // H2  a run is one cell, as a maqaf run is: its words stand in one cell that
-//     carries the run, the cell's ink row wears one gold line under all of
-//     it, and its parts row holds one part per word under the words
+//     carries the run, the cell's ink row wears one gold line along all of
+//     it (under it, or over it in the Hebrew reader), and its parts row
+//     holds one part per word under the words
 // H3  a cell never runs past the page: a run too wide for the page wraps
 //     inside its cell (its ink row on more lines than one), and the cell's
 //     box stays inside the page's width
@@ -57,7 +58,11 @@ for (const book of books) {
       if (!cell || cell.__run !== run || !cell.classList.contains("lic") || !els.every((e) => e.closest(".wjoin") === cell)) { out.cellBad += 1; if (out.astray.length < 3) out.astray.push(`cell ${c.text}`); continue; }
       const ink = cell.querySelector(":scope > .wj-ink");
       const cs = ink && getComputedStyle(ink);
-      if (!cs || parseFloat(cs.borderBottomWidth) <= 0 || cs.borderBottomStyle === "none" || /rgba\(.*,\s*0\)$/.test(cs.borderBottomColor) || cs.borderBottomColor === "transparent") { out.lineBad += 1; if (out.astray.length < 3) out.astray.push(`line ${c.text}`); }
+      // one line under its ink, or, in the Hebrew reader, over it (the owner,
+      // 2026-10-19: "put it as an overline, right"), drawn as a shadow
+      const under = cs && parseFloat(cs.borderBottomWidth) > 0 && cs.borderBottomStyle !== "none" && !/rgba\(.*,\s*0\)$/.test(cs.borderBottomColor) && cs.borderBottomColor !== "transparent";
+      const over = cs && /px\s+-[\d.]+px\s+0px/u.test(cs.boxShadow || "") && !/rgba\([^)]*,\s*0\)/u.test(cs.boxShadow);
+      if (!under && !over) { out.lineBad += 1; if (out.astray.length < 3) out.astray.push(`line ${c.text}`); }
       const parts = [...cell.querySelectorAll(":scope > .g.parts > .g-part")];
       // a run the span store names, or one a dictionary published whole,
       // reads as one line over all its ink (the store's first row; the

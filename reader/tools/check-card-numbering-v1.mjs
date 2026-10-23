@@ -55,7 +55,16 @@ import { defaultZoneUrl, zoneIdOf } from "./zones-on-disk-v1.mjs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const URL0 = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "");
-const BOOK = zoneIdOf(URL0);
+// a built book page names its book and its reader's home in its own metas;
+// the bare reader names the book in its address and keeps its data beside it
+const META = await (async () => {
+  try {
+    const html = await (await fetch(URL0)).text();
+    const meta = (n) => { const m = new RegExp(`<meta name="${n}" content="([^"]*)"`, "u").exec(html); return m ? m[1] : ""; };
+    return { book: meta("reader-book"), home: meta("reader-home") };
+  } catch { return { book: "", home: "" }; }
+})();
+const BOOK = zoneIdOf(URL0) || META.book;
 const withParams = (u, kv) => { const x = new URL(u); for (const [k, v] of Object.entries(kv)) x.searchParams.set(k, v); return x.href; };
 const ARROW_HE = String.fromCodePoint(0x25c2), ARROW_EN = String.fromCodePoint(0x25b8), DASH = String.fromCodePoint(0x2013);
 const isLetter = (n) => n >= 0x5d0 && n <= 0x5ea;
@@ -65,7 +74,7 @@ const SCROLL = 14000;   // how far down the page is walked, so sections build af
 // ---- the dictionary store, read in node: what stands at each place of this
 // book, by every letters it is known by (its key, its text, a ketiv's and a
 // qere's)
-const DATA = new URL("data/", URL0).href;
+const DATA = new URL(META.home ? `${META.home}data/` : "data/", URL0).href;
 const gz = async (u) => { const r = await fetch(u); if (!r.ok) throw new Error(`${u}: ${r.status}`); return JSON.parse(gunzipSync(Buffer.from(await r.arrayBuffer())).toString("utf8")); };
 const storeAt = new Map();   // "c:v|w" -> Set(letters)
 let storeOk = false;
@@ -203,6 +212,9 @@ const n5 = await p.evaluate(() => {
     const R = x.R, card = x.cardEl;
     for (const y of nums) if (y !== x && y.cardEl === card && R.L < y.R.R && R.R > y.R.L && R.T < y.R.B && R.B > y.R.T) { hit.number.push(x.tag); break; }
     const lines = [card.querySelector(":scope > .wj-ink"), ...card.querySelectorAll(".wb > .w")].filter((el) => el && seen(getComputedStyle(el))).map((el) => { const q = el.getBoundingClientRect(); return { L: q.left, R: q.right, T: q.bottom - parseFloat(getComputedStyle(el).borderBottomWidth), B: q.bottom }; });
+    // the overline: a shadow just over a joined card's ink row
+    const oink = card.querySelector(":scope > .wj-ink"), osh = oink && /(-?[\d.]+)px\s+(-?[\d.]+)px\s+0px/u.exec(getComputedStyle(oink).boxShadow || "");
+    if (osh && parseFloat(osh[2]) < 0) { const q = oink.getBoundingClientRect(); lines.push({ L: q.left, R: q.right, T: q.top + parseFloat(osh[2]), B: q.top }); }
     if (lines.some((l) => R.L < l.R && R.R > l.L && R.T < l.B && R.B > l.T)) hit.line.push(x.tag);
     let fill = false, outline = false;
     const svgs = card.querySelectorAll("svg.wj-tie");

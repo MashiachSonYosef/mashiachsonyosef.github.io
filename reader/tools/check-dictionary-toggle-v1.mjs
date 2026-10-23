@@ -99,13 +99,16 @@ const lineNow = () => p.evaluate(() => { const act = document.querySelector(".wb
 const headWn = () => p.evaluate(() => { const h = document.querySelector("#hud:not([hidden]) .head .wn"); return h ? h.textContent.trim().split(/\s/u)[0] : ""; });
 // what the store holds for the open word, read the way the page reads it:
 // the word's letters, its shard; the source that reads this place, and the
-// number of places each reading's words stand at (joined as the card joins)
-const storeHere = () => p.evaluate(async () => {
+// number of places each reading's words stand at (joined as the card joins).
+// With a block of the word pressed, the store under the block's own letters:
+// a block's reading is counted where its letters stand as a word
+// (check-block-in-table B3)
+const storeHere = (keyIn = null) => p.evaluate(async (keyIn) => {
   const act = document.querySelector(".wb.active"); const sec = act && act.closest("section.seg");
   if (!act || !sec || !sec.__sec) return null;
   const n = [...sec.querySelectorAll(".he-text .wb:not(.mark)")].indexOf(act) + 1;
   const k = act.__word && act.__word.k;
-  const key = [...String(k || "").normalize("NFD")].filter((c) => { const x = c.codePointAt(0); return x >= 0x5d0 && x <= 0x5ea; }).join("");
+  const key = keyIn || [...String(k || "").normalize("NFD")].filter((c) => { const x = c.codePointAt(0); return x >= 0x5d0 && x <= 0x5ea; }).join("");
   const book = new URLSearchParams(location.search).get("b") || (document.querySelector('meta[name="reader-book"]') || {}).content;
   const root = (document.querySelector('meta[name="reader-home"]') || {}).content || location.pathname.replace(/[^/]*$/u, "");
   const ix = await (await fetch(`${root}data/dictionary-store/index.json`, { cache: "no-cache" })).json();
@@ -118,7 +121,8 @@ const storeHere = () => p.evaluate(async () => {
   const counts = {};
   for (const g of (v && v.readings) || []) { const t = join(g.reading); counts[t] = counts[t] || new Set(); for (const q of g.places) counts[t].add(`${q.book}|${q.ref}|${q.w_page}`); }
   return { key, book, ref: sec.__sec.label, n, tahot: at("tahot"), macula: at("macula"), counts: Object.fromEntries(Object.entries(counts).map(([t, s]) => [t, s.size])) };
-});
+}, keyIn);
+const lettersOf = (t) => [...String(t || "").normalize("NFD")].filter((c) => { const x = c.codePointAt(0); return x >= 0x5d0 && x <= 0x5ea; }).join("");
 
 // D1: off by default, and a card is the card
 const pill0 = await p.evaluate(() => { const x = document.getElementById("dictPill"); return x ? { on: x.classList.contains("on"), state: (document.getElementById("dictState") || {}).textContent, label: x.textContent.trim(), pressed: x.getAttribute("aria-pressed"), inRow: !!x.closest("#modeRow") } : null; });
@@ -332,7 +336,7 @@ for (let i = 0; i < Math.min(60, n1) && !(d7 && d8); i += 1) {
       await waitFor("#hud > .rows .b-read .r-pills button", 8000); await p.waitForTimeout(900);
       const c1 = await cardState();
       if (!c1.pills.length) continue;
-      const m1 = await menuOf(); const mb = await menuState(); const store = await storeHere();
+      const m1 = await menuOf(); const mb = await menuState(); const store = await storeHere(lettersOf(last[j]));
       d8 = { target: last[j], c1, m1, mb, mirror: mirrors(c1, m1, mb), pressed: (c1.bands[c1.bandCls.indexOf("b-cell")] || []).includes(`${last[j]}*`),
         counts: [...m1.card, ...m1.rest].every((m) => cnt(m.count) === (store.counts[m.r] || 0)), open: !!(await p.$("#hud .dict-tab tr.sub.reads")) };
     }

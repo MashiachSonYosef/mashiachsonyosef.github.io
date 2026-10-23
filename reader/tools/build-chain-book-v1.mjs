@@ -142,7 +142,9 @@ export function writeIndex(dir, servedWords = null) {
    <span class="fp">index.html &nbsp;${b.pgfp}</span>
   </li>`).join("\n");
 
-  const away = servedWords && servedWords.total
+  // said only while books are away: chained whole, the shelf has nothing to
+  // name as left out, and the paragraph would have claimed a subset of itself
+  const away = servedWords && servedWords.total && books.length < servedWords.books
     ? `<p class="away">This is ${books.length} book${books.length === 1 ? "" : "s"} of the ${servedWords.books} the reading side serves — ${tot.words.toLocaleString()} words of ${servedWords.total.toLocaleString()}. The rest are not here and the reason is size, not doubt: a word here costs about ${Math.round((tot.kb * 1024) / Math.max(1, tot.words))} bytes once its links are written out, because the links outnumber the words roughly ${Math.round(tot.links / Math.max(1, tot.words))} to one, so chaining the whole shelf would be near ${(Math.round((servedWords.total * (tot.kb / Math.max(1, tot.words))) / 1024 / 50) * 50).toLocaleString()} MB of files. Every book that is here was built by the same command from the same zone and the same route store as the page that reads it. Nothing was chosen for being clean.</p>`
     : "";
 

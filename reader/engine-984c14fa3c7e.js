@@ -444,6 +444,7 @@
   // exposed for the checks, which ask the page what it drew under rather than assume
   Object.defineProperty(window, "__signs", { get: () => signsPref });
   let signsPref = (() => { try { const v = localStorage.getItem(SIGNS_KEY); return ["printed", "below", "off"].includes(v) ? v : "off"; } catch { return "off"; } })();
+  let paintBlanks = null;   // the row's "no blanks" pill repaints itself (below, with the readers)
   const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
   const hasSourceSign = (t) => SOURCE_SIGN.some((re) => re.test(String(t)));
   // a piece of a reading that is a sign and nothing else
@@ -812,7 +813,7 @@
       live: () => true,
       waits: "",
       get: () => signsPref,
-      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
+      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); if (paintBlanks) paintBlanks(); },
       now: () => ({ off: "signs off", below: "signs after plain" })[signsPref] || "signs as printed" },
     // The lattice carries, per position, whether the Leningrad codex spells
     // the word otherwise (editions-diff, blind-verified in v12); the word
@@ -2747,8 +2748,18 @@
   // how far the bands overrun the region that holds them, in pixels: the one
   // measure of dead controls (labels given up are not), used wherever a cap
   // is kept or released
-  const rowsOverrun = () => { const rowsEl = hud.querySelector(".rows"); return rowsEl ? [...rowsEl.children].reduce((n, c) => n + c.offsetHeight, 0) - rowsEl.clientHeight : 0; };
+  // THE READINGS ARE OWED THREE WHOLE ROWS WHEREVER THE CARD STANDS (the
+  // owner, 2026-10-22, of a card of twenty-one readings showing one row of
+  // them: "this is like our main product and we are still crunching the R
+  // pills into less than a single row, it really should try to be at least 3
+  // singles high"). A fit that leaves them fewer, a form having more, did
+  // not fit: the side is not taken, the card tries the other side of the
+  // word, and only where neither side holds them is the word brought up.
+  const READ_MIN = 3;
+  let readsShort = false;
+  const rowsOverrun = () => { const rowsEl = hud.querySelector(".rows"); return Math.max(rowsEl ? [...rowsEl.children].reduce((n, c) => n + c.offsetHeight, 0) - rowsEl.clientHeight : 0, readsShort ? 2 : 0); };
   const fitBands = () => {
+    readsShort = false; delete hud.dataset.readRows;
     if (hud.hidden) return;
     const rowsEl = hud.querySelector(".rows");
     if (!rowsEl) return;
@@ -2765,7 +2776,7 @@
     // its prose height stood 65px tall over a pills box it showed 4px of,
     // every pill present and none pressable
     if (readBand && read) { readBand.style.height = ""; readBand.style.maxHeight = ""; }
-    const bands = [
+    let bands = [
       { el: hud.querySelector(".b-chain"), box: hud.querySelector(".b-chain .s-pills") },
       { el: hud.querySelector(".b-chain-cell"), box: hud.querySelector(".b-chain-cell .s-pills") },
       { el: hud.querySelector(".b-cut"), box: hud.querySelector(".b-cut .s-pills") },
@@ -2786,6 +2797,9 @@
     if (dSlot) dSlot.style.maxHeight = "";
     if (prov) prov.hidden = false;
     if (vol) vol.hidden = false;
+    // the one-block row stands again at the top of every fit
+    const oneRow = hud.querySelector(":scope > .rows .band.b-cell.one");
+    if (oneRow) oneRow.style.display = "";
     rowsEl.classList.remove("tight");
     hud.classList.remove("tight");
     for (const x of bands) { x.box.style.height = ""; x.box.style.maxHeight = ""; }
@@ -3031,6 +3045,15 @@
       for (const x of bands) x.chrome = chromeOf(x);
       lastResort = true; handOut();
     }
+    // And after the labels, the row of one block, which repeats the pressed
+    // division: on a desktop window squashed flat a chain's four bands and
+    // the readings' three rows stood 13px over the region, and the readings'
+    // first row ended under the record, present and dead (2026-10-23)
+    if (overrun() > 1 && oneRow && oneRow.style.display !== "none") {
+      oneRow.style.display = "none";   // the band's own display rule outranks the hidden attribute
+      bands = bands.filter((x) => x.el !== oneRow);
+      lastResort = true; handOut();
+    }
     // did every band end up with the row it is owed, in the space it actually
     // has, with nothing given up? The caller decides what to do about it —
     // there is nothing left here to take it out of.
@@ -3039,7 +3062,13 @@
     // reader knows it scrolls; a pill is never sliced to say it
     { const lab = readBand && readBand.querySelector(":scope > .r-label");
       const box = read; if (lab && box) lab.classList.toggle("more", box.scrollHeight > box.clientHeight + 1); }
-    return stands <= rowsEl.clientHeight + 1 && !lastResort;
+    if (read && read.children.length) {
+      const rs = rowsOf(read);
+      const whole = rs.filter((r) => r.bottom <= read.clientHeight + 1).length;
+      readsShort = whole < Math.min(READ_MIN, rs.length);
+      hud.dataset.readRows = String(whole);
+    }
+    return stands <= rowsEl.clientHeight + 1 && !lastResort && !readsShort;
   };
 
   // AT THE END OF THE PLACEMENT, AND THE END MEANS THE END. The snap below was
@@ -3409,7 +3438,7 @@
         if (rect.bottom + pad + hFree > window.innerHeight - pad && rect.top - pad - hFree < pad) {
           hud.style.maxHeight = `${Math.floor(room)}px`; fitBands();
           const rowsEl = hud.querySelector(".rows");
-          const overrun = rowsEl ? [...rowsEl.children].reduce((n, c) => n + c.offsetHeight, 0) - rowsEl.clientHeight : 0;
+          const overrun = rowsEl ? rowsOverrun() : 0;
           if (overrun > 1) { hud.style.maxHeight = ""; fitBands(); }
         }
       }
@@ -4161,19 +4190,58 @@
     // the store may file this place under the other side's letters: those
     // readings join here for this place only.
     const placeKey = (q) => `${q.book}|${q.ref}|${q.w_page}`;
-    const byText = new Map();      // words -> { places, srcs, first, raw }
-    const readsAt = new Map();     // place -> [{ src, t }]
-    const file = (g, q) => {
-      const t = spanJoin(g.reading);
-      if (!byText.has(t)) byText.set(t, { places: new Map(), srcs: new Set(), first: Infinity, raw: g.reading });
-      const e = byText.get(t); e.srcs.add(g.src);
-      const pk = placeKey(q);
-      if (!e.places.has(pk)) { e.places.set(pk, q); e.first = Math.min(e.first, at(q)); }
-      if (!readsAt.has(pk)) readsAt.set(pk, []);
-      if (!readsAt.get(pk).some((r) => r.src === g.src && r.t === t)) readsAt.get(pk).push({ src: g.src, t });
+    // one store entry filed: words -> { places, srcs, first, raw }, and
+    // place -> [{ src, t }]
+    const filed = () => {
+      const bt = new Map(), ra = new Map();
+      const file = (g, q) => {
+        const t = spanJoin(g.reading);
+        if (!bt.has(t)) bt.set(t, { places: new Map(), srcs: new Set(), first: Infinity, raw: g.reading });
+        const e = bt.get(t); e.srcs.add(g.src);
+        const pk = placeKey(q);
+        if (!e.places.has(pk)) { e.places.set(pk, q); e.first = Math.min(e.first, at(q)); }
+        if (!ra.has(pk)) ra.set(pk, []);
+        if (!ra.get(pk).some((r) => r.src === g.src && r.t === t)) ra.get(pk).push({ src: g.src, t });
+      };
+      return { bt, ra, file };
     };
-    for (const g of (v && v.readings) || []) for (const q of g.places) file(g, q);
-    for (const a of alts) for (const g of (a && a.v && a.v.readings) || []) for (const q of g.places) if (isHere(q)) file(g, q);
+    const whole = filed();
+    for (const g of (v && v.readings) || []) for (const q of g.places) whole.file(g, q);
+    for (const a of alts) for (const g of (a && a.v && a.v.readings) || []) for (const q of g.places) if (isHere(q)) whole.file(g, q);
+    // A BLOCK'S OWN LETTERS (the owner, 2026-10-19, at Daniel 1:1, of a
+    // reading of the word's second block counted at no place: "why would
+    // sleep be 0 other places"). A reading pressed on a block of the word's
+    // division reads the block's letters, so its places are where those
+    // letters stand as a word and a source reads them so (shin-nun-tav as
+    // "sleep": six places), never the whole word's. The table reads the
+    // block's own entry while a block stands pressed, and the word's again
+    // when none does.
+    let byText = whole.bt, readsAt = whole.ra;
+    const blockEntries = new Map();    // letters -> filed entry; null while the store is asked
+    // a block whose shard did not arrive: asked again on the next paint, and
+    // said so meanwhile, never counted as 0 (a shard that did not arrive is not
+    // an empty shard)
+    const blockFailed = new Set();
+    const blockButtons = () => [...hud.querySelectorAll(":scope > .rows .b-cell .s-pills button")];
+    // the line under the word as it reads now: the whole, or, with a block
+    // pressed, the line's own piece under that block
+    const lineSays = () => {
+      const wbx = activeEl && activeEl.closest ? activeEl.closest(".wb") : null;
+      const g = wbx && wbx.querySelector(":scope > .g");
+      if (!g) return null;
+      const bs = blockButtons(), bi = bs.findIndex((x) => x.getAttribute("aria-pressed") === "true");
+      if (bs.length > 1 && bi >= 0) {
+        const pcs = [...g.querySelectorAll(":scope > .g-pcs > .g-pc")];
+        return pcs.length === bs.length ? pcs[bi].textContent.trim() : null;
+      }
+      const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+      return c.textContent.trim();
+    };
+    const blockOpen = () => {
+      const bs = blockButtons(), b = bs.find((x) => x.getAttribute("aria-pressed") === "true");
+      const L = b ? lettersOf(b.textContent) : null;
+      return bs.length > 1 && L && L !== key ? L : null;
+    };
     const placesOfText = (t) => { const e = byText.get(t); return e ? [...e.places.values()] : []; };
     const countOf = (t) => { const e = byText.get(t); return e ? e.places.size : 0; };
     const srcName = (src) => { const s = ix.readings_sources[src] || {}; return (SHORT_REC && SHORT_REC.names && SHORT_REC.names[s.key]) || s.label || src; };
@@ -4357,7 +4425,13 @@
           const live = livePill(t, n);
           if (!live) return;
           extra = null; open = "places"; toTop = true;
-          if (live.getAttribute("aria-pressed") !== "true") live.click();
+          // A PICK REACHES THE LINE (the owner, 2026-10-19: "it also didnt
+          // push the in+sleep selection to the runner"): a pill the card
+          // stands lit on is pressed all the same unless the line already
+          // reads it, since the card can light a reading the line does not
+          // say, and a pick of it had been passed over
+          const says = lineSays();
+          if (live.getAttribute("aria-pressed") !== "true" || says == null || spanJoin(says).toLowerCase() !== spanJoin(t).toLowerCase()) live.click();
           paint("pill");
         }));
       }
@@ -4422,6 +4496,14 @@
       else if (focus) fk = { row: focus };
       const keep = tab.scrollTop;
       sig = signature();
+      const bl = blockOpen();
+      if (bl && !blockEntries.has(bl)) {
+        blockEntries.set(bl, null);
+        const done = (bv) => { const f = filed(); for (const g of (bv && bv.readings) || []) for (const q of g.places) f.file(g, q); blockEntries.set(bl, f); blockFailed.delete(bl); if (gen === hudGen) paint(); };
+        dictKey(bl).then((r) => done(r && r.v), () => { blockEntries.delete(bl); blockFailed.add(bl); if (gen === hudGen) paint(); });
+      }
+      const scope = bl ? blockEntries.get(bl) : whole;
+      byText = scope ? scope.bt : new Map(); readsAt = scope ? scope.ra : new Map();
       // a reading picked from the sources stands until the card is pressed on it
       if (extra && cardPills().some((x) => x.textContent.trim() === extra)) extra = null;
       const cp = extra ? null : cardPressed();
@@ -4455,15 +4537,37 @@
       if (cp) rb.setAttribute("aria-pressed", cp.getAttribute("aria-pressed") || "false"); else rb.classList.add("off-card");
       rb.setAttribute("aria-expanded", String(open === "reads"));
       rb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "reads" ? "places" : "reads"; if (open !== "reads") toTop = true; paint("pill"); });
-      rd.append(pills, cp ? whoOfPill(cp) : whoOfStore(t));
+      // A BLOCK STANDS IN ITS WORD (the owner, 2026-10-19: "it dropped the
+      // first word entirely"): with a block pressed the row still reads the
+      // whole word, every block of the division in the Hebrew and the line's
+      // own piece for every other block beside the pressed block's pill, so
+      // the row says what the line says. The places are the pressed block's.
+      if (bl && !extra) {
+        const bs = blockButtons(), bi = bs.indexOf(blk);
+        const line = activeEl && activeEl.closest ? activeEl.closest(".wb") : null;
+        const pcs = line && line.querySelector(":scope > .g > .g-pcs");
+        const parts = pcs ? [...pcs.querySelectorAll(":scope > .g-pc")].map((x) => x.textContent.trim()) : [];
+        he.replaceChildren(...bs.flatMap((b, i) => [...(i ? [Object.assign(document.createElement("span"), { className: "pp", textContent: " + " })] : []),
+          Object.assign(document.createElement("span"), { className: i === bi ? "on" : "", textContent: b.textContent })]));
+        if (parts.length === bs.length && bi >= 0) {
+          const row = document.createElement("div"); row.className = "rd-whole";
+          bs.forEach((b, i) => {
+            if (i) row.append(Object.assign(document.createElement("span"), { className: "pp", textContent: " + " }));
+            row.append(i === bi ? pills : Object.assign(document.createElement("span"), { className: "rd-piece", textContent: parts[i] }));
+          });
+          rd.append(row, cp ? whoOfPill(cp) : whoOfStore(t));
+        } else rd.append(pills, cp ? whoOfPill(cp) : whoOfStore(t));
+      } else rd.append(pills, cp ? whoOfPill(cp) : whoOfStore(t));
       const n = document.createElement("td");
-      const label = `${places.length} location${places.length === 1 ? "" : "s"}`;
+      const label = bl && blockFailed.has(bl) ? "the dictionary store did not answer; press the block again" : `${places.length} location${places.length === 1 ? "" : "s"}`;
+      const where = bl && !extra ? `where ${blk ? blk.textContent : bl} stands as a word, read so` : "";
       let nb = null;
       if (places.length) {
         nb = document.createElement("button"); nb.type = "button"; nb.className = "dd"; nb.textContent = label; nb.setAttribute("aria-expanded", String(open === "places"));
         nb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "places" ? null : "places"; paint("dd"); });
         n.append(nb);
       } else { const z = document.createElement("span"); z.className = "who"; z.textContent = label; n.append(z); }
+      if (where) n.title = where;
       tr.append(he, rd, n);
       if (open === "reads") { sub.classList.add("reads"); cell.append(menuOf()); }
       else if (open === "places" && places.length) cell.append(placesBox(t));
@@ -5159,6 +5263,12 @@
     // opening a word and closing it again changes nothing and leaves no mark.
     let ruled = false;
     const markRuled = () => { ruled = true; if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands"; };
+    // A READING PRESSED ON A RUN'S WHOLE RUNG RULES THE RUNG (the owner,
+    // 2026-10-22, of a joined card: "same error i cant change the selected
+    // gloss"). The rung the card merely opened on is no ruling, but a reading
+    // pressed on it is: without its division remembered, the ruling was read
+    // word by word and the line fell back to its words' pieces.
+    const rungRuled = () => { if (opts.run && cover.length === 1 && mem.cut !== cutKey(cover)) mem.cut = cutKey(cover); };
     if (opts.run && opts.run.on && cover.length > 1 && cutKey(cover) === opts.run.on && mem.cut !== opts.run.on) { mem.cut = opts.run.on; markRuled(); }
 
     // ONE PAINT PATH (the owner, 2026-10-17, of the cells after a pick: "the
@@ -5231,6 +5341,9 @@
             }
           }
         });
+        // a reading pressed on the run's whole rung rules the rung (rungRuled):
+        // the run's line reads it wherever the run stands, as a chain's does
+        if (opts.run && cover.length === 1 && mem.cut === cutKey(cover)) for (const r of document.querySelectorAll(".wjoin")) if (r.__key === region.k) refreshJoinGloss(r);
         return;
       }
       if (!glossEl) return;
@@ -5473,7 +5586,14 @@
     // --- row 2 · which block of it is open -----------------------------
     const renderCells = () => {
       cellRow.replaceChildren();
-      if (cover.length < 2) return;
+      // THE BLOCK ROW STAYS WHEN THE DIVISION IS THE WHOLE WORD (the owner,
+      // 2026-10-23, of a chain's card: "depending on which compspan i select
+      // it changes the card layout"): the row then holds the one block, the
+      // word itself, pressed, so the card's rows stand where they stood
+      if (!cover.length) return;
+      // a row of one block repeats the division: the fit gives it up last,
+      // on a window too short for the bands and three rows of readings
+      cellRow.classList.toggle("one", cover.length === 1);
       const label = document.createElement("p"); label.className = "r-label"; label.textContent = "Block";
       // the blocks sit in the word's own direction, so the row reads as the
       // form does and a reader watches the word come back together
@@ -5752,6 +5872,23 @@
           return t && t !== "\u2014" ? t.toLowerCase() : null;
         }
         { const at = placeOfCell(surface); if (at) return spanJoin(at.text).toLowerCase(); }
+        // A BLOCK OF THE DIVISION THE LINE READS IN PIECES opens on the line's
+        // own piece for it (the owner, 2026-10-19, at Daniel 1:1: the block
+        // of shin-nun-tav lit "sleep", the book's gloss for those letters,
+        // while the line under the word read "in + year"). It holds only where
+        // the line's pieces are this division's blocks, letter for letter.
+        if (!opts.run && !setWhole && cover.length > 1) {
+          const wbx = el && el.closest ? el.closest(".wb") : null;
+          const pcs = wbx && wbx.querySelector(":scope > .g > .g-pcs");
+          const parts = pcs ? [...pcs.querySelectorAll(":scope > .g-pc")] : [];
+          const counts = pcs ? String(pcs.dataset.counts || "").split(",").map(Number) : [];
+          const i = cover.findIndex((c) => c.surface === surface);
+          if (i >= 0 && parts.length === cover.length && counts.length === cover.length
+            && cover.every((c, j) => [...String(c.surface)].length === counts[j])) {
+            const t = parts[i].textContent.trim();
+            if (t) return spanJoin(t).toLowerCase();
+          }
+        }
         if (opts.run || !bin.gloss) return null;
         const led = bin === zone && word && surface === region.k ? lineUnder(word, zone.gloss) : null;
         const t = led ? led.text : bin.gloss[surface];
@@ -5969,7 +6106,7 @@
               place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null });
             if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
             [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
-            markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
+            rungRuled(); markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
             renderDCard(); paintGloss(); clampHud();
           };
           const one = ({ row, group, text }) => {
@@ -6051,7 +6188,7 @@
           place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null });
         // any other reading chosen: the set stands whole no longer
         if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
-        markRuled();
+        rungRuled(); markRuled();
         selectedRecordRef.m = index.m_sources[route.records[0][3]] || null;
         renderDCard(); paintGloss(); clampHud();
       };
@@ -7103,7 +7240,17 @@
     if (!tn) return null;
     let a = 0, b = tn.data.length; while (a < b && /\s/u.test(tn.data[a])) a += 1; while (b > a && /\s/u.test(tn.data[b - 1])) b -= 1;
     const rg = document.createRange(); rg.setStart(tn, a); rg.setEnd(tn, b);
-    return unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
+    const box = unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
+    if (box) return box;
+    // A GAP IS STILL A PIECE (the owner, 2026-10-23, of the object marker's
+    // word in a chain, its sign undrawn under the signs switch, standing
+    // with no blob beside words that wore one: "2 examples of a missing
+    // blob"): the gap has no ink to measure, so its blob ties to a hair's
+    // breadth where the gap stands, and the letters keep their shape
+    const q = el.getBoundingClientRect();
+    if (!q.height) return null;
+    const cx = q.left + q.width / 2;
+    return { L: cx - 4, R: cx + 4, T: q.top, B: q.bottom };
   };
   // a word to its English: one pair per piece where the reading stands in
   // pieces, or one for the word whole
@@ -7514,8 +7661,30 @@
     }
     svg.innerHTML = out.concat(lines).join("");
   };
+  // A RUN'S ROW FITS ITS COLUMN BEFORE IT WRAPS (the owner, 2026-10-23, of a
+  // four-word chain in the English reader whose last part had wrapped under
+  // the others, its blobs crossing: "this card went off the page"): the row's
+  // English is let down step by step, to four fifths of its size, until its
+  // parts stand in one row inside the page's column; a row that will not
+  // fit even so wraps as before. Measured on the row as it stands, so a
+  // resize or the other reader fits it again.
+  const RUN_FIT = [0.94, 0.88, 0.82, 0.78];
+  const fitRunLine = (run) => {
+    const line = run && run.__gloss;
+    if (!line || !line.isConnected || !line.classList.contains("parts") || line.children.length < 2) return;
+    const col = run.parentElement;
+    const colW = col ? col.clientWidth : 0;
+    if (!colW) return;
+    line.style.fontSize = "";
+    const fits = () => { const tops = new Set(); for (const c of line.children) tops.add(Math.round(c.getBoundingClientRect().top)); return tops.size <= 1 && line.scrollWidth <= colW + 1; };
+    if (fits()) return;
+    const base = parseFloat(getComputedStyle(line).fontSize) || 0;
+    if (!base) return;
+    for (const k of RUN_FIT) { line.style.fontSize = `${Math.round(base * k * 100) / 100}px`; if (fits()) return; }
+  };
   const drawTies = (run) => {
     if (!run || !run.__ink || !run.isConnected) return;
+    fitRunLine(run);
     // the switch off: a run wears no blob, its parts stay in their columns
     if (blobsPref === "off") { drawPairs(run, []); return; }
     const g = run.__gloss;
@@ -9550,6 +9719,24 @@
     if (!hud.hidden && activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
   });
   paintDict();
+  // THE NO-BLANKS PILL (the owner, 2026-10-23: "our next 2 toggles for easy
+  // wins could be: 'no names' and 'no blanks'"): the source signs switch,
+  // promoted to the row. On, a piece that is a sign alone prints its sign
+  // (<obj.>, <to>, [the]) where the line had kept its place as a gap (the
+  // owner, 2026-10-16: "rather than leave stuff out"); off, the gaps stand
+  // as before. The rail's row is the same switch; its third position (the
+  // signs after plain readings) is reached there alone, and the pill says
+  // so while it stands there.
+  const blanksPill = document.getElementById("blanksPill"), blanksState = document.getElementById("blanksState");
+  const signsSwitch = TOGGLES.find((t) => t.id === "signs");
+  paintBlanks = () => {
+    const on = signsPref === "printed";
+    blanksPill.classList.toggle("on", on); blanksPill.setAttribute("aria-pressed", String(on));
+    blanksState.textContent = signsPref === "below" ? "signs after plain readings" : "";
+  };
+  const chooseBlanks = (id) => { signsSwitch.set(id); if (document.getElementById("railRows")) railSwitch(); };
+  blanksPill.addEventListener("click", () => chooseBlanks(signsPref === "printed" ? "off" : "printed"));
+  paintBlanks();
   // THE RESET PILL: the row's switches back to their default, and what the
   // reader has picked on this page (a reading or a division of a form, at
   // every place it stands; a half of a pair; a form of an apparatus site),
@@ -9558,11 +9745,11 @@
   // blobs off, numbers on, concordance off"). The lines are laid again
   // through the page's one first paint, so each is the line it opened as.
   // It cannot be pressed while there is nothing to put back.
-  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off" };
+  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off" };
   const resetPill = document.getElementById("resetPill"), resetState = document.getElementById("resetState");
   const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + kqPicks.size + pickedQForm.size;
   const switchesAtDefault = () => (document.body.classList.contains("en") ? "en" : "he") === SWITCHES_DEFAULT.mode
-    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict;
+    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs;
   const paintReset = () => {
     const n = picksNow(), at = switchesAtDefault();
     resetPill.disabled = !n && at;
@@ -9583,6 +9770,7 @@
     if (blobsPref !== SWITCHES_DEFAULT.blobs) chooseBlobs(SWITCHES_DEFAULT.blobs);
     if (numsPref !== SWITCHES_DEFAULT.nums) { numsPref = SWITCHES_DEFAULT.nums; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); }
     if (DICT.pref !== SWITCHES_DEFAULT.dict) { DICT.pref = SWITCHES_DEFAULT.dict; try { localStorage.setItem("fh.dict", DICT.pref); } catch { /* the choice still stands on this page */ } paintDict(); }
+    if (signsPref !== SWITCHES_DEFAULT.signs) chooseBlanks(SWITCHES_DEFAULT.signs);
     paintReset();
   });
   // a pick is made inside a card; the count follows any press on the page
