@@ -2798,6 +2798,24 @@ const engineBlocks = (() => {
   writeFileSync(join(engineDir, engineBlocks.js.name), engineBlocks.js.body);
 }
 
+// THE BOOK'S OWN RECORDS RIDE IN ITS PAGE (the rebuild, 2026-10-23: "same
+// product, lighter weight"). A chapter page fetched the whole shelf's pin
+// record (3,594 pins, 517 KB) to seal one book's bins, and every book's
+// overlay counts (110 KB) to draw one book's chips. The page carries its own
+// book's pins and counts in two metas, read before any fetch; the records on
+// disk stay the source, and zone.html without the metas (the reader opened by
+// address) still fetches them whole.
+const PIN_RECORD = JSON.parse(readFileSync(arg("pins", "data/zone-store-v1.json"), "utf8"));
+const OVERLAY_COUNTS = (() => { try { return JSON.parse(readFileSync(arg("overlay-counts", "data/overlay-book-counts-v1.json"), "utf8")); } catch { return null; } })();
+const pinsFor = (slug) => {
+  const pins = {};
+  for (const [name, pin] of Object.entries(PIN_RECORD.pins || {})) if (name === `${slug}.bin` || name.startsWith(`${slug}.`)) pins[name] = pin;
+  return Object.keys(pins).length ? { rule: PIN_RECORD.rule, repository: PIN_RECORD.repository, base: PIN_RECORD.base === undefined ? null : PIN_RECORD.base, pins } : null;
+};
+const overlaysFor = (slug) => (OVERLAY_COUNTS && OVERLAY_COUNTS.books && OVERLAY_COUNTS.books[slug]) || null;
+// JSON in an attribute: the quote that closes it and the ampersand escaped,
+// nothing else touched, so the page parses it back byte for byte
+const attrJson = (o) => JSON.stringify(o).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const readerPage = (b) => {
   const anchor = "<title>";
   if (!ZONE_HTML.includes(anchor))
@@ -2825,6 +2843,8 @@ const readerPage = (b) => {
     (MARK_WOVEN ? `<meta name="site-mark" content="${MARK_WOVEN}">\n` : "") +
     (b.at ? `<meta name="reader-at" content="${esc(b.at)}">\n` : "") +
     (b.demonstration ? `<meta name="reader-demonstration" content="${esc(b.demonstration)}">\n` : "") +
+    (pinsFor(b.slug) ? `<meta name="reader-zone-pins" content="${attrJson(pinsFor(b.slug))}">\n` : "") +
+    (overlaysFor(b.slug) ? `<meta name="reader-overlay-counts" content="${attrJson(overlaysFor(b.slug))}">\n` : "") +
     (b.description ? `<meta name="description" content="${esc(b.description)}">\n`
       : b.en ? `<meta name="description" content="${esc(b.en)}, read word by word in Hebrew: every reading traced to the record that carries it, and every record to its license.">\n` : "") +
     `<link rel="canonical" href="${ORIGIN}${canonical}">\n`;

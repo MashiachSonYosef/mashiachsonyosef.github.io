@@ -2516,8 +2516,14 @@
   // custody, the same custody this page has always stood on.
   const ZONE_STORE_RULE = "zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight";
   let ZSTORE = null;
+  // THE BOOK'S OWN PINS RIDE IN ITS PAGE (the rebuild, 2026-10-23: "same
+  // product, lighter weight"): a built page carries this book's pins in a
+  // meta (reader-zone-pins, written by tools/build-front-door-v1.mjs from the
+  // record), so the shelf's whole record (3,594 pins, 517 KB) is not fetched
+  // to seal one book's bins. A page without the meta fetches the record.
   try {
-    ZSTORE = await fetch(`${ROOT}data/zone-store-v1.json`, { cache: "no-cache" })
+    const own = META("reader-zone-pins");
+    ZSTORE = own ? JSON.parse(own) : await fetch(`${ROOT}data/zone-store-v1.json`, { cache: "no-cache" })
       .then((r) => (r.ok ? r.json() : null));
   } catch { ZSTORE = null; }
   // Across the border an object is named by its seal as well as its name:
@@ -3338,8 +3344,11 @@
       // both. And the short names the strip wears. Neither stops the page.
       fetch(`${ROOT}data/language-admission-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       fetch(`${ROOT}data/source-short-names-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
-      // what each overlay source gives on each book: its chips on the sources row
-      fetch(`${ROOT}data/overlay-book-counts-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // what each overlay source gives on each book: its chips on the sources
+      // row; this book's counts ride in its page (reader-overlay-counts), the
+      // whole record is fetched only by a page without them
+      META("reader-overlay-counts") ? Promise.resolve({ books: { [BOOK]: JSON.parse(META("reader-overlay-counts")) } }).catch(() => null)
+        : fetch(`${ROOT}data/overlay-book-counts-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // the sources that rest off until a reader turns them on
       fetch(`${ROOT}data/source-defaults-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // which books have run cards; a book it does not list has none
@@ -3563,7 +3572,8 @@
     // tools/apply-span-ledger-v1.mjs number them)
     { let n = 0; for (const sec of zone.sections || []) for (const w of sec.words || []) WORD_N.set(w, ++n); }
     if (!(SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK])) SUGGESTED_IX = null;
-    if (suggested === "bsb" && SUGGESTED_IX) suggestedReady();
+    // the book's file (744 KB on Genesis) is fetched by the first card that
+    // opens, not here: the line never reads it (the rebuild, 2026-10-23)
     window.__runCards = countRunCards();
     // The zone as it arrived, by the same rule the commentary sidecar is
     // exposed under: a check should be able to ask the record what it says
@@ -8236,6 +8246,12 @@
       // vvv, empty) says in words what the BSB means by it; a place the lane
       // could not pair says why. Credited and licensed as the BSB, by the
       // lane's own record of the terms page; never on the line.
+      // the book's file arrives with the first card: asked once, and this
+      // card opened again when it is here, as the switch does
+      if (suggested === "bsb" && !SUGGESTED && !suggestedWait && SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK] && word && !(opts && opts.run)) {
+        const wb = activeEl;
+        suggestedReady().then((f) => { if (f && activeEl && activeEl === wb) { closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } });
+      }
       if (suggested === "bsb" && SUGGESTED && word && !(opts && opts.run)) {
         const n = WORD_N.get(word);
         const at = n ? SUGGESTED.places[n - 1] : null;

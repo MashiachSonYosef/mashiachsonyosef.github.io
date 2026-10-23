@@ -86,6 +86,9 @@ const open = async (on) => {
     const cardOf = async (w) => {
       (w.querySelector(".w span") || w.querySelector(".w")).click();
       const t0 = Date.now(); while (Date.now() - t0 < 8000 && !document.querySelector("#hud .r-pills button")) await wait(50);
+      // the book's BSB file arrives with the first card (the rebuild,
+      // 2026-10-23), which opens again when it is here: the line is waited for
+      const t1 = Date.now(); while (Date.now() - t1 < 8000 && !document.querySelector("#hud .r-sug")) await wait(100);
       await wait(500);
       const sug = document.querySelector("#hud .r-sug");
       const out = { has: !!sug, text: sug ? sug.textContent.trim() : "", title: sug ? (sug.querySelector("b") || {}).title || "" : "", chip: sug ? (sug.querySelector(".g-lic") || {}).textContent || "" : "", chipTitle: sug ? (sug.querySelector(".g-lic") || {}).title || "" : "" };
