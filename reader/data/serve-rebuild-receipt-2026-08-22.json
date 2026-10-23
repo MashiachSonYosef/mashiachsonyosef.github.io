@@ -1,0 +1,25 @@
+{
+  "schema_version": "SERVE_REBUILD_RECEIPT_V1",
+  "what_this_is": "The two commentary zones for the I Kings pair were rebuilt on 2026-08-22 from fresh resident serves of the sealed terminal artifacts, so that every printed entry carries its own unit's rights instead of leaning on the work-level record. This file records what that rebuild stood on and how it was proven.",
+  "serves": {
+    "route": "TERMINAL_READER_ARTIFACTS__WEBSITE_LANE_RESIDENT_SERVE",
+    "walker_rule": "mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked",
+    "ranges": [
+      { "work_id": "tanakh/i-kings", "c0": "69859535-69870902", "ids_served": 11368 },
+      { "work_id": "targum/targum-jonathan-on-i-kings", "c0": "70513734-70527384", "ids_served": 13651 }
+    ],
+    "authorities": "compact seal, binding seal, and sparse seal verified by sha256 before any row was read; every shard read was pinned to its recorded sha256; the sampling oracle was off for this run",
+    "bridge": { "file": "current-c0-location-source-bridge-2026-07-10.csv.gz", "sha256": "7b42d387daf463ecad1f73db89d32566645c2c23785e89c9b5b8f084e75891d4", "same_as": "the bridge the base zones' identity oracle pins" }
+  },
+  "proof_in_place_of_the_sampling_oracle": {
+    "method": "full-population byte comparison against the previously sealed commentary bins, whose own build ran the 24-sample oracle",
+    "i_kings_side": "817 of 817 units text- and word-identical, keys included",
+    "targum_side": "817 of 817 units text- and word-identical, keys included",
+    "conclusion": "the fresh serves reproduce the sealed content exactly; the only change is that each entry now carries its own unit's rights, basis PER_UNIT_SERVE_ROWS"
+  },
+  "rights_carried": {
+    "i_kings_commentary_bin": "Targum Jonathan text · Public Domain on every entry",
+    "targum_commentary_bin": "I Kings base text · CC-BY-NC on every entry, as the chain records it — the non-uniform case the per-entry rule exists for"
+  },
+  "checked_by": "tools/check-licence-carried-v1.mjs, green across all commentary bins from this date"
+}

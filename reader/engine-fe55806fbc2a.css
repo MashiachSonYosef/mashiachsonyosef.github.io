@@ -1,0 +1,2274 @@
+
+  /* ONE FACE. The tent's dark face was dropped on 2026-09-10 at the
+     owner's word. What is left is the courtyard: linen hangings in
+     daylight, which is the face the channels were tuned on and the one
+     that was called right. color-scheme is stated so a device set to
+     dark does not hand its own dark chrome to a light page. */
+  :root {
+    color-scheme: light;
+    /* THE PALETTE, FOLDED BY FAMILY (the owner, 2026-10-10: "personally i dont
+       see a gain from more than 2/2/2/2 and 3 linen"; "id probably go regular
+       and dim. i dont like our bold that much"; "my main point is uniform
+       coloring between logo and site"; "just fold it and do it by zone, im
+       not good at colors anyway, if its bad ill note it"). Three linens, and
+       for each of the four colors a regular and a dim and nothing bolder; a
+       pressed control is still worn bold, in its weight and not in a color of
+       its own. Every color below is one the site already painted, and every
+       older name points at one of them, so no rule had to learn a new name.
+       The woven name is dyed in the same pairs (tools/build-wordmark-v1.py),
+       and the door's stylesheet carries the same values. */
+    /* THREE LINENS, AND NO MORE (the owner, 2026-10-09: "maybe linen should
+       have 3 shades?"; 2026-10-10: "personally i dont see a gain from more
+       than 2/2/2/2 and 3 linen"): the ground, the cell a word and its
+       reading share, and the pressed cell. A card, a pill, a panel, the rail,
+       the bar and a commentary at rest stand on the ground; a hover and a
+       chip are the cell; anything pressed, and the blob, are the pressed
+       linen. The cell is a glaze laid on the ground, a shade under it, so
+       the weave shows through it as it does through the rest, and it is
+       never laid on another glaze: the blob and the band under a
+       commentary's opening words, which stand inside a cell, are the pressed
+       linen and not a second glaze. A veil of the ground, the bar at 94% or
+       the rail at 55%, is the ground. Folded in: the card's own linen a step
+       above the ground (2026-10-03, "id avoid how bright the hud is still";
+       the card is now the ground itself, told from it by its frame, its
+       shadow and its finer weave), the pill's, the hover's, the blob's glaze
+       a shade bolder than the cell, the chip's tint, and the commentary's
+       parchment, which a commentary no longer needs: its red rail and its
+       frame set it apart, not a fourth linen. */
+    --bg: #ebdec3;
+    --cell-wash: rgba(74, 48, 8, 0.06);
+    --nav-veil: rgba(235, 222, 195, 0.94);
+    /* A PRESSED CELL, ONE RULE EVERYWHERE (the owner, 2026-10-03: "i wouldnt
+       retrace pills from gold to blue. you keep jumping rules. id: 1. darken
+       the linen backdrop on a highlighted cell, 2. bolden the gold, 3. bolden
+       the blue text"): its border stays gold, the regular, and is drawn twice
+       as heavy; its linen is the third linen, one step darker; and its
+       letters are bold in their own ink at its regular shade: the regular
+       blue for a reading, the purple for a control. */
+    --press-wash: #dccbaa;
+    /* TWO PURPLES, A REGULAR AND A DIM (the owner, 2026-10-10: "personally i
+       dont see a gain from more than 2/2/2/2 and 3 linen"; "either titles
+       get bold and text gets regular, or titles get regular and text gets
+       dim ... id probably go regular and dim. i dont like our bold that
+       much"; and "the purple and gold while not bold are fairly electric
+       which is fine"). The regular, --argaman, is the page's own ink: titles
+       and values, what is under the reader's hand, and what is pressed, which
+       is worn bold. The dim, --argaman-dim, is running text, notes, labels,
+       and links and controls at rest, held at body-text contrast: 6.0:1 on
+       the linen, 5.4:1 in a word's cell, 5.0:1 on the pressed linen. The
+       regular is 8.2:1 on the linen. A line saying something is absent,
+       withheld or does not reconcile is the dim, in italic where it stands in
+       for a name or a value; it no longer has a brighter purple of its own
+       (the saturated argaman of 2026-09-10). Folded in: the deep title purple,
+       the pressed purple, the faint label purple, and the bright and pale
+       argaman; the old names stay, pointing at the two, so no rule had to
+       learn a new one. */
+    --argaman: #561f86; --argaman-dim: #6c359e;
+    --ink: var(--argaman); --ink-strong: var(--argaman); --muted: var(--argaman-dim); --faint: var(--argaman-dim);
+    --shesh: var(--argaman); --shesh-bright: var(--argaman);
+    /* A PRESSED CONTROL IS PURPLE, WORN BOLD (the owner, 2026-10-03: "idk if
+       turning purple to gold is a clear way to highlight toggle pills et al,
+       maybe bold purple would be better?"); amber until then. Since
+       2026-10-10 it is the page's own ink, the regular: the press is carried
+       by the weight, the pressed cell's darker linen and its doubled gold,
+       and not by a purple deeper than the ink. */
+    --sel: var(--argaman); --sel-dim: var(--argaman-dim);
+    /* A link is the page offering a reader somewhere to go, which is the page
+       speaking, so it is argaman like the rest of our voice: at rest the dim,
+       like every control at rest, and the regular under the hand.
+       It had been declared in the night block and nowhere else, so deleting
+       that block left nine rules calling var(--link) with nothing behind it.
+       What that cost, measured rather than assumed: nothing visible. Setting
+       the token to a test color on five served pages moved 0 of 163 links,
+       because every link at rest is painted by a more specific rule. The
+       orphan was real and its effect was nil.
+       Not measured, and the reason this is still worth a value rather than a
+       deletion: three of the nine are hover and HUD states — #toc a:hover,
+       #hud .att a, #hud .c-back — which a snapshot of a page at rest does not
+       reach. A token that governs nothing today is also a rule that will
+       silently do nothing the day someone leans on it. */
+    --link: var(--argaman-dim);
+    /* TWO GOLDS, A REGULAR AND A DIM (the owner, 2026-10-10: "id probably go
+       regular and dim. i dont like our bold that much", and "my main point
+       is uniform coloring between logo and site"). The dim is gold at rest:
+       every frame and rule, every word's line, every chip, the Masoretic
+       marks, and the and of the name, woven and typed. The regular is gold
+       under the reader's hand: a hover, a pressed cell's edge drawn twice as
+       heavy, the box round a held word and its two lines to the card, and the
+       heavier line under a run or a ketiv-qere pair. Nothing new was mixed:
+       the regular is the frame's own gold of before, the dim the gold the
+       marks were given, both the warmed golds of 2026-10-03 ("also is our
+       gold a bit too olive?": the family turned from a 43 degree hue to 38,
+       each value at the same luminance). On linen, bright means saturated
+       and not light, and both clear the 3:1 a rule needs: the dim 3.4:1 on
+       the linen and 3.1:1 in a word's cell, the regular 3.8:1 and 3.4:1.
+       Folded in: the paler old dim, the hover's brown letters and its
+       light line, the commentary's tan frame, the chips' gold at a third, and
+       the name's own brighter gold, "brighter than the frame's so the .com
+       never reads as the red beside it" (2026-10-02), which the owner's
+       uniform ruling retires. A hover now steps the dim up to the regular,
+       where it used to step the other way. */
+    --gold: #93661a; --gold-dim: #a06c10;
+    --line: var(--gold-dim); --line-c: var(--gold-dim); --chip-line: var(--gold-dim);
+    /* text the reader drags across: the dim gold as a tint the word reads
+       through (the owner, 2026-10-03, on a word highlighted solid dark gold:
+       "is that ideal?"), at a fifth, so the red and the blue read through it
+       as plainly as they read through the name's bright gold at three tenths */
+    --sel-text: rgba(160, 108, 16, 0.2);
+    /* THE MASORETIC MARKS ARE THE BORDERS' GOLD (the owner's vote, relayed
+       by Moses on 2026-10-11: "every mark gold, vowels included"). Not a
+       gold of their own: two were tried on 2026-10-10, a deep one and then
+       a bright one the owner picked by eye, and the owner then ruled it
+       back to the page's own: "id just use the same gold as the borders
+       and logo was bro. i am really not a colors person dont change
+       everything by my eye", and "my main point is uniform coloring
+       between logo and site". So this is --gold-dim itself, the gold of
+       every frame and rule at rest and of the name's and, named here only
+       so the marks can be found: 3.4:1 on the linen, 3.1:1 in a word's
+       cell. It is the one place gold is ink at rest, and it is ink only on
+       a mark. */
+    --mark-ink: var(--gold-dim);
+    /* four colors, ruled 2026-10-02: one soft red, one soft blue, the gold and the purple,
+       the purple alone at its full depth.
+       the deep red the titles wore and the royal blue are retired, and the deep names
+       carry the soft values; the neutral's olive-brown text is the purple ink, since gold is never text at rest. no title has
+       a color of its own. the red raised one step, same lightness, more color (owner, 2026-10-03:
+       "our sites red is actually just one tone too muted"), and one notch more toward the blue's own saturation ("just 1 notch more electric to match the blue", 2026-10-03). */
+    /* THE RED AND THE BLUE, A REGULAR AND A DIM EACH, AND NO BOLD (the owner,
+       2026-10-10: "personally i dont see a gain from more than 2/2/2/2 and 3
+       linen", "id probably go regular and dim. i dont like our bold that
+       much", and "my main point is uniform coloring between logo and site").
+       Each is two shades, the same two the woven name is dyed in. The regular
+       carries every word: the corpus's letters in the red, every reading in
+       the blue, and a reading pressed, which is the regular blue worn bold.
+       The deeper blue a pressed reading wore from 2026-10-03 ("similar to our
+       logo id have 2 blues: a bold and a regular, maybe the letters bold too
+       not just the color") is gone and the bold letters stay. On the pressed
+       linen a pressed reading now reads 3.83:1 (it read 5.1:1 in the deeper
+       blue), the same as the open word's own reading on the line. The dim is
+       never a word, only what stands between pieces or beside them: the +
+       between a reading's parts, the red rail along a commentary, the edge of
+       a source's tag, and the maqaf on a card's head in a work whose marks
+       are not gold. The regulars read 4.68:1 (red) and 4.59:1 (blue) on the
+       linen; the dims, 3.06:1 and 2.56:1, are too pale for a word. Nothing
+       is ever filled with a color ("we shouldnt ever have to full fill").
+       The inks the channels are written in were held muted on 2026-09-11
+       (mockup 4, "i still might make that red like a little more muted
+       somehow"); every older name for them points here. */
+    --shani: #9d4355; --shani-dim: #b76670;
+    --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;
+    --shani-ink: var(--shani); --tekhelet-ink: var(--tekhelet);
+    --c-word: var(--shani); --en-word: var(--shani);
+    /* the two regulars at three quarters, a glow for the halo accent
+       (:root[data-accent="halo"]), which nothing turns on */
+    --halo-shani: rgba(157, 67, 85, 0.75); --halo-tekhelet: rgba(52, 100, 154, 0.75);
+    /* (The washes of 2026-09-10 and the held word's opaque red and blue of
+       2026-09-11, all retired that day, were still declared here until
+       2026-10-10 with nothing reading them; they are gone.) */
+    /* shadows are depth under a card that floats, never a ground anything
+       is written on, so they are not a fourth linen */
+    --shadow-pop: 0 8px 24px rgba(96, 80, 48, 0.28);
+    --shadow-card: 0 14px 40px rgba(96, 80, 48, 0.30);
+    --shadow-hud: 0 18px 48px rgba(96, 80, 48, 0.32), 0 2px 8px rgba(96, 80, 48, 0.20);
+  }
+  * { box-sizing: border-box; }
+  /* text-size-adjust: a phone browser that decides a block is "main content"
+     inflates its font after layout has already been computed. Every box on this
+     page that was sized from a measurement — the reading line held at the height
+     it painted at, a band cut to a whole row — is sized against the font that
+     was there when it was measured, and a font that grows afterwards spills out
+     of all of them. The page sets its own sizes; it does not want them adjusted
+     underneath it. */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Georgia, "Times New Roman", serif;
+    overflow-x: hidden; }
+  /* THE SCROLL'S GROUND IS WOVEN LINEN, AND ONLY THAT (the owner, 2026-10-03:
+     "if you go that watermark sparse should we just take it out", "idk about
+     the watermarks or burnt edges. i like woven though"). Warp and weft drawn
+     by noise, so no two threads are spaced alike, a long slub and a faint
+     cloud under them; no tear, no scorch, no water mark, no rim. The bare
+     ground stays light enough that every ink clears 4.5:1 on it. Paint only:
+     no box moves. */
+  body {
+    background-color: var(--bg);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.55' numOctaves='2' seed='21' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.01 0.03 0.05 0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55 0.012' numOctaves='2' seed='22' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0.01 0.025 0.045 0.06'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.18' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.17 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 0 0 0.02 0.04 0.06 0.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.38 0 0 0 0 0.2 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.03 0.05 0.03 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 300px 300px, 300px 300px, 420px 420px, 600px 600px;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+    background-repeat: repeat, repeat, repeat, repeat;
+  }
+
+  /* The header holds the way out in its top corner, and the book's own title
+     below it. On a narrow screen the two stack rather than fight. */
+  #home { display: flex; align-items: baseline; gap: 0.45rem; justify-content: flex-end;
+    margin: 0 0 0.9rem; font-size: 0.85rem; }
+  #home .nav-lab { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--faint); }
+  #home a.home { border: 1px solid var(--line); border-radius: 999px;
+    padding: 0.3rem 0.95rem; background: var(--bg); color: var(--shani-ink);
+    font-family: 'wordmark', Georgia, serif; font-weight: 600; letter-spacing: -0.01em;
+    text-decoration: none; white-space: nowrap; }
+  /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02, and 2026-10-03: "remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple"): fire in shani, and in gold, hail in tekhelet, the .com in argaman, its dot still turning out of the blue (the owner: "a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple"), each word its own color, solid: the and once turned red into gold into blue, and the turn from gold to blue passed through a green no thread of the mark is dyed (the owner, 2026-10-08), so it is gold through. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. Each word wears its color's regular, and the and the dim gold every frame wears at rest, the very pairs the drawn mark is woven in (the owner, 2026-10-10: "my main point is uniform coloring between logo and site"); the name's own brighter gold is folded away. The and is gold at rest by the owner's ruling on the name, and the color check names the mark. */
+  @font-face { font-family: 'wordmark'; src: url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+  /* THE ONE MARK, SMALL, IS THE WAY HOME (the owner, 2026-10-08: the book pages' home button was "still the old logo with that green sneaking in" — the text name blended its gold into its blue through a green no thread of the mark is dyed). The door's drawn mark rides in at the height of the text it replaces; a site with no drawn mark prints the name in its four colors, each solid, only the dot of .com turning blue to purple. */
+  #home a.home { display: inline-flex; align-items: center; }
+  #home a.home img.wm-mark-s { display: block; height: 1.15em; width: auto; max-width: min(12rem, 60vw); }
+  #home a.home .wm-fire { color:var(--shani); } #home a.home .wm-and { color:var(--gold-dim); } #home a.home .wm-hail { color:var(--tekhelet); } #home a.home .wm-tld { color:var(--argaman); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { #home a.home .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } }
+  #home a.home:hover { color: var(--ink-strong); border-color: var(--gold); }
+  /* the other face, one press away — the button names where it takes you */
+  #home button.face { border: 1px solid var(--line); border-radius: 999px; background: none;
+    color: var(--muted); font: inherit; font-size: 0.72rem; padding: 0.1rem 0.7rem; cursor: pointer; }
+  #home button.face:hover { color: var(--ink-strong); border-color: var(--gold); }
+  /* the header is the same cloth as the page under it, so the weave and the
+     scroll's burnt edge reach the top of the window too */
+  header.top { padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--line);
+    background: none; }
+  header.top h1 { margin: 0; font-size: 1.9rem; color: var(--ink-strong); letter-spacing: 0.01em; }
+  /* The title is the book's own, from the ledger. The English beside it is
+     not a translation of it and must not be able to be read as one — it is how
+     a reader who does not read Hebrew finds and refers to the book. So each
+     line says which of the two it is, in plain English, before the thing
+     itself. The labels are ours; only the title is the corpus's. */
+  header.top h1 { display: flex; flex-direction: column; gap: 0.1rem; }
+  header.top h1 .t-row { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+  /* a label is plain, never weighted, and a selection shows in gold, never in weight (the owner, 2026-10-02) */
+  header.top h1 .t-lab, header.top h1 .lic-chip { font-weight: normal; }
+  header.top h1 .t-lab { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--faint); font-variant: normal; flex: 0 0 auto; min-width: 6.4rem; }
+  header.top h1 .he-t { font-size: 2.1rem; }
+  /* The book's own title is a word of the corpus like any other: it opens, it
+     carries records, it carries licenses. Rendered through the same row the
+     chapter titles use, so there is one way a title is drawn. */
+  header.top h1 .he-t .title-row { display: inline-block; text-align: right; }
+  header.top h1 .he-t .title-row .wb { margin-bottom: 0; }
+  header.top h1 .he-t .title-row .w { font-size: 2.1rem; }
+  header.top h1 .he-t .title-row .g { font-size: 0.82rem; max-width: 12em; overflow-wrap: break-word; }
+  header.top h1 .t-note { font-size: 0.6rem; letter-spacing: 0.06em; color: var(--muted);
+    font-variant: normal; text-transform: none; }
+  /* The third register: a machine's guess, named by its author. The chip is
+     an attribution, never a license, and dresses differently — dashed where
+     a license chip is solid — so no reader and no gate can mistake the one
+     for the other. */
+  header.top h1 .t-sug { display: block; font-size: 0.62rem; color: var(--muted);
+    letter-spacing: 0.04em; margin-top: 0.18rem; font-variant: normal; text-transform: none; }
+  header.top h1 .sug-chip { border: 1px dashed var(--line); border-radius: 0.6rem;
+    padding: 0 0.4rem; font-size: 0.58rem; color: var(--muted); }
+  /* the interval's words inside the register: the work's own, pressable,
+     scaled to the register they stand in — a pointer, not the masthead */
+  header.top h1 .t-sug .title-row { display: inline-block; vertical-align: middle; }
+  header.top h1 .t-sug .title-row .w { font-size: 1.05rem; }
+  header.top h1 .t-sug .title-row .g { font-size: 0.56rem; max-width: 8em; }
+  /* The drawer for a guess that coexists with a witness: the surface is the
+     witness's, and the guess waits one level down behind a press that names
+     what it holds. */
+  header.top h1 .sug-fold { display: block; margin-top: 0.18rem; padding: 0;
+    border: none; background: none; cursor: pointer; font: inherit;
+    font-size: 0.58rem; letter-spacing: 0.04em; color: var(--muted);
+    text-decoration: underline dotted; font-variant: normal; text-transform: none; }
+  header.top h1 .en-t { color: var(--ink-strong); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
+  /* AN ATTESTED NAME IS BLUE (the owner, 2026-10-02): an English name stands on this site only because a licensed source attests it, so the name itself speaks in the reading's channel, tekhelet, in the reading's face. The attestation chip beside it keeps its own color; a name nothing attests stays in our own voice. The book's name is attested only where its chip stands. */
+  header.top h1 .t-row:has(#workLic:not([hidden])) .en-t:not(.unnamed) { color: var(--tekhelet-ink); font-family: 'reading', Georgia, serif; font-weight: 500; }
+  /* a credit line can carry an unbreakable witness id longer than a phone is wide; it wraps rather than widening the page */
+  header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
+  /* THE SOURCE FOLDS, AND ITS TERMS DO NOT. The credit is a document id, an
+     OID, a percent-encoded URL and a license — nine lines on a phone, standing
+     between the reader and the book. It folds; the summary keeps the edition
+     and the license in the open, so what the license requires shown is shown
+     whether or not anyone presses anything, and the full credit is one press
+     away and unchanged. */
+  .byline-fold { margin: 0.5rem 0 0; max-width: 62rem; }
+  .byline-fold > summary { list-style: none; cursor: pointer; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .byline-fold > summary::-webkit-details-marker { display: none; }
+  .byline-fold > summary::before { content: "\25B8 "; color: var(--muted); }
+  .byline-fold[open] > summary::before { content: "\25BE "; }
+  /* a label and its value, in the columns the title rows above stand in (the
+     owner, 2026-10-03: "columns fail") */
+  .byline-fold > summary { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+  .byline-fold > summary .s-lab { flex: 0 0 auto; min-width: 5.6rem; font-size: 0.6rem; letter-spacing: 0.18em; }
+  .byline-fold > summary .s-val { flex: 1 1 12rem; min-width: 0; font-size: 0.8rem; letter-spacing: 0.02em;
+    text-transform: none; color: var(--muted); }
+  /* THE ATTESTATION STANDS UNDER ITS NAME (the owner, 2026-10-03: "attested
+     wandered from its english, should be right under"): the name and its chip
+     are one block, the chip centered below the name at every width as a
+     line's chip stands under its reading, so a row too narrow for both never
+     sends the chip back to the row's start. */
+  header.top h1 .en-pair { display: inline-flex; flex-direction: column; align-items: center;
+    gap: 0.25rem; min-width: 0; }
+  /* the attestation opens under a press, collapsed at rest (the owner, 2026-10-03) */
+  #workLic[role="button"] { cursor: pointer; }
+  #workLic:not([aria-expanded="true"]) .att-v { display: none; }
+  #workLic:not([aria-expanded="true"])::after { content: " \25B8"; font-size: 0.8em; }
+  .byline-fold > summary .lic { color: var(--ink-strong); }
+  .byline-fold > summary:hover { color: var(--ink); }
+  #basisLine, #holdsLine, #rightsLine { margin: 0.3rem 0 0; font-size: 0.8rem; color: var(--muted); font-style: italic; max-width: 62rem; }
+  /* the page's own gutter, and room under it for the floating chapter bar */
+  #bookEnd { margin: 2.4rem 0 0; padding: 1rem 1.5rem 6rem; border-top: 1px solid var(--line); }
+  #bookEnd > * { max-width: 62rem; }
+  #cc0Line { margin: 0; font-size: 0.82rem; color: var(--muted); }
+  .byline .bl-k { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+  .byline .bl-f { white-space: nowrap; }
+  .byline a { color: inherit; }
+  #cc0Line a { color: inherit; }
+  .byline-fold > #basisLine, .byline-fold > #holdsLine, .byline-fold > #rightsLine { margin: 0.45rem 0 0; }
+  .receipts-fold { margin: 0.8rem 0 0; }
+  .receipts-fold > summary { cursor: pointer; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .receipts-fold > summary:hover { color: var(--ink); }
+  .receipts-fold .receipts-full { margin: 0.5rem 0 0; font-size: 0.78rem; color: var(--faint); }
+  .wb.ov .w { background: var(--press-wash); }
+  .wb.ov-first .w { border-start-start-radius: 0.25rem; border-end-start-radius: 0.25rem; padding-inline-start: 0.15rem; }
+  .wb.ov-last .w { border-start-end-radius: 0.25rem; border-end-end-radius: 0.25rem; padding-inline-end: 0.15rem; }
+  .wb.typed-here .w { border-bottom: 1px dashed var(--argaman-dim); }
+  /* a mark is corpus, so it wears the corpus channel like any other word —
+     the one ink and the wash behind it — and is told apart by being smaller
+     and letter-spaced, not by being painted a second color */
+  /* INK THAT IS NOT A WORD. A wash means "counts as a word"; a mark is ink that
+     does not, so it wears no wash and a gold outline — gold being the frame,
+     and this being a thing the frame holds rather than a thing the text says.
+     The glyph itself is the page's neutral ink, never gold: gold reaches no
+     glyph at rest. Approved 2026-09-11 on the demonstration sheet. */
+  .wb.mark .w { font-size: 0.8em; letter-spacing: 0.06em; background: none;
+    border: 1px solid var(--gold-dim); color: var(--muted); }
+  .wb.mark-off { display: none; }
+  body.marks-on .wb.mark-off { display: inline-flex; }
+  body.marks-on .wb.mark-off .w { color: var(--muted); }
+  /* RULE 10 ON THE PAGE: a brick gap is the space the scribes leave inside a
+     song line. The zone carries the restore's stand-in glyph; the page draws
+     the space, not the glyph, and rules a faint line under it so the gap is
+     seen as a gap and not as a missing word. RULE 12: a letter the scribes
+     wrote large, small, suspended or dotted is drawn so; the mark is on the
+     letter and the word keeps its count and its key. */
+  /* RULE 10: a brick gap is a ruled span the width the scribe left — a hairline
+     and two ticks — so it reads as space and never as a word with no text. It
+     prints nothing under itself; the sentence lives in its card. */
+  .wb.mark[data-mark="BRICK_GAP"] .w { color: transparent; min-width: 2.6em; background: none;
+    border: 0; border-bottom: 1px solid var(--gold); border-radius: 0; position: relative; padding: 0 0.2em; }
+  .wb.mark[data-mark="BRICK_GAP"] .w::before, .wb.mark[data-mark="BRICK_GAP"] .w::after {
+    content: ""; position: absolute; bottom: -1px; width: 1px; height: 6px; background: var(--gold); }
+  .wb.mark[data-mark="BRICK_GAP"] .w::before { left: 0; } .wb.mark[data-mark="BRICK_GAP"] .w::after { right: 0; }
+  .wb.mark[data-mark="BRICK_GAP"] .g { display: none; }
+  /* RULE 6: the inverted nun stands at the words' own size in its own outlined
+     tile, like the ink it is; it had been a hairline a reader had to hunt for.
+     Nothing in English stands under it: a runner is a licensed reading, and
+     this page has none for a scribal mark, so the sentence waits on the card
+     (owner, 2026-09-11: "let someone click it to find out"). */
+  .wb.mark[data-mark="INVERTED_NUN"] .w { font-size: 1.05em; padding: 0 0.35em; letter-spacing: 0; }
+  .wb.mark[data-mark="INVERTED_NUN"] .g { display: none; }
+  /* RULE 4: the empty verse is one row — the edition's own dash in its tile and
+     a rule across the line. Nothing in English stands on the line: the dash is
+     what the edition prints, and what it means waits on the card (owner,
+     2026-09-11: "if its empty we can make it empty"). */
+  .wb.mark[data-mark="EMPTY_VERSE"] { display: flex; flex-direction: row; align-items: center; width: 100%; gap: 0.6rem; }
+  .wb.mark[data-mark="EMPTY_VERSE"] .w { font-size: 1em; letter-spacing: 0; order: 1; padding: 0 0.45em; }
+  .wb.mark[data-mark="EMPTY_VERSE"]::before { content: ""; order: 2; flex: 1 1 auto; border-top: 1px solid var(--gold); }
+  .wb.mark[data-mark="EMPTY_VERSE"] .g { display: none; }
+  /* THE CHANNELS ON THE PAGE · color-channel-rule-v2, ruled 2026-09-10.
+     A channel says who is speaking, and that is the whole of it. The corpus
+     speaks in tola'at shani; the reading offered for one of its words speaks
+     in tekhelet, because a dictionary said it and not the source; this
+     project speaks in argaman, and is the only voice licensed by nobody.
+     This began as a URL parameter tried on one book. It is the page now. */
+  /* THE INK CARRIES THE CHANNEL, MUTED. Ruled 2026-09-11 off six mockups on
+     the real page: the Hebrew is written in a quiet rose-red and its reading
+     in a quiet blue, with nothing behind either of them — no wash, no box on
+     the Hebrew, and only the gold hairline around the reading so it stays a
+     label and not a second line of text. The washes of 2026-09-10 were right
+     about one thing and it is kept: what says who is speaking must be
+     nameable at a glance. They were wrong about the cost: a page of filled
+     tiles is a page of tiles, and this is a page of words.
+     The one ink of the page — argaman — stays on everything that is ours. */
+  .wb .w { color: var(--shani-ink); border-radius: 0.5em; padding: 0.02em 0.3em;
+    background: none; }
+  .wb > .g, .wjoin > .g { color: var(--tekhelet-ink); border-color: transparent;
+    background: none; }
+
+  :root[data-accent="halo"] .wb .w { background: none; padding: 0;
+    text-shadow: 0 0 2.5px var(--halo-shani), 0 0 1px var(--halo-shani); }
+  :root[data-accent="halo"] .wb > .g,
+  :root[data-accent="halo"] .wjoin > .g { background: none;
+    text-shadow: 0 0 2px var(--halo-tekhelet); }
+  .lm-large { font-size: 1.45em; line-height: 0.9; }
+  .lm-small { font-size: 0.68em; }
+  .lm-suspended { vertical-align: 0.5em; font-size: 0.82em; }
+  .lm-dotted { color: var(--shani); }
+  /* EVERY MASORETIC MARK GOLD, BY ITS CLASS (the owner's vote, 2026-10-11;
+     masoretic-marks-rule-v1; the script's EVERY MARK GOLD says which
+     characters). A browser paints a mark in its letter's color whatever
+     element holds it, so the word is drawn twice in one place: the word
+     whole in the marks' gold, and over it, out of the same box, its letters
+     alone in the word's own ink (data-l, the word with its marks taken out,
+     written by the script). The letters drawn over are generated content: not
+     selected, not copied, not found, and silent to a screen reader (the
+     empty alternative after the slash), so the text a reader takes away is
+     the word as the source wrote it, once. They start where the word starts
+     and run the way it runs, from a box of no width, so they lie on the
+     word's own letters wherever the word stands. Where a browser cannot
+     give generated content an alternative, nothing here applies and the
+     word stays one color, as before. A mark that stands alone (the maqaf
+     between a word's parts, the sof pasuq, a paseq) is simply gold. A
+     leaf's ::before is the gold's: nothing else may draw one there. */
+  /* The card's head is the same word made large, so it wears the same gold
+     by the same leaves (the owner, 2026-10-10: "if you can do the vowels in
+     gold in the same push go for it"). */
+  @supports (content: "x" / "") {
+    :root[data-mark-ink="gold"] .he-text .mg, :root[data-mark-ink="gold"] .he-text .mg-all,
+    :root[data-mark-ink="gold"] #hud .head .mg, :root[data-mark-ink="gold"] #hud .head .mg-all { -webkit-text-fill-color: var(--mark-ink); }
+    :root[data-mark-ink="gold"] .he-text .mg, :root[data-mark-ink="gold"] #hud .head .mg { white-space: nowrap; }
+    :root[data-mark-ink="gold"] .he-text .mg::before, :root[data-mark-ink="gold"] #hud .head .mg::before { content: attr(data-l) / ""; display: inline-block; width: 0;
+      white-space: nowrap; -webkit-text-fill-color: currentColor; text-shadow: none; pointer-events: none;
+      user-select: none; -webkit-user-select: none; }
+  }
+  /* THE STAMP. The count of this book on every named axis, and beside it the
+     figures other men reached for the same book: a row per witness, the
+     difference shown with its sign. Gold is exact, scarlet differs, the linen
+     of the page where nobody published a figure. The color reinforces the
+     number and the glyph and never carries the meaning alone. The rows light
+     once, top to bottom, and hold still for a reader who asked for still. */
+  #stamp { margin: 0.6rem 0 0; max-width: 62rem; padding: 0; font-size: 0.8rem; }
+  /* THE COUNT IS A HANDLE, like the contents and the commentary index beside
+     it, and for the same reason they are. The owner's ruling of 2026-09-07
+     put the count on the book's own page, and it belongs there; what nobody
+     ruled was that it should stand between a reader and the first word. Five
+     figures, four witness rows and a paragraph came to 285px of an 915px
+     phone, and with the masthead, the modes and the two other handles above
+     it the first word of every book on the shelf opened below the fold —
+     1,128px down in Amos, which check-contents-shut-v1 caught the day it
+     first ran. Shut, this says what it is and what the witnesses made of it;
+     pressed, the whole comparison is there, unchanged. */
+  #stamp #stampHead { display: flex; align-items: center; gap: 0.55rem; width: 100%; text-align: left;
+    background: var(--bg); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--gold-dim); border-radius: 0.5rem;
+    padding: 0.5rem 0.85rem; margin: 0; cursor: pointer;
+    font: inherit; color: var(--shesh); }
+  #stamp #stampHead .toc-t { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  #stamp #stampHead .toc-n { font-size: 0.78rem; color: var(--muted); }
+  #stamp #stampHead .toc-n .differs { color: var(--argaman-dim); font-weight: 600; }
+  #stamp #stampHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.9rem;
+    color: var(--gold-dim); transform: rotate(-90deg); transition: transform 0.12s; }
+  #stamp #stampHead[aria-expanded="true"] { color: var(--sel); border-inline-start-color: var(--sel); }
+  #stamp #stampHead[aria-expanded="true"]::after { transform: none; color: var(--sel); }
+  #stamp #stampHead:hover { color: var(--ink-strong); border-color: var(--gold); }
+  #stampBody[hidden] { display: none; }
+  #stampBody { border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim);
+    margin-top: 0.4rem; padding: 0.35rem 0 0.4rem; overflow-x: auto; }
+  /* THE DESK. The count used to be a sentence, and a sentence is the one shape
+     a number cannot be read in at a glance. Five figures, each under its axis,
+     each over what the witnesses say about that axis: a mark per witness in
+     the stamp's own order, gold where they agree and scarlet with the signed
+     difference where they do not. No witness is put ahead of another and none
+     is summarised away; the table underneath is still the whole comparison,
+     witness by witness. Owner, 2026-09-07: more space, fewer words. */
+  #stamp .desk { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+    gap: 0.5rem 1.2rem; margin: 0.15rem 0 0.7rem; }
+  #stamp .desk .cell { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+  #stamp .desk .k { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+  #stamp .desk .v { font-family: ui-monospace, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums;
+    font-size: 1.45rem; line-height: 1.1; color: var(--ink-strong); }
+  #stamp .desk .d { font-family: ui-monospace, Menlo, Consolas, monospace; font-variant-numeric: tabular-nums;
+    font-size: 0.7rem; color: var(--faint); display: flex; gap: 0.45rem; flex-wrap: wrap; }
+  #stamp .desk .d .exact { color: var(--ink-strong); }
+  #stamp .desk .d .differs { color: var(--argaman-dim); font-weight: 600; }
+  @media (max-width: 560px) { #stamp .desk { grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); }
+    #stamp .desk .v { font-size: 1.2rem; } }
+  #stamp table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  #stamp td { padding: 0.1rem 0.7rem 0.1rem 0; vertical-align: baseline; white-space: nowrap; line-height: 1.45; }
+  #stamp td.wit { white-space: normal; color: var(--muted); max-width: 26rem; }
+  #stamp td.ax { color: var(--muted); }
+  #stamp td.num { text-align: right; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.82rem; color: var(--ink); }
+  #stamp td.why { color: var(--faint); font-style: italic; white-space: normal; max-width: 16rem; }
+  #stamp .cls { font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-inline-end: 0.45rem; }
+  #stamp tr.exact td.delta, #stamp tr.exact td.glyph { color: var(--ink-strong); font-weight: 600; }
+  #stamp tr.differs td.delta, #stamp tr.differs td.glyph { color: var(--argaman-dim); font-weight: 600; }
+  #stamp tr.no_witness td { color: var(--argaman-dim); }
+  #stamp tr { animation: stamp-flash 1100ms ease-out both; }
+  @keyframes stamp-flash { 0% { box-shadow: inset 0 0 0 1px var(--sel-dim); } 100% { box-shadow: inset 0 0 0 1px transparent; } }
+  @media (prefers-reduced-motion: reduce) { #stamp tr { animation: none; } }
+  /* On a narrow screen the strip stays a strip: one line per witness, the
+     witness's name cut with an ellipsis (the whole of it rides in the hover
+     and in the receipts), the layer note folded away. */
+  @media (max-width: 600px) {
+    #stamp td.wit { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 9.5rem; }
+    #stamp td.why { display: none; }
+    #stamp td { padding-right: 0.45rem; }
+  }
+  #stamp .stamp-note { color: var(--faint); font-style: italic; margin: 0.3rem 0 0; }
+  #stamp .stamp-warn { color: var(--argaman-dim); margin: 0.3rem 0 0; }
+  #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman-dim); line-height: 1.55; }
+  #demoLine .demo-credit { color: var(--faint); overflow-wrap: anywhere; }
+  header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
+  .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
+    color: var(--link); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 0; }
+  .receipts-btn:hover { color: var(--ink-strong); }
+  .receipts-full { display: block; margin-top: 0.4rem; color: var(--faint); }
+  .receipts-full[hidden] { display: none; }
+  /* A work the ledger has not named in Hebrew keeps its English locator, but
+     the locator does not get to look like a title. */
+  header.top h1 .he-t.unnamed { color: var(--argaman-dim); font-size: 0.92rem; font-style: italic; }
+  /* the name slot's absence, same voice as the title slot's */
+  header.top h1 .en-t.unnamed { color: var(--argaman-dim); font-size: 0.92rem; font-style: italic;
+    font-variant: normal; letter-spacing: normal; }
+  a { color: var(--link); }
+  header.top a { color: var(--link); text-decoration: none; border-bottom: 1px solid var(--chip-line); }
+  header.top #home a.home { border-bottom: 1px solid var(--line); }
+  header.top a:hover { color: var(--ink-strong); border-bottom-color: var(--gold); }
+
+  /* contents */
+  #toc { max-width: 48rem; margin: 1.3rem auto 0; padding: 0 1.5rem; }
+  /* Fifty chapters is the whole screen on a phone before a word of the book has
+     been reached, so the grid arrives shut and says how much is behind it. */
+  /* Shut, this used to be a faint grey line the width of two words, and a
+     reader who knew it was there took twenty seconds to find it. A control
+     that has to be hunted for is not a control. It is now the same object as
+     every other thing on this page that can be pressed — a bordered pill in
+     linen — and it carries the count, so the press is worth making before it
+     is made. */
+  #toc #tocHead { display: flex; align-items: center; gap: 0.55rem; text-align: left;
+    background: var(--bg); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--gold-dim); border-radius: 0.5rem;
+    padding: 0.5rem 0.85rem; margin: 0 0 0.4rem; cursor: pointer;
+    font: inherit; color: var(--shesh); }
+  #toc #tocHead .toc-t { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  #toc #tocHead .toc-n { font-size: 0.78rem; color: var(--muted); }
+  #toc #tocHead::after { content: "\25be"; margin-inline-start: auto; font-size: 0.9rem;
+    color: var(--muted); transform: rotate(-90deg); transition: transform 140ms; }
+  #toc #tocHead[aria-expanded="true"] { color: var(--sel); border-inline-start-color: var(--sel); }
+  #toc #tocHead[aria-expanded="true"]::after { transform: none; color: var(--sel); }
+  #toc #tocHead:hover { color: var(--ink-strong); border-color: var(--gold); }
+  #tocBody[hidden] { display: none; }
+  /* Contents is a coordinate grid: positions, not content. Plain English
+     names the structure ("Part 2", "Chapter 7") — describing a thing is not
+     translating it, and an English reader should never be locked out of
+     navigation. The words themselves live in the text, where they can be
+     tapped. */
+  #toc .chs { display: grid; gap: 0.28rem; margin-top: 0.3rem;
+    grid-template-columns: repeat(auto-fill, minmax(2.35rem, 1fr)); }
+  #toc .chs a { display: flex; align-items: center; justify-content: center; min-height: 2.05rem;
+    border: 1px solid var(--line); border-radius: 0.35rem; background: var(--bg);
+    text-decoration: none; font: 0.92rem/1 Georgia, serif; color: var(--ink-strong);
+    font-variant-numeric: tabular-nums; transition: border-color 120ms, background 120ms; }
+  #toc .chs a:hover { border-color: var(--gold); background: var(--cell-wash); }
+  #toc .chs a.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  /* the sections of one chapter, opened in place under the grid */
+  #secPanel { margin-top: 0.7rem; border: 1px solid var(--line); border-radius: 0.5rem;
+    background: var(--bg); padding: 0.6rem 0.7rem; }
+  #secPanel[hidden] { display: none; }
+  #secPanel .sp-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.5rem;
+    font-size: 0.74rem; letter-spacing: 0.14em; font-variant: small-caps; color: var(--faint); }
+  #secPanel .sp-he { font-variant: normal; letter-spacing: 0; font-size: 1rem; color: var(--shani); }
+  #secPanel .sp-x { margin-inline-start: auto; background: none; border: 0; color: var(--muted);
+    font-size: 1.05rem; line-height: 1; cursor: pointer; padding: 0 0.2rem; }
+  #secPanel .sp-grid { display: grid; gap: 0.26rem;
+    grid-template-columns: repeat(auto-fill, minmax(2.9rem, 1fr)); }
+  #secPanel .sp-grid a { display: flex; align-items: center; justify-content: center; min-height: 1.85rem;
+    border: 1px solid var(--line); border-radius: 0.32rem; background: var(--bg);
+    color: var(--muted); text-decoration: none; font-size: 0.76rem; font-variant-numeric: tabular-nums; }
+  #secPanel .sp-grid a:hover { border-color: var(--gold); color: var(--ink-strong); }
+  #secPanel .sp-grid a.sp-top { grid-column: span 2; color: var(--ink-strong); font-variant: small-caps;
+    letter-spacing: 0.1em; border-color: var(--gold); }
+
+  /* one floating bar, not chrome on every section */
+  /* the bar wears the ground, veiled (a hard-coded night background once
+     stood black over the day's linen, so the veil names no fallback) */
+  #nav { position: fixed; z-index: 60; right: 0.9rem; bottom: 0.9rem; display: flex; gap: 0.3rem;
+    background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
+    padding: 0.3rem; box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); }
+  #nav[hidden] { display: none; }
+  #nav button, #nav a { border: 0; background: none; color: var(--muted); font: inherit; font-size: 0.75rem;
+    letter-spacing: 0.08em; font-variant: small-caps; cursor: pointer; border-radius: 999px;
+    padding: 0.24rem 0.7rem; white-space: nowrap; text-decoration: none; }
+  #nav a:hover { color: var(--ink-strong); background: var(--cell-wash); }
+  #nav .nav-gap { flex: 1 0 0; min-width: 0.2rem; }
+  /* the reader, one press from the bar's left */
+  #menuPick { position: fixed; z-index: 61; left: 0.9rem; bottom: 3.3rem; width: min(16rem, calc(100vw - 1.8rem));
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.7rem; padding: 0.55rem;
+    box-shadow: var(--shadow-pop); display: grid; gap: 0.28rem; }
+  #menuPick[hidden] { display: none; }
+  #layerCPick[hidden] { display: none; }
+  #menuPick button { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; min-height: 2.05rem;
+    border: 1px solid var(--line); border-radius: 0.4rem; background: var(--bg); color: var(--ink);
+    font: inherit; font-size: 0.85rem; cursor: pointer; padding: 0.2rem 0.6rem; text-align: left; }
+  #menuPick button .mode-dir { font-size: 0.62rem; color: var(--faint); letter-spacing: 0.06em; }
+  #menuPick button:hover:not(:disabled) { border-color: var(--gold); background: var(--cell-wash); }
+  #menuPick button:disabled { opacity: 0.5; cursor: default; }
+  #menuPick button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); font-weight: 700; }
+  #menuPick a { font-size: 0.72rem; color: var(--muted); padding: 0.2rem 0.3rem 0; }
+  #nav button:hover:not(:disabled) { color: var(--ink-strong); background: var(--cell-wash); }
+  #nav button:disabled { opacity: 0.35; cursor: default; }
+  #navPrev, #navNext { font-size: 1rem; padding: 0.14rem 0.55rem; }
+  /* the chapters, above the bar: the same cells as the contents grid */
+  #chPick { position: fixed; z-index: 61; right: 0.9rem; bottom: 3.3rem; width: min(22rem, calc(100vw - 1.8rem));
+    max-height: min(50vh, 24rem); overflow-y: auto; background: var(--bg); border: 1px solid var(--line);
+    border-radius: 0.7rem; padding: 0.55rem; box-shadow: var(--shadow-pop);
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(2.7rem, 1fr)); gap: 0.28rem; }
+  #chPick[hidden] { display: none; }
+  #chPick button { display: flex; align-items: center; justify-content: center; min-height: 2.05rem;
+    border: 1px solid var(--line); border-radius: 0.4rem; background: var(--bg); color: var(--ink);
+    font: inherit; font-size: 0.8rem; font-variant-numeric: tabular-nums; cursor: pointer; padding: 0 0.3rem; }
+  #chPick button:hover { border-color: var(--gold); background: var(--cell-wash); }
+  #chPick button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); font-weight: 700; }
+  #chPick button.ch-top { grid-column: 1 / -1; font-variant: small-caps; letter-spacing: 0.06em; color: var(--ink-strong); }
+  @media (max-width: 520px) { #nav { left: 0.9rem; right: 0.9rem; justify-content: center; } }
+  /* THE WAY BACK (asked of the owner on 2026-10-09, who left it to us: "you
+     tell me"; THE READING PLACE in the script). A link that opened another
+     chapter than the one this device kept offers the kept verse one tap
+     away: just above the bar, with a little air between them so the two read
+     as two controls, and in the bar's own place while the bar stands down.
+     It is fixed, so it never moves the Hebrew, and it wears the bar's own
+     veil, line and small capitals. Pressed is a deeper ink, never a fill,
+     and never a heavier weight, which would widen the pill under the
+     finger. */
+  #placeBack { position: fixed; z-index: 60; right: 0.9rem; bottom: 3.6rem;
+    background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
+    box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); color: var(--muted);
+    font: inherit; font-size: 0.75rem; letter-spacing: 0.08em; font-variant: small-caps;
+    padding: 0.42rem 0.95rem; cursor: pointer; white-space: nowrap; }
+  #nav[hidden] + #placeBack { bottom: 0.9rem; }
+  #placeBack[hidden] { display: none; }
+  #placeBack:hover { color: var(--ink-strong); }
+  #placeBack:active { color: var(--sel); }
+  @media (max-width: 520px) { #placeBack { right: auto; left: 50%; transform: translateX(-50%); } }
+  /* THE WAY BACK FROM A DICTIONARY JUMP: the "Back to" pill, across books
+     (the owner, 2026-10-17: "agree keep it": it stays until it is tapped or
+     another jump replaces it) */
+  #dictBack { position: fixed; z-index: 60; right: 0.9rem; bottom: 3.6rem;
+    background: var(--nav-veil); border: 1px solid var(--line); border-radius: 999px;
+    box-shadow: var(--shadow-pop); backdrop-filter: blur(4px); color: var(--muted);
+    font: inherit; font-size: 0.75rem; letter-spacing: 0.08em; font-variant: small-caps;
+    padding: 0.42rem 0.95rem; cursor: pointer; white-space: nowrap; }
+  #nav[hidden] + #dictBack { bottom: 0.9rem; }
+  #dictBack[hidden] { display: none; }
+  #placeBack:not([hidden]) ~ #dictBack { bottom: 6.2rem; }
+  @media (max-width: 520px) { #dictBack { right: auto; left: 50%; transform: translateX(-50%); } }
+  /* THE TABLE HUD (the dictionary pill): the card's head stays, and the
+     table stands for the rest of the card */
+  #hud.dict > :not(.head):not(.dict-tab):not(.c-back) { display: none !important; }
+  #hud .dict-tab { margin-top: 0.5rem; max-height: 62vh; overflow: auto; }
+  #hud .dict-tab table { width: 100%; border-collapse: collapse; }
+  #hud .dict-tab th { text-align: left; font-weight: normal; padding: 0.3rem 0.25rem; border-bottom: 1px solid var(--line); }
+  #hud .dict-tab th button { all: unset; cursor: pointer; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--argaman); }
+  #hud .dict-tab th button[aria-pressed="true"] { font-weight: bold; }
+  #hud .dict-tab td { padding: 0.45rem 0.25rem; border-bottom: 1px dotted var(--line); vertical-align: top; }
+  #hud .dict-tab td.he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); font-size: 1.2rem; direction: rtl; white-space: normal; }
+  /* a block pressed: the whole word's blocks, the pressed one worn bold, and
+     the line's pieces with the pressed block's pill among them */
+  #hud .dict-tab td.he .on { font-weight: 700; }
+  #hud .dict-tab td.he .pp { color: var(--shani-dim); }
+  #hud .dict-tab .rd-whole { display: flex; flex-wrap: wrap; align-items: center; gap: 0 0.1rem; direction: ltr; }
+  #hud .dict-tab .rd-whole .pp { color: var(--tekhelet-dim); white-space: pre; }
+  #hud .dict-tab .rd-piece { color: var(--tekhelet-ink); font-family: 'reading', Georgia, serif; font-weight: 500; }
+  #hud .dict-tab tbody tr.pick > td:nth-child(2) { min-width: 7rem; }
+  #hud .dict-tab th button:focus-visible, #hud .dict-tab button.dd:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  #hud .dict-tab button.more { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: var(--argaman); }
+  #hud .dict-tab .rd { color: var(--tekhelet); font-family: 'reading', Georgia, serif; }
+  #hud .dict-tab .who, #hud .dict-tab .note { font-size: 0.7rem; color: var(--muted); }
+  #hud .dict-tab .lic { display: inline-block; border: 1px solid var(--chip-line); border-radius: 0.6rem; padding: 0 0.35rem; font-size: 0.62rem; color: var(--tekhelet); margin-left: 0.2rem; white-space: nowrap; }
+  #hud .dict-tab button.dd { all: unset; cursor: pointer; color: inherit; }
+  #hud .dict-tab button.dd::after { content: " \25BE"; color: var(--gold-dim); font-size: 0.8em; }
+  #hud .dict-tab button.dd[aria-expanded="true"]::after { content: " \25B4"; }
+  #hud .dict-tab tr.here > td { background: var(--cell-wash); }
+  #hud .dict-tab tr.sub > td { background: var(--cell-wash); padding: 0.2rem 0.6rem 0.6rem; }
+  #hud .dict-tab .item { padding: 0.25rem 0; line-height: 1.45; }
+  #hud .dict-tab .item a { color: var(--argaman); text-decoration-color: var(--gold-dim); }
+  #hud .dict-tab .r-pills { display: block; }
+  #hud .dict-tab .ex-he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); direction: rtl; text-align: right; font-size: 1.02rem; line-height: 1.6; margin-top: 0.15rem; }
+  #hud .dict-tab .ex-he .hit { font-weight: 700; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 0.25em; }
+  #hud .dict-tab .item { border-bottom: 1px dotted var(--line); }
+  #hud .dict-tab .item:last-child { border-bottom: none; }
+  #hud .dict-tab .r-pills button.off-card { opacity: 0.6; }
+  #hud .dict-tab .r-pills button[aria-expanded]::after { content: " \25BE"; font-size: 0.8em; }
+  #hud .dict-tab .r-pills button[aria-expanded="true"]::after { content: " \25B4"; }
+  #hud .dict-tab .menu > .s-pills { margin: 0.25rem 0 0.4rem; }
+  #hud .dict-tab .opts { display: flex; flex-wrap: wrap; gap: 0.35rem 0.55rem; margin: 0.2rem 0 0.5rem; }
+  #hud .dict-tab .opt { display: inline-flex; align-items: center; gap: 0.18rem; }
+  #hud .dict-tab .opt .r-pills { display: inline-block; }
+  #hud .dict-tab .opt .n { font-size: 0.66rem; color: var(--muted); }
+  #hud .dict-tab .item .lg, #hud .dict-tab td .lg { color: var(--muted); }
+  #hud .dict-tab td .lg { font-size: 0.66rem; line-height: 1.2; }
+
+  #toc .toc-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--faint); }
+  #toc .part { margin: 0 0 0.65rem; }
+  #toc .part b { display: block; color: var(--ink-strong); font-variant: small-caps; letter-spacing: 0.1em;
+    font-weight: normal; font-size: 0.92rem; margin-bottom: 0.15rem; }
+  #toc .part b .he-small { color: var(--ink); font-size: 1rem; margin-left: 0.6rem; }
+  #toc a { color: var(--muted); text-decoration: none; font-size: 0.84rem; }
+  #toc a:hover { color: var(--ink-strong); }
+
+  main { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 5rem; }
+
+  /* THE PORCH (chapter-page-rule-v2). A chapter's address is this reader,
+     and the door writes under the text slot a plain-text copy of what the
+     lines will say: every verse a heading, the readings under it credited by
+     number. It stands in the page's own frame, in the page's own inks, until
+     the text is drawn — then it is hidden, because the same readings now
+     stand under the words. It stays if the book never arrives: a page with
+     no script, or a bin the shelf refused, still says what the chapter reads. */
+  #porch { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 3rem; direction: ltr; text-align: left; }
+  #porch[hidden] { display: none; }
+  #porch h2 { font-size: 1.25rem; color: var(--ink-strong); margin: 0.6rem 0 0.2rem; }
+  #porch .porch-sub { color: var(--faint); font-size: 0.86rem; margin: 0 0 1rem; line-height: 1.55; }
+  #porch h3 { font-size: 1rem; color: var(--muted); margin: 1.3rem 0 0.25rem; font-weight: 600; }
+  #porch .r { margin: 0 0 0.3rem; line-height: 1.75; color: var(--en-word); }
+  #porch .r span { overflow-wrap: anywhere; }
+  #porch .r i { font-style: normal; color: var(--muted); font-size: 0.72em; letter-spacing: 0.02em; }
+  #porch sup { font-size: 0.62em; color: var(--muted); margin-left: 0.1em; }
+  #porch .porch-nav { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; font-size: 0.9rem; margin: 1.6rem 0 0; }
+  #porch .porch-nav a, #porch .porch-chs a, #porch footer a { color: var(--link); }
+  #porch .porch-chs { display: flex; flex-wrap: wrap; gap: 0.35rem 0.55rem; margin: 0.4rem 0 1rem; font-size: 0.9rem; }
+  #porch .porch-chs a { text-decoration: none; padding: 0.05rem 0.45rem; border: 1px solid var(--chip-line); border-radius: 0.6em; }
+  #porch footer { margin-top: 2rem; font-size: 0.82rem; color: var(--faint); }
+  #porch footer ol { padding-left: 1.4em; margin: 0.3rem 0 0.8rem; }
+
+  .part-head { margin: 3rem 0 0.4rem; padding-top: 1.6rem; border-top: 1px double var(--gold-dim); }
+  .part-head .he { direction: rtl; text-align: right; font-size: 1.05rem; color: var(--shani); letter-spacing: 0.04em; }
+  .part-head .en { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--faint); text-align: left; }
+  /* Titles are corpus words: same word blocks as the text, sized as a title.
+     Gold on the Hebrew per the Y ledger's own color contract (structure). */
+  .title-row { direction: rtl; text-align: right; }
+  body.en .title-row { direction: ltr; text-align: left; }
+  .part-head .title-row .w { font-size: 1.05rem; color: var(--shani); letter-spacing: 0.04em; }
+  .node-head .title-row .w { font-size: 1.55rem; color: var(--shani); }
+  .title-row .wb { margin-bottom: 0.35rem; }
+  .title-row .g { font-size: 0.62rem; max-width: 9em; }
+  .node-head .title-row .g { font-size: 0.68rem; }
+  .locator { display: block; font-size: 0.74rem; letter-spacing: 0.16em; font-variant: small-caps;
+    color: var(--faint); margin-bottom: 0.3rem; }
+  .vnum { font-variant-numeric: tabular-nums; }
+  .seg-row .vlabel { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--faint); margin-inline-start: 0.4rem; }
+
+  .node-head { margin: 1.9rem 0 0.9rem; }
+  .node-head .he { direction: rtl; text-align: right; font-size: 1.55rem; color: var(--shani);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .node-head .en { font-size: 0.82rem; font-variant: small-caps; letter-spacing: 0.16em; color: var(--ink-strong); margin-top: 0.1rem; }
+  /* One register at every head: the same labelled two-row frame the masthead
+     uses, sized down to chapter grain. The label column, the quiet slot and
+     the force-read row match the masthead's forms so a reader learns the
+     frame once. */
+  /* The frame is the page's voice, not the corpus's text: labels, registers,
+     locators, and absence sentences never ride along in a copy. The same law
+     that keeps a reading out of a copied Hebrew verse keeps "commonly force
+     read as" out of a drag that crosses a section head — the browser already
+     treats unselectable as not-selected, and the copy rewrite follows it.
+     The title words inside the frame stay selectable; they are text. */
+  .nh-lab, .nh-en, .nh-he.unnamed, .nh-of, .vlabel, .t-lab, .t-note, .t-sug,
+  .sug-fold, .en-t, header.top .lic-chip, .vnum, .toc-note, #meta, .byline
+    { user-select: none; -webkit-user-select: none; }
+  .nh-row { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 0.15rem; }
+  .nh-lab { flex: 0 0 auto; min-width: 7rem; font-size: 0.6rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--faint); }
+  .nh-en { font-size: 0.88rem; font-variant: small-caps; letter-spacing: 0.14em; color: var(--ink-strong); }
+  .nh-of { font-size: 0.74rem; color: var(--faint); }
+  .nh-he.unnamed { font-family: Georgia, serif; font-size: 0.8rem; font-style: italic; color: var(--argaman-dim); }
+  .nh-row .title-row { margin: 0; }
+  /* the ledger's mark for a section, riding beside the coordinate pill */
+  .seg-row .v-he { font-size: 0.85rem; color: var(--shesh);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+
+  section.seg { margin: 0 0 1.35rem; }
+  /* An omission is drawn as a hole in the page, because that is what it is.
+     Muted rather than loud: it is not an error and not a warning, it is a
+     statement that this work is served in part and this is where the part
+     is missing. */
+  .omission { margin: 1.1rem 0 1.35rem; padding: .7rem .9rem; display: grid; gap: .28rem;
+    border-inline-start: 3px solid var(--gold-dim); }
+  .omission .om-mark { letter-spacing: .12em; color: var(--argaman-dim); }
+  .omission .om-what { font-size: .92em; color: var(--argaman-dim); }
+  .omission .om-why { font-size: .84em; font-style: italic; color: var(--argaman-dim); }
+  .seg-row { display: flex; align-items: baseline; gap: 0.55rem; margin-bottom: 0.25rem; direction: ltr; }
+  .vnum { font-size: 0.72rem; color: var(--ink-strong); border: 1px solid var(--gold-dim);
+    background: var(--bg); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
+  .vnum.at { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  .drift-chip { font-size: 0.68rem; color: var(--argaman-dim); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
+    padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
+  .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  /* A commentary is not a book of its own; it belongs to the section it
+     comments on. Turned on, it reads beneath the verse in the same word
+     blocks, a size down, so the base text stays the text. */
+  .c-inline { direction: rtl; text-align: right; margin: 0.15rem 0 0; padding: 0.35rem 0.5rem 0.2rem;
+    border-inline-end: 2px solid var(--shani-dim); border-radius: 0.4rem;
+    background: var(--bg); }
+  .c-inline .wb { margin: 0 0.14rem 0.45rem; }
+  .c-inline .w { font-size: 1.12rem; color: var(--c-word);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .c-inline .g { font-size: 0.6rem; max-width: 8em; }
+  .c-inline[hidden] { display: none; }
+  /* Hebrew on Hebrew: a dictionary's entry on the card, laid out like the
+     verse — a run of blocks, Hebrew over its English; a quoted line in a gold
+     box, because gold is line work and a quotation is a line drawn around
+     somebody else's words */
+  .hoh-slot:empty { display: none; }
+  /* the parts of a word nothing defines: blocks like any other, Hebrew over
+     its English, two witnesses stacked where they differ */
+  .parts-slot:empty { display: none; }
+  .parts { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.35rem; background: var(--bg);
+    border: 1px solid var(--line-c); border-radius: 0.6rem; }
+  .parts .r-label { margin: 0 0 0.2rem; }
+  .parts-say, .parts-src { font-size: 0.7rem; line-height: 1.45; color: var(--muted); margin: 0.2rem 0 0; direction: ltr; text-align: left; }
+  .parts-src { border-top: 1px solid var(--line-c); padding-top: 0.35rem; margin-top: 0.45rem; }
+  .parts-run { display: flex; flex-wrap: wrap; flex-direction: row-reverse; justify-content: flex-start;
+    gap: 0.1rem 0.5rem; margin: 0.5rem 0 0.1rem; }
+  .pb { display: inline-flex; flex-direction: column; align-items: center; gap: 0.08rem; margin-bottom: 0.4rem; }
+  .pw { font-size: 1.15rem; line-height: 1.3; color: var(--shani-ink); }
+  .prole { font-size: 0.52rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--faint); direction: ltr; }
+  .pen { font-size: 0.62rem; line-height: 1.25; color: var(--tekhelet-ink); direction: ltr; text-align: center; max-width: 8em; }
+  .pwit { font-style: normal; font-size: 0.52rem; letter-spacing: 0.08em; color: var(--faint); margin-inline-end: 0.2rem; }
+  body.en .parts-run { direction: ltr; flex-direction: row; }
+  /* the edition mark: a word the Leningrad codex spells otherwise wears a
+     dotted gold rule while the toggle asks for it — gold is line work */
+  body.ed-mark .wb[data-ld] .w { text-decoration: underline dotted var(--gold); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  .hoh { margin: 0.4rem 0 0; padding: 0.45rem 0.6rem 0.3rem; background: var(--bg);
+    border: 1px solid var(--line-c); border-radius: 0.6rem; max-height: 42vh; overflow: auto; }
+  .hoh .r-label { margin: 0 0 0.3rem; }
+  .hoh-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem; }
+  .hoh-hw { font-size: 1.3rem; line-height: 1.3; color: var(--shani-ink); }
+  .hoh-head .lic-chip.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  .hoh-held, .hoh-silent, .hoh-src { font-size: 0.72rem; line-height: 1.45; color: var(--muted); margin: 0.35rem 0 0; direction: ltr; text-align: left; }
+  .hoh-silent .hoh-hw { font-size: 1.05rem; }
+  /* v-volume-rule-v1 · how much commentary the corpus lane has indexed here.
+     A count, not an offer: no border, no chip, nothing that reads as pressable,
+     because nothing about it opens.
+
+     AND IT GIVES WAY FIRST. placeHud caps the card to the room beneath the
+     word and releases that cap when fitBands reports the bands can no longer
+     hold a row each — so every pixel of fixed prose on this card is a pixel
+     the controls may have to buy back by standing the card somewhere else.
+     A first draft of this panel took 134 of them in three paragraphs and cost
+     the card its place under the word on a 360x640 phone, which the overlaps
+     gate caught. It is one sentence now, and capped: the least important
+     thing on the card is the first thing to scroll. */
+  .vol { margin: 0.45rem 0 0; padding: 0.35rem 0 0; border-top: 1px solid var(--line-c);
+    direction: ltr; text-align: left; max-height: 4.2rem; overflow-y: auto; }
+  .vol-say { margin: 0; font-size: 0.72rem; line-height: 1.4; color: var(--muted); }
+  .vol-lead { color: var(--ink); }
+  .vol-n { font-variant-numeric: tabular-nums; color: var(--shani-ink); }
+  .hoh-run { position: relative; margin: 0.8rem 0 0.2rem; padding: 0.5rem 0.5rem 0.15rem; text-align: right; }
+  .hoh-quote { border: 1px solid var(--gold); border-radius: 0.6rem; }
+  .hoh-prose { border-inline-end: 2px solid var(--shani-dim); }
+  .hoh-ref { position: absolute; top: -0.55rem; left: 0.5rem; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); background: var(--bg); padding: 0 0.3rem; direction: ltr; }
+  .hoh-run .wb { margin: 0 0.14rem 0.45rem; }
+  .hoh-run .w { font-size: 1.05rem; }
+  .hoh-run .g { font-size: 0.58rem; max-width: 8em; }
+  .hoh-src { border-top: 1px solid var(--line-c); padding-top: 0.35rem; }
+  body.en .hoh-run { direction: ltr; text-align: left; }
+  .c-inline .lab { display: block; direction: ltr; text-align: left; font-size: 0.62rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.1rem; }
+  .c-inline .lab .lic-chip { text-transform: none; letter-spacing: 0.02em; }
+  /* Where the attachment came from, said in place. The card used to carry
+     this; the commentary reads here now, so the basis reads here too. */
+  .c-inline .c-att { display: block; direction: ltr; text-align: left; font-size: 0.64rem;
+    color: var(--faint); margin-top: 0.15rem; }
+  /* Held: in the record, not printed here. It is not an error and not a gap —
+     it is the page saying what it is holding and why, in the place the text
+     would have stood. */
+  .c-inline.c-held { direction: ltr; text-align: left; font-size: 0.74rem;
+    color: var(--argaman-dim); font-style: italic; }
+  body.en .c-inline { direction: ltr; text-align: left; }
+  body.en .c-inline .g { font-size: 0.86rem; max-width: 11em; }
+  body.en .c-inline .w { font-size: 0.92rem; }
+  /* A commentary opened in the line follows the reader it was opened in. It
+     was left running right to left in the English reader, so the verse above
+     it ran one way and the commentary under it ran the other — two directions
+     on one screen, from one setting. */
+  body.en .c-mark-text { direction: ltr; text-align: left; }
+  body.en .c-mark-text .g { font-size: 0.86rem; max-width: 11em; }
+  body.en .c-mark-text .w { font-size: 0.92rem; }
+  .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
+    margin: 0 0.16rem 0.55rem; cursor: pointer; }
+  .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
+  /* UNDER THE HAND THE LINE GOES GOLD, NOT THE LETTERS (the owner, 2026-10-16,
+     of a pressed word on a phone, where a tap leaves the word hovered: "you
+     made the entire hebrew word gold now thats not right"). Since the marks
+     wear the gold at rest and the letters laid over them take the word's
+     own color, a hover that turned the word gold turned the letters gold
+     with it. The hover keeps the ink and says itself by the line beneath. */
+  .wb:hover .w { border-bottom-color: var(--gold); }
+  /* A word the chain holds is printed as the chain has it and not touched. But
+     some of what it holds is not a word — the Miqra source's section markers
+     arrive as a run of markup with no break in it, and an unbreakable run wider
+     than the column pushed the whole page sideways, which is how a phone ends
+     up with the text off the left edge and dead space on the right. It breaks
+     where it must to stay in the column. Nothing is removed or rewritten: this
+     is where the line wraps, not what the line says. */
+  .wb.held { opacity: 0.45; cursor: default; max-width: 100%; }
+  .wb.held .w { overflow-wrap: anywhere; word-break: break-word; }
+  /* THE HELD WORD IS BOXED IN GOLD, THE WHOLE BLOCK — Hebrew and reading
+     together — and the card is that box projected forward: two gold lines
+     run from the box's far corners to the card's near corners, so the card
+     reads as the selection brought up close (owner, 2026-09-11, drawn on a
+     screenshot: "a big gold box around the entire selected"). Nothing is
+     filled and nothing changes color; the outline costs no layout. */
+  /* HEBREW AND ENGLISH ATTACHED (the owner, 2026-10-09): a word and its
+     reading share one cell of slightly darkened linen, so what belongs to
+     what is said by the cell and not by distance alone — on the English
+     reader a two-line reading had stood as far from its word as from its
+     neighbor. A maqaf run is one cell; a section mark is no word and has
+     none. The gold underline inside it still says how many words one card
+     covers, and a pair's bracket which half is selected. */
+  .he-text .wb, .he-text .wjoin { background: var(--cell-wash); border-radius: 0.4rem; padding: 0.08rem 0.24rem 0.16rem; }
+  .he-text .wjoin .wb, .he-text .wb.mark { background: none; padding: 0; border-radius: 0; }
+  /* the pressed cell is the darkest linen (the owner's rule, 2026-10-03) */
+  .he-text .wb.active, .he-text .wjoin.active { background: var(--press-wash); }
+  .wb.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
+  /* a maqaf run's card is the run's: the whole run is what stands open */
+  .wjoin.active { outline: 1.5px solid var(--gold); outline-offset: 3px; border-radius: 0.4rem; }
+  /* a pressed run is one pressed cell: its words keep their selected state
+     for the card, and wear no box of their own inside the cell's */
+  .wjoin.active .wb.active { outline: none; background: none; }
+  /* a named run: a license names these words as one thing. A thin blue rule
+     under each of its words, the reading's own color; open, the run's words
+     wear the selection together. */
+  /* A LINE ONLY UNDER WORDS ONE CARD JOINS (the owner, 2026-10-19: "lets
+     move to only underlining when it actually combines words / same as how
+     we do no blob if its a single 1:1, we do no underline if its a 1:1
+     (word:hud)"). A word that opens its own card alone draws no line under
+     it, at rest or under the hand: a ketiv-qere pair, which is one word in
+     two forms, and each word of a run that has no card of its own, alike. A
+     card that joins words (a maqaf compound, a named run, a span) keeps its
+     one line under the whole. The line keeps its room, unseen, so nothing
+     moves and a card's number sits where it sat. From 2026-10-03 every word
+     wore it ("i think underlining is nondistracting and can be added to
+     every word for now"). A word the page typed keeps its dashed mark,
+     which says that and is no card's line. */
+  .wb > .w { border-bottom: 1px solid var(--gold-dim); border-radius: 0; }
+  .he-text .wb:not(.wjoin .wb):not(.typed-here) > .w, .he-text .wb:not(.wjoin .wb):not(.typed-here):hover > .w,
+  .he-text .wjoin.apart .wb:not(.typed-here) > .w { border-bottom-color: transparent; }
+  .wjoin .wb > .w, .wb.mark > .w { border-bottom-color: transparent; }
+  /* a run with no card of its own (a pair inside it: each word its own card)
+     draws no line under the whole; each word keeps its own */
+  .wjoin.apart .wj-ink { border-bottom-color: transparent; }
+  .wjoin.apart .wb:not(.kq) > .w { border-bottom-color: var(--gold-dim); }
+  /* a named run reaching into a maqaf run (Judges 1:5, Adoni-bezek: its
+     first word is the second of et-Adoni) wears its own one-card line and
+     no second line under it; the word outside the name keeps its own (the
+     owner, 2026-10-08, read the two lines as a pair's mark) */
+  /* A RUN A LICENSE NAMES IS ONE CELL, AS A MAQAF RUN IS (the owner,
+     2026-10-09: "gold underline will indicate how many words are in a single
+     hud", and, of the strip of fused cells that stood here for a day, "id
+     really just make it the gold underline itself as a single unit across
+     the hebrew"). Its ink row wears the one-card line whole, in the run's
+     gold; a spacer stands where the text writes a space between its words.
+     A run too wide for the page wraps inside its cell rather than past it. */
+  .wjoin.lic .wj-ink { border-bottom: 1.5px solid var(--gold); }
+  /* OVER THE WORDS IN THE HEBREW READER (the owner, 2026-10-19, of a joined
+     card's line crossing its blob where the blob runs down from the letters
+     to the English: "put it as an overline, right"). The one-card line
+     stands on the letters' side away from the English: over them in the
+     Hebrew reader, where the English hangs below, and under them in the
+     English reader, where the letters are the card's foot and nothing runs
+     below them. Over, it is drawn as a shadow just outside the ink row's top
+     edge, in the card's own top padding, so it takes no room; the row's
+     bottom border keeps its room unseen. The card's numbers hang under it. */
+  body:not(.en) .he-text .wjoin > .wj-ink { border-bottom-color: transparent; box-shadow: 0 -1px 0 var(--gold-dim); }
+  body:not(.en) .he-text .wjoin.lic > .wj-ink { box-shadow: 0 -1.25px 0 var(--gold); }
+  body:not(.en) .he-text .wjoin.apart > .wj-ink { box-shadow: none; }
+  /* the space the text writes between a run's words: a real space (so a copy
+     of the line keeps it) held at a word gap's width inside the flex row,
+     which would drop a bare one */
+  .wjoin .wj-ink .wj-sp { display: inline-block; width: 0.45em; white-space: pre; overflow: hidden; }
+  .wjoin { max-width: 100%; }
+  .wjoin .wj-ink { flex-wrap: wrap; justify-content: center; }
+  .wjoin > .g.parts { flex-wrap: wrap; }
+  .wjoin.lic.active .wj-ink { border-bottom-color: var(--gold); }
+  .wb.active .w { background: none; }
+  .wb.mark.active .w { background: none; border-color: var(--gold); }
+  /* A word the reader has ruled on keeps a mark after the card closes. Without
+     it, closing the card left nothing to say which word had just been changed,
+     and the reader had to hold that in their head. It is a tint rather than a
+     border so nothing on the line moves when it appears. */
+  /* A word with its commentary standing open beneath it. */
+  /* Opening a commentary on a word is something the reader did, so the word
+     wears the selection, not the structure. */
+  .wb.c-open { border-radius: 0.25rem; }
+  /* A word the reader has ruled on keeps a mark after the card closes. That is
+     the point of it: the page holds the list of what has been worked so the
+     reader does not have to. But it kept that mark as the same filled blue box
+     that means "open right now", four percent lighter — so ruling on a second
+     word left two filled boxes on the line and the first one read as a
+     selection that had failed to clear. Nothing was stuck; two different
+     things were wearing one appearance.
+     A live state is filled. A remembered one is underlined. Same color,
+     because the ledger gives every one of these to the reader; different
+     weight, because only one of them is happening now. */
+  /* A ruling is marked with a tint and has to stay one. It was briefly changed
+     to an underline here, to separate the word standing open from the words
+     already worked — a real complaint, that both looked live. But the mark
+     being a tint is a rule with a check on it (check-ruled-mark-v1: "the mark
+     is a tint, not a border that moves the line"), and that check was not in
+     the container when the change was made, so nothing said so. The complaint
+     is answered by the difference in strength instead: the live word is more
+     than twice the tint of a word already ruled on, and carries the reading
+     color and underline on its own letters besides. */
+  /* NO MARK FOR A WORD THE READER RULED ON (the owner, 2026-10-03, on a
+     ruled reading underlined at the door: "no special treatments i hate that
+     stuff"). The ruling is still held and every place the form stands still
+     reads it; the word wears nothing a word left alone does not. The class
+     stays, because the page and its checks still ask which words were ruled. */
+  /* An occurrence written with a maqaf is one block and more than one W. The
+     block never splits; the W inside it light and open one at a time, and the
+     maqaf itself prints without opening, because it is not a W. */
+  .mq-open { cursor: pointer; }
+  .mq-open:hover, .mq-open.on { color: var(--sel); }
+  /* RULE 2 ON THE PAGE: A JOINED RUN IS ONE BREATH.
+     A maqaf joins its words into one breath and one accent, so they are drawn
+     touching — no space anywhere inside the run — with one rule under the whole
+     compound and a tick at each C0 boundary. The tick is what a gap used to be:
+     a reader still sees where one word ends and the next begins, without the
+     compound being pulled apart into separate words on the line.
+     The gap was not a margin. Every word block is a column — ink over reading —
+     and shrinks to the WIDER of the two, so a fifteen-pixel word under a sixty-
+     pixel reading sat centred in a sixty-pixel block and the ink of its
+     neighbours stood twenty pixels away. Inside a run the readings therefore
+     come out of the ink row and print once, under the run, joined as the reader
+     joins the parts of any one form. Each word keeps its own reading element,
+     hidden, because the export reads it there and a ruling repaints it there. */
+  .wjoin { white-space: nowrap; display: inline-flex; flex-direction: column;
+    align-items: center; vertical-align: top; margin: 0 0.16rem 0.55rem; }
+  .wjoin .wj-ink { display: inline-flex; align-items: flex-start;
+    border-bottom: 1px solid var(--gold-dim);
+    /* THE PIECES NEVER TURN AROUND. This row inherited its direction from
+       whatever container it landed in, so in the English reader a maqaf
+       compound drew its second piece first — the record's own order,
+       reversed, inside a single form. parts-direction-rule-v1 already says
+       the first part of a Hebrew row is the rightmost; it says nothing about
+       which reader is open, and neither does this. */
+    direction: rtl; }
+  .wjoin .wb { margin: 0; }
+  /* and the words of a run close up at the seam: each word's box carries a
+     little padding on both sides, which inside a run put twelve pixels
+     between the maqaf and the next letter — a gap the text does not write.
+     The seam sides lose it; the run's outer sides keep theirs. */
+  .wjoin .wj-ink > .wb:not(:last-child) > .w { padding-inline-end: 0; }
+  .wjoin .wj-ink > .wb + .wb > .w { padding-inline-start: 0; }
+  .wjoin .wb > .g { display: none; }
+  /* No line is drawn between the words of a run. One stood there, to show
+     two clickable words; the run is one card now, and the owner read the
+     line as an interruption of the ink (2026-09-25). The maqaf the text
+     writes is the only thing between them, as it is on the page. The ink
+     was never altered by the line — the checks hold it byte for byte — and
+     now nothing is drawn across it either. */
+  .wjoin > .g { display: block; text-align: center; }
+  /* A RUN'S PARTS STAND UNDER THEIR WORDS (the owner, 2026-10-09: "you tell
+     me which word means all and which word means who" — the parts were laid
+     left to right under Hebrew running right to left, so each stood above
+     the wrong word). The row runs in the Hebrew's direction, each part its
+     own column under its own word, the + between them, and the English of
+     a run is read from the Hebrew's side, inside the one card; nothing is
+     reordered. The cell grows to the row. */
+  .wjoin > .g.parts { display: flex; direction: rtl; justify-content: space-around; align-items: flex-start; gap: 0.35rem; width: max-content; max-width: 100%; }
+  /* a part ruled to a long reading wraps inside the run's cell, never past
+     the page (the run's line ran 573px on a 412px phone and the page
+     scrolled sideways, after a ruling and at first paint alike; one paint
+     path, 2026-10-17); a part that fits keeps its line */
+  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: normal; min-width: 0; overflow-wrap: anywhere; margin: 0; }
+  .wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); align-self: flex-start; }
+  /* THE TIE: a soft gold shape behind each word of a run, as wide as the
+     word at the letters, hugging their top, flowing down to sit around the
+     word's own English (the owner, 2026-10-09, concept 2 of the bridges:
+     "extend it right up over the hebrew"). Drawn behind the ink and under
+     the cell's glaze, so the letters stand on it; in the English reader it
+     rises from the word to the reading above it. */
+  .wjoin { position: relative; }
+  .wjoin > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+  .wjoin > .wj-ink, .wjoin > .g { position: relative; z-index: 1; }
+  .wb.tied { position: relative; }
+  /* a split reading: one column per piece, in the Hebrew's direction, each
+     piece read left to right in itself */
+  .g-pcs { display: inline-flex; direction: rtl; align-items: baseline; justify-content: center; white-space: nowrap; }
+  .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
+  .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
+  .g-pc.gap, .g-part.gap { display: inline-block; min-width: 0.55em; }   /* a hidden sign's place */
+  /* THE ENGLISH READER KEEPS ITS OWN ORDER (the owner, 2026-10-10, on the
+     first word of Genesis: "for hebrew reader it would be non zig zag. for
+     english reader it would be zig zag"). In the Hebrew reader a split
+     reading's pieces stand right to left, each under its own Hebrew, and
+     nothing crosses. In the English reader they keep the English order, and
+     each piece's blob crosses to its own Hebrew. The license chip rides
+     above the English there, so the crossing holds the ties alone, and a
+     line that can cross takes the height a gentle cross needs, no more. The
+     chip stays in the line's flow, so a word's cell still widens to hold it;
+     only a line made of its English and its chip is turned over, and a line
+     holding anything else keeps today's order. */
+  body.en .g-pcs { direction: ltr; }
+  body.en .g-pcs > * { order: var(--o, 0); }   /* the one hop (hopPossessive) */
+  /* A word whose English is split into pieces keeps every piece in sight.
+     Its row never wraps, because a tie runs to each piece, so the reading's
+     own width cap (.g, 11em, clipped) gives way to the row and the cell grows
+     to hold it. Under the cap it clipped "and + <to> the + darkness" at both
+     ends (Genesis 1:4), once every split word wore its blob (2026-10-10). */
+  .he-text > .wb > .g:has(> .g-pcs) { max-width: none; }
+  /* A ROW WIDER THAN THE TEXT'S COLUMN keeps its pieces side by side and
+     wraps the longest in its own column, in the stylesheet, so the page's
+     first paint and a ruling lay it alike (one paint path, 2026-10-17): the
+     cap stood in the ruling's script alone, and the same long reading laid
+     fresh at Genesis 1:2 ran 643px off the screen. The cap keys on the row,
+     not on the tie, so with blobs off a row is no longer cut at 11em. */
+  .he-text > .wb > .g > .g-pcs { display: flex; white-space: normal; max-width: 100%; }
+  .he-text > .wb > .g > .g-pcs > .g-pc { flex: none; }
+  .he-text > .wb > .g > .g-pcs > .g-pc.long { flex: 0 1 auto; white-space: normal; min-width: 0; overflow-wrap: anywhere; }
+  body.en .he-text > .wb > .g:not(:has(> :not(.g-lic, .g-pcs))) { display: flex; flex-direction: column-reverse; align-items: center; }
+  body.en .he-text .wjoin > .g.parts > .g-part:not(:has(> :not(.g-lic, .g-pcs))) { flex-direction: column-reverse; }
+  body.en .he-text > .wb > .g > .g-lic, body.en .he-text .wjoin > .g.parts > .g-part > .g-lic { margin-top: 0; margin-bottom: 3px; }
+  /* THE ROOM UNDER A TIED WORD KEYS ON THE TIE, NOT ON THE PIECES. A press
+     repaints the word's line, and for the 60 ms until its blob is drawn again
+     the pieces are gone: keyed on the pieces, the room went with them, the
+     card was placed under a block 12px short, and the block grew back under
+     it, over the Hebrew line (the overlaps gate, 2026-10-15, once every split
+     word wore its blob). The tie stays on through a repaint. */
+  /* THE SAME ROOM IN EVERY CELL (the owner, 2026-10-16, of a lone word beside
+     a chain in the English reader: "there doesnt seem to be any reason the
+     english would be heighted differently when both english and hebrew are
+     1 line each"), and that room none: the English stands right over its
+     Hebrew, as a run read whole stands (the owner, 2026-10-18, of "the
+     Jewish people": "that one is the only correct spacing"). It was 12px
+     under every English, the blob's room; a blob is drawn from the boxes as
+     they stand, so it closes up with them. The English rows stay level, and
+     the Hebrew rows. */
+  body.en .he-text > .wb > .g, body.en .he-text .wjoin > .g.parts { margin-bottom: 0; }
+  .wb.tied > svg.wj-tie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+  .wb.tied > .w, .wb.tied > .g { position: relative; z-index: 1; }
+  /* The English reader prints a reading ABOVE its ink (body.en .g order 1,
+     body.en .w order 2). A run's ink wrapper carries no order of its own, so
+     a joined word printed its reading BELOW its ink while every word beside
+     it printed above, and the eye met the readings out of the order the
+     corpus emitted them in. The wrapper takes the swap too. */
+  body.en .wjoin .wj-ink { order: 3; }
+  /* A MAQAF NEVER TURNS THE ENGLISH READER AROUND (the owner, 2026-10-14:
+     "i think the maqaf flip is happening everywhere"; "maqafs are like
+     reverse unos"; of ve-el-kol-asher (Joshua 1:16), "the middle maqaf would indeed just stay
+     in the middle so obviously joshua the son of nun in joshua 2:1 is how
+     it should read"; el-kol-yisrael (Deuteronomy 1:1) reads "to all Israel"). The English reader
+     lays the verse's words left to right in reading order; a chain or a
+     run kept its ink and its parts right to left inside that flow, so its
+     English read backwards ("Israel | all | to") and the eye met "did he
+     say | that | indeed?". In the English reader the run's English takes
+     the reader's direction and its ink stays as the scribes wrote it, right
+     to left with each maqaf between the words it joins, so the ties cross
+     as they do inside one word ("in + beginning" over bereshit (Genesis 1:1)): the English
+     moves, the Hebrew never does. The Hebrew reader is as it was
+     (parts-direction-rule-v1). A preview for the owner, ?chain=ltr, lays
+     the chain's words left to right too, each under its English; it puts
+     every maqaf at the left edge of its word, one slot from where the text
+     writes it. */
+  body.en .wjoin > .g.parts { direction: ltr; }
+  body.en[data-chain="ltr"] .wjoin .wj-ink { direction: ltr; }
+  .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
+    margin-inline-start: 0.1em; cursor: help; }
+  /* the halves of a pair hover on their own, so the pair as a whole takes no
+     hover line; held, it keeps its ink like any word, and a ketiv-qere pair
+     keeps the one-card underline below */
+  .wb.multi:hover .w, .wb.multi.active .w { color: var(--shani-ink); }
+  .wb.multi:not(.kq):hover .w { border-bottom-color: transparent; }
+  .wb.multi.active:not(.kq) .w { border-bottom: 1px dashed transparent; }
+  .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
+  .wr:hover { border-bottom-color: var(--gold); }
+  /* AN UNDERLINE IS ONLY EVER ON THE HEBREW, AND MEANS ONE CARD HERE (the
+     owner, 2026-10-03): every word, thin and dim (above, with the runs); a
+     maqaf run or a span across words, one line under the whole; a ketiv-qere
+     pair, one line under both halves, its read half bracketed. All gold. Nothing else on the page is underlined: not a
+     reading, not a word with a commentary open, not a variant site, not a
+     word carrying a source's mark. */
+  /* The half of a source-marked pair that the shown English is reading from.
+     An underline in the selection role, not a new color: it marks provenance
+     of the gloss, never a choice about the text — both halves keep printing
+     exactly as the source wrote them, and text-decoration moves no glyph. */
+  /* KETIV AND QERE (the owner, 2026-10-03): both halves open one card, so the
+     pair wears the one-card underline under both; the half the English is
+     reading from wears a gold bracket above it. All gold, all on the Hebrew.
+     The bracket is drawn by ::after: a half's ::before carries its letters
+     when its marks are gold (EVERY MASORETIC MARK GOLD). */
+  .wb.kq > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }
+  .wb.kq .wr { position: relative; }
+  .wb.kq .wr.backs-en::after { content: ""; position: absolute; left: 0.05em; right: 0.05em; top: -0.12em;
+    height: 0.22em; border: 1.5px solid var(--gold); border-bottom: none; border-radius: 0.12em 0.12em 0 0; pointer-events: none; }
+  .wb.kq .wr.backs-en { text-decoration: none; text-decoration-color: var(--gold);
+    text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  /* ...and the same mark on the English it backs: two underlines in the same
+     color, stacked, are the two ends of one claim — this reading, that half.
+     The connector is the pair of marks, not a drawn line; it costs no ink the
+     eye must climb over and moves nothing. Only pairs wear it: a plain word's
+     gloss has one possible source, so a mark would say nothing. */
+  /* A variant site: the source's own mark is already in the carrier; the
+     dotted line only says a record stands behind it. Structure's color,
+     because the mark is the text's own apparatus, not a reader's act. */
+
+  .mq { color: var(--shani-dim); }
+  /* The reading under a word is shown whole. It used to run one line and end in
+     an ellipsis, which was the honest thing to do when the average reading was
+     45 characters and the tail ran to 435 — the page could not have carried
+     them. Under the provider declarations the average is 23, so the tail is
+     gone and the ellipsis has nothing left to hide. It wraps in a narrow
+     column instead of widening the row, so a long reading costs its own word a
+     few lines rather than costing the whole line its shape. The height is
+     settled at paint and never changes afterwards: nothing here moves while
+     the reader is reading. */
+  /* The reading stands centred under its own word. It used to inherit the
+     column's alignment, so in the Hebrew reader a reading long enough to take
+     two lines set both of them hard right — under the right-hand edge of its
+     word and up against the word beside it, which reads as a gap in the wrong
+     place. It belongs under the word it is a reading of. */
+  .g { display: block; order: 2; direction: ltr; text-align: center;
+    font: 0.66rem/1.25 Georgia, serif; color: var(--tekhelet);
+    letter-spacing: 0.02em; margin-top: 0.06rem; max-width: 11em;
+    white-space: normal; overflow-wrap: anywhere; overflow: hidden; }
+  /* 4 · A word the store has no reading for still holds the line the reading
+     would have stood on. Without it the block is one line shorter than its
+     neighbours, and in the English reader — where the reading leads and the
+     Hebrew rides beneath — the Hebrew climbs into the reading's row and the
+     line stops being a line. Nothing is printed in the space; it is kept. */
+  .g.bare { min-height: 1.25em; }
+  /* the held word's reading is inside the block's box and wears none of its own */
+  .wb.active .g { background: none; }
+
+  /* English reader (LTR): the gloss line leads, the Hebrew rides beneath. */
+  /* THE LINE'S DIRECTION IS A READER MODE. THE PIECES OF A WORD ARE NOT.
+     The owner, 2026-09-08: "i think entire word order can be justified, but i
+     dont think theres a justification for maqaf order going opposite."
+     So this stands: in the English reader the verse is laid out left to right,
+     word after word, because that mode exists for a reader who reads English
+     and the order of whole words is a way of presenting them. What may never
+     follow the mode is the order of the parts INSIDE one word — a maqaf
+     compound is one form the record wrote in one order, and drawing its pieces
+     backwards is not presentation, it is a different word. The rule for that
+     is below, on .wj-ink, and it does not ask what mode the page is in. */
+  body.en .he-text { direction: ltr; text-align: left; }
+  /* In the English reader the gloss is the text, not a label on it. It clamped
+     at two lines for the same reason the Hebrew-side one clipped at one, and
+     it comes off for the same reason: there is no longer a tail to hide. */
+  /* overflow: hidden, as on the Hebrew side. It was visible here on the
+     reasoning that the reading is the text in this reader and should not be
+     hidden — but the box is still held at the height it painted at, so a longer
+     reading did not extend the box, it spilled out of it and printed over the
+     Hebrew beneath. Nothing on this page may move while the reader is reading,
+     so the box cannot grow; what it can do is stop at its own edge. The whole
+     reading is on the card and on the line's own title. */
+  /* ONE LINE, TWO DIRECTIONS. The English reader sets the same blocks as the
+     Hebrew reader: the reading at the same size under the same 11em cap, and
+     the Hebrew at the line's own size. It set the reading at 0.98rem under a
+     12em cap and shrank the Hebrew to 1.02rem, so every block stood wider and
+     a phone line held three words where the Hebrew reader held four (owner,
+     2026-10-03). Only the direction of the line and the order inside a block
+     follow the reader now, so a line holds the same words in both. */
+  body.en .g { order: 1; color: var(--tekhelet); margin-top: 0;
+    white-space: normal; display: block; overflow: hidden; }
+  body.en .w { order: 2; color: var(--en-word); margin-top: 0.04rem; }
+  /* THE HEBREW LINES UP IN THE ENGLISH READER TOO (the owner, 2026-10-08,
+     Jonah 1:3: a two-line reading above one word pushed its Hebrew below its
+     neighbors'). The boxes stand on a common foot: the Hebrew, last in each
+     box, keeps one line, and a reading that needs two lines grows upward
+     from its own word, so what belongs to what stays plain by nearness. */
+  body.en .wb, body.en .wjoin { vertical-align: bottom; }
+  body.en .wb.active .g { background: none; }
+
+  #searchBox { margin-top: 0.75rem; }
+  #searchIn { width: 100%; box-sizing: border-box; font: inherit; font-size: 1rem; padding: 0.5rem 0.9rem; border: 1px solid var(--gold); border-radius: 1.4rem; background: var(--bg); color: var(--ink); }
+  #searchIn:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; }
+  #searchOut { margin-top: 0.4rem; border: 1px solid var(--line); border-radius: 0.8rem; background: var(--bg); padding: 0.4rem 0.7rem; max-height: 60vh; overflow: auto; }
+  #searchOut .lab { font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--argaman); margin: 0.35rem 0 0.15rem; }
+  #searchOut button.hit { all: unset; cursor: pointer; display: grid; grid-template-columns: auto 1fr; gap: 0.1rem 0.7rem; align-items: baseline; padding: 0.35rem 0; border-bottom: 1px dotted var(--line); width: 100%; box-sizing: border-box; }
+  #searchOut button.hit:focus-visible, #searchOut button.more:focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  #searchOut .he { font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; color: var(--shani); font-size: 1.25rem; direction: rtl; }
+  #searchOut .meta { font-size: 0.78rem; color: var(--muted); }
+  #searchOut .rd { color: var(--tekhelet); font-size: 0.85rem; grid-column: 2; }
+  #searchOut .note { font-size: 0.78rem; color: var(--muted); font-style: italic; padding: 0.3rem 0; margin: 0; }
+  #searchOut button.more { all: unset; cursor: pointer; display: block; margin: 0.4rem 0 0.2rem; font-size: 0.8rem; color: var(--argaman); }
+  #searchOut button.more::after { content: " \25BE"; color: var(--gold-dim); }
+  #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
+  /* the rail: the page's toggles as one control block (see the header) */
+  /* the cloth shows through it: the panel's lightest tone stood out as the
+     brightest thing on the page (the owner, 2026-10-03: "so bright white"),
+     so it is the ground itself, veiled at a little over half */
+  .rail { max-width: 62rem; margin: 0.6rem 0 0.2rem; border: 1px solid var(--line); border-radius: 0.6rem;
+    background: rgba(235, 222, 195, 0.55); padding: 0.45rem 0.7rem; }
+  .rail > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.6rem; }
+  .rail > summary::-webkit-details-marker { display: none; }
+  .rail .k { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+  .rail .now { font-size: 0.8rem; color: var(--ink); display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .rail .now b { font-weight: normal; color: var(--sel); font-size: 0.68rem; letter-spacing: 0.06em;
+    border: 1px solid var(--line); border-radius: 999px; padding: 0.12rem 0.6rem; white-space: nowrap; }
+  .rail .now b.still { color: var(--muted); border-style: dotted; }
+  .rail .now b[hidden] { display: none; }
+  .rail > summary .k { display: none; }
+  .rail .now i { color: var(--faint); font-style: normal; padding: 0 0.2rem; }
+  .rail .row { display: grid; grid-template-columns: 6.2rem 1fr; gap: 0.35rem 0.6rem; align-items: baseline;
+    padding: 0.42rem 0 0; margin-top: 0.42rem; border-top: 1px dotted var(--chip-line); }
+  .rail .row .lab { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .rail .row .why { grid-column: 2; font-size: 0.66rem; color: var(--faint); font-style: italic; margin-top: -0.1rem; }
+  .rail .row .def-order { margin: 0; }
+  .rail .row.dead .lab { color: var(--faint); }
+  .rail .voice { display: block; margin-top: 0.12rem; font-size: 0.54rem; letter-spacing: 0.08em;
+    text-transform: none; color: var(--faint); font-style: italic; }
+  /* EACH VOICE IN ITS OWN CHANNEL, which the colour contract already names:
+     a source's words are someone else's, so tekhelet; the manuscripts are the
+     corpus, so tola'at shani; and what this project says is the page's own
+     ink, which is argaman and the unmarked case. Gold is not a voice — it is
+     the frame around one — so no tag takes it. */
+  .rail .row[data-voice="claim"] .voice { color: var(--ink); font-style: normal; }
+  .rail .row[data-voice="them"] .voice { color: var(--tekhelet-ink); font-style: normal; }
+  .rail .row[data-voice="text"] .voice { color: var(--shani-ink); font-style: normal; }
+  /* THE SOURCES ROW — a folded list, one source per line. The switch is a
+     box on the left because that is where a reader looks to see what is on;
+     the name has the whole line, because a source whose name is cut at
+     thirty characters is a source nobody can weigh. */
+  /* the fold every switch but the sources waits under, closed until it is
+     fleshed out; drawn like the sources' own fold so a reader learns one thing */
+  .rail .more-switches { margin: 0.7rem 0 0; padding-top: 0.5rem; border-top: 1px solid var(--line); }
+  .rail .more-switches > summary { list-style: none; cursor: pointer; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.22rem 0.5rem; width: fit-content; }
+  .rail .more-switches > summary::-webkit-details-marker { display: none; }
+  .rail .more-switches > summary::after { content: " \25be"; color: var(--faint); }
+  .rail .more-switches[open] > summary::after { content: " \25b4"; }
+  .rail .more-switches > summary:hover { color: var(--ink); border-color: var(--gold); }
+  .rail .more-switches > .row:first-of-type { margin-top: 0.5rem; }
+  .rail .src-fold { grid-column: 1 / -1; margin: 0; }
+  .rail .src-fold > summary { list-style: none; cursor: pointer; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 0.5rem; padding: 0.22rem 0.5rem;
+    width: fit-content; }
+  .rail .src-fold > summary::-webkit-details-marker { display: none; }
+  .rail .src-fold > summary::after { content: " \25be"; color: var(--faint); }
+  .rail .src-fold[open] > summary::after { content: " \25b4"; }
+  .rail .src-fold > summary:hover { color: var(--ink); border-color: var(--gold); }
+  .rail .def-order.src-list { display: block; margin: 0.4rem 0 0; max-width: 52rem; }
+  /* the chooser: three words, one pressed — the pressed-cell rule, its
+     letters purple and bold, never a purple fill (the owner, 2026-10-03:
+     "idk about purple fill, id avoid that / id keep purple as text") */
+  .rail .shelve-by { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 0.45rem; font-size: 0.64rem; color: var(--muted); }
+  .rail .shelve-by > span { margin-right: 0.15rem; }
+  .rail .shelve-opt { font: inherit; font-size: 0.68rem; padding: 0.16rem 0.55rem; border: 1px solid var(--line);
+    border-radius: 0.5rem; background: none; color: var(--ink); cursor: pointer; }
+  .rail .shelve-opt:hover { border-color: var(--gold); }
+  .rail .shelve-opt[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  /* a shelf: its switch, its name, its count, then its strip of chips */
+  .rail .shelf { border-top: 1px solid var(--line); padding: 0.4rem 0 0.45rem; }
+  .rail .shelf:first-child { border-top: none; padding-top: 0.1rem; }
+  .rail .shelf-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.2rem 0.5rem; margin: 0 0 0.35rem; font-size: 0.78rem; }
+  .rail .shelf-title { font-weight: 600; color: var(--ink-strong); }
+  .rail .shelf-count { font-size: 0.64rem; color: var(--muted); }
+  .rail .shelf.off .shelf-title { color: var(--faint); }
+  /* THE SHELF SWITCH. A track and a knob: on, the knob is purple at the
+     right on the pressed cell's darker linen inside its gold, never a track
+     filled with a color (the owner, 2026-10-03: "if we do what about a darker
+     linen even"); off, a plain
+     knob at the left on the bare track; a dashed track with the knob at
+     center when the chips disagree. Gold stays line-work here as everywhere
+     (data/color-contract-v1.json). */
+  .rail .shelf-sw { position: relative; width: 1.9rem; height: 1.05rem; flex: 0 0 1.9rem; padding: 0;
+    border: 1px solid var(--line); border-radius: 0.55rem; background: none; cursor: pointer; font-size: 0; }
+  .rail .shelf-sw::after { content: ""; position: absolute; top: 0.1rem; left: 0.1rem; width: 0.75rem; height: 0.75rem;
+    border-radius: 50%; background: none; box-shadow: inset 0 0 0 1.5px var(--gold-dim); transition: left 0.12s; }
+  .rail .shelf-sw[aria-checked="true"] { background: var(--press-wash); border-color: var(--gold); }
+  .rail .shelf-sw[aria-checked="true"]::after { left: 0.95rem; background: var(--sel); box-shadow: none; }
+  .rail .shelf-sw[aria-checked="mixed"] { border-color: var(--gold); border-style: dashed; }
+  .rail .shelf-sw[aria-checked="mixed"]::after { left: 0.52rem; background: var(--muted); box-shadow: none; }
+  .rail .shelf-sw:hover { border-color: var(--gold); }
+  /* the strip: chips wrapping, each a box and a short name */
+  .rail .src-strip { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .rail .src-row { display: inline-flex; align-items: center; gap: 0.3rem; min-height: 1.65rem; box-sizing: border-box;
+    padding: 0.05rem 0.5rem 0.05rem 0.4rem; border: 1px solid var(--line); border-radius: 1rem; }
+  .rail .src-row.off { border-color: var(--line); }
+  /* the box: the switch, and nothing else */
+  .rail .def-order.src-list .dfp { width: 0.92rem; height: 0.92rem; margin-top: 0; padding: 0; flex: 0 0 0.92rem;
+    border: 1px solid var(--line); border-radius: 0.2rem; background: none; cursor: pointer;
+    font-size: 0; letter-spacing: 0; }
+  /* ON IS DRAWN, NEVER FILLED. This box used to take a gold ground when it
+     was on, and a gold ground is the one thing gold may not be: the contract
+     (data/color-contract-v1.json, structure) says gold is line work only —
+     rules, borders, boxes, never a surface and never ink at rest. So the
+     check is two borders turned forty-two degrees, which is thread, and the
+     box keeps its ground. check-color-channels-v1 caught the fill. */
+  .rail .def-order.src-list .dfp.on { border-color: var(--sel); }
+  .rail .def-order.src-list .dfp.on::after { content: ""; display: block;
+    width: 0.24rem; height: 0.5rem; margin: 0.03rem auto 0; border: solid var(--sel);
+    border-width: 0 1.5px 1.5px 0; transform: rotate(42deg); }
+  .rail .def-order.src-list .dfp:hover { border-color: var(--sel); }
+  /* the panel: the name, what the switch costs, and a press to open it */
+  .rail .src-open { display: inline-flex; align-items: center; gap: 0.3rem; text-align: left; font: inherit;
+    font-size: 0.72rem; color: var(--ink); background: none; border: none; padding: 0; cursor: pointer; white-space: nowrap; }
+  .rail .src-tag { font-style: normal; font-size: 0.56rem; color: var(--shani-ink); border: 1px solid var(--shani-dim);
+    border-radius: 0.5rem; padding: 0 0.3rem; }
+  .rail .src-open::after { content: " \25be"; color: var(--faint); font-size: 0.7rem; }
+  .rail .src-open[aria-expanded="true"]::after { content: " \25b4"; color: var(--sel); }
+  .rail .src-open:hover .src-name { color: var(--sel); }
+  .rail .src-name { line-height: 1.32; }
+  .rail .src-row.off .src-name { color: var(--faint); text-decoration: line-through; text-decoration-color: var(--line); }
+  .rail .src-cost { display: block; font-style: normal; font-size: 0.64rem; color: var(--faint); }
+  .rail .shelf .decl { margin: 0.35rem 0 0.1rem; }
+  /* THE SOURCE'S OWN DECLARATIONS — the branch that opens under a source
+     chip. Gold line-work only; the source's own strings carry the reading
+     ink, because they are the source speaking, not this project. */
+  .rail .decl { grid-column: 1 / -1; margin: 0.35rem 0 0.2rem; padding: 0.45rem 0.6rem;
+    border: 1px solid var(--line); border-radius: 0.5rem; max-width: 52rem; }
+  .rail .decl-lead { margin: 0 0 0.4rem; font-size: 0.66rem; color: var(--muted); font-style: italic; }
+  .rail .decl-branch { margin: 0 0 0.5rem; padding-left: 0.5rem; border-left: 1px solid var(--line);
+    display: grid; grid-template-columns: 0.92rem 1fr; gap: 0 0.45rem; align-items: start; }
+  .rail .decl-branch > :not(.decl-bx) { grid-column: 2; }
+  /* the expression's own box. Same box as a source's, so a reader learns one
+     control: drawn on every line, live where the source declares the
+     expression over every record it has, and disabled with its reason where
+     switching it alone would need a per-row tag nothing carries yet. */
+  .rail .decl-bx { grid-column: 1; grid-row: 1; width: 0.82rem; height: 0.82rem; margin-top: 0.16rem;
+    padding: 0; border: 1px solid var(--line); border-radius: 0.2rem; background: none;
+    cursor: pointer; font-size: 0; letter-spacing: 0; }
+  .rail .decl-bx[aria-pressed="true"]:not(:disabled) { border-color: var(--sel); }
+  .rail .decl-bx[aria-pressed="true"]::after { content: ""; display: block; width: 0.22rem; height: 0.44rem;
+    margin: 0.02rem auto 0; border: solid var(--sel); border-width: 0 1.5px 1.5px 0; transform: rotate(42deg); }
+  .rail .decl-bx:disabled { border-color: var(--line); cursor: default; }
+  .rail .decl-bx:disabled::after { border-color: var(--line); }
+  .rail .decl-branch:last-child { margin-bottom: 0; }
+  .rail .decl-branch[data-klass] { opacity: 0.82; }
+  .rail .decl-aspect { margin: 0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .rail .decl-aspect i { font-style: normal; letter-spacing: 0; text-transform: none; color: var(--faint); }
+  .rail .decl-aspect i.decl-work { font-size: 0.6rem; }
+  .rail .decl-says { margin: 0; font-size: 0.74rem; color: var(--tekhelet); line-height: 1.5; }
+  .rail .decl-lead-in { color: var(--ink); }
+  .rail .decl-more { font: inherit; font-size: 0.66rem; color: var(--faint); background: none;
+    border: none; border-bottom: 1px solid var(--line); padding: 0; cursor: pointer; }
+  .rail .decl-more:hover { color: var(--ink); border-bottom-color: var(--gold); }
+  .rail .decl-head { margin: 0.5rem 0 0.3rem; font-size: 0.6rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); }
+  .rail .decl-where-fold { margin: 0.06rem 0 0; }
+  .rail .decl-where-fold > summary { list-style: none; cursor: pointer; font-size: 0.6rem; color: var(--faint); width: fit-content; }
+  .rail .decl-where-fold > summary::-webkit-details-marker { display: none; }
+  .rail .decl-where-fold > summary:hover { color: var(--ink); }
+  .rail .decl-v i { font-style: normal; color: var(--faint); font-size: 0.66rem; padding-left: 0.14rem; }
+  .rail .decl-where { margin: 0; font-size: 0.62rem; color: var(--faint); word-break: break-word; }
+  .rail .decl-reach { margin: 0.12rem 0 0; font-size: 0.64rem; color: var(--faint); line-height: 1.45; }
+  .rail .decl-reach[data-reach="source"] { color: var(--muted); }
+  .rail .decl-reach-head { margin: 0.1rem 0 0.55rem; color: var(--muted); font-size: 0.66rem; }
+  .rail .decl-head i { font-style: normal; color: var(--faint); font-weight: 400; }
+  .rail .decl-partial { margin: 0.1rem 0 0; font-size: 0.62rem; color: var(--muted); font-style: italic; }
+  .rail .decl-silent, .rail .decl-none { margin: 0.35rem 0 0; font-size: 0.64rem; color: var(--faint); font-style: italic; }
+  .rail .def-order .declp { font: inherit; font-size: 0.6rem; letter-spacing: 0.04em;
+    color: var(--faint); background: none; border: none; border-bottom: 1px solid var(--line);
+    border-radius: 0; padding: 0 0 0.04rem; cursor: pointer; }
+  .rail .def-order .declp::after { content: " \25be"; }
+  .rail .def-order .declp[aria-expanded="true"]::after { content: " \25b4"; }
+  .rail .def-order .declp:hover { color: var(--ink); border-bottom-color: var(--gold); }
+  .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-bottom-color: var(--sel-dim); }
+  @media (max-width: 30rem) { .rail .row { grid-template-columns: 1fr; } .rail .row .why { grid-column: 1; } }
+  /* Which way the words run, and nothing else. The two readers differ in the
+     direction of the flow, so that is what is said under them. */
+  .mode-pick { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+  .mode-dir { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--faint); max-width: 10.5rem; text-align: center; }
+  .mode-btn, .blob-btn { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
+    border-radius: 999px; padding: 0.32rem 1.15rem; font: inherit; font-size: 0.86rem; cursor: pointer; }
+  .mode-btn.on, .blob-btn.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  /* pressed, opened, armed: the selection is worn bold */
+  .blob-btn:disabled { opacity: 0.5; cursor: default; }
+  .mode-btn.on, .blob-btn.on, #hud .def-order .dfp.on, #modeRow .def-order .dfp.on, .rail .def-order .dfp.on,
+  .rail .now b, .xp.armed, .vnum.at, #toc .chs a.on, .c-bar[aria-expanded="true"],
+  .c-mark[aria-expanded="true"], .hoh-head .lic-chip.on, .rail .decl-bx[aria-pressed="true"] { font-weight: 700; }
+
+  /* The HUD floats. The Hebrew never moves — law of the house. */
+  /* A card that always carries a whole record needs room for one; 55vh put
+     the source and its license below the fold on a phone. */
+  /* overflow-y: auto, not hidden. Every band on this card has a floor, and on a
+     window short enough that the floors themselves do not fit, hidden would
+     have cut the bottom off — which is the source line, the license, the one
+     thing here that is not the reader's to lose. Scrolling puts it below the
+     fold; hiding loses it. At any ordinary height nothing scrolls, because
+     nothing has to. */
+  #hud { position: fixed; z-index: 70; max-width: 23rem; width: min(23rem, 92vw); max-height: min(84vh, 50rem);
+    display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
+    background: var(--bg); border: 1px solid var(--sel-dim); border-radius: 0.7rem;
+    padding: 0.85rem 1.05rem; box-shadow: var(--shadow-card); }
+  /* what scrolls, and what does not */
+  /* The card is a stack of bands, and each keeps its own share.
+     One region that scrolled as a whole meant whichever band came first could
+     spend the entire card: eight divisions took three rows of pills, the block
+     row took a fourth, and every selectable reading was below the fold on a
+     card that had just opened. A reader who cannot see one thing to press has
+     been handed a card that does nothing.
+     So each band is bounded and scrolls inside itself, and the readings — the
+     thing the reader came to press — take what is left and never less than two
+     rows. Nothing is dropped to achieve it: every division, every block and
+     every reading is in its band, whole and reachable. */
+  /* The rows region shrinks; what it must never do is shrink below the floors
+     of the bands inside it, because a band that overflows here is clipped at
+     this edge and its pills end up behind the record — present, on screen, and
+     dead to a finger. It is held off that by arithmetic rather than by a
+     keyword: the bands beside the readings are capped at a fixed height, the
+     record is capped at a fraction of the window, and the readings' floor is a
+     single row — so what is left for the readings is never less than the row
+     they are owed. (min-content is the wrong keyword here: a wrapping row's
+     min-content height is its height at its narrowest, which for two hundred
+     pills is enormous, and the card scrolled at every size.) */
+  #hud .rows { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column;
+    overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; }
+  /* THE BANDS' REGION SCROLLS, THE PAGE DOES NOT. When the room under a word
+     could not seat every band, the card used to give its height back — grow
+     tall, come off its cap — and the placement answered by scrolling the
+     document to make room, so the word moved out from under the finger that
+     pressed it. And when it did fit, a division band squeezed to a single row
+     was a selector too small to select with. Both were the same mistake: the
+     card treating its own height as the only thing that could give. It can
+     scroll. One region, one gesture, in place. The record and its source are
+     siblings of this region, not inside it, so they never scroll away. */
+  /* overflow: hidden on the band itself, so a band can never paint outside its
+     own share. Without it a pill box whose floor was taller than the band's
+     rendered straight over the record below and the reader pressed the record
+     instead of the reading — the pill was there, on screen, and dead. */
+  #hud .band { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  #hud .band > .r-label { flex: 0 0 auto; }
+  /* the last thing a card gives up on a window too short for its bands: the
+     bands' own labels, so the pills stand unlabelled but stand */
+  #hud .rows.tight .band > .r-label { display: none; }
+  /* except the readings' own: it is the one that says the row scrolls */
+  #hud .rows.tight .band.b-read > .r-label { display: block; }
+  /* the cue's room is always kept and only its ink comes and goes, so saying
+     it never moves a card already fitted */
+  #hud .band.b-read > .r-label::after { content: " \00b7  scroll \2193"; color: var(--link); visibility: hidden; }
+  #hud .band.b-read > .r-label.more::after { visibility: visible; }
+  /* and after the labels, the prose around them: the bands' own notes ("2 of
+     301 records withheld…") and the reading's label and how-it-was-chosen line.
+     On a window 440px tall a run's three bands needed 122px of a 73px region,
+     and with only the labels gone the readings still stood below it, every
+     pill present and none pressable. The reading itself (.v) stays, and the
+     sources row still says what is switched off. The head's explainer under a
+     large or small letter goes too; the line saying which letter stays. */
+  #hud.tight .rows .band > .kq-role, #hud.tight .rows .band > .r-piece, #hud.tight .r-now .k, #hud.tight .r-now .n,
+  #hud.tight .head .kq-key { display: none; }
+  /* overflow-x hidden as well as overflow-y auto: setting one axis to auto makes
+     the other auto too, and a horizontal scrollbar nobody asked for took nine
+     pixels off the height — so a box given exactly three rows had room to show
+     two and a sliver, and the sliver was a pill cut in half. */
+  #hud .band > .s-pills, #hud .band > .r-pills { overflow-y: auto; overflow-x: hidden; min-height: 0; }
+  /* The structural bands do not shrink. Letting them was the same mistake in a
+     new place: a band whose height is decided by what its siblings weigh gets
+     squeezed to nothing by the one carrying two hundred readings, and a reader
+     could not press a division or a block at all. Their size is decided here
+     and nowhere else — a row and a half of pills, then they scroll. */
+  /* The floor goes on the box that holds the pressable things, not on the band
+     around it: a band held at a minimum whose pill box was still free to shrink
+     gave a row of half-cut pills and nothing to press. One whole row always
+     stands, a row and a half is the most either takes, and the rest scrolls. */
+  /* Every band takes exactly what it is given — no growing into slack, no
+     shrinking to make room. The heights are handed out above, in whole rows,
+     and a band that could still shrink afterwards undid that: a box given
+     three rows sat in a band nine pixels shorter and cut the third one in
+     half. */
+  #hud .b-chain, #hud .b-chain-cell, #hud .b-cut, #hud .b-cell, #hud .b-read { flex: 0 0 auto; min-height: 0; }
+  /* And the record yields before any of them does. It has a floor of its own —
+     the source line plus a line of the definition — so yielding never costs the
+     license, which is the one thing on this card that is not the reader's to
+     lose. Below that floor the provenance goes; the record does not. */
+  #hud .prov { flex: 0 1 auto; overflow: hidden; }
+  /* The D is the foundational record and it is always on the card. How much of
+     the card it takes is not the part that is foundational.
+     The old cap was `max-height: 58%`, and it never bound anything: a
+     percentage height resolves against a container with a definite height, and
+     this card has only a maximum, so the cap computed to none and one long
+     record took 91% of the card — the readings, the divisions and the source
+     all pushed out by a single definition. So the bound is a length, which
+     always resolves; the record's text scrolls inside it; and the source line
+     is pinned under it rather than scrolling with it. The reader's law is that
+     a selected reading always shows one whole D with its M, and pinning the M
+     is how that holds however long the D runs. */
+  /* 0 0, not 0 1: a shrinkable D slot loses its share to whichever sibling has
+     the bigger content, and a form with two hundred readings has a rows region
+     thousands of pixels tall — it took nearly all the shrink and squeezed the
+     source line out of the bottom of a slot that was only 7% of the card. The
+     rows region is the one that scrolls, so it is the one that gives. */
+  /* No floor at all, and none is needed once the slot does not shrink: it takes
+     the smaller of what it holds and its cap, and inside it the source line is
+     the part that never gives. min-content was tried here and is a trap — a
+     block of text's min-content height is its height at its narrowest, so the
+     floor came out at 365px on a card capped at 221 and a min beats a max. The
+     same keyword had already lied once, in the rows region. */
+  /* 0 0, not 0 1. Shrink is handed out in proportion to how much content each
+     sibling has, and the rows region carries thousands of pixels of pills — so
+     when the card was short both it and the record were driven to their floors
+     together, and the record's floor cut the source line off. The rows region
+     scrolls inside itself; it is the one that can afford to give, so it gives
+     all of it. What bounds the record is its cap, not its neighbours. */
+  /* One arrangement at every height: the record and its source share one
+     scroll, and the source line sticks to the bottom of it. This used to be
+     the short-screen arrangement only, while taller screens got a flex
+     column that clipped — and a real phone's font metrics found the seam
+     between the two and lost the record entirely, foot standing on nothing.
+     The record's floor is three lines, not one: a floor of one line is
+     clipping wearing a scrollbar's clothes. */
+  /* and its resting cap is a quarter of the window, not a third: a record that
+     took a third left the readings a single row on a tall card (the owner,
+     2026-10-03: "if the D+M cards get too big pixel wise since theyre locked
+     the actual R pills can be collapsed nearly entirely. maybe not such a
+     strict lock"). The whole record is one press away on its own control. */
+  #hud .d-slot { flex: 0 0 auto; max-height: max(26vh, 9rem); overflow-y: auto; }
+  #hud .d-card { display: block; }
+  /* No floor of its own in the stylesheet: a record one line long reserved
+     three, and the readings above it paid for two empty lines (the owner,
+     2026-10-03: the routes "still squished" under "in + beginning"). The
+     floor a long record keeps when the card is short is fitBands' to hold,
+     counted in the record's own lines. */
+  #hud .d-body { min-height: 0; }
+  #hud .d-foot { position: sticky; bottom: 0; background: var(--bg); padding-top: 0.15rem; }
+  /* THE CARD IS WOVEN TOO (the owner, 2026-10-03: "id also add woven to huds"):
+     the page's warp and weft, finer and fainter, on the card and on its sticky
+     foot alike, so the foot meets the card with no seam (the period is 3px, so
+     the two can never fall far out of step) */
+  #hud, #hud .d-foot, #wcard, #bkcard {
+    background-image: repeating-linear-gradient(0deg, rgba(110, 84, 46, 0.035) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(110, 84, 46, 0.03) 0 1px, transparent 1px 3px); }
+
+  /* What is standing under the word right now. The card used to answer this
+     only by which pill was lit, and with two hundred pills in a scrolling row
+     the lit one is often not on screen — so the reader closed the card to find
+     out whether their choice held. It is the first thing under the handle and
+     it never scrolls. */
+  #hud .r-now { flex: 0 0 auto; margin: 0.1rem 0 0.35rem; padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--line); direction: ltr; }
+  #hud .r-now .k { display: block; color: var(--faint); font-size: 0.68rem;
+    letter-spacing: 0.08em; text-transform: uppercase; }
+  /* Bounded, like every other region on this card. One Strong's route runs to
+     four hundred and ninety-two characters, and printed whole it was most of a
+     phone — the divisions, the blocks and the record all pushed out of sight by
+     the line that was only supposed to say what had been chosen. Three lines,
+     then it scrolls. The whole of it is still on its pill and still in the
+     record underneath. */
+  #hud .r-now .v { display: block; color: var(--tekhelet-ink); background: none;
+    padding: 0.15rem 0.45rem; border-radius: 0.4em; font-size: 0.94rem;
+    line-height: 1.3; overflow-wrap: anywhere;
+    max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
+  #hud .r-now .v.none { color: var(--argaman-dim); font-style: italic; }
+  #hud .r-now .n { display: block; color: var(--faint); font-size: 0.72rem; font-style: italic; line-height: 1.35; margin-top: 0.15rem; }
+  #hud[hidden] { display: none; }
+  /* the brick gap's head on the card is the ruled span the line draws, not the
+     restore's stand-in box */
+  #hud .head b[data-mark="BRICK_GAP"] { color: transparent; display: inline-block; width: 4em;
+    position: relative; border-bottom: 1px solid var(--gold); }
+  #hud .head b[data-mark="BRICK_GAP"]::before, #hud .head b[data-mark="BRICK_GAP"]::after {
+    content: ""; position: absolute; bottom: -1px; width: 1px; height: 6px; background: var(--gold); }
+  #hud .head b[data-mark="BRICK_GAP"]::before { left: 0; } #hud .head b[data-mark="BRICK_GAP"]::after { right: 0; }
+  /* THE THREAD. While a card is open, one line runs from each held word to
+     the card: it leaves the Hebrew tile's own rounded corner, a pixel off the
+     arc, and arrives at the nearest point of the card's edge. It leaves in the
+     word's color and arrives in the frame's — a gradient along its length —
+     so both ends say whose they are. A soft glow under the line; a pin where
+     it leaves. An overlay: it moves no text, takes no taps, dies with the card.
+     It replaced four dashed lines hung off the block around the Hebrew, which
+     made the block look held rather than the word (owner, 2026-09-11). */
+  #tether { position: fixed; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 69; }
+  #tether .line { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; }
+  /* THE POP. When a card opens it is drawn out of the held box: the two
+     lines draw themselves from the box's corners to the card's corners, and
+     the card grows from the middle of the edge they land on — a little
+     scaled down and tilted back, then upright — so the card reads as the
+     selection brought forward, not something that appeared over it. A fifth
+     of a second; a drag, a scroll or a re-anchor moves them with no animation. */
+  #tether .line { transition: stroke-dashoffset 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  /* THE CARD STANDS AT ITS OWN SIZE BY THE TIME ITS READINGS CAN BE PRESSED.
+     The grow and the tilt are done in the first 60 ms (30%) of the fifth of
+     a second, eased as before, and the fade runs the whole fifth. Eased over
+     the whole fifth, the card was still drawn at 98.4 to 99.6% of its
+     laid-out size 90 ms after its readings showed (the readings are on the
+     card by the frame the pop starts), so a card 750 px tall was drawn 3 to
+     12 px shorter than what it holds, by where that frame fell, and
+     check-usable-card-v1 read that, on some runs and not others, as a card
+     spilling off its own edges. Nothing inside the card moved; only the
+     scale had not yet come home. Most of the motion was already in those
+     first 60 ms (83% of it); what goes is the tail of scale creeping in
+     under the eye. */
+  @keyframes hud-pop {
+    from { opacity: 0; transform: perspective(900px) rotateX(-7deg) scale(0.93) translateY(6px); }
+    30% { transform: none; }
+    to { opacity: 1; transform: none; }
+  }
+  #hud.pop { transform-origin: var(--pop-x, 50%) var(--pop-y, 0%);
+    animation: hud-pop 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @media (prefers-reduced-motion: reduce) {
+    #hud.pop { animation: none; }
+    #tether .line { transition: none; }
+  }
+  /* The head is the handle. A card the reader can move is a card that stops
+     being in the way, and a card that is never re-anchored while it is open
+     stops moving on its own. It is sticky so the handle is reachable however
+     far the record below it has been scrolled. */
+  #hud .head { cursor: grab; touch-action: none; flex: 0 0 auto; }
+  #hud .head:active { cursor: grabbing; }
+  #hud.moved { box-shadow: var(--shadow-card), 0 0 0 1px var(--sel-dim); }
+  #hud .head button { cursor: pointer; }
+  #hud .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
+    flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
+  /* which half of a source-marked pair the card is about, said in words —
+     hover titles do not exist on a phone */
+  #hud .head .kq-key { flex: 1 1 100%; margin: 0; color: var(--faint);
+    font-size: 0.68rem; direction: ltr; text-align: left; }
+  #hud .head .kq-role { flex: 1 1 100%; margin: 0; color: var(--muted);
+    font-size: 0.74rem; font-style: italic; direction: ltr; text-align: left; }
+  /* THE CARD KEEPS THE PAGE'S RULE: one ink, channels as washes, gold for
+     lines. It had kept the older design — shani ink on the head, tekhelet ink
+     on every reading, amber on the pressed pill — and with the thread and the
+     held washes beside it the owner called the palette overcrowded
+     (2026-09-11). So the Hebrew head sits on the shani wash, a reading sits on
+     the tekhelet wash, the pressed pill is that wash deepened, and nothing on
+     the card is ink in a channel color. */
+  #hud .head b { font-size: 1.55rem; color: var(--shani-ink); background: none;
+    padding: 0.04em 0.3em; border-radius: 0.4em;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  #hud .head button { background: none; border: 0; color: var(--link); font-size: 1.15rem; cursor: pointer; }
+  #hud p { margin: 0.45rem 0; }
+  #hud .att { color: var(--muted); font-size: 0.78rem; }
+  #hud .att a { color: var(--link); }
+  /* R pills — one route per pill, one selected at a time (the reader's law). */
+  #hud .r-label { margin: 0.5rem 0 0.3rem; color: var(--faint); font-size: 0.74rem;
+    letter-spacing: 0.06em; text-transform: uppercase; }
+  /* Every R is here, so this row is the one thing on the card allowed to be
+     long. It scrolls on its own rather than pushing the D and M off the end. */
+  /* the source's own English for this piece at this position: it leads the
+     row, and the key's own readings stand under it untouched */
+  #hud .r-piece { margin: 0.1rem 0 0.35rem; direction: ltr; font-size: 0.86rem; color: var(--tekhelet-ink); }
+  #hud .r-piece i { font-style: normal; font-size: 0.66rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--faint); padding-inline-end: 0.35rem; }
+  #hud .r-piece b { font-weight: 600; }
+  #hud .r-sug b .n { font-weight: normal; color: var(--muted); }
+  /* its chip rides the same line: a line of its own took a readings row */
+  #hud .r-piece .g-lic { display: inline; margin: 0 0 0 0.35em; padding: 0 0.3em; font-size: 0.62rem; line-height: 1; vertical-align: baseline; }
+  #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+  #hud .head .wn { font-size: 0.82rem; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
+    margin-inline-end: 0.55em; align-self: center; white-space: nowrap; }
+  /* A pill shows its whole reading. It used to clamp at two lines, which made
+     the card claim a reading it was not showing — the code beneath says R is
+     "never truncated away" and the clamp was quietly making that false. A long
+     reading now takes the room it needs; the row scrolls, so the D and the M
+     below it are still one flick away, and a reading that runs to a paragraph
+     looks like one, which is information about the record, not noise. */
+  /* the order row: seven positions, three answerable today. A dead one is
+     dimmed and struck, never hidden — the question stands even where the
+     evidence has not arrived. */
+  #hud .def-order, #modeRow .def-order, .rail .def-order { display: flex; flex-wrap: wrap; gap: 0.28rem; margin: 0 0 0.4rem; }
+  #hud .def-order .dfp, #modeRow .def-order .dfp, .rail .def-order .dfp { font: inherit; font-size: 0.58rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--faint); background: none;
+    border: 1px solid var(--line); border-radius: 999px; padding: 0.14rem 0.5rem; cursor: pointer; }
+  #hud .def-order .dfp:hover:not(:disabled), #modeRow .def-order .dfp:hover:not(:disabled), .rail .def-order .dfp:hover:not(:disabled) { color: var(--ink); border-color: var(--gold); }
+  /* THE POSITION IN FORCE IS A READER'S SELECTION, so it wears the role the
+     contract gives a reader's selection. It wore gold until 2026-09-09,
+     which is the structure role \u2014 the color of the frame, not of a choice
+     the reader made. Nothing new is invented here: colour-role-rule-v1
+     declares structure gold, reader_selection electric blue, commentary
+     attachment crimson, and this only moves a control into the role it
+     already belonged to. It is also the one cold thing on a warm page,
+     which is the half of the name that had nowhere to stand. */
+  #hud .def-order .dfp.on, #modeRow .def-order .dfp.on, .rail .def-order .dfp.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  #hud .def-order .dfp.waiting, #modeRow .def-order .dfp.waiting, .rail .def-order .dfp.waiting {
+    opacity: 0.4; cursor: default; }
+  #hud .r-pills button { border: 1px solid var(--chip-line); background: none; color: var(--tekhelet-ink);
+    border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
+    max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+  /* (A pill held one line, cut with an ellipsis, for a few hours on
+     2026-10-03; that broke the standing rule that a pill shows its whole
+     reading, and the rows are fitted from where the pills actually end, so a
+     tall pill is a tall row, never a cut one.) */
+  /* the pressed reading: the pressed-cell rule (--press-wash, above), its
+     letters the regular blue, worn bold (the owner, 2026-10-10: "i dont
+     like our bold that much"; the bold is the weight, not a deeper blue) */
+  #hud .r-pills button[aria-pressed="true"] { color: var(--tekhelet-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
+    font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
+  #hud .r-overflow { margin-top: 0.45rem; }
+  #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--tekhelet-ink);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.45rem;
+    padding: 0.3rem 0.5rem; cursor: pointer; }
+  #hud .r-overflow select:hover { border-color: var(--gold); }
+  #hud .r-overflow select.on { color: var(--tekhelet-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  #hud .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
+  /* P — the sources that carry the same record. A corroboration is not a
+     louder kind of source, so it wears the same chip and the same weight as
+     the one above it, a size down, and reads as a list rather than a claim. */
+  #hud .d-also { margin: 0.3rem 0 0; padding-top: 0.3rem; border-top: 1px dotted var(--line);
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.45rem; }
+  #hud .d-also-lab { flex: 1 0 100%; color: var(--faint); font-size: 0.66rem;
+    letter-spacing: 0.08em; text-transform: uppercase; }
+  #hud .d-also-m { font: inherit; font-size: 0.74rem; color: var(--muted); cursor: pointer;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.6rem;
+    padding: 0.16rem 0.55rem; text-align: left; max-width: 100%; }
+  #hud .d-also-m:hover { border-color: var(--sel-dim); color: var(--ink); }
+  #hud .d-also-read { display: block; color: var(--faint); font-size: 0.68rem; }
+  #hud .d-also-more { font: inherit; font-size: 0.72rem; color: var(--muted);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.5rem;
+    padding: 0.16rem 0.4rem; cursor: pointer; max-width: 100%; }
+  #hud a.lic-chip { color: inherit; text-decoration: none; }
+  #hud a.lic-chip:hover { border-color: var(--gold); }
+  #hud .d-cut { font-size: 0.66rem; color: var(--faint); }
+  /* a band's own note — what a switch withheld, what the pointing withheld —
+     is the band's small print, not a heading over its pills */
+  #hud .rows .band > .kq-role { margin: 0.05rem 0 0.3rem; font-size: 0.66rem; line-height: 1.35; color: var(--faint); }
+  /* The D record, whole and never clipped. The sense the reader selected is
+     lit inside it, so a truncated pill still resolves to something readable. */
+  /* The record is a dictionary's words, so it is the blue throughout, and
+     the lit sense is that blue worn bold, as a pressed reading is (the
+     owner, 2026-10-18: "the english definitionals should still be blue even
+     the M's D card"). From 2026-10-03 it took the pressed control's purple,
+     which said the sense was ours. */
+  #hud .d-card .d-text { margin: 0.25rem 0; color: var(--tekhelet-ink); }
+  #hud .d-card .d-sense.on { color: var(--tekhelet-ink); font-weight: 700; }
+  /* the corpus's letters a label of ours quotes */
+  #hud .he-q { color: var(--shani-ink); }
+  #hud .d-card .d-sep { color: var(--faint); }
+  #hud .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
+    color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
+  #hud .d-more:hover { color: var(--ink-strong); }
+  #hud .d-more[aria-expanded="true"] { color: var(--ink-strong); }
+  #hud .d-drawer { margin-top: 0.3rem; padding-inline-start: 0.6rem; border-inline-start: 1px solid var(--line); }
+  #hud .d-drawer[hidden] { display: none; }
+  /* Structure pills — how the form divides, and which block of it is open.
+     Quieter than a reading pill on purpose: the reading is the loud thing on
+     this card, and the structure is how you got to it. */
+  #hud .s-pills { display: flex; flex-wrap: wrap; gap: 0.32rem; direction: ltr; }
+  /* the blocks of one division lay out in the word's own direction, so the
+     row reads as the form does and the word visibly reassembles */
+  /* parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost.
+     Wherever the page draws a form's parts in a row, the part the record puts
+     FIRST is the part furthest RIGHT. Setting direction here is the whole of
+     it, and forgetting it once already shipped a card whose two rows drew the
+     same division in opposite directions, so that a pair read backwards.
+     check-parts-read-right-to-left-v1 measures where the parts landed, in
+     pixels, rather than trusting this attribute. */
+  #hud .s-pills[dir="rtl"] { direction: rtl; }
+  /* A division pill is the corpus's own letters cut a way, so it is the
+     red, at rest and pressed, and the press is carried by the weight, the
+     pressed linen and the doubled gold (the owner, 2026-10-18: "the hebrew
+     should still be red even the compspans and megacompspans"). It had been
+     the page's purple at rest and pressed. Its small labels (.none, .q-role)
+     are the page speaking and keep the purple. */
+  #hud .s-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--shani-ink);
+    border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;
+    max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  #hud .s-pills button:hover { border-color: var(--gold); }
+  /* the "try again" of a block or a fold the shelf could not answer: the
+     card's own pill, not the browser's grey bevel */
+  #hud .r-unreachable button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
+    border-radius: 0.4rem; padding: 0.1rem 0.6rem; font: inherit; font-size: 0.85rem; cursor: pointer; }
+  #hud .r-unreachable button:hover { border-color: var(--gold); color: var(--shesh); }
+  /* a line the shelf could not answer under a switch: dotted, so a phone
+     with no hover can tell it from a line that was answered */
+
+  /* said again below the frame rule that gives every line a transparent
+     border, which outranked this one and hid the mark */
+  #hud .s-pills button[aria-pressed="true"] { color: var(--shani-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  #hud .s-pills button .none { font: 0.62rem/1 Georgia, serif; color: var(--faint); margin-inline-start: 0.35rem; }
+  #hud .b-q { flex: 0 0 auto; min-height: 0; }
+  #hud .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--faint); margin-inline-start: 0.4rem; }
+  #hud .b-q button[aria-pressed="true"] .q-role { color: var(--ink); }
+  #hud .prov { color: var(--faint); font-size: 0.72rem; margin: 0.35rem 0 0; }
+  .att .ov-mark { font-size: 0.72rem; letter-spacing: 0.04em; color: var(--muted); }
+  .lic-chip { display: inline-block; margin-inline-start: 0.45rem; padding: 0.02rem 0.5rem;
+    border-radius: 999px; background: var(--cell-wash); border: 1px solid var(--chip-line);
+    color: var(--shesh); font-size: 0.72rem; }
+  /* Commentary rides in the same register as the readings: same pill, same
+     selected treatment, same card. It is named by its label, not by a color
+     of its own — a commentator is one more voice on the card, not a louder
+     kind of thing than the catalog it sits beside. */
+  .wb { position: relative; }
+  /* THE CARD'S NUMBER ON THE PAGE (card numbering): small, the card head's
+     gold, with the arrow the way this reader reads; drawn only while the pill
+     is on. Every card wears its own number, a run's words each theirs, at
+     the card's left edge, at the top of its letters (the owner, 2026-10-18:
+     "each card should get its own number, no 3-4, and id not add extra
+     space"; of the run card so drawn, "this card is how they all should
+     look"; "id move it furrher left a tad"). It stands in the card's column
+     just before the letters, as tall as nothing, so it takes no room, and
+     over a blob's fill and under the letters. It stood in the card's top corner, where a run's
+     blob rises over the letters and ran into it. The number is written left
+     to right in itself. */
+  /* ON THE LINE (the owner, 2026-10-19: "1. back to the bottom, 2. if the
+     card has 2 words put their corresponding numbers in each corner, 3. if
+     the card has a 3rd or more words put them aligned to the bottom left
+     side of the hebrew word, 4. make them take precedence over underline
+     whether that means sitting atop it, the underline briefly gaps, or
+     theyre offset height wise but without making the card any bigger").
+     The number is drawn by the word's own letters' box, at its bottom left,
+     sitting on the line under it, so the line never runs through it. Every
+     word's number stands at its own word's left, a card of two words alike
+     (the owner, the same day, of point 2: "we should just forget rule 2 the
+     opposite corner thing and align all per rule 3"). Placed
+     absolutely, it takes no room. Where it meets the letters (a final
+     letter's tail, a vowel under the last letter) it lies under their ink.
+     The line does not gap: a card's linen is a veil over the woven ground,
+     so a band of it would not hide the line, and a band of solid color
+     would show as a patch on the weave. It had stood at the card's top
+     left, before the letters.
+     THE READER DECIDES THE EDGE (the owner, 2026-10-19: "on hebrew toggle
+     id put numbers at the top, on english toggle id put them at the card
+     bottom, they shouldnt be in the way of blobs ... we can overlap unless
+     absolutely needed like blobs crisscrossing themselves is unavoidable").
+     In the Hebrew reader the number stands at the card's top, in the strip
+     above the letters' highest mark, where no blob reaches, set small
+     enough to fit it; in the English reader the letters are the card's foot
+     and the number sits at the bottom, on the line or where the line would
+     be. Each number stands at its word's left in both. */
+  body.nums .he-text .wb:not(.mark) > .w { position: relative; z-index: 2; }
+  /* a card carries its number in --cn (numberCells); one not yet numbered
+     carries none, which draws nothing, not a lone arrow */
+  .he-text .wb { --cn: none; }
+  body.nums .he-text .wb:not(.mark) > .w::after { content: "\25C2\00a0" var(--cn); position: absolute; z-index: -1;
+    left: 0; bottom: -0.04rem; padding: 0 0.1rem; direction: ltr; unicode-bidi: isolate; white-space: nowrap;
+    font: 0.56rem/1 Georgia, serif; font-weight: 400; letter-spacing: 0.04em; font-variant-numeric: lining-nums; color: var(--gold); -webkit-text-fill-color: var(--gold); text-shadow: none;
+    pointer-events: none; user-select: none; -webkit-user-select: none; }
+  body.en.nums .he-text .wb:not(.mark) > .w::after { content: var(--cn) "\00a0\25B8"; }
+  body.nums:not(.en) .he-text .wb:not(.mark) > .w::after { bottom: auto; top: var(--cn-top, -0.05rem); font-size: 0.5rem; line-height: 0.9; }
+  /* A commentary handle standing in the line of the verse, after the words it
+     covers. It is inline, so it reads as part of the line; what it opens is
+     block-level, so the words after it fall below and the words above it are
+     what it is about. */
+  /* Under the start of the line, not its end. The word a handle opens on is the
+     first one it covers — the one left standing above the commentary — so the
+     handle belongs beneath that word, where the reader's eye returns to. The
+     pill's own text stays left-to-right; only where the row sits follows the
+     direction the words are running in. */
+  .c-mark-row { display: block; direction: ltr; text-align: right; margin: 0.1rem 0 0.5rem; }
+  body.en .c-mark-row { text-align: left; }
+  .c-mark { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle;
+    direction: ltr; margin: 0; padding: 0.1rem 0.5rem;
+    border: 1px solid var(--shani-dim); border-radius: 999px; background: var(--bg);
+    color: var(--ink-strong); font: 0.68rem/1.4 Inter, system-ui, sans-serif;
+    letter-spacing: 0.04em; cursor: pointer; }
+  .c-mark:hover { color: var(--ink-strong); border-color: var(--gold); }
+  .c-mark[aria-expanded="true"] { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  .c-mark .c-glyph { font-variant: small-caps; letter-spacing: 0.08em; }
+  /* Bounded, like the card's regions. A Rashi runs to a page and it was taking
+     one — the verse it belongs to disappeared above it. It gets a share and
+     scrolls inside it. */
+  .c-mark-slot { display: block; direction: ltr; text-align: left;
+    max-height: min(22rem, 46vh); overflow-y: auto; overflow-x: hidden;
+    margin: 0.15rem 0 0.6rem; padding: 0.5rem 0.7rem;
+    border: 1px solid var(--line-c); border-inline-start: 2px solid var(--shani-dim);
+    border-radius: 0.5rem; background: var(--bg); }
+  .c-mark-slot[hidden] { display: none; }
+  .c-mark-slot .c-pick { display: block; color: var(--faint); font-size: 0.72rem; margin-bottom: 0.45rem; }
+  .c-mark-slot .c-pick select { font: inherit; font-size: 0.76rem; color: var(--muted);
+    background: var(--bg); border: 1px solid var(--line-c); border-radius: 0.4rem;
+    padding: 0.16rem 0.4rem; max-width: 100%; }
+  /* the reference and the license stay put while the commentary scrolls under
+     them: a text whose source has scrolled away is a text standing on nothing */
+  .c-mark-slot .lab { display: block; color: var(--muted); font-size: 0.74rem;
+    letter-spacing: 0.03em; margin-bottom: 0.3rem;
+    position: sticky; top: -0.5rem; background: var(--bg); padding: 0.35rem 0 0.25rem; z-index: 1; }
+  .c-mark-slot .lab a { color: var(--link); }
+  /* Three plain rows: what it is, what it is commonly read as, and where the
+     chain puts it. Same register as the masthead above the book. */
+  .c-head-row { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.2rem; }
+  .c-head-lab { font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--faint); min-width: 8.5em; }
+  .c-head-he { font-family: "Frank Ruehl CLM", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .c-head-he.title-row { display: flex; gap: 0.1rem; }
+  /* Same voice as the masthead's unnamed title: dimmed, italic, plainly a
+     statement about the record rather than a name. */
+  .c-head-he.unnamed { color: var(--argaman-dim); font-style: italic; font-family: Georgia, serif; font-size: 0.8rem; }
+  .c-head-en { color: var(--shesh); font-size: 0.94rem; }
+  .c-head-on { color: var(--muted); font-size: 0.82rem; }
+  /* Said once, in English, before the names — because "what is this thing"
+     comes before "what is it called". */
+  .c-how-said { flex: 1 1 14rem; font-size: 0.78rem; line-height: 1.45; color: var(--muted); }
+  /* Scarlet marks what the page will not vouch for. 180 of the 181 placements
+     on this book's first verse are ours, so coloring the whole sentence
+     scarlet colored the page — and a mark that is everywhere marks nothing.
+     It sits on the tail instead: the clause that actually makes the claim,
+     five words long, in the one place a reader looks to see whose it is. */
+  .c-how-whose { display: block; margin-top: 0.2rem; font-size: 0.62rem;
+    letter-spacing: 0.04em; color: var(--faint); }
+  .c-how-whose.c-suggested { color: var(--argaman-dim); }
+  .c-how-basis { display: block; margin-top: 0.15rem; font-size: 0.6rem;
+    letter-spacing: 0.06em; color: var(--faint); }
+  .c-mark-body { display: block; }
+  .c-mark-text { display: block; font-size: 1.05rem; line-height: 1.9; color: var(--shani);
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif;
+    text-align: right; }
+  /* Once the words open, they are blocks and carry their own line height. */
+  .c-mark-text.c-worded { line-height: 1.35; }
+  .c-mark-text.c-worded .wb { margin-bottom: 0.3rem; }
+  .c-mark-slot .c-att { display: block; color: var(--faint); font-size: 0.68rem; margin-top: 0.4rem; }
+  /* Scarlet, by the rule at the top of this file: the page is refusing to draw
+     a shape it has not been given, and says so where the shape would have
+     been. It is not saying the commentary is wrong. */
+  .c-mark-slot .c-undeclared { color: var(--argaman-dim); border-inline-start: 2px solid var(--argaman-dim);
+    padding-inline-start: 0.5rem; }
+  .c-mark-slot .c-two-counts { color: var(--argaman-dim); border-inline-start: 2px solid var(--argaman-dim);
+    padding-inline-start: 0.5rem; }
+  /* Same rule where the commentary reads in line: the sentence stays linen and
+     the tail carries the color. */
+  .c-att .c-how-whose.c-suggested { color: var(--argaman-dim); }
+  /* The chooser: everything attached to this line, named by its work and by
+     the word it sits on, because a line's handle covers words and this is the
+     reader deciding between them. */
+  .c-choose .lab { color: var(--faint); }
+  .c-choices { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; }
+  .c-choice { display: inline-flex; align-items: baseline; gap: 0.35rem; direction: ltr;
+    border: 1px solid var(--line); background: var(--bg); color: var(--muted);
+    border-radius: 999px; padding: 0.2rem 0.7rem; font: inherit; font-size: 0.74rem; cursor: pointer; }
+  .c-choice:hover { border-color: var(--gold); color: var(--shesh); }
+  .c-more { font: inherit; font-size: 0.72rem; color: var(--faint); background: none;
+    border: 0; border-bottom: 1px dotted var(--gold-dim); cursor: pointer; padding: 0 0 1px; }
+  .c-more:hover { color: var(--shesh); }
+  .c-choice .c-on { color: var(--shani); font-size: 0.95rem;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  .c-more { display: block; width: 100%; color: var(--faint); font-size: 0.68rem; }
+  .c-shut { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
+    color: var(--muted); font: inherit; font-size: 0.7rem; cursor: pointer; padding: 0; }
+  .c-shut:hover { color: var(--ink-strong); }
+  /* Every commentary the book carries, in one place, before the text starts. */
+  #cIndex { margin: 0 0 1.6rem; border: 1px solid var(--line-c); border-radius: 0.6rem;
+    background: var(--bg); overflow: hidden; }
+  #cIndex .ci-head { display: flex; flex-direction: column; gap: 0.2rem; width: 100%;
+    text-align: left; direction: ltr; background: none; border: 0; color: var(--muted);
+    font: inherit; padding: 0.7rem 0.9rem; cursor: pointer; }
+  #cIndex .ci-head:hover { color: var(--shesh); }
+  #cIndex .ci-head b { color: var(--ink-strong); font-size: 0.95rem; letter-spacing: 0.04em; }
+  #cIndex .ci-head[aria-expanded="true"] b { color: var(--sel); }
+  #cIndex .ci-sum { color: var(--faint); font-size: 0.72rem; margin: 0 0 0.55rem;
+    padding: 0 0.9rem; line-height: 1.5; }
+  #cIndex .ci-body[hidden] { display: none; }
+  #cIndex .ci-bar { display: flex; gap: 0.5rem; align-items: center; padding: 0 0.9rem 0.5rem; }
+  #cIndex input[type="search"] { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 0.82rem;
+    color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+    border-radius: 0.45rem; padding: 0.35rem 0.6rem; }
+  #cIndex input[type="search"]:focus { outline: none; border-color: var(--gold); }
+  #cIndex .ci-count { color: var(--faint); font-size: 0.72rem; white-space: nowrap; }
+  #cIndex .ci-list { max-height: min(24rem, 50vh); overflow-y: auto; overflow-x: hidden;
+    padding: 0 0.9rem 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  #cIndex .ci-hit { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.45rem;
+    text-align: left; direction: ltr; background: var(--bg); border: 1px solid var(--line);
+    border-radius: 0.45rem; padding: 0.32rem 0.6rem; color: var(--muted);
+    font: inherit; font-size: 0.78rem; cursor: pointer; }
+  #cIndex .ci-hit:hover { border-color: var(--gold); color: var(--shesh); }
+  #cIndex .ci-where { color: var(--muted); }
+  #cIndex .ci-what { flex: 1 1 auto; }
+  #cIndex .ci-more { color: var(--faint); font-size: 0.72rem; margin: 0.3rem 0 0; }
+  /* A commentary answering another sits under it, indented, and is the one
+     case where two stand open at once. */
+  .c-counter-row { display: block; margin-top: 0.5rem; }
+  .c-counter-mark { font-size: 0.66rem; }
+  .c-mark-slot.c-counter { margin-inline-start: 1.1rem; border-inline-start: 2px solid var(--shesh); }
+  .c-noen { color: var(--argaman-dim); }
+  #hud .c-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
+  #hud .c-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
+    border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
+    max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #hud .c-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  #hud .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
+  #hud .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--shani-ink);
+    padding: 0.1rem 0.4rem; border-radius: 0.4em;
+    font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
+  #hud .c-note { color: var(--faint); font-size: 0.72rem; margin: 0.2rem 0 0; }
+  /* A commentary served from the chain is text, not decoration: its own words
+     carry their own routes, so they are word blocks like any others. */
+  #hud .c-he .wb { margin: 0 0.14rem 0.5rem; }
+  #hud .c-he .w { font-size: 1.05rem; }
+  #hud .c-he .g { font-size: 0.6rem; max-width: 8em; }
+  #hud .c-back { background: none; border: 0; color: var(--link); font: inherit; font-size: 0.74rem;
+    cursor: pointer; padding: 0 0 0.25rem; letter-spacing: 0.04em; }
+  #hud .c-back:hover { color: var(--ink-strong); }
+  /* Short windows. These come last on purpose: they were sitting above the
+     rules they mean to override, so the base won on source order and every one
+     of them was dead — measured, not assumed: the record's cap read 32vh on a
+     400px window that was asking for 20vh.
+     Everything the card owes a reader still holds here — a row of divisions, a
+     row of blocks, a row of readings, the record and its source. The room comes
+     from the things that are not owed: the provenance line goes, the structural
+     rows drop to one row apiece, the labels and the head tighten. */
+  @media (max-height: 660px) {
+    #hud { max-height: 94vh; }
+    #hud .prov { display: none; }
+    #hud .r-now { margin: 0 0 0.2rem; padding-bottom: 0.2rem; }
+    #hud .d-slot { max-height: max(26vh, 9rem); }
+  }
+  /* Shorter still — a desktop window a few hundred pixels tall. The structural
+     rows go to a single row each and the labels tighten. Everything the reader
+     must have is still on the card and still pressable; what has gone is room
+     to browse, not anything to reach. */
+  @media (max-height: 480px) {
+    #hud .r-label { margin: 0.15rem 0 0.1rem; font-size: 0.66rem; }
+    #hud .head b { font-size: 1.15rem; }
+    #hud .head { padding-bottom: 0.2rem; margin-bottom: 0.15rem; }
+    #hud .d-slot { max-height: max(27vh, 8.75rem); }
+    #hud .s-pills button, #hud .r-pills button { padding-top: 0.08rem; padding-bottom: 0.08rem; }
+  }
+  /* A desktop window squashed flat is short but wide, and a card locked to
+     phone width there wrapped its source line to three rows — rows that came
+     straight out of the record's share, under a word at the top of the page
+     with nowhere higher to go. Where the window affords width, the card
+     takes it: the source line stands in one row and the record keeps its
+     line above it. Height was the scarce thing; width was free. */
+  @media (max-height: 480px) and (min-width: 640px) {
+    #hud { max-width: 34rem; width: min(34rem, 92vw); }
+  }
+  /* The record, whole, on request. The capped card is the resting state —
+     nothing rests open — but the record is entitled to say what it says, and
+     on a short screen the only honest way to read a long D is to let it
+     stand at its full height while it is wanted. The control sits in the
+     foot beside the M, where the record's own furniture lives. */
+  #hud .d-slot.whole { max-height: min(72vh, 36rem); overflow-y: auto; }
+  #hud .d-slot.whole .d-body { max-height: none; overflow-y: visible; }
+  #hud .d-grow { margin-left: auto; border: 1px solid var(--line); background: var(--bg);
+    color: var(--muted); border-radius: 999px; font: inherit; font-size: 0.72rem;
+    padding: 0.02rem 0.55rem; cursor: pointer; white-space: nowrap; }
+  #hud .d-foot { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
+  /* The polish layer · values only, cascade-late so order wins ties.
+     What a professional surface adds and an honest one may: the same roles,
+     the same families, executed with care — motion that acknowledges a
+     press, focus a keyboard can see, scrollbars in the page's own cloth,
+     selection in the reader's own blue, elevation that says what floats. */
+  * { -webkit-tap-highlight-color: transparent; }
+  body { font-kerning: normal; }
+  ::selection { background: var(--sel-text); color: inherit; }
+  /* EVERY EDGE GOLD (the owner, 2026-10-03: "i would keep all borders gold").
+     Frames, hovers, focus and pressed states draw their edges in the gold;
+     fills and text keep their colors, and the dotted and dashed marks that
+     say a state (a typed word, a reading that could not be reached, a word
+     with a question) keep theirs. The underline under a run's words is gold
+     as a maqaf run's is. */
+  button, select { transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
+  button:hover:not([disabled]) { border-color: var(--gold); }
+  button:active:not([disabled]) { transform: translateY(0.5px); }
+  :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
+  * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+  *::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+  *::-webkit-scrollbar-track { background: transparent; }
+  #hud { box-shadow: var(--shadow-hud); }
+  #hud .r-pills button[aria-pressed="true"], #hud .s-pills button[aria-pressed="true"] {
+    box-shadow: 0 0 0 1px var(--gold); }
+  @media (prefers-reduced-motion: reduce) {
+    button, select { transition: none; }
+    button:active:not([disabled]) { transform: none; }
+  }
+  /* Levels. Three things hang off a section and they are not the same size of
+     act. The number names it. The commentary is the section's other text, so
+     it gets a line of its own, the width of the column, carrying the name of
+     the work rather than a letter. Taking the text away for good is the last
+     act, so the export sits beneath at the smallest weight. Carrying a line
+     off in a clipboard is not a control at all — see below. */
+  .c-slot:empty { display: none; }
+  .c-bar { display: flex; align-items: center; gap: 0.5rem; width: 100%;
+    margin: 0.55rem 0 0.32rem; padding: 0.36rem 0.62rem; border: 1px solid var(--line);
+    border-radius: 0.55rem; background: var(--bg); color: var(--muted);
+    font-family: inherit; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer;
+    direction: ltr; text-align: left; }
+  .c-bar:hover { border-color: var(--shani-dim); color: var(--shesh); }
+  /* the bar and, beside it, the list of the works (each selectable) */
+  .c-barrow { display: flex; align-items: stretch; gap: 0.35rem; margin: 0.55rem 0 0.32rem; }
+  .c-barrow .c-bar { margin: 0; flex: 1 1 auto; min-width: 0; }
+  .c-works-btn { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 0.55rem; background: var(--bg); color: var(--muted);
+    font-family: inherit; font-size: 0.72rem; letter-spacing: 0.04em; padding: 0 0.55rem; cursor: pointer; white-space: nowrap; }
+  .c-works-btn:hover, .c-works-btn[aria-expanded="true"] { border-color: var(--gold); color: var(--sel); }
+  .c-works { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 0.25rem; margin: 0 0 0.4rem; direction: ltr; }
+  .c-works[hidden] { display: none; }
+  .c-works button { text-align: left; font-family: inherit; font-size: 0.74rem; border: 1px solid var(--line); border-radius: 0.4rem;
+    background: var(--bg); color: var(--muted); padding: 0.22rem 0.5rem; cursor: pointer; }
+  .c-works button:hover { border-color: var(--gold); }
+  .c-works button.on { color: var(--sel); border-color: var(--gold); background: var(--press-wash); }
+  .c-bar[aria-expanded="true"] { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  .c-bar .c-glyph { font-variant: small-caps; letter-spacing: 0.12em; font-size: 0.7rem;
+    border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
+  .c-bar .c-name { flex: 1 1 auto; }
+  .c-bar .c-hint { font-size: 0.66rem; opacity: 0.6; }
+  /* Copying is the reader's act, not the page's. There is no button that writes
+     to a clipboard here — a button doing that is the site handing text over,
+     and text handed over carries obligations. A reader who selects and presses
+     copy is doing what a reader does on any page, and the licenses are on the
+     page: on the card, in the footer, and in the export.
+     What the page owes them is a clean selection. The Hebrew and its reading
+     live in one block, so selecting a verse used to interleave them word by
+     word. So a drag takes one layer, and which one is decided by the word the
+     reader pressed to start it — not by a setting, and never permanently:
+     press a Hebrew word and the drag takes Hebrew, press a reading and it
+     takes readings. Nothing on this page is locked away from a reader who
+     reaches for it. Either way what lands is a line rather than a zip of two. */
+  /* the gloss's license chip: visible in the English reader — the owner's
+     ruling, "english and license reader… never let them separate even by a
+     display degree" — quiet in the Hebrew reader, where every license is
+     one tap away on the word's card; never in a copy, by the frame law */
+  /* CONDENSED (the owner, 2026-10-14: "we could probably make the entire cc
+     by 4.0 pill more condensed, maybe even just inside the hud when
+     clicked"). The chip stays on the line, since every reading carries its
+     license there (the owner, 2026-10-10: the license "was to lightly shove
+     you into tagging newly selected english with a license tag"), but it is
+     a small, quiet mark now: smaller, closer, no box of its own; the card
+     says the license in full. */
+  .g .g-lic { display: block; width: fit-content; margin: 0.02em auto 0;
+    user-select: none; -webkit-user-select: none; padding: 0 0.2em;
+    border: 0; border-radius: 0.6em; font-size: 0.62em; letter-spacing: 0.04em; line-height: 1.25;
+    color: var(--faint); opacity: 0.85; max-width: 100%; box-sizing: border-box; text-align: center; }
+  /* OFF THE LINE (the owner, 2026-10-16, seeing it go small: "i do see you
+     removed the CC BY 4.0 (hopefully to inside the hud), so thats good
+     toward the final product mentality"). The chip stays in the line's
+     record, so the export, the copy guard and the checks read it, and the
+     card says every reading's license in full; the line itself shows none. */
+  .he-text .g .g-lic { display: none; }
+  /* a source under two terms names both ("WordNet Notices + CC BY 4.0"), and
+     under a narrow word that chip stood wider than the word and was cut; it
+     breaks between the terms, never inside one */
+  .g .g-lic > span { white-space: nowrap; }
+  /* A joined run's reading line is two cards' readings side by side, so each
+     one stands in its own cell with its own chip under it. The cells and the
+     joiner between them align at the top, which puts every reading on one
+     line and every chip on the line below its own reading. */
+  /* FIRE HAS NO EDGES; HAIL DOES. The Hebrew stands free on the ground with
+     no box, no rule and no chip \u2014 it is the thing itself. Every English
+     reading is a bounded object, because that is what it is: one witness's
+     word, under a license, from a year, replaceable by a better one. The
+     frame already said so \u2014 R pills, D cards, M with its terms \u2014 and the
+     line under the word was the one place English was drawn without an edge.
+     It also fixes a plain legibility fault: where a reading runs long, as
+     Uzziah's does at Amos 1:1, nothing said where one word's English stopped
+     and its neighbour's began. (Moses, 2026-09-09.) */
+  /* the reading wears no box (owner, 2026-09-11: "your boxes are getting
+     further and further from usable"); the border is kept transparent so the
+     line's metrics do not move the day one is wanted back */
+
+  .wb > .g:not(.bare), .wjoin > .g:not(.bare) {
+    border: 1px solid transparent; border-radius: 0.45em; padding: 0.1em 0.4em; }
+  .g .g-part { display: inline-block; vertical-align: top; text-align: center; }
+  .g .g-part + .g-part { margin-left: 0.3em; }
+  .g .g-join { color: var(--tekhelet-dim); }
+  /* the chip shows in both readers — the owner chose the demonstration look, 2026-08-30 */
+  /* A reading is a reading wherever the run drew it. A joined word prints one
+     shared reading on the run itself, outside any .wb, so this rule never
+     reached it and a Hebrew copy across a maqaf compound carried English. */
+  body.pick-he .wb .g, body.pick-he .wjoin > .g { user-select: none; -webkit-user-select: none; }
+  body.pick-he .wb .w { user-select: text; -webkit-user-select: text; }
+  body.pick-en .wb .g { user-select: text; -webkit-user-select: text; }
+  body.pick-en .wb .w { user-select: none; -webkit-user-select: none; }
+  /* the chrome is not text anyone wants in a copy */
+  .seg-row, .c-bar, .c-barrow, .c-works, .c-mark, .c-choose, .xp-row, #nav, header.top nav, #modeRow { user-select: none; -webkit-user-select: none; }
+  /* Taking the text away for good. A copy is a convenience; an export is the
+     final stop, so it says what it is about to hand over before it hands it
+     over, and it obeys the license of every record it would carry. */
+  .xp-row { display: flex; gap: 0.4rem; margin: 0.55rem 0 0.2rem; direction: ltr;
+    flex-wrap: wrap; align-items: center; }
+  .xp { font-size: 0.68rem; color: var(--muted); border: 1px solid var(--line);
+    background: var(--bg); border-radius: 0.5rem; padding: 0.12rem 0.5rem;
+    letter-spacing: 0.04em; cursor: pointer; font-family: inherit; }
+  .xp:hover { border-color: var(--gold); color: var(--shesh); }
+  .xp.armed { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  .xp.busy { opacity: 0.6; cursor: progress; }
+  .xp-note { font-size: 0.66rem; color: var(--faint); direction: ltr; flex: 1 1 100%; margin: 0.1rem 0 0; }
+  .xp-note b { color: var(--shesh); font-weight: normal; }
+  .xp-note .held { color: var(--argaman-dim); }
+  .xp-lab { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--faint); margin-inline-end: 0.15rem; }
+  #bookExport { max-width: 48rem; margin: 2.2rem auto 0; padding: 0 1.5rem; direction: ltr; }
+  #bookExport .xp-lab { display: block; margin-bottom: 0.35rem; }
+  #prov a { color: var(--shesh); }
+
+  footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;
+    color: var(--faint); border-top: 1px solid var(--line); direction: ltr; text-align: left; }
+
+  @media (max-width: 640px) {
+    .he-text { font-size: 1.32rem; line-height: 2.05; }
+    header.top h1 { font-size: 1.5rem; } header.top h1 .he-t { font-size: 1.7rem; }
+  }
+
+  /* THE READINGS WEAR A STEADIER FACE. The owner, 2026-10-02: Georgia's hairline strokes at ten pixels let the soft blue fade toward gray and the letters wobble. Every rule that paints text tekhelet, and only those, sets it in Source Serif 4 at medium weight (SIL Open Font License 1.1, its license beside it at /fonts/); the purple, the Hebrew and the frame keep their faces. Two files: plain Latin always, accents and Greek only on a page that uses them. */
+  @font-face { font-family:'reading'; src:url('/fonts/reading-latin-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; unicode-range:U+0020-007E, U+00A0-00FF, U+2000-206F, U+FB01-FB02; }
+  @font-face { font-family:'reading'; src:url('/fonts/reading-ext-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; unicode-range:U+0100-024F, U+0370-03FF, U+1E00-1FFF, U+2100-22FF; }
+  .wb > .g, .wjoin > .g, .pen, .g, body.en .g, .rail .row[data-voice="them"] .voice, .rail .decl-says, #hud .r-now .v, #hud .r-piece, #hud .r-pills button, #hud .r-overflow select, #hud .d-card .d-text { font-family:'reading', Georgia, serif; font-weight:500; }

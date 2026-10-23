@@ -1,0 +1,427 @@
+#!/usr/bin/env node
+// Synthesis lane · verify a built zone by rendering it, not by reading it.
+//
+// A zone that parses is not a zone that reads. This serves the site over
+// loopback, opens the page in headless Chromium, and asserts against the DOM
+// the reader would actually meet: counts in the masthead, one reading per
+// pill, the commentary handle opening the commentary, licences on the card.
+//
+// Usage: node tools/verify-zone.mjs --root site --book 1kings [--shot out.png]
+
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+const { chromium } = await loadPlaywright();
+import { createServer } from "node:http";
+import { readFile } from "node:fs/promises";
+import { extname, join, normalize } from "node:path";
+
+const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+const root = arg("--root", "site");
+// No default. This read "1kings" — a work withdrawn from the site — so a run
+// without --book verified a zone that is not there and reported on nothing.
+const book = arg("--book", null);
+if (!book) { console.error("NO_BOOK_NAMED — pass --book <published slug>: the work a verifier opens is never assumed"); process.exit(2); }
+const shot = arg("--shot");
+
+const TYPES = { ".html": "text/html", ".json": "application/json", ".bin": "application/octet-stream", ".css": "text/css", ".js": "text/javascript" };
+const server = createServer(async (req, res) => {
+  try {
+    const p = join(root, normalize(decodeURIComponent(req.url.split("?")[0])).replace(/^(\.\.[/\\])+/, ""));
+    const body = await readFile(p);
+    res.writeHead(200, { "content-type": TYPES[extname(p)] || "application/octet-stream" });
+    res.end(body);
+  } catch { res.writeHead(404); res.end("not found"); }
+});
+await new Promise((r) => server.listen(0, "127.0.0.1", r));
+const base = `http://127.0.0.1:${server.address().port}`;
+
+const browser = await chromium.launch(launchOptions());
+const page = await browser.newPage({ viewport: { width: 1100, height: 1500 } });
+const errors = [];
+page.on("pageerror", (e) => errors.push(String(e)));
+// A book without a commentary sidecar 404s for it by design — the page asks
+// once and shows nothing. That is the expected shape, not a page error.
+const expected404 = /-commentary\.bin/u;
+// The browser's console line for a 404 carries no URL, so the URL is taken
+// from the response itself and the console line is forgiven only when every
+// failed request was a commentary sidecar this book does not ship.
+const missing = [];
+page.on("response", (r) => { if (r.status() === 404) missing.push(r.url()); });
+page.on("console", (m) => {
+  if (m.type() !== "error") return;
+  if (expected404.test(m.text())) return;
+  if (/Failed to load resource/u.test(m.text()) && missing.length && missing.every((u) => expected404.test(u))) return;
+  errors.push(m.text());
+});
+page.on("requestfailed", () => {});
+
+await page.goto(`${base}/zone.html?b=${book}`, { waitUntil: "networkidle" });
+await page.waitForSelector("section.seg", { timeout: 20000 });
+
+const checks = [];
+const check = (name, pass, detail) => checks.push({ name, pass: !!pass, detail });
+
+const facts = await page.evaluate(() => ({
+  title: document.querySelector("#workTitle .en-t").textContent,
+  meta: document.getElementById("meta").textContent,
+  prov: document.getElementById("prov").textContent,
+  sections: document.querySelectorAll("section.seg").length,
+  words: document.querySelectorAll("section.seg .wb").length,
+  glossed: [...document.querySelectorAll("section.seg .wb .g")].filter((g) => g.textContent.trim()).length,
+  tocCells: document.querySelectorAll("#toc .chs a").length,
+  commentaryHandles: document.querySelectorAll(".c-seg").length,
+  driftChips: document.querySelectorAll(".drift-chip").length,
+  firstSection: document.querySelector("section.seg .he-text").textContent.trim().slice(0, 60),
+  firstGlosses: [...document.querySelectorAll("section.seg .wb")].slice(0, 6).map((w) => w.querySelector(".g").textContent.trim()),
+}));
+
+check("page threw no errors", errors.length === 0, errors.slice(0, 3).join(" | "));
+check("work title rendered", facts.title.length > 0, facts.title);
+check("sections rendered", facts.sections > 0, `${facts.sections} sections`);
+check("contents grid rendered", facts.tocCells > 0, `${facts.tocCells} chapter cells`);
+// Drift is not a failure — hiding it is. A zone counts the units whose served
+// rows disagree with the sealed allocation; the page must mark exactly those
+// and no others, so a reader meets the disagreement rather than a smoothed
+// number.
+const declaredDrift = await page.evaluate(async () => {
+  const bin = await fetch(`data/zones/${new URLSearchParams(location.search).get("b")}.bin`)
+    .then((r) => r.arrayBuffer())
+    .then((b) => new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream("gzip"))).json());
+  return bin.counts.drifted_units || 0;
+});
+check("drift is marked exactly where the zone declares it", facts.driftChips === declaredDrift,
+  declaredDrift ? `${facts.driftChips} chips for ${declaredDrift} declared drifted units` : "none declared, none shown");
+// Two grains ship: a work attached to a whole section (one handle per section)
+// and units attached to single words (a chip on the word). Either is valid;
+// what must not happen is a handle with nothing behind it.
+const wordChips = await page.evaluate(() => document.querySelectorAll(".c-chip").length);
+if (facts.commentaryHandles)
+  check("commentary handle on every section", facts.commentaryHandles === facts.sections, `${facts.commentaryHandles}/${facts.sections} · section grain`);
+else if (wordChips)
+  check("word-anchored commentary chips render", wordChips > 0, `${wordChips} chips · word grain`);
+else
+  check("no commentary shown where none ships", true, "no sidecar for this book");
+
+// no raw packing may reach the page: "/" packs morpheme spans, ";" packs senses
+const rawPacking = await page.evaluate(() =>
+  [...document.querySelectorAll(".g")].map((g) => g.textContent).filter((t) => t.includes("/") || t.includes(";")).slice(0, 5));
+check("no raw '/' or ';' in any gloss", rawPacking.length === 0, rawPacking.join(" | "));
+
+// open a word HUD and read the pills
+await page.click("section.seg .wb:not(.held)");
+await page.waitForSelector("#hud .r-pills button, #hud p", { timeout: 10000 });
+const hud = await page.evaluate(() => ({
+  pills: [...document.querySelectorAll("#hud .r-pills button")].map((b) => b.textContent),
+  pressed: [...document.querySelectorAll('#hud .r-pills button[aria-pressed="true"]')].map((b) => b.textContent),
+  overflow: document.querySelector("#hud .r-pills ~ .r-overflow select")?.options?.length ?? 0,
+  licence: document.querySelector("#hud .lic-chip")?.textContent || "",
+  gloss: document.querySelector(".wb.active .g")?.textContent?.trim() || "",
+}));
+check("word HUD offers readings", hud.pills.length > 0, hud.pills.slice(0, 4).join(" | "));
+check("exactly one reading selected", hud.pressed.length === 1, hud.pressed.join(" | "));
+check("selected pill equals the printed gloss", hud.pressed[0] === hud.gloss, `${hud.pressed[0]} vs ${hud.gloss}`);
+check("every reading is a pill, none demoted to a picker", hud.overflow === 0, `${hud.pills.length} pills, ${hud.overflow} in a picker`);
+check("a licence rides with the reading", hud.licence.length > 0, hud.licence);
+
+// The R inversion. R debundles where everything else bundles: one route needs
+// one definition record, no more — but it does need that one, and it needs it
+// whole. A pill may be clipped; the record it stands on may not be, or the
+// reading is not on the card at all. Checked on every reading of this word,
+// not only the one that opens.
+const dInvariant = await page.evaluate(async () => {
+  const all = [...document.querySelectorAll("#hud .r-pills button")];
+  // a form may carry hundreds of readings; sample rather than click every one
+  const pills = all.length > 25 ? all.slice(0, 25) : all;
+  const bad = [];
+  for (const p of pills) {
+    p.click();
+    await new Promise((r) => setTimeout(r, 30));
+    const texts = [...document.querySelectorAll("#hud .d-card .d-text")];
+    const atts = [...document.querySelectorAll("#hud .d-card .att")];
+    const clipped = texts.some((t) => t.scrollHeight > t.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2);
+    const empty = !texts.some((t) => t.textContent.trim().length);
+    if (!texts.length || !atts.length || clipped || empty)
+      bad.push({ pill: p.textContent.trim().slice(0, 40), d: texts.length, m: atts.length, clipped, empty });
+  }
+  return { pills: pills.length, of: all.length, bad };
+});
+check("every reading shows a whole D and its M", dInvariant.bad.length === 0,
+  dInvariant.bad.length ? JSON.stringify(dInvariant.bad[0])
+    : `${dInvariant.pills} readings, each with an unclipped record` +
+      (dInvariant.of > dInvariant.pills ? ` · sampled ${dInvariant.pills} of ${dInvariant.of}` : ""));
+
+// A card that grows off the bottom of the screen has hidden the very record
+// the check above just proved was there. Measured on a phone-sized viewport,
+// after switching readings and after opening the records drawer.
+await page.setViewportSize({ width: 412, height: 915 });
+const placement = await page.evaluate(async () => {
+  const worst = []; let capped = 0;
+  const measure = (what) => {
+    const r = document.getElementById("hud").getBoundingClientRect();
+    if (r.top < 0 || r.bottom > window.innerHeight + 1 || r.left < 0 || r.right > window.innerWidth + 1)
+      worst.push({ what, top: Math.round(r.top), bottom: Math.round(r.bottom), win: window.innerHeight });
+  };
+  const words = [...document.querySelectorAll("section.seg .wb:not(.held)")].slice(0, 40);
+  for (const w of words.slice(0, 12)) {
+    (w.querySelector(".wr") || w).click();
+    await new Promise((r) => setTimeout(r, 220));
+    measure("opened");
+    const rs = [...document.querySelectorAll("#hud .r-pills button")];
+    for (const p of (rs.length > 6 ? rs.slice(0, 6) : rs)) {
+      p.click(); await new Promise((r) => setTimeout(r, 60)); measure("reading switched");
+    }
+    if (rs.length > 6) capped += 1;
+    const more = document.querySelector("#hud .d-more");
+    if (more) { more.click(); await new Promise((r) => setTimeout(r, 120)); measure("records drawer"); }
+  }
+  return { worst, capped };
+});
+check("the card is never placed off the screen", placement.worst.length === 0,
+  placement.worst.length ? JSON.stringify(placement.worst[0])
+    : `12 words on a 412×915 viewport, readings and drawer` +
+      (placement.capped ? ` · first six readings only on ${placement.capped} of them` : ""));
+await page.setViewportSize({ width: 1100, height: 1500 });
+await page.keyboard.press("Escape");
+
+// ---- the component system, checked against the bin's own arithmetic ------
+// The page derives cells and complete covers from the component list; this
+// recomputes both from the zone file and asserts the DOM agrees. A page that
+// silently offered the wrong number of cuts would be inventing structure.
+let spanReport = null;
+const spanFacts = await page.evaluate(async () => {
+  const bin = await fetch(`data/zones/${new URLSearchParams(location.search).get("b")}.bin`)
+    .then((r) => r.arrayBuffer())
+    .then((b) => new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream("gzip"))).json());
+  const spans = bin.spans || {};
+  // the wordiest form on the page, so the assertion meets the hardest case
+  let best = null;
+  document.querySelectorAll("section.seg .wb:not(.held)").forEach((wb, i) => {
+    const regions = wb.querySelectorAll(".wr");
+    const key = wb.__k;
+    void key; void regions; void i;
+  });
+  const byN = {};
+  for (const [k, row] of Object.entries(spans)) {
+    const n = row[0].length;
+    (byN[n] = byN[n] || []).push(k);
+    if (!best || n > best.n) best = { k, n };
+  }
+  return {
+    forms: Object.keys(spans).length,
+    histogram: Object.fromEntries(Object.entries(byN).map(([n, ks]) => [n, ks.length])),
+    widest: best,
+    counts: bin.counts,
+    rules: bin.span_rules, roles: bin.span_roles, conf: bin.span_conf,
+  };
+});
+// A zone built before the span layer carries no components and must still
+// read: the page falls back to whole forms and says nothing it cannot show.
+if (!spanFacts.forms) check("a zone without components still reads", true, "no span layer in this zone — whole forms only");
+else {
+  check("the zone ships a component system", true, `${spanFacts.forms.toLocaleString()} forms · widths ${JSON.stringify(spanFacts.histogram)}`);
+  check("occurrences and W are both counted", spanFacts.counts.w_regions >= spanFacts.counts.words,
+    `${spanFacts.counts.w_regions} W across ${spanFacts.counts.words} occurrences`);
+}
+
+if (spanFacts.forms) {
+  // find a rendered word whose form is the widest one the zone carries
+  const target = await page.evaluate((k) => {
+    const els = [...document.querySelectorAll("section.seg .wb:not(.held)")];
+    for (let i = 0; i < els.length; i += 1) {
+      const w = els[i].querySelector(".w");
+      const norm = [...w.textContent.normalize("NFC")]
+        // U+05BE MAQAF, U+05F3 GERESH, U+05F4 GERSHAYIM — named by codepoint and
+        // never typed, the same three the key rule preserves
+        .filter((c) => (c.codePointAt(0) >= 0x05d0 && c.codePointAt(0) <= 0x05ea)
+          || "\u05be\u05f3\u05f4".includes(c)).join("");
+      if (norm === k) { els[i].id = `probe-${i}`; return { id: `probe-${i}`, text: w.textContent }; }
+    }
+    return null;
+  }, spanFacts.widest.k);
+  if (target) {
+    await page.click(`#${target.id}`);
+    await page.waitForSelector("#hud .s-pills button, #hud .r-pills button", { timeout: 10000 });
+    const s = await page.evaluate(() => ({
+      cuts: [...document.querySelectorAll("#hud .s-pills")][0]
+        ? [...document.querySelectorAll("#hud .s-pills")[0].querySelectorAll("button")].map((b) => b.textContent) : [],
+      cutLabel: document.querySelector("#hud .r-label")?.textContent || "",
+      prov: document.querySelector("#hud .prov")?.textContent || "",
+      blocks: document.querySelectorAll("#hud .s-pills").length,
+    }));
+    const expectedCuts = 2 ** (spanFacts.widest.n - 1);
+    check("every complete division is offered", s.cuts.length === expectedCuts,
+      `${spanFacts.widest.k} (${spanFacts.widest.n} components) · ${s.cuts.length} of 2^${spanFacts.widest.n - 1}=${expectedCuts}`);
+    check("the whole form leads", s.cuts[0] === spanFacts.widest.k, `${s.cuts[0]} vs ${spanFacts.widest.k}`);
+    check("no division repeats or drops a component", new Set(s.cuts).size === s.cuts.length &&
+      s.cuts.every((c) => c.split(" + ").join("") === spanFacts.widest.k), s.cuts.slice(0, 4).join(" / "));
+    check("the card says where the boundaries came from", /component|boundar/u.test(s.prov), s.prov.slice(0, 90));
+    check("the card opens on the whole form, not a piece", s.blocks === 1,
+      `${s.blocks} structure row(s) — a second appears only once a division is chosen`);
+
+    // choose the finest cut and confirm the blocks appear and the readings follow
+    await page.evaluate(() => {
+      const pills = document.querySelectorAll("#hud .s-pills")[0].querySelectorAll("button");
+      pills[pills.length - 1].click();
+    });
+    await page.waitForFunction(() => document.querySelectorAll("#hud .s-pills").length === 2, { timeout: 10000 });
+    const fine = await page.evaluate(() => {
+      const row = document.querySelectorAll("#hud .s-pills")[1];
+      const btns = [...row.querySelectorAll("button")];
+      const xs = btns.map((b) => b.getBoundingClientRect().left);
+      return {
+        blocks: btns.map((b) => b.textContent),
+        pressed: btns.filter((b) => b.getAttribute("aria-pressed") === "true").length,
+        // the first component of a Hebrew word sits rightmost
+        rtl: xs.every((x, i) => i === 0 || x < xs[i - 1]),
+        gloss: document.querySelector(".wb.active .g")?.textContent?.trim() || "",
+      };
+    });
+    check("the finest division exposes every component", fine.blocks.length === spanFacts.widest.n,
+      `${fine.blocks.join(" | ")}`);
+
+    // the R inversion again, this time over every reading of every block of
+    // the finest cut — the deepest the card ever goes
+    const perBlock = await page.evaluate(async () => {
+      const row = document.querySelectorAll("#hud .s-pills")[1];
+      const blocks = [...row.querySelectorAll("button")];
+      const bad = [], sampled = []; let readings = 0;
+      for (const b of blocks) {
+        b.click();
+        await new Promise((r) => setTimeout(r, 400));
+        const all = [...document.querySelectorAll("#hud .r-pills button")];
+        const pills = all.length > 25 ? all.slice(0, 25) : all;
+        if (all.length > pills.length) sampled.push(`${b.textContent}: ${pills.length} of ${all.length}`);
+        for (const p of pills) {
+          p.click();
+          await new Promise((r) => setTimeout(r, 25));
+          readings += 1;
+          const texts = [...document.querySelectorAll("#hud .d-card .d-text")];
+          const atts = [...document.querySelectorAll("#hud .d-card .att")];
+          const clipped = texts.some((t) => t.scrollHeight > t.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2);
+          const empty = !texts.some((t) => t.textContent.trim().length);
+          if (!texts.length || !atts.length || clipped || empty)
+            bad.push({ block: b.textContent, pill: p.textContent.trim().slice(0, 30), d: texts.length, m: atts.length, clipped, empty });
+        }
+      }
+      return { readings, bad, sampled };
+    });
+    check("every reading of every block shows a whole D and its M", perBlock.bad.length === 0,
+      perBlock.bad.length ? JSON.stringify(perBlock.bad[0])
+        : `${perBlock.readings} readings across ${fine.blocks.length} blocks` +
+          (perBlock.sampled.length ? ` · sampled, not exhaustive: ${perBlock.sampled.join("; ")}` : ""));
+    check("exactly one block is open", fine.pressed === 1, String(fine.pressed));
+    check("the blocks lay out in the word's direction", fine.rtl, `first block rightmost: ${fine.rtl}`);
+    check("the gloss follows the division", fine.gloss.split(" + ").length === spanFacts.widest.n, fine.gloss);
+    spanReport = { form: spanFacts.widest.k, n: spanFacts.widest.n, cuts: s.cuts, blocks: fine.blocks, gloss: fine.gloss, prov: s.prov };
+    await page.keyboard.press("Escape");
+  } else check("a widest-form probe was rendered", false, `${spanFacts.widest.k} not found on the page`);
+}
+
+// ---- a maqaf occurrence is one block holding more than one W -------------
+if (spanFacts.counts.occurrences_holding_more_than_one_w) {
+  const multi = await page.evaluate(() => {
+    const el = document.querySelector("section.seg .wb.multi");
+    if (!el) return null;
+    el.id = "probe-multi";
+    return { regions: el.querySelectorAll(".wr").length, maqafs: el.querySelectorAll(".mq").length, text: el.querySelector(".w").textContent, gloss: el.querySelector(".g").textContent };
+  });
+  check("a maqaf word renders as one block", !!multi, multi ? `${multi.text} · ${multi.regions} W` : "none found");
+  if (multi) {
+    check("each W inside it is its own region", multi.regions >= 2, `${multi.regions} regions, ${multi.maqafs} maqaf`);
+    const opened = [];
+    for (let i = 0; i < Math.min(2, multi.regions); i += 1) {
+      await page.evaluate((j) => document.querySelectorAll("#probe-multi .wr")[j].click(), i);
+      await page.waitForSelector("#hud .r-pills button, #hud .prov", { timeout: 10000 });
+      opened.push(await page.evaluate(() => ({
+        marked: document.querySelectorAll("#probe-multi .wr.on").length,
+        head: document.querySelector("#hud .head b")?.textContent || "",
+        first: document.querySelector("#hud .r-pills button")?.textContent || "",
+      })));
+    }
+    check("each region opens its own card", opened[0].first !== opened[1].first || opened[0].first === "",
+      opened.map((o) => o.first || "(no reading)").join(" vs "));
+    check("only the region you opened is marked", opened.every((o) => o.marked === 1), opened.map((o) => o.marked).join(","));
+    // U+05BE MAQAF, by codepoint: the mark the occurrence is written with
+    check("the whole occurrence stays in the header", opened.every((o) => o.head.includes("\u05be")), opened[0].head);
+    await page.keyboard.press("Escape");
+  }
+}
+
+// open a section commentary
+let commentary = null;
+if (facts.commentaryHandles) {
+  await page.click("section.seg .c-seg");
+  await page.waitForSelector("#hud .c-card", { timeout: 10000 });
+  commentary = await page.evaluate(() => ({
+    pills: [...document.querySelectorAll("#hud .c-pills button")].map((b) => b.textContent),
+    words: document.querySelectorAll("#hud .c-he .wb").length,
+    glossed: [...document.querySelectorAll("#hud .c-he .wb .g")].filter((g) => g.textContent.trim()).length,
+    licence: document.querySelector("#hud .c-card .lic-chip")?.textContent || "",
+    ref: document.querySelector("#hud .c-card .att")?.textContent || "",
+    note: document.querySelector("#hud .c-note")?.textContent || "",
+    text: [...document.querySelectorAll("#hud .c-he .wb .w")].slice(0, 8).map((w) => w.textContent).join(" "),
+  }));
+  check("commentary opens with its work", commentary.pills.length > 0, commentary.pills.join(" | "));
+  check("commentary rides as tappable words", commentary.words > 0, `${commentary.words} words, ${commentary.glossed} glossed`);
+  check("commentary carries its own licence", commentary.licence.length > 0, commentary.licence);
+  check("attachment basis is stated", /coordinates|edge|reach/u.test(commentary.note), commentary.note.slice(0, 80));
+
+  // a commentary word must open its own routes, and offer the way back
+  await page.click("#hud .c-he .wb:not(.held)");
+  await page.waitForSelector("#hud .c-back", { timeout: 10000 });
+  const back = await page.evaluate(() => ({
+    back: document.querySelector("#hud .c-back")?.textContent || "",
+    pills: document.querySelectorAll("#hud .r-pills button").length,
+    head: document.querySelector("#hud .head b")?.textContent || "",
+  }));
+  check("commentary word opens its own routes", back.pills > 0 || back.head.length > 0, `${back.head} · ${back.pills} pills`);
+  check("and offers the way back", back.back.startsWith("‹"), back.back);
+  await page.click("#hud .c-back");
+  await page.waitForSelector("#hud .c-card", { timeout: 10000 });
+  check("the way back returns to the commentary", true, "reopened");
+  await page.keyboard.press("Escape");
+
+  // The layer: a commentary belongs to the sections it comments on, so a
+  // reader must be able to read it there rather than opening a card per verse.
+  const layer = await page.evaluate(async () => {
+    const btn = document.getElementById("layerC");
+    if (!btn || btn.hidden) return null;
+    btn.click();
+    for (let i = 0; i < 60 && !document.querySelector(".c-inline"); i += 1)
+      await new Promise((r) => setTimeout(r, 100));
+    const rows = document.querySelectorAll(".c-inline").length;
+    const words = document.querySelectorAll(".c-inline .wb").length;
+    const labelled = [...document.querySelectorAll(".c-inline")].every((p) => p.querySelector(".lab")?.textContent.trim());
+    const base = document.querySelectorAll("section.seg .he-text .wb").length;
+    btn.click();
+    await new Promise((r) => setTimeout(r, 200));
+    const hiddenAfter = [...document.querySelectorAll(".c-inline")].filter((p) => !p.hidden).length;
+    return { rows, words, labelled, base, hiddenAfter, name: btn.textContent };
+  });
+  if (layer) {
+    check("the commentary reads inside the book", layer.rows === facts.sections,
+      `${layer.rows} rows of ${layer.name} across ${facts.sections} sections, ${layer.words.toLocaleString()} words`);
+    check("every layer row names its work and licence", layer.labelled, "each row labelled");
+    check("the layer leaves the base text alone", layer.base === facts.words, `${layer.base} base words unchanged`);
+    check("the layer turns off", layer.hiddenAfter === 0, `${layer.hiddenAfter} still showing`);
+  }
+}
+
+if (shot) { await page.screenshot({ path: shot, fullPage: false }); }
+await browser.close();
+server.close();
+
+const pad = Math.max(...checks.map((c) => c.name.length));
+for (const c of checks) console.log(`${c.pass ? "ok  " : "FAIL"}  ${c.name.padEnd(pad)}  ${c.detail ?? ""}`);
+console.log(`\n${facts.words.toLocaleString()} word blocks · ${facts.glossed.toLocaleString()} carry a gloss · ${facts.sections.toLocaleString()} sections · ${facts.tocCells} chapters`);
+console.log(`first section: ${facts.firstSection}`);
+console.log(`first glosses: ${facts.firstGlosses.join(" | ")}`);
+if (spanReport) {
+  console.log(`\ncomponent system · ${spanReport.form} (${spanReport.n} components)`);
+  console.log(`  ${spanReport.prov}`);
+  console.log(`  divisions: ${spanReport.cuts.join("  /  ")}`);
+  console.log(`  finest:    ${spanReport.blocks.join(" | ")}  →  ${spanReport.gloss}`);
+}
+if (commentary) console.log(`commentary: ${commentary.pills.join(", ")} · ${commentary.words} words · ${commentary.licence}\n  ${commentary.text}`);
+const failed = checks.filter((c) => !c.pass);
+if (failed.length) { console.error(`\n${failed.length} check(s) failed`); process.exit(1); }
+console.log("\nall checks passed");

@@ -1,0 +1,84 @@
+{
+ "schema_version": "STORE_BEFORE_STRIKE_WITNESS_V1",
+ "rule_id": "store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed",
+ "what_this_is": "what the route store DECLARED about itself immediately before the language admission strike, kept as the 'before' the continuity arithmetic needs. A store cannot be its own witness for what it used to hold: the strike re-emitted the index from the shards it had, so the store in front of us can only say what it holds now. This is recovered from this repository's own history, not from any lane's disk.",
+ "recovered_from": "git b1d1895ef:reader/data/route-store/index.json",
+ "store_version": "7d3e04a9d270",
+ "counts": {
+  "keys": 140532,
+  "routes": 774277,
+  "refused_routes": 0,
+  "refused_m_records": 0,
+  "shards": 256,
+  "shard_bytes_total": 14641140,
+  "routes_separated_on_a_declared_mark": 16776,
+  "pieces_those_routes_divided_into": 144612,
+  "routes_shipped_whole": 629665,
+  "readings_that_are_a_cut_of_a_sibling_record": 17845,
+  "readings_cut_from_a_record_whose_licence_forbids_it": 0
+ },
+ "cuts_by_source": {
+  "M14": 513,
+  "M17": 547,
+  "M9": 7889,
+  "M20": 6858,
+  "M1": 1142,
+  "M83": 28,
+  "M5": 755,
+  "M39": 31,
+  "M26": 15,
+  "M31": 2,
+  "M101": 6,
+  "M89": 21,
+  "M23": 3,
+  "M107": 3,
+  "M91": 4,
+  "M51": 3,
+  "M109": 1,
+  "M141": 1,
+  "M67": 5,
+  "M75": 3,
+  "M84": 6,
+  "M37": 1,
+  "M114": 4,
+  "M97": 1,
+  "M65": 2,
+  "M49": 1
+ },
+ "held_by_the_shards_beside_it": {
+  "what_this_is": "what the 256 shards committed beside that index held, counted from the same commit's bytes (git 5b5f83341:reader/data/route-store/shards; f47c266c1 before the rename, at genesis-book-reader-v4/data/route-store). The strike was handed these rows, not the declared ones: the admission record's cumulative 97,384 is 773,847 - 676,463, and its last round's 755,558 is 773,847 - 18,289.",
+  "routes": 773847,
+  "keys": 140532,
+  "shard_bytes_total": 14637262,
+  "readings_that_are_a_cut_of_a_sibling_record": 17826,
+  "cuts_by_source": {
+   "M14": 494
+  },
+  "cuts_by_source_note": "every other source's count is the declared one; only M14 differs"
+ },
+ "why_they_differ": {
+  "rebuild": "store 7d3e04a9d270 is the 2026-08-18 rebuild ('a comma outside the provider's parentheses divides two readings'); its index was emitted over the whole rebuild and its shards were committed in three batches",
+  "landed": [
+   "e41f60ab8 (1 of 3): 64 shards in 01..54",
+   "84111e6aa (3 of 3): 63 shards in ad..fe"
+  ],
+  "never_landed": "(2 of 3): the 88 shards 55..ac. Every one of them is still the bytes of the previous store 7d2e4cfa4239 (021e47c52, 2026-08-17): 48,155 keys, 263,733 rows, 50,235 of them M14's, separated under the previous build and not under the declaration the index names",
+  "the_gap": {
+   "routes": 430,
+   "shard_bytes": 3878,
+   "m14_cut_readings": 19,
+   "source": "M14",
+   "keys": 0
+  },
+  "what_the_rebuild_did_where_it_landed": "in the 127 shards that changed it touched M14 alone: 1,292 rows added, 231 removed (net 1,061) over 230 keys",
+  "where_the_rows_are": "in the rebuild's output on the corpus lane (its pinned 7d3e04a9d270 copy). Not in this repository's history, and not in either R2 pointing-store shipment: both carry 773,847",
+  "ruled": null,
+  "ruled_note": "null until the owner rules. The gap closes by landing the 88 shards from the lane's copy, brought through the four moves since (two admission rounds, the pointing-store landing, the year repair, the M20 strike), or by a ruling that the 88 shards stay as shipped; either is a rule, and C0 of check-store-continuity-v1 alarms until one is here"
+ },
+ "sources": 196,
+ "what_this_does_not_say": [
+  "that the shards behind it held what it declares — they did not, and held_by_the_shards_beside_it says what they held; why_they_differ says where the rest went",
+  "which 430 rows are missing — the rows are not here; the per-source cut counts localise them to M14 and the rows themselves are on the corpus lane's pinned copy",
+  "anything about the strike's correctness — only about how many rows it began with"
+ ]
+}

@@ -1,0 +1,274 @@
+{
+ "schema_version": "ROUTE_STORE_V2",
+ "overlay_schema": "ROUTE_STORE_V2_OVERLAY_V1",
+ "role": "OVERLAY. Not a replacement for the base store and not a copy of it: a separate store read beside the base store when the toggle is on.",
+ "candidate_only": true,
+ "current_effect": "NONE",
+ "built": "2026-09-25T08:24:03.953Z",
+ "rule": "strand-build/RULE-strand-build.md",
+ "overlay_of": {
+  "store_version": "3411c86e94e7",
+  "index_sha256": "ee8b81c2efb066be9d8cc9012620f0639d479a0b128e7554123a4cc6957134a1",
+  "rule_id": "route-store-rule-v3-declared-reading",
+  "dir": "builds:moses-year-repair-v1.1/route-store",
+  "files": 257,
+  "the_base_is_never_modified": true
+ },
+ "precedents_followed": [
+  "builds:moses-jastrow-toggle-v1/overlay-store/index.json (ROUTE_STORE_V2_OVERLAY_V1: rank R(K)+n, 256 shards beside the index, toggle object)",
+  "builds:moses-ben-yehuda-page-toggle-v2/overlay-store/index.json (toggle object, 256 shards)"
+ ],
+ "toggle": {
+  "id": "samaritan",
+  "default": "off",
+  "m_ids": [
+   "MSAM1",
+   "MSAM2",
+   "MSAM3",
+   "MSAM4",
+   "MSAM5"
+  ],
+  "sort_rule": "below every era-appropriate and tradition source",
+  "compose": "above the licence sort",
+  "off_means": "no overlay row enters the pool; the base store answers alone, exactly as it does without this overlay",
+  "on_means": "the overlay rows of every lane that is on enter the pool with their year (slot 4) and their source (slot 3), and sort after every base reading at the same key on the rank slot; they never lower a base reading's year or rank",
+  "the_rank_does_not_implement_the_sort_rule": "the page sorts by tier, year, then rank; a rank after the base does not by itself keep an 1837 or 1909 Samaritan reading below an undated or later base reading. The serving lane's comparator must place the toggle first, as for the Jastrow overlay",
+  "ruling": {
+   "owner_words": [
+    "the concept currently is anything thats a byte match. i dont care if its crowley [Cowley]",
+    "if samaritan changes the script it cant be byte match",
+    "the card itself says 'this different script defines this hebrew'"
+   ],
+   "on": "2026-09-23",
+   "admitted": "Samaritan Hebrew and Samaritan Aramaic as DEFINING sources under their own toggle; path (a) a square headword printed, path (b) a square form declared in the entry"
+  },
+  "turning_it_on": "the serving lane's wiring and the reader's switch; nothing here is live"
+ },
+ "sort_rule": "below every era-appropriate and tradition source",
+ "compose": "above the licence sort",
+ "lanes": {
+  "square_printed": {
+   "standing": "ruled",
+   "question": null,
+   "what": "path (a): the book prints the headword in square letters (Cowley; its variant forms beside the headword too)"
+  },
+  "tied": {
+   "standing": "ruled",
+   "question": null,
+   "what": "path (b): a Samaritan-script headword whose entry ties a square word to it by a tie word (pro hebr., =, Ch., Chald., Heb., i. q., coll., a Wiktionary template)"
+  },
+  "fmt_mt_word": {
+   "standing": "awaiting the owner",
+   "question": "Q1",
+   "what": "Florentin–Tal: the MT word, with the Samaritan meaning beside it"
+  },
+  "bracketed_bare": {
+   "standing": "awaiting the owner",
+   "question": "Q3",
+   "what": "Uhlemann: a square word in brackets beside the Samaritan one with no tie word"
+  },
+  "argued_tie": {
+   "standing": "awaiting the owner",
+   "question": "Q3",
+   "what": "a square word tied only by a scholar's argument (legitur, redditur, forte a, forte ex Metath.)"
+  },
+  "turnover": {
+   "standing": "awaiting the owner",
+   "question": "Q4",
+   "what": "Nicholls: a tied word the printer set on another line"
+  },
+  "printed_root": {
+   "standing": "awaiting the owner; not keyed, carried as data only",
+   "question": "Q2",
+   "what": "Florentin–Tal: a root printed with a double tick (עב\"ד); carried in strand-build/outputs/printed-roots-v1.jsonl, no overlay row"
+  }
+ },
+ "lane_rule": "the owner's answer to a question only switches its lane on; a row shows when the toggle is on and at least one of its lanes is on; nothing is rebuilt",
+ "key": "byte-exact kNormalizedKey; shard = sha256(utf8(K)) first 2 hex chars",
+ "key_rule_stated": "keep only the letters U+05D0..U+05EA (final forms as themselves); drop every other code point; no other script is mapped",
+ "shard_path": "shards/{shard}.bin, beside this index (all 256 written; a shard with no Samaritan row holds {}); the base's own pattern is data/route-store/shards/{shard}.bin",
+ "fold_to_served_v2": "delete [7]; what is left is a seven-slot ROUTE_STORE_V2 row (RULE Addendum B)",
+ "shard_encoding": "gzip(JSON) — unpack with DecompressionStream('gzip')",
+ "route_row": [
+  "semantic_route_rank = R(K) + n (RULE Addendum B, as the Jastrow overlay): R(K) the largest rank of the base store's rows at K (0 when the base has no K), n = 1.. in the overlay's own order (source MSAM1..MSAM5, then the entry's place in its book); every overlay row sorts after every base row at K on this slot, and on this slot only",
+  "route_text — the printed definition, in its printed language, never translated (Florentin–Tal: the printed senses under the book's column heads MT / SP / Reference, joined by \" || \"; Wiktionary: the \"# \" definition lines of the ==Samaritan Hebrew== section, verbatim wikitext, joined by \" || \")",
+  "definition_text — the entry as printed with its page: headword as the reader wrote it (a Samaritan-script headword stays described as [Samaritan]), the route text, and [book, page, column, entry]",
+  "m_id",
+  "source_year_or_S_NO_SOURCE_YEAR — the book's title-page year; S_NO_SOURCE_YEAR where the title page prints none (Nicholls) or the source is a web page (Wiktionary)",
+  "null: no overlay row is a piece cut from a sibling",
+  "HEADWORDS: the square forms as printed in that entry whose key is the row's key, distinct by exact string, in printed order (pointing as the reader transcribed it)",
+  "SAMARITAN (overlay only; a served client that reads [0]..[6] by position ignores it): { path: \"a printed\" | \"b declared\"; lane (or \"several\") and lanes with their standing; awaiting_owner; shows_when; language_label as the entry carries it (Cowley ARAMAIC from its section heading, UNDECLARED where the book says nothing) and entry_label_verbatim; forms, each with form_as_printed, role, lane and, for path (b), tie_words_verbatim, tie_class and clause_verbatim; declaration_verbatim (path b); entry (the build file and line, image, leaf, column, position); added_by_amendment; corrected_by }"
+ ],
+ "m_sources": {
+  "MSAM1": {
+   "key": "cowley-1909-samaritan-liturgy-vol2-glossary",
+   "label": "Cowley, The Samaritan Liturgy vol. II (Oxford 1909), GLOSSARY OF THE ARAMAIC TEXTS: square headwords as printed, English definitions",
+   "licensePosture": "public_domain_on_its_dates_no_licence_printed",
+   "licensePointer": "builds:moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json (candidate cowley-1909-samaritan-liturgy-vol2-glossary, licence_own_words)",
+   "sourceYear": "1909",
+   "toggle": "samaritan",
+   "default": "off",
+   "sort_rule": "below every era-appropriate and tradition source",
+   "compose": "above the licence sort",
+   "path": "a printed",
+   "year_from": "title page: \"OXFORD AT THE CLARENDON PRESS 1909\"",
+   "licence_own_words": "No licence or notice is printed in the pages read. Public domain stands on the dates: published 1909 (before 1931: US), and the author died 1931-10-12 (life+70 ended at the end of 2001). Container stamp, not used: IA \"possible-copyright-status: NOT_IN_COPYRIGHT\".",
+   "licence_grade_by_the_check": "SERVABLE",
+   "licence_condition_by_the_check": null,
+   "licence_record": "moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json",
+   "covers": "printed pp. xlix to lxxii (leaves n52 to n75), the whole glossary",
+   "entries_file": "strand-build/outputs/entries-cowley-overlay-v1.jsonl",
+   "entries_file_sha256": "28fa9014518b06a544f7fde6279447fc1802909f7724432cdbab9b9017367f65",
+   "entries": 984,
+   "overlay_rows": 967,
+   "overlay_keys": 880,
+   "lanes": {
+    "square_printed": {
+     "standing": "ruled",
+     "overlay_rows": 967
+    }
+   }
+  },
+  "MSAM2": {
+   "key": "uhlemann-1837-institutiones",
+   "label": "Uhlemann, Institutiones Linguae Samaritanae (Leipzig 1837), Lexicon Samaritanum: square Hebrew or Chaldee words the entry itself ties to a Samaritan-script headword, Latin definitions",
+   "licensePosture": "public_domain_on_its_dates_no_licence_printed",
+   "licensePointer": "builds:moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json (candidate uhlemann-1837-institutiones, licence_own_words)",
+   "sourceYear": "1837",
+   "toggle": "samaritan",
+   "default": "off",
+   "sort_rule": "below every era-appropriate and tradition source",
+   "compose": "above the licence sort",
+   "path": "b declared",
+   "year_from": "title page: \"Lipsiae Sumtibus et Typis Caroli Tauchnitii. 1837.\"",
+   "licence_own_words": "None printed. Public domain on the dates: 1837, and the author died 1864. Container stamp, not used: IA \"NOT_IN_COPYRIGHT\".",
+   "licence_grade_by_the_check": "SERVABLE",
+   "licence_condition_by_the_check": null,
+   "licence_record": "moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json",
+   "covers": "printed pp. 1 to 95 (leaves n452 to n546), the whole lexicon; p. 95 carries added_by_amendment",
+   "entries_file": "strand-build/outputs/entries-uhlemann-overlay-v1.jsonl",
+   "entries_file_sha256": "cdfc9e4029a622412bb036aba84e47860e05e542759f7e08479870270838886a",
+   "entries": 2065,
+   "overlay_rows": 1850,
+   "overlay_keys": 1544,
+   "lanes": {
+    "tied": {
+     "standing": "ruled",
+     "overlay_rows": 1609
+    },
+    "bracketed_bare": {
+     "standing": "awaiting the owner",
+     "overlay_rows": 200
+    },
+    "argued_tie": {
+     "standing": "awaiting the owner",
+     "overlay_rows": 46
+    }
+   }
+  },
+  "MSAM3": {
+   "key": "florentin-tal-2025-index-of-differences-in-meaning",
+   "label": "Florentin and Tal, The Samaritan Pentateuch (Open Book Publishers ©2024), 7.0 Index of Differences in Meaning: the MT word with the Samaritan meaning and reading beside it",
+   "licensePosture": "cc_by_nc_4_0",
+   "licensePointer": "builds:moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json (candidate florentin-tal-2025-index-of-differences-in-meaning, licence_own_words)",
+   "sourceYear": "2024",
+   "toggle": "samaritan",
+   "default": "off",
+   "sort_rule": "below every era-appropriate and tradition source",
+   "compose": "above the licence sort",
+   "path": "a printed",
+   "year_from": "title-page verso: \"©2024 Moshe Florentin and Abraham Tal\" (the publisher's metadata says 2025-01-31; the book's own page is used)",
+   "licence_own_words": "Copyright page: \"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). This license allows you to share, copy, distribute, and transmit the text; to adapt the text for non-commercial purposes of the text providing attribution is made to the authors (but not in any way that suggests that they endorse you or your use of the work).\" It prescribes this attribution: \"Moshe Florentin and Abraham Tal, The Samaritan Pentateuch: An English Translation with a Parallel Annotated Hebrew Text. Cambridge, UK: Open Book Publishers, 2024, https://doi.org/10.11647/OBP.0415\".",
+   "licence_grade_by_the_check": "SERVABLE_IF",
+   "licence_condition_by_the_check": "Non-commercial use only; attribution in the prescribed form; nothing that implies the authors endorse the site. Adapting the text (e.g. cutting the index into cards) is allowed for non-commercial purposes only. The owner must rule that the zero-revenue educational site is NonCommercial.",
+   "licence_record": "moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json",
+   "covers": "printed pp. 1103 to 1107 (leaves n1119 to n1123), the whole index",
+   "entries_file": "strand-build/outputs/entries-florentin-tal-overlay-v1.jsonl",
+   "entries_file_sha256": "72f3fda13a3620cef465973fc68ebb0e4f6ceeddd18c8c9ae89c412e23d55219",
+   "entries": 43,
+   "overlay_rows": 40,
+   "overlay_keys": 40,
+   "lanes": {
+    "fmt_mt_word": {
+     "standing": "awaiting the owner",
+     "overlay_rows": 40
+    }
+   }
+  },
+  "MSAM4": {
+   "key": "nicholls-1858-grammar",
+   "label": "Nicholls, A Grammar of the Samaritan Language (London; preface signed 1858), Lexicon: square Hebrew or Chaldee words the entry ties to a Samaritan-script headword, English definitions",
+   "licensePosture": "public_domain_on_its_dates_no_licence_printed",
+   "licensePointer": "builds:moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json (candidate nicholls-1858-grammar, licence_own_words)",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "toggle": "samaritan",
+   "default": "off",
+   "sort_rule": "below every era-appropriate and tradition source",
+   "compose": "above the licence sort",
+   "path": "b declared",
+   "year_from": "the title page prints no year, so none is set; the preface is signed \"LONDON: 1858,\" (carried here as data, not as the year)",
+   "licence_own_words": "None printed. Public domain on the dates: 1858, and the author died 1913 (life+70 ended at the end of 1983). Container stamp, not used: Cornell's added leaf, \"There are no known copyright restrictions in the United States on the use of the text.\" This resolves search-3's \"death date not established\" and search-1's 1913/1918 conflict in favour of 1913 (two authority sources).",
+   "licence_grade_by_the_check": "SERVABLE",
+   "licence_condition_by_the_check": null,
+   "licence_record": "moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json",
+   "covers": "printed pp. [132] to 141 (leaves n141 to n150), the whole lexicon",
+   "entries_file": "strand-build/outputs/entries-nicholls-overlay-v1.jsonl",
+   "entries_file_sha256": "94807ab90d495f07f68f1f7c2065e1953027a3607a1abca696e1d1994b4fc6fb",
+   "entries": 281,
+   "overlay_rows": 7,
+   "overlay_keys": 7,
+   "lanes": {
+    "tied": {
+     "standing": "ruled",
+     "overlay_rows": 6
+    },
+    "turnover": {
+     "standing": "awaiting the owner",
+     "overlay_rows": 1
+    }
+   }
+  },
+  "MSAM5": {
+   "key": "wiktionary-samaritan-hebrew-lemmas",
+   "label": "English Wiktionary, Category:Samaritan Hebrew lemmas: square forms the page ties to a Samaritan-script lemma (alt/inh templates), English definitions, pinned revisions",
+   "licensePosture": "cc_by_sa_4_0",
+   "licensePointer": "builds:moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json (candidate wiktionary-samaritan-hebrew-lemmas, licence_own_words)",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "toggle": "samaritan",
+   "default": "off",
+   "sort_rule": "below every era-appropriate and tradition source",
+   "compose": "above the licence sort",
+   "path": "b declared",
+   "year_from": "a web page; no year",
+   "licence_own_words": "Live page footer: \"Definitions and other text are available under the Creative Commons Attribution-ShareAlike License; additional terms may apply.\" It links to creativecommons.org/licenses/by-sa/4.0.",
+   "licence_grade_by_the_check": "SERVABLE_IF",
+   "licence_condition_by_the_check": "CC BY-SA 4.0: attribution, and any adapted card must be shared under the same licence (share-alike). \"Additional terms may apply\" (Wikimedia Terms of Use).",
+   "licence_record": "moses-samaritan-hebrew-search-v1/check/candidates-check-v1.json",
+   "covers": "the 14 lemmas of the category, at the revisions pinned in strand-1-sample/meta/wikt-14-api.json",
+   "entries_file": "strand-build/outputs/entries-wiktionary-overlay-v1.jsonl",
+   "entries_file_sha256": "6bdadf480226611a8e4718c2829c023ef32693f4289632a64217d7afb3a5934f",
+   "entries": 14,
+   "overlay_rows": 11,
+   "overlay_keys": 11,
+   "lanes": {
+    "tied": {
+     "standing": "ruled",
+     "overlay_rows": 11
+    }
+   }
+  }
+ },
+ "counts": {
+  "axis": "overlay rows (one per key and source entry) and distinct keys",
+  "rows": 2875,
+  "keys": 2239,
+  "shards": 256,
+  "shards_with_rows": 256,
+  "rows_awaiting_owner": 282,
+  "rows_with_several_lanes": 5,
+  "keys_not_in_base_store": 441
+ },
+ "price": "strand-build/outputs/price-v1.json",
+ "store_version": "32545d00f4fd",
+ "store_version_rule": "first 12 hex of sha256(the 256 overlay shard sha256 hex digests in 00..ff order + \"\\n\" + JSON.stringify(route_row) + \"\\n\" + the base store_version)"
+}

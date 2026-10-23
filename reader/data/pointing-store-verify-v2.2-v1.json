@@ -1,0 +1,59 @@
+{
+ "schema_version": "POINTING_STORE_VERIFY_V1",
+ "rule_id": "pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said",
+ "verified_on": "2026-09-18",
+ "shipment": {
+  "lane": "moses-pointing-store-v1/tier3/store-v2.2",
+  "manifest": "MANIFEST-v2.2.json",
+  "manifest_sha256": "fd2df3cac90c165707c6ac91c6b9dc2c46d250cb1045f34464f81f14783c10d2",
+  "store_version": "760f6e427e30",
+  "candidate_only": true,
+  "current_effect": "NONE"
+ },
+ "pin": {
+  "manifest_sha256": "fd2df3cac90c165707c6ac91c6b9dc2c46d250cb1045f34464f81f14783c10d2",
+  "files_pinned": 264,
+  "files_present_and_matching": 264,
+  "files_mismatched": [],
+  "files_absent": [],
+  "shard_digest_matches": true,
+  "shard_digest": "8d667606cac3adc2b31203bc8e3e6b08b965b671d2e35c9bc829e01e2e66669a",
+  "shards": 256
+ },
+ "version_recipe": {
+  "stated": "760f6e427e30",
+  "parent": "96d83807a7db",
+  "recomputed": "760f6e427e30",
+  "matches": true,
+  "recipe": "sha256(shard hex hashes 00..ff ‖ LF ‖ JSON.stringify(route_row) ‖ LF ‖ parent)[0:12]"
+ },
+ "fold": {
+  "against": "git b1d1895ef:reader/data/route-store (the pre-strike store this lane holds)",
+  "shards_identical": 256,
+  "shards_differ": [],
+  "rows": 773847,
+  "rows_length_7": 773847,
+  "keys": 140532,
+  "rows_with_headword": 773847,
+  "rows_with_pointed_headword": 432141
+ },
+ "landing": {
+  "landable": true,
+  "shards_identical_after_fold": 256,
+  "shards": 256,
+  "rows_kept": 676463,
+  "rows_dropped_by_admission": 97384,
+  "dropped_ids": 45,
+  "dropped_ids_all_on_the_struck_list": true,
+  "served_rows_with_headword": 676463,
+  "candidate_store_version": "94bc125695bf"
+ },
+ "same_fact": {
+  "not_carried": "this shipment carries no grade table; the grade is computed from [6] at display time (contract §2)"
+ },
+ "what_this_does_not_say": [
+  "that the candidate is served; it is not, and the page cannot yet read [6]",
+  "that the per-source grade the contract asks the card to compute from [6] equals the merged lattice grade — the contract itself counts 6.1% of slots where it does not, and that difference is the toggle's purpose",
+  "anything about the default, which is the owner's"
+ ]
+}

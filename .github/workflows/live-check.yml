@@ -1,0 +1,29 @@
+# THE LIVE SITE IS THIS BUILD: after GitHub Pages publishes, read the public
+# site and hold it to the checkout (tools/check-live-v1.mjs). No browser, no
+# secrets, nothing written. Runs on the page_build event (Pages finished
+# publishing) and by hand.
+name: live check
+on:
+  page_build:
+  workflow_dispatch:
+    inputs:
+      origin:
+        description: the public origin to check
+        default: https://fireandhail.com
+        required: true
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: the live site is this build
+        # from the reader folder: the zone list is read relative to it, as
+        # every check is run (the first run, from the root, found no zones)
+        working-directory: reader
+        run: node tools/check-live-v1.mjs "${{ github.event.inputs.origin || 'https://fireandhail.com' }}" --wait 900

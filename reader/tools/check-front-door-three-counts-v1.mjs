@@ -1,0 +1,389 @@
+#!/usr/bin/env node
+// GUARDS: front-door-rule-v1-the-door-lists-what-the-zones-carry
+//
+// The front door names three grains. Physical and named-shelf counts are C0
+// rows. Rendered coverage is counted independently as one record per COMPspan
+// in the built zones and must never be relabelled as C0.
+
+import { readFileSync, existsSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { gunzipSync } from "node:zlib";
+import { resolve } from "node:path";
+import assert from "node:assert/strict";
+import { basename, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { zonesOnDisk, zonesServed, isSidecar } from "./zones-on-disk-v1.mjs";
+
+const arg = (name, fallback) => {
+  const i = process.argv.indexOf(`--${name}`);
+  return i > 0 ? process.argv[i + 1] : fallback;
+};
+const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
+const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
+// The engine directory's name is read from where this check stands, never
+// typed; the deep-equal against the bindings record holds the derivation to
+// the record, so a folder rename is one move and one record edit.
+const ENGINE = basename(resolve(dirname(fileURLToPath(import.meta.url)), ".."));
+const TEXT_PIN_PATHS = [
+  "data/corpus-atlas-v1.json",
+  "data/bezelal-front-door-counts-handoff-v1.json",
+  "data/front-door-three-count-bindings-v1.json",
+].map((rel) => `${ENGINE}/${rel}`);
+const readBytes = (path) => readFileSync(resolve(path));
+const readJson = (path) => JSON.parse(readBytes(path).toString("utf8"));
+const n = (value) => Number(value).toLocaleString("en-US");
+const text = (html) => html.replace(/<[^>]*>/g, " ").replace(/&middot;/g, "·").replace(/\s+/g, " ").trim();
+// A count block if the door prints one, and null if it does not.
+//
+// This used to assert the block's existence, which made it a check on the
+// door's SHAPE rather than on its truthfulness. The counts fold came off the
+// door — it was four figures in the billions that told a reader nothing — and
+// six suites failed for a page that had stopped making a claim rather than for
+// making a false one.
+//
+// The law was always "a count the door prints agrees with the receipt", and
+// that is what it is now. Print nothing and there is nothing to disagree with;
+// print a figure and it must be exact. The receipt is checked either way, and
+// it is still emitted on every build as data even though the fold is gone.
+const block = (html, key) => {
+  const match = html.match(new RegExp(`<p class="count" data-count="${key}">([\\s\\S]*?)<\\/p>`));
+  return match ? text(match[1]) : null;
+};
+const printsCounts = (html) => block(html, "current-physical-c0") !== null;
+
+const htmlPath = arg("html", "../index.html");
+const readmePath = arg("readme", "../README.md");
+const receiptPath = arg("receipt", "../front-door-counts-receipt-v1.json");
+const atlasPath = arg("atlas", "data/corpus-atlas-v1.json");
+const handoffPath = arg("physical-handoff", "data/bezelal-front-door-counts-handoff-v1.json");
+const bindingsPath = arg("count-bindings", "data/front-door-three-count-bindings-v1.json");
+const gitattributesPath = arg("gitattributes", "../.gitattributes");
+
+for (const path of [htmlPath, readmePath, receiptPath, atlasPath, handoffPath, bindingsPath, gitattributesPath])
+  assert(existsSync(resolve(path)), `required input absent: ${path}`);
+
+const html = readBytes(htmlPath).toString("utf8");
+const readme = readBytes(readmePath).toString("utf8");
+const receiptBytes = readBytes(receiptPath);
+const receipt = JSON.parse(receiptBytes.toString("utf8"));
+const atlasBytes = readBytes(atlasPath);
+const handoffBytes = readBytes(handoffPath);
+const handoff = JSON.parse(handoffBytes.toString("utf8"));
+const bindingsBytes = readBytes(bindingsPath);
+const bindings = JSON.parse(bindingsBytes.toString("utf8"));
+const gitattributes = readBytes(gitattributesPath).toString("utf8");
+const genesisV3 = bindings.inputs.genesis_clean_successor_v3;
+// The candidate zone the bindings pin may be withheld from the tree. Its
+// pins then stand as recorded history; the byte checks wait for the bytes,
+// and the absence must be accounted: a withheld zone may not appear in the
+// receipt's served set. The engine-relative path is the record's own field,
+// not a prefix stripped by this check.
+const genesisZonePath = genesisV3.zone.module_path;
+const genesisZoneHere = existsSync(resolve(genesisZonePath));
+const genesisZoneBytes = genesisZoneHere ? readBytes(genesisZonePath) : null;
+const genesisZone = genesisZoneHere ? JSON.parse(gunzipSync(genesisZoneBytes).toString("utf8")) : null;
+// Since 2026-09-06 the shelf's Genesis may be the restore-v5 build (serve-
+// from-restore-rule-v1), a different artifact from the pinned clean v3 zone.
+// The pin then stands as recorded history; the byte law is for the pinned
+// bytes, and the receipt must say the pin is superseded rather than pretend.
+const genesisSuperseded = !!(genesisZone && ((genesisZone.emitted_from || {}).walk || {}).restore_oracle);
+
+let passed = 0;
+const check = (name, fn) => {
+  fn();
+  passed += 1;
+  console.log(`  ok  ${name}`);
+};
+
+const exactLfActual = (label, bytes) => {
+  assert(!bytes.includes(0x0d), `${label} contains CR bytes despite ${TEXT_PIN_RULE}`);
+  return { bytes: bytes.length, sha256: sha256(bytes), byte_hash_rule: TEXT_PIN_RULE };
+};
+
+check("exact-byte text inputs are forced to LF by repository attributes", () => {
+  assert.equal(bindings.exact_text_input_policy?.rule, TEXT_PIN_RULE);
+  assert.equal(bindings.exact_text_input_policy?.gitattributes_path, ".gitattributes");
+  assert.deepEqual(bindings.exact_text_input_policy?.paths, TEXT_PIN_PATHS);
+  const lines = new Set(gitattributes.split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#")));
+  for (const path of TEXT_PIN_PATHS) assert(lines.has(`${path} text eol=lf`), `missing LF attribute for ${path}`);
+  exactLfActual("count bindings", bindingsBytes);
+});
+check("logical atlas is its exact LF Git-blob pin", () => {
+  const actual = exactLfActual("logical atlas", atlasBytes);
+  assert.equal(bindings.inputs.logical_atlas.byte_hash_rule, TEXT_PIN_RULE);
+  assert.equal(actual.bytes, bindings.inputs.logical_atlas.bytes);
+  assert.equal(actual.sha256, bindings.inputs.logical_atlas.sha256);
+});
+check("physical handoff is its exact LF Git-blob pin", () => {
+  const actual = exactLfActual("physical handoff", handoffBytes);
+  assert.equal(bindings.inputs.physical_handoff.byte_hash_rule, TEXT_PIN_RULE);
+  assert.equal(actual.bytes, bindings.inputs.physical_handoff.bytes);
+  assert.equal(actual.sha256, bindings.inputs.physical_handoff.sha256);
+});
+check("physical atlas and logical overlay carry sealed SHA-256 pins", () => {
+  for (const value of [
+    bindings.inputs.physical_atlas.sha256,
+    bindings.inputs.physical_atlas.closed_world_seal_sha256,
+    bindings.inputs.logical_overlay.sha256,
+    bindings.inputs.logical_overlay.validation_sha256,
+    bindings.inputs.logical_overlay.closed_world_seal_sha256,
+  ]) assert.match(value, /^[0-9a-f]{64}$/);
+});
+check("clean Genesis v3 authority chain carries exact pins", () => {
+  assert.equal(genesisV3.grain, "ONE_RENDER_RECORD_PER_COMPSPAN");
+  for (const pin of [
+    genesisV3.zone,
+    genesisV3.front_door_handoff,
+    genesisV3.defect_provenance,
+    genesisV3.validation,
+    genesisV3.closed_world_seal,
+  ]) {
+    assert(Number.isSafeInteger(pin.bytes) && pin.bytes > 0);
+    assert.match(pin.sha256, /^[0-9a-f]{64}$/);
+  }
+  if (genesisZoneHere && genesisSuperseded) {
+    const st = (receipt.inputs || {}).genesis_v3_pin_state || {};
+    assert.equal(st.state, "SUPERSEDED", "the shelf's Genesis rides the restore route, and the receipt must record the pin as superseded");
+    assert.equal(st.shelf_zone && st.shelf_zone.sha256, sha256(genesisZoneBytes), "the receipt names the shelf zone it superseded the pin with");
+  } else if (genesisZoneHere) {
+    assert.equal(genesisZoneBytes.length, genesisV3.zone.bytes);
+    assert.equal(sha256(genesisZoneBytes), genesisV3.zone.sha256);
+  } else {
+    assert(
+      !receipt.rendered.zones.some((zone) => zone.path === genesisV3.zone.module_path),
+      "the pinned candidate zone is absent from the tree yet the receipt claims to serve it",
+    );
+  }
+});
+check("clean Genesis zone is one rendered record per canonical COMPspan", () => {
+  if (!genesisZoneHere || genesisSuperseded) {
+    // Withheld, or superseded by the restore build: nothing of the v3 grain
+    // to count. The pins above still had to hold shape; the restore build is
+    // measured by check-bookword-count-v1 on its own named axes.
+    return;
+  }
+  const counts = genesisV3.counts;
+  const clean = genesisZone.clean_successor;
+  const rows = genesisZone.sections.reduce((total, section) => total + section.words.length, 0);
+  const joinedRecords = clean.presentation_join_groups
+    .reduce((total, group) => total + group.canonical_successor_occurrence_ids.length, 0);
+  assert.equal(rows, counts.canonical_compspan_records);
+  assert.equal(rows, counts.rendered_compspan_records);
+  assert.equal(genesisZone.counts.clean_compspan_successor_occurrences, counts.canonical_compspan_records);
+  assert.equal(genesisZone.counts.source_orthographic_records, counts.folded_source_orthographic_records);
+  assert.equal(genesisZone.counts.physical_c0_rows, counts.physical_c0_rows);
+  assert.equal(clean.one_render_record_per_compspan, true);
+  assert.equal(clean.rendered_records, counts.rendered_compspan_records);
+  assert.equal(clean.presentation_join_groups.length, counts.presentation_join_groups);
+  assert.equal(joinedRecords, counts.presentation_join_records);
+  assert.equal(clean.raw_markup_rows, counts.raw_markup_records);
+  assert.equal(clean.apparatus_rows_rendered_as_text, counts.apparatus_records_rendered_as_text);
+  assert.equal(clean.mid_word_split_rows, counts.mid_word_split_records);
+});
+
+const physical = handoff.physical.physical_terminal_c0_rows;
+const mapped = handoff.logical.physical_and_logically_mapped_rows;
+const plan = handoff.logical.logical_plan_rows;
+const notPhysical = handoff.logical.logical_plan_not_physical_rows;
+const unmapped = handoff.logical.physically_queryable_logical_shelf_unmapped_rows;
+check("physical and logical partitions close exactly", () => {
+  assert.equal(physical, mapped + unmapped);
+  assert.equal(plan, mapped + notPhysical);
+});
+check("receipt preserves every handoff count", () => {
+  assert.deepEqual(receipt.counts, {
+    current_physical_c0_rows: physical,
+    physically_backed_c0_rows_on_named_work_unit_shelves: mapped,
+    rendered_compspan_records: receipt.counts.rendered_compspan_records,
+    logical_plan_c0_rows: plan,
+    logical_plan_c0_rows_not_physical: notPhysical,
+    physical_c0_rows_not_yet_mapped_to_named_shelf: unmapped,
+  });
+});
+check("receipt binds every compact authority", () => {
+  const bindingsActual = exactLfActual("count bindings", bindingsBytes);
+  assert.deepEqual(receipt.exact_text_input_policy, bindings.exact_text_input_policy);
+  assert.equal(receipt.inputs.logical_atlas.sha256, bindings.inputs.logical_atlas.sha256);
+  assert.equal(receipt.inputs.logical_atlas.byte_hash_rule, TEXT_PIN_RULE);
+  assert.equal(receipt.inputs.physical_handoff.sha256, bindings.inputs.physical_handoff.sha256);
+  assert.equal(receipt.inputs.physical_handoff.byte_hash_rule, TEXT_PIN_RULE);
+  assert.deepEqual(receipt.inputs.count_bindings, { path: bindingsPath, ...bindingsActual });
+  assert.equal(receipt.inputs.physical_atlas.sha256, bindings.inputs.physical_atlas.sha256);
+  assert.equal(receipt.inputs.logical_overlay.sha256, bindings.inputs.logical_overlay.sha256);
+  assert.deepEqual(receipt.inputs.genesis_clean_successor_v3, genesisV3);
+});
+
+let dynamicRendered = 0;
+const recomputedZones = [];
+for (const pinned of receipt.rendered.zones) {
+  // A bin's name is the recorded id, and most of the shelf's ids are the
+  // works' own Hebrew opening words — the shape assert admits any name that
+  // stays inside the zones directory and is a work bin.
+  assert.match(pinned.path, /^data\/zones\/[^/]+\.bin$/);
+  assert.ok(!pinned.path.includes("fixture-") && !isSidecar(pinned.path), `${pinned.path} is not a work bin`);
+  const bytes = readBytes(pinned.path);
+  const zone = JSON.parse(gunzipSync(bytes).toString("utf8"));
+  const rows = (zone.sections || []).reduce((total, section) => total + (section.words || []).length, 0);
+  assert.equal(bytes.length, pinned.bytes, `${pinned.path} byte length`);
+  assert.equal(sha256(bytes), pinned.sha256, `${pinned.path} sha256`);
+  assert.equal(rows, pinned.rendered_compspan_records, `${pinned.path} rendered COMPspan records`);
+  dynamicRendered += rows;
+  recomputedZones.push(pinned);
+}
+check("rendered count is dynamically derived from pinned built zones", () => {
+  assert.equal(dynamicRendered, receipt.counts.rendered_compspan_records);
+  // The record's own law (grain_law.rendered_snapshot): the rendered figure
+  // is recomputed from the zones on disk on every build and is never held to
+  // a typed figure. The set the receipt pins is exactly the set the
+  // directory carries — no more, no less.
+  // count-gate-rule-v1 · the receipt pins what the door RENDERED, and since
+  // the gate that is the served set rather than the shelf. The two were one
+  // list while a zone existing was the whole condition of being published;
+  // holding the receipt to the directory now demands the door render books
+  // the gate withheld, which is this assertion asking for the fault it was
+  // written to catch.
+  const servedSet = zonesServed().map((slug) => `data/zones/${slug}.bin`).sort();
+  const pinnedPaths = receipt.rendered.zones.map((zone) => zone.path).sort();
+  assert.deepEqual(pinnedPaths, servedSet, "the receipt's served set is not the set the gate passed");
+  assert.equal(receipt.rendered.built_zones, receipt.rendered.zones.length);
+  assert.equal(receipt.rendered.compspan_records, dynamicRendered);
+  assert.equal(receipt.rendered.zone_manifest_sha256, sha256(Buffer.from(JSON.stringify(recomputedZones))));
+});
+check("receipt marks rendered coverage as a current-zone snapshot", () => {
+  assert.equal(receipt.snapshot.kind, "CURRENT_BUILT_ZONE_BYTES_AT_BUILD_TIME");
+  assert.equal(receipt.snapshot.recomputed_from_zone_bytes_on_every_build, true);
+  assert.equal(receipt.snapshot.future_zone_successor_behavior, "RECOMPUTE_RENDERED_COMPSPAN_RECORDS_WITHOUT_TYPED_COUNT_EDIT");
+  assert.equal(receipt.snapshot.zone_manifest_sha256, receipt.rendered.zone_manifest_sha256);
+});
+
+check("any primary count the door prints uses its exact grain", () => {
+  if (!printsCounts(html)) return;
+  assert.equal(block(html, "current-physical-c0"), `${n(physical)} current physical C0 rows`);
+  assert.equal(block(html, "named-shelf-c0"), `${n(mapped)} physically backed C0 rows on named work/unit shelves`);
+  const rendered = block(html, "rendered-compspan-records");
+  assert.equal(rendered, `${n(dynamicRendered)} displayed word records in ${n(receipt.rendered.built_zones)} built books`);
+  assert(!/C0/i.test(rendered), "rendered count block calls COMPspan records C0");
+});
+check("secondary disclosures are complete wherever the counts are shown", () => {
+  if (!printsCounts(html)) return;
+  const page = text(html);
+  assert(page.includes(`Logical plan: ${n(plan)} C0 rows`));
+  assert(page.includes(`logical-plan C0 rows not physical: ${n(notPhysical)}`));
+  assert(page.includes(`physical C0 rows not yet mapped to a named shelf: ${n(unmapped)}`));
+  assert(page.includes("The displayed figure is a snapshot at a different grain"));
+  assert(page.includes("It is recomputed from those books on every build."));
+});
+check("DOM data pins bind the exact source hashes", () => {
+  assert(html.includes(`data-text-input-byte-rule="${TEXT_PIN_RULE}"`));
+  assert(html.includes(`data-logical-atlas-sha256="${bindings.inputs.logical_atlas.sha256}"`));
+  assert(html.includes(`data-physical-handoff-sha256="${bindings.inputs.physical_handoff.sha256}"`));
+  assert(html.includes(`data-physical-atlas-sha256="${bindings.inputs.physical_atlas.sha256}"`));
+  assert(html.includes(`data-logical-overlay-sha256="${bindings.inputs.logical_overlay.sha256}"`));
+  assert(html.includes(`data-genesis-clean-zone-sha256="${genesisV3.zone.sha256}"`));
+  assert(html.includes(`data-genesis-clean-handoff-sha256="${genesisV3.front_door_handoff.sha256}"`));
+  assert(html.includes(`data-genesis-clean-validation-sha256="${genesisV3.validation.sha256}"`));
+  assert(html.includes(`data-genesis-clean-seal-sha256="${genesisV3.closed_world_seal.sha256}"`));
+  assert(html.includes(`data-rendered-zone-manifest-sha256="${receipt.rendered.zone_manifest_sha256}"`));
+});
+check("embedded DOM receipt equals the emitted JSON receipt", () => {
+  const match = html.match(/<script id="front-door-counts-receipt" type="application\/json">([\s\S]*?)<\/script>/);
+  assert(match, "embedded count receipt absent");
+  assert.deepEqual(JSON.parse(match[1]), receipt);
+});
+check("superseded rendered snapshots are forbidden from public output and generator", () => {
+  const generator = readBytes("tools/build-front-door-v1.mjs").toString("utf8");
+  const surface = `${html}\n${readme}\n${receiptBytes}\n${generator}`;
+  // A superseded count is a NUMBER STANDING ON ITS OWN. It is not a run of
+  // digits inside something else, and this surface carries 3,064 sha256
+  // digests — 196,096 hex characters — so a bare substring scan for a
+  // five-digit number is a scan that will eventually collide with a hash and
+  // fail a build for no reason. It did: a rebuild put
+  // 0acc902cacabef9e075c81e25017a99e31492fa0c0cc5f446095a87e745c4643 in the
+  // receipt, whose middle reads 46095, and the check called it a leaked
+  // snapshot. Requiring that no letter or digit sit on either side keeps the
+  // rule exactly as strict about a real count and blind to a hash.
+  for (const stale of ["46,095", "46095", "46,097", "46097"]) {
+    const standingAlone = new RegExp(`(?<![0-9A-Za-z])${stale.replace(",", ",")}(?![0-9A-Za-z])`);
+    assert(!standingAlone.test(surface), `superseded snapshot leaked: ${stale}`);
+  }
+});
+check("public outputs make no Genesis defect or cross-grain comparison claim", () => {
+  const publicText = `${html}\n${readme}`;
+  for (const forbidden of [
+    "Genesis renders",
+    "its old logical plan names",
+    "known cross-grain red flag",
+    "Genesis error",
+    "Genesis defect",
+    "Genesis mismatch",
+  ]) assert(!publicText.includes(forbidden), `public output contains forbidden wording: ${forbidden}`);
+});
+check("C0 and COMPspan grains are never given the same label", () => {
+  const generator = readBytes("tools/build-front-door-v1.mjs").toString("utf8");
+  assert(!/C0 words/i.test(`${html}\n${readme}`));
+  assert.equal(receipt.grains.rendered_compspan_records, "ONE_RECORD_PER_COMPSPAN__NOT_C0_ROWS");
+  assert.equal(receipt.grains.physical_c0_rows, "C0_ROWS");
+  assert.equal(receipt.grains.named_shelf_c0_rows, "C0_ROWS");
+  // The law: the rendered figure is recomputed from the zones on every build
+  // and never typed into the generator. It is enforced by searching the
+  // generator for the figure — which works for every figure except a small
+  // one. count-gate-rule-v1 can bring the rendered set to zero, and "0"
+  // occurs in any source file ever written, so the search stops being
+  // evidence and starts being a coin flip that always lands the same way.
+  // A vacuous test is worse than no test: it reports a fault that is not
+  // there and trains everyone to ignore it. So the scan runs where it can
+  // discriminate, and says plainly when it cannot.
+  if (dynamicRendered < 10) {
+    assert.equal(receipt.snapshot.recomputed_from_zone_bytes_on_every_build, true,
+      "too few rendered records for the typed-figure scan to mean anything; the record must still declare recomputation");
+  } else {
+    for (const typed of [n(dynamicRendered), String(dynamicRendered)])
+      assert(!generator.includes(typed), `generator typed the current rendered snapshot: ${typed}`);
+  }
+});
+check("existing shelf fold and live-search hooks remain", () => {
+  assert(html.includes('<form id="find" role="search"'));
+  assert(html.includes('oninput="sift()"'));
+  // The class attribute is read whole: a shelf may wear a second class (the
+  // fold that gathers the corpuses holding nothing readable wears one), and a
+  // regex demanding class="fam" exactly walked straight past it.
+  const details = [...html.matchAll(/<details class="fam([^"]*)"([^>]*)>/g)];
+  const inner = [...html.matchAll(/<details class="fold"([^>]*)>/g)];
+  // How many folds the door carries is the records' business — the ledger's
+  // shelves, the works seated or grouped. A count typed here went stale the
+  // day a work was withheld.
+  //
+  // What rests open is not a matter of taste, and this line used to forbid it
+  // outright. The harm it was written against is real: a door of eighteen
+  // shelves that all unroll is a wall, not an offer. But the harm is the
+  // UNROLLING OF NOTHING, and the rule named the wrong half of it. On
+  // 2026-09-06 seventeen of the eighteen shelves held no book a reader could
+  // open; the owner had them gathered into one fold that opens closed, and the
+  // one shelf that holds books opens, because a door whose books are behind a
+  // press is offering a press.
+  //
+  // So: a shelf that rests open must have something readable in it. A shelf
+  // holding nothing must stay shut, and so must the fold that gathers them.
+  // The tooth is kept and pointed at the fault rather than at the shape.
+  assert(details.length > 0, "the door carries no family shelf at all");
+  const opensWithNothing = details.filter((m) => {
+    if (!/\bopen\b/.test(m[2])) return false;
+    if (/waiting-fams/.test(m[1])) return true;   // the gather-fold never rests open
+    const from = m.index + m[0].length;
+    const nextShelf = html.indexOf('<details class="fam', from);
+    const body = html.slice(from, nextShelf > -1 ? nextShelf : undefined);
+    return !/class="atlas-row built/.test(body);  // nothing a reader can open
+  });
+  assert(opensWithNothing.length === 0, `a shelf rests open with nothing readable in it (${opensWithNothing.length})`);
+  assert(inner.every((match) => !/\bopen\b/.test(match[1])), "a commentary fold rests open");
+});
+check("the door links every zone the receipt serves", () => {
+  // The rule this file guards, asserted directly: the door lists what the
+  // zones carry. Every zone the receipt pins is reachable from the door.
+  for (const pinned of receipt.rendered.zones) {
+    const slug = pinned.path.replace(/^data\/zones\//, "").replace(/\.bin$/, "");
+    assert(html.includes(`href="/${slug}"`), `the door does not link /${slug}`);
+  }
+});
+
+console.log(`\nall checks passed · ${passed} assertions · ${dynamicRendered.toLocaleString("en-US")} rendered COMPspan records`);

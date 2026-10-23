@@ -1,0 +1,6341 @@
+{
+ "schema_version": "LANGUAGE_SWEEP_V1",
+ "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
+ "emitted_by": "tools/emit-language-sweep-record-v1.mjs",
+ "what_this_is": "A finding, not a strike. Every kept M source was judged by the words it defines; the method's own critic found it unable to see a Harkavy-class leak; the decisive test was then run over the whole store and is recorded here with its numbers. Nothing in the store changed on the strength of this record. A ruling on the residue is the owner's.",
+ "ran_on": "2026-09-02",
+ "review": {
+  "method": "one judge per source over a sample of up to sixty routes spread evenly across the source's contribution; three refuters (orthography, provenance, definitions) on every flag, one refuter on every clearance below high confidence; a completeness critic over the whole",
+  "outcome": {
+   "judged": 147,
+   "flags_standing": 0,
+   "clearances_overturned": 0,
+   "no_routes": 27
+  },
+  "critic_gaps": [
+   "DETECTION POWER: 60 routes against N. For every source with more than ~1,200 routes the sample is under 5% and P(a 1% contamination leaves no trace in 60 draws) = 0.99^60 = 55%; P(miss 5%) = 5%. The Harkavy damage that started this was 376 readings on 252 keys = 0.05% of the store; a contamination of that size inside M14 (148,076 routes, sample 0.04%), M4 (95,089), M25 (72,063), M3, M21, M11, M9, M6, M20, M18, M13, M5, M17, M15 or M1 is invisible to this method by construction.",
+   "KEY-SIDE CUES CANNOT FIRE: a full pass over all 124,935 keys finds 2,554 with any mark in U+05B0-U+05C7, nearly all maqaf, and ZERO keys carrying אַ אָ ײ ױ ײַ. Keys are consonant-stripped, and Harkavy's keys were unpointed anyway. The brief's Yiddish vowel-letter and ligature cues are therefore unavailable; only consonant shapes (וו, יי, ע as e) and the English gloss remain, and the doubled-וו/יי shape is also produced legitimately by Hebrew full spelling (M44, M68, M85, M95, M116 are 25-40% such keys).",
+   "ETYMOLOGY AND DIALECT TAGS ARE NOT IN THE STORE: rows carry [rank, gloss, fuller gloss, M, year]. Kaikki/Wiktionary etymology ('from Yiddish', 'from Arabic') and Aramaic dialect labels (Classical Syriac, Jewish Babylonian Aramaic, Christian Palestinian Aramaic, Samaritan) are not shipped, so the brief's 'definition describes a Yiddish/Arabic word' cue and any Syriac/Mandaic discrimination inside 'Aramaic' cannot be read from a sample of what the store holds.",
+   "FOUND AND CLEARED ANYWAY - M6 MUSE: Yiddish function words are keys with transliterations as definitions: וואס => wass, ווייל => wale, גאר => gar, הייס => hayes, גלאט => glatt, וואו => whoa, שיין => shane, פאלק => falk, מאזל => maazel, ביסל => bissell. M6 has 1,795 keys with doubled וו/יי out of 23,065 routes; the 60-sample saw only transliterated surnames and passed it HEBREW(high). MUSE is an induced alignment lexicon whose 'Hebrew' side is whatever Hebrew-script string occurred in the corpus; it is not a dictionary of anything.",
+   "FOUND AND CLEARED ANYWAY - M60 Kaikki Aramaic: Classical Syriac Christian senses served under Hebrew-script keys: מריא => 'Lord; the Christian concept of God and Jesus', צליבא => crucifix, עדתא => church, משיחתא => 'Messiah, Christ', שמשא => 'minister, deacon', כפורא => 'unbeliever, infidel'. English Wiktionary's 'Aramaic' header merges JBA, Syriac, CPA and Samaritan; the label 'Aramaic' admits all of it. Same extractor feeds M72 and M177.",
+   "FOUND AND CLEARED ANYWAY - Yiddish lexemes as keys in open-vocabulary aggregators: M15 שטעטל, מענטש, קוויטלעך, קוגל, שנאפס, שמוק, שיין (=>Shayne), ביסל (=>Bissell); M1 שטעטל, קניידלעך; M21 קניידלעך => Klöße, לאטקעס => latke; M22/M43 לאטקעס. Whether these are Hebrew loan usage or Yiddish headwords cannot be decided from the gloss; the source's own marking is what decides it and it is not in the store.",
+   "PROVENANCE UNREADABLE FROM THIS CHECKOUT: every ledgers/work/ldmprs/source-cache/... and definition-poc/... pointer is absent from the tree. So it cannot be verified whether the Hebrew Wiktionary extractors (M27 M29 M38 M54 M55 M59 and the inflection/full-spelling/heading-alternate siblings) filtered by the page's language section - he.wiktionary hosts Yiddish, Aramaic, Ladino and Judeo-Arabic entries under Hebrew-script titles - nor whether the Wikidata extractors (M10 M28 M48 M53 M138 and the sense-gloss set M2 M61 M73 M76 M81 M87 M94) filtered on lexeme language rather than script.",
+   "INTERLEAVING TEST NOT RUN: the decisive check is kept-store keys INTERSECT Yiddish headwords MINUS Hebrew headwords (Kaikki Yiddish, the struck M40/M63/M104/M168 key sets, Harkavy's key set). None of that data is in the tree and kaikki.org is refused by the proxy (403 on CONNECT). A sample of 60 cannot substitute for this join.",
+   "NO KEY-LEVEL / SERVED-POSITION LENS: Harkavy was caught because לענין and דעם were tapped on live books. The sweep judged sources, never keys; nothing asked which kept-source routes actually land on tapped positions in the 3,065 books, or which tapped tokens are Yiddish-shaped and get their only route from an open-vocabulary aggregator (M1 M6 M15 M21 M22 M32 M42 M43 M62).",
+   "ZERO-ROUTE CLEARANCES: 25 sources with routes=0 are marked CLEAR. That is a clearance of nothing; if a rebuild re-populates them the verdict will be read as standing. Seven of them (M47 M70 M147 M166 M178 M186 M194) carry medium confidence and the other eighteen high, on identical evidence (none) - the confidence field is not tracking anything.",
+   "SAME EXTRACTOR, INDEPENDENT VERDICTS: one hewiktionary_hebrew_exact_english_translation key is split into six M records by year (M27 M29 M38 M54 M55 M59), the inflection extractor into ~15, Wikidata into four. Each got its own 60-sample and verdict; a filter fault in the extractor is shared by all of them, and no lens aggregated across the split.",
+   "TRANSLITERATION IS NOT A DEFINITION: M6/M62 rows like סער => sturm, מען => wac, דובער => dovber, סייען => sayan are neither English definitions nor evidence of the headword's language. The sweep only asked 'is the key Hebrew', never 'is the text a definition of it', so a Yiddish key with a Latin transliteration passes both the language lens and the content lens."
+  ],
+  "critic_method_faults": [
+   "The sampler's power is fixed at 60 regardless of N, so the method has the same blind spot on a 148,076-route source as on a 2,000-route one; it should scale to a target contamination rate, or better, replace sampling with a full-store pass on the cue set (a full pass over 676,463 routes takes seconds and was done here).",
+   "The cue list assumes data the store does not carry: keys are consonant-only (no אַ אָ ײ ױ anywhere), rows carry no etymology and no dialect tag, so the two strongest cues in the brief cannot be observed from the route store at all; the method treats their absence as evidence of absence.",
+   "The label test admits 'Hebrew' as the name of an EDITION or PROJECT (Hebrew Wiktionary, Hebrew Wikipedia, Hebrew WordNet) as if it named the headword language - the same shape as Harkavy's 'Hebrew-English', where 'Hebrew' named a target column, not the headwords.",
+   "The brief and the enforced rule contradict each other on Syriac: the brief says 'Syriac written in Hebrew script is Aramaic', strike-language-v1.mjs says the owner ruled Syriac and Mandaic out; M60/M72/M177 admit Wiktionary's pan-dialect 'Aramaic' and serve Classical Syriac Christian senses under Hebrew-script keys. One ruling has to give before those three can be judged.",
+   "Sources cut from one extractor by year are judged as independent sources; a fault in the extractor is shared and should be judged once across the union, with the union's route count setting the sample.",
+   "'CLEAR' is issued on zero evidence for 25 zero-route sources, with two different confidence levels on identical (empty) evidence; a source with no routes should be marked NOT JUDGED, not cleared.",
+   "Refutation was applied to flags only, never to clearances: three lenses refuted every flag, but no lens attempted to refute a clearance (e.g. by running the cues over the whole source, or by intersecting with a Yiddish headword list). A method whose only adversarial pressure points toward 'clear' will converge on 'clear'.",
+   "The method judges the headword's language but not whether the text is a definition: M6/M62 transliterations (wass, gar, sturm, wac) pass because the key looks Hebrew-script and the text is Latin letters; a transliteration is evidence of neither language nor meaning.",
+   "The sweep works per source, not per served position; the failure it is meant to prevent was detected at served positions on live books, and no lens looked at which kept routes actually land on tapped Yiddish-shaped tokens.",
+   "Provenance pointers are treated as facts (rule 0) but point at files outside the shipped tree; the method never confirms a pointer resolves, so 'provenance outranks label' currently outranks by name only."
+  ],
+  "critic_reread": [
+   "M6 - read every key with doubled וו/יי (1,795) and every key matching Yiddish consonant shapes (וואס ווייל גאר הייס גלאט וואו שיין פאלק מאזל ביסל already confirmed); expect a struck-or-partitioned outcome, not a clearance",
+   "M62 - same extractor as M6 (148 doubled-וו/יי keys of 1,449); read all of them",
+   "M60 - read every route whose gloss carries Christian/Syriac vocabulary (church, deacon, crucifix, Christ, Lord, monk, baptism, bishop) and reconcile with the owner's Syriac/Mandaic ruling; the store carries no dialect tag so the Wiktionary entry itself must be consulted for each",
+   "M72 and M177 - same Kaikki Aramaic extractor as M60; read all 498 and 14 routes for Syriac-only senses",
+   "M15 - read the 34 ע-Germanic-shaped keys (שטעטל מענטש קוויטלעך געגוע etc.) and the 891 doubled-וו/יי keys; decide whether a Hebrew Wikipedia article ABOUT a Yiddish word is Hebrew usage under the frame",
+   "M1 - read the 522 doubled-וו/יי keys and every edge tagged 'wikt' or 'wp' (ConceptNet /c/he/ ingests translation tables whose language tagging is by script); שטעטל, קניידלעך already present",
+   "M21 and M42 - read the 878 and 370 doubled-וו/יי keys; PanLex's Hebrew-script-language partitions M24/M82 were struck, so confirm the 'heb' partition holds no Yiddish (ydd) or Judeo-Arabic expressions that share a spelling; קניידלעך => Klöße and לאטקעס already present",
+   "M32 - 278 doubled-וו/יי keys of 5,363; OmegaWiki language tagging is per DefinedMeaning and needs checking on those keys",
+   "M27 M29 M38 M54 M55 M59 and all hewiktionary inflection/full-spelling/heading-alternate/recovery siblings (M36 M41 M44 M58 M68 M71 M74 M85 M86 M92 M95 M96 M98 M102 M105 M110 M111 M116 M123 M128 M129 M130 M132 M133 M135 M137 M139 M142 M144 M145 M148-M152 M154 M155 M157 M160-M165 M167 M169-M171 M173 M174 M179 M180 M182 M183 M185 M187-M189 M191 M192 M195) - obtain the extractor manifest and confirm it selects the Hebrew language section of each page, not the page title's script; then read the keys the sweep passed as loans (צימעס קוגל שמוק שלימזל מכללא) to see how he.wiktionary itself marks them",
+   "M10 M28 M48 M53 M138 M2 M61 M73 M76 M81 M87 M94 - confirm the Wikidata query filtered lexeme language = Hebrew (Q9288) and not script; M28 carries שלימזל, M10 carries ווי",
+   "M25 M11 M13 M50 M69 - Kaikki Hebrew at 0.08-1.6% sample; read all keys with Germanic ע-shapes (געגוע- family is Hebrew, but check געגוען, אבער, איך, מעגליך which the scan flagged)",
+   "M46 - the sweep called it HEBREW while M5 and M20 (same BDB) got HEBREW_AND_ARAMAIC: read its Aramaic section to confirm the sample simply missed an 8-10% sub-population, which is the direct measure of what this sampler cannot see",
+   "M14 M4 M3 - 0.04-0.14% samples; low language risk because the key set is a closed Biblical form list, but confirm that the key set is in fact bounded to the BHS/Strong's form inventory and carries no open-vocabulary joins",
+   "M97 - labeled 'Hebrew and Chaldee' yet passed as HEBREW; 44 keys, read all 85 routes",
+   "M184 - abbreviation dictionary; abbreviations resolve to rabbinic Hebrew/Aramaic but also to Yiddish glosses in some 19th-century abbreviation books; read all 107 routes (whole set)"
+  ],
+  "sources": [
+   {
+    "m": "M1",
+    "label": "ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge)",
+    "routes": 11378,
+    "keys": 8269,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M2",
+    "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+    "routes": 53,
+    "keys": 47,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M3",
+    "label": "MACULA exact Hebrew morph surfaces with Cherith English definitions",
+    "routes": 43304,
+    "keys": 15871,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M4",
+    "label": "STEP Bible Translators Amalgamated Hebrew OT aligned component translation",
+    "routes": 95089,
+    "keys": 46609,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M5",
+    "label": "Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures",
+    "routes": 15238,
+    "keys": 4367,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M6",
+    "label": "MUSE large-scale ground-truth Hebrew-English bilingual dictionary",
+    "routes": 23065,
+    "keys": 18723,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M7",
+    "label": "unfoldingWord Hebrew-Aramaic Lexicon",
+    "routes": 286,
+    "keys": 77,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M9",
+    "label": "Strong's Hebrew Dictionary via Open Scriptures",
+    "routes": 23646,
+    "keys": 5939,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M10",
+    "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+    "routes": 5294,
+    "keys": 5184,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M11",
+    "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary",
+    "routes": 25287,
+    "keys": 14197,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M13",
+    "label": "Kaikki machine-readable Hebrew dictionary from English Wiktionary",
+    "routes": 16209,
+    "keys": 9335,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M14",
+    "label": "Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource",
+    "routes": 148076,
+    "keys": 17007,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M15",
+    "label": "Hebrew Wikipedia 20260701 direct English interlanguage title",
+    "routes": 12355,
+    "keys": 12355,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M16",
+    "label": "MUSE Hebrew-English ground-truth dictionary - CC BY-NC noncommercial partition",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M17",
+    "label": "Semantic Dictionary of Biblical Hebrew via HiperBiblia",
+    "routes": 14823,
+    "keys": 3659,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M18",
+    "label": "UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses",
+    "routes": 21626,
+    "keys": 6539,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M19",
+    "label": "STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column",
+    "routes": 2645,
+    "keys": 1814,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M20",
+    "label": "Bolls byte-pinned reformatted Brown-Driver-Briggs Hebrew definition frame",
+    "routes": 22007,
+    "keys": 5527,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M21",
+    "label": "PanLex 2024 exact same-meaning Hebrew-English lexical expression",
+    "routes": 28439,
+    "keys": 9861,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M22",
+    "label": "ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY 4.0 edge)",
+    "routes": 4117,
+    "keys": 3203,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M23",
+    "label": "Classical Hebrew Words database",
+    "routes": 7322,
+    "keys": 4091,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M25",
+    "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary",
+    "routes": 72063,
+    "keys": 36719,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M27",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 658,
+    "keys": 446,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M28",
+    "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+    "routes": 3040,
+    "keys": 2732,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M29",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 2291,
+    "keys": 1333,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M30",
+    "label": "Kaikki Hebrew strict source-explicit inflection-table forms from English Wiktionary",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M32",
+    "label": "OmegaWiki structured Hebrew-English DefinedMeaning relations and definitions",
+    "routes": 5363,
+    "keys": 2605,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M33",
+    "label": "Open Scriptures Hebrew Lexical Index",
+    "routes": 138,
+    "keys": 134,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M34",
+    "label": "Kaikki English Wiktionary source-explicit Hebrew translation tables",
+    "routes": 850,
+    "keys": 800,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M35",
+    "label": "Kaikki Hebrew strict source-explicit linked forms from English Wiktionary",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M36",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 2564,
+    "keys": 1471,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M37",
+    "label": "DBnary English Wiktionary source-explicit Hebrew translations and English glosses",
+    "routes": 6156,
+    "keys": 5166,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M38",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 1961,
+    "keys": 1027,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M41",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 3635,
+    "keys": 1719,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M42",
+    "label": "PanLex 2025 explicit English definition joined to continuity-confirmed Hebrew meaning",
+    "routes": 9831,
+    "keys": 6705,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M43",
+    "label": "Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss",
+    "routes": 4174,
+    "keys": 3194,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M44",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 224,
+    "keys": 147,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M45",
+    "label": "BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas",
+    "routes": 753,
+    "keys": 713,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M46",
+    "label": "Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source",
+    "routes": 8927,
+    "keys": 3681,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M47",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "medium",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M48",
+    "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+    "routes": 1541,
+    "keys": 1327,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M50",
+    "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary",
+    "routes": 6278,
+    "keys": 3921,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M53",
+    "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+    "routes": 1545,
+    "keys": 1400,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M54",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 1137,
+    "keys": 661,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M55",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 828,
+    "keys": 543,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M56",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M57",
+    "label": "Hebrew WordNet PWN 3.0 alignment bridged to Open English WordNet 2025 by complete permanent-sense-key agreement",
+    "routes": 313,
+    "keys": 298,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M58",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 741,
+    "keys": 455,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M59",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 1796,
+    "keys": 1013,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M60",
+    "label": "Kaikki machine-readable Aramaic dictionary from English Wiktionary",
+    "routes": 2188,
+    "keys": 1385,
+    "verdict": "ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M61",
+    "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+    "routes": 114,
+    "keys": 114,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M62",
+    "label": "MUSE large-scale ground-truth Hebrew-English bilingual dictionary",
+    "routes": 1449,
+    "keys": 1334,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M64",
+    "label": "Lexibank Analysed v2.2 NorthEuraLex literal Hebrew source values with Concepticon English glosses",
+    "routes": 974,
+    "keys": 877,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M66",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M68",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 130,
+    "keys": 87,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M69",
+    "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary",
+    "routes": 3721,
+    "keys": 2366,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M70",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "medium",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M71",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 211,
+    "keys": 130,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M72",
+    "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+    "routes": 498,
+    "keys": 326,
+    "verdict": "ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M73",
+    "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+    "routes": 19,
+    "keys": 19,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M74",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 2684,
+    "keys": 1386,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M76",
+    "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+    "routes": 46,
+    "keys": 46,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M79",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 270,
+    "keys": 211,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M80",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 984,
+    "keys": 647,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M81",
+    "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+    "routes": 7,
+    "keys": 7,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M85",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 576,
+    "keys": 355,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M86",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 158,
+    "keys": 105,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M87",
+    "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+    "routes": 73,
+    "keys": 70,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M90",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 267,
+    "keys": 187,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M92",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 642,
+    "keys": 399,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M93",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 106,
+    "keys": 82,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M94",
+    "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+    "routes": 12,
+    "keys": 12,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M95",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 453,
+    "keys": 294,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M96",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 1065,
+    "keys": 608,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M97",
+    "label": "Davidson 1855 Analytical Hebrew and Chaldee Lexicon manually source-image-reviewed exact English definitions v1",
+    "routes": 85,
+    "keys": 44,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M98",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 267,
+    "keys": 137,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M102",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 428,
+    "keys": 271,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M105",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 168,
+    "keys": 105,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M110",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 24,
+    "keys": 13,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M111",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 149,
+    "keys": 54,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M112",
+    "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M116",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 582,
+    "keys": 340,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M120",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M123",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 150,
+    "keys": 91,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M128",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 110,
+    "keys": 75,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M129",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 75,
+    "keys": 55,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M130",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 20,
+    "keys": 16,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M132",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 13,
+    "keys": 10,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M133",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 50,
+    "keys": 24,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M134",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M135",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 107,
+    "keys": 76,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M136",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M137",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 22,
+    "keys": 15,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M138",
+    "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+    "routes": 20,
+    "keys": 20,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M139",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 8,
+    "keys": 8,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M142",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 11,
+    "keys": 10,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M143",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M144",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 5,
+    "keys": 3,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M145",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 4,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M147",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "medium",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M148",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 13,
+    "keys": 9,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M149",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 38,
+    "keys": 26,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M150",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 21,
+    "keys": 16,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M151",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 25,
+    "keys": 23,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M152",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 48,
+    "keys": 38,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M153",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M154",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 15,
+    "keys": 6,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M155",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 20,
+    "keys": 16,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M156",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M157",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 10,
+    "keys": 7,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M158",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M159",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M160",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 11,
+    "keys": 7,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M161",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 8,
+    "keys": 4,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M162",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 39,
+    "keys": 37,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M163",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 10,
+    "keys": 4,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M164",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 7,
+    "keys": 6,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M165",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 13,
+    "keys": 8,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M166",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "medium",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M167",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 3,
+    "keys": 2,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M169",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 4,
+    "keys": 4,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M170",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 2,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M171",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 5,
+    "keys": 5,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M173",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 5,
+    "keys": 3,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M174",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 11,
+    "keys": 7,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M175",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M176",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M177",
+    "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+    "routes": 14,
+    "keys": 9,
+    "verdict": "ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M178",
+    "label": "English Wikipedia continuation-complete revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "medium",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [
+     "English (definition text only, not headword language)"
+    ],
+    "refuters": []
+   },
+   {
+    "m": "M179",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 4,
+    "keys": 2,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M180",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 1,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M181",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M182",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 1,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M183",
+    "label": "Hebrew Wiktionary source-explicit English translations at exact Hebrew page titles",
+    "routes": 6,
+    "keys": 3,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M184",
+    "label": "Kethoneth Yoseph 1887 source-image-reviewed exact Hebrew abbreviation definitions",
+    "routes": 107,
+    "keys": 82,
+    "verdict": "HEBREW_AND_ARAMAIC",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew",
+     "Aramaic"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M185",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 1,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M186",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "medium",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M187",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 3,
+    "keys": 3,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M188",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 2,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M189",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 2,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M190",
+    "label": "Hebrew Wiktionary source-explicit inflections recovered after fail-closed note and markup removal",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M191",
+    "label": "Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations",
+    "routes": 1,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M192",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 1,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M193",
+    "label": "English Wikipedia revision-pinned intro sentence through exact Hebrew page direct langlink",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M194",
+    "label": "Wikidata Hebrew source-explicit form linked to exact English lexeme sense",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "medium",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M195",
+    "label": "Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations",
+    "routes": 1,
+    "keys": 1,
+    "verdict": "HEBREW",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   },
+   {
+    "m": "M196",
+    "label": "Hebrew Wiktionary source-explicit pointed inflection forms joined to same-entry English translations",
+    "routes": 0,
+    "keys": 0,
+    "verdict": "NO_ROUTES",
+    "confidence": "high",
+    "proposed_languages_field": [
+     "Hebrew"
+    ],
+    "other_languages": [],
+    "refuters": []
+   }
+  ]
+ },
+ "decisive_test": {
+  "what": "kept-source keys that a struck Yiddish lexicon knows and no curated Hebrew or Aramaic source carries, from aggregator sources only; curated means the compiler tagged the headword's language, aggregator means an alignment product that tags by script",
+  "yiddish_headwords": {
+   "count": 2872,
+   "recovered_from": "reader/data/route-store at commit c0c19b5ed5d49db3321c0cb3a568ab0fbcb2509e, the store as it stood before the first strike, sources M40 M63 M104 M168 (Kaikki Yiddish) and the twelve Harkavy shards"
+  },
+  "curated_sources": [
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M7",
+   "M9",
+   "M10",
+   "M11",
+   "M13",
+   "M14",
+   "M17",
+   "M18",
+   "M19",
+   "M20",
+   "M23",
+   "M25",
+   "M27",
+   "M28",
+   "M29",
+   "M33",
+   "M34",
+   "M36",
+   "M37",
+   "M38",
+   "M41",
+   "M44",
+   "M45",
+   "M46",
+   "M48",
+   "M50",
+   "M53",
+   "M54",
+   "M55",
+   "M58",
+   "M59",
+   "M60",
+   "M61",
+   "M64",
+   "M68",
+   "M69",
+   "M71",
+   "M72",
+   "M73",
+   "M74",
+   "M76",
+   "M79",
+   "M80",
+   "M81",
+   "M85",
+   "M86",
+   "M87",
+   "M90",
+   "M92",
+   "M93",
+   "M94",
+   "M95",
+   "M96",
+   "M97",
+   "M98",
+   "M102",
+   "M105",
+   "M110",
+   "M111",
+   "M112",
+   "M116",
+   "M123",
+   "M128",
+   "M129",
+   "M130",
+   "M132",
+   "M133",
+   "M134",
+   "M135",
+   "M137",
+   "M138",
+   "M139",
+   "M142",
+   "M144",
+   "M145",
+   "M148",
+   "M149",
+   "M150",
+   "M151",
+   "M152",
+   "M154",
+   "M155",
+   "M157",
+   "M160",
+   "M161",
+   "M162",
+   "M163",
+   "M164",
+   "M165",
+   "M167",
+   "M169",
+   "M170",
+   "M171",
+   "M173",
+   "M174",
+   "M177",
+   "M179",
+   "M180",
+   "M182",
+   "M183",
+   "M185",
+   "M186",
+   "M187",
+   "M188",
+   "M189",
+   "M190",
+   "M191",
+   "M192",
+   "M194",
+   "M195",
+   "M196"
+  ],
+  "aggregator_sources": [
+   "M1",
+   "M6",
+   "M15",
+   "M16",
+   "M21",
+   "M22",
+   "M30",
+   "M32",
+   "M35",
+   "M42",
+   "M43",
+   "M47",
+   "M56",
+   "M57",
+   "M62",
+   "M66",
+   "M70",
+   "M120",
+   "M136",
+   "M143",
+   "M147",
+   "M153",
+   "M156",
+   "M158",
+   "M159",
+   "M166",
+   "M175",
+   "M176",
+   "M178",
+   "M181",
+   "M184",
+   "M193"
+  ],
+  "curated_key_count": 109312,
+  "suspect_keys": 235,
+  "suspect_routes": 497,
+  "suspect_routes_by_source": {
+   "M1": 34,
+   "M21": 102,
+   "M42": 23,
+   "M15": 109,
+   "M62": 10,
+   "M6": 195,
+   "M32": 16,
+   "M22": 4,
+   "M43": 4
+  },
+  "tiers": {
+   "prefixed_hebrew": {
+    "note": "a clitic letter stripped leaves a curated Hebrew key; these are Hebrew words the curated set lacks in their prefixed form, and they stay",
+    "keys": [
+     {
+      "k": "ליב",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "liv"
+       },
+       {
+        "m": "M6",
+        "text": "lib"
+       }
+      ],
+      "tapped": {
+       "occurrences": 409,
+       "works": 114
+      }
+     },
+     {
+      "k": "לפחות",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "at least"
+       },
+       {
+        "m": "M21",
+        "text": "if nothing else"
+       },
+       {
+        "m": "M42",
+        "text": "at (the very) least"
+       },
+       {
+        "m": "M42",
+        "text": "at a lower limit"
+       }
+      ],
+      "tapped": {
+       "occurrences": 325,
+       "works": 153
+      }
+     },
+     {
+      "k": "במקרה",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "accidentally (r)"
+       },
+       {
+        "m": "M21",
+        "text": "accidentally"
+       },
+       {
+        "m": "M21",
+        "text": "casually"
+       },
+       {
+        "m": "M21",
+        "text": "accidently"
+       },
+       {
+        "m": "M21",
+        "text": "ignorantly"
+       },
+       {
+        "m": "M21",
+        "text": "on accident"
+       },
+       {
+        "m": "M21",
+        "text": "fortuitously"
+       },
+       {
+        "m": "M21",
+        "text": "unexpectedly"
+       },
+       {
+        "m": "M21",
+        "text": "out of the blue"
+       },
+       {
+        "m": "M42",
+        "text": "unexpectedly, unintentionally"
+       }
+      ],
+      "tapped": {
+       "occurrences": 252,
+       "works": 156
+      }
+     },
+     {
+      "k": "ממילא",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Mamilla"
+       }
+      ],
+      "tapped": {
+       "occurrences": 163,
+       "works": 121
+      }
+     },
+     {
+      "k": "מסוכן",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "dangerous (a)"
+       },
+       {
+        "m": "M21",
+        "text": "unsafe"
+       },
+       {
+        "m": "M21",
+        "text": "chancy"
+       },
+       {
+        "m": "M21",
+        "text": "parlous"
+       },
+       {
+        "m": "M21",
+        "text": "periculous"
+       },
+       {
+        "m": "M21",
+        "text": "on thin ice"
+       },
+       {
+        "m": "M21",
+        "text": "touch-and-go"
+       },
+       {
+        "m": "M21",
+        "text": "delicate"
+       },
+       {
+        "m": "M21",
+        "text": "maliferous"
+       },
+       {
+        "m": "M21",
+        "text": "precarious"
+       },
+       {
+        "m": "M21",
+        "text": "dodgy"
+       },
+       {
+        "m": "M32",
+        "text": "dangerous"
+       },
+       {
+        "m": "M32",
+        "text": "perilous"
+       },
+       {
+        "m": "M32",
+        "text": "risky"
+       },
+       {
+        "m": "M32",
+        "text": "hazardous"
+       },
+       {
+        "m": "M32",
+        "text": "Full of danger."
+       },
+       {
+        "m": "M42",
+        "text": "full of danger"
+       }
+      ],
+      "tapped": {
+       "occurrences": 93,
+       "works": 77
+      }
+     },
+     {
+      "k": "מיט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "mitt"
+       }
+      ],
+      "tapped": {
+       "occurrences": 82,
+       "works": 22
+      }
+     },
+     {
+      "k": "בונד",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Bond"
+       }
+      ],
+      "tapped": {
+       "occurrences": 66,
+       "works": 34
+      }
+     },
+     {
+      "k": "בשפע",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "galore"
+       },
+       {
+        "m": "M6",
+        "text": "plenty"
+       }
+      ],
+      "tapped": {
+       "occurrences": 64,
+       "works": 43
+      }
+     },
+     {
+      "k": "ביוקר",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "dearly"
+       }
+      ],
+      "tapped": {
+       "occurrences": 63,
+       "works": 45
+      }
+     },
+     {
+      "k": "לעשן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "smoking"
+       },
+       {
+        "m": "M21",
+        "text": "bloat"
+       },
+       {
+        "m": "M21",
+        "text": "smolder"
+       },
+       {
+        "m": "M21",
+        "text": "give head"
+       },
+       {
+        "m": "M32",
+        "text": "smoke"
+       },
+       {
+        "m": "M32",
+        "text": "To inhale smoke from for example a cigarette or a cigar."
+       }
+      ],
+      "tapped": {
+       "occurrences": 20,
+       "works": 12
+      }
+     },
+     {
+      "k": "מטפטף",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "oozing"
+       },
+       {
+        "m": "M6",
+        "text": "dripping"
+       }
+      ],
+      "tapped": {
+       "occurrences": 19,
+       "works": 14
+      }
+     },
+     {
+      "k": "בריסק",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Brisk"
+       }
+      ],
+      "tapped": {
+       "occurrences": 19,
+       "works": 10
+      }
+     },
+     {
+      "k": "משכון",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "collateral (n, wp, finance)"
+       },
+       {
+        "m": "M6",
+        "text": "pawn"
+       },
+       {
+        "m": "M15",
+        "text": "Collateral (finance)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 18,
+       "works": 9
+      }
+     },
+     {
+      "k": "בהסכמה",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "consensual"
+       }
+      ],
+      "tapped": {
+       "occurrences": 16,
+       "works": 16
+      }
+     },
+     {
+      "k": "באד",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "bud"
+       },
+       {
+        "m": "M6",
+        "text": "budd"
+       },
+       {
+        "m": "M15",
+        "text": "Budd"
+       }
+      ],
+      "tapped": {
+       "occurrences": 15,
+       "works": 13
+      }
+     },
+     {
+      "k": "שמיד",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Schmid"
+       }
+      ],
+      "tapped": {
+       "occurrences": 14,
+       "works": 13
+      }
+     },
+     {
+      "k": "שיין",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "shane"
+       },
+       {
+        "m": "M15",
+        "text": "Shayne"
+       }
+      ],
+      "tapped": {
+       "occurrences": 12,
+       "works": 6
+      }
+     },
+     {
+      "k": "הלבשה",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "apparel"
+       },
+       {
+        "m": "M6",
+        "text": "dressing"
+       },
+       {
+        "m": "M21",
+        "text": "clothing"
+       },
+       {
+        "m": "M21",
+        "text": "clothes"
+       }
+      ],
+      "tapped": {
+       "occurrences": 5,
+       "works": 5
+      }
+     },
+     {
+      "k": "הייד",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "hyde"
+       },
+       {
+        "m": "M15",
+        "text": "Hyde"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 2
+      }
+     },
+     {
+      "k": "האן",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "han chinese"
+       },
+       {
+        "m": "M6",
+        "text": "hahn"
+       },
+       {
+        "m": "M6",
+        "text": "han"
+       },
+       {
+        "m": "M21",
+        "text": "Han"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "באק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "buck"
+       },
+       {
+        "m": "M6",
+        "text": "bak"
+       },
+       {
+        "m": "M15",
+        "text": "Buck"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "שאד",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "shad"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "באז",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "buzz"
+       },
+       {
+        "m": "M15",
+        "text": "Buzz (Polish airline)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "ביז",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "biz"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "בראד",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "brad"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "שאבן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "siobhan"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "וואט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "wat"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "לויט",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Levitt"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "בליץ",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "bleach (n, wp, manga)"
+       },
+       {
+        "m": "M15",
+        "text": "Blitz"
+       },
+       {
+        "m": "M62",
+        "text": "blitz"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "לאקס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "lux"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "הייל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "heil"
+       },
+       {
+        "m": "M6",
+        "text": "hale"
+       },
+       {
+        "m": "M6",
+        "text": "hail"
+       },
+       {
+        "m": "M15",
+        "text": "Hale"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "וולד",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "wald"
+       },
+       {
+        "m": "M6",
+        "text": "weld"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "שאגאל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "chagall"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "מיטל",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Meital"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "וואל",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Voile"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "מיסט",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Myst"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "בעלז",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Belz"
+       }
+      ],
+      "tapped": null
+     }
+    ],
+    "routes": 94,
+    "tapped": 1668,
+    "works": 567
+   },
+   "romanized_only": {
+    "note": "every route on the key merely romanizes it — Yiddish function words glossed by their German cognate, Ashkenazi names glossed by their spelling. Not a definition of anything. The narrow strike candidate.",
+    "keys": [
+     {
+      "k": "זלמן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "zalman"
+       }
+      ],
+      "tapped": {
+       "occurrences": 275,
+       "works": 74
+      }
+     },
+     {
+      "k": "שניאור",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "shneur"
+       }
+      ],
+      "tapped": {
+       "occurrences": 143,
+       "works": 43
+      }
+     },
+     {
+      "k": "דאס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "das"
+       }
+      ],
+      "tapped": {
+       "occurrences": 91,
+       "works": 40
+      }
+     },
+     {
+      "k": "איציק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "itzik"
+       }
+      ],
+      "tapped": {
+       "occurrences": 78,
+       "works": 5
+      }
+     },
+     {
+      "k": "שטיין",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "stein"
+       },
+       {
+        "m": "M15",
+        "text": "Stein"
+       }
+      ],
+      "tapped": {
+       "occurrences": 58,
+       "works": 7
+      }
+     },
+     {
+      "k": "איז",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "izz"
+       },
+       {
+        "m": "M6",
+        "text": "iz"
+       }
+      ],
+      "tapped": {
+       "occurrences": 40,
+       "works": 18
+      }
+     },
+     {
+      "k": "ריינס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "raines"
+       }
+      ],
+      "tapped": {
+       "occurrences": 31,
+       "works": 9
+      }
+     },
+     {
+      "k": "לובלין",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "lublin"
+       },
+       {
+        "m": "M21",
+        "text": "Lublin"
+       }
+      ],
+      "tapped": {
+       "occurrences": 31,
+       "works": 10
+      }
+     },
+     {
+      "k": "וואס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "wass"
+       }
+      ],
+      "tapped": {
+       "occurrences": 30,
+       "works": 18
+      }
+     },
+     {
+      "k": "פאלק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "falk"
+       },
+       {
+        "m": "M15",
+        "text": "Falk"
+       }
+      ],
+      "tapped": {
+       "occurrences": 26,
+       "works": 15
+      }
+     },
+     {
+      "k": "אהא",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "aha"
+       }
+      ],
+      "tapped": {
+       "occurrences": 25,
+       "works": 18
+      }
+     },
+     {
+      "k": "גראץ",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "graz"
+       },
+       {
+        "m": "M21",
+        "text": "Graz"
+       }
+      ],
+      "tapped": {
+       "occurrences": 24,
+       "works": 12
+      }
+     },
+     {
+      "k": "פאני",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "fanny"
+       }
+      ],
+      "tapped": {
+       "occurrences": 20,
+       "works": 11
+      }
+     },
+     {
+      "k": "צוקונפט",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Tsukunft"
+       }
+      ],
+      "tapped": {
+       "occurrences": 19,
+       "works": 8
+      }
+     },
+     {
+      "k": "קיין",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "cain"
+       },
+       {
+        "m": "M6",
+        "text": "kane"
+       },
+       {
+        "m": "M6",
+        "text": "caine"
+       },
+       {
+        "m": "M15",
+        "text": "Kein"
+       }
+      ],
+      "tapped": {
+       "occurrences": 16,
+       "works": 11
+      }
+     },
+     {
+      "k": "אורין",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "orin"
+       },
+       {
+        "m": "M6",
+        "text": "orrin"
+       }
+      ],
+      "tapped": {
+       "occurrences": 15,
+       "works": 9
+      }
+     },
+     {
+      "k": "זי",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "zee"
+       },
+       {
+        "m": "M15",
+        "text": "Zee"
+       }
+      ],
+      "tapped": {
+       "occurrences": 15,
+       "works": 13
+      }
+     },
+     {
+      "k": "פונט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "pont"
+       }
+      ],
+      "tapped": {
+       "occurrences": 14,
+       "works": 12
+      }
+     },
+     {
+      "k": "טא",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "ta"
+       }
+      ],
+      "tapped": {
+       "occurrences": 13,
+       "works": 7
+      }
+     },
+     {
+      "k": "טאן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "tan"
+       },
+       {
+        "m": "M15",
+        "text": "Tan"
+       }
+      ],
+      "tapped": {
+       "occurrences": 9,
+       "works": 4
+      }
+     },
+     {
+      "k": "גאט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "gutt"
+       }
+      ],
+      "tapped": {
+       "occurrences": 8,
+       "works": 5
+      }
+     },
+     {
+      "k": "פרעון",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Far'un"
+       }
+      ],
+      "tapped": {
+       "occurrences": 8,
+       "works": 8
+      }
+     },
+     {
+      "k": "קליין",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "klein"
+       },
+       {
+        "m": "M15",
+        "text": "Klein"
+       }
+      ],
+      "tapped": {
+       "occurrences": 7,
+       "works": 7
+      }
+     },
+     {
+      "k": "פויל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "foyle"
+       }
+      ],
+      "tapped": {
+       "occurrences": 7,
+       "works": 6
+      }
+     },
+     {
+      "k": "גוט",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Gut"
+       }
+      ],
+      "tapped": {
+       "occurrences": 6,
+       "works": 5
+      }
+     },
+     {
+      "k": "פוס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "foss"
+       },
+       {
+        "m": "M15",
+        "text": "Foss"
+       }
+      ],
+      "tapped": {
+       "occurrences": 5,
+       "works": 4
+      }
+     },
+     {
+      "k": "ווין",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "wayne"
+       }
+      ],
+      "tapped": {
+       "occurrences": 5,
+       "works": 5
+      }
+     },
+     {
+      "k": "סלוצק",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Slutsk"
+       }
+      ],
+      "tapped": {
+       "occurrences": 5,
+       "works": 4
+      }
+     },
+     {
+      "k": "גאר",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "gare"
+       },
+       {
+        "m": "M6",
+        "text": "gar"
+       }
+      ],
+      "tapped": {
+       "occurrences": 4,
+       "works": 3
+      }
+     },
+     {
+      "k": "ריי",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "ray"
+       },
+       {
+        "m": "M15",
+        "text": "Ray"
+       }
+      ],
+      "tapped": {
+       "occurrences": 4,
+       "works": 3
+      }
+     },
+     {
+      "k": "מאכט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "macht"
+       }
+      ],
+      "tapped": {
+       "occurrences": 4,
+       "works": 3
+      }
+     },
+     {
+      "k": "קיטל",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Kittel"
+       }
+      ],
+      "tapped": {
+       "occurrences": 4,
+       "works": 3
+      }
+     },
+     {
+      "k": "טייטלבוים",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "teitelbaum"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 3
+      }
+     },
+     {
+      "k": "גראף",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "gruff"
+       },
+       {
+        "m": "M6",
+        "text": "graff"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 3
+      }
+     },
+     {
+      "k": "מארקס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "marks"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 1
+      }
+     },
+     {
+      "k": "טאגבלאט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "tageblatt"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 1
+      }
+     },
+     {
+      "k": "ארט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "art"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 3
+      }
+     },
+     {
+      "k": "קראנק",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "crunk"
+       },
+       {
+        "m": "M6",
+        "text": "crank"
+       },
+       {
+        "m": "M15",
+        "text": "Crunk"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "קארט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "kart"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 1
+      }
+     },
+     {
+      "k": "קוליק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "kulik"
+       },
+       {
+        "m": "M15",
+        "text": "Colic"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 1
+      }
+     },
+     {
+      "k": "פוסט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "post"
+       },
+       {
+        "m": "M15",
+        "text": "Post"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "קרוג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "krug"
+       },
+       {
+        "m": "M15",
+        "text": "Krug"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "לאנג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "lang"
+       },
+       {
+        "m": "M15",
+        "text": "Lang"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 1
+      }
+     },
+     {
+      "k": "טיי",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "ty"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 1
+      }
+     },
+     {
+      "k": "פרום",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "fromm"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "פלאן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "flan"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "גאס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "gus"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "ליסיצקי",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "lissitzky"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "דינג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "ding"
+       },
+       {
+        "m": "M15",
+        "text": "Ding"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "קליניק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "clinique"
+       },
+       {
+        "m": "M15",
+        "text": "Clinique"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "דראנג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "drang"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "קלוג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "kellog"
+       },
+       {
+        "m": "M6",
+        "text": "kellogg"
+       },
+       {
+        "m": "M15",
+        "text": "Kellogg"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "קלאר",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "klar"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "בראק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "brack"
+       },
+       {
+        "m": "M15",
+        "text": "Brack"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "קראפ",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "krupp"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "טוניס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "tunis"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "פינקל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "finkle"
+       },
+       {
+        "m": "M21",
+        "text": "pinnacle"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "מאדאם",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "madame"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "גאז",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "gaz"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "הויל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "hoyle"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "אלדי",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "aldi"
+       },
+       {
+        "m": "M15",
+        "text": "Aldi"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "קוקי",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "cookie"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "קוויטל",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Kvitel"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "אוניקום",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Unicum"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "שטעטל",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "shtetl"
+       },
+       {
+        "m": "M15",
+        "text": "Shtetl"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "נאס",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "nas"
+       },
+       {
+        "m": "M1",
+        "text": "naas"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "גראבן",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "graben"
+       },
+       {
+        "m": "M15",
+        "text": "Graben"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "סנטור",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "santur"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "ציאן",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "cyan"
+       },
+       {
+        "m": "M15",
+        "text": "Cyan"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "בוקן",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "bokken"
+       },
+       {
+        "m": "M15",
+        "text": "Bokken"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "היגס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "higgs"
+       },
+       {
+        "m": "M15",
+        "text": "Higgs"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "טורבין",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "turbin"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קריגן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "kerrigan"
+       },
+       {
+        "m": "M6",
+        "text": "carrigan"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פרייד",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "freed"
+       },
+       {
+        "m": "M15",
+        "text": "Pryde"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "אמאל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "amal"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "גארן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "garan"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פיסק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "fisk"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "דאק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "duck"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פלאץ",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "platz"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "גאנג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "gang"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פאפ",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "pap"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "טארט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "tart"
+       },
+       {
+        "m": "M15",
+        "text": "Tart"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פרינץ",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "prinz"
+       },
+       {
+        "m": "M15",
+        "text": "Prinz"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "דינס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "deans"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "בארט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "bart"
+       },
+       {
+        "m": "M6",
+        "text": "barrett"
+       },
+       {
+        "m": "M15",
+        "text": "Barrett"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קויל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "coyle"
+       },
+       {
+        "m": "M15",
+        "text": "Coil"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "בלייז",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "blaze"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "בונט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "bonnet"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "גלאנץ",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "glantz"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קלייד",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "clyde"
+       },
+       {
+        "m": "M15",
+        "text": "Clyde"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "אמט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "emmett"
+       },
+       {
+        "m": "M6",
+        "text": "emmet"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "יאג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "yag"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פאראן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "farran"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פירן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "pirenne"
+       },
+       {
+        "m": "M15",
+        "text": "Firn"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "בייז",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "baze"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פולן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "poulain"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "גריף",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "griff"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "ליפט",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Lyft"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פאסיק",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Fasiq"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "גיין",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Guyenne"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "טיטל",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Titel"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קיכל",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Kichel"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "טארן",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Tarn"
+       },
+       {
+        "m": "M62",
+        "text": "tarn"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פאשא",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Pasha"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קניפ",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Knipp"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "לונג",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Long"
+       },
+       {
+        "m": "M62",
+        "text": "long"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "אוראנוס",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Uranus"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "יוטא",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Iota"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פלאוט",
+      "routes": [
+       {
+        "m": "M62",
+        "text": "plaut"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פידל",
+      "routes": [
+       {
+        "m": "M62",
+        "text": "fidel"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "אבאד",
+      "routes": [
+       {
+        "m": "M62",
+        "text": "abad"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "טראפ",
+      "routes": [
+       {
+        "m": "M62",
+        "text": "trapp"
+       }
+      ],
+      "tapped": null
+     }
+    ],
+    "routes": 159,
+    "tapped": 1091,
+    "works": 273
+   },
+   "unknown_with_english_gloss": {
+    "note": "a Yiddish lexicon knows the key, no curated source carries it, and the gloss is English. Most are ordinary Hebrew the curated set happens to lack; a few are Yiddish. Separating them needs a Yiddish headword ruling, not a rule.",
+    "keys": [
+     {
+      "k": "רובל",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "ruble"
+       },
+       {
+        "m": "M1",
+        "text": "ruble (n)"
+       },
+       {
+        "m": "M6",
+        "text": "rubles"
+       },
+       {
+        "m": "M15",
+        "text": "Ruble"
+       },
+       {
+        "m": "M21",
+        "text": "rouble"
+       },
+       {
+        "m": "M42",
+        "text": "Russian monetary unit"
+       }
+      ],
+      "tapped": {
+       "occurrences": 276,
+       "works": 102
+      }
+     },
+     {
+      "k": "קלמן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "kalman"
+       },
+       {
+        "m": "M15",
+        "text": "Kalman (disambiguation)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 127,
+       "works": 25
+      }
+     },
+     {
+      "k": "גנאי",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "derogatory"
+       }
+      ],
+      "tapped": {
+       "occurrences": 74,
+       "works": 48
+      }
+     },
+     {
+      "k": "בשוגג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "inadvertently"
+       }
+      ],
+      "tapped": {
+       "occurrences": 61,
+       "works": 32
+      }
+     },
+     {
+      "k": "מכוער",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "ugly (a)"
+       },
+       {
+        "m": "M42",
+        "text": "displeasing to the eye; not aesthetically pleasing"
+       }
+      ],
+      "tapped": {
+       "occurrences": 58,
+       "works": 42
+      }
+     },
+     {
+      "k": "פאן",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "pan (n, wp, god)"
+       },
+       {
+        "m": "M6",
+        "text": "pan"
+       },
+       {
+        "m": "M15",
+        "text": "Pan (god)"
+       },
+       {
+        "m": "M21",
+        "text": "Pan"
+       },
+       {
+        "m": "M42",
+        "text": "Pan (mythology)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 52,
+       "works": 23
+      }
+     },
+     {
+      "k": "מזומן",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "cash (n, wikt, en 1)"
+       },
+       {
+        "m": "M21",
+        "text": "moola"
+       },
+       {
+        "m": "M21",
+        "text": "money"
+       },
+       {
+        "m": "M21",
+        "text": "mazuma"
+       },
+       {
+        "m": "M21",
+        "text": "chedda"
+       },
+       {
+        "m": "M21",
+        "text": "readies"
+       },
+       {
+        "m": "M21",
+        "text": "cheddar"
+       },
+       {
+        "m": "M21",
+        "text": "cash money"
+       },
+       {
+        "m": "M21",
+        "text": "spondulics"
+       },
+       {
+        "m": "M32",
+        "text": "cash"
+       },
+       {
+        "m": "M32",
+        "text": "Money in the form of bills and coins."
+       },
+       {
+        "m": "M42",
+        "text": "money in the form of notes/bills and coins"
+       }
+      ],
+      "tapped": {
+       "occurrences": 47,
+       "works": 36
+      }
+     },
+     {
+      "k": "שידוך",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "matchmaking"
+       },
+       {
+        "m": "M15",
+        "text": "Matchmaking"
+       }
+      ],
+      "tapped": {
+       "occurrences": 41,
+       "works": 16
+      }
+     },
+     {
+      "k": "ליפשיץ",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "lipschitz"
+       }
+      ],
+      "tapped": {
+       "occurrences": 39,
+       "works": 10
+      }
+     },
+     {
+      "k": "דחיפה",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "push"
+       },
+       {
+        "m": "M6",
+        "text": "thrust"
+       },
+       {
+        "m": "M6",
+        "text": "thrusting"
+       },
+       {
+        "m": "M6",
+        "text": "nudge"
+       },
+       {
+        "m": "M21",
+        "text": "impulse"
+       },
+       {
+        "m": "M21",
+        "text": "impetus"
+       }
+      ],
+      "tapped": {
+       "occurrences": 37,
+       "works": 32
+      }
+     },
+     {
+      "k": "קוק",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "coke (n, wp, fuel)"
+       },
+       {
+        "m": "M6",
+        "text": "cook"
+       },
+       {
+        "m": "M15",
+        "text": "Cook"
+       },
+       {
+        "m": "M21",
+        "text": "cocain"
+       },
+       {
+        "m": "M21",
+        "text": "cocaine"
+       },
+       {
+        "m": "M22",
+        "text": "cocaine (n, wn, artifact)"
+       },
+       {
+        "m": "M43",
+        "text": "a narcotic (alkaloid) extracted from coca leaves; used as a surface anesthetic or taken for pleasure; can become powerfully addictive"
+       }
+      ],
+      "tapped": {
+       "occurrences": 35,
+       "works": 20
+      }
+     },
+     {
+      "k": "תחילת",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "early"
+       }
+      ],
+      "tapped": {
+       "occurrences": 34,
+       "works": 14
+      }
+     },
+     {
+      "k": "פוקס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "fuchs"
+       },
+       {
+        "m": "M15",
+        "text": "Fox (disambiguation)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 33,
+       "works": 1
+      }
+     },
+     {
+      "k": "זיווג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "pairing"
+       }
+      ],
+      "tapped": {
+       "occurrences": 29,
+       "works": 20
+      }
+     },
+     {
+      "k": "קמיע",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "talisman"
+       },
+       {
+        "m": "M6",
+        "text": "mascot"
+       }
+      ],
+      "tapped": {
+       "occurrences": 28,
+       "works": 17
+      }
+     },
+     {
+      "k": "אריכות",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "longevity"
+       }
+      ],
+      "tapped": {
+       "occurrences": 25,
+       "works": 22
+      }
+     },
+     {
+      "k": "יריד",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "fair"
+       },
+       {
+        "m": "M15",
+        "text": "Fair"
+       },
+       {
+        "m": "M21",
+        "text": "buy"
+       },
+       {
+        "m": "M21",
+        "text": "bazaar"
+       },
+       {
+        "m": "M21",
+        "text": "market"
+       },
+       {
+        "m": "M21",
+        "text": "purchase"
+       },
+       {
+        "m": "M21",
+        "text": "taking over"
+       },
+       {
+        "m": "M21",
+        "text": "acquisition"
+       },
+       {
+        "m": "M21",
+        "text": "marketplace"
+       },
+       {
+        "m": "M21",
+        "text": "sales activity"
+       },
+       {
+        "m": "M21",
+        "text": "exposition"
+       }
+      ],
+      "tapped": {
+       "occurrences": 24,
+       "works": 16
+      }
+     },
+     {
+      "k": "גיהנום",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "hell"
+       },
+       {
+        "m": "M1",
+        "text": "gehenna (n)"
+       },
+       {
+        "m": "M1",
+        "text": "hell (n, wikt, en 1)"
+       },
+       {
+        "m": "M21",
+        "text": "Gehenna"
+       },
+       {
+        "m": "M21",
+        "text": "Hell"
+       },
+       {
+        "m": "M21",
+        "text": "Gehinnom"
+       },
+       {
+        "m": "M21",
+        "text": "Hades"
+       },
+       {
+        "m": "M21",
+        "text": "inferno"
+       },
+       {
+        "m": "M42",
+        "text": "realm of the afterlife"
+       },
+       {
+        "m": "M42",
+        "text": "where sinners go"
+       }
+      ],
+      "tapped": {
+       "occurrences": 24,
+       "works": 17
+      }
+     },
+     {
+      "k": "עוולה",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "wrongdoing"
+       },
+       {
+        "m": "M15",
+        "text": "Wrongdoing"
+       }
+      ],
+      "tapped": {
+       "occurrences": 21,
+       "works": 16
+      }
+     },
+     {
+      "k": "פריס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "paris"
+       },
+       {
+        "m": "M6",
+        "text": "ferris"
+       },
+       {
+        "m": "M15",
+        "text": "Paris (plant)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 18,
+       "works": 9
+      }
+     },
+     {
+      "k": "יוסט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "joost"
+       }
+      ],
+      "tapped": {
+       "occurrences": 15,
+       "works": 6
+      }
+     },
+     {
+      "k": "גסיסה",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Dying"
+       }
+      ],
+      "tapped": {
+       "occurrences": 15,
+       "works": 14
+      }
+     },
+     {
+      "k": "פארווערטס",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "forward"
+       }
+      ],
+      "tapped": {
+       "occurrences": 14,
+       "works": 5
+      }
+     },
+     {
+      "k": "נוטף",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "dripping"
+       }
+      ],
+      "tapped": {
+       "occurrences": 14,
+       "works": 12
+      }
+     },
+     {
+      "k": "פוד",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "pod"
+       },
+       {
+        "m": "M15",
+        "text": "Gun pod"
+       }
+      ],
+      "tapped": {
+       "occurrences": 12,
+       "works": 9
+      }
+     },
+     {
+      "k": "סילוק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "expulsion"
+       },
+       {
+        "m": "M6",
+        "text": "disposal"
+       },
+       {
+        "m": "M21",
+        "text": "clear"
+       },
+       {
+        "m": "M42",
+        "text": "to remove obstructions or impediments"
+       }
+      ],
+      "tapped": {
+       "occurrences": 11,
+       "works": 8
+      }
+     },
+     {
+      "k": "שתדלנות",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "lobbying"
+       }
+      ],
+      "tapped": {
+       "occurrences": 11,
+       "works": 9
+      }
+     },
+     {
+      "k": "אפיס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "apis"
+       },
+       {
+        "m": "M15",
+        "text": "Apis (deity)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 11,
+       "works": 6
+      }
+     },
+     {
+      "k": "פארק",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "park"
+       },
+       {
+        "m": "M1",
+        "text": "parc (n, wp, company)"
+       },
+       {
+        "m": "M15",
+        "text": "Park"
+       },
+       {
+        "m": "M21",
+        "text": "garden"
+       },
+       {
+        "m": "M21",
+        "text": "woodlet"
+       },
+       {
+        "m": "M21",
+        "text": "green space"
+       },
+       {
+        "m": "M32",
+        "text": "A public place or area set aside for recreation or preservation of a cultural or natural resource."
+       }
+      ],
+      "tapped": {
+       "occurrences": 8,
+       "works": 2
+      }
+     },
+     {
+      "k": "חמימה",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "warm (a, wikt, en 1)"
+       },
+       {
+        "m": "M21",
+        "text": "warm"
+       },
+       {
+        "m": "M42",
+        "text": "being something that causes warmth"
+       },
+       {
+        "m": "M42",
+        "text": "having a temperature slightly higher than usual"
+       }
+      ],
+      "tapped": {
+       "occurrences": 8,
+       "works": 7
+      }
+     },
+     {
+      "k": "דביקות",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "sticky"
+       }
+      ],
+      "tapped": {
+       "occurrences": 7,
+       "works": 6
+      }
+     },
+     {
+      "k": "גאונות",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "genius"
+       },
+       {
+        "m": "M6",
+        "text": "brilliance"
+       }
+      ],
+      "tapped": {
+       "occurrences": 6,
+       "works": 5
+      }
+     },
+     {
+      "k": "ביק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "bic"
+       },
+       {
+        "m": "M6",
+        "text": "bick"
+       },
+       {
+        "m": "M15",
+        "text": "Beek (disambiguation)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 5,
+       "works": 4
+      }
+     },
+     {
+      "k": "קארל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "karl"
+       },
+       {
+        "m": "M6",
+        "text": "carl"
+       },
+       {
+        "m": "M21",
+        "text": "Carl"
+       },
+       {
+        "m": "M42",
+        "text": "Carl (name)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 5,
+       "works": 4
+      }
+     },
+     {
+      "k": "פזרנות",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Spendthrift"
+       }
+      ],
+      "tapped": {
+       "occurrences": 5,
+       "works": 4
+      }
+     },
+     {
+      "k": "נאז",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Nas"
+       }
+      ],
+      "tapped": {
+       "occurrences": 4,
+       "works": 1
+      }
+     },
+     {
+      "k": "יונג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "yeung"
+       },
+       {
+        "m": "M6",
+        "text": "yong"
+       },
+       {
+        "m": "M6",
+        "text": "jung"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 2
+      }
+     },
+     {
+      "k": "בויאן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "bojan"
+       },
+       {
+        "m": "M21",
+        "text": "Boiany"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 2
+      }
+     },
+     {
+      "k": "ביוש",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Public humiliation"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 2
+      }
+     },
+     {
+      "k": "לבביות",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "wholeheartedness"
+       },
+       {
+        "m": "M22",
+        "text": "heartiness (n, wn, attribute)"
+       },
+       {
+        "m": "M43",
+        "text": "the quality of hearty sincerity"
+       }
+      ],
+      "tapped": {
+       "occurrences": 3,
+       "works": 3
+      }
+     },
+     {
+      "k": "קארפ",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "karp"
+       },
+       {
+        "m": "M15",
+        "text": "Carp (disambiguation)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 1
+      }
+     },
+     {
+      "k": "איסלאם",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "islamists"
+       },
+       {
+        "m": "M21",
+        "text": "Muhammadanism"
+       },
+       {
+        "m": "M32",
+        "text": "Islam"
+       },
+       {
+        "m": "M32",
+        "text": "A religion based on the teachings of the prophet Muhammad."
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "פאל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "pal"
+       },
+       {
+        "m": "M15",
+        "text": "PAL (disambiguation)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "רינג",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Ring (name)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 2
+      }
+     },
+     {
+      "k": "ליובאוויטש",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Lyubavichi"
+       }
+      ],
+      "tapped": {
+       "occurrences": 2,
+       "works": 1
+      }
+     },
+     {
+      "k": "דיסק",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "disk (n)"
+       },
+       {
+        "m": "M6",
+        "text": "cd"
+       },
+       {
+        "m": "M15",
+        "text": "Disc"
+       },
+       {
+        "m": "M21",
+        "text": "disk"
+       },
+       {
+        "m": "M21",
+        "text": "disc"
+       },
+       {
+        "m": "M42",
+        "text": "a thin, flat, circular plate"
+       },
+       {
+        "m": "M42",
+        "text": "a vinyl phonograph/gramophone record"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "פטמה",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "nipple (n)"
+       },
+       {
+        "m": "M6",
+        "text": "nipples"
+       },
+       {
+        "m": "M15",
+        "text": "Nipple"
+       },
+       {
+        "m": "M21",
+        "text": "pap"
+       },
+       {
+        "m": "M21",
+        "text": "tit"
+       },
+       {
+        "m": "M21",
+        "text": "teat"
+       },
+       {
+        "m": "M21",
+        "text": "mamilla"
+       },
+       {
+        "m": "M21",
+        "text": "mammilla"
+       },
+       {
+        "m": "M22",
+        "text": "nipple (n, wn, body)"
+       },
+       {
+        "m": "M32",
+        "text": "papilla"
+       },
+       {
+        "m": "M32",
+        "text": "The projection of a mammary gland from which, on female mammals, milk can be secreted."
+       },
+       {
+        "m": "M42",
+        "text": "projection of mammary gland"
+       },
+       {
+        "m": "M43",
+        "text": "the small projection of a mammary gland"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "לינקס",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "lynx (n, wp, constellation)"
+       },
+       {
+        "m": "M6",
+        "text": "lynx"
+       },
+       {
+        "m": "M21",
+        "text": "Lynx"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "בודהיזם",
+      "routes": [
+       {
+        "m": "M1",
+        "text": "buddhism"
+       },
+       {
+        "m": "M1",
+        "text": "buddhism (n)"
+       },
+       {
+        "m": "M32",
+        "text": "Buddhism"
+       },
+       {
+        "m": "M32",
+        "text": "A religion and philosophy based on the teachings of Gautama Buddha."
+       },
+       {
+        "m": "M42",
+        "text": "religion and philosophy"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "פארב",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "favre"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "פרילינג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "freeling"
+       },
+       {
+        "m": "M15",
+        "text": "Frühling"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "צוג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "tsuge"
+       },
+       {
+        "m": "M15",
+        "text": "Zug"
+       },
+       {
+        "m": "M21",
+        "text": "Canton of Zug"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "פולס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "falls"
+       },
+       {
+        "m": "M15",
+        "text": "Pulse (physics)"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "כירורג",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Surgeon"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "פטפט",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "jaw"
+       },
+       {
+        "m": "M21",
+        "text": "chat"
+       },
+       {
+        "m": "M21",
+        "text": "visit"
+       },
+       {
+        "m": "M21",
+        "text": "confab"
+       },
+       {
+        "m": "M21",
+        "text": "gossip"
+       },
+       {
+        "m": "M21",
+        "text": "natter"
+       },
+       {
+        "m": "M21",
+        "text": "claver"
+       },
+       {
+        "m": "M21",
+        "text": "chatter"
+       },
+       {
+        "m": "M21",
+        "text": "chaffer"
+       },
+       {
+        "m": "M21",
+        "text": "chitchat"
+       },
+       {
+        "m": "M21",
+        "text": "chit-chat"
+       },
+       {
+        "m": "M21",
+        "text": "confabulate"
+       },
+       {
+        "m": "M21",
+        "text": "chew the fat"
+       },
+       {
+        "m": "M21",
+        "text": "shoot the breeze"
+       },
+       {
+        "m": "M22",
+        "text": "chew fat (v, wn, communication)"
+       },
+       {
+        "m": "M43",
+        "text": "talk socially without exchanging too much information"
+       }
+      ],
+      "tapped": {
+       "occurrences": 1,
+       "works": 1
+      }
+     },
+     {
+      "k": "הייבן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "haven"
+       },
+       {
+        "m": "M15",
+        "text": "Haven (TV series)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "טראן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "tran"
+       },
+       {
+        "m": "M15",
+        "text": "Races of StarCraft#Terrans"
+       },
+       {
+        "m": "M21",
+        "text": "Terran"
+       },
+       {
+        "m": "M42",
+        "text": "Terran (StarCraft)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "שלוס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "schloss"
+       },
+       {
+        "m": "M15",
+        "text": "Schloss"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "שיסל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "schüssel"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "גריל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "grills"
+       },
+       {
+        "m": "M21",
+        "text": "grill"
+       },
+       {
+        "m": "M42",
+        "text": "barbecue"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "שוואב",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "schwab"
+       },
+       {
+        "m": "M15",
+        "text": "Schwab"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "ברייט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "bright"
+       },
+       {
+        "m": "M15",
+        "text": "Bright"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "הוק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "hook"
+       },
+       {
+        "m": "M6",
+        "text": "hawk"
+       },
+       {
+        "m": "M15",
+        "text": "Hawk (disambiguation)"
+       },
+       {
+        "m": "M21",
+        "text": "Hook"
+       },
+       {
+        "m": "M42",
+        "text": "Hook (film)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "טאש",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "tash"
+       },
+       {
+        "m": "M15",
+        "text": "Tass, Hungary"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "רויס",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "royce"
+       },
+       {
+        "m": "M15",
+        "text": "Royce"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "זאק",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "zack"
+       },
+       {
+        "m": "M6",
+        "text": "zach"
+       },
+       {
+        "m": "M6",
+        "text": "zak"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קוויט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "beckwith"
+       },
+       {
+        "m": "M15",
+        "text": "Kawit"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קראפט",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "kraft"
+       },
+       {
+        "m": "M15",
+        "text": "Kraft Foods Inc."
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "ביסל",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "bissell"
+       },
+       {
+        "m": "M15",
+        "text": "Bissell (disambiguation)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "ראג",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "raj"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קארן",
+      "routes": [
+       {
+        "m": "M6",
+        "text": "karen"
+       },
+       {
+        "m": "M15",
+        "text": "Karen (slang)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "בלאק",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Black (disambiguation)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "שנאפס",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Schnapps"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "באראן",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Baran, Belarus"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "מענטש",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Mensch"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "ליבס",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Liebes (disambiguation)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "בייבי",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Baby (disambiguation)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "היטן",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Hiten (spacecraft)"
+       },
+       {
+        "m": "M62",
+        "text": "hiten"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קראב",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Crab (disambiguation)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "קורל",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Coral (disambiguation)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "באנד",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Bánd"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "טאפ",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Táp"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "דיקס",
+      "routes": [
+       {
+        "m": "M15",
+        "text": "Dix"
+       },
+       {
+        "m": "M62",
+        "text": "dix"
+       },
+       {
+        "m": "M62",
+        "text": "deeks"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "פאלא",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Fala"
+       },
+       {
+        "m": "M42",
+        "text": "Fala (dog)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "סיניק",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Cynic"
+       },
+       {
+        "m": "M42",
+        "text": "Cynic (band)"
+       }
+      ],
+      "tapped": null
+     },
+     {
+      "k": "לוויתן",
+      "routes": [
+       {
+        "m": "M21",
+        "text": "Whale"
+       },
+       {
+        "m": "M21",
+        "text": "whale"
+       }
+      ],
+      "tapped": null
+     }
+    ],
+    "routes": 244,
+    "tapped": 1266,
+    "works": 414
+   }
+  },
+  "wide_form": {
+   "what": "every aggregator route on an uncurated key whose gloss merely romanizes the key, Yiddish or not — names, mostly",
+   "routes": 10080,
+   "keys": 7364,
+   "tapped_positions": 40328,
+   "works": 1856,
+   "by_source": {
+    "M6": 4702,
+    "M21": 1005,
+    "M15": 2866,
+    "M62": 769,
+    "M1": 686,
+    "M32": 52
+   },
+   "sample": [
+    {
+     "k": "איליין",
+     "m": "M6",
+     "t": "elaine"
+    },
+    {
+     "k": "אליוס",
+     "m": "M6",
+     "t": "aelius"
+    },
+    {
+     "k": "ארבל",
+     "m": "M21",
+     "t": "Arbel"
+    },
+    {
+     "k": "ארבל",
+     "m": "M6",
+     "t": "arbel"
+    },
+    {
+     "k": "ארנדיס",
+     "m": "M15",
+     "t": "Arandis"
+    },
+    {
+     "k": "גודמן",
+     "m": "M15",
+     "t": "Goodman"
+    },
+    {
+     "k": "גודמן",
+     "m": "M6",
+     "t": "goodman"
+    },
+    {
+     "k": "גיני",
+     "m": "M6",
+     "t": "guinea"
+    },
+    {
+     "k": "גרילו",
+     "m": "M62",
+     "t": "grillo"
+    },
+    {
+     "k": "הלווין",
+     "m": "M21",
+     "t": "Helloween"
+    },
+    {
+     "k": "וורט",
+     "m": "M6",
+     "t": "wart"
+    },
+    {
+     "k": "זילבר",
+     "m": "M6",
+     "t": "zilber"
+    },
+    {
+     "k": "טאנה",
+     "m": "M62",
+     "t": "tana"
+    },
+    {
+     "k": "יאשין",
+     "m": "M6",
+     "t": "yaseen"
+    },
+    {
+     "k": "ליו",
+     "m": "M6",
+     "t": "liu"
+    },
+    {
+     "k": "לכמן",
+     "m": "M15",
+     "t": "Lachmann"
+    },
+    {
+     "k": "מודין",
+     "m": "M6",
+     "t": "modine"
+    },
+    {
+     "k": "מונטיפיורי",
+     "m": "M15",
+     "t": "Montefiore"
+    },
+    {
+     "k": "מונטיפיורי",
+     "m": "M6",
+     "t": "montefiore"
+    },
+    {
+     "k": "מונסטר",
+     "m": "M21",
+     "t": "Monster"
+    },
+    {
+     "k": "מונסטר",
+     "m": "M6",
+     "t": "munster"
+    },
+    {
+     "k": "מקרנה",
+     "m": "M6",
+     "t": "macarena"
+    },
+    {
+     "k": "נוטיס",
+     "m": "M6",
+     "t": "notis"
+    },
+    {
+     "k": "נויס",
+     "m": "M15",
+     "t": "Neuss"
+    },
+    {
+     "k": "סולן",
+     "m": "M6",
+     "t": "solen"
+    },
+    {
+     "k": "פברה",
+     "m": "M6",
+     "t": "fabra"
+    },
+    {
+     "k": "קיל",
+     "m": "M21",
+     "t": "Kiel"
+    },
+    {
+     "k": "קיל",
+     "m": "M6",
+     "t": "keel"
+    },
+    {
+     "k": "קיל",
+     "m": "M1",
+     "t": "kiel"
+    },
+    {
+     "k": "קליינמן",
+     "m": "M6",
+     "t": "kleinman"
+    },
+    {
+     "k": "קרבין",
+     "m": "M15",
+     "t": "Carbine"
+    },
+    {
+     "k": "קרבין",
+     "m": "M1",
+     "t": "carbine"
+    },
+    {
+     "k": "רונדה",
+     "m": "M15",
+     "t": "Ronda"
+    },
+    {
+     "k": "איגנטיוס",
+     "m": "M6",
+     "t": "ignatius"
+    },
+    {
+     "k": "בארין",
+     "m": "M6",
+     "t": "barin"
+    },
+    {
+     "k": "גוטהולד",
+     "m": "M6",
+     "t": "gotthold"
+    },
+    {
+     "k": "גספר",
+     "m": "M62",
+     "t": "gaspar"
+    },
+    {
+     "k": "דורף",
+     "m": "M62",
+     "t": "dorf"
+    },
+    {
+     "k": "דניסטר",
+     "m": "M21",
+     "t": "Dniester"
+    },
+    {
+     "k": "דניסטר",
+     "m": "M1",
+     "t": "dniester"
+    },
+    {
+     "k": "דרסט",
+     "m": "M15",
+     "t": "Drest"
+    },
+    {
+     "k": "דרסט",
+     "m": "M6",
+     "t": "durst"
+    },
+    {
+     "k": "וינטור",
+     "m": "M6",
+     "t": "wintour"
+    },
+    {
+     "k": "ולאתה",
+     "m": "M15",
+     "t": "Oualata"
+    },
+    {
+     "k": "טואי",
+     "m": "M62",
+     "t": "tui"
+    },
+    {
+     "k": "לוקרטיוס",
+     "m": "M21",
+     "t": "Lucretius"
+    },
+    {
+     "k": "לוקרטיוס",
+     "m": "M1",
+     "t": "lucretius"
+    },
+    {
+     "k": "מובלי",
+     "m": "M15",
+     "t": "Mobley"
+    },
+    {
+     "k": "מובלי",
+     "m": "M6",
+     "t": "mobley"
+    },
+    {
+     "k": "מנהיים",
+     "m": "M21",
+     "t": "Mannheim"
+    },
+    {
+     "k": "מנהיים",
+     "m": "M1",
+     "t": "mannheim"
+    },
+    {
+     "k": "מנסף",
+     "m": "M15",
+     "t": "Mansaf"
+    },
+    {
+     "k": "נואה",
+     "m": "M6",
+     "t": "noah"
+    },
+    {
+     "k": "נינג",
+     "m": "M62",
+     "t": "ning"
+    },
+    {
+     "k": "סיטון",
+     "m": "M6",
+     "t": "seaton"
+    },
+    {
+     "k": "סמו",
+     "m": "M6",
+     "t": "semo"
+    },
+    {
+     "k": "עשתר",
+     "m": "M21",
+     "t": "Ishtar"
+    },
+    {
+     "k": "עשתר",
+     "m": "M1",
+     "t": "ishtar"
+    },
+    {
+     "k": "פדרמן",
+     "m": "M6",
+     "t": "federman"
+    },
+    {
+     "k": "קארט",
+     "m": "M6",
+     "t": "kart"
+    }
+   ]
+  }
+ },
+ "what_this_does_not_say": "that any source is clean. It says the label rule strikes what it can see, the review could not see past it, and the decisive test found a residue of a known size in known places. It also does not say Syriac: three Kaikki Aramaic sources serve Classical Syriac senses under the Wiktionary umbrella of Aramaic, the admission rule names Syriac as struck, and the store carries no dialect tag to separate them; that is a ruling, recorded here as open."
+}

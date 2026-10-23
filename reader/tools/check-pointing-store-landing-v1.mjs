@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+// GUARDS: pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land, pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said
+//
+// THE LANDING, RE-PROVED FROM THE CANDIDATE. The landing tool writes a
+// receipt saying the candidate folds to the served store; a receipt is a
+// claim. This reads the candidate's shards off disk, folds them again, and
+// compares to the served shards again — so the guard is a recount, not a
+// re-read. And the counter-verification record, if it is here, must say
+// what a record can be held to: every pinned file that was present matched,
+// the fold held on every shard, and the grade table agreed at every row.
+//
+// SKIPS by name when there is no candidate and no record: this is a guard on
+// what was landed, not a demand that something be.
+import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+import { join } from "node:path";
+
+let bad = 0;
+const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
+// Every candidate under build/ and every record in data/: a shipment that
+// supersedes another leaves both on the shelf (v2, then v2.2), and each is
+// held to its own proof. Nothing is skipped because a newer one exists.
+const SERVED = "data/route-store";
+const CANDS = existsSync("build") ? readdirSync("build").filter((d) => /^pointing-store-.*-served$/u.test(d) && existsSync(join("build", d, "landing-receipt-v1.json"))).map((d) => join("build", d)) : [];
+const RECS = existsSync("data") ? readdirSync("data").filter((f) => /^pointing-store-verify-.*\.json$/u.test(f)).map((f) => join("data", f)) : [];
+if (!CANDS.length && !RECS.length) { console.log("SKIPPED — no pointing-store candidate under build/ and no counter-verification record in data/; nothing landed to guard"); process.exit(3); }
+
+for (const CAND of CANDS) {
+  console.log(`— candidate ${CAND} —`);
+  const receipt = JSON.parse(readFileSync(join(CAND, "landing-receipt-v1.json"), "utf8"));
+  const fold = (r) => { const c = r.slice(0, 6); if (c[5] === null) c.pop(); return c; };
+  const names = readdirSync(join(CAND, "shards")).filter((f) => f.endsWith(".bin")).sort();
+  // the v1 the fold is proved against: the served store while it is still
+  // v1; once the served store IS a v2, the v1 it replaced is read from git
+  // at the commit the receipt's served version was sealed in (the store's
+  // own history names it), so the fold stays a proof and not a tautology
+  const servedIdx = JSON.parse(readFileSync(join(SERVED, "index.json"), "utf8"));
+  const v1Dir = servedIdx.schema_version === "ROUTE_STORE_V1" ? SERVED : (existsSync("build/route-store-v1-before-pointing") ? "build/route-store-v1-before-pointing" : null);
+  if (!v1Dir) { check("L1  the candidate's shards, folded, are the served shards byte for byte — recounted, not re-read", false, "the served store is a v2 and no v1 copy stands at build/route-store-v1-before-pointing to fold against: git show <pre-swap commit>:reader/data/route-store/shards/*.bin into it"); continue; }
+  let same = 0; const differ = []; let bad7 = 0;
+  for (const n of names) {
+    const cand = JSON.parse(gunzipSync(readFileSync(join(CAND, "shards", n))).toString("utf8"));
+    const served = existsSync(join(v1Dir, "shards", n)) ? gunzipSync(readFileSync(join(v1Dir, "shards", n))).toString("utf8") : null;
+    const folded = {}; for (const [k, rs] of Object.entries(cand)) folded[k] = rs.map((r) => { if (r.length !== 7) bad7 += 1; return fold(r); });
+    if (served !== null && JSON.stringify(folded) === served) same += 1; else differ.push(n);
+  }
+  check(`L1  the candidate's shards, folded, are the v1 shards byte for byte — recounted against ${v1Dir}, not re-read`,
+    names.length === 256 && same === 256 && bad7 === 0, `${same} of ${names.length} · ${bad7} rows not length 7${differ.length ? " · differ: " + differ.slice(0, 4).join(",") : ""}`);
+  check("L2  and the receipt says the same, with every dropped id on the struck list",
+    receipt.landable === true && receipt.counts.shards_identical_after_fold === 256 && receipt.counts.dropped_ids_all_on_the_struck_list === true,
+    `receipt: landable ${receipt.landable} · ${receipt.counts.rows_dropped_by_admission.toLocaleString()} rows dropped on ${receipt.counts.dropped_ids.length} ids`);
+  // the served store must not have moved under the candidate — unless it
+  // moved TO the candidate: once a candidate is served, the store on disk is
+  // the candidate's own version, and L1 above has just re-proved that the
+  // bytes now served fold to the v1 they replaced
+  const idx = JSON.parse(readFileSync(join(SERVED, "index.json"), "utf8"));
+  // a superseded candidate (v2 under v2.2) was proved against the v1 that
+  // now stands under build/ — that copy's own version says so
+  const v1Idx = v1Dir === SERVED ? servedIdx : JSON.parse(readFileSync(join(v1Dir, "index.json"), "utf8"));
+  const provedAgainst = receipt.served.store_version === idx.store_version, isServed = receipt.candidate.store_version === idx.store_version, v1Stands = receipt.served.store_version === v1Idx.store_version;
+  check("L3  the served store is the one the candidate was proved against, or is the candidate itself, or the v1 it was proved against still stands under build/",
+    provedAgainst || isServed || v1Stands, isServed ? `the candidate ${idx.store_version} is what is served` : v1Stands ? `proved against ${receipt.served.store_version}, which stands at ${v1Dir}; served is ${idx.store_version}` : `${receipt.served.store_version} vs ${idx.store_version}`);
+}
+for (const REC of RECS) {
+  console.log(`— record ${REC} —`);
+  const rec = JSON.parse(readFileSync(REC, "utf8"));
+  check("V1  every pinned file that was present matched its pin, and the shard digest matched",
+    rec.pin.files_mismatched.length === 0 && rec.pin.shard_digest_matches === true && rec.pin.files_present_and_matching + rec.pin.files_absent.length === rec.pin.files_pinned,
+    `${rec.pin.files_present_and_matching} of ${rec.pin.files_pinned} matched · ${rec.pin.files_absent.length} absent`);
+  check("V2  the fold held on every shard against this lane's own pre-strike copy",
+    rec.fold.shards_identical === 256 && rec.fold.shards_differ.length === 0 && rec.fold.rows_length_7 === rec.fold.rows,
+    `${rec.fold.shards_identical} of 256 · ${rec.fold.rows.toLocaleString()} rows`);
+  if (rec.same_fact && rec.same_fact.not_carried) console.log(`  --  V3  no grade table in this shipment: ${rec.same_fact.not_carried}`);
+  else check("V3  the grade table agreed with the lattice sidecar at every row",
+    rec.same_fact.disagree === 0 && rec.same_fact.unjoinable === 0 && rec.same_fact.agree === rec.same_fact.grade_rows && rec.same_fact.grade_rows > 0,
+    `${rec.same_fact.agree.toLocaleString()} of ${rec.same_fact.grade_rows.toLocaleString()}`);
+  if (rec.version_recipe) check("V5  the store_version recomputes by the corpus lane's recipe", rec.version_recipe.matches === true, `${rec.version_recipe.recomputed} vs ${rec.version_recipe.stated}`);
+  check("V4  the record says what it does not say", Array.isArray(rec.what_this_does_not_say) && rec.what_this_does_not_say.length >= 3);
+}
+console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
+process.exit(bad ? 1 : 0);

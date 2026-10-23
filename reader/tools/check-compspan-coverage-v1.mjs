@@ -1,0 +1,203 @@
+#!/usr/bin/env node
+// check-compspan-coverage-v1 · every word its source divides opens a card that offers the division
+//
+// GUARDS: compspan-coverage-rule-v1-a-word-its-source-divides-opens-with-its-divisions
+// LEDGER: -
+// no frame letter. This reads a served zone and the page drawn from it, and
+// writes nothing.
+//
+// The owner, 2026-10-03, on Genesis 1:2: "we seem to be messing up basic
+// prefix and suffix still. wheres the compspan?", and then "i shouldnt still
+// be finding compspan errors". The span ledger's served rows carried two-piece
+// divisions only: every word its source divides into three or four pieces,
+// and about a hundred suffixed forms, opened a card with no divisions at all,
+// and no check asked. Every other check compares the page with the record;
+// this one asks whether the division the source makes reaches the reader.
+//
+//   C1  from the record, over the whole book: every word whose pieces (pg)
+//       come from one source and spell its form has a division the card can
+//       offer, a ledger row or the source's pieces at its place. A word whose
+//       pieces spell no side of it (a read side of two words) is excused by
+//       name, never silently
+//   C2  on the page: a sample of real cards, the first words of each piece
+//       count with no ledger row and the first with one, each opens offering
+//       every complete division of the form (2^(n-1) of them, the whole first),
+//       and its finest division's blocks are the source's pieces in order
+//   C3  the source's set is filed under its division (the owner, 2026-10-03:
+//       "id file the AB under A+B", "the dead giveaway is the + signs, our own
+//       mark"; and the rule of 20 September, relayed by the corpus lane: "the
+//       piece gloss travels with the position"; "the key is to not fan out
+//       those R pills as if theyre solo ... the license is 1 whole still"):
+//       under "the source here" the card opens on the division that is the
+//       set's pieces, standing on it whole: no block pressed, one reading,
+//       the set, pressed, and the source's line the set; a block pressed
+//       alone carries neither the set nor the source's line, and pressing the
+//       division again stands on the set again; the whole form, pressed,
+//       offers no reading carrying the division's mark; and on any other
+//       division no block carries the source's line
+//
+// Run: node tools/check-compspan-coverage-v1.mjs [url]
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+
+const pw = await loadPlaywright();
+let bad = 0;
+const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
+const URL = defaultZoneUrl();
+const PER = 4;   // cards opened per piece count and kind
+const b = await pw.chromium.launch(launchOptions());
+const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+await p.goto(URL, { waitUntil: "networkidle" });
+await p.waitForFunction(() => window.__zone && document.querySelector("section.seg"), null, { timeout: 30000 });
+console.log(`— ${URL} —`);
+
+// C1, from the record
+const rec = await p.evaluate(() => {
+  const z = window.__zone;
+  const out = { pieced: 0, byRow: 0, byPlace: 0, excused: [], uncovered: [], byCount: {} };
+  z.sections.forEach((sec, si) => (sec.words || []).forEach((w, wi) => {
+    if (!Array.isArray(w.pg) || w.pg.length < 2) return;
+    out.pieced += 1;
+    out.byCount[w.pg.length] = (out.byCount[w.pg.length] || 0) + 1;
+    const sides = w.w ? w.w.map((r) => r.k).filter(Boolean) : [w.k];
+    if (sides.some((k) => z.spans && z.spans[k])) { out.byRow += 1; return; }
+    const spelled = w.pg.map((x) => x && x.k).join("");
+    const oneSource = w.pg.every((x) => x && x.k && x.s === w.pg[0].s);
+    if (!sides.includes(spelled)) { out.excused.push(`${sec.label} ${w.s}: pieces spell ${spelled}, the word is ${sides.join(" or ")}`); return; }
+    if (oneSource) { out.byPlace += 1; return; }
+    out.uncovered.push(`${sec.label} ${w.s}`);
+  }));
+  return out;
+});
+check("C1  every word its source divides has a division the card can offer",
+  rec.pieced > 0 && rec.uncovered.length === 0,
+  `${rec.pieced} divided words (${Object.entries(rec.byCount).map(([n, c]) => `${c} of ${n} pieces`).join(", ")}): ${rec.byRow} by the ledger's row, ${rec.byPlace} by the source's pieces at the place` +
+  (rec.uncovered.length ? ` · UNCOVERED ${rec.uncovered.length}: ${rec.uncovered.slice(0, 4).join("; ")}` : "") +
+  (rec.excused.length ? ` · excused ${rec.excused.length}: ${rec.excused.slice(0, 3).join("; ")}` : ""));
+
+// the BSB's own row (source suggested, forced on since 2026-10-14) stands on
+// every card as .r-piece.r-sug and is not the source's line: passed over here
+// C2 and C3, on real cards: candidates from rendered sections whose blocks
+// line up one to one with the record's words
+const picks = await p.evaluate(async (per) => {
+  const z = window.__zone;
+  const want = new Map();   // "n|row" -> count
+  // one card per form: a division pressed on a card is the reader's ruling
+  // for that form at every place it stands, so a second card of the same form
+  // opens on the ruling, rightly, and would say nothing about the record
+  const seenForm = new Set();
+  const out = [];
+  const secs = [...document.querySelectorAll("section.seg")];
+  for (let si = 0; si < secs.length && out.length < per * 6; si += 1) {
+    secs[si].scrollIntoView();
+    await new Promise((r) => setTimeout(r, 60));
+    const wbs = [...secs[si].querySelectorAll(".he-text .wb")];
+    const words = (z.sections[si] || {}).words || [];
+    if (wbs.length !== words.length) continue;
+    words.forEach((w, wi) => {
+      if (!Array.isArray(w.pg) || w.pg.length < 2 || w.w) return;
+      // a word of a chain whose line reads word by word opens its own card
+      // too, the chain at the top of it (the nesting, 2026-10-16); a chain
+      // reading a whole rung opens the chain's card and is not this claim
+      const chainEl = wbs[wi].closest(".wjoin");
+      if (chainEl && !chainEl.querySelector(":scope > .g.parts")) return;
+      const chain = !!chainEl;
+      if (chain && (want.get("chain") || 0) >= per) return;
+      if (w.pg.map((x) => x.k).join("") !== w.k || !w.pg.every((x) => x.g && x.s === w.pg[0].s)) return;
+      const row = !!(z.spans && z.spans[w.k]);
+      if (row && z.spans[w.k][0].join("|") !== w.pg.map((x) => x.k).join("|")) return;   // a ledger division unlike the place's: not this claim
+      const key = chain ? "chain" : `${w.pg.length}|${row}`;
+      if ((want.get(key) || 0) >= per || seenForm.has(w.k)) return;
+      seenForm.add(w.k);
+      want.set(key, (want.get(key) || 0) + 1);
+      out.push({ si, wi, n: w.pg.length, row, chain, label: z.sections[si].label, s: w.s, k: w.k, pieces: w.pg.map((x) => x.k), glosses: w.pg.map((x) => String(x.g).trim()) });
+    });
+  }
+  return out;
+}, PER);
+
+const noDiv = [], wrongFinest = [], notLed = [], chainBad = [];
+for (const c of picks) {
+  await p.evaluate(([si, wi]) => { const s = document.querySelectorAll("section.seg")[si]; s.scrollIntoView(); s.querySelectorAll(".he-text .wb")[wi].querySelector(".w").click(); }, [c.si, c.wi]);
+  try { await p.waitForSelector("#hud .r-pills button, #hud .b-cut .s-pills button", { timeout: 20000 }); } catch { noDiv.push(`${c.label} ${c.s}: the card did not open`); continue; }
+  await p.waitForTimeout(400);
+  const cuts = await p.evaluate(() => [...document.querySelectorAll("#hud .b-cut .s-pills button")].map((x) => x.textContent));
+  // C4: a chain's word carries the chain at the top of its card, its words
+  // one by one pressed among the rungs, this word pressed among the words
+  if (c.chain) {
+    const top = await p.evaluate(() => ({
+      rung: (document.querySelector('#hud .b-chain .s-pills button[aria-pressed="true"]') || {}).textContent || null,
+      rungs: document.querySelectorAll("#hud .b-chain .s-pills button").length,
+      word: (document.querySelector('#hud .b-chain-cell .s-pills button[aria-pressed="true"]') || {}).textContent || null }));
+    // the chain's rungs: as written and the words at least; the closed-up
+    // form only where a source wrote it (the owner, 2026-10-17)
+    if (top.rungs < 2 || !top.rung || !top.rung.includes("+")) chainBad.push(`${c.label} ${c.s}: chain row ${top.rungs} rungs, pressed ${top.rung}`);
+    else if (top.word !== c.k) chainBad.push(`${c.label} ${c.s}: chain word pressed ${top.word}, owed ${c.k}`);
+  }
+  const expect = 2 ** (c.n - 1);
+  if (cuts.length !== expect) { noDiv.push(`${c.label} ${c.s}: ${cuts.length} divisions, ${expect} owed`); }
+  else {
+    const finest = c.pieces.join(" + ");
+    if (cuts[0] !== c.pieces.join("") || cuts[cuts.length - 1] !== finest) wrongFinest.push(`${c.label} ${c.s}: ${cuts[0]} … ${cuts[cuts.length - 1]}, owed ${c.pieces.join("")} … ${finest}`);
+    else {
+      // C3: the card opens on the set's division, standing on it whole
+      const set = c.glosses.join(" + ");
+      const opened = await p.evaluate(() => ({
+        cut: (document.querySelector('#hud .b-cut .s-pills button[aria-pressed="true"]') || {}).textContent || null,
+        blocks: document.querySelectorAll('#hud .b-cell .s-pills button[aria-pressed="true"]').length,
+        pills: [...document.querySelectorAll("#hud .r-pills button")].map((x) => (x.getAttribute("aria-pressed") === "true" ? "*" : "") + x.textContent.trim()),
+        line: (document.querySelector("#hud .r-piece:not(.r-sug) b") || {}).textContent || null }));
+      if (opened.cut !== finest) notLed.push(`${c.label} ${c.s}: opens on ${opened.cut}, owed ${finest}`);
+      else if (opened.blocks) notLed.push(`${c.label} ${c.s}: opens with a block pressed`);
+      else if (opened.pills.length !== 1 || opened.pills[0] !== `*${set}`) notLed.push(`${c.label} ${c.s}: opens on ${opened.pills.slice(0, 3).join(", ")}, owed the one pill *${set}`);
+      else if (opened.line !== set) notLed.push(`${c.label} ${c.s}: the source's line reads ${opened.line}, owed the set ${set}`);
+      else {
+        // a block alone: neither the set nor the source's line
+        for (let i = 0; i < c.n; i += 1) {
+          await p.evaluate((i2) => { const x = document.querySelectorAll("#hud .b-cell .s-pills button")[i2]; if (x) x.click(); }, i);
+          try { await p.waitForFunction((k) => (document.querySelector("#hud .b-read .r-label") || {}).textContent?.includes(`· ${k} ·`), c.pieces[i], { timeout: 15000 }); } catch { /* read below */ }
+          await p.waitForTimeout(150);
+          const blk = await p.evaluate(() => ({ line: (document.querySelector("#hud .r-piece:not(.r-sug)") || {}).textContent || null, pills: [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()) }));
+          if (blk.line) notLed.push(`${c.label} ${c.s} block ${c.pieces[i]} alone: "${blk.line.trim()}"`);
+          if (blk.pills.includes(set)) notLed.push(`${c.label} ${c.s} block ${c.pieces[i]} alone offers the set`);
+        }
+        // the division again: the set whole again
+        await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, finest);
+        await p.waitForTimeout(700);
+        const again = await p.evaluate(() => [...document.querySelectorAll('#hud .r-pills button[aria-pressed="true"]')].map((x) => x.textContent.trim()));
+        if (again.length !== 1 || again[0] !== set) notLed.push(`${c.label} ${c.s}: the division pressed again stands on ${again.join(", ") || "nothing"}, owed ${set}`);
+      }
+      // the whole form, pressed: no reading carrying the division's mark
+      await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, c.pieces.join(""));
+      try { await p.waitForFunction(() => !document.querySelector("#hud .b-cell .s-pills button"), null, { timeout: 15000 }); } catch { /* read below */ }
+      await p.waitForTimeout(700);
+      const whole = await p.evaluate(() => ({ marked: [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()).filter((t) => / \+ /u.test(t)), line: (document.querySelector("#hud .r-piece:not(.r-sug)") || {}).textContent || null }));
+      if (whole.marked.length) notLed.push(`${c.label} ${c.s} whole form: offers ${whole.marked.slice(0, 2).join(", ")}`);
+      if (whole.line) notLed.push(`${c.label} ${c.s} whole form: "${whole.line.trim()}"`);
+      // any other division: no block carries the source's line
+      for (const other of cuts.slice(1, -1)) {
+        await p.evaluate((t) => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((e) => e.textContent === t); if (x) x.click(); }, other);
+        await p.waitForTimeout(700);
+        const line = await p.evaluate(() => (document.querySelector("#hud .r-piece:not(.r-sug)") || {}).textContent || null);
+        if (line) notLed.push(`${c.label} ${c.s} on ${other}: "${line.trim()}"`);
+      }
+    }
+  }
+  await p.keyboard.press("Escape");
+  await p.waitForTimeout(150);
+}
+const kinds = [...new Set(picks.map((c) => `${c.n} pieces${c.row ? " (ledger row)" : " (no row)"}${c.chain ? " in a chain" : ""}`))];
+const chainPicks = picks.filter((c) => c.chain);
+check("C4  a word of a chain opens its own divisions under the chain's lattice: the chain's rungs with the words one by one pressed, and this word pressed among its words",
+  chainPicks.length > 0 && chainBad.length === 0,
+  chainPicks.length ? `${chainPicks.length} chain words` + (chainBad.length ? ` · ${chainBad.slice(0, 3).join("; ")}` : "") : "no chain word its source divides on this page");
+check("C2  each card opens offering every complete division, its finest the source's pieces",
+  picks.length > 0 && noDiv.length === 0 && wrongFinest.length === 0,
+  `${picks.length} cards: ${kinds.join(", ")}` + (noDiv.length ? ` · ${noDiv.slice(0, 3).join("; ")}` : "") + (wrongFinest.length ? ` · ${wrongFinest.slice(0, 3).join("; ")}` : ""));
+check("C3  the source's set is one reading of its division, never fanned out, never on the whole form",
+  picks.length > 0 && notLed.length === 0,
+  notLed.length ? notLed.slice(0, 3).join("; ") : "every card opened on the set's division whole, the set its one pill; no block alone carried the set or the source's line; no whole form offered a divided reading");
+
+await b.close();
+console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
+process.exit(bad ? 1 : 0);

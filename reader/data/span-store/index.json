@@ -1,0 +1,286 @@
+{
+ "schema_version": "span-store-served-v1",
+ "from": "span-store-v2",
+ "relay": "FOR-ELIJAH-v80.md",
+ "relay_standing": null,
+ "taken_from": "corpus-lane-builds/moses-span-store-v2/build/span-store-v2/",
+ "date": "22 October 2026 AD",
+ "rule": "RULE-span-store-v2.md",
+ "rule_sha256_before_any_script": "0d1132dd3fbc21193ba38e467964e520b498caa257852e529bb3e74f8dde1414",
+ "standing_rule": "SHARE THE RECORD, NEVER SHARE THE CLAIM: a claim carries rids, places and small values only; the record is the dictionary store's",
+ "records_live_in": "dictionary store v1 records, one file per M id (relay v78; the v1.1 claims and indexes, relay v79); a rid is the first 16 hex of the record id",
+ "definitions": {
+  "span_record": "A SPAN RECORD = the dictionary record (rid) of a v1.4 row: v1.3 rows by span-rows.jsonl; the 50 v1.4 rows by (M id, the row's source file and locator) against the dictionary records' (file, loc) — 0 unmapped or each named as a negative with why (a row whose entry is no dictionary record stays a labelled negative, never a claim).",
+  "span_place": "A SPAN PLACE (claim) = { book, ref, w_first, w_last (page numbering, w_page), ink_key (letters joined by the ink's gaps), rids (the records that stand here, in v1.4's row_ids order), kinds (per rid: SPAN | WELD), gap (per rid: the source's gap SPACE | MAQAF | NONE), same_entry (per weld rid: the v1.4 label at this place), inside_of, contains, overlaps (ink keys), by: \"lane\" }; claims/places/<book>.jsonl sorted by (ref, w_first).",
+  "index_by_key": "INDEX by_key: ink key → rids (names first, as v1.4's order), and per key its place count; index/by-key.jsonl."
+ },
+ "invariants": {
+  "I1": "every rid resolves to one dictionary record",
+  "I2": "every v1.4 row stands as a rid in exactly the places v1.4 gives it (0 differences) or as a named negative",
+  "I3": "no claim carries record text",
+  "I4": "every place's w_first..w_last are consecutive page words whose letters joined by the ink's gaps equal ink_key"
+ },
+ "instruction_lines": [
+  "I1. Underline a span only where this store’s places file holds the ink’s place: the span’s letters joined by the gap as the ink writes it, at that verse and those word numbers.",
+  "I2. Draw each row the place’s row_ids name as one line, one blob and one card over all its words, with the row’s R, M and D; where a place names several rows, one pill per row, each with its own M.",
+  "I3. Where a place lies inside or across another place, draw both; the places file marks it.",
+  "I4. Take the licence pill from the licence ledger by the row’s m id."
+ ],
+ "what_a_row_is": "a dictionary record (rid) v2 names at a place, read from the served dictionary store: its R, D, M and headwords are that record's own bytes",
+ "ink_key": "A SPAN PLACE (claim) = { book, ref, w_first, w_last (page numbering, w_page), ink_key (letters joined by the ink's gaps), rids (the records that stand here, in v1.4's row_ids order), kinds (per rid: SPAN | WELD), gap (per rid: the source's gap SPACE | MAQAF | NONE), same_entry (per weld rid: the v1.4 label at this place), inside_of, contains, overlaps (ink keys), by: \"lane\" }; claims/places/<book>.jsonl sorted by (ref, w_first).",
+ "by_key_rule": "ink key -> rids as v2's index/by-key.jsonl orders them (names first, v1.4's order), less the rids withheld (WELD) and held",
+ "counts": {
+  "rids_received": {
+   "value": 2068,
+   "axis": "rids under keys"
+  },
+  "rows": {
+   "value": 1698,
+   "axis": "records served",
+   "what": "served: the rids received less those withheld and held"
+  },
+  "rids_weld_withheld": {
+   "value": 32,
+   "axis": "records",
+   "what": "WELD rids (a closed-up entry across a maqaf), withheld by the no-weld rule"
+  },
+  "rids_held": {
+   "value": 20,
+   "axis": "records",
+   "what": "rows v1.4 added, held until the lane chooses a reading per place"
+  },
+  "rids_read_from_v1_4_rows": {
+   "value": 1698,
+   "axis": "records",
+   "what": "the reading is v1.4's row for the record, through row-to-rid"
+  },
+  "rids_read_from_the_record": {
+   "value": 0,
+   "axis": "records",
+   "what": "no v1.4 row: the record's own R"
+  },
+  "rids_unread": {
+   "value": 0,
+   "axis": "records",
+   "what": "no R on the record and no v1.4 row: not served"
+  },
+  "ink_keys_received": {
+   "value": 465,
+   "axis": "ink keys"
+  },
+  "ink_keys": {
+   "value": 462,
+   "axis": "ink keys"
+  },
+  "ink_keys_withheld": {
+   "value": 3,
+   "axis": "ink keys"
+  },
+  "places": {
+   "value": 2845,
+   "axis": "places"
+  },
+  "places_withheld": {
+   "value": 3,
+   "axis": "places"
+  },
+  "places_nested": {
+   "value": 23,
+   "axis": "places"
+  },
+  "places_overlapping": {
+   "value": 10,
+   "axis": "places"
+  },
+  "places_with_a_weld_rid": {
+   "value": 115,
+   "axis": "places"
+  },
+  "books": {
+   "value": 39,
+   "axis": "books"
+  }
+ },
+ "books": {
+  "amos": {
+   "places": 20,
+   "keys": 11
+  },
+  "daniel": {
+   "places": 27,
+   "keys": 11
+  },
+  "deuteronomy": {
+   "places": 80,
+   "keys": 35
+  },
+  "ecclesiastes": {
+   "places": 15,
+   "keys": 7
+  },
+  "esther": {
+   "places": 24,
+   "keys": 12
+  },
+  "exodus": {
+   "places": 188,
+   "keys": 40
+  },
+  "ezekiel": {
+   "places": 203,
+   "keys": 37
+  },
+  "ezra": {
+   "places": 53,
+   "keys": 26
+  },
+  "genesis": {
+   "places": 169,
+   "keys": 80
+  },
+  "habakkuk": {
+   "places": 5,
+   "keys": 2
+  },
+  "haggai": {
+   "places": 16,
+   "keys": 3
+  },
+  "hosea": {
+   "places": 26,
+   "keys": 14
+  },
+  "i-chronicles": {
+   "places": 134,
+   "keys": 70
+  },
+  "i-kings": {
+   "places": 117,
+   "keys": 53
+  },
+  "i-samuel": {
+   "places": 84,
+   "keys": 45
+  },
+  "ii-chronicles": {
+   "places": 108,
+   "keys": 52
+  },
+  "ii-kings": {
+   "places": 130,
+   "keys": 49
+  },
+  "ii-samuel": {
+   "places": 98,
+   "keys": 54
+  },
+  "isaiah": {
+   "places": 139,
+   "keys": 34
+  },
+  "jeremiah": {
+   "places": 208,
+   "keys": 60
+  },
+  "job": {
+   "places": 35,
+   "keys": 15
+  },
+  "joel": {
+   "places": 1,
+   "keys": 1
+  },
+  "jonah": {
+   "places": 1,
+   "keys": 1
+  },
+  "joshua": {
+   "places": 184,
+   "keys": 79
+  },
+  "judges": {
+   "places": 141,
+   "keys": 56
+  },
+  "lamentations": {
+   "places": 8,
+   "keys": 5
+  },
+  "leviticus": {
+   "places": 72,
+   "keys": 17
+  },
+  "malachi": {
+   "places": 25,
+   "keys": 3
+  },
+  "micah": {
+   "places": 8,
+   "keys": 8
+  },
+  "nahum": {
+   "places": 4,
+   "keys": 3
+  },
+  "nehemiah": {
+   "places": 57,
+   "keys": 34
+  },
+  "numbers": {
+   "places": 267,
+   "keys": 56
+  },
+  "obadiah": {
+   "places": 0,
+   "keys": 0
+  },
+  "proverbs": {
+   "places": 40,
+   "keys": 19
+  },
+  "psalms": {
+   "places": 84,
+   "keys": 35
+  },
+  "ruth": {
+   "places": 4,
+   "keys": 2
+  },
+  "song-of-songs": {
+   "places": 7,
+   "keys": 7
+  },
+  "zechariah": {
+   "places": 61,
+   "keys": 10
+  },
+  "zephaniah": {
+   "places": 2,
+   "keys": 1
+  }
+ },
+ "claims_sha256": "a5598c9eab86ed7fe0d69d30b175d8a8a9783a8edd027cf543782667ffe46a72",
+ "by_key_sha256": "b0a924ec71f6b456ed689ccd9b422ea9f2611e3c74c6d399ef3483e98283c9ec",
+ "index_sha256": "6c64817f0ac0126be7c9141c05825422f72866a918476653ef9b4a28f2b797fd",
+ "dictionary_store_version": "cedd7c44cf95",
+ "m_sources": {
+  "M199": {
+   "key": "etcbc_bhsa_2021",
+   "label": "ETCBC Biblia Hebraica Stuttgartensia Amstelodamensis context-free lexeme gloss",
+   "licensePosture": "cc_by_nc_4_0_noncommercial",
+   "licensePointer": "",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "from": "span-store-v2",
+   "licence_label": ""
+  },
+  "M197": {
+   "key": "stepbible_tahot_expanded_strong",
+   "label": "STEP Bible TAHOT source-explicit Expanded Strong lexical definition frame",
+   "licensePosture": "cc_by_4_0",
+   "licensePointer": "",
+   "sourceYear": "S_NO_SOURCE_YEAR",
+   "from": "span-store-v2",
+   "licence_label": ""
+  }
+ }
+}
