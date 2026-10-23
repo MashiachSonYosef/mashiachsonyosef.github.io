@@ -3,8 +3,11 @@
 //
 // THE WITNESSED ORDER, PRESSED.
 //
-//   W1  the book carries the three columns with their receipt, and every
-//       baked reading carries its own credit (a licence and a name)
+//   W1  the book carries the three columns with their receipt: baked, less
+//       every reading the receipt types as dropped for a struck credit (each
+//       gone from the column, each crediting a source the store no longer
+//       holds), and every baked reading carries its own credit (a licence
+//       and a name)
 //   W2  each baked reading is the first reading the store's own rule cuts
 //       from the row the corpus lane shipped (when its files are on disk)
 //   W3  the order switch offers the three positions, live on this book
@@ -25,6 +28,9 @@ const COLS = [["witnessed_same_place", "same-place", "witnessed here"], ["witnes
 const zone = JSON.parse(gunzipSync(readFileSync(`data/zones/${ZONE}.bin`)).toString("utf8"));
 const rec = zone.emitted_from && zone.emitted_from.witnessed_order;
 if (!rec) { console.log(`SKIPPED — ${ZONE} carries no witnessed order; run tools/bake-witnessed-order-v1.mjs`); process.exit(3); }
+const { index, packSplit, readingSplit } = openRouteStore("data/route-store");
+// the drops typed on a column's receipt (regloss-zone, source-strike-rule-v1)
+const dropsOf = (o) => (Array.isArray(rec.columns[o].struck_credit_drops) ? rec.columns[o].struck_credit_drops : []);
 
 // W1
 const w1 = [];
@@ -32,21 +38,26 @@ for (const [o] of COLS) {
   const col = (zone.gloss_orders || {})[o], mcol = (zone.gloss_m_orders || {})[o];
   if (!col || !mcol || !rec.columns[o]) { w1.push(`${o}: missing`); continue; }
   for (const k of Object.keys(col)) { const M = mcol[k]; if (!M || !M.lic || !M.m) w1.push(`${o}/${k}: no credit`); if (!(k in zone.gloss)) w1.push(`${o}/${k}: not a key of the book`); }
-  if (Object.keys(col).length !== rec.columns[o].baked) w1.push(`${o}: ${Object.keys(col).length} baked, receipt says ${rec.columns[o].baked}`);
+  const drops = dropsOf(o);
+  for (const d of drops) {
+    if (d.key in col) w1.push(`${o}/${d.key}: typed as dropped for a struck credit, yet still in the column`);
+    if (!(Array.isArray(d.by) && d.by.some((id) => !index.m_sources[id]))) w1.push(`${o}/${d.key}: typed as dropped, but every source it credits is still in the store`);
+  }
+  if (Object.keys(col).length !== rec.columns[o].baked - drops.length) w1.push(`${o}: ${Object.keys(col).length} baked, receipt says ${rec.columns[o].baked}${drops.length ? ` less ${drops.length} dropped for a struck credit` : ""}`);
 }
 check("W1  three columns with their receipt, every reading with its own credit", w1.length === 0,
-  w1.length ? w1.slice(0, 3).join(" | ") : COLS.map(([o]) => `${o.replace("witnessed_", "")} ${rec.columns[o].baked}`).join(" · "));
+  w1.length ? w1.slice(0, 3).join(" | ") : COLS.map(([o]) => `${o.replace("witnessed_", "")} ${rec.columns[o].baked - dropsOf(o).length}${dropsOf(o).length ? ` (${rec.columns[o].baked} baked, ${dropsOf(o).length} dropped for a struck credit)` : ""}`).join(" · "));
 
 // W2 — against the lane's files, when they are on disk
 const DIR = arg("dir", "build/witnessed-v2.7");
 if (existsSync(`${DIR}/witnessed-same-place-v2.7-${ZONE}.json`)) {
-  const { packSplit, readingSplit } = openRouteStore("data/route-store");
   const first = (t) => { for (const s of packSplit(t)) { const r = readingSplit(s); if (!r.damaged && r.readings.length) return r.readings[0]; } return null; };
   const w2 = [];
   for (const [o, stem] of COLS) {
     const shipped = JSON.parse(readFileSync(`${DIR}/witnessed-${stem}-v2.7-${ZONE}.json`, "utf8")).entries;
-    const col = zone.gloss_orders[o];
+    const col = zone.gloss_orders[o], dropped = new Set(dropsOf(o).map((d) => d.key));
     for (const [k, t] of Object.entries(shipped)) {
+      if (dropped.has(k)) continue;   // typed on the receipt: the lane's row stands on a struck source
       const want = first(t);
       if (want === null ? k in col : col[k] !== want) w2.push(`${o}/${k}: "${col[k]}" for "${t}"`);
     }

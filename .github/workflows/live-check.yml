@@ -23,4 +23,7 @@ jobs:
         with:
           node-version: 22
       - name: the live site is this build
-        run: node reader/tools/check-live-v1.mjs "${{ github.event.inputs.origin || 'https://fireandhail.com' }}" --wait 900
+        # from the reader folder: the zone list is read relative to it, as
+        # every check is run (the first run, from the root, found no zones)
+        working-directory: reader
+        run: node tools/check-live-v1.mjs "${{ github.event.inputs.origin || 'https://fireandhail.com' }}" --wait 900

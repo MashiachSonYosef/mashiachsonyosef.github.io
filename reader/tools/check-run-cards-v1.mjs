@@ -13,10 +13,9 @@
 //       it, and the index lists exactly the books that have a file
 //   R2  the page draws every card of the book it opens, and marks its words
 //   R3  the line under every word, and the Hebrew, are the same with the run
-//       cards and without them (known red since the span store, 2026-10-16:
-//       a run card around a place the store names, as at Numbers 33:7, reads
-//       its line word by word where the place's own cell read the span; the
-//       run cards are off for readers, and the owner's word is awaited)
+//       cards and without them (a card beside a place the store names, as at
+//       Numbers 33:7, is held wherever its words stand, so the place's cell
+//       and its line are the same either way; red 2026-10-16 to 2026-10-23)
 //   R4  pressing a run's word opens one card for the whole run: its divisions
 //       are the run as named, a fold only where a dictionary published one
 //       (never the run welded into one word: no weld, 2026-10-17), then

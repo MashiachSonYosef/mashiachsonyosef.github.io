@@ -167,10 +167,14 @@ zone.emitted_from.proper_names_layer = {
 // column's license records once, as {lic, m, y} with no carriers; so a
 // source switch could not reach a line an order put there, and when the
 // store's years moved (the year repair, 3411c86e94e7) those records kept the
-// old ones. The order's READINGS are the ledger's and are not touched; their
-// M is derived here over the same store, the same way gloss_m is — with its
-// carriers and its alternate — and a reading no route stands on keeps no M,
-// which draws no chip: absent over wrong.
+// old ones. The order's READINGS are not re-derived here; their M is derived
+// over the same store, the same way gloss_m is — with its carriers and its
+// alternate — and a reading no route stands on any more leaves the column,
+// reading and credit together (gloss-m-rule-v1: a reading shown is a reading
+// licensed; the line falls back to the base reading there). Until 2026-10-23
+// it was kept with no M, "absent over wrong", and the page printed it under
+// that order as an unattributed line: 31 readings on 23 zones, every one a
+// reading only the struck Bolls (M20) carried.
 // THE LICENCE COLUMNS, derived over the same store in the same pass
 // (licence-columns-rule-v1): the licence switch's three classes, each a
 // column holding the class's first reading where it differs from the base,
@@ -202,7 +206,7 @@ zone.emitted_from.no_names_layer = {
   what_the_zone_carries: "gloss_orders.noname — for every key of gloss_names whose base reading the name displaced, that base reading (the table store.tableFor projects, the derivation the oldest entry gives first); its M in gloss_m_orders.noname, derived with the other columns'; the page's \"no names\" switch lays it over the line of every word the name still leads under the order in force",
   counts: { names: Object.keys(names.leads).length, displaced: Object.keys(noname).length, base_is_the_name: Object.keys(names.leads).length - Object.keys(noname).length },
 };
-let ordersM = null;
+let ordersM = null, witnessedDrops = 0;
 if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
   ordersM = {};
   const prevOM = zone.gloss_m_orders || {};
@@ -228,10 +232,31 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
         const touched = [...ids, ...altIds].some((id) => !store.index.m_sources[id]);
         if (!touched) { kept[k] = m; continue; }
         const re = table[k] !== undefined ? glossMFor(store, { [k]: table[k] }).gloss_m[k] : null;
-        if (re) { kept[k] = re; recredited += 1; } else { delete table[k]; struckOut += 1; }
+        if (re) { kept[k] = re; recredited += 1; continue; }
+        delete table[k]; struckOut += 1; witnessedDrops += 1;
+        // TYPED BESIDE THE BAKE COUNT. The witnessed receipt's "baked" is the
+        // bake's own fact and is not rewritten; the drop is appended to that
+        // column's receipt and never replaced. This layer's own receipt is
+        // replaced whole on every projection, so a count kept only there is
+        // lost by the next run (the 2026-10-17 drops, gone by 2026-10-23).
+        // check-witnessed-order-v1 W1 reads baked less these drops.
+        const wc = zone.emitted_from.witnessed_order && zone.emitted_from.witnessed_order.columns && zone.emitted_from.witnessed_order.columns[o];
+        if (wc && !(Array.isArray(wc.struck_credit_drops) && wc.struck_credit_drops.some((d) => d.key === k)))
+          (wc.struck_credit_drops = Array.isArray(wc.struck_credit_drops) ? wc.struck_credit_drops : []).push({ key: k, by: [...ids, ...altIds], on: stamp, why: "source-strike-rule-v1: the credited source is no longer in the store and no route the store holds stands on the reading" });
       }
       ordersM[o] = { gloss_m: kept, drift: 0, struck_credit_dropped: struckOut, struck_credit_recredited: recredited };
-    } else ordersM[o] = glossMFor(store, table);
+    } else {
+      // A READING NO ROUTE STANDS ON LEAVES THE COLUMN, as a shipped
+      // column's does above: an order column is the store's projection as
+      // it stood when the zone was built, and when the store moves under it
+      // (a source struck, a reading no admitted route divides to any more) a
+      // reading whose M cannot be derived would print unattributed under
+      // that order. Counted, never silent.
+      const r = glossMFor(store, table);
+      let dropped = 0;
+      for (const k of Object.keys(table)) if (!r.gloss_m[k]) { delete table[k]; dropped += 1; }
+      ordersM[o] = { gloss_m: r.gloss_m, drift: r.drift, no_route_dropped: dropped };
+    }
   }
   zone.gloss_m_orders = Object.fromEntries(Object.entries(ordersM).map(([o, r]) => [o, r.gloss_m]));
   zone.emitted_from.gloss_m_orders_layer = {
@@ -242,6 +267,7 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
       no_route_stands_on: r.drift,
       ...(r.struck_credit_dropped ? { struck_credit_dropped: r.struck_credit_dropped } : {}),
       ...(r.struck_credit_recredited ? { struck_credit_recredited: r.struck_credit_recredited } : {}),
+      ...(r.no_route_dropped ? { no_route_dropped: r.no_route_dropped } : {}),
       had_m_before: Object.keys(prevOM[o] || {}).length,
     }])),
   };
@@ -324,7 +350,7 @@ zone.emitted_from.toggles.sources = {
   const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
   const me = "tools/regloss-zone.mjs";
   pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : [])]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : []), ...(witnessedDrops ? ["emitted_from.witnessed_order"] : [])]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
   const why = "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected";
   pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
   const exp = "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass";

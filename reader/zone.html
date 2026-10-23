@@ -3459,8 +3459,13 @@
         const same = m.get(rc.idx[0]);
         if (same && same.idx.length === rc.idx.length && same.idx.every((i, j) => i === rc.idx[j]) && !(rc.spanKey && !same.spanKey)) continue;
         rc.__sec = sec; rc.__els = new Map(); rc.named = rc.named || [];
-        if (rc.spanKey) for (const had of new Set(rc.idx.map((i) => m.get(i)).filter(Boolean))) {
-          if (had.spanKey || had.idx.every((i) => rc.idx.includes(i)) || rc.idx.every((i) => had.idx.includes(i))) continue;
+        // the card is looked for at every word of the section, not only at
+        // the place's own: a card that lost the shared word to an equal card
+        // laid before it stands at its other word alone (Pi-hahiroth at
+        // hahiroth, al-pi holding pi), and held from there all the same
+        // (check-run-cards-v1 R3 at Numbers 33:7, red 2026-10-16 to 10-23)
+        if (rc.spanKey) for (const had of new Set(m.values())) {
+          if (had.spanKey || !had.idx.some((i) => rc.idx.includes(i)) || had.idx.every((i) => rc.idx.includes(i)) || rc.idx.every((i) => had.idx.includes(i))) continue;
           for (const i of had.idx) if (m.get(i) === had) m.delete(i);
           RUNS_HELD.add(had);
         }

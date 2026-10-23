@@ -10,19 +10,25 @@
 // becomes invisible the moment it is written down.
 //
 // That is not hypothetical. It happened here. The store before the language
-// admission strike declared 774,277 routes; its shards held 773,847. 430 rows
-// of one source — Strong's Hebrew concordance via Hebrew Wikisource, a source
-// the gate keeps — were not in the copy the site was built from. The strike
-// then ran, recomputed the counts, and every consistency check went green over
-// a store 430 rows short, with no rule behind the loss. The corpus lane found
-// it and named it; this side's own records prove it three ways.
+// admission strike declared 774,277 routes; its shards held 773,847. The 430
+// are one source's — Strong's Hebrew concordance via Hebrew Wikisource, a
+// source the gate keeps — and they were never in this repository: the
+// 2026-08-18 rebuild the index describes (store 7d3e04a9d270) was committed
+// in three batches of shards and the middle one, shards 55..ac, never
+// landed; those 88 shards still carry the previous store's bytes. No strike
+// was handed those rows, so no strike can account for them. The witness
+// beside the store records both figures — what the index declared and what
+// its shards held — and the gap with its cause.
 //
 // So this asks the other question: is every row the store no longer holds a
 // row that a NAMED RULE removed?
 //
-//   C1  the whole strike closes: rows before − rows the strike struck = rows
-//       served. A residue is rows lost with no rule behind them, and it is
-//       named in routes, not in percentages
+//   C0  the pre-strike index against its own shards: a gap at the store's
+//       birth is not a strike's. It is recorded to the row — which batch,
+//       which shards, how many — and it alarms until it is landed or ruled
+//   C1  the whole strike closes: rows the strike was handed − rows the strike
+//       struck = rows served. A residue is rows lost with no rule behind
+//       them, and it is named in routes, not in percentages
 //   C2  round by round: each round's own routes_before is the round before
 //       it, less what that round struck. A round whose input is smaller than
 //       its predecessor's output is a round that was handed a short copy
@@ -67,9 +73,13 @@ console.log(`— ${STORE} · ${index.store_version} · ${n(index.counts && index
 // from the admission record's own first round if it carries one. Never from
 // the store in front of us — that is the number under test.
 const PRE = arg("--pre", "data/store-before-strike-witness-v1.json");
-let preRoutes = null, preFrom = null;
-if (PRE && existsSync(PRE)) { const p = JSON.parse(readFileSync(PRE, "utf8")); preRoutes = num(p.counts && p.counts.routes); preFrom = `${p.recovered_from || PRE} (${p.store_version})`; }
+let preRoutes = null, preFrom = null, heldRoutes = null, witnessDoc = null;
+if (PRE && existsSync(PRE)) { const p = JSON.parse(readFileSync(PRE, "utf8")); witnessDoc = p; preRoutes = num(p.counts && p.counts.routes); preFrom = `${p.recovered_from || PRE} (${p.store_version})`; heldRoutes = num(p.held_by_the_shards_beside_it && p.held_by_the_shards_beside_it.routes); }
 else if (rec && rec.cumulative && rec.cumulative.routes_before !== undefined) { preRoutes = num(rec.cumulative.routes_before); preFrom = "the admission record's cumulative block"; }
+// the rows the strike was HANDED are what the shards beside that index held,
+// when the witness says so; the declared figure is what C0 tests them against
+const handed = heldRoutes ?? preRoutes;
+const handedFrom = heldRoutes === null ? preFrom : `the shards beside ${preFrom}`;
 
 const served = num(index.counts && index.counts.routes);
 // A SECOND KIND OF STRIKE (2026-10-17): a source struck for its licence
@@ -84,14 +94,23 @@ const admissionStruck = num(rec && rec.cumulative && rec.cumulative.routes_struc
 const cumStruck = admissionStruck === null ? null : admissionStruck + licenceStruck;
 if (ss) console.log(`  licence strike on the shelf: ${(ss.struck_sources || []).map((s) => s.m_id).join(", ")} · ${n(licenceStruck)} routes in ${(ss.rounds || []).length} round(s)`);
 
+// C0 — the pre-strike index against the shards that shipped with it
+if (preRoutes !== null && heldRoutes !== null && heldRoutes !== preRoutes) {
+  const gap = preRoutes - heldRoutes, why = (witnessDoc && witnessDoc.why_they_differ) || {}, g = why.the_gap || {};
+  const recorded = num(g.routes) === gap;
+  check("C0  the rows the pre-strike index declared that its shards never held are recorded to the row, and landed or ruled",
+    recorded && !!why.ruled,
+    `${n(preRoutes)} declared, ${n(heldRoutes)} held: ${n(gap)} rows${recorded ? ` · ${why.never_landed || "recorded"}` : " · NO RECORD OF WHERE THEY WENT"}${recorded && !why.ruled ? " · OWED: not landed, not ruled" : ""}`);
+}
+
 // C1 — the whole strike closes
 if (preRoutes === null) note("C1  the whole strike closes: rows before − rows struck = rows served",
   `no pre-strike total on the shelf, and this refuses to take one from the store under test — pass --pre <a pre-strike index.json>`);
 else {
-  const residue = preRoutes - (cumStruck ?? 0) - served;
-  check("C1  the whole strike closes: rows before, less the rows it struck, are the rows served",
+  const residue = handed - (cumStruck ?? 0) - served;
+  check("C1  the whole strike closes: rows the strike was handed, less the rows it struck, are the rows served",
     residue === 0,
-    `${n(preRoutes)} before (${preFrom}) − ${n(cumStruck)} struck = ${n(preRoutes - (cumStruck ?? 0))}, served ${n(served)}${residue === 0 ? "" : ` · ${n(Math.abs(residue))} row${Math.abs(residue) === 1 ? "" : "s"} ${residue > 0 ? "LOST WITH NO RULE BEHIND THEM" : "MORE THAN THE ARITHMETIC ALLOWS"}`}`);
+    `${n(handed)} handed (${handedFrom}) − ${n(cumStruck)} struck = ${n(handed - (cumStruck ?? 0))}, served ${n(served)}${residue === 0 ? "" : ` · ${n(Math.abs(residue))} row${Math.abs(residue) === 1 ? "" : "s"} ${residue > 0 ? "LOST WITH NO RULE BEHIND THEM" : "MORE THAN THE ARITHMETIC ALLOWS"}`}`);
 }
 
 // C2 — round by round
@@ -108,11 +127,11 @@ else {
   // judged on the store as it stood then, the licence strike's rows added
   // back to what is served now
   const earlierStruck = (admissionStruck ?? 0) - (lastStruck ?? 0);
-  const shouldBe = preRoutes - earlierStruck;
+  const shouldBe = handed - earlierStruck;
   const gap = shouldBe - lastBefore;
   check("C2  the last round was handed what the rounds before it left, not a shorter copy",
     gap === 0,
-    `rounds before it struck ${n(earlierStruck)} of ${n(preRoutes)}, leaving ${n(shouldBe)}; the last round records ${n(lastBefore)} in front of it${gap === 0 ? "" : ` · SHORT BY ${n(gap)} — the loss is at or before this round's input`}`);
+    `rounds before it struck ${n(earlierStruck)} of ${n(handed)}, leaving ${n(shouldBe)}; the last round records ${n(lastBefore)} in front of it${gap === 0 ? "" : ` · SHORT BY ${n(gap)} — the loss is at or before this round's input`}`);
   check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served + licenceStruck,
     `${n(lastBefore)} − ${n(lastStruck)} = ${n(lastBefore - (lastStruck ?? 0))}, served ${n(served)}${licenceStruck ? ` + ${n(licenceStruck)} the licence strike took since` : ""}`);
   // and the licence strike's own rounds, each handed what stood before it
