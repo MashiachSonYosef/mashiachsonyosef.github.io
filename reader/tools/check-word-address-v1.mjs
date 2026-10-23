@@ -9,6 +9,11 @@
 //       word inside a place the store names opens the place's card, its head
 //       the place's address; the word is found on the page, after its mark
 //   W4  the export names each record's word in this site's own words
+//   W5  #1:2, a verse with no word, opens the book at that verse with no
+//       card, and the bar keeps the hash (the owner, 2026-10-23: "why isnt
+//       it just fireandhail.com/genesis/#8:17:14 then seems like the logical
+//       url"; the verse and the chapter forms with it)
+//   W6  #2, a chapter alone, opens the book at the chapter's first verse
 // The book is the first served zone, never named here (check-scope-derived
 // S1); a span place and a marked word are found in the data and on the page.
 // Usage: node tools/check-word-address-v1.mjs [url]
@@ -131,6 +136,34 @@ const land = async (book, hash) => {
   const fors = (text || "").match(/^\s+for: .+? 1:1:\d+$/gmu) || [];
   const recs = (text || "").match(/^\d+\. /gmu) || [];
   check("W4  the export names, under each record, the word it was cited for", !!text && recs.length > 0 && fors.length === recs.length, text ? `${recs.length} records \u00B7 ${fors.length} with a word \u00B7 ${fors.slice(0, 3).map((x) => x.trim()).join(" | ")}` : "no export produced");
+}
+// W5, W6: a verse hash and a chapter hash, no word
+// a fresh reader each time: the place a device keeps, and the card the
+// earlier landings left, are not this landing's
+const landPlace = async (hash) => {
+  const c2 = await b.newContext({ viewport: { width: 412, height: 915 } });
+  const p2 = await c2.newPage();
+  await p2.addInitScript(() => { try { localStorage.clear(); } catch { /* fresh reader */ } });
+  await p2.goto(`${BASE}?b=${BOOK}#${hash}`, { waitUntil: "networkidle" });
+  await p2.waitForSelector("section.seg .he-text .wb");
+  await p2.waitForTimeout(2500);
+  const r = await p2.evaluate((hash) => {
+    const secs = [...document.querySelectorAll("section.seg")];
+    const labelled = secs.map((s) => ({ s, label: (s.querySelector(".vnum") || {}).textContent || "" }));
+    const want = labelled.find((x) => x.label === hash || x.label === `${hash}:1`);
+    const q = want ? want.s.getBoundingClientRect() : null;
+    const hud = document.getElementById("hud");
+    return { found: !!want, label: want ? want.label : null, top: q ? Math.round(q.top) : null, inView: !!q && q.top > -5 && q.top < innerHeight * 0.6, card: !!(hud && !hud.hidden), hash: location.hash, chapters: new Set(labelled.map((x) => x.label.split(":")[0]).filter(Boolean)).size };
+  }, hash);
+  await c2.close();
+  return r;
+};
+{
+  const r = await landPlace("1:2");
+  check("W5  #1:2 opens the book at the verse, no card, the hash kept", r.found && r.inView && !r.card && r.hash === "#1:2", `verse ${r.label || "not built"} at ${r.top}px \u00B7 card ${r.card} \u00B7 bar ${r.hash}`);
+  const c = await landPlace("2");
+  if (c.found) check("W6  #2 opens the book at the chapter's first verse, no card, the hash kept", c.inView && !c.card && c.hash === "#2", `${c.label} at ${c.top}px \u00B7 card ${c.card} \u00B7 bar ${c.hash}`);
+  else console.log("  --  W6 not asked: this book has no 2:1 built at the address");
 }
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
