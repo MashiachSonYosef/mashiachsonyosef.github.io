@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-10-23.
 
-**129 rules declared · 121 named by a check · 8 unguarded.**
+**130 rules declared · 121 named by a check · 9 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -79,6 +79,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `masoretic-marks-rule-v1-every-mark-is-gold-by-its-class-never-by-a-code-point-range` | tools/project-masoretic-marks-v1.mjs, zone.html | check-masoretic-gold-v1, check-color-channels-v1 |
 | `megacompspan-rule-v1-one-maqaf-run-one-card` | tools/check-maqaf-pair-drawn-v1.mjs | check-maqaf-pair-drawn-v1, check-run-card-forms-v1, check-choice-memory-v1 |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | check-serve-oracle-checked-v1 |
+| `no-names-rule-v1-the-reading-a-name-displaced-is-kept-beside-the-name-so-a-switch-puts-it-back-on-that-line-alone` | tools/regloss-zone.mjs | **UNGUARDED** |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
 | `orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration` | tools/check-orders-registered-together-v1.mjs | check-orders-registered-together-v1 |
@@ -94,7 +95,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1 |
 | `pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said` | tools/verify-pointing-store-v1.mjs | check-pointing-store-landing-v1 |
 | `pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land` | tools/land-pointing-store-v2-v1.mjs, tools/gloss-store-v1.mjs | check-pointing-store-landing-v1 |
-| `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1, check-carrier-survives-v1 |
+| `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1, check-carrier-survives-v1, check-names-pill-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-cut-readings-v1, check-licence-leaves-v1, check-provider-characters-v1 |
 | `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-card-opens-on-the-line-v1.mjs | check-card-opens-on-the-line-v1, check-first-reading-is-sorted-v1 |
 | `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |

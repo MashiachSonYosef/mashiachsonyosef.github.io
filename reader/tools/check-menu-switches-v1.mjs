@@ -72,9 +72,13 @@ check("M4 reset in the menu puts the switches at their default, and says so",
   at("modeEn") === "false" && at("blobPill") === "false" && at("numsPill") === "true" && at("dictPill") === "false" && reset.said === "default" && reset.disabled === true && same(r, m.items),
   `English ${at("modeEn")}, blobs ${at("blobPill")}, numbering ${at("numsPill")}, concordance ${at("dictPill")}, reset "${reset.said}" ${reset.disabled ? "disabled" : "pressable"}`);
 
-await p.mouse.click(200, 300);
+// the press outside lands in the page's gutter, where no word stands: a
+// press on a word opened its card over the Menu button (the row grew by a
+// pill on 2026-10-23 and the page below it moved)
+await p.mouse.click(6, 300);
 await p.waitForTimeout(200);
 const closedOut = !(await menu()).open;
+await p.keyboard.press("Escape"); await p.waitForTimeout(150);
 await openMenu();
 await p.click("#navMenu");
 await p.waitForTimeout(200);

@@ -445,6 +445,16 @@
   Object.defineProperty(window, "__signs", { get: () => signsPref });
   let signsPref = (() => { try { const v = localStorage.getItem(SIGNS_KEY); return ["printed", "below", "off"].includes(v) ? v : "off"; } catch { return "off"; } })();
   let paintBlanks = null;   // the row's "no blanks" pill repaints itself (below, with the readers)
+  // NO NAMES (the owner, 2026-10-23: "no names and no blanks, if i flip them
+  // on or off it should just change those select cells"): where a word's line
+  // is its name (proper-name-rule-v1), the reading the name displaced is baked
+  // beside it (gloss_orders.noname, tools/regloss-zone.mjs); "yield" lays it
+  // back over the line of every word the name still leads, and over those
+  // lines alone. Kept on the device; the name leads on a fresh visit.
+  const NONAMES_KEY = "fh.nonames";
+  let nonamesPref = (() => { try { return localStorage.getItem(NONAMES_KEY) === "yield" ? "yield" : "lead"; } catch { return "lead"; } })();
+  let paintNames = null;    // the row's "no names" pill repaints itself (below, with the readers)
+  Object.defineProperty(window, "__nonames", { get: () => nonamesPref });
   const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
   const hasSourceSign = (t) => SOURCE_SIGN.some((re) => re.test(String(t)));
   // a piece of a reading that is a sign and nothing else
@@ -815,6 +825,19 @@
       get: () => signsPref,
       set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); if (paintBlanks) paintBlanks(); },
       now: () => ({ off: "signs off", below: "signs after plain" })[signsPref] || "signs as printed" },
+    // NAMES LEAD, OR THE READING THE NAME DISPLACED (the owner, 2026-10-23,
+    // "no names"): the row's "no names" pill is this switch. On "yield" the
+    // line of every word the name still leads under the order in force reads
+    // the entry's first reading, as it read before names led (the noname
+    // column), and no other line moves; the name stays on the card, and the
+    // card opens on what the line says.
+    { id: "namelead", voice: "arrange", lab: "names lead", why: "a word whose two witnesses name it alike reads its name on the line (proper-name-rule-v1), or the reading the dictionary gives first, as it read before names led; the name stays on the card either way",
+      positions: [{ id: "lead", lab: "the name leads" }, { id: "yield", lab: "no names" }],
+      live: () => !!(zone && zone.gloss_orders && zone.gloss_orders.noname && Object.keys(zone.gloss_orders.noname).length),
+      waits: "the readings the names displaced, baked beside them on this book (tools/regloss-zone.mjs)",
+      get: () => nonamesPref,
+      set: (id) => { nonamesPref = id; try { localStorage.setItem(NONAMES_KEY, id); } catch { /* the choice still stands on this page */ } applyGlossOrder(defOrder); repaintGlossOrder(); if (redrawReadings) redrawReadings(); if (paintNames) paintNames(); },
+      now: () => (nonamesPref === "yield" ? "no names" : "names lead") },
     // The lattice carries, per position, whether the Leningrad codex spells
     // the word otherwise (editions-diff, blind-verified in v12); the word
     // wears a dotted gold rule when the mark is on, and its title says how.
@@ -7962,6 +7985,12 @@
   const placeLine = (word) => {
     if (defOrder !== "place" || !word || !Array.isArray(word.pg) || !word.pg.length) return null;
     if (lookup === "headword" || licencePref !== "any" || masorah === "only" || masorah === "letters") return null;
+    // NO NAMES: a word whose line is its name reads the entry's first reading
+    // instead, under the place order too (TAHOT names it here, which is what
+    // let the name lead); the place yields for that word alone, and the
+    // table, laid over with the noname column (applyGlossOrder), answers
+    if (nonamesPref === "yield" && word.k && zone && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
+      && zone.gloss_orders && zone.gloss_orders.noname && Object.prototype.hasOwnProperty.call(zone.gloss_orders.noname, word.k)) return null;
     const who = tahotWitness();
     if (who && sourcesOff.has(who.m)) return null;
     const parts = word.pg.map((p) => String((p && p.g) || "").trim());
@@ -8698,7 +8727,7 @@
         else zone.gloss_m[k] = GLOSS_M_BASE[k];
       }
     }
-    const col = cols[order], mcol = mcols[order];
+    const col = order === "noname" ? null : cols[order], mcol = mcols[order];
     if (col) for (const k in col) {
       zone.gloss[k] = col[k];
       // the reading moved, so its witness and its license move with it — a
@@ -8706,6 +8735,18 @@
       // this page may never print, so an absent M deletes rather than keeps
       if (zone.gloss_m) {
         if (mcol && mcol[k]) zone.gloss_m[k] = mcol[k];
+        else delete zone.gloss_m[k];
+      }
+    }
+    // NO NAMES: the noname column is no order of its own; with the switch on
+    // "yield" it is laid over the line of every key the name still leads
+    // once the order in force has had its say (a key the order moved off the
+    // name is left as the order put it), its M with it, as above
+    if (nonamesPref === "yield" && cols.noname && zone.gloss_names) for (const k in cols.noname) {
+      if (zone.gloss[k] !== zone.gloss_names[k]) continue;
+      zone.gloss[k] = cols.noname[k];
+      if (zone.gloss_m) {
+        if (mcols.noname && mcols.noname[k]) zone.gloss_m[k] = mcols.noname[k];
         else delete zone.gloss_m[k];
       }
     }
@@ -9755,6 +9796,21 @@
   const chooseBlanks = (id) => { signsSwitch.set(id); if (document.getElementById("railRows")) railSwitch(); };
   blanksPill.addEventListener("click", () => chooseBlanks(signsPref === "printed" ? "off" : "printed"));
   paintBlanks();
+  // THE NO-NAMES PILL (the owner, 2026-10-23): the names-lead switch,
+  // promoted to the row beside no blanks. It is live where the book carries
+  // the readings its names displaced; elsewhere it stands disabled and says
+  // so, and a press changes nothing.
+  const namesPill = document.getElementById("namesPill"), namesState = document.getElementById("namesState");
+  const nameleadSwitch = TOGGLES.find((t) => t.id === "namelead");
+  paintNames = () => {
+    const on = nonamesPref === "yield", live = nameleadSwitch.live();
+    namesPill.classList.toggle("on", on); namesPill.setAttribute("aria-pressed", String(on));
+    namesPill.disabled = !live;
+    namesState.textContent = live ? "" : "no names led on this book";
+  };
+  const chooseNames = (id) => { nameleadSwitch.set(id); if (document.getElementById("railRows")) railSwitch(); };
+  namesPill.addEventListener("click", () => chooseNames(nonamesPref === "yield" ? "lead" : "yield"));
+  paintNames();
   // THE RESET PILL: the row's switches back to their default, and what the
   // reader has picked on this page (a reading or a division of a form, at
   // every place it stands; a half of a pair; a form of an apparatus site),
@@ -9763,11 +9819,11 @@
   // blobs off, numbers on, concordance off"). The lines are laid again
   // through the page's one first paint, so each is the line it opened as.
   // It cannot be pressed while there is nothing to put back.
-  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off" };
+  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off", namelead: "lead" };
   const resetPill = document.getElementById("resetPill"), resetState = document.getElementById("resetState");
   const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + kqPicks.size + pickedQForm.size;
   const switchesAtDefault = () => (document.body.classList.contains("en") ? "en" : "he") === SWITCHES_DEFAULT.mode
-    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs;
+    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs && nonamesPref === SWITCHES_DEFAULT.namelead;
   const paintReset = () => {
     const n = picksNow(), at = switchesAtDefault();
     resetPill.disabled = !n && at;
@@ -9789,6 +9845,7 @@
     if (numsPref !== SWITCHES_DEFAULT.nums) { numsPref = SWITCHES_DEFAULT.nums; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); }
     if (DICT.pref !== SWITCHES_DEFAULT.dict) { DICT.pref = SWITCHES_DEFAULT.dict; try { localStorage.setItem("fh.dict", DICT.pref); } catch { /* the choice still stands on this page */ } paintDict(); }
     if (signsPref !== SWITCHES_DEFAULT.signs) chooseBlanks(SWITCHES_DEFAULT.signs);
+    if (nonamesPref !== SWITCHES_DEFAULT.namelead) chooseNames(SWITCHES_DEFAULT.namelead);
     paintReset();
   });
   // a pick is made inside a card; the count follows any press on the page
@@ -11979,6 +12036,7 @@
   applyGlossOrder(defOrder);
   repaintGlossOrder();
   defSwitch();
+  if (paintNames) paintNames();
   // where the arrival landed, at which line, in which chapter, and whether
   // on the kept place: THE READING PLACE, below, works from these
   let landedEl = null, landedLine = 0, landedCh = "", landedKept = false;
