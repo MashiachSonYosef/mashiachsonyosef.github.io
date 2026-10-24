@@ -1043,11 +1043,11 @@
  },
  "counts": {
   "keys": 124911,
-  "routes": 654456,
+  "routes": 654886,
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 14803925,
+  "shard_bytes_total": 14807790,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1084,10 +1084,10 @@
    "ֵ": 10,
    "ׂ": 3
   },
-  "readings_that_are_a_cut_of_a_sibling_record": 10832,
+  "readings_that_are_a_cut_of_a_sibling_record": 10851,
   "readings_cut_from_a_record_whose_licence_forbids_it": 0,
   "cuts_by_source": {
-   "M14": 494,
+   "M14": 513,
    "M17": 547,
    "M9": 7889,
    "M1": 1142,
@@ -1117,7 +1117,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "7310e81ba017",
+ "store_version": "87b13b1169b4",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1236,6 +1236,12 @@
    "now": "7310e81ba017",
    "why": "source-strike-rule-v1-a-source-whose-text-needs-a-providers-permission-is-struck-whole-and-the-hole-is-typed",
    "on": "2026-10-17T12:16:27.317Z"
+  },
+  {
+   "was": "7310e81ba017",
+   "now": "87b13b1169b4",
+   "why": "route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now",
+   "on": "2026-10-24"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -1270,5 +1276,24 @@
    "routes_before_first_round": 676463
   },
   "rounds": 1
+ },
+ "route_delta_landings": {
+  "rule_id": "route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now",
+  "record": "data/route-store/delta-88-shards-v1-receipt.json",
+  "landings": [
+   {
+    "on": "2026-10-24",
+    "relay": "FOR-ELIJAH-v83.md",
+    "from_store": "7d3e04a9d270",
+    "shards": "55..ac",
+    "rows_added": 555,
+    "rows_removed": 125,
+    "rows_net": 430,
+    "store_version": {
+     "was": "7310e81ba017",
+     "now": "87b13b1169b4"
+    }
+   }
+  ]
  }
 }
