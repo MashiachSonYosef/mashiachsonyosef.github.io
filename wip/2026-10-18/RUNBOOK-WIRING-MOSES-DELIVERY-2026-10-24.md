@@ -44,6 +44,34 @@ store asks (1, 2, 4, 5), then 3 (a review, no code).
 
 ### Ask 7 · Tikkunei Zohar (and Delitzsch, if sent)
 
+DELIVERED 23 Oct as FOR-ELIJAH-v88 (edition O-ED-030254), mirrored at
+`$S/relays/corpus-lane-builds/moses-tikkunei-zohar-v1/` (relay, docs,
+stream, overlays, door, the served ndjson and bridge under
+edition-v1/build/). It is an EDITION, not a sealed-workspace work, so the
+steps below replace 1 and 2 of the generic list:
+
+1. The zone: `node tools/build-zone.mjs --serve <mirror>/edition-v1/build/accept/serve-O-ED-030254.ndjson --bridge <mirror>/edition-v1/build/accept/edition-bridge-O-ED-030254.csv.gz --store data/route-store --work kabbalah/tikkunei-zohar --title "Tikkunei Zohar" --coord-labels "amud,segment" --stamp <date> --out data/zones/tikkunei-zohar.bin`
+   (title-he: the Y ledger is empty for this work; the title row is then
+   English only, or pass --title-he-from when the owner gives the Hebrew).
+   It refuses 4a2 (244 one-token sites) until step 2.
+2. The review record, only after the owner answers questions 1 to 5:
+   merge Moses's `overlay/variant-sites-review-v1.json` standing map into
+   `data/variant-sites-standing-v1.json` under "tikkunei-zohar" (python:
+   load both, standing[slug] = his standing[slug], dump with indent 2),
+   and write in its note which T1 answers it rests on.
+3. The bare letters, only after questions 8 to 10: where the ruling is
+   NUMBER, add letter_marks to those rows of the ndjson before build-zone
+   (rows listed in `overlay/numerals-v1.jsonl` by toggle T4/T4b/T6; the
+   serve gate's bare-letter line exempts a row carrying letter_marks,
+   check-c0-refusals lines 77-88). Write that as a small tool
+   (apply-numeral-ruling-v1.mjs: --serve, --numerals, --ruling T4=NUMBER,...
+   --out), never by hand; where the ruling is LETTER the rows stay and the
+   gate's refusal of them is the owner's to see on the refusals page.
+4. Then the generic steps: check-c0-refusals --write, emit-zone-store,
+   respan/regloss for the COMPspan layer, the zone suite, the build.
+5. Door bookkeeping (questions 13 to 16) is the corpus lane's and the
+   owner's; the page shows the door row's licence as served.
+
 Source kept at `$S/intake/tz/tikkunei-zohar-vocalized.json` (Sefaria
 export, "Public Domain", 295 dapim, 3,364 segments, 148,282 tokens;
 counts and the punctuation question are in the prompt). The shelf serves
