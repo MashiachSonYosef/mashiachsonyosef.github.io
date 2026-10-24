@@ -1,24 +1,36 @@
 {
  "schema_version": "span-store-served-v1",
- "from": "span-store-v2",
- "relay": "FOR-ELIJAH-v80.md",
+ "from": "span-store-v2.1",
+ "relay": "FOR-ELIJAH-v85.md",
  "relay_standing": null,
- "taken_from": "corpus-lane-builds/moses-span-store-v2/build/span-store-v2/",
- "date": "22 October 2026 AD",
- "rule": "RULE-span-store-v2.md",
- "rule_sha256_before_any_script": "0d1132dd3fbc21193ba38e467964e520b498caa257852e529bb3e74f8dde1414",
+ "taken_from": "corpus-lane-builds/moses-span-store-v2/v2.1/build/span-store-v2.1/",
+ "date": "23 October 2026 AD",
+ "rule": "RULE-span-store-v2.1.md",
+ "rule_sha256_before_any_script": "1635fd77a234d9e483836b207333831fa19258157d16e8d071fec4d018ce385a",
  "standing_rule": "SHARE THE RECORD, NEVER SHARE THE CLAIM: a claim carries rids, places and small values only; the record is the dictionary store's",
  "records_live_in": "dictionary store v1 records, one file per M id (relay v78; the v1.1 claims and indexes, relay v79); a rid is the first 16 hex of the record id",
  "definitions": {
   "span_record": "A SPAN RECORD = the dictionary record (rid) of a v1.4 row: v1.3 rows by span-rows.jsonl; the 50 v1.4 rows by (M id, the row's source file and locator) against the dictionary records' (file, loc) — 0 unmapped or each named as a negative with why (a row whose entry is no dictionary record stays a labelled negative, never a claim).",
   "span_place": "A SPAN PLACE (claim) = { book, ref, w_first, w_last (page numbering, w_page), ink_key (letters joined by the ink's gaps), rids (the records that stand here, in v1.4's row_ids order), kinds (per rid: SPAN | WELD), gap (per rid: the source's gap SPACE | MAQAF | NONE), same_entry (per weld rid: the v1.4 label at this place), inside_of, contains, overlaps (ink keys), by: \"lane\" }; claims/places/<book>.jsonl sorted by (ref, w_first).",
-  "index_by_key": "INDEX by_key: ink key → rids (names first, as v1.4's order), and per key its place count; index/by-key.jsonl."
+  "index_by_key": "INDEX by_key: ink key → rids (names first, as v1.4's order), and per key its place count; index/by-key.jsonl.",
+  "form_of_reading": "A FORM-OF READING = a reading whose whole text is a pointer to another entry in the source's own words: a relation phrase (\"feminine of\", \"alternative spelling of\", \"plural indefinite form of\", \"definite of\", \"singular construct state form of\", \"Form of … including …\", and every other phrase the rows show — list them all from the data) followed by a Hebrew target, optionally with the source's own transliteration in parentheses. Classify every span v1.4 row and every zone pill text: FORM_OF (the whole reading is such a pointer), MIXED (English sense plus a pointer), NOT (no pointer). The serving lane counted 18 span rows (18 distinct targets, 12 held by the span store, 6 not) and 2,491 zone pill texts at places across 39 books (129 distinct); reproduce or explain each difference.",
+  "form_of": "form_of = { key: the target's LETTERS KEY in maqaf form (letters as the span store keys its own keys), relation: the relation phrase exactly as the source states it (a short string from the closed list in the RULE), at: [start, end] UTF-8 byte offsets of the target's Hebrew inside the record's D (span rows) or inside the pill text (zones), resolved: for a span row, { rid, r: [start, end] } — the record under the same M id that the span store holds under the target key, and the byte range in that record's D of its first English reading (by the source's own order) — or null when the store holds no such record; for a zone pill, { key, rank, text } — the target key's first route row under the same m_id in the live route store whose route_text is English and not itself FORM_OF, with its rank — or null }. Nothing is respelled: the reading stays the source's bytes; form_of rides beside it.",
+  "the_records_own_reading": "THE RECORD'S OWN READING (ask 5): every span claim's rid gains r: a list of [start, end] UTF-8 byte ranges into THAT record's D whose bytes, joined in order, equal the reading v1.4's row read, byte for byte. Where no such ranges exist (the row's reading was normalised from the entry — entity decoding, markup removal, white-space folding), the claim gains reading_at: { ranges into D of the source text the reading was read from } AND the rule that turns those bytes into the row's reading, written in the RULE as a named, deterministic step the page can run; a reading that neither way reaches stays a labelled negative listed in outputs/reading-negatives.jsonl with why. No claim carries record text. index.json counts: rids_read_from_the_record (by r) [rids], rids_read_by_a_named_step [rids], rids_not_reached [rids]; the serving lane's bake counts rids_read_from_v1_4_rows 1,698 today.",
+  "one_row_per_rid": "ONE ROW PER RID: where two v1.4 row_ids name one rid (the serving lane found r01661 (v1.3) and r01748 (v1.4's copy) on one M14 record under פת־בג; find every such case), the claim carries the rid once; the other row_ids are kept as row_ids_also on that claim; outputs/rid-row-collisions.jsonl lists each with why."
  },
  "invariants": {
   "I1": "every rid resolves to one dictionary record",
   "I2": "every v1.4 row stands as a rid in exactly the places v1.4 gives it (0 differences) or as a named negative",
   "I3": "no claim carries record text",
-  "I4": "every place's w_first..w_last are consecutive page words whose letters joined by the ink's gaps equal ink_key"
+  "I4": "every place's w_first..w_last are consecutive page words whose letters joined by the ink's gaps equal ink_key",
+  "I8_as_A15_reads": "every zone pill classed FORM_OF, MIXED, JUDGMENT or USAGE_NOTE has a form_of line; a JUDGMENT or USAGE_NOTE form_of carries a branch with resting null",
+  "H_NOT": "every Hebrew-bearing text classed NOT stands in the hand reading of the NOT side, beside the build, with the word that keeps it NOT and why (A15 g)",
+  "I5": "every FORM_OF span row carries form_of; its at range sliced from D is the target Hebrew byte for byte; its resolved, where present, names a record the store holds under form_of.key with the same m, and its r range lies inside that record's D",
+  "I6": "every span claim's rid either reads its reading from r (bytes equal) or by the named step (equal after the step) or is a listed negative",
+  "I7": "no rid stands twice on one claim and every v1.4 row_id is on exactly one claim (as rid row or row_ids_also)",
+  "I8": "every zone pill classed FORM_OF has a form_of line",
+  "I9": "every field of span v2 not named here is unchanged byte for byte",
+  "I10": "no claim carries record text"
  },
  "instruction_lines": [
   "I1. Underline a span only where this store’s places file holds the ink’s place: the span’s letters joined by the gap as the ink writes it, at that verse and those word numbers.",
@@ -29,6 +41,8 @@
  "what_a_row_is": "a dictionary record (rid) v2 names at a place, read from the served dictionary store: its R, D, M and headwords are that record's own bytes",
  "ink_key": "A SPAN PLACE (claim) = { book, ref, w_first, w_last (page numbering, w_page), ink_key (letters joined by the ink's gaps), rids (the records that stand here, in v1.4's row_ids order), kinds (per rid: SPAN | WELD), gap (per rid: the source's gap SPACE | MAQAF | NONE), same_entry (per weld rid: the v1.4 label at this place), inside_of, contains, overlaps (ink keys), by: \"lane\" }; claims/places/<book>.jsonl sorted by (ref, w_first).",
  "by_key_rule": "ink key -> rids as v2's index/by-key.jsonl orders them (names first, v1.4's order), less the rids withheld (WELD) and held",
+ "form_of": "on",
+ "form_of_rule": "a row whose rid carries form_of in the claims carries it as its last member, the v2.1 object as the claim writes it: key, key_as_written, relation, kind, at, resolved, branch, also",
  "counts": {
   "rids_received": {
    "value": 2068,
@@ -63,6 +77,26 @@
    "value": 0,
    "axis": "records",
    "what": "no R on the record and no v1.4 row: not served"
+  },
+  "rows_to_rids_from_the_claims": {
+   "value": 1767,
+   "axis": "rows",
+   "what": "row-to-rid read from the claims' row_ids and row_ids_also (v2.1), where the build writes no outputs/row-to-rid.jsonl"
+  },
+  "rids_with_form_of": {
+   "value": 26,
+   "axis": "records",
+   "what": "rids whose claims carry a form_of (a pointer reading: the relation and its target)"
+  },
+  "rows_with_form_of": {
+   "value": 162,
+   "axis": "rows",
+   "what": "served rows carrying form_of as their last member (--form-of on)"
+  },
+  "rids_with_form_of_served": {
+   "value": 22,
+   "axis": "records",
+   "what": "of the rids with a form_of, those on a served row"
   },
   "ink_keys_received": {
    "value": 465,
@@ -259,9 +293,9 @@
    "keys": 1
   }
  },
- "claims_sha256": "a5598c9eab86ed7fe0d69d30b175d8a8a9783a8edd027cf543782667ffe46a72",
+ "claims_sha256": "5c0c86a9556e5a2f2729bd25ea3a8fc29c5ba50cd64cb97dbd26f60f242a6948",
  "by_key_sha256": "b0a924ec71f6b456ed689ccd9b422ea9f2611e3c74c6d399ef3483e98283c9ec",
- "index_sha256": "6c64817f0ac0126be7c9141c05825422f72866a918476653ef9b4a28f2b797fd",
+ "index_sha256": "c6dc85b85a2748803004c53f7eda3423a96c3a0960c605fd8fdbbdcf0803c63f",
  "dictionary_store_version": "cedd7c44cf95",
  "m_sources": {
   "M199": {
@@ -270,7 +304,7 @@
    "licensePosture": "cc_by_nc_4_0_noncommercial",
    "licensePointer": "",
    "sourceYear": "S_NO_SOURCE_YEAR",
-   "from": "span-store-v2",
+   "from": "span-store-v2.1",
    "licence_label": ""
   },
   "M197": {
@@ -279,7 +313,7 @@
    "licensePosture": "cc_by_4_0",
    "licensePointer": "",
    "sourceYear": "S_NO_SOURCE_YEAR",
-   "from": "span-store-v2",
+   "from": "span-store-v2.1",
    "licence_label": ""
   }
  }

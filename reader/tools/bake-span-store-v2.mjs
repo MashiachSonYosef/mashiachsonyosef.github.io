@@ -8,13 +8,26 @@
 // before (span-store-served-v1): data/span-store/<book>.json with each ink
 // key's rows in by-key order (names first) and the book's places; nothing
 // on the page changes.
+// v2.1 (Moses's relay v85, 23 October 2026: "span store v2.1: 14 of 14
+// acceptance tests pass") is the same store with six fields appended per rid
+// on each claim (row_ids, row_ids_also, read_by, r, reading_at, form_of); its
+// by-key index is v2's byte for byte. The bake reads a claim's named fields
+// only, so a field it does not know rides past it unread; two of the new
+// ones are read here on purpose: row_ids and row_ids_also give the row-to-rid
+// map where the build writes no outputs/row-to-rid.jsonl (v2.1 writes none),
+// and form_of, the pointer reading ("feminine of ..." with its target), is
+// carried onto the served row as its last member (--form-of on, the default)
+// so the card can print the target's own English; --form-of off writes the
+// files v2 wrote. A rid's form_of is the same object on every claim that
+// names it (checked: a rid whose claims disagree stops the bake).
 // The owner's rules stand: NO WELD (2026-10-16/17: "drop welding", "and
 // weld fix") — a rid v2 marks WELD, a closed-up entry standing across a
 // maqaf, is withheld and counted; and the 21 rows v1.4 added are held
 // (--hold-added-in v1.4, with --v14-rows to tell which), each serving its
 // entry's first reading at every place, seven of them wrong (the review of
 // 2026-10-17), until the lane chooses a reading per place.
-// Usage: node tools/bake-span-store-v2.mjs --from <build>/span-store-v2 --relay FOR-ELIJAH-v80.md
+// Usage: node tools/bake-span-store-v2.mjs --from <build>/span-store-v2.1 --relay FOR-ELIJAH-v85.md
+//          [--form-of on|off]  (on: a row whose rid carries form_of in the claims gets it as its last member)
 //          [--taken-from <the R2 prefix the build was read from>]
 //          [--v14-rows <span-store-v1.4/rows.jsonl>] [--hold-added-in v1.4]
 //          [--out data/span-store] [--store data/route-store] [--dict data/dictionary-store]
@@ -28,11 +41,13 @@ if (!FROM || !existsSync(join(FROM, "index.json"))) { console.error("usage: --fr
 const OUT = arg("out", "data/span-store"), STORE = arg("store", "data/route-store"), DICT = arg("dict", "data/dictionary-store");
 const BUILD = basename(FROM.replace(/\/+$/u, ""));
 const RELAY = arg("relay", ""), TAKEN_FROM = arg("taken-from", ""), V14 = arg("v14-rows", ""), HOLD_ADDED_IN = arg("hold-added-in", "");
+const FORM_OF = arg("form-of", "on");
+if (!["on", "off"].includes(FORM_OF)) { console.error("--form-of takes on or off"); process.exit(2); }
 if (!RELAY) { console.error("--relay <the relay file that hands this build over> is required"); process.exit(2); }
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const stop = (m) => { console.error(`STOP: ${m}`); process.exit(1); };
 const ix = JSON.parse(readFileSync(join(FROM, "index.json"), "utf8"));
-if (ix.schema_version !== "span-store-v2") stop(`not a span store v2 build: ${ix.schema_version}`);
+if (!["span-store-v2", "span-store-v2.1"].includes(ix.schema_version)) stop(`not a span store v2 or v2.1 build: ${ix.schema_version}`);
 const lines = (f) => readFileSync(f, "utf8").split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l));
 
 // ---- the records, from the served dictionary shards: rid -> record ------
@@ -52,10 +67,24 @@ const rowToRid = new Map();
 // the build writes its row-to-rid map beside the store (build/outputs/), or inside it
 const r2r = [join(FROM, "outputs", "row-to-rid.jsonl"), join(FROM, "..", "outputs", "row-to-rid.jsonl")].find((p) => existsSync(p)) || "";
 if (r2r) for (const r of lines(r2r)) if (r.row_id && r.rid) rowToRid.set(r.row_id, r.rid);
+// a v2.1 claim names its rows itself: row_ids (the row each rid reads from)
+// and row_ids_also (the other rows of the same rid), parallel to rids; and
+// form_of, parallel to rids, the pointer reading of the row or null. One
+// pass over the claims gathers both before any row is written
+const claimFiles = readdirSync(join(FROM, "claims", "places")).filter((f) => f.endsWith(".jsonl")).sort();
+const ridFormOf = new Map();   // rid -> the form_of object as the claim writes it
+let rowToRidFromClaims = 0;
+for (const f of claimFiles) for (const c of lines(join(FROM, "claims", "places", f))) (c.rids || []).forEach((rid, i) => {
+  if (!r2r && Array.isArray(c.row_ids)) for (const row of [c.row_ids[i], ...((c.row_ids_also || [])[i] || [])]) if (row && !rowToRid.has(row)) { rowToRid.set(row, rid); rowToRidFromClaims += 1; }
+  const fo = Array.isArray(c.form_of) ? c.form_of[i] : null;
+  if (fo) { const s = JSON.stringify(fo); if (ridFormOf.has(rid) && JSON.stringify(ridFormOf.get(rid)) !== s) stop(`${rid} carries two form_of objects across its claims`); ridFormOf.set(rid, fo); }
+  else if (ridFormOf.has(rid)) stop(`${rid} carries form_of on one claim and none on another`);
+});
 // a record's rows: v1.4 added a copy of a v1.3 row under its own row id
 // (r01748 beside r01661, one M14 record), so a rid may carry two rows; the
 // rid reads from its row that stood before the held build, else its first
 const ridRows = new Map(); for (const [row, rid] of rowToRid) { if (!ridRows.has(rid)) ridRows.set(rid, []); ridRows.get(rid).push(row); }
+for (const rows of ridRows.values()) rows.sort();   // row-id order, as the build's own map lists them, whichever source the map came from
 const ridToRow = new Map([...ridRows].map(([rid, rows]) => [rid, rows.find((row) => !HOLD_ADDED_IN || (v14.get(row) || {}).added_in !== HOLD_ADDED_IN) || rows[0]]));
 const orderKindOf = (rid) => { const row = v14.get(ridToRow.get(rid)); return row ? row.order_kind || null : null; };
 const held = new Set();
@@ -93,6 +122,7 @@ const ridKinds = new Map();   // rid -> the kind v2 gives it at its places (SPAN
 // a rid with no v1.4 row reads the record's own R, and one with neither is
 // counted and named (rids_unread).
 const unread = new Set(), readFromRecord = new Set(), readFromRows = new Set();
+let formOfRows = 0; const formOfRids = new Set();
 const rowOf = (rid, n) => {
   const r = records.get(rid);
   if (!r) { unresolved.add(rid); return null; }
@@ -103,7 +133,11 @@ const rowOf = (rid, n) => {
   else if (R.trim()) readFromRecord.add(rid);
   else { unread.add(rid); return null; }
   // the seven slots as v1 rows carried them: rank, R, D, m, year, 0, headwords
-  return { row_id: rid, keys: [], slots: [n, R, D, r.m, "S_NO_SOURCE_YEAR", 0, r.headwords || []], gap: (ridKinds.get(rid) || {}).gap || r.gap || null, order_kind: orderKindOf(rid), kind: (ridKinds.get(rid) || {}).kind || "SPAN" };
+  const row = { row_id: rid, keys: [], slots: [n, R, D, r.m, "S_NO_SOURCE_YEAR", 0, r.headwords || []], gap: (ridKinds.get(rid) || {}).gap || r.gap || null, order_kind: orderKindOf(rid), kind: (ridKinds.get(rid) || {}).kind || "SPAN" };
+  // the pointer reading rides last, the object as the claim writes it (key,
+  // key_as_written, relation, kind, at, resolved, branch, also)
+  if (FORM_OF === "on" && ridFormOf.has(rid)) { row.form_of = ridFormOf.get(rid); formOfRows += 1; formOfRids.add(rid); }
+  return row;
 };
 
 // ---- the places, book by book -------------------------------------------
@@ -112,7 +146,6 @@ let placesTotal = 0, nested = 0, overlaps = 0, weldPlaces = 0; const emptied = [
 mkdirSync(OUT, { recursive: true });
 const TMP = `${OUT.replace(/\/$/u, "")}.tmp`;
 rmSync(TMP, { recursive: true, force: true }); mkdirSync(TMP, { recursive: true });
-const claimFiles = readdirSync(join(FROM, "claims", "places")).filter((f) => f.endsWith(".jsonl")).sort();
 const claimBytes = [];
 for (const f of claimFiles) {
   const book = basename(f, ".jsonl");
@@ -152,6 +185,7 @@ const index = {
   what_a_row_is: "a dictionary record (rid) v2 names at a place, read from the served dictionary store: its R, D, M and headwords are that record's own bytes",
   ink_key: (ix.definitions || {}).span_place || null,
   by_key_rule: "ink key -> rids as v2's index/by-key.jsonl orders them (names first, v1.4's order), less the rids withheld (WELD) and held",
+  form_of: FORM_OF, form_of_rule: FORM_OF === "on" ? "a row whose rid carries form_of in the claims carries it as its last member, the v2.1 object as the claim writes it: key, key_as_written, relation, kind, at, resolved, branch, also" : "left out of every row",
   counts: {
     rids_received: { value: [...byKey.values()].reduce((n, rs) => n + rs.length, 0), axis: "rids under keys" },
     rows: { value: rowsServed.size, axis: "records served", what: "served: the rids received less those withheld and held" },
@@ -160,6 +194,10 @@ const index = {
     rids_read_from_v1_4_rows: { value: readFromRows.size, axis: "records", what: "the reading is v1.4's row for the record, through row-to-rid" },
     rids_read_from_the_record: { value: readFromRecord.size, axis: "records", what: "no v1.4 row: the record's own R" },
     rids_unread: { value: unread.size, axis: "records", what: "no R on the record and no v1.4 row: not served" },
+    rows_to_rids_from_the_claims: { value: rowToRidFromClaims, axis: "rows", what: "row-to-rid read from the claims' row_ids and row_ids_also (v2.1), where the build writes no outputs/row-to-rid.jsonl" },
+    rids_with_form_of: { value: ridFormOf.size, axis: "records", what: "rids whose claims carry a form_of (a pointer reading: the relation and its target)" },
+    rows_with_form_of: { value: formOfRows, axis: "rows", what: FORM_OF === "on" ? "served rows carrying form_of as their last member (--form-of on)" : "none: --form-of off leaves form_of out of every row" },
+    rids_with_form_of_served: { value: formOfRids.size, axis: "records", what: "of the rids with a form_of, those on a served row" },
     ink_keys_received: { value: byKey.size, axis: "ink keys" }, ink_keys: { value: keysServed.size, axis: "ink keys" }, ink_keys_withheld: { value: keysGone.size, axis: "ink keys" },
     places: { value: placesTotal, axis: "places" }, places_withheld: { value: emptied.length, axis: "places" }, places_nested: { value: nested, axis: "places" }, places_overlapping: { value: overlaps, axis: "places" }, places_with_a_weld_rid: { value: weldPlaces, axis: "places" },
     books: { value: books.length, axis: "books" },
@@ -172,5 +210,5 @@ const index = {
 writeFileSync(join(TMP, "index.json"), JSON.stringify(index, null, 1));
 rmSync(OUT, { recursive: true, force: true });
 renameSync(TMP, OUT);
-console.log(`${OUT}: ${index.counts.rids_received.value} rids received, ${rowsServed.size} served under ${keysServed.size} keys of ${byKey.size} · ${placesTotal} places in ${books.length} books · ${withheld.size} weld rids withheld · ${held.size} held · ${emptied.length} places withheld · sources named here: ${Object.keys(m_sources).join(", ") || "none beyond the store's"}`);
+console.log(`${OUT}: ${index.counts.rids_received.value} rids received, ${rowsServed.size} served under ${keysServed.size} keys of ${byKey.size} · ${placesTotal} places in ${books.length} books · ${withheld.size} weld rids withheld · ${held.size} held · ${emptied.length} places withheld · form_of ${FORM_OF}: ${formOfRows} rows of ${ridFormOf.size} rids with one · sources named here: ${Object.keys(m_sources).join(", ") || "none beyond the store's"}`);
 if (emptied.length) console.log(`places withheld: ${emptied.slice(0, 12).join(" | ")}${emptied.length > 12 ? " ..." : ""}`);
