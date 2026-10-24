@@ -15,7 +15,11 @@
 //       and license, its places open; its pill opens a dropdown holding
 //       every pill the card has, in the card's order, and the readings of
 //       these letters at other places the card has no pill for; every count
-//       is the number of places a source reads exactly those words
+//       is the number of places a source reads exactly those words as the
+//       word; the places where the letters stand inside a longer word
+//       (dictionary store v1.3, the corpus lane's relay v84) are counted
+//       apart, as "N in longer words" on the row and, for a reading placed
+//       only so, as the pill's count in italics
 //   D3  the row's places stand open (the owner, 2026-10-18: "its already
 //       expanded by way of that r pill being selected"): as many as the row
 //       counts (fifty at a time), this place first and said, every other a
@@ -64,6 +68,11 @@ const words = () => p.evaluate(() => [...document.querySelectorAll(".he-text .wb
 const tap = (i) => p.evaluate((i) => { const wb = [...document.querySelectorAll(".he-text .wb:not(.mark)")].filter((x) => x.querySelector(".g:not(.bare)") && !x.__run)[i]; if (!wb) return false; wb.scrollIntoView({ block: "center" }); (wb.querySelector(".w span") || wb.querySelector(".w")).click(); return true; }, i);
 const waitFor = async (sel, ms = 15000) => { const t0 = Date.now(); while (Date.now() - t0 < ms) { if (await p.$(sel)) return true; await p.waitForTimeout(100); } return false; };
 const cnt = (x) => parseInt(String(x || "").trim(), 10);
+// a row's label says the places inside longer words after its locations
+const rowPieces = (label) => cnt((String(label || "").match(/(\d+) in longer words/u) || [0, 0])[1]) || 0;
+// every pill's count is the store's word places; a reading placed only inside
+// longer words shows those instead, and the store agrees
+const countsAgree = (list, store) => list.every((m) => cnt(m.count) === (store.counts[m.r] || 0) && (cnt(m.count) || cnt(m.pieces) === (store.pieces[m.r] || 0)));
 const esc = async () => { await p.keyboard.press("Escape"); await p.waitForTimeout(250); };
 // the table's final state: "table", or what the store said instead
 const tabState = () => p.waitForFunction(() => {
@@ -87,7 +96,7 @@ const menuOf = () => p.evaluate(() => {
   const card = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].map((x) => x.textContent.trim());
   const read = (sel, group) => [...document.querySelectorAll(`#hud .dict-tab tr.sub.reads ${sel} .opt`)].map((o) => {
     const b = o.querySelector(".r-pills button"); const r = b.textContent.trim();
-    return { r, group, card: card.includes(r), mark: !b.classList.contains("off-card"), pressed: b.getAttribute("aria-pressed"), count: (o.querySelector(".n") || {}).textContent || "0" };
+    return { r, group, card: card.includes(r), mark: !b.classList.contains("off-card"), pressed: b.getAttribute("aria-pressed"), count: (o.querySelector(".n:not(.piece)") || {}).textContent || "0", pieces: (o.querySelector(".n.piece") || {}).textContent || "0" };
   });
   return { card: read(".opts:not(.rest)", "card"), rest: read(".opts.rest", "rest"),
     blocks: [...document.querySelectorAll("#hud .dict-tab tr.sub.reads .menu > .s-pills button")].map((x) => ({ t: x.textContent, pressed: x.getAttribute("aria-pressed") === "true" })),
@@ -118,9 +127,13 @@ const storeHere = (keyIn = null) => p.evaluate(async (keyIn) => {
   const v = JSON.parse(text)[key];
   const join = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
   const at = (src) => ((v && v.readings) || []).filter((g) => g.src === src && g.places.some((q) => q.book === book && q.ref === sec.__sec.label && q.w_page === n)).map((g) => g.reading);
-  const counts = {};
-  for (const g of (v && v.readings) || []) { const t = join(g.reading); counts[t] = counts[t] || new Set(); for (const q of g.places) counts[t].add(`${q.book}|${q.ref}|${q.w_page}`); }
-  return { key, book, ref: sec.__sec.label, n, tahot: at("tahot"), macula: at("macula"), counts: Object.fromEntries(Object.entries(counts).map(([t, s]) => [t, s.size])) };
+  const counts = {}, pieces = {};
+  for (const g of (v && v.readings) || []) {
+    const t = join(g.reading); counts[t] = counts[t] || new Set(); pieces[t] = pieces[t] || new Set();
+    for (const q of g.places) { const pk = `${q.book}|${q.ref}|${q.w_page}`; if (q.kind === "piece") pieces[t].add(`${pk}|${q.pi != null ? q.pi : q.from}`); else counts[t].add(pk); }
+  }
+  const sizes = (o) => Object.fromEntries(Object.entries(o).map(([t, s]) => [t, s.size]));
+  return { key, book, ref: sec.__sec.label, n, tahot: at("tahot"), macula: at("macula"), counts: sizes(counts), pieces: sizes(pieces) };
 }, keyIn);
 const lettersOf = (t) => [...String(t || "").normalize("NFD")].filter((c) => { const x = c.codePointAt(0); return x >= 0x5d0 && x <= 0x5ea; }).join("");
 
@@ -162,7 +175,7 @@ const d2 = t ? Object.entries({
   isStores: want.includes(t.row.raw), who: !!t.row.who && t.row.lic, open: t.row.placesOpen,
   everyPill: t.menu.card.length === t.cps.length && t.menu.card.every((m, j) => m.r === t.cps[j].t && m.mark && m.pressed === String(t.cps[j].pressed)),
   restOff: t.menu.rest.every((m) => !m.card && !m.mark),
-  counts: [...t.menu.card, ...t.menu.rest].every((m) => cnt(m.count) === (t.store.counts[m.r] || 0)) && cnt(t.row.count) === (t.store.counts[t.row.reading] || 0),
+  counts: countsAgree([...t.menu.card, ...t.menu.rest], t.store) && cnt(t.row.count) === (t.store.counts[t.row.reading] || 0) && rowPieces(t.row.count) === (t.store.pieces[t.row.reading] || 0),
   restAll: Object.keys(t.store.counts).every((x) => t.menu.card.some((m) => m.r === x) || t.menu.rest.some((m) => m.r === x)),
   notes: JSON.stringify(t.notes.card) === JSON.stringify(t.notes.menu),
 }).filter(([, v]) => !v).map(([k]) => k) : null;
@@ -172,7 +185,7 @@ check("D2  with the pill on, a word's card keeps its head and opens to one row, 
 
 // D5: sort the dropdown (it is open)
 const so = t ? await p.evaluate(() => {
-  const read = (sel) => [...document.querySelectorAll(`#hud .dict-tab tr.sub.reads ${sel} .opt`)].map((o) => ({ r: o.querySelector(".r-pills button").textContent.trim(), n: parseInt((o.querySelector(".n") || {}).textContent || "0", 10) }));
+  const read = (sel) => [...document.querySelectorAll(`#hud .dict-tab tr.sub.reads ${sel} .opt`)].map((o) => ({ r: o.querySelector(".r-pills button").textContent.trim(), n: parseInt((o.querySelector(".n:not(.piece)") || {}).textContent || "0", 10) }));
   const btn = (id) => document.querySelector(`#hud .dict-tab th button[data-sort="${id}"]`);
   const az = (l) => l.every((x, k) => k === 0 || l[k - 1].r.localeCompare(x.r) <= 0);
   const ct = (l) => l.every((x, k) => k === 0 || l[k - 1].n >= x.n);
@@ -236,7 +249,7 @@ const rd = t ? await (async () => {
   return out;
 })() : null;
 const runOk = (x) => x.row.reading === x.opt.r && cnt(x.row.count) === cnt(x.opt.count) && x.row.n === 1
-  && (cnt(x.opt.count) ? x.row.placesOpen && x.row.items === Math.min(cnt(x.opt.count), 50) : !x.row.placesOpen)
+  && (cnt(x.opt.count) ? x.row.placesOpen && x.row.items === Math.min(cnt(x.opt.count) + rowPieces(x.row.count), 50) : !x.row.placesOpen)
   && (x.opt.group === "card" ? x.cardPressed && x.row.pressed === "true" && !x.row.offCard && x.line.includes(x.opt.r) : x.row.offCard && x.line === x.before);
 check("D4  a pick from the card's pills presses the card's pill and the line reads it; a pick of another place's reading is the row and leaves the line; this place's reading picked again puts the line back",
   !!rd && rd.runs.length >= 1 && rd.runs.every(runOk) && rd.back.row.reading === t.row.reading && rd.back.row.pressed === "true" && rd.back.line.includes(t.row.reading),
@@ -338,7 +351,7 @@ for (let i = 0; i < Math.min(60, n1) && !(d7 && d8); i += 1) {
       if (!c1.pills.length) continue;
       const m1 = await menuOf(); const mb = await menuState(); const store = await storeHere(lettersOf(last[j]));
       d8 = { target: last[j], c1, m1, mb, mirror: mirrors(c1, m1, mb), pressed: (c1.bands[c1.bandCls.indexOf("b-cell")] || []).includes(`${last[j]}*`),
-        counts: [...m1.card, ...m1.rest].every((m) => cnt(m.count) === (store.counts[m.r] || 0)), open: !!(await p.$("#hud .dict-tab tr.sub.reads")) };
+        counts: countsAgree([...m1.card, ...m1.rest], store), open: !!(await p.$("#hud .dict-tab tr.sub.reads")) };
     }
   }
   await esc();
@@ -386,7 +399,7 @@ for (let i = 0; i < Math.min(60, n1) && !hw; i += 1) {
     await openMenu(); await p.waitForTimeout(250);
     const menu = await menuOf();
     hw = { head: m[1], ink: m[2], storeKey: store.key, row, cardPressed: (cps.find((x) => x.pressed) || {}).t || null,
-      counts: [...menu.card, ...menu.rest].every((x) => cnt(x.count) === (store.counts[x.r] || 0)) && menu.card.length === cps.length };
+      counts: countsAgree([...menu.card, ...menu.rest], store) && menu.card.length === cps.length };
   }
   await esc();
 }
