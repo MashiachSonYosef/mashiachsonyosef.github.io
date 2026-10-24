@@ -113,7 +113,10 @@ for (const ml of ix.m_lines || []) {
   m_sources[ml.m] = { key: raw.key, label: ml.m === "PIECE:TAHOT" ? "STEPBible TAHOT: the aligned translation's pieces (PIECE:TAHOT)" : "MACULA Hebrew: the morphology's pieces (PIECE:MACULA)", licensePosture: raw.short_label, licensePointer: `${ml.file}#L${ml.line}`, sourceYear: "S_NO_SOURCE_YEAR", from: BUILD, licence_label: raw.licence_label || "" };
 }
 const withheldAll = Object.values(WITHHELD).reduce((t, w) => t + w.value, 0);
-writeFileSync(join(OUT, "index.json"), JSON.stringify({ rule: "piece-store-serve-v1-a-claim-carries-no-text-its-english-is-a-slice-of-its-records-d", from: { relay: RELAY, build: BUILD, rule: ix.rule, recipe: ix.recipe, date: ix.date },
+// a store laid over by a patch (piece store v2.1, FOR-ELIJAH-v86, applied by
+// tools/apply-piece-store-patch-v1.mjs) names the patch and what it applied
+const PATCH = ix.patch ? { patch: { build: ix.patch.build, rule: ix.patch.rule, rule_sha256_as_first_written: ix.patch.rule_sha256_as_first_written, date: ix.patch.date, applied: ix.patch.applied, files: ix.patch.files } } : {};
+writeFileSync(join(OUT, "index.json"), JSON.stringify({ rule: "piece-store-serve-v1-a-claim-carries-no-text-its-english-is-a-slice-of-its-records-d", from: { relay: RELAY, build: BUILD, rule: ix.rule, recipe: ix.recipe, date: ix.date, ...PATCH },
   // the books with a file here: the page asks for no other
   books: [...ix.books],
   m_sources,

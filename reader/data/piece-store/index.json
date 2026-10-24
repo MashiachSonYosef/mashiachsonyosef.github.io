@@ -1,11 +1,72 @@
 {
  "rule": "piece-store-serve-v1-a-claim-carries-no-text-its-english-is-a-slice-of-its-records-d",
  "from": {
-  "relay": "FOR-ELIJAH-v77.md",
-  "build": "piece-store-v2",
+  "relay": "FOR-ELIJAH-v86.md",
+  "build": "piece-store-v2.1",
   "rule": "RULE-piece-store-v2.md",
   "recipe": "THE ID RECIPE: id = lowercase hex sha256 of the UTF-8 bytes of: m, U+001F, year, U+001F, headwords joined by U+001E, U+001F, gap, U+001F, R, U+001F, g (empty for TAHOT), U+001F, D. rid = the first 16 hex of id; the build proves every rid unique across all records [records] and stops if not.",
-  "date": "17 October 2026 AD"
+  "date": "17 October 2026 AD",
+  "patch": {
+   "build": "piece-store-v2.1",
+   "rule": "RULE-piece-store-v2.1.md",
+   "rule_sha256_as_first_written": "8518647a922f4f06d4821f878086c7edff5a9895a78b91b9a7d3a206c53abca5",
+   "date": "23 October 2026 AD",
+   "applied": {
+    "claims_replaced": {
+     "value": 44,
+     "axis": "claims"
+    },
+    "records_added": {
+     "value": 15,
+     "axis": "records"
+    },
+    "files_rewritten": [
+     "claims/daniel.jsonl",
+     "claims/exodus.jsonl",
+     "claims/genesis.jsonl",
+     "claims/i-kings.jsonl",
+     "claims/i-samuel.jsonl",
+     "claims/ii-kings.jsonl",
+     "claims/ii-samuel.jsonl",
+     "claims/isaiah.jsonl",
+     "claims/jeremiah.jsonl",
+     "records/macula/exodus.jsonl",
+     "records/macula/genesis.jsonl",
+     "records/macula/i-kings.jsonl",
+     "records/macula/i-samuel.jsonl",
+     "records/macula/ii-samuel.jsonl",
+     "records/macula/isaiah.jsonl",
+     "records/macula/jeremiah.jsonl",
+     "records/tahot/daniel.jsonl",
+     "records/tahot/exodus.jsonl",
+     "records/tahot/i-kings.jsonl",
+     "records/tahot/i-samuel.jsonl",
+     "records/tahot/ii-kings.jsonl",
+     "records/tahot/isaiah.jsonl"
+    ]
+   },
+   "files": {
+    "claims-patch-v1.jsonl": {
+     "bytes": 27079,
+     "sha256": "fa15b142a04483812674ed83f76cc037302304b5043af5f46ffb9fbe7bb82e12",
+     "lines": 44
+    },
+    "records-new-v1.jsonl": {
+     "bytes": 8370,
+     "sha256": "ceb1250810106355be5ce83093d79051a7c2870e191589ccd6ffedd3cb1ffb68",
+     "lines": 15
+    },
+    "blank-ledger-v1.jsonl": {
+     "bytes": 2643086,
+     "sha256": "8a37735d7df6413b4c44fcf5c5415a6a6054e4fabb3429a99efd80576bfdc29a",
+     "lines": 3119
+    },
+    "index.json": {
+     "bytes": 17257,
+     "sha256": "0fe9243df54e1512b0aa711e0fe46c21ef3c8882c9effb47bd322aeeaa713408"
+    }
+   }
+  }
  },
  "books": [
   "amos",
@@ -55,7 +116,7 @@
    "licensePosture": "cc_by_4_0",
    "licensePointer": "moses-licence-ledger-v1/build-v1.1/licence-ledger-v1.1/sources-v1.1.jsonl#L151",
    "sourceYear": "S_NO_SOURCE_YEAR",
-   "from": "piece-store-v2",
+   "from": "piece-store-v2.1",
    "licence_label": "# STEPBible Data Repository  **CC BY 4.0**  "
   },
   "PIECE:MACULA": {
@@ -64,7 +125,7 @@
    "licensePosture": "cc_by_4_0",
    "licensePointer": "moses-licence-ledger-v1/build-v1.1/licence-ledger-v1.1/sources-v1.1.jsonl#L152",
    "sourceYear": "S_NO_SOURCE_YEAR",
-   "from": "piece-store-v2",
+   "from": "piece-store-v2.1",
    "licence_label": "is licensed under [CC BY 4.0 ](http://creativecommons.org/licenses/by/4.0/)"
   }
  },
@@ -78,33 +139,33 @@
    }
   },
   "claims": {
-   "value": 934288,
+   "value": 934262,
    "axis": "claims",
    "what": "served: the received claims less every rule below"
   },
   "withheld": {
    "joins_whole_word": {
-    "value": 290064,
+    "value": 290081,
     "axis": "claims",
     "why": "a whole-word claim on a word its source divides names two or more records (MACULA) or two or more ranges of one record (TAHOT): the lane's join of the pieces' slices, not a reading the source prints; the pieces are served",
     "per_source": {
-     "macula": 145254,
-     "tahot": 144810
+     "macula": 145262,
+     "tahot": 144819
     },
     "per_kind": {
-     "WHOLE_WORD": 290064
+     "WHOLE_WORD": 290081
     }
    },
    "joins_run": {
-    "value": 72607,
+    "value": 72616,
     "axis": "claims",
     "why": "a run claim (a tile of two or more pieces) is likewise the lane's join of its pieces' slices; the pieces are served",
     "per_source": {
-     "macula": 36325,
-     "tahot": 36282
+     "macula": 36329,
+     "tahot": 36287
     },
     "per_kind": {
-     "RUN": 72607
+     "RUN": 72616
     }
    },
    "tahot_two_word_line": {
@@ -132,20 +193,20 @@
    }
   },
   "claims_with_english": {
-   "value": 931169,
+   "value": 931187,
    "axis": "claims"
   },
   "records_received": {
-   "value": 778083,
+   "value": 778098,
    "axis": "records"
   },
   "records_named": {
-   "value": 771664,
+   "value": 771678,
    "axis": "records",
    "what": "served: the records a served claim names"
   },
   "records_not_named": {
-   "value": 6419,
+   "value": 6420,
    "axis": "records",
    "why": "every claim naming them is withheld (most are MACULA records named only by a whole-word or run join); they stay in the lane's store"
   },
