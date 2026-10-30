@@ -13,7 +13,9 @@
 //       pointers are read and counted but wait on the owner's branch)
 //   F2  the page loads the map after its first paint and says so
 //       (window.__formOf: keys, pills, resolved as the record counts them)
-//   F3  a cell whose lead reading is a resolved pointer prints the resolved
+//   F3  under the "corpus" order (the rail's "reads first", where the line
+//       prints the catalog's lead rather than the source at this place), a
+//       cell whose lead reading is a resolved pointer prints the resolved
 //       reading with the pointer's relation and target in parentheses; the
 //       pointer's bare text stands on no cell of that key; the Hebrew is the
 //       Hebrew
@@ -61,9 +63,9 @@ for (const u of urls) {
   for (const sec of z.sections) {
     for (let i = 0; i < (sec.words || []).length && candidates.length < MAX; i += 1) {
       const w = sec.words[i]; const l = rec.keys[w.k]; if (!l) continue;
-      // a word a source reads at its place (pg) leads with that reading, a word
-      // in a span prints its division: the key's lead reads only where neither holds
-      if ((z.spans && z.spans[w.k]) || (Array.isArray(w.pg) && w.pg.length) || /\u05BE/u.test(w.s || "")) continue;
+      // a word in a span prints its division, a joined word its parts: the
+      // key's lead reads on a plain word, under the corpus order
+      if ((z.spans && z.spans[w.k]) || /\u05BE/u.test(w.s || "")) continue;
       const lead = z.gloss[w.k]; if (lead == null) continue;
       const by = z.gloss_m && z.gloss_m[w.k] ? z.gloss_m[w.k].by || [] : [];
       const e = l.find((x) => by.includes(x.m) && noDot(x.t) === noDot(lead)) || l.find((x) => noDot(x.t) === noDot(lead));
@@ -71,7 +73,7 @@ for (const u of urls) {
     }
   }
 }
-check("F0  served zones hold undivided cells whose lead reading is a resolved pointer (found from the zones on disk)", candidates.length > 0,
+check("F0  served zones hold plain cells whose catalog lead is a resolved pointer (found from the zones on disk)", candidates.length > 0,
   candidates.length ? `${candidates.length} candidate cell(s) in ${new Set(candidates.map((c) => c.id)).size} zone(s); first ${candidates[0].id} ${candidates[0].label} word ${candidates[0].w} · pointer "${candidates[0].e.t}" (${candidates[0].e.m}) · resolves to "${candidates[0].e.resolved.text}" under ${candidates[0].e.resolved.key}` : `none among ${urls.length} zones`);
 if (!candidates.length) { console.log(bad ? "\nFAIL" : "\nall checks passed"); process.exit(bad ? 1 : 0); }
 
@@ -95,13 +97,20 @@ const readCell = ({ bare, want, letters }) => {
 };
 let found = null, map = null, cell = null, want = null;
 const tried = [];
+// the rail's "reads first" row, pressed to the catalog's order
+const railPress = async (toggle, lab) => {
+  const did = await p.evaluate(({ toggle, lab }) => { const row = document.querySelector(`#railRows [data-toggle="${toggle}"]`); const btn = row && [...row.querySelectorAll("button")].find((x) => x.textContent.trim() === lab); if (btn) { btn.click(); return true; } return false; }, { toggle, lab });
+  if (!did) { console.log(`PAGE: the rail has no "${lab}" on the ${toggle} row`); bad += 1; }
+  await p.waitForTimeout(900);
+};
 for (const c of candidates.slice(0, 12)) {
-  await p.goto(`${c.url}#${c.label}:${c.w}`, { waitUntil: "networkidle" });
+  await p.goto(`${c.url}&rail=all#${c.label}:${c.w}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   // the map arrives after the first paint
   await p.waitForFunction(() => window.__formOf !== undefined, null, { timeout: 30000 }).catch(() => null);
   map = await p.evaluate(() => window.__formOf === undefined ? "never" : window.__formOf);
-  await p.waitForTimeout(1500);
+  await p.waitForTimeout(1200);
+  await railPress("order", "corpus");
   want = says(c.e);
   cell = await p.evaluate(readCell, { bare: noDot(c.e.t), want, letters: c.surface });
   await p.waitForTimeout(600);
@@ -113,9 +122,10 @@ check("F2  the page loads the map after its first paint and says so", !!map && m
 if (!found) { found = candidates[0]; want = says(found.e); }
 // the letters alone: accents, meteg, rafe, masora circle, paseq, sof pasuq and the
 // marks U+05C4 to U+05C7 set aside (points are kept: a resolution moves no point either)
+const strip = (t) => String(t || "").normalize("NFC").replace(/[\u0591-\u05C7]/gu, "");
 const MARKS = new RegExp("[\\u0591-\\u05AF\\u05BD\\u05BF\\u05C0\\u05C3-\\u05C7\\s]", "gu");
 const sameHe = (a, b) => String(a || "").normalize("NFC").replace(MARKS, "") === String(b || "").normalize("NFC").replace(MARKS, "");
-check("F3  the cell prints the resolved reading with the relation and target in parentheses; the pointer's bare text stands on no cell; the Hebrew is the Hebrew",
+check("F3  under the corpus order the cell prints the resolved reading with the relation and target in parentheses; the pointer's bare text stands on no cell; the Hebrew is the Hebrew",
   cell.active && cell.activeGloss === want && cell.bareOn === 0 && cell.wantOn >= 1 && sameHe(cell.activeHe, found.surface),
   `${found.id} ${found.label} word ${found.w}: line "${cell.activeGloss}" · wanted "${want}" · bare pointer on ${cell.bareOn} cell(s) · resolved on ${cell.wantOn} · Hebrew ${sameHe(cell.activeHe, found.surface) ? "unmoved" : `"${cell.activeHe}" vs "${found.surface}"`}${tried.length > 1 ? ` · tried ${tried.join(" | ")}` : ""}`);
 // F4 the card's pressed pill
@@ -125,13 +135,13 @@ const pills = () => p.evaluate(() => [...document.querySelectorAll("#hud > .rows
 const p1 = await pills();
 const pressed = p1.find((x) => x.pressed);
 check("F4  the card's pressed pill prints the resolution and carries the pointer's own text as data-pointer",
-  !!pressed && pressed.t === want && !!pressed.pointer && noDot(pressed.pointer).includes(found.e.target),
+  !!pressed && pressed.t === want && !!pressed.pointer && (noDot(pressed.pointer) === noDot(found.e.t) || strip(pressed.pointer).includes(strip(found.e.target))),
   pressed ? `pressed "${pressed.t}" · data-pointer "${pressed.pointer}" · ${p1.filter((x) => x.pointer).length} pointer pill(s) of ${p1.length}` : `no pressed pill among ${p1.length}`);
 // F5 a ruling and back
 const other = p1.findIndex((x) => !x.pressed && !x.pointer);
 let f5 = null;
 if (other >= 0) {
-  const line = () => p.evaluate(() => (((document.querySelector(".he-text .wb.active > .g") || {}).textContent) || "").trim());
+  const line = () => p.evaluate(() => { const g = document.querySelector(".he-text .wb.active > .g"); if (!g) return ""; const c = g.cloneNode(true); for (const x of c.querySelectorAll(".g-lic, .lic-chip, .lic")) x.remove(); return c.textContent.trim(); });
   const he = () => p.evaluate(() => (((document.querySelector(".he-text .wb.active > .w") || {}).textContent) || "").trim());
   const he0 = await he();
   await p.evaluate((i) => document.querySelectorAll("#hud > .rows .b-read .r-pills button")[i].click(), other); await p.waitForTimeout(700);

@@ -9,7 +9,7 @@
 // output was made under — and a check that only tests the module is how that
 // goes unnoticed. So the last section asks the shipped zones whether the
 // readings they print are single readings by this rule.
-// GUARDS: sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates
+// GUARDS: sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence
 //
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

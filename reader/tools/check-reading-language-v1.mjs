@@ -38,7 +38,8 @@ for (const f of readdirSync(DIR).filter((x) => x.endsWith(".bin")).sort()) {
       if (typeof g.reading !== "string") continue;
       const t = spanJoin(g.reading);
       if (!byText.has(t)) byText.set(t, new Map());
-      for (const q of g.places || []) { if (q.side) continue; const pk = `${q.book}|${q.ref}|${q.w_page}`; if (!byText.get(t).has(pk)) byText.get(t).set(pk, q); }
+      // a place inside a longer word (dictionary store v1.3, kind "piece") is counted apart by the row
+      for (const q of g.places || []) { if (q.side || q.kind === "piece") continue; const pk = `${q.book}|${q.ref}|${q.w_page}`; if (!byText.get(t).has(pk)) byText.get(t).set(pk, q); }
     }
     for (const [t, places] of byText) {
       const langs = new Map();
@@ -58,15 +59,19 @@ const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());
 const p = await (await b.newContext({ viewport: { width: 412, height: 915 } })).newPage();
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+// the row's count and hover may end with the places inside longer words
+// (dictionary store v1.3), counted apart; the language and the locations
+// are what these checks read
+const noPieces = (t) => String(t || "").replace(/\s*\u00b7\s*\d[\d,]* in longer words(, as a word nowhere)?\s*$/u, "");
 const row = () => p.evaluate(() => {
   const tr = document.querySelector("#hud .dict-tab tbody tr.pick"); if (!tr) return null;
   const n = tr.children[2];
   const items = [...document.querySelectorAll("#hud .dict-tab .item")];
   return {
     pill: ((tr.querySelector(".r-pills button") || {}).textContent || "").trim(),
-    count: ((n.querySelector("button.dd, span.who") || {}).textContent || "").trim(),
+    count: ((n.querySelector("button.dd, span.who") || {}).textContent || "").trim().replace(/\s*\u00b7\s*\d[\d,]* in longer words\s*$/u, ""),
     lg: ((n.querySelector(".lg") || {}).textContent || "").trim(),
-    hover: n.title || "",
+    hover: (n.title || "").replace(/\s*\u00b7\s*\d[\d,]* in longer words(, as a word nowhere)?\s*$/u, ""),
     items: items.length,
     itemLangs: items.map((x) => ((x.querySelector(":scope > .lg") || {}).textContent || "").replace(/^\s*·\s*/u, "").trim()),
   };
@@ -106,7 +111,7 @@ if (divided) {
   const hoverRow = r ? nbsp(r.hover) : "";
   await p.evaluate(() => { const rb = document.querySelector("#hud .dict-tab tbody tr.pick .r-pills button"); if (rb) rb.click(); });
   await p.waitForTimeout(400);
-  const hoverOpt = nbsp(await p.evaluate((t) => { const o = [...document.querySelectorAll("#hud .dict-tab .opt")].find((x) => ((x.querySelector(".r-pills button") || {}).textContent || "").trim() === t); return o && o.querySelector(".n") ? o.querySelector(".n").title : ""; }, divided.t));
+  const hoverOpt = nbsp(await p.evaluate((t) => { const o = [...document.querySelectorAll("#hud .dict-tab .opt")].find((x) => ((x.querySelector(".r-pills button") || {}).textContent || "").trim() === t); return o && o.querySelector(".n") ? o.querySelector(".n").title : ""; }, divided.t)).replace(/\s*\u00b7\s*\d[\d,]* in longer words(, as a word nowhere)?\s*$/u, "");
   const phrase = `${want} · ${sum} locations`;
   check("L3 the count's hover says the language and the count in one breath, on the row and in the dropdown", hoverRow.startsWith(phrase) && hoverOpt === phrase, `row "${hoverRow}" · dropdown "${hoverOpt}" · want "${phrase}"`);
 } else { check("L2 a divided reading says each language with its count", false, "no reading with places in two languages found in the served shards"); check("L3 the count's hover says the language and the count", false, "no divided reading"); }

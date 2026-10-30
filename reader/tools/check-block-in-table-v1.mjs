@@ -50,7 +50,8 @@ const entry = async (L) => {
 };
 const storeCount = async (L, t) => {
   const v = await entry(L), at = new Set();
-  for (const g of (v && v.readings) || []) if (spanJoin(g.reading) === t) for (const q of g.places) at.add(`${q.book}|${q.ref}|${q.w_page}`);
+  // the row counts the places where the letters are the word; a place inside a longer word (kind "piece") is counted apart by the row
+  for (const g of (v && v.readings) || []) if (spanJoin(g.reading) === t) for (const q of g.places) if (q.kind !== "piece") at.add(`${q.book}|${q.ref}|${q.w_page}`);
   return at.size;
 };
 

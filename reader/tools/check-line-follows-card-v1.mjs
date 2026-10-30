@@ -121,7 +121,12 @@ for (const l of underShelf.slice(0, 60)) {
   const c = await cardFirst(l.idx);
   looked += 1;
   if (l.bare && c.count > 0) { bareWithReadings += 1; if (eg.length < 3) eg.push(`bare over ${c.count} readings`); }
-  if (!l.bare && c.text && !c.text.startsWith(l.text.slice(0, Math.min(12, l.text.length))) && !l.text.startsWith(c.text.slice(0, 12))) { differs += 1; if (eg.length < 3) eg.push(`line "${l.text.slice(0, 24)}" · card "${c.text.slice(0, 24)}"`); }
+  // a piece that is a sign alone ("<the>") prints as a gap on the line while the
+  // card's pill prints the sign (the gap rule, 2026-10-16; the signs switch off):
+  // the two are read with the sign and the gap set aside
+  const same = (t) => String(t || "").replace(/<[^<>]*>/gu, "").replace(/\u200b/gu, "").replace(/\s*\+\s*/gu, " + ").replace(/^\s*\+\s*/u, "").trim();
+  const lt = same(l.text), ct = same(c.text);
+  if (!l.bare && c.text && !ct.startsWith(lt.slice(0, Math.min(12, lt.length))) && !lt.startsWith(ct.slice(0, 12))) { differs += 1; if (eg.length < 3) eg.push(`line "${l.text.slice(0, 24)}" · card "${c.text.slice(0, 24)}"`); }
 }
 check(`F1  with the ${thrown ? thrown.shelf : "?"} shelf thrown, no line is bare while its card has readings`, bareWithReadings === 0, `${bareWithReadings} of ${looked} · the page settled in ${(settledIn / 1000).toFixed(1)} s${eg.length ? ` · ${eg.join(" | ")}` : ""}`);
 check("F1  and each line says what its card's first pill says", differs === 0, `${differs} of ${looked} differ`);

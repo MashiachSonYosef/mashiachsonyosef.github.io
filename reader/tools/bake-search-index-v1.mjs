@@ -227,7 +227,8 @@ for (const sp of spanBooks) for (const pl of sp.placesList) {
     for (const p of pills(row[1], rix.m_sources[m].licensePosture)) add(joinSpan(p), R, m, null);
   }
 }
-for (const [L, v] of Object.entries(store)) for (const g of v.readings) add(joinSpan(g.reading), L, g.src, wordPlaces(g));
+// a reading that stands only inside longer words is no reading of the word: it enters the English index nowhere
+for (const [L, v] of Object.entries(store)) for (const g of v.readings) { const wp = wordPlaces(g); if (wp.length) add(joinSpan(g.reading), L, g.src, wp); }
 
 // written beside the served index and put in its place only when whole
 rmSync(TMP, { recursive: true, force: true });

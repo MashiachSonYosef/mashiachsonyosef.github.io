@@ -11,7 +11,7 @@
 //   1. Key exactly. A gloss is found by the byte-exact K of the written form
 //      (k-normalization-v1.mjs, FRAME rule 7). Nothing folded, nothing split.
 //   2. A route text packs senses with ";", and a sense divides into readings
-//      at the commas outside the provider's parentheses — sense-split-rule-v2,
+//      at the commas outside the provider's parentheses where every piece is a gloss — sense-split-rule-v3,
 //      imported from its own file, never re-guessed here. One reading is
 //      displayed at a time, in every packing — so a stored gloss is one
 //      reading, never a joined list. A sense the rule holds back as damaged
@@ -58,7 +58,7 @@ export const GLOSS_RULE_ID = "zone-gloss-rule-v4-reading-level-antiquity-1940-la
 export const ERA_CUT_AD = 1940;
 export const GLOSS_RULE_TEXT =
   "a route text packs senses with ';' and a sense divides into readings at the commas outside the " +
-  "provider's parentheses (sense-split-rule-v2); each division is one reading; a damaged sense is " +
+  "provider's parentheses, where every piece is shaped like a gloss (sense-split-rule-v3); each division is one reading; a damaged sense is " +
   "held whole and neither printed nor pooled; pool = every reading of every exact route, deduped by " +
   "text with min year and min rank; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
   "reading stored verbatim; the page joins '/'-packed spans with ' + '; " +

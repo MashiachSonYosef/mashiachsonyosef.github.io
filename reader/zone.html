@@ -807,6 +807,7 @@
   .vnum { font-size: 0.72rem; color: var(--ink-strong); border: 1px solid var(--gold-dim);
     background: var(--bg); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
   .vnum.at { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  .vnum[data-work]::before { content: attr(data-work) " "; }   /* the work's name before the address */
   .drift-chip { font-size: 0.68rem; color: var(--argaman-dim); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
@@ -2617,8 +2618,21 @@
     // never offered as a reading. A record that is nothing but a citation
     // keeps it, so no record is emptied.
     const pieces = raw.map((piece) => piece.trim()).filter(Boolean);
-    const readings = pieces.filter((piece) => !/^p{1,2}\.\s*\d/u.test(piece));
-    return { readings: readings.length ? readings : pieces, damaged: false };
+    // A COMMA DIVIDES GLOSSES, NEVER A SENTENCE (the owner, 2026-10-30, of a
+    // name's entry cut at its commas into pills, "which became a separate
+    // kingdom (opposed to Israel) after the death of Solomon" among them: "a
+    // comma in ubs doesnt mean different entrys ... this is clearly just a
+    // sentence"; tools/sense-split-v1.mjs rule 5, the same words). Of a
+    // sense's comma pieces, each of at most four words (the provider's
+    // parentheses not counted) is a reading, as before, and a bare
+    // conjunction between commas is none; where any piece runs longer the
+    // provider wrote prose, and the sense stands whole as a reading beside
+    // its glosses, commas and all. Every reading a sense gave before it
+    // gives still but the clauses; what is new is the sentence, once.
+    const glossShaped = (piece) => { const bare = piece.replace(/\([^()]*\)/gu, " ").trim(); const w = bare.split(/\s+/u).filter(Boolean); return w.length > 0 && w.length <= 4 && !/^(and|or|nor|but)$/iu.test(bare); };
+    const glosses = pieces.every(glossShaped) ? pieces : [...pieces.filter(glossShaped), s.trim()];
+    const readings = glosses.filter((piece) => !/^p{1,2}\.\s*\d/u.test(piece));
+    return { readings: readings.length ? readings : glosses, damaged: false };
   };
   // P · two D records are one record when they carry the same set of
   // readings, however each provider packed them — ";" between senses, ","
@@ -2900,6 +2914,14 @@
   // orders them. Resting: as printed, in the card's own order. Below: a
   // reading carrying a sign follows the plain ones. The patterns are the
   // ledger's own, written before its count.
+  // THE PILLS THAT LEFT THE ROW (no blanks and no names, parked on the rail
+  // and /toggles/ on 2026-10-24): a preference pressed on a pill that is gone
+  // would stand with nothing on the row to show it (the owner, 2026-10-30, of
+  // the first served book's 1:1: "despite moving the name toggle off, it looks
+  // like it still has an impact"). Once, on the first visit after the parking,
+  // both switches go back to their defaults; the rail sets them again at will.
+  const PARKED_KEY = "fh.parked-2026-10-24";
+  const parkedFresh = (() => { try { if (localStorage.getItem(PARKED_KEY)) return false; localStorage.setItem(PARKED_KEY, "1"); return true; } catch { return false; } })();
   const SIGNS_KEY = "fh.signs";
   // OFF BY DEFAULT (the owner, 2026-10-03, on the corpus lane's source-signs
   // ledger: "preselect it off for now"). Off is the ledger's third branch: a
@@ -2911,7 +2933,7 @@
   // every sign byte for byte.
   // exposed for the checks, which ask the page what it drew under rather than assume
   Object.defineProperty(window, "__signs", { get: () => signsPref });
-  let signsPref = (() => { try { const v = localStorage.getItem(SIGNS_KEY); return ["printed", "below", "off"].includes(v) ? v : "off"; } catch { return "off"; } })();
+  let signsPref = (() => { try { if (parkedFresh) { localStorage.removeItem(SIGNS_KEY); return "off"; } const v = localStorage.getItem(SIGNS_KEY); return ["printed", "below", "off"].includes(v) ? v : "off"; } catch { return "off"; } })();
   let paintBlanks = null;   // no pill in the row since 2026-10-24 (the owner: "move it to /toggles/ for now"); the rail's row is the switch
   // NO NAMES (the owner, 2026-10-23: "no names and no blanks, if i flip them
   // on or off it should just change those select cells"): where a word's line
@@ -2920,7 +2942,7 @@
   // back over the line of every word the name still leads, and over those
   // lines alone. Kept on the device; the name leads on a fresh visit.
   const NONAMES_KEY = "fh.nonames";
-  let nonamesPref = (() => { try { return localStorage.getItem(NONAMES_KEY) === "yield" ? "yield" : "lead"; } catch { return "lead"; } })();
+  let nonamesPref = (() => { try { if (parkedFresh) { localStorage.removeItem(NONAMES_KEY); return "lead"; } return localStorage.getItem(NONAMES_KEY) === "yield" ? "yield" : "lead"; } catch { return "lead"; } })();
   let paintNames = null;    // no pill in the row since the evening of 2026-10-23 (the owner: "just have it on /toggles/ for now"); the rail's row is the switch
   Object.defineProperty(window, "__nonames", { get: () => nonamesPref });
   const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
@@ -13640,6 +13662,12 @@
     secIdx += 1;
     const row = document.createElement("div"); row.className = "seg-row";
     const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
+    // THE WORK'S NAME ON EVERY SECTION PILL (the owner, 2026-10-30: "add the
+    // common force read name only such as Isaiah to every section such as
+    // section 1:1 goes from '1:1' to 'Isaiah 1:1'"): the name the zone
+    // carries, drawn before the numbers by the style (data-work), so the
+    // pill's own text stays the address; a named locator keeps its own shape
+    if (sec.label && !NAMED_SHAPE && zone.work) v.dataset.work = zone.work;
     const parts = String(sec.label || "").split(":");
     // a named locator's numbers are the sealed tail's own, not this node's
     // chapter and section, so it is read as it stands
