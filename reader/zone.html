@@ -7308,6 +7308,10 @@
     closeHud(false);
     const myGen = ++hudGen;
     activeEl = el;
+    // how this card was opened, so a reopen that is not the reader's (the
+    // BSB layer arriving) opens the same card again: on a pair, the branch
+    // that stood open, not the half the line reads from
+    el.__reopen = () => openHud(el, region, unitId, wordPos, opts);
     if (!opts.mark) el.classList.add("active");
     const bin = opts.bin || zone;
     const word = opts.word || region;
@@ -7382,7 +7386,7 @@
       // stands and what lies between the halves prints as the ink has it:
       // the parentheses, the brackets, the space, the maqaf.
       let kqGaps = null, kqLead = "", kqTail = "";
-      if (word.kq && !gaps && !opts.chain) {
+      if (word.kq && (opts.headRegions || !gaps) && !opts.chain) {
         const ink = String(opts.headS || word.s || "");
         let pos = 0, ok = true; const g = [];
         regions.forEach((r, i) => {
@@ -8419,7 +8423,7 @@
     // untouched: it reads the half it read from (rule 1, kq-shapes). The
     // qere's branch is untouched: its letters are what is read.
     // kq-declared-weld-v1-the-written-form-is-defined-by-what-is-read
-    const kqReadRegions = () => (word && word.kq && Array.isArray(regions) ? regions.filter((r) => r && r.role === "QERE" && r.k) : []);
+    const kqReadRegions = () => (word && word.kq && Array.isArray(word.w) ? word.w.filter((r) => r && r.role === "QERE" && r.k && !String(r.s || r.k).includes("\u05be")) : []);
     // a read word named on a pill or a note: its letters and points, without
     // the verse's accents and brackets (the ink on the page keeps everything)
     const kqBare = (t) => String(t || "").replace(/[\[\]()]/gu, "").replace(/[\u0591-\u05af\u05bd\u05bf\u05c0\u05c3-\u05c6]/gu, "").trim();
@@ -8561,7 +8565,7 @@
       // card opened again when it is here, as the switch does
       if (suggested === "bsb" && !SUGGESTED && !suggestedWait && SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK] && word && !(opts && opts.run)) {
         const wb = activeEl;
-        suggestedReady().then((f) => { if (f && activeEl && activeEl === wb) { closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } });
+        suggestedReady().then((f) => { if (f && activeEl && activeEl === wb) { closeHud(); if (wb.__reopen) wb.__reopen(); else (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } });
       }
       if (suggested === "bsb" && SUGGESTED && word && !(opts && opts.run)) {
         const n = WORD_N.get(word);
@@ -11330,13 +11334,13 @@
       const runEl = built.wb.closest(".wjoin");
       const lead = built.kqStand ? kqLead().i : 0;
       const target = built.regionEls[lead] || targets[0];
-      if (!runEl || !runEl.__words || !runEl.__ink) { openAt(lead, target); return; }
+      if (!runEl || !runEl.__words || !runEl.__ink) { openRegion(lead, target); return; }
       // a pair inside a chain the page holds apart (no chain key: one breath,
       // several cards) opens as the line opens it, its own head and form row,
       // whether a reader pressed it or a search landed on it; under the
       // chain's head its other half was a chain press that reopened the
       // lead half, and the ketiv never opened
-      if (built.kqStand && !runEl.__key) { openAt(lead, target); return; }
+      if (built.kqStand && !runEl.__key) { openRegion(lead, target); return; }
       const rc = built.wb.__run && chainIs(built.wb.__run, runEl) ? built.wb.__run : null;
       // the span's own keys ride with its rungs, so the chain at the top of
       // the word's card names the place and its inner place as the store does
@@ -11373,6 +11377,78 @@
         : kqOrder === "SOURCE" ? 0 : st.regions.findIndex((r) => r.role === "KETIV");
       return { i: Math.max(0, wanted) };
     };
+    // THE PAIR'S TWO BRANCHES (the owner, 2026-10-30, of the card at Exodus
+    // 4:2:4 offering the read form's two words as two "qere" pills beside the
+    // ketiv: "are you seeing the maqaf?"). A pair has two branches, written
+    // and read, whatever the number of words in each. A branch of several
+    // words is a run, a maqaf run where the ink joins them with a maqaf, and
+    // its words are a layer down, on the run's own card (rule 1: "the complex
+    // is the word; the breakdown happens a layer down"; rule 2 for its
+    // maqaf). The head and the form row show the two branches, each pressable;
+    // the line's halves stay the words as the source marks them, and pressing
+    // any word of a branch opens that branch. kq-declared-weld-v1.
+    const kqBranches = (() => {
+      if (!word.kq || !regions || regions.length < 3) return null;
+      const ink = String(word.s || "");
+      const out = []; let pos = 0;
+      regions.forEach((r, i) => {
+        const rs = String(r.s || "");
+        const at = rs ? ink.indexOf(rs, pos) : -1;
+        const last = out[out.length - 1];
+        if (last && last.role === r.role && at >= 0) { last.idx.push(i); last.regions.push(r); last.gaps.push(ink.slice(pos, at)); last.end = at + rs.length; }
+        else out.push({ role: r.role, idx: [i], regions: [r], gaps: [], start: at, end: at >= 0 ? at + rs.length : -1 });
+        if (at >= 0) pos = at + rs.length;
+      });
+      if (out.length !== 2 || out.some((b) => b.start < 0 || b.end < 0) || !out.some((b) => b.regions.length > 1)) return null;
+      for (const b of out) {
+        if (b.regions.length === 1) { b.s = b.regions[0].s; b.k = b.regions[0].k; b.joiner = ""; continue; }
+        b.joiner = b.gaps.every((g) => /\u05be/u.test(g)) ? "\u05be" : " ";
+        // the branch as the source wraps it: its words from the first to the
+        // last, and the bracket or parenthesis the ink puts right around them
+        let st = b.start, en = b.end;
+        if (/[\[(]/u.test(ink[st - 1] || "") && /[\])]/u.test(ink[en] || "")) { st -= 1; en += 1; }
+        b.s = ink.slice(st, en);
+        b.k = b.regions.map((r) => r.k).join(b.joiner);
+      }
+      return out;
+    })();
+    const kqHeadOpts = (b, target, extra) => (kqBranches ? {
+      headRegions: kqBranches.map((x) => ({ s: x.s, k: x.k, role: x.role })), headS: word.s, headIndex: b,
+      kqOpenAt: (bb) => openBranch(bb, built.regionEls[kqBranches[bb].idx[0]] || target, { ...extra, kqNav: true }),
+    } : {});
+    const openBranch = (b, target, extra = {}) => {
+      const br = kqBranches[b];
+      if (br.regions.length === 1) { openAt(br.idx[0], target, { ...extra, ...kqHeadOpts(b, target, extra) }); return; }
+      built.regionEls.forEach((r) => r.classList.remove("on"));
+      // each word of the branch carries the source's own reading of it at
+      // this place, cut out of the pair's pieces by its key, so the run's
+      // cell opens on what the line reads (TAHOT's "what" under the first
+      // read word of "what is this"), never on the catalog's first row
+      const pg = Array.isArray(word.pg) ? word.pg : [];
+      let pj = 0;
+      const atoms = br.regions.map((r) => {
+        const a = { s: String(r.s || "").replace(/[\[\]()]/gu, ""), k: r.k, role: r.role };
+        const j = pg.findIndex((x, ix) => ix >= pj && x && x.k === r.k);
+        if (j >= 0) { a.pg = [pg[j]]; pj = j + 1; }
+        return a;
+      });
+      const s = atoms.map((a) => a.s).join(br.joiner);
+      if (!built.wb.__gloss) built.wb.__gloss = built.wb.querySelector(":scope > .g") || null;
+      openHud(target, { s, k: br.k, role: br.role }, unitId, wordPos, {
+        ...opts, bin, word: { s, k: br.k, w: atoms, kq: word.kq, pg: word.pg }, regionIndex: -1, glossParts: null,
+        kqEls: built.regionEls.length ? built.regionEls : null,
+        run: { keys: atoms.map((a) => a.k), clicked: 0, el: built.wb, words: atoms, gaps: br.gaps.map((g) => (/\u05be/u.test(g) ? "\u05be" : " ")), openWord: null, kqBranch: true },
+        ...kqHeadOpts(b, target, extra), ...extra,
+        mark: () => { br.idx.forEach((i) => { if (built.regionEls[i]) built.regionEls[i].classList.add("on"); }); built.wb.classList.add("active"); if (extra.markMore) extra.markMore(); },
+      });
+    };
+    // a region opened by its index opens its branch where the pair has them
+    const openRegion = (i, target, extra = {}) => {
+      if (!kqBranches) { openAt(i, target, extra); return; }
+      const b = kqBranches.findIndex((x) => x.idx.includes(i));
+      if (b < 0) { openAt(i, target, extra); return; }
+      openBranch(b, built.regionEls[kqBranches[b].idx[0]] || target, extra);
+    };
     const openAt = (i, target, extra = {}) => {
       built.regionEls.forEach((r) => r.classList.remove("on"));
       // a pair's halves are alternatives: the line under a pair carries ONE
@@ -11397,7 +11473,7 @@
         ...opts, bin, word, regionIndex: i,
         glossParts: built.regionEls.length && !word.kq ? built.glossParts : null,
         kqEls: word.kq && built.regionEls.length ? built.regionEls : null,
-        kqOpenAt: built.kqStand ? (j) => openAt(j, built.regionEls[j] || target, { ...extra, kqNav: true }) : null,
+        kqOpenAt: built.kqStand ? (j) => openRegion(j, built.regionEls[j] || target, { ...extra, kqNav: true }) : null,
         ...extra,
         mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); if (extra.markMore) extra.markMore(); },
       });
@@ -11418,7 +11494,7 @@
           openNamedRun(rc, rc.idx.indexOf(wordPos), runEl); return;
         }
         if (inChain) { const j = runEl.__words.indexOf(word); if (chainReadsWhole(runEl)) openRun(runEl, j); else built.wb.__openWord(j); return; }
-        if (built.kqStand) { const lead = kqLead(); openAt(lead.i, built.regionEls[lead.i] || target); return; }
+        if (built.kqStand) { const lead = kqLead(); openRegion(lead.i, built.regionEls[lead.i] || target); return; }
         openAt(i, target);
       });
     });

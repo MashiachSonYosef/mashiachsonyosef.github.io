@@ -109,7 +109,7 @@ const openPair = async (n, h) => {
     // the half the card is not open on stands at the regular weight beside
     // the open half's bold, in the same red (the owner, 2026-10-18: "the
     // hebrew should still be red"); it had been the faint purple
-    const headSegs = [...hud.querySelectorAll(".head b span:not(.mq)")].map((s) => ({ t: s.textContent, lit: !s.style.color && s.style.fontWeight !== "400", pressable: s.getAttribute("role") === "button" }));
+    const headSegs = [...hud.querySelectorAll(".head b > span:not(.mq)")].map((s) => ({ t: s.textContent, lit: !s.style.color && s.style.fontWeight !== "400", pressable: s.getAttribute("role") === "button" }));
     const halves = [...w.querySelectorAll(".wr")];
     const litIdx = headSegs.findIndex((s) => s.lit);
     const roleLine = (hud.querySelector(".head .kq-role") || {}).textContent || "";
@@ -163,12 +163,12 @@ for (const [label, id] of POSITIONS) {
 await setSwitch("written (ketiv)"); await p.waitForTimeout(300);
 const first = await openPair(0, 0);
 const otherIdx = first.litIdx === 0 ? 1 : 0;
-await p.evaluate((j) => { document.querySelectorAll("#hud .head b span:not(.mq)")[j].click(); }, otherIdx);
+await p.evaluate((j) => { document.querySelectorAll("#hud .head b > span:not(.mq)")[j].click(); }, otherIdx);
 await p.waitForTimeout(900);
 const flipped = await p.evaluate(() => {
   const w = document.querySelectorAll("section.seg .he-text .wb.kq")[0];
   const hud = document.getElementById("hud");
-  const segs = [...hud.querySelectorAll(".head b span:not(.mq)")];
+  const segs = [...hud.querySelectorAll(".head b > span:not(.mq)")];
   const lit = segs.findIndex((s) => !s.style.color && s.style.fontWeight !== "400");
   const halves = [...w.querySelectorAll(".wr")];
   const pills = [...hud.querySelectorAll(".b-q .s-pills button")].map((q) => q.getAttribute("aria-pressed") === "true");
@@ -217,7 +217,7 @@ await p.waitForTimeout(900);
 const flipped6 = await p.evaluate(() => {
   const w = document.querySelectorAll("section.seg .he-text .wb.kq")[0];
   const hud = document.getElementById("hud");
-  const segs = [...hud.querySelectorAll(".head b span:not(.mq)")];
+  const segs = [...hud.querySelectorAll(".head b > span:not(.mq)")];
   const lit = segs.findIndex((s) => !s.style.color && s.style.fontWeight !== "400");
   const pills = [...hud.querySelectorAll(".b-q .s-pills button")].map((q) => q.getAttribute("aria-pressed") === "true");
   const halves = [...w.querySelectorAll(".wr")];
@@ -272,7 +272,7 @@ else {
   const line8a = await runLine();
   await p.evaluate((j) => { document.querySelectorAll("#hud .b-q .s-pills button")[j].click(); }, other8);
   await p.waitForTimeout(900);
-  const moved8 = await p.evaluate((n) => { const w = document.querySelectorAll("section.seg .he-text .wb.kq")[n]; const hud = document.getElementById("hud"); const segs = [...hud.querySelectorAll(".head b span:not(.mq)")]; const halves = [...w.querySelectorAll(".wr")];
+  const moved8 = await p.evaluate((n) => { const w = document.querySelectorAll("section.seg .he-text .wb.kq")[n]; const hud = document.getElementById("hud"); const segs = [...hud.querySelectorAll(".head b > span:not(.mq)")]; const halves = [...w.querySelectorAll(".wr")];
     return { open: !hud.hidden, formRow: hud.querySelectorAll(".b-q .s-pills button").length, chainRow: hud.querySelectorAll(".b-chain-cell button").length, lit: segs.findIndex((s) => !s.style.color && s.style.fontWeight !== "400"), underline: halves.findIndex((x) => x.classList.contains("backs-en")) }; }, inRun);
   const line8b = await runLine();
   check("K8  a pair inside a chain opens with its own form row, and a form press moves the card and not the chain's line",
@@ -295,7 +295,7 @@ else {
   await p.evaluate((j) => { document.querySelectorAll("#hud .b-q .s-pills button")[j].click(); }, other9);
   await p.waitForTimeout(900);
   await setSwitch("read (qere)"); await p.waitForTimeout(600);
-  const s9 = await p.evaluate((n) => { const w = document.querySelectorAll("section.seg .he-text .wb.kq")[n]; const hud = document.getElementById("hud"); const segs = [...hud.querySelectorAll(".head b span:not(.mq)")]; const halves = [...w.querySelectorAll(".wr")]; const pills = [...hud.querySelectorAll(".b-q .s-pills button")].map((q) => q.getAttribute("aria-pressed") === "true");
+  const s9 = await p.evaluate((n) => { const w = document.querySelectorAll("section.seg .he-text .wb.kq")[n]; const hud = document.getElementById("hud"); const segs = [...hud.querySelectorAll(".head b > span:not(.mq)")]; const halves = [...w.querySelectorAll(".wr")]; const pills = [...hud.querySelectorAll(".b-q .s-pills button")].map((q) => q.getAttribute("aria-pressed") === "true");
     return { open: !hud.hidden, lit: segs.findIndex((s) => !s.style.color && s.style.fontWeight !== "400"), pressed: pills.indexOf(true), underline: halves.findIndex((x) => x.classList.contains("backs-en")) }; }, k4Witness);
   check("K9  the switch moved while the card stands on the other form: the card stays where it is and the line's underline follows the switch",
     s9.open && s9.lit === other9 && s9.pressed === other9 && s9.underline === r9.roles.indexOf("QERE"),
