@@ -133,6 +133,8 @@ check("the file says how to read its marks", /^Citations: /m.test(both));
 // nothing for opens a card with no reading pills in it, and waiting twenty
 // seconds for one is how this check used to die rather than report. 677 of
 // Targum Ruth's 2,139 words are that word.
+// the export menu left open after the grabs would stand over the first words
+await p.keyboard.press("Escape"); await p.waitForTimeout(200);
 const allWbs = await p.$$("section.seg .he-text .wb");
 const wbs = [];
 for (const wb of allWbs) {

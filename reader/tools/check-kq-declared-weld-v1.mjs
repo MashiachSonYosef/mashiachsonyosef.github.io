@@ -42,7 +42,7 @@ import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
-import { zonesOnDisk, defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { zonesServed, defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ZONES = join(HERE, "..", "data", "zones");
@@ -55,7 +55,8 @@ const spanJoin = (t) => String(t || "").replace(/\s*\/\s*/gu, " + ").replace(/\.
 
 // ---- the sites, read off the shelf ------------------------------------
 const sites = { homograph: null, noPlace: null, plain: null };
-for (const slug of zonesOnDisk(ZONES)) {
+// the served zones only: an unserved bin is a page the gate refuses
+for (const slug of zonesServed(ZONES)) {
   let z; try { z = JSON.parse(gunzipSync(readFileSync(join(ZONES, `${slug}.bin`))).toString("utf8")); } catch { continue; }
   const gl = z.gloss || {};
   for (const sec of z.sections || []) {
@@ -83,7 +84,7 @@ for (const slug of zonesOnDisk(ZONES)) {
 }
 check("KW0  the shelf holds the sites this check needs: a pair whose written letters the catalog reads otherwise and whose source spells the read words joined; a pair with no place reading; a plain word",
   !!(sites.homograph && sites.noPlace && sites.plain), JSON.stringify({ homograph: sites.homograph && `${sites.homograph.slug} ${sites.homograph.addr}`, noPlace: sites.noPlace && `${sites.noPlace.slug} ${sites.noPlace.addr}`, plain: sites.plain && `${sites.plain.slug} ${sites.plain.addr}` }));
-if (!sites.homograph || !sites.plain) { console.log(failed ? "\nFAIL" : "\nall checks passed"); process.exit(failed ? 1 : 0); }
+if (!sites.homograph || !sites.plain) { console.log("SKIPPED \u2014 no served pair on disk meets the sites this check needs"); process.exit(3); }
 
 // ---- the page -----------------------------------------------------------
 const { chromium } = await loadPlaywright();
@@ -121,6 +122,8 @@ const card = () => p.evaluate(() => {
   };
 });
 const pressForm = async (role, nth = 0) => {
+  // the pool is cleared before the press, so the wait is for THIS card's pool
+  await p.evaluate(() => { window.__pool = null; });
   const did = await p.evaluate(([role, nth]) => {
     const re = role === "KETIV" ? /ketiv/u : /qere/u;
     const btns = [...document.querySelectorAll("#hud .s-pills button")].filter((x) => re.test(x.textContent));
@@ -180,9 +183,15 @@ await p.evaluate(() => { const x = document.querySelector("#hud button[aria-labe
 await p.waitForTimeout(400);
 const resetDid = await p.evaluate(() => { const r = document.getElementById("resetPill"); if (!r) return false; r.click(); return true; });
 await p.waitForTimeout(1200);
-const lineBack = await cell().catch(() => null);
-const backSame = lineBack ? fold(lineBack.en) === fold(line0.en) : null;
-check("KW7  reset puts the line back", resetDid && (backSame === null || backSame), `reset ${resetDid} · line "${lineBack && lineBack.en}" was "${line0.en}"`);
+// the word is found by its address after the card is closed, not by the open mark
+const lineBack = await p.evaluate((addr) => {
+  const sec = [...document.querySelectorAll("section.seg")].find((x) => (x.querySelector(".vnum") || {}).textContent === addr.split(":").slice(0, 2).join(":"));
+  const w = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")][Number(addr.split(":")[2]) - 1] : null;
+  if (!w) return null;
+  const g = w.querySelector(":scope > .g"); const c = g ? g.cloneNode(true) : null; if (c) c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+  return { en: c ? c.textContent.replace(/\s+/g, " ").trim() : null };
+}, H.addr);
+check("KW7  reset puts the line back", resetDid && !!lineBack && fold(lineBack.en) === fold(line0.en), `reset ${resetDid} · line "${lineBack && lineBack.en}" was "${line0.en}"`);
 
 // KW6 — a pair with no place reading
 if (sites.noPlace) {
