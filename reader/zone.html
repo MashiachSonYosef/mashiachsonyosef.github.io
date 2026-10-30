@@ -4444,7 +4444,9 @@
     const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
     const parts = surfaces.map((s, i) => {
       const p = m.cells.get(s);
-      if (p) return spanJoin(p.text);
+      // a read word's reading ruled on the written form prints with its read
+      // word, as the pill does (kq-declared-weld-v1)
+      if (p) return p.read ? `${spanJoin(p.text)} (read ${p.read})` : spanJoin(p.text);
       if (pg && pg[i] && pg[i].g) return spanJoin(String(pg[i].g).trim());
       const g = table ? table[s] : null;
       // a baked reading whose every carrier the reader switched off is not
@@ -4518,13 +4520,35 @@
     const at = placeLine(word);
     if (!at) return null;
     const spelled = word.pg.map((x) => (x && x.k) || "").join("");
-    const i = regions.findIndex((r) => r.k === spelled);
+    let i = regions.findIndex((r) => r.k === spelled);
+    // THE SOURCE READS THE PAIR'S READ FORM WHOLE (kq-declared-weld-v1): where
+    // the qere is two words (Exodus 4:2, "what is this" read as two words
+    // under one written word), the source's own reading of the place spells
+    // the read words joined, and no one region spells that. It backs the
+    // line all the same, from the first read half; the written form's
+    // catalog lead ("exhausted", a word spelled the same) never did.
+    if (i < 0 && spelled) {
+      const joined = (role) => regions.map((r, j) => ({ r, j })).filter((x) => x.r.role === role);
+      for (const role of ["QERE", "KETIV"]) {
+        const rs = joined(role);
+        if (rs.length > 1 && rs.map((x) => x.r.k).join("") === spelled) { i = rs[0].j; break; }
+      }
+    }
     return i >= 0 ? { i, at: placeShown(at) } : null;
   };
   /** Which branch of a pair backs the English, and what it fell back from;
       `at` where the source's own reading of the place is what it backs. */
   const kqPick = (regions, parts, table, word) => {
-    const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
+    // THE WRITTEN HALF IS NEVER BACKED BY THE CATALOG'S LEAD FOR ITS LETTERS
+    // (kq-declared-weld-v1; the owner, 2026-10-30). Where the pair has a read
+    // half, the baked lead under the written letters is a reading of another
+    // word spelled the same (Horims, under the letters the Masorah reads as
+    // part of "dove's dung" at II Kings 6:25). The written half backs the
+    // line only on a ruling or on the source's own reading of this place,
+    // both answered above; otherwise the line falls to the read half and
+    // says it fell. A pair with no read half keeps its one half.
+    const hasRead = regions.some((r) => r && r.role === "QERE");
+    const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—" && !(hasRead && regions[i] && regions[i].role === "KETIV");
     const ruledIdx = latestRuled(regions, table);
     if (ruledIdx >= 0) return { i: ruledIdx, fellFrom: null };
     const pl = kqPlace(word, regions, table);
@@ -7349,9 +7373,32 @@
       // a named run's head stands as the ink wrote it, maqaf or space, and
       // the whole run is what the card is about
       const gaps = opts.run && opts.run.gaps ? opts.run.gaps : null;
+      // A PAIR'S HEAD IS THE INK (kq-declared-weld-v1; the owner, 2026-10-30,
+      // of the card's head: "cards still looking off"). The halves of a pair
+      // are not maqaf parts: splitting the occurrence at its maqafs put the
+      // read words' joiner between the written form and the first read word
+      // and dropped the source's own brackets ("(mzh)-mah zeh" for the ink
+      // "(mzh) [mah-zeh]"). So each half is found in the occurrence where it
+      // stands and what lies between the halves prints as the ink has it:
+      // the parentheses, the brackets, the space, the maqaf.
+      let kqGaps = null, kqLead = "", kqTail = "";
+      if (word.kq && !gaps && !opts.chain) {
+        const ink = String(opts.headS || word.s || "");
+        let pos = 0, ok = true; const g = [];
+        regions.forEach((r, i) => {
+          const at = ink.indexOf(String(r.s || ""), pos);
+          if (at < 0 || !r.s) { ok = false; return; }
+          if (i === 0) kqLead = ink.slice(0, at); else g.push(ink.slice(pos, at));
+          pos = at + String(r.s).length;
+        });
+        if (ok) { kqGaps = g; kqTail = ink.slice(pos); } else { kqLead = ""; }
+      }
+      // a joiner stands in a span of its own, as it always did, so the gold
+      // laid over the marks finds it where it found it
+      const mqSpans = (text) => { for (const piece of String(text || "").split(/(\u05be)/u)) if (piece) b.append(Object.assign(document.createElement("span"), { className: "mq", textContent: piece })); };
+      if (kqLead) mqSpans(kqLead);
       regions.forEach((r, i) => {
-        if (i) b.append(Object.assign(document.createElement("span"),
-          { className: "mq", textContent: (gaps ? gaps[i - 1] : marks[i - 1]) || "" }));
+        if (i) { const between = (kqGaps ? kqGaps[i - 1] : gaps ? gaps[i - 1] : marks[i - 1]) || ""; if (kqGaps) mqSpans(between); else b.append(Object.assign(document.createElement("span"), { className: "mq", textContent: between })); }
         const seg = document.createElement("span");
         seg.textContent = r.s;
         const lit = gaps ? true : opts.headIndex != null ? i === opts.headIndex : regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
@@ -7374,6 +7421,7 @@
         }
         b.append(seg);
       });
+      if (kqTail) mqSpans(kqTail);
     } else if (pointingNow() === "letters" && !word.mark && (region && (region.form_k || region.k))) {
       // THE LETTERS ONLY, inside the card. The bare consonants lead; the
       // pointed form stands faint beside them so nothing is hidden — the
@@ -7800,7 +7848,7 @@
     const glossParts = opts.glossParts || null;
     const textOfCell = (surface) => {
       const p = picked.get(surface);
-      if (p) return spanJoin(p.text);
+      if (p) return p.read ? `${spanJoin(p.text)} (read ${p.read})` : spanJoin(p.text);
       // a span the store names: its first row's reading, as the line reads it
       { const rows = spanRowsOn(surface); if (rows.length) return spanJoin(rows[0].slots[1]); }
       // on the source's own division, a block the reader left alone reads
@@ -8355,6 +8403,58 @@
       const hit = pg[idx];
       return hit && hit.g ? hit : null;
     };
+    // THE DECLARED WELD ON A PAIR (the owner, 2026-10-30: a weld is right
+    // where a source declares the equivalence and wrong where the page infers
+    // it from the ink; of the card at Exodus 4:2:4 listing Mizzah, "exhausted"
+    // and "one who sprinkles" under the letters of "what is this": "i see this
+    // is not right"; the rule he asked for: "the card specifically saying
+    // 'this exact spelling actually means what this exact spelling means'").
+    // A ketiv is a spelling, not a key. The Masorah's note, carried verbatim
+    // by the licensed source, says these written letters are read as the
+    // qere; so on the written branch the card keeps what a source reads of
+    // the written form AT THIS PLACE (TAHOT's and MACULA's own rows here),
+    // carries the read words' readings as pointers that name the read word,
+    // and withholds the catalog's rows under the written letters, which are
+    // rows about other words spelled the same, saying how many. The line is
+    // untouched: it reads the half it read from (rule 1, kq-shapes). The
+    // qere's branch is untouched: its letters are what is read.
+    // kq-declared-weld-v1-the-written-form-is-defined-by-what-is-read
+    const kqReadRegions = () => (word && word.kq && Array.isArray(regions) ? regions.filter((r) => r && r.role === "QERE" && r.k) : []);
+    // a read word named on a pill or a note: its letters and points, without
+    // the verse's accents and brackets (the ink on the page keeps everything)
+    const kqBare = (t) => String(t || "").replace(/[\[\]()]/gu, "").replace(/[\u0591-\u05af\u05bd\u05bf\u05c0\u05c3-\u05c6]/gu, "").trim();
+    const kqWeldHere = (surface) => !!(region && region.role === "KETIV" && word && word.kq && !opts.run && !opts.chain && !setWhole
+      && cover.length === 1 && surface === region.k && kqReadRegions().length);
+    const kqWeld = async (pool, surface) => {
+      // a reading a source gives for the written form at this place stands: a
+      // place row, or a piece store row, which is a claim at this place
+      const atPlace = (g) => g.records.some((row) => PLACE_ROWS.has(row) || OVERLAY_ROWS.get(row) === "piece-store");
+      const kept = pool.filter(atPlace);
+      const heldGroups = pool.filter((g) => !atPlace(g));
+      const drawnOf = (t) => spanJoin(t).toLowerCase();
+      const have = new Set(kept.map((g) => drawnOf(g.text)));
+      const reads = kqReadRegions();
+      for (const r of reads) {
+        const qk = r.k;
+        let qp = null;
+        try { const at = placeOfCell(qk); qp = await poolFor(qk, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(qk) }); } catch { qp = null; }
+        if (!qp) continue;
+        const read = kqBare(r.s || qk);
+        for (const g of qp) {
+          const d = drawnOf(g.text);
+          if (have.has(d)) continue;
+          have.add(d);
+          kept.push({ text: g.text, year: g.year, ledger: g.ledger, records: g.records, ov: g.ov, kqRead: read, kqKey: qk });
+        }
+      }
+      const out = sortPool(kept, surface);
+      out.withheld = pool.withheld; out.withheldBySources = pool.withheldBySources; out.rows = pool.rows;
+      out.kqWithheld = heldGroups.length;
+      out.kqWithheldRows = heldGroups.reduce((n, g) => n + g.records.length, 0);
+      out.kqRead = reads.map((r) => kqBare(r.s || r.k)).join(" ");
+      out.kqWritten = kqBare(region.s || region.k);
+      return out;
+    };
     const renderReadings = async () => {
       const surface = setWhole ? SET_KEY : cover[cellIdx].surface;
       readRow.replaceChildren();
@@ -8398,6 +8498,8 @@
             kept.withheld = got.withheld; kept.withheldBySources = got.withheldBySources; kept.rows = got.rows;
             got = kept;
           }
+          // the written branch of a pair, defined by what is read (kq-declared-weld-v1)
+          if (got && kqWeldHere(surface)) got = await kqWeld(got, surface);
           cache.set(askKey, got);
         }
         catch (e) { unreachable = e; }
@@ -8814,7 +8916,7 @@
             // on its pieces' line, and TAHOT's set on the division it was
             // chosen on
             selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
-              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null });
+              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}) });
             if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
             [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
             rungRuled(); markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
@@ -8896,7 +8998,7 @@
       };
       const choose = (route) => {
         selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
-          place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null });
+          place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null, ...(route.kqRead ? { read: route.kqRead } : {}) });
         // any other reading chosen: the set stands whole no longer
         if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
         rungRuled(); markRuled();
@@ -8910,6 +9012,9 @@
         // with the pointer beside it (the owner: "twelve (feminine of ...)");
         // its own text rides on the pill, for a check and for the eye
         { const fo = formOfFor(surface, route.records.map((r) => r[3]), route.text); if (fo && fo.resolved) { btn.dataset.pointer = spanJoin(route.text); btn.textContent = formOfSays(fo); } }
+        // a read word's reading on the written branch of a pair says which read
+        // word it reads (kq-declared-weld-v1); its own text rides on the pill
+        if (route.kqRead) { btn.dataset.pointer = spanJoin(route.text); btn.dataset.read = route.kqRead; btn.textContent = `${spanJoin(route.text)} (read ${route.kqRead})`; }
         // who carries it, on the pill and exposed, so a check can ask the
         // page whether a switched-off source still stands behind a reading
         btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
@@ -8975,6 +9080,16 @@
         pills.dataset.withheld = String(pool.withheld || 0);
         pills.dataset.withheldBySources = String(pool.withheldBySources || 0);
         pills.dataset.rows = String(pool.rows || 0);
+        // the declared weld, said on the row and exposed (kq-declared-weld-v1)
+        pills.dataset.kqWithheld = String(pool.kqWithheld || 0);
+        window.__poolKq = sorted.map((r) => r.kqRead || "");
+        let kNote = readRow.querySelector(".kq-weld");
+        if (pool.kqRead != null) {
+          if (!kNote) { kNote = document.createElement("p"); kNote.className = "kq-role kq-weld"; readRow.append(kNote); }
+          const n = pool.kqWithheld || 0, nr = pool.kqWithheldRows || 0;
+          kNote.textContent = `written ${pool.kqWritten}, read ${pool.kqRead} \u2014 the Masorah's note, as the source carries it: the written letters are defined by what is read. `
+            + (n ? `${n} reading${n === 1 ? "" : "s"} of these letters as other words (${nr} record${nr === 1 ? "" : "s"}) withheld here.` : "No reading of these letters as another word stood to withhold.");
+        } else if (kNote) kNote.remove();
         let note = readRow.querySelector(".masorah-withheld");
         if (pool.withheld) {
           if (!note) { note = document.createElement("p"); note.className = "kq-role masorah-withheld"; readRow.append(note); }
