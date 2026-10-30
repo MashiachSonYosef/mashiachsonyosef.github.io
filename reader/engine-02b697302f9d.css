@@ -2268,8 +2268,17 @@
   .xp-note .held { color: var(--argaman-dim); }
   .xp-lab { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--faint); margin-inline-end: 0.15rem; }
-  #bookExport { max-width: 48rem; margin: 2.2rem auto 0; padding: 0 1.5rem; direction: ltr; }
-  #bookExport .xp-lab { display: block; margin-bottom: 0.35rem; }
+  /* the export button in the section's pill row, and the menu it drops */
+  .seg-row { position: relative; }
+  .xp-open { margin-inline-start: auto; align-self: center; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--faint); border: 1px solid var(--line); background: var(--bg); border-radius: 0.5rem; padding: 0.05rem 0.45rem;
+    cursor: pointer; font-family: inherit; }
+  .xp-open:hover, .xp-open[aria-expanded="true"] { border-color: var(--gold); color: var(--shesh); }
+  .xp-menu { position: absolute; right: 0; top: calc(100% + 0.3rem); z-index: 40; min-width: 16rem; max-width: calc(100vw - 2rem);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.6rem; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    padding: 0.35rem 0.6rem 0.45rem; direction: ltr; }
+  .xp-menu .xp-row { margin: 0.25rem 0 0.35rem; }
+  .xp-menu .xp-lab { flex: 1 1 100%; margin: 0 0 0.1rem; }
   #prov a { color: var(--shesh); }
 
   footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;

@@ -38,40 +38,49 @@ const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 }, acceptDownloads: true });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
 await p.goto(URL, { waitUntil: "networkidle" });
-await p.waitForSelector("section.seg .xp-row");
+// the export is one button in the section's pill row that drops a menu (the
+// owner, 2026-10-30); the menu of the first section is opened for the shape
+await p.waitForSelector("section.seg .xp-open");
+await p.click("section.seg .xp-open");
+await p.waitForSelector("section.seg .xp-menu .xp-row .xp");
 const arrived = await readThrough(p);
 if (arrived.arrived < arrived.all)
   console.log(`  ..  ${arrived.arrived} of ${arrived.all} sections arrived within the read-through's budget; the per-section law is asked of those`);
 
 // ---- shape ----
 const shape = await p.evaluate(() => {
+  const t = (el) => (el ? el.textContent.replace(/\s+/g, " ").trim() : "");
   const s = document.querySelector("section.seg");
-  const row = s.querySelector(".xp-row");
-  const he = s.querySelector(".he-text");
+  const btn = s.querySelector(".xp-open");
+  const segRow = s.querySelector(".seg-row");
+  const rows = [...s.querySelectorAll(".xp-menu .xp-row")];
+  const row = rows[0] || null;
+  const r = (el) => (el ? el.getBoundingClientRect() : null);
+  const b = r(btn), g = r(segRow);
   return {
-    perSection: document.querySelectorAll("section.seg .xp-row").length,
+    perSection: document.querySelectorAll("section.seg .seg-row .xp-open").length,
     sections: document.querySelectorAll("section.seg").length,
     built: document.querySelectorAll("section.seg:not(.seg-wait)").length,
-    buttons: row.querySelectorAll(".xp").length,
-    labels: [...row.querySelectorAll(".xp")].map((x) => x.textContent.trim()),
-    afterText: row.getBoundingClientRect().top >= he.getBoundingClientRect().top,
-    book: !!document.getElementById("bookExport"),
-    bookButtons: document.querySelectorAll("#bookExport .xp").length,
-    bookAfterLast: (() => {
-      const secs = [...document.querySelectorAll("section.seg")];
-      const bx = document.getElementById("bookExport");
-      return bx.getBoundingClientRect().top >= secs[secs.length - 1].getBoundingClientRect().top;
-    })(),
+    buttons: row ? row.querySelectorAll(".xp").length : 0,
+    labels: row ? [...row.querySelectorAll(".xp")].map(t) : [],
+    inPillRow: !!(btn && segRow && segRow.contains(btn)),
+    noLineOfItsOwn: !!(b && g && b.top >= g.top - 1 && b.bottom <= g.bottom + 1),
+    rows: rows.length,
+    rowLabels: rows.map((x) => t(x.querySelector(".xp-lab"))),
+    lastIsWork: rows.length ? /^the whole of /u.test(t(rows[rows.length - 1].querySelector(".xp-lab"))) : false,
+    workButtons: rows.length ? rows[rows.length - 1].querySelectorAll(".xp").length : 0,
+    firstIsSection: rows.length ? /^this /u.test(t(rows[0].querySelector(".xp-lab"))) : false,
   };
 });
-// a section still waiting to be built carries nothing yet; the law is asked
-// of every section that has arrived, and the read-through said how many
-check("every section carries an export row", shape.perSection === shape.built && shape.built > 0,
-  `${shape.perSection} of ${shape.built} built${shape.built < shape.sections ? ` (${shape.sections} in the book)` : ""}`);
+// every section carries the button from the start (it is in the pill row,
+// which is built with the number); the menu is asked of the first section
+check("every section carries the export button in its pill row", shape.perSection === shape.sections && shape.sections > 0,
+  `${shape.perSection} of ${shape.sections}`);
 check("three kinds per section", shape.buttons === 3, shape.labels.join(" | "));
-check("the export row sits after the text", shape.afterText);
-check("the book carries one of its own", shape.book && shape.bookButtons === 3, `${shape.bookButtons} buttons`);
-check("and it sits after the last section", shape.bookAfterLast);
+check("the button sits in the section's pill row and takes no line of its own", shape.inPillRow && shape.noLineOfItsOwn);
+check("the menu's first row is this section's, its last the whole work's with three kinds", shape.firstIsSection && shape.lastIsWork && shape.workButtons === 3,
+  `${shape.rows} rows: ${shape.rowLabels.join(" | ")}`);
+check("the chapter's row stands between where the work has chapters", shape.rows === 3 || shape.rows === 2, `${shape.rows} rows`);
 
 // ---- arms before it fires ----
 const btn = await p.$("section.seg .xp-row .xp:nth-of-type(3)");
