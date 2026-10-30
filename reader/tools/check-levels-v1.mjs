@@ -64,7 +64,8 @@ await readThrough(page);
 const readLevels = () => {
   const s = document.querySelector("section.seg");
   const bar = s.querySelector(".c-bar");
-  const xp = s.querySelector(".xp-row");
+  // the export is one button in the section's pill row (the owner, 2026-10-30)
+  const xp = s.querySelector(".seg-row .xp-open");
   const seg = s.querySelector(".seg-row");
   const r = (el) => (el ? el.getBoundingClientRect() : null);
   return {
@@ -72,14 +73,15 @@ const readLevels = () => {
     barText: bar ? bar.innerText.replace(/\s+/g, " ").trim() : "",
     segBottom: r(seg)?.bottom, barTop: r(bar)?.top, barW: r(bar)?.width,
     xpTop: r(xp)?.top, secW: r(s)?.width,
-    xpW: [...s.querySelectorAll(".xp-row .xp")].map((c) => Math.round(c.getBoundingClientRect().width)),
+    xpW: [...s.querySelectorAll(".seg-row .xp-open")].map((c) => Math.round(c.getBoundingClientRect().width)),
+    xpInSegRow: !!(seg && xp && seg.contains(xp)),
     barInsideSegRow: !!(seg && bar && seg.contains(bar)),
     // no control on this page writes to a clipboard: copying is the reader's
     // act, so the site never hands text over on a press
     clipboardControls: document.querySelectorAll(".cp, .cp-row").length,
     sections: document.querySelectorAll("section.seg").length,
     sectionsWithXp: [...document.querySelectorAll("section.seg")]
-      .filter((x) => x.querySelector(".xp-row")).length,
+      .filter((x) => x.querySelector(".seg-row .xp-open")).length,
     heBottom: r(s.querySelector(".he-text"))?.bottom,
     slotAfterBar: (() => { const sl = s.querySelector(".c-slot"); return !!sl && !!bar &&
       (bar.compareDocumentPosition(sl) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0; })(),
@@ -110,16 +112,18 @@ check("the commentary line is the width of the column",
   cmv.barW > cmv.secW * 0.9, `${Math.round(cmv.barW)} of ${Math.round(cmv.secW)}${on}`);
 check("the commentary line sits at the foot, under the text it belongs to",
   cmv.barTop >= cmv.heBottom, `line at ${Math.round(cmv.barTop)}, text ends ${Math.round(cmv.heBottom)}${on}`);
-check("its text opens directly beneath the line, not at the end of the section",
-  cmv.slotAfterBar && cmv.slotBeforeExport, on.slice(3));
+check("its text opens directly beneath the line", cmv.slotAfterBar, on.slice(3));
 check("no control on the page writes to a clipboard", levels.clipboardControls === 0,
   `${levels.clipboardControls} found`);
 // Measured on the same page as the line it is measured against. Where the
 // run's own book carries no commentary there is no line for the export to sit
 // under, and comparing the two across two pages gave a width against a NaN.
-check("the export sits under the commentary line, at the smaller weight",
-  cmv.hasXp && cmv.xpTop >= cmv.barTop && Math.max(...cmv.xpW) < cmv.barW / 2,
-  `${Math.max(...cmv.xpW)}px vs ${Math.round(cmv.barW)}px${on}`);
+// the export is one small button in the section's pill row (the owner,
+// 2026-10-30: "put it next to the section title"), far narrower than the
+// commentary line, and the text it would carry stands below it
+check("the export button sits in the section's pill row, at the smaller weight",
+  levels.hasXp && levels.xpInSegRow && Math.max(...levels.xpW) < levels.secW / 4,
+  `${Math.max(...levels.xpW)}px of the column's ${Math.round(levels.secW)}px`);
 check("every section carries the export", levels.sectionsWithXp === levels.sections,
   `${levels.sectionsWithXp} of ${levels.sections}`);
 

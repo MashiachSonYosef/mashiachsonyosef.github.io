@@ -409,7 +409,9 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
     const r10 = await p.evaluate(async () => {
       const wait = (ms) => new Promise((x) => setTimeout(x, ms));
       const sec = document.querySelector("section.seg");
-      const btn = [...sec.querySelectorAll("button")].find((x) => /^english$/iu.test(x.textContent.trim()));
+      // the export is one button in the section's pill row that drops a menu (the owner, 2026-10-30)
+      { const xo = sec.querySelector(".seg-row .xp-open"); const m = sec.querySelector(".xp-menu"); if (xo && (!m || m.hidden)) xo.click(); }
+      const btn = [...sec.querySelectorAll(".xp-menu .xp-row button")].find((x) => /^english$/iu.test(x.textContent.trim()));
       if (!btn) return { err: "no english export button on the first section" };
       btn.click();
       const t0 = Date.now(); while (Date.now() - t0 < 15000 && !/save/iu.test(btn.textContent)) await wait(100);

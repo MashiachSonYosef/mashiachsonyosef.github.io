@@ -24,9 +24,13 @@ const b = await chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 }, acceptDownloads: true });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad++; });
 await p.goto(defaultZoneUrl(), { waitUntil: "networkidle" });
-await p.waitForSelector("section.seg .xp-row .xp");
+await p.waitForSelector("section.seg .xp-open");
+await p.click("section.seg .xp-open");
+await p.waitForSelector("section.seg .xp-menu .xp-row .xp");
 
 const grab = async (nth) => {
+  // the section's export menu, opened where it is not (one button in the pill row drops it)
+  await p.evaluate(() => { const s = document.querySelector("section.seg"); const m = s.querySelector(".xp-menu"); if (!m || m.hidden) s.querySelector(".xp-open").click(); });
   await p.click(`section.seg .xp-row .xp:nth-of-type(${nth})`);
   await p.waitForFunction(() => /Press again|Refused/.test(document.querySelector("section.seg .xp-note")?.textContent || ""), { timeout: 30000 });
   const [dl] = await Promise.all([p.waitForEvent("download"), p.click("section.seg .xp-row .xp.armed")]);

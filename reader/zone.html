@@ -2288,8 +2288,17 @@
   .xp-note .held { color: var(--argaman-dim); }
   .xp-lab { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--faint); margin-inline-end: 0.15rem; }
-  #bookExport { max-width: 48rem; margin: 2.2rem auto 0; padding: 0 1.5rem; direction: ltr; }
-  #bookExport .xp-lab { display: block; margin-bottom: 0.35rem; }
+  /* the export button in the section's pill row, and the menu it drops */
+  .seg-row { position: relative; }
+  .xp-open { margin-inline-start: auto; align-self: center; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--faint); border: 1px solid var(--line); background: var(--bg); border-radius: 0.5rem; padding: 0.05rem 0.45rem;
+    cursor: pointer; font-family: inherit; }
+  .xp-open:hover, .xp-open[aria-expanded="true"] { border-color: var(--gold); color: var(--shesh); }
+  .xp-menu { position: absolute; right: 0; top: calc(100% + 0.3rem); z-index: 40; min-width: 16rem; max-width: calc(100vw - 2rem);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 0.6rem; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    padding: 0.35rem 0.6rem 0.45rem; direction: ltr; }
+  .xp-menu .xp-row { margin: 0.25rem 0 0.35rem; }
+  .xp-menu .xp-lab { flex: 1 1 100%; margin: 0 0 0.1rem; }
   #prov a { color: var(--shesh); }
 
   footer { max-width: 48rem; margin: 0 auto; padding: 1.1rem 1.5rem 2.2rem; font-size: 0.76rem;
@@ -13885,6 +13894,79 @@
       d.textContent = `drifts from the sealed count · ${sec.drift.sealed_rows} sealed → ${sec.drift.observed_rows} here`;
       row.append(d);
     }
+    // THE EXPORT, IN THE SECTION'S OWN ROW (the owner, 2026-10-30: "maybe
+    // instead of a toggle for data download we should just make it smaller?
+    // a single button off to the side ... that drops down?"; then: "id try
+    // to find a way so it doesnt even eat a line ... like just put it next
+    // to the section title"). One small button at the right end of the pill
+    // row, no line of its own. Pressed, it drops a menu of three rows, this
+    // section, this chapter and the whole work, three forms each, every one
+    // the same two-press control as before (exportButton: the first press
+    // says what would leave and under which licenses, the second writes it).
+    // The rows of three under every section and the box after the last
+    // section are gone; nothing a reader could export before is lost.
+    {
+      const xo = document.createElement("button"); xo.type = "button"; xo.className = "xp-open";
+      xo.textContent = "export"; xo.setAttribute("aria-expanded", "false");
+      xo.title = NAMED_SHAPE ? `export this section or the whole of ${zone.work}` : `export this ${MINOR}, this ${MAJOR}, or the whole of ${zone.work}`;
+      let menu = null;
+      const chapterOf = (label) => { const ps = String(label || "").split(":"); return !NAMED_SHAPE && ps.length === 2 ? ps[0] : null; };
+      const kindLabel = (kind) => (kind === "he" ? "hebrew" : kind === "en" ? "english" : "hebrew + english");
+      const buildMenu = () => {
+        menu = document.createElement("div"); menu.className = "xp-menu"; menu.setAttribute("role", "group"); menu.hidden = true;
+        const group = (labText, gather, filename) => {
+          const r = document.createElement("div"); r.className = "xp-row";
+          const lab = document.createElement("span"); lab.className = "xp-lab"; lab.textContent = labText;
+          const note = document.createElement("p"); note.className = "xp-note";
+          r.append(lab);
+          for (const kind of ["he", "en", "both"]) r.append(exportButton(kind, kindLabel(kind), note, gather, () => filename(kind)));
+          r.append(note);
+          return r;
+        };
+        menu.append(group(`this ${NAMED_SHAPE ? "section" : MINOR} \u00b7 ${sec.label || String(secIdx)}`,
+          async () => { materialise(s); return { bundles: [await gatherSection(sec, s)], title: `${zone.work} ${sec.label || ""}`.trim() }; },
+          (kind) => `${slug(zone.work)}-${slug(sec.label || String(secIdx))}-${kind}.md`));
+        const ch = chapterOf(sec.label);
+        if (ch) menu.append(group(`this ${MAJOR} \u00b7 ${ch}`,
+          async () => {
+            const list = sectionEls.filter((x) => chapterOf(x.sec.label) === ch);
+            const bundles = [];
+            for (const x of list) { materialise(x.el); bundles.push(await gatherSection(x.sec, x.el)); }
+            return { bundles, title: `${zone.work} ${ch}` };
+          },
+          (kind) => `${slug(zone.work)}-${slug(ch)}-${kind}.md`));
+        menu.append(group(`the whole of ${zone.work}`,
+          async () => {
+            // every section, so every section has to exist: the honest cost
+            // of a book-sized export, said before anything leaves
+            materialiseAll();
+            const bundles = [];
+            for (const x of sectionEls) bundles.push(await gatherSection(x.sec, x.el));
+            return { bundles, title: zone.work };
+          },
+          (kind) => `${slug(zone.work)}-${kind}.md`));
+        row.append(menu);
+      };
+      // a press outside closes the menu; the page's own clicks (the anchor
+      // the export makes to hand the file over) are not a reader leaving
+      const onDoc = (ev) => { if (!ev.isTrusted) return; if (menu && !menu.contains(ev.target) && ev.target !== xo) close(); };
+      const onKey = (ev) => { if (ev.key === "Escape") close(); };
+      const close = () => {
+        if (!menu || menu.hidden) return;
+        menu.hidden = true; xo.setAttribute("aria-expanded", "false");
+        document.removeEventListener("click", onDoc, true); document.removeEventListener("keydown", onKey);
+      };
+      xo.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        if (!menu) buildMenu();
+        if (!menu.hidden) { close(); return; }
+        // one menu open at a time
+        for (const other of document.querySelectorAll(".xp-menu:not([hidden])")) { other.hidden = true; const ob = other.parentElement && other.parentElement.querySelector(".xp-open"); if (ob) ob.setAttribute("aria-expanded", "false"); }
+        menu.hidden = false; xo.setAttribute("aria-expanded", "true");
+        document.addEventListener("click", onDoc, true); document.addEventListener("keydown", onKey);
+      });
+      row.append(xo);
+    }
     // A commentary attached to the whole section gets a line of its own, under
     // the number and the width of the column, carrying the name of the work
     // rather than a letter. It is the section's other text; a letter beside a
@@ -14504,27 +14586,12 @@
     // whole verse away from what it opened, so pressing it put the commentary
     // somewhere the reader was not looking.
     const cSlot = document.createElement("div"); cSlot.className = "c-slot";
-    // The export row sits after the text, not before it: it is the last thing
-    // a reader does with a section, and the first press only tells them what
-    // it would carry.
-    const xpRow = document.createElement("div"); xpRow.className = "xp-row";
-    const xpNote = document.createElement("p"); xpNote.className = "xp-note";
-    const lab = document.createElement("span"); lab.className = "xp-lab"; lab.textContent = "export";
-    xpRow.append(lab);
-    for (const kind of ["he", "en", "both"]) {
-      xpRow.append(exportButton(
-        kind,
-        kind === "he" ? "hebrew" : kind === "en" ? "english" : "hebrew + english",
-        xpNote,
-        async () => ({ bundles: [await gatherSection(sec, s)], title: `${zone.work} ${sec.label || ""}`.trim() }),
-        () => `${slug(zone.work)}-${slug(sec.label || String(secIdx))}-${kind}.md`,
-      ));
-    }
-    xpRow.append(xpNote);
-    // The number, the text, the section's other text where it opens, and the
-    // one act that hands anything over.
-    if (cbar) { const row = document.createElement("div"); row.className = "c-barrow"; row.append(cbar, cworksBtn); s.append(he, row, cworks, cSlot, xpRow); }
-    else s.append(he, xpRow);
+    // The export left this row for the section's pill row (xp-open, above):
+    // the owner, 2026-10-30, "a single button off to the side ... that drops
+    // down"; "put it next to the section title". The number, the text, and
+    // the section's other text where it opens.
+    if (cbar) { const row = document.createElement("div"); row.className = "c-barrow"; row.append(cbar, cworksBtn); s.append(he, row, cworks, cSlot); }
+    else s.append(he);
     };
     // The number is here from the start: it is what the section is called and
     // what an anchor lands on, and it costs almost nothing. Everything else
@@ -14836,33 +14903,8 @@
     handleTimer = setTimeout(placeAllHandles, 120);
   });
 
-  // One export for the whole work, after the last section. It reads every
-  // record the book stands on, which is the honest cost of a book-sized
-  // export, and it says so before it does anything.
-  {
-    const box = document.createElement("div"); box.id = "bookExport";
-    const lab = document.createElement("span"); lab.className = "xp-lab";
-    lab.textContent = `export the whole of ${zone.work}`;
-    const row = document.createElement("div"); row.className = "xp-row";
-    const note = document.createElement("p"); note.className = "xp-note";
-    const gatherBook = async () => {
-      // every section, so every section has to exist
-      materialiseAll();
-      const bundles = [];
-      for (const { sec, el } of sectionEls) bundles.push(await gatherSection(sec, el));
-      return { bundles, title: zone.work };
-    };
-    for (const kind of ["he", "en", "both"]) {
-      row.append(exportButton(
-        kind,
-        kind === "he" ? "hebrew" : kind === "en" ? "english" : "hebrew + english",
-        note, gatherBook, () => `${slug(zone.work)}-${kind}.md`,
-      ));
-    }
-    row.append(note);
-    box.append(lab, row);
-    main.append(box);
-  }
+  // The whole work's export is the last row of every section's export menu
+  // (xp-open); the box after the last section is gone (the owner, 2026-10-30).
 
   // ---- the commentary layer -------------------------------------------
   // A commentary is not a book of its own. It belongs to the sections it

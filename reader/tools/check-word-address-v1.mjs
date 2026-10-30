@@ -119,7 +119,9 @@ const land = async (book, hash) => {
   await p.waitForSelector("section.seg .he-text .wb");
   const text = await p.evaluate(async () => {
     const sec = [...document.querySelectorAll("section.seg")].find((s) => (s.querySelector(".vnum") || {}).textContent === "1:1");
-    const btn = [...sec.querySelectorAll(".xp-row button.xp")].find((x) => x.textContent === "hebrew + english");
+    // the export is one button in the section's pill row that drops a menu (the owner, 2026-10-30)
+    { const xo = sec.querySelector(".seg-row .xp-open"); const m = sec.querySelector(".xp-menu"); if (xo && (!m || m.hidden)) xo.click(); }
+    const btn = [...sec.querySelectorAll(".xp-menu .xp-row button.xp")].find((x) => x.textContent === "hebrew + english");
     let got = null;
     btn.click();
     const t0 = Date.now(); while (Date.now() - t0 < 15000 && !btn.classList.contains("armed")) await new Promise((r) => setTimeout(r, 100));

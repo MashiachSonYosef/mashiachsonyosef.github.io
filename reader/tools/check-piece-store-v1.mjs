@@ -287,12 +287,14 @@ if (X) {
   await land(X.book, X.at); await wholeCut();
   await p.keyboard.press("Escape"); await p.waitForTimeout(300);
   const sec = await p.evaluateHandle((ref) => [...document.querySelectorAll("section.seg")].find((s) => (s.querySelector(".vnum") || {}).textContent === ref), X.ref);
-  const xp = sec ? await sec.$(".xp-row .xp:nth-of-type(2)") : null;
+  // the export is one button in the section's pill row that drops a menu (the owner, 2026-10-30)
+  if (sec) { const xo = await sec.$(".seg-row .xp-open").catch(() => null); if (xo) { await xo.click(); await p.waitForTimeout(300); } }
+  const xp = sec ? await sec.$(".xp-menu .xp-row .xp:nth-of-type(2)") : null;
   let exported = "";
   if (xp) {
     await xp.click();
     await p.waitForFunction((el) => el && /Press again/.test((el.querySelector(".xp-note") || {}).textContent || ""), sec, { timeout: 25000 }).catch(() => {});
-    const armed = await sec.$(".xp-row .xp.armed");
+    const armed = await sec.$(".xp-menu .xp-row .xp.armed");
     const [dl] = await Promise.all([p.waitForEvent("download", { timeout: 25000 }).catch(() => null), armed ? armed.click() : Promise.resolve()]);
     if (dl) exported = readFileSync(await dl.path(), "utf8");
   }
