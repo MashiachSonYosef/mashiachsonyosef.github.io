@@ -710,6 +710,7 @@
   #hud .dict-tab .opt { display: inline-flex; align-items: center; gap: 0.18rem; }
   #hud .dict-tab .opt .r-pills { display: inline-block; }
   #hud .dict-tab .opt .n { font-size: 0.66rem; color: var(--muted); }
+  #hud .dict-tab .opt .n.piece { font-style: italic; }   /* placed only inside longer words */
   #hud .dict-tab .item .lg, #hud .dict-tab td .lg { color: var(--muted); }
   #hud .dict-tab td .lg { font-size: 0.66rem; line-height: 1.2; }
 
@@ -806,6 +807,7 @@
   .vnum { font-size: 0.72rem; color: var(--ink-strong); border: 1px solid var(--gold-dim);
     background: var(--bg); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
   .vnum.at { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  .vnum[data-work]::before { content: attr(data-work) " "; }   /* the work's name before the address */
   .drift-chip { font-size: 0.68rem; color: var(--argaman-dim); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
@@ -2388,12 +2390,15 @@
          default toggling button", a pill in this row). It forgets every pick
          made on this page, and every line is drawn again as it was drawn at
          load. The switches in this row keep their settings. -->
-    <span class="mode-pick"><button type="button" class="blob-btn" id="blanksPill" aria-pressed="false" aria-describedby="blanksState" title="a piece that is a sign alone (the object marker, a preposition, an article the source prints as &lt;obj.&gt;, &lt;to&gt; or [the]) prints its sign instead of standing as a gap">no blanks</button><span class="mode-dir" id="blanksState"></span></span>
+    <!-- NO BLANKS: the source signs switch stood here as a pill from the morning of
+         2026-10-23 to the morning of the 24th; the owner: "if anything we could
+         move it to /toggles/ for now". The switch stays on the rail (?rail=all)
+         and on /toggles/; nothing on this row offers it. -->
     <!-- NO NAMES: the names-lead switch stood here as a pill from the morning of
          2026-10-23 to its evening; the owner: "id remove no names toggle and
          just have it on /toggles/ for now". The switch stays on the rail
          (?rail=all) and on /toggles/; nothing on this row offers it. -->
-    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, blobs off, card numbering on, the concordance hud off, no blanks off) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
+    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, blobs off, card numbering on, the concordance hud off) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
     <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
          a megatoggle at the top that opens all of it, without losing the drop
          down"). It always did open every verse's commentary; it was labelled
@@ -2613,8 +2618,21 @@
     // never offered as a reading. A record that is nothing but a citation
     // keeps it, so no record is emptied.
     const pieces = raw.map((piece) => piece.trim()).filter(Boolean);
-    const readings = pieces.filter((piece) => !/^p{1,2}\.\s*\d/u.test(piece));
-    return { readings: readings.length ? readings : pieces, damaged: false };
+    // A COMMA DIVIDES GLOSSES, NEVER A SENTENCE (the owner, 2026-10-30, of a
+    // name's entry cut at its commas into pills, "which became a separate
+    // kingdom (opposed to Israel) after the death of Solomon" among them: "a
+    // comma in ubs doesnt mean different entrys ... this is clearly just a
+    // sentence"; tools/sense-split-v1.mjs rule 5, the same words). Of a
+    // sense's comma pieces, each of at most four words (the provider's
+    // parentheses not counted) is a reading, as before, and a bare
+    // conjunction between commas is none; where any piece runs longer the
+    // provider wrote prose, and the sense stands whole as a reading beside
+    // its glosses, commas and all. Every reading a sense gave before it
+    // gives still but the clauses; what is new is the sentence, once.
+    const glossShaped = (piece) => { const bare = piece.replace(/\([^()]*\)/gu, " ").trim(); const w = bare.split(/\s+/u).filter(Boolean); return w.length > 0 && w.length <= 4 && !/^(and|or|nor|but)$/iu.test(bare); };
+    const glosses = pieces.every(glossShaped) ? pieces : [...pieces.filter(glossShaped), s.trim()];
+    const readings = glosses.filter((piece) => !/^p{1,2}\.\s*\d/u.test(piece));
+    return { readings: readings.length ? readings : glosses, damaged: false };
   };
   // P · two D records are one record when they carry the same set of
   // readings, however each provider packed them — ";" between senses, ","
@@ -2896,6 +2914,14 @@
   // orders them. Resting: as printed, in the card's own order. Below: a
   // reading carrying a sign follows the plain ones. The patterns are the
   // ledger's own, written before its count.
+  // THE PILLS THAT LEFT THE ROW (no blanks and no names, parked on the rail
+  // and /toggles/ on 2026-10-24): a preference pressed on a pill that is gone
+  // would stand with nothing on the row to show it (the owner, 2026-10-30, of
+  // the first served book's 1:1: "despite moving the name toggle off, it looks
+  // like it still has an impact"). Once, on the first visit after the parking,
+  // both switches go back to their defaults; the rail sets them again at will.
+  const PARKED_KEY = "fh.parked-2026-10-24";
+  const parkedFresh = (() => { try { if (localStorage.getItem(PARKED_KEY)) return false; localStorage.setItem(PARKED_KEY, "1"); return true; } catch { return false; } })();
   const SIGNS_KEY = "fh.signs";
   // OFF BY DEFAULT (the owner, 2026-10-03, on the corpus lane's source-signs
   // ledger: "preselect it off for now"). Off is the ledger's third branch: a
@@ -2907,8 +2933,8 @@
   // every sign byte for byte.
   // exposed for the checks, which ask the page what it drew under rather than assume
   Object.defineProperty(window, "__signs", { get: () => signsPref });
-  let signsPref = (() => { try { const v = localStorage.getItem(SIGNS_KEY); return ["printed", "below", "off"].includes(v) ? v : "off"; } catch { return "off"; } })();
-  let paintBlanks = null;   // the row's "no blanks" pill repaints itself (below, with the readers)
+  let signsPref = (() => { try { if (parkedFresh) { localStorage.removeItem(SIGNS_KEY); return "off"; } const v = localStorage.getItem(SIGNS_KEY); return ["printed", "below", "off"].includes(v) ? v : "off"; } catch { return "off"; } })();
+  let paintBlanks = null;   // no pill in the row since 2026-10-24 (the owner: "move it to /toggles/ for now"); the rail's row is the switch
   // NO NAMES (the owner, 2026-10-23: "no names and no blanks, if i flip them
   // on or off it should just change those select cells"): where a word's line
   // is its name (proper-name-rule-v1), the reading the name displaced is baked
@@ -2916,7 +2942,7 @@
   // back over the line of every word the name still leads, and over those
   // lines alone. Kept on the device; the name leads on a fresh visit.
   const NONAMES_KEY = "fh.nonames";
-  let nonamesPref = (() => { try { return localStorage.getItem(NONAMES_KEY) === "yield" ? "yield" : "lead"; } catch { return "lead"; } })();
+  let nonamesPref = (() => { try { if (parkedFresh) { localStorage.removeItem(NONAMES_KEY); return "lead"; } return localStorage.getItem(NONAMES_KEY) === "yield" ? "yield" : "lead"; } catch { return "lead"; } })();
   let paintNames = null;    // no pill in the row since the evening of 2026-10-23 (the owner: "just have it on /toggles/ for now"); the rail's row is the switch
   Object.defineProperty(window, "__nonames", { get: () => nonamesPref });
   const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
@@ -2990,6 +3016,44 @@
       .then((f) => { SUGGESTED = f && f.book === BOOK && Array.isArray(f.places) ? f : null; window.__suggested = { on: suggested, laid: SUGGESTED ? SUGGESTED.counts.laid : 0 }; return SUGGESTED; }).catch(() => null);
     return suggestedWait;
   };
+  // HEBREW DEFINED BY HEBREW (the owner, on the card of a two-word number:
+  // "the issue is defining hebrew with hebrew"; the corpus lane's answer,
+  // span store v2.1, relay v85, folded by tools/bake-form-of-pills-v1.mjs
+  // into data/form-of-pills-v1.json). A pill of the route catalog whose text
+  // is a pointer to another entry in the source's own words ("singular
+  // construct state form of ...") is classed by the lane, and for a pointer
+  // the lane resolved the target: the target's first English under the same
+  // source. The page prints the English with the pointer beside it, on the
+  // pill and on the line, and never respells anything: the pill's own text
+  // rides on it. The map is fetched once, after the first paint, and the
+  // lines it touches are painted again when it is here. JUDGMENT and
+  // USAGE_NOTE pointers wait on the owner's branch and are not in the map.
+  let FORM_OF = null, formOfWait = null;
+  const formOfReady = () => {
+    if (FORM_OF) return Promise.resolve(FORM_OF);
+    if (!formOfWait) formOfWait = fetch(`${ROOT}data/form-of-pills-v1.json`).then((r) => (r.ok ? r.json() : null))
+      .then((f) => { FORM_OF = f && f.keys ? f : null; window.__formOf = FORM_OF ? { keys: Object.keys(FORM_OF.keys).length, pills: FORM_OF.counts.pills, resolved: FORM_OF.counts.resolved } : null; return FORM_OF; }).catch(() => null);
+    return formOfWait;
+  };
+  const noDot = (t) => String(t).replace(/\.$/u, "");
+  // the pointer entry for a reading: by the route key, then the source where
+  // one is named, then the text's own bytes (a closing period not counted)
+  const formOfFor = (key, m, text) => {
+    const l = FORM_OF && key ? FORM_OF.keys[key] : null;
+    if (!l) return null;
+    const ts = new Set([String(text), noDot(text), Array.isArray(text) ? spanJoin(text) : String(text)].map(noDot));
+    const mids = Array.isArray(m) ? m.map(String) : m ? [String(m)] : [];
+    return l.find((e) => mids.includes(e.m) && ts.has(noDot(e.t))) || l.find((e) => ts.has(noDot(e.t))) || null;
+  };
+  // the target as the source wrote it, cut out of the text at the lane's byte range
+  const formOfTarget = (e) => {
+    if (!e.at) return e.target;
+    try { const b = new TextEncoder().encode(e.t); return new TextDecoder().decode(b.slice(e.at[0], e.at[1])) || e.target; } catch { return e.target; }
+  };
+  // what the line and the pill print for a pointer with a resolution
+  const formOfSays = (e) => (e && e.resolved ? `${e.resolved.text} (${e.relation} ${formOfTarget(e)})` : null);
+  // a line's text, the pointer resolved where the map resolves it
+  const formOfText = (key, text) => { const e = formOfFor(key, null, text); return e && e.resolved ? formOfSays(e) : text; };
   // what the BSB means by a cell that is a sign, and why a place has none, in words
   const SUG_KIND_SAYS = { DASH: "the BSB leaves this word without English", THREE_DOTS: "the neighboring English carries it", VVV: "the neighboring English carries it", EMPTY: "the BSB's cell is empty" };
   const SUG_WHY_SAYS = { UNMATCHED_LETTERS_DIFFER: "the BSB's Hebrew spells this word otherwise", UNMATCHED_ONLY_OURS: "the BSB's Hebrew lacks this word", UNMATCHED_ORDER_DIFFERS: "the BSB's Hebrew orders these words otherwise", AMBIGUOUS: "the BSB's words could pair with this place more than one way", ONE_BSB_WORD_OVER_SEVERAL_PLACES: "one BSB word covers this place with its neighbor" };
@@ -4367,7 +4431,7 @@
     regions.forEach((r, i) => { if (ruledLine(r.k, table) === null) return; const at = ruledAt.get(r.k) || 0; if (best < 0 || at > when) { best = i; when = at; } });
     return best;
   };
-  const ruledLine = (k, table, word) => {
+  const ruledLine0 = (k, table, word) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
     { const set = setRuling(m); if (set) return spanJoin(set.text); }
@@ -4397,6 +4461,9 @@
     if (k.includes("\u05be") && parts.every((x) => x === "—")) return null;
     return parts.join(" + ");
   };
+  // the ruled line, its pointer resolved where the map resolves it (the
+  // ruling stays the route's own bytes; only what is printed changes)
+  const ruledLine = (k, table, word) => { const t = ruledLine0(k, table, word); return t === null ? null : formOfText(k, t); };
 
   /* ── THE ORDER TOGGLES ────────────────────────────────────────────────────
      Where the ink offers more than one reading at one position, the reader
@@ -6769,9 +6836,16 @@
       const bt = new Map(), ra = new Map();
       const file = (g, q) => {
         const t = spanJoin(g.reading);
-        if (!bt.has(t)) bt.set(t, { places: new Map(), srcs: new Set(), first: Infinity, raw: g.reading });
+        if (!bt.has(t)) bt.set(t, { places: new Map(), pieces: new Map(), srcs: new Set(), first: Infinity, raw: g.reading });
         const e = bt.get(t); e.srcs.add(g.src);
         const pk = placeKey(q);
+        // A PIECE OF A LONGER WORD (dictionary store v1.3, the corpus lane's
+        // relay v84; the owner at the first book's 1:1, of a block's reading
+        // counted at no place: "why would sleep be 0 other places"): a place
+        // where these letters stand inside a longer word, read so by a
+        // source, is filed apart from the places where they are the word,
+        // counted apart and listed with the word they stand in
+        if (q.kind === "piece") { const pk2 = `${pk}|${q.pi != null ? q.pi : q.from}`; if (!e.pieces.has(pk2)) e.pieces.set(pk2, q); return; }
         if (!e.places.has(pk)) { e.places.set(pk, q); e.first = Math.min(e.first, at(q)); }
         if (!ra.has(pk)) ra.set(pk, []);
         if (!ra.get(pk).some((r) => r.src === g.src && r.t === t)) ra.get(pk).push({ src: g.src, t });
@@ -6816,6 +6890,7 @@
       return bs.length > 1 && L && L !== key ? L : null;
     };
     const placesOfText = (t) => { const e = byText.get(t); return e ? [...e.places.values()] : []; };
+    const piecesOfText = (t) => { const e = byText.get(t); return e ? [...e.pieces.values()] : []; };
     const countOf = (t) => { const e = byText.get(t); return e ? e.places.size : 0; };
     // THE LANGUAGE OF A PLACE (dictionary store v1.2, Moses's relay
     // FOR-ELIJAH-v79.1, 22 October 2026): every place of a reading carries
@@ -6899,7 +6974,7 @@
     // read there; the verse, read when it comes into view
     const itemOf = (p, t, sayLang) => {
       const it = document.createElement("div"); it.className = "item";
-      const label = `${name(p.book)} ${p.ref}:${p.w_page}${p.side ? ` (${p.side === "k" ? "as written" : "as read"})` : ""}`;
+      const label = `${name(p.book)} ${p.ref}:${p.w_page}${p.side ? ` (${p.side === "k" ? "as written" : "as read"})` : ""}${p.kind === "piece" && p.pointed ? ` \u00b7 in ${p.pointed}` : ""}`;
       if (isHere(p)) { it.append(`here \u00b7 ${label}`); }
       else {
         const a = document.createElement("a"); a.href = dictHref(p.book, p.ref, p.w_page); a.textContent = label;
@@ -6926,7 +7001,8 @@
     const PAGE = 50;
     const placesBox = (t) => {
       const box = document.createElement("div");
-      const list = placesOfText(t).sort((a, b) => (isHere(b) - isHere(a)) || at(a) - at(b));
+      // the word's places first, then the places where the letters stand inside a longer word
+      const list = [...placesOfText(t).sort((a, b) => (isHere(b) - isHere(a)) || at(a) - at(b)), ...piecesOfText(t).sort((a, b) => (isHere(b) - isHere(a)) || at(a) - at(b))];
       const divided = langsOf(list).length > 1;
       const more = document.createElement("button"); more.type = "button"; more.className = "dd more";
       let shown = 0;
@@ -6961,8 +7037,11 @@
       if (onCard) b.setAttribute("aria-pressed", pressed); else b.classList.add("off-card");
       b.addEventListener("click", (e) => { e.stopPropagation(); pick(); });
       o.append(ps);
-      const n = countOf(t);
-      if (n) { const c = document.createElement("span"); c.className = "n"; c.textContent = String(n); const lg = langLabel(placesOfText(t)); c.title = `${lg ? `${lg} \u00b7 ` : ""}${n} location${n === 1 ? "" : "s"}`; o.append(c); }
+      const n = countOf(t), np = piecesOfText(t).length;
+      if (n) { const c = document.createElement("span"); c.className = "n"; c.textContent = String(n); const lg = langLabel(placesOfText(t)); c.title = `${lg ? `${lg} \u00b7 ` : ""}${n} location${n === 1 ? "" : "s"}${np ? ` \u00b7 ${np} in longer words` : ""}`; o.append(c); }
+      // read so only inside longer words (dictionary store v1.3): the count
+      // of those words, said to be that, rather than no count at all
+      else if (np) { const c = document.createElement("span"); c.className = "n piece"; c.textContent = String(np); const lg = langLabel(piecesOfText(t)); c.title = `${lg ? `${lg} \u00b7 ` : ""}${np} in longer words, as a word nowhere`; o.append(c); }
       return o;
     };
     // THE DROPDOWN: the card's bands, its notes, every pill of the block it
@@ -7111,7 +7190,7 @@
         focusBack(fk, null, null);
         return;
       }
-      const places = placesOfText(t);
+      const places = placesOfText(t), pieces = piecesOfText(t);
       const tr = document.createElement("tr"); tr.className = places.some(isHere) ? "pick here" : "pick";
       const he = document.createElement("td"); he.className = "he";
       const blk = hud.querySelector(':scope > .rows .b-cell .s-pills button[aria-pressed="true"]');
@@ -7146,13 +7225,13 @@
         } else rd.append(pills, cp ? whoOfPill(cp) : whoOfStore(t));
       } else rd.append(pills, cp ? whoOfPill(cp) : whoOfStore(t));
       const n = document.createElement("td");
-      const label = bl && blockFailed.has(bl) ? "the dictionary store did not answer; press the block again" : `${places.length} location${places.length === 1 ? "" : "s"}`;
+      const label = bl && blockFailed.has(bl) ? "the dictionary store did not answer; press the block again" : `${places.length} location${places.length === 1 ? "" : "s"}${pieces.length ? ` \u00b7 ${pieces.length} in longer words` : ""}`;
       const where = bl && !extra ? `where ${blk ? blk.textContent : bl} stands as a word, read so` : "";
       // the language under the count: "Hebrew", or "Hebrew 58 \u00b7 Aramaic 3"
       // where the places divide; the count's hover says both in one breath
       const lg = langLabel(places);
       let nb = null;
-      if (places.length) {
+      if (places.length || pieces.length) {
         nb = document.createElement("button"); nb.type = "button"; nb.className = "dd"; nb.textContent = label; nb.setAttribute("aria-expanded", String(open === "places"));
         nb.addEventListener("click", (e) => { e.stopPropagation(); open = open === "places" ? null : "places"; paint("dd"); });
         n.append(nb);
@@ -7161,7 +7240,7 @@
       n.title = [lg ? `${lg} \u00b7 ${label}` : "", where].filter(Boolean).join("; ");
       tr.append(he, rd, n);
       if (open === "reads") { sub.classList.add("reads"); cell.append(menuOf()); }
-      else if (open === "places" && places.length) cell.append(placesBox(t));
+      else if (open === "places" && (places.length || pieces.length)) cell.append(placesBox(t));
       else sub.hidden = true;
       body.replaceChildren(tr, sub);
       // a pick that closes the dropdown shows its row from the top
@@ -7836,7 +7915,7 @@
     // lacks: the row says it is asking, and says absence only once it knows
     const pendingNow = () => !setWhole && cover.some((c) => !picked.get(c.surface) && !cache.has(poolKey(c.surface)) && !(bin.gloss && bin.gloss[c.surface]));
     // what the open cover reads: the set whole, or its blocks joined
-    const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c) => textOfCell(c.surface)).join(" + "));
+    const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c) => formOfText(c.surface, textOfCell(c.surface))).join(" + "));
     // and the chip of what it reads: the set's own source, or each block's
     const coverChip = () => {
       let rs = setWhole ? (placeSet.rs.length ? placeSet.rs : null) : [];
@@ -8827,6 +8906,10 @@
       const makePill = (route) => {
         const btn = document.createElement("button"); btn.type = "button";
         btn.textContent = spanJoin(route.text);
+        // HEBREW DEFINED BY HEBREW: a pointer pill prints the target's English
+        // with the pointer beside it (the owner: "twelve (feminine of ...)");
+        // its own text rides on the pill, for a check and for the eye
+        { const fo = formOfFor(surface, route.records.map((r) => r[3]), route.text); if (fo && fo.resolved) { btn.dataset.pointer = spanJoin(route.text); btn.textContent = formOfSays(fo); } }
         // who carries it, on the pill and exposed, so a check can ask the
         // page whether a switched-off source still stands behind a reading
         btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
@@ -11365,6 +11448,20 @@
         else delete zone.gloss_m[k];
       }
     }
+    // HEBREW DEFINED BY HEBREW: a lead that is a pointer to another entry in
+    // the source's own words prints the target's English with the pointer
+    // beside it, once the map is here; its M stands (the resolution is a row
+    // of the same source under the target key). A key the map first touches
+    // joins the base, so every later fit restores it before laying anything
+    if (FORM_OF) for (const k in zone.gloss) {
+      const m = zone.gloss_m ? zone.gloss_m[k] : undefined;
+      // the lead's sources are its record's "by" list (source ids); the
+      // record itself is no id and matches no pointer
+      const fo = formOfFor(k, m && m.by, zone.gloss[k]);
+      if (!fo || !fo.resolved) continue;
+      if (!(k in GLOSS_BASE)) { GLOSS_BASE[k] = zone.gloss[k]; GLOSS_M_BASE[k] = m; }
+      zone.gloss[k] = formOfSays(fo);
+    }
   };
 
   // A LINE THE REPAINT WOULD PAINT AS IT STANDS IS LEFT STANDING, with its
@@ -12392,24 +12489,11 @@
     if (!hud.hidden && activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
   });
   paintDict();
-  // THE NO-BLANKS PILL (the owner, 2026-10-23: "our next 2 toggles for easy
-  // wins could be: 'no names' and 'no blanks'"): the source signs switch,
-  // promoted to the row. On, a piece that is a sign alone prints its sign
-  // (<obj.>, <to>, [the]) where the line had kept its place as a gap (the
-  // owner, 2026-10-16: "rather than leave stuff out"); off, the gaps stand
-  // as before. The rail's row is the same switch; its third position (the
-  // signs after plain readings) is reached there alone, and the pill says
-  // so while it stands there.
-  const blanksPill = document.getElementById("blanksPill"), blanksState = document.getElementById("blanksState");
+  // NO BLANKS: no pill in the row (the owner, 2026-10-24: "dont overworry about
+  // the no blanks toggle if anything we could move it to /toggles/ for now").
+  // The rail's row is the switch; reset still puts it back to off.
   const signsSwitch = TOGGLES.find((t) => t.id === "signs");
-  paintBlanks = () => {
-    const on = signsPref === "printed";
-    blanksPill.classList.toggle("on", on); blanksPill.setAttribute("aria-pressed", String(on));
-    blanksState.textContent = signsPref === "below" ? "signs after plain readings" : "";
-  };
   const chooseBlanks = (id) => { signsSwitch.set(id); if (document.getElementById("railRows")) railSwitch(); };
-  blanksPill.addEventListener("click", () => chooseBlanks(signsPref === "printed" ? "off" : "printed"));
-  paintBlanks();
   // NO NAMES: no pill in the row (the owner, the evening of 2026-10-23: "id
   // remove no names toggle and just have it on /toggles/ for now"). The
   // rail's row is the switch; reset still puts it back to "the name leads".
@@ -12565,8 +12649,13 @@
         const { v } = await dictKey(L);
         const books = await dictBooks();
         const key = (q) => { const i = books.order.indexOf(q.book); return [i < 0 ? 1e9 : i, ...String(q.ref).split(":").map(Number), q.w_page]; };
-        const all = [];
-        for (const g of (v && v.readings) || []) for (const q of g.places) all.push(q);
+        // a hit lands where the letters are the word; where they are the
+        // word nowhere (dictionary store v1.3 places letters inside longer
+        // words too), it lands on the first longer word that holds them
+        const every = [];
+        for (const g of (v && v.readings) || []) for (const q of g.places) every.push(q);
+        const asWord = every.filter((q) => q.kind !== "piece");
+        const all = asWord.length ? asWord : every;
         all.sort((a, b) => { const x = key(a), y = key(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2] || x[3] - y[3]; });
         // an English hit lands where a source reads it so, where one does
         const readSo = read ? new Set(((v && v.readings) || []).filter((g) => sFold(spanJoin(g.reading)) === read).flatMap((g) => g.places)) : null;
@@ -12649,7 +12738,7 @@
             try {
               const { v } = await dictKey(L);
               const n = new Map();
-              for (const g of (v && v.readings) || []) { const t = spanJoin(g.reading); n.set(t, (n.get(t) || 0) + g.places.length); }
+              for (const g of (v && v.readings) || []) { const t = spanJoin(g.reading); n.set(t, (n.get(t) || 0) + g.places.filter((q) => q.kind !== "piece").length); }
               reads = [...n].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([t]) => t).join(" \u00b7 ");
             } catch { /* the hit still opens */ }
             if (my !== seq) return;
@@ -13573,6 +13662,12 @@
     secIdx += 1;
     const row = document.createElement("div"); row.className = "seg-row";
     const v = document.createElement("span"); v.className = "vnum"; v.textContent = sec.label || "";
+    // THE WORK'S NAME ON EVERY SECTION PILL (the owner, 2026-10-30: "add the
+    // common force read name only such as Isaiah to every section such as
+    // section 1:1 goes from '1:1' to 'Isaiah 1:1'"): the name the zone
+    // carries, drawn before the numbers by the style (data-work), so the
+    // pill's own text stays the address; a named locator keeps its own shape
+    if (sec.label && !NAMED_SHAPE && zone.work) v.dataset.work = zone.work;
     const parts = String(sec.label || "").split(":");
     // a named locator's numbers are the sealed tail's own, not this node's
     // chapter and section, so it is read as it stands
@@ -14648,6 +14743,11 @@
   repaintGlossOrder();
   defSwitch();
   if (paintNames) paintNames();
+  // HEBREW DEFINED BY HEBREW: the map comes after the first paint, and the
+  // lines it resolves are painted again when it is here (the owner's rule:
+  // never lead a line or a card with a reading that is only Hebrew)
+  { const later = window.requestIdleCallback || ((f) => setTimeout(f, 300));
+    later(() => formOfReady().then((f) => { if (!f) return; applyGlossOrder(defOrder); repaintGlossOrder(); if (redrawReadings) redrawReadings(); })); }
   // where the arrival landed, at which line, in which chapter, and whether
   // on the kept place: THE READING PLACE, below, works from these
   let landedEl = null, landedLine = 0, landedCh = "", landedKept = false;

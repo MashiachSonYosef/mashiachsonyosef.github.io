@@ -1,4 +1,4 @@
-// sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates
+// sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence (v2: a comma outside the provider's parentheses separates)
 //
 // A provider writes a route's English as one field. Some of those fields hold
 // one reading; some hold several, divided by commas; and some hold one reading
@@ -27,8 +27,36 @@
 // carry an inserted ")" — `be(-come), accomplished, committed, like)` where
 // the provider wrote `be(-come, accomplished, committed, like)`. A text that
 // cannot balance is a text something has already edited.
+//
+//   5. A comma divides glosses, never a sentence (the owner, 2026-10-30, of
+//      Judah at the first served book's 1:1 word 8, where "founder of one of
+//      the tribes of Israel, which became a separate kingdom (opposed to
+//      Israel) after the death of Solomon, and, after the exile, a separate
+//      administrative district" had been cut at its commas into pills: "a
+//      comma in ubs doesnt mean different entrys ... this is clearly just a
+//      sentence"). Of a field's comma pieces, each piece of at most four
+//      words (the provider's parentheses not counted: "Bashan (often with
+//      the article)" is one word) is a reading, as before; a bare
+//      conjunction between commas (and, or, nor, but) is none. Where any
+//      piece runs longer the provider wrote prose there, and the field
+//      stands whole as a reading beside its glosses, commas and all: "which
+//      became a separate kingdom (opposed to Israel) after the death of
+//      Solomon" is no reading, the sentence it belongs to is. Every reading
+//      a field gave before, it gives still but the clauses; what is new is
+//      the sentence itself, once. Measured on one book before the rule was
+//      set: no line's lead moves (the alternatives, keeping only a field's
+//      opening glosses, moved a lead per book, "lest" to "angle" among them).
 
-export const RULE_ID = "sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates";
+export const RULE_ID = "sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence";
+export const BARE_CONJUNCTION = /^(and|or|nor|but)$/iu;
+export const GLOSS_WORDS_MOST = 4;
+/** True when a comma-piece is shaped like a gloss and not like a clause. */
+export const glossShaped = (piece) => {
+  // the provider's parentheses are notation, not words: "Bashan (often with the article)" is one word
+  const bare = String(piece).replace(/\([^()]*\)/gu, " ").trim();
+  const words = bare.split(/\s+/u).filter(Boolean);
+  return words.length > 0 && words.length <= GLOSS_WORDS_MOST && !BARE_CONJUNCTION.test(bare);
+};
 
 /** Where the parentheses stop balancing, or -1 if they balance. */
 export const unbalancedAt = (text) => {
@@ -68,6 +96,12 @@ export const senseSplit = (text) => {
   if (raw.join(",") !== s) {
     throw new Error(`${RULE_ID}: the pieces do not rejoin to the field they came from`);
   }
-  const readings = raw.map((p) => p.trim()).filter(Boolean);
+  const pieces = raw.map((p) => p.trim()).filter(Boolean);
+  // rule 5: one piece shaped like a clause and the field is one reading, led
+  // by the gloss it opens on where the first piece is one
+  // rule 5: the glosses stay readings; a clause among them makes the whole
+  // field a reading too, once, in their place
+  const whole = s.trim();
+  const readings = pieces.every(glossShaped) ? pieces : [...pieces.filter(glossShaped), whole];
   return { readings, whole: readings.length <= 1, damaged: false, at: -1 };
 };

@@ -15,7 +15,7 @@
 // maintains the corpus and should not be silently absorbed here.
 //
 // Reads the artifacts off disk. Takes no URL.
-// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, sense-split-rule-v2-a-comma-outside-the-providers-parentheses-separates
+// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence
 //
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync, createGunzip } from "node:zlib";

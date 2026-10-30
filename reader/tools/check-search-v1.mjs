@@ -102,8 +102,11 @@ const readingSplit = (text) => {
   for (let i = 0; i < s.length; i += 1) { const c = s[i]; if (c === "(") depth += 1; else if (c === ")") depth -= 1; else if (c === "," && depth === 0) { raw.push(s.slice(start, i)); start = i + 1; } }
   raw.push(s.slice(start));
   const pieces = raw.map((x) => x.trim()).filter(Boolean);
-  const readings = pieces.filter((x) => !/^p{1,2}\.\s*\d/u.test(x));
-  return { readings: readings.length ? readings : pieces, damaged: false };
+  // a comma divides glosses, never a sentence (the engine's rule, tools/sense-split-v1.mjs rule 5)
+  const glossShaped = (piece) => { const bare = piece.replace(/\([^()]*\)/gu, " ").trim(); const w = bare.split(/\s+/u).filter(Boolean); return w.length > 0 && w.length <= 4 && !/^(and|or|nor|but)$/iu.test(bare); };
+  const glosses = pieces.every(glossShaped) ? pieces : [...pieces.filter(glossShaped), s.trim()];
+  const readings = glosses.filter((x) => !/^p{1,2}\.\s*\d/u.test(x));
+  return { readings: readings.length ? readings : glosses, damaged: false };
 };
 const isNoDerivs = (key) => /(^|[^a-z])nd([^a-z]|$)/iu.test(String(key || "")) || /noderiv/iu.test(String(key || ""));
 // a ketiv/qere place reads "(ketiv) [qere]": its pointing is the qere's, and
@@ -158,7 +161,10 @@ const loadModel = async (DATA) => {
     for (const [L, v] of Object.entries(shard || {})) for (const g of (v && v.readings) || []) {
       const printed = spanJoin(g.reading), f = fold(printed);
       if (f) sawPrinted(printed, f);
-      for (const p0 of g.places || []) {
+      // the index stands on the places where the letters are the word; a
+      // place inside a longer word (dictionary store v1.3, kind "piece")
+      // is the whole word's and is passed over here as the baker passes it
+      for (const p0 of (g.places || []).filter((p) => p.kind !== "piece")) {
         const q = { book: p0.book, ref: p0.ref, w: p0.w_page, pk: `${p0.book}|${p0.ref}|${p0.w_page}`, pointed: p0.pointed, pt: pointOfPlace(p0.pointed), kq: !!kqOf(p0.pointed) };
         addPlace(L, q);
         if (q.kq) { kq.add(L); const kk = kqOf(p0.pointed); for (const word of [...wordsOf(kk.q), ...wordsOf(kk.k)]) { const kt = letters(word); if (kt && kt !== L) { addPlace(kt, q); kq.add(kt); } } }

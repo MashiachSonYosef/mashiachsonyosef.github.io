@@ -105,7 +105,15 @@ const byLetters = new Map();   // letters -> Map(place key -> place)
 const stand = (L, q) => { if (!byLetters.has(L)) byLetters.set(L, new Map()); byLetters.get(L).set(placeKey(q), q); };
 const kqSeen = new Set(), kqAdded = { ketiv: 0, qere: 0 };
 const pointedAt = new Map();   // place -> the text the store prints there
-for (const [L, v] of Object.entries(store)) for (const g of v.readings) for (const q of g.places) {
+// A PIECE PLACE (dictionary store v1.3, the corpus lane's relay v84) is a
+// place where the key's letters stand inside a longer word; its pointed text
+// is the whole word's, so it says nothing about the key's own pointing and
+// is not where these letters are the word. The index stands on word places,
+// as it did before pieces were placed; the pieces it passed over are counted.
+const wordPlaces = (g) => g.places.filter((q) => q.kind !== "piece");
+let piecePlacesPassedOver = 0;
+for (const [L, v] of Object.entries(store)) for (const g of v.readings) { piecePlacesPassedOver += g.places.length - wordPlaces(g).length; }
+for (const [L, v] of Object.entries(store)) for (const g of v.readings) for (const q of wordPlaces(g)) {
   stand(L, q);
   if (!pointedAt.has(placeKey(q))) pointedAt.set(placeKey(q), q.pointed);
   const kq = kqOf(q.pointed);
@@ -219,7 +227,8 @@ for (const sp of spanBooks) for (const pl of sp.placesList) {
     for (const p of pills(row[1], rix.m_sources[m].licensePosture)) add(joinSpan(p), R, m, null);
   }
 }
-for (const [L, v] of Object.entries(store)) for (const g of v.readings) add(joinSpan(g.reading), L, g.src, g.places);
+// a reading that stands only inside longer words is no reading of the word: it enters the English index nowhere
+for (const [L, v] of Object.entries(store)) for (const g of v.readings) { const wp = wordPlaces(g); if (wp.length) add(joinSpan(g.reading), L, g.src, wp); }
 
 // written beside the served index and put in its place only when whole
 rmSync(TMP, { recursive: true, force: true });
@@ -249,7 +258,7 @@ const index = {
   pointing: "NFD; the letters U+05D0 to U+05EA and the points U+05B0 to U+05BC, U+05BF, U+05C1, U+05C2, U+05C7, in order; cantillation and meteg dropped",
   en_shard_rule: "en/<first two hex of sha256(utf8(folded))>.bin: { folded: [[letters, [source ids], places a source reads exactly these words, { per-place source: its places }]] }",
   from: { dictionary_store_version: dix.store_version, route_store_version: rix.store_version, zone_split_sha256: sha(Buffer.from(String(readingSplit) + String(senseSplit) + String(isNoDerivs))).slice(0, 12) },
-  counts: { letters: he.size, english: en.size, pairs: [...en.values()].reduce((n, m) => n + m.size, 0), route_rows: routeRows, route_pills: pillCount, struck_rows_left_out: struckRows, unnamed_rows_left_out: unnamedRows, other_keys_left_out: otherKeys, kq_places: kqSeen.size, kq_added_to_ketiv_rows: kqAdded.ketiv, kq_added_to_qere_rows: kqAdded.qere, overlay_rows: overlayRows, run_places: spanPlaces, run_rows: spanRows, files: files.length, bytes: files.reduce((n, f) => n + f.bytes, 0) },
+  counts: { letters: he.size, english: en.size, pairs: [...en.values()].reduce((n, m) => n + m.size, 0), route_rows: routeRows, route_pills: pillCount, struck_rows_left_out: struckRows, unnamed_rows_left_out: unnamedRows, other_keys_left_out: otherKeys, kq_places: kqSeen.size, kq_added_to_ketiv_rows: kqAdded.ketiv, kq_added_to_qere_rows: kqAdded.qere, overlay_rows: overlayRows, run_places: spanPlaces, run_rows: spanRows, piece_places_passed_over: piecePlacesPassedOver, files: files.length, bytes: files.reduce((n, f) => n + f.bytes, 0) },
   index_version: sha(Buffer.from(files.map((f) => f.sha256).join("\n"))).slice(0, 12),
   files,
 };

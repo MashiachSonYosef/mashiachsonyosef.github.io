@@ -25,7 +25,10 @@
 //
 //   C0  the pre-strike index against its own shards: a gap at the store's
 //       birth is not a strike's. It is recorded to the row — which batch,
-//       which shards, how many — and it alarms until it is landed or ruled
+//       which shards, how many — and it alarms until it is landed or ruled.
+//       Landed (2026-10-24, tools/apply-route-delta-v1.mjs from the corpus
+//       lane's relay v83): the witness carries the landing beside the gap,
+//       and C0 asks that held plus landed is what the index declared
 //   C1  the whole strike closes: rows the strike was handed − rows the strike
 //       struck = rows served. A residue is rows lost with no rule behind
 //       them, and it is named in routes, not in percentages
@@ -43,6 +46,15 @@
 //
 // Where a number the arithmetic needs is not on the shelf, this says so and
 // does not guess. It never invents a "before" from the store in front of it.
+//
+// A LANDING IS THE ONE MOVE THAT ADDS ROWS. The strikes only remove, so until
+// 2026-10-24 every term here was a subtraction. The 88 shards' delta put 430
+// rows back that the pre-strike shards never held; the witness records it
+// (why_they_differ.landed_since), the index names the move
+// (route_delta_landings, store_version_history), and the receipt beside the
+// store names every row. The arithmetic carries it as one term: what the
+// strike was handed, less what the strikes struck, plus what landed, is what
+// is served. The three records must agree on the term before it is used.
 //
 // Run: node tools/check-store-continuity-v1.mjs [--store data/route-store]
 //        [--pre <a pre-strike store index.json, for C1/C2/C5>]
@@ -81,6 +93,26 @@ else if (rec && rec.cumulative && rec.cumulative.routes_before !== undefined) { 
 const handed = heldRoutes ?? preRoutes;
 const handedFrom = heldRoutes === null ? preFrom : `the shards beside ${preFrom}`;
 
+// the landing, from the witness, agreed by the receipt it names and the index
+const landing = (witnessDoc && witnessDoc.why_they_differ && witnessDoc.why_they_differ.landed_since) || null;
+let landedNet = 0;
+if (landing) {
+  const receiptPath = landing.receipt && existsSync(landing.receipt) ? landing.receipt : null;
+  const receipt = receiptPath ? JSON.parse(readFileSync(receiptPath, "utf8")) : null;
+  const receiptNet = receipt ? num(receipt.counts && receipt.counts.rows_net) : null;
+  const indexLanding = ((index.route_delta_landings || {}).landings || []).find((l) => l.store_version && l.store_version.now === (landing.store_version || {}).now) || null;
+  const indexNet = indexLanding ? num(indexLanding.rows_net) : null;
+  const historyNames = (index.store_version_history || []).some((h) => h.now === (landing.store_version || {}).now);
+  const agree = receiptNet !== null && receiptNet === num(landing.routes) && indexNet === num(landing.routes) && historyNames;
+  check("C0a the landing the witness records is the one the receipt beside the store and the index name, to the row",
+    agree,
+    `witness ${n(landing.routes)} · receipt ${receipt ? n(receiptNet) : "MISSING " + (landing.receipt || "(unnamed)")} · index ${indexLanding ? n(indexNet) : "names no landing to " + ((landing.store_version || {}).now || "—")}${historyNames ? "" : " · store_version_history does not name the move"}`);
+  if (agree) landedNet = num(landing.routes);
+  console.log(`  landing on the shelf: ${n(landing.routes)} routes from ${landing.relay || "an unnamed relay"} on ${landing.on || "—"} · store ${(landing.store_version || {}).was || "—"} -> ${(landing.store_version || {}).now || "—"}`);
+}
+// the rows served before the landing: what the strikes' arithmetic must meet
+const served0 = () => served - landedNet;
+
 const served = num(index.counts && index.counts.routes);
 // A SECOND KIND OF STRIKE (2026-10-17): a source struck for its licence
 // posture, by tools/strike-source-v1.mjs, with its own cumulative record
@@ -94,23 +126,27 @@ const admissionStruck = num(rec && rec.cumulative && rec.cumulative.routes_struc
 const cumStruck = admissionStruck === null ? null : admissionStruck + licenceStruck;
 if (ss) console.log(`  licence strike on the shelf: ${(ss.struck_sources || []).map((s) => s.m_id).join(", ")} · ${n(licenceStruck)} routes in ${(ss.rounds || []).length} round(s)`);
 
-// C0 — the pre-strike index against the shards that shipped with it
+// C0 — the pre-strike index against the shards that shipped with it, plus
+// what has landed since
 if (preRoutes !== null && heldRoutes !== null && heldRoutes !== preRoutes) {
   const gap = preRoutes - heldRoutes, why = (witnessDoc && witnessDoc.why_they_differ) || {}, g = why.the_gap || {};
   const recorded = num(g.routes) === gap;
+  const closed = recorded && landedNet === gap && !!why.ruled;
   check("C0  the rows the pre-strike index declared that its shards never held are recorded to the row, and landed or ruled",
-    recorded && !!why.ruled,
-    `${n(preRoutes)} declared, ${n(heldRoutes)} held: ${n(gap)} rows${recorded ? ` · ${why.never_landed || "recorded"}` : " · NO RECORD OF WHERE THEY WENT"}${recorded && !why.ruled ? " · OWED: not landed, not ruled" : ""}`);
+    closed,
+    closed
+      ? `${n(preRoutes)} declared, ${n(heldRoutes)} held + ${n(landedNet)} landed = ${n(heldRoutes + landedNet)}: declared equals held · landed ${landing.on} from ${landing.relay}`
+      : `${n(preRoutes)} declared, ${n(heldRoutes)} held${landedNet ? ` + ${n(landedNet)} landed = ${n(heldRoutes + landedNet)}` : ""}: ${n(gap - landedNet)} rows${recorded ? ` · ${why.never_landed || "recorded"}` : " · NO RECORD OF WHERE THEY WENT"}${recorded && !why.ruled ? " · OWED: not landed, not ruled" : ""}${landedNet && landedNet !== gap ? ` · the landing brought ${n(landedNet)} of ${n(gap)}` : ""}`);
 }
 
 // C1 — the whole strike closes
 if (preRoutes === null) note("C1  the whole strike closes: rows before − rows struck = rows served",
   `no pre-strike total on the shelf, and this refuses to take one from the store under test — pass --pre <a pre-strike index.json>`);
 else {
-  const residue = handed - (cumStruck ?? 0) - served;
-  check("C1  the whole strike closes: rows the strike was handed, less the rows it struck, are the rows served",
+  const residue = handed - (cumStruck ?? 0) + landedNet - served;
+  check("C1  the whole strike closes: rows the strike was handed, less the rows it struck, plus the rows that landed since, are the rows served",
     residue === 0,
-    `${n(handed)} handed (${handedFrom}) − ${n(cumStruck)} struck = ${n(handed - (cumStruck ?? 0))}, served ${n(served)}${residue === 0 ? "" : ` · ${n(Math.abs(residue))} row${Math.abs(residue) === 1 ? "" : "s"} ${residue > 0 ? "LOST WITH NO RULE BEHIND THEM" : "MORE THAN THE ARITHMETIC ALLOWS"}`}`);
+    `${n(handed)} handed (${handedFrom}) − ${n(cumStruck)} struck${landedNet ? ` + ${n(landedNet)} landed` : ""} = ${n(handed - (cumStruck ?? 0) + landedNet)}, served ${n(served)}${residue === 0 ? "" : ` · ${n(Math.abs(residue))} row${Math.abs(residue) === 1 ? "" : "s"} ${residue > 0 ? "LOST WITH NO RULE BEHIND THEM" : "MORE THAN THE ARITHMETIC ALLOWS"}`}`);
 }
 
 // C2 — round by round
@@ -132,14 +168,14 @@ else {
   check("C2  the last round was handed what the rounds before it left, not a shorter copy",
     gap === 0,
     `rounds before it struck ${n(earlierStruck)} of ${n(handed)}, leaving ${n(shouldBe)}; the last round records ${n(lastBefore)} in front of it${gap === 0 ? "" : ` · SHORT BY ${n(gap)} — the loss is at or before this round's input`}`);
-  check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served + licenceStruck,
-    `${n(lastBefore)} − ${n(lastStruck)} = ${n(lastBefore - (lastStruck ?? 0))}, served ${n(served)}${licenceStruck ? ` + ${n(licenceStruck)} the licence strike took since` : ""}`);
+  check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served0() + licenceStruck,
+    `${n(lastBefore)} − ${n(lastStruck)} = ${n(lastBefore - (lastStruck ?? 0))}, served ${n(served)}${landedNet ? ` − ${n(landedNet)} landed since` : ""}${licenceStruck ? ` + ${n(licenceStruck)} the licence strike took since` : ""}`);
   // and the licence strike's own rounds, each handed what stood before it
   if (ss && Array.isArray(ss.rounds) && ss.rounds.length) {
     let stood = lastBefore - (lastStruck ?? 0), ok = true;
     for (const r of ss.rounds) { if (num(r.counts && r.counts.routes_before) !== stood) ok = false; stood -= num(r.counts && r.counts.routes_struck) || 0; }
-    check("  and each licence round was handed what the round before it left, down to the rows served", ok && stood === served,
-      `${ss.rounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)} (${(r.struck_m_ids || []).join(",")})`).join(" → ")} = ${n(stood)}, served ${n(served)}`);
+    check("  and each licence round was handed what the round before it left, down to the rows served", ok && stood === served0(),
+      `${ss.rounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)} (${(r.struck_m_ids || []).join(",")})`).join(" → ")} = ${n(stood)}${landedNet ? ` + ${n(landedNet)} landed = ${n(stood + landedNet)}` : ""}, served ${n(served)}`);
   }
 }
 

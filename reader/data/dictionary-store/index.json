@@ -1,11 +1,11 @@
 {
  "rule": "dictionary-store-serve-v1-the-lanes-shards-byte-for-byte-a-card-reads-one-key",
  "from": {
-  "relay": "FOR-ELIJAH-v79.1.md",
-  "store": "dictionary store v1.2",
-  "date": "22 October 2026 AD",
-  "build": "corpus-lane-builds/moses-dictionary-store-v1/v1.2/build/dictionary-store-v1.2/serve/shards/",
-  "version_of": "dictionary store v1.1"
+  "relay": "FOR-ELIJAH-v84.md",
+  "store": "dictionary store v1.3",
+  "date": "23 October 2026 AD",
+  "build": "corpus-lane-builds/moses-dictionary-store-v1/v1.3/build/dictionary-store-v1.3/serve/shards/",
+  "version_of": "dictionary store v1.2"
  },
  "standing_rule": "SHARE THE RECORD, NEVER SHARE THE CLAIM",
  "letters_key": "LETTERS KEY v1.1: take the string's canonical decomposition (Unicode NFD), then keep only U+05D0–U+05EA, in order. Applies to every headword, every ink word, every key, every index, every shard.",
@@ -13,7 +13,7 @@
  "page_numbering": "PAGE NUMBERING: the word number the page uses — the served zones' numbering (each Tanakh book's zone from https://fireandhail.com/reader/data/zones/<name>.bin, named in https://fireandhail.com/reader/data/zone-store-v1.json; decode the format as the served engine https://fireandhail.com/reader/engine-d60445a76ff9.js reads it): marks not counted, each maqaf piece a word. w_page is that number; w_lane is the word numbering ledger's / piece store v2's w; the map (book, ref, w_lane) → w_page is a file.",
  "served_version": "7310e81ba017",
  "shard_rule": "the first two hex of the lowercase sha256 of the key's UTF-8 bytes",
- "key_rule": "every non-empty LETTERS KEY v1.1 of a headword of a record, and every letters of a line of index/readings-by-letters.jsonl; no key \"\"",
+ "key_rule": "every non-empty LETTERS KEY v1.1 of a headword of a record, and every letters of a line of index/readings-by-letters.jsonl; no key \"\", and every letters of a line of index/readings-by-letters.jsonl that only piece places bring",
  "language_at_a_place": "LANGUAGE AT A PLACE, per source: TAHOT — read from the morphology column of the word's own line by the file's legend; MACULA — the lang column of the word's own row(s); value HEBREW | ARAMAIC | the source's own value if neither; a place where the two sources differ is listed [places].",
  "language_rules": {
   "tahot": "THE TAHOT RULE: the word's line is the line the piece store record names (file, line, 1-based, LF-split, a trailing CR removed); its column 6 (1-based; \"Grammar\" of the header line) is the morphology; the value is HEBREW when the column's first character is \"H\", ARAMAIC when it is \"A\", else the column's own bytes as the value. The line's own bytes are asserted equal to the record's D.",
@@ -28,7 +28,116 @@
   ],
   "rule": "RULE-dictionary-store-v1.2.md clause 2"
  },
- "store_version": "cedd7c44cf95",
+ "pieces_in_the_concordance": {
+  "definitions": [
+   "A PIECE PLACE = one served place row whose kind is DIVISION or RUN (cut 1) — every such row in the 39 served books, at its book, ref, w (the served place key), src, reading side (form | qere | ketiv), pi, from, to. WHOLE_WORD rows are the word itself and are not piece places. State in the RULE how many served rows of each kind exist [rows] and how many are piece places.",
+   "THE PIECE LETTERS = the LETTERS KEY v1.1 of the ink word's letters from..to (0-based letters, both ends included, as the served row counts them — at Daniel 1:1 the word בשנת: ב is 0..0, שנת is 1..3). Prefix pieces (ב ל ה ו כ מ ש and any other one-letter piece) stand under their one-letter key. A ketiv/qere side keeps v1.2's side rule (q or k).",
+   "THE PIECE READING = the served row's english, joined as the page joins (the engine lines you quote), a closing period dropped as the page drops it, surrounding white space removed only if the page removes it, lowercased no further than the source prints it. A row whose english is null or empty gives no reading: it is counted [piece places] as NO_ENGLISH by src and kind, and listed in outputs/no-english.jsonl (those are Elijah's ask 4, handled by another strand); it adds no place.",
+   "A PIECE PLACE ENTRY in a reading row's places = { book, ref, w_page, pointed, (side), lang, kind: \"piece\", from, to, pi, src_kind } where pointed is the WHOLE page word's surface byte for byte (v1.2's meaning), lang is LANGUAGE AT A PLACE by v1.2's rules from this src's own line for this word, src_kind is DIVISION or RUN. A WORD PLACE ENTRY keeps every v1.2 field and value byte for byte and gains kind: \"word\" as its LAST field — strip kind and each word place entry is byte-equal to v1.2's.",
+   "A READING ROW keeps v1.2's letters, src, reading, count, langs, places; count and langs keep v1.2's meaning (WORD places only, so every v1.2 row's count and langs are unchanged); it gains pieces (the number of piece place entries [places]) and piece_langs (as langs, over piece places). A reading that occurs only as a piece under a key is a new row with count 0, langs {}, pieces ≥ 1. Places sort by the lane's p, then side, then kind (word before piece), then from.",
+   "INDEX COUNTS (index.json, new block \"by_kind\"): reading rows by kind (word only / piece only / both) [rows]; place entries by kind and src [place entries]; keys that gain piece places they had no word places for [keys]; NO_ENGLISH piece places by src and kind [piece places]."
+  ],
+  "amendments": "- A1 — 23 October 2026 AD — written after the as-first-written copy and its sha file, before any script of this seat was written or run. THE PIECE LETTERS WHERE THE SERVED ROW COUNTS NONE. A1.1 The words changed: clause 1, \"THE PIECE LETTERS = the LETTERS KEY v1.1 of the ink word's letters from..to (0-based letters, both ends included, as the served row counts them\", and I11, \"every piece place of the served store (kind DIVISION or RUN, english non-empty) appears exactly once in the store\". THE CASE (clause 2, the probe): 1,241 piece places carry from and to null (piece store v2's claim `letters` null, as v1 carried it; the page's reader never places them: line 1685 `a !== A`). The served row counts no letters there, so no PIECE LETTERS can be read without minting a range. THE AMENDMENT: a piece place whose from or to is null gives no piece letters: it is counted NO_LETTERS [piece places] by src, kind and reading, listed in `outputs/no-letters.jsonl` ({book, ref, w, w_page, src, kind, reading, pi, english, rid, pointed}), and adds no place; NO_ENGLISH is tested first, so a place both NO_ENGLISH and NO_LETTERS is counted and listed NO_ENGLISH only. I11 now reads \"every piece place of the served store (kind DIVISION or RUN, english non-empty, from and to not null) appears exactly once in the store\". `acceptance.json` reports beside I11 the MISSING that I11 as first written would count (the NO_LETTERS places with an english) as AS_FIRST_WRITTEN_MISSING [piece places] — reported, not a PASS condition. `by_kind` (index.json) and counts.json gain NO_LETTERS by src and kind [piece places]; the relay's COUNTS carries it. A1.2 The words changed: clause 1, \"Places sort by the lane's p, then side, then kind (word before piece), then from.\" THE AMENDMENT: after from, ties are broken by to, then pi, then src_kind (UTF-8 bytes); two entries of one row equal on all of these are counted SORT_TIES [place entries], expected 0. A1.3 A note, no change: the sign rows (served `sign` true: the piece's R is the source's sign token, e.g. TAHOT \"<to>\", \"<obj.>\", MACULA \"(et)\") are DIVISION or RUN rows and so piece places by clause 1; the page's card skips them (line 1685 `sign`), while the ask's A2 names one (\"<to>\" at Joshua 3:3). They are placed like every piece place and counted apart by sign [place entries].",
+  "page_join": {
+   "engine": "engine-77fd88cca63c.js",
+   "line": 1644,
+   "code": "  const spanJoin = (t) => String(t).split(\"/\").map((x) => x.trim()).filter(Boolean).join(\" + \").replace(/\\.$/, \"\");",
+   "also": "engine-f8e722274c0f.js line 1629, the same bytes"
+  },
+  "side_rule": "J2. THE PIECE LETTERS, by v1.2's side rule (v1.1's readings seat X3 with its A1): reading form → the LETTERS KEY v1.1 of s_page; reading qere or ketiv at a page word whose `FETCH/zones-words/<book>.jsonl` line (same book, ref, w_page) has `kq` true and whose s_page splits (exactly one \"(…)\" part and one \"[…]\" part, nothing else outside them but white space and U+05BE) → the LETTERS KEY of the \"[…]\" part (qere, side \"q\") or the \"(…)\" part (ketiv, side \"k\"); else the LETTERS KEY of the whole s_page, side set all the same (KQ_NOT_SPLIT, counted [piece places]). The piece letters = the code points from..to of that LETTERS KEY (both ends included). to beyond the key's last letter, or from > to, is a break (LETTERS_OUT_OF_RANGE, listed); a piece letters \"\" is a break.",
+  "lang_rule": "J3. LANGUAGE AT A PLACE of a piece: the record the row's rid names in `PS2/records/<src>/<book>.jsonl`; its (`file`, `line`) names the source line; THE TAHOT RULE (column 6, first character H → HEBREW, A → ARAMAIC, else the column's own bytes) or THE MACULA RULE (column 17, H → HEBREW, A → ARAMAIC, else the column's own bytes), the line's bytes asserted equal to the record's D (a difference stops the seat). A rid with no record there is a break (NO_SOURCE_LINE, listed). Beside it, for every piece place whose word has a v1.2 lang for the same (book, p, src, reading kind) (v1.2's J3, read from v1.2's place entries of that src at that place and side), a piece lang that differs is counted PIECE_LANG_DIFFERS_FROM_WORD [piece places] and listed in `outputs/piece-lang-differs.jsonl` — reported, not a break.",
+  "place_rule": "J1. A piece place's word: the v1.1 map line `V11/map/<book>.jsonl` whose (ref, w_lane) equals the place key's (chapter:verse, w); exactly one or the seat stops (MAP_AMBIGUOUS; none → NO_MAP_LINE, a break, listed). It gives p, w_page and s_page. pointed = s_page byte for byte.",
+  "rule": "RULE-dictionary-store-v1.3.md"
+ },
+ "by_kind": {
+  "rows": {
+   "word_only": 181241,
+   "piece_only": 43371,
+   "both": 14100,
+   "axis": "rows"
+  },
+  "place_entries": {
+   "word": {
+    "macula": 463971,
+    "tahot": 304301
+   },
+   "piece": {
+    "macula": 304774,
+    "tahot": 306767
+   },
+   "axis": "place entries"
+  },
+  "keys_that_gain_piece_places_they_had_no_word_places_for": {
+   "value": 5059,
+   "axis": "keys"
+  },
+  "no_english": {
+   "value": {
+    "macula": {
+     "DIVISION": 2931,
+     "RUN": 4
+    },
+    "tahot": {
+     "DIVISION": 8,
+     "RUN": 5
+    }
+   },
+   "axis": "piece places",
+   "by": "src, kind"
+  },
+  "no_letters": {
+   "value": {
+    "macula": {
+     "DIVISION": {
+      "qere": 608
+     }
+    },
+    "tahot": {
+     "DIVISION": {
+      "qere": 619
+     }
+    }
+   },
+   "axis": "piece places",
+   "by": "src, kind, reading",
+   "rule": "A1.1"
+  },
+  "joined_empty": {
+   "value": {},
+   "axis": "piece places",
+   "by": "src, kind"
+  },
+  "kq_not_split": {
+   "value": 8,
+   "axis": "piece places"
+  }
+ },
+ "invariants": [
+  "I1. Every record's id is the sha256 of its fields by the recipe, and its rid is the id's first 16 hex characters.",
+  "I2. Every rid a claim or index names resolves to exactly one record, and every byte range lies inside its field on UTF-8 character boundaries.",
+  "I3. No claim carries a record's text: every claim string field is a listed short value, a key, an id or a source's own link word.",
+  "I4. Every served-store row is one served-row claim, and where eq is EQUAL the served route_text and definition_text rebuild byte for byte from the record.",
+  "I5. Every shard key's records all carry that LETTERS KEY v1.1, and every record stands under every LETTERS KEY v1.1 of its headwords.",
+  "I6. Every reading row's places hold exactly those bytes at those places: the page word there is the place's pointed word, and the per-place source gives that exact reading there.",
+  "I7. Every place of every reading row carries lang from its own source's line.",
+  "I8. Every row's langs sums to its count.",
+  "I9. Every shard's readings equal the index's lines for that key.",
+  "I10. No field other than lang and langs differs from v1.1.",
+  "I11. every piece place of the served store (kind DIVISION or RUN, english non-empty, from and to not null) appears exactly once in the store, under its PIECE LETTERS and PIECE READING, with its from/to/pi/src — 0 missing, 0 twice",
+  "I12. every word place entry, kind stripped, is byte-equal to v1.2's, and every v1.2 row's letters, src, reading, count, langs are unchanged",
+  "I13. every shard's readings equal the index lines of that key (v1.2's I9 carried)",
+  "I14. pieces equals the number of piece place entries on every row, and piece_langs sums to pieces",
+  "I15. no claim carries record text beyond the reading strings v1.2 already carries by its own rule (the EXACT READING), and no M20 or TBESH column-8 text anywhere."
+ ],
+ "files_by_reference": {
+  "files": 682,
+  "version_of": "dictionary store v1.2",
+  "strands": {
+   "KEPT": 523,
+   "REBUILT": 159
+  }
+ },
+ "store_version": "cc890b8a7992",
  "m_sources": {
   "M1": {
    "key": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0",
@@ -761,10 +870,15 @@
  },
  "counts": {
   "shards": 256,
-  "keys": 86045,
+  "keys": 86128,
   "records": 345833,
-  "readings": 195341,
-  "places": 768272,
-  "bytes": 58163190
+  "readings": 238712,
+  "places": 1379813,
+  "word_places": 768272,
+  "piece_places": 611541,
+  "readings_with_pieces": 57471,
+  "readings_piece_only": 43371,
+  "keys_piece_only": 83,
+  "bytes": 65775576
  }
 }

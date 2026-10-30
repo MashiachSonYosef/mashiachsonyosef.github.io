@@ -6,10 +6,11 @@
 // and read by the card at one cell's own place. Every place asked of the page
 // is found in the served data, never named here (check-scope-derived S1).
 //   P1  data/piece-store/index.json names PIECE:TAHOT and PIECE:MACULA, each
-//       CC BY 4.0, lists its books, and received what the relay states (its
-//       first line: 778,083 records, 1,296,994 claims; its counts table: per
-//       kind); for each kind, the claims the files serve and the claims the
-//       index's rules withhold add up to the relay's, and no piece of a
+//       CC BY 4.0, lists its books, and received what the relays state (v77's
+//       first line: 778,083 records, 1,296,994 claims; v86, the mend of the
+//       pieces with no English: 15 records new, so 778,098; its counts table:
+//       per kind); for each kind, the claims the files serve and the claims
+//       the index's rules withhold add up to the relay's, and no piece of a
 //       division is withheld as a join
 //   P2  the book files hold exactly the served claims; every claim's rid
 //       names a record in its file; a record is [m, headword, R, year] with
@@ -56,10 +57,12 @@ import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const DIR = "data/piece-store/";
-// what the relay states it handed over: its first line ("records 778,083;
-// claims 1,296,994") and its counts table ("claims, kind WHOLE_WORD |
-// 608,654", DIVISION 615,724, RUN 72,616), and the 39 books of the lane's index
-const RELAY = { claims: 1296994, records: 778083, books: 39, kinds: { WHOLE_WORD: 608654, DIVISION: 615724, RUN: 72616 } };
+// what the relays state they handed over: v77's first line ("records
+// 778,083; claims 1,296,994") and its counts table ("claims, kind WHOLE_WORD
+// | 608,654", DIVISION 615,724, RUN 72,616), the 39 books of the lane's
+// index, and v86's "new records 15" (a mended claim keeps its kind, so the
+// claims and their kinds stand)
+const RELAY = { claims: 1296994, records: 778083 + 15, books: 39, kinds: { WHOLE_WORD: 608654, DIVISION: 615724, RUN: 72616 } };
 const ix = JSON.parse(readFileSync(`${DIR}index.json`, "utf8"));
 const M = ix.m_sources || {};
 const c = ix.counts || {};
@@ -67,7 +70,10 @@ const W = c.withheld || {};
 check("P1 the two PIECE sources, CC BY 4.0", ["PIECE:TAHOT", "PIECE:MACULA"].every((m) => M[m] && M[m].licensePosture === "cc_by_4_0"), Object.keys(M).join(" "));
 check("P1 the relay's claims and records received, its books listed", c.claims_received && c.claims_received.value === RELAY.claims && c.records_received && c.records_received.value === RELAY.records && Array.isArray(ix.books) && ix.books.length === RELAY.books,
   `claims ${c.claims_received && c.claims_received.value} · records ${c.records_received && c.records_received.value} · ${Array.isArray(ix.books) ? ix.books.length : "no"} books listed`);
-const files = readdirSync(DIR).filter((f) => f.endsWith(".json") && f !== "index.json");
+// the book files are the index's books (the blank ledger stands beside the
+// index under its own name and is read by P10)
+const here = new Set(readdirSync(DIR));
+const files = (ix.books || []).map((bk) => `${bk}.json`).filter((f) => here.has(f));
 let claims = 0, badRid = 0, badRec = 0, badLetters = 0, long = 0, recs = 0;
 const byKind = {};
 const BOOKS = {};
@@ -107,6 +113,26 @@ check("P2 letters a <= b; a claim is ten short slots", badLetters === 0 && long 
     for (const m of Object.keys(M)) { const have = ((rec.books || {})[bk] || {})[m] || { carries: 0, rows: 0 }; const w = want[m] || { carries: 0, rows: 0 }; if (have.carries !== w.carries || have.rows !== w.rows) { off += 1; if (eg.length < 3) eg.push(`${bk} ${m} ${have.carries}/${have.rows} vs ${w.carries}/${w.rows}`); } }
   }
   check("P2 the sources row's counts record pins this piece index and counts what its files serve", pinned === sha && off === 0, `${pinned === sha ? "pinned" : `pins ${String(pinned).slice(0, 12)}, served ${sha.slice(0, 12)}`} · ${off} book-source counts off${eg.length ? ": " + eg.join(" | ") : ""}`); }
+
+// P10 THE BLANK LEDGER BESIDE THE INDEX (piece store v2.1, FOR-ELIJAH-v86):
+// every served row with no English is listed with one of the lane's classes,
+// at its own place and key; no listed row is served with English; the mended
+// rows are under mended, as many as the patch's lines
+{ const bl = JSON.parse(readFileSync(`${DIR}blank-ledger-v1.json`, "utf8"));
+  const key = (x) => x.slice(0, 6).join("|");
+  let blank = 0, listed = 0, unlisted = 0, withEnglish = 0, badClass = 0;
+  for (const [bk, pb] of Object.entries(BOOKS)) {
+    const bb = (bl.books || {})[bk] || {};
+    for (const [place, rows] of Object.entries(pb.places)) {
+      const want = (bb[place] || []).map(key);
+      for (const r of rows) { if (r[6] === null || r[6] === "") { blank += 1; const i = want.indexOf(key(r)); if (i < 0) unlisted += 1; else want.splice(i, 1); } }
+      withEnglish += want.length;
+    }
+    for (const rows of Object.values(bb)) for (const r of rows) { listed += 1; if (!(bl.classes || [])[r[6]]) badClass += 1; }
+  }
+  const mendedRows = Object.values(bl.mended || {}).reduce((t, b) => t + Object.values(b).reduce((u, rows) => u + rows.length, 0), 0);
+  check("P10 the blank ledger beside the index lists every served row with no English, with a class, and no row with English", blank > 0 && blank === listed && unlisted === 0 && withEnglish === 0 && badClass === 0 && (bl.classes || []).every((c) => c.name && c.def) && mendedRows === ((bl.counts || {}).mended_served || {}).value + ((bl.counts || {}).mended_withheld || {}).value,
+    `${blank} served rows with no English · ${listed} listed · ${unlisted} unlisted · ${withEnglish} listed but served with English · ${mendedRows} mended (${JSON.stringify(Object.fromEntries((bl.classes || []).map((c) => [c.name, ((bl.counts || {}).per_class || {})[c.name] && bl.counts.per_class[c.name].served_blank])))})`); }
 
 // ---- the places, found in the served data ----
 const letters = (s) => [...String(s || "")].filter((ch) => ch >= "\u05d0" && ch <= "\u05ea").join("");

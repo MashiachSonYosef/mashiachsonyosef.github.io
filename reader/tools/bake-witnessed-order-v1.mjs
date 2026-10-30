@@ -13,7 +13,7 @@
 //
 // The lane ships each reading as the served row's whole text ("fall out,
 // come to pass, become, be"); a line under a word is ONE reading, cut from
-// the row by the store's own rule (packSplit, then sense-split-rule-v2) —
+// the row by the store's own rule (packSplit, then sense-split-rule-v3) —
 // the rule every other line and every card pill is cut by, so the card's
 // first pill is the line. The line takes the row's first reading; the M is
 // the one the lane found or built for that row, verbatim. Nothing is picked.

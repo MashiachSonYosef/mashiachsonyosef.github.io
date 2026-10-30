@@ -10,13 +10,18 @@
 // The sample: every fifth served book with a chapter page, the first and the
 // last among them, chapter 1 and the middle chapter of each; no book is
 // named here (check-scope-derived S1). Without two origins the check skips.
-// Usage: node tools/check-same-product-v1.mjs --old <origin> --new <origin> [--every 5] [--chapters 2]
+// Usage: node tools/check-same-product-v1.mjs --old <origin> --new <origin> [--every 5] [--chapters 2] [--diff <path>]
+//   --diff writes every differing card in full (old pills, new pills, the
+//   pills only one build carries) so a batch that changes pills on purpose
+//   can name each difference in its notes
+import { writeFileSync } from "node:fs";
 import { existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
+const DIFF = arg("diff", ""); const diffLines = [];
 const OLD = arg("old", ""), NEW = arg("new", ""), EVERY = Number(arg("every", "5")), CHAPTERS = Number(arg("chapters", "2"));
 if (!/^https?:/u.test(OLD) || !/^https?:/u.test(NEW)) { console.log("SKIPPED — needs two builds to compare: --old <origin> --new <origin>"); process.exit(3); }
 const SITE = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -95,11 +100,12 @@ for (const { z, ch } of pages) {
     }
   }
   const n = Math.max(a.cards.length, c.cards.length);
-  for (let i = 0; i < n; i += 1) { cardsCompared += 1; const x = (a.cards[i] || []).join(" | "), y = (c.cards[i] || []).join(" | "); if (x !== y) s2.push(`${z} ${ch} card ${i + 1}: ${x.slice(0, 80)} → ${y.slice(0, 80)}`); }
+  for (let i = 0; i < n; i += 1) { cardsCompared += 1; const x = (a.cards[i] || []).join(" | "), y = (c.cards[i] || []).join(" | "); if (x !== y) { if (DIFF) { const A = a.cards[i] || [], C = c.cards[i] || []; diffLines.push(`== ${z} ${ch} card ${i + 1}\n  old: ${x}\n  new: ${y}\n  only old: ${A.filter((t) => !C.includes(t)).join(" | ")}\n  only new: ${C.filter((t) => !A.includes(t)).join(" | ")}`); } s2.push(`${z} ${ch} card ${i + 1}: ${x.slice(0, 80)} → ${y.slice(0, 80)}`); } }
 }
 await b.close();
 check("S1 every sampled line and its chip are the same on both builds, under every switch both carry", !failed.length && pages.length > 0 && !s1.length,
   `${linesCompared.toLocaleString()} lines compared on ${pages.length} pages${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
 check("S2 the first cards of every sampled chapter carry the same pills, the same one pressed", !failed.length && cardsCompared > 0 && !s2.length, `${cardsCompared} cards compared${s2.length ? ` · ${s2.length} differ: ${s2.slice(0, 3).join("; ")}` : ""}`);
 console.log(bad ? `\n${bad} failing` : "\nall checks passed");
+if (DIFF) { writeFileSync(DIFF, diffLines.join("\n") + "\n"); console.log(`every differing card written in full: ${DIFF} (${diffLines.length})`); }
 process.exit(bad ? 1 : 0);
