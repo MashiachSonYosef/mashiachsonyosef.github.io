@@ -2,7 +2,7 @@
  "schema_version": 1,
  "rule_id": "ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for",
  "emitted_by": "tools/emit-ledger-index-v1.mjs",
- "emitted_on": "2026-10-23",
+ "emitted_on": "2026-10-30",
  "what_this_is": "which letter of the frame each of this lane's records is the ledger for, read from the '// LEDGER:' declaration in the header of the tool that writes it. Declared by the writer, never inferred here.",
  "letters_known_to_the_frame": [
   "A",
@@ -46,6 +46,7 @@
    "project-lattice-v12-v1.mjs"
   ],
   "M": [
+   "apply-route-delta-v1.mjs",
    "check-restore-serve-v1.mjs",
    "check-source-corpus-v1.mjs",
    "emit-language-sweep-record-v1.mjs",
@@ -73,6 +74,7 @@
    "emit-apparatus-baseline-v1.mjs"
   ],
   "R": [
+   "apply-route-delta-v1.mjs",
    "project-lattice-v12-v1.mjs",
    "strike-language-v1.mjs",
    "strike-source-v1.mjs"
@@ -98,6 +100,17 @@
   ]
  },
  "by_tool": {
+  "apply-route-delta-v1.mjs": {
+   "letters": [
+    "M",
+    "R"
+   ],
+   "updates_no_letter": false,
+   "why": "",
+   "writes": [
+    "store-before-strike-witness-v1.json"
+   ]
+  },
   "apply-span-ledger-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -953,13 +966,14 @@
  },
  "tools_that_write_a_record_and_declare_nothing": [
   "bake-dictionary-store-v1.mjs",
+  "bake-form-of-pills-v1.mjs",
   "bake-span-store-v2.mjs"
  ],
  "records_no_tool_in_this_tree_claims_to_write": [
   "corpus-defect-manifest-2026-08-22.json",
+  "form-of-pills-v1.json",
   "pointing-store-verify-v2.2-v1.json",
   "source-short-names-v1.json",
-  "store-before-strike-witness-v1.json",
   "v-volume-receipt-v1.json"
  ],
  "letters_declared_that_the_frame_does_not_name": [],

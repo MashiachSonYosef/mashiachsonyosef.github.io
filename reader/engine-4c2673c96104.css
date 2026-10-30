@@ -690,6 +690,7 @@
   #hud .dict-tab .opt { display: inline-flex; align-items: center; gap: 0.18rem; }
   #hud .dict-tab .opt .r-pills { display: inline-block; }
   #hud .dict-tab .opt .n { font-size: 0.66rem; color: var(--muted); }
+  #hud .dict-tab .opt .n.piece { font-style: italic; }   /* placed only inside longer words */
   #hud .dict-tab .item .lg, #hud .dict-tab td .lg { color: var(--muted); }
   #hud .dict-tab td .lg { font-size: 0.66rem; line-height: 1.2; }
 
@@ -786,6 +787,7 @@
   .vnum { font-size: 0.72rem; color: var(--ink-strong); border: 1px solid var(--gold-dim);
     background: var(--bg); border-radius: 0.5rem; padding: 0.05rem 0.5rem; letter-spacing: 0.06em; }
   .vnum.at { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  .vnum[data-work]::before { content: attr(data-work) " "; }   /* the work's name before the address */
   .drift-chip { font-size: 0.68rem; color: var(--argaman-dim); border: 1px dashed var(--argaman-dim); border-radius: 0.5rem;
     padding: 0.05rem 0.45rem; letter-spacing: 0.03em; }
   .he-text { direction: rtl; text-align: right; font-size: 1.5rem; line-height: 1.35; margin: 0;
