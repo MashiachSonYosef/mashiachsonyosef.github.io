@@ -1981,7 +1981,9 @@
     const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
     const parts = surfaces.map((s, i) => {
       const p = m.cells.get(s);
-      if (p) return spanJoin(p.text);
+      // a read word's reading ruled on the written form prints with its read
+      // word, as the pill does (kq-declared-weld-v1)
+      if (p) return p.read ? `${spanJoin(p.text)} (read ${p.read})` : spanJoin(p.text);
       if (pg && pg[i] && pg[i].g) return spanJoin(String(pg[i].g).trim());
       const g = table ? table[s] : null;
       // a baked reading whose every carrier the reader switched off is not
@@ -2055,13 +2057,35 @@
     const at = placeLine(word);
     if (!at) return null;
     const spelled = word.pg.map((x) => (x && x.k) || "").join("");
-    const i = regions.findIndex((r) => r.k === spelled);
+    let i = regions.findIndex((r) => r.k === spelled);
+    // THE SOURCE READS THE PAIR'S READ FORM WHOLE (kq-declared-weld-v1): where
+    // the qere is two words (Exodus 4:2, "what is this" read as two words
+    // under one written word), the source's own reading of the place spells
+    // the read words joined, and no one region spells that. It backs the
+    // line all the same, from the first read half; the written form's
+    // catalog lead ("exhausted", a word spelled the same) never did.
+    if (i < 0 && spelled) {
+      const joined = (role) => regions.map((r, j) => ({ r, j })).filter((x) => x.r.role === role);
+      for (const role of ["QERE", "KETIV"]) {
+        const rs = joined(role);
+        if (rs.length > 1 && rs.map((x) => x.r.k).join("") === spelled) { i = rs[0].j; break; }
+      }
+    }
     return i >= 0 ? { i, at: placeShown(at) } : null;
   };
   /** Which branch of a pair backs the English, and what it fell back from;
       `at` where the source's own reading of the place is what it backs. */
   const kqPick = (regions, parts, table, word) => {
-    const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—";
+    // THE WRITTEN HALF IS NEVER BACKED BY THE CATALOG'S LEAD FOR ITS LETTERS
+    // (kq-declared-weld-v1; the owner, 2026-10-30). Where the pair has a read
+    // half, the baked lead under the written letters is a reading of another
+    // word spelled the same (Horims, under the letters the Masorah reads as
+    // part of "dove's dung" at II Kings 6:25). The written half backs the
+    // line only on a ruling or on the source's own reading of this place,
+    // both answered above; otherwise the line falls to the read half and
+    // says it fell. A pair with no read half keeps its one half.
+    const hasRead = regions.some((r) => r && r.role === "QERE");
+    const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—" && !(hasRead && regions[i] && regions[i].role === "KETIV");
     const ruledIdx = latestRuled(regions, table);
     if (ruledIdx >= 0) return { i: ruledIdx, fellFrom: null };
     const pl = kqPlace(word, regions, table);
@@ -4821,6 +4845,10 @@
     closeHud(false);
     const myGen = ++hudGen;
     activeEl = el;
+    // how this card was opened, so a reopen that is not the reader's (the
+    // BSB layer arriving) opens the same card again: on a pair, the branch
+    // that stood open, not the half the line reads from
+    el.__reopen = () => openHud(el, region, unitId, wordPos, opts);
     if (!opts.mark) el.classList.add("active");
     const bin = opts.bin || zone;
     const word = opts.word || region;
@@ -4886,9 +4914,32 @@
       // a named run's head stands as the ink wrote it, maqaf or space, and
       // the whole run is what the card is about
       const gaps = opts.run && opts.run.gaps ? opts.run.gaps : null;
+      // A PAIR'S HEAD IS THE INK (kq-declared-weld-v1; the owner, 2026-10-30,
+      // of the card's head: "cards still looking off"). The halves of a pair
+      // are not maqaf parts: splitting the occurrence at its maqafs put the
+      // read words' joiner between the written form and the first read word
+      // and dropped the source's own brackets ("(mzh)-mah zeh" for the ink
+      // "(mzh) [mah-zeh]"). So each half is found in the occurrence where it
+      // stands and what lies between the halves prints as the ink has it:
+      // the parentheses, the brackets, the space, the maqaf.
+      let kqGaps = null, kqLead = "", kqTail = "";
+      if (word.kq && (opts.headRegions || !gaps) && !opts.chain) {
+        const ink = String(opts.headS || word.s || "");
+        let pos = 0, ok = true; const g = [];
+        regions.forEach((r, i) => {
+          const at = ink.indexOf(String(r.s || ""), pos);
+          if (at < 0 || !r.s) { ok = false; return; }
+          if (i === 0) kqLead = ink.slice(0, at); else g.push(ink.slice(pos, at));
+          pos = at + String(r.s).length;
+        });
+        if (ok) { kqGaps = g; kqTail = ink.slice(pos); } else { kqLead = ""; }
+      }
+      // a joiner stands in a span of its own, as it always did, so the gold
+      // laid over the marks finds it where it found it
+      const mqSpans = (text) => { for (const piece of String(text || "").split(/(\u05be)/u)) if (piece) b.append(Object.assign(document.createElement("span"), { className: "mq", textContent: piece })); };
+      if (kqLead) mqSpans(kqLead);
       regions.forEach((r, i) => {
-        if (i) b.append(Object.assign(document.createElement("span"),
-          { className: "mq", textContent: (gaps ? gaps[i - 1] : marks[i - 1]) || "" }));
+        if (i) { const between = (kqGaps ? kqGaps[i - 1] : gaps ? gaps[i - 1] : marks[i - 1]) || ""; if (kqGaps) mqSpans(between); else b.append(Object.assign(document.createElement("span"), { className: "mq", textContent: between })); }
         const seg = document.createElement("span");
         seg.textContent = r.s;
         const lit = gaps ? true : opts.headIndex != null ? i === opts.headIndex : regionIndex >= 0 ? (i === regionIndex) : openSurfaces.includes(r.s);
@@ -4911,6 +4962,7 @@
         }
         b.append(seg);
       });
+      if (kqTail) mqSpans(kqTail);
     } else if (pointingNow() === "letters" && !word.mark && (region && (region.form_k || region.k))) {
       // THE LETTERS ONLY, inside the card. The bare consonants lead; the
       // pointed form stands faint beside them so nothing is hidden — the
@@ -5337,7 +5389,7 @@
     const glossParts = opts.glossParts || null;
     const textOfCell = (surface) => {
       const p = picked.get(surface);
-      if (p) return spanJoin(p.text);
+      if (p) return p.read ? `${spanJoin(p.text)} (read ${p.read})` : spanJoin(p.text);
       // a span the store names: its first row's reading, as the line reads it
       { const rows = spanRowsOn(surface); if (rows.length) return spanJoin(rows[0].slots[1]); }
       // on the source's own division, a block the reader left alone reads
@@ -5892,6 +5944,58 @@
       const hit = pg[idx];
       return hit && hit.g ? hit : null;
     };
+    // THE DECLARED WELD ON A PAIR (the owner, 2026-10-30: a weld is right
+    // where a source declares the equivalence and wrong where the page infers
+    // it from the ink; of the card at Exodus 4:2:4 listing Mizzah, "exhausted"
+    // and "one who sprinkles" under the letters of "what is this": "i see this
+    // is not right"; the rule he asked for: "the card specifically saying
+    // 'this exact spelling actually means what this exact spelling means'").
+    // A ketiv is a spelling, not a key. The Masorah's note, carried verbatim
+    // by the licensed source, says these written letters are read as the
+    // qere; so on the written branch the card keeps what a source reads of
+    // the written form AT THIS PLACE (TAHOT's and MACULA's own rows here),
+    // carries the read words' readings as pointers that name the read word,
+    // and withholds the catalog's rows under the written letters, which are
+    // rows about other words spelled the same, saying how many. The line is
+    // untouched: it reads the half it read from (rule 1, kq-shapes). The
+    // qere's branch is untouched: its letters are what is read.
+    // kq-declared-weld-v1-the-written-form-is-defined-by-what-is-read
+    const kqReadRegions = () => (word && word.kq && Array.isArray(word.w) ? word.w.filter((r) => r && r.role === "QERE" && r.k && !String(r.s || r.k).includes("\u05be")) : []);
+    // a read word named on a pill or a note: its letters and points, without
+    // the verse's accents and brackets (the ink on the page keeps everything)
+    const kqBare = (t) => String(t || "").replace(/[\[\]()]/gu, "").replace(/[\u0591-\u05af\u05bd\u05bf\u05c0\u05c3-\u05c6]/gu, "").trim();
+    const kqWeldHere = (surface) => !!(region && region.role === "KETIV" && word && word.kq && !opts.run && !opts.chain && !setWhole
+      && cover.length === 1 && surface === region.k && kqReadRegions().length);
+    const kqWeld = async (pool, surface) => {
+      // a reading a source gives for the written form at this place stands: a
+      // place row, or a piece store row, which is a claim at this place
+      const atPlace = (g) => g.records.some((row) => PLACE_ROWS.has(row) || OVERLAY_ROWS.get(row) === "piece-store");
+      const kept = pool.filter(atPlace);
+      const heldGroups = pool.filter((g) => !atPlace(g));
+      const drawnOf = (t) => spanJoin(t).toLowerCase();
+      const have = new Set(kept.map((g) => drawnOf(g.text)));
+      const reads = kqReadRegions();
+      for (const r of reads) {
+        const qk = r.k;
+        let qp = null;
+        try { const at = placeOfCell(qk); qp = await poolFor(qk, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(qk) }); } catch { qp = null; }
+        if (!qp) continue;
+        const read = kqBare(r.s || qk);
+        for (const g of qp) {
+          const d = drawnOf(g.text);
+          if (have.has(d)) continue;
+          have.add(d);
+          kept.push({ text: g.text, year: g.year, ledger: g.ledger, records: g.records, ov: g.ov, kqRead: read, kqKey: qk });
+        }
+      }
+      const out = sortPool(kept, surface);
+      out.withheld = pool.withheld; out.withheldBySources = pool.withheldBySources; out.rows = pool.rows;
+      out.kqWithheld = heldGroups.length;
+      out.kqWithheldRows = heldGroups.reduce((n, g) => n + g.records.length, 0);
+      out.kqRead = reads.map((r) => kqBare(r.s || r.k)).join(" ");
+      out.kqWritten = kqBare(region.s || region.k);
+      return out;
+    };
     const renderReadings = async () => {
       const surface = setWhole ? SET_KEY : cover[cellIdx].surface;
       readRow.replaceChildren();
@@ -5935,6 +6039,8 @@
             kept.withheld = got.withheld; kept.withheldBySources = got.withheldBySources; kept.rows = got.rows;
             got = kept;
           }
+          // the written branch of a pair, defined by what is read (kq-declared-weld-v1)
+          if (got && kqWeldHere(surface)) got = await kqWeld(got, surface);
           cache.set(askKey, got);
         }
         catch (e) { unreachable = e; }
@@ -5996,7 +6102,7 @@
       // card opened again when it is here, as the switch does
       if (suggested === "bsb" && !SUGGESTED && !suggestedWait && SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK] && word && !(opts && opts.run)) {
         const wb = activeEl;
-        suggestedReady().then((f) => { if (f && activeEl && activeEl === wb) { closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } });
+        suggestedReady().then((f) => { if (f && activeEl && activeEl === wb) { closeHud(); if (wb.__reopen) wb.__reopen(); else (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } });
       }
       if (suggested === "bsb" && SUGGESTED && word && !(opts && opts.run)) {
         const n = WORD_N.get(word);
@@ -6351,7 +6457,7 @@
             // on its pieces' line, and TAHOT's set on the division it was
             // chosen on
             selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
-              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null });
+              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}) });
             if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
             [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === group.text)));
             rungRuled(); markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
@@ -6433,7 +6539,7 @@
       };
       const choose = (route) => {
         selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
-          place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null });
+          place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null, ...(route.kqRead ? { read: route.kqRead } : {}) });
         // any other reading chosen: the set stands whole no longer
         if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
         rungRuled(); markRuled();
@@ -6447,6 +6553,9 @@
         // with the pointer beside it (the owner: "twelve (feminine of ...)");
         // its own text rides on the pill, for a check and for the eye
         { const fo = formOfFor(surface, route.records.map((r) => r[3]), route.text); if (fo && fo.resolved) { btn.dataset.pointer = spanJoin(route.text); btn.textContent = formOfSays(fo); } }
+        // a read word's reading on the written branch of a pair says which read
+        // word it reads (kq-declared-weld-v1); its own text rides on the pill
+        if (route.kqRead) { btn.dataset.pointer = spanJoin(route.text); btn.dataset.read = route.kqRead; btn.textContent = `${spanJoin(route.text)} (read ${route.kqRead})`; }
         // who carries it, on the pill and exposed, so a check can ask the
         // page whether a switched-off source still stands behind a reading
         btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
@@ -6512,6 +6621,16 @@
         pills.dataset.withheld = String(pool.withheld || 0);
         pills.dataset.withheldBySources = String(pool.withheldBySources || 0);
         pills.dataset.rows = String(pool.rows || 0);
+        // the declared weld, said on the row and exposed (kq-declared-weld-v1)
+        pills.dataset.kqWithheld = String(pool.kqWithheld || 0);
+        window.__poolKq = sorted.map((r) => r.kqRead || "");
+        let kNote = readRow.querySelector(".kq-weld");
+        if (pool.kqRead != null) {
+          if (!kNote) { kNote = document.createElement("p"); kNote.className = "kq-role kq-weld"; readRow.append(kNote); }
+          const n = pool.kqWithheld || 0, nr = pool.kqWithheldRows || 0;
+          kNote.textContent = `written ${pool.kqWritten}, read ${pool.kqRead} \u2014 the Masorah's note, as the source carries it: the written letters are defined by what is read. `
+            + (n ? `${n} reading${n === 1 ? "" : "s"} of these letters as other words (${nr} record${nr === 1 ? "" : "s"}) withheld here.` : "No reading of these letters as another word stood to withhold.");
+        } else if (kNote) kNote.remove();
         let note = readRow.querySelector(".masorah-withheld");
         if (pool.withheld) {
           if (!note) { note = document.createElement("p"); note.className = "kq-role masorah-withheld"; readRow.append(note); }
@@ -8752,13 +8871,13 @@
       const runEl = built.wb.closest(".wjoin");
       const lead = built.kqStand ? kqLead().i : 0;
       const target = built.regionEls[lead] || targets[0];
-      if (!runEl || !runEl.__words || !runEl.__ink) { openAt(lead, target); return; }
+      if (!runEl || !runEl.__words || !runEl.__ink) { openRegion(lead, target); return; }
       // a pair inside a chain the page holds apart (no chain key: one breath,
       // several cards) opens as the line opens it, its own head and form row,
       // whether a reader pressed it or a search landed on it; under the
       // chain's head its other half was a chain press that reopened the
       // lead half, and the ketiv never opened
-      if (built.kqStand && !runEl.__key) { openAt(lead, target); return; }
+      if (built.kqStand && !runEl.__key) { openRegion(lead, target); return; }
       const rc = built.wb.__run && chainIs(built.wb.__run, runEl) ? built.wb.__run : null;
       // the span's own keys ride with its rungs, so the chain at the top of
       // the word's card names the place and its inner place as the store does
@@ -8795,6 +8914,78 @@
         : kqOrder === "SOURCE" ? 0 : st.regions.findIndex((r) => r.role === "KETIV");
       return { i: Math.max(0, wanted) };
     };
+    // THE PAIR'S TWO BRANCHES (the owner, 2026-10-30, of the card at Exodus
+    // 4:2:4 offering the read form's two words as two "qere" pills beside the
+    // ketiv: "are you seeing the maqaf?"). A pair has two branches, written
+    // and read, whatever the number of words in each. A branch of several
+    // words is a run, a maqaf run where the ink joins them with a maqaf, and
+    // its words are a layer down, on the run's own card (rule 1: "the complex
+    // is the word; the breakdown happens a layer down"; rule 2 for its
+    // maqaf). The head and the form row show the two branches, each pressable;
+    // the line's halves stay the words as the source marks them, and pressing
+    // any word of a branch opens that branch. kq-declared-weld-v1.
+    const kqBranches = (() => {
+      if (!word.kq || !regions || regions.length < 3) return null;
+      const ink = String(word.s || "");
+      const out = []; let pos = 0;
+      regions.forEach((r, i) => {
+        const rs = String(r.s || "");
+        const at = rs ? ink.indexOf(rs, pos) : -1;
+        const last = out[out.length - 1];
+        if (last && last.role === r.role && at >= 0) { last.idx.push(i); last.regions.push(r); last.gaps.push(ink.slice(pos, at)); last.end = at + rs.length; }
+        else out.push({ role: r.role, idx: [i], regions: [r], gaps: [], start: at, end: at >= 0 ? at + rs.length : -1 });
+        if (at >= 0) pos = at + rs.length;
+      });
+      if (out.length !== 2 || out.some((b) => b.start < 0 || b.end < 0) || !out.some((b) => b.regions.length > 1)) return null;
+      for (const b of out) {
+        if (b.regions.length === 1) { b.s = b.regions[0].s; b.k = b.regions[0].k; b.joiner = ""; continue; }
+        b.joiner = b.gaps.every((g) => /\u05be/u.test(g)) ? "\u05be" : " ";
+        // the branch as the source wraps it: its words from the first to the
+        // last, and the bracket or parenthesis the ink puts right around them
+        let st = b.start, en = b.end;
+        if (/[\[(]/u.test(ink[st - 1] || "") && /[\])]/u.test(ink[en] || "")) { st -= 1; en += 1; }
+        b.s = ink.slice(st, en);
+        b.k = b.regions.map((r) => r.k).join(b.joiner);
+      }
+      return out;
+    })();
+    const kqHeadOpts = (b, target, extra) => (kqBranches ? {
+      headRegions: kqBranches.map((x) => ({ s: x.s, k: x.k, role: x.role })), headS: word.s, headIndex: b,
+      kqOpenAt: (bb) => openBranch(bb, built.regionEls[kqBranches[bb].idx[0]] || target, { ...extra, kqNav: true }),
+    } : {});
+    const openBranch = (b, target, extra = {}) => {
+      const br = kqBranches[b];
+      if (br.regions.length === 1) { openAt(br.idx[0], target, { ...extra, ...kqHeadOpts(b, target, extra) }); return; }
+      built.regionEls.forEach((r) => r.classList.remove("on"));
+      // each word of the branch carries the source's own reading of it at
+      // this place, cut out of the pair's pieces by its key, so the run's
+      // cell opens on what the line reads (TAHOT's "what" under the first
+      // read word of "what is this"), never on the catalog's first row
+      const pg = Array.isArray(word.pg) ? word.pg : [];
+      let pj = 0;
+      const atoms = br.regions.map((r) => {
+        const a = { s: String(r.s || "").replace(/[\[\]()]/gu, ""), k: r.k, role: r.role };
+        const j = pg.findIndex((x, ix) => ix >= pj && x && x.k === r.k);
+        if (j >= 0) { a.pg = [pg[j]]; pj = j + 1; }
+        return a;
+      });
+      const s = atoms.map((a) => a.s).join(br.joiner);
+      if (!built.wb.__gloss) built.wb.__gloss = built.wb.querySelector(":scope > .g") || null;
+      openHud(target, { s, k: br.k, role: br.role }, unitId, wordPos, {
+        ...opts, bin, word: { s, k: br.k, w: atoms, kq: word.kq, pg: word.pg }, regionIndex: -1, glossParts: null,
+        kqEls: built.regionEls.length ? built.regionEls : null,
+        run: { keys: atoms.map((a) => a.k), clicked: 0, el: built.wb, words: atoms, gaps: br.gaps.map((g) => (/\u05be/u.test(g) ? "\u05be" : " ")), openWord: null, kqBranch: true },
+        ...kqHeadOpts(b, target, extra), ...extra,
+        mark: () => { br.idx.forEach((i) => { if (built.regionEls[i]) built.regionEls[i].classList.add("on"); }); built.wb.classList.add("active"); if (extra.markMore) extra.markMore(); },
+      });
+    };
+    // a region opened by its index opens its branch where the pair has them
+    const openRegion = (i, target, extra = {}) => {
+      if (!kqBranches) { openAt(i, target, extra); return; }
+      const b = kqBranches.findIndex((x) => x.idx.includes(i));
+      if (b < 0) { openAt(i, target, extra); return; }
+      openBranch(b, built.regionEls[kqBranches[b].idx[0]] || target, extra);
+    };
     const openAt = (i, target, extra = {}) => {
       built.regionEls.forEach((r) => r.classList.remove("on"));
       // a pair's halves are alternatives: the line under a pair carries ONE
@@ -8819,7 +9010,7 @@
         ...opts, bin, word, regionIndex: i,
         glossParts: built.regionEls.length && !word.kq ? built.glossParts : null,
         kqEls: word.kq && built.regionEls.length ? built.regionEls : null,
-        kqOpenAt: built.kqStand ? (j) => openAt(j, built.regionEls[j] || target, { ...extra, kqNav: true }) : null,
+        kqOpenAt: built.kqStand ? (j) => openRegion(j, built.regionEls[j] || target, { ...extra, kqNav: true }) : null,
         ...extra,
         mark: () => { if (built.regionEls.length) target.classList.add("on"); built.wb.classList.add("active"); if (extra.markMore) extra.markMore(); },
       });
@@ -8840,7 +9031,7 @@
           openNamedRun(rc, rc.idx.indexOf(wordPos), runEl); return;
         }
         if (inChain) { const j = runEl.__words.indexOf(word); if (chainReadsWhole(runEl)) openRun(runEl, j); else built.wb.__openWord(j); return; }
-        if (built.kqStand) { const lead = kqLead(); openAt(lead.i, built.regionEls[lead.i] || target); return; }
+        if (built.kqStand) { const lead = kqLead(); openRegion(lead.i, built.regionEls[lead.i] || target); return; }
         openAt(i, target);
       });
     });
@@ -11231,6 +11422,79 @@
       d.textContent = `drifts from the sealed count · ${sec.drift.sealed_rows} sealed → ${sec.drift.observed_rows} here`;
       row.append(d);
     }
+    // THE EXPORT, IN THE SECTION'S OWN ROW (the owner, 2026-10-30: "maybe
+    // instead of a toggle for data download we should just make it smaller?
+    // a single button off to the side ... that drops down?"; then: "id try
+    // to find a way so it doesnt even eat a line ... like just put it next
+    // to the section title"). One small button at the right end of the pill
+    // row, no line of its own. Pressed, it drops a menu of three rows, this
+    // section, this chapter and the whole work, three forms each, every one
+    // the same two-press control as before (exportButton: the first press
+    // says what would leave and under which licenses, the second writes it).
+    // The rows of three under every section and the box after the last
+    // section are gone; nothing a reader could export before is lost.
+    {
+      const xo = document.createElement("button"); xo.type = "button"; xo.className = "xp-open";
+      xo.textContent = "export"; xo.setAttribute("aria-expanded", "false");
+      xo.title = NAMED_SHAPE ? `export this section or the whole of ${zone.work}` : `export this ${MINOR}, this ${MAJOR}, or the whole of ${zone.work}`;
+      let menu = null;
+      const chapterOf = (label) => { const ps = String(label || "").split(":"); return !NAMED_SHAPE && ps.length === 2 ? ps[0] : null; };
+      const kindLabel = (kind) => (kind === "he" ? "hebrew" : kind === "en" ? "english" : "hebrew + english");
+      const buildMenu = () => {
+        menu = document.createElement("div"); menu.className = "xp-menu"; menu.setAttribute("role", "group"); menu.hidden = true;
+        const group = (labText, gather, filename) => {
+          const r = document.createElement("div"); r.className = "xp-row";
+          const lab = document.createElement("span"); lab.className = "xp-lab"; lab.textContent = labText;
+          const note = document.createElement("p"); note.className = "xp-note";
+          r.append(lab);
+          for (const kind of ["he", "en", "both"]) r.append(exportButton(kind, kindLabel(kind), note, gather, () => filename(kind)));
+          r.append(note);
+          return r;
+        };
+        menu.append(group(`this ${NAMED_SHAPE ? "section" : MINOR} \u00b7 ${sec.label || String(secIdx)}`,
+          async () => { materialise(s); return { bundles: [await gatherSection(sec, s)], title: `${zone.work} ${sec.label || ""}`.trim() }; },
+          (kind) => `${slug(zone.work)}-${slug(sec.label || String(secIdx))}-${kind}.md`));
+        const ch = chapterOf(sec.label);
+        if (ch) menu.append(group(`this ${MAJOR} \u00b7 ${ch}`,
+          async () => {
+            const list = sectionEls.filter((x) => chapterOf(x.sec.label) === ch);
+            const bundles = [];
+            for (const x of list) { materialise(x.el); bundles.push(await gatherSection(x.sec, x.el)); }
+            return { bundles, title: `${zone.work} ${ch}` };
+          },
+          (kind) => `${slug(zone.work)}-${slug(ch)}-${kind}.md`));
+        menu.append(group(`the whole of ${zone.work}`,
+          async () => {
+            // every section, so every section has to exist: the honest cost
+            // of a book-sized export, said before anything leaves
+            materialiseAll();
+            const bundles = [];
+            for (const x of sectionEls) bundles.push(await gatherSection(x.sec, x.el));
+            return { bundles, title: zone.work };
+          },
+          (kind) => `${slug(zone.work)}-${kind}.md`));
+        row.append(menu);
+      };
+      // a press outside closes the menu; the page's own clicks (the anchor
+      // the export makes to hand the file over) are not a reader leaving
+      const onDoc = (ev) => { if (!ev.isTrusted) return; if (menu && !menu.contains(ev.target) && ev.target !== xo) close(); };
+      const onKey = (ev) => { if (ev.key === "Escape") close(); };
+      const close = () => {
+        if (!menu || menu.hidden) return;
+        menu.hidden = true; xo.setAttribute("aria-expanded", "false");
+        document.removeEventListener("click", onDoc, true); document.removeEventListener("keydown", onKey);
+      };
+      xo.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        if (!menu) buildMenu();
+        if (!menu.hidden) { close(); return; }
+        // one menu open at a time
+        for (const other of document.querySelectorAll(".xp-menu:not([hidden])")) { other.hidden = true; const ob = other.parentElement && other.parentElement.querySelector(".xp-open"); if (ob) ob.setAttribute("aria-expanded", "false"); }
+        menu.hidden = false; xo.setAttribute("aria-expanded", "true");
+        document.addEventListener("click", onDoc, true); document.addEventListener("keydown", onKey);
+      });
+      row.append(xo);
+    }
     // A commentary attached to the whole section gets a line of its own, under
     // the number and the width of the column, carrying the name of the work
     // rather than a letter. It is the section's other text; a letter beside a
@@ -11850,27 +12114,12 @@
     // whole verse away from what it opened, so pressing it put the commentary
     // somewhere the reader was not looking.
     const cSlot = document.createElement("div"); cSlot.className = "c-slot";
-    // The export row sits after the text, not before it: it is the last thing
-    // a reader does with a section, and the first press only tells them what
-    // it would carry.
-    const xpRow = document.createElement("div"); xpRow.className = "xp-row";
-    const xpNote = document.createElement("p"); xpNote.className = "xp-note";
-    const lab = document.createElement("span"); lab.className = "xp-lab"; lab.textContent = "export";
-    xpRow.append(lab);
-    for (const kind of ["he", "en", "both"]) {
-      xpRow.append(exportButton(
-        kind,
-        kind === "he" ? "hebrew" : kind === "en" ? "english" : "hebrew + english",
-        xpNote,
-        async () => ({ bundles: [await gatherSection(sec, s)], title: `${zone.work} ${sec.label || ""}`.trim() }),
-        () => `${slug(zone.work)}-${slug(sec.label || String(secIdx))}-${kind}.md`,
-      ));
-    }
-    xpRow.append(xpNote);
-    // The number, the text, the section's other text where it opens, and the
-    // one act that hands anything over.
-    if (cbar) { const row = document.createElement("div"); row.className = "c-barrow"; row.append(cbar, cworksBtn); s.append(he, row, cworks, cSlot, xpRow); }
-    else s.append(he, xpRow);
+    // The export left this row for the section's pill row (xp-open, above):
+    // the owner, 2026-10-30, "a single button off to the side ... that drops
+    // down"; "put it next to the section title". The number, the text, and
+    // the section's other text where it opens.
+    if (cbar) { const row = document.createElement("div"); row.className = "c-barrow"; row.append(cbar, cworksBtn); s.append(he, row, cworks, cSlot); }
+    else s.append(he);
     };
     // The number is here from the start: it is what the section is called and
     // what an anchor lands on, and it costs almost nothing. Everything else
@@ -12182,33 +12431,8 @@
     handleTimer = setTimeout(placeAllHandles, 120);
   });
 
-  // One export for the whole work, after the last section. It reads every
-  // record the book stands on, which is the honest cost of a book-sized
-  // export, and it says so before it does anything.
-  {
-    const box = document.createElement("div"); box.id = "bookExport";
-    const lab = document.createElement("span"); lab.className = "xp-lab";
-    lab.textContent = `export the whole of ${zone.work}`;
-    const row = document.createElement("div"); row.className = "xp-row";
-    const note = document.createElement("p"); note.className = "xp-note";
-    const gatherBook = async () => {
-      // every section, so every section has to exist
-      materialiseAll();
-      const bundles = [];
-      for (const { sec, el } of sectionEls) bundles.push(await gatherSection(sec, el));
-      return { bundles, title: zone.work };
-    };
-    for (const kind of ["he", "en", "both"]) {
-      row.append(exportButton(
-        kind,
-        kind === "he" ? "hebrew" : kind === "en" ? "english" : "hebrew + english",
-        note, gatherBook, () => `${slug(zone.work)}-${kind}.md`,
-      ));
-    }
-    row.append(note);
-    box.append(lab, row);
-    main.append(box);
-  }
+  // The whole work's export is the last row of every section's export menu
+  // (xp-open); the box after the last section is gone (the owner, 2026-10-30).
 
   // ---- the commentary layer -------------------------------------------
   // A commentary is not a book of its own. It belongs to the sections it
