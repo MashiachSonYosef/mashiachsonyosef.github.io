@@ -1,0 +1,935 @@
+{
+ "schema_version": "PROVIDER_MARK_CENSUS_PILOT_V1",
+ "provider": "panlex_hebrew_english_meanings_20240301",
+ "m_ids": [
+  "M21"
+ ],
+ "label": "PanLex 2024 exact same-meaning Hebrew-English lexical expression",
+ "licence_posture": "cc_by_nc_sa_4_0_conservative_current",
+ "measured_on": "2026-10-31",
+ "measured_by": "census.mjs (this folder)",
+ "engine_compared": "sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence",
+ "routes": 28439,
+ "m_ids_seen": [
+  "M21"
+ ],
+ "route_equals_definition": 28439,
+ "route_region_in_definition_inventory": {
+  "whole": 28439,
+  "slice": 0,
+  "absent": 0
+ },
+ "routes_with_no_mark": 27611,
+ "routes_with_a_comma": 12,
+ "distinct_marks_route_text": 14,
+ "distinct_marks_definition_text": 14,
+ "inventory_mark_count": 14,
+ "definition_census_equals_route_census": true,
+ "marks": [
+  {
+   "mark": "-",
+   "codepoint": "U+002D",
+   "route_text": {
+    "occurrences": 585,
+    "routes": 551
+   },
+   "definition_text": {
+    "occurrences": 585,
+    "routes": 551
+   },
+   "inventory": {
+    "occurrences": 585,
+    "routes": 551
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "hyphen-in-compound-word",
+     "shape": "hyphen with a letter (or apostrophe) on both sides",
+     "test": "(x) => /[\\p{L}’']/u.test(x.p || \"\") && /[\\p{L}’']/u.test(x.n || \"\")",
+     "count": 568,
+     "routes": 535,
+     "means": "joins the parts of one hyphenated word or name (pot-belly, Stratford-on-Avon, CD-ROM)",
+     "divides_readings": false,
+     "examples": [
+      "בטן | pot-belly",
+      "טעים | mouth-watering",
+      "תוספת | add-in",
+      "גניבה | rip-off",
+      "גניבה | break-in",
+      "ודאות | self-confidence"
+     ]
+    },
+    {
+     "id": "hyphen-in-designation",
+     "shape": "hyphen with a letter or digit on both sides and a digit on at least one",
+     "test": "(x) => ALNUM.test(x.p || \"\") && ALNUM.test(x.n || \"\") && (DIG.test(x.p) || DIG.test(x.n))",
+     "count": 7,
+     "routes": 6,
+     "means": "part of an alphanumeric designation or number (BM-21, K-9, 1-800-Missing)",
+     "divides_readings": false,
+     "examples": [
+      "סטיקס | P-15 Termit",
+      "טאו | BGM-71 TOW",
+      "נעדרים | 1-800-Missing",
+      "גראד | BM-21",
+      "תבור | IMI Tavor TAR-21",
+      "כלב | K-9"
+     ]
+    },
+    {
+     "id": "hyphen-ending-prefix",
+     "shape": "hyphen as the last character of the field, after a letter",
+     "test": "(x) => x.i === x.t.length - 1 && LET.test(x.p || \"\")",
+     "count": 6,
+     "routes": 6,
+     "means": "the English is a prefix; the hyphen marks the side it attaches on (re-, un-, Sino-)",
+     "divides_readings": false,
+     "examples": [
+      "שוב | re-",
+      "עצמי | self-",
+      "אי | in-",
+      "סין | Sino-",
+      "בלי | un-",
+      "בלי | non-"
+     ]
+    },
+    {
+     "id": "hyphen-opening-suffix",
+     "shape": "hyphen as the first character of the field, before a letter",
+     "test": "(x) => x.i === 0 && LET.test(x.n || \"\")",
+     "count": 3,
+     "routes": 3,
+     "means": "the English is a suffix; the hyphen marks the side it attaches on (-less, -shaped)",
+     "divides_readings": false,
+     "examples": [
+      "מלה | -shaped",
+      "בלי | -less"
+     ]
+    },
+    {
+     "id": "hyphen-between-spaces",
+     "shape": "hyphen with a space on both sides",
+     "test": "(x) => x.p === \" \" && x.n === \" \"",
+     "count": 1,
+     "routes": 1,
+     "means": "a dash inside one proper name, joining a country's name to the capital that distinguishes it (Congo - Brazzaville)",
+     "divides_readings": false,
+     "examples": [
+      "קונגו | Congo - Brazzaville"
+     ]
+    }
+   ],
+   "shape_total": 585,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "’",
+   "codepoint": "U+2019",
+   "route_text": {
+    "occurrences": 173,
+    "routes": 169
+   },
+   "definition_text": {
+    "occurrences": 173,
+    "routes": 169
+   },
+   "inventory": {
+    "occurrences": 173,
+    "routes": 169
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "curly-apostrophe-inside-word",
+     "shape": "apostrophe with a letter on both sides",
+     "test": "(x) => LET.test(x.p || \"\") && LET.test(x.n || \"\")",
+     "count": 155,
+     "routes": 153,
+     "means": "part of the word's own spelling: an English possessive or contraction (one’s, o’clock, I’m), an elision in a borrowed name (L’Orfeo, hors d'oeuvre), or a transliterated consonant (Sha’aban, Shari'a, K’op’ala)",
+     "divides_readings": false,
+     "examples": [
+      "לחשוב | scratch one’s head",
+      "ויצו | Women’s International Zionist Organization",
+      "תורכיה | Maiden’s Tower",
+      "שעבאן | Sha’aban",
+      "בצלם | B’Tselem",
+      "אירלנד | Macgillycuddy’s Reeks"
+     ]
+    },
+    {
+     "id": "curly-apostrophe-clipped-front",
+     "shape": "apostrophe at the start of a word (field start, after a space or a hyphen), before a lowercase letter",
+     "test": "(x) => (x.i === 0 || /[\\s-]/u.test(x.p)) && LO.test(x.n || \"\")",
+     "count": 7,
+     "routes": 7,
+     "means": "stands for letters clipped from the front of a colloquial form (’scuse, ’rents, 'til, 'cause)",
+     "divides_readings": false,
+     "examples": [
+      "תירוץ | ’scuse",
+      "מריחואנה | ’erb",
+      "פיצה | ’za",
+      "הורה | ’rents",
+      "אחווה | ’hood"
+     ]
+    },
+    {
+     "id": "curly-apostrophe-opening-name",
+     "shape": "apostrophe at the start of a word (field start, after a space or a hyphen), before a capital",
+     "test": "(x) => (x.i === 0 || /[\\s-]/u.test(x.p)) && UP.test(x.n || \"\")",
+     "count": 3,
+     "routes": 3,
+     "means": "a transliterated ayin opening an Arabic place name (’Asir, ’Ara, Shefa-’Amr)",
+     "divides_readings": false,
+     "examples": [
+      "שפרעם | Shefa-’Amr",
+      "אשר | ’Asir",
+      "עארה | ’Ara"
+     ]
+    },
+    {
+     "id": "curly-apostrophe-word-final",
+     "shape": "apostrophe after a letter and before a space, a slash or the field's end",
+     "test": "(x) => LET.test(x.p || \"\") && (x.n === undefined || /[\\s/]/u.test(x.n))",
+     "count": 8,
+     "routes": 6,
+     "means": "stands for a dropped final letter (burlin’, tho’) or closes a plural possessive (the ladies’)",
+     "divides_readings": false,
+     "examples": [
+      "סוארין | Soarin’ Over California",
+      "שירותים | the ladies’/the gents’",
+      "שירותים | the ladies’ room/the mens’ room",
+      "שיכור | burlin’",
+      "מצוין | bitchin’",
+      "אחרי | tho’"
+     ]
+    }
+   ],
+   "shape_total": 173,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": ".",
+   "codepoint": "U+002E",
+   "route_text": {
+    "occurrences": 97,
+    "routes": 76
+   },
+   "definition_text": {
+    "occurrences": 97,
+    "routes": 76
+   },
+   "inventory": {
+    "occurrences": 97,
+    "routes": 76
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "period-in-domain-name",
+     "shape": "period between letters followed by com/org/net/edu/gov at the end of the token",
+     "test": "(x) => LET.test(x.p || \"\") && /^(com|org|net|edu|gov)(\\b|$)/u.test(x.t.slice(x.i + 1))",
+     "count": 1,
+     "routes": 1,
+     "means": "the dot of a web domain that is itself the name (Amazon.com)",
+     "divides_readings": false,
+     "examples": [
+      "אמזון | Amazon.com"
+     ]
+    },
+    {
+     "id": "period-after-one-letter",
+     "shape": "period after a single letter that has no letter before it",
+     "test": "(x) => LET.test(x.p || \"\") && !LET.test(x.t[x.i - 2] || \"\") && !/^(com|org|net|edu|gov)(\\b|$)/u.test(x.t.slice(x.i + 1))",
+     "count": 46,
+     "routes": 25,
+     "means": "closes a one-letter abbreviation or an initial (U.S.A., a.m., e.g., A.C. Milan, ж. — a Russian source's feminine label)",
+     "divides_readings": false,
+     "examples": [
+      "בארי | A.S. Bari",
+      "שירותים | W.C.",
+      "חצות | 12:00 a.m.",
+      "ערב | p.m.",
+      "אטלנטה | Atalanta B.C.",
+      "נאפולי | S.S.C. Napoli"
+     ]
+    },
+    {
+     "id": "period-after-abbreviation",
+     "shape": "period after two or more letters, not a domain",
+     "test": "(x) => LET.test(x.p || \"\") && LET.test(x.t[x.i - 2] || \"\") && !/^(com|org|net|edu|gov)(\\b|$)/u.test(x.t.slice(x.i + 1))",
+     "count": 50,
+     "routes": 50,
+     "means": "closes a shortened word (Sat., approx., Mrs., ad loc., Ltd.)",
+     "divides_readings": false,
+     "examples": [
+      "תמן | ad loc.",
+      "רבע׳ | qtr.",
+      "מרס | mar.",
+      "מירס | Mirs Communications Ltd.",
+      "ש׳ | Sat.",
+      "ש׳ | Sa."
+     ]
+    }
+   ],
+   "shape_total": 97,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": ",",
+   "codepoint": "U+002C",
+   "route_text": {
+    "occurrences": 19,
+    "routes": 12
+   },
+   "definition_text": {
+    "occurrences": 19,
+    "routes": 12
+   },
+   "inventory": {
+    "occurrences": 19,
+    "routes": 12
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "comma-single-word-list",
+     "shape": "comma at depth 0 in a field whose every comma piece is one word (no space inside), none a bare conjunction and the last not 'to'",
+     "test": "(x) => x.d === 0 && commaField(x.t).list",
+     "count": 15,
+     "routes": 8,
+     "means": "separates one English rendering from the next: PanLex's source dictionary packed several one-word equivalents into one expression (dam, fence, barrier)",
+     "divides_readings": true,
+     "examples": [
+      "מכשול | dam, fence, barrier",
+      "ידע | luggage, baggage",
+      "מיכל | container, ferry, vessel, vat, trough, tub, manger",
+      "מקל | baton, cane",
+      "התנהגות | deportment, behaviour"
+     ]
+    },
+    {
+     "id": "comma-before-postposed-to",
+     "shape": "comma at depth 0 whose last piece is exactly 'to'",
+     "test": "(x) => x.d === 0 && commaField(x.t).to",
+     "count": 1,
+     "routes": 1,
+     "means": "the dictionary inversion of an infinitive: 'lay-down, to' is the one verb 'to lay-down', its particle written after the comma",
+     "divides_readings": false,
+     "examples": [
+      "לישון | lay-down, to"
+     ]
+    },
+    {
+     "id": "comma-in-coordinated-idiom",
+     "shape": "comma at depth 0 in a field where some multi-word piece contains the word 'and' or 'or'",
+     "test": "(x) => x.d === 0 && commaField(x.t).series",
+     "count": 1,
+     "routes": 1,
+     "means": "the comma of an English serial list inside one fixed expression (hook, line and sinker is one idiom, not two readings)",
+     "divides_readings": false,
+     "examples": [
+      "לגמרי | hook, line and sinker"
+     ]
+    },
+    {
+     "id": "comma-in-proper-name",
+     "shape": "comma at depth 0 in a field where every piece starts with a capital, some piece has more than one word, and no piece contains 'and'/'or'",
+     "test": "(x) => x.d === 0 && commaField(x.t).name",
+     "count": 1,
+     "routes": 1,
+     "means": "the comma of a proper name in 'place, region' form: New York, New York is one name",
+     "divides_readings": false,
+     "examples": [
+      "ברוקלין | New York, New York"
+     ]
+    },
+    {
+     "id": "comma-before-shared-tail",
+     "shape": "comma at depth 0 in a lowercase field whose earlier pieces are one word each and whose last piece is longer, with no 'and'/'or'",
+     "test": "(x) => x.d === 0 && commaField(x.t).tail",
+     "count": 1,
+     "routes": 1,
+     "means": "a packed scope: the trailing word of the last piece belongs to the earlier ones too ('get, become late' is get late / become late); the scope is not written, so the field is one reading",
+     "divides_readings": false,
+     "examples": [
+      "להתאחר | get, become late"
+     ]
+    },
+    {
+     "id": "comma-inside-parentheses",
+     "shape": "comma at parenthesis depth > 0",
+     "test": "(x) => x.d > 0",
+     "count": 0,
+     "routes": 0,
+     "means": "notation inside an aside (none occur in this provider; kept so a new one is classified, not guessed)",
+     "divides_readings": false,
+     "examples": []
+    }
+   ],
+   "shape_total": 19,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "'",
+   "codepoint": "U+0027",
+   "route_text": {
+    "occurrences": 19,
+    "routes": 16
+   },
+   "definition_text": {
+    "occurrences": 19,
+    "routes": 16
+   },
+   "inventory": {
+    "occurrences": 19,
+    "routes": 16
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "ascii-apostrophe-inside-word",
+     "shape": "apostrophe with a letter on both sides",
+     "test": "(x) => LET.test(x.p || \"\") && LET.test(x.n || \"\")",
+     "count": 12,
+     "routes": 12,
+     "means": "part of the word's own spelling: an English possessive or contraction (one’s, o’clock, I’m), an elision in a borrowed name (L’Orfeo, hors d'oeuvre), or a transliterated consonant (Sha’aban, Shari'a, K’op’ala)",
+     "divides_readings": false,
+     "examples": [
+      "שריעה | Shari'a",
+      "אבינו | Lord's Prayer",
+      "לגדף | slap someone's wrist",
+      "לגדף | get on somebody's ass",
+      "לגדף | chew somebody's ass out",
+      "שושנה | St Anthony's fire"
+     ]
+    },
+    {
+     "id": "ascii-apostrophe-clipped-front",
+     "shape": "apostrophe at the start of a word (field start, after a space or a hyphen), before a lowercase letter",
+     "test": "(x) => (x.i === 0 || /[\\s-]/u.test(x.p)) && LO.test(x.n || \"\")",
+     "count": 3,
+     "routes": 3,
+     "means": "stands for letters clipped from the front of a colloquial form (’scuse, ’rents, 'til, 'cause)",
+     "divides_readings": false,
+     "examples": [
+      "עד | 'til",
+      "כי | 'cause"
+     ]
+    },
+    {
+     "id": "ascii-apostrophe-opening-name",
+     "shape": "apostrophe at the start of a word (field start, after a space or a hyphen), before a capital",
+     "test": "(x) => (x.i === 0 || /[\\s-]/u.test(x.p)) && UP.test(x.n || \"\")",
+     "count": 0,
+     "routes": 0,
+     "means": "a transliterated ayin opening an Arabic place name (’Asir, ’Ara, Shefa-’Amr)",
+     "divides_readings": false,
+     "examples": []
+    },
+    {
+     "id": "ascii-apostrophe-word-final",
+     "shape": "apostrophe after a letter and before a space, a slash or the field's end",
+     "test": "(x) => LET.test(x.p || \"\") && (x.n === undefined || /[\\s/]/u.test(x.n))",
+     "count": 0,
+     "routes": 0,
+     "means": "stands for a dropped final letter (burlin’, tho’) or closes a plural possessive (the ladies’)",
+     "divides_readings": false,
+     "examples": []
+    },
+    {
+     "id": "ascii-apostrophe-pair-token",
+     "shape": "two ASCII apostrophes standing together as a whole token between spaces",
+     "test": "(x) => tokenAt(x.t, x.i) === \"''\"",
+     "count": 4,
+     "routes": 1,
+     "means": "typewriter quotation or ditto marks carried from PanLex's source, enclosing nothing; they hold no English and divide nothing (labor '' '')",
+     "divides_readings": false,
+     "examples": [
+      "עבודה | labor '' ''"
+     ]
+    }
+   ],
+   "shape_total": 19,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "/",
+   "codepoint": "U+002F",
+   "route_text": {
+    "occurrences": 3,
+    "routes": 3
+   },
+   "definition_text": {
+    "occurrences": 3,
+    "routes": 3
+   },
+   "inventory": {
+    "occurrences": 3,
+    "routes": 3
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "slash-between-capitalized-names",
+     "shape": "slash at depth 0 with no space on either side, each side a single capitalized word",
+     "test": "(x) => { if (x.d !== 0 || /\\s/u.test(x.p || \" \") || /\\s/u.test(x.n || \" \")) return false; const [a, b] = slashSides(x.t, x.i); return words(a).length === 1 && words(b).length === 1 && UP.test(a[0]) && UP.test(b[0]); }",
+     "count": 1,
+     "routes": 1,
+     "means": "separates two names of one place in two languages (Elche/Elx): either name is a rendering",
+     "divides_readings": true,
+     "examples": [
+      "אלש | Elche/Elx"
+     ]
+    },
+    {
+     "id": "slash-between-the-phrases",
+     "shape": "slash at depth 0 with no space on either side, each side a phrase opening with 'the '",
+     "test": "(x) => { if (x.d !== 0 || /\\s/u.test(x.p || \" \") || /\\s/u.test(x.n || \" \")) return false; const [a, b] = slashSides(x.t, x.i); return /^the\\s/u.test(a) && /^the\\s/u.test(b); }",
+     "count": 2,
+     "routes": 2,
+     "means": "separates the women's and the men's label of one facility (the ladies’/the gents’): each side is a complete English expression for it",
+     "divides_readings": true,
+     "examples": [
+      "שירותים | the ladies’/the gents’",
+      "שירותים | the ladies’ room/the mens’ room"
+     ]
+    }
+   ],
+   "shape_total": 3,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "?",
+   "codepoint": "U+003F",
+   "route_text": {
+    "occurrences": 3,
+    "routes": 3
+   },
+   "definition_text": {
+    "occurrences": 3,
+    "routes": 3
+   },
+   "inventory": {
+    "occurrences": 3,
+    "routes": 3
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "question-in-title",
+     "shape": "question mark directly after '!'",
+     "test": "(x) => x.p === \"!\"",
+     "count": 1,
+     "routes": 1,
+     "means": "part of a work's title as published (What the Bleep Do We Know!?)",
+     "divides_readings": false,
+     "examples": [
+      "בליפ | What the Bleep Do We Know!?"
+     ]
+    }
+   ],
+   "shape_total": 1,
+   "unexplained": 2,
+   "unexplained_routes": 2,
+   "unexplained_examples": [
+    "כישרון | Hayward?",
+    "יכולת | Hayward?"
+   ],
+   "region_dependent": false
+  },
+  {
+   "mark": ":",
+   "codepoint": "U+003A",
+   "route_text": {
+    "occurrences": 2,
+    "routes": 2
+   },
+   "definition_text": {
+    "occurrences": 2,
+    "routes": 2
+   },
+   "inventory": {
+    "occurrences": 2,
+    "routes": 2
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "colon-in-clock-time",
+     "shape": "colon between two digits",
+     "test": "(x) => DIG.test(x.p || \"\") && DIG.test(x.n || \"\")",
+     "count": 1,
+     "routes": 1,
+     "means": "separates hours from minutes (12:00 a.m.)",
+     "divides_readings": false,
+     "examples": [
+      "חצות | 12:00 a.m."
+     ]
+    },
+    {
+     "id": "colon-before-subtitle",
+     "shape": "colon after a letter, followed by a space and a capital",
+     "test": "(x) => LET.test(x.p || \"\") && x.n === \" \" && UP.test(x.t[x.i + 2] || \"\")",
+     "count": 1,
+     "routes": 1,
+     "means": "separates a title from its subtitle inside one work's name (Perfect Dark: Second Front)",
+     "divides_readings": false,
+     "examples": [
+      "אמלי | Perfect Dark: Second Front"
+     ]
+    }
+   ],
+   "shape_total": 2,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "!",
+   "codepoint": "U+0021",
+   "route_text": {
+    "occurrences": 2,
+    "routes": 2
+   },
+   "definition_text": {
+    "occurrences": 2,
+    "routes": 2
+   },
+   "inventory": {
+    "occurrences": 2,
+    "routes": 2
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "exclamation-click-letter",
+     "shape": "'!' at the start of a word, before a letter",
+     "test": "(x) => (x.i === 0 || /\\s/u.test(x.p)) && LET.test(x.n || \"\")",
+     "count": 1,
+     "routes": 1,
+     "means": "a letter: the alveolar click of a Khoisan language name's own spelling (!Xũ)",
+     "divides_readings": false,
+     "examples": [
+      "אנגולה | !Xũ"
+     ]
+    },
+    {
+     "id": "exclamation-in-title",
+     "shape": "'!' directly before '?' after a letter",
+     "test": "(x) => LET.test(x.p || \"\") && x.n === \"?\"",
+     "count": 1,
+     "routes": 1,
+     "means": "part of a work's title as published (What the Bleep Do We Know!?)",
+     "divides_readings": false,
+     "examples": [
+      "בליפ | What the Bleep Do We Know!?"
+     ]
+    }
+   ],
+   "shape_total": 2,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "_",
+   "codepoint": "U+005F",
+   "route_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "definition_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "underscore-sense-tag",
+     "shape": "underscore between two letters",
+     "test": "(x) => LET.test(x.p || \"\") && LET.test(x.n || \"\")",
+     "count": 1,
+     "routes": 1,
+     "means": "joins a word to the class that disambiguates it, as a sense tag (Pole_person: Pole the person)",
+     "divides_readings": false,
+     "examples": [
+      "פולנית | Pole_person"
+     ]
+    }
+   ],
+   "shape_total": 1,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "(",
+   "codepoint": "U+0028",
+   "route_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "definition_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "paren-acronym-aside",
+     "shape": "'(' after a space, holding only capital letters (two or more) up to its ')'",
+     "test": "(x) => x.p === \" \" && /^\\p{Lu}{2,}$/u.test(parenBody(x.t, x.i) || \"\")",
+     "count": 1,
+     "routes": 1,
+     "means": "opens an aside giving the name's official abbreviation (Macedonia (FYROM)); one reading",
+     "divides_readings": false,
+     "examples": [
+      "מקדוניה | Macedonia (FYROM)"
+     ]
+    }
+   ],
+   "shape_total": 1,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": ")",
+   "codepoint": "U+0029",
+   "route_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "definition_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "paren-acronym-aside-close",
+     "shape": "')' closing a '(' that holds only capital letters",
+     "test": "(x) => { const o = parenOpenFor(x.t, x.i); return o >= 0 && /^\\p{Lu}{2,}$/u.test(x.t.slice(o + 1, x.i)); }",
+     "count": 1,
+     "routes": 1,
+     "means": "closes the abbreviation aside",
+     "divides_readings": false,
+     "examples": [
+      "מקדוניה | Macedonia (FYROM)"
+     ]
+    }
+   ],
+   "shape_total": 1,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "#",
+   "codepoint": "U+0023",
+   "route_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "definition_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "hash-anchor",
+     "shape": "'#' at the start of a word, before a letter, in a field that also carries '|'",
+     "test": "(x) => (x.i === 0 || /\\s/u.test(x.p)) && LET.test(x.n || \"\") && x.t.includes(\"|\")",
+     "count": 1,
+     "routes": 1,
+     "means": "residue of wiki link markup: the anchor sign of the link target (#Barcelona |Barcelona)",
+     "divides_readings": false,
+     "examples": [
+      "ברצלונה | #Barcelona |Barcelona"
+     ]
+    }
+   ],
+   "shape_total": 1,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  },
+  {
+   "mark": "|",
+   "codepoint": "U+007C",
+   "route_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "definition_text": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory": {
+    "occurrences": 1,
+    "routes": 1
+   },
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "id": "pipe-link-label",
+     "shape": "'|' before a letter in a field that opens a token with '#'",
+     "test": "(x) => LET.test(x.n || \"\") && /(^|\\s)#\\p{L}/u.test(x.t)",
+     "count": 1,
+     "routes": 1,
+     "means": "residue of wiki link markup: divides a link's target from its display text, both the same name; not two readings",
+     "divides_readings": false,
+     "examples": [
+      "ברצלונה | #Barcelona |Barcelona"
+     ]
+    }
+   ],
+   "shape_total": 1,
+   "unexplained": 0,
+   "unexplained_routes": 0,
+   "unexplained_examples": [],
+   "region_dependent": false
+  }
+ ],
+ "occurrences_total": 908,
+ "occurrences_in_one_shape": 906,
+ "occurrences_unexplained": 2,
+ "occurrences_matching_two_shapes": 0,
+ "overlap_examples": [],
+ "regions": "one: the route is the whole definition in every row, so no mark's meaning can depend on a region (head, rendering list, notes) — the provider has none",
+ "declaration_division": {
+  "routes_divided": 11,
+  "readings_from_divided": 29,
+  "by_mark": {
+   "/": 3,
+   ",": 8
+  },
+  "refused": {}
+ },
+ "v3_division": {
+  "routes_divided": 12,
+  "damaged_held_whole": 0
+ },
+ "v3_comparison": {
+  "fields_compared": 28439,
+  "same_division": 28432,
+  "same_whole": 28424,
+  "same_divided": 8,
+  "v3_divides_where_declaration_keeps_whole": 4,
+  "declaration_divides_where_v3_keeps_whole": 3,
+  "divided_differently": 0,
+  "examples": {
+   "v3_divides_where_declaration_keeps_whole": [
+    "להתאחר | get, become late | v3: get ‖ become late | declaration: get, become late",
+    "ברוקלין | New York, New York | v3: New York ‖ New York | declaration: New York, New York",
+    "לגמרי | hook, line and sinker | v3: hook ‖ line and sinker | declaration: hook, line and sinker",
+    "לישון | lay-down, to | v3: lay-down ‖ to | declaration: lay-down, to"
+   ],
+   "declaration_divides_where_v3_keeps_whole": [
+    "שירותים | the ladies’/the gents’ | v3: the ladies’/the gents’ | declaration: the ladies’ ‖ the gents’",
+    "שירותים | the ladies’ room/the mens’ room | v3: the ladies’ room/the mens’ r… | declaration: the ladies’ room ‖ the mens’ room",
+    "אלש | Elche/Elx | v3: Elche/Elx | declaration: Elche ‖ Elx"
+   ],
+   "divided_differently": []
+  }
+ },
+ "open_questions_for_owner": [
+  {
+   "id": "gendered-slash-pair",
+   "routes": 2,
+   "reading_a": "divide (declared): each side is a complete English name for the facility, 2 routes print two pills",
+   "reading_b": "ship whole: the pair together is one bilateral label rendering the ungendered Hebrew, 2 routes print one pill",
+   "settled_alongside": "the name slash (Elche/Elx, 1 route) is two names of one place and divides either way",
+   "keys": [
+    "שירותים | the ladies’/the gents’",
+    "שירותים | the ladies’ room/the mens’ room"
+   ]
+  },
+  {
+   "id": "shared-tail-comma",
+   "routes": 1,
+   "reading_a": "ship whole (declared): 'get, become late' is one packed reading; cutting gives 'get', which the provider never offered alone",
+   "reading_b": "separate at the comma (today's v3): 'get' and 'become late' are each runs of the provider's characters, so the cut is a separation, not a derivation",
+   "keys": [
+    "להתאחר | get, become late"
+   ]
+  },
+  {
+   "id": "proper-name-comma",
+   "routes": 1,
+   "reading_a": "ship whole (declared): 'New York, New York' is one name",
+   "reading_b": "separate (today's v3): two pills, both 'New York'",
+   "keys": [
+    "ברוקלין | New York, New York"
+   ]
+  },
+  {
+   "id": "question-mark-on-hayward",
+   "routes": 2,
+   "reading_a": "the '?' is PanLex's source doubting the equation (a flag on the reading, not part of it)",
+   "reading_b": "the '?' is part of a stray string unrelated to the key; the field prints as written either way, and whether it should print is a corpus question, not a mark question",
+   "keys": [
+    "כישרון | Hayward?",
+    "יכולת | Hayward?"
+   ]
+  },
+  {
+   "id": "empty-apostrophe-pairs",
+   "routes": 1,
+   "reading_a": "ditto marks from a source table (\"same as above\"), whose referent is lost",
+   "reading_b": "empty typewriter quotation marks; either way they hold no English and divide nothing — the question is only whether the card prints them",
+   "keys": [
+    "עבודה | labor '' ''"
+   ]
+  },
+  {
+   "id": "engine-reads-shapes",
+   "routes": 12,
+   "reading_a": "declaration-v1.mjs grows a shape condition so a provider can say 'a comma divides only between one-word pieces'",
+   "reading_b": "the machine stays one-mark-unconditional, and this provider is declared with separates_on null (ships whole, as today's default for undeclared providers), giving up the 8 gloss-list routes' division",
+   "keys": []
+  }
+ ]
+}

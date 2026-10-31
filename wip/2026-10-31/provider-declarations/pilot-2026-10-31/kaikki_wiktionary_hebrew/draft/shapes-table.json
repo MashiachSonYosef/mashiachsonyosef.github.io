@@ -1,0 +1,638 @@
+{
+ "paren.romanization": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group follows a Hebrew word (one space allowed) and opens on a non-Hebrew character",
+  "means": "the romanization of the Hebrew word just before it, sometimes with that word's gloss in curly quotes: (av), (khamishá, “five”)"
+ },
+ "paren.lead_label": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group opens the route, text follows it, and it is not a subject pronoun",
+  "means": "a context label over the whole line: (intransitive), (uncertain), (of celestial bodies); the line ships whole (see refusals)"
+ },
+ "paren.trailing_label": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group ends the route (a '.' may follow), stands after a depth-0 sentence period, and opens lowercase",
+  "means": "a context label written after the gloss, over the whole line: To leaven, ferment. (of dough); the line ships whole, as under a lead label"
+ },
+ "paren.trailing_note": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group ends the route (a '.' may follow), stands after a depth-0 sentence period, and opens uppercase",
+  "means": "a note on the whole line: (See usage note below.), (In the construct state); divided off as a note piece, never a reading"
+ },
+ "paren.subject_pronoun": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group holds only he, she, it, they, we, you, I (slash-joined) or And",
+  "means": "the subject pronoun, or the rendering of the prefixed vav, inside a verb-form gloss: (he/it) went, (And) (she/it) brought; part of the reading"
+ },
+ "paren.nested": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group opens inside another parenthesis",
+  "means": "notation inside the outer note: a romanization, an aside or an example within it"
+ },
+ "paren.mark_display": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group holds a dotted circle or nothing but marks",
+  "means": "displays a Hebrew point on its own: (ִ◌ָ)"
+ },
+ "paren.hebrew_note": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group (not a romanization) holds Hebrew letters",
+  "means": "a usage note citing Hebrew: (see also צליל), (sometimes followed by מֵת), (with לְ־ (l'-))"
+ },
+ "paren.argument_slot": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group holds only an argument word: someone, something, oneself, a person (optionally after a preposition)",
+  "means": "the verb's object or argument slot inside one reading: to make (someone) laugh"
+ },
+ "paren.grammar_label": {
+  "mark": "( )",
+  "divides": false,
+  "test": "the group names a conjugation in a form-of line: (suffix conjugation), (hence past tense)",
+  "means": "a grammatical label inside a form pointer"
+ },
+ "paren.qualifier": {
+  "mark": "( )",
+  "divides": false,
+  "test": "any other balanced group at depth 0",
+  "means": "a qualifier or sense description on the English it follows (translation-table style): father (a male parent, ...), to close (window, door, shutter); never a second reading"
+ },
+ "paren.unclosed_opener": {
+  "mark": "(",
+  "divides": false,
+  "test": "an opener that never closes",
+  "means": "a truncated or damaged note; from it onward nothing divides (the August opener_never_closed rule)"
+ },
+ "bracket.government": {
+  "mark": "[ ]",
+  "divides": false,
+  "test": "the bracket opens with 'with '",
+  "means": "the preposition or particle the Hebrew word governs: [with מִן (mín) or מִ־ (mí-)]"
+ },
+ "bracket.cross_reference": {
+  "mark": "[ ]",
+  "divides": false,
+  "test": "the bracket opens with 'see '",
+  "means": "a cross-reference to a usage note: [see usage note regarding the plural]"
+ },
+ "bracket.wiki_markup": {
+  "mark": "[ ] |",
+  "divides": false,
+  "test": "the route carries '[[' (a wiki link the export did not render)",
+  "means": "wiki link markup left in the text: [[[in order that|in order]]]"
+ },
+ "bracket.elision": {
+  "mark": "[ ]",
+  "divides": false,
+  "test": "the bracket holds only an ellipsis",
+  "means": "an elided slot: Who is […] ?"
+ },
+ "bracket.equivalence": {
+  "mark": "[ ]",
+  "divides": false,
+  "test": "the bracket opens with '='",
+  "means": "an equivalent name: [=Jonathan]"
+ },
+ "bracket.supplied_word": {
+  "mark": "[ ]",
+  "divides": false,
+  "test": "the bracket holds one or two lowercase English words",
+  "means": "an optional English word inside one reading: the other side [of]"
+ },
+ "bracket.phonetic": {
+  "mark": "[ ]",
+  "divides": false,
+  "test": "the bracket holds a short form carrying a combining mark",
+  "means": "phonetic notation: [o̞]"
+ },
+ "semicolon.sense_boundary": {
+  "mark": ";",
+  "divides": true,
+  "test": "outside every scope; the next segment does not open as a note",
+  "means": "divides one sense group from the next: to blossom, bloom; to flourish"
+ },
+ "semicolon.note_follows": {
+  "mark": ";",
+  "divides": true,
+  "test": "outside every scope; the next segment opens as a note (used, see, said of, indicating, also, for example, in full, it, this, ...)",
+  "means": "divides the glosses from a usage note that follows them; the note is kept whole as its own piece (an aside, not a reading)"
+ },
+ "period.before_trailing_note": {
+  "mark": ".",
+  "divides": true,
+  "test": "a depth-0 period followed only by a parenthetical group that opens uppercase",
+  "means": "ends the gloss before a note on the whole line: ... to terminate. (See usage note below.); the note is its own piece (role note)"
+ },
+ "period.sentence_boundary": {
+  "mark": ".",
+  "divides": true,
+  "test": "outside every scope, followed by a space and an uppercase letter, '(' or a quote, and the word before it is not an abbreviation",
+  "means": "ends one sentence of the gloss and starts another (usually a note: 'Also known as ...', '(See usage note below.)'); divides like a semicolon"
+ },
+ "colon.head_explanation": {
+  "mark": ":",
+  "divides": true,
+  "test": "outside every scope, text on both sides, neither part carries Hebrew outside parentheses",
+  "means": "divides the head gloss(es) from the explanation that defines them: A tunnel: an underground or underwater passage; the explanation is kept whole as one piece"
+ },
+ "colon.pointer_gloss": {
+  "mark": ":",
+  "divides": true,
+  "test": "outside every scope, text on both sides, the part before carries Hebrew letters outside parentheses (a form pointer)",
+  "means": "divides a form pointer from the English glosses of that form: plural indefinite form of כּוֹס (kos): cups, glasses, tumblers; the part after it is a reading list"
+ },
+ "colon.gloss_pointer": {
+  "mark": ":",
+  "divides": true,
+  "test": "outside every scope, text on both sides, the part before carries no Hebrew outside parentheses and the part after does (a form pointer)",
+  "means": "divides the gloss from the form pointer that gives its grammar: (he/it) went: third-person masculine singular ... of הָלַךְ (halákh); the pointer is its own piece (role pointer), never a reading"
+ },
+ "colon.strongs_list": {
+  "mark": ":",
+  "divides": true,
+  "test": "outside every scope and followed by ' - ' or ' – ' (Strong's ':-')",
+  "means": "a Strong's entry copied into Wiktionary: divides the definition from Strong's KJV rendering list, which is kept whole"
+ },
+ "comma.gloss_boundary": {
+  "mark": ",",
+  "divides": true,
+  "test": "outside every scope, in a part (head, explanation or post-pointer) with no Hebrew outside parentheses and not in a note, and no comma of that part is a label, etc., clause, conjunction or relative comma",
+  "means": "alternation: divides one English gloss from the next (Wiktionary's synonym list): defect, deficiency, blemish"
+ },
+ "semicolon.in_parentheses": {
+  "mark": ";",
+  "divides": false,
+  "test": "inside a parenthesis",
+  "means": "divides senses inside a parenthetical description; the parenthesis is one note"
+ },
+ "semicolon.in_quotation": {
+  "mark": ";",
+  "divides": false,
+  "test": "inside a quotation at depth 0",
+  "means": "punctuation of the quoted text"
+ },
+ "semicolon.under_lead_label": {
+  "mark": ";",
+  "divides": false,
+  "test": "outside every scope in a route led by a context label",
+  "means": "a sense boundary under a label that governs the whole line; held (the route ships whole)"
+ },
+ "period.terminal": {
+  "mark": ".",
+  "divides": false,
+  "test": "nothing but whitespace follows it",
+  "means": "ends the gloss; part of the last piece"
+ },
+ "period.in_parentheses": {
+  "mark": ".",
+  "divides": false,
+  "test": "inside a parenthesis or bracket",
+  "means": "an abbreviation, a decimal point or the note's own sentence end, inside the note"
+ },
+ "period.in_quotation": {
+  "mark": ".",
+  "divides": false,
+  "test": "inside a quotation at depth 0",
+  "means": "punctuation of the quoted text"
+ },
+ "period.decimal": {
+  "mark": ".",
+  "divides": false,
+  "test": "between two digits",
+  "means": "decimal point: 44.3 cm"
+ },
+ "period.ellipsis": {
+  "mark": ".",
+  "divides": false,
+  "test": "next to another period",
+  "means": "an ellipsis written as dots: what is ...?, a slot for a word"
+ },
+ "period.abbreviation": {
+  "mark": ".",
+  "divides": false,
+  "test": "outside every scope, not terminal, and either the word before it is an abbreviation (e.g., U.S.S.R., St.) or punctuation follows it directly",
+  "means": "the period of an abbreviation inside a run: e.g. by paying a fee; St., st., street"
+ },
+ "period.lowercase_continuation": {
+  "mark": ".",
+  "divides": false,
+  "test": "outside every scope, followed by a space and a lowercase letter, the word before it not an abbreviation",
+  "means": "a sentence end the provider continued in lowercase; held, not divided (3 occurrences; see open questions)"
+ },
+ "period.under_lead_label": {
+  "mark": ".",
+  "divides": false,
+  "test": "a sentence boundary in a route led (or, after its last period, closed) by a context label",
+  "means": "held: the route ships whole"
+ },
+ "colon.in_parentheses": {
+  "mark": ":",
+  "divides": false,
+  "test": "inside a parenthesis",
+  "means": "head/explanation or citation inside a parenthetical note"
+ },
+ "colon.citation": {
+  "mark": ":",
+  "divides": false,
+  "test": "between two digits",
+  "means": "chapter:verse in a citation: Ezra 2:56"
+ },
+ "colon.introduces_absent_list": {
+  "mark": ":",
+  "divides": false,
+  "test": "nothing follows it in its segment",
+  "means": "introduces sub-senses this route does not carry: to be:, Possibilities include:"
+ },
+ "colon.under_lead_label": {
+  "mark": ":",
+  "divides": false,
+  "test": "outside every scope in a route led by a context label",
+  "means": "held: the route ships whole"
+ },
+ "comma.in_parentheses": {
+  "mark": ",",
+  "divides": false,
+  "test": "inside a parenthesis",
+  "means": "notation inside a parenthetical: a list of objects (window, door, shutter), a romanization and its gloss (khamishá, “five”), or the note's own prose"
+ },
+ "comma.in_brackets": {
+  "mark": ",",
+  "divides": false,
+  "test": "inside a square bracket",
+  "means": "notation inside a government note"
+ },
+ "comma.in_quotation": {
+  "mark": ",",
+  "divides": false,
+  "test": "inside a quotation at depth 0",
+  "means": "punctuation of the quoted text"
+ },
+ "comma.number": {
+  "mark": ",",
+  "divides": false,
+  "test": "between two digits",
+  "means": "digit grouping"
+ },
+ "comma.trailing": {
+  "mark": ",",
+  "divides": false,
+  "test": "nothing but whitespace follows it in its part",
+  "means": "a comma closing a truncated list; no piece follows"
+ },
+ "comma.under_lead_label": {
+  "mark": ",",
+  "divides": false,
+  "test": "outside every scope in a route led by a context label",
+  "means": "held: the route ships whole"
+ },
+ "comma.pointer": {
+  "mark": ",",
+  "divides": false,
+  "test": "outside every scope in a part that carries Hebrew letters outside parentheses",
+  "means": "inside a form pointer: plural indefinite form of X (x), defective spelling; ... of X, with a first-person singular pronoun suffix"
+ },
+ "comma.in_note": {
+  "mark": ",",
+  "divides": false,
+  "test": "outside every scope in a segment that opens as a note (used, see, said of, indicating, also, it, this, ...)",
+  "means": "inside a usage note's own sentence: What; used in forming exclamations, may be used to express ...; the note is held whole"
+ },
+ "comma.strongs_list": {
+  "mark": ",",
+  "divides": false,
+  "test": "outside every scope after a Strong's ': -'",
+  "means": "Strong's KJV list comma; the list is held whole (see open questions)"
+ },
+ "comma.after_label": {
+  "mark": ",",
+  "divides": false,
+  "test": "the first piece of the part is a label (figuratively, specifically, by extension, ...) and the next piece runs two words or more, or the first piece opens with a one-word label or a parenthesis",
+  "means": "follows a label that governs the rest of the part: figuratively, to perceive; the part is held whole"
+ },
+ "comma.before_etc": {
+  "mark": ",",
+  "divides": false,
+  "test": "the next piece is etc.",
+  "means": "the list is open-ended inside one phrase: to board (a plane), to enter (a street via a junction), etc.; the part is held whole"
+ },
+ "comma.before_clause": {
+  "mark": ",",
+  "divides": false,
+  "test": "the next piece runs two words or more and opens with especially, such, usually, used, equivalent, e.g., i.e., representing, transliterated, ... (unless the first piece is a one- or two-word function-word gloss)",
+  "means": "opens a qualifying clause: song, singing, especially traditional ...; the part is a sentence and is held whole"
+ },
+ "comma.before_serial_conjunction": {
+  "mark": ",",
+  "divides": false,
+  "test": "the next piece runs two words or more and opens with or, and, nor, but (unless the first piece is a one- or two-word function-word gloss)",
+  "means": "the last item of an enumeration inside one phrase: any of Passover, Shavuot, Sukkot, or Shemini Atzeret; the part is held whole"
+ },
+ "comma.before_relative": {
+  "mark": ",",
+  "divides": false,
+  "test": "the next piece runs two words or more and opens with as, like, that, which, who, whose, where, when, from, about, rather, hence, ... while the part's first piece opens on a content word",
+  "means": "attaches a relative or comparative clause to the gloss before it: A destination, as of a voyage; a male given name, Aziz, from Arabic; the part is held whole"
+ },
+ "comma.shared_object": {
+  "mark": ",",
+  "divides": false,
+  "test": "the piece before it is one or two words ending on a preposition (not a 'to' infinitive), the part's first piece is such a piece, and its last piece opens with or/and and does not end on a preposition",
+  "means": "the pieces share one object written once at the end: of, pertaining to, or being the descendants of Jacob; the part is held whole"
+ },
+ "comma.before_bare_group": {
+  "mark": ",",
+  "divides": false,
+  "test": "the next piece is nothing but one parenthetical group",
+  "means": "the group qualifies the gloss before it and is no reading of its own: chicken, (female); Wren, (Troglodytes troglodytes); the part is held whole"
+ },
+ "comma.list_inside_sentence": {
+  "mark": ",",
+  "divides": false,
+  "test": "a gloss-shaped comma in a part that carries one of the holding commas above",
+  "means": "an item boundary of a list inside a sentence: To bring in, take in, send in, or otherwise cause ...; held with its sentence"
+ },
+ "hyphen.romanization": {
+  "mark": "-",
+  "divides": false,
+  "test": "inside a romanization parenthesis",
+  "means": "marks a bound prefix or compound in the romanization: (mi-), (sákh-hakól)"
+ },
+ "hyphen.strongs_list_marker": {
+  "mark": "-",
+  "divides": false,
+  "test": "follows ':' (and a space) and precedes a space",
+  "means": "the dash of Strong's ':-' that opens the KJV rendering list"
+ },
+ "hyphen.strongs_suffix": {
+  "mark": "-",
+  "divides": false,
+  "test": "after a Strong's ':-' in the same route, opening a suffix",
+  "means": "Strong's suffix notation inside the KJV list: (-r, over), chief (-est)"
+ },
+ "hyphen.range": {
+  "mark": "-",
+  "divides": false,
+  "test": "between two digits, or spaced between two dates or numbers",
+  "means": "a range: 8-6th centuries, Psalms 113-118, April 21 - May 21"
+ },
+ "hyphen.compound": {
+  "mark": "-",
+  "divides": false,
+  "test": "between two letters or digits (or after ')' before a letter)",
+  "means": "joins a compound word: third-person, living room-kitchen, 24-hour, pre-1948"
+ },
+ "hyphen.bound_prefix_gloss": {
+  "mark": "-",
+  "divides": false,
+  "test": "ends a word (letter before, space, punctuation or end after)",
+  "means": "the gloss is an English prefix, or a suspended compound: pre-, Single-, cup- or trumpet-shaped"
+ },
+ "hyphen.bound_suffix_gloss": {
+  "mark": "-",
+  "divides": false,
+  "test": "opens a word (start, space or '(' before, letter after)",
+  "means": "the gloss is an English suffix: -less, -ie, -able"
+ },
+ "hyphen.spaced_dash": {
+  "mark": "-",
+  "divides": false,
+  "test": "a space on both sides, not after a colon, not between numbers or dates",
+  "means": "a dash introducing an apposition inside one reading: a 'kibbutz' - a collective settlement"
+ },
+ "slash.spelling_pair": {
+  "mark": "/ \\",
+  "divides": false,
+  "test": "Hebrew on both sides (a space allowed)",
+  "means": "separates the unpointed and pointed spellings of one cited Hebrew lemma: קובל / קֻבַּל"
+ },
+ "slash.phoneme": {
+  "mark": "/",
+  "divides": false,
+  "test": "part of a /phoneme/ pair",
+  "means": "phonemic notation: /e/, /u/"
+ },
+ "slash.url": {
+  "mark": "/",
+  "divides": false,
+  "test": "part of a URL",
+  "means": "a web address"
+ },
+ "slash.per_unit": {
+  "mark": "/",
+  "divides": false,
+  "test": "after a unit abbreviation (kcal, km, ...)",
+  "means": "'per' in a unit: kcal/gram"
+ },
+ "slash.alternation_in_reading": {
+  "mark": "/",
+  "divides": false,
+  "test": "letters on both sides, no space",
+  "means": "packs alternatives inside one reading's shared frame: happy is/was/will be, Screw him/her/it!; dividing would leave fragments ('happy is')"
+ },
+ "slash.alternation_spaced": {
+  "mark": "/",
+  "divides": false,
+  "test": "a space on at least one side, English on both",
+  "means": "alternative words inside one reading or note: Jewish feast / festival / holiday"
+ },
+ "maqaf.hebrew": {
+  "mark": "־",
+  "divides": false,
+  "test": "next to a Hebrew letter or point",
+  "means": "the Hebrew hyphen of a cited bound form or compound: מִ־, סַךְ־הַכֹּל"
+ },
+ "maqaf.named": {
+  "mark": "־",
+  "divides": false,
+  "test": "not next to a Hebrew letter",
+  "means": "the maqaf character itself, named by the gloss: the Hebrew script hyphen (־)"
+ },
+ "hebrew_point.on_letter": {
+  "mark": "Hebrew points",
+  "divides": false,
+  "test": "follows a Hebrew letter or another point",
+  "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form"
+ },
+ "hebrew_point.mark_display": {
+  "mark": "Hebrew points",
+  "divides": false,
+  "test": "next to a dotted circle or alone in a display parenthesis",
+  "means": "the point shown on its own, as the thing the entry names"
+ },
+ "dotted_circle.carrier": {
+  "mark": "◌",
+  "divides": false,
+  "test": "always",
+  "means": "the dotted circle that carries a displayed point"
+ },
+ "geresh.hebrew": {
+  "mark": "׳",
+  "divides": false,
+  "test": "follows a Hebrew letter",
+  "means": "geresh: an abbreviation mark or a foreign-sound mark on a Hebrew letter (ז׳, נפ׳)"
+ },
+ "gershayim.hebrew": {
+  "mark": "״",
+  "divides": false,
+  "test": "follows a Hebrew letter or point",
+  "means": "gershayim: the acronym mark inside a Hebrew word (שד״ר)"
+ },
+ "gershayim.named": {
+  "mark": "״",
+  "divides": false,
+  "test": "not after a Hebrew letter",
+  "means": "the gershayim character named by the gloss"
+ },
+ "apostrophe.romanization": {
+  "mark": "'",
+  "divides": false,
+  "test": "inside a romanization parenthesis",
+  "means": "a glottal stop or shva in the romanization: (n'kevá), ('ír)"
+ },
+ "apostrophe.word_internal": {
+  "mark": "'",
+  "divides": false,
+  "test": "letters on both sides",
+  "means": "English elision or possessive: one's, doesn't, y'all"
+ },
+ "apostrophe.word_final": {
+  "mark": "'",
+  "divides": false,
+  "test": "letter before, no letter after",
+  "means": "plural possessive or a closing single quote: brides' parents, Tuqu'"
+ },
+ "apostrophe.opening_quote": {
+  "mark": "'",
+  "divides": false,
+  "test": "no letter before, letter after",
+  "means": "an opening single quote: a 'kibbutz', also called 'Zaccur'"
+ },
+ "straight_double.gershayim_substitute": {
+  "mark": "\"",
+  "divides": false,
+  "test": "letters on both sides",
+  "means": "an ASCII quote standing for gershayim in a romanized acronym: Shu\"m"
+ },
+ "straight_double.quotation": {
+  "mark": "\"",
+  "divides": false,
+  "test": "one of a pair in the route",
+  "means": "quotation marks around a quoted gloss or term: (\"quail\"), \"Lady of the night\""
+ },
+ "straight_double.named_character": {
+  "mark": "\"",
+  "divides": false,
+  "test": "the route's quotes do not pair and this one is left over",
+  "means": "the double-quote character named by the gloss"
+ },
+ "curly_double.romanization_gloss": {
+  "mark": "“ ”",
+  "divides": false,
+  "test": "inside a romanization parenthesis",
+  "means": "quotes the gloss of the cited Hebrew word: (khamishá, “five”)"
+ },
+ "curly_double.quotation": {
+  "mark": "“ ”",
+  "divides": false,
+  "test": "anywhere else",
+  "means": "quotation marks around a quoted meaning or phrase"
+ },
+ "curly_single.apostrophe": {
+  "mark": "’",
+  "divides": false,
+  "test": "’ with letters on both sides",
+  "means": "an apostrophe typed as a curly quote: one’s"
+ },
+ "curly_single.particle_gloss": {
+  "mark": "‘ ’",
+  "divides": false,
+  "test": "‘ ’ inside a square bracket",
+  "means": "quotes the gloss of the governed particle: [with ל־ (l'-) ‘to’]"
+ },
+ "curly_single.quotation": {
+  "mark": "‘ ’",
+  "divides": false,
+  "test": "anywhere else",
+  "means": "single quotation marks"
+ },
+ "exclamation.terminal": {
+  "mark": "!",
+  "divides": false,
+  "test": "always",
+  "means": "ends an interjection or imperative gloss; part of the reading: Wow!, move!"
+ },
+ "question.terminal": {
+  "mark": "?",
+  "divides": false,
+  "test": "always",
+  "means": "ends a question gloss; part of the reading: Is it true?"
+ },
+ "en_dash.range": {
+  "mark": "–",
+  "divides": false,
+  "test": "digits or dates on both sides",
+  "means": "a range: 6:4–9, May 22 – June 21"
+ },
+ "en_dash.strongs_list_marker": {
+  "mark": "–",
+  "divides": false,
+  "test": "follows ':' and a space",
+  "means": "the dash of Strong's ':–' list marker"
+ },
+ "em_dash.range_or_aside": {
+  "mark": "—",
+  "divides": false,
+  "test": "always",
+  "means": "a range (879 — 912 CE) or a parenthetical dash inside one reading"
+ },
+ "degree.unit": {
+  "mark": "°",
+  "divides": false,
+  "test": "after a digit",
+  "means": "degrees: 270°"
+ },
+ "ellipsis.slot_or_truncation": {
+  "mark": "…",
+  "divides": false,
+  "test": "always",
+  "means": "an elided slot or a cut-off passage: והאופנים…, still, …"
+ },
+ "plus.composition": {
+  "mark": "+",
+  "divides": false,
+  "test": "always",
+  "means": "composition in a grammatical note: את + ה־, (+ activity)"
+ },
+ "equals.expansion": {
+  "mark": "=",
+  "divides": false,
+  "test": "always",
+  "means": "introduces the full form an abbreviation stands for: =לירה ישראלית, [=Jonathan]"
+ },
+ "symbol.named_or_shown": {
+  "mark": "~ ‐ ♠ ♣ ♇ ⯓ † # → ⟨ ⟩ @",
+  "divides": false,
+  "test": "always (for @: inside a parenthesis)",
+  "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign)"
+ },
+ "symbol.notation": {
+  "mark": "⁄ · % × ⁺ ̞ & < >",
+  "divides": false,
+  "test": "always",
+  "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th>"
+ },
+ "wiki_template.residue": {
+  "mark": "{ |",
+  "divides": false,
+  "test": "the route carries '{{'",
+  "means": "a wiki template the export did not render: ({{taxlink|Citrus × aurantium f"
+ }
+}

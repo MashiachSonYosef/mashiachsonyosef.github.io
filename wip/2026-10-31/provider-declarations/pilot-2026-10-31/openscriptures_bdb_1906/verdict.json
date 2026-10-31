@@ -1,0 +1,48 @@
+{
+ "source_key": "openscriptures_bdb_1906",
+ "holds": false,
+ "verdict": {
+  "holds": false,
+  "counts_reproduced": true,
+  "completeness_reproduced": true,
+  "why": "I wrote my own classifier from the shape tests as worded, without reading or importing ledger.mjs, and ran it over the 15,238 routes in by-source/openscriptures_bdb_1906.jsonl.\n\n(a) Every count the draft gives comes out exactly the same: 16 marks and 1,040 occurrences, matching the inventory mark by mark in occurrences and routes, plus every one of the 35 shape counts and its route count. The v3 comparison also matches exactly: 15,238 fields compared, 15,216 the same, 17 where v3 divides and the declaration keeps whole, 1 the other way, 3 divided differently, and 1 kept whole by both but printed differently (צדק). For v3 I split at depth-zero ';' as the engine does, then ran senseSplit from sense-split-v1.mjs on each piece. The engine's page-citation filter changes nothing here. The figures in declared_from and the open questions also match: regions 10,825 / 2,549 / 1,858 / 6; 4,367 keys; 6,971 distinct definitions; 292 dividing routes, 272 of them inside parentheses; B01 64 of 66; B02 268 of 272.\n\n(b) Completeness holds: 0 occurrences fall in no shape, and 0 fall in more than one where the tests set no order.\n\n(c) The draft fails on one dividing shape. comma.between_glosses says each piece is an \"alternative English rendering\", but 5 routes (6 commas) print a piece that is not a rendering on its own, because a word in another piece completes it:\n- דרר | run vehemently, easily\n- חשש | particles of straw, sand, dust\n- לאם | common, vulgar people\n- יען | hard, unproductive soil\n- דרג | rise in grade, rank\n\nThe draft does not state or count this class. Its falsifier covers only clauses, cited words (אל) and mid-gloss cuts (7 routes, which I also get).\n\nThe other two dividing shapes held:\n- comma.between_glosses_after_head_word: no counterexample after 6 attempts (pieces over 4 words, a later piece that is a preposition or adverb complement, a piece ending on a function word, a route that starts mid-gloss, a participle phrase taking an object, duplicates). One case is unclear and I did not count it: און | one enjoying a life of ease, freedom from toil & trouble may be the gloss of a second Arabic word whose letters the definition dropped.\n- semicolon.between_senses (1 occurrence): no counterexample after 3 attempts. Neither side is sentence-shaped, the ';' is at depth zero, and the definition carries the same ';' at that place.\n\nI found no plain falsification among the non-dividing shapes. The 14 sentence routes, all small shapes and the 43 '!' routes all fit their stated meanings.\n\nScripts and outputs are in /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/punct/verify/openscriptures_bdb_1906/:\n- verify.mjs: classifier, completeness, v3 comparison → result.json, cmp-examples.json\n- regions.mjs → regions.json\n- falsify.mjs → falsify.json\n- counterexamples.mjs → counterexamples.json\n- dump-small.mjs",
+  "corrections": [
+   "comma.between_glosses: state and count an exception (or add a holding shape with a worded test) for a piece that another piece's word completes. 5 routes, 6 commas: דרר | run vehemently, easily; חשש | particles of straw, sand, dust (2 commas); לאם | common, vulgar people; יען | hard, unproductive soil; דרג | rise in grade, rank. Today the declaration prints 'easily', 'sand', 'dust', 'common', 'hard' and 'rank' as readings.",
+   "Four more routes (4 commas) carry a head word outside the closed HEADS list, so they are counted as comma.between_glosses, whose meaning says nothing about a carried head: חזר | became narrow, small; חמת | grow rancid, putrid; כלח | contract the face, look hard, stern (second comma); זמר | thing to be protected, thing sacred, inviolable (second comma). Either add these words to HEADS, which changes the 84/273 counts, or name the 4 in comma.between_glosses's meaning. The division is the same either way.",
+   "comma.between_glosses says 'English renderings', but ידד | loving-one, friend, amie divides off French 'amie' (1 comma). Drop 'English' or count the exception.",
+   "The falsifier field should list the class above next to what it already searched (capitalized later pieces: 3; mid-gloss cuts: 7, which I reproduce), so the shape's exceptions are complete and counted."
+  ],
+  "falsified_meanings": [
+   "comma.between_glosses ('alternative English renderings'): 5 routes, 6 commas where the printed piece is not a rendering on its own (דרר, חשש, לאם, יען, דרג), not stated in the draft; plus 1 non-English piece (ידד 'amie')"
+  ]
+ },
+ "v3": {
+  "fields_compared": 15238,
+  "same_division": 15216,
+  "v3_divides_where_declaration_keeps_whole": 17,
+  "declaration_divides_where_v3_keeps_whole": 1,
+  "divided_differently": 3,
+  "examples": [
+   "v3_divides_where_declaration_keeps_whole: נקב | who were pricked off, designated, by name | declaration 1 reading · v3 3: \"who were pricked off\" / \"designated\" / \"by name\"",
+   "v3_divides_where_declaration_keeps_whole: חלץ | will brace up, invigorate, thy bones | declaration 1 · v3 3: \"will brace up\" / \"invigorate\" / \"thy bones\"",
+   "v3_divides_where_declaration_keeps_whole: מוש | as for their hands, they do not feel | declaration 1 · v3 2: \"as for their hands\" / \"they do not feel\"",
+   "v3_divides_where_declaration_keeps_whole: נקף | after my skin, which they have struck off | declaration 1 · v3 2: \"after my skin\" / whole",
+   "v3_divides_where_declaration_keeps_whole: בלל | Ephraim, among the peoples doth he mix himself | declaration 1 · v3 2: \"Ephraim\" / whole",
+   "v3_divides_where_declaration_keeps_whole: חרר | freed-man, -woman | declaration 1 · v3 2: \"freed-man\" / \"-woman\"",
+   "declaration_divides_where_v3_keeps_whole: און | one enjoying a life of ease, freedom from toil & trouble | declaration 2: \"one enjoying a life of ease\" / \"freedom from toil & trouble\" · v3 1 (whole)",
+   "divided_differently: מטל | strike, beat, extend by beating, shape iron into a helmet | declaration 4 glosses · v3 3 glosses + whole (drops \"shape iron into a helmet\", a 5-word piece)",
+   "divided_differently: יקה | be pious, careful of one's religious duties | declaration \"be pious\" / \"careful of one's religious duties\" · v3 \"be pious\" / whole",
+   "divided_differently: חטר | lash with the tail, move spear up and down, shake, quiver | declaration 4 glosses · v3 3 glosses + whole (drops \"move spear up and down\")",
+   "a fifth kind, counted apart (1): both keep whole but v3 prints other text: צדק | have a just cause, | the declaration prints it as stored · v3 prints \"have a just cause\" (drops the trailing comma). 15216+17+1+3+1 = 15238."
+  ]
+ },
+ "questions": [
+  "B01. Some gloss lists open with a head word that the later glosses don't repeat ('be fatigued, tired'). Should the comma divide the list into readings, each printed as written, so 'tired' appears on its own? Divide: 66 routes, and 83 later pieces print without the head word. Whole: the same 66 routes print as one reading. Resting: divide. That matches the August Strong's precedent (no head word is carried to a later piece), and v3 already divides 64 of these 66 the same way. Keys: מרא | be digestible, agree with ; אוד | be curved, bent ; און | be fatigued, tired",
+  "B02. Inside the definition's parentheses, BDB gives the meaning of a cognate word or a root (Arabic, Aramaic, Assyrian, Ethiopic, NH), not a rendering of the Hebrew word itself. Where the store made such a list a route, should its comma divide readings on the card, or should the list stand whole? Divide: 272 routes. Whole: 272 routes. Resting: divide, which is what v3 does today on 268 of the 272. Whether a cognate's gloss should be offered as a reading at all is a route question for the store: 1,858 routes in all sit inside the definition's parentheses, proper-name meanings among them. This includes אל | algebra, Alhambra, alkali, alcohol, alcove, which is English loanwords cited by the etymology.",
+  "B03. 'have a just cause,' ends on the comma that divided it from its sibling route 'be in the right'. Print it with the comma as stored (1 route), or read that comma as the tail of the separator (1 route), the way the August Strong's head_mark rule reads ':--'? v3 prints it without the comma today. Resting: as stored. Key: צדק",
+  "B04. 'break,split' has no space after its comma. Two readings (1 route), or whole because the pieces cannot rejoin on the declared ', ' (1 route)? Resting: whole. v3 divides it today. Key: יהץ",
+  "B05. 'by means of what? how?' holds two questions separated only by a space. Two readings, each keeping its '?' (1 route), or one (1 route)? Resting: whole. Key: ב",
+  "B06. 'strip. strip off' has a stop where the source probably meant a comma. Two readings (1 route), or one (1 route)? Resting: whole. Key: בצל",
+  "B07. In 'freed-man, -woman' and 'blacksmith's fire-place, hornets'', the piece after the comma is half a word. Hold the field whole (2 routes; follows the August hyphen-attachment precedent), or divide and print '-woman' and 'hornets'' as readings (2 routes; what v3 does today)? Resting: whole. Keys: חרר ; כור"
+ ]
+}

@@ -1,0 +1,298 @@
+{
+ "schema_version": "PROVIDER_DECLARATIONS_V1",
+ "pilot": "mark ledger pilot, 2026-10-31; merge into providers of reader/tools/declarations-v1.json only on the owner's ruling",
+ "computed_by": "ledger.mjs in this folder (every number below is read from census.json / compare.json, which the same run writes)",
+ "providers": {
+  "hiperbiblia_sdbh": {
+   "label": "Semantic Dictionary of Biblical Hebrew via HiperBiblia",
+   "m_ids": [
+    "M17"
+   ],
+   "routes": 14823,
+   "declared_on": "2026-10-31",
+   "declared_from": "The entry's own structure, read across all 14,823 routes on 3,659 keys (4,599 key-and-definition records). The definition is the provider's list of glosses divided by '; ' and in 14,823 of 14,823 rows the route is exactly one item of it (872 the whole definition, 13,951 one item of several, 0 absent); no route carries ';'. So the provider's own division between readings is ';', and it is already made upstream: one route per item. Inside a route the closed set is 16 marks and 2,422 occurrences, agreeing with the inventory mark for mark; every occurrence falls in exactly one of 46 shapes, 0 unexplained. 64 occurrences divide readings in meaning; 23 of them (commas in 19 routes, where every piece is a whole rendering) are separated.",
+   "regions": {
+    "route_regions": {
+     "whole": 872,
+     "slice": 13951,
+     "absent": 0
+    },
+    "definition_regions": "one: a ';'-list of glosses, with no head and no notes",
+    "meaning_depends_on_region": "No. Every mark means the same in a route that is the whole definition and in a route that is one item of several (each shape's by_region split is in census.json), and the definition has no head or notes for a mark to mean something else in."
+   },
+   "marks": {
+    ";": {
+     "means": "Divides one gloss from the next in the provider's definition. Definition text only: the ingest made each item a route, so no route carries it.",
+     "governs": 10457,
+     "records": 3727,
+     "divides_readings": "yes, at 10,456 of 10,457 (between items at depth 0); separated upstream, one route per item",
+     "shape_occurrences": {
+      "semicolon.between_gloss_items": 10456,
+      "semicolon.inside_parentheses": 1
+     },
+     "evidence": "14,823 of 14,823 routes are exactly one '; '-item of their definition; 14,821 of 15,055 items are a route on their own record and 197 more are a route on the same key under another record.",
+     "falsifier": "A ';' inside the provider's parentheses: 1 today (צהב: yellowish (of hair; denotes sickness)). The provider wrote one item there, 'yellowish (of hair; denotes sickness)'; the ingest cut it into the routes 'yellowish (of hair' and 'denotes sickness)' (see refusals.unbalanced_parentheses)."
+    },
+    "(": {
+     "means": "Notation inside one reading, never a division: optional letters or word part, the slot the context fills (one's, someone), an optional or explanatory qualifier, the qualifier's own list of objects, an uncertainty flag (?), a label (plural), an aside (= …, > …). It is also a scope: no mark inside it divides the route.",
+     "governs": 791,
+     "routes": 733,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "paren.optional_part": 18,
+      "paren.uncertainty": 7,
+      "paren.equivalence_aside": 1,
+      "paren.extension_aside": 1,
+      "paren.grammatical_label": 2,
+      "paren.list_inside": 13,
+      "paren.argument_placeholder": 351,
+      "paren.qualifier": 396,
+      "paren.opener_never_closed": 2
+     },
+     "evidence": "351 placeholders ('to beat (one's) breast'), 396 qualifiers ('to flow (with tears)', '(most) holy place'), 18 optional parts ('way(s)', '(day)light'), 13 lists of objects ('to wear (clothes, armor)'), 7 '(?)'. Nested parentheses: 0.",
+     "falsifier": "A parenthesis holding an alternative to the reading rather than notation inside it. Tested as: its content is itself a route of this provider on the same key: 5 today (חרש: to carve (wood); טרף: to give (food) to eat; טרף: to provide (food) to eat), each a homograph under the same letters (a noun the letters also spell) standing as the object of the verb or the noun of the adjective, not as an alternative."
+    },
+    ")": {
+     "means": "Closes the parenthesis it pairs with; same shapes as '('.",
+     "governs": 791,
+     "routes": 733,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "paren.optional_part": 18,
+      "paren.uncertainty": 7,
+      "paren.equivalence_aside": 1,
+      "paren.extension_aside": 1,
+      "paren.grammatical_label": 2,
+      "paren.list_inside": 13,
+      "paren.argument_placeholder": 351,
+      "paren.qualifier": 396,
+      "paren.closer_with_nothing_open": 2
+     }
+    },
+    ",": {
+     "means": "Inside one ';'-item, packs renderings of one meaning into one gloss, or punctuates within one reading. Where every piece is a whole rendering ('to go, to arrive'; 'loins, sides') it divides readings and is separated. Where a head, a frame or a qualifier is written once for all pieces ('to be, become weak'; 'to cause (mountains) to skip, jump'; 'mouth of well, cave, pit'; '(images of) hemorrhoids, tumors, ulcers') it divides readings in meaning, but a piece alone is not one of them, and the route ships whole. Inside parentheses and before a subordinate clause it divides nothing.",
+     "governs": 72,
+     "routes": 61,
+     "scoped_by": "(",
+     "divides_readings": "in meaning at 55 of 72; separated at 23 (19 routes)",
+     "shape_occurrences": {
+      "comma.inside_parentheses": 15,
+      "comma.complete_infinitives": 4,
+      "comma.complete_nominal": 19,
+      "comma.copula_elliptic": 10,
+      "comma.verb_head_distributed": 11,
+      "comma.list_with_edge_parenthesis": 7,
+      "comma.of_head_distributed": 4,
+      "comma.before_subordinate_clause": 2
+     },
+     "evidence": "Separated: 4 routes of complete infinitives ('to proclaim, to announce') and 15 of complete nominal renderings ('joy, delight', 'Ephrathah, Ephrath'); in 3 of the nominal ones every piece is also a route of its own on the key ('killing, slaughter, butchering'). Kept whole: 10 'to be, become X', 10 with the verb frame written once, 6 under an edge qualifier, 2 with an 'of' head written once, 2 before a clause. 15 commas stand inside parentheses. Across its 4,599 definitions the provider writes ',' 75 times and ';' between items 10,456 times: one more reading is ordinarily one more item.",
+     "falsifier": "For a kept-whole shape: a route whose every piece the provider also writes as a route of its own on the key, i.e. treats as a reading alone: 0 of 30 today. One partial hit argues the other way: '(images of) hemorrhoids, tumors, ulcers' (טחרים), where 'tumors' and 'ulcers' are routes of their own under the disease sense, so cutting would move them out from under '(images of)'. For a separated shape: pieces that do not rejoin into the route: 0 today; and a nominal list whose first piece carries a modifier the later one-word pieces lack, which could be written once for all: 1 today (עצרה: solemn assembly, gathering), separated here because 'gathering' is a whole rendering on its own."
+    },
+    ">": {
+     "means": "One reading: the literal or source sense on the left, the extended sense the word carries in this use on the right ('dwelling > behavior', '\"deep of tongue\" > obscure speech'). Not a division.",
+     "governs": 193,
+     "routes": 193,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "gt.literal_to_extended": 190,
+      "gt.quoted_idiom_to_meaning": 2,
+      "gt.inside_parentheses": 1
+     },
+     "evidence": "Of 192 at depth 0, the left side is a route of its own on the key 79 times (the provider lists the literal sense separately) and the right side 0 times: the extended sense is never given alone.",
+     "falsifier": "The right side written as a route of its own on the same key: 0 today."
+    },
+    "'": {
+     "means": "Apostrophe inside a word: possessive (one's, someone's, God's) or plural possessive (Wildgoats' Rocks).",
+     "governs": 242,
+     "routes": 231,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "apos.possessive_s": 241,
+      "apos.plural_possessive": 1
+     },
+     "falsifier": "An apostrophe used as a quotation mark: 0 today."
+    },
+    "-": {
+     "means": "Hyphen inside a word: a compound (dwelling-place), the parts of a name (Paddan-Aram), or part of an optional piece in parentheses (plough(-point)). In the definition only, an item that is only '-' is the provider's sign that the use has no English rendering; it has no route.",
+     "governs": 177,
+     "routes": 169,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "hyphen.compound_word": 141,
+      "hyphen.name_join": 34,
+      "hyphen.optional_part": 2
+     },
+     "definition_only": {
+      "hyphen.lone_item_no_rendering": 1
+     },
+     "falsifier": "A spaced hyphen or dash between two renderings: 0 today."
+    },
+    ".": {
+     "means": "Only ever in a three-dot ellipsis: the slot the context fills ('at the age of ...', 'here ... there ...'). Not a division.",
+     "governs": 60,
+     "routes": 17,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "period.ellipsis": 60
+     },
+     "falsifier": "A period that is not one of three: 0 today."
+    },
+    "?": {
+     "means": "A question word or question that is itself the reading ('where?'), or the provider's uncertainty about a rendering ('chisel?', 'amethyst (?)'). Between two renderings ('plaque? tablet? panel? block?') it closes one uncertain rendering before the next: divides in meaning, not separated, because the mark belongs to the piece before it.",
+     "governs": 46,
+     "routes": 42,
+     "divides_readings": "in meaning at 4 of 46; not separated",
+     "shape_occurrences": {
+      "q.parenthesized_uncertainty": 7,
+      "q.between_uncertain_alternatives": 4,
+      "q.route_final_interrogative": 23,
+      "q.route_final_uncertainty": 12
+     }
+    },
+    "!": {
+     "means": "Ends an exclamation that is the reading ('behold!'), or an aside. Between two exclamations ('woe! alas!') it closes one before the next: divides in meaning, not separated, because the mark belongs to the piece before it.",
+     "governs": 16,
+     "routes": 13,
+     "divides_readings": "in meaning at 3 of 16; not separated",
+     "shape_occurrences": {
+      "excl.route_final": 12,
+      "excl.between_exclamations": 3,
+      "excl.inside_parentheses": 1
+     }
+    },
+    "\"": {
+     "means": "Quotes the literal wording of an idiom before its meaning ('\"straight way\" = safe journey'), or a cry given as written ('\"heidad\"'). Not a division.",
+     "governs": 18,
+     "routes": 9,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "quote.literal_before_eq_or_gt": 16,
+      "quote.whole_route_sound": 2
+     }
+    },
+    "=": {
+     "means": "One reading: what the wording before it amounts to ('\"mother's house\" = mother's household', 'to catch up with (= happen)'). Not a division.",
+     "governs": 9,
+     "routes": 9,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "eq.quoted_literal_to_meaning": 6,
+      "eq.inside_parentheses": 1,
+      "eq.route_initial": 1,
+      "eq.rendering_to_explanation": 1
+     },
+     "falsifier": "The right side of a depth-0 '=' written as a route of its own on the key, i.e. given as a reading apart from its wording: 0 of 7 today (the left side: 1)."
+    },
+    ":": {
+     "means": "Ends a grammatical label ('(plural:) cavalry'); once, between a masculine and a feminine noun ('sorcerer: sorceress'), where it divides in meaning and is not separated.",
+     "governs": 2,
+     "routes": 2,
+     "divides_readings": "in meaning at 1 of 2; not separated",
+     "shape_occurrences": {
+      "colon.label_in_parentheses": 1,
+      "colon.between_two_nouns": 1
+     }
+    },
+    "/": {
+     "means": "Alternation: inside one reading between two words ('his/her'), or, spaced, between completions of a head written once ('juice of purslane / mallows'), which divides in meaning and is not separated because 'mallows' alone is not the reading.",
+     "governs": 2,
+     "routes": 2,
+     "divides_readings": "in meaning at 1 of 2; not separated",
+     "shape_occurrences": {
+      "slash.spaced_alternatives": 1,
+      "slash.unspaced_alternation": 1
+     }
+    },
+    "\\": {
+     "means": "A stray character in the provider's text before a word ('to cause to bring \\birth'); not notation and not a division. Kept, as every provider character is.",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "backslash.stray_before_word": 1
+     }
+    },
+    "[": {
+     "means": "Opens an editorial note that stands in place of a rendering ('[untranslated]'): the provider says the word goes untranslated in some use. Not a reading and not a division.",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "bracket.editorial_note": 1
+     }
+    },
+    "]": {
+     "means": "Closes the editorial note.",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": "no",
+     "shape_occurrences": {
+      "bracket.editorial_note": 1
+     }
+    }
+   },
+   "precedence": [
+    ";",
+    "(",
+    ","
+   ],
+   "precedence_note": "';' first, and upstream: the definition divides into items, one route each. '(' next, as a scope: nothing inside a parenthesis divides. ',' last, at depth 0, and only in the two separated shapes. No route carries two dividing marks (0 today), so no other order is exercised; '!', '?', ':' and '/' divide in meaning in 7 routes and separate nowhere, so they take no place in the order.",
+   "refusals": {
+    "unbalanced_parentheses": {
+     "routes": 4,
+     "provider_text_unbalanced": {
+      "routes": 2,
+      "rule": "ship whole",
+      "why": "The definition carries the same imbalance, so the route is the provider's own characters. As in the August Strong's declaration, an orphan closer is inert and an unclosed opener holds everything after it; neither route has a comma, so each ships whole.",
+      "keys": [
+       "קפד: to roll up (a piece of cloth",
+       "בוא: to lead)"
+      ]
+     },
+     "ingest_cut_inside_parentheses": {
+      "routes": 2,
+      "rule": "hold (print nothing)",
+      "why": "The definition balances: the provider wrote one item, and the ingest's split at every ';' cut it inside the provider's parenthesis. Neither piece is a reading the provider wrote. Restoring the item is the store's work, not the page's (open question).",
+      "keys": [
+       "צהב: yellowish (of hair",
+       "צהב: denotes sickness)"
+      ]
+     }
+    },
+    "pieces_that_do_not_rejoin": {
+     "routes": 0,
+     "rule": "ship whole"
+    },
+    "elliptic_packing": {
+     "routes": 28,
+     "rule": "ship whole",
+     "why": "A piece alone is not the reading: the shared head, frame or qualifier is written once. Completing a piece ('to become weak') would join characters the provider never wrote together, which is a derivation."
+    }
+   },
+   "export": "governed by its posture, cc_by_sa_4_0",
+   "separates_on": {
+    "mark": ",",
+    "scope": "( )",
+    "only_in_shapes": [
+     "comma.complete_infinitives",
+     "comma.complete_nominal"
+    ],
+    "shape_tests": {
+     "comma.complete_infinitives": "',' at depth 0 where every comma piece of the route begins 'to '",
+     "comma.complete_nominal": "',' at depth 0, route not beginning 'to ', where no comma piece holds a parenthesis or the words of/to/and/or/whether and every piece is at most 3 words"
+    },
+    "declared_from": "72 commas in 61 routes; 15 stand inside parentheses and 23 (in 19 routes) stand between whole renderings. The other 30 routes with a depth-0 comma write a shared part once, or set off a clause.",
+    "rule": "Separate on commas outside every parenthesis, in the two shapes only. Every piece is kept, each a run of the provider's characters; nothing is completed, distributed or stripped.",
+    "machinery": "declaration-v1.mjs readingOf separates on every depth-0 comma once separates_on names one; it has no shape gate. Merged as it is, it would cut 30 routes this declaration keeps whole. The gate (only_in_shapes with its tests) must be in the machine first."
+   },
+   "open_questions_for_owner": [
+    "1. Commas this declaration keeps whole and v3 cuts, 30 routes (copula 10, verb frame written once 10, edge qualifier 6, 'of' head 2, clause 2). Reading A, this declaration: one pill, the provider's gloss whole ('to be, become weak'). Reading B, today's card (v3): 64 pills, 60 of them a text the provider never gives alone on the key, among them 'to be' 10 times, 'jump', 'set foot', 'cave', 'pit'.",
+    "2. Terminal-mark series, 5 routes ('woe! alas!', 'kneel! bow down!', 'would that ...! if only ...!', 'plaque? tablet? panel? block?', 'horn? trumpet?'). Reading A, today and this declaration: one pill each. Reading B: cut after the mark, the mark kept on each piece: 12 pills. B needs a separation mode the machine lacks (it drops the separator).",
+    "3. Unbalanced parentheses, 4 routes. (a) 2 routes whose own definition carries the imbalance (קפד, בוא): A, this declaration: print whole, as the August Strong's declaration treats an orphan closer and an unclosed opener; B, today (v3 rule 4): print nothing. (b) 2 routes the ingest cut out of one provider item inside its parenthesis (צהב): A, today and this declaration: hold both; B: the route store re-emits the provider's item 'yellowish (of hair; denotes sickness)' as one route.",
+    "4. '[untranslated]' (1 route): A, today and this declaration: printed as a reading, whole; B: withheld as the provider's editorial note, not a rendering.",
+    "5. 'sorcerer: sorceress' (1 route), the only colon between two nouns: A, today and this declaration: one pill; B: two readings divided at the colon."
+   ],
+   "not_done_here": "No piece is completed or distributed: 'to be, become weak' is not rewritten as 'to be weak' and 'to become weak', and 'mouth of well, cave, pit' does not become 'mouth of cave'. No mark is stripped: '?', '!', '(?)', '(one's)', '\"…\"' and '>' stay where the provider wrote them. The definition is not mined for a reading. The ingest's cut inside צהב's parenthesis is reported, not repaired."
+  }
+ }
+}

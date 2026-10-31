@@ -1,0 +1,972 @@
+{
+ "schema_version": "PROVIDER_DECLARATIONS_V1",
+ "pilot": "mark ledger pilot, 2026-10-31; merge into providers of reader/tools/declarations-v1.json only on the owner's ruling",
+ "computed_by": "ledger.mjs in this folder (every number below is read from census.json / compare.json, which the same run writes)",
+ "providers": {
+  "ubs_sdbh_hebrew_v0_9_2": {
+   "label": "UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses",
+   "m_ids": [
+    "M18"
+   ],
+   "routes": 21626,
+   "declared_on": "2026-10-31",
+   "declared_from": "The entry's own structure, read across all 21,626 routes on 6,539 keys. In 21,626 of 21,626 rows the route is the whole definition, character for character: each route is one SDBH record, either one gloss ('to distribute') or one definition ('man; ◄ son of Heman; ► temple singer; time of king David'), and the provider gives a meaning several glosses by writing several routes. 7,659 routes carry no mark at all; 3,595 are a mark-free gloss of at most four words. A definition has a head and, in 7,674 routes, notes opened by ◄ (origin, context), ► (role, purpose) and ≈ (association); idioms are written 'literally: X; hence: = Y' (3,295 times). The closed set is 41 marks and 58,686 occurrences, agreeing with the inventory; every occurrence falls in exactly one of 128 shapes, 0 unexplained. 58 occurrences in 46 routes divide readings in meaning (a labeled second meaning, a gloss packing two renderings, a second form of a name, two interjections); none is separated (see separates_on).",
+   "regions": {
+    "route_regions": {
+     "whole": 21626,
+     "slice": 0,
+     "absent": 0
+    },
+    "registers": {
+     "marker_free": 10217,
+     "short_marker_free_with_comma": 118,
+     "with_note_marker": 7674,
+     "with_colon": 4148,
+     "no_mark": 7659
+    },
+    "meaning_depends_on_region": {
+     ";": "Yes, in what it divides, not in whether it divides readings: in the head it closes the definition proper or its label (10,460 occurrences); after a note marker it divides one note item from the next (5,539). It never occurs in a marker-free route, by that region's definition.",
+     ",": "Yes: only in a short marker-free route (no ; ◄ ► ≈ = :, every comma piece at most four words, 118 routes) can a comma pack renderings; in the head and notes of a definition (7,979 occurrences) and in longer marker-free routes it is prose.",
+     "others": "No: every other mark means the same in the head, the notes and a marker-free route."
+    },
+    "note": "Region here is a part of the route's own text, since the route is always the whole definition: 'marker-free' (no ; ◄ ► ≈ = :), 'head' (before the first note marker at depth 0) and 'notes' (after it)."
+   },
+   "marks": {
+    ";": {
+     "means": "Divides the parts of one SDBH record, never two readings: the head from a note (before ◄ ► ≈), one note item from the next, an idiom's literal rendering from its meaning ('literally: ...; hence: = ...'), a hedge ('meaning unsure') from the tentative definition, a label from the definition, the head from a further clause. One record describes one lexical meaning. The one exception is a second meaning the provider labels 'or:', 'either:' or 'alternatively', which divides in meaning and is not separated.",
+     "governs": 15999,
+     "routes": 9950,
+     "divides_readings": "in meaning, at 26 of 15,999 occurrences (semicolon.before_alternative_label 26); not separated",
+     "shape_occurrences": {
+      "semicolon.before_note_marker": 8312,
+      "semicolon.before_derived_meaning": 3295,
+      "semicolon.between_note_items": 2762,
+      "semicolon.head_to_further_clause": 840,
+      "semicolon.before_hedged_meaning": 507,
+      "semicolon.before_definition_equals": 169,
+      "semicolon.before_literal_rendering": 59,
+      "semicolon.before_alternative_label": 26,
+      "semicolon.before_or_clause": 21,
+      "semicolon.in_quote_or_italic": 6,
+      "semicolon.route_final": 2
+     },
+     "regions": {
+      "head": 10460,
+      "notes": 5539
+     },
+     "region_dependent": "Yes, in what it divides, not in whether it divides readings: in the head it closes the definition proper or its label (10,460 occurrences); after a note marker it divides one note item from the next (5,539). It never occurs in a marker-free route, by that region's definition.",
+     "evidence": "8,312 of 15,999 stand immediately before ◄, ► or ≈; 3,295 before 'hence'/'therefore'; 2,762 between note items after a marker; 507 before a hedge ('possibly', 'probably'). 2,569 follow the head 'man' of a name entry ('man; ◄ son of Heman; ► temple singer; time of king David'), which today's card prints as four pills: 'man', '◄ son of Heman', '► temple singer', 'time of king David'. 25 of 15,999 occurrences have a piece on either side that the provider also writes as a route of its own on the same key.",
+     "falsifier": "A ';' (not an alternative label) whose piece on either side the provider also writes as a route of its own on the same key, i.e. treats as a reading: 25 today (census: piece_also_a_route_on_the_key). In 24 of them the piece is the record's head, which the provider also writes as a separate gloss or a sister definition ('man', 'hill', 'terebinth', 'one of the city gates of Jerusalem'): the head is attested as a reading there, but the record still joins it to its notes. The other 1 is a gloss the provider appended after ';' to a definition it also writes alone ('...so that it can move or slip; to waver' beside a route 'to waver'): a provider slip, kept whole. A ';' between two pieces that each read as a whole definition of a different meaning with no 'or:'/'either:'/'alternatively' label would also falsify it; the census found none it could name, and owner question 2 lists the 21 unlabeled 'or'/'either' clauses for reading."
+    },
+    ",": {
+     "means": "Punctuation of the provider's English: list commas, commas before conjunctions, appositions, clauses and modifiers inside one definition or one gloss. The provider writes separate glosses as separate routes, so a comma does not divide readings — except in a handful of short glosses where it packs two or three renderings into one route ('pain, trouble'; 'to be, become happy'), a second form of a name, or a labeled alternative. Those divide in meaning and are not separated.",
+     "governs": 10405,
+     "routes": 5711,
+     "divides_readings": "in meaning, at 30 of 10,405 occurrences (comma.short_route_packed_renderings_elliptic 15; comma.short_route_packed_renderings_complete 9; comma.short_route_name_variant 4; comma.before_alternative_label 2); not separated",
+     "shape_occurrences": {
+      "comma.definition_prose": 4848,
+      "comma.before_conjunction": 2115,
+      "comma.series_item": 1759,
+      "comma.before_note_marker": 1253,
+      "comma.label_punctuation": 157,
+      "comma.series_item_closed_by_conjunction_without_comma": 108,
+      "comma.short_route_appositive": 75,
+      "comma.in_parentheses": 47,
+      "comma.short_route_packed_renderings_elliptic": 15,
+      "comma.short_route_packed_renderings_complete": 9,
+      "comma.short_route_coordinate_modifiers": 6,
+      "comma.in_quote_or_italic": 5,
+      "comma.short_route_name_variant": 4,
+      "comma.short_route_closes_interruption": 2,
+      "comma.before_alternative_label": 2
+     },
+     "regions": {
+      "head": 4869,
+      "notes": 3110,
+      "marker_free": 2426
+     },
+     "region_dependent": "Yes: only in a short marker-free route (no ; ◄ ► ≈ = :, every comma piece at most four words, 118 routes) can a comma pack renderings; in the head and notes of a definition (7,979 occurrences) and in longer marker-free routes it is prose.",
+     "evidence": "4,848 prose commas in definitions, 2,115 before a conjunction, 1,867 list commas, 1,253 before a note marker, 75 appositions in short definitions ('descendant of Zerah, son of Simeon'). Packed renderings: 9 complete ('pain, trouble') and 15 elliptic ('to be, become happy'). 3,595 routes are a gloss of at most four words with no mark at all: the provider's ordinary way of giving one more reading is one more route. The owner ruled on 2026-10-30, of a UBS name entry cut at its commas: 'a comma in ubs doesnt mean different entrys'.",
+     "falsifier": "A comma piece the provider also writes as a route of its own on the same key: 28 occurrences today (census). 3 are packed renderings whose pieces are also glosses ('to go, to arrive' beside routes 'to go' and 'to arrive'; 'hemorrhoids, tumors, ulcers' beside 'tumors' and 'ulcers'): evidence for owner question 1. Of the other 25, 19 are a definition's head before a comma-opened clause or note that the provider also writes alone ('one of the city gates of Jerusalem, ► used specifically by...'), and 6 are list members inside a definition that are also glosses ('wisdom, intelligence, or proficiency' beside a route 'intelligence')."
+    },
+    ":": {
+     "means": "Closes a label: 'literally:', 'hence:', 'possibly:', 'meaning unsure:', 'or:', 'poetic language:'. The label and what follows are one record. Once, a volume:page number.",
+     "governs": 7478,
+     "routes": 4148,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "colon.before_definition_equals": 3966,
+      "colon.after_literally": 3404,
+      "colon.introduces_explanation": 54,
+      "colon.after_hedge_or_derivation_label": 35,
+      "colon.after_alternative_label": 15,
+      "colon.citation_number": 4
+     },
+     "regions": {
+      "head": 7442,
+      "notes": 36
+     },
+     "region_dependent": false,
+     "evidence": "3,966 of 7,478 are followed by '='; 3,404 follow 'literally'; 54 introduce an explanation or named item.",
+     "falsifier": "A ':' whose text before it (the label) the provider also writes as a route on the same key: 4 today, all in routes where the provider wrote ':' for ';' before 'hence' ('literally: to come up: hence: = ...') and also writes the literal rendering as a gloss route; a provider slip, read as the ';' it stands for, kept whole."
+    },
+    "◄": {
+     "means": "Opens a note of origin and context inside one definition: whom the referent descends from or belongs to, where it is, what it is made of or caused by, what it is like ('son of', 'tribe of', 'territory of', 'made of', 'caused by', 'as if'). Never a reading of its own.",
+     "governs": 4745,
+     "routes": 4731,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "back_arrow.after_semicolon": 3539,
+      "back_arrow.after_comma": 603,
+      "back_arrow.inline_without_punctuation": 602,
+      "back_arrow.route_initial": 1
+     },
+     "regions": {
+      "head": 4717,
+      "notes": 28
+     },
+     "region_dependent": false,
+     "evidence": "4,745 occurrences in 4,731 routes: 3,539 after ';', 603 after ',', 602 mid-sentence. Most frequent openings: 'son of' 1,401, 'tribe of' 378, 'territory of' 308, 'as if' 194, 'located in' 193, 'descendant of' 172, 'as a' 100. Today's card prints 8,604 pills that open with ◄, ► or ≈.",
+     "falsifier": "A piece opened by ◄ that the provider also writes as a route of its own on the same key: 1 today."
+    },
+    "►": {
+     "means": "Opens a note of role, purpose and consequence inside one definition: what the referent did or was, what it is used for, what followed ('father of', 'king of', 'family head', 'used for', 'in order to', 'after exile'). Never a reading of its own.",
+     "governs": 4596,
+     "routes": 4575,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "forward_arrow.after_semicolon": 3537,
+      "forward_arrow.inline_without_punctuation": 542,
+      "forward_arrow.after_comma": 514,
+      "forward_arrow.after_italic_close": 3
+     },
+     "regions": {
+      "head": 2174,
+      "notes": 2422
+     },
+     "region_dependent": false,
+     "evidence": "4,596 occurrences in 4,575 routes: 3,537 after ';', 514 after ',', 542 mid-sentence. Most frequent openings: 'father of' 396, 'used for' 203, 'family head' 184, 'in order' 175, 'king of' 137, 'warrior' 109, 'priest' 102.",
+     "falsifier": "A piece opened by ► that the provider also writes as a route of its own on the same key: 1 today."
+    },
+    "=": {
+     "means": "Opens the definition proper after a label or literal rendering ('hence: = action by which...'), or, in a gloss or aside, gives what a phrase means ('father's house = family', '(= delay)'). Never between two readings.",
+     "governs": 4195,
+     "routes": 4175,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "equals.after_label_colon": 3966,
+      "equals.after_semicolon": 169,
+      "equals.after_label_word_without_colon": 24,
+      "equals.between_phrase_and_its_meaning": 15,
+      "equals.in_parentheses": 10,
+      "equals.after_quoted_literal": 9,
+      "equals.route_initial": 1,
+      "equals.stray_before_word": 1
+     },
+     "regions": {
+      "head": 4184,
+      "notes": 11
+     },
+     "region_dependent": false,
+     "evidence": "3,966 of 4,195 follow a label colon, 169 follow ';'.",
+     "falsifier": "An '=' whose two sides the provider also writes as two routes on the same key: 27 occurrences have one side so written (the definition after '=' also stands as a route without its 'literally ... hence' head): the provider writes the meaning both ways, and the record with the head is still one record."
+    },
+    ")": {
+     "means": "Closes the aside. A closer with nothing open is the provider's typo ('to shake (one's) head)') and is inert.",
+     "governs": 2892,
+     "routes": 2478,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "paren.close.aside_or_optional_words": 1400,
+      "paren.close.slot_placeholder": 1274,
+      "paren.close.number_or_date": 84,
+      "paren.close.reference_siglum": 51,
+      "paren.close.alternative_wording": 35,
+      "paren.close.optional_affix": 13,
+      "paren.close.scientific_name": 13,
+      "paren.close.equivalence": 10,
+      "paren.close_with_nothing_open": 9,
+      "paren.close.cross_reference": 2,
+      "paren.close.query": 1
+     },
+     "regions": {
+      "notes": 256,
+      "head": 1761,
+      "marker_free": 875
+     },
+     "region_dependent": false,
+     "evidence": "2,892 closers; 9 close nothing.",
+     "falsifier": "As for '('."
+    },
+    "(": {
+     "means": "An aside or notation inside one reading: the open slot of an idiom ('(one's)', '(someone)'), optional words, an alternative word ('(or: time)'), a date, a citation ('(ABD)'), a scientific name, an equivalence ('(= delay)'). Never a scope over alternative renderings as in Strong's.",
+     "governs": 2884,
+     "routes": 2477,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "paren.open.aside_or_optional_words": 1400,
+      "paren.open.slot_placeholder": 1274,
+      "paren.open.number_or_date": 84,
+      "paren.open.reference_siglum": 51,
+      "paren.open.alternative_wording": 35,
+      "paren.open.optional_affix": 13,
+      "paren.open.scientific_name": 13,
+      "paren.open.equivalence": 10,
+      "paren.open.cross_reference": 2,
+      "paren.open_never_closed": 1,
+      "paren.open.query": 1
+     },
+     "regions": {
+      "notes": 257,
+      "head": 1754,
+      "marker_free": 873
+     },
+     "region_dependent": false,
+     "evidence": "2,884 openers: 1,274 slot placeholders, 1,400 asides or optional words, 35 alternative wordings, 84 numbers or dates, 51 citations. 47 commas stand inside parentheses.",
+     "falsifier": "A comma inside parentheses dividing renderings that distribute over a head (Strong's 'bring (forth, in, into, to pass)'): measured as a comma inside parentheses whose piece the provider also writes as a route on the key: 0 today.",
+     "unbalanced": {
+      "closer_with_nothing_open": 9,
+      "opener_never_closed": 1
+     }
+    },
+    "'": {
+     "means": "The apostrophe of English spelling (possessive 's, possessive after a sibilant), and once a pair of single quotes around a quoted word. Inside one word.",
+     "governs": 1830,
+     "routes": 1642,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "apostrophe.possessive_s": 1813,
+      "apostrophe.possessive_after_sibilant": 15,
+      "apostrophe.single_quote_open": 1,
+      "apostrophe.single_quote_close": 1
+     },
+     "regions": {
+      "notes": 296,
+      "marker_free": 506,
+      "head": 1028
+     },
+     "region_dependent": false,
+     "evidence": "1,813 possessive 's (incl. 1,274 slot groups like '(one's)'), 15 after a sibilant ('Moses' assistant').",
+     "falsifier": "A ' with a space on both sides (a quote standing between two readings): 0 today."
+    },
+    "≈": {
+     "means": "Opens a note of association and connotation inside one definition: what the referent is associated with, regarded as, or a symbol of ('associated with', 'regarded as', 'used figuratively'). Never a reading of its own.",
+     "governs": 1415,
+     "routes": 1412,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "approx.after_semicolon": 1240,
+      "approx.after_comma": 136,
+      "approx.inline_without_punctuation": 37,
+      "approx.after_italic_close": 2
+     },
+     "regions": {
+      "head": 783,
+      "notes": 632
+     },
+     "region_dependent": false,
+     "evidence": "1,415 occurrences in 1,412 routes: 1,240 after ';', 136 after ','. Most frequent openings: 'associated with' 484, 'regarded as' 163, 'often associated' 55, 'often used' 47, 'sometimes associated' 38, 'which is' 38, 'sometimes used' 25.",
+     "falsifier": "A piece opened by ≈ that the provider also writes as a route of its own on the same key: 1 today."
+    },
+    "-": {
+     "means": "Joins one compound word or name ('mother-in-law', 'Hazar-Addar'), writes a numeric range ('841-835'), or doubled as '--' sets off an inserted phrase. Inside one reading.",
+     "governs": 962,
+     "routes": 832,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hyphen.compound_join": 819,
+      "hyphen.numeric_range": 66,
+      "hyphen.double_hyphen_dash": 60,
+      "hyphen.optional_affix_in_parentheses": 13,
+      "hyphen.spaced_dash": 4
+     },
+     "regions": {
+      "notes": 345,
+      "head": 387,
+      "marker_free": 230
+     },
+     "region_dependent": false,
+     "evidence": "819 compound joins, 66 ranges, 60 halves of '--', 4 spaced dashes.",
+     "falsifier": "A hyphen at the head of a route or of a list item as in Strong's '-tering' attachments: 0 today (no shape 'attach at the stem' occurs)."
+    },
+    "/": {
+     "means": "Two words for one slot inside one phrase: 'and/or', 'his/her', a month span 'February/March', a double name 'Gideon/Jerubbaal', a category pair 'state/process', a double year '870/69'. Inside one reading.",
+     "governs": 282,
+     "routes": 270,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "slash.and_or": 148,
+      "slash.word_pair": 69,
+      "slash.pronoun_pair": 52,
+      "slash.number_pair": 12,
+      "slash.spaced_between_phrases": 1
+     },
+     "regions": {
+      "notes": 92,
+      "marker_free": 104,
+      "head": 86
+     },
+     "region_dependent": false,
+     "evidence": "148 and/or, 52 pronoun pairs, 69 word pairs, 12 year pairs, 1 spaced.",
+     "falsifier": "A '/' whose two sides the provider also writes as routes on the same key: 1 today ('state/process by which ...' beside the same definition with one of the two words)."
+    },
+    ".": {
+     "means": "Abbreviation, decimal point, '...' standing for the open slot of a frame gloss ('either ... or'), or a sentence end inside a long definition. Inside one reading.",
+     "governs": 240,
+     "routes": 164,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "period.abbreviation": 133,
+      "period.decimal": 39,
+      "period.ellipsis": 39,
+      "period.route_final": 22,
+      "period.sentence_break": 7
+     },
+     "regions": {
+      "notes": 64,
+      "head": 102,
+      "marker_free": 74
+     },
+     "region_dependent": false,
+     "evidence": "133 abbreviations, 39 decimals, 39 in '...', 22 route-final, 7 sentence breaks.",
+     "falsifier": "A sentence break whose two sentences describe two different meanings: one today reads so, 'booths. Or alternatively, olive tree' (עץ), counted in owner question 2."
+    },
+    "\"": {
+     "means": "Quotes a rendering inside one reading: a name's meaning ('\"Valley of Vision\"'), a literal translation, a cited term.",
+     "governs": 155,
+     "routes": 70,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "quote.close": 78,
+      "quote.open": 77
+     },
+     "regions": {
+      "head": 80,
+      "notes": 49,
+      "marker_free": 26
+     },
+     "region_dependent": false,
+     "evidence": "77 open, 78 close (one route opens with “ and closes with \").",
+     "falsifier": "A quoted span that is the whole of a reading the card should print alone: the quote marks stay with it, so nothing here separates on them."
+    },
+    "|": {
+     "means": "Formatting code carried from the source: '|i' turns italics on and '|i*' turns them off around a scientific name. Inside one reading.",
+     "governs": 136,
+     "routes": 54,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "pipe.italic_open": 68,
+      "pipe.italic_close": 68
+     },
+     "regions": {
+      "notes": 124,
+      "head": 12
+     },
+     "region_dependent": false,
+     "evidence": "68 openers and 68 closers, every one paired.",
+     "falsifier": "An unpaired '|i' or '|i*': 0 today."
+    },
+    ">": {
+     "means": "In an idiom's gloss, leads from the literal rendering to what the idiom means ('to sanctify (one's) name > to show (one's) greatness'): one gloss for one lexical meaning, paired the way the provider's definitions pair 'literally: ...; hence: = ...'.",
+     "governs": 120,
+     "routes": 120,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "gt.literal_to_figurative": 120
+     },
+     "regions": {
+      "marker_free": 120
+     },
+     "region_dependent": false,
+     "evidence": "120 occurrences, all ' > ' in marker-free routes; 113 of them stand on a key that also carries a 'literally: ...; hence ...' definition.",
+     "falsifier": "A '>' whose side the provider also writes as a gloss route on the same key: 6 of 120 today ('to hunt down > to oppress' beside a route 'to oppress'). Owner question 3."
+    },
+    "*": {
+     "means": "The last character of the italics-off code '|i*'.",
+     "governs": 68,
+     "routes": 54,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "star.italic_close": 68
+     },
+     "regions": {
+      "notes": 62,
+      "head": 6
+     },
+     "region_dependent": false,
+     "evidence": "68 occurrences, every one in '|i*'.",
+     "falsifier": "A '*' outside '|i*': 0 today."
+    },
+    "ֶ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 38,
+     "routes": 24,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 38
+     },
+     "regions": {
+      "head": 23,
+      "notes": 13,
+      "marker_free": 2
+     },
+     "region_dependent": false,
+     "evidence": "38 occurrences in 24 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "ּ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 34,
+     "routes": 27,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 34
+     },
+     "regions": {
+      "marker_free": 10,
+      "head": 19,
+      "notes": 5
+     },
+     "region_dependent": false,
+     "evidence": "34 occurrences in 27 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "ָ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 33,
+     "routes": 26,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 33
+     },
+     "regions": {
+      "notes": 6,
+      "marker_free": 9,
+      "head": 18
+     },
+     "region_dependent": false,
+     "evidence": "33 occurrences in 26 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "’": {
+     "means": "The typographic apostrophe of a possessive ('earth’s surface').",
+     "governs": 31,
+     "routes": 31,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "right_single_quote.possessive_s": 30,
+      "right_single_quote.possessive_after_s": 1
+     },
+     "regions": {
+      "head": 20,
+      "marker_free": 10,
+      "notes": 1
+     },
+     "region_dependent": false,
+     "evidence": "31 occurrences, all possessive.",
+     "falsifier": "A ’ not touching a letter: 0 today."
+    },
+    "ַ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 27,
+     "routes": 20,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 27
+     },
+     "regions": {
+      "notes": 2,
+      "marker_free": 9,
+      "head": 16
+     },
+     "region_dependent": false,
+     "evidence": "27 occurrences in 20 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "ִ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 20,
+     "routes": 18,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 20
+     },
+     "regions": {
+      "notes": 6,
+      "marker_free": 4,
+      "head": 10
+     },
+     "region_dependent": false,
+     "evidence": "20 occurrences in 18 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "ׁ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 15,
+     "routes": 15,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 15
+     },
+     "regions": {
+      "head": 8,
+      "notes": 6,
+      "marker_free": 1
+     },
+     "region_dependent": false,
+     "evidence": "15 occurrences in 15 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "ְ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 15,
+     "routes": 14,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 15
+     },
+     "regions": {
+      "head": 8,
+      "notes": 4,
+      "marker_free": 3
+     },
+     "region_dependent": false,
+     "evidence": "15 occurrences in 14 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "ֹ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 14,
+     "routes": 14,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 14
+     },
+     "regions": {
+      "notes": 5,
+      "head": 9
+     },
+     "region_dependent": false,
+     "evidence": "14 occurrences in 14 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "ֵ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 13,
+     "routes": 12,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 13
+     },
+     "regions": {
+      "marker_free": 4,
+      "head": 9
+     },
+     "region_dependent": false,
+     "evidence": "13 occurrences in 12 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "?": {
+     "means": "The gloss is uncertain or is itself a question ('tunic?', 'really?', '(= Shunem?)').",
+     "governs": 9,
+     "routes": 9,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "question.route_final": 4,
+      "question.in_parentheses": 4,
+      "question.in_quote": 1
+     },
+     "regions": {
+      "marker_free": 6,
+      "head": 3
+     },
+     "region_dependent": false,
+     "evidence": "9 occurrences.",
+     "falsifier": "A '?' followed by another rendering: 0 today."
+    },
+    "+": {
+     "means": "Adds the typical instrument or manner to an action inside one definition ('+ with a sharp-bladed instrument').",
+     "governs": 6,
+     "routes": 6,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "plus.added_circumstance": 6
+     },
+     "regions": {
+      "marker_free": 3,
+      "head": 3
+     },
+     "region_dependent": false,
+     "evidence": "6 occurrences, all ' + '.",
+     "falsifier": "A '+' joining two glosses: 0 today."
+    },
+    "!": {
+     "means": "Ends an interjection ('hey!'); where one interjection follows another in the same gloss route ('come on! hey!', 'brother! alas!') it divides in meaning and is not separated.",
+     "governs": 5,
+     "routes": 3,
+     "divides_readings": "in meaning, at 2 of 5 occurrences (exclamation.between_interjections 2); not separated",
+     "shape_occurrences": {
+      "exclamation.between_interjections": 2,
+      "exclamation.route_final": 2,
+      "exclamation.in_literal_rendering": 1
+     },
+     "regions": {
+      "marker_free": 4,
+      "head": 1
+     },
+     "region_dependent": false,
+     "evidence": "5 occurrences in 3 routes; 2 stand between two interjections.",
+     "falsifier": "A '!' followed by a further rendering in a definition route (not a marker-free gloss): 0 today."
+    },
+    "׃": {
+     "means": "A sof pasuq typed where the provider's ';' stands before a note ('son of Judah׃ ►').",
+     "governs": 4,
+     "routes": 4,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "sof_pasuq.in_place_of_semicolon_before_note": 4
+     },
+     "regions": {
+      "notes": 4
+     },
+     "region_dependent": false,
+     "evidence": "4 occurrences, every one before a note marker.",
+     "falsifier": "A sof pasuq not before a note marker: 0 today."
+    },
+    "“": {
+     "means": "Opens a quoted phrase.",
+     "governs": 3,
+     "routes": 3,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "quote.open": 3
+     },
+     "regions": {
+      "head": 2,
+      "notes": 1
+     },
+     "region_dependent": false,
+     "evidence": "3 occurrences.",
+     "falsifier": "An unpaired quotation mark: openers 80 and closers 80 across ASCII and curly marks today."
+    },
+    "[": {
+     "means": "Opens a cross-reference to a lettered sense or homonym ('[a]').",
+     "governs": 3,
+     "routes": 3,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "bracket.open.sense_letter_reference": 3
+     },
+     "regions": {
+      "marker_free": 2,
+      "notes": 1
+     },
+     "region_dependent": false,
+     "evidence": "3 occurrences, all '[a]' or '[b]'.",
+     "falsifier": "Square brackets holding a supplied English word: 0 today."
+    },
+    "]": {
+     "means": "Closes it.",
+     "governs": 3,
+     "routes": 3,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "bracket.close.sense_letter_reference": 3
+     },
+     "regions": {
+      "marker_free": 2,
+      "notes": 1
+     },
+     "region_dependent": false,
+     "evidence": "3 occurrences.",
+     "falsifier": "As for '['."
+    },
+    "־": {
+     "means": "The maqaf of a cited Hebrew compound.",
+     "governs": 3,
+     "routes": 3,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "maqaf.in_cited_hebrew_compound": 3
+     },
+     "regions": {
+      "head": 2,
+      "marker_free": 1
+     },
+     "region_dependent": false,
+     "evidence": "3 occurrences, all between Hebrew letters.",
+     "falsifier": "A maqaf outside a cited Hebrew word: 0 today."
+    },
+    "”": {
+     "means": "Closes a quoted phrase.",
+     "governs": 2,
+     "routes": 2,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "quote.close": 2
+     },
+     "regions": {
+      "head": 2
+     },
+     "region_dependent": false,
+     "evidence": "2 occurrences.",
+     "falsifier": "As for '“'."
+    },
+    "–": {
+     "means": "A range of numbers.",
+     "governs": 2,
+     "routes": 2,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "dash.numeric_range": 2
+     },
+     "regions": {
+      "head": 2
+     },
+     "region_dependent": false,
+     "evidence": "2 occurrences, all between digits.",
+     "falsifier": "A dash between words, standing between two readings: 0 today."
+    },
+    "ֲ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 1
+     },
+     "regions": {
+      "marker_free": 1
+     },
+     "region_dependent": false,
+     "evidence": "1 occurrences in 1 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "…": {
+     "means": "The open slot of a correlative gloss ('both … and').",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "ellipsis_char.slot_in_correlative": 1
+     },
+     "regions": {
+      "marker_free": 1
+     },
+     "region_dependent": false,
+     "evidence": "1 occurrence.",
+     "falsifier": "An ellipsis between two complete renderings: 0 today."
+    },
+    "ׂ": {
+     "means": "A Hebrew vowel point, dagesh or shin/sin dot inside a Hebrew word the definition cites ('see הַקָּטָן'): part of the letters, not punctuation.",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "hebrew_point.in_cited_hebrew_word": 1
+     },
+     "regions": {
+      "head": 1
+     },
+     "region_dependent": false,
+     "evidence": "1 occurrences in 1 routes, every one inside a cited Hebrew word.",
+     "falsifier": "A point standing on no Hebrew letter: 0 today."
+    },
+    "‑": {
+     "means": "A range of numbers (non-breaking hyphen).",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": "never",
+     "shape_occurrences": {
+      "dash.numeric_range": 1
+     },
+     "regions": {
+      "head": 1
+     },
+     "region_dependent": false,
+     "evidence": "1 occurrence, between digits.",
+     "falsifier": "As for '–'."
+    }
+   },
+   "precedence": [
+    "|",
+    "\"",
+    "(",
+    ";",
+    "◄",
+    "►",
+    "≈",
+    ":",
+    "=",
+    ",",
+    "!",
+    ">",
+    "/"
+   ],
+   "precedence_note": "Nothing separates, so precedence decides only which mark's scope governs where two meet: the italic code, quotes and parentheses first (nothing inside them is structure), then ';' (the parts of one record), then the note openers, then ':' and '=' (label and definition), then ',' and '!' inside one part, then '>' and '/' inside one phrase.",
+   "refusals": {
+    "unbalanced_parentheses": {
+     "rows": 10,
+     "closer_with_nothing_open": 9,
+     "opener_never_closed": 1,
+     "rule": "Nothing to refuse: nothing separates, so a damaged scope cannot mis-cut anything. The route ships whole with the orphan character where the provider left it. Today's engine holds such a sense back as damaged and prints nothing for it."
+    }
+   },
+   "export": "governed by its posture, cc_by_sa_4_0",
+   "separates_on": null,
+   "separates_on_why": "Every route is one record of one meaning. The marks that divide in meaning do so in 46 of 21,626 routes, and in each a cut would either print a piece that leans on the other's words ('to be' from 'to be, become happy'), leave a shared head or note attached to one alternative ('meaning unknown; possibly: = musical term' | 'or: = musical instrument' | 'or: = melody; ≈ ...'), or contradict the owner's ruling that a comma in UBS does not mean different entries. The provider's own way of offering a second reading is a second route (3,595 mark-free glosses of at most four words). So nothing is separated until the owner rules on the open questions.",
+   "not_done_here": "The head is never taken as the reading: 'man' is not printed for 'man; ◄ son of Heman; ...', and 'hence: = action by which ...' is not printed without its literal rendering. A note is never printed as a reading. A packed gloss is never completed ('to be happy' is not manufactured from 'to be, become happy'). All three would be derivations.",
+   "open_questions": [
+    {
+     "id": 1,
+     "question": "A gloss route that packs two or three renderings with a comma (or two interjections with '!'): one reading or several?",
+     "reading_a": {
+      "says": "One reading: the provider wrote one gloss, and the owner ruled that a comma in UBS does not mean different entries (declared here).",
+      "routes": 27
+     },
+     "reading_b": {
+      "says": "Several readings, separated where each piece stands alone ('pain' | 'trouble'; 'to go' | 'to arrive'), never where a piece leans on another's words ('to be, become happy'), which no separation can print without completing it.",
+      "routes_that_would_separate": 8,
+      "pills_they_would_print": 17,
+      "routes_still_whole_because_elliptic": 13,
+      "name_variant_routes": 4,
+      "interjection_routes": 2
+     },
+     "evidence": "The provider's ordinary second gloss is a second route (3,595 mark-free glosses of at most four words); in 3 of 9 complete packed commas a piece is also written as its own route on the key ('to go, to arrive' beside 'to go' and 'to arrive').",
+     "examples": [
+      "עצבה: «pain, trouble»",
+      "לחץ: «oppression, affliction»",
+      "חזק: «to give strength, to fortify»",
+      "לבוא: «to go, to arrive»",
+      "פלט: «to deliver, bring forth a child»",
+      "ערב: «to make a wager, bet»",
+      "פיה: «mouth of well, cave, pit»",
+      "שעלבני: «inhabitant of Shaalbim, Shaalabbin»",
+      "מעכתי: «inhabitant of Maacah, Maacath»",
+      "יהב: «come on! hey!»"
+     ]
+    },
+    {
+     "id": 2,
+     "question": "A definition that offers a labeled second meaning ('possibly: = musical term; or: = musical instrument; or: = melody'): one reading or one per alternative?",
+     "reading_a": {
+      "says": "One reading: the record is one entry for an uncertain word; the head ('meaning unknown') and any trailing note belong to every alternative (declared here).",
+      "routes": 17
+     },
+     "reading_b": {
+      "says": "One reading per alternative, cut at the ';' before 'or:'/'either:'/'alternatively'; the shared head stays on the first piece and a trailing note on the last.",
+      "routes": 17,
+      "semicolons": 26
+     },
+     "also": "20 routes add an unlabeled '; or ...' / '; either ...' clause (21 semicolons), mostly a further referent inside one definition ('...; or a person or deity who is referred to as such') and sometimes an alternative identification ('...; or possibly a thorny bush'); both readings would keep these whole unless the owner says otherwise. Labeled alternatives also occur after ',' (2) and once after a sentence break ('booths. Or alternatively, olive tree').",
+     "examples": [
+      "שמיני: «meaning unknown; possibly: = musical term; or: = musical ins…»",
+      "הובנים: «a spiny tree up to 6-7 m. high; its leaves are compound, wit…»",
+      "הבנים: «a spiny tree up to 6-7 m. high; its leaves are compound, wit…»",
+      "יותרת: «exact meaning unsure: = either: lobe in the shape of a finge…»",
+      "מרא: «man who is in a position of authority over another person or…»",
+      "האטד: «a tree that grows to 5 meters (17 feet), has small leaves fo…»"
+     ]
+    },
+    {
+     "id": 3,
+     "question": "An idiom gloss 'literal > meaning' ('to see the light > to live'): one reading or two?",
+     "reading_a": {
+      "says": "One reading: the provider's one gloss for one lexical meaning, written as the literal phrase leading to its sense, as its definitions write 'literally: ...; hence: = ...' (declared here).",
+      "routes": 120
+     },
+     "reading_b": {
+      "says": "Two readings, the literal and the meaning, cut at ' > '.",
+      "routes": 120,
+      "pills_they_would_print": 240
+     },
+     "evidence": "113 of 120 stand on a key with a 'literally: ...; hence' definition; in 6 one side is also written as its own gloss route on the key.",
+     "examples": [
+      "קדש: «to sanctify (one's) name > to show (one's) greatness»",
+      "שכך: «to cover (one's) feet > to relieve oneself»",
+      "שית: «to lay (one's) hand > to impose (one's) authority (on someon…»",
+      "דלק: «to hunt down > to oppress»"
+     ]
+    },
+    {
+     "id": 4,
+     "question": "A definition with notes ('man; ◄ son of Heman; ► temple singer; time of king David'): is the head a reading, and are the notes readings?",
+     "reading_a": {
+      "says": "The record is one reading and prints whole, notes included (declared here). No head is printed alone and no note is a pill.",
+      "routes": 5943
+     },
+     "reading_b": {
+      "says": "The head is the reading and the notes are annotation: cut at the first ';' before ◄ ► ≈, print the head as the pill and the notes beside it as notes, not pills. This is a separation (both pieces kept), but it makes 'man' and 'town' readings of proper names.",
+      "routes": 5943,
+      "most_frequent_heads": [
+       "2547 × «man»",
+       "386 × «town»",
+       "126 × «woman»",
+       "60 × «location»",
+       "52 × «various men»",
+       "29 × «meaning unsure»",
+       "28 × «exact meaning unsure»",
+       "18 × «exact meaning unknown»"
+      ]
+     },
+     "today": "Today's card goes further than either: it prints every ';' piece as a pill, 8,604 pills that open with a note marker and 8,048 that open with a label ('hence: = ...', 'possibly: = ...'), and 'man' alone 2,894 times.",
+     "examples": [
+      "אדר: «month, equivalent to period February/March; ► post-exilic»",
+      "אדר: «town, also known as Hazar-Addar; ◄ territory of Judah»",
+      "אדר: «man, also known as Ard; ◄ son of (Bela, son of) Benjamin»",
+      "בטן: «front part of the human trunk below the ribs, containing the…»"
+     ]
+    }
+   ],
+   "what_changes_on_a_card": {
+    "engine_path": "today: ';' at depth 0 packs senses, each sense divides under sense-split-rule-v3, damaged senses neither print nor pool",
+    "routes": 21626,
+    "same_division": 10516,
+    "v3_divides_where_declaration_keeps_whole": 11108,
+    "declaration_divides_where_v3_keeps_whole": 0,
+    "divided_differently": 0,
+    "v3_prints_nothing_where_declaration_prints_whole": 2,
+    "by_cause": {
+     "v3_divides_where_declaration_keeps_whole :: v3 divides at ';' and ',' (every comma piece gloss-shaped: the sense is printed only as its pieces)": 994,
+     "v3_divides_where_declaration_keeps_whole :: v3 divides at ';' and ',' (rule 5: gloss-shaped comma pieces printed beside the whole sense)": 1384,
+     "v3_divides_where_declaration_keeps_whole :: v3 divides at ';'": 7417,
+     "v3_divides_where_declaration_keeps_whole :: v3 divides at ',' (rule 5: gloss-shaped comma pieces printed beside the whole sense)": 1032,
+     "v3_divides_where_declaration_keeps_whole :: v3 divides at ';' and ',' (rule 5 both ways)": 146,
+     "v3_divides_where_declaration_keeps_whole :: v3 divides at ',' (every comma piece gloss-shaped: the sense is printed only as its pieces)": 126,
+     "v3_divides_where_declaration_keeps_whole :: v3 divides at ';' (the route ends on ';': the empty piece after it is dropped)": 1,
+     "v3_divides_where_declaration_keeps_whole :: v3 divides at ';', and holds a damaged sense back": 8,
+     "v3_prints_nothing_where_declaration_prints_whole :: every sense held as damaged (unbalanced parentheses): v3 prints nothing": 2
+    },
+    "readings_printed_from_this_provider": {
+     "today": 44078,
+     "declared": 21626
+    },
+    "pills_today_that_are_not_the_route": {
+     "total_pieces_not_the_route": 32530,
+     "opens_with_note_marker": 8604,
+     "opens_with_label": 8048,
+     "one_word": 5853,
+     "other": 10025,
+     "also_written_as_a_route_on_the_key": 40
+    },
+    "most_frequent_pills_today": [
+     "2894 × man",
+     "532 × town",
+     "342 × after exile",
+     "315 × tribe of Levi",
+     "262 × tribe of Judah",
+     "234 × meaning unsure",
+     "224 × time of king David",
+     "200 × exact meaning unsure",
+     "197 × ◄ tribe of Levi",
+     "184 × tribe of Benjamin",
+     "154 × ► family head",
+     "140 × woman",
+     "113 × exact meaning unknown",
+     "109 × ► warrior",
+     "102 × ► priest"
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "source_key": "macula_hebrew_cherith_surface_english_2022",
+ "holds": true,
+ "verdict": {
+  "holds": true,
+  "counts_reproduced": true,
+  "completeness_reproduced": true,
+  "why": "I wrote my own classifier from the shape tests as worded, without using census.mjs, and ran it over all 43,304 rows of by-source/macula_hebrew_cherith_surface_english_2022.jsonl. Script: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/punct/verify/macula_hebrew_cherith_surface_english_2022/verify.mjs. Output: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/punct/verify/macula_hebrew_cherith_surface_english_2022/verify.json.\n\n(a) Counts. All 24 shape counts match the draft exactly, with no difference. The per-mark occurrence and route counts also match (~ 1880 in 1871 routes, ’ 281/281, - 118/99, ! 27, ? 22, ( 13, ) 13, = 2, + 2, . 1, / 1; 2,360 in total), and so do the mark inventory figures. These also reproduce: 15,871 keys; route equal to definition in 43,304 of 43,304 rows; 40,992 routes with no mark; 0 commas and 0 semicolons in both route and definition; 9 routes with two '~' and none with more; 171 routes where closing the gap gives a sibling route on the same key; 11 routes where both sides of the '~' stand as their own routes.\n\n(b) Completeness. Every one of the 2,360 occurrences matched exactly one shape: 0 unexplained and 0 matched by two shapes. Closure: 0 routes carry a mark the draft does not declare. Every falsifier the draft states also comes back 0 as claimed: no mid-route '~' without a space on both sides, no ’ without a letter before it, no '-' with a space beside it, no '!' or '?' before the last character, no parenthesis holding any mark other than = and +, no unbalanced parentheses, no = or + outside a number parenthesis, no '.' with words on both sides, and 1 route with '/'.\n\n(c) Falsification. The only dividing shape, slash.between_words (1 route, key בהנות, 'thumbs/big toes of'), survived four attempts:\n1. No digit, fraction or date beside the slash.\n2. Not an and/or pair.\n3. A shared tail 'of' is present, so a cut leaves 'thumbs' without its 'of', as the draft says.\n4. Across the whole store, the two heads are each the provider's own complete glosses elsewhere (בהן: 'thumbs'; בהן and רגלי: 'big toes'), which supports alternation of the head.\n\nA caution not taken from the data: in context the word likely applies to both at once (thumbs of the hands and big toes of the feet), not as an either/or. That does not make 'two renderings of one head' wrong.\n\nThe non-dividing '~' shapes were not falsified. Of the 11 routes whose two sides each stand alone, plus 4 routes reading 'whether ~ or' or 'either ~ or' (או, ה, בין), all are correlative or phrasal frames.\n\nTwo non-dividing meanings are wrong in wording only; this changes no division (see corrections).\n\n(d) v3 comparison. 43,304 fields compared and 43,304 divided the same way. v3 divides where the declaration keeps whole: 0. The declaration divides where v3 keeps whole: 0. Divided differently: 0. v3 found 0 damaged fields, and 0 of the single readings differ in any byte from the route. Note that sense-split-v1.mjs splits only at commas and has no semicolon step, unlike the task text's description of v3. This makes no difference here because the provider writes 0 semicolons.",
+  "corrections": [
+   "apostrophe.possessive_s: the meaning 'The possessive ’s' is wrong for 4 of 229 occurrences, which are contractions of 'is': ו 'he’s', כן 'that’s true', כן 'that’s why', גם 'what’s'. Reword to 'possessive ’s, or a contracted ’s (is)'. Not a dividing shape, so no division changes.",
+   "apostrophe.plural_possessive: the meaning 'The plural possessive s’' is wrong for 2 of 38 occurrences, which are singular possessives of names ending in s: משה 'Moses’' and ארתחששת 'Artaxerxes’'. Reword to 'the possessive apostrophe after a final s (plural, or a singular name in s)'. Not a dividing shape.",
+   "Tilde evidence: the claim that the word after the gap is a verbal particle 'in 668 of them' cannot be reproduced from its words, because 'and the like' leaves the particle list unstated. With only the five particles named (out, up, down, away, back), the count is 477 of the 1,871 routes carrying '~', and 106 of the 171 routes with a closed-gap sibling. State the full particle list or drop the number.",
+   "Minor: the hyphen.compound_join evidence 'daughter of-cypresses' (key אשרים) joins a function word to a noun inside a translated name, not 'one English word'. It is still one reading, so 'one name' covers it. No count change."
+  ],
+  "falsified_meanings": [
+   "apostrophe.possessive_s (non-dividing): 4 counterexamples where the ’s is a contraction of 'is': ו he’s; כן that’s true; כן that’s why; גם what’s",
+   "apostrophe.plural_possessive (non-dividing): 2 counterexamples that are singular names: משה Moses’; ארתחששת Artaxerxes’"
+  ]
+ },
+ "v3": {
+  "fields_compared": 43304,
+  "same_division": 43304,
+  "v3_divides_where_declaration_keeps_whole": 0,
+  "declaration_divides_where_v3_keeps_whole": 0,
+  "divided_differently": 0,
+  "examples": []
+ },
+ "questions": [
+  "'/' in 'thumbs/big toes of' (key בהנות, 1 route). (a) Ship it whole as one reading, as the declaration does today: 1 route, 1 piece. (b) Separate at the slash into 'thumbs' and 'big toes of': 1 route, 2 pieces, and the first prints without the 'of' both alternatives share. Printing 'thumbs of' would be a derivation, so that is not offered.",
+  "Number-equation routes with no English, on the article ה: '(2019a=1886a+6483)' and '(6997a=1886a+6997)', 2 routes. (a) Print them as this provider's reading, as today: 2 routes. (b) Treat a route made only of numbers as an annotation with no English reading, so M3 puts no pill there: 2 routes.",
+  "Lexicon-number parentheses on name-parts: 'Ben (1127)', 'Geber (1127)', 'Ben (1128)', 'Deker (1128)', 4 routes. (a) The number prints inside the reading as written, as today: 4 routes. (b) The page presents the number as the provider's cross-reference beside the name-part, not as words of the reading: 4 routes. The characters are kept in both; only the presentation differs.",
+  "'.and' on ו (1 route). (a) A stray full stop, printed as written. (b) The end of the preceding English sentence carried onto the conjunction. Either way it divides nothing, and one instance cannot settle which it is."
+ ]
+}

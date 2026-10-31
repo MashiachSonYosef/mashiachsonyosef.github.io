@@ -1,0 +1,2212 @@
+{
+ "schema_version": "MARK_LEDGER_PILOT_V1",
+ "source_key": "openscriptures_strongs",
+ "m_ids": [
+  "M9"
+ ],
+ "computed_on": "2026-10-31",
+ "script": "ledger.mjs",
+ "input": "punct/by-source/openscriptures_strongs.jsonl",
+ "routes": 23646,
+ "distinct_definitions": 14929,
+ "keys": 5939,
+ "route_regions": {
+  "definition_slice": 7928,
+  "definition_whole": 7515,
+  "list_whole": 8203
+ },
+ "definition_field_test": {
+  "test": "a definition carrying the x (U+00D7) or + sign is the KJV rendering list; else one that ends with '.' (or with '.' and one bracketed note) and carries no tag trace (a non-digit, a space, then , ; or .) is the KJV rendering list; else it is Strong's own definition sentence",
+  "by": {
+   "definition:trace": 4377,
+   "list:full_stop": 6987,
+   "definition:no_full_stop": 3049,
+   "list:sign": 516
+  },
+  "corroboration": {
+   "list_defs_with_a_slice": 0,
+   "definition_defs_with_a_slice": 4738,
+   "definition_defs_without_slice": 2688,
+   "list_defs": 7503,
+   "definition_defs": 7426
+  }
+ },
+ "route_slices_with_more_than_one_offset_in_definition": 91,
+ "inventory_closed_set": {
+  "marks": 18,
+  "all_agree": true,
+  "extra_marks_in_definitions_only": []
+ },
+ "totals": {
+  "route_mark_occurrences": 52371,
+  "shaped": 52371,
+  "unexplained": 0
+ },
+ "marks": [
+  {
+   "mark": ",",
+   "codepoint": "U+002C",
+   "route_occurrences": 19894,
+   "routes_carrying_it": 8164,
+   "definition_occurrences_per_row": 33374,
+   "definition_rows_carrying_it": 14336,
+   "definition_occurrences_distinct_definitions": 19854,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "comma.rendering_separator",
+     "test": "list field, before the list's full stop, depth 0, the next piece does not begin with '-' or a lone '(-...)' group",
+     "means": "separates one KJV rendering from the next",
+     "count": 11081,
+     "routes": 3230,
+     "divides_readings": true,
+     "regions": {
+      "list_body": 11081
+     },
+     "examples": [
+      "אדר: (become) glorious, honourable.",
+      "בטן: belly, body, as they be born, within, w",
+      "דמע: × sore, weep.",
+      "חפר: dig, paw, search out, seek."
+     ]
+    },
+    {
+     "shape": "comma.def_name_then_description",
+     "test": "definition field, tag trace, and the piece before it (after any label) begins with a capital letter",
+     "means": "separates a proper name from the description of who or what it is: one reading",
+     "count": 2094,
+     "routes": 2093,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 2094
+     },
+     "examples": [
+      "אדר: Adar , the 12th Hebrew month",
+      "אימים: Emim , an early Canaanitish (or Maobiti",
+      "חפר: Chepher , a place in Palestine; also the n",
+      "טלם: Telem , the name of a place in Idumaea, "
+     ]
+    },
+    {
+     "shape": "comma.def_after_label",
+     "test": "definition field, depth 0, the piece before it (back to the previous depth-0 , or ;) is a usage label: properly, figuratively, by implication, hence, specifically, concretely, ...",
+     "means": "closes the usage label that qualifies the sense after it",
+     "count": 1657,
+     "routes": 1278,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 1657
+     },
+     "examples": [
+      "דמע: a tear ; figuratively, juice",
+      "חפר: properly, to pry into ; by implication, to",
+      "מגר: o yield up ; intensively, to precipitate",
+      "גבול: properly, a cord (as twisted ), i.e. (by i"
+     ]
+    },
+    {
+     "shape": "comma.in_group",
+     "test": "list field, inside ( ) or [ ], before the list's full stop",
+     "means": "separates the alternatives inside the optional part of one rendering",
+     "count": 1289,
+     "routes": 548,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1289
+     },
+     "examples": [
+      "קדש: ate, defile, hallow, (be, keep) holy(-er, place), keep, pr",
+      "חלק: de, flatter, give, (have, im-) part(-ner), take away a por",
+      "מזרח: east (side, -ward), (sun-) rising (of the su",
+      "מבצר: (de-, most) fenced, fortress, (most) s"
+     ]
+    },
+    {
+     "shape": "comma.def_gloss_then_ie",
+     "test": "definition field, depth 0, a space before the comma (the provider's tag trace) and 'i.e.' after it",
+     "means": "closes a tagged gloss whose explanation ('that is ...') follows",
+     "count": 1072,
+     "routes": 1053,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 1072
+     },
+     "examples": [
+      "אדר: to expand , i.e. be great or (figuratively) ",
+      "חפר: a burrower , i.e. probably a rat",
+      "קדש: a (quasi) sacred person , i.e. (technically) a (male) devo",
+      "חשק: to cling , i.e. join , (figuratively) to lo"
+     ]
+    },
+    {
+     "shape": "comma.def_in_aside",
+     "test": "definition field, inside ( ) or [ ]",
+     "means": "punctuation inside one of Strong's asides",
+     "count": 759,
+     "routes": 431,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 759
+     },
+     "examples": [
+      "מכשלה: nly figuratively ( fall , enticement [idol])",
+      "קדש: to be (causatively, make , pronounce or observe as) ",
+      "דד: ast (as the seat of love, or from its shape)",
+      "נקב: literally (to perforate , with more or less violence) or f"
+     ]
+    },
+    {
+     "shape": "comma.def_short_series",
+     "test": "definition field, depth 0, no tag trace, both neighboring pieces at most 4 words outside groups",
+     "means": "Strong's own untagged comma between short phrases of one sentence",
+     "count": 644,
+     "routes": 518,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 644
+     },
+     "examples": [
+      "קדש: r thing; rarely abstract, sanctity",
+      "רגמה: a pile (of stones), i.e. (figuratively) a throng",
+      "גבול: ly, a cord (as twisted ), i.e. (by implication) a boundary",
+      "זהב: ld-colored (i.e. yellow), as oil , a clear sky"
+     ]
+    },
+    {
+     "shape": "comma.def_gloss_then_last_piece",
+     "test": "definition field, tag trace before the comma and the next piece runs to the end of the definition, where no tag can be seen",
+     "means": "closes a tagged gloss before the sentence's last piece, which is sometimes another gloss ('to remit , remove') and sometimes a qualifier ('to carve , whether wood or stone')",
+     "count": 490,
+     "routes": 490,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 490
+     },
+     "examples": [
+      "חפר: y implication, to delve , to explore",
+      "מכשלה: a stumbling-block , but only figuratively ( fall , e",
+      "נקב: to puncture , literally (to perforate , with m",
+      "גויה: a body , whether alive or dead"
+     ]
+    },
+    {
+     "shape": "comma.def_between_tagged_glosses",
+     "test": "definition field, tag trace before the comma and the next depth-0 piece also ends in a tag trace (a space before its own , or ;)",
+     "means": "separates one tagged gloss from another: alternative renderings",
+     "count": 363,
+     "routes": 242,
+     "divides_readings": true,
+     "regions": {
+      "definition_whole": 363
+     },
+     "examples": [
+      "בטן: the belly , especially the womb ; also the b",
+      "חפר: ratively, to be ashamed , disappointed ; causatively, to s",
+      "חשק: to cling , i.e. join , (figuratively) to love , delight",
+      "מבצר: a fortification , castle , or fortified city; figu"
+     ]
+    },
+    {
+     "shape": "comma.def_clause",
+     "test": "definition field, depth 0, no tag trace, a neighboring piece longer than 4 words",
+     "means": "clause punctuation inside Strong's sentence",
+     "count": 287,
+     "routes": 262,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 287
+     },
+     "examples": [
+      "טלם: me of a place in Idumaea, also of a temple doorkeeper",
+      "זן: hed (or fully developed), i.e. a form or sort",
+      "שמעון: on , one of Jacob's sons, also the tribe descended from hi",
+      "נשיא: properly, an exalted one, i.e. a king or sheik ; also a ri"
+     ]
+    },
+    {
+     "shape": "comma.def_gloss_then_untagged",
+     "test": "definition field, tag trace before the comma, the next piece neither tagged nor last",
+     "means": "closes a tagged gloss before a usage label or prose",
+     "count": 104,
+     "routes": 101,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 104
+     },
+     "examples": [
+      "זהב: gold , figuratively, something gold-col",
+      "מבצר:  fortification , castle , or fortified city; figuratively,",
+      "עתה: at this time , whether adverb, conjunction or e",
+      "חלץ: implication, to deliver , equip (for fight); present , str"
+     ]
+    },
+    {
+     "shape": "comma.in_note",
+     "test": "list field, after the list's full stop",
+     "means": "separates cross-reference numbers or clauses of the note after the list",
+     "count": 28,
+     "routes": 23,
+     "divides_readings": false,
+     "regions": {
+      "list_notes": 28
+     },
+     "examples": [
+      "שרוק: incipal plant. See 8320 , 8321 .",
+      "סכר: ive over. See also 5462 , 7936 .",
+      "און: Aven. See also 204 , 1007 .",
+      "מעון:  Maonites. Compare 1010 , 4586 ."
+     ]
+    },
+    {
+     "shape": "comma.def_gloss_then_etc",
+     "test": "definition field, tag trace and 'etc' after it",
+     "means": "closes the last tagged gloss of a series left open",
+     "count": 21,
+     "routes": 21,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 21
+     },
+     "examples": [
+      "מאד: tion, wholly , speedily , etc. (often with other words as ",
+      "במו: in , with , by , etc.",
+      "בלתי: s , because not , until , etc.",
+      "בר: a son , grandson , etc."
+     ]
+    },
+    {
+     "shape": "comma.attaches_syllable",
+     "test": "list field, depth 0, the next piece begins with '-' or is a lone group whose content begins with '-'",
+     "means": "attaches a suffix syllable to the rendering before it ('seven(-fold),-s'): one rendering",
+     "count": 5,
+     "routes": 4,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 5
+     },
+     "examples": [
+      "שבע: ( by) seven(-fold),-s, (-teen, -teenth), -th, times)",
+      "מלאכה:  industrious, occupation, ( -pied), officer, thing (made),",
+      "רדה: gn, (bear, make to) rule,(-r, over), take.",
+      "אמן: trusty, verified), nurse, (-ing father), (put), trust, tur"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "comma.def_after_label",
+     "comma.def_between_tagged_glosses",
+     "comma.def_clause",
+     "comma.def_gloss_then_etc",
+     "comma.def_gloss_then_ie",
+     "comma.def_gloss_then_last_piece",
+     "comma.def_gloss_then_untagged",
+     "comma.def_in_aside",
+     "comma.def_name_then_description",
+     "comma.def_short_series"
+    ],
+    "list_body": [
+     "comma.attaches_syllable",
+     "comma.in_group",
+     "comma.rendering_separator"
+    ],
+    "list_notes": [
+     "comma.in_note"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": ".",
+   "codepoint": "U+002E",
+   "route_occurrences": 11809,
+   "routes_carrying_it": 9746,
+   "definition_occurrences_per_row": 18586,
+   "definition_rows_carrying_it": 12918,
+   "definition_occurrences_distinct_definitions": 11109,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "period.list_end",
+     "test": "list field: the first '.' at depth 0 that is not part of '...' and not followed by ','",
+     "means": "ends the KJV rendering list; anything after it is a note",
+     "count": 8190,
+     "routes": 8190,
+     "divides_readings": true,
+     "regions": {
+      "list_end": 8190
+     },
+     "examples": [
+      "אדר: me) glorious, honourable.",
+      "אימים: Emims.",
+      "בטן: ey be born, within, womb.",
+      "דמע: × sore, weep."
+     ]
+    },
+    {
+     "shape": "period.ie",
+     "test": "definition field, either dot of 'i.e.'",
+     "means": "abbreviation: 'that is'",
+     "count": 3008,
+     "routes": 1447,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 3008
+     },
+     "examples": [
+      "אדר: to expand , i.e. be great or (figuratively) mag",
+      "חפר: a burrower , i.e. probably a rat",
+      "קדש: quasi) sacred person , i.e. (technically) a (male) devotee",
+      "רגמה: a pile (of stones), i.e. (figuratively) a throng"
+     ]
+    },
+    {
+     "shape": "period.in_note",
+     "test": "list field, after the list's full stop",
+     "means": "ends a sentence or an abbreviation of the note after the list ('See 7503 .', 'Prop.')",
+     "count": 280,
+     "routes": 271,
+     "divides_readings": false,
+     "regions": {
+      "list_notes": 280
+     },
+     "examples": [
+      "קדש: Kadesh. Compare 6947 .",
+      "זבל: Zebul. Compare 2073 .",
+      "ערבה: lderness. See also 1026 .",
+      "ירח: moon. Yrechow. See 3405 ."
+     ]
+    },
+    {
+     "shape": "period.ellipsis",
+     "test": "a '.' next to another '.'",
+     "means": "the KJV rendering runs on through words that render other Hebrew words ('that which...laid up')",
+     "count": 148,
+     "routes": 44,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 142,
+      "definition_whole": 6
+     },
+     "examples": [
+      "מען:  (intent) that, for (to,... 's sake), lest, that, to.",
+      "פקדה: rge, custody, that which...laid up, numbers, office(-r), o",
+      "מעבר: ford, place where...pass, passage.",
+      "נדב: (be minded of...own) freewill (offering), offer"
+     ]
+    },
+    {
+     "shape": "period.etc",
+     "test": "definition field, after 'etc'",
+     "means": "abbreviation: 'and the rest'",
+     "count": 61,
+     "routes": 56,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 61
+     },
+     "examples": [
+      "מאד:  wholly , speedily , etc. (often with other words as an in",
+      "במו: in , with , by , etc.",
+      "נוח: raw , give comfort , etc.)",
+      "נצר:  , maintain , obey , etc.) or a bad one (to conceal , etc."
+     ]
+    },
+    {
+     "shape": "period.abbreviation",
+     "test": "definition field, '.' after letters, not ending a sentence (followed by ')', ',' or a lowercase word)",
+     "means": "closes an abbreviation ('(adj.)', '(reflex.)', 'subject.')",
+     "count": 54,
+     "routes": 48,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 54
+     },
+     "examples": [
+      "מטה: ly, a support of life, e.g. bread)",
+      "יאר: a channel , e.g. a fosse, canal, shaft; specifi",
+      "חזק: strong (usu. in a bad sense, hard , bold , vi",
+      "יה: e names in '-iah,' '-jah.'"
+     ]
+    },
+    {
+     "shape": "period.aside_sentence_end",
+     "test": "definition field, '.' followed by ')'",
+     "means": "ends a sentence inside an aside",
+     "count": 29,
+     "routes": 28,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 29
+     },
+     "examples": [
+      "חלץ: vely) to strip , (reflex.) to depart ; by implication, to ",
+      "בלל: w (specifically with oil.); by implication, to mix ; to fo",
+      "עליון: an elevation , i.e. (adj.) lofty (compar.); as title, the ",
+      "מכתם:  engraving , i.e. (techn.) a poem"
+     ]
+    },
+    {
+     "shape": "period.in_group",
+     "test": "list field, before the list's full stop, inside a group",
+     "means": "a stop inside the optional part of a rendering, at a list whose group never closes ('with(-in.)')",
+     "count": 15,
+     "routes": 15,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 15
+     },
+     "examples": [
+      "ערף: ack ((stiff-) neck((-ed).",
+      "חנם: nothing (nought, in vain.",
+      "ברזות: Birzavith (from the marg.).",
+      "לבב:  unawares, understanding."
+     ]
+    },
+    {
+     "shape": "period.sentence_end",
+     "test": "definition field, '.' at the end of the text or before a space and a capital, Hebrew letter or digit",
+     "means": "ends a sentence of Strong's definition",
+     "count": 10,
+     "routes": 10,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 10
+     },
+     "examples": [
+      "יה:  the Lord, most vehement. Compare names in '-iah,' '-jah.'",
+      "חרא: dung. Also חֲרִי .",
+      "זחלת: th , a boundary stone in. Palestine",
+      "יצא: ively, direct and proxim."
+     ]
+    },
+    {
+     "shape": "period.trace_end",
+     "test": "definition field, a space before the '.', not followed by a lowercase word",
+     "means": "the tag trace closing Strong's sentence ('marble .')",
+     "count": 7,
+     "routes": 7,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 7
+     },
+     "examples": [
+      "שיש: white , i.e. marble .",
+      "חרא: dung. Also חֲרִי .",
+      "צפר: a bird .",
+      "בג: from the margin for 957 .)"
+     ]
+    },
+    {
+     "shape": "period.stray_for_comma",
+     "test": "definition field, a space before the '.', followed by a space and a lowercase word",
+     "means": "a stop where the sentence goes on ('Beten . a place in Palestine'): the provider's slip for a comma",
+     "count": 6,
+     "routes": 6,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 6
+     },
+     "examples": [
+      "בטן: Beten . a place in Palestine",
+      "אמנה: fixed , i.e. a covenant . an allowance",
+      "נשמה: inspiration , intellect . or (concretely) an animal",
+      "דמה:  fail or perish ; trans . to destroy"
+     ]
+    },
+    {
+     "shape": "period.stray_before_comma",
+     "test": "list field, depth 0, '.' followed by ','",
+     "means": "a stray stop inside one rendering ('crooked.,')",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1
+     },
+     "examples": [
+      "עות: bow self, (make) crooked., falsifying, overthrow, deal per"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "period.abbreviation",
+     "period.aside_sentence_end",
+     "period.ellipsis",
+     "period.etc",
+     "period.ie",
+     "period.sentence_end",
+     "period.stray_for_comma",
+     "period.trace_end"
+    ],
+    "list_end": [
+     "period.list_end"
+    ],
+    "list_notes": [
+     "period.in_note"
+    ],
+    "list_body": [
+     "period.ellipsis",
+     "period.in_group",
+     "period.stray_before_comma"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": "(",
+   "codepoint": "U+0028",
+   "route_occurrences": 7674,
+   "routes_carrying_it": 4635,
+   "definition_occurrences_per_row": 15014,
+   "definition_rows_carrying_it": 9075,
+   "definition_occurrences_distinct_definitions": 7665,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "paren.def_aside",
+     "test": "definition field, any other group",
+     "means": "Strong's aside: an explanation, a qualification or a usage note inside the sentence",
+     "count": 2974,
+     "routes": 2304,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 2974
+     },
+     "examples": [
+      "אימים:  , an early Canaanitish (or Maobitish) tribe",
+      "בטן: (only in plural) a pistachio-nut (",
+      "כסמת: spelt (from its bristliness as if just s",
+      "מכשלה: , but only figuratively ( fall , enticement [idol])"
+     ]
+    },
+    {
+     "shape": "paren.list_optional_words",
+     "test": "list field, a group whose content has no digit, aside lead, edge hyphen or own-depth comma",
+     "means": "an optional word or words sometimes given with the rendering ('(become) glorious')",
+     "count": 1827,
+     "routes": 1141,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1827
+     },
+     "examples": [
+      "אדר: (become) glorious, honourable.",
+      "חפר: be brought to confusion (unto shame), come (be put to) sha",
+      "יונקת: (tender) branch, young twig.",
+      "קדש: consecrated (thing), dedicated (thing), hallow"
+     ]
+    },
+    {
+     "shape": "paren.list_suffix_syllable",
+     "test": "list field, a group whose content begins with '-'",
+     "means": "suffix syllables that attach to the end of the rendering ('repent(-er,-ing, self)')",
+     "count": 1022,
+     "routes": 776,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1022
+     },
+     "examples": [
+      "קדש:  hallow, (be, keep) holy(-er, place), keep, prepare, procl",
+      "חלק: , give, (have, im-) part(-ner), take away a portion, recei",
+      "מושב: mbly, dwell in, dwelling(-place), wherein (that) dwelt (in",
+      "שבי: captive(-ity), prisoners, × take away, th"
+     ]
+    },
+    {
+     "shape": "paren.def_label",
+     "test": "definition field, a group whose content is a usage label",
+     "means": "a usage label qualifying what follows ('(figuratively)', '(concrete)')",
+     "count": 812,
+     "routes": 716,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 812
+     },
+     "examples": [
+      "אדר: pand , i.e. be great or (figuratively) magnificent",
+      "מחלי: a Machlite or (collectively) descendants of Mach",
+      "פרצי: a Partsite (collectively) or descendants of P",
+      "קדש: i) sacred person , i.e. (technically) a (male) devotee (by"
+     ]
+    },
+    {
+     "shape": "paren.list_alternatives",
+     "test": "list field, a group with a comma at its own depth",
+     "means": "alternatives for the optional part of one rendering ('pluck (out, up, by the roots)')",
+     "count": 531,
+     "routes": 387,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 531
+     },
+     "examples": [
+      "קדש: dicate, defile, hallow, (be, keep) holy(-er, place), keep,",
+      "מזרח: east (side, -ward), (sun-) rising (of t",
+      "מבצר: (de-, most) fenced, fortress, (mos",
+      "שרץ: breed (bring forth, increase) abundantly"
+     ]
+    },
+    {
+     "shape": "paren.list_prefix_syllable",
+     "test": "list field, a group whose content ends with '-' and holds no comma",
+     "means": "a prefix syllable that attaches to the word after it ('(an-) other')",
+     "count": 211,
+     "routes": 183,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 211
+     },
+     "examples": [
+      "מזרח: east (side, -ward), (sun-) rising (of the sun).",
+      "כל:  howsoever, as many as, (no-) thing, ought, whatsoever, (t",
+      "מרפא: (in-)cure(-able), healing(-lth), r",
+      "צדק: altogether) just(-ice), (un-)right(-eous) (cause, -ly, -ne"
+     ]
+    },
+    {
+     "shape": "paren.def_labelled_alternative",
+     "test": "definition field, a group 'label, words'",
+     "means": "an alternative sense under its label inside the sentence ('to go (causatively, bring ) out')",
+     "count": 130,
+     "routes": 124,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 130
+     },
+     "examples": [
+      "קדש: to be (causatively, make , pronounce or ",
+      "קרב: to approach (causatively, bring near ) for wha",
+      "ראשית: ce, time, order or rank (specifically, a firstfruit )",
+      "צדק: to be (causatively, make ) right (in a m"
+     ]
+    },
+    {
+     "shape": "paren.list_aside",
+     "test": "list field, a group whose content holds a digit or opens with by mistake / by confusion / by exchange / by including / from margin / which / but / the word",
+     "means": "the provider's note on an irregular rendering, or a citation ('(by mistake for 6119 )')",
+     "count": 106,
+     "routes": 98,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 106
+     },
+     "examples": [
+      "סנואה: Hasenuah (including the art), Senuah.",
+      "עופי: Ephai (from margin).",
+      "שובב: g, frowardly, turn away (from margin).",
+      "תוקהת: Tikvath (by correction for 8616 )."
+     ]
+    },
+    {
+     "shape": "paren.list_prefix_syllables",
+     "test": "list field, a group whose content ends with '-' and holds a comma",
+     "means": "alternative prefix syllables for the word after it ('(eigh-, fif-, four-) teen')",
+     "count": 24,
+     "routes": 23,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 24
+     },
+     "examples": [
+      "חלק:  divide, flatter, give, (have, im-) part(-ner), take away ",
+      "ארח: rank, traveller, troop, (by-, high-) way.",
+      "כי: and, (forasmuch, inasmuch, where-) as, ",
+      "עת: ) season, so (long) as, (even-, evening-, noon-) tide, (me"
+     ]
+    },
+    {
+     "shape": "paren.opener_never_closed",
+     "test": "a '(' with no matching ')' anywhere in the definition",
+     "means": "a group the provider opened and never closed (a truncated or damaged record)",
+     "count": 19,
+     "routes": 17,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 13,
+      "definition_whole": 6
+     },
+     "examples": [
+      "ערף: back ((stiff-) neck((-ed).",
+      "מרום: ted place ), abstractly ( elevation , figuratively ( elati",
+      "חנם: , innocent, for nothing (nought, in vain.",
+      "עבד: husbandman, keep, labour(-ing man, bring to pass, (cause t"
+     ]
+    },
+    {
+     "shape": "paren.def_syllable",
+     "test": "definition field, a group whose content begins or ends with '-'",
+     "means": "a syllable sometimes added to the word ('liberal (-ly)', '(grand-) father')",
+     "count": 15,
+     "routes": 13,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 14,
+      "definition_slice": 1
+     },
+     "examples": [
+      "פלך: (di-) staff, participle",
+      "נדב: be (or give) liberal (-ly)",
+      "נמשי: Nimshi , the (grand-) father of Jehu",
+      "עליז: joyous, (that) rejoice(-ing)"
+     ]
+    },
+    {
+     "shape": "paren.note",
+     "test": "list field, a group after the list's full stop",
+     "means": "wraps a note after the list ('(Psalm 141:3)')",
+     "count": 3,
+     "routes": 3,
+     "divides_readings": false,
+     "regions": {
+      "list_notes": 3
+     },
+     "examples": [
+      "שתה: drunk (× -ard), surely. (Prop. intensive of 8248 .)",
+      "דלת: aved), gate, leaf, lid. (Psalm 141:3).",
+      "רע: ), wretchedness, wrong. (Incl. feminine raaah; as adjectiv"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "paren.def_aside",
+     "paren.def_label",
+     "paren.def_labelled_alternative",
+     "paren.def_syllable",
+     "paren.opener_never_closed"
+    ],
+    "list_body": [
+     "paren.list_alternatives",
+     "paren.list_aside",
+     "paren.list_optional_words",
+     "paren.list_prefix_syllable",
+     "paren.list_prefix_syllables",
+     "paren.list_suffix_syllable",
+     "paren.opener_never_closed"
+    ],
+    "list_notes": [
+     "paren.note"
+    ],
+    "definition_slice": [
+     "paren.def_syllable"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": ")",
+   "codepoint": "U+0029",
+   "route_occurrences": 7673,
+   "routes_carrying_it": 4638,
+   "definition_occurrences_per_row": 15006,
+   "definition_rows_carrying_it": 9073,
+   "definition_occurrences_distinct_definitions": 7659,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "paren.def_aside",
+     "test": "definition field, any other group",
+     "means": "Strong's aside: an explanation, a qualification or a usage note inside the sentence",
+     "count": 2974,
+     "routes": 2304,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 2974
+     },
+     "examples": [
+      "אימים: anaanitish (or Maobitish) tribe",
+      "בטן: (only in plural) a pistachio-nut (from its form)",
+      "כסמת: liness as if just shorn )",
+      "מכשלה: fall , enticement [idol])"
+     ]
+    },
+    {
+     "shape": "paren.list_optional_words",
+     "test": "list field, a group whose content has no digit, aside lead, edge hyphen or own-depth comma",
+     "means": "an optional word or words sometimes given with the rendering ('(become) glorious')",
+     "count": 1827,
+     "routes": 1141,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1827
+     },
+     "examples": [
+      "אדר: (become) glorious, honourable.",
+      "חפר: to confusion (unto shame), come (be put to) shame, bring r",
+      "יונקת: (tender) branch, young twig.",
+      "קדש: consecrated (thing), dedicated (thing), hallowed (th"
+     ]
+    },
+    {
+     "shape": "paren.list_suffix_syllable",
+     "test": "list field, a group whose content begins with '-'",
+     "means": "suffix syllables that attach to the end of the rendering ('repent(-er,-ing, self)')",
+     "count": 1022,
+     "routes": 776,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1022
+     },
+     "examples": [
+      "קדש: e, keep) holy(-er, place), keep, prepare, proclaim, purify",
+      "חלק: e, (have, im-) part(-ner), take away a portion, receive, s",
+      "מושב: well in, dwelling(-place), wherein (that) dwelt (in), inha",
+      "שבי: captive(-ity), prisoners, × take away, that wa"
+     ]
+    },
+    {
+     "shape": "paren.def_label",
+     "test": "definition field, a group whose content is a usage label",
+     "means": "a usage label qualifying what follows ('(figuratively)', '(concrete)')",
+     "count": 812,
+     "routes": 716,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 812
+     },
+     "examples": [
+      "אדר: e great or (figuratively) magnificent",
+      "מחלי: achlite or (collectively) descendants of Machli",
+      "פרצי: a Partsite (collectively) or descendants of Perets",
+      "קדש: rson , i.e. (technically) a (male) devotee (by prostitutio"
+     ]
+    },
+    {
+     "shape": "paren.list_alternatives",
+     "test": "list field, a group with a comma at its own depth",
+     "means": "alternatives for the optional part of one rendering ('pluck (out, up, by the roots)')",
+     "count": 531,
+     "routes": 387,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 531
+     },
+     "examples": [
+      "קדש: efile, hallow, (be, keep) holy(-er, place), keep, prepare,",
+      "מזרח: east (side, -ward), (sun-) rising (of the sun).",
+      "מבצר: (de-, most) fenced, fortress, (most) strong ",
+      "שרץ: d (bring forth, increase) abundantly (in abundance), creep"
+     ]
+    },
+    {
+     "shape": "paren.list_prefix_syllable",
+     "test": "list field, a group whose content ends with '-' and holds no comma",
+     "means": "a prefix syllable that attaches to the word after it ('(an-) other')",
+     "count": 211,
+     "routes": 183,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 211
+     },
+     "examples": [
+      "מזרח: ast (side, -ward), (sun-) rising (of the sun).",
+      "כל: soever, as many as, (no-) thing, ought, whatsoever, (the) ",
+      "מרפא: (in-)cure(-able), healing(-lth), remed",
+      "צדק: gether) just(-ice), (un-)right(-eous) (cause, -ly, -ness)."
+     ]
+    },
+    {
+     "shape": "paren.def_labelled_alternative",
+     "test": "definition field, a group 'label, words'",
+     "means": "an alternative sense under its label inside the sentence ('to go (causatively, bring ) out')",
+     "count": 130,
+     "routes": 124,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 130
+     },
+     "examples": [
+      "קדש:  pronounce or observe as) clean (ceremonially or morally)",
+      "קרב: causatively, bring near ) for whatever purpose",
+      "ראשית: cifically, a firstfruit )",
+      "צדק: o be (causatively, make ) right (in a moral or forensic se"
+     ]
+    },
+    {
+     "shape": "paren.list_aside",
+     "test": "list field, a group whose content holds a digit or opens with by mistake / by confusion / by exchange / by including / from margin / which / but / the word",
+     "means": "the provider's note on an irregular rendering, or a citation ('(by mistake for 6119 )')",
+     "count": 106,
+     "routes": 98,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 106
+     },
+     "examples": [
+      "סנואה: enuah (including the art), Senuah.",
+      "עופי: Ephai (from margin).",
+      "שובב: , turn away (from margin).",
+      "תוקהת: (by correction for 8616 )."
+     ]
+    },
+    {
+     "shape": "paren.list_prefix_syllables",
+     "test": "list field, a group whose content ends with '-' and holds a comma",
+     "means": "alternative prefix syllables for the word after it ('(eigh-, fif-, four-) teen')",
+     "count": 24,
+     "routes": 23,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 24
+     },
+     "examples": [
+      "חלק: latter, give, (have, im-) part(-ner), take away a portion,",
+      "ארח: ller, troop, (by-, high-) way.",
+      "כי: asmuch, inasmuch, where-) as, assured(-ly), but, certainly",
+      "עת:  (even-, evening-, noon-) tide, (meal-), what) time, when."
+     ]
+    },
+    {
+     "shape": "paren.closer_with_nothing_open",
+     "test": "a ')' with no '(' open before it in the definition",
+     "means": "a stray closer: inert, it stays in whichever piece it falls in",
+     "count": 16,
+     "routes": 15,
+     "divides_readings": false,
+     "regions": {
+      "definition_slice": 3,
+      "definition_whole": 4,
+      "list_body": 9
+     },
+     "examples": [
+      "שמטה: ) or suspension of labor)",
+      "עת: on-) tide, (meal-), what) time, when.",
+      "מול: circumcise(-ing), selves), cut down (in pieces), destroy, ",
+      "שבע: en, -teenth), -th, times). Compare 7658 ."
+     ]
+    },
+    {
+     "shape": "paren.def_syllable",
+     "test": "definition field, a group whose content begins or ends with '-'",
+     "means": "a syllable sometimes added to the word ('liberal (-ly)', '(grand-) father')",
+     "count": 15,
+     "routes": 13,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 14,
+      "definition_slice": 1
+     },
+     "examples": [
+      "פלך: (di-) staff, participle",
+      "נדב: e (or give) liberal (-ly)",
+      "נמשי: Nimshi , the (grand-) father of Jehu",
+      "עליז: ous, (that) rejoice(-ing)"
+     ]
+    },
+    {
+     "shape": "paren.note",
+     "test": "list field, a group after the list's full stop",
+     "means": "wraps a note after the list ('(Psalm 141:3)')",
+     "count": 3,
+     "routes": 3,
+     "divides_readings": false,
+     "regions": {
+      "list_notes": 3
+     },
+     "examples": [
+      "שתה: rop. intensive of 8248 .)",
+      "דלת:  leaf, lid. (Psalm 141:3).",
+      "רע: h; as adjective or noun.)."
+     ]
+    },
+    {
+     "shape": "paren.partner_outside_route",
+     "test": "a slice route holds one parenthesis of a pair whose partner lies outside the slice",
+     "means": "the store's cut went through a group of Strong's sentence",
+     "count": 2,
+     "routes": 2,
+     "divides_readings": false,
+     "regions": {
+      "definition_slice": 2
+     },
+     "examples": [
+      "גשם: ely) idea of a hard rain)",
+      "ערוגה: sed by mental aspiration) , i.e. a paterre"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "paren.closer_with_nothing_open",
+     "paren.def_aside",
+     "paren.def_label",
+     "paren.def_labelled_alternative",
+     "paren.def_syllable"
+    ],
+    "list_body": [
+     "paren.closer_with_nothing_open",
+     "paren.list_alternatives",
+     "paren.list_aside",
+     "paren.list_optional_words",
+     "paren.list_prefix_syllable",
+     "paren.list_prefix_syllables",
+     "paren.list_suffix_syllable"
+    ],
+    "definition_slice": [
+     "paren.closer_with_nothing_open",
+     "paren.def_syllable",
+     "paren.partner_outside_route"
+    ],
+    "list_notes": [
+     "paren.note"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": ";",
+   "codepoint": "U+003B",
+   "route_occurrences": 2131,
+   "routes_carrying_it": 1622,
+   "definition_occurrences_per_row": 7149,
+   "definition_rows_carrying_it": 5035,
+   "definition_occurrences_distinct_definitions": 2131,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "semicolon.sense_separator",
+     "test": "definition field, depth 0, not before 'i.e.', not after a bare usage label",
+     "means": "separates one sense of Strong's definition from the next",
+     "count": 2046,
+     "routes": 1576,
+     "divides_readings": true,
+     "regions": {
+      "definition_whole": 2046
+     },
+     "examples": [
+      "אדר: .e. (concrete) a mantle ; also (figuratively) splendor",
+      "בטן: y , especially the womb ; also the bosom or body of anythi",
+      "דמע: a tear ; figuratively, juice",
+      "חפר: properly, to pry into ; by implication, to delve , to ex"
+     ]
+    },
+    {
+     "shape": "semicolon.def_in_aside",
+     "test": "definition field, inside ( ) or [ ]",
+     "means": "punctuation inside one of Strong's asides",
+     "count": 55,
+     "routes": 50,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 55
+     },
+     "examples": [
+      "שכך: ting) to allay (passions; physically, abate a flood)",
+      "מאד: intensive or superlative; especially when repeated)",
+      "פקוד: , i.e. a mandate (of God; plural only, collectively, for t",
+      "ידע: on , care , recognition ; and causatively, instruction , d"
+     ]
+    },
+    {
+     "shape": "semicolon.rendering_separator",
+     "test": "list field, depth 0, before the list's full stop",
+     "means": "separates one KJV rendering from the next, as a comma does",
+     "count": 13,
+     "routes": 12,
+     "divides_readings": true,
+     "regions": {
+      "list_body": 13
+     },
+     "examples": [
+      "שגיא: exceeding, great(-ly); many, much, sore, very.",
+      "אמנם: in (very) deed; of a surety.",
+      "מוצאה: draught house; going forth.",
+      "אנוש: sty, certain, chap(-man); divers, fellow, × in the flower "
+     ]
+    },
+    {
+     "shape": "semicolon.before_ie",
+     "test": "definition field, depth 0, followed by 'i.e.'",
+     "means": "introduces the explanation of the sense before it: one reading",
+     "count": 12,
+     "routes": 12,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 12
+     },
+     "examples": [
+      "מדוע: what (is) known? ; i.e. (by implication) (adverbial",
+      "לבב: from 3824 ); to unheart ; i.e. (in a good sense) transport",
+      "עלי: high ; i.e. comparative",
+      "שלח: ively) a shoot of growth; i.e. branch"
+     ]
+    },
+    {
+     "shape": "semicolon.after_bare_label",
+     "test": "definition field, depth 0, the piece before it is a usage label alone",
+     "means": "closes a usage label that governs the sense after it ('elliptically; to deliver')",
+     "count": 3,
+     "routes": 3,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 3
+     },
+     "examples": [
+      "חשק: elight in ; elliptically; to deliver",
+      "לבב: denominative from 3824 ); to unheart ; i.e. (in a good sen",
+      "קציר: reaper , or figuratively; also a limb (of a tree, or simpl"
+     ]
+    },
+    {
+     "shape": "semicolon.in_group_note",
+     "test": "list field, inside a group",
+     "means": "punctuation inside the provider's aside on a rendering",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1
+     },
+     "examples": [
+      "ירע: evious (only Isaiah 15:4; the rest belong to 7489 )."
+     ]
+    },
+    {
+     "shape": "semicolon.in_note",
+     "test": "list field, after the list's full stop",
+     "means": "punctuation inside the note after the list",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "list_notes": 1
+     },
+     "examples": [
+      "רע: g. (Incl. feminine raaah; as adjective or noun.)."
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "semicolon.after_bare_label",
+     "semicolon.before_ie",
+     "semicolon.def_in_aside",
+     "semicolon.sense_separator"
+    ],
+    "list_body": [
+     "semicolon.in_group_note",
+     "semicolon.rendering_separator"
+    ],
+    "list_notes": [
+     "semicolon.in_note"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": "-",
+   "codepoint": "U+002D",
+   "route_occurrences": 2047,
+   "routes_carrying_it": 1334,
+   "definition_occurrences_per_row": 2344,
+   "definition_rows_carrying_it": 1593,
+   "definition_occurrences_distinct_definitions": 1919,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "hyphen.suffix_syllable",
+     "test": "a '-' after '(', a space, ',', '[' or a quote (or at the start) and before a letter",
+     "means": "begins a suffix syllable that attaches to the end of a word ('(-ed)', '-teen')",
+     "count": 1328,
+     "routes": 831,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1311,
+      "definition_whole": 13,
+      "definition_slice": 4
+     },
+     "examples": [
+      "קדש: hallow, (be, keep) holy(-er, place), keep, prepare, procla",
+      "חלק:  give, (have, im-) part(-ner), take away a portion, receiv",
+      "מושב: bly, dwell in, dwelling(-place), wherein (that) dwelt (in)",
+      "מזרח: east (side, -ward), (sun-) rising (of the sun)"
+     ]
+    },
+    {
+     "shape": "hyphen.compound",
+     "test": "a '-' between two letters",
+     "means": "joins a hyphenated compound or name ('threshing-floor', 'Padan-aram')",
+     "count": 397,
+     "routes": 376,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 243,
+      "definition_slice": 119,
+      "list_body": 35
+     },
+     "examples": [
+      "אדר: ample , i.e. a threshing-floor",
+      "בטן: y in plural) a pistachio-nut (from its form)",
+      "מכשלה: a stumbling-block , but only figuratively ( f",
+      "משחק: a laughing-stock"
+     ]
+    },
+    {
+     "shape": "hyphen.prefix_syllable",
+     "test": "a '-' after a letter and before ')', a space, ',', '(', '.' or a quote",
+     "means": "ends a prefix syllable that attaches to the start of the next word ('(an-)', '(Beth-) Arabah')",
+     "count": 286,
+     "routes": 221,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 280,
+      "definition_whole": 6
+     },
+     "examples": [
+      "חלק: flatter, give, (have, im-) part(-ner), take away a portion",
+      "מזרח: east (side, -ward), (sun-) rising (of the sun).",
+      "מבצר: (de-, most) fenced, fortress, (most) ",
+      "כל: wsoever, as many as, (no-) thing, ought, whatsoever, (the)"
+     ]
+    },
+    {
+     "shape": "hyphen.compound_split_by_space",
+     "test": "definition field, letter '-' space letter, or letter space '-' letter",
+     "means": "joins a compound the text carries with a stray space ('fence- rail')",
+     "count": 26,
+     "routes": 25,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 26
+     },
+     "examples": [
+      "חשק: attached , i.e. a fence- rail or rod connecting the posts",
+      "בחין: a watch- tower of besiegers",
+      "כיור:  bored ), i.e. a chafing- dish for coals or a caldron for ",
+      "מעבר: a crossing -place (of a river, a ford ; of a "
+     ]
+    },
+    {
+     "shape": "hyphen.in_note",
+     "test": "list field, after the list's full stop",
+     "means": "a syllable cited in the note ('Compare names in 'Abi-'.')",
+     "count": 6,
+     "routes": 5,
+     "divides_readings": false,
+     "regions": {
+      "list_notes": 6
+     },
+     "examples": [
+      "אבל: ames beginning with Abel-.",
+      "אב: l. Compare names in 'Abi-'.",
+      "אל: rong. Compare names in '-el.'",
+      "אדון: es beginning with 'Adoni-'."
+     ]
+    },
+    {
+     "shape": "hyphen.bare_in_group",
+     "test": "list field, '-' between '(' or ',' and ')'",
+     "means": "the hyphen alone as the optional element ('dwelling((-) place)')",
+     "count": 2,
+     "routes": 2,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 2
+     },
+     "examples": [
+      "מעון: den, dwelling((-) place), habitation.",
+      "הלאה: back, beyond, (hence,-) forward, hitherto, thence, fort"
+     ]
+    },
+    {
+     "shape": "hyphen.elided_part_of_name",
+     "test": "definition field, ' - ' between spaces",
+     "means": "stands for the shared start of a variant spelling ('(or - retstsar , or - retstsor )')",
+     "count": 2,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 2
+     },
+     "examples": [
+      "נבוכדנאצר: Nebukadnetstsar (or - retstsar , or - retstsor ), king"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "hyphen.compound",
+     "hyphen.compound_split_by_space",
+     "hyphen.elided_part_of_name",
+     "hyphen.prefix_syllable",
+     "hyphen.suffix_syllable"
+    ],
+    "definition_slice": [
+     "hyphen.compound",
+     "hyphen.suffix_syllable"
+    ],
+    "list_body": [
+     "hyphen.bare_in_group",
+     "hyphen.compound",
+     "hyphen.prefix_syllable",
+     "hyphen.suffix_syllable"
+    ],
+    "list_notes": [
+     "hyphen.in_note"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": "×",
+   "codepoint": "U+00D7",
+   "route_occurrences": 816,
+   "routes_carrying_it": 508,
+   "definition_occurrences_per_row": 816,
+   "definition_rows_carrying_it": 508,
+   "definition_occurrences_distinct_definitions": 814,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "times.whole_rendering",
+     "test": "list field, depth 0, the first mark of a rendering",
+     "means": "Strong's sign that the rendering results from an idiom peculiar to the Hebrew",
+     "count": 761,
+     "routes": 483,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 761
+     },
+     "examples": [
+      "דמע: × sore, weep.",
+      "קדש: nctify(-ied one, self), × wholly.",
+      "גבול: border, bound, coast, × great, landmark, limit, quarter,",
+      "חלק: ery, inheritance, part, × partake, portion."
+     ]
+    },
+    {
+     "shape": "times.in_group",
+     "test": "list field, inside a group",
+     "means": "the same sign on one alternative inside a group",
+     "count": 50,
+     "routes": 44,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 50
+     },
+     "examples": [
+      "קדש: wed (thing), holiness, (× most) holy (× day, portion, thin",
+      "חלץ: lf), (go, ready) armed (× man, soldier), deliver, draw out",
+      "קרב: t, × him, × in, inward (× -ly, part, -s, thought), midst, ",
+      "צדק: × even, (× that which is altogether) just(-"
+     ]
+    },
+    {
+     "shape": "times.mid_rendering",
+     "test": "list field, depth 0, after the start of a rendering",
+     "means": "the same sign on the words after it inside one rendering",
+     "count": 5,
+     "routes": 4,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 5
+     },
+     "examples": [
+      "נקה: acquit × at all, × altogether, be blamele",
+      "דקק: uise, make dust, (into) × powder, (be, very) small, stamp ",
+      "מהר: ty, (fetch, make ready) × quickly, rash, × shortly, (be so",
+      "נחש: ivine, enchanter, (use) × enchantment, learn by experience"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "list_body": [
+     "times.in_group",
+     "times.mid_rendering",
+     "times.whole_rendering"
+    ]
+   },
+   "meaning_depends_on_region": false
+  },
+  {
+   "mark": "'",
+   "codepoint": "U+0027",
+   "route_occurrences": 159,
+   "routes_carrying_it": 109,
+   "definition_occurrences_per_row": 265,
+   "definition_rows_carrying_it": 172,
+   "definition_occurrences_distinct_definitions": 139,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "apostrophe.possessive",
+     "test": "an apostrophe followed by 's' and a non-letter",
+     "means": "the possessive 's ('Jacob's', 'one's self')",
+     "count": 81,
+     "routes": 78,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 22,
+      "definition_whole": 53,
+      "definition_slice": 6
+     },
+     "examples": [
+      "נחם: omfort (self), ease (one's self), repent(-er,-ing, self).",
+      "שמעון: Shimon , one of Jacob's sons, also the tribe descended ",
+      "מען: tent) that, for (to,... 's sake), lest, that, to.",
+      "פרודא: Perida , one of 'Solomon's servants'"
+     ]
+    },
+    {
+     "shape": "apostrophe.quote_open",
+     "test": "an apostrophe after a non-letter and before a letter or '-', no quotation open",
+     "means": "opens a quotation of a word or phrase ('a 'drachma'')",
+     "count": 37,
+     "routes": 32,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 23,
+      "list_body": 2,
+      "definition_slice": 7,
+      "list_notes": 5
+     },
+     "examples": [
+      "פרודא: ruda or Perida , one of 'Solomon's servants'",
+      "אזל: ord is rendered by many 'from Uzal,' by others 'yarn'), be",
+      "דרכמון: a 'drachma' , or coin",
+      "יה: ement. Compare names in '-iah,' '-jah.'"
+     ]
+    },
+    {
+     "shape": "apostrophe.quote_close",
+     "test": "an apostrophe while a quotation is open, not a possessive",
+     "means": "closes that quotation",
+     "count": 37,
+     "routes": 32,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 23,
+      "list_body": 2,
+      "definition_slice": 7,
+      "list_notes": 5
+     },
+     "examples": [
+      "פרודא: e of 'Solomon's servants'",
+      "אזל: ered by many 'from Uzal,' by others 'yarn'), be gone (spen",
+      "דרכמון: a 'drachma' , or coin",
+      "יה:  Compare names in '-iah,' '-jah.'"
+     ]
+    },
+    {
+     "shape": "apostrophe.plural_possessive",
+     "test": "an apostrophe after 's', no quotation open",
+     "means": "the plural possessive ('Moses' father-in-law', 'the Jews' language')",
+     "count": 4,
+     "routes": 4,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 2,
+      "list_body": 2
+     },
+     "examples": [
+      "יתרו: Jethro , Moses' father-in-law",
+      "יהודית: in the Jews' language.",
+      "מרקחת: ared by the apothecaries' art, compound, ointment.",
+      "רעואל: euel , the name of Moses' father-in-law, also of an Edomit"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "list_body": [
+     "apostrophe.plural_possessive",
+     "apostrophe.possessive",
+     "apostrophe.quote_close",
+     "apostrophe.quote_open"
+    ],
+    "definition_whole": [
+     "apostrophe.plural_possessive",
+     "apostrophe.possessive",
+     "apostrophe.quote_close",
+     "apostrophe.quote_open"
+    ],
+    "definition_slice": [
+     "apostrophe.possessive",
+     "apostrophe.quote_close",
+     "apostrophe.quote_open"
+    ],
+    "list_notes": [
+     "apostrophe.quote_close",
+     "apostrophe.quote_open"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": "+",
+   "codepoint": "U+002B",
+   "route_occurrences": 39,
+   "routes_carrying_it": 14,
+   "definition_occurrences_per_row": 39,
+   "definition_rows_carrying_it": 14,
+   "definition_occurrences_distinct_definitions": 39,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "plus.whole_rendering",
+     "test": "list field, depth 0, the first mark of a rendering",
+     "means": "Strong's sign that the rendering translates this word only together with other Hebrew words",
+     "count": 38,
+     "routes": 14,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 38
+     },
+     "examples": [
+      "אם: tless, if, that) (not), + but, either, + except, + more(-o",
+      "עשר: six-, thir-) teen(-th), + eleven(-th), + sixscore thousand",
+      "אשר:  because, × every, for, + forasmuch, + from whence, + how(",
+      "אמה: cubit, + hundred (by exchange for 3967 ),"
+     ]
+    },
+    {
+     "shape": "plus.in_group",
+     "test": "list field, inside a group",
+     "means": "the same sign on one alternative inside a group",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1
+     },
+     "examples": [
+      "אשר: hatsoever, when, where (+ -as, -in, -of, -on, -soever, -wi"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "list_body": [
+     "plus.in_group",
+     "plus.whole_rendering"
+    ]
+   },
+   "meaning_depends_on_region": false
+  },
+  {
+   "mark": "!",
+   "codepoint": "U+0021",
+   "route_occurrences": 27,
+   "routes_carrying_it": 25,
+   "definition_occurrences_per_row": 47,
+   "definition_rows_carrying_it": 38,
+   "definition_occurrences_distinct_definitions": 19,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "exclamation.ends_gloss",
+     "test": "'!' followed by the end, a space, , ; ) or .",
+     "means": "part of an exclamation that is itself the gloss ('lo!', 'O that!')",
+     "count": 27,
+     "routes": 25,
+     "divides_readings": false,
+     "regions": {
+      "definition_slice": 7,
+      "definition_whole": 19,
+      "list_body": 1
+     },
+     "examples": [
+      "אם: ely as demonstrative, lo! ; interrogative, whether? ; or c",
+      "מי: an), × he, × him, O that! what, which, who(-m, -se, -soeve",
+      "אשר:  interjection, how happy!",
+      "איך: how? or how! ; also where"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_slice": [
+     "exclamation.ends_gloss"
+    ],
+    "definition_whole": [
+     "exclamation.ends_gloss"
+    ],
+    "list_body": [
+     "exclamation.ends_gloss"
+    ]
+   },
+   "meaning_depends_on_region": false
+  },
+  {
+   "mark": "[",
+   "codepoint": "U+005B",
+   "route_occurrences": 25,
+   "routes_carrying_it": 19,
+   "definition_occurrences_per_row": 64,
+   "definition_rows_carrying_it": 46,
+   "definition_occurrences_distinct_definitions": 25,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "bracket.def_note",
+     "test": "definition field, a matched [ ]",
+     "means": "the provider's bracketed note, mostly inside an aside ('[idol]', '[like father]')",
+     "count": 19,
+     "routes": 14,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 19
+     },
+     "examples": [
+      "מכשלה: ely ( fall , enticement [idol])",
+      "אם: erally and figuratively [like father])",
+      "שבע: atisfaction (of food or [figuratively] joy)",
+      "פתע:  i.e. moment (used only [with or without preposition] adve"
+     ]
+    },
+    {
+     "shape": "bracket.list_note",
+     "test": "list field, a matched [ ] whose content does not begin with '-'",
+     "means": "the provider's bracketed note on a rendering or a list ('[as such unrepresented in English]')",
+     "count": 5,
+     "routes": 4,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 4,
+      "list_notes": 1
+     },
+     "examples": [
+      "את: [as such unrepresented in English]",
+      "שרט: cut in pieces, make [cuttings] pieces.",
+      "עשוק: oppressed(-ion). [Doubtful.]",
+      "מן: in [the same] (Psalm 68:23), stringed"
+     ]
+    },
+    {
+     "shape": "bracket.list_syllable",
+     "test": "list field, a matched [ ] whose content begins with '-'",
+     "means": "a suffix syllable in square brackets ('counsel([-lor])')",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1
+     },
+     "examples": [
+      "עצה: ce, advisement, counsel([-lor]), purpose."
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "bracket.def_note"
+    ],
+    "list_body": [
+     "bracket.list_note",
+     "bracket.list_syllable"
+    ],
+    "list_notes": [
+     "bracket.list_note"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": "]",
+   "codepoint": "U+005D",
+   "route_occurrences": 25,
+   "routes_carrying_it": 19,
+   "definition_occurrences_per_row": 64,
+   "definition_rows_carrying_it": 46,
+   "definition_occurrences_distinct_definitions": 25,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "bracket.def_note",
+     "test": "definition field, a matched [ ]",
+     "means": "the provider's bracketed note, mostly inside an aside ('[idol]', '[like father]')",
+     "count": 19,
+     "routes": 14,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 19
+     },
+     "examples": [
+      "מכשלה:  fall , enticement [idol])",
+      "אם: iguratively [like father])",
+      "שבע: of food or [figuratively] joy)",
+      "פתע: h or without preposition] adverbially, quickly or unexpect"
+     ]
+    },
+    {
+     "shape": "bracket.list_note",
+     "test": "list field, a matched [ ] whose content does not begin with '-'",
+     "means": "the provider's bracketed note on a rendering or a list ('[as such unrepresented in English]')",
+     "count": 5,
+     "routes": 4,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 4,
+      "list_notes": 1
+     },
+     "examples": [
+      "את: unrepresented in English].",
+      "שרט: n pieces, make [cuttings] pieces.",
+      "עשוק: ressed(-ion). [Doubtful.]",
+      "מן: in [the same] (Psalm 68:23), stringed instrume"
+     ]
+    },
+    {
+     "shape": "bracket.list_syllable",
+     "test": "list field, a matched [ ] whose content begins with '-'",
+     "means": "a suffix syllable in square brackets ('counsel([-lor])')",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 1
+     },
+     "examples": [
+      "עצה: dvisement, counsel([-lor]), purpose."
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "bracket.def_note"
+    ],
+    "list_body": [
+     "bracket.list_note",
+     "bracket.list_syllable"
+    ],
+    "list_notes": [
+     "bracket.list_note"
+    ]
+   },
+   "meaning_depends_on_region": true
+  },
+  {
+   "mark": "?",
+   "codepoint": "U+003F",
+   "route_occurrences": 25,
+   "routes_carrying_it": 16,
+   "definition_occurrences_per_row": 51,
+   "definition_rows_carrying_it": 28,
+   "definition_occurrences_distinct_definitions": 20,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "question.ends_gloss",
+     "test": "'?' followed by the end, a space, , ; ) or .",
+     "means": "part of a question that is itself the gloss ('whether?', 'how?')",
+     "count": 25,
+     "routes": 16,
+     "divides_readings": false,
+     "regions": {
+      "definition_slice": 5,
+      "definition_whole": 20
+     },
+     "examples": [
+      "אם: ; interrogative, whether? ; or conditional, if , although ",
+      "מי: who? (occasionally, by a peculiar idi",
+      "מדוע: what (is) known? ; i.e. (by implication) (adverbi",
+      "אפו: here, now, where?"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_slice": [
+     "question.ends_gloss"
+    ],
+    "definition_whole": [
+     "question.ends_gloss"
+    ]
+   },
+   "meaning_depends_on_region": false
+  },
+  {
+   "mark": ":",
+   "codepoint": "U+003A",
+   "route_occurrences": 23,
+   "routes_carrying_it": 21,
+   "definition_occurrences_per_row": 39,
+   "definition_rows_carrying_it": 37,
+   "definition_occurrences_distinct_definitions": 23,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "colon.verse_citation",
+     "test": "':' between two digits",
+     "means": "chapter and verse in a citation ('Hosea 13:10')",
+     "count": 23,
+     "routes": 21,
+     "divides_readings": false,
+     "regions": {
+      "list_body": 12,
+      "definition_whole": 10,
+      "list_notes": 1
+     },
+     "examples": [
+      "אהי: I will be (Hosea 13:10,14) (which is often the render",
+      "אזל: d fro (but in Ezekiel 27:19 the word is rendered by many '",
+      "או:  probably in Proverbs 31:4); hence (by way of alternative)",
+      "דלת: e, leaf, lid. (Psalm 141:3)."
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "list_body": [
+     "colon.verse_citation"
+    ],
+    "definition_whole": [
+     "colon.verse_citation"
+    ],
+    "list_notes": [
+     "colon.verse_citation"
+    ]
+   },
+   "meaning_depends_on_region": false
+  },
+  {
+   "mark": "ֲ",
+   "codepoint": "U+05B2",
+   "route_occurrences": 1,
+   "routes_carrying_it": 1,
+   "definition_occurrences_per_row": 1,
+   "definition_rows_carrying_it": 1,
+   "definition_occurrences_distinct_definitions": 1,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "point.cited_hebrew_word",
+     "test": "a Hebrew vowel point",
+     "means": "part of a Hebrew word Strong's cites in the sentence ('Also חֲרִי .')",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 1
+     },
+     "examples": [
+      "חרא: dung. Also חֲרִי ."
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "point.cited_hebrew_word"
+    ]
+   },
+   "meaning_depends_on_region": false
+  },
+  {
+   "mark": "ִ",
+   "codepoint": "U+05B4",
+   "route_occurrences": 1,
+   "routes_carrying_it": 1,
+   "definition_occurrences_per_row": 1,
+   "definition_rows_carrying_it": 1,
+   "definition_occurrences_distinct_definitions": 1,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "point.cited_hebrew_word",
+     "test": "a Hebrew vowel point",
+     "means": "part of a Hebrew word Strong's cites in the sentence ('Also חֲרִי .')",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 1
+     },
+     "examples": [
+      "חרא: dung. Also חֲרִי ."
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "point.cited_hebrew_word"
+    ]
+   },
+   "meaning_depends_on_region": false
+  },
+  {
+   "mark": "’",
+   "codepoint": "U+2019",
+   "route_occurrences": 1,
+   "routes_carrying_it": 1,
+   "definition_occurrences_per_row": 2,
+   "definition_rows_carrying_it": 2,
+   "definition_occurrences_distinct_definitions": 1,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "apostrophe.plural_possessive",
+     "test": "an apostrophe after 's', no quotation open",
+     "means": "the plural possessive ('Moses' father-in-law', 'the Jews' language')",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 1
+     },
+     "examples": [
+      "צפרה: Tsipporah , Moses’ wife"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "apostrophe.plural_possessive"
+    ]
+   },
+   "meaning_depends_on_region": false
+  },
+  {
+   "mark": "}",
+   "codepoint": "U+007D",
+   "route_occurrences": 1,
+   "routes_carrying_it": 1,
+   "definition_occurrences_per_row": 1,
+   "definition_rows_carrying_it": 1,
+   "definition_occurrences_distinct_definitions": 1,
+   "inventory_agrees": true,
+   "shapes": [
+    {
+     "shape": "brace.stray_closer",
+     "test": "a '}' in a definition with no '{'",
+     "means": "a stray closer: damage in the record ('a fraction}')",
+     "count": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "regions": {
+      "definition_whole": 1
+     },
+     "examples": [
+      "מאה: plicative and a fraction}"
+     ]
+    }
+   ],
+   "unexplained": 0,
+   "regions": {
+    "definition_whole": [
+     "brace.stray_closer"
+    ]
+   },
+   "meaning_depends_on_region": false
+  }
+ ],
+ "unexplained_examples": [],
+ "tagged_gloss_evidence": {
+  "spaced_commas_in_whole_definitions": 4144,
+  "by_shape": {
+   "comma.def_gloss_then_ie": {
+    "commas": 1072,
+    "left_gloss_is_a_slice_route": 725,
+    "right_gloss_is_a_slice_route": 3
+   },
+   "comma.def_name_then_description": {
+    "commas": 2094,
+    "left_gloss_is_a_slice_route": 811,
+    "right_gloss_is_a_slice_route": 2
+   },
+   "comma.def_between_tagged_glosses": {
+    "commas": 363,
+    "left_gloss_is_a_slice_route": 205,
+    "right_gloss_is_a_slice_route": 215
+   },
+   "comma.def_gloss_then_last_piece": {
+    "commas": 490,
+    "left_gloss_is_a_slice_route": 269,
+    "right_gloss_is_a_slice_route": 164
+   },
+   "comma.def_gloss_then_untagged": {
+    "commas": 104,
+    "left_gloss_is_a_slice_route": 53,
+    "right_gloss_is_a_slice_route": 13
+   },
+   "comma.def_gloss_then_etc": {
+    "commas": 21,
+    "left_gloss_is_a_slice_route": 16,
+    "right_gloss_is_a_slice_route": 0
+   }
+  },
+  "absent_examples": [
+   "בטן: the belly , especially the womb ; also the b",
+   "חפר: ratively, to be ashamed , disappointed ; causatively, to s",
+   "חשק:  (figuratively) to love , delight in ; elliptically; to de",
+   "מבצר: a fortification , castle , or fortified city; figu",
+   "סוד: y implication, intimacy , consultation , a secret",
+   "במו: in , with , by , etc."
+  ]
+ },
+ "sense_lead_after_semicolon": {
+  "label": 1773,
+  "usage_note": 82,
+  "bare": 191,
+  "examples": {
+   "label": [
+    "אדר: also (figuratively) splendor",
+    "אדר: also an Israelite",
+    "בטן: also the bosom or body of anything",
+    "דמע: figuratively, juice"
+   ],
+   "usage_note": [
+    "מתי: but used only adverbially (especially with other p",
+    "קדרנית: used adverbially, in mourning weeds",
+    "מען: used only adverbially, on account of (as a motive ",
+    "בהילו: only adverb, hastily"
+   ],
+   "bare": [
+    "חשק: elliptically; to deliver",
+    "שבי: captured ; as noun, exile (abstractly or concretel",
+    "נבב: to be hollow , or (figuratively) foolish",
+    "נחם: or (unfavorably) to avenge (oneself)"
+   ]
+  }
+ },
+ "declaration_division": {
+  "routes_divided": 5026,
+  "pieces_from_divided": 18795,
+  "note_pieces": 272,
+  "refused_rejoin": 0,
+  "by_region": {
+   "list": 3389,
+   "definition": 1637
+  },
+  "pieces_led_by_syllable": 2,
+  "pieces_lone_group": 16,
+  "lone_group_examples": [
+   "כבר: (seeing that which)",
+   "עין: ( well)",
+   "עת: (meal-)",
+   "שתה: (Prop. intensive of 8248 .)",
+   "בוך: (perplexed)",
+   "כרמל: (place)"
+  ],
+  "routes_with_note": 272,
+  "note_pieces_by_lead": {
+   "see_or_compare": 255,
+   "other": 14,
+   "parenthesized": 3
+  },
+  "note_other_examples": [
+   "ירח: Yrechow. See 3405 .",
+   "את: Often with another prepositional prefix.",
+   "רפה: raphah, Raphah. See 7497 , 7498 . riphah",
+   "אשר: As it is indeclinable, it is often accom",
+   "עברן: Perhaps a clerical error for 5658 .",
+   "צואה: Marg. for 2716 .",
+   "כר: Aramaic the same.",
+   "אנוש: It is often unexpressed in the English v"
+  ]
+ },
+ "v3": {
+  "rule": "sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence",
+  "applied_as": "gloss-store-v1 packSplit on depth-0 ';' (orphan closers inert), then senseSplit per sense; a damaged sense held whole (the engine's pKey does this; gloss-store's pool drops it)",
+  "routes_divided": 8187,
+  "damaged_senses": 34,
+  "routes_with_damaged_sense": 34,
+  "routes_with_whole_beside_glosses": 1392,
+  "damaged_routes_the_declaration_divides": 21,
+  "damaged_routes_by_region": {
+   "list": 19,
+   "definition": 10,
+   "definition_slice": 5
+  }
+ },
+ "v3_comparison": {
+  "routes": 23646,
+  "same_division": 18593,
+  "same_division_text_differs_by_list_full_stop": 7829,
+  "v3_divides_where_declaration_keeps_whole": 3324,
+  "declaration_divides_where_v3_keeps_whole": 163,
+  "divided_differently": 1566,
+  "why": {
+   "v3_divides_where_declaration_keeps_whole": {
+    "gloss_then_ie": 592,
+    "name_then_description": 2025,
+    "gloss_then_last_piece": 196,
+    "short_series": 214,
+    "after_label": 219,
+    "comma.def_clause": 71,
+    "other": 4,
+    "comma.def_clause+comma.def_gloss_then_untagged": 3
+   },
+   "declaration_divides_where_v3_keeps_whole": {
+    "list:note_after_list": 147,
+    "list:v3_holds_damaged": 15,
+    "list:v3_clause_rule": 1
+   },
+   "divided_differently": {
+    "definition:both_divide_at_different_marks": 1328,
+    "definition:v3_adds_whole_sense_beside_glosses": 28,
+    "list:note_after_list": 124,
+    "list:v3_adds_whole_sense_beside_glosses": 81,
+    "definition:v3_holds_damaged_sense": 5
+   }
+  },
+  "v3_divides_where_declaration_keeps_whole_routes_by_comma_shape_present": {
+   "comma.def_gloss_then_ie": 745,
+   "comma.def_name_then_description": 2025,
+   "comma.def_clause": 180,
+   "comma.def_gloss_then_last_piece": 244,
+   "comma.def_short_series": 281,
+   "comma.def_gloss_then_untagged": 31,
+   "comma.def_after_label": 220,
+   "comma.def_gloss_then_etc": 1
+  },
+  "examples": {
+   "v3_divides_where_declaration_keeps_whole": [
+    "אדר: \"to expand , i.e. be great or (figuratively) magnificent\" — v3 2 «to expand» «to expand , i.e. b» | declaration 1 «to expand , i.e. b» {gloss_then_ie}",
+    "אימים: \"Emim , an early Canaanitish (or Maobitish) tribe\" — v3 2 «Emim» «an early Canaaniti» | declaration 1 «Emim , an early Ca» {name_then_description}",
+    "חפר: \"a burrower , i.e. probably a rat\" — v3 2 «a burrower» «i.e. probably a ra» | declaration 1 «a burrower , i.e. » {gloss_then_ie}",
+    "מכשלה: \"a stumbling-block , but only figuratively ( fall , enticemen\" — v3 2 «a stumbling-block» «but only figurativ» | declaration 1 «a stumbling-block » {gloss_then_last_piece}",
+    "רגמה: \"a pile (of stones), i.e. (figuratively) a throng\" — v3 2 «a pile (of stones)» «i.e. (figuratively» | declaration 1 «a pile (of stones)» {short_series}",
+    "זהב: \"gold , figuratively, something gold-colored (i.e. yellow), a\" — v3 5 «gold» «figuratively» «something gold-col» «as oil» +1 | declaration 1 «gold , figurativel» {after_label}"
+   ],
+   "declaration_divides_where_v3_keeps_whole": [
+    "קדש: \"Kadesh. Compare 6947 .\" — v3 1 «Kadesh. Compare 69» | declaration 2 «Kadesh» «Compare 6947 .» {list:note_after_list}",
+    "זבל: \"Zebul. Compare 2073 .\" — v3 1 «Zebul. Compare 207» | declaration 2 «Zebul» «Compare 2073 .» {list:note_after_list}",
+    "ירח: \"moon. Yrechow. See 3405 .\" — v3 1 «moon. Yrechow. See» | declaration 2 «moon» «Yrechow. See 3405 » {list:note_after_list}",
+    "חנם: \"without a cause (cost, wages), causeless, to cost nothing, f\" — v3 1 «without a cause (c» | declaration 6 «without a cause (c» «causeless» «to cost nothing» «free(-ly)» +2 {list:v3_holds_damaged}",
+    "ציי: \"wild beast of the desert, that dwell in (inhabiting) the wil\" — v3 1 «wild beast of the » | declaration 2 «wild beast of the » «that dwell in (inh» {list:v3_clause_rule}"
+   ],
+   "divided_differently": [
+    "אדר: \"amplitude , i.e. (concrete) a mantle ; also (figuratively) s\" — v3 3 «amplitude» «i.e. (concrete) a » «also (figuratively» | declaration 2 «amplitude , i.e. (» «also (figuratively» {definition:both_divide_at_different_marks}",
+    "דמע: \"a tear ; figuratively, juice\" — v3 3 «a tear» «figuratively» «juice» | declaration 2 «a tear» «figuratively, juic» {definition:both_divide_at_different_marks}",
+    "חפר: \"properly, to pry into ; by implication, to delve , to explor\" — v3 5 «properly» «to pry into» «by implication» «to delve» +1 | declaration 2 «properly, to pry i» «by implication, to» {definition:both_divide_at_different_marks}",
+    "חשק: \"to cling , i.e. join , (figuratively) to love , delight in ;\" — v3 6 «to cling» «i.e. join» «(figuratively) to » «delight in» +2 | declaration 4 «to cling , i.e. jo» «(figuratively) to » «delight in» «elliptically; to d» {definition:v3_adds_whole_sense_beside_glosses}",
+    "ערבה: \"Arabah, champaign, desert, evening, heaven, plain, wildernes\" — v3 7 «Arabah» «champaign» «desert» «evening» +3 | declaration 8 «Arabah» «champaign» «desert» «evening» +4 {list:note_after_list}",
+    "זן: \"divers kinds, × all manner of store.\" — v3 2 «divers kinds» «divers kinds, × al» | declaration 2 «divers kinds» «× all manner of st» {list:v3_adds_whole_sense_beside_glosses}"
+   ]
+  }
+ },
+ "readings_that_are_not_readings": {
+  "v3": {
+   "ie": 1145,
+   "label": 1635,
+   "etc": 20
+  },
+  "declaration": {},
+  "examples": {
+   "v3": [
+    "אדר: «i.e. (concrete) a mantle»",
+    "דמע: «figuratively»",
+    "חפר: «properly»",
+    "מגר: «intensively»",
+    "רגמה: «i.e. (figuratively) a throng»",
+    "גבול: «properly»"
+   ],
+   "declaration": []
+  }
+ }
+}

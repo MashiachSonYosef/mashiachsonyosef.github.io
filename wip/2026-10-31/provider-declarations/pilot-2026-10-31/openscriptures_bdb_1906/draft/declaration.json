@@ -1,0 +1,912 @@
+{
+ "schema_version": "PROVIDER_DECLARATIONS_V1",
+ "pilot": "mark ledger pilot, 2026-10-31; merge into providers of reader/tools/declarations-v1.json only on the owner's ruling",
+ "computed_by": "pilot/openscriptures_bdb_1906/ledger.mjs (every number below is that script's output)",
+ "providers": {
+  "openscriptures_bdb_1906": {
+   "label": "Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures",
+   "m_ids": [
+    "M5"
+   ],
+   "routes": 15238,
+   "declared_on": "2026-10-31",
+   "declared_from": "The entry's own structure, read across all 15,238 routes on 4,367 keys and 6,971 distinct definitions. The route is never absent from its definition: 2,549 routes are the whole definition and the rest are slices of it, 10,825 at the definition's top level (senses, stem paragraphs, quoted renderings), 1,858 inside its parentheses (root etymologies giving a cognate's glosses, a proper name's meaning) and 6 inside its square brackets. The definition writes ' , ' (a space on both sides) between the glosses the store already cut into separate routes; the route keeps only the source's own ', ' inside one gloss run, which is why only 310 of 15,238 routes carry a comma at all. The closed set is 16 marks, 1,040 occurrences, identical in set and count to the 2026-10-31 inventory; every occurrence falls in exactly one of 35 shapes; 0 unexplained. Two marks divide readings: ';' between senses (1) and ',' between glosses (357 occurrences in 292 routes). 22 commas in 14 routes punctuate a sentence and do not divide.",
+   "regions": {
+    "route_regions": {
+     "def_top": 10825,
+     "whole": 2549,
+     "def_parentheses": 1858,
+     "def_brackets": 6
+    },
+    "meaning_depends_on_region": false,
+    "note": "No mark's meaning changes with the region. What changes is whose reading it is: of the 292 gloss-list routes, 272 sit inside the definition's parentheses, where BDB gives the glosses of a cognate (Arabic, Aramaic, Assyrian, Ethiopic, NH) or of a root, and 20 sit outside them. The comma divides glosses the same way in both; whether a cognate's gloss is a reading of the Hebrew word is the store's question, not this ledger's. All 14 sentence-shaped comma routes: {\"def_top\":11,\"def_parentheses\":2,\"whole\":1}."
+   },
+   "marks": {
+    ";": {
+     "means": "sense boundary: ends one sense and opens the next inside one gloss field",
+     "governs": 1,
+     "occurrences": 1,
+     "divides_readings": "only in semicolon.between_senses",
+     "shape_occurrences": {
+      "semicolon.between_senses": 1
+     },
+     "shapes": {
+      "semicolon.between_senses": {
+       "means": "ends one sense and opens the next in one gloss field, as BDB divides senses",
+       "test": "a ';' at parenthesis depth zero followed by a space",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": true,
+       "by_region": {
+        "def_parentheses": 1
+       }
+      }
+     },
+     "evidence": "גמד | congeal, become solid; be hard, stern: two senses, each a gloss list of its own",
+     "falsifier": "A depth-zero ';' with a sentence-shaped sense on either side (one clause cut in two): 0 today; the one ';' stands between two gloss lists."
+    },
+    ",": {
+     "means": "alternation: separates one English gloss from the next in one gloss run, except where the run is a rendered sentence, where it is the sentence's own punctuation",
+     "governs": 310,
+     "occurrences": 383,
+     "divides_readings": "only in comma.between_glosses_after_head_word, comma.between_glosses",
+     "shape_occurrences": {
+      "comma.trailing": 1,
+      "comma.no_space_after": 1,
+      "comma.in_sentence": 22,
+      "comma.before_bound_suffix": 1,
+      "comma.before_open_possessive": 1,
+      "comma.between_glosses_after_head_word": 84,
+      "comma.between_glosses": 273
+     },
+     "shapes": {
+      "comma.trailing": {
+       "means": "the comma that followed this gloss in the source, carried into the route where it was cut from the next gloss; nothing follows it",
+       "test": "a ',' that is the last character of the route",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 1
+       }
+      },
+      "comma.no_space_after": {
+       "means": "two glosses written with no space after the comma; the separation could not rejoin on the declared ', ' so the field is held whole",
+       "test": "a ',' followed directly by a non-space character",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_parentheses": 1
+       }
+      },
+      "comma.in_sentence": {
+       "means": "punctuation inside one rendered sentence: a quoted verse, a name's meaning, a list of names in one clause",
+       "test": "the comma's sense is sentence-shaped: it holds a pronoun or finite-verb word from the closed CLAUSE list, or a comma piece opens on 'and', or it opens on a capital, or a piece has a capitalized word after its first",
+       "count": 22,
+       "routes": 14,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 19,
+        "def_parentheses": 2,
+        "whole": 1
+       }
+      },
+      "comma.before_bound_suffix": {
+       "means": "the next piece is a bound second element ('-woman') that attaches to the stem of the gloss before it; dividing would print a hyphen-led fragment",
+       "test": "the piece after the comma begins with '-'",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_parentheses": 1
+       }
+      },
+      "comma.before_open_possessive": {
+       "means": "the next piece is a possessive whose noun stands outside the route ('hornets'' of 'hornets' or bees' nest'); dividing would print a possessive with no noun",
+       "test": "the piece after the comma ends with an apostrophe (' or ’)",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_parentheses": 1
+       }
+      },
+      "comma.between_glosses_after_head_word": {
+       "means": "separates one gloss from the next where the first gloss opens on a head word (be, make, to, one, that …) the later glosses do not repeat: sometimes the head is carried ('be fatigued, tired' is be fatigued, be tired), sometimes the later gloss stands alone ('be bright, shine')",
+       "test": "a ',' at depth zero followed by a space in a gloss list (no earlier comma test holds) whose first piece has two or more words, the first in HEADS, and some later piece does not open on that word",
+       "count": 84,
+       "routes": 66,
+       "divides_readings": true,
+       "by_region": {
+        "def_parentheses": 81,
+        "def_top": 3
+       }
+      },
+      "comma.between_glosses": {
+       "means": "separates one gloss from the next: alternative English renderings the source wrote in one gloss run",
+       "test": "a ',' at depth zero followed by a space in a field no earlier comma test takes",
+       "count": 273,
+       "routes": 227,
+       "divides_readings": true,
+       "by_region": {
+        "def_parentheses": 252,
+        "def_top": 19,
+        "def_brackets": 2
+       }
+      }
+     },
+     "evidence": "between_glosses: טלם | oppress, injure ; מרא | well-fed, fat ; אפר | enclose, envelope. after_head_word: מרא | be digestible, agree with ; מאד | be many, increase ; אוד | be curved, bent. in_sentence: נקב | who were pricked off, designated, by name ; חלץ | will brace up, invigorate, thy bones ; מוש | as for their hands, they do not feel. 272 of the 292 gloss-list routes are a cognate's glosses inside the definition's parentheses.",
+     "falsifier": "A comma the gloss tests divide whose two sides are not two renderings: a clause of a quoted verse the CLAUSE list misses, or a cited example. Searched: a later piece opening on a capital, 3 routes (אל | algebra, Alhambra, alkali, alcohol, alcove ; הגר | emigration, Hegira ; אלה | god, God); at הגר and אלה the capital is a gloss (Hegira, God); at אל the list cites English loanwords from the etymology, still a list but not renderings. A first piece that begins mid-gloss (the definition has ' or ' right before the route): 7; the division is unaffected, the cut is the store's.",
+     "scoped_by": "(",
+     "commas_inside_parentheses": 0,
+     "holds_whole_when": [
+      "comma.in_sentence",
+      "comma.trailing",
+      "comma.no_space_after",
+      "comma.before_bound_suffix",
+      "comma.before_open_possessive"
+     ]
+    },
+    "-": {
+     "means": "joins parts of one word; at a route's edge, half of a compound whose other half stands outside the route",
+     "governs": 454,
+     "occurrences": 467,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "hyphen.compound_join": 447,
+      "hyphen.suspended_first_part": 12,
+      "hyphen.bound_second_part": 8
+     },
+     "shapes": {
+      "hyphen.compound_join": {
+       "means": "joins two parts into one English word or one transliterated name (threshing-floor, Hā-Rāphā, (he)-ass)",
+       "test": "a '-' with a letter or ')' before it and a letter after it",
+       "count": 447,
+       "routes": 435,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 342,
+        "def_parentheses": 69,
+        "whole": 36
+       }
+      },
+      "hyphen.suspended_first_part": {
+       "means": "the first element of a hyphenated compound whose second element stands outside the route ('resting-' of 'resting- or dwelling-place')",
+       "test": "a '-' with a letter before it that ends the route",
+       "count": 12,
+       "routes": 12,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 7,
+        "def_parentheses": 5
+       }
+      },
+      "hyphen.bound_second_part": {
+       "means": "the second element of a compound whose first element stands outside the route or in the gloss before it ('-place' of 'lodging (-place)', '-woman' of 'freed-man, -woman')",
+       "test": "a '-' at the start of the route or after a space, with a letter after it",
+       "count": 8,
+       "routes": 8,
+       "divides_readings": false,
+       "by_region": {
+        "def_parentheses": 4,
+        "def_top": 4
+       }
+      }
+     },
+     "evidence": "אדר | threshing-floor ; מכשלה | stumbling-block ; קדש | temple-prostitute ; suspended: רבץ | resting- ; שאר | flesh- ; תקוע | blast- ; bound: חרר | freed-man, -woman ; גרות | -place ; מצפה | -height",
+     "falsifier": "A '-' with a space on both sides (a dash standing between two glosses): 0 today."
+    },
+    "(": {
+     "means": "notation inside one reading: optional letters, a supplied or optional word, a note; never a scope over alternatives",
+     "governs": 13,
+     "occurrences": 13,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "paren.optional_letters": 5,
+      "paren.label": 1,
+      "paren.supplied_word": 7
+     },
+     "shapes": {
+      "paren.optional_letters": {
+       "means": "letters that may be read or left off one word: be(come), place(s), Yah(u)",
+       "test": "a '(' with a letter immediately before it",
+       "count": 5,
+       "routes": 5,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 4,
+        "def_parentheses": 1
+       }
+      },
+      "paren.label": {
+       "means": "a note on the rendering, not part of it: (Aramaism)",
+       "test": "a '(' at the start or after a space whose content opens on a capital",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 1
+       }
+      },
+      "paren.supplied_word": {
+       "means": "a word the one rendering may be read with or without: supplied, optional or alternative (spiced (oil), the (true) God, there is (was) not)",
+       "test": "a '(' at the start or after a space whose content opens lowercase",
+       "count": 7,
+       "routes": 7,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 5,
+        "def_parentheses": 2
+       }
+      }
+     },
+     "evidence": "עמד | be(come) servant of ; גדליהו | Yah(u) is great ; חשך | secret place(s) ; חמור | (he)-ass ; בשם | spiced (oil) ; חבל | act (ruinously) corruptly ; עטף | envelop oneself (Aramaism)",
+     "falsifier": "A ',' ';' or '/' inside the parentheses (an alternation the parenthesis would scope, as in Strong's): 0 today. 13 openers; 0 routes unbalanced."
+    },
+    ")": {
+     "means": "closes the parenthesis it pairs with; every ')' has an opener in the same route",
+     "governs": 13,
+     "occurrences": 13,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "paren_close.optional_letters": 5,
+      "paren_close.label": 1,
+      "paren_close.supplied_word": 7
+     },
+     "shapes": {
+      "paren_close.optional_letters": {
+       "means": "closes optional letters",
+       "test": "a ')' whose opener is paren.optional_letters",
+       "count": 5,
+       "routes": 5,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 4,
+        "def_parentheses": 1
+       }
+      },
+      "paren_close.label": {
+       "means": "closes a note on the rendering",
+       "test": "a ')' whose opener is paren.label",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 1
+       }
+      },
+      "paren_close.supplied_word": {
+       "means": "closes a supplied or optional word",
+       "test": "a ')' whose opener is paren.supplied_word",
+       "count": 7,
+       "routes": 7,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 5,
+        "def_parentheses": 2
+       }
+      }
+     },
+     "evidence": "13 openers, 13 closers, 0 unbalanced routes",
+     "falsifier": "A ')' with nothing open: 0 routes today."
+    },
+    "!": {
+     "means": "exclamation or wish; ends the one reading",
+     "governs": 43,
+     "occurrences": 43,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "exclamation.final": 43
+     },
+     "shapes": {
+      "exclamation.final": {
+       "means": "the rendering is an exclamation or a wish; it ends the one reading (O that!, how is the gold dimmed!)",
+       "test": "a '!' that is the last character of the route",
+       "count": 43,
+       "routes": 43,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 26,
+        "whole": 12,
+        "def_parentheses": 5
+       }
+      }
+     },
+     "evidence": "לו | If only …! ; לו | O that! ; לו | would that!",
+     "falsifier": "A '!' anywhere but the last character: 0 today."
+    },
+    "?": {
+     "means": "interrogative; ends a reading",
+     "governs": 24,
+     "occurrences": 25,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "question.final": 24,
+      "question.before_second_question": 1
+     },
+     "shapes": {
+      "question.final": {
+       "means": "the rendering is a question; it ends the one reading (Where?, Who is like God?)",
+       "test": "a '?' that is the last character of the route",
+       "count": 24,
+       "routes": 24,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 15,
+        "whole": 7,
+        "def_parentheses": 2
+       }
+      },
+      "question.before_second_question": {
+       "means": "ends one interrogative rendering and a second follows in the same field with no separator but a space (by means of what? how?)",
+       "test": "a '?' followed by a space and more text",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 1
+       }
+      }
+     },
+     "evidence": "איה | Where? ; אהי | where? ; איכה | In what manner? ; ב | by means of what? how?",
+     "falsifier": "A '?' anywhere but the last character: 1 today (ב | by means of what? how?), the second-question shape, held whole and put to the owner."
+    },
+    "’": {
+     "means": "English possessive, a closing quotation mark, or the aleph sign of a transliteration; inside one reading",
+     "governs": 35,
+     "occurrences": 35,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "apostrophe_curly.possessive": 29,
+      "apostrophe_curly.closing_quote": 2,
+      "apostrophe_curly.aleph_sign": 4
+     },
+     "shapes": {
+      "apostrophe_curly.possessive": {
+       "means": "English possessive inside one word: husband’s, one’s",
+       "test": "a '’' after a letter, followed by 's' and then no letter",
+       "count": 29,
+       "routes": 29,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 20,
+        "def_parentheses": 8,
+        "whole": 1
+       }
+      },
+      "apostrophe_curly.closing_quote": {
+       "means": "closes a quoted rendering opened by ‘ in the same route",
+       "test": "a '’' at the end of the route with a '‘' earlier in it",
+       "count": 2,
+       "routes": 2,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 2
+       }
+      },
+      "apostrophe_curly.aleph_sign": {
+       "means": "the transliteration sign for aleph inside a transliterated Hebrew word: ’Abaddôn, Shᵉ’ōl",
+       "test": "a '’' with a letter after it (any '’' the possessive test does not take)",
+       "count": 4,
+       "routes": 4,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 4
+       }
+      }
+     },
+     "evidence": "חם | husband’s father ; בחרים | young men’s village ; נשג | one’s hand has reached ; אבדון | ’Abaddôn ; שאול | Shᵉ’ōl ; סאה | sᵉ’āh ; דמם | ‘composed and quieted my soul’ ; דלל | ‘depend’",
+     "falsifier": "A '’' with a space on both sides: 0 today."
+    },
+    "'": {
+     "means": "English possessive inside one reading",
+     "governs": 20,
+     "occurrences": 21,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "apostrophe.possessive_singular": 19,
+      "apostrophe.possessive_plural": 2
+     },
+     "shapes": {
+      "apostrophe.possessive_singular": {
+       "means": "English possessive inside one word: one's, wife's",
+       "test": "a ''' after a letter, followed by 's' and then no letter",
+       "count": 19,
+       "routes": 19,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 17,
+        "def_parentheses": 2
+       }
+      },
+      "apostrophe.possessive_plural": {
+       "means": "English plural possessive at a word's end: bees' nest",
+       "test": "a ''' after 's' with no letter after it",
+       "count": 2,
+       "routes": 2,
+       "divides_readings": false,
+       "by_region": {
+        "def_parentheses": 2
+       }
+      }
+     },
+     "evidence": "ציד | take as one's provision ; שית | take one's stand ; חזק | use one's strength ; כור | blacksmith's fire-place, hornets' ; כור | bees' nest",
+     "falsifier": "A ''' opening a quotation (no letter before it): 0 today."
+    },
+    ".": {
+     "means": "ends a BDB abbreviation, ends a sentence-shaped rendering, or is part of '...'; once a stop between two forms of one gloss",
+     "governs": 13,
+     "occurrences": 15,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "period.ellipsis_ascii": 3,
+      "period.abbreviation": 10,
+      "period.final": 1,
+      "period.mid_after_word": 1
+     },
+     "shapes": {
+      "period.ellipsis_ascii": {
+       "means": "one of three dots standing for words left out of one quoted rendering (to them ... shall be delight)",
+       "test": "a '.' that is part of a run of three '.'",
+       "count": 3,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 3
+       }
+      },
+      "period.abbreviation": {
+       "means": "ends one of BDB's abbreviations inside the rendering: fr., id., instr., obj., covt., Isr., mt., mts., D.",
+       "test": "a '.' right after a word in the closed ABBREV list",
+       "count": 10,
+       "routes": 10,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 9,
+        "def_parentheses": 1
+       }
+      },
+      "period.final": {
+       "means": "the full stop ending a rendering written as a sentence (security.)",
+       "test": "a '.' that is the last character of the route after a word not in ABBREV",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 1
+       }
+      },
+      "period.mid_after_word": {
+       "means": "a stop after a whole word inside the field, before a second form of the same gloss (strip. strip off); the source likely meant a comma",
+       "test": "a '.' after a word not in ABBREV, followed by a space and more text",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_parentheses": 1
+       }
+      }
+     },
+     "evidence": "נוף | he brandisheth his hand toward the mt. ; קשר | the life of Jonathan was bound up with the life of D. ; כחש | fr. fatness ; מבטח | security. ; נעם | to them ... shall be delight ; בצל | strip. strip off",
+     "falsifier": "A '.' between two complete glosses that a reader would take as two readings: 1 candidate today (period.mid_after_word), held whole and put to the owner."
+    },
+    "‛": {
+     "means": "the ayin sign of a transliterated Hebrew name; inside one word",
+     "governs": 13,
+     "occurrences": 13,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "ayin_sign.in_transliteration": 13
+     },
+     "shapes": {
+      "ayin_sign.in_transliteration": {
+       "means": "the transliteration sign for ayin inside a transliterated Hebrew name: ‛Arḳa, Sē‛ir, Gilboa‛",
+       "test": "a '‛' with a letter on at least one side",
+       "count": 13,
+       "routes": 13,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 13
+       }
+      }
+     },
+     "evidence": "ערקי | ‛Arḳa ; גלבע | Gilboa‛ ; שעיר | Sē‛ir",
+     "falsifier": "A '‛' with a space on both sides: 0 today."
+    },
+    "…": {
+     "means": "a gap inside one phrase for the words the context supplies",
+     "governs": 4,
+     "occurrences": 4,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "ellipsis.gap_in_phrase": 4
+     },
+     "shapes": {
+      "ellipsis.gap_in_phrase": {
+       "means": "stands for the words the phrase takes in context (one … another, from … even to, If only …!); one reading",
+       "test": "a '…' with a space before it",
+       "count": 4,
+       "routes": 4,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 4
+       }
+      }
+     },
+     "evidence": "לו | If only …! ; קרח | make a baldness … for ; אח | one … another",
+     "falsifier": "A '…' whose two sides each stand as a route of their own on the same key (two alternatives, not one phrase): 0 today."
+    },
+    "&": {
+     "means": "'and' inside one gloss",
+     "governs": 3,
+     "occurrences": 3,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "ampersand.and_inside_gloss": 3
+     },
+     "shapes": {
+      "ampersand.and_inside_gloss": {
+       "means": "'and' inside one gloss (turn this way & that, fear & object of fear)",
+       "test": "a '&' with a space on both sides",
+       "count": 3,
+       "routes": 3,
+       "divides_readings": false,
+       "by_region": {
+        "def_parentheses": 2,
+        "def_top": 1
+       }
+      }
+     },
+     "evidence": "און | one enjoying a life of ease, freedom from toil & trouble ; אלה | fear & object of fear ; הפך | turn this way & that",
+     "falsifier": "A '&' whose two sides each stand as a route of their own on the same key: 0 today."
+    },
+    "‘": {
+     "means": "opens a quoted rendering",
+     "governs": 2,
+     "occurrences": 2,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "quote_open.quoted_rendering": 2
+     },
+     "shapes": {
+      "quote_open.quoted_rendering": {
+       "means": "opens a rendering quoted as a phrase, closed by ’ in the same route",
+       "test": "a '‘' at the start of the route with a '’' at its end",
+       "count": 2,
+       "routes": 2,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 2
+       }
+      }
+     },
+     "evidence": "דמם | ‘composed and quieted my soul’ ; דלל | ‘depend’",
+     "falsifier": "A '‘' with no '’' after it in the route: 0 today."
+    },
+    "̌": {
+     "means": "combining caron on a transliterated vowel",
+     "governs": 1,
+     "occurrences": 1,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "caron.on_transliterated_vowel": 1
+     },
+     "shapes": {
+      "caron.on_transliterated_vowel": {
+       "means": "a combining caron on a vowel of a transliterated Hebrew letter name (Dā̌leth)",
+       "test": "U+030C after a letter or a combining mark",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_top": 1
+       }
+      }
+     },
+     "evidence": "ד | Dā̌leth",
+     "falsifier": "A U+030C not after a letter: 0 today."
+    },
+    "׳": {
+     "means": "abbreviates the divine name inside an English rendering",
+     "governs": 1,
+     "occurrences": 1,
+     "divides_readings": false,
+     "shape_occurrences": {
+      "geresh.divine_name_abbreviation": 1
+     },
+     "shapes": {
+      "geresh.divine_name_abbreviation": {
+       "means": "BDB's abbreviation of the divine name inside an English rendering (unto י׳ are mine eyes)",
+       "test": "a '׳' right after a Hebrew letter",
+       "count": 1,
+       "routes": 1,
+       "divides_readings": false,
+       "by_region": {
+        "def_parentheses": 1
+       }
+      }
+     },
+     "evidence": "אליהועיני | unto י׳ are mine eyes",
+     "falsifier": "A '׳' not after a Hebrew letter: 0 today."
+    }
+   },
+   "precedence": [
+    ";",
+    ","
+   ],
+   "precedence_note": "'(' is a scope, not a divider: a comma or semicolon inside parentheses would not divide (0 occurrences today). Then ';' divides senses, then ',' divides glosses inside each sense, and only in a sense where every comma is of a dividing shape. No ':' '/' '[' '+' or 'X' occurs in this provider's route text.",
+   "refusals": {
+    "unbalanced_parentheses": {
+     "rows": 0,
+     "rule": "as wikisource_strongs_explicit_forms: separate up to an unclosed opener; a closer with nothing open is inert"
+    },
+    "sense_with_mixed_commas": {
+     "rows": 0,
+     "rule": "a sense holding any comma of a non-dividing shape is held whole"
+    },
+    "pieces_do_not_rejoin": {
+     "rows": 0,
+     "rule": "the route ships whole"
+    }
+   },
+   "export": "governed by its posture, cc_by_4_0_underlying_public_domain",
+   "open_questions": [
+    {
+     "id": "B01",
+     "question": "In BDB, a gloss list whose first gloss opens on a head word the later glosses do not repeat ('be fatigued, tired'): does the comma divide two readings, the later one printed as the provider wrote it ('tired'), or is the list one reading?",
+     "options": [
+      {
+       "id": "divides",
+       "means": "each gloss a reading, printed as written; 83 later pieces print without the head word",
+       "count": 66
+      },
+      {
+       "id": "whole",
+       "means": "the list prints as one reading, head and all",
+       "count": 66
+      }
+     ],
+     "resting": "divides",
+     "why_resting": "the August Strong's precedent (pieces kept as written, no head distributed) and today's card: v3 already gives the same division on 64 of these 66 routes",
+     "examples": [
+      "מרא | be digestible, agree with",
+      "מאד | be many, increase",
+      "אוד | be curved, bent",
+      "אבר | be firm, strong"
+     ]
+    },
+    {
+     "id": "B02",
+     "question": "Inside the definition's parentheses BDB gives a cognate's or a root's meaning (Arabic, Aramaic, Assyrian, Ethiopic, NH), not a rendering of the Hebrew word. Where the store made such a list a route, does its comma divide readings the card prints, or does the list stand whole as a note?",
+     "options": [
+      {
+       "id": "divides",
+       "means": "the cognate's glosses print as separate readings, like any gloss list",
+       "count": 272
+      },
+      {
+       "id": "whole",
+       "means": "the list prints as one reading (or, a store ruling, is not offered as a reading at all)",
+       "count": 272
+      }
+     ],
+     "resting": "divides",
+     "why_resting": "v3 gives the same division on 268 of these 272 today; whether a cognate's gloss is a reading of the Hebrew word at all is a route question for the store (1858 routes in all sit inside the definition's parentheses, proper-name meanings among them)",
+     "examples": [
+      "טלם | oppress, injure",
+      "מרא | well-fed, fat",
+      "מרא | be digestible, agree with",
+      "אל | algebra, Alhambra, alkali, alcohol, alcove"
+     ]
+    },
+    {
+     "id": "B03",
+     "question": "A route that ends on the comma that divided it from its sibling ('have a just cause,' beside the route 'be in the right'): print it with the comma as stored, or read the comma as the separator's tail, as the August Strong's head_mark rule reads ':--'?",
+     "options": [
+      {
+       "id": "as_stored",
+       "means": "the reading prints with its trailing comma",
+       "count": 1
+      },
+      {
+       "id": "separator_tail",
+       "means": "the reading ends before the comma (what v3 prints today)",
+       "count": 1
+      }
+     ],
+     "resting": "as_stored",
+     "examples": [
+      "צדק | have a just cause,"
+     ]
+    },
+    {
+     "id": "B04",
+     "question": "Two glosses written with no space after the comma ('break,split'): two readings, or held whole because the pieces cannot rejoin on the declared ', '?",
+     "options": [
+      {
+       "id": "divides",
+       "means": "two readings",
+       "count": 1
+      },
+      {
+       "id": "whole",
+       "means": "one field as written",
+       "count": 1
+      }
+     ],
+     "resting": "whole",
+     "examples": [
+      "יהץ | break,split"
+     ]
+    },
+    {
+     "id": "B05",
+     "question": "Two interrogative renderings in one field with only a space between them ('by means of what? how?'): two readings divided after the '?', or one?",
+     "options": [
+      {
+       "id": "divides",
+       "means": "two readings, each keeping its '?'",
+       "count": 1
+      },
+      {
+       "id": "whole",
+       "means": "one field as written",
+       "count": 1
+      }
+     ],
+     "resting": "whole",
+     "examples": [
+      "ב | by means of what? how?"
+     ]
+    },
+    {
+     "id": "B06",
+     "question": "A stop between two forms of one gloss ('strip. strip off'), likely a comma in the source: two readings, or one?",
+     "options": [
+      {
+       "id": "divides",
+       "means": "two readings",
+       "count": 1
+      },
+      {
+       "id": "whole",
+       "means": "one field as written",
+       "count": 1
+      }
+     ],
+     "resting": "whole",
+     "examples": [
+      "בצל | strip. strip off"
+     ]
+    },
+    {
+     "id": "B07",
+     "question": "A comma before a piece that is half a word ('freed-man, -woman', 'blacksmith's fire-place, hornets''): hold the field whole (the August hyphen-attachment precedent), or divide and print '-woman' and 'hornets'' as readings (what v3 does today)?",
+     "options": [
+      {
+       "id": "whole",
+       "means": "one field as written",
+       "count": 2
+      },
+      {
+       "id": "divides",
+       "means": "the half-word prints as a reading of its own",
+       "count": 2
+      }
+     ],
+     "resting": "whole",
+     "examples": [
+      "חרר | freed-man, -woman",
+      "כור | blacksmith's fire-place, hornets'"
+     ]
+    }
+   ],
+   "separates_on": {
+    "marks": [
+     ";",
+     ","
+    ],
+    "scope": "( )",
+    "declared_from": "292 of the 310 comma routes are gloss lists; 14 are sentences; 4 carry a comma that would leave a fragment or cannot rejoin.",
+    "rule": "Separate at depth-zero semicolons, then at the depth-zero commas of each sense whose commas are all comma.between_glosses or comma.between_glosses_after_head_word. Every piece is kept as the provider wrote it; no head word is carried to a later piece ('be fatigued, tired' prints 'be fatigued' and 'tired'), no piece is joined to another, no parenthesis is distributed.",
+    "holds_whole_when": {
+     "comma.in_sentence": {
+      "routes": 14,
+      "test": "the comma's sense is sentence-shaped: it holds a pronoun or finite-verb word from the closed CLAUSE list, or a comma piece opens on 'and', or it opens on a capital, or a piece has a capitalized word after its first"
+     },
+     "comma.trailing": {
+      "routes": 1,
+      "test": "a ',' that is the last character of the route"
+     },
+     "comma.no_space_after": {
+      "routes": 1,
+      "test": "a ',' followed directly by a non-space character"
+     },
+     "comma.before_bound_suffix": {
+      "routes": 1,
+      "test": "the piece after the comma begins with '-'"
+     },
+     "comma.before_open_possessive": {
+      "routes": 1,
+      "test": "the piece after the comma ends with an apostrophe (' or ’)"
+     }
+    },
+    "clause_words": [
+     "I",
+     "me",
+     "my",
+     "mine",
+     "thee",
+     "thou",
+     "thy",
+     "thine",
+     "he",
+     "him",
+     "his",
+     "himself",
+     "she",
+     "her",
+     "it",
+     "its",
+     "we",
+     "us",
+     "our",
+     "ye",
+     "you",
+     "your",
+     "they",
+     "them",
+     "their",
+     "who",
+     "whom",
+     "whose",
+     "doth",
+     "hath",
+     "didst",
+     "dost",
+     "shalt",
+     "wilt",
+     "shall",
+     "will",
+     "let",
+     "pray",
+     "yea",
+     "oh",
+     "were",
+     "was",
+     "is",
+     "are"
+    ],
+    "head_words": [
+     "be",
+     "become",
+     "to",
+     "make",
+     "one",
+     "that",
+     "a",
+     "an",
+     "the"
+    ],
+    "abbreviations": [
+     "fr",
+     "id",
+     "instr",
+     "obj",
+     "covt",
+     "Isr",
+     "mt",
+     "mts",
+     "D"
+    ],
+    "machine_note": "reader/tools/declaration-v1.mjs readingOf takes one separates_on.mark and no route-level hold. Wiring this declaration needs both: two marks in precedence and the holds_whole_when tests. Applied as written by that machine (',' only, no holds), it would divide the sentence and fragment routes listed in holds_whole_when.",
+    "refusals": {
+     "unbalanced parentheses": "the route ships whole up to the declared August rule",
+     "pieces that do not rejoin": "the route ships whole"
+    }
+   },
+   "not_done_here": "The definition is never mined for a reading, and the route boundaries are the store's: a route the store cut mid-gloss ('away, draw together' of 'put aside or away'), a cognate's gloss offered as a reading of the Hebrew word, and English words cited by the etymology ('algebra, Alhambra …') are route questions this ledger reports but does not settle. The definition's own marks (57 in all, Hebrew points among them) are counted in census.json but not declared: the page prints the route, not the definition."
+  }
+ }
+}

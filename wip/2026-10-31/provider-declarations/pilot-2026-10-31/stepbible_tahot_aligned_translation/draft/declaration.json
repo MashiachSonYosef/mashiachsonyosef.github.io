@@ -1,0 +1,221 @@
+{
+ "schema_version": "PROVIDER_DECLARATIONS_V1",
+ "pilot": "mark ledger pilot, 2026-10-31; merge into providers of reader/tools/declarations-v1.json only on the owner's ruling",
+ "providers": {
+  "stepbible_tahot_aligned_translation": {
+   "label": "STEP Bible Translators Amalgamated Hebrew OT aligned component translation",
+   "m_ids": [
+    "M4"
+   ],
+   "routes": 95089,
+   "declared_on": "2026-10-31",
+   "declared_from": "The record's own structure, read across all 95,089 routes on 46,609 keys. Route equals definition in 95,089 of 95,089: each record is one aligned English rendering of one Hebrew word at one place, and a key's alternatives are separate routes (most on one key: 108). 0 routes carry a comma, 0 a parenthesis, 1 a semicolon. 53,554 routes (56.32%) carry '/', which segments one rendering in the Hebrew word's own order. Every one of the 123,841 mark occurrences falls in exactly one of 35 shapes; 0 unexplained. The inventory's closed set (13 marks) agrees mark for mark.",
+   "regions": {
+    "meaning_depends_on_region": {},
+    "note": "There is no head, rendering list or notes: the definition is one rendering. No mark's meaning depends on a region."
+   },
+   "marks": {
+    "/": {
+     "means": "Segment boundary inside one rendering: the English of each segment of the Hebrew word (prefix, stem, suffix, maqaf), in Hebrew order. 'father/ your' is one reading of one word. Never alternation.",
+     "divides_readings": false,
+     "segments": true,
+     "governs": 64013,
+     "routes": 53554,
+     "shapes": {
+      "slash.segment_boundary": 63983,
+      "slash.empty_segment": 30
+     },
+     "evidence": "19,104 of 19,124 routes opening on the segment 'and' have a key beginning with vav (the other 20 begin with lamed: לכרוב | and/ a cherub ; לבין | and/ between); 2,618 of 2,619 opening on 'the' begin with he; 2,364 of 2,364 ending on 'your' carry a kaf in the key's last three letters; 53,554 of 53,554 slash routes have no more segments than the key has letters. 0 routes carry a comma, 6 the word 'or'.",
+     "falsifier": "A route whose '/' pieces are two whole renderings of the same word (an English 'x/y' alternative such as 'he/she'), or a segment whose English the key's letters cannot carry. 0 found: every slash route passes the segment-count test above.",
+     "prints": "The page's spanJoin prints the segments joined by ' + ' and drops empty ones; that is a print of one reading, not a division into readings. It agrees with this provider's meaning.",
+     "empty_segment": "30 slashes in 15 routes bound an empty segment ('//' or '/ /'): מהזה | what/ /[is] this? ; מהזה | what/ /[is] this? ; יהוהצבאות | Yahweh/ /of hosts"
+    },
+    "[": {
+     "means": "Opens words (or letters, a suffix, a question mark) the translators supply in English that no Hebrew segment carries. Part of the one reading.",
+     "divides_readings": false,
+     "annotation": true,
+     "governs": 22719,
+     "routes": 21502,
+     "shapes": {
+      "square.supplied_words": 21430,
+      "square.supplied_letters": 1268,
+      "square.supplied_punctuation": 2,
+      "square.supplied_suffix": 15,
+      "square.open_continues_elsewhere": 4
+     },
+     "evidence": "content by class over matched pairs: article 7,713, be/belong 7,305, other 7,691; 3 routes consist of nothing but a supplied bracket (את | [of] ; אית | [are] ; הנ | [were]).",
+     "falsifier": "A bracket whose content the key's own letters carry (a supplied word that is in the Hebrew). Not tested from this file: the key is letters only, not segmented."
+    },
+    "]": {
+     "means": "Closes the supplied span.",
+     "divides_readings": false,
+     "governs": 22717,
+     "routes": 21502,
+     "shapes": {
+      "square.supplied_words": 21430,
+      "square.supplied_letters": 1268,
+      "square.supplied_punctuation": 2,
+      "square.supplied_suffix": 15,
+      "square.close_opened_elsewhere": 2
+     },
+     "evidence": "square.supplied_words 21430: אדר | [the] magnificence of ; square.supplied_letters 1268: הגבלי | the/ Gebalite[s] ; square.supplied_suffix 15: הנושא | who/ [-ever] carries ; square.supplied_punctuation 2: לך | to <the>/ you[?] ; square.close_opened_elsewhere 2: מחלל | has been] profaned",
+     "falsifier": "As '[': and a ']' that closes a span in its own route must close one opened before it there; the 2 that do not are counted under square.close_opened_elsewhere."
+    },
+    "<": {
+     "means": "Opens what the Hebrew carries and natural English drops: the object marker '<obj.>', an article held in a preposition's vowel ('in <the>/'), an infinitive absolute ('<to know>'), a Hebrew plural ('love<s>'). Part of the one reading.",
+     "divides_readings": false,
+     "annotation": true,
+     "governs": 5943,
+     "routes": 5836,
+     "shapes": {
+      "angle.hebrew_words": 4946,
+      "angle.hebrew_letters": 884,
+      "angle.object_marker": 113
+     },
+     "evidence": "113 of 113 routes with '<obj.>' carry an object marker in the key (et/ot- 72; the rest Aramaic yat or the object lamed); 527 of 527 routes opening 'in|like|to|for|at <the>/' begin with bet, kaf or lamed.",
+     "falsifier": "An angle bracket holding English that no Hebrew segment of the key carries. Not tested beyond the two key tests in the evidence."
+    },
+    ">": {
+     "means": "Closes the dropped span.",
+     "divides_readings": false,
+     "governs": 5947,
+     "routes": 5836,
+     "shapes": {
+      "angle.hebrew_words": 4946,
+      "angle.hebrew_letters": 884,
+      "angle.object_marker": 113,
+      "angle.close_opened_nowhere": 4
+     },
+     "damage": "4 closers open nothing (ל | <into> the> ; ול | and/ <into> the>); the row ships whole, as written.",
+     "evidence": "angle.hebrew_words 4946: באלהיכם | <in>/ God/ your ; angle.hebrew_letters 884: דדיך | love<s>/ your ; angle.object_marker 113: יתהון | <obj.>/ them ; angle.close_opened_nowhere 4: ל | <into> the>",
+     "falsifier": "As '<': and a '>' that opens nothing is counted under angle.close_opened_nowhere (4), never read as a boundary."
+    },
+    "-": {
+     "means": "Inside one English word: a compound, a word cut across two Hebrew words or segments ('thir-' ... 'teen', 'west-/ -ward'), the attaching hyphen of a supplied suffix, or the maqaf's own segment. Never a separator.",
+     "divides_readings": false,
+     "governs": 906,
+     "routes": 859,
+     "shapes": {
+      "hyphen.compound": 508,
+      "hyphen.word_continues_after": 303,
+      "hyphen.word_continued_from_before": 70,
+      "hyphen.supplied_suffix": 15,
+      "hyphen.maqaf_segment": 10
+     },
+     "evidence": "בשלש־ | in/ thir- ; פדה־ | Pedah- ; וקדמה | and/ east/ -ward ; קוח | -lease ; מהל | what/-/[is] to",
+     "unresolved": "A word cut across two Hebrew words is finished in the neighbor's route; that join is not made here (it would join pieces from two records).",
+     "falsifier": "A hyphen with a space on each side (a dash between two clauses or renderings). 0 found: every hyphen falls in one of the five shapes."
+    },
+    "!": {
+     "means": "Either an exclamation in the English ('woe!'), or, standing alone as a segment, a Hebrew ending (final he or nun) rendered by emphasis with no English word.",
+     "divides_readings": false,
+     "governs": 560,
+     "routes": 560,
+     "shapes": {
+      "bang.mark_only_segment": 478,
+      "bang.exclamation": 82
+     },
+     "evidence": "477 of 478 routes ending on the segment '!' have a key ending in he or nun.",
+     "falsifier": "A '!' with a second rendering of the same word after it. 0 found: every '!' ends a word or stands alone as a segment."
+    },
+    "?": {
+     "means": "The verse's question mark, carried at the word where the English question ends (or, supplied, in '[?]'). Part of the one reading.",
+     "divides_readings": false,
+     "governs": 471,
+     "routes": 471,
+     "shapes": {
+      "question.end_of_rendering": 462,
+      "question.before_construct_of": 6,
+      "question.supplied": 2,
+      "question.mark_only_segment": 1
+     },
+     "evidence": "question.end_of_rendering 462: זבל | [is] Zebul? ; question.before_construct_of 6: מכת | [the] striking? of ; question.supplied 2: לך | to <the>/ you[?] ; question.mark_only_segment 1: ידעתה | do you know/ ?",
+     "falsifier": "A '?' with a second rendering of the same word after it. 0 found: every '?' ends the route or a segment, stands before the construct 'of', stands alone as a segment, or sits in '[?]'."
+    },
+    "¿": {
+     "means": "The Hebrew interrogative prefix he, given its own segment; no English word.",
+     "divides_readings": false,
+     "annotation": true,
+     "governs": 405,
+     "routes": 405,
+     "shapes": {
+      "inverted.interrogative_segment": 405
+     },
+     "evidence": "401 of 401 routes opening on '¿' have a key beginning with he; 4 of 4 opening 'and/ ¿' begin with vav he.",
+     "falsifier": "A '¿' segment on a key that does not begin with he (after an optional vav). 0 of 405."
+    },
+    ".": {
+     "means": "The abbreviation point of '<obj.>'.",
+     "divides_readings": false,
+     "governs": 113,
+     "routes": 113,
+     "shapes": {
+      "period.abbreviation": 113
+     },
+     "evidence": "period.abbreviation 113: יתהון | <obj.>/ them",
+     "falsifier": "A '.' outside '<obj.>'. 0 of 113."
+    },
+    "'": {
+     "means": "The English possessive, inside one word.",
+     "divides_readings": false,
+     "governs": 38,
+     "routes": 38,
+     "shapes": {
+      "apostrophe.possessive": 38
+     },
+     "evidence": "apostrophe.possessive 38: ויבמה | nd/ he will act as a husband's brother for/ her",
+     "falsifier": "An apostrophe used as a quotation mark. 0 of 38."
+    },
+    ":": {
+     "means": "The verse's colon at the word that introduces what follows ('this:'); nothing follows it in the field.",
+     "divides_readings": false,
+     "governs": 8,
+     "routes": 8,
+     "shapes": {
+      "colon.route_final": 8
+     },
+     "evidence": "אשר־ | this: ; אשר־ | [they heard] this: ; אשר־ | [he heard] this:",
+     "falsifier": "A ':' with text after it in the route (a head before a list). 0 of 8."
+    },
+    ";": {
+     "means": "The verse's clause punctuation carried inside one word's rendering; the supplied word after it opens the next clause. One occurrence.",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "shapes": {
+      "semicolon.clause_end_before_supplied": 1
+     },
+     "evidence": "פלט | deliverance; [surely]. The piece after it is a supplied bracket alone; 3 of 95,089 routes are a supplied bracket alone, and '[surely]' stands before a rendering in 7 of its other 7 routes.",
+     "falsifier": "A second ';' in this provider followed by a whole rendering the key's letters carry.",
+     "open_question": true
+    }
+   },
+   "precedence": [],
+   "precedence_note": "No mark divides readings in this provider, so there is no order to apply. '/' segments a reading for print and is applied last, after any division a later ruling adds.",
+   "refusals": {
+    "unbalanced_square_brackets": {
+     "rows": 6,
+     "rule": "ship whole; a supplied span straddling two words is the provider's, not damage to repair"
+    },
+    "unbalanced_angle_brackets": {
+     "rows": 4,
+     "rule": "ship whole, as written"
+    }
+   },
+   "export": "governed by its posture, cc_by_4_0",
+   "separates_on": null,
+   "segments_on": {
+    "mark": "/",
+    "rule": "Inside one reading, '/' bounds the English of each segment of the Hebrew word. Every segment is a run of the provider's own characters and the segments rejoin to the route with the slashes that divided them. Segments are pieces of one reading, never readings, and are never reordered into English order.",
+    "governs": 53554
+   },
+   "not_done_here": "No segment is reordered ('father/ your' is not turned into 'your father'), no bracket or sign is stripped, no supplied or dropped word is removed or added, and no word cut across two Hebrew words is joined to its other half in a neighbor's route. Each would join or discard pieces the provider wrote apart, which is a derivation.",
+   "open_questions": [
+    "Is TAHOT's one ';' (פלט, 'deliverance; [surely]') clause punctuation inside one reading, or a boundary between two readings?",
+    "Are the '/' segments only printed joined (' + '), or do they also stand as separable pieces of the one reading under their Hebrew segments (the RMD '+' pieces)?",
+    "Is a segment that is '!' or '?' alone a sign (undrawn when the signs switch is off, as '¿' and '<...>' segments are) or text (always drawn)?",
+    "Are unbalanced brackets the provider's text (a supplied span straddling two Hebrew words; a stray '>') to print as written, or damage to hold back as today's engine holds back unbalanced parentheses?"
+   ]
+  }
+ }
+}

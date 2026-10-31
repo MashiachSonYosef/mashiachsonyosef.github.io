@@ -1,0 +1,1357 @@
+{
+ "schema_version": "PROVIDER_DECLARATIONS_V1",
+ "pilot": "mark ledger pilot, 2026-10-31; merge into providers of reader/tools/declarations-v1.json only on the owner's ruling",
+ "measured_by": "ledger.mjs + declaration-kaikki.mjs over punct/by-source/kaikki_wiktionary_hebrew.jsonl; census.json holds every shape and count",
+ "providers": {
+  "kaikki_wiktionary_hebrew": {
+   "label": "Kaikki machine-readable Hebrew dictionary from English Wiktionary",
+   "m_ids": [
+    "M13",
+    "M25",
+    "M11",
+    "M69",
+    "M50"
+   ],
+   "routes": 123558,
+   "declared_on": "2026-10-31",
+   "declared_from": "The entry's own structure, read across all 123,558 routes. The route is the whole definition in 123,466 rows and the definition's tail after a leading label group in 92 (M50, M69: the store cut '(anatomy)', '(clothing)' and the like off the front). The provider writes Wiktionary's gloss line: English equivalents divided by commas (69,591 dividing commas in 50,469 routes), senses by semicolons (4,280), a head and its explanation by a colon (5,768), and every parenthesis a note, never an alternative (28,641 groups, 0 divide). Under this declaration 56,309 routes divide into 136,685 pieces, and 0 fail to rejoin character for character.",
+   "census_check": {
+    "inventory": "68 marks in mark-inventory-2026-10-31.json for these M ids, 68 in the route text of the JSONL, 0 mismatches in occurrences or routes",
+    "definition_text": "the definition text carries 68 marks; it differs from the route text only in the 92 rows whose lead label the store cut (',' +8, '(' +92, ')' +92, '-' +3)",
+    "unexplained": "route text 1, definition text 1: the one '@' at key קשיטה"
+   },
+   "regions": {
+    "locate": "The route is read as it stands; the definition is never mined. Within the route: ';' and a sentence '.' cut segments; a segment that opens as a note (used, see, said of, indicating, also, it, this, ...) is a note; ':' cuts a segment into parts: the head before it, then an explanation, a gloss list after a form pointer, a pointer after a gloss, or a copied Strong's KJV list after ': -'. A part carrying Hebrew letters outside parentheses is a form pointer.",
+    "pieces_by_role": {
+     "pointer": 552,
+     "head": 128791,
+     "explanation": 6351,
+     "note": 625,
+     "strongs_list": 74,
+     "gloss": 292
+    },
+    "role_meaning": "head, explanation, gloss: readings. pointer: a form-of pointer ('plural of X (x)'), kept as a piece, no reading. note: a usage note or cross-reference, kept as a piece, no reading. strongs_list: a copied Strong's KJV list, kept whole."
+   },
+   "marks": {
+    ",": {
+     "codepoint": "U+002C",
+     "means": "Alternation in the gloss line: Wiktionary's list of English equivalents, one rendering to the next (69,591 of 84,201). It does not divide inside a parenthesis or bracket (9,180), inside a form pointer (302), a usage note (478) or a copied Strong's list (238), or where the part is a sentence: a clause opener, a serial conjunction, a relative, a label, etc., a shared object or a bare qualifier group after it (4,288, the part held whole).",
+     "divides_readings": "in 69,591 of 84,201 occurrences",
+     "governs": 84201,
+     "routes": 57514,
+     "region_dependent": true,
+     "regions": "Divides in the head gloss list, in the explanation after ':' and in the gloss list after a form pointer; never in a pointer, a note or a Strong's list.",
+     "shapes": {
+      "comma.gloss_boundary": 69591,
+      "comma.in_parentheses": 9180,
+      "comma.list_inside_sentence": 1455,
+      "comma.before_clause": 1069,
+      "comma.before_serial_conjunction": 1053,
+      "comma.in_note": 478,
+      "comma.pointer": 302,
+      "comma.before_relative": 288,
+      "comma.strongs_list": 238,
+      "comma.after_label": 165,
+      "comma.before_etc": 140,
+      "comma.under_lead_label": 123,
+      "comma.shared_object": 71,
+      "comma.before_bare_group": 47,
+      "comma.number": 1
+     },
+     "evidence": [
+      "אדר: A maple tree, a maple.",
+      "סקרנה: To cover (an event), such as for a newspaper.",
+      "אביך: father (a male parent, especially of a human; a male who p…"
+     ],
+     "falsifier": "A comma.gloss_boundary piece that is a clause, not a rendering. The contested class is a piece of more than 4 words beside such a comma: 5,326 pieces in 4,981 routes (most are a describing gloss after the short ones, 'cobra, snake of the family Elapidae'; some are clauses the opener lists miss, 'Kach, a far-right Israeli political party ..., banned in 1994'). See open question 2."
+    },
+    "(": {
+     "codepoint": "U+0028",
+     "means": "Never divides, and is never distributed over its head. A qualifier or sense description on the English before it (21,579: 'father (a male parent, ...)'), the romanization of the Hebrew word before it (2,931), an argument slot inside one reading (2,337: 'to make (someone) laugh'), a nested note (795), a grammar label in a form pointer (436), a note citing Hebrew (197), a subject pronoun in a verb-form gloss (126: '(he/it) went'), a displayed point (23). At the head of the line (114) or closing it after the final period (20) it is a context label over the whole line, and the line ships whole; a capitalized closing group is a note (51). It scopes every divider.",
+     "divides_readings": false,
+     "governs": 28641,
+     "routes": 25326,
+     "region_dependent": true,
+     "regions": "At the head or the close of the line a label over all of it; after a Hebrew word its romanization; elsewhere a note on the English before it.",
+     "shapes": {
+      "paren.qualifier": 21579,
+      "paren.romanization": 2931,
+      "paren.argument_slot": 2337,
+      "paren.nested": 795,
+      "paren.grammar_label": 436,
+      "paren.hebrew_note": 197,
+      "paren.subject_pronoun": 126,
+      "paren.lead_label": 114,
+      "paren.trailing_note": 51,
+      "paren.unclosed_opener": 32,
+      "paren.mark_display": 23,
+      "paren.trailing_label": 20
+     },
+     "evidence": [
+      "אביך: father (a male parent, especially of a human; a male who p…",
+      "אביך: singular form of אָב (av) with second-person masculine sin…",
+      "שרתה: (intransitive) to soak, permeate"
+     ],
+     "falsifier": "A group the qualifier shape covers that is a second reading of the word rather than a note on the first ('father (dad)' as two renderings)."
+    },
+    ")": {
+     "codepoint": "U+0029",
+     "means": "Closes the group its '(' opened; same shapes, same counts, minus the unclosed openers.",
+     "divides_readings": false,
+     "governs": 28609,
+     "routes": 25326,
+     "region_dependent": true,
+     "shapes": {
+      "paren.qualifier": 21579,
+      "paren.romanization": 2931,
+      "paren.argument_slot": 2337,
+      "paren.nested": 795,
+      "paren.grammar_label": 436,
+      "paren.hebrew_note": 197,
+      "paren.subject_pronoun": 126,
+      "paren.lead_label": 114,
+      "paren.trailing_note": 51,
+      "paren.mark_display": 23,
+      "paren.trailing_label": 20
+     },
+     "evidence": [
+      "אביך: …ed, adopted, fostered, etc.))",
+      "אביך: singular form of אָב (av) with second-person masculine sin…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    ".": {
+     "codepoint": "U+002E",
+     "means": "Ends the gloss (21,914). A depth-0 period followed by a capital, a digit or a group ends one sentence and starts another (140: 'a surname. Frumkin'; 'Also, a servant.'), and before a closing note group it divides the note off (51: '(See usage note below.)'). Everything else is notation: inside a group (1,586), an abbreviation (189), a decimal (46), an ellipsis (18).",
+     "divides_readings": "in 191 of 23,967 occurrences",
+     "governs": 23967,
+     "routes": 23278,
+     "region_dependent": false,
+     "shapes": {
+      "period.terminal": 21914,
+      "period.in_parentheses": 1586,
+      "period.abbreviation": 189,
+      "period.sentence_boundary": 140,
+      "period.before_trailing_note": 51,
+      "period.decimal": 46,
+      "period.under_lead_label": 20,
+      "period.ellipsis": 18,
+      "period.lowercase_continuation": 3
+     },
+     "evidence": [
+      "נערתו: …y, physically able young man. Also, a servant.",
+      "יפסיקו: …ase, to desist, to terminate. (See usage note below.)",
+      "השתלט: to be skilled with, i.e., to have a good command of"
+     ],
+     "falsifier": "A dividing period that ends an abbreviation the declared list misses ('Mt. Sinai' would divide as 'Mt.' and 'Sinai')."
+    },
+    ":": {
+     "codepoint": "U+003A",
+     "means": "Divides the head gloss(es) from the explanation that defines them (5,768: 'A tunnel: an underground passage'), a form pointer from the glosses of that form (278), a gloss from the pointer giving its grammar (194), or a copied Strong's definition from its KJV list (74). Between digits it is a citation (3); with nothing after it, it introduces sub-senses the route does not carry (62).",
+     "divides_readings": "in 6,314 of 6,560 occurrences",
+     "governs": 6560,
+     "routes": 6536,
+     "region_dependent": false,
+     "shapes": {
+      "colon.head_explanation": 5768,
+      "colon.pointer_gloss": 278,
+      "colon.gloss_pointer": 194,
+      "colon.in_parentheses": 174,
+      "colon.strongs_list": 74,
+      "colon.introduces_absent_list": 62,
+      "colon.under_lead_label": 7,
+      "colon.citation": 3
+     },
+     "evidence": [
+      "אדר: A mounted animal: an animal skin that has been stuffed and…",
+      "עיני: …t state form of עַיִן (áyin): (the) eyes of",
+      "בזינו: …egrade, to despise, to abuse: defective spelling of ביזה."
+     ],
+     "falsifier": "A depth-0 ':' with text on both sides whose right side is neither an explanation, a gloss list nor a pointer of its left side (a time, a title, a quotation). Digits on both sides and a colon with nothing after are already set apart."
+    },
+    ";": {
+     "codepoint": "U+003B",
+     "means": "Sense boundary at depth 0 (3,955); before a usage note (325) it divides the glosses from the note, which is its own piece and no reading. Inside a parenthesis it is the note's own punctuation (804).",
+     "divides_readings": "in 4,280 of 5,088 occurrences",
+     "governs": 5088,
+     "routes": 4409,
+     "region_dependent": false,
+     "shapes": {
+      "semicolon.sense_boundary": 3955,
+      "semicolon.in_parentheses": 804,
+      "semicolon.note_follows": 325,
+      "semicolon.under_lead_label": 4
+     },
+     "evidence": [
+      "הבתים: household; family",
+      "להטן: A blaze; also (from the idea of enwrapping) magic (as cove…",
+      "אביך: …arent, especially of a human; a male who parents a child (…"
+     ],
+     "falsifier": "A depth-0 ';' whose two sides are one reading (a ';' inside one clause). None was found in the samples read."
+    },
+    "-": {
+     "codepoint": "U+002D",
+     "means": "Never divides. A compound (3,382), a bound syllable in a romanization (284), an English prefix or suffix that is itself the gloss, a range, the dash of a copied Strong's ':-' and its suffix notation, and a spaced dash inside one reading.",
+     "divides_readings": false,
+     "governs": 3852,
+     "routes": 3180,
+     "region_dependent": false,
+     "shapes": {
+      "hyphen.compound": 3382,
+      "hyphen.romanization": 284,
+      "hyphen.bound_prefix_gloss": 64,
+      "hyphen.strongs_list_marker": 60,
+      "hyphen.range": 30,
+      "hyphen.strongs_suffix": 20,
+      "hyphen.spaced_dash": 6,
+      "hyphen.bound_suffix_gloss": 6
+     },
+     "evidence": [
+      "אביך: …form of אָב (av) with second-person masculine singular per…",
+      "ייכנסו: …o in or come in [with ל־ (l'-) ‘to’]."
+     ],
+     "falsifier": "A spaced dash that opens a second reading rather than an apposition inside one."
+    },
+    "'": {
+     "codepoint": "U+0027",
+     "means": "English elision or possessive: one's, doesn't, y'all (1,553); a glottal stop or shva in the romanization: (n'kevá), ('ír) (539); plural possessive or a closing single quote: brides' parents, Tuqu' (30); an opening single quote: a 'kibbutz', also called 'Zaccur' (6)",
+     "divides_readings": false,
+     "governs": 2128,
+     "routes": 1999,
+     "region_dependent": false,
+     "shapes": {
+      "apostrophe.word_internal": 1553,
+      "apostrophe.romanization": 539,
+      "apostrophe.word_final": 30,
+      "apostrophe.opening_quote": 6
+     },
+     "evidence": [
+      "גורלות: One's allotted portion, the result of drawing lots",
+      "אלצהיימר: …of מחלת אלצהיימר (“Alzheimer's disease”)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ָ": {
+     "codepoint": "U+05B8",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (1,703); the point shown on its own, as the thing the entry names (1)",
+     "divides_readings": false,
+     "governs": 1704,
+     "routes": 1356,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 1703,
+      "hebrew_point.mark_display": 1
+     },
+     "evidence": [
+      "אביך: singular form of אָב (av) with second-person masculine sin…",
+      "קמץ: …nciation, an /o/ sound)) (ִ◌ָ)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ּ": {
+     "codepoint": "U+05BC",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (1,401); the point shown on its own, as the thing the entry names (12)",
+     "divides_readings": false,
+     "governs": 1413,
+     "routes": 1122,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 1401,
+      "hebrew_point.mark_display": 12
+     },
+     "evidence": [
+      "חומרינו: synonym of כֹּר, an approximately equal Hebrew unit of liq…",
+      "דגשנו: …posed to as a fricative) (ִ◌ּ)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ִ": {
+     "codepoint": "U+05B4",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (1,155); the point shown on its own, as the thing the entry names (24)",
+     "divides_readings": false,
+     "governs": 1179,
+     "routes": 973,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 1155,
+      "hebrew_point.mark_display": 24
+     },
+     "evidence": [
+      "חופשייה: …finite form of חופשי / חָפְשִׁי (khofshí).",
+      "דגשנו: …opposed to as a fricative) (ִ◌ּ)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ַ": {
+     "codepoint": "U+05B7",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (989)",
+     "divides_readings": false,
+     "governs": 989,
+     "routes": 893,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 989
+     },
+     "evidence": [
+      "לקחת: to-infinitive of לָקַח (lakách)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ְ": {
+     "codepoint": "U+05B0",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (756); the point shown on its own, as the thing the entry names (2)",
+     "divides_readings": false,
+     "governs": 758,
+     "routes": 692,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 756,
+      "hebrew_point.mark_display": 2
+     },
+     "evidence": [
+      "חופשייה: …definite form of חופשי / חָפְשִׁי (khofshí).",
+      "שוא: …lete absence of a vowel) (ִ◌ְ)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "/": {
+     "codepoint": "U+002F",
+     "means": "Never divides. Alternatives packed inside one reading's frame (354: 'happy is/was/will be', '(he/it) went'), the unpointed and pointed spellings of one cited Hebrew lemma (235), phonemes, units, URLs and spaced alternatives inside one phrase.",
+     "divides_readings": false,
+     "governs": 633,
+     "routes": 587,
+     "region_dependent": false,
+     "shapes": {
+      "slash.alternation_in_reading": 354,
+      "slash.spelling_pair": 235,
+      "slash.phoneme": 22,
+      "slash.alternation_spaced": 12,
+      "slash.per_unit": 7,
+      "slash.url": 3
+     },
+     "evidence": [
+      "לימוזינה: limousine (a luxury sedan/saloon car)",
+      "חופשייה: …ar indefinite form of חופשי / חָפְשִׁי (khofshí)."
+     ],
+     "falsifier": "A slash between letters dividing two whole readings, so that each side stands alone ('cup/glass' as two renderings); dividing 'happy is/was/will be' would leave 'happy is', which no source wrote."
+    },
+    "ֹ": {
+     "codepoint": "U+05B9",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (509); the point shown on its own, as the thing the entry names (1)",
+     "divides_readings": false,
+     "governs": 510,
+     "routes": 457,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 509,
+      "hebrew_point.mark_display": 1
+     },
+     "evidence": [
+      "חומרינו: synonym of כֹּר, an approximately equal Hebrew unit of liq…",
+      "חולם: …f the consonant letter) ( ִ◌ֹ). It indicates the mid back …"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ׁ": {
+     "codepoint": "U+05C1",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (506)",
+     "divides_readings": false,
+     "governs": 506,
+     "routes": 475,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 506
+     },
+     "evidence": [
+      "חופשייה: …inite form of חופשי / חָפְשִׁי (khofshí)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ֵ": {
+     "codepoint": "U+05B5",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (470); the point shown on its own, as the thing the entry names (1)",
+     "divides_readings": false,
+     "governs": 471,
+     "routes": 436,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 470,
+      "hebrew_point.mark_display": 1
+     },
+     "evidence": [
+      "גווע: …ish (sometimes followed by מֵת)",
+      "צירי: …w diacritical mark tzere (ִ◌ֵ). It is pronounced in Modern…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ֶ": {
+     "codepoint": "U+05B6",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (436); the point shown on its own, as the thing the entry names (2)",
+     "divides_readings": false,
+     "governs": 438,
+     "routes": 326,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 436,
+      "hebrew_point.mark_display": 2
+     },
+     "evidence": [
+      "שבי: alternative form of שֶׁבִי",
+      "סגולים: … niqqud diacritical mark (ִ◌ֶ) in the form of three dots a…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "\"": {
+     "codepoint": "U+0022",
+     "means": "quotation marks around a quoted gloss or term: (\"quail\"), \"Lady of the night\" (392); the double-quote character named by the gloss (2); an ASCII quote standing for gershayim in a romanized acronym: Shu\"m (1)",
+     "divides_readings": false,
+     "governs": 395,
+     "routes": 195,
+     "region_dependent": false,
+     "shapes": {
+      "straight_double.quotation": 392,
+      "straight_double.named_character": 2,
+      "straight_double.gershayim_substitute": 1
+     },
+     "evidence": [
+      "לויתנו: \"big fish\" (senior gangster)",
+      "גרשים: The double-quote mark \", when used as a typographically si…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "־": {
+     "codepoint": "U+05BE",
+     "means": "the Hebrew hyphen of a cited bound form or compound: מִ־, סַךְ־הַכֹּל (366); the maqaf character itself, named by the gloss: the Hebrew script hyphen (־) (10)",
+     "divides_readings": false,
+     "governs": 376,
+     "routes": 376,
+     "region_dependent": false,
+     "shapes": {
+      "maqaf.hebrew": 366,
+      "maqaf.named": 10
+     },
+     "evidence": [
+      "השתתפת: …o participate (in) [with בְּ־ (+ activity)], to partner (w…",
+      "מקפה: … (the Hebrew script hyphen (־))"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "[": {
+     "codepoint": "U+005B",
+     "means": "Never divides. The preposition or particle the Hebrew word governs (327: '[with מִן (mín)]'), a cross-reference (22), unrendered wiki links (3), and one each of a supplied word, phonetic notation, an elided slot and an equivalent name. It scopes every divider.",
+     "divides_readings": false,
+     "governs": 356,
+     "routes": 354,
+     "region_dependent": false,
+     "shapes": {
+      "bracket.government": 327,
+      "bracket.cross_reference": 22,
+      "bracket.wiki_markup": 3,
+      "bracket.supplied_word": 1,
+      "bracket.phonetic": 1,
+      "bracket.elision": 1,
+      "bracket.equivalence": 1
+     },
+     "evidence": [
+      "השתתפת: to participate (in) [with בְּ־ (+ activity)], to partner (…",
+      "ילדיו: …spring or occasionally, kin [see usage note regarding the …"
+     ],
+     "falsifier": "A bracket holding a word the English supplies as an alternative reading rather than notation inside one."
+    },
+    "]": {
+     "codepoint": "U+005D",
+     "means": "Closes the bracket; same shapes, same counts.",
+     "divides_readings": false,
+     "governs": 356,
+     "routes": 354,
+     "region_dependent": false,
+     "shapes": {
+      "bracket.government": 327,
+      "bracket.cross_reference": 22,
+      "bracket.wiki_markup": 3,
+      "bracket.supplied_word": 1,
+      "bracket.phonetic": 1,
+      "bracket.elision": 1,
+      "bracket.equivalence": 1
+     },
+     "evidence": [
+      "השתתפת: …(in) [with בְּ־ (+ activity)], to partner (with)",
+      "ילדיו: …ge note regarding the plural])"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "“": {
+     "codepoint": "U+201C",
+     "means": "quotes the gloss of the cited Hebrew word: (khamishá, “five”) (204); quotation marks around a quoted meaning or phrase (64)",
+     "divides_readings": false,
+     "governs": 268,
+     "routes": 263,
+     "region_dependent": false,
+     "shapes": {
+      "curly_double.romanization_gloss": 204,
+      "curly_double.quotation": 64
+     },
+     "evidence": [
+      "אלצהיימר: ellipsis of מחלת אלצהיימר (“Alzheimer's disease”)",
+      "גבוריהם: “mighty man” (military chief, sometimes God himself)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "”": {
+     "codepoint": "U+201D",
+     "means": "quotes the gloss of the cited Hebrew word: (khamishá, “five”) (204); quotation marks around a quoted meaning or phrase (64)",
+     "divides_readings": false,
+     "governs": 268,
+     "routes": 263,
+     "region_dependent": false,
+     "shapes": {
+      "curly_double.romanization_gloss": 204,
+      "curly_double.quotation": 64
+     },
+     "evidence": [
+      "אלצהיימר: …צהיימר (“Alzheimer's disease”)",
+      "גבוריהם: “mighty man” (military chief, sometimes God himself)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "’": {
+     "codepoint": "U+2019",
+     "means": "quotes the gloss of the governed particle: [with ל־ (l'-) ‘to’] (159); an apostrophe typed as a curly quote: one’s (72); single quotation marks (1)",
+     "divides_readings": false,
+     "governs": 232,
+     "routes": 232,
+     "region_dependent": false,
+     "shapes": {
+      "curly_single.particle_gloss": 159,
+      "curly_single.apostrophe": 72,
+      "curly_single.quotation": 1
+     },
+     "evidence": [
+      "ייכנסו: …r come in [with ל־ (l'-) ‘to’].",
+      "הננו: here is, here’s"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "‘": {
+     "codepoint": "U+2018",
+     "means": "quotes the gloss of the governed particle: [with ל־ (l'-) ‘to’] (159); single quotation marks (1)",
+     "divides_readings": false,
+     "governs": 160,
+     "routes": 160,
+     "region_dependent": false,
+     "shapes": {
+      "curly_single.particle_gloss": 159,
+      "curly_single.quotation": 1
+     },
+     "evidence": [
+      "ייכנסו: …n or come in [with ל־ (l'-) ‘to’].",
+      "הפוך: ellipsis of קָפֶה הָפוּךְ (“‘flipped’ coffee”)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ׂ": {
+     "codepoint": "U+05C2",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (93)",
+     "divides_readings": false,
+     "governs": 93,
+     "routes": 92,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 93
+     },
+     "evidence": [
+      "שפת: …r construct state form of שָׂפָה (safá)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ֲ": {
+     "codepoint": "U+05B2",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (92)",
+     "divides_readings": false,
+     "governs": 92,
+     "routes": 88,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 92
+     },
+     "evidence": [
+      "הליכת: …ar construct state form of הֲלִיכָה (halichá)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "!": {
+     "codepoint": "U+0021",
+     "means": "ends an interjection or imperative gloss; part of the reading: Wow!, move! (60)",
+     "divides_readings": false,
+     "governs": 60,
+     "routes": 35,
+     "region_dependent": false,
+     "shapes": {
+      "exclamation.terminal": 60
+     },
+     "evidence": [
+      "וואו: Wow!"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "–": {
+     "codepoint": "U+2013",
+     "means": "a range: 6:4–9, May 22 – June 21 (45); the dash of Strong's ':–' list marker (14)",
+     "divides_readings": false,
+     "governs": 59,
+     "routes": 43,
+     "region_dependent": false,
+     "shapes": {
+      "en_dash.range": 45,
+      "en_dash.strongs_list_marker": 14
+     },
+     "evidence": [
+      "מזוזותם: …m the Torah (Deuteronomy 6:4–9 and 11:13–21) and attached …",
+      "להטן: …rapping) magic (as covert): – flaming, enchantment."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ֻ": {
+     "codepoint": "U+05BB",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (53); the point shown on its own, as the thing the entry names (2)",
+     "divides_readings": false,
+     "governs": 55,
+     "routes": 55,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 53,
+      "hebrew_point.mark_display": 2
+     },
+     "evidence": [
+      "מכוסה: …definite form of מכוסה / מְכֻסֶּה (m'khusé)",
+      "קובוץ: …w nikud diacritical mark (ִ◌ֻ) in the form of three diagon…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ֱ": {
+     "codepoint": "U+05B1",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (49)",
+     "divides_readings": false,
+     "governs": 49,
+     "routes": 42,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 49
+     },
+     "evidence": [
+      "העתקה: verbal noun of הֶעֱתִיק: copying"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "°": {
+     "codepoint": "U+00B0",
+     "means": "degrees: 270° (40)",
+     "divides_readings": false,
+     "governs": 40,
+     "routes": 40,
+     "region_dependent": false,
+     "shapes": {
+      "degree.unit": 40
+     },
+     "evidence": [
+      "קדמים: …'s rotation, specifically 90°)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "→": {
+     "codepoint": "U+2192",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (32)",
+     "divides_readings": false,
+     "governs": 32,
+     "routes": 32,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 32
+     },
+     "evidence": [
+      "חיצם: …o indicate a direction (e.g.→))"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "״": {
+     "codepoint": "U+05F4",
+     "means": "gershayim: the acronym mark inside a Hebrew word (שד״ר) (26); the gershayim character named by the gloss (4)",
+     "divides_readings": false,
+     "governs": 30,
+     "routes": 30,
+     "region_dependent": false,
+     "shapes": {
+      "gershayim.hebrew": 26,
+      "gershayim.named": 4
+     },
+     "evidence": [
+      "וו: alternative form of וי״ו",
+      "גרשים: The ״ symbol, which is placed between the last two letters…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "…": {
+     "codepoint": "U+2026",
+     "means": "an elided slot or a cut-off passage: והאופנים…, still, … (28)",
+     "divides_readings": false,
+     "governs": 28,
+     "routes": 28,
+     "region_dependent": false,
+     "shapes": {
+      "ellipsis.slot_or_truncation": 28
+     },
+     "evidence": [
+      "האופן: …vice at the passage והאופנים…."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "◌": {
+     "codepoint": "U+25CC",
+     "means": "the dotted circle that carries a displayed point (23)",
+     "divides_readings": false,
+     "governs": 23,
+     "routes": 23,
+     "region_dependent": false,
+     "shapes": {
+      "dotted_circle.carrier": 23
+     },
+     "evidence": [
+      "דגשנו: …pposed to as a fricative) (ִ◌ּ)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "~": {
+     "codepoint": "U+007E",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (22)",
+     "divides_readings": false,
+     "governs": 22,
+     "routes": 22,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 22
+     },
+     "evidence": [
+      "גלך: tilde (the diacritical mark ~)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "+": {
+     "codepoint": "U+002B",
+     "means": "composition in a grammatical note: את + ה־, (+ activity) (19)",
+     "divides_readings": false,
+     "governs": 19,
+     "routes": 19,
+     "region_dependent": false,
+     "shapes": {
+      "plus.composition": 19
+     },
+     "evidence": [
+      "השתתפת: …articipate (in) [with בְּ־ (+ activity)], to partner (with…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "\\": {
+     "codepoint": "U+005C",
+     "means": "separates the unpointed and pointed spellings of one cited Hebrew lemma: קובל / קֻבַּל (12)",
+     "divides_readings": false,
+     "governs": 12,
+     "routes": 11,
+     "region_dependent": false,
+     "shapes": {
+      "slash.spelling_pair": 12
+     },
+     "evidence": [
+      "שתיים: feminine of שניים \\ שְׁנַיִם"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "׳": {
+     "codepoint": "U+05F3",
+     "means": "geresh: an abbreviation mark or a foreign-sound mark on a Hebrew letter (ז׳, נפ׳) (12)",
+     "divides_readings": false,
+     "governs": 12,
+     "routes": 10,
+     "region_dependent": false,
+     "shapes": {
+      "geresh.hebrew": 12
+     },
+     "evidence": [
+      "נפטרים: deceased (abbreviated נפ׳)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "=": {
+     "codepoint": "U+003D",
+     "means": "introduces the full form an abbreviation stands for: =לירה ישראלית, [=Jonathan] (11)",
+     "divides_readings": false,
+     "governs": 11,
+     "routes": 11,
+     "region_dependent": false,
+     "shapes": {
+      "equals.expansion": 11
+     },
+     "evidence": [
+      "גלולות: A birth control pill: =גלולה למניעת היריון (g'lulá lim'ni'…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "‐": {
+     "codepoint": "U+2010",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (10)",
+     "divides_readings": false,
+     "governs": 10,
+     "routes": 10,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 10
+     },
+     "evidence": [
+      "מקפה: hyphen (the symbol \"‐\", typically used to join two or more…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "?": {
+     "codepoint": "U+003F",
+     "means": "ends a question gloss; part of the reading: Is it true? (9)",
+     "divides_readings": false,
+     "governs": 9,
+     "routes": 9,
+     "region_dependent": false,
+     "shapes": {
+      "question.terminal": 9
+     },
+     "evidence": [
+      "אילו: which? (plural referent of either grammatical gender)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ׇ": {
+     "codepoint": "U+05C7",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (7)",
+     "divides_readings": false,
+     "governs": 7,
+     "routes": 7,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 7
+     },
+     "evidence": [
+      "מועמד: …d present tense of הועמד / הׇעֳמָד (ho'omád)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "⁄": {
+     "codepoint": "U+2044",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (6)",
+     "divides_readings": false,
+     "governs": 6,
+     "routes": 6,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 6
+     },
+     "evidence": [
+      "האנטל: …it of liquid volume (about ¹⁄₁₂ litre)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "—": {
+     "codepoint": "U+2014",
+     "means": "a range (879 — 912 CE) or a parenthetical dash inside one reading (6)",
+     "divides_readings": false,
+     "governs": 6,
+     "routes": 4,
+     "region_dependent": false,
+     "shapes": {
+      "em_dash.range_or_aside": 6
+     },
+     "evidence": [
+      "הלגו: … Prince of the Rus', r. 879 — 912 CE."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "·": {
+     "codepoint": "U+00B7",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (4)",
+     "divides_readings": false,
+     "governs": 4,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 4
+     },
+     "evidence": [
+      "מומנטים: …n (SI unit newton-metre or N·m; imperial unit pound-foot o…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ֳ": {
+     "codepoint": "U+05B3",
+     "means": "a vowel point, dagesh or shin/sin dot of a cited Hebrew form (3)",
+     "divides_readings": false,
+     "governs": 3,
+     "routes": 3,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.on_letter": 3
+     },
+     "evidence": [
+      "מועמד: …present tense of הועמד / הׇעֳמָד (ho'omád)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "%": {
+     "codepoint": "U+0025",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (2)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 2
+     },
+     "evidence": [
+      "יין: …h an ABV ranging from 5.5–16%)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "{": {
+     "codepoint": "U+007B",
+     "means": "a wiki template the export did not render: ({{taxlink|Citrus × aurantium f (2)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "wiki_template.residue": 2
+     },
+     "evidence": [
+      "קלמנטינה: …variety of mandarin orange ({{taxlink|Citrus × aurantium f…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "|": {
+     "codepoint": "U+007C",
+     "means": "a wiki template the export did not render: ({{taxlink|Citrus × aurantium f (1); wiki link markup left in the text: [[[in order that|in order]]] (1)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "wiki_template.residue": 1,
+      "bracket.wiki_markup": 1
+     },
+     "evidence": [
+      "קלמנטינה: …f mandarin orange ({{taxlink|Citrus × aurantium f)",
+      "פן: lest, [[[in order that|in order]]] that … not, for otherwi…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "×": {
+     "codepoint": "U+00D7",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (2)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 2
+     },
+     "evidence": [
+      "קלמנטינה: …in orange ({{taxlink|Citrus × aurantium f)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "♠": {
+     "codepoint": "U+2660",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (2)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 2
+     },
+     "evidence": [
+      "עלים: Spade, ♠"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "⟨": {
+     "codepoint": "U+27E8",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (2)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 2
+     },
+     "evidence": [
+      "נקודתיים: colon (the punctuation mark ⟨:⟩)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "⟩": {
+     "codepoint": "U+27E9",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (2)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 2
+     },
+     "evidence": [
+      "נקודתיים: …lon (the punctuation mark ⟨:⟩)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "†": {
+     "codepoint": "U+2020",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (2)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 2
+     },
+     "evidence": [
+      "פגיונות: …ger (the typographical mark †)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "@": {
+     "codepoint": "U+0040",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (1)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 1
+     },
+     "evidence": [
+      "כרוכית: at sign (the symbol @, used in e-mail addresses to separat…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained).",
+     "unexplained": 1,
+     "unexplained_is": "a lone '@' opening the route at key קשיטה (M13), before a quoted gloss and a colon; it reads as residue of the source's markup, its meaning cannot be read from the text, and it does not divide"
+    },
+    "#": {
+     "codepoint": "U+0023",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (2)",
+     "divides_readings": false,
+     "governs": 2,
+     "routes": 2,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 2
+     },
+     "evidence": [
+      "סלמית: number sign (the character # used to represent the word nu…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "ֿ": {
+     "codepoint": "U+05BF",
+     "means": "the point shown on its own, as the thing the entry names (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "hebrew_point.mark_display": 1
+     },
+     "evidence": [
+      "רפה: …ew diacritical mark rafe (ִ◌ֿ)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "⁺": {
+     "codepoint": "U+207A",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 1
+     },
+     "evidence": [
+      "אמוניום: Ammonium: the ion NH₄⁺."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "♣": {
+     "codepoint": "U+2663",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 1
+     },
+     "evidence": [
+      "תלתן: …rds, marked with the symbol ♣)"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "̞": {
+     "codepoint": "U+031E",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 1
+     },
+     "evidence": [
+      "חולם: …e mid back rounded vowel, [o̞], and is transliterated as a…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "♇": {
+     "codepoint": "U+2647",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 1
+     },
+     "evidence": [
+      "פלוטו: …, represented by the symbol ♇ or ⯓, both now used mostly i…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "⯓": {
+     "codepoint": "U+2BD3",
+     "means": "the symbol itself, shown or named by the gloss; the Hebrew word names the symbol (tilde, spade, dagger, number sign) (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.named_or_shown": 1
+     },
+     "evidence": [
+      "פלוטו: …resented by the symbol ♇ or ⯓, both now used mostly in ast…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "&": {
+     "codepoint": "U+0026",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 1
+     },
+     "evidence": [
+      "איזבל: … the Old Testament (1 Kings & 2 Kings), and who incited he…"
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    "<": {
+     "codepoint": "U+003C",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 1
+     },
+     "evidence": [
+      "ד׳: …enote /ð/ (the sound of the <th> in English this)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    },
+    ">": {
+     "codepoint": "U+003E",
+     "means": "notation inside one reading: a fraction slash, a unit dot (N·m), percent, a times sign, an ion charge, an IPA diacritic, an ampersand, grapheme brackets <th> (1)",
+     "divides_readings": false,
+     "governs": 1,
+     "routes": 1,
+     "region_dependent": false,
+     "shapes": {
+      "symbol.notation": 1
+     },
+     "evidence": [
+      "ד׳: …te /ð/ (the sound of the <th> in English this)."
+     ],
+     "falsifier": "An occurrence the shapes above do not cover; the census counts them (unexplained)."
+    }
+   },
+   "precedence": [
+    "( ) [ ] and quotation marks scope every divider",
+    "a lead or closing context label holds the line",
+    "an unclosed '(' holds everything from it",
+    ";",
+    ". (sentence boundary)",
+    ":",
+    ","
+   ],
+   "precedence_note": "Each divider divides only at depth 0, outside quotations, and in order: ';' and the sentence '.' cut the line into senses, ':' cuts a sense into head and explanation (or pointer and glosses), ',' cuts a part into renderings. A part that carries any holding comma (clause opener, serial conjunction, relative, label, etc., shared object, bare qualifier group) is held whole, commas and all. '/', '-', quotes, apostrophes, Hebrew points, maqaf, geresh and the symbols never divide.",
+   "refusals": {
+    "line_label": {
+     "routes": 134,
+     "lead": 114,
+     "lead_by_m": {
+      "M25": 85,
+      "M13": 19,
+      "M50": 6,
+      "M11": 3,
+      "M69": 1
+     },
+     "closing": 20,
+     "closing_by_m": {
+      "M25": 13,
+      "M13": 2,
+      "M50": 5
+     },
+     "rule": "ship whole",
+     "why": "A label at the head of the line ('(intransitive) to soak, permeate') or after its last period ('To leaven, ferment. (of dough)') governs every gloss in it; dividing would leave the label on one piece and strip it from the rest (the August Bolls binyan-header precedent)."
+    },
+    "unbalanced": {
+     "routes": 32,
+     "rule": "separate up to the first unclosed '(' or '['; ship the rest whole (the August opener_never_closed rule)",
+     "note": "Today's card prints nothing for these 32 routes (a damaged sense is dropped); this declaration ships each whole."
+    },
+    "pieces_that_do_not_rejoin": {
+     "routes": 0,
+     "rule": "ship whole"
+    }
+   },
+   "export": "governed by its posture, cc_by_sa_gfdl",
+   "separates_on": {
+    "marks": [
+     {
+      "mark": ";",
+      "shapes": [
+       "semicolon.sense_boundary",
+       "semicolon.note_follows"
+      ],
+      "divides": "sense from sense, glosses from a note"
+     },
+     {
+      "mark": ".",
+      "shapes": [
+       "period.sentence_boundary",
+       "period.before_trailing_note"
+      ],
+      "divides": "sentence from sentence, the gloss from a closing note"
+     },
+     {
+      "mark": ":",
+      "shapes": [
+       "colon.head_explanation",
+       "colon.pointer_gloss",
+       "colon.gloss_pointer",
+       "colon.strongs_list"
+      ],
+      "divides": "head from explanation, pointer from glosses, gloss from pointer, definition from a Strong's list"
+     },
+     {
+      "mark": ",",
+      "shapes": [
+       "comma.gloss_boundary"
+      ],
+      "divides": "one rendering from the next"
+     }
+    ],
+    "scope": "( ) [ ] “ ” ‘ ’ \" ⟨ ⟩",
+    "rule": "Separate at the declared shapes only. Every piece is kept; no piece is joined to another; no label is carried onto a piece it was not written on; no group is distributed over its head; no sigil, label or romanization is stripped.",
+    "measured": {
+     "routes_divided": 56309,
+     "pieces": 136685,
+     "rejoin_failures": 0,
+     "by_m": {
+      "M13": {
+       "routes": 16209,
+       "divided": 6586
+      },
+      "M25": {
+       "routes": 72063,
+       "divided": 33212
+      },
+      "M11": {
+       "routes": 25287,
+       "divided": 12139
+      },
+      "M69": {
+       "routes": 3721,
+       "divided": 1640
+      },
+      "M50": {
+       "routes": 6278,
+       "divided": 2732
+      }
+     }
+    }
+   },
+   "compared_with_v3": {
+    "engine": "sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence",
+    "path": "the card's path: zone.html's depth-0 ';' split, then sense-split-v1.mjs's senseSplit on each sense (the card's readingSplit equals it on all 127,842 senses)",
+    "routes": 123558,
+    "same_division": 112005,
+    "v3_divides_where_declaration_keeps_whole": 1726,
+    "declaration_divides_where_v3_keeps_whole": 3300,
+    "divided_differently": 6495,
+    "v3_prints_nothing": 32,
+    "causes": {
+     "decl_divides_v3_whole": {
+      "declaration divides at ':' (v3 never does)": 3135,
+      "declaration holds a sentence's commas (clause, conjunction, label, etc.)": 193,
+      "declaration divides at a comma beside a piece of more than 4 words (v3 holds the field as a sentence)": 162,
+      "declaration divides at a sentence '.' (v3 never does)": 78,
+      "declaration holds a form pointer's commas": 24,
+      "declaration holds a note's commas": 2
+     },
+     "v3_divides_decl_whole": {
+      "declaration holds a sentence's commas (clause, conjunction, label, etc.)": 1370,
+      "declaration holds a form pointer's commas": 133,
+      "declaration holds the line under a lead or trailing label": 104,
+      "declaration holds a note's commas": 119
+     },
+     "divided_differently": {
+      "declaration divides at a comma beside a piece of more than 4 words (v3 holds the field as a sentence)": 4784,
+      "declaration divides at ':' (v3 never does)": 3170,
+      "declaration holds a Strong's list": 72,
+      "declaration divides at a sentence '.' (v3 never does)": 108,
+      "declaration holds a note's commas": 141,
+      "declaration holds a sentence's commas (clause, conjunction, label, etc.)": 905,
+      "declaration holds a form pointer's commas": 60,
+      "v3 drops a bare conjunction piece that is the provider's own gloss (but, yet, in fact)": 11
+     },
+     "v3_prints_nothing": {
+      "v3 drops a sense whose parentheses do not balance; the declaration ships it whole": 32
+     }
+    },
+    "sense_split_v1_alone": {
+     "same": 108849,
+     "v3_divides_decl_whole": 1726,
+     "decl_divides_v3_whole": 5373,
+     "divided_differently": 7610
+    }
+   },
+   "open_for_the_owner": [
+    "1. The colon. 5,768 depth-0 colons stand between a head gloss and the explanation that defines it ('A tunnel: an underground or underwater passage'). Reading A (declared): the colon divides, the head and the explanation are each a reading. Reading B: the explanation defines the head and is no reading of its own; the head alone is the reading and the explanation prints as the record's note. v3 never divides at ':' and so prints the whole sentence, or cuts at the commas around it. Colon divisions are a cause in 3,135 + 3,170 disagreeing routes.",
+    "2. A long piece in a gloss list. 5,326 pieces of more than 4 words stand beside a dividing comma in 4,981 routes ('cobra, snake of the family Elapidae'; 'to pass, to not fail a test'). Reading A (declared): Wiktionary's comma lists equivalents, a describing equivalent among them, and the comma divides wherever no clause, conjunction, relative, label or etc. follows it. Reading B (v3): a piece over 4 words makes the field a sentence; the short pieces are readings and the whole field stands beside them.",
+    "3. Pieces that are no readings. Division keeps 625 note pieces and 552 form-pointer pieces ('used in forming questions.'; 'defective spelling of ייצר'). Reading A: each prints as the record's note or pointer, not as a pill. Reading B: each prints as a pill like any piece. The declaration marks the role and leaves the printing to the owner.",
+    "4. Labels over the line. 114 routes open with a context label and 20 close with one after the final period; held whole (declared). Reading B: divide them like any line; the label stays on the one piece it was written on and the other pieces print without it. v3 divides 104 of them.",
+    "5. The store's own cut. In 92 rows (M69 26, M50 66) the route is the definition with its lead label removed ('(anatomy) vagina' printed 'vagina'); in 114 other rows (M25 85, M13 19, M50 6, M11 3, M69 1) the lead label stays on the route. Reading A: the store's cut stands (the label is a topic tag, not part of the reading). Reading B: it is a derivation and the route should be the whole definition, as it is in the other rows.",
+    "6. Strong's text inside Wiktionary. 74 routes carry a copied Strong's ':-' KJV list (238 commas, held whole here). Reading A: hold it whole (declared). Reading B: divide it under the Strong's declaration (wikisource_strongs_explicit_forms), whose list it is.",
+    "7. Unbalanced groups. 32 routes carry a '(' that never closes (truncated notes). Today's card prints nothing for their damaged sense; this declaration ships each route whole. Reading A: ship whole (declared). Reading B: keep today's drop."
+   ],
+   "not_done_here": "The definition is never mined for a reading: the route is read where the store cut it. No explanation is substituted for its head, no label is carried forward onto the pieces after it, no group is distributed, no romanization or label is stripped, no pointer is resolved to the form it names. The 92 routes the store already cut after a lead label are read as cut; whether that cut stands is the owner's (open question 5)."
+  }
+ }
+}

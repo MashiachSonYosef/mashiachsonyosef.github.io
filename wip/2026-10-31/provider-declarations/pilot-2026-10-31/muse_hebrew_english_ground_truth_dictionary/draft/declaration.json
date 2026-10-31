@@ -1,0 +1,62 @@
+{
+ "schema_version": "PROVIDER_DECLARATIONS_V1",
+ "pilot": "mark ledger pilot, 2026-10-31; merge into providers of reader/tools/declarations-v1.json only on the owner's ruling",
+ "providers": {
+  "muse_hebrew_english_ground_truth_dictionary": {
+   "label": "MUSE large-scale ground-truth Hebrew-English bilingual dictionary",
+   "m_ids": [
+    "M6",
+    "M62"
+   ],
+   "routes": 24514,
+   "declared_on": "2026-10-31",
+   "declared_from": "The entry's own structure, read across all 24,514 routes on 20,057 keys (23,065 under M6, 1,449 under M62). In 24,514 of 24,514 rows the route is the whole definition, character for character. The provider writes no mark at all: 0 distinct marks in route text and 0 in definition text (the inventory's test, any character not a letter, digit or whitespace), and 0 routes carry a space, so every route is one word. Where it offers several English words for one Hebrew key it writes them as separate records, never in one field: 3,554 keys carry 2 to 6 routes, 8,011 routes between them. Its closed set is empty; 0 occurrences; 0 unexplained; no mark divides.",
+   "regions": {
+    "route_regions": {
+     "whole": 24514,
+     "slice": 0,
+     "absent": 0
+    },
+    "meaning_depends_on_region": {},
+    "note": "Every route is its whole definition, a single word with no head, no rendering list and no notes, so the provider has one region."
+   },
+   "marks": {},
+   "conventions_without_marks": {
+    "alternatives": {
+     "means": "a second English word for the same Hebrew key is a second record, not a second piece of one field",
+     "governs": 8011,
+     "evidence": "3,554 keys carry more than one route; 0 key+route pairs repeat; 0 keys mix M6 and M62. בובות: puppets | dummies | dolls | בחרי: choose | select | pick | מלכודות: snares | pitfalls | traps",
+     "falsifier": "A route carrying a comma, semicolon, slash or space (two words in one field). 0 today."
+    },
+    "case": {
+     "means": "the provider writes lowercase throughout, proper names included; this is its spelling and it is printed as written",
+     "governs": 24514,
+     "evidence": "0 of 24,514 routes carry an uppercase letter. איליין: elaine | אלצהיימר: alzheimer | קורדובה: córdoba | קורדובה: cordova | קורדובה: cordoba",
+     "falsifier": "A route with an uppercase letter. 0 today."
+    },
+    "letters_beyond_ascii": {
+     "means": "precomposed Latin letters of the borrowed name or word (é, ü, ł, ț and the like): letters, not marks, inside one word",
+     "governs": 135,
+     "evidence": "135 routes, 30 distinct characters, every one a letter; 0 combining diacritics (a combining diacritic is not a letter and would count as a mark).",
+     "falsifier": "A combining diacritic (Unicode category M) in a route. 0 today."
+    }
+   },
+   "precedence": [],
+   "refusals": {
+    "closure": "The mark set is closed and empty. A route that arrives carrying any mark is reported by the machine (unknownMarks) and ships whole; it is not divided under a rule that does not cover it."
+   },
+   "export": "governed by its posture, cc_by_nc_4_0",
+   "separates_on": null,
+   "separates_on_why": "No mark divides, so there is nothing to separate on. Every route ships whole, exactly as it does with no declaration; what the declaration adds is the closed set and its falsifiers.",
+   "falsifiers": {
+    "routes_carrying_any_mark": 0,
+    "definitions_carrying_any_mark": 0,
+    "whitespace_in_route": 0,
+    "route_not_whole_definition": 0,
+    "combining_mark_in_route": 0,
+    "uppercase_in_route": 0
+   },
+   "not_done_here": "No two routes on one key are joined into one field, and no route is divided: the provider already gives each English word as its own record. No case is restored on a proper name and no spelling is respelled (מורשה carries both authorised and authorized, as separate records): the provider's text is printed byte for byte."
+  }
+ }
+}

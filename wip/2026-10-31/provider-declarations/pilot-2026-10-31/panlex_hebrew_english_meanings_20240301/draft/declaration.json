@@ -1,0 +1,437 @@
+{
+ "schema_version": "PROVIDER_DECLARATIONS_V1",
+ "pilot": "punct pilot 2026-10-31 — page lane ledger",
+ "measured_by": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/punct/pilot/panlex_hebrew_english_meanings_20240301/census.mjs",
+ "providers": {
+  "panlex_hebrew_english_meanings_20240301": {
+   "label": "PanLex 2024 exact same-meaning Hebrew-English lexical expression",
+   "m_ids": [
+    "M21"
+   ],
+   "routes": 28439,
+   "declared_on": "2026-10-31",
+   "declared_from": "The record's own unit: in 28439 of 28439 rows the route is the whole definition, so the provider has one region and no head. 27611 routes carry no mark at all; 28427 carry no comma. PanLex's unit is one lexical expression per record, and its marks are overwhelmingly the spelling of that expression: of 908 mark occurrences, 890 are inside one expression (hyphens in compounds, apostrophes, abbreviation periods, title and markup punctuation). Two marks divide, and only by shape: a comma in a field whose every piece is one word (15 commas, 8 routes — source glosses PanLex left packed in one expression), and a slash between two complete expressions (3 routes). The other 4 comma routes are one expression each.",
+   "census_check": "Route-text census and definition-text census agree mark for mark (true); both agree with mark-inventory-2026-10-31.json for M21 on all 14 of 14 marks. 906 of 908 occurrences fall in exactly one shape; 2 unexplained; 0 match two shapes.",
+   "regions": {
+    "whole": 28439,
+    "slice": 0,
+    "absent": 0,
+    "note": "one: the route is the whole definition in every row, so no mark's meaning can depend on a region (head, rendering list, notes) — the provider has none"
+   },
+   "marks": {
+    "-": {
+     "means": "joins the parts of one hyphenated word or name (pot-belly, Stratford-on-Avon, CD-ROM) | part of an alphanumeric designation or number (BM-21, K-9, 1-800-Missing) | the English is a prefix; the hyphen marks the side it attaches on (re-, un-, Sino-) | the English is a suffix; the hyphen marks the side it attaches on (-less, -shaped) | a dash inside one proper name, joining a country's name to the capital that distinguishes it (Congo - Brazzaville)",
+     "governs": 585,
+     "routes": 551,
+     "divides_readings": false,
+     "shapes": {
+      "hyphen-in-compound-word": {
+       "test": "hyphen with a letter (or apostrophe) on both sides",
+       "count": 568,
+       "routes": 535,
+       "divides": false,
+       "means": "joins the parts of one hyphenated word or name (pot-belly, Stratford-on-Avon, CD-ROM)"
+      },
+      "hyphen-in-designation": {
+       "test": "hyphen with a letter or digit on both sides and a digit on at least one",
+       "count": 7,
+       "routes": 6,
+       "divides": false,
+       "means": "part of an alphanumeric designation or number (BM-21, K-9, 1-800-Missing)"
+      },
+      "hyphen-ending-prefix": {
+       "test": "hyphen as the last character of the field, after a letter",
+       "count": 6,
+       "routes": 6,
+       "divides": false,
+       "means": "the English is a prefix; the hyphen marks the side it attaches on (re-, un-, Sino-)"
+      },
+      "hyphen-opening-suffix": {
+       "test": "hyphen as the first character of the field, before a letter",
+       "count": 3,
+       "routes": 3,
+       "divides": false,
+       "means": "the English is a suffix; the hyphen marks the side it attaches on (-less, -shaped)"
+      },
+      "hyphen-between-spaces": {
+       "test": "hyphen with a space on both sides",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "a dash inside one proper name, joining a country's name to the capital that distinguishes it (Congo - Brazzaville)"
+      }
+     },
+     "evidence": "hyphen-in-compound-word: 568 (בטן | pot-belly); hyphen-in-designation: 7 (סטיקס | P-15 Termit); hyphen-ending-prefix: 6 (שוב | re-); hyphen-opening-suffix: 3 (מלה | -shaped); hyphen-between-spaces: 1 (קונגו | Congo - Brazzaville)",
+     "falsifier": "A hyphen between spaces or at a field's edge whose two sides are two readings rather than one name or one affix."
+    },
+    "’": {
+     "means": "part of the word's own spelling: an English possessive or contraction (one’s, o’clock, I’m), an elision in a borrowed name (L’Orfeo, hors d'oeuvre), or a transliterated consonant (Sha’aban, Shari'a, K’op’ala) | stands for letters clipped from the front of a colloquial form (’scuse, ’rents, 'til, 'cause) | a transliterated ayin opening an Arabic place name (’Asir, ’Ara, Shefa-’Amr) | stands for a dropped final letter (burlin’, tho’) or closes a plural possessive (the ladies’)",
+     "governs": 173,
+     "routes": 169,
+     "divides_readings": false,
+     "shapes": {
+      "curly-apostrophe-inside-word": {
+       "test": "apostrophe with a letter on both sides",
+       "count": 155,
+       "routes": 153,
+       "divides": false,
+       "means": "part of the word's own spelling: an English possessive or contraction (one’s, o’clock, I’m), an elision in a borrowed name (L’Orfeo, hors d'oeuvre), or a transliterated consonant (Sha’aban, Shari'a, K’op’ala)"
+      },
+      "curly-apostrophe-clipped-front": {
+       "test": "apostrophe at the start of a word (field start, after a space or a hyphen), before a lowercase letter",
+       "count": 7,
+       "routes": 7,
+       "divides": false,
+       "means": "stands for letters clipped from the front of a colloquial form (’scuse, ’rents, 'til, 'cause)"
+      },
+      "curly-apostrophe-opening-name": {
+       "test": "apostrophe at the start of a word (field start, after a space or a hyphen), before a capital",
+       "count": 3,
+       "routes": 3,
+       "divides": false,
+       "means": "a transliterated ayin opening an Arabic place name (’Asir, ’Ara, Shefa-’Amr)"
+      },
+      "curly-apostrophe-word-final": {
+       "test": "apostrophe after a letter and before a space, a slash or the field's end",
+       "count": 8,
+       "routes": 6,
+       "divides": false,
+       "means": "stands for a dropped final letter (burlin’, tho’) or closes a plural possessive (the ladies’)"
+      }
+     },
+     "evidence": "curly-apostrophe-inside-word: 155 (לחשוב | scratch one’s head); curly-apostrophe-clipped-front: 7 (תירוץ | ’scuse); curly-apostrophe-opening-name: 3 (שפרעם | Shefa-’Amr); curly-apostrophe-word-final: 8 (סוארין | Soarin’ Over California)",
+     "falsifier": "An apostrophe used as a quotation mark around a reading (an opener and a closer pairing up across words)."
+    },
+    ".": {
+     "means": "the dot of a web domain that is itself the name (Amazon.com) | closes a one-letter abbreviation or an initial (U.S.A., a.m., e.g., A.C. Milan, ж. — a Russian source's feminine label) | closes a shortened word (Sat., approx., Mrs., ad loc., Ltd.)",
+     "governs": 97,
+     "routes": 76,
+     "divides_readings": false,
+     "shapes": {
+      "period-in-domain-name": {
+       "test": "period between letters followed by com/org/net/edu/gov at the end of the token",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "the dot of a web domain that is itself the name (Amazon.com)"
+      },
+      "period-after-one-letter": {
+       "test": "period after a single letter that has no letter before it",
+       "count": 46,
+       "routes": 25,
+       "divides": false,
+       "means": "closes a one-letter abbreviation or an initial (U.S.A., a.m., e.g., A.C. Milan, ж. — a Russian source's feminine label)"
+      },
+      "period-after-abbreviation": {
+       "test": "period after two or more letters, not a domain",
+       "count": 50,
+       "routes": 50,
+       "divides": false,
+       "means": "closes a shortened word (Sat., approx., Mrs., ad loc., Ltd.)"
+      }
+     },
+     "evidence": "period-in-domain-name: 1 (אמזון | Amazon.com); period-after-one-letter: 46 (בארי | A.S. Bari); period-after-abbreviation: 50 (תמן | ad loc.)",
+     "falsifier": "A period followed by a space and a second sentence, or between two readings."
+    },
+    ",": {
+     "means": "separates one English rendering from the next: PanLex's source dictionary packed several one-word equivalents into one expression (dam, fence, barrier) | the dictionary inversion of an infinitive: 'lay-down, to' is the one verb 'to lay-down', its particle written after the comma | the comma of an English serial list inside one fixed expression (hook, line and sinker is one idiom, not two readings) | the comma of a proper name in 'place, region' form: New York, New York is one name | a packed scope: the trailing word of the last piece belongs to the earlier ones too ('get, become late' is get late / become late); the scope is not written, so the field is one reading",
+     "governs": 19,
+     "routes": 12,
+     "divides_readings": "in 15 of 19 occurrences, by shape",
+     "shapes": {
+      "comma-single-word-list": {
+       "test": "comma at depth 0 in a field whose every comma piece is one word (no space inside), none a bare conjunction and the last not 'to'",
+       "count": 15,
+       "routes": 8,
+       "divides": true,
+       "means": "separates one English rendering from the next: PanLex's source dictionary packed several one-word equivalents into one expression (dam, fence, barrier)"
+      },
+      "comma-before-postposed-to": {
+       "test": "comma at depth 0 whose last piece is exactly 'to'",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "the dictionary inversion of an infinitive: 'lay-down, to' is the one verb 'to lay-down', its particle written after the comma"
+      },
+      "comma-in-coordinated-idiom": {
+       "test": "comma at depth 0 in a field where some multi-word piece contains the word 'and' or 'or'",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "the comma of an English serial list inside one fixed expression (hook, line and sinker is one idiom, not two readings)"
+      },
+      "comma-in-proper-name": {
+       "test": "comma at depth 0 in a field where every piece starts with a capital, some piece has more than one word, and no piece contains 'and'/'or'",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "the comma of a proper name in 'place, region' form: New York, New York is one name"
+      },
+      "comma-before-shared-tail": {
+       "test": "comma at depth 0 in a lowercase field whose earlier pieces are one word each and whose last piece is longer, with no 'and'/'or'",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "a packed scope: the trailing word of the last piece belongs to the earlier ones too ('get, become late' is get late / become late); the scope is not written, so the field is one reading"
+      },
+      "comma-inside-parentheses": {
+       "test": "comma at parenthesis depth > 0",
+       "count": 0,
+       "routes": 0,
+       "divides": false,
+       "means": "notation inside an aside (none occur in this provider; kept so a new one is classified, not guessed)"
+      }
+     },
+     "evidence": "comma-single-word-list: 15 (מכשול | dam, fence, barrier); comma-before-postposed-to: 1 (לישון | lay-down, to); comma-in-coordinated-idiom: 1 (לגמרי | hook, line and sinker); comma-in-proper-name: 1 (ברוקלין | New York, New York); comma-before-shared-tail: 1 (להתאחר | get, become late)",
+     "falsifier": "A comma piece that a one-word list makes but that is not an English rendering of the key on its own (a particle, a bare adjective that needs the next piece's head). A field passing the one-word test where the pieces are one expression would refute the divide."
+    },
+    "'": {
+     "means": "part of the word's own spelling: an English possessive or contraction (one’s, o’clock, I’m), an elision in a borrowed name (L’Orfeo, hors d'oeuvre), or a transliterated consonant (Sha’aban, Shari'a, K’op’ala) | stands for letters clipped from the front of a colloquial form (’scuse, ’rents, 'til, 'cause) | typewriter quotation or ditto marks carried from PanLex's source, enclosing nothing; they hold no English and divide nothing (labor '' '')",
+     "governs": 19,
+     "routes": 16,
+     "divides_readings": false,
+     "shapes": {
+      "ascii-apostrophe-inside-word": {
+       "test": "apostrophe with a letter on both sides",
+       "count": 12,
+       "routes": 12,
+       "divides": false,
+       "means": "part of the word's own spelling: an English possessive or contraction (one’s, o’clock, I’m), an elision in a borrowed name (L’Orfeo, hors d'oeuvre), or a transliterated consonant (Sha’aban, Shari'a, K’op’ala)"
+      },
+      "ascii-apostrophe-clipped-front": {
+       "test": "apostrophe at the start of a word (field start, after a space or a hyphen), before a lowercase letter",
+       "count": 3,
+       "routes": 3,
+       "divides": false,
+       "means": "stands for letters clipped from the front of a colloquial form (’scuse, ’rents, 'til, 'cause)"
+      },
+      "ascii-apostrophe-pair-token": {
+       "test": "two ASCII apostrophes standing together as a whole token between spaces",
+       "count": 4,
+       "routes": 1,
+       "divides": false,
+       "means": "typewriter quotation or ditto marks carried from PanLex's source, enclosing nothing; they hold no English and divide nothing (labor '' '')"
+      }
+     },
+     "evidence": "ascii-apostrophe-inside-word: 12 (שריעה | Shari'a); ascii-apostrophe-clipped-front: 3 (עד | 'til); ascii-apostrophe-pair-token: 4 (עבודה | labor '' '')",
+     "falsifier": "An apostrophe pair that encloses text, which would make it a quotation rather than an empty ditto/quote token."
+    },
+    "/": {
+     "means": "separates two names of one place in two languages (Elche/Elx): either name is a rendering | separates the women's and the men's label of one facility (the ladies’/the gents’): each side is a complete English expression for it",
+     "governs": 3,
+     "routes": 3,
+     "divides_readings": true,
+     "shapes": {
+      "slash-between-capitalized-names": {
+       "test": "slash at depth 0 with no space on either side, each side a single capitalized word",
+       "count": 1,
+       "routes": 1,
+       "divides": true,
+       "means": "separates two names of one place in two languages (Elche/Elx): either name is a rendering"
+      },
+      "slash-between-the-phrases": {
+       "test": "slash at depth 0 with no space on either side, each side a phrase opening with 'the '",
+       "count": 2,
+       "routes": 2,
+       "divides": true,
+       "means": "separates the women's and the men's label of one facility (the ladies’/the gents’): each side is a complete English expression for it"
+      }
+     },
+     "evidence": "slash-between-capitalized-names: 1 (אלש | Elche/Elx); slash-between-the-phrases: 2 (שירותים | the ladies’/the gents’)",
+     "falsifier": "A depth-0 slash between two sides where one side is not a complete expression (a fraction, a date, an and/or such as 'he/she said'). None at the time of writing."
+    },
+    "?": {
+     "means": "part of a work's title as published (What the Bleep Do We Know!?)",
+     "governs": 3,
+     "routes": 3,
+     "divides_readings": false,
+     "shapes": {
+      "question-in-title": {
+       "test": "question mark directly after '!'",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "part of a work's title as published (What the Bleep Do We Know!?)"
+      }
+     },
+     "evidence": "question-in-title: 1 (בליפ | What the Bleep Do We Know!?)",
+     "unexplained": 2,
+     "unexplained_examples": [
+      "כישרון | Hayward?",
+      "יכולת | Hayward?"
+     ],
+     "falsifier": "A question mark after a field that does render the key — that would make '?' a doubt flag on the reading and settle the two Hayward rows."
+    },
+    ":": {
+     "means": "separates hours from minutes (12:00 a.m.) | separates a title from its subtitle inside one work's name (Perfect Dark: Second Front)",
+     "governs": 2,
+     "routes": 2,
+     "divides_readings": false,
+     "shapes": {
+      "colon-in-clock-time": {
+       "test": "colon between two digits",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "separates hours from minutes (12:00 a.m.)"
+      },
+      "colon-before-subtitle": {
+       "test": "colon after a letter, followed by a space and a capital",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "separates a title from its subtitle inside one work's name (Perfect Dark: Second Front)"
+      }
+     },
+     "evidence": "colon-in-clock-time: 1 (חצות | 12:00 a.m.); colon-before-subtitle: 1 (אמלי | Perfect Dark: Second Front)",
+     "falsifier": "A colon followed by a list of renderings (a head:list division as Strong's has)."
+    },
+    "!": {
+     "means": "a letter: the alveolar click of a Khoisan language name's own spelling (!Xũ) | part of a work's title as published (What the Bleep Do We Know!?)",
+     "governs": 2,
+     "routes": 2,
+     "divides_readings": false,
+     "shapes": {
+      "exclamation-click-letter": {
+       "test": "'!' at the start of a word, before a letter",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "a letter: the alveolar click of a Khoisan language name's own spelling (!Xũ)"
+      },
+      "exclamation-in-title": {
+       "test": "'!' directly before '?' after a letter",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "part of a work's title as published (What the Bleep Do We Know!?)"
+      }
+     },
+     "evidence": "exclamation-click-letter: 1 (אנגולה | !Xũ); exclamation-in-title: 1 (בליפ | What the Bleep Do We Know!?)",
+     "falsifier": "A '!' between two words that are separate readings."
+    },
+    "_": {
+     "means": "joins a word to the class that disambiguates it, as a sense tag (Pole_person: Pole the person)",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "shapes": {
+      "underscore-sense-tag": {
+       "test": "underscore between two letters",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "joins a word to the class that disambiguates it, as a sense tag (Pole_person: Pole the person)"
+      }
+     },
+     "evidence": "underscore-sense-tag: 1 (פולנית | Pole_person)",
+     "falsifier": "An underscore between two words that are two readings rather than word + sense tag."
+    },
+    "(": {
+     "means": "opens an aside giving the name's official abbreviation (Macedonia (FYROM)); one reading",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "shapes": {
+      "paren-acronym-aside": {
+       "test": "'(' after a space, holding only capital letters (two or more) up to its ')'",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "opens an aside giving the name's official abbreviation (Macedonia (FYROM)); one reading"
+      }
+     },
+     "evidence": "paren-acronym-aside: 1 (מקדוניה | Macedonia (FYROM))",
+     "falsifier": "A parenthesis holding a lowercase word or a comma list (an alternative or optional letters) rather than an abbreviation."
+    },
+    ")": {
+     "means": "closes the abbreviation aside",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "shapes": {
+      "paren-acronym-aside-close": {
+       "test": "')' closing a '(' that holds only capital letters",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "closes the abbreviation aside"
+      }
+     },
+     "evidence": "paren-acronym-aside-close: 1 (מקדוניה | Macedonia (FYROM))",
+     "falsifier": "As for '('."
+    },
+    "#": {
+     "means": "residue of wiki link markup: the anchor sign of the link target (#Barcelona |Barcelona)",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "shapes": {
+      "hash-anchor": {
+       "test": "'#' at the start of a word, before a letter, in a field that also carries '|'",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "residue of wiki link markup: the anchor sign of the link target (#Barcelona |Barcelona)"
+      }
+     },
+     "evidence": "hash-anchor: 1 (ברצלונה | #Barcelona |Barcelona)",
+     "falsifier": "A '#' that is not markup (a number sign, 'No.')."
+    },
+    "|": {
+     "means": "residue of wiki link markup: divides a link's target from its display text, both the same name; not two readings",
+     "governs": 1,
+     "routes": 1,
+     "divides_readings": false,
+     "shapes": {
+      "pipe-link-label": {
+       "test": "'|' before a letter in a field that opens a token with '#'",
+       "count": 1,
+       "routes": 1,
+       "divides": false,
+       "means": "residue of wiki link markup: divides a link's target from its display text, both the same name; not two readings"
+      }
+     },
+     "evidence": "pipe-link-label: 1 (ברצלונה | #Barcelona |Barcelona)",
+     "falsifier": "A '|' between two different names, which would make it an alternation."
+    }
+   },
+   "precedence": [
+    "/",
+    ","
+   ],
+   "precedence_note": "Slash first, then comma inside each slash side, as the Strong's declaration orders them. No route of this provider carries both, so the order is declared, not exercised. Parentheses scope both: a comma or slash inside '(' ')' never divides (no route carries one).",
+   "refusals": {
+    "unbalanced_parentheses": {
+     "rows": 0,
+     "rule": "ship whole"
+    },
+    "undeclared_mark": {
+     "rows": 0,
+     "rule": "closure: a mark absent from this declaration ships the row whole and is reported"
+    },
+    "comma_not_a_one_word_list": {
+     "rows": 4,
+     "rule": "ship whole: the comma is inside one expression (postposed 'to', a coordinated idiom, a proper name, a packed shared tail)"
+    },
+    "shared_tail_never_distributed": {
+     "rows": 1,
+     "rule": "'get, become late' is not rewritten as 'get late' + 'become late' and not cut to 'get' + 'become late'; it ships whole"
+    }
+   },
+   "export": "governed by its posture, cc_by_nc_sa_4_0_conservative_current",
+   "separates_on": {
+    "marks": [
+     "/",
+     ","
+    ],
+    "scope": "( )",
+    "declared_from": "12 routes carry a comma (19 commas) and 3 carry a slash; none carries one inside parentheses.",
+    "rule": "Separate on a depth-0 slash with no space on either side when both sides are complete expressions (a capitalized name each, or a 'the ...' phrase each). Then, inside each side, separate on depth-0 commas only when every comma piece is one word, none is a bare conjunction and the last is not 'to'. Every piece is kept, each a run of the provider's characters; they must rejoin to the route. Nothing is distributed, stripped or joined.",
+    "result": "11 routes divide into 29 readings (8 by comma, 3 by slash); 28428 ship whole.",
+    "machine_gap": "declaration-v1.mjs reads one separates_on.mark and divides on it unconditionally. This declaration needs two marks and a per-field shape condition on the comma; fed to that machine as written it would divide 'hook, line and sinker', 'New York, New York', 'lay-down, to' and 'get, become late'. census.mjs's declDivide is the reference application until the machine reads shapes."
+   },
+   "not_done_here": "No piece is distributed across a shared head or tail, no sigil or markup is stripped ('#Barcelona |Barcelona', 'Pole_person', 'labor '' ''', 'lioness ж.' ship as written), and no reading is taken from anywhere but the route — the route is the whole definition. 'Hayward?' is not repaired or dropped."
+  }
+ }
+}
