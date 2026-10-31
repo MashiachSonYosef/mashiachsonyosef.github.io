@@ -423,6 +423,32 @@ const LEDGER_EN = new Map(GROUPING
   ? GROUPING.groups.flatMap((g) => (g.file_names || []).map((fn) => [fn.file, fn.en]).filter(([, en]) => en))
   : []);
 const bookName = (slug) => LEDGER_EN.get(slug) || plainName(slug);
+// THE CATALOG'S OWN CASE, BY THE RECORD THAT LISTS IT (the owner, 31 October
+// 2026, on Tikkunei Zohar: "the edition door counts as that source"). An
+// edition-route zone is served from the corpus lane's edition door, and the
+// door's own row lists the work under a name (work_common_name). That row is
+// a source on record naming the work, so the shelf prints the catalog's own
+// spelling and case on the work's row — not the address read plainly — and
+// the attestation cell names the record. The register does not move: the row
+// stands in the catalog register, not the claim register (a licensed reading
+// of a Hebrew title, which prints blue and is tried first; a zone with both
+// keeps the claim). A row naming another work, or a name that is not plain
+// Latin text, names nothing (the name slot never dresses a record as prose;
+// plain is the slot's one standing law, plainName's: letters, digits and
+// spaces). The masthead prints the same name by the same rule (zone.html).
+const doorNameOf = (z) => {
+  const walk = (z.emitted_from || {}).walk || {};
+  const d = walk.door, row = d && d.row;
+  if (!row) return null;
+  const name = String(row.work_common_name || "").trim();
+  if (!name || !/^[a-z0-9 ]+$/i.test(name) || !/[a-z]/i.test(name)) return null;
+  const wid = walk.edition && walk.edition.work_id;
+  if (wid && row.work_id && String(row.work_id) !== String(wid)) return null;
+  return { name, file: String(d.file || ""), sha256: String(d.sha256 || "") };
+};
+// the record by its own file name, or by its fingerprint where it carries no
+// file name — never a phrase standing in for one
+const doorRecordName = (door) => door.file || (door.sha256 ? `${door.sha256.slice(0, 12)}\u2026` : "");
 // WHAT THE SWITCH SAYS ON HOVER, in words a reader has. The ledger's own law
 // was printed here verbatim \u2014 "two divisions nobody wrote in the ink (Y)" \u2014
 // and (Y) is a letter of our frame, not of anybody's sentence. The ledger
@@ -991,6 +1017,8 @@ for (const f of shelfZoneFiles()) {
     // the force-read claim, by the same evidence law as everywhere: a
     // licensed record reading the title's own form as this English, or null
     reading: titleReading(z.work_he_tokens, z.work || slug),
+    // the record that lists the work under its own name, where the zone carries one
+    door: doorNameOf(z),
   });
 }
 
@@ -1071,7 +1099,9 @@ const atlasRow = (w) => {
     // row is not the place to argue, and the card inside says what is missing.
     const att = zi.reading
       ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="commonly force read as — ${esc(zi.reading.label)}${zi.reading.year ? ` · ${esc(zi.reading.year)}` : ""} attests this usage. A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: ${esc(zi.reading.label)}</span></span>`
-      : "";
+      : zi.door
+        ? `<span class="chip att" role="button" tabindex="0" aria-expanded="false" title="listed in the catalog as \u2014 ${esc(doorRecordName(zi.door) || "the edition door")}${zi.door.file && zi.door.sha256 ? ` (${esc(zi.door.sha256.slice(0, 12))}\u2026)` : ""}, the corpus lane's edition door, lists this work under this name; the door is the source on record for the catalog's own spelling (the owner's ruling, 31 October 2026). A name is an identification, not licensed expression (FRAME v2.7); who says so, not who permits it.">attested<span class="att-v">: the edition door${doorRecordName(zi.door) ? `, ${esc(doorRecordName(zi.door))}` : ""}</span></span>`
+        : "";
     const heKey = (zi.heTokens || []).map((t) => t.k).filter(Boolean)[0] || null;
     const heGloss = heKey ? (STORE.glossFor(heKey).text || "") : "";
     const glossSrc = heGloss ? glossSource(heKey, heGloss) : null;
@@ -1089,7 +1119,9 @@ const atlasRow = (w) => {
     // the name slot's law, everywhere: plain letters, or the absence said
     // in words with the recorded id riding on the hover — never a raw id
     // dressed as a name
-    const pn = bookName(name);
+    // the claim register first, as the chip above and the masthead: the
+    // door's name stands only where no licensed reading backs a claim
+    const pn = (!zi.reading && zi.door && zi.door.name) || bookName(name);
     const label = pn ? esc(pn) : `<span class="none" title="${esc(name)}">${NO_PLAIN_NAME}</span>`;
     // a stamped book says its count on the row, on the read axis, with the
     // scribes' marks apart, and the witness rows follow — the same stamp the
@@ -1355,7 +1387,7 @@ const familySection = (fam) => {
       <details class="fam"${shelfRows.length ? " open data-rest-open" : ""}>
       <summary>
         <span class="row"><span class="pair pair-l"><span class="col-en"><span class="kind">corpus:</span>${enName}</span><span class="col-att">${enAtt}</span></span><span class="pair pair-r">${famHeadHe(lf)}</span></span>
-        ${shelfRows.length ? `<span class="row n-row">${nLine()}</span>` : ""}
+        ${shelfRows.length ? `<span class="row n-row">${nLine(shelfRows.map((r) => addressOf(r.atlas.id)))}</span>` : ""}
       </summary>
       <div class="fgroups">
 ${foldLines.join("\n")}
@@ -1499,29 +1531,46 @@ const countReceiptJson = JSON.stringify(countReceipt, null, 2) + "\n";
 // own byline, so it is read from there and never typed. If the shelf ever
 // stops agreeing, every distinct statement is printed rather than one: a
 // collapsed disagreement is the failure this project exists to catch.
-const N_ON_THE_SHELF = (() => {
-  const seen = new Map();
-  for (const slug of ZONE_INFO.keys()) {
-    let z;
-    try { z = JSON.parse(gunzipSync(readFileSync(join(ZONES, `${slug}.bin`))).toString("utf8")); } catch { continue; }
+// N PER CORPUS. The statement is read per zone: a restore-route zone names its
+// edition and license in its byline (Version:, License:); an edition-route
+// zone (served from the edition door's built stream, 31 October 2026) names
+// its edition in its walk and its rights family in the door's own row. A zone
+// that names neither is counted as "no text named" rather than skipped: a
+// skipped zone let one corpus wear another's text, the shelf's one statement
+// printed under every corpus, which is the collapse this line exists to
+// catch. The chip is built from each corpus's own served works.
+const N_STATEMENT = new Map();
+const POSTURE_NAME_OF = (() => { try { const p = JSON.parse(readFileSync(arg("postures", "data/license-postures-v1.json"), "utf8")).postures || {}; return (k) => (p[k] && p[k].name) || k; } catch { return (k) => k; } })();
+const nStatementOf = (slug) => {
+  if (N_STATEMENT.has(slug)) return N_STATEMENT.get(slug);
+  let out = "no text named";
+  try {
+    const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, `${slug}.bin`))).toString("utf8"));
+    const walk = (z.emitted_from || {}).walk || {};
     const b = String(z.byline || "");
     const version = (b.match(/Version: ([^|]+)/u) || [])[1];
     const license = (b.match(/License: ([^\u00b7|]+)/u) || [])[1];
-    if (!version) continue;
-    const key = `${version.trim()} \u00b7 ${(license || "").trim() || "no license named"}`;
-    seen.set(key, (seen.get(key) || 0) + 1);
-  }
-  return [...seen.entries()].map(([text, books]) => ({ text, books }));
-})();
-const nLine = () => {
-  if (!N_ON_THE_SHELF.length) return "";
-  const total = N_ON_THE_SHELF.reduce((a, x) => a + x.books, 0);
-  const one = N_ON_THE_SHELF.length === 1;
+    if (version) out = `${version.trim()} \u00b7 ${(license || "").trim() || "no license named"}`;
+    else if (walk.edition && walk.edition.edition_key) {
+      const fam = String((walk.rights || {}).licence_family || "");
+      out = `${String(walk.edition.edition_key).trim()} \u00b7 ${fam ? POSTURE_NAME_OF(fam.toLowerCase()) : "no license named"}`;
+    }
+  } catch { /* an unreadable zone names no text */ }
+  N_STATEMENT.set(slug, out);
+  return out;
+};
+const nLine = (slugs) => {
+  const seen = new Map();
+  for (const slug of slugs) { const t = nStatementOf(slug); seen.set(t, (seen.get(t) || 0) + 1); }
+  const list = [...seen.entries()].map(([text, books]) => ({ text, books }));
+  if (!list.length) return "";
+  const total = list.reduce((a, x) => a + x.books, 0);
+  const one = list.length === 1;
   const body = one
-    ? esc(N_ON_THE_SHELF[0].text)
-    : N_ON_THE_SHELF.map((x) => `${esc(x.text)} (${x.books})`).join(" \u00b7 ");
+    ? esc(list[0].text)
+    : list.map((x) => `${esc(x.text)} (${x.books})`).join(" \u00b7 ");
   const title = one
-    ? `the edition every one of these ${total} files was set from, read from each file's own byline and not typed here`
+    ? `the edition every one of these ${total} files was set from, read from each file's own byline — or, where the byline names none, from its walk's edition and the door row it is served by — and not typed here`
     : `these files were NOT all set from one edition; every edition on the shelf is named rather than one of them standing for the rest`;
   return `<span class="chip n-chip" title="${esc(title)}">text: ${body}</span>`;
 };
@@ -1671,9 +1720,12 @@ const censusHead = censusSections.length
       // that are built and empty, said so, because an empty register is a
       // fact and a silent one reads as a hidden one
       const witnessed = [...ZONE_INFO.values()].filter((zi) => (zi.heTokens || []).some((t) => t.k)).length;
-      const plain = ZONE_INFO.size - witnessed;
+      // a book the corpus lane's edition door names reads by that name, in
+      // the catalog's own case (the owner, 31 October 2026), not plainly
+      const doorNamed = [...ZONE_INFO.values()].filter((zi) => !(zi.heTokens || []).some((t) => t.k) && zi.door).length;
+      const plain = ZONE_INFO.size - witnessed - doorNamed;
       return `    <section class="family census-head">
-      <p class="of">The state of the library: of the ${n(ZONE_INFO.size)} books serving, ${n(witnessed)} carry witnessed Hebrew titles — their own opening words, claimed from their own records — and ${n(plain)} read plainly by their recorded ids. The editorial and machine-pointer title registers are built and empty: nothing on this site is guessed.</p>
+      <p class="of">The state of the library: of the ${n(ZONE_INFO.size)} books serving, ${n(witnessed)} carry witnessed Hebrew titles — their own opening words, claimed from their own records —${doorNamed ? ` ${n(doorNamed)} ${doorNamed === 1 ? "carries" : "carry"} the name the corpus lane's edition door lists ${doorNamed === 1 ? "it" : "them"} under, in the catalog's own case —` : ""} and ${n(plain)} read plainly by their recorded ids. The editorial and machine-pointer title registers are built and empty: nothing on this site is guessed.</p>
     </section>`;
     })()
   : "";

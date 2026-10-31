@@ -17,14 +17,15 @@
 // source states it, the target key, and the resolved English where there is
 // one. Nothing is respelled: the pill's text stays the source's bytes on the
 // card; the resolution rides beside it.
-// Usage: node tools/bake-form-of-pills-v1.mjs --from <form-of folder> --relay FOR-ELIJAH-v85.md [--out data/form-of-pills-v1.json]
+// Usage: node tools/bake-form-of-pills-v1.mjs --from <form-of folder> --relay FOR-ELIJAH-v85.md [--file zone-pills-v1.jsonl] [--out data/form-of-pills-v1.json]
+// --file names the pill file inside the folder (the lane re-pinned it as zone-pills-v1.2.jsonl in relay v101); the record names the file it read.
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 const arg = (n, d = "") => { const i = process.argv.indexOf(`--${n}`); return i >= 0 ? process.argv[i + 1] : d; };
-const FROM = arg("from"), RELAY = arg("relay"), OUT = arg("out", "data/form-of-pills-v1.json");
+const FROM = arg("from"), RELAY = arg("relay"), OUT = arg("out", "data/form-of-pills-v1.json"), FILE = arg("file", "zone-pills-v1.jsonl");
 if (!FROM || !RELAY) { console.error("usage: --from <form-of folder holding zone-pills-v1.jsonl> --relay <relay file name> [--out path]"); process.exit(2); }
-const src = readFileSync(join(FROM, "zone-pills-v1.jsonl"));
+const src = readFileSync(join(FROM, FILE));
 const lines = src.toString("utf8").split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l));
 const byKey = {};
 const counts = { pills: 0, keys: 0, by_class: {}, resolved: 0, unresolved: 0, unresolved_why: {}, with_branch_unset: 0 };
@@ -55,7 +56,7 @@ const out = {
   schema_version: "FORM_OF_PILLS_V1",
   rule_id: "form-of-pills-rule-v1-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it",
   what: "by route key, the pills of the 39 books whose text is a pointer to another entry (FORM_OF, MIXED), each with its source M id, its own text (the page matches a pill by its own bytes) and the first 16 hex of its sha256, the byte range of the target inside that text, the relation as the source states it, the target key and kind, and the target's first English under the same source where the lane resolved it (else why not). JUDGMENT and USAGE_NOTE pills wait on the owner's branch and are not here; NOT pills are not pointers.",
-  taken_from: { relay: RELAY, file: "form-of/zone-pills-v1.jsonl", sha256: createHash("sha256").update(src).digest("hex"), bytes: src.length },
+  taken_from: { relay: RELAY, file: `form-of/${FILE}`, sha256: createHash("sha256").update(src).digest("hex"), bytes: src.length },
   counts, keys: byKey,
 };
 writeFileSync(OUT, JSON.stringify(out));

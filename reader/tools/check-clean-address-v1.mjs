@@ -55,9 +55,24 @@ const plan = { works: ALL_WORKS.filter((w) => ON_DISK.has(w.published_as)) };
 // What the masthead should say is not typed here: it is read out of the zone
 // the page is about to load. A check that carries its own copy of a title is
 // checking the page against me rather than against the chain.
+// The third thing read out of the zone: the name the corpus lane's edition
+// door lists the work under, where the zone's walk carries that row (the
+// owner's ruling, 31 October 2026 — the door counts as a source on record,
+// so the masthead prints the catalog's own case). Read by the page's own
+// law: a plain Latin name on a row naming this work, else nothing.
+const doorNameOf = (z) => {
+  const walk = (z.emitted_from || {}).walk || {};
+  const d = walk.door, row = d && d.row;
+  if (!row) return "";
+  const name = String(row.work_common_name || "").trim();
+  if (!name || !/^[a-z0-9 ]+$/i.test(name) || !/[a-z]/i.test(name)) return "";
+  const wid = walk.edition && walk.edition.work_id;
+  if (wid && row.work_id && String(row.work_id) !== String(wid)) return "";
+  return name;
+};
 const titleOf = (book) => {
   const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8"));
-  return [z.work_he || "", z.work || ""];
+  return [z.work_he || "", z.work || "", doorNameOf(z)];
 };
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
@@ -452,7 +467,7 @@ const sectionsOf = (book) =>
   JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${book}.bin`))).toString("utf8")).sections.length;
 const WALK = plan.works.map((w) => [`/${w.published_as}`, ...titleOf(w.published_as), sectionsOf(w.published_as)]);
 for (const [href, ...expected] of WALK) {
-  const [heTitle, en, expectSections] = expected;
+  const [heTitle, en, doorName, expectSections] = expected;
   console.log(`— ${href} —`);
   await p.goto(`${B}/`, { waitUntil: "networkidle" });
   // A seated work's row stands behind its group's fold. Opening the fold is
@@ -507,11 +522,18 @@ for (const [href, ...expected] of WALK) {
   // expression — who attests, never who permits); where none does, the row
   // is the bridge's value read plainly under the register that says so,
   // with the note naming what the English is waiting on. Two lawful
-  // states, nothing between them.
+  // states, nothing between them — and since 31 October 2026 the catalog
+  // register has a second form: where the zone's walk carries the edition
+  // door's row naming the work, the row prints the catalog's own case under
+  // the same label, with the chip naming the door in place of the note.
   const addrPlain = href.replace(/^\//, "").replace(/[-_]+/g, " ");
+  // the door form is owed by the ZONE, not chosen by the page: a door-named
+  // zone whose masthead fell back to the plain address is a failure here
+  const byDoor = !!doorName && !(r.lic && !/^attested: the edition door\b/.test(r.lic));
   check("  the claim label stands only where a record backs the claim",
-    r.lic ? /^commonly force read as$/i.test(r.enLab) && r.en === en
-          : /^listed in the catalog as$/i.test(r.enLab) && r.en === addrPlain,
+    byDoor ? /^listed in the catalog as$/i.test(r.enLab) && r.en === doorName && /^attested: the edition door\b/.test(r.lic || "")
+      : r.lic ? /^commonly force read as$/i.test(r.enLab) && r.en === en
+              : /^listed in the catalog as$/i.test(r.enLab) && r.en === addrPlain,
     `"${r.enLab}": ${r.en}`);
   check("  with an attestation on the claim, and the note on the record",
     r.lic ? /^attested: .+/.test(r.lic) && !r.enNote : /a source on record uses one/.test(r.enNote),
