@@ -296,6 +296,10 @@
   header.top h1 .en-t { color: var(--ink-strong); font-size: 1.15rem; font-variant: small-caps; letter-spacing: 0.14em; }
   /* AN ATTESTED NAME IS BLUE (the owner, 2026-10-02): an English name stands on this site only because a licensed source attests it, so the name itself speaks in the reading's channel, tekhelet, in the reading's face. The attestation chip beside it keeps its own color; a name nothing attests stays in our own voice. The book's name is attested only where its chip stands. */
   header.top h1 .t-row:has(#workLic:not([hidden])) .en-t:not(.unnamed) { color: var(--tekhelet-ink); font-family: 'reading', Georgia, serif; font-weight: 500; }
+  /* THE CATALOG'S OWN CASE IS NOT THE CLAIM REGISTER: a name the edition door
+     lists (the owner, 31 October 2026) keeps the catalog register's ink; the
+     chip beside it names the record, not a licensed reading of a Hebrew title */
+  header.top h1 .t-row:has(#workLic.catalog:not([hidden])) .en-t:not(.unnamed) { color: var(--ink-strong); font-family: inherit; font-weight: inherit; }
   /* a credit line can carry an unbreakable witness id longer than a phone is wide; it wraps rather than widening the page */
   header.top p.byline { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--muted); overflow-wrap: anywhere; }
   /* THE SOURCE FOLDS, AND ITS TERMS DO NOT. The credit is a document id, an
@@ -1091,7 +1095,13 @@
      the page (the run's line ran 573px on a 412px phone and the page
      scrolled sideways, after a ruling and at first paint alike; one paint
      path, 2026-10-17); a part that fits keeps its line */
-  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: normal; min-width: 0; overflow-wrap: anywhere; margin: 0; }
+  /* A PART IS A CELL'S WIDTH, NO WIDER (the owner, 31 October 2026, on
+     Isaiah 1:1: a reading ruled on one word of a run "went across the
+     screen", while the same reading on the plain word beside it wrapped
+     inside its cell). A part wraps at the width every word's English wraps
+     at (.g, 11em), so a run is at most the sum of its bounded parts and
+     never the row; the row's own cap stays as the second wall. */
+  .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: normal; min-width: 0; max-width: 11em; overflow-wrap: anywhere; margin: 0; }
   .wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); align-self: flex-start; }
   /* THE TIE: a soft gold shape behind each word of a run, as wide as the
      word at the letters, hugging their top, flowing down to sit around the
@@ -3174,6 +3184,11 @@
   // arrive is not kept as "no pieces": the next card asks again.
   let PIECE_BOOK = null, pieceBookP = null;
   const pieceBookListed = () => { const ix = OVERLAYS["piece-store"]; return !!(ix && Array.isArray(ix.books) && ix.books.includes(BOOK)); };
+  // THE SPAN STORE IS ASKED FOR ONLY WHERE ITS INDEX LISTS THE BOOK, as the
+  // piece store is: both are baked per book, and a work the lane has not
+  // baked (an edition served from the door, 31 October 2026) has no file to
+  // ask for; asking anyway was a 404 on every page of such a work.
+  const spanBookListed = () => { const ix = OVERLAYS["span-store"]; const b = ix && ix.books; return !!(b && (Array.isArray(b) ? b.includes(BOOK) : Object.prototype.hasOwnProperty.call(b, BOOK))); };
   const pieceBookReady = () => pieceBookP || (pieceBookP = fetch(`${ROOT}data/piece-store/${BOOK}.json`)
     .then((r) => { if (!r.ok) throw new Error(`piece store ${r.status}`); return r.json(); })
     .then((j) => { PIECE_BOOK = j; return j; })
@@ -3587,7 +3602,7 @@
     // letters joined by the gaps the ink writes equal the key byte for
     // byte; a place that overlaps a laid one without containing it, or
     // whose words are not where the record says, is not laid and is named.
-    SPAN_BOOK = OVERLAYS["span-store"] ? await fetch(`${ROOT}data/span-store/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
+    SPAN_BOOK = spanBookListed() ? await fetch(`${ROOT}data/span-store/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
     SPAN_BY_KEY.clear();
     if (SPAN_BOOK && SPAN_BOOK.book === BOOK && SPAN_BOOK.keys) for (const [k, rs] of Object.entries(SPAN_BOOK.keys)) SPAN_BY_KEY.set(k, rs);
     const spanCardsOf = () => {
@@ -13272,6 +13287,34 @@
     const chip = document.getElementById("workLic");
     const lab = document.getElementById("enLab");
     const key = (zone.work_he_tokens || []).map((t) => t.k).filter(Boolean)[0];
+    // THE CATALOG'S OWN CASE, BY THE RECORD THAT LISTS IT (the owner, 31
+    // October 2026, on Tikkunei Zohar: "the edition door counts as that
+    // source"). An edition-route zone is served from the corpus lane's
+    // edition door, and the door's own row lists the work under a name
+    // (work_common_name). That row is a source on record naming the work,
+    // so the masthead prints the catalog's own spelling and case in place
+    // of the address read plainly, and the chip names the record. The
+    // register does not move: the line still reads "listed in the catalog
+    // as" — the door is the catalog — and the name keeps the catalog
+    // register's ink. The claim register, blue, needs a licensed reading of
+    // a Hebrew title and is tried first; where a zone has both, the claim
+    // wins as before. A row naming another work, or a name that is not
+    // plain Latin text, names nothing here (the name slot never dresses a
+    // record as prose; plain is the slot's one standing law, letters, digits
+    // and spaces, the same test the address is read by above). A
+    // demonstration is not a book and takes no name from any door. The door
+    // prints the same name by the same rule.
+    const doorNamed = (() => {
+      if ((zone.emitted_from || {}).test_instrument) return null;
+      const walk = (zone.emitted_from || {}).walk || {};
+      const d = walk.door, row = d && d.row;
+      if (!row) return null;
+      const name = String(row.work_common_name || "").trim();
+      if (!name || !/^[a-z0-9 ]+$/i.test(name) || !/[a-z]/i.test(name)) return null;
+      const wid = walk.edition && walk.edition.work_id;
+      if (wid && row.work_id && String(row.work_id) !== String(wid)) return null;
+      return { name, file: String(d.file || ""), sha256: String(d.sha256 || "") };
+    })();
     let a = null;
     if (key) { try { a = await attributionFor(key, zone.work); } catch { a = null; } }
     if (a && a.ok) {
@@ -13302,6 +13345,23 @@
         enT.title = "every witness and license behind this reading — press to see them all";
         enT.addEventListener("click", () => opens.click());
       }
+    } else if (doorNamed) {
+      // the catalog register, in the catalog's own case, with the record
+      // that lists it riding beside the name — collapsed at rest like the
+      // attestation above; a press opens the name of the record
+      enT.textContent = doorNamed.name;
+      enT.classList.remove("unnamed"); enT.removeAttribute("title");
+      // the record by its own file name; a door that carries no file name
+      // is named by its fingerprint, never by a phrase standing in for one
+      const sha12 = doorNamed.sha256 ? `${doorNamed.sha256.slice(0, 12)}\u2026` : "";
+      const attV = document.createElement("span"); attV.className = "att-v"; attV.textContent = `: the edition door${doorNamed.file ? `, ${doorNamed.file}` : sha12 ? `, ${sha12}` : ""}`;
+      chip.replaceChildren("attested", attV);
+      chip.classList.add("catalog");
+      chip.setAttribute("role", "button"); chip.tabIndex = 0; chip.setAttribute("aria-expanded", "false");
+      chip.addEventListener("click", () => chip.setAttribute("aria-expanded", String(chip.getAttribute("aria-expanded") !== "true")));
+      chip.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); chip.click(); } });
+      chip.title = `${doorNamed.file || sha12 || "the edition door"}${doorNamed.file && sha12 ? ` (${sha12})` : ""} \u2014 the corpus lane's edition door lists this work under this name; the door is the source on record for the catalog's own spelling (the owner's ruling, 31 October 2026). A name is an identification, not licensed expression.`;
+      chip.hidden = false;
     } else if ((zone.emitted_from || {}).test_instrument) {
       // a demonstration has no catalog entry and is not owed one
     } else {
