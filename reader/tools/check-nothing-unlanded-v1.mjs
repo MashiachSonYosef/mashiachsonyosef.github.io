@@ -38,7 +38,9 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
-const REMOTE = process.argv[2] || "https://github.com/MashiachSonYosef/mashiachsonyosef.github.io.git";
+// the remote this tree pushes to, read from the tree, never typed
+const REMOTE = process.argv[2] || (() => { try { return execFileSync("git", ["remote", "get-url", "origin"], { cwd: K3, encoding: "utf8" }).trim(); } catch { return ""; } })();
+if (!REMOTE) { console.log("SKIPPED — no remote named and this tree has no origin to read"); process.exit(3); }
 const BRANCH = process.argv[3] || "main";
 // where this tree sits inside the branch — read from where it stands
 const PREFIX = `${basename(K3)}/`;
