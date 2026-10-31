@@ -1,4 +1,4 @@
-// openscriptures_lexical_index.classifier.mjs · the worked example, made from classifier-template-v1
+// openscriptures_lexical_index.classifier.mjs · the worked example under ask v1.1, made from classifier-template-v1
 //
 // A classifier is a declaration made runnable. It is a pure function: no file
 // reads, no network, no state kept between calls. classify(text) returns one
@@ -30,14 +30,14 @@ const CONTAINER = { "(": "paren", "[": "bracket", "<": "angle", "{": "brace" };
 
 const SHAPES = [
   // "(" — the bracket character sits in what encloses it
-  { id: "open.optional_letters", mark: "(", divides: false, test: (c) => c.group !== null && /^-[a-z]+$/u.test(c.group) },
-  { id: "open.margin_note", mark: "(", divides: false, test: (c) => c.group !== null && /^from the margin$/u.test(c.group) },
-  { id: "open.aside", mark: "(", divides: false, test: (c) => c.group !== null && /^[a-z][a-z ]+$/u.test(c.group) },
-  { id: "open.never_closed", mark: "(", divides: false, test: (c) => c.group === null },
+  { id: "open_paren.optional_letters", mark: "(", divides: false, test: (c) => c.group !== null && /^-[a-z]+$/u.test(c.group) },
+  { id: "open_paren.margin_note", mark: "(", divides: false, test: (c) => c.group !== null && /^from the margin$/u.test(c.group) },
+  { id: "open_paren.aside", mark: "(", divides: false, test: (c) => c.group !== null && /^[a-z][a-z ]+$/u.test(c.group) },
+  { id: "open_paren.never_closed", mark: "(", divides: false, test: (c) => c.group === null },
   // ")"
-  { id: "close.optional_letters", mark: ")", divides: false, test: (c) => /^-[a-z]+$/u.test(c.group || "") },
-  { id: "close.margin_note", mark: ")", divides: false, test: (c) => c.group === "from the margin" },
-  { id: "close.aside", mark: ")", divides: false, test: (c) => /^[a-z][a-z ]+$/u.test(c.group || "") },
+  { id: "close_paren.optional_letters", mark: ")", divides: false, test: (c) => /^-[a-z]+$/u.test(c.group || "") },
+  { id: "close_paren.margin_note", mark: ")", divides: false, test: (c) => c.group === "from the margin" },
+  { id: "close_paren.aside", mark: ")", divides: false, test: (c) => /^[a-z][a-z ]+$/u.test(c.group || "") },
   // "-" inside optional letters: attach the ending to the stem
   { id: "hyphen.attach_ending", mark: "-", divides: false, test: (c) => c.container === "paren" && /^-[a-z]+$/u.test(c.inner) },
   // "."

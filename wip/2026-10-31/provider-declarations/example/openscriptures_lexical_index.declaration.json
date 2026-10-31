@@ -5,7 +5,29 @@
   "M33"
  ],
  "routes": 138,
- "read_from": "route text as served (reader/data/route-store, store 87b13b1169b4); in this dictionary the route equals the definition field on every row read",
+ "read_from": "route text as served (reader/data/route-store on main, store_version from its index.json); in this dictionary the route equals the definition field on every row read; the source's own key to its signs is the Open Scriptures lexical index's notes, which use '(from the margin)' for the qere",
+ "definitions": {},
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.margin_note",
+   "close_paren.margin_note",
+   "open_paren.optional_letters",
+   "close_paren.optional_letters",
+   "open_paren.aside",
+   "close_paren.aside",
+   "open_paren.never_closed"
+  ],
+  "brackets": "absent"
+ },
  "shapes": [
   {
    "id": "period.before_pointer",
@@ -25,7 +47,8 @@
     {
      "key": "שלמן"
     }
-   ]
+   ],
+   "read": 79
   },
   {
    "id": "period.before_cut_note",
@@ -39,47 +62,52 @@
     {
      "key": "דיבן"
     }
-   ]
+   ],
+   "read": 1
   },
   {
-   "id": "open.margin_note",
+   "id": "open_paren.margin_note",
    "mark": "(",
    "container": "top",
    "divides": false,
    "means": "opens the note that this name is the form written in the margin (the qere)",
    "test": "an opening parenthesis whose group is exactly the words from the margin",
    "count": 7,
-   "examples": []
+   "examples": [],
+   "read": 7
   },
   {
-   "id": "close.margin_note",
+   "id": "close_paren.margin_note",
    "mark": ")",
    "container": "top",
    "divides": false,
    "means": "closes the note that this name is the form written in the margin",
    "test": "a closing parenthesis whose group is exactly the words from the margin",
    "count": 7,
-   "examples": []
+   "examples": [],
+   "read": 7
   },
   {
-   "id": "open.optional_letters",
+   "id": "open_paren.optional_letters",
    "mark": "(",
    "container": "top",
    "divides": false,
    "means": "opens letters that may be added to the name, a gentilic or plural ending: Mede(-s)",
    "test": "an opening parenthesis whose group is a hyphen followed by lowercase letters only",
    "count": 2,
-   "examples": []
+   "examples": [],
+   "read": 2
   },
   {
-   "id": "close.optional_letters",
+   "id": "close_paren.optional_letters",
    "mark": ")",
    "container": "top",
    "divides": false,
    "means": "closes the letters that may be added to the name",
    "test": "a closing parenthesis whose group is a hyphen followed by lowercase letters only",
    "count": 2,
-   "examples": []
+   "examples": [],
+   "read": 2
   },
   {
    "id": "hyphen.attach_ending",
@@ -89,30 +117,33 @@
    "means": "attaches the ending to the name with no space, so Mede(-s) reads Mede or Medes",
    "test": "a hyphen inside parentheses whose whole group is a hyphen and lowercase letters",
    "count": 2,
-   "examples": []
+   "examples": [],
+   "read": 2
   },
   {
-   "id": "open.aside",
+   "id": "open_paren.aside",
    "mark": "(",
    "container": "top",
    "divides": false,
    "means": "opens a short English remark about the name, such as including the article",
    "test": "an opening parenthesis whose group is lowercase words and spaces and not the margin note",
    "count": 1,
-   "examples": []
+   "examples": [],
+   "read": 1
   },
   {
-   "id": "close.aside",
+   "id": "close_paren.aside",
    "mark": ")",
    "container": "top",
    "divides": false,
    "means": "closes the short English remark about the name",
    "test": "a closing parenthesis whose group is lowercase words and spaces and not the margin note",
    "count": 1,
-   "examples": []
+   "examples": [],
+   "read": 1
   },
   {
-   "id": "open.never_closed",
+   "id": "open_paren.never_closed",
    "mark": "(",
    "container": "top",
    "divides": false,
@@ -123,7 +154,8 @@
     {
      "key": "דיבן"
     }
-   ]
+   ],
+   "read": 1
   }
  ],
  "precedence": [],

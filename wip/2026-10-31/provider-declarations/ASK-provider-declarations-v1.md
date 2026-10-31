@@ -1,3 +1,5 @@
+> **Superseded by ASK-provider-declarations-v1.1.md (31 October 2026, after a rehearsal of this ask on three dictionaries).** Work from v1.1 and its checker, check-provider-declaration-v1.1.mjs.
+
 # For Moses, from Elijah · 31 October 2026 · the dictionaries' own punctuation, ledgered
 
 ## What this is
