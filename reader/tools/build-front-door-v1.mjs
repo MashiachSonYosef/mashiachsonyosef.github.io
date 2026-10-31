@@ -2862,7 +2862,7 @@ const OVERLAY_COUNTS = (() => { try { return JSON.parse(readFileSync(arg("overla
 const pinsFor = (slug) => {
   const pins = {};
   for (const [name, pin] of Object.entries(PIN_RECORD.pins || {})) if (name === `${slug}.bin` || name.startsWith(`${slug}.`)) pins[name] = pin;
-  return Object.keys(pins).length ? { rule: PIN_RECORD.rule, repository: PIN_RECORD.repository, base: PIN_RECORD.base === undefined ? null : PIN_RECORD.base, pins } : null;
+  return Object.keys(pins).length ? { rule: PIN_RECORD.rule, base: PIN_RECORD.base === undefined ? null : PIN_RECORD.base, pins } : null;
 };
 const overlaysFor = (slug) => (OVERLAY_COUNTS && OVERLAY_COUNTS.books && OVERLAY_COUNTS.books[slug]) || null;
 // JSON in an attribute: the quote that closes it and the ampersand escaped,
