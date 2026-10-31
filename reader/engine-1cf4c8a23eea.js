@@ -2804,17 +2804,10 @@
       const zbSha = (window.__binShas || {})[`${BOOK}.bin`];
       if (zbSha) L.push(`- this zone's bin, verified against its pin at load: sha256 ${zbSha}`);
       L.push(`- this file left: ${location.origin}${location.pathname}${location.search}`);
-      // The repository is never typed here — a copy is the one string with
-      // nothing behind it. It was read off the page's own hostname, which
-      // worked only while the site answered at a github.io address; the day
-      // the work moved to its own domain that match failed and every export
-      // silently lost its way back. So the pointer is a record now, derived
-      // at build time from the remote the tree actually pushes to, and the
-      // hostname reading stays as the fallback for a bare reader.
-      const repo = (ZSTORE && ZSTORE.repository) ||
-        (location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i)
-          ? `https://github.com/${RegExp.$1}/${location.hostname}` : "");
-      if (repo) L.push(`- the reader, its checks, and these artifacts: ${repo}`);
+      // THE WAY BACK IS THE SITE ITSELF (the owner, 31 October 2026). The
+      // export named the source repository; every seal, receipt and check it
+      // pointed to is served beside the door, so the file points to the page
+      // it left (the line above) and names no account.
     }
     L.push("");
     return L.join("\n");
