@@ -1,0 +1,137 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "openscriptures_lexical_index",
+ "m_ids": [
+  "M33"
+ ],
+ "routes": 138,
+ "read_from": "route text as served (reader/data/route-store, store 87b13b1169b4); in this dictionary the route equals the definition field on every row read",
+ "shapes": [
+  {
+   "id": "period.before_pointer",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "ends the name before the index's own cross-reference word, Compare or See; the reading is the name and the pointer is not a reading",
+   "test": "a period at top level followed by optional space and then the word Compare or See",
+   "count": 79,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "זבל"
+    },
+    {
+     "key": "שלמן"
+    }
+   ]
+  },
+  {
+   "id": "period.before_cut_note",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "ends the name before a parenthetical note the record cuts off; nothing after it is read",
+   "test": "a period at top level followed by optional space and an opening parenthesis",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דיבן"
+    }
+   ]
+  },
+  {
+   "id": "open.margin_note",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens the note that this name is the form written in the margin (the qere)",
+   "test": "an opening parenthesis whose group is exactly the words from the margin",
+   "count": 7,
+   "examples": []
+  },
+  {
+   "id": "close.margin_note",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes the note that this name is the form written in the margin",
+   "test": "a closing parenthesis whose group is exactly the words from the margin",
+   "count": 7,
+   "examples": []
+  },
+  {
+   "id": "open.optional_letters",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens letters that may be added to the name, a gentilic or plural ending: Mede(-s)",
+   "test": "an opening parenthesis whose group is a hyphen followed by lowercase letters only",
+   "count": 2,
+   "examples": []
+  },
+  {
+   "id": "close.optional_letters",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes the letters that may be added to the name",
+   "test": "a closing parenthesis whose group is a hyphen followed by lowercase letters only",
+   "count": 2,
+   "examples": []
+  },
+  {
+   "id": "hyphen.attach_ending",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "attaches the ending to the name with no space, so Mede(-s) reads Mede or Medes",
+   "test": "a hyphen inside parentheses whose whole group is a hyphen and lowercase letters",
+   "count": 2,
+   "examples": []
+  },
+  {
+   "id": "open.aside",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a short English remark about the name, such as including the article",
+   "test": "an opening parenthesis whose group is lowercase words and spaces and not the margin note",
+   "count": 1,
+   "examples": []
+  },
+  {
+   "id": "close.aside",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes the short English remark about the name",
+   "test": "a closing parenthesis whose group is lowercase words and spaces and not the margin note",
+   "count": 1,
+   "examples": []
+  },
+  {
+   "id": "open.never_closed",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "an opening parenthesis the record never closes; the note is cut off and nothing after it divides",
+   "test": "an opening parenthesis with no matching closing parenthesis anywhere after it",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דיבן"
+    }
+   ]
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "the index gives one name per entry and no entry number; of the 4 letters keys that carry more than one text, Shamir (from the margin) beside Shamir. Compare is one name in two notes, and Elihoenai beside Elienai is two spellings: telling a true homonym from a second note needs the record id, which the route text does not carry",
+  "keys_with_more_than_one_route_text": 4
+ },
+ "branches": [],
+ "not_done_here": "nothing in this dictionary divides readings: every route is one name with notes about it"
+}
