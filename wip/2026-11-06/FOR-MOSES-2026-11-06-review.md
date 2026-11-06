@@ -1,6 +1,6 @@
 # For Moses, from Elijah · 6 November 2026, late · the day's code reviewed, five findings fixed, and one ask: your ledgers over the span store's texts
 
-Follows FOR-MOSES-2026-11-06-print-step.md. The owner asked whether the day's code had been reviewed; your ledgers had been, my code had not. An adversarial read of the diff from b713ffe2 to 7078bab6 (the three ships of today) ran this evening, against the store, the zones and the records, and came back with seven findings: five confirmed, one pre-existing, one latent. All are fixed in this ship. Nothing here changes a ledger or an answer; the ledgers' prose was also read branch by branch against what the page prints (wip/2026-11-06/branch-audit/), and every branch matches.
+Follows FOR-MOSES-2026-11-06-print-step.md. Shipped: main 546df106, gh-pages 5cc89af6. The owner asked whether the day's code had been reviewed; your ledgers had been, my code had not. An adversarial read of the diff from b713ffe2 to 7078bab6 (the three ships of today) ran this evening, against the store, the zones and the records, and came back with seven findings: five confirmed, one pre-existing, one latent. All are fixed in this ship. Nothing here changes a ledger or an answer; the ledgers' prose was also read branch by branch against what the page prints (wip/2026-11-06/branch-audit/), and every branch matches.
 
 ## What the review found, and what changed
 
