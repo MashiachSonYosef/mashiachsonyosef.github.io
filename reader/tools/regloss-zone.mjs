@@ -283,6 +283,9 @@ zone.emitted_from.gloss_layer = {
   reprojected: {
     rule: "regloss-rule-v1-project-the-store-over-a-zones-own-keys",
     on: stamp,
+    // the store this projection read: gloss_layer.store_version stays the
+    // build's own, and a re-gloss names the store it moved the zone onto
+    store_version: store.index.store_version ?? null,
     from_gloss_table_sha256: previous.gloss_table_sha256 || null,
     forms_before: before.forms,
     forms_after: Object.keys(gloss).length,
