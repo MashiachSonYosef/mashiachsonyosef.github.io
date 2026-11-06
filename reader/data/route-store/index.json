@@ -1043,11 +1043,11 @@
  },
  "counts": {
   "keys": 124911,
-  "routes": 654886,
+  "routes": 654708,
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 14807790,
+  "shard_bytes_total": 14804029,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1117,7 +1117,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "87b13b1169b4",
+ "store_version": "eff9685022bd",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1242,6 +1242,12 @@
    "now": "87b13b1169b4",
    "why": "route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now",
    "on": "2026-10-24"
+  },
+  {
+   "was": "87b13b1169b4",
+   "now": "eff9685022bd",
+   "why": "row-strike-rule-v1-a-row-the-provider-misfiled-is-struck-or-re-keyed-by-a-named-list-and-the-hole-is-typed",
+   "on": "2026-11-06T03:41:51.755Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -1295,5 +1301,15 @@
     }
    }
   ]
+ },
+ "row_strikes": {
+  "rule_id": "row-strike-rule-v1-a-row-the-provider-misfiled-is-struck-or-re-keyed-by-a-named-list-and-the-hole-is-typed",
+  "record": "reader/data/row-strikes-v1.json",
+  "cumulative": {
+   "routes_struck": 178,
+   "routes_rekeyed": 1,
+   "keys_touched": 6,
+   "rounds": 1
+  }
  }
 }

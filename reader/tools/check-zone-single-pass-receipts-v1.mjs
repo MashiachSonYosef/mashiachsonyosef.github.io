@@ -35,8 +35,9 @@
 //       package hashes equal the store index's)
 //   L5  the zone's readings stand on the store version now on disk: either
 //       the store has not moved since the zone was emitted, or the zone names
-//       the move (a store_version, or the admission record whose struck set
-//       is the store's current struck set)
+//       the move (a store_version, the admission record whose struck set is
+//       the store's current struck set, or, since 2026-11-06, the store its
+//       re-gloss read: gloss_layer.reprojected.store_version)
 //   L6  no zone carries evidence of in-place patching it does not type: no
 //       field the builder does not write, nothing appended after the
 //       builder's last key — except what a TYPED exemption on the zone names
@@ -301,7 +302,8 @@ for (const f of bins) {
   const emitted = String(build.emitted || "").slice(0, 10);
   const movedSince = storeMoves.filter((m) => m.on && emitted && m.on > emitted);
   if (movedSince.length) {
-    const namesVersion = gl.store_version && (gl.store_version === storeVersion || foldsTo.has(gl.store_version));
+    const reglossRead = gl.reprojected && gl.reprojected.store_version ? String(gl.reprojected.store_version) : null;
+    const namesVersion = (gl.store_version && (gl.store_version === storeVersion || foldsTo.has(gl.store_version))) || reglossRead === storeVersion;
     const la = gl.language_admission;
     const zoneStruck = la ? [...(la.struck_m_ids || [])].sort() : [];
     const namesStrike = la && admission && la.rule_id === admission.rule_id && zoneStruck.join(",") === struckNow;

@@ -56,6 +56,7 @@
    "emit-source-corpus-v1.mjs",
    "emit-struck-ranks-v1.mjs",
    "strike-language-v1.mjs",
+   "strike-rows-v1.mjs",
    "strike-source-v1.mjs"
   ],
   "N": [
@@ -79,6 +80,7 @@
    "apply-route-delta-v1.mjs",
    "project-lattice-v12-v1.mjs",
    "strike-language-v1.mjs",
+   "strike-rows-v1.mjs",
    "strike-source-v1.mjs"
   ],
   "U": [
@@ -959,6 +961,17 @@
    "why": "the source record and the readings hanging off it. This tool removes M records and the R routes they carry. It does not touch an A span or an N license: what it changes is WHICH sources are permitted to answer for an A.",
    "writes": [
     "language-admission-v1.json"
+   ]
+  },
+  "strike-rows-v1.mjs": {
+   "letters": [
+    "M",
+    "R"
+   ],
+   "updates_no_letter": false,
+   "why": "Strikes named store ROWS, not whole sources: the rows a provider's parse filed under a key that is not their word's, each named by the corpus lane in a list the page lane reviewed (m, key, rank, route, and an action).",
+   "writes": [
+    "row-strikes-v1.json"
    ]
   },
   "strike-source-v1.mjs": {

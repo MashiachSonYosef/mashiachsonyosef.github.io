@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // GUARDS: store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed
+// GUARDS: row-strike-rule-v1-a-row-the-provider-misfiled-is-struck-or-re-keyed-by-a-named-list-and-the-hole-is-typed
 //
 // THE ROWS ARE ACCOUNTED FOR END TO END, OR THE STORE LOST SOMETHING.
 //
@@ -123,8 +124,17 @@ const ssPath = (index.source_strikes && index.source_strikes.record && existsSyn
 const ss = existsSync(ssPath) ? JSON.parse(readFileSync(ssPath, "utf8")) : null;
 const licenceStruck = num(ss && ss.cumulative && ss.cumulative.routes_struck) || 0;
 const admissionStruck = num(rec && rec.cumulative && rec.cumulative.routes_struck) ?? num(la.cumulative && la.cumulative.routes_struck);
-const cumStruck = admissionStruck === null ? null : admissionStruck + licenceStruck;
+// A THIRD KIND (2026-11-06): store rows struck or re-keyed by a named list,
+// by tools/strike-rows-v1.mjs, with its own cumulative record. A re-key moves
+// a row from one key to another: the served count does not move, and the
+// rank it left is typed in the struck-ranks record like a struck one.
+const rwPath = (index.row_strikes && index.row_strikes.record && existsSync(index.row_strikes.record)) ? index.row_strikes.record : "data/row-strikes-v1.json";
+const rw = existsSync(rwPath) ? JSON.parse(readFileSync(rwPath, "utf8")) : null;
+const rowStruck = num(rw && rw.cumulative && rw.cumulative.routes_struck) || 0;
+const rowRekeyed = num(rw && rw.cumulative && rw.cumulative.routes_rekeyed) || 0;
+const cumStruck = admissionStruck === null ? null : admissionStruck + licenceStruck + rowStruck;
 if (ss) console.log(`  licence strike on the shelf: ${(ss.struck_sources || []).map((s) => s.m_id).join(", ")} · ${n(licenceStruck)} routes in ${(ss.rounds || []).length} round(s)`);
+if (rw) console.log(`  row strike on the shelf: ${n(rowStruck)} routes struck and ${n(rowRekeyed)} re-keyed in ${(rw.rounds || []).length} round(s)`);
 
 // C0 — the pre-strike index against the shards that shipped with it, plus
 // what has landed since
@@ -168,14 +178,18 @@ else {
   check("C2  the last round was handed what the rounds before it left, not a shorter copy",
     gap === 0,
     `rounds before it struck ${n(earlierStruck)} of ${n(handed)}, leaving ${n(shouldBe)}; the last round records ${n(lastBefore)} in front of it${gap === 0 ? "" : ` · SHORT BY ${n(gap)} — the loss is at or before this round's input`}`);
-  check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served0() + licenceStruck,
-    `${n(lastBefore)} − ${n(lastStruck)} = ${n(lastBefore - (lastStruck ?? 0))}, served ${n(served)}${landedNet ? ` − ${n(landedNet)} landed since` : ""}${licenceStruck ? ` + ${n(licenceStruck)} the licence strike took since` : ""}`);
+  check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served0() + licenceStruck + rowStruck,
+    `${n(lastBefore)} − ${n(lastStruck)} = ${n(lastBefore - (lastStruck ?? 0))}, served ${n(served)}${landedNet ? ` − ${n(landedNet)} landed since` : ""}${licenceStruck ? ` + ${n(licenceStruck)} the licence strike took since` : ""}${rowStruck ? ` + ${n(rowStruck)} the row strike took since` : ""}`);
   // and the licence strike's own rounds, each handed what stood before it
   if (ss && Array.isArray(ss.rounds) && ss.rounds.length) {
     let stood = lastBefore - (lastStruck ?? 0), ok = true;
     for (const r of ss.rounds) { if (num(r.counts && r.counts.routes_before) !== stood) ok = false; stood -= num(r.counts && r.counts.routes_struck) || 0; }
-    check("  and each licence round was handed what the round before it left, down to the rows served", ok && stood === served0(),
-      `${ss.rounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)} (${(r.struck_m_ids || []).join(",")})`).join(" → ")} = ${n(stood)}${landedNet ? ` + ${n(landedNet)} landed = ${n(stood + landedNet)}` : ""}, served ${n(served)}`);
+    // the row strike's rounds ran after the landing: each was handed what
+    // stood, the landing's rows included
+    const rowRounds = (rw && Array.isArray(rw.rounds)) ? rw.rounds : [];
+    for (const r of rowRounds) { if (num(r.counts && r.counts.routes_before) !== stood + landedNet) ok = false; stood -= num(r.counts && r.counts.routes_struck) || 0; }
+    check("  and each licence round, and each row strike after it, was handed what the round before it left, down to the rows served", ok && stood === served0(),
+      `${[...ss.rounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)} (${(r.struck_m_ids || []).join(",")})`), ...rowRounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)} (rows${r.counts.routes_rekeyed ? `, ${n(r.counts.routes_rekeyed)} re-keyed` : ""})`)].join(" → ")} = ${n(stood)}${landedNet ? ` + ${n(landedNet)} landed = ${n(stood + landedNet)}` : ""}, served ${n(served)}`);
   }
 }
 
@@ -183,11 +197,11 @@ else {
 if (!sr || !rec) note("C3  the struck-ranks record and the admission record agree", `${sr ? "" : "no struck-ranks record"}${!sr && !rec ? " and " : ""}${rec ? "" : "no admission record"} beside the store`);
 else {
   const srRanks = num(sr.counts && sr.counts.ranks), made = (sr.made || [])[0] || {};
-  const sameCount = srRanks === cumStruck;   // the admission strike's ranks and the licence strike's, in the one record
+  const sameCount = srRanks === cumStruck + rowRekeyed;   // the admission strike's ranks, the licence strike's and the row strike's (a re-keyed row's rank too), in the one record
   const sameAfter = made.after_store_version && (made.after_store_version === index.store_version || (index.store_version_history || []).some((h) => h.was === made.after_store_version || h.now === made.after_store_version));
   check("C3  the struck-ranks record and the admission record agree on the strike, and name the store it ran between",
     sameCount && !!made.before_store_version && !!sameAfter,
-    `struck-ranks ${n(srRanks)} ranks · admission ${n(cumStruck)} routes · between ${made.before_store_version || "—"} and ${made.after_store_version || "—"}`);
+    `struck-ranks ${n(srRanks)} ranks · struck ${n(cumStruck)} routes${rowRekeyed ? ` + ${n(rowRekeyed)} re-keyed` : ""} · between ${made.before_store_version || "—"} and ${made.after_store_version || "—"}`);
 }
 
 // C4 — every version move names a reason, and a fold move moves no rows
