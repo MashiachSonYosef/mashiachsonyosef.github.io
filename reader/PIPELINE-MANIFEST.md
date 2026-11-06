@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-06.
 
-**136 rules declared · 125 named by a check · 11 unguarded.**
+**137 rules declared · 126 named by a check · 11 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -96,7 +96,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | check-manifest-prints-unguarded-v1 |
 | `place-order-rule-v1-the-line-reads-what-the-source-gives-at-this-place` | tools/check-line-reads-the-place-v1.mjs | check-line-reads-the-place-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
-| `pointing-grade-rule-v2-a-row-is-graded-by-its-own-headwords-and-a-word-initial-dagesh-lene-is-not-a-pointing` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1 |
+| `pointing-grade-rule-v3-a-row-is-graded-by-its-own-headwords-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1 |
 | `pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said` | tools/verify-pointing-store-v1.mjs | check-pointing-store-landing-v1 |
 | `pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land` | tools/land-pointing-store-v2-v1.mjs, tools/gloss-store-v1.mjs | check-pointing-store-landing-v1 |
 | `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1, check-carrier-survives-v1, check-names-pill-v1 |
@@ -126,6 +126,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
 | `span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole` | tools/apply-span-ledger-v1.mjs | check-respan-projection-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
+| `stem-family-rule-v1-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words` | tools/stem-family-v1.mjs | check-pointing-gate-v1 |
 | `store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed` | tools/check-store-continuity-v1.mjs | check-store-continuity-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
 | `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs, tools/land-pointing-store-v2-v1.mjs | check-route-store-exact-k-v1 |
@@ -169,7 +170,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 110 tools that are not checks.
+`build.sh` calls 19 of the 111 tools that are not checks.
 
 Not called by any build stage:
 
@@ -254,6 +255,7 @@ Not called by any build stage:
 - `tools/serve-from-restore-v5.mjs`
 - `tools/serve-from-stream-v2.mjs`
 - `tools/span-slice-v1.mjs`
+- `tools/stem-family-v1.mjs`
 - `tools/strike-language-v1.mjs`
 - `tools/strike-source-v1.mjs`
 - `tools/type-witnessed-drops-v1.mjs`

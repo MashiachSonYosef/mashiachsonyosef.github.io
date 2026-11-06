@@ -433,9 +433,9 @@
     for (let i = 0; i < s.length; i += 1) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
     return h.toString(16).padStart(8, "0");
   };
-  // THE GRADE FROM THE ROW'S OWN HEADWORDS — pointing-grade-rule-v2 (since
-  // 2026-11-06 a word-initial dagesh lene is not a pointing; the reason is in
-  // tools/pointing-grade-v1.mjs). A store row that carries the source's own
+  // THE GRADE FROM THE ROW'S OWN HEADWORDS — pointing-grade-rule-v3 (since
+  // 2026-11-06 neither a word-initial dagesh lene nor the qatan mark is a
+  // pointing; the reasons are in tools/pointing-grade-v1.mjs). A store row that carries the source's own
   // pointed headwords at [6] is graded here, against the word standing open,
   // by the corpus lane's two lines
   // (vowelForm, isPointed: the same functions, to the character, as
@@ -446,10 +446,24 @@
   const vowelForm = (t) => String(t ?? "")
     .replace(/\u034F/g, "")
     .normalize("NFKD")
+    .replace(/\u05C7/g, "\u05B8")
     .replace(/[\u0591-\u05AF\u05BD\u05BE\u05BF\u05C0\u05C3\u05C4\u05C5\u05C6\u05C7]/g, "")
     .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "")
     .replace(/^([\u05D1\u05D2\u05D3\u05DB\u05E4\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
   const isPointed = (t) => /[\u05B0-\u05BB]/.test(String(t ?? "").normalize("NFKD"));
+  // the binyan ledger's families (the corpus lane, v105): a source may name
+  // a stem inside a family otherwise than the place does (BDB's Po. is poel
+  // where MACULA says polel), so stems are compared by family, never by name
+  const STEM_FAMILY = Object.freeze({
+    polel: "piel", poel: "piel", pilpel: "piel", palel: "piel", pealal: "piel", pilel: "piel",
+    polal: "pual", poal: "pual", polpal: "pual", pulal: "pual",
+    hithpolel: "hithpael", hithpalpel: "hithpael", hithpoel: "hithpael", hithpalel: "hithpael", nithpael: "hithpael", hothpaal: "hithpael", ethpolel: "hithpael",
+    "qal passive": "qal", tiphil: "hiphil",
+    peil: "peal", paal: "pael", aphel: "haphel", shaphel: "haphel", saphel: "haphel",
+    ithpeel: "hithpeel", ithpaal: "hithpaal", ithpoel: "hithpaal",
+  });
+  const stemFamily = (x) => STEM_FAMILY[x] || x;
+  window.__stemFamily = stemFamily;
   const rowCarriesHeadwords = (row) => Array.isArray(row) && Array.isArray(row[6]);
   const gradeRow = (row, surface) => {
     if (!rowCarriesHeadwords(row)) return "-";
@@ -4036,7 +4050,7 @@
     // declining to ask that source about this pointing. Rows the lattice did
     // not grade stay: unknown is not a mismatch. The same guard sortPool
     // uses — the open word's own pointed surface, and only that.
-    let routes = all, withheld = 0;
+    let routes = all, withheld = 0, attested = false;
     if (pointingNow(surface === openKey ? openPointed : null) === "only") {
       // the grade has to be here before the pool is built, not after: a
       // pool built while the sidecar was still arriving is an unfiltered
@@ -4048,7 +4062,7 @@
       const gr = latticeStore && latticeStore.grades && openPointed && surface === openKey ? latticeStore.grades[openPointed] : null;
       const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
       // a row that carries its source's own headwords is graded here, by
-      // them, against the open word (pointing-grade-rule-v2); a row that does
+      // them, against the open word (pointing-grade-rule-v3); a row that does
       // not falls to the lattice card's grade, as before. A word with no
       // vowels of its own (a title from the catalog) gives the gate nothing to
       // gate on: graded against bare letters, every pointed row would read as
@@ -4056,15 +4070,28 @@
       const own = openPointed && surface === openKey && isPointed(openPointed);
       if (lat || own) {
         const fpIdx = lat ? new Map(lat.f.map((fp, i) => [fp, i])) : null;
-        routes = all.filter((row) => {
+        const gradeOf = (row) => {
           const sg = own ? gradeRow(row, openPointed) : "-";
-          if (sg !== "-") return sg !== "x";
-          if (!fpIdx) return true;
+          if (sg !== "-") return sg;
+          if (!fpIdx) return "-";
           const m = index.m_sources[row[3]];
           const i = fpIdx.get(fnv1a(`${row[1]}|${m ? m.label : ""}`));
-          return i === undefined || gr.g[i] !== "x";
-        });
-        withheld = all.length - routes.length;
+          return i === undefined ? "-" : (gr.g[i] || "-");
+        };
+        const grades = all.map(gradeOf);
+        // A POINTING NO SOURCE ATTESTS WITHHOLDS NOTHING (2026-11-06). The
+        // grade tells a different form from this one only where some source
+        // points the word as the text does. Where none does (a word in pause,
+        // Amos 1:4's hadad with a qamats where every source writes a patah; a
+        // headword pointed in half), every pointed row grades as "otherwise"
+        // and the card was emptied: 3,164 words on the 39 books, and a span
+        // the store names whole lost every reading. The store's own rows are
+        // asked, the overlays' are not: the line is baked from the store.
+        attested = grades.includes("m");
+        if (attested) {
+          routes = all.filter((row, i) => grades[i] !== "x");
+          withheld = all.length - routes.length;
+        }
       }
     }
     // THE POINTING STANDS FOR A PIECE TOO (the owner, 2026-11-06) ·
@@ -4098,6 +4125,30 @@
         routes = kept;
       }
     }
+    // THE BINYAN (the owner, 2026-11-05, of Genesis 1:1's bara and its
+    // "cut down": "a binyan ledger, maybe not for toggling though just to
+    // check correctness"). The corpus lane's binyan ledger (v104, v105) names
+    // the stem of every verb at its place and the stem of every reading on a
+    // verb's letters where a source says it: BDB's own headings, the stems
+    // TAHOT and MACULA give where their word stands. Under "only", a reading
+    // whose stems are known and none of them is in the family of this
+    // word's stems is withheld and counted; a reading whose stem is unknown
+    // stays (Strong's lists every stem's renderings together). The word's
+    // stems are its pointed surface's in this book (both sources' where they
+    // disagree), baked in the lattice sidecar beside its grades.
+    let withheldByStem = 0;
+    if (pointingNow(surface === openKey ? openPointed : null) === "only" && latticeStore && openPointed && surface === openKey) {
+      const gr = latticeStore.grades ? latticeStore.grades[openPointed] : null;
+      const st = gr && Array.isArray(gr.st) && gr.st.length ? gr.st : null;
+      const rs = st && latticeStore.stems ? latticeStore.stems[surface] : null;
+      if (st && rs) {
+        const fams = new Set(st.map(stemFamily));
+        const other = (row) => { const x = rs[`${row[3]}\u0001${row[0]}\u0001${row[1]}`]; return Array.isArray(x) && x.length > 0 && !x.some((y) => fams.has(stemFamily(y))); };
+        const kept = routes.filter((row) => !other(row));
+        withheldByStem = routes.length - kept.length;
+        routes = kept;
+      }
+    }
     // THE SOURCE SWITCHES, at the same grain and before the same pool: a
     // source the reader turned off is not asked. Counted apart from the
     // pointing's count so the card can say which switch withheld what.
@@ -4120,7 +4171,7 @@
     // switch above this one, not a rule inside it.
     // overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores
     if (extra.length) {
-      const pointingOnly = pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey && isPointed(openPointed);
+      const pointingOnly = attested && pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey && isPointed(openPointed);
       const kept = pointingOnly ? extra.filter((row) => gradeRow(row, openPointed) !== "x") : extra;
       withheld += extra.length - kept.length;
       extra = kept;
@@ -4246,7 +4297,7 @@
       }
     }
     const pool = sortPool([...groups.values()], surface);
-    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = asked;
+    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.rows = asked;
     return pool;
   };
   const oldestFirst = (a, b) => {
@@ -4290,7 +4341,7 @@
     const pieceLast = (a, b) => (pieceOnly(a) ? 1 : 0) - (pieceOnly(b) ? 1 : 0);
     const TIER = { m: 0, n: 1, x: 2 };
     // the grade of one record: its own headwords against the open word when
-    // it carries them (pointing-grade-rule-v2), the lattice card's grade
+    // it carries them (pointing-grade-rule-v3), the lattice card's grade
     // otherwise, "-" when neither can say
     const own = openPointed && surface && surface === openKey;
     const gradeOf = (row) => { const sg = own ? gradeRow(row, openPointed) : "-"; if (sg !== "-") return sg; const i = idxOf(row); return i >= 0 ? (gr.g[i] || "-") : "-"; };
@@ -6380,10 +6431,11 @@
         // exists, and a block whose every row they withheld was read as a
         // block no dictionary gives — and its rung forgotten. It says what
         // withheld it, keeps the rung, and stands on no record meanwhile.
-        if (pool && (pool.withheld || pool.withheldBySources)) {
+        if (pool && (pool.withheld || pool.withheldByStem || pool.withheldBySources)) {
           const bits = [];
           if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
           if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
+          if (pool.withheldByStem) bits.push(`${pool.withheldByStem} record${pool.withheldByStem === 1 ? "" : "s"} withheld by the stem — their source reads another stem of this verb`);
           p.className = "kq-role sources-withheld";
           p.textContent = `${bits.join("; ")}. No record is left to read here. Nothing here says the shelf lacks it.`;
           readRow.append(p);
@@ -6852,6 +6904,7 @@
         // what the masorah filter withheld, on the row and exposed, so a
         // check can ask the page rather than recount the shard
         pills.dataset.withheld = String(pool.withheld || 0);
+        pills.dataset.stemWithheld = String(pool.withheldByStem || 0);
         pills.dataset.withheldBySources = String(pool.withheldBySources || 0);
         pills.dataset.rows = String(pool.rows || 0);
         // the declared weld, said on the row and exposed (kq-declared-weld-v1)
@@ -6868,12 +6921,14 @@
         // the source switches' count share a line, each its own span, so the
         // pointing standing by default costs the readings band no row
         let wLine = readRow.querySelector(".withheld-line");
-        if (pool.withheld || pool.withheldBySources) {
+        if (pool.withheld || pool.withheldByStem || pool.withheldBySources) {
           if (!wLine) { wLine = document.createElement("p"); wLine.className = "kq-role withheld-line"; readRow.append(wLine); }
           wLine.replaceChildren();
-          if (pool.withheld) wLine.append(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
-          if (pool.withheld && pool.withheldBySources) wLine.append(" \u00b7 ");
-          if (pool.withheldBySources) wLine.append(Object.assign(document.createElement("span"), { className: "sources-withheld", textContent: `${pool.withheldBySources} withheld by your source switches (${sourcesOffSay()})` }));
+          const parts = [];
+          if (pool.withheld) parts.push(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
+          if (pool.withheldByStem) parts.push(Object.assign(document.createElement("span"), { className: "stem-withheld", textContent: `${pool.withheldByStem} of another stem, withheld` }));
+          if (pool.withheldBySources) parts.push(Object.assign(document.createElement("span"), { className: "sources-withheld", textContent: `${pool.withheldBySources} withheld by your source switches (${sourcesOffSay()})` }));
+          parts.forEach((x, i) => { if (i) wLine.append(" \u00b7 "); wLine.append(x); });
         } else if (wLine) wLine.remove();
       };
       // the page's own switch redraws whatever card is open, so a change of

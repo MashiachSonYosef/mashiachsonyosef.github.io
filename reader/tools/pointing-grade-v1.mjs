@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Synthesis lane · pointing-grade-rule-v2-a-row-is-graded-by-its-own-headwords-and-a-word-initial-dagesh-lene-is-not-a-pointing
+// Synthesis lane · pointing-grade-rule-v3-a-row-is-graded-by-its-own-headwords-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
 // LEDGER: -
 // no frame letter. This changes no letter of the text and no row of the
 // store: it is the one definition by which a store row earns its grade
@@ -42,11 +42,21 @@
 // line went bare under "only this pointing". A dagesh inside the word still
 // decides (it can be forte, the piel's own mark). The corpus lane is told,
 // so its lattice can follow.
-export const POINTING_GRADE_RULE_ID = "pointing-grade-rule-v2-a-row-is-graded-by-its-own-headwords-and-a-word-initial-dagesh-lene-is-not-a-pointing";
+//
+// v3 (2026-11-06, the same day): qamats qatan is a qamats. The text writes
+// it as its own character, U+05C7, to tell the reader the vowel is short;
+// the sources write the same sign as a plain qamats, U+05B8, and the corpus
+// lane's lines delete U+05C3 to U+05C7 as marks that are not vowels, so the
+// word lost its vowel and every source that writes it graded as pointing
+// the word otherwise: 126,745 row grades on 7,363 words (ve-khol with the
+// qatan mark against the sources' ve-khol with a plain qamats). U+05C7 is
+// read as U+05B8 before anything else is done.
+export const POINTING_GRADE_RULE_ID = "pointing-grade-rule-v3-a-row-is-graded-by-its-own-headwords-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing";
 
 export const vowelForm = (t) => String(t ?? "")
   .replace(/\u034F/g, "")
   .normalize("NFKD")
+  .replace(/\u05C7/g, "\u05B8")
   .replace(/[\u0591-\u05AF\u05BD\u05BE\u05BF\u05C0\u05C3\u05C4\u05C5\u05C6\u05C7]/g, "")
   .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "")
   .replace(/^([\u05D1\u05D2\u05D3\u05DB\u05E4\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
