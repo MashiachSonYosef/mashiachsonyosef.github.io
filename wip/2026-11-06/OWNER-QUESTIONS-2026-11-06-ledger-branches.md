@@ -40,6 +40,8 @@ Ruling 1 is one file and a ship. Rulings 2, 3 and 4 need one addition to the led
 
 Two further questions from the ledger ship, with figures, are in the letter to Moses (wip/2026-11-06/FOR-MOSES-2026-11-06-ledgers-live.md): the 300 rows a source wrote with a stray bracket, now printed as written (50 lead a fallback line), and the fallback line's order (oldest first and the catalog's rank differ on 42,396 of 47,244 keys).
 
+The review round of the same night (wip/2026-11-06/FOR-MOSES-2026-11-06-review.md) bakes the witnessed columns from Moses's shipped files, so 190 of those stray-bracket rows now also stand as witnessed readings under the order switch («Ionia ns), Greece» at Daniel's יון, «before divine names (except» at Amos's נאם), where the generic rule had hidden them as damaged. The question is the same one, and the answer, when it comes, reaches both the card and the column.
+
 ## 5. Every branch, in Moses's words
 
 Grouped by the option each offers; "rows" is the number of routes the branch reaches in the served store; "at rest" is what the page does today.

@@ -1,0 +1,156 @@
+# Span-store texts the ledgers have no shape for · 6 November 2026
+
+Every row of data/span-store/<book>.json whose source is under a ledger and whose text the ledger's classifier throws on (apply-ledger-divisions-v1, the span-store pass of 6 November). Each stands whole, as the route store's 29 do. One line per distinct source and text in span-store-texts-no-shape-v1.jsonl, with the books and the ink keys it stands under; the summary here.
+
+## openscriptures_lexical_index · 217 rows · 132 distinct texts
+- «Beth-el» ×14 (amos, ezra, genesis, hosea…) — no shape for "-" (top) at 4 in: Beth-el
+- «Beer-shebah» ×8 (amos, genesis, i-kings, i-samuel…) — no shape for "-" (top) at 4 in: Beer-shebah
+- «Beth-shemesh» ×8 (i-chronicles, i-samuel, ii-chronicles, jeremiah…) — no shape for "-" (top) at 4 in: Beth-shemesh
+- «Aram-naharaim» ×5 (deuteronomy, genesis, i-chronicles, judges…) — no shape for "-" (top) at 4 in: Aram-naharaim
+- «Beth-zur» ×4 (i-chronicles, ii-chronicles, joshua, nehemiah) — no shape for "-" (top) at 4 in: Beth-zur
+- «Beth-shean» ×4 (i-chronicles, i-kings, joshua, judges) — no shape for "-" (top) at 4 in: Beth-shean
+- «Beth-dagon» ×4 (i-chronicles, i-samuel, joshua) — no shape for "-" (top) at 4 in: Beth-dagon
+- «En-gedi» ×4 (i-samuel, ii-chronicles, song-of-songs) — no shape for "-" (top) at 2 in: En-gedi
+- «Baal-meon» ×3 (ezekiel, joshua, numbers) — no shape for "-" (top) at 4 in: Baal-meon
+- «Beth-aven» ×3 (hosea, i-samuel, joshua) — no shape for "-" (top) at 4 in: Beth-aven
+- «Gath-rimmon.» ×3 (i-chronicles, joshua) — no shape for "-" (top) at 4 in: Gath-rimmon.
+- «Bath-sheba» ×3 (i-kings, ii-samuel, psalms) — no shape for "-" (top) at 4 in: Bath-sheba
+- «Ramoth-gilead» ×3 (i-kings, ii-chronicles, ii-kings) — no shape for "-" (top) at 6 in: Ramoth-gilead
+- «Beth-lechemite» ×3 (i-samuel, ii-samuel) — no shape for "-" (top) at 4 in: Beth-lechemite
+- «Abed-nego» ×2 (daniel) — no shape for "-" (top) at 4 in: Abed-nego
+- «Baal-peor» ×2 (deuteronomy, hosea) — no shape for "-" (top) at 4 in: Baal-peor
+- «Pi-hahiroth. (In Numbers 14:19 without Pi-.» ×2 (exodus, numbers) — no shape for "-" (top) at 2 in: Pi-hahiroth. (In Numbers 14:19 w
+- «Tel-haresha» ×2 (ezra, nehemiah) — no shape for "-" (top) at 3 in: Tel-haresha
+- «Tubal-cain» ×2 (genesis) — no shape for "-" (top) at 5 in: Tubal-cain
+- «El-beth-el» ×2 (genesis, i-kings) — no shape for "-" (top) at 2 in: El-beth-el
+- «Baal-hanan» ×2 (genesis, i-chronicles) — no shape for "-" (top) at 4 in: Baal-hanan
+- «Lo-ammi» ×2 (hosea) — no shape for "-" (top) at 2 in: Lo-ammi
+- «Baal-hermon» ×2 (i-chronicles, judges) — no shape for "-" (top) at 4 in: Baal-hermon
+- «Baal-perazim» ×2 (i-chronicles, ii-samuel) — no shape for "-" (top) at 4 in: Baal-perazim
+- «En-rogel» ×2 (i-kings, joshua) — no shape for "-" (top) at 2 in: En-rogel
+- «Abel-meholah» ×2 (i-kings, judges) — no shape for "-" (top) at 4 in: Abel-meholah
+- «Abel-beth-maachah» ×2 (i-kings, ii-kings) — no shape for "-" (top) at 4 in: Abel-beth-maachah
+- «Beth-maachah» ×2 (i-kings, ii-kings) — no shape for "-" (top) at 4 in: Beth-maachah
+- «Beth-shimshite» ×2 (i-samuel) — no shape for "-" (top) at 4 in: Beth-shimshite
+- «Ben-hail» ×2 (i-samuel, ii-samuel) — no shape for "-" (top) at 3 in: Ben-hail
+- «Col-hozeh» ×2 (ii-kings, nehemiah) — no shape for "-" (top) at 3 in: Col-hozeh
+- «Rab-saris» ×2 (ii-kings, jeremiah) — no shape for "-" (top) at 3 in: Rab-saris
+- «Hephzi-bah» ×2 (ii-kings, isaiah) — no shape for "-" (top) at 6 in: Hephzi-bah
+- «Ebed-melech» ×2 (ii-kings, jeremiah) — no shape for "-" (top) at 4 in: Ebed-melech
+- «Evil-merodach» ×2 (ii-kings, jeremiah) — no shape for "-" (top) at 4 in: Evil-merodach
+- «Ish-bosheth» ×2 (ii-samuel) — no shape for "-" (top) at 3 in: Ish-bosheth
+- «Ish-tob» ×2 (ii-samuel, proverbs) — no shape for "-" (top) at 3 in: Ish-tob
+- «Beth-haccerem» ×2 (jeremiah, nehemiah) — no shape for "-" (top) at 4 in: Beth-haccerem
+- «Beth-horon» ×2 (joshua) — no shape for "-" (top) at 4 in: Beth-horon
+- «Kirjath-arba» ×2 (joshua, judges) — no shape for "-" (top) at 7 in: Kirjath-arba
+- «Beth-hoglah» ×2 (joshua) — no shape for "-" (top) at 4 in: Beth-hoglah
+- «Kirjath-sannah» ×2 (joshua, judges) — no shape for "-" (top) at 7 in: Kirjath-sannah
+- «Jiphthah-el» ×2 (joshua, judges) — no shape for "-" (top) at 8 in: Jiphthah-el
+- «Mahaneh-dan» ×2 (judges, numbers) — no shape for "-" (top) at 7 in: Mahaneh-dan
+- «Chamath-Rabbah» ×1 (amos) — no shape for "-" (top) at 7 in: Chamath-Rabbah
+- «Bene-jaakan» ×1 (deuteronomy) — no shape for "-" (top) at 4 in: Bene-jaakan
+- «Tel-abib» ×1 (ezekiel) — no shape for "-" (top) at 3 in: Tel-abib
+- «Hamon-gog» ×1 (ezekiel) — no shape for "-" (top) at 5 in: Hamon-gog
+- «En-eglaim» ×1 (ezekiel) — no shape for "-" (top) at 2 in: En-eglaim
+- «Hazar-hatticon» ×1 (ezekiel) — no shape for "-" (top) at 5 in: Hazar-hatticon
+- «Hazar-enan» ×1 (ezekiel) — no shape for "-" (top) at 5 in: Hazar-enan
+- «Hazar-enon» ×1 (ezekiel) — no shape for "-" (top) at 5 in: Hazar-enon
+- «El-paran» ×1 (genesis) — no shape for "-" (top) at 2 in: El-paran
+- «En-mishpat» ×1 (genesis) — no shape for "-" (top) at 2 in: En-mishpat
+- «Beer-lahai-roi» ×1 (genesis) — no shape for "-" (top) at 4 in: Beer-lahai-roi
+- «Ben-ammi» ×1 (genesis) — no shape for "-" (top) at 3 in: Ben-ammi
+- «Elelohe-israel» ×1 (genesis) — no shape for "-" (top) at 7 in: Elelohe-israel
+- «Ben-oni» ×1 (genesis) — no shape for "-" (top) at 3 in: Ben-oni
+- «Bath-shua» ×1 (genesis) — no shape for "-" (top) at 4 in: Bath-shua
+- «Zaphnath-paaneah» ×1 (genesis) — no shape for "-" (top) at 8 in: Zaphnath-paaneah
+- «Poti-pherah» ×1 (genesis) — no shape for "-" (top) at 4 in: Poti-pherah
+- «Abel-mizraim» ×1 (genesis) — no shape for "-" (top) at 4 in: Abel-mizraim
+- «Lo-ruhamah» ×1 (hosea) — no shape for "-" (top) at 2 in: Lo-ruhamah
+- «Beth-Arbel» ×1 (hosea) — no shape for "-" (top) at 4 in: Beth-Arbel
+- «Beth-gader» ×1 (i-chronicles) — no shape for "-" (top) at 4 in: Beth-gader
+- «Chatsi-ham-Menuchoth» ×1 (i-chronicles) — no shape for "-" (top) at 6 in: Chatsi-ham-Menuchoth
+- «Jushab-hesed» ×1 (i-chronicles) — no shape for "-" (top) at 6 in: Jushab-hesed
+- «Beth-rapha» ×1 (i-chronicles) — no shape for "-" (top) at 4 in: Beth-rapha
+- «Ben-hanan» ×1 (i-chronicles) — no shape for "-" (top) at 3 in: Ben-hanan
+- «Uzzen-sherah» ×1 (i-chronicles) — no shape for "-" (top) at 5 in: Uzzen-sherah
+- «Merib-baal. Compare» ×1 (i-chronicles) — no shape for "-" (top) at 5 in: Merib-baal. Compare
+- «Hamath-Zobah» ×1 (ii-chronicles) — no shape for "-" (top) at 6 in: Hamath-Zobah
+- «Abel-maim» ×1 (ii-chronicles) — no shape for "-" (top) at 4 in: Abel-maim
+- «Obed-edom» ×1 (ii-chronicles) — no shape for "-" (top) at 4 in: Obed-edom
+- «binding-house of the shepherds» ×1 (ii-kings) — no shape for "-" (top) at 7 in: binding-house of the shepherds
+- «Tiglath-pileser» ×1 (ii-kings) — no shape for "-" (top) at 7 in: Tiglath-pileser
+- «Berodach-baladan» ×1 (ii-kings) — no shape for "-" (top) at 8 in: Berodach-baladan
+- «Pharaoh-necho» ×1 (ii-kings) — no shape for "-" (top) at 7 in: Pharaoh-necho
+- «Helkath-hazzurim» ×1 (ii-samuel) — no shape for "-" (top) at 7 in: Helkath-hazzurim
+- «Metheg-ammah» ×1 (ii-samuel) — no shape for "-" (top) at 6 in: Metheg-ammah
+- «Beth-rehob» ×1 (ii-samuel) — no shape for "-" (top) at 4 in: Beth-rehob
+- «Jaare-oregim» ×1 (ii-samuel) — no shape for "-" (top) at 5 in: Jaare-oregim
+- «Tahtim-hodshi» ×1 (ii-samuel) — no shape for "-" (top) at 6 in: Tahtim-hodshi
+- «Maher-sha-lal-bash-baz» ×1 (isaiah) — no shape for "-" (top) at 5 in: Maher-sha-lal-bash-baz
+- «Shear-jashub» ×1 (isaiah) — no shape for "-" (top) at 5 in: Shear-jashub
+- «Merodach-baladan. Compare» ×1 (isaiah) — no shape for "-" (top) at 8 in: Merodach-baladan. Compare
+- «Nergal-sharezer» ×1 (jeremiah) — no shape for "-" (top) at 6 in: Nergal-sharezer
+- «Samgar-nebo» ×1 (jeremiah) — no shape for "-" (top) at 6 in: Samgar-nebo
+- «Beth-diblathaim» ×1 (jeremiah) — no shape for "-" (top) at 4 in: Beth-diblathaim
+- «Beth-gamul» ×1 (jeremiah) — no shape for "-" (top) at 4 in: Beth-gamul
+- «Kir-haraseth» ×1 (jeremiah) — no shape for "-" (top) at 3 in: Kir-haraseth
+- «Keren-happuch» ×1 (job) — no shape for "-" (top) at 5 in: Keren-happuch
+- «Misrephoth-mayim» ×1 (joshua) — no shape for "-" (top) at 10 in: Misrephoth-mayim
+- «Baal-gad» ×1 (joshua) — no shape for "-" (top) at 4 in: Baal-gad
+- «Ashdoth-pisgah» ×1 (joshua) — no shape for "-" (top) at 7 in: Ashdoth-pisgah
+- «Shimon-meron» ×1 (joshua) — no shape for "-" (top) at 6 in: Shimon-meron
+- «Ramath-mizpeh» ×1 (joshua) — no shape for "-" (top) at 6 in: Ramath-mizpeh
+- «Beth-aram» ×1 (joshua) — no shape for "-" (top) at 4 in: Beth-aram
+- «Beth-arabah» ×1 (joshua) — no shape for "-" (top) at 4 in: Beth-arabah
+- «Ataroth-adar(-addar)» ×1 (joshua) — no shape for "-" (top) at 7 in: Ataroth-adar(-addar)
+- «Taanath-shiloh» ×1 (joshua) — no shape for "-" (top) at 7 in: Taanath-shiloh
+- «En-tappuah» ×1 (joshua) — no shape for "-" (top) at 2 in: En-tappuah
+- «En-dor» ×1 (joshua) — no shape for "-" (top) at 2 in: En-dor
+- «En-rimmon» ×1 (joshua) — no shape for "-" (top) at 2 in: En-rimmon
+- «Baalath-beer» ×1 (joshua) — no shape for "-" (top) at 7 in: Baalath-beer
+- «Chisloth-tabor» ×1 (joshua) — no shape for "-" (top) at 8 in: Chisloth-tabor
+- «Beth-emek» ×1 (joshua) — no shape for "-" (top) at 4 in: Beth-emek
+- «Aznoth-tabor» ×1 (joshua) — no shape for "-" (top) at 6 in: Aznoth-tabor
+- «Timnath-serah» ×1 (joshua) — no shape for "-" (top) at 7 in: Timnath-serah
+- «En-gannim» ×1 (joshua) — no shape for "-" (top) at 2 in: En-gannim
+- «Hamath-Dor» ×1 (joshua) — no shape for "-" (top) at 6 in: Hamath-Dor
+- «Beth-anath» ×1 (judges) — no shape for "-" (top) at 4 in: Beth-anath
+- «Chushan-rishathayim» ×1 (judges) — no shape for "-" (top) at 7 in: Chushan-rishathayim
+- «Beth-shittah» ×1 (judges) — no shape for "-" (top) at 4 in: Beth-shittah
+- «Beth-barah» ×1 (judges) — no shape for "-" (top) at 4 in: Beth-barah
+- «Baal-berith» ×1 (judges) — no shape for "-" (top) at 4 in: Baal-berith
+- «Ramath-lehi» ×1 (judges) — no shape for "-" (top) at 6 in: Ramath-lehi
+- «En-hakhore» ×1 (judges) — no shape for "-" (top) at 2 in: En-hakhore
+- «Beth-ezel» ×1 (micah) — no shape for "-" (top) at 4 in: Beth-ezel
+- «Moresheth-gath» ×1 (micah) — no shape for "-" (top) at 9 in: Moresheth-gath
+- «Migdal-eder» ×1 (micah) — no shape for "-" (top) at 6 in: Migdal-eder
+- «Bethaz-maveth. Compare» ×1 (nehemiah) — no shape for "-" (top) at 6 in: Bethaz-maveth. Compare
+- «Kibroth-hattaavah» ×1 (numbers) — no shape for "-" (top) at 7 in: Kibroth-hattaavah
+- «Kirjath-huzoth» ×1 (numbers) — no shape for "-" (top) at 7 in: Kirjath-huzoth
+- «Beth-Nimrah. Compare» ×1 (numbers) — no shape for "-" (top) at 4 in: Beth-Nimrah. Compare
+- «Beth-haran» ×1 (numbers) — no shape for "-" (top) at 4 in: Beth-haran
+- «Baal-zephon» ×1 (numbers) — no shape for "-" (top) at 4 in: Baal-zephon
+- «Hazar-addar» ×1 (numbers) — no shape for "-" (top) at 5 in: Hazar-addar
+- «‘To die for the son’» ×1 (psalms) — no shape for "‘" (top) at 0 in: ‘To die for the son’
+- «Shushan-eduth» ×1 (psalms) — no shape for "-" (top) at 7 in: Shushan-eduth
+- «Aram-zobah» ×1 (psalms) — no shape for "-" (top) at 4 in: Aram-zobah
+- «Bath-rabbim» ×1 (song-of-songs) — no shape for "-" (top) at 4 in: Bath-rabbim
+
+## wikidata_hebrew_lexeme_gloss · 11 rows · 4 distinct texts
+- «Be'er Sheva» ×8 (amos, genesis, i-kings, i-samuel…) — no shape for "'" (top) at 2 in: Be'er Sheva
+- «Derekh eretz, the decorum, dignified behaviour, and gentlemanly conduct that should characterize a Jew at all times.» ×1 (exodus) — no shape for "." (top) at 115 in: haracterize a Jew at all times.
+- «(posthumous honorific, "may the memory of the righteous one be a blessing")» ×1 (proverbs) — no shape for """ (paren) at 23 in: (posthumous honorific, "may the memory of the righteo
+- «God (the 'father of orphans', from Psalm 68)» ×1 (psalms) — no shape for "'" (paren) at 9 in: God (the 'father of orphans', from Psal
+
+## stepbible_tbesh_gloss · 6 rows · 4 distinct texts
+- «YHWH/Yahweh-shammah» ×2 (deuteronomy, ezekiel) — no shape for "/" (top) at 4 in: YHWH/Yahweh-shammah
+- «YHWH/Yahweh-shalom» ×2 (jeremiah, judges) — no shape for "/" (top) at 4 in: YHWH/Yahweh-shalom
+- «YHWH/Jehovah-nissi» ×1 (exodus) — no shape for "/" (top) at 4 in: YHWH/Jehovah-nissi
+- «YHWH/Yahweh-tsidkenu» ×1 (jeremiah) — no shape for "/" (top) at 4 in: YHWH/Yahweh-tsidkenu
+
+## biblicaltools_living_lexicon · 3 rows · 1 distinct texts
+- «Gath-rimmon.» ×3 (i-chronicles, joshua) — no shape for "." (top) at 11 in: Gath-rimmon.
+
+## lexibank_analysed_v2_2_northeuralex_hebrew · 1 rows · 1 distinct texts
+- «GOOD-LOOKING» ×1 (genesis) — no shape for "-" (top) at 4 in: GOOD-LOOKING
+
