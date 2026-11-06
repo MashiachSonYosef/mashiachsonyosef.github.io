@@ -110,11 +110,12 @@ const readingSplit = (text) => {
 };
 const isNoDerivs = (key) => /(^|[^a-z])nd([^a-z]|$)/iu.test(String(key || "")) || /noderiv/iu.test(String(key || ""));
 // the pieces a row prints: whole for a NoDerivatives source; as its row says for
-// a source under a ledger (ledger-division-rule-v1); the generic rule otherwise
+// a source under a ledger (ledger-division-rule-v2: the print slot row[8], else
+// the cuts in row[7], else whole); the generic rule otherwise
 const piecesOf = (row, src) => {
   const t = String(row[1]);
   if (isNoDerivs(src.licensePosture)) return [t];
-  if (src.ledger) { const cuts = Array.isArray(row[7]) ? row[7] : []; if (!cuts.length) return [t.trim()].filter(Boolean); const out = []; let from = 0; for (const i of cuts) { out.push(t.slice(from, i)); from = i + 1; } out.push(t.slice(from)); return out.map((x) => x.trim()).filter(Boolean); }
+  if (src.ledger) { if (Array.isArray(row[8])) return row[8].map((x) => String(x)); const cuts = Array.isArray(row[7]) ? row[7] : []; if (!cuts.length) return [t.trim()].filter(Boolean); const out = []; let from = 0; for (const i of cuts) { out.push(t.slice(from, i)); from = i + 1; } out.push(t.slice(from)); return out.map((x) => x.trim()).filter(Boolean); }
   return senseSplit(t).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings; });
 };
 // a ketiv/qere place reads "(ketiv) [qere]": its pointing is the qere's, and

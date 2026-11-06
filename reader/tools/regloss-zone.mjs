@@ -207,7 +207,7 @@ zone.emitted_from.no_names_layer = {
   counts: { names: Object.keys(names.leads).length, displaced: Object.keys(noname).length, base_is_the_name: Object.keys(names.leads).length - Object.keys(noname).length },
 };
 // THE WITNESSED COLUMNS' READINGS, RE-DERIVED UNDER THE LEDGERS
-// (ledger-division-rule-v1, 6 November 2026). The corpus lane shipped each
+// (ledger-division-rule-v2, 6 November 2026). The corpus lane shipped each
 // witnessed reading as the generic rule cut it: a whole row, or a piece of
 // one ("grief" of "grief, sorrow"). Under a source's ledger that row is one
 // reading, so the piece is no pill, and the line under this order would
@@ -215,7 +215,12 @@ zone.emitted_from.no_names_layer = {
 // the reading the store now gives the row it came from (readingsOfText: the
 // credited source's row whose route is the text, else the one whose generic
 // readings hold it), and the credit is derived again below. A text no served
-// row accounts for stays as shipped, and is counted.
+// row accounts for stays as shipped, and is counted. A text whose row now
+// prints no pill (ledger-division-rule-v2: a row that renders nothing, under
+// the owner's answer) leaves the column, reading and credit together, and
+// the line falls back to the base reading there under this order: a column
+// may not name a reading the card does not hold. Counted, never silent, and
+// written beside the column's receipt as the struck-credit drops are.
 const witnessedMoved = {};   // column -> the keys whose reading the ledgers moved, so their credit is derived again
 if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
   const prevOM = zone.gloss_m_orders || {};
@@ -224,16 +229,24 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
     const table = zone.gloss_orders[o];
     if (!table || typeof table !== "object") continue;
     witnessedMoved[o] = new Set();
-    let moved = 0, unmapped = 0, same = 0;
+    let moved = 0, unmapped = 0, same = 0, withdrawn = 0;
     for (const [k, t] of Object.entries(table)) {
       const m = (prevOM[o] || {})[k];
       const ids = m && Array.isArray(m.by) ? m.by : m && m.m ? store.mIdsOfLabel(m.m) : null;
-      const rs = store.readingsOfText(k, t, ids);
-      if (!rs.length) { unmapped += 1; continue; }
+      const row = store.rowOfText(k, t, ids);
+      const rs = row ? store.readingsOf(row) : store.readingsOfText(k, t, ids);
+      if (!rs.length) {
+        if (!row) { unmapped += 1; continue; }
+        delete table[k]; if (prevOM[o]) delete prevOM[o][k]; withdrawn += 1;
+        const wc = wo.columns[o];
+        if (!(Array.isArray(wc.no_pill_withdrawals) && wc.no_pill_withdrawals.some((d) => d.key === k)))
+          (wc.no_pill_withdrawals = Array.isArray(wc.no_pill_withdrawals) ? wc.no_pill_withdrawals : []).push({ key: k, text: t, m: String(row[3]), on: stamp, why: "ledger-division-rule-v2: the row this reading came from prints no pill under the owner's answer to its ledger's branch" });
+        continue;
+      }
       if (rs[0] === t) { same += 1; continue; }
       table[k] = rs[0]; moved += 1; witnessedMoved[o].add(k);
     }
-    wo.columns[o].rederived_under_ledgers = { rule: "ledger-division-rule-v1", on: stamp, same, moved, unmapped };
+    wo.columns[o].rederived_under_ledgers = { rule: "ledger-division-rule-v2", on: stamp, same, moved, unmapped, withdrawn };
   }
 }
 let ordersM = null, witnessedDrops = 0;

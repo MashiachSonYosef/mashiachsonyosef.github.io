@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-06.
 
-**140 rules declared · 129 named by a check · 11 unguarded.**
+**141 rules declared · 129 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -69,7 +69,8 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving` | tools/emit-lane-state-v1.mjs | check-lane-state-v1 |
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-parts-in-card-v1, check-lattice-projection-v1 |
-| `ledger-division-rule-v1-a-ledgered-source-divides-only-where-its-ledger-says-and-the-page-reads-the-division-not-the-rule` | tools/apply-ledger-divisions-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs, tools/regloss-zone.mjs, zone.html | check-ledger-divisions-v1, check-provider-characters-v1, check-search-v1, check-sense-split-v1 |
+| `ledger-division-rule-v1` | zone.html | **UNGUARDED** |
+| `ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say` | tools/apply-ledger-divisions-v1.mjs, tools/ledger-print-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs, tools/regloss-zone.mjs, zone.html | check-ledger-divisions-v1, check-provider-characters-v1, check-search-v1, check-sense-split-v1, check-witnessed-order-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
 | `licence-columns-rule-v1-the-licence-preference-is-a-baked-order-column-so-the-line-and-the-card-answer-as-one` | tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-card-opens-on-the-line-v1, check-masorah-toggle-v1 |
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
@@ -110,7 +111,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now` | tools/apply-route-delta-v1.mjs | **UNGUARDED** |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | check-route-store-exact-k-v1 |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
-| `row-strike-rule-v2-a-named-list-strikes-withholds-re-keys-rejoins-or-re-heads-a-row-and-the-hole-is-typed` | tools/strike-rows-v1.mjs | check-store-continuity-v1 |
+| `row-strike-rule-v3-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-or-retexts-a-row-and-the-hole-is-typed` | tools/strike-rows-v1.mjs, tools/ledger-print-v1.mjs | check-store-continuity-v1 |
 | `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1 |
 | `run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling` | tools/project-run-cards-v1.mjs, zone.html | check-run-cards-v1, check-run-line-follows-division-v1, check-run-card-forms-v1 |
 | `script-admission-rule-v1-a-published-word-is-written-in-hebrew-script` | tools/check-script-admitted-v1.mjs | check-script-admitted-v1 |
@@ -173,7 +174,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 114 tools that are not checks.
+`build.sh` calls 19 of the 115 tools that are not checks.
 
 Not called by any build stage:
 
@@ -224,6 +225,7 @@ Not called by any build stage:
 - `tools/k-normalization-v2.mjs`
 - `tools/land-pointing-store-v2-v1.mjs`
 - `tools/lattice-lib-v1.mjs`
+- `tools/ledger-print-v1.mjs`
 - `tools/make-fixture-zone-v1.mjs`
 - `tools/make-hoh-fixture-v1.mjs`
 - `tools/make-kq-fixture-zone-v1.mjs`

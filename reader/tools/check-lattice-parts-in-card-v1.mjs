@@ -116,6 +116,10 @@ const card = await p.evaluate(() => {
     foot: foot ? foot.textContent.replace(/\s+/g, " ").trim() : "",
     chips: foot ? [...foot.querySelectorAll(".lic-chip")].map((c) => c.textContent.trim()) : [],
     line: (document.querySelector("#hud .r-now") || {}).textContent || "",
+    // the line's own value, apart from its label ("reading · at every place this form stands"): the label's words
+    // ("and" in "stands", "the") are not the band's English, and a piece of one letter would match them
+    lineValue: (document.querySelector("#hud .r-now .v") || {}).textContent || "",
+    lineBare: !!(document.querySelector("#hud .r-now .v") || { classList: { contains: () => false } }).classList.contains("none"),
     hud: document.querySelector("#hud").textContent.replace(/\s+/g, " "),
   };
 });
@@ -141,11 +145,15 @@ if (card.drawn) {
     `${card.foot.slice(0, 120)}`);
 
   // THE LINE. Nothing the band says may reach it — not a piece, not a join.
+  // The line's value is the bare notice (its own class says so); the pieces
+  // are looked for as whole words in the value and nowhere in the label,
+  // whose "stands" holds "and" and whose notice holds "the".
   const joined = pick.pc.map((x) => x.t || x.m).filter(Boolean).join(" ");
-  const lineHasAPiece = pick.pc.some((x) => (x.t && card.line.includes(x.t)) || (x.m && card.line.includes(x.m)));
+  const word = (t) => new RegExp(`(^|[^A-Za-z])${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}([^A-Za-z]|$)`, "i");
+  const lineHasAPiece = !card.lineBare && pick.pc.some((x) => (x.t && word(x.t).test(card.lineValue)) || (x.m && word(x.m).test(card.lineValue)));
   check("P4  the line stays bare: it says no reading is in the catalog, and carries nothing the band composed",
-    /no reading in the catalog/i.test(card.hud) && !card.line.includes(joined) && !lineHasAPiece,
-    `line: "${card.line.replace(/\s+/g, " ").trim().slice(0, 80)}"`);
+    card.lineBare && /no reading in the catalog/i.test(card.lineValue) && !card.hud.includes(joined) && !lineHasAPiece,
+    `line: "${card.lineValue.replace(/\s+/g, " ").trim().slice(0, 80)}"${card.lineBare ? " (bare)" : " (NOT bare)"}`);
 }
 
 // And the other way: a word the catalog DOES answer carries no band, or the

@@ -83,12 +83,14 @@ const grab = (head, end) => {
   return zone.slice(a, b + end.length);
 };
 const { readingSplit, senseSplit, isNoDerivs } = new Function(`${grab("\n  const readingSplit = (text) => {\n", "\n  };\n")}${grab("\n  const senseSplit = (text) => {\n", "\n  };\n")}${grab("\n  const isNoDerivs = (key) => ", ";\n")}return { readingSplit, senseSplit, isNoDerivs };`)();
-// a source under a ledger prints as its row says (ledger-division-rule-v1):
-// the marks in row[7], or the whole text; the generic rule is for one with none
+// a source under a ledger prints as its row says (ledger-division-rule-v2):
+// the texts in row[8] (a part of itself, or no pill), else the pieces at the
+// marks in row[7], else the whole text; the generic rule is for one with none
 const pills = (row, src) => {
   const text = String(row[1]);
   if (isNoDerivs(src.licensePosture)) return [text];
   if (src.ledger) {
+    if (Array.isArray(row[8])) return row[8].map((x) => String(x));
     const cuts = Array.isArray(row[7]) ? row[7] : [];
     if (!cuts.length) { const t = text.trim(); return t ? [t] : []; }
     const out = []; let from = 0;
