@@ -1,0 +1,1230 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "stepbible_tbesh_gloss",
+ "m_ids": [
+  "M19"
+ ],
+ "routes": 2645,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column\" (M19): 2,645 routes (axis: routes), 1,814 letters keys (axis: keys). The definition field of the same row equals the route text on 2,645 of the routes. The source audit (builder/02-audit.mjs, builder/02b-audit-more.mjs; evidence about the source and no part of any test): the source is the TBESH file in the lane's copy of STEPBible-Data, ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Lexicons/. Each of the dictionary store's 2,870 records names one line of that file, and its text equals that line's Gloss column on 2,870; its two other text fields are filled on 0 and 0 records. 2,645 of the 2,645 routes tie to a record of the same text, with runs of white space closed up and the ends trimmed as the served text has them, and a Hebrew headword of the same letters. By the file's own lines, 2,595 routes stand on one line and 50 on two or more lines that give the same text; by the store's records, 2,618 tie to one record and 27 to two or more (axis: routes, both). So a route comes from one column, and no test here stands on a guess about a field. The file's Meaning column asks for permission, is not served, and was neither kept nor read for this. The source's own key: the head of the file (the 52 lines before its header line) is on file and was read whole. It describes the fields: of the Gloss it says only who made it, and of the disambiguated numbers that they set apart distinct sub-meanings of words and distinct individuals of one name. No line of it names a colon, a slash, a bracket, a comma, a hyphen or a grave accent, and neither does a line that names this source in the README at the top of the copy or in the 27 of the 579 files of the works-own-stamp folder that name it (builder/05-key-search.mjs, source-audit/key-search.json). The notes at the head of the sister file TAHOT give a key to that file's own English column, where a slash mirrors the parts of a Hebrew word, words in angle brackets are best not included in a translation and words in square brackets are implied. That is another column of another file and no key to this one: a slash here does not mirror parts of a word, and no angle bracket stands here. It bears here twice. TAHOT writes the word of the row with the label as an angle-bracket word, which is why that row has its own question. And TAHOT's tags split this dictionary's colon rows at the colon, second part first (the tag of the row belly: abdomen reads \": abdomen»belly:1_abdomen\"): 566 of the 580 rows with a colon have such a tag under their own number, 526 exactly and 40 keeping one part (builder/02c-tahot-tags.mjs, source-audit/tahot-tags.json). The head of TAHOT (its lines 50 and 51) says a tag carries an English gloss and its sub-meaning after the sign », and gives a name for its example. Those words name the tag's parts and not this colon, and what follows the sign in the tag begins with this row's first part, so they do not name the colon's two parts. So the tags back the reading of the colon, the first part for the word and the second for what this row takes it to mean, and no more, and the colon shapes begin \"unverified:\", as every shape's meaning here does.",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route that holds a mark here holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. A space is the character U+0020 only. No test asks for a digit, for whitespace, or for uppercase or lowercase as a class. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after. Empty means that the named text has no character at all, as at the start or the end of the route. Directly before and directly after name the one character next to the mark; where the mark stands at that end of the text no character stands there, so a test that asks for a character there fails. The whole text, exactly, means that the text equals the named string character for character. Holds means that at least one character of the named text is the named character, wherever it stands. Sits inside round brackets means that the template's c.container is paren for the mark. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence and not to the string. The apostrophe in every string is the straight one, U+0027. Every string and every list minds case and is matched exact to the character. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A test says not caught above where it takes what the shapes above it for the same mark did not take. Only the shape's test decides: the container field is not part of a test unless the test says sits inside round brackets, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does.",
+  "slash_list_texts": [
+   "YHWH/God",
+   "about/through/for",
+   "ancient/taken",
+   "article/utensil",
+   "back/rim/brow",
+   "bag/price",
+   "be weary/toil",
+   "cutting/separation",
+   "diadem/doom",
+   "he/she/it",
+   "here/thus",
+   "in/at/by",
+   "jubilee/horn",
+   "lifetime/world",
+   "nail/claw",
+   "ointment pot/seasoning",
+   "rain/teacher",
+   "rejected/fleeting",
+   "servant/slave",
+   "single/height",
+   "street/plaza",
+   "thumb/big toe",
+   "to burn/pursue",
+   "to burst/come out",
+   "to devote/destroy",
+   "to dislocate/hang",
+   "to drag/chew/saw",
+   "to drip/prophesy",
+   "to gather/restrain/fortify",
+   "to lavish/despise",
+   "to plow/plot",
+   "to reckon/appoint",
+   "to saddle/tie",
+   "to teach/learn"
+  ],
+  "endings_on_one_word_texts": [
+   "to break up/open",
+   "to cut down/off",
+   "to pass on/over/away",
+   "to wall up/off"
+  ],
+  "shared_last_word_texts": [
+   "to be/bear firstborn",
+   "to gather/tend figs"
+  ],
+  "waiting_second_part_texts": [
+   "son: type of",
+   "voice: [sound of]",
+   "master: [master of]",
+   "to call: call by",
+   "to call: call to",
+   "lip: according"
+  ],
+  "bare_small_word_texts": [
+   "hand: by",
+   "hand: to",
+   "hand: themselves",
+   "face: because",
+   "face: before",
+   "word: because",
+   "entrails: among",
+   "side: beside",
+   "side: beyond",
+   "to encounter: toward",
+   "bone: same",
+   "woman: another",
+   "alone: each"
+  ],
+  "pronoun_label_texts": [
+   "they(fem.)",
+   "they(masc.)",
+   "you(f.p.)",
+   "you(f.s.)",
+   "you(m.p.)",
+   "you(m.s.)"
+  ],
+  "optional_ending_texts": [
+   "fool(ish)",
+   "labour(er)",
+   "to(wards)"
+  ],
+  "optional_word_texts": [
+   "baked (food)",
+   "guilt (offering)",
+   "to bend (down)",
+   "(right) time",
+   "the man (Adam)"
+  ],
+  "half_name_apostrophe_texts": [
+   "King's",
+   "Serpent's",
+   "Washer's",
+   "Wildgoats'"
+  ],
+  "belonging_beside_paren_texts": [
+   "Diviners' (Oak)",
+   "People's (Gate)"
+  ],
+  "bracket_name_texts": [
+   "[Ben]jamin",
+   "[Ben]jaminite",
+   "Second [Quarter]"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.between_two_names"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.in_the_head_before_a_colon",
+   "slash.in_the_sense_after_a_colon",
+   "slash.between_endings_of_one_word",
+   "slash.before_a_shared_last_word",
+   "slash.between_readings"
+  ],
+  "slash_in_paren": [
+   "slash.in_paren_between_two_endings"
+  ],
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.pronoun_label",
+   "close_paren.pronoun_label",
+   "open_paren.optional_ending",
+   "close_paren.optional_ending",
+   "open_paren.optional_word",
+   "close_paren.optional_word",
+   "open_paren.around_two_endings",
+   "close_paren.around_two_endings",
+   "open_paren.in_the_head_before_a_colon",
+   "close_paren.in_the_head_before_a_colon",
+   "open_paren.after_a_word_in_the_second_part",
+   "close_paren.after_a_word_in_the_second_part",
+   "open_paren.before_a_word_in_the_second_part",
+   "close_paren.before_a_word_in_the_second_part",
+   "open_paren.around_a_part_of_a_name",
+   "close_paren.around_a_part_of_a_name"
+  ],
+  "brackets": [
+   "open_bracket.around_a_grammar_label",
+   "close_bracket.around_a_grammar_label",
+   "open_bracket.around_the_sense_after_a_colon",
+   "close_bracket.around_the_sense_after_a_colon",
+   "open_bracket.around_a_part_of_a_name",
+   "close_bracket.around_a_part_of_a_name"
+  ]
+ },
+ "shapes": [
+  {
+   "id": "comma.between_two_names",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the two names of «Samgar, Nebu-sar-sekim», a text the source gives to two numbers, each filed as one person; this row is the number whose Hebrew does not hold Samgar, which stands in the other's Hebrew; whether the names are one reading or two is the question of B03.",
+   "test": "The whole text, exactly, is «Samgar, Nebu-sar-sekim» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "שרסכים"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "colon.before_the_heads_own_word",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the first part, which names the word, and a second part that only repeats its words («to give: give», «to stand: stand», «to drive out: drive out»), so the row says nothing new; the tags of the sister file TAHOT split 29 of these 29 rows at this colon, second part first, 27 exactly and 2 keeping one part, which backs this reading and no more, since no head on file names this colon; the row prints as written under every answer of B01.",
+   "test": "Take the text before the mark, and if its first three characters are the string «to » take those three away. Take the first character away from the text after the mark. The two results are equal, character for character (terms, first_match).",
+   "count": 29,
+   "examples": [
+    {
+     "key": "שוב"
+    },
+    {
+     "key": "יחל"
+    },
+    {
+     "key": "דבר"
+    }
+   ],
+   "read": 29
+  },
+  {
+   "id": "colon.before_a_piece_that_waits",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the first part, which names the word, and a second part that waits for the next word of a verse to finish it («son: type of», «to call: call by», «voice: [sound of]»); the tags of the sister file TAHOT split 6 of these 6 rows at this colon, second part first, 3 exactly and 3 keeping one part, which backs this reading and no more, since no head on file names this colon; the row prints as written under every answer of B01.",
+   "test": "The whole text, exactly, is one of the strings in waiting_second_part_texts (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "קרא"
+    },
+    {
+     "key": "קול"
+    },
+    {
+     "key": "בעל"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "colon.before_a_bare_small_word",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the first part, which names the word, and a bare small word that says how the word is used in a phrase and cannot stand alone on its card («hand: by», «word: because», «side: beyond»); the tags of the sister file TAHOT split 13 of these 13 rows at this colon, second part first, 11 exactly and 2 keeping one part, which backs this reading and no more, since no head on file names this colon; the row prints as written under every answer of B01.",
+   "test": "The whole text, exactly, is one of the strings in bare_small_word_texts (terms, first_match).",
+   "count": 13,
+   "examples": [
+    {
+     "key": "קרב"
+    },
+    {
+     "key": "יד"
+    },
+    {
+     "key": "עצם"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "colon.between_head_and_sense",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general shape for the colon between the first part, which names the word, and what this row takes the word to mean; the tags of the sister file TAHOT split 518 of these 532 rows at this colon, second part first, 485 exactly and 33 keeping one part, which backs this reading and no more, since no head on file names this colon; the source's second column calls 457 of the 580 rows with a colon a Meaning of another number, and a row of this shape holds a second part of one word on 474 occurrences («hand: power»), of two or more words on 39 («to twist: give birth») and with a mark of its own on 19 («to cut: make(covenant)», «land: country/planet»); what the page prints is the question of B01.",
+   "test": "Not caught above, and the character directly after the mark is a space (terms, first_match).",
+   "count": 532,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "שלח"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 532
+  },
+  {
+   "id": "slash.in_the_head_before_a_colon",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two glosses of the whole word in the first part of a row with a colon («to profane/begin: fruit»), and is ruled with that colon by B01.",
+   "test": "The text after the mark holds the character «:» (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "חלל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "slash.in_the_sense_after_a_colon",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two words of the meaning in the second part of a row with a colon («land: country/planet», «to set: put/give»), and is ruled with that colon by B01.",
+   "test": "The text before the mark holds the character «:» (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "שום"
+    },
+    {
+     "key": "ארץ"
+    },
+    {
+     "key": "בן"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "slash.between_endings_of_one_word",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between endings that share one word («to cut down/off», «to break up/open»), so what follows the slash leans on that word, and the row stays one pill under every answer.",
+   "test": "The whole text, exactly, is one of the strings in endings_on_one_word_texts (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "עדה"
+    },
+    {
+     "key": "גדע"
+    },
+    {
+     "key": "גדר"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "slash.before_a_shared_last_word",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two words that share the last word of the row («to gather/tend figs», «to be/bear firstborn»), so what stands before the slash is not whole without it, and the row stays one pill under every answer.",
+   "test": "The whole text, exactly, is one of the strings in shared_last_word_texts (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "בכר"
+    },
+    {
+     "key": "בלס"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "slash.in_paren_between_two_endings",
+   "mark": "/",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: stands inside round brackets between the two endings of one word in «to draw (up/out)», and the row stays one pill under every answer.",
+   "test": "The whole text, exactly, is «to draw (up/out)» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דלה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "slash.between_readings",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two or three parts that can each stand alone, in a row with no colon («rain/teacher», «servant/slave», «to drag/chew/saw»); nothing in the row says whether they are one meaning said twice or different meanings, and whether the page prints a pill for each is the question of B02.",
+   "test": "The whole text, exactly, is one of the strings in slash_list_texts (terms, first_match).",
+   "count": 40,
+   "examples": [
+    {
+     "key": "עתיק"
+    },
+    {
+     "key": "גיח"
+    },
+    {
+     "key": "משך"
+    }
+   ],
+   "read": 40
+  },
+  {
+   "id": "open_paren.pronoun_label",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the label that tells the gender and number of a pronoun, glued to it («they(fem.)», «you(m.s.)»), and the label stays inside the one reading.",
+   "test": "The whole text, exactly, is one of the strings in pronoun_label_texts (terms, first_match).",
+   "count": 9,
+   "examples": [
+    {
+     "key": "את"
+    },
+    {
+     "key": "אנין"
+    },
+    {
+     "key": "אתן"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "close_paren.pronoun_label",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the label that tells the gender and number of a pronoun, glued to it («they(fem.)», «you(m.s.)»), and the label stays inside the one reading.",
+   "test": "The whole text, exactly, is one of the strings in pronoun_label_texts (terms, first_match).",
+   "count": 9,
+   "examples": [
+    {
+     "key": "את"
+    },
+    {
+     "key": "אנין"
+    },
+    {
+     "key": "אתן"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "open_paren.optional_ending",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens letters that may be added to the word before them («fool(ish)», «labour(er)», «to(wards)»), and the word stays one pill.",
+   "test": "The whole text, exactly, is one of the strings in optional_ending_texts (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "אויל"
+    },
+    {
+     "key": "עמל"
+    },
+    {
+     "key": "אל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "close_paren.optional_ending",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes letters that may be added to the word before them («fool(ish)», «labour(er)», «to(wards)»), and the word stays one pill.",
+   "test": "The whole text, exactly, is one of the strings in optional_ending_texts (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "אויל"
+    },
+    {
+     "key": "עמל"
+    },
+    {
+     "key": "אל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "open_paren.optional_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a word beside the reading that finishes it or says which it is («baked (food)», «to bend (down)», «(right) time», «the man (Adam)»), and the row stays one reading.",
+   "test": "The whole text, exactly, is one of the strings in optional_word_texts (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "גהר"
+    },
+    {
+     "key": "מאפה"
+    },
+    {
+     "key": "אפן"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "close_paren.optional_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a word beside the reading that finishes it or says which it is («baked (food)», «to bend (down)», «(right) time», «the man (Adam)»), and the row stays one reading.",
+   "test": "The whole text, exactly, is one of the strings in optional_word_texts (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "גהר"
+    },
+    {
+     "key": "מאפה"
+    },
+    {
+     "key": "אפן"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "open_paren.around_two_endings",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the two endings of the word before it in «to draw (up/out)», and the row stays one pill under every answer.",
+   "test": "The whole text, exactly, is «to draw (up/out)» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דלה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.around_two_endings",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the two endings of the word before it in «to draw (up/out)», and the row stays one pill under every answer.",
+   "test": "The whole text, exactly, is «to draw (up/out)» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דלה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.in_the_head_before_a_colon",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a word that may be added to the first part of a row with a colon («to come (in): marry»), and it stays with that part under every answer.",
+   "test": "The text after the mark holds the character «:» (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "בוא"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "close_paren.in_the_head_before_a_colon",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a word that may be added to the first part of a row with a colon («to come (in): marry»), and it stays with that part under every answer.",
+   "test": "The text after the mark holds the character «:» (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "בוא"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "open_paren.after_a_word_in_the_second_part",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens what the meaning acts on or goes with, glued after a word of the second part of a row with a colon («to cut: make(covenant)», «to fall: fell(trees)», «eye: before(the eyes)»), and it stays with that word under every answer.",
+   "test": "The text before the mark holds the character «:», and the character directly before the mark is a letter (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "כרת"
+    },
+    {
+     "key": "עין"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_paren.after_a_word_in_the_second_part",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes what the meaning acts on or goes with, glued after a word of the second part of a row with a colon («to cut: make(covenant)», «to fall: fell(trees)», «eye: before(the eyes)»), and it stays with that word under every answer.",
+   "test": "The text before the mark holds the character «:», and the text after the mark is empty (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "כרת"
+    },
+    {
+     "key": "עין"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_paren.before_a_word_in_the_second_part",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens letters that begin the word of the second part of a row with a colon, in «to come (in): (sun)set» and «to come out: (sun)rise», and they stay with that word under every answer.",
+   "test": "The text before the mark holds the character «:», and the character directly before the mark is a space (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "יצא"
+    },
+    {
+     "key": "בוא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.before_a_word_in_the_second_part",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes letters that begin the word of the second part of a row with a colon, in «to come (in): (sun)set» and «to come out: (sun)rise», and they stay with that word under every answer.",
+   "test": "The text before the mark holds the character «:», and the character directly after the mark is a letter (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "יצא"
+    },
+    {
+     "key": "בוא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.around_a_part_of_a_name",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a part of a name, the general shape for such parts; on 99 occurrences it stands before the rest with a space («(Mount) Hermon»), on 61 after the rest with a space («East (Gate)»), on 42 joined by a hyphen («(Beth)-arabah»), and on 1 glued («(Baalah of)Judah»); the source's second column calls 96 of these rows a Part of another number, and the brackets do not say which Hebrew word holds which part: the lines of 5 of these texts have two or more words in their transliteration column, as the line of «Slopes (of Pisgah)» does with one word in its Hebrew column; the name with its part stays one reading.",
+   "test": "Not caught above: every other opening round bracket (terms, first_match).",
+   "count": 203,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "אשפת"
+    },
+    {
+     "key": "נחש"
+    }
+   ],
+   "read": 203
+  },
+  {
+   "id": "close_paren.around_a_part_of_a_name",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a part of a name, the general shape for such parts; on 99 occurrences it stands before the rest with a space («(Mount) Hermon»), on 61 after the rest with a space («East (Gate)»), on 42 joined by a hyphen («(Beth)-arabah»), and on 1 glued («(Baalah of)Judah»); the source's second column calls 96 of these rows a Part of another number, and the brackets do not say which Hebrew word holds which part: the lines of 5 of these texts have two or more words in their transliteration column, as the line of «Slopes (of Pisgah)» does with one word in its Hebrew column; the name with its part stays one reading.",
+   "test": "Not caught above: every other closing round bracket (terms, first_match).",
+   "count": 203,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "אשפת"
+    },
+    {
+     "key": "נחש"
+    }
+   ],
+   "read": 203
+  },
+  {
+   "id": "open_bracket.around_a_grammar_label",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the label «[Obj.]», which stands under the Hebrew word that marks the object of a verb and holds no rendering; whether it prints is the question of B05.",
+   "test": "The whole text, exactly, is «[Obj.]» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "את"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.around_a_grammar_label",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the label «[Obj.]», which stands under the Hebrew word that marks the object of a verb and holds no rendering; whether it prints is the question of B05.",
+   "test": "The whole text, exactly, is «[Obj.]» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "את"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.around_the_sense_after_a_colon",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a meaning set in square brackets in the second part of a row with a colon («to make: [do]», «voice: [sound of]», «master: [master of]»), and it stays with that part under every answer.",
+   "test": "The text before the mark holds the character «:» (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "עשה"
+    },
+    {
+     "key": "קול"
+    },
+    {
+     "key": "בעל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "close_bracket.around_the_sense_after_a_colon",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a meaning set in square brackets in the second part of a row with a colon («to make: [do]», «voice: [sound of]», «master: [master of]»), and it stays with that part under every answer.",
+   "test": "The text before the mark holds the character «:» (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "עשה"
+    },
+    {
+     "key": "קול"
+    },
+    {
+     "key": "בעל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "open_bracket.around_a_part_of_a_name",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens letters or a word of a name that this row's own Hebrew word does not hold («[Ben]jamin», «Second [Quarter]»), and the name stays one reading.",
+   "test": "The whole text, exactly, is one of the strings in bracket_name_texts (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "ימיני"
+    },
+    {
+     "key": "ימין"
+    },
+    {
+     "key": "משנה"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "close_bracket.around_a_part_of_a_name",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes letters or a word of a name that this row's own Hebrew word does not hold («[Ben]jamin», «Second [Quarter]»), and the name stays one reading.",
+   "test": "The whole text, exactly, is one of the strings in bracket_name_texts (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "ימיני"
+    },
+    {
+     "key": "ימין"
+    },
+    {
+     "key": "משנה"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "period.in_a_pronoun_label",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes a short form inside the label of a pronoun («they(masc.)», «you(f.s.)»), and the stop stays inside the one reading.",
+   "test": "The whole text, exactly, is one of the strings in pronoun_label_texts (terms, first_match).",
+   "count": 14,
+   "examples": [
+    {
+     "key": "את"
+    },
+    {
+     "key": "אנין"
+    },
+    {
+     "key": "אתן"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "period.in_a_grammar_label",
+   "mark": ".",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: closes the short form inside «[Obj.]»; whether that row prints is the question of B05.",
+   "test": "The whole text, exactly, is «[Obj.]» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "את"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.after_a_shortened_title",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes the short form of the word mount in «(Mt. Ephron in the) West», inside the one reading.",
+   "test": "The whole text, exactly, is «(Mt. Ephron in the) West» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ים"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.ends_a_bare_half_of_a_name",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands where the rest of the name would go in «Ir-», a row that holds only the first half of a place name; whether it prints is the question of B04.",
+   "test": "The whole text, exactly, is «Ir-» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עיר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.at_the_edge_inside_paren",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: stands at the edge of a part in round brackets and joins it to the rest of the name («Dibon(-gad)», «(Muth-)labben»), inside the one reading.",
+   "test": "The character directly before the mark is «(», or the character directly after the mark is «)» (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "לבן"
+    },
+    {
+     "key": "דיבן"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hyphen.inside_a_word_in_paren",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: joins the parts of a name inside round brackets («(Hamon-gog) Valley», «Beth-(baal-meon)»), inside the one reading.",
+   "test": "The mark sits inside round brackets, and the characters directly before and directly after the mark are letters (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "בארות"
+    },
+    {
+     "key": "בית"
+    },
+    {
+     "key": "גיא"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "hyphen.after_a_part_in_paren",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins a part of a name in round brackets to the part after it («(Beth)-arabah», «(Huram)-abi»), inside the one reading.",
+   "test": "The character directly before the mark is «)» (terms, first_match).",
+   "count": 33,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "חרשים"
+    },
+    {
+     "key": "נחש"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "hyphen.before_a_part_in_paren",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins a part of a name to the part in round brackets after it («Beth-(ashbea)», «Lebo-(Hamath)»), inside the one reading.",
+   "test": "The character directly after the mark is «(» (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "גבעה"
+    },
+    {
+     "key": "בארות"
+    },
+    {
+     "key": "לבוא"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "hyphen.inside_a_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one word or name («be brother-in-law», «Malchi-shua», «peace: well-being»), and they stay together under every answer.",
+   "test": "The characters directly before and directly after the mark are letters (terms, first_match).",
+   "count": 26,
+   "examples": [
+    {
+     "key": "עגלת"
+    },
+    {
+     "key": "מלכישוע"
+    },
+    {
+     "key": "ראשת"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "apostrophe.in_a_bare_half_of_a_name",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: says belonging in a row that holds only the first half of a place name («King's», «Wildgoats'»), whose other half is another Hebrew word; whether it prints is the question of B04.",
+   "test": "The whole text, exactly, is one of the strings in half_name_apostrophe_texts (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "זחלת"
+    },
+    {
+     "key": "מלך"
+    },
+    {
+     "key": "יעל"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "apostrophe.in_a_shortened_word",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands for the letter left out of «isn't?», inside the one reading.",
+   "test": "The whole text, exactly, is «isn't?» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אין"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "apostrophe.of_belonging_in_paren",
+   "mark": "'",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: says belonging inside round brackets («(King's) Highway», «(Diviners') Oak»), inside the one reading.",
+   "test": "The mark sits inside round brackets (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "דרך"
+    },
+    {
+     "key": "אלון"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "apostrophe.of_belonging_before_a_paren",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: says belonging in a word before a part in round brackets («People's (Gate)», «Diviners' (Oak)»), inside the one reading.",
+   "test": "The whole text, exactly, is one of the strings in belonging_beside_paren_texts (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ענן"
+    },
+    {
+     "key": "עם"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "exclamation.closes_a_cry",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a rendering that is a cry or a call («woe!», «O that!», «to go: come!»), and the sign stays with its word under every answer.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "אנא"
+    },
+    {
+     "key": "הן"
+    },
+    {
+     "key": "אבי"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "question_mark.closes_a_question_word",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a rendering that asks («What?», «isn't?»), and the sign stays with its word.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אין"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "grave_accent.opens_a_word_for_a_name",
+   "mark": "`",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a plain word or phrase set between two such signs («`the king`», «`his father`»); the source says nothing of the sign, which stands on 15 lines of its gloss column, and 13 of those lines are filed as a name, and the row stays one reading.",
+   "test": "The text before the mark is empty (terms, first_match).",
+   "count": 14,
+   "examples": [
+    {
+     "key": "סלי"
+    },
+    {
+     "key": "אכל"
+    },
+    {
+     "key": "אחי"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "grave_accent.closes_a_word_for_a_name",
+   "mark": "`",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a plain word or phrase set between two such signs («`great stature`», «`worn out`»); the row stays one reading, with both signs in it, and no answer moves it.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 14,
+   "examples": [
+    {
+     "key": "סלי"
+    },
+    {
+     "key": "אכל"
+    },
+    {
+     "key": "אחי"
+    }
+   ],
+   "read": 14
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no number. The source's own file does, on every line (its eStrong and dStrong numbers, the first two columns), and the store dropped them from the route text, so a number cannot be read from a route. A letters key's texts are the glosses of every line spelt with those letters. Of the 373 keys with more than one text (axis: keys), the rows of 117 tie to one eStrong number, so their texts are meanings of one word, and the rows of 256 tie to two or more numbers, so they hold homonyms or other words of one spelling (example key שער: 7 texts, 7 numbers).",
+  "keys_with_more_than_one_route_text": 373
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Many rows hold two parts with a colon between them: to set: make. The first part names the word. The second part says what this row takes the word to mean. The page prints such a row today as one pill, as written, and goes on doing so until you rule. You can keep that one pill, print a pill for each part, or print a pill for the second part alone. Which? A short list, picked by hand, prints as written under every answer: rows whose second part repeats the first (to give: give), waits for the next word (son: type of) or is a bare small word (hand: by). Rows near them (rule: to rule, house: inside) stay in this question.",
+   "shapes": [
+    "colon.between_head_and_sense",
+    "slash.in_the_head_before_a_colon",
+    "slash.in_the_sense_after_a_colon"
+   ],
+   "occurrences": 538,
+   "options": [
+    {
+     "id": "whole",
+     "means": "One pill with both parts, as written, as today: to set: make."
+    },
+    {
+     "id": "divides",
+     "means": "A pill for each part: to set and make. A row with a slash as well is cut at the colon and at the slash, whatever you rule for rows with a slash and no colon: land: country/planet prints land, country and planet. The same piece then stands on several rows of one card; the page folds an exact repeat on a card, so such a piece prints once."
+    },
+    {
+     "id": "sense_only",
+     "means": "A pill for the second part alone: to set: make prints make. This needs one step of the page's own, because a declaration's pieces must keep every character of the row; until then the row prints as written. It stays in the store as it is. What you give up: where this dictionary gives the word's plain gloss nowhere else on the card, that gloss leaves the card. A second part in square brackets prints with them (to make: [do] prints [do]), and one with a slash prints as written (land: country/planet prints country/planet). The rows on the short list keep both parts: son: type of."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows hold two or three parts with a slash between them and no colon: rain/teacher. Each part can stand alone, and nothing in the row says whether its parts are one meaning said twice or different meanings. Should the page print each part as its own pill? They print as one pill, as written, until you rule.",
+   "shapes": [
+    "slash.between_readings"
+   ],
+   "occurrences": 40,
+   "options": [
+    {
+     "id": "whole",
+     "means": "One pill, as written, as today: rain/teacher."
+    },
+    {
+     "id": "divides",
+     "means": "A pill for each part: rain and teacher. The page cuts at the slash and nowhere else."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B03",
+   "question": "One row holds two names with a comma between them: Samgar, Nebu-sar-sekim. The source gives this same text to two numbers, each filed as one person. This row is the number whose Hebrew does not hold Samgar: that name stands in the other's Hebrew. Are the two names one reading or two here? Today the page prints two pills. Until you rule, this ledger holds the row as one pill.",
+   "shapes": [
+    "comma.between_two_names"
+   ],
+   "occurrences": 1,
+   "options": [
+    {
+     "id": "whole",
+     "means": "One pill, as written: Samgar, Nebu-sar-sekim."
+    },
+    {
+     "id": "divides",
+     "means": "Two pills, as today: Samgar and Nebu-sar-sekim."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B04",
+   "question": "Some rows hold only the first half of a place name, with the other half in another Hebrew word: King's. Such a piece cannot stand alone in a verse. Should the page print these rows as readings? They print as they do today until you rule. To leave them out the page needs one step of its own, because a declaration cannot leave a row out.",
+   "shapes": [
+    "hyphen.ends_a_bare_half_of_a_name",
+    "apostrophe.in_a_bare_half_of_a_name"
+   ],
+   "occurrences": 5,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one pill, as written, as it does today: King's."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B05",
+   "question": "One row holds only a label: [Obj.]. The Hebrew word it stands under only marks the object of a verb, and it gives a translator no word to print in a verse. Should the page print this row as a reading? It prints as it does today until you rule. To leave it out the page needs one step of its own, because a declaration cannot leave a row out.",
+   "shapes": [
+    "open_bracket.around_a_grammar_label",
+    "close_bracket.around_a_grammar_label",
+    "period.in_a_grammar_label"
+   ],
+   "occurrences": 3,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints the row as one pill, as written, as it does today: [Obj.]."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for this row, once it has the one step of its own that this answer needs; until then it prints as it does today. It stays in the store as it is."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and every question of whether a row renders the word it is filed under; the 14 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census, and nothing is struck. It leaves to the page the step that the answer no_pill asks for, since a declaration can cut a row and has no field that leaves a whole row out."
+}

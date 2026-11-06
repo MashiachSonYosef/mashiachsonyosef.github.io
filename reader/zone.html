@@ -2686,6 +2686,33 @@
     if (out.join(";") !== t) return [t.trim()].filter(Boolean);
     return out.map((x) => x.trim()).filter(Boolean);
   };
+  // LEDGER DIVISION (ledger-division-rule-v1, 6 November 2026). The readings
+  // of one store row. A source under a ledger (index.m_sources[m].ledger: the
+  // corpus lane's own declaration of every mark of that dictionary) divides
+  // only where tools/apply-ledger-divisions-v1.mjs wrote the marks into row[7]
+  // from the source's own classifier under the owner's answers; with no slot
+  // the row is one reading, as the source wrote it, brackets and all: the
+  // ledger declared every mark, so nothing here is "damaged" and nothing is
+  // hidden. A source with no ledger (Strong's 1890, whose ledger the owner
+  // tabled) keeps the generic rule above: senses at the pack mark, readings at
+  // the comma rule, a damaged sense held back, or kept whole where asked.
+  // The same function stands in tools/gloss-store-v1.mjs (readingsOf), so the
+  // line baked there and the pill pressed here say one thing.
+  const readingsOfRow = (row, damagedWhole = false) => {
+    const text = String(row[1] ?? "");
+    const src = index.m_sources[row[3]];
+    if (src && src.ledger) {
+      const cuts = Array.isArray(row[7]) ? row[7] : [];
+      if (!cuts.length) { const t = text.trim(); return t ? [t] : []; }
+      const pieces = []; let from = 0;
+      for (const i of cuts) { pieces.push(text.slice(from, i)); from = i + 1; }
+      pieces.push(text.slice(from));
+      return pieces.map((x) => x.trim()).filter(Boolean);
+    }
+    const out = [];
+    for (const sense of senseSplit(text)) { const r = readingSplit(sense); if (r.damaged) { if (damagedWhole) out.push(sense); continue; } out.push(...r.readings); }
+    return out;
+  };
 
   // The chip prints the name the declarations record carries for the posture,
   // never one re-derived from the letters of its key: a dual offer is named
@@ -5057,7 +5084,7 @@
     // the lead record's own bytes for this reading: the pool groups readings
     // case-blind across records, so hit.text can be another record's casing
     const want = spanJoin(hit.text).toLowerCase();
-    const ownText = senseSplit(lead[1]).flatMap((s) => { const r = readingSplit(s); return r.damaged ? [s] : r.readings; })
+    const ownText = readingsOfRow(lead, true)
       .find((x) => spanJoin(x).toLowerCase() === want) || hit.text;
     // the reading's other carriers, those the reader has not switched off
     const also = [...hit.records].sort(EARLIEST_FIRST).filter((r) => r !== lead && !(everySource && sourcesOff.has(r[3])))
@@ -6722,10 +6749,7 @@
       const y = Number.parseInt(year, 10);
       const yr = Number.isInteger(y) ? y : Infinity;
       const nd = isNoDerivs(index.m_sources[mId].licensePosture);
-      (nd ? [String(routeText)] : senseSplit(routeText)).forEach((sense) => {
-        const split = nd ? { readings: [sense], damaged: false } : readingSplit(sense);
-        if (split.damaged) return;
-        split.readings.forEach((reading) => {
+      (nd ? [String(routeText)] : readingsOfRow(row)).forEach((reading) => {
           const key = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : reading.toLowerCase();
           const g = groups.get(key);
           // a piece store row neither dates nor ranks its group (it witnesses
@@ -6737,7 +6761,6 @@
             if (!pr) { g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank)); }
             if (!g.records.includes(row)) g.records.push(row);
           }
-        });
       });
     });
     // WHO CARRIES A READING, OLDEST FIRST. A reading's records came in the
@@ -6765,10 +6788,7 @@
         const y = Number.parseInt(year, 10);
         const yr = Number.isInteger(y) ? y : Infinity;
         const nd = isNoDerivs(index.m_sources[mId].licensePosture);
-        (nd ? [String(routeText)] : senseSplit(routeText)).forEach((sense) => {
-          const split = nd ? { readings: [sense], damaged: false } : readingSplit(sense);
-          if (split.damaged) return;
-          split.readings.forEach((reading) => {
+        (nd ? [String(routeText)] : readingsOfRow(row)).forEach((reading) => {
             const d = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : drawn(reading);
             let g = byDrawn.get(d);
             // a piece store row neither dates nor ranks its group (as above)
@@ -6776,7 +6796,6 @@
             if (!g) { g = { text: reading, year: pr ? Infinity : yr, ledger: pr ? Infinity : Number(rank), records: [] }; byDrawn.set(d, g); groups.set(`\u0000${d}`, g); }
             if (!pr) { g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank)); }
             if (!g.records.includes(row)) g.records.push(row);
-          });
         });
       });
       for (const g of groups.values()) g.records.sort(EARLIEST_FIRST);
@@ -9119,7 +9138,7 @@
         // the record as the source packs it: senses divided by ";", cells by
         // "/" — cells join the way they join everywhere else, and the sense
         // the reader picked is lit where it sits inside the record
-        const dText = (text, verbatim = false) => {
+        const dText = (text, verbatim = false, row = null) => {
           const d = document.createElement("p"); d.className = "d-text";
           // dir=auto reads the first strong character, and a record that
           // opens with its Hebrew lemma laid a whole English sentence out
@@ -9131,6 +9150,19 @@
           d.dir = heb > lat ? "rtl" : "ltr";
           // a NoDerivatives record prints as its provider wrote it, byte for byte
           if (verbatim) { d.textContent = String(text); return d; }
+          // a record of a source under a ledger, where the record is the route,
+          // prints whole as the source wrote it (ledger-division-rule-v1), lit
+          // when the reading the reader holds is one of the row's own
+          const src = row && index.m_sources[row[3]];
+          if (src && src.ledger && String(text) === String(row[1])) {
+            const s = document.createElement("span");
+            const sel = String(selected.text).toLowerCase();
+            const holds = String(text).toLowerCase() === sel || readingsOfRow(row).some((reading) => reading.toLowerCase() === sel);
+            s.className = holds ? "d-sense on" : "d-sense";
+            s.textContent = spanJoin(text);
+            d.append(s);
+            return d;
+          }
           senseSplit(text).forEach((sense, i) => {
             if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
             const s = document.createElement("span");
@@ -9182,7 +9214,7 @@
         const first = groups[0];
         const firstText = first.text;
         const firstGroup = first.rows;
-        body.append(dText(firstText, isNoDerivs((index.m_sources[firstGroup[0][3]] || {}).licensePosture)));
+        body.append(dText(firstText, isNoDerivs((index.m_sources[firstGroup[0][3]] || {}).licensePosture), firstGroup[0]));
         // The M is the one line that never scrolls: it is who says this, and a
         // reading whose source has scrolled out of sight is a reading standing
         // on nothing the reader can see. Everything else about the record —
@@ -9344,7 +9376,7 @@
           if (open && !drawer.childNodes.length) {
             let last = null;
             for (const [text, row] of rest) {
-              if (text !== last) { drawer.append(dText(text)); last = text; }
+              if (text !== last) { drawer.append(dText(text, false, row)); last = text; }
               drawer.append(mLine(row));
             }
           }

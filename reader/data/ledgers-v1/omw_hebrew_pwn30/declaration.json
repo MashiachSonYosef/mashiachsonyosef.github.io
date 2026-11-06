@@ -1,0 +1,1468 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "omw_hebrew_pwn30",
+ "m_ids": [
+  "M43"
+ ],
+ "routes": 4174,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss\" (M43): 4,174 routes (axis: routes), 3,194 letters keys (axis: keys). The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is the Hebrew WordNet of the Open Multilingual Wordnet joined to the data files of Princeton WordNet 3.0, in ledgers/work/ldmprs/source-cache/omw-hebrew-pwn30-2026-07-14/. Through the dictionary store's records every one of the 4,174 routes is tied to one synset, and the record's gloss equals the text after the bar on its line of the source's data file on 4,199 of 4,199 records. The route equals the source's whole gloss on 2,283 routes and is the gloss less its example sentences on 1,891; no route is anything else. So a route comes from one field and no test here stands on a guess about a field. The source's own key is on file in the same folder, in WordNet-3.0.tar.gz: the manual pages doc/man/wndb.5, doc/man/wngloss.7 and doc/man/wninput.5. They say that each synset has one gloss, a text string that provides a definition of what the synset represents, example sentences, or both. They name no sign inside a gloss; a search of what they say on a gloss (builder/02-audit.mjs, source-audit/key-search.json) finds no line that names a comma, semicolon, colon, hyphen, slash or quotation mark, and the round brackets they name are the ones the lexicographer's file puts round the whole gloss, which reach no route. So every shape's meaning here begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one index of the JavaScript string: every route holds only characters of 16 bits. A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and either case. A digit is one of the ten characters 0 to 9. Whitespace is what JavaScript's String.prototype.trim removes, and trimmed means with that removed from both ends. The text is the whole route text as it stands, the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. The text before and the text after the mark are the template's c.before and c.after, never trimmed unless the test says so. What a bracket holds is the template's c.group, the same for an opener and for its closer, and it is not trimmed. Empty means no character at all. Directly before and directly after name the one character next to the mark; at an end of the text no character stands there, so a test that asks for a character there fails. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence. Every string and every list minds case and is matched exact to the character, and no test matches part of a string in a list. The apostrophe in every string is the straight one, U+0027, the backtick is U+0060, and the double quote is U+0022. No test uses a class of case. Two tests that compute a string: THE PIECE AFTER THE MARK: take the text after the mark; if it holds a comma or a semicolon, of any container, keep only what stands before the first of them; trim that; keep its first 40 characters, or all of it if it is shorter; do not trim again, so the result may end in a space. THE FIRST WORD: of a named text, the run of letters and digits that starts at its first character, empty if that character is neither a letter nor a digit or the text is empty; the first word after the mark is the first word of the trimmed text after the mark. THE WORD ROUND THE MARK: three runs put together with nothing between them, the run of letters that ends directly before the mark, the mark itself, and the run of letters that starts directly after the mark; either run may be empty.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test unless the test says so. An occurrence that no shape of its mark takes makes the classifier throw. Not caught above means the shapes listed above it for the same mark.",
+  "wording_pieces_after_semicolon": [
+   "the twelfth month of the ecclesiastic ye",
+   "without involving anyone else",
+   "make clear",
+   "warm and nurturing",
+   "springy",
+   "the comprehensibility of clear expressio",
+   "known closely or intimately",
+   "extremely tired",
+   "completely exhausted",
+   "involving something in commerce",
+   "done by choice",
+   "not forced or compelled",
+   "a dense dark grey fine-grained igneous r",
+   "moral or spiritual cleansing",
+   "the promised and expected deliverer of t",
+   "act presumptuously",
+   "engage in a contest",
+   "measure oneself against others",
+   "keeping away from or preventing from hap",
+   "accept without verification or proof",
+   "single and isolated from others",
+   "a piece of nucleic acid (DNA or RNA) wra",
+   "any of several metabolic disorders marke",
+   "possess knowledge or information about",
+   "tempter of mankind",
+   "master of Hell",
+   "not excessive or extreme",
+   "having a sneering disbelief in e.g. self",
+   "the act of pronouncing judgment based on",
+   "speak humorously",
+   "someone to whom an obligation exists",
+   "the middle of the night",
+   "exceptional or heroic courage when facin",
+   "a main support in a structure",
+   "with no time intervening",
+   "of minor status",
+   "the fundamental observational entity in ",
+   "enlisting people for the army (or for a ",
+   "take to be true",
+   "have a faith",
+   "be a believer",
+   "a feeling of dislike so strong that it d",
+   "being one unit or constituting the full ",
+   "complete",
+   "a conflict in which one faction tries to",
+   "ensuring observance of or obedience to",
+   "also any copper-base alloy containing ot",
+   "a highly addictive morphine derivative",
+   "by comparison to something else",
+   "explicitly stated",
+   "a drawing showing the relation between t",
+   "a woodwind with a conical bore and a dou",
+   "someone who keeps the sheep together in ",
+   "covered with or tinged with the color of",
+   "the processes by which an organism assim",
+   "furthermore",
+   "think much of",
+   "an oblique-angled equilateral parallelog",
+   "make docile and tractable",
+   "cause to happen or occur",
+   "abnormal and hideous",
+   "characterized by progressive and uncontr",
+   "in an intentional manner",
+   "a mouthful",
+   "lacking knowledge of a specific field",
+   "lacking knowledge or sophistication",
+   "higher in rank",
+   "longer in length of tenure or service",
+   "liable to hurt or harm",
+   "become different in essence",
+   "losing one's or its original nature",
+   "devoted to a deity or some religious cer",
+   "legally blameless",
+   "encircle",
+   "speak about others and reveal secrets or",
+   "something that is subject to variation",
+   "being attentive to possible danger",
+   "the main thing you are thinking about",
+   "the main part",
+   "the personification of the infinity of s",
+   "a white powder (a form of calcium sulpha",
+   "taking a patient look",
+   "take into account",
+   "the basic unit of amount of substance ad",
+   "a successful defensive stand",
+   "thrilling",
+   "no longer current",
+   "one who begets or one who gives birth to",
+   "a relative who plays the role of guardia",
+   "a complex entity constructed of many par",
+   "a woman who has an ongoing extramarital ",
+   "carrying into effect",
+   "the activity of conveying information",
+   "lifelike",
+   "be an inhabitant of",
+   "look upon",
+   "judge",
+   "showing a single form or character in al",
+   "the second person in the Trinity (incarn",
+   "put on different clothes",
+   "come to terms",
+   "make a financial settlement",
+   "concede the truth or validity of somethi",
+   "not openly",
+   "characterized by simplicity and (often) ",
+   "the best (or worst) performance ever att",
+   "be in contact with",
+   "the consequence of food deprivation",
+   "showing lack of human sensibility",
+   "open to or concerning the people as a wh",
+   "someone who eats no animal or dairy prod",
+   "a written statement sworn to be true bef",
+   "shadowed or black",
+   "having extensive information or understa",
+   "reciting numbers in ascending order",
+   "the expression of a belief that is held ",
+   "a quality that permits or facilitates ac",
+   "the reason for the action",
+   "that which gives purpose and direction t",
+   "having no positive features",
+   "away from the speaker",
+   "possession with the right to transfer po",
+   "say a prayer",
+   "an official or legal cancellation",
+   "calling off some arrangement",
+   "an entity that can cast a shadow",
+   "determining something by mathematical or",
+   "not at all",
+   "engage the interest of",
+   "not abstract or imaginary",
+   "put on guard",
+   "favorably or with much respect",
+   "not volunteering anything more than nece",
+   "someone who has the obligation of paying",
+   "inactivity resulting in something being ",
+   "not deceitful",
+   "only a short time ago",
+   "leaving nothing to implication",
+   "change the meaning of or be vague about ",
+   "the organic component of soil",
+   "of the highest quality",
+   "a woman's partner in marriage",
+   "having a roof as specified (often used i",
+   "the person being sued or accused",
+   "be of service",
+   "consisting of interconnected parts",
+   "respond favorably to",
+   "a form of silica more opaque than chalce",
+   "arousing aversion or disgust",
+   "the male gamete",
+   "the biblical carob",
+   "not limited or provincial in scope",
+   "the concluding time",
+   "so light as to resemble air",
+   "laying out money or capital in an enterp",
+   "a perfect embodiment of a concept",
+   "a possibility of incurring loss or misfo",
+   "the nutritive and protective gelatinous ",
+   "the biblical sycamore",
+   "the principal organ of digestion",
+   "sincerely felt or expressed",
+   "someone who by long study has gained mas",
+   "having an exaggerated sense of self-impo",
+   "the period from conception to birth when",
+   "continuing or repeating behavior",
+   "become a member of a group or organizati",
+   "divide into halves",
+   "not tall",
+   "in an indifferent manner",
+   "the addition of oxygen to a compound wit",
+   "immediately adjoining without intervenin",
+   "full of misery",
+   "make different",
+   "cause a transformation",
+   "vitally necessary",
+   "similar to the color of a ripe orange",
+   "the trait of being answerable to someone",
+   "pronouncing as wrong or morally culpable",
+   "calculating the sum of two or more numbe",
+   "with everything necessary",
+   "act as a trainer or coach (to)",
+   "the branch of the natural sciences deali",
+   "the fifth month of the ecclesiastical ye",
+   "not absolute or complete",
+   "the horizontal member at the bottom of t",
+   "greet upon arrival",
+   "try to sell (a product)",
+   "go back further",
+   "lower in rank",
+   "shorter in length of tenure or service",
+   "vehement",
+   "bundle of straws or twigs attached to a ",
+   "hard work",
+   "the sixth month of the ecclesiastical ye",
+   "today in Great Britain a person honored ",
+   "ask for",
+   "moving with or capable of moving with hi",
+   "progress in development",
+   "the planet we live on",
+   "a rod of marking substance encased in wo",
+   "a lack of false pride",
+   "having a pH greater than 7",
+   "without much doubt",
+   "an amount spent",
+   "in anticipation",
+   "illegal entrance into premises with crim",
+   "talk with",
+   "on the lookout for possible danger",
+   "leaving a place in an orderly fashion",
+   "found on",
+   "including (either intentionally or accid",
+   "resembling the color of blood or cherrie",
+   "the chromatic color resembling the hue o",
+   "soft wet earth",
+   "impenetrable to sight",
+   "traveling on foot at a fast pace",
+   "deliberately harmful",
+   "all but",
+   "despicable",
+   "containing a great quantity of matter",
+   "lost or especially having died out leavi",
+   "the process of taking in oxygen from inh",
+   "requiring great physical or mental effor"
+  ],
+  "wording_pieces_after_comma": [
+   "stop moving",
+   "believe",
+   "or suppose",
+   "build",
+   "or erect",
+   "abandon",
+   "or leave for another",
+   "select",
+   "or choose from a number of alternatives",
+   "place the foot",
+   "declare a plan for something",
+   "give permission",
+   "single out as important",
+   "the day after",
+   "following the present day",
+   "immature",
+   "by way of addition",
+   "long",
+   "or crave for (something",
+   "chamber",
+   "or separate room within a larger enclose",
+   "or germinate",
+   "or give experimental use to",
+   "or try to establish the existence of"
+  ],
+  "wording_pieces_after_colon": [
+   "the first woman and mother of the human ",
+   "making things out of wood"
+  ],
+  "description_pieces_after_semicolon": [
+   "an important foodstuff and used otherwis",
+   "brother and murderer of Osiris",
+   "source of sesame seed or benniseed and s",
+   "father of Romulus and Remus",
+   "counterpart of Greek Ares",
+   "a common symptom of severe mental disord",
+   "the most abundant element in the earth's",
+   "the only metal that is liquid at ordinar",
+   "the simplest and lightest and most abund",
+   "the most populous country in the world",
+   "the fifth most abundant element in the e",
+   "an important component of most plants an",
+   "largest living bird",
+   "important food and source of oil",
+   "a constituent of all living tissues",
+   "one of the six inert gases",
+   "second most populous country in the worl",
+   "the largest country wholly in Europe"
+  ],
+  "label_heads_before_semicolon": [
+   "comparative of much",
+   "used of physical heat",
+   "especially of petals or leaves in bud",
+   "used of old persons or old trees",
+   "bright-colored",
+   "a quantifier that can be used with count"
+  ],
+  "comma_qualifier_openers": [
+   "as",
+   "especially",
+   "usually",
+   "often",
+   "also",
+   "either",
+   "like",
+   "without",
+   "not",
+   "but",
+   "by",
+   "in",
+   "of",
+   "where",
+   "notably",
+   "thus",
+   "formerly",
+   "both",
+   "used",
+   "e",
+   "with"
+  ],
+  "paren_qualifier_openers": [
+   "especially",
+   "as",
+   "usually",
+   "often",
+   "such",
+   "in",
+   "not",
+   "of",
+   "for",
+   "mostly",
+   "including",
+   "sometimes",
+   "also",
+   "used",
+   "without",
+   "with",
+   "by",
+   "on",
+   "when",
+   "known",
+   "e",
+   "trade",
+   "originally",
+   "approximately",
+   "even",
+   "traditionally",
+   "either",
+   "but",
+   "and",
+   "which",
+   "who",
+   "to"
+  ],
+  "paren_printed_signs": [
+   "-",
+   "."
+  ],
+  "shortened_words": [
+   "o'clock",
+   "d'Unites",
+   "doesn't"
+  ],
+  "note_opener_use_or_habit": [
+   "used",
+   "usually",
+   "often",
+   "sometimes",
+   "frequently",
+   "especially",
+   "chiefly",
+   "mostly",
+   "widely",
+   "commonly",
+   "traditionally",
+   "probably",
+   "worn",
+   "made",
+   "designed",
+   "intended",
+   "suitable",
+   "for"
+  ],
+  "note_opener_verb_with_no_subject": [
+   "has",
+   "have",
+   "is",
+   "are",
+   "can",
+   "may",
+   "contains",
+   "occurs",
+   "secretes",
+   "includes",
+   "implies",
+   "holds",
+   "yields",
+   "hardens",
+   "reaches",
+   "constitutes",
+   "comprises",
+   "consist",
+   "synthesizes",
+   "aids",
+   "uses",
+   "produces",
+   "serves",
+   "lives",
+   "burns",
+   "oxidizes",
+   "hangs",
+   "swings",
+   "reproduce",
+   "feed",
+   "flows",
+   "collects",
+   "preys",
+   "begins"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.between_two_wordings",
+   "comma.in_a_number",
+   "comma.before_a_quoted_example",
+   "comma.before_a_qualifier",
+   "comma.in_one_phrase"
+  ],
+  "comma_in_paren": [
+   "comma.inside_round_brackets"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.between_two_wordings",
+   "semicolon.before_a_further_description",
+   "semicolon.ends_the_text",
+   "semicolon.after_a_label",
+   "semicolon.before_a_note_of_use_or_habit",
+   "semicolon.before_a_verb_with_no_subject",
+   "semicolon.before_a_note"
+  ],
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.in_a_fraction",
+   "slash.in_a_name_of_a_protocol"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.heads_the_text",
+   "close_paren.heads_the_text",
+   "open_paren.holds_a_printed_sign",
+   "close_paren.holds_a_printed_sign",
+   "open_paren.holds_a_note_on_a_cited_word",
+   "close_paren.holds_a_note_on_a_cited_word",
+   "open_paren.holds_another_wording",
+   "close_paren.holds_another_wording",
+   "open_paren.holds_a_qualifier",
+   "close_paren.holds_a_qualifier",
+   "open_paren.holds_what_the_word_before_covers",
+   "close_paren.holds_what_the_word_before_covers"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "semicolon.between_two_wordings",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two wordings of the one meaning this row gives, each standing alone («make free from confusion or ambiguity; make clear»); the source's gloss is one string for one synset, so the second wording offers no different meaning, no sign can tell it from a note, the strings were picked by hand from reading every row, and whether it cuts is the question of B01.",
+   "test": "The piece after the mark is one of the strings in wording_pieces_after_semicolon (terms, first_match).",
+   "count": 299,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "שנאה"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 299
+  },
+  {
+   "id": "semicolon.before_a_further_description",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a description with a naming word of its own that tells one property of the thing («second most populous country in the world»), which may render the word or may only tell one fact of it, picked by hand from reading every row, and whether it cuts is the question of B02.",
+   "test": "The piece after the mark is one of the strings in description_pieces_after_semicolon (terms, first_match).",
+   "count": 18,
+   "examples": [
+    {
+     "key": "סת"
+    },
+    {
+     "key": "מימן"
+    },
+    {
+     "key": "צרפת"
+    }
+   ],
+   "read": 18
+  },
+  {
+   "id": "semicolon.ends_the_text",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the gloss with nothing after it («an aberrant sexual practice;»), a separator left in the source's line, so no piece follows it.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "סטיה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "semicolon.after_a_label",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a short head before the rest of the row: a label that says what the rest applies to («used of old persons or old trees»), or in one row a word that describes the thing the rest names («bright-colored; a float»). It stays with the rest, so the row stays one reading.",
+   "test": "Counted from the start of the text, the first 40 characters of the text before the mark, or all of it if it is shorter, are one of the strings in label_heads_before_semicolon (terms, first_match).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "יותר"
+    },
+    {
+     "key": "הרבה"
+    },
+    {
+     "key": "מצוף"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "semicolon.before_a_note_of_use_or_habit",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a note that says what the thing is used for, how it is as a rule, or which kind it is above all («used for storage», «usually propelled by an internal combustion engine»), which leans on the wording before it and is no reading.",
+   "test": "The first word after the mark is one of the strings in note_opener_use_or_habit (terms, first_match).",
+   "count": 110,
+   "examples": [
+    {
+     "key": "קצרת"
+    },
+    {
+     "key": "תרדמה"
+    },
+    {
+     "key": "סיטונות"
+    }
+   ],
+   "read": 110
+  },
+  {
+   "id": "semicolon.before_a_verb_with_no_subject",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a statement on the thing whose verb has no subject of its own («has a keyboard and display», «secretes pancreatic juice and insulin»), which leans on the wording before it and is no reading.",
+   "test": "The first word after the mark is one of the strings in note_opener_verb_with_no_subject (terms, first_match).",
+   "count": 67,
+   "examples": [
+    {
+     "key": "לבלב"
+    },
+    {
+     "key": "נברשת"
+    },
+    {
+     "key": "אלון"
+    }
+   ],
+   "read": 67
+  },
+  {
+   "id": "semicolon.before_a_note",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, stands before a note that leans on the wording before it, read at every occurrence: of 146 occurrences 35 open with one of «the», «a», «an», «it», «they», «this», «some», «most», «many», «its», which is a sentence with a subject of its own or a further fact («some are domestic pests»), and 111 open with anything else, as a place («native to China and Japan») or a phrase of manner («in the case of people or animals»), counted by builder/figures.mjs.",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 146,
+   "examples": [
+    {
+     "key": "הצפה"
+    },
+    {
+     "key": "קנדלה"
+    },
+    {
+     "key": "סנפיר"
+    }
+   ],
+   "read": 146
+  },
+  {
+   "id": "comma.inside_round_brackets",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: general, stands inside an aside in round brackets, read at every occurrence: of 16 occurrences 4 stand next to «e.g.», and 12 stand elsewhere, as between the items of a list («blows, weapons, or objects such as photographic equipment»); the aside stays with its row.",
+   "test": "The mark's container, the template's c.container, is paren (first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "חרסית"
+    },
+    {
+     "key": "חמד"
+    },
+    {
+     "key": "קדימות"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "comma.between_two_wordings",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two wordings of the one meaning this row gives, each standing alone («come to a halt, stop moving», «expect, believe, or suppose»), picked by hand from reading every row, and whether it cuts is the question of B01.",
+   "test": "The piece after the mark is one of the strings in wording_pieces_after_comma (terms, first_match).",
+   "count": 31,
+   "examples": [
+    {
+     "key": "הניח"
+    },
+    {
+     "key": "עמד"
+    },
+    {
+     "key": "נסה"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "comma.in_a_number",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: groups the digits of a number («2,046 degrees Kelvin»), inside one wording.",
+   "test": "The character directly before the mark is a digit, and the character directly after the mark is a digit (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "נר"
+    },
+    {
+     "key": "קנדלה"
+    },
+    {
+     "key": "ליטר"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "comma.before_a_quoted_example",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: sets one of the source's example sentences behind the wording («travel up, \"We ascended the mountain\"»), which the store's cut of the examples left in this row, and an example is no reading.",
+   "test": "The first character of the trimmed text after the mark, is the double quote (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עלה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.before_a_qualifier",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a phrase that narrows the wording before it («overcome, as with emotions or perceptual stimuli», «give a shine or gloss to, usually by rubbing»), which cannot stand alone as a reading.",
+   "test": "The first word after the mark is one of the strings in comma_qualifier_openers (terms, first_match).",
+   "count": 66,
+   "examples": [
+    {
+     "key": "השתלט"
+    },
+    {
+     "key": "חיב"
+    },
+    {
+     "key": "צהל"
+    }
+   ],
+   "read": 66
+  },
+  {
+   "id": "comma.in_one_phrase",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, stands inside one wording, read at every occurrence: of 141 occurrences 99 stand in a list of words closed by or or and that leans on a head word («decrease in size, extent, or range»), and 42 stand elsewhere, as between two describing words or before a phrase that describes («a small being, human in form, playful»).",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 141,
+   "examples": [
+    {
+     "key": "מערפל"
+    },
+    {
+     "key": "הרגיש"
+    },
+    {
+     "key": "גרעינים"
+    }
+   ],
+   "read": 141
+  },
+  {
+   "id": "colon.between_two_wordings",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two wordings of the one meaning this row gives, each standing alone («the craft of a carpenter: making things out of wood»), picked by hand from reading every row, and whether it cuts is the question of B01.",
+   "test": "The piece after the mark is one of the strings in wording_pieces_after_colon (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "חוה"
+    },
+    {
+     "key": "נגרות"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "colon.before_a_quoted_example",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: sets one of the source's example sentences behind the wording («other emergency: \"mobilization of the troops\"»), which the store's cut of the examples left in this row, and an example is no reading.",
+   "test": "The first character of the trimmed text after the mark, is the double quote (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "גיוס"
+    },
+    {
+     "key": "חיב"
+    },
+    {
+     "key": "אלץ"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "colon.before_a_note",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, stands before what leans on the wording before it, read at every occurrence: of 7 occurrences 5 name what the wording covers («a day of rest and worship: Sunday for most Christians»), and 2 give a note on it («handwear: covers the hand and wrist»).",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "כפפה"
+    },
+    {
+     "key": "הרדוף"
+    },
+    {
+     "key": "גרעינים"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "quote.opens_an_example",
+   "mark": "\"",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens one of the source's example sentences that the store's cut left in the row («\"We ascended the mountain\"»).",
+   "test": "The number of double quotes in the text before the mark is even, zero included (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "גיוס"
+    },
+    {
+     "key": "עלה"
+    },
+    {
+     "key": "אלץ"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "quote.closes_an_example",
+   "mark": "\"",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes one of the source's example sentences that the store's cut left in the row («\"mobilization of the troops\"»).",
+   "test": "The number of double quotes in the text before the mark is odd (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "גיוס"
+    },
+    {
+     "key": "עלה"
+    },
+    {
+     "key": "אלץ"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "open_paren.heads_the_text",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a label at the head of the row that names a field or a usage for the wording after it («(boxing) a blow with the fist», «(of hair) having curls or waves»), which stays with the row.",
+   "test": "The text before the mark is empty (terms, first_match).",
+   "count": 117,
+   "examples": [
+    {
+     "key": "חטיפה"
+    },
+    {
+     "key": "ערעור"
+    },
+    {
+     "key": "סרוק"
+    }
+   ],
+   "read": 62
+  },
+  {
+   "id": "close_paren.heads_the_text",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a label at the head of the row that names a field or a usage for the wording after it («(music) the speed at which a composition is to be played»), which stays with the row.",
+   "test": "The text before the mark is exactly «(» followed by what the bracket holds (terms, first_match).",
+   "count": 117,
+   "examples": [
+    {
+     "key": "חטיפה"
+    },
+    {
+     "key": "ערעור"
+    },
+    {
+     "key": "סרוק"
+    }
+   ],
+   "read": 62
+  },
+  {
+   "id": "open_paren.holds_a_printed_sign",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a bracket round a sign that the row describes («a punctuation mark (.)»), which is printed to show the sign.",
+   "test": "What the bracket holds is one of the strings in paren_printed_signs (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מקף"
+    },
+    {
+     "key": "נקדה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.holds_a_printed_sign",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a bracket round a sign that the row describes («a punctuation mark (.)»), which is printed to show the sign.",
+   "test": "What the bracket holds is one of the strings in paren_printed_signs (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מקף"
+    },
+    {
+     "key": "נקדה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.holds_a_note_on_a_cited_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a note on a word the row cites between a backtick and an apostrophe («(`member' is a euphemism)»), and a note is no reading.",
+   "test": "The first character of what the bracket holds is the backtick (terms, first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "פין"
+    },
+    {
+     "key": "ותיק"
+    },
+    {
+     "key": "עוגיה"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "close_paren.holds_a_note_on_a_cited_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a note on a word the row cites between a backtick and an apostrophe («(`biscuit' is the British term)»), and a note is no reading.",
+   "test": "The first character of what the bracket holds is the backtick (terms, first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "פין"
+    },
+    {
+     "key": "ותיק"
+    },
+    {
+     "key": "עוגיה"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "open_paren.holds_another_wording",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a turn of the wording before it, opened by or («the state of being friends (or friendly)»), which leans on that wording and has no head word of its own, so it stays in the one reading.",
+   "test": "The first word of what the bracket holds is «or» (terms, first_match).",
+   "count": 43,
+   "examples": [
+    {
+     "key": "סלת"
+    },
+    {
+     "key": "הבטחה"
+    },
+    {
+     "key": "בונוס"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "close_paren.holds_another_wording",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a turn of the wording before it, opened by or («a gentle affectionate stroking (or something resembling it)»), which leans on that wording and has no head word of its own, so it stays in the one reading.",
+   "test": "The first word of what the bracket holds is «or» (terms, first_match).",
+   "count": 43,
+   "examples": [
+    {
+     "key": "סלת"
+    },
+    {
+     "key": "הבטחה"
+    },
+    {
+     "key": "בונוס"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "open_paren.holds_a_qualifier",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a phrase that narrows or adds to the wording before it («a pause from doing something (as work)», «(especially written ones)»), which stays in the one reading.",
+   "test": "The first word of what the bracket holds is one of the strings in paren_qualifier_openers (terms, first_match).",
+   "count": 307,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "שער"
+    },
+    {
+     "key": "גומי"
+    }
+   ],
+   "read": 76
+  },
+  {
+   "id": "close_paren.holds_a_qualifier",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a phrase that narrows or adds to the wording before it («(usually arrived at after discussion)», «(especially written ones)»), which stays in the one reading.",
+   "test": "The first word of what the bracket holds is one of the strings in paren_qualifier_openers (terms, first_match).",
+   "count": 307,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "שער"
+    },
+    {
+     "key": "גומי"
+    }
+   ],
+   "read": 76
+  },
+  {
+   "id": "open_paren.holds_what_the_word_before_covers",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, opens words the bracket supplies, read at every occurrence: of 104 pairs 50 hold or or and, naming what the word before covers («(pedestrians or vehicles)»), and 54 hold anything else, as another name for it or a word it takes («(rock salt)»); the words stay in the one reading.",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 104,
+   "examples": [
+    {
+     "key": "ימרה"
+    },
+    {
+     "key": "העלה"
+    },
+    {
+     "key": "הבין"
+    }
+   ],
+   "read": 87
+  },
+  {
+   "id": "close_paren.holds_what_the_word_before_covers",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, closes words the bracket supplies, read at every occurrence: of 104 pairs 50 hold or or and, naming what the word before covers («(goods or works of art etc.)»), and 54 hold anything else, as another name for it or a word it takes («(thirst)»); the words stay in the one reading.",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 104,
+   "examples": [
+    {
+     "key": "ימרה"
+    },
+    {
+     "key": "העלה"
+    },
+    {
+     "key": "הבין"
+    }
+   ],
+   "read": 87
+  },
+  {
+   "id": "hyphen.names_itself",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: is the sign the row describes, printed between round brackets to show it («a punctuation mark (-)»).",
+   "test": "The character directly before the mark is «(», and the character directly after the mark is «)» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מקף"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.in_a_double_hyphen",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is one of two hyphens that set an aside into one wording, where a dash would stand («attributes--behavioral, temperamental»).",
+   "test": "The character directly before the mark is a hyphen, or the character directly after the mark is a hyphen (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "אישיות"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "hyphen.between_two_digits",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the two ends of a range of numbers («winds 64-72 knots»), inside one wording.",
+   "test": "The character directly before the mark is a digit, and the character directly after the mark is a digit (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "סערה"
+    },
+    {
+     "key": "סופה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hyphen.joins_one_word",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: joins the parts of one hyphenated word («milk-secreting», «long-eared»), which stays one word.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 123,
+   "examples": [
+    {
+     "key": "פשטידה"
+    },
+    {
+     "key": "ערוץ"
+    },
+    {
+     "key": "סנפיר"
+    }
+   ],
+   "read": 52
+  },
+  {
+   "id": "grave_accent.opens_a_cited_word",
+   "mark": "`",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens a word the row cites and does not use, closed by an apostrophe («`member'», «`biscuit'»), the way this source writes a quoted word.",
+   "test": "The character directly after the mark is a letter (terms).",
+   "count": 54,
+   "examples": [
+    {
+     "key": "פין"
+    },
+    {
+     "key": "לגמרי"
+    },
+    {
+     "key": "ונוס"
+    }
+   ],
+   "read": 50
+  },
+  {
+   "id": "apostrophe.closes_a_cited_word",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes a word the row cites and does not use, opened by a backtick («`too'», «`morning star'»), the way this source writes a quoted word.",
+   "test": "The text before the mark holds a backtick, and no apostrophe stands after the last backtick in that text (terms, first_match).",
+   "count": 54,
+   "examples": [
+    {
+     "key": "פין"
+    },
+    {
+     "key": "לגמרי"
+    },
+    {
+     "key": "ונוס"
+    }
+   ],
+   "read": 50
+  },
+  {
+   "id": "apostrophe.before_the_s_of_belonging",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands before the s that says one thing belongs to another («one's», «the earth's surface»), inside one wording.",
+   "test": "The character directly before the mark is a letter, the character directly after the mark is «s», and no letter stands directly after that «s»; the end of the text counts as no letter (terms, first_match).",
+   "count": 63,
+   "examples": [
+    {
+     "key": "חלק"
+    },
+    {
+     "key": "ערר"
+    },
+    {
+     "key": "תנע"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "apostrophe.in_a_shortened_word",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands for letters left out of one word («o'clock», «d'Unites»), inside one wording.",
+   "test": "The word round the mark is one of the strings in shortened_words (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "מטר"
+    },
+    {
+     "key": "מול"
+    },
+    {
+     "key": "חבורה"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "apostrophe.after_a_plural_s",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes a word in s to say that something belongs to several («opponents'»), inside one wording.",
+   "test": "The character directly before the mark is «s», and no letter stands directly after the mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "כדורגל"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.names_itself",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: is the sign the row describes, printed between round brackets to show it («a punctuation mark (.)»).",
+   "test": "The character directly before the mark is «(», and the character directly after the mark is «)» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "נקדה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.in_three_dots",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is one of three dots that say a number runs on («2.718282...»), inside one wording.",
+   "test": "The character directly before the mark is a period, or the character directly after the mark is a period (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "אי"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "period.in_a_decimal_number",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands between the whole part and the rest of a decimal number («1.094 yards», «1.75 pints»), inside one wording.",
+   "test": "The character directly before the mark is a digit, and the character directly after the mark is a digit (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "מטר"
+    },
+    {
+     "key": "אי"
+    },
+    {
+     "key": "ליטר"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "period.inside_e_g",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: is one of the two periods of the shortening «e.g.», which opens an instance inside one wording.",
+   "test": "Either the character directly before the mark is «e» and the character directly after the mark is «g», or the last three characters of the text before the mark are «e.g» (terms, first_match).",
+   "count": 18,
+   "examples": [
+    {
+     "key": "ציני"
+    },
+    {
+     "key": "הרגיש"
+    },
+    {
+     "key": "גרעינים"
+    }
+   ],
+   "read": 18
+  },
+  {
+   "id": "period.ends_etc",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes the shortening «etc.», which says a list inside one wording goes on.",
+   "test": "The last three characters of the text before the mark are the letters e, t and c, in that order (terms, first_match).",
+   "count": 29,
+   "examples": [
+    {
+     "key": "שיחה"
+    },
+    {
+     "key": "הנוצרי"
+    },
+    {
+     "key": "פקק"
+    }
+   ],
+   "read": 29
+  },
+  {
+   "id": "slash.in_a_fraction",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the two numbers of a fraction («1/60»), inside one wording, and offers no second reading.",
+   "test": "The character directly before the mark is a digit, and the character directly after the mark is a digit (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "נר"
+    },
+    {
+     "key": "קנדלה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "slash.in_a_name_of_a_protocol",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside the one name «TCP/IP», and offers no second reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מרשתת"
+    },
+    {
+     "key": "אינטרנט"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "asterisk.names_itself",
+   "mark": "*",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is the sign the row describes, printed to show it («a star-shaped character * used in printing»).",
+   "test": "The character directly before the mark is the space character, and the character directly after the mark is the space character (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "כוכבית"
+    },
+    {
+     "key": "כוכב"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "low_line.joins_two_words",
+   "mark": "_",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins two words where a space would stand («most_recently»), the way this source writes a word of two parts in its word lists, here inside a gloss.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "לאחרונה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "percent_sign.after_a_number",
+   "mark": "%",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: says the number before it is a share of a hundred («approximately 1% of the earth's atmosphere»), inside one wording.",
+   "test": "The character directly before the mark is a digit (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ארגון"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source tells two meanings under one Hebrew word apart by the synset's number, and the route store does not carry it; the dictionary store's record keeps it (its loc). The source's own files carry that id and the store dropped it. By the audit each text under a key comes from one synset, and on all 644 of the 644 keys with more than one text each text is a synset of its own (axis: keys; example key אישית). WordNet does not separate homonyms from senses: a synset is one meaning, however its words are related, so this count holds both.",
+  "keys_with_more_than_one_route_text": 644
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some rows give two wordings of one meaning, with a semicolon, a comma or a colon between them: make free from confusion or ambiguity; make clear. In this dictionary a row is one meaning of the word, so by the source's own account the second wording offers no different meaning. No sign in the row can tell a second wording from a note, so these rows were picked by hand. Today the page never cuts at a semicolon or a colon, and it cuts at a comma where a piece is short. Should these marks cut the row? From the day this is wired, each of these rows prints whole. This answer holds whatever you answer to the other question, and each answer cuts only at its own marks.",
+   "shapes": [
+    "semicolon.between_two_wordings",
+    "comma.between_two_wordings",
+    "colon.between_two_wordings"
+   ],
+   "occurrences": 332,
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints each wording as a reading of its own: make free from confusion or ambiguity and make clear. It cuts only at these marks. A word like or that opens a wording stays in it, and a label or a note stays with the wording it stands beside, even where it speaks of both."
+    },
+    {
+     "id": "whole",
+     "means": "The page prints each row as one reading, as written: make free from confusion or ambiguity; make clear. For a row with a comma that the page cuts today, this is a change from today."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows add, after a semicolon, a description with a naming word of its own that tells one property of the thing. One row reads illusory perception, then after a semicolon, a common symptom of severe mental disorder. In this dictionary a row is one meaning of the word. Such a description may render the word or may only say something about it, and no sign in the row can tell, so these rows were picked by hand. Today the page never cuts at a semicolon. Should these semicolons cut the row? Until you rule the page prints each of these rows whole. This answer holds whatever you answer to the other question, and each answer cuts only at its own marks.",
+   "shapes": [
+    "semicolon.before_a_further_description"
+   ],
+   "occurrences": 18,
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints the wording and the description as readings of their own: illusory perception and a common symptom of severe mental disorder. It cuts only at these semicolons, and a note stays with the piece it stands beside."
+    },
+    {
+     "id": "whole",
+     "means": "The page prints each row as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and every question of whether a row renders the word it is filed under; the 16 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census, and nothing is struck. A note after a wording stays in that wording's piece under the answer divides, since version 1.1 has no piece for a note."
+}

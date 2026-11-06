@@ -1,0 +1,294 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "openscriptures_lexical_index",
+ "m_ids": [
+  "M33"
+ ],
+ "routes": 138,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Open Scriptures Hebrew Lexical Index\" (M33): 138 routes (axis: routes), 134 letters keys (axis: keys). The definition field of the same row equals the route text on 138 of the routes. The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is the Open Scriptures HebrewLexicon's LexicalIndex.xml, and each of the 138 routes equals, exactly, the one definition element of an entry filed under the same letters, as the dictionary store's records of M33 show; all 339 records there hold one definition element each. So a route comes from one field, and no test here stands on a guess about a field. The source's own key is on file: its documentation at commit 21c9add13bc7 (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M5-openscriptures-HebrewLexicon-21c9add.pdf.txt, the section Lexical Index). It says that the definition element holds a simple definition, in general the first BDB definition, and for a proper name the first Strong usage, with problematic cases decided on their own merit. Of the signs in these routes it speaks of none: its 341 lines hold no line that names the margin, the word Compare, the article, a hyphen, a full stop or a plural ending; its 1 line with the word See sends the reader to a list of language codes, and its 1 line that names parentheses speaks of how BDB numbers its senses (source-audit/key-search.json). A second key stands on file for one sign: the section SIGNS EMPLOYED of Strong's own plan (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M14-strongs-scan-first12pages.txt, the text of a scan). It says that round brackets in the renderings from the King James Version denote a word or syllable sometimes given with the principal word to which it is annexed. It reaches the 2 rows with an ending in round brackets, because the source files each as a name and takes a name's text from the first Strong usage, and by entry number each Strong's list opens with the row's exact text. That section names no hyphen. So the two round-bracket shapes of those rows name the plan and do not begin \"unverified:\", the hyphen's meaning keeps it and says the plan backs its reading only, and the meaning of 9 of the 11 shapes begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). No test asks for a letter, a digit or whitespace, or for uppercase or lowercase as a class. A space is the character U+0020 and no other. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. The text after the mark is the template's c.after. What the bracket holds is the template's c.group: the text between this bracket and its partner, as it stands. What the bracket around the mark holds is the template's c.inner: the text inside the innermost bracket the mark sits in, as it stands. Exactly means equal character for character. A string stands between « and », which are not part of it; a full stop after » belongs to the sentence. Every string and every list minds case and is matched exact to the character. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here takes an occurrence without a test.",
+  "unbalanced": "The ask's helper of rule 3, unchanged. Read the text from its first character to its last with an empty stack. At an opener, one of «(», «[», «<», «{», put it on the stack. At a closer, one of «)», «]», «>», «}»: if the stack holds something and its top is this closer's own opener, take the top off; otherwise stop, the text does not balance. If the stack still holds something after the last character, the text does not balance. Otherwise it balances.",
+  "before_a_pointing_word": "Two steps, in order. One: the character directly after the mark is a space; where the mark ends the text no character stands there and the step fails. Two: the text after that space, to the end of the text, is exactly one of the strings in pointing_words.",
+  "pointing_words": [
+   "Compare",
+   "See"
+  ],
+  "endings_that_may_join": [
+   "-s"
+  ]
+ },
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.in_unbalanced_text",
+   "open_paren.holds_the_margin_note",
+   "open_paren.holds_an_ending_that_may_join",
+   "open_paren.holds_the_note_on_the_article",
+   "close_paren.holds_the_margin_note_before_a_pointing_word",
+   "close_paren.holds_the_margin_note",
+   "close_paren.holds_an_ending_that_may_join",
+   "close_paren.holds_the_note_on_the_article"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "period.in_unbalanced_text",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: ends the name before a round bracket whose note the source's line breaks off inside a word («Dibon. (Als»).",
+   "test": "The whole text does not balance, by the steps in unbalanced (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דיבן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.before_a_pointing_word",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends the word or name before a word that points at another entry without naming it («Kadesh. Compare»).",
+   "test": "The steps in before_a_pointing_word, with the list pointing_words, hold for the mark (terms, first_match).",
+   "count": 79,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "עקן"
+    },
+    {
+     "key": "יקבצאל"
+    }
+   ],
+   "read": 79
+  },
+  {
+   "id": "open_paren.in_unbalanced_text",
+   "mark": "(",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens a note that the source's line breaks off inside a word, so no closing bracket follows («Dibon. (Als»).",
+   "test": "The whole text does not balance, by the steps in unbalanced (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דיבן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_the_margin_note",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the note that this form of the name comes from the margin («Nephisesim (from the margin)»).",
+   "test": "What the bracket holds is exactly «from the margin» (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "נפישסים"
+    },
+    {
+     "key": "נפוסים"
+    },
+    {
+     "key": "שמיר"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_paren.holds_an_ending_that_may_join",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens what Strong's own plan, in its signs, keys as a word or syllable sometimes given with the principal word it is annexed to, here an ending («Mede(-s)»).",
+   "test": "What the bracket holds is exactly one of the strings in endings_that_may_join (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מדי"
+    },
+    {
+     "key": "מעונים"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.holds_the_note_on_the_article",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the note that the name as written here takes in the article («Hammoleketh (including the article)»).",
+   "test": "What the bracket holds is exactly «including the article» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מלכת"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_the_margin_note_before_a_pointing_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the margin note with no full stop, directly before a word that points at another entry without naming it («Iddo (from the margin) See»).",
+   "test": "What the bracket holds is exactly «from the margin», and the steps in before_a_pointing_word, with the list pointing_words, hold for the mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "יעדו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_the_margin_note",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the note that this form of the name comes from the margin («Nephisesim (from the margin)»).",
+   "test": "What the bracket holds is exactly «from the margin» (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "נפישסים"
+    },
+    {
+     "key": "נפוסים"
+    },
+    {
+     "key": "שמיר"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "close_paren.holds_an_ending_that_may_join",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes what Strong's own plan, in its signs, keys as a word or syllable sometimes given with the principal word it is annexed to, here an ending («Mede(-s)»).",
+   "test": "What the bracket holds is exactly one of the strings in endings_that_may_join (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מדי"
+    },
+    {
+     "key": "מעונים"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.holds_the_note_on_the_article",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the note that the name as written here takes in the article («Hammoleketh (including the article)»).",
+   "test": "What the bracket holds is exactly «including the article» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מלכת"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.opens_an_ending_that_may_join",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: shows that the letters after it join the word before the bracket with nothing between («Mede(-s)»); Strong's own plan keys the round brackets around it and names no such hyphen, so its words back this reading only.",
+   "test": "What the bracket around the mark holds is exactly one of the strings in endings_that_may_join (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מדי"
+    },
+    {
+     "key": "מעונים"
+    }
+   ],
+   "read": 2
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source's own file gives each entry an id and, in its cross-reference element, a Strong's, BDB or TWOT number, and the store dropped them (the dictionary store's record keeps them). Each entry holds one definition, so by the audit each of the 4 keys with more than one text (axis: keys) has a different entry behind each text (example key שמיר, whose 2 texts come from 2 entries), though the route text cannot tell two entries from two spellings of one name. 3 routes stand for two or more entries that share letters and text, which the route text cannot show at all.",
+  "keys_with_more_than_one_route_text": 4
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some rows give a word or a name and then words that lead nowhere: Kadesh. Compare. That last word points at another entry without naming it, and in another row a bracket breaks off inside a word. Those words are no reading. Today the page prints each such row as one reading, as written, and from the day this ledger is wired it still does, unless you choose otherwise. A cut would print those words as a reading of their own, so no answer here cuts. Should the page print only what stands before them? A declaration cannot leave words out, so that answer needs one step of the page's own.",
+   "shapes": [
+    "period.in_unbalanced_text",
+    "period.before_a_pointing_word",
+    "open_paren.in_unbalanced_text",
+    "close_paren.holds_the_margin_note_before_a_pointing_word"
+   ],
+   "occurrences": 82,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written: Kadesh. Compare and Dibon. (Als"
+    },
+    {
+     "id": "before_those_words",
+     "means": "The page prints only what stands before those words, and no full stop before them: Kadesh and Dibon, and Iddo (from the margin) See prints as Iddo (from the margin). It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows hold an ending in round brackets that may join the word before it: Mede(-s). Such a row offers two forms, here Mede and Medes. A cut at the bracket would leave the part in the bracket alone, which is no reading, so no answer here cuts. Today the page prints each such row as one reading, as written, and from the day this ledger is wired it still does, unless you choose otherwise. Should the page print the two forms as two readings? A declaration can only cut, so that answer needs one step of the page's own.",
+   "shapes": [
+    "open_paren.holds_an_ending_that_may_join",
+    "close_paren.holds_an_ending_that_may_join",
+    "hyphen.opens_an_ending_that_may_join"
+   ],
+   "occurrences": 6,
+   "keys": [
+    "מדי",
+    "מעונים"
+   ],
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written: Mede(-s)"
+    },
+    {
+     "id": "two_forms",
+     "means": "The page prints two readings for each row, the row's two forms: Mede and Medes, Mehunim and Mehunims. It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "Nothing in this ledger divides, so a word at the end that points at another entry stays in its row's one piece, as rule 11 has it for a pointer, until the owner answers B01. This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark; the 4 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as what the reading found, and nothing is struck."
+}

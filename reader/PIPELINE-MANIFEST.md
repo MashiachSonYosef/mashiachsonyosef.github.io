@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-06.
 
-**140 rules declared · 128 named by a check · 12 unguarded.**
+**140 rules declared · 129 named by a check · 11 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -69,6 +69,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving` | tools/emit-lane-state-v1.mjs | check-lane-state-v1 |
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-parts-in-card-v1, check-lattice-projection-v1 |
+| `ledger-division-rule-v1-a-ledgered-source-divides-only-where-its-ledger-says-and-the-page-reads-the-division-not-the-rule` | tools/apply-ledger-divisions-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs, tools/regloss-zone.mjs, zone.html | check-ledger-divisions-v1, check-search-v1, check-sense-split-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
 | `licence-columns-rule-v1-the-licence-preference-is-a-baked-order-column-so-the-line-and-the-card-answer-as-one` | tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-card-opens-on-the-line-v1, check-masorah-toggle-v1 |
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
@@ -109,13 +110,12 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now` | tools/apply-route-delta-v1.mjs | **UNGUARDED** |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | check-route-store-exact-k-v1 |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
-| `row-strike-rule-v1-a-row-the-provider-misfiled-is-struck-or-re-keyed-by-a-named-list-and-the-hole-is-typed` | tools/strike-rows-v1.mjs | **UNGUARDED** |
 | `row-strike-rule-v2-a-named-list-strikes-withholds-re-keys-rejoins-or-re-heads-a-row-and-the-hole-is-typed` | tools/strike-rows-v1.mjs | check-store-continuity-v1 |
 | `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1 |
 | `run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling` | tools/project-run-cards-v1.mjs, zone.html | check-run-cards-v1, check-run-line-follows-division-v1, check-run-card-forms-v1 |
 | `script-admission-rule-v1-a-published-word-is-written-in-hebrew-script` | tools/check-script-admitted-v1.mjs | check-script-admitted-v1 |
 | `sense-split-rule-v2` | zone.html | **UNGUARDED** |
-| `sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence` | tools/sense-split-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs | check-provider-characters-v1, check-sense-split-v1 |
+| `sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence` | tools/sense-split-v1.mjs, tools/apply-ledger-divisions-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs | check-provider-characters-v1, check-sense-split-v1 |
 | `serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights` | tools/serve-from-body-v1.mjs | check-body-is-text-binding-is-rights-v1 |
 | `serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records` | tools/run-restore-v5-fleet-v1.mjs, tools/serve-from-restore-v5.mjs, tools/build-front-door-v1.mjs | check-restore-serve-v1 |
 | `serve-from-stream-rule-v2-the-successor-stream-is-the-text-bridge-v2-is-its-identity-the-binding-is-the-rights` | tools/serve-from-stream-v2.mjs | check-stream-is-text-v1 |
@@ -154,7 +154,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | check-commentary-section-aligned-v1 |
 | `zone-commentary-rule-v3-two-zones-one-coordinate` | tools/build-commentary-sidecar-v2.mjs | check-attachment-grain-v1, check-commentary-in-line-v1, check-commentary-section-aligned-v1 |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs, tools/run-restore-v5-fleet-v1.mjs | check-zone-single-pass-receipts-v1 |
-| `zone-gloss-rule-v4-reading-level-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-page-agrees-with-store-v1 |
+| `zone-gloss-rule-v5-ledger-division-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-ledger-divisions-v1, check-page-agrees-with-store-v1 |
 | `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-shipment-v1.mjs, tools/emit-zone-store-v1.mjs, tools/move-shelf-v1.sh, tools/pull-zones-from-store-v1.mjs, tools/restore-shelf-from-history-v1.mjs, zone.html | check-zone-store-crossing-v1, check-zone-store-reachable-v1, check-zone-store-v1 |
 
 ## What the site publishes
@@ -173,10 +173,11 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 113 tools that are not checks.
+`build.sh` calls 19 of the 114 tools that are not checks.
 
 Not called by any build stage:
 
+- `tools/apply-ledger-divisions-v1.mjs`
 - `tools/apply-lone-letters-v1.mjs`
 - `tools/apply-piece-store-patch-v1.mjs`
 - `tools/apply-route-delta-v1.mjs`

@@ -1,0 +1,62 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+ "m_ids": [
+  "M180",
+  "M148",
+  "M160",
+  "M161",
+  "M154",
+  "M133",
+  "M145",
+  "M167",
+  "M191"
+ ],
+ "routes": 106,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Hebrew Wiktionary source-explicit heading alternates joined to same-entry English translations\" (M180, M148, M160, M161, M154, M133, M145, M167, M191): 106 routes (axis: routes), 55 letters keys (axis: keys). The definition field of the same row equals the route text on 106 of the routes. The source audit (builder/02-audit.mjs and builder/03-rows-look.mjs, evidence about the source and no part of any test): the source is the Hebrew Wiktionary dump in ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/, and the lane's route file there (hewiktionary-explicit-heading-alternate-english-routes-v1.csv.gz, 159 rows, of which this source key serves the routes counted here) joins each other spelling that an entry's heading names after the source's word for also (גם) to the English of that entry's translation template in the same section. Every route has its row in that file (106 of 106), on 106 of the 106 routes the form stands after that word in the heading, and 106 of the 106 routes are tied through the dictionary store's record to one parameter of one call of that template (the 2 routes that hold a mark among them), equal to it exactly on 105 and after taking out direction marks, turning a run of whitespace into one space, trimming and reading the entity for the ampersand on 1. So a route comes from one field, one parameter, and no test here stands on a guess about a field. The source's own key to its signs is on file in the same dump: the guide page ויקימילון:כתיבת ערך חדש (its section on translation) and the template's page תבנית:ת. They say that the several forms of translation of an entry stand as parameters with a pipe between them, that where an entry has several definitions brackets state which definition each translation fits, and that the template names parameters up to 6, the language and the translations, and prints those translations as links to the same name in the other language's Wiktionary, with commas between them; 0 routes stand in parameters past that one. They name no other sign and say nothing of any other mark inside a parameter, and a search of 2,148 pages of the dump's project, template and help namespaces, the talk boards, their archives and the maintenance lists left out (builder/05-key-search.mjs, source-audit/key-search.json), finds no line on translation that names a comma, semicolon, hyphen, apostrophe, slash, full stop or abbreviation. Every mark in the route text stands inside a parameter, and no route here holds a bracket, so the meaning of this ledger's one shape begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. No test asks for a digit, for whitespace, or for uppercase or lowercase as a class. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after. Directly before and directly after name the one character next to the mark; where the mark stands at that end of the text no character stands there, so a test that asks for a character there fails. No test uses a word list or a string, and no test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here takes an occurrence without a test."
+ },
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": "absent",
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "apostrophe.between_two_letters",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: marks the letter left out of one shortened word («let's»), which stays one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "יאלה"
+    },
+    {
+     "key": "ילה"
+    }
+   ],
+   "read": 2
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source tells two entries on one page apart by the pointed heading of each section, and the route store carries neither the page nor the heading; the lane's route file and the dictionary store's record keep them (the record's headwords and loc). A letters key here is the other spelling an entry's heading names after the source's word for also, so the English of one entry can stand under several keys (4 texts stand under two or more keys, axis: texts). By the audit, of the 25 keys with more than one text (axis: keys), 25 have all their texts from one entry (translations of one entry) and 0 from two or more (example key בקיא, whose 7 texts come from one entry).",
+  "keys_with_more_than_one_route_text": 25
+ },
+ "branches": [],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and every question of whether a row renders the form it is filed under; the 5 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as what the reading found and no census, and nothing is struck."
+}

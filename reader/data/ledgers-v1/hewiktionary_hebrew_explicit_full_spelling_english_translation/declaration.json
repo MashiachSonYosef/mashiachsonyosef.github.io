@@ -1,0 +1,301 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+ "m_ids": [
+  "M95",
+  "M116",
+  "M85",
+  "M44",
+  "M135",
+  "M86",
+  "M68",
+  "M130",
+  "M165",
+  "M149",
+  "M157",
+  "M187",
+  "M173",
+  "M195",
+  "M192",
+  "M185"
+ ],
+ "routes": 2322,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Hebrew Wiktionary source-explicit full spellings joined to same-entry English translations\" (M95, M116, M85, M44, M135, M86, M68, M130, M165, M149, M157, M187, M173, M195, M192, M185): 2,322 routes (axis: routes), 1,465 letters keys (axis: keys). The definition field of the same row equals the route text on 2,322 of the routes. The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is the Hebrew Wiktionary dump in ledgers/work/ldmprs/source-cache/wiktionary-hebrew-2026-07-12/, and the lane's route file there (hewiktionary-explicit-full-spelling-english-routes-v1.csv.gz, 3,610 rows, of which this source key serves the routes counted here) joins each spelling an entry lists in its field for a fuller spelling to the English of that entry's translation template. Every route has its row in that file (2,322 of 2,322), and 2,322 of the 2,322 routes are tied through the dictionary store's record to one parameter of one call of that template (all 33 routes that hold a mark among them), equal to it exactly on 2,288 and after taking out direction marks, turning a run of whitespace into one space, trimming and reading the entity for the ampersand on 34. So a route comes from one field, one parameter, and no test here stands on a guess about a field. The source's own key to its signs is on file in the same dump: the guide page ויקימילון:כתיבת ערך חדש (its section on translation) and the template's page תבנית:ת. They say that the several forms of translation of an entry stand as parameters with a pipe between them, that where an entry has several definitions brackets state which definition each translation fits, and that the template names parameters up to 6, the language and the translations, and prints those translations as links to the same name in the other language's Wiktionary, with commas between them; 0 routes stand in parameters past that one. They name no other sign and say nothing of any other mark inside a parameter, and a search of 2,148 pages of the dump's project, template and help namespaces, the talk boards, their archives and the maintenance lists left out (builder/05-key-search.mjs, source-audit/key-search.json), finds no line on translation that names a comma, semicolon, hyphen, apostrophe or slash. Every mark in the route text stands inside a parameter, and no bracket here names a definition, so the meaning of all 10 shapes begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. No test asks for a digit, for whitespace, or for uppercase or lowercase as a class. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after, and what a bracket holds is the template's c.group, the same for an opener and for its closer. Empty means that the named text has no character at all, as at the start or the end of the route. Directly before and directly after name the one character next to the mark or next to the named string; where the mark or the string stands at that end of the text no character stands there, so a test that asks for a character there fails, and a test that says if there is one passes. The whole text, exactly, means that the text equals the named string character for character. The word round the mark means three runs put together, with nothing between them: the run of letters that ends directly before the mark, taken back to the first character that is not a letter or to the start of the text; the mark itself; and the run of letters that begins directly after the mark, taken on to the first character that is not a letter or to the end of the text; either run of letters may be empty. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence and not to the string. The apostrophe in every string of a list is the straight one, U+0027. Every string and every list minds case and is matched exact to the character, so «s» is the lowercase letter. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here takes an occurrence without a test.",
+  "comma_list_texts": [
+   "there is, there are",
+   "coarse,textured",
+   "horror, terror",
+   "opposite, facing",
+   "in light of, considering",
+   "secular object, non-holy object, something profane"
+  ],
+  "semicolon_list_texts_with_a_bracket": [
+   "prove perjury; discredit; impeach (a witness)"
+  ],
+  "carried_over_words": [
+   "Pu'al"
+  ],
+  "paren_narrowing_words": [
+   "sails",
+   "a witness"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.between_words_of_a_list"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.before_a_bracket_at_the_end"
+  ],
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.in_unbalanced_text",
+   "open_paren.narrows_the_word_before",
+   "close_paren.narrows_the_word_before"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "comma.between_words_of_a_list",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside one parameter of the source's translation template, between words a writer typed for what reads as one sense («horror, terror», «coarse,textured», «secular object, non-holy object, something profane»), in 6 routes under 5 letters keys; the source's guide writes two translations with a pipe between parameters and is silent on a comma inside one, and no test can say whether the words after the comma offer a meaning different from the words before it, so whether the comma cuts is the question of B01.",
+   "test": "The whole text, exactly, is one of the strings in comma_list_texts (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "קיים"
+    },
+    {
+     "key": "זוועה"
+    },
+    {
+     "key": "חולין"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "semicolon.before_a_bracket_at_the_end",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between verbs a writer typed inside one parameter, in the route whose list ends in a round bracket («prove perjury; discredit; impeach (a witness)»); these verbs reach across the entry's numbered definitions, where «discredit» fits the second, and the route cannot tell whether the bracket speaks of the last verb alone or of all of them; whether the semicolon cuts is the question of B01, whose answer divides leaves the bracket with the last verb.",
+   "test": "The whole text, exactly, is one of the strings in semicolon_list_texts_with_a_bracket (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "הזם"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hyphen.opens_a_bare_ending",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at the start of a row of one word or part of a word with nothing joined to it, where another part would join («-logy», «-ine», «-piston»); the row is one piece, and whether it prints is the question of B02.",
+   "test": "The text before the mark is empty (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "לוגיה"
+    },
+    {
+     "key": "בוכנאי"
+    },
+    {
+     "key": "ין"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "hyphen.closes_a_bare_beginning",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at the end of a row of one word or part of a word with nothing joined to it, where another part would join («neo-», «tele-», «motor-»); the row is one piece, and whether it prints is the question of B02.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "נאו"
+    },
+    {
+     "key": "טל־"
+    },
+    {
+     "key": "מיני"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one hyphenated word («she-bear», «air-condition», «left-handed person»), which stays one reading; in the route «secular object, non-holy object, something profane» that word stands inside a list of B01 and stays whole inside its piece under either answer.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "מיזג"
+    },
+    {
+     "key": "שעוונית"
+    },
+    {
+     "key": "עקידה"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "apostrophe.in_a_word_carried_over_from_hebrew",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands where the Hebrew spelling has the letter ayin, in the name of a verb pattern carried over into English letters («Pu'al»), and the ledger does not cut it; the row is the name of that pattern, and whether it renders any word in a verse is a question in the list for the store.",
+   "test": "The word round the mark is one of the strings in carried_over_words (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "פועל"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "apostrophe.before_the_s_of_belonging",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before the s that says one thing belongs to another («potter's wheel»), inside one phrase that stays one reading.",
+   "test": "The character directly before the mark is a letter, the character directly after the mark is «s», and the character directly after that «s», if there is one, is not a letter (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אובניים"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.in_unbalanced_text",
+   "mark": "(",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands in a route whose round brackets do not balance, with openers and no closer («(carry (on shoulder», «(serving (penalty»); on the source's right-to-left page a bracket typed at the start of the English shows at its end, mirrored, so the first is read here as the closer of the second, the text is never changed, and nothing divides in such a route.",
+   "test": "The ask's helper unbalanced(text) is true of the whole text: reading the text from its start, an opener goes on a stack, a closer takes the top of the stack off if it is that closer's own opener and otherwise the text does not balance, and the text does not balance if the stack is not empty at its end (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "ריצוי"
+    },
+    {
+     "key": "כיתף"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "open_paren.narrows_the_word_before",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens one or two words that say what the rendering before it is used of («trim (sails)», «impeach (a witness)»), inside one parameter of the template, in one reading; this is not the use the source's guide gives brackets.",
+   "test": "What the bracket holds is one of the strings in paren_narrowing_words (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "הזם"
+    },
+    {
+     "key": "כיוון"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.narrows_the_word_before",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes one or two words that say what the rendering before it is used of («trim (sails)», «impeach (a witness)»), inside one parameter of the template, in one reading; this is not the use the source's guide gives brackets.",
+   "test": "What the bracket holds is one of the strings in paren_narrowing_words (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "הזם"
+    },
+    {
+     "key": "כיוון"
+    }
+   ],
+   "read": 2
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source tells two entries on one page apart by the pointed heading of each section, and the route store carries neither the page nor the heading; the lane's route file and the dictionary store's record keep them (the record's headwords and loc). A letters key here is a spelling an entry lists in its field for a fuller spelling, so several entries can share a key, and the English of one entry stands under each such spelling. By the audit, of the 554 keys with more than one text (axis: keys), 479 have all their texts from one entry (translations of one entry) and 75 from two or more (example key חוסן, whose 10 texts come from 2 entries).",
+  "keys_with_more_than_one_route_text": 554
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some rows hold several words with a comma or a semicolon between them: horror, terror. In this dictionary a row is one translation from the source's page, and the source's own guide writes two translations with another sign, so that each has a row of its own; here the words stand inside one row. No sign in the row can tell whether the words after the sign mean something different from the words before it. Should these signs cut the row? Today the page cuts at those commas and not at those semicolons; this ledger as it rests prints all of these rows whole, from the day it is wired. This answer holds whatever you answer to the other question.",
+   "shapes": [
+    "comma.between_words_of_a_list",
+    "semicolon.before_a_bracket_at_the_end"
+   ],
+   "occurrences": 9,
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints the words between the signs as readings of their own. The row horror, terror prints horror and terror, as it does today; the row prove perjury; discredit; impeach (a witness), whole today, prints prove perjury, discredit and impeach (a witness): the round bracket at its end stays with the last words before it."
+    },
+    {
+     "id": "whole",
+     "means": "The page prints each row as one reading, as written: horror, terror. For the rows with a comma this is a change from today."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows hold one word or part of a word, with a hyphen at one end and nothing joined to it: neo-. Such a piece is written to join another word and cannot stand alone in a verse. Should the page print these rows as readings? Today the page prints each of these rows as one reading, as written; this ledger as it rests prints them the same, from the day it is wired. To leave them out the page needs one step of its own, because a declaration cannot leave a row out. This answer holds whatever you answer to the other question.",
+   "shapes": [
+    "hyphen.opens_a_bare_ending",
+    "hyphen.closes_a_bare_beginning"
+   ],
+   "occurrences": 14,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written, as it does today: neo-."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and every question of whether a row renders the word it is filed under; the 41 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as what the reading found and no census, and nothing is struck. It leaves to the page the step that the answer no_pill asks for, since a declaration can cut a row and has no field that leaves a whole row out."
+}

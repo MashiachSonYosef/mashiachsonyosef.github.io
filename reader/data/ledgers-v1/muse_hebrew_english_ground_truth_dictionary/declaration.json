@@ -1,0 +1,33 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "muse_hebrew_english_ground_truth_dictionary",
+ "m_ids": [
+  "M6",
+  "M62"
+ ],
+ "routes": 24514,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"MUSE large-scale ground-truth Hebrew-English bilingual dictionary\" (M6, M62): 24,514 routes (axis: routes; 23,065 under M6, 1,449 under M62), 20,057 letters keys (axis: keys). No route holds a mark, whitespace, a digit or an uppercase letter, the definition field of the same row equals the route text on 24,514 of the routes, and the store cut none of them. The source audit (builder/source-audit.mjs) compares each route with the dictionary store's records of M6 and M62 and with the source's own two files, en-he.txt and he-en.txt of facebookresearch/MUSE at commit 3159355b, in the source cache ledgers/work/ldmprs/source-cache/muse-hebrew-english-2026-07-14/: each of the 24,514 routes has one record, each record holds one headword and one word in its R field, its g and D fields are empty, and the source line its loc field names holds that pair on 24,514 of them; the audit is evidence about the source and no part of any test. The source's own files hold 120 lines (he-en.txt) and 130 lines (en-he.txt) with a mark in the English column, and the pair of no line that holds a mark in either column is a route. The source's own key to its signs: none found. Its README, in the same source cache, is the only documentation of the source there; it says how the dictionaries were made and links their files, and it gives no account of any sign; a search of <tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/ for the source's name in capitals and for its repository found no file. No shape exists, so no meaning begins \"unverified:\".",
+ "definitions": {},
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": "absent",
+  "brackets": "absent"
+ },
+ "shapes": [],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number, and the source has none for the store to drop: each line of its two files is two columns split by a tab, with no space in a column and so no entry id, sense number or part of speech beside the word. The only identity is the line number, which the dictionary store's record keeps and the route row does not carry. So two routes under one letters key may be two senses, two spellings or two homonyms and nothing tells them apart: the key שינה holds \"sheena\", \"changed\", \"sleeping\". The count below takes all of those together.",
+  "keys_with_more_than_one_route_text": 3554
+ },
+ "branches": [],
+ "not_done_here": "This ledger divides nothing and declares no shape because no route holds a mark, and it leaves to the store the rows that hold no mark and may be no reading, which rows-for-the-store.json lists by stated tests as questions, with nothing struck."
+}

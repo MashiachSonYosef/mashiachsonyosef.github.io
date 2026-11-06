@@ -50,7 +50,6 @@ import { basename, dirname, join } from "node:path";
 import { FILE_24_ON_THE_DOOR } from "./door-filing-v1.mjs";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
-import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 import { exactK, K_RULE_ID } from "./k-normalization-v2.mjs";
 import { isSidecar } from "./zones-on-disk-v1.mjs";
 
@@ -532,10 +531,7 @@ const titleReading = (tokens, en) => {
   if (!want) return null;
   const hits = routes.filter((row) => {
     if (!STORE.index.m_sources[row[3]]) return false;
-    return STORE.packSplit(row[1]).some((pack) => {
-      const r = readingSplit(pack);
-      return !r.damaged && r.readings.some((x) => String(x).trim().toLowerCase() === want);
-    });
+    return STORE.readingsOf(row).some((x) => String(x).trim().toLowerCase() === want);
   });
   if (!hits.length) return null;
   // fullest license first, and among equals the oldest source — the same
@@ -561,10 +557,7 @@ const glossSource = (key, text) => {
   const want = String(text).toLowerCase();
   const hits = routes.filter((row) => {
     if (!STORE.index.m_sources[row[3]]) return false;
-    return STORE.packSplit(row[1]).some((sense) => {
-      const r = readingSplit(sense);
-      return !r.damaged && r.readings.some((x) => x.toLowerCase() === want);
-    });
+    return STORE.readingsOf(row).some((x) => x.toLowerCase() === want);
   });
   if (!hits.length) return null;
   hits.sort((a, c) => {

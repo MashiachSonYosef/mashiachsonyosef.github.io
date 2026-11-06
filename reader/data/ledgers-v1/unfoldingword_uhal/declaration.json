@@ -1,0 +1,129 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "unfoldingword_uhal",
+ "m_ids": [
+  "M7"
+ ],
+ "routes": 286,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"unfoldingWord Hebrew-Aramaic Lexicon\" (M7): 286 routes (axis: routes), 77 letters keys (axis: keys). The definition field of the same row equals the route text on 286 of the routes. The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is the unfoldingWord lexicon in ledgers/work/ldmprs/source-cache/unfoldingword-uhal-2026-07-12/en_uhal/, one file to an entry, each sense with a Glosses field whose items stand between semicolons. Each of the 286 routes is one whole item of a Glosses field of a record of the dictionary store whose headword's letters equal the route's key, and comes from one entry, so a route comes from one field and no test here stands on a guess about a field. The source's own key to its signs was looked for: the 4 files of the copy that are no entry (LICENSE, Project Explanation.md, README.md, Volunteer job description.md). README.md says what a gloss is (\"English translation equivalents in one or a few words\") and that the starting point of the lexicon is the Brown-Driver-Briggs lexicon. No line of those files names a comma, semicolon, hyphen, apostrophe, bracket, slash or the words passive or reflexive (builder/05-key-search.mjs, source-audit/key-search.json), and none of the 5 marks of this ledger has its use stated there, so the meaning of all 5 shapes begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. No test asks for a digit, for whitespace, or for uppercase or lowercase as a class. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after. Directly before and directly after name the one character next to the mark; where the mark stands at that end of the text no character stands there, so a test that asks for a character there fails. A text closes with a string when the last characters of the whole text are that string, character for character. What the pair holds is the template's c.group: the characters between an opener and its closer, nothing trimmed; it is one of a list's strings when it equals that string character for character. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence. Every string and every list minds case and is matched exact to the character. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here takes an occurrence without a test.",
+  "descriptions_that_close_a_list_of_names": [
+   "the sons of Mahol"
+  ],
+  "voice_labels": [
+   "passive",
+   "reflexive"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.between_men_under_one_description"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.voice_label",
+   "close_paren.voice_label"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "comma.between_men_under_one_description",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts the men one gloss names («and Heman») from one another and from the words that close it and say what they all are («the sons of Mahol»); the gloss stays whole, because a cut would print other men's names as readings of this one.",
+   "test": "The text closes with one of the strings in descriptions_that_close_a_list_of_names (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "דרע"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "open_paren.voice_label",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a label that says how the words before it are meant («(passive)»), which stays with those words as one reading.",
+   "test": "What the pair holds is one of the strings in voice_labels (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אור"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.voice_label",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a label that says how the words before it are meant («(reflexive)»), which stays with those words as one reading.",
+   "test": "What the pair holds is one of the strings in voice_labels, the same test as the opener's (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אור"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one hyphenated word («foster-father»), which stays one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "הרר"
+    },
+    {
+     "key": "איתנים"
+    },
+    {
+     "key": "ענקי"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "apostrophe.in_a_possessive",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: marks the possessive of one word («one's») inside one reading.",
+   "test": "The character directly before this apostrophe is a letter, and the character directly after this apostrophe is a letter (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ציר"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source's own files carry one that the route store dropped: each entry is its own file, named for its Strong's number (H0215.md), with that number under its Word data, and the dictionary store's record keeps the file's name and text; a route keeps neither. By the audit, of the 41 keys with more than one text (axis: keys), 39 have all their texts from one entry (its glosses) and 2 from two or more (example key אור, whose 13 texts come from the entries H0215 and H0216).",
+  "keys_with_more_than_one_route_text": 41
+ },
+ "branches": [],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and every question of whether a row should print under its key; the 36 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as what one reading found and no count of a class, and nothing is struck."
+}

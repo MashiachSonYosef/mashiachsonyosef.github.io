@@ -1,0 +1,850 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "panlex_hebrew_english_meanings_20240301",
+ "m_ids": [
+  "M21"
+ ],
+ "routes": 28439,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"PanLex 2024 exact same-meaning Hebrew-English lexical expression\" (M21): 28,439 routes (axis: routes), 9,861 letters keys (axis: keys). The definition field of the same row equals the route text on 28,439 of the routes. The source audit: each route's store record names one row of the Hebrew table and one row of the English table of the lane's copy of the source (cointegrated/panlex-meanings at commit 0422f0e60f39, a curator's rearrangement of PanLex's database dump 20240301, in ledgers/work/ldmprs/source-cache/panlex-hebrew-english-2026-07-14/). The English row's column txt equals the record's text on 28,439 of 28,439 records (axis: records), and the column meaning of the English row and of the Hebrew row equals the meaning id the record cites on 28,439 and on 28,439 of them; the record's two other text fields are empty on all of them. So a route comes from one field, the text of one expression on one meaning, and no test here stands on a guess about a field; the audit is evidence about the source and no part of any test. The source's own key to its signs: none found. The lane holds 26 files of the curator's and of PanLex's own pages (the curator's README, which names the columns and says only that txt is the full text of the expression; the manifests and the licence page in that folder; the publisher's pages under corpus-lane-builds/moses-works-own-stamp-v1/strand-3-the-publishers/fetch/), and none holds a word that names a sign: the search and its word list are the script builder/05-key-search.mjs and its output source-audit/key-search.json. The menu of the publisher's development site, on file, names a page called Text standardization whose body is not on file; fetching it needs the owner's word and was not done. So every shape's meaning here begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. A digit is one of 0 to 9, and no test asks for any other number character. A space is the character U+0020 only, and no test uses whitespace of any other kind. The letters A to Z are the 26 uppercase Latin letters and no others. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after, and what a bracket holds is the template's c.group, the same for an opener and for its closer. Directly before and directly after name the one character next to the mark or next to the named string; where the mark or the string stands at that end of the text no character stands there, so a test that asks for a character there fails, and a test that says if there is one passes. The whole text, exactly, means that the text equals the named string character for character. Ends in means that the last characters of the named thing are exactly the string. The word round the mark means three runs put together, with nothing between them: the run of letters that ends directly before the mark, taken back to the first character that is not a letter or to the start of the text; the mark itself; and the run of letters that begins directly after the mark, taken on to the first character that is not a letter or to the end of the text; either run of letters may be empty. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence and not to the string. Every string and every list minds case and is matched exact to the character, so «s» is the lowercase letter. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. Not caught above means that no earlier shape of the same mark took the occurrence. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards.",
+  "comma_list_texts": [
+   "dam, fence, barrier",
+   "luggage, baggage",
+   "container, ferry, vessel, vat, trough, tub, manger",
+   "baton, cane",
+   "deportment, behaviour"
+  ],
+  "shortened_words": [
+   "o’clock",
+   "don’t",
+   "Don’t",
+   "I’m",
+   "you’re",
+   "y’all",
+   "ma’am"
+  ],
+  "joined_article_words": [
+   "d’etat",
+   "L’Orfeo",
+   "l’eau",
+   "nell’Emilia",
+   "Ha’Nephilim"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.between_words_of_a_list",
+   "comma.inside_a_fixed_saying",
+   "comma.between_a_city_and_its_state",
+   "comma.before_the_word_to",
+   "comma.before_words_that_complete_the_first"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.between_two_names"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_capitals_only",
+   "close_paren.holds_capitals_only"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "comma.between_words_of_a_list",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the words of a list that the source holds as one expression on one meaning («dam, fence, barrier», «baton, cane»), in 8 routes under 8 letters keys; no test can say whether a word of the list offers a meaning different from the rest, so whether the comma cuts is the question of B01.",
+   "test": "The whole text, exactly, is one of the strings in comma_list_texts (terms, first_match).",
+   "count": 15,
+   "examples": [
+    {
+     "key": "מכשול"
+    },
+    {
+     "key": "מיכל"
+    },
+    {
+     "key": "התנהגות"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "comma.inside_a_fixed_saying",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside one fixed English saying («hook, line and sinker»), which renders the word only as a whole, so neither side of the comma is a reading.",
+   "test": "The whole text, exactly, is «hook, line and sinker» (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "לגמרי"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.between_a_city_and_its_state",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a city and its state in one place name («New York, New York»), so the name and what follows it are one reading.",
+   "test": "The whole text, exactly, is «New York, New York» (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ברוקלין"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.before_the_word_to",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a verb and the word to written after it («lay-down, to»), the order in which a word list files a verb; to is no reading, so the text is one reading.",
+   "test": "The text after the mark is exactly « to», the space and the two letters (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "לישון"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.before_words_that_complete_the_first",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two verbs that share the last word of the text («get, become late»); the word before the comma leans on that last word and has no reading of its own, so the text is one reading.",
+   "test": "The whole text, exactly, is «get, become late» (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "להתאחר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "slash.between_two_names",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two names, each complete on its own, that the source holds as one expression on one meaning («Elche/Elx», «the ladies’/the gents’»), in 3 routes under two letters keys; whether the slash cuts is the question of B01.",
+   "test": "The character directly after the mark is a letter (terms).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "שירותים"
+    },
+    {
+     "key": "אלש"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "hyphen.alone_between_spaces",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands with a space on each side, between a country's name and the city that tells it from the other country of that name («Congo - Brazzaville»), so the name and what follows it are one reading.",
+   "test": "The character directly before the mark is a space, and the character directly after the mark is a space (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "קונגו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.opens_a_bare_ending",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands where the rest of a word would go, in a row that holds only the ending of a word («-less», «-shaped»); the row is one piece, and whether it prints is the question of B02.",
+   "test": "The text before the mark is empty (terms).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "מלה"
+    },
+    {
+     "key": "מילה"
+    },
+    {
+     "key": "בלי"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "hyphen.closes_a_bare_beginning",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands where the rest of a word would go, in a row that holds only the beginning of a word («self-», «Sino-»); the row is one piece, and whether it prints is the question of B02.",
+   "test": "The text after the mark is empty (terms).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "שוב"
+    },
+    {
+     "key": "אי"
+    },
+    {
+     "key": "בלי"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "hyphen.beside_a_digit",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins letters and a number in one designation («BM-21», «K-9»), or the parts of a telephone number in a title («1-800-Missing»), as one reading.",
+   "test": "The character directly before the mark is a digit, or the character directly after the mark is a digit (terms).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "סטיקס"
+    },
+    {
+     "key": "נעדרים"
+    },
+    {
+     "key": "כלב"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "hyphen.before_a_curly_apostrophe",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the two parts of a place name whose second part opens with the curly apostrophe («Shefa-’Amr»), as one reading.",
+   "test": "The character directly after the mark is the curly apostrophe U+2019 (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "שפרעם"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one hyphenated word or name, which stay one reading: 514 of its 567 occurrences stand in a word that opens in lowercase («pot-belly», «bye-bye») and 53 in one that opens with a capital («Frankfurt-am-Main», «T-shirt»).",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms).",
+   "count": 567,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "שפוך"
+    },
+    {
+     "key": "תיאור"
+    }
+   ],
+   "read": 567
+  },
+  {
+   "id": "right_single_quotation_mark.at_the_head_of_a_word",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at the head of a word, for the first letters of an English short form («’scuse», «’rents») or for a sound Latin letters do not write, at the head of a name carried over from another language («’Ara»), inside one reading.",
+   "test": "The character directly before the mark, if there is one, is not a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "תירוץ"
+    },
+    {
+     "key": "פיצה"
+    },
+    {
+     "key": "אחווה"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "right_single_quotation_mark.at_the_end_of_a_word",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at the end of a word, for the last letters of a short form («tho’», «bitchin’») or as the owner's sign after a plural («the ladies’ room», «the gents’»), as part of the word it closes.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark, if there is one, is not a letter (terms).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "סוארין"
+    },
+    {
+     "key": "שיכור"
+    },
+    {
+     "key": "אחרי"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "right_single_quotation_mark.before_a_final_s",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a final s: 70 of its 75 occurrences mark an owner («hen’s egg», «Goethe’s Faust») and 5 a short form of us or of is («let’s», «when it’s at home»), inside one reading.",
+   "test": "The character directly before the mark is a letter; the character directly after the mark is «s»; and the character directly after that «s», if there is one, is not a letter (terms).",
+   "count": 75,
+   "examples": [
+    {
+     "key": "לחשוב"
+    },
+    {
+     "key": "גולגולת"
+    },
+    {
+     "key": "לשחד"
+    }
+   ],
+   "read": 75
+  },
+  {
+   "id": "right_single_quotation_mark.in_a_shortened_word",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands for letters left out of an English word («o’clock», «don’t», «ma’am»), inside one reading.",
+   "test": "The word round the mark is exactly one of the strings in shortened_words (terms).",
+   "count": 20,
+   "examples": [
+    {
+     "key": "תשע"
+    },
+    {
+     "key": "המבט"
+    },
+    {
+     "key": "אתן"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "right_single_quotation_mark.after_a_joined_short_word",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after a short French, Italian or Hebrew word joined to the next word («coup d’etat», «L’Orfeo», «Ha’Nephilim»), inside one reading.",
+   "test": "The word round the mark is exactly one of the strings in joined_article_words (terms).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "אורפיאו"
+    },
+    {
+     "key": "הפכה"
+    },
+    {
+     "key": "איטליה"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "right_single_quotation_mark.inside_a_carried_over_word",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside a name or word carried over into Latin letters from another language («Ma’on», «Qur’an», «Xi’an»), for a sound Latin letters do not write, inside one reading.",
+   "test": "Not caught above (first_match): the character directly before the mark is a letter, and the character directly after the mark is a letter (terms).",
+   "count": 53,
+   "examples": [
+    {
+     "key": "שעבאן"
+    },
+    {
+     "key": "צאלים"
+    },
+    {
+     "key": "לבוב"
+    }
+   ],
+   "read": 53
+  },
+  {
+   "id": "apostrophe.doubled_with_nothing_inside",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in a pair of two straight apostrophes with nothing inside them, set beside the word («labor '' ''»); no English stands in the pairs, and whether they print is the question of B04.",
+   "test": "The character directly before the mark is «'», or the character directly after the mark is «'» (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "עבודה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "apostrophe.at_the_head_of_a_short_form",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands for the first letters of an English short form, as a straight sign at the head of the text («'til», «'cause»), inside one reading.",
+   "test": "The text before the mark is empty (terms).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "עד"
+    },
+    {
+     "key": "כי"
+    },
+    {
+     "key": "בגלל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "apostrophe.before_a_final_s_of_an_owner",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: marks an owner, as a straight sign before a final s («Lord's Prayer», «barber's shop»), inside one reading.",
+   "test": "The character directly before the mark is a letter; the character directly after the mark is «s»; and the character directly after that «s», if there is one, is not a letter (terms).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "אבינו"
+    },
+    {
+     "key": "שושנה"
+    },
+    {
+     "key": "מספרה"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "apostrophe.after_a_joined_short_word",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after a short French word joined to the next word, as a straight sign («hors d'oeuvre»), inside one reading.",
+   "test": "The text before the mark ends in « d», the space and the letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מתאבן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "apostrophe.inside_a_carried_over_word",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside a word carried over into Latin letters from another language, as a straight sign («Shari'a»), for a sound Latin letters do not write.",
+   "test": "Not caught above (first_match): the character directly before the mark is a letter, and the character directly after the mark is a letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "שריעה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.after_a_lone_v",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes one letter that is all the English of its meaning in the source («v.»), under two letters keys; nothing on file says what the letter stands for, and whether the row prints is the question of B03.",
+   "test": "The whole text, exactly, is «v.» (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "קרבן"
+    },
+    {
+     "key": "פראייר"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.after_a_cyrillic_letter",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the Cyrillic letter set beside the English word («lioness ж.»), which reads as a word list's label for a female; whether it prints is the question of B04.",
+   "test": "The character directly before the mark is the Cyrillic letter U+0436 (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אריה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.inside_a_web_name",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside the name of a web site («Amazon.com»), as one reading.",
+   "test": "The character directly after the mark is a letter, and the two characters directly before the mark are both letters (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אמזון"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.after_a_lone_letter",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes one letter that stands for a word, in initials («U.S.A.», «F.C. Messina Peloro»), in a short form («e.g.», «12:00 a.m.») or in the letter of a day («M.»), as one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly before that letter, if there is one, is not a letter (terms).",
+   "count": 43,
+   "examples": [
+    {
+     "key": "בארי"
+    },
+    {
+     "key": "בחשאי"
+    },
+    {
+     "key": "ו׳"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "period.closes_a_shortened_word",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a word cut short, 36 different words in all («Sat.», «Mrs.», «Apple Inc.», «St. George’s»), at the end of the text or inside a name, as one reading; no occurrence ends a sentence.",
+   "test": "Not caught above (first_match): the character directly before the mark is a letter (terms).",
+   "count": 50,
+   "examples": [
+    {
+     "key": "תמן"
+    },
+    {
+     "key": "גב׳"
+    },
+    {
+     "key": "ו׳"
+    }
+   ],
+   "read": 50
+  },
+  {
+   "id": "question_mark.closes_a_title",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a film's title directly after an exclamation mark («What the Bleep Do We Know!?»), as the title writes it.",
+   "test": "The character directly before the mark is «!» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בליפ"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "question_mark.after_a_lone_name",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after a lone name that the source holds on one meaning with words for skill («Hayward?», beside ability and acquiry), and reads as a doubt over the row; whether the row prints is the question of B03.",
+   "test": "The whole text, exactly, is «Hayward?» (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "כישרון"
+    },
+    {
+     "key": "יכולת"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "exclamation.before_a_question_mark",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands directly before the question mark that closes a film's title, as part of how the title is written («What the Bleep Do We Know!?»).",
+   "test": "The character directly after the mark is «?» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בליפ"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "exclamation.writes_a_click_sound",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: writes the click sound that opens the name of a language («!Xũ»), as a letter of the name.",
+   "test": "The text before the mark is empty (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אנגולה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "colon.in_a_clock_time",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the hour and the minutes of a clock time («12:00 a.m.»), as one reading.",
+   "test": "The character directly before the mark is a digit, and the character directly after the mark is a digit (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חצות"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "colon.before_a_subtitle",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a title and its subtitle («Perfect Dark: Second Front»), as one reading of one title.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a space (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אמלי"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "low_line.between_a_word_and_its_kind",
+   "mark": "_",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins a word to a second word that says which thing it means («Pole_person»); no key on file says why it is written so, and whether it prints is the question of B04.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "פולנית"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "number_sign.opens_a_link_target",
+   "mark": "#",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a text that reads as the target of a link in a wiki's working marks («#Barcelona |Barcelona»); whether it prints is the question of B04.",
+   "test": "The text before the mark is empty (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ברצלונה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "pipe.between_a_link_target_and_its_word",
+   "mark": "|",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between that target and the word such a link would show («#Barcelona |Barcelona»), so it reads as a working mark and not as a cut between two readings; whether it prints is the question of B04.",
+   "test": "The character directly before the mark is a space, and the character directly after the mark is a letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ברצלונה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_capitals_only",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a short form in capitals that says which place of one name the row means («Macedonia (FYROM)»), so the name and its short form are one reading.",
+   "test": "What the bracket holds is one or more of the letters A to Z and nothing else (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מקדוניה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_capitals_only",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a short form in capitals that says which place of one name the row means («Macedonia (FYROM)»), so the name and its short form are one reading.",
+   "test": "What the bracket holds is one or more of the letters A to Z and nothing else (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מקדוניה"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number, and the source's tables hold no number for a homonym: they give each expression an id and each meaning an id (the columns id and meaning), and an expression with several meanings stands in a row for each. The route store carries neither id; the dictionary store's record keeps the meaning id and the numbers of the two rows in its location field. So two texts under one letters key may be two words for one meaning or words for two meanings, and the route text cannot say which. By the audit, of the 4,773 keys with more than one text (axis: keys), 2,028 are keys whose routes all cite one meaning id and 2,745 are keys whose routes cite two or more (example key ערב, whose 24 routes cite 7 meaning ids).",
+  "keys_with_more_than_one_route_text": 4773
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some rows hold several words for one meaning, with a comma or a slash between them: dam, fence, barrier. In this dictionary every row is one entry of the source on one meaning, so nothing in the row can tell whether a word in such a list means something different from the rest. Today the page cuts at those commas and prints the words as separate readings, and it does not cut at the slashes. Should these signs cut the row? Until you rule the page prints each of these rows whole, at the commas too. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "comma.between_words_of_a_list",
+    "slash.between_two_names"
+   ],
+   "occurrences": 18,
+   "keys": [
+    "מכשול",
+    "ידע",
+    "ידיעה",
+    "מיכל",
+    "הכרה",
+    "מקל",
+    "סתימה",
+    "התנהגות",
+    "שירותים",
+    "אלש"
+   ],
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints each part between the signs as a reading of its own, as it does today at the commas: the row dam, fence, barrier prints dam, fence and barrier, and the row Elche/Elx prints Elche and Elx."
+    },
+    {
+     "id": "whole",
+     "means": "The page prints each row as one reading, as written (dam, fence, barrier; Elche/Elx). At the commas this is a change from today."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows hold only the beginning or the ending of a word, with a hyphen where the rest would go: self-. Such a piece cannot stand alone in a verse. Should the page print these rows as readings? They print as they do today until you rule. To leave them out the page needs one step of its own, because a declaration cannot leave a row out. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "hyphen.opens_a_bare_ending",
+    "hyphen.closes_a_bare_beginning"
+   ],
+   "occurrences": 9,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written, as it does today: self-."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B03",
+   "question": "Two short texts stand as rows and seem to render nothing: Hayward?, which the source holds beside words for skill, and v., which is all the English its meaning holds. No key on file says what they are. Should the page print them as readings? They print as they do today until you rule. To leave them out the page needs one step of its own, because a declaration cannot leave a row out. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "question_mark.after_a_lone_name",
+    "period.after_a_lone_v"
+   ],
+   "occurrences": 4,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written (Hayward? and v.), as it does today."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B04",
+   "question": "Four rows carry something beside the English word that reads as left over from the source's own files: #Barcelona |Barcelona. The others are Pole_person, labor '' '' and lioness ж. No key on file says what these are. Should the page print them as written? They print as they do today until you rule. To print the word alone the page needs one step of its own, because the store's text does not change. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "number_sign.opens_a_link_target",
+    "pipe.between_a_link_target_and_its_word",
+    "low_line.between_a_word_and_its_kind",
+    "apostrophe.doubled_with_nothing_inside",
+    "period.after_a_cyrillic_letter"
+   ],
+   "occurrences": 8,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written, as it does today: #Barcelona |Barcelona."
+    },
+    {
+     "id": "word_alone",
+     "means": "The page prints Barcelona, Pole, labor and lioness, each as one reading, once it has the one step of its own that this answer needs; until then they print as written. The store keeps each text as it is."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark («rooster 雌鶏 hen» holds two English words with no sign between them), and every question of whether a row with plain marks renders its Hebrew word; the rows it names for these two questions stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census, and nothing is struck. It leaves to the page the steps that the answers no_pill and word_alone ask for, since a declaration can cut a row and has no field that leaves a whole row out or prints part of a text."
+}

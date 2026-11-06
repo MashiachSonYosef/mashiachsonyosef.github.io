@@ -1,0 +1,212 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "kaikki_english_wiktionary_hebrew_translation_table",
+ "m_ids": [
+  "M34"
+ ],
+ "routes": 850,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Kaikki English Wiktionary source-explicit Hebrew translation tables\" (M34): 850 routes (axis: routes), 800 letters keys (axis: keys). The definition field of the same row equals the route text on 2 of the routes. The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is Kaikki's extract of the English Wiktionary, kaikki.org-dictionary-English.jsonl.gz, not unpacked here in ledgers/work/ldmprs/source-cache/kaikki-english-hebrew-translations-2026-07-14/, and the lane's own rule for it reads: \"Exact Hebrew translation term plus exact English entry headword and exact translation-table sense label only; Kaikki disambiguation vectors, forms, roots, derived terms, and inferred sense joins excluded.\" All 850 routes tie to a row of the lane's row file of that extract (hebrew-translation-rows.jsonl, 25,581 rows) with the same English as the row's English headword, the same gloss in the definition field as the row's sense label, and a Hebrew term of the same letters. So a route comes from one field, the headword of one English entry, under one translation table's gloss, and no test here stands on a guess about a field. The dictionary store's 809 records of this source tie to 777 of the routes by the same English and a headword of the same letters, and 73 routes tie to no record (source-audit/routes-not-tied-to-a-record.jsonl); no test reads them. No key to the signs is on file. In the small files of the source cache (dictionary-index-license.html, English-words-index.html, source-manifest-v1.json, nonhebrew-hebrew-script-translation-manifest-v1.json, nonhebrew-hebrew-script-translation-manifest-v2.json, nonhebrew-hebrew-script-translation-manifest-v3.json, nonhebrew-hebrew-script-translation-catalog-gap-delta-manifest-v1.json), searched with word ends round the words and without them, every line that holds the name of a sign is the search code of an index page or a file name in an index page; none says how the source uses a sign. The works-own-stamp folder speaks of this source's date and revision and says nothing of its signs, and the archive, which the source's manifest calls its postprocessed entries, was not unpacked for this (builder/05-key-search.mjs, source-audit/key-search.json). The nearest thing on file to an account of a sign is the source's own part of speech on each entry, which files the 1 row with a hyphen at its end under prefix (builder/figures.mjs stops if not). Wiktionary's own guides to writing an entry are not on file, and fetching them needs the owner's word and was not done. So every shape's meaning here begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route that holds a mark here holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. No test asks for a digit, for whitespace, or for uppercase or lowercase as a class. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after. Empty means that the named text has no character at all, as at the start or the end of the route. Directly before and directly after name the one character next to the mark or next to the named string; where the mark or the string stands at that end of the text no character stands there, so a test that asks for a character there fails, and a test that says if there is one passes. The whole text, exactly, means that the text equals the named string character for character. The word round the mark means three runs put together, with nothing between them: the run of letters that ends directly before the mark, taken back to the first character that is not a letter or to the start of the text; the mark itself; and the run of letters that begins directly after the mark, taken on to the first character that is not a letter or to the end of the text; either run of letters may be empty. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence and not to the string. The apostrophe in every string is the straight one, U+0027, and the slash in the string «and/or» is U+002F. Every string and every list minds case and is matched exact to the character, so «s» is the lowercase letter. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here is a catch-all.",
+  "abbreviation_texts": [
+   "St.",
+   "cf.",
+   "Q.E.D."
+  ],
+  "shortened_words": [
+   "I'm"
+  ],
+  "carried_over_words": [
+   "Qur'an"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.inside_one_saying"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.inside_one_headword"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": "absent",
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "comma.inside_one_saying",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside «in wine, there is truth», which is the headword of one entry of the English Wiktionary, filed there as one proverb with the gloss one tells the truth under the influence of alcohol; the comma stands inside one sentence, neither side alone renders the saying, and the text stays one reading.",
+   "test": "The whole text, exactly, is «in wine, there is truth» (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בכיסו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "slash.inside_one_headword",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside «and/or», which is the headword of one entry of the English Wiktionary, filed there as one conjunction with the gloss inclusive \"or\"; the two words say one thing between them, neither alone says it, and the text stays one reading.",
+   "test": "The whole text, exactly, is «and/or» (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "או"
+    },
+    {
+     "key": "ו"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hyphen.closes_a_bare_beginning",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands where the rest of a word would go, in a row that holds only the beginning of a word («sub-»), which the source files under the part of speech prefix; the row is one piece, and whether it prints is the question of B01.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "תת־"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one hyphenated word («so-and-so», «tick-tock», «how-to», «white-hot»), inside the headword of one entry of the English Wiktionary, and the word stays whole inside one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 9,
+   "examples": [
+    {
+     "key": "חחח"
+    },
+    {
+     "key": "מדריך"
+    },
+    {
+     "key": "מלבן"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "apostrophe.in_a_shortened_word",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands for letters left out of a shortened English word («I'm sorry»), which stays inside one reading.",
+   "test": "The word round the mark is one of the strings in shortened_words (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מצטער"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "apostrophe.in_a_word_carried_over",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside a word carried over from another language as that word is spelt in English («Qur'an»), which stays inside one reading.",
+   "test": "The word round the mark is one of the strings in carried_over_words (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "הקוראן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "apostrophe.before_the_s_of_belonging",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before the s that says one thing belongs to another («dyer's woad», «on one's own»), inside one phrase that stays one reading.",
+   "test": "The character directly before the mark is a letter, the character directly after the mark is «s», and the character directly after that «s», if there is one, is not a letter (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "אסטיס"
+    },
+    {
+     "key": "איסטיס"
+    },
+    {
+     "key": "בעצמו"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "period.after_a_shortened_word",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a shortened word or a letter that stands for a word («St.», «cf.», «Q.E.D.»), and the stop stays with that word inside one reading.",
+   "test": "The whole text, exactly, is one of the strings in abbreviation_texts (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "רח׳"
+    },
+    {
+     "key": "מש״ל"
+    },
+    {
+     "key": "השו׳"
+    }
+   ],
+   "read": 5
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number, and the source has no entry for the Hebrew at all: a Hebrew word stands here only as a translation under an English entry, so nothing in this source says that two Hebrew words of one spelling are two words. The store's record keeps the Hebrew as written (headwords), and 368 of its 809 records write it with no point or accent (a maqaf is neither), so even the written form cannot tell them apart. The id the source does carry is the line of the English entry, the number of its sense and the number of the translation (the record's loc), which names the translation and not a Hebrew entry. A letters key's texts are the English entries that give that spelling. Of the 45 keys with more than one text (axis: keys, the store's own keys, on which a geresh or a maqaf makes another key), the records write 38 one way and 7 in two or more ways (example key החליף: 3 texts, 2 written forms).",
+  "keys_with_more_than_one_route_text": 45
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "One row holds only the beginning of a word, with a hyphen on the side where the rest would go: sub-. Such a piece cannot stand alone in a verse. In this dictionary the row is the headword of an entry about that word part, and the Hebrew is what that entry gives as its translation, a word part as well. Should the page print this row as a reading? Today the page prints it as one pill, as written, and from the day this ledger is wired it prints the same until you rule. To leave it out the page needs one step of its own, because a declaration cannot leave a row out. The rows cf. and m go to the store: no sign in them marks a piece.",
+   "shapes": [
+    "hyphen.closes_a_bare_beginning"
+   ],
+   "occurrences": 1,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints the row as one reading, as written, as it does today: sub-."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for this row, once it has the one step of its own that this answer needs; until then it prints as it does today. It stays in the store as it is."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and every question of whether a row renders the word it is filed under; the 8 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census, and nothing is struck. It leaves to the page the step that the answer no_pill asks for, since a declaration can cut a row and has no field that leaves a whole row out."
+}

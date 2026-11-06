@@ -34,32 +34,21 @@ await p.waitForSelector("section.seg");
 
 // The worst case is asked of the catalog at run time, never pasted: a copy
 // typed here would go stale the day the store moves, and the check would be
-// measuring a phantom string against a real layout. Same split as the page:
-// senses at the pack mark, readings at the declared comma rule.
+// measuring a phantom string against a real layout. The same readings as the
+// page's: the store's own readingsOf (a source under a ledger as its row says,
+// the rest at the pack mark and the declared comma rule).
 const LONG = await (async () => {
   const { readFileSync, readdirSync } = await import("node:fs");
   const { gunzipSync } = await import("node:zlib");
-  const { senseSplit: readingSplit } = await import(join(HERE, "sense-split-v1.mjs"));
-  const packSplit = (t) => {
-    const out = []; let start = 0, d = 0; const x = String(t || "");
-    for (let i2 = 0; i2 < x.length; i2 += 1) {
-      const c = x[i2];
-      if (c === "(") d += 1; else if (c === ")") { if (d > 0) d -= 1; }
-      else if (c === ";" && d === 0) { out.push(x.slice(start, i2)); start = i2 + 1; }
-    }
-    out.push(x.slice(start));
-    return out.map((y) => y.trim()).filter(Boolean);
-  };
+  const { openRouteStore } = await import(join(HERE, "gloss-store-v1.mjs"));
+  const store = openRouteStore(join(HERE, "..", "data", "route-store"));
   let longest = "";
   const shards = join(HERE, "..", "data", "route-store", "shards");
   for (const f of readdirSync(shards).filter((x) => /^[0-9a-f]{2}\.bin$/.test(x))) {
     const body = JSON.parse(gunzipSync(readFileSync(join(shards, f))).toString("utf8"));
     for (const rows of Object.values(body)) for (const row of rows) {
-      for (const sense of packSplit(row[1])) {
-        const rs = readingSplit(sense);
-        if (rs.damaged) continue;
-        for (const reading of rs.readings) if (reading.length > longest.length) longest = reading;
-      }
+      if (!store.index.m_sources[row[3]]) continue;
+      for (const reading of store.readingsOf(row)) if (reading.length > longest.length) longest = reading;
     }
   }
   if (!longest) { console.log("SKIPPED — the store offers no reading to measure"); process.exit(3); }

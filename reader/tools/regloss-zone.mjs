@@ -206,6 +206,36 @@ zone.emitted_from.no_names_layer = {
   what_the_zone_carries: "gloss_orders.noname — for every key of gloss_names whose base reading the name displaced, that base reading (the table store.tableFor projects, the derivation the oldest entry gives first); its M in gloss_m_orders.noname, derived with the other columns'; the page's \"no names\" switch lays it over the line of every word the name still leads under the order in force",
   counts: { names: Object.keys(names.leads).length, displaced: Object.keys(noname).length, base_is_the_name: Object.keys(names.leads).length - Object.keys(noname).length },
 };
+// THE WITNESSED COLUMNS' READINGS, RE-DERIVED UNDER THE LEDGERS
+// (ledger-division-rule-v1, 6 November 2026). The corpus lane shipped each
+// witnessed reading as the generic rule cut it: a whole row, or a piece of
+// one ("grief" of "grief, sorrow"). Under a source's ledger that row is one
+// reading, so the piece is no pill, and the line under this order would
+// name a reading the card does not hold. Each column text is mapped onto
+// the reading the store now gives the row it came from (readingsOfText: the
+// credited source's row whose route is the text, else the one whose generic
+// readings hold it), and the credit is derived again below. A text no served
+// row accounts for stays as shipped, and is counted.
+const witnessedMoved = {};   // column -> the keys whose reading the ledgers moved, so their credit is derived again
+if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
+  const prevOM = zone.gloss_m_orders || {};
+  const wo = zone.emitted_from.witnessed_order || {};
+  for (const o of Object.keys(wo.columns || {})) {
+    const table = zone.gloss_orders[o];
+    if (!table || typeof table !== "object") continue;
+    witnessedMoved[o] = new Set();
+    let moved = 0, unmapped = 0, same = 0;
+    for (const [k, t] of Object.entries(table)) {
+      const m = (prevOM[o] || {})[k];
+      const ids = m && Array.isArray(m.by) ? m.by : m && m.m ? store.mIdsOfLabel(m.m) : null;
+      const rs = store.readingsOfText(k, t, ids);
+      if (!rs.length) { unmapped += 1; continue; }
+      if (rs[0] === t) { same += 1; continue; }
+      table[k] = rs[0]; moved += 1; witnessedMoved[o].add(k);
+    }
+    wo.columns[o].rederived_under_ledgers = { rule: "ledger-division-rule-v1", on: stamp, same, moved, unmapped };
+  }
+}
 let ordersM = null, witnessedDrops = 0;
 if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
   ordersM = {};
@@ -230,7 +260,9 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
         const ids = typeof m === "string" ? [m] : (m && Array.isArray(m.by) ? m.by : []);
         const altIds = m && m.alt && Array.isArray(m.alt.by) ? m.alt.by : [];
         const touched = [...ids, ...altIds].some((id) => !store.index.m_sources[id]);
-        if (!touched) { kept[k] = m; continue; }
+        // a reading the ledgers moved (above) takes a credit derived from the row it is now
+        const moved = !!(witnessedMoved[o] && witnessedMoved[o].has(k));
+        if (!touched && !moved) { kept[k] = m; continue; }
         const re = table[k] !== undefined ? glossMFor(store, { [k]: table[k] }).gloss_m[k] : null;
         if (re) { kept[k] = re; recredited += 1; continue; }
         delete table[k]; struckOut += 1; witnessedDrops += 1;

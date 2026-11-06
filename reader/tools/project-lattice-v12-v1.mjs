@@ -85,7 +85,6 @@ import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
-import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
 const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
 const GRADE_CHAR = { VOWEL_MATCH: "m", NORMALIZED: "n", VOWEL_MISMATCH: "x" };
@@ -312,7 +311,7 @@ for (const sec of zone.sections || []) {
       const srows = store.routesFor(m.key) || [];
       const fpIx = new Map(list.map((c, ix) => [c.fp, ix]));
       const rowIx = (row) => { const src = store.index.m_sources[row[3]]; const ix = src ? fpIx.get(fnv1a(`${row[1]}|${src.label}`)) : undefined; return ix === undefined ? -1 : ix; };
-      const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.packSplit(row[1]).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings.map((t) => t.toLowerCase()); }))]));
+      const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.readingsOf(row).map((t) => t.toLowerCase()))]));
       const pool = store.readingPool(srows, "oldest");
       const TIER = { m: 0, n: 1, x: 2 };
       // THE GRADE OF A ROW — pointing-grade-rule-v3, the same two steps the
@@ -383,7 +382,7 @@ for (const sec of zone.sections || []) {
         // its M: the oldest kept row carrying the reading, as the card prints it
         let best = null;
         for (const row of kept) {
-          const carries = store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((t) => t.toLowerCase() === top.text.toLowerCase()); });
+          const carries = store.readingsOf(row).some((t) => t.toLowerCase() === top.text.toLowerCase());
           if (!carries) continue;
           const y = Number.parseInt(row[4], 10); const yy = Number.isInteger(y) ? y : Infinity;
           if (!best || yy < best.y) best = { row, y: yy };
@@ -410,7 +409,7 @@ for (const sec of zone.sections || []) {
       const nameText = zone.gloss_names && zone.gloss && Object.prototype.hasOwnProperty.call(zone.gloss_names, m.key) && zone.gloss[m.key] === zone.gloss_names[m.key]
         ? String(zone.gloss_names[m.key]).toLowerCase() : null;
       const nl = !!nameText && srows.some((row) => store.index.m_sources[row[3]] && (attested ? gradeOfRow(row) !== "x" : true) && !otherStem(row)
-        && store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((t) => t.toLowerCase() === nameText); }));
+        && store.readingsOf(row).some((t) => t.toLowerCase() === nameText));
       if (nl) stats.surfaces_name_leads_under_only += 1;
       grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}), ...(nl ? { nl: 1 } : {}) };
       if (st) stats.surfaces_with_stems += 1;

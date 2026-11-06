@@ -1,0 +1,5976 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "kaikki_wiktionary_hebrew",
+ "m_ids": [
+  "M11",
+  "M13",
+  "M25",
+  "M50",
+  "M69"
+ ],
+ "routes": 123558,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for M11 (Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary); M13 (Kaikki machine-readable Hebrew dictionary from English Wiktionary); M25 (Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary); M50 (Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary); M69 (Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary): 123,558 routes (axis: routes), 59,700 letters keys (axis: keys), 17,269 distinct texts (axis: texts). The definition field of the same row equals the route text on 123,466 routes and the store's cut flag stands on 0 routes. The dictionary store holds no record file for this source (records/M13.jsonl does not exist); the lane read the local Kaikki copy (<home>/Documents/999 footsteps/ledgers/work/ldmprs/source-cache/kaikki-2026-07-12/kaikki.org-dictionary-Hebrew.jsonl, sha256 f1c363c34c61d1673974074a8b3072cc60414f157799efcd8b61f70b6512de6b, 17,395 records, 22,910 senses) as evidence about the source, never as a test. What that file explains of the signs: a sense's glosses, raw_glosses, form_of, alt_of, tags, links and info_templates fields, and a record's forms field. The info_templates field holds the +obj template whose expansion is the square bracket that opens with the word with; the form_of, alt_of and forms fields hold the romanization that the round bracket after a cited Hebrew word repeats; form_of and alt_of stand on the senses of grammar pointers, in the shares the shapes' meanings state; some routes name a mark themselves, among them the gloss of the word for a comma and of the word for a colon, general words that give no account of this dictionary's use of them. The lists after a colon and a dash stand in the Strong's text on file (9 of 9 texts with spaces and commas set aside, 6 of them letter for letter, axis: texts); 92 routes have a definition field that differs from the route, the source's own gloss with its label. The source's own account of its comma, semicolon, colon and stop: none on file. Wiktionary's style pages are not on file, and fetching them needs the owner's word and was not done. So a shape whose meaning says what this dictionary uses a sign for begins \"unverified:\" unless one of those fields or a route says it; the shapes that do not begin so state what those fields or routes show, or only the plain use of a figure's sign, a sign inside a word, or a Hebrew point. By the audit (axis: routes): 123,558 routes equal a string of a sense's glosses field and 0 do not; 2,169 come from a sense with a form_of field, 1,320 from a sense with an alt_of field, 120,069 from another sense; so every route is one gloss string of one sense, and a sense may have more than one (1,649 routes stand only in senses with two or more); one field kind holds all the text, and no test here guesses a field's kind.",
+ "definitions": {
+  "terms": "In every test: a letter is any Unicode letter of any script; a digit is any Unicode number character, so a fraction sign or a superscript figure counts; whitespace is what the JavaScript class \\s matches; to trim is to remove whitespace at both ends; uppercase means the Unicode uppercase letters; a Hebrew character is any character from U+0590 to U+05FF, letters, points, maqaf and the geresh signs alike; a mark is as the ask defines it. c.text, c.before, c.after, c.group and c.container are the template's. Directly before and directly after mean the adjacent character with nothing skipped; skipping whitespace is said where it is meant. A string begins with an entry when its first characters are exactly that entry; no word end is asked unless the words ask it. A word list is compared in lowercase on both sides unless the test says case kept. At the start or the end of a string there is no character, so a test for a character there fails. Literal strings stand in double quotes in these steps; a stop outside the quotes belongs to the sentence.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file, and the first whose test holds names the occurrence; so each test speaks only of occurrences that no shape above it, for the same mark, has taken. A test has no container test unless its words state one; the shape's container field states the container and the checker compares it. No semicolon, colon, exclamation mark or en dash stands in a text whose brackets do not balance, so those marks have no in_unbalanced_text shape.",
+  "top_view": "The top view of a string: go through it character by character with a depth that starts at 0. A character \"(\", \"[\", \"<\" or \"{\" adds one to the depth and is dropped. A character \")\", \"]\", \">\" or \"}\" takes one from the depth if the depth is above 0 and is dropped. Any other character is kept only if the depth is 0.",
+  "list_text": "The list text of a string: take its top_view and trim it; if it now ends in \".\", remove that one character and trim again.",
+  "pieces": "The pieces of a list text: cut it at every \",\" and every \";\" and trim each part. An empty part stays as an empty piece. Positions count from 0, so the first piece is at position 0.",
+  "word": "The words of a piece are its maximal runs of non-whitespace characters. A piece is one word when it has exactly one such run. Its first word is compared in lowercase unless a test says case kept.",
+  "plain": "A list text is plain when both hold: (1) it holds no Hebrew character; (2) after every occurrence of each string of abbreviations_in_lists is taken out of it, case kept, every mark left in it is \",\" or \";\", or else is \"-\", \"'\" or U+2019 with a letter or a digit directly before it and a letter or a digit directly after it.",
+  "opens_with": "A string opens with an entry of a list when, in lowercase, it begins with the entry and the character directly after the entry is whitespace. A string that is only the entry does not open with it.",
+  "tail": "The tail start of a list of pieces is the position of the first piece, after position 0, that opens_with an entry of tail_openers or that, in lowercase, equals an entry of etc_pieces. If there is no such piece there is no tail. A comma or semicolon is in_tail when the number of commas and semicolons in the top_view of c.before, plus one, is at least the tail start of the pieces of the list_text of the route text.",
+  "named_first": "The first piece of a list is named when all of these hold: its first word, case kept, is not exactly \"To\"; the whole first piece, case kept, is no entry of common_word_heads; and its first word, or, if that word is \"a\", \"an\" or \"the\" and another word follows, its second word, begins with an uppercase letter.",
+  "list_tests": "On a list of pieces. one_word_list: every piece is one word. later_capital: some piece after position 0 begins with an uppercase letter and its first word, case kept, is not \"I\", \"A\", \"An\" or \"The\". to_list: the first word of every piece is \"to\". to_word_list: the first piece has exactly two words, the first of them \"to\", and every later piece is one word. article_list: the first word of every piece is \"a\", \"an\" or \"the\", every piece has at most four words, and no word after a piece's first word holds an uppercase letter. article_word_list: the first piece has exactly two words, the first \"a\", \"an\" or \"the\" and the second holding no uppercase letter; later_capital does not hold; every later piece is one word. article_name_list: the first piece has exactly two words, the first \"a\", \"an\" or \"the\" and the second beginning with an uppercase letter; every later piece is one word. word_list: one_word_list, to_list, to_word_list, article_list or article_word_list. own_plural: any two pieces of the list, wherever they stand and in either order, taken in lowercase as a and b, with b equal to a plus \"s\", or a plus \"es\", or a ending in \"y\" and b equal to a without that \"y\" plus \"ies\"; or all the pieces in lowercase, joined with \", \", equal an entry of own_plural_texts. small_verb_list: the first piece in lowercase equals an entry of small_verbs or begins with such an entry and a space, and the first word of some later piece is no entry of small_verb_stops. definition_list: the first piece has at most four words, and some later piece has its first word in definition_openers or has five words or more.",
+  "list_kind": "The list kind of a route text T, by these steps in order, the first that applies. Each step keeps the subject it states: where a step says T, \"begins with\" is on T trimmed, case kept; where it says t in lowercase, it is on that string. (1) T begins with an entry of not_list_openings: not_list. (2) T begins with an entry of word_and_definition_openings: definition. Let t be the list_text of T and P its pieces. (3) t holds \":\": colon. (4) t holds a Hebrew character: hebrew. (5) t is not plain, or some piece of P is empty: signs. (6) t in lowercase equals an entry of name_labels, or begins with such an entry directly followed by whitespace, \",\" or \";\": name_label. (7) t opens_with an entry of usage_line_openers, by the definition opens_with: usage_line. (8) T begins with an entry of name_description_openings, or the first piece is named_first and the first word of some later piece is an entry of description_openers: name_description. (9) t in lowercase does not begin with an entry of lists_with_an_opener_word and P has a tail: tail. (10) T holds a character of \"(\", \")\", \"[\", \"]\": small_verb if P is a small_verb_list, otherwise names if later_capital holds, otherwise bracket. (11) P is own_plural: phrases. (12) P is a one_word_list: names if later_capital holds and t in lowercase is no entry of capital_lists_kept_plain, otherwise one_word. (13) P is a to_list or a to_word_list: verbs. (14) P is an article_list or an article_word_list: articles. (15) P is an article_name_list: names. (16) P is a small_verb_list: small_verb. (17) later_capital holds: names. (18) the first word of the first piece is \"to\": phrases. (19) P is a definition_list and T does not begin with an entry of plain_list_openings: definition. (20) otherwise: phrases.",
+  "explanation_start": "The explanation start of a route text T whose list kind is definition: 1 if T trimmed begins with an entry of word_and_definition_openings, case kept; otherwise the position of the first piece of its list_text, after position 0, whose first word is in definition_openers or that has five words or more; 1 if there is none. The comma or semicolon just before that piece is the one sign between the word and what is said of it.",
+  "small_verb_here": "small_verb_here holds of a comma or semicolon when one of these holds. The list_kind of the route text is small_verb. Or it is tail, the mark is not in_tail, and the pieces before the tail start are a small_verb_list. Or it is colon, and by near_colon the side is right, the colon_kind is definition or at_end, the stretch is a list_stretch and its pieces are a small_verb_list.",
+  "capital_head": "capital_head holds of a comma when the list_kind of the route text is colon and, by near_colon, the side is right, the colon_kind is definition or at_end, the stretch is a list_stretch, and later_capital holds of its pieces.",
+  "remark_next": "remark_next holds of a semicolon when the first piece of the list_text of c.after, in lowercase, equals an entry of tail_openers, or that piece opens_with such an entry.",
+  "colon_kind": "The top colons of a text are the colons at depth 0 when it is walked as in top_view; no colon stands in a text whose brackets do not balance, so a colon whose container is top is a top colon. The colon kind of a top colon, by these steps in order, the first that applies. Let L be the top_view of the text before it, trimmed; R the list_text of the text after it. (1) R is empty: at_end. (2) a digit stands directly before the colon and a digit directly after it: reference. (3) R begins with \"-\" or U+2013 followed by whitespace or by nothing: before_dash. (4) R begins with \"the \" and holds \"letter of the Hebrew alphabet\", both case kept: name. Let label mean that L in lowercase begins with an entry of label_openers, an entry's spaces being part of it; let note mean that R opens_with an entry of note_openers. (5) L is label or holds a Hebrew character, and R holds a Hebrew character or is note: between_notes. (6) label: label. (7) L holds a Hebrew character: after_pointer. (8) R holds a Hebrew character: before_pointer. (9) note: before_note. (10) L, case kept, equals an entry of name_heads or begins with an entry of name_head_openings: name. (11) L, case kept, equals an entry of points_back_heads and R holds the word \"this\" or \"these\", lowercase, with no letter directly on either side: points_back. (12) otherwise: definition.",
+  "near_colon": "For a comma or semicolon at top level. If a top colon stands after the mark: the side is right, the colon is the nearest such one, and the stretch is the list_text of what stands between the nearest top colon before the mark (or the start of the text) and that colon. Otherwise, if a top colon stands before the mark: the side is left, the colon is the nearest one before it, and the stretch is the list_text of all that stands after that colon. The colon_kind named in a test is the kind of that colon.",
+  "list_stretch": "A stretch is a list_stretch when it is plain, none of its pieces is empty, and its pieces have no tail.",
+  "marked_place": "The lists places_marked_by_hand, note_and_reading_marks, one_word_twice, derived_form_lists, same_head_lists and one_construction_lists hold entries of the same form. Take an entry's pipes out and compare it with the route text, case kept. An entry that begins with U+2026 stands at the end of the text: without that sign it must be the text's last characters. Any other entry stands at the beginning: it must be the text's first characters. A mark that lies in that stretch is marked by the entry when a pipe stands directly after it in the entry, otherwise unmarked by it. Pipes are not in the text. In a test: a mark is a marked place of a list, or a listed_cut, when some entry of the list marks it; a mark is unmarked in a list when some entry of the list covers it and no entry of the list marks it.",
+  "label_word_before": "label_word_before holds of a comma when the route text does not begin, case kept, with \"Also, \", its list_kind is not one_word, and the part of the top_view of c.before after its last \",\", \";\" or \":\", or the whole top_view if none of the three stands there, trimmed and in lowercase, equals an entry of label_pieces.",
+  "round_kind": "The round kind of a round bracket pair, by these steps in order, the first that applies; g is what the pair holds (c.group), b the text before its opener, a the text after its closer. For a closer, b is c.text up to the place c.group and its opener start, and a is c.after. (1) the bracket's container is bracket: in_square. (2) its container is paren: in_round. (3) (a begins with a letter) or (b ends in a letter and g is made only of letters and \"-\" or is empty): word_part. (4) g holds no letter and no digit: only_signs. (5) the last character of b, skipping whitespace, is a Hebrew character, or b ends in a Hebrew character, one or more whitespace characters, the single lowercase letter \"m\" or \"f\" and any whitespace: then, g trimmed begins with \"\"\" or U+201C: quoted_after_hebrew; g trimmed begins with \"=\", or g holds a Hebrew character, or g trimmed in lowercase begins with an entry of notes_after_hebrew, an entry's spaces being part of it: note_after_hebrew; otherwise romanization. (6) g holds a Hebrew character: holds_hebrew. (7) g trimmed in lowercase equals an entry of subject_words: subject. (8) it equals \"male\" or \"female\": gender. (9) it equals an entry of conjugation_notes: conjugation. (10) it equals an entry of object_slots: object. (11) b trimmed is empty and a trimmed is not: opens_text. (12) a holds no letter and no digit, and b, with whitespace removed from its end, ends in \".\": after_stop. (13) a holds no letter and no digit: ends_text. (14) otherwise: in_text.",
+  "never_opened": "A closing bracket never opened when c.group is the empty string and c.before does not end in the matching opening bracket (the ask's step 4). Every closing round bracket that does not meet this has a partner.",
+  "square_kind": "The square kind of a square bracket pair, by these steps in order, the first that applies; g is c.group trimmed. Every square bracket in these routes has a partner, so c.group is never null here. (1) the route text holds \"[[\": link_markup. (2) g begins with \"with \", case kept: with. (3) g begins with \"see \", case kept: see. (4) g begins with \"=\": equals. (5) g holds no letter and no digit: only_signs. (6) g holds U+031E: sound. (7) otherwise: supplied.",
+  "pair_follows_hebrew": "Walk back through c.before from its end, counting closers against openers of all four bracket kinds, to the opener of the innermost bracket that holds the mark; pair_follows_hebrew holds when the last character before that opener, skipping whitespace, is a Hebrew character.",
+  "run_before": "run_before of a string: the longest run at its very end made of letters, digits and \".\" that ends in a letter or a digit; the empty string if there is none.",
+  "not_list_openings": [
+   "to, standardize, unify",
+   "to sit, to move into such a position",
+   "any of Passover",
+   "A pleasant, precious, or lovely thing",
+   "A rough, informal measure",
+   "A strong, violent person",
+   "A very loud, sudden sound",
+   "A religious, orthodox Jew",
+   "A person's condition, position, standing",
+   "A person's spirit, soul",
+   "The lower, narrow part",
+   "The more succulent, aroma-rich part",
+   "The proper, personal name",
+   "The state of being in vain",
+   "The act of turning, rotating",
+   "The state of being moderate",
+   "a buried feeling, emotion or memory",
+   "a collection, assemblage of idols",
+   "a loud, low-class, uncultured young man",
+   "An aromatic, sweet-smelling spice",
+   "An officer of David",
+   "A son of Zerah",
+   "One of the Acharonim",
+   "One of the Amoraim",
+   "One of the Tannaim",
+   "one of a number of legumes",
+   "one of several repeated trips",
+   "one of the Rishonim",
+   "The carcass of an animal",
+   "The son of a kohen",
+   "for footbaths, washbowl",
+   "girl under 17",
+   "knife for slaughtering",
+   "someone who is evil",
+   "son of Eliphaz",
+   "the Sanhedrin, historical",
+   "the land occupied by the descendants",
+   "the twelve minor prophets",
+   "to be wanted by others",
+   "violent, with many characters",
+   "a glass, bottle, or can",
+   "a generic pot, tub",
+   "A Jew who is forced",
+   "A way of prayer",
+   "Specifically, to prepare",
+   "a musical term of uncertain meaning",
+   "girl of a transitional age",
+   "the latter rain, the spring rain",
+   "Muhammad, Islamic final prophet",
+   "Bowing down, kneeling",
+   "A dweller of a field hut",
+   "the region of the nose",
+   "Hallel, Psalms",
+   "a member of the genus Tadarida",
+   "a sea creature from which",
+   "an epithet applied to",
+   "a team of horses",
+   "a strong, muscular man",
+   "act of dwelling",
+   "yeah right, whatever",
+   "a young, unmarried",
+   "an affliction of the skin",
+   "a sweetened drink flavored",
+   "an accumulated fund",
+   "Yiddish, Ladino, and any of",
+   "Specifically, to be prepared",
+   "synonym of נִיס",
+   "A group of people who share",
+   "A hole in cloth for the insertion",
+   "diagonally; in a slanted",
+   "To travel a place or a land",
+   "To fall, to suffer defeat",
+   "to shear, to cut hair",
+   "the process of learning",
+   "To get, become tired",
+   "Something hard, unbearable",
+   "Is finished, done",
+   "to receive a hit, blow",
+   "to make foul-smelling, fetid",
+   "I wish, hope",
+   "A channel in the geographic sense",
+   "amount, quantity of money",
+   "to fall, hence to befall",
+   "a rod, six cubits",
+   "Of a beast to devour",
+   "Of or relating to a kibbutz",
+   "Euphemistic form of the name"
+  ],
+  "places_marked_by_hand": [
+   "To fall,| to suffer defeat, ruin or distraction",
+   "a rod,| six cubits",
+   "to shear,| to cut hair, wool",
+   "Of a beast to devour;| hunger",
+   "the twelve minor prophets,| or their books as a unit",
+   "Is finished,| done",
+   "to fall, hence to befall;| to take place;| become",
+   "diagonally;| in a slanted, sloped, or angled direction",
+   "…; times;| -fold;| multiplied by",
+   "A chairman,| a head",
+   "Damn!,| Hell!",
+   "Double-,| two-,| bi-,| di-,| ambi-,| amphi-.",
+   "Etc.;| et al.",
+   "Forward!,| Onward!,| Keep going!",
+   "Forward!,| Onward!,| Let's go!",
+   "Infra-,| sub-,| under-.",
+   "Multi-,| poly-,| multiple-;| many.",
+   "Single-,| one-,| uni-,| mono-.",
+   "triple-,| three-,| tri-",
+   "Ms / Ms.,| Mrs / Mrs.",
+   "Sh!| Hush!| Shush!",
+   "Wow!,| really?,| you don't say!,| no kidding!",
+   "actually!,| true that!",
+   "all right,| okay, O.K.",
+   "all right,| okay, O.K.,| fine",
+   "at the foot/feet of...,| at the bottom of...",
+   "behold!,| this, here is",
+   "come on!| let's go!",
+   "cool!,| great!",
+   "fie!;| for shame!; shame on you!",
+   "girl,| gal (as a female adult, not a female child),| bird",
+   "having a certain trait,| -able",
+   "lack,| absence,| deficiency,| in-",
+   "moderation,| temperance.| Self-control.",
+   "naught,| nothing;",
+   "boy,| physically able young man.| Also, a servant.",
+   "oh!,| ah!",
+   "silence!| quiet!",
+   "stop it!| enough!",
+   "stop!,| enough!,| cease!",
+   "a wand,| a staff;| a swatting rod.| cattle prod",
+   "woe!,| ah!| alas!",
+   "To be/get vaccinated,| to be/get immunized",
+   "A cub,| pup,| kit,| calf,| puppy,| kitten, or similar",
+   "Then, then-,| at that time",
+   "A defiant, obstinate, or insubordinate (male) person;|",
+   "Of blessed memory,| may he/she/they rest in peace",
+   "to give,| to grant;| to chose;| to ascribe to.",
+   "the region of the nose,| the face",
+   "a generic pot,| tub,| vat,| skeel",
+   "A person's spirit,| soul",
+   "A person's condition,| position,| standing",
+   "the latter rain,| the spring rain",
+   "to, standardize,| unify",
+   "to be wanted by others,| or to be such",
+   "Bowing down,| kneeling",
+   "a member of the genus Tadarida,| a type",
+   "Yiddish,| Ladino,| and any of",
+   "a strong, muscular man;| he-man,| macho,| tough guy",
+   "…,| Hexaplex trunculus",
+   "act of dwelling,| residing",
+   "…;| Alternatively, an innkeeper.",
+   "…;| chav,| douchebag.",
+   "…,| Ethiopia,| Somalia",
+   "yeah right,| whatever;| oh, please",
+   "…;| hitbodedut.",
+   "in the absence of,| in the case where ... is not found,|",
+   "…,| when lacking,| if there is not",
+   "lest,| [[[in order",
+   "…,| for otherwise; used in constructing warnings.",
+   "…;| bimbo,| hoochie.",
+   "To lead astray, that is, (mentally) to delude,|",
+   "…,| or (morally) to seduce,| to beguile,| to deceive",
+   "…;| casualty",
+   "…;| a grouch",
+   "…;| a generic name;| so-and-so",
+   "additionally,| also,| in addition",
+   "together,| as one",
+   "…;| lodging,| sojourn.",
+   "that is,| which means,| in other words",
+   "…;| or, a (bus) stop.",
+   "…;| a headstone,| gravestone.",
+   "…;| pavilion,| tent,| shed",
+   "Used figuratively;| shallow,| superficial.",
+   "…;| a canyon,| ravine,| crevice,| gully,| or gorge."
+  ],
+  "note_and_reading_marks": [
+   "for footbaths,|",
+   "for ashes,| ashcan",
+   "an epithet applied to Roman emperors,|",
+   "In Israeli politics,|",
+   "An interrogative particle,|",
+   "Honorific form of Hebrew patronymic formula,|",
+   "We;|",
+   "…,| elections",
+   "…,| to rebel.",
+   "…,| to laugh.",
+   "…,| a female hunter",
+   "long live,|",
+   "blvd.,|",
+   "…,| an approximately equal Hebrew unit of liquid volume.",
+   "To be remembered;|",
+   "To be convinced or persuaded (by someone or something);|",
+   "…;| final nun",
+   "…;| final pe",
+   "…;| final mem",
+   "…;| final kaph",
+   "…;| final sadhe, tsadi, tzaddik",
+   "…;| mamad",
+   "dachshund,|",
+   "ellipsis of ספירת העומר,|",
+   "Min.;|",
+   "…,| thus, a fortnight or two weeks.",
+   "blue,|",
+   "…;| teeth",
+   "…;| times; -fold; multiplied by"
+  ],
+  "usage_note_openers": [
+   "used",
+   "often used",
+   "also used",
+   "usually used",
+   "chiefly used",
+   "indicating",
+   "indicates",
+   "passive of",
+   "see",
+   "found",
+   "the first part of"
+  ],
+  "one_word_twice": [
+   "to break into,| to burglarize, to burgle",
+   "revolutionary, revolutionist",
+   "to smooth, smoothen",
+   "intercessor; interceder",
+   "floc, floccule",
+   "stairway, stairs",
+   "stairs, stairway",
+   "To telephone, to phone,| to call (via the phone)",
+   "women; women's,| feminine,| effeminate,| female",
+   "sledge, sleigh, sled",
+   "Tzfat, Safed",
+   "Jaffa, Yafo, Joppa",
+   "Sarepta, Zarephath",
+   "Asmodeus; Ashmedai",
+   "To plow, plough",
+   "center, centre",
+   "color, colour",
+   "molt, moult",
+   "tyre, tire",
+   "kcal, kilocalorie",
+   "a gross, 144",
+   "bicycle, bike",
+   "19, nineteen",
+   "photograph, photo,| picture",
+   "telephone, phone",
+   "quotation, quote",
+   "quote, quotation",
+   "cooperative, co-op",
+   "lupin, lupine",
+   "taxi, cab, taxicab",
+   "influenza, flu",
+   "soy, soya",
+   "porn, porno",
+   "yogurt, yoghurt",
+   "yeah, ya, ye, yeh",
+   "v, vb, verb",
+   "ch, chap, chapter",
+   "80, eighty",
+   "OK, okay",
+   "4, four,| 4th, fourth",
+   "armour, armor",
+   "armouring, armoring",
+   "advertisement, ad, advert",
+   "catalog, catalogue",
+   "backward, backwards,| astern",
+   "contents; content",
+   "Beth, Bet",
+   "Judah, Judea",
+   "Rhone, Rhône",
+   "Sedom, Sodom",
+   "Shechem, Sichem",
+   "Simeon, Simon",
+   "Vav, waw",
+   "Yaziz, Jaziz",
+   "a krone, krona",
+   "aleph, alef",
+   "he, hei, hey",
+   "kaf, kaph",
+   "khet, chet, kheth, cheth, het, heth",
+   "lamed, lamedh",
+   "tet, teth",
+   "yod, yud, yodh",
+   "zayin, zain, zayn, zay",
+   "A (male) Kushite, Cushite",
+   "A (male) antisemite, anti-Semite",
+   "Antisemitic, anti-Semitic",
+   "Aging, ageing,| growing old",
+   "Hagbaha, hagbah",
+   "Mail, e-mail",
+   "Cushite, Kushite",
+   "Rebekah, Rebecca",
+   "Hasidic, Hassidic",
+   "Chaldean, Chaldee",
+   "a Chaldean, Chaldee",
+   "Ashkenazi, Ashkenazic",
+   "Shia, Shiite",
+   "ISIS, ISIL",
+   "Zoroaster, Zarathustra",
+   "white, White",
+   "A deli, a delicatessen",
+   "An exam, an examination,| a test",
+   "Shabbat, Sabbath"
+  ],
+  "derived_form_lists": [
+   "to crumb, to crumble",
+   "particle, particulate",
+   "to make a reference, to refer to,| to quote",
+   "to be referenced, to be referred to,| to be quoted",
+   "common,| widespread,| popular,| prevailing, prevalent",
+   "medicine, medication, medicament,| drug",
+   "permissible, permitted,| allowed",
+   "to block, to blockade",
+   "pack, packet",
+   "Decisive,| definite, definitive,| decided",
+   "deserving,| worthy, worthwhile",
+   "shocking,| horrifying, horrific,| disturbing",
+   "Desired, desirable,| wanted",
+   "Middling, middle,| medium,| average,| intermediate,| between",
+   "expense, expenditure",
+   "registry, registration",
+   "complicated, complex",
+   "humanity, humanness, humankind",
+   "Memorialization, memorializing, a memorial",
+   "pleasure, pleasantness",
+   "Near, nearby,| next,| adjacent,| alongside",
+   "continuous, continual;| perpetual;| constant",
+   "Dada, dadaism",
+   "wash, washing",
+   "Speech, speaking",
+   "temper, temperament",
+   "institute, institution",
+   "noise, noisiness",
+   "establishing, establishment",
+   "stab, stabbing",
+   "developing, development",
+   "growing, growth",
+   "loose, loosened",
+   "import, importation",
+   "fill, filling",
+   "searching, search",
+   "vaccine, vaccination,| immunization",
+   "to organize, to get organized",
+   "down, downwards,| below",
+   "relation, relationship",
+   "hurt, hurting,| painful",
+   "round, rounded",
+   "Fall, falling,| decline",
+   "rabbinic, rabbinical",
+   "reign,| rule, rulership",
+   "run, running",
+   "An institute, institution,| association",
+   "mercy, mercifulness",
+   "sting, stinger",
+   "Fantastic, fantastical",
+   "permanence, regularity, permanent",
+   "Health, healthiness, healthfulness",
+   "associative, associativity",
+   "Care, carefulness,| watchfulness,| caution",
+   "cold, coldness",
+   "quaking, quake, earthquake",
+   "slip, slipping",
+   "screaming, scream",
+   "gravity, gravitation",
+   "dryness, drying",
+   "bargaining, bargain",
+   "intent, intention",
+   "boil, boiling",
+   "documentary, documentative",
+   "leap,| spring,| jump, jumping",
+   "eastern, east",
+   "red, redness",
+   "up, upward",
+   "Terror, terrorism",
+   "down, downward",
+   "separating, separation",
+   "packaging, packing",
+   "photography, photographing",
+   "mixing, mixture",
+   "excavating, excavation",
+   "transportation, transport",
+   "up, upwards,| above",
+   "A descent, descending,| going down",
+   "A return, returning,| going back",
+   "ascent, ascending,| going up",
+   "healthy, healthful",
+   "sportsman, sportsperson",
+   "skilled, skillful,| proficient",
+   "Hellenizing, Hellenization",
+   "Zionist, Zionistic",
+   "Aramean, Aramaic",
+   "A freeze, a freezing",
+   "Drink, drinking",
+   "Installation, installing",
+   "Security, security-related",
+   "An entrance, an entry",
+   "Civilian, civil",
+   "family, familial",
+   "Editing, an edit",
+   "A percent, a percentage",
+   "A voting, a vote",
+   "Brown, brown-colored",
+   "accountancy, accounting",
+   "aggression, aggressivity",
+   "Electric, electrical",
+   "North, northern, northerly",
+   "South, southern, southerly",
+   "Arab, Arabic",
+   "pedagogical, pedagogic",
+   "West, western, westerly,| occidental",
+   "comic, comedic, comical",
+   "Warmth,| fever, feverishness",
+   "complainer, complainant,| faultfinder",
+   "Israelian, Israelitish"
+  ],
+  "same_head_lists": [
+   "to turn, to turn aside",
+   "to turn, to turn around",
+   "to equalize, to make equal",
+   "to cover up; to cover one's tracks",
+   "to undress, to get undressed",
+   "to get burned, to burn oneself",
+   "…to become acquainted, to make the acquaintance of",
+   "To proliferate, to become proliferated,| to become numerous",
+   "to bend over, to bend down,| to stoop,| to duck",
+   "to prophesy, to be a prophet",
+   "to be stopped, to stop",
+   "To clear, to clear-cut,| to cut down",
+   "A corridor,| hallway, hall",
+   "bathtub, bath",
+   "grave, gravesite",
+   "A flap, an airplane wing flap",
+   "A flat, a flat sign",
+   "A little, a bit, a little bit",
+   "A maple tree, a maple",
+   "a parallel, a parallel line",
+   "A seal, a seal ring",
+   "A service, a prayer service",
+   "a caffè mocha, a mochaccino, a mocha",
+   "A professor, a college professor, a university professor",
+   "to bald, to go bald",
+   "To be canceled, to get canceled",
+   "To break, to be broken, to get broken",
+   "To damage, to do damage,| to hurt",
+   "To get angry, to anger, to become angry",
+   "To get angry, to become angry, to anger",
+   "To get wet, to become wet",
+   "to hear, to be able to hear",
+   "to lie, to tell a lie",
+   "to make green, to green",
+   "To parallel, to be parallel to",
+   "to peek, to take a peek,| to glance",
+   "to pepper, to spice with pepper",
+   "To photocopy,| to xerox,| to copy, to make a copy of",
+   "To photograph, to take a photograph of",
+   "to risk, to take a risk,",
+   "to sacrifice, to offer a sacrifice",
+   "to saddle, to attach a saddle",
+   "To salt, to add salt to,",
+   "…, to sprinkle or pour salt on or into, to season with salt.",
+   "to shake out, to shake",
+   "to use, to make use of",
+   "to wake up, to awaken, to wake",
+   "To wake up, to awaken, to wake",
+   "to waste, to let go to waste",
+   "to curtain, to cover with a curtain, to curtain off",
+   "…, to make progress,| to move forward",
+   "To inscribe,| to write down,| to note, to make a note",
+   "A shelf; a bookshelf; a store shelf",
+   "A female convert to Judaism, a convert,| a proselyte",
+   "A living, making a living",
+   "Double, folded double",
+   "Dried, dried out",
+   "Enough; that's enough",
+   "Since, ever since",
+   "Than, more than",
+   "This, this one",
+   "this, this one",
+   "Tied, tied up,| bound",
+   "active, active voice",
+   "app, phone app,| applet",
+   "background, desktop background",
+   "behind; from behind",
+   "brand, brand name",
+   "camera flash, flash",
+   "care, medical care,| treatment",
+   "ebony, ebony tree",
+   "embarrassed, easily embarrassed,| shy",
+   "factory,| plant, manufacturing plant",
+   "first of all, first",
+   "frame, picture frame",
+   "funeral, funeral procession",
+   "ink, India ink",
+   "just, just now",
+   "light, light source",
+   "lighter, cigarette lighter",
+   "luck, good luck,| good fortune",
+   "luxury, luxury good",
+   "memory, computer memory",
+   "naked,| nude, in the nude",
+   "natron,| niter,| soda, carbonate of soda",
+   "not, do not",
+   "passive, passive voice",
+   "period, time period",
+   "place, place of human abode",
+   "please, if you please",
+   "process, computer process",
+   "reaction, chemical reaction",
+   "roast, roast meat",
+   "stamp, postage stamp",
+   "time, period of time",
+   "to attack, initiate an attack",
+   "to cause to forget, make forget",
+   "to cool, cool off, cool down,| decrease in temperature",
+   "to decree, issue a decree",
+   "to dress, dress oneself, get dressed",
+   "to fire,| lay off,| terminate, terminate the employment of",
+   "to hide, hide oneself,| secrete oneself",
+   "to hurry, hurry up,| speed up,| make haste",
+   "to leave, leave behind,| depart",
+   "to oil, lubricate with oil",
+   "to raise, raise up,| put up",
+   "to shape, give a shape to",
+   "to shower, take a shower",
+   "to sprout, cause to sprout",
+   "to stress, stress out",
+   "to turn or colour something blue, to blue, bluen",
+   "to turn, turn around,| rotate,| swivel,| or spin",
+   "to wait, wait for",
+   "to weigh, weigh in",
+   "town, small town",
+   "trust, trust fund",
+   "very much, very,| extremely",
+   "to stop,| to terminate,| to end,| to cut off, cut short",
+   "To wake, awaken, wake up",
+   "To illuminate,| light, light up,| brighten",
+   "To double, fold double, double over",
+   "here,| this place, at this place, in this place",
+   "in front, in the front,| ahead",
+   "at the time; at that time;|",
+   "according to;| in one's opinion; in the opinion of",
+   "in the eyes of; in someone's eyes;|",
+   "As opposed to;| compared to; compared with;|",
+   "In place, in its place,| in order",
+   "to be thrown, thrown down,| dropped",
+   "to be wise, become wise,| learn",
+   "to become empty, empty out,| clear out",
+   "(uncertain) to cause to let drop, to cause to drop",
+   "America, United States of America",
+   "Avot, Pirkei Avot",
+   "Dressed up (in a costume), in costume, costumed,",
+   "…, wearing a costume.",
+   "Hither,| (to) here, over (to) here",
+   "hither,| (to) here, over (to) here",
+   "Luxembourg, Luxembourg City",
+   "Michigan, Lake Michigan",
+   "Mississippi, Mississippi River",
+   "Rome, Ancient Rome",
+   "Washington, Washington State",
+   "To close, close up",
+   "To fold (something); to fold (something) up",
+   "To light, light up,| ignite",
+   "To meet (with someone), to have a meeting with, to meet",
+   "To play (music), to play music",
+   "To stop, to stop moving,| to halt,| to stop the motion of",
+   "Until, till, up until",
+   "broad bean, fava bean, fava",
+   "investment, an investment",
+   "just, just now (a short",
+   "security, internal security",
+   "to heat, to heat up,| to warm, to warm up",
+   "to join (person), to join in,",
+   "to run (someone) over, run (someone) down",
+   "to spread, spread (something) out",
+   "to throw (something), to throw (something) down",
+   "toilet bowl, toilet",
+   "use,| utilization,| using, making use",
+   "A (female) minor, a (female) legal minor",
+   "A (male) lieutenant, a (male) first lieutenant",
+   "A (male) minor, a (male) legal minor",
+   "A (male) twin, a twin brother",
+   "A class, a ship class",
+   "A greenfinch, a European greenfinch",
+   "A phalanx, a phalanx bone",
+   "A sector, an economic sector",
+   "An album, a photo album",
+   "An album, a stamp album",
+   "An offensive, a military offensive",
+   "Autonomy, local autonomy",
+   "Autonomy, personal autonomy",
+   "Climate, a climate",
+   "Diet, a diet",
+   "Half, one half",
+   "Release, a release,| an act of releasing",
+   "Release, a release:",
+   "Sale, a sale",
+   "The environment, the natural environment",
+   "To be fried, to become fried,| to undergo frying",
+   "To cool, cool off, cool down:",
+   "To dry, to dry out",
+   "Wind, a wind",
+   "Worry, a worry",
+   "clinic, medical clinic",
+   "light, visible light",
+   "to be fried, to become fried,| to undergo frying",
+   "to dry, to dry out",
+   "A Jubilee, a Jubilee year",
+   "A direction, a cardinal direction",
+   "A unit, a unit of measure",
+   "A unit, an organizational unit",
+   "Celebration, a celebration",
+   "Commitment, a commitment,| a pledge",
+   "Legislation, a piece of legislation",
+   "So, so anyway",
+   "A bible, A Bible",
+   "A campus, a college or university campus",
+   "A conservative, a Conservative",
+   "An expression, a mathematical or algebraic expression",
+   "Force, a force",
+   "Relief, a sense of relief, a feeling of relief",
+   "Without, without the existence or presence of",
+   "hundred, one hundred",
+   "thousand, one thousand",
+   "new moon, the day of the new moon",
+   "one, one of",
+   "suddenly, all of a sudden, of a sudden",
+   "For a long time, since a long time ago",
+   "Drugged, on drugs, under the influence of drugs",
+   "Thunder, a clap of thunder, thunderclap",
+   "Long ago, a long time ago",
+   "Most, the most",
+   "Politics; a politics",
+   "The Left, the political left",
+   "The West, the Western world",
+   "the Muslim world, the Muslims"
+  ],
+  "one_construction_lists": [
+   "if, should, had"
+  ],
+  "word_and_definition_openings": [
+   "A ram, a male sheep",
+   "A day, a 24-hour period",
+   "A preparation, an act of preparing",
+   "A shofar, a ram's-horn trumpet",
+   "A girlfriend; a female romantic partner",
+   "a golem, a clay automaton",
+   "A shot glass, a cup, a glass especially small",
+   "to sit, to be in a position",
+   "To run; to move forward quickly",
+   "to be sold, to be transferred",
+   "To crash, to suddenly",
+   "to egg on, to provoke",
+   "To rise in standing; to progress",
+   "To remember suddenly; to remember after",
+   "to uncover the corona, to split",
+   "To reach an age, to become",
+   "to google, to look something up",
+   "To be killed; to die suddenly",
+   "to pass, to not fail a test",
+   "to chuckle, to laugh quietly",
+   "to be made definite, to be put",
+   "To act as a usurer, to lend",
+   "to realize, to become aware",
+   "to trust, to have faith",
+   "To understand, to have understanding, to be one who",
+   "A (male) secretary, a man tasked",
+   "a representative, a chosen or elected",
+   "(of celestial bodies) to be in conjunction",
+   "A counselor, a diplomat who",
+   "a godlike figure, someone with",
+   "sister-in-law, brother's wife",
+   "a minute (one sixtieth",
+   "the other side [of], the region",
+   "babysitter; a (male) person",
+   "to babysit; to act as a babysitter",
+   "to officially adopt, to ratify (give",
+   "(plural) regulations, delegated legislation",
+   "An ephah, a former Hebrew unit",
+   "To be exempt (from), to have satisfied",
+   "oxytone; on the ult",
+   "paroxytone; on the penult",
+   "Bride price, the money paid",
+   "In-law, A relative",
+   "Order, the state of being",
+   "shekel, unit of weight",
+   "a wall, a structure built",
+   "a course, strong fiber",
+   "negro, a (male) black person",
+   "bachelorette (bachelor girl), an unmarried"
+  ],
+  "plain_list_openings": [
+   "A blessing, a toast",
+   "at first glance, on the face",
+   "now, for the time being",
+   "far be it, it is forbidden",
+   "gone, wasted, damaged",
+   "lesser, inferior, of low",
+   "With, among, at the place",
+   "criticism, critique, critical",
+   "a secretarial department, or",
+   "scripture, the Bible",
+   "universe, the world",
+   "head, beginning, start;",
+   "branch, bough, a wooden stick",
+   "From, of, from inside",
+   "Of, belonging to, owned by",
+   "sex, a fuck",
+   "logic, a reason",
+   "a rebellion, insurrection, mutiny",
+   "explained, made clear",
+   "stub, shred, a small piece",
+   "subordinate or secondary thing;",
+   "attachment, an appendix",
+   "a trifle, minor thing",
+   "Friends, gang, guys",
+   "quarter, one fourth",
+   "innocent, honest, having integrity",
+   "exit, leaving, departure",
+   "Recently, lately, of late",
+   "Necessarily, of necessity",
+   "how, the way how",
+   "guard, protector, one who protects",
+   "sure, of course",
+   "restriction, a protective condition",
+   "awesome, the best",
+   "An evil, trouble;",
+   "Mistake, flaw, defect",
+   "that which, the thing that",
+   "Next; the one after"
+  ],
+  "name_description_openings": [
+   "A poem inserted into the leader's",
+   "a kind of bat, Desmodus",
+   "Israelian, Israelitish, of or pertaining",
+   "Shabbat, Sabbath; weekly",
+   "A collective term for the Kenites",
+   "A one of the sons of Shimhi",
+   "an abbreviation for the Arba'ah Turim",
+   "the Assyrian nation",
+   "the children of Israel",
+   "The mother of Jehozabad",
+   "tsade ("
+  ],
+  "capital_lists_kept_plain": [
+   "spanish, portuguese",
+   "upright, god-fearing"
+  ],
+  "label_pieces": [
+   "for example",
+   "figuratively",
+   "literally",
+   "especially",
+   "specifically",
+   "also"
+  ],
+  "name_labels": [
+   "a male given name",
+   "a female given name",
+   "a male or female given name",
+   "a female or male given name",
+   "a unisex given name",
+   "a surname"
+  ],
+  "usage_line_openers": [
+   "used",
+   "introducing",
+   "with incorporated",
+   "with third-person",
+   "vocative particle",
+   "alternative form of the prefix",
+   "in the context of"
+  ],
+  "tail_openers": [
+   "especially",
+   "particularly",
+   "specifically",
+   "usually",
+   "often",
+   "oftentimes",
+   "typically",
+   "generally",
+   "chiefly",
+   "mainly",
+   "mostly",
+   "primarily",
+   "commonly",
+   "normally",
+   "traditionally",
+   "originally",
+   "formerly",
+   "now",
+   "probably",
+   "possibly",
+   "perhaps",
+   "most likely",
+   "likely",
+   "such as",
+   "like a",
+   "like an",
+   "like in",
+   "e.g.",
+   "i.e.",
+   "that is",
+   "including",
+   "used",
+   "said",
+   "found",
+   "known",
+   "called",
+   "also",
+   "better known",
+   "located",
+   "mentioned",
+   "equivalent",
+   "sometimes anglicized",
+   "either",
+   "both",
+   "as",
+   "in relation",
+   "in the sense",
+   "in the context",
+   "in accordance",
+   "considered",
+   "identified",
+   "corresponding",
+   "referring",
+   "associated",
+   "or similar",
+   "or the like",
+   "or other",
+   "or otherwise",
+   "or more generally",
+   "or possibly",
+   "or someone",
+   "banned",
+   "first published",
+   "taken as",
+   "collectively",
+   "from which",
+   "which",
+   "whose",
+   "who",
+   "where",
+   "whom",
+   "than",
+   "written",
+   "named",
+   "made from",
+   "opposed",
+   "even",
+   "see",
+   "expression of",
+   "an exclamation",
+   "a cynical exclamation",
+   "a weakly positive",
+   "for example",
+   "done",
+   "thought",
+   "trained",
+   "recited",
+   "centered",
+   "further details"
+  ],
+  "etc_pieces": [
+   "i.e",
+   "i.e.",
+   "e.g",
+   "e.g.",
+   "etc",
+   "etc.",
+   "et cetera",
+   "and so on",
+   "and the like",
+   "or similar",
+   "or the like",
+   "that is",
+   "also"
+  ],
+  "lists_with_an_opener_word": [
+   "goodbye, bye, see you later",
+   "with regard to, in re, as to",
+   "as if, as though",
+   "yeah, right, as if",
+   "now, for the time being",
+   "despite, in spite of",
+   "in other words, that is to say",
+   "et cetera, and the like"
+  ],
+  "description_openers": [
+   "a",
+   "an",
+   "the",
+   "one",
+   "son",
+   "daughter",
+   "husband",
+   "wife",
+   "father",
+   "mother",
+   "brother",
+   "sister",
+   "grandson",
+   "king",
+   "queen",
+   "better"
+  ],
+  "common_word_heads": [
+   "Force",
+   "Release",
+   "Relief",
+   "Shade",
+   "Walking",
+   "Implementation",
+   "Discussion",
+   "Binding",
+   "Order",
+   "Mistake",
+   "Friends",
+   "Convergence",
+   "Leading",
+   "Editing",
+   "Creation",
+   "Knowledge",
+   "Thunder",
+   "All the more so",
+   "Exhibiting both male and female characteristics",
+   "Infinity",
+   "Next",
+   "One who uses",
+   "One's allotted portion",
+   "Someone who is very physically attractive",
+   "Something amazing or beautiful",
+   "Testosterone",
+   "We",
+   "Specifically",
+   "L-shaped",
+   "Long ago",
+   "Most",
+   "Politics"
+  ],
+  "definition_openers": [
+   "a",
+   "an",
+   "the",
+   "one",
+   "someone",
+   "something",
+   "having",
+   "lacking",
+   "being",
+   "of",
+   "made",
+   "relating",
+   "related",
+   "referring",
+   "pertaining",
+   "belonging",
+   "possessing"
+  ],
+  "small_verbs": [
+   "to be",
+   "to become",
+   "to grow",
+   "be",
+   "become"
+  ],
+  "small_verb_stops": [
+   "be",
+   "become",
+   "get",
+   "to"
+  ],
+  "own_plural_texts": [
+   "datum, data"
+  ],
+  "note_openers": [
+   "used",
+   "use",
+   "indicating",
+   "indicates",
+   "denoting",
+   "expressing",
+   "found",
+   "said",
+   "especially",
+   "often",
+   "usually",
+   "typically",
+   "chiefly",
+   "mainly",
+   "mostly",
+   "generally",
+   "compared",
+   "introducing",
+   "preceding",
+   "followed",
+   "also used",
+   "in modern usage",
+   "further details",
+   "appended",
+   "plural",
+   "passive",
+   "feminine",
+   "masculine",
+   "singular",
+   "dual",
+   "starts",
+   "see",
+   "a term of",
+   "a negative",
+   "an expression",
+   "forming"
+  ],
+  "label_openers": [
+   "used ",
+   "indicates ",
+   "expresses ",
+   "appended to ",
+   "epithet of ",
+   "epithet for ",
+   "a title for ",
+   "a female given name",
+   "a male given name",
+   "a surname",
+   "the meaning of this term is uncertain",
+   "one of the 613 commandments",
+   "a representation of ",
+   "negative interrogative particle",
+   "interrogative particle",
+   "multiplicative particle",
+   "see there"
+  ],
+  "name_heads": [
+   "Chazal",
+   "Jackson",
+   "Lilith",
+   "Megiddo or Megiddon",
+   "Nabu",
+   "Nakh",
+   "Nebo",
+   "Nevo",
+   "Pe'ah",
+   "Reuben, Reuven",
+   "Toronto",
+   "Fa",
+   "Do",
+   "Sol",
+   "433 Eros",
+   "The northern parts of Israel",
+   "master of the world/universe",
+   "Amharic"
+  ],
+  "name_head_openings": [
+   "A curse, specifically",
+   "Canaan, the land"
+  ],
+  "points_back_heads": [
+   "Copper",
+   "Chickpeas, garbanzo beans",
+   "A mail, an e-mail",
+   "A disappointment",
+   "Salmon",
+   "A salmon",
+   "Savory",
+   "A tragedy"
+  ],
+  "abbreviations_in_lists": [
+   "e.g.",
+   "i.e.",
+   "etc."
+  ],
+  "notes_after_hebrew": [
+   "see ",
+   "sometimes ",
+   "literally",
+   "lit.",
+   "often ",
+   "always ",
+   "usually ",
+   "followed ",
+   "with ",
+   "plural ",
+   "feminine ",
+   "masculine ",
+   "singular ",
+   "also ",
+   "or ",
+   "the ",
+   "a ",
+   "an ",
+   "form of "
+  ],
+  "subject_words": [
+   "he/it",
+   "she/it",
+   "he",
+   "she",
+   "it",
+   "they",
+   "you",
+   "i",
+   "and"
+  ],
+  "conjugation_notes": [
+   "suffix conjugation",
+   "prefix conjugation",
+   "hence past tense",
+   "hence future tense",
+   "infinitive construct or gerund"
+  ],
+  "object_slots": [
+   "something",
+   "someone",
+   "oneself",
+   "someone or something",
+   "something or someone",
+   "a person",
+   "a thing",
+   "an object",
+   "people"
+  ],
+  "abbreviations": [
+   "e.g",
+   "g",
+   "i.e",
+   "e",
+   "i",
+   "etc",
+   "Etc",
+   "spp",
+   "lit",
+   "esp",
+   "c",
+   "r",
+   "J",
+   "expl",
+   "q",
+   "q.v",
+   "v",
+   "n",
+   "m",
+   "f",
+   "St",
+   "st",
+   "No",
+   "num",
+   "Min",
+   "blvd",
+   "Ms",
+   "Mrs",
+   "Prof",
+   "Dr",
+   "Mr",
+   "U",
+   "U.S",
+   "U.S.S",
+   "U.S.S.R",
+   "S",
+   "R",
+   "K",
+   "M",
+   "M.K",
+   "M.P",
+   "P",
+   "P.M",
+   "O",
+   "O.K",
+   "C",
+   "C.E",
+   "B",
+   "B.C",
+   "vs",
+   "abbr",
+   "Uni",
+   "pron",
+   "et",
+   "al",
+   "N",
+   "BC",
+   "CE"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.in_unbalanced_text",
+   "comma.in_a_figure",
+   "comma.at_a_place_marked_by_hand",
+   "comma.between_note_and_reading",
+   "comma.after_a_label_word",
+   "comma.before_a_bracketed_ending",
+   "comma.in_copied_rendering_list",
+   "comma.before_copied_rendering_list",
+   "comma.between_forms_of_one_word",
+   "comma.between_a_word_and_its_derived_form",
+   "comma.between_one_head_said_twice",
+   "comma.in_one_construction",
+   "comma.in_head_with_a_capital",
+   "comma.in_list_opening_with_a_small_verb",
+   "comma.in_head_before_definition",
+   "comma.in_head_before_note",
+   "comma.in_head_before_description",
+   "comma.in_list_after_definition_colon",
+   "comma.in_list_after_label",
+   "comma.in_explanation_after_colon",
+   "comma.before_other_colon",
+   "comma.in_line_with_hebrew",
+   "comma.after_name_label",
+   "comma.in_name_after_label",
+   "comma.in_usage_line",
+   "comma.in_tail",
+   "comma.in_list_before_tail",
+   "comma.after_name_or_capital_head",
+   "comma.in_list_with_a_bracket",
+   "comma.between_one_word_renderings",
+   "comma.between_verb_renderings",
+   "comma.between_article_renderings",
+   "comma.in_list_with_a_later_capital",
+   "comma.in_explanation_after_word",
+   "comma.between_word_and_definition",
+   "comma.between_words_before_definition",
+   "comma.between_phrases",
+   "comma.before_the_last_bracket",
+   "comma.any_other"
+  ],
+  "comma_in_paren": [
+   "comma.in_unbalanced_text",
+   "comma.in_a_figure_in_round_bracket",
+   "comma.before_quoted_gloss_in_round_bracket",
+   "comma.in_round_bracket"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.at_a_place_marked_by_hand",
+   "semicolon.between_note_and_reading",
+   "semicolon.before_usage_note",
+   "semicolon.between_forms_of_one_word",
+   "semicolon.between_one_head_said_twice",
+   "semicolon.in_list_opening_with_a_small_verb",
+   "semicolon.in_list_after_definition_colon",
+   "semicolon.in_text_with_a_colon",
+   "semicolon.in_line_with_hebrew",
+   "semicolon.after_name_label",
+   "semicolon.before_note_or_in_tail",
+   "semicolon.before_a_remark_word",
+   "semicolon.in_list_before_tail",
+   "semicolon.after_name_or_capital_head",
+   "semicolon.in_list_with_a_bracket",
+   "semicolon.between_one_word_renderings",
+   "semicolon.between_verb_renderings",
+   "semicolon.between_article_renderings",
+   "semicolon.in_list_with_a_later_capital",
+   "semicolon.in_explanation_after_word",
+   "semicolon.between_word_and_definition",
+   "semicolon.between_phrases",
+   "semicolon.any_other"
+  ],
+  "semicolon_in_paren": [
+   "semicolon.in_round_bracket"
+  ],
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.between_hebrew_spellings",
+   "slash.between_words",
+   "slash.spaced_between_words",
+   "slash.around_a_sound",
+   "backslash.between_hebrew_spellings"
+  ],
+  "slash_in_paren": [
+   "slash.between_words_in_round_bracket",
+   "slash.in_round_bracket_other"
+  ],
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.never_closed",
+   "close_paren.never_opened",
+   "open_paren.inside_square_bracket",
+   "close_paren.inside_square_bracket",
+   "open_paren.inside_round_bracket",
+   "close_paren.inside_round_bracket",
+   "open_paren.word_part",
+   "close_paren.word_part",
+   "open_paren.holds_only_signs",
+   "close_paren.holds_only_signs",
+   "open_paren.after_hebrew_holds_quoted_gloss",
+   "close_paren.after_hebrew_holds_quoted_gloss",
+   "open_paren.after_hebrew_holds_note",
+   "close_paren.after_hebrew_holds_note",
+   "open_paren.after_hebrew_holds_romanization",
+   "close_paren.after_hebrew_holds_romanization",
+   "open_paren.holds_a_note_with_hebrew",
+   "close_paren.holds_a_note_with_hebrew",
+   "open_paren.holds_subject_word",
+   "close_paren.holds_subject_word",
+   "open_paren.holds_gender_word",
+   "close_paren.holds_gender_word",
+   "open_paren.holds_conjugation_note",
+   "close_paren.holds_conjugation_note",
+   "open_paren.holds_object_slot",
+   "close_paren.holds_object_slot",
+   "open_paren.opens_the_text",
+   "close_paren.opens_the_text",
+   "open_paren.after_the_final_stop",
+   "close_paren.after_the_final_stop",
+   "open_paren.ends_the_text",
+   "close_paren.ends_the_text",
+   "open_paren.in_the_text",
+   "close_paren.in_the_text"
+  ],
+  "brackets": [
+   "open_bracket.in_link_markup",
+   "close_bracket.in_link_markup",
+   "open_bracket.holds_with_word",
+   "close_bracket.holds_with_word",
+   "open_bracket.holds_see",
+   "close_bracket.holds_see",
+   "open_bracket.holds_equal_name",
+   "close_bracket.holds_equal_name",
+   "open_bracket.holds_only_signs",
+   "close_bracket.holds_only_signs",
+   "open_bracket.holds_a_sound",
+   "close_bracket.holds_a_sound",
+   "open_bracket.holds_supplied_word",
+   "close_bracket.holds_supplied_word",
+   "open_angle.around_a_spelling",
+   "close_angle.around_a_spelling",
+   "open_brace.left_from_wiki_markup"
+  ]
+ },
+ "shapes": [
+  {
+   "id": "comma.in_unbalanced_text",
+   "mark": ",",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands in a text whose brackets do not balance, so the text stays whole, whether the comma sits in a list, in prose or in what an unclosed bracket holds.",
+   "test": "(The order of the tests is first_match; the words letter, digit, whitespace, trim and uppercase are as in terms.) The ask's helper unbalanced(text) is true of the route text.",
+   "count": 75,
+   "examples": [
+    {
+     "key": "מנקרים"
+    },
+    {
+     "key": "נקרת"
+    },
+    {
+     "key": "ינקר"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "comma.in_a_figure_in_round_bracket",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "Inside a round bracket, groups the thousands of a figure.",
+   "test": "The comma's container is paren, with a digit directly before it and a digit directly after it.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "קומי"
+    },
+    {
+     "key": "יפו"
+    },
+    {
+     "key": "חדקל"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "comma.in_a_figure",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "At top level, groups the thousands of a figure.",
+   "test": "The comma's container is top, with a digit directly before it and a digit directly after it.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.before_quoted_gloss_in_round_bracket",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: inside a round bracket, stands before an English gloss in curly quotes, after the romanization of a cited Hebrew word or after the word literally.",
+   "test": "The comma's container is paren and the first character after it, skipping whitespace, is U+201C.",
+   "count": 150,
+   "examples": [
+    {
+     "key": "צלצל"
+    },
+    {
+     "key": "מסה"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 35
+  },
+  {
+   "id": "comma.in_round_bracket",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: general: inside a round bracket that describes or qualifies a word, in running prose or a list of examples (about one in ten before and or or in a list of examples, about one in ten before a remark word such as especially or usually, about seven in ten between other words of a description). It stays whole under every answer because a cut inside a bracket would leave that bracket open, even where the bracket holds two renderings of the word, as sort (kind, type).",
+   "test": "Any other comma whose container is paren, not caught above.",
+   "count": 8950,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "כפיה"
+    },
+    {
+     "key": "תמנונים"
+    }
+   ],
+   "read": 994
+  },
+  {
+   "id": "comma.at_a_place_marked_by_hand",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at a place the ledger marked by hand, where it read two readings or a word and what it means, in a line that fits none of the shapes below; the marks are in places_marked_by_hand.",
+   "test": "The comma's container is top and the comma is a listed_cut (definition marked_place, list places_marked_by_hand).",
+   "count": 499,
+   "examples": [
+    {
+     "key": "נערתו"
+    },
+    {
+     "key": "אפים"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 110
+  },
+  {
+   "id": "comma.between_note_and_reading",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a label or a note on the word's form and a reading, in a route marked by hand, where a comma does the work a colon does elsewhere.",
+   "test": "The comma's container is top and the comma is a marked place of the list note_and_reading_marks (definition marked_place).",
+   "count": 100,
+   "examples": [
+    {
+     "key": "חומרינו"
+    },
+    {
+     "key": "החומר"
+    },
+    {
+     "key": "חומריהן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.after_a_label_word",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: follows a label word such as figuratively or especially, which opens the piece after it; a label alone is no reading, so nothing cuts here under any answer.",
+   "test": "The comma's container is top and label_word_before holds (definition label_word_before, list label_pieces).",
+   "count": 190,
+   "examples": [
+    {
+     "key": "מתבשל"
+    },
+    {
+     "key": "מחותנו"
+    },
+    {
+     "key": "שורותיו"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "comma.before_a_bracketed_ending",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "Stands before a bracket that opens with the ending of the word before it and goes on with a further word, in a list of renderings that stands in Strong's text; such a bracket is no reading of its own, so nothing cuts here under any answer.",
+   "test": "The comma's container is top and the text after it, with whitespace skipped, begins with \"(\" directly followed by \"-\".",
+   "count": 18,
+   "examples": [
+    {
+     "key": "תרדי"
+    },
+    {
+     "key": "רדה"
+    },
+    {
+     "key": "רדיתי"
+    }
+   ],
+   "read": 18
+  },
+  {
+   "id": "comma.in_copied_rendering_list",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "Parts the renderings of a list that stands in Strong's text on file and that Wiktionary's gloss holds after a colon and a dash.",
+   "test": "The comma's container is top and some top colon of colon_kind before_dash, any such colon and not only the nearest, stands before the comma.",
+   "count": 220,
+   "examples": [
+    {
+     "key": "להטן"
+    },
+    {
+     "key": "רובצות"
+    },
+    {
+     "key": "תרחפי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.before_copied_rendering_list",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "Stands in the sentence before the colon and dash that open a list of renderings, a list that stands in Strong's text on file.",
+   "test": "The comma's container is top and some top colon of colon_kind before_dash, any such colon and not only the nearest, stands after the comma.",
+   "count": 122,
+   "examples": [
+    {
+     "key": "תרדי"
+    },
+    {
+     "key": "רדו"
+    },
+    {
+     "key": "רבוץ"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.between_forms_of_one_word",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in a line that gives forms of one word or name: two spellings, a short form beside its full form, or a figure beside its word. One reading, so nothing cuts here under any answer.",
+   "test": "The comma's container is top and the comma is unmarked in the list one_word_twice (definition marked_place).",
+   "count": 257,
+   "examples": [
+    {
+     "key": "פרצי"
+    },
+    {
+     "key": "סויה"
+    },
+    {
+     "key": "שבתות"
+    }
+   ],
+   "read": 90
+  },
+  {
+   "id": "comma.between_a_word_and_its_derived_form",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in a line that sets a word beside its own derived form, as fill, filling. One reading, so nothing cuts here under any answer.",
+   "test": "The comma's container is top and the comma is unmarked in the list derived_form_lists (definition marked_place).",
+   "count": 569,
+   "examples": [
+    {
+     "key": "שטיפה"
+    },
+    {
+     "key": "חזרותיה"
+    },
+    {
+     "key": "הנצחה"
+    }
+   ],
+   "read": 101
+  },
+  {
+   "id": "comma.between_one_head_said_twice",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in a line that says one head twice or more, a later time with a word added or a small verb before it, as stamp, postage stamp. One reading, so nothing cuts here under any answer.",
+   "test": "The comma's container is top and the comma is unmarked in the list same_head_lists (definition marked_place).",
+   "count": 2509,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "יכפלו"
+    },
+    {
+     "key": "תפילתו"
+    }
+   ],
+   "read": 198
+  },
+  {
+   "id": "comma.in_one_construction",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between words that render the Hebrew word only inside one construction of it, as if, should, had; nothing cuts here under any answer.",
+   "test": "The comma's container is top and the comma is unmarked in the list one_construction_lists (definition marked_place).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אלו"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "comma.in_head_with_a_capital",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in the words of a head before a colon, where a later word opens with a capital, as hymn, sacred song, Psalm; a capital may mark a name or the source's own habit.",
+   "test": "The comma's container is top and capital_head holds (definition capital_head).",
+   "count": 78,
+   "examples": [
+    {
+     "key": "תפלה"
+    },
+    {
+     "key": "תפלתם"
+    },
+    {
+     "key": "תפילתו"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "comma.in_list_opening_with_a_small_verb",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts a list that opens with be, become or grow, where a later piece may lean on that word; the list may stand before a colon, a bracket or a remark.",
+   "test": "The comma's container is top and small_verb_here holds.",
+   "count": 2633,
+   "examples": [
+    {
+     "key": "אנחם"
+    },
+    {
+     "key": "היועד"
+    },
+    {
+     "key": "תכבדי"
+    }
+   ],
+   "read": 122
+  },
+  {
+   "id": "comma.in_head_before_definition",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts the words of a head before a colon, the words that the text after the colon goes on to explain.",
+   "test": "The comma's container is top and the list_kind of the route text is colon; by near_colon the side is right, the colon_kind is definition or at_end, and the stretch is a list_stretch.",
+   "count": 2092,
+   "examples": [
+    {
+     "key": "ייפצע"
+    },
+    {
+     "key": "גינוני"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.in_head_before_note",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts the words of a head before a colon that opens a note on the word's form or use.",
+   "test": "The comma's container is top and the list_kind of the route text is colon; by near_colon the side is right, the colon_kind is before_pointer or before_note, and the stretch is a list_stretch.",
+   "count": 211,
+   "examples": [
+    {
+     "key": "בזינו"
+    },
+    {
+     "key": "מבוזים"
+    },
+    {
+     "key": "אינו"
+    }
+   ],
+   "read": 37
+  },
+  {
+   "id": "comma.in_head_before_description",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in the head of a line that a colon then describes: between spellings of one name, as with the names of the Hebrew letters, or inside a longer head; a name and its description are one reading.",
+   "test": "The comma's container is top and the list_kind of the route text is colon; by near_colon the side is right and the colon_kind is name.",
+   "count": 26,
+   "examples": [
+    {
+     "key": "ד"
+    },
+    {
+     "key": "ב"
+    },
+    {
+     "key": "כנען"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "comma.in_list_after_definition_colon",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts words of one kind in a short list that stands after a head and its colon.",
+   "test": "The comma's container is top and the list_kind of the route text is colon; by near_colon the side is left, the colon_kind is definition, the stretch is a list_stretch and its pieces are a word_list.",
+   "count": 359,
+   "examples": [
+    {
+     "key": "ייפצע"
+    },
+    {
+     "key": "הדגשנו"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "comma.in_list_after_label",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts the words of a short list that stands after a label or a note on the word's form and its colon.",
+   "test": "The comma's container is top and the list_kind of the route text is colon; by near_colon the side is left, the colon_kind is label or after_pointer, and the stretch is a list_stretch.",
+   "count": 95,
+   "examples": [
+    {
+     "key": "בנות"
+    },
+    {
+     "key": "אותו"
+    },
+    {
+     "key": "בנותם"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "comma.in_explanation_after_colon",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: stands in the prose after a colon, the definition or note of what came before (about three in ten before and or or, about one in ten before a remark word such as especially, about five in ten between other words of the explanation); the prose is one piece.",
+   "test": "The comma's container is top and the list_kind of the route text is colon; by near_colon the side is left; not caught above.",
+   "count": 1802,
+   "examples": [
+    {
+     "key": "שמחתי"
+    },
+    {
+     "key": "כוחותיי"
+    },
+    {
+     "key": "תרחיקי"
+    }
+   ],
+   "read": 185
+  },
+  {
+   "id": "comma.before_other_colon",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: stands before a colon where the words before it are no plain list: a label, a grammar pointer, or a list with a sign or a remark in it.",
+   "test": "The comma's container is top and the list_kind of the route text is colon; not caught above.",
+   "count": 191,
+   "examples": [
+    {
+     "key": "להרגני"
+    },
+    {
+     "key": "בנותינו"
+    },
+    {
+     "key": "מקטרת"
+    }
+   ],
+   "read": 57
+  },
+  {
+   "id": "comma.in_line_with_hebrew",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: stands in a line that cites Hebrew outside brackets, a grammar pointer or a note (about two in ten before the words with, including or in, which go on with the grammar, about four in ten before a note on the spelling or the pausal form, about four in ten in other pointers and notes); where the ledger read a reading beside the pointer, the comma has its own shape above.",
+   "test": "The comma's container is top and the list_kind of the route text is hebrew; not caught above.",
+   "count": 164,
+   "examples": [
+    {
+     "key": "שבי"
+    },
+    {
+     "key": "אשלחך"
+    },
+    {
+     "key": "גדי"
+    }
+   ],
+   "read": 111
+  },
+  {
+   "id": "comma.after_name_label",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the label a given name or a surname and the name itself.",
+   "test": "The comma's container is top and the list_kind of the route text is name_label; the top_view of c.before, trimmed and in lowercase, equals an entry of name_labels; and the text after the comma, skipping whitespace, does not begin with \"equivalent\", \"from\" or \"of\", in lowercase, each followed by a character that is no letter, digit or underscore, or by the end of the text.",
+   "count": 214,
+   "examples": [
+    {
+     "key": "זבל"
+    },
+    {
+     "key": "איוב"
+    },
+    {
+     "key": "הדר"
+    }
+   ],
+   "read": 190
+  },
+  {
+   "id": "comma.in_name_after_label",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside a name line after its label: between spellings of one name, or before what the name equals in English.",
+   "test": "The comma's container is top and the list_kind of the route text is name_label.",
+   "count": 163,
+   "examples": [
+    {
+     "key": "מרא"
+    },
+    {
+     "key": "ארי"
+    },
+    {
+     "key": "לביא"
+    }
+   ],
+   "read": 143
+  },
+  {
+   "id": "comma.in_usage_line",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside a sentence about how the word is used; the whole line is a note.",
+   "test": "The comma's container is top and the list_kind of the route text is usage_line.",
+   "count": 164,
+   "examples": [
+    {
+     "key": "הכחיל"
+    },
+    {
+     "key": "אליהם"
+    },
+    {
+     "key": "אינו"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.in_tail",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at or after a remark that leans on what comes before it, opened by a word such as those of tail_openers; the remark stays with the piece before it.",
+   "test": "The comma's container is top and the list_kind of the route text is tail and the comma is in_tail.",
+   "count": 1502,
+   "examples": [
+    {
+     "key": "אכניס"
+    },
+    {
+     "key": "לולביך"
+    },
+    {
+     "key": "קורבן"
+    }
+   ],
+   "read": 209
+  },
+  {
+   "id": "comma.in_list_before_tail",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts the renderings of a list that ends in such a remark.",
+   "test": "The comma's container is top and the list_kind of the route text is tail and the comma is not in_tail.",
+   "count": 536,
+   "examples": [
+    {
+     "key": "אכניס"
+    },
+    {
+     "key": "זמרנו"
+    },
+    {
+     "key": "בצעים"
+    }
+   ],
+   "read": 71
+  },
+  {
+   "id": "comma.after_name_or_capital_head",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after a name, or after a head that holds a name or opens with a capital, and before what is said of it, or inside what is said of it, or between what is said and the name it describes; a name and its description are one reading.",
+   "test": "The comma's container is top and the list_kind of the route text is name_description.",
+   "count": 248,
+   "examples": [
+    {
+     "key": "גשור"
+    },
+    {
+     "key": "אגסיו"
+    },
+    {
+     "key": "כרשנא"
+    }
+   ],
+   "read": 173
+  },
+  {
+   "id": "comma.in_list_with_a_bracket",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts the renderings of a list that has a round or square bracket beside it, the bracket touching one piece and sometimes speaking of all.",
+   "test": "The comma's container is top and the list_kind of the route text is bracket.",
+   "count": 7535,
+   "examples": [
+    {
+     "key": "אדרך"
+    },
+    {
+     "key": "אמי"
+    },
+    {
+     "key": "תמנעי"
+    }
+   ],
+   "read": 592
+  },
+  {
+   "id": "comma.between_one_word_renderings",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts renderings that are single words, inside one sense of the word; a stop at the end of the text stays with the last piece.",
+   "test": "The comma's container is top and the list_kind of the route text is one_word.",
+   "count": 16316,
+   "examples": [
+    {
+     "key": "אומנייך"
+    },
+    {
+     "key": "מפרקו"
+    },
+    {
+     "key": "תפירה"
+    }
+   ],
+   "read": 2540
+  },
+  {
+   "id": "comma.between_verb_renderings",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts renderings that open with to, or one that opens with to and single words after it, inside one sense of the word.",
+   "test": "The comma's container is top and the list_kind of the route text is verbs.",
+   "count": 20604,
+   "examples": [
+    {
+     "key": "אהרוס"
+    },
+    {
+     "key": "מאשימים"
+    },
+    {
+     "key": "תתגורר"
+    }
+   ],
+   "read": 1044
+  },
+  {
+   "id": "comma.between_article_renderings",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts short renderings that each open with a, an or the, or one such rendering and single words after it, inside one sense of the word.",
+   "test": "The comma's container is top and the list_kind of the route text is articles.",
+   "count": 2649,
+   "examples": [
+    {
+     "key": "גמגומה"
+    },
+    {
+     "key": "קרובתה"
+    },
+    {
+     "key": "פגען"
+    }
+   ],
+   "read": 335
+  },
+  {
+   "id": "comma.in_list_with_a_later_capital",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: stands in a list where a later piece opens with a capital (about two in ten where the first piece opens with a capital too, about eight in ten where it does not): a second name of one thing, a Latin name, initials, or another capitalized word.",
+   "test": "The comma's container is top and the list_kind of the route text is names.",
+   "count": 112,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "ציון"
+    },
+    {
+     "key": "חמאם"
+    }
+   ],
+   "read": 49
+  },
+  {
+   "id": "comma.in_explanation_after_word",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside what is said of a word, after the sign that opens it; the explanation stays one piece under every answer.",
+   "test": "The comma's container is top and the list_kind of the route text is definition and the number of commas and semicolons in the top_view of c.before, plus one, is more than the explanation_start of the route text.",
+   "count": 216,
+   "examples": [
+    {
+     "key": "חומרינו"
+    },
+    {
+     "key": "הבנתן"
+    },
+    {
+     "key": "חומריהן"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "comma.between_word_and_definition",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a word and what is said of it, a long piece or one opened by a word of definition_openers.",
+   "test": "The comma's container is top and the list_kind of the route text is definition and the number of commas and semicolons in the top_view of c.before, plus one, equals the explanation_start of the route text.",
+   "count": 1239,
+   "examples": [
+    {
+     "key": "אעבור"
+    },
+    {
+     "key": "מחותנים"
+    },
+    {
+     "key": "נמכרתי"
+    }
+   ],
+   "read": 153
+  },
+  {
+   "id": "comma.between_words_before_definition",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts the words that stand before what is said of them, in a line whose explanation follows a comma or a semicolon.",
+   "test": "The comma's container is top and the list_kind of the route text is definition; the number of commas and semicolons in the top_view of c.before, plus one, is less than the explanation_start.",
+   "count": 138,
+   "examples": [
+    {
+     "key": "גבירותי"
+    },
+    {
+     "key": "אליהם"
+    },
+    {
+     "key": "פילגשי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.between_phrases",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts a list whose renderings are phrases, or a word beside its own plural, in a text the ledger read and found a list; no test can tell every such list from a sentence.",
+   "test": "The comma's container is top and the list_kind of the route text is phrases. The steps of list_kind use plain, opens_with, tail, named_first, list_tests, word, pieces and the lists not_list_openings, word_and_definition_openings, usage_line_openers, name_labels, name_description_openings, tail_openers, etc_pieces, lists_with_an_opener_word, description_openers, common_word_heads, definition_openers, plain_list_openings, capital_lists_kept_plain, small_verbs, small_verb_stops, own_plural_texts and abbreviations_in_lists.",
+   "count": 10535,
+   "examples": [
+    {
+     "key": "אישית"
+    },
+    {
+     "key": "סבבתי"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 1042
+  },
+  {
+   "id": "comma.before_the_last_bracket",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a word and the bracket that ends the text, where the bracket describes that word; nothing else follows the comma.",
+   "test": "The comma's container is top and the list_text of c.after is empty.",
+   "count": 23,
+   "examples": [
+    {
+     "key": "מהפכן"
+    },
+    {
+     "key": "מהפכיי"
+    },
+    {
+     "key": "המהפכים"
+    }
+   ],
+   "read": 23
+  },
+  {
+   "id": "comma.any_other",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: a comma at top level in a sentence or a text kept whole, such as a text of not_list_openings, or a text with another sign (about eight in ten in a text the ledger read and found no list (not_list_openings), about two in ten in a text with another sign).",
+   "test": "Any other comma whose container is top, not caught above.",
+   "count": 689,
+   "examples": [
+    {
+     "key": "החגים"
+    },
+    {
+     "key": "ישבת"
+    },
+    {
+     "key": "מחמדו"
+    }
+   ],
+   "read": 164
+  },
+  {
+   "id": "semicolon.in_round_bracket",
+   "mark": ";",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: general: inside a round bracket, between two descriptions of one word (about five in ten before a further description that opens with a, an or the, about five in ten before other words). It stays whole under every answer because a cut inside a bracket would leave that bracket open.",
+   "test": "Every semicolon whose container is paren.",
+   "count": 804,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "מדעים"
+    },
+    {
+     "key": "צנימה"
+    }
+   ],
+   "read": 90
+  },
+  {
+   "id": "semicolon.at_a_place_marked_by_hand",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at a place the ledger marked by hand, where it read two readings or a word and what it means, in a line that fits none of the shapes below.",
+   "test": "The semicolon is a listed_cut (definition marked_place, list places_marked_by_hand).",
+   "count": 83,
+   "examples": [
+    {
+     "key": "פרחה"
+    },
+    {
+     "key": "גברתנית"
+    },
+    {
+     "key": "תשוקות"
+    }
+   ],
+   "read": 35
+  },
+  {
+   "id": "semicolon.between_note_and_reading",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a note on the word's form and a reading, in a route marked by hand, where a semicolon does the work a colon does elsewhere.",
+   "test": "The semicolon is a marked place of the list note_and_reading_marks (definition marked_place).",
+   "count": 60,
+   "examples": [
+    {
+     "key": "איזכר"
+    },
+    {
+     "key": "שכנעו"
+    },
+    {
+     "key": "משוכנע"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "semicolon.before_usage_note",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a reading and a note on its use or its form, the note opened by a word of usage_note_openers.",
+   "test": "The list_kind of the route text is not usage_line, and the text after the semicolon, with whitespace removed from its start, opens_with an entry of usage_note_openers.",
+   "count": 283,
+   "examples": [
+    {
+     "key": "עצומה"
+    },
+    {
+     "key": "אוהליה"
+    },
+    {
+     "key": "באתם"
+    }
+   ],
+   "read": 39
+  },
+  {
+   "id": "semicolon.between_forms_of_one_word",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two forms of one word; one reading, so nothing cuts here under any answer.",
+   "test": "The semicolon is unmarked in the list one_word_twice (definition marked_place).",
+   "count": 24,
+   "examples": [
+    {
+     "key": "מליציה"
+    },
+    {
+     "key": "מליציהם"
+    },
+    {
+     "key": "מליציו"
+    }
+   ],
+   "read": 24
+  },
+  {
+   "id": "semicolon.between_one_head_said_twice",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in a line that says one head twice or more, a later time with a word added; one reading, so nothing cuts here under any answer.",
+   "test": "The semicolon is unmarked in the list same_head_lists (definition marked_place).",
+   "count": 88,
+   "examples": [
+    {
+     "key": "תבלענה"
+    },
+    {
+     "key": "מדפן"
+    },
+    {
+     "key": "בעיניכם"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "semicolon.in_list_opening_with_a_small_verb",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates the parts of a list that opens with be, become or grow, where a later piece may lean on that word; the list may stand before a colon, a bracket or a remark.",
+   "test": "The semicolon's container is top and small_verb_here holds.",
+   "count": 98,
+   "examples": [
+    {
+     "key": "זעזעה"
+    },
+    {
+     "key": "ניצלנו"
+    },
+    {
+     "key": "זעזעו"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "semicolon.in_list_after_definition_colon",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates the words in a short list that stands as the explanation after a head and its colon.",
+   "test": "The semicolon's container is top and the list_kind of the route text is colon; by near_colon the side is left, the colon_kind is definition, the stretch is a list_stretch and its pieces are a word_list.",
+   "count": 58,
+   "examples": [
+    {
+     "key": "תפרסמו"
+    },
+    {
+     "key": "נוטים"
+    },
+    {
+     "key": "תיטו"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "semicolon.in_text_with_a_colon",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: stands in a text with a colon, inside its definition or before its head (about six in ten before the colon, about four in ten after the colon, inside its explanation).",
+   "test": "The semicolon's container is top and the list_kind of the route text is colon; not caught above.",
+   "count": 173,
+   "examples": [
+    {
+     "key": "להטן"
+    },
+    {
+     "key": "בינוני"
+    },
+    {
+     "key": "רמשנה"
+    }
+   ],
+   "read": 39
+  },
+  {
+   "id": "semicolon.in_line_with_hebrew",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: stands in a line that cites Hebrew outside brackets, between two pointers, or between a pointer and a note or a name; where the ledger read a reading beside the pointer, the semicolon has its own shape above.",
+   "test": "The semicolon's container is top and the list_kind of the route text is hebrew.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "חדשים"
+    },
+    {
+     "key": "פיטמות"
+    },
+    {
+     "key": "של־"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "semicolon.after_name_label",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the label a surname and the name itself, where other lines write a comma.",
+   "test": "The semicolon's container is top and the list_kind of the route text is name_label and the top_view of c.before, trimmed and in lowercase, equals an entry of name_labels.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "רוזנטל"
+    },
+    {
+     "key": "גילברט"
+    },
+    {
+     "key": "אביתר"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "semicolon.before_note_or_in_tail",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens or stands inside a remark that leans on what comes before it, a qualifier or a usage note, the one sign before such a remark or another after it.",
+   "test": "The semicolon's container is top and the list_kind of the route text is tail and the semicolon is in_tail.",
+   "count": 104,
+   "examples": [
+    {
+     "key": "ידידותיים"
+    },
+    {
+     "key": "ייפול"
+    },
+    {
+     "key": "הומוסקסואליות"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "semicolon.before_a_remark_word",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a remark word, by the same word list as the comma before a remark; the remark stays with what stands before it, so nothing cuts here under any answer.",
+   "test": "The semicolon's container is top and the list_kind of the route text is bracket or tail, and remark_next holds (definition remark_next).",
+   "count": 40,
+   "examples": [
+    {
+     "key": "שורתן"
+    },
+    {
+     "key": "ירו"
+    },
+    {
+     "key": "שורותיו"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "semicolon.in_list_before_tail",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates the senses of a list that ends in such a remark.",
+   "test": "The semicolon's container is top and the list_kind of the route text is tail and the semicolon is not in_tail.",
+   "count": 34,
+   "examples": [
+    {
+     "key": "הלולבים"
+    },
+    {
+     "key": "טיוביה"
+    },
+    {
+     "key": "ישכן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "semicolon.after_name_or_capital_head",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after a name, or after a head that holds a name or opens with a capital, and before what is said of it, or between what is said and the name it describes, where other lines write a comma or a colon.",
+   "test": "The semicolon's container is top and the list_kind of the route text is name_description.",
+   "count": 50,
+   "examples": [
+    {
+     "key": "קרובותי"
+    },
+    {
+     "key": "נחשתן"
+    },
+    {
+     "key": "שבתות"
+    }
+   ],
+   "read": 49
+  },
+  {
+   "id": "semicolon.in_list_with_a_bracket",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates the senses of a list that has a round or square bracket beside it.",
+   "test": "The semicolon's container is top and the list_kind of the route text is bracket.",
+   "count": 639,
+   "examples": [
+    {
+     "key": "הפקיר"
+    },
+    {
+     "key": "יחנוק"
+    },
+    {
+     "key": "תפשט"
+    }
+   ],
+   "read": 47
+  },
+  {
+   "id": "semicolon.between_one_word_renderings",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts single-word renderings inside one sense of the word.",
+   "test": "The semicolon's container is top and the list_kind of the route text is one_word.",
+   "count": 494,
+   "examples": [
+    {
+     "key": "הבתים"
+    },
+    {
+     "key": "מלאכתה"
+    },
+    {
+     "key": "נפצתם"
+    }
+   ],
+   "read": 81
+  },
+  {
+   "id": "semicolon.between_verb_renderings",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts renderings that open with to, or one that opens with to and single words after it, inside one sense of the word. The source writes a semicolon here.",
+   "test": "The semicolon's container is top and the list_kind of the route text is verbs.",
+   "count": 1022,
+   "examples": [
+    {
+     "key": "פעלתן"
+    },
+    {
+     "key": "תפרידו"
+    },
+    {
+     "key": "יזהר"
+    }
+   ],
+   "read": 50
+  },
+  {
+   "id": "semicolon.between_article_renderings",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: parts short renderings that each open with a, an or the, inside one sense of the word.",
+   "test": "The semicolon's container is top and the list_kind of the route text is articles.",
+   "count": 61,
+   "examples": [
+    {
+     "key": "חלדנו"
+    },
+    {
+     "key": "חלדי"
+    },
+    {
+     "key": "צדה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "semicolon.in_list_with_a_later_capital",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in a list where a later piece opens with a capital, where other lines write a comma.",
+   "test": "The semicolon's container is top and the list_kind of the route text is names.",
+   "count": 7,
+   "examples": [
+    {
+     "key": "ששך"
+    },
+    {
+     "key": "ליטאים"
+    },
+    {
+     "key": "ליטאי"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "semicolon.in_explanation_after_word",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside what is said of a word, after the sign that opens it, where the explanation goes on past a semicolon; it stays one piece under every answer.",
+   "test": "The semicolon's container is top and the list_kind of the route text is definition and the number of commas and semicolons in the top_view of c.before, plus one, is more than the explanation_start of the route text.",
+   "count": 61,
+   "examples": [
+    {
+     "key": "המועדים"
+    },
+    {
+     "key": "מחתנו"
+    },
+    {
+     "key": "הגחונים"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "semicolon.between_word_and_definition",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a word and what is said of it, where other lines write a colon.",
+   "test": "The semicolon's container is top and the list_kind of the route text is definition and the number of commas and semicolons in the top_view of c.before, plus one, is at most the explanation_start of the route text.",
+   "count": 319,
+   "examples": [
+    {
+     "key": "איזכר"
+    },
+    {
+     "key": "התקיעה"
+    },
+    {
+     "key": "תקיעתו"
+    }
+   ],
+   "read": 42
+  },
+  {
+   "id": "semicolon.between_phrases",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates senses that are phrases, in a text the ledger read and found a list; no test can tell every such list from a sentence.",
+   "test": "The semicolon's container is top and the list_kind of the route text is phrases.",
+   "count": 548,
+   "examples": [
+    {
+     "key": "תבלענה"
+    },
+    {
+     "key": "ראו"
+    },
+    {
+     "key": "נצליח"
+    }
+   ],
+   "read": 67
+  },
+  {
+   "id": "semicolon.any_other",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: a semicolon at top level in a sentence or a note kept whole (about one in ten in a text the ledger read and found no list (not_list_openings), about nine in ten in a text with another sign).",
+   "test": "Any other semicolon, not caught above.",
+   "count": 30,
+   "examples": [
+    {
+     "key": "נשיא"
+    },
+    {
+     "key": "הנשיאים"
+    },
+    {
+     "key": "נשיאן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "colon.in_round_bracket_in_a_reference",
+   "mark": ":",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: inside a round bracket, stands between the chapter and verse of a Bible reference.",
+   "test": "The colon's container is paren, with a digit directly before it and a digit directly after it.",
+   "count": 42,
+   "examples": [
+    {
+     "key": "מזוזותם"
+    },
+    {
+     "key": "המזוזה"
+    },
+    {
+     "key": "אבנים"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "colon.in_round_bracket",
+   "mark": ":",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: general: inside a round bracket, before a further description, a symbol or a list (about five in ten before a description that opens with a, an or the, about five in ten before a list, a symbol or nothing).",
+   "test": "Any other colon whose container is paren, not caught above.",
+   "count": 132,
+   "examples": [
+    {
+     "key": "תבה"
+    },
+    {
+     "key": "אצבעותי"
+    },
+    {
+     "key": "תבגדו"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "colon.in_a_reference",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: at top level, stands between the chapter and verse of a Bible reference.",
+   "test": "The colon's container is top and its colon_kind is reference.",
+   "count": 3,
+   "examples": [
+    {
+     "key": "דרקון"
+    },
+    {
+     "key": "עצה"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "colon.with_nothing_after_it",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends what stands before it with nothing to read after it but a bracket or a stop.",
+   "test": "The colon's container is top and its colon_kind is at_end.",
+   "count": 87,
+   "examples": [
+    {
+     "key": "תשום"
+    },
+    {
+     "key": "הוות"
+    },
+    {
+     "key": "פליליים"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "colon.before_copied_rendering_list",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "Closes the sentence before the dash that opens a list of renderings, a list that stands in Strong's text on file.",
+   "test": "The colon's container is top and its colon_kind is before_dash.",
+   "count": 74,
+   "examples": [
+    {
+     "key": "להטן"
+    },
+    {
+     "key": "רובצות"
+    },
+    {
+     "key": "תרחפי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "colon.after_name_before_description",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after a name and before its description; a name and its description are one reading.",
+   "test": "The colon's container is top and its colon_kind is name.",
+   "count": 45,
+   "examples": [
+    {
+     "key": "ד"
+    },
+    {
+     "key": "ג"
+    },
+    {
+     "key": "ג׳קסון"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "colon.between_two_notes",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a label or a Hebrew pointer and a further pointer or note, with no reading directly on either side; a reading, where the text holds one, stands further along.",
+   "test": "The colon's container is top and its colon_kind is between_notes.",
+   "count": 62,
+   "examples": [
+    {
+     "key": "בגדול"
+    },
+    {
+     "key": "עירית"
+    },
+    {
+     "key": "בעיניכם"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "colon.after_label",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a label and what the label introduces, a reading or a list of readings.",
+   "test": "The colon's container is top and its colon_kind is label.",
+   "count": 67,
+   "examples": [
+    {
+     "key": "נתניהו"
+    },
+    {
+     "key": "בתם"
+    },
+    {
+     "key": "בנותם"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "colon.after_pointer",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "Stands between a grammar pointer with cited Hebrew and the reading of that form; the source's form_of or alt_of field stands on the sense of almost all of these.",
+   "test": "The colon's container is top and its colon_kind is after_pointer.",
+   "count": 244,
+   "examples": [
+    {
+     "key": "עיני"
+    },
+    {
+     "key": "איו"
+    },
+    {
+     "key": "פרו"
+    }
+   ],
+   "read": 34
+  },
+  {
+   "id": "colon.before_pointer",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a reading and a grammar pointer or a cited Hebrew form.",
+   "test": "The colon's container is top and its colon_kind is before_pointer.",
+   "count": 156,
+   "examples": [
+    {
+     "key": "בזינו"
+    },
+    {
+     "key": "הבאים"
+    },
+    {
+     "key": "ויבן"
+    }
+   ],
+   "read": 59
+  },
+  {
+   "id": "colon.before_note",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a head word and a note on how it is used.",
+   "test": "The colon's container is top and its colon_kind is before_note.",
+   "count": 141,
+   "examples": [
+    {
+     "key": "חביבי"
+    },
+    {
+     "key": "עמהם"
+    },
+    {
+     "key": "פרו"
+    }
+   ],
+   "read": 35
+  },
+  {
+   "id": "colon.before_words_that_point_back",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before words that point back, with this or these, to another gloss of the same word, so what follows cannot stand alone; nothing cuts here under any answer.",
+   "test": "The colon's container is top and its colon_kind is points_back.",
+   "count": 12,
+   "examples": [
+    {
+     "key": "נחשת"
+    },
+    {
+     "key": "סלמון"
+    },
+    {
+     "key": "אכזבות"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "colon.between_word_and_definition",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: stands between a head and what is said of it (about eight in ten before words that open a definition, a, an, the, to, of, having, being, one, any or that, about two in ten before a shorter explanation, a list or other words).",
+   "test": "Any other colon, not caught above. By then its colon_kind is definition. The steps of colon_kind use the lists note_openers, label_openers, name_heads, name_head_openings and points_back_heads.",
+   "count": 5495,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "בורגן"
+    },
+    {
+     "key": "תרחיקי"
+    }
+   ],
+   "read": 520
+  },
+  {
+   "id": "period.in_unbalanced_text",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands in a text whose brackets do not balance, at the end of a sentence or after an abbreviation.",
+   "test": "The ask's helper unbalanced(text) is true of the route text.",
+   "count": 70,
+   "examples": [
+    {
+     "key": "מנקרים"
+    },
+    {
+     "key": "נקרת"
+    },
+    {
+     "key": "ינקר"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "period.in_round_bracket_in_a_number",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "Inside a round bracket, the decimal point of a figure.",
+   "test": "The period's container is paren, with a digit directly before it and a digit directly after it.",
+   "count": 80,
+   "examples": [
+    {
+     "key": "יין"
+    },
+    {
+     "key": "מימן"
+    },
+    {
+     "key": "כספן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.in_round_bracket_after_abbreviation",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: inside a round bracket, closes an abbreviation such as those of the list abbreviations.",
+   "test": "The period's container is paren and run_before of c.before equals an entry of abbreviations (case kept).",
+   "count": 1273,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "תקושש"
+    },
+    {
+     "key": "שורותיו"
+    }
+   ],
+   "read": 47
+  },
+  {
+   "id": "period.in_round_bracket",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: general: inside a round bracket, the end of a sentence there or the dots of a set phrase (about nine in ten at the end of the bracket's own sentence, about one in ten inside the bracket's text).",
+   "test": "Any other period whose container is paren, not caught above.",
+   "count": 163,
+   "examples": [
+    {
+     "key": "יפסיקו"
+    },
+    {
+     "key": "מחקי"
+    },
+    {
+     "key": "הפסקתי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.ends_the_text",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends the text and parts nothing, whether after a sentence, a list or a single word.",
+   "test": "The period's container is top and only whitespace, or nothing, stands after it.",
+   "count": 21914,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "זבלת"
+    },
+    {
+     "key": "תרחיקי"
+    }
+   ],
+   "read": 1092
+  },
+  {
+   "id": "period.at_a_place_marked_by_hand",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at a place the ledger marked by hand, where another line would write a comma.",
+   "test": "The period is a listed_cut (definition marked_place, list places_marked_by_hand).",
+   "count": 37,
+   "examples": [
+    {
+     "key": "נערתו"
+    },
+    {
+     "key": "נערך"
+    },
+    {
+     "key": "נערתה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.in_a_number",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "At top level, the decimal point of a figure.",
+   "test": "A digit stands directly before the period and a digit directly after it.",
+   "count": 46,
+   "examples": [
+    {
+     "key": "אמותיכם"
+    },
+    {
+     "key": "מיל"
+    },
+    {
+     "key": "אמותם"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.in_an_ellipsis",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is one of a run of dots that stands for a word left out, in a set phrase with a gap.",
+   "test": "A period stands directly before it or directly after it.",
+   "count": 18,
+   "examples": [
+    {
+     "key": "לפנה״ס"
+    },
+    {
+     "key": "כאחד"
+    },
+    {
+     "key": "מרגלות"
+    }
+   ],
+   "read": 18
+  },
+  {
+   "id": "period.after_abbreviation",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes an abbreviation such as those of the list abbreviations.",
+   "test": "run_before of c.before equals an entry of abbreviations (case kept).",
+   "count": 188,
+   "examples": [
+    {
+     "key": "השתלט"
+    },
+    {
+     "key": "דק׳"
+    },
+    {
+     "key": "כפרה"
+    }
+   ],
+   "read": 48
+  },
+  {
+   "id": "period.after_name_label",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the label a surname, or a given name, and the name itself, where other lines write a comma.",
+   "test": "c.before, trimmed and in lowercase, equals an entry of name_labels.",
+   "count": 17,
+   "examples": [
+    {
+     "key": "בוגן"
+    },
+    {
+     "key": "שטיינברג"
+    },
+    {
+     "key": "אהרוני"
+    }
+   ],
+   "read": 17
+  },
+  {
+   "id": "period.before_a_closing_bracket_remark",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the reading before a round bracket that holds a remark on the whole line.",
+   "test": "The first character after the period, skipping whitespace, is \"(\".",
+   "count": 72,
+   "examples": [
+    {
+     "key": "יפסיקו"
+    },
+    {
+     "key": "הפסיקו"
+    },
+    {
+     "key": "הפסקתי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.between_sentences",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: ends a sentence inside a longer note, before a further sentence such as further details or another name (nearly all before a sentence that opens with an uppercase letter, under one in twenty elsewhere).",
+   "test": "Any other period, not caught above.",
+   "count": 89,
+   "examples": [
+    {
+     "key": "שממית"
+    },
+    {
+     "key": "פלדות"
+    },
+    {
+     "key": "משך"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_paren.never_closed",
+   "mark": "(",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: a round bracket that nothing closes, in a damaged or cut text, so the whole text stays whole.",
+   "test": "c.group is null: the opener never closes.",
+   "count": 33,
+   "examples": [
+    {
+     "key": "מנקרים"
+    },
+    {
+     "key": "נקרת"
+    },
+    {
+     "key": "ינקר"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "close_paren.never_opened",
+   "mark": ")",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: a closing round bracket that nothing opened, so the whole text stays whole.",
+   "test": "never_opened holds: c.group is the empty string and c.before does not end in an opening round bracket.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "קלמנטינה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.inside_square_bracket",
+   "mark": "(",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: opens a romanization or a note about a governed Hebrew word, inside a square bracket.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is in_square.",
+   "count": 379,
+   "examples": [
+    {
+     "key": "השתתפת"
+    },
+    {
+     "key": "יסבל"
+    },
+    {
+     "key": "יניח"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "close_paren.inside_square_bracket",
+   "mark": ")",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: closes a romanization or a note about a governed Hebrew word, inside a square bracket.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is in_square.",
+   "count": 379,
+   "examples": [
+    {
+     "key": "השתתפת"
+    },
+    {
+     "key": "יסבל"
+    },
+    {
+     "key": "יניח"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_paren.inside_round_bracket",
+   "mark": "(",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens a further aside inside a round bracket: a romanization, a scientific name or a remark.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is in_round.",
+   "count": 789,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "אמות־"
+    },
+    {
+     "key": "תמנונים"
+    }
+   ],
+   "read": 147
+  },
+  {
+   "id": "close_paren.inside_round_bracket",
+   "mark": ")",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes a further aside inside a round bracket: a romanization, a scientific name or a remark.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is in_round.",
+   "count": 789,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "אמות־"
+    },
+    {
+     "key": "תמנונים"
+    }
+   ],
+   "read": 147
+  },
+  {
+   "id": "open_paren.word_part",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens letters that are part of the word they touch, an optional ending or an optional start.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is word_part.",
+   "count": 46,
+   "examples": [
+    {
+     "key": "הפוך"
+    },
+    {
+     "key": "הפוכות"
+    },
+    {
+     "key": "ישכן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "close_paren.word_part",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes letters that are part of the word they touch, an optional ending or an optional start.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is word_part.",
+   "count": 46,
+   "examples": [
+    {
+     "key": "הפוך"
+    },
+    {
+     "key": "הפוכות"
+    },
+    {
+     "key": "ישכן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_paren.holds_only_signs",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a display of Hebrew signs with no letter, a point shown on a dotted circle.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is only_signs.",
+   "count": 19,
+   "examples": [
+    {
+     "key": "דגשנו"
+    },
+    {
+     "key": "דגשו"
+    },
+    {
+     "key": "דגשם"
+    }
+   ],
+   "read": 19
+  },
+  {
+   "id": "close_paren.holds_only_signs",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a display of Hebrew signs with no letter, a point shown on a dotted circle.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is only_signs.",
+   "count": 19,
+   "examples": [
+    {
+     "key": "דגשנו"
+    },
+    {
+     "key": "דגשו"
+    },
+    {
+     "key": "דגשם"
+    }
+   ],
+   "read": 19
+  },
+  {
+   "id": "open_paren.after_hebrew_holds_quoted_gloss",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the English gloss, in quotes, of the Hebrew word just before it.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is quoted_after_hebrew.",
+   "count": 66,
+   "examples": [
+    {
+     "key": "אלצהיימר"
+    },
+    {
+     "key": "תאום"
+    },
+    {
+     "key": "ירשלם"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "close_paren.after_hebrew_holds_quoted_gloss",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the English gloss, in quotes, of the Hebrew word just before it.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is quoted_after_hebrew.",
+   "count": 66,
+   "examples": [
+    {
+     "key": "אלצהיימר"
+    },
+    {
+     "key": "תאום"
+    },
+    {
+     "key": "ירשלם"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_paren.after_hebrew_holds_note",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a note on the Hebrew word just before it, an equal form or a remark.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is note_after_hebrew. (The step uses notes_after_hebrew.)",
+   "count": 4,
+   "examples": [
+    {
+     "key": "אש״ל"
+    },
+    {
+     "key": "שליו"
+    },
+    {
+     "key": "זברה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "close_paren.after_hebrew_holds_note",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a note on the Hebrew word just before it, an equal form or a remark.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is note_after_hebrew. (The step uses notes_after_hebrew.)",
+   "count": 4,
+   "examples": [
+    {
+     "key": "אש״ל"
+    },
+    {
+     "key": "שליו"
+    },
+    {
+     "key": "זברה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "open_paren.after_hebrew_holds_romanization",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "Opens the romanization of the Hebrew word just before it, at times with a gloss after it or a gloss alone; the source's own fields hold that romanization for about nine in ten of these.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is romanization.",
+   "count": 2484,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "ללמוד"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 1371
+  },
+  {
+   "id": "close_paren.after_hebrew_holds_romanization",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "Closes the romanization of the Hebrew word just before it, at times with a gloss after it or a gloss alone; the source's own fields hold that romanization for about nine in ten of these.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is romanization.",
+   "count": 2484,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "ללמוד"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 1371
+  },
+  {
+   "id": "open_paren.holds_a_note_with_hebrew",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a remark that cites Hebrew, on the English word before it.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is holds_hebrew.",
+   "count": 217,
+   "examples": [
+    {
+     "key": "גווע"
+    },
+    {
+     "key": "אבינו"
+    },
+    {
+     "key": "ניתחתי"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "close_paren.holds_a_note_with_hebrew",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a remark that cites Hebrew, on the English word before it.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is holds_hebrew.",
+   "count": 217,
+   "examples": [
+    {
+     "key": "גווע"
+    },
+    {
+     "key": "אבינו"
+    },
+    {
+     "key": "ניתחתי"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "open_paren.holds_subject_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the subject word of a verb-form gloss, he, she, it, they, you or I, or the word and for the prefixed vav.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is subject. (The step uses subject_words.)",
+   "count": 126,
+   "examples": [
+    {
+     "key": "צבעתם"
+    },
+    {
+     "key": "צובעים"
+    },
+    {
+     "key": "ויבן"
+    }
+   ],
+   "read": 36
+  },
+  {
+   "id": "close_paren.holds_subject_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the subject word of a verb-form gloss, he, she, it, they, you or I, or the word and for the prefixed vav.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is subject. (The step uses subject_words.)",
+   "count": 126,
+   "examples": [
+    {
+     "key": "צבעתם"
+    },
+    {
+     "key": "צובעים"
+    },
+    {
+     "key": "ויבן"
+    }
+   ],
+   "read": 36
+  },
+  {
+   "id": "open_paren.holds_gender_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the word male or female, which limits the word beside it inside one reading.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is gender.",
+   "count": 932,
+   "examples": [
+    {
+     "key": "אהובכם"
+    },
+    {
+     "key": "יורשינו"
+    },
+    {
+     "key": "מוהלי"
+    }
+   ],
+   "read": 37
+  },
+  {
+   "id": "close_paren.holds_gender_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the word male or female, which limits the word beside it inside one reading.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is gender.",
+   "count": 932,
+   "examples": [
+    {
+     "key": "אהובכם"
+    },
+    {
+     "key": "יורשינו"
+    },
+    {
+     "key": "מוהלי"
+    }
+   ],
+   "read": 37
+  },
+  {
+   "id": "open_paren.holds_conjugation_note",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "Opens a grammar note inside a grammar pointer, the name of a conjugation or of what it means; the source's form_of or alt_of field stands on the sense of about eight in ten of these.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is conjugation. (The step uses conjugation_notes.)",
+   "count": 470,
+   "examples": [
+    {
+     "key": "לקחת"
+    },
+    {
+     "key": "כפו"
+    },
+    {
+     "key": "פרו"
+    }
+   ],
+   "read": 41
+  },
+  {
+   "id": "close_paren.holds_conjugation_note",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "Closes a grammar note inside a grammar pointer, the name of a conjugation or of what it means; the source's form_of or alt_of field stands on the sense of about eight in ten of these.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is conjugation. (The step uses conjugation_notes.)",
+   "count": 470,
+   "examples": [
+    {
+     "key": "לקחת"
+    },
+    {
+     "key": "כפו"
+    },
+    {
+     "key": "פרו"
+    }
+   ],
+   "read": 41
+  },
+  {
+   "id": "open_paren.holds_object_slot",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the object of the verb, noun or phrase before it, inside one reading, such as someone or something, or the word people after a people's name.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is object. (The step uses object_slots.)",
+   "count": 2035,
+   "examples": [
+    {
+     "key": "אדרך"
+    },
+    {
+     "key": "אסתום"
+    },
+    {
+     "key": "תרחיקי"
+    }
+   ],
+   "read": 47
+  },
+  {
+   "id": "close_paren.holds_object_slot",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the object of the verb, noun or phrase before it, inside one reading, such as someone or something, or the word people after a people's name.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is object. (The step uses object_slots.)",
+   "count": 2035,
+   "examples": [
+    {
+     "key": "אדרך"
+    },
+    {
+     "key": "אסתום"
+    },
+    {
+     "key": "תרחיקי"
+    }
+   ],
+   "read": 47
+  },
+  {
+   "id": "open_paren.opens_the_text",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a context label or a subject word at the very start of a line, which may speak of all that follows.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is opens_text.",
+   "count": 109,
+   "examples": [
+    {
+     "key": "שרתה"
+    },
+    {
+     "key": "שוזפת"
+    },
+    {
+     "key": "דודן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "close_paren.opens_the_text",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a context label or a subject word at the very start of a line, which may speak of all that follows.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is opens_text.",
+   "count": 109,
+   "examples": [
+    {
+     "key": "שרתה"
+    },
+    {
+     "key": "שוזפת"
+    },
+    {
+     "key": "דודן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_paren.after_the_final_stop",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a label or a note after the reading's own stop, at the end of the line.",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is after_stop.",
+   "count": 71,
+   "examples": [
+    {
+     "key": "יפסיקו"
+    },
+    {
+     "key": "הפסקנו"
+    },
+    {
+     "key": "הפסקתי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "close_paren.after_the_final_stop",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a label or a note after the reading's own stop, at the end of the line.",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is after_stop.",
+   "count": 71,
+   "examples": [
+    {
+     "key": "יפסיקו"
+    },
+    {
+     "key": "הפסקנו"
+    },
+    {
+     "key": "הפסקתי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_paren.ends_the_text",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens general: a description or a qualifier of the word before it, at the end of the text (about four in ten holding a description that opens with a, an, the or one, about six in ten holding a qualifier or a shorter word).",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is ends_text.",
+   "count": 17914,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "איבר"
+    },
+    {
+     "key": "תפדה"
+    }
+   ],
+   "read": 1213
+  },
+  {
+   "id": "close_paren.ends_the_text",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes general: a description or a qualifier of the word before it, at the end of the text (about four in ten holding a description that opens with a, an, the or one, about six in ten holding a qualifier or a shorter word).",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is ends_text.",
+   "count": 17914,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "איבר"
+    },
+    {
+     "key": "תפדה"
+    }
+   ],
+   "read": 1213
+  },
+  {
+   "id": "open_paren.in_the_text",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens general: a qualifier or a remark in the middle of the text (about three in ten holding a description that opens with a, an, the or one, about seven in ten holding a qualifier or a shorter word).",
+   "test": "The bracket has a partner (c.group is not null) and its round_kind is in_text.",
+   "count": 2947,
+   "examples": [
+    {
+     "key": "אדרך"
+    },
+    {
+     "key": "ארנב"
+    },
+    {
+     "key": "שורותיו"
+    }
+   ],
+   "read": 263
+  },
+  {
+   "id": "close_paren.in_the_text",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes general: a qualifier or a remark in the middle of the text (about three in ten holding a description that opens with a, an, the or one, about seven in ten holding a qualifier or a shorter word).",
+   "test": "The bracket has a partner (see never_opened) and its round_kind is in_text.",
+   "count": 2947,
+   "examples": [
+    {
+     "key": "אדרך"
+    },
+    {
+     "key": "ארנב"
+    },
+    {
+     "key": "שורותיו"
+    }
+   ],
+   "read": 263
+  },
+  {
+   "id": "open_bracket.in_link_markup",
+   "mark": "[",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens wiki link markup that the export left in the text.",
+   "test": "The bracket's square_kind is link_markup.",
+   "count": 3,
+   "examples": [
+    {
+     "key": "פן"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "close_bracket.in_link_markup",
+   "mark": "]",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes wiki link markup that the export left in the text.",
+   "test": "The bracket's square_kind is link_markup.",
+   "count": 3,
+   "examples": [
+    {
+     "key": "פן"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "open_bracket.holds_with_word",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "Opens what the word governs, the word with and a Hebrew particle or a plain phrase, as the source's +obj template expands it; the sense's info_templates field holds the same words for all of these.",
+   "test": "The bracket's square_kind is with.",
+   "count": 327,
+   "examples": [
+    {
+     "key": "השתתפת"
+    },
+    {
+     "key": "סובלות"
+    },
+    {
+     "key": "יניח"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "close_bracket.holds_with_word",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "Closes what the word governs, the word with and a Hebrew particle or a plain phrase, as the source's +obj template expands it; the sense's info_templates field holds the same words for all of these.",
+   "test": "The bracket's square_kind is with.",
+   "count": 327,
+   "examples": [
+    {
+     "key": "השתתפת"
+    },
+    {
+     "key": "סובלות"
+    },
+    {
+     "key": "יניח"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_bracket.holds_see",
+   "mark": "[",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens a pointer to a usage note, inside a round bracket.",
+   "test": "The bracket's square_kind is see.",
+   "count": 22,
+   "examples": [
+    {
+     "key": "ילדיו"
+    },
+    {
+     "key": "ילדן"
+    },
+    {
+     "key": "ילדיהן"
+    }
+   ],
+   "read": 22
+  },
+  {
+   "id": "close_bracket.holds_see",
+   "mark": "]",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes a pointer to a usage note, inside a round bracket.",
+   "test": "The bracket's square_kind is see.",
+   "count": 22,
+   "examples": [
+    {
+     "key": "ילדיו"
+    },
+    {
+     "key": "ילדן"
+    },
+    {
+     "key": "ילדיהן"
+    }
+   ],
+   "read": 22
+  },
+  {
+   "id": "open_bracket.holds_equal_name",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens an equal name in English after a cited Hebrew name.",
+   "test": "The bracket's square_kind is equals.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "יוני"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_equal_name",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes an equal name in English after a cited Hebrew name.",
+   "test": "The bracket's square_kind is equals.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "יוני"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.holds_only_signs",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens an ellipsis that stands for an open slot in a phrase.",
+   "test": "The bracket's square_kind is only_signs.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מיהו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_only_signs",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes an ellipsis that stands for an open slot in a phrase.",
+   "test": "The bracket's square_kind is only_signs.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מיהו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.holds_a_sound",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens phonetic notation of a vowel sound.",
+   "test": "The bracket's square_kind is sound.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חולם"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_a_sound",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes phonetic notation of a vowel sound.",
+   "test": "The bracket's square_kind is sound.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חולם"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.holds_supplied_word",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a supplied word inside one reading, or what such a phrase leans on.",
+   "test": "The bracket's square_kind is supplied.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עבר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_supplied_word",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a supplied word inside one reading, or what such a phrase leans on.",
+   "test": "The bracket's square_kind is supplied.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עבר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_angle.around_a_spelling",
+   "mark": "<",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens the spelling of a sound, in a remark on what a Hebrew sign denotes.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ד׳"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_angle.around_a_spelling",
+   "mark": ">",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes the spelling of a sound, in a remark on what a Hebrew sign denotes.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ד׳"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_brace.left_from_wiki_markup",
+   "mark": "{",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a brace left from wiki template markup that the export did not render.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "קלמנטינה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "pipe.left_from_wiki_markup",
+   "mark": "|",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: a pipe left from wiki markup that the export did not render.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "קלמנטינה"
+    },
+    {
+     "key": "פן"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hyphen.in_unbalanced_text",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: a hyphen in a text whose brackets do not balance, joining the parts of a word there.",
+   "test": "The ask's helper unbalanced(text) is true of the route text.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "קלמנטינה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.opens_copied_rendering_list",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "Opens a list of renderings that stands in Strong's text on file, directly after the colon of Wiktionary's gloss.",
+   "test": "The hyphen's container is top; c.before, with whitespace removed from its end, ends in \":\"; and whitespace stands directly after the hyphen.",
+   "count": 60,
+   "examples": [
+    {
+     "key": "תרדי"
+    },
+    {
+     "key": "רודות"
+    },
+    {
+     "key": "תרחפי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "hyphen.between_letters",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "Joins the parts of one word or one compound, with a letter on each side.",
+   "test": "A letter stands directly before the hyphen and a letter directly after it.",
+   "count": 3397,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "אמוזג"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 212
+  },
+  {
+   "id": "hyphen.ends_a_romanized_prefix",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "Ends the romanization of a Hebrew prefix inside a round bracket; the source's own fields hold that romanization, hyphen and all, for about eight in ten of these.",
+   "test": "The hyphen's container is paren; the first character after it, skipping whitespace, is \")\"; and a letter or \"'\" stands directly before it.",
+   "count": 260,
+   "examples": [
+    {
+     "key": "ייכנסו"
+    },
+    {
+     "key": "ממכם"
+    },
+    {
+     "key": "נהנות"
+    }
+   ],
+   "read": 51
+  },
+  {
+   "id": "hyphen.between_numbers",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: joins two figures in a range.",
+   "test": "Skipping whitespace on both sides, a digit stands before the hyphen and a digit after it.",
+   "count": 22,
+   "examples": [
+    {
+     "key": "שקלינו"
+    },
+    {
+     "key": "שקלה"
+    },
+    {
+     "key": "שקלך"
+    }
+   ],
+   "read": 22
+  },
+  {
+   "id": "hyphen.spaced_between_words",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: a hyphen with a space on each side, standing as a dash before a remark or in a range of dates.",
+   "test": "Whitespace stands directly before the hyphen and directly after it.",
+   "count": 14,
+   "examples": [
+    {
+     "key": "תכניתן"
+    },
+    {
+     "key": "בחור"
+    },
+    {
+     "key": "עקרב"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "hyphen.opens_or_ends_an_affix",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: general: a hyphen with no letter on one side, a prefix or suffix cited by itself, a word cut short, or a figure or a bracket joined to a word (about seven in ten at the end of a word part, about three in ten at the start of one or elsewhere).",
+   "test": "Any other hyphen, not caught above.",
+   "count": 98,
+   "examples": [
+    {
+     "key": "תרדי"
+    },
+    {
+     "key": "החסר"
+    },
+    {
+     "key": "פרו"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "apostrophe.in_romanization",
+   "mark": "'",
+   "container": "paren",
+   "divides": false,
+   "means": "Writes a Hebrew sound inside the round bracket after a cited Hebrew word, or stands in the English gloss beside it; the source's own fields hold that bracket's romanization for about eight in ten of these.",
+   "test": "The apostrophe's container is paren and pair_follows_hebrew holds.",
+   "count": 539,
+   "examples": [
+    {
+     "key": "אלצהיימר"
+    },
+    {
+     "key": "ת״פ"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 67
+  },
+  {
+   "id": "apostrophe.between_letters",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "Stands inside one English or transliterated word, a possessive, a contraction or a sound in a name.",
+   "test": "A letter stands directly before the apostrophe and a letter directly after it.",
+   "count": 1553,
+   "examples": [
+    {
+     "key": "גורלות"
+    },
+    {
+     "key": "סוככים"
+    },
+    {
+     "key": "עפו"
+    }
+   ],
+   "read": 86
+  },
+  {
+   "id": "apostrophe.after_a_letter",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: general: follows a word with no letter after it, a plural possessive, a closing quote or a sound at the end of a name.",
+   "test": "Any other apostrophe with a letter directly before it, not caught above.",
+   "count": 30,
+   "examples": [
+    {
+     "key": "מהרו"
+    },
+    {
+     "key": "סרבנית"
+    },
+    {
+     "key": "מוהרם"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "apostrophe.opens_a_word",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands before a word with no letter before it, an opening quote or a sound at the start of a romanized word.",
+   "test": "Any other apostrophe, not caught above.",
+   "count": 6,
+   "examples": [
+    {
+     "key": "קבוץ"
+    },
+    {
+     "key": "קאפ"
+    },
+    {
+     "key": "האבות"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "slash.between_hebrew_spellings",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two spellings of a cited Hebrew word, with or without points, or between a romanized name and its Hebrew spelling; neither side is a reading of the word.",
+   "test": "The slash's container is top, and the first character before it or the first character after it, skipping whitespace, is a Hebrew character.",
+   "count": 235,
+   "examples": [
+    {
+     "key": "חופשייה"
+    },
+    {
+     "key": "חום"
+    },
+    {
+     "key": "משותף"
+    }
+   ],
+   "read": 44
+  },
+  {
+   "id": "slash.between_words",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: offers two words for one place in one phrase, as he or it, will or shall, where a word alone would lean on the rest; or two spellings of one word.",
+   "test": "The slash's container is top, with a letter or digit directly before it and a letter or digit directly after it.",
+   "count": 269,
+   "examples": [
+    {
+     "key": "שמחתי"
+    },
+    {
+     "key": "נפוש"
+    },
+    {
+     "key": "באתם"
+    }
+   ],
+   "read": 39
+  },
+  {
+   "id": "slash.spaced_between_words",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands with a space on each side between two forms of one word or title.",
+   "test": "The slash's container is top, with whitespace directly before and directly after it.",
+   "count": 3,
+   "examples": [
+    {
+     "key": "נ״ך"
+    },
+    {
+     "key": "גב׳"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "slash.around_a_sound",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: at top level, one of a pair of slashes around a sound in phonetic notation, or a slash with a space on one side only.",
+   "test": "Any other slash whose container is top, not caught above.",
+   "count": 10,
+   "examples": [
+    {
+     "key": "צירי"
+    },
+    {
+     "key": "שורוק"
+    },
+    {
+     "key": "ד׳"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "slash.between_words_in_round_bracket",
+   "mark": "/",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: inside a round bracket, offers two words for one place, as he or it.",
+   "test": "The slash's container is paren, with a letter or digit directly before it and a letter or digit directly after it.",
+   "count": 91,
+   "examples": [
+    {
+     "key": "לימוזינה"
+    },
+    {
+     "key": "החלבון"
+    },
+    {
+     "key": "ויבן"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "slash.in_round_bracket_other",
+   "mark": "/",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: general: inside a round bracket, one of a pair of slashes around a sound, a slash with spaces, or part of a web address.",
+   "test": "Any other slash, not caught above; its container is paren.",
+   "count": 25,
+   "examples": [
+    {
+     "key": "סגולים"
+    },
+    {
+     "key": "שוא"
+    },
+    {
+     "key": "הצופים"
+    }
+   ],
+   "read": 25
+  },
+  {
+   "id": "backslash.between_hebrew_spellings",
+   "mark": "\\",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands, as a slash does elsewhere, between two spellings of a cited Hebrew word, with or without points; neither side is a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 12,
+   "examples": [
+    {
+     "key": "שתיים"
+    },
+    {
+     "key": "שתי"
+    },
+    {
+     "key": "ציידת"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "quote.between_letters",
+   "mark": "\"",
+   "container": "any",
+   "divides": false,
+   "means": "Stands inside an abbreviation in place of the Hebrew gershayim, as a route of this dictionary says of this mark.",
+   "test": "A letter stands directly before the quote mark and a letter directly after it.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "שו״ם"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "quote.around_quoted_words",
+   "mark": "\"",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: general: opens or closes quoted words, a translation, a literal meaning or a term (about seven in ten inside a round bracket, about three in ten at top level); once it is named as a sign.",
+   "test": "Any other quote mark, not caught above.",
+   "count": 394,
+   "examples": [
+    {
+     "key": "לויתנו"
+    },
+    {
+     "key": "תוספנה"
+    },
+    {
+     "key": "הלויתן"
+    }
+   ],
+   "read": 73
+  },
+  {
+   "id": "left_double_quotation_mark.opens_a_gloss_or_quoted_wording",
+   "mark": "“",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens the English gloss of a cited Hebrew word, or a quoted wording.",
+   "test": "Every occurrence of this mark.",
+   "count": 268,
+   "examples": [
+    {
+     "key": "אלצהיימר"
+    },
+    {
+     "key": "שבועיים"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 37
+  },
+  {
+   "id": "right_double_quotation_mark.closes_a_gloss_or_quoted_wording",
+   "mark": "”",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes the English gloss of a cited Hebrew word, or a quoted wording.",
+   "test": "Every occurrence of this mark.",
+   "count": 268,
+   "examples": [
+    {
+     "key": "אלצהיימר"
+    },
+    {
+     "key": "שבועיים"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 37
+  },
+  {
+   "id": "left_single_quotation_mark.opens_the_english_of_a_governed_word",
+   "mark": "‘",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens the English of a governed Hebrew word, or a word quoted inside a gloss.",
+   "test": "Every occurrence of this mark.",
+   "count": 160,
+   "examples": [
+    {
+     "key": "ייכנסו"
+    },
+    {
+     "key": "יורדים"
+    },
+    {
+     "key": "דונה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "right_single_quotation_mark.between_letters",
+   "mark": "’",
+   "container": "any",
+   "divides": false,
+   "means": "Stands inside one English word as an apostrophe, a possessive or a contraction.",
+   "test": "A letter stands directly before the mark and a letter directly after it.",
+   "count": 72,
+   "examples": [
+    {
+     "key": "הננו"
+    },
+    {
+     "key": "תמוך"
+    },
+    {
+     "key": "אתמך"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "right_single_quotation_mark.closes_the_english_of_a_governed_word",
+   "mark": "’",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes the English of a governed Hebrew word, or a word quoted inside a gloss.",
+   "test": "Any other occurrence of this mark, not caught above.",
+   "count": 160,
+   "examples": [
+    {
+     "key": "ייכנסו"
+    },
+    {
+     "key": "יורדים"
+    },
+    {
+     "key": "דונה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "exclamation.at_a_place_marked_by_hand",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends one cry with another cry after it and no comma between them, at a place the ledger marked by hand.",
+   "test": "The exclamation mark is a listed_cut (definition marked_place, list places_marked_by_hand).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "הס"
+    },
+    {
+     "key": "אבוי"
+    },
+    {
+     "key": "ש"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "exclamation.ends_a_cry",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends a cry or a command, inside one reading.",
+   "test": "Any other exclamation mark, not caught above.",
+   "count": 54,
+   "examples": [
+    {
+     "key": "וואו"
+    },
+    {
+     "key": "אי"
+    },
+    {
+     "key": "קום"
+    }
+   ],
+   "read": 45
+  },
+  {
+   "id": "question_mark.ends_a_question",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends a question or a word offered as one, inside one reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 9,
+   "examples": [
+    {
+     "key": "אילו"
+    },
+    {
+     "key": "ואללה"
+    },
+    {
+     "key": "האומנם"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "equals.opens_a_full_form",
+   "mark": "=",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens the full form or the equal name of an abbreviation or a cited word.",
+   "test": "Every occurrence of this mark.",
+   "count": 11,
+   "examples": [
+    {
+     "key": "גלולות"
+    },
+    {
+     "key": "ארה״ב"
+    },
+    {
+     "key": "ע״פ"
+    }
+   ],
+   "read": 11
+  },
+  {
+   "id": "plus.joins_two_items",
+   "mark": "+",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: joins two items a Hebrew word is built from or governs.",
+   "test": "Every occurrence of this mark.",
+   "count": 19,
+   "examples": [
+    {
+     "key": "השתתפת"
+    },
+    {
+     "key": "תשתתף"
+    },
+    {
+     "key": "תשתתפנה"
+    }
+   ],
+   "read": 19
+  },
+  {
+   "id": "times.in_a_figure_or_a_species_name",
+   "mark": "×",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: the multiplication sign in a figure, or the cross of a hybrid in a species name.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "קלמנטינה"
+    },
+    {
+     "key": "מול"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "ampersand.joins_two_book_names",
+   "mark": "&",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: joins two book names in a remark inside a round bracket.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "איזבל"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "percent_sign.after_a_figure",
+   "mark": "%",
+   "container": "paren",
+   "divides": false,
+   "means": "Follows a figure, as a percent sign does, in a remark inside a round bracket.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "יין"
+    },
+    {
+     "key": "יינות"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "number_sign.named_or_shown_as_itself",
+   "mark": "#",
+   "container": "any",
+   "divides": false,
+   "means": "Shown as itself, in the gloss of the word for this sign, which names it, or in a list of forms of number.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "סלמית"
+    },
+    {
+     "key": "מס׳"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "commercial_at.named_or_shown_as_itself",
+   "mark": "@",
+   "container": "any",
+   "divides": false,
+   "means": "Shown as itself in the gloss of the word for this sign, which names it; it also stands before a gloss, where the source says nothing of it.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "קשיטה"
+    },
+    {
+     "key": "כרוכית"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "black_spade_suit.shown_as_itself",
+   "mark": "♠",
+   "container": "top",
+   "divides": false,
+   "means": "The card suit sign, shown after the name of the suit.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "עלים"
+    },
+    {
+     "key": "עלה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "black_club_suit.shown_as_itself",
+   "mark": "♣",
+   "container": "paren",
+   "divides": false,
+   "means": "The card suit sign, shown in the gloss of the suit, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "תלתן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "pluto.shown_as_itself",
+   "mark": "♇",
+   "container": "paren",
+   "divides": false,
+   "means": "The planet sign, shown in the gloss of the planet Pluto, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "פלוטו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "pluto_form_two.shown_as_itself",
+   "mark": "⯓",
+   "container": "paren",
+   "divides": false,
+   "means": "A second planet sign, shown in the gloss of the planet Pluto, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "פלוטו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "superscript_plus_sign.in_a_formula",
+   "mark": "⁺",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the charge sign in the formula of an ion.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אמוניום"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "dagger.shown_as_itself",
+   "mark": "†",
+   "container": "paren",
+   "divides": false,
+   "means": "The dagger sign, shown in the gloss of the word for it, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "פגיונות"
+    },
+    {
+     "key": "פגיון"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "mathematical_left_angle_bracket.around_a_sign_shown",
+   "mark": "⟨",
+   "container": "paren",
+   "divides": false,
+   "means": "Opens the display of a punctuation mark, in the gloss of the word for that mark, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "נקודתיים"
+    },
+    {
+     "key": "פסיק"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "mathematical_right_angle_bracket.around_a_sign_shown",
+   "mark": "⟩",
+   "container": "paren",
+   "divides": false,
+   "means": "Closes the display of a punctuation mark, in the gloss of the word for that mark, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "נקודתיים"
+    },
+    {
+     "key": "פסיק"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "middle_dot.in_a_unit",
+   "mark": "·",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: joins the two parts of a unit of measure in a remark inside a round bracket.",
+   "test": "Every occurrence of this mark.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "מומנטים"
+    },
+    {
+     "key": "מומנט"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "em_dash.in_a_range_or_an_aside",
+   "mark": "—",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: marks a range of years, or stands on each side of an aside.",
+   "test": "Every occurrence of this mark.",
+   "count": 6,
+   "examples": [
+    {
+     "key": "הלגו"
+    },
+    {
+     "key": "יהודה"
+    },
+    {
+     "key": "חליה"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "fraction_slash.in_a_fraction",
+   "mark": "⁄",
+   "container": "paren",
+   "divides": false,
+   "means": "Joins the two figures of a fraction in a remark inside a round bracket.",
+   "test": "Every occurrence of this mark.",
+   "count": 6,
+   "examples": [
+    {
+     "key": "האנטל"
+    },
+    {
+     "key": "אנטלנו"
+    },
+    {
+     "key": "אנטלה"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "hyphen.shown_as_itself_u2010",
+   "mark": "‐",
+   "container": "paren",
+   "divides": false,
+   "means": "The hyphen sign, shown in quotes in the gloss of the word for it, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 10,
+   "examples": [
+    {
+     "key": "מקפה"
+    },
+    {
+     "key": "מקפכם"
+    },
+    {
+     "key": "מקפך"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "tilde.shown_as_itself",
+   "mark": "~",
+   "container": "paren",
+   "divides": false,
+   "means": "The tilde sign, shown in the gloss of the word for it, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 22,
+   "examples": [
+    {
+     "key": "גלך"
+    },
+    {
+     "key": "גלה"
+    },
+    {
+     "key": "גלנו"
+    }
+   ],
+   "read": 22
+  },
+  {
+   "id": "degree_sign.after_a_figure",
+   "mark": "°",
+   "container": "paren",
+   "divides": false,
+   "means": "Follows a figure as a degree sign does, in a remark inside a round bracket.",
+   "test": "Every occurrence of this mark.",
+   "count": 40,
+   "examples": [
+    {
+     "key": "קדמים"
+    },
+    {
+     "key": "קדמיהן"
+    },
+    {
+     "key": "קדמה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "rightwards_arrow.shown_as_itself",
+   "mark": "→",
+   "container": "paren",
+   "divides": false,
+   "means": "The arrow sign, shown as an example in the gloss of the word for it.",
+   "test": "Every occurrence of this mark.",
+   "count": 32,
+   "examples": [
+    {
+     "key": "חיצם"
+    },
+    {
+     "key": "חיצה"
+    },
+    {
+     "key": "חציכם"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "horizontal_ellipsis.stands_for_left_out_words",
+   "mark": "…",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands for words left out, in a set phrase or a citation.",
+   "test": "Every occurrence of this mark.",
+   "count": 28,
+   "examples": [
+    {
+     "key": "האופן"
+    },
+    {
+     "key": "מיהו"
+    },
+    {
+     "key": "אופניהן"
+    }
+   ],
+   "read": 28
+  },
+  {
+   "id": "en_dash.opens_copied_rendering_list",
+   "mark": "–",
+   "container": "top",
+   "divides": false,
+   "means": "Opens a list of renderings that stands in Strong's text on file, directly after the colon of Wiktionary's gloss, where other such texts write a hyphen.",
+   "test": "c.before, with whitespace removed from its end, ends in \":\".",
+   "count": 14,
+   "examples": [
+    {
+     "key": "להטן"
+    },
+    {
+     "key": "אבחה"
+    },
+    {
+     "key": "להטיהן"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "en_dash.in_round_bracket",
+   "mark": "–",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: marks a range of dates, verses or figures inside a round bracket.",
+   "test": "The en dash's container is paren.",
+   "count": 38,
+   "examples": [
+    {
+     "key": "מזוזותם"
+    },
+    {
+     "key": "מזוזותי"
+    },
+    {
+     "key": "גדי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "en_dash.spaced_before_a_description",
+   "mark": "–",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a word and its description, with a space on each side.",
+   "test": "The en dash's container is top and c.before, with whitespace removed from its end, does not end in \":\".",
+   "count": 7,
+   "examples": [
+    {
+     "key": "ארנקים"
+    },
+    {
+     "key": "ארנק"
+    },
+    {
+     "key": "הארנק"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "dotted_circle.carries_a_point_shown_alone",
+   "mark": "◌",
+   "container": "paren",
+   "divides": false,
+   "means": "Carries a Hebrew point shown by itself, in the gloss of the word for that point, which names it.",
+   "test": "Every occurrence of this mark.",
+   "count": 23,
+   "examples": [
+    {
+     "key": "דגשנו"
+    },
+    {
+     "key": "דגשיה"
+    },
+    {
+     "key": "דגשם"
+    }
+   ],
+   "read": 23
+  },
+  {
+   "id": "combining_down_tack_below.in_a_sound",
+   "mark": "̞",
+   "container": "bracket",
+   "divides": false,
+   "means": "A combining sign of phonetic notation under a vowel, inside a square bracket.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חולם"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hebrew_point_sheva.on_cited_hebrew",
+   "mark": "ְ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point sheva on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 758,
+   "examples": [
+    {
+     "key": "חופשייה"
+    },
+    {
+     "key": "רצועות"
+    },
+    {
+     "key": "השלמנו"
+    }
+   ],
+   "read": 65
+  },
+  {
+   "id": "hebrew_point_hataf_segol.on_cited_hebrew",
+   "mark": "ֱ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point hataf segol on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 49,
+   "examples": [
+    {
+     "key": "העתקה"
+    },
+    {
+     "key": "אמונות"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "hebrew_point_hataf_patah.on_cited_hebrew",
+   "mark": "ֲ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point hataf patah on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 92,
+   "examples": [
+    {
+     "key": "הליכת"
+    },
+    {
+     "key": "ל"
+    },
+    {
+     "key": "זיעזע"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "hebrew_point_hataf_qamats.on_cited_hebrew",
+   "mark": "ֳ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point hataf qamats on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 3,
+   "examples": [
+    {
+     "key": "מועמד"
+    },
+    {
+     "key": "צהריים"
+    },
+    {
+     "key": "מועדף"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "hebrew_point_hiriq.on_cited_hebrew",
+   "mark": "ִ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point hiriq on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 1179,
+   "examples": [
+    {
+     "key": "חופשייה"
+    },
+    {
+     "key": "שמי"
+    },
+    {
+     "key": "ע״פ"
+    }
+   ],
+   "read": 78
+  },
+  {
+   "id": "hebrew_point_tsere.on_cited_hebrew",
+   "mark": "ֵ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point tsere on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 471,
+   "examples": [
+    {
+     "key": "גווע"
+    },
+    {
+     "key": "לי"
+    },
+    {
+     "key": "גוע"
+    }
+   ],
+   "read": 35
+  },
+  {
+   "id": "hebrew_point_segol.on_cited_hebrew",
+   "mark": "ֶ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point segol on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 438,
+   "examples": [
+    {
+     "key": "שבי"
+    },
+    {
+     "key": "נהדרות"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 47
+  },
+  {
+   "id": "hebrew_point_patah.on_cited_hebrew",
+   "mark": "ַ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point patah on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 989,
+   "examples": [
+    {
+     "key": "לקחת"
+    },
+    {
+     "key": "ויגרשום"
+    },
+    {
+     "key": "ע״פ"
+    }
+   ],
+   "read": 50
+  },
+  {
+   "id": "hebrew_point_qamats.on_cited_hebrew",
+   "mark": "ָ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point qamats on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 1704,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "קלמרין"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 139
+  },
+  {
+   "id": "hebrew_point_holam.on_cited_hebrew",
+   "mark": "ֹ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point holam on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 510,
+   "examples": [
+    {
+     "key": "חומרינו"
+    },
+    {
+     "key": "עורקי"
+    },
+    {
+     "key": "חומריהן"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "hebrew_point_qubuts.on_cited_hebrew",
+   "mark": "ֻ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point qubuts on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 55,
+   "examples": [
+    {
+     "key": "מכוסה"
+    },
+    {
+     "key": "חנוכיה"
+    },
+    {
+     "key": "משותף"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "hebrew_point_dagesh_or_mapiq.on_cited_hebrew",
+   "mark": "ּ",
+   "container": "any",
+   "divides": false,
+   "means": "The dot dagesh or mapiq on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 1413,
+   "examples": [
+    {
+     "key": "חומרינו"
+    },
+    {
+     "key": "חום"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 90
+  },
+  {
+   "id": "hebrew_point_rafe.on_cited_hebrew",
+   "mark": "ֿ",
+   "container": "any",
+   "divides": false,
+   "means": "The sign rafe on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "רפה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hebrew_point_shin_dot.on_cited_hebrew",
+   "mark": "ׁ",
+   "container": "any",
+   "divides": false,
+   "means": "The shin dot on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 506,
+   "examples": [
+    {
+     "key": "חופשייה"
+    },
+    {
+     "key": "שורות"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 41
+  },
+  {
+   "id": "hebrew_point_sin_dot.on_cited_hebrew",
+   "mark": "ׂ",
+   "container": "any",
+   "divides": false,
+   "means": "The sin dot on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 93,
+   "examples": [
+    {
+     "key": "שפת"
+    },
+    {
+     "key": "ישראליות"
+    },
+    {
+     "key": "ישימו"
+    }
+   ],
+   "read": 32
+  },
+  {
+   "id": "hebrew_point_qamats_qatan.on_cited_hebrew",
+   "mark": "ׇ",
+   "container": "any",
+   "divides": false,
+   "means": "The vowel point qamats qatan on a Hebrew word that the English cites, or shown beside a dotted circle; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 7,
+   "examples": [
+    {
+     "key": "מועמד"
+    },
+    {
+     "key": "תוכנית"
+    },
+    {
+     "key": "תוכנה"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "maqaf.after_or_inside_cited_hebrew",
+   "mark": "־",
+   "container": "any",
+   "divides": false,
+   "means": "The Hebrew joining stroke after a cited prefix or inside a cited Hebrew phrase, or shown as itself in the gloss of the word for it; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 376,
+   "examples": [
+    {
+     "key": "השתתפת"
+    },
+    {
+     "key": "תיכנסו"
+    },
+    {
+     "key": "יניח"
+    }
+   ],
+   "read": 39
+  },
+  {
+   "id": "geresh.in_cited_hebrew",
+   "mark": "׳",
+   "container": "any",
+   "divides": false,
+   "means": "The Hebrew sign geresh in a cited Hebrew word; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 12,
+   "examples": [
+    {
+     "key": "נפטרים"
+    },
+    {
+     "key": "נפטרות"
+    },
+    {
+     "key": "א־"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "gershayim.in_cited_hebrew",
+   "mark": "״",
+   "container": "any",
+   "divides": false,
+   "means": "The Hebrew sign gershayim in a cited Hebrew abbreviation or letter name; never a reading.",
+   "test": "Every occurrence of this mark.",
+   "count": 30,
+   "examples": [
+    {
+     "key": "וו"
+    },
+    {
+     "key": "מם"
+    },
+    {
+     "key": "טו"
+    }
+   ],
+   "read": 30
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry id. The source's own file keeps a word's records apart by part of speech and etymology number, 2,383 of its 17,395 records carrying such a number (axis: records), and the store keeps neither; two entries under one letters key stand there as separate texts with nothing to tell them apart (example key אדר: its 5 route texts, and 3 entries of the file under those letters). keys_with_more_than_one_route_text counts senses and homonyms together, and for keys that are inflected forms it counts the senses of every word the form belongs to; by the audit, on 1,895 of those 29,135 keys (axis: keys) the file holds two or more entries (distinct word, part of speech and etymology number) whose word has those letters, and on 2,127 of them two or more records.",
+  "keys_with_more_than_one_route_text": 29135
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some lines are lists of words and phrases with commas or semicolons between them: physical wound, injury, cut. Here the text alone does not show that each piece stands by itself, so the ledger read these lists and kept out those where it found a piece that cannot stand alone. Does each comma or semicolon of these lists divide? A word beside its own plural, such as history, histories, is among them. Many of these lists also say mostly the same thing, and the answer to the question on words that mostly say the same thing does not reach them.",
+   "shapes": [
+    "comma.between_phrases",
+    "semicolon.between_phrases"
+   ],
+   "occurrences": 11083,
+   "options": [
+    {
+     "id": "divides",
+     "means": "Each comma or semicolon of these lists cuts: the page prints physical wound, injury and cut as three readings. A small word the source put there, such as or, stays in its piece."
+    },
+    {
+     "id": "whole",
+     "means": "No sign of these cuts: the page prints physical wound, injury, cut as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Some lists open with be, become or grow, and a later word may lean on it: to be big, large, great. Alone it says large, where the source means to be large. Other later words stand well alone, and the text cannot tell which is which. Does each comma or semicolon of such a list divide? The list may have a bracket or a remark beside it, or a colon after it; those stay with the piece they touch. Many of these lists also say mostly the same thing, and the answer to the question on words that mostly say the same thing does not reach them.",
+   "shapes": [
+    "comma.in_list_opening_with_a_small_verb",
+    "semicolon.in_list_opening_with_a_small_verb"
+   ],
+   "occurrences": 2731,
+   "options": [
+    {
+     "id": "divides",
+     "means": "Each comma or semicolon of these lists cuts: the page prints to be big, large and great as three readings, the later words without to be, as the source writes them."
+    },
+    {
+     "id": "whole",
+     "means": "No sign of these cuts: the page prints to be big, large, great as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B03",
+   "question": "Some lists have a bracket or a remark beside them: to step on, to walk on (something or someone), or gain, profit, especially that which was unjustly obtained. A bracket or a remark stands with the piece it touches and may speak of the whole list. Does each comma or semicolon of such a list divide? The comma or semicolon before the remark itself never cuts. Many of these lists also say mostly the same thing, and the answer to the question on words that mostly say the same thing does not reach them.",
+   "shapes": [
+    "comma.in_list_with_a_bracket",
+    "semicolon.in_list_with_a_bracket",
+    "comma.in_list_before_tail",
+    "semicolon.in_list_before_tail"
+   ],
+   "occurrences": 8744,
+   "options": [
+    {
+     "id": "divides",
+     "means": "Each comma or semicolon of these lists cuts: the page prints to step on and to walk on (something or someone) as two readings. A bracket or a remark stays with the piece it touches, even where it speaks of the whole list; nothing is added to the others."
+    },
+    {
+     "id": "whole",
+     "means": "No sign of these cuts: the page prints to step on, to walk on (something or someone) as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B04",
+   "question": "Some lines give a word and then say what it means, after a colon, a comma or a semicolon: A tunnel: an underground or underwater passage, or walker, one who walks habitually or competitively. Is what comes after that one sign a second reading of the word?",
+   "shapes": [
+    "colon.between_word_and_definition",
+    "comma.between_word_and_definition",
+    "semicolon.between_word_and_definition"
+   ],
+   "occurrences": 7053,
+   "options": [
+    {
+     "id": "divides",
+     "means": "That one sign cuts: the page prints A tunnel and an underground or underwater passage as two readings. Commas or semicolons between words before the sign follow their own question where they have one, otherwise they stay. Commas inside the explanation stay in it while the question on words that mostly say the same thing rests; if that question is answered with separate pills, the commas of a short word list after the sign cut as well."
+    },
+    {
+     "id": "whole",
+     "means": "That sign does not cut: the page prints A tunnel: an underground or underwater passage as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B05",
+   "question": "Some lines put a label or a note on the word's form on one side of a sign and the reading on the other: a surname: Doron, or a Hebrew form and a colon, then cups, glasses, tumblers, or To; indicating a destination or end-point. A label or a note is no reading, and this dictionary's text cannot be changed, only cut. Does the sign cut the label or the note from the reading? The same question covers a surname, Hasson and a surname. Goldberg. A few lines hold a note on both sides of the sign: An interrogative particle, introducing a yes-no question.",
+   "shapes": [
+    "colon.after_label",
+    "colon.after_pointer",
+    "colon.before_pointer",
+    "colon.before_note",
+    "comma.after_name_label",
+    "semicolon.after_name_label",
+    "period.after_name_label",
+    "comma.between_note_and_reading",
+    "semicolon.between_note_and_reading",
+    "semicolon.before_usage_note"
+   ],
+   "occurrences": 1286,
+   "options": [
+    {
+     "id": "divides",
+     "means": "The sign cuts: the page prints a surname and Doron as two pieces. The label or the note prints as a piece of its own, beside the reading. Where a note stands on both sides, the page prints each note as a piece, and neither is a reading: An interrogative particle, and introducing a yes-no question. Commas in the same line follow their own question where they have one, otherwise they stay."
+    },
+    {
+     "id": "whole",
+     "means": "That sign does not cut: the page prints a surname: Doron as one reading, label and all, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B06",
+   "question": "Some lists hold, as a whole, a later word that opens with a capital: Hashem, God, or Susa, Shushan, or pistachio, Pistacia vera, or text message, SMS, or hymn, sacred song, Psalm. The later word may be another name of one thing, a Latin name or initials. Does each comma or semicolon of these lists divide? Two spellings of one name stay whole under every answer where the ledger's written list of two forms names them, as Rebekah, Rebecca, and so does a name with what is said of it where the ledger's test or its written list of names finds it.",
+   "shapes": [
+    "comma.in_list_with_a_later_capital",
+    "semicolon.in_list_with_a_later_capital",
+    "comma.in_head_with_a_capital"
+   ],
+   "occurrences": 197,
+   "options": [
+    {
+     "id": "divides",
+     "means": "Each comma or semicolon of these lists cuts: the page prints Hashem and God as two readings. A bracket stays with the piece it touches, and a colon or a stop stays in the last piece."
+    },
+    {
+     "id": "whole",
+     "means": "No sign of these cuts: the page prints Hashem, God as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B07",
+   "question": "Some lines hold a list of renderings that stands in Strong's text on file, after a colon and a dash: by implication to be relaxed: - flutter, move, shake. Does the dash, and each comma after it, divide? The sentence before the dash stays one piece, a comma inside it never cuts, and a bracket that opens with the ending of the word before it, (-r, over), stays with that word.",
+   "shapes": [
+    "hyphen.opens_copied_rendering_list",
+    "en_dash.opens_copied_rendering_list",
+    "comma.in_copied_rendering_list"
+   ],
+   "occurrences": 294,
+   "options": [
+    {
+     "id": "divides",
+     "means": "The dash and each comma after it cut: the page prints the sentence as one piece and flutter, move and shake as readings of their own."
+    },
+    {
+     "id": "whole",
+     "means": "Nothing here cuts: the page prints the whole line as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B08",
+   "question": "The ledger read these lines one by one and marked the places where it found two readings, or a word and what it means. Some hold a cry sign (stop!, enough!, cease!), a stop (moderation, temperance. Self-control.), a hyphen that ends a word part (Infra-, sub-, under-.) or a later reading after a remark (a person killed, especially in war; casualty); others hold no such thing (the region of the nose, the face). Does each marked place divide?",
+   "shapes": [
+    "comma.at_a_place_marked_by_hand",
+    "semicolon.at_a_place_marked_by_hand",
+    "period.at_a_place_marked_by_hand",
+    "exclamation.at_a_place_marked_by_hand"
+   ],
+   "occurrences": 625,
+   "options": [
+    {
+     "id": "divides",
+     "means": "Each marked place cuts: the page prints stop!, enough! and cease! as three readings. Where a cry sign or a stop itself is the marked place, the page leaves it out as it leaves out a comma, and any sign at the very end stays. A closing note stays with the last piece, even when it speaks of all the pieces."
+    },
+    {
+     "id": "whole",
+     "means": "No sign of these cuts: the page prints stop!, enough!, cease! as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B09",
+   "question": "This is the question on words that mostly say the same thing. Each line of this dictionary is one wording of one sense of a word, and a sense may have more than one wording. Some lines list words that mostly say the same thing: boxer, pugilist, or to shout, to yell. Do you want separate pills for such words, or one pill as the source writes it? Today the page prints boxer and pugilist as two pills. A word said twice in two forms, where the ledger's written list names it, as center, centre, stays one pill under every answer.",
+   "shapes": [
+    "comma.between_one_word_renderings",
+    "comma.between_verb_renderings",
+    "comma.between_article_renderings",
+    "semicolon.between_one_word_renderings",
+    "semicolon.between_verb_renderings",
+    "semicolon.between_article_renderings",
+    "comma.in_head_before_definition",
+    "comma.in_head_before_note",
+    "comma.in_list_after_definition_colon",
+    "semicolon.in_list_after_definition_colon",
+    "comma.in_list_after_label",
+    "comma.between_words_before_definition"
+   ],
+   "occurrences": 44099,
+   "options": [
+    {
+     "id": "divides",
+     "means": "Separate pills: each comma or semicolon of these lists cuts, and the page prints boxer and pugilist as two readings, as it does today. Where the words before a colon are parted, what follows the colon stays only with the last word, even where it speaks of all of them: to pass away, to pass on: a polite way to refer to a death prints to pass away as one pill and the rest as another; nothing is added to the others. Where the list stands after a colon, its first word keeps the colon and what stands before it. The question on a word and what it means, or on a label, may also cut at that colon."
+    },
+    {
+     "id": "whole",
+     "means": "One pill: no sign of these cuts, and the page prints boxer, pugilist as one reading, as the source writes it."
+    }
+   ],
+   "resting": "whole"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the route store which gloss became a route: 42,395 routes (axis: routes) hold no mark at all, so nothing here rules them, and it cannot take a label off a line, because the text is never changed; a pointer at the end of a text stays in the last piece, and a remark or a bracket stays with the piece it touches."
+}

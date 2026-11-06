@@ -40,11 +40,10 @@ const COLUMNS = [
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 const DIR = arg("--dir"), ZONE = arg("--zone"), STAMP = arg("--stamp");
 if (!DIR || !ZONE || !STAMP) { console.error("usage: --dir <orders-witnessed-v2.7> --zone <book.bin> --stamp YYYY-MM-DD"); process.exit(2); }
-const { packSplit, readingSplit } = openRouteStore(arg("--store", "data/route-store"));
-const firstReading = (text) => {
-  for (const sense of packSplit(text)) { const r = readingSplit(sense); if (!r.damaged && r.readings.length) return r.readings[0]; }
-  return null;
-};
+const store = openRouteStore(arg("--store", "data/route-store"));
+// the first reading of the row the lane shipped, as the store reads that row
+// (ledger-division-rule-v1 for a source under a ledger, the comma rule otherwise)
+const firstReading = (k, text, M) => { const ids = M && Array.isArray(M.by) ? M.by : M && M.m ? store.mIdsOfLabel(M.m) : null; const rs = store.readingsOfText(k, text, ids); return rs.length ? rs[0] : null; };
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const book = basename(ZONE, ".bin");
 const zone = JSON.parse(gunzipSync(readFileSync(ZONE)).toString("utf8"));
@@ -67,7 +66,7 @@ for (const [order, stem] of COLUMNS) {
     if (typeof text !== "string" || !text) { refused.push([k, "no reading"]); continue; }
     if (!(k in zone.gloss)) { refused.push([k, "not a key of this zone"]); continue; }
     if (!M || typeof M !== "object" || Array.isArray(M) || !M.lic || !M.m) { refused.push([k, "no licence and name"]); continue; }
-    const line = firstReading(text);
+    const line = firstReading(k, text, M);
     if (!line) { refused.push([k, "every sense damaged"]); continue; }
     col[k] = line; mcol[k] = M;
     if (line !== text) cut += 1;
