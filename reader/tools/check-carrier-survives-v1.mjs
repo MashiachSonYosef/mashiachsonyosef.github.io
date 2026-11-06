@@ -122,14 +122,10 @@ const carriersOf = (routes, omit = null) => {
     const [, routeText, , mId] = row;
     if (!store.index.m_sources[mId]) continue;
     if (omit && omit.has(mId)) continue;
-    for (const sense of store.packSplit(routeText)) {
-      const r = store.readingSplit(sense);
-      if (r.damaged) continue;
-      for (const reading of r.readings) {
-        const key = reading.toLowerCase();
-        if (!m.has(key)) m.set(key, new Set());
-        m.get(key).add(mId);
-      }
+    for (const reading of store.readingsOf(row)) {
+      const key = reading.toLowerCase();
+      if (!m.has(key)) m.set(key, new Set());
+      m.get(key).add(mId);
     }
   }
   return m;

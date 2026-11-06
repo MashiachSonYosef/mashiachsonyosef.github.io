@@ -111,11 +111,7 @@ export const strongsNameFor = (store, key, surfaces, name) => {
     const m = store.index.m_sources[row[3]];
     if (!m || !isStrongs(m.label)) continue;
     if (!surfaces.every((s) => gradeRow(row, s) === "m")) continue;
-    for (const sense of store.packSplit(String(row[1]))) {
-      const sp = store.readingSplit(sense);
-      if (sp.damaged) continue;
-      for (const rd of sp.readings) if (NAME_FORM.test(rd) && stripDot(rd).toLowerCase() === want) hits.push({ text: rd, m: row[3], rank: Number(row[0]), dot: /\.$/u.test(rd) });
-    }
+    for (const rd of store.readingsOf(row)) if (NAME_FORM.test(rd) && stripDot(rd).toLowerCase() === want) hits.push({ text: rd, m: row[3], rank: Number(row[0]), dot: /\.$/u.test(rd) });
   }
   hits.sort((a, b) => (a.dot - b.dot) || (a.rank - b.rank) || a.text.localeCompare(b.text));
   return hits.length ? { text: hits[0].text, m: hits[0].m } : null;

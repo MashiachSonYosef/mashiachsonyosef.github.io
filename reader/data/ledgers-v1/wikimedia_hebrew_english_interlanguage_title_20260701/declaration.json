@@ -1,0 +1,652 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "wikimedia_hebrew_english_interlanguage_title_20260701",
+ "m_ids": [
+  "M15"
+ ],
+ "routes": 12355,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Hebrew Wikipedia 20260701 direct English interlanguage title\" (M15): 12,355 routes (axis: routes), 12,355 letters keys (axis: keys). The definition field of the same row equals the route text on 12,355 of the routes. The source audit: each route has one record in the dictionary store (corpus-lane-builds/moses-dictionary-store-v1, records/M15.jsonl, 12,355 records), whose field R equals the route text and whose one headword equals the letters key on 12,355 of 12,355 routes; its two other text fields are empty on all of them. The record names one row of Hebrew Wikipedia's page table and one row of its table of links to other languages (hewiki-20260701-page.sql.gz and hewiki-20260701-langlinks.sql.gz, in ledgers/work/ldmprs/source-cache/wikimedia-hebrew-english-titles-2026-07-14/, by page_id, ll_from and ll_lang en). So a route comes from one field, the title of the English page that one Hebrew page links to, and no test here stands on a guess about a field; the audit is evidence about the source and no part of any test. The source's own key to its signs: none found. The lane holds 8 files of this source's documentation and of its dump (the manuals of the two tables, the dump's legal page and index, the lane's manifests): of a title the manual of the links table says that ll_title holds the title of the page in the other language, and the manual of the page table that a title stores its spaces as underscores; no file says what a bracket, comma, number sign or any other sign means in a title (the search and its word list are the script builder/05-key-search.mjs and its output source-audit/key-search.json). English Wikipedia's own pages on how it writes its titles are not on file; fetching them needs the owner's word and was not done. So every shape's meaning here begins \"unverified:\". One fact from the lane's own files stands beside the filing word: the sibling source's held file took each English page's kind from Wikipedia's programming interface (ledgers/work/ldmprs/source-cache/wikimedia-english-intro-definitions-2026-07-15/), and it holds 924 of the 933 titles with the word disambiguation as pages of that kind (source-audit/disambiguation.json).",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. A digit is one of 0 to 9, and no test asks for any other number character. A space is the character U+0020 only, and no test uses whitespace of any other kind. The capitals A to Z are the 26 uppercase Latin letters and no others. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after, and what a bracket holds is the template's c.group, the same for an opener and for its closer. Directly before and directly after name the one character next to the mark or next to the named string; where the mark stands at that end of the text no character stands there, so a test that asks for a character there fails, and a test that says if there is one passes. The whole text, exactly, means that the text equals the named string character for character; what the bracket holds, exactly, and the text after the mark, exactly, mean the same of those texts. Starts with means that the first characters of the named thing are exactly the string, and ends in means that its last characters are; neither looks at what stands beside the string unless the test says so. Empty means that the named text has no character at all. The word round the mark means three runs put together, with nothing between them: the run of letters that ends directly before the mark, taken back to the first character that is not a letter or to the start of the text; the mark itself; and the run of letters that begins directly after the mark, taken on to the first character that is not a letter or to the end of the text; either run of letters may be empty. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence and not to the string. Every string and every list minds case and is matched exact to the character, so «s» is the lowercase letter. No test uses the word contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. Not caught above means that no earlier shape of the same mark took the occurrence. A shape's container field is not part of its test: only the first comma shape looks at the container, and its words say so; for every other shape the checker compares the field afterwards.",
+  "comma_one_title_texts": [
+   "Lost, mislaid, and abandoned property",
+   "When I am dead, my dearest",
+   "Shmendrik, oder di komishe Chaseneh",
+   "Lo Nivcharot, Lo Bocharot",
+   "Walker, Texas Ranger"
+  ],
+  "apostrophe_plain_spellings": [
+   "L'Orfeo",
+   "L'Africaine",
+   "d'Oise",
+   "d'état",
+   "O'Dell",
+   "O'Neill",
+   "Mo'Nique",
+   "Don't"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.before_inc",
+   "comma.before_son_of",
+   "comma.inside_one_title",
+   "comma.between_a_place_and_where_it_stands"
+  ],
+  "comma_in_paren": [
+   "comma.inside_a_note_on_a_person"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.between_a_virus_and_its_illness"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.around_the_word_disambiguation",
+   "close_paren.around_the_word_disambiguation",
+   "open_paren.around_a_year_and_a_kind_of_work",
+   "close_paren.around_a_year_and_a_kind_of_work",
+   "open_paren.around_what_says_which_one",
+   "close_paren.around_what_says_which_one"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "comma.inside_a_note_on_a_person",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: stands inside the round brackets that say which person of that name the page is about, between his trade and his birth («footballer, born 1932»), in 6 routes; the words in the brackets stay with the name as one reading.",
+   "test": "The mark sits inside round brackets: the template's c.container is the string paren (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "אדריאנו"
+    },
+    {
+     "key": "בריטו"
+    },
+    {
+     "key": "דדה"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "comma.before_inc",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a company's name and the short form of its legal kind («Compass, Inc.»), so the name and what follows it are one reading.",
+   "test": "The text after the mark, exactly, is « Inc.», a space, the three letters and a full stop (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "קומפאס"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.before_son_of",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a person's name and the words that say whose son he is («Uz, son of Aram», «Irad, Son of Enoch»), so the name and its description are one reading.",
+   "test": "The text after the mark starts with « son of » or with « Son of », each with its space at both ends (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "עירד"
+    },
+    {
+     "key": "נחור"
+    },
+    {
+     "key": "עוץ"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "comma.inside_one_title",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside the one title of one page («Walker, Texas Ranger», «When I am dead, my dearest»), in 5 routes read one by one; the text is one title, and a cut at the comma would leave a piece that is no reading of the word.",
+   "test": "The whole text, exactly, is one of the strings in comma_one_title_texts (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "שמנדריק"
+    },
+    {
+     "key": "נבחרות"
+    },
+    {
+     "key": "כשאמות"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "comma.between_a_place_and_where_it_stands",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: says which place of that name the page is about: 321 of its 325 occurrences stand between a place's name and the larger place or region that says where it is («Kidron, Israel», «Tulsa, Oklahoma»), and 4 between one such region and the next («Mykhailivka, Vasylivka Raion, Zaporizhzhia Oblast»); the name and what follows it are one reading.",
+   "test": "Any comma not caught above (terms, first_match).",
+   "count": 325,
+   "examples": [
+    {
+     "key": "קדרון"
+    },
+    {
+     "key": "קלברי"
+    },
+    {
+     "key": "קמפן"
+    }
+   ],
+   "read": 325
+  },
+  {
+   "id": "hyphen.before_a_digit",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: joins letters and a number in one designation («BM-21 Grad»), as one reading.",
+   "test": "The character directly after the mark is a digit (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "גראד"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: joins the parts of one hyphenated word or name, which stay one reading: 62 of its 67 occurrences stand outside round brackets («Hide-and-seek», «Al-Maqdisi», «Emilia-Romagna») and 5 inside them («prefecture-level city»).",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 67,
+   "examples": [
+    {
+     "key": "האסיף"
+    },
+    {
+     "key": "יויו"
+    },
+    {
+     "key": "החצר"
+    }
+   ],
+   "read": 67
+  },
+  {
+   "id": "apostrophe.at_the_head_of_a_text",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens a word or name carried over from another language, for a sound Latin letters do not write («'Anin», «'Akbara», «'otai»), as part of that word.",
+   "test": "The text before the mark is empty (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "עאנין"
+    },
+    {
+     "key": "עארה"
+    },
+    {
+     "key": "עכברה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "apostrophe.before_a_final_s",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands before a final s: 10 of its 11 occurrences mark an owner («Adam's apple», «Potter's wheel») and 1 a short form of is («It's a Sin»), inside one reading.",
+   "test": "The character directly before the mark is a letter; the character directly after the mark is «s»; and the character directly after that «s», if there is one, is not a letter (terms, first_match).",
+   "count": 11,
+   "examples": [
+    {
+     "key": "ויצו"
+    },
+    {
+     "key": "המשגיחים"
+    },
+    {
+     "key": "הברך"
+    }
+   ],
+   "read": 11
+  },
+  {
+   "id": "apostrophe.closes_a_word",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes a word, for a left-out last letter («Soarin'») or for a sound Latin letters do not write at the end of a name («Sa'sa', Palestine»), as part of that word.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark, if there is one, is not a letter (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "סוארין"
+    },
+    {
+     "key": "סעסע"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "apostrophe.in_a_plain_spelling",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands in the ordinary spelling of a word or name of English, French, Italian or Irish origin («Don't Look Now», «L'Orfeo», «Coup d'état», «O'Neill (disambiguation)»), as part of that word.",
+   "test": "The word round the mark is one of the strings in apostrophe_plain_spellings (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "מוניק"
+    },
+    {
+     "key": "המבט"
+    },
+    {
+     "key": "הפיכה"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "apostrophe.between_two_letters",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands inside a word or name written over from another script, as part of that word: the 2 in «Xi'an» and «Tan'gun» mark a break between syllables, and the other 93 of its 95 occurrences stand for a sound or a short vowel that Latin letters do not write («Ma'abarot», «Bil'in», «B'Tselem»).",
+   "test": "Not caught above: the character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 95,
+   "examples": [
+    {
+     "key": "ישעי"
+    },
+    {
+     "key": "ארבעין"
+    },
+    {
+     "key": "המעפיל"
+    }
+   ],
+   "read": 95
+  },
+  {
+   "id": "period.after_inc_or_ltd",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the short form of a company's legal kind at the end of its name («Gap Inc.», «Elco Ltd.»), as part of one name.",
+   "test": "(The text before the mark ends in «Inc», or the text before the mark ends in «Ltd»), and the text after the mark is empty (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "קומפאס"
+    },
+    {
+     "key": "הרמוניק"
+    },
+    {
+     "key": "קראפט"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "period.after_a_lone_capital",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after each capital letter of a short form («Q.E.D.», «Maroussi B.C.»), as part of one reading.",
+   "test": "The character directly before the mark is one of the capitals A to Z, and the character directly before that capital, if there is one, is not a letter (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "מש\"ל"
+    },
+    {
+     "key": "מארוסי"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "period.after_the_short_form_subg",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the short form of a word for a rank inside a plant's Latin name («Prunus subg. Cerasus»), as part of one name.",
+   "test": "The text before the mark ends in «subg» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דובדבן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.in_the_dots_before_a_title",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: writes one of three dots at the head of a title, for the words left out before it («. . . That Thou Art Mindful of Him»), as part of how the title is written.",
+   "test": "(Every character of the text before the mark is a full stop or a space, or that text is empty), and the character directly after the mark is a space (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "ותחשבהו"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "colon.before_a_subtitle",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a title and its subtitle («Infidel: My Life», «The Lodger: A Story of the London Fog»), as one reading of one title.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a space (terms, first_match).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "כופרת"
+    },
+    {
+     "key": "סטמפניו"
+    },
+    {
+     "key": "משאלות"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "en_dash.inside_one_title",
+   "mark": "–",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins two parts of one title: two metals («Iron–nickel alloy»), a short word and the name it governs («Post–World War II anti-fascism»), or a site's two names («Apollonia–Arsuf»); each title names one thing, one alloy, one movement or one site, so a cut at the dash offers no second meaning of the key's word and the text stays one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "ניפה"
+    },
+    {
+     "key": "אנטיפה"
+    },
+    {
+     "key": "אפולוניה"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "exclamation.closes_a_word_of_a_title",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a word as part of how a title is written («Lupo!», «Think! (short story)»), inside one reading.",
+   "test": "The character directly before the mark is a letter (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "חשוב"
+    },
+    {
+     "key": "לופו"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "plus.between_two_words_of_a_title",
+   "mark": "+",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands for the word and between two words of one title («Rhythm + Flow»), as part of how the title is written.",
+   "test": "The character directly before the mark is a space, and the character directly after the mark is a space (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "זורמים"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "slash.between_a_virus_and_its_illness",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the name of a virus and the name of the illness it causes in the one title of one page («HIV/AIDS»); the key's word names the illness only, so the part before the slash is no reading of it and the text stays whole.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "איידס"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "number_sign.between_a_page_and_its_part",
+   "mark": "#",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: reads as the address of a part of an English page, with the page's title before the sign and the name of the part after it («Quartz#Citrine», «Activation#Chemistry»); what prints is the question of B02.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 13,
+   "examples": [
+    {
+     "key": "מברשת"
+    },
+    {
+     "key": "מעסיק"
+    },
+    {
+     "key": "שפעול"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "open_paren.around_the_word_disambiguation",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the word disambiguation, which reads as English Wikipedia's filing word for a page that lists other pages of one name («Dolls (disambiguation)», «Yo-yo (disambiguation)»); whether the word prints is the question of B01.",
+   "test": "What the bracket holds, exactly, is «disambiguation» (terms, first_match).",
+   "count": 933,
+   "examples": [
+    {
+     "key": "בובות"
+    },
+    {
+     "key": "פיפס"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 933
+  },
+  {
+   "id": "close_paren.around_the_word_disambiguation",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the word disambiguation, which reads as English Wikipedia's filing word for a page that lists other pages of one name («Dolls (disambiguation)», «Yo-yo (disambiguation)»); whether the word prints is the question of B01.",
+   "test": "What the bracket holds, exactly, is «disambiguation» (terms, first_match).",
+   "count": 933,
+   "examples": [
+    {
+     "key": "בובות"
+    },
+    {
+     "key": "פיפס"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 933
+  },
+  {
+   "id": "open_paren.around_a_year_and_a_kind_of_work",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a year and a kind of work that say which work of that name the page is about, 99 times a film («Breathe (2017 film)») and 5 times a television series («La usurpadora (1998 TV series)»); the title and those words are one reading.",
+   "test": "What the bracket holds starts with four digits and then a space (terms, first_match).",
+   "count": 104,
+   "examples": [
+    {
+     "key": "המתחזה"
+    },
+    {
+     "key": "הנאשמים"
+    },
+    {
+     "key": "הגופה"
+    }
+   ],
+   "read": 83
+  },
+  {
+   "id": "close_paren.around_a_year_and_a_kind_of_work",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a year and a kind of work that say which work of that name the page is about, 99 times a film («Breathe (2017 film)») and 5 times a television series («La usurpadora (1998 TV series)»); the title and those words are one reading.",
+   "test": "What the bracket holds starts with four digits and then a space (terms, first_match).",
+   "count": 104,
+   "examples": [
+    {
+     "key": "המתחזה"
+    },
+    {
+     "key": "הנאשמים"
+    },
+    {
+     "key": "הגופה"
+    }
+   ],
+   "read": 83
+  },
+  {
+   "id": "open_paren.around_what_says_which_one",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a word or short phrase that the title adds to say which thing of that name the page is about: of its 1,257 occurrences, counted against the lists of builder/lists.mjs by the last word of what the bracket holds, and for a person also by the first word «footballer» or the opening words «son of», «daughter of», «mother of», «priest of» or «king of», 209 name a kind of work («The Joke (novel)»), 151 a kind of person, character, god or band («Dagny (singer)», «Jethro (biblical figure)»), 69 a kind of name («Lightfoot (surname)»), and the other 828 a kind of thing, a field, a place, the maker or setting of a work, or another name («Hoe (tool)», «Elasticity (physics)», «Symposium (Plato)»); the name and those words are one reading.",
+   "test": "Any opening round bracket not caught above (terms, first_match).",
+   "count": 1257,
+   "examples": [
+    {
+     "key": "דאגני"
+    },
+    {
+     "key": "אביב"
+    },
+    {
+     "key": "תעשייה"
+    }
+   ],
+   "read": 732
+  },
+  {
+   "id": "close_paren.around_what_says_which_one",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a word or short phrase that the title adds to say which thing of that name the page is about: of its 1,257 occurrences, counted against the lists of builder/lists.mjs by the last word of what the bracket holds, and for a person also by the first word «footballer» or the opening words «son of», «daughter of», «mother of», «priest of» or «king of», 209 name a kind of work («The Joke (novel)»), 151 a kind of person, character, god or band («Dagny (singer)», «Jethro (biblical figure)»), 69 a kind of name («Lightfoot (surname)»), and the other 828 a kind of thing, a field, a place, the maker or setting of a work, or another name («Hoe (tool)», «Elasticity (physics)», «Symposium (Plato)»); the name and those words are one reading.",
+   "test": "Any closing round bracket not caught above (terms, first_match).",
+   "count": 1257,
+   "examples": [
+    {
+     "key": "דאגני"
+    },
+    {
+     "key": "אביב"
+    },
+    {
+     "key": "תעשייה"
+    }
+   ],
+   "read": 732
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "Every letters key here holds one route (12,355 keys, 12,355 routes), and each route comes from one Hebrew page whose title is one word with no bracket (of the 12,355 records, 0 headwords hold a round bracket and 0 hold a space). So no two entries stand under one key and nothing here tells two apart. A round bracket in the route text says which English page of one name the Hebrew page links to («Hoe (tool)»), and it is no entry id of the Hebrew key. The source's own files carry an id for each page and each link, and the store's record keeps it in its location field (page_id, ll_from); the route store dropped it.",
+  "keys_with_more_than_one_route_text": 0
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some rows are an English Wikipedia title that carries a filing word in round brackets: Dolls (disambiguation). Wikipedia uses that word for a page that lists other pages of one name, and it says nothing about what the Hebrew means. Rows whose round brackets say which thing is meant, as in Hoe (tool), are not in this question: there the name and that word stay one reading. Should the page print the filing word? These rows print as they do today until you rule. To print the name alone the page needs one step of its own, because the store's text does not change. This answer holds whatever you answer to the other question.",
+   "shapes": [
+    "open_paren.around_the_word_disambiguation",
+    "close_paren.around_the_word_disambiguation"
+   ],
+   "occurrences": 1866,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written, as it does today: Dolls (disambiguation)."
+    },
+    {
+     "id": "name_alone",
+     "means": "The page prints only the name before the round brackets, as one reading: Dolls, once it has the one step of its own that this answer needs; until then these rows print as written. The store keeps each text as it is."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows are the address of one part of an English Wikipedia page, with a number sign between the page and the part: Quartz#Citrine. Printed so, the row is no word a translator could write. No key on file explains the sign, and nothing in the row says which side renders the Hebrew: here it is the part after the sign, in other rows the page before it, in others neither. So each row's answer stands in a list read row by row. Should the page print the address or only that side? These rows print as they do today until you rule. To print one side the page needs one step of its own. This answer holds whatever you answer to the other question.",
+   "shapes": [
+    "number_sign.between_a_page_and_its_part"
+   ],
+   "occurrences": 13,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written, as it does today: Quartz#Citrine."
+    },
+    {
+     "id": "named_part",
+     "means": "The page prints only the side that renders the Hebrew word, as one reading, row by row: Quartz#Citrine prints Citrine; Employment#Employer prints Employer; Races of StarCraft#Terrans prints Terrans; Bereavement in Judaism#Yizkor prints Yizkor; Names of God in Judaism#Tzevaot prints Tzevaot; Moab#Moabite language prints Moabite language; Paralanguage#Sighs prints Sighs; Veil#Wedding veils prints Wedding veils; Brush#Paintbrushes prints Brush; Paintbrush#paintbrushes prints Paintbrush and Activation#Chemistry prints Activation. It prints no pill for the rows where neither side does: World#Religion and mythology and Hadith studies#The sanad and the matn. All this once it has the one step of its own that this answer needs; until then these rows print as written. The store keeps each text as it is. Of the other rows with a slash or a dash, Apollonia–Arsuf and HIV/AIDS are the only ones where printing one side would make sense; they stand outside this question, so this answer does not reach them."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark («List of knots» is the title of a list, with no sign to read), and every question of whether a title renders its Hebrew word; the rows it names for these questions stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census, and nothing is struck. It leaves to the page the steps that the answers name_alone and named_part ask for, since a declaration can cut a row and has no field that prints part of a text or leaves a row out."
+}

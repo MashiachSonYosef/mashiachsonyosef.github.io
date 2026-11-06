@@ -1,0 +1,1524 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "stepbible_tahot_aligned_translation",
+ "m_ids": [
+  "M4"
+ ],
+ "routes": 95089,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"STEP Bible Translators Amalgamated Hebrew OT aligned component translation\" (M4): 95,089 routes (axis: routes), 46,609 letters keys (axis: keys). The definition field of the same row equals the route text on 95,089 of the routes. The source audit: the lane's copy of STEPBible-Data (commit b86d26cdb1f5, in ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/), 4 TAHOT files, 305,652 word rows (axis: source rows). Each of the dictionary store's 64,402 records names one such row, and its text equals that row's translation column on 64,402 of them; its two other text fields are filled on 0 and 0 records. A route comes from that one column, so no test here stands on a guess about a field; the audit is evidence about the source and no part of any test. 69,324 routes are a row's whole translation column under the letters of its Hebrew column, 25,764 are a run of a row's word parts that the store cut at the slash under the letters of those parts (the store flags 0 routes as cut), and 1 join no row. Which case of the ask's second sentence: a route here is one rendering of one word form at its places, so the store already gives each rendering its own route; no route holds a comma or a round bracket, the word or stands between words in none, and the word and stands between words only inside one phrase. The source's own key to its signs is on file: the notes at the head of each TAHOT file say that a forward slash separates the translation to mirror the prefixes, root and suffixes in Hebrew, in the Hebrew's order; that words in angle brackets are in the Hebrew but are best not included in a translation; and that words in square brackets are not in the Hebrew but are implied and are best included in a translation. The same files' tag columns, with the short glosses of the source's own lexicon TBESH (H9008 [?], H9010 [the], H9011 [to], H9012 [emph.?], H9013 [emph.?], H9014 [-]), name what the parts ¿, ! and - alone and the endings -ward and -wards stand on. So the shapes that say what those signs are for, and the shapes of words in the two kinds of bracket, rest on that key. Every other shape that says what a sign is for begins \"unverified:\": the notes speak of words and not of letters in brackets, and they give no account of the question mark, the exclamation mark on a word, the cut hyphen, the colon, the semicolon, a label in brackets or a bracket left open. The shapes of English spelling (a hyphen between two letters, the apostrophe, the point of obj) say only that.",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits). A letter is any character of Unicode category L (JavaScript \\p{L}); every letter in a route is one of A to Z or a to z. An uppercase letter is one of A to Z, a lowercase letter one of a to z. No route holds a digit. A space is the character U+0020; it is the only whitespace any route holds. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. The text before and the text after the mark are the template's c.before and c.after. What a bracket holds is the template's c.group, the same string for an opener and for its closer: the characters between the pair. An opener that never closes has a c.group of null, and a closer that never opened has an empty one. Directly before and directly after name the one character next to the mark; where the mark stands at that end of the text no character stands there, so a test that asks for a character there fails. A string stands between « and », which are not part of it, and every string and every list minds case and is matched exact to the character, spaces included. Begins with and ends with are about the first or last characters of the thing named, with no word boundary. A run of letters is all the letters next to each other, taken as far as the first character that is not a letter or the end of the text; the run of letters directly before the mark ends at the character directly before the mark, and the run directly after it begins at the character directly after the mark; where that character is not a letter the run is empty. A mark's container is the template's c.container: top, bracket for [ ], angle for < >; a bracket character sits in what encloses it.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. Not caught above means that no earlier shape of the same mark took the occurrence; a short test below others relies on them. A shape's container field is not part of its test: a test looks at the container only where its words say so, and the checker compares the field afterwards.",
+  "no_bare_word": "A step on the whole text, used by the tests that name it. Start a count at nothing. Read the text from its first character to its last: «[» or «<» adds one to the count; «]» or «>» takes one away; a letter read while the count is nothing means the text holds a bare word, and the step answers no. If the end comes and no letter was read while the count was nothing, the step answers yes: the row has no bare word. The step is only reached by a text whose brackets balance, because the tests for unbalanced texts stand first.",
+  "before_the_opener": "A step for a closer: take away from the text before the closer what the bracket holds and the opener itself; the character that then stands last is the character directly before this closer's own opener. Where nothing is left, no character stands there and a test that asks for a letter there fails.",
+  "word_tails": [
+   "fore",
+   "lease",
+   "cacies",
+   "caci"
+  ],
+  "gender_labels": [
+   "masc",
+   "fem"
+  ],
+  "whole_word_heads": [
+   "four",
+   "six",
+   "seven",
+   "eight",
+   "nine",
+   "west",
+   "there",
+   "in",
+   "In"
+  ],
+  "tail_texts_of_words": [
+   "teen [cubits]"
+  ],
+  "tail_texts_of_names": [
+   "<the>/ jaminite"
+  ]
+ },
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.before_a_supplied_word"
+  ],
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.around_an_empty_part",
+   "slash.around_the_link_part",
+   "slash.spaced_on_both_sides",
+   "slash.with_a_space_before_only",
+   "slash.with_no_space",
+   "slash.between_word_parts"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": "absent",
+  "brackets": [
+   "open_bracket.never_closed",
+   "open_bracket.in_unbalanced_text",
+   "open_bracket.in_a_row_with_no_bare_word",
+   "open_bracket.after_the_last_piece_of_a_word",
+   "open_bracket.inside_a_square_bracket",
+   "open_bracket.inside_an_angle_bracket",
+   "open_bracket.holds_a_question_mark",
+   "open_bracket.holds_a_gender_label",
+   "open_bracket.holds_the_ending_ever",
+   "open_bracket.holds_the_rest_of_a_word",
+   "open_bracket.holds_implied_words",
+   "close_bracket.never_opened",
+   "close_bracket.in_unbalanced_text",
+   "close_bracket.in_a_row_with_no_bare_word",
+   "close_bracket.after_the_last_piece_of_a_word",
+   "close_bracket.inside_a_square_bracket",
+   "close_bracket.inside_an_angle_bracket",
+   "close_bracket.holds_a_question_mark",
+   "close_bracket.holds_a_gender_label",
+   "close_bracket.holds_the_ending_ever",
+   "close_bracket.holds_the_rest_of_a_word",
+   "close_bracket.holds_implied_words",
+   "open_angle.in_unbalanced_text",
+   "open_angle.in_a_row_with_no_bare_word",
+   "open_angle.before_the_last_piece_of_a_name",
+   "open_angle.inside_a_square_bracket",
+   "open_angle.holds_a_plural_ending",
+   "open_angle.holds_the_object_sign",
+   "open_angle.holds_words_in_the_hebrew",
+   "close_angle.never_opened",
+   "close_angle.in_unbalanced_text",
+   "close_angle.in_a_row_with_no_bare_word",
+   "close_angle.before_the_last_piece_of_a_name",
+   "close_angle.inside_a_square_bracket",
+   "close_angle.holds_a_plural_ending",
+   "close_angle.holds_the_object_sign",
+   "close_angle.holds_words_in_the_hebrew"
+  ]
+ },
+ "shapes": [
+  {
+   "id": "slash.around_an_empty_part",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "stands on either side of a word part with no English («what/ /[is] this?», «Yahweh/ /of hosts», «it has come//good fortune»), where the source's Hebrew column holds a space, a maqaf or an empty part: two Hebrew words kept in one row of English, not two readings of one word.",
+   "test": "The text after the mark begins with «/» or with « /», or the text before the mark ends with «/» or with «/ » (terms, first_match).",
+   "count": 30,
+   "examples": [
+    {
+     "key": "מהזה"
+    },
+    {
+     "key": "באגד"
+    },
+    {
+     "key": "אבובני"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "slash.around_the_link_part",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "stands on either side of a word part that is only a hyphen («what/-/[is] to», «people of/-/prince»), where the source's Hebrew column holds the maqaf and its tag column the tag H9014, which the source glosses link; one row of English, not two readings.",
+   "test": "The text after the mark begins with «-/», or the text before the mark ends with «/-» (terms).",
+   "count": 20,
+   "examples": [
+    {
+     "key": "מהל"
+    },
+    {
+     "key": "הנההוא"
+    },
+    {
+     "key": "עלכן"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "slash.spaced_on_both_sides",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "separates two Hebrew word parts of one reading with a space written on each side («from / with <the>», «like / you», «[O] son / his»), a spacing the printed note does not mention and that changes nothing the slash does.",
+   "test": "The character directly before the mark is a space, and the character directly after the mark is a space (terms).",
+   "count": 13,
+   "examples": [
+    {
+     "key": "מעלי"
+    },
+    {
+     "key": "ככם"
+    },
+    {
+     "key": "מעמו"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "slash.with_a_space_before_only",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "separates two Hebrew word parts of one reading with the space written before it and none after («mate /her», «because /were numerous»), a spacing the printed note does not mention.",
+   "test": "The character directly before the mark is a space (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "מרבכם"
+    },
+    {
+     "key": "ליחמנה"
+    },
+    {
+     "key": "מרב"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "slash.with_no_space",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "separates two Hebrew word parts of one reading with no space written beside it («in/order that», «for/sake of», «to/make»); the two sides are one rendering in the Hebrew word's order, not two renderings.",
+   "test": "The character directly after the mark is not a space (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "ובעבור"
+    },
+    {
+     "key": "בעבר"
+    },
+    {
+     "key": "לעשות"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "slash.between_word_parts",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "separates the English of one Hebrew word part from the next, in the order the source's printed note gives, the Hebrew word's own, to mirror the prefixes, root and suffixes («father/ your», «and/ <obj.>», «¿/ only»); the 58 routes that hold the slash of 140 source rows of the Aramaic ending run against that order, the article before the root in the English and after it in the Hebrew («<the>/ God», «and/ <the>/ power»); the parts are pieces of one reading, and on all 305,652 source rows the English has the same number of parts as the Hebrew column.",
+   "test": "The character directly after the mark is a space (terms, first_match).",
+   "count": 63939,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "ופריתם"
+    },
+    {
+     "key": "תשעני"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_bracket.never_closed",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a square bracket that nothing closes in the text («[who», «[who/ [-ever] eats»); the source's row Lev.11.40#01=L writes it so, and the store's cut at the slash carries it into a shorter route.",
+   "test": "What the bracket holds is null, the template's c.group for an opener that never closes (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "ה"
+    },
+    {
+     "key": "האכל"
+    },
+    {
+     "key": "וה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "open_bracket.in_unbalanced_text",
+   "mark": "[",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens an ending in a text that also holds a bracket nothing closes or nothing opened («[-ever]» beside «[who/», «bush[es]» after «<into> the>»); the text stays one piece under every answer (ask rule 3).",
+   "test": "The ask's helper unbalanced(text) (ask rule 3), given the whole text, returns true (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "האכל"
+    },
+    {
+     "key": "והאכל"
+    },
+    {
+     "key": "ולשית"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "open_bracket.in_a_row_with_no_bare_word",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "opens words of which the source's printed note says of square brackets that the words are not in the Hebrew but are implied and best included in a translation, in a row with no English outside brackets («[are]», «[is] <in>», «¿/ [are]»), and B01 asks whether the page prints it.",
+   "test": "The step no_bare_word answers yes for the whole text (terms).",
+   "count": 35,
+   "examples": [
+    {
+     "key": "את"
+    },
+    {
+     "key": "ל"
+    },
+    {
+     "key": "את־"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "open_bracket.after_the_last_piece_of_a_word",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "opens a word of which the source's printed note says of square brackets that the words are not in the Hebrew but are implied and best included in a translation, after the last piece of a number that another row began («teen [cubits]»): the text leans on that row, it has no hyphen for a test on the hyphen to find, and B02 asks whether the page prints it.",
+   "test": "The whole text, exactly, is one of the strings in tail_texts_of_words (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עשרה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.inside_a_square_bracket",
+   "mark": "[",
+   "container": "bracket",
+   "divides": false,
+   "means": "opens the word the, itself supplied inside a longer supplied phrase («[is [the] one who]», «[were [the] one who]»); both brackets hold words not in the Hebrew.",
+   "test": "The mark's container is bracket (terms).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "גוזי"
+    },
+    {
+     "key": "אשר"
+    },
+    {
+     "key": "יוצר"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "open_bracket.inside_an_angle_bracket",
+   "mark": "[",
+   "container": "angle",
+   "divides": false,
+   "means": "opens the word the, supplied inside words the source marks as in the Hebrew and best left out («really <to have [the] habit>»).",
+   "test": "The mark's container is angle (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ההסכן"
+    },
+    {
+     "key": "הסכן"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_bracket.holds_a_question_mark",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a question mark the source supplies on the last word with no word of its own («you[?]», «to <the>/ you[?]»); the sign stays in the one reading.",
+   "test": "What the bracket holds is exactly the string «?» (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "לך"
+    },
+    {
+     "key": "ך"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_bracket.holds_a_gender_label",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a label of masculine or feminine that tells the gender the Hebrew word carries where the English does not show it («they [masc]», «and/ everyone [fem]», «[masc] womb/ their»), at 18 source rows; no word a translation would print, the label stays in the row with the reading.",
+   "test": "What the bracket holds is exactly one of the strings in gender_labels (terms).",
+   "count": 28,
+   "examples": [
+    {
+     "key": "רעהו"
+    },
+    {
+     "key": "וישימו"
+    },
+    {
+     "key": "בטנ"
+    }
+   ],
+   "read": 28
+  },
+  {
+   "id": "open_bracket.holds_the_ending_ever",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens an English ending the source supplies, which makes one word with the who of the part before it («who/ [-ever] carries»); the store's cut at the slash leaves it at the head of a shorter route («[-ever] eats»), where the who it finishes is gone.",
+   "test": "What the bracket holds is exactly the string «-ever» (terms).",
+   "count": 13,
+   "examples": [
+    {
+     "key": "הנושא"
+    },
+    {
+     "key": "והנגע"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "open_bracket.holds_the_rest_of_a_word",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens letters glued to the word before them that finish it in English: a plural ending on a word the grammar column gives as singular at 2,131 of 2,152 source parts («sandal[s]/ your», «fig tree[s]/ their», «swift [horse][s]»), or the rest of a word («be[long]», «has it be[longed]?», «child[ren]»); the printed note speaks of words and not of letters.",
+   "test": "The character directly before the mark is a letter or the character «]» (terms, first_match).",
+   "count": 1267,
+   "examples": [
+    {
+     "key": "הגבלי"
+    },
+    {
+     "key": "והגזם"
+    },
+    {
+     "key": "שרטת"
+    }
+   ],
+   "read": 42
+  },
+  {
+   "id": "open_bracket.holds_implied_words",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "is the general shape: the source's printed note says of square brackets that the words are not in the Hebrew but are implied and best included in a translation. By kind of what it holds, counted by builder/figures.mjs over 21,357 occurrences: the word the 7,705, a form of be alone or with other words 7,023, a form of belong 421, and 6,208 other words the Hebrew leaves unsaid, head words and who-phrases among them («[the] deeps», «[is] Zebul?», «[belonged] to/ Obed-», «[one who] digs», «two [plus]»).",
+   "test": "Not caught above (first_match): every opening square bracket no earlier shape took (terms).",
+   "count": 21357,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "הקדוש"
+    },
+    {
+     "key": "תפדה"
+    }
+   ],
+   "read": 327
+  },
+  {
+   "id": "close_bracket.never_opened",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a square bracket that nothing opened in the text («has been] profaned»); the source's row Ezk.36.23#05=L writes it so, and the store's cut at the slash carries it into a shorter route.",
+   "test": "What the bracket holds is empty, and the text before the mark does not end with «[» (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מחלל"
+    },
+    {
+     "key": "המחלל"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_bracket.in_unbalanced_text",
+   "mark": "]",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes an ending in a text that also holds a bracket nothing closes or nothing opened («[-ever]» beside «[who/», «bush[es]» after «<into> the>»), so the text stays one piece under every answer (ask rule 3).",
+   "test": "The ask's helper unbalanced(text) (ask rule 3), given the whole text, returns true (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "האכל"
+    },
+    {
+     "key": "והאכל"
+    },
+    {
+     "key": "ולשית"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "close_bracket.in_a_row_with_no_bare_word",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "closes words of which the source's printed note says of square brackets that the words are not in the Hebrew but are implied and best included in a translation, in a row with no English outside brackets («[were]», «[was] <to>», «<from> [what]»), and B01 asks whether the page prints it.",
+   "test": "The step no_bare_word answers yes for the whole text (terms).",
+   "count": 35,
+   "examples": [
+    {
+     "key": "את"
+    },
+    {
+     "key": "ל"
+    },
+    {
+     "key": "את־"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "close_bracket.after_the_last_piece_of_a_word",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "closes the word the source supplies after the last piece of a number that another row began («teen [cubits]»), a text that leans on that row, and B02 asks whether the page prints it.",
+   "test": "The whole text, exactly, is one of the strings in tail_texts_of_words (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עשרה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.inside_a_square_bracket",
+   "mark": "]",
+   "container": "bracket",
+   "divides": false,
+   "means": "closes the word the, itself supplied inside a longer supplied phrase, before that phrase goes on («[is [the] one]», «[was [the] one]»); both brackets hold words not in the Hebrew.",
+   "test": "The mark's container is bracket (terms).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "גוזי"
+    },
+    {
+     "key": "אשר"
+    },
+    {
+     "key": "יוצר"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "close_bracket.inside_an_angle_bracket",
+   "mark": "]",
+   "container": "angle",
+   "divides": false,
+   "means": "closes the word the, supplied inside words the source marks as in the Hebrew, before those words go on to their last word («¿/ really <to have [the] habit>»).",
+   "test": "The mark's container is angle (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ההסכן"
+    },
+    {
+     "key": "הסכן"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_bracket.holds_a_question_mark",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the question mark the source supplies on a last word, as the end of the row's text («you[?]»); the sign stays in the one reading.",
+   "test": "What the bracket holds is exactly the string «?» (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "לך"
+    },
+    {
+     "key": "ך"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_bracket.holds_a_gender_label",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a label of masculine or feminine that tells the gender of the Hebrew word («neighbor [masc]/ his», «<the>/ Hebrew [masc]», «and/ <the>/ Hebrew [fem]»), which stays in the row with the reading and is no word a translation would print.",
+   "test": "What the bracket holds is exactly one of the strings in gender_labels (terms).",
+   "count": 28,
+   "examples": [
+    {
+     "key": "רעהו"
+    },
+    {
+     "key": "וישימו"
+    },
+    {
+     "key": "בטנ"
+    }
+   ],
+   "read": 28
+  },
+  {
+   "id": "close_bracket.holds_the_ending_ever",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the supplied ending that finishes the who of the part before it («and/ who/ [-ever] touches», «[-ever] sits»), so that the verb follows in the same part.",
+   "test": "What the bracket holds is exactly the string «-ever» (terms).",
+   "count": 13,
+   "examples": [
+    {
+     "key": "הנושא"
+    },
+    {
+     "key": "והנגע"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "close_bracket.holds_the_rest_of_a_word",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes letters glued to the word before their opener, which finish it in English: a plural ending («arm[s]/ his», «rider[s]/ its») or the rest of a word («be[longed]», «child[ren]»); the printed note speaks of words and not of letters.",
+   "test": "By the step before_the_opener, the character directly before this closer's own opener is a letter or the character «]» (terms, first_match).",
+   "count": 1267,
+   "examples": [
+    {
+     "key": "הגבלי"
+    },
+    {
+     "key": "והגזם"
+    },
+    {
+     "key": "שרטת"
+    }
+   ],
+   "read": 42
+  },
+  {
+   "id": "close_bracket.holds_implied_words",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "is the general shape that closes what the opener's general shape opens: words not in the Hebrew but implied, the word the, a form of be alone or with other words, a form of belong and other words the Hebrew leaves unsaid, in the same counts by kind (7,705, 7,023, 421, 6,208; «[the] surface of», «[was] over», «[were at] Beth-»).",
+   "test": "Not caught above (first_match): every closing square bracket no earlier shape took (terms).",
+   "count": 21357,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "הקדוש"
+    },
+    {
+     "key": "תפדה"
+    }
+   ],
+   "read": 327
+  },
+  {
+   "id": "open_angle.in_unbalanced_text",
+   "mark": "<",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens the angle bracket of «<into> the>», which the source's row Isa.7.23#15=L writes with a second closer nothing opened; the store's cut at the slash carries it into shorter routes, and the text stays one piece under every answer (ask rule 3).",
+   "test": "The ask's helper unbalanced(text) (ask rule 3), given the whole text, returns true (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "ל"
+    },
+    {
+     "key": "ול"
+    },
+    {
+     "key": "ולשית"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "open_angle.in_a_row_with_no_bare_word",
+   "mark": "<",
+   "container": "top",
+   "divides": false,
+   "means": "opens words of which the source's printed note says of angle brackets that the words are in the Hebrew but best not included in a translation, in a row with no English outside brackets («<the>», «<obj.>», «<from>/ <to>»), and B01 asks whether the page prints it.",
+   "test": "The step no_bare_word answers yes for the whole text (terms).",
+   "count": 134,
+   "examples": [
+    {
+     "key": "קדמית"
+    },
+    {
+     "key": "אמי"
+    },
+    {
+     "key": "נחש"
+    }
+   ],
+   "read": 48
+  },
+  {
+   "id": "open_angle.before_the_last_piece_of_a_name",
+   "mark": "<",
+   "container": "top",
+   "divides": false,
+   "means": "opens the word the, of which the source's printed note says of angle brackets that the words are in the Hebrew but best not included in a translation, before the last piece of a name that another row began («<the>/ jaminite»): the text has no hyphen for a test on the hyphen to find, and B03 asks whether the page prints it.",
+   "test": "The whole text, exactly, is one of the strings in tail_texts_of_names (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "הימיני"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_angle.inside_a_square_bracket",
+   "mark": "<",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: opens a plural ending inside a supplied word («[the] holy [one<s>]»), at the one text that nests them; the note speaks of words and not of letters.",
+   "test": "The mark's container is bracket (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "קדשים"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_angle.holds_a_plural_ending",
+   "mark": "<",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the plural ending glued to the word before it («fat<s>», «love<s>/ your», «unleavened bread<s>»), on a word the grammar column gives as plural or dual at 1,668 of 1,689 source parts, where the English reads best without it; the printed note speaks of words and not of letters.",
+   "test": "The character directly before the mark is a letter (terms, first_match).",
+   "count": 883,
+   "examples": [
+    {
+     "key": "דדיך"
+    },
+    {
+     "key": "אספים"
+    },
+    {
+     "key": "ערסתכם"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "open_angle.holds_the_object_sign",
+   "mark": "<",
+   "container": "top",
+   "divides": false,
+   "means": "opens the source's sign for the small Hebrew word that points to a verb's object («<obj.>/ them», «and/ <obj.>»); 10,938 of 11,003 source rows that write it carry that word's tag H0853, glossed [Obj.], and the source's printed note says of angle brackets that the words are in the Hebrew but best not included in a translation.",
+   "test": "What the bracket holds is exactly the string «obj.» (terms).",
+   "count": 95,
+   "examples": [
+    {
+     "key": "יתהון"
+    },
+    {
+     "key": "לאשפיא"
+    },
+    {
+     "key": "אתהם"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "open_angle.holds_words_in_the_hebrew",
+   "mark": "<",
+   "container": "top",
+   "divides": false,
+   "means": "is the general shape: the source's printed note says of angle brackets that the words are in the Hebrew but best not included in a translation. By kind of what it holds, counted by builder/figures.mjs over 4,825 occurrences: the word the 2,540, a small word of place or relation 1,708, a pronoun the verb carries 145, a small joining word 38, and 394 others, where the grammar column shows a verb repeated in its infinitive at 498 of 502 source parts («<the>/ rams' horns», «<to>/ her», «<it> was», «really <to know>»).",
+   "test": "Not caught above (first_match): every opening angle bracket no earlier shape took (terms).",
+   "count": 4825,
+   "examples": [
+    {
+     "key": "באלהיכם"
+    },
+    {
+     "key": "הנמהר"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 144
+  },
+  {
+   "id": "close_angle.never_opened",
+   "mark": ">",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands as a closer nothing opened, after the word the in «<into> the>», the way the source's row Isa.7.23#15=L writes it; the store's cut at the slash carries it into shorter routes.",
+   "test": "What the bracket holds is empty, and the text before the mark does not end with «<» (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "ל"
+    },
+    {
+     "key": "ול"
+    },
+    {
+     "key": "ולשית"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "close_angle.in_unbalanced_text",
+   "mark": ">",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes the word into in «<into> the>», a text that goes on to a second closer nothing opened, so the text stays one piece under every answer (ask rule 3).",
+   "test": "The ask's helper unbalanced(text) (ask rule 3), given the whole text, returns true (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "ל"
+    },
+    {
+     "key": "ול"
+    },
+    {
+     "key": "ולשית"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "close_angle.in_a_row_with_no_bare_word",
+   "mark": ">",
+   "container": "top",
+   "divides": false,
+   "means": "closes words of which the source's printed note says of angle brackets that the words are in the Hebrew but best not included in a translation, in a row with no English outside brackets («<if>», «<if>?», «<in> <the>»), and B01 asks whether the page prints it.",
+   "test": "The step no_bare_word answers yes for the whole text (terms).",
+   "count": 134,
+   "examples": [
+    {
+     "key": "קדמית"
+    },
+    {
+     "key": "אמי"
+    },
+    {
+     "key": "נחש"
+    }
+   ],
+   "read": 48
+  },
+  {
+   "id": "close_angle.before_the_last_piece_of_a_name",
+   "mark": ">",
+   "container": "top",
+   "divides": false,
+   "means": "closes the word the, which the Hebrew holds and English leaves out, before the last piece of a name that another row began («<the>/ jaminite»), and B03 asks whether the page prints it.",
+   "test": "The whole text, exactly, is one of the strings in tail_texts_of_names (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "הימיני"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_angle.inside_a_square_bracket",
+   "mark": ">",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: closes the plural ending inside the supplied word of «[the] holy [one<s>]», just before the square bracket closes.",
+   "test": "The mark's container is bracket (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "קדשים"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_angle.holds_a_plural_ending",
+   "mark": ">",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the plural ending glued to the word before its opener («curd<s>», «annihilation<s>/ her», «and/ with/ equipment<s>/ its»); the printed note speaks of words and not of letters.",
+   "test": "By the step before_the_opener, the character directly before this closer's own opener is a letter (terms, first_match).",
+   "count": 883,
+   "examples": [
+    {
+     "key": "דדיך"
+    },
+    {
+     "key": "אספים"
+    },
+    {
+     "key": "ערסתכם"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "close_angle.holds_the_object_sign",
+   "mark": ">",
+   "container": "top",
+   "divides": false,
+   "means": "closes the source's sign for the small Hebrew word that points to a verb's object, which the Hebrew holds and English leaves out («<obj.>/ you», «and/ <obj.>/ him»).",
+   "test": "What the bracket holds is exactly the string «obj.» (terms).",
+   "count": 95,
+   "examples": [
+    {
+     "key": "יתהון"
+    },
+    {
+     "key": "לאשפיא"
+    },
+    {
+     "key": "אתהם"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "close_angle.holds_words_in_the_hebrew",
+   "mark": ">",
+   "container": "top",
+   "divides": false,
+   "means": "is the general shape that closes what the opener's general shape opens: words in the Hebrew and best not included in a translation, the word the, a small word of place or relation, a pronoun the verb carries, a small joining word and others, a repeated verb among them, in the same counts by kind (2,540, 1,708, 145, 38, 394; «for <the>/ arrow», «of <the>/ you», «<he> was»).",
+   "test": "Not caught above (first_match): every closing angle bracket no earlier shape took (terms).",
+   "count": 4825,
+   "examples": [
+    {
+     "key": "באלהיכם"
+    },
+    {
+     "key": "הנמהר"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 144
+  },
+  {
+   "id": "hyphen.in_unbalanced_text",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens the supplied ending in «[who/ [-ever] eats», a text with a bracket nothing closes; the text stays one piece under every answer (ask rule 3).",
+   "test": "The ask's helper unbalanced(text) (ask rule 3), given the whole text, returns true (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "האכל"
+    },
+    {
+     "key": "והאכל"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hyphen.in_the_ending_ever",
+   "mark": "-",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: begins the supplied ending ever inside a square bracket («who/ [-ever] sits», «[-ever] carries»), the hyphen of an ending that finishes the who of the part before it.",
+   "test": "The mark's container is bracket (terms).",
+   "count": 13,
+   "examples": [
+    {
+     "key": "הנושא"
+    },
+    {
+     "key": "והנגע"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "hyphen.as_its_own_part",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "is the whole of a word part («what/-/[is] to», «there!/-/he»): the English of the Hebrew column's maqaf, whose tag H9014 the source glosses link at all 7 source rows that write it; it stands inside one row of English.",
+   "test": "The text before the mark ends with «/», and the text after the mark begins with «/» (terms).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "מהל"
+    },
+    {
+     "key": "הנההוא"
+    },
+    {
+     "key": "עלכן"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "joins two parts of one English compound or one name («fire-pans», «daughters-in-law/ her», «Kedor-laomer»), so that the parts are one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms).",
+   "count": 508,
+   "examples": [
+    {
+     "key": "המחתות"
+    },
+    {
+     "key": "כבשת"
+    },
+    {
+     "key": "האח"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "hyphen.before_a_slash",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the head of «west-/ -ward», the one text that writes a hyphen on both sides of the slash; one reading.",
+   "test": "The text after the mark begins with «/» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ימה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.ends_a_row_on_a_whole_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends the text on a whole English word and a hyphen, and another row holds the rest of the longer word («four-», «[was] four-», «west-», «there-», «¿/ In-»): the word stands as a word in other routes, here it leans on that row, and B04 asks whether the page prints it.",
+   "test": "The text after the mark is empty, and the run of letters directly before the mark is exactly one of the strings in whole_word_heads (terms).",
+   "count": 58,
+   "examples": [
+    {
+     "key": "תשע"
+    },
+    {
+     "key": "על־"
+    },
+    {
+     "key": "העל"
+    }
+   ],
+   "read": 58
+  },
+  {
+   "id": "hyphen.ends_a_row_on_a_cut_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends the text on the first piece of an English word that is no word alone, and another row holds the rest («in/ thir-», «[the] deli-», «fif-», «re-»): the text leans on that row, and B02 asks whether the page prints it.",
+   "test": "The text after the mark is empty, and the run of letters directly before the mark begins with a lowercase letter (terms, first_match).",
+   "count": 48,
+   "examples": [
+    {
+     "key": "בשלש־"
+    },
+    {
+     "key": "מפת־"
+    },
+    {
+     "key": "ובחמשה"
+    }
+   ],
+   "read": 48
+  },
+  {
+   "id": "hyphen.ends_a_row_on_a_cut_name",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends the text on the first piece of a name, and another row holds the rest («Pedah-», «at/ Bene-», «[is] Beth-», «and/ Merib-»): the text is the word's English at its place and not the whole name, and B03 asks whether the page prints it.",
+   "test": "The text after the mark is empty, and the run of letters directly before the mark begins with an uppercase letter (terms, first_match).",
+   "count": 196,
+   "examples": [
+    {
+     "key": "פדה־"
+    },
+    {
+     "key": "ושתר"
+    },
+    {
+     "key": "אבי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "hyphen.opens_the_directional_ending",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "opens the English of the Hebrew ending ה of direction, whose tag H9011 (glossed to) stands behind all 258 source parts that read -ward or -wards («north/ -ward», «and/ up/ -wards»); it finishes the word part before it, and in the row of the letter ה alone («-ward») it renders that letter.",
+   "test": "The whole text after the mark is exactly the string «ward» or the string «wards» (terms).",
+   "count": 35,
+   "examples": [
+    {
+     "key": "וקדמה"
+    },
+    {
+     "key": "צפנה"
+    },
+    {
+     "key": "קדמה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "hyphen.opens_the_tail_of_a_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the last piece of an English word that another row began («-fore», «-lease», «-cacies/ his», «-caci[es] of»): the text leans on that row, and B02 asks whether the page prints it.",
+   "test": "The run of letters directly after the mark is exactly one of the strings in word_tails (terms).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "קוח"
+    },
+    {
+     "key": "בג"
+    },
+    {
+     "key": "בגו"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "hyphen.opens_the_tail_of_a_name",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the last piece of a name that another row began («-zur», «-sheba», «<the>/ -ezer»): the text is the word's English at its place and not the whole name, and B03 asks whether the page prints it.",
+   "test": "The text before the mark is empty or ends with «/ », and the character directly after the mark is a letter (terms, first_match).",
+   "count": 30,
+   "examples": [
+    {
+     "key": "צדק"
+    },
+    {
+     "key": "הלחמי"
+    },
+    {
+     "key": "נגוא"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "exclamation.as_its_own_part",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "is the whole of the last word part: the source's sign for a Hebrew ending that adds emphasis, tags H9012 and H9013 glossed emph. at all 716 source parts that read so («they lie down/ !», «look/ !»); it has no English word and stays in the one reading.",
+   "test": "The text after the mark is empty, and the text before the mark ends with «/ » (terms).",
+   "count": 478,
+   "examples": [
+    {
+     "key": "ואבקשה"
+    },
+    {
+     "key": "שכבה"
+    },
+    {
+     "key": "תשבון"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "exclamation.on_a_word",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a cry or a command on an English word, at the end of the text or with more to come («here!», «woe! to», «there!/ they», «how blessed [are]!/ you»); it stays in the one reading.",
+   "test": "The character directly before the mark is a letter or the character «]» (terms, first_match).",
+   "count": 82,
+   "examples": [
+    {
+     "key": "אשריכם"
+    },
+    {
+     "key": "כמה"
+    },
+    {
+     "key": "אבי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "question_mark.inside_a_square_bracket",
+   "mark": "?",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: is the supplied question mark itself, alone in its square bracket («you[?]»), which adds a question to the last word and no word of its own.",
+   "test": "The mark's container is bracket (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "לך"
+    },
+    {
+     "key": "ך"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "question_mark.as_its_own_part",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is the whole of the last word part at the one text that writes it («do you know/ ?»), where the tag column gives that part the question tag H9008; the sign stays in the one reading.",
+   "test": "The text before the mark ends with «/ » (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ידעתה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "question_mark.before_the_word_of",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands on a word of the question, a noun at all 2 source parts that write it so, just before the small word of, which belongs to the same Hebrew word and runs on to the next («[the] striking? of», «in/ [the] way? of»); it stays in the one reading.",
+   "test": "The whole text after the mark is exactly the string « of» (terms).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "מכת"
+    },
+    {
+     "key": "כמכת"
+    },
+    {
+     "key": "הבדרך"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "question_mark.before_a_slash",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands on a word of the question at the end of a word part, wherever that word falls, and more of the text follows the slash: a part that renders a pronoun at 50 of 54 occurrences («did you weave together?/ me», «[is] house?/ my»), other parts at 4 («to/ what?/ at the/ first [time]»). By a list of question words and the grammar column, over 56 source parts, that word is a question word at 9, the verb at 42 and another word at 5; the sign stays in the one reading.",
+   "test": "The text after the mark begins with «/» (terms).",
+   "count": 54,
+   "examples": [
+    {
+     "key": "ואיו"
+    },
+    {
+     "key": "ימיו"
+    },
+    {
+     "key": "הגידה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "question_mark.at_the_end",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands on a word of the question, wherever that word falls; here that word ends the text, and what follows may run on in the rows after it («will I put?», «or?», «[is] Zebul?»). By a list of question words and the grammar column, over 1,803 source parts, it is a question word at 1,547, the verb at 210 and another word at 46; it stays in the one reading and is no sign of doubt in the rendering.",
+   "test": "The text after the mark is empty (terms).",
+   "count": 408,
+   "examples": [
+    {
+     "key": "זבל"
+    },
+    {
+     "key": "יקומו"
+    },
+    {
+     "key": "ישמע"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "question_inverted.as_its_own_part",
+   "mark": "¿",
+   "container": "top",
+   "divides": false,
+   "means": "is the whole of a word part: the source's sign for the Hebrew question prefix ה, tag H9008, which it glosses with this sign at all 755 source parts that read so («¿/ only», «and/ ¿/ land», «and/ ¿»); it has no English word and stays in the one reading.",
+   "test": "The text before the mark is empty or ends with «/ », and the text after the mark is empty or begins with «/» (terms).",
+   "count": 405,
+   "examples": [
+    {
+     "key": "הכצעקתה"
+    },
+    {
+     "key": "המשל"
+    },
+    {
+     "key": "העל"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.in_the_object_sign",
+   "mark": ".",
+   "container": "angle",
+   "divides": false,
+   "means": "is the point of the short form obj, inside the source's object sign («<obj.>/ them», «<obj.>»); it ends nothing and stays with the sign.",
+   "test": "The text before the mark ends with «<obj» (terms).",
+   "count": 113,
+   "examples": [
+    {
+     "key": "יתהון"
+    },
+    {
+     "key": "ואתהן"
+    },
+    {
+     "key": "אתהם"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "apostrophe.in_a_possessive",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "is the apostrophe of an English possessive («a ram's horn», «husband's brother», «<the>/ rams' horns»), inside one reading.",
+   "test": "The character directly before the mark is a letter (terms).",
+   "count": 38,
+   "examples": [
+    {
+     "key": "ויבמה"
+    },
+    {
+     "key": "כמלונה"
+    },
+    {
+     "key": "בשופרות"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "colon.after_the_word_this",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after the word this at the end of the text, where the words it introduces stand on the next Hebrew word's row («this:», «[they heard] this:»); it stays in the one reading.",
+   "test": "The text before the mark ends with «this» (terms).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "אשר־"
+    },
+    {
+     "key": "אשר"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "colon.after_the_letters_of_k",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands after the run-together letters ofK at the end of the text («[the] rest ofK:», «and/ [the] rest ofK:»), at one source row, Zep.2.9#26=L; the file heads define K as the Ketiv, and the next row, Zep.2.9#27=Q(K), carries K= goy, so it may be a stray pointer to that variant, which stays unverified; no key on file says what the capital K or the colon is for here, and the text is one reading.",
+   "test": "The text before the mark ends with «ofK» (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "יתר"
+    },
+    {
+     "key": "ויתר"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "semicolon.before_a_supplied_word",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a clause of the verse in the one text that holds this sign («deliverance; [surely]»), at the source's row Psa.32.7#07=L; what follows it stands in square brackets, so by the printed note it is not in the Hebrew and is no second reading of this word, and the 7 other routes that hold [surely] lead on to a word after it.",
+   "test": "The text after the mark begins with « [» (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "פלט"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source's own files carry disambiguated Strong's tags in a column of their own, part by part (on 305,638 of 305,652 source rows, axis: source rows), and the route store dropped them: the store's record keeps only the row of one cited place. The letters key here is a word form or a run of its parts, and its routes are the source's renderings of that form at its places, identical ones collapsed, so keys_with_more_than_one_route_text counts renderings at places, not entries. By the audit, which reads the tags of the part or parts each route covers at every row that gives it, of the 15,964 such keys (axis: keys) 9,049 stand on one tag and 6,915 on two or more, so that the texts come from different words that share the letters (example key על, whose routes stand on 6 tags: H5920H, H5921A, H5922, H5923, H5929, H5954).",
+  "keys_with_more_than_one_route_text": 15964
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some rows have no English outside brackets: <the>. The source's note says words in angle brackets are in the Hebrew but best left out of a translation, and words in square brackets are not in the Hebrew but implied. So such a row may give a translator nothing to print for the word. Should the page print these rows as readings? They print as they do today until you rule. To leave them out the page needs one step of its own, because a declaration cannot leave a row out. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "open_bracket.in_a_row_with_no_bare_word",
+    "close_bracket.in_a_row_with_no_bare_word",
+    "open_angle.in_a_row_with_no_bare_word",
+    "close_angle.in_a_row_with_no_bare_word"
+   ],
+   "occurrences": 338,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints <the> as one reading, as written, as it does today."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows end on a piece of an English word, or hold its last piece, and the rest of the word stands on another row: in/ thir-. A piece like that is not something a translator could print alone. Should the page print these rows as readings? They print as they do today until you rule. To leave them out the page needs one step of its own, because a declaration cannot leave a row out. The row teen holds no sign at all, so this question cannot reach it. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "hyphen.ends_a_row_on_a_cut_word",
+    "hyphen.opens_the_tail_of_a_word",
+    "open_bracket.after_the_last_piece_of_a_word",
+    "close_bracket.after_the_last_piece_of_a_word"
+   ],
+   "occurrences": 55,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints in/ thir- as one reading, as written, as it does today."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B03",
+   "question": "Some rows end on a piece of a name, or hold its last piece, and the rest of the name stands on another row: Pedah-. The piece is the word's English at that place, but it is not the whole name. Should the page print these rows as readings? They print as they do today until you rule. To leave them out the page needs one step of its own, because a declaration cannot leave a row out. A piece of a name with no hyphen, pileser, holds no sign at all, so this question cannot reach it. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "hyphen.ends_a_row_on_a_cut_name",
+    "hyphen.opens_the_tail_of_a_name",
+    "open_angle.before_the_last_piece_of_a_name",
+    "close_angle.before_the_last_piece_of_a_name"
+   ],
+   "occurrences": 228,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints Pedah- as one reading, as written, as it does today."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B04",
+   "question": "Some rows hold a whole English word and a hyphen, and the rest of the longer word stands on another row: four-. The word is whole, but here it is only the head of a longer word. Some of these words are the English of their Hebrew, as four is; others are whole by spelling only, as there- and in- are, and alone they are not the English of their letters. Should the page print these rows as readings? They print as they do today until you rule. To leave them out the page needs one step of its own, because a declaration cannot leave a row out. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "hyphen.ends_a_row_on_a_whole_word"
+   ],
+   "occurrences": 58,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints four- as one reading, as written, as it does today."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, so the row sp and the last pieces of words with no hyphen (teen, deed, pileser) stand as they are; it leaves to the store the rows its cut at the slash gave to the wrong letters (the Aramaic ending, 95 routes, axis: routes), naming these and the rest in list-for-the-store-v1.jsonl, outside the shapes; it changes no text, so it reorders no word part, strips no sign, supplies no word and joins no word cut across two Hebrew words; it leaves to the page how it prints a word part (its join with a plus sign), what its signs switch does with brackets, ¿ and !, and the step that the answer no_pill of B01, B02, B03 and B04 asks for, since a declaration can cut a row and has no field that leaves a whole row out; and it strikes nothing."
+}

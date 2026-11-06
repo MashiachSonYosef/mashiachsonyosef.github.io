@@ -1,0 +1,102 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "davidson_1855_manual_source_image_reviewed_v1",
+ "m_ids": [
+  "M97"
+ ],
+ "routes": 85,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Davidson 1855 Analytical Hebrew and Chaldee Lexicon manually source-image-reviewed exact English definitions v1\" (M97): 85 routes (axis: routes), 44 letters keys (axis: keys). The definition field of the same row equals the route text on 41 of the routes. The dictionary store holds no record file for this source, so the source audit (builder/04-audit.mjs, evidence about the source and no part of any test) read the routes' own definition field, and the copy in ledgers/work/ldmprs/source-cache/davidson-2026-07-12/: the lane's first review by page image (manual-source-image-reviewed-supports-v1.jsonl.gz and its decisions file) and the scan text (analyticalhebrew00davi_djvu.txt). The source is The Analytical Hebrew and Chaldee Lexicon by Benjamin Davidson, Samuel Bagster and Sons, Internet Archive item analyticalhebrew00davi. The year in the source key is a cataloguer's date: the title leaf prints no year (moses-works-own-stamp-v1, strand 1), and \"manual\" in the key names the lane's review, not the book. Every route has its row in that first review (85 of 85), which holds 116 items, 30 of them with no route under this source (axis: review items; rows-the-store-does-not-serve-v1.jsonl): a decision of the review wrote the definition field from the printed page and listed its routes one by one, so a route is one item of one list and no test here stands on a guess about a field. The source's own key to its signs is on file: the book's list of abbreviations, which its contents page names, at lines 492 to 1,037 of the scan text. It spells out shortened words (proper name, properly) and ends by naming signs (a letter or a star after a word for the passage at the foot of the page, the signs for a conjunction, the sign that divides a prefix's explanation from the word's analysis, and square brackets for forms that do not occur in the Scriptures), and no route here holds a star, a times sign, a bracket or a Hebrew character. It names no comma, no hyphen and no full stop, and neither viz. nor i.e. (its one hit for i.e. is the scan's misreading of the entry that stands for loco citato); the book's own text uses viz. with a stop 52 times in the scan, with no account of it. The notes before the list name no such sign either (builder/04-audit.mjs, source-audit/key-search.json). So the meaning of all 4 shapes begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. A space is the character U+0020 and nothing else. No test asks for a digit, for whitespace, or for uppercase or lowercase as a class. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after. Directly before and directly after name the one character next to the mark; where the mark stands at that end of the text no character stands there, so a test that asks for a character there fails. The first N characters of the text after the mark, and the last N characters of the text before the mark, must equal the named string character for character; where that text holds fewer than N characters the test fails. A string stands between « and », which are not part of it, and a space next to « or » belongs to the string; the full stop inside «viz.» belongs to the string, and a full stop after » belongs to the sentence. Every string minds case and is matched exact to the character. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here takes an occurrence without a test."
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.before_a_restatement",
+   "comma.before_a_note"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": "absent",
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "comma.before_a_restatement",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: brings in a restatement of the words before it, opened by «viz.», which says the same thing again, so the words and the restatement stay one reading.",
+   "test": "The first five characters of the text after the mark are exactly the string « viz.», which is a space, the letters viz and a full stop (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אביהוא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.before_a_note",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: brings in a note on the word before it, opened by «as an honorary appellation», which says in what character the word is used, so the word and its note stay one reading.",
+   "test": "The first four characters of the text after the mark are exactly the string « as », which is a space, the letters as and a space (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אב"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.in_an_abbreviation",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: marks the shortened word of an abbreviation («viz.»), which stays inside its reading, and ends no sentence.",
+   "test": "The last four characters of the text before the mark are exactly the string « viz», which is a space and the letters viz (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אביהוא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one hyphenated word («watering-troughs»), which stays one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "משאב"
+    },
+    {
+     "key": "משאבים"
+    }
+   ],
+   "read": 2
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The book tells two entries apart by the pointed heading of each and its place on the page, and the route store carries neither; the lane's review keeps the page and the column. The roman numerals of the definition field number the senses of one entry and stand in no route. By the audit, of the 14 keys with more than one text (axis: keys), 7 have all their texts from one decision of the review and 7 from two or more (example key רתם, whose 3 texts come from 2 decisions). A decision is the review's unit and may be a printed entry or a part of one, so these figures count senses and homonyms together.",
+  "keys_with_more_than_one_route_text": 14
+ },
+ "branches": [],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and every question of whether a row should print; the 35 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as what the reading found and no census, the 30 items of the lane's first review with no route under this source stand in rows-the-store-does-not-serve-v1.jsonl as a question for the store, and nothing is struck."
+}

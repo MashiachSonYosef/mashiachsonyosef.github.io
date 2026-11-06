@@ -1,0 +1,1029 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "omw_hebrew_oewn2025_permanent_sense_key_bridge",
+ "m_ids": [
+  "M57"
+ ],
+ "routes": 313,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Hebrew WordNet PWN 3.0 alignment bridged to Open English WordNet 2025 by complete permanent-sense-key agreement\" (M57): 313 routes (axis: routes), 298 letters keys (axis: keys). The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is the Hebrew WordNet of the Open Multilingual Wordnet, bridged by permanent sense keys to Open English WordNet 2025, in ledgers/work/ldmprs/source-cache/omw-hebrew-pwn30-2026-07-14/ and ledgers/work/ldmprs/source-cache/open-english-wordnet-2025-2026-07-15/. Through the dictionary store's records every one of the 313 routes is tied to one synset, and the record's gloss equals the text after the bar on its line of the source's data file on 315 of 315 records. The route equals the source's whole gloss on 69 routes and is the gloss less its example sentences on 244; no route is anything else. In the source's own XML, all 45 of the 45 distinct texts that hold a semicolon stand in one Definition element, so a semicolon here does not join two of that file's definitions. So a route comes from one field and no test here stands on a guess about a field. The key on file: this release keeps the data-file form that the WordNet manual describes, and that manual stands in the first folder, in WordNet-3.0.tar.gz: doc/man/wndb.5, doc/man/wngloss.7 and doc/man/wninput.5. They say that each synset has one gloss, a text string that provides a definition of what the synset represents, example sentences, or both. They name no sign inside a gloss; a search of what they say on a gloss (builder/02-audit.mjs, source-audit/key-search.json) finds no line that names a comma, semicolon, colon, hyphen, slash, quotation mark, dash or ellipsis, and the round brackets they name are the ones the lexicographer's file puts round the whole gloss, which reach no route. The second folder holds this release's licence and manifests beside its data, and no line of them on a gloss or a definition names a sign. So every shape's meaning here begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one index of the JavaScript string: every route holds only characters of 16 bits. A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and either case. A digit is one of the ten characters 0 to 9. Whitespace is what JavaScript's String.prototype.trim removes, and trimmed means with that removed from both ends. The text is the whole route text as it stands, the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. The text before and the text after the mark are the template's c.before and c.after, never trimmed unless the test says so. What a bracket holds is the template's c.group, the same for an opener and for its closer, and it is not trimmed. Empty means no character at all. Directly before and directly after name the one character next to the mark; at an end of the text no character stands there, so a test that asks for a character there fails. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence. Every string and every list minds case and is matched exact to the character, and no test matches part of a string in a list. The apostrophe is the straight one, U+0027; the left single quotation mark is U+2018 and the right single quotation mark is U+2019; the hyphen is U+002D. No test uses a class of case. Two tests that compute a string: THE PIECE AFTER THE MARK: take the text after the mark; if it holds a comma or a semicolon, of any container, keep only what stands before the first of them; trim that; keep its first 40 characters, or all of it if it is shorter; do not trim again, so the result may end in a space. THE FIRST WORD: of a named text, the run of letters and digits that starts at its first character, empty if that character is neither a letter nor a digit or the text is empty; the first word after the mark is the first word of the trimmed text after the mark. IN A GRAMMAR LABEL, a test on a mark: the text before the mark holds a semicolon, and the first word of the trimmed text that stands after the last semicolon of the text before the mark is one of the strings in grammar_label_openers; if the text before the mark holds no semicolon the test fails.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test unless the test says so. An occurrence that no shape of its mark takes makes the classifier throw. Not caught above means the shapes listed above it for the same mark.",
+  "wording_pieces_after_semicolon": [
+   "the highest stage of development",
+   "also a place where good people are belie",
+   "having three dimensions",
+   "rise above the ground",
+   "a field where grass or alfalfa are grown",
+   "be adequate",
+   "express criticism of",
+   "point out real or perceived flaws",
+   "or being a reason for pride",
+   "talk in a loud voice (usually denoting c",
+   "arrive at a compromise",
+   "someone who eats no animal or dairy prod",
+   "wicked or dishonorable",
+   "Completely or entirely",
+   "not thorough",
+   "a source of unhappiness",
+   "a number expressing the ratio of favorab",
+   "of the highest quality",
+   "having good reason",
+   "not false",
+   "not superficial or partial",
+   "not tall",
+   "describing something or someone with a s",
+   "not lasting",
+   "abutting",
+   "touching",
+   "permit",
+   "able to face and deal with danger or fea"
+  ],
+  "wording_pieces_after_comma": [
+   "or the infliction of a penalty",
+   "give permission"
+  ],
+  "label_heads_before_semicolon": [
+   "a quantifier that can be used with count"
+  ],
+  "grammar_label_openers": [
+   "person",
+   "pronoun",
+   "quantifier",
+   "thing"
+  ],
+  "paren_grammar_labels": [
+   "object:"
+  ],
+  "comma_qualifier_openers": [
+   "including",
+   "typically",
+   "either",
+   "used",
+   "by",
+   "usually",
+   "as",
+   "also",
+   "which"
+  ],
+  "paren_second_wordings": [
+   "a suffix or inflectional ending or final morpheme"
+  ],
+  "paren_qualifier_openers": [
+   "such",
+   "usually",
+   "as",
+   "especially",
+   "that",
+   "which",
+   "along",
+   "e"
+  ],
+  "paren_printed_signs": [
+   "‘-’",
+   "‘.’"
+  ],
+  "note_opener_use_or_habit": [
+   "used",
+   "usually",
+   "often",
+   "sometimes",
+   "especially",
+   "typically"
+  ],
+  "note_opener_verb_with_no_subject": [
+   "can",
+   "may",
+   "dries"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.in_a_grammar_label",
+   "comma.between_two_wordings",
+   "comma.before_a_qualifier",
+   "comma.in_one_phrase"
+  ],
+  "comma_in_paren": [
+   "comma.inside_round_brackets"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.before_the_same_wording_again",
+   "semicolon.between_two_wordings",
+   "semicolon.before_a_grammar_label",
+   "semicolon.after_a_label",
+   "semicolon.before_a_note_of_use_or_habit",
+   "semicolon.before_a_verb_with_no_subject",
+   "semicolon.before_a_note"
+  ],
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.heads_the_text",
+   "close_paren.heads_the_text",
+   "open_paren.holds_a_printed_sign",
+   "close_paren.holds_a_printed_sign",
+   "open_paren.holds_a_grammar_label",
+   "close_paren.holds_a_grammar_label",
+   "open_paren.holds_a_second_wording",
+   "close_paren.holds_a_second_wording",
+   "open_paren.holds_a_note_on_a_cited_word",
+   "close_paren.holds_a_note_on_a_cited_word",
+   "open_paren.holds_another_wording",
+   "close_paren.holds_another_wording",
+   "open_paren.holds_a_qualifier",
+   "close_paren.holds_a_qualifier",
+   "open_paren.holds_what_the_verb_takes",
+   "close_paren.holds_what_the_verb_takes"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "semicolon.before_the_same_wording_again",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a wording and the same wording written out again («a point or extent in space; a point or extent in space»), so the row says one thing twice and a cut would print it twice.",
+   "test": "The trimmed text after the mark and the trimmed text before the mark are the same string (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מקום"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "semicolon.between_two_wordings",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two wordings of the one meaning this row gives, each standing alone («make a compromise; arrive at a compromise»); the source's definition is one string for one synset, so the second wording offers no different meaning, no sign can tell it from a note, the strings were picked by hand from reading every row, and whether it cuts is the question of B01.",
+   "test": "The piece after the mark is one of the strings in wording_pieces_after_semicolon (terms, first_match).",
+   "count": 37,
+   "examples": [
+    {
+     "key": "פסגה"
+    },
+    {
+     "key": "חטוף"
+    },
+    {
+     "key": "אמיץ"
+    }
+   ],
+   "read": 37
+  },
+  {
+   "id": "semicolon.before_a_grammar_label",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a label on the word's grammar that this source writes into the definition («pronoun, person, singular», «quantifier, other»), which says what kind of word it is, and a label is no reading.",
+   "test": "The first word after the mark is one of the strings in grammar_label_openers (terms, first_match).",
+   "count": 22,
+   "examples": [
+    {
+     "key": "מלא"
+    },
+    {
+     "key": "אחר"
+    },
+    {
+     "key": "אדם"
+    }
+   ],
+   "read": 22
+  },
+  {
+   "id": "semicolon.after_a_label",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a long head before the rest of the row, a label that says how the word is used («a quantifier that can be used with count nouns»), which stays with the rest, so the row stays one reading.",
+   "test": "The first 40 characters of the text before the mark, or all of it if it is shorter, are one of the strings in label_heads_before_semicolon (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "מלא"
+    },
+    {
+     "key": "הרבה"
+    },
+    {
+     "key": "רב"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "semicolon.before_a_note_of_use_or_habit",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a note that says what the thing is used for, how it is as a rule, or which kind it is above all («used especially as intensifiers», «typically brightly-coloured»), which leans on the wording before it and is no reading.",
+   "test": "The first word after the mark is one of the strings in note_opener_use_or_habit (terms, first_match).",
+   "count": 12,
+   "examples": [
+    {
+     "key": "נהדר"
+    },
+    {
+     "key": "נפלא"
+    },
+    {
+     "key": "גדול"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "semicolon.before_a_verb_with_no_subject",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a statement on the thing whose verb has no subject of its own («can be mechanical or electronic», «dries to form a hard coating»), which leans on the wording before it and is no reading.",
+   "test": "The first word after the mark is one of the strings in note_opener_verb_with_no_subject (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "מחשב"
+    },
+    {
+     "key": "מחשבון"
+    },
+    {
+     "key": "צבע"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "semicolon.before_a_note",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, stands before a note that leans on the wording before it, read at every occurrence: of 8 occurrences 2 open with «its» or «in», which tell a further fact on the thing («its role», «in the Northern Hemisphere it extends»), and 6 open with anything else, as a place («worldwide in arid areas»), a note in round brackets («(‘aged’ is pronounced as two syllables)»), a figure («approximately equal to»), a phrase with no head word of its own («of doing something successfully») or one instance of the thing («ten percent»), counted by builder/figures.mjs.",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "צב"
+    },
+    {
+     "key": "אי"
+    },
+    {
+     "key": "אחוז"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "comma.inside_round_brackets",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: general, stands inside an aside in round brackets, read at every occurrence: its 1 occurrences stand between the two turns of one aside («from Sunday to Saturday, or from Monday to Sunday»), which stays with its row.",
+   "test": "The mark's container, the template's c.container, is paren (first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "שבוע"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.in_a_grammar_label",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the terms of a label on the word's grammar that this source writes into the definition («person, singular, assertive existential pronoun»), which says what kind of word it is, and a label is no reading.",
+   "test": "The mark is IN A GRAMMAR LABEL (terms, first_match).",
+   "count": 27,
+   "examples": [
+    {
+     "key": "מלא"
+    },
+    {
+     "key": "אחר"
+    },
+    {
+     "key": "אדם"
+    }
+   ],
+   "read": 27
+  },
+  {
+   "id": "comma.between_two_wordings",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two wordings of the one meaning this row gives, each standing alone («the act of punishing, or the infliction of a penalty», «consent to, give permission»), picked by hand from reading every row, and whether it cuts is the question of B01.",
+   "test": "The piece after the mark is one of the strings in wording_pieces_after_comma (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "ענישה"
+    },
+    {
+     "key": "הענשה"
+    },
+    {
+     "key": "אפשר"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "comma.before_a_qualifier",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a phrase that narrows the wording before it («a cylindrical vessel, typically used for storing food», «someone who composes music, usually as a profession»), which cannot stand alone as a reading.",
+   "test": "The first word after the mark is one of the strings in comma_qualifier_openers (terms, first_match).",
+   "count": 13,
+   "examples": [
+    {
+     "key": "מגבל"
+    },
+    {
+     "key": "שחיקה"
+    },
+    {
+     "key": "מרוט"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "comma.in_one_phrase",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, stands between the items of a list inside one wording, a list that leans on a head word, read at every occurrence: of 20 occurrences 13 stand before a piece or a later comma that or or and follows («gatherings, receiving guests, or entertainment»), and 7 stand in a list whose last item holds or or and («a group, organization or individual»).",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 20,
+   "examples": [
+    {
+     "key": "הודיע"
+    },
+    {
+     "key": "עוגה"
+    },
+    {
+     "key": "התמודד"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "colon.ends_the_text",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the definition with nothing after it («for war or other emergency:»), a mark left at the end of the source's definition, so no piece follows it.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "גיוס"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "colon.in_a_grammar_label",
+   "mark": ":",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands after the first term of a label on the word's grammar that this source writes into the definition («quantifier: negative existential», «(object:)»), and a label is no reading.",
+   "test": "The mark is IN A GRAMMAR LABEL (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "איש"
+    },
+    {
+     "key": "אין"
+    },
+    {
+     "key": "אדם"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_paren.heads_the_text",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a label at the head of the row that names a field or a usage for the wording after it («(physics) the force of attraction», «(followed by ‘to’) dedicated»), which stays with the row.",
+   "test": "The text before the mark is empty (terms, first_match).",
+   "count": 11,
+   "examples": [
+    {
+     "key": "פסוקית"
+    },
+    {
+     "key": "כבידה"
+    },
+    {
+     "key": "סיבוב"
+    }
+   ],
+   "read": 11
+  },
+  {
+   "id": "close_paren.heads_the_text",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a label at the head of the row that names a field or a usage for the wording after it («(sports) a division of a game», «(often followed by ‘of’)»), which stays with the row.",
+   "test": "The text before the mark is exactly «(» followed by what the bracket holds (terms, first_match).",
+   "count": 11,
+   "examples": [
+    {
+     "key": "פסוקית"
+    },
+    {
+     "key": "כבידה"
+    },
+    {
+     "key": "סיבוב"
+    }
+   ],
+   "read": 11
+  },
+  {
+   "id": "open_paren.holds_a_printed_sign",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a bracket round a sign that the row describes («a punctuation mark (‘.’)»), which is printed to show the sign.",
+   "test": "What the bracket holds is one of the strings in paren_printed_signs (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מקף"
+    },
+    {
+     "key": "נקדה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.holds_a_printed_sign",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a bracket round a sign that the row describes («a punctuation mark (‘-’)»), which is printed to show the sign.",
+   "test": "What the bracket holds is one of the strings in paren_printed_signs (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מקף"
+    },
+    {
+     "key": "נקדה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.holds_a_grammar_label",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a term inside a label on the word's grammar («thing (object:)»), and a label is no reading.",
+   "test": "What the bracket holds is one of the strings in paren_grammar_labels (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אפס"
+    },
+    {
+     "key": "אין"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.holds_a_grammar_label",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a term inside a label on the word's grammar («thing (object:)»), and a label is no reading.",
+   "test": "What the bracket holds is one of the strings in paren_grammar_labels (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אפס"
+    },
+    {
+     "key": "אין"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.holds_a_second_wording",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a bracket that holds a second wording of the one meaning this row gives («(a suffix or inflectional ending or final morpheme)»), picked by hand from reading every row, and whether it cuts is the question of B02.",
+   "test": "What the bracket holds is one of the strings in paren_second_wordings (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "סופיקס"
+    },
+    {
+     "key": "סימת"
+    },
+    {
+     "key": "סופית"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "close_paren.holds_a_second_wording",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a bracket that holds a second wording of the one meaning this row gives («(a suffix or inflectional ending or final morpheme)»), and it ends the row, so no piece follows it under any answer.",
+   "test": "What the bracket holds is one of the strings in paren_second_wordings (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "סופיקס"
+    },
+    {
+     "key": "סימת"
+    },
+    {
+     "key": "סופית"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "open_paren.holds_a_note_on_a_cited_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a note on a word the row cites between single quotation marks («(‘slow’ is sometimes used informally for ‘slowly’)»), and a note is no reading.",
+   "test": "The first character of what the bracket holds is the left single quotation mark (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "לאט"
+    },
+    {
+     "key": "טוב"
+    },
+    {
+     "key": "מחמם"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_paren.holds_a_note_on_a_cited_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a note on a word the row cites between single quotation marks («(‘het’ is a dialectal variant of ‘heated’)»), and a note is no reading.",
+   "test": "The first character of what the bracket holds is the left single quotation mark (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "לאט"
+    },
+    {
+     "key": "טוב"
+    },
+    {
+     "key": "מחמם"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_paren.holds_another_wording",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a turn of the wording before it, opened by or («an open clash between two opposing groups (or individuals)»), which leans on that wording and has no head word of its own, so it stays in the one reading.",
+   "test": "The first word of what the bracket holds is «or» (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "קרב"
+    },
+    {
+     "key": "מלחמה"
+    },
+    {
+     "key": "מאבק"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "close_paren.holds_another_wording",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a turn of the wording before it, opened by or («two opposing groups (or individuals)»), which leans on that wording and has no head word of its own, so it stays in the one reading.",
+   "test": "The first word of what the bracket holds is «or» (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "קרב"
+    },
+    {
+     "key": "מלחמה"
+    },
+    {
+     "key": "מאבק"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "open_paren.holds_a_qualifier",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a phrase that narrows or adds to the wording before it («(usually in a city)», «(as carrying on commercial activities)»), which stays in the one reading.",
+   "test": "The first word of what the bracket holds is one of the strings in paren_qualifier_openers (terms, first_match).",
+   "count": 14,
+   "examples": [
+    {
+     "key": "אוגד"
+    },
+    {
+     "key": "צבע"
+    },
+    {
+     "key": "מטרו"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "close_paren.holds_a_qualifier",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a phrase that narrows or adds to the wording before it («(along with the cornea)», «(especially a mixture of pigment suspended in a liquid)»), which stays in the one reading.",
+   "test": "The first word of what the bracket holds is one of the strings in paren_qualifier_openers (terms, first_match).",
+   "count": 14,
+   "examples": [
+    {
+     "key": "אוגד"
+    },
+    {
+     "key": "צבע"
+    },
+    {
+     "key": "מטרו"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "open_paren.holds_what_the_verb_takes",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, opens a word the bracket supplies, read at every occurrence: its 2 pairs hold one word each, which says what the verb takes («make (clothes) smaller»); the word stays in the one reading.",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "הצר"
+    },
+    {
+     "key": "התמודד"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.holds_what_the_verb_takes",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general, closes a word the bracket supplies, read at every occurrence: its 2 pairs hold one word each, which says what the verb takes («or producing (something)»); the word stays in the one reading.",
+   "test": "Any other occurrence of this mark, not caught above (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "הצר"
+    },
+    {
+     "key": "התמודד"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hyphen.names_itself",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: is the sign the row describes, printed between single quotation marks to show it («a punctuation mark (‘-’)»).",
+   "test": "The character directly before the mark is the left single quotation mark, and the character directly after the mark is the right single quotation mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מקף"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.joins_one_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one hyphenated word («self-respect», «elephant-like»), which stays one word.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "גא"
+    },
+    {
+     "key": "צב"
+    },
+    {
+     "key": "מצוף"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "apostrophe.before_the_s_of_belonging",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before the s that says one thing belongs to another («a person's bodily», «the earth's mass»), inside one wording.",
+   "test": "The character directly before the mark is a letter, the character directly after the mark is «s», and no letter stands directly after that «s»; the end of the text counts as no letter (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "מגבל"
+    },
+    {
+     "key": "כבידה"
+    },
+    {
+     "key": "גרביטציה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "left_single_quotation_mark.round_a_printed_sign",
+   "mark": "‘",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens the quotation round a sign the row describes, inside round brackets («(‘.’)», «(‘-’)»), which is printed to show the sign.",
+   "test": "The character directly after the mark is a hyphen or a period (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מקף"
+    },
+    {
+     "key": "נקדה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "left_single_quotation_mark.opens_a_cited_word",
+   "mark": "‘",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens a word the row cites and does not use, closed by a right single quotation mark («‘slow’», «‘in the region of’»), the way this source writes a quoted word.",
+   "test": "The character directly after the mark is a letter (terms, first_match).",
+   "count": 33,
+   "examples": [
+    {
+     "key": "לאט"
+    },
+    {
+     "key": "פרופורציונלי"
+    },
+    {
+     "key": "סביבות"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "right_single_quotation_mark.round_a_printed_sign",
+   "mark": "’",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes the quotation round a sign the row describes, inside round brackets («(‘.’)», «(‘-’)»), which is printed to show the sign.",
+   "test": "The character directly before the mark is a hyphen or a period (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מקף"
+    },
+    {
+     "key": "נקדה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "right_single_quotation_mark.closes_a_cited_word",
+   "mark": "’",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes a word the row cites and does not use, opened by a left single quotation mark («‘surely’», «‘as’»), the way this source writes a quoted word.",
+   "test": "The character directly before the mark is a letter (terms, first_match).",
+   "count": 33,
+   "examples": [
+    {
+     "key": "לאט"
+    },
+    {
+     "key": "פרופורציונלי"
+    },
+    {
+     "key": "סביבות"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "period.names_itself",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: is the sign the row describes, printed between single quotation marks to show it («a punctuation mark (‘.’)»).",
+   "test": "The character directly before the mark is the left single quotation mark, and the character directly after the mark is the right single quotation mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "נקדה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.in_a_decimal_number",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the whole part and the rest of a decimal number («2.718282»), inside one wording.",
+   "test": "The character directly before the mark is a digit, and the character directly after the mark is a digit (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אי"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.inside_e_g",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: is one of the two periods of the shortening «e.g.», which opens an instance inside one aside.",
+   "test": "Either the character directly before the mark is «e» and the character directly after the mark is «g», or the last three characters of the text before the mark are «e.g» (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "טבעוני"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.ends_etc",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the shortening «etc.», which says a list inside one wording goes on.",
+   "test": "The last three characters of the text before the mark are the letters e, t and c, in that order (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "לא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.ends_the_text",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the definition the way a sentence closes («often into two battalions.»), with nothing after it, so no piece follows it.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "גדוד"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "em_dash.sets_an_aside_into_one_wording",
+   "mark": "—",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at each end of an aside set into one wording («attributes — behavioral», «mental — that characterize»), and offers no second reading.",
+   "test": "The character directly before the mark is the space character, and the character directly after the mark is the space character (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אישיות"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "horizontal_ellipsis.says_a_number_runs_on",
+   "mark": "…",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: says that the number before it runs on («2.718282 …»), inside one wording at the end of the row.",
+   "test": "The text after the mark is empty (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אי"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source tells two meanings under one Hebrew word apart by the synset's number, and the route store does not carry it; the dictionary store's record keeps it (its loc). The source's own files carry that id and the store dropped it. By the audit each text under a key comes from one synset, and on all 15 of the 15 keys with more than one text each text is a synset of its own (axis: keys; example key קרב). WordNet does not separate homonyms from senses: a synset is one meaning, however its words are related, so this count holds both.",
+  "keys_with_more_than_one_route_text": 15
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some rows give two wordings of one meaning, with a semicolon or a comma between them: make a compromise; arrive at a compromise. In this dictionary a row is one meaning of the word, so by the source's own account the second wording offers no different meaning. No sign in the row can tell a second wording from a note, so these rows were picked by hand. Today the page never cuts at a semicolon, and it cuts at a comma where a piece is short. Should these marks cut the row? From the day this is wired, each of these rows prints whole unless you answer that they cut. This answer holds whatever you answer to the other question: no row stands under both, and each answer cuts only at its own marks.",
+   "shapes": [
+    "semicolon.between_two_wordings",
+    "comma.between_two_wordings"
+   ],
+   "occurrences": 40,
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints each wording as a reading of its own: make a compromise and arrive at a compromise. It cuts only at these marks, and at no other mark of the same row. A word like or or also that opens a wording stays in it, and a note stays with the wording it stands beside, even where it speaks of both."
+    },
+    {
+     "id": "whole",
+     "means": "The page prints each row as one reading, as written: make a compromise; arrive at a compromise. For a row with a comma that the page cuts today, this is a change from today."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "One definition reads the end of a word, then in round brackets a suffix or inflectional ending or final morpheme. The bracket gives a second wording of the one meaning, and in this dictionary a row is one meaning of the word, so by the source's own account it offers no different meaning. No sign can tell it from a bracket that only narrows a wording, so it was picked by hand. Today the page never cuts at a round bracket and prints this row whole. Should this bracket cut the row? From the day this is wired, the row prints whole unless you answer that it cuts. This answer holds whatever you answer to the other question: no row stands under both, and each answer cuts only at its own marks.",
+   "shapes": [
+    "open_paren.holds_a_second_wording"
+   ],
+   "occurrences": 3,
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints the end of a word and a suffix or inflectional ending or final morpheme as readings of their own. It cuts at the opening bracket only, so the closing bracket stands at the end of the second reading until the page takes it off, and that is a step of its own that the page must add."
+    },
+    {
+     "id": "whole",
+     "means": "The page prints the row as one reading, as written, with its brackets."
+    }
+   ],
+   "resting": "whole"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and every question of whether a row renders the word it is filed under; the 16 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census, and nothing is struck. A note after a wording stays in that wording's piece under the answer divides, and a label on the word's grammar stays in its row under every answer, since version 1.1 has no piece for a note."
+}

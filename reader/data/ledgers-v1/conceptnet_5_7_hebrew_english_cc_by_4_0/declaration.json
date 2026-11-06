@@ -1,0 +1,346 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "conceptnet_5_7_hebrew_english_cc_by_4_0",
+ "m_ids": [
+  "M22"
+ ],
+ "routes": 4117,
+ "read_from": "The route text as served: field 1 (the route text) of each row of the route store on the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY 4.0 edge)\" (M22): 4,117 routes (axis: routes), 3,203 letters keys (axis: keys). The source's own key to its signs is on file and names every part of the tag but one code. ConceptNet's post on its 5.7 release (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-3-the-publishers/fetch/conceptnet-blog-2019-conceptnet-57-released.html, line 81) reads the path /c/en/sense/n/wn/communication as a noun sense in the WordNet topic area of communication, and says (line 83) that a sense always stands in a namespace that says who defines it. Its changelog (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-3-the-publishers/fetch/conceptnet-wiki-Changelog.md, line 10, under ConceptNet 5.7) reads /c/en/cat/n/wn/animal as the WordNet sense of cat that is an animal, and says (line 154, under ConceptNet 5.5.0) that text reaches its path by lowercasing, with underscores for spaces. Its API's context file (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-3-the-publishers/fetch/conceptnet-api-context-5.7.ld.json, line 135) calls this part of a path a string that can tell the senses of a word apart. WordNet's own package on file (<home>/Documents/999 footsteps/ledgers/work/ldmprs/source-cache/omw-hebrew-pwn30-2026-07-14/WordNet-3.0.tar.gz, WordNet 3.0, where the source's dataset is WordNet 3.1) gives the letters in doc/man/wndb.5 (n noun, v verb, a adjective, r adverb) and its class names in dict/lexnames and doc/man/lexnames.5. What stays unverified: the code «linkdef». It stands in none of those files (0 occurrences) and in 0 routes does the third part read relation, though WordNet's list has noun.relation; each of its 17 distinct words, on 23 routes, has a sense in that class, and the source's assertions file holds 4,989 lines with the path /n/wn/linkdef and 0 with /wn/relation, so it reads as that class and stays unverified, and every meaning that speaks of the codes begins unverified. Where the marks come from: the changelog (line 11) says ConceptNet's Web interface and API show a label in the form cat (n, animal), but its data file does not write the tag that way (0 of the 34,074,917 lines of the assertions file hold the form written here, and 0 surface texts of the 16,369 kept edges hold a one-letter bracket). The round brackets and the commas inside them in these routes are this corpus's own: its script (definition-poc/scripts/audit_conceptnet_hebrew_english_v1.mjs, function englishDisplay) writes them when it turns the source's node path into route text, /c/en/ab/n/wn/time becoming «ab (n, wn, time)», and that formula gives the route text on 4,117 of the 4,117 edges of this licence in the local extract (<home>/Documents/999 footsteps/ledgers/work/ldmprs/source-cache/conceptnet-5.7.0-2026-07-15). Every route joins exactly one of those edges (4,117 of 4,117, same key and same text). The dictionary store's record M22 writes the word alone in its reading field R, with an underscore between words, and no bracket and no comma on any of its 3,961 lines; its fields g and D are empty on all of them. All of this is evidence about the source, never a test (rule 12).",
+ "definitions": {
+  "part_of_speech_letters": [
+   "n",
+   "a",
+   "v",
+   "r"
+  ],
+  "wordnet_codes": [
+   "ppl",
+   "linkdef"
+  ],
+  "string": "text compared character for character: case minded, nothing trimmed, each space the one space character U+0020. A character is one Unicode code point, whatever it is: a letter, a digit, a space or a mark. In a test or a definition a string stands between « and », which are not part of it. A list in these definitions holds its strings as JSON strings, and \"one string of\" a list means any one of them, whole. To begin with a string is to have that string as its first characters; no word end is needed after it.",
+  "letter": "a character whose Unicode general category begins with L (in JavaScript \\p{L}): small or capital, any script. A digit, a mark or a space is not a letter.",
+  "at_top_level": "the mark stands inside no bracket: the template's c.container is top.",
+  "inside_round_brackets": "the innermost bracket around the mark is a round pair: the template's c.container is paren.",
+  "what_the_bracket_holds": "for a round opening bracket or a round closing bracket: the characters between it and its partner, as the template's bracket matching pairs them (the template's c.group). For any other mark inside_round_brackets: the characters between the round opening bracket and the round closing bracket around it (the template's c.inner). In both cases exactly as written, with nothing trimmed.",
+  "wordnet_tag": "a text that is one string of part_of_speech_letters, then the string «, wn», and nothing after it.",
+  "wordnet_code_tag": "a text that is one string of part_of_speech_letters, then the string «, wn, », then one string of wordnet_codes, and nothing after it.",
+  "wordnet_topic_tag": "a text that is one string of part_of_speech_letters, then the string «, wn, », then one or more further characters, the first of which is a letter; the characters after that first one may be anything; and that is not a wordnet_code_tag.",
+  "first_comma": "the comma nearest the start of what_the_bracket_holds.",
+  "second_comma": "the next comma after the first_comma in what_the_bracket_holds."
+ },
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": [
+   "comma.after_letter_in_wordnet_tag",
+   "comma.after_letter_in_wordnet_code_tag",
+   "comma.before_wordnet_code",
+   "comma.after_letter_in_wordnet_topic_tag",
+   "comma.before_wordnet_topic"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_wordnet_tag",
+   "open_paren.holds_wordnet_code_tag",
+   "open_paren.holds_wordnet_topic_tag",
+   "close_paren.holds_wordnet_tag",
+   "close_paren.holds_wordnet_code_tag",
+   "close_paren.holds_wordnet_topic_tag"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "open_paren.holds_wordnet_tag",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens the tag of two parts and no topic word: the letter for the part of speech, here «a», «r» or «n» (WordNet's manual on file gives the letters), then «wn», which names WordNet as the one who defines the sense (ConceptNet's post on its 5.7 release says a sense always stands in such a namespace); the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round opening bracket at_top_level whose what_the_bracket_holds is a wordnet_tag (which leans on the definitions part_of_speech_letters, string and letter).",
+   "count": 644,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "בגלוי"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 60
+  },
+  {
+   "id": "open_paren.holds_wordnet_code_tag",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the tag of three parts whose last part is a code and no topic word: the letter, then «wn», then «ppl» (on 3 routes; WordNet's list on file has the class adj.ppl, participial adjectives) or «linkdef» (on 23 routes; no key on file names it, and each of its words has a sense in WordNet's class noun.relation, so it reads as that class); the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round opening bracket at_top_level whose what_the_bracket_holds is a wordnet_code_tag (which leans on the definitions wordnet_codes and string).",
+   "count": 26,
+   "examples": [
+    {
+     "key": "מזרח"
+    },
+    {
+     "key": "צפון"
+    },
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "open_paren.holds_wordnet_topic_tag",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens the tag of three parts that says which sense of the English word is meant: the letter for the part of speech, then «wn» for WordNet, then the words ConceptNet's post on its 5.7 release calls the WordNet topic area: on 3,250 routes one of WordNet's own class names for that letter («time», «person»), and on 197 routes another topic word («law», «military», «river»); the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round opening bracket at_top_level whose what_the_bracket_holds is a wordnet_topic_tag.",
+   "count": 3447,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "כסופים"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 205
+  },
+  {
+   "id": "close_paren.holds_wordnet_tag",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes the tag of two parts and no topic word: the letter for the part of speech, here «a», «r» or «n» (WordNet's manual on file gives the letters), then «wn», which names WordNet as the one who defines the sense (ConceptNet's post on its 5.7 release says a sense always stands in such a namespace); the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round closing bracket at_top_level whose what_the_bracket_holds is a wordnet_tag (which leans on the definitions part_of_speech_letters, string and letter).",
+   "count": 644,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "בגלוי"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 60
+  },
+  {
+   "id": "close_paren.holds_wordnet_code_tag",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the tag of three parts whose last part is a code and no topic word: the letter, then «wn», then «ppl» (on 3 routes; WordNet's list on file has the class adj.ppl, participial adjectives) or «linkdef» (on 23 routes; no key on file names it, and each of its words has a sense in WordNet's class noun.relation, so it reads as that class); the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round closing bracket at_top_level whose what_the_bracket_holds is a wordnet_code_tag (which leans on the definitions wordnet_codes and string).",
+   "count": 26,
+   "examples": [
+    {
+     "key": "מזרח"
+    },
+    {
+     "key": "צפון"
+    },
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "close_paren.holds_wordnet_topic_tag",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes the tag of three parts that says which sense of the English word is meant: the letter for the part of speech, then «wn» for WordNet, then the words ConceptNet's post on its 5.7 release calls the WordNet topic area: on 3,250 routes one of WordNet's own class names for that letter («time», «person»), and on 197 routes another topic word («law», «military», «river»); the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round closing bracket at_top_level whose what_the_bracket_holds is a wordnet_topic_tag.",
+   "count": 3447,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "כסופים"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 205
+  },
+  {
+   "id": "comma.after_letter_in_wordnet_tag",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "parts the letter for the part of speech from the «wn» after it, inside a tag of two parts; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wordnet_tag, and which is the first_comma.",
+   "count": 644,
+   "examples": [
+    {
+     "key": "אביך"
+    },
+    {
+     "key": "בגלוי"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 60
+  },
+  {
+   "id": "comma.after_letter_in_wordnet_code_tag",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: parts the letter for the part of speech from the «wn» after it, inside a tag that ends in a code; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wordnet_code_tag, and which is the first_comma.",
+   "count": 26,
+   "examples": [
+    {
+     "key": "מזרח"
+    },
+    {
+     "key": "צפון"
+    },
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "comma.before_wordnet_code",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: parts «wn» from the code after it, «ppl» or «linkdef», inside one tag; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wordnet_code_tag, and which is the second_comma.",
+   "count": 26,
+   "examples": [
+    {
+     "key": "מזרח"
+    },
+    {
+     "key": "צפון"
+    },
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "comma.after_letter_in_wordnet_topic_tag",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "parts the letter for the part of speech from the «wn» after it, inside a tag that ends in a topic area; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wordnet_topic_tag, and which is the first_comma.",
+   "count": 3447,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "כסופים"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 205
+  },
+  {
+   "id": "comma.before_wordnet_topic",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "parts «wn» from the words of the topic area after it, inside one tag; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wordnet_topic_tag, and which is the second_comma.",
+   "count": 3447,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "כסופים"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 205
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The source has no entries: it holds edges between a Hebrew node and an English node, and each route rests on one such edge. On all 4,117 edges of this licence both nodes carry the same tag, so a tag does speak of the Hebrew word's sense, but it is a topic area and no entry id. Key אב holds «ab (n, wn, time)» and «father (n, wn, person)», and the route text cannot say whether these are senses of one word or two words. On 213 keys two texts carry one tag, so the tag does not part them: key תלמיד holds «disciple (n, wn, person)» and «student (n, wn, person)». The source's own files give each edge its own id (its assertion address; each line of the store record names one line of that file), and the surface text of 4,115 of the 4,117 edges writes the Hebrew word with its points; the route store dropped both. Of the keys this count holds, 99 hold one English word written with different tags (key הפתעה: «surprise (n, wn, event)» beside «surprise (n, wn, feeling)»), and 512 hold more than one English word.",
+  "keys_with_more_than_one_route_text": 611
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Some rows of this dictionary end in a small tag in round brackets that holds no topic word, like: meaningful (a, wn). The tag is not ConceptNet's own text. This corpus's own script wrote it, to show the path under which ConceptNet files the word: a letter (n, a or r) for what kind of word it is, wn for WordNet, and on some rows a code, ppl or linkdef. The same row already holds the word alone in its definition slot. Should the page print the tag in the pill? Tags that end in a topic have their own question, and this answer holds whatever you answer to that one.",
+   "shapes": [
+    "open_paren.holds_wordnet_tag",
+    "open_paren.holds_wordnet_code_tag",
+    "close_paren.holds_wordnet_tag",
+    "close_paren.holds_wordnet_code_tag",
+    "comma.after_letter_in_wordnet_tag",
+    "comma.after_letter_in_wordnet_code_tag",
+    "comma.before_wordnet_code"
+   ],
+   "occurrences": 2036,
+   "options": [
+    {
+     "id": "tag_stays",
+     "means": "The page prints the row as written, tag and all, as one reading, as it does today: meaningful (a, wn)."
+    },
+    {
+     "id": "tag_off",
+     "means": "The page prints the word alone as one reading, from the row's definition slot: meaningful. It leaves the tag off the pill. A word already on the card prints once, not twice. The store keeps the text as it is."
+    }
+   ],
+   "resting": "tag_stays"
+  },
+  {
+   "id": "B02",
+   "question": "Other rows of this dictionary end in a small tag in round brackets whose last part is the topic under which WordNet files that sense of the word, like: ab (n, wn, time). As with the other tags, this is not ConceptNet's own text. This corpus's own script wrote it, to show the path under which ConceptNet files the word: a letter, wn for WordNet, and the topic. Some topics are WordNet's own terms. The same row already holds the word alone in its definition slot. But with this tag off, the topic is lost: the pill says ab, and nothing on it says a time is meant. Should the page print the tag in the pill? This answer holds whatever you answer to the question about the other tags.",
+   "shapes": [
+    "open_paren.holds_wordnet_topic_tag",
+    "close_paren.holds_wordnet_topic_tag",
+    "comma.after_letter_in_wordnet_topic_tag",
+    "comma.before_wordnet_topic"
+   ],
+   "occurrences": 13788,
+   "options": [
+    {
+     "id": "tag_stays",
+     "means": "The page prints the row as written, tag and all, as one reading, as it does today: ab (n, wn, time)."
+    },
+    {
+     "id": "tag_off",
+     "means": "The page prints the word alone as one reading, from the row's definition slot: ab. It leaves the tag off the pill, so the topic no longer prints. A word already on the card prints once, not twice. The store keeps the text as it is."
+    }
+   ],
+   "resting": "tag_stays"
+  }
+ ],
+ "not_done_here": "This ledger cuts nothing and changes no text; it leaves to the page the step that the answer tag_off of B01 or B02 asks for, since a declaration can cut a row and has no field that prints a row's definition slot, and whether the word left behind is a right reading of the Hebrew is no question of punctuation."
+}

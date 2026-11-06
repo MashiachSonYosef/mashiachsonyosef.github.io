@@ -11,6 +11,12 @@
 // readings they print are single readings by this rule.
 // GUARDS: sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence
 //
+// SINCE 6 NOVEMBER 2026 THIS RULE IS THE GENERIC ONE. A source under a ledger
+// (ledger-division-rule-v1) divides as its ledger says, and a reading it
+// prints is one of its row's own readings (gloss-store-v1 readingsOf), not a
+// division by this rule; the shipped half below asks each printed reading
+// under the rule its carriers are under.
+//
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 const { senseSplit, unbalancedAt, RULE_ID } =
@@ -71,14 +77,24 @@ const ZONES = join(HERE2, "..", "data", "zones");
 if (!existsSync(ZONES)) {
   console.log("\n  --    no zones directory here, so nothing shipped can be asked");
 } else {
-  const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin")).sort();
-  let asked = 0, glued = 0, damaged = 0;
-  const worst = [];
+  const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.endsWith(".lattice.bin")).sort();
+  const { openRouteStore } = await import(join(HERE2, "gloss-store-v1.mjs"));
+  const store = openRouteStore(join(HERE2, "..", "data", "route-store"));
+  let asked = 0, glued = 0, damaged = 0, ledgered = 0, notARowsReading = 0;
+  const worst = [], worstLedgered = [];
   for (const f of bins) {
     const z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8"));
     if ((z.emitted_from || {}).test_instrument) continue;
     for (const [k, text] of Object.entries(z.gloss || {})) {
       asked += 1;
+      const by = (z.gloss_m && z.gloss_m[k] && Array.isArray(z.gloss_m[k].by)) ? z.gloss_m[k].by : [];
+      if (by.some((id) => store.ledgerOf(id))) {
+        // a ledgered carrier: the reading is one its row gives, whole or at the marks the ledger divides at
+        ledgered += 1;
+        const rows = (store.routesFor(k) || []).filter((r) => by.includes(String(r[3])));
+        if (!rows.some((r) => store.readingsOf(r).some((x) => x === String(text)))) { notARowsReading += 1; if (worstLedgered.length < 5) worstLedgered.push(`${k} → ${JSON.stringify(text)} (${by.join(",")})`); }
+        continue;
+      }
       const r = senseSplit(String(text));
       if (r.damaged) damaged += 1;
       if (r.readings.length > 1) {
@@ -97,6 +113,8 @@ if (!existsSync(ZONES)) {
         : `${asked.toLocaleString()} readings, each whole`);
     check("  and none was damaged by the split", damaged === 0,
       damaged ? `${damaged} carry a separator this rule cuts through` : "none");
+    check("  and every reading a ledgered source prints is one its row gives under its ledger (ledger-division-rule-v1)", notARowsReading === 0,
+      notARowsReading ? `${notARowsReading.toLocaleString()} of ${ledgered.toLocaleString()} are no row's reading · ${worstLedgered.join(" · ")}` : `${ledgered.toLocaleString()} readings on ledgered carriers, each its row's own`);
   }
 }
 

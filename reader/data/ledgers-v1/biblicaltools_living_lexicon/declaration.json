@@ -1,0 +1,753 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "biblicaltools_living_lexicon",
+ "m_ids": [
+  "M45"
+ ],
+ "routes": 753,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas\" (M45): 753 routes (axis: routes), 713 letters keys (axis: keys). The definition field of the same row equals the route text on 753 of the routes. The source audit (builder/02-audit.mjs and builder/02b-audit-source.mjs, evidence about the source and no part of any test): the source is BiblicalTools Living Lexicon JSON, ledgers/work/ldmprs/source-cache/biblicaltools-2026-07-12-hebrew-word-of-day.json, a JSON file whose array lexicon holds entries with the fields id, strongs, original, transliteration, meaning, language, category, occurrences, books, sampleVerses, twot, pos, alternate_meanings, slug. All 753 routes tie to an entry whose original has the route's letters; 638 routes equal the entry's field meaning, 114 equal one item of its list alternate_meanings, and 1 equals both in the entries of its key (axis: routes). The 781 records of the dictionary store hold the field meaning only (axis: records), so the tie reads the source's file. A route's field is evidence only, and no test here stands on a guess about a field. The source's own key to its signs: none on file. The JSON file has no header and no note on its signs (its top level is lexicon and schedule); the manifest in the source cache, ledgers/work/ldmprs/source-cache/biblicaltools-living-lexicon-2026-07-12-manifest-v2.json, holds no line that names a sign (builder/05-key-search.mjs, source-audit/key-search.json). The manifest names https://biblicaltools.org/hebrew-lexicon as the evidence page, and a copy of that page stands on file twice, under <tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/ (strand-2-our-stamp/fetch/biblicaltools-hebrew-lexicon.html and verify-the-stamped-moderns/refetch/biblicaltools-hebrew-lexicon.html). The page says that the source's definitions and glosses come from Strong's Concordance, its Hebrew and Aramaic lemma data from STEPBible, Tyndale House Cambridge, and its occurrence data from the Open Scriptures Hebrew Bible tagging. It speaks of no sign: in either copy no line of its text names one (builder/05b-evidence-page.mjs, source-audit/evidence-page.json). The manifest gives the same origin of the definitions and glosses (strongs_concordance_public_domain), and Strong's printed key stands on file (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M14-strongs-scan-first12pages.txt): it says of round brackets in the renderings of the Authorized Version that they denote a word or syllable sometimes given in connection with the principal word to which it is annexed, and of italics at the end of a rendering that they denote an explanation of the variations from the usual form. That key speaks of Strong's print, and it fits the rows with a part in round brackets, but it is not this source's account of its own signs: this source prints no italics, and 322 of its 753 routes stand in no Strong's route under their key (axis: routes; builder/figures.mjs). So every shape's meaning here begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route that holds a mark here holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. No test asks for a digit, for whitespace, or for uppercase or lowercase as a class. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after. Empty means that the named text has no character at all, as at the start or the end of the route. Directly before and directly after name the one character next to the mark; where the mark stands at that end of the text no character stands there, so a test that asks for a character there fails. The whole text, exactly, means that the text equals the named string character for character. What the bracket holds means, for an opening or a closing round bracket, the text between it and its partner (the template's c.group), and for any other mark, the text inside the innermost round bracket that encloses the mark (the template's c.inner), which is empty at top level; it is compared as it stands, with every space in it. Ends with means that the last characters of the named text are the string; no word end is asked for. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence and not to the string. In the lists a string stands whole: the space that opens each string of pointers_with_no_target and the space that closes the string of correction_notes belong to those strings, and a full stop inside a list's string belongs to the string. Every string and every list minds case and is matched exact to the character, so «s» is the lowercase letter. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here is a catch-all.",
+  "pointers_with_no_target": [
+   " See also",
+   " Compare also",
+   " Comp"
+  ],
+  "parts_that_may_join": [
+   "-s",
+   "-Gilead",
+   "ish",
+   "er",
+   "wards",
+   "over"
+  ],
+  "correction_notes": [
+   "by correction for "
+  ],
+  "margin_notes": [
+   "from margin",
+   "from the margin",
+   "from the marg."
+  ],
+  "article_notes": [
+   "including the art",
+   "including the article",
+   "includ. the article"
+  ],
+  "verse_places_beside_a_name": [
+   "2 Chronicles 18:8"
+  ],
+  "verse_places_in_a_sentence": [
+   "Psalm 132:6"
+  ],
+  "grammar_labels": [
+   "fem.",
+   "masc.",
+   "m.s."
+  ]
+ },
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.between_parts_of_a_sentence_on_one_name"
+  ],
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.between_two_renderings"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_a_part_that_may_join",
+   "close_paren.holds_a_part_that_may_join",
+   "open_paren.holds_a_correction_with_its_number_lost",
+   "close_paren.holds_a_correction_with_its_number_lost",
+   "open_paren.holds_a_note_on_the_margin",
+   "close_paren.holds_a_note_on_the_margin",
+   "open_paren.holds_a_note_on_the_article",
+   "close_paren.holds_a_note_on_the_article",
+   "open_paren.holds_a_verse_place_beside_a_name",
+   "close_paren.holds_a_verse_place_beside_a_name",
+   "open_paren.holds_a_verse_place_in_a_sentence",
+   "close_paren.holds_a_verse_place_in_a_sentence",
+   "open_paren.holds_a_grammar_label",
+   "close_paren.holds_a_grammar_label"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "semicolon.between_parts_of_a_sentence_on_one_name",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the parts of one sentence on one name, in which «perhaps for Ephraim» and «also of an Israelitish woman» say what the name may stand for and whom else it names and «Ephrath» is the name itself; the parts are no list of readings, the sentence stays whole, and whether the page prints it is the question of B03.",
+   "test": "The text after the mark ends with «Ephrath» (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אפרתה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.before_a_pointer_with_no_target",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a name, and the words after it point at another entry whose number is gone («Merari. See also», «Shalmaneser. Comp», «Lehi. Compare also»); the pointing words are no reading, they stay in the one piece, and whether the page prints them is the question of B02.",
+   "test": "The text after the mark is, exactly, one of the strings in pointers_with_no_target (terms, first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "מררי"
+    },
+    {
+     "key": "ימין"
+    },
+    {
+     "key": "לחמי"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "period.between_two_renderings",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two renderings of one word in «Ludim. Lydians»; the row stays whole at rest, and whether it prints as two is the question of B01.",
+   "test": "The whole text, exactly, is «Ludim. Lydians» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "לודי"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.after_a_shortened_note_word",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes a shortened word inside a note in round brackets, «marg.» for margin and «includ.» for including, and stays with that word; whether the page prints the note is the question of B05.",
+   "test": "What the bracket holds is, exactly, one of the strings in margin_notes or one of the strings in article_notes (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ברזות"
+    },
+    {
+     "key": "אחשתרי"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.in_a_grammar_label",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes a shortened word of a label on a pronoun in round brackets, «fem.», «masc.» and «m.s.», and stays inside that label.",
+   "test": "What the bracket holds is, exactly, one of the strings in grammar_labels (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "הנה"
+    },
+    {
+     "key": "הן"
+    },
+    {
+     "key": "המה"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "hyphen.opens_a_part_that_may_join",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens the part in round brackets that may join the word before it, an ending in «Mede (-s)» and the rest of a name in «Jobesh (-Gilead)»; it stays inside the bracket, and how such a row prints is the question of B04.",
+   "test": "What the bracket holds is, exactly, one of the strings in parts_that_may_join (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "מדי"
+    },
+    {
+     "key": "יבש"
+    },
+    {
+     "key": "מעונים"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "hyphen.joins_the_parts_of_one_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one compound word or one compound name («pit-fall», «resting-place», «brightly-coloured», «Pharaoh-hophra», «Chatsi-ham-Menuchoth»), which stays whole inside one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 20,
+   "examples": [
+    {
+     "key": "נוח"
+    },
+    {
+     "key": "שריה"
+    },
+    {
+     "key": "אצעדה"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "apostrophe.opens_a_quoted_gloss",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a gloss that the source's list of alternate meanings gives between straight marks («'steward'», «'great'»), and stays with that gloss inside one reading.",
+   "test": "The text before the mark is empty (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מלצר"
+    },
+    {
+     "key": "ירב"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "apostrophe.closes_a_quoted_gloss",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a gloss that the source's list of alternate meanings gives between straight marks («'steward'», «'great'»), and stays with that gloss inside one reading.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מלצר"
+    },
+    {
+     "key": "ירב"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "left_single_quotation_mark.opens_a_rendering_in_quotes",
+   "mark": "‘",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a rendering that the source's meaning field gives between curly marks («‘To die for the son’», «‘Machalath’»), and stays with that rendering inside one reading.",
+   "test": "The text before the mark is empty (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "לבן"
+    },
+    {
+     "key": "מחלת"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "right_single_quotation_mark.closes_a_rendering_in_quotes",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a rendering that the source's meaning field gives between curly marks («‘To die for the son’», «‘Machalath’»), and stays with that rendering inside one reading.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "לבן"
+    },
+    {
+     "key": "מחלת"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "right_single_quotation_mark.before_the_s_of_belonging",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before the s that says one thing belongs to another («take one’s stand», «make oneself a daughter’s husband»), inside one phrase that stays one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is «s» (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "חתן"
+    },
+    {
+     "key": "עמד"
+    },
+    {
+     "key": "נצב"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "colon.in_a_verse_place_beside_a_name",
+   "mark": ":",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: stands between chapter and verse in the place of a verse beside a name («Micaiah (2 Chronicles 18:8)»), and stays in that place; whether the page prints the place is the question of B05.",
+   "test": "What the bracket holds is, exactly, one of the strings in verse_places_beside_a_name (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מיכהו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "colon.in_a_verse_place_in_a_sentence",
+   "mark": ":",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: stands between chapter and verse in the place of a verse inside a sentence on a name («once (Psalm 132:6)»), and stays in that place; whether the page prints the sentence is the question of B03.",
+   "test": "What the bracket holds is, exactly, one of the strings in verse_places_in_a_sentence (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אפרתה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "question_mark.closes_a_question",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a rendering that is itself a question («is it not?», «what place?»), on an entry the source files as interrogative, and stays with that rendering inside one reading.",
+   "test": "The text after the mark is empty (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אין"
+    },
+    {
+     "key": "איפה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "slash.between_two_renderings",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two alternatives offered as renderings of one word in «country/planet»; the row stays whole at rest, and whether it prints as two is the question of B01.",
+   "test": "The whole text, exactly, is «country/planet» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ארץ"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_a_part_that_may_join",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a word or an ending that may join the word beside it, so that the row offers two forms («fool (ish)», «to (wards)», «labour (er)», «Mede (-s)», «(over) against»); the part stays in the row, and how such a row prints is the question of B04.",
+   "test": "What the bracket holds is, exactly, one of the strings in parts_that_may_join (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "אויל"
+    },
+    {
+     "key": "יבש"
+    },
+    {
+     "key": "אל"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_paren.holds_a_part_that_may_join",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a word or an ending that may join the word beside it, so that the row offers two forms («fool (ish)», «to (wards)», «labour (er)», «Mede (-s)», «(over) against»); the part stays in the row, and how such a row prints is the question of B04.",
+   "test": "What the bracket holds is, exactly, one of the strings in parts_that_may_join (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "אויל"
+    },
+    {
+     "key": "יבש"
+    },
+    {
+     "key": "אל"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_paren.holds_a_correction_with_its_number_lost",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a note that the name before it stands by correction for another entry, whose number is gone («Tikvath (by correction for )»); the note is no reading, it stays in the one piece, and whether the page prints it is the question of B02.",
+   "test": "What the bracket holds is, exactly, one of the strings in correction_notes (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "תוקהת"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_a_correction_with_its_number_lost",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a note that the name before it stands by correction for another entry, whose number is gone («Tikvath (by correction for )»); the note is no reading, it stays in the one piece, and whether the page prints it is the question of B02.",
+   "test": "What the bracket holds is, exactly, one of the strings in correction_notes (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "תוקהת"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_a_note_on_the_margin",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a note that the word before it comes from the margin («Ephai (from margin)», «Jair (from the margin)», «Birzavith (from the marg.)»); the note stays with that word inside one reading, and whether the page prints it is the question of B05.",
+   "test": "What the bracket holds is, exactly, one of the strings in margin_notes (terms, first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "עופי"
+    },
+    {
+     "key": "שמעי"
+    },
+    {
+     "key": "עמיחור"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "close_paren.holds_a_note_on_the_margin",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a note that the word before it comes from the margin («Ephai (from margin)», «Jair (from the margin)», «Birzavith (from the marg.)»); the note stays with that word inside one reading, and whether the page prints it is the question of B05.",
+   "test": "What the bracket holds is, exactly, one of the strings in margin_notes (terms, first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "עופי"
+    },
+    {
+     "key": "שמעי"
+    },
+    {
+     "key": "עמיחור"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "open_paren.holds_a_note_on_the_article",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a note that the name before it is given with the Hebrew article («Hakkatan (including the article)», «Hasenuah (including the art)», «Haakashtari (includ. the article)»); the note stays with that name inside one reading, and whether the page prints it is the question of B05.",
+   "test": "What the bracket holds is, exactly, one of the strings in article_notes (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "סנואה"
+    },
+    {
+     "key": "הצללפוני"
+    },
+    {
+     "key": "אחשתרי"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_paren.holds_a_note_on_the_article",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a note that the name before it is given with the Hebrew article («Hakkatan (including the article)», «Hasenuah (including the art)», «Haakashtari (includ. the article)»); the note stays with that name inside one reading, and whether the page prints it is the question of B05.",
+   "test": "What the bracket holds is, exactly, one of the strings in article_notes (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "סנואה"
+    },
+    {
+     "key": "הצללפוני"
+    },
+    {
+     "key": "אחשתרי"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_paren.holds_a_verse_place_beside_a_name",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the place of a verse beside a name («Micaiah (2 Chronicles 18:8)»); the place stays with the name inside one reading, and whether the page prints it is the question of B05.",
+   "test": "What the bracket holds is, exactly, one of the strings in verse_places_beside_a_name (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מיכהו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_a_verse_place_beside_a_name",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the place of a verse beside a name («Micaiah (2 Chronicles 18:8)»); the place stays with the name inside one reading, and whether the page prints it is the question of B05.",
+   "test": "What the bracket holds is, exactly, one of the strings in verse_places_beside_a_name (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מיכהו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_a_verse_place_in_a_sentence",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the place of a verse inside a sentence on a name («once (Psalm 132:6)»); the place stays inside the sentence, and whether the page prints the sentence is the question of B03.",
+   "test": "What the bracket holds is, exactly, one of the strings in verse_places_in_a_sentence (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אפרתה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_a_verse_place_in_a_sentence",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the place of a verse inside a sentence on a name («once (Psalm 132:6)»); the place stays inside the sentence, and whether the page prints the sentence is the question of B03.",
+   "test": "What the bracket holds is, exactly, one of the strings in verse_places_in_a_sentence (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אפרתה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_a_grammar_label",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a label that says the gender of a pronoun, and its number too in «you (m.s.)» («they (fem.)», «they (masc.)»), and the label stays with the pronoun inside one reading.",
+   "test": "What the bracket holds is, exactly, one of the strings in grammar_labels (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "הנה"
+    },
+    {
+     "key": "הן"
+    },
+    {
+     "key": "המה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "close_paren.holds_a_grammar_label",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a label that says the gender of a pronoun, and its number too in «you (m.s.)» («they (fem.)», «they (masc.)»), and the label stays with the pronoun inside one reading.",
+   "test": "What the bracket holds is, exactly, one of the strings in grammar_labels (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "הנה"
+    },
+    {
+     "key": "הן"
+    },
+    {
+     "key": "המה"
+    }
+   ],
+   "read": 4
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source's own file does: each of its 8,640 entries has an id and a Strong's number (the fields id and strongs), which the route row drops and the dictionary store's record keeps in its loc. So the source's files carry an entry id that the route text does not. Of the 35 keys with more than one text (axis: keys), the routes of 21 tie to two or more entries of the source (example key שיחה: h7882 and h7881) and the routes of 14 tie to one entry, whose meaning and alternate meanings give the texts (example key רכבי). Those keys count glosses and entries together, and a route's text cannot tell them apart.",
+  "keys_with_more_than_one_route_text": 35
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Two rows hold two renderings with only a full stop or a slash between them: Ludim. Lydians and country/planet. Each rendering alone renders the Hebrew. Today the page prints each such row as one reading, as written, and from the day this ledger is wired it still does, unless you choose otherwise. Should the page print each rendering as its own reading?",
+   "shapes": [
+    "period.between_two_renderings",
+    "slash.between_two_renderings"
+   ],
+   "occurrences": 2,
+   "keys": [
+    "לודי",
+    "ארץ"
+   ],
+   "options": [
+    {
+     "id": "whole",
+     "means": "The page prints each row as one reading, as written: Ludim. Lydians and country/planet."
+    },
+    {
+     "id": "divides",
+     "means": "The page prints two readings for each row, cut at that mark: Ludim and Lydians, country and planet."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows give a name and then words that point at another entry, with the entry's number gone: Merari. See also. The words point nowhere, so they are no reading. Today the page prints each such row as one reading, as written, and from the day this ledger is wired it still does, unless you choose otherwise. A cut would print the pointing words as a reading of their own, so no answer here cuts. Should the page print the name alone? A declaration cannot leave words out, so that answer needs one step of the page's own.",
+   "shapes": [
+    "period.before_a_pointer_with_no_target",
+    "open_paren.holds_a_correction_with_its_number_lost",
+    "close_paren.holds_a_correction_with_its_number_lost"
+   ],
+   "occurrences": 18,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written: Merari. See also."
+    },
+    {
+     "id": "name_alone",
+     "means": "The page prints only the name, which is the word before the full stop or before the round bracket: Merari. It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B03",
+   "question": "One row is a sentence on a name, with the name at its end. It reads \"once (Psalm 132:6) perhaps for Ephraim\", then a semicolon, then \"also of an Israelitish woman; Ephrath\". Only the last word renders the Hebrew, and the words before it are a note. A cut at the semicolons would print the note as readings, so no answer here cuts. Today the page prints the row as one reading, as written, and from the day this ledger is wired it still does, unless you choose otherwise. Should the page print the name alone? A declaration cannot leave words out, so that answer needs one step of the page's own.",
+   "shapes": [
+    "semicolon.between_parts_of_a_sentence_on_one_name",
+    "open_paren.holds_a_verse_place_in_a_sentence",
+    "close_paren.holds_a_verse_place_in_a_sentence",
+    "colon.in_a_verse_place_in_a_sentence"
+   ],
+   "occurrences": 5,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints the row as one reading, the whole sentence as written."
+    },
+    {
+     "id": "name_alone",
+     "means": "The page prints only the word after the last semicolon: Ephrath. It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B04",
+   "question": "Some rows hold a word or an ending in round brackets that may join the word beside it: fool (ish). Such a row offers two forms, here fool and foolish. A cut at the bracket would leave the part in the bracket alone, which is no reading, so no answer here cuts. Today the page prints each such row as one reading, as written, and from the day this ledger is wired it still does, unless you choose otherwise. Should the page print the two forms as two readings? A declaration can only cut, so that answer needs one step of the page's own.",
+   "shapes": [
+    "open_paren.holds_a_part_that_may_join",
+    "close_paren.holds_a_part_that_may_join",
+    "hyphen.opens_a_part_that_may_join"
+   ],
+   "occurrences": 17,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written: fool (ish)."
+    },
+    {
+     "id": "two_forms",
+     "means": "The page prints two readings for each row, the row's two forms: fool and foolish, labour and labourer, to and towards, against and over against, Mede and Medes, Mehunim and Mehunims, Jobesh and Jobesh-Gilead. It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B05",
+   "question": "Some rows give a name with a note in round brackets beside it: Ephai (from margin). The note says that the name comes from the margin, that it is given with the Hebrew article, or in which verse it stands. A name and its note count as one reading, so no answer here cuts. Today the page prints each such row as one reading, as written, and from the day this ledger is wired it still does, unless you choose otherwise. Should the page print the name alone? A declaration cannot leave words out, so that answer needs one step of the page's own.",
+   "shapes": [
+    "open_paren.holds_a_note_on_the_margin",
+    "close_paren.holds_a_note_on_the_margin",
+    "open_paren.holds_a_note_on_the_article",
+    "close_paren.holds_a_note_on_the_article",
+    "open_paren.holds_a_verse_place_beside_a_name",
+    "close_paren.holds_a_verse_place_beside_a_name",
+    "colon.in_a_verse_place_beside_a_name",
+    "period.after_a_shortened_note_word"
+   ],
+   "occurrences": 51,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as one reading, as written: Ephai (from margin)."
+    },
+    {
+     "id": "name_alone",
+     "means": "The page prints only the word just before the round bracket, which is the name: Ephai. In and Zehoar (from the margin) that also leaves out the word and, so it prints Zehoar. It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route whose matter stands at no mark, because a shape stands only at a mark; the 12 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census, and nothing is struck. A pointing word at the end of a row stays in the row's one piece, and the note that follows a name stays with the name. It leaves to the page the steps that the answers name_alone and two_forms ask for, since a declaration can cut a row and has no field that leaves words out or joins them."
+}

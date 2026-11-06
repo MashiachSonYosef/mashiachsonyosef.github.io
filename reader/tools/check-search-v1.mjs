@@ -109,6 +109,14 @@ const readingSplit = (text) => {
   return { readings: readings.length ? readings : glosses, damaged: false };
 };
 const isNoDerivs = (key) => /(^|[^a-z])nd([^a-z]|$)/iu.test(String(key || "")) || /noderiv/iu.test(String(key || ""));
+// the pieces a row prints: whole for a NoDerivatives source; as its row says for
+// a source under a ledger (ledger-division-rule-v1); the generic rule otherwise
+const piecesOf = (row, src) => {
+  const t = String(row[1]);
+  if (isNoDerivs(src.licensePosture)) return [t];
+  if (src.ledger) { const cuts = Array.isArray(row[7]) ? row[7] : []; if (!cuts.length) return [t.trim()].filter(Boolean); const out = []; let from = 0; for (const i of cuts) { out.push(t.slice(from, i)); from = i + 1; } out.push(t.slice(from)); return out.map((x) => x.trim()).filter(Boolean); }
+  return senseSplit(t).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings; });
+};
 // a ketiv/qere place reads "(ketiv) [qere]": its pointing is the qere's, and
 // the ketiv's letters stand there too
 const kqOf = (s) => {
@@ -190,7 +198,7 @@ const loadModel = async (DATA) => {
         const m = row[3], src = (rix.m_sources || {})[m];
         if (!src || struck.has(m)) continue;
         const nd = isNoDerivs(src.licensePosture);
-        const pieces = nd ? [String(row[1])] : senseSplit(row[1]).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings; });
+        const pieces = piecesOf(row, src);
         for (const piece of pieces) {
           const printed = spanJoin(piece), f = fold(printed);
           if (!f) continue;
@@ -217,7 +225,7 @@ const loadModel = async (DATA) => {
         for (const row of rows) {
           const src = (oix.m_sources || {})[row[3]];
           if (!src) continue;
-          const pieces = isNoDerivs(src.licensePosture) ? [String(row[1])] : senseSplit(row[1]).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings; });
+          const pieces = piecesOf(row, src);
           for (const piece of pieces) {
             const f = fold(spanJoin(piece));
             if (!f) continue;
@@ -241,7 +249,7 @@ const loadModel = async (DATA) => {
       for (const r of sp.keys[pl.key] || []) {
         const row = r.slots || [], m = row[3], src = (rix.m_sources || {})[m];
         if (!src || struck.has(m)) continue;
-        const pieces = isNoDerivs(src.licensePosture) ? [String(row[1])] : senseSplit(row[1]).flatMap((sense) => { const x = readingSplit(sense); return x.damaged ? [] : x.readings; });
+        const pieces = piecesOf(row, src);
         for (const piece of pieces) {
           const f = fold(spanJoin(piece));
           if (!f) continue;

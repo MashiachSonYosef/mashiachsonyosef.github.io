@@ -18,7 +18,6 @@
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -56,10 +55,7 @@ export const glossSource = (store, key, text) => {
   const want = String(text).toLowerCase();
   const hits = routes.filter((row) => {
     if (!store.index.m_sources[row[3]]) return false;
-    return store.packSplit(row[1]).some((sense) => {
-      const r = readingSplit(sense);
-      return !r.damaged && r.readings.some((x) => x.toLowerCase() === want);
-    });
+    return store.readingsOf(row).some((x) => x.toLowerCase() === want);
   });
   if (!hits.length) return null;
   hits.sort((a, c) => {
@@ -101,7 +97,7 @@ const sourceAmong = (store, key, text, omit) => {
   const routes = store.routesFor(key) || [];
   const want = String(text).toLowerCase();
   const hits = routes.filter((row) => store.index.m_sources[row[3]] && !omit.has(row[3])
-    && store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((x) => x.toLowerCase() === want); }));
+    && store.readingsOf(row).some((x) => x.toLowerCase() === want));
   if (!hits.length) return null;
   hits.sort((a, c) => { const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10); return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9); });
   const m = store.index.m_sources[hits[0][3]];
@@ -115,7 +111,7 @@ export const glossCarriers = (store, key, text) => {
   if (!routes) return null;
   const want = String(text).toLowerCase();
   const by = [...new Set(routes.filter((row) => store.index.m_sources[row[3]]
-    && store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((x) => x.toLowerCase() === want); }))
+    && store.readingsOf(row).some((x) => x.toLowerCase() === want))
     .map((row) => row[3]))].sort();
   if (!by.length) return null;
   const omit = new Set(by);

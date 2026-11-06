@@ -1,0 +1,649 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "macula_hebrew_cherith_surface_english_2022",
+ "m_ids": [
+  "M3"
+ ],
+ "routes": 43304,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"MACULA exact Hebrew morph surfaces with Cherith English definitions\" (M3): 43,304 routes (axis: routes), 15,871 letters keys (axis: keys). The definition field of the same row equals the route text on 43,304 of the routes. The source audit: each route's store record names one line of the lane's copy of the source file macula-hebrew.tsv (Clear-Bible/macula-hebrew at commit 47db250bd55d, in ledgers/work/ldmprs/source-cache/macula-hebrew-2026-07-15/); the record's text equals that line's english column on 43,304 of 43,304 records (axis: records), and the route joins its record on 43,303 routes exactly and on 1 once a double space is closed (axis: routes). That column is the one field a route comes from, so no test here stands on a guess about a field; the audit is evidence about the source and no part of any test. The source's own key to its signs: none found. The lane's copy holds the licence page, which names the English as Cherith's glosses and points to a folder sources/Cherith/glosses that the copy does not hold, a page on how the TSV is generated, the lane's own manifests and extracts, the record of the source's commit, and the TSV itself; none of them gives an account of the sign ~, of round brackets, or of the signs =, +, /, full stop, ! and ?. So every shape whose meaning says what one of those signs is for begins \"unverified:\", and that is every shape but the curly apostrophe's and hyphen.between_two_letters, which are plain English spelling and say only that. Fetching the source's gloss folder needs the owner's word and was not done.",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits). A letter is any character of Unicode category L (JavaScript \\p{L}). A digit is one of 0 to 9. A space is the character U+0020 only, and no test uses whitespace of any other kind. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after, and what a bracket holds is the template's c.group, the same for an opener and for its closer. An opener that never closes has a c.group of null and a closer that never opened has an empty one: no test here reads such a bracket, so classify throws there, and no route holds one. Directly before and directly after name the one character next to the mark or next to the named string; where the mark or the string stands at that end of the text no character stands there, so a test that asks for a character there fails, and a test that says if there is one passes. A string stands between « and », which are not part of it. Every string and every list minds case and is matched exact to the character, so «s» is the lowercase letter and «S» the uppercase one. Contains means a plain search for the run of characters anywhere in the thing the test names, with no word boundary: a test on what a bracket holds searches what the bracket holds and not the whole text, and a test on the text searches the whole text. Begins with, said of what a bracket holds, speaks of its first character.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. Not caught above means that no earlier shape of the same mark took the occurrence. A shape's container field is not part of its test: a test looks at the container only where its words say so, and the checker compares the field afterwards.",
+  "is_contraction_words": [
+   "he",
+   "that",
+   "what"
+  ],
+  "frame_texts": [
+   "and ~ alike",
+   "as ~ as",
+   "both ~ and",
+   "either ~ or",
+   "if ~ not",
+   "in order ~ to",
+   "isn’t ~ enough",
+   "more ~ than",
+   "no ~ yet",
+   "not ~ atall",
+   "not ~ enough",
+   "oh ~ that",
+   "so ~ not",
+   "so as ~ to",
+   "so that ~ nolonger",
+   "so that ~ not",
+   "such ~ as",
+   "such ~ that",
+   "that ~ not",
+   "too ~ for",
+   "too ~ that",
+   "too ~ to",
+   "whether ~ or"
+  ]
+ },
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.between_two_renderings"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_a_sum_of_numbers",
+   "open_paren.holds_one_number",
+   "open_paren.holds_the_whole_text",
+   "open_paren.holds_a_word_beside_other_words",
+   "close_paren.holds_a_sum_of_numbers",
+   "close_paren.holds_one_number",
+   "close_paren.holds_the_whole_text",
+   "close_paren.holds_a_word_beside_other_words"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "tilde.one_of_two_gaps",
+   "mark": "~",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: marks one of two gaps in one English phrase, each a place where words this row does not hold belong («sent ~ on ~ way», «not only ~ but ~ also»); the phrase is one reading.",
+   "test": "The text contains the character «~» more than once (terms, first_match). No route holds it more than twice, so more than once and the two gaps of this shape's name are the same routes.",
+   "count": 18,
+   "examples": [
+    {
+     "key": "שכלתם"
+    },
+    {
+     "key": "יענה"
+    },
+    {
+     "key": "מ"
+    }
+   ],
+   "read": 18
+  },
+  {
+   "id": "tilde.glued_to_the_word_after",
+   "mark": "~",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands glued to the first word of the row, at the place where the English of the Hebrew word's last letter ה belongs («~south», «~rise of»); at all 49 source rows that write it so, the next row is that letter with English of its own (to, at, into, in, on, toward); the text is one reading.",
+   "test": "The text before the mark is empty, and the character directly after the mark is a letter (terms).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "מזרח"
+    },
+    {
+     "key": "שמ"
+    },
+    {
+     "key": "קדמ"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "tilde.glued_to_the_word_before",
+   "mark": "~",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands glued to the last word of the row, at the place where the English of the row before it belongs («apart~», where the row before reads from); the text is one reading.",
+   "test": "The text after the mark is empty, and the character directly before the mark is a letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בלעדי"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "tilde.between_the_two_words_of_a_frame",
+   "mark": "~",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: marks the place inside a frame of small words where the words the frame holds belong («either ~ or», «both ~ and», «whether ~ or»); the frame is one reading, and neither side of the sign is a reading of its own here.",
+   "test": "The whole text, exactly, is one of the strings in frame_texts (terms).",
+   "count": 43,
+   "examples": [
+    {
+     "key": "ממ"
+    },
+    {
+     "key": "ל"
+    },
+    {
+     "key": "אולי"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "tilde.in_a_phrase",
+   "mark": "~",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: marks a gap in one English phrase, a place where words this row does not hold belong («bring ~ back», «for ~ sake», «what ~ say»); the two sides are halves of one phrase, not two readings.",
+   "test": "Not caught above (first_match): the character directly before the mark is a space, and the character directly after the mark is a space (terms).",
+   "count": 1810,
+   "examples": [
+    {
+     "key": "אריח"
+    },
+    {
+     "key": "הכית"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 1810
+  },
+  {
+   "id": "right_single_quotation_mark.contraction_of_is",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "is the apostrophe of an English short form of is, written as a curly mark («he’s», «that’s why», «what’s»), inside one word of one reading.",
+   "test": "The run of letters that ends directly before the mark, taken back to the first character that is not a letter or to the start of the text, is exactly one of the strings in is_contraction_words; the character directly after the mark is «s»; and the character directly after that «s», if there is one, is not a letter (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "ו"
+    },
+    {
+     "key": "כן"
+    },
+    {
+     "key": "גם"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "right_single_quotation_mark.contraction_of_not",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "is the apostrophe of an English short form with not, written as a curly mark («don’t», «isn’t»), inside one word of one reading.",
+   "test": "The character directly before the mark is «n»; the character directly after the mark is «t»; and the character directly after that «t», if there is one, is not a letter (terms).",
+   "count": 14,
+   "examples": [
+    {
+     "key": "אם"
+    },
+    {
+     "key": "אין"
+    },
+    {
+     "key": "מעט"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "right_single_quotation_mark.after_final_s",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "is the apostrophe of a possessive written after a final s with no s of its own, of a plural («sons’», «rams’ horns») or of a name («Moses’»), inside one reading.",
+   "test": "The character directly before the mark is «s», and the character directly after the mark, if there is one, is not a letter (terms).",
+   "count": 38,
+   "examples": [
+    {
+     "key": "נשרים"
+    },
+    {
+     "key": "אמת"
+    },
+    {
+     "key": "מכבסים"
+    }
+   ],
+   "read": 38
+  },
+  {
+   "id": "right_single_quotation_mark.possessive_s",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "is the apostrophe of a possessive with its own s, written as a curly mark («donkey’s», «one’s own», «LORD’S»), inside one reading.",
+   "test": "The character directly before the mark is a letter; the character directly after the mark is «s» or «S»; and the character directly after that one, if there is one, is not a letter (terms).",
+   "count": 225,
+   "examples": [
+    {
+     "key": "אתנ"
+    },
+    {
+     "key": "מלכ"
+    },
+    {
+     "key": "אבי"
+    }
+   ],
+   "read": 225
+  },
+  {
+   "id": "hyphen.opens_an_ending",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens an English ending that has no word of its own in this row («-self»); at the one source row that writes it, the next row holds the word it ends (you), so the text leans on that row.",
+   "test": "The text before the mark is empty, and the character directly after the mark is a letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בד"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "joins two parts of one English compound, one name or one phrase («father-in-law», «beth-arabah», «daughter of-cypresses»), so that the parts are one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms).",
+   "count": 117,
+   "examples": [
+    {
+     "key": "ערבה"
+    },
+    {
+     "key": "חום"
+    },
+    {
+     "key": "עשור"
+    }
+   ],
+   "read": 117
+  },
+  {
+   "id": "exclamation.after_a_space",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a command or a cry with a space before the sign («love !»), the way the source's English column writes it at this one row; the text is one reading.",
+   "test": "The text after the mark is empty, and the character directly before the mark is a space (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "הבו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "exclamation.on_the_last_word",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a command or a cry on the last word the row holds; the row may hold only the last part of it («count!», «far be it!», «them!»), and the sign stays in the one reading.",
+   "test": "The text after the mark is empty, and the character directly before the mark is a letter (terms).",
+   "count": 26,
+   "examples": [
+    {
+     "key": "שא"
+    },
+    {
+     "key": "שאו"
+    },
+    {
+     "key": "עברו"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "question_mark.after_a_space",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a question with a space before the sign («for why ?»), the way the source's English column writes it at this one row; the text is one reading.",
+   "test": "The text after the mark is empty, and the character directly before the mark is a space (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "question_mark.on_the_last_word",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a question on the last word the row holds; the row may hold only the last part of it («how?», «to when?», «he?»), and the sign stays in the one reading; it is no sign of doubt in the rendering.",
+   "test": "The text after the mark is empty, and the character directly before the mark is a letter (terms).",
+   "count": 21,
+   "examples": [
+    {
+     "key": "מתי"
+    },
+    {
+     "key": "ל"
+    },
+    {
+     "key": "אף"
+    }
+   ],
+   "read": 21
+  },
+  {
+   "id": "open_paren.holds_a_sum_of_numbers",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a row that holds no English at all, only numbers of the kind the source's strongnumberx column holds, written as a sum («(6997a=1886a+6997)»): the first number seems to be a name's, made of the two after the equals sign; in the source it stands on a letter ה at the head of that name, and the store keeps it under the letters key ה with no place; the row is no reading, and B02 asks what the page prints.",
+   "test": "What the bracket holds contains the string «=» (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.holds_one_number",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a number that stands after one part of a name and belongs to the whole name: the same number on both parts («Ben (1128)», «Deker (1128)»), not the number the source's strongnumberx column gives that part; a pointer, so it stays with its piece, and B03 asks whether the page prints it.",
+   "test": "What the bracket holds is made only of digits, at least one (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "דקר"
+    },
+    {
+     "key": "בן"
+    },
+    {
+     "key": "גבר"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "open_paren.holds_the_whole_text",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a word written in round brackets that is all the English the row holds («(namely)», «(happy)»); the brackets stay with it as one reading.",
+   "test": "Not caught above (first_match): the whole text, exactly, is the string «(», then what the bracket holds, then the string «)» (terms).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "אשר"
+    },
+    {
+     "key": "ו"
+    },
+    {
+     "key": "ל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "open_paren.holds_a_word_beside_other_words",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens an English word that the source writes in round brackets inside a longer text of the row («(just) above», «he (found)», «face of (him)», «or (against )»); it is part of the one reading.",
+   "test": "Not caught above (first_match): what the bracket holds begins with a letter (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "ו"
+    },
+    {
+     "key": "הוא"
+    },
+    {
+     "key": "פני"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "close_paren.holds_a_sum_of_numbers",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a row that holds no English at all, only a sum of numbers of the kind the source's strongnumberx column holds («(2019a=1886a+6483)»), so the row is no reading, and B02 asks what the page prints.",
+   "test": "What the bracket holds contains the string «=» (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.holds_one_number",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the number of a whole name after one part of that name («Ben (1127)», «Geber (1127)»), a pointer that stays with its piece, and B03 asks whether the page prints it.",
+   "test": "What the bracket holds is made only of digits, at least one (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "דקר"
+    },
+    {
+     "key": "בן"
+    },
+    {
+     "key": "גבר"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "close_paren.holds_the_whole_text",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a word written in round brackets that is all the English the row holds, with nothing after it, so that the brackets stay with it as one reading («(namely)», «(happy)»).",
+   "test": "Not caught above (first_match): the whole text, exactly, is the string «(», then what the bracket holds, then the string «)» (terms).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "אשר"
+    },
+    {
+     "key": "ו"
+    },
+    {
+     "key": "ל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "close_paren.holds_a_word_beside_other_words",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes an English word that the source writes in round brackets inside a longer text of the row («(just) above», «he (found)», «face of (him)», «or (against )»), so that it stays part of the one reading.",
+   "test": "Not caught above (first_match): what the bracket holds begins with a letter (terms).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "ו"
+    },
+    {
+     "key": "הוא"
+    },
+    {
+     "key": "פני"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "equals.in_a_sum_of_numbers",
+   "mark": "=",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: stands in a sum of numbers, between the number of a name and the two numbers it seems to be made of («(2019a=1886a+6483)»), inside a row that holds no English.",
+   "test": "The mark's container is paren (the template's c.container).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "plus.in_a_sum_of_numbers",
+   "mark": "+",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: joins the two numbers after the equals sign in such a sum («(6997a=1886a+6997)»); it is no flag on a rendering, since it never stands beside an English word here.",
+   "test": "The mark's container is paren (the template's c.container).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.at_the_head_of_a_word",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a full stop written against the head of the word and, with nothing before it in the text («.and»), the only full stop in the source's English column over its 475,911 rows; it ends nothing the route holds, and one place cannot say whether it is a slip or the end of a sentence carried over.",
+   "test": "The text before the mark is empty, and the character directly after the mark is a letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "slash.between_two_renderings",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two renderings that share the word after them («thumbs/big toes of»), under one letters key and at the two source rows that hold a slash; whether it divides is the question of B01.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בהנות"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number: a number in round brackets after a part of a name is a pointer to the whole name, never identity. The source's own file fills, over its 475,911 rows (axis: rows), an id (xml:id) on 475,911, a number (strongnumberx) on 475,911, a lemma (lemma) on 475,911 and a sense number (sensenumber) on 180,502; the route store carries none of them, and the dictionary store's record keeps only the line and the id of one cited place. The letters key here is a word form and its routes are the source's renderings of that form at its places, identical ones collapsed, so keys_with_more_than_one_route_text counts renderings at places, not entries. By the audit, which reads the one place each route's record cites, of the 7,227 such keys (axis: keys) 5,006 are keys whose routes cite one number of the source and 2,221 are keys whose routes cite two or more, so that the texts come from different words that share the letters (example key ו, whose routes cite 2050b, 2050c, 2050d).",
+  "keys_with_more_than_one_route_text": 7227
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "A row writes two renderings with a slash between them, and the last word belongs to both: thumbs/big toes of. The pattern is too rare to make a rule from, so it waits for you. Should the slash cut it into two readings? This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "slash.between_two_renderings"
+   ],
+   "occurrences": 1,
+   "keys": [
+    "בהנות"
+   ],
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints thumbs and big toes of as two readings. The piece thumbs prints without the of that the two share; nothing is added to it."
+    },
+    {
+     "id": "whole",
+     "means": "The page prints thumbs/big toes of as one reading, as written."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows hold no English at all, only numbers in round brackets: (6997a=1886a+6997). They belong to a ה at the head of a name in 1 Chronicles 24:15 and Ezra 8:12, and seem to say how the name's number in a word list is made of two others; no key on file says so. The store files a row under its letters with no place, so you saw them at Haggai 1:4, whose ה heads no name. Should the page print them as readings? They print as they do today until you rule. To leave them out the page needs one step of its own, because a declaration cannot leave a row out. The row X holds no sign at all, so this question cannot reach it. This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "open_paren.holds_a_sum_of_numbers",
+    "close_paren.holds_a_sum_of_numbers",
+    "equals.in_a_sum_of_numbers",
+    "plus.in_a_sum_of_numbers"
+   ],
+   "occurrences": 8,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints (6997a=1886a+6997) as one reading, as written, as it does today."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B03",
+   "question": "Some names are written in two parts, one part on each Hebrew word, and each part carries the number of the whole name in round brackets: Ben (1128). The part of the name is a reading; the number seems only to point to the whole name in a word list. Should the page print the number in the pill? This answer holds whatever you answer to the other questions.",
+   "shapes": [
+    "open_paren.holds_one_number",
+    "close_paren.holds_one_number"
+   ],
+   "occurrences": 8,
+   "options": [
+    {
+     "id": "number_stays",
+     "means": "The page prints Ben (1128) as one reading, as written."
+    },
+    {
+     "id": "number_off",
+     "means": "The page prints Ben as one reading and leaves the number off the pill. The store keeps the text as it is."
+    }
+   ],
+   "resting": "number_stays"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, so the row X (6 routes that read X and nothing else; axis: routes) stands as it is; it changes no text, so it fills and closes no gap and the source's run-together words (toanger in provoke ~ toanger) stay as written; it leaves a number in round brackets after a part of a name in its piece, as a pointer at the end of a text (the ask's rule 11), until the owner answers B03; it leaves to the page the step that the answer no_pill of B02 asks for, since a declaration can cut a row and has no field that leaves a whole row out; and it strikes nothing, naming the rows it reads as no reading in strike-list-no-reading-v1.jsonl, outside the shapes."
+}

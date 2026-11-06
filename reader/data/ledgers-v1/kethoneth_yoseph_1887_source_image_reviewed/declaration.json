@@ -1,0 +1,268 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "kethoneth_yoseph_1887_source_image_reviewed",
+ "m_ids": [
+  "M184"
+ ],
+ "routes": 107,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Kethoneth Yoseph 1887 source-image-reviewed exact Hebrew abbreviation definitions\" (M184): 107 routes (axis: routes), 82 letters keys (axis: keys). The dictionary store holds no record file for this source, so the source audit (builder/02-audit.mjs, evidence about the source and no part of any test) read the routes' own def field and the book's copy in the source cache, <home>/Documents/999 footsteps/ledgers/work/ldmprs/source-cache/kethoneth-yoseph-hebrew-abbreviations-2026-07-15/: the OCR text kethonethyosephh00rajp_djvu.txt (sha256 973bdba02516a640504f566185bc78b4485a110b26c3083dc436313e35eec7e8), one page image, page-images-v1/printed-006-n19.jpg, and the source-image review's own files, source-image-reviewed-supports-v1.jsonl.gz and source-image-reviewed-decisions-v1.json (builder/06-supports-audit.mjs). The route text is the review's transcription: 107 of 107 routes match a row of the first on key, gloss and def, all 107 rows carry one transcription rule, which keeps the source's wording and normalises only line-break hyphenation, spacing and terminal punctuation, and the second's review_policy sets english_spacing_and_terminal_punctuation_may_be_normalized true, with the page image as authority and the OCR as candidate only. So the 77 of the 95 mark occurrences that stand last in a route may be the reviewer's and not the print's. The route equals its def on 66 routes; on the other 41 the route is a piece of its def, cut at a semicolon and a space, though the field cut is empty on every row. Of the 114 such pieces, 107 have a row, in the def's order, and the other 7 are the label N. B. So a route comes from one field and no test here stands on a guess about a field. The book's own key to its signs is on file in that copy: a list after the preface headed \"Initials used in this work\" (\"N. B.=Name of a Book.\" and 3 more, for a person, a place and a rabbi), and the preface's sentence that abbreviations are generally marked by two oblique strokes. The strokes stand in the letters keys and the initials in the def, and no route text holds an initial (0 routes). The key says nothing of a comma, a full stop, a question mark, a bracket or an ampersand in the English, and builder/05-key-search.mjs finds no other line that does (source-audit/key-search.json); <tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/ holds the book's date and its record and no key to its signs. So the meaning of all 12 shapes begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). No test asks for a letter, a digit, whitespace, or uppercase or lowercase as a class. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. The text before the mark and the text after the mark are the template's c.before and c.after; at the end of the text the text after the mark is empty, and at its start the text before the mark is empty. What the bracket holds is the template's c.group. Exactly means that the two strings are equal character for character. A string stands between « and », which are not part of it, so a full stop or a space inside them belongs to the string and a full stop after » belongs to the sentence. Every string and every list minds case and is matched exact to the character. No test uses the words begins with or contains.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: every shape here has its own test, and no shape is a catch-all.",
+  "lists_of_words_a_short_form_stands_for": [
+   "grace, power, beauty.",
+   "grace, power.",
+   "understanding, knowledge, wisdom.",
+   "emanation, creation, formation, action."
+  ],
+  "rest_of_a_verse_place": [
+   " I. 11",
+   " 11"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.between_the_words_a_short_form_stands_for",
+   "comma.in_a_list_under_one_head",
+   "comma.before_the_blessing_on_a_name",
+   "comma.after_the_cry_amen",
+   "comma.before_the_description_of_a_name",
+   "comma.last_after_the_printers_shortening"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.aside_inside_one_explanation",
+   "close_paren.aside_inside_one_explanation"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "comma.between_the_words_a_short_form_stands_for",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the words of one explanation of a short form that stands for several words together, one word for each letter («grace, power, beauty.»).",
+   "test": "The whole text, exactly, is one of the strings in lists_of_words_a_short_form_stands_for (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "חג״ת"
+    },
+    {
+     "key": "בד״ח"
+    },
+    {
+     "key": "ח״ג"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "comma.in_a_list_under_one_head",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the names of a list that its first words speak of whole («the books of Job, Proverbs, Psalms.»), so no name is a reading by itself.",
+   "test": "The whole text, exactly, is «the books of Job, Proverbs, Psalms.» (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אמ״ת"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "comma.before_the_blessing_on_a_name",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a name and the blessing said after it («our father Abraham, may peace be on him.»), which are one reading.",
+   "test": "The text after the mark, exactly, is « may peace be on him.» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אאע״ה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.after_the_cry_amen",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the cry Amen and the prayer it opens («Amen, may His great name»), which are one reading.",
+   "test": "The text before the mark, exactly, is «Amen» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "איש״ר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.before_the_description_of_a_name",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a name and its description («understanding, one of the ten Sephiroth»), which are one reading.",
+   "test": "The text after the mark, exactly, is « one of the ten Sephiroth or attributes of God.» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ב״י"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.last_after_the_printers_shortening",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands last in the text, after the printer's shortening («name &c,»), with nothing after it to cut from; the OCR of the book reads a full stop at this place, and the review's own rule lets a last mark be normalised, so this mark may be the reviewer's and not the print's.",
+   "test": "The text after the mark is empty, so the mark is the last character of the text (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "איש״ר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.inside_a_verse_place",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: shortens the name of a book of Scripture and closes its chapter numeral in a verse place («Deut. I. 11»), and ends no reading.",
+   "test": "The text after the mark, exactly, is one of the strings in rest_of_a_verse_place (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ב״י"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.closes_the_whole_entry",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the whole entry of the book, after the entry's last explanation («the holy Sabbath.»), and cuts nothing; the review's own rule lets a last mark be normalised, so this mark may be the reviewer's and not the print's.",
+   "test": "The text after the mark is empty, so the mark is the last character of the text (terms, first_match).",
+   "count": 75,
+   "examples": [
+    {
+     "key": "בה״א"
+    },
+    {
+     "key": "עי״ז"
+    },
+    {
+     "key": "חמ״ז"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "question_mark.closes_a_question",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes an explanation that is itself a question («to what is this applicable?»); the review's own rule lets a last mark be normalised, so this mark may be the reviewer's and not the print's.",
+   "test": "The text after the mark is empty, so the mark is the last character of the text (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בד״א"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.aside_inside_one_explanation",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens an aside that says who gave the blessing, inside one explanation («the blessing (given by Moses) to the Israelites»).",
+   "test": "What the bracket holds, exactly, is «given by Moses» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ב״י"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.aside_inside_one_explanation",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes an aside that says who gave the blessing, inside one explanation («the blessing (given by Moses) to the Israelites»).",
+   "test": "What the bracket holds, exactly, is «given by Moses» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ב״י"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "ampersand.in_the_printers_shortening",
+   "mark": "&",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands for and in the printer's shortening, which breaks off a longer saying («name &c,»).",
+   "test": "The text after the mark, exactly, is «c,» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "איש״ר"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number, and the book prints none: an entry on the page is the short form, an equals sign, then Hebrew and its English (printed page 6, page-images-v1/printed-006-n19.jpg). The Hebrew printed before the English shows which words an explanation expands; the route and the def keep only the English. The lane's source-image review did mint an id, which the store dropped: source-image-reviewed-supports-v1.jsonl.gz in the source cache has candidate_id on 107 of 107 rows (84 distinct), with printed page and box, and it tells apart 2 of the 2 keys that draw on two defs. The id is the review's and the book prints none, so entry_identity stays none. Of the 14 keys with more than one route text (axis: keys), 12 draw on one def, whose explanations each have a route, and 2 draw on two defs (example key בג״ר: 3 route texts from 2 defs), which the route text cannot tell apart.",
+  "keys_with_more_than_one_route_text": 14
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "This book explains Hebrew short forms. Some short forms stand for several words together, one word for each letter. The short form חג״ת stands for three words, and the book writes them with commas: grace, power, beauty. They are one explanation in the book, which puts a semicolon between two explanations and none here. Should the page print such a list as one pill, or each word as its own pill? Today the page prints each word as its own pill; from the day this ledger is wired it prints the whole list as one pill until you rule. From that day, under either answer, a list whose first words speak of all its names prints as one pill.",
+   "shapes": [
+    "comma.between_the_words_a_short_form_stands_for"
+   ],
+   "occurrences": 8,
+   "options": [
+    {
+     "id": "whole",
+     "means": "The page prints the whole list as one pill, as the book writes it: grace, power, beauty."
+    },
+    {
+     "id": "divides",
+     "means": "The page prints each word as its own pill, with the commas gone and the book's full stop kept on the last word: three pills here, the last of them beauty."
+    }
+   ],
+   "resting": "whole"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark, and what the route no longer says (the book's label N. B. after a title); the 29 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as what the reading found and no census, and nothing is struck."
+}

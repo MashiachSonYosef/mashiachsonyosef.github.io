@@ -83,8 +83,19 @@ const grab = (head, end) => {
   return zone.slice(a, b + end.length);
 };
 const { readingSplit, senseSplit, isNoDerivs } = new Function(`${grab("\n  const readingSplit = (text) => {\n", "\n  };\n")}${grab("\n  const senseSplit = (text) => {\n", "\n  };\n")}${grab("\n  const isNoDerivs = (key) => ", ";\n")}return { readingSplit, senseSplit, isNoDerivs };`)();
-const pills = (text, posture) => {
-  if (isNoDerivs(posture)) return [String(text)];
+// a source under a ledger prints as its row says (ledger-division-rule-v1):
+// the marks in row[7], or the whole text; the generic rule is for one with none
+const pills = (row, src) => {
+  const text = String(row[1]);
+  if (isNoDerivs(src.licensePosture)) return [text];
+  if (src.ledger) {
+    const cuts = Array.isArray(row[7]) ? row[7] : [];
+    if (!cuts.length) { const t = text.trim(); return t ? [t] : []; }
+    const out = []; let from = 0;
+    for (const i of cuts) { out.push(text.slice(from, i)); from = i + 1; }
+    out.push(text.slice(from));
+    return out.map((x) => x.trim()).filter(Boolean);
+  }
   const out = [];
   for (const sense of senseSplit(text)) { const r = readingSplit(sense); if (!r.damaged) out.push(...r.readings); }
   return out;
@@ -193,7 +204,7 @@ for (const [K, rows] of Object.entries(routes)) {
     const src = rix.m_sources[m];
     if (!src) { unnamedRows += 1; continue; }
     routeRows += 1;
-    for (const p of pills(row[1], src.licensePosture)) { pillCount += 1; add(joinSpan(p), L, m, null); }
+    for (const p of pills(row, src)) { pillCount += 1; add(joinSpan(p), L, m, null); }
   }
 }
 // THE OVERLAYS' ROWS ARE ROWS LIKE THE STORE'S (Jastrow, the Samaritan
@@ -211,7 +222,7 @@ for (const id of readdirSync(join(DATA, "overlays")).sort()) {
       const src = (oix.m_sources || {})[row[3]];
       if (!src) continue;
       overlayRows += 1;
-      for (const p of pills(row[1], src.licensePosture)) add(joinSpan(p), L, row[3], null);
+      for (const p of pills(row, src)) add(joinSpan(p), L, row[3], null);
     }
   }
 }
@@ -224,7 +235,7 @@ for (const sp of spanBooks) for (const pl of sp.placesList) {
     const row = r.slots || [], m = row[3];
     if (struck.has(m) || !rix.m_sources[m]) continue;
     spanRows += 1;
-    for (const p of pills(row[1], rix.m_sources[m].licensePosture)) add(joinSpan(p), R, m, null);
+    for (const p of pills(row, rix.m_sources[m])) add(joinSpan(p), R, m, null);
   }
 }
 // a reading that stands only inside longer words is no reading of the word: it enters the English index nowhere

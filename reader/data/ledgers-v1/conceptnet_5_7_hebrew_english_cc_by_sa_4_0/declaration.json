@@ -1,0 +1,436 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0",
+ "m_ids": [
+  "M1"
+ ],
+ "routes": 11378,
+ "read_from": "The route text as served: field 1 (the route text) of each row of the route store on the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"ConceptNet 5.7 exact Hebrew-English lexical assertions (CC BY-SA 4.0 edge)\" (M1): 11,378 routes (axis: routes), 8,269 letters keys (axis: keys). The source's own key to its signs: no page of ConceptNet's on its node paths is on file, but its changelog is (<home>/Documents/999 footsteps/corpus-lane/moses-ledgers-2026-09-22/moses-works-own-stamp-v1/verify-the-snapshots-and-releases/refetch/conceptnet-wiki-Changelog.md), and the Downloads page beside it gives the fields of the assertions file and nothing on paths. What the changelog settles: under ConceptNet 5.7 (line 10) a path may hold a part of speech and then a word sense after the term, as in /c/en/cat/n/wn/animal, which accounts for the letter n and for the place of the parts after it; under ConceptNet 5.5.0 (line 154) text reaches its path by lowercasing, with underscores for spaces, which accounts for the small letters of every route, the record's underscores and the combining dot, since lowercasing İzmir gives that route byte for byte (the capital itself stands on file nowhere, so that the name was written with it stays a reading). What stays unverified: wikt, wp, en with its number, and what the letters a, v and r each stand for; the changelog names none of them, so every meaning that says what one of those stands for begins unverified. Where the marks come from: the changelog (line 11) says ConceptNet's Web interface and API show a label in this form, cat (n, animal), but its data file does not write the tag that way (0 of the 34,074,917 lines of the assertions file hold the three-part form, and 0 surface texts of the 16,369 kept edges hold a one-letter bracket). The round brackets and the commas inside them in these routes are this corpus's own: its script (definition-poc/scripts/audit_conceptnet_hebrew_english_v1.mjs, function englishDisplay) writes them when it turns the source's node path into route text, /c/en/he/n/wikt/en_2 becoming «he (n, wikt, en 2)», and that formula gives the route text on 12,252 of the 12,252 edges of this licence in the local extract (ledgers/work/ldmprs/source-cache/conceptnet-5.7.0-2026-07-15). Every route joins one of those edges (11,378 of 11,378, same key and same text). The dictionary store's record M1 writes the word alone in its reading field R, with an underscore between words, and no bracket and no comma on any of its 10,023 lines; its fields g and D are empty on all of them. All of this is evidence about the source, never a test (rule 12).",
+ "definitions": {
+  "part_of_speech_letters": [
+   "n",
+   "a",
+   "v",
+   "r"
+  ],
+  "abbreviations_in_the_word": [
+   "i.e",
+   "e.g"
+  ],
+  "abbreviations_in_the_tag": [
+   "u.s"
+  ],
+  "contraction_words": [
+   "i'm",
+   "you're",
+   "don't",
+   "let's",
+   "that's"
+  ],
+  "possessive_words": [
+   "adam's",
+   "men's",
+   "one's",
+   "year's"
+  ],
+  "string": "text compared character for character: case minded, nothing trimmed, each space the one space character U+0020. A character is one Unicode code point, whatever it is: a letter, a digit, a space or a mark. In a test or a definition a string stands between « and », which are not part of it. A list in these definitions holds its strings as JSON strings, and \"one string of\" a list means any one of them, whole. To begin with a string is to have that string as its first characters; no word end is needed after it.",
+  "letter": "a character whose Unicode general category begins with L (in JavaScript \\p{L}): small or capital, any script. A digit, a mark or a space is not a letter. A combining mark is not a letter.",
+  "at_top_level": "the mark stands inside no bracket: the template's c.container is top.",
+  "inside_round_brackets": "the innermost bracket around the mark is a round pair: the template's c.container is paren.",
+  "what_the_bracket_holds": "for a round opening bracket or a round closing bracket: the characters between it and its partner, as the template's bracket matching pairs them (the template's c.group). For any other mark inside_round_brackets: the characters between the round opening bracket and the round closing bracket around it (the template's c.inner). In both cases exactly as written, with nothing trimmed.",
+  "wiktionary_tag": "a text that is one string of part_of_speech_letters, then the string «, wikt, en », then one or more digits, and nothing after them. A digit is one of the ten characters 0 1 2 3 4 5 6 7 8 9.",
+  "wikipedia_tag": "a text that begins with the string «n, wp, » and goes on with one or more further characters, the first of which is a letter or a digit; the characters after that first one may be anything. A digit is one of the ten characters 0 1 2 3 4 5 6 7 8 9.",
+  "first_comma": "the comma nearest the start of what_the_bracket_holds.",
+  "second_comma": "the next comma after the first_comma in what_the_bracket_holds.",
+  "word_around_the_mark": "the longest run of letters that ends directly before the mark (the run may be empty), then the mark itself, then the longest run of letters that begins directly after the mark (the run may be empty). A run stops at the first character that is not a letter, and at the start or the end of the route text."
+ },
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": [
+   "comma.after_letter_in_wiktionary_tag",
+   "comma.before_wiktionary_number",
+   "comma.after_letter_in_wikipedia_tag",
+   "comma.before_wikipedia_topic"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_part_of_speech_letter",
+   "open_paren.holds_wiktionary_tag",
+   "open_paren.holds_wikipedia_tag",
+   "close_paren.holds_part_of_speech_letter",
+   "close_paren.holds_wiktionary_tag",
+   "close_paren.holds_wikipedia_tag"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "open_paren.holds_part_of_speech_letter",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the tag of one letter, «n», «a», «v» or «r», which says what kind of word the English word is: the source's changelog gives this place of its path to a part of speech, with «n» in its example, but names none of the other letters, which read as adjective, verb and adverb; the letter comes from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round opening bracket at_top_level whose what_the_bracket_holds is one string of part_of_speech_letters, with nothing else.",
+   "count": 5831,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "שרשור"
+    },
+    {
+     "key": "תמנון"
+    }
+   ],
+   "read": 59
+  },
+  {
+   "id": "open_paren.holds_wiktionary_tag",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the tag of three parts: the letter for what kind of word it is, then «wikt» (every such route comes from the source's English Wiktionary dataset), then «en» with a number that reads as which numbered part of that word's Wiktionary page is meant; the source's changelog says a word sense may follow the part of speech in its path, but names neither «wikt» nor this number; the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round opening bracket at_top_level whose what_the_bracket_holds is a wiktionary_tag.",
+   "count": 1058,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "מנוע"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 58
+  },
+  {
+   "id": "open_paren.holds_wikipedia_tag",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the tag of three parts that tells which thing of that English name is meant: «n», then «wp» (every such route comes from the source's DBpedia dataset), then the words that tell which thing it is («mythology», «moon», «rocket family»); the source's changelog says a word sense may follow the part of speech in its path, but does not name «wp»; the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round opening bracket at_top_level whose what_the_bracket_holds is a wikipedia_tag.",
+   "count": 753,
+   "examples": [
+    {
+     "key": "הניצוץ"
+    },
+    {
+     "key": "עכבר"
+    },
+    {
+     "key": "הדחק"
+    }
+   ],
+   "read": 372
+  },
+  {
+   "id": "close_paren.holds_part_of_speech_letter",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the tag of one letter, «n», «a», «v» or «r», which says what kind of word the English word is: the source's changelog gives this place of its path to a part of speech, with «n» in its example, but names none of the other letters, which read as adjective, verb and adverb; the letter comes from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round closing bracket at_top_level whose what_the_bracket_holds is one string of part_of_speech_letters, with nothing else.",
+   "count": 5831,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "שרשור"
+    },
+    {
+     "key": "תמנון"
+    }
+   ],
+   "read": 59
+  },
+  {
+   "id": "close_paren.holds_wiktionary_tag",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the tag of three parts: the letter for what kind of word it is, then «wikt» (every such route comes from the source's English Wiktionary dataset), then «en» with a number that reads as which numbered part of that word's Wiktionary page is meant; the source's changelog says a word sense may follow the part of speech in its path, but names neither «wikt» nor this number; the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round closing bracket at_top_level whose what_the_bracket_holds is a wiktionary_tag.",
+   "count": 1058,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "מנוע"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 58
+  },
+  {
+   "id": "close_paren.holds_wikipedia_tag",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the tag of three parts that tells which thing of that English name is meant: «n», then «wp» (every such route comes from the source's DBpedia dataset), then the words that tell which thing it is («mythology», «moon», «rocket family»); the source's changelog says a word sense may follow the part of speech in its path, but does not name «wp»; the parts come from the source's node path and the bracket from this corpus's own script that wrote the route text, and the tag is a label on the word, never a reading.",
+   "test": "A round closing bracket at_top_level whose what_the_bracket_holds is a wikipedia_tag.",
+   "count": 753,
+   "examples": [
+    {
+     "key": "הניצוץ"
+    },
+    {
+     "key": "עכבר"
+    },
+    {
+     "key": "הדחק"
+    }
+   ],
+   "read": 372
+  },
+  {
+   "id": "comma.after_letter_in_wiktionary_tag",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: parts the letter for what kind of word it is from the «wikt» after it, inside one tag; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wiktionary_tag, and which is the first_comma.",
+   "count": 1058,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "מנוע"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 58
+  },
+  {
+   "id": "comma.before_wiktionary_number",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: parts «wikt» from the «en» and the number after it, inside one tag; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wiktionary_tag, and which is the second_comma.",
+   "count": 1058,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "מנוע"
+    },
+    {
+     "key": "סימן"
+    }
+   ],
+   "read": 58
+  },
+  {
+   "id": "comma.after_letter_in_wikipedia_tag",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: parts the letter «n» from the «wp» after it, inside one tag; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wikipedia_tag, and which is the first_comma.",
+   "count": 753,
+   "examples": [
+    {
+     "key": "הניצוץ"
+    },
+    {
+     "key": "עכבר"
+    },
+    {
+     "key": "הדחק"
+    }
+   ],
+   "read": 372
+  },
+  {
+   "id": "comma.before_wikipedia_topic",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: parts «wp» from the words after it that tell which thing is meant, inside one tag; this corpus's own script writes a comma and a space here where the source's node path has a slash, so the two sides are parts of one label and never two readings.",
+   "test": "A comma inside_round_brackets whose what_the_bracket_holds is a wikipedia_tag, and which is the second_comma.",
+   "count": 753,
+   "examples": [
+    {
+     "key": "הניצוץ"
+    },
+    {
+     "key": "עכבר"
+    },
+    {
+     "key": "הדחק"
+    }
+   ],
+   "read": 372
+  },
+  {
+   "id": "period.inside_abbreviation_in_the_word",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "stands inside the English abbreviation «i.e» or «e.g», which is itself the English the source gives for the Hebrew word and which is written with no period after its last letter.",
+   "test": "A period at_top_level whose word_around_the_mark is one string of abbreviations_in_the_word.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "כלומר"
+    },
+    {
+     "key": "קרי"
+    },
+    {
+     "key": "למשל"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "period.inside_abbreviation_in_the_tag",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "stands inside the abbreviation «u.s» among the words of a tag that tell which thing is meant, written with no period after its last letter.",
+   "test": "A period inside_round_brackets whose word_around_the_mark is one string of abbreviations_in_the_tag.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "בינגו"
+    },
+    {
+     "key": "בראבו"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "apostrophe.in_contraction",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "joins the two parts of an English contraction in the words the source gives: «i'm», «you're», «don't», «let's» or «that's».",
+   "test": "An apostrophe at_top_level whose word_around_the_mark is one string of contraction_words.",
+   "count": 9,
+   "examples": [
+    {
+     "key": "אבדתי"
+    },
+    {
+     "key": "בואו"
+    },
+    {
+     "key": "זהו"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "apostrophe.before_possessive_s",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "marks the English possessive in the words the source gives: «adam's apple», «men's», «one's» or «year's».",
+   "test": "An apostrophe at_top_level whose word_around_the_mark is one string of possessive_words.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "החליט"
+    },
+    {
+     "key": "טחנה"
+    },
+    {
+     "key": "גרוגרת"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "combining_dot_above.on_small_i",
+   "mark": "̇",
+   "container": "top",
+   "divides": false,
+   "means": "stands on a small «i», and the one route that holds such a dot is the name «i̇zmir»: the source's changelog says it lowercases text to make its path, and lowercasing a capital dotted I gives a small i with this dot, while no route of this dictionary holds a capital letter; that this name was written with that capital is a reading, for the capital stands on file nowhere.",
+   "test": "A combining dot above at_top_level with the string «i» directly before it (any small i).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "איזמיר"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The source has no entries: it holds edges between a Hebrew node and an English node, a route rests on one such edge (on 31 routes on more than one, with the same key and text), and a number in a tag («en 1», «en 2») stands in the English node's path, so it tells nothing about the Hebrew word. Key אדר holds «adar (n)», «maple (n)» and «pleural cavity», and the route text cannot say whether they are senses of one word or two words. The source's own files give each edge its own id (its assertion address; each line of the store record names one line of that file), and on 1,075 edges of this licence the Hebrew node carries a tag of its own (/c/he/אברהם/n/wp/פירושונים); the route store dropped both. Of the keys this count holds, 1,002 hold one English word written with different tags or with none (key ראמן: «ramen» beside «ramen (n)»), and 1,356 hold more than one English word.",
+  "keys_with_more_than_one_route_text": 2358
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Many rows of this dictionary end in a small tag in round brackets, like: he (n, wikt, en 2). The tag is not ConceptNet's own text. This corpus's own script wrote it, to show the path under which ConceptNet files the English word: a letter (n, a, v or r) that says or seems to say what kind of word it is, and on some rows wikt and en with a number. The same row already holds the word alone in its definition slot. Should the page print the tag in the pill? Tags that hold words saying which thing is meant have their own question, and this answer holds whatever you answer to that one.",
+   "shapes": [
+    "open_paren.holds_part_of_speech_letter",
+    "open_paren.holds_wiktionary_tag",
+    "close_paren.holds_part_of_speech_letter",
+    "close_paren.holds_wiktionary_tag",
+    "comma.after_letter_in_wiktionary_tag",
+    "comma.before_wiktionary_number"
+   ],
+   "occurrences": 15894,
+   "options": [
+    {
+     "id": "tag_stays",
+     "means": "The page prints the row as written, tag and all, as one reading, as it does today: he (n, wikt, en 2)."
+    },
+    {
+     "id": "tag_off",
+     "means": "The page prints the word alone as one reading, from the row's definition slot: he. It leaves the tag off the pill. A word already on the card prints once, not twice. The store keeps the text as it is."
+    }
+   ],
+   "resting": "tag_stays"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows of this dictionary end in a tag that holds words saying which thing is meant, like: seal (n, wp, musician). As with the other tags, this is not ConceptNet's own text. This corpus's own script wrote it, to show the path under which ConceptNet files the English word. The same row already holds the word alone in its definition slot. But with this tag off, the words that say which thing is meant are lost: the pill says seal, and nothing on it says the musician is meant. Should the page print the tag in the pill? This answer holds whatever you answer to the question about the other tags.",
+   "shapes": [
+    "open_paren.holds_wikipedia_tag",
+    "close_paren.holds_wikipedia_tag",
+    "comma.after_letter_in_wikipedia_tag",
+    "comma.before_wikipedia_topic",
+    "period.inside_abbreviation_in_the_tag"
+   ],
+   "occurrences": 3014,
+   "options": [
+    {
+     "id": "tag_stays",
+     "means": "The page prints the row as written, tag and all, as one reading, as it does today: seal (n, wp, musician)."
+    },
+    {
+     "id": "tag_off",
+     "means": "The page prints the word alone as one reading, from the row's definition slot: seal. It leaves the tag off the pill, so the words that say which thing is meant no longer print. A word already on the card prints once, not twice. The store keeps the text as it is."
+    }
+   ],
+   "resting": "tag_stays"
+  }
+ ],
+ "not_done_here": "This ledger cuts nothing and changes no text; it leaves to the page the step that the answer tag_off of B01 or B02 asks for, since a declaration can cut a row and has no field that prints a row's definition slot, and whether the word left behind is a right reading of the Hebrew is no question of punctuation."
+}

@@ -1,0 +1,1352 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "hiperbiblia_sdbh",
+ "m_ids": [
+  "M17"
+ ],
+ "routes": 14823,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Semantic Dictionary of Biblical Hebrew via HiperBiblia\" (M17): 14,823 routes (axis: routes), 3,659 letters keys (axis: keys). The definition field of the same row is the source's summary of the entry (its field summary), read only to understand a route: it equals the route text on 872 routes, and every route is one item of it, the items parted by its semicolons (axis: routes); the store's cut flag stands on 547 of them. The source audit compares each route with the lane's copy of the source, the file hiperbiblia-sdbh.json in ledgers/work/ldmprs/source-cache/hiperbiblia-sdbh-2026-07-12/ (taken from hiperbiblia.com on 12 July 2026 AD, 8,934 records, \"UBS Dictionary of Biblical Hebrew adapted from SDBH\") through the store's 5,830 records of it: all 14,823 routes are an item of a summary on their own key and stand in the part of the entry's text that lists its senses, 10,095 of them as a whole rendering beside a middle dot, which parts the renderings of one sense there (axis: routes). Not every item has a route: of the 15,055 items those records hold in their summaries (axis: items, each counted once under its letters key), 14,823 stand as a route on their key and 232 do not: 36 on keys that hold other routes, and 196 under the 164 letters keys of the 168 entries whose headword holds a space or a maqaf, keys that hold no route at all (26 of those texts stand as a route under another letters key). So each route is one item of the source's list for its word, and for the routes that exist this dictionary is the ask's case of a store that already gives each sense its own route; the audit is evidence about the source and no part of any test. The source's own key to its signs: none found. The copy holds the fields id, headword, summary, part_of_speech, full_entry_text, source_url, license, source_year for each entry and at its head only run_date, index_url, definition_basis, license, index_pages_scanned, index_entry_ids, entry_pages_fetched, fetch_errors, with no front matter and no account of a sign. The README of the work it adapts (ubsicap/ubs-open-license at commit 3a6edd82, dictionaries/hebrew; in the lane's cache at ledgers/work/ldmprs/source-cache/ubs-sdbh-hebrew-2026-07-15/) explains its encoded tags and lists abbreviations of cited works, and gives no account of any mark a route of this dictionary holds. So every shape of this ledger begins \"unverified:\", but for those of the apostrophe and the hyphen, which are plain English spelling.",
+ "definitions": {
+  "terms": "In every test a character is one Unicode code point; every route of this dictionary holds only characters from U+0020 to U+007E, so a code point and a JavaScript string index are the same thing here. A letter is one of a to z or A to Z. A space is the character U+0020 only, and no test uses whitespace of any other kind. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the parts of it on either side of the mark, without the mark. The character directly before or after the mark is none at the start or the end of the text, and none is not a letter. A string stands between « and », which are not part of it; a stop or comma outside them belongs to the sentence. Exactly means character for character, and every string and list minds case. Begins with, ends in and contains look at characters only and need no word end; contains finds a run of characters anywhere. The container is the template's c.container and a test looks at it only where its words say so.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. Not caught above means that no earlier shape of the same mark took the occurrence. A shape's container field is not part of its test: the checker compares it afterwards.",
+  "pair_sides": "For a round bracket that has a partner: what the pair holds is the text between the opening and the closing bracket (the template's c.group). The pair's left side is the text before its opening bracket. The pair's right side is the text after its closing bracket. The opening and the closing bracket of a pair are tried against the same tests, in the same order, and no route holds a round bracket inside a round bracket.",
+  "marked_cuts_rule": "Each entry of side_by_side_cuts is one route's text, exact to the character, with the three characters space, pipe, space written directly before each mark the branch may cut. An occurrence stands at a mark of the list when the whole text is exactly an entry once all that entry's ' | ' are taken out, and in that entry a ' | ' stands directly before this occurrence: the occurrence's index in the text equals the index of that ' | ' in the entry less three for each ' | ' before it. A route's other marks, the sign that closes the last part of a series among them, are not at a mark of the list.",
+  "side_by_side_cuts": [
+   "to rush (upon) | , to come (over)",
+   "to possess | , grip | , take control",
+   "loins | , sides",
+   "to serve | , worship (a deity)",
+   "joy | , delight",
+   "congregation | , company",
+   "to make | , work",
+   "to remain | , be left",
+   "spotted | , speckled | , colorful",
+   "clothes | , garment",
+   "to pass from | , to be removed",
+   "wicked | , evil",
+   "to have regard for | , pay attention to",
+   "to proclaim | , to announce",
+   "serious | , grievous (suffering)",
+   "pain | , trouble",
+   "something | , anything",
+   "killing | , slaughter | , butchering",
+   "Ephrathah | , Ephrath",
+   "solemn assembly | , gathering",
+   "load | , fill",
+   "dispute | , quarrel | , strife | , argument",
+   "cover | , lid (of the ark of the covenant)",
+   "to stay | , dwell",
+   "to go | , to arrive",
+   "frightening | , terrifying",
+   "plaque | ? tablet | ? panel | ? block?",
+   "horn | ? trumpet?",
+   "woe | ! alas!",
+   "kneel | ! bow down!",
+   "would that ... | ! if only ...!",
+   "sorcerer | : sorceress"
+  ],
+  "gloss_shared_words": [
+   "(images of) hemorrhoids, tumors, ulcers",
+   "(what used to be done) before, in the past"
+  ],
+  "question_texts": [
+   "where?",
+   "how?",
+   "why?",
+   "for what purpose?",
+   "what?",
+   "really?",
+   "truly?",
+   "is it true?",
+   "from where?",
+   "when?",
+   "is there ...?"
+  ],
+  "or_pair_first_slots": [
+   "either X",
+   "be it X"
+  ],
+  "bracket_labels": [
+   "pl",
+   "plural:",
+   "both in the collective sense"
+  ],
+  "second_half_texts": [
+   "then God may punish me!",
+   "... the other"
+  ],
+  "stand_in_words": [
+   "one's",
+   "someone",
+   "someone's",
+   "something",
+   "someone else",
+   "someone else's",
+   "oneself",
+   "their",
+   "others",
+   "somewhere",
+   "one's own",
+   "his",
+   "his own",
+   "Y"
+  ],
+  "bracket_remarks": [
+   "that will pass away again",
+   "symbolizing semen",
+   "animals are not to be sacrificed",
+   "but not to be trusted",
+   "said of hardship",
+   "used as a symbol of battle",
+   "committed by one human to another",
+   "when they flee"
+  ],
+  "joining_words": [
+   "about",
+   "against",
+   "and",
+   "around",
+   "as",
+   "at",
+   "by",
+   "down",
+   "for",
+   "from",
+   "in",
+   "into",
+   "of",
+   "on",
+   "out",
+   "over",
+   "to",
+   "up",
+   "upon",
+   "with",
+   "without"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.between_renderings_in_one_gloss",
+   "comma.between_renderings_that_share_words",
+   "comma.after_to_be",
+   "comma.any_other"
+  ],
+  "comma_in_paren": [
+   "comma.inside_round_bracket"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.between_two_pronouns",
+   "slash.between_two_plants_under_one_head",
+   "backslash.before_a_word"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.never_closed",
+   "close_paren.never_opened",
+   "open_paren.part_of_a_word",
+   "close_paren.part_of_a_word",
+   "open_paren.doubt",
+   "close_paren.doubt",
+   "open_paren.label",
+   "close_paren.label",
+   "open_paren.restatement",
+   "close_paren.restatement",
+   "open_paren.second_half",
+   "close_paren.second_half",
+   "open_paren.remark",
+   "close_paren.remark",
+   "open_paren.first_slot_of_an_or_pair",
+   "close_paren.first_slot_of_an_or_pair",
+   "open_paren.first_in_the_text",
+   "close_paren.first_in_the_text",
+   "open_paren.stand_in_word",
+   "close_paren.stand_in_word",
+   "open_paren.after_a_joining_word",
+   "close_paren.after_a_joining_word",
+   "open_paren.any_other",
+   "close_paren.any_other"
+  ],
+  "brackets": [
+   "close_angle.inside_round_bracket",
+   "close_angle.wording_to_meaning",
+   "open_bracket.holds_no_english",
+   "close_bracket.holds_no_english"
+  ]
+ },
+ "shapes": [
+  {
+   "id": "comma.between_renderings_in_one_gloss",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in one gloss between words that could each render the Hebrew alone («joy, delight», «to stay, dwell», «serious, grievous (suffering)»); the source's own gloss holds them as one, and whether they are one reading or several is the owner's question B01.",
+   "test": "The occurrence stands at a mark of side_by_side_cuts (marked_cuts_rule, terms, first_match).",
+   "count": 33,
+   "examples": [
+    {
+     "key": "צלח"
+    },
+    {
+     "key": "שמע"
+    },
+    {
+     "key": "דחל"
+    }
+   ],
+   "read": 33
+  },
+  {
+   "id": "comma.between_renderings_that_share_words",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands inside one gloss between words that lean on each other: a bracket or the whole phrase speaks of all of them («(images of) hemorrhoids, tumors, ulcers», «(what used to be done) before, in the past»), so that a piece alone is no reading.",
+   "test": "The whole text is exactly one of the strings in gloss_shared_words (terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "שלשום"
+    },
+    {
+     "key": "טחרים"
+    },
+    {
+     "key": "תמול"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "comma.after_to_be",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands directly after the words «to be», which the word after the comma takes up too («to be, become weak» reads as to be weak or to become weak); «to be» renders nothing alone, so the text is one reading.",
+   "test": "The text before the mark is exactly «to be» (terms, first_match).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "חלה"
+    },
+    {
+     "key": "חלא"
+    },
+    {
+     "key": "כעס"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "comma.inside_round_bracket",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: is general: of its 15 commas inside a round bracket, 13 stand between the things one reading may apply to («to plow (soil, flax)», «(out of anger, frustration, disgust)»), 1 between two small words («to act (with, as)») and 1 before a further word on the same thing («(meat, after a hunting party)»); a cut would leave a bracket open on each side, so the text is one reading.",
+   "test": "The mark's container is paren (terms, first_match).",
+   "count": 15,
+   "examples": [
+    {
+     "key": "חרם"
+    },
+    {
+     "key": "ירק"
+    },
+    {
+     "key": "חרך"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "comma.any_other",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is general: of its 10 commas, 8 stand where the words after the comma lean on a head or a frame the words before it hold («mouth of well, cave, pit», «to be commanded, ordered», «to make (someone) tread, set foot») and 2 before a qualifier that is no reading («everyone, whether great or small»); each text is one reading.",
+   "test": "Not caught above (first_match): any other comma.",
+   "count": 10,
+   "examples": [
+    {
+     "key": "פה"
+    },
+    {
+     "key": "רקד"
+    },
+    {
+     "key": "אגמון"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "period.one_of_three_in_a_row",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: is one of three full stops in a row, which stand for words this gloss leaves open («at the age of ...», «here ... there ...»), inside one reading.",
+   "test": "The character directly before the mark is «.», or the character directly after the mark is «.» (terms, first_match).",
+   "count": 60,
+   "examples": [
+    {
+     "key": "פה"
+    },
+    {
+     "key": "אחרי"
+    },
+    {
+     "key": "אבי"
+    }
+   ],
+   "read": 60
+  },
+  {
+   "id": "question_mark.between_renderings_in_one_gloss",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes each word but the last in a series the source offers as guesses («plaque? tablet? panel? block?», «horn? trumpet?»); whether the series is one reading or several is the owner's question B01.",
+   "test": "The occurrence stands at a mark of side_by_side_cuts (marked_cuts_rule, terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "עשת"
+    },
+    {
+     "key": "תקוע"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "question_mark.doubt_in_round_bracket",
+   "mark": "?",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: stands alone in a round bracket after a rendering («amethyst (?)», «doorposts (?)»), read as the source's own doubt about that rendering, which stays one reading.",
+   "test": "The mark's container is paren (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "אחלמה"
+    },
+    {
+     "key": "אמה"
+    },
+    {
+     "key": "בהט"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "question_mark.closes_a_question",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a question that is itself the rendering («where?», «for what purpose?», «is it true?»), one reading.",
+   "test": "The whole text is exactly one of the strings in question_texts (terms, first_match).",
+   "count": 23,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "צדא"
+    },
+    {
+     "key": "אן"
+    }
+   ],
+   "read": 23
+  },
+  {
+   "id": "question_mark.any_other",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is general: closes a word or wording the source seems to offer with doubt, 10 of its 12 in a gloss with no other sign of that kind («chisel?», «to cheat?», «diamond?») and 2 as the last sign of a series under the owner's question B01 («block?», «trumpet?»).",
+   "test": "Not caught above (first_match): any other question mark.",
+   "count": 12,
+   "examples": [
+    {
+     "key": "עשת"
+    },
+    {
+     "key": "תקוע"
+    },
+    {
+     "key": "יהלם"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "exclamation.between_renderings_in_one_gloss",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes each cry but the last in a series («woe! alas!», «kneel! bow down!»); whether the series is one reading or several is the owner's question B01.",
+   "test": "The occurrence stands at a mark of side_by_side_cuts (marked_cuts_rule, terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "אי"
+    },
+    {
+     "key": "אברך"
+    },
+    {
+     "key": "אחלי"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "exclamation.inside_round_bracket",
+   "mark": "!",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes a cry held in a round bracket after the words it finishes («if ... (then God may punish me!)»), inside one reading.",
+   "test": "The mark's container is paren (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "או"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "exclamation.any_other",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is general: closes a cry or a wish that is itself the rendering, 9 of its 12 in a gloss with no other sign of that kind («behold!», «God forbid!», «would that ...!») and 3 as the last sign of a series under the owner's question B01 («alas!», «bow down!», «if only ...!»).",
+   "test": "Not caught above (first_match): any other exclamation mark.",
+   "count": 12,
+   "examples": [
+    {
+     "key": "שם"
+    },
+    {
+     "key": "אברך"
+    },
+    {
+     "key": "אבי"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "colon.between_renderings_in_one_gloss",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the word for a man and the word for a woman in one gloss («sorcerer: sorceress»); whether they are one reading or two is the owner's question B01.",
+   "test": "The occurrence stands at a mark of side_by_side_cuts (marked_cuts_rule, terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "כשף"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "colon.closes_label_in_round_bracket",
+   "mark": ":",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes a label held in a round bracket before the rendering it speaks of («(plural:) cavalry»), so that the text is one reading.",
+   "test": "The mark's container is paren (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "פרש"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "equals.inside_round_bracket",
+   "mark": "=",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens what a wording comes to, held in a round bracket after the wording («to catch up with (= happen)»); a cut would leave a bracket open on each side, so the text is one reading.",
+   "test": "The mark's container is paren (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "נשג"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "equals.opening_the_text",
+   "mark": "=",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands first in the gloss with no wording before it («= to move (one's) hands»), so it has only one side and the text is one reading.",
+   "test": "The text before the mark is empty (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "רכב"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "equals.between_wording_and_meaning",
+   "mark": "=",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a wording and what the wording means («\"straight way\" = safe journey», «filthy things = objects stained by menstruation»); whether the two are one reading or two is the owner's question B02.",
+   "test": "The mark's container is top and the text before the mark is not empty (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "אם"
+    },
+    {
+     "key": "אטר"
+    },
+    {
+     "key": "דוה"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_angle.inside_round_bracket",
+   "mark": ">",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens what a word comes to, held in a round bracket inside a wording («someone's heart (> allegiance) back»); it has no opening partner, so the text counts as unbalanced and stays whole under the ask's rule 3.",
+   "test": "The mark's container is paren (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אחרנית"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_angle.wording_to_meaning",
+   "mark": ">",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands in a gloss between a wording and what it means («blood > bloodshed», «\"deep of tongue\" > obscure speech»); it has no opening partner, so the text counts as unbalanced and stays whole under the ask's rule 3, whatever the owner answers to B02 about an equals sign in the same place.",
+   "test": "Not caught above (first_match): any other occurrence of this mark.",
+   "count": 192,
+   "examples": [
+    {
+     "key": "מושב"
+    },
+    {
+     "key": "נשת"
+    },
+    {
+     "key": "נתיב"
+    }
+   ],
+   "read": 192
+  },
+  {
+   "id": "quote.around_wording_before_a_sign",
+   "mark": "\"",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens or closes a word-for-word wording that a sign then explains («\"to tie\" = to keep together», «\"heavy of tongue\" > difficult language»), inside one text.",
+   "test": "The text contains «=» or contains «>» (terms, first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "אם"
+    },
+    {
+     "key": "אטר"
+    },
+    {
+     "key": "כבד"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "quote.around_the_sound",
+   "mark": "\"",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens or closes the sound of a Hebrew shout written in Latin letters, the gloss itself («\"heidad\"»), one reading.",
+   "test": "Not caught above (first_match): any other double quotation mark.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "הידד"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "apostrophe.before_final_s",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "is the apostrophe of an English possessive with its own s («one's», «someone's», «God's»), inside one word of one reading.",
+   "test": "The character directly before the mark is a letter; the character directly after the mark is «s»; and the character directly after that «s», if there is one, is not a letter (terms, first_match).",
+   "count": 241,
+   "examples": [
+    {
+     "key": "מגר"
+    },
+    {
+     "key": "פוקה"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 241
+  },
+  {
+   "id": "apostrophe.after_final_s",
+   "mark": "'",
+   "container": "any",
+   "divides": false,
+   "means": "is the apostrophe of an English possessive written after a final s, with no s of its own («Wildgoats' Rocks»), inside one reading.",
+   "test": "The character directly before the mark is «s», and the character directly after the mark is a space (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "צור"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.between_two_letters",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "joins two parts of one English compound or one name («father-in-law», «Paddan-Aram», «drink-offering»), so that the parts are one reading.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 175,
+   "examples": [
+    {
+     "key": "זבל"
+    },
+    {
+     "key": "במות"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 175
+  },
+  {
+   "id": "hyphen.first_in_round_bracket",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "opens the second part of one compound, set in a round bracket straight after its first part («plough(-point)»), inside one reading.",
+   "test": "The character directly before the mark is «(» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מחרשה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.last_in_round_bracket",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "closes the first part of one name, set in a round bracket straight before its second part («inhabitant of (Beth-)Geder»), inside one reading.",
+   "test": "The character directly after the mark is «)» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "גדרי"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "slash.between_two_pronouns",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the word for a man and the word for a woman in a wording that holds for either («bear his/her guilt»), one reading.",
+   "test": "The character directly before the mark is a letter (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אשם"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "slash.between_two_plants_under_one_head",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two plants under the one head before them («juice of purslane / mallows»), where the side after it leans on that head; the text is one reading.",
+   "test": "The character directly before the mark is a space (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חלמות"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "backslash.before_a_word",
+   "mark": "\\",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands directly before a word in the one gloss of this source that holds it, at 1 entry of 5,830 («to cause to bring \\birth»), where it may be a slip of the keyboard; the text is one reading.",
+   "test": "The text after the mark begins with «birth» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ילד"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.holds_no_english",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the source's own words for a place where it has left something untranslated («[untranslated]»), listed under one sense beside the rendering foot, and rendering nothing themselves; whether the page prints them is the owner's question B03.",
+   "test": "The text the bracket opens (the template's c.group) is exactly «untranslated» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "רגל"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_no_english",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the source's own words for a place where it has left something untranslated («[untranslated]»), listed under one sense beside the rendering foot, and rendering nothing themselves; whether the page prints them is the owner's question B03.",
+   "test": "The text the bracket closes (the template's c.group) is exactly «untranslated» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "רגל"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.never_closed",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that nothing closes in this text, whether the source's own summary writes it so («to roll up (a piece of cloth») or the store cut the gloss at a semicolon inside the bracket («yellowish (of hair»); the text stays whole under the ask's rule 3.",
+   "test": "The template's c.group is null: the opener never closes (first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "קפד"
+    },
+    {
+     "key": "צהב"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.never_opened",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that nothing opened in this text, whether the source's own summary writes it so («to lead)») or the store cut the gloss at a semicolon inside the bracket («denotes sickness)»); the text stays whole under the ask's rule 3.",
+   "test": "The template's c.group is empty and the text before the mark does not end in «(»: the closer never opened (first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "צהב"
+    },
+    {
+     "key": "בוא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.part_of_a_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that holds letters or a part of one word, to be read or left out («way(s)», «(day)light», «to (re)unite», «plough(-point)»), inside one reading.",
+   "test": "The pair's left side ends in a letter, or the pair's right side begins with a letter (pair_sides, terms, first_match).",
+   "count": 18,
+   "examples": [
+    {
+     "key": "נהרה"
+    },
+    {
+     "key": "מול"
+    },
+    {
+     "key": "אדם"
+    }
+   ],
+   "read": 18
+  },
+  {
+   "id": "close_paren.part_of_a_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that holds letters or a part of one word, to be read or left out («way(s)», «(day)light», «to (re)unite», «plough(-point)»), inside one reading.",
+   "test": "The pair's left side ends in a letter, or the pair's right side begins with a letter (pair_sides, terms, first_match).",
+   "count": 18,
+   "examples": [
+    {
+     "key": "נהרה"
+    },
+    {
+     "key": "מול"
+    },
+    {
+     "key": "אדם"
+    }
+   ],
+   "read": 18
+  },
+  {
+   "id": "open_paren.doubt",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that holds only a question mark after a rendering («marble (?)»), read as the source's own doubt about it, inside one reading.",
+   "test": "What the pair holds is exactly «?» (pair_sides, terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "אחלמה"
+    },
+    {
+     "key": "אמה"
+    },
+    {
+     "key": "בהט"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_paren.doubt",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that holds only a question mark after a rendering («marble (?)»), read as the source's own doubt about it, inside one reading.",
+   "test": "What the pair holds is exactly «?» (pair_sides, terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "אחלמה"
+    },
+    {
+     "key": "אמה"
+    },
+    {
+     "key": "בהט"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_paren.label",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that holds a label saying the rendering speaks of more than one («bitter things (pl)», «(plural:) cavalry», «bodyguard (both in the collective sense)»), which is no reading of its own.",
+   "test": "What the pair holds is exactly one of the strings in bracket_labels (pair_sides, terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "מרר"
+    },
+    {
+     "key": "פרש"
+    },
+    {
+     "key": "טבח"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "close_paren.label",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that holds a label saying the rendering speaks of more than one («bitter things (pl)», «(plural:) cavalry», «bodyguard (both in the collective sense)»), which is no reading of its own.",
+   "test": "What the pair holds is exactly one of the strings in bracket_labels (pair_sides, terms, first_match).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "מרר"
+    },
+    {
+     "key": "פרש"
+    },
+    {
+     "key": "טבח"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "open_paren.restatement",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that holds a sign and what a wording comes to («(= happen)», «(> allegiance)»), inside one reading.",
+   "test": "What the pair holds begins with «=» or begins with «>» (pair_sides, terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "נשג"
+    },
+    {
+     "key": "אחרנית"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.restatement",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that holds a sign and what a wording comes to («(= happen)», «(> allegiance)»), inside one reading.",
+   "test": "What the pair holds begins with «=» or begins with «>» (pair_sides, terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "נשג"
+    },
+    {
+     "key": "אחרנית"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.second_half",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that holds the second half of a saying whose first half stands before it («if ... (then God may punish me!)», «the one (... the other)»), inside one reading.",
+   "test": "What the pair holds is exactly one of the strings in second_half_texts (pair_sides, terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "או"
+    },
+    {
+     "key": "אחד"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.second_half",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that holds the second half of a saying whose first half stands before it («if ... (then God may punish me!)», «the one (... the other)»), inside one reading.",
+   "test": "What the pair holds is exactly one of the strings in second_half_texts (pair_sides, terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "או"
+    },
+    {
+     "key": "אחד"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.remark",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that holds a remark on the rendering before it, which is no reading of its own («bow (used as a symbol of battle)», «spring (symbolizing semen)», «to be abundant (but not to be trusted)»), inside one text.",
+   "test": "What the pair holds is exactly one of the strings in bracket_remarks (pair_sides, terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "ערף"
+    },
+    {
+     "key": "עתר"
+    },
+    {
+     "key": "חרוץ"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "close_paren.remark",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that holds a remark on the rendering before it, which is no reading of its own («bow (used as a symbol of battle)», «spring (symbolizing semen)», «to be abundant (but not to be trusted)»), inside one text.",
+   "test": "What the pair holds is exactly one of the strings in bracket_remarks (pair_sides, terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "ערף"
+    },
+    {
+     "key": "עתר"
+    },
+    {
+     "key": "חרוץ"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "open_paren.first_slot_of_an_or_pair",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that stands first in the gloss and holds the first of two stand-ins, which show how the word or between them is used («(either X) or (Y)», «(be it X) or (Y)»), inside one reading.",
+   "test": "What the pair holds is exactly one of the strings in or_pair_first_slots (pair_sides, terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "או"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_paren.first_slot_of_an_or_pair",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that stands first in the gloss and holds the first of two stand-ins, which show how the word or between them is used («(either X) or (Y)», «(be it X) or (Y)»), inside one reading.",
+   "test": "What the pair holds is exactly one of the strings in or_pair_first_slots (pair_sides, terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "או"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.first_in_the_text",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that stands first in the gloss and holds words that lead into the rendering and may be left out («(female) friend», «(God as a) stronghold», «(one's) steps», «(to act like a) fool»), inside one reading.",
+   "test": "The pair's left side is empty (pair_sides, terms, first_match).",
+   "count": 79,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "רעיה"
+    },
+    {
+     "key": "חשרה"
+    }
+   ],
+   "read": 79
+  },
+  {
+   "id": "close_paren.first_in_the_text",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that stands first in the gloss and holds words that lead into the rendering and may be left out («(female) friend», «(God as a) stronghold», «(one's) steps», «(to act like a) fool»), inside one reading.",
+   "test": "The pair's left side is empty (pair_sides, terms, first_match).",
+   "count": 79,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "רעיה"
+    },
+    {
+     "key": "חשרה"
+    }
+   ],
+   "read": 79
+  },
+  {
+   "id": "open_paren.stand_in_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket after the start of the gloss that holds a stand-in word for whoever or whatever the context names («to beat (one's) breast», «to make (someone) ride», «to change (something)»), inside one reading.",
+   "test": "What the pair holds is exactly one of the strings in stand_in_words (pair_sides, terms, first_match).",
+   "count": 226,
+   "examples": [
+    {
+     "key": "מגר"
+    },
+    {
+     "key": "נער"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 226
+  },
+  {
+   "id": "close_paren.stand_in_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket after the start of the gloss that holds a stand-in word for whoever or whatever the context names («to beat (one's) breast», «to make (someone) ride», «to change (something)»), inside one reading.",
+   "test": "What the pair holds is exactly one of the strings in stand_in_words (pair_sides, terms, first_match).",
+   "count": 226,
+   "examples": [
+    {
+     "key": "מגר"
+    },
+    {
+     "key": "נער"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 226
+  },
+  {
+   "id": "open_paren.after_a_joining_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket after the start of the gloss that holds a small word tying it to the rendering, alone or leading further words («to trample (down)», «to flow (with tears)», «bundle (of stalks of grain)», «to turn (to someone)»), which says of what, with what, to whom or how the rendering holds, inside one reading.",
+   "test": "The run of letters that what the pair holds begins with is exactly one of the strings in joining_words; if it does not begin with a letter this test does not hold (pair_sides, terms, first_match).",
+   "count": 247,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "יד"
+    },
+    {
+     "key": "שבח"
+    }
+   ],
+   "read": 247
+  },
+  {
+   "id": "close_paren.after_a_joining_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket after the start of the gloss that holds a small word tying it to the rendering, alone or leading further words («to trample (down)», «to flow (with tears)», «bundle (of stalks of grain)», «to turn (to someone)»), which says of what, with what, to whom or how the rendering holds, inside one reading.",
+   "test": "The run of letters that what the pair holds begins with is exactly one of the strings in joining_words; if it does not begin with a letter this test does not hold (pair_sides, terms, first_match).",
+   "count": 247,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "יד"
+    },
+    {
+     "key": "שבח"
+    }
+   ],
+   "read": 247
+  },
+  {
+   "id": "open_paren.any_other",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a round bracket that is general: of its 194 pairs, 54 hold a thing the rendering is done to or spoken of, named with a, an or the first («to pitch (a tent)», «to weave (a thread) into»), 26 a word for an owner first («to open (one's mouth) wide», «to confess (God's) name») and 114 a bare word or words the rendering may take («clear (sky)», «a tenth (part)», «to (cause to) dry up»), inside one reading.",
+   "test": "Not caught above (first_match): any other opening round bracket.",
+   "count": 194,
+   "examples": [
+    {
+     "key": "עבות"
+    },
+    {
+     "key": "שלך"
+    },
+    {
+     "key": "רשם"
+    }
+   ],
+   "read": 194
+  },
+  {
+   "id": "close_paren.any_other",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a round bracket that is general: of its 194 pairs, 54 hold a thing the rendering is done to or spoken of, named with a, an or the first («to pitch (a tent)», «to weave (a thread) into»), 26 a word for an owner first («to open (one's mouth) wide», «to confess (God's) name») and 114 a bare word or words the rendering may take («clear (sky)», «a tenth (part)», «to (cause to) dry up»), inside one reading.",
+   "test": "Not caught above (first_match): any other closing round bracket.",
+   "count": 194,
+   "examples": [
+    {
+     "key": "עבות"
+    },
+    {
+     "key": "שלך"
+    },
+    {
+     "key": "רשם"
+    }
+   ],
+   "read": 194
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source's own file gives every entry an id, which the store keeps only on its record and the route store dropped; two entries under one letters key stand there as separate texts with nothing to tell them apart (example key אדר: its route texts come from the source's entries H142 and H145). keys_with_more_than_one_route_text counts renderings of one sense, senses and homonyms together. By the audit, of the 3,004 such keys (axis: keys; 3,659 letters keys in all), 1,834 are keys under which the store's records hold one entry of the source and 1,170 keys under which they hold more than one.",
+  "keys_with_more_than_one_route_text": 3004
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Inside one row the source sometimes writes two or more words side by side, each of which could render the Hebrew alone, like: joy, delight. Should each be its own reading? Each row is one item of the source's own list for its word, so words side by side in one row may mean nearly the same thing, and no test can tell when they do not; these rows stand in a written list. The same question covers words parted by a question mark, an exclamation mark or a colon (horn? trumpet?). Rows whose words lean on each other (to be, become weak; mouth of well, cave, pit) are not in the list and stay as one reading under either answer.",
+   "shapes": [
+    "comma.between_renderings_in_one_gloss",
+    "question_mark.between_renderings_in_one_gloss",
+    "exclamation.between_renderings_in_one_gloss",
+    "colon.between_renderings_in_one_gloss"
+   ],
+   "occurrences": 41,
+   "keys": [
+    "צלח",
+    "מתנים",
+    "עבד",
+    "פלח",
+    "שעשעים",
+    "עדה",
+    "עשת",
+    "פעל",
+    "שאר",
+    "טלא",
+    "מדו",
+    "אי",
+    "סור",
+    "רשע",
+    "שעה",
+    "שמע",
+    "תקוע",
+    "אנוש",
+    "עצבת",
+    "מאומה",
+    "טבח",
+    "אברך",
+    "אפרת",
+    "עצרה",
+    "טרח",
+    "אחלי",
+    "מריבה",
+    "כפרת",
+    "מד",
+    "שכן",
+    "בוא",
+    "דחל",
+    "כשף"
+   ],
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints each part as its own reading, without the sign between them: joy, and delight. A bracket stays with the part it touches, even where it may speak of every part: serious, and grievous (suffering). A question mark or an exclamation mark at a cut is not printed, so only the last part keeps its sign: horn? trumpet? prints horn, and trumpet?"
+    },
+    {
+     "id": "whole",
+     "means": "The page prints the row as one reading, as the source writes it: joy, delight."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "The source sometimes writes a wording, an equals sign, and what the wording means, like: \"straight way\" = safe journey. Should the wording and what it means be two readings? The source writes the same thing with the sign > too (blood > bloodshed), but that sign counts as a bracket with no partner, and a text with such a bracket is never cut, so those rows print as one reading under either answer. An equals sign inside a bracket (to catch up with (= happen)) or at the very start of a row also stays as it is under either answer.",
+   "shapes": [
+    "equals.between_wording_and_meaning"
+   ],
+   "occurrences": 7,
+   "keys": [
+    "אם",
+    "קשר",
+    "אטר",
+    "ישר",
+    "דוה"
+   ],
+   "options": [
+    {
+     "id": "divides",
+     "means": "The page prints the wording as one reading and what it means as another, without the equals sign: \"straight way\", and safe journey. Any quotation marks stay on the wording."
+    },
+    {
+     "id": "whole",
+     "means": "The page prints the wording and what it means as one reading, as the source writes them."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B03",
+   "question": "One row under the letters רגל holds no rendering, only the words [untranslated], with their square brackets; the source lists them beside the word foot under one sense. Today the page prints that as a reading. Should it? It prints as it does today until you rule. To leave it out the page needs one step of its own.",
+   "shapes": [
+    "open_bracket.holds_no_english",
+    "close_bracket.holds_no_english"
+   ],
+   "occurrences": 2,
+   "keys": [
+    "רגל"
+   ],
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints [untranslated] as one reading, as written, as it does today."
+    },
+    {
+     "id": "no_pill",
+     "means": "The page prints no pill for this row, once it has the one step of its own that this answer needs; until then it prints as it does today. The row stays in the store as it is."
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the store the semicolons of the source's summary, at each of which the store has already made a new route, so that no route holds one (2 routes come from a cut inside a round bracket) and every route that holds no mark, because a shape stands only at a mark, so the rows that read NO DATA YET (2 routes; axis: routes) stand as they are; it leaves to the ask's rule 3 the 193 routes that hold the sign > (axis: routes), which stay whole; it leaves to the page the step that the answer no_pill of B03 asks for, since a declaration can cut a row and has no field that leaves a whole row out; and it strikes nothing, naming in store-questions-v1.jsonl the rows and items it asks the store about."
+}

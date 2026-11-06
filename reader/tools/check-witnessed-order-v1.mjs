@@ -37,7 +37,8 @@ const COLS = [["witnessed_same_place", "same-place", "witnessed here"], ["witnes
 const zone = JSON.parse(gunzipSync(readFileSync(`data/zones/${ZONE}.bin`)).toString("utf8"));
 const rec = zone.emitted_from && zone.emitted_from.witnessed_order;
 if (!rec) { console.log(`SKIPPED — ${ZONE} carries no witnessed order; run tools/bake-witnessed-order-v1.mjs`); process.exit(3); }
-const { index, packSplit, readingSplit } = openRouteStore("data/route-store");
+const store = openRouteStore("data/route-store");
+const { index } = store;
 // the drops typed on a column's receipt (regloss-zone, source-strike-rule-v1)
 const dropsOf = (o) => (Array.isArray(rec.columns[o].struck_credit_drops) ? rec.columns[o].struck_credit_drops : []);
 
@@ -60,14 +61,15 @@ check("W1  three columns with their receipt, every reading with its own credit",
 // W2 — against the lane's files, when they are on disk
 const DIR = arg("dir", "build/witnessed-v2.7");
 if (existsSync(`${DIR}/witnessed-same-place-v2.7-${ZONE}.json`)) {
-  const first = (t) => { for (const s of packSplit(t)) { const r = readingSplit(s); if (!r.damaged && r.readings.length) return r.readings[0]; } return null; };
+  const first = (k, t, M) => { const ids = M && Array.isArray(M.by) ? M.by : M && M.m ? store.mIdsOfLabel(M.m) : null; const rs = store.readingsOfText(k, t, ids); return rs.length ? rs[0] : null; };
   const w2 = [];
   for (const [o, stem] of COLS) {
     const shipped = JSON.parse(readFileSync(`${DIR}/witnessed-${stem}-v2.7-${ZONE}.json`, "utf8")).entries;
+    const mEntries = JSON.parse(readFileSync(`${DIR}/witnessed-${stem}-m-v2.7-${ZONE}.json`, "utf8")).m_entries || {};
     const col = zone.gloss_orders[o], dropped = new Set(dropsOf(o).map((d) => d.key));
     for (const [k, t] of Object.entries(shipped)) {
       if (dropped.has(k)) continue;   // typed on the receipt: the lane's row stands on a struck source
-      const want = first(t);
+      const want = first(k, t, mEntries[k]);
       if (want === null ? k in col : col[k] !== want) w2.push(`${o}/${k}: "${col[k]}" for "${t}"`);
     }
   }
