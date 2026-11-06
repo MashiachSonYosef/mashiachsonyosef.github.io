@@ -9,12 +9,14 @@
 // them: the Hebrew on the page does not move. Not a vowel, not a mark. The
 // Masoretic text is the licensed text.
 //
-//   M1  the toggle is on the rail with three positions, "keep" in force
-//   M2  KEEP is today: the card's head shows the pointed word, no record is
-//       withheld, and the readings are what they were
-//   M3  ONLY withholds: the pool shrinks, the card says how many records and
-//       why, and NO surviving reading is carried only by a row the lattice
-//       graded as a mismatch for this surface
+//   M1  the toggle is on the rail with three positions, "only this pointing"
+//       in force: the pointing stands by default (the owner, 2026-11-06,
+//       asked whether it becomes the default: "1 seems like it")
+//   M2  ONLY, the default, withholds: the card says how many records and why
+//       on one line under the readings, and its head says nothing (the
+//       default is the page's own statement, not a setting the reader made)
+//   M3  KEEP is the pointing as printed: the head shows the pointed word, no
+//       record is withheld, and the default's pool is never larger
 //   M4  ONLY moves the line under the word to the sidecar's own row-level
 //       leader (o.l), and the card's first pill says the same — one answer,
 //       two places
@@ -23,7 +25,8 @@
 //       "reads first" has fallen back to oldest
 //   M6  and across all three, the Hebrew of the section never changed by a
 //       byte, and neither did the number of words on it
-//   M7  KEEP again restores exactly the first pool
+//   M7  ONLY again, pressed by the reader, restores exactly the first pool,
+//       and the head now names the setting
 //   M8  NO CARD CARRIES A POINTING SWITCH OF ITS OWN (the owner,
 //       2026-10-03: "lets just take that toggle off individual cards for now
 //       id put it in the collapsed"): the card opens with no checkbox in it,
@@ -111,8 +114,8 @@ const rail = await p.evaluate(() => {
   const btns = [...row.querySelectorAll(".dfp")];
   return { labs: btns.map((x) => x.textContent.trim()), on: btns.filter((x) => x.classList.contains("on")).map((x) => x.textContent.trim()), dead: row.classList.contains("dead") };
 });
-check("M1  the pointing toggle is on the rail with three positions, keep in force",
-  rail && rail.labs.length === 3 && rail.on.length === 1 && rail.on[0] === "keep" && !rail.dead, rail ? `${rail.labs.join(" · ")} · on: ${rail.on.join(",")}` : "no row");
+check("M1  the pointing toggle is on the rail with three positions, \"only this pointing\" in force",
+  rail && rail.labs.length === 3 && rail.on.length === 1 && rail.on[0] === "only this pointing" && !rail.dead, rail ? `${rail.labs.join(" · ")} · on: ${rail.on.join(",")}` : "no row");
 
 // a word whose surface the sidecar graded with rows to withhold, so the
 // filter can be seen doing something
@@ -133,23 +136,24 @@ check("  a word with a reading, a mismatch card and a lenient leader stands on t
 const heBefore = await hebrewOfSection();
 await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i]; (w.querySelector(".w span") || w.querySelector(".w")).click(); }, target ? target.i : 0);
 await p.waitForTimeout(700);
-const keep = await cardNow();
-
-// M2
-check("M2  keep is today: pointed head, nothing withheld, readings present",
-  keep && keep.pills.length > 0 && keep.withheld === 0 && keep.headMode === "" && keep.head === keep.surface,
-  keep ? `${keep.pills.length} readings · head "${keep.head}"` : "no card");
-
-// M3
-const pressedOnly = await press("only this pointing");
-check("  \"only this pointing\" is live and can be pressed", pressedOnly);
-await p.waitForTimeout(900);
+// the card as it opens, under the default
 const only = await cardNow();
 const gr = side.grades[target ? target.s : ""];
-check("M3  only withholds, and the card says how many and why",
-  only && only.withheld > 0 && only.rows > only.withheld && /withheld/u.test(only.note) && /otherwise/u.test(only.note) && /only readings of this pointing/u.test(only.headLine),
-  only ? `${only.withheld} of ${only.rows} withheld · ${only.pills.length} readings (was ${keep ? keep.pills.length : "?"}) · "${only.note}"` : "no card");
-check("    and the pool is smaller or equal, never larger", only && keep && only.pills.length <= keep.pills.length, `${only ? only.pills.length : "?"} ≤ ${keep ? keep.pills.length : "?"}`);
+
+// M2
+check("M2  only, the default, withholds, and the card says how many and why, with nothing in its head",
+  only && only.withheld > 0 && only.rows > only.withheld && /withheld/u.test(only.note) && /otherwise/u.test(only.note) && only.headLine === "",
+  only ? `${only.withheld} of ${only.rows} withheld · ${only.pills.length} readings · "${only.note}"` : "no card");
+
+// M3
+const pressedKeep = await press("keep");
+check("  \"keep\" can be pressed", pressedKeep);
+await p.waitForTimeout(900);
+const keep = await cardNow();
+check("M3  keep is the pointing as printed: pointed head, nothing withheld, readings present",
+  keep && keep.pills.length > 0 && keep.withheld === 0 && keep.headMode === "" && keep.head === keep.surface,
+  keep ? `${keep.pills.length} readings · head "${keep.head}"` : "no card");
+check("    and the default's pool is smaller or equal, never larger", only && keep && only.pills.length <= keep.pills.length, `${only ? only.pills.length : "?"} ≤ ${keep ? keep.pills.length : "?"}`);
 // M4
 check("M4  the line under the word is the sidecar's lenient leader, and the first pill says the same",
   only && gr && gr.o.l && only.line.toLowerCase().startsWith(String(gr.o.l[0]).toLowerCase().slice(0, 12)) && only.pills[0] && only.pills[0].toLowerCase() === String(gr.o.l[0]).toLowerCase(),
@@ -173,10 +177,12 @@ check("M6  the Hebrew of the section never changed by a byte across the three po
   heAfter ? `${heAfter.words} words, ${heAfter.text.length} characters, identical` : "no section");
 
 // M7
-await press("keep");
+const pressedOnly = await press("only this pointing");
+check("  \"only this pointing\" is live and can be pressed", pressedOnly);
 await p.waitForTimeout(700);
 const back = await cardNow();
-check("M7  keep again restores exactly the first pool", back && keep && JSON.stringify(back.pills) === JSON.stringify(keep.pills) && back.withheld === 0 && back.headMode === "");
+check("M7  only again, pressed, restores exactly the first pool and names the setting in the head", back && only && JSON.stringify(back.pills) === JSON.stringify(only.pills) && back.withheld === only.withheld && back.headMode === "" && /only readings of this pointing/u.test(back.headLine),
+  back ? `head "${back.headLine}"` : "no card");
 
 // M8 — no card carries a pointing switch of its own; the setting is the book's
 await press("keep");

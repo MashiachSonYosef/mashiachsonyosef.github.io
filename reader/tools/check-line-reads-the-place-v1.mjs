@@ -22,7 +22,8 @@
 //       first pill
 //   P4  a word whose reading here no row of the store prints still opens on
 //       it, as TAHOT's own row (the page stands it up from the piece gloss)
-//   P5  TAHOT switched off: no line reads the place any more where oldest
+//   P5  TAHOT switched off (and the pointing kept, so the baked line is the
+//       line): no line reads the place any more where oldest
 //       first reads otherwise, and every such line is the baked one
 //   P6  back at "oldest first", every such line is the baked one again
 //
@@ -194,7 +195,11 @@ const ready = async (p) => {
 // ---- P5 · TAHOT switched off ---------------------------------------------
 {
   const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
-  await ctx.addInitScript(() => { try { localStorage.clear(); localStorage.setItem("fh.sources.off", JSON.stringify(["M4"])); } catch { /* fresh reader */ } });
+  // the baked line is the line under "keep": since the pointing stands by
+  // default (the owner, 2026-11-06) a graded word reads the gate's own
+  // leader instead, which check-masorah-toggle-v1 M4 holds; P5 and P6 are
+  // about the place and the bake, so they ask under "keep"
+  await ctx.addInitScript(() => { try { localStorage.clear(); localStorage.setItem("fh.sources.off", JSON.stringify(["M4"])); localStorage.setItem("fh.pointing-stands-2026-11-06", "1"); localStorage.setItem("fh.masorah", "keep"); } catch { /* fresh reader */ } });
   const p = await ctx.newPage();
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await ready(p);
@@ -211,7 +216,7 @@ const ready = async (p) => {
 // ---- P6 · back at oldest first ------------------------------------------
 {
   const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
-  await ctx.addInitScript(() => { try { localStorage.clear(); } catch { /* fresh reader */ } });
+  await ctx.addInitScript(() => { try { localStorage.clear(); localStorage.setItem("fh.pointing-stands-2026-11-06", "1"); localStorage.setItem("fh.masorah", "keep"); } catch { /* fresh reader */ } });
   const p = await ctx.newPage();
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await ready(p);

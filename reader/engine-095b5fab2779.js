@@ -244,8 +244,12 @@
   //            pool is built; a source whose headword carries no vowels is
   //            silent, not contradicting, and stays; an ungraded row stays,
   //            because unknown is not a mismatch. The card says how many it
-  //            withheld. Measured over the 39 books: moves the printed line at
-  //            13.2% of graded words, bares 2.0%.
+  //            withheld. The reading at this place still leads (placeLine):
+  //            it is this pointing's own reading, at this very word. A
+  //            one-letter piece at a word's head or end is graded as a prefix
+  //            or a suffix (piece-class-rule-v1, in poolFor). Measured
+  //            2026-11-06 over the 39 books: the line moves only where no
+  //            source reads the word at its place (1,062 words), at 322.
   //   letters  the pointing is lifted, inside the card only. The head shows
   //            the bare consonants with the pointed form faint beside them;
   //            every reading of the letters is offered oldest first, the
@@ -258,9 +262,12 @@
   // English line under the word, and nothing else — the owner's rule, in his
   // words: "no masoretic markings can be removed from the book page".
   //
-  // The DEFAULT is the owner's ruling and is not made here: it ships at
-  // "keep" because that is the one position that changes no English on the
-  // page. The corpus lane ships its own three-state contract for this switch
+  // THE DEFAULT IS "only" (the owner, 2026-11-06, asked whether "only this
+  // pointing" becomes the default now that the pointing stands: "1 seems like
+  // it"; of bara at Genesis 1:1, a few days before: "therefore should stand,
+  // meaning bara cant be cut down"). It shipped at "keep" until then, the
+  // one position that changed no English on the page. A work with no lattice
+  // opens at "keep", and a position the reader chose is kept. The corpus lane ships its own three-state contract for this switch
   // (pointing store v1); its ON-SORT is keep + masoretic-first, its
   // ON-FILTER is only, its OFF is letters.
   // THE SOURCE SWITCHES · source-switch-rule-v1-a-reading-remembers-who-carried-it
@@ -313,7 +320,49 @@
   window.__sourcesOff = [...sourcesOff];
   const MASORAH_KEY = "fh.masorah";
   const MASORAH_POS = ["keep", "only", "letters"];
-  let masorah = (() => { try { const v = localStorage.getItem(MASORAH_KEY); return MASORAH_POS.includes(v) ? v : "keep"; } catch { return "keep"; } })();
+  // THE RULING FORGETS AN OLD "keep" ONCE (2026-11-06, as the parked pills
+  // were forgotten once on 2026-10-24): a "keep" a device remembers was
+  // pressed while keep was the default, so on the first visit after the
+  // ruling it is forgotten and the default stands. Any other choice is kept.
+  const POINTING_STANDS_KEY = "fh.pointing-stands-2026-11-06";
+  let masorahChosen = (() => {
+    try {
+      const v = localStorage.getItem(MASORAH_KEY);
+      if (!localStorage.getItem(POINTING_STANDS_KEY)) { localStorage.setItem(POINTING_STANDS_KEY, "1"); if (v === "keep") { localStorage.removeItem(MASORAH_KEY); return null; } }
+      return MASORAH_POS.includes(v) ? v : null;
+    } catch { return null; }
+  })();
+  let masorah = masorahChosen || "only";
+  // THE DEFAULT GATE YIELDS TO AN ORDER THE READER CHOSE (2026-11-06). The
+  // pointing's default ("only", the owner's ruling) stands under the default
+  // orders, at this place and oldest first, and wherever the work carries a
+  // lattice. A licence preference, a lookup by headword, or an order whose
+  // line is a column baked without the gate would print, under the gate, a
+  // reading the gate withholds on the card: Amos 1:1's line read "a Danite"
+  // under public domain first while the card withheld that name, which the
+  // pointing does not make (check-card-opens-on-the-line-v1 C1, C2). So until
+  // the reader presses a pointing position themselves, choosing one of those
+  // sets the pointing at "keep", and the rail says so; going back to the
+  // default orders brings the default back. A pointing the reader pressed is
+  // never moved.
+  const lineBakedWithoutGate = () => licencePref !== "any" || lookup === "headword" || !["place", "oldest"].includes(defOrder);
+  const settleDefaultPointing = () => {
+    if (masorahChosen) return false;
+    const lattice = !!(zone && zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice);
+    const want = !lattice || lineBakedWithoutGate() ? "keep" : "only";
+    if (want === masorah) return false;
+    masorah = want; window.__masorah = masorah;
+    return true;
+  };
+  // after the gate moved by itself: its rail row, the sidecar it needs, and a
+  // card standing open, rebuilt under it (a redraw re-sorts; it never refilters)
+  const gateMoved = () => {
+    const t = TOGGLES.find((x) => x.id === "masorah");
+    const lab = t && (t.positions.find((q) => q.id === masorah) || {}).lab;
+    for (const x of document.querySelectorAll('.rail .row[data-toggle="masorah"] .dfp')) { const on = x.textContent === lab; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); }
+    const reopen = () => { repaintGlossOrder(); if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } };
+    if (masorah === "only" && !latticeStore) latticeReady().then(reopen); else reopen();
+  };
   window.__masorah = masorah;
   const DEF_POS = [
     { id: "corpus", lab: "corpus", live: true,
@@ -406,6 +455,35 @@
     return V.includes(vowelForm(surface)) ? "m" : "x";
   };
   window.__gradeRow = gradeRow;
+  // THE KIND A ONE-LETTER HEADWORD POINTS (piece-class-rule-v1), read from the
+  // letter's own vowels after vowelForm: "prefix", "suffix", "either", or null
+  // when the vowels say nothing (no vowel, or another letter in it).
+  //   vav  with holam, the suffix "his, him"; with shewa, a hataf, hiriq,
+  //        tsere, segol, patah or qamats, the conjunction; with dagesh alone
+  //        (shureq), either the conjunction or a verb's "they"
+  //   he   with mappiq, the suffix "her, its"; with patah, hataf patah,
+  //        segol or hataf segol, the article or the question; with qamats,
+  //        either the article or the suffix
+  const marksOf = (v, letter) => (v.replace(/[\u05B0-\u05BC\u05C1\u05C2]/gu, "") === letter ? v.replace(/[^\u05B0-\u05BC\u05C1\u05C2]/gu, "") : null);
+  const PIECE_CLASS = Object.freeze({
+    "\u05D5": (v) => {
+      const m = marksOf(v, "\u05D5");
+      if (m === null) return null;
+      if (/[\u05B9\u05BA]/u.test(m)) return "suffix";
+      if (/[\u05B0-\u05B8]/u.test(m)) return "prefix";
+      if (/\u05BC/u.test(m)) return "either";
+      return null;
+    },
+    "\u05D4": (v) => {
+      const m = marksOf(v, "\u05D4");
+      if (m === null) return null;
+      if (/\u05BC/u.test(m)) return "suffix";
+      if (/[\u05B1\u05B2\u05B6\u05B7]/u.test(m)) return "prefix";
+      if (/\u05B8/u.test(m)) return "either";
+      return null;
+    },
+  });
+  window.__pieceClass = PIECE_CLASS;
   // the licence class of a posture key, as the page reads it from the key
   // itself (0 public domain and cc0 · 1 CC BY · 2 CC BY-SA · 3 CC BY-NC ·
   // 4 everything else) — a SORT key only; nothing is ever dropped by it
@@ -777,7 +855,7 @@
       set: (id) => {
         if (!MASORAH_POS.includes(id)) return;
         if (id === "only" && !(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice)) return;
-        masorah = id; window.__masorah = id;
+        masorah = id; window.__masorah = id; masorahChosen = id;
         try { localStorage.setItem(MASORAH_KEY, id); } catch { /* the choice still stands on this page */ }
         // lifting the Masorah leaves no grade to sort by: a lattice order in
         // "reads first" falls back to oldest, said on the rail by its own word
@@ -829,7 +907,7 @@
       live: () => !!(zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.headword),
       waits: "Moses’s headword ledger, projected over this book (tools/project-toggle-headword-v1.mjs)",
       get: () => lookup,
-      set: (id) => { lookup = id; try { localStorage.setItem(LOOKUP_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
+      set: (id) => { lookup = id; try { localStorage.setItem(LOOKUP_KEY, id); } catch { /* the choice still stands on this page */ } if (settleDefaultPointing()) { gateMoved(); return; } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
       now: () => (lookup === "headword" ? "the headword" : "the form") },
     // SOURCE SUGGESTED — see the note above SUGGESTED_KEY. A source's own
     // reading of the whole word at this place, credited and licensed as the
@@ -875,7 +953,7 @@
       // the line moves with the card (licence-columns-rule-v1): the switch
       // repaints every line under the class's baked column before the open
       // card re-sorts, so the two never say two readings for one word
-      set: (id) => { licencePref = id; try { localStorage.setItem(LIC_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
+      set: (id) => { licencePref = id; try { localStorage.setItem(LIC_KEY, id); } catch { /* the choice still stands on this page */ } if (settleDefaultPointing()) { gateMoved(); return; } repaintGlossOrder(); if (redrawReadings) redrawReadings(); },
       now: () => ({ any: "any license", pd: "public domain first", by: "CC BY first", "by-sa": "CC BY-SA first" })[licencePref]
         + (licencePref !== "any" && !(zone && zone.gloss_orders && zone.gloss_orders[LICENCE_COLS[licencePref]]) ? " · not baked on this book: the line reads the oldest" : "") },
     // The lattice flags a card as a transliteration under the corpus lane's
@@ -1224,6 +1302,8 @@
       // 2026-10-03); a position the reader chose is kept
       const placeLive = DEF_POS.some((p) => p.id === "place" && p.live);
       defOrder = DEF_POS.some((p) => p.id === held && p.live) ? held : placeLive ? "place" : "oldest";
+      // the pointing's default, once the order and the lattice are known
+      settleDefaultPointing();
       const pos = DEF_POS.find((p) => p.id === defOrder);
       // a remembered setting that reads the lattice — a lattice order, the
       // masorah switch, names as sound — fetches the sidecar now, and the
@@ -3966,8 +4046,11 @@
       const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
       // a row that carries its source's own headwords is graded here, by
       // them, against the open word (pointing-grade-rule-v1); a row that does
-      // not falls to the lattice card's grade, as before
-      const own = openPointed && surface === openKey;
+      // not falls to the lattice card's grade, as before. A word with no
+      // vowels of its own (a title from the catalog) gives the gate nothing to
+      // gate on: graded against bare letters, every pointed row would read as
+      // pointed otherwise, and the door's card lost every dated source
+      const own = openPointed && surface === openKey && isPointed(openPointed);
       if (lat || own) {
         const fpIdx = lat ? new Map(lat.f.map((fp, i) => [fp, i])) : null;
         routes = all.filter((row) => {
@@ -3979,6 +4062,37 @@
           return i === undefined || gr.g[i] !== "x";
         });
         withheld = all.length - routes.length;
+      }
+    }
+    // THE POINTING STANDS FOR A PIECE TOO (the owner, 2026-11-06) ·
+    // piece-class-rule-v1. A one-letter piece at the head of a word is a
+    // prefix and at its end a suffix, and with one letter they are different
+    // words: the conjunction and the suffix "him" are both a vav. 2 Kings
+    // 2:1:10's vav card opened on Strong's entries filed under the bare letter
+    // and on MACULA's "him". Under "only", a row whose source's own pointed
+    // headwords make that letter only the other kind is withheld, counted
+    // with the pointing's count; a row pointed as this kind leads (sortPool's
+    // pk); a headword with no vowels is silent, not contradicting, and
+    // follows. The classes are the letter's own vowels: PIECE_CLASS.
+    let pieceKind = null;
+    {
+      const pp = opts.piecePlace;
+      const one = lettersIn(surface);
+      const cls = pointingNow() === "only" && pp && Number.isInteger(pp.t) && one.length === 1 ? PIECE_CLASS[one] : null;
+      const at = cls ? (pp.a === 0 && pp.b < pp.t - 1 ? "prefix" : pp.b === pp.t - 1 && pp.a > 0 ? "suffix" : null) : null;
+      if (at) {
+        const kindOf = (row) => {
+          if (!rowCarriesHeadwords(row)) return "silent";
+          const ks = row[6].filter(isPointed).map((h) => cls(vowelForm(h)));
+          if (!ks.length || ks.some((k) => k === null)) return "silent";
+          if (ks.includes(at)) return "this";
+          if (ks.includes("either")) return "silent";
+          return "other";
+        };
+        pieceKind = new Map(routes.map((row) => [row, kindOf(row)]));
+        const kept = routes.filter((row) => pieceKind.get(row) !== "other");
+        withheld += routes.length - kept.length;
+        routes = kept;
       }
     }
     // THE SOURCE SWITCHES, at the same grain and before the same pool: a
@@ -4003,7 +4117,7 @@
     // switch above this one, not a rule inside it.
     // overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores
     if (extra.length) {
-      const pointingOnly = pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey;
+      const pointingOnly = pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey && isPointed(openPointed);
       const kept = pointingOnly ? extra.filter((row) => gradeRow(row, openPointed) !== "x") : extra;
       withheld += extra.length - kept.length;
       extra = kept;
@@ -4115,6 +4229,18 @@
       // marked on the reading itself, so every re-sort of this pool (the row
       // is redrawn from a fresh copy) still puts it first
       placeG.placeFirst = true;
+    }
+    // a reading of the piece's own kind stands on its rows of that kind: their
+    // oldest year and best rank, not a silent row's that carries the same
+    // words (Strong's entries filed under the bare letter made "neither"
+    // lead the conjunction's card on its 1890 year)
+    if (pieceKind) for (const g of groups.values()) {
+      const own = g.records.filter((row) => pieceKind.get(row) === "this");
+      g.pk = own.length ? 0 : 1;
+      if (own.length) {
+        g.pky = Math.min(...own.map((row) => { const y = Number.parseInt(row[4], 10); return Number.isInteger(y) ? y : Infinity; }));
+        g.pkl = Math.min(...own.map((row) => Number(row[0])));
+      }
     }
     const pool = sortPool([...groups.values()], surface);
     pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.rows = asked;
@@ -4238,7 +4364,11 @@
     // the source signs, after plain readings where the reader asked so (an
     // order, never a filter: every reading stays on the card as printed)
     const signLast = (a, b) => (signsPref !== "below" ? 0 : (hasSourceSign(a.text) ? 1 : 0) - (hasSourceSign(b.text) ? 1 : 0));
-    return list.sort((a, b) => placeLead(a, b) || pieceLast(a, b) || licPref(a, b) || signLast(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
+    // a one-letter piece's own kind first, under the pointing (piece-class-rule-v1)
+    const cmpN = (x, y) => (x === y ? 0 : x < y ? -1 : 1);
+    const kindLead = (a, b) => cmpN(a.pk ?? 1, b.pk ?? 1)
+      || (a.pk === 0 && b.pk === 0 ? cmpN(a.pky ?? Infinity, b.pky ?? Infinity) || cmpN(a.pkl ?? Infinity, b.pkl ?? Infinity) : 0);
+    return list.sort((a, b) => placeLead(a, b) || pieceLast(a, b) || kindLead(a, b) || licPref(a, b) || signLast(a, b) || namePref(a, b) || nameLead(a, b) || primary(a, b) || oldestFirst(a, b));
   };
 
   /**
@@ -5066,7 +5196,12 @@
     // letters says why. A toggle that changes what a card offers without the
     // card saying so is the page deciding quietly.
     const cardPos = pointingNow();
-    if (cardPos !== "keep" && !word.mark) {
+    // THE DEFAULT SAYS NOTHING IN THE HEAD (2026-11-06): the pointing at its
+    // default is the page's own statement, not a setting the reader made, and
+    // a head line on every card cost the readings band its third row (check-
+    // reading-rows-v1 R1, R3). What it withheld is still said, on one line
+    // under the readings; a pointing the reader pressed is named here as before.
+    if (cardPos !== "keep" && !word.mark && (masorahChosen || cardPos === "letters")) {
       const mLine = document.createElement("p"); mLine.className = "kq-role"; mLine.dataset.masorah = cardPos;
       mLine.textContent = cardPos === "letters"
         ? "the letters only — the pointing stands on the page and is lifted here; every reading of these letters, and the ones whose source points this word otherwise lead"
@@ -5423,7 +5558,9 @@
       const a = cover.slice(0, i).reduce((t, x) => t + lettersIn(x.surface).length, 0);
       const L = lettersIn(surface).length;
       const role = String((region && region.role) || "").toLowerCase();
-      return L ? { ref: openSite.ref, n, a, b: a + L - 1, reading: role === "ketiv" || role === "qere" ? role : "form" } : null;
+      // t: the word's letters, so a pool can tell a prefix from a suffix
+      const t = cover.reduce((sum, x) => sum + lettersIn(x.surface).length, 0);
+      return L ? { ref: openSite.ref, n, a, b: a + L - 1, t, reading: role === "ketiv" || role === "qere" ? role : "form" } : null;
     };
     // a block's pool is asked once per standing: the same letters stand for
     // the set's piece on the set's division and for themselves on any other,
@@ -6704,16 +6841,17 @@
           kNote.textContent = `written ${pool.kqWritten}, read ${pool.kqRead} \u2014 the Masorah's note, as the source carries it: the written letters are defined by what is read. `
             + (n ? `${n} reading${n === 1 ? "" : "s"} of these letters as other words (${nr} record${nr === 1 ? "" : "s"}) withheld here.` : "No reading of these letters as another word stood to withhold.");
         } else if (kNote) kNote.remove();
-        let note = readRow.querySelector(".masorah-withheld");
-        if (pool.withheld) {
-          if (!note) { note = document.createElement("p"); note.className = "kq-role masorah-withheld"; readRow.append(note); }
-          note.textContent = `${pool.withheld} of ${pool.rows} records withheld — their source points this word otherwise`;
-        } else if (note) note.remove();
-        let sNote = readRow.querySelector(".sources-withheld");
-        if (pool.withheldBySources) {
-          if (!sNote) { sNote = document.createElement("p"); sNote.className = "kq-role sources-withheld"; readRow.append(sNote); }
-          sNote.textContent = `${pool.withheldBySources} of ${pool.rows} records withheld by your source switches — ${sourcesOffSay()}`;
-        } else if (sNote) sNote.remove();
+        // WHAT WAS WITHHELD, ON ONE LINE (2026-11-06): the pointing's count and
+        // the source switches' count share a line, each its own span, so the
+        // pointing standing by default costs the readings band no row
+        let wLine = readRow.querySelector(".withheld-line");
+        if (pool.withheld || pool.withheldBySources) {
+          if (!wLine) { wLine = document.createElement("p"); wLine.className = "kq-role withheld-line"; readRow.append(wLine); }
+          wLine.replaceChildren();
+          if (pool.withheld) wLine.append(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
+          if (pool.withheld && pool.withheldBySources) wLine.append(" \u00b7 ");
+          if (pool.withheldBySources) wLine.append(Object.assign(document.createElement("span"), { className: "sources-withheld", textContent: `${pool.withheldBySources} withheld by your source switches (${sourcesOffSay()})` }));
+        } else if (wLine) wLine.remove();
       };
       // the page's own switch redraws whatever card is open, so a change of
       // order reaches the reading standing under the word without closing it
@@ -8379,15 +8517,18 @@
   // THE PLACE'S OWN READING, under "at this place": TAHOT's pieces at this
   // word, "/"-packed as the store packs a divided reading. A choice the reader
   // made that moves the line (the headword, a licence preference, the
-  // Masorah's filter or its letters) still leads; TAHOT switched off, or a
-  // piece it leaves unglossed, gives the word back to oldest first.
+  // Masorah's letters) still leads; TAHOT switched off, or a piece it leaves
+  // unglossed, gives the word back to oldest first. The Masorah's filter does
+  // not displace it: the reading at this place is this pointing's own reading
+  // (the owner, 2026-11-06, the pointing stands; before that, "only" handed
+  // Genesis 1:1's line to the oldest source's "cut down").
   const tahotWitness = () => {
     const pc = ((((zone || {}).emitted_from || {}).toggles || {}).lattice || {}).pieces;
     return pc && pc.witnesses && pc.witnesses.english_tahot ? pc.witnesses.english_tahot : null;
   };
   const placeLine = (word) => {
     if (defOrder !== "place" || !word || !Array.isArray(word.pg) || !word.pg.length) return null;
-    if (lookup === "headword" || licencePref !== "any" || masorah === "only" || masorah === "letters") return null;
+    if (lookup === "headword" || licencePref !== "any" || masorah === "letters") return null;
     // NO NAMES: a word whose line is its name reads the entry's first reading
     // instead, under the place order too (TAHOT names it here, which is what
     // let the name lead); the place yields for that word alone, and the
@@ -9545,6 +9686,7 @@
     {
         defOrder = pos.id;
         try { localStorage.setItem(DEF_KEY, pos.id); } catch { /* the choice still stands on this page */ }
+        const gateWas = masorah;
         for (const x of (document.getElementById("defRow") || { children: [] }).children) {
           const on = x.textContent === pos.lab;
           x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on));
@@ -9555,6 +9697,7 @@
         // only ever reached the card's reading list, while the line under each
         // word came from the zone's baked column and never moved. It moves now.
         applyGlossOrder(defOrder);
+        if (settleDefaultPointing() || masorah !== gateWas) { gateMoved(); railSay(); return; }
         repaintGlossOrder();
         // and the word standing open re-answers without closing
         if (redrawReadings) redrawReadings();
