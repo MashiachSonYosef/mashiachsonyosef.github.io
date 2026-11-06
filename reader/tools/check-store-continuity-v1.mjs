@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // GUARDS: store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed
-// GUARDS: row-strike-rule-v1-a-row-the-provider-misfiled-is-struck-or-re-keyed-by-a-named-list-and-the-hole-is-typed
+// GUARDS: row-strike-rule-v2-a-named-list-strikes-withholds-re-keys-rejoins-or-re-heads-a-row-and-the-hole-is-typed
 //
 // THE ROWS ARE ACCOUNTED FOR END TO END, OR THE STORE LOST SOMETHING.
 //
@@ -127,7 +127,11 @@ const admissionStruck = num(rec && rec.cumulative && rec.cumulative.routes_struc
 // A THIRD KIND (2026-11-06): store rows struck or re-keyed by a named list,
 // by tools/strike-rows-v1.mjs, with its own cumulative record. A re-key moves
 // a row from one key to another: the served count does not move, and the
-// rank it left is typed in the struck-ranks record like a struck one.
+// rank it left is typed in the struck-ranks record like a struck one. From
+// version 2 of its rule, routes_struck counts every row a round took off the
+// store (a strike, a withholding, a re-key whose text its new key already
+// held, which folds, and the rows a rejoin joined beyond the one it kept),
+// each with its rank typed, so the arithmetic below is unchanged.
 const rwPath = (index.row_strikes && index.row_strikes.record && existsSync(index.row_strikes.record)) ? index.row_strikes.record : "data/row-strikes-v1.json";
 const rw = existsSync(rwPath) ? JSON.parse(readFileSync(rwPath, "utf8")) : null;
 const rowStruck = num(rw && rw.cumulative && rw.cumulative.routes_struck) || 0;
