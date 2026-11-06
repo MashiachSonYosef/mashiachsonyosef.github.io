@@ -1,0 +1,557 @@
+diff --git a/reader/tools/bake-declared-cuts-v1.mjs b/reader/tools/bake-declared-cuts-v1.mjs
+new file mode 100644
+index 00000000..b65dc185
+--- /dev/null
++++ b/reader/tools/bake-declared-cuts-v1.mjs
+@@ -0,0 +1,153 @@
++// GUARDS: provider-declaration-rule-v2-a-declared-dictionary-is-cut-by-its-own-ledger
++//
++// A dictionary whose punctuation the corpus lane has ledgered (ask v1.1,
++// wip/2026-10-31/provider-declarations) is cut into readings by its own
++// declaration, not by the global comma rule (sense-split-rule-v3): a route
++// divides at the occurrences of its declaration's dividing shapes, at the
++// mark itself, and nowhere else. A branch the owner has ruled to the option
++// that divides adds its shapes; a branch resting, or ruled to the option
++// that does not divide, adds none. Every piece is a run of the dictionary's
++// own characters; the pieces and the marks between them rejoin to the route.
++//
++// The declaration's classifier is run here, over every route of the source
++// in the served route store, and only the routes it divides are written out,
++// each with the offsets (UTF-16) of the marks it divides at: a route of a
++// declared source that is not in the file is one reading, whole. A reader
++// of the file cuts the route at each offset, drops the mark and trims each
++// piece (tools/declared-cut-v1.mjs; zone.html carries the same lines).
++// The page and the bakes read the file; nobody runs the classifier at view.
++//
++// Usage:
++//   node tools/bake-declared-cuts-v1.mjs --m M9 \
++//     --dir data/provider-declarations/openscriptures_strongs \
++//     --relay <FOR-ELIJAH-v102.md> \
++//     --ruling B01=whole --ruling B02=whole --ruled "the owner, 2026-11-06" \
++//     [--store data/route-store] [--out data/declared-cuts-v1.json]
++//
++// Refuses when a file's sha256 is not the relay's, when a branch has no
++// ruling or an option the branch does not offer, when a cut falls in a text
++// whose brackets do not balance (rule 3), when a piece is empty or the pieces
++// do not rejoin, or when the dividing occurrences do not sum to the dividing
++// shapes' declared counts.
++import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
++import { join, resolve, basename } from "node:path";
++import { createHash } from "node:crypto";
++import { gunzipSync } from "node:zlib";
++import { pathToFileURL } from "node:url";
++
++const RULE_ID = "provider-declaration-rule-v2-a-declared-dictionary-is-cut-by-its-own-ledger";
++const argv = process.argv.slice(2);
++const arg = (name, dflt = null) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : dflt; };
++const args = (name) => argv.flatMap((a, i) => (a === name ? [argv[i + 1]] : []));
++const fail = (msg) => { console.error(`refused: ${msg}`); process.exit(1); };
++const sha = (b) => createHash("sha256").update(b).digest("hex");
++
++const M = arg("--m");
++const DIR = arg("--dir");
++const RELAY = arg("--relay");
++const STORE = arg("--store", "data/route-store");
++const OUT = arg("--out", "data/declared-cuts-v1.json");
++const RULED = arg("--ruled");
++if (!M || !DIR || !RELAY || !RULED) fail("usage: --m <M id> --dir <declaration folder> --relay <relay.md> --ruling Bnn=<option> ... --ruled <who, when>");
++
++// the relay's own table of files: every file read here must carry the sha256 the relay gives it
++const relay = readFileSync(RELAY, "utf8");
++const relayShaOf = (file) => {
++  const row = relay.split("\n").find((l) => l.startsWith("|") && l.includes(`(${file})`));
++  const m = row && row.match(/\|\s*([0-9a-f]{64})\s*\|/);
++  return m ? m[1] : null;
++};
++const files = readdirSync(DIR);
++const declFile = files.find((f) => f.endsWith(".declaration.json"));
++const classFile = files.find((f) => f.endsWith(".classifier.mjs"));
++if (!declFile || !classFile) fail(`${DIR} holds no declaration and classifier`);
++const declBytes = readFileSync(join(DIR, declFile));
++const classBytes = readFileSync(join(DIR, classFile));
++for (const [f, b] of [[declFile, declBytes], [classFile, classBytes]]) {
++  const want = relayShaOf(f);
++  if (!want) fail(`the relay names no sha256 for ${f}`);
++  if (sha(b) !== want) fail(`${f} is ${sha(b).slice(0, 12)}, the relay says ${want.slice(0, 12)}`);
++}
++const decl = JSON.parse(declBytes);
++if (!decl.m_ids || !decl.m_ids.includes(M)) fail(`the declaration is for ${JSON.stringify(decl.m_ids)}, not ${M}`);
++
++// the rulings: one per branch, an option the branch offers
++const rulings = Object.fromEntries(args("--ruling").map((r) => r.split("=")));
++const branches = decl.branches || [];
++for (const b of branches) {
++  const opt = rulings[b.id];
++  if (!opt) fail(`branch ${b.id} has no ruling ("${b.question}")`);
++  if (!(b.options || []).some((o) => o.id === opt)) fail(`branch ${b.id} offers ${(b.options || []).map((o) => o.id).join(", ")}, not ${opt}`);
++}
++for (const id of Object.keys(rulings)) if (!branches.some((b) => b.id === id)) fail(`the declaration has no branch ${id}`);
++const dividing = new Set(decl.shapes.filter((s) => s.divides).map((s) => s.id));
++const ruledToDivide = branches.filter((b) => rulings[b.id] !== b.resting);
++for (const b of ruledToDivide) for (const id of b.shapes) dividing.add(id);
++const declaredCuts = decl.shapes.filter((s) => dividing.has(s.id)).reduce((n, s) => n + s.count, 0);
++
++const { classify } = await import(pathToFileURL(resolve(DIR, classFile)).href);
++const OPEN = { "(": ")", "[": "]", "<": ">", "{": "}" };
++const CLOSE = { ")": "(", "]": "[", ">": "<", "}": "{" };
++const unbalanced = (text) => {
++  const st = [];
++  for (const ch of text) {
++    if (OPEN[ch]) st.push(ch);
++    else if (CLOSE[ch]) { if (st.length && OPEN[st[st.length - 1]] === ch) st.pop(); else return true; }
++  }
++  return st.length > 0;
++};
++
++const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
++const src = index.m_sources[M];
++if (!src) fail(`the store has no source ${M}`);
++if (src.key !== decl.source_key) fail(`${M} is ${src.key} in the store, the declaration is for ${decl.source_key}`);
++
++const cutsOf = {};
++let routes = 0, dividedRoutes = 0, cuts = 0;
++const texts = new Set();
++for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bin")).sort()) {
++  const shard = JSON.parse(gunzipSync(readFileSync(join(STORE, "shards", f))));
++  for (const rows of Object.values(shard)) for (const row of rows) {
++    if (row[3] !== M) continue;
++    routes += 1;
++    const text = String(row[1]);
++    texts.add(text);
++    const at = classify(text).filter((o) => dividing.has(o.shape)).map((o) => o.i).sort((a, b) => a - b);
++    if (!at.length) continue;
++    if (unbalanced(text)) fail(`a cut in a text whose brackets do not balance: ${text.slice(0, 60)}`);
++    const parts = []; let from = 0;
++    for (const c of at) { parts.push(text.slice(from, c)); from = c + 1; }
++    parts.push(text.slice(from));
++    let rejoined = parts[0]; at.forEach((c, n) => { rejoined += text[c] + parts[n + 1]; });
++    if (rejoined !== text) fail(`the pieces do not rejoin: ${text.slice(0, 60)}`);
++    if (parts.some((p) => !p.trim())) fail(`an empty piece: ${text.slice(0, 60)}`);
++    dividedRoutes += 1; cuts += at.length;
++    cutsOf[text] = at;
++  }
++}
++if (routes !== decl.routes) fail(`${routes} routes of ${M} in the store, the declaration read ${decl.routes}`);
++if (cuts !== declaredCuts) fail(`${cuts} dividing occurrences, the dividing shapes declare ${declaredCuts}`);
++
++const sortedCuts = Object.fromEntries(Object.keys(cutsOf).sort().map((t) => [t, cutsOf[t]]));
++const prior = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : { sources: {} };
++const out = {
++  schema: "mishkan.declared_cuts.v1",
++  rule: RULE_ID,
++  note: "A route of a source named here is divided only where its declaration's dividing shapes stand (and the shapes of a branch ruled to divide), at the mark itself: cuts gives, for each route text it divides, the UTF-16 offsets of those marks; each piece is the text between two cuts, trimmed. A route of such a source that is not listed under cuts is one reading, whole; one whose brackets do not balance is held back whole, as sense-split-rule-v3 rule 4 holds a damaged field. Any other source keeps sense-split-rule-v3.",
++  sources: { ...prior.sources },
++};
++out.sources[M] = {
++  source_key: decl.source_key,
++  label: src.label,
++  relay: basename(RELAY),
++  declaration: { file: declFile, sha256: sha(declBytes) },
++  classifier: { file: classFile, sha256: sha(classBytes) },
++  store_version: index.store_version,
++  dividing_shapes: [...dividing].sort(),
++  rulings: Object.fromEntries(branches.map((b) => [b.id, { question: b.question, option: rulings[b.id], resting: b.resting, ruled: RULED, shapes: b.shapes, occurrences: b.occurrences }])),
++  counts: { routes, distinct_texts: texts.size, divided_routes: dividedRoutes, divided_texts: Object.keys(cutsOf).length, cuts },
++  cuts: sortedCuts,
++};
++const body = JSON.stringify(out);
++writeFileSync(OUT, body + "\n");
++console.log(`${M} ${decl.source_key}: ${routes} routes (${texts.size} texts); ${dividedRoutes} routes divided at ${cuts} cuts (${Object.keys(cutsOf).length} texts); dividing shapes ${dividing.size}; ${OUT} ${body.length + 1} bytes`);
+diff --git a/reader/tools/declared-cut-v1.mjs b/reader/tools/declared-cut-v1.mjs
+new file mode 100644
+index 00000000..2580cabd
+--- /dev/null
++++ b/reader/tools/declared-cut-v1.mjs
+@@ -0,0 +1,76 @@
++// GUARDS: provider-declaration-rule-v2-a-declared-dictionary-is-cut-by-its-own-ledger
++//
++// How a route's English becomes readings, for every consumer that asks:
++// a source the corpus lane has declared (data/declared-cuts-v1.json, baked by
++// tools/bake-declared-cuts-v1.mjs from the source's own declaration and the
++// owner's rulings of its branches) is cut by its declaration and nowhere
++// else; every other source keeps sense-split-rule-v3 (the pack mark ";" at
++// parenthesis depth zero, then the comma rule, tools/sense-split-v1.mjs).
++//
++// The rule, stated before any output:
++//
++//   1. A declared route divides only at the offsets the file gives for its
++//      exact text; the mark at each offset is dropped, and each piece is the
++//      text between two cuts, trimmed. Each piece is one reading.
++//   2. A declared route the file does not list is one reading, whole: its
++//      commas, semicolons and brackets are the dictionary's own notation
++//      (a King James list, a label before its gloss, a name and its
++//      description), and the page keeps them together.
++//   3. A declared route whose parentheses do not balance is held back whole,
++//      as sense-split-rule-v3 rule 4 holds a damaged field: neither printed
++//      nor pooled. Nothing is ever cut in such a text (the bake refuses it).
++//   4. The same answer on every surface: the card's pills, the line under the
++//      word, the record panel, the search index and the lattice sidecars ask
++//      this module (zone.html carries the same lines, and
++//      check-declared-cuts-v1 holds the two equal).
++//
++// Returns, for one route, the list of its senses as sense-split-rule-v3 gives
++// them: [{ readings: [...], damaged }]. For a declared source each piece is
++// its own sense of one reading.
++import { existsSync, readFileSync } from "node:fs";
++import { senseSplit as readingSplit, unbalancedAt } from "./sense-split-v1.mjs";
++
++export const DECLARED_CUT_RULE_ID = "provider-declaration-rule-v2-a-declared-dictionary-is-cut-by-its-own-ledger";
++
++/** The cut file, or null when this checkout carries none (every source then keeps the global rule). */
++export const openDeclaredCuts = (path) => (path && existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : null);
++
++/** The pack mark: ";" at parenthesis depth zero (sense-split-rule-v3's first layer). */
++export const packSplit = (text) => {
++  const t = String(text || "");
++  const out = []; let start = 0, d = 0;
++  for (let i = 0; i < t.length; i += 1) {
++    const c = t[i];
++    if (c === "(") d += 1;
++    else if (c === ")") { if (d > 0) d -= 1; }
++    else if (c === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; }
++  }
++  out.push(t.slice(start));
++  if (out.join(";") !== t) return [t.trim()].filter(Boolean);
++  return out.map((x) => x.trim()).filter(Boolean);
++};
++
++/** The pieces of one declared route (rule 1, 2), or null when the source is not declared. */
++export const declaredPieces = (cutFile, text, mId) => {
++  const src = cutFile && cutFile.sources && cutFile.sources[mId];
++  if (!src) return null;
++  const t = String(text || "");
++  const at = src.cuts[t] || [];
++  const out = []; let from = 0;
++  for (const c of at) { out.push(t.slice(from, c)); from = c + 1; }
++  out.push(t.slice(from));
++  return out.map((p) => p.trim()).filter(Boolean);
++};
++
++/** Every sense of one route, as the card, the line and the index read it. */
++export const routeSenses = (cutFile, text, mId) => {
++  const pieces = declaredPieces(cutFile, text, mId);
++  if (!pieces) return packSplit(text).map((sense) => readingSplit(sense));
++  const t = String(text || "");
++  if (unbalancedAt(t) !== -1) return [{ readings: [t.trim()], whole: true, damaged: true, at: unbalancedAt(t) }];
++  return pieces.map((p) => ({ readings: [p], whole: true, damaged: false, at: -1 }));
++};
++
++/** The readings of one route, damaged senses held back. */
++export const routeReadings = (cutFile, text, mId) =>
++  routeSenses(cutFile, text, mId).flatMap((r) => (r.damaged ? [] : r.readings));
+diff --git a/reader/tools/gloss-m-v1.mjs b/reader/tools/gloss-m-v1.mjs
+index 987f2a1f..e18167c6 100644
+--- a/reader/tools/gloss-m-v1.mjs
++++ b/reader/tools/gloss-m-v1.mjs
+@@ -18,7 +18,6 @@
+ import { readFileSync } from "node:fs";
+ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+-import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
+ 
+ const HERE = dirname(fileURLToPath(import.meta.url));
+ const K3 = join(HERE, "..");
+@@ -56,10 +55,7 @@ export const glossSource = (store, key, text) => {
+   const want = String(text).toLowerCase();
+   const hits = routes.filter((row) => {
+     if (!store.index.m_sources[row[3]]) return false;
+-    return store.packSplit(row[1]).some((sense) => {
+-      const r = readingSplit(sense);
+-      return !r.damaged && r.readings.some((x) => x.toLowerCase() === want);
+-    });
++    return store.routeSenses(row[1], row[3]).some((r) => !r.damaged && r.readings.some((x) => x.toLowerCase() === want));
+   });
+   if (!hits.length) return null;
+   hits.sort((a, c) => {
+@@ -101,7 +97,7 @@ const sourceAmong = (store, key, text, omit) => {
+   const routes = store.routesFor(key) || [];
+   const want = String(text).toLowerCase();
+   const hits = routes.filter((row) => store.index.m_sources[row[3]] && !omit.has(row[3])
+-    && store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((x) => x.toLowerCase() === want); }));
++    && store.routeSenses(row[1], row[3]).some((r) => !r.damaged && r.readings.some((x) => x.toLowerCase() === want)));
+   if (!hits.length) return null;
+   hits.sort((a, c) => { const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10); return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9); });
+   const m = store.index.m_sources[hits[0][3]];
+@@ -115,7 +111,7 @@ export const glossCarriers = (store, key, text) => {
+   if (!routes) return null;
+   const want = String(text).toLowerCase();
+   const by = [...new Set(routes.filter((row) => store.index.m_sources[row[3]]
+-    && store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((x) => x.toLowerCase() === want); }))
++    && store.routeSenses(row[1], row[3]).some((r) => !r.damaged && r.readings.some((x) => x.toLowerCase() === want)))
+     .map((row) => row[3]))].sort();
+   if (!by.length) return null;
+   const omit = new Set(by);
+diff --git a/reader/tools/gloss-store-v1.mjs b/reader/tools/gloss-store-v1.mjs
+index 112f182b..4dddd942 100644
+--- a/reader/tools/gloss-store-v1.mjs
++++ b/reader/tools/gloss-store-v1.mjs
+@@ -48,6 +48,7 @@
+ 
+ import { readFileSync, existsSync } from "node:fs";
+ import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
++import { openDeclaredCuts, routeSenses as routeSensesOf } from "./declared-cut-v1.mjs";
+ import { createHash } from "node:crypto";
+ import { gunzipSync } from "node:zlib";
+ import { join } from "node:path";
+@@ -58,7 +59,8 @@ export const GLOSS_RULE_ID = "zone-gloss-rule-v4-reading-level-antiquity-1940-la
+ export const ERA_CUT_AD = 1940;
+ export const GLOSS_RULE_TEXT =
+   "a route text packs senses with ';' and a sense divides into readings at the commas outside the " +
+-  "provider's parentheses, where every piece is shaped like a gloss (sense-split-rule-v3); each division is one reading; a damaged sense is " +
++  "provider's parentheses, where every piece is shaped like a gloss (sense-split-rule-v3), except that a dictionary declared under " +
++  "provider-declaration-rule-v2 divides only where its own declaration divides (data/declared-cuts-v1.json); each division is one reading; a damaged sense is " +
+   "held whole and neither printed nor pooled; pool = every reading of every exact route, deduped by " +
+   "text with min year and min rank; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
+   "reading stored verbatim; the page joins '/'-packed spans with ' + '; " +
+@@ -99,6 +101,11 @@ export const openRouteStore = (storeDir) => {
+     return shardCache.get(name);
+   };
+   const shardOf = (k) => createHash("sha256").update(k, "utf8").digest("hex").slice(0, 2);
++  // a declared dictionary is cut by its own ledger (provider-declaration-rule-v2):
++  // the cut file stands beside the store, and a checkout without it keeps the
++  // global rule for every source
++  const declaredCuts = openDeclaredCuts(join(storeDir, "..", "declared-cuts-v1.json"));
++  const routeSenses = (text, mId) => routeSensesOf(declaredCuts, text, mId);
+ 
+   /** Every exact route row for K, or null when the catalog has no exact entry. */
+   const routesFor = (k) => shardBody(shardOf(k))[k] || null;
+@@ -161,8 +168,7 @@ export const openRouteStore = (storeDir) => {
+       // Each sense then divides into readings under the declared comma rule;
+       // a sense the rule holds back as damaged is provider text something
+       // already edited — it neither prints nor pools.
+-      packSplit(routeText).forEach((sense) => {
+-        const r = readingSplit(sense);
++      routeSenses(routeText, mId).forEach((r) => {
+         if (r.damaged) return;
+         r.readings.forEach((reading) => {
+           const key = reading.toLowerCase();
+@@ -303,5 +309,8 @@ export const openRouteStore = (storeDir) => {
+   // comma rule to attribute a reading to its sources, could not import it,
+   // and wrote a second copy. Two implementations of one rule is the fault
+   // packSplit's own comment names, and it had it half done.
+-  return { index, routesFor, readingPool, glossFor, tableFor, packSplit, readingSplit, ORDERS };
++  // routeSenses is the one answer to "which readings does this route give":
++  // the declared cut for a declared dictionary, packSplit then readingSplit
++  // for every other (tools/declared-cut-v1.mjs).
++  return { index, routesFor, readingPool, glossFor, tableFor, packSplit, readingSplit, routeSenses, declaredCuts, ORDERS };
+ };
+diff --git a/reader/tools/project-lattice-v12-v1.mjs b/reader/tools/project-lattice-v12-v1.mjs
+index 74641c43..a1e0f857 100644
+--- a/reader/tools/project-lattice-v12-v1.mjs
++++ b/reader/tools/project-lattice-v12-v1.mjs
+@@ -85,7 +85,6 @@ import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
+ import { openRouteStore } from "./gloss-store-v1.mjs";
+ import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
+ import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
+-import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
+ export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
+ const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+ const GRADE_CHAR = { VOWEL_MATCH: "m", NORMALIZED: "n", VOWEL_MISMATCH: "x" };
+@@ -297,7 +296,7 @@ for (const sec of zone.sections || []) {
+       const srows = store.routesFor(m.key) || [];
+       const fpIx = new Map(list.map((c, ix) => [c.fp, ix]));
+       const rowIx = (row) => { const src = store.index.m_sources[row[3]]; const ix = src ? fpIx.get(fnv1a(`${row[1]}|${src.label}`)) : undefined; return ix === undefined ? -1 : ix; };
+-      const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.packSplit(row[1]).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings.map((t) => t.toLowerCase()); }))]));
++      const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.routeSenses(row[1], row[3]).flatMap((r) => (r.damaged ? [] : r.readings.map((t) => t.toLowerCase()))))]));
+       const pool = store.readingPool(srows, "oldest");
+       const TIER = { m: 0, n: 1, x: 2 };
+       // THE GRADE OF A ROW — pointing-grade-rule-v3, the same two steps the
+@@ -368,7 +367,7 @@ for (const sec of zone.sections || []) {
+         // its M: the oldest kept row carrying the reading, as the card prints it
+         let best = null;
+         for (const row of kept) {
+-          const carries = store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((t) => t.toLowerCase() === top.text.toLowerCase()); });
++          const carries = store.routeSenses(row[1], row[3]).some((r) => !r.damaged && r.readings.some((t) => t.toLowerCase() === top.text.toLowerCase()));
+           if (!carries) continue;
+           const y = Number.parseInt(row[4], 10); const yy = Number.isInteger(y) ? y : Infinity;
+           if (!best || yy < best.y) best = { row, y: yy };
+diff --git a/reader/tools/proper-name-v1.mjs b/reader/tools/proper-name-v1.mjs
+index 59737f9f..04bc51c9 100644
+--- a/reader/tools/proper-name-v1.mjs
++++ b/reader/tools/proper-name-v1.mjs
+@@ -111,8 +111,7 @@ export const strongsNameFor = (store, key, surfaces, name) => {
+     const m = store.index.m_sources[row[3]];
+     if (!m || !isStrongs(m.label)) continue;
+     if (!surfaces.every((s) => gradeRow(row, s) === "m")) continue;
+-    for (const sense of store.packSplit(String(row[1]))) {
+-      const sp = store.readingSplit(sense);
++    for (const sp of store.routeSenses(String(row[1]), row[3])) {
+       if (sp.damaged) continue;
+       for (const rd of sp.readings) if (NAME_FORM.test(rd) && stripDot(rd).toLowerCase() === want) hits.push({ text: rd, m: row[3], rank: Number(row[0]), dot: /\.$/u.test(rd) });
+     }
+diff --git a/reader/zone.html b/reader/zone.html
+index 5fe256f5..e0c6eaa6 100644
+--- a/reader/zone.html
++++ b/reader/zone.html
+@@ -2660,11 +2660,10 @@
+   // stay its own and print verbatim; P only says who is carrying the same
+   // record. Byte-identity was the old test, and it kept "Most High" and
+   // "most high" — one record by this law — from ever corroborating.
+-  const pKey = (text) => {
++  const pKey = (text, mId) => {
+     const set = new Set();
+-    for (const sense of senseSplit(text)) {
+-      const r = readingSplit(sense);
+-      for (const piece of (r.damaged ? [sense] : r.readings))
++    for (const r of routeSenses(text, mId)) {
++      for (const piece of r.readings)
+         for (const span of piece.split("/")) {
+           const t = span.trim().toLowerCase();
+           if (t) set.add(t);
+@@ -2687,6 +2686,29 @@
+     return out.map((x) => x.trim()).filter(Boolean);
+   };
+ 
++  // A DECLARED DICTIONARY IS CUT BY ITS OWN LEDGER (provider-declaration-rule-v2;
++  // tools/declared-cut-v1.mjs, the same lines). The corpus lane ledgered
++  // Strong's (M9) mark by mark, and the owner ruled its King James lists one
++  // reading each (2026-11-06: "we hate stripping context"): such a route
++  // divides only at the offsets data/declared-cuts-v1.json gives for its
++  // exact text, the mark dropped and each piece trimmed, one reading a piece;
++  // a route the file does not list is one reading, whole, its commas and
++  // labels kept; one whose parentheses do not balance is held back whole, as
++  // a damaged sense is. Every other source: senseSplit, then readingSplit.
++  const routeSenses = (text, mId) => {
++    const src = DECLARED_CUTS && DECLARED_CUTS.sources && DECLARED_CUTS.sources[mId];
++    if (!src) return senseSplit(text).map((sense) => readingSplit(sense));
++    const t = String(text || "");
++    let d = 0, bad = false;
++    for (let i = 0; i < t.length && !bad; i += 1) { if (t[i] === "(") d += 1; else if (t[i] === ")") { d -= 1; if (d < 0) bad = true; } }
++    if (bad || d !== 0) return [{ readings: [t.trim()], damaged: true }];
++    const at = src.cuts[t] || [];
++    const out = []; let from = 0;
++    for (const c of at) { out.push(t.slice(from, c)); from = c + 1; }
++    out.push(t.slice(from));
++    return out.map((x) => x.trim()).filter(Boolean).map((x) => ({ readings: [x], damaged: false }));
++  };
++
+   // The chip prints the name the declarations record carries for the posture,
+   // never one re-derived from the letters of its key: a dual offer is named
+   // as a dual, and a posture the record does not declare is named by its key,
+@@ -3206,6 +3228,9 @@
+   })();
+   let HUD_TOGGLES_IX = null, HUD_TOGGLES = null, hudTogglesWait = null;
+   let MARKS_REC = null;
++  // the declared dictionaries' own cuts (provider-declaration-rule-v2,
++  // data/declared-cuts-v1.json): absent, every source keeps the global rule
++  let DECLARED_CUTS = null;
+   const HUD_LANES = { lay: null, relaySections: null };
+   const hudTogglesReady = () => {
+     if (HUD_TOGGLES) return Promise.resolve(HUD_TOGGLES);
+@@ -3534,7 +3559,7 @@
+   };
+   let zone, index;
+   try {
+-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, ...OVERLAY_IX] = await Promise.all([
++    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, DECLARED_CUTS, ...OVERLAY_IX] = await Promise.all([
+       fetchBin(BOOK),
+       // The index names the store's version, and every shard URL carries it.
+       // So this one small file is the only thing that must never be stale:
+@@ -3576,6 +3601,8 @@
+       // lane's classes (EVERY MARK GOLD, below); without it every word is one
+       // color, as it was
+       fetch(`${ROOT}data/masoretic-marks-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
++      // where a declared dictionary divides its own text, and nowhere else
++      fetch(`${ROOT}data/declared-cuts-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
+     ]);
+     // an overlay's sources join the index's under their own ids, which the store
+@@ -5055,7 +5082,7 @@
+     // the lead record's own bytes for this reading: the pool groups readings
+     // case-blind across records, so hit.text can be another record's casing
+     const want = spanJoin(hit.text).toLowerCase();
+-    const ownText = senseSplit(lead[1]).flatMap((s) => { const r = readingSplit(s); return r.damaged ? [s] : r.readings; })
++    const ownText = routeSenses(lead[1], mId).flatMap((r) => r.readings)
+       .find((x) => spanJoin(x).toLowerCase() === want) || hit.text;
+     // the reading's other carriers, those the reader has not switched off
+     const also = [...hit.records].sort(EARLIEST_FIRST).filter((r) => r !== lead && !(everySource && sourcesOff.has(r[3])))
+@@ -6703,8 +6730,7 @@
+       const y = Number.parseInt(year, 10);
+       const yr = Number.isInteger(y) ? y : Infinity;
+       const nd = isNoDerivs(index.m_sources[mId].licensePosture);
+-      (nd ? [String(routeText)] : senseSplit(routeText)).forEach((sense) => {
+-        const split = nd ? { readings: [sense], damaged: false } : readingSplit(sense);
++      (nd ? [{ readings: [String(routeText)], damaged: false }] : routeSenses(routeText, mId)).forEach((split) => {
+         if (split.damaged) return;
+         split.readings.forEach((reading) => {
+           const key = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : reading.toLowerCase();
+@@ -6746,8 +6772,7 @@
+         const y = Number.parseInt(year, 10);
+         const yr = Number.isInteger(y) ? y : Infinity;
+         const nd = isNoDerivs(index.m_sources[mId].licensePosture);
+-        (nd ? [String(routeText)] : senseSplit(routeText)).forEach((sense) => {
+-          const split = nd ? { readings: [sense], damaged: false } : readingSplit(sense);
++        (nd ? [{ readings: [String(routeText)], damaged: false }] : routeSenses(routeText, mId)).forEach((split) => {
+           if (split.damaged) return;
+           split.readings.forEach((reading) => {
+             const d = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : drawn(reading);
+@@ -9090,14 +9115,14 @@
+         const byP = new Map();
+         recs.forEach((row) => {
+           const text = row[2] || row[1] || "";
+-          const key = pKey(text);
++          const key = pKey(text, row[3]);
+           if (!byP.has(key)) byP.set(key, { text, rows: [] });
+           byP.get(key).rows.push(row);
+         });
+         // the record as the source packs it: senses divided by ";", cells by
+         // "/" — cells join the way they join everywhere else, and the sense
+         // the reader picked is lit where it sits inside the record
+-        const dText = (text, verbatim = false) => {
++        const dText = (text, verbatim = false, mId = null) => {
+           const d = document.createElement("p"); d.className = "d-text";
+           // dir=auto reads the first strong character, and a record that
+           // opens with its Hebrew lemma laid a whole English sentence out
+@@ -9109,12 +9134,14 @@
+           d.dir = heb > lat ? "rtl" : "ltr";
+           // a NoDerivatives record prints as its provider wrote it, byte for byte
+           if (verbatim) { d.textContent = String(text); return d; }
+-          senseSplit(text).forEach((sense, i) => {
++          // a declared dictionary's record divides where its ledger divides
++          const declared = mId && DECLARED_CUTS && DECLARED_CUTS.sources && DECLARED_CUTS.sources[mId];
++          (declared ? routeSenses(text, mId).flatMap((r) => r.readings) : senseSplit(text)).forEach((sense, i) => {
+             if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
+             const s = document.createElement("span");
+             // the chosen reading is finer than the sense that carries it: the
+             // sense is lit when any of its readings is the one the reader holds
+-            const holds = readingSplit(sense).readings.some(
++            const holds = (declared ? [sense] : readingSplit(sense).readings).some(
+               (reading) => reading.toLowerCase() === String(selected.text).toLowerCase());
+             s.className = holds || sense.toLowerCase() === String(selected.text).toLowerCase() ? "d-sense on" : "d-sense";
+             s.textContent = spanJoin(sense);
+@@ -9160,7 +9187,7 @@
+         const first = groups[0];
+         const firstText = first.text;
+         const firstGroup = first.rows;
+-        body.append(dText(firstText, isNoDerivs((index.m_sources[firstGroup[0][3]] || {}).licensePosture)));
++        body.append(dText(firstText, isNoDerivs((index.m_sources[firstGroup[0][3]] || {}).licensePosture), firstGroup[0][3]));
+         // The M is the one line that never scrolls: it is who says this, and a
+         // reading whose source has scrolled out of sight is a reading standing
+         // on nothing the reader can see. Everything else about the record —
+@@ -9218,7 +9245,7 @@
+         // membership.
+         const alsoCarry = [], elsewhere = [];
+         {
+-          const firstKey = pKey(firstText);
++          const firstKey = pKey(firstText, firstGroup[0][3]);
+           const seen = new Set([firstGroup[0][3]]);
+           for (const row of firstGroup.slice(1)) {
+             if (seen.has(row[3])) continue;
+@@ -9229,7 +9256,7 @@
+             if (g === selected) continue;
+             for (const row of g.records) {
+               const t = row[2] || row[1] || "";
+-              if (pKey(t) !== firstKey) continue;
++              if (pKey(t, row[3]) !== firstKey) continue;
+               if (seen.has(row[3])) continue;
+               seen.add(row[3]);
+               elsewhere.push({ row, group: g, text: t });
+@@ -9322,7 +9349,7 @@
+           if (open && !drawer.childNodes.length) {
+             let last = null;
+             for (const [text, row] of rest) {
+-              if (text !== last) { drawer.append(dText(text)); last = text; }
++              if (text !== last) { drawer.append(dText(text, false, row[3])); last = text; }
+               drawer.append(mLine(row));
+             }
+           }

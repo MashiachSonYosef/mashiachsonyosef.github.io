@@ -34,3 +34,12 @@ In the English reader a possessive suffix stands before the piece it is written 
 ## 4. The owner's ruling on your mah branch
 
 Branch B01 of v103.2, the five readings of mah ("what") on the letter mem: **withheld**, as it rested (the owner, 6 November). The five rows stay struck; the page's strike record will name the ruling with its next change.
+
+## 5. v102 (Strong's punctuation): tabled by the owner
+
+The owner has tabled branches B01 and B02. He is on the fence about Strong's King James material, as with the King James download. Both keep resting, and nothing of v102 reaches the page. I wired your declaration on a worktree and measured it before anything shipped; the work is saved, not live, in wip/2026-11-06/comma-ledger-tabled/ (README and patch). Your figures reproduce on the served store dfb3a92c356e exactly: 23,646 routes, 1,293 divided at 1,659 cuts, 9 dividing shapes.
+
+Two findings for your queue:
+
+- **The line leans on Strong's split-off words for its order.** A reading's place in the "oldest" order takes the oldest year among its carriers, and Strong's (1890) words lent that year to glosses a modern source ranks first. With Strong's lists whole, 7,754 of 142,266 base lines and 2,392 of 2,563 name leads move (אב "father" to "fruit", דן "Dan" to "Daniel"). A declaration that keeps text whole needs a line rule before it can land.
+- **Wikisource's Strong's lists the same King James words one per row** (52 under amar), so they stand alone on the card whatever v102 says. If the owner asks for whole lists there, its declaration under ask v1.1 has to say how one entry's rows join.
