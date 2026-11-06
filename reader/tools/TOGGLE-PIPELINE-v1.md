@@ -121,8 +121,12 @@ order against oldest-first — and since the page's baked line IS oldest-first
 with no vowel tier, that number is what changes if the tier is turned ON as a
 sort, not off. The corpus lane corrected its own note to say so.
 
-**THE DEFAULT IS THE OWNER'S RULING AND IS NOT MADE.** The row ships at
-*keep* because it is the one position that changes no English on the page.
+**THE DEFAULT IS THE OWNER'S RULING, MADE 2026-11-06.** The row shipped at
+*keep*, the one position that changes no English on the page, until the owner
+was asked whether *only this pointing* becomes the default now that the
+pointing stands, and answered "1 seems like it". It now opens at *only*,
+lenient (`o.l`), wherever the work carries a lattice; the place's own reading
+still leads under it.
 
 The order law amended (zone.html, "THE ORDER TOGGLES"): an ORDER is never a
 selection; two switches ARE selections by the owner's ruling of 2026-09-17 —
@@ -241,8 +245,8 @@ still). The gloss tables (the folded rows are the v1 rows). The struck ranks
 `gloss_layer.store_version` names `f28629cb1f1a`, which is the store they
 were glossed from and which the served store folds to byte for byte.
 
-**Still the owner's:** the default (ships at *keep*), strict or lenient
-(strict `o.s` is baked, not on the rail), and the deploy.
+**Still the owner's:** strict or lenient (strict `o.s` is baked, not on the
+rail). The default was ruled on 2026-11-06: *only this pointing*, lenient.
 
 ## The sixth one through · the source's own declarations (2026-09-19)
 
