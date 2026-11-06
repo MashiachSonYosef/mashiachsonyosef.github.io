@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Synthesis lane · pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word
+// Synthesis lane · pointing-grade-rule-v2-a-row-is-graded-by-its-own-headwords-and-a-word-initial-dagesh-lene-is-not-a-pointing
 // LEDGER: -
 // no frame letter. A record, not a change: nothing here is served.
 //
@@ -16,7 +16,7 @@
 // store) is counted apart and compared nowhere.
 //
 // Run: node tools/emit-pointing-grade-recount-v1.mjs [--store data/route-store] [--out data/pointing-grade-recount-v1.json]
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
@@ -59,7 +59,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const STORE = arg("--store", "data/route-store"), OUT = arg("--out", "data/pointing-grade-recount-v1.json");
   const store = openRouteStore(STORE);
   const books = {}; const cross = {};
-  for (const b of zonesServed()) { books[b] = recountBook(store, b, cross); console.log(`${b}: surfaces×rows ${books[b].surface_differ.toLocaleString()} of ${books[b].surface_slots.toLocaleString()} differ · entries×rows ${books[b].entry_differ.toLocaleString()} of ${books[b].entry_slots.toLocaleString()}`); }
+  // a served work the lattice does not cover (the Tikkunei Zohar, on the
+  // shelf since 2026-10-31) has no graded surface to recount: named, never
+  // walked
+  const noLattice = [];
+  for (const b of zonesServed()) { if (!existsSync(`data/zones/${b}.lattice.bin`)) { noLattice.push(b); continue; } books[b] = recountBook(store, b, cross); console.log(`${b}: surfaces×rows ${books[b].surface_differ.toLocaleString()} of ${books[b].surface_slots.toLocaleString()} differ · entries×rows ${books[b].entry_differ.toLocaleString()} of ${books[b].entry_slots.toLocaleString()}`); }
   const sum = (k) => Object.values(books).reduce((a, x) => a + x[k], 0);
   const totals = Object.fromEntries(["surfaces", "surface_slots", "surface_differ", "entry_slots", "entry_differ", "rows_without_headwords", "rows_not_in_lattice"].map((k) => [k, sum(k)]));
   const rec = {
@@ -70,6 +74,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     totals: { ...totals, surface_differ_share: totals.surface_slots ? Number((100 * totals.surface_differ / totals.surface_slots).toFixed(3)) : null, entry_differ_share: totals.entry_slots ? Number((100 * totals.entry_differ / totals.entry_slots).toFixed(3)) : null },
     crossing: cross, crossing_key: "lattice grade > row grade (m match · n silent · x otherwise)",
     books,
+    served_without_lattice: noLattice,
     what_this_does_not_say: ["that either grade is wrong — the lattice graded a merged card, the row grades one source, and the toggle is built to undo the merge", "which of the two the reader sees under keep — neither; the grade acts only under only and the lattice orders", "anything about a row without headwords — a v1 row is compared nowhere and counted apart"],
   };
   writeFileSync(OUT, JSON.stringify(rec, null, 1));
