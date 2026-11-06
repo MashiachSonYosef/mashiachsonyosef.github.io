@@ -243,7 +243,7 @@ if (stemsByPlace.size) for (const sec of zone.sections || []) {
 
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
-  surfaces_unattested: 0, surfaces_with_stems: 0,
+  surfaces_unattested: 0, surfaces_with_stems: 0, surfaces_name_leads_under_only: 0,
   hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
@@ -398,7 +398,20 @@ for (const sec of zone.sections || []) {
         l: rowLeader((gc) => gc !== "x", true),
         s: rowLeader((gc) => gc === "m", false),
       };
-      grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}) };
+      // A NAME LEADS UNDER "ONLY" TOO (proper-name-rule-v1). Where the zone's
+      // line under this key is its name (gloss_names, baked by regloss-zone),
+      // and a row the lenient filter keeps carries that name, the line under
+      // "only" reads the name as the table does; nl says so, so the page
+      // needs no fetch to know it (o.l stays the filter's own leader, for a
+      // reader who turned names off). Before this the name yielded to o.l
+      // everywhere "only" stood, and "only" is the default (2026-11-06):
+      // under "oldest first" Amos's Israel read "he will rule as God".
+      const nameText = zone.gloss_names && zone.gloss && Object.prototype.hasOwnProperty.call(zone.gloss_names, m.key) && zone.gloss[m.key] === zone.gloss_names[m.key]
+        ? String(zone.gloss_names[m.key]).toLowerCase() : null;
+      const nl = !!nameText && srows.some((row) => store.index.m_sources[row[3]] && (attested ? gradeOfRow(row) !== "x" : true) && !otherStem(row)
+        && store.packSplit(row[1]).some((sense) => { const r = readingSplit(sense); return !r.damaged && r.readings.some((t) => t.toLowerCase() === nameText); }));
+      if (nl) stats.surfaces_name_leads_under_only += 1;
+      grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}), ...(nl ? { nl: 1 } : {}) };
       if (st) stats.surfaces_with_stems += 1;
       stats.grades += 1;
     }
@@ -499,7 +512,7 @@ ef.toggles.lattice = {
     witnesses: pieceWitness,
     both_witnesses_ride: "TAHOT gives the English this position reads and MACULA the headword's; they differ at 205,953 of 466,981 pieces over the 39 books, so both are carried and neither is chosen",
   },
-  what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card, which cite this verse, and the first reading under each order (o.m, o.x, o.c) and under each masorah filter (o.l lenient, o.s strict) so the line under the word can move without a fetch",
+  what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card, which cite this verse, and the first reading under each order (o.m, o.x, o.c) and under each masorah filter (o.l lenient, o.s strict) so the line under the word can move without a fetch; nl: 1 where the zone's line under the key is its name (proper-name-rule-v1) and a row the lenient filter keeps carries it, so under \"only\" the name leads as under \"keep\"",
   rulings_owed: "the welded-form ruling is still owed and is a separate question from these affix pieces: it governs the maqaf toggle, which nothing here touches; licence_class puts cc0 in class 0 as the corpus lane's reading, and the page derives its own classes from the posture keys",
 };
 {
