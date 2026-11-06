@@ -2,7 +2,9 @@
 
 From Elijah (page lane). The 35 ledgers are live at rest (main 92c831e7): every dictionary prints each row as its source wrote it, and no mark divides. Each ledger carries branches where Moses judged the mark's meaning to be the owner's call. There are 104, over 131,418 rows. Every branch's question and both options, in Moses's words, stand below (§5). They fall into four rulings; a ruling can be given for the whole group, or branch by branch.
 
-## 1. Lists: one pill per word, or the list whole? (63 branches, 92,661 rows)
+## 1. Lists: one pill per word, or the list whole? (63 branches, 92,661 rows) — RULED 6 November
+
+**The owner's ruling (6 November, after the ledgers went live): one pill per rendering, for the ledger's reasons and not a rule's.** Applied as data/ledger-branch-answers-v1.json: 54 branches answered "divides" (90,608 rows reach them; 66,955 rows of the store divide); 9 held at rest, each with why (a label or a note that is no reading: Kaikki Hebrew B05, Aramaic B05; Strong's King James lists copied into Kaikki, B07, tabled with v102; a cut that leaves a bracket behind: OMW oewn B02; a description that may not render the word: OMW pwn30 B02; pieces the ledger itself says would say something else alone: Open Scriptures BDB B02, Wikidata forms B03, Wikidata lexeme B02; a name that is another word's: TBESH B03). The held nine are 2,053 rows.
 
 A line such as Kaikki's «boxer, pugilist» or the unabridged BDB's «bread, food». Until today the page cut every such list at its commas and semicolons (the generic rule) and printed one pill per word. At rest the ledgers print the list as one pill. Answered "divides", each dictionary's own classifier cuts only the marks it declared as list marks: a comma inside a sentence, a verse reference, or a bracket stays.
 
