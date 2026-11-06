@@ -3580,6 +3580,14 @@
   const BAND_Q = [".b-cut .s-pills", ".b-cell .s-pills", ".b-read .r-pills"];
   const snapBands = () => {
     if (hud.hidden) return;
+    // NOT WHILE THE CARD POPS. The pop scales and tilts the card for its
+    // first 200ms, and a band measured through that transform reads its pills
+    // against an untransformed height: the snap, which only ever shrinks,
+    // pulled the readings back to one row on every card opened after another
+    // (check-reading-rows-v1 R1, red from the pop's first day to 2026-11-06).
+    // The loop runs every frame, so the bands are examined the frame the pop
+    // is done, on the card as it stands.
+    if (hud.getAnimations && hud.getAnimations().some((x) => x.playState === "running")) return;
     for (const q of BAND_Q) {
       const box = hud.querySelector(q);
       if (!box || !box.children.length || !box.style.height) continue;
@@ -3710,6 +3718,15 @@
   // one: the tether compares its own key, and the bands look only for a pill
   // their edge is cutting.
   (function cardLoop() { drawTether(); snapBands(); requestAnimationFrame(cardLoop); })();
+  // THE POP IS MEASURED WHEN IT IS DONE. The card grows from 93% under a
+  // tilt for its first 200ms, and whatever is fitted in that time (a clamp
+  // that finds the card on its word and places it again, a band snapped
+  // back) measures a card that is not yet its size: on a card opened after
+  // another, the readings were fitted to one row of fifty-five
+  // (check-reading-rows-v1 R1, 2026-11-06). So the card is placed once more
+  // the moment its pop ends, on the card as it stands; placeHud refits it
+  // from the uncapped card, and a card the reader has moved stays put.
+  hud.addEventListener("animationend", (e) => { if (e.target === hud && e.animationName === "hud-pop" && !hud.hidden && hudAnchor) placeHud(); });
   const placeHud = (el) => {
     // the record of what each side offered, and of a move, is the open
     // card's: it starts over for another word, not for a second placement
@@ -4434,7 +4451,7 @@
     const nameLed = zone && zone.gloss_names && surface && Object.prototype.hasOwnProperty.call(zone.gloss_names, surface)
       && zone.gloss && zone.gloss[surface] === zone.gloss_names[surface] ? zone.gloss_names[surface] : null;
     const nameYields = () => masorah === "letters"
-      || (masorah === "only" && gr && gr.o && gr.o.l)
+      || (masorah === "only" && gr && gr.o && gr.o.l && !gr.nl)
       || (pos.needs === "lattice" && gr && gr.o && gr.o[pos.lattice])
       || (pos.needs === "witnessed" && wCol);
     const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (a.text === nameLed ? 0 : 1) - (b.text === nameLed ? 0 : 1));
@@ -4802,10 +4819,13 @@
     // read there; the verse, read when it comes into view
     const itemOf = (p, t, sayLang) => {
       const it = document.createElement("div"); it.className = "item";
-      const label = `${name(p.book)} ${p.ref}:${p.w_page}${p.side ? ` (${p.side === "k" ? "as written" : "as read"})` : ""}${p.kind === "piece" && p.pointed ? ` \u00b7 in ${p.pointed}` : ""}`;
-      if (isHere(p)) { it.append(`here \u00b7 ${label}`); }
+      const label = `${name(p.book)} ${p.ref}:${p.w_page}${p.side ? ` (${p.side === "k" ? "as written" : "as read"})` : ""}`;
+      // the word a piece stands in is the corpus's letters, quoted by our
+      // label: it wears the red (check-card-channels-v1 C1), inside the link
+      const inWord = (el) => { if (p.kind === "piece" && p.pointed) el.append(" \u00b7 in ", Object.assign(document.createElement("span"), { className: "he-q", lang: "he", dir: "rtl", textContent: p.pointed })); return el; };
+      if (isHere(p)) { it.append(`here \u00b7 ${label}`); inWord(it); }
       else {
-        const a = document.createElement("a"); a.href = dictHref(p.book, p.ref, p.w_page); a.textContent = label;
+        const a = document.createElement("a"); a.href = dictHref(p.book, p.ref, p.w_page); a.textContent = label; inWord(a);
         a.addEventListener("click", () => { try { localStorage.setItem("fh.dict.back", JSON.stringify({ href: backHref, label: hereLabel })); } catch { /* the jump still works; the way back is the browser's */ } });
         it.append(a);
       }
@@ -8702,6 +8722,13 @@
     // the Masorah lifted, no lattice order can move the line at all
     if (masorah === "only" && latticeStore && latticeStore.grades && word.s) {
       const gr = latticeStore.grades[word.s];
+      // A NAME LEADS UNDER "ONLY" TOO (proper-name-rule-v1): where the line
+      // under this key is its name and a row the filter keeps carries it
+      // (the sidecar's nl), the table's own line, the name, answers. Names
+      // turned off lay the noname column over the table, so the name no
+      // longer is the line there, and the filter's leader answers as before.
+      if (gr && gr.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
+        && zone.gloss[word.k] === zone.gloss_names[word.k]) return null;
       const first = gr && gr.o && gr.o.l;
       if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: "masorah" };
       // graded, and nothing survives the filter: the word goes bare here,

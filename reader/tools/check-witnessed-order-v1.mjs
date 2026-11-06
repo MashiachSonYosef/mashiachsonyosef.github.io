@@ -14,10 +14,19 @@
 //   W4  under each, the lines move, and every sampled moved line is what its
 //       card offers first, with a chip
 //   W5  back to oldest first, every sampled line is what it was
+//
+// THE BAKE KNOWS THE STORE'S SOURCES (as check-card-opens-on-the-line-v1 C2
+// judges it). The dictionaries beside the store sort on the card like every
+// other (overlay-rule-v2), but no overlay ever carries the line, so where one
+// of their readings is the oldest the card leads with it while the line
+// keeps the store's (Amos 1:1's בימי: Jastrow's "Bimi" before "in + days").
+// W4 asks whether the column and the card's sort agree, so it is judged with
+// the overlays' chips off, the sources the columns were baked from.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import { gunzipSync } from "node:zlib";
 
 let bad = 0;
@@ -72,6 +81,11 @@ const b = await pw.chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.addInitScript(() => { try { localStorage.clear(); } catch { /* fresh reader */ } });
+// every source id beside the store, read off the overlays' own indexes, off
+const OV_DIR = join("data", "overlays");
+const OV_IDS = existsSync(OV_DIR) ? readdirSync(OV_DIR).filter((d) => existsSync(join(OV_DIR, d, "index.json")))
+  .flatMap((d) => Object.keys(JSON.parse(readFileSync(join(OV_DIR, d, "index.json"), "utf8")).m_sources || {})) : [];
+if (OV_IDS.length) await p.addInitScript((ids) => { try { localStorage.setItem("fh.sources.off", JSON.stringify(ids)); } catch { /* as above */ } }, OV_IDS);
 // THE ORDER THESE CLAIMS ARE WRITTEN AGAINST: oldest first. The owner made
 // "at this place" the default (2026-10-03: "we dont do blanket oldest first
 // anymore thats a subtoggle"); it leads wherever TAHOT reads the word, and it
