@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-06.
 
-**138 rules declared · 127 named by a check · 11 unguarded.**
+**139 rules declared · 128 named by a check · 11 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -101,6 +101,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land` | tools/land-pointing-store-v2-v1.mjs, tools/gloss-store-v1.mjs | check-pointing-store-landing-v1 |
 | `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1, check-carrier-survives-v1, check-names-pill-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-cut-readings-v1, check-licence-leaves-v1, check-provider-characters-v1 |
+| `read-form-offsets-rule-v1-a-read-forms-piece-without-letters-takes-the-lanes-alignment-or-none` | tools/bake-read-form-offsets-v1.mjs, zone.html | check-read-form-offsets-v1 |
 | `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-card-opens-on-the-line-v1.mjs | check-card-opens-on-the-line-v1, check-first-reading-is-sorted-v1 |
 | `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
@@ -171,7 +172,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 112 tools that are not checks.
+`build.sh` calls 19 of the 113 tools that are not checks.
 
 Not called by any build stage:
 
@@ -184,6 +185,7 @@ Not called by any build stage:
 - `tools/bake-form-of-pills-v1.mjs`
 - `tools/bake-overlay-book-counts-v1.mjs`
 - `tools/bake-piece-store-v1.mjs`
+- `tools/bake-read-form-offsets-v1.mjs`
 - `tools/bake-search-index-v1.mjs`
 - `tools/bake-span-store-v1.mjs`
 - `tools/bake-span-store-v2.mjs`

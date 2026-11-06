@@ -806,6 +806,20 @@
     .then((r) => { if (!r.ok) throw new Error(`piece store ${r.status}`); return r.json(); })
     .then((j) => { PIECE_BOOK = j; return j; })
     .catch(() => { pieceBookP = null; return null; }));
+  // THE READ FORM'S PIECES, PLACED (read-form-offsets-rule-v1; the corpus
+  // lane's v108, 6 November 2026). At 475 of the 578 places where a read form
+  // divides, the piece store gives some piece of it no letters (null), and a
+  // claim with no letters answers no cell: Nahum 2:6:4's blocks read nothing
+  // from their place. The lane aligned each group's pieces to the side's
+  // letters (data/read-form-offsets-v1.json, tools/bake-read-form-offsets-v1.mjs),
+  // fetched once, the first time such a piece is asked, and read for this
+  // book only. A piece the store gives letters keeps the store's; a group the
+  // lane could not align (8) is not in the file and answers no cell, as before.
+  let readFormOffsetsP = null;
+  const readFormOffsetsReady = () => readFormOffsetsP || (readFormOffsetsP = fetch(`${ROOT}data/read-form-offsets-v1.json`)
+    .then((r) => { if (!r.ok) throw new Error(`read-form offsets ${r.status}`); return r.json(); })
+    .then((j) => (j && j.books && j.books[BOOK]) || {})
+    .catch(() => { readFormOffsetsP = null; return null; }));
   const SPAN_BY_KEY = new Map();        // ink key -> rows, in the store's order (NAME rows first)
   const spanRowsOn = (key) => (SPAN_BY_KEY.get(key) || []).filter((r) => !sourcesOff.has(r.slots[3]));
   const OVERLAYS = {};
@@ -1843,12 +1857,24 @@
       const want = [...String(key || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
       const { ref, n, a: A, b: B, reading } = piecePlace;
       const out = [];
-      for (const c of pb.places[`${ref}:${n}`] || []) {
-        const [, , , rd, a, b, R, rid, , sign] = c;
+      const claims = pb.places[`${ref}:${n}`] || [];
+      // a read form's piece with no letters of its own takes the lane's
+      // alignment (read-form-offsets-rule-v1); a written word's never does
+      const lettersOf = claims.some((c) => c[3] !== "form" && (c[4] === null || c[5] === null)) ? await readFormOffsetsReady() : null;
+      for (const c of claims) {
+        let [piece, src, , rd, a, b, R, rid, , sign] = c;
+        let placed = false;
+        if ((a === null || b === null) && rd !== "form" && lettersOf) {
+          const g = (lettersOf[`${ref}:${n}`] || {})[`${src}|${rd}`];
+          const at = Array.isArray(g) ? g.find((x) => x[0] === piece) : null;
+          if (at) { a = at[1]; b = at[2]; placed = true; }
+        }
         if (!R || sign || a !== A || b !== B || rd !== reading) continue;   // letters [a, b] inclusive, as the lane counts
         const rec = pb.records[rid]; if (!rec) continue;
         const row = [0, R, rec[2], rec[0], rec[3] || "S_NO_SOURCE_YEAR", 0, null];
         OVERLAY_ROWS.set(row, o.id); out.push(row);
+        // counted for a check to read: the claims the lane's alignment placed
+        if (placed) window.__readFormPlaced = (window.__readFormPlaced || 0) + 1;
       }
       // the letters say the same: a cell whose surface is not the claim's
       // letters is not its cell (a guard; the place already decided)
