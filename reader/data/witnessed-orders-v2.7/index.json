@@ -1,0 +1,1074 @@
+{
+ "schema_version": "WITNESSED_ORDERS_SHIPPED_INDEX_V1",
+ "rule": "witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit",
+ "imported_on": "2026-11-06",
+ "imported_by": "tools/import-witnessed-orders-v1.mjs",
+ "what": "the corpus lane's witnessed order as shipped (orders-witnessed-v2.7, build moses-orders-rebase-v2.1): for each served book and each of its three columns, the lane's order file (key -> the served row's whole text, verbatim) and M file (key -> the credit, verbatim), kept here so tools/bake-witnessed-order-v1.mjs derives the columns from the shipped text on every store change; each lane file's sha256 is the one the zone's receipt pinned at the first bake",
+ "taken_from": "corpus-lane-builds/moses-orders-rebase-v2.1/orders-witnessed-v2.7 (the relay store, read 6 November 2026)",
+ "version": "v2.7",
+ "build": "moses-orders-rebase-v2.1",
+ "manifest": {
+  "file": "MANIFEST-witnessed-v2.7.json",
+  "sha256": "9c354cf3727462ae1d5d6bcf4688413c4dd0487dc29b52b106f60ff0b5771d2b"
+ },
+ "counts": {
+  "books": 39,
+  "columns": 117,
+  "entries": 106996
+ },
+ "books": {
+  "amos": {
+   "file": "amos.bin",
+   "sha256": "e61235de3314bab097ae669ea9d9145690c3bef5d5e3f591d3027fc6d1f78032",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-amos.json",
+     "order_sha256": "81125d0089e945e29abd513c903ea4db1a168d61f04945af3c4fd91b4d10419b",
+     "m_file": "witnessed-same-place-m-v2.7-amos.json",
+     "m_sha256": "00dcb77dc0725eaab79e1daf267d238aa98d3a2976203158d15f1218f252e08c",
+     "shipped": 360
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-amos.json",
+     "order_sha256": "6bcfd787537bfbf7beb16f831019980b14dff47401f3a5dc83d29fac9c936d78",
+     "m_file": "witnessed-entry-m-v2.7-amos.json",
+     "m_sha256": "bf22654a407b4e7e63bb7f9f4f65dc97f3c27eea2d255f53b19e90a8071cb002",
+     "shipped": 404
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-amos.json",
+     "order_sha256": "c672701fac13ab7697635a5511097b03d1a513efe28bd0713009e69b193c5f15",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-amos.json",
+     "m_sha256": "fe2ffbaa6a173dd38006aadfcd08888af8787c99137a4fb5151f3b4796298c65",
+     "shipped": 375
+    }
+   }
+  },
+  "daniel": {
+   "file": "daniel.bin",
+   "sha256": "6b34574e43936f24c3ada002c6186468e10f93254c0bd792bd05bbf7d398da41",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-daniel.json",
+     "order_sha256": "827ccead12c8e4a5eb9a812e58229e635a863df9e75f1e6d356cc181eb001aa4",
+     "m_file": "witnessed-same-place-m-v2.7-daniel.json",
+     "m_sha256": "34e0b9d0f8e74b030869dce836721e6663cd6358f1e8eb3d26e14e70d2d76782",
+     "shipped": 838
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-daniel.json",
+     "order_sha256": "e81c83bcb28461457acb9297cc99bff6063ecebfc80f85fe0b7aeef5ea6f6468",
+     "m_file": "witnessed-entry-m-v2.7-daniel.json",
+     "m_sha256": "3814b84c49f3f7e582ad3b92465e4fabf151f4d14f5d35d28f35aebb9aa5c70a",
+     "shipped": 864
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-daniel.json",
+     "order_sha256": "c255b106e49c20bf312f183f7b2e4e619db944dad0b079010c6d6f034c27b2dd",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-daniel.json",
+     "m_sha256": "2eebb32d1ddd7871d56b0f8eb3aeac5ee2593b6535deef33a1b3dfb9893cb640",
+     "shipped": 740
+    }
+   }
+  },
+  "deuteronomy": {
+   "file": "deuteronomy.bin",
+   "sha256": "ac39a7acf219861ba2958212ac9084b59dce09f31d8725c93a3418fe6674bee5",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-deuteronomy.json",
+     "order_sha256": "710beef08216997f23b17b7ef6f2618b1187ca28a40f6fd6d9b4a166ce154bb8",
+     "m_file": "witnessed-same-place-m-v2.7-deuteronomy.json",
+     "m_sha256": "d9d33707c54c696bca7691c33b28bdbfa7dc25017d21eb6fcef4a6fb51ad6d7c",
+     "shipped": 1484
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-deuteronomy.json",
+     "order_sha256": "137fd7bff0938a38c7d13cce72f457f635616725cf7d80a0c2bc0423816c6a76",
+     "m_file": "witnessed-entry-m-v2.7-deuteronomy.json",
+     "m_sha256": "1b8b938471b4bc5ef837eadc227f4248ab0c5af21f6a0f4b9cda0005fedefba2",
+     "shipped": 1580
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-deuteronomy.json",
+     "order_sha256": "294faad959b78ee0b4342aa3d98960f56651c58c0c8d818963acb89a8f198c6b",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-deuteronomy.json",
+     "m_sha256": "2ac8c4befcd8b1af24f2927f8a06135035eab5e3ebfd5cc0d34c46b5fe0b66e4",
+     "shipped": 1278
+    }
+   }
+  },
+  "ecclesiastes": {
+   "file": "ecclesiastes.bin",
+   "sha256": "e9415f86b045a3be0b36f906b8832ecf0fd3361e2bed8548d7f59e048225ef47",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-ecclesiastes.json",
+     "order_sha256": "b59cd0e5a7658b9ee34dc8f8e5aff2d70b4b4d5397b7da4f538d05bfc661a044",
+     "m_file": "witnessed-same-place-m-v2.7-ecclesiastes.json",
+     "m_sha256": "8627ffd94b6ffd725df23303a800f62534d4b38818d24930557a428dd9c24cff",
+     "shipped": 515
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-ecclesiastes.json",
+     "order_sha256": "27def81fb6e02216e4c55623e5b2ed200e9ce1bb78ae15cc5b03da705aedd741",
+     "m_file": "witnessed-entry-m-v2.7-ecclesiastes.json",
+     "m_sha256": "037aa7de4d26150598ce3714fba5cc907cfeb796392149e4a2c36144c49edc8a",
+     "shipped": 543
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-ecclesiastes.json",
+     "order_sha256": "9a753b8a9ea57e4a2be24e18f77bd12f83815d1ac1abd3feb1444e3df14db5b7",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-ecclesiastes.json",
+     "m_sha256": "452e3eabdc0b5aeafd9f1c10e251106b946ae1efea773b1b66a3297dde84e3f4",
+     "shipped": 499
+    }
+   }
+  },
+  "esther": {
+   "file": "esther.bin",
+   "sha256": "c193a15728f28c82b706f04199c5271f7c22df608118eee187fb7a3fc80f4350",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-esther.json",
+     "order_sha256": "0418b61fab4475bfbd0f14ace395db0bf9b3027535a90adc79d7b589555a0b83",
+     "m_file": "witnessed-same-place-m-v2.7-esther.json",
+     "m_sha256": "01c2e3efe3066de5c5c25fc83b8d7032cb9bc27af5ad6263c2a5434826c22278",
+     "shipped": 395
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-esther.json",
+     "order_sha256": "a6e636c1ffd8cbcc9ec275d6d3fa23be4b3369653f31f09df43d513eecd64187",
+     "m_file": "witnessed-entry-m-v2.7-esther.json",
+     "m_sha256": "6ff9e8975f152016f5640d0a57979e9374aea2a0dc332f29e83e3f7d83481539",
+     "shipped": 413
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-esther.json",
+     "order_sha256": "de7983ce19085b2d4cb0bb4deba28e4b41091d605590b1640db0a21f7ce1bb4e",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-esther.json",
+     "m_sha256": "21785edb52a4bf211650d28d1f4e39fcb0012aff41cb5712ceb701d6d3978e4a",
+     "shipped": 412
+    }
+   }
+  },
+  "exodus": {
+   "file": "exodus.bin",
+   "sha256": "4116688374c5a46d8f310177f6e9295f2203b8003c9710d036d83c2a50d778a8",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-exodus.json",
+     "order_sha256": "ae6313fc1caf9e72f374b77f5e678f7d8bd5f77233e67247ec1403a666106a84",
+     "m_file": "witnessed-same-place-m-v2.7-exodus.json",
+     "m_sha256": "4576cc1fbe86188ded6d13750941db30c53ce964374123152794ade62296620d",
+     "shipped": 1578
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-exodus.json",
+     "order_sha256": "04935496bdb7e5ef86e79219d1a55f88334ee94a618d4af4a2947ae72e1538a6",
+     "m_file": "witnessed-entry-m-v2.7-exodus.json",
+     "m_sha256": "35ac37bcd304f6d91511c04c172513d80cbf3f09c43faedecfacc831b3518503",
+     "shipped": 1632
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-exodus.json",
+     "order_sha256": "733c8ac07f609b06224d84fba1c71fa1f5f4b37901018325431e352c35e99a68",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-exodus.json",
+     "m_sha256": "a85443e99fa90fdd6c723313674052b451e83dfe737e1b95ca50ecec114e1809",
+     "shipped": 1284
+    }
+   }
+  },
+  "ezekiel": {
+   "file": "ezekiel.bin",
+   "sha256": "b804220c67d0765c1839379acf8fdfc6b41af1ed29e4f58377c3c3125b5ffb30",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-ezekiel.json",
+     "order_sha256": "efac071f9c1ce82423af3bf380e9a74aeed7adbd1883687f478fe024edaf2747",
+     "m_file": "witnessed-same-place-m-v2.7-ezekiel.json",
+     "m_sha256": "249267b6c9df0b2a9fba940005d0b7d035c6eeaf1258bb821c7b11e466914f11",
+     "shipped": 2026
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-ezekiel.json",
+     "order_sha256": "bbcb5efaf5b67317374bc17ec8a7866c9d7dc6768f8f6316e108a59756bf68a9",
+     "m_file": "witnessed-entry-m-v2.7-ezekiel.json",
+     "m_sha256": "7f19fe8a1b7c6c5e1ef37d6da907edbbad3adda40b2eceaefd99965d3da0929c",
+     "shipped": 2120
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-ezekiel.json",
+     "order_sha256": "e46054cc06ed02321e8b71312a800368d165c8a4424468aac6dc2d3307f0bc5f",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-ezekiel.json",
+     "m_sha256": "b616e0ce5d8869e1ec22d5d4f42ce162adf8d469470cc315952b5f6cec41b5b1",
+     "shipped": 1777
+    }
+   }
+  },
+  "ezra": {
+   "file": "ezra.bin",
+   "sha256": "5ef0e439a03a21a71abec4f412a9ab51cb1c40bb58f6c1bba55b609ed716d27f",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-ezra.json",
+     "order_sha256": "2fdb79722139a62b0058280c5cd930c10d97265c9888e43ca27929bcf4fea99c",
+     "m_file": "witnessed-same-place-m-v2.7-ezra.json",
+     "m_sha256": "1ff1004ab1b18a25698fe4458cea9b4d22396e0aa0bc3974e4cfd24e6149df11",
+     "shipped": 544
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-ezra.json",
+     "order_sha256": "b0704d4fe23ec5bef7fc2ea7279575ea648d83ac0d8e7d6ac2f80678de67aa71",
+     "m_file": "witnessed-entry-m-v2.7-ezra.json",
+     "m_sha256": "40eec026e563abb48a60203d4356df78519c91ce188d08516db639447e062b40",
+     "shipped": 591
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-ezra.json",
+     "order_sha256": "0278379ed5de44b724a0c401e8db44402ec4c0edcc2d98cc3a5ad85a383bd635",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-ezra.json",
+     "m_sha256": "5e2c93240c99fc1d108892d344333358af8989c38bd0590a1101cb6afaadfccc",
+     "shipped": 576
+    }
+   }
+  },
+  "genesis": {
+   "file": "genesis.bin",
+   "sha256": "3e50207a5d8fa657f9c6d673760d775182652d16b40bf4617cbc59da188c26d2",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-genesis.json",
+     "order_sha256": "b99200151681fbbcedf9774277662b71b77981e69c0e87b444dd36044d042966",
+     "m_file": "witnessed-same-place-m-v2.7-genesis.json",
+     "m_sha256": "4165b2528cb40daf75a916e25e87ac59916b6058052bb8f18c06753be1ed98ee",
+     "shipped": 1742
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-genesis.json",
+     "order_sha256": "1e4de0ceb5c2ca91325dd144b87f1a2bb7fc6a9f245c0d19dea2f48f9fe9711e",
+     "m_file": "witnessed-entry-m-v2.7-genesis.json",
+     "m_sha256": "84fa60418e1d36890843e0d3764cea153a3dde4dbf1385d7b31ff71cb0c9a0f8",
+     "shipped": 1787
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-genesis.json",
+     "order_sha256": "338fe2c395fc3ebc583db7060b244bc95657ae8e352e47d548344473d132c1ad",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-genesis.json",
+     "m_sha256": "300faf1fc6b5e33c0564213825d085a01138c2dadf9f39a516cfd45a08a3a66d",
+     "shipped": 1284
+    }
+   }
+  },
+  "habakkuk": {
+   "file": "habakkuk.bin",
+   "sha256": "d9493d2451791c1da8ed9965f260e8c0c3d8ba31a91ef9ead517a880bea30ae0",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-habakkuk.json",
+     "order_sha256": "4e716161f68b36e114e1d8332929ec6aed3f14944eb1f0da8981ff5a83350944",
+     "m_file": "witnessed-same-place-m-v2.7-habakkuk.json",
+     "m_sha256": "51ae251bceba7db8e14097aeb4dbb8cf391afbb311c920b96b60183470b74d5b",
+     "shipped": 229
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-habakkuk.json",
+     "order_sha256": "cb95ade6894c57c78d465ece5d1dd2ae1bf8ec60f6ebc96997924268fa655e19",
+     "m_file": "witnessed-entry-m-v2.7-habakkuk.json",
+     "m_sha256": "8f6885565a7d95da6d00faaf77020e639d369d1e6fa087c48041e5f939de944f",
+     "shipped": 246
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-habakkuk.json",
+     "order_sha256": "d5cb318331437d34b7e1b736494eb78fa9f6fa66abdb91893c6110f98b58a5d2",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-habakkuk.json",
+     "m_sha256": "c411133018f331be4512bf60516597b6d4f61a555778c0f51845d4ddaca5047f",
+     "shipped": 234
+    }
+   }
+  },
+  "haggai": {
+   "file": "haggai.bin",
+   "sha256": "f73333d5b2feadb37ce0ec9d82d0f00cf984745239590610a1ec00ef7dbf29d7",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-haggai.json",
+     "order_sha256": "7588c0dabbd2a2db0216e89aa0a45d8e46dc6f355068c2930671aea264858b00",
+     "m_file": "witnessed-same-place-m-v2.7-haggai.json",
+     "m_sha256": "057db20c781fe0be73c002e125881325f4a5e0ae3211d5ea811e55553b4cf326",
+     "shipped": 74
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-haggai.json",
+     "order_sha256": "cbb3079bb5426a9d7c301faa85de9a255198a89140eaa974b1a7a171f17c73c4",
+     "m_file": "witnessed-entry-m-v2.7-haggai.json",
+     "m_sha256": "fe14f455b6dd5e27ef814195b98246e56d4cd177d403d27812428bc0ed463b88",
+     "shipped": 89
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-haggai.json",
+     "order_sha256": "2500171e9f9853954ee40721b46201cd8ec9b7509602d872434a81685f113f57",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-haggai.json",
+     "m_sha256": "33b01a03ba61aac27842b650727fa11635c006fdbcc95ecc4f1788a98e493c12",
+     "shipped": 113
+    }
+   }
+  },
+  "hosea": {
+   "file": "hosea.bin",
+   "sha256": "717ab2346ed04cc0f8f36d9474ed85b8179e849dac0115e37f5825e82c3b0720",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-hosea.json",
+     "order_sha256": "f9dc47b63ecb98fc3f65498ba73c0d1675a339336dd7a731ac1c8e3bedc0aac7",
+     "m_file": "witnessed-same-place-m-v2.7-hosea.json",
+     "m_sha256": "65f708ce3a55fb0c758489d14d971756eb0d0170cbb9f113dac465ae432c83aa",
+     "shipped": 451
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-hosea.json",
+     "order_sha256": "b867ea2068425f4499b35875f33033c7524d5f7e6dc385d0c18012fad5c21891",
+     "m_file": "witnessed-entry-m-v2.7-hosea.json",
+     "m_sha256": "c5ed929ba9c4a20c7e2b56b7bfead20c0fa322c455a539788e51519d5431a187",
+     "shipped": 499
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-hosea.json",
+     "order_sha256": "731a82646bcac762fb7e5ae797804c8e9cde5d8358f070c598d72ce0b1227de3",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-hosea.json",
+     "m_sha256": "eae2cf2f01dd506a0bb638e93f6048f010a0aadce24c78a50a8a742978b91b95",
+     "shipped": 480
+    }
+   }
+  },
+  "i-chronicles": {
+   "file": "i-chronicles.bin",
+   "sha256": "44ea9e4e77a5899e0b50c7cafe41470b58a8c6e6ae5d4c6360c746899ca013a6",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-i-chronicles.json",
+     "order_sha256": "038ee1747d6e64f2bfcce32dd321f2071ddf58ae83c7499ab1c5180e78a56e86",
+     "m_file": "witnessed-same-place-m-v2.7-i-chronicles.json",
+     "m_sha256": "d7539b1060a04a3113c6f73269b8433d71319b12808bc76dae181e34a9437866",
+     "shipped": 1154
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-i-chronicles.json",
+     "order_sha256": "081ec2638690e7fb3deb3b4ecd71c20a72bbf8c60750b436220481f43844e2ba",
+     "m_file": "witnessed-entry-m-v2.7-i-chronicles.json",
+     "m_sha256": "4bbadaf9215b7202ede729e3d512bc29792265493a428d21fcdaf860172b3f00",
+     "shipped": 1245
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-i-chronicles.json",
+     "order_sha256": "28dc29c61013204905799acf2f0e1239a3a8037b63b624d5f4ddac5e56646174",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-i-chronicles.json",
+     "m_sha256": "4859a638cfe08fef640c7b829a73cbb7f07e43df4189baebe708028a6ab03eef",
+     "shipped": 1258
+    }
+   }
+  },
+  "i-kings": {
+   "file": "i-kings.bin",
+   "sha256": "0d0e7cfd84aa5adcf2af02bb137f91ac3a12290ba982d3b4c825b75392506ce2",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-i-kings.json",
+     "order_sha256": "bb498448e13fa4c9aa08995adfe9c41c24aa9a58bf174b7b26127a628652c12b",
+     "m_file": "witnessed-same-place-m-v2.7-i-kings.json",
+     "m_sha256": "5f88139b2a07fd7799a8dd4e651c0a2148d031411deaaad888aa9e6e5c87ea95",
+     "shipped": 1266
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-i-kings.json",
+     "order_sha256": "be1aa62bec5ef0d205d93a367716c22589aa93137c60c813fba1a4634f3fdcd6",
+     "m_file": "witnessed-entry-m-v2.7-i-kings.json",
+     "m_sha256": "3ea9ddeca518fb10f0783fb3221eadae5901da3455210a86054a2152c6da12b0",
+     "shipped": 1344
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-i-kings.json",
+     "order_sha256": "586359705d2fa8dc5c3c324c3bfea86038b7528589d6440219ba0cd739b55047",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-i-kings.json",
+     "m_sha256": "fc3bd8f316c5e39501a2d8f8da6c61370d84d02bcf3f4e6eff5a027c8f815706",
+     "shipped": 1222
+    }
+   }
+  },
+  "i-samuel": {
+   "file": "i-samuel.bin",
+   "sha256": "301fd5422454b28c4431c96638f9a16c4fec6f8d99dfdbf51e754c7978479a33",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-i-samuel.json",
+     "order_sha256": "be7fea15d3e3989facdcf0349f09b166db4ac337b55555475b863d512f6a63c2",
+     "m_file": "witnessed-same-place-m-v2.7-i-samuel.json",
+     "m_sha256": "250a6a59178dac8d9c38d54f87c93177f1ce11d4ea9cdd63cb9a3a85a288e67f",
+     "shipped": 1405
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-i-samuel.json",
+     "order_sha256": "bea30a4ae34d063db2536fb8658ab6745295ed276d85448955a43f6669c50c88",
+     "m_file": "witnessed-entry-m-v2.7-i-samuel.json",
+     "m_sha256": "ba043b9dc920128081a70f1b5b169cf94e5eda4572c61d3181e243724aa8ffaf",
+     "shipped": 1456
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-i-samuel.json",
+     "order_sha256": "e06ea0ac879bf02721a90d174048518ee622c7d5651b3480800708ae3dd9b1bc",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-i-samuel.json",
+     "m_sha256": "6e6ffac111bd6665bbfe061d3510d8c3f33bef27ae9a3eea98ca3223fdc63fb5",
+     "shipped": 1229
+    }
+   }
+  },
+  "ii-chronicles": {
+   "file": "ii-chronicles.bin",
+   "sha256": "addc6a1fe80bac033084727a131a4ec9d69580564bdaa7c45a211461269b1321",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-ii-chronicles.json",
+     "order_sha256": "af9b5eccc46f0cbe4a6401daf819e32a4fdb0d8d1e8950f1195363301dc4701a",
+     "m_file": "witnessed-same-place-m-v2.7-ii-chronicles.json",
+     "m_sha256": "e8b2a861bbab1dcabf9c28b953aa252da9361d77f398b0ac51bbfedc4f4cd131",
+     "shipped": 1040
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-ii-chronicles.json",
+     "order_sha256": "f728a0e34d5866be3855a2bfe979726c0c57951ebf3aa62a33a4fab2882b49f7",
+     "m_file": "witnessed-entry-m-v2.7-ii-chronicles.json",
+     "m_sha256": "1b6dccecd0e4a754485efc3ffacb1eeda5fd5180333845269bcd2a8672b1fb0f",
+     "shipped": 1139
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-ii-chronicles.json",
+     "order_sha256": "fd32dfe7821685aa5dcac0b2e79727a73224b6271806899680c3248e50ef6d0f",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-ii-chronicles.json",
+     "m_sha256": "c5c56bac4080d008e687ffed2013939204daa1f6c8e30138e6c3018799398e53",
+     "shipped": 1162
+    }
+   }
+  },
+  "ii-kings": {
+   "file": "ii-kings.bin",
+   "sha256": "2c61eefe5b9c11af8836be600590aed642f3f11fd5f3cb602f0dcae86ea7e151",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-ii-kings.json",
+     "order_sha256": "051ca8337e16afd4e0dbc0a2ef464817281ec26ac6c4b8c830351fa4c06fd2e4",
+     "m_file": "witnessed-same-place-m-v2.7-ii-kings.json",
+     "m_sha256": "fc9e3ba6058d7029c0b02383385df93f36acc77483c10c23703a00e0beb45bb3",
+     "shipped": 1086
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-ii-kings.json",
+     "order_sha256": "91336ae0055673ba4b2531bbc80f8f17bce4fcac25c8f44b8f11298b1eea85b5",
+     "m_file": "witnessed-entry-m-v2.7-ii-kings.json",
+     "m_sha256": "555d82b2e9a7cbd83d590d21774836753732704a850a9c601cbef1f042ab5609",
+     "shipped": 1168
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-ii-kings.json",
+     "order_sha256": "9eda3ab3a440cfdb4fe93f7c8dd144d97903d68e4a483b793af4fc5907392d53",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-ii-kings.json",
+     "m_sha256": "c72f5cda3fa307d46817ab227acdbd2dd5170796e29306c62aac115cf19e54b2",
+     "shipped": 1116
+    }
+   }
+  },
+  "ii-samuel": {
+   "file": "ii-samuel.bin",
+   "sha256": "6f2b58167954e5410e66c8a4770de01eef694b51a12c4fe52324a508bd1f39dc",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-ii-samuel.json",
+     "order_sha256": "50283f75250f8cbfd6531fd3e9cb5153fa4debe2970097d6e47aced9c57491b7",
+     "m_file": "witnessed-same-place-m-v2.7-ii-samuel.json",
+     "m_sha256": "70f0647ae526cc7354eb7121ab79e81a2acd29acdba717169e4bc5c83b32ec61",
+     "shipped": 1171
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-ii-samuel.json",
+     "order_sha256": "6c638cb72b566cffa7439d03a3ea12e78dd21c172f007953dc3cf0cb71ff70aa",
+     "m_file": "witnessed-entry-m-v2.7-ii-samuel.json",
+     "m_sha256": "78e033f8ca265f957a3cdeb9d8e24ef73a9ae159628ec5fdb048b7b1cbccaa89",
+     "shipped": 1243
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-ii-samuel.json",
+     "order_sha256": "9723e7bbec168a84aa21d43bfaa12fc333a9b3226217bcc10dafb59939e609fc",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-ii-samuel.json",
+     "m_sha256": "24936bac4d3b786900485b87123330c3c008fde2f9b119a160aefe66670a3158",
+     "shipped": 1094
+    }
+   }
+  },
+  "isaiah": {
+   "file": "isaiah.bin",
+   "sha256": "88f3f29ce3a5841c1c6ff1d0f601427cedc80f50c222e00d93a70e4a2008db00",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-isaiah.json",
+     "order_sha256": "0487c7909fd5bd8b7418e843454bcf70dbf0c04ec46f2ca4ce90ef9a21eef052",
+     "m_file": "witnessed-same-place-m-v2.7-isaiah.json",
+     "m_sha256": "9785f6e8d89eb1d1ac0ad92dbd0e3a0072baebc3f859c98b5b60d59162fb30c8",
+     "shipped": 3238
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-isaiah.json",
+     "order_sha256": "5cb194b4490c00ca3541887bcf91cc2b0cfc4424e88bc1571758552c89b6fc90",
+     "m_file": "witnessed-entry-m-v2.7-isaiah.json",
+     "m_sha256": "3c7978bbf793f379297a278ee570662f5ba3763693aef38f3d65a0e93f51b669",
+     "shipped": 3338
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-isaiah.json",
+     "order_sha256": "e88a7b228b4d6058174dc8f0de6300e5cfe1784545b581062d995e9dfe0cc589",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-isaiah.json",
+     "m_sha256": "8c883ecb14d005333befda1f26ef846c481543e9ac9c39c3631536615f5f481b",
+     "shipped": 2391
+    }
+   }
+  },
+  "jeremiah": {
+   "file": "jeremiah.bin",
+   "sha256": "ee767f163c8264935748cbc98d6d7c2b4f85dd925c1672bd53ad56ec436358b6",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-jeremiah.json",
+     "order_sha256": "00c2fcdf5e661cd33acc5aac1a5ebe613a665f651b86539fd9566549a3367b9d",
+     "m_file": "witnessed-same-place-m-v2.7-jeremiah.json",
+     "m_sha256": "0fd07d5d08f0b64e3feb737172a8130578aeffc52f2f8116af72d975ac4d0187",
+     "shipped": 2318
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-jeremiah.json",
+     "order_sha256": "6a49c886635a1371422b3c9f6be59dfb8bacefc2ddfb01fc210acb194bdeafff",
+     "m_file": "witnessed-entry-m-v2.7-jeremiah.json",
+     "m_sha256": "98add53f5895a39ec2372f61236cdceab68784119fecc85103b353a6c37b0846",
+     "shipped": 2413
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-jeremiah.json",
+     "order_sha256": "9b81e95705d3c755e35864c889ff2f90d68d9f271c00d90128bd4df63302c621",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-jeremiah.json",
+     "m_sha256": "e5d2e90d499bbc5b44b2eac9126ec4a2b8d1abac783bd9e0c1c20bec16a413bd",
+     "shipped": 1866
+    }
+   }
+  },
+  "job": {
+   "file": "job.bin",
+   "sha256": "89b490279ac4a22471516ee9396a40843d909edbd0fd0d07936bcf7d03f873fc",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-job.json",
+     "order_sha256": "bf69e3555f2a60f2ff64a21ad640629672788c07c572527cecc15f8b8dd66d2d",
+     "m_file": "witnessed-same-place-m-v2.7-job.json",
+     "m_sha256": "6d517c4afed1f7d3bc634b9eaaf885f9f445a0dc080a5f28709b98a759811882",
+     "shipped": 2043
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-job.json",
+     "order_sha256": "a9d4ff53ac49f0bfb646d107b330860fee33f089f988391e99db8c5e8d7d99ae",
+     "m_file": "witnessed-entry-m-v2.7-job.json",
+     "m_sha256": "4625fe5599475aa9ef172f1af6a5f1469239d15b342c704ec33570edf033eb07",
+     "shipped": 2108
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-job.json",
+     "order_sha256": "9a834cc9c38422932f4e902f351cab402ab1eeec1afd13820be93caa8e03af98",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-job.json",
+     "m_sha256": "98211617e8a50c0d86073e8f6e4af9d05326d67112891e6ccaa52b3b121b5895",
+     "shipped": 1420
+    }
+   }
+  },
+  "joel": {
+   "file": "joel.bin",
+   "sha256": "2a650c39924930f98a5c2e5e6eda2339fdf9a2d6177e4237602ccadef9cdd407",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-joel.json",
+     "order_sha256": "381e6fe0301041b0fef61cd3ffd01fb794479df3d7c89470e9fc133e257cebfe",
+     "m_file": "witnessed-same-place-m-v2.7-joel.json",
+     "m_sha256": "1d9324e9f0228004d5cdfc5d900bb6dcc073ae7389714f2a7e1983049e03e844",
+     "shipped": 159
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-joel.json",
+     "order_sha256": "3ed68155a870a24c252c5510128cf8a2be9e955a9fa1775f6ba91bad81041277",
+     "m_file": "witnessed-entry-m-v2.7-joel.json",
+     "m_sha256": "188393b0ba29800c89bc65d8f6c56938ff936ca2f0f7af505a643b9613a9a131",
+     "shipped": 183
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-joel.json",
+     "order_sha256": "6b8c3ec94656b87b292ee8c18cf9080e2df51e61f028b529e20364279d437dce",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-joel.json",
+     "m_sha256": "d8e7e2c4b1fa8e43338cd15240d34781dbb3277d607bb112cec1aae93a4aaba0",
+     "shipped": 225
+    }
+   }
+  },
+  "jonah": {
+   "file": "jonah.bin",
+   "sha256": "c1bcdcf76940f97bd665056fdbf09488a8f3a611c57ed45db4295e3970659109",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-jonah.json",
+     "order_sha256": "451b0263c5855e7aab16c899a9b48361cf78e10c2346d9d3946743817f082b76",
+     "m_file": "witnessed-same-place-m-v2.7-jonah.json",
+     "m_sha256": "0797ce21de520423854925bd33b6245fa251c88f2b42b4f451295998963a5411",
+     "shipped": 91
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-jonah.json",
+     "order_sha256": "483628230a63416c2937df36b4d62312c5729686ec9bbc29bc30580cec5673d9",
+     "m_file": "witnessed-entry-m-v2.7-jonah.json",
+     "m_sha256": "04299fad7c95dde5d5a614e20b34d78861b1ed7b120f4f8c0f596ac7177707de",
+     "shipped": 107
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-jonah.json",
+     "order_sha256": "4091dee55dffd2e3fd30ced1c419170087d84dcf57d55b9d162e7c9c13d5be41",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-jonah.json",
+     "m_sha256": "d097240156a95bde807bef931c21408adace055eecacd95a853cbbf60e38183c",
+     "shipped": 148
+    }
+   }
+  },
+  "joshua": {
+   "file": "joshua.bin",
+   "sha256": "d20526f88f294f726d57b3d44968be9a013e4d4a1a7f1db6c5c07264ac8ce24e",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-joshua.json",
+     "order_sha256": "8dc3f317994f53e3a348406febdc0ec5b7f5540f0fd03e4b6278d2cb6b425017",
+     "m_file": "witnessed-same-place-m-v2.7-joshua.json",
+     "m_sha256": "01ea819bbceaa044f5e195d7b0cb82712049c64cdd9ec4318335851f85fc151b",
+     "shipped": 934
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-joshua.json",
+     "order_sha256": "a25381b87c8a4eb05de54fd13da79f200688a9cc99be1a53deaf4c44daacffb3",
+     "m_file": "witnessed-entry-m-v2.7-joshua.json",
+     "m_sha256": "3de25766861ed702d5426be4c58b22f2829e71680c487d68cfbc565061c75f6c",
+     "shipped": 1000
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-joshua.json",
+     "order_sha256": "43b65cf975b3056fb66b3d0b1cba31ccbcd9e243a24b5ec2f66fb87953762320",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-joshua.json",
+     "m_sha256": "fa7928056a4eafea5a0d0a29d313869e6baeb57989ca19a7e62208ab7be6783e",
+     "shipped": 903
+    }
+   }
+  },
+  "judges": {
+   "file": "judges.bin",
+   "sha256": "2289cf3bf3fdb74aed128a53426e317cd43614411f15393cf3575a7dcf92cf27",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-judges.json",
+     "order_sha256": "3d74429153201c448884b65862e304e0f34fc5865218901ba29511b32329e3e0",
+     "m_file": "witnessed-same-place-m-v2.7-judges.json",
+     "m_sha256": "41d7fe7bc3c3a40bb80e4258dafb0ff560d8323d9b4fcc5b1bd66cbee9da3e87",
+     "shipped": 1105
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-judges.json",
+     "order_sha256": "1ed5fb271bcff5a199ab01bd50497d7823187ef954275b20c497cd608511065c",
+     "m_file": "witnessed-entry-m-v2.7-judges.json",
+     "m_sha256": "06bca6b8cd86fdb5012bf1ef39b70627216a831e2c7b3d76312d1af6381eb063",
+     "shipped": 1175
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-judges.json",
+     "order_sha256": "a72d94e6b72370adf9ed74e96740045eb9f393d4618a05940dd61ddb3146e1ac",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-judges.json",
+     "m_sha256": "230bef2ca4dff510d2cca1cccb7b513bdf9a3cbee1c53a701dd23752292169e6",
+     "shipped": 998
+    }
+   }
+  },
+  "lamentations": {
+   "file": "lamentations.bin",
+   "sha256": "da21b3ba52510eb7c6f3dc1a263bede9186a02dd6336403d4091f257efa8c3a0",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-lamentations.json",
+     "order_sha256": "d86a1d931297055a1b860947c582a2b8ad976faa89081248f75204700ec3b9d3",
+     "m_file": "witnessed-same-place-m-v2.7-lamentations.json",
+     "m_sha256": "1258efb72b86709a168504933cc9cda6f731662d5ca11024fed8291ae176b1fa",
+     "shipped": 403
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-lamentations.json",
+     "order_sha256": "c462c7f2fffda7f44c9e1894cd0d2f4f1d7217bbd5985b999c81728c3322325e",
+     "m_file": "witnessed-entry-m-v2.7-lamentations.json",
+     "m_sha256": "c748f68d79ec54d849a83f0562ffffa13f1380fc6e3a36c7a08934dd8ff60ce9",
+     "shipped": 434
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-lamentations.json",
+     "order_sha256": "0f878fb6fef2fced47abdae1406f17792178524deac339e75f29d85be7e5a5d9",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-lamentations.json",
+     "m_sha256": "e7f85e920b2b058f57da72e5024d5157b9e707f51c69d8ddea2bbe842fadcc26",
+     "shipped": 414
+    }
+   }
+  },
+  "leviticus": {
+   "file": "leviticus.bin",
+   "sha256": "802a1b22a656aac87723bd0043b9c3cdc39d202d24e3368117a13634c021f21b",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-leviticus.json",
+     "order_sha256": "758c803857ffccfadd30823aba03c4f0a4676a8c1bca046b51546941aa763915",
+     "m_file": "witnessed-same-place-m-v2.7-leviticus.json",
+     "m_sha256": "a5d5e4a2c13e370fdaf121c865111513131944f3c31ddf6326e49faff642572b",
+     "shipped": 1084
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-leviticus.json",
+     "order_sha256": "4bf01e065382e84ab70abae5ade1881a4ae0808458c89a2403cc3d8e764ffcc1",
+     "m_file": "witnessed-entry-m-v2.7-leviticus.json",
+     "m_sha256": "8608a166e3e8b8089ebcc7c07399801a4117f4660bc6eaba461c9302806dd642",
+     "shipped": 1131
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-leviticus.json",
+     "order_sha256": "d76f5fe3dc972f56321e8e100ed6e6596d1ecfb36bd5612a9553220e667d28b7",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-leviticus.json",
+     "m_sha256": "b563b2c3c18738c65d20e60b02fec8d8c2d5b1bcdb3c55eee136cf273bbbdc8b",
+     "shipped": 881
+    }
+   }
+  },
+  "malachi": {
+   "file": "malachi.bin",
+   "sha256": "678977803c01c899894b127eeab1ad5a6cba58436e52a59896052ecec30a681f",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-malachi.json",
+     "order_sha256": "831ea5a363ab7bdfa66798f2228b8f15f26bba6be638ad44e2068a8e569019d7",
+     "m_file": "witnessed-same-place-m-v2.7-malachi.json",
+     "m_sha256": "2fd3af34d2bf4d157322c30e915a5cc28509caedba9315f4b5738c8bff583ace",
+     "shipped": 183
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-malachi.json",
+     "order_sha256": "60c336e73c7335b35aa04ca45a763431d0d17fd2b56847f13de84918815811df",
+     "m_file": "witnessed-entry-m-v2.7-malachi.json",
+     "m_sha256": "bcae8d993875cf618abd3c28b13a09f7fe349ce754e9520554666f1fef9e230d",
+     "shipped": 200
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-malachi.json",
+     "order_sha256": "74a1360a18653043e0e4b5319c99bf342197f69e036c153a0e81d7eee6a8a2fa",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-malachi.json",
+     "m_sha256": "bfe4b655797493a6f009f7c00616ef75e0ab5a9d5d3abbee0b13a06dfcc9e4bf",
+     "shipped": 200
+    }
+   }
+  },
+  "micah": {
+   "file": "micah.bin",
+   "sha256": "2e6e7af6ec96375ad7087b45dbce2b09baebe4cdf22cd904e42a05e1b45e4835",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-micah.json",
+     "order_sha256": "bdbdedef5146bb035adc2ceeb7bb6fa645f489efbf18d569b47d143147470710",
+     "m_file": "witnessed-same-place-m-v2.7-micah.json",
+     "m_sha256": "710dc73e6572904e509960b6d9e37449c8e3f94cddfb22ea10bcef575fe1c8e1",
+     "shipped": 300
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-micah.json",
+     "order_sha256": "dd37ba76a4adc1d80e79d945d3fe96f5c15ac9ddb7f643dea5a753cb544bb8cc",
+     "m_file": "witnessed-entry-m-v2.7-micah.json",
+     "m_sha256": "36a716e828b83fddff358d44abd96618130e790761da6cef73bfcb07b506767b",
+     "shipped": 338
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-micah.json",
+     "order_sha256": "347b1441144ceab29d0f384140d3544b8c198e40a9813d28534159eaa05584b3",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-micah.json",
+     "m_sha256": "091a19f8116361642848d02a71339b7fd9ce65ab3666ddbb87a5f2f1b5141c71",
+     "shipped": 329
+    }
+   }
+  },
+  "nahum": {
+   "file": "nahum.bin",
+   "sha256": "a73bd7de4a20e39a1e194ddc5805a53e1635abf32be42f62668fd9be72c32bdf",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-nahum.json",
+     "order_sha256": "aec7ea1559f3eb3fbf940692cb5804d7b28958e3fdfddf0a0ef17d35cb722626",
+     "m_file": "witnessed-same-place-m-v2.7-nahum.json",
+     "m_sha256": "602ba1b5ead9142de8c1421037ec666187009afda79843ece562ba8b02d9bd36",
+     "shipped": 131
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-nahum.json",
+     "order_sha256": "eec846297d16f42e2baa7b39e65c5c675df129110835858e6f0a80502bec1d69",
+     "m_file": "witnessed-entry-m-v2.7-nahum.json",
+     "m_sha256": "9720b9fec2719f97501641c2298cd56467c8dc69f96bf00067577775ae43e4da",
+     "shipped": 150
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-nahum.json",
+     "order_sha256": "5325e74d68701edc20bf0109bdeacaec91c85e1e2451d6efab671d5f3eee8bfe",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-nahum.json",
+     "m_sha256": "a2ff353dc1c541a8d79945cd879dcac4dee7851db277d00d0a98671dfc6767c1",
+     "shipped": 166
+    }
+   }
+  },
+  "nehemiah": {
+   "file": "nehemiah.bin",
+   "sha256": "84e10cf6e0e52a06ae470b823768e6bdb0a908881378538069d343686aa118a1",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-nehemiah.json",
+     "order_sha256": "9bd76e525cfdac19fb693bd7faa1ffe470ce855b7764265c7174c33f38fb2f4b",
+     "m_file": "witnessed-same-place-m-v2.7-nehemiah.json",
+     "m_sha256": "095c2c298fbf2781ac4dd216e3f35bb9ffa58050868066c2406bb695b94e5917",
+     "shipped": 659
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-nehemiah.json",
+     "order_sha256": "df24f790dc1d3f599cee01e946644fe034792d3d1ccd4b23d2cf191d4bedb36b",
+     "m_file": "witnessed-entry-m-v2.7-nehemiah.json",
+     "m_sha256": "00e127d30f7012699c5266aac838dd20c4dc421ac58b192a18c4e54f89c79afa",
+     "shipped": 712
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-nehemiah.json",
+     "order_sha256": "91e7898d20d00d86a0b2a91e5e58c277626dab59cca43fd2fd9cc8ced30f3d20",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-nehemiah.json",
+     "m_sha256": "a29f9ab10acfe6da1f3af5ae4b4b20bea00ff69600f1d610485f5effbede6182",
+     "shipped": 714
+    }
+   }
+  },
+  "numbers": {
+   "file": "numbers.bin",
+   "sha256": "06e794c7ded972be9f58dbf4e4f0d98c820a52b84e47e048be2243874452de6f",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-numbers.json",
+     "order_sha256": "653f807a8c3737ce8e1fce3ef9f56cfe2034b75c2fbe9ab178ae34dc943fcb77",
+     "m_file": "witnessed-same-place-m-v2.7-numbers.json",
+     "m_sha256": "8372971dd2de60462f05de955e96fef235fc0fa8dfcf0ce1d5424f53b368b304",
+     "shipped": 1437
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-numbers.json",
+     "order_sha256": "f92c480185fcad7a7a8576a1f6ae3135e882ff69adaad65eb70f20dc0686deed",
+     "m_file": "witnessed-entry-m-v2.7-numbers.json",
+     "m_sha256": "230093aed24757285654d77f4d0bf3993ab9e60f289be17dbc63c8040002ec62",
+     "shipped": 1512
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-numbers.json",
+     "order_sha256": "1dcf8c90531e0846234a19c6b0646a4ede964ff4fd49d3b28ac768f710f04092",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-numbers.json",
+     "m_sha256": "b9fe835d36104fee33a4af83db90eb5bff688ba39097fe172a3d938d0dee46d0",
+     "shipped": 1265
+    }
+   }
+  },
+  "obadiah": {
+   "file": "obadiah.bin",
+   "sha256": "ad1e1bdcc08ae74580132f595d8bc972b372276cbefd0a65cf312e72a8b51cfc",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-obadiah.json",
+     "order_sha256": "c74d78325586641bbf48d95a625e5eed54328fe60ddef47e4118b665eaa147c9",
+     "m_file": "witnessed-same-place-m-v2.7-obadiah.json",
+     "m_sha256": "abfda1dc170ace3c008c1d209a71fd5235e6aac2bf87f85cea01341e2c92aaf1",
+     "shipped": 46
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-obadiah.json",
+     "order_sha256": "de4cc2c42b959b47ec8dc30890674e96e16e722442b67bb6ce8f82017fc15292",
+     "m_file": "witnessed-entry-m-v2.7-obadiah.json",
+     "m_sha256": "34cc23461856353ef83d3adba12ede929a143507e9945560121970f118f0519a",
+     "shipped": 54
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-obadiah.json",
+     "order_sha256": "203420e355506565d94e36bc923e0c8a805df96caa22c530561ebb8805317e6c",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-obadiah.json",
+     "m_sha256": "77d86ed3001b7d8aaf6748d2fdd5ee3bff0ff2ca84d2cc9a085e9ec2066cb1a1",
+     "shipped": 68
+    }
+   }
+  },
+  "proverbs": {
+   "file": "proverbs.bin",
+   "sha256": "a92428471f5c8960da979e3f9ce7c74d68a26e3c4583ae475a46400e9529a507",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-proverbs.json",
+     "order_sha256": "1699cbe3a642246a5504a9bca6500af1f2459f4a8e8a325ed1fe7fe6babbe2f6",
+     "m_file": "witnessed-same-place-m-v2.7-proverbs.json",
+     "m_sha256": "f7624e913156e31f78ca882fac37ee0fad86b5216c2539b9a0306d4215d35818",
+     "shipped": 1621
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-proverbs.json",
+     "order_sha256": "6572eafcffac0d1ea990f92116b9460b4932669a546f92f356822c31b9f5096d",
+     "m_file": "witnessed-entry-m-v2.7-proverbs.json",
+     "m_sha256": "58e269f3de219644a6f1864a11b292f4f2a7daef1c741144204aceaa51af405d",
+     "shipped": 1686
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-proverbs.json",
+     "order_sha256": "81b818c35176d2161b692b377cd6947bd119c8caff33b2d6fd7173f79a6c8d01",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-proverbs.json",
+     "m_sha256": "3a62b57d9cd0a243f7488ccd4d81b8f21d9dc91f9847310690976b8a0d820149",
+     "shipped": 1236
+    }
+   }
+  },
+  "psalms": {
+   "file": "psalms.bin",
+   "sha256": "2e4b4005634ca6483e2a367e697365a188d89965a4a3e45187a3204d38f0d618",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-psalms.json",
+     "order_sha256": "e870beefcbb401f569e5db0a7543f9376e4e619d6c74e1813d53ab0cd66695c2",
+     "m_file": "witnessed-same-place-m-v2.7-psalms.json",
+     "m_sha256": "fbe7a89e6544dc8dc881a4715ba830019919828f85c7ead3b45711015b9d832f",
+     "shipped": 2187
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-psalms.json",
+     "order_sha256": "24f7eeb9493482459a1b947352c32f94ce8560e29ed8992ba9d82b1c1fcc92f9",
+     "m_file": "witnessed-entry-m-v2.7-psalms.json",
+     "m_sha256": "5b5cf06172ad163bbe2162baf8444e07dd02b1e741e43d11e0508775e032bc01",
+     "shipped": 2302
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-psalms.json",
+     "order_sha256": "2777dcdf6492653033acc8b183449db79f5391c71c62feda7c572c3b14a890c1",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-psalms.json",
+     "m_sha256": "902de4d77d803a1f83c2927fe2e535d6fc20df488b2aeeed262e047b8466a43a",
+     "shipped": 1841
+    }
+   }
+  },
+  "ruth": {
+   "file": "ruth.bin",
+   "sha256": "cd9c4e02c3e7d81550fd7fbe5eecfb51c5380d1bb03187bcf8a19109bde9021e",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-ruth.json",
+     "order_sha256": "a2f85606b452952b4c46da1936118e118b5c8a7bea5f4db75be113dc689946dd",
+     "m_file": "witnessed-same-place-m-v2.7-ruth.json",
+     "m_sha256": "2511b47e287b12530c6632b23ef5a95b4aa579863dd68e7f672d2a4d345a666b",
+     "shipped": 209
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-ruth.json",
+     "order_sha256": "2292b3a4aa98a9981c042f90ef78b9fa6fe63185e3993bb1cfb0444b11c47867",
+     "m_file": "witnessed-entry-m-v2.7-ruth.json",
+     "m_sha256": "fbbaf6e9f815fd09b05bc21dc3e59c57fd5610b3223c5395c512c9aaf9eaceac",
+     "shipped": 219
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-ruth.json",
+     "order_sha256": "5cf69a9a91357914e3d1a0b6de946628fce7c4110dfd1479920f9fd05ecc9033",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-ruth.json",
+     "m_sha256": "8e4d4531ffbabba82bea67a4eb2fe3a4c8300eef1079c0d7c697f4fe6d68d8be",
+     "shipped": 222
+    }
+   }
+  },
+  "song-of-songs": {
+   "file": "song-of-songs.bin",
+   "sha256": "4c2af22785a9e1e1e40185d911ea884fd579dab37e224326f7fcbfc21c8d3a17",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-song-of-songs.json",
+     "order_sha256": "dd449c752dfd34486772edbb3d16c5ba4e159f2a17786ce46e036bbef592d397",
+     "m_file": "witnessed-same-place-m-v2.7-song-of-songs.json",
+     "m_sha256": "49b674ea7231acc6a05ddab611b80e5da4502d735c4b624fa4ed7bc78cce62a2",
+     "shipped": 261
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-song-of-songs.json",
+     "order_sha256": "bd53ea9d983cd1791d2fb8d2d1c373f125aafbd8c7b4d34d393c2ab9f7ac2074",
+     "m_file": "witnessed-entry-m-v2.7-song-of-songs.json",
+     "m_sha256": "b2f4652417477ffe7be26338396b1c92c49418a33953703348643a87916195dc",
+     "shipped": 286
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-song-of-songs.json",
+     "order_sha256": "451ccc09b9a65c5cec5eb56267db1c8ba0f2a5d2a5fe49cfc262f47d34d5ba9f",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-song-of-songs.json",
+     "m_sha256": "addd16b8e7300896c1bb2aad4e08b98eb61245af43bc8ff431d49e8fb44e819e",
+     "shipped": 259
+    }
+   }
+  },
+  "zechariah": {
+   "file": "zechariah.bin",
+   "sha256": "56df4d3529b64bd6c7bc33255ba550162670abbffc4718427aa569590a1ce4f2",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-zechariah.json",
+     "order_sha256": "29f38b9d8e34a565fb0414b930e302f9b02625f62544569142af046900d1a0de",
+     "m_file": "witnessed-same-place-m-v2.7-zechariah.json",
+     "m_sha256": "3eb87b9af2cf47388535f36451cff3ede88f0e12a642cb03e3fe9c3d3bcf91fe",
+     "shipped": 406
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-zechariah.json",
+     "order_sha256": "b995f5b44381f5e10c992463520649c50c250703cce53c0ac670c81f0d2f44d8",
+     "m_file": "witnessed-entry-m-v2.7-zechariah.json",
+     "m_sha256": "77c940753b495cb70fcfa0b16f829817ee90d177b0a0f4c3d1946b80b07ed7fb",
+     "shipped": 453
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-zechariah.json",
+     "order_sha256": "a37b3cfb7fdd38c20ef322be012a756f1a531b95c7e7d27e4e35724def2ed1fe",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-zechariah.json",
+     "m_sha256": "9e9d53a670de076124c0457476378e3c47a15caa33e8b82a223a26a0ff7c25a9",
+     "shipped": 473
+    }
+   }
+  },
+  "zephaniah": {
+   "file": "zephaniah.bin",
+   "sha256": "9c79f07e83f65d160b02a06cf7d885513871a09f4f4e83c1ec691c93de8067b1",
+   "columns": {
+    "witnessed_same_place": {
+     "order_file": "witnessed-same-place-v2.7-zephaniah.json",
+     "order_sha256": "5173b4c6511d8d292eddf0b53a252d9ce00b7a527bfd3f3024760db83d048827",
+     "m_file": "witnessed-same-place-m-v2.7-zephaniah.json",
+     "m_sha256": "1295a87255c72557f530a82d4b4c0bc74013848fbf489cc1adc2ae241452326f",
+     "shipped": 149
+    },
+    "witnessed_entry": {
+     "order_file": "witnessed-entry-v2.7-zephaniah.json",
+     "order_sha256": "bdef9cabc393b738b4dd18fa0ca252bfb4176577a67823bdea1b64e58d528ffb",
+     "m_file": "witnessed-entry-m-v2.7-zephaniah.json",
+     "m_sha256": "b53050b25505a80f8b2d02893093171e336618d072fb44a5059219d7eda0c09a",
+     "shipped": 169
+    },
+    "witnessed_entry_and_lists": {
+     "order_file": "witnessed-entry-and-lists-v2.7-zephaniah.json",
+     "order_sha256": "46925d28d7dc400b0910e86b178243e9d89cc824c8b274bff49fa4fe89ccb316",
+     "m_file": "witnessed-entry-and-lists-m-v2.7-zephaniah.json",
+     "m_sha256": "ac13f24440a98239f76d77d15bd9ee24bc32086c8cb610f8d1d246594b1342c2",
+     "shipped": 189
+    }
+   }
+  }
+ }
+}

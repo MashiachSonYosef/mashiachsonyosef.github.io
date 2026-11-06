@@ -29,6 +29,7 @@
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { openRouteStore } from "./gloss-store-v1.mjs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
@@ -40,7 +41,12 @@ const firstMaqafInner = spanBooks.find((bk) => placesOf(bk).some((x) => / /u.tes
 const firstChainNest = spanBooks.find((bk) => placesOf(bk).some((x) => !/ /u.test(x.key) && (x.contains || []).length));
 const BOOKS = arg("books", "") ? arg("books", "").split(",") : [...new Set([firstWithPlaces, firstMaqafInner, firstChainNest].filter(Boolean))];
 const ix = JSON.parse(readFileSync(`${DIR}/index.json`, "utf8"));
-const served = JSON.parse(readFileSync("data/route-store/index.json", "utf8")).m_sources;
+const store = openRouteStore("data/route-store");
+const rix = JSON.parse(readFileSync("data/route-store/index.json", "utf8"));
+const served = rix.m_sources;
+// a span row of a source under a ledger carries the page's division slots beyond the lane's seven (apply-ledger-divisions-v1, 6 November 2026)
+const ledgeredKeys = new Set(Object.keys((rix.ledgers && rix.ledgers.sources) || {}));
+const slotsOk = (r) => { const key = ((served[r.slots[3]] || (ix.m_sources || {})[r.slots[3]] || {}).key); const n = r.slots.length; return n === 7 || (n <= 9 && ledgeredKeys.has(key) && (r.slots[7] === null || Array.isArray(r.slots[7])) && (n < 9 || Array.isArray(r.slots[8]))); };
 const postures = JSON.parse(readFileSync("data/license-postures-v1.json", "utf8")).postures || {};
 const ms = { ...served, ...ix.m_sources };
 // S1
@@ -54,10 +60,10 @@ for (const f of files) {
     const rows = b.keys[p.key] || [];
     const ids = new Set(rows.map((r) => r.row_id));
     if (!p.row_ids.every((id) => ids.has(id))) badRows += 1;
-    for (const r of rows) { rowsSeen.add(r.row_id); const m = ms[r.slots[3]]; if (!m || !postures[m.licensePosture]) badM += 1; if (r.slots.length !== 7 || typeof r.slots[1] !== "string" || typeof r.slots[2] !== "string") badRows += 1; }
+    for (const r of rows) { rowsSeen.add(r.row_id); const m = ms[r.slots[3]]; if (!m || !postures[m.licensePosture]) badM += 1; if (!slotsOk(r) || typeof r.slots[1] !== "string" || typeof r.slots[2] !== "string") badRows += 1; }
   }
 }
-check("S1  the served store: places and rows as the lane counted them, every row seven slots, every M licensed", places === ix.counts.places.value && badRows === 0 && badM === 0 && files.length === ix.counts.books.value,
+check("S1  the served store: places and rows as the lane counted them, every row the lane's seven slots (and the page's division slots only on a ledgered source's row), every M licensed", places === ix.counts.places.value && badRows === 0 && badM === 0 && files.length === ix.counts.books.value,
   `${places} places [places] in ${files.length} books (index: ${ix.counts.places.value}, ${ix.counts.books.value}) · ${rowsSeen.size} rows seen under keys · ${badRows} bad places or rows · ${badM} rows with no licensed source`);
 check("S4  the sources the shelf lacked resolve with a licence the page knows", ["M197", "M199"].every((id) => ms[id] && postures[ms[id].licensePosture]), Object.keys(ix.m_sources).map((id) => `${id} ${ms[id].licensePosture}`).join(", "));
 // S2, S3 on the page
@@ -154,28 +160,26 @@ for (const book of BOOKS) {
     const off = new Set(got.off || []);
     const rows = (file.keys[pl.key] || []).filter((r) => !off.has(r.slots[3]));
     const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
-    // the pool lowercases to group (one reading, one pill) and cuts a
-    // comma list into its senses, so a row's reading stands as one pill or
-    // as its pieces, case aside
+    // the pool lowercases to group (one reading, one pill), and a row's
+    // readings are what the store gives it (gloss-store-v1 readingsOf: the
+    // ledger's slots on a ledgered source's row, else the generic rule), so a
+    // row stands as one pill or as its readings, case aside
     const low = (t) => String(t).toLowerCase();
     const pills = (got.pills || []).map(low);
-    // the page's senseSplit: at a ";" outside parentheses, each sense trimmed
-    const senses = (t) => { const out = []; let st = 0, d = 0; for (let i = 0; i < t.length; i += 1) { if (t[i] === "(") d += 1; else if (t[i] === ")") { if (d > 0) d -= 1; } else if (t[i] === ";" && d === 0) { out.push(t.slice(st, i)); st = i + 1; } } out.push(t.slice(st)); return out.map((x) => x.trim()).filter(Boolean); };
-    const oneSense = (t) => pills.includes(low(t)) || (t.includes(",") && t.split(",").map((x) => x.trim()).filter(Boolean).every((x) => pills.includes(low(x))));
-    const asPills = (t) => oneSense(t) || senses(t).every(oneSense);
+    const readingsOfRow = (r) => store.readingsOf(r.slots).map((x) => spanJoin(x));
+    const asPills = (r) => readingsOfRow(r).every((x) => pills.includes(low(x)));
     const wantR = [...new Set(rows.map((r) => spanJoin(r.slots[1])))];
-    // a row reads as a pill whole, or as one of its pieces (a sense, or a
-    // comma piece of one), as the page splits it
-    const piecesOf = (t) => senses(String(t)).flatMap((x) => [x, ...x.split(",").map((y) => y.trim())]).filter(Boolean).map(low);
-    const reads = (r, t) => low(spanJoin(r.slots[1])) === low(t) || piecesOf(spanJoin(r.slots[1])).includes(low(t));
+    const asPillsText = (t) => rows.filter((r) => spanJoin(r.slots[1]) === t).some(asPills);
+    // a row reads as a pill whole, or as one of its readings
+    const reads = (r, t) => low(spanJoin(r.slots[1])) === low(t) || readingsOfRow(r).some((x) => low(x) === low(t));
     const on = got.cuts && got.cuts.find((x) => x.on);
     const litRows = rows.filter((r) => reads(r, got.lit));
     const dOk = litRows.some((r) => r.slots[2].trim() === got.d.trim());
     // an inner place stands as a piece of a division of the outer card
     // ("outer + inner"), by its own key
     const rungsOk = pl.contains.every((k) => got.cuts.some((x) => x.t.split(" + ").includes(k)));
-    const ok = !got.err && on && on.t === pl.key && rows.length > 0 && reads(rows[0], got.lit) && wantR.every(asPills) && dOk && rungsOk;
-    r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}${pl.absorbed ? " (inside a maqaf compound's cell)" : ""}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the store's first: "${rows.length ? spanJoin(rows[0].slots[1]) : "none on"}") · ${wantR.filter(asPills).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
+    const ok = !got.err && on && on.t === pl.key && rows.length > 0 && reads(rows[0], got.lit) && wantR.every(asPillsText) && dOk && rungsOk;
+    r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}${pl.absorbed ? " (inside a maqaf compound's cell)" : ""}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the store's first: "${rows.length ? spanJoin(rows[0].slots[1]) : "none on"}") · ${wantR.filter(asPillsText).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
   }
   check(`S3  ${book}: a cell's card opens on the span whole, its pills the rows' readings, the record the first row's D, an inner place a rung of the outer card`, r3.length > 0 && r3.every((x) => x.ok), r3.map((x) => x.say).join(" ‖ "));
   // S5: a nested place the ink writes as one maqaf chain, its first word's card

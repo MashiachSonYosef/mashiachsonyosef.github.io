@@ -28,8 +28,11 @@
 // entry here; a branch answered with its resting option has no effect here.
 
 /** kept ranges: [[from, to), ...] over the text, in order; the printed text is
- *  the kept characters joined, whitespace collapsed, trimmed */
-const collapse = (s) => s.replace(/\s+/gu, " ").trim();
+ *  the kept characters joined, runs of spaces (U+0020 alone: a no-break space
+ *  or a tab is the route's own character and stays) collapsed, trimmed */
+const collapse = (s) => s.replace(/ {2,}/gu, " ").trim();
+/** a branch's own word that a row prints no pill (Wikimedia B02's row list: a row where neither side renders) */
+const NONE = Symbol("no pill");
 const join = (text, keep) => collapse(keep.map(([a, b]) => text.slice(a, b)).join(""));
 const whole = (text) => [[0, text.length]];
 const remove = (keep, from, to) => {
@@ -174,7 +177,7 @@ export const PRINT_RULES = {
     if (side === undefined) throw new Error(`named_part: the branch's list does not name «${text}»`);
     const m = first(marks, "number_sign.between_a_page_and_its_part");
     if (!m) return null;
-    if (side === null) return [];
+    if (side === null) return NONE;
     return [side === "after" ? after(text, m.i) : before(text, m.i)];
   }),
   // --- the filing tags this corpus's own script wrote on ConceptNet's rows ---------------------------------------
@@ -224,16 +227,25 @@ export const printOf = (ruleKey, text, marks, cuts = []) => {
   if (!rule) return null;
   const keeps = rule.print(text, marks);
   if (keeps === null) return null;
-  if (rule.kind === "none") return { texts: [] };
-  if (!keeps.length) return { texts: [] };
+  if (rule.kind === "none" || keeps === NONE) return { texts: [] };
+  // a step that keeps, offers forms or removes marks prints SOMETHING: a row it
+  // would print nothing for is an error the caller refuses on, never a silent
+  // no pill (the review of 6 November: an empty kept range was counted as "no
+  // pill" and no branch had said so)
+  const nothing = () => new Error(`${ruleKey} (${rule.option}, ${rule.kind}) prints nothing for «${text.slice(0, 60)}», and no branch says the row has no pill`);
+  if (!keeps.length) throw nothing();
   if (cuts.length) {
     if (rule.kind !== "remove") throw new Error(`${ruleKey} (${rule.option}, ${rule.kind}) cannot combine with a cut at [${cuts}] on «${text.slice(0, 60)}»`);
     const [keep] = keeps;
     const pieces = []; let from = 0;
     for (const i of [...cuts, text.length]) { pieces.push(join(text, keep.filter(([a, b]) => b > from && a < i).map(([a, b]) => [Math.max(a, from), Math.min(b, i)]))); from = i + 1; }
-    return { texts: pieces.filter(Boolean) };
+    const texts = pieces.filter(Boolean);
+    if (!texts.length) throw nothing();
+    return { texts };
   }
-  return { texts: keeps.map((keep) => join(text, keep)).filter(Boolean) };
+  const texts = keeps.map((keep) => join(text, keep));
+  if (texts.some((t) => !t)) throw nothing();
+  return { texts };
 };
 
 /** the branch's own examples, from its "means" */

@@ -3,13 +3,18 @@
 //
 // THE WITNESSED ORDER, PRESSED.
 //
+//   W0  the columns were baked from the shipped input kept in the repository
+//       (data/witnessed-orders-v2.7: the lane's files verbatim, at the bytes
+//       the receipt pins) and against the store this book is served from
 //   W1  the book carries the three columns with their receipt: baked, less
 //       every reading the receipt types as dropped for a struck credit (each
 //       gone from the column, each crediting a source the store no longer
 //       holds), and every baked reading carries its own credit (a licence
-//       and a name)
+//       and a name); a reading whose row prints no pill under its ledger
+//       was refused by the bake, typed, and is in no column
 //   W2  each baked reading is the first reading the store's own rule cuts
-//       from the row the corpus lane shipped (when its files are on disk)
+//       from the row the corpus lane shipped, re-derived here from the
+//       shipped input for every shipped key
 //   W3  the order switch offers the three positions, live on this book
 //   W4  under each, the lines move, and every sampled moved line is what its
 //       card offers first, with a chip
@@ -26,6 +31,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { gunzipSync } from "node:zlib";
 
@@ -41,8 +47,30 @@ const store = openRouteStore("data/route-store");
 const { index } = store;
 // the drops typed on a column's receipt (regloss-zone, source-strike-rule-v1)
 const dropsOf = (o) => (Array.isArray(rec.columns[o].struck_credit_drops) ? rec.columns[o].struck_credit_drops : []);
-// a reading whose row prints no pill under the owner's answer to its ledger's branch left the column too (ledger-division-rule-v2)
+// a reading whose row prints no pill under the owner's answer to its ledger's branch was refused by the bake (ledger-division-rule-v2)
 const withdrawnOf = (o) => (Array.isArray(rec.columns[o].no_pill_withdrawals) ? rec.columns[o].no_pill_withdrawals : []);
+
+// W0 — the shipped input, and the store the columns were baked against
+const FROM = arg("from", "data/witnessed-orders-v2.7");
+const shippedPath = join(FROM, `${ZONE}.bin`);
+let shipped = null;
+{
+  const w0 = [];
+  if (rec.version !== 2 || !rec.shipped_from) w0.push("the receipt is not a version 2 bake (from the shipped input)");
+  if (!existsSync(shippedPath)) w0.push(`${shippedPath} is not on disk`);
+  else {
+    const bytes = readFileSync(shippedPath);
+    const got = createHash("sha256").update(bytes).digest("hex");
+    if (rec.shipped_from && rec.shipped_from.sha256 !== got) w0.push(`the receipt pins ${String(rec.shipped_from.sha256).slice(0, 10)}…, the shipped input on disk is ${got.slice(0, 10)}…`);
+    shipped = JSON.parse(gunzipSync(bytes).toString("utf8"));
+    const ix = JSON.parse(readFileSync(join(FROM, "index.json"), "utf8"));
+    if (!ix.books || !ix.books[ZONE] || ix.books[ZONE].sha256 !== got) w0.push("the shipped input's index does not pin this book's file at these bytes");
+    for (const [o] of COLS) { const c = (shipped.columns || {})[o], r = rec.columns[o]; if (!c || !r) continue; if (c.order_sha256 !== r.order_sha256 || c.m_sha256 !== r.m_sha256) w0.push(`${o}: the receipt's lane-file hashes are not the shipped input's`); }
+  }
+  if ((rec.baked_against_store ?? null) !== (index.store_version ?? null)) w0.push(`baked against store ${rec.baked_against_store}, served from store ${index.store_version}`);
+  check("W0  the columns were baked from the shipped input in the repository, against the store this book is served from", w0.length === 0,
+    w0.length ? w0.slice(0, 3).join(" | ") : `${shippedPath} · store ${index.store_version}`);
+}
 
 // W1
 const w1 = [];
@@ -56,28 +84,34 @@ for (const [o] of COLS) {
     if (!(Array.isArray(d.by) && d.by.some((id) => !index.m_sources[id]))) w1.push(`${o}/${d.key}: typed as dropped, but every source it credits is still in the store`);
   }
   const withdrawn = withdrawnOf(o);
-  if (Object.keys(col).length !== rec.columns[o].baked - drops.length - withdrawn.length) w1.push(`${o}: ${Object.keys(col).length} baked, receipt says ${rec.columns[o].baked}${drops.length ? ` less ${drops.length} dropped for a struck credit` : ""}${withdrawn.length ? ` less ${withdrawn.length} withdrawn for a row that prints no pill` : ""}`);
+  for (const w of withdrawn) if (w.key in col) w1.push(`${o}/${w.key}: typed as refused for a row that prints no pill, yet in the column`);
+  if (rec.columns[o].shipped !== rec.columns[o].baked + rec.columns[o].refused) w1.push(`${o}: ${rec.columns[o].shipped} shipped, ${rec.columns[o].baked} baked and ${rec.columns[o].refused} refused`);
+  if (Object.keys(col).length !== rec.columns[o].baked - drops.length) w1.push(`${o}: ${Object.keys(col).length} baked, receipt says ${rec.columns[o].baked}${drops.length ? ` less ${drops.length} dropped for a struck credit` : ""}`);
 }
 check("W1  three columns with their receipt, every reading with its own credit", w1.length === 0,
-  w1.length ? w1.slice(0, 3).join(" | ") : COLS.map(([o]) => `${o.replace("witnessed_", "")} ${rec.columns[o].baked - dropsOf(o).length - withdrawnOf(o).length}${dropsOf(o).length || withdrawnOf(o).length ? ` (${rec.columns[o].baked} baked${dropsOf(o).length ? `, ${dropsOf(o).length} dropped for a struck credit` : ""}${withdrawnOf(o).length ? `, ${withdrawnOf(o).length} withdrawn for a row that prints no pill` : ""})` : ""}`).join(" · "));
+  w1.length ? w1.slice(0, 3).join(" | ") : COLS.map(([o]) => `${o.replace("witnessed_", "")} ${rec.columns[o].baked - dropsOf(o).length}${dropsOf(o).length || withdrawnOf(o).length ? ` (${rec.columns[o].baked} baked${dropsOf(o).length ? `, ${dropsOf(o).length} dropped for a struck credit` : ""}${withdrawnOf(o).length ? `, ${withdrawnOf(o).length} refused for a row that prints no pill` : ""})` : ""}`).join(" · "));
 
-// W2 — against the lane's files, when they are on disk
-const DIR = arg("dir", "build/witnessed-v2.7");
-if (existsSync(`${DIR}/witnessed-same-place-v2.7-${ZONE}.json`)) {
+// W2 — against the shipped input, every key the lane shipped
+if (shipped) {
   const first = (k, t, M) => { const ids = M && Array.isArray(M.by) ? M.by : M && M.m ? store.mIdsOfLabel(M.m) : null; const rs = store.readingsOfText(k, t, ids); return rs.length ? rs[0] : null; };
-  const w2 = [];
-  for (const [o, stem] of COLS) {
-    const shipped = JSON.parse(readFileSync(`${DIR}/witnessed-${stem}-v2.7-${ZONE}.json`, "utf8")).entries;
-    const mEntries = JSON.parse(readFileSync(`${DIR}/witnessed-${stem}-m-v2.7-${ZONE}.json`, "utf8")).m_entries || {};
-    const col = zone.gloss_orders[o], dropped = new Set(dropsOf(o).map((d) => d.key));
-    for (const [k, t] of Object.entries(shipped)) {
+  const w2 = []; let keys = 0;
+  for (const [o] of COLS) {
+    const c = shipped.columns[o] || {}, mEntries = c.m_entries || {};
+    const col = zone.gloss_orders[o], mcol = zone.gloss_m_orders[o] || {}, dropped = new Set(dropsOf(o).map((d) => d.key));
+    for (const [k, t] of Object.entries(c.entries || {})) {
+      const M = mEntries[k];
       if (dropped.has(k)) continue;   // typed on the receipt: the lane's row stands on a struck source
-      const want = first(k, t, mEntries[k]);
-      if (want === null ? k in col : col[k] !== want) w2.push(`${o}/${k}: "${col[k]}" for "${t}"`);
+      // the bake's own refusals: not a key of the zone, or a credit with no licence and name
+      if (typeof t !== "string" || !t || !(k in zone.gloss) || !M || !M.lic || !M.m) { if (k in col) w2.push(`${o}/${k}: baked, but the bake refuses it`); continue; }
+      keys += 1;
+      const want = first(k, t, M);
+      if (want === null ? k in col : col[k] !== want) w2.push(`${o}/${k}: "${col[k]}" for "${t}", the store's rule gives "${want}"`);
+      // the credit is the lane's, verbatim, unless regloss re-credited it for a struck source (then the receipt says so)
+      else if (want !== null && JSON.stringify(mcol[k]) !== JSON.stringify(M) && !(rec.columns[o].struck_credit_recredited_keys || []).includes(k)) w2.push(`${o}/${k}: the credit is not the lane's`);
     }
   }
-  check("W2  each reading is the first the store's rule cuts from the row the lane shipped", w2.length === 0, w2.slice(0, 3).join(" | "));
-} else console.log(`  --  W2  the lane's files are not on this disk (${DIR}); the receipt's hashes stand for them`);
+  check("W2  each reading is the first the store's rule cuts from the row the lane shipped, with the lane's credit", w2.length === 0, w2.length ? w2.slice(0, 3).join(" | ") : `${keys} shipped keys re-derived`);
+} else console.log("  --  W2  not judged: the shipped input is not on disk (W0)");
 
 // W3–W5 on the page
 const pw = await loadPlaywright();

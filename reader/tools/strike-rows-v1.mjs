@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: row-strike-rule-v3-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-or-retexts-a-row-and-the-hole-is-typed
+// GUARDS: row-strike-rule-v4-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-or-restores-a-row-and-the-hole-is-typed
 // LEDGER: M R
 // Acts on named store ROWS, not whole sources: rows a provider's parse filed
 // under a key that is not their word's, rows the owner has ruled off the
@@ -47,10 +47,25 @@
 //             into it, as a re-key does; a landed retext keeps its rank and
 //             takes no row off. Its slots (row[7], row[8]) are cleared, for
 //             apply-ledger-divisions to derive again from the new text.
+// VERSION 4 (6 November 2026, the code review of that day). A FOLD IS THE
+// SAME SOURCE'S. The store holds one text under several sources for 17,575
+// key-and-text pairs (36,189 rows), and a card credits each: a row of one
+// source is no row of another. Version 2 folded a re-keyed row into ANY
+// source's row holding its text under the new key, and a rejoin the same,
+// so 73 re-keyed rows (M36's "heritage" under ירשה, M4's, M46's) lost their
+// source's credit on the card, its switch cost and its "sole". From this
+// version a re-key or a rejoin folds only into a row of the same source, as
+// a retext always did; and one more action puts the 73 back:
+//   restore   a row this record holds whole (a fold of an earlier round)
+//             lands again under the key it was re-keyed to, as a row of its
+//             own at the key's next rank, unless the same source holds its
+//             text there by now (then it is counted as already held, and
+//             nothing lands). The list names the row whole and the round it
+//             was folded in; the record types where it came from.
 // The arithmetic: routes_struck counts every row a round takes off the store
 // (a strike, a withholding, a re-key that folds, and the rows a rejoin joins
 // beyond the one it keeps), routes_rekeyed the re-keys that land as a row of
-// their own, by_action each. Every row taken, and every re-keyed row's old
+// their own, routes_restored the rows a restore lands, by_action each. Every row taken, and every re-keyed row's old
 // rank, is typed in the store's struck-ranks record; ranks are never
 // renumbered, and a re-keyed row takes the next rank of its new key.
 //
@@ -79,7 +94,7 @@ const LIST = arg("list", null);
 const BRANCHES = arg("branches", null);
 const BRANCH = arg("branch", null);
 const REASON = arg("reason", "");
-export const ROW_STRIKE_RULE_ID = "row-strike-rule-v3-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-or-retexts-a-row-and-the-hole-is-typed";
+export const ROW_STRIKE_RULE_ID = "row-strike-rule-v4-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-or-restores-a-row-and-the-hole-is-typed";
 const RECORD = join(K3, "data", "row-strikes-v1.json");
 if (!LIST || !REASON || (BRANCHES && !BRANCH) || (BRANCH && !BRANCHES)) {
   console.log("usage: --list <list.jsonl> --reason \"<the review this stands on>\" [--branches <branches.json> --branch B01] [--store dir] [--leave-off \"<m>|<key>|<why>\"]... [--dry]");
@@ -89,7 +104,7 @@ const refuse = (msg) => { console.log(`REFUSED — ${msg}`); process.exit(1); };
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
 const shardOf = (k) => `${sha256(Buffer.from(k, "utf8")).slice(0, 2)}.bin`;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-const ACTIONS = ["strike", "withhold", "re-key", "headword", "rejoin", "retext"];
+const ACTIONS = ["strike", "withhold", "re-key", "headword", "rejoin", "retext", "restore"];
 
 // ---- what is asked ------------------------------------------------------------
 const leaveOff = args("leave-off").map((s) => { const [m, key, ...why] = String(s).split("|"); return { m, key, why: why.join("|") }; });
@@ -108,13 +123,19 @@ listBytes.toString("utf8").split("\n").forEach((l, i) => {
   if (e.action === "rejoin" && (!Array.isArray(e.rows) || !e.rows.length || typeof e.rejoined_text !== "string" || !e.rejoined_text)) refuse(`list line ${line}: a rejoin names its rows and the text they rejoin to`);
   if (e.action === "retext" && (typeof e.to_text !== "string" || !e.to_text.trim() || e.from_slot !== "definition")) refuse(`list line ${line}: a retext names the text the row takes (to_text) and the row's own slot it comes from (from_slot "definition")`);
   if (e.action === "retext" && e.to_text === e.route) refuse(`list line ${line}: a retext names the text the row already has`);
-  const named = e.action === "rejoin" ? e.rows.map((x) => ({ rank: x.rank, route: x.route })) : [{ rank: e.rank, route: e.route }];
+  if (e.action === "restore") {
+    const r = e.row;
+    if (!Array.isArray(r) || r.length < 7 || String(r[3]) !== String(e.m) || r[1] !== e.route) refuse(`list line ${line}: a restore names the row whole (seven slots, its m and route the list's)`);
+    if (!e.restored_from || typeof e.restored_from !== "object" || !e.restored_from.round || !e.restored_from.key) refuse(`list line ${line}: a restore names the round and the key it was folded from (restored_from)`);
+  }
+  const named = e.action === "rejoin" ? e.rows.map((x) => ({ rank: x.rank, route: x.route })) : e.action === "restore" ? [] : [{ rank: e.rank, route: e.route }];
   asked.push({ line, m: e.m, key: e.key, action: e.action, named, to_key: e.action === "re-key" ? e.to_key : null,
     to_headwords: Array.isArray(e.to_headwords) ? e.to_headwords : null,
     to_key_holds_text: typeof e.to_key_holds_text === "boolean" ? e.to_key_holds_text : null,
     to_key_holds: Array.isArray(e.to_key_holds) ? e.to_key_holds : null,
     headwords_now: e.headwords_now ?? null, headwords_to: e.headwords_to ?? null,
-    rejoined_text: e.rejoined_text ?? null, to_text: e.action === "retext" ? e.to_text : null, from_slot: e.action === "retext" ? e.from_slot : null, why: "list", list_why: e.why ?? null, kind: e.kind ?? null });
+    rejoined_text: e.rejoined_text ?? null, to_text: e.action === "retext" ? e.to_text : null, from_slot: e.action === "retext" ? e.from_slot : null,
+    restore_row: e.action === "restore" ? [...e.row.slice(0, 7)] : null, restored_from: e.action === "restore" ? e.restored_from : null, why: "list", list_why: e.why ?? null, kind: e.kind ?? null });
 });
 for (const lo of leaveOff) if (!leftOff.some((x) => x.m === lo.m && x.key === lo.key)) refuse(`--leave-off ${lo.m}|${lo.key} names no line of the list`);
 let branch = null;
@@ -138,6 +159,7 @@ const rowsOf = (k) => { const b = shards.get(shardOf(k)); return (b && b[k]) || 
 
 const claimed = new Set();
 for (const e of asked) {
+  // a restore names no row of the store: its row is in this record, and the store must NOT hold it (checked as it lands)
   e.rows = e.named.map((n) => {
     const id = `${e.m}|${e.key}|${n.rank}|${n.route}`;
     const hits = rowsOf(e.key).filter((r) => String(r[3]) === e.m && r[0] === n.rank && r[1] === n.route);
@@ -150,7 +172,8 @@ for (const e of asked) {
   if (e.action === "rejoin" && e.rows.some((r) => r[2] !== e.rows[0][2])) refuse(`the rejoin on ${e.m}|${e.key} names rows of more than one definition`);
   if (e.action === "retext" && String(e.rows[0][2] ?? "") !== e.to_text) refuse(`${e.m}|${e.key}|${e.named[0].rank}: the row's definition slot is «${String(e.rows[0][2] ?? "").slice(0, 60)}», not «${e.to_text}» as the list says; a retext takes only what the row itself carries`);
   if (e.action === "re-key" && e.to_key_holds_text !== null) {
-    // what the key held before this list touched it: the list was read against that store
+    // what the key held before this list touched it, from any source: the list was read against that store (the
+    // fold itself, below, is the same source's only)
     const holders = rowsOf(e.to_key).filter((r) => r[1] === e.named[0].route).map((r) => `${r[3]}@${r[0]}`);
     if ((holders.length > 0) !== e.to_key_holds_text) refuse(`${e.m}|${e.key}|${e.named[0].rank} -> ${e.to_key}: the list says the key ${e.to_key_holds_text ? "holds" : "does not hold"} «${e.named[0].route}», the store says ${holders.length ? holders.join(",") : "it does not"}`);
     if (e.to_key_holds && !same([...holders].sort(), [...e.to_key_holds].sort())) refuse(`${e.m}|${e.key}|${e.named[0].rank} -> ${e.to_key}: the list names ${e.to_key_holds.join(",")} as holding the text, the store ${holders.join(",")}`);
@@ -161,10 +184,10 @@ for (const e of asked) {
 const ranks = { keys: {}, rows: 0, keys_touched: 0, on_struck_records: 0, on_other_records: 0 };
 const taken = [];               // every row acted on, whole, with what was done with it
 const perSource = {}, cutsTaken = {};
-const byAction = { strike: 0, withhold: 0, re_key_landed: 0, re_key_folded: 0, rejoin_joins: 0, rejoin_rows_taken: 0, rejoin_folded: 0, headword: 0, retext: 0, retext_folded: 0 };
+const byAction = { strike: 0, withhold: 0, re_key_landed: 0, re_key_folded: 0, rejoin_joins: 0, rejoin_rows_taken: 0, rejoin_folded: 0, headword: 0, retext: 0, retext_folded: 0, restore: 0, restore_already_held: 0 };
 const keysTouched = new Set(), keysEmptied = [], keysMadeNew = [];
 const touchedShards = new Set();
-let routesTaken = 0, routesRekeyed = 0;
+let routesTaken = 0, routesRekeyed = 0, routesRestored = 0;
 const typeRank = (key, r) => { (ranks.keys[key] ||= []).push([r[0], String(r[3])]); ranks.rows += 1; ranks.on_struck_records += 1; perSource[r[3]] = (perSource[r[3]] || 0) + 1; };
 const takeOff = (key, r) => {
   const body = shards.get(shardOf(key));
@@ -174,6 +197,25 @@ const takeOff = (key, r) => {
   keysTouched.add(key); touchedShards.add(shardOf(key));
 };
 for (const e of asked) {
+  if (e.action === "restore") {
+    const r = e.restore_row;
+    const held = rowsOf(e.key).filter((x) => String(x[3]) === String(r[3]) && x[1] === r[1]);
+    if (held.length) {
+      byAction.restore_already_held += 1;
+      taken.push({ action: "restore", why: e.why, kind: e.kind ?? null, key: e.key, row: r, restored_from: e.restored_from, already_held: held.map((x) => ({ rank: x[0], m: String(x[3]) })) });
+      continue;
+    }
+    const toBody = shards.get(shardOf(e.key));
+    const toRows = toBody[e.key] || [];
+    if (!toBody[e.key]) keysMadeNew.push(e.key);
+    const next = toRows.reduce((a, x) => Math.max(a, Number(x[0]) || 0), 0) + 1;
+    const landed = [next, ...r.slice(1, 7)];
+    toBody[e.key] = [...toRows, landed];
+    keysTouched.add(e.key); touchedShards.add(shardOf(e.key));
+    routesRestored += 1; byAction.restore += 1;
+    taken.push({ action: "restore", why: e.why, kind: e.kind ?? null, key: e.key, row: r, to_rank: next, restored_from: e.restored_from, ...(e.to_headwords ? { to_headwords: e.to_headwords } : {}) });
+    continue;
+  }
   if (e.action === "strike" || e.action === "withhold") {
     const r = e.rows[0];
     takeOff(e.key, r); typeRank(e.key, r); routesTaken += 1; byAction[e.action] += 1;
@@ -209,9 +251,9 @@ for (const e of asked) {
     takeOff(e.key, r); typeRank(e.key, r);
     const toBody = shards.get(shardOf(e.to_key));
     const toRows = toBody[e.to_key] || [];
-    const holders = toRows.filter((x) => x[1] === r[1]);
+    const holders = toRows.filter((x) => x[1] === r[1] && String(x[3]) === String(r[3]));
     if (holders.length) {
-      // the key holds this text already: the row folds into what holds it
+      // the same source holds this text under the key already: the row folds into its own source's row (version 4; a row of another source is no row of this one)
       routesTaken += 1; byAction.re_key_folded += 1;
       if (r.length > 5 && r[5] === 1) cutsTaken[r[3]] = (cutsTaken[r[3]] || 0) + 1;
       taken.push({ action: "re-key", why: e.why, kind: e.kind ?? null, key: e.key, row: r, to_key: e.to_key, folded_into: holders.map((x) => ({ rank: x[0], m: String(x[3]) })) });
@@ -229,7 +271,7 @@ for (const e of asked) {
   }
   // rejoin: the first named row keeps its rank and takes the whole run; the rest go
   const order = e.rows.map((r, i) => ({ r, i })).sort((a, b) => (a.r[0] - b.r[0]) || (a.i - b.i)).map((x) => x.r);
-  const holders = rowsOf(e.key).filter((x) => x[1] === e.rejoined_text && !e.rows.includes(x));
+  const holders = rowsOf(e.key).filter((x) => x[1] === e.rejoined_text && !e.rows.includes(x) && String(x[3]) === String(e.rows[0][3]));
   const keep = holders.length ? null : order[0];
   for (const r of order) {
     if (r === keep) continue;
@@ -247,14 +289,15 @@ for (const e of asked) {
 }
 ranks.keys_touched = Object.keys(ranks.keys).length;
 const keysAfter = keysBefore - keysEmptied.length + keysMadeNew.length;
-const routesAfter = routesBefore - routesTaken;     // a re-key that lands moves a row; it neither takes nor adds one
+const routesAfter = routesBefore - routesTaken + routesRestored;     // a re-key that lands moves a row; it neither takes nor adds one; a restore adds one back
 let routesNow = 0; for (const body of shards.values()) for (const rows of Object.values(body)) routesNow += rows.length;
 if (routesNow !== routesAfter) refuse(`internal: the shards hold ${routesNow} routes, the arithmetic says ${routesAfter}`);
-console.log(`row strike v3 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
+console.log(`row strike v4 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, ${routesRestored} restored, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
 for (const t of taken.filter((x) => x.action === "re-key")) console.log(`  re-key ${t.key} rank ${t.row[0]} "${t.row[1]}" -> ${t.to_key} ${t.folded_into ? `folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : `rank ${t.to_rank}${t.to_headwords ? ` headwords ${JSON.stringify(t.to_headwords)}` : ""}`}`);
 for (const t of taken.filter((x) => x.action === "rejoin")) console.log(`  rejoin ${t.key} ${t.rows.map((r) => `${r[3]}@${r[0]}`).join("+")} -> «${t.rejoined_text}»${t.folded_into ? ` folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : ` at rank ${t.kept_rank}`}`);
 for (const t of taken.filter((x) => x.action === "headword")) console.log(`  headword ${t.key} rank ${t.row[0]} "${t.row[1]}" ${JSON.stringify(t.row[6])} -> ${JSON.stringify(t.headwords_to)}`);
 { const rt = taken.filter((x) => x.action === "retext"); if (rt.length) console.log(`  retext ${rt.length} rows (${rt.filter((x) => x.folded_into).length} fold), e.g. ${rt.slice(0, 3).map((t) => `${t.key} rank ${t.row[0]} "${t.row[1]}" -> "${t.to_text}"${t.folded_into ? " (folds)" : ""}`).join("; ")}`); }
+{ const rs = taken.filter((x) => x.action === "restore"); if (rs.length) console.log(`  restore ${rs.length} rows (${rs.filter((x) => x.already_held).length} already held), e.g. ${rs.slice(0, 3).map((t) => `${t.key} ${t.row[3]} "${t.row[1]}"${t.already_held ? " (held)" : ` rank ${t.to_rank}`}`).join("; ")}`); }
 for (const l of leftOff) console.log(`  left off: line ${l.line} ${l.m} ${l.key} (${l.action}) — ${l.why}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 
@@ -280,27 +323,29 @@ const rounds = [...((prior && prior.rounds) || []).map((r) => ({ rule_id: (prior
   rule_id: ROW_STRIKE_RULE_ID, ran_at: on, reason: REASON,
   list: { file: basename(LIST), sha256: sha256(listBytes), lines: asked.filter((e) => e.why === "list").length, left_off: leftOff },
   branch,
-  counts: { routes_before: routesBefore, routes_struck: routesTaken, routes_rekeyed: routesRekeyed, by_action: byAction, keys_before: keysBefore, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, per_source: perSource, cuts_taken: cutsTaken },
+  counts: { routes_before: routesBefore, routes_struck: routesTaken, routes_rekeyed: routesRekeyed, routes_restored: routesRestored, by_action: byAction, keys_before: keysBefore, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, per_source: perSource, cuts_taken: cutsTaken },
   store_version: { was, now },
   rows: taken.map((t) => (t.action === "rejoin"
     ? { action: t.action, why: t.why, kind: t.kind, key: t.key, m: String(t.rows[0][3]), rejoined_text: t.rejoined_text, rows: t.rows, ...(t.kept_rank !== undefined ? { kept_rank: t.kept_rank } : { folded_into: t.folded_into }) }
     : { action: t.action, why: t.why, kind: t.kind, key: t.key, rank: t.row[0], m: String(t.row[3]), route: t.row[1], row: t.row,
       ...(t.to_key ? { to_key: t.to_key } : {}), ...(t.to_rank !== undefined ? { to_rank: t.to_rank } : {}), ...(t.folded_into ? { folded_into: t.folded_into } : {}),
-      ...(t.to_headwords ? { to_headwords: t.to_headwords } : {}), ...(t.headwords_to ? { headwords_to: t.headwords_to } : {}), ...(t.to_text ? { to_text: t.to_text, from_slot: t.from_slot } : {}) })),
+      ...(t.to_headwords ? { to_headwords: t.to_headwords } : {}), ...(t.headwords_to ? { headwords_to: t.headwords_to } : {}), ...(t.to_text ? { to_text: t.to_text, from_slot: t.from_slot } : {}),
+      ...(t.restored_from ? { restored_from: t.restored_from } : {}), ...(t.already_held ? { already_held: t.already_held } : {}) })),
 }];
 const sumBy = (k) => rounds.reduce((a, r) => { for (const [x, v] of Object.entries((r.counts && r.counts[k]) || {})) a[x] = (a[x] || 0) + v; return a; }, {});
 const cumulative = {
   routes_struck: rounds.reduce((a, r) => a + r.counts.routes_struck, 0),
   routes_rekeyed: rounds.reduce((a, r) => a + r.counts.routes_rekeyed, 0),
+  routes_restored: rounds.reduce((a, r) => a + (r.counts.routes_restored || 0), 0),
   by_action_since_version_2: sumBy("by_action"),
   keys_touched: rounds.reduce((a, r) => a + r.counts.keys_touched, 0),
   rounds: rounds.length,
 };
 const record = {
   schema_version: "ROW_STRIKES_V2", rule_id: ROW_STRIKE_RULE_ID,
-  what: "every store row a named list the page lane reviewed struck, withheld, re-keyed, rejoined, re-headed or retexted: rows a provider's parse filed under a key that is not their word's, rows the owner ruled off the cards, rows a cut left in pieces, and every row a branch's resting option withholds until the owner rules; each row is kept whole here, so what went can be read and put back; the rank each row taken or re-keyed left is typed in the store's struck-ranks record and never renumbered",
+  what: "every store row a named list the page lane reviewed struck, withheld, re-keyed, rejoined, re-headed, retexted or restored: rows a provider's parse filed under a key that is not their word's, rows the owner ruled off the cards, rows a cut left in pieces, every row a branch's resting option withholds until the owner rules, and the rows an earlier round folded into another source's row and a later round put back; each row is kept whole here, so what went can be read and put back; the rank each row taken or re-keyed left is typed in the store's struck-ranks record and never renumbered",
   ran_at: on, rounds, rulings: (prior && prior.rulings) || [], cumulative,
-  counts_scope: "cumulative is the whole of this record; rounds[] holds each round's own arithmetic. routes_struck counts every row a round took off the store: a strike, a withholding, a re-key whose text its new key already held (it folds), and the rows a rejoin joined beyond the one it kept. routes_rekeyed counts the re-keys that landed as a row of their own; a re-heading takes nothing. by_action splits each round from version 2 on",
+  counts_scope: "cumulative is the whole of this record; rounds[] holds each round's own arithmetic. routes_struck counts every row a round took off the store: a strike, a withholding, a re-key whose text its new key already held from the same source (it folds; before version 4, from any source), and the rows a rejoin joined beyond the one it kept. routes_rekeyed counts the re-keys that landed as a row of their own; a re-heading takes nothing; routes_restored counts the rows a restore landed back (version 4), so rows before, less routes_struck, plus routes_restored, are the rows served. by_action splits each round from version 2 on",
 };
 writeFileSync(RECORD, JSON.stringify(record, null, 1));
 

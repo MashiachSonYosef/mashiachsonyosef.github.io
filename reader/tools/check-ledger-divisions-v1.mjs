@@ -30,6 +30,10 @@
 //   D6  on the page: a row that prints a part of itself (a filing tag off)
 //       offers the part as its pill and not the row's whole text
 //   D7  on the page: a row that prints no pill offers nothing
+//   D8  the span store's rows (data/span-store/<book>.json): every row of a
+//       ledgered source carries the same slots, re-classified here, and no
+//       row of an unledgered source carries one (6 November 2026, the code
+//       review: 308 span rows served whole where their ledger cuts them)
 //
 // Run: node tools/check-ledger-divisions-v1.mjs [--store data/route-store] [--per-source 400]
 import { readFileSync, readdirSync, existsSync } from "node:fs";
@@ -99,7 +103,7 @@ if (!ONLY || ONLY === "D1") {
 
 // D2
 const classifiers = new Map();
-if (!ONLY || ONLY === "D2" || ONLY === "D3") {
+if (!ONLY || ONLY === "D2" || ONLY === "D3" || ONLY === "D8") {
   const faults = [];
   for (const [key, S] of Object.entries(L.sources)) {
     const M = manifest.ledgers[key];
@@ -135,6 +139,9 @@ if (!ONLY || ONLY === "D2" || ONLY === "D3") {
     faults.length ? faults.slice(0, 4).join(" · ") : `${classifiers.size} ledgers · answers file ${existsSync(answersPath) ? "present" : "absent (every branch at rest)"}`);
 }
 
+/** t is a run of text's own characters in their own order (code points, not code units) */
+const inOrder = (text, t) => { const cs = [...t]; let j = 0; for (const ch of text) if (ch === cs[j]) j += 1; return j === cs.length; };
+
 // D3
 if (!ONLY || ONLY === "D3") {
   const faults = []; let rows = 0, divided = 0, printed = 0, noPill = 0;
@@ -159,13 +166,61 @@ if (!ONLY || ONLY === "D3") {
       const havePrint = Array.isArray(row[8]) ? row[8] : null;
       if (havePrint) { if (havePrint.length) printed += 1; else noPill += 1; }
       if (JSON.stringify(wantPrint) !== JSON.stringify(havePrint)) faults.push(`${key} ${k}#${row[0]}: the print step gives ${JSON.stringify(wantPrint)}, the row says ${JSON.stringify(havePrint)}`);
-      // and every printed text is the route's own characters, in their order
-      for (const t of havePrint || []) { let j = 0; for (const ch of text) if (ch === t[j]) j += 1; if (j !== t.length) faults.push(`${key} ${k}#${row[0]}: «${t}» is not the route's characters in order`); }
+      // and every printed text is the route's own characters, in their order (both walked by code point)
+      for (const t of havePrint || []) if (!inOrder(text, t)) faults.push(`${key} ${k}#${row[0]}: «${t}» is not the route's characters in order`);
     }
   }
   if (slotOnUnledgered.length) faults.push(`${slotOnUnledgered.length} rows of unledgered sources carry a slot: ${slotOnUnledgered.slice(0, 3).join(", ")}`);
   check("D3  every sampled row's slots are exactly the marks its source's own classifier divides at and the texts the print step gives under the index's answers; no unledgered row carries one", faults.length === 0,
     faults.length ? faults.slice(0, 4).join(" · ") : `${nf(rows)} rows re-classified over ${classifiers.size} ledgers · ${nf(divided)} divided · ${nf(printed)} print a part · ${nf(noPill)} print no pill · ${nf(rowsSeen)} rows walked`);
+}
+
+// D8 — the span store's rows carry the same slots (data/span-store/<book>.json)
+if (!ONLY || ONLY === "D8") {
+  const SPAN = join(K3, "data", "span-store");
+  const faults = []; let rows = 0, ledgered = 0, divided = 0, printed = 0, noPill = 0, books = 0;
+  if (!existsSync(join(SPAN, "index.json"))) console.log("  --  D8  no span store on this disk");
+  else {
+    const spanIndex = JSON.parse(readFileSync(join(SPAN, "index.json"), "utf8"));
+    const keyOfSpanM = (m) => ((index.m_sources[m] || {}).key) || (((spanIndex.m_sources || {})[m] || {}).key) || null;
+    const loaded = new Map();
+    const clsOf = async (key) => { if (!loaded.has(key)) loaded.set(key, (await import(pathToFileURL(resolve(classifiers.get(key).cls)).href)).classify); return loaded.get(key); };
+    if (!spanIndex.ledgers || spanIndex.ledgers.rule_id !== L.rule_id) faults.push(`the span store's index names ${spanIndex.ledgers ? spanIndex.ledgers.rule_id : "no rule"}, the store's index ${L.rule_id}`);
+    for (const f of readdirSync(SPAN).filter((x) => /^[a-z0-9-]+\.json$/u.test(x) && x !== "index.json").sort()) {
+      const file = JSON.parse(readFileSync(join(SPAN, f), "utf8"));
+      if (!file.keys) continue;
+      books += 1;
+      for (const [k, rs] of Object.entries(file.keys)) for (const r of rs) {
+        const row = r.slots; if (!Array.isArray(row)) { faults.push(`${f} ${k}: a row with no slots`); continue; }
+        rows += 1;
+        const key = keyOfSpanM(String(row[3]));
+        const C = key && classifiers.get(key);
+        if (!C) { if (row.length !== 7) faults.push(`${f} ${k} (${row[3]}): a row of a source under no ledger carries ${row.length - 7} slot(s) beyond the lane's seven`); continue; }
+        ledgered += 1;
+        if (row.length < 7 || row.length > 9) { faults.push(`${f} ${k}: ${row.length} slots`); continue; }
+        const text = String(row[1]);
+        const classify = await clsOf(key);
+        let marks; try { marks = classify(text); } catch { marks = null; }
+        const want = marks ? [...new Set(marks.filter((g) => C.dividing.has(g.shape)).map((g) => g.i))].sort((a, b) => a - b) : [];
+        const have = Array.isArray(row[7]) ? row[7] : [];
+        if (have.length) divided += 1;
+        if (JSON.stringify(want) !== JSON.stringify(have)) faults.push(`${f} ${k} (${row[3]}): the ledger divides at [${want}], the span row says [${have}]`);
+        const rules = marks ? [...new Set(marks.map((g) => C.printing.get(g.shape)).filter(Boolean))] : [];
+        let wantPrint = null;
+        const none = rules.find((x) => PRINT_RULES[x].kind === "none");
+        if (rules.length > 1 && !none) faults.push(`${f} ${k} (${row[3]}): two print steps reach one span row`);
+        else if (rules.length) { const rule = none || rules[0]; try { const pr = printOf(rule, text, marks.filter((g) => C.printing.get(g.shape) === rule), want); wantPrint = pr ? pr.texts : null; } catch (e) { faults.push(`${f} ${k}: ${e.message}`); } }
+        const havePrint = Array.isArray(row[8]) ? row[8] : null;
+        if (havePrint) { if (havePrint.length) printed += 1; else noPill += 1; }
+        if (JSON.stringify(wantPrint) !== JSON.stringify(havePrint)) faults.push(`${f} ${k} (${row[3]}): the print step gives ${JSON.stringify(wantPrint)}, the span row says ${JSON.stringify(havePrint)}`);
+        for (const t of havePrint || []) if (!inOrder(text, t)) faults.push(`${f} ${k}: «${t}» is not the span row's characters in order`);
+      }
+    }
+    const sc = (spanIndex.ledgers || {}).counts || {};
+    if (sc.rows !== undefined && (sc.rows !== rows || sc.rows_of_ledgered_sources !== ledgered || sc.rows_dividing !== divided)) faults.push(`the span store's index counts ${sc.rows} rows, ${sc.rows_of_ledgered_sources} ledgered, ${sc.rows_dividing} dividing; the files hold ${rows}, ${ledgered}, ${divided}`);
+    check("D8  every span-store row of a ledgered source carries the slots its source's own classifier gives under the index's answers, and no other row carries one", faults.length === 0,
+      faults.length ? faults.slice(0, 4).join(" · ") : `${books} books · ${nf(rows)} span rows, ${nf(ledgered)} of ledgered sources re-classified · ${nf(divided)} divided · ${nf(printed)} print a part · ${nf(noPill)} print no pill`);
+  }
 }
 
 // D4 — the page's function, read out of the page

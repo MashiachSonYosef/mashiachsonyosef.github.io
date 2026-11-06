@@ -149,26 +149,27 @@ export const openRouteStore = (storeDir) => {
     pieces.push(text.slice(from));
     return pieces.map((x) => x.trim()).filter(Boolean);
   };
-  /** The readings of a text the corpus lane shipped for a key (the witnessed
-   *  orders). The lane shipped each as the generic rule cut it: a whole row,
-   *  or a piece of one ("grief" of "grief, sorrow"). The reading the store
-   *  gives it now is the served row's own under readingsOf: the row whose
-   *  route is the text byte for byte, else the row whose generic readings
-   *  hold the text, a row of the credited sources (mIds) preferred; a text no
-   *  served row accounts for keeps the generic rule's readings. */
-  /** The served row a text came from: the one whose route is the text (a row of the preferred sources first), else the one
-   *  whose generic readings hold it; null where no served row accounts for the text. */
+  /** The served row a text the corpus lane shipped came from (the witnessed
+   *  orders: a row's whole text, or, before 6 November, a piece the generic
+   *  rule cut from one). The credited sources' rows are searched first, and
+   *  the others only when none of theirs accounts for the text: the row whose
+   *  route is the text, else one whose readings under the store's rule now
+   *  hold it, else one whose generic readings hold it. null where no served
+   *  row accounts for the text. (The code review of 6 November 2026: an exact
+   *  row of ANY source was taken before the credited source's holding row, so
+   *  a column kept a reading its credited source no longer gave.) */
   const rowOfText = (k, text, mIds = null) => {
     const t = String(text ?? "");
     const rows = (routesFor(k) || []).filter((r) => (index.m_sources || {})[r[3]]);
     const ids = Array.isArray(mIds) ? mIds.map(String) : [];
-    const prefer = (list) => (ids.length ? [...list.filter((r) => ids.includes(String(r[3]))), ...list.filter((r) => !ids.includes(String(r[3])))] : list);
-    const exact = prefer(rows.filter((r) => String(r[1]) === t));
-    if (exact.length) return exact[0];
     const tl = t.toLowerCase();
-    const holds = prefer(rows.filter((r) => genericReadings(String(r[1])).some((x) => x.toLowerCase() === tl)));
-    return holds.length ? holds[0] : null;
+    const exact = (list) => list.find((r) => String(r[1]) === t) || null;
+    const holds = (list) => list.find((r) => readingsOf(r).some((x) => x.toLowerCase() === tl)) || list.find((r) => genericReadings(String(r[1])).some((x) => x.toLowerCase() === tl)) || null;
+    if (ids.length) { const mine = rows.filter((r) => ids.includes(String(r[3]))); const hit = exact(mine) || holds(mine); if (hit) return hit; }
+    const others = ids.length ? rows.filter((r) => !ids.includes(String(r[3]))) : rows;
+    return exact(others) || holds(others);
   };
+  /** The readings the store gives such a text now: its row's, else the generic rule's. */
   const readingsOfText = (k, text, mIds = null) => {
     const row = rowOfText(k, text, mIds);
     return row ? readingsOf(row) : genericReadings(String(text ?? ""));

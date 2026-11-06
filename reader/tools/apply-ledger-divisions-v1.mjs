@@ -50,9 +50,14 @@
 // A source with no ledger in data/ledgers-v1 keeps the generic rule, and the
 // manifest says which and why (Strong's 1890, whose ledger the owner tabled).
 //
+//   5. (6 November 2026, the code review) The span store's rows
+//      (data/span-store/<book>.json) take the same slots the same way: a
+//      span row of a ledgered source is a row like any, and until then it was
+//      served whole where the generic rule had divided it.
+//
 // Usage: node tools/apply-ledger-divisions-v1.mjs [--store data/route-store]
 //          [--ledgers data/ledgers-v1] [--answers data/ledger-branch-answers-v1.json]
-//          [--receipt data/ledger-divisions-receipt-v1.json] [--dry]
+//          [--receipt data/ledger-divisions-receipt-v1.json] [--span-store data/span-store] [--dry]
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -140,6 +145,59 @@ const packSplit = (text) => {
 const genericReadings = (text) => { const out = []; let hidden = 0; for (const s of packSplit(text)) { const r = readingSplit(s); if (r.damaged) { hidden += 1; continue; } out.push(...r.readings); } return { readings: out, hidden }; };
 const piecesAt = (text, cuts) => { const p = []; let from = 0; for (const i of cuts) { p.push(text.slice(from, i)); from = i + 1; } p.push(text.slice(from)); return p.map((x) => x.trim()).filter(Boolean); };
 
+// ---- what a ledger says of one text ---------------------------------------------------
+// the marks it divides at, the texts it prints (null where no answered branch
+// reaches it), or that the text is UNCOVERED (the classifier throws, or names a
+// shape the declaration lacks): then nothing of it is counted, it stands whole,
+// and the receipt names it. A print step that cannot be applied is a CONFLICT
+// this tool refuses on, never a guess: two steps on one row where neither is
+// "no pill", a step that cannot combine with the row's cut, or a step whose
+// branch marks the row and that does not reach it (the review of 6 November:
+// such a row printed as if its branch were unanswered, uncounted).
+const slotsOf = (L, text) => {
+  let marks;
+  try { marks = L.classify(text); } catch (e) { return { uncovered: String(e.message || e).slice(0, 160) }; }
+  if (!Array.isArray(marks)) return { uncovered: "the classifier gave no marks" };
+  const unknown = marks.find((g) => !L.shapes.get(g.shape));
+  if (unknown) return { uncovered: `shape ${unknown.shape} is not in the declaration` };
+  const dividing = marks.filter((g) => L.shapes.get(g.shape).divides);
+  const cuts = [...new Set(dividing.map((g) => g.i))].sort((a, b) => a - b);
+  const byShape = {}; for (const g of dividing) byShape[g.shape] = (byShape[g.shape] || 0) + 1;
+  const printRules = new Set(marks.map((g) => L.shapes.get(g.shape).prints).filter(Boolean));
+  let prints = null, ruleKey = null, conflict = null;
+  if (printRules.size) {
+    // a row that renders nothing has no pill whatever else its marks say (so each branch's own words)
+    const none = [...printRules].find((r) => PRINT_RULES[r].kind === "none");
+    if (printRules.size > 1 && !none) conflict = `two print steps on one row (${[...printRules].join(", ")})`;
+    else {
+      ruleKey = none || [...printRules][0];
+      const branchMarks = marks.filter((g) => L.shapes.get(g.shape).prints === ruleKey);
+      try { const r = printOf(ruleKey, text, branchMarks, cuts); if (r) prints = r.texts; else conflict = `the print step ${ruleKey} does not reach a row its branch's shapes mark`; }
+      catch (e) { conflict = e.message; }
+    }
+  }
+  return { marks: marks.length, marksDividing: dividing.length, byShape, cuts, prints, ruleKey, conflict };
+};
+const newCounts = () => ({ rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, marks: 0, marks_dividing: 0, by_shape: {}, by_print_rule: {}, uncovered: 0, vs_generic: { same: 0, generic_divided_ledger_whole: 0, generic_hid_ledger_prints: 0, ledger_divides_generic_did_not: 0, both_divide_differently: 0 } });
+const count = (c, r) => {
+  c.marks += r.marks; c.marks_dividing += r.marksDividing;
+  for (const [sh, n] of Object.entries(r.byShape)) c.by_shape[sh] = (c.by_shape[sh] || 0) + n;
+  if (r.prints) { c.by_print_rule[r.ruleKey] = (c.by_print_rule[r.ruleKey] || 0) + 1; if (r.prints.length) c.rows_printing_a_part += 1; else c.rows_no_pill += 1; }
+  if (r.cuts.length) c.rows_dividing += 1;
+};
+// the row's slots: row[7] present only where the row divides, row[8] only where it prints a part or no pill
+const setSlots = (row, cuts, prints) => {
+  const had = Array.isArray(row[7]) ? row[7] : null, hadPrint = Array.isArray(row[8]) ? row[8] : null;
+  const now = cuts.length ? cuts : null;
+  if (JSON.stringify(had) === JSON.stringify(now) && JSON.stringify(hadPrint) === JSON.stringify(prints)) return false;
+  if (!DRY) {
+    while (row.length < 7) row.push(null);
+    row[7] = now; row[8] = prints;
+    if (!prints) { row.length = 8; if (!now) row.length = 7; }
+  }
+  return true;
+};
+
 // ---- every served row of every ledgered source ------------------------------------
 const per = {};   // source key -> counts
 const uncovered = [];
@@ -152,55 +210,22 @@ for (const [shardName, body] of shards) {
       const L = ledgerOfM(String(row[3]));
       if (!L) { const kk = keyOfM(String(row[3])); unledgeredRows[kk] = (unledgeredRows[kk] || 0) + 1; continue; }
       rowsSeen += 1;
-      const c = (per[L.key] ||= { rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, marks: 0, marks_dividing: 0, by_shape: {}, by_print_rule: {}, uncovered: 0, vs_generic: { same: 0, generic_divided_ledger_whole: 0, generic_hid_ledger_prints: 0, ledger_divides_generic_did_not: 0, both_divide_differently: 0 } });
+      const c = (per[L.key] ||= newCounts());
       c.rows += 1;
       const text = String(row[1]);
-      let marks = null;
-      try { marks = L.classify(text); } catch (e) { c.uncovered += 1; if (uncovered.length < 400) uncovered.push({ source: L.key, key: k, m: String(row[3]), rank: row[0], route: text, error: String(e.message || e).slice(0, 160) }); }
-      let cuts = [];
-      const printRules = new Set();
-      if (Array.isArray(marks)) {
-        for (const g of marks) {
-          const s = L.shapes.get(g.shape);
-          if (!s) { c.uncovered += 1; if (uncovered.length < 400) uncovered.push({ source: L.key, key: k, m: String(row[3]), rank: row[0], route: text, error: `shape ${g.shape} is not in the declaration` }); cuts = []; printRules.clear(); marks = null; break; }
-          c.marks += 1;
-          if (s.divides) { cuts.push(g.i); c.marks_dividing += 1; c.by_shape[g.shape] = (c.by_shape[g.shape] || 0) + 1; }
-          if (s.prints) printRules.add(s.prints);
-        }
+      const r = slotsOf(L, text);
+      let cuts = [], prints = null;
+      if (r.uncovered) { c.uncovered += 1; if (uncovered.length < 400) uncovered.push({ source: L.key, key: k, m: String(row[3]), rank: row[0], route: text, error: r.uncovered }); }
+      else {
+        if (r.conflict) conflicts.push(`${L.key} ${k}#${row[0]}: ${r.conflict} «${text.slice(0, 60)}»`);
+        else { count(c, r); cuts = r.cuts; prints = r.prints; }
       }
-      cuts = [...new Set(cuts)].sort((a, b) => a - b);
-      // the print slot: the texts the row prints under its answered branch; two
-      // branches on one row refuse unless both take marks out, in which case
-      // the second works on what the first kept — a case this store has none of
-      let prints = null;
-      if (printRules.size) {
-        // a row that renders nothing has no pill whatever else its marks say (so each branch's own words); two other
-        // steps on one row are a conflict this tool refuses rather than guess at
-        const none = [...printRules].find((r) => PRINT_RULES[r].kind === "none");
-        if (printRules.size > 1 && !none) { conflicts.push(`${L.key} ${k}#${row[0]}: two print steps on one row (${[...printRules].join(", ")}) «${text.slice(0, 60)}»`); }
-        else {
-          const ruleKey = none || [...printRules][0];
-          const branchMarks = marks.filter((g) => L.shapes.get(g.shape).prints === ruleKey);
-          try { const r = printOf(ruleKey, text, branchMarks, cuts); if (r) prints = r.texts; }
-          catch (e) { conflicts.push(`${L.key} ${k}#${row[0]}: ${e.message}`); }
-          if (prints) { c.by_print_rule[ruleKey] = (c.by_print_rule[ruleKey] || 0) + 1; if (prints.length) { rowsPrinting += 1; c.rows_printing_a_part += 1; } else { rowsNoPill += 1; c.rows_no_pill += 1; } }
-        }
-      }
-      // the row's slots: row[7] present only where the row divides, row[8] only where it prints a part or no pill
-      const had = Array.isArray(row[7]) ? row[7] : null, hadPrint = Array.isArray(row[8]) ? row[8] : null;
-      const now = cuts.length ? cuts : null;
-      if (JSON.stringify(had) !== JSON.stringify(now) || JSON.stringify(hadPrint) !== JSON.stringify(prints)) {
-        rowsChanged += 1; touched.add(shardName);
-        if (!DRY) {
-          while (row.length < 7) row.push(null);
-          row[7] = now; row[8] = prints;
-          if (!prints) { row.length = 8; if (!now) row.length = 7; }
-        }
-      }
-      if (now) { rowsDividing += 1; c.rows_dividing += 1; }
+      if (setSlots(row, cuts, prints)) { rowsChanged += 1; touched.add(shardName); }
+      if (cuts.length) rowsDividing += 1;
+      if (prints) { if (prints.length) rowsPrinting += 1; else rowsNoPill += 1; }
       // against the generic rule
       const g = genericReadings(text);
-      const ledgerPieces = prints ? prints : now ? piecesAt(text, now) : [text.trim()].filter(Boolean);
+      const ledgerPieces = prints ? prints : cuts.length ? piecesAt(text, cuts) : [text.trim()].filter(Boolean);
       const v = c.vs_generic;
       if (g.hidden && g.readings.length === 0) { if (ledgerPieces.length) v.generic_hid_ledger_prints += 1; else v.same += 1; }
       else if (g.readings.length > 1 && ledgerPieces.length === 1) v.generic_divided_ledger_whole += 1;
@@ -208,6 +233,57 @@ for (const [shardName, body] of shards) {
       else if (g.readings.length > 1 && ledgerPieces.length > 1 && JSON.stringify(g.readings) !== JSON.stringify(ledgerPieces)) v.both_divide_differently += 1;
       else v.same += 1;
     }
+  }
+}
+
+// ---- the span store's rows (data/span-store/<book>.json), the same way --------------
+// (6 November 2026, the code review of that day: a span row of a ledgered
+// source was served whole, its slots never written, where the generic rule
+// had divided it the day before — 308 rows). A span row is a row like any:
+// seven slots the lane shipped byte for byte, and beyond them the page's own
+// division slots where the row's source is under a ledger. A span-only
+// source (the span store's own m_sources) is under a ledger by its key, as a
+// store source is; a row of a source under no ledger carries no slot.
+const SPAN = arg("span-store", join(K3, "data", "span-store"));
+const spanCounts = { books: 0, rows: 0, rows_of_ledgered_sources: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, rows_whose_slot_moved: 0, uncovered: 0, by_source: {} };
+const spanUncovered = [];
+if (existsSync(join(SPAN, "index.json"))) {
+  const spanIndex = JSON.parse(readFileSync(join(SPAN, "index.json"), "utf8"));
+  const keyOfSpanM = (m) => keyOfM(m) || ((spanIndex.m_sources || {})[m] || {}).key || null;
+  const spanFiles = readdirSync(SPAN).filter((x) => /^[a-z0-9-]+\.json$/u.test(x) && x !== "index.json").sort();
+  for (const f of spanFiles) {
+    const path = join(SPAN, f);
+    const file = JSON.parse(readFileSync(path, "utf8"));
+    if (!file.keys || typeof file.keys !== "object") continue;
+    spanCounts.books += 1;
+    let moved = 0;
+    for (const [k, rows] of Object.entries(file.keys)) for (const r of rows) {
+      const row = r.slots; if (!Array.isArray(row)) continue;
+      spanCounts.rows += 1;
+      const key = keyOfSpanM(String(row[3]));
+      const L = key && ledgers.has(key) ? ledgers.get(key) : null;
+      if (!L) { if (setSlots(row, [], null)) moved += 1; continue; }
+      spanCounts.rows_of_ledgered_sources += 1;
+      const bs = (spanCounts.by_source[key] ||= { rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, uncovered: 0 });
+      bs.rows += 1;
+      const text = String(row[1]);
+      const res = slotsOf(L, text);
+      let cuts = [], prints = null;
+      if (res.uncovered) { bs.uncovered += 1; spanCounts.uncovered += 1; if (spanUncovered.length < 200) spanUncovered.push({ source: key, book: file.book || f, key: k, m: String(row[3]), row_id: r.row_id || null, route: text, error: res.uncovered }); }
+      else if (res.conflict) conflicts.push(`${key} span ${file.book || f} ${k} (${r.row_id || "?"}): ${res.conflict} «${text.slice(0, 60)}»`);
+      else { cuts = res.cuts; prints = res.prints; }
+      if (setSlots(row, cuts, prints)) moved += 1;
+      if (cuts.length) { bs.rows_dividing += 1; spanCounts.rows_dividing += 1; }
+      if (prints) { if (prints.length) { bs.rows_printing_a_part += 1; spanCounts.rows_printing_a_part += 1; } else { bs.rows_no_pill += 1; spanCounts.rows_no_pill += 1; } }
+    }
+    spanCounts.rows_whose_slot_moved += moved;
+    if (moved && !DRY) writeFileSync(path, JSON.stringify(file));   // the bake's own byte shape: one line, no indent
+  }
+  if (!DRY && !conflicts.length) {
+    spanIndex.ledgers = { rule_id: LEDGER_DIVISION_RULE_ID, applied_on: new Date().toISOString(), applied_by: "tools/apply-ledger-divisions-v1.mjs",
+      what: "a span row of a source under a ledger carries the page's division slots beyond the lane's seven, as a store row does: row[7] the marks it divides at, row[8] the texts it prints ([] for no pill); a row of a source under no ledger carries none; the first seven slots are the lane's, byte for byte",
+      counts: { books: spanCounts.books, rows: spanCounts.rows, rows_of_ledgered_sources: spanCounts.rows_of_ledgered_sources, rows_dividing: spanCounts.rows_dividing, rows_printing_a_part: spanCounts.rows_printing_a_part, rows_no_pill: spanCounts.rows_no_pill, uncovered: spanCounts.uncovered } };
+    writeFileSync(join(SPAN, "index.json"), JSON.stringify(spanIndex, null, 1));
   }
 }
 for (const [k, c] of Object.entries(unledgeredRows)) if (!(manifest.excluded || {})[k]) refuse(`${k} serves ${c} rows, has no ledger, and the manifest does not say why`);
@@ -220,6 +296,8 @@ for (const [key, L] of ledgers) {
 const totals = { ledgered_sources: ledgers.size, rows: rowsSeen, rows_dividing: rowsDividing, rows_printing_a_part: rowsPrinting, rows_no_pill: rowsNoPill, rows_whose_slot_moved: rowsChanged, uncovered: uncovered.length ? Object.values(per).reduce((a, c) => a + c.uncovered, 0) : 0 };
 const vs = Object.values(per).reduce((a, c) => { for (const [x, y] of Object.entries(c.vs_generic)) a[x] = (a[x] || 0) + y; return a; }, {});
 console.log(`ledger divisions · ${ledgers.size} ledgers · ${n(rowsSeen)} rows of ledgered sources · ${n(rowsDividing)} divide · ${n(rowsPrinting)} print a part · ${n(rowsNoPill)} print no pill · ${n(rowsChanged)} slots move · uncovered ${n(totals.uncovered)}`);
+console.log(`  span store · ${spanCounts.books} books · ${n(spanCounts.rows)} rows, ${n(spanCounts.rows_of_ledgered_sources)} of ledgered sources · ${n(spanCounts.rows_dividing)} divide · ${n(spanCounts.rows_printing_a_part)} print a part · ${n(spanCounts.rows_no_pill)} print no pill · ${n(spanCounts.rows_whose_slot_moved)} slots move · uncovered ${n(spanCounts.uncovered)}`);
+for (const u of spanUncovered.slice(0, 6)) console.log(`  span uncovered: ${u.source} ${u.book} ${u.key} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
 console.log(`  against the generic rule: ${JSON.stringify(vs)}`);
 for (const [key, s] of Object.entries(sources)) if (s.rows) console.log(`  ${key.padEnd(66)} rows ${String(s.rows).padStart(7)} · divide ${String(s.rows_dividing).padStart(6)} · print ${String(s.rows_printing_a_part).padStart(5)} · no pill ${String(s.rows_no_pill).padStart(4)} · generic divided ${String(s.vs_generic.generic_divided_ledger_whole || 0).padStart(6)} · generic hid ${String(s.vs_generic.generic_hid_ledger_prints || 0).padStart(4)} · uncovered ${s.uncovered}`);
 for (const u of uncovered.slice(0, 12)) console.log(`  uncovered: ${u.source} ${u.key}#${u.rank} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
@@ -237,11 +315,12 @@ index.ledgers = {
   excluded: Object.fromEntries(Object.entries(manifest.excluded || {}).map(([k, why]) => [k, { why, rows: unledgeredRows[k] || 0 }])),
   what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger keeps the generic rule",
   print_step: "tools/ledger-print-v1.mjs",
+  span_store: { file: "reader/data/span-store/<book>.json", ...Object.fromEntries(Object.entries(spanCounts).filter(([k]) => k !== "by_source")) },
   sources: Object.fromEntries(Object.entries(sources).map(([k, s]) => [k, { relay: s.relay, declaration_sha256: s.declaration_sha256, classifier_sha256: s.classifier_sha256, m_ids: s.m_ids, shapes: s.shapes, shapes_dividing: s.shapes_dividing, branches: Object.fromEntries(Object.entries(s.branches).map(([id, b]) => [id, { option: b.option, resting: b.resting, by: b.by, on: b.on, ...(b.prints ? { prints: b.prints } : {}) }])), rows: s.rows, rows_dividing: s.rows_dividing, rows_printing_a_part: s.rows_printing_a_part, rows_no_pill: s.rows_no_pill, uncovered: s.uncovered }])),
   totals,
 };
 index.counts = { ...(index.counts || {}), shard_bytes_total: shardBytes };
 if (now !== was) { index.store_version = now; index.store_version_history = [...(index.store_version_history || []), { was, now, why: LEDGER_DIVISION_RULE_ID, on }]; }
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
-writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V2", rule_id: LEDGER_DIVISION_RULE_ID, print_step: "tools/ledger-print-v1.mjs", ran_at: on, store_version: { was, now }, totals, vs_generic_rule: vs, sources, uncovered_rows: uncovered }, null, 1));
+writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: "tools/ledger-print-v1.mjs", ran_at: on, store_version: { was, now }, totals, vs_generic_rule: vs, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered } }, null, 1));
 console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · index.ledgers names ${ledgers.size} ledgers · receipt ${RECEIPT}`);
