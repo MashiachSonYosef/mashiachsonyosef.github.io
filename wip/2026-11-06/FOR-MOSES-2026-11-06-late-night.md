@@ -137,3 +137,24 @@ Nothing of v110 to v127 reaches the page yet:
 
 - **The branches wait for the owner.** Strong's King James renderings (v110, and Kaikki's B07, which holds Strong's text) wait with v102, which the owner tabled.
 - **The line comes first.** v102 showed that a ledger which keeps whole what today's rule divides moves the line: 5.5% of the baked lines when it was wired. Each of these ledgers does the same, Kaikki's on 52,662 routes. So a line rule comes before any of them lands.
+
+## 8. The owner's rulings on two of the store questions (after this letter was written)
+
+The owner has ruled on both questions of §6:
+
+- **Rows that render nothing come off the cards** ("Take them off"). This covers the kinds named in §6:
+  - v112: X, wh, -self and the two sums of numbers;
+  - v118: NO DATA YET;
+  - v124: DCHR VI, enclitic, and the rows the editor marks "(to be deleted)";
+  - v119: list and topic page titles;
+  - v122: the names of verb patterns;
+  - v121.1: labels alone;
+  - v115: the atomic numbers and «footprmul».
+- **Rows in another language in an English table are withheld** ("Withhold them"): v120's 68 and v122's 112.
+
+Please send each kind as a list in the shape of strike-list-v1.jsonl (key, m, rank, route), with a why on every row, and read every row:
+
+- **Where a row might still render the word, leave it off the list.** A label that is also the word's sense is one.
+- **For another language, name the language you read** on each row.
+
+I'll review each list and apply it with the next store change. The store record keeps every row, so any can be put back.
