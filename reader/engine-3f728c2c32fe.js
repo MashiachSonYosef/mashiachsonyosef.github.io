@@ -204,10 +204,11 @@
     if (out.join(";") !== t) return [t.trim()].filter(Boolean);
     return out.map((x) => x.trim()).filter(Boolean);
   };
-  // LEDGER DIVISION (ledger-division-rule-v1, 6 November 2026). The readings
+  // LEDGER DIVISION (ledger-division-rule-v1 of 6 November 2026, v2 the same evening). The readings
   // of one store row. A source under a ledger (index.m_sources[m].ledger: the
   // corpus lane's own declaration of every mark of that dictionary) divides
-  // only where tools/apply-ledger-divisions-v1.mjs wrote the marks into row[7]
+  // only where tools/apply-ledger-divisions-v1.mjs wrote the marks into row[7],
+  // or the texts it prints into row[8] (ledger-division-rule-v2)
   // from the source's own classifier under the owner's answers; with no slot
   // the row is one reading, as the source wrote it, brackets and all: the
   // ledger declared every mark, so nothing here is "damaged" and nothing is
@@ -220,6 +221,10 @@
     const text = String(row[1] ?? "");
     const src = index.m_sources[row[3]];
     if (src && src.ledger) {
+      // the print slot (ledger-division-rule-v2): the texts the row prints
+      // where its ledger and the owner say it prints a part of itself, or
+      // no pill ([]); the row prints those and nothing else
+      if (Array.isArray(row[8])) return row[8].map((x) => String(x));
       const cuts = Array.isArray(row[7]) ? row[7] : [];
       if (!cuts.length) { const t = text.trim(); return t ? [t] : []; }
       const pieces = []; let from = 0;
@@ -6670,14 +6675,18 @@
           if (verbatim) { d.textContent = String(text); return d; }
           // a record of a source under a ledger, where the record is the route,
           // prints whole as the source wrote it (ledger-division-rule-v1), lit
-          // when the reading the reader holds is one of the row's own
+          // when the reading the reader holds is one of the row's own; a row
+          // that prints a part of itself (ledger-division-rule-v2, row[8])
+          // still shows its record whole: the tag the pill leaves off is
+          // the row's text, and the record is where it stays readable
           const src = row && index.m_sources[row[3]];
-          if (src && src.ledger && String(text) === String(row[1])) {
+          if (src && src.ledger && (String(text) === String(row[1]) || Array.isArray(row[8]))) {
             const s = document.createElement("span");
             const sel = String(selected.text).toLowerCase();
-            const holds = String(text).toLowerCase() === sel || readingsOfRow(row).some((reading) => reading.toLowerCase() === sel);
+            const whole = String(row[1]);
+            const holds = whole.toLowerCase() === sel || readingsOfRow(row).some((reading) => reading.toLowerCase() === sel);
             s.className = holds ? "d-sense on" : "d-sense";
-            s.textContent = spanJoin(text);
+            s.textContent = spanJoin(whole);
             d.append(s);
             return d;
           }

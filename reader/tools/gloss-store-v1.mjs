@@ -57,8 +57,8 @@ export const GLOSS_RULE_ID = "zone-gloss-rule-v5-ledger-division-antiquity-1940-
 // century; the engine derives the same number from ERA_CUT_AM
 export const ERA_CUT_AD = 1940;
 export const GLOSS_RULE_TEXT =
-  "a source under a ledger (index.m_sources[m].ledger; ledger-division-rule-v1) divides its route text into readings " +
-  "only at the marks its row names (row[7]), and a row that names none is one reading as the source wrote it, brackets and all; " +
+  "a source under a ledger (index.m_sources[m].ledger; ledger-division-rule-v2) divides its route text into readings " +
+  "only at the marks its row names (row[7]), prints the texts its print slot names (row[8]: a part of itself, or no pill) where its ledger and the owner say so, and a row that names neither is one reading as the source wrote it, brackets and all; " +
   "a source with no ledger packs senses with ';' and a sense divides into readings at the commas outside the " +
   "provider's parentheses, where every piece is shaped like a gloss (sense-split-rule-v3); each division is one reading; a damaged sense is " +
   "held whole and neither printed nor pooled; pool = every reading of every exact route, deduped by " +
@@ -88,7 +88,7 @@ export const openRouteStore = (storeDir) => {
   // v1, or v2 — the same rows with one slot added at [6], the source's own
   // headwords (pointing-store-landing-rule-v1: the served v2 folds to the
   // served v1 byte for byte), and from 6 November 2026 a slot at [7] on the
-  // rows a ledger divides (ledger-division-rule-v1), read by readingsOf below.
+  // rows a ledger divides (ledger-division-rule-v2), read by readingsOf below.
   if (index.schema_version !== "ROUTE_STORE_V1" && index.schema_version !== "ROUTE_STORE_V2")
     throw new Error(`unexpected store schema ${index.schema_version} — refusing output`);
 
@@ -119,7 +119,7 @@ export const openRouteStore = (storeDir) => {
     return out.map((x) => x.trim()).filter(Boolean);
   };
 
-  /** LEDGER DIVISION (ledger-division-rule-v1, 6 November 2026). The readings
+  /** LEDGER DIVISION (ledger-division-rule-v2, 6 November 2026). The readings
    *  of one store row. A source under a ledger (index.m_sources[m].ledger: the
    *  corpus lane's own declaration of every mark of that dictionary, ask v1.1)
    *  divides only where tools/apply-ledger-divisions-v1.mjs wrote the marks
@@ -138,6 +138,10 @@ export const openRouteStore = (storeDir) => {
   const readingsOf = (row) => {
     const text = String(row[1] ?? "");
     if (!ledgerOf(row[3])) return genericReadings(text);
+    // the print slot (ledger-division-rule-v2): where the row's ledger and the
+    // owner's answer say the row prints a part of itself, or no pill, row[8]
+    // holds the texts ([] for no pill), and the row prints those and nothing else
+    if (Array.isArray(row[8])) return row[8].map((x) => String(x));
     const cuts = Array.isArray(row[7]) ? row[7] : [];
     if (!cuts.length) { const t = text.trim(); return t ? [t] : []; }
     const pieces = []; let from = 0;
@@ -152,17 +156,22 @@ export const openRouteStore = (storeDir) => {
    *  route is the text byte for byte, else the row whose generic readings
    *  hold the text, a row of the credited sources (mIds) preferred; a text no
    *  served row accounts for keeps the generic rule's readings. */
-  const readingsOfText = (k, text, mIds = null) => {
+  /** The served row a text came from: the one whose route is the text (a row of the preferred sources first), else the one
+   *  whose generic readings hold it; null where no served row accounts for the text. */
+  const rowOfText = (k, text, mIds = null) => {
     const t = String(text ?? "");
     const rows = (routesFor(k) || []).filter((r) => (index.m_sources || {})[r[3]]);
     const ids = Array.isArray(mIds) ? mIds.map(String) : [];
     const prefer = (list) => (ids.length ? [...list.filter((r) => ids.includes(String(r[3]))), ...list.filter((r) => !ids.includes(String(r[3])))] : list);
     const exact = prefer(rows.filter((r) => String(r[1]) === t));
-    if (exact.length) return readingsOf(exact[0]);
+    if (exact.length) return exact[0];
     const tl = t.toLowerCase();
     const holds = prefer(rows.filter((r) => genericReadings(String(r[1])).some((x) => x.toLowerCase() === tl)));
-    if (holds.length) return readingsOf(holds[0]);
-    return genericReadings(t);
+    return holds.length ? holds[0] : null;
+  };
+  const readingsOfText = (k, text, mIds = null) => {
+    const row = rowOfText(k, text, mIds);
+    return row ? readingsOf(row) : genericReadings(String(text ?? ""));
   };
   /** The m ids a source label names, for a credit that carries the label alone. */
   const mIdsOfLabel = (label) => Object.entries(index.m_sources || {}).filter(([, s]) => s && s.label === label).map(([id]) => id);
@@ -348,5 +357,5 @@ export const openRouteStore = (storeDir) => {
   // comma rule to attribute a reading to its sources, could not import it,
   // and wrote a second copy. Two implementations of one rule is the fault
   // packSplit's own comment names, and it had it half done.
-  return { index, routesFor, readingPool, glossFor, tableFor, packSplit, readingSplit, readingsOf, readingsOfText, mIdsOfLabel, ledgerOf, ORDERS };
+  return { index, routesFor, readingPool, glossFor, tableFor, packSplit, readingSplit, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, ORDERS };
 };

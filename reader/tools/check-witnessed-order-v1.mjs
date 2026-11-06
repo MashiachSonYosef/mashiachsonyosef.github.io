@@ -41,6 +41,8 @@ const store = openRouteStore("data/route-store");
 const { index } = store;
 // the drops typed on a column's receipt (regloss-zone, source-strike-rule-v1)
 const dropsOf = (o) => (Array.isArray(rec.columns[o].struck_credit_drops) ? rec.columns[o].struck_credit_drops : []);
+// a reading whose row prints no pill under the owner's answer to its ledger's branch left the column too (ledger-division-rule-v2)
+const withdrawnOf = (o) => (Array.isArray(rec.columns[o].no_pill_withdrawals) ? rec.columns[o].no_pill_withdrawals : []);
 
 // W1
 const w1 = [];
@@ -53,10 +55,11 @@ for (const [o] of COLS) {
     if (d.key in col) w1.push(`${o}/${d.key}: typed as dropped for a struck credit, yet still in the column`);
     if (!(Array.isArray(d.by) && d.by.some((id) => !index.m_sources[id]))) w1.push(`${o}/${d.key}: typed as dropped, but every source it credits is still in the store`);
   }
-  if (Object.keys(col).length !== rec.columns[o].baked - drops.length) w1.push(`${o}: ${Object.keys(col).length} baked, receipt says ${rec.columns[o].baked}${drops.length ? ` less ${drops.length} dropped for a struck credit` : ""}`);
+  const withdrawn = withdrawnOf(o);
+  if (Object.keys(col).length !== rec.columns[o].baked - drops.length - withdrawn.length) w1.push(`${o}: ${Object.keys(col).length} baked, receipt says ${rec.columns[o].baked}${drops.length ? ` less ${drops.length} dropped for a struck credit` : ""}${withdrawn.length ? ` less ${withdrawn.length} withdrawn for a row that prints no pill` : ""}`);
 }
 check("W1  three columns with their receipt, every reading with its own credit", w1.length === 0,
-  w1.length ? w1.slice(0, 3).join(" | ") : COLS.map(([o]) => `${o.replace("witnessed_", "")} ${rec.columns[o].baked - dropsOf(o).length}${dropsOf(o).length ? ` (${rec.columns[o].baked} baked, ${dropsOf(o).length} dropped for a struck credit)` : ""}`).join(" · "));
+  w1.length ? w1.slice(0, 3).join(" | ") : COLS.map(([o]) => `${o.replace("witnessed_", "")} ${rec.columns[o].baked - dropsOf(o).length - withdrawnOf(o).length}${dropsOf(o).length || withdrawnOf(o).length ? ` (${rec.columns[o].baked} baked${dropsOf(o).length ? `, ${dropsOf(o).length} dropped for a struck credit` : ""}${withdrawnOf(o).length ? `, ${withdrawnOf(o).length} withdrawn for a row that prints no pill` : ""})` : ""}`).join(" · "));
 
 // W2 — against the lane's files, when they are on disk
 const DIR = arg("dir", "build/witnessed-v2.7");

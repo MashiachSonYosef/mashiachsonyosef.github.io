@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: ledger-division-rule-v1-a-ledgered-source-divides-only-where-its-ledger-says-and-the-page-reads-the-division-not-the-rule
+// GUARDS: ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say
 // GUARDS: zone-gloss-rule-v5-ledger-division-antiquity-1940-lastuary
 //
 // THE PAGE READS THE LEDGER'S DIVISION, AND THE DIVISION IS THE LEDGER'S.
@@ -18,13 +18,18 @@
 //       file's, or the declaration's resting option where none was given
 //   D3  rows of every ledgered source, re-classified here by the source's own
 //       classifier: row[7] is exactly the marks whose shape divides under the
-//       index's answers, and no row of an unledgered source carries a slot
+//       index's answers, row[8] is exactly what the print step (ledger-print-v1)
+//       gives under the branch the owner answered, and no row of an unledgered
+//       source carries either slot
 //   D4  the store's readingsOf and the page's readingsOfRow, read out of
 //       zone.html as bake-search-index reads the page's functions, give the
 //       same readings for every sampled row, ledgered or not
 //   D5  on the page: the card of a word whose ledgered row the generic rule
 //       would have divided offers that row as its ledger says (one pill where
 //       the row has no slot), and its record text prints whole
+//   D6  on the page: a row that prints a part of itself (a filing tag off)
+//       offers the part as its pill and not the row's whole text
+//   D7  on the page: a row that prints no pill offers nothing
 //
 // Run: node tools/check-ledger-divisions-v1.mjs [--store data/route-store] [--per-source 400]
 import { readFileSync, readdirSync, existsSync } from "node:fs";
@@ -33,13 +38,14 @@ import { createHash } from "node:crypto";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
+import { printOf, PRINT_RULES } from "./ledger-print-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
 const STORE = arg("store", join(K3, "data", "route-store"));
 const PER = Number(arg("per-source", 400));
-const ONLY = arg("only", null);   // one of D1..D5, for a quick rerun
+const ONLY = arg("only", null);   // one of D1..D7, for a quick rerun
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
@@ -61,11 +67,12 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
     rowsSeen += 1;
     const m = String(row[3]); rowsOfM[m] = (rowsOfM[m] || 0) + 1;
     const src = index.m_sources[m]; if (!src) continue;
-    if (!src.ledger) { if (Array.isArray(row[7])) slotOnUnledgered.push(`${m} ${k}#${row[0]}`); continue; }
+    if (!src.ledger) { if (Array.isArray(row[7]) || Array.isArray(row[8])) slotOnUnledgered.push(`${m} ${k}#${row[0]}`); continue; }
     const s = (sample[src.ledger] ||= { n: 0, rows: [] });
     s.n += 1;
-    // every PER-th row, and every row with a slot, so a division is never unsampled
-    if (Array.isArray(row[7]) || s.n % Math.max(1, Math.ceil(s.n / PER)) === 0 || s.rows.length < PER) { if (s.rows.length < PER * 3 || Array.isArray(row[7])) s.rows.push([k, row]); }
+    // every PER-th row, and every row with a slot, so a division or a print is never unsampled
+    const slotted = Array.isArray(row[7]) || Array.isArray(row[8]);
+    if (slotted || s.n % Math.max(1, Math.ceil(s.n / PER)) === 0 || s.rows.length < PER) { if (s.rows.length < PER * 3 || slotted) s.rows.push([k, row]); }
   }
 }
 
@@ -106,6 +113,7 @@ if (!ONLY || ONLY === "D2" || ONLY === "D3") {
     }
     const decl = JSON.parse(readFileSync(join(K3, M.declaration.file), "utf8"));
     const dividing = new Set();
+    const printing = new Map();   // shape -> the print step's entry (source:branch) for the branch the owner answered
     for (const s of decl.shapes || []) if (s.divides) dividing.add(s.id);
     for (const b of decl.branches || []) {
       const a = ((answers.answers || {})[key] || {})[b.id];
@@ -114,10 +122,14 @@ if (!ONLY || ONLY === "D2" || ONLY === "D3") {
       if (!have) faults.push(`${key} ${b.id}: the index carries no answer`);
       else if (have.option !== want) faults.push(`${key} ${b.id}: index says ${have.option}, ${a ? "the answers file" : "the resting option"} says ${want}`);
       if (want === "divides") for (const id of b.shapes || []) dividing.add(id);
+      else if (want !== b.resting) {
+        if (!have || have.prints !== `${key}:${b.id}`) faults.push(`${key} ${b.id}: answered "${want}", and the index does not name the print step for it`);
+        for (const id of b.shapes || []) printing.set(id, `${key}:${b.id}`);
+      }
     }
     const idxDiv = new Set(S.shapes_dividing || []);
     if ([...dividing].sort().join() !== [...idxDiv].sort().join()) faults.push(`${key}: the dividing shapes the index names differ from the declaration under its answers`);
-    classifiers.set(key, { dividing, cls: join(K3, M.classifier.file) });
+    classifiers.set(key, { dividing, printing, cls: join(K3, M.classifier.file) });
   }
   check("D2  each ledger's files are the bytes the index and the manifest pin, and every branch answer is the answers file's or the resting option", faults.length === 0,
     faults.length ? faults.slice(0, 4).join(" · ") : `${classifiers.size} ledgers · answers file ${existsSync(answersPath) ? "present" : "absent (every branch at rest)"}`);
@@ -125,23 +137,35 @@ if (!ONLY || ONLY === "D2" || ONLY === "D3") {
 
 // D3
 if (!ONLY || ONLY === "D3") {
-  const faults = []; let rows = 0, divided = 0;
+  const faults = []; let rows = 0, divided = 0, printed = 0, noPill = 0;
   for (const [key, C] of classifiers) {
     const { classify } = await import(pathToFileURL(resolve(C.cls)).href);
     for (const [k, row] of (sample[key] || { rows: [] }).rows) {
       rows += 1;
+      const text = String(row[1]);
       let marks;
-      try { marks = classify(String(row[1])); } catch { marks = null; }
+      try { marks = classify(text); } catch { marks = null; }
       // a route the classifier has no shape for is uncovered: the receipt names it, and it stands whole
       const want = marks ? [...new Set(marks.filter((g) => C.dividing.has(g.shape)).map((g) => g.i))].sort((a, b) => a - b) : [];
       const have = Array.isArray(row[7]) ? row[7] : [];
       if (have.length) divided += 1;
       if (JSON.stringify(want) !== JSON.stringify(have)) faults.push(`${key} ${k}#${row[0]}: the ledger divides at [${want}], the row says [${have}]`);
+      // the print slot: exactly what the print step gives for the one answered branch whose shapes the row holds
+      const rules = marks ? [...new Set(marks.map((g) => C.printing.get(g.shape)).filter(Boolean))] : [];
+      let wantPrint = null;
+      const none = rules.find((r) => PRINT_RULES[r].kind === "none");   // a row that renders nothing has no pill whatever else its marks say
+      if (rules.length > 1 && !none) faults.push(`${key} ${k}#${row[0]}: two print steps reach one row (${rules.join(", ")})`);
+      else if (rules.length) { const rule = none || rules[0]; try { const r = printOf(rule, text, marks.filter((g) => C.printing.get(g.shape) === rule), want); wantPrint = r ? r.texts : null; } catch (e) { faults.push(`${key} ${k}#${row[0]}: ${e.message}`); } }
+      const havePrint = Array.isArray(row[8]) ? row[8] : null;
+      if (havePrint) { if (havePrint.length) printed += 1; else noPill += 1; }
+      if (JSON.stringify(wantPrint) !== JSON.stringify(havePrint)) faults.push(`${key} ${k}#${row[0]}: the print step gives ${JSON.stringify(wantPrint)}, the row says ${JSON.stringify(havePrint)}`);
+      // and every printed text is the route's own characters, in their order
+      for (const t of havePrint || []) { let j = 0; for (const ch of text) if (ch === t[j]) j += 1; if (j !== t.length) faults.push(`${key} ${k}#${row[0]}: «${t}» is not the route's characters in order`); }
     }
   }
   if (slotOnUnledgered.length) faults.push(`${slotOnUnledgered.length} rows of unledgered sources carry a slot: ${slotOnUnledgered.slice(0, 3).join(", ")}`);
-  check("D3  every sampled row's slot is exactly the marks its source's own classifier divides at under the index's answers; no unledgered row carries one", faults.length === 0,
-    faults.length ? faults.slice(0, 4).join(" · ") : `${nf(rows)} rows re-classified over ${classifiers.size} ledgers · ${nf(divided)} divided · ${nf(rowsSeen)} rows walked`);
+  check("D3  every sampled row's slots are exactly the marks its source's own classifier divides at and the texts the print step gives under the index's answers; no unledgered row carries one", faults.length === 0,
+    faults.length ? faults.slice(0, 4).join(" · ") : `${nf(rows)} rows re-classified over ${classifiers.size} ledgers · ${nf(divided)} divided · ${nf(printed)} print a part · ${nf(noPill)} print no pill · ${nf(rowsSeen)} rows walked`);
 }
 
 // D4 — the page's function, read out of the page
@@ -176,22 +200,62 @@ if (!ONLY || ONLY === "D4") {
     !pageFn ? `the page's function could not be read: ${why}` : faults.length ? faults.slice(0, 3).join(" · ") : `${nf(rows)} rows agree`);
 }
 
+// ---- the page: open a served word's card and read its pills -------------------------
+// a served word whose rows satisfy `want(rows)`: the first such row, with the word's place on the page
+const findWord = (zonesServed, want) => {
+  for (const b of zonesServed()) {
+    const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${b}.bin`))).toString("utf8"));
+    for (const sec of z.sections || []) for (const w of sec.words || []) {
+      const ks = w.w ? w.w.map((r) => r.k).filter(Boolean) : w.k ? [w.k] : [];
+      for (const k of ks) {
+        const rows = (store.routesFor(k) || []).filter((r) => index.m_sources[r[3]]);
+        const row = want(rows);
+        if (row) return { book: b, label: sec.label, key: k, row, surface: w.s };
+      }
+    }
+  }
+  return null;
+};
+// the card's pills for a pick, with the overlays' sources off so every pill stands on a store row; null where the word or the card is not found
+const pillsOnCard = async (pw, launchOptions, defaultZoneUrl, pick) => {
+  const br = await pw.chromium.launch(launchOptions());
+  const p = await br.newPage({ viewport: { width: 412, height: 915 } });
+  p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+  const OV_DIR = join(K3, "data", "overlays");
+  const OV_IDS = existsSync(OV_DIR) ? readdirSync(OV_DIR).filter((d) => existsSync(join(OV_DIR, d, "index.json")))
+    .flatMap((d) => Object.keys(JSON.parse(readFileSync(join(OV_DIR, d, "index.json"), "utf8")).m_sources || {})) : [];
+  await p.addInitScript((ids) => { try { localStorage.clear(); localStorage.setItem("fh.sources.off", JSON.stringify(ids)); } catch { /* a device that remembers nothing still reads */ } }, OV_IDS);
+  const BASE = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "").split("?")[0];
+  await p.goto(`${BASE}?b=${pick.book}`, { waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb");
+  const opened = await p.evaluate(async ({ label, surface }) => {
+    let g = 0;
+    while (g < 5000) { const n = document.querySelector("section.seg.seg-wait"); if (!n) break; n.scrollIntoView({ block: "center" }); await new Promise((r) => setTimeout(r, 8)); g += 1; }
+    const secs = [...document.querySelectorAll("section.seg")];
+    const sec = secs.find((s) => (s.dataset.label || s.getAttribute("data-label") || s.querySelector(".ref, .seg-ref, h2, h3")?.textContent || "").trim().endsWith(label));
+    const wbs = [...(sec || document).querySelectorAll(".he-text .wb")];
+    const wb = wbs.find((x) => (x.querySelector(".he, .hw, .w")?.textContent || x.textContent || "").includes(surface));
+    if (!wb) return null;
+    wb.scrollIntoView({ block: "center" }); wb.click();
+    return true;
+  }, { label: pick.label, surface: pick.surface });
+  let got = null;
+  if (opened) {
+    const ok = await p.waitForSelector("#hud .r-pills button", { timeout: 15000 }).then(() => true).catch(() => false);
+    if (ok) got = await p.evaluate(() => [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()));
+  }
+  await br.close();
+  return { opened, got };
+};
+
 // D5 — on the page
 if (!ONLY || ONLY === "D5") {
   const { loadPlaywright, launchOptions } = await import("./playwright-v1.mjs");
   const { defaultZoneUrl, zonesServed } = await import("./zones-on-disk-v1.mjs");
   const pw = await loadPlaywright();
   // a served word whose ledgered row the generic rule would divide and whose row has no slot
-  let pick = null;
-  for (const b of zonesServed()) {
-    const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${b}.bin`))).toString("utf8"));
-    for (const sec of z.sections || []) {
-      for (const w of sec.words || []) {
-        const ks = w.w ? w.w.map((r) => r.k).filter(Boolean) : w.k ? [w.k] : [];
-        for (const k of ks) {
-          const rows = (store.routesFor(k) || []).filter((r) => index.m_sources[r[3]]);
-          const row = rows.find((r) => {
-            if (!index.m_sources[r[3]].ledger || Array.isArray(r[7]) || !/,/u.test(String(r[1])) || store.packSplit(String(r[1])).length !== 1) return false;
+  const pick = findWord(zonesServed, (rows) => rows.find((r) => {
+            if (!index.m_sources[r[3]].ledger || Array.isArray(r[7]) || Array.isArray(r[8]) || !/,/u.test(String(r[1])) || store.packSplit(String(r[1])).length !== 1) return false;
             // a list of short glosses, so every generic piece is a piece and none is the whole text
             const whole = String(r[1]).trim().toLowerCase();
             const pieces = store.readingSplit(String(r[1])).readings.map((x) => x.toLowerCase());
@@ -199,52 +263,59 @@ if (!ONLY || ONLY === "D5") {
             // no other row under this key offers any of those pieces, nor the whole text
             const others = new Set(rows.filter((o) => o !== r).flatMap((o) => store.readingsOf(o).map((x) => x.toLowerCase())));
             return pieces.every((pc) => !others.has(pc)) && !others.has(String(r[1]).trim().toLowerCase());
-          });
-          if (row) { pick = { book: b, label: sec.label, key: k, row, surface: w.s }; break; }
-        }
-        if (pick) break;
-      }
-      if (pick) break;
-    }
-    if (pick) break;
-  }
+          }));
   if (!pick) check("D5  a ledgered row the generic rule would divide stands on the page as its ledger says", false, "no served word carries such a row");
   else {
-    const br = await pw.chromium.launch(launchOptions());
-    const p = await br.newPage({ viewport: { width: 412, height: 915 } });
-    p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-    // the overlays' sources off, so every pill on the card stands on a store row
-    const OV_DIR = join(K3, "data", "overlays");
-    const OV_IDS = existsSync(OV_DIR) ? readdirSync(OV_DIR).filter((d) => existsSync(join(OV_DIR, d, "index.json")))
-      .flatMap((d) => Object.keys(JSON.parse(readFileSync(join(OV_DIR, d, "index.json"), "utf8")).m_sources || {})) : [];
-    await p.addInitScript((ids) => { try { localStorage.clear(); localStorage.setItem("fh.sources.off", JSON.stringify(ids)); } catch { /* a device that remembers nothing still reads */ } }, OV_IDS);
-    const BASE = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "").split("?")[0];
-    await p.goto(`${BASE}?b=${pick.book}`, { waitUntil: "networkidle" });
-    await p.waitForSelector("section.seg .he-text .wb");
-    // bring the word's section in, then open the word
-    const opened = await p.evaluate(async ({ label, surface }) => {
-      let g = 0;
-      while (g < 5000) { const n = document.querySelector("section.seg.seg-wait"); if (!n) break; n.scrollIntoView({ block: "center" }); await new Promise((r) => setTimeout(r, 8)); g += 1; }
-      const secs = [...document.querySelectorAll("section.seg")];
-      const sec = secs.find((s) => (s.dataset.label || s.getAttribute("data-label") || s.querySelector(".ref, .seg-ref, h2, h3")?.textContent || "").trim().endsWith(label));
-      const wbs = [...(sec || document).querySelectorAll(".he-text .wb")];
-      const wb = wbs.find((x) => (x.querySelector(".he, .hw, .w")?.textContent || x.textContent || "").includes(surface));
-      if (!wb) return null;
-      wb.scrollIntoView({ block: "center" }); wb.click();
-      return true;
-    }, { label: pick.label, surface: pick.surface });
-    let got = null;
-    if (opened) {
-      const ok = await p.waitForSelector("#hud .r-pills button", { timeout: 15000 }).then(() => true).catch(() => false);
-      if (ok) got = await p.evaluate(() => [...document.querySelectorAll("#hud .r-pills button")].map((x) => x.textContent.trim()));
-    }
+    const { opened, got } = await pillsOnCard(pw, launchOptions, defaultZoneUrl, pick);
     const whole = String(pick.row[1]).trim();
     const pieces = store.readingSplit(whole).readings.filter((pc) => pc.trim().toLowerCase() !== whole.toLowerCase());
     const wholeShown = got ? got.some((t) => t.toLowerCase() === whole.toLowerCase().replace(/\/\s*/gu, " + ").replace(/\.$/u, "") || t.toLowerCase() === whole.toLowerCase()) : false;
     const pieceShown = got ? pieces.some((pc) => got.some((t) => t.toLowerCase() === pc.toLowerCase())) : false;
     check("D5  a ledgered row the generic rule would divide stands on the page as its ledger says: one pill, none of the generic pieces", !!got && wholeShown && !pieceShown,
       !opened ? `${pick.book} ${pick.label} ${pick.surface}: the word was not found on the page` : !got ? `${pick.book} ${pick.label}: the card did not open` : `${pick.book} ${pick.label} ${pick.key} · «${whole.slice(0, 50)}» ${wholeShown ? "shown whole" : "NOT shown whole"}${pieceShown ? " · a generic piece is also offered" : ""} · ${got.length} pills`);
-    await br.close();
+  }
+}
+
+// D6 — on the page: a row that prints a part of itself
+if (!ONLY || ONLY === "D6") {
+  const { loadPlaywright, launchOptions } = await import("./playwright-v1.mjs");
+  const { defaultZoneUrl, zonesServed } = await import("./zones-on-disk-v1.mjs");
+  const pw = await loadPlaywright();
+  // a served word with a row that prints one part, where no other row under the key offers the row's whole text
+  const pick = findWord(zonesServed, (rows) => rows.find((r) => {
+    if (!index.m_sources[r[3]].ledger || !Array.isArray(r[8]) || r[8].length !== 1 || r[8][0] === String(r[1]).trim()) return false;
+    const whole = String(r[1]).trim().toLowerCase();
+    return !rows.some((o) => o !== r && store.readingsOf(o).some((x) => x.toLowerCase() === whole));
+  }));
+  if (!pick) check("D6  a row that prints a part of itself offers the part on the page", false, "no served word carries such a row");
+  else {
+    const { opened, got } = await pillsOnCard(pw, launchOptions, defaultZoneUrl, pick);
+    const whole = String(pick.row[1]).trim(), part = pick.row[8][0];
+    const partShown = got ? got.some((t) => t.toLowerCase() === part.toLowerCase()) : false;
+    const wholeShown = got ? got.some((t) => t.toLowerCase() === whole.toLowerCase()) : false;
+    check("D6  a row that prints a part of itself offers the part on the page, and not its whole text", !!got && partShown && !wholeShown,
+      !opened ? `${pick.book} ${pick.label} ${pick.surface}: the word was not found on the page` : !got ? `${pick.book} ${pick.label}: the card did not open` : `${pick.book} ${pick.label} ${pick.key} · «${whole.slice(0, 50)}» prints «${part}»: ${partShown ? "offered" : "NOT offered"}${wholeShown ? " · the whole text is offered too" : ""} · ${got.length} pills`);
+  }
+}
+
+// D7 — on the page: a row that prints no pill
+if (!ONLY || ONLY === "D7") {
+  const { loadPlaywright, launchOptions } = await import("./playwright-v1.mjs");
+  const { defaultZoneUrl, zonesServed } = await import("./zones-on-disk-v1.mjs");
+  const pw = await loadPlaywright();
+  // a served word with a row that prints no pill, where no other row under the key offers the row's text, and some row offers something
+  const pick = findWord(zonesServed, (rows) => rows.find((r) => {
+    if (!index.m_sources[r[3]].ledger || !Array.isArray(r[8]) || r[8].length !== 0) return false;
+    const whole = String(r[1]).trim().toLowerCase();
+    return rows.some((o) => o !== r && store.readingsOf(o).length) && !rows.some((o) => o !== r && store.readingsOf(o).some((x) => x.toLowerCase() === whole));
+  }));
+  if (!pick) check("D7  a row that prints no pill offers nothing on the page", false, "no served word carries such a row");
+  else {
+    const { opened, got } = await pillsOnCard(pw, launchOptions, defaultZoneUrl, pick);
+    const whole = String(pick.row[1]).trim();
+    const wholeShown = got ? got.some((t) => t.toLowerCase() === whole.toLowerCase()) : false;
+    check("D7  a row that prints no pill offers nothing on the page", !!got && !wholeShown,
+      !opened ? `${pick.book} ${pick.label} ${pick.surface}: the word was not found on the page` : !got ? `${pick.book} ${pick.label}: the card did not open` : `${pick.book} ${pick.label} ${pick.key} · «${whole.slice(0, 50)}» ${wholeShown ? "IS offered" : "not offered"} · ${got.length} pills`);
   }
 }
 

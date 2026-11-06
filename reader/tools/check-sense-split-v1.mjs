@@ -12,7 +12,7 @@
 // GUARDS: sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence
 //
 // SINCE 6 NOVEMBER 2026 THIS RULE IS THE GENERIC ONE. A source under a ledger
-// (ledger-division-rule-v1) divides as its ledger says, and a reading it
+// (ledger-division-rule-v2) divides as its ledger says, and a reading it
 // prints is one of its row's own readings (gloss-store-v1 readingsOf), not a
 // division by this rule; the shipped half below asks each printed reading
 // under the rule its carriers are under.
@@ -113,7 +113,7 @@ if (!existsSync(ZONES)) {
         : `${asked.toLocaleString()} readings, each whole`);
     check("  and none was damaged by the split", damaged === 0,
       damaged ? `${damaged} carry a separator this rule cuts through` : "none");
-    check("  and every reading a ledgered source prints is one its row gives under its ledger (ledger-division-rule-v1)", notARowsReading === 0,
+    check("  and every reading a ledgered source prints is one its row gives under its ledger (ledger-division-rule-v2)", notARowsReading === 0,
       notARowsReading ? `${notARowsReading.toLocaleString()} of ${ledgered.toLocaleString()} are no row's reading · ${worstLedgered.join(" · ")}` : `${ledgered.toLocaleString()} readings on ledgered carriers, each its row's own`);
   }
 }

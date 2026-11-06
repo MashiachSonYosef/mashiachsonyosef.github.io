@@ -15,7 +15,7 @@
 // maintains the corpus and should not be silently absorbed here.
 //
 // Reads the artifacts off disk. Takes no URL.
-// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, ledger-division-rule-v1-a-ledgered-source-divides-only-where-its-ledger-says-and-the-page-reads-the-division-not-the-rule, sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence
+// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say, sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence
 //
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync, createGunzip } from "node:zlib";
@@ -109,7 +109,7 @@ check("there are zones to read", books.length > 0, books.join(" ") || "none on d
 const readingsFor = new Map();
 // and, per form, the readings the store offers for each row under the rule
 // its source is under: a ledgered source divides only at the marks its row
-// names (ledger-division-rule-v1), a source with no ledger under the generic
+// names (ledger-division-rule-v2), a source with no ledger under the generic
 // rule. The page prints these, so these are what a printed reading must be.
 const offeredFor = new Map();
 const store = existsSync(SHARDS) ? openRouteStore(join(K3, "data", "route-store")) : null;

@@ -1,24 +1,27 @@
 {
- "schema_version": "LEDGER_DIVISIONS_RECEIPT_V1",
- "rule_id": "ledger-division-rule-v1-a-ledgered-source-divides-only-where-its-ledger-says-and-the-page-reads-the-division-not-the-rule",
- "ran_at": "2026-11-06T15:18:50.644Z",
+ "schema_version": "LEDGER_DIVISIONS_RECEIPT_V2",
+ "rule_id": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
+ "print_step": "tools/ledger-print-v1.mjs",
+ "ran_at": "2026-11-06T17:01:32.006Z",
  "store_version": {
-  "was": "c13e25477ed7",
-  "now": "fc96d77d6fe1"
+  "was": "25a65b62aa46",
+  "now": "25a65b62aa46"
  },
  "totals": {
   "ledgered_sources": 35,
-  "rows": 630577,
+  "rows": 629060,
   "rows_dividing": 66955,
-  "rows_whose_slot_moved": 66955,
+  "rows_printing_a_part": 1419,
+  "rows_no_pill": 600,
+  "rows_whose_slot_moved": 0,
   "uncovered": 29
  },
  "vs_generic_rule": {
-  "same": 597547,
-  "generic_divided_ledger_whole": 20082,
+  "same": 595967,
+  "generic_divided_ledger_whole": 20068,
   "generic_hid_ledger_prints": 285,
-  "ledger_divides_generic_did_not": 4641,
-  "both_divide_differently": 8022
+  "ledger_divides_generic_did_not": 4717,
+  "both_divide_differently": 8023
  },
  "sources": {
   "biblicaltools_living_lexicon": {
@@ -43,50 +46,54 @@
       "period.between_two_renderings",
       "slash.between_two_renderings"
      ],
-     "occurrences": 2
+     "occurrences": 2,
+     "prints": null
     },
     "B02": {
-     "option": "as_written",
+     "option": "name_alone",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "period.before_a_pointer_with_no_target",
       "open_paren.holds_a_correction_with_its_number_lost",
       "close_paren.holds_a_correction_with_its_number_lost"
      ],
-     "occurrences": 18
+     "occurrences": 18,
+     "prints": "biblicaltools_living_lexicon:B02"
     },
     "B03": {
-     "option": "as_written",
+     "option": "name_alone",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "semicolon.between_parts_of_a_sentence_on_one_name",
       "open_paren.holds_a_verse_place_in_a_sentence",
       "close_paren.holds_a_verse_place_in_a_sentence",
       "colon.in_a_verse_place_in_a_sentence"
      ],
-     "occurrences": 5
+     "occurrences": 5,
+     "prints": "biblicaltools_living_lexicon:B03"
     },
     "B04": {
-     "option": "as_written",
+     "option": "two_forms",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_a_part_that_may_join",
       "close_paren.holds_a_part_that_may_join",
       "hyphen.opens_a_part_that_may_join"
      ],
-     "occurrences": 17
+     "occurrences": 17,
+     "prints": "biblicaltools_living_lexicon:B04"
     },
     "B05": {
-     "option": "as_written",
+     "option": "name_alone",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_a_note_on_the_margin",
       "close_paren.holds_a_note_on_the_margin",
@@ -97,23 +104,32 @@
       "colon.in_a_verse_place_beside_a_name",
       "period.after_a_shortened_note_word"
      ],
-     "occurrences": 51
+     "occurrences": 51,
+     "prints": "biblicaltools_living_lexicon:B05"
     }
    },
    "rows": 753,
    "rows_dividing": 2,
+   "rows_printing_a_part": 49,
+   "rows_no_pill": 0,
    "marks": 139,
    "marks_dividing": 2,
    "by_shape": {
     "period.between_two_renderings": 1,
     "slash.between_two_renderings": 1
    },
+   "by_print_rule": {
+    "biblicaltools_living_lexicon:B02": 17,
+    "biblicaltools_living_lexicon:B05": 24,
+    "biblicaltools_living_lexicon:B04": 7,
+    "biblicaltools_living_lexicon:B03": 1
+   },
    "uncovered": 0,
    "vs_generic": {
-    "same": 750,
+    "same": 743,
     "generic_divided_ledger_whole": 1,
     "generic_hid_ledger_prints": 0,
-    "ledger_divides_generic_did_not": 2,
+    "ledger_divides_generic_did_not": 9,
     "both_divide_differently": 0
    }
   },
@@ -148,7 +164,8 @@
       "slash.between_two_renderings",
       "question_mark.between_two_guesses"
      ],
-     "occurrences": 1343
+     "occurrences": 1343,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -158,7 +175,8 @@
      "shapes": [
       "comma.beside_a_bracket_or_tag_on_the_list"
      ],
-     "occurrences": 45
+     "occurrences": 45,
+     "prints": null
     },
     "B03": {
      "option": "divides",
@@ -168,7 +186,8 @@
      "shapes": [
       "comma.between_two_names"
      ],
-     "occurrences": 20
+     "occurrences": 20,
+     "prints": null
     },
     "B04": {
      "option": "divides",
@@ -178,24 +197,28 @@
      "shapes": [
       "slash.between_two_editions"
      ],
-     "occurrences": 2
+     "occurrences": 2,
+     "prints": null
     },
     "B05": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_bracket.whole_row_is_a_label",
       "close_bracket.whole_row_is_a_label",
       "period.in_a_row_that_is_a_note",
       "hyphen.in_a_row_that_is_a_note"
      ],
-     "occurrences": 17
+     "occurrences": 17,
+     "prints": "classical_hebrew_words:B05"
     }
    },
    "rows": 7313,
    "rows_dividing": 1277,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 9,
    "marks": 3672,
    "marks_dividing": 1410,
    "by_shape": {
@@ -207,6 +230,9 @@
     "comma.between_two_names": 20,
     "slash.between_two_renderings": 1,
     "period.between_two_words": 4
+   },
+   "by_print_rule": {
+    "classical_hebrew_words:B05": 9
    },
    "uncovered": 4,
    "vs_generic": {
@@ -228,10 +254,10 @@
    "shapes_dividing": [],
    "branches": {
     "B01": {
-     "option": "tag_stays",
+     "option": "tag_off",
      "resting": "tag_stays",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_wordnet_tag",
       "open_paren.holds_wordnet_code_tag",
@@ -241,30 +267,35 @@
       "comma.after_letter_in_wordnet_code_tag",
       "comma.before_wordnet_code"
      ],
-     "occurrences": 2036
+     "occurrences": 2036,
+     "prints": "conceptnet_5_7_hebrew_english_cc_by_4_0:B01"
     },
     "B02": {
-     "option": "tag_stays",
+     "option": "tag_off",
      "resting": "tag_stays",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_wordnet_topic_tag",
       "close_paren.holds_wordnet_topic_tag",
       "comma.after_letter_in_wordnet_topic_tag",
       "comma.before_wordnet_topic"
      ],
-     "occurrences": 13788
+     "occurrences": 13788,
+     "prints": "conceptnet_5_7_hebrew_english_cc_by_4_0:B02"
     }
    },
-   "rows": 4117,
+   "rows": 3955,
    "rows_dividing": 0,
-   "marks": 15824,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
+   "marks": 0,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
-    "same": 4117,
+    "same": 3955,
     "generic_divided_ledger_whole": 0,
     "generic_hid_ledger_prints": 0,
     "ledger_divides_generic_did_not": 0,
@@ -282,10 +313,10 @@
    "shapes_dividing": [],
    "branches": {
     "B01": {
-     "option": "tag_stays",
+     "option": "tag_off",
      "resting": "tag_stays",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_part_of_speech_letter",
       "open_paren.holds_wiktionary_tag",
@@ -294,13 +325,14 @@
       "comma.after_letter_in_wiktionary_tag",
       "comma.before_wiktionary_number"
      ],
-     "occurrences": 15894
+     "occurrences": 15894,
+     "prints": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0:B01"
     },
     "B02": {
-     "option": "tag_stays",
+     "option": "tag_off",
      "resting": "tag_stays",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_wikipedia_tag",
       "close_paren.holds_wikipedia_tag",
@@ -308,17 +340,21 @@
       "comma.before_wikipedia_topic",
       "period.inside_abbreviation_in_the_tag"
      ],
-     "occurrences": 3014
+     "occurrences": 3014,
+     "prints": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0:B02"
     }
    },
-   "rows": 11378,
+   "rows": 10023,
    "rows_dividing": 0,
-   "marks": 18928,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
+   "marks": 20,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
-    "same": 11378,
+    "same": 10023,
     "generic_divided_ledger_whole": 0,
     "generic_hid_ledger_prints": 0,
     "ledger_divides_generic_did_not": 0,
@@ -337,9 +373,12 @@
    "branches": {},
    "rows": 85,
    "rows_dividing": 0,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 5,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 83,
@@ -360,23 +399,29 @@
    "shapes_dividing": [],
    "branches": {
     "B01": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.opens_a_bare_ending",
       "hyphen.closes_a_bare_beginning",
       "apostrophe.in_a_bare_ending"
      ],
-     "occurrences": 17
+     "occurrences": 17,
+     "prints": "dbnary_english_wiktionary_hebrew_translation_gloss:B01"
     }
    },
    "rows": 6156,
    "rows_dividing": 0,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 15,
    "marks": 110,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {
+    "dbnary_english_wiktionary_hebrew_translation_gloss:B01": 15
+   },
    "uncovered": 0,
    "vs_generic": {
     "same": 6155,
@@ -429,40 +474,49 @@
       "semicolon.between_words_of_a_list",
       "semicolon.before_a_bracket_at_the_end"
      ],
-     "occurrences": 29
+     "occurrences": 29,
+     "prints": null
     },
     "B02": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.opens_a_bare_ending",
       "hyphen.closes_a_bare_beginning",
       "apostrophe.opens_a_bare_ending"
      ],
-     "occurrences": 21
+     "occurrences": 21,
+     "prints": "hewiktionary_hebrew_exact_english_translation:B02"
     },
     "B03": {
-     "option": "as_written",
+     "option": "no_number",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_a_definition_number",
       "close_paren.holds_a_definition_number"
      ],
-     "occurrences": 6
+     "occurrences": 6,
+     "prints": "hewiktionary_hebrew_exact_english_translation:B03"
     }
    },
    "rows": 10403,
    "rows_dividing": 20,
+   "rows_printing_a_part": 3,
+   "rows_no_pill": 21,
    "marks": 171,
    "marks_dividing": 29,
    "by_shape": {
     "comma.between_words_of_a_list": 20,
     "semicolon.between_words_of_a_list": 7,
     "semicolon.before_a_bracket_at_the_end": 2
+   },
+   "by_print_rule": {
+    "hewiktionary_hebrew_exact_english_translation:B03": 3,
+    "hewiktionary_hebrew_exact_english_translation:B02": 21
    },
    "uncovered": 0,
    "vs_generic": {
@@ -511,27 +565,34 @@
       "comma.between_words_of_a_list",
       "semicolon.before_a_bracket_at_the_end"
      ],
-     "occurrences": 9
+     "occurrences": 9,
+     "prints": null
     },
     "B02": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.opens_a_bare_ending",
       "hyphen.closes_a_bare_beginning"
      ],
-     "occurrences": 14
+     "occurrences": 14,
+     "prints": "hewiktionary_hebrew_explicit_full_spelling_english_translation:B02"
     }
    },
    "rows": 2305,
    "rows_dividing": 7,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 14,
    "marks": 41,
    "marks_dividing": 9,
    "by_shape": {
     "comma.between_words_of_a_list": 7,
     "semicolon.before_a_bracket_at_the_end": 2
+   },
+   "by_print_rule": {
+    "hewiktionary_hebrew_explicit_full_spelling_english_translation:B02": 14
    },
    "uncovered": 0,
    "vs_generic": {
@@ -562,9 +623,12 @@
    "branches": {},
    "rows": 105,
    "rows_dividing": 0,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 2,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 105,
@@ -612,27 +676,34 @@
      "shapes": [
       "comma.between_words_of_a_list"
      ],
-     "occurrences": 16
+     "occurrences": 16,
+     "prints": null
     },
     "B02": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.opens_a_bare_ending",
       "hyphen.closes_a_bare_beginning",
       "apostrophe.opens_a_bare_ending"
      ],
-     "occurrences": 28
+     "occurrences": 28,
+     "prints": "hewiktionary_hebrew_explicit_inflection_english_translation:B02"
     }
    },
    "rows": 12060,
    "rows_dividing": 16,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 28,
    "marks": 157,
    "marks_dividing": 16,
    "by_shape": {
     "comma.between_words_of_a_list": 16
+   },
+   "by_print_rule": {
+    "hewiktionary_hebrew_explicit_inflection_english_translation:B02": 28
    },
    "uncovered": 0,
    "vs_generic": {
@@ -664,9 +735,12 @@
    "branches": {},
    "rows": 816,
    "rows_dividing": 0,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 7,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 816,
@@ -703,7 +777,8 @@
       "exclamation.between_renderings_in_one_gloss",
       "colon.between_renderings_in_one_gloss"
      ],
-     "occurrences": 41
+     "occurrences": 41,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -713,22 +788,26 @@
      "shapes": [
       "equals.between_wording_and_meaning"
      ],
-     "occurrences": 7
+     "occurrences": 7,
+     "prints": null
     },
     "B03": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_bracket.holds_no_english",
       "close_bracket.holds_no_english"
      ],
-     "occurrences": 2
+     "occurrences": 2,
+     "prints": "hiperbiblia_sdbh:B03"
     }
    },
    "rows": 14820,
    "rows_dividing": 41,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 1,
    "marks": 2420,
    "marks_dividing": 48,
    "by_shape": {
@@ -737,6 +816,9 @@
     "question_mark.between_renderings_in_one_gloss": 4,
     "exclamation.between_renderings_in_one_gloss": 3,
     "colon.between_renderings_in_one_gloss": 1
+   },
+   "by_print_rule": {
+    "hiperbiblia_sdbh:B03": 1
    },
    "uncovered": 1,
    "vs_generic": {
@@ -758,21 +840,27 @@
    "shapes_dividing": [],
    "branches": {
     "B01": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.closes_a_bare_beginning"
      ],
-     "occurrences": 1
+     "occurrences": 1,
+     "prints": "kaikki_english_wiktionary_hebrew_translation_table:B01"
     }
    },
    "rows": 850,
    "rows_dividing": 0,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 1,
    "marks": 24,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {
+    "kaikki_english_wiktionary_hebrew_translation_table:B01": 1
+   },
    "uncovered": 0,
    "vs_generic": {
     "same": 849,
@@ -822,7 +910,8 @@
       "comma.between_phrases",
       "semicolon.between_phrases"
      ],
-     "occurrences": 149
+     "occurrences": 149,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -832,7 +921,8 @@
      "shapes": [
       "comma.in_list_opening_with_a_small_verb"
      ],
-     "occurrences": 9
+     "occurrences": 9,
+     "prints": null
     },
     "B03": {
      "option": "divides",
@@ -844,7 +934,8 @@
       "semicolon.in_list_with_a_bracket",
       "comma.in_list_before_tail"
      ],
-     "occurrences": 51
+     "occurrences": 51,
+     "prints": null
     },
     "B04": {
      "option": "divides",
@@ -856,7 +947,8 @@
       "comma.between_word_and_definition",
       "semicolon.between_word_and_definition"
      ],
-     "occurrences": 22
+     "occurrences": 22,
+     "prints": null
     },
     "B05": {
      "option": "whole",
@@ -869,7 +961,8 @@
       "comma.between_note_and_reading",
       "semicolon.between_note_and_reading"
      ],
-     "occurrences": 7
+     "occurrences": 7,
+     "prints": null
     },
     "B06": {
      "option": "divides",
@@ -879,7 +972,8 @@
      "shapes": [
       "comma.in_list_with_a_later_capital"
      ],
-     "occurrences": 16
+     "occurrences": 16,
+     "prints": null
     },
     "B08": {
      "option": "divides",
@@ -890,7 +984,8 @@
       "comma.at_a_place_marked_by_hand",
       "semicolon.at_a_place_marked_by_hand"
      ],
-     "occurrences": 16
+     "occurrences": 16,
+     "prints": null
     },
     "B09": {
      "option": "divides",
@@ -904,11 +999,14 @@
       "semicolon.between_verb_renderings",
       "comma.in_list_after_label"
      ],
-     "occurrences": 1528
+     "occurrences": 1528,
+     "prints": null
     }
    },
    "rows": 2700,
    "rows_dividing": 1414,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 2512,
    "marks_dividing": 1791,
    "by_shape": {
@@ -930,6 +1028,7 @@
     "semicolon.between_verb_renderings": 1,
     "comma.in_list_before_tail": 2
    },
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 2614,
@@ -995,7 +1094,8 @@
       "comma.between_phrases",
       "semicolon.between_phrases"
      ],
-     "occurrences": 11083
+     "occurrences": 11083,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -1006,7 +1106,8 @@
       "comma.in_list_opening_with_a_small_verb",
       "semicolon.in_list_opening_with_a_small_verb"
      ],
-     "occurrences": 2731
+     "occurrences": 2731,
+     "prints": null
     },
     "B03": {
      "option": "divides",
@@ -1019,7 +1120,8 @@
       "comma.in_list_before_tail",
       "semicolon.in_list_before_tail"
      ],
-     "occurrences": 8744
+     "occurrences": 8744,
+     "prints": null
     },
     "B04": {
      "option": "divides",
@@ -1031,7 +1133,8 @@
       "comma.between_word_and_definition",
       "semicolon.between_word_and_definition"
      ],
-     "occurrences": 7053
+     "occurrences": 7053,
+     "prints": null
     },
     "B05": {
      "option": "whole",
@@ -1050,7 +1153,8 @@
       "semicolon.between_note_and_reading",
       "semicolon.before_usage_note"
      ],
-     "occurrences": 1286
+     "occurrences": 1286,
+     "prints": null
     },
     "B06": {
      "option": "divides",
@@ -1062,7 +1166,8 @@
       "semicolon.in_list_with_a_later_capital",
       "comma.in_head_with_a_capital"
      ],
-     "occurrences": 197
+     "occurrences": 197,
+     "prints": null
     },
     "B07": {
      "option": "whole",
@@ -1074,7 +1179,8 @@
       "en_dash.opens_copied_rendering_list",
       "comma.in_copied_rendering_list"
      ],
-     "occurrences": 294
+     "occurrences": 294,
+     "prints": null
     },
     "B08": {
      "option": "divides",
@@ -1087,7 +1193,8 @@
       "period.at_a_place_marked_by_hand",
       "exclamation.at_a_place_marked_by_hand"
      ],
-     "occurrences": 625
+     "occurrences": 625,
+     "prints": null
     },
     "B09": {
      "option": "divides",
@@ -1108,11 +1215,14 @@
       "comma.in_list_after_label",
       "comma.between_words_before_definition"
      ],
-     "occurrences": 44099
+     "occurrences": 44099,
+     "prints": null
     }
    },
    "rows": 123558,
    "rows_dividing": 53047,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 194769,
    "marks_dividing": 74532,
    "by_shape": {
@@ -1147,6 +1257,7 @@
     "exclamation.at_a_place_marked_by_hand": 6,
     "semicolon.in_list_with_a_later_capital": 7
    },
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 109328,
@@ -1176,16 +1287,20 @@
      "shapes": [
       "comma.between_the_words_a_short_form_stands_for"
      ],
-     "occurrences": 8
+     "occurrences": 8,
+     "prints": null
     }
    },
    "rows": 107,
    "rows_dividing": 4,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 95,
    "marks_dividing": 8,
    "by_shape": {
     "comma.between_the_words_a_short_form_stands_for": 8
    },
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 103,
@@ -1206,22 +1321,23 @@
    "shapes_dividing": [],
    "branches": {
     "B01": {
-     "option": "whole",
+     "option": "two_readings",
      "resting": "whole",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_another_wording",
       "close_paren.holds_another_wording",
       "comma.between_wordings_in_round_brackets"
      ],
-     "occurrences": 136
+     "occurrences": 136,
+     "prints": "lexibank_analysed_v2_2_northeuralex_hebrew:B01"
     },
     "B02": {
-     "option": "as_written",
+     "option": "word_alone",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_a_stand_in",
       "close_paren.holds_a_stand_in",
@@ -1232,20 +1348,27 @@
       "open_paren.holds_narrowing_words",
       "close_paren.holds_narrowing_words"
      ],
-     "occurrences": 200
+     "occurrences": 200,
+     "prints": "lexibank_analysed_v2_2_northeuralex_hebrew:B02"
     }
    },
    "rows": 974,
    "rows_dividing": 0,
+   "rows_printing_a_part": 167,
+   "rows_no_pill": 0,
    "marks": 336,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {
+    "lexibank_analysed_v2_2_northeuralex_hebrew:B01": 67,
+    "lexibank_analysed_v2_2_northeuralex_hebrew:B02": 100
+   },
    "uncovered": 0,
    "vs_generic": {
-    "same": 974,
+    "same": 907,
     "generic_divided_ledger_whole": 0,
     "generic_hid_ledger_prints": 0,
-    "ledger_divides_generic_did_not": 0,
+    "ledger_divides_generic_did_not": 67,
     "both_divide_differently": 0
    }
   },
@@ -1269,39 +1392,47 @@
      "shapes": [
       "slash.between_two_renderings"
      ],
-     "occurrences": 1
+     "occurrences": 1,
+     "prints": null
     },
     "B02": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_a_sum_of_numbers",
       "close_paren.holds_a_sum_of_numbers",
       "equals.in_a_sum_of_numbers",
       "plus.in_a_sum_of_numbers"
      ],
-     "occurrences": 8
+     "occurrences": 8,
+     "prints": "macula_hebrew_cherith_surface_english_2022:B02"
     },
     "B03": {
-     "option": "number_stays",
+     "option": "number_off",
      "resting": "number_stays",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_one_number",
       "close_paren.holds_one_number"
      ],
-     "occurrences": 8
+     "occurrences": 8,
+     "prints": "macula_hebrew_cherith_surface_english_2022:B03"
     }
    },
    "rows": 43294,
    "rows_dividing": 1,
+   "rows_printing_a_part": 4,
+   "rows_no_pill": 0,
    "marks": 2351,
    "marks_dividing": 1,
    "by_shape": {
     "slash.between_two_renderings": 1
+   },
+   "by_print_rule": {
+    "macula_hebrew_cherith_surface_english_2022:B03": 4
    },
    "uncovered": 0,
    "vs_generic": {
@@ -1336,13 +1467,14 @@
       "semicolon.between_two_wordings",
       "period.between_two_wordings"
      ],
-     "occurrences": 132
+     "occurrences": 132,
+     "prints": null
     },
     "B02": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "period.closes_a_note_on_the_kind_of_word",
       "open_bracket.holds_a_whole_note",
@@ -1350,11 +1482,14 @@
       "open_bracket.in_unbalanced_text",
       "close_brace.in_unbalanced_text"
      ],
-     "occurrences": 31
+     "occurrences": 31,
+     "prints": "omegawiki_structured_defined_meaning:B02"
     }
    },
    "rows": 5363,
    "rows_dividing": 121,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 21,
    "marks": 6497,
    "marks_dividing": 132,
    "by_shape": {
@@ -1362,10 +1497,13 @@
     "period.between_two_wordings": 6,
     "comma.between_two_wordings": 23
    },
+   "by_print_rule": {
+    "omegawiki_structured_defined_meaning:B02": 21
+   },
    "uncovered": 0,
    "vs_generic": {
-    "same": 4597,
-    "generic_divided_ledger_whole": 734,
+    "same": 4599,
+    "generic_divided_ledger_whole": 732,
     "generic_hid_ledger_prints": 0,
     "ledger_divides_generic_did_not": 5,
     "both_divide_differently": 27
@@ -1393,7 +1531,8 @@
       "semicolon.between_two_wordings",
       "comma.between_two_wordings"
      ],
-     "occurrences": 40
+     "occurrences": 40,
+     "prints": null
     },
     "B02": {
      "option": "whole",
@@ -1403,17 +1542,21 @@
      "shapes": [
       "open_paren.holds_a_second_wording"
      ],
-     "occurrences": 3
+     "occurrences": 3,
+     "prints": null
     }
    },
    "rows": 313,
    "rows_dividing": 35,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 337,
    "marks_dividing": 40,
    "by_shape": {
     "semicolon.between_two_wordings": 37,
     "comma.between_two_wordings": 3
    },
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 260,
@@ -1447,7 +1590,8 @@
       "comma.between_two_wordings",
       "colon.between_two_wordings"
      ],
-     "occurrences": 332
+     "occurrences": 332,
+     "prints": null
     },
     "B02": {
      "option": "whole",
@@ -1457,11 +1601,14 @@
      "shapes": [
       "semicolon.before_a_further_description"
      ],
-     "occurrences": 18
+     "occurrences": 18,
+     "prints": null
     }
    },
    "rows": 4174,
    "rows_dividing": 297,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 2480,
    "marks_dividing": 332,
    "by_shape": {
@@ -1469,6 +1616,7 @@
     "comma.between_two_wordings": 31,
     "colon.between_two_wordings": 2
    },
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 3771,
@@ -1504,7 +1652,8 @@
       "comma.between_one_word_parts",
       "comma.marked_before_a_part_that_stands_alone"
      ],
-     "occurrences": 273
+     "occurrences": 273,
+     "prints": null
     },
     "B02": {
      "option": "whole",
@@ -1516,7 +1665,8 @@
       "comma.marked_beside_a_part_that_leans",
       "comma.in_list_opened_by_be_or_make"
      ],
-     "occurrences": 83
+     "occurrences": 83,
+     "prints": null
     },
     "B03": {
      "option": "divides",
@@ -1529,22 +1679,26 @@
       "question_mark.marked_between_two_renderings",
       "ampersand.marked_between_two_renderings"
      ],
-     "occurrences": 4
+     "occurrences": 4,
+     "prints": null
     },
     "B04": {
-     "option": "as_written",
+     "option": "leave_off",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "comma.at_end_of_text",
       "period.closes_the_text"
      ],
-     "occurrences": 2
+     "occurrences": 2,
+     "prints": "openscriptures_bdb_1906:B04"
     }
    },
    "rows": 15238,
    "rows_dividing": 236,
+   "rows_printing_a_part": 2,
+   "rows_no_pill": 0,
    "marks": 1040,
    "marks_dividing": 277,
    "by_shape": {
@@ -1554,6 +1708,9 @@
     "question_mark.marked_between_two_renderings": 1,
     "semicolon.marked_between_two_groups": 1,
     "ampersand.marked_between_two_renderings": 1
+   },
+   "by_print_rule": {
+    "openscriptures_bdb_1906:B04": 2
    },
    "uncovered": 0,
    "vs_generic": {
@@ -1575,42 +1732,50 @@
    "shapes_dividing": [],
    "branches": {
     "B01": {
-     "option": "as_written",
+     "option": "before_those_words",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "period.in_unbalanced_text",
       "period.before_a_pointing_word",
       "open_paren.in_unbalanced_text",
       "close_paren.holds_the_margin_note_before_a_pointing_word"
      ],
-     "occurrences": 82
+     "occurrences": 82,
+     "prints": "openscriptures_lexical_index:B01"
     },
     "B02": {
-     "option": "as_written",
+     "option": "two_forms",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_an_ending_that_may_join",
       "close_paren.holds_an_ending_that_may_join",
       "hyphen.opens_an_ending_that_may_join"
      ],
-     "occurrences": 6
+     "occurrences": 6,
+     "prints": "openscriptures_lexical_index:B02"
     }
    },
    "rows": 138,
    "rows_dividing": 0,
+   "rows_printing_a_part": 83,
+   "rows_no_pill": 0,
    "marks": 103,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {
+    "openscriptures_lexical_index:B01": 81,
+    "openscriptures_lexical_index:B02": 2
+   },
    "uncovered": 0,
    "vs_generic": {
-    "same": 137,
+    "same": 135,
     "generic_divided_ledger_whole": 0,
     "generic_hid_ledger_prints": 1,
-    "ledger_divides_generic_did_not": 0,
+    "ledger_divides_generic_did_not": 2,
     "both_divide_differently": 0
    }
   },
@@ -1642,13 +1807,14 @@
       "colon.between_words_for_one_meaning",
       "hyphen.between_two_sayings_of_one_meaning"
      ],
-     "occurrences": 756
+     "occurrences": 756,
+     "prints": null
     },
     "B02": {
-     "option": "as_written",
+     "option": "without_marks",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "apostrophe.doubled_working_mark",
       "slash.in_a_closing_tag",
@@ -1663,13 +1829,14 @@
       "quote.wraps_the_row",
       "colon.at_the_head_of_the_text"
      ],
-     "occurrences": 647
+     "occurrences": 647,
+     "prints": "panlex_hebrew_english_definitions_20250201:B02"
     },
     "B03": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "colon.after_a_link_letter",
       "colon.opens_a_note_row",
@@ -1677,23 +1844,27 @@
       "close_paren.in_a_row_that_renders_nothing",
       "quote.in_a_row_that_renders_nothing"
      ],
-     "occurrences": 45
+     "occurrences": 45,
+     "prints": "panlex_hebrew_english_definitions_20250201:B03"
     },
     "B04": {
-     "option": "as_written",
+     "option": "without_note",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.before_a_note_to_the_source_keepers",
       "open_paren.holds_a_note_to_the_source_keepers",
       "close_paren.holds_a_note_to_the_source_keepers"
      ],
-     "occurrences": 16
+     "occurrences": 16,
+     "prints": "panlex_hebrew_english_definitions_20250201:B04"
     }
    },
    "rows": 9831,
    "rows_dividing": 581,
+   "rows_printing_a_part": 153,
+   "rows_no_pill": 14,
    "marks": 5007,
    "marks_dividing": 756,
    "by_shape": {
@@ -1703,13 +1874,18 @@
     "hyphen.between_two_sayings_of_one_meaning": 2,
     "slash.between_words_for_one_meaning": 4
    },
+   "by_print_rule": {
+    "panlex_hebrew_english_definitions_20250201:B02": 143,
+    "panlex_hebrew_english_definitions_20250201:B03": 14,
+    "panlex_hebrew_english_definitions_20250201:B04": 10
+   },
    "uncovered": 0,
    "vs_generic": {
-    "same": 9069,
+    "same": 9068,
     "generic_divided_ledger_whole": 668,
     "generic_hid_ledger_prints": 5,
     "ledger_divides_generic_did_not": 13,
-    "both_divide_differently": 76
+    "both_divide_differently": 77
    }
   },
   "panlex_hebrew_english_meanings_20240301": {
@@ -1734,35 +1910,38 @@
       "comma.between_words_of_a_list",
       "slash.between_two_names"
      ],
-     "occurrences": 18
+     "occurrences": 18,
+     "prints": null
     },
     "B02": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.opens_a_bare_ending",
       "hyphen.closes_a_bare_beginning"
      ],
-     "occurrences": 9
+     "occurrences": 9,
+     "prints": "panlex_hebrew_english_meanings_20240301:B02"
     },
     "B03": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "question_mark.after_a_lone_name",
       "period.after_a_lone_v"
      ],
-     "occurrences": 4
+     "occurrences": 4,
+     "prints": "panlex_hebrew_english_meanings_20240301:B03"
     },
     "B04": {
-     "option": "as_written",
+     "option": "word_alone",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "number_sign.opens_a_link_target",
       "pipe.between_a_link_target_and_its_word",
@@ -1770,16 +1949,24 @@
       "apostrophe.doubled_with_nothing_inside",
       "period.after_a_cyrillic_letter"
      ],
-     "occurrences": 8
+     "occurrences": 8,
+     "prints": "panlex_hebrew_english_meanings_20240301:B04"
     }
    },
    "rows": 28424,
    "rows_dividing": 11,
+   "rows_printing_a_part": 4,
+   "rows_no_pill": 13,
    "marks": 908,
    "marks_dividing": 18,
    "by_shape": {
     "comma.between_words_of_a_list": 15,
     "slash.between_two_names": 3
+   },
+   "by_print_rule": {
+    "panlex_hebrew_english_meanings_20240301:B02": 9,
+    "panlex_hebrew_english_meanings_20240301:B04": 4,
+    "panlex_hebrew_english_meanings_20240301:B03": 4
    },
    "uncovered": 0,
    "vs_generic": {
@@ -1801,60 +1988,72 @@
    "shapes_dividing": [],
    "branches": {
     "B01": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_bracket.in_a_row_with_no_bare_word",
       "close_bracket.in_a_row_with_no_bare_word",
       "open_angle.in_a_row_with_no_bare_word",
       "close_angle.in_a_row_with_no_bare_word"
      ],
-     "occurrences": 338
+     "occurrences": 338,
+     "prints": "stepbible_tahot_aligned_translation:B01"
     },
     "B02": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.ends_a_row_on_a_cut_word",
       "hyphen.opens_the_tail_of_a_word",
       "open_bracket.after_the_last_piece_of_a_word",
       "close_bracket.after_the_last_piece_of_a_word"
      ],
-     "occurrences": 55
+     "occurrences": 55,
+     "prints": "stepbible_tahot_aligned_translation:B02"
     },
     "B03": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.ends_a_row_on_a_cut_name",
       "hyphen.opens_the_tail_of_a_name",
       "open_angle.before_the_last_piece_of_a_name",
       "close_angle.before_the_last_piece_of_a_name"
      ],
-     "occurrences": 228
+     "occurrences": 228,
+     "prints": "stepbible_tahot_aligned_translation:B03"
     },
     "B04": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.ends_a_row_on_a_whole_word"
      ],
-     "occurrences": 58
+     "occurrences": 58,
+     "prints": "stepbible_tahot_aligned_translation:B04"
     }
    },
    "rows": 95005,
    "rows_dividing": 0,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 430,
    "marks": 123722,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {
+    "stepbible_tahot_aligned_translation:B02": 54,
+    "stepbible_tahot_aligned_translation:B03": 227,
+    "stepbible_tahot_aligned_translation:B04": 58,
+    "stepbible_tahot_aligned_translation:B01": 91
+   },
    "uncovered": 0,
    "vs_generic": {
     "same": 95004,
@@ -1889,7 +2088,8 @@
       "slash.in_the_head_before_a_colon",
       "slash.in_the_sense_after_a_colon"
      ],
-     "occurrences": 538
+     "occurrences": 538,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -1899,7 +2099,8 @@
      "shapes": [
       "slash.between_readings"
      ],
-     "occurrences": 40
+     "occurrences": 40,
+     "prints": null
     },
     "B03": {
      "option": "whole",
@@ -1909,34 +2110,39 @@
      "shapes": [
       "comma.between_two_names"
      ],
-     "occurrences": 1
+     "occurrences": 1,
+     "prints": null
     },
     "B04": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "hyphen.ends_a_bare_half_of_a_name",
       "apostrophe.in_a_bare_half_of_a_name"
      ],
-     "occurrences": 5
+     "occurrences": 5,
+     "prints": "stepbible_tbesh_gloss:B04"
     },
     "B05": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_bracket.around_a_grammar_label",
       "close_bracket.around_a_grammar_label",
       "period.in_a_grammar_label"
      ],
-     "occurrences": 3
+     "occurrences": 3,
+     "prints": "stepbible_tbesh_gloss:B05"
     }
    },
    "rows": 2645,
    "rows_dividing": 566,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 6,
    "marks": 1262,
    "marks_dividing": 578,
    "by_shape": {
@@ -1944,6 +2150,10 @@
     "slash.between_readings": 40,
     "slash.in_the_head_before_a_colon": 3,
     "slash.in_the_sense_after_a_colon": 3
+   },
+   "by_print_rule": {
+    "stepbible_tbesh_gloss:B05": 1,
+    "stepbible_tbesh_gloss:B04": 5
    },
    "uncovered": 0,
    "vs_generic": {
@@ -1994,7 +2204,8 @@
       "equals.between_wording_and_meaning",
       "comma.between_wording_and_meaning"
      ],
-     "occurrences": 3288
+     "occurrences": 3288,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -2005,7 +2216,8 @@
       "comma.between_two_renderings_in_one_gloss",
       "exclamation.between_two_interjections"
      ],
-     "occurrences": 14
+     "occurrences": 14,
+     "prints": null
     },
     "B03": {
      "option": "divides",
@@ -2018,7 +2230,8 @@
       "semicolon.before_alternative",
       "period.before_alternative"
      ],
-     "occurrences": 10
+     "occurrences": 10,
+     "prints": null
     },
     "B04": {
      "option": "divides",
@@ -2035,11 +2248,14 @@
       "semicolon.before_meaning_under_label_in_the_wording",
       "colon.before_meaning_under_opening_label"
      ],
-     "occurrences": 101
+     "occurrences": 101,
+     "prints": null
     }
    },
    "rows": 21626,
    "rows_dividing": 3400,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 58686,
    "marks_dividing": 3413,
    "by_shape": {
@@ -2062,6 +2278,7 @@
     "exclamation.between_two_interjections": 2,
     "colon.before_meaning_under_opening_label": 1
    },
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 13314,
@@ -2106,7 +2323,8 @@
       "comma.between_small_word_renderings",
       "comma.between_phrases"
      ],
-     "occurrences": 1386
+     "occurrences": 1386,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -2117,7 +2335,8 @@
       "comma.marked_in_small_verb_list_with_a_later_ed_word",
       "comma.in_small_verb_list_with_a_later_ed_word"
      ],
-     "occurrences": 122
+     "occurrences": 122,
+     "prints": null
     },
     "B03": {
      "option": "divides",
@@ -2129,7 +2348,8 @@
       "question_mark.between_two_question_words",
       "period.between_two_renderings"
      ],
-     "occurrences": 11
+     "occurrences": 11,
+     "prints": null
     },
     "B04": {
      "option": "divides",
@@ -2141,7 +2361,8 @@
       "semicolon.marked_beside_a_sign",
       "colon.marked_between_two_renderings"
      ],
-     "occurrences": 175
+     "occurrences": 175,
+     "prints": null
     },
     "B05": {
      "option": "divides",
@@ -2152,7 +2373,8 @@
       "comma.marked_in_small_verb_list",
       "comma.in_small_verb_list"
      ],
-     "occurrences": 274
+     "occurrences": 274,
+     "prints": null
     },
     "B06": {
      "option": "divides",
@@ -2164,11 +2386,14 @@
       "comma.between_renderings_with_one_first_word",
       "semicolon.between_renderings"
      ],
-     "occurrences": 2863
+     "occurrences": 2863,
+     "prints": null
     }
    },
    "rows": 8893,
    "rows_dividing": 3847,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 8701,
    "marks_dividing": 4828,
    "by_shape": {
@@ -2188,6 +2413,7 @@
     "period.between_two_renderings": 1,
     "question_mark.between_two_question_words": 2
    },
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 7873,
@@ -2209,9 +2435,12 @@
    "branches": {},
    "rows": 286,
    "rows_dividing": 0,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 15,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 285,
@@ -2257,7 +2486,8 @@
       "semicolon.between_words_for_one_sense",
       "slash.between_words_for_one_sense"
      ],
-     "occurrences": 943
+     "occurrences": 943,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -2267,7 +2497,8 @@
      "shapes": [
       "slash.after_to"
      ],
-     "occurrences": 873
+     "occurrences": 873,
+     "prints": null
     },
     "B03": {
      "option": "whole",
@@ -2278,7 +2509,8 @@
       "slash.after_to_be",
       "slash.between_words_that_lean"
      ],
-     "occurrences": 359
+     "occurrences": 359,
+     "prints": null
     },
     "B04": {
      "option": "divides",
@@ -2289,7 +2521,8 @@
       "comma.marked_beside_a_tail_or_a_bracket",
       "slash.between_words_beside_a_bracket"
      ],
-     "occurrences": 221
+     "occurrences": 221,
+     "prints": null
     },
     "B05": {
      "option": "divides",
@@ -2300,23 +2533,27 @@
       "comma.between_two_descriptions",
       "semicolon.between_two_descriptions"
      ],
-     "occurrences": 199
+     "occurrences": 199,
+     "prints": null
     },
     "B06": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_the_whole_row",
       "close_paren.holds_the_whole_row",
       "semicolon.in_a_row_that_only_describes"
      ],
-     "occurrences": 30
+     "occurrences": 30,
+     "prints": "wikidata_hebrew_explicit_form_english_sense:B06"
     }
    },
    "rows": 11419,
    "rows_dividing": 1893,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 17,
    "marks": 11263,
    "marks_dividing": 2236,
    "by_shape": {
@@ -2330,10 +2567,13 @@
     "comma.marked_between_a_word_and_a_second_wording": 154,
     "semicolon.between_words_for_one_sense": 44
    },
+   "by_print_rule": {
+    "wikidata_hebrew_explicit_form_english_sense:B06": 17
+   },
    "uncovered": 0,
    "vs_generic": {
-    "same": 5691,
-    "generic_divided_ledger_whole": 4328,
+    "same": 5696,
+    "generic_divided_ledger_whole": 4323,
     "generic_hid_ledger_prints": 10,
     "ledger_divides_generic_did_not": 1152,
     "both_divide_differently": 238
@@ -2371,7 +2611,8 @@
       "comma.marked_between_a_word_and_a_second_wording",
       "slash.between_words_for_one_sense"
      ],
-     "occurrences": 16
+     "occurrences": 16,
+     "prints": null
     },
     "B02": {
      "option": "whole",
@@ -2382,7 +2623,8 @@
       "slash.after_to_be",
       "slash.between_words_that_lean"
      ],
-     "occurrences": 2
+     "occurrences": 2,
+     "prints": null
     },
     "B03": {
      "option": "divides",
@@ -2393,34 +2635,39 @@
       "comma.between_two_descriptions",
       "semicolon.between_two_descriptions"
      ],
-     "occurrences": 6
+     "occurrences": 6,
+     "prints": null
     },
     "B04": {
-     "option": "as_written",
+     "option": "no_pill",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "comma.in_a_row_that_only_describes",
       "open_paren.in_a_row_that_only_labels",
       "close_paren.in_a_row_that_only_labels"
      ],
-     "occurrences": 10
+     "occurrences": 10,
+     "prints": "wikidata_hebrew_lexeme_gloss:B04"
     },
     "B05": {
-     "option": "as_written",
+     "option": "name_alone",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.holds_a_name_after_its_label",
       "close_paren.holds_a_name_after_its_label"
      ],
-     "occurrences": 20
+     "occurrences": 20,
+     "prints": "wikidata_hebrew_lexeme_gloss:B05"
     }
    },
    "rows": 324,
    "rows_dividing": 19,
+   "rows_printing_a_part": 10,
+   "rows_no_pill": 8,
    "marks": 289,
    "marks_dividing": 22,
    "by_shape": {
@@ -2430,10 +2677,14 @@
     "slash.between_words_for_one_sense": 2,
     "comma.marked_between_a_word_and_a_second_wording": 1
    },
+   "by_print_rule": {
+    "wikidata_hebrew_lexeme_gloss:B04": 8,
+    "wikidata_hebrew_lexeme_gloss:B05": 10
+   },
    "uncovered": 0,
    "vs_generic": {
-    "same": 182,
-    "generic_divided_ledger_whole": 136,
+    "same": 189,
+    "generic_divided_ledger_whole": 129,
     "generic_hid_ledger_prints": 0,
     "ledger_divides_generic_did_not": 2,
     "both_divide_differently": 4
@@ -2450,32 +2701,40 @@
    "shapes_dividing": [],
    "branches": {
     "B01": {
-     "option": "as_written",
+     "option": "name_alone",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "open_paren.around_the_word_disambiguation",
       "close_paren.around_the_word_disambiguation"
      ],
-     "occurrences": 1866
+     "occurrences": 1866,
+     "prints": "wikimedia_hebrew_english_interlanguage_title_20260701:B01"
     },
     "B02": {
-     "option": "as_written",
+     "option": "named_part",
      "resting": "as_written",
-     "by": "resting",
-     "on": null,
+     "by": "the owner",
+     "on": "2026-11-06",
      "shapes": [
       "number_sign.between_a_page_and_its_part"
      ],
-     "occurrences": 13
+     "occurrences": 13,
+     "prints": "wikimedia_hebrew_english_interlanguage_title_20260701:B02"
     }
    },
    "rows": 12354,
    "rows_dividing": 0,
+   "rows_printing_a_part": 944,
+   "rows_no_pill": 2,
    "marks": 5163,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {
+    "wikimedia_hebrew_english_interlanguage_title_20260701:B01": 933,
+    "wikimedia_hebrew_english_interlanguage_title_20260701:B02": 13
+   },
    "uncovered": 0,
    "vs_generic": {
     "same": 12024,
@@ -2509,7 +2768,8 @@
       "semicolon.between_sentence_and_word",
       "semicolon.before_second_sense_in_sentence"
      ],
-     "occurrences": 16
+     "occurrences": 16,
+     "prints": null
     },
     "B02": {
      "option": "divides",
@@ -2519,7 +2779,8 @@
      "shapes": [
       "period.between_two_renderings"
      ],
-     "occurrences": 12
+     "occurrences": 12,
+     "prints": null
     },
     "B03": {
      "option": "divides",
@@ -2529,11 +2790,14 @@
      "shapes": [
       "semicolon.between_two_renderings"
      ],
-     "occurrences": 99
+     "occurrences": 99,
+     "prints": null
     }
    },
    "rows": 148236,
    "rows_dividing": 120,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 137349,
    "marks_dividing": 127,
    "by_shape": {
@@ -2542,6 +2806,7 @@
     "semicolon.before_second_sense_in_sentence": 7,
     "semicolon.between_sentence_and_word": 9
    },
+   "by_print_rule": {},
    "uncovered": 24,
    "vs_generic": {
     "same": 147835,
@@ -2565,9 +2830,12 @@
    "branches": {},
    "rows": 24514,
    "rows_dividing": 0,
+   "rows_printing_a_part": 0,
+   "rows_no_pill": 0,
    "marks": 0,
    "marks_dividing": 0,
    "by_shape": {},
+   "by_print_rule": {},
    "uncovered": 0,
    "vs_generic": {
     "same": 24514,

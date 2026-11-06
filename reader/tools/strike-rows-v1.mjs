@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: row-strike-rule-v2-a-named-list-strikes-withholds-re-keys-rejoins-or-re-heads-a-row-and-the-hole-is-typed
+// GUARDS: row-strike-rule-v3-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-or-retexts-a-row-and-the-hole-is-typed
 // LEDGER: M R
 // Acts on named store ROWS, not whole sources: rows a provider's parse filed
 // under a key that is not their word's, rows the owner has ruled off the
@@ -36,6 +36,17 @@
 //   rejoin    rows a cut left in pieces become one row, the source's whole
 //             run, at the first named row's rank; the others go. A run the
 //             key already holds folds the pieces into it
+// VERSION 3 (6 November 2026, the owner: "why not just fix it"). One more:
+//   retext    the row's route text becomes a text the row itself already
+//             carries (from_slot "definition": its definition slot), because
+//             what the route held beyond it was never the provider's: the
+//             filing tag this corpus's own script wrote on ConceptNet's rows,
+//             "he (n, wikt, en 2)", whose definition slot holds "he". The
+//             store keeps the old route whole in this record. Where the same
+//             source already holds the new text under the key, the row FOLDS
+//             into it, as a re-key does; a landed retext keeps its rank and
+//             takes no row off. Its slots (row[7], row[8]) are cleared, for
+//             apply-ledger-divisions to derive again from the new text.
 // The arithmetic: routes_struck counts every row a round takes off the store
 // (a strike, a withholding, a re-key that folds, and the rows a rejoin joins
 // beyond the one it keeps), routes_rekeyed the re-keys that land as a row of
@@ -68,7 +79,7 @@ const LIST = arg("list", null);
 const BRANCHES = arg("branches", null);
 const BRANCH = arg("branch", null);
 const REASON = arg("reason", "");
-export const ROW_STRIKE_RULE_ID = "row-strike-rule-v2-a-named-list-strikes-withholds-re-keys-rejoins-or-re-heads-a-row-and-the-hole-is-typed";
+export const ROW_STRIKE_RULE_ID = "row-strike-rule-v3-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-or-retexts-a-row-and-the-hole-is-typed";
 const RECORD = join(K3, "data", "row-strikes-v1.json");
 if (!LIST || !REASON || (BRANCHES && !BRANCH) || (BRANCH && !BRANCHES)) {
   console.log("usage: --list <list.jsonl> --reason \"<the review this stands on>\" [--branches <branches.json> --branch B01] [--store dir] [--leave-off \"<m>|<key>|<why>\"]... [--dry]");
@@ -78,7 +89,7 @@ const refuse = (msg) => { console.log(`REFUSED — ${msg}`); process.exit(1); };
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
 const shardOf = (k) => `${sha256(Buffer.from(k, "utf8")).slice(0, 2)}.bin`;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-const ACTIONS = ["strike", "withhold", "re-key", "headword", "rejoin"];
+const ACTIONS = ["strike", "withhold", "re-key", "headword", "rejoin", "retext"];
 
 // ---- what is asked ------------------------------------------------------------
 const leaveOff = args("leave-off").map((s) => { const [m, key, ...why] = String(s).split("|"); return { m, key, why: why.join("|") }; });
@@ -95,13 +106,15 @@ listBytes.toString("utf8").split("\n").forEach((l, i) => {
   if (e.action === "re-key" && (!e.to_key || e.to_key === e.key)) refuse(`list line ${line}: a re-key names no other key`);
   if (e.action === "headword" && (!Array.isArray(e.headwords_now) || !Array.isArray(e.headwords_to))) refuse(`list line ${line}: a re-heading names the headwords now and the headwords to`);
   if (e.action === "rejoin" && (!Array.isArray(e.rows) || !e.rows.length || typeof e.rejoined_text !== "string" || !e.rejoined_text)) refuse(`list line ${line}: a rejoin names its rows and the text they rejoin to`);
+  if (e.action === "retext" && (typeof e.to_text !== "string" || !e.to_text.trim() || e.from_slot !== "definition")) refuse(`list line ${line}: a retext names the text the row takes (to_text) and the row's own slot it comes from (from_slot "definition")`);
+  if (e.action === "retext" && e.to_text === e.route) refuse(`list line ${line}: a retext names the text the row already has`);
   const named = e.action === "rejoin" ? e.rows.map((x) => ({ rank: x.rank, route: x.route })) : [{ rank: e.rank, route: e.route }];
   asked.push({ line, m: e.m, key: e.key, action: e.action, named, to_key: e.action === "re-key" ? e.to_key : null,
     to_headwords: Array.isArray(e.to_headwords) ? e.to_headwords : null,
     to_key_holds_text: typeof e.to_key_holds_text === "boolean" ? e.to_key_holds_text : null,
     to_key_holds: Array.isArray(e.to_key_holds) ? e.to_key_holds : null,
     headwords_now: e.headwords_now ?? null, headwords_to: e.headwords_to ?? null,
-    rejoined_text: e.rejoined_text ?? null, why: "list", list_why: e.why ?? null, kind: e.kind ?? null });
+    rejoined_text: e.rejoined_text ?? null, to_text: e.action === "retext" ? e.to_text : null, from_slot: e.action === "retext" ? e.from_slot : null, why: "list", list_why: e.why ?? null, kind: e.kind ?? null });
 });
 for (const lo of leaveOff) if (!leftOff.some((x) => x.m === lo.m && x.key === lo.key)) refuse(`--leave-off ${lo.m}|${lo.key} names no line of the list`);
 let branch = null;
@@ -135,6 +148,7 @@ for (const e of asked) {
   });
   if (e.action === "headword" && !same(e.rows[0][6], e.headwords_now)) refuse(`${e.m}|${e.key}|${e.named[0].rank}: its headwords are ${JSON.stringify(e.rows[0][6])}, not ${JSON.stringify(e.headwords_now)} as the list says`);
   if (e.action === "rejoin" && e.rows.some((r) => r[2] !== e.rows[0][2])) refuse(`the rejoin on ${e.m}|${e.key} names rows of more than one definition`);
+  if (e.action === "retext" && String(e.rows[0][2] ?? "") !== e.to_text) refuse(`${e.m}|${e.key}|${e.named[0].rank}: the row's definition slot is «${String(e.rows[0][2] ?? "").slice(0, 60)}», not «${e.to_text}» as the list says; a retext takes only what the row itself carries`);
   if (e.action === "re-key" && e.to_key_holds_text !== null) {
     // what the key held before this list touched it: the list was read against that store
     const holders = rowsOf(e.to_key).filter((r) => r[1] === e.named[0].route).map((r) => `${r[3]}@${r[0]}`);
@@ -147,7 +161,7 @@ for (const e of asked) {
 const ranks = { keys: {}, rows: 0, keys_touched: 0, on_struck_records: 0, on_other_records: 0 };
 const taken = [];               // every row acted on, whole, with what was done with it
 const perSource = {}, cutsTaken = {};
-const byAction = { strike: 0, withhold: 0, re_key_landed: 0, re_key_folded: 0, rejoin_joins: 0, rejoin_rows_taken: 0, rejoin_folded: 0, headword: 0 };
+const byAction = { strike: 0, withhold: 0, re_key_landed: 0, re_key_folded: 0, rejoin_joins: 0, rejoin_rows_taken: 0, rejoin_folded: 0, headword: 0, retext: 0, retext_folded: 0 };
 const keysTouched = new Set(), keysEmptied = [], keysMadeNew = [];
 const touchedShards = new Set();
 let routesTaken = 0, routesRekeyed = 0;
@@ -172,6 +186,22 @@ for (const e of asked) {
     r[6] = e.headwords_to;
     keysTouched.add(e.key); touchedShards.add(shardOf(e.key)); byAction.headword += 1;
     taken.push({ action: "headword", why: e.why, kind: e.kind ?? null, key: e.key, row: [...r.slice(0, 6), was], headwords_to: e.headwords_to });
+    continue;
+  }
+  if (e.action === "retext") {
+    const r = e.rows[0];
+    // the same source already holds the new text under this key: the row folds into it, as a re-key does
+    const holders = rowsOf(e.key).filter((x) => x !== r && String(x[3]) === String(r[3]) && x[1] === e.to_text);
+    if (holders.length) {
+      takeOff(e.key, r); typeRank(e.key, r); routesTaken += 1; byAction.retext_folded += 1;
+      if (r.length > 5 && r[5] === 1) cutsTaken[r[3]] = (cutsTaken[r[3]] || 0) + 1;
+      taken.push({ action: "retext", why: e.why, kind: e.kind ?? null, key: e.key, row: r, to_text: e.to_text, from_slot: e.from_slot, folded_into: holders.map((x) => ({ rank: x[0], m: String(x[3]) })) });
+      continue;
+    }
+    const was = [...r];
+    r[1] = e.to_text; r.length = Math.min(r.length, 7);
+    keysTouched.add(e.key); touchedShards.add(shardOf(e.key)); byAction.retext += 1;
+    taken.push({ action: "retext", why: e.why, kind: e.kind ?? null, key: e.key, row: was, to_text: e.to_text, from_slot: e.from_slot });
     continue;
   }
   if (e.action === "re-key") {
@@ -220,10 +250,11 @@ const keysAfter = keysBefore - keysEmptied.length + keysMadeNew.length;
 const routesAfter = routesBefore - routesTaken;     // a re-key that lands moves a row; it neither takes nor adds one
 let routesNow = 0; for (const body of shards.values()) for (const rows of Object.values(body)) routesNow += rows.length;
 if (routesNow !== routesAfter) refuse(`internal: the shards hold ${routesNow} routes, the arithmetic says ${routesAfter}`);
-console.log(`row strike v2 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
+console.log(`row strike v3 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
 for (const t of taken.filter((x) => x.action === "re-key")) console.log(`  re-key ${t.key} rank ${t.row[0]} "${t.row[1]}" -> ${t.to_key} ${t.folded_into ? `folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : `rank ${t.to_rank}${t.to_headwords ? ` headwords ${JSON.stringify(t.to_headwords)}` : ""}`}`);
 for (const t of taken.filter((x) => x.action === "rejoin")) console.log(`  rejoin ${t.key} ${t.rows.map((r) => `${r[3]}@${r[0]}`).join("+")} -> «${t.rejoined_text}»${t.folded_into ? ` folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : ` at rank ${t.kept_rank}`}`);
 for (const t of taken.filter((x) => x.action === "headword")) console.log(`  headword ${t.key} rank ${t.row[0]} "${t.row[1]}" ${JSON.stringify(t.row[6])} -> ${JSON.stringify(t.headwords_to)}`);
+{ const rt = taken.filter((x) => x.action === "retext"); if (rt.length) console.log(`  retext ${rt.length} rows (${rt.filter((x) => x.folded_into).length} fold), e.g. ${rt.slice(0, 3).map((t) => `${t.key} rank ${t.row[0]} "${t.row[1]}" -> "${t.to_text}"${t.folded_into ? " (folds)" : ""}`).join("; ")}`); }
 for (const l of leftOff) console.log(`  left off: line ${l.line} ${l.m} ${l.key} (${l.action}) — ${l.why}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 
@@ -255,7 +286,7 @@ const rounds = [...((prior && prior.rounds) || []).map((r) => ({ rule_id: (prior
     ? { action: t.action, why: t.why, kind: t.kind, key: t.key, m: String(t.rows[0][3]), rejoined_text: t.rejoined_text, rows: t.rows, ...(t.kept_rank !== undefined ? { kept_rank: t.kept_rank } : { folded_into: t.folded_into }) }
     : { action: t.action, why: t.why, kind: t.kind, key: t.key, rank: t.row[0], m: String(t.row[3]), route: t.row[1], row: t.row,
       ...(t.to_key ? { to_key: t.to_key } : {}), ...(t.to_rank !== undefined ? { to_rank: t.to_rank } : {}), ...(t.folded_into ? { folded_into: t.folded_into } : {}),
-      ...(t.to_headwords ? { to_headwords: t.to_headwords } : {}), ...(t.headwords_to ? { headwords_to: t.headwords_to } : {}) })),
+      ...(t.to_headwords ? { to_headwords: t.to_headwords } : {}), ...(t.headwords_to ? { headwords_to: t.headwords_to } : {}), ...(t.to_text ? { to_text: t.to_text, from_slot: t.from_slot } : {}) })),
 }];
 const sumBy = (k) => rounds.reduce((a, r) => { for (const [x, v] of Object.entries((r.counts && r.counts[k]) || {})) a[x] = (a[x] || 0) + v; return a; }, {});
 const cumulative = {
@@ -267,7 +298,7 @@ const cumulative = {
 };
 const record = {
   schema_version: "ROW_STRIKES_V2", rule_id: ROW_STRIKE_RULE_ID,
-  what: "every store row a named list the page lane reviewed struck, withheld, re-keyed, rejoined or re-headed: rows a provider's parse filed under a key that is not their word's, rows the owner ruled off the cards, rows a cut left in pieces, and every row a branch's resting option withholds until the owner rules; each row is kept whole here, so what went can be read and put back; the rank each row taken or re-keyed left is typed in the store's struck-ranks record and never renumbered",
+  what: "every store row a named list the page lane reviewed struck, withheld, re-keyed, rejoined, re-headed or retexted: rows a provider's parse filed under a key that is not their word's, rows the owner ruled off the cards, rows a cut left in pieces, and every row a branch's resting option withholds until the owner rules; each row is kept whole here, so what went can be read and put back; the rank each row taken or re-keyed left is typed in the store's struck-ranks record and never renumbered",
   ran_at: on, rounds, rulings: (prior && prior.rulings) || [], cumulative,
   counts_scope: "cumulative is the whole of this record; rounds[] holds each round's own arithmetic. routes_struck counts every row a round took off the store: a strike, a withholding, a re-key whose text its new key already held (it folds), and the rows a rejoin joined beyond the one it kept. routes_rekeyed counts the re-keys that landed as a row of their own; a re-heading takes nothing. by_action splits each round from version 2 on",
 };
