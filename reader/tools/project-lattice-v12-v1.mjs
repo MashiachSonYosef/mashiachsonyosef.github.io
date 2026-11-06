@@ -189,6 +189,20 @@ await readLines(files.positions, (line) => {
 // says what its first pill says. A row whose stem no source names is never
 // another stem's.
 const placeStemsPath = arg("--place-stems"), rowStemsPath = arg("--row-stems");
+// WITHDRAWN (the corpus lane, Moses, 2026-11-06): a fresh reader checked the
+// stems of both files by hand and found them not fit to withhold with (row
+// stems: M46's own labels 6 wrong and 2 partly wrong of 40 read, and M5's
+// finding rule takes right readings off qal cards; place stems: 7 of 73,843
+// lines wrong). Version 2 of both is being read. Until it is reviewed the
+// sidecars carry no stems, and these exact files are refused.
+const WITHDRAWN_BINYAN = new Map([
+  ["1c54671b66f0207a7bcf9212cae2d6adb07a3b4a56acf3cc103cf7914a411569", "place-stems-v1.jsonl (v104)"],
+  ["33d94ffb1c03a2407e7a503aaf7ac2d7ecea0a5199ed76477dff64cd526ecb36", "row-stems-v1.jsonl (v105)"],
+]);
+for (const p of [placeStemsPath, rowStemsPath].filter(Boolean)) {
+  const h = sha256File(p);
+  if (WITHDRAWN_BINYAN.has(h)) { console.error(`refused: ${WITHDRAWN_BINYAN.get(h)} was withdrawn by the corpus lane on 2026-11-06; project without it until version 2 is reviewed`); process.exit(1); }
+}
 const stemsByPlace = new Map();       // "c:v:n" (marks not counted) -> [stem]
 const stemsByKey = {};                // key -> { "m\u0001rank\u0001route": [stem] }
 const binyanFiles = [];

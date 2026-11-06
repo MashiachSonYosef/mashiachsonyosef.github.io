@@ -20,10 +20,21 @@
 //   G4  a word no record of the store points as the text does: under the
 //       default its card withholds nothing for the pointing, and has readings
 //
-// The words are found in the data, never named: each in the first served
+// THE STEM IS SUSPENDED (the corpus lane, Moses, 2026-11-06). A fresh reader
+// checked both binyan files by hand and found them not fit to withhold with:
+// row stems, M46's own labels 6 wrong and 2 partly wrong of 40 read, and M5's
+// finding rule takes right readings off qal cards; place stems, 7 of 73,843
+// lines wrong. Version 2 of both is being read. Until it is reviewed no
+// sidecar carries stems, and then G2 holds the suspension instead: no served
+// sidecar carries the withdrawn files, and a word's card withholds nothing
+// for the stem under the default (G3 under "keep" as before). A sidecar that
+// carries a ledger again is checked as G2 always checked it, unless the
+// ledger is one of the withdrawn files, which fails.
+//
+// The words are found in the data, never named: G2's verb in the first served
 // zone, in book order, whose sidecar carries the binyan ledger and has such a
-// word (Amos, first in that order, has no word of G4's kind). SKIPS by name
-// when no served zone's sidecar carries the ledger.
+// word; G4's word and the suspension's word in the first served zone that has
+// one (Amos, first in that order, has no word of G4's kind).
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
@@ -36,18 +47,27 @@ const pw = await loadPlaywright();
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const store = openRouteStore("data/route-store");
+// the binyan files the corpus lane withdrew on 2026-11-06 (place stems v104, row stems v105)
+const WITHDRAWN = new Map([
+  ["1c54671b66f0207a7bcf9212cae2d6adb07a3b4a56acf3cc103cf7914a411569", "place-stems-v1.jsonl"],
+  ["33d94ffb1c03a2407e7a503aaf7ac2d7ecea0a5199ed76477dff64cd526ecb36", "row-stems-v1.jsonl"],
+]);
 const rowsOf = (k) => (store.routesFor(k) || []).filter((r) => store.index.m_sources[r[3]]);
 
 // ---- the words, from the data -----------------------------------------------
 const plain = (w) => w && !w.mark && w.k && typeof w.s === "string" && !w.kq && !w.s.includes("\u05BE") && isPointed(w.s);
-let ledgered = 0, verb = null, unattested = null;
+let ledgered = 0, verb = null, unattested = null, any = null;
+const withdrawnIn = [];
 for (const z of zonesServed()) {
-  if (verb && unattested) break;
   const p = `data/zones/${z}.lattice.bin`;
   if (!existsSync(p)) continue;
   const side = JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"));
-  if (!side.stems || !side.binyan) continue;
-  ledgered += 1;
+  const hasLedger = !!(side.stems && side.binyan);
+  if (hasLedger) {
+    ledgered += 1;
+    for (const f of side.binyan.files || []) if (WITHDRAWN.has(f.sha256)) withdrawnIn.push(`${z}: ${f.file}`);
+  }
+  if (unattested && any && (verb || !hasLedger)) continue;
   const zone = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8"));
   for (const sec of zone.sections || []) {
     const ws = (sec.words || []).filter((w) => !w.mark);
@@ -58,7 +78,8 @@ for (const z of zonesServed()) {
       if (!rows.length) return;
       const grades = rows.map((r) => gradeRow(r, w.s));
       const attested = grades.includes("m");
-      if (!verb && g && Array.isArray(g.st) && g.st.length && side.stems[w.k]) {
+      if (!any && attested) any = { zone: z, label: sec.label, s: w.s, k: w.k };
+      if (hasLedger && !verb && g && Array.isArray(g.st) && g.st.length && side.stems[w.k]) {
         const kept = attested ? rows.filter((r, j) => grades[j] !== "x") : rows;
         const rs = side.stems[w.k];
         const other = kept.filter((r) => isOtherStem(rs[`${r[3]}\u0001${r[0]}\u0001${r[1]}`], g.st)).length;
@@ -66,10 +87,9 @@ for (const z of zonesServed()) {
       }
       if (!unattested && !attested && grades.includes("x") && (w.pg || []).length === 0) unattested = { zone: z, label: sec.label, s: w.s, k: w.k, x: grades.filter((x) => x === "x").length, rows: rows.length };
     });
-    if (verb && unattested) break;
+    if (unattested && any && (verb || !hasLedger)) break;
   }
 }
-if (!ledgered) { console.log("SKIPPED — no served zone's sidecar carries the binyan ledger, so check-pointing-gate-v1 has nothing to open"); process.exit(3); }
 
 const BASE = defaultZoneUrl().replace(/[?&]b=[^&#]+/, "").replace(/\?$/, "");
 const b = await pw.chromium.launch(launchOptions());
@@ -103,7 +123,20 @@ const open = async (w, masorah) => {
   return { ...r, fam };
 };
 
-if (!verb) check("G2  a verb's card withholds exactly the records of another stem", false, "no word of a served zone has a record of another stem on its key");
+if (withdrawnIn.length) check("G2  no sidecar carries a binyan file the corpus lane withdrew", false, withdrawnIn.slice(0, 6).join(" · "));
+else if (!ledgered) {
+  // the suspension: no stems anywhere, so nothing is withheld for the stem
+  if (!any) check("G2  the stem withholds nothing while the binyan files are withdrawn", false, "no served word has a record pointed as the text points it");
+  else {
+    const r = await open(any);
+    const wrong = (r.fam || []).filter(([n, f]) => f !== (STEM_FAMILY[n] || n));
+    check("G1  the page's stem families are the module's, name for name", !!r.fam && wrong.length === 0, r.fam ? `${r.fam.length} names${wrong.length ? ` · ${wrong.map(([n, f]) => `${n}: ${f}`).join(", ")}` : ""}` : "the page exposes no stem families");
+    check("G2  the stem withholds nothing while the binyan files are withdrawn (Moses, 2026-11-06)", !r.error && r.stem === 0 && !/of another stem/u.test(r.line),
+      r.error || `no served sidecar carries stems · ${any.zone} ${any.label} ${any.k}: stem ${r.stem} · "${r.line}"`);
+    const k = await open(any, "keep");
+    check("G3  under \"keep\" the same card withholds nothing for the stem", !k.error && k.stem === 0 && k.withheld === 0, k.error || `stem ${k.stem} · pointing ${k.withheld} · ${k.pills} readings`);
+  }
+} else if (!verb) check("G2  a verb's card withholds exactly the records of another stem", false, "no word of a served zone has a record of another stem on its key");
 else {
   const r = await open(verb);
   const wrong = (r.fam || []).filter(([n, f]) => f !== (STEM_FAMILY[n] || n));
