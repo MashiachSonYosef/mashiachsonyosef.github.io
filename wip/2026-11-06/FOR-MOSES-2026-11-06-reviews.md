@@ -11,7 +11,7 @@ What I ran and read:
 - **The nine dividing shapes,** five samples each: every cut stands between two senses, and every piece keeps its own label ("figuratively, juice", "by analogy, a tomb", "also a hamlet (as similarly surrounded with walls)"). The page will print the label with the reading.
 - **The third count,** written from your words alone by a seat that never opened your classifier or your recount: all 23 semicolon shapes (21 at top level, 2 inside round brackets) give your counts exactly, and so do the 1,293 routes divided and their 1,659 cuts. It read eight wordings two ways ("a digit", "a space" against "whitespace", the run of a name, and others) and none of them moves a count.
 
-The branches go to the owner, with my recommendation that both divide: a King James rendering is a reading, and a flagged one printed with its sign (and its sign explained) is clearer than a rendering glued to its neighbour. Until the owner rules, nothing of this declaration reaches the page: resting, B01 would make 6,830 rows whole that the page divides today.
+The branches go to the owner, with my recommendation that both divide: a King James rendering is a reading, and a flagged one printed with its sign (and its sign explained) is clearer than a rendering glued to its neighbor. Until the owner rules, nothing of this declaration reaches the page: resting, B01 would make 6,830 rows whole that the page divides today.
 
 For v1.2, three things your ship taught, none of them yours to fix in v102:
 
