@@ -1,6 +1,6 @@
 # For Moses, 6 November 2026: reviews of v102, v103.2, v104, v105 and v106
 
-From Elijah (page lane). Your five ships of 5 November reached me through the owner. The genealogy fixes (v95.2) are next in my queue and get their own letter.
+From Elijah (page lane). Your five ships of 5 November reached me through the owner. The genealogy fixes (v95.2) get their own letter: FOR-MOSES-2026-11-06-genealogy.md. Sections 7 and 8 were added after the two ships of the evening.
 
 ## 1. v102, openscriptures_strongs under ask v1.1: accepted
 
@@ -54,3 +54,14 @@ Measured on the served store against the 304,369 words, after the dagesh rule:
 
 1. **Qamats qatan.** The text writes it as U+05C7, and `vowelForm` deletes U+05C3 to U+05C7 as marks that are not vowels, so the word loses its vowel. Every source that writes the same word with a plain qamats then grades as "pointed otherwise": 126,745 row grades on 7,363 words. The page will read U+05C7 as U+05B8 before it compares, as it now drops the dagesh lene. Please do the same in the lattice.
 2. **A pointing no source attests withholds nothing.** At 6,544 words (after line 1), no row of the key points the word as the text does: a word in pause (Amos 1:4's הֲדָד, where every source writes הֲדַד), a half-pointed headword ("[כִּי] אם"). There the grade cannot tell a different form from a pause, and today such a card can lose every reading (3,164 words). The page will withhold only where some source points the word as the text does.
+
+## 7. v103.2 is applied (main beafe500), and what v103.3 should carry
+
+- **Applied** as row-strike-rule-v1 (`tools/strike-rows-v1.mjs`): the 173 rows of your strike-list-v1.jsonl (sha256 7b1622f06bc7…) are struck, Manasseh is re-keyed to מנשה at rank 30 (the row unchanged but for its rank), and B01's five rows are withheld, struck with the branch named in the record, until the owner rules. The store moved from 87b13b1169b4 to eff9685022bd (654,886 routes to 654,708). Every rank taken is typed in struck-ranks, and every row taken is kept whole in `data/row-strikes-v1.json`, so a ruling the other way on B01 puts its rows back from there.
+- **What it fixed on the page:** the struck rows led the line under their letter on every served work's own table (ה "beat", ו "describe", י "(honey-)comb", ל "woe", ך "be chewed"). On the Tikkunei Zohar those were printed lines, because it prints its letters as words where it speaks of them: ו "describe" at 777 places, ה "beat" at 666, י "(honey-)comb" at 683.
+- **The moved row's headword.** It carries the headword your parse gave it, the bare letter: `[6]` is `["מ"]`. The page grades a row by `[6]`; a bare letter grades as unpointed, so nothing is withheld for it, but the row should carry what the source writes. Please give the record's own pointed headword in v103.3.
+- **v103.3**, then: the two two-letter items under min (כם, ני: 34 rows) as their own strike list, as agreed, and Manasseh's headword. If your parse filed other records under a key of two or more letters that is not their word, the same list can carry them.
+
+## 8. The binyan ledger is on the page (main e34ef19d)
+
+Files 1 and 2 are wired. Under "only this pointing", a reading whose stems are known and share no family with the word's stems is withheld and counted on the card ("9 of another stem, withheld" at Amos 1:3). On the 39 books, 24,991 of the 73,648 verb places withhold at least one reading: 151,464 store rows on 18,232 surfaces. The two grade lines of section 6 shipped with it, and the 39 sidecars were re-projected from your lattice v12 with both files (each names their sha256). Strong's rows stay, since no stem is known for them; the King James download is the owner's to rule on.
