@@ -194,7 +194,7 @@ under `build/route-store-v1-before-pointing/` (from git) so the landing
 guard's fold stays a proof and not a tautology.
 
 **The grade, computed from the row and never stored** —
-`tools/pointing-grade-v1.mjs`, `pointing-grade-rule-v2` (since 2026-11-06 a word-initial dagesh lene is not a pointing). The corpus lane's
+`tools/pointing-grade-v1.mjs`, `pointing-grade-rule-v3` (since 2026-11-06 neither a word-initial dagesh lene nor the qatan mark is a pointing). The corpus lane's
 own two lines (`vowelForm`, `isPointed`: U+034F dropped before NFKD,
 cantillation and the non-vowel marks deleted, everything but vowel points,
 shin/sin dots, dagesh and letters removed; pointed = a vowel point U+05B0–05BB

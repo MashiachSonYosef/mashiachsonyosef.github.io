@@ -84,6 +84,7 @@ import { join } from "node:path";
 import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
+import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
 import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
 const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
@@ -179,8 +180,56 @@ await readLines(files.positions, (line) => {
   byRef.get(p.ref).push(p);
 });
 
+// ---- the binyan ledger (the corpus lane's v104 and v105), when given --------
+// File 1 names the stem of every verb at its place, file 2 the stems of every
+// store row on a verb's letters that a source names. Both are baked into the
+// sidecar: per pointed surface the stems of its places in this book (st), per
+// key the rows whose stems are known (stems), so the card can withhold a
+// reading of another stem under "only" and the line under a word baked here
+// says what its first pill says. A row whose stem no source names is never
+// another stem's.
+const placeStemsPath = arg("--place-stems"), rowStemsPath = arg("--row-stems");
+const stemsByPlace = new Map();       // "c:v:n" (marks not counted) -> [stem]
+const stemsByKey = {};                // key -> { "m\u0001rank\u0001route": [stem] }
+const binyanFiles = [];
+if (placeStemsPath) {
+  for (const line of readFileSync(placeStemsPath, "utf8").split("\n")) {
+    if (!line) continue;
+    const l = JSON.parse(line);
+    if (l.book === slug) stemsByPlace.set(l.place, stemsOfPlaceLine(l));
+  }
+  binyanFiles.push({ file: placeStemsPath.split("/").pop(), sha256: sha256File(placeStemsPath) });
+}
+if (rowStemsPath) {
+  for (const line of readFileSync(rowStemsPath, "utf8").split("\n")) {
+    if (!line) continue;
+    const l = JSON.parse(line);
+    if (!wanted.has(l.key) || !Array.isArray(l.stems) || !l.stems.length) continue;
+    (stemsByKey[l.key] ||= {})[`${l.m}\u0001${l.rank}\u0001${l.route}`] = l.stems;
+  }
+  binyanFiles.push({ file: rowStemsPath.split("/").pop(), sha256: sha256File(rowStemsPath) });
+}
+// a pointed surface's stems: the union over its places in this book, the
+// place counted as the piece store counts it (the verse's words, marks not
+// counted); a ketiv/qere place is left to its own card
+const stemsBySurface = new Map();
+if (stemsByPlace.size) for (const sec of zone.sections || []) {
+  const [c, v] = String(sec.label || "").split(":");
+  if (!v) continue;
+  let n = 0;
+  for (const w of sec.words || []) {
+    if (w.mark) continue;
+    n += 1;
+    const st = stemsByPlace.get(`${c}:${v}:${n}`);
+    if (!st || !st.length || typeof w.s !== "string" || w.kq) continue;
+    if (!stemsBySurface.has(w.s)) stemsBySurface.set(w.s, new Set());
+    for (const x of st) stemsBySurface.get(w.s).add(x);
+  }
+}
+
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
+  surfaces_unattested: 0, surfaces_with_stems: 0,
   hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
@@ -251,7 +300,7 @@ for (const sec of zone.sections || []) {
       const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.packSplit(row[1]).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings.map((t) => t.toLowerCase()); }))]));
       const pool = store.readingPool(srows, "oldest");
       const TIER = { m: 0, n: 1, x: 2 };
-      // THE GRADE OF A ROW — pointing-grade-rule-v2, the same two steps the
+      // THE GRADE OF A ROW — pointing-grade-rule-v3, the same two steps the
       // page takes: a row that carries its source's own headwords at [6] is
       // graded by them against this pointed surface; a row that does not
       // falls to the lattice card's grade by fingerprint; "-" when neither
@@ -301,8 +350,18 @@ for (const sec of zone.sections || []) {
       // the printed line at 13.2% of graded words and bares 2.0%; strict
       // moves 61.5% and bares 5.2%, blacking out the divine name at its
       // Elohim-pointing, whose 60 cards hold 26 NORMALIZED and 0 matches.
-      const rowLeader = (keep) => {
-        const kept = srows.filter((row) => store.index.m_sources[row[3]] && keep(gradeOfRow(row)));
+      // A POINTING NO SOURCE ATTESTS WITHHOLDS NOTHING (2026-11-06), as on the
+      // page: the lenient filter applies only where some store row points the
+      // word as the text does. And THE BINYAN: a row whose stems are known
+      // and share no family with this surface's stems is withheld under both
+      // filters, as the page withholds it.
+      const st = stemsBySurface.has(m.surface) ? [...stemsBySurface.get(m.surface)].sort() : null;
+      const rs = st ? stemsByKey[m.key] || null : null;
+      const otherStem = (row) => !!(rs && isOtherStem(rs[`${row[3]}\u0001${row[0]}\u0001${row[1]}`], st));
+      const attested = srows.some((row) => store.index.m_sources[row[3]] && gradeOfRow(row) === "m");
+      if (!attested) stats.surfaces_unattested += 1;
+      const rowLeader = (keep, onlyWhereAttested) => {
+        const kept = srows.filter((row) => store.index.m_sources[row[3]] && (onlyWhereAttested && !attested ? true : keep(gradeOfRow(row))) && !otherStem(row));
         const p = store.readingPool(kept, "oldest");
         if (!p.length) return null;
         const top = p[0];
@@ -322,10 +381,11 @@ for (const sec of zone.sections || []) {
         m: firstUnder((gi) => gi.tier, (gi) => gi.tier === 0),
         x: firstUnder((gi) => ({ 2: 0, 1: 1, 0: 2 }[gi.tier] ?? 3), (gi) => gi.tier === 2),
         c: firstUnder((gi) => gi.cites, (gi) => gi.cites === 0),
-        l: rowLeader((gc) => gc !== "x"),
-        s: rowLeader((gc) => gc === "m"),
+        l: rowLeader((gc) => gc !== "x", true),
+        s: rowLeader((gc) => gc === "m", false),
       };
-      grades[m.surface] = { k: m.key, g: g.join(""), n: names, o };
+      grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}) };
+      if (st) stats.surfaces_with_stems += 1;
       stats.grades += 1;
     }
     // rule 3 · hg, the headword's first reading under lemma-sort v3
@@ -397,14 +457,15 @@ const sidecar = {
   grade_chars: { m: "VOWEL_MATCH", n: "NORMALIZED", x: "VOWEL_MISMATCH", "-": "ungraded" },
   first_under: {
     m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse",
-    l: "masorah · only (lenient) — the oldest reading among rows NOT graded VOWEL_MISMATCH: NORMALIZED and ungraded rows stay, computed row by row as the page filters",
-    s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row",
+    l: "masorah · only (lenient) — the oldest reading among rows NOT graded VOWEL_MISMATCH: NORMALIZED and ungraded rows stay, computed row by row as the page filters; where no store row is graded VOWEL_MATCH the pointing withholds nothing; a row of another stem (the binyan ledger) is withheld",
+    s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row; a row of another stem is withheld",
     shape: "[route text, source label, licence key, year] or null when the leading set is empty",
     row_grade: { rule: POINTING_GRADE_RULE_ID, from: "a store row that carries its source's own headwords at [6] is graded by them against this pointed surface, any one matching headword a match; a row without the slot takes the lattice card's grade by fingerprint; the leaders m, x, l, s all rest on that one grade — per source, not merged" },
   },
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats } },
   routes: sideRoutes, grades,
+  ...(binyanFiles.length ? { stems: stemsByKey, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each store row on the key, by m, rank and route; a row not listed has no known stem" } } : {}),
 };
 writeFileSync(sidecarPath, gzipSync(Buffer.from(JSON.stringify(sidecar)), { level: 9 }));
 
