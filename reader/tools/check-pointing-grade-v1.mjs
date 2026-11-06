@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word
+// GUARDS: pointing-grade-rule-v2-a-row-is-graded-by-its-own-headwords-and-a-word-initial-dagesh-lene-is-not-a-pointing
 //
 // THE GRADE FROM THE ROW'S OWN HEADWORDS, HELD.
 //
@@ -58,6 +58,10 @@ const p2 = [
   ["cantillation and U+034F never decide", gradeRow(row([DAVAR_ACCENTED]), DAVAR) === "m" && gradeRow(row([DAVAR]), DAVAR_CGJ) === "m" && vowelForm(DAVAR_ACCENTED) === vowelForm(DAVAR)],
   ["pointed means a vowel point after NFKD", isPointed(DAVAR) && !isPointed(BARE) && isPointed(DAVAR.normalize("NFC"))],
   ["a bare page word can never match a pointed headword", gradeRow(row([DAVAR]), BARE) === "x"],
+  // v2: a word-initial dagesh lene never decides; a dagesh inside the word does
+  ["a word-initial dagesh lene never decides", gradeRow(row([cp(0x05d1, 0x05bc, 0x05b8, 0x05e8, 0x05b8, 0x05d0)]), cp(0x05d1, 0x05b8, 0x05e8, 0x05b8, 0x05d0)) === "m" && gradeRow(row([cp(0x05db, 0x05b7, 0x05dc, 0x05bc, 0x05b9, 0x05d5, 0x05ea)]), cp(0x05db, 0x05bc, 0x05b7, 0x05dc, 0x05bc, 0x05b9, 0x05d5, 0x05ea)) === "m"],
+  ["a dagesh inside the word still decides", gradeRow(row([DIBBER]), cp(0x05d3, 0x05b4, 0x05d1, 0x05b5, 0x05e8)) === "x"],
+  ["a dagesh on a word-initial letter that is not bet, gimel, dalet, kaf, pe or tav still decides", gradeRow(row([cp(0x05de, 0x05bc, 0x05b4, 0x05df)]), cp(0x05de, 0x05b4, 0x05df)) === "x"],
 ];
 check("P2  the module grades as the rule says", p2.every((x) => x[1]), p2.filter((x) => !x[1]).map((x) => x[0]).join("; ") || `${p2.length} cases`);
 

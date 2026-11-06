@@ -31,7 +31,7 @@
 //   2. THE ENTRY IT BELONGS TO. Strong's (1890) closes every entry with the
 //      forms the King James Version prints for it — a usage list, the oldest
 //      such record on the shelf. Among the readings of Strong's rows whose
-//      own headword pointing matches this word's (pointing-grade-rule-v1,
+//      own headword pointing matches this word's (pointing-grade-rule-v2,
 //      grade m — the same test that keeps Dibri off "the words of"), a bare
 //      capitalised form equal to the witness's name, ignoring case and the
 //      period Strong's writes at the end of a list, is the entry's own name

@@ -96,7 +96,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | check-manifest-prints-unguarded-v1 |
 | `place-order-rule-v1-the-line-reads-what-the-source-gives-at-this-place` | tools/check-line-reads-the-place-v1.mjs | check-line-reads-the-place-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
-| `pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1 |
+| `pointing-grade-rule-v2-a-row-is-graded-by-its-own-headwords-and-a-word-initial-dagesh-lene-is-not-a-pointing` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1 |
 | `pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said` | tools/verify-pointing-store-v1.mjs | check-pointing-store-landing-v1 |
 | `pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land` | tools/land-pointing-store-v2-v1.mjs, tools/gloss-store-v1.mjs | check-pointing-store-landing-v1 |
 | `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1, check-carrier-survives-v1, check-names-pill-v1 |
@@ -109,7 +109,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | check-route-store-exact-k-v1 |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
 | `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1 |
-| `run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling` | tools/project-run-cards-v1.mjs, zone.html | check-run-cards-v1, check-run-card-forms-v1 |
+| `run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling` | tools/project-run-cards-v1.mjs, zone.html | check-run-cards-v1, check-run-line-follows-division-v1, check-run-card-forms-v1 |
 | `script-admission-rule-v1-a-published-word-is-written-in-hebrew-script` | tools/check-script-admitted-v1.mjs | check-script-admitted-v1 |
 | `sense-split-rule-v2` | zone.html | **UNGUARDED** |
 | `sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence` | tools/sense-split-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs | check-provider-characters-v1, check-sense-split-v1 |

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Synthesis lane · pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word
+// Synthesis lane · pointing-grade-rule-v2-a-row-is-graded-by-its-own-headwords-and-a-word-initial-dagesh-lene-is-not-a-pointing
 // LEDGER: -
 // no frame letter. This changes no letter of the text and no row of the
 // store: it is the one definition by which a store row earns its grade
@@ -32,13 +32,24 @@
 // sin dots, dagesh and the letters. Pointed means: a vowel point U+05B0–05BB
 // after NFKD. The same two functions stand in zone.html, to the character;
 // tools/check-pointing-grade-v1.mjs holds the two copies together.
-export const POINTING_GRADE_RULE_ID = "pointing-grade-rule-v1-a-row-is-graded-by-its-own-headwords-against-the-open-word";
+//
+// v2 (2026-11-06), the one place this departs from the corpus lane's lines:
+// the dagesh of a word-initial bet, gimel, dalet, kaf, pe or tav is dropped.
+// That dagesh is lene: it stands after a pause and goes after a vowel, so
+// it says where the word stands, not which form it is. Under v1 a source
+// that cites the form with it graded as pointing the word otherwise wherever
+// the text drops it: 72,092 store rows on the 39 books, and Ruth 1:7's
+// line went bare under "only this pointing". A dagesh inside the word still
+// decides (it can be forte, the piel's own mark). The corpus lane is told,
+// so its lattice can follow.
+export const POINTING_GRADE_RULE_ID = "pointing-grade-rule-v2-a-row-is-graded-by-its-own-headwords-and-a-word-initial-dagesh-lene-is-not-a-pointing";
 
 export const vowelForm = (t) => String(t ?? "")
   .replace(/\u034F/g, "")
   .normalize("NFKD")
   .replace(/[\u0591-\u05AF\u05BD\u05BE\u05BF\u05C0\u05C3\u05C4\u05C5\u05C6\u05C7]/g, "")
-  .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "");
+  .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "")
+  .replace(/^([\u05D1\u05D2\u05D3\u05DB\u05E4\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
 export const isPointed = (t) => /[\u05B0-\u05BB]/.test(String(t ?? "").normalize("NFKD"));
 // a row carries headwords when its seventh slot is an array — the v2 shape;
 // an empty array is a source that names no headword and grades NORMALIZED

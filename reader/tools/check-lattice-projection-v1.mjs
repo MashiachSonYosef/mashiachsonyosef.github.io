@@ -13,8 +13,10 @@
 //   L1  the projector still declares the rule this check enforces
 //   L2  every layered zone carries the receipt the rule names, and its
 //       sidecar is beside it, pinned, and of the schema the receipt names
-//   L3  hg stands only on a word that carries a headword, with its M; the
-//       receipt's counts are the zone's counts, recounted
+//   L3  hg stands only on a word that carries a headword, with its M, and
+//       that M is a source the served store still holds (rule 1: a card the
+//       store does not hold is never shown); the receipt's counts are the
+//       zone's counts, recounted
 //   L4  in the sidecar every graded surface grades exactly the cards its key
 //       carries, in the lattice's order, and every first-under entry names a
 //       card of that key
@@ -89,13 +91,14 @@ for (const { slug, z, t } of layered) {
   const pb = z.emitted_from.post_build;
   if (!(pb && Array.isArray(pb.wrote) && pb.wrote.includes("emitted_from.toggles") && String(pb.by || "").includes("project-lattice-v12-v1"))) note(l2, `${slug}: the write is not typed under the single-pass exemption`);
   // L3
-  let hg = 0, ld = 0, hgNoH = 0, hgNoM = 0;
+  let hg = 0, ld = 0, hgNoH = 0, hgNoM = 0, hgNotHeld = 0;
   for (const sec of z.sections || []) for (const w of sec.words || []) {
-    if (w.hg) { hg += 1; if (!w.h) hgNoH += 1; if (!w.hm || !w.hm.m || !w.hm.lic) hgNoM += 1; }
+    if (w.hg) { hg += 1; if (!w.h) hgNoH += 1; if (!w.hm || !w.hm.m || !w.hm.lic) hgNoM += 1; else if (!labels.has(w.hm.m)) hgNotHeld += 1; }
     if (w.ld) ld += 1;
   }
   if (hgNoH) note(l3, `${slug}: ${hgNoH} words carry hg without a headword`);
   if (hgNoM) note(l3, `${slug}: ${hgNoM} words carry hg without its M`);
+  if (hgNotHeld) note(l3, `${slug}: ${hgNotHeld} words carry hg credited to a source the store does not hold`);
   if (t.counts.hg !== hg || t.counts.ld !== ld) note(l3, `${slug}: receipt says hg ${t.counts.hg} / ld ${t.counts.ld}, the zone carries ${hg} / ${ld}`);
   hgAll += hg; ldAll += ld;
   // L8 — the parts, and the finding they stand on
@@ -134,9 +137,10 @@ for (const { slug, z, t } of layered) {
   // L4
   const routes = s.routes || {}, grades = s.grades || {};
   let badLen = 0, badFirst = 0;
-  // since pointing-grade-rule-v1 a leader rests on the row's own grade where
-  // the store row carries its headwords, and on the lattice card's grade
-  // where it does not — so the tier a leader leads must exist among the
+  // since the pointing grade (now pointing-grade-rule-v2) a leader rests on
+  // the row's own grade where the store row carries its headwords, and on
+  // the lattice card's grade where it does not — so the tier a leader leads
+  // must exist among the
   // key's cards OR among the key's store rows graded by their own headwords
   // against this surface. The sidecar says which rule it was projected under.
   const rowGraded = !!(s.first_under && s.first_under.row_grade);
@@ -193,7 +197,7 @@ for (const { slug, z, t } of layered) {
 }
 
 check("L2  every layered zone carries the receipt, and its sidecar is beside it, pinned, of the named schema", !l2.length, l2.length ? few(l2) : `${layered.length} sidecars, each pinned`);
-check("L3  hg stands only on a word with a headword, with its M; the counts are recounted", !l3.length, l3.length ? few(l3) : `${hgAll.toLocaleString()} headword readings, ${ldAll.toLocaleString()} Leningrad differences, as recorded`);
+check("L3  hg stands only on a word with a headword, with its M, a source the store holds; the counts are recounted", !l3.length, l3.length ? few(l3) : `${hgAll.toLocaleString()} headword readings, ${ldAll.toLocaleString()} Leningrad differences, as recorded`);
 check("L4  every graded surface grades its key's cards in the lattice's order; every first-under names a card", !l4.length, l4.length ? few(l4) : `${surfacesAll.toLocaleString()} pointed surfaces graded`);
 check("L5  the fingerprints join the store", !l5.length && joinHits > 0, l5.length ? few(l5) : `${joinHits.toLocaleString()} of ${joinRows.toLocaleString()} store rows find their lattice card (${(100 * joinHits / Math.max(1, joinRows)).toFixed(1)}%); the rest sort after the graded ones, never dropped`);
 check("L6  the sidecar's sources are the sealed lattice files, by hash, as the receipt records them", !l6.length, l6.length ? few(l6) : "positions and routes sha256 agree on every layered zone");

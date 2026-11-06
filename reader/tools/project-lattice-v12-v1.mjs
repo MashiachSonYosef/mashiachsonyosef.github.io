@@ -149,6 +149,7 @@ const readLines = async (path, onLine) => {
 const routes = new Map();   // key -> [{ fp, text, src, lic, year, corpus, tr }]
 // the wording year the served store gives a source's own row for a reading
 const labelOf = new Map(Object.entries(store.index.m_sources || {}).map(([id, s]) => [id, s.label || ""]));
+const heldLabels = new Set(labelOf.values());
 const wordingYearOf = (key, card) => {
   const rows = store.routesFor(key) || [];
   const hit = rows.find((r) => labelOf.get(r[3]) === card.src && String(r[1]) === String(card.text));
@@ -180,7 +181,7 @@ await readLines(files.positions, (line) => {
 
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
-  hg: 0, hm_year_unsaid: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
+  hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
   held_examples: [] };
@@ -250,7 +251,7 @@ for (const sec of zone.sections || []) {
       const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.packSplit(row[1]).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings.map((t) => t.toLowerCase()); }))]));
       const pool = store.readingPool(srows, "oldest");
       const TIER = { m: 0, n: 1, x: 2 };
-      // THE GRADE OF A ROW — pointing-grade-rule-v1, the same two steps the
+      // THE GRADE OF A ROW — pointing-grade-rule-v2, the same two steps the
       // page takes: a row that carries its source's own headwords at [6] is
       // graded by them against this pointed surface; a row that does not
       // falls to the lattice card's grade by fingerprint; "-" when neither
@@ -340,6 +341,15 @@ for (const sec of zone.sections || []) {
     else if (!L.in_routes || !Array.isArray(L.sorted_route_index) || !L.sorted_route_index.length || !routes.get(L.key)) stats.hg_skipped_lemma_not_in_routes += 1;
     else {
       const top = routes.get(L.key)[L.sorted_route_index[0]];
+      // RULE 1 HOLDS FOR THE HEADWORD TOO: a card whose source the served
+      // store does not hold is counted and never shown. The lattice is the
+      // corpus lane's own catalog; the store struck seven of its sources for
+      // naming no language (data/language-admission-v1.json) and Bolls's BDB
+      // for its license (data/source-strikes-v1.json, 17 October), and their
+      // cards still head 8,352 headword stacks on the 39 books. The word then
+      // carries no hg, and the line under "the headword" reads the headword's
+      // own baked column, as at every other word without one.
+      if (top && !heldLabels.has(top.src)) stats.hg_skipped_source_not_held += 1;
       // THE CREDIT'S YEAR IS THE STORE'S. The lattice card carries a year of
       // its own (BDB's 1906 on a reading SDBH repeats), and pairing it with
       // the card's source named one source with another's year on 655 of
@@ -347,7 +357,7 @@ for (const sec of zone.sections || []) {
       // wording year of that source's own row for this reading, read from
       // the served store; where no row of that source speaks the reading,
       // no year is said.
-      if (top) { w.hg = top.text; w.hm = { m: top.src, lic: top.lic, y: wordingYearOf(L.key, top) }; stats.hg += 1; if (w.hm.y === null) stats.hm_year_unsaid += 1; }
+      else if (top) { w.hg = top.text; w.hm = { m: top.src, lic: top.lic, y: wordingYearOf(L.key, top) }; stats.hg += 1; if (w.hm.y === null) stats.hm_year_unsaid += 1; }
       else stats.hg_skipped_lemma_not_in_routes += 1;
     }
     // rule 3 · ld, where the Leningrad codex differs
@@ -408,7 +418,7 @@ ef.toggles.lattice = {
   join: "verse by verse, ON positions only (kind, not rule); the n-th ON word takes the n-th ON row, proved by key at every position AND by j being distinct and ascending across the verse's rows (j is the position identity — i repeats across the parts of a maqaf compound); a verse that does not prove is held whole",
   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
   counts: { ...stats },
-  what_the_word_carries: "hg: the headword's first reading under lemma-sort v3, with hm (source, licence key, year) — only where h is the lattice's lemma and the stack is in routes; ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
+  what_the_word_carries: "hg: the headword's first reading under lemma-sort v3, with hm (source, licence key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source; ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
   pieces: {
     rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
     witnesses: pieceWitness,
