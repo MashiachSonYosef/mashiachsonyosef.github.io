@@ -87,7 +87,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
 | `orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration` | tools/check-orders-registered-together-v1.mjs | check-orders-registered-together-v1 |
 | `overlay-book-counts-rule-v1-a-dictionary-beside-the-store-is-counted-per-book-like-every-other` | tools/bake-overlay-book-counts-v1.mjs | check-source-switch-v1 |
-| `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html | check-overlays-v1, check-card-opens-on-the-line-v1, check-pointing-grade-v1, check-source-switch-v1 |
+| `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html | check-overlays-v1, check-card-opens-on-the-line-v1, check-pointing-grade-v1, check-source-switch-v1, check-witnessed-order-v1 |
 | `partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing` | zone.html | check-partial-serve-declared-v1 |
 | `parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost` | zone.html | check-parts-read-right-to-left-v1 |
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs, tools/build-commentary-sidecar-v2.mjs | check-sealed-layers-v1 |
@@ -128,7 +128,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
 | `span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole` | tools/apply-span-ledger-v1.mjs | check-respan-projection-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
-| `stem-family-rule-v1-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words` | tools/stem-family-v1.mjs | check-pointing-gate-v1 |
+| `stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words` | tools/stem-family-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-pointing-gate-v1 |
 | `store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed` | tools/check-store-continuity-v1.mjs | check-store-continuity-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
 | `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs, tools/land-pointing-store-v2-v1.mjs | check-route-store-exact-k-v1 |

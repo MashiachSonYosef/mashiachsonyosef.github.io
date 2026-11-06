@@ -451,15 +451,17 @@
     .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "")
     .replace(/^([\u05D1\u05D2\u05D3\u05DB\u05E4\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
   const isPointed = (t) => /[\u05B0-\u05BB]/.test(String(t ?? "").normalize("NFKD"));
-  // the binyan ledger's families (the corpus lane, v105): a source may name
-  // a stem inside a family otherwise than the place does (BDB's Po. is poel
-  // where MACULA says polel), so stems are compared by family, never by name
+  // the binyan ledger's families (stem-family-rule-v2, tools/stem-family-v1.mjs):
+  // a source may name a stem inside a family otherwise than the place does
+  // (BDB's Po. is poel where MACULA says polel), so stems are compared by
+  // family, never by name; the Hebrew stem and its Aramaic name are one
+  // family (qal and peal, hiphil and haphel and aphel, piel and pael)
   const STEM_FAMILY = Object.freeze({
     polel: "piel", poel: "piel", pilpel: "piel", palel: "piel", pealal: "piel", pilel: "piel",
     polal: "pual", poal: "pual", polpal: "pual", pulal: "pual",
     hithpolel: "hithpael", hithpalpel: "hithpael", hithpoel: "hithpael", hithpalel: "hithpael", nithpael: "hithpael", hothpaal: "hithpael", ethpolel: "hithpael",
     "qal passive": "qal", tiphil: "hiphil",
-    peil: "peal", paal: "pael", aphel: "haphel", shaphel: "haphel", saphel: "haphel",
+    peal: "qal", peil: "qal", pael: "piel", paal: "piel", haphel: "hiphil", aphel: "hiphil", shaphel: "hiphil", saphel: "hiphil", hephal: "hophal",
     ithpeel: "hithpeel", ithpaal: "hithpaal", ithpoel: "hithpaal",
   });
   const stemFamily = (x) => STEM_FAMILY[x] || x;

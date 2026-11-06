@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: stem-family-rule-v1-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words
+// GUARDS: stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words
 //
 // THE POINTING GATE ASKS WHAT THE SOURCES SAY, AND NOTHING MORE (2026-11-06).
 // Under "only this pointing", the default, two things withhold a record, and
@@ -9,10 +9,12 @@
 //     none does (a word in pause, a headword pointed in half) the grade cannot
 //     tell a different form from this one, and nothing is withheld;
 //   - the stem: a record whose stems are known (the corpus lane's binyan
-//     ledger, v104 and v105) and none of them is in the family of the word's
-//     stems.
+//     ledger, version 2 of both files, v105.1) and none of them is in the
+//     family of the word's stems.
 //
-//   G1  the page's stem families are the module's, name for name
+//   G1  the page's stem families are the module's, name for name, and the
+//       Hebrew stem and its Aramaic name are one family (qal and peal,
+//       hiphil and haphel and aphel, piel and pael; stem-family-rule-v2)
 //   G2  a verb whose key carries records of another stem: under the default
 //       its card withholds exactly those records for the stem, after the
 //       pointing has withheld its own, and says so on its withheld line
@@ -20,16 +22,16 @@
 //   G4  a word no record of the store points as the text does: under the
 //       default its card withholds nothing for the pointing, and has readings
 //
-// THE STEM IS SUSPENDED (the corpus lane, Moses, 2026-11-06). A fresh reader
-// checked both binyan files by hand and found them not fit to withhold with:
-// row stems, M46's own labels 6 wrong and 2 partly wrong of 40 read, and M5's
-// finding rule takes right readings off qal cards; place stems, 7 of 73,843
-// lines wrong. Version 2 of both is being read. Until it is reviewed no
-// sidecar carries stems, and then G2 holds the suspension instead: no served
-// sidecar carries the withdrawn files, and a word's card withholds nothing
-// for the stem under the default (G3 under "keep" as before). A sidecar that
-// carries a ledger again is checked as G2 always checked it, unless the
-// ledger is one of the withdrawn files, which fails.
+// VERSION 1 OF THE BINYAN FILES IS WITHDRAWN (the corpus lane, Moses,
+// 2026-11-06). A fresh reader checked both by hand and found them not fit to
+// withhold with: row stems, M46's own labels 6 wrong and 2 partly wrong of 40
+// read, and M5's finding rule takes right readings off qal cards; place
+// stems, 7 of 73,843 lines wrong. From then until version 2 was reviewed no
+// sidecar carried stems, and G2 held the suspension: a word's card withholds
+// nothing for the stem under the default (G3 under "keep" as before). That
+// branch stands for any build whose sidecars carry no ledger. A sidecar that
+// carries a ledger is checked as G2 always checked it, unless the ledger is
+// one of the withdrawn files, which fails.
 //
 // The words are found in the data, never named: G2's verb in the first served
 // zone, in book order, whose sidecar carries the binyan ledger and has such a
@@ -91,6 +93,16 @@ for (const z of zonesServed()) {
   }
 }
 
+// the Hebrew stem and its Aramaic name: one family each (stem-family-rule-v2)
+const JOINS = [["qal", "peal"], ["qal", "peil"], ["hiphil", "haphel"], ["hiphil", "aphel"], ["piel", "pael"], ["hophal", "hephal"]];
+const g1 = (r) => {
+  const wrong = (r.fam || []).filter(([n, f]) => f !== (STEM_FAMILY[n] || n));
+  const famOf = new Map(r.fam || []);
+  const apart = JOINS.filter(([a, b]) => (famOf.get(a) || a) !== (famOf.get(b) || b));
+  check("G1  the page's stem families are the module's, name for name, and each Hebrew stem shares its family with its Aramaic name", !!r.fam && wrong.length === 0 && apart.length === 0,
+    r.fam ? `${r.fam.length} names${wrong.length ? ` · ${wrong.map(([n, f]) => `${n}: ${f}`).join(", ")}` : ""} · ${apart.length ? `apart: ${apart.map((x) => x.join("/")).join(", ")}` : JOINS.map((x) => x.join("/")).join(", ")}` : "the page exposes no stem families");
+};
+
 const BASE = defaultZoneUrl().replace(/[?&]b=[^&#]+/, "").replace(/\?$/, "");
 const b = await pw.chromium.launch(launchOptions());
 const open = async (w, masorah) => {
@@ -129,8 +141,7 @@ else if (!ledgered) {
   if (!any) check("G2  the stem withholds nothing while the binyan files are withdrawn", false, "no served word has a record pointed as the text points it");
   else {
     const r = await open(any);
-    const wrong = (r.fam || []).filter(([n, f]) => f !== (STEM_FAMILY[n] || n));
-    check("G1  the page's stem families are the module's, name for name", !!r.fam && wrong.length === 0, r.fam ? `${r.fam.length} names${wrong.length ? ` · ${wrong.map(([n, f]) => `${n}: ${f}`).join(", ")}` : ""}` : "the page exposes no stem families");
+    g1(r);
     check("G2  the stem withholds nothing while the binyan files are withdrawn (Moses, 2026-11-06)", !r.error && r.stem === 0 && !/of another stem/u.test(r.line),
       r.error || `no served sidecar carries stems · ${any.zone} ${any.label} ${any.k}: stem ${r.stem} · "${r.line}"`);
     const k = await open(any, "keep");
@@ -139,8 +150,7 @@ else if (!ledgered) {
 } else if (!verb) check("G2  a verb's card withholds exactly the records of another stem", false, "no word of a served zone has a record of another stem on its key");
 else {
   const r = await open(verb);
-  const wrong = (r.fam || []).filter(([n, f]) => f !== (STEM_FAMILY[n] || n));
-  check("G1  the page's stem families are the module's, name for name", !!r.fam && wrong.length === 0, r.fam ? `${r.fam.length} names${wrong.length ? ` · ${wrong.map(([n, f]) => `${n}: ${f}`).join(", ")}` : ""}` : "the page exposes no stem families");
+  g1(r);
   // the pointing's own count also grades the overlays' records, which this
   // check does not load (check-masorah-toggle-v1 holds that count); the stem
   // is asked of the store's records only, and so is this count

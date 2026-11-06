@@ -1,18 +1,27 @@
-// Synthesis lane · stem-family-rule-v1-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words
+// Synthesis lane · stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words
 // LEDGER: -
-// no frame letter. The binyan ledger's families, as the corpus lane gives
-// them (v105): a source may name a stem inside a family otherwise than the
-// place does (BDB's Po. is poel where MACULA says polel at the same verb),
-// so stems are compared by family, never by name. A name that is no family's
-// member is its own family. The page carries the same map, to the
-// character (tools/check-stem-withholding-v1.mjs holds the two together).
-export const STEM_FAMILY_RULE_ID = "stem-family-rule-v1-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words";
+// no frame letter. The binyan ledger's families: a source may name a stem
+// inside a family otherwise than the place does (BDB's Po. is poel where
+// MACULA says polel at the same verb), so stems are compared by family,
+// never by name. A name that is no family's member is its own family. The
+// page carries the same map, to the character (tools/check-pointing-gate-v1.mjs
+// holds the two together).
+//
+// v2 (the corpus lane's version 2 of both binyan files, v105.1, 6 November
+// 2026): the Hebrew stem and its Aramaic name are one family, as the corpus
+// lane asked, so the same verb in the same stem is never another stem's:
+// qal with peal, hiphil with haphel and aphel, piel with pael. The names
+// each of those already held go with it: peil (peal's passive, as qal
+// passive is qal's), paal, shaphel and saphel. hephal, BDB's name for the
+// passive of haphel that the places call hophal, is hophal's. Every stem
+// name the row file carries is then a family some place carries.
+export const STEM_FAMILY_RULE_ID = "stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words";
 export const STEM_FAMILY = Object.freeze({
   polel: "piel", poel: "piel", pilpel: "piel", palel: "piel", pealal: "piel", pilel: "piel",
   polal: "pual", poal: "pual", polpal: "pual", pulal: "pual",
   hithpolel: "hithpael", hithpalpel: "hithpael", hithpoel: "hithpael", hithpalel: "hithpael", nithpael: "hithpael", hothpaal: "hithpael", ethpolel: "hithpael",
   "qal passive": "qal", tiphil: "hiphil",
-  peil: "peal", paal: "pael", aphel: "haphel", shaphel: "haphel", saphel: "haphel",
+  peal: "qal", peil: "qal", pael: "piel", paal: "piel", haphel: "hiphil", aphel: "hiphil", shaphel: "hiphil", saphel: "hiphil", hephal: "hophal",
   ithpeel: "hithpeel", ithpaal: "hithpaal", ithpoel: "hithpaal",
 });
 export const stemFamily = (x) => STEM_FAMILY[x] || x;
