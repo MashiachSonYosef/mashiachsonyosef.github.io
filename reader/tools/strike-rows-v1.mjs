@@ -1,38 +1,57 @@
 #!/usr/bin/env node
-// GUARDS: row-strike-rule-v1-a-row-the-provider-misfiled-is-struck-or-re-keyed-by-a-named-list-and-the-hole-is-typed
+// GUARDS: row-strike-rule-v2-a-named-list-strikes-withholds-re-keys-rejoins-or-re-heads-a-row-and-the-hole-is-typed
 // LEDGER: M R
-// Strikes named store ROWS, not whole sources: the rows a provider's parse
-// filed under a key that is not their word's, each named by the corpus lane
-// in a list the page lane reviewed (m, key, rank, route, and an action).
+// Acts on named store ROWS, not whole sources: rows a provider's parse filed
+// under a key that is not their word's, rows the owner has ruled off the
+// cards, and rows a cut left in pieces. Each is named by the corpus lane in a
+// list the page lane reviewed, row by row (m, key, rank, route, an action).
 //
-// The first use (6 November 2026): the corpus lane's one-letter forms, v103.2
-// (moses-one-letter-forms-v1, strike-list-v1.jsonl). Wikisource's Strong's
-// concordance (M14) filed 17 records under a bare letter whose word they are
-// not: "to write", "not", "to inquire" under the vav, "to strike" under the
-// he, "to go or come" and "all" under the lamed, and more. Their renderings
-// sat on the card of every prefix or suffix of that letter (173 rows). One
-// record, Manasseh, is the name's own and is moved to its word, re-keyed and
-// not struck. A row a branch of that ship holds back while its resting
-// option stands (B01, "what" on the letter mem: the owner has not ruled; the
-// resting option withholds) is struck the same way and named with the
-// branch, so a ruling the other way puts it back from this record.
+// The first use (6 November 2026, under version 1): the corpus lane's
+// one-letter forms, v103.2 (moses-one-letter-forms-v1, strike-list-v1.jsonl).
+// Wikisource's Strong's concordance (M14) filed 17 records under a bare
+// letter whose word they are not: "to write", "not", "to inquire" under the
+// vav, "to strike" under the he, and more. Their renderings sat on the card
+// of every prefix or suffix of that letter (173 rows). One record, Manasseh,
+// is the name's own and was moved to its word. A row a branch holds back
+// while its resting option stands (B01, "what" on the letter mem) is struck
+// the same way and named with the branch, so a ruling the other way puts it
+// back from this record. The owner ruled B01 on 6 November: kept withheld.
 //
-// Sister of strike-source-v1 (a source struck whole for its license) and
-// strike-language-v1 (the admission strike): the same mechanics. The shards
-// are rewritten without the struck rows; every rank a struck row stood on is
-// typed in the store's struck-ranks record and never renumbered; a re-keyed
-// row takes the next rank of its new key, so no rank there is shared; the
-// store's version is recomputed from the bytes. Its own cumulative record,
-// data/row-strikes-v1.json, carries every row it took whole (all seven
-// slots), so a stranger can tell what went, why, and put it back.
+// VERSION 2 (6 November 2026, the corpus lane's store lists v146). Version 1
+// knew two actions. The lists name five, and one way a re-key can land:
+//   strike    the row goes; it renders nothing, or nothing of its key
+//   withhold  the row goes from the cards under an owner's ruling (a reading
+//             in another language printed as English); kept whole here, as a
+//             strike is, so a ruling the other way puts it back
+//   re-key    the row moves to its word's key and takes the source's own
+//             headword there (to_headwords): version 1 moved Manasseh with
+//             the letter's headword, so the pointing grade read it against
+//             the letter. Where the new key already holds the same text, the
+//             row FOLDS: the store keeps one row per key and text (rule 1 of
+//             tools/build-route-store.mjs), so the moved row is taken and the
+//             rows it folds into are named. Where the list says whether the
+//             key holds the text, the store must agree, or this refuses
+//   headword  the row stays and its headwords are mended to the source's own
+//             (Manasseh, whose headword version 1 left as the letter)
+//   rejoin    rows a cut left in pieces become one row, the source's whole
+//             run, at the first named row's rank; the others go. A run the
+//             key already holds folds the pieces into it
+// The arithmetic: routes_struck counts every row a round takes off the store
+// (a strike, a withholding, a re-key that folds, and the rows a rejoin joins
+// beyond the one it keeps), routes_rekeyed the re-keys that land as a row of
+// their own, by_action each. Every row taken, and every re-keyed row's old
+// rank, is typed in the store's struck-ranks record; ranks are never
+// renumbered, and a re-keyed row takes the next rank of its new key.
 //
-// It refuses before it writes: every list row must name exactly the rows the
-// served store holds under that (m, key, rank, route), and a re-key must
-// name a key that is not the one it leaves.
+// It refuses before it writes: every list row must name exactly one row the
+// served store holds under that (m, key, rank, route), no row twice; a re-key
+// names a key that is not the one it leaves; a re-heading names the
+// headwords the row has now; a rejoin's rows share their m and definition.
 //
-// Usage: node tools/strike-rows-v1.mjs --list <strike-list.jsonl> --reason "<why>"
-//          [--branches <branches.json> --branch B01] [--store data/route-store] [--dry]
-import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+// Usage: node tools/strike-rows-v1.mjs --list <list.jsonl> --reason "<why>"
+//          [--branches <branches.json> --branch B01] [--store data/route-store]
+//          [--leave-off "<m>|<key>|<why>"]... [--dry]
+import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { join, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gzipSync, gunzipSync } from "node:zlib";
@@ -42,100 +61,173 @@ import { recordStruckRanks } from "./emit-struck-ranks-v1.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
+const args = (n) => process.argv.flatMap((a, i) => (a === `--${n}` ? [process.argv[i + 1]] : []));
 const STORE = arg("store", join(K3, "data", "route-store"));
 const DRY = process.argv.includes("--dry");
 const LIST = arg("list", null);
 const BRANCHES = arg("branches", null);
 const BRANCH = arg("branch", null);
 const REASON = arg("reason", "");
-export const ROW_STRIKE_RULE_ID = "row-strike-rule-v1-a-row-the-provider-misfiled-is-struck-or-re-keyed-by-a-named-list-and-the-hole-is-typed";
+export const ROW_STRIKE_RULE_ID = "row-strike-rule-v2-a-named-list-strikes-withholds-re-keys-rejoins-or-re-heads-a-row-and-the-hole-is-typed";
 const RECORD = join(K3, "data", "row-strikes-v1.json");
 if (!LIST || !REASON || (BRANCHES && !BRANCH) || (BRANCH && !BRANCHES)) {
-  console.log("usage: --list <strike-list.jsonl> --reason \"<the review this strike stands on>\" [--branches <branches.json> --branch B01] [--store dir] [--dry]");
+  console.log("usage: --list <list.jsonl> --reason \"<the review this stands on>\" [--branches <branches.json> --branch B01] [--store dir] [--leave-off \"<m>|<key>|<why>\"]... [--dry]");
   process.exit(2);
 }
+const refuse = (msg) => { console.log(`REFUSED — ${msg}`); process.exit(1); };
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
 const shardOf = (k) => `${sha256(Buffer.from(k, "utf8")).slice(0, 2)}.bin`;
+const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const ACTIONS = ["strike", "withhold", "re-key", "headword", "rejoin"];
 
 // ---- what is asked ------------------------------------------------------------
+const leaveOff = args("leave-off").map((s) => { const [m, key, ...why] = String(s).split("|"); return { m, key, why: why.join("|") }; });
+if (leaveOff.some((l) => !l.m || !l.key || !l.why)) refuse("a --leave-off names its m, its key and why: \"<m>|<key>|<why it stays off>\"");
 const listBytes = readFileSync(LIST);
-const asked = listBytes.toString("utf8").split("\n").filter((l) => l.trim()).map((l, i) => {
-  const e = JSON.parse(l);
-  if (!["strike", "re-key"].includes(e.action)) { console.log(`REFUSED — list line ${i + 1}: action "${e.action}" is neither strike nor re-key`); process.exit(1); }
-  if (e.action === "re-key" && (!e.to_key || e.to_key === e.key)) { console.log(`REFUSED — list line ${i + 1}: a re-key names no other key`); process.exit(1); }
-  return { m: e.m, key: e.key, rank: e.rank, route: e.route, action: e.action, to_key: e.action === "re-key" ? e.to_key : null, why: "list", h: e.H ?? null };
+const leftOff = [];
+const asked = [];
+listBytes.toString("utf8").split("\n").forEach((l, i) => {
+  if (!l.trim()) return;
+  const e = JSON.parse(l), line = i + 1;
+  if (!ACTIONS.includes(e.action)) refuse(`list line ${line}: action "${e.action}" is none of ${ACTIONS.join(", ")}`);
+  const lo = leaveOff.find((x) => x.m === e.m && x.key === e.key);
+  if (lo) { leftOff.push({ line, m: e.m, key: e.key, action: e.action, why: lo.why }); return; }
+  if (e.action === "re-key" && (!e.to_key || e.to_key === e.key)) refuse(`list line ${line}: a re-key names no other key`);
+  if (e.action === "headword" && (!Array.isArray(e.headwords_now) || !Array.isArray(e.headwords_to))) refuse(`list line ${line}: a re-heading names the headwords now and the headwords to`);
+  if (e.action === "rejoin" && (!Array.isArray(e.rows) || !e.rows.length || typeof e.rejoined_text !== "string" || !e.rejoined_text)) refuse(`list line ${line}: a rejoin names its rows and the text they rejoin to`);
+  const named = e.action === "rejoin" ? e.rows.map((x) => ({ rank: x.rank, route: x.route })) : [{ rank: e.rank, route: e.route }];
+  asked.push({ line, m: e.m, key: e.key, action: e.action, named, to_key: e.action === "re-key" ? e.to_key : null,
+    to_headwords: Array.isArray(e.to_headwords) ? e.to_headwords : null,
+    to_key_holds_text: typeof e.to_key_holds_text === "boolean" ? e.to_key_holds_text : null,
+    to_key_holds: Array.isArray(e.to_key_holds) ? e.to_key_holds : null,
+    headwords_now: e.headwords_now ?? null, headwords_to: e.headwords_to ?? null,
+    rejoined_text: e.rejoined_text ?? null, why: "list", list_why: e.why ?? null, kind: e.kind ?? null });
 });
+for (const lo of leaveOff) if (!leftOff.some((x) => x.m === lo.m && x.key === lo.key)) refuse(`--leave-off ${lo.m}|${lo.key} names no line of the list`);
 let branch = null;
 if (BRANCHES) {
   const bBytes = readFileSync(BRANCHES);
   const b = JSON.parse(bBytes.toString("utf8")).find((x) => x.id === BRANCH);
-  if (!b) { console.log(`REFUSED — ${BRANCHES} names no branch ${BRANCH}`); process.exit(1); }
+  if (!b) refuse(`${BRANCHES} names no branch ${BRANCH}`);
   const resting = (b.options || []).find((o) => o.id === b.resting);
-  if (!resting || resting.id !== "withheld") { console.log(`REFUSED — branch ${BRANCH} rests on "${b.resting}", not on withholding; nothing to strike for it`); process.exit(1); }
+  if (!resting || resting.id !== "withheld") refuse(`branch ${BRANCH} rests on "${b.resting}", not on withholding; nothing to strike for it`);
   branch = { id: b.id, name: b.name, question: b.question, resting: b.resting, means: resting.means, file: basename(BRANCHES), sha256: sha256(bBytes) };
-  for (const r of b.rows || []) asked.push({ m: r.m, key: r.key, rank: r.rank, route: r.route, action: "strike", to_key: null, why: `branch ${b.id} resting (${b.resting})`, h: null });
+  for (const r of b.rows || []) asked.push({ line: null, m: r.m, key: r.key, action: "strike", named: [{ rank: r.rank, route: r.route }], to_key: null, why: `branch ${b.id} resting (${b.resting})` });
 }
 
-// ---- the store, and every asked row found in it -------------------------------
+// ---- the store, and every named row found in it, once ---------------------------
 const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
 const shardNames = readdirSync(join(STORE, "shards")).filter((f) => f.endsWith(".bin")).sort();
 const shards = new Map(shardNames.map((n) => [n, JSON.parse(gunzipSync(readFileSync(join(STORE, "shards", n))).toString("utf8"))]));
 let routesBefore = 0, keysBefore = 0;
 for (const body of shards.values()) for (const rows of Object.values(body)) { keysBefore += 1; routesBefore += rows.length; }
+const rowsOf = (k) => { const b = shards.get(shardOf(k)); return (b && b[k]) || []; };
 
-const same = (r, e) => String(r[3]) === e.m && r[0] === e.rank && r[1] === e.route;
-const misses = [];
-const seen = new Set();
+const claimed = new Set();
 for (const e of asked) {
-  const id = `${e.m}|${e.key}|${e.rank}|${e.route}`;
-  if (seen.has(id)) { console.log(`REFUSED — ${id} is asked twice`); process.exit(1); }
-  seen.add(id);
-  const body = shards.get(shardOf(e.key));
-  const hits = body && body[e.key] ? body[e.key].filter((r) => same(r, e)) : [];
-  if (!hits.length) misses.push(id);
-  e.hits = hits.length;
+  e.rows = e.named.map((n) => {
+    const id = `${e.m}|${e.key}|${n.rank}|${n.route}`;
+    const hits = rowsOf(e.key).filter((r) => String(r[3]) === e.m && r[0] === n.rank && r[1] === n.route);
+    if (hits.length !== 1) refuse(`${id} names ${hits.length} rows of the served store; a list row names exactly one`);
+    if (claimed.has(hits[0])) refuse(`${id} is named twice`);
+    claimed.add(hits[0]);
+    return hits[0];
+  });
+  if (e.action === "headword" && !same(e.rows[0][6], e.headwords_now)) refuse(`${e.m}|${e.key}|${e.named[0].rank}: its headwords are ${JSON.stringify(e.rows[0][6])}, not ${JSON.stringify(e.headwords_now)} as the list says`);
+  if (e.action === "rejoin" && e.rows.some((r) => r[2] !== e.rows[0][2])) refuse(`the rejoin on ${e.m}|${e.key} names rows of more than one definition`);
+  if (e.action === "re-key" && e.to_key_holds_text !== null) {
+    // what the key held before this list touched it: the list was read against that store
+    const holders = rowsOf(e.to_key).filter((r) => r[1] === e.named[0].route).map((r) => `${r[3]}@${r[0]}`);
+    if ((holders.length > 0) !== e.to_key_holds_text) refuse(`${e.m}|${e.key}|${e.named[0].rank} -> ${e.to_key}: the list says the key ${e.to_key_holds_text ? "holds" : "does not hold"} «${e.named[0].route}», the store says ${holders.length ? holders.join(",") : "it does not"}`);
+    if (e.to_key_holds && !same([...holders].sort(), [...e.to_key_holds].sort())) refuse(`${e.m}|${e.key}|${e.named[0].rank} -> ${e.to_key}: the list names ${e.to_key_holds.join(",")} as holding the text, the store ${holders.join(",")}`);
+  }
 }
-if (misses.length) { console.log(`REFUSED — ${misses.length} asked row(s) the served store does not hold: ${misses.slice(0, 4).join(" · ")}`); process.exit(1); }
 
-// ---- the strike, counted before anything is written ------------------------------
+// ---- the round, counted before anything is written --------------------------------
 const ranks = { keys: {}, rows: 0, keys_touched: 0, on_struck_records: 0, on_other_records: 0 };
-const taken = [];               // every row taken, whole, with what was done with it
+const taken = [];               // every row acted on, whole, with what was done with it
 const perSource = {}, cutsTaken = {};
+const byAction = { strike: 0, withhold: 0, re_key_landed: 0, re_key_folded: 0, rejoin_joins: 0, rejoin_rows_taken: 0, rejoin_folded: 0, headword: 0 };
 const keysTouched = new Set(), keysEmptied = [], keysMadeNew = [];
-let routesStruck = 0, routesRekeyed = 0;
+const touchedShards = new Set();
+let routesTaken = 0, routesRekeyed = 0;
+const typeRank = (key, r) => { (ranks.keys[key] ||= []).push([r[0], String(r[3])]); ranks.rows += 1; ranks.on_struck_records += 1; perSource[r[3]] = (perSource[r[3]] || 0) + 1; };
+const takeOff = (key, r) => {
+  const body = shards.get(shardOf(key));
+  const left = body[key].filter((x) => x !== r);
+  if (left.length === body[key].length) refuse(`internal: ${key} rank ${r[0]} was not where it was found`);
+  if (left.length) body[key] = left; else { delete body[key]; keysEmptied.push(key); }
+  keysTouched.add(key); touchedShards.add(shardOf(key));
+};
 for (const e of asked) {
-  const body = shards.get(shardOf(e.key));
-  const rows = body[e.key];
-  const out = [];
-  for (const r of rows) {
-    if (!same(r, e)) { out.push(r); continue; }
-    keysTouched.add(e.key);
-    (ranks.keys[e.key] ||= []).push([r[0], String(r[3])]); ranks.rows += 1; ranks.on_struck_records += 1;
-    perSource[r[3]] = (perSource[r[3]] || 0) + 1;
-    // a re-keyed row keeps its slot [5]; only a struck cut leaves the cut table
-    if (e.action === "strike" && r.length > 5 && r[5] === 1) cutsTaken[r[3]] = (cutsTaken[r[3]] || 0) + 1;
-    if (e.action === "strike") { routesStruck += 1; taken.push({ action: "strike", why: e.why, key: e.key, row: r }); continue; }
-    // re-key: the row, unchanged but for its rank, at the end of its word's key
+  if (e.action === "strike" || e.action === "withhold") {
+    const r = e.rows[0];
+    takeOff(e.key, r); typeRank(e.key, r); routesTaken += 1; byAction[e.action] += 1;
+    if (r.length > 5 && r[5] === 1) cutsTaken[r[3]] = (cutsTaken[r[3]] || 0) + 1;
+    taken.push({ action: e.action, why: e.why, kind: e.kind ?? null, key: e.key, row: r });
+    continue;
+  }
+  if (e.action === "headword") {
+    const r = e.rows[0], was = r[6];
+    r[6] = e.headwords_to;
+    keysTouched.add(e.key); touchedShards.add(shardOf(e.key)); byAction.headword += 1;
+    taken.push({ action: "headword", why: e.why, kind: e.kind ?? null, key: e.key, row: [...r.slice(0, 6), was], headwords_to: e.headwords_to });
+    continue;
+  }
+  if (e.action === "re-key") {
+    const r = e.rows[0];
+    takeOff(e.key, r); typeRank(e.key, r);
     const toBody = shards.get(shardOf(e.to_key));
     const toRows = toBody[e.to_key] || [];
+    const holders = toRows.filter((x) => x[1] === r[1]);
+    if (holders.length) {
+      // the key holds this text already: the row folds into what holds it
+      routesTaken += 1; byAction.re_key_folded += 1;
+      if (r.length > 5 && r[5] === 1) cutsTaken[r[3]] = (cutsTaken[r[3]] || 0) + 1;
+      taken.push({ action: "re-key", why: e.why, kind: e.kind ?? null, key: e.key, row: r, to_key: e.to_key, folded_into: holders.map((x) => ({ rank: x[0], m: String(x[3]) })) });
+      continue;
+    }
     if (!toBody[e.to_key]) keysMadeNew.push(e.to_key);
     const next = toRows.reduce((a, x) => Math.max(a, Number(x[0]) || 0), 0) + 1;
     const moved = [next, ...r.slice(1)];
+    if (e.to_headwords) moved[6] = e.to_headwords;
     toBody[e.to_key] = [...toRows, moved];
-    routesRekeyed += 1;
-    taken.push({ action: "re-key", why: e.why, key: e.key, row: r, to_key: e.to_key, to_rank: next });
+    keysTouched.add(e.to_key); touchedShards.add(shardOf(e.to_key));
+    routesRekeyed += 1; byAction.re_key_landed += 1;
+    taken.push({ action: "re-key", why: e.why, kind: e.kind ?? null, key: e.key, row: r, to_key: e.to_key, to_rank: next, ...(e.to_headwords ? { to_headwords: e.to_headwords } : {}) });
+    continue;
   }
-  if (out.length) body[e.key] = out; else { delete body[e.key]; keysEmptied.push(e.key); }
+  // rejoin: the first named row keeps its rank and takes the whole run; the rest go
+  const order = e.rows.map((r, i) => ({ r, i })).sort((a, b) => (a.r[0] - b.r[0]) || (a.i - b.i)).map((x) => x.r);
+  const holders = rowsOf(e.key).filter((x) => x[1] === e.rejoined_text && !e.rows.includes(x));
+  const keep = holders.length ? null : order[0];
+  for (const r of order) {
+    if (r === keep) continue;
+    takeOff(e.key, r); typeRank(e.key, r); routesTaken += 1; byAction.rejoin_rows_taken += 1;
+    if (r.length > 5 && r[5] === 1) cutsTaken[r[3]] = (cutsTaken[r[3]] || 0) + 1;
+  }
+  if (keep) {
+    const body = shards.get(shardOf(e.key));
+    body[e.key] = body[e.key].map((x) => (x === keep ? [keep[0], e.rejoined_text, ...keep.slice(2)] : x));
+    keysTouched.add(e.key); touchedShards.add(shardOf(e.key));
+    byAction.rejoin_joins += 1;
+  } else byAction.rejoin_folded += 1;
+  taken.push({ action: "rejoin", why: e.why, kind: e.kind ?? null, key: e.key, rows: e.rows, rejoined_text: e.rejoined_text,
+    ...(keep ? { kept_rank: keep[0] } : { folded_into: holders.map((x) => ({ rank: x[0], m: String(x[3]) })) }) });
 }
-ranks.keys_touched = keysTouched.size;
+ranks.keys_touched = Object.keys(ranks.keys).length;
 const keysAfter = keysBefore - keysEmptied.length + keysMadeNew.length;
-const routesAfter = routesBefore - routesStruck;     // a re-key moves a row; it neither takes nor adds one
-console.log(`row strike · ${routesStruck} struck, ${routesRekeyed} re-keyed, of ${routesBefore.toLocaleString()} routes · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
-for (const t of taken.filter((x) => x.action === "re-key")) console.log(`  re-key ${t.key} rank ${t.row[0]} "${t.row[1]}" -> ${t.to_key} rank ${t.to_rank}`);
+const routesAfter = routesBefore - routesTaken;     // a re-key that lands moves a row; it neither takes nor adds one
+let routesNow = 0; for (const body of shards.values()) for (const rows of Object.values(body)) routesNow += rows.length;
+if (routesNow !== routesAfter) refuse(`internal: the shards hold ${routesNow} routes, the arithmetic says ${routesAfter}`);
+console.log(`row strike v2 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
+for (const t of taken.filter((x) => x.action === "re-key")) console.log(`  re-key ${t.key} rank ${t.row[0]} "${t.row[1]}" -> ${t.to_key} ${t.folded_into ? `folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : `rank ${t.to_rank}${t.to_headwords ? ` headwords ${JSON.stringify(t.to_headwords)}` : ""}`}`);
+for (const t of taken.filter((x) => x.action === "rejoin")) console.log(`  rejoin ${t.key} ${t.rows.map((r) => `${r[3]}@${r[0]}`).join("+")} -> «${t.rejoined_text}»${t.folded_into ? ` folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : ` at rank ${t.kept_rank}`}`);
+for (const t of taken.filter((x) => x.action === "headword")) console.log(`  headword ${t.key} rank ${t.row[0]} "${t.row[1]}" ${JSON.stringify(t.row[6])} -> ${JSON.stringify(t.headwords_to)}`);
+for (const l of leftOff) console.log(`  left off: line ${l.line} ${l.m} ${l.key} (${l.action}) — ${l.why}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 
 // ---- the shards, then the version from their bytes ---------------------------------
-const touchedShards = new Set([...asked.map((e) => shardOf(e.key)), ...asked.filter((e) => e.to_key).map((e) => shardOf(e.to_key))]);
 for (const name of touchedShards) writeFileSync(join(STORE, "shards", name), gzipSync(Buffer.from(JSON.stringify(shards.get(name))), { level: 9 }));
 const digest = createHash("sha256"); let shardBytes = 0;
 for (const name of shardNames) { const b = readFileSync(join(STORE, "shards", name)); digest.update(b); shardBytes += b.length; }
@@ -152,25 +244,32 @@ recordStruckRanks(STORE, ranks, {
 
 // the record, cumulative: prior rounds carried, each round its own line
 let prior = null; try { prior = JSON.parse(readFileSync(RECORD, "utf8")); } catch { prior = null; }
-const rounds = [...((prior && prior.rounds) || []), {
-  ran_at: on, reason: REASON,
-  list: { file: basename(LIST), sha256: sha256(listBytes), lines: asked.filter((e) => e.why === "list").length },
+// a round written before rounds carried their rule ran under the rule the record then named
+const rounds = [...((prior && prior.rounds) || []).map((r) => ({ rule_id: (prior && prior.rule_id) || null, ...r })), {
+  rule_id: ROW_STRIKE_RULE_ID, ran_at: on, reason: REASON,
+  list: { file: basename(LIST), sha256: sha256(listBytes), lines: asked.filter((e) => e.why === "list").length, left_off: leftOff },
   branch,
-  counts: { routes_before: routesBefore, routes_struck: routesStruck, routes_rekeyed: routesRekeyed, keys_before: keysBefore, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, per_source: perSource, cuts_taken: cutsTaken },
+  counts: { routes_before: routesBefore, routes_struck: routesTaken, routes_rekeyed: routesRekeyed, by_action: byAction, keys_before: keysBefore, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, per_source: perSource, cuts_taken: cutsTaken },
   store_version: { was, now },
-  rows: taken.map((t) => ({ action: t.action, why: t.why, key: t.key, rank: t.row[0], m: String(t.row[3]), route: t.row[1], row: t.row, ...(t.action === "re-key" ? { to_key: t.to_key, to_rank: t.to_rank } : {}) })),
+  rows: taken.map((t) => (t.action === "rejoin"
+    ? { action: t.action, why: t.why, kind: t.kind, key: t.key, m: String(t.rows[0][3]), rejoined_text: t.rejoined_text, rows: t.rows, ...(t.kept_rank !== undefined ? { kept_rank: t.kept_rank } : { folded_into: t.folded_into }) }
+    : { action: t.action, why: t.why, kind: t.kind, key: t.key, rank: t.row[0], m: String(t.row[3]), route: t.row[1], row: t.row,
+      ...(t.to_key ? { to_key: t.to_key } : {}), ...(t.to_rank !== undefined ? { to_rank: t.to_rank } : {}), ...(t.folded_into ? { folded_into: t.folded_into } : {}),
+      ...(t.to_headwords ? { to_headwords: t.to_headwords } : {}), ...(t.headwords_to ? { headwords_to: t.headwords_to } : {}) })),
 }];
+const sumBy = (k) => rounds.reduce((a, r) => { for (const [x, v] of Object.entries((r.counts && r.counts[k]) || {})) a[x] = (a[x] || 0) + v; return a; }, {});
 const cumulative = {
   routes_struck: rounds.reduce((a, r) => a + r.counts.routes_struck, 0),
   routes_rekeyed: rounds.reduce((a, r) => a + r.counts.routes_rekeyed, 0),
+  by_action_since_version_2: sumBy("by_action"),
   keys_touched: rounds.reduce((a, r) => a + r.counts.keys_touched, 0),
   rounds: rounds.length,
 };
 const record = {
-  schema_version: "ROW_STRIKES_V1", rule_id: ROW_STRIKE_RULE_ID,
-  what: "every store row struck or re-keyed by a named list the page lane reviewed (a provider's parse filed it under a key that is not its word's), and every row a branch's resting option withholds until the owner rules; each row is kept whole here, so what went can be read and put back; the rank each struck or re-keyed row left is typed in the store's struck-ranks record and never renumbered",
-  ran_at: on, rounds, cumulative,
-  counts_scope: "cumulative is the whole of this record's strikes; rounds[] holds each round's own arithmetic; a re-key moves a row and is counted apart from a strike, which takes one",
+  schema_version: "ROW_STRIKES_V2", rule_id: ROW_STRIKE_RULE_ID,
+  what: "every store row a named list the page lane reviewed struck, withheld, re-keyed, rejoined or re-headed: rows a provider's parse filed under a key that is not their word's, rows the owner ruled off the cards, rows a cut left in pieces, and every row a branch's resting option withholds until the owner rules; each row is kept whole here, so what went can be read and put back; the rank each row taken or re-keyed left is typed in the store's struck-ranks record and never renumbered",
+  ran_at: on, rounds, rulings: (prior && prior.rulings) || [], cumulative,
+  counts_scope: "cumulative is the whole of this record; rounds[] holds each round's own arithmetic. routes_struck counts every row a round took off the store: a strike, a withholding, a re-key whose text its new key already held (it folds), and the rows a rejoin joined beyond the one it kept. routes_rekeyed counts the re-keys that landed as a row of their own; a re-heading takes nothing. by_action splits each round from version 2 on",
 };
 writeFileSync(RECORD, JSON.stringify(record, null, 1));
 
