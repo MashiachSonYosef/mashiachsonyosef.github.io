@@ -67,9 +67,15 @@ for (const slug of zonesServed()) {
   for (const sec of z.sections || []) {
     const [c, v] = String(sec.label || "").split(":");
     if (!v) continue;
+    // the piece store numbers a verse's words with its marks not counted, as
+    // the page does (openSite): a paseq before a word moved every place after
+    // it by one, so the example could be read off another word's pieces
+    let n = 0;
     (sec.words || []).forEach((w, i) => {
+      if (w.mark) return;
+      n += 1;
       if (!w.k || w.k.length < 3 || w.s.includes("\u05BE") || String((sec.words[i - 1] || {}).s || "").endsWith("\u05BE")) return;
-      const pcs = places[`${c}:${v}:${i + 1}`];
+      const pcs = places[`${c}:${v}:${n}`];
       if (!Array.isArray(pcs)) return;
       for (const pc of pcs) {
         const a = pc[4], b = pc[5];

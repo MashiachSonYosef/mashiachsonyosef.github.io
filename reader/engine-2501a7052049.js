@@ -5865,8 +5865,14 @@
           }
         });
         // a reading pressed on the run's whole rung rules the rung (rungRuled):
-        // the run's line reads it wherever the run stands, as a chain's does
-        if (opts.run && cover.length === 1 && mem.cut === cutKey(cover)) for (const r of document.querySelectorAll(".wjoin")) if (r.__key === region.k) refreshJoinGloss(r);
+        // the run's line reads it wherever the run stands, as a chain's does;
+        // and a division pressed apart is the reader's too (the owner,
+        // 2026-11-05, of Lamentations 1:3:15-16: "our default doesnt show on
+        // the runner when i simply switched megacompspans without pushing any
+        // R pills yet"): the line was repainted only for the whole rung, so a
+        // run a dictionary names whole went on reading that entry under the
+        // words the reader had divided
+        if (opts.run && mem.cut === cutKey(cover)) for (const r of document.querySelectorAll(".wjoin")) if (r.__key === region.k) refreshJoinGloss(r);
         return;
       }
       if (!glossEl) return;
@@ -6106,7 +6112,21 @@
           // THE WORDS ONE BY ONE ARE THE WORDS' OWN CARDS (the nesting,
           // 2026-10-16): the words' division of a chain opens the pressed
           // word's card, the chain kept at the top of it
-          if (opts.run && opts.run.openWord && isWordsCover(c)) { opts.run.openWord(Math.max(0, opts.run.clicked || 0)); return; }
+          // PRESSING THE WORDS' DIVISION RULES THE RUN APART (the owner,
+          // 2026-11-05, of Lamentations 1:3:15-16, a run a dictionary names
+          // whole: "our default doesnt show on the runner when i simply
+          // switched megacompspans without pushing any R pills yet"). The
+          // press opened the word's card and recorded nothing, so the run's
+          // line kept the whole run's reading. It is the reader's division,
+          // remembered as any other division pressed here, and the line
+          // stands as the words' own lines wherever the run stands.
+          if (opts.run && opts.run.openWord && isWordsCover(c)) {
+            if (mem.cut !== cutKey(c)) {
+              mem.cut = cutKey(c); markRuled();
+              for (const r of document.querySelectorAll(".wjoin")) if (r.__key === region.k) refreshJoinGloss(r);
+            }
+            opts.run.openWord(Math.max(0, opts.run.clicked || 0)); return;
+          }
           cover = c; cellIdx = 0; setWhole = !!setCut && c === setCut;
           // a run's whole rung is remembered once it has been READ (the
           // readings band, on arrival), never on the press: remembered on the
@@ -7349,7 +7369,7 @@
     // line with one blob.
     if (heldRun !== null && memRun && memRun.cut && !memRun.cut.includes("+")) {
       const l = lineEl();
-      delete l.dataset.off;
+      delete l.dataset.off; delete l.dataset.span; delete l.dataset.form;
       l.replaceChildren(); l.textContent = heldRun; l.title = heldRun; l.classList.remove("bare", "parts");
       { const chip = ruledChip(run.__key, run.__table || zone.gloss); if (chip) l.append(chip); }
       run.classList.add("chosen");
@@ -7374,7 +7394,7 @@
       const rows = spanRowsOn(run.__key);
       if (rows.length) {
         const l = lineEl();
-        delete l.dataset.off;
+        delete l.dataset.off; delete l.dataset.form;
         const text = spanJoin(rows[0].slots[1]);
         l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare", "parts");
         l.dataset.span = run.__key;
@@ -7394,7 +7414,7 @@
       });
       if (form) {
         const l = lineEl();
-        delete l.dataset.off;
+        delete l.dataset.off; delete l.dataset.span;
         const text = spanJoin(table[form]);
         l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare", "parts");
         l.dataset.form = form;
@@ -7445,6 +7465,8 @@
     }
     const text = parts.map((p) => p.t || "\u2014").join(" + ");
     line.replaceChildren();
+    // the whole entry's marks go with it: the words' lines stand now
+    delete line.dataset.span; delete line.dataset.form;
     // a word of the run the shelf could not answer marks the run's own line,
     // which is the line the reader sees; the words' lines are hidden
     const unreached = wbs.some((wb) => { const g = wb.querySelector(":scope > .g"); return g && g.dataset.off === "unreachable"; });
