@@ -1170,11 +1170,11 @@
  },
  "counts": {
   "keys": 124900,
-  "routes": 652706,
+  "routes": 652777,
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 14954702,
+  "shard_bytes_total": 14955558,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1244,7 +1244,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "25a65b62aa46",
+ "store_version": "7b3c475ce1a3",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1459,6 +1459,12 @@
    "now": "25a65b62aa46",
    "why": "row-strike-rule-v3-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-or-retexts-a-row-and-the-hole-is-typed",
    "on": "2026-11-06T17:01:10.912Z"
+  },
+  {
+   "was": "25a65b62aa46",
+   "now": "7b3c475ce1a3",
+   "why": "row-strike-rule-v4-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-or-restores-a-row-and-the-hole-is-typed",
+   "on": "2026-11-06T19:27:55.668Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -1514,11 +1520,12 @@
   ]
  },
  "row_strikes": {
-  "rule_id": "row-strike-rule-v3-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-or-retexts-a-row-and-the-hole-is-typed",
+  "rule_id": "row-strike-rule-v4-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-or-restores-a-row-and-the-hole-is-typed",
   "record": "reader/data/row-strikes-v1.json",
   "cumulative": {
    "routes_struck": 2180,
    "routes_rekeyed": 23,
+   "routes_restored": 71,
    "by_action_since_version_2": {
     "strike": 81,
     "withhold": 214,
@@ -1529,15 +1536,17 @@
     "rejoin_folded": 0,
     "headword": 1,
     "retext": 10242,
-    "retext_folded": 1517
+    "retext_folded": 1517,
+    "restore": 71,
+    "restore_already_held": 2
    },
-   "keys_touched": 8379,
-   "rounds": 13
+   "keys_touched": 8441,
+   "rounds": 14
   }
  },
  "ledgers": {
   "rule_id": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
-  "applied_on": "2026-11-06T17:01:32.006Z",
+  "applied_on": "2026-11-06T19:28:35.135Z",
   "manifest": "reader/data/ledgers-v1/manifest.json",
   "ask": "ASK-provider-declarations-v1.1",
   "checker": {
@@ -1556,6 +1565,17 @@
   },
   "what": "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger keeps the generic rule",
   "print_step": "tools/ledger-print-v1.mjs",
+  "span_store": {
+   "file": "reader/data/span-store/<book>.json",
+   "books": 39,
+   "rows": 3873,
+   "rows_of_ledgered_sources": 2862,
+   "rows_dividing": 308,
+   "rows_printing_a_part": 1,
+   "rows_no_pill": 0,
+   "rows_whose_slot_moved": 309,
+   "uncovered": 238
+  },
   "sources": {
    "biblicaltools_living_lexicon": {
     "relay": "v135",
@@ -1947,7 +1967,7 @@
       "prints": "hewiktionary_hebrew_explicit_inflection_english_translation:B02"
      }
     },
-    "rows": 12060,
+    "rows": 12081,
     "rows_dividing": 16,
     "rows_printing_a_part": 0,
     "rows_no_pill": 28,
@@ -2648,7 +2668,7 @@
       "prints": "stepbible_tahot_aligned_translation:B04"
      }
     },
-    "rows": 95005,
+    "rows": 95033,
     "rows_dividing": 0,
     "rows_printing_a_part": 0,
     "rows_no_pill": 430,
@@ -2831,7 +2851,7 @@
       "on": "2026-11-06"
      }
     },
-    "rows": 8893,
+    "rows": 8915,
     "rows_dividing": 3847,
     "rows_printing_a_part": 0,
     "rows_no_pill": 0,
@@ -3075,7 +3095,7 @@
   },
   "totals": {
    "ledgered_sources": 35,
-   "rows": 629060,
+   "rows": 629131,
    "rows_dividing": 66955,
    "rows_printing_a_part": 1419,
    "rows_no_pill": 600,

@@ -38,6 +38,7 @@ import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1
 import { glossMFor, sourceSwitchCosts, jointSwitchCosts, GLOSS_M_RULE_ID, licenceColumns, licClass } from "./gloss-m-v1.mjs";
 import { nameLeadsFor, PROPER_NAME_RULE_ID, PROPER_NAME_RULE_TEXT } from "./proper-name-v1.mjs";
 import { existsSync as existsSync_ } from "node:fs";
+import { join, dirname } from "node:path";
 import { formsOfRun, WELD_FORMS_RULE_ID } from "./weld-forms-v1.mjs";
 import { SWITCH_RULE_ID } from "./gloss-store-v1.mjs";
 import { cellsOf } from "./span-slice-v1.mjs";
@@ -206,47 +207,24 @@ zone.emitted_from.no_names_layer = {
   what_the_zone_carries: "gloss_orders.noname — for every key of gloss_names whose base reading the name displaced, that base reading (the table store.tableFor projects, the derivation the oldest entry gives first); its M in gloss_m_orders.noname, derived with the other columns'; the page's \"no names\" switch lays it over the line of every word the name still leads under the order in force",
   counts: { names: Object.keys(names.leads).length, displaced: Object.keys(noname).length, base_is_the_name: Object.keys(names.leads).length - Object.keys(noname).length },
 };
-// THE WITNESSED COLUMNS' READINGS, RE-DERIVED UNDER THE LEDGERS
-// (ledger-division-rule-v2, 6 November 2026). The corpus lane shipped each
-// witnessed reading as the generic rule cut it: a whole row, or a piece of
-// one ("grief" of "grief, sorrow"). Under a source's ledger that row is one
-// reading, so the piece is no pill, and the line under this order would
-// name a reading the card does not hold. Each column text is mapped onto
-// the reading the store now gives the row it came from (readingsOfText: the
-// credited source's row whose route is the text, else the one whose generic
-// readings hold it), and the credit is derived again below. A text no served
-// row accounts for stays as shipped, and is counted. A text whose row now
-// prints no pill (ledger-division-rule-v2: a row that renders nothing, under
-// the owner's answer) leaves the column, reading and credit together, and
-// the line falls back to the base reading there under this order: a column
-// may not name a reading the card does not hold. Counted, never silent, and
-// written beside the column's receipt as the struck-credit drops are.
-const witnessedMoved = {};   // column -> the keys whose reading the ledgers moved, so their credit is derived again
-if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
-  const prevOM = zone.gloss_m_orders || {};
-  const wo = zone.emitted_from.witnessed_order || {};
-  for (const o of Object.keys(wo.columns || {})) {
-    const table = zone.gloss_orders[o];
-    if (!table || typeof table !== "object") continue;
-    witnessedMoved[o] = new Set();
-    let moved = 0, unmapped = 0, same = 0, withdrawn = 0;
-    for (const [k, t] of Object.entries(table)) {
-      const m = (prevOM[o] || {})[k];
-      const ids = m && Array.isArray(m.by) ? m.by : m && m.m ? store.mIdsOfLabel(m.m) : null;
-      const row = store.rowOfText(k, t, ids);
-      const rs = row ? store.readingsOf(row) : store.readingsOfText(k, t, ids);
-      if (!rs.length) {
-        if (!row) { unmapped += 1; continue; }
-        delete table[k]; if (prevOM[o]) delete prevOM[o][k]; withdrawn += 1;
-        const wc = wo.columns[o];
-        if (!(Array.isArray(wc.no_pill_withdrawals) && wc.no_pill_withdrawals.some((d) => d.key === k)))
-          (wc.no_pill_withdrawals = Array.isArray(wc.no_pill_withdrawals) ? wc.no_pill_withdrawals : []).push({ key: k, text: t, m: String(row[3]), on: stamp, why: "ledger-division-rule-v2: the row this reading came from prints no pill under the owner's answer to its ledger's branch" });
-        continue;
-      }
-      if (rs[0] === t) { same += 1; continue; }
-      table[k] = rs[0]; moved += 1; witnessedMoved[o].add(k);
-    }
-    wo.columns[o].rederived_under_ledgers = { rule: "ledger-division-rule-v2", on: stamp, same, moved, unmapped, withdrawn };
+// THE WITNESSED COLUMNS ARE BAKED FROM THE SHIPPED TEXT, NOT RE-MAPPED HERE
+// (bake-witnessed-order-v1 version 2, 6 November 2026). The corpus lane
+// shipped each witnessed reading as a served row's whole text, and the bake
+// cuts it to the row's first reading under the store's rule of the day
+// (ledger-division-rule-v2 for a source under a ledger). Until 6 November
+// this layer re-mapped the already-cut piece onto a row and moved it to that
+// row's first reading, and the code review of that day showed it drifting:
+// a piece another source also gave whole was credited to a source that no
+// longer gave it (508 readings), and a moved reading re-credited to every
+// carrier walked across rows on the next run ("trouble" to "weariness").
+// Now the bake runs on every store change, from data/witnessed-orders-v2.7,
+// and this layer only keeps or re-credits what the bake laid: a zone whose
+// columns were baked against another store is refused here, never projected.
+{
+  const wo = zone.emitted_from && zone.emitted_from.witnessed_order;
+  if (wo && wo.columns && Object.keys(wo.columns).length) {
+    const against = wo.baked_against_store ?? null, now = store.index.store_version ?? null;
+    if (against !== now) { console.log(`REFUSED — the witnessed columns were baked against store ${against}, and this projects store ${now}; run tools/bake-witnessed-order-v1.mjs on the zone first`); process.exit(1); }
   }
 }
 let ordersM = null, witnessedDrops = 0;
@@ -268,16 +246,14 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
       // or its alternate's) is re-credited from the store as an unshipped
       // column's would be; where no route stands on the reading any more it
       // leaves the column, reading and credit together.
-      const kept = {}; let struckOut = 0, recredited = 0;
+      const kept = {}; let struckOut = 0, recredited = 0; const recreditedKeys = [];
       for (const [k, m] of Object.entries(prevOM[o] || {})) {
         const ids = typeof m === "string" ? [m] : (m && Array.isArray(m.by) ? m.by : []);
         const altIds = m && m.alt && Array.isArray(m.alt.by) ? m.alt.by : [];
         const touched = [...ids, ...altIds].some((id) => !store.index.m_sources[id]);
-        // a reading the ledgers moved (above) takes a credit derived from the row it is now
-        const moved = !!(witnessedMoved[o] && witnessedMoved[o].has(k));
-        if (!touched && !moved) { kept[k] = m; continue; }
+        if (!touched) { kept[k] = m; continue; }
         const re = table[k] !== undefined ? glossMFor(store, { [k]: table[k] }).gloss_m[k] : null;
-        if (re) { kept[k] = re; recredited += 1; continue; }
+        if (re) { kept[k] = re; recredited += 1; recreditedKeys.push(k); continue; }
         delete table[k]; struckOut += 1; witnessedDrops += 1;
         // TYPED BESIDE THE BAKE COUNT. The witnessed receipt's "baked" is the
         // bake's own fact and is not rewritten; the drop is appended to that
@@ -289,6 +265,8 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
         if (wc && !(Array.isArray(wc.struck_credit_drops) && wc.struck_credit_drops.some((d) => d.key === k)))
           (wc.struck_credit_drops = Array.isArray(wc.struck_credit_drops) ? wc.struck_credit_drops : []).push({ key: k, by: [...ids, ...altIds], on: stamp, why: "source-strike-rule-v1: the credited source is no longer in the store and no route the store holds stands on the reading" });
       }
+      // the keys re-credited from the store are typed on the column's receipt too, so check-witnessed-order W2 can tell them from the lane's own credit
+      { const wc = zone.emitted_from.witnessed_order && zone.emitted_from.witnessed_order.columns && zone.emitted_from.witnessed_order.columns[o]; if (wc) { if (recreditedKeys.length) wc.struck_credit_recredited_keys = recreditedKeys; else delete wc.struck_credit_recredited_keys; } }
       ordersM[o] = { gloss_m: kept, drift: 0, struck_credit_dropped: struckOut, struck_credit_recredited: recredited };
     } else {
       // A READING NO ROUTE STANDS ON LEAVES THE COLUMN, as a shipped
@@ -352,9 +330,15 @@ zone.emitted_from.gloss_layer = {
 // shard at a time. The unit the reader switches is the source's own key;
 // the ids are the ledger's, and both are on the table.
 const switchTable = sourceSwitchCosts(store, gloss, glossM);
-// the corpus record the page shelves languages by, read from beside the zones
-const corpusPath = String(inPath).replace(/data\/zones\/.*$/u, "") + "data/source-corpus-v1.json";
-const corpusRec = existsSync_(corpusPath) ? JSON.parse(readFileSync(corpusPath, "utf8")) : null;
+// the corpus record the page shelves languages by: beside the zones when the
+// zone is read from data/zones, else beside the store this run projects. It
+// is required: without it every source shelves as "Hebrew in general" and the
+// page, which has the record, shelves otherwise (6 November 2026: a round
+// that reglossed baked copies from a scratch folder lost the record, and the
+// switch check found two shelves with no joint price)
+const corpusPath = /data\/zones\//u.test(String(inPath)) ? String(inPath).replace(/data\/zones\/.*$/u, "") + "data/source-corpus-v1.json" : join(dirname(storeDir), "source-corpus-v1.json");
+if (!existsSync_(corpusPath)) { console.log(`REFUSED — no corpus record at ${corpusPath}; the page shelves languages by it, so a projection without it would price shelves the page does not have`); process.exit(1); }
+const corpusRec = JSON.parse(readFileSync(corpusPath, "utf8"));
 // positions per key: a word by its own key, a divided word by each part's
 const weights = {};
 for (const sec of zone.sections || []) for (const w of sec.words || []) {

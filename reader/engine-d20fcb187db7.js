@@ -1914,7 +1914,11 @@
       // letters is not its cell (a guard; the place already decided)
       return want.length === B - A + 1 ? out : [];
     }
-    if (o.local) return (SPAN_BY_KEY.get(key) || []).map((r) => { const row = r.slots.slice(0, 7); OVERLAY_ROWS.set(row, o.id); return row; });
+    // a span row carries the page's division slots beyond the lane's seven
+    // where its source is under a ledger (apply-ledger-divisions-v1, 6
+    // November 2026); sliced at seven they were lost, and the row printed
+    // whole where its ledger cuts it
+    if (o.local) return (SPAN_BY_KEY.get(key) || []).map((r) => { const row = r.slots.slice(0, 9); OVERLAY_ROWS.set(row, o.id); return row; });
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
     const ck = `${o.id}/${shard}`;
@@ -6678,9 +6682,13 @@
           // when the reading the reader holds is one of the row's own; a row
           // that prints a part of itself (ledger-division-rule-v2, row[8])
           // still shows its record whole: the tag the pill leaves off is
-          // the row's text, and the record is where it stays readable
+          // the row's text, and the record is where it stays readable. A
+          // record that is NOT the route (BDB's article behind "have a just
+          // cause,") keeps the path below whatever the row prints: the code
+          // review of 6 November found two records printing their route
+          // instead of the article
           const src = row && index.m_sources[row[3]];
-          if (src && src.ledger && (String(text) === String(row[1]) || Array.isArray(row[8]))) {
+          if (src && src.ledger && String(text) === String(row[1])) {
             const s = document.createElement("span");
             const sel = String(selected.text).toLowerCase();
             const whole = String(row[1]);
