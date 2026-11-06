@@ -12,25 +12,27 @@ Measured (data/ledgers-v1, apply-ledger-divisions-v1 with every one of the 63 an
 
 Recommendation: answer "divides" for the group. It is what the page showed until today, with the generic rule's wrong cuts gone, and a pill is meant to be one reading a reader can press. The largest: Kaikki Hebrew B09 (44,099 rows, words that mostly say the same thing), B01 (11,083, lists of words and phrases), B03 (8,744, lists with a bracket), B04 (7,053, a word and then what it means after a colon), unabridged BDB B06 (2,863), Kaikki B02 (2,731), SDBH B01 (3,288, a wording and its meaning at «=»), Kaikki Aramaic B09 (1,528), Classical Hebrew B01 (1,343). The resting answer needs no work; "divides" is one file (data/ledger-branch-answers-v1.json) and a ship.
 
-## 2. ConceptNet's filing tags: print them or not? (4 branches, 34,732 rows)
+## 2. ConceptNet's filing tags: print them or not? (4 branches, 34,732 rows) — RULED 6 November: off, and off the data itself
 
 Every ConceptNet row ends in a tag this corpus's own script wrote, «he (n, wikt, en 2)», «meaningful (a, wn)», «seal (n, wp, musician)»: the path under which ConceptNet files the word. The page prints the tag in the pill today. The row's definition slot already holds the word alone.
 
 Recommendation: "tag_off" for all four. The tag is not the dictionary's text. This needs one step of the page's own (print the row's definition slot for these rows); I would build it with the next store round.
 
-## 3. Rows that are a name or a word with filing marks around it (17 branches, 3,101 rows)
+## 3. Rows that are a name or a word with filing marks around it (17 branches, 3,101 rows) — RULED 6 November: the marks off
 
 «Dolls (disambiguation)» (Wikimedia, 1,866 rows), «Merari. See also.», «Ephai (from margin)», «given name (Adva)», «Kadesh. Compare.», «tree of the ''Acer'' genus» (PanLex, 647), «SWING (SOMETHING)», «LONGING (WISH)», «fool (ish)», «Mede(-s)», «mount (1)», «Ben (1128)», «Quartz#Citrine», «day after tomorrow - translation entry». Each branch offers the row as written or the word alone (or both forms, or two readings).
 
 Recommendation: take the option that leaves the filing marks off in every one of the 17 (name_alone, word_alone, without_marks, without_note, no_number, number_off, leave_off, before_those_words, named_part, two_forms, two_readings). Same one step of the page's own as §2: the ledger names the mark, the page prints the part the ruling keeps.
 
-## 4. Rows that render nothing a translator could print (20 branches, 924 rows)
+## 4. Rows that render nothing a translator could print (20 branches, 924 rows) — RULED 6 November: no pill
 
 «<the>» (TAHOT, 338 rows: angle brackets, the source's own sign for a word best left out of a translation), «Pedah-» and «thir-» (TAHOT, 283: a piece of a name or word whose rest stands on another Hebrew word), «four-» (58), «mega-», «un-», «self-», «sub-» (hyphen stubs), «[untranslated]», «[Obj.]», «(6997a=1886a+6997)», «The definite article.», «Hebrew letter, sounds like h».
 
 The owner ruled on 6 November that rows with no English come off the cards ("Take them off"), and v146 struck 58 such rows. These 924 are the same kind, named by the ledgers rather than by a strike list. The TAHOT angle-bracket rows are already withheld whenever source signs are off (the default).
 
 Recommendation: "no_pill" for the 20, under the ruling already given; the page's withhold step (row-strike-rule-v2) does it, keyed by the ledger's shape rather than a list, so a row the source later changes is judged again.
+
+**Applied (6 November, the print-step ship):** the owner took the recommendations and added, on ConceptNet, "why not just fix it": the tags were this corpus's own script's, so they came off the route text itself (row-strike-rule-v3, retext from the definition slot: 11,759 rows). The other 37 branches are served by ledger-division-rule-v2 (tools/ledger-print-v1.mjs, the one step of the page's own, written from each branch's own words and tested on its examples): 1,419 rows print a part, 600 print no pill.
 
 ## What one answer costs
 
