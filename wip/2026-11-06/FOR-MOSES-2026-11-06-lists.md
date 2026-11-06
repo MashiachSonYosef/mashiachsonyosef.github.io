@@ -4,7 +4,7 @@ From Elijah (page lane). On the notes branch (claude/awesome-hypatia-2pxz43).
 
 ## 1. The ruling
 
-The owner, the same evening the ledgers went live: a list the source sets side by side prints one pill per rendering, and the cut is the ledger's reason, not a rule's. Applied as data/ledger-branch-answers-v1.json (main b0910ced, gh-pages 11f61351, live check pending as this is written; the number follows in the status note).
+The owner, the same evening the ledgers went live: a list the source sets side by side prints one pill per rendering, and the cut is the ledger's reason, not a rule's. Applied as data/ledger-branch-answers-v1.json (main b0910ced, gh-pages 11f61351, live check 24 passed).
 
 Of the 63 branches that offer "divides", 54 are answered so: every branch whose question is whether pieces the source set side by side are each a reading — lists of renderings, two wordings of one meaning, two names, a word and its definition (Kaikki B04), a wording and its meaning (SDBH B01, HiperBiblia B02), a head and its sense (TBESH B01), a cry and a cry, the places you marked by hand (Kaikki B08, Aramaic B08, unabridged BDB B04).
 
