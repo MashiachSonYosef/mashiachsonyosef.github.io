@@ -15,7 +15,7 @@
 // maintains the corpus and should not be silently absorbed here.
 //
 // Reads the artifacts off disk. Takes no URL.
-// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence
+// GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, ledger-division-rule-v1-a-ledgered-source-divides-only-where-its-ledger-says-and-the-page-reads-the-division-not-the-rule, sense-split-rule-v3-a-comma-divides-glosses-never-a-sentence
 //
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync, createGunzip } from "node:zlib";
@@ -24,6 +24,7 @@ import { createInterface } from "node:readline";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { isSidecar } from "./zones-on-disk-v1.mjs";
+import { openRouteStore } from "./gloss-store-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -106,13 +107,21 @@ const books = existsSync(ZONES)
 check("there are zones to read", books.length > 0, books.join(" ") || "none on disk");
 
 const readingsFor = new Map();
+// and, per form, the readings the store offers for each row under the rule
+// its source is under: a ledgered source divides only at the marks its row
+// names (ledger-division-rule-v1), a source with no ledger under the generic
+// rule. The page prints these, so these are what a printed reading must be.
+const offeredFor = new Map();
+const store = existsSync(SHARDS) ? openRouteStore(join(K3, "data", "route-store")) : null;
 if (existsSync(SHARDS)) {
   for (const f of readdirSync(SHARDS).filter((x) => x.endsWith(".bin"))) {
     const shard = load(join(SHARDS, f));
     for (const [k, list] of Object.entries(shard)) {
       const set = readingsFor.get(k) || new Set();
-      for (const row of list) if (typeof row[1] === "string" && row[1]) set.add(row[1]);
+      const off = offeredFor.get(k) || new Set();
+      for (const row of list) if (typeof row[1] === "string" && row[1]) { set.add(row[1]); for (const r of store.readingsOf(row)) off.add(r); }
       readingsFor.set(k, set);
+      offeredFor.set(k, off);
     }
   }
 }
@@ -120,15 +129,19 @@ if (existsSync(SHARDS)) {
 for (const f of books) {
   const gloss = load(join(ZONES, f)).gloss || {};
   const forms = Object.keys(gloss);
-  // A printed reading is a store reading, or one sense of one — the gloss layer
-  // separates a route's senses on ';' the same way the store separates its
-  // renderings on ',' — or several of those joined with " + " where the word's
-  // own spans were packed with "/". All three keep the provider's characters.
+  // A printed reading is a store reading, or one the store offers for the row
+  // under its source's rule (the ledger's division, or the generic rule for a
+  // source with no ledger), or one sense of one — the gloss layer separates a
+  // route's senses on ';' the same way the store separates its renderings on
+  // ',' — or several of those joined with " + " where the word's own spans
+  // were packed with "/". All of these keep the provider's characters.
   const orphan = forms.filter((k) => {
     const set = readingsFor.get(k);
     if (!set) return false;
     const printed = gloss[k];
     if (set.has(printed)) return false;
+    const off = offeredFor.get(k) || new Set();
+    if (off.has(printed)) return false;
     const senses = new Set();
     // Senses divide at the pack mark outside the provider's parentheses, and
     // each sense divides into readings under the declared comma rule — the
@@ -151,7 +164,7 @@ for (const f of books) {
       if (!rs.damaged) for (const reading of rs.readings) senses.add(reading);
     }
     if (senses.has(printed)) return false;
-    return !printed.split(" + ").every((part) => senses.has(part.trim()) || set.has(part.trim()));
+    return !printed.split(" + ").every((part) => senses.has(part.trim()) || set.has(part.trim()) || off.has(part.trim()));
   });
   const unknown = forms.filter((k) => !readingsFor.has(k));
   const damaged = forms.filter((k) => unbalancedAt(gloss[k]) !== -1);
