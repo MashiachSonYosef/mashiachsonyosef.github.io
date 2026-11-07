@@ -85,6 +85,13 @@ Nothing else: no version folders, no verify seats, gates, mirrors or sandboxes, 
 5. **The owner's go**, on the totals.
 6. **Delete the old layout whole**: on the store every top-level prefix but v2/ and serving-lane/ (the page lane's shelf), the quarantine included; on the disk anything outside what you work on. A prefix delete is right here because v2/ is a separate prefix proven in step 4, which the 18 October plan's surgical deletes were not.
 
+**The owner can run the disk's deletes by hand**: "i can delete too if needed ... if its verified and on r2, its as easy for me as pushing delete on my keyboard with the 2 folders highlighted." For that, hand the owner three things at step 2 and again at step 6:
+- the exact folders to delete, by full path;
+- your `rclone check --one-way` of exactly those folders against their copies on the store, by hash, showing 0 missing and 0 differing;
+- your word that v2/ holds real files (copies, or hard links that survive the old names' deletion), never symbolic links or junctions into the old folders, so deleting the old folders cannot reach into v2/.
+
+And the two cautions that go with a keyboard delete: a plain Delete only moves the folders to the Recycle Bin, so the space comes back with Shift+Delete or when the bin is emptied; and the 873 recorded links in the old tree (checks/links-never-follow.tsv of 18 October) are why a command-line recursive delete (PowerShell's Remove-Item -Recurse among them) must not be used on it, where Explorer removes a link without following it.
+
 ## Asked of you
 
 1. The current item of every family, named (the inventory of what goes into v2/), and what the three ledgers' local-only 125 GB is, so nothing of a source's record is in it.
