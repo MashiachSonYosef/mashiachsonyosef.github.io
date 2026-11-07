@@ -29,11 +29,7 @@
 //      the source wrote it, brackets and all.
 //   3. The index names the ledger each source is under (index.ledgers, and
 //      m_sources[m].ledger), with the files' sha256, the branch answers, and
-//      the counts; the receipt beside it says, source by source, how the
-//      ledger's division differs from the generic rule's (the byte match: the
-//      rows the generic rule divided that the ledger keeps whole, the rows it
-//      hid that the ledger prints, and the rows the ledger divides that it
-//      did not).
+//      the counts.
 //   4. (ledger-division-rule-v2, 6 November 2026) A branch whose options are
 //      neither "divides" nor its resting one asks for one step of the page's
 //      own: a tag this corpus's script wrote comes off, a name prints alone,
@@ -47,11 +43,12 @@
 //      rule that keeps a part cannot combine with a cut on the same row, and
 //      this tool refuses the store rather than guess.
 //
-// A store source with no ledger in data/ledgers-v1 keeps the generic rule, and
-// the manifest says which and why (none from 7 November 2026: Strong's 1890,
-// the last, untabled by the owner). The dictionaries beside the store (the
-// overlays) and the span store's own sources keep the generic rule until their
-// ledgers land; index.ledgers.unledgered names each with its rows.
+// A store source with no ledger in data/ledgers-v1 is refused unless the
+// manifest says why (none from 7 November 2026: Strong's 1890, the last,
+// untabled by the owner). The dictionaries beside the store (the overlays) and
+// the span store's own sources print whole until their ledgers land (the
+// owner, 7 November 2026: the comma rule the page had guessed for them
+// retired); index.ledgers.unledgered names each with its rows.
 //
 //   5. (6 November 2026, the code review) The span store's rows
 //      (data/span-store/<book>.json) take the same slots the same way: a
@@ -66,7 +63,6 @@ import { join, dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
-import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 import { PRINT_RULES, printOf, selfTest } from "./ledger-print-v1.mjs";
 import { printUnder, kindOf, selfTestDeclaration, stepsOf } from "./ledger-print-from-declaration-v1.mjs";
 // the print steps the declarations carry (ask v1.2): ruleKey -> the option, read beside the hand table
@@ -153,16 +149,6 @@ const ledgerOfM = (m) => { const k = keyOfM(m); return k && ledgers.has(k) ? led
 // a source with no ledger: tolerated only where the manifest says why, or where it serves no row
 const unledgeredRows = {};
 
-// the generic rule, for the receipt's comparison only
-const packSplit = (text) => {
-  const t = String(text || ""); const out = []; let start = 0, d = 0;
-  for (let i = 0; i < t.length; i += 1) { const c = t[i]; if (c === "(") d += 1; else if (c === ")") { if (d > 0) d -= 1; } else if (c === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; } }
-  out.push(t.slice(start));
-  if (out.join(";") !== t) return [t.trim()].filter(Boolean);
-  return out.map((x) => x.trim()).filter(Boolean);
-};
-const genericReadings = (text) => { const out = []; let hidden = 0; for (const s of packSplit(text)) { const r = readingSplit(s); if (r.damaged) { hidden += 1; continue; } out.push(...r.readings); } return { readings: out, hidden }; };
-const piecesAt = (text, cuts) => { const p = []; let from = 0; for (const i of cuts) { p.push(text.slice(from, i)); from = i + 1; } p.push(text.slice(from)); return p.map((x) => x.trim()).filter(Boolean); };
 
 // ---- what a ledger says of one text ---------------------------------------------------
 // the marks it divides at, the texts it prints (null where no answered branch
@@ -198,7 +184,7 @@ const slotsOf = (L, text) => {
   }
   return { marks: marks.length, marksDividing: dividing.length, byShape, cuts, prints, ruleKey, conflict };
 };
-const newCounts = () => ({ rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, marks: 0, marks_dividing: 0, by_shape: {}, by_print_rule: {}, uncovered: 0, vs_generic: { same: 0, generic_divided_ledger_whole: 0, generic_hid_ledger_prints: 0, ledger_divides_generic_did_not: 0, both_divide_differently: 0 } });
+const newCounts = () => ({ rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, marks: 0, marks_dividing: 0, by_shape: {}, by_print_rule: {}, uncovered: 0 });
 const count = (c, r) => {
   c.marks += r.marks; c.marks_dividing += r.marksDividing;
   for (const [sh, n] of Object.entries(r.byShape)) c.by_shape[sh] = (c.by_shape[sh] || 0) + n;
@@ -243,15 +229,6 @@ for (const [shardName, body] of shards) {
       if (setSlots(row, cuts, prints)) { rowsChanged += 1; touched.add(shardName); }
       if (cuts.length) rowsDividing += 1;
       if (prints) { if (prints.length) rowsPrinting += 1; else rowsNoPill += 1; }
-      // against the generic rule
-      const g = genericReadings(text);
-      const ledgerPieces = prints ? prints : cuts.length ? piecesAt(text, cuts) : [text.trim()].filter(Boolean);
-      const v = c.vs_generic;
-      if (g.hidden && g.readings.length === 0) { if (ledgerPieces.length) v.generic_hid_ledger_prints += 1; else v.same += 1; }
-      else if (g.readings.length > 1 && ledgerPieces.length === 1) v.generic_divided_ledger_whole += 1;
-      else if (g.readings.length <= 1 && ledgerPieces.length > 1) v.ledger_divides_generic_did_not += 1;
-      else if (g.readings.length > 1 && ledgerPieces.length > 1 && JSON.stringify(g.readings) !== JSON.stringify(ledgerPieces)) v.both_divide_differently += 1;
-      else v.same += 1;
     }
   }
 }
@@ -311,22 +288,20 @@ for (const [k, c] of Object.entries(unledgeredRows)) if (!(manifest.excluded || 
 if (conflicts.length) refuse(`${conflicts.length} rows where a print step cannot be applied: ${conflicts.slice(0, 4).join(" · ")}`);
 const sources = {};
 for (const [key, L] of ledgers) {
-  const c = per[key] || { rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, marks: 0, marks_dividing: 0, by_shape: {}, by_print_rule: {}, uncovered: 0, vs_generic: {} };
+  const c = per[key] || { rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, marks: 0, marks_dividing: 0, by_shape: {}, by_print_rule: {}, uncovered: 0 };
   sources[key] = { relay: L.relay, declaration_sha256: L.declaration_sha256, classifier_sha256: L.classifier_sha256, m_ids: Object.keys(index.m_sources).filter((m) => keyOfM(m) === key).sort((a, b) => Number(a.slice(1)) - Number(b.slice(1))), shapes: L.shapes.size, shapes_dividing: [...L.shapes.values()].filter((s) => s.divides).map((s) => s.id), branches: L.branches, ...c };
 }
 const totals = { ledgered_sources: ledgers.size, rows: rowsSeen, rows_dividing: rowsDividing, rows_printing_a_part: rowsPrinting, rows_no_pill: rowsNoPill, rows_whose_slot_moved: rowsChanged, uncovered: uncovered.length ? Object.values(per).reduce((a, c) => a + c.uncovered, 0) : 0 };
-const vs = Object.values(per).reduce((a, c) => { for (const [x, y] of Object.entries(c.vs_generic)) a[x] = (a[x] || 0) + y; return a; }, {});
 console.log(`ledger divisions · ${ledgers.size} ledgers · ${n(rowsSeen)} rows of ledgered sources · ${n(rowsDividing)} divide · ${n(rowsPrinting)} print a part · ${n(rowsNoPill)} print no pill · ${n(rowsChanged)} slots move · uncovered ${n(totals.uncovered)}`);
 console.log(`  span store · ${spanCounts.books} books · ${n(spanCounts.rows)} rows, ${n(spanCounts.rows_of_ledgered_sources)} of ledgered sources · ${n(spanCounts.rows_dividing)} divide · ${n(spanCounts.rows_printing_a_part)} print a part · ${n(spanCounts.rows_no_pill)} print no pill · ${n(spanCounts.rows_whose_slot_moved)} slots move · uncovered ${n(spanCounts.uncovered)}`);
 for (const u of spanUncovered.slice(0, 6)) console.log(`  span uncovered: ${u.source} ${u.book} ${u.key} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
-console.log(`  against the generic rule: ${JSON.stringify(vs)}`);
-for (const [key, s] of Object.entries(sources)) if (s.rows) console.log(`  ${key.padEnd(66)} rows ${String(s.rows).padStart(7)} · divide ${String(s.rows_dividing).padStart(6)} · print ${String(s.rows_printing_a_part).padStart(5)} · no pill ${String(s.rows_no_pill).padStart(4)} · generic divided ${String(s.vs_generic.generic_divided_ledger_whole || 0).padStart(6)} · generic hid ${String(s.vs_generic.generic_hid_ledger_prints || 0).padStart(4)} · uncovered ${s.uncovered}`);
+for (const [key, s] of Object.entries(sources)) if (s.rows) console.log(`  ${key.padEnd(66)} rows ${String(s.rows).padStart(7)} · divide ${String(s.rows_dividing).padStart(6)} · print ${String(s.rows_printing_a_part).padStart(5)} · no pill ${String(s.rows_no_pill).padStart(4)} · uncovered ${s.uncovered}`);
 for (const u of uncovered.slice(0, 12)) console.log(`  uncovered: ${u.source} ${u.key}#${u.rank} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 
-// the sources still on the generic rule, named with their rows: the dictionaries
-// beside the store (data/overlays/*/index.json) and the span store's own sources
-// (data/span-store/index.json), none of which has a ledger yet
+// the sources with no ledger, printing whole until theirs land, named with their
+// rows: the dictionaries beside the store (data/overlays/*/index.json) and the
+// span store's own sources (data/span-store/index.json)
 const unledgered = () => {
   const out = {};
   const OV = join(K3, "data", "overlays");
@@ -359,7 +334,7 @@ index.ledgers = {
   excluded: Object.fromEntries(Object.entries(manifest.excluded || {}).map(([k, why]) => [k, { why, rows: unledgeredRows[k] || 0 }])),
   untabled: manifest.untabled || {},
   unledgered: unledgered(),
-  what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger keeps the generic rule, and from 7 November 2026 those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
+  what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger is one reading as written, whole (7 November 2026: the comma rule the page had guessed retired), and those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
   print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"}; tools/ledger-print-v1.mjs, the hand table, for the rest`,
   span_store: { file: "reader/data/span-store/<book>.json", ...Object.fromEntries(Object.entries(spanCounts).filter(([k]) => k !== "by_source")) },
   sources: Object.fromEntries(Object.entries(sources).map(([k, s]) => [k, { relay: s.relay, declaration_sha256: s.declaration_sha256, classifier_sha256: s.classifier_sha256, m_ids: s.m_ids, shapes: s.shapes, shapes_dividing: s.shapes_dividing, branches: Object.fromEntries(Object.entries(s.branches).map(([id, b]) => [id, { option: b.option, resting: b.resting, by: b.by, on: b.on, ...(b.prints ? { prints: b.prints, print_step_from: b.print_step_from } : {}) }])), rows: s.rows, rows_dividing: s.rows_dividing, rows_printing_a_part: s.rows_printing_a_part, rows_no_pill: s.rows_no_pill, uncovered: s.uncovered }])),
@@ -368,5 +343,5 @@ index.ledgers = {
 index.counts = { ...(index.counts || {}), shard_bytes_total: shardBytes };
 if (now !== was) { index.store_version = now; index.store_version_history = [...(index.store_version_history || []), { was, now, why: LEDGER_DIVISION_RULE_ID, on }]; }
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
-writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); tools/ledger-print-v1.mjs, the hand table, for the rest`, ran_at: on, store_version: { was, now }, totals, vs_generic_rule: vs, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered } }, null, 1));
+writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); tools/ledger-print-v1.mjs, the hand table, for the rest`, ran_at: on, store_version: { was, now }, totals, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered } }, null, 1));
 console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · index.ledgers names ${ledgers.size} ledgers · receipt ${RECEIPT}`);

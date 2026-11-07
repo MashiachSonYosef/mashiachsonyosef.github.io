@@ -2599,93 +2599,17 @@
     }
     return JSON.parse(await new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).text());
   };
-  // A record packs senses with ";" — but only the semicolons the provider wrote
-  // between senses. One inside its own parentheses is part of what the
-  // parenthesis says: "belonging to you (plural; more owners)" is one reading,
-  // and cutting it there hands the reader "belonging to you (plural" — a run
-  // with a bracket that never closes, which the provider never wrote.
-  //
-  // Same clause as the comma rule one layer down: the mark separates at
-  // parenthesis depth zero and nowhere else, and the pieces rejoin, character
-  // for character, into the text they came from.
-  // A sense divides into readings at the commas outside the provider's own
-  // parentheses — sense-split-rule-v2, mirrored from tools/sense-split-v1.mjs
-  // so the pill that comes up pressed is the reading already printed under
-  // the word. A text whose parentheses do not balance is damaged: something
-  // already edited it, and it is held whole, neither printed nor pooled.
-  const readingSplit = (text) => {
-    const s = String(text);
-    let depth = 0;
-    for (let i = 0; i < s.length; i += 1) {
-      if (s[i] === "(") depth += 1;
-      else if (s[i] === ")") { depth -= 1; if (depth < 0) return { readings: [s], damaged: true }; }
-    }
-    if (depth !== 0) return { readings: [s], damaged: true };
-    const raw = []; let start = 0; depth = 0;
-    for (let i = 0; i < s.length; i += 1) {
-      const c = s[i];
-      if (c === "(") depth += 1;
-      else if (c === ")") depth -= 1;
-      else if (c === "," && depth === 0) { raw.push(s.slice(start, i)); start = i + 1; }
-    }
-    raw.push(s.slice(start));
-    // A PAGE CITATION IS NOT A READING. Cowley's Samaritan glossary writes
-    // "beginning, p. 323 (Heb.)": the page of the liturgy where the word
-    // stands, after the comma like a second sense. Split as one, it stood as
-    // a pill of its own, "p. 323 (Heb.)", among the readings of Genesis 1:1
-    // (the owner, 2026-10-03). It stays in the record, printed whole; it is
-    // never offered as a reading. A record that is nothing but a citation
-    // keeps it, so no record is emptied.
-    const pieces = raw.map((piece) => piece.trim()).filter(Boolean);
-    // A COMMA DIVIDES GLOSSES, NEVER A SENTENCE (the owner, 2026-10-30, of a
-    // name's entry cut at its commas into pills, "which became a separate
-    // kingdom (opposed to Israel) after the death of Solomon" among them: "a
-    // comma in ubs doesnt mean different entrys ... this is clearly just a
-    // sentence"; tools/sense-split-v1.mjs rule 5, the same words). Of a
-    // sense's comma pieces, each of at most four words (the provider's
-    // parentheses not counted) is a reading, as before, and a bare
-    // conjunction between commas is none; where any piece runs longer the
-    // provider wrote prose, and the sense stands whole as a reading beside
-    // its glosses, commas and all. Every reading a sense gave before it
-    // gives still but the clauses; what is new is the sentence, once.
-    const glossShaped = (piece) => { const bare = piece.replace(/\([^()]*\)/gu, " ").trim(); const w = bare.split(/\s+/u).filter(Boolean); return w.length > 0 && w.length <= 4 && !/^(and|or|nor|but)$/iu.test(bare); };
-    const glosses = pieces.every(glossShaped) ? pieces : [...pieces.filter(glossShaped), s.trim()];
-    const readings = glosses.filter((piece) => !/^p{1,2}\.\s*\d/u.test(piece));
-    return { readings: readings.length ? readings : glosses, damaged: false };
-  };
-  // P · two D records are one record when they carry the same set of
-  // readings, however each provider packed them — ";" between senses, ","
-  // inside a sense at parenthesis depth zero, "/" between spans — folded by
-  // case exactly as the pool folds readings. The bytes each source wrote
-  // stay its own and print verbatim; P only says who is carrying the same
-  // record. Byte-identity was the old test, and it kept "Most High" and
-  // "most high" — one record by this law — from ever corroborating.
-  const pKey = (text) => {
-    const set = new Set();
-    for (const sense of senseSplit(text)) {
-      const r = readingSplit(sense);
-      for (const piece of (r.damaged ? [sense] : r.readings))
-        for (const span of piece.split("/")) {
-          const t = span.trim().toLowerCase();
-          if (t) set.add(t);
-        }
-    }
-    return [...set].sort().join("\u0001");
-  };
-  const senseSplit = (text) => {
-    const t = String(text || "");
-    const out = []; let start = 0, d = 0;
-    for (let i = 0; i < t.length; i += 1) {
-      const c = t[i];
-      if (c === "(") d += 1;
-      else if (c === ")") { if (d > 0) d -= 1; }
-      else if (c === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; }
-    }
-    out.push(t.slice(start));
-    // if they do not rejoin they are not its pieces, and it stays whole
-    if (out.join(";") !== t) return [t.trim()].filter(Boolean);
-    return out.map((x) => x.trim()).filter(Boolean);
-  };
+  // P · two D records are one record when their wording is the same by the
+  // printed form, case folded (readingKey: "/" pieces joined, one closing
+  // stop dropped). The bytes each source wrote stay its own and print
+  // verbatim; P only says who is carrying the same record. Byte-identity was
+  // the old test, and it kept "Most High" and "most high" — one record by
+  // this law — from ever corroborating. (Until 7 November 2026 P divided the
+  // record's text by the comma rule the page guessed and compared the sets;
+  // that rule retired with the last unledgered store source. A row's
+  // readings are not its record: BDB's article behind "happen" is one record
+  // and the gloss "happen" of another source is another.)
+  const pKeyOf = (row) => readingKey(row[2] || row[1] || "");
   // LEDGER DIVISION (ledger-division-rule-v1 of 6 November 2026, v2 the same evening). The readings
   // of one store row. A source under a ledger (index.m_sources[m].ledger: the
   // corpus lane's own declaration of every mark of that dictionary) divides
@@ -2694,14 +2618,13 @@
   // from the source's own classifier under the owner's answers; with no slot
   // the row is one reading, as the source wrote it, brackets and all: the
   // ledger declared every mark, so nothing here is "damaged" and nothing is
-  // hidden. A source with no ledger keeps the generic rule above (from 7
+  // hidden. A source with no ledger is one reading as written, whole (from 7
   // November 2026 only the dictionaries beside the store and the span store's
-  // own two sources, until their ledgers land; the index names them): senses
-  // at the pack mark, readings at
-  // the comma rule, a damaged sense held back, or kept whole where asked.
-  // The same function stands in tools/gloss-store-v1.mjs (readingsOf), so the
-  // line baked there and the pill pressed here say one thing.
-  const readingsOfRow = (row, damagedWhole = false) => {
+  // own two sources, until their ledgers land; the index names them; the
+  // comma rule the page had guessed for them retired that day, the owner's
+  // word). The same function stands in tools/gloss-store-v1.mjs (readingsOf),
+  // so the line baked there and the pill pressed here say one thing.
+  const readingsOfRow = (row) => {
     const text = String(row[1] ?? "");
     const src = index.m_sources[row[3]];
     if (src && src.ledger) {
@@ -2716,9 +2639,8 @@
       pieces.push(text.slice(from));
       return pieces.map((x) => x.trim()).filter(Boolean);
     }
-    const out = [];
-    for (const sense of senseSplit(text)) { const r = readingSplit(sense); if (r.damaged) { if (damagedWhole) out.push(sense); continue; } out.push(...r.readings); }
-    return out;
+    const t = text.trim();
+    return t ? [t] : [];
   };
 
   // The chip prints the name the declarations record carries for the posture,
@@ -4339,7 +4261,7 @@
   // the period, and the porch and every check join readings by this same
   // function, to the character.
   const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
-  // ONE READING, ONE PILL (zone-gloss-rule-v6, tools/gloss-store-v1.mjs readingKey):
+  // ONE READING, ONE PILL (the gloss rule since its v6 of 7 November 2026; tools/gloss-store-v1.mjs readingKey):
   // two readings are one where they print the same, case folded
   const readingKey = (t) => spanJoin(t).toLowerCase();
   const shardCache = new Map();
@@ -5100,7 +5022,7 @@
     // the lead record's own bytes for this reading: the pool groups readings
     // case-blind across records, so hit.text can be another record's casing
     const want = spanJoin(hit.text).toLowerCase();
-    const ownText = readingsOfRow(lead, true)
+    const ownText = readingsOfRow(lead)
       .find((x) => spanJoin(x).toLowerCase() === want) || hit.text;
     // the reading's other carriers, those the reader has not switched off
     const also = [...hit.records].sort(EARLIEST_FIRST).filter((r) => r !== lead && !(everySource && sourcesOff.has(r[3])))
@@ -6571,10 +6493,10 @@
   };
 
   // The readings for one cell surface, as the reader's law has them
-  // (rule v4 · 2026-08-24): a route text packs senses with ";", a sense
-  // divides into readings at the commas outside the provider's parentheses
-  // (sense-split-rule-v2), and each reading is its own pill; a damaged sense
-  // neither prints nor pools. Pills dedupe by text, merging the oldest year
+  // (zone-gloss-rule-v7, 7 November 2026): a row divides into readings only as
+  // its source's own ledger says, and a source with no ledger is one reading
+  // as written, whole; each reading is its own pill. Pills dedupe by the
+  // printed form, case folded, merging the oldest year
   // and lowest rank; oldest source leads, sources after the era cut (ERA_CUT_AD,
   // the 57th/58th-century line in AM) and unyeared sources last.
   // the grade of one store row for the card's surface, as the pill exposes
@@ -6750,7 +6672,7 @@
     // 1 pill with 2 M"; the corpus lane's R pill ledger, resting position
     // TOGETHER) is the printed form (spanJoin: "/" pieces joined, one closing
     // period dropped), lowercased: readingKey, the key the bake pools by too
-    // (zone-gloss-rule-v6, 7 November 2026; until then the store's rows grouped
+    // (the gloss rule since its v6, 7 November 2026; until then the store's rows grouped
     // on the reading as written, closing period and all, as the baked columns
     // were, and Strong's "Amos." stood beside a second source's "Amos" as two
     // pills that read alike). An overlay's row joins the store's pill that
@@ -9146,7 +9068,7 @@
         const byP = new Map();
         recs.forEach((row) => {
           const text = row[2] || row[1] || "";
-          const key = pKey(text);
+          const key = pKeyOf(row);
           if (!byP.has(key)) byP.set(key, { text, rows: [] });
           byP.get(key).rows.push(row);
         });
@@ -9186,17 +9108,17 @@
             d.append(s);
             return d;
           }
-          senseSplit(text).forEach((sense, i) => {
-            if (i) d.append(Object.assign(document.createElement("span"), { className: "d-sep", textContent: " · " }));
+          // any other record prints whole as its source wrote it, lit when the
+          // reading the reader holds is one of its row's own (7 November 2026:
+          // until then the page divided it by the comma rule it had guessed)
+          {
             const s = document.createElement("span");
-            // the chosen reading is finer than the sense that carries it: the
-            // sense is lit when any of its readings is the one the reader holds
-            const holds = readingSplit(sense).readings.some(
-              (reading) => readingKey(reading) === readingKey(selected.text));
-            s.className = holds || readingKey(sense) === readingKey(selected.text) ? "d-sense on" : "d-sense";
-            s.textContent = spanJoin(sense);
+            const sel = readingKey(selected.text);
+            const holds = readingKey(text) === sel || (row ? readingsOfRow(row).some((reading) => readingKey(reading) === sel) : false);
+            s.className = holds ? "d-sense on" : "d-sense";
+            s.textContent = spanJoin(text);
             d.append(s);
-          });
+          }
           if (!d.childNodes.length) d.textContent = spanJoin(text);
           return d;
         };
@@ -9295,7 +9217,7 @@
         // membership.
         const alsoCarry = [], elsewhere = [];
         {
-          const firstKey = pKey(firstText);
+          const firstKey = pKeyOf(firstGroup[0]);
           const seen = new Set([firstGroup[0][3]]);
           for (const row of firstGroup.slice(1)) {
             if (seen.has(row[3])) continue;
@@ -9306,7 +9228,7 @@
             if (g === selected) continue;
             for (const row of g.records) {
               const t = row[2] || row[1] || "";
-              if (pKey(t) !== firstKey) continue;
+              if (pKeyOf(row) !== firstKey) continue;
               if (seen.has(row[3])) continue;
               seen.add(row[3]);
               elsewhere.push({ row, group: g, text: t });
@@ -9339,9 +9261,18 @@
             b.append(`${m.label.split(/[,(]/)[0].trim()} · ${hasYear(row[4]) ? `wording ${row[4]}` : "no wording year"}`);
             const lic = document.createElement("span"); lic.className = "lic-chip";
             lic.textContent = licenseTextOf(readingOfRow(row)); b.append(lic);
-            if (text && text !== firstText)
-              b.append(Object.assign(document.createElement("span"),
-                { className: "d-also-read", textContent: `reads it “${text}”` }));
+            if (text && text !== firstText) {
+              // the record's own wording, its Hebrew runs in the corpus's red
+              // (the card's channels: the corpus's letters are the red everywhere
+              // outside a dictionary text; check-card-channels C1)
+              const rd = document.createElement("span"); rd.className = "d-also-read"; rd.append("reads it “");
+              for (const run of String(text).split(/([\u0590-\u05FF][\u0590-\u05FF\u05BE\u200F\s]*[\u0590-\u05FF]|[\u0590-\u05FF])/u)) {
+                if (!run) continue;
+                if (/^[\u0590-\u05FF]/u.test(run)) rd.append(Object.assign(document.createElement("span"), { className: "he-q", lang: "he", dir: "rtl", textContent: run }));
+                else rd.append(run);
+              }
+              rd.append("”"); b.append(rd);
+            }
             b.title = `${m.label} — go to this reading`;
             b.addEventListener("click", (ev) => {
               ev.stopPropagation();

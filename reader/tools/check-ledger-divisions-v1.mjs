@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // GUARDS: ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say
-// GUARDS: zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary
+// GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
 //
 // THE PAGE READS THE LEDGER'S DIVISION, AND THE DIVISION IS THE LEDGER'S.
 //
@@ -13,9 +13,9 @@
 //   D1  every source the store serves is under a ledger the index names, with
 //       the rows the index counts, or is excluded with why (none from 7
 //       November 2026: Strong's 1890, the last, was untabled), no served source
-//       is both or neither, and the sources still on the generic rule are
-//       exactly the ones the index names (the dictionaries beside the store,
-//       the span store's own two)
+//       is both or neither, and the sources with no ledger (printing whole
+//       until theirs land) are exactly the ones the index names (the
+//       dictionaries beside the store, the span store's own two)
 //   D2  each ledger's two files on disk are the bytes the index and the
 //       manifest pin, and the index's answer to every branch is the answers
 //       file's, or the declaration's resting option where none was given
@@ -27,9 +27,9 @@
 //   D4  the store's readingsOf and the page's readingsOfRow, read out of
 //       zone.html as bake-search-index reads the page's functions, give the
 //       same readings for every sampled row, ledgered or not
-//   D5  on the page: the card of a word whose ledgered row the generic rule
-//       would have divided offers that row as its ledger says (one pill where
-//       the row has no slot), and its record text prints whole
+//   D5  on the page: the card of a word whose ledgered row carries a comma
+//       and no slot offers that row as its ledger says (one pill, none of
+//       its comma pieces), and its record text prints whole
 //   D6  on the page: a row that prints a part of itself (a filing tag off)
 //       offers the part as its pill and not the row's whole text
 //   D7  on the page: a row that prints no pill offers nothing
@@ -104,15 +104,15 @@ if (!ONLY || ONLY === "D1") {
     if (recount !== S.rows) faults.push(`${key}: the index counts ${nf(S.rows)} rows, the shards hold ${nf(recount)}`);
     for (const m of S.m_ids) if ((index.m_sources[m] || {}).ledger !== key) faults.push(`${key} names ${m}, which is not under it`);
   }
-  // the sources still on the generic rule: exactly the overlays' ids and the span store's own, as the index names them
+  // the sources with no ledger (printing whole until theirs land): exactly the overlays' ids and the span store's own, as the index names them
   const named = new Set(Object.keys(L.unledgered || {}));
   const OV = join(K3, "data", "overlays");
   const found = new Set();
   if (existsSync(OV)) for (const d of readdirSync(OV)) { const p = join(OV, d, "index.json"); if (!existsSync(p)) continue; for (const [id, m] of Object.entries(JSON.parse(readFileSync(p, "utf8")).m_sources || {})) if (!L.sources[m.key]) found.add(id); }
   { const p = join(K3, "data", "span-store", "index.json"); if (existsSync(p)) for (const [id, m] of Object.entries(JSON.parse(readFileSync(p, "utf8")).m_sources || {})) if (!index.m_sources[id] && !L.sources[m.key]) found.add(id); }
-  for (const id of found) if (!named.has(id)) faults.push(`${id} is on the generic rule and the index does not name it`);
-  for (const id of named) if (!found.has(id)) faults.push(`the index names ${id} as on the generic rule, and it is not`);
-  check("D1  every served source is under a ledger the index names, with the rows it counts, or excluded with why; the sources still on the generic rule are exactly the ones the index names", faults.length === 0,
+  for (const id of found) if (!named.has(id)) faults.push(`${id} has no ledger and the index does not name it`);
+  for (const id of named) if (!found.has(id)) faults.push(`the index names ${id} as having no ledger, and it has one`);
+  check("D1  every served source is under a ledger the index names, with the rows it counts, or excluded with why; the sources with no ledger are exactly the ones the index names", faults.length === 0,
     faults.length ? faults.slice(0, 4).join(" · ") : `${Object.keys(L.sources).length} ledgers over ${nf(Object.values(L.sources).reduce((a, s) => a + s.rows, 0))} rows · excluded: ${Object.entries(L.excluded || {}).map(([k, v]) => `${k} (${nf(v.rows)} rows)`).join(", ") || "none"} · on the generic rule: ${Object.entries(L.unledgered || {}).map(([id, u]) => `${id} (${u.where}${u.rows !== null && u.rows !== undefined ? `, ${nf(u.rows)} rows` : ""})`).join(", ") || "none"}`);
 }
 
@@ -248,7 +248,7 @@ if (!ONLY || ONLY === "D4") {
   const grab = (head, end) => { const a = zone.indexOf(head); if (a < 0 || zone.indexOf(head, a + 1) >= 0) throw new Error(`zone.html does not hold exactly one "${head.trim()}"`); const b = zone.indexOf(end, a); return zone.slice(a, b + end.length); };
   let pageFn = null, why = "";
   try {
-    pageFn = new Function("index", `${grab("\n  const readingSplit = (text) => {\n", "\n  };\n")}${grab("\n  const senseSplit = (text) => {\n", "\n  };\n")}${grab("\n  const readingsOfRow = (row, damagedWhole = false) => {\n", "\n  };\n")} return readingsOfRow;`)(index);
+    pageFn = new Function("index", `${grab("\n  const readingsOfRow = (row) => {\n", "\n  };\n")} return readingsOfRow;`)(index);
   } catch (e) { why = e.message; }
   const faults = []; let rows = 0;
   if (pageFn) {
@@ -257,18 +257,18 @@ if (!ONLY || ONLY === "D4") {
       const a = JSON.stringify(store.readingsOf(row)), b = JSON.stringify(pageFn(row));
       if (a !== b) faults.push(`${k}#${row[0]} ${row[3]}: store ${a.slice(0, 60)}, page ${b.slice(0, 60)}`);
     }
-    // and the generic rule, on the unledgered source's rows
-    let generic = 0;
+    // and the rows of a source with no ledger (whole), where the store holds any
+    let noLedger = 0;
     for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bin")).sort().slice(0, 24)) {
       const body = JSON.parse(gunzipSync(readFileSync(join(STORE, "shards", f))).toString("utf8"));
       for (const [k, rs] of Object.entries(body)) for (const row of rs) {
         const src = index.m_sources[row[3]]; if (!src || src.ledger) continue;
-        generic += 1;
+        noLedger += 1;
         const a = JSON.stringify(store.readingsOf(row)), b = JSON.stringify(pageFn(row));
-        if (a !== b) faults.push(`${k}#${row[0]} ${row[3]} (generic): store ${a.slice(0, 60)}, page ${b.slice(0, 60)}`);
+        if (a !== b) faults.push(`${k}#${row[0]} ${row[3]} (no ledger): store ${a.slice(0, 60)}, page ${b.slice(0, 60)}`);
       }
     }
-    rows += generic;
+    rows += noLedger;
   }
   check("D4  the store's readingsOf and the page's readingsOfRow give the same readings for every sampled row", !!pageFn && faults.length === 0,
     !pageFn ? `the page's function could not be read: ${why}` : faults.length ? faults.slice(0, 3).join(" · ") : `${nf(rows)} rows agree`);
@@ -327,34 +327,37 @@ const pillsOnCard = async (pw, launchOptions, defaultZoneUrl, pick) => {
   return { opened, got };
 };
 
+// the pieces of a text at a mark outside its parentheses (what the retired comma rule would have cut; D5 proves the ledger's whole row stands instead)
+const outside = (text, mark) => { const s = String(text || ""); const out = []; let start = 0, d = 0; for (let i = 0; i < s.length; i += 1) { const c = s[i]; if (c === "(") d += 1; else if (c === ")") { if (d > 0) d -= 1; } else if (c === mark && d === 0) { out.push(s.slice(start, i)); start = i + 1; } } out.push(s.slice(start)); return out.map((x) => x.trim()).filter(Boolean); };
+
 // D5 — on the page
 if (!ONLY || ONLY === "D5") {
   const { loadPlaywright, launchOptions } = await import("./playwright-v1.mjs");
   const { defaultZoneUrl, zonesServed } = await import("./zones-on-disk-v1.mjs");
   const pw = await loadPlaywright();
-  // a served word whose ledgered row the generic rule would divide and whose row has no slot
+  // a served word whose ledgered row has no slot and carries a comma outside its parentheses (the old comma rule would have cut it; its ledger keeps it whole)
   const pick = findWord(zonesServed, (rows) => rows.find((r) => {
-            if (!index.m_sources[r[3]].ledger || Array.isArray(r[7]) || Array.isArray(r[8]) || !/,/u.test(String(r[1])) || store.packSplit(String(r[1])).length !== 1) return false;
-            // a list of short glosses, so every generic piece is a piece and none is the whole text
+            if (!index.m_sources[r[3]].ledger || Array.isArray(r[7]) || Array.isArray(r[8]) || !/,/u.test(String(r[1])) || outside(String(r[1]), ";").length !== 1) return false;
+            // a list of short glosses, so every comma piece is a piece and none is the whole text
             const whole = String(r[1]).trim().toLowerCase();
-            const pieces = store.readingSplit(String(r[1])).readings.map((x) => x.toLowerCase());
+            const pieces = outside(String(r[1]), ",").map((x) => x.toLowerCase());
             if (pieces.length < 2 || pieces.includes(whole)) return false;
             // no other row under this key offers any of those pieces, nor the whole text,
             // compared as the card prints a pill (a closing stop dropped, "/" as " + "):
-            // Strong's «Dibri.» prints «Dibri», the generic piece of its own «Dibri , an Israelite»
+            // Strong's «Dibri.» prints «Dibri», the comma piece of its own «Dibri , an Israelite»
             const disp = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "").toLowerCase();
             const others = new Set(rows.filter((o) => o !== r).flatMap((o) => store.readingsOf(o).map(disp)));
             return pieces.every((pc) => !others.has(disp(pc))) && !others.has(disp(String(r[1]).trim()));
           }));
-  if (!pick) check("D5  a ledgered row the generic rule would divide stands on the page as its ledger says", false, "no served word carries such a row");
+  if (!pick) check("D5  a ledgered row with a comma and no slot stands on the page as its ledger says", false, "no served word carries such a row");
   else {
     const { opened, got } = await pillsOnCard(pw, launchOptions, defaultZoneUrl, pick);
     const whole = String(pick.row[1]).trim();
-    const pieces = store.readingSplit(whole).readings.filter((pc) => pc.trim().toLowerCase() !== whole.toLowerCase());
+    const pieces = outside(whole, ",").filter((pc) => pc.trim().toLowerCase() !== whole.toLowerCase());
     const wholeShown = got ? got.some((t) => t.toLowerCase() === whole.toLowerCase().replace(/\/\s*/gu, " + ").replace(/\.$/u, "") || t.toLowerCase() === whole.toLowerCase()) : false;
     const pieceShown = got ? pieces.some((pc) => got.some((t) => t.toLowerCase() === pc.toLowerCase())) : false;
-    check("D5  a ledgered row the generic rule would divide stands on the page as its ledger says: one pill, none of the generic pieces", !!got && wholeShown && !pieceShown,
-      !opened ? `${pick.book} ${pick.label} ${pick.surface}: the word was not found on the page` : !got ? `${pick.book} ${pick.label}: the card did not open` : `${pick.book} ${pick.label} ${pick.key} · «${whole.slice(0, 50)}» ${wholeShown ? "shown whole" : "NOT shown whole"}${pieceShown ? " · a generic piece is also offered" : ""} · ${got.length} pills`);
+    check("D5  a ledgered row with a comma and no slot stands on the page as its ledger says: one pill, none of its comma pieces", !!got && wholeShown && !pieceShown,
+      !opened ? `${pick.book} ${pick.label} ${pick.surface}: the word was not found on the page` : !got ? `${pick.book} ${pick.label}: the card did not open` : `${pick.book} ${pick.label} ${pick.key} · «${whole.slice(0, 50)}» ${wholeShown ? "shown whole" : "NOT shown whole"}${pieceShown ? " · a comma piece is also offered" : ""} · ${got.length} pills`);
   }
 }
 
