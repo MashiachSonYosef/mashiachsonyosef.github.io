@@ -1,0 +1,469 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
+ "source_key": "wiktionary-samaritan-hebrew-lemmas",
+ "m_ids": [
+  "MSAM5"
+ ],
+ "routes": 11,
+ "read_from": "The route text as served: the field route of each line of scratch/by-source/wiktionary-samaritan-hebrew-lemmas.jsonl, extracted on 7 November 2026 AD from the site at main 1d2470eb, where this source is served in the Samaritan overlay beside the store (reader/data/overlays/samaritan, one of its five sources), not among the 36 sources of the route store (store 87b13b1169b4), for \"English Wiktionary, Samaritan Hebrew lemmas\" (MSAM5): 11 routes (axis: routes) under 11 letters keys (axis: keys), each row's lane field being the page's and no mark. The dictionary store holds no record file for this source and the lane's source cache holds no copy of these entries, so the source audit (builder/write-fragments.mjs, evidence about the source and no part of any test) read the routes' own def field: on 11 of 11 routes the def holds the entry's head template, the route text and the citation of the wiki page with its revision id in square brackets (axis: routes). The route text is wikitext as the wiki writes it, with its link signs and templates. The source's own key to its signs: none on file (the wiki's own help pages on links and templates are not in the cache, and fetching them needs the owner's word). The two pipes between senses are the lane's own join, named in the Samaritan toggle strand's build rule (<tabernacle>/corpus-lane-builds/moses-samaritan-toggle-v1.4/build/RULE-build.md: lines \" || \" of Florentin–Tal and Wiktionary) and so verified from the lane's own file; every other shape's meaning begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one UTF-16 unit of the JavaScript string (every route here holds only characters of 16 bits). The text is the whole route text as it stands, the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. Nothing is trimmed unless a test says so. The text before the mark is every character from the start of the text up to, and not including, the mark; the text after the mark is every character after it to the end. The character before the mark is the one at the mark's index less one (none at the start), the character after it the one at the mark's index plus one (none at the end). What the bracket holds means the characters between that opener and its closer: the template's c.group. Begins with the string means the string's characters are exactly the first characters, with nothing before them; with its leading whitespace taken off means the JavaScript trimStart, whitespace being what \\s matches. Every string minds case. A string stands between « and », which are not part of it. The container is the template's: top, paren for the innermost bracket being a round one, bracket for a square one, brace for a curly one.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it."
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.before_a_restatement",
+   "comma.between_linked_glosses"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_a_linked_name",
+   "close_paren.holds_a_linked_name"
+  ],
+  "brackets": [
+   "open_bracket.outer_of_a_link",
+   "open_bracket.inner_of_a_link",
+   "close_bracket.inner_of_a_link",
+   "close_bracket.outer_of_a_link",
+   "open_brace.outer_of_a_qualifier_template",
+   "open_brace.outer_of_a_label_template",
+   "open_brace.inner_of_a_template",
+   "close_brace.inner_of_a_template",
+   "close_brace.outer_of_a_qualifier_template",
+   "close_brace.outer_of_a_label_template"
+  ]
+ },
+ "shapes": [
+  {
+   "id": "open_bracket.outer_of_a_link",
+   "mark": "[",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: opens, as the outer of two, the double square brackets of a wikitext link round one gloss («[[mountain]], [[mount]]», «God ([[Elohim]])»); the link signs are the wiki's filing marks, no reading, and never cut, at top level or inside round brackets.",
+   "test": "The character after the mark is an opening square bracket (terms, first_match).",
+   "count": 20,
+   "examples": [
+    {
+     "key": "הר"
+    },
+    {
+     "key": "עברית"
+    },
+    {
+     "key": "רוח"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "open_bracket.inner_of_a_link",
+   "mark": "[",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: opens, as the inner of two, the double square brackets of a wikitext link round one gloss («[[wind]], [[spirit]]»); the link signs are the wiki's filing marks, no reading, and never cut.",
+   "test": "The character before the mark is an opening square bracket (terms, first_match).",
+   "count": 20,
+   "examples": [
+    {
+     "key": "הר"
+    },
+    {
+     "key": "עברית"
+    },
+    {
+     "key": "רוח"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "close_bracket.inner_of_a_link",
+   "mark": "]",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: closes, as the inner of two, the double square brackets of a wikitext link round one gloss («to [[hear]]»); the link signs are the wiki's filing marks, no reading, and never cut.",
+   "test": "The character after the mark is a closing square bracket (terms, first_match).",
+   "count": 20,
+   "examples": [
+    {
+     "key": "הר"
+    },
+    {
+     "key": "עברית"
+    },
+    {
+     "key": "רוח"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "close_bracket.outer_of_a_link",
+   "mark": "]",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes, as the outer of two, the double square brackets of a wikitext link round one gloss («[[Israel]]», «God ([[Elohim]])»); the link signs are the wiki's filing marks, no reading, and never cut, at top level or inside round brackets.",
+   "test": "The character before the mark is a closing square bracket (terms, first_match).",
+   "count": 20,
+   "examples": [
+    {
+     "key": "הר"
+    },
+    {
+     "key": "עברית"
+    },
+    {
+     "key": "רוח"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "comma.before_a_restatement",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands before a restatement opened by i.e., which says the same thing in other words («\"the name\", i.e. the [[Tetragrammaton]]»); a restatement after i.e. is never a reading of its own, and the comma never cuts.",
+   "test": "The text after the mark, with its leading whitespace taken off, begins with the string «i.e.» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "שמא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.between_linked_glosses",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates two linked glosses of one sense («[[mountain]], [[mount]]», «in the [[beginning]], [[at first]]»), words that mostly say the same thing; whether such a list cuts is the question of B02, and at rest the row prints whole.",
+   "test": "The text after the mark, with its leading whitespace taken off, begins with two opening square brackets (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "הר"
+    },
+    {
+     "key": "עולם"
+    },
+    {
+     "key": "רוח"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "pipe.first_of_the_pair_between_two_senses",
+   "mark": "|",
+   "container": "top",
+   "divides": false,
+   "means": "the first of the two pipes the lane's overlay build writes between the senses of one entry, the sign named in the Samaritan toggle strand's build rule (<tabernacle>/corpus-lane-builds/moses-samaritan-toggle-v1.4/build/RULE-build.md: lines \" || \" of Florentin–Tal and Wiktionary): «[[world]] || [[universe]], [[cosmos]], [[existence]]»; each side is a sense of the entry, so whether the pair cuts is the question of B01, under which the row prints whole at rest.",
+   "test": "The character after the mark is a pipe (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "עולם"
+    },
+    {
+     "key": "עלמא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "pipe.second_of_the_pair_between_two_senses",
+   "mark": "|",
+   "container": "top",
+   "divides": false,
+   "means": "the second of the two pipes the lane's overlay build writes between the senses of one entry, the sign named in the Samaritan toggle strand's build rule (<tabernacle>/corpus-lane-builds/moses-samaritan-toggle-v1.4/build/RULE-build.md: lines \" || \" of Florentin–Tal and Wiktionary) (the pair in «[[world]] || [[universe]], [[cosmos]], [[existence]]»); it never cuts on its own, since a cut at both pipes would leave an empty piece, and under B01's divides it stays at the head of the second piece for the page to leave off.",
+   "test": "The character before the mark is a pipe (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "עולם"
+    },
+    {
+     "key": "עלמא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "pipe.separates_template_parameters",
+   "mark": "|",
+   "container": "brace",
+   "divides": false,
+   "means": "unverified: separates the parameters of a wikitext template inside its curly brackets («[[Hebrew]] {{gloss|language}}», «{{tlb|smp|Judaism}} the [[Tetragrammaton]]»); a template's parameters are no reading and the pipe never cuts.",
+   "test": "The mark stands inside curly brackets (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "עברית"
+    },
+    {
+     "key": "יהוה"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "open_brace.outer_of_a_qualifier_template",
+   "mark": "{",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens, as the outer of two, the curly brackets of the wikitext template gloss, which qualifies the gloss before it («[[Hebrew]] {{gloss|language}}»); the template is no reading, and whether it comes off the pill is the question of B03.",
+   "test": "What the bracket holds begins with the string «{gloss|» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עברית"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_brace.outer_of_a_label_template",
+   "mark": "{",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens, as the outer of two, the curly brackets of the wikitext template tlb, a label of the field the sense belongs to, standing before the gloss («{{tlb|smp|Judaism}} the [[Tetragrammaton]]»); the template is no reading, and whether it comes off the pill is the question of B03.",
+   "test": "What the bracket holds begins with the string «{tlb|» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "יהוה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_brace.inner_of_a_template",
+   "mark": "{",
+   "container": "brace",
+   "divides": false,
+   "means": "unverified: opens, as the inner of two, the curly brackets of a wikitext template («{{gloss|language}}»); the template's signs are no reading and never cut.",
+   "test": "The character before the mark is an opening curly bracket (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "עברית"
+    },
+    {
+     "key": "יהוה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_brace.inner_of_a_template",
+   "mark": "}",
+   "container": "brace",
+   "divides": false,
+   "means": "unverified: closes, as the inner of two, the curly brackets of a wikitext template («{{tlb|smp|Judaism}}»); the template's signs are no reading and never cut.",
+   "test": "The character after the mark is a closing curly bracket (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "עברית"
+    },
+    {
+     "key": "יהוה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_brace.outer_of_a_qualifier_template",
+   "mark": "}",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes, as the outer of two, the curly brackets of the wikitext template gloss, which qualifies the gloss before it (the pair in «[[Hebrew]] {{gloss|language}}»); the template is no reading, and whether it comes off the pill is the question of B03.",
+   "test": "What the bracket holds begins with the string «{gloss|» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עברית"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_brace.outer_of_a_label_template",
+   "mark": "}",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes, as the outer of two, the curly brackets of the wikitext template tlb, a label of the field the sense belongs to (the pair in «{{tlb|smp|Judaism}} the [[Tetragrammaton]]»); the template is no reading, and whether it comes off the pill is the question of B03.",
+   "test": "What the bracket holds begins with the string «{tlb|» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "יהוה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "quote.round_a_literal_rendering",
+   "mark": "\"",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at each end of the literal rendering of the word, which a restatement then explains («\"the name\", i.e. the [[Tetragrammaton]]»); the quotation marks are the source's own and stay with the rendering, which is one reading.",
+   "test": "Every quotation mark U+0022 takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "שמא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.inside_the_abbreviation_ie",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes each letter of the abbreviation i.e., which opens a restatement («\"the name\", i.e. the [[Tetragrammaton]]»); it never cuts.",
+   "test": "Every period takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "שמא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "open_paren.holds_a_linked_name",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens round brackets that hold, as a link, the Hebrew name behind the English gloss before them («God ([[Elohim]])»); the name in brackets is the word itself and no second reading, and the brackets never cut.",
+   "test": "What the bracket holds begins with two opening square brackets (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אלהים"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_a_linked_name",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes round brackets that hold, as a link, the Hebrew name behind the English gloss before them (the pair in «God ([[Elohim]])»); the name in brackets is the word itself and no second reading, and the brackets never cut.",
+   "test": "What the bracket holds begins with two opening square brackets (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אלהים"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry id; the wiki page's title and revision id stand in the def field's citation, which the route drops. No letters key carries more than one text (11 keys, one route each, axis: keys), so the count is 0 and tells nothing apart; two keys (עולם, עלמא) carry the same text, one entry filed under two spellings.",
+  "keys_with_more_than_one_route_text": 0
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Two rows give two senses of one entry with two pipes between them: [[world]] || [[universe]], [[cosmos]], [[existence]]. Today the page prints the whole row as one pill. Does the pair of pipes divide, so that each sense is a reading of its own? A cut at both pipes would leave an empty piece, so the cut would be at the first pipe, and the second would stay at the head of the next piece for the page to leave off. The commas inside the second sense follow their own question (B02).",
+   "shapes": [
+    "pipe.first_of_the_pair_between_two_senses",
+    "pipe.second_of_the_pair_between_two_senses"
+   ],
+   "occurrences": 4,
+   "keys": [
+    "עולם",
+    "עלמא"
+   ],
+   "options": [
+    {
+     "id": "whole",
+     "means": "The pipes do not cut: the page prints [[world]] || [[universe]], [[cosmos]], [[existence]] as one reading, as written, as it does today."
+    },
+    {
+     "id": "divides",
+     "means": "The first pipe of the pair cuts: the page prints [[world]] and [[universe]], [[cosmos]], [[existence]] as two readings. The second pipe stays at the head of the second piece as a lead sign, which the page leaves off the pill."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Some rows list two or three linked glosses of one sense with commas between them: [[mountain]], [[mount]], or in the [[beginning]], [[at first]]. The words mostly say the same thing. Today the page prints each row whole. Does each such comma divide, so that mountain and mount are two readings? The comma before i.e. in \"the name\", i.e. the [[Tetragrammaton]] is not one of these and stays.",
+   "shapes": [
+    "comma.between_linked_glosses"
+   ],
+   "occurrences": 7,
+   "options": [
+    {
+     "id": "whole",
+     "means": "The commas do not cut: the page prints [[mountain]], [[mount]] as one reading, as written, as it does today."
+    },
+    {
+     "id": "divides",
+     "means": "Each such comma cuts: the page prints [[mountain]] and [[mount]] as two readings, each with its own link signs."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B03",
+   "question": "Two rows carry a wikitext template in double curly brackets beside the gloss: [[Hebrew]] {{gloss|language}}, where the template qualifies the gloss, and {{tlb|smp|Judaism}} the [[Tetragrammaton]], where it labels the field. Today the page prints each row whole, template and all. Should the page leave the template off and print the gloss alone? That needs one step of the page's own, since the store's text does not change.",
+   "shapes": [
+    "open_brace.outer_of_a_qualifier_template",
+    "close_brace.outer_of_a_qualifier_template",
+    "open_brace.outer_of_a_label_template",
+    "close_brace.outer_of_a_label_template"
+   ],
+   "occurrences": 4,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints each row as written, template and all: [[Hebrew]] {{gloss|language}}, as it does today."
+    },
+    {
+     "id": "template_off",
+     "means": "The page prints the row with the template and its curly brackets taken out, as one reading: [[Hebrew]], and the [[Tetragrammaton]]. Nothing is added, so the page needs one step of its own.",
+     "print": {
+      "kind": "remove",
+      "at": [
+       "open_brace.outer_of_a_qualifier_template",
+       "open_brace.outer_of_a_label_template"
+      ]
+     },
+     "examples": [
+      {
+       "key": "עברית",
+       "row": "[[Hebrew]] {{gloss|language}}",
+       "prints": "[[Hebrew]]"
+      },
+      {
+       "key": "יהוה",
+       "row": "{{tlb|smp|Judaism}} the [[Tetragrammaton]]",
+       "prints": "the [[Tetragrammaton]]"
+      }
+     ]
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the page the link signs [[ ]] round every gloss (11 of 11 routes hold them, axis: routes), which a declaration cannot take out of a pill and no kind of ask v1.2 removes without the word inside them; the leaving off of the second pipe of a pair under B01's divides; and the one step B03's template_off asks for, carried as a print step. Nothing is struck and no route is divided at rest."
+}

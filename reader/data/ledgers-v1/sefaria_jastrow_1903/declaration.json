@@ -1,0 +1,1620 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
+ "source_key": "sefaria_jastrow_1903",
+ "m_ids": [
+  "M12",
+  "M49",
+  "M106",
+  "M39",
+  "M65",
+  "M75"
+ ],
+ "routes": 115918,
+ "read_from": "The route text as served: the route field of each row of the Jastrow overlay beside the route store (reader/data/overlays/jastrow, the toggle \"rabbinic witnesses\"), extracted on 7 November 2026 AD from the site at main 1d2470eb, the served route store being store_version 87b13b1169b4 (reader/data/route-store/index.json); this source is not among the 36 sources of the route store. 115,918 rows (axis: rows) under 25,210 letters keys (axis: keys), 27,076 distinct texts (axis: texts), six m ids (M12, M49, M106, M39, M65, M75). The def field of a row is read only to understand a route, never classified: 63,227 rows have a route equal to it, 23,743 a route that is its opening, 28,948 a route that stands inside it elsewhere, 221 carry the cut flag (axis: rows). The source's own key to its signs: none on file. The lane's copy of the source (the Sefaria dump of the Jastrow lexicon, 32,512 entries with 38,954 senses whose definitions are HTML, in <home>/Documents/999 footsteps/ledgers/work/ldmprs/source-cache/sefaria-dump-2026-07-14/jastrow-dictionary-entries.jsonl) carries no front matter and no list of abbreviations; the works-own-stamp strand holds nothing of this source; so every shape whose meaning rests on a sign convention begins \"unverified:\". What the copy shows is the source's structure: each sense's English wordings stand in italics, and a route is such an italic stretch: of the 27,076 distinct texts 22,573 equal one italic stretch of the source exactly, 28 equal one once their final mark is removed, 258 are the opening of a longer italic stretch, and 4,217 are not found as an italic stretch (axis: texts; the audit script is builder/source-audit.mjs, evidence about the source and no part of any test). In the source 12,896 of its 39,759 italic stretches hold a comma and 2,314 a semicolon (axis: stretches): the commas and semicolons of a route stand inside one sense's own wording, which is the ask's second-sentence case.",
+ "definitions": {
+  "terms": "In every test: a letter is any character of Unicode category L (JavaScript \\p{L}); an uppercase letter is \\p{Lu} and a lowercase letter \\p{Ll}; a digit is \\p{N}; whitespace is what JavaScript's \\s matches; to trim is what JavaScript's String.trim does; a word is a maximal run of characters that are not whitespace, unless a test says a run of letters; the run of letters before a mark is the maximal run of letters, apostrophes (U+0027) and right single quotation marks (U+2019) that ends directly before it. 'Directly before' and 'directly after' name the adjacent character, whitespace counted as a character; 'the end of the text' means that only whitespace, or nothing, follows. Every match against a list is exact and case-sensitive, each entry as it is written. To begin with an entry is a plain prefix: no word end is needed after it. What a round bracket holds, the container, and the text before and after a mark are the template's c.group, c.container, c.before and c.after.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file, and the first whose test holds names the occurrence; so each test speaks only of occurrences that no shape above it, for the same mark, has taken.",
+  "pieces": "The pieces of a text: cut the whole text at every comma and every semicolon that stands at the top level (the round bracket is the only bracket kind this dictionary uses, so a mark is at the top level when the opening round brackets before it are not more than the closing ones before it; every text that reaches a test on pieces balances, because an unbalanced text is taken first), and trim each part. A part left empty is an empty piece. The first piece is the part before the first such mark; the later pieces are the rest. The core of a piece is the piece with any run of the characters period, exclamation mark and question mark at its end removed, then trimmed. The first letter character of a piece is its first character that is neither the left single quotation mark (U+2018) nor an opening round bracket; a piece begins with an uppercase (or lowercase) letter when that character is one.",
+  "note_text": "A text holds a pointer or note sign when it holds the three characters cmp. (c, m, p, period) anywhere, or the two characters &c anywhere, or has a piece whose trimmed text is exactly v. (the letter v and a period).",
+  "joining_text": "A text has a joining piece when a later piece's first run of letters (the maximal run of letters at the start of the piece, empty if it does not begin with a letter) is an entry of joining_words.",
+  "leaning_text": "A text has a leaning piece when some piece's core is an entry of leaning_pieces, or begins with an entry of leaning_pieces that is exactly 60 characters long (the long pieces are cut to their first 60 characters, so that no entry quotes more than 60 characters of the source).",
+  "term_piece": "A piece is a term when its core holds no whitespace and is not empty, the piece itself is not an entry of grammar_labels, and one of these holds: its first letter character is an uppercase letter; or its core holds a letter that is none of A to Z, a to z, æ, œ, Æ and Œ, or holds the right single quotation mark (U+2019) or the left single quotation mark (U+2018); or its core is an entry of plain_terms.",
+  "name_text": "A text has a name before its description when some piece is a term and the piece directly after it (the next piece, which exists) begins with a lowercase letter.",
+  "name_phrase_text": "A text has a name phrase before its description when some piece's core holds two or more words (runs of non-whitespace characters) and the last of them has an uppercase letter as its first letter character, and the piece directly after it (which exists) has as its first run of letters a, an or the.",
+  "use_note_text": "A text holds a note on use when some piece's first run of letters is use, one or more whitespace characters stand directly after that run, and the run of letters that begins directly after them is of (use of the root, use of the verb, use of the stem).",
+  "capitalised_text": "A text is capitalised when every piece that is not empty begins with an uppercase letter.",
+  "wording_text": "A text is a list of wordings when every piece that is not empty has as its first character a letter, the left single quotation mark (U+2018) or an opening round bracket.",
+  "label_after": "A mark stands before a trailing grammar label when the text after the mark, trimmed, is an entry of grammar_labels.",
+  "grammar_labels": [
+   "Part. pass",
+   "Part. pass.",
+   "part. pass",
+   "part. pass.",
+   "Pa. part. pass",
+   "pl. constr.",
+   "Pl. majest.",
+   "Pl. fem",
+   "f.pl.",
+   "part. Hof",
+   "Hif.",
+   "Nif.",
+   "Pi.",
+   "Pol.",
+   "Saf.",
+   "Shaf.",
+   "Du.",
+   "Pilp.",
+   "Palp.",
+   "Polel",
+   "Nithpa.",
+   "pl.",
+   "Pl.",
+   "Part."
+  ],
+  "abbreviations": [
+   "Part",
+   "Pa",
+   "Pl",
+   "pl",
+   "Nithpa",
+   "Nif",
+   "Pi",
+   "Pol",
+   "Hif",
+   "f",
+   "Du",
+   "Saf",
+   "Shaf",
+   "Pilp",
+   "Palp",
+   "constr",
+   "majest",
+   "trnsf",
+   "gen",
+   "esp",
+   "cmp",
+   "v",
+   "c",
+   "acc",
+   "Cæs",
+   "Ant",
+   "St",
+   "R",
+   "D",
+   "Z",
+   "A",
+   "S",
+   "T",
+   "J",
+   "L",
+   "P",
+   "H",
+   "p",
+   "Ḥ",
+   "b",
+   "d’R",
+   "I"
+  ],
+  "joining_words": [
+   "and",
+   "or",
+   "nor"
+  ],
+  "leaning_pieces": [
+   "otherwise exempt",
+   "by witnesses",
+   "given to the offender immediately before committing the offe",
+   "by letting cattle live on it",
+   "strapped on the carrier’s back",
+   "in which grapes are carried during the vintage",
+   "honey and oil beaten into a pulp",
+   "filled with an unclean water",
+   "so as to make its surface level with the surface of the wate",
+   "being bent inside",
+   "presses on the stomach and creates nausea",
+   "one half of the natural day and of the natural night",
+   "having the status",
+   "of freedmen",
+   "of incisions",
+   "of menstruation",
+   "of rope",
+   "of one of a pair",
+   "of regret for a vow made under misapprehension",
+   "before a court",
+   "before the execution of a loan",
+   "to the effect that the law of limitation by the entrance of ",
+   "as a free-booter",
+   "at the risk of receiving no consideration",
+   "for Sabbath distances",
+   "in cases of wing-like projections beyond the line",
+   "of a square P’ras",
+   "declared unclean on account of crushed bones carried over it",
+   "of heterogeneous animals by hybridization or by harnessing t",
+   "of wool and linen in the same web",
+   "on measuring by sight",
+   "since he",
+   "when the former is leaning against the latter",
+   "with uplifted tails",
+   "with vowel letters",
+   "that thumb and that of the index finger when held apart",
+   "manufacturer of",
+   "happiness of",
+   "open road",
+   "to endow with skill",
+   "to enter a town"
+  ],
+  "plain_terms": [
+   "gomed",
+   "shittuf",
+   "prosbul",
+   "dofek",
+   "piggul",
+   "sadda"
+  ],
+  "doubted_words": [
+   "Therapeut",
+   "Petræan",
+   "piggul"
+  ],
+  "quotation_starts": [
+   "blank’",
+   "May his death",
+   "Z’man’",
+   "it is partiality"
+  ],
+  "names_or_equivalents": [
+   "Dunag",
+   "Zaidan",
+   "Philistæa",
+   "and he spoke",
+   "Bath",
+   "Canal of",
+   "of Damascus",
+   "Encomiast",
+   "syrinx"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.in_unbalanced_text",
+   "comma.opens_the_text",
+   "comma.ends_the_text",
+   "comma.after_a_dash",
+   "comma.after_a_leading_grammar_label",
+   "comma.in_a_text_with_a_pointer_or_note_sign",
+   "comma.in_a_text_with_a_joining_piece",
+   "comma.in_a_text_with_a_leaning_piece",
+   "comma.after_a_name_before_its_description",
+   "comma.after_a_name_phrase_before_its_description",
+   "comma.in_a_text_with_a_note_on_use",
+   "comma.between_capitalised_names",
+   "comma.between_wordings_of_one_sense"
+  ],
+  "comma_in_paren": [
+   "comma.in_paren_before_the_closer"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.in_unbalanced_text",
+   "semicolon.opens_the_text",
+   "semicolon.ends_the_text",
+   "semicolon.before_a_trailing_grammar_label",
+   "semicolon.in_a_text_with_a_pointer_or_note_sign",
+   "semicolon.in_a_text_with_a_joining_piece",
+   "semicolon.in_a_text_with_a_note_on_use",
+   "semicolon.between_groups_of_wordings"
+  ],
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_another_name_or_an_equivalent",
+   "open_paren.holds_a_qualifier_or_object",
+   "close_paren.never_opened",
+   "close_paren.closes_another_name_or_an_equivalent",
+   "close_paren.closes_a_qualifier_or_object"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "comma.in_unbalanced_text",
+   "mark": ",",
+   "container": "any",
+   "divides": false,
+   "means": "In a text whose round brackets do not balance (a closing bracket the store's cut left behind) nothing divides, so this comma is held whatever it does.",
+   "test": "The text is unbalanced by the ask's helper unbalanced(text): a closing round bracket with no opener before it, or an opener never closed. The definitions terms and first_match apply to every test, and every test on pieces reads them as the definition pieces cuts them.",
+   "count": 29,
+   "examples": [
+    {
+     "key": "קרנים"
+    },
+    {
+     "key": "שוחד"
+    },
+    {
+     "key": "יחד"
+    }
+   ],
+   "read": 29
+  },
+  {
+   "id": "comma.in_paren_before_the_closer",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: a comma written directly before the closing bracket of an object the source names inside round brackets, part of that wording and no boundary.",
+   "test": "The comma's container is paren.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "הצית"
+    },
+    {
+     "key": "צות"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "comma.opens_the_text",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "The comma is the first character of the text: the store's cut dropped what stood before it, so no piece stands before this mark.",
+   "test": "Nothing but whitespace stands before the comma.",
+   "count": 20,
+   "examples": [
+    {
+     "key": "שערין"
+    },
+    {
+     "key": "ישמעאל"
+    },
+    {
+     "key": "חמתה"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "comma.ends_the_text",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "The comma is the last character of the text: the store's cut dropped what followed it, so no piece stands after this mark.",
+   "test": "Nothing but whitespace stands after the comma.",
+   "count": 349,
+   "examples": [
+    {
+     "key": "משכנות"
+    },
+    {
+     "key": "וסתות"
+    },
+    {
+     "key": "תנאים"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.after_a_dash",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a comma directly after an em dash that marks an omitted object, inside one wording of the source.",
+   "test": "The character directly before the comma is the em dash U+2014.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אורעא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "comma.after_a_leading_grammar_label",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the comma after a grammar label (a verb stem such as Hif. or Nif.) that opens the text, before the wordings the label governs.",
+   "test": "The text before the comma, trimmed, holds no comma and no semicolon and is an entry of grammar_labels.",
+   "count": 24,
+   "examples": [
+    {
+     "key": "איפרע"
+    },
+    {
+     "key": "אפקע"
+    },
+    {
+     "key": "פרע"
+    }
+   ],
+   "read": 24
+  },
+  {
+   "id": "comma.in_a_text_with_a_pointer_or_note_sign",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a comma in a text that carries the source's pointer or note signs (cmp., &c, or a piece v.), where the commas belong to a note or a cut-off pointer and are held whole.",
+   "test": "The text holds a pointer or note sign (note_text).",
+   "count": 55,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "עבית"
+    },
+    {
+     "key": "טיבל"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.in_a_text_with_a_joining_piece",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "A comma in a text where a later piece opens with and, or or nor: that piece continues the piece before it or offers another wording, which the text does not tell apart, so every comma of the text is held.",
+   "test": "The text has a joining piece (joining_text, over the list joining_words).",
+   "count": 53,
+   "examples": [
+    {
+     "key": "קולב"
+    },
+    {
+     "key": "סיט"
+    },
+    {
+     "key": "כרזילא"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.in_a_text_with_a_leaning_piece",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "A comma in a text where a hand-listed piece leans on the piece before it (a qualifier, a participle phrase or a continuation that is no wording of its own), so every comma of the text is held.",
+   "test": "The text has a leaning piece (leaning_text, over the list leaning_pieces).",
+   "count": 198,
+   "examples": [
+    {
+     "key": "התריה"
+    },
+    {
+     "key": "פרוסבול"
+    },
+    {
+     "key": "פרסים"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.after_a_name_before_its_description",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "A comma in a text where a one-word piece written with a capital, with a transliteration letter, or as a lowercase word of the closed list plain_terms (a name or a term in nearly every place read; a capitalised adjective such as God-fearing falls here too) is followed by a piece that begins with a lowercase letter: a name and its description are one reading, and the text does not tell a description from a second wording, so every comma of the text is held.",
+   "test": "The text has a name before its description (name_text, which reads term_piece and the list plain_terms).",
+   "count": 385,
+   "examples": [
+    {
+     "key": "סרפיא"
+    },
+    {
+     "key": "פרשייתא"
+    },
+    {
+     "key": "קינטור"
+    }
+   ],
+   "read": 34
+  },
+  {
+   "id": "comma.after_a_name_phrase_before_its_description",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "A comma in a text where a piece of several words that ends in a capitalised word is followed by a piece opening with a, an or the: the two pieces are a name phrase and a description of it, in either order, which are one reading, or two wordings for God or for one title, which the text does not tell from them; so every comma of the text is held. Counted over its 42 commas in 10 texts: the name first, 20 commas in 4 texts (the demon Palga, a disease); the description first, 5 commas in 2 texts (the innermost of the Temple, the Holy of Holies); two wordings for God, 11 commas in 3 texts (the Holiness, the Lord); two wordings of one title, 6 commas in 1 text (the office of the Nasi, the house of the Nasi).",
+   "test": "The text has a name phrase before its description (name_phrase_text).",
+   "count": 42,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "נשיאותא"
+    },
+    {
+     "key": "אוריא"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.in_a_text_with_a_note_on_use",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "A comma in a text where a piece is a note on the word's use and no wording (use of the root, use of the verb, use of the stem; like: rejoicing, use of the root): printed as a pill of its own the note would read as a rendering, so every comma of the text is held.",
+   "test": "The text holds a note on use (use_note_text).",
+   "count": 80,
+   "examples": [
+    {
+     "key": "פקידה"
+    },
+    {
+     "key": "עליזה"
+    },
+    {
+     "key": "גויעה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.between_capitalised_names",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a comma between two names or spellings of one name of one sense, each written with a capital.",
+   "test": "The text is capitalised (capitalised_text).",
+   "count": 603,
+   "examples": [
+    {
+     "key": "ארבל"
+    },
+    {
+     "key": "יונית"
+    },
+    {
+     "key": "רבינא"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "comma.between_wordings_of_one_sense",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a comma between two wordings of one sense of the source, each a rendering the source offers side by side, held whole at rest because the store already gives each sense its own route.",
+   "test": "The text is a list of wordings (wording_text).",
+   "count": 65571,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "דדי"
+    },
+    {
+     "key": "תפירה"
+    }
+   ],
+   "read": 36
+  },
+  {
+   "id": "semicolon.in_unbalanced_text",
+   "mark": ";",
+   "container": "any",
+   "divides": false,
+   "means": "In a text whose round brackets do not balance nothing divides, so this semicolon is held whatever it does.",
+   "test": "The text is unbalanced by the ask's helper unbalanced(text).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "שקי"
+    },
+    {
+     "key": "קרנין"
+    },
+    {
+     "key": "קרנות"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "semicolon.opens_the_text",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "The semicolon is the first character of the text: the store's cut dropped what stood before it.",
+   "test": "Nothing but whitespace stands before the semicolon.",
+   "count": 21,
+   "examples": [
+    {
+     "key": "חלק"
+    },
+    {
+     "key": "מיומס"
+    },
+    {
+     "key": "דגל"
+    }
+   ],
+   "read": 21
+  },
+  {
+   "id": "semicolon.ends_the_text",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "The semicolon is the last character of the text: the source goes on after it with a citation or a further sense that the store's cut dropped.",
+   "test": "Nothing but whitespace stands after the semicolon.",
+   "count": 1750,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "אית׳"
+    },
+    {
+     "key": "טרוף"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "semicolon.before_a_trailing_grammar_label",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the semicolon before a grammar label (a verb stem or participle note) that closes the text after the wordings.",
+   "test": "The semicolon stands before a trailing grammar label (label_after).",
+   "count": 9,
+   "examples": [
+    {
+     "key": "שור"
+    },
+    {
+     "key": "נצי"
+    },
+    {
+     "key": "נצה"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "semicolon.in_a_text_with_a_pointer_or_note_sign",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a semicolon in a text that carries the source's pointer or note signs (cmp., &c, or a piece v.), held whole with the text.",
+   "test": "The text holds a pointer or note sign (note_text).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "סיגנון"
+    },
+    {
+     "key": "סיגנין"
+    },
+    {
+     "key": "סג׳"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "semicolon.in_a_text_with_a_joining_piece",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "A semicolon in a text where a later piece opens with and, or or nor, held whole with the text because that piece is no wording of its own.",
+   "test": "The text has a joining piece (joining_text, over the list joining_words).",
+   "count": 15,
+   "examples": [
+    {
+     "key": "קצצות"
+    },
+    {
+     "key": "קצה"
+    },
+    {
+     "key": "איבעית"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "semicolon.in_a_text_with_a_note_on_use",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "A semicolon in a text where a piece is a note on the word's use and no wording (like: remembrance, decree; use of the verb): printed as a pill of its own the note would read as a rendering, so every semicolon of the text is held.",
+   "test": "The text holds a note on use (use_note_text).",
+   "count": 24,
+   "examples": [
+    {
+     "key": "פקידה"
+    },
+    {
+     "key": "הזדה"
+    },
+    {
+     "key": "ניגון"
+    }
+   ],
+   "read": 24
+  },
+  {
+   "id": "semicolon.between_groups_of_wordings",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a semicolon between two groups of wordings of one sense of the source, each group a shade of that sense, held whole at rest because the store already gives each sense its own route.",
+   "test": "The text is a list of wordings (wording_text).",
+   "count": 10703,
+   "examples": [
+    {
+     "key": "איפרע"
+    },
+    {
+     "key": "תאנה"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.in_unbalanced_text",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "In a text whose round brackets do not balance nothing divides, so this period is held whatever it does.",
+   "test": "The text is unbalanced by the ask's helper unbalanced(text).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "שקי"
+    },
+    {
+     "key": "קרנין"
+    },
+    {
+     "key": "קרנות"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "period.after_an_abbreviation",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the period of an abbreviation the source writes: a verb stem or grammar label, a pointer (v., cmp.), esp., &c, or the initial of a name.",
+   "test": "The run of letters before the period is an entry of abbreviations; or that run is part and the period is followed by one space and then the letters pass or the letters Hof (a word that begins with them, its own stop included).",
+   "count": 489,
+   "examples": [
+    {
+     "key": "איפרע"
+    },
+    {
+     "key": "סבר"
+    },
+    {
+     "key": "הדר"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.before_a_dash",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the stop that closes a wording directly before the source's em dash, which leads to a form note or to text the store cut away.",
+   "test": "The character directly after the period is the em dash U+2014.",
+   "count": 42,
+   "examples": [
+    {
+     "key": "שית"
+    },
+    {
+     "key": "שרע"
+    },
+    {
+     "key": "פי׳"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.before_a_trailing_grammar_label",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the stop that closes the wordings before a grammar label that ends the text.",
+   "test": "The period stands before a trailing grammar label (label_after).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "סבורות"
+    },
+    {
+     "key": "סבר"
+    },
+    {
+     "key": "סבורים"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "period.opens_the_text",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "The period is the first character of the text: the store's cut dropped what stood before it.",
+   "test": "Nothing but whitespace stands before the period.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "אולם"
+    },
+    {
+     "key": "גופן"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "period.between_two_names",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a stop written where a comma would stand, between two spellings of one name; found under one key, so it rests whole in a branch that lists the key.",
+   "test": "The period is followed by whitespace and then an uppercase letter.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "תלמי"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.ends_the_text",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "The full stop that closes the text as the source closes a sense's wordings; nothing stands after it.",
+   "test": "Nothing but whitespace stands after the period.",
+   "count": 4671,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "דגוגין"
+    },
+    {
+     "key": "שעלא"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "hyphen.inside_a_compound_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "A hyphen joining the parts of one compound word (leather-bag, he-goat), inside one wording.",
+   "test": "A letter stands directly before the hyphen and a letter or the left single quotation mark (U+2018) directly after it.",
+   "count": 5741,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "ארי"
+    },
+    {
+     "key": "קינטור"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "hyphen.ends_a_word_part",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "A hyphen that ends a word part whose rest the source supplies later or the store cut away (lath- and plaster-wall, wine-), inside one wording.",
+   "test": "Any other hyphen: a letter before it and a comma, whitespace or the end of the text after it.",
+   "count": 15,
+   "examples": [
+    {
+     "key": "טרקסאות"
+    },
+    {
+     "key": "ארטא"
+    },
+    {
+     "key": "ארע"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "right_single_quotation_mark.before_a_possessive_s",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "The apostrophe of an English possessive before s (one’s self, the priest’s portion), inside one wording.",
+   "test": "The character directly after the mark is a lowercase s that is not followed directly by a letter.",
+   "count": 2388,
+   "examples": [
+    {
+     "key": "חלתא"
+    },
+    {
+     "key": "אתחנק"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "right_single_quotation_mark.after_a_plural_possessive",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "The apostrophe of an English plural possessive after s (citizens’ list), inside one wording.",
+   "test": "The character directly before the mark is a lowercase s and the character directly after it is whitespace.",
+   "count": 34,
+   "examples": [
+    {
+     "key": "ערכאה"
+    },
+    {
+     "key": "או׳"
+    },
+    {
+     "key": "הובריא"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "right_single_quotation_mark.inside_a_transliterated_word",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's sign for a short vowel (sheva) inside a transliterated Hebrew or Aramaic word (T’rumah, N’har).",
+   "test": "A letter stands directly before the mark and a letter directly after it.",
+   "count": 1065,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "בורקי"
+    },
+    {
+     "key": "יחד"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "right_single_quotation_mark.closes_a_quotation",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the closing mark of a quoted wording the source sets in single quotation marks (name ‘blank’), in three of its four places; in the fourth it follows the name of a Hebrew letter (Pe’ Shin).",
+   "test": "Any other right single quotation mark: a letter before it and a non-letter or the end of the text after it.",
+   "count": 13,
+   "examples": [
+    {
+     "key": "פלני"
+    },
+    {
+     "key": "פישן"
+    },
+    {
+     "key": "זמנים"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "left_single_quotation_mark.inside_a_transliterated_word",
+   "mark": "‘",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's sign for the letter ayin inside a transliterated word (La‘anah).",
+   "test": "A letter stands directly before the mark.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "לענה"
+    },
+    {
+     "key": "שקועה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "left_single_quotation_mark.opens_a_quotation",
+   "mark": "‘",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the opening mark of a quoted wording the source sets in single quotation marks.",
+   "test": "The text after the mark begins with an entry of quotation_starts.",
+   "count": 14,
+   "examples": [
+    {
+     "key": "פלני"
+    },
+    {
+     "key": "תגר"
+    },
+    {
+     "key": "זמנים"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "left_single_quotation_mark.before_a_transliterated_word",
+   "mark": "‘",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's sign for the letter ayin at the start of a transliterated name or word (‘Erub, ‘Onah).",
+   "test": "Any other left single quotation mark: it stands at the start of a transliterated name or word, with nothing, whitespace or a hyphen directly before it.",
+   "count": 90,
+   "examples": [
+    {
+     "key": "עירובין"
+    },
+    {
+     "key": "עדי"
+    },
+    {
+     "key": "ער׳"
+    }
+   ],
+   "read": 34
+  },
+  {
+   "id": "question_mark.marks_a_doubtful_identification",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's sign of doubt after an identification it is not sure of (Therapeut?).",
+   "test": "The run of letters before the mark is an entry of doubted_words.",
+   "count": 11,
+   "examples": [
+    {
+     "key": "אסי"
+    },
+    {
+     "key": "פגל"
+    },
+    {
+     "key": "אסיא"
+    }
+   ],
+   "read": 11
+  },
+  {
+   "id": "question_mark.between_two_questions",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "The question mark that closes one question wording where a second wording follows it after whitespace with no comma between (wherefore? why?), so that the sign itself parts the two.",
+   "test": "The mark is followed by whitespace and then a letter, the left single quotation mark (U+2018) or an opening round bracket.",
+   "count": 46,
+   "examples": [
+    {
+     "key": "אטו"
+    },
+    {
+     "key": "הידי"
+    },
+    {
+     "key": "היידא"
+    }
+   ],
+   "read": 31
+  },
+  {
+   "id": "question_mark.closes_a_question",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "The question mark that closes a wording rendered as a question (when?, who?), inside that wording.",
+   "test": "Any other question mark.",
+   "count": 256,
+   "examples": [
+    {
+     "key": "מתי"
+    },
+    {
+     "key": "פשיטא"
+    },
+    {
+     "key": "מיבעיא"
+    }
+   ],
+   "read": 39
+  },
+  {
+   "id": "exclamation.between_two_cries",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "The exclamation mark that closes one cry where a second cry or call follows it after whitespace with no comma between (oh! woe!), so that the sign itself parts the two.",
+   "test": "The mark is followed by whitespace and then a letter, the left single quotation mark (U+2018) or an opening round bracket.",
+   "count": 52,
+   "examples": [
+    {
+     "key": "אשרתא"
+    },
+    {
+     "key": "כמה"
+    },
+    {
+     "key": "ויי"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "exclamation.closes_a_cry",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "The exclamation mark that closes a wording rendered as a cry or a call (woe!, hail!), inside that wording, at the end of the text or before a comma.",
+   "test": "Any other exclamation mark of the text.",
+   "count": 176,
+   "examples": [
+    {
+     "key": "אשרתא"
+    },
+    {
+     "key": "אי"
+    },
+    {
+     "key": "זיטה"
+    }
+   ],
+   "read": 48
+  },
+  {
+   "id": "em_dash.before_a_trailing_grammar_label",
+   "mark": "—",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's dash before a form note (Pl., Part. pass.) that follows a wording.",
+   "test": "The text after the dash, trimmed, is an entry of grammar_labels, and the text before the dash, trimmed, is not an entry of grammar_labels.",
+   "count": 23,
+   "examples": [
+    {
+     "key": "שית"
+    },
+    {
+     "key": "פסקא"
+    },
+    {
+     "key": "פי׳"
+    }
+   ],
+   "read": 23
+  },
+  {
+   "id": "em_dash.between_two_grammar_labels",
+   "mark": "—",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's dash between two grammar labels with no wording on either side.",
+   "test": "The text after the dash, trimmed, is an entry of grammar_labels.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "דקדק"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "em_dash.ends_the_text",
+   "mark": "—",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's dash at the end of the text, leading to a form note the store cut away.",
+   "test": "Nothing but whitespace stands after the dash.",
+   "count": 21,
+   "examples": [
+    {
+     "key": "בחלב"
+    },
+    {
+     "key": "פתלתול"
+    },
+    {
+     "key": "פי׳"
+    }
+   ],
+   "read": 21
+  },
+  {
+   "id": "em_dash.marks_an_omitted_object",
+   "mark": "—",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's dash standing for an omitted object inside a wording (to meet—, against).",
+   "test": "Any other em dash.",
+   "count": 8,
+   "examples": [
+    {
+     "key": "אורעא"
+    },
+    {
+     "key": "הידא"
+    },
+    {
+     "key": "הידה"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "colon.before_a_dash",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a colon that closes the wordings directly before the source's dash to a form note.",
+   "test": "The character directly after the colon is the em dash U+2014.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "תורא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "colon.ends_the_text",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a colon at the end of the text, where the source goes on with what the store cut away.",
+   "test": "Nothing but whitespace stands after the colon.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "באלי"
+    },
+    {
+     "key": "חנינא"
+    },
+    {
+     "key": "חנינה"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "colon.between_two_wordings",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a colon written where a comma would stand, between two wordings of one sense; found under one key, so it rests whole in a branch that lists the key.",
+   "test": "Any other colon of the text.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "רדף"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "equals.between_a_term_and_its_equivalent",
+   "mark": "=",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the sign between a term and the term the source equates it with (scholasticus = causidicus).",
+   "test": "Every equals sign takes this shape.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "איסכולסטיקא"
+    },
+    {
+     "key": "אס׳"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "ampersand.in_et_cetera",
+   "mark": "&",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the source's &c for et cetera, closing a list of examples inside a wording.",
+   "test": "The character directly after the ampersand is the letter c.",
+   "count": 23,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "מדפות"
+    },
+    {
+     "key": "טיבל"
+    }
+   ],
+   "read": 23
+  },
+  {
+   "id": "open_paren.holds_another_name_or_an_equivalent",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a bracket holding another name, spelling or equivalent of the name before it (Dinag (Dunag)).",
+   "test": "What the bracket holds (c.group) is an entry of names_or_equivalents.",
+   "count": 28,
+   "examples": [
+    {
+     "key": "דונג"
+    },
+    {
+     "key": "דימסית"
+    },
+    {
+     "key": "ציי׳"
+    }
+   ],
+   "read": 28
+  },
+  {
+   "id": "open_paren.holds_a_qualifier_or_object",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a bracket holding a qualifier or the object of a wording (to shrink (from heat)), part of that wording.",
+   "test": "Any other opening round bracket.",
+   "count": 23,
+   "examples": [
+    {
+     "key": "הצית"
+    },
+    {
+     "key": "קפץ"
+    },
+    {
+     "key": "גמר"
+    }
+   ],
+   "read": 23
+  },
+  {
+   "id": "close_paren.never_opened",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "A closing bracket that nothing opens: the store's cut dropped the opener, so the text is held whole (rule 3).",
+   "test": "The bracket closes nothing: c.group is the empty string and the text before it does not end with a closing round bracket.",
+   "count": 19,
+   "examples": [
+    {
+     "key": "שקי"
+    },
+    {
+     "key": "שוחד"
+    },
+    {
+     "key": "יחד"
+    }
+   ],
+   "read": 19
+  },
+  {
+   "id": "close_paren.closes_another_name_or_an_equivalent",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a bracket holding another name, spelling or equivalent of the name before it.",
+   "test": "What the bracket holds (c.group) is an entry of names_or_equivalents.",
+   "count": 28,
+   "examples": [
+    {
+     "key": "דונג"
+    },
+    {
+     "key": "דימסית"
+    },
+    {
+     "key": "ציי׳"
+    }
+   ],
+   "read": 28
+  },
+  {
+   "id": "close_paren.closes_a_qualifier_or_object",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a bracket holding a qualifier or the object of a wording.",
+   "test": "Any other closing round bracket.",
+   "count": 23,
+   "examples": [
+    {
+     "key": "הצית"
+    },
+    {
+     "key": "קפץ"
+    },
+    {
+     "key": "גמר"
+    }
+   ],
+   "read": 23
+  },
+  {
+   "id": "hebrew_point_qamats.in_a_hebrew_pointer",
+   "mark": "ָ",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: a vowel point of a Hebrew word the source points to; Hebrew inside English is never a reading.",
+   "test": "Every qamats takes this shape.",
+   "count": 8,
+   "examples": [
+    {
+     "key": "שקי"
+    },
+    {
+     "key": "שקה"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "hebrew_point_shin_dot.in_a_hebrew_pointer",
+   "mark": "ׁ",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the shin dot of a Hebrew word the source points to; Hebrew inside English is never a reading.",
+   "test": "Every shin dot takes this shape.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "שקי"
+    },
+    {
+     "key": "שקה"
+    }
+   ],
+   "read": 4
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "the pointed headword in the row's headwords field, outside the route text",
+  "reason": "The route text carries no entry number and no sense number, but the row carries a headwords field with the source's pointed headword: 112,003 of 115,918 rows (axis: rows) under 25,140 keys (axis: keys), and 3,614 keys carry more than one distinct pointed headword (the example key אדר carries 5), so the headword tells those entries apart; two entries the source points alike it does not. The source's own file gives every entry an id (rid) and numbers homonymous headwords with a superscript figure (the dump writes them as א ², א ³), which the overlay dropped together with the sense number. keys_with_more_than_one_route_text counts senses and homonyms together.",
+  "keys_with_more_than_one_route_text": 12473
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "This dictionary gives each sense its own row, and inside a row it parts groups of wordings with a semicolon, like: lofty; ruler, lord; proud, haughty. Each group is a shade of the one sense. Does the semicolon divide, so that each group prints as a pill of its own? (The commas inside a group are the next question, B02.)",
+   "shapes": [
+    "semicolon.between_groups_of_wordings"
+   ],
+   "occurrences": 10703,
+   "options": [
+    {
+     "id": "divides",
+     "means": "Each semicolon between two groups of wordings divides: every group prints as its own pill, and the commas inside a group follow B02. A semicolon that ends a row, opens it, stands before a grammar label, or stands in a row with a note sign, a joining piece or a note on use (use of the verb) is not in this question and stays as written."
+    },
+    {
+     "id": "whole",
+     "means": "The row prints whole, as written, semicolons and all."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Inside a row this dictionary parts the wordings of one sense with commas, like: to cut off, surround, isolate. Two spellings of a name stand the same way (Arbel, Arbela), and under one key each a colon and a full stop stand where such a comma would (to run: to pursue). Does each such comma divide, so that every wording prints as a pill of its own? If B01 keeps the semicolons whole, a semicolon stays inside its piece. The cost of divides: of 40 marks drawn uniformly from B02's 66,258 in v153 (seed 20261108), 2 were cut wrongly, 5 in 100 (95% range 1.4 to 16.5): a note on use (rejoicing, use of the root), now held whole, and a wording whose start the overlay's cut dropped (key אחז).",
+   "shapes": [
+    "comma.between_wordings_of_one_sense",
+    "comma.between_capitalised_names",
+    "colon.between_two_wordings",
+    "period.between_two_names"
+   ],
+   "occurrences": 66178,
+   "keys": [
+    "רדף",
+    "תלמי"
+   ],
+   "options": [
+    {
+     "id": "divides",
+     "means": "Each comma between two wordings of one sense divides, and so do the one colon and the one full stop that stand where such a comma would: every wording prints as its own pill, a final stop or cry sign staying with its wording. When B01 keeps the semicolons whole, a semicolon stays inside the piece it is written in, so that piece prints with the semicolon as written. A comma that ends a row, opens it, follows a leading grammar label, or stands in a row with a note sign, a joining piece, a hand-listed leaning piece, a note on use (use of the root) or a name or name phrase beside its description is not in this question and stays as written."
+    },
+    {
+     "id": "whole",
+     "means": "The row prints whole, as written, commas and all."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B03",
+   "question": "A few rows carry a grammar label at one end of the wordings: a verb stem before them (Hif., to cause to pass; to remove) or a form note after them, behind a dash, a semicolon or a full stop (wild fig.—Pl.). The label is no reading. Should the page print the wordings without the label?",
+   "shapes": [
+    "em_dash.before_a_trailing_grammar_label",
+    "semicolon.before_a_trailing_grammar_label",
+    "period.before_a_trailing_grammar_label",
+    "comma.after_a_leading_grammar_label"
+   ],
+   "occurrences": 61,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The row prints as written, label and all."
+    },
+    {
+     "id": "label_off",
+     "means": "The page prints only the wordings: what stands after the comma of a leading label, or before the dash, semicolon or full stop that leads to a trailing label; a stop or colon that the wording itself ends in stays as written, and any division that B01 or B02 rules applies inside what is printed.",
+     "print": [
+      {
+       "kind": "before",
+       "at": [
+        "em_dash.before_a_trailing_grammar_label",
+        "semicolon.before_a_trailing_grammar_label",
+        "period.before_a_trailing_grammar_label"
+       ]
+      },
+      {
+       "kind": "after",
+       "at": [
+        "comma.after_a_leading_grammar_label"
+       ]
+      }
+     ],
+     "examples": [
+      {
+       "key": "קדש",
+       "row": "Pi., to sanctify; to proclaim; to betroth",
+       "prints": [
+        "to sanctify; to proclaim; to betroth"
+       ]
+      },
+      {
+       "key": "שית",
+       "row": "wild fig.—Pl.",
+       "prints": [
+        "wild fig."
+       ]
+      },
+      {
+       "key": "סבורות",
+       "row": "to look for, be hopeful; to think, imagine. Part. pass",
+       "prints": [
+        "to look for, be hopeful; to think, imagine"
+       ]
+      },
+      {
+       "key": "סרח",
+       "row": "to make wide; to extend.—Part. pass.",
+       "prints": [
+        "to make wide; to extend."
+       ]
+      },
+      {
+       "key": "פסקי",
+       "row": "detached part.—Pl.",
+       "prints": [
+        "detached part."
+       ]
+      },
+      {
+       "key": "עבר",
+       "row": "Hif., to cause to pass; to remove, displace; to cover up",
+       "prints": [
+        "to cause to pass; to remove, displace; to cover up"
+       ]
+      },
+      {
+       "key": "תורא",
+       "row": "ox-driver, plougher with oxen:—Pl.",
+       "prints": [
+        "ox-driver, plougher with oxen:"
+       ]
+      },
+      {
+       "key": "שור",
+       "row": "to sing; Polel",
+       "prints": [
+        "to sing"
+       ]
+      },
+      {
+       "key": "שרע",
+       "row": "to join, add.—Part. pass",
+       "prints": [
+        "to join, add."
+       ]
+      },
+      {
+       "key": "שחל",
+       "row": "to move in a hollow space, slip.—Part. pass",
+       "prints": [
+        "to move in a hollow space, slip."
+       ]
+      },
+      {
+       "key": "אפקע",
+       "row": "Hif., to cancel, cause a release",
+       "prints": [
+        "to cancel, cause a release"
+       ]
+      },
+      {
+       "key": "נצי",
+       "row": "to press; Nif.",
+       "prints": [
+        "to press"
+       ]
+      },
+      {
+       "key": "שבש",
+       "row": "to entangle, confound; part. pass.",
+       "prints": [
+        "to entangle, confound"
+       ]
+      }
+     ]
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B04",
+   "question": "Some rows part two cries or two questions with the sign itself and a space, no comma (like: oh! woe!; wherefore? why?). The page cuts at a dividing mark and drops it, so the first wording would print without its sign (oh beside woe!). Does the sign divide the two wordings?",
+   "shapes": [
+    "exclamation.between_two_cries",
+    "question_mark.between_two_questions"
+   ],
+   "occurrences": 98,
+   "options": [
+    {
+     "id": "divides",
+     "means": "Each cry or question sign that a second wording follows divides: every wording prints as its own pill, the first without the sign the cut drops. A sign at the end of a row or before a comma is not in this question and stays as written."
+    },
+    {
+     "id": "whole",
+     "means": "The row prints whole, as written, signs and all."
+    }
+   ],
+   "resting": "whole"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the overlay's own cut the edges of its rows. builder/store-questions.jsonl lists 737 texts (2,840 rows) whose edge the cut left wrong: a hanging comma, semicolon, hyphen, dash or colon at the end, a mark at the opening, a stranded initial or abbreviation (R. D., the Great S.), a pointer whose target was cut away (to moisten, v.), a stray closing bracket, a wording whose start the cut dropped (named by reading), or a grammar label and nothing else (Part. pass, Hif.;). In 685 of those texts (2,268 rows) the row's wording stands: only the mark at its end or opening, or the pointer, belongs to the cut, and that is the store's question; the other 52 hold no run of two or more letters but labels and abbreviations. The marks inside a listed row have their shapes like any other row's (266 listed texts carry a mark of B02 and 28 a mark of B01), so a branch answered divides cuts them too. Nothing is struck; a pointer at the end of a text stays in the last piece; and the hand list leaning_pieces names the pieces the builder read as leaning, so a piece may be moved later."
+}

@@ -14,7 +14,11 @@
 // samaritans last, no, just treat them normal"). What must hold:
 //
 //   O1  every overlay beside the store is the corpus lane's delivery, file for file:
-//       sha256 and size against the manifest that came with it
+//       sha256 and size against the manifest that came with it, except the files
+//       the ledger apply rewrote (7 November 2026: the division slots beyond the
+//       lane's seven, and the index's ledger marks), each pinned in
+//       LEDGERED-overlay-v1.json with the delivered pin it stands on and under
+//       the ledger rule (ledger-division-rule-v2)
 //   O2  the page loads each overlay and draws its sources as chips on the sources
 //       row, pressed on, and pressed off when the reader turned them off
 //   O3  with their chips off, no card holds a reading only they give, and no
@@ -42,14 +46,23 @@ if (!OVERLAYS.length) { console.log("SKIPPED — no overlay beside the store (da
 for (const id of OVERLAYS) {
   const dir = join("data", "overlays", id);
   const man = JSON.parse(readFileSync(join(dir, "MANIFEST-overlay-v1.json"), "utf8"));
+  // the files the ledger apply rewrote, each with the delivered pin it stands on
+  const led = existsSync(join(dir, "LEDGERED-overlay-v1.json")) ? JSON.parse(readFileSync(join(dir, "LEDGERED-overlay-v1.json"), "utf8")) : null;
+  const ledOk = !led || /^ledger-division-rule-v2/.test(String(led.rule_id || ""));
+  const rewritten = new Map(((led && led.files) || []).map((f) => [f.path, f]));
+  let applied = 0;
   const off = man.files.filter((f) => {
     const p = join(dir, f.path);
     if (!existsSync(p)) return true;
     const b = readFileSync(p);
-    return b.length !== f.bytes || createHash("sha256").update(b).digest("hex") !== f.sha256;
+    const sha = createHash("sha256").update(b).digest("hex");
+    if (b.length === f.bytes && sha === f.sha256) return false;
+    const r = rewritten.get(f.path);
+    if (r && r.delivered && r.delivered.sha256 === f.sha256 && r.now && r.now.sha256 === sha && r.now.bytes === b.length) { applied += 1; return false; }
+    return true;
   });
-  check(`O1  the ${id} overlay is the corpus lane's delivery, file for file`, off.length === 0,
-    off.length ? `${off.length} of ${man.files.length} differ: ${off.slice(0, 4).map((f) => f.path).join(", ")}` : `${man.files.length} files · store_version ${man.store_version}`);
+  check(`O1  the ${id} overlay is the corpus lane's delivery, file for file, but for the ledger's own slots`, off.length === 0 && ledOk,
+    off.length ? `${off.length} of ${man.files.length} differ: ${off.slice(0, 4).map((f) => f.path).join(", ")}` : `${man.files.length} files · store_version ${man.store_version}${applied ? ` · ${applied} rewritten by the ledger apply, each pinned with the delivered pin it stands on` : ""}${ledOk ? "" : " · the ledgered pin names no ledger rule"}`);
 }
 
 // the resting-off record's version, so a pass sets its own state over it
@@ -115,7 +128,11 @@ for (const id of OVERLAYS) {
 }
 const ovIdSet = new Set(OV_IDS);
 const carriedByOv = (by) => String(by || "").split(" ").some((m) => ovIdSet.has(m));
-const leaked = off.cards.filter((c) => c.ov.some(Boolean) || c.by.some(carriedByOv)).length;
+// a pill's overlay mark counts only for the overlays these chips switch: the
+// span store and the piece store answer from the page's own overlay list too
+// (a piece claim's pill is marked "piece-store"), and no Jastrow or Samaritan
+// chip withholds them, so a piece's «LORD» on the divine name is no leak
+const leaked = off.cards.filter((c) => c.ov.some((o) => OVERLAYS.includes(o)) || c.by.some(carriedByOv)).length;
 check("O3  with their chips off, no card holds a reading only they give, and none is carried by their sources", leaked === 0, `${off.cards.length} cards · ${leaked} with an overlay reading or carrier`);
 let lost = 0, unbacked = 0, added = 0, ovLed = 0;
 on.cards.forEach((c, i) => {

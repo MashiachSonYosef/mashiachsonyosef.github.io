@@ -1,0 +1,757 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "florentin-tal-2025-index-of-differences-in-meaning",
+ "m_ids": [
+  "MSAM3"
+ ],
+ "routes": 40,
+ "read_from": "The route text as served: the field route of each line of scratch/by-source/florentin-tal-2025-index-of-differences-in-meaning.jsonl, extracted on 7 November 2026 AD from the site at main 1d2470eb, where this source is served in the Samaritan overlay beside the store (reader/data/overlays/samaritan, one of its five sources), not among the 36 sources of the route store (store 87b13b1169b4), for \"Florentin–Tal 2024, Index of Differences in Meaning\" (MSAM3): 40 routes (axis: routes) under 40 letters keys (axis: keys), each row's lane field being the page's and no mark. The dictionary store holds no record file for this source and the lane's source cache holds no copy of it, so the source audit (builder/write-fragments.mjs, evidence about the source and no part of any test) read the routes' own def field: on 40 of 40 routes the def is the pointed headword, a space, the route text and the citation of the index in square brackets with its page and entry number (axis: routes). Every route is one or more sets of the three cells MT:, SP: and Reference: (79 cell sets, axis: cell sets; three colons each), and the sets of one row are joined by the lane's sign of two pipes. The source's own key to its signs: none on file (the index's own front matter is not in the cache). The two pipes are the lane's own join, named in the Samaritan toggle strand's build rule (<tabernacle>/corpus-lane-builds/moses-samaritan-toggle-v1.4/build/RULE-build.md: lines \" || \" of Florentin–Tal and Wiktionary) and so verified from the lane's own file; every other shape's meaning begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one UTF-16 unit of the JavaScript string (every route here holds only characters of 16 bits). The text is the whole route text as it stands, the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. Nothing is trimmed unless a test says so. The text before the mark is every character from the start of the text up to, and not including, the mark; the text after the mark is every character after it to the end. The character before the mark is the one at the mark's index less one (none at the start of the text), the character after it the one at the mark's index plus one (none at the end). A letter is any character the JavaScript test \\p{L} with the u flag matches; a digit is one of 0 to 9; a space character is U+0020 only; whitespace is what the JavaScript test \\s matches; a Hebrew letter is a character from U+05D0 to U+05EA. The word before the mark is the longest run of letters that ends directly before the mark (empty if the character before it is not a letter). What the bracket holds means, for a bracket character, the characters between that opener and its closer: the template's c.group. Begins with the string means the string's characters are exactly the first characters, with nothing before them; with its leading whitespace taken off means the JavaScript trimStart. Is one of the strings in a list means is equal to one string of that list, character for character and whole. Every string and every list minds case. A string stands between « and », which are not part of it. Inside round brackets means the template's container paren; at top level means the container top.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. Where a test says not caught above, it means the shapes listed above it for the same mark.",
+  "cell_labels": [
+   "MT",
+   "SP",
+   "Reference"
+  ],
+  "cell_labels_with_colon": [
+   "MT:",
+   "SP:",
+   "Reference:"
+  ],
+  "last_cell_label": "The last cell label before the mark: of the three strings in cell_labels_with_colon, the one whose last occurrence in the text before the mark stands furthest to the right (the JavaScript lastIndexOf of each; the greatest index wins); none if none of the three stands in the text before the mark.",
+  "abbreviations": [
+   "Gen",
+   "Exod",
+   "Lev",
+   "Num",
+   "Deut",
+   "e",
+   "g",
+   "etc"
+  ],
+  "book_abbreviations": [
+   "Gen",
+   "Exod",
+   "Lev",
+   "Num",
+   "Deut"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.inside_the_quoted_gloss",
+   "comma.inside_the_sp_cell",
+   "comma.inside_the_reference_cell"
+  ],
+  "comma_in_paren": [
+   "comma.between_verses_in_round_brackets"
+  ],
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.before_a_cell_label",
+   "semicolon.between_places"
+  ],
+  "semicolon_in_paren": [
+   "semicolon.between_places_in_round_brackets"
+  ],
+  "semicolon_in_brackets": "absent",
+  "slash_top": [
+   "slash.between_two_transliterations",
+   "slash.between_two_groups_of_places"
+  ],
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_a_place",
+   "close_paren.holds_a_place",
+   "open_paren.holds_a_count",
+   "close_paren.holds_a_count",
+   "open_paren.holds_a_hebrew_context",
+   "close_paren.holds_a_hebrew_context",
+   "open_paren.holds_a_note",
+   "close_paren.holds_a_note"
+  ],
+  "brackets": [
+   "open_bracket.holds_a_count_in_a_place",
+   "close_bracket.holds_a_count_in_a_place"
+  ]
+ },
+ "shapes": [
+  {
+   "id": "pipe.first_of_the_pair_between_two_meanings",
+   "mark": "|",
+   "container": "top",
+   "divides": false,
+   "means": "the first of the two pipes the lane's overlay build writes between the index's meanings of one headword («Gen. 2.11, etc. || MT: 'reputation'; SP: šem»), the sign named in the Samaritan toggle strand's build rule as the line separator of this source; each side gives a different meaning with its own three cells, so whether the pair cuts is the question of B01, and at rest the row prints whole.",
+   "test": "The character after the mark is a pipe (terms, first_match).",
+   "count": 39,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "תחת"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 39
+  },
+  {
+   "id": "pipe.second_of_the_pair_between_two_meanings",
+   "mark": "|",
+   "container": "top",
+   "divides": false,
+   "means": "the second of the two pipes the lane's overlay build writes between the index's meanings of one headword («Gen. 5.30, etc. || MT: 'fine linen'»), named in the Samaritan toggle strand's build rule; it never cuts on its own, since a cut at both pipes of a pair would leave an empty piece, and under B01's divides it stays at the head of the second piece for the page to leave off.",
+   "test": "The character before the mark is a pipe (terms, first_match).",
+   "count": 39,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "תחת"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 39
+  },
+  {
+   "id": "colon.after_a_cell_label",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: follows one of the three cell labels of every row, MT, SP and Reference, and introduces that cell («MT: 'falcon'; SP: ayyå; Reference: Num. 11.14»); a label is no reading and the colon never cuts.",
+   "test": "The word before the mark is one of the strings in cell_labels (terms, first_match).",
+   "count": 237,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "בהוציא"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 237
+  },
+  {
+   "id": "semicolon.between_places_in_round_brackets",
+   "mark": ";",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: separates two places inside round brackets in the Reference cell, where the brackets hold the places of a quoted Hebrew phrase («(Gen. 4.2, 8; Exod. 5.22; 9.30; Num. 14.17»); a place is no reading and it never cuts.",
+   "test": "The mark stands inside round brackets (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "אדני"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "semicolon.before_a_cell_label",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the MT cell or the SP cell of a row before the next cell's label («MT: 'under'; SP: tēt; Reference: Gen. 7.19, etc.»); the transliteration and the places after it are no readings, so it never cuts.",
+   "test": "The text after the mark, with its leading whitespace taken off, begins with one of the strings in cell_labels_with_colon followed by a space character or the end of the text; in these routes that string is SP: or Reference: (terms, first_match).",
+   "count": 158,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "בהוציא"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 158
+  },
+  {
+   "id": "semicolon.between_places",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates two places or two groups of places inside the Reference cell, a book with its chapter and verses from the next, or a quoted Hebrew phrase with its place from the next («Reference: Gen. 37.7; Exod. 22.5; Deut. 28.7»); a place is no reading and it never cuts.",
+   "test": "The last cell label before the mark is Reference: (last_cell_label, terms, first_match).",
+   "count": 99,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "כוס"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 99
+  },
+  {
+   "id": "comma.between_verses_in_round_brackets",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: separates two verses of one chapter inside round brackets in the Reference cell («(Gen. 4.2, 8; Exod. 5.22»); a place is no reading and it never cuts.",
+   "test": "The mark stands inside round brackets (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "אדני"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "comma.inside_the_quoted_gloss",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates two English wordings of one meaning inside the quoted gloss of the MT cell («MT: 'desire, passion'; SP: tåwwå»); every comma whose last cell label is MT: stands between the two apostrophes of the gloss (counted by builder/write-fragments.mjs), and whether such a list cuts is the question of B02.",
+   "test": "The last cell label before the mark is MT: (last_cell_label, terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "תאוה"
+    },
+    {
+     "key": "תעבד"
+    },
+    {
+     "key": "ישבה"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "comma.inside_the_sp_cell",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates, inside the SP cell, a stem label from the abbreviation e.g. and that from the Samaritan forms, or two Samaritan forms («SP: qal, e.g., yålådå», «SP: pi‘‘el, e.g., yalləd»); a transliteration is no reading and it never cuts.",
+   "test": "The last cell label before the mark is SP: (last_cell_label, terms, first_match).",
+   "count": 26,
+   "examples": [
+    {
+     "key": "בכה"
+    },
+    {
+     "key": "אלהיך"
+    },
+    {
+     "key": "תאכל"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "comma.inside_the_reference_cell",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates two verses of one chapter, or a place from the abbreviation etc., inside the Reference cell («Reference: Gen. 27.11, 23», «Reference: Gen. 37.31, etc.»); a place is no reading and it never cuts.",
+   "test": "The last cell label before the mark is Reference: (last_cell_label, terms, first_match).",
+   "count": 78,
+   "examples": [
+    {
+     "key": "שש"
+    },
+    {
+     "key": "כוס"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 78
+  },
+  {
+   "id": "period.after_a_book_or_latin_abbreviation",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: closes an abbreviation: a book of the Pentateuch in the Reference cell, or e.g. and etc. («Reference: Exod. 27.21, etc.»); it never cuts, in the row's text or inside round brackets.",
+   "test": "The word before the mark is one of the strings in abbreviations (terms, first_match).",
+   "count": 156,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "תחת"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 156
+  },
+  {
+   "id": "period.between_chapter_and_verse",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands between a chapter number and a verse number in a place of the Reference cell («Reference: Gen. 13.10, 11, 12; 19.17, 25, 28, 29»); it never cuts, in the row's text or inside round brackets.",
+   "test": "The character before the mark is a digit and the character after it is a digit (terms, first_match).",
+   "count": 172,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "תחת"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 172
+  },
+  {
+   "id": "period.in_an_ellipsis_of_a_quoted_phrase",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: one of the three periods of an ellipsis inside a quoted Hebrew phrase of the Reference cell, standing for words left out («כל הבכור... בבקרך... תקדיש»); the phrase is a place and no reading, and it never cuts.",
+   "test": "The character before the mark is a period, or the character after it is a period (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "בכור"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "period.ends_a_note",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: ends a sentence written in the Reference cell in place of a list of places («except the following cases.»); the sentence is a note and the period never cuts.",
+   "test": "The text after the mark, with its leading whitespace taken off, is empty or begins with a pipe (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אדני"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "apostrophe.inside_a_word",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the possessive sign inside an English word of the quoted gloss («MT: 'Rubqa's brother'; SP: låbån»); part of the word, it never cuts.",
+   "test": "The character before the mark is a letter and the character after it is a letter (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "לבן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "apostrophe.opens_the_quoted_gloss",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the quotation marks round the English gloss of the MT cell («MT: 'little owl'»): the gloss inside them is the reading, the marks are the source's own and stay with it.",
+   "test": "The character before the mark is a space character (terms, first_match).",
+   "count": 60,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "תחת"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 60
+  },
+  {
+   "id": "apostrophe.closes_the_quoted_gloss",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the quotation marks round the English gloss of the MT cell («MT: 'glass, cup'»), before the semicolon of the cell or before a note in round brackets; the marks are the source's own and stay with the gloss.",
+   "test": "The character before the mark is a letter and the character after it is a semicolon or a space character (terms, first_match).",
+   "count": 60,
+   "examples": [
+    {
+     "key": "איה"
+    },
+    {
+     "key": "תחת"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 60
+  },
+  {
+   "id": "open_paren.holds_a_place",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens round brackets that hold the place of a quoted Hebrew phrase in the Reference cell («Reference: אז חללת יצועי (Gen. 49.4)»); a place is no reading and the brackets never cut.",
+   "test": "What the bracket holds begins with one of the strings in book_abbreviations followed by a period (terms, first_match).",
+   "count": 15,
+   "examples": [
+    {
+     "key": "תאוה"
+    },
+    {
+     "key": "אכל"
+    },
+    {
+     "key": "תאכל"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "close_paren.holds_a_place",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes round brackets that hold the place of a quoted Hebrew phrase in the Reference cell («Reference: אז חללת יצועי (Gen. 49.4)»); a place is no reading and the brackets never cut.",
+   "test": "What the bracket holds begins with one of the strings in book_abbreviations followed by a period (terms, first_match).",
+   "count": 15,
+   "examples": [
+    {
+     "key": "תאוה"
+    },
+    {
+     "key": "אכל"
+    },
+    {
+     "key": "תאכל"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "open_paren.holds_a_count",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens round brackets that hold how many times a place or a form occurs, a number and the letter x («SP: אנשים ēnåšəm; Reference: (76x)»); a count is no reading and the brackets never cut.",
+   "test": "What the bracket holds is a run of one or more digits followed by the letter x and nothing else (terms, first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "ימין"
+    },
+    {
+     "key": "כוס"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "close_paren.holds_a_count",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes round brackets that hold how many times a place or a form occurs, a number and the letter x («SP: אנשים ēnåšəm; Reference: (76x)»); a count is no reading and the brackets never cut.",
+   "test": "What the bracket holds is a run of one or more digits followed by the letter x and nothing else (terms, first_match).",
+   "count": 16,
+   "examples": [
+    {
+     "key": "ימין"
+    },
+    {
+     "key": "כוס"
+    },
+    {
+     "key": "אנשים"
+    }
+   ],
+   "read": 16
+  },
+  {
+   "id": "open_paren.holds_a_hebrew_context",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens round brackets that hold a Hebrew word beside the headword as its context in the MT cell («MT: נר (תמיד); SP: nor»); Hebrew inside the row is never a reading and the brackets never cut.",
+   "test": "The first character of what the bracket holds is a Hebrew letter (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "בכה"
+    },
+    {
+     "key": "נר"
+    },
+    {
+     "key": "חכם"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "close_paren.holds_a_hebrew_context",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes round brackets that hold a Hebrew word beside the headword as its context in the MT cell («MT: נר (תמיד); SP: nor»); Hebrew inside the row is never a reading and the brackets never cut.",
+   "test": "The first character of what the bracket holds is a Hebrew letter (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "בכה"
+    },
+    {
+     "key": "נר"
+    },
+    {
+     "key": "חכם"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "open_paren.holds_a_note",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens round brackets that hold, in the MT cell or the SP cell, a note in English that narrows or labels the wording before it: who is meant («MT: 'My Lord' (human being); SP: ådanni»), the part of speech, or a reconstructed form marked with an asterisk; this is the general shape for the round brackets, and in the routes read it holds a note of who is meant, a part of speech or a reconstructed form; a note is no reading and the brackets never cut.",
+   "test": "Any other round bracket, not caught above (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "נר"
+    },
+    {
+     "key": "בהוציא"
+    },
+    {
+     "key": "יד"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "close_paren.holds_a_note",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes round brackets that hold, in the MT cell or the SP cell, a note in English that narrows or labels the wording before it: who is meant («MT: 'My Lord' (human being); SP: ådanni»), the part of speech, or a reconstructed form marked with an asterisk; this is the general shape for the round brackets, and in the routes read it holds a note of who is meant, a part of speech or a reconstructed form; a note is no reading and the brackets never cut.",
+   "test": "Any other round bracket, not caught above (terms, first_match).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "נר"
+    },
+    {
+     "key": "בהוציא"
+    },
+    {
+     "key": "יד"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "open_bracket.holds_a_count_in_a_place",
+   "mark": "[",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens square brackets inside a place in round brackets, holding how many times the place counts («(Deut. 15.19 [3x])»); a count is no reading and the brackets never cut.",
+   "test": "Every opening square bracket takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בכור"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_a_count_in_a_place",
+   "mark": "]",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes square brackets inside a place in round brackets, holding how many times the place counts (the pair in «(Deut. 15.19 [3x])»); a count is no reading and the brackets never cut.",
+   "test": "Every closing square bracket takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בכור"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "left_single_quotation_mark.writes_ayin_in_a_transliteration",
+   "mark": "‘",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: writes the letter ayin inside a stem label of the SP cell, twice in pi‘‘el («SP: pi‘‘el, e.g., yēbakku»); part of the label, it never cuts.",
+   "test": "Every left single quotation mark U+2018 takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "בכה"
+    },
+    {
+     "key": "ילד"
+    },
+    {
+     "key": "ישבה"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "circumflex_accent.opens_a_footnote_number",
+   "mark": "^",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands before the number of a footnote of the index, after a form or a place («SP: ēluwwåk, ēluwwiyyu^2»); every circumflex here is followed by a digit (counted by builder/write-fragments.mjs); a footnote number is no reading and it never cuts, in the row's text or inside round brackets.",
+   "test": "Every circumflex accent U+005E takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "תעבד"
+    },
+    {
+     "key": "אלהיו"
+    },
+    {
+     "key": "כפורים"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "slash.between_two_transliterations",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates two Samaritan forms of one meaning inside the SP cell («SP: būṣåʾi / būṣåʾu»); a transliteration is no reading and it never cuts.",
+   "test": "The last cell label before the mark is SP: (last_cell_label, terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בהוציא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "slash.between_two_groups_of_places",
+   "mark": "/",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates, inside the Reference cell, the places of the first Samaritan form from the places of the second, matching the slash of the SP cell («Lev. 23.43; / Deut. 29.49»); a place is no reading and it never cuts.",
+   "test": "The last cell label before the mark is Reference: (last_cell_label, terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בהוציא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "en_dash.between_a_stem_label_and_a_form",
+   "mark": "–",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between a stem label and the Samaritan form inside the SP cell («SP: qal – yåšåb»); every en dash here stands in the SP cell (counted by builder/write-fragments.mjs); it never cuts.",
+   "test": "Every en dash U+2013 takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ישבה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "asterisk.marks_a_reconstructed_form",
+   "mark": "*",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: marks, inside round brackets in the SP cell, a form that is reconstructed and not attested («SP: nīrot (*ner)»); a reconstructed form is no reading and it never cuts.",
+   "test": "Every asterisk takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "נר"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number; the index's entry number and page stand in the def field's citation, which the route drops, and 0 letters keys carry more than one text (axis: keys): each headword is one row, and the index's differences in meaning stand inside the row, joined by the lane's two pipes, so the count of keys with more than one text does not count them.",
+  "keys_with_more_than_one_route_text": 0
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "A row of this index gives, for one headword, one meaning, or two or three meanings the Samaritan reading tells apart, with two pipes between each meaning and the next: Gen. 5.30, etc. || MT: 'fine linen'; SP: šeš. A row of one meaning has no pipes and is not in this question. Each side has its own three cells, the gloss, the Samaritan form and the places. Today the page prints the whole row as one pill. Does the pair of pipes divide, so that each meaning is a reading of its own? A cut at both pipes would leave an empty piece, so the cut would be at the first pipe, and the second would stay at the head of the next piece for the page to leave off.",
+   "shapes": [
+    "pipe.first_of_the_pair_between_two_meanings",
+    "pipe.second_of_the_pair_between_two_meanings"
+   ],
+   "occurrences": 78,
+   "options": [
+    {
+     "id": "whole",
+     "means": "The pipes do not cut: the page prints the whole row, every meaning with its cells, as one reading, as written, as it does today."
+    },
+    {
+     "id": "divides",
+     "means": "The first pipe of each pair cuts: the page prints the part up to Gen. 5.30, etc. and the part from MT: 'fine linen' on as two readings, each with its labels and its places. The second pipe of the pair stays at the head of the second piece as a lead sign, which the page leaves off the pill."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Inside the quoted gloss of some rows two English wordings of one meaning stand with a comma between them: MT: 'desire, passion'; SP: tåwwå. Today the page prints the row whole. Does that comma divide, so that desire and passion are two readings, each inside its own part of the row? The quotation marks and the labels stay where they are, since the store's text does not change.",
+   "shapes": [
+    "comma.inside_the_quoted_gloss"
+   ],
+   "occurrences": 6,
+   "options": [
+    {
+     "id": "whole",
+     "means": "The comma does not cut: the page prints the row with 'desire, passion' whole, as written, as it does today."
+    },
+    {
+     "id": "divides",
+     "means": "The comma cuts: the page prints the part of the row up to desire and the part from passion on as two readings, each a run of the row's own characters, with the quotation mark of the gloss left on the side it stands."
+    }
+   ],
+   "resting": "whole"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the page the leaving off of the second pipe of a pair under B01's divides (the shape's lead sign), and the printing of the quoted gloss alone, which no kind of ask v1.2 can do since the gloss stands between two apostrophes and not in a bracket; it leaves to the store the 0 routes with no mark (axis: routes). Nothing is struck and no route is divided at rest."
+}

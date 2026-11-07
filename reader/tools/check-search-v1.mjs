@@ -201,7 +201,10 @@ const loadModel = async (DATA) => {
         for (const row of rows) {
           const src = (oix.m_sources || {})[row[3]];
           if (!src) continue;
-          const pieces = piecesOf(row, src);
+          // an overlay's division slots stand at 8 and 9 (its slot 7 is the
+          // lane's own), read into 7 and 8 as the page reads them
+          const served = row.length > 8 ? [...row.slice(0, 7), Array.isArray(row[8]) ? row[8] : null, Array.isArray(row[9]) ? row[9] : null] : row.slice(0, 7);
+          const pieces = piecesOf(served, src);
           for (const piece of pieces) {
             const f = fold(spanJoin(piece));
             if (!f) continue;

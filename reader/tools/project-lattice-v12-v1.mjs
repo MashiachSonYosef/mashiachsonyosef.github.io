@@ -225,8 +225,18 @@ if (rowStemsPath) {
 }
 // a pointed surface's stems: the union over its places in this book, the
 // place counted as the piece store counts it (the verse's words, marks not
-// counted); a ketiv/qere place is left to its own card
+// counted). A place written one way and read another gives its stems to the
+// READ half (kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only;
+// the owner, 7 November 2026, adopting the corpus lane's v151): the stem
+// file's parse there stands on the read form, a parse needs vowels, and the
+// vowels are the reading's. The read half is keyed as the lattice keys it,
+// the pointed form inside the source's brackets. A read half of several words
+// gives none (the stem is one word's, and the file does not say which), and
+// the written half never takes one: a stem of the written letters is a
+// reconstruction, not the place's.
 const stemsBySurface = new Map();
+const kqStems = { places_with_a_stem: 0, given_to_the_read_half: 0, read_half_of_several_words: 0, no_read_half: 0 };
+const addStems = (surface, st) => { if (!stemsBySurface.has(surface)) stemsBySurface.set(surface, new Set()); for (const x of st) stemsBySurface.get(surface).add(x); };
 if (stemsByPlace.size) for (const sec of zone.sections || []) {
   const [c, v] = String(sec.label || "").split(":");
   if (!v) continue;
@@ -235,9 +245,14 @@ if (stemsByPlace.size) for (const sec of zone.sections || []) {
     if (w.mark) continue;
     n += 1;
     const st = stemsByPlace.get(`${c}:${v}:${n}`);
-    if (!st || !st.length || typeof w.s !== "string" || w.kq) continue;
-    if (!stemsBySurface.has(w.s)) stemsBySurface.set(w.s, new Set());
-    for (const x of st) stemsBySurface.get(w.s).add(x);
+    if (!st || !st.length || typeof w.s !== "string") continue;
+    if (!w.kq) { addStems(w.s, st); continue; }
+    kqStems.places_with_a_stem += 1;
+    const reads = (Array.isArray(w.w) ? w.w : []).filter((r) => r && r.role === "QERE" && typeof r.s === "string" && r.s);
+    if (!reads.length) { kqStems.no_read_half += 1; continue; }
+    if (reads.length > 1) { kqStems.read_half_of_several_words += 1; continue; }
+    addStems(reads[0].s.replace(/^\[+|\]+$/gu, ""), st);
+    kqStems.given_to_the_read_half += 1;
   }
 }
 
@@ -516,7 +531,7 @@ const sidecar = {
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats } },
   routes: sideRoutes, grades,
-  ...(binyanFiles.length ? { stems: stemsByKey, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each store row on the key, by m, rank and route; a row not listed has no known stem" } } : {}),
+  ...(binyanFiles.length ? { stems: stemsByKey, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each store row on the key, by m, rank and route; a row not listed has no known stem" } } : {}),
 };
 writeFileSync(sidecarPath, gzipSync(Buffer.from(JSON.stringify(sidecar)), { level: 9 }));
 

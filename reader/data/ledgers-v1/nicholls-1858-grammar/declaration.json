@@ -1,0 +1,305 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
+ "source_key": "nicholls-1858-grammar",
+ "m_ids": [
+  "MSAM4"
+ ],
+ "routes": 7,
+ "read_from": "The route text as served: the field route of each line of scratch/by-source/nicholls-1858-grammar.jsonl, extracted on 7 November 2026 AD from the site at main 1d2470eb, where this source is served in the Samaritan overlay beside the store (reader/data/overlays/samaritan, one of its five sources), not among the 36 sources of the route store (store 87b13b1169b4), for \"Nicholls 1858, A Grammar of the Samaritan Language, the Lexicon\" (MSAM4): 7 routes (axis: routes) under 7 letters keys (axis: keys), each row's lane field being the page's and no mark. The dictionary store holds no record file for this source and the lane's source cache holds no copy of it, so the source audit (builder/write-fragments.mjs, evidence about the source and no part of any test) read the routes' own def field: on 7 of 7 routes the def is the placeholder [Samaritan] for the headword, a space, the route text and the citation of the lexicon in square brackets with its page, column and entry number (axis: routes). Every route is an English gloss and a pointer after it (7 of 7 routes hold the semicolon or the question mark before the pointer, axis: routes). The source's own key to its signs: none on file (the grammar's own front matter is not in the cache). The square brackets round Samaritan are the lane's own placeholder, named in the Samaritan toggle strand's build rule (<tabernacle>/corpus-lane-builds/moses-samaritan-toggle-v1.3/build/RULE-build.md, F2) and so verified from the lane's own file; every other shape's meaning begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one UTF-16 unit of the JavaScript string (every route here holds only characters of 16 bits). The text is the whole route text as it stands, the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. Nothing is trimmed. The text before the mark is every character from the start of the text up to, and not including, the mark; the text after the mark is every character after it to the end. A letter is any character the JavaScript test \\p{L} with the u flag matches; whitespace is what \\s matches. The word before the mark is the longest run of letters that ends directly before the mark (empty if the character before it is not a letter); the word after the mark is the longest run of letters that begins after the mark once any whitespace directly after it is passed over (empty if the next character is not a letter). What the bracket holds means the characters between that opener and its closer: the template's c.group. Contains a semicolon means the semicolon character stands anywhere in the text before the mark. Is one of the strings in a list means is equal to one string of that list, character for character and whole. Every string and every list minds case. A string stands between « and », which are not part of it.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence. Each mark here has one shape, so every occurrence of a mark takes that mark's shape; the tests are stated all the same, and each holds for every occurrence.",
+  "pointer_words": [
+   "Chald",
+   "Heb",
+   "Aphel",
+   "fem",
+   "also"
+  ],
+  "abbreviations": [
+   "Chald",
+   "Heb",
+   "fem"
+  ],
+  "placeholders": [
+   "Samaritan"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.inside_the_pointer"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": [
+   "semicolon.before_a_cognate_pointer"
+  ],
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": "absent",
+  "brackets": [
+   "open_bracket.holds_a_script_placeholder",
+   "close_bracket.holds_a_script_placeholder"
+  ]
+ },
+ "shapes": [
+  {
+   "id": "semicolon.before_a_cognate_pointer",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the English gloss and opens a pointer to the word's Chaldee or Hebrew cognate, or a label of its form, or a further Samaritan form («sea; Chald. יַמָא», «a prophet; Chald. נְבִיא; also [Samaritan]», «void; fem., [Samaritan], Chald. ריקניא»); the pointer is no reading, and whether it comes off the pill is the question of B01, under which the row prints whole at rest.",
+   "test": "The word after the mark is one of the strings in pointer_words (terms, first_match).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "ימא"
+    },
+    {
+     "key": "יקר"
+    },
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "question_mark.ends_the_gloss_before_a_pointer",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the English gloss of a question word, after which the Chaldee cognate follows with no semicolon between («how? Chald. אֵיךְ»); the pointer after it is no reading, and whether it comes off the pill is the question of B01, under which the row prints whole at rest.",
+   "test": "Every question mark takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "איך"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.inside_the_pointer",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates, after the semicolon, a label of the form from the next label or form of the pointer («to honour; Aphel, Chald. יְקַר»); no piece on either side is a reading, and it never cuts.",
+   "test": "The text before the mark contains a semicolon (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "יקר"
+    },
+    {
+     "key": "ריקניא"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "period.after_an_abbreviation",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes an abbreviation of the pointer, the language label Chald. or Heb. or the form label fem. («face; Heb. פָנִים», «a hundred; Heb.»); it never cuts.",
+   "test": "The word before the mark is one of the strings in abbreviations (terms, first_match).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "ימא"
+    },
+    {
+     "key": "יקר"
+    },
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "open_bracket.holds_a_script_placeholder",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "opens a stand-in the lane's reader wrote for a word printed in Samaritan letters and not transcribed, the script placeholder named in the Samaritan toggle strand's build rule (<tabernacle>/corpus-lane-builds/moses-samaritan-toggle-v1.3/build/RULE-build.md, F2), standing in the pointer for a further Samaritan form («a prophet; Chald. נְבִיא; also [Samaritan]»); it is no reading and never cuts.",
+   "test": "What the bracket holds is one of the strings in placeholders (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "נביא"
+    },
+    {
+     "key": "ריקניא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "close_bracket.holds_a_script_placeholder",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "closes a stand-in the lane's reader wrote for a word printed in Samaritan letters and not transcribed, the script placeholder named in the Samaritan toggle strand's build rule (<tabernacle>/corpus-lane-builds/moses-samaritan-toggle-v1.3/build/RULE-build.md, F2), standing in the pointer for a further Samaritan form («void; fem., [Samaritan], Chald. ריקניא»); it is no reading and never cuts.",
+   "test": "What the bracket holds is one of the strings in placeholders (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "נביא"
+    },
+    {
+     "key": "ריקניא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hebrew_point_sheva.in_a_cited_cognate",
+   "mark": "ְ",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the vowel point sheva inside the pointed Chaldee or Hebrew cognate that follows the pointer label («to honour; Aphel, Chald. יְקַר»); Hebrew inside the row is a pointer and never a reading, and a point never cuts.",
+   "test": "Every mark U+sheva takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "איך"
+    },
+    {
+     "key": "יקר"
+    },
+    {
+     "key": "נביא"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "hebrew_point_patah.in_a_cited_cognate",
+   "mark": "ַ",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the vowel point patah inside the pointed Chaldee or Hebrew cognate that follows the pointer label («sea; Chald. יַמָא»); Hebrew inside the row is a pointer and never a reading, and a point never cuts.",
+   "test": "Every mark U+patah takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ימא"
+    },
+    {
+     "key": "יקר"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hebrew_point_qamats.in_a_cited_cognate",
+   "mark": "ָ",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the vowel point qamats inside the pointed Chaldee or Hebrew cognate that follows the pointer label («face; Heb. פָנִים»); Hebrew inside the row is a pointer and never a reading, and a point never cuts.",
+   "test": "Every mark U+qamats takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ימא"
+    },
+    {
+     "key": "פנים"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hebrew_point_hiriq.in_a_cited_cognate",
+   "mark": "ִ",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the vowel point hiriq inside the pointed Chaldee or Hebrew cognate that follows the pointer label («a prophet; Chald. נְבִיא; also [Samaritan]»); Hebrew inside the row is a pointer and never a reading, and a point never cuts.",
+   "test": "Every mark U+hiriq takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "פנים"
+    },
+    {
+     "key": "נביא"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "hebrew_point_tsere.in_a_cited_cognate",
+   "mark": "ֵ",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: the vowel point tsere inside the pointed Chaldee or Hebrew cognate that follows the pointer label («how? Chald. אֵיךְ»); Hebrew inside the row is a pointer and never a reading, and a point never cuts.",
+   "test": "Every mark U+tsere takes this shape; it is the only shape of its mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "איך"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number; the lexicon's page, column and entry number stand in the def field's citation, which the route drops. No letters key carries more than one text (7 keys, one route each, axis: keys), so the count is 0 and tells nothing apart.",
+  "keys_with_more_than_one_route_text": 0
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "Every row gives an English gloss and then, after a semicolon (or after the question mark of how?), a pointer: the word's Chaldee or Hebrew cognate in Hebrew letters, sometimes with a label of its form or a further Samaritan form: sea; Chald. יַמָא. Today the page prints the whole row as one pill, pointer and all. Should the page print the gloss alone and leave the pointer off? For how? Chald. אֵיךְ it would print how, the question sign going with the pointer. That needs one step of the page's own, since the store's text does not change.",
+   "shapes": [
+    "semicolon.before_a_cognate_pointer",
+    "question_mark.ends_the_gloss_before_a_pointer"
+   ],
+   "occurrences": 8,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints the whole row as one reading, pointer and all, as written: sea; Chald. יַמָא, as it does today."
+    },
+    {
+     "id": "pointer_off",
+     "means": "The page prints only what stands before the semicolon, or before the question sign of how?, as one reading: sea, and how for how? Chald. אֵיךְ. The pointer with its labels, its Hebrew and its Samaritan stand-in is left off. Nothing is added, so the page needs one step of its own.",
+     "print": {
+      "kind": "before",
+      "at": [
+       "semicolon.before_a_cognate_pointer",
+       "question_mark.ends_the_gloss_before_a_pointer"
+      ]
+     },
+     "examples": [
+      {
+       "key": "ימא",
+       "row": "sea; Chald. יַמָא",
+       "prints": "sea"
+      },
+      {
+       "key": "איך",
+       "row": "how? Chald. אֵיךְ",
+       "prints": "how"
+      },
+      {
+       "key": "נביא",
+       "row": "a prophet; Chald. נְבִיא; also [Samaritan]",
+       "prints": "a prophet"
+      }
+     ]
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the page the one step B01's pointer_off asks for, carried as a print step under ask v1.2; the 0 routes with no mark (axis: routes) it leaves to the store. Nothing is struck and no route is divided at rest."
+}
