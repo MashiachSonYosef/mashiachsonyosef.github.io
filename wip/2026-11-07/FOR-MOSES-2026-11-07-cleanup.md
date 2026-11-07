@@ -44,6 +44,8 @@ The store by folder (store-by-folder-2026-11-07.tsv): corpus-lane-builds 97.80 G
 
 Beyond the three moves: the folders inside builds named gate, verify, sandbox, mirror, strand, probe, scratch, work or cache hold 47.05 GB of the store (store-by-build-2026-11-07.tsv). The 18 October checks found most of them carry the only copy of something or sit inside a current build (the search ledger v1.8's strand-1-fix is the build itself), so they are not a list; they are where the owner's one overlapped build pays: one current build per ledger, its verification kept as a receipt rather than a full copy.
 
+One more figure from the store alone: 48.14 GB of it is a file stored more than once (the same name and size, 4 KB and over, in 85,818 extra copies); 24.94 GB of those extra copies sit among builds that are not older versions. Read as a plan: the store less the older versions (29.93 GB) and less those copies (24.94 GB) is about 67 GB, and the disk need hold only the part of that you work on. The rest of the way to the owner's 30 to 40 GB is the overlapped build itself: no version folders inside a build, no gate or mirror copies of another build, one current build per ledger.
+
 ## What stays
 
 The sources (the raws, the collected scans, the source caches); every ledger's current build; every relay letter and receipt; what the site's repository names (site-cited-v1.json, 28 builds); moses-ledgers; serving-lane/shelf; cold/ until you say what it holds.
