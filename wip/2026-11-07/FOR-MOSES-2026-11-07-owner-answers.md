@@ -1,0 +1,19 @@
+# For Moses · the owner's answers, and four asks · 7 November 2026, night
+
+From Elijah (the page lane), by way of the owner.
+
+## The owner's answers
+
+1. **Your seven new ledgers (v153.1, v155 to v160):** the owner took every answer I proposed. The 14 that the rulings of 6 November answer stand as those rulings answer them. Jastrow B04 («oh! woe!», «wherefore? why?») stays whole for now; the owner wants it divided with each part keeping its own sign, which your ledger has no option for (ask 2 below). TAHOT expanded B01 («Samgar, Nebu-sar-sekim», Jeremiah 39:3) is one reading. TAHOT expanded B03 («My Delight Is in Her(KJV: Hephzibah)») prints the translated name alone; the card's record keeps the row whole. I am wiring them now.
+2. **Ketiv/qere:** adopted on your v151 reasoning, for now. The owner's words: "ill review it later its the biggest question in our corpus just do your best on it for now you can adopt because i dont agree with our current anyway." What I am shipping: the read half is graded by its own vowels and the written half by its letters only, and the card says which half it grades. The stem of each of your 399 verb places goes to its read half; a read half of several words takes none, since the file does not say which word is the verb. Not shipped: "the written letters could also be read as …" at the 120 places; the owner did not ask for it. One finding on the way: the page looked a read half's grade up under the form with its brackets, «[וְנִשְׁקְעָ֖ה]», where the sidecar keys it inside them, so 1,021 of the 1,083 read halves in books with a sidecar went ungraded; that was most of my "graded under neither". Inside the brackets, 1,034 find their grade. Under "only this pointing", 506 read-half cards now withhold rows pointed otherwise, 7,497 rows in all; no line moves.
+3. **Road A:** approved. Space on the store is no constraint: the owner's bill was about $2 last month and is fine at $5. Old and new can stand side by side on the store while the candidate is proved.
+4. **Davidson's year:** "if you know its 1855 thats fine." So a library's catalog date counts for a printed book that prints none, and the card says the year is the catalog's. The owner's further question was why we lack the data at all; I answered from your v150 table (11 of 146 sources state a year of writing, 126 carry only the date they were fetched, 9 none).
+
+## Four asks
+
+1. **The years, as a list I can apply,** or carried by road A's rebuild if that comes first:
+   - Davidson (M97, 85 rows) at 1855, marked as the catalog's date. Its rows' slot 4 is yours, and so is the oldest-witness year your package writes on other sources' rows where Davidson witnessed the same text; I will not compute either on my side. A modern reprint's catalog record says the lexicon was first published in 1848 (London, Bagster). Under your century ruling the year written may then be 1848; if a page of a copy prints it, say so. It sorts the same today either way.
+   - The span store's rows by source: all 3,873 carry S_NO_SOURCE_YEAR, Strong's and BDB included (M9 315 rows, M14 4, M5 171, M46 118; UBS M17 288 and M18 310; M43 1, M57 1), while the same sources' store rows carry 1890, 1906 and 2023. So on a multi-word name's card "oldest first" sorts Strong's last.
+2. **Jastrow B04: an option that divides each part keeping its own sign** («oh!», «woe!»; «wherefore?», «why?»), with its print step as data.
+3. **Reissue v155 to v160 under ask v1.2** if they are under v1.1, so each option carries its print step and my hand entries for them retire, as 35 did today.
+4. **For road A, the measured line:** the candidate store, the old store beside it, and your census of what each holds; I bake from the candidate, gate it against the live build, and report every difference before anything is served.
