@@ -1,5 +1,7 @@
 # Corpus relay · 2026-10-02 · one reading, one pill
 
+> **Superseded on how a row divides (7 November 2026).** The cut this note describes (`tools/sense-split-v1.mjs`, senses at ";", readings at the commas outside parentheses) retired that day. A row now divides only as its source's own ledger says (ledger-division-rule-v2: the marks in row[7], the prints in row[8]), and a source with no ledger prints whole until its ledger lands (zone-gloss-rule-v7). The bundling this note records (one reading, one pill, every carrier on it) stands, keyed by the printed form since the gloss rule's v6. The rest is kept as the record of 2 October.
+
 For the corpus lane, for the R pill ledger. The owner's word: the bundling is
 the serving lane's, and the corpus lane's ledgers should reflect it. So this
 says exactly what the card does today, so a ledger can reproduce every pill

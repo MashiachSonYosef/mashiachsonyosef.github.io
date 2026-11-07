@@ -16,7 +16,7 @@
 // the row by the store's own rule — the rule every other line and every
 // card pill is cut by, so the card's first pill is the line. Until 6
 // November that rule was the generic one (packSplit, then
-// sense-split-rule-v3); from that day it is the row's own ledger
+// the sense-split rule, v3, retired 7 November 2026); from that day it is the row's own ledger
 // (ledger-division-rule-v2: the marks row[7] names, the texts row[8]
 // prints, else the row whole), and from 7 November 2026 a source with no
 // ledger stands whole, the generic rule retired on the owner's word. The
