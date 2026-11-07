@@ -1,0 +1,4425 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "openscriptures_strongs",
+ "m_ids": [
+  "M9"
+ ],
+ "routes": 23646,
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Strong's Hebrew Dictionary via Open Scriptures\" (M9): 23,646 routes (axis: routes), 5,939 letters keys (axis: keys). The definition field of the same row is read only to understand a route, never classified. Routes against the definition field (axis: routes): 15,718 have route text equal to it (the source audit finds 7,463 of them to be a whole meaning field, 8,167 a whole usage field, which is the King James rendering list, and 88 whose text several entries of one key share (two entries in 87 of them, three in 1)); 7,889 carry the store's cut flag and are one tagged gloss cut from a meaning field; 39 more are one tagged gloss of an entry whose meaning field holds exactly that one gloss with a few untagged words round it, the flag left empty. The source's own key to its signs: none found. The lane's copy of the source (Open Scriptures HebrewLexicon, HebrewStrong.xml, commit 21c9add13bc727d3a951361778e97e3ff7afd1ce) shows its structure only: a meaning field whose glosses are tagged and a usage field that holds the King James list; it carries no key to its signs (no schema file and no documentation file in the copy), so every shape whose meaning rests on a sign convention begins \"unverified:\". The route text names neither the field it came from nor the entry's Strong's number; the lane read both from the source file by audit, which is evidence about the source and no part of any test.",
+ "definitions": {
+  "first_match": "The comma shapes are tried for a comma in the order of this declaration; the first shape whose test holds names the comma, and no later shape is tried for it.",
+  "containers": "A comma's container is the innermost bracket that encloses it, as the checker's own bracket stack finds it: top when no bracket encloses it, paren for a round bracket, bracket for a square bracket, angle for the pair of angle brackets, brace for the pair of curly brackets. Its depth is the number of brackets of any of these kinds that enclose it.",
+  "character_words": "Whitespace is any character that JavaScript's regular-expression class backslash-s matches. A letter is any character with the Unicode property Letter; a capital letter is any character with the property Uppercase Letter; a number character is any character with the property Number. A digit is one of the ten characters 0 to 9. A hyphen is the character U+002D, a full stop is U+002E, an apostrophe is U+0027, a right single quotation mark is U+2019 and a double quotation mark is U+0022. A word is a maximal run of non-whitespace characters, unless a test says it is a run of letters. Text is compared exactly, character for character, unless a test says 'written in lowercase'.",
+  "unbalanced": "Scan the characters of the whole route text from left to right with a stack. An opening ( [ < or { is pushed. A closing ) ] > or } pops the stack when the top of the stack is its own opening bracket (( for ), [ for ], < for >, { for }); when the stack is empty or its top is another opener, the text is unbalanced at once. At the end the text is also unbalanced when the stack is not empty.",
+  "stripped_text": "The text with every round group (an opening round bracket, then any characters that include no round bracket, then a closing round bracket) and every square group (an opening square bracket, then any characters that include no square bracket, then a closing square bracket) replaced by the single character U+0001; the replacement is repeated on the result, each time over the whole result, until nothing changes.",
+  "closing_period": "In a stripped_text, a full stop that directly follows a letter, a number character, U+0001, a closing round bracket or a closing square bracket, and that is directly followed by a whitespace character, by the end of the text, by an apostrophe, by a right single quotation mark or by a double quotation mark. The first closing_period of a text is the one that comes first, reading from the left.",
+  "list_route": "A route text for which all three hold: its stripped_text has no comma that has a whitespace character directly before it, unless the first character after that comma that is not whitespace is a digit; its stripped_text has no semicolon that has a whitespace character directly before it; and the route text itself, not stripped, holds neither the four characters i, full stop, e, full stop nor the four characters e, full stop, g, full stop.",
+  "trailing_note": "A route text that is a list_route and whose stripped_text has a closing_period, when its list tail satisfies all four conditions. The list tail is the part of the stripped_text after its first closing_period, from the character after that full stop to the end, with whitespace removed at both ends. The four conditions: the list tail is not empty; it is not one run of one or more letters, apostrophes (U+0027) and hyphens followed directly by one full stop and nothing else (the last rendering, written after a full stop where a comma would stand); it is not one lowercase letter and nothing else (a lowercase letter is any character with the Unicode property Lowercase Letter; such a letter is a stray letter of the source's text and no remark); and it does not begin with the word See or the word Compare, each written with a capital first letter and followed by a character that is not one of A to Z, a to z, 0 to 9 or the underscore, or followed by nothing.",
+  "irregular_piece": "Take the stripped_text of the route text up to and including the full stop of its first closing_period (a route text with no closing_period has no irregular_piece) and cut it at every comma. A piece is irregular when it is empty or holds only whitespace, the signs for multiplication (U+00D7) and plus, the character U+0001 and full stops; or when its first character that is not whitespace is a hyphen; or when it is not the last piece and its last character that is not whitespace is a full stop.",
+  "name_series": "A text that, from its first character to its last, is one name or several names. A name is a capital letter followed by any number of letters, apostrophes, right single quotation marks and hyphens, and then, optionally, after optional whitespace, one round group that has no round bracket inside it. Between two names stand optional whitespace, then a comma or the lowercase word or, then optional whitespace.",
+  "adverb_openers": [
+   "properly",
+   "figuratively",
+   "by implication",
+   "hence",
+   "specifically",
+   "by analogy",
+   "causatively",
+   "concretely",
+   "by extension",
+   "abstractly",
+   "generally",
+   "adverbially",
+   "intensively",
+   "reflexively",
+   "transitively",
+   "intransitively",
+   "as noun",
+   "by euphemism",
+   "euphemistically",
+   "locally",
+   "technically",
+   "literally",
+   "collectively",
+   "abstract",
+   "concrete",
+   "used adverbially",
+   "also",
+   "adverb",
+   "subjectively",
+   "objectively",
+   "physically"
+  ],
+  "joining_words": [
+   "or",
+   "and",
+   "but",
+   "also",
+   "either",
+   "both",
+   "besides",
+   "including",
+   "especially",
+   "literally",
+   "figuratively",
+   "whether",
+   "probably",
+   "perhaps",
+   "often",
+   "usually"
+  ],
+  "grammar_labels": [
+   "participle",
+   "singular"
+  ],
+  "function_words": [
+   "a",
+   "an",
+   "the",
+   "to",
+   "of",
+   "in",
+   "for",
+   "with",
+   "by",
+   "from",
+   "that",
+   "which",
+   "whether",
+   "perhaps",
+   "probably",
+   "especially",
+   "properly",
+   "hence",
+   "literally",
+   "figuratively",
+   "generally",
+   "usually",
+   "as",
+   "it",
+   "is",
+   "used",
+   "and",
+   "or",
+   "also",
+   "but",
+   "subjectively",
+   "objectively",
+   "physically",
+   "morally",
+   "abstractly",
+   "concretely",
+   "causatively",
+   "specifically"
+  ],
+  "list_comma": "A comma of container top that satisfies the test of comma.between_renderings_in_semicolon_list, or the test of comma.between_kjv_renderings, or the test of comma.in_long_list_without_final_period, each of those three tests read by itself as if no shape stood above it.",
+  "label_last_piece": "A route text whose stripped_text, cut at its last comma, has a last piece (the part after that comma, or the whole stripped_text when it has no comma) that begins with a grammar label: remove from the start of the last piece every whitespace character and every U+0001 character; the first word of what is left is its first maximal run of letters (here a letter is any character with the Unicode property Letter), empty if what is left does not begin with a letter; the last piece begins with a grammar label when that first word is exactly equal to one of the grammar_labels (compared exactly, in lowercase).",
+  "opening_flagged_piece": "The opening flagged piece before a comma of container top is found in these steps, or there is none. Take the text before the comma. Replace every round group and every square group in it by U+0001, exactly as stripped_text does (the replacement applied to that text alone). If the result holds a semicolon, keep the part after the last semicolon; otherwise keep all of it. If what is kept holds a comma there is no opening flagged piece. Otherwise remove the whitespace at both ends of what is kept; if the result starts with a flag (flag_start) it is the opening flagged piece, and if not there is none.",
+  "flag_start": "A text starts with a flag in these steps. Remove the whitespace (as defined in character_words) at the start of the text. Then, as long as the next character is U+0001 (a round or square group of a stripped_text), remove it together with the whitespace that follows it (possibly none). The text starts with a flag when the next character is then the multiplication sign (U+00D7) or the plus sign (U+002B); a text with no character left, or with any other character next, does not.",
+  "unbalanced text": "Read the characters of a text from the first. Each opening round, square, angle or curly bracket is pushed on a stack. Each closing round, square, angle or curly bracket is matched with the top of the stack: if the stack is not empty and its top is the opening bracket of the same kind, the top is removed; otherwise the text is unbalanced. The text is also unbalanced when the stack is not empty after the last character. (This is the ask's own helper unbalanced.)",
+  "pieces of a text": "Read the text from the first character with a bracket count that starts at zero: add one at each opening round, square, angle or curly bracket, and at each closing round, square, angle or curly bracket subtract one, never going below zero. A semicolon is outside the brackets when the count is zero at it. Cut the text at every semicolon outside the brackets and drop those semicolons: the stretches between them (the first from the start of the text, the last to its end) are the pieces, so a text with n such semicolons has n plus 1 pieces.",
+  "piece after the mark": "For a semicolon outside the brackets, the piece (see pieces of a text) that begins just after it.",
+  "piece before the mark": "For a semicolon outside the brackets, the piece (see pieces of a text) that ends just before it.",
+  "kind of a piece": "Take the lead of the piece, which is the piece with its leading whitespace removed and, if what remains begins with an opening round bracket, that one bracket character removed as well; the first word of the lead is the first maximal run of letters (a letter is any letter of any script) at the very start of the lead, or the empty word if the lead does not begin with a letter. The kind is the first of these that applies, in this order: restatement, when the lead begins with the letter i, a period and the letter e, or with the letter e, a period and the letter g, in either case not followed by a letter, or begins with the words that is or the word namely, not followed by a letter; name description, when the lead begins with the words the name, the words the designation or the words also of, each with single spaces and not followed by a letter; also, when the first word is in also words; hence, when it is in hence words; transfer, when it is in transfer words; figurative, when it is in figurative words; narrowing, when it is in narrowing words; named use, when the first word is in named-use words, or when the first word is the word in and the lead begins with in, a space, a, a space and a word that is in in-sense words; alternative, when it is in alternative words; plain, when it is in plain-opener words; note, when it is in usage-note words; bracketed, when the piece with its leading whitespace removed begins with an opening round bracket; otherwise other. Every word list matches case-sensitively and in lowercase only.",
+  "head word of its own": "A piece has a head word of its own when the following leaves at least one maximal run of letters that is not in label words: take the piece with every bracket character and every character read at a bracket count above zero removed (counting as in pieces of a text); then remove each occurrence of the word by, that is, each maximal run of letters equal to by that is preceded by the start of the text or by a non-letter, together with the whitespace after it and the maximal run of letters after that when both exist (a by with nothing after it is removed alone).",
+  "cuts cleanly": "A text cuts cleanly when it has at least two pieces, every piece has a head word of its own, and every piece after the first has a kind that is in boundary kinds.",
+  "stands alone": "A piece stands alone, or not, by these steps. The outside words of a piece are the maximal runs of letters (a letter is any letter of any script), in order from the left, of the piece after every bracket character and every character read at a bracket count above zero have been removed (counting as in pieces of a text); the whole-piece words of a piece are the maximal runs of letters of the piece with nothing removed. Step 1, for a piece that is not the first piece of its text: it does not stand alone if one of its outside words is in pronoun words, or one of its whole-piece words is in back words, or its lead (see kind of a piece) begins with the letters in, one space, the letter a or the letters an, one space, one or more letters, one space and the letters one, not followed by a letter. Step 2, for every piece: put a count at 2 if the first outside word is by or as, and at 0 otherwise; while the outside word at that count (counting from 0) exists and is in front words, add 1 to the count; the piece does not stand alone if no outside word is left at that count, or if the outside word there is in non-opening words. Otherwise the piece stands alone. Every word list matches case-sensitively and in lowercase only.",
+  "all pieces stand alone": "A text's pieces all stand alone when every piece of the text (see pieces of a text) stands alone, the first piece being tested as the first piece of its text and every other piece as a piece that is not the first.",
+  "pronoun words": [
+   "it",
+   "its",
+   "itself",
+   "both",
+   "them",
+   "they",
+   "their",
+   "one"
+  ],
+  "back words": [
+   "above",
+   "same",
+   "former",
+   "latter"
+  ],
+  "front words": "A word is in front words when it is in label words and is not the word as, and also when it is one of the three words and, probably and perhaps, which label words does not hold. No other word is in front words. The list matches case-sensitively and in lowercase only.",
+  "non-opening words": [
+   "used",
+   "as",
+   "by",
+   "with",
+   "from",
+   "for",
+   "through",
+   "meaning"
+  ],
+  "looks like a King James list": "The text with its trailing whitespace removed ends with a period, and no whitespace character stands directly before a comma anywhere in the text.",
+  "later pieces unlabelled": "The text has at least two pieces and every piece after the first has the kind other.",
+  "also words": [
+   "also",
+   "likewise"
+  ],
+  "hence words": [
+   "hence"
+  ],
+  "transfer words": [
+   "by"
+  ],
+  "figurative words": [
+   "figuratively",
+   "figurative"
+  ],
+  "narrowing words": [
+   "specifically",
+   "especially",
+   "generally"
+  ],
+  "named-use words": [
+   "causatively",
+   "intensively",
+   "reflexively",
+   "transitively",
+   "intransitively",
+   "collectively",
+   "concretely",
+   "abstractly",
+   "mentally",
+   "morally",
+   "locally",
+   "technically",
+   "architecturally",
+   "passively",
+   "euphemistically",
+   "adverbially",
+   "concrete",
+   "abstract",
+   "transitive",
+   "intransitive",
+   "adverb",
+   "as",
+   "feminine",
+   "reflex",
+   "reflexive",
+   "intensive",
+   "reciprocal",
+   "dual",
+   "physical",
+   "mental",
+   "moral",
+   "architectural",
+   "architecture",
+   "religious",
+   "relatively",
+   "conventionally",
+   "frequentatively",
+   "indefinitely",
+   "medically",
+   "inceptively",
+   "incipiently",
+   "ceremonially",
+   "definitely",
+   "imperatively",
+   "violently",
+   "positively",
+   "adversatively",
+   "objectively",
+   "elliptically",
+   "trans",
+   "poet"
+  ],
+  "in-sense words": [
+   "good",
+   "bad",
+   "qualified"
+  ],
+  "plain-opener words": [
+   "to",
+   "a",
+   "an",
+   "the"
+  ],
+  "alternative words": [
+   "or"
+  ],
+  "usage-note words": [
+   "used",
+   "only",
+   "often",
+   "usually",
+   "sometimes",
+   "occasionally",
+   "rarely",
+   "mostly",
+   "chiefly",
+   "spoken",
+   "others",
+   "but"
+  ],
+  "label words": [
+   "also",
+   "likewise",
+   "hence",
+   "figuratively",
+   "figurative",
+   "specifically",
+   "especially",
+   "generally",
+   "causatively",
+   "intensively",
+   "reflexively",
+   "transitively",
+   "intransitively",
+   "collectively",
+   "concretely",
+   "abstractly",
+   "mentally",
+   "morally",
+   "locally",
+   "technically",
+   "architecturally",
+   "passively",
+   "euphemistically",
+   "adverbially",
+   "concrete",
+   "abstract",
+   "transitive",
+   "intransitive",
+   "adverb",
+   "as",
+   "feminine",
+   "reflex",
+   "reflexive",
+   "intensive",
+   "reciprocal",
+   "dual",
+   "physical",
+   "mental",
+   "moral",
+   "architectural",
+   "architecture",
+   "religious",
+   "relatively",
+   "conventionally",
+   "frequentatively",
+   "indefinitely",
+   "medically",
+   "inceptively",
+   "incipiently",
+   "ceremonially",
+   "definitely",
+   "imperatively",
+   "violently",
+   "positively",
+   "adversatively",
+   "objectively",
+   "elliptically",
+   "trans",
+   "poet",
+   "or",
+   "properly",
+   "literally"
+  ],
+  "boundary kinds": [
+   "also",
+   "hence",
+   "transfer",
+   "figurative",
+   "narrowing",
+   "named use",
+   "plain",
+   "alternative",
+   "bracketed"
+  ],
+  "paren label kinds": [
+   "also",
+   "hence",
+   "transfer",
+   "figurative",
+   "narrowing",
+   "named use",
+   "alternative"
+  ],
+  "word before the mark": "Take the text before the mark, remove its trailing whitespace, and take the maximal run of letters that ends it; the empty word if it does not end with a letter.",
+  "dots of ie": "A period is a dot of ie when the text before it ends with the letter i, itself preceded by the start of the text or by a non-letter, and the text after it begins with the letter e not followed by a letter; or when the text before it ends with the letter i, a period and the letter e, with that i preceded by the start of the text or by a non-letter.",
+  "dots of eg": "A period is a dot of eg when the text before it ends with the letter e, itself preceded by the start of the text or by a non-letter, and the text after it begins with the letter g not followed by a letter; or when the text before it ends with the letter e, a period and the letter g, with that e preceded by the start of the text or by a non-letter.",
+  "run of dots": "The character just before the mark is a period, or the character just after it is a period.",
+  "starts with a pointer word": "The text after the mark, with its leading whitespace removed, begins with a word that is in pointer words and is not followed by a letter.",
+  "period abbreviations": [
+   "etc",
+   "itc",
+   "poet",
+   "reflex",
+   "trans",
+   "card",
+   "correl",
+   "Marg",
+   "marg",
+   "Comp",
+   "Prop",
+   "Incl",
+   "includ",
+   "techn",
+   "phys",
+   "pos",
+   "interj",
+   "adj",
+   "compar",
+   "usu",
+   "etym",
+   "gen",
+   "abs",
+   "interch",
+   "orig",
+   "ellip",
+   "intrans",
+   "exten",
+   "caus",
+   "intens",
+   "absol",
+   "pron"
+  ],
+  "pointer words": [
+   "Compare",
+   "Comp",
+   "See",
+   "Marg"
+  ],
+  "paren_first_match": "The shapes of a mark are tried in the order of this declaration; the first shape whose test holds names the mark, and no later shape is tried for it.",
+  "paren_pairing": "Scan the whole route text from left to right with a stack of opening brackets. An opening bracket ( [ < or { is pushed. A closing bracket ) ] > or } pairs with the opening bracket on top of the stack when that opening bracket is its own kind (( for ), [ for ], < for >, { for }), and that opening bracket is then taken off the stack; otherwise the closing bracket pairs with nothing and the stack is left as it was. At the end, each opening bracket still on the stack pairs with nothing. The group of a pair is the text strictly between its opening bracket and its closing bracket (it may be empty, hold whitespace, or hold other brackets); the group of a closing bracket is the group of its pair; an opening bracket that pairs with nothing has no group, and neither has a closing bracket that pairs with nothing.",
+  "paren_container": "The container of a mark, as the checker's own bracket stack finds it: a pair encloses a mark when the mark lies between its opening and its closing bracket (an opening bracket that pairs with nothing encloses nothing, so a mark after it is not enclosed by it). The container is top when no pair encloses the mark; otherwise it is paren when the innermost enclosing pair is round, bracket when it is square, angle when it is angle, brace when it is curly. A bracket character sits in what encloses its pair, not in its own pair.",
+  "paren_character_words": "Whitespace is any character that the JavaScript regular-expression class backslash-s matches. A letter is any character with the Unicode property Letter. A number character is any character with the Unicode property Number. A mark character is any character with the Unicode property Mark. A digit is one of the ten characters 0 to 9. A hyphen is the character U+002D. The multiplication sign is the character U+00D7. An apostrophe is the character U+0027 or the character U+2019 (the right single quotation mark). Text is compared exactly, character for character, upper and lower case being different; every word list below is written in lowercase and matches lowercase only.",
+  "paren_one_word_group": "A group is one word when, with the whitespace at both ends removed, it is one or more characters and each of them is a letter, a mark character, a hyphen or an apostrophe (paren_character_words).",
+  "paren_against_letter": "A round group stands against a letter when the character directly before its opening bracket (the opening bracket of its pair) is a letter (paren_character_words); a group at the very start of the text, and a group that has whitespace or any other character that is not a letter directly before its opening bracket, does not.",
+  "paren_word_start_words": [
+   "adulter"
+  ],
+  "paren_runs": "The runs of a group are its maximal stretches of consecutive characters that are each a letter or a number character, in order from the left; the first run is the first word of the group. The lead of a group is its runs joined by single spaces. A lead begins with a list item when the lead with one space added at its end begins with the item followed by one space.",
+  "paren_label_words": [
+   "figuratively",
+   "literally",
+   "collectively",
+   "causatively",
+   "concretely",
+   "abstractly",
+   "specifically",
+   "especially",
+   "generally",
+   "usually",
+   "often",
+   "adverbially",
+   "morally",
+   "intensively",
+   "transitively",
+   "intransitively",
+   "reflexively",
+   "subjectively",
+   "objectively",
+   "properly",
+   "hence",
+   "also",
+   "plural",
+   "singular",
+   "dual",
+   "adverb",
+   "ordinal",
+   "transitive",
+   "intransitive",
+   "causative",
+   "reflex",
+   "participle",
+   "passive",
+   "active",
+   "technically",
+   "physically",
+   "locally"
+  ],
+  "paren_label_phrases": [
+   "by implication",
+   "by analogy",
+   "by extension",
+   "by euphemism",
+   "by euphemistically",
+   "by inference",
+   "as noun",
+   "as a noun",
+   "as adjective",
+   "as an adjective",
+   "as adverb",
+   "as an adverb",
+   "as preposition",
+   "as a preposition",
+   "as demonstrative",
+   "as ordinal",
+   "as an ordinal",
+   "as a patronymic",
+   "as feminine noun"
+  ],
+  "paren_source_words": [
+   "as",
+   "like",
+   "because",
+   "from",
+   "through"
+  ],
+  "paren_small_words": [
+   "as",
+   "like",
+   "because",
+   "from",
+   "through",
+   "a",
+   "an",
+   "the",
+   "for",
+   "in",
+   "so",
+   "than",
+   "to",
+   "unto",
+   "off",
+   "whether",
+   "while"
+  ],
+  "paren_joining_words": [
+   "of",
+   "in",
+   "with",
+   "for",
+   "by",
+   "to",
+   "on",
+   "at",
+   "into",
+   "upon",
+   "unto",
+   "about",
+   "against",
+   "under",
+   "over",
+   "after",
+   "before",
+   "between",
+   "within",
+   "without",
+   "among",
+   "toward",
+   "towards",
+   "along",
+   "during",
+   "up",
+   "down",
+   "out",
+   "off",
+   "away",
+   "forth",
+   "back",
+   "together",
+   "abroad",
+   "aside",
+   "asunder",
+   "again"
+  ],
+  "top_level": "A mark sits at top_level when no bracket pair encloses it, by the template's own bracket matching (round, square, angle and curly brackets; an opening bracket that never closes encloses nothing); a bracket character sits in what encloses it, so a pair of square brackets that no other bracket encloses has both of its characters at top_level. For such a mark the template's c.container is top.",
+  "square_bracket_container": "A mark sits inside square brackets when the innermost bracket pair that encloses it, by the template's own bracket matching, is a pair of square brackets (the template's c.container is bracket).",
+  "letter": "Any character with the Unicode property Letter, Hebrew letters and Latin letters included; a digit, a whitespace character and a mark are not letters. Lowercase s means the character U+0073 only; Doubtful is written with an uppercase D (U+0044) and lowercase letters.",
+  "whitespace": "Any character that the regular-expression class backslash-s matches.",
+  "neighbours": "The character directly before a mark is the one just before it in the route text and the character directly after it is the one just after it; at the start or the end of the route text that neighbour is missing, and a missing neighbour is not a letter, is not whitespace and equals no listed character. The two characters directly before a mark are the last two characters of the text before it (fewer if the text before it is shorter).",
+  "unpaired_apostrophes_before": "The number of apostrophes (U+0027) that stand before the mark in the route text, not counting an apostrophe that has a letter directly before it and a letter directly after it (both neighbours taken from the whole route text).",
+  "bracket_group": "For an opening or a closing square bracket that the template's bracket matching pairs with its partner, the text between the two brackets (neither bracket included); the closing bracket sits at the end of the text before it, so for a closing bracket the text before it is its opening bracket followed by that group exactly when the opening bracket is the first character of the route text."
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.in_unbalanced_text",
+   "comma.at_end_of_text",
+   "comma.between_pointer_numbers",
+   "comma.right_after_period",
+   "comma.in_note_after_list",
+   "comma.in_list_with_trailing_note",
+   "comma.in_list_ending_in_grammar_label",
+   "comma.in_list_with_irregular_piece",
+   "comma.in_list_with_semicolons",
+   "comma.after_opening_flagged_piece",
+   "comma.before_flagged_piece",
+   "comma.between_renderings_in_semicolon_list",
+   "comma.between_kjv_renderings",
+   "comma.in_long_list_without_final_period",
+   "comma.in_short_list_without_final_period",
+   "comma.before_ie",
+   "comma.before_etc",
+   "comma.after_proper_name",
+   "comma.after_adverb_opener",
+   "comma.before_joining_word",
+   "comma.after_tagged_gloss",
+   "comma.in_definition"
+  ],
+  "comma_in_paren": [
+   "comma.in_unbalanced_text",
+   "comma.paren_in_nested_group",
+   "comma.paren_beside_hyphen",
+   "comma.paren_in_note_after_list",
+   "comma.paren_between_optional_words",
+   "comma.paren_after_opener",
+   "comma.paren_before_ie",
+   "comma.paren_before_etc",
+   "comma.paren_before_joining_word",
+   "comma.paren_after_tagged_gloss",
+   "comma.paren_in_aside"
+  ],
+  "comma_in_brackets": [
+   "comma.bracket_after_tagged_gloss",
+   "comma.bracket_before_correction",
+   "comma.bracket_in_note"
+  ],
+  "semicolon_top": [
+   "semicolon.in_unbalanced_text",
+   "semicolon.top_ends_text",
+   "semicolon.top_beside_another_mark",
+   "semicolon.top_in_name_entry",
+   "semicolon.top_before_restatement",
+   "semicolon.top_before_usage_note",
+   "semicolon.top_before_name_description",
+   "semicolon.top_beside_stranded_label",
+   "semicolon.top_between_kjv_groups",
+   "semicolon.top_before_unlabelled_sense",
+   "semicolon.top_in_text_with_leaning_piece",
+   "semicolon.top_in_text_not_cut_cleanly",
+   "semicolon.top_before_also",
+   "semicolon.top_before_hence",
+   "semicolon.top_before_transfer",
+   "semicolon.top_before_figurative",
+   "semicolon.top_before_narrowing",
+   "semicolon.top_before_named_use",
+   "semicolon.top_before_plain_sense",
+   "semicolon.top_before_alternative",
+   "semicolon.top_before_bracketed_label"
+  ],
+  "semicolon_in_paren": [
+   "semicolon.paren_before_sense_label",
+   "semicolon.paren_inside_aside"
+  ],
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.never_closed",
+   "close_paren.never_opened",
+   "open_paren.holds_blank",
+   "close_paren.holds_blank",
+   "open_paren.holds_doubt",
+   "close_paren.holds_doubt",
+   "open_paren.holds_round",
+   "close_paren.holds_round",
+   "open_paren.holds_square",
+   "close_paren.holds_square",
+   "open_paren.holds_verse",
+   "close_paren.holds_verse",
+   "open_paren.holds_number",
+   "close_paren.holds_number",
+   "open_paren.holds_times",
+   "close_paren.holds_times",
+   "open_paren.holds_plus",
+   "close_paren.holds_plus",
+   "open_paren.holds_quotation",
+   "close_paren.holds_quotation",
+   "open_paren.holds_hyphen_piece",
+   "close_paren.holds_hyphen_piece",
+   "open_paren.holds_restatement",
+   "close_paren.holds_restatement",
+   "open_paren.holds_alternative",
+   "close_paren.holds_alternative",
+   "open_paren.holds_label",
+   "close_paren.holds_label",
+   "open_paren.holds_small_words",
+   "close_paren.holds_small_words",
+   "open_paren.holds_source",
+   "close_paren.holds_source",
+   "open_paren.holds_joining",
+   "close_paren.holds_joining",
+   "open_paren.holds_rest_of_word",
+   "close_paren.holds_rest_of_word",
+   "open_paren.holds_start_of_word",
+   "close_paren.holds_start_of_word",
+   "open_paren.holds_one_word",
+   "close_paren.holds_one_word",
+   "open_paren.holds_other",
+   "close_paren.holds_other",
+   "open_paren.in_paren_holds_hyphen_piece",
+   "close_paren.in_paren_holds_hyphen_piece",
+   "open_paren.in_paren_holds_label",
+   "close_paren.in_paren_holds_label",
+   "open_paren.in_paren_holds_one_word",
+   "close_paren.in_paren_holds_one_word",
+   "open_paren.in_paren_holds_other",
+   "close_paren.in_paren_holds_other"
+  ],
+  "brackets": [
+   "open_bracket.in_paren_holds_number",
+   "close_bracket.in_paren_holds_number",
+   "open_bracket.in_paren_holds_hyphen_piece",
+   "close_bracket.in_paren_holds_hyphen_piece",
+   "open_bracket.in_paren_holds_other",
+   "close_bracket.in_paren_holds_other",
+   "open_bracket.holds_strongs_number",
+   "open_bracket.holds_doubtful_note",
+   "open_bracket.holds_whole_field_note",
+   "open_bracket.holds_added_words",
+   "close_bracket.holds_strongs_number",
+   "close_bracket.holds_doubtful_note",
+   "close_bracket.holds_whole_field_note",
+   "close_bracket.holds_added_words",
+   "close_brace.never_opened"
+  ]
+ },
+ "shapes": [
+  {
+   "id": "comma.in_unbalanced_text",
+   "mark": ",",
+   "container": "any",
+   "divides": false,
+   "means": "separates the renderings of a usage list (160 of 186) or the phrases of a definition (26 of 186) in a field whose own text leaves a bracket unpaired, a bracket lost or added in the source's file (the audit's exact comparison with the file shows it is the source's text, not the store's); nothing in such a field divides.",
+   "test": "first_match: this shape is tried first, and for a comma in any container (containers). The comma belongs here when the whole route text is unbalanced (unbalanced).",
+   "count": 186,
+   "examples": [
+    {
+     "key": "מרום"
+    },
+    {
+     "key": "דם"
+    },
+    {
+     "key": "פעם"
+    }
+   ],
+   "read": 186
+  },
+  {
+   "id": "comma.at_end_of_text",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "a stray comma left as the last character of the source's field, where the closing full stop or the next word should be, so that nothing follows it (2 of 3 in a usage list, 1 in a definition).",
+   "test": "first_match; the container is top (containers); and the text after the comma is empty or holds only whitespace (character_words).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "אחרחל"
+    },
+    {
+     "key": "סתרי"
+    },
+    {
+     "key": "אחד"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "comma.between_pointer_numbers",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates two Strong's numbers in a cross-reference (See, See also or Compare) that the source adds after the list of renderings in its usage field; each number is a link to another entry and the source tags it as one, so neither is a rendering (24 of 24 in the usage field).",
+   "test": "first_match; the container is top; the last character before the comma that is not whitespace is a digit; and the first character after the comma that is not whitespace is a digit (character_words).",
+   "count": 24,
+   "examples": [
+    {
+     "key": "שרוק"
+    },
+    {
+     "key": "יהושוע"
+    },
+    {
+     "key": "זה"
+    }
+   ],
+   "read": 24
+  },
+  {
+   "id": "comma.right_after_period",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "touches the full stop before it, a slip of the source's text: a rendering of a usage list that ends in a stray full stop before the list goes on (1 of 2), or the full stop of an i.e. in a definition (1 of 2).",
+   "test": "first_match; the container is top; and the character directly before the comma is a full stop (character_words).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "עות"
+    },
+    {
+     "key": "קפדה"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "comma.in_note_after_list",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates words inside a sentence, a pointer or a second entry that the source's usage field adds after the full stop closing its list of renderings; it belongs to a note about the word, not to the list (5 of 5 in the usage field).",
+   "test": "first_match; the container is top; the route text is a list_route; and the stripped_text of the text before the comma (the stripping applied to that text alone) holds a closing_period.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "יה"
+    },
+    {
+     "key": "רפה"
+    },
+    {
+     "key": "אנוש"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "comma.in_list_with_trailing_note",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates the renderings of a usage list that the source follows, after its closing full stop, with a remark about the whole word (a remark on use without English, a note on the form, a marginal note or a verse reference); the remark speaks of all the renderings, so the list is held whole (101 of 101 in the usage field).",
+   "test": "first_match; the container is top; and the route text has a trailing_note.",
+   "count": 101,
+   "examples": [
+    {
+     "key": "את"
+    },
+    {
+     "key": "כר"
+    },
+    {
+     "key": "ינח"
+    }
+   ],
+   "read": 101
+  },
+  {
+   "id": "comma.in_list_ending_in_grammar_label",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates the renderings of a usage list that lost its closing full stop and whose last piece begins with a grammatical label (alone, after a bracket group, or before a pointer), so that the last piece of a cut would hold a label and no rendering of its own (9 of 9 in the usage field).",
+   "test": "first_match; the container is top; the route text is a list_route; the stripped_text of the route text has no closing_period and holds no semicolon; and the route text has a label_last_piece (its last piece begins with one of the grammar_labels).",
+   "count": 9,
+   "examples": [
+    {
+     "key": "פלך"
+    },
+    {
+     "key": "שור"
+    },
+    {
+     "key": "חצה"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "comma.in_list_with_irregular_piece",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates the renderings of a usage list in which one comma-separated piece is not a rendering on its own (a bare group in parentheses, a bare sign or word-part, or a rendering that ends in a stray full stop), so a cut at every comma would print that piece alone (182 of 182 in the usage field).",
+   "test": "first_match; the container is top; the route text is a list_route; and the route text has an irregular_piece.",
+   "count": 182,
+   "examples": [
+    {
+     "key": "אם"
+    },
+    {
+     "key": "כרמל"
+    },
+    {
+     "key": "חכם"
+    }
+   ],
+   "read": 182
+  },
+  {
+   "id": "comma.in_list_with_semicolons",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates two renderings in a usage list whose semicolons stand before a label or a note and not before a plain group of renderings, so that a cut would leave a first piece that is a note, and the list is held whole under every answer of the branches (the one occurrence is in the usage field).",
+   "test": "first_match; the container is top; the route text is a list_route; the stripped_text of the text after the comma (the stripping applied to that text alone) holds a closing_period; the stripped_text of the whole route text holds a semicolon; and the route text does not have its later pieces unlabelled (see later pieces unlabelled).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אפרת"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.after_opening_flagged_piece",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates a piece that opens a King James list, or one of its semicolon groups, and carries Strong's flag for an idiom (the multiplication sign) or for a rendering made with another word (the plus sign) from the rendering that follows it (all 131 in the usage field).",
+   "test": "first_match; the container is top; the comma has an opening_flagged_piece (the definition gives one, not none); and the comma is a list_comma.",
+   "count": 131,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "שכבה"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 103
+  },
+  {
+   "id": "comma.before_flagged_piece",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates a King James rendering from the next one when the next one carries Strong's flag for an idiom (the multiplication sign) or for a rendering made with another word (the plus sign), the sign standing at its start or after the bracket groups that open it (all 565 in the usage field).",
+   "test": "first_match; the container is top; the text after the comma, with the stripping of stripped_text applied to that text alone, starts with a flag (flag_start); and the comma is a list_comma.",
+   "count": 565,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "שער"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 397
+  },
+  {
+   "id": "comma.between_renderings_in_semicolon_list",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates one King James rendering from the next inside a group of a usage list whose groups the source also separates with semicolons, every group being a set of plain renderings; a cut at these commas needs the cut at the semicolons too, or pieces keep two renderings (all in the usage field).",
+   "test": "first_match; the container is top; the route text is a list_route; the stripped_text of the text after the comma (the stripping applied to that text alone) holds a closing_period; the stripped_text of the whole route text holds a semicolon; and the route text has its later pieces unlabelled (see later pieces unlabelled).",
+   "count": 82,
+   "examples": [
+    {
+     "key": "שגיא"
+    },
+    {
+     "key": "עול"
+    },
+    {
+     "key": "אח"
+    }
+   ],
+   "read": 82
+  },
+  {
+   "id": "comma.between_kjv_renderings",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates one King James rendering of the Hebrew word from the next in the source's usage field, which lists the renderings with commas and closes the list with a full stop; in the source's own file 9,940 of 9,940 come from the usage field (9,932 certain, 8 more from entries whose candidates are all usage fields) and 0 from the meaning field.",
+   "test": "first_match; the container is top; the route text is a list_route; and the stripped_text of the text after the comma (the stripping applied to that text alone) holds a closing_period.",
+   "count": 9940,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "כול"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 1056
+  },
+  {
+   "id": "comma.in_long_list_without_final_period",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates the renderings of a usage list of six or more renderings that lost its closing full stop, a slip of the source's text; in the source's own file 27 of 27 come from the usage field and 0 from the meaning field.",
+   "test": "first_match; the container is top; the route text is a list_route; the stripped_text of the route text has no closing_period and holds no semicolon; and the stripped_text of the route text holds five or more commas (counting every comma character of the stripped_text).",
+   "count": 27,
+   "examples": [
+    {
+     "key": "עמד"
+    },
+    {
+     "key": "אחד"
+    }
+   ],
+   "read": 27
+  },
+  {
+   "id": "comma.in_short_list_without_final_period",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates short plain words in a text that has no full stop at all: 13 of 14 occurrences (axis: occurrences) are the renderings of a usage list that lost its closing full stop (5 of them, in 3 lists, end in a rendering followed by a grammatical label), and 1 is the comma between two glosses of a definition.",
+   "test": "first_match; the container is top; the route text is a list_route; the stripped_text of the route text has no closing_period and holds no semicolon; the text before the comma, taken after its last semicolon (all of it when it has none) and with the whitespace at both ends removed and written in lowercase, is not equal to any of the adverb_openers; and every piece of the stripped_text, cut at every comma, is short and plain: after every U+0001 in the piece is replaced by a space and the whitespace at both ends is removed, the piece has from one to three words, does not begin with a capital letter, and none of its words, written in lowercase, is one of the function_words.",
+   "count": 14,
+   "examples": [
+    {
+     "key": "פת"
+    },
+    {
+     "key": "קצו"
+    },
+    {
+     "key": "אמש"
+    }
+   ],
+   "read": 14
+  },
+  {
+   "id": "comma.before_ie",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "ends the wording that an i.e. restatement explains: the source writes the comma, then i.e., then a second wording of the same sense, so both wordings belong to one definition (1,330 of 1,330 in the definition field).",
+   "test": "first_match; the container is top; and the text after the comma begins, after any whitespace, with the four characters i, full stop, e, full stop.",
+   "count": 1330,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "נהג"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 138
+  },
+  {
+   "id": "comma.before_etc",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "closes a run of examples or linked words in a definition by introducing the abbreviation that ends the run; the run and its ending are one definition (21 of 21 in the definition field).",
+   "test": "first_match; the container is top; and the text after the comma begins, after any whitespace, with the four characters e, t, c, full stop.",
+   "count": 21,
+   "examples": [
+    {
+     "key": "מאד"
+    },
+    {
+     "key": "פרש"
+    },
+    {
+     "key": "בלי"
+    }
+   ],
+   "read": 21
+  },
+  {
+   "id": "comma.after_proper_name",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "separates a proper name from the description of what it names (a person, a place, a tribe); the name and its description are one reading; the source tags the name as the entry's own gloss in 2,083 of the 2,129 cases found in its meaning field (in the other 46 the comma touches the name), and 2 more occurrences come from a usage text and from a text that two entries of one key share (those two entries are both meaning fields; 2,131 occurrences in all).",
+   "test": "first_match; the container is top; and the text before the comma, taken after its last semicolon (all of it when it has none) and with the whitespace at both ends removed, is a name_series.",
+   "count": 2131,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "עיטם"
+    },
+    {
+     "key": "רפיה"
+    }
+   ],
+   "read": 166
+  },
+  {
+   "id": "comma.after_adverb_opener",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: follows a label word that the definition puts before a sense (properly, figuratively, by implication, hence and the others of the list), so that the words after the comma are the sense the label qualifies (1,565 of 1,565 in the definition field).",
+   "test": "first_match; the container is top; and the text before the comma, taken after its last semicolon (all of it when it has none), with the whitespace at both ends removed and written in lowercase, is equal to one of the adverb_openers.",
+   "count": 1565,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "גמד"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 197
+  },
+  {
+   "id": "comma.before_joining_word",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: brings an alternative, an addition or a qualification into the wording of one sense with a joining word (or, and, also, especially, probably and the others of the list) (525 of 525 in the definition field).",
+   "test": "first_match; the container is top; and the text after the comma begins, after any whitespace, with a letter, and the first maximal run of letters of that text (the longest run of consecutive letters that starts at that letter, a letter being any letter of any script) is, written in lowercase, equal to one of the joining_words.",
+   "count": 525,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "קין"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 85
+  },
+  {
+   "id": "comma.after_tagged_gloss",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "follows a word or number that the source marks with its own tag (a gloss tag in nearly every case, a cross-reference tag in the rest), the end of the tag leaving a space before the comma; in the definition field it joins that gloss to a second gloss, a qualification or a clause of the same definition, and of the 46 read about six in seven stand between two glosses and the rest between a gloss and a qualifier, a label, a note or the description of a name, which the route text does not tell apart, so the shape is held whole under every answer (696 of 696 in the definition field).",
+   "test": "first_match; the container is top; and the character directly before the comma is a whitespace character (character_words).",
+   "count": 696,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "עשק"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 521
+  },
+  {
+   "id": "comma.in_definition",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "general: any other top-level comma of a definition's running text, with no tag space before it; it joins phrases or clauses of one definition, and of the commas read in it about 19 in a hundred open an infinitive clause, 16 a phrase led by a, an or the, between 9 and 13 a phrase led by a preposition, between 3 and 9 a label word (literal, figurative, transitive and the like; the two ranges depend on which words are counted, and each end is a count made with a different word list), and the other 43 to 53 a further word or phrase (381 of 381 in the definition field).",
+   "test": "first_match; the container is top; any other top-level comma: every comma of container top that no shape listed before this one has taken.",
+   "count": 381,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "נחת"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 259
+  },
+  {
+   "id": "comma.paren_in_nested_group",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: separates word-parts or alternative words of a rendering (4 of 6) or the pieces of an aside in a definition (2 of 6), inside a round group that itself sits inside another bracket group.",
+   "test": "first_match; the container is paren and the depth is two or more (containers).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "מים"
+    },
+    {
+     "key": "מקור"
+    },
+    {
+     "key": "נחל"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "comma.paren_beside_hyphen",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: separates the word-endings or word-beginnings that the source writes with a hyphen inside the parentheses of a rendering, each part completing the word beside the parenthesis (305 of 306 in the usage field).",
+   "test": "first_match; the container is paren; and the character directly before the comma is a hyphen, or the first character after the comma that is not whitespace is a hyphen (character_words).",
+   "count": 306,
+   "examples": [
+    {
+     "key": "מזרח"
+    },
+    {
+     "key": "כף"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 106
+  },
+  {
+   "id": "comma.paren_in_note_after_list",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "separates the words of a parenthetical note or pointer that the source's usage field adds after the full stop closing its list of renderings (9 of 9 in the usage field).",
+   "test": "first_match; the container is paren; the route text is a list_route; and the stripped_text of the text before the round group that holds the comma (the stripping applied to that text alone) holds a closing_period. The round group that holds the comma starts at the nearest opening round bracket before the comma that has not been closed before the comma, counting round brackets only.",
+   "count": 9,
+   "examples": [
+    {
+     "key": "שיה"
+    },
+    {
+     "key": "דיבון"
+    },
+    {
+     "key": "ינח"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "comma.paren_between_optional_words",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: separates words that may stand in the same place inside a parenthesis of a rendering in the usage list, each one completing the rendering around the parenthesis (918 of 918 in the usage field).",
+   "test": "first_match; the container is paren; the route text is a list_route; and the stripped_text of the whole route text holds a closing_period.",
+   "count": 918,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "נטה"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 190
+  },
+  {
+   "id": "comma.paren_after_opener",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: follows a label word (causatively, figuratively, specifically and the others of the list) that opens a clause of an aside in a definition (122 of 122 in the definition field).",
+   "test": "first_match; the container is paren; and the text inside the round group that holds the comma, from just after its opening round bracket to the comma, taken after its last semicolon (all of it when it has none), with the whitespace at both ends removed and written in lowercase, is equal to one of the adverb_openers. The round group that holds the comma is found as in the test of comma.paren_in_note_after_list.",
+   "count": 122,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "שמן"
+    },
+    {
+     "key": "לביא"
+    }
+   ],
+   "read": 82
+  },
+  {
+   "id": "comma.paren_before_ie",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "ends the wording that an i.e. restatement explains inside a parenthetical aside of a definition (26 of 26 in the definition field).",
+   "test": "first_match; the container is paren; and the text after the comma begins, after any whitespace, with the four characters i, full stop, e, full stop.",
+   "count": 26,
+   "examples": [
+    {
+     "key": "יון"
+    },
+    {
+     "key": "שליש"
+    },
+    {
+     "key": "שרשה"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "comma.paren_before_etc",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "closes a run of examples inside a parenthetical aside of a definition by introducing the abbreviation that ends the run (37 of 37 in the definition field).",
+   "test": "first_match; the container is paren; and the text after the comma begins, after any whitespace, with the four characters e, t, c, full stop.",
+   "count": 37,
+   "examples": [
+    {
+     "key": "נוח"
+    },
+    {
+     "key": "ירד"
+    },
+    {
+     "key": "שק"
+    }
+   ],
+   "read": 37
+  },
+  {
+   "id": "comma.paren_before_joining_word",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: brings an alternative, an addition or a qualification into a parenthetical aside of a definition with a joining word of the list (86 of 86 in the definition field).",
+   "test": "first_match; the container is paren; and the text after the comma begins, after any whitespace, with a letter, and the first maximal run of letters of that text (the longest run of consecutive letters that starts at that letter, a letter being any letter of any script) is, written in lowercase, equal to one of the joining_words.",
+   "count": 86,
+   "examples": [
+    {
+     "key": "דד"
+    },
+    {
+     "key": "בשר"
+    },
+    {
+     "key": "דכא"
+    }
+   ],
+   "read": 46
+  },
+  {
+   "id": "comma.paren_after_tagged_gloss",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "follows a word or number that the source marks with its own tag inside a parenthetical aside of a definition, the end of the tag leaving a space before the comma; it joins that gloss to a second gloss or a clause of the aside (108 of 108 in the definition field).",
+   "test": "first_match; the container is paren; and the character directly before the comma is a whitespace character (character_words).",
+   "count": 108,
+   "examples": [
+    {
+     "key": "מכשלה"
+    },
+    {
+     "key": "משפט"
+    },
+    {
+     "key": "משך"
+    }
+   ],
+   "read": 99
+  },
+  {
+   "id": "comma.paren_in_aside",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "general: any other comma inside the parentheses of a definition, with no tag space before it; it joins the items or clauses of one aside, and of the commas read in it about 3 in a hundred open an infinitive clause, 13 a phrase led by a, an or the, between 6 and 13 a phrase led by a preposition, between 5 and 9 a label word (each end of these two ranges is a count made with a different word list), and the other 62 to 73 a further word, item or phrase (350 of 350 in the definition field).",
+   "test": "first_match; the container is paren; any other comma in parentheses: every comma of container paren that no shape listed before this one has taken.",
+   "count": 350,
+   "examples": [
+    {
+     "key": "מרא"
+    },
+    {
+     "key": "סביב"
+    },
+    {
+     "key": "פעם"
+    }
+   ],
+   "read": 261
+  },
+  {
+   "id": "comma.bracket_after_tagged_gloss",
+   "mark": ",",
+   "container": "bracket",
+   "divides": false,
+   "means": "follows a word that the source marks with its own tag inside a square-bracket note of a definition, the end of the tag leaving a space before the comma; it lists the items of the note (3 of 3 in the definition field).",
+   "test": "first_match; the container is bracket (the innermost bracket is a square bracket); and the character directly before the comma is a whitespace character (character_words).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "יד"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "comma.bracket_before_correction",
+   "mark": ",",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: introduces a correction inside a square-bracket note of a definition: the source gives a number it takes to be wrong and, after the comma, the number it corrects it to (1 of 1 in the definition field).",
+   "test": "first_match; the container is bracket; and the text after the comma begins, after any whitespace, with the word corrected in lowercase, followed by a character that is not one of A to Z, a to z, 0 to 9 or the underscore, or followed by nothing.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אחות"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "comma.bracket_in_note",
+   "mark": ",",
+   "container": "bracket",
+   "divides": false,
+   "means": "general: any other comma in a square-bracket note of a definition; it joins two words of a phrase the source supplies in brackets (1 of 1 in the definition field).",
+   "test": "first_match; the container is bracket; any other comma in square brackets: every comma of container bracket that no shape listed before this one has taken.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "קלה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "semicolon.in_unbalanced_text",
+   "mark": ";",
+   "container": "any",
+   "divides": false,
+   "means": "separates two sense groups of a definition in which a bracket was left open or closed without being opened, so the source's text is damaged there and the whole entry is kept as written (all thirteen occurrences are in the meaning field).",
+   "test": "A semicolon, at top level or inside a bracket, in a text that is an unbalanced text (see unbalanced text); this shape stands first among the semicolon shapes and takes every semicolon of such a text.",
+   "count": 13,
+   "examples": [
+    {
+     "key": "אמה"
+    },
+    {
+     "key": "שלישי"
+    },
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 13
+  },
+  {
+   "id": "semicolon.top_ends_text",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "ends a definition that stops after the mark with no further sense written, as the source file itself ends six of its meaning fields with a semicolon.",
+   "test": "A semicolon at top level after which nothing but whitespace follows to the end of the text.",
+   "count": 6,
+   "examples": [
+    {
+     "key": "דונג"
+    },
+    {
+     "key": "טפח"
+    },
+    {
+     "key": "אמן"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "semicolon.top_beside_another_mark",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "general: any other top-level semicolon that does not stand between a word, a number or a bracket on each side; the one occurrence read, which is all the dictionary holds (1 of 1), follows a quoted gloss closed by a quotation mark and comes before a note on how the particle is joined to verbs, so no second gloss stands on that side.",
+   "test": "A semicolon at top level, not caught above, such that the text before it with trailing whitespace removed does not end with a letter, a digit, a closing round bracket, a closing square bracket, a question mark or an exclamation mark, or the text after it with leading whitespace removed does not begin with a letter, a digit, an opening round bracket or an opening square bracket (a letter is any letter of any script, a digit is any decimal digit).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "נא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "semicolon.top_in_name_entry",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "separates the descriptions of different bearers of one name (a person, a place, a tribe) in an entry that begins with the name, about fifty-six of sixty opened by also, and gives the entry's own account of each bearer or form.",
+   "test": "A semicolon at top level in a text that, with its leading whitespace removed, begins with this: one uppercase letter (an uppercase letter of any script), then any number of letters, apostrophes, right single quotation marks (U+2019) and hyphens, then any number of further groups each made of whitespace, one uppercase letter and any number of letters, apostrophes, right single quotation marks and hyphens, then optional whitespace, and then a comma, a semicolon, a period, the letters o and r followed by one whitespace character, or an opening round bracket followed by the letters o and r with no letter after them.",
+   "count": 60,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "זבולון"
+    },
+    {
+     "key": "עמלק"
+    }
+   ],
+   "read": 59
+  },
+  {
+   "id": "semicolon.top_before_restatement",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "introduces an i.e. restatement that explains the sense written before it, so the restatement belongs with that sense.",
+   "test": "A semicolon at top level whose piece after the mark (see piece after the mark) has the kind restatement (see kind of a piece).",
+   "count": 12,
+   "examples": [
+    {
+     "key": "מדוע"
+    },
+    {
+     "key": "חמץ"
+    },
+    {
+     "key": "רעה"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "semicolon.top_before_usage_note",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "introduces a qualification of how, how often or by whom the word is used, a note on the sense before it, which in a little over half of the 24 read also offers words as renderings, but only in the same piece as the usage word that opens it, so that the piece is a note as a whole and is held whole under every answer, a note being no reading.",
+   "test": "A semicolon at top level whose piece after the mark has the kind note (see kind of a piece: the first word of its lead is in usage-note words).",
+   "count": 131,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "ערם"
+    },
+    {
+     "key": "הדר"
+    }
+   ],
+   "read": 101
+  },
+  {
+   "id": "semicolon.top_before_name_description",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "introduces a sentence saying that the word is the name or the designation of something, or is used also of another bearer, a description that belongs to the name it describes.",
+   "test": "A semicolon at top level whose piece after the mark has the kind name description (see kind of a piece).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "חרסות"
+    },
+    {
+     "key": "אחשתרי"
+    },
+    {
+     "key": "אפרת"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "semicolon.top_beside_stranded_label",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "stands beside a piece made only of sense labels and bracketed words, where the gloss that the label announces is written in round brackets or is missing.",
+   "test": "A semicolon at top level for which the piece before the mark or the piece after the mark has no head word of its own (see head word of its own and label words).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "חשק"
+    },
+    {
+     "key": "כזב"
+    },
+    {
+     "key": "צאן"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "semicolon.top_between_kjv_groups",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "separates two groups of King James renderings in the usage list of the entry (all of its occurrences are in the usage field), each group a set of renderings of the one Hebrew word.",
+   "test": "A semicolon at top level whose piece after the mark has the kind other, in a text that looks like a King James list (see looks like a King James list), whose later pieces are unlabelled (see later pieces unlabelled), and which does not have a trailing_note (see trailing_note).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "שגיא"
+    },
+    {
+     "key": "ספר"
+    },
+    {
+     "key": "אח"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "semicolon.top_before_unlabelled_sense",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "general: introduces a further piece that begins with no sense label the ledger knows: about two in three a bare gloss or a gloss opened by a small word (with, of, once, probably, in, if), about one in seven a name with its description, about one in ten a continuation opened by and, and the rest a label the list lacks (interrogative, intransposed, properly); in the source's own file 34 of 36 come from the meaning field and 2 from usage lists that stay whole.",
+   "test": "A semicolon at top level, not caught above, whose piece after the mark has the kind other (see kind of a piece).",
+   "count": 36,
+   "examples": [
+    {
+     "key": "שבי"
+    },
+    {
+     "key": "תכי"
+    },
+    {
+     "key": "לוא"
+    }
+   ],
+   "read": 36
+  },
+  {
+   "id": "semicolon.top_in_text_with_leaning_piece",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "separates sense groups of a definition in which some group may lean on another, because it points back at another group (with it, its, itself, both, them, they, their, one, above, same, former or latter), or opens with a note word or a preposition that leaves it no head word of its own, so that a cut here could print a group that is no reading on its own, and the whole definition is held (all 59 occurrences are in the meaning field by the audit).",
+   "test": "A semicolon at top level, in a text that cuts cleanly (see cuts cleanly) but whose pieces do not all stand alone (see all pieces stand alone, stands alone, pronoun words, back words, front words and non-opening words).",
+   "count": 59,
+   "examples": [
+    {
+     "key": "ערבה"
+    },
+    {
+     "key": "חבל"
+    },
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 59
+  },
+  {
+   "id": "semicolon.top_in_text_not_cut_cleanly",
+   "mark": ";",
+   "container": "top",
+   "divides": false,
+   "means": "general: separates sense groups of a definition in which another semicolon is followed by a note, an unlabelled sense, a name or a label with no gloss, so that cutting here would leave a piece with a note or two readings; of the groups it separates about 71 in 100 open with also, by, figuratively, hence or specifically, about 18 in 100 with another sense label, and about 11 in 100 with a plain gloss opened by to, a, an or the.",
+   "test": "A semicolon at top level, not caught above, in a text that does not cut cleanly (see cuts cleanly, pieces of a text and boundary kinds).",
+   "count": 79,
+   "examples": [
+    {
+     "key": "שבי"
+    },
+    {
+     "key": "לא"
+    },
+    {
+     "key": "רחוק"
+    }
+   ],
+   "read": 57
+  },
+  {
+   "id": "semicolon.top_before_also",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group of a definition with also or likewise, adding a further sense of the same word.",
+   "test": "A semicolon at top level whose piece after the mark has the kind also (see kind of a piece: the first word of its lead is in also words).",
+   "count": 285,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "גרס"
+    },
+    {
+     "key": "גלגל"
+    }
+   ],
+   "read": 146,
+   "falsifier": "A piece after this mark that is a note or a description of another bearer of a name, not a gloss of the word, would prove the shape wrong.",
+   "lead_words": [
+    "also",
+    "likewise"
+   ]
+  },
+  {
+   "id": "semicolon.top_before_hence",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group with hence, a sense that follows from the one written before it.",
+   "test": "A semicolon at top level whose piece after the mark has the kind hence (see kind of a piece: the first word of its lead is in hence words).",
+   "count": 191,
+   "examples": [
+    {
+     "key": "מרא"
+    },
+    {
+     "key": "נבל"
+    },
+    {
+     "key": "פעם"
+    }
+   ],
+   "read": 98,
+   "falsifier": "A hence piece that is a comment on the sense before it, with no gloss of its own, would prove the shape wrong.",
+   "lead_words": [
+    "hence"
+   ]
+  },
+  {
+   "id": "semicolon.top_before_transfer",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group with by and the name of the step that carries the sense over (implication, analogy, extension, resemblance and the others the entries use).",
+   "test": "A semicolon at top level whose piece after the mark has the kind transfer (see kind of a piece: the first word of its lead is in transfer words).",
+   "count": 414,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "כרמל"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 171,
+   "falsifier": "A piece opened by by that is a note or a restatement, not a gloss of the word, would prove the shape wrong.",
+   "lead_words": [
+    "by"
+   ]
+  },
+  {
+   "id": "semicolon.top_before_figurative",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group with figuratively, giving the figurative sense of the word.",
+   "test": "A semicolon at top level whose piece after the mark has the kind figurative (see kind of a piece: the first word of its lead is in figurative words).",
+   "count": 285,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "משכית"
+    },
+    {
+     "key": "חשכה"
+    }
+   ],
+   "read": 123,
+   "falsifier": "A figuratively piece that carries no gloss of its own would prove the shape wrong.",
+   "lead_words": [
+    "figuratively",
+    "figurative"
+   ]
+  },
+  {
+   "id": "semicolon.top_before_narrowing",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group with specifically, especially or generally, a narrower or wider use of the word with a gloss of its own.",
+   "test": "A semicolon at top level whose piece after the mark has the kind narrowing (see kind of a piece: the first word of its lead is in narrowing words).",
+   "count": 150,
+   "examples": [
+    {
+     "key": "מנחה"
+    },
+    {
+     "key": "ערם"
+    },
+    {
+     "key": "נחש"
+    }
+   ],
+   "read": 89,
+   "falsifier": "A piece opened by one of these words that restates the sense before it, with no gloss of its own, would prove the shape wrong.",
+   "lead_words": [
+    "specifically",
+    "especially",
+    "generally"
+   ]
+  },
+  {
+   "id": "semicolon.top_before_named_use",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group with a label naming a use, role or field of the word (causatively, concretely, abstractly, as noun, adverbially, in a good sense and the other words of the list) followed by its gloss.",
+   "test": "A semicolon at top level whose piece after the mark has the kind named use (see kind of a piece: the first word of its lead is in named-use words, or the lead begins with in a and a word of in-sense words).",
+   "count": 254,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "שיר"
+    },
+    {
+     "key": "ממות"
+    }
+   ],
+   "read": 178,
+   "falsifier": "A piece opened by one of these labels that is a note on use, with no gloss, would prove the shape wrong.",
+   "lead_words": [
+    "causatively",
+    "intensively",
+    "reflexively",
+    "transitively",
+    "intransitively",
+    "collectively",
+    "concretely",
+    "abstractly",
+    "mentally",
+    "morally",
+    "locally",
+    "technically",
+    "architecturally",
+    "passively",
+    "euphemistically",
+    "adverbially",
+    "concrete",
+    "abstract",
+    "transitive",
+    "intransitive",
+    "adverb",
+    "as",
+    "feminine",
+    "reflex",
+    "reflexive",
+    "intensive",
+    "reciprocal",
+    "dual",
+    "physical",
+    "mental",
+    "moral",
+    "architectural",
+    "architecture",
+    "religious",
+    "relatively",
+    "conventionally",
+    "frequentatively",
+    "indefinitely",
+    "medically",
+    "inceptively",
+    "incipiently",
+    "ceremonially",
+    "definitely",
+    "imperatively",
+    "violently",
+    "positively",
+    "adversatively",
+    "objectively",
+    "elliptically",
+    "trans",
+    "poet",
+    "in a good",
+    "in a bad",
+    "in a qualified"
+   ]
+  },
+  {
+   "id": "semicolon.top_before_plain_sense",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group with no label, a gloss that begins with to, a, an or the.",
+   "test": "A semicolon at top level whose piece after the mark has the kind plain (see kind of a piece: the first word of its lead is in plain-opener words).",
+   "count": 63,
+   "examples": [
+    {
+     "key": "נבב"
+    },
+    {
+     "key": "חרף"
+    },
+    {
+     "key": "שטט"
+    }
+   ],
+   "read": 50,
+   "falsifier": "A piece opened by one of these words that is a note about the word, or a description cut from a name, would prove the shape wrong.",
+   "lead_words": []
+  },
+  {
+   "id": "semicolon.top_before_alternative",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group with or, offering another rendering of the sense with a gloss of its own.",
+   "test": "A semicolon at top level whose piece after the mark has the kind alternative (see kind of a piece: the first word of its lead is in alternative words).",
+   "count": 10,
+   "examples": [
+    {
+     "key": "נחם"
+    },
+    {
+     "key": "ערמה"
+    },
+    {
+     "key": "מצור"
+    }
+   ],
+   "read": 10,
+   "falsifier": "A piece opened by or that offers a guess about the identity of a name, or has no gloss, would prove the shape wrong.",
+   "lead_words": [
+    "or"
+   ]
+  },
+  {
+   "id": "semicolon.top_before_bracketed_label",
+   "mark": ";",
+   "container": "top",
+   "divides": true,
+   "means": "opens the next sense group with a label in round brackets that is not one of the known sense labels (upward, in number, partially) followed by its gloss.",
+   "test": "A semicolon at top level whose piece after the mark has the kind bracketed (see kind of a piece: the piece with leading whitespace removed begins with an opening round bracket).",
+   "count": 7,
+   "examples": [
+    {
+     "key": "צעד"
+    },
+    {
+     "key": "קצה"
+    },
+    {
+     "key": "ברא"
+    }
+   ],
+   "read": 7,
+   "falsifier": "A piece that begins with a round bracket and is a note, a pointer or a number, not a gloss, would prove the shape wrong.",
+   "lead_words": []
+  },
+  {
+   "id": "semicolon.paren_before_sense_label",
+   "mark": ";",
+   "container": "paren",
+   "divides": false,
+   "means": "inside an aside in round brackets, separates parts of the aside where the next part opens with a sense label: by a hand count of every one of the 27 routes (axis: routes), the next part is another application of the word (a figurative, causative or other named use, an alternative or an added sense) in 21 routes, and in the other 6 it gives a condition of use, a reason for the sense or a note on the grammar of the word.",
+   "test": "A semicolon inside round brackets whose text after the mark has a kind that is in paren label kinds (see kind of a piece, applied to the text after the mark).",
+   "count": 28,
+   "examples": [
+    {
+     "key": "מאד"
+    },
+    {
+     "key": "טהר"
+    },
+    {
+     "key": "יקב"
+    }
+   ],
+   "read": 28
+  },
+  {
+   "id": "semicolon.paren_inside_aside",
+   "mark": ";",
+   "container": "paren",
+   "divides": false,
+   "means": "general: separates the parts of an aside in round brackets, of which about 25 in 100 open with a word of number, frequency or use (often, plural, only, usually, or the source's misspelling of usually), about 14 in 100 with and or but, about 29 in 100 with the, of, in, from or also, and about 32 in 100 with another word, a further gloss, an application of the word or an explanation of the word before it.",
+   "test": "A semicolon inside round brackets, not caught above.",
+   "count": 28,
+   "examples": [
+    {
+     "key": "שכך"
+    },
+    {
+     "key": "ספה"
+    },
+    {
+     "key": "לביא"
+    }
+   ],
+   "read": 28
+  },
+  {
+   "id": "period.in_unbalanced_text",
+   "mark": ".",
+   "container": "any",
+   "divides": false,
+   "means": "closes an abbreviation, a restatement or the list of renderings in an entry whose brackets are damaged or unbalanced, so the whole entry is kept as written.",
+   "test": "A period, at top level or inside a bracket, in a text that is an unbalanced text (see unbalanced text); this shape stands first among the period shapes and takes every period of such a text.",
+   "count": 30,
+   "examples": [
+    {
+     "key": "ערף"
+    },
+    {
+     "key": "מדה"
+    },
+    {
+     "key": "פעם"
+    }
+   ],
+   "read": 30
+  },
+  {
+   "id": "period.top_in_run_of_dots",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is one dot of a run of dots that stands for words left out of a King James rendering, as in a pattern of two renderings with a gap (about nine in ten in the usage field).",
+   "test": "A period at top level that is in a run of dots (see run of dots).",
+   "count": 97,
+   "examples": [
+    {
+     "key": "פקדה"
+    },
+    {
+     "key": "ממכר"
+    },
+    {
+     "key": "רצון"
+    }
+   ],
+   "read": 45
+  },
+  {
+   "id": "period.top_in_ie",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "is a dot of the abbreviation i.e., which the definition writes before a restatement of the sense (all 2,701 are in the meaning field).",
+   "test": "A period at top level that is a dot of ie (see dots of ie).",
+   "count": 2701,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "עשק"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 154
+  },
+  {
+   "id": "period.top_in_eg",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "is a dot of the abbreviation e.g., which the definition writes before an example of the sense (all eight are in the meaning field).",
+   "test": "A period at top level that is a dot of eg (see dots of eg).",
+   "count": 8,
+   "examples": [
+    {
+     "key": "יאר"
+    },
+    {
+     "key": "ידד"
+    },
+    {
+     "key": "טרף"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "period.top_ends_text",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "closes the field: the King James list of the usage field ends with a period in 8,612 of the 8,673 usage fields of the source file (the other 61 end without one), and a few meaning fields end with one; of the 8,208 occurrences (axis: occurrences) the audit finds 8,100 in routes that are a usage field, 29 in routes that are a meaning field and 79 in routes whose text several entries of one key share (two entries in 78 of them, three in 1), all of them usage fields.",
+   "test": "A period at top level after which nothing but whitespace follows to the end of the text.",
+   "count": 8208,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "תכי"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 95
+  },
+  {
+   "id": "period.top_after_abbreviation",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "closes a clipped word of the definition (reflex, poet, card, correl, trans, Marg and the etc of an aside), not a sentence end.",
+   "test": "A period at top level for which the word before the mark (see word before the mark) is in period abbreviations.",
+   "count": 8,
+   "examples": [
+    {
+     "key": "מאד"
+    },
+    {
+     "key": "צואה"
+    },
+    {
+     "key": "דמה"
+    }
+   ],
+   "read": 8
+  },
+  {
+   "id": "period.top_before_pointer",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "ends a name or a list of renderings just before a cross-reference to another entry introduced by Compare, Comp, See or Marg (all 260 are in the usage field).",
+   "test": "A period at top level whose text after the mark starts with a pointer word (see starts with a pointer word and pointer words).",
+   "count": 260,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "מלוא"
+    },
+    {
+     "key": "גלגל"
+    }
+   ],
+   "read": 49
+  },
+  {
+   "id": "period.top_before_bracketed_note",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "ends the list of renderings before a note in round or square brackets that the source adds about the entry (ten of ten in the usage field).",
+   "test": "A period at top level whose text after the mark, with leading whitespace removed, begins with an opening round bracket or an opening square bracket.",
+   "count": 10,
+   "examples": [
+    {
+     "key": "שתה"
+    },
+    {
+     "key": "דיבון"
+    },
+    {
+     "key": "עשוק"
+    }
+   ],
+   "read": 10
+  },
+  {
+   "id": "period.top_before_ie_restatement",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "stands where a comma would, just before an i.e. restatement, so the restatement belongs to the phrase before it.",
+   "test": "A period at top level whose text after the mark, with leading whitespace removed, begins with the letter i, a period and the letter e, or with the letter e, a period and the letter g, in either case not followed by a letter.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אזן"
+    },
+    {
+     "key": "רעיון"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.top_before_closing_quote",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: ends a quoted pattern of name endings inside a note on related names, just before the closing quotation mark.",
+   "test": "A period at top level whose text after the mark begins with the apostrophe character (U+0027).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "יה"
+    },
+    {
+     "key": "אל"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.top_before_stray_letters",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the list of renderings in the usage field, which the source file itself continues with one or two stray lowercase letters (all twelve are in the usage field).",
+   "test": "A period at top level whose text after the mark consists of optional whitespace, then one or two lowercase letters (any lowercase letter of any script), then optional whitespace, and nothing more.",
+   "count": 12,
+   "examples": [
+    {
+     "key": "ושתי"
+    },
+    {
+     "key": "דתן"
+    },
+    {
+     "key": "טרפלי"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "period.top_before_last_word",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands where a comma would stand before the last rendering of a list, so that one more word and a final period follow (all three are in the usage field).",
+   "test": "A period at top level whose text before the mark ends with a letter or a closing round bracket and whose text after the mark consists of whitespace, then one run of letters, apostrophes and hyphens, then a period, then optional whitespace, and nothing more (a letter is any letter of any script).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "מלה"
+    },
+    {
+     "key": "גבולה"
+    },
+    {
+     "key": "לודי"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "period.top_before_sentence_note",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "general: ends a list or a name, and a sentence that begins with a capital letter or a Hebrew letter follows: a note on use or origin in seven of nine cases, once a variant spelling before a pointer, and once a phrase cut in two (a hand count of all nine occurrences).",
+   "test": "A period at top level, not caught above, whose text after the mark begins with whitespace followed by an uppercase letter of any script or a Hebrew letter.",
+   "count": 9,
+   "examples": [
+    {
+     "key": "ירח"
+    },
+    {
+     "key": "זחלת"
+    },
+    {
+     "key": "אשה"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "period.top_other",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "closes something no other period shape names: four in nine a period standing where a semicolon was meant between two senses, two in nine a spelling variant named in a pointer note, and the rest one each a name before its description, a word cut short, and a period before a comma (a hand count of all nine occurrences).",
+   "test": "A period at top level, not caught above.",
+   "count": 9,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "נגן"
+    },
+    {
+     "key": "צבא"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "period.paren_in_run_of_dots",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: is one dot of a run of dots inside a rendering in round brackets that stands for words left out (all fifty-one are in the usage field).",
+   "test": "A period inside round brackets that is in a run of dots (see run of dots).",
+   "count": 51,
+   "examples": [
+    {
+     "key": "מען"
+    },
+    {
+     "key": "גדל"
+    },
+    {
+     "key": "בל"
+    }
+   ],
+   "read": 36
+  },
+  {
+   "id": "period.paren_in_ie",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "is a dot of the abbreviation i.e. inside an aside in round brackets, restating the word before it.",
+   "test": "A period inside round brackets that is a dot of ie (see dots of ie).",
+   "count": 298,
+   "examples": [
+    {
+     "key": "זהב"
+    },
+    {
+     "key": "צפע"
+    },
+    {
+     "key": "צוד"
+    }
+   ],
+   "read": 36
+  },
+  {
+   "id": "period.paren_in_eg",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "is a dot of the abbreviation e.g. inside an aside in round brackets, introducing an example.",
+   "test": "A period inside round brackets that is a dot of eg (see dots of eg).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "מטה"
+    },
+    {
+     "key": "שפכה"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "period.paren_after_abbreviation",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "closes a clipped word inside an aside in round brackets, most often etc, also reflex, includ, techn and phys.",
+   "test": "A period inside round brackets for which the word before the mark (see word before the mark) is in period abbreviations.",
+   "count": 81,
+   "examples": [
+    {
+     "key": "חלץ"
+    },
+    {
+     "key": "תוב"
+    },
+    {
+     "key": "שק"
+    }
+   ],
+   "read": 41
+  },
+  {
+   "id": "period.paren_ends_aside",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "ends an aside in round brackets with a full stop just before the closing bracket: after its last word or a number about three times in four, and after a clipped word such as subject or direct the rest.",
+   "test": "A period inside round brackets whose text after the mark, with leading whitespace removed, begins with a closing round bracket.",
+   "count": 12,
+   "examples": [
+    {
+     "key": "בלל"
+    },
+    {
+     "key": "עמד"
+    },
+    {
+     "key": "ינח"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "period.paren_other",
+   "mark": ".",
+   "container": "paren",
+   "divides": false,
+   "means": "closes something inside round brackets that no other shape names: once a period just before the pointer See inside a note, and once a stop standing where a comma was meant.",
+   "test": "A period inside round brackets, not caught above.",
+   "count": 2,
+   "examples": [
+    {
+     "key": "ישב"
+    },
+    {
+     "key": "הי"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "period.bracket_after_abbreviation",
+   "mark": ".",
+   "container": "bracket",
+   "divides": false,
+   "means": "closes the etc of a list of examples inside square brackets, in the definition of a word for hand.",
+   "test": "A period inside square brackets for which the word before the mark (see word before the mark) is in period abbreviations.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "יד"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.bracket_other",
+   "mark": ".",
+   "container": "bracket",
+   "divides": false,
+   "means": "general: any other period inside square brackets; the one occurrence found ends the short editorial note Doubtful that the source adds after a rendering, so that is the only kind read in it (all of the share).",
+   "test": "A period inside square brackets, not caught above.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עשוק"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.never_closed",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a round bracket whose partner never comes in the same text: the source's own text leaves the bracket unpaired, so everything after it in that text sits outside any group (19 occurrences by the audit: 13 in the usage field, 6 in the meaning field; none of them is in a gloss cut from a longer field).",
+   "test": "paren_first_match; the container is top (paren_container); and the opening bracket pairs with nothing (paren_pairing).",
+   "count": 19,
+   "examples": [
+    {
+     "key": "ערף"
+    },
+    {
+     "key": "מדה"
+    },
+    {
+     "key": "רוח"
+    }
+   ],
+   "read": 19
+  },
+  {
+   "id": "close_paren.never_opened",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes nothing: a closing round bracket with no opening bracket before it in the same text to pair with: either the source's own text has the stray bracket, or the route is a gloss cut from a longer field and the opener lies outside the cut (18 occurrences by the audit: 9 in the usage field, 4 in the meaning field, 5 in a single gloss cut from a meaning; 5 of them in a cut gloss).",
+   "test": "paren_first_match; the container is top (paren_container); and the closing bracket pairs with nothing (paren_pairing).",
+   "count": 18,
+   "examples": [
+    {
+     "key": "שמטה"
+    },
+    {
+     "key": "נדבה"
+    },
+    {
+     "key": "פעם"
+    }
+   ],
+   "read": 18
+  },
+  {
+   "id": "open_paren.holds_blank",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group that holds only a space, which the source's usage field writes in the King James list in the place of a rendering word that is understood but not printed (11 occurrences by the audit: 11 in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group is not empty and holds only whitespace.",
+   "count": 11,
+   "examples": [
+    {
+     "key": "חרש"
+    },
+    {
+     "key": "חיל"
+    },
+    {
+     "key": "צבא"
+    }
+   ],
+   "read": 11
+  },
+  {
+   "id": "close_paren.holds_blank",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group that holds only a space, which the source's usage field writes in the King James list in the place of a rendering word that is understood but not printed (11 occurrences by the audit: 11 in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group is not empty and holds only whitespace.",
+   "count": 11,
+   "examples": [
+    {
+     "key": "חרש"
+    },
+    {
+     "key": "חיל"
+    },
+    {
+     "key": "צבא"
+    }
+   ],
+   "read": 11
+  },
+  {
+   "id": "open_paren.holds_doubt",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group that holds only a question mark, the source's sign that the word before the bracket is of doubtful identification (1 occurrence by the audit: 1 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group, with whitespace removed at both ends, is the single character question mark (U+003F).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ברוש"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_doubt",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group that holds only a question mark, the source's sign that the word before the bracket is of doubtful identification (1 occurrence by the audit: 1 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group, with whitespace removed at both ends, is the single character question mark (U+003F).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ברוש"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_round",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group that has another round bracket inside it: a note that carries its own note, or in the usage field letters set apart inside a word that is itself set apart (62 occurrences by the audit: 50 in the usage field, 12 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds a round opening bracket (U+0028).",
+   "count": 62,
+   "examples": [
+    {
+     "key": "מים"
+    },
+    {
+     "key": "גשם"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 51
+  },
+  {
+   "id": "close_paren.holds_round",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group that has another round bracket inside it: a note that carries its own note, or in the usage field letters set apart inside a word that is itself set apart (62 occurrences by the audit: 50 in the usage field, 12 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds a round opening bracket (U+0028).",
+   "count": 62,
+   "examples": [
+    {
+     "key": "מים"
+    },
+    {
+     "key": "גשם"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 51
+  },
+  {
+   "id": "open_paren.holds_square",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a group that has a square bracket inside it: a note that carries, in square brackets, an added word, a label, a comparison or a pointer to another entry (15 occurrences by the audit: 2 in the usage field, 13 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds a square opening bracket (U+005B).",
+   "count": 15,
+   "examples": [
+    {
+     "key": "מכשלה"
+    },
+    {
+     "key": "רדף"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "close_paren.holds_square",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes a group that has a square bracket inside it: a note that carries, in square brackets, an added word, a label, a comparison or a pointer to another entry (15 occurrences by the audit: 2 in the usage field, 13 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds a square opening bracket (U+005B).",
+   "count": 15,
+   "examples": [
+    {
+     "key": "מכשלה"
+    },
+    {
+     "key": "רדף"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "open_paren.holds_verse",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a group that holds a chapter and verse of Scripture: the source names the place where the word has the sense or the rendering it is explaining (21 occurrences by the audit: 12 in the usage field, 9 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds a digit, directly followed by a colon (U+003A), directly followed by a digit.",
+   "count": 21,
+   "examples": [
+    {
+     "key": "אהי"
+    },
+    {
+     "key": "ירע"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 21
+  },
+  {
+   "id": "close_paren.holds_verse",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes a group that holds a chapter and verse of Scripture: the source names the place where the word has the sense or the rendering it is explaining (21 occurrences by the audit: 12 in the usage field, 9 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds a digit, directly followed by a colon (U+003A), directly followed by a digit.",
+   "count": 21,
+   "examples": [
+    {
+     "key": "אהי"
+    },
+    {
+     "key": "ירע"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 21
+  },
+  {
+   "id": "open_paren.holds_number",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a group that holds a digit but no chapter and verse: in the source's file the number is a tagged link to another entry, so the group is a note that points to that entry, most often one saying that a rendering stands by mistake or by confusion for another word (43 occurrences by the audit: 37 in the usage field, 6 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds a digit.",
+   "count": 43,
+   "examples": [
+    {
+     "key": "תוקהת"
+    },
+    {
+     "key": "בעלות"
+    },
+    {
+     "key": "בחל"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "close_paren.holds_number",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes a group that holds a digit but no chapter and verse: in the source's file the number is a tagged link to another entry, so the group is a note that points to that entry, most often one saying that a rendering stands by mistake or by confusion for another word (43 occurrences by the audit: 37 in the usage field, 6 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds a digit.",
+   "count": 43,
+   "examples": [
+    {
+     "key": "תוקהת"
+    },
+    {
+     "key": "בעלות"
+    },
+    {
+     "key": "בחל"
+    }
+   ],
+   "read": 43
+  },
+  {
+   "id": "open_paren.holds_times",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group that holds the multiplication sign, the source's mark that the words after it are a rendering used only in a certain phrase, set inside an optional group of the King James list (45 occurrences by the audit: 45 in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds the multiplication sign (paren_character_words).",
+   "count": 45,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "אנוש"
+    },
+    {
+     "key": "שממה"
+    }
+   ],
+   "read": 38
+  },
+  {
+   "id": "close_paren.holds_times",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group that holds the multiplication sign, the source's mark that the words after it are a rendering used only in a certain phrase, set inside an optional group of the King James list (45 occurrences by the audit: 45 in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds the multiplication sign (paren_character_words).",
+   "count": 45,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "אנוש"
+    },
+    {
+     "key": "שממה"
+    }
+   ],
+   "read": 38
+  },
+  {
+   "id": "open_paren.holds_plus",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group that holds the plus sign before a list of word endings, the source's mark that the endings are joined to the word beside the bracket as other forms of the rendering (1 occurrence by the audit: 1 in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds a plus sign (U+002B).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אשר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_plus",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group that holds the plus sign before a list of word endings, the source's mark that the endings are joined to the word beside the bracket as other forms of the rendering (1 occurrence by the audit: 1 in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds a plus sign (U+002B).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אשר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_quotation",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a group that holds a word or phrase between single quotation marks: the source quotes the English word, the form or the saying that it compares or explains (7 occurrences by the audit: 7 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds an apostrophe (paren_character_words) that is at the start of the group or has a character directly before it that is neither a letter nor a number character, that has a letter directly after it, and that is not followed directly by the lowercase letter s with, after that s, either the end of the group or a character that is not a letter.",
+   "count": 7,
+   "examples": [
+    {
+     "key": "מלח"
+    },
+    {
+     "key": "טפח"
+    },
+    {
+     "key": "קהלת"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_paren.holds_quotation",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes a group that holds a word or phrase between single quotation marks: the source quotes the English word, the form or the saying that it compares or explains (7 occurrences by the audit: 7 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds an apostrophe (paren_character_words) that is at the start of the group or has a character directly before it that is neither a letter nor a number character, that has a letter directly after it, and that is not followed directly by the lowercase letter s with, after that s, either the end of the group or a character that is not a letter.",
+   "count": 7,
+   "examples": [
+    {
+     "key": "מלח"
+    },
+    {
+     "key": "טפח"
+    },
+    {
+     "key": "קהלת"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_paren.holds_hyphen_piece",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group of letters or word pieces with a hyphen at one edge, the source's way of showing letters that join the word beside the bracket to make another English form of the rendering (1,297 occurrences by the audit: 1,285 in the usage field, 11 in the meaning field, 1 in a single gloss cut from a meaning).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds a hyphen (paren_character_words) that either stands at the start of the group or has a character that is not a letter directly before it, or stands at the end of the group or has a character that is not a letter directly after it.",
+   "count": 1297,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "ילך"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 469
+  },
+  {
+   "id": "close_paren.holds_hyphen_piece",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group of letters or word pieces with a hyphen at one edge, the source's way of showing letters that join the word beside the bracket to make another English form of the rendering (1,297 occurrences by the audit: 1,285 in the usage field, 11 in the meaning field, 1 in a single gloss cut from a meaning).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds a hyphen (paren_character_words) that either stands at the start of the group or has a character that is not a letter directly before it, or stands at the end of the group or has a character that is not a letter directly after it.",
+   "count": 1297,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "ילך"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 469
+  },
+  {
+   "id": "open_paren.holds_restatement",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a note that begins with i.e., which restates the word before it in other words (119 occurrences by the audit: 119 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group, after any whitespace at its start, begins with the four characters i, full stop, e, full stop, all lowercase.",
+   "count": 119,
+   "examples": [
+    {
+     "key": "זהב"
+    },
+    {
+     "key": "סכי"
+    },
+    {
+     "key": "צוד"
+    }
+   ],
+   "read": 32
+  },
+  {
+   "id": "close_paren.holds_restatement",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes a note that begins with i.e., which restates the word before it in other words (119 occurrences by the audit: 119 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group, after any whitespace at its start, begins with the four characters i, full stop, e, full stop, all lowercase.",
+   "count": 119,
+   "examples": [
+    {
+     "key": "זהב"
+    },
+    {
+     "key": "סכי"
+    },
+    {
+     "key": "צוד"
+    }
+   ],
+   "read": 32
+  },
+  {
+   "id": "open_paren.holds_alternative",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a group whose first word is or, which offers another wording, another spelling or another name for the word before it (111 occurrences by the audit: 111 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the first run of the group (paren_runs) is the lowercase word or.",
+   "count": 111,
+   "examples": [
+    {
+     "key": "אימים"
+    },
+    {
+     "key": "חריט"
+    },
+    {
+     "key": "יחד"
+    }
+   ],
+   "read": 48
+  },
+  {
+   "id": "close_paren.holds_alternative",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes a group whose first word is or, which offers another wording, another spelling or another name for the word before it (111 occurrences by the audit: 111 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the first run of the group (paren_runs) is the lowercase word or.",
+   "count": 111,
+   "examples": [
+    {
+     "key": "אימים"
+    },
+    {
+     "key": "חריט"
+    },
+    {
+     "key": "יחד"
+    }
+   ],
+   "read": 48
+  },
+  {
+   "id": "open_paren.holds_label",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a group whose lead is one of the dictionary's labels for how, how far or in what grammatical kind the word is used (figuratively, collectively, usually, by implication, as noun and the rest of the lists in the definitions): a label, not a rendering (1,227 occurrences by the audit: 7 in the usage field, 1,219 in the meaning field, 1 in a text that two entries of one key share, both of them meaning fields).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the lead of the group (paren_runs) begins with one item of paren_label_words or of paren_label_phrases.",
+   "count": 1227,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "סור"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 111
+  },
+  {
+   "id": "close_paren.holds_label",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes a group whose lead is one of the dictionary's labels for how, how far or in what grammatical kind the word is used (figuratively, collectively, usually, by implication, as noun and the rest of the lists in the definitions): a label, not a rendering (1,227 occurrences by the audit: 7 in the usage field, 1,219 in the meaning field, 1 in a text that two entries of one key share, both of them meaning fields).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the lead of the group (paren_runs) begins with one item of paren_label_words or of paren_label_phrases.",
+   "count": 1227,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "סור"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 111
+  },
+  {
+   "id": "open_paren.holds_small_words",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group made only of small words, the first of them as, like, because, from or through: in the usage field a small optional word set apart among the King James renderings, in the meaning field a stray small word (20 occurrences by the audit: 18 in the usage field, 2 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); the first run of the group (paren_runs) is one item of paren_source_words; and every run of the group is one item of paren_small_words.",
+   "count": 20,
+   "examples": [
+    {
+     "key": "תפף"
+    },
+    {
+     "key": "עוד"
+    },
+    {
+     "key": "יען"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "close_paren.holds_small_words",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group made only of small words, the first of them as, like, because, from or through: in the usage field a small optional word set apart among the King James renderings, in the meaning field a stray small word (20 occurrences by the audit: 18 in the usage field, 2 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); the first run of the group (paren_runs) is one item of paren_source_words; and every run of the group is one item of paren_small_words.",
+   "count": 20,
+   "examples": [
+    {
+     "key": "תפף"
+    },
+    {
+     "key": "עוד"
+    },
+    {
+     "key": "יען"
+    }
+   ],
+   "read": 20
+  },
+  {
+   "id": "open_paren.holds_source",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "opens a group whose first word is as, like, because, from or through: the source says what the sense is like, what it arises from or where the reading comes from (981 occurrences by the audit: 46 in the usage field, of which 43 are readings from the margin and 3 say what the sense is like, and 935 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the first run of the group (paren_runs) is one item of paren_source_words.",
+   "count": 981,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "ליש"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 104
+  },
+  {
+   "id": "close_paren.holds_source",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "closes a group whose first word is as, like, because, from or through: the source says what the sense is like, what it arises from or where the reading comes from (981 occurrences by the audit: 46 in the usage field, of which 43 are readings from the margin and 3 say what the sense is like, and 935 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the first run of the group (paren_runs) is one item of paren_source_words.",
+   "count": 981,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "ליש"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 104
+  },
+  {
+   "id": "open_paren.holds_joining",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group whose first word is a preposition or an adverb particle: in the meaning field it says of what or in what sense the word before it is used, in the usage field it stands as a small word set apart among the King James renderings (1,225 occurrences by the audit: 579 in the usage field, 646 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the first run of the group (paren_runs) is one item of paren_joining_words.",
+   "count": 1225,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "כן"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 130
+  },
+  {
+   "id": "close_paren.holds_joining",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group whose first word is a preposition or an adverb particle: in the meaning field it says of what or in what sense the word before it is used, in the usage field it stands as a small word set apart among the King James renderings (1,225 occurrences by the audit: 579 in the usage field, 646 in the meaning field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the first run of the group (paren_runs) is one item of paren_joining_words.",
+   "count": 1225,
+   "examples": [
+    {
+     "key": "חפר"
+    },
+    {
+     "key": "כן"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 130
+  },
+  {
+   "id": "open_paren.holds_rest_of_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group of one word written directly after the letters of a longer word, so that the group is the rest or the middle of that word, which the rendering may or may not take with it (like: home(born)) (12 occurrences by the audit, all in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); the group is one word (paren_one_word_group); and the group stands against a letter (paren_against_letter).",
+   "count": 12,
+   "examples": [
+    {
+     "key": "תאוה"
+    },
+    {
+     "key": "ברד"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "close_paren.holds_rest_of_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group of one word written directly after the letters of a longer word, so that the group is the rest or the middle of that word, which the rendering may or may not take with it (like: home(born)) (12 occurrences by the audit, all in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); the group is one word (paren_one_word_group); and the group stands against a letter (paren_against_letter): the character directly before the opening bracket that this closing bracket pairs with is a letter.",
+   "count": 12,
+   "examples": [
+    {
+     "key": "תאוה"
+    },
+    {
+     "key": "ברד"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "open_paren.holds_start_of_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group of one word that is the beginning of a longer word whose rest the source writes after a space, so that the group and the letters after it make one word of the rendering (like: (adulter) ess) (1 occurrence by the audit, in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); the group is one word (paren_one_word_group); and the group, with the whitespace at both ends removed, is exactly equal (character for character, as paren_character_words says) to one item of paren_word_start_words.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אשה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_start_of_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group of one word that is the beginning of a longer word whose rest the source writes after a space, so that the group and the letters after it make one word of the rendering (like: (adulter) ess) (1 occurrence by the audit, in the usage field).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); the group is one word (paren_one_word_group); and the group, with the whitespace at both ends removed, is exactly equal (character for character, as paren_character_words says) to one item of paren_word_start_words.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אשה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_one_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a group of a single word that is not written against a letter: in the usage field a word that the rendering may take with it, in the meaning field either a one-word label, qualification or identification (a name, a kind) of the word beside it (271 groups) or an optional word of the definition itself (12 groups: be, is, the, oneself, become, a, self, itself) (1,282 occurrences by the audit: 998 in the usage field, 283 in the meaning field, 1 in a text that two entries of one key share, both of them usage fields).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group, with whitespace removed at both ends, is one or more characters and each of them is a letter, a mark character, a hyphen or an apostrophe (paren_character_words).",
+   "count": 1282,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "צדיק"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 692
+  },
+  {
+   "id": "close_paren.holds_one_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a group of a single word that is not written against a letter: in the usage field a word that the rendering may take with it, in the meaning field either a one-word label, qualification or identification (a name, a kind) of the word beside it (271 groups) or an optional word of the definition itself (12 groups: be, is, the, oneself, become, a, self, itself) (1,282 occurrences by the audit: 998 in the usage field, 283 in the meaning field, 1 in a text that two entries of one key share, both of them usage fields).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group, with whitespace removed at both ends, is one or more characters and each of them is a letter, a mark character, a hyphen or an apostrophe (paren_character_words).",
+   "count": 1282,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "צדיק"
+    },
+    {
+     "key": "תועה"
+    }
+   ],
+   "read": 692
+  },
+  {
+   "id": "open_paren.holds_other",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens any other group, a general shape that holds several kinds, none of them all: between 21 and 29 in 100 begin with a verb such as cause, be, make, give, put or have (nearly all in the usage field, where they are words the rendering takes with it); between 14 and 21 in 100 begin with a small word such as the, a, an or that (about a third in the usage field, the rest in the meaning field); between 12 and 18 in 100 begin with a hedge or restriction of the definition such as only, including, perhaps, probably, used or whether (nearly all in the meaning field); and between 32 and 53 in 100 are other words or short noun phrases in either field; these shares are by the first word, read in the sweep of the contents, and are rough: each is given as a range between two counts made with different word lists, because the kinds are the reader's and no closed list fixes them (1,101 occurrences by the audit: 584 in the usage field, 516 in the meaning field, 1 in a text that two entries of one key share, both of them usage fields).",
+   "test": "paren_first_match; the container is top (paren_container); the opening bracket pairs with its partner (paren_pairing); and any group that none of the shapes above it for this mark holds.",
+   "count": 1101,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "מלך"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 440
+  },
+  {
+   "id": "close_paren.holds_other",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes any other group, a general shape that holds several kinds, none of them all: between 21 and 29 in 100 begin with a verb such as cause, be, make, give, put or have (nearly all in the usage field, where they are words the rendering takes with it); between 14 and 21 in 100 begin with a small word such as the, a, an or that (about a third in the usage field, the rest in the meaning field); between 12 and 18 in 100 begin with a hedge or restriction of the definition such as only, including, perhaps, probably, used or whether (nearly all in the meaning field); and between 32 and 53 in 100 are other words or short noun phrases in either field; these shares are by the first word, read in the sweep of the contents, and are rough: each is given as a range between two counts made with different word lists, because the kinds are the reader's and no closed list fixes them (1,101 occurrences by the audit: 584 in the usage field, 516 in the meaning field, 1 in a text that two entries of one key share, both of them usage fields).",
+   "test": "paren_first_match; the container is top (paren_container); the closing bracket pairs with its partner (paren_pairing); and any group that none of the shapes above it for this mark holds.",
+   "count": 1101,
+   "examples": [
+    {
+     "key": "בטן"
+    },
+    {
+     "key": "מלך"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 440
+  },
+  {
+   "id": "open_paren.in_paren_holds_hyphen_piece",
+   "mark": "(",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens, inside another round bracket, a group of letters or word pieces with a hyphen at one edge: an ending or a beginning set apart inside a word that is itself set apart (32 occurrences by the audit: 32 in the usage field).",
+   "test": "paren_first_match; the container is paren (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group holds a hyphen (paren_character_words) that either stands at the start of the group or has a character that is not a letter directly before it, or stands at the end of the group or has a character that is not a letter directly after it.",
+   "count": 32,
+   "examples": [
+    {
+     "key": "מים"
+    },
+    {
+     "key": "מלאכה"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 32
+  },
+  {
+   "id": "close_paren.in_paren_holds_hyphen_piece",
+   "mark": ")",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes, inside another round bracket, a group of letters or word pieces with a hyphen at one edge: an ending or a beginning set apart inside a word that is itself set apart (32 occurrences by the audit: 32 in the usage field).",
+   "test": "paren_first_match; the container is paren (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group holds a hyphen (paren_character_words) that either stands at the start of the group or has a character that is not a letter directly before it, or stands at the end of the group or has a character that is not a letter directly after it.",
+   "count": 32,
+   "examples": [
+    {
+     "key": "מים"
+    },
+    {
+     "key": "מלאכה"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 32
+  },
+  {
+   "id": "open_paren.in_paren_holds_label",
+   "mark": "(",
+   "container": "paren",
+   "divides": false,
+   "means": "opens, inside another round bracket, a group whose lead is one of the dictionary's labels for the kind of use of the word: a label inside a note (5 occurrences by the audit: 1 in the usage field, 4 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the opening bracket pairs with its partner (paren_pairing); and the lead of the group (paren_runs) begins with one item of paren_label_words or of paren_label_phrases.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "בכור"
+    },
+    {
+     "key": "מקור"
+    },
+    {
+     "key": "ערוגה"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "close_paren.in_paren_holds_label",
+   "mark": ")",
+   "container": "paren",
+   "divides": false,
+   "means": "closes, inside another round bracket, a group whose lead is one of the dictionary's labels for the kind of use of the word: a label inside a note (5 occurrences by the audit: 1 in the usage field, 4 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the closing bracket pairs with its partner (paren_pairing); and the lead of the group (paren_runs) begins with one item of paren_label_words or of paren_label_phrases.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "בכור"
+    },
+    {
+     "key": "מקור"
+    },
+    {
+     "key": "ערוגה"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "open_paren.in_paren_holds_one_word",
+   "mark": "(",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens, inside another round bracket, a group of a single word: a word set apart inside a group of words that is itself set apart, or a one-word qualification inside a note (29 occurrences by the audit: 26 in the usage field, 3 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the opening bracket pairs with its partner (paren_pairing); and the group, with whitespace removed at both ends, is one or more characters and each of them is a letter, a mark character, a hyphen or an apostrophe (paren_character_words).",
+   "count": 29,
+   "examples": [
+    {
+     "key": "כל"
+    },
+    {
+     "key": "הלם"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 29
+  },
+  {
+   "id": "close_paren.in_paren_holds_one_word",
+   "mark": ")",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes, inside another round bracket, a group of a single word: a word set apart inside a group of words that is itself set apart, or a one-word qualification inside a note (29 occurrences by the audit: 26 in the usage field, 3 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the closing bracket pairs with its partner (paren_pairing); and the group, with whitespace removed at both ends, is one or more characters and each of them is a letter, a mark character, a hyphen or an apostrophe (paren_character_words).",
+   "count": 29,
+   "examples": [
+    {
+     "key": "כל"
+    },
+    {
+     "key": "הלם"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 29
+  },
+  {
+   "id": "open_paren.in_paren_holds_other",
+   "mark": "(",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens, inside another round bracket, any other group, a general shape: a short comparison, a hedge or a phrase that the outer note carries inside it (7 occurrences by the audit: 2 in the usage field, 5 in the meaning field); the kinds are too few to give shares.",
+   "test": "paren_first_match; the container is paren (paren_container); the opening bracket pairs with its partner (paren_pairing); and any group that none of the shapes above it for this mark holds.",
+   "count": 7,
+   "examples": [
+    {
+     "key": "מישור"
+    },
+    {
+     "key": "בן"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_paren.in_paren_holds_other",
+   "mark": ")",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes, inside another round bracket, any other group, a general shape: a short comparison, a hedge or a phrase that the outer note carries inside it (7 occurrences by the audit: 2 in the usage field, 5 in the meaning field); the kinds are too few to give shares.",
+   "test": "paren_first_match; the container is paren (paren_container); the closing bracket pairs with its partner (paren_pairing); and any group that none of the shapes above it for this mark holds.",
+   "count": 7,
+   "examples": [
+    {
+     "key": "מישור"
+    },
+    {
+     "key": "בן"
+    },
+    {
+     "key": "קשה"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "hyphen.in_paren_ending_piece",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: a hyphen directly before a letter with no letter before it, inside a round bracket: the source's mark that the letters after it are an ending that joins the word beside the bracket (1,307 occurrences by the audit: 1,299 in the usage field, 7 in the meaning field, 1 in a single gloss cut from a meaning).",
+   "test": "paren_first_match; the container is paren (paren_container); the character directly before the hyphen is not a letter, or there is none; and the character directly after it is a letter (paren_character_words).",
+   "count": 1307,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "מסע"
+    },
+    {
+     "key": "שקט"
+    }
+   ],
+   "read": 226
+  },
+  {
+   "id": "hyphen.in_paren_beginning_piece",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: a hyphen directly after a letter with no letter after it, inside a round bracket: the source's mark that the letters before it are a beginning that joins the word after the bracket (280 occurrences by the audit: 277 in the usage field, 3 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the character directly before the hyphen is a letter; and the character directly after it is not a letter, or there is none (paren_character_words).",
+   "count": 280,
+   "examples": [
+    {
+     "key": "חלק"
+    },
+    {
+     "key": "כחש"
+    },
+    {
+     "key": "יחד"
+    }
+   ],
+   "read": 46
+  },
+  {
+   "id": "hyphen.in_paren_inside_word",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "a hyphen between two letters, inside a round bracket: it joins the two halves of one compound word in an aside or in a list of renderings (35 occurrences by the audit: 2 in the usage field, 33 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the character directly before the hyphen is a letter; and the character directly after it is a letter (paren_character_words).",
+   "count": 35,
+   "examples": [
+    {
+     "key": "אלמגים"
+    },
+    {
+     "key": "כוס"
+    },
+    {
+     "key": "ברך"
+    }
+   ],
+   "read": 35
+  },
+  {
+   "id": "hyphen.in_paren_standing_alone",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: a bare hyphen with no letter directly on either side, inside a round bracket: a joining sign cut off from its neighbouring piece by a space, a comma or a bracket (5 occurrences by the audit: 3 in the usage field, 2 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the character directly before the hyphen is not a letter, or there is none; and the character directly after it is not a letter, or there is none (paren_character_words).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "מעון"
+    },
+    {
+     "key": "הלם"
+    },
+    {
+     "key": "הלאה"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "times.in_paren_phrase_flag",
+   "mark": "×",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: the multiplication sign inside a round bracket: the source's mark that the words after it are a rendering used only in a certain phrase, here inside an optional group of the King James list (48 occurrences by the audit: 48 in the usage field).",
+   "test": "paren_first_match; the container is paren (paren_container); the mark is the multiplication sign (paren_character_words).",
+   "count": 48,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "שער"
+    },
+    {
+     "key": "שממה"
+    }
+   ],
+   "read": 48
+  },
+  {
+   "id": "apostrophe.in_paren_possessive",
+   "mark": "'",
+   "container": "paren",
+   "divides": false,
+   "means": "an apostrophe followed by s that forms the possessive of the word before it, inside a round bracket (21 occurrences by the audit: 8 in the usage field, 13 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the mark is the character U+0027; the character directly after the apostrophe is the lowercase letter s; and the character after that s is not a letter, or there is none (paren_character_words).",
+   "count": 21,
+   "examples": [
+    {
+     "key": "נחם"
+    },
+    {
+     "key": "זעם"
+    },
+    {
+     "key": "מכמר"
+    }
+   ],
+   "read": 21
+  },
+  {
+   "id": "apostrophe.in_paren_opens_quotation",
+   "mark": "'",
+   "container": "paren",
+   "divides": false,
+   "means": "an apostrophe that opens a quoted word or phrase inside a round bracket, the source's way of quoting an English word or a saying it compares (12 occurrences by the audit: 4 in the usage field, 8 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the mark is the character U+0027; the apostrophe is not caught by the possessive shape above it; the character directly before the apostrophe is neither a letter nor a number character, or there is none; and the character directly after it is a letter (paren_character_words).",
+   "count": 12,
+   "examples": [
+    {
+     "key": "אזל"
+    },
+    {
+     "key": "כענת"
+    },
+    {
+     "key": "קהלת"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "apostrophe.in_paren_closes_quotation",
+   "mark": "'",
+   "container": "paren",
+   "divides": false,
+   "means": "an apostrophe that closes a quoted word or phrase inside a round bracket (12 occurrences by the audit: 4 in the usage field, 8 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the mark is the character U+0027; the apostrophe is not caught by either shape above it; there is a character directly before the apostrophe and it is not whitespace; and the character directly after it is not a letter, or there is none (paren_character_words).",
+   "count": 12,
+   "examples": [
+    {
+     "key": "אזל"
+    },
+    {
+     "key": "כענת"
+    },
+    {
+     "key": "קהלת"
+    }
+   ],
+   "read": 12
+  },
+  {
+   "id": "colon.in_paren_between_chapter_and_verse",
+   "mark": ":",
+   "container": "paren",
+   "divides": false,
+   "means": "the colon between a chapter number and a verse number in a Scripture reference inside a round bracket (23 occurrences by the audit: 14 in the usage field, 9 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the character directly before the colon (U+003A) is a digit; and the character directly after it is a digit (paren_character_words).",
+   "count": 23,
+   "examples": [
+    {
+     "key": "אהי"
+    },
+    {
+     "key": "ירע"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 23
+  },
+  {
+   "id": "question_mark.in_paren_doubt",
+   "mark": "?",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: a question mark that stands alone in a round bracket, the source's sign that the word before the bracket is doubtful (1 occurrence by the audit: 1 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); and the text inside the round bracket that holds the mark, with whitespace removed at both ends, is the single character question mark (U+003F).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "ברוש"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "question_mark.in_paren_after_question_word",
+   "mark": "?",
+   "container": "paren",
+   "divides": false,
+   "means": "a question mark that follows an interrogative word which the round bracket lists among the senses of the word (3 occurrences by the audit: 3 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the question mark is not caught by the doubt shape above it; and the character directly before the question mark is a letter (paren_character_words).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "מה"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "exclamation.in_paren_after_exclamation_word",
+   "mark": "!",
+   "container": "paren",
+   "divides": false,
+   "means": "an exclamation mark that follows an exclamation which the round bracket lists among the senses of the word (1 occurrence by the audit: 1 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); and the character directly before the exclamation mark is a letter (paren_character_words).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "plus.in_paren_before_added_pieces",
+   "mark": "+",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: the plus sign inside a round bracket, before a list of word endings: the source's mark that the pieces are added to the word beside the bracket as other forms of the rendering (1 occurrence by the audit: 1 in the usage field).",
+   "test": "paren_first_match; the container is paren (paren_container); the mark is the plus sign.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "אשר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.in_paren_holds_number",
+   "mark": "[",
+   "container": "paren",
+   "divides": false,
+   "means": "opens, inside a round bracket, a square group that holds a digit: a pointer to another entry by its number, inside a note (7 occurrences by the audit: 7 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the opening square bracket pairs with its partner (paren_pairing); and the group holds a digit.",
+   "count": 7,
+   "examples": [
+    {
+     "key": "תושב"
+    },
+    {
+     "key": "אחות"
+    },
+    {
+     "key": "אח"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "close_bracket.in_paren_holds_number",
+   "mark": "]",
+   "container": "paren",
+   "divides": false,
+   "means": "closes, inside a round bracket, a square group that holds a digit: a pointer to another entry by its number, inside a note (7 occurrences by the audit: 7 in the meaning field).",
+   "test": "paren_first_match; the container is paren (paren_container); the closing square bracket pairs with its partner (paren_pairing); and the group holds a digit.",
+   "count": 7,
+   "examples": [
+    {
+     "key": "תושב"
+    },
+    {
+     "key": "אחות"
+    },
+    {
+     "key": "אח"
+    }
+   ],
+   "read": 7
+  },
+  {
+   "id": "open_bracket.in_paren_holds_hyphen_piece",
+   "mark": "[",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens, inside a round bracket, a square group of letters with a hyphen at one edge: an ending set apart inside a list of renderings (1 occurrence by the audit: 1 in the usage field).",
+   "test": "paren_first_match; the container is paren (paren_container); the opening square bracket pairs with its partner (paren_pairing); and the group holds a hyphen (paren_character_words) that either stands at the start of the group or has a character that is not a letter directly before it, or stands at the end of the group or has a character that is not a letter directly after it.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עצה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.in_paren_holds_hyphen_piece",
+   "mark": "]",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: closes, inside a round bracket, a square group of letters with a hyphen at one edge: an ending set apart inside a list of renderings (1 occurrence by the audit: 1 in the usage field).",
+   "test": "paren_first_match; the container is paren (paren_container); the closing square bracket pairs with its partner (paren_pairing); and the group holds a hyphen (paren_character_words) that either stands at the start of the group or has a character that is not a letter directly before it, or stands at the end of the group or has a character that is not a letter directly after it.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עצה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.in_paren_holds_other",
+   "mark": "[",
+   "container": "paren",
+   "divides": false,
+   "means": "opens, inside a round bracket, any other square group, a general shape: an added word, a label or a comparison that the note carries in square brackets (9 occurrences by the audit: 1 in the usage field, 8 in the meaning field); the kinds are too few to give shares.",
+   "test": "paren_first_match; the container is paren (paren_container); the opening square bracket pairs with its partner (paren_pairing); and not caught above: any group that none of the shapes above it for this mark holds.",
+   "count": 9,
+   "examples": [
+    {
+     "key": "מכשלה"
+    },
+    {
+     "key": "יד"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "close_bracket.in_paren_holds_other",
+   "mark": "]",
+   "container": "paren",
+   "divides": false,
+   "means": "closes, inside a round bracket, any other square group, a general shape: an added word, a label or a comparison that the note carries in square brackets (9 occurrences by the audit: 1 in the usage field, 8 in the meaning field); the kinds are too few to give shares.",
+   "test": "paren_first_match; the container is paren (paren_container); the closing square bracket pairs with its partner (paren_pairing); and not caught above: any group that none of the shapes above it for this mark holds.",
+   "count": 9,
+   "examples": [
+    {
+     "key": "מכשלה"
+    },
+    {
+     "key": "יד"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 9
+  },
+  {
+   "id": "times.opens_route",
+   "mark": "×",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: Strong's sign at the very start of the King James list, flagging its first word as one used only inside a phrase made with this Hebrew word (an idiom), not as a plain rendering of it (the audit finds, of 177 occurrences, 176 in the source's usage field and 1 in an entry whose candidate fields are all usage fields).",
+   "test": "The mark is the multiplication sign (U+00D7) at top_level, and no character stands before it in the route text.",
+   "count": 177,
+   "examples": [
+    {
+     "key": "דמע"
+    },
+    {
+     "key": "מות"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 116
+  },
+  {
+   "id": "times.after_comma",
+   "mark": "×",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: Strong's sign after a comma further on in the King James list, flagging the word that follows it as one used only inside a phrase made with this Hebrew word (an idiom), not as a plain rendering of it (the audit finds all 586 occurrences in the source's usage field).",
+   "test": "The mark is the multiplication sign (U+00D7) at top_level, and the two characters directly before it (neighbours) are a comma (U+002C) and then one whitespace character.",
+   "count": 586,
+   "examples": [
+    {
+     "key": "קדש"
+    },
+    {
+     "key": "ענש"
+    },
+    {
+     "key": "נשא"
+    }
+   ],
+   "read": 316
+  },
+  {
+   "id": "times.after_closing_paren",
+   "mark": "×",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: Strong's sign that follows a bracketed qualifier and flags the word that qualifier belongs to, so the sign sits inside one King James rendering; the audit finds all 4 occurrences in the source's usage field.",
+   "test": "The mark is the multiplication sign (U+00D7) at top_level, and the two characters directly before it (neighbours) are a closing round bracket (U+0029) and then one whitespace character.",
+   "count": 4,
+   "examples": [
+    {
+     "key": "דקק"
+    },
+    {
+     "key": "מהר"
+    },
+    {
+     "key": "נחש"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "times.after_word_in_rendering",
+   "mark": "×",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: Strong's sign that follows a word with no comma between them and flags the words that complete one King James rendering begun before the sign; the audit finds the one occurrence in the source's usage field.",
+   "test": "The mark is the multiplication sign (U+00D7) at top_level, and the two characters directly before it (neighbours) are a letter and then one whitespace character.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "נקה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "plus.opens_route",
+   "mark": "+",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: Strong's sign that stands before the first word of the King James list and flags a rendering that translates this Hebrew word only together with another Hebrew word; the audit finds all 3 occurrences in the source's usage field.",
+   "test": "The mark is the plus sign (U+002B) at top_level, and no character stands before it in the route text.",
+   "count": 3,
+   "examples": [
+    {
+     "key": "מא"
+    },
+    {
+     "key": "בנים"
+    },
+    {
+     "key": "פרה"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "plus.after_comma",
+   "mark": "+",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: Strong's sign after a comma further on in the King James list, flagging the rendering that follows it as one that translates this Hebrew word only together with another Hebrew word (the audit finds all 35 occurrences in the source's usage field).",
+   "test": "The mark is the plus sign (U+002B) at top_level, and the two characters directly before it (neighbours) are a comma (U+002C) and then one whitespace character.",
+   "count": 35,
+   "examples": [
+    {
+     "key": "אם"
+    },
+    {
+     "key": "עמד"
+    },
+    {
+     "key": "אף"
+    }
+   ],
+   "read": 35
+  },
+  {
+   "id": "hyphen.joins_compound_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "joins the two parts of one compound word or compound name that the entry writes as one unbroken word, in a definition, in a single tagged gloss or in the King James list; the audit finds, of 362 occurrences, 34 in the source's usage field, 328 in its meaning field.",
+   "test": "The mark is the hyphen-minus (U+002D) at top_level, the character directly before it is a letter and the character directly after it is a letter (neighbours).",
+   "count": 362,
+   "examples": [
+    {
+     "key": "אדר"
+    },
+    {
+     "key": "אשפה"
+    },
+    {
+     "key": "משארת"
+    }
+   ],
+   "read": 231
+  },
+  {
+   "id": "hyphen.joins_split_compound",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "joins the two halves of a compound word when the source file tags one half apart from the other, so that the stripped route text shows a space beside the hyphen; the audit finds all 24 occurrences in the source's meaning field.",
+   "test": "The mark is the hyphen-minus (U+002D) at top_level, and either (a) the character directly before it is a letter and the character directly after it is whitespace, or (b) the two characters directly before it are a letter and then one whitespace character and the character directly after it is a letter (neighbours).",
+   "count": 24,
+   "examples": [
+    {
+     "key": "חשק"
+    },
+    {
+     "key": "חמן"
+    },
+    {
+     "key": "יקב"
+    }
+   ],
+   "read": 24
+  },
+  {
+   "id": "hyphen.joins_across_bracketed_insertion",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the front of a word in the King James list to the rest of it across a bracketed insertion that, on the source's convention for brackets, completes the word; the audit finds all 6 occurrences in the source's usage field.",
+   "test": "The mark is the hyphen-minus (U+002D) at top_level, the character directly before it is a letter and the character directly after it is an opening round bracket (U+0028) (neighbours).",
+   "count": 6,
+   "examples": [
+    {
+     "key": "כל"
+    },
+    {
+     "key": "רחב"
+    },
+    {
+     "key": "אלה"
+    }
+   ],
+   "read": 6
+  },
+  {
+   "id": "hyphen.ends_cited_name_start",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "ends the beginning of a name that the usage field quotes so that names starting alike can be compared, the hyphen standing where the rest of each name would follow; the audit finds all 5 occurrences in the source's usage field.",
+   "test": "The mark is the hyphen-minus (U+002D) at top_level, the character directly before it is a letter and the character directly after it is an apostrophe (U+0027) or a full stop (U+002E) (neighbours).",
+   "count": 5,
+   "examples": [
+    {
+     "key": "אבל"
+    },
+    {
+     "key": "אב"
+    },
+    {
+     "key": "אח"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "hyphen.begins_cited_name_ending",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "begins the ending of a name that the usage field quotes so that names ending alike can be compared, the hyphen standing where the start of each name would be; the audit finds all 3 occurrences in the source's usage field.",
+   "test": "The mark is the hyphen-minus (U+002D) at top_level, the character directly before it is an apostrophe (U+0027) and the character directly after it is a letter (neighbours).",
+   "count": 3,
+   "examples": [
+    {
+     "key": "יה"
+    },
+    {
+     "key": "אל"
+    }
+   ],
+   "read": 3
+  },
+  {
+   "id": "hyphen.begins_ending_in_unclosed_bracket",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: begins an optional ending written right after a round bracket that the source never closes, in the King James list, on the source's convention for optional endings; the audit finds all 4 occurrences in the source's usage field.",
+   "test": "The mark is the hyphen-minus (U+002D) at top_level, the character directly before it is an opening round bracket (U+0028) and the character directly after it is a letter (neighbours).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "עבד"
+    },
+    {
+     "key": "שטף"
+    },
+    {
+     "key": "דם"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "hyphen.begins_loose_ending",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "begins an ending or suffix written apart from the word it completes, after a space, a comma, a closing bracket or at the start of a piece; the audit finds, of 15 occurrences, 10 in the source's usage field, 5 in its meaning field.",
+   "test": "The mark is the hyphen-minus (U+002D) at top_level, the character directly after it is a letter, the character directly before it is not a letter, not an opening round bracket (U+0028) and not an apostrophe (U+0027), and the two characters directly before it are not a letter followed by one whitespace character (neighbours).",
+   "count": 15,
+   "examples": [
+    {
+     "key": "מרמס"
+    },
+    {
+     "key": "שבע"
+    },
+    {
+     "key": "נפש"
+    }
+   ],
+   "read": 15
+  },
+  {
+   "id": "hyphen.begins_ending_in_square_bracket",
+   "mark": "-",
+   "container": "bracket",
+   "divides": false,
+   "means": "unverified: begins an optional ending written inside square brackets, completing the word before the bracket on the source's convention for optional endings; the audit finds the one occurrence in the source's usage field.",
+   "test": "The mark is the hyphen-minus (U+002D) inside square brackets (square_bracket_container), the character directly before it is an opening square bracket (U+005B) and the character directly after it is a letter (neighbours).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עצה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "apostrophe.possessive_before_s",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "marks possession in English between a name or noun and its added s, the entry's own apostrophe; the audit finds, of 60 occurrences, 14 in the source's usage field, 46 in its meaning field.",
+   "test": "The mark is the apostrophe (U+0027) at top_level, the character directly before it is a letter and the character directly after it is the lowercase letter s (neighbours).",
+   "count": 60,
+   "examples": [
+    {
+     "key": "שמעון"
+    },
+    {
+     "key": "יבמת"
+    },
+    {
+     "key": "אבי"
+    }
+   ],
+   "read": 60
+  },
+  {
+   "id": "apostrophe.opens_quotation",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "opens a word, phrase or name part that the entry puts in single quotation marks to cite it; the audit finds, of 25 occurrences, 7 in the source's usage field, 18 in its meaning field.",
+   "test": "The mark is the apostrophe (U+0027) at top_level, either no character stands before it or the character directly before it is whitespace, and a character stands directly after it that is not whitespace (neighbours).",
+   "count": 25,
+   "examples": [
+    {
+     "key": "פרודא"
+    },
+    {
+     "key": "נא"
+    },
+    {
+     "key": "אח"
+    }
+   ],
+   "read": 25
+  },
+  {
+   "id": "apostrophe.closes_quotation",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "closes a word, phrase or name part that the entry puts in single quotation marks to cite it; the audit finds, of 25 occurrences, 7 in the source's usage field, 18 in its meaning field.",
+   "test": "The mark is the apostrophe (U+0027) at top_level, a character stands directly before it that is not whitespace, the character directly after it is not a letter or none follows (neighbours), and unpaired_apostrophes_before is odd.",
+   "count": 25,
+   "examples": [
+    {
+     "key": "פרודא"
+    },
+    {
+     "key": "נא"
+    },
+    {
+     "key": "אח"
+    }
+   ],
+   "read": 25
+  },
+  {
+   "id": "apostrophe.possessive_after_s",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "marks possession after the final s of a plural or of a name that ends in s; the audit finds, of 4 occurrences, 2 in the source's usage field, 2 in its meaning field.",
+   "test": "The mark is the apostrophe (U+0027) at top_level, the character directly before it is the lowercase letter s, the character directly after it is not a letter or none follows (neighbours), and unpaired_apostrophes_before is even (zero is even).",
+   "count": 4,
+   "examples": [
+    {
+     "key": "יתרו"
+    },
+    {
+     "key": "יהודית"
+    },
+    {
+     "key": "רעואל"
+    }
+   ],
+   "read": 4
+  },
+  {
+   "id": "right_single_quotation_mark.possessive_after_s",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "the typographic right single quotation mark, which the source file itself writes, standing as the possessive apostrophe after the final s of a name; the audit finds the one occurrence in the source's meaning field.",
+   "test": "The mark is the right single quotation mark (U+2019) at top_level, and the character directly before it is the lowercase letter s (neighbours).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "צפרה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "exclamation.ends_interjection",
+   "mark": "!",
+   "container": "top",
+   "divides": false,
+   "means": "ends a word or phrase that the entry gives as an interjection or exclamation, as a sense or a rendering of the Hebrew word; the audit finds, of 26 occurrences, 1 in the source's usage field, 25 in its meaning field.",
+   "test": "The mark is the exclamation mark (U+0021) at top_level.",
+   "count": 26,
+   "examples": [
+    {
+     "key": "אם"
+    },
+    {
+     "key": "אהה"
+    },
+    {
+     "key": "אוי"
+    }
+   ],
+   "read": 26
+  },
+  {
+   "id": "question_mark.ends_question_word",
+   "mark": "?",
+   "container": "top",
+   "divides": false,
+   "means": "ends a question word or a short question that the entry gives as a sense or a rendering of the Hebrew word; the audit finds, of 21 occurrences, 1 in the source's usage field, 20 in its meaning field.",
+   "test": "The mark is the question mark (U+003F) at top_level.",
+   "count": 21,
+   "examples": [
+    {
+     "key": "אם"
+    },
+    {
+     "key": "איך"
+    },
+    {
+     "key": "אן"
+    }
+   ],
+   "read": 21
+  },
+  {
+   "id": "open_bracket.holds_strongs_number",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "opens a Strong's number that the source file tags as a link to another entry, a pointer and not an identity; the audit finds the one occurrence in the source's meaning field.",
+   "test": "The mark is the opening square bracket (U+005B) at top_level, a closing square bracket pairs with it, and its bracket_group has at least one character, all of them digits 0 to 9 or whitespace, with at least one digit.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "תושב"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.holds_doubtful_note",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens Strong's one-word note that the wording before it is doubtful; the audit finds the one occurrence in the source's usage field.",
+   "test": "The mark is the opening square bracket (U+005B) at top_level, a closing square bracket pairs with it, and its bracket_group is exactly the nine characters D, o, u, b, t, f, u, l and a full stop (U+002E).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עשוק"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.holds_whole_field_note",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: opens any note that is the whole field and is not caught above; the one occurrence read is Strong's statement that the word has no English rendering of its own, so that is the only kind read in it (all of the share), and the audit finds it in the source's usage field.",
+   "test": "The mark is the opening square bracket (U+005B) at top_level, a closing square bracket pairs with it, it is the first character of the route text, and it is not caught above.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "את"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_bracket.holds_added_words",
+   "mark": "[",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens any other square group with letters, a general shape: words Strong's adds inside a definition or a rendering to continue it, explain it or supply a missing word, in roughly equal shares of these three kinds; the audit finds, of 5 occurrences, 2 in the source's usage field, 3 in its meaning field.",
+   "test": "The mark is the opening square bracket (U+005B) at top_level, a closing square bracket pairs with it, its bracket_group holds at least one letter, and it is not caught above.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "יד"
+    },
+    {
+     "key": "רחל"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "close_bracket.holds_strongs_number",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "closes a Strong's number that the source file tags as a link to another entry, a pointer and not an identity; the audit finds the one occurrence in the source's meaning field.",
+   "test": "The mark is the closing square bracket (U+005D) at top_level, an opening square bracket pairs with it, and its bracket_group has at least one character, all of them digits 0 to 9 or whitespace, with at least one digit.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "תושב"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_doubtful_note",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes Strong's one-word note that the wording before it is doubtful; the audit finds the one occurrence in the source's usage field.",
+   "test": "The mark is the closing square bracket (U+005D) at top_level, an opening square bracket pairs with it, and its bracket_group is exactly the nine characters D, o, u, b, t, f, u, l and a full stop (U+002E).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עשוק"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_whole_field_note",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: general: closes any note that is the whole field and is not caught above; the one occurrence read is Strong's statement that the word has no English rendering of its own, so that is the only kind read in it (all of the share), and the audit finds it in the source's usage field.",
+   "test": "The mark is the closing square bracket (U+005D) at top_level, an opening square bracket pairs with it, the text before it is that opening bracket followed by its bracket_group (so the opening bracket is the first character of the route text), and it is not caught above.",
+   "count": 1,
+   "examples": [
+    {
+     "key": "את"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_bracket.holds_added_words",
+   "mark": "]",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes any other square group with letters, a general shape: words Strong's adds inside a definition or a rendering to continue it, explain it or supply a missing word, in roughly equal shares of these three kinds; the audit finds, of 5 occurrences, 2 in the source's usage field, 3 in its meaning field.",
+   "test": "The mark is the closing square bracket (U+005D) at top_level, an opening square bracket pairs with it, its bracket_group holds at least one letter, and it is not caught above.",
+   "count": 5,
+   "examples": [
+    {
+     "key": "יד"
+    },
+    {
+     "key": "רחל"
+    },
+    {
+     "key": "מן"
+    }
+   ],
+   "read": 5
+  },
+  {
+   "id": "hebrew_point_hataf_patah.under_hebrew_letter",
+   "mark": "ֲ",
+   "container": "top",
+   "divides": false,
+   "means": "a short a-vowel point (hataf patah) under the first letter of the pointed Hebrew word that the usage field quotes as another form of the entry's word; the audit finds the one occurrence in the source's usage field.",
+   "test": "The mark is the Hebrew point hataf patah (U+05B2) at top_level, and the character directly before it is a Hebrew letter, one of the characters U+05D0 to U+05EA (neighbours).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חרא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hebrew_point_hiriq.under_hebrew_letter",
+   "mark": "ִ",
+   "container": "top",
+   "divides": false,
+   "means": "an i-vowel point (hiriq) under a later letter of that same pointed Hebrew word that the usage field quotes as another form of the entry's word; the audit finds the one occurrence in the source's usage field.",
+   "test": "The mark is the Hebrew point hiriq (U+05B4) at top_level, and the character directly before it is a Hebrew letter, one of the characters U+05D0 to U+05EA (neighbours).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חרא"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_brace.never_opened",
+   "mark": "}",
+   "container": "top",
+   "divides": false,
+   "means": "closes nothing: a curly brace that the source file itself leaves at the end of a meaning, with no opening curly brace anywhere in the file; the audit finds the one occurrence in the source's meaning field.",
+   "test": "The mark is the closing curly brace (U+007D) at top_level, and the route text holds no opening curly brace (U+007B).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מאה"
+    }
+   ],
+   "read": 1
+  }
+ ],
+ "precedence": [
+  "semicolon.top_before_also",
+  "semicolon.top_before_hence",
+  "semicolon.top_before_transfer",
+  "semicolon.top_before_figurative",
+  "semicolon.top_before_narrowing",
+  "semicolon.top_before_named_use",
+  "semicolon.top_before_plain_sense",
+  "semicolon.top_before_alternative",
+  "semicolon.top_before_bracketed_label"
+ ],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text carries no entry number. The source's own file gives every entry an id (H1, H2 and so on) that the store dropped, and the route text names neither the entry nor the field it came from; two entries under one letters key stand there as separate texts with nothing to tell them apart (example key בכרה: its entries in the source are H1072 and H1073, and its 5 route texts come from those two entries). keys_with_more_than_one_route_text counts senses and homonyms together. By the audit, of the 5,601 such keys (axis: keys; 5,939 letters keys in all) 4,182 are keys for which one single entry of the source file yields every distinct route text of the key (as its meaning, its usage or one of its glosses), and 1,419 are keys for which no single entry yields every text, so that the texts come from two or more entries that share the letters, true homonyms.",
+  "keys_with_more_than_one_route_text": 5601
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "The source ends each entry's usage field with the renderings the King James gave the word: one after another with commas between them, sometimes in groups with semicolons between the groups, and a full stop at the end (like: great(-ly); many, much). The route text does not say which field it came from, so the ledger knows such a list by its look, and that guess is why this waits for you. Does each comma and semicolon of such a list divide two readings, so that every rendering is its own reading and the list is cut at all of them at once? The next question (B02) is about the renderings marked with × or +.",
+   "shapes": [
+    "comma.between_kjv_renderings",
+    "comma.in_long_list_without_final_period",
+    "comma.in_short_list_without_final_period",
+    "comma.between_renderings_in_semicolon_list",
+    "semicolon.top_between_kjv_groups",
+    "period.top_before_last_word"
+   ],
+   "occurrences": 10076,
+   "keys": [
+    "אחד",
+    "עמד"
+   ],
+   "options": [
+    {
+     "id": "divides",
+     "means": "Every comma and semicolon between two renderings of such a list divides, and so does the full stop that a few lists write where a comma should stand before the last rendering: every rendering, even a small word like and or or, is its own reading, and a pointer, a label or a stray letter after the last rendering stays in the last piece. The one exception is the commas that B02 asks about, the comma before a rendering marked with × or + and the comma after a marked rendering that opens a list or a group: they divide only if B02 says so. If it does not, a marked rendering stays joined to the rendering before it (to the one after it when it opens a list or a group), and renderings joined one after another in this way are printed together as one reading."
+    },
+    {
+     "id": "whole",
+     "means": "None of them divides: the list stays one reading, as one text. (B02 can still cut a marked rendering off the rendering before it, or off the one after it when it opens a list or a group.)"
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "Strong's marks some renderings of a usage list with a sign: × (a word the King James used only inside a phrase made with the Hebrew word) or + (a rendering made together with another word); the lane could not check the source's own account of the two signs. A sign alone is no reading, so the question is the comma beside it (like: age, × long, old). Is a rendering marked with a sign a reading of its own, cut off at the commas beside it and printed with its sign? It is meant for the case that B01 divides; if you keep B01 at whole and answer divides here, a list is still cut at the comma before each marked rendering, and after one that opens a list or a group.",
+   "shapes": [
+    "comma.after_opening_flagged_piece",
+    "comma.before_flagged_piece"
+   ],
+   "occurrences": 696,
+   "options": [
+    {
+     "id": "divides",
+     "means": "A marked rendering is its own reading: it is cut off from the rendering before it (or, when it opens a list or a group, from the one after it), and when B01 also divides it is printed alone with its sign, whether it is a plain word, a small word like in or him, or a phrase; a pointer or a stray letter after the last rendering stays with it."
+    },
+    {
+     "id": "whole",
+     "means": "A marked rendering is not a reading of its own: it stays joined to the rendering before it or, when it opens a list or a group, to the rendering after it."
+    }
+   ],
+   "resting": "whole"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the route store the cutting of a definition into its tagged glosses and holds whole the commas that follow them (comma.after_tagged_gloss: of the occurrences read, about one in seven stands between a gloss and a qualifier, a label, a note or the description of a name, which the route text does not tell apart), so that of the 14,154 tagged glosses of the source's file (axis: glosses), which make 13,849 distinct key-and-gloss pairs (axis: pairs), the store serves 8,247 pairs as routes of their own and 5,602 pairs have no route of their own and so no pill here, and a pointer at the end of a text (See or Compare with a number) stays in the last piece."
+}

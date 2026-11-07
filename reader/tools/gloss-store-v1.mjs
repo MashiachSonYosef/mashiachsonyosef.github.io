@@ -126,9 +126,12 @@ export const openRouteStore = (storeDir) => {
    *  into row[7] from the source's own classifier under the owner's answers;
    *  with no slot the row is one reading, as the source wrote it, brackets and
    *  all: the ledger declared every mark, so nothing is "damaged" and nothing
-   *  is hidden. A source with no ledger (Strong's 1890, whose ledger the owner
-   *  tabled) keeps the generic rule: senses at the pack mark, readings at the
-   *  comma rule, a damaged sense held back. */
+   *  is hidden. A source with no ledger keeps the generic rule: senses at the
+   *  pack mark, readings at the comma rule, a damaged sense held back. From 7
+   *  November 2026 every store source is under a ledger (Strong's 1890, the
+   *  last, untabled by the owner); the dictionaries beside the store and the
+   *  span store's own two sources keep the generic rule until their ledgers
+   *  land, and the store's index names them (index.ledgers.unledgered). */
   const ledgerOf = (mId) => ((index.m_sources || {})[String(mId)] || {}).ledger || null;
   const genericReadings = (text) => {
     const out = [];
@@ -169,10 +172,12 @@ export const openRouteStore = (storeDir) => {
     const others = ids.length ? rows.filter((r) => !ids.includes(String(r[3]))) : rows;
     return exact(others) || holds(others);
   };
-  /** The readings the store gives such a text now: its row's, else the generic rule's. */
+  /** The readings the store gives such a text now: its row's; a text no served row
+   *  accounts for has none, since the card holds none (7 November 2026: until then
+   *  the generic rule cut such a text, and a column could name a reading no card held). */
   const readingsOfText = (k, text, mIds = null) => {
     const row = rowOfText(k, text, mIds);
-    return row ? readingsOf(row) : genericReadings(String(text ?? ""));
+    return row ? readingsOf(row) : [];
   };
   /** The m ids a source label names, for a credit that carries the label alone. */
   const mIdsOfLabel = (label) => Object.entries(index.m_sources || {}).filter(([, s]) => s && s.label === label).map(([id]) => id);

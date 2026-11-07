@@ -156,7 +156,13 @@ for (const { slug, z, t } of layered) {
     // store holds, and the tier it leads must exist among the key's cards
     for (const [ch, first] of Object.entries(gr.o || {})) {
       if (first === null) continue;
-      if (!Array.isArray(first) || first.length !== 4 || !String(first[0] || "").trim() || !labels.has(first[1])) badFirst += 1;
+      // l and la carry their carriers as a fifth element: ids the store
+      // holds, at least one, la's disjoint from l's (la is the leader with
+      // l's carriers out); la stands only beside a leader
+      const withBy = ch === "l" || ch === "la";
+      if (!Array.isArray(first) || first.length !== (withBy ? 5 : 4) || !String(first[0] || "").trim() || !labels.has(first[1])) badFirst += 1;
+      else if (withBy && (!Array.isArray(first[4]) || !first[4].length || first[4].some((id) => !store.index.m_sources[id]))) badFirst += 1;
+      else if (ch === "la" && (!Array.isArray(gr.o.l) || !Array.isArray(gr.o.l[4]) || gr.o.l[4].some((id) => first[4].includes(id)))) badFirst += 1;
       // the tier a leader leads must exist among the key's cards. The two
       // masorah filter leaders lead a set, not a tier: strict needs a match
       // card; lenient needs any card that is not a mismatch, and an ungraded
@@ -167,7 +173,7 @@ for (const { slug, z, t } of layered) {
       // leader; there is nothing in g alone that refuses it. The first
       // draft refused it and was wrong at 92 surfaces across three books.
       else if (ch === "s" && !has("m")) badFirst += 1;
-      else if (!["c", "l", "s"].includes(ch) && !has(ch)) badFirst += 1;
+      else if (!["c", "l", "la", "s"].includes(ch) && !has(ch)) badFirst += 1;
     }
   }
   if (badLen) note(l4, `${slug}: ${badLen} surfaces grade a different number of cards than their key carries`);

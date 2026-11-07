@@ -212,8 +212,10 @@
   // from the source's own classifier under the owner's answers; with no slot
   // the row is one reading, as the source wrote it, brackets and all: the
   // ledger declared every mark, so nothing here is "damaged" and nothing is
-  // hidden. A source with no ledger (Strong's 1890, whose ledger the owner
-  // tabled) keeps the generic rule above: senses at the pack mark, readings at
+  // hidden. A source with no ledger keeps the generic rule above (from 7
+  // November 2026 only the dictionaries beside the store and the span store's
+  // own two sources, until their ledgers land; the index names them): senses
+  // at the pack mark, readings at
   // the comma rule, a damaged sense held back, or kept whole where asked.
   // The same function stands in tools/gloss-store-v1.mjs (readingsOf), so the
   // line baked there and the pill pressed here say one thing.
@@ -8734,6 +8736,45 @@
     if (lookup === "headword" && word.hg && word.h && table[word.h])
       return { text: word.hg, rs: word.hm ? [{ posture: word.hm.lic, m: word.hm.m, y: word.hm.y, ya: "wording" }] : [], why: "headword" };
     { const at = placeLine(word); if (at) return placeShown(at); }
+    // THE POINTING'S OWN LEADER, AND ITS OWN ALTERNATE. Under "only this
+    // pointing" the card withholds the rows whose source points the word
+    // otherwise, so the line reads the sidecar's row-level leader (o.l),
+    // baked over the rows the filter keeps, and the card's first pill says
+    // the same. The source switches are answered here, before the table's
+    // alternate below: that alternate was baked over every row, filter or
+    // no filter, and at 28,542 of 122,146 graded words it names a row the
+    // filter withholds (7 November 2026, Amos's Amos with Strong's off: the
+    // line read BDB's «Amos the prophet», pointed otherwise, while the card
+    // pressed «amos»). So the leader carries its carriers (o.l[4]); with
+    // every one switched off, the filter's own alternate answers (o.la, the
+    // leader among the kept rows with the leader's carriers out), and with
+    // its carriers off too the word goes bare by the reader's own choice,
+    // as the table goes one step past its alternate. A licence class sorts
+    // the card ahead of the filter and keeps its own column (below); the
+    // letters switch has its own leader.
+    if (masorah === "only" && licencePref === "any" && latticeStore && latticeStore.grades && word.s) {
+      const gr = latticeStore.grades[word.s];
+      if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) {
+        const gm = zone.gloss_m ? zone.gloss_m[lookupKey(word, word.k, table)] : null;
+        const allOff = (by) => !!(sourcesOff.size && Array.isArray(by) && by.length && by.every((m) => sourcesOff.has(m)));
+        // A NAME LEADS UNDER "ONLY" TOO (proper-name-rule-v1): where the line
+        // under this key is its name and a row the filter keeps carries it
+        // (the sidecar's nl), the table's own line, the name, answers, unless
+        // the reader switched off every source carrying it. Names turned off
+        // lay the noname column over the table, so the name no longer is the
+        // line there, and the filter's leader answers as before.
+        if (gr.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
+          && zone.gloss[word.k] === zone.gloss_names[word.k] && !(gm && allOff(gm.by))) return null;
+        const l = gr.o.l;
+        if (l && !allOff(l[4])) return { text: l[0], rs: [{ posture: l[2], m: l[1], y: l[3], by: l[4] }], why: "masorah" };
+        const la = gr.o.la;
+        if (la && !allOff(la[4])) return { text: la[0], rs: [{ posture: la[2], m: la[1], y: la[3], by: la[4] }], why: "masorah" };
+        if (l) return { text: "", rs: [], why: "sources-bare" };
+        // graded, and nothing survives the filter: the word goes bare here,
+        // which the frame calls a finding and not an error
+        return { text: "", rs: [], why: "masorah-bare" };
+      }
+    }
     // THE SOURCE SWITCHES FIRST. A source the reader turned off cannot lead
     // the line. Every carrier of the printed reading is baked on the key
     // (gloss_m[k].by); if all of them are off, the baked alternate leads with
@@ -8768,24 +8809,9 @@
         }
       }
     }
-    // the masorah filter's own leader, baked row by row into the sidecar
-    // (o.l) so it says what the card's first pill says under "only"; with
-    // the Masorah lifted, no lattice order can move the line at all
-    if (masorah === "only" && latticeStore && latticeStore.grades && word.s) {
-      const gr = latticeStore.grades[word.s];
-      // A NAME LEADS UNDER "ONLY" TOO (proper-name-rule-v1): where the line
-      // under this key is its name and a row the filter keeps carries it
-      // (the sidecar's nl), the table's own line, the name, answers. Names
-      // turned off lay the noname column over the table, so the name no
-      // longer is the line there, and the filter's leader answers as before.
-      if (gr && gr.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
-        && zone.gloss[word.k] === zone.gloss_names[word.k]) return null;
-      const first = gr && gr.o && gr.o.l;
-      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: "masorah" };
-      // graded, and nothing survives the filter: the word goes bare here,
-      // which the frame calls a finding and not an error
-      if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) return { text: "", rs: [], why: "masorah-bare" };
-    }
+    // the masorah filter's own leader stands above, before the source
+    // switches, with its carriers and its alternate; with the Masorah
+    // lifted, no lattice order can move the line at all
     // THE LETTERS SWITCH lifts the pointing on the card and leads with the
     // readings whose source points this word otherwise (sortPool); the line
     // reads the same leader, baked by the lattice as its vowels-differ

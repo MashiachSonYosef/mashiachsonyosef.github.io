@@ -26,7 +26,10 @@
 // sense of the row back as damaged (the card would not offer it), or when
 // the row prints no pill under the owner's answer to its ledger's branch
 // (ledger-division-rule-v2: the card does not hold it, so no column may name
-// it). Each refusal is typed with its reason.
+// it), or when no served row accounts for the text any more (struck, re-keyed
+// or retexted since the lane's build: the card holds nothing of it, and until
+// 7 November 2026 the generic rule cut such a text into a line no card held).
+// Each refusal is typed with its reason.
 //
 // VERSION 2 (6 November 2026). The shipped input lives in the repository
 // (data/witnessed-orders-v2.7, tools/import-witnessed-orders-v1.mjs: the
@@ -77,7 +80,7 @@ if (shipped.book !== book) { console.error(`${book}: ${shippedPath} is ${shipped
 const rowAndReadings = (k, text, M) => {
   const ids = M && Array.isArray(M.by) ? M.by : M && M.m ? store.mIdsOfLabel(M.m) : null;
   const row = store.rowOfText(k, text, ids);
-  return { row, readings: row ? store.readingsOf(row) : store.readingsOfText(k, text, ids) };
+  return { row, readings: row ? store.readingsOf(row) : [] };
 };
 
 const receipt = { rule: RULE, baked_on: STAMP, baked_by: "tools/bake-witnessed-order-v1.mjs", version: 2,
@@ -96,9 +99,9 @@ for (const [order] of COLUMNS) {
     if (!(k in zone.gloss)) { refused.push([k, "not a key of this zone"]); continue; }
     if (!M || typeof M !== "object" || Array.isArray(M) || !M.lic || !M.m) { refused.push([k, "no licence and name"]); continue; }
     const { row, readings } = rowAndReadings(k, text, M);
-    if (!row) unmapped += 1;
+    if (!row) { unmapped += 1; refused.push([k, "no served row accounts for the text"]); continue; }
     if (!readings.length) {
-      if (row && store.ledgerOf(row[3])) { noPill.push({ key: k, text, m: String(row[3]), on: STAMP, why: "ledger-division-rule-v2: the row this reading came from prints no pill under the owner's answer to its ledger's branch" }); refused.push([k, "prints no pill"]); }
+      if (store.ledgerOf(row[3])) { noPill.push({ key: k, text, m: String(row[3]), on: STAMP, why: "ledger-division-rule-v2: the row this reading came from prints no pill under the owner's answer to its ledger's branch" }); refused.push([k, "prints no pill"]); }
       else refused.push([k, "every sense damaged"]);
       continue;
     }

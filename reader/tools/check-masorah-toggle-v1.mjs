@@ -20,6 +20,9 @@
 //   M4  ONLY moves the line under the word to the sidecar's own row-level
 //       leader (o.l), and the card's first pill says the same — one answer,
 //       two places
+//   M4b the lenient leader names its carriers; with every one switched off
+//       the line reads the filter's own alternate (o.la) and the card opens
+//       pressed on it, or goes bare where no kept reading remains
 //   M5  LETTERS: the card's head leads with the bare consonants and keeps the
 //       pointed form beside them; every reading is back; a lattice order in
 //       "reads first" has fallen back to oldest
@@ -158,6 +161,50 @@ check("    and the default's pool is smaller or equal, never larger", only && ke
 check("M4  the line under the word is the sidecar's lenient leader, and the first pill says the same",
   only && gr && gr.o.l && only.line.toLowerCase().startsWith(String(gr.o.l[0]).toLowerCase().slice(0, 12)) && only.pills[0] && only.pills[0].toLowerCase() === String(gr.o.l[0]).toLowerCase(),
   only ? `line "${only.line}" · pill "${only.pills[0]}" · o.l "${gr && gr.o.l ? gr.o.l[0] : "—"}"` : "no card");
+
+// M4b — THE FILTER'S OWN ALTERNATE (7 November 2026). The lenient leader
+// names its carriers (o.l[4]); with every one of them switched off, the line
+// reads the sidecar's own alternate (o.la, the leader among the kept rows
+// with those carriers out) and the card opens pressed on it, or the word goes
+// bare where no kept reading remains. The table's alternate (gloss_m.alt),
+// baked over every row, may name a row the filter withholds, and before this
+// the line read it while the card pressed another reading.
+{
+  const l = gr && gr.o && gr.o.l;
+  const ids = l && Array.isArray(l[4]) && l[4].length ? l[4] : null;
+  const la = gr && gr.o ? gr.o.la : null;
+  let r = null;
+  if (ids) {
+    const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
+    await ctx.addInitScript((off) => { try { localStorage.setItem("fh.def.order", "oldest"); localStorage.setItem("fh.sources.off", JSON.stringify(off)); } catch { /* a device that remembers nothing still reads */ } }, ids);
+    const q = await ctx.newPage();
+    q.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+    await q.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
+    await q.waitForSelector("section.seg .he-text .wb");
+    await q.waitForTimeout(600);
+    r = await q.evaluate(async (i) => {
+      const wait = (ms) => new Promise((x) => setTimeout(x, ms));
+      const w = document.querySelectorAll("section.seg .he-text .wb")[i];
+      const g = w.querySelector(":scope > .g");
+      (w.querySelector(".w span") || w.querySelector(".w")).click();
+      const h = document.getElementById("hud");
+      const t0 = Date.now(); while (Date.now() - t0 < 12000 && !h.querySelector(".r-pills button")) await wait(50);
+      await wait(700);
+      const pills = [...h.querySelectorAll(".r-pills button")].map((x) => ({ t: x.textContent.trim(), on: x.getAttribute("aria-pressed") === "true", by: String(x.dataset.by || "").split(" ").filter(Boolean) }));
+      return { line: (g ? g.childNodes[0]?.textContent : "").trim(), bare: !!(g && g.classList.contains("bare")), pills };
+    }, target ? target.i : 0);
+    await ctx.close();
+  }
+  const norm = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "").toLowerCase();
+  const pressed = r && r.pills.find((x) => x.on);
+  const offIds = new Set(ids || []);
+  const onlyOff = r ? r.pills.filter((x) => x.by.length && x.by.every((m) => offIds.has(m))).length : -1;
+  const ok = !!ids && !!r && onlyOff === 0 && (la
+    ? norm(r.line) === norm(la[0]) && !!pressed && norm(pressed.t) === norm(la[0])
+    : r.bare);
+  check("M4b the lenient leader names its carriers, and with every one switched off the line reads the filter's own alternate (o.la) and the card opens pressed on it, or goes bare where none remains",
+    ok, !ids ? "the sidecar's o.l names no carriers; re-project with tools/project-lattice-v12-v1.mjs" : !r ? "no card" : `off ${ids.join(",")} · line "${r.line}"${r.bare ? " (bare)" : ""} · pressed "${pressed ? pressed.t : "—"}" · o.la "${la ? la[0] : "—"}" · pills credited only to the off ids: ${onlyOff}`);
+}
 
 // M5
 const pressedLetters = await press("the letters only");

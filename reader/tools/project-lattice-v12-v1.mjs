@@ -243,7 +243,7 @@ if (stemsByPlace.size) for (const sec of zone.sections || []) {
 
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
-  surfaces_unattested: 0, surfaces_with_stems: 0, surfaces_name_leads_under_only: 0,
+  surfaces_unattested: 0, surfaces_with_stems: 0, surfaces_name_leads_under_only: 0, surfaces_with_lenient_leader: 0, surfaces_with_lenient_alternate: 0,
   hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
@@ -374,30 +374,53 @@ for (const sec of zone.sections || []) {
       const otherStem = (row) => !!(rs && isOtherStem(rs[`${row[3]}\u0001${row[0]}\u0001${row[1]}`], st));
       const attested = srows.some((row) => store.index.m_sources[row[3]] && gradeOfRow(row) === "m");
       if (!attested) stats.surfaces_unattested += 1;
-      const rowLeader = (keep, onlyWhereAttested) => {
-        const kept = srows.filter((row) => store.index.m_sources[row[3]] && (onlyWhereAttested && !attested ? true : keep(gradeOfRow(row))) && !otherStem(row));
+      // omit: rows of these sources are out of the kept set (the reader's
+      // source switches, one step); withBy: the leader names its carriers,
+      // the ids of every kept row carrying the reading, as the table names
+      // a reading's carriers in gloss_m[k].by — what a source switch removes
+      const rowLeader = (keep, onlyWhereAttested, omit = null, withBy = false) => {
+        const kept = srows.filter((row) => store.index.m_sources[row[3]] && !(omit && omit.has(String(row[3]))) && (onlyWhereAttested && !attested ? true : keep(gradeOfRow(row))) && !otherStem(row));
         const p = store.readingPool(kept, "oldest");
         if (!p.length) return null;
         const top = p[0];
         // its M: the oldest kept row carrying the reading, as the card prints it
         let best = null;
+        const by = new Set();
         for (const row of kept) {
           const carries = store.readingsOf(row).some((t) => t.toLowerCase() === top.text.toLowerCase());
           if (!carries) continue;
+          by.add(String(row[3]));
           const y = Number.parseInt(row[4], 10); const yy = Number.isInteger(y) ? y : Infinity;
           if (!best || yy < best.y) best = { row, y: yy };
         }
         if (!best) return null;
         const src = store.index.m_sources[best.row[3]];
-        return [top.text, src.label, src.licensePosture, Number.isFinite(best.y) ? best.y : null];
+        const out = [top.text, src.label, src.licensePosture, Number.isFinite(best.y) ? best.y : null];
+        return withBy ? [...out, [...by].sort()] : out;
       };
+      // THE FILTER'S OWN ALTERNATE (7 November 2026). The table's alternate
+      // (gloss_m[k].alt) is the next reading with the line's carriers off,
+      // baked over every row, filter or no filter: under "only this
+      // pointing" it names a row the filter withholds at 28,542 of 122,146
+      // graded words (Amos's Amos with Strong's off read BDB's «Amos the
+      // prophet», pointed otherwise, while the card pressed «amos»). So the
+      // lenient leader carries its carriers, and la is the lenient leader
+      // among the kept rows with every carrier of l out: what the line reads
+      // when the reader switches off every source carrying l, one step, as
+      // the table's alternate is one step. Null where l is null, or where
+      // nothing kept remains past l's carriers.
+      const lenient = (gc) => gc !== "x";
+      const l = rowLeader(lenient, true, null, true);
       const o = {
         m: firstUnder((gi) => gi.tier, (gi) => gi.tier === 0),
         x: firstUnder((gi) => ({ 2: 0, 1: 1, 0: 2 }[gi.tier] ?? 3), (gi) => gi.tier === 2),
         c: firstUnder((gi) => gi.cites, (gi) => gi.cites === 0),
-        l: rowLeader((gc) => gc !== "x", true),
+        l,
+        la: l ? rowLeader(lenient, true, new Set(l[4]), true) : null,
         s: rowLeader((gc) => gc === "m", false),
       };
+      if (l) stats.surfaces_with_lenient_leader += 1;
+      if (o.la) stats.surfaces_with_lenient_alternate += 1;
       // A NAME LEADS UNDER "ONLY" TOO (proper-name-rule-v1). Where the zone's
       // line under this key is its name (gloss_names, baked by regloss-zone),
       // and a row the lenient filter keeps carries that name, the line under
@@ -486,7 +509,8 @@ const sidecar = {
     m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse",
     l: "masorah · only (lenient) — the oldest reading among rows NOT graded VOWEL_MISMATCH: NORMALIZED and ungraded rows stay, computed row by row as the page filters; where no store row is graded VOWEL_MATCH the pointing withholds nothing; a row of another stem (the binyan ledger) is withheld",
     s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row; a row of another stem is withheld",
-    shape: "[route text, source label, licence key, year] or null when the leading set is empty",
+    la: "masorah · only (lenient), the alternate — the lenient leader among the kept rows with every carrier of l out: what the line reads when the reader switches off every source carrying l (or the name, where it led), one step, as gloss_m[k].alt is one step for the table; null where l is null or nothing kept remains",
+    shape: "[route text, source label, licence key, year] or null when the leading set is empty; l and la carry a fifth element, the sorted ids of the kept rows carrying the reading (the carriers a source switch removes)",
     row_grade: { rule: POINTING_GRADE_RULE_ID, from: "a store row that carries its source's own headwords at [6] is graded by them against this pointed surface, any one matching headword a match; a row without the slot takes the lattice card's grade by fingerprint; the leaders m, x, l, s all rest on that one grade — per source, not merged" },
   },
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
