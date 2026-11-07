@@ -5,7 +5,7 @@
 //
 // Until 6 November 2026 one rule divided every dictionary's route text into
 // readings: the pack mark (";" outside brackets), then the comma rule
-// (sense-split-rule-v3), with a sense whose brackets do not balance held
+// (the sense-split rule, v3; retired 7 November 2026), with a sense whose brackets do not balance held
 // back. It was a guess made once for all 36 dictionaries, and it was wrong
 // in each of them somewhere: a sentence cut at its commas, a verse reference
 // cut at its colon, a bracket half printed as a reading, a whole Strong's
