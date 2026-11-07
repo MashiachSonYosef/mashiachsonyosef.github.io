@@ -92,9 +92,11 @@ Nothing else: no version folders, no verify seats, gates, mirrors or sandboxes, 
 
 And the two cautions that go with a keyboard delete: a plain Delete only moves the folders to the Recycle Bin, so the space comes back with Shift+Delete or when the bin is emptied; and the 873 recorded links in the old tree (checks/links-never-follow.tsv of 18 October) are why a command-line recursive delete (PowerShell's Remove-Item -Recurse among them) must not be used on it, where Explorer removes a link without following it.
 
+**Old files you never inventoried.** The owner expects old files outside your tracked folders (the earlier assistant's era: imported packages, workspaces, downloads) that a list of what to delete would miss. So the deletes run on a keep list, not a delete list: v2/ is what stays, and everything else in the project's folders goes, on the store (every top-level prefix but v2/ and serving-lane/) and on the disk alike. Nothing old can be missed by a rule that names only what stays. For the disk, that needs every project folder found, not only corpus-lane-builds: before step 2, a scan of the whole drive by folder size (the tabernacle root and its siblings, the old workspaces, download folders with dictionary dumps, old git clones, node_modules and package caches), with every folder over 1 GB named and placed in v2/, the quarantine, or the delete.
+
 ## Asked of you
 
-1. The current item of every family, named (the inventory of what goes into v2/), and what the three ledgers' local-only 125 GB is, so nothing of a source's record is in it.
+1. The current item of every family, named (the inventory of what goes into v2/), what the three ledgers' local-only 125 GB is, and the whole-drive scan by folder size, every folder over 1 GB placed.
 2. v2/ built by copying, with its manifest, and your proof that your tools run from it.
 3. Tell me when v2/ is up; I run my proof against it.
 4. The totals for the owner's go, then step 4.
