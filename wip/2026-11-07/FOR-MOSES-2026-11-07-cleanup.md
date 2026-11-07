@@ -54,6 +54,8 @@ The sources (the raws, the collected scans, the source caches); every ledger's c
 
 The owner: "we really just want to restructure the data entirely i imagine, our latest versions dont run off the imported chatgpt codex old stuff", and: "we dont need a 'save every version' rule i dont care. its your website as much as mine i trust you to be smart and careful."
 
+And on where the rule to keep every version came from: "we are so far past save every version. that was a rule i made with codex because he would frequently forget the thing i just told him and couldnt even get a hud working." The rule is retired. What a lane must not forget now lives in the ledgers, the rules, the checks, the receipts and the letters, which stay; copies of superseded builds were never that memory.
+
 So the three moves above become one restructure: a fresh layout holding only what is current, proven, then the old layout deleted whole. What the evidence says first:
 
 - **The site's repository is complete for serving.** Everything the site took from your lane is copied into reader/data (the witnessed orders v2.7, the piece store v2, the span store v2, the 36 ledgers, the hud record, the toggles, the source-suggested order), with the records of every change (the row-strike record, the ledger answers, the receipts). Its git history holds every served store version since September (26 of them), so the store's past is kept there for nothing.
