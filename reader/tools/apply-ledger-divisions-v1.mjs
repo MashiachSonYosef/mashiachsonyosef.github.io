@@ -77,6 +77,8 @@ import { gzipSync, gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { PRINT_RULES, printOf, selfTest } from "./ledger-print-v1.mjs";
 import { printUnder, kindOf, selfTestDeclaration, stepsOf } from "./ledger-print-from-declaration-v1.mjs";
+// the hand table's share of the print steps, in words: since v135.2 and v123.2 it holds none, and the index says so
+const HAND_TABLE_WORDS = Object.keys(PRINT_RULES).length ? `tools/ledger-print-v1.mjs, the hand table, for the rest (${Object.keys(PRINT_RULES).length})` : "the hand table (tools/ledger-print-v1.mjs) holds none";
 // the print steps the declarations carry (ask v1.2): ruleKey -> the option, read beside the hand table
 const DATA_RULES = new Map();
 
@@ -412,7 +414,7 @@ index.ledgers = {
   untabled: manifest.untabled || {},
   unledgered: unledgered(),
   what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger is one reading as written, whole (7 November 2026: the comma rule the page had guessed retired), and those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
-  print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"}; tools/ledger-print-v1.mjs, the hand table, for the rest`,
+  print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"}; ${HAND_TABLE_WORDS}`,
   span_store: { file: "reader/data/span-store/<book>.json", ...Object.fromEntries(Object.entries(spanCounts).filter(([k]) => k !== "by_source")) },
   sources: Object.fromEntries(Object.entries(sources).map(([k, s]) => [k, { relay: s.relay, declaration_sha256: s.declaration_sha256, classifier_sha256: s.classifier_sha256, m_ids: s.m_ids, shapes: s.shapes, shapes_dividing: s.shapes_dividing, branches: Object.fromEntries(Object.entries(s.branches).map(([id, b]) => [id, { option: b.option, resting: b.resting, by: b.by, on: b.on, ...(b.prints ? { prints: b.prints, print_step_from: b.print_step_from } : {}) }])), rows: s.rows, rows_dividing: s.rows_dividing, rows_printing_a_part: s.rows_printing_a_part, rows_no_pill: s.rows_no_pill, uncovered: s.uncovered }])),
   totals,
@@ -455,5 +457,5 @@ for (const [dir, ix, ixPath, bodies, moved, keyOfOvM, d] of overlayWrites) {
 }
 if (now !== was) { index.store_version = now; index.store_version_history = [...(index.store_version_history || []), { was, now, why: LEDGER_DIVISION_RULE_ID, on }]; }
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
-writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); tools/ledger-print-v1.mjs, the hand table, for the rest`, ran_at: on, store_version: { was, now }, totals, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered }, overlays: { ...overlayCounts, uncovered_rows: overlayUncovered } }, null, 1));
+writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); ${HAND_TABLE_WORDS}`, ran_at: on, store_version: { was, now }, totals, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered }, overlays: { ...overlayCounts, uncovered_rows: overlayUncovered } }, null, 1));
 console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · index.ledgers names ${ledgers.size} ledgers · receipt ${RECEIPT}`);
