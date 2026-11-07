@@ -47,8 +47,11 @@
 //      rule that keeps a part cannot combine with a cut on the same row, and
 //      this tool refuses the store rather than guess.
 //
-// A source with no ledger in data/ledgers-v1 keeps the generic rule, and the
-// manifest says which and why (Strong's 1890, whose ledger the owner tabled).
+// A store source with no ledger in data/ledgers-v1 keeps the generic rule, and
+// the manifest says which and why (none from 7 November 2026: Strong's 1890,
+// the last, untabled by the owner). The dictionaries beside the store (the
+// overlays) and the span store's own sources keep the generic rule until their
+// ledgers land; index.ledgers.unledgered names each with its rows.
 //
 //   5. (6 November 2026, the code review) The span store's rows
 //      (data/span-store/<book>.json) take the same slots the same way: a
@@ -247,6 +250,7 @@ for (const [shardName, body] of shards) {
 const SPAN = arg("span-store", join(K3, "data", "span-store"));
 const spanCounts = { books: 0, rows: 0, rows_of_ledgered_sources: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, rows_whose_slot_moved: 0, uncovered: 0, by_source: {} };
 const spanUncovered = [];
+const spanRowsByUnledgeredId = {};
 if (existsSync(join(SPAN, "index.json"))) {
   const spanIndex = JSON.parse(readFileSync(join(SPAN, "index.json"), "utf8"));
   const keyOfSpanM = (m) => keyOfM(m) || ((spanIndex.m_sources || {})[m] || {}).key || null;
@@ -262,7 +266,7 @@ if (existsSync(join(SPAN, "index.json"))) {
       spanCounts.rows += 1;
       const key = keyOfSpanM(String(row[3]));
       const L = key && ledgers.has(key) ? ledgers.get(key) : null;
-      if (!L) { if (setSlots(row, [], null)) moved += 1; continue; }
+      if (!L) { spanRowsByUnledgeredId[String(row[3])] = (spanRowsByUnledgeredId[String(row[3])] || 0) + 1; if (setSlots(row, [], null)) moved += 1; continue; }
       spanCounts.rows_of_ledgered_sources += 1;
       const bs = (spanCounts.by_source[key] ||= { rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, uncovered: 0 });
       bs.rows += 1;
@@ -303,6 +307,29 @@ for (const [key, s] of Object.entries(sources)) if (s.rows) console.log(`  ${key
 for (const u of uncovered.slice(0, 12)) console.log(`  uncovered: ${u.source} ${u.key}#${u.rank} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 
+// the sources still on the generic rule, named with their rows: the dictionaries
+// beside the store (data/overlays/*/index.json) and the span store's own sources
+// (data/span-store/index.json), none of which has a ledger yet
+const unledgered = () => {
+  const out = {};
+  const OV = join(K3, "data", "overlays");
+  if (existsSync(OV)) for (const d of readdirSync(OV)) {
+    const p = join(OV, d, "index.json"); if (!existsSync(p)) continue;
+    const ix = JSON.parse(readFileSync(p, "utf8"));
+    let byId = (ix.counts || {}).store_rows_by_m_id || null;
+    if (!byId && existsSync(join(OV, d, "shards"))) {   // an overlay whose index does not count its rows by id: counted from its shards
+      byId = {};
+      for (const f of readdirSync(join(OV, d, "shards")).filter((x) => x.endsWith(".bin"))) { const body = JSON.parse(gunzipSync(readFileSync(join(OV, d, "shards", f))).toString("utf8")); for (const rows of Object.values(body)) for (const r of rows) byId[String(r[3])] = (byId[String(r[3])] || 0) + 1; }
+    }
+    for (const [id, m] of Object.entries(ix.m_sources || {})) if (!ledgers.has(m.key)) out[id] = { key: m.key, where: `overlay ${d}`, rows: (byId || {})[id] ?? null };
+  }
+  if (existsSync(join(SPAN, "index.json"))) {
+    const six = JSON.parse(readFileSync(join(SPAN, "index.json"), "utf8"));
+    for (const [id, m] of Object.entries(six.m_sources || {})) if (!keyOfM(id) && !ledgers.has(m.key)) out[id] = { key: m.key, where: "the span store's own source", rows: spanRowsByUnledgeredId[id] || 0 };
+  }
+  return out;
+};
+
 // ---- write: the shards that moved, the index, the receipt ---------------------------
 for (const name of touched) writeFileSync(join(STORE, "shards", name), gzipSync(Buffer.from(JSON.stringify(shards.get(name))), { level: 9 }));
 const digest = createHash("sha256"); let shardBytes = 0;
@@ -313,7 +340,9 @@ index.ledgers = {
   rule_id: LEDGER_DIVISION_RULE_ID, applied_on: on, manifest: "reader/data/ledgers-v1/manifest.json", ask: manifest.ask, checker: manifest.checker,
   answers: answersBytes ? { file: "reader/data/ledger-branch-answers-v1.json", sha256: sha256(answersBytes) } : null,
   excluded: Object.fromEntries(Object.entries(manifest.excluded || {}).map(([k, why]) => [k, { why, rows: unledgeredRows[k] || 0 }])),
-  what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger keeps the generic rule",
+  untabled: manifest.untabled || {},
+  unledgered: unledgered(),
+  what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger keeps the generic rule, and from 7 November 2026 those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
   print_step: "tools/ledger-print-v1.mjs",
   span_store: { file: "reader/data/span-store/<book>.json", ...Object.fromEntries(Object.entries(spanCounts).filter(([k]) => k !== "by_source")) },
   sources: Object.fromEntries(Object.entries(sources).map(([k, s]) => [k, { relay: s.relay, declaration_sha256: s.declaration_sha256, classifier_sha256: s.classifier_sha256, m_ids: s.m_ids, shapes: s.shapes, shapes_dividing: s.shapes_dividing, branches: Object.fromEntries(Object.entries(s.branches).map(([id, b]) => [id, { option: b.option, resting: b.resting, by: b.by, on: b.on, ...(b.prints ? { prints: b.prints } : {}) }])), rows: s.rows, rows_dividing: s.rows_dividing, rows_printing_a_part: s.rows_printing_a_part, rows_no_pill: s.rows_no_pill, uncovered: s.uncovered }])),

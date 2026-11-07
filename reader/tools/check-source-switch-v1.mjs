@@ -16,8 +16,12 @@
 //   S2  the receipt's sources agree with the chips, and its counts with the
 //       zone's own gloss_m (every printed reading carries its carriers)
 //   S3  a source with SOLE carriage of some line, switched off: that line
-//       moves to the baked alternate, the chip on the line names the
-//       alternate's witness, and the card's first pill says the same
+//       moves to its alternate, the chip on the line names the alternate's
+//       witness, and the card's first pill says the same. Under "only this
+//       pointing" (the default, 2026-11-06) a graded word's line is the
+//       sidecar's row-level leader (o.l) with ITS carriers, and its
+//       alternate the filter's own (o.la, 7 November 2026); an ungraded
+//       word's line is the table's, with gloss_m's carriers and alternate
 //   S4  a line the same source carries WITH another carrier stays carried:
 //       it never goes dark, it says what its card's first pill says, and it
 //       does not move unless its card's lead moved (the switched-off carrier
@@ -48,6 +52,27 @@ for (const z of zonesServed()) {
 }
 if (!ZONE) { console.log("SKIPPED — no served zone carries the source switches' receipt; run tools/regloss-zone.mjs"); process.exit(3); }
 const rec = zone.emitted_from.toggles.sources;
+// the lattice sidecar, for what the line reads under the default pointing
+const side = existsSync(`data/zones/${ZONE}.lattice.bin`) ? JSON.parse(gunzipSync(readFileSync(`data/zones/${ZONE}.lattice.bin`)).toString("utf8")) : null;
+const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
+// WHAT THE LINE READS AND WHO CARRIES IT, for a word standing alone under
+// "oldest first" with the pointing kept ("only", the default): a graded
+// surface reads the sidecar's lenient leader, carried by the kept rows it
+// names, and falls to the filter's own alternate; a name that leads under
+// "only" (nl) is the table's line and is left out here, its carriage being
+// the table's and its alternate the leader's; an ungraded surface reads the
+// table, with gloss_m's carriers and alternate
+const modelOf = (surface, k) => {
+  const gm = zone.gloss_m[k]; if (!gm || !gm.by) return null;
+  const gr = side && side.grades ? side.grades[surface] : null;
+  if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) {
+    if (gr.nl && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, k) && zone.gloss[k] === zone.gloss_names[k]) return null;
+    const l = gr.o.l; if (!l || !Array.isArray(l[4]) || !l[4].length) return null;
+    const la = gr.o.la;
+    return { text: l[0], by: l[4], alt: la ? { text: la[0], m: la[1], by: la[4] } : null, from: "sidecar" };
+  }
+  return { text: zone.gloss[k], by: gm.by, alt: gm.alt || null, from: "table" };
+};
 // THE OVERLAYS' CHIPS (overlay-book-counts-rule-v1): Jastrow's and the
 // Samaritan dictionaries' sources stand on the strip beside the receipt's, one
 // chip per source key that carries something on this book, from their own
@@ -267,22 +292,27 @@ const visible = await p.evaluate(() => [...document.querySelectorAll("section.se
 const kOf = (s) => { for (const sec of zone.sections) for (const w of sec.words || []) if (w.s === s) return w.k || (w.w && w.w[0] && w.w[0].k) || null; return null; };
 const groups = new Map();
 for (const [id, s] of Object.entries(rec.sources)) { const gk = s.key || id; if (!groups.has(gk)) groups.set(gk, []); groups.get(gk).push(id); }
-let pick = null;
+let pick = null, modelled = 0, disagree = 0;
+const lineSays = (v) => v.line.replace(/\s*(CC|Public|License).*$/u, "").trim().toLowerCase();
 for (const [gk, ids] of groups) {
   const set = new Set(ids);
   let sole = null, shared = null, dark = null;
   for (const v of visible) {
     if (v.bare || v.regions > 1) continue;
     const k = kOf(v.s); const gm = k && zone.gloss_m[k]; if (!gm || !gm.by) continue;
-    const all = gm.by.every((m) => set.has(m)), some = gm.by.some((m) => set.has(m));
-    if (all && gm.alt && !gm.alt.by.every((m) => set.has(m)) && !sole) sole = { ...v, k, gm };
-    if (all && !gm.alt && !dark) dark = { ...v, k, gm };
-    if (some && !all && !shared) shared = { ...v, k, gm };
+    const model = modelOf(v.s, k); if (!model) continue;
+    // the model must read what the page prints, or it models nothing
+    modelled += 1;
+    if (spanJoin(model.text).toLowerCase() !== lineSays(v)) { disagree += 1; continue; }
+    const all = model.by.every((m) => set.has(m)), some = model.by.some((m) => set.has(m));
+    if (all && model.alt && !model.alt.by.every((m) => set.has(m)) && !sole) sole = { ...v, k, gm, model };
+    if (all && !model.alt && !dark) dark = { ...v, k, gm, model };
+    if (some && !all && !shared) shared = { ...v, k, gm, model };
   }
   if (sole && shared) { pick = { gk, ids, sole, shared, dark }; break; }
 }
-check("  a source that solely carries one visible line (with an alternate) and shares another stands on the page", !!pick,
-  pick ? `${pick.gk} (${pick.ids.join(" ")}) · sole: ${pick.sole.s} "${pick.sole.line}" · shared: ${pick.shared.s}` : "none in the first 120 words");
+check("  a source that solely carries one visible line (with an alternate) and shares another stands on the page, and the lines read as modelled", !!pick && disagree === 0,
+  `${modelled} lines modelled, ${disagree} read otherwise · ${pick ? `${pick.gk} (${pick.ids.join(" ")}) · sole: ${pick.sole.s} "${pick.sole.line}" (${pick.sole.model.from}) · shared: ${pick.shared.s}` : "none in the first 120 words"}`);
 // the Hebrew ink of the first section, without the English lines under it
 const inkOf = () => p.evaluate(() => { const c = document.querySelector("section.seg .he-text").cloneNode(true); c.querySelectorAll(".g").forEach((x) => x.remove()); return c.textContent; });
 // what a word's card offers first, and its line without the chip
@@ -310,9 +340,9 @@ const pressed = await p.evaluate((gk) => {
 await p.waitForTimeout(700);
 const after = await p.evaluate((idx) => idx.map((i) => { const wb = document.querySelectorAll("section.seg .he-text .wb")[i]; const g = wb.querySelector(".g"); return { line: g.textContent.replace(/\s+/g, " ").trim(), chip: (g.querySelector(".g-lic") || {}).title || "", bare: g.classList.contains("bare") }; }), pick ? [pick.sole.i, pick.shared.i] : [0, 0]);
 // S3
-const altText = pick ? String(pick.sole.gm.alt.text) : "";
-check("S3  the solely-carried line moved to the baked alternate, and its chip names the alternate's witness",
-  pressed && pick && after[0].line.toLowerCase().startsWith(altText.toLowerCase().slice(0, 12)) && after[0].chip.includes(pick.sole.gm.alt.m.slice(0, 20)),
+const altText = pick ? spanJoin(pick.sole.model.alt.text) : "";
+check("S3  the solely-carried line moved to its alternate, and its chip names the alternate's witness",
+  pressed && pick && after[0].line.toLowerCase().startsWith(altText.toLowerCase().slice(0, 12)) && after[0].chip.includes(pick.sole.model.alt.m.slice(0, 20)),
   pick ? `"${pick.sole.line}" -> "${after[0].line}" · alt "${altText}" · chip "${after[0].chip.slice(0, 50)}"` : "");
 // S4 · held still outright until the line came to follow the card
 // (2026-09-24): with one carrier off, the card can rank the reading lower —
@@ -323,7 +353,7 @@ const same = (a, b) => String(a).trim().toLowerCase() === String(b).trim().toLow
 const s4 = pick && sharedBefore && sharedAfter && !after[1].bare && same(sharedAfter.line, sharedAfter.first)
   && (same(sharedBefore.first, sharedAfter.first) ? after[1].line === pick.shared.line : true);
 check("S4  the shared line stays carried: never dark, its card's first pill, and still unless the card's lead moved", s4,
-  pick && sharedAfter ? `"${pick.shared.line}" (carriers ${pick.shared.gm.by.join(",")}) -> "${after[1].line}" · card led "${sharedBefore.first}", now "${sharedAfter.first}" · line "${sharedAfter.line}" bare ${after[1].bare}` : "");
+  pick && sharedAfter ? `"${pick.shared.line}" (carriers ${pick.shared.model.by.join(",")}) -> "${after[1].line}" · card led "${sharedBefore.first}", now "${sharedAfter.first}" · line "${sharedAfter.line}" bare ${after[1].bare}` : "");
 
 // S5 · open the card on the moved word
 await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i]; (w.querySelector(".w span") || w.querySelector(".w")).click(); }, pick ? pick.sole.i : 0);

@@ -11,8 +11,11 @@
 // that the page reads the data:
 //
 //   D1  every source the store serves is under a ledger the index names, with
-//       the rows the index counts, or is excluded with why (Strong's 1890,
-//       whose ledger the owner tabled), and no served source is both or neither
+//       the rows the index counts, or is excluded with why (none from 7
+//       November 2026: Strong's 1890, the last, was untabled), no served source
+//       is both or neither, and the sources still on the generic rule are
+//       exactly the ones the index names (the dictionaries beside the store,
+//       the span store's own two)
 //   D2  each ledger's two files on disk are the bytes the index and the
 //       manifest pin, and the index's answer to every branch is the answers
 //       file's, or the declaration's resting option where none was given
@@ -97,8 +100,16 @@ if (!ONLY || ONLY === "D1") {
     if (recount !== S.rows) faults.push(`${key}: the index counts ${nf(S.rows)} rows, the shards hold ${nf(recount)}`);
     for (const m of S.m_ids) if ((index.m_sources[m] || {}).ledger !== key) faults.push(`${key} names ${m}, which is not under it`);
   }
-  check("D1  every served source is under a ledger the index names, with the rows it counts, or excluded with why", faults.length === 0,
-    faults.length ? faults.slice(0, 4).join(" · ") : `${Object.keys(L.sources).length} ledgers over ${nf(Object.values(L.sources).reduce((a, s) => a + s.rows, 0))} rows · excluded: ${Object.entries(L.excluded || {}).map(([k, v]) => `${k} (${nf(v.rows)} rows)`).join(", ") || "none"}`);
+  // the sources still on the generic rule: exactly the overlays' ids and the span store's own, as the index names them
+  const named = new Set(Object.keys(L.unledgered || {}));
+  const OV = join(K3, "data", "overlays");
+  const found = new Set();
+  if (existsSync(OV)) for (const d of readdirSync(OV)) { const p = join(OV, d, "index.json"); if (!existsSync(p)) continue; for (const [id, m] of Object.entries(JSON.parse(readFileSync(p, "utf8")).m_sources || {})) if (!L.sources[m.key]) found.add(id); }
+  { const p = join(K3, "data", "span-store", "index.json"); if (existsSync(p)) for (const [id, m] of Object.entries(JSON.parse(readFileSync(p, "utf8")).m_sources || {})) if (!index.m_sources[id] && !L.sources[m.key]) found.add(id); }
+  for (const id of found) if (!named.has(id)) faults.push(`${id} is on the generic rule and the index does not name it`);
+  for (const id of named) if (!found.has(id)) faults.push(`the index names ${id} as on the generic rule, and it is not`);
+  check("D1  every served source is under a ledger the index names, with the rows it counts, or excluded with why; the sources still on the generic rule are exactly the ones the index names", faults.length === 0,
+    faults.length ? faults.slice(0, 4).join(" · ") : `${Object.keys(L.sources).length} ledgers over ${nf(Object.values(L.sources).reduce((a, s) => a + s.rows, 0))} rows · excluded: ${Object.entries(L.excluded || {}).map(([k, v]) => `${k} (${nf(v.rows)} rows)`).join(", ") || "none"} · on the generic rule: ${Object.entries(L.unledgered || {}).map(([id, u]) => `${id} (${u.where}${u.rows !== null && u.rows !== undefined ? `, ${nf(u.rows)} rows` : ""})`).join(", ") || "none"}`);
 }
 
 // D2
@@ -279,7 +290,12 @@ const pillsOnCard = async (pw, launchOptions, defaultZoneUrl, pick) => {
   const OV_DIR = join(K3, "data", "overlays");
   const OV_IDS = existsSync(OV_DIR) ? readdirSync(OV_DIR).filter((d) => existsSync(join(OV_DIR, d, "index.json")))
     .flatMap((d) => Object.keys(JSON.parse(readFileSync(join(OV_DIR, d, "index.json"), "utf8")).m_sources || {})) : [];
-  await p.addInitScript((ids) => { try { localStorage.clear(); localStorage.setItem("fh.sources.off", JSON.stringify(ids)); } catch { /* a device that remembers nothing still reads */ } }, OV_IDS);
+  // the pointing is lifted ("keep", past the one-time forgetting of
+  // 2026-11-06), so every row of the key is on the card: the claim here is
+  // the ledger's division of a row, not the pointing filter, which withholds
+  // a row pointed otherwise (Amos 1:1 דברי: Strong's «Dibri , an Israelite»
+  // under the default was not on the card to be read whole)
+  await p.addInitScript((ids) => { try { localStorage.clear(); localStorage.setItem("fh.sources.off", JSON.stringify(ids)); localStorage.setItem("fh.pointing-stands-2026-11-06", "1"); localStorage.setItem("fh.masorah", "keep"); } catch { /* a device that remembers nothing still reads */ } }, OV_IDS);
   const BASE = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "").split("?")[0];
   await p.goto(`${BASE}?b=${pick.book}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
@@ -315,9 +331,12 @@ if (!ONLY || ONLY === "D5") {
             const whole = String(r[1]).trim().toLowerCase();
             const pieces = store.readingSplit(String(r[1])).readings.map((x) => x.toLowerCase());
             if (pieces.length < 2 || pieces.includes(whole)) return false;
-            // no other row under this key offers any of those pieces, nor the whole text
-            const others = new Set(rows.filter((o) => o !== r).flatMap((o) => store.readingsOf(o).map((x) => x.toLowerCase())));
-            return pieces.every((pc) => !others.has(pc)) && !others.has(String(r[1]).trim().toLowerCase());
+            // no other row under this key offers any of those pieces, nor the whole text,
+            // compared as the card prints a pill (a closing stop dropped, "/" as " + "):
+            // Strong's «Dibri.» prints «Dibri», the generic piece of its own «Dibri , an Israelite»
+            const disp = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "").toLowerCase();
+            const others = new Set(rows.filter((o) => o !== r).flatMap((o) => store.readingsOf(o).map(disp)));
+            return pieces.every((pc) => !others.has(disp(pc))) && !others.has(disp(String(r[1]).trim()));
           }));
   if (!pick) check("D5  a ledgered row the generic rule would divide stands on the page as its ledger says", false, "no served word carries such a row");
   else {
