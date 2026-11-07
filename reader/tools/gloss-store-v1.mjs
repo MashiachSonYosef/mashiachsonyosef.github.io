@@ -1,4 +1,4 @@
-// Synthesis lane · zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary
+// Synthesis lane · zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
 //
 // The default reading printed under a word used to be chosen in the browser,
 // which meant the rule lived in a page: it could not be reviewed, diffed, or
@@ -10,12 +10,14 @@
 // The rule, declared before output:
 //   1. Key exactly. A gloss is found by the byte-exact K of the written form
 //      (k-normalization-v1.mjs, FRAME rule 7). Nothing folded, nothing split.
-//   2. A route text packs senses with ";", and a sense divides into readings
-//      at the commas outside the provider's parentheses where every piece is a gloss — sense-split-rule-v3,
-//      imported from its own file, never re-guessed here. One reading is
-//      displayed at a time, in every packing — so a stored gloss is one
-//      reading, never a joined list. A sense the rule holds back as damaged
-//      is not printable and does not pool: corrupted text is not a word's face.
+//   2. A row divides into readings only as its source's own ledger says
+//      (ledger-division-rule-v2: the marks in row[7], the prints in row[8]);
+//      a source with no ledger is one reading as written, whole, until its
+//      ledger lands (the owner, 7 November 2026: the comma rule the page
+//      had guessed for every dictionary retired that day; what still had no
+//      ledger, the dictionaries beside the store and the span store's own
+//      two sources, prints whole). One reading is displayed at a time, in
+//      every packing — so a stored gloss is one reading, never a joined list.
 //   3. Senses pool across every exact route for that K, deduped by the PRINTED
 //      FORM, case folded: the "/" pieces joined with " + ", one closing stop
 //      dropped (readingKey below, the page's spanJoin). Two readings that print
@@ -55,12 +57,11 @@
 //      rewritten here.
 
 import { readFileSync, existsSync } from "node:fs";
-import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
 
-export const GLOSS_RULE_ID = "zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary";
+export const GLOSS_RULE_ID = "zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary";
 // THE PRINTED FORM (rule 3): what a reader sees of a reading. Two readings
 // whose printed forms agree, case folded, are one reading. Exported so the
 // projector, the checks and the page's mirror key the pool the same way.
@@ -72,9 +73,8 @@ export const ERA_CUT_AD = 1940;
 export const GLOSS_RULE_TEXT =
   "a source under a ledger (index.m_sources[m].ledger; ledger-division-rule-v2) divides its route text into readings " +
   "only at the marks its row names (row[7]), prints the texts its print slot names (row[8]: a part of itself, or no pill) where its ledger and the owner say so, and a row that names neither is one reading as the source wrote it, brackets and all; " +
-  "a source with no ledger packs senses with ';' and a sense divides into readings at the commas outside the " +
-  "provider's parentheses, where every piece is shaped like a gloss (sense-split-rule-v3); each division is one reading; a damaged sense is " +
-  "held whole and neither printed nor pooled; pool = every reading of every exact route, deduped by " +
+  "a source with no ledger is one reading as written, whole, until its ledger lands (7 November 2026); " +
+  "pool = every reading of every exact route, deduped by " +
   "the printed form case folded (the '/' pieces joined with ' + ', one closing stop dropped), with min year and min rank and every carrier of either; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
   "reading stored verbatim; the page joins '/'-packed spans with ' + '; " +
   "one reading on display at a time, everywhere";
@@ -118,19 +118,6 @@ export const openRouteStore = (storeDir) => {
   /** Every exact route row for K, or null when the catalog has no exact entry. */
   const routesFor = (k) => shardBody(shardOf(k))[k] || null;
 
-  const packSplit = (text) => {
-    const t = String(text || "");
-    const out = []; let start = 0, d = 0;
-    for (let i = 0; i < t.length; i += 1) {
-      const c = t[i];
-      if (c === "(") d += 1;
-      else if (c === ")") { if (d > 0) d -= 1; }
-      else if (c === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; }
-    }
-    out.push(t.slice(start));
-    if (out.join(";") !== t) return [t.trim()].filter(Boolean);
-    return out.map((x) => x.trim()).filter(Boolean);
-  };
 
   /** LEDGER DIVISION (ledger-division-rule-v2, 6 November 2026). The readings
    *  of one store row. A source under a ledger (index.m_sources[m].ledger: the
@@ -139,21 +126,16 @@ export const openRouteStore = (storeDir) => {
    *  into row[7] from the source's own classifier under the owner's answers;
    *  with no slot the row is one reading, as the source wrote it, brackets and
    *  all: the ledger declared every mark, so nothing is "damaged" and nothing
-   *  is hidden. A source with no ledger keeps the generic rule: senses at the
-   *  pack mark, readings at the comma rule, a damaged sense held back. From 7
-   *  November 2026 every store source is under a ledger (Strong's 1890, the
+   *  is hidden. A source with no ledger is one reading as written, whole. From
+   *  7 November 2026 every store source is under a ledger (Strong's 1890, the
    *  last, untabled by the owner); the dictionaries beside the store and the
-   *  span store's own two sources keep the generic rule until their ledgers
-   *  land, and the store's index names them (index.ledgers.unledgered). */
+   *  span store's own two sources print whole until their ledgers land, and
+   *  the store's index names them (index.ledgers.unledgered). The comma rule
+   *  the page had guessed for them (sense-split-v1) retired that day. */
   const ledgerOf = (mId) => ((index.m_sources || {})[String(mId)] || {}).ledger || null;
-  const genericReadings = (text) => {
-    const out = [];
-    for (const sense of packSplit(text)) { const r = readingSplit(sense); if (r.damaged) continue; out.push(...r.readings); }
-    return out;
-  };
   const readingsOf = (row) => {
     const text = String(row[1] ?? "");
-    if (!ledgerOf(row[3])) return genericReadings(text);
+    if (!ledgerOf(row[3])) { const t = text.trim(); return t ? [t] : []; }
     // the print slot (ledger-division-rule-v2): where the row's ledger and the
     // owner's answer say the row prints a part of itself, or no pill, row[8]
     // holds the texts ([] for no pill), and the row prints those and nothing else
@@ -170,8 +152,7 @@ export const openRouteStore = (storeDir) => {
    *  rule cut from one). The credited sources' rows are searched first, and
    *  the others only when none of theirs accounts for the text: the row whose
    *  route is the text, else one whose readings under the store's rule now
-   *  hold it, else one whose generic readings hold it. null where no served
-   *  row accounts for the text. (The code review of 6 November 2026: an exact
+   *  hold it. null where no served row accounts for the text. (The code review of 6 November 2026: an exact
    *  row of ANY source was taken before the credited source's holding row, so
    *  a column kept a reading its credited source no longer gave.) */
   const rowOfText = (k, text, mIds = null) => {
@@ -180,7 +161,7 @@ export const openRouteStore = (storeDir) => {
     const ids = Array.isArray(mIds) ? mIds.map(String) : [];
     const tk = readingKey(t);
     const exact = (list) => list.find((r) => String(r[1]) === t) || null;
-    const holds = (list) => list.find((r) => readingsOf(r).some((x) => readingKey(x) === tk)) || list.find((r) => genericReadings(String(r[1])).some((x) => readingKey(x) === tk)) || null;
+    const holds = (list) => list.find((r) => readingsOf(r).some((x) => readingKey(x) === tk)) || null;
     if (ids.length) { const mine = rows.filter((r) => ids.includes(String(r[3]))); const hit = exact(mine) || holds(mine); if (hit) return hit; }
     const others = ids.length ? rows.filter((r) => !ids.includes(String(r[3]))) : rows;
     return exact(others) || holds(others);
@@ -234,10 +215,7 @@ export const openRouteStore = (storeDir) => {
       const parsed = Number.parseInt(year, 10);
       const yr = Number.isInteger(parsed) ? parsed : Infinity;
       // The row's readings are what its source's rule gives (readingsOf above):
-      // a ledgered source's own division, or the generic one. Under the generic
-      // rule the pack mark separates at parenthesis depth zero and nowhere
-      // else, each sense divides at the declared comma rule, and a sense the
-      // rule holds back as damaged neither prints nor pools.
+      // a ledgered source's own division, or the whole text where it has none.
       readingsOf(row).forEach((reading) => {
           const key = readingKey(reading);
           const g = groups.get(key);
@@ -369,12 +347,9 @@ export const openRouteStore = (storeDir) => {
     return { table, deltas, counts, sha256: createHash("sha256").update(body).digest("hex") };
   };
 
-  // packSplit rides on the store so a consumer that must ask "which licensed
-  // route carries this exact reading" divides the route text under the
-  // store's own depth rule instead of re-implementing it. readingSplit rides
-  // for the same reason and was missing: on 2026-09-15 this lane needed the
-  // comma rule to attribute a reading to its sources, could not import it,
-  // and wrote a second copy. Two implementations of one rule is the fault
-  // packSplit's own comment names, and it had it half done.
-  return { index, routesFor, readingPool, glossFor, tableFor, packSplit, readingSplit, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, ORDERS };
+  // readingsOf rides on the store so a consumer that must ask "what does this row
+  // print" asks the store's own rule instead of re-implementing it (7 November
+  // 2026: the generic split helpers that rode here, packSplit and readingSplit,
+  // retired with the comma rule).
+  return { index, routesFor, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, ORDERS };
 };

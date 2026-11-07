@@ -82,41 +82,16 @@ const wordsOf = (s) => String(s || "").split(/[\s\u05be]+/u).filter(Boolean);
 // a reading as the card prints it: "/" pieces joined with " + ", one closing
 // period dropped
 const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
-// a text's senses, at the semicolons outside its parentheses
-const senseSplit = (text) => {
-  const t = String(text || ""); const out = []; let start = 0, d = 0;
-  for (let i = 0; i < t.length; i += 1) {
-    if (t[i] === "(") d += 1; else if (t[i] === ")") { if (d > 0) d -= 1; } else if (t[i] === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; }
-  }
-  out.push(t.slice(start));
-  return out.map((x) => x.trim()).filter(Boolean);
-};
-// a sense's readings, at the commas outside its parentheses; a sense whose
-// parentheses do not balance is damaged and draws no pill; a page citation
-// is not a reading, unless it is all the sense holds
-const readingSplit = (text) => {
-  const s = String(text); let depth = 0;
-  for (const c of s) { if (c === "(") depth += 1; else if (c === ")") { depth -= 1; if (depth < 0) return { readings: [s], damaged: true }; } }
-  if (depth !== 0) return { readings: [s], damaged: true };
-  const raw = []; let start = 0; depth = 0;
-  for (let i = 0; i < s.length; i += 1) { const c = s[i]; if (c === "(") depth += 1; else if (c === ")") depth -= 1; else if (c === "," && depth === 0) { raw.push(s.slice(start, i)); start = i + 1; } }
-  raw.push(s.slice(start));
-  const pieces = raw.map((x) => x.trim()).filter(Boolean);
-  // a comma divides glosses, never a sentence (the engine's rule, tools/sense-split-v1.mjs rule 5)
-  const glossShaped = (piece) => { const bare = piece.replace(/\([^()]*\)/gu, " ").trim(); const w = bare.split(/\s+/u).filter(Boolean); return w.length > 0 && w.length <= 4 && !/^(and|or|nor|but)$/iu.test(bare); };
-  const glosses = pieces.every(glossShaped) ? pieces : [...pieces.filter(glossShaped), s.trim()];
-  const readings = glosses.filter((x) => !/^p{1,2}\.\s*\d/u.test(x));
-  return { readings: readings.length ? readings : glosses, damaged: false };
-};
 const isNoDerivs = (key) => /(^|[^a-z])nd([^a-z]|$)/iu.test(String(key || "")) || /noderiv/iu.test(String(key || ""));
 // the pieces a row prints: whole for a NoDerivatives source; as its row says for
 // a source under a ledger (ledger-division-rule-v2: the print slot row[8], else
-// the cuts in row[7], else whole); the generic rule otherwise
+// the cuts in row[7], else whole); whole for a source with no ledger (7 November
+// 2026: the comma rule the page guessed for it retired)
 const piecesOf = (row, src) => {
   const t = String(row[1]);
   if (isNoDerivs(src.licensePosture)) return [t];
   if (src.ledger) { if (Array.isArray(row[8])) return row[8].map((x) => String(x)); const cuts = Array.isArray(row[7]) ? row[7] : []; if (!cuts.length) return [t.trim()].filter(Boolean); const out = []; let from = 0; for (const i of cuts) { out.push(t.slice(from, i)); from = i + 1; } out.push(t.slice(from)); return out.map((x) => x.trim()).filter(Boolean); }
-  return senseSplit(t).flatMap((sense) => { const r = readingSplit(sense); return r.damaged ? [] : r.readings; });
+  return [t.trim()].filter(Boolean);
 };
 // a ketiv/qere place reads "(ketiv) [qere]": its pointing is the qere's, and
 // the ketiv's letters stand there too

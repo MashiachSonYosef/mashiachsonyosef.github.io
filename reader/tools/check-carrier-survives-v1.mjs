@@ -196,7 +196,7 @@ for (const k of sample) {
   // C7 · turn the leading reading's first carrier off.
   //
   // "The same reading" is the pool's own identity, which is the printed form
-  // case folded (readingKey, zone-gloss-rule-v6: the "/" pieces joined, one
+  // case folded (readingKey, the gloss rule since its v6 of 7 November 2026: the "/" pieces joined, one
   // closing stop dropped) — that is what the merge dedupes on, so it is what a
   // claim about inventing has to be made in. Comparing displayed text instead reports a
   // handover as an invention: on אכד the pool holds "Akkad" from M5 and

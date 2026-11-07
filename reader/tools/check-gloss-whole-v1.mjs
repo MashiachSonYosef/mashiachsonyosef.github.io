@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // The reading under a word is shown whole, in both readers, and the page does
 // not move while it is being read.
-// GUARDS: zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary
+// GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
 //
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();

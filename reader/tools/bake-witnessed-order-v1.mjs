@@ -18,12 +18,13 @@
 // November that rule was the generic one (packSplit, then
 // sense-split-rule-v3); from that day it is the row's own ledger
 // (ledger-division-rule-v2: the marks row[7] names, the texts row[8]
-// prints, else the row whole). The line takes the row's first reading; the
+// prints, else the row whole), and from 7 November 2026 a source with no
+// ledger stands whole, the generic rule retired on the owner's word. The
+// line takes the row's first reading; the
 // M is the one the lane found or built for that row, verbatim. Nothing is
 // picked. A key is refused, not baked, when its M lacks a licence or a name,
 // when the zone has no reading of its own at that key (the column is an
-// order over the zone's words, never an addition), when the rule holds every
-// sense of the row back as damaged (the card would not offer it), or when
+// order over the zone's words, never an addition), or when
 // the row prints no pill under the owner's answer to its ledger's branch
 // (ledger-division-rule-v2: the card does not hold it, so no column may name
 // it), or when no served row accounts for the text any more (struck, re-keyed
@@ -102,7 +103,7 @@ for (const [order] of COLUMNS) {
     if (!row) { unmapped += 1; refused.push([k, "no served row accounts for the text"]); continue; }
     if (!readings.length) {
       if (store.ledgerOf(row[3])) { noPill.push({ key: k, text, m: String(row[3]), on: STAMP, why: "ledger-division-rule-v2: the row this reading came from prints no pill under the owner's answer to its ledger's branch" }); refused.push([k, "prints no pill"]); }
-      else refused.push([k, "every sense damaged"]);
+      else refused.push([k, "no reading under its rule"]);
       continue;
     }
     const line = readings[0];

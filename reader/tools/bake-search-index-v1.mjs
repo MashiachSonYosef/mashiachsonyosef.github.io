@@ -29,13 +29,14 @@
 // space one space, trimmed. "in/ beginning", "in + beginning" and
 // "<in> beginning" fold to "in beginning"; "LORD\u2019s" (U+2019) to "lord's".
 //
-// A ROUTE IS INDEXED AS ITS PILLS. The card splits a route's text into
-// senses at ";" and readings at "," (outside parentheses; a damaged sense is
-// held back; a page citation is no reading), keeps a no-derivatives text
-// whole, and prints each piece by spanJoin; a search for a pill finds its
-// word. The split is the page's own: the bake reads readingSplit,
-// senseSplit and isNoDerivs out of zone.html and runs them, so the two
-// cannot drift apart. Only the keys a word's card asks for are read (a key
+// A ROUTE IS INDEXED AS ITS PILLS. The card divides a route's text as its
+// source's own ledger says (whole where it has none), keeps a no-derivatives
+// text whole, and prints each piece by spanJoin; a search for a pill finds
+// its word. The division is the row's own (ledger-division-rule-v2: the cuts
+// and the prints the ledger wrote; whole where the source has no ledger),
+// and isNoDerivs is read out of zone.html and run, so the two cannot drift
+// apart (until 7 November 2026 the page's comma rule was read out the same
+// way; it retired that day). Only the keys a word's card asks for are read (a key
 // that is its own letters); a route whose source the store does not name,
 // or has struck, is left out, as the card leaves it out.
 //
@@ -82,10 +83,11 @@ const grab = (head, end) => {
   if (b < 0) fail(`zone.html's "${head.trim()}" has no end`);
   return zone.slice(a, b + end.length);
 };
-const { readingSplit, senseSplit, isNoDerivs } = new Function(`${grab("\n  const readingSplit = (text) => {\n", "\n  };\n")}${grab("\n  const senseSplit = (text) => {\n", "\n  };\n")}${grab("\n  const isNoDerivs = (key) => ", ";\n")}return { readingSplit, senseSplit, isNoDerivs };`)();
+const { isNoDerivs } = new Function(`${grab("\n  const isNoDerivs = (key) => ", ";\n")}; return { isNoDerivs };`)();
 // a source under a ledger prints as its row says (ledger-division-rule-v2):
 // the texts in row[8] (a part of itself, or no pill), else the pieces at the
-// marks in row[7], else the whole text; the generic rule is for one with none
+// marks in row[7], else the whole text; a source with no ledger prints whole
+// (7 November 2026: the comma rule the page guessed for it retired)
 const pills = (row, src) => {
   const text = String(row[1]);
   if (isNoDerivs(src.licensePosture)) return [text];
@@ -98,9 +100,8 @@ const pills = (row, src) => {
     out.push(text.slice(from));
     return out.map((x) => x.trim()).filter(Boolean);
   }
-  const out = [];
-  for (const sense of senseSplit(text)) { const r = readingSplit(sense); if (!r.damaged) out.push(...r.readings); }
-  return out;
+  const t = text.trim();
+  return t ? [t] : [];
 };
 
 const dix = JSON.parse(readFileSync(join(DATA, "dictionary-store/index.json"), "utf8"));
@@ -261,7 +262,7 @@ for (const [h, obj] of [...shards].sort()) put(`en/${h}.bin`, obj);
 const index = {
   rule: "search-index-v1-hebrew-letters-and-english-readings-folded-arithmetic-over-served-stores",
   fold: "NFKC; lower case; U+2018 U+2019 U+201B U+2032 U+02BC as ' and U+201C U+201D U+201E U+2033 as \"; '/' and '+' as spaces; [ ] ( ) < > dropped, their words kept; white space runs one space; trimmed; one closing period dropped",
-  routes: "a route is indexed as the card draws it: zone.html's senseSplit then readingSplit (damaged senses held back, page citations no reading), a no-derivatives text whole, each piece by spanJoin; only keys that are their own letters; only sources the store names and has not struck",
+  routes: "a route is indexed as the card draws it: the row's own division (ledger-division-rule-v2: the prints in row[8], else the pieces at the cuts in row[7], else the whole text; a source with no ledger whole), a no-derivatives text whole, each piece by spanJoin; only keys that are their own letters; only sources the store names and has not struck",
   ketiv_qere: "a place written '(ketiv) [qere]' stands in the row of each word of either side (split at a space or a maqaf), as that word is written there; a ketiv's letters may be no key of the dictionary store",
   runs: "a place of the span store (data/span-store/<book>.json) stands as a row keyed by its words' letters joined by one space, its face the words as printed there; its rows feed the English side as its card draws them",
   overlays: "data/overlays/*: each overlay's rows feed the English side as the card draws them, under the overlay's own source ids",
@@ -270,7 +271,7 @@ const index = {
   he_shard_rule: "he/<the first letter's code point, 4 hex>.bin: [letters, places, pointed, book, ref, w, [[pointing, places]]] sorted by letters; letters are a dictionary-store key, a ketiv's letters, or a run's words' letters joined by one space; pointed is the most common print of the most common pointing",
   pointing: "NFD; the letters U+05D0 to U+05EA and the points U+05B0 to U+05BC, U+05BF, U+05C1, U+05C2, U+05C7, in order; cantillation and meteg dropped",
   en_shard_rule: "en/<first two hex of sha256(utf8(folded))>.bin: { folded: [[letters, [source ids], places a source reads exactly these words, { per-place source: its places }]] }",
-  from: { dictionary_store_version: dix.store_version, route_store_version: rix.store_version, zone_split_sha256: sha(Buffer.from(String(readingSplit) + String(senseSplit) + String(isNoDerivs))).slice(0, 12) },
+  from: { dictionary_store_version: dix.store_version, route_store_version: rix.store_version, zone_split_sha256: sha(Buffer.from(String(isNoDerivs))).slice(0, 12) },
   counts: { letters: he.size, english: en.size, pairs: [...en.values()].reduce((n, m) => n + m.size, 0), route_rows: routeRows, route_pills: pillCount, struck_rows_left_out: struckRows, unnamed_rows_left_out: unnamedRows, other_keys_left_out: otherKeys, kq_places: kqSeen.size, kq_added_to_ketiv_rows: kqAdded.ketiv, kq_added_to_qere_rows: kqAdded.qere, overlay_rows: overlayRows, run_places: spanPlaces, run_rows: spanRows, piece_places_passed_over: piecePlacesPassedOver, files: files.length, bytes: files.reduce((n, f) => n + f.bytes, 0) },
   index_version: sha(Buffer.from(files.map((f) => f.sha256).join("\n"))).slice(0, 12),
   files,

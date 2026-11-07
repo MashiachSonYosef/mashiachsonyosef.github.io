@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// GUARDS: zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary
+// GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
 //
 // The year in the gloss rule's name decides nothing, and this proves it every
 // run.
 //
-// `zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary` puts a number in its
+// `zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary` puts a number in its
 // own name and thereby advertises 1940 as the thing that chooses which reading
 // a reader meets first, across a corpus of 3.7 billion occurrences. It was
 // chosen by this project. Nothing attests it. And it is inert: the comparison
@@ -24,7 +24,7 @@
 
 import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
-import { openRouteStore } from "./gloss-store-v1.mjs";
+import { openRouteStore, readingKey } from "./gloss-store-v1.mjs";
 
 let bad = 0;
 const check = (name, ok, detail = "") => {
@@ -61,28 +61,17 @@ for (const s of zone.sections || [])
   }
 
 // The pool, rebuilt with the cutoff as a parameter. Everything else is the
-// rule's own machinery, copied so the comparison is against what it does.
-const senseSplit = (t) => {
-  const out = []; let start = 0, d = 0;
-  for (let i = 0; i < t.length; i += 1) {
-    const c = t[i];
-    if (c === "(") d += 1;
-    else if (c === ")") { if (d > 0) d -= 1; }
-    else if (c === ";" && d === 0) { out.push(t.slice(start, i)); start = i + 1; }
-  }
-  out.push(t.slice(start));
-  if (out.join(";") !== t) return [t.trim()].filter(Boolean);
-  return out.map((x) => x.trim()).filter(Boolean);
-};
+// rule's own machinery (the row's readings by readingsOf, the printed-form key),
+// so the comparison is against what it does.
 const leaderAt = (routes, cut) => {
   const groups = new Map();
   for (const row of routes || []) {
-    const [rank, text, , mId, year] = row;
+    const [rank, , , mId, year] = row;
     if (!store.index.m_sources[mId]) continue;
     const parsed = Number.parseInt(year, 10);
     const yr = Number.isInteger(parsed) ? parsed : Infinity;
-    for (const sense of senseSplit(String(text || ""))) {
-      const k = sense.toLowerCase(); const g = groups.get(k);
+    for (const sense of store.readingsOf(row)) {
+      const k = readingKey(sense); const g = groups.get(k);
       if (!g) groups.set(k, { text: sense, year: yr, ledger: Number(rank) });
       else { g.year = Math.min(g.year, yr); g.ledger = Math.min(g.ledger, Number(rank)); }
     }
