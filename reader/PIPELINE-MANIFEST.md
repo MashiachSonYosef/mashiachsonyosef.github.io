@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-07.
 
-**142 rules declared · 129 named by a check · 13 unguarded.**
+**143 rules declared · 129 named by a check · 14 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -72,6 +72,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `ledger-division-rule-v1` | zone.html | **UNGUARDED** |
 | `ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say` | tools/apply-ledger-divisions-v1.mjs, tools/ledger-print-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs, tools/regloss-zone.mjs, zone.html | check-ledger-divisions-v1, check-provider-characters-v1, check-search-v1, check-sense-split-v1, check-witnessed-order-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
+| `ledger-print-rule-v2-a-branchs-answer-prints-by-the-step-its-declaration-carries-and-nothing-is-added` | tools/ledger-print-from-declaration-v1.mjs | **UNGUARDED** |
 | `licence-columns-rule-v1-the-licence-preference-is-a-baked-order-column-so-the-line-and-the-card-answer-as-one` | tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-card-opens-on-the-line-v1, check-masorah-toggle-v1 |
 | `licence-name-rule-v1-the-record-names-the-licence` | tools/check-licence-names-v1.mjs | check-licence-names-v1 |
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | check-posture-names-from-record-v1 |
@@ -127,7 +128,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `source-short-names-rule-v1-a-shelf-chip-wears-a-short-name-this-record-keeps-and-the-full-name-on-press` | tools/check-source-switch-v1.mjs | check-source-switch-v1 |
 | `source-strike-rule-v1-a-source-whose-text-needs-a-providers-permission-is-struck-whole-and-the-hole-is-typed` | tools/strike-source-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/regloss-zone.mjs, tools/type-witnessed-drops-v1.mjs | check-witnessed-order-v1 |
 | `source-suggested-rule-v1-a-running-bible-reads-the-whole-word-and-is-credited-by-name` | tools/project-source-suggested-v1.mjs, zone.html | check-source-suggested-v1 |
-| `source-switch-rule-v1-a-reading-remembers-who-carried-it` | tools/gloss-store-v1.mjs, zone.html, tools/gloss-m-v1.mjs | check-carrier-survives-v1, check-line-follows-card-v1, check-source-switch-v1 |
+| `source-switch-rule-v1-a-reading-remembers-who-carried-it` | tools/gloss-store-v1.mjs, zone.html, tools/gloss-m-v1.mjs | check-carrier-survives-v1, check-line-follows-card-v1, check-source-switch-v1, check-proper-name-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
 | `span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole` | tools/apply-span-ledger-v1.mjs | check-respan-projection-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
@@ -156,7 +157,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | check-commentary-section-aligned-v1 |
 | `zone-commentary-rule-v3-two-zones-one-coordinate` | tools/build-commentary-sidecar-v2.mjs | check-attachment-grain-v1, check-commentary-in-line-v1, check-commentary-section-aligned-v1 |
 | `zone-emit-rule-v8-single-pass-from-sealed-serve` | tools/build-zone.mjs, tools/run-restore-v5-fleet-v1.mjs | check-zone-single-pass-receipts-v1 |
-| `zone-gloss-rule-v5-ledger-division-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs | check-antiquity-tier-v1, check-gloss-whole-v1, check-ledger-divisions-v1, check-page-agrees-with-store-v1 |
+| `zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary` | tools/gloss-store-v1.mjs, zone.html | check-antiquity-tier-v1, check-gloss-whole-v1, check-ledger-divisions-v1, check-page-agrees-with-store-v1, check-carrier-survives-v1 |
 | `zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight` | tools/emit-zone-shipment-v1.mjs, tools/emit-zone-store-v1.mjs, tools/move-shelf-v1.sh, tools/pull-zones-from-store-v1.mjs, tools/restore-shelf-from-history-v1.mjs, zone.html | check-zone-store-crossing-v1, check-zone-store-reachable-v1, check-zone-store-v1 |
 
 ## What the site publishes
@@ -175,7 +176,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 116 tools that are not checks.
+`build.sh` calls 19 of the 118 tools that are not checks.
 
 Not called by any build stage:
 
@@ -227,6 +228,7 @@ Not called by any build stage:
 - `tools/k-normalization-v2.mjs`
 - `tools/land-pointing-store-v2-v1.mjs`
 - `tools/lattice-lib-v1.mjs`
+- `tools/ledger-print-from-declaration-v1.mjs`
 - `tools/ledger-print-v1.mjs`
 - `tools/make-fixture-zone-v1.mjs`
 - `tools/make-hoh-fixture-v1.mjs`
@@ -253,6 +255,7 @@ Not called by any build stage:
 - `tools/push-toggles-v1.mjs`
 - `tools/redrive-zone-gloss-v1.mjs`
 - `tools/regloss-zone.mjs`
+- `tools/repin-zone-store-v1.mjs`
 - `tools/respan-zone-v1.mjs`
 - `tools/restore-shelf-from-history-v1.mjs`
 - `tools/rights-join-v1.mjs`

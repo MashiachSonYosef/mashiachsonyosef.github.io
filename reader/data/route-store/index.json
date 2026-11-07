@@ -1175,7 +1175,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 14996160,
+  "shard_bytes_total": 15004208,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "efd33cffbce8",
+ "store_version": "3d8c4ef86c01",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1484,6 +1484,12 @@
    "now": "efd33cffbce8",
    "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
    "on": "2026-11-07T03:01:26.536Z"
+  },
+  {
+   "was": "efd33cffbce8",
+   "now": "3d8c4ef86c01",
+   "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
+   "on": "2026-11-07T04:31:55.491Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -1568,7 +1574,7 @@
  },
  "ledgers": {
   "rule_id": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
-  "applied_on": "2026-11-07T03:01:26.536Z",
+  "applied_on": "2026-11-07T04:33:00.286Z",
   "manifest": "reader/data/ledgers-v1/manifest.json",
   "ask": "ASK-provider-declarations-v1.1",
   "checker": {
@@ -1577,7 +1583,7 @@
   },
   "answers": {
    "file": "reader/data/ledger-branch-answers-v1.json",
-   "sha256": "7757ea12cd96573026c6825a68539683b7806bd76d5d24d24e21acea2ea46e4c"
+   "sha256": "b4350cf2392d8633550d011cfca0913163f82faf394fd0270a6937f37c085e88"
   },
   "excluded": {},
   "untabled": {
@@ -1651,14 +1657,14 @@
    }
   },
   "what": "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger keeps the generic rule, and from 7 November 2026 those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
-  "print_step": "tools/ledger-print-v1.mjs",
+  "print_step": "the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for 2 branches; tools/ledger-print-v1.mjs, the hand table, for the rest",
   "span_store": {
    "file": "reader/data/span-store/<book>.json",
    "books": 39,
    "rows": 3873,
    "rows_of_ledgered_sources": 3177,
    "rows_dividing": 308,
-   "rows_printing_a_part": 1,
+   "rows_printing_a_part": 21,
    "rows_no_pill": 0,
    "rows_whose_slot_moved": 0,
    "uncovered": 238
@@ -1688,28 +1694,32 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "biblicaltools_living_lexicon:B02"
+      "prints": "biblicaltools_living_lexicon:B02",
+      "print_step_from": "hand table"
      },
      "B03": {
       "option": "name_alone",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "biblicaltools_living_lexicon:B03"
+      "prints": "biblicaltools_living_lexicon:B03",
+      "print_step_from": "hand table"
      },
      "B04": {
       "option": "two_forms",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "biblicaltools_living_lexicon:B04"
+      "prints": "biblicaltools_living_lexicon:B04",
+      "print_step_from": "hand table"
      },
      "B05": {
       "option": "name_alone",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "biblicaltools_living_lexicon:B05"
+      "prints": "biblicaltools_living_lexicon:B05",
+      "print_step_from": "hand table"
      }
     },
     "rows": 753,
@@ -1766,7 +1776,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "classical_hebrew_words:B05"
+      "prints": "classical_hebrew_words:B05",
+      "print_step_from": "hand table"
      }
     },
     "rows": 7314,
@@ -1838,7 +1849,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "dbnary_english_wiktionary_hebrew_translation_gloss:B01"
+      "prints": "dbnary_english_wiktionary_hebrew_translation_gloss:B01",
+      "print_step_from": "hand table"
      }
     },
     "rows": 6156,
@@ -1891,14 +1903,16 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "hewiktionary_hebrew_exact_english_translation:B02"
+      "prints": "hewiktionary_hebrew_exact_english_translation:B02",
+      "print_step_from": "hand table"
      },
      "B03": {
       "option": "no_number",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "hewiktionary_hebrew_exact_english_translation:B03"
+      "prints": "hewiktionary_hebrew_exact_english_translation:B03",
+      "print_step_from": "hand table"
      }
     },
     "rows": 10403,
@@ -1947,7 +1961,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "hewiktionary_hebrew_explicit_full_spelling_english_translation:B02"
+      "prints": "hewiktionary_hebrew_explicit_full_spelling_english_translation:B02",
+      "print_step_from": "hand table"
      }
     },
     "rows": 2305,
@@ -2021,7 +2036,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "hewiktionary_hebrew_explicit_inflection_english_translation:B02"
+      "prints": "hewiktionary_hebrew_explicit_inflection_english_translation:B02",
+      "print_step_from": "hand table"
      }
     },
     "rows": 12081,
@@ -2088,7 +2104,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "hiperbiblia_sdbh:B03"
+      "prints": "hiperbiblia_sdbh:B03",
+      "print_step_from": "hand table"
      }
     },
     "rows": 14820,
@@ -2112,7 +2129,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "kaikki_english_wiktionary_hebrew_translation_table:B01"
+      "prints": "kaikki_english_wiktionary_hebrew_translation_table:B01",
+      "print_step_from": "hand table"
      }
     },
     "rows": 850,
@@ -2177,10 +2195,12 @@
       "on": "2026-11-06"
      },
      "B05": {
-      "option": "whole",
+      "option": "label_off",
       "resting": "whole",
-      "by": "resting",
-      "on": null
+      "by": "the owner",
+      "on": "2026-11-07",
+      "prints": "kaikki_wiktionary_aramaic:B05",
+      "print_step_from": "declaration"
      },
      "B06": {
       "option": "divides",
@@ -2203,8 +2223,8 @@
     },
     "rows": 2700,
     "rows_dividing": 1414,
-    "rows_printing_a_part": 0,
-    "rows_no_pill": 0,
+    "rows_printing_a_part": 6,
+    "rows_no_pill": 1,
     "uncovered": 0
    },
    "kaikki_wiktionary_hebrew": {
@@ -2279,10 +2299,12 @@
       "on": "2026-11-06"
      },
      "B05": {
-      "option": "whole",
+      "option": "label_off",
       "resting": "whole",
-      "by": "resting",
-      "on": null
+      "by": "the owner",
+      "on": "2026-11-07",
+      "prints": "kaikki_wiktionary_hebrew:B05",
+      "print_step_from": "declaration"
      },
      "B06": {
       "option": "divides",
@@ -2311,8 +2333,8 @@
     },
     "rows": 123558,
     "rows_dividing": 53047,
-    "rows_printing_a_part": 0,
-    "rows_no_pill": 0,
+    "rows_printing_a_part": 1260,
+    "rows_no_pill": 2,
     "uncovered": 0
    },
    "kethoneth_yoseph_1887_source_image_reviewed": {
@@ -2355,14 +2377,16 @@
       "resting": "whole",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "lexibank_analysed_v2_2_northeuralex_hebrew:B01"
+      "prints": "lexibank_analysed_v2_2_northeuralex_hebrew:B01",
+      "print_step_from": "hand table"
      },
      "B02": {
       "option": "word_alone",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "lexibank_analysed_v2_2_northeuralex_hebrew:B02"
+      "prints": "lexibank_analysed_v2_2_northeuralex_hebrew:B02",
+      "print_step_from": "hand table"
      }
     },
     "rows": 974,
@@ -2394,14 +2418,16 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "macula_hebrew_cherith_surface_english_2022:B02"
+      "prints": "macula_hebrew_cherith_surface_english_2022:B02",
+      "print_step_from": "hand table"
      },
      "B03": {
       "option": "number_off",
       "resting": "number_stays",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "macula_hebrew_cherith_surface_english_2022:B03"
+      "prints": "macula_hebrew_cherith_surface_english_2022:B03",
+      "print_step_from": "hand table"
      }
     },
     "rows": 43294,
@@ -2453,7 +2479,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "omegawiki_structured_defined_meaning:B02"
+      "prints": "omegawiki_structured_defined_meaning:B02",
+      "print_step_from": "hand table"
      }
     },
     "rows": 5363,
@@ -2567,7 +2594,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "openscriptures_bdb_1906:B04"
+      "prints": "openscriptures_bdb_1906:B04",
+      "print_step_from": "hand table"
      }
     },
     "rows": 15238,
@@ -2591,14 +2619,16 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "openscriptures_lexical_index:B01"
+      "prints": "openscriptures_lexical_index:B01",
+      "print_step_from": "hand table"
      },
      "B02": {
       "option": "two_forms",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "openscriptures_lexical_index:B02"
+      "prints": "openscriptures_lexical_index:B02",
+      "print_step_from": "hand table"
      }
     },
     "rows": 138,
@@ -2681,21 +2711,24 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "panlex_hebrew_english_definitions_20250201:B02"
+      "prints": "panlex_hebrew_english_definitions_20250201:B02",
+      "print_step_from": "hand table"
      },
      "B03": {
       "option": "no_pill",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "panlex_hebrew_english_definitions_20250201:B03"
+      "prints": "panlex_hebrew_english_definitions_20250201:B03",
+      "print_step_from": "hand table"
      },
      "B04": {
       "option": "without_note",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "panlex_hebrew_english_definitions_20250201:B04"
+      "prints": "panlex_hebrew_english_definitions_20250201:B04",
+      "print_step_from": "hand table"
      }
     },
     "rows": 9831,
@@ -2728,21 +2761,24 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "panlex_hebrew_english_meanings_20240301:B02"
+      "prints": "panlex_hebrew_english_meanings_20240301:B02",
+      "print_step_from": "hand table"
      },
      "B03": {
       "option": "no_pill",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "panlex_hebrew_english_meanings_20240301:B03"
+      "prints": "panlex_hebrew_english_meanings_20240301:B03",
+      "print_step_from": "hand table"
      },
      "B04": {
       "option": "word_alone",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "panlex_hebrew_english_meanings_20240301:B04"
+      "prints": "panlex_hebrew_english_meanings_20240301:B04",
+      "print_step_from": "hand table"
      }
     },
     "rows": 28424,
@@ -2766,28 +2802,32 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "stepbible_tahot_aligned_translation:B01"
+      "prints": "stepbible_tahot_aligned_translation:B01",
+      "print_step_from": "hand table"
      },
      "B02": {
       "option": "no_pill",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "stepbible_tahot_aligned_translation:B02"
+      "prints": "stepbible_tahot_aligned_translation:B02",
+      "print_step_from": "hand table"
      },
      "B03": {
       "option": "no_pill",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "stepbible_tahot_aligned_translation:B03"
+      "prints": "stepbible_tahot_aligned_translation:B03",
+      "print_step_from": "hand table"
      },
      "B04": {
       "option": "no_pill",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "stepbible_tahot_aligned_translation:B04"
+      "prints": "stepbible_tahot_aligned_translation:B04",
+      "print_step_from": "hand table"
      }
     },
     "rows": 95033,
@@ -2834,14 +2874,16 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "stepbible_tbesh_gloss:B04"
+      "prints": "stepbible_tbesh_gloss:B04",
+      "print_step_from": "hand table"
      },
      "B05": {
       "option": "no_pill",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "stepbible_tbesh_gloss:B05"
+      "prints": "stepbible_tbesh_gloss:B05",
+      "print_step_from": "hand table"
      }
     },
     "rows": 2645,
@@ -3055,7 +3097,8 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "wikidata_hebrew_explicit_form_english_sense:B06"
+      "prints": "wikidata_hebrew_explicit_form_english_sense:B06",
+      "print_step_from": "hand table"
      }
     },
     "rows": 11419,
@@ -3109,14 +3152,16 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "wikidata_hebrew_lexeme_gloss:B04"
+      "prints": "wikidata_hebrew_lexeme_gloss:B04",
+      "print_step_from": "hand table"
      },
      "B05": {
       "option": "name_alone",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "wikidata_hebrew_lexeme_gloss:B05"
+      "prints": "wikidata_hebrew_lexeme_gloss:B05",
+      "print_step_from": "hand table"
      }
     },
     "rows": 324,
@@ -3140,14 +3185,16 @@
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "wikimedia_hebrew_english_interlanguage_title_20260701:B01"
+      "prints": "wikimedia_hebrew_english_interlanguage_title_20260701:B01",
+      "print_step_from": "hand table"
      },
      "B02": {
       "option": "named_part",
       "resting": "as_written",
       "by": "the owner",
       "on": "2026-11-06",
-      "prints": "wikimedia_hebrew_english_interlanguage_title_20260701:B02"
+      "prints": "wikimedia_hebrew_english_interlanguage_title_20260701:B02",
+      "print_step_from": "hand table"
      }
     },
     "rows": 12354,
@@ -3201,9 +3248,9 @@
    "ledgered_sources": 36,
    "rows": 652885,
    "rows_dividing": 71448,
-   "rows_printing_a_part": 1419,
-   "rows_no_pill": 600,
-   "rows_whose_slot_moved": 3,
+   "rows_printing_a_part": 2685,
+   "rows_no_pill": 603,
+   "rows_whose_slot_moved": 0,
    "uncovered": 5
   }
  }

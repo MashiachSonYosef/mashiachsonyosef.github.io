@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // GUARDS: ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say
-// GUARDS: zone-gloss-rule-v5-ledger-division-antiquity-1940-lastuary
+// GUARDS: zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary
 //
 // THE PAGE READS THE LEDGER'S DIVISION, AND THE DIVISION IS THE LEDGER'S.
 //
@@ -46,6 +46,10 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { printOf, PRINT_RULES } from "./ledger-print-v1.mjs";
+import { printUnder, kindOf, stepsOf } from "./ledger-print-from-declaration-v1.mjs";
+// a print rule is the hand table's entry, or (ask v1.2) the option the declaration carries the step on
+const ruleKind = (C, r) => (C.options && C.options.has(r) ? kindOf(C.options.get(r)) : PRINT_RULES[r].kind);
+const runRule = (C, r, text, marks, cuts) => (C.options && C.options.has(r) ? printUnder(C.options.get(r), text, marks, cuts) : printOf(r, text, marks, cuts));
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -129,6 +133,7 @@ if (!ONLY || ONLY === "D2" || ONLY === "D3" || ONLY === "D8") {
     const decl = JSON.parse(readFileSync(join(K3, M.declaration.file), "utf8"));
     const dividing = new Set();
     const printing = new Map();   // shape -> the print step's entry (source:branch) for the branch the owner answered
+    const options = new Map();    // the entry -> the option, where the declaration carries the step itself (ask v1.2)
     for (const s of decl.shapes || []) if (s.divides) dividing.add(s.id);
     for (const b of decl.branches || []) {
       const a = ((answers.answers || {})[key] || {})[b.id];
@@ -140,11 +145,14 @@ if (!ONLY || ONLY === "D2" || ONLY === "D3" || ONLY === "D8") {
       else if (want !== b.resting) {
         if (!have || have.prints !== `${key}:${b.id}`) faults.push(`${key} ${b.id}: answered "${want}", and the index does not name the print step for it`);
         for (const id of b.shapes || []) printing.set(id, `${key}:${b.id}`);
+        const opt = (b.options || []).find((o) => o.id === want);
+        if (opt && stepsOf(opt).length) { options.set(`${key}:${b.id}`, opt); if (have && have.print_step_from !== "declaration") faults.push(`${key} ${b.id}: the declaration carries the step, the index says it printed by the ${have ? have.print_step_from : "?"}`); }
+        else if (!PRINT_RULES[`${key}:${b.id}`]) faults.push(`${key} ${b.id}: answered "${want}", and neither the declaration nor the hand table carries a step for it`);
       }
     }
     const idxDiv = new Set(S.shapes_dividing || []);
     if ([...dividing].sort().join() !== [...idxDiv].sort().join()) faults.push(`${key}: the dividing shapes the index names differ from the declaration under its answers`);
-    classifiers.set(key, { dividing, printing, cls: join(K3, M.classifier.file) });
+    classifiers.set(key, { dividing, printing, options, cls: join(K3, M.classifier.file) });
   }
   check("D2  each ledger's files are the bytes the index and the manifest pin, and every branch answer is the answers file's or the resting option", faults.length === 0,
     faults.length ? faults.slice(0, 4).join(" · ") : `${classifiers.size} ledgers · answers file ${existsSync(answersPath) ? "present" : "absent (every branch at rest)"}`);
@@ -171,9 +179,9 @@ if (!ONLY || ONLY === "D3") {
       // the print slot: exactly what the print step gives for the one answered branch whose shapes the row holds
       const rules = marks ? [...new Set(marks.map((g) => C.printing.get(g.shape)).filter(Boolean))] : [];
       let wantPrint = null;
-      const none = rules.find((r) => PRINT_RULES[r].kind === "none");   // a row that renders nothing has no pill whatever else its marks say
+      const none = rules.find((r) => ruleKind(C, r) === "none");   // a row that renders nothing has no pill whatever else its marks say
       if (rules.length > 1 && !none) faults.push(`${key} ${k}#${row[0]}: two print steps reach one row (${rules.join(", ")})`);
-      else if (rules.length) { const rule = none || rules[0]; try { const r = printOf(rule, text, marks.filter((g) => C.printing.get(g.shape) === rule), want); wantPrint = r ? r.texts : null; } catch (e) { faults.push(`${key} ${k}#${row[0]}: ${e.message}`); } }
+      else if (rules.length) { const rule = none || rules[0]; try { const r = runRule(C, rule, text, marks.filter((g) => C.printing.get(g.shape) === rule), want); wantPrint = r ? r.texts : null; } catch (e) { faults.push(`${key} ${k}#${row[0]}: ${e.message}`); } }
       const havePrint = Array.isArray(row[8]) ? row[8] : null;
       if (havePrint) { if (havePrint.length) printed += 1; else noPill += 1; }
       if (JSON.stringify(wantPrint) !== JSON.stringify(havePrint)) faults.push(`${key} ${k}#${row[0]}: the print step gives ${JSON.stringify(wantPrint)}, the row says ${JSON.stringify(havePrint)}`);
@@ -218,9 +226,9 @@ if (!ONLY || ONLY === "D8") {
         if (JSON.stringify(want) !== JSON.stringify(have)) faults.push(`${f} ${k} (${row[3]}): the ledger divides at [${want}], the span row says [${have}]`);
         const rules = marks ? [...new Set(marks.map((g) => C.printing.get(g.shape)).filter(Boolean))] : [];
         let wantPrint = null;
-        const none = rules.find((x) => PRINT_RULES[x].kind === "none");
+        const none = rules.find((x) => ruleKind(C, x) === "none");
         if (rules.length > 1 && !none) faults.push(`${f} ${k} (${row[3]}): two print steps reach one span row`);
-        else if (rules.length) { const rule = none || rules[0]; try { const pr = printOf(rule, text, marks.filter((g) => C.printing.get(g.shape) === rule), want); wantPrint = pr ? pr.texts : null; } catch (e) { faults.push(`${f} ${k}: ${e.message}`); } }
+        else if (rules.length) { const rule = none || rules[0]; try { const pr = runRule(C, rule, text, marks.filter((g) => C.printing.get(g.shape) === rule), want); wantPrint = pr ? pr.texts : null; } catch (e) { faults.push(`${f} ${k}: ${e.message}`); } }
         const havePrint = Array.isArray(row[8]) ? row[8] : null;
         if (havePrint) { if (havePrint.length) printed += 1; else noPill += 1; }
         if (JSON.stringify(wantPrint) !== JSON.stringify(havePrint)) faults.push(`${f} ${k} (${row[3]}): the print step gives ${JSON.stringify(wantPrint)}, the span row says ${JSON.stringify(havePrint)}`);

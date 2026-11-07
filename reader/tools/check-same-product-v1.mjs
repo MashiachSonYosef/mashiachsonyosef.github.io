@@ -12,8 +12,9 @@
 // named here (check-scope-derived S1). Without two origins the check skips.
 // Usage: node tools/check-same-product-v1.mjs --old <origin> --new <origin> [--every 5] [--chapters 2] [--diff <path>]
 //   --diff writes every differing card in full (old pills, new pills, the
-//   pills only one build carries) so a batch that changes pills on purpose
-//   can name each difference in its notes
+//   pills only one build carries) and, after the cards, every differing line
+//   (old and new, with their chips), one per "line:" entry, so a batch that
+//   changes pills or lines on purpose can name each difference in its notes
 import { writeFileSync } from "node:fs";
 import { existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -107,5 +108,6 @@ check("S1 every sampled line and its chip are the same on both builds, under eve
   `${linesCompared.toLocaleString()} lines compared on ${pages.length} pages${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
 check("S2 the first cards of every sampled chapter carry the same pills, the same one pressed", !failed.length && cardsCompared > 0 && !s2.length, `${cardsCompared} cards compared${s2.length ? ` · ${s2.length} differ: ${s2.slice(0, 3).join("; ")}` : ""}`);
 console.log(bad ? `\n${bad} failing` : "\nall checks passed");
-if (DIFF) { writeFileSync(DIFF, diffLines.join("\n") + "\n"); console.log(`every differing card written in full: ${DIFF} (${diffLines.length})`); }
+// every differing line too (7 November 2026): "line: <book> <chapter> <switch> <section> #<n> <surface>: "<old>" [<chip>] → "<new>" [<chip>]", so an accounting can read every move, not the four the summary names
+if (DIFF) { writeFileSync(DIFF, diffLines.concat(s1.map((x) => `line: ${x}`)).join("\n") + "\n"); console.log(`every differing card written in full: ${DIFF} (${diffLines.length} cards, ${s1.length} lines)`); }
 process.exit(bad ? 1 : 0);

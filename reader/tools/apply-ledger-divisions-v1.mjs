@@ -68,6 +68,9 @@ import { gzipSync, gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { senseSplit as readingSplit } from "./sense-split-v1.mjs";
 import { PRINT_RULES, printOf, selfTest } from "./ledger-print-v1.mjs";
+import { printUnder, kindOf, selfTestDeclaration, stepsOf } from "./ledger-print-from-declaration-v1.mjs";
+// the print steps the declarations carry (ask v1.2): ruleKey -> the option, read beside the hand table
+const DATA_RULES = new Map();
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -104,17 +107,25 @@ for (const [key, L] of Object.entries(manifest.ledgers)) {
     const a = ((answers.answers || {})[key] || {})[b.id] || null;
     const option = a ? a.option : b.resting;
     if (!(b.options || []).some((o) => o.id === option)) refuse(`${key} ${b.id}: "${option}" is none of its options (${(b.options || []).map((o) => o.id).join(", ")})`);
-    let printRule = null;
+    let printRule = null, printFrom = null;
     if (option !== b.resting && option !== "divides") {
-      const rule = PRINT_RULES[`${key}:${b.id}`];
-      if (!rule) refuse(`${key} ${b.id}: answered "${option}"; ledger-print-v1 has no step for this branch`);
-      if (rule.option !== option) refuse(`${key} ${b.id}: answered "${option}", but ledger-print-v1's step for it serves "${rule.option}"`);
+      const opt = (b.options || []).find((o) => o.id === option);
+      if (opt && stepsOf(opt).length) {
+        // the declaration carries the step (ask v1.2): it is read from there, and the hand table is not consulted
+        DATA_RULES.set(`${key}:${b.id}`, { option: opt, kind: kindOf(opt) });
+        printFrom = "declaration";
+      } else {
+        const rule = PRINT_RULES[`${key}:${b.id}`];
+        if (!rule) refuse(`${key} ${b.id}: answered "${option}"; the declaration carries no print step for it and ledger-print-v1 has no entry for this branch`);
+        if (rule.option !== option) refuse(`${key} ${b.id}: answered "${option}", but ledger-print-v1's step for it serves "${rule.option}"`);
+        printFrom = "hand table";
+      }
       printRule = `${key}:${b.id}`;
     }
     for (const id of b.shapes || []) if (!shapes.has(id)) refuse(`${key} ${b.id}: names shape ${id}, which the declaration lacks`);
     if (option === "divides") for (const id of b.shapes || []) shapes.get(id).divides = true;
     if (printRule) for (const id of b.shapes || []) { const sh = shapes.get(id); if (sh.divides) refuse(`${key} ${b.id}: shape ${id} both divides and prints`); sh.prints = printRule; }
-    branches[b.id] = { option, resting: b.resting, by: a ? a.by || null : "resting", on: a ? a.on || null : null, shapes: b.shapes || [], occurrences: b.occurrences ?? null, prints: printRule };
+    branches[b.id] = { option, resting: b.resting, by: a ? a.by || null : "resting", on: a ? a.on || null : null, shapes: b.shapes || [], occurrences: b.occurrences ?? null, prints: printRule, ...(printFrom ? { print_step_from: printFrom } : {}) };
   }
   const { classify } = await import(pathToFileURL(resolve(clsPath)).href);
   if (typeof classify !== "function") refuse(`${key}: its classifier exports no classify(text)`);
@@ -126,6 +137,11 @@ for (const [key, L] of Object.entries(manifest.ledgers)) {
   const t = selfTest(new Map([...ledgers].map(([k, L]) => [k, L.classify])), new Map([...ledgers].map(([k, L]) => [k, L.decl])));
   if (t.failed.length) refuse(`ledger-print-v1 fails ${t.failed.length} of its own examples: ${t.failed.slice(0, 3).join(" · ")}`);
   console.log(`ledger-print-v1: ${t.ran} examples hold under the ledgers' classifiers${t.skipped.length ? ` (${t.skipped.length} skipped: no ledger)` : ""}`);
+  // and the declarations' own examples, under their print steps (ask v1.2)
+  let ran = 0; const failed = [];
+  for (const [, L] of ledgers) { const r = selfTestDeclaration(L.decl, L.classify); ran += r.ran; failed.push(...r.failed); }
+  if (failed.length) refuse(`the declarations' print steps fail ${failed.length} of their own examples: ${failed.slice(0, 3).join(" · ")}`);
+  console.log(`ledger-print-from-declaration-v1: ${ran} examples hold under the ledgers' classifiers · ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} print by the declaration's own step`);
 }
 
 // ---- the store ------------------------------------------------------------------
@@ -170,12 +186,13 @@ const slotsOf = (L, text) => {
   let prints = null, ruleKey = null, conflict = null;
   if (printRules.size) {
     // a row that renders nothing has no pill whatever else its marks say (so each branch's own words)
-    const none = [...printRules].find((r) => PRINT_RULES[r].kind === "none");
+    const kindOfRule = (r) => (DATA_RULES.has(r) ? DATA_RULES.get(r).kind : PRINT_RULES[r].kind);
+    const none = [...printRules].find((r) => kindOfRule(r) === "none");
     if (printRules.size > 1 && !none) conflict = `two print steps on one row (${[...printRules].join(", ")})`;
     else {
       ruleKey = none || [...printRules][0];
       const branchMarks = marks.filter((g) => L.shapes.get(g.shape).prints === ruleKey);
-      try { const r = printOf(ruleKey, text, branchMarks, cuts); if (r) prints = r.texts; else conflict = `the print step ${ruleKey} does not reach a row its branch's shapes mark`; }
+      try { const r = DATA_RULES.has(ruleKey) ? printUnder(DATA_RULES.get(ruleKey).option, text, branchMarks, cuts) : printOf(ruleKey, text, branchMarks, cuts); if (r) prints = r.texts; else conflict = `the print step ${ruleKey} does not reach a row its branch's shapes mark`; }
       catch (e) { conflict = e.message; }
     }
   }
@@ -343,13 +360,13 @@ index.ledgers = {
   untabled: manifest.untabled || {},
   unledgered: unledgered(),
   what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger keeps the generic rule, and from 7 November 2026 those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
-  print_step: "tools/ledger-print-v1.mjs",
+  print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"}; tools/ledger-print-v1.mjs, the hand table, for the rest`,
   span_store: { file: "reader/data/span-store/<book>.json", ...Object.fromEntries(Object.entries(spanCounts).filter(([k]) => k !== "by_source")) },
-  sources: Object.fromEntries(Object.entries(sources).map(([k, s]) => [k, { relay: s.relay, declaration_sha256: s.declaration_sha256, classifier_sha256: s.classifier_sha256, m_ids: s.m_ids, shapes: s.shapes, shapes_dividing: s.shapes_dividing, branches: Object.fromEntries(Object.entries(s.branches).map(([id, b]) => [id, { option: b.option, resting: b.resting, by: b.by, on: b.on, ...(b.prints ? { prints: b.prints } : {}) }])), rows: s.rows, rows_dividing: s.rows_dividing, rows_printing_a_part: s.rows_printing_a_part, rows_no_pill: s.rows_no_pill, uncovered: s.uncovered }])),
+  sources: Object.fromEntries(Object.entries(sources).map(([k, s]) => [k, { relay: s.relay, declaration_sha256: s.declaration_sha256, classifier_sha256: s.classifier_sha256, m_ids: s.m_ids, shapes: s.shapes, shapes_dividing: s.shapes_dividing, branches: Object.fromEntries(Object.entries(s.branches).map(([id, b]) => [id, { option: b.option, resting: b.resting, by: b.by, on: b.on, ...(b.prints ? { prints: b.prints, print_step_from: b.print_step_from } : {}) }])), rows: s.rows, rows_dividing: s.rows_dividing, rows_printing_a_part: s.rows_printing_a_part, rows_no_pill: s.rows_no_pill, uncovered: s.uncovered }])),
   totals,
 };
 index.counts = { ...(index.counts || {}), shard_bytes_total: shardBytes };
 if (now !== was) { index.store_version = now; index.store_version_history = [...(index.store_version_history || []), { was, now, why: LEDGER_DIVISION_RULE_ID, on }]; }
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
-writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: "tools/ledger-print-v1.mjs", ran_at: on, store_version: { was, now }, totals, vs_generic_rule: vs, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered } }, null, 1));
+writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); tools/ledger-print-v1.mjs, the hand table, for the rest`, ran_at: on, store_version: { was, now }, totals, vs_generic_rule: vs, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered } }, null, 1));
 console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · index.ledgers names ${ledgers.size} ledgers · receipt ${RECEIPT}`);
