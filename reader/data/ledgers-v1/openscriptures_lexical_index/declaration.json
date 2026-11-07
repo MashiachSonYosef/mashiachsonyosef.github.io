@@ -1,11 +1,12 @@
 {
  "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
  "source_key": "openscriptures_lexical_index",
  "m_ids": [
   "M33"
  ],
- "routes": 138,
- "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Open Scriptures Hebrew Lexical Index\" (M33): 138 routes (axis: routes), 134 letters keys (axis: keys). The definition field of the same row equals the route text on 138 of the routes. The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is the Open Scriptures HebrewLexicon's LexicalIndex.xml, and each of the 138 routes equals, exactly, the one definition element of an entry filed under the same letters, as the dictionary store's records of M33 show; all 339 records there hold one definition element each. So a route comes from one field, and no test here stands on a guess about a field. The source's own key is on file: its documentation at commit 21c9add13bc7 (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M5-openscriptures-HebrewLexicon-21c9add.pdf.txt, the section Lexical Index). It says that the definition element holds a simple definition, in general the first BDB definition, and for a proper name the first Strong usage, with problematic cases decided on their own merit. Of the signs in these routes it speaks of none: its 341 lines hold no line that names the margin, the word Compare, the article, a hyphen, a full stop or a plural ending; its 1 line with the word See sends the reader to a list of language codes, and its 1 line that names parentheses speaks of how BDB numbers its senses (source-audit/key-search.json). A second key stands on file for one sign: the section SIGNS EMPLOYED of Strong's own plan (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M14-strongs-scan-first12pages.txt, the text of a scan). It says that round brackets in the renderings from the King James Version denote a word or syllable sometimes given with the principal word to which it is annexed. It reaches the 2 rows with an ending in round brackets, because the source files each as a name and takes a name's text from the first Strong usage, and by entry number each Strong's list opens with the row's exact text. That section names no hyphen. So the two round-bracket shapes of those rows name the plan and do not begin \"unverified:\", the hyphen's meaning keeps it and says the plan backs its reading only, and the meaning of 9 of the 11 shapes begins \"unverified:\".",
+ "routes": 336,
+ "read_from": "The route text as served, in the extract this reissue counts (the serving lane's merge of 7 November 2026 AD: the route store's rows of this source followed by the span store's records of it; a span record is one JSON per line with key, route, def, m, year and cut, and the span store's own fields, which are not marks). The route store's rows: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 1d2470eb356b, store_version 3d8c4ef86c01 (its index.json; the store served on 7 November 2026 AD, 652,885 routes in all), for \"Open Scriptures Hebrew Lexical Index\" (M33): 138 routes (axis: routes), byte for byte the 138 routes of the store of 31 October (commit 306f3b285898, store_version 87b13b1169b4) that the ledger of v139 read. The span store's records: the 198 records of this source in the span store as served (schema span-store-served-v1, from span-store-v2.1, dictionary store cc890b8a7992, ledgers applied on 2026-11-07; 1,698 records in all, axis: records), each a name or a phrase of two or more Hebrew words read as one, with its own route text, which the classifier reads like any route. Together 336 routes (axis: routes), 326 letters keys (axis: keys). The definition field of the same row equals the route text on 336 of the routes. The source audit (builder/02-audit.mjs of v139, evidence about the source and no part of any test) covers the route store's rows: the source is the Open Scriptures HebrewLexicon's LexicalIndex.xml, and each of those 138 routes equals, exactly, the one definition element of an entry filed under the same letters, as the dictionary store's records of M33 show; all 339 records there hold one definition element each. So such a route comes from one field, and no test here stands on a guess about a field. The span store's records were not audited against the source's file here; their texts are of the same kinds as the route store's (a name, with or without a pointing word, a margin note or a bracket), and the span store's own fields were not read for any test. The source's own key is on file: its documentation at commit 21c9add13bc7 (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M5-openscriptures-HebrewLexicon-21c9add.pdf.txt, the section Lexical Index). It says that the definition element holds a simple definition, in general the first BDB definition, and for a proper name the first Strong usage, with problematic cases decided on their own merit. Of the signs in these routes it speaks of none: its 341 lines hold no line that names the margin, the word Compare, the article, a hyphen, a full stop or a plural ending; its 1 line with the word See sends the reader to a list of language codes, and its 1 line that names parentheses speaks of how BDB numbers its senses (source-audit/key-search.json of v139). A second key stands on file for one sign: the section SIGNS EMPLOYED of Strong's own plan (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M14-strongs-scan-first12pages.txt, the text of a scan). It says that round brackets in the renderings from the King James Version denote a word or syllable sometimes given with the principal word to which it is annexed. It reaches the 2 rows with an ending in round brackets, because the source files each as a name and takes a name's text from the first Strong usage, and by entry number each Strong's list opens with the row's exact text. That section names no hyphen. So the two round-bracket shapes of those rows name the plan and do not begin \"unverified:\", the hyphen's meaning keeps it and says the plan backs its reading only, and the meaning of 18 of the 20 shapes begins \"unverified:\".",
  "definitions": {
   "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). No test asks for a letter, a digit or whitespace, or for uppercase or lowercase as a class. A space is the character U+0020 and no other. Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. The text after the mark is the template's c.after. What the bracket holds is the template's c.group: the text between this bracket and its partner, as it stands. What the bracket around the mark holds is the template's c.inner: the text inside the innermost bracket the mark sits in, as it stands. Exactly means equal character for character. A string stands between « and », which are not part of it; a full stop after » belongs to the sentence. Every string and every list minds case and is matched exact to the character. No test uses the words begins with or contains.",
   "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here takes an occurrence without a test.",
@@ -17,6 +18,12 @@
   ],
   "endings_that_may_join": [
    "-s"
+  ],
+  "other_spellings_of_the_last_part": [
+   "-addar"
+  ],
+  "unclosed_note_texts": [
+   "Pi-hahiroth. (In Numbers 14:19 without Pi-."
   ]
  },
  "named_cases": {
@@ -34,10 +41,12 @@
    "open_paren.holds_the_margin_note",
    "open_paren.holds_an_ending_that_may_join",
    "open_paren.holds_the_note_on_the_article",
+   "open_paren.holds_another_spelling_of_the_last_part",
    "close_paren.holds_the_margin_note_before_a_pointing_word",
    "close_paren.holds_the_margin_note",
    "close_paren.holds_an_ending_that_may_join",
-   "close_paren.holds_the_note_on_the_article"
+   "close_paren.holds_the_note_on_the_article",
+   "close_paren.holds_another_spelling_of_the_last_part"
   ],
   "brackets": "absent"
  },
@@ -47,15 +56,18 @@
    "mark": ".",
    "container": "any",
    "divides": false,
-   "means": "unverified: ends the name before a round bracket whose note the source's line breaks off inside a word («Dibon. (Als»).",
+   "means": "unverified: stands in a text whose brackets do not balance, which the ask's rule 3 keeps whole under every answer: of its 3 full stops, 1 ends the name before a round bracket whose note the source's line breaks off inside a word («Dibon. (Als»), and 2 stand in «Pi-hahiroth. (In Numbers 14:19 without Pi-.», where the first ends the name before a note whose bracket never closes and the second ends that note.",
    "test": "The whole text does not balance, by the steps in unbalanced (terms, first_match).",
-   "count": 1,
+   "count": 3,
    "examples": [
     {
      "key": "דיבן"
+    },
+    {
+     "key": "פי החירת"
     }
    ],
-   "read": 1
+   "read": 3
   },
   {
    "id": "period.before_a_pointing_word",
@@ -64,34 +76,52 @@
    "divides": false,
    "means": "unverified: ends the word or name before a word that points at another entry without naming it («Kadesh. Compare»).",
    "test": "The steps in before_a_pointing_word, with the list pointing_words, hold for the mark (terms, first_match).",
-   "count": 79,
+   "count": 84,
    "examples": [
     {
      "key": "קדש"
     },
     {
-     "key": "עקן"
+     "key": "עינן"
     },
     {
-     "key": "יקבצאל"
+     "key": "בית נמרה"
     }
    ],
-   "read": 79
+   "read": 84
+  },
+  {
+   "id": "period.closes_the_name_at_the_end",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the name at the end of the row, with nothing after it («Gath-rimmon.»); a full stop adds no reading, so the name stays one reading.",
+   "test": "The text after the mark is empty: no character stands after the mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "גת־רמון"
+    }
+   ],
+   "read": 1
   },
   {
    "id": "open_paren.in_unbalanced_text",
    "mark": "(",
    "container": "any",
    "divides": false,
-   "means": "unverified: opens a note that the source's line breaks off inside a word, so no closing bracket follows («Dibon. (Als»).",
+   "means": "unverified: opens a note that never closes, so the ask's rule 3 keeps the text whole: in «Dibon. (Als» the source's line breaks off inside a word, and in «Pi-hahiroth. (In Numbers 14:19 without Pi-.» the note on the name runs to the end of the row without its closer.",
    "test": "The whole text does not balance, by the steps in unbalanced (terms, first_match).",
-   "count": 1,
+   "count": 2,
    "examples": [
     {
      "key": "דיבן"
+    },
+    {
+     "key": "פי החירת"
     }
    ],
-   "read": 1
+   "read": 2
   },
   {
    "id": "open_paren.holds_the_margin_note",
@@ -143,6 +173,21 @@
    "examples": [
     {
      "key": "מלכת"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_another_spelling_of_the_last_part",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens another spelling of the last part of a name of two parts, written after a hyphen, as the King James Version writes the name both ways («Ataroth-adar(-addar)»); the name under either spelling is one reading.",
+   "test": "What the bracket holds is exactly one of the strings in other_spellings_of_the_last_part (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עטרות אדר"
     }
    ],
    "read": 1
@@ -217,6 +262,36 @@
    "read": 1
   },
   {
+   "id": "close_paren.holds_another_spelling_of_the_last_part",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes another spelling of the last part of a name of two parts, written after a hyphen, as the King James Version writes the name both ways («Ataroth-adar(-addar)»); the name under either spelling is one reading.",
+   "test": "What the bracket holds is exactly one of the strings in other_spellings_of_the_last_part (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עטרות אדר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.in_unbalanced_text",
+   "mark": "-",
+   "container": "any",
+   "divides": false,
+   "means": "unverified: stands in a text whose brackets do not balance, which the ask's rule 3 keeps whole under every answer: of its 2 hyphens in «Pi-hahiroth. (In Numbers 14:19 without Pi-.», 1 joins the two parts of the name and 1 marks the first part as a prefix the verse leaves off, before the full stop that ends the note.",
+   "test": "The whole text does not balance, by the steps in unbalanced (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "פי החירת"
+    }
+   ],
+   "read": 2
+  },
+  {
    "id": "hyphen.opens_an_ending_that_may_join",
    "mark": "-",
    "container": "paren",
@@ -233,13 +308,94 @@
     }
    ],
    "read": 2
+  },
+  {
+   "id": "hyphen.opens_another_spelling_of_the_last_part",
+   "mark": "-",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens, inside the round bracket, another spelling of the last part of the name, which stands in place of the part after the hyphen outside the bracket («Ataroth-adar(-addar)»); Strong's own plan keys the round brackets and names no such hyphen, so its words back this reading only.",
+   "test": "What the bracket around the mark holds is exactly one of the strings in other_spellings_of_the_last_part (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "עטרות אדר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "hyphen.joins_the_parts_of_one_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: is general, every hyphen the shapes above leave: of its 138 hyphens, 137 join the parts of a name of two or more parts («En-gannim», «Beth-horon», «Maher-sha-lal-bash-baz») and 1 joins the two words of one compound common word («binding-house of the shepherds»); the parts of a name or of a word are one reading, so it keeps the text whole.",
+   "test": "Not caught above (first_match): any other hyphen.",
+   "count": 138,
+   "examples": [
+    {
+     "key": "עין גנים"
+    },
+    {
+     "key": "כל־חזה"
+    },
+    {
+     "key": "יושב חסד"
+    }
+   ],
+   "read": 138
+  },
+  {
+   "id": "colon.between_chapter_and_verse",
+   "mark": ":",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between the chapter and the verse of a citation inside a note whose bracket never closes («Pi-hahiroth. (In Numbers 14:19 without Pi-.»); a citation is no reading, and the ask's rule 3 keeps the text whole.",
+   "test": "The whole text is exactly one of the strings in unclosed_note_texts (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "פי החירת"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "left_single_quotation_mark.opens_the_sense_of_a_name",
+   "mark": "‘",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens the English sense that the source gives in place of a name, between single quotation marks («‘To die for the son’»); the quoted words are one reading.",
+   "test": "The text before the mark, the template's c.before, is empty: the mark is the first character of the text (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מות לבן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "right_single_quotation_mark.closes_the_sense_of_a_name",
+   "mark": "’",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the English sense that the source gives in place of a name, between single quotation marks («‘To die for the son’»); the quoted words are one reading.",
+   "test": "The text after the mark is empty: no character stands after the mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "מות לבן"
+    }
+   ],
+   "read": 1
   }
  ],
  "precedence": [],
  "homonyms": {
   "entry_identity": "none",
-  "reason": "The route text carries no entry number. The source's own file gives each entry an id and, in its cross-reference element, a Strong's, BDB or TWOT number, and the store dropped them (the dictionary store's record keeps them). Each entry holds one definition, so by the audit each of the 4 keys with more than one text (axis: keys) has a different entry behind each text (example key שמיר, whose 2 texts come from 2 entries), though the route text cannot tell two entries from two spellings of one name. 3 routes stand for two or more entries that share letters and text, which the route text cannot show at all.",
-  "keys_with_more_than_one_route_text": 4
+  "reason": "The route text carries no entry number. The source's own file gives each entry an id and, in its cross-reference element, a Strong's, BDB or TWOT number, and the store dropped them (the dictionary store's record keeps them). Each entry holds one definition, so by the audit each of the 4 keys of the route store's rows with more than one text (axis: keys) has a different entry behind each text (example key שמיר, whose 2 texts come from 2 entries), though the route text cannot tell two entries from two spellings of one name. The span store's records add 2 such keys, two spellings of one name under one key (חצר עינון: Hazar-enon and Hazar-enan), not audited against the source here, and 0 keys whose two texts stand one in the route store and one in the span store; together 6 keys (axis: keys). 3 routes of the route store's rows stand for two or more entries that share letters and text, which the route text cannot show at all.",
+  "keys_with_more_than_one_route_text": 6
  },
  "branches": [
   {
@@ -251,7 +407,7 @@
     "open_paren.in_unbalanced_text",
     "close_paren.holds_the_margin_note_before_a_pointing_word"
    ],
-   "occurrences": 82,
+   "occurrences": 90,
    "options": [
     {
      "id": "as_written",
@@ -259,7 +415,37 @@
     },
     {
      "id": "before_those_words",
-     "means": "The page prints only what stands before those words, and no full stop before them: Kadesh and Dibon, and Iddo (from the margin) See prints as Iddo (from the margin). It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands."
+     "means": "The page prints only what stands before those words, and no full stop before them: Kadesh and Dibon, and Iddo (from the margin) See prints as Iddo (from the margin). It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands.",
+     "print": {
+      "kind": "before",
+      "at": [
+       "period.before_a_pointing_word",
+       "period.in_unbalanced_text"
+      ]
+     },
+     "rows": [
+      {
+       "row": "Iddo (from the margin) |See",
+       "side": "before"
+      }
+     ],
+     "examples": [
+      {
+       "key": "קדש",
+       "row": "Kadesh. Compare",
+       "prints": "Kadesh"
+      },
+      {
+       "key": "דיבן",
+       "row": "Dibon. (Als",
+       "prints": "Dibon"
+      },
+      {
+       "key": "יעדו",
+       "row": "Iddo (from the margin) See",
+       "prints": "Iddo (from the margin)"
+      }
+     ]
     }
    ],
    "resting": "as_written"
@@ -284,11 +470,36 @@
     },
     {
      "id": "two_forms",
-     "means": "The page prints two readings for each row, the row's two forms: Mede and Medes, Mehunim and Mehunims. It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands."
+     "means": "The page prints two readings for each row, the row's two forms: Mede and Medes, Mehunim and Mehunims. It needs a step of its own for this, and until it has that step the row prints as written. The store keeps the row as it stands.",
+     "print": {
+      "kind": "forms",
+      "at": [
+       "open_paren.holds_an_ending_that_may_join",
+       "close_paren.holds_an_ending_that_may_join"
+      ]
+     },
+     "examples": [
+      {
+       "key": "מדי",
+       "row": "Mede(-s)",
+       "prints": [
+        "Mede",
+        "Medes"
+       ]
+      },
+      {
+       "key": "מעונים",
+       "row": "Mehunim(-s)",
+       "prints": [
+        "Mehunim",
+        "Mehunims"
+       ]
+      }
+     ]
     }
    ],
    "resting": "as_written"
   }
  ],
- "not_done_here": "Nothing in this ledger divides, so a word at the end that points at another entry stays in its row's one piece, as rule 11 has it for a pointer, until the owner answers B01. This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark; the 4 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as what the reading found, and nothing is struck."
+ "not_done_here": "Nothing in this ledger divides, so a word at the end that points at another entry stays in its row's one piece, as rule 11 has it for a pointer, until the owner answers B01. This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark; the 4 rows it names for this stand in rows-for-the-store-v1.jsonl, outside the shapes, as what the reading of v139 found among the route store's rows, and nothing is struck. The span store's records that hold no mark were not read for that list."
 }

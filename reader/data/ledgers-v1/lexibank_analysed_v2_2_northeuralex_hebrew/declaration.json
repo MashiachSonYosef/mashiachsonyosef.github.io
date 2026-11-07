@@ -1,11 +1,12 @@
 {
  "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
  "source_key": "lexibank_analysed_v2_2_northeuralex_hebrew",
  "m_ids": [
   "M64"
  ],
- "routes": 974,
- "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Lexibank Analysed v2.2 NorthEuraLex literal Hebrew source values with Concepticon English glosses\" (M64): 974 routes (axis: routes), 877 letters keys (axis: keys). The definition field of the same row equals the route text on 974 of the routes. The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is Lexibank Analysed v2.2, a CLDF wordlist in ledgers/work/ldmprs/source-cache/lexibank-analysed-v2.2-2026-07-15/, whose concepts.csv names each concept in its columns Name and Concepticon_Gloss, which are equal on all 3,205 concepts, and whose Description column is empty on all of them. All 983 records in the dictionary store tie to a row of this language in forms.csv, with the record's English equal to that row's concept's Name, and all 974 routes tie to a record with the same English and a Hebrew headword of the same letters. So a route is the name of one concept, all 974 pairs of a key and a text are one concept each, and no test here stands on a guess about a field. No key to the signs is on file. In FORMS.md, README.md, source-manifest-v1.json, zenodo-record-20712996.json, lexibank-analysed-2.2/cldf/README.md, lexibank-analysed-2.2/cldf/wordlist-metadata.json, NOTES.md in the archive, RELEASING.md in the archive, CONTRIBUTORS.md in the archive, TRANSCRIPTION.md in the archive, workflow.md in the archive, .zenodo.json in the archive, metadata.json in the archive, cldf/lexicon-metadata.json in the archive, cldf/phonology-metadata.json in the archive, cldf/phonemes-metadata.json in the archive, cldf/requirements.txt in the archive, lexibank_lexibank_analysed.py in the archive, raw/duplicates.md in the archive, etc/lexibank.tsv in the archive, etc/lexibank-dev.tsv in the archive, searched with word ends round the sign's name and without them, the only lines that name a sign are in FORMS.md, which names round brackets in the value of a form, the Hebrew side, and says nothing of a concept's name; 162 lines in the 548 text files of the works-own-stamp folder name this source and none names a sign (builder/05-key-search.mjs, source-audit/key-search.json). None of the 55 files in the release is named for the Concepticon, whose own guides are not on file; fetching them needs the owner's word and was not done. So every shape's meaning here begins \"unverified:\".",
+ "routes": 983,
+ "read_from": "The route text as served, in the extract this reissue counts (scratch/routes-merged-v1.2/lexibank_analysed_v2_2_northeuralex_hebrew.jsonl): the 974 rows of this source in the route store as served on 7 November 2026 AD (store_version 3d8c4ef86c01 at main 1d2470eb356b, 652,885 routes in all), followed by the 9 records of this source in the span store as served (schema span-store-served-v1, from span-store-v2.1, dictionary store cc890b8a7992, ledgers applied on 2026-11-07; 1,698 records in all, axis: records), each a name or a phrase of two or more Hebrew words read as one, with its own route text, which the classifier reads like any route; a span record is one JSON per line with key, route, def, m, year and cut, and the span store's own fields, which are not marks. The figures of this field count that extract (983 routes, axis: routes) except where they name the source audit of the shipped ledger, which covers the route store's rows only; the span store's records were not audited against the source here. For the route store's rows, which are byte for byte the rows the shipped ledger read: the route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Lexibank Analysed v2.2 NorthEuraLex literal Hebrew source values with Concepticon English glosses\" (M64): 983 routes (axis: routes), 886 letters keys (axis: keys). The definition field of the same row equals the route text on 983 of the routes. The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the source is Lexibank Analysed v2.2, a CLDF wordlist in ledgers/work/ldmprs/source-cache/lexibank-analysed-v2.2-2026-07-15/, whose concepts.csv names each concept in its columns Name and Concepticon_Gloss, which are equal on all 3,205 concepts, and whose Description column is empty on all of them. All 983 records in the dictionary store tie to a row of this language in forms.csv, with the record's English equal to that row's concept's Name, and all 974 routes tie to a record with the same English and a Hebrew headword of the same letters. So a route is the name of one concept, all 974 pairs of a key and a text are one concept each, and no test here stands on a guess about a field. No key to the signs is on file. In FORMS.md, README.md, source-manifest-v1.json, zenodo-record-20712996.json, lexibank-analysed-2.2/cldf/README.md, lexibank-analysed-2.2/cldf/wordlist-metadata.json, NOTES.md in the archive, RELEASING.md in the archive, CONTRIBUTORS.md in the archive, TRANSCRIPTION.md in the archive, workflow.md in the archive, .zenodo.json in the archive, metadata.json in the archive, cldf/lexicon-metadata.json in the archive, cldf/phonology-metadata.json in the archive, cldf/phonemes-metadata.json in the archive, cldf/requirements.txt in the archive, lexibank_lexibank_analysed.py in the archive, raw/duplicates.md in the archive, etc/lexibank.tsv in the archive, etc/lexibank-dev.tsv in the archive, searched with word ends round the sign's name and without them, the only lines that name a sign are in FORMS.md, which names round brackets in the value of a form, the Hebrew side, and says nothing of a concept's name; 162 lines in the 548 text files of the works-own-stamp folder name this source and none names a sign (builder/05-key-search.mjs, source-audit/key-search.json). None of the 55 files in the release is named for the Concepticon, whose own guides are not on file; fetching them needs the owner's word and was not done. So every shape's meaning here begins \"unverified:\".",
  "definitions": {
   "terms": "In every test a character is one Unicode code point (every route here holds only characters of 16 bits, so a code point is one index of the JavaScript string). The text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. Nothing is trimmed. What the bracket holds means, for a round bracket, the characters between that opener and its closer, nothing added and nothing taken away, spaces and commas included: the template's c.group. What the round brackets round the mark hold means, for a comma, the characters between the opener and the closer that enclose the comma, in the same way: the template's c.inner. The first word of what the bracket holds means its characters from its start up to, and not including, its first space character (U+0020), or all of them if it holds no space character. Is one of the strings in a list means is equal to one string of that list, character for character and whole. A string stands between « and », which are not part of it, and a full stop after » belongs to the sentence and not to the string. Every string and every list minds case: every string here is in capitals, as every route is. No test asks for a letter, a digit, whitespace, or uppercase or lowercase as a class; no test uses the words begins with or contains; and no test looks at the start or the end of the text.",
   "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. A shape's container field is not part of its test: no test here looks at the container, and the checker compares the field afterwards. An occurrence that no shape of its mark takes makes the classifier throw, and none does: no shape here is a catch-all.",
@@ -376,6 +377,21 @@
     }
    ],
    "read": 17
+  },
+  {
+   "id": "hyphen.joins_the_parts_of_one_word",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the two words of one compound gloss written in capitals («GOOD-LOOKING»), a record of the span store; the compound is one reading and prints whole.",
+   "test": "The whole text is exactly «GOOD-LOOKING», character for character (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "יפה־תאר"
+    }
+   ],
+   "read": 1
   }
  ],
  "precedence": [],
@@ -401,7 +417,43 @@
     },
     {
      "id": "two_readings",
-     "means": "The page prints the words before the round brackets and the words inside them as readings of their own, LONGING and WISH, once it has the one step of its own that this answer needs, which leaves the two bracket signs out of the pills; until then these rows print as written. A comma inside the brackets cuts too: DWELL, LIVE and RESIDE. On PIT (POTHOLE) under שוחה and LEAD (GUIDE) under הביא this prints a word that does not render the key: POTHOLE and GUIDE. A word already on the card prints once, not twice. The store keeps each text as it is."
+     "means": "The page prints the words before the round brackets and the words inside them as readings of their own, LONGING and WISH, once it has the one step of its own that this answer needs, which leaves the two bracket signs out of the pills; until then these rows print as written. A comma inside the brackets cuts too: DWELL, LIVE and RESIDE. On PIT (POTHOLE) under שוחה and LEAD (GUIDE) under הביא this prints a word that does not render the key: POTHOLE and GUIDE. A word already on the card prints once, not twice. The store keeps each text as it is.",
+     "print": {
+      "kind": "forms",
+      "at": [
+       "open_paren.holds_another_wording",
+       "close_paren.holds_another_wording",
+       "comma.between_wordings_in_round_brackets"
+      ],
+      "readings": true
+     },
+     "examples": [
+      {
+       "key": "חשק",
+       "row": "LONGING (WISH)",
+       "prints": [
+        "LONGING",
+        "WISH"
+       ]
+      },
+      {
+       "key": "צלצל",
+       "row": "RING (MAKE SOUND)",
+       "prints": [
+        "RING",
+        "MAKE SOUND"
+       ]
+      },
+      {
+       "key": "מכסה",
+       "row": "LID (COVER, CAP)",
+       "prints": [
+        "LID",
+        "COVER",
+        "CAP"
+       ]
+      }
+     ]
     }
    ],
    "resting": "whole"
@@ -427,7 +479,38 @@
     },
     {
      "id": "word_alone",
-     "means": "The page prints only the words before the round brackets, as one reading: SWING, once it has the one step of its own that this answer needs; until then these rows print as written. A word already on the card prints once, not twice. The store keeps each text as it is."
+     "means": "The page prints only the words before the round brackets, as one reading: SWING, once it has the one step of its own that this answer needs; until then these rows print as written. A word already on the card prints once, not twice. The store keeps each text as it is.",
+     "print": {
+      "kind": "before",
+      "at": [
+       "open_paren.holds_a_stand_in",
+       "open_paren.holds_a_tie_word_phrase",
+       "open_paren.holds_a_kind_label",
+       "open_paren.holds_narrowing_words"
+      ]
+     },
+     "examples": [
+      {
+       "key": "השחיז",
+       "row": "SHARPEN (SOMETHING)",
+       "prints": "SHARPEN"
+      },
+      {
+       "key": "חכה",
+       "row": "WAIT (FOR)",
+       "prints": "WAIT"
+      },
+      {
+       "key": "צלצל",
+       "row": "CHIME (ACTION)",
+       "prints": "CHIME"
+      },
+      {
+       "key": "הודיע",
+       "row": "CONVEY (A MESSAGE)",
+       "prints": "CONVEY"
+      }
+     ]
     }
    ],
    "resting": "as_written"

@@ -1,5 +1,6 @@
 {
  "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
  "source_key": "wikidata_hebrew_lexeme_gloss",
  "m_ids": [
   "M87",
@@ -10,8 +11,8 @@
   "M73",
   "M81"
  ],
- "routes": 324,
- "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Wikidata Hebrew lexeme explicit English sense gloss\" (M87, M61, M2, M76, M94, M73, M81): 324 routes (axis: routes), 315 letters keys (axis: keys), 305 distinct route texts (axis: texts). The definition field of the same row equals the route text on 324 of the routes, and the store's cut flag stands on 0. The source audit: each route's store record names lines of the lane's copy of the source (hebrew-english-glosses.jsonl, in ledgers/work/ldmprs/source-cache/wikidata-hebrew-lexemes-2026-07-14/, one answer of Wikidata's query service) with the word's sense id. The route text is the English text of that sense, the field skos:definition, on 324 of 324 routes, and every one of the 2,821 senses of that file has one English text. So a route comes from one field, the text of one sense, and no test here stands on a guess about a field; the audit is evidence about the source and no part of any test. The source's own key to its signs: none found. The lane holds 9 files of this source that are no answers (the queries, the manifests, the licence page, in that folder); the only words in them that name a sign stand in 2 of the lane's own manifests and speak of the spelling of the Hebrew form, not of the English. Of the 5 files of the lane's work on the works' own stamps that name Wikidata, none is Wikidata's own account of how a sense's text is written, as the script builder/05-key-search.mjs and its output source-audit/key-search.json show. A manifest names Wikidata's documentation of its query service by its address (https://www.wikidata.org/wiki/Wikidata:Lexicographical_data/Documentation/Query_Service); its body is not on file, and fetching it needs the owner's word. So every shape's meaning here begins \"unverified:\". What a sign does is read from the texts, and for the comma after a head word from the audit: 224 of the 315 senses behind the routes name an item of Wikidata, and the English label and description of that item stand in hebrew-sense-item-english-fields.jsonl in the same folder.",
+ "routes": 353,
+ "read_from": "The route text as served, in the extract this reissue counts (the serving lane's merge of 7 November 2026 AD: the route store's rows of this source followed by the span store's records of it; a span record is one JSON per line with key, route, def, m, year and cut, and the span store's own fields, which are not marks). The route store's rows: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 1d2470eb356b, store_version 3d8c4ef86c01 (its index.json; the store served on 7 November 2026 AD, 652,885 routes in all), for \"Wikidata Hebrew lexeme explicit English sense gloss\" (M87, M61, M2, M76, M94, M73, M81): 324 routes (axis: routes), byte for byte the 324 routes of the store of 31 October (commit 306f3b285898, store_version 87b13b1169b4) that the ledger of v136 read. The span store's records: the 29 records of this source in the span store as served (schema span-store-served-v1, from span-store-v2.1, dictionary store cc890b8a7992, ledgers applied on 2026-11-07; 1,698 records in all, axis: records), each a word or a phrase of two or more Hebrew words read as one, with its own route text, which the classifier reads like any route. Together 353 routes (axis: routes), 344 letters keys (axis: keys), 334 distinct route texts (axis: texts). The definition field of the same row equals the route text on 353 of the routes, and the store's cut flag stands on 0. The source audit of v136 covers the route store's rows: each such route's store record names lines of the lane's copy of the source (hebrew-english-glosses.jsonl, in ledgers/work/ldmprs/source-cache/wikidata-hebrew-lexemes-2026-07-14/, one answer of Wikidata's query service) with the word's sense id. The route text is the English text of that sense, the field skos:definition, on 324 of 324 of those routes, and every one of the 2,821 senses of that file has one English text. So such a route comes from one field, the text of one sense, and no test here stands on a guess about a field; the audit is evidence about the source and no part of any test. The span store's records were not audited against the source's file here; their texts are of the same kind (one English text of one sense), and the span store's own fields were not read for any test. The source's own key to its signs: none found. The lane holds 9 files of this source that are no answers (the queries, the manifests, the licence page, in that folder); the only words in them that name a sign stand in 2 of the lane's own manifests and speak of the spelling of the Hebrew form, not of the English. Of the 5 files of the lane's work on the works' own stamps that name Wikidata, none is Wikidata's own account of how a sense's text is written, as the script builder/05-key-search.mjs of v136 and its output source-audit/key-search.json show. A manifest names Wikidata's documentation of its query service by its address (https://www.wikidata.org/wiki/Wikidata:Lexicographical_data/Documentation/Query_Service); its body is not on file, and fetching it needs the owner's word. So every shape's meaning here begins \"unverified:\". What a sign does is read from the texts, and for the comma after a head word from the audit: 224 of the 315 senses behind the route store's routes name an item of Wikidata, and the English label and description of that item stand in hebrew-sense-item-english-fields.jsonl in the same folder.",
  "definitions": {
   "terms": "In every test a character is one Unicode code point (every route holds only characters of 16 bits, so a code point is one index of the JavaScript string). A letter is any character of Unicode category L (JavaScript \\p{L}), of any script and in either case. A digit is one of 0 to 9, and no test asks for any other number character. A space is the character U+0020 only, and no test uses whitespace of any other kind. By name, a comma is «,», a slash is «/», and an opening round bracket is «(». Nothing is trimmed: the text is the whole route text as it stands, which is the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def; the text before and the text after the mark are the template's c.before and c.after, and what a bracket holds is the template's c.group, the same for an opener and for its closer. Inside round brackets means that the template's c.container is the word paren. Directly before and directly after name the one character next to the mark or next to the named string; where the mark or the string stands at that end of the text no character stands there, so a test that asks for a character there fails, and a test that says no such character stands there holds. The whole text, exactly, means that the text equals the named string character for character. Begins with means that the first characters of the named thing are exactly the string, whatever follows them; it asks for no word end, and a space at the end of a string is part of the string. Holds means that the string stands somewhere in the named thing as a run of characters, whatever stands beside it; it asks for no word end. A string stands between « and », which are not part of it, and a full stop or comma after » belongs to the sentence and not to the string. Every string and every list minds case and is matched exact to the character.",
   "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. Not caught above means that no earlier shape of the same mark took the occurrence. A shape's container field is not part of its test: a test looks at the container only where it says inside round brackets, and the checker compares the field afterwards.",
@@ -75,6 +76,7 @@
    "comma.inside_a_description"
   ],
   "comma_in_paren": [
+   "comma.beside_a_quoted_phrase_inside_round_brackets",
    "comma.inside_round_brackets"
   ],
   "comma_in_brackets": "absent",
@@ -94,6 +96,8 @@
   "parentheses": [
    "open_paren.in_a_row_that_only_labels",
    "close_paren.in_a_row_that_only_labels",
+   "open_paren.holds_the_whole_row",
+   "close_paren.holds_the_whole_row",
    "open_paren.holds_a_qualifier_before_the_word",
    "close_paren.holds_a_qualifier_before_the_word",
    "open_paren.holds_a_name_after_its_label",
@@ -185,6 +189,24 @@
    "read": 8
   },
   {
+   "id": "comma.beside_a_quoted_phrase_inside_round_brackets",
+   "mark": ",",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: stands inside a note in round brackets beside a phrase in quotation marks, between a label and the phrase («(posthumous honorific, \"may the memory») or between the phrase and the psalm it comes from («God (the 'father of orphans', from Psalm 68)»); a bracket stays with its text, so no cut stands here.",
+   "test": "The mark stands inside round brackets, and the text holds «'» or holds «\"» (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אבי יתומים"
+    },
+    {
+     "key": "זכר צדיק לברכה"
+    }
+   ],
+   "read": 2
+  },
+  {
    "id": "comma.inside_round_brackets",
    "mark": ",",
    "container": "paren",
@@ -204,42 +226,42 @@
    "mark": ",",
    "container": "top",
    "divides": false,
-   "means": "unverified: is general: it stands after the word the sense is named by and before what is said of it, a kind word or a short definition at 36 of its 133 occurrences, where three words or fewer follow, by the proxy of builder/figures.mjs («Anas, genus of birds», «claw, pointed appendage»), and otherwise a longer description; by the audit 123 of them stand in a text that opens with the English label of the item the route's own sense names and then a comma, case aside, and of those 63 stand in a text that is that label and that item's description word for word, and 3 match that only with case aside («dayan, judge in a Jewish religious court», «Bourbon whiskey, type of American whiskey», «Spodik, tall fur hat»); a name and its description are one reading, so the comma does not cut.",
+   "means": "unverified: is general: it stands after the word the sense is named by and before what is said of it, a kind word or a short definition at 39 of its 141 occurrences, where three words or fewer follow, by the proxy of builder/figures.mjs («Anas, genus of birds», «claw, pointed appendage»), and otherwise a longer description; by the audit 123 of them stand in a text that opens with the English label of the item the route's own sense names and then a comma, case aside, and of those 63 stand in a text that is that label and that item's description word for word, and 3 match that only with case aside («dayan, judge in a Jewish religious court», «Bourbon whiskey, type of American whiskey», «Spodik, tall fur hat»); a name and its description are one reading, so the comma does not cut.",
    "test": "The text before the mark does not hold a comma (terms, first_match).",
-   "count": 133,
+   "count": 141,
    "examples": [
     {
      "key": "גשור"
     },
     {
-     "key": "אשליה"
+     "key": "עוגן"
     },
     {
-     "key": "מדגש"
+     "key": "גיד הנשה"
     }
    ],
-   "read": 133
+   "read": 141
   },
   {
    "id": "comma.inside_a_description",
    "mark": ",",
    "container": "top",
    "divides": false,
-   "means": "unverified: is general: it stands inside what the text says of its head word: between the members of a list at 14 of its 23 occurrences, named text by text in builder/lists.mjs («clothing, personal adornment, or decorative arts», «in which dust, smoke, and other dry»), and the remaining 9 before an aside or a further remark, or between describing words («doll, model of a human being, often used as a toy», «bread roll, small, usually round»); what the text says of its head word stays one piece with it.",
+   "means": "unverified: is general: it stands inside what the text says of its head word: between the members of a list at 16 of its 26 occurrences, named text by text in builder/lists.mjs («clothing, personal adornment, or decorative arts», «in which dust, smoke, and other dry»), and the remaining 10 before an aside or a further remark, or between describing words («doll, model of a human being, often used as a toy», «bread roll, small, usually round»); what the text says of its head word stays one piece with it.",
    "test": "Not caught above (first_match).",
-   "count": 23,
+   "count": 26,
    "examples": [
     {
      "key": "ענג"
     },
     {
-     "key": "בריכה"
+     "key": "אופנה"
     },
     {
-     "key": "אבך"
+     "key": "בן־אדם"
     }
    ],
-   "read": 23
+   "read": 26
   },
   {
    "id": "semicolon.between_two_descriptions",
@@ -345,6 +367,36 @@
    "examples": [
     {
      "key": "מוניר"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_the_whole_row",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens a note that is the whole row, a label and a quoted formula with no word outside the bracket («(posthumous honorific, \"may the memory»); the row is of the kind B04 names, but stands outside it, because that question's sentence on today's page does not hold for a row whose comma sits inside a bracket.",
+   "test": "The text before the pair is empty, and the whole text, exactly, is the opening round bracket, what the bracket holds and «)», nothing else (terms, pair_steps).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "זכר צדיק לברכה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_the_whole_row",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes a note that is the whole row, a label and a quoted formula with no word outside the bracket («(posthumous honorific, \"may the memory»); the row is of the kind B04 names, but stands outside it, because that question's sentence on today's page does not hold for a row whose comma sits inside a bracket.",
+   "test": "The text before the pair is empty, and the whole text, exactly, is the opening round bracket, what the bracket holds and «)», nothing else (terms, pair_steps).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "זכר צדיק לברכה"
     }
    ],
    "read": 1
@@ -468,42 +520,42 @@
    "mark": "(",
    "container": "top",
    "divides": false,
-   "means": "unverified: is general: it opens a note on the word before it, which stays with that word: of its 20 occurrences, counted class by class in builder/figures.mjs, a kind word or a place at 7 («Andromeda (galaxy)», «Johannesburg (South Africa)»), a sex or a register at 4 («Austrian person (female)», «school (slang)»), what the word is done with at 1 («accessorized (with ironwork)»), and a description or a remark at 8 («Rangoon (capital of Burma)», «father of (usually in compounds from Arabic)»).",
+   "means": "unverified: is general: it opens a note on the word before it, which stays with that word: of its 22 occurrences, counted class by class in builder/figures.mjs, a kind word or a place at 8 («Andromeda (galaxy)», «Johannesburg (South Africa)»), a sex or a register at 4 («Austrian person (female)», «school (slang)»), what the word is done with at 1 («accessorized (with ironwork)»), and a description or a remark at 9 («Rangoon (capital of Burma)», «father of (usually in compounds from Arabic)»).",
    "test": "Not caught above (first_match).",
-   "count": 20,
+   "count": 22,
    "examples": [
     {
      "key": "אנדרומדה"
     },
     {
-     "key": "אלפא"
+     "key": "דו"
     },
     {
-     "key": "אוסטרית"
+     "key": "עם הארץ"
     }
    ],
-   "read": 20
+   "read": 22
   },
   {
    "id": "close_paren.holds_a_note_on_the_word_before",
    "mark": ")",
    "container": "top",
    "divides": false,
-   "means": "unverified: is general: it closes a note on the word before it, which stays with that word: of its 20 occurrences, counted class by class in builder/figures.mjs, a kind word or a place at 7 («Andromeda (galaxy)», «Johannesburg (South Africa)»), a sex or a register at 4 («Austrian person (female)», «school (slang)»), what the word is done with at 1 («accessorized (with ironwork)»), and a description or a remark at 8 («Rangoon (capital of Burma)», «father of (usually in compounds from Arabic)»).",
+   "means": "unverified: is general: it closes a note on the word before it, which stays with that word: of its 22 occurrences, counted class by class in builder/figures.mjs, a kind word or a place at 8 («Andromeda (galaxy)», «Johannesburg (South Africa)»), a sex or a register at 4 («Austrian person (female)», «school (slang)»), what the word is done with at 1 («accessorized (with ironwork)»), and a description or a remark at 9 («Rangoon (capital of Burma)», «father of (usually in compounds from Arabic)»).",
    "test": "Not caught above (first_match).",
-   "count": 20,
+   "count": 22,
    "examples": [
     {
      "key": "אנדרומדה"
     },
     {
-     "key": "אלפא"
+     "key": "דו"
     },
     {
-     "key": "אוסטרית"
+     "key": "עם הארץ"
     }
    ],
-   "read": 20
+   "read": 22
   },
   {
    "id": "period.after_a_shortened_word",
@@ -516,6 +568,21 @@
    "examples": [
     {
      "key": "דבדבן"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "period.closes_the_row_at_the_end",
+   "mark": ".",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes the row's one sentence at its end («conduct that should characterize a Jew at all times.»); a full stop adds no reading, so the row stays one piece.",
+   "test": "No character stands directly after the mark (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "דרך ארץ"
     }
    ],
    "read": 1
@@ -563,6 +630,51 @@
    "read": 4
   },
   {
+   "id": "apostrophe.marks_off_a_quoted_phrase",
+   "mark": "'",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens or closes a phrase quoted inside a note in round brackets («God (the 'father of orphans', from Psalm 68)»), the same character at both ends; the quoted words stay in the note.",
+   "test": "The mark stands inside round brackets (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "אבי יתומים"
+    }
+   ],
+   "read": 2
+  },
+  {
+   "id": "apostrophe.inside_a_transliterated_name",
+   "mark": "'",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands between two letters of a name written in Latin letters from the Hebrew («Be'er Sheva»), where it marks a Hebrew consonant that has no letter of its own; part of that name.",
+   "test": "The character directly before the mark is a letter, and the character directly after the mark is a letter (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "באר־שבע"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "quote.marks_off_a_quoted_phrase",
+   "mark": "\"",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: opens or closes a formula quoted inside a note in round brackets («(posthumous honorific, \"may the memory»), the same character at both ends; the quoted words stay in the note.",
+   "test": "The mark stands inside round brackets (terms).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "זכר צדיק לברכה"
+    }
+   ],
+   "read": 2
+  },
+  {
    "id": "gershayim.names_the_sign_itself",
    "mark": "״",
    "container": "paren",
@@ -584,7 +696,7 @@
  "precedence": [],
  "homonyms": {
   "entry_identity": "none",
-  "reason": "The route text carries no entry number. The source gives each word (lexeme) an id and each sense of it an id (L7375, L7375-S1); the route store carries neither, and the dictionary store's record keeps them in its location field. So two texts under one letters key may be two senses of one word or senses of two words, and the route text cannot say which. A letters key here is the letters of one spelling of a word's lemma (this holds for 324 of 324 routes by the audit, with final letters folded). By the audit, of the 8 keys with more than one text (axis: keys; 315 letters keys in all), 8 are keys whose routes all come from one lexeme (example key ירק, whose 3 texts come from 1 lexeme), and 0 are keys whose routes come from two or more lexemes.",
+  "reason": "The route text carries no entry number. The source gives each word (lexeme) an id and each sense of it an id (L7375, L7375-S1); the route store carries neither, and the dictionary store's record keeps them in its location field. So two texts under one letters key may be two senses of one word or senses of two words, and the route text cannot say which. A letters key here is the letters of one spelling of a word's lemma (this holds for 324 of 324 of the route store's routes by the audit, with final letters folded). By the audit, of the 8 keys of the route store's rows with more than one text (axis: keys; 315 letters keys among those rows), 8 are keys whose routes all come from one lexeme (example key ירק, whose 3 texts come from 1 lexeme), and 0 are keys whose routes come from two or more lexemes. The span store's records add 0 such keys among themselves and 0 keys whose texts stand one in the route store and one in the span store, not audited here; together 8 keys (axis: keys; 344 letters keys in all).",
   "keys_with_more_than_one_route_text": 8
  },
  "branches": [
@@ -677,7 +789,27 @@
     },
     {
      "id": "no_pill",
-     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as written. They stay in the store as they are."
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as written. They stay in the store as they are.",
+     "print": {
+      "kind": "none"
+     },
+     "examples": [
+      {
+       "key": "ן",
+       "row": "Hebrew letter sounds like N, word ending form",
+       "prints": ""
+      },
+      {
+       "key": "ע",
+       "row": "ע, sixteenth letter in the Hebrew alphabet",
+       "prints": ""
+      },
+      {
+       "key": "כ",
+       "row": "כ, eleventh letter in the Hebrew alphabet",
+       "prints": ""
+      }
+     ]
     }
    ],
    "resting": "as_written"
@@ -697,11 +829,35 @@
     },
     {
      "id": "name_alone",
-     "means": "The page prints the name alone, Adva, once it has the one step of its own that this answer needs; until then these rows print as written. They stay in the store as they are."
+     "means": "The page prints the name alone, Adva, once it has the one step of its own that this answer needs; until then these rows print as written. They stay in the store as they are.",
+     "print": {
+      "kind": "inside",
+      "at": [
+       "open_paren.holds_a_name_after_its_label",
+       "close_paren.holds_a_name_after_its_label"
+      ]
+     },
+     "examples": [
+      {
+       "key": "בעז",
+       "row": "given name (Boaz)",
+       "prints": "Boaz"
+      },
+      {
+       "key": "גמליאל",
+       "row": "given name (Gamaliel)",
+       "prints": "Gamaliel"
+      },
+      {
+       "key": "אלברט",
+       "row": "family name (Albert)",
+       "prints": "Albert"
+      }
+     ]
     }
    ],
    "resting": "as_written"
   }
  ],
- "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark («male given name», «central figure of Christianity»); the rows it names for that question stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census, and nothing is struck. It leaves to the page the steps that the answers no_pill of B04 and name_alone of B05 ask for, since a declaration can cut a row and has no field that leaves a whole row out or a label out; no route divides at rest here."
+ "not_done_here": "This ledger leaves to the store every route that holds no mark, because a shape stands only at a mark («male given name», «central figure of Christianity»); the rows it names for that question stand in rows-for-the-store-v1.jsonl, outside the shapes, as examples and no census from the route store's rows (the span store's records were not read for it), and nothing is struck. It leaves to the page the steps that the answers no_pill of B04 and name_alone of B05 ask for, since a declaration can cut a row and has no field that leaves a whole row out or a label out; no route divides at rest here. The span store's row that is only a note in a bracket («(posthumous honorific, \"may the memory») is of B04's kind and stands outside B04, whose words about today's page do not hold for it; the serving lane may fold it under B04's answer."
 }

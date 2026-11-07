@@ -35,6 +35,7 @@ const SHAPES = [
   { id: "colon.before_a_piece_that_waits", mark: ":", divides: false, test: (c) => WAITING_SECOND_PART_TEXTS.includes(c.text) },
   { id: "colon.before_a_bare_small_word", mark: ":", divides: false, test: (c) => BARE_SMALL_WORD_TEXTS.includes(c.text) },
   { id: "colon.between_head_and_sense", mark: ":", divides: false, test: (c) => c.after[0] === " " },
+  { id: "slash.between_two_spellings_of_one_name", mark: "/", divides: false, test: (c) => TWO_SPELLINGS_OF_ONE_NAME_TEXTS.includes(c.text) },
   { id: "slash.in_the_head_before_a_colon", mark: "/", divides: false, test: (c) => c.after.includes(":") },
   { id: "slash.in_the_sense_after_a_colon", mark: "/", divides: false, test: (c) => c.before.includes(":") },
   { id: "slash.between_endings_of_one_word", mark: "/", divides: false, test: (c) => ENDINGS_ON_ONE_WORD_TEXTS.includes(c.text) },
@@ -94,6 +95,7 @@ const OPTIONAL_WORD_TEXTS = ["baked (food)","guilt (offering)","to bend (down)",
 const HALF_NAME_APOSTROPHE_TEXTS = ["King's","Serpent's","Washer's","Wildgoats'"];
 const BELONGING_BESIDE_PAREN_TEXTS = ["Diviners' (Oak)","People's (Gate)"];
 const BRACKET_NAME_TEXTS = ["[Ben]jamin","[Ben]jaminite","Second [Quarter]"];
+const TWO_SPELLINGS_OF_ONE_NAME_TEXTS = ["YHWH/Jehovah-nissi","YHWH/Yahweh-shalom","YHWH/Yahweh-shammah","YHWH/Yahweh-tsidkenu"];
 
 export function classify(text) {
   const chars = [...text];

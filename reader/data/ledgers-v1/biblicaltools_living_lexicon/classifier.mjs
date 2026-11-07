@@ -35,6 +35,7 @@ const SHAPES = [
   { id: "period.between_two_renderings", mark: ".", divides: false, test: (c) => c.text === "Ludim. Lydians" },
   { id: "period.after_a_shortened_note_word", mark: ".", divides: false, test: (c) => MARGIN_NOTES.includes(c.inner) || ARTICLE_NOTES.includes(c.inner) },
   { id: "period.in_a_grammar_label", mark: ".", divides: false, test: (c) => GRAMMAR_LABELS.includes(c.inner) },
+  { id: "period.closes_the_name_at_the_end", mark: ".", divides: false, test: (c) => c.after === "" },
   { id: "hyphen.opens_a_part_that_may_join", mark: "-", divides: false, test: (c) => PARTS_THAT_MAY_JOIN.includes(c.inner) },
   { id: "hyphen.joins_the_parts_of_one_word", mark: "-", divides: false, test: (c) => isLetter(c.before.slice(-1)) && isLetter(c.after[0]) },
   { id: "apostrophe.opens_a_quoted_gloss", mark: "'", divides: false, test: (c) => c.before === "" },

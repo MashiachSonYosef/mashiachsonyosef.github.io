@@ -1,5 +1,6 @@
 {
  "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
  "source_key": "wikimedia_hebrew_english_interlanguage_title_20260701",
  "m_ids": [
   "M15"
@@ -623,7 +624,30 @@
     },
     {
      "id": "name_alone",
-     "means": "The page prints only the name before the round brackets, as one reading: Dolls, once it has the one step of its own that this answer needs; until then these rows print as written. The store keeps each text as it is."
+     "means": "The page prints only the name before the round brackets, as one reading: Dolls, once it has the one step of its own that this answer needs; until then these rows print as written. The store keeps each text as it is.",
+     "print": {
+      "kind": "before",
+      "at": [
+       "open_paren.around_the_word_disambiguation"
+      ]
+     },
+     "examples": [
+      {
+       "key": "בובות",
+       "row": "Dolls (disambiguation)",
+       "prints": "Dolls"
+      },
+      {
+       "key": "ביקונספילד",
+       "row": "Beaconsfield (disambiguation)",
+       "prints": "Beaconsfield"
+      },
+      {
+       "key": "הרעבה",
+       "row": "Starvation (disambiguation)",
+       "prints": "Starvation"
+      }
+     ]
     }
    ],
    "resting": "as_written"
@@ -642,7 +666,84 @@
     },
     {
      "id": "named_part",
-     "means": "The page prints only the side that renders the Hebrew word, as one reading, row by row: Quartz#Citrine prints Citrine; Employment#Employer prints Employer; Races of StarCraft#Terrans prints Terrans; Bereavement in Judaism#Yizkor prints Yizkor; Names of God in Judaism#Tzevaot prints Tzevaot; Moab#Moabite language prints Moabite language; Paralanguage#Sighs prints Sighs; Veil#Wedding veils prints Wedding veils; Brush#Paintbrushes prints Brush; Paintbrush#paintbrushes prints Paintbrush and Activation#Chemistry prints Activation. It prints no pill for the rows where neither side does: World#Religion and mythology and Hadith studies#The sanad and the matn. All this once it has the one step of its own that this answer needs; until then these rows print as written. The store keeps each text as it is. Of the other rows with a slash or a dash, Apollonia–Arsuf and HIV/AIDS are the only ones where printing one side would make sense; they stand outside this question, so this answer does not reach them."
+     "means": "The page prints only the side that renders the Hebrew word, as one reading, row by row: Quartz#Citrine prints Citrine; Employment#Employer prints Employer; Races of StarCraft#Terrans prints Terrans; Bereavement in Judaism#Yizkor prints Yizkor; Names of God in Judaism#Tzevaot prints Tzevaot; Moab#Moabite language prints Moabite language; Paralanguage#Sighs prints Sighs; Veil#Wedding veils prints Wedding veils; Brush#Paintbrushes prints Brush; Paintbrush#paintbrushes prints Paintbrush and Activation#Chemistry prints Activation. It prints no pill for the rows where neither side does: World#Religion and mythology and Hadith studies#The sanad and the matn. All this once it has the one step of its own that this answer needs; until then these rows print as written. The store keeps each text as it is. Of the other rows with a slash or a dash, Apollonia–Arsuf and HIV/AIDS are the only ones where printing one side would make sense; they stand outside this question, so this answer does not reach them.",
+     "print": {
+      "kind": "after",
+      "at": [
+       "number_sign.between_a_page_and_its_part"
+      ]
+     },
+     "rows": [
+      {
+       "row": "Quartz#|Citrine",
+       "side": "after"
+      },
+      {
+       "row": "Employment#|Employer",
+       "side": "after"
+      },
+      {
+       "row": "Races of StarCraft#|Terrans",
+       "side": "after"
+      },
+      {
+       "row": "Bereavement in Judaism#|Yizkor",
+       "side": "after"
+      },
+      {
+       "row": "Names of God in Judaism#|Tzevaot",
+       "side": "after"
+      },
+      {
+       "row": "Moab#|Moabite language",
+       "side": "after"
+      },
+      {
+       "row": "Paralanguage#|Sighs",
+       "side": "after"
+      },
+      {
+       "row": "Veil#|Wedding veils",
+       "side": "after"
+      },
+      {
+       "row": "Brush#|Paintbrushes",
+       "side": "before"
+      },
+      {
+       "row": "Paintbrush#|paintbrushes",
+       "side": "before"
+      },
+      {
+       "row": "Activation#|Chemistry",
+       "side": "before"
+      },
+      {
+       "row": "World#|Religion and mythology",
+       "side": "none"
+      },
+      {
+       "row": "Hadith studies#|The sanad and the matn",
+       "side": "none"
+      }
+     ],
+     "examples": [
+      {
+       "key": "מברשת",
+       "row": "Brush#Paintbrushes",
+       "prints": "Brush"
+      },
+      {
+       "key": "סיטרין",
+       "row": "Quartz#Citrine",
+       "prints": "Citrine"
+      },
+      {
+       "key": "מעסיק",
+       "row": "Employment#Employer",
+       "prints": "Employer"
+      }
+     ]
     }
    ],
    "resting": "as_written"
