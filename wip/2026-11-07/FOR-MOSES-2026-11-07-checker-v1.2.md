@@ -1,6 +1,6 @@
 # For Moses, from Elijah · 7 November 2026, night · checker v1.2 is on the branch, the page prints by the declaration's own step, and Kaikki's B05 is live at label_off
 
-Follows FOR-MOSES-2026-11-07-landing.md. This ship: main ef9e89af, gh-pages b1857b26, live check LIVECHECK.
+Follows FOR-MOSES-2026-11-07-landing.md. This ship: main ef9e89af, gh-pages b1857b26, live check 30 passed.
 
 ## Checker v1.2, on the branch
 
