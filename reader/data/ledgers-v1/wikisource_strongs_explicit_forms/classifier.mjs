@@ -81,7 +81,6 @@ const SHAPES = [
   { id: "comma.paren_after_the_word", mark: ",", divides: false, test: (c) => c.container === "paren" && afterHolder(c.after).trim() === "" },
   // ---- fragment stops ----
   // ---- the semicolon: one shape divides, by a closed list of texts; two shapes rest in branch B01
-  { id: "semicolon.in_unbalanced_text", mark: ";", divides: false, test: (c) => unbalanced(c.text) },
   { id: "semicolon.opens_text", mark: ";", divides: false, test: (c) => c.container === "top" && c.before.trim() === "" },
   { id: "semicolon.between_two_renderings", mark: ";", divides: false, test: (c) => c.container === "top" && TWO_RENDERINGS_TEXTS.includes(c.text) },
   { id: "semicolon.between_sentence_and_word", mark: ";", divides: false, test: (c) => c.container === "top" && WORD_AFTER_SENTENCE.includes(c.after.trim()) },
@@ -113,6 +112,8 @@ const SHAPES = [
   { id: "period.paren_in_run_of_dots", mark: ".", divides: false, test: (c) => c.before.endsWith(".") || c.after.startsWith(".") },
   { id: "period.paren_ends_list_inside_bracket", mark: ".", divides: false, test: (c) => c.text === "with(-in.)" },
   { id: "period.paren_ends_note", mark: ".", divides: false, test: (c) => c.after.startsWith(")") },
+  { id: "period.paren_after_book_abbreviation", mark: ".", divides: false, test: (c) => BOOK_ABBREVIATIONS.includes(wordBeforeStop(c)) },
+  { id: "period.paren_ends_sentence_in_note", mark: ".", divides: false, test: (c) => /^\s+\p{Lu}/u.test(c.after) },
   // ---- fragment rest ----
   // ---- the hyphen: no shape divides or rests in a branch
   { id: "hyphen.in_unbalanced_text", mark: "-", divides: false, test: (c) => unbalanced(c.text) },
@@ -188,6 +189,7 @@ const SPELLING_CLAUSES = ["or (feminine) mtsuwdah","or mtsudah","or callown","or
 const LABELS_AFTER_SEMICOLON = ["causatively","by implication","properly","but usually (adverbially)","hence"];
 const ORIGIN_OPENERS = ["(Aramaic) corresponding to","(Aramaic) from","a primitive root","apparently from","feminine of","for ","from ","of uncertain derivation","probably identical with","the same as"];
 const ABBREVIATIONS = ["Marg","Prop","Incl","marg","includ","etym","etc"];
+const BOOK_ABBREVIATIONS = ["Psa","Jer","Ezek","Hos"];
 const WORD_ENDS_ALONE = ["-s","-th"];
 const sentenceText = (text) => text.includes(";") && !TWO_RENDERINGS_TEXTS.includes(text);
 const isWholeText = (text, g) => { const t = text.trim(); return t === "(" + g + ")" || t === "X (" + g + ")"; };

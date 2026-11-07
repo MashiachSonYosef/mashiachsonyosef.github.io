@@ -137,7 +137,7 @@ for (const { slug, z, t } of layered) {
   // L4
   const routes = s.routes || {}, grades = s.grades || {};
   let badLen = 0, badFirst = 0;
-  // since the pointing grade (now pointing-grade-rule-v3) a leader rests on
+  // since the pointing grade (now pointing-grade-rule-v4) a leader rests on
   // the row's own grade where the store row carries its headwords, and on
   // the lattice card's grade where it does not — so the tier a leader leads
   // must exist among the

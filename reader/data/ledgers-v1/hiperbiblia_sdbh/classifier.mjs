@@ -35,6 +35,7 @@ const SHAPES = [
   { id: "comma.after_to_be", mark: ",", divides: false, test: (c) => c.before === "to be" },
   { id: "comma.inside_round_bracket", mark: ",", divides: false, test: (c) => c.container === "paren" },
   { id: "comma.any_other", mark: ",", divides: false, test: (c) => true },
+  { id: "semicolon.inside_round_bracket", mark: ";", divides: false, test: (c) => c.container === "paren" },
   { id: "period.one_of_three_in_a_row", mark: ".", divides: false, test: (c) => c.before.endsWith(".") || c.after.startsWith(".") },
   { id: "question_mark.between_renderings_in_one_gloss", mark: "?", divides: false, test: (c) => atCut(c) },
   { id: "question_mark.doubt_in_round_bracket", mark: "?", divides: false, test: (c) => c.container === "paren" },

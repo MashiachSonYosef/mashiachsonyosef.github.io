@@ -1170,12 +1170,12 @@
   }
  },
  "counts": {
-  "keys": 124900,
-  "routes": 652777,
+  "keys": 124901,
+  "routes": 652885,
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 14993456,
+  "shard_bytes_total": 14996160,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "1771556c24a6",
+ "store_version": "efd33cffbce8",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1472,6 +1472,18 @@
    "now": "1771556c24a6",
    "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
    "on": "2026-11-07T01:28:23.977Z"
+  },
+  {
+   "was": "1771556c24a6",
+   "now": "0880f7bf30ee",
+   "why": "row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed",
+   "on": "2026-11-07T02:59:38.674Z"
+  },
+  {
+   "was": "0880f7bf30ee",
+   "now": "efd33cffbce8",
+   "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
+   "on": "2026-11-07T03:01:26.536Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -1527,12 +1539,13 @@
   ]
  },
  "row_strikes": {
-  "rule_id": "row-strike-rule-v4-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-or-restores-a-row-and-the-hole-is-typed",
+  "rule_id": "row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed",
   "record": "reader/data/row-strikes-v1.json",
   "cumulative": {
    "routes_struck": 2180,
    "routes_rekeyed": 23,
    "routes_restored": 71,
+   "routes_landed": 108,
    "by_action_since_version_2": {
     "strike": 81,
     "withhold": 214,
@@ -1542,18 +1555,20 @@
     "rejoin_rows_taken": 40,
     "rejoin_folded": 0,
     "headword": 1,
-    "retext": 10242,
+    "retext": 10243,
     "retext_folded": 1517,
     "restore": 71,
-    "restore_already_held": 2
+    "restore_already_held": 2,
+    "land": 108,
+    "land_already_held": 0
    },
-   "keys_touched": 8441,
-   "rounds": 14
+   "keys_touched": 8489,
+   "rounds": 15
   }
  },
  "ledgers": {
   "rule_id": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
-  "applied_on": "2026-11-07T01:29:42.793Z",
+  "applied_on": "2026-11-07T03:01:26.536Z",
   "manifest": "reader/data/ledgers-v1/manifest.json",
   "ask": "ASK-provider-declarations-v1.1",
   "checker": {
@@ -1562,7 +1577,7 @@
   },
   "answers": {
    "file": "reader/data/ledger-branch-answers-v1.json",
-   "sha256": "43b1f5309f2edb20cd87688f3daada481437c763ea6fcf0b30e835244a215443"
+   "sha256": "7757ea12cd96573026c6825a68539683b7806bd76d5d24d24e21acea2ea46e4c"
   },
   "excluded": {},
   "untabled": {
@@ -1704,13 +1719,13 @@
     "uncovered": 0
    },
    "classical_hebrew_words": {
-    "relay": "v124.1",
-    "declaration_sha256": "731cc113c6735297c6a8c40e35e494b7e7d9fbbba86e62266cc5b4d4897365ef",
-    "classifier_sha256": "4e2e4a0353ca6741077ffc91c707a9f7dbde124fbddb84c8f38dda8e9f8bd121",
+    "relay": "v124.2",
+    "declaration_sha256": "acf62183b187e90e613774b8b6ec85924c102ea75ebc79d5af05153ac0b4af86",
+    "classifier_sha256": "2fb3b20dc48df51c12ed7475735da3596a90388e61d67c916dfb3b98c7b88d9c",
     "m_ids": [
      "M23"
     ],
-    "shapes": 102,
+    "shapes": 101,
     "shapes_dividing": [
      "comma.between_two_names",
      "comma.beside_a_bracket_or_tag_on_the_list",
@@ -1754,37 +1769,22 @@
       "prints": "classical_hebrew_words:B05"
      }
     },
-    "rows": 7313,
-    "rows_dividing": 1277,
+    "rows": 7314,
+    "rows_dividing": 1280,
     "rows_printing_a_part": 0,
     "rows_no_pill": 9,
-    "uncovered": 4
+    "uncovered": 2
    },
    "conceptnet_5_7_hebrew_english_cc_by_4_0": {
-    "relay": "v128.1",
-    "declaration_sha256": "5f70d26c695e3ec8003d523404c9fba257ad9f4a3dc427493dd979f268aa2498",
-    "classifier_sha256": "500ee51f25bf00b67dd20b1d8904d9ae209551256c62e00ee216070efad0f7c4",
+    "relay": "v128.2",
+    "declaration_sha256": "d893a32acd15f1d566ca25c5460298c5fff56d4bb03afc28ed1dd2796c0fbdbf",
+    "classifier_sha256": "1d82e37c94f0c81a38d789c59ad9c1066ad9851f8ae79f0ca09d91821fb852b0",
     "m_ids": [
      "M22"
     ],
-    "shapes": 11,
+    "shapes": 0,
     "shapes_dividing": [],
-    "branches": {
-     "B01": {
-      "option": "tag_off",
-      "resting": "tag_stays",
-      "by": "the owner",
-      "on": "2026-11-06",
-      "prints": "conceptnet_5_7_hebrew_english_cc_by_4_0:B01"
-     },
-     "B02": {
-      "option": "tag_off",
-      "resting": "tag_stays",
-      "by": "the owner",
-      "on": "2026-11-06",
-      "prints": "conceptnet_5_7_hebrew_english_cc_by_4_0:B02"
-     }
-    },
+    "branches": {},
     "rows": 3955,
     "rows_dividing": 0,
     "rows_printing_a_part": 0,
@@ -1792,30 +1792,15 @@
     "uncovered": 0
    },
    "conceptnet_5_7_hebrew_english_cc_by_sa_4_0": {
-    "relay": "v113",
-    "declaration_sha256": "c36287885b0e3cc9b33c1badc0a3b168a4fb2e0670ca08199c7737dae3f06b30",
-    "classifier_sha256": "c991a28de5bb12ee3abc5640f37adbfd415cdf5fad5f5774efd0349d3d574ff0",
+    "relay": "v113.1",
+    "declaration_sha256": "3c80dcc768408951c5a90f1abcdd1f1ee9999a96f029b3f6eff58137feba1ecd",
+    "classifier_sha256": "3c86ffa950388a5fa0b28aaf2f2fad9312314a4c7617f3c2b212258541bd99d7",
     "m_ids": [
      "M1"
     ],
-    "shapes": 15,
+    "shapes": 4,
     "shapes_dividing": [],
-    "branches": {
-     "B01": {
-      "option": "tag_off",
-      "resting": "tag_stays",
-      "by": "the owner",
-      "on": "2026-11-06",
-      "prints": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0:B01"
-     },
-     "B02": {
-      "option": "tag_off",
-      "resting": "tag_stays",
-      "by": "the owner",
-      "on": "2026-11-06",
-      "prints": "conceptnet_5_7_hebrew_english_cc_by_sa_4_0:B02"
-     }
-    },
+    "branches": {},
     "rows": 10023,
     "rows_dividing": 0,
     "rows_printing_a_part": 0,
@@ -2071,13 +2056,13 @@
     "uncovered": 0
    },
    "hiperbiblia_sdbh": {
-    "relay": "v118",
-    "declaration_sha256": "7d4bce17a545a80542297da49de648e18d807679c6881f7c083fcdc5dbc77f43",
-    "classifier_sha256": "e10dd0d595d42ea448d72bcee1c8e58f88283b15bec053834c036ef0a6ea4c37",
+    "relay": "v118.1",
+    "declaration_sha256": "870a10bec753b3922ebd16fe54fed5283165b77bda605ae87a5ab07887062d1b",
+    "classifier_sha256": "b295226d56fcc9f0eeeca4faad3c57768e7ba0477fbe3a088daf2788a0f7be97",
     "m_ids": [
      "M17"
     ],
-    "shapes": 56,
+    "shapes": 57,
     "shapes_dividing": [
      "comma.between_renderings_in_one_gloss",
      "question_mark.between_renderings_in_one_gloss",
@@ -2110,7 +2095,7 @@
     "rows_dividing": 41,
     "rows_printing_a_part": 0,
     "rows_no_pill": 1,
-    "uncovered": 1
+    "uncovered": 0
    },
    "kaikki_english_wiktionary_hebrew_translation_table": {
     "relay": "v133",
@@ -2137,8 +2122,8 @@
     "uncovered": 0
    },
    "kaikki_wiktionary_aramaic": {
-    "relay": "v129",
-    "declaration_sha256": "744aa445b45e4b9b0177eb513212ae2756969362dd95612aea75b9fb76a5153a",
+    "relay": "v129.1",
+    "declaration_sha256": "cd655b17c3aeb427ca135dd4e61f5db930332c300402677ce58c2e9bfbbd7154",
     "classifier_sha256": "48a7cc63ad21152de30abeb483a86250d19a885937663e695150c1a413a17d4c",
     "m_ids": [
      "M60",
@@ -2223,8 +2208,8 @@
     "uncovered": 0
    },
    "kaikki_wiktionary_hebrew": {
-    "relay": "v111",
-    "declaration_sha256": "fdc3a9a7b82a01e669885b9c27959e2b56d6784a24ddcad175a9725202bc308c",
+    "relay": "v111.1",
+    "declaration_sha256": "aa054a4cb689ddcdaa54c1b44db8a61d285394175453876b2e231c3e3f38ecb9",
     "classifier_sha256": "ecbb129921b027c205a50be113a8863772aca09a0efa6cdb04f2393ba9f32582",
     "m_ids": [
      "M11",
@@ -3172,13 +3157,13 @@
     "uncovered": 0
    },
    "wikisource_strongs_explicit_forms": {
-    "relay": "v110.1",
-    "declaration_sha256": "1cf3f82bf1ad3c6e4a6317c4416004bb58d57c98df1d292091ca9356500356a0",
-    "classifier_sha256": "22ab00f8527029cb87fd06ceec2155b40be8d269c25cb16438fa1a85b670062f",
+    "relay": "v110.2",
+    "declaration_sha256": "d115fce99a1f6535352d66f7ae1e8cd7f7be3ef8e32f93004458eb560e48b0f8",
+    "classifier_sha256": "3f8fe4ab6968beab33167dd4316b80759cdc37345c655cbd3e0e1c311b0d0899",
     "m_ids": [
      "M14"
     ],
-    "shapes": 118,
+    "shapes": 119,
     "shapes_dividing": [
      "semicolon.between_two_renderings",
      "semicolon.between_sentence_and_word",
@@ -3205,21 +3190,21 @@
       "on": "2026-11-06"
      }
     },
-    "rows": 148236,
+    "rows": 148343,
     "rows_dividing": 120,
     "rows_printing_a_part": 0,
     "rows_no_pill": 0,
-    "uncovered": 24
+    "uncovered": 3
    }
   },
   "totals": {
    "ledgered_sources": 36,
-   "rows": 652777,
-   "rows_dividing": 71445,
+   "rows": 652885,
+   "rows_dividing": 71448,
    "rows_printing_a_part": 1419,
    "rows_no_pill": 600,
-   "rows_whose_slot_moved": 0,
-   "uncovered": 29
+   "rows_whose_slot_moved": 3,
+   "uncovered": 5
   }
  }
 }

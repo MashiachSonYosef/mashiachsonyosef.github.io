@@ -467,9 +467,11 @@
     for (let i = 0; i < s.length; i += 1) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
     return h.toString(16).padStart(8, "0");
   };
-  // THE GRADE FROM THE ROW'S OWN HEADWORDS — pointing-grade-rule-v3 (since
+  // THE GRADE FROM THE ROW'S OWN HEADWORDS — pointing-grade-rule-v4 (since
   // 2026-11-06 neither a word-initial dagesh lene nor the qatan mark is a
-  // pointing; the reasons are in tools/pointing-grade-v1.mjs). A store row that carries the source's own
+  // pointing; since 7 November a shureq is a vowel, so a headword whose only
+  // vowel is a shureq, qum or hu, is pointed and graded; the reasons are in
+  // tools/pointing-grade-v1.mjs). A store row that carries the source's own
   // pointed headwords at [6] is graded here, against the word standing open,
   // by the corpus lane's two lines
   // (vowelForm, isPointed: the same functions, to the character, as
@@ -484,7 +486,7 @@
     .replace(/[\u0591-\u05AF\u05BD\u05BE\u05BF\u05C0\u05C3\u05C4\u05C5\u05C6\u05C7]/g, "")
     .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "")
     .replace(/^([\u05D1\u05D2\u05D3\u05DB\u05E4\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
-  const isPointed = (t) => /[\u05B0-\u05BB]/.test(String(t ?? "").normalize("NFKD"));
+  const isPointed = (t) => /[\u05B0-\u05BB]|\u05D5\u05BC/.test(String(t ?? "").normalize("NFKD"));
   // the binyan ledger's families (stem-family-rule-v2, tools/stem-family-v1.mjs):
   // a source may name a stem inside a family otherwise than the place does
   // (BDB's Po. is poel where MACULA says polel), so stems are compared by
@@ -4145,7 +4147,7 @@
       const gr = latticeStore && latticeStore.grades && openPointed && surface === openKey ? latticeStore.grades[openPointed] : null;
       const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
       // a row that carries its source's own headwords is graded here, by
-      // them, against the open word (pointing-grade-rule-v3); a row that does
+      // them, against the open word (pointing-grade-rule-v4); a row that does
       // not falls to the lattice card's grade, as before. A word with no
       // vowels of its own (a title from the catalog) gives the gate nothing to
       // gate on: graded against bare letters, every pointed row would read as
@@ -4416,7 +4418,7 @@
     const pieceLast = (a, b) => (pieceOnly(a) ? 1 : 0) - (pieceOnly(b) ? 1 : 0);
     const TIER = { m: 0, n: 1, x: 2 };
     // the grade of one record: its own headwords against the open word when
-    // it carries them (pointing-grade-rule-v3), the lattice card's grade
+    // it carries them (pointing-grade-rule-v4), the lattice card's grade
     // otherwise, "-" when neither can say
     const own = openPointed && surface && surface === openKey;
     const gradeOf = (row) => { const sg = own ? gradeRow(row, openPointed) : "-"; if (sg !== "-") return sg; const i = idxOf(row); return i >= 0 ? (gr.g[i] || "-") : "-"; };
