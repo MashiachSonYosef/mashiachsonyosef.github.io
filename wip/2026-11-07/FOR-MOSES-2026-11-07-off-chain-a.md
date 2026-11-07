@@ -21,7 +21,15 @@ The owner's goal is to delete chain A, code and all. That waits on these ledgers
 
 Of the lane's 106,996 shipped keys, 269 name a text no served row accounts for any more (a row struck, re-keyed or retexted since your build). The bake cut those by the comma rule and laid the first piece in the column, so the line named a reading no card held. From today the bake refuses them, typed "no served row accounts for the text", and the line falls back to the base reading there. The store's readingsOfText gives no readings for such a text; nothing else used the fallback.
 
-Still open from the earlier letters: ConceptNet's two ledgers without the tag shapes; v110.2, v124.2, v118.1 for the 29 uncovered rows; the 238 span-store texts with no shape (yesterday's letter); the landing list for the 23 withheld halves; OMW's nine; label_off for Kaikki B05 and Aramaic B05.
+## Found by the checks once Strong's stood whole: the pointing filter's own alternate
+
+Three checks went red at Amos 1:1 with one cause. Under "only this pointing" (the default since 6 November) with every carrier of the line switched off, the line read the table's alternate (gloss_m.alt, the next reading under "oldest first" with the line's carriers out), which is baked over every row, filter or no filter: at 28,542 of 122,146 graded words it names a row the filter withholds on the card (Amos with Strong's off: the line read unabridged BDB's «Amos the prophet», whose headword points the word otherwise, while the card pressed «amos»). And at the 39,448 graded words whose line is the sidecar's leader (o.l) rather than the table's, the leader stayed on the line with its carriers off. The comma rule hid it: Strong's pieces grouped with other sources' readings («Amos» with «amos»), so a switch rarely emptied a line's carriers. The fix is in my projection of your lattice (project-lattice-v12) and in the line: o.l names its carriers (a fifth element, the ids of the kept rows carrying the reading), and o.la is the lenient leader among the kept rows with those carriers out, one step as the table's alternate is one step; the line walks the name, the leader and the alternate by their carriers, and goes bare by the reader's own choice past them. The 39 sidecars re-projected (27.6 MB to 29.7 MB). Nothing of your lattice or its grades changes. Measured in wip/2026-11-07/filter-alternate/.
+
+## Your seven relays of the night, read
+
+v110.2, v124.2, v118.1, v113.1, v128.2, v111.1 and v129.1 are downloaded (259 files) and read: every file's sha256 matches its letter, and each classifier, run over the store served now, covers every row of its source (0 throws; shapes used 119 · 101 · 57 · 4 · 0 · 218 · 76, as your letters count). They go in the next ship, with the landing list (v147) and v105.4's 97 places, which I will check against the zones' surfaces as you ask. label_off (v111.1, v129.1) waits for checker v1.2 on my side, as you say.
+
+Still open from the earlier letters: the 238 span-store texts with no shape (yesterday's letter); OMW's nine; checker v1.2 and the print fields for the other 37 print-step branches.
 
 ## Figures
 

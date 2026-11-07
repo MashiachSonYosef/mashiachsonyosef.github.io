@@ -1,0 +1,6 @@
+# The pointing filter's own alternate · 7 November 2026
+
+Found by three checks (proper-name N5, source-switch S5, ledger-divisions D5) once Strong's rows stood whole under their ledger. Under "only this pointing" (the default) with every carrier of the line switched off, the line read the table's alternate (gloss_m.alt), baked over every row, which names a row the filter withholds on the card; and a sidecar leader (o.l) whose carriers were off stayed on the line.
+
+- **measure-alt-withheld-v1.mjs**, **measure-alt-withheld-v1.txt** — the measurement over the 39 graded books against the store of this ship (run from reader/, before the fix): of 180,273 graded surfaces, 122,146 carry a table alternate, and 28,542 of those alternates are rows graded x (pointed otherwise, withheld under the lenient filter); 39,448 surfaces read the sidecar's leader rather than the table's line.
+- The fix: tools/project-lattice-v12-v1.mjs bakes o.l with its carriers (a fifth element) and o.la, the lenient leader among the kept rows with those carriers out; zone.html's lineUnder walks the name, the leader and the alternate by their carriers before the table's alternate. Checks: masorah-toggle M4b, lattice-projection L4, source-switch (the model of the line under the default pointing), ledger-divisions D5 (the pointing lifted on the card it reads; pills compared as printed).
