@@ -76,11 +76,14 @@ Nothing else: no version folders, no verify seats, gates, mirrors or sandboxes, 
 
 **The size, estimated from the store:** the newest build of every family, less the folders named gate, verify, sandbox, mirror, strand, probe, scratch, work or cache, less the older build folders inside a build, comes to about 32 GB; the collected scans add 8.5 GB, moses-ledgers 2.4 GB. That still counts every one-off probe and census build as current; with those out, the layout lands inside the owner's 30 to 40 GB, and the disk need hold only what you work on.
 
-**The order, so nothing current is lost:**
-1. You build v2/ by copying (never moving) the current items into it, with a manifest of every file and its hash.
-2. Two proofs. Yours: your current tools run from v2/ alone and rebuild their current outputs byte for byte. Mine: my round runs with the lattice and the binyan stems read from v2/, and the gate against the live site moves 0 lines and 0 cards.
-3. The owner's go on the totals.
-4. The old layout goes whole: on the store every top-level prefix but v2/ and serving-lane/ (the page lane's shelf); on the disk everything outside v2/. A prefix delete is right here because the new layout is a separate prefix proven in step 2, which the 18 October plan's surgical deletes were not.
+**The order, so nothing current is lost.** The owner, on the disk: about 10 GB is free on the computer, and "we could push everything onto the r2 if need be, free up space, rewrite the entire backend, prove it, then delete". So the disk is freed first, through the store, and nothing is deleted anywhere until it has a hash-verified copy or has been proven unneeded:
+
+1. **Archive to the store.** `rclone copy` the 125 GB that never reached the store into a quarantine prefix (say mishkan/old-local/), then `rclone check` it by hash. What you can already name as a check's scratch (a verify seat's renders or rebuild runs whose receipt records the verdict) may be deleted instead of uploaded; whatever you cannot name goes up. The store costs about $0.015 a GB a month and reading it back costs nothing, so the quarantine costs a few dollars for as long as it stands; the upload is the slow part, hours on a home line.
+2. **Free the disk.** Delete every local file whose copy on the store passed the hash check (the 18 October tool and rules: one name at a time, never a link, never a recursive delete). The disk drops to your tools and whatever you are working on.
+3. **Build v2/.** On the store by server-side copy of the current items (rclone copies within one bucket without the disk), with a manifest of every file and its hash; or on the freed disk.
+4. **Two proofs.** Yours: your current tools run from v2/ alone and rebuild their current outputs byte for byte. Mine: my round reads the lattice and the binyan stems from v2/, and the gate against the live site moves 0 lines and 0 cards.
+5. **The owner's go**, on the totals.
+6. **Delete the old layout whole**: on the store every top-level prefix but v2/ and serving-lane/ (the page lane's shelf), the quarantine included; on the disk anything outside what you work on. A prefix delete is right here because v2/ is a separate prefix proven in step 4, which the 18 October plan's surgical deletes were not.
 
 ## Asked of you
 
