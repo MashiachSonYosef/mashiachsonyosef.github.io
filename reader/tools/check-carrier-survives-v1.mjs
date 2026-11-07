@@ -49,7 +49,7 @@
 
 import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
-import { openRouteStore, SWITCH_RULE_ID } from "./gloss-store-v1.mjs";
+import { openRouteStore, SWITCH_RULE_ID, readingKey } from "./gloss-store-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 
 let bad = 0;
@@ -123,7 +123,7 @@ const carriersOf = (routes, omit = null) => {
     if (!store.index.m_sources[mId]) continue;
     if (omit && omit.has(mId)) continue;
     for (const reading of store.readingsOf(row)) {
-      const key = reading.toLowerCase();
+      const key = readingKey(reading);
       if (!m.has(key)) m.set(key, new Set());
       m.get(key).add(mId);
     }
@@ -150,7 +150,7 @@ for (const k of sample) {
       soleBad += 1; if (!soleSay) soleSay = `${k}: by=${JSON.stringify(e.by)} sole=${e.sole}`;
     }
     if (e.by.length > 1) multi += 1;
-    const want = [...(truth.get(e.text.toLowerCase()) || new Set())].sort();
+    const want = [...(truth.get(readingKey(e.text)) || new Set())].sort();
     if (JSON.stringify(want) !== JSON.stringify(e.by)) {
       carrierBad += 1; if (!carrierSay) carrierSay = `${k} ${JSON.stringify(e.text)}: pool ${JSON.stringify(e.by)} vs routes ${JSON.stringify(want)}`;
     }
@@ -195,9 +195,10 @@ for (const k of sample) {
 
   // C7 · turn the leading reading's first carrier off.
   //
-  // "The same reading" is the pool's own identity, which is the lowercased
-  // text — that is what the merge dedupes on, so it is what a claim about
-  // inventing has to be made in. Comparing displayed text instead reports a
+  // "The same reading" is the pool's own identity, which is the printed form
+  // case folded (readingKey, zone-gloss-rule-v6: the "/" pieces joined, one
+  // closing stop dropped) — that is what the merge dedupes on, so it is what a
+  // claim about inventing has to be made in. Comparing displayed text instead reports a
   // handover as an invention: on אכד the pool holds "Akkad" from M5 and
   // "akkad" from M6 as ONE entry whose face is whichever route was read
   // first, so switching M5 off leaves M6's lowercase face standing. The
@@ -205,12 +206,12 @@ for (const k of sample) {
   // that supplied the capital is the one the reader switched off. C7b counts
   // that, because a reader who turns a source off and sees a word change
   // shape is owed an account of why.
-  const ident = new Set(full.map((e) => e.text.toLowerCase()));
-  const faces = new Map(full.map((e) => [e.text.toLowerCase(), e.text]));
+  const ident = new Set(full.map((e) => readingKey(e.text)));
+  const faces = new Map(full.map((e) => [readingKey(e.text), e.text]));
   const off = new Set([full[0].by[0]]);
   const after = store.readingPool(routes, "oldest", null, off);
   for (const e of after) {
-    const id = e.text.toLowerCase();
+    const id = readingKey(e.text);
     if (!ident.has(id)) { invented += 1; if (!inventedSay) inventedSay = `${k}: ${JSON.stringify(e.text)} appears only under the switch`; }
     else if (faces.get(id) !== e.text) {
       caseMoved += 1;

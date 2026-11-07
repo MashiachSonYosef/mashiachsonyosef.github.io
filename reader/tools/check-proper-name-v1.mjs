@@ -26,7 +26,9 @@
 //       sense, and the card says why the name leads
 //   N5  the switches still govern it: with the name's every carrier switched
 //       off the line moves off the name and the card opens pressed on what
-//       the line then says
+//       the line then says; a dictionary beside the store or the place's own
+//       witnesses may still carry the name on the card, unpressed, since the
+//       switch subtracts exactly its sources' rows
 //
 // Run: node tools/check-proper-name-v1.mjs [zone url]
 import { readFileSync, readdirSync, existsSync } from "node:fs";
@@ -137,7 +139,8 @@ const openNamed = async (ctx) => {
     const h = document.getElementById("hud");
     const t0 = Date.now(); while (Date.now() - t0 < 12000 && !h.querySelector(".r-pills button")) await wait(50);
     await wait(700);
-    const pills = [...h.querySelectorAll(".r-pills button")].map((x) => ({ t: x.textContent.trim(), on: x.getAttribute("aria-pressed") === "true" }));
+    const by = Array.isArray(window.__poolBy) ? window.__poolBy : [];
+    const pills = [...h.querySelectorAll(".r-pills button")].map((x, i) => ({ t: x.textContent.trim(), on: x.getAttribute("aria-pressed") === "true", by: String(by[i] || "").split(" ").filter(Boolean) }));
     return { found: true, line: (g?.title || "").trim(), lineText: (g ? g.childNodes[0]?.textContent : "").trim(), now: (h.querySelector(".r-now .v")?.textContent || "").trim(),
       note: (h.querySelector(".r-now .n")?.textContent || "").trim(), pills };
   }, target.s);
@@ -158,9 +161,19 @@ const openNamed = async (ctx) => {
   const r = await openNamed(ctx);
   const want = spanJoin(target.text);
   const pressed = r.pills && r.pills.find((x) => x.on);
+  // THE SWITCH SUBTRACTS EXACTLY ITS SOURCES' ROWS (source-switch-rule-v1). A pill
+  // that still reads the name may stand, so long as none of the switched
+  // sources carries it: a dictionary beside the store (Jastrow's «Amos») and
+  // the place's own witnesses (PIECE:TAHOT, PIECE:MACULA) are not switched off
+  // with the store's carriers, and the name they carry stays on the card,
+  // unpressed, while the line has moved off it (7 November 2026: with the
+  // pool keyed by the printed form, Amos's four store carriers off left
+  // Jastrow's «Amos» standing on the card, as it should).
+  const stillNamed = r.found ? r.pills.filter((x) => x.t === want) : [];
+  const bySwitched = stillNamed.filter((x) => x.on || x.by.some((m) => carriers.includes(m)));
   check(`N5  with the name's carriers off (${carriers.join(", ")}) the line moves off the name and the card opens pressed on what it says`,
-    r.found && r.line !== want && (!pressed || pressed.t === r.line) && !r.pills.some((x) => x.t === want),
-    r.found ? `line "${r.line}" · pressed "${pressed ? pressed.t : "—"}" · name still pooled ${r.pills.some((x) => x.t === want)}` : "the word was not found on the page");
+    r.found && r.line !== want && (!pressed || pressed.t === r.line) && !bySwitched.length,
+    r.found ? `line "${r.line}" · pressed "${pressed ? pressed.t : "—"}" · name still pooled ${stillNamed.length ? "by " + stillNamed.map((x) => x.by.join("+") || "?").join(", ") : "false"}${bySwitched.length ? " (A SWITCHED SOURCE STILL CARRIES IT)" : ""}` : "the word was not found on the page");
   await ctx.close();
 }
 await b.close();

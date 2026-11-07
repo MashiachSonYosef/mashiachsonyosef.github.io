@@ -82,7 +82,7 @@ import { createInterface } from "node:readline";
 import { join } from "node:path";
 
 import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
-import { openRouteStore } from "./gloss-store-v1.mjs";
+import { openRouteStore, readingKey } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
@@ -387,7 +387,7 @@ for (const sec of zone.sections || []) {
         let best = null;
         const by = new Set();
         for (const row of kept) {
-          const carries = store.readingsOf(row).some((t) => t.toLowerCase() === top.text.toLowerCase());
+          const carries = store.readingsOf(row).some((t) => readingKey(t) === readingKey(top.text));
           if (!carries) continue;
           by.add(String(row[3]));
           const y = Number.parseInt(row[4], 10); const yy = Number.isInteger(y) ? y : Infinity;

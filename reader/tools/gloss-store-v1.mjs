@@ -1,4 +1,4 @@
-// Synthesis lane · zone-gloss-rule-v5-ledger-division-antiquity-1940-lastuary
+// Synthesis lane · zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary
 //
 // The default reading printed under a word used to be chosen in the browser,
 // which meant the rule lived in a page: it could not be reviewed, diffed, or
@@ -16,8 +16,16 @@
 //      displayed at a time, in every packing — so a stored gloss is one
 //      reading, never a joined list. A sense the rule holds back as damaged
 //      is not printable and does not pool: corrupted text is not a word's face.
-//   3. Senses pool across every exact route for that K, deduped by lowercased
-//      text, merging the OLDEST source year and the LOWEST semantic rank seen.
+//   3. Senses pool across every exact route for that K, deduped by the PRINTED
+//      FORM, case folded: the "/" pieces joined with " + ", one closing stop
+//      dropped (readingKey below, the page's spanJoin). Two readings that print
+//      the same are one reading with every carrier of either (the owner,
+//      2 October 2026: "shouldnt it be bundled into 1 pill with 2 M"; until 7
+//      November the pool keyed on the reading as written, closing stop and all,
+//      so Strong's «Amos.» and a second source's «Amos» stood as two pills that
+//      read alike, and the page deferred the join until the bake made it too).
+//      The group's text is the first reading to arrive (the catalog's rank
+//      order), merging the OLDEST source year and the LOWEST semantic rank seen.
 //   4. Antiquity leads: senses whose oldest source is 1940 or earlier come
 //      first, everything later and everything unyeared follows. Within a tier,
 //      older first, then the catalog's own semantic rank.
@@ -52,7 +60,12 @@ import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
 
-export const GLOSS_RULE_ID = "zone-gloss-rule-v5-ledger-division-antiquity-1940-lastuary";
+export const GLOSS_RULE_ID = "zone-gloss-rule-v6-printed-form-ledger-division-antiquity-1940-lastuary";
+// THE PRINTED FORM (rule 3): what a reader sees of a reading. Two readings
+// whose printed forms agree, case folded, are one reading. Exported so the
+// projector, the checks and the page's mirror key the pool the same way.
+export const printedForm = (t) => String(t ?? "").split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
+export const readingKey = (t) => printedForm(t).toLowerCase();
 // the era cut, one constant: 1940 AD is 5700 AM, the last year of the 57th
 // century; the engine derives the same number from ERA_CUT_AM
 export const ERA_CUT_AD = 1940;
@@ -62,7 +75,7 @@ export const GLOSS_RULE_TEXT =
   "a source with no ledger packs senses with ';' and a sense divides into readings at the commas outside the " +
   "provider's parentheses, where every piece is shaped like a gloss (sense-split-rule-v3); each division is one reading; a damaged sense is " +
   "held whole and neither printed nor pooled; pool = every reading of every exact route, deduped by " +
-  "text with min year and min rank; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
+  "the printed form case folded (the '/' pieces joined with ' + ', one closing stop dropped), with min year and min rank and every carrier of either; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
   "reading stored verbatim; the page joins '/'-packed spans with ' + '; " +
   "one reading on display at a time, everywhere";
 
@@ -165,9 +178,9 @@ export const openRouteStore = (storeDir) => {
     const t = String(text ?? "");
     const rows = (routesFor(k) || []).filter((r) => (index.m_sources || {})[r[3]]);
     const ids = Array.isArray(mIds) ? mIds.map(String) : [];
-    const tl = t.toLowerCase();
+    const tk = readingKey(t);
     const exact = (list) => list.find((r) => String(r[1]) === t) || null;
-    const holds = (list) => list.find((r) => readingsOf(r).some((x) => x.toLowerCase() === tl)) || list.find((r) => genericReadings(String(r[1])).some((x) => x.toLowerCase() === tl)) || null;
+    const holds = (list) => list.find((r) => readingsOf(r).some((x) => readingKey(x) === tk)) || list.find((r) => genericReadings(String(r[1])).some((x) => readingKey(x) === tk)) || null;
     if (ids.length) { const mine = rows.filter((r) => ids.includes(String(r[3]))); const hit = exact(mine) || holds(mine); if (hit) return hit; }
     const others = ids.length ? rows.filter((r) => !ids.includes(String(r[3]))) : rows;
     return exact(others) || holds(others);
@@ -226,7 +239,7 @@ export const openRouteStore = (storeDir) => {
       // else, each sense divides at the declared comma rule, and a sense the
       // rule holds back as damaged neither prints nor pools.
       readingsOf(row).forEach((reading) => {
-          const key = reading.toLowerCase();
+          const key = readingKey(reading);
           const g = groups.get(key);
           // The corpus rank merges the same way year and rank do: a reading
           // carried by any BIBLICAL witness is a BIBLICAL-carried reading,

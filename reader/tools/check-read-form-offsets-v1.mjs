@@ -27,7 +27,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
-import { openRouteStore } from "./gloss-store-v1.mjs";
+import { openRouteStore, readingKey } from "./gloss-store-v1.mjs";
 
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
@@ -41,7 +41,7 @@ let groups = 0, sideOff = 0, tileOff = 0, joinOff = 0, held = 0, heldOff = 0;
 const offEx = [];
 let found = null;
 const store = openRouteStore("data/route-store");
-const storeSays = (key) => new Set(store.readingPool((store.routesFor(key) || []).filter((r) => store.index.m_sources[r[3]]), "oldest").map((g) => String(g.text).trim().toLowerCase()));
+const storeSays = (key) => new Set(store.readingPool((store.routesFor(key) || []).filter((r) => store.index.m_sources[r[3]]), "oldest").map((g) => readingKey(g.text)));
 for (const book of zonesServed()) {
   const byPlace = (rf.books || {})[book];
   const pf = `data/piece-store/${book}.json`, zf = `data/zones/${book}.bin`;
@@ -91,7 +91,7 @@ for (const book of zonesServed()) {
         if (pg.map((x) => letters(x.k)).join("") !== side) continue;
         let at = 0; const blocks = pg.map((x) => { const k = letters(x.k); const b = [at, at + k.length - 1, k]; at += k.length; return b; });
         const block = blocks.find((b) => b[0] === p[1] && b[1] === p[2]);
-        if (block && blocks.length > 1 && !storeSays(block[2]).has(String(c[6]).trim().toLowerCase())) found = { book, place, label: place.split(":").slice(0, 2).join(":"), n: Number(place.split(":")[2]), block: block[2], reading: String(c[6]).trim(), src };
+        if (block && blocks.length > 1 && !storeSays(block[2]).has(readingKey(c[6]))) found = { book, place, label: place.split(":").slice(0, 2).join(":"), n: Number(place.split(":")[2]), block: block[2], reading: String(c[6]).trim(), src };
       }
     }
   }

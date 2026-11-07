@@ -1857,6 +1857,9 @@
   // the period, and the porch and every check join readings by this same
   // function, to the character.
   const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
+  // ONE READING, ONE PILL (zone-gloss-rule-v6, tools/gloss-store-v1.mjs readingKey):
+  // two readings are one where they print the same, case folded
+  const readingKey = (t) => spanJoin(t).toLowerCase();
   const shardCache = new Map();
   // A shard is addressed by which store it belongs to. Without this a reader
   // whose browser already holds yesterday's shard keeps being answered from it
@@ -4264,15 +4267,14 @@
     // ONE READING, ONE PILL (the owner, 2026-10-02: "shouldnt it be bundled into
     // 1 pill with 2 M"; the corpus lane's R pill ledger, resting position
     // TOGETHER) is the printed form (spanJoin: "/" pieces joined, one closing
-    // period dropped), lowercased. The store's own rows still group on the
-    // reading as written, closing period and all, because the order columns the
-    // line reads are baked that way (tools/regloss-zone.mjs): grouped otherwise,
-    // the card and the line part (Amos, the relative word "that", under the license preference). Its
-    // 7,645 period-split pills join when the bake does. An overlay's row joins
-    // the store's pill that prints the same, and otherwise its own pill, by the
-    // printed form, so "creation" and "creation." from the same dictionary are
-    // one pill.
-    const drawn = (t) => spanJoin(t).toLowerCase();
+    // period dropped), lowercased: readingKey, the key the bake pools by too
+    // (zone-gloss-rule-v6, 7 November 2026; until then the store's rows grouped
+    // on the reading as written, closing period and all, as the baked columns
+    // were, and Strong's "Amos." stood beside a second source's "Amos" as two
+    // pills that read alike). An overlay's row joins the store's pill that
+    // prints the same, and otherwise its own pill, by the same key, so
+    // "creation" and "creation." from the same dictionary are one pill.
+    const drawn = readingKey;
     const groups = new Map();
     routes.forEach((row) => {
       const [rank, routeText, , mId, year] = row;
@@ -4281,7 +4283,7 @@
       const yr = Number.isInteger(y) ? y : Infinity;
       const nd = isNoDerivs(index.m_sources[mId].licensePosture);
       (nd ? [String(routeText)] : readingsOfRow(row)).forEach((reading) => {
-          const key = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : reading.toLowerCase();
+          const key = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : drawn(reading);
           const g = groups.get(key);
           // a piece store row neither dates nor ranks its group (it witnesses
           // the reading only; sortPool's rk): the group keeps the store's year
@@ -4435,8 +4437,8 @@
     const lic = (r) => (rk(r).length ? Math.min(...rk(r).map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture))) : 9);
     const tr = (r) => (lat && lat.t && rk(r).some((row) => lat.t.includes(idxOf(row))) ? 0 : 1);
     const wCol = pos.needs === "witnessed" && surface && zone && zone.gloss_orders && zone.gloss_orders[pos.id] ? zone.gloss_orders[pos.id][surface] : null;
-    const wText = wCol ? String(wCol).toLowerCase() : null;
-    const witnessed = (r) => (!wText ? 0 : String(r.text).toLowerCase() === wText ? 0 : 1);
+    const wText = wCol ? readingKey(wCol) : null;
+    const witnessed = (r) => (!wText ? 0 : readingKey(r.text) === wText ? 0 : 1);
     const primary = (a, b) => {
       if (defOrder === "characters") return a.ledger - b.ledger;
       if (defOrder === "corpus") return era(a) - era(b);
@@ -6566,7 +6568,7 @@
       // first reading under lemma-sort v3 where the lattice sorted the stack
       // (hg on the word) — the same reading the line prints
       const lemmaFirst = lookup === "headword" && word && word.hg && region.form_k && surface === region.k
-        ? pool.find((r) => String(r.text).toLowerCase() === String(word.hg).toLowerCase()) : null;
+        ? pool.find((r) => readingKey(r.text) === readingKey(word.hg)) : null;
       // THE CARD OPENS ON THE LINE'S READING. The line under the word and
       // the card's pressed pill are one claim said twice; a sort that reached
       // only the card — the licence preference, the letters switch — left
@@ -6694,9 +6696,9 @@
           const src = row && index.m_sources[row[3]];
           if (src && src.ledger && String(text) === String(row[1])) {
             const s = document.createElement("span");
-            const sel = String(selected.text).toLowerCase();
+            const sel = readingKey(selected.text);
             const whole = String(row[1]);
-            const holds = whole.toLowerCase() === sel || readingsOfRow(row).some((reading) => reading.toLowerCase() === sel);
+            const holds = readingKey(whole) === sel || readingsOfRow(row).some((reading) => readingKey(reading) === sel);
             s.className = holds ? "d-sense on" : "d-sense";
             s.textContent = spanJoin(whole);
             d.append(s);
@@ -6708,8 +6710,8 @@
             // the chosen reading is finer than the sense that carries it: the
             // sense is lit when any of its readings is the one the reader holds
             const holds = readingSplit(sense).readings.some(
-              (reading) => reading.toLowerCase() === String(selected.text).toLowerCase());
-            s.className = holds || sense.toLowerCase() === String(selected.text).toLowerCase() ? "d-sense on" : "d-sense";
+              (reading) => readingKey(reading) === readingKey(selected.text));
+            s.className = holds || readingKey(sense) === readingKey(selected.text) ? "d-sense on" : "d-sense";
             s.textContent = spanJoin(sense);
             d.append(s);
           });
