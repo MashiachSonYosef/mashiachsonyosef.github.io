@@ -29,3 +29,44 @@ Not a count's convenience; a ruling. The facts as the site has them:
 - Moses's stem count takes either form as a match; mine sets those places aside until the reading is chosen on the page. That difference is 399 of his 73,836 verb places; about 1,500 words in the Bible are written one way and read another.
 
 The three positions, in the owner's terms: the written governs (the ketiv's letters are the word; the qere is a note beside it; rows are keyed and graded by the ketiv, which has no vowels, so no pointing filter applies there); the read governs (the qere is the word read aloud, as the pointing everywhere is the oral tradition's; rows keyed and graded by the qere); both stand (the Masoretes kept both; a row matching either is kept, as Moses counts). The site's present state is the third for display (both halves shown) and neither for the grade (set aside). Moses has been asked for his reasoning too.
+
+## The seven new ledgers (Moses's v153.1, v155 to v160): 17 questions, 14 answered by your rulings of 6 November
+
+Jastrow, the Samaritan dictionaries and the span store's own two sources now have ledgers. None divides until a question is answered. By your rulings of 6 November (lists divide; a filing tag, label or template comes off; a row that renders nothing has no pill; a bracketed optional word prints both forms), 14 answer themselves; I would apply them as below unless you say otherwise:
+
+| ledger | question | answer by your rulings | rows |
+|---|---|---|---|
+| Jastrow B01 | semicolons part groups of wordings (lofty; ruler, lord; proud) | divides | 10,703 |
+| Jastrow B02 | commas part wordings (to cut off, surround, isolate) | divides | 66,178 |
+| Jastrow B03 | a grammar label at one end (Hif., to cause to pass) | label off | 61 |
+| Cowley B01 | commas part glosses (selected, special, best) | divides | 120 |
+| Cowley B02 | a semicolon before a second gloss | divides | 26 |
+| Cowley B03 | rows that are only a period | no pill | 47 |
+| Cowley B04 | a comma left at the head where the headword was taken out | head comma off | 227 |
+| Florentin-Tal B01 | double pipes between the meanings the Samaritan reading tells apart | divides | 78 |
+| Florentin-Tal B02 | a comma inside a quoted gloss ('desire, passion') | divides | 6 |
+| Samaritan Wiktionary B01 | double pipes between two senses | divides | 4 |
+| Samaritan Wiktionary B02 | commas between linked glosses (mountain, mount) | divides | 7 |
+| Samaritan Wiktionary B03 | a wiki template beside the gloss | template off | 4 |
+| Nicholls B01 | a cognate pointer after the gloss (sea; Chald. יַמָא) | pointer off | 8 |
+| TAHOT expanded B02 | (Mount )Baal-hermon | both forms | 2 |
+
+Three are new kinds of question, yours:
+
+1. **Jastrow B04** (98 rows): two cries or questions parted by their own sign, «oh! woe!», «wherefore? why?». Dividing prints «oh» without its «!». Divide, or keep each row whole?
+2. **TAHOT expanded B01** (1 row): «Samgar, Nebu-sar-sekim», two names for one place, the second made from the next word's letters. Two readings, or one?
+3. **TAHOT expanded B03** (3 rows): «My Delight Is in Her(KJV: Hephzibah)». Print the translated name alone, or the row as written with the King James form?
+
+The ETCBC ledger asks nothing.
+
+## Davidson's year
+
+Moses's source table (v150) finds no printed date in the copy we have: the title leaf says "SECOND EDITION" with no year, and 1855 is the library's catalogue record. Does a library's catalogue date count for a printed book that prints none? If yes, Davidson's 85 rows sort as 1855 under "oldest first"; if no, they sort with the undated, last, as today.
+
+## Moses's store mapping (v152): your word on road A
+
+One row per key, text and source (each source's own words, year and ledger), the pooling done on the page as it is already, the dictionaries beside the store and the span store joining it as rows of the same shape, the piece store staying as two sources' records. It is a proposal: on your word Moses builds a candidate store, I bake and gate it, and it is served only if the gate accounts for every difference. It also fits the restructure (one current store, no side stores).
+
+## Ketiv/qere: Moses's reasoning (v151)
+
+1,062 places are written one way and read another in the 39 books (the handbooks' "about 1,500" counts classes the text does not mark). His reasoning: the vowels belong to the reading, since the scribes kept the written letters but read the qere aloud and wrote its vowels; where only vowels would differ there is no note, because the vowels are the reading. So the grade, the stem, the line's lead and the sound follow the qere, and the written letters stand beside it as their own record, with their own dictionary rows matched by letters only. On בָּרָא, which carries no ketiv/qere note, that means its vowels are the only record of the reading, and the stem they give is the reading's own. His proposal for the page: grade the qere and say so, where it now grades neither half; at the 120 verb places where the written letters could take another stem, show "the written letters could also be read as …" if you want it shown, never as the place's stem. My recommendation: adopt it.
