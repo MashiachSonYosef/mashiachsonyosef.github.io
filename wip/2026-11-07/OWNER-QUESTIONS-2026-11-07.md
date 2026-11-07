@@ -19,3 +19,13 @@ In your order. The macro review is next (the rules, the data flow, the checks, t
 ## Your toggle idea: a dictionary's composer as a shelf on the source switch
 
 "Christian composed dictionaries only", or "non-Jew composed": instead of the site removing Jastrow, a reader switches a shelf off. This fits the source switch as it stands: the sources already shelve three ways (by century, by language, by licence), each shelf with its own baked switch cost, and a fourth shelving by composer is the same mechanism. What it needs is a declared record per source naming its composition with the evidence (as source-corpus-v1 names each source's corpus with a quote), from Moses, never a guess of the page's; and your names for the shelves. One rule I would keep from the corpus shelving: a source nobody has declared shelves as undeclared, not as "other". Queued after the deletions (task #39); say the names you want and I will put the ask to Moses with them.
+
+## Ketiv/qere: which governs where the written and the read part (the owner, 7 November: perhaps the most important question in the whole work)
+
+Not a count's convenience; a ruling. The facts as the site has them:
+
+- At a ketiv/qere place the zone serves both halves as the manuscript tradition writes them: the ketiv's letters without points, the qere pointed («(בהלכותם) [בַּהֲלִיכָתָ֑ם]», Nahum 2:6; two keys; the read form selectable by Moses's v108 offsets). The vowels in the text belong to the reading; the written letters stand without them.
+- The key under every word is its written letters (the consonants); the pointing filter ("only this pointing") compares a dictionary row's headword against the place's vowels, the oral tradition's record. The site already leans on both: the written as the key, the read as the filter. Where they part, the filter has only the qere's vowels to compare with; against the ketiv there is no pointing.
+- Moses's stem count takes either form as a match; mine sets those places aside until the reading is chosen on the page. That difference is 399 of his 73,836 verb places; about 1,500 words in the Bible are written one way and read another.
+
+The three positions, in the owner's terms: the written governs (the ketiv's letters are the word; the qere is a note beside it; rows are keyed and graded by the ketiv, which has no vowels, so no pointing filter applies there); the read governs (the qere is the word read aloud, as the pointing everywhere is the oral tradition's; rows keyed and graded by the qere); both stand (the Masoretes kept both; a row matching either is kept, as Moses counts). The site's present state is the third for display (both halves shown) and neither for the grade (set aside). Moses has been asked for his reasoning too.
