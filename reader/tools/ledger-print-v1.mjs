@@ -26,99 +26,25 @@
 //
 // A ledger whose branches offer only "divides" and its resting option has no
 // entry here; a branch answered with its resting option has no effect here.
+//
+// RETIRED, 7 November 2026: the table is empty. Every answered branch now
+// carries its print step in its own declaration (ask v1.2, read by
+// tools/ledger-print-from-declaration-v1.mjs): 35 entries left on the
+// reissues of that morning, and the last two, biblicaltools_living_lexicon
+// B05 and panlex_hebrew_english_definitions_20250201 B02, on the corpus
+// lane's v135.2 and v123.2, which list every served text those branches reach
+// with what it prints (rows_print), each line as this table printed it. The
+// module stays so the apply tool and its check can say so: an answered branch
+// whose declaration carries no step finds no entry here and is refused.
 
-/** kept ranges: [[from, to), ...] over the text, in order; the printed text is
- *  the kept characters joined, runs of spaces (U+0020 alone: a no-break space
- *  or a tab is the route's own character and stays) collapsed, trimmed */
+/** the printed text of kept ranges: the kept characters joined, runs of spaces (U+0020 alone) collapsed, trimmed */
 const collapse = (s) => s.replace(/ {2,}/gu, " ").trim();
-/** a branch's own word that a row prints no pill (Wikimedia B02's row list: a row where neither side renders) */
-const NONE = Symbol("no pill");
 const join = (text, keep) => collapse(keep.map(([a, b]) => text.slice(a, b)).join(""));
-const whole = (text) => [[0, text.length]];
-const remove = (keep, from, to) => {
-  const out = [];
-  for (const [a, b] of keep) {
-    if (to <= a || from >= b) { out.push([a, b]); continue; }
-    if (from > a) out.push([a, from]);
-    if (to < b) out.push([to, b]);
-  }
-  return out;
-};
-const before = (text, i) => [[0, i]];
-const after = (text, i) => [[i + 1, text.length]];
-const between = (o, c) => [[o + 1, c]];
-const first = (marks, ...shapes) => marks.find((m) => shapes.includes(m.shape)) || null;
-const all = (marks, ...shapes) => marks.filter((m) => shapes.includes(m.shape));
-const pair = (marks, open, close) => { const o = first(marks, open); const c = o ? marks.find((m) => m.shape === close && m.i > o.i) : null; return o && c ? [o.i, c.i] : null; };
-/** the word just before index i: back over spaces, then over the word */
-const wordBefore = (text, i) => { let e = i; while (e > 0 && /\s/u.test(text[e - 1])) e -= 1; let s = e; while (s > 0 && !/\s/u.test(text[s - 1])) s -= 1; return [s, e]; };
-/** the two forms a bracket offers: the row without the bracket, and the row with the bracket's part joined on */
-const twoForms = (text, o, c) => {
-  const inner = text.slice(o + 1, c);
-  const plain = remove(whole(text), o, c + 1);
-  let joined;
-  if (!text.slice(0, o).trim()) joined = [[o + 1, c], [c + 1, text.length]];               // «(over) against» → over against
-  else {
-    const [, e] = wordBefore(text, o);                                                      // the word the part joins, without the space after it
-    const start = inner.startsWith("-") && /^[a-z]/u.test(inner.slice(1)) ? o + 2 : o + 1;  // «-s» joins with nothing between; «-Gilead» keeps its hyphen
-    joined = [[0, e], [start, c], [c + 1, text.length]];
-  }
-  return [plain, joined];
-};
+/** a branch's own word that a row prints no pill */
+const NONE = Symbol("no pill");
 
-const T = (option, kind, print) => ({ option, kind, print });
-// kind: "none" prints no pill; "keep" prints one or more parts of the row and refuses to combine with a cut; "remove" takes marks
-// out of the row and may combine with a cut (each piece prints with its own marks removed); "forms" prints several texts built
-// from the row and refuses to combine with a cut.
-const noPill = () => T("no_pill", "none", () => []);
-
-// 7 November 2026: the corpus lane's reissues under ask v1.2 carry the print step as data in the
-// declaration for every answered branch but two (tools/ledger-print-from-declaration-v1.mjs reads them);
-// their hand entries and examples are gone from here. The two that stay are steps the six kinds of ask
-// v1.2 cannot write exactly (v135.1: the one word before the bracket; v123.1: several removals composed
-// on one row), and they retire when the ask gains the kinds or the lane lists their rows by hand.
-export const PRINT_RULES = {
-  // --- a name or a word with filing marks around it ----------------------------------------------------------------
-  "biblicaltools_living_lexicon:B05": T("name_alone", "keep", (text, marks) => {
-    const m = first(marks, "open_paren.holds_a_note_on_the_margin", "open_paren.holds_a_note_on_the_article", "open_paren.holds_a_verse_place_beside_a_name");
-    return m ? [[wordBefore(text, m.i)]] : null;
-  }),
-  "panlex_hebrew_english_definitions_20250201:B02": T("without_marks", "remove", (text, marks) => {
-    let keep = whole(text);
-    for (const m of all(marks, "apostrophe.doubled_working_mark")) keep = remove(keep, m.i, m.i + 1);
-    for (const o of all(marks, "open_angle.opens_a_tag")) { const c = marks.find((m) => m.shape === "close_angle.closes_a_tag" && m.i > o.i); if (c) keep = remove(keep, o.i, c.i + 1); }
-    const brace = first(marks, "open_brace.in_unbalanced_text");
-    if (brace) keep = remove(keep, brace.i, text.length);
-    const link = first(marks, "pipe.between_a_link_target_and_its_word");
-    if (link) keep = remove(keep, 0, link.i + 1);
-    const quotes = all(marks, "quote.wraps_the_row").map((m) => m.i);
-    if (quotes.length >= 2) {
-      const inner = quotes.slice(1, -1);
-      const drop = [quotes[0], quotes[quotes.length - 1]];
-      for (let j = 0; j + 1 < inner.length; j += 1) if (inner[j + 1] === inner[j] + 1) { drop.push(inner[j]); j += 1; }   // a doubled quote prints once
-      for (const i of drop) keep = remove(keep, i, i + 1);
-    }
-    const colon = first(marks, "colon.at_the_head_of_the_text");
-    if (colon) keep = remove(keep, colon.i, colon.i + 1);
-    return [keep];
-  }),
-  // the branch reads its 13 rows one by one and says which side renders the Hebrew; the table is its words
-  // --- the filing tags this corpus's own script wrote on ConceptNet's rows ---------------------------------------
-  // The owner, 6 November: a tag this corpus wrote is not provider text, so it came off the route text itself
-  // (row-strike-rule-v3, retext from the definition slot). The corpus lane reissued both ledgers against the
-  // retexted store (v113.1: 4 shapes, no branch; v128.2: no mark at all, a note in place of a ledger), so the four
-  // tag_off entries that stood here until 7 November reach no shape and are gone; the rulings they applied stand
-  // in data/ledger-branch-answers-v1.json under "retired", as the record of what was asked and answered.
-  // --- rows that render nothing a translator could print ---------------------------------------------------------
-};
-
-/** Wikimedia B02, in the branch's own words: which side of the number sign renders the Hebrew, row by row */
-const NAMED_PART = {
-  "Quartz#Citrine": "after", "Employment#Employer": "after", "Races of StarCraft#Terrans": "after", "Bereavement in Judaism#Yizkor": "after",
-  "Names of God in Judaism#Tzevaot": "after", "Moab#Moabite language": "after", "Paralanguage#Sighs": "after", "Veil#Wedding veils": "after",
-  "Brush#Paintbrushes": "before", "Paintbrush#paintbrushes": "before", "Activation#Chemistry": "before",
-  "World#Religion and mythology": null, "Hadith studies#The sanad and the matn": null,
-};
+/** One entry per branch, keyed source:branch: { option, kind, print(text, marks) }. Empty since 7 November 2026. */
+export const PRINT_RULES = {};
 
 /** What a row prints under its answered branch: { texts } ([] = no pill), or null where the rule does not reach the row.
  *  `marks` are the row's classified marks (every shape); `cuts` the row's dividing marks (row[7]); the rule's kind says
@@ -149,20 +75,8 @@ export const printOf = (ruleKey, text, marks, cuts = []) => {
   return { texts };
 };
 
-/** the branch's own examples, from its "means" */
-export const FIXTURES = [
-  ["biblicaltools_living_lexicon:B05", "Ephai (from margin)", ["Ephai"]],
-  ["biblicaltools_living_lexicon:B05", "and Zehoar (from the margin)", ["Zehoar"]],
-  ["biblicaltools_living_lexicon:B05", "Hakkatan (including the article)", ["Hakkatan"]],
-  ["biblicaltools_living_lexicon:B05", "Micaiah (2 Chronicles 18:8)", ["Micaiah"]],
-  ["panlex_hebrew_english_definitions_20250201:B02", "tree of the ''Acer'' genus", ["tree of the Acer genus"]],
-  ["panlex_hebrew_english_definitions_20250201:B02", "O<sub>3</sub>", ["O3"]],
-  ["panlex_hebrew_english_definitions_20250201:B02", "<u>au</u>tomobile", ["automobile"]],
-  ["panlex_hebrew_english_definitions_20250201:B02", "to date {{jump|t|date|s", ["to date"]],
-  ["panlex_hebrew_english_definitions_20250201:B02", "\"personal pronoun \"\"he\"\"\"", ["personal pronoun \"he\""]],
-  ["panlex_hebrew_english_definitions_20250201:B02", "#Barcelona (Englisch)|Barcelona", ["Barcelona"]],
-  ["panlex_hebrew_english_definitions_20250201:B02", ": sex partner without emotional attachment", ["sex partner without emotional attachment"]],
-];
+/** the branch's own examples, from its "means": none while the table is empty */
+export const FIXTURES = [];
 
 /** Runs every fixture through the ledger's own classifier. `classifiers` maps source key -> classify(text); a fixture
  *  whose classifier is not given is skipped and named. Returns { failed: [...], skipped: [...] }. */

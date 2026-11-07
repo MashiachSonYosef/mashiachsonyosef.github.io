@@ -29,6 +29,15 @@
 //             teeth»); either way, where no text opens or ends so, the entry
 //             names the texts that hold its run once («,| I am enslaved»). A
 //             full text with the "|" in it is the plain case of the first.
+//   rows_print  (the corpus lane's v135.2 and v123.2, 7 November 2026) the
+//             step as a list, for a branch whose cut no kind can say: one line
+//             per served text the branch reaches, { row, prints } with the
+//             text byte for byte and what the page prints for it (a string, ""
+//             for no pill, or a list), and where another branch's cut falls
+//             inside the row, `prints_with_the_cuts_of_6_november` beside it,
+//             the texts printed when those cuts stand. A text the branch
+//             reaches that the list does not hold is an error, never a guess:
+//             the list is the store of its day, and a new text needs a line.
 //   examples  [{ key?, row, prints }], served rows and what the step prints
 //             (a string, "" for no pill, or a list of strings); the checker
 //             (check-provider-declaration-v1.2) and the apply tool run them
@@ -106,10 +115,13 @@ const closerOf = (text, i) => {
 /** the option's steps, normalized to a list; [] where the option carries no print */
 export const stepsOf = (option) => {
   const p = option && option.print;
-  if (!p) return [];
+  // a list of rows and what each prints is a step of its own (rows_print)
+  if (!p) return rowsPrintOf(option).length ? [{ kind: "rows_print", at: [], to_end: false, readings: false }] : [];
   const list = Array.isArray(p) ? p : [p];
   return list.map((s) => ({ kind: s.kind, at: Array.isArray(s.at) ? s.at : [], to_end: !!s.to_end, readings: !!s.readings }));
 };
+/** the option's rows_print lines, [] where it carries none */
+export const rowsPrintOf = (option) => ((option && Array.isArray(option.rows_print)) ? option.rows_print : []);
 /** the rows the ledger marked by hand, each as a matcher: { side, elided, text (the "|" out), at (the "|"'s index in text) } */
 export const rowSidesOf = (option) => {
   const out = [];
@@ -141,6 +153,19 @@ export const kindOf = (option) => { const st = stepsOf(option); return st.length
 export const faultsOf = (option, branchShapes) => {
   const f = [];
   const p = option && option.print;
+  if (option && option.rows_print !== undefined) {
+    if (!Array.isArray(option.rows_print) || !option.rows_print.length) f.push("rows_print is not a list of lines");
+    const seen = new Set();
+    for (const [k, r] of rowsPrintOf(option).entries()) {
+      const okPrint = (x) => typeof x === "string" || (Array.isArray(x) && x.every((y) => typeof y === "string" && y));
+      if (!r || typeof r.row !== "string" || !r.row) { f.push(`rows_print ${k + 1} names no row`); continue; }
+      if (seen.has(r.row)) f.push(`rows_print ${k + 1}: the row stands twice`); seen.add(r.row);
+      if (!okPrint(r.prints)) f.push(`rows_print ${k + 1}: prints is neither a text nor a list of texts`);
+      if (r.prints_with_the_cuts_of_6_november !== undefined && !okPrint(r.prints_with_the_cuts_of_6_november)) f.push(`rows_print ${k + 1}: prints_with_the_cuts_of_6_november is neither a text nor a list of texts`);
+      for (const key of Object.keys(r)) if (!["row", "prints", "prints_with_the_cuts_of_6_november"].includes(key)) f.push(`rows_print ${k + 1}: unknown field ${key}`);
+    }
+    if (p !== undefined) f.push("an option carries print and rows_print both");
+  }
   if (p === undefined) return f;
   const list = Array.isArray(p) ? p : [p];
   if (!list.length) f.push("print is empty");
@@ -173,8 +198,16 @@ export const faultsOf = (option, branchShapes) => {
 export const printUnder = (option, text, marks, cuts = []) => {
   const steps = stepsOf(option);
   if (!steps.length) return null;
-  const byRow = rowSideFor(option, text);
   const fail = (why) => new Error(`${option.id}: ${why} on «${text.slice(0, 60)}»`);
+  // the step as a list (rows_print): the row's own line, or an error
+  if (!option.print && rowsPrintOf(option).length) {
+    const line = rowsPrintOf(option).find((r) => r && r.row === text);
+    if (!line) throw fail("the branch reaches a text its rows_print holds no line for");
+    const p = cuts.length && line.prints_with_the_cuts_of_6_november !== undefined ? line.prints_with_the_cuts_of_6_november : line.prints;
+    const texts = Array.isArray(p) ? p.map(String) : (p === "" ? [] : [String(p)]);
+    return { texts };
+  }
+  const byRow = rowSideFor(option, text);
   let keeps;
   if (byRow) {
     if (byRow.side === "none") return { texts: [] };
