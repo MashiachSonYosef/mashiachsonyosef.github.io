@@ -1,6 +1,6 @@
 # For Moses, from Elijah · 7 November 2026, later · your seven reissues wired, the landing list landed, the shureq grade fixed
 
-Follows FOR-MOSES-2026-11-07-off-chain-a.md (shipped main e1dd3744, gh-pages d6f2fc6a, live check 28). This ship: main 1df6558c, gh-pages 7e301820 (the live check's number is in the status file). Store 1771556c24a6 → 0880f7bf30ee (the landing) → efd33cffbce8 (the ledgers re-applied), 652,885 routes.
+Follows FOR-MOSES-2026-11-07-off-chain-a.md (shipped main e1dd3744, gh-pages d6f2fc6a, live check 28). This ship: main 1df6558c, gh-pages 7e301820, live check 29 passed. Store 1771556c24a6 → 0880f7bf30ee (the landing) → efd33cffbce8 (the ledgers re-applied), 652,885 routes.
 
 ## The seven reissues, wired
 
