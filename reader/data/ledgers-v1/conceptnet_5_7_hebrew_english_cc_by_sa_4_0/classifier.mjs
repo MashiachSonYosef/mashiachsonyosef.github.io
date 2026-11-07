@@ -29,34 +29,17 @@ const CLOSE = { ")": "(", "]": "[", ">": "<", "}": "{" };
 const CONTAINER = { "(": "paren", "[": "bracket", "<": "angle", "{": "brace" };
 
 const SHAPES = [
-  // ---- fragment tag ----
-  { id: "open_paren.holds_part_of_speech_letter", mark: "(", divides: false, test: (c) => c.container === "top" && PART_OF_SPEECH_LETTERS.includes(c.group) },
-  { id: "open_paren.holds_wiktionary_tag", mark: "(", divides: false, test: (c) => c.container === "top" && isWiktionaryTag(c.group) },
-  { id: "open_paren.holds_wikipedia_tag", mark: "(", divides: false, test: (c) => c.container === "top" && isWikipediaTag(c.group) },
-  { id: "close_paren.holds_part_of_speech_letter", mark: ")", divides: false, test: (c) => c.container === "top" && PART_OF_SPEECH_LETTERS.includes(c.group) },
-  { id: "close_paren.holds_wiktionary_tag", mark: ")", divides: false, test: (c) => c.container === "top" && isWiktionaryTag(c.group) },
-  { id: "close_paren.holds_wikipedia_tag", mark: ")", divides: false, test: (c) => c.container === "top" && isWikipediaTag(c.group) },
-  { id: "comma.after_letter_in_wiktionary_tag", mark: ",", divides: false, test: (c) => c.container === "paren" && isWiktionaryTag(c.inner) && commaPlace(c) === 1 },
-  { id: "comma.before_wiktionary_number", mark: ",", divides: false, test: (c) => c.container === "paren" && isWiktionaryTag(c.inner) && commaPlace(c) === 2 },
-  { id: "comma.after_letter_in_wikipedia_tag", mark: ",", divides: false, test: (c) => c.container === "paren" && isWikipediaTag(c.inner) && commaPlace(c) === 1 },
-  { id: "comma.before_wikipedia_topic", mark: ",", divides: false, test: (c) => c.container === "paren" && isWikipediaTag(c.inner) && commaPlace(c) === 2 },
   // ---- fragment rest ----
   { id: "period.inside_abbreviation_in_the_word", mark: ".", divides: false, test: (c) => c.container === "top" && ABBREVIATIONS_IN_THE_WORD.includes(wordAroundTheMark(c)) },
-  { id: "period.inside_abbreviation_in_the_tag", mark: ".", divides: false, test: (c) => c.container === "paren" && ABBREVIATIONS_IN_THE_TAG.includes(wordAroundTheMark(c)) },
   { id: "apostrophe.in_contraction", mark: "'", divides: false, test: (c) => c.container === "top" && CONTRACTION_WORDS.includes(wordAroundTheMark(c)) },
   { id: "apostrophe.before_possessive_s", mark: "'", divides: false, test: (c) => c.container === "top" && POSSESSIVE_WORDS.includes(wordAroundTheMark(c)) },
-  { id: "combining_dot_above.on_small_i", mark: "̇", divides: false, test: (c) => c.container === "top" && c.before.endsWith("i") },
+  { id: "combining_dot_above.on_small_i", mark: "\u0307", divides: false, test: (c) => c.container === "top" && c.before.endsWith("i") },
 ];
 
-// ---- helpers of fragment tag ----
-const PART_OF_SPEECH_LETTERS = ["n","a","v","r"];
+// ---- helpers of fragment rest ----
 const ABBREVIATIONS_IN_THE_WORD = ["i.e","e.g"];
-const ABBREVIATIONS_IN_THE_TAG = ["u.s"];
 const CONTRACTION_WORDS = ["i'm","you're","don't","let's","that's"];
 const POSSESSIVE_WORDS = ["adam's","men's","one's","year's"];
-function isWiktionaryTag(g) { if (typeof g !== "string") return false; return PART_OF_SPEECH_LETTERS.some((l) => { const head = l + ", wikt, en "; return g.startsWith(head) && /^[0-9]+$/u.test(g.slice(head.length)); }); }
-function isWikipediaTag(g) { return typeof g === "string" && /^n, wp, [\p{L}0-9]/u.test(g); }
-function commaPlace(c) { const head = c.before.slice(c.before.lastIndexOf("(") + 1); return [...head].filter((ch) => ch === ",").length + 1; }
 function wordAroundTheMark(c) { return /\p{L}*$/u.exec(c.before)[0] + c.mark + /^\p{L}*/u.exec(c.after)[0]; }
 
 export function classify(text) {

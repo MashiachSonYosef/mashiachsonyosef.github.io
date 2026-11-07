@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Synthesis lane · pointing-grade-rule-v3-a-row-is-graded-by-its-own-headwords-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
+// Synthesis lane · pointing-grade-rule-v4-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
 // LEDGER: -
 // no frame letter. This changes no letter of the text and no row of the
 // store: it is the one definition by which a store row earns its grade
@@ -30,8 +30,19 @@
 // NFKD, cantillation and the marks that are not vowels (meteg, maqaf, rafe,
 // paseq, U+05C3–05C7) deleted, then everything but the vowel points, shin and
 // sin dots, dagesh and the letters. Pointed means: a vowel point U+05B0–05BB
-// after NFKD. The same two functions stand in zone.html, to the character;
-// tools/check-pointing-grade-v1.mjs holds the two copies together.
+// after NFKD, or a shureq. The same two functions stand in zone.html, to the
+// character; tools/check-pointing-grade-v1.mjs holds the two copies together.
+//
+// v4 (7 November 2026): A SHUREQ IS A VOWEL. The corpus lane's line read a
+// headword as pointed only on a vowel point in U+05B0–05BB, and a shureq is
+// a vav carrying U+05BC, so a headword whose only vowel is a shureq (קוּם,
+// שׁוּב, סוּר, הוּא: 3,339 store rows, M14 679, M9 676, M5 638, M46 256, M3 210,
+// M4 148) graded NORMALIZED, as if its source were silent on pointing, where
+// it points the word exactly as the place does. Found answering the corpus
+// lane's v105.4 (its plain equality counted those pairs; this grade never
+// saw them). After NFKD the vowel points (canonical classes 10 to 20) stand
+// before a dagesh (21) on the same letter, so a vav followed at once by
+// U+05BC carries no vowel of its own: that is the shureq, and it points.
 //
 // v2 (2026-11-06), the one place this departs from the corpus lane's lines:
 // the dagesh of a word-initial bet, gimel, dalet, kaf, pe or tav is dropped.
@@ -51,7 +62,7 @@
 // the word otherwise: 126,745 row grades on 7,363 words (ve-khol with the
 // qatan mark against the sources' ve-khol with a plain qamats). U+05C7 is
 // read as U+05B8 before anything else is done.
-export const POINTING_GRADE_RULE_ID = "pointing-grade-rule-v3-a-row-is-graded-by-its-own-headwords-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing";
+export const POINTING_GRADE_RULE_ID = "pointing-grade-rule-v4-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing";
 
 export const vowelForm = (t) => String(t ?? "")
   .replace(/\u034F/g, "")
@@ -60,7 +71,7 @@ export const vowelForm = (t) => String(t ?? "")
   .replace(/[\u0591-\u05AF\u05BD\u05BE\u05BF\u05C0\u05C3\u05C4\u05C5\u05C6\u05C7]/g, "")
   .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "")
   .replace(/^([\u05D1\u05D2\u05D3\u05DB\u05E4\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
-export const isPointed = (t) => /[\u05B0-\u05BB]/.test(String(t ?? "").normalize("NFKD"));
+export const isPointed = (t) => /[\u05B0-\u05BB]|\u05D5\u05BC/.test(String(t ?? "").normalize("NFKD"));
 // a row carries headwords when its seventh slot is an array — the v2 shape;
 // an empty array is a source that names no headword and grades NORMALIZED
 export const rowCarriesHeadwords = (row) => Array.isArray(row) && Array.isArray(row[6]);

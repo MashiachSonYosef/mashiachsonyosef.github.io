@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: pointing-grade-rule-v3-a-row-is-graded-by-its-own-headwords-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
+// GUARDS: pointing-grade-rule-v4-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
 //
 // THE GRADE FROM THE ROW'S OWN HEADWORDS, HELD.
 //

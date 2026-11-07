@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Synthesis lane · pointing-grade-rule-v3-a-row-is-graded-by-its-own-headwords-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
+// Synthesis lane · pointing-grade-rule-v4-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
 // LEDGER: -
 // no frame letter. A record, not a change: nothing here is served.
 //

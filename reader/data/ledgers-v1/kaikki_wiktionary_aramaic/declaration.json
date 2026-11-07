@@ -7,7 +7,7 @@
   "M177"
  ],
  "routes": 2700,
- "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for M60 (Kaikki machine-readable Aramaic dictionary from English Wiktionary); M72 (Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary); M177 (Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary): 2,700 routes (axis: routes), 1,684 letters keys (axis: keys), 2,024 distinct texts (axis: texts). The definition field of the same row equals the route text on 2,700 routes and the store's cut flag stands on 0 routes. The source audit read the store's records of these three ids and the local Kaikki copy, kaikki.org-dictionary-Aramaic-words.jsonl (sha256 1ed77f23419dcce9bf027fb897b2d37a29ac66cbd76af7b584256522667d0749), as evidence about the source and never as a test: 2,700 of 2,700 routes equal a string of a sense's glosses (axis: routes). The source's own key: none found. The copy, its manifests and its index page give no account of this dictionary's comma, semicolon, colon, stop, slash or brackets, and the works' stamps record names these ids and gives no account of their signs. The words comma, semicolon, punctuation and slash stand in those files in 8 places (builder/06-key-search.mjs, source-audit/key-search.json): 3 in the copy's fields, labels on its entry for a punctuation mark; 4 in manifests beside the copy, a sentence on what stays identical in a form; 1 on the stamps page, the word slash in another sense; 0 in the copy's glosses; 0 on the index page. None is an account of a sign. Wiktionary's style pages are not on file; fetching them needs the owner's word. So every meaning of a sign begins \"unverified:\", save the points and signs of the scripts a line cites, whose meanings say only what the character is.",
+ "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 546df10654d7, store_version 7b3c475ce1a3 (the store served now, pinned in the store lists build's PINNED-served-store.json; the extract scratch/by-source-served-r2), whose rows for this dictionary are byte for byte the rows of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), that v129 read, for M60 (Kaikki machine-readable Aramaic dictionary from English Wiktionary); M72 (Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary); M177 (Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary): 2,700 routes (axis: routes), 1,684 letters keys (axis: keys), 2,024 distinct texts (axis: texts). The definition field of the same row equals the route text on 2,700 routes and the store's cut flag stands on 0 routes. The source audit read the store's records of these three ids and the local Kaikki copy, kaikki.org-dictionary-Aramaic-words.jsonl (sha256 1ed77f23419dcce9bf027fb897b2d37a29ac66cbd76af7b584256522667d0749), as evidence about the source and never as a test: 2,700 of 2,700 routes equal a string of a sense's glosses (axis: routes). The source's own key: none found. The copy, its manifests and its index page give no account of this dictionary's comma, semicolon, colon, stop, slash or brackets, and the works' stamps record names these ids and gives no account of their signs. The words comma, semicolon, punctuation and slash stand in those files in 8 places (builder/06-key-search.mjs, source-audit/key-search.json): 3 in the copy's fields, labels on its entry for a punctuation mark; 4 in manifests beside the copy, a sentence on what stays identical in a form; 1 on the stamps page, the word slash in another sense; 0 in the copy's glosses; 0 on the index page. None is an account of a sign. Wiktionary's style pages are not on file; fetching them needs the owner's word. So every meaning of a sign begins \"unverified:\", save the points and signs of the scripts a line cites, whose meanings say only what the character is.",
  "definitions": {
   "terms": "In every test: a character is one Unicode code point; a letter is any Unicode letter of any script; a digit is any Unicode number character; whitespace is what the JavaScript class \\s matches; to trim is to remove whitespace at both ends; uppercase means the Unicode uppercase letters; a Hebrew character is any character from U+0590 to U+05FF, letters, points, maqaf and the geresh signs alike; a mark is as the ask defines it. c.text, c.before, c.after, c.group and c.container are the template's. Directly before and directly after mean the adjacent character with nothing skipped. A string begins with an entry when its first characters are exactly that entry; no word end is asked unless the words ask it. A string holds an entry when the entry's characters stand in it side by side, anywhere; no word end is asked. Every list is compared with case kept, except small_verbs, small_verb_stops, name_labels, own_plural_texts and abbreviation_letters, which are compared in lowercase as the steps say. At the start or the end of a string there is no character, so a test for a character there fails. Literal strings stand in double quotes in these steps; a stop outside the quotes belongs to the sentence.",
   "first_match": "For each mark the shapes are tried in the order they stand in this file, and the first whose test holds names the occurrence; so each test speaks only of occurrences that no shape above it, for the same mark, has taken. A test has no container test unless its words state one; the shape's container field states the container and the checker compares it. No route's brackets fail to balance, so no mark has an in_unbalanced_text shape, and no shape divides at rest.",
@@ -1758,6 +1758,66 @@
     {
      "id": "whole",
      "means": "That sign does not cut: the page prints the whole line, from first-person common plural participle/present to we know, as one reading, note and all, as written."
+    },
+    {
+     "id": "label_off",
+     "means": "The label or the note comes off: the page prints the reading alone, the label or the note left off. Before the sign: before me: first-person singular suffix form of קדם prints before me. After the sign: a male given name, Yeshu or Jeshu prints Yeshu or Jeshu. For the lines the ledger marked by hand as a note and a reading, the side stands entry by entry in rows, the entries of the list note_and_reading_places: the line that ends , we know prints we know. Where a note stands on both sides, as A greeting; similar to hello., the entry's side is none and no pill prints. A line that holds a sign of each side prints what stands before its first before-sign; no served line does. Nothing is added or changed: what prints is a run of the line's own characters in their own order, so the page needs one step of its own to print a part of a line. Commas inside what prints follow their own question where they have one, otherwise they stay.",
+     "print": [
+      {
+       "kind": "after",
+       "at": [
+        "comma.after_name_label"
+       ]
+      },
+      {
+       "kind": "before",
+       "at": [
+        "colon.before_pointer"
+       ]
+      },
+      {
+       "kind": "after",
+       "at": [
+        "comma.between_note_and_reading",
+        "semicolon.between_note_and_reading"
+       ]
+      }
+     ],
+     "rows": [
+      {
+       "row": "A greeting;| similar to hello.",
+       "side": "none"
+      },
+      {
+       "row": ",| I am enslaved",
+       "side": "after"
+      },
+      {
+       "row": ",| he/it will be",
+       "side": "after"
+      },
+      {
+       "row": ",| we know",
+       "side": "after"
+      }
+     ],
+     "examples": [
+      {
+       "key": "קדמי",
+       "row": "before me: first-person singular suffix form of קדם",
+       "prints": "before me"
+      },
+      {
+       "key": "תוספאה",
+       "row": "a surname, the surname of Rabbah Tosafa'ah",
+       "prints": "the surname of Rabbah Tosafa'ah"
+      },
+      {
+       "key": "שלמא",
+       "row": "A greeting; similar to hello.",
+       "prints": ""
+      }
+     ]
     }
    ],
    "resting": "whole"

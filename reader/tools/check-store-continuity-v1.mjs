@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // GUARDS: store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed
-// GUARDS: row-strike-rule-v4-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-or-restores-a-row-and-the-hole-is-typed
+// GUARDS: row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed
 //
 // THE ROWS ARE ACCOUNTED FOR END TO END, OR THE STORE LOST SOMETHING.
 //
@@ -139,9 +139,10 @@ const rw = existsSync(rwPath) ? JSON.parse(readFileSync(rwPath, "utf8")) : null;
 const rowStruck = num(rw && rw.cumulative && rw.cumulative.routes_struck) || 0;
 const rowRekeyed = num(rw && rw.cumulative && rw.cumulative.routes_rekeyed) || 0;
 const rowRestored = num(rw && rw.cumulative && rw.cumulative.routes_restored) || 0;   // rows a restore put back (version 4): counted with the rows, never with the ranks
+const rowLanded = num(rw && rw.cumulative && rw.cumulative.routes_landed) || 0;       // rows a landing added that the store never held (version 5): counted with the rows, never with the ranks
 const cumStruck = admissionStruck === null ? null : admissionStruck + licenceStruck + rowStruck;
 if (ss) console.log(`  licence strike on the shelf: ${(ss.struck_sources || []).map((s) => s.m_id).join(", ")} · ${n(licenceStruck)} routes in ${(ss.rounds || []).length} round(s)`);
-if (rw) console.log(`  row strike on the shelf: ${n(rowStruck)} routes struck, ${n(rowRekeyed)} re-keyed and ${n(rowRestored)} restored in ${(rw.rounds || []).length} round(s)`);
+if (rw) console.log(`  row strike on the shelf: ${n(rowStruck)} routes struck, ${n(rowRekeyed)} re-keyed, ${n(rowRestored)} restored and ${n(rowLanded)} landed by list in ${(rw.rounds || []).length} round(s)`);
 
 // C0 — the pre-strike index against the shards that shipped with it, plus
 // what has landed since
@@ -160,10 +161,10 @@ if (preRoutes !== null && heldRoutes !== null && heldRoutes !== preRoutes) {
 if (preRoutes === null) note("C1  the whole strike closes: rows before − rows struck = rows served",
   `no pre-strike total on the shelf, and this refuses to take one from the store under test — pass --pre <a pre-strike index.json>`);
 else {
-  const residue = handed - (cumStruck ?? 0) + landedNet + rowRestored - served;
-  check("C1  the whole strike closes: rows the strike was handed, less the rows it struck, plus the rows that landed since and the rows a restore put back, are the rows served",
+  const residue = handed - (cumStruck ?? 0) + landedNet + rowRestored + rowLanded - served;
+  check("C1  the whole strike closes: rows the strike was handed, less the rows it struck, plus the rows that landed since, the rows a restore put back and the rows a list landed, are the rows served",
     residue === 0,
-    `${n(handed)} handed (${handedFrom}) − ${n(cumStruck)} struck${landedNet ? ` + ${n(landedNet)} landed` : ""}${rowRestored ? ` + ${n(rowRestored)} restored` : ""} = ${n(handed - (cumStruck ?? 0) + landedNet + rowRestored)}, served ${n(served)}${residue === 0 ? "" : ` · ${n(Math.abs(residue))} row${Math.abs(residue) === 1 ? "" : "s"} ${residue > 0 ? "LOST WITH NO RULE BEHIND THEM" : "MORE THAN THE ARITHMETIC ALLOWS"}`}`);
+    `${n(handed)} handed (${handedFrom}) − ${n(cumStruck)} struck${landedNet ? ` + ${n(landedNet)} landed` : ""}${rowRestored ? ` + ${n(rowRestored)} restored` : ""}${rowLanded ? ` + ${n(rowLanded)} landed by list` : ""} = ${n(handed - (cumStruck ?? 0) + landedNet + rowRestored + rowLanded)}, served ${n(served)}${residue === 0 ? "" : ` · ${n(Math.abs(residue))} row${Math.abs(residue) === 1 ? "" : "s"} ${residue > 0 ? "LOST WITH NO RULE BEHIND THEM" : "MORE THAN THE ARITHMETIC ALLOWS"}`}`);
 }
 
 // C2 — round by round
@@ -185,7 +186,7 @@ else {
   check("C2  the last round was handed what the rounds before it left, not a shorter copy",
     gap === 0,
     `rounds before it struck ${n(earlierStruck)} of ${n(handed)}, leaving ${n(shouldBe)}; the last round records ${n(lastBefore)} in front of it${gap === 0 ? "" : ` · SHORT BY ${n(gap)} — the loss is at or before this round's input`}`);
-  check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served0() + licenceStruck + rowStruck - rowRestored,
+  check("  and that round's own arithmetic closes", lastBefore - (lastStruck ?? 0) === served0() + licenceStruck + rowStruck - rowRestored - rowLanded,
     `${n(lastBefore)} − ${n(lastStruck)} = ${n(lastBefore - (lastStruck ?? 0))}, served ${n(served)}${landedNet ? ` − ${n(landedNet)} landed since` : ""}${licenceStruck ? ` + ${n(licenceStruck)} the licence strike took since` : ""}${rowStruck ? ` + ${n(rowStruck)} the row strike took since` : ""}${rowRestored ? ` − ${n(rowRestored)} it put back` : ""}`);
   // and the licence strike's own rounds, each handed what stood before it
   if (ss && Array.isArray(ss.rounds) && ss.rounds.length) {
@@ -194,9 +195,9 @@ else {
     // the row strike's rounds ran after the landing: each was handed what
     // stood, the landing's rows included
     const rowRounds = (rw && Array.isArray(rw.rounds)) ? rw.rounds : [];
-    for (const r of rowRounds) { if (num(r.counts && r.counts.routes_before) !== stood + landedNet) ok = false; stood -= num(r.counts && r.counts.routes_struck) || 0; stood += num(r.counts && r.counts.routes_restored) || 0; }
+    for (const r of rowRounds) { if (num(r.counts && r.counts.routes_before) !== stood + landedNet) ok = false; stood -= num(r.counts && r.counts.routes_struck) || 0; stood += num(r.counts && r.counts.routes_restored) || 0; stood += num(r.counts && r.counts.routes_landed) || 0; }
     check("  and each licence round, and each row strike after it, was handed what the round before it left, down to the rows served", ok && stood === served0(),
-      `${[...ss.rounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)} (${(r.struck_m_ids || []).join(",")})`), ...rowRounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)}${r.counts.routes_restored ? ` + ${n(r.counts.routes_restored)}` : ""} (rows${r.counts.routes_rekeyed ? `, ${n(r.counts.routes_rekeyed)} re-keyed` : ""}${r.counts.routes_restored ? `, ${n(r.counts.routes_restored)} restored` : ""})`)].join(" → ")} = ${n(stood)}${landedNet ? ` + ${n(landedNet)} landed = ${n(stood + landedNet)}` : ""}, served ${n(served)}`);
+      `${[...ss.rounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)} (${(r.struck_m_ids || []).join(",")})`), ...rowRounds.map((r) => `${n(r.counts.routes_before)} − ${n(r.counts.routes_struck)}${r.counts.routes_restored ? ` + ${n(r.counts.routes_restored)}` : ""}${r.counts.routes_landed ? ` + ${n(r.counts.routes_landed)}` : ""} (rows${r.counts.routes_rekeyed ? `, ${n(r.counts.routes_rekeyed)} re-keyed` : ""}${r.counts.routes_restored ? `, ${n(r.counts.routes_restored)} restored` : ""}${r.counts.routes_landed ? `, ${n(r.counts.routes_landed)} landed` : ""})`)].join(" → ")} = ${n(stood)}${landedNet ? ` + ${n(landedNet)} landed = ${n(stood + landedNet)}` : ""}, served ${n(served)}`);
   }
 }
 

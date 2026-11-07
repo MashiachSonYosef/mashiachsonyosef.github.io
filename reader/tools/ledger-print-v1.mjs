@@ -182,12 +182,10 @@ export const PRINT_RULES = {
   }),
   // --- the filing tags this corpus's own script wrote on ConceptNet's rows ---------------------------------------
   // The owner, 6 November: a tag this corpus wrote is not provider text, so it came off the route text itself
-  // (row-strike-rule-v3, retext from the definition slot); these four entries reach no served row and stay as the
-  // branches' answers, for a store that still carried the tags.
-  "conceptnet_5_7_hebrew_english_cc_by_4_0:B01": T("tag_off", "keep", (text, marks) => { const m = first(marks, "open_paren.holds_wordnet_tag", "open_paren.holds_wordnet_code_tag"); return m ? [before(text, m.i)] : null; }),
-  "conceptnet_5_7_hebrew_english_cc_by_4_0:B02": T("tag_off", "keep", (text, marks) => { const m = first(marks, "open_paren.holds_wordnet_topic_tag"); return m ? [before(text, m.i)] : null; }),
-  "conceptnet_5_7_hebrew_english_cc_by_sa_4_0:B01": T("tag_off", "keep", (text, marks) => { const m = first(marks, "open_paren.holds_part_of_speech_letter", "open_paren.holds_wiktionary_tag"); return m ? [before(text, m.i)] : null; }),
-  "conceptnet_5_7_hebrew_english_cc_by_sa_4_0:B02": T("tag_off", "keep", (text, marks) => { const m = first(marks, "open_paren.holds_wikipedia_tag"); return m ? [before(text, m.i)] : null; }),
+  // (row-strike-rule-v3, retext from the definition slot). The corpus lane reissued both ledgers against the
+  // retexted store (v113.1: 4 shapes, no branch; v128.2: no mark at all, a note in place of a ledger), so the four
+  // tag_off entries that stood here until 7 November reach no shape and are gone; the rulings they applied stand
+  // in data/ledger-branch-answers-v1.json under "retired", as the record of what was asked and answered.
   // --- rows that render nothing a translator could print ---------------------------------------------------------
   "classical_hebrew_words:B05": noPill(),
   "dbnary_english_wiktionary_hebrew_translation_gloss:B01": noPill(),
@@ -298,10 +296,6 @@ export const FIXTURES = [
   ["wikimedia_hebrew_english_interlanguage_title_20260701:B02", "Moab#Moabite language", ["Moabite language"]],
   ["wikimedia_hebrew_english_interlanguage_title_20260701:B02", "Brush#Paintbrushes", ["Brush"]],
   ["wikimedia_hebrew_english_interlanguage_title_20260701:B02", "World#Religion and mythology", []],
-  ["conceptnet_5_7_hebrew_english_cc_by_sa_4_0:B01", "he (n, wikt, en 2)", ["he"]],
-  ["conceptnet_5_7_hebrew_english_cc_by_4_0:B01", "meaningful (a, wn)", ["meaningful"]],
-  ["conceptnet_5_7_hebrew_english_cc_by_4_0:B02", "ab (n, wn, time)", ["ab"]],
-  ["conceptnet_5_7_hebrew_english_cc_by_sa_4_0:B02", "seal (n, wp, musician)", ["seal"]],
   ["stepbible_tahot_aligned_translation:B01", "<the>", []],
   ["stepbible_tahot_aligned_translation:B03", "Pedah-", []],
   ["dbnary_english_wiktionary_hebrew_translation_gloss:B01", "mega-", []],

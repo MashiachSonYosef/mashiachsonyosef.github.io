@@ -314,7 +314,7 @@ for (const sec of zone.sections || []) {
       const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.readingsOf(row).map((t) => t.toLowerCase()))]));
       const pool = store.readingPool(srows, "oldest");
       const TIER = { m: 0, n: 1, x: 2 };
-      // THE GRADE OF A ROW — pointing-grade-rule-v3, the same two steps the
+      // THE GRADE OF A ROW — pointing-grade-rule-v4, the same two steps the
       // page takes: a row that carries its source's own headwords at [6] is
       // graded by them against this pointed surface; a row that does not
       // falls to the lattice card's grade by fingerprint; "-" when neither

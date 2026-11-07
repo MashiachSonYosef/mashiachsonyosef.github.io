@@ -1,4 +1,4 @@
-// conceptnet_5_7_hebrew_english_cc_by_4_0.classifier.mjs · made from classifier-template-v1 under ask v1.1
+// conceptnet_5_7_hebrew_english_cc_by_4_0.classifier.mjs (ask v1.1, template v1, reissue v128.2): SHAPES is empty because no route of this dictionary holds a mark after the retext of 6 November.
 //
 // A classifier is a declaration made runnable. It is a pure function: no file
 // reads, no network, no state kept between calls. classify(text) returns one
@@ -29,28 +29,7 @@ const CLOSE = { ")": "(", "]": "[", ">": "<", "}": "{" };
 const CONTAINER = { "(": "paren", "[": "bracket", "<": "angle", "{": "brace" };
 
 const SHAPES = [
-  // ---- fragment tag ----
-  { id: "open_paren.holds_wordnet_tag", mark: "(", divides: false, test: (c) => c.container === "top" && isWordnetTag(c.group) },
-  { id: "open_paren.holds_wordnet_code_tag", mark: "(", divides: false, test: (c) => c.container === "top" && isWordnetCodeTag(c.group) },
-  { id: "open_paren.holds_wordnet_topic_tag", mark: "(", divides: false, test: (c) => c.container === "top" && isWordnetTopicTag(c.group) },
-  { id: "close_paren.holds_wordnet_tag", mark: ")", divides: false, test: (c) => c.container === "top" && isWordnetTag(c.group) },
-  { id: "close_paren.holds_wordnet_code_tag", mark: ")", divides: false, test: (c) => c.container === "top" && isWordnetCodeTag(c.group) },
-  { id: "close_paren.holds_wordnet_topic_tag", mark: ")", divides: false, test: (c) => c.container === "top" && isWordnetTopicTag(c.group) },
-  { id: "comma.after_letter_in_wordnet_tag", mark: ",", divides: false, test: (c) => c.container === "paren" && isWordnetTag(c.inner) && commaPlace(c) === 1 },
-  { id: "comma.after_letter_in_wordnet_code_tag", mark: ",", divides: false, test: (c) => c.container === "paren" && isWordnetCodeTag(c.inner) && commaPlace(c) === 1 },
-  { id: "comma.before_wordnet_code", mark: ",", divides: false, test: (c) => c.container === "paren" && isWordnetCodeTag(c.inner) && commaPlace(c) === 2 },
-  { id: "comma.after_letter_in_wordnet_topic_tag", mark: ",", divides: false, test: (c) => c.container === "paren" && isWordnetTopicTag(c.inner) && commaPlace(c) === 1 },
-  { id: "comma.before_wordnet_topic", mark: ",", divides: false, test: (c) => c.container === "paren" && isWordnetTopicTag(c.inner) && commaPlace(c) === 2 },
 ];
-
-// ---- helpers of fragment tag ----
-const PART_OF_SPEECH_LETTERS = ["n","a","v","r"];
-const WORDNET_CODES = ["ppl","linkdef"];
-function afterLetter(g) { if (typeof g !== "string" || !g.length) return null; const first = [...g][0]; return PART_OF_SPEECH_LETTERS.includes(first) ? g.slice(first.length) : null; }
-function isWordnetTag(g) { return afterLetter(g) === ", wn"; }
-function isWordnetCodeTag(g) { const r = afterLetter(g); return r !== null && r.startsWith(", wn, ") && WORDNET_CODES.includes(r.slice(6)); }
-function isWordnetTopicTag(g) { const r = afterLetter(g); return r !== null && r.startsWith(", wn, ") && /^\p{L}/u.test(r.slice(6)) && !isWordnetCodeTag(g); }
-function commaPlace(c) { const head = c.before.slice(c.before.lastIndexOf("(") + 1); return [...head].filter((ch) => ch === ",").length + 1; }
 
 export function classify(text) {
   const chars = [...text];
