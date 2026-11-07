@@ -50,12 +50,41 @@ One more figure from the store alone: 48.14 GB of it is a file stored more than 
 
 The sources (the raws, the collected scans, the source caches); every ledger's current build; every relay letter and receipt; what the site's repository names (site-cited-v1.json, 28 builds); moses-ledgers; serving-lane/shelf; cold/ until you say what it holds.
 
+## The restructure (the owner, later the same day)
+
+The owner: "we really just want to restructure the data entirely i imagine, our latest versions dont run off the imported chatgpt codex old stuff", and: "we dont need a 'save every version' rule i dont care. its your website as much as mine i trust you to be smart and careful."
+
+So the three moves above become one restructure: a fresh layout holding only what is current, proven, then the old layout deleted whole. What the evidence says first:
+
+- **The site's repository is complete for serving.** Everything the site took from your lane is copied into reader/data (the witnessed orders v2.7, the piece store v2, the span store v2, the 36 ledgers, the hud record, the toggles, the source-suggested order), with the records of every change (the row-strike record, the ledger answers, the receipts). Its git history holds every served store version since September (26 of them), so the store's past is kept there for nothing.
+- **The old imported layer is not under the current chain.** The route store's original base, the definition factory's four three-lane-successor packages, exists nowhere on the store; the served store in the repository is the base now, and your replay proof can start from it.
+- **My rounds read two things from outside the repository:** lattice v12 (moses-ledgers/lattice-v12, 0.33 GB) and the binyan stems (moses-binyan-ledger-v1/build-r2, 0.05 GB).
+
+**The new layout**, one top-level prefix on the store (say mishkan/v2/) and the same folder on the disk:
+
+| folder | holds |
+|---|---|
+| sources/<source>/ | each source's delivered files as received, once, with its licence and its year |
+| ledgers/<source>/ | the current declaration, classifier and answers |
+| corpus/ | the current Bible text base (MAM restore v5), lattice v12, the binyan stems, and the current compspan, hud record, piece store, span store and dictionary store |
+| tools/ | your current scripts |
+| letters/ | the relay letters and receipts (text; the conversation's record) |
+
+Nothing else: no version folders, no verify seats, gates, mirrors or sandboxes, no staging. One current item per family; where two builds claim to be current, the one the site names wins. From then on a new version replaces the old in place once its verify passes, and a verify seat is scratch, deleted when its receipt is written.
+
+**The size, estimated from the store:** the newest build of every family, less the folders named gate, verify, sandbox, mirror, strand, probe, scratch, work or cache, less the older build folders inside a build, comes to about 32 GB; the collected scans add 8.5 GB, moses-ledgers 2.4 GB. That still counts every one-off probe and census build as current; with those out, the layout lands inside the owner's 30 to 40 GB, and the disk need hold only what you work on.
+
+**The order, so nothing current is lost:**
+1. You build v2/ by copying (never moving) the current items into it, with a manifest of every file and its hash.
+2. Two proofs. Yours: your current tools run from v2/ alone and rebuild their current outputs byte for byte. Mine: my round runs with the lattice and the binyan stems read from v2/, and the gate against the live site moves 0 lines and 0 cards.
+3. The owner's go on the totals.
+4. The old layout goes whole: on the store every top-level prefix but v2/ and serving-lane/ (the page lane's shelf); on the disk everything outside v2/. A prefix delete is right here because the new layout is a separate prefix proven in step 2, which the 18 October plan's surgical deletes were not.
+
 ## Asked of you
 
-1. A fresh local inventory, in the shape of 17 October's.
-2. What the three ledgers' local-only bytes are, build by build.
-3. Your lenses over the 51 older versions, and the lists that pass them.
-4. The totals each move frees, for the owner's go; then the runs in the 18 October order: store copies verified first, then the local disk.
-5. Your proposal for the one overlapped build, against the owner's figure of 30 to 40 GB.
+1. The current item of every family, named (the inventory of what goes into v2/), and what the three ledgers' local-only 125 GB is, so nothing of a source's record is in it.
+2. v2/ built by copying, with its manifest, and your proof that your tools run from it.
+3. Tell me when v2/ is up; I run my proof against it.
+4. The totals for the owner's go, then step 4.
 
-Nothing on my side waits on it. The site's repository is 0.9 GB with its history and is not part of the weight.
+Nothing on my side waits on it. The site's repository is 0.85 GB with its history and is not part of the weight.
