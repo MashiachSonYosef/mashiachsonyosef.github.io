@@ -73,6 +73,20 @@
 //             carry it. It lands unless the same source holds the text under
 //             that key already (then counted as already held). A landing
 //             types no rank: it fills no hole and makes none.
+//             The headwords a landing names are the ones its record's own
+//             rows carry in the store where the source's table keys its rows
+//             so (the corpus lane's v162, 7 November: Kaikki's main tables
+//             carry the bare key, its form tables the form's own pointing),
+//             so a landed row grades as its record's other rows do; the line
+//             says where they came from (headwords_source), and the record
+//             keeps it with the list's own headwords where they differ.
+//             A landed row stands before its record's row at that rank (the
+//             record's own renderings before the pieces the store cut from
+//             it), unless the line says place "after": then after the
+//             record's rows at that rank, and after any row landed before it
+//             in the same run, where the record prints the landed text after
+//             them (v162: a sense the record lists after the one the store
+//             kept, read from the record's own order and named in the line).
 // The arithmetic: routes_struck counts every row a round takes off the store
 // (a strike, a withholding, a re-key that folds, and the rows a rejoin joins
 // beyond the one it keeps), routes_rekeyed the re-keys that land as a row of
@@ -140,6 +154,7 @@ listBytes.toString("utf8").split("\n").forEach((l, i) => {
     if (typeof e.definition !== "string" || !e.definition.trim()) refuse(`list line ${line}: a landing names the record's definition the row stands on (definition)`);
     if (!Array.isArray(e.headwords) || !e.headwords.length || e.headwords.some((h) => typeof h !== "string" || !h)) refuse(`list line ${line}: a landing names the record's headwords`);
     if (typeof e.year !== "string") refuse(`list line ${line}: a landing names the row's year as the source's rows carry it (year)`);
+    if (e.place !== undefined && e.place !== "before" && e.place !== "after") refuse(`list line ${line}: a landing stands "before" or "after" its record's rows at its rank, not "${e.place}"`);
   }
   if (e.action === "retext" && e.to_text === e.route) refuse(`list line ${line}: a retext names the text the row already has`);
   if (e.action === "restore") {
@@ -155,7 +170,7 @@ listBytes.toString("utf8").split("\n").forEach((l, i) => {
     headwords_now: e.headwords_now ?? null, headwords_to: e.headwords_to ?? null,
     rejoined_text: e.rejoined_text ?? null, to_text: e.action === "retext" ? e.to_text : null, from_slot: e.action === "retext" ? e.from_slot : null,
     runs: e.action === "retext" && Array.isArray(e.runs) ? e.runs : null,
-    land: e.action === "land" ? { rank: e.rank, route: e.route, definition: e.definition, headwords: e.headwords, year: e.year, rank_from: e.rank_from ?? null, strongs: e.strongs ?? null, beside: Array.isArray(e.beside) ? e.beside : null, definition_source: e.definition_source ?? null, record_loc: e.record_loc ?? null, record_file: e.record_file ?? null } : null,
+    land: e.action === "land" ? { rank: e.rank, route: e.route, definition: e.definition, headwords: e.headwords, year: e.year, rank_from: e.rank_from ?? null, strongs: e.strongs ?? null, beside: Array.isArray(e.beside) ? e.beside : null, definition_source: e.definition_source ?? null, headwords_source: e.headwords_source ?? null, headwords_in_list: Array.isArray(e.headwords_in_list) ? e.headwords_in_list : null, place: e.place ?? "before", record_order: e.record_order ?? null, record_loc: e.record_loc ?? null, record_file: e.record_file ?? null } : null,
     restore_row: e.action === "restore" ? [...e.row.slice(0, 7)] : null, restored_from: e.action === "restore" ? e.restored_from : null, why: "list", list_why: e.why ?? null, kind: e.kind ?? null });
 });
 for (const lo of leaveOff) if (!leftOff.some((x) => x.m === lo.m && x.key === lo.key)) refuse(`--leave-off ${lo.m}|${lo.key} names no line of the list`);
@@ -246,7 +261,14 @@ for (const e of asked) {
     // rank that stood before this run, so the record's own renderings stand
     // before the pieces the store cut from it, in the list's order; after
     // every other source's row of that rank
-    let at = toRows.findIndex((x) => Number(x[0]) > L.rank || (Number(x[0]) === L.rank && String(x[3]) === String(e.m) && !landedNow.has(x)));
+    let at;
+    if (L.place === "after") {
+      // after the last row of this source at this rank (the record's rows, and rows landed before it in this run);
+      // with none there, before the first row of a higher rank
+      let last = -1;
+      toRows.forEach((x, i) => { if (Number(x[0]) === L.rank && String(x[3]) === String(e.m)) last = i; });
+      at = last >= 0 ? last + 1 : toRows.findIndex((x) => Number(x[0]) > L.rank);
+    } else at = toRows.findIndex((x) => Number(x[0]) > L.rank || (Number(x[0]) === L.rank && String(x[3]) === String(e.m) && !landedNow.has(x)));
     if (at < 0) at = toRows.length;
     toBody[e.key] = [...toRows.slice(0, at), row, ...toRows.slice(at)];
     landedNow.add(row);

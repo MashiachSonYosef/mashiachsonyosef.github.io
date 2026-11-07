@@ -1171,11 +1171,11 @@
  },
  "counts": {
   "keys": 124901,
-  "routes": 652885,
+  "routes": 652954,
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 15004208,
+  "shard_bytes_total": 15004919,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "3d8c4ef86c01",
+ "store_version": "7140713cc19b",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1490,6 +1490,18 @@
    "now": "3d8c4ef86c01",
    "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
    "on": "2026-11-07T04:31:55.491Z"
+  },
+  {
+   "was": "3d8c4ef86c01",
+   "now": "a7da153deb53",
+   "why": "row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed",
+   "on": "2026-11-07T21:18:56.011Z"
+  },
+  {
+   "was": "a7da153deb53",
+   "now": "7140713cc19b",
+   "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
+   "on": "2026-11-07T21:19:21.384Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -1551,7 +1563,7 @@
    "routes_struck": 2180,
    "routes_rekeyed": 23,
    "routes_restored": 71,
-   "routes_landed": 108,
+   "routes_landed": 177,
    "by_action_since_version_2": {
     "strike": 81,
     "withhold": 214,
@@ -1565,16 +1577,16 @@
     "retext_folded": 1517,
     "restore": 71,
     "restore_already_held": 2,
-    "land": 108,
+    "land": 177,
     "land_already_held": 0
    },
-   "keys_touched": 8489,
-   "rounds": 15
+   "keys_touched": 8557,
+   "rounds": 16
   }
  },
  "ledgers": {
   "rule_id": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
-  "applied_on": "2026-11-07T20:47:26.156Z",
+  "applied_on": "2026-11-07T21:19:21.384Z",
   "manifest": "reader/data/ledgers-v1/manifest.json",
   "ask": "ASK-provider-declarations-v1.1",
   "checker": {
@@ -1597,7 +1609,7 @@
    }
   },
   "what": "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger is one reading as written, whole (7 November 2026: the comma rule the page had guessed retired), and those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
-  "print_step": "the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for 46 branches; tools/ledger-print-v1.mjs, the hand table, for the rest",
+  "print_step": "the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for 46 branches; the hand table (tools/ledger-print-v1.mjs) holds none",
   "span_store": {
    "file": "reader/data/span-store/<book>.json",
    "books": 39,
@@ -1720,7 +1732,7 @@
       "print_step_from": "declaration"
      }
     },
-    "rows": 7314,
+    "rows": 7321,
     "rows_dividing": 1280,
     "rows_printing_a_part": 0,
     "rows_no_pill": 9,
@@ -2048,7 +2060,7 @@
       "print_step_from": "declaration"
      }
     },
-    "rows": 14820,
+    "rows": 14821,
     "rows_dividing": 41,
     "rows_printing_a_part": 0,
     "rows_no_pill": 1,
@@ -2161,8 +2173,8 @@
       "on": "2026-11-06"
      }
     },
-    "rows": 2700,
-    "rows_dividing": 1414,
+    "rows": 2735,
+    "rows_dividing": 1418,
     "rows_printing_a_part": 6,
     "rows_no_pill": 1,
     "uncovered": 0
@@ -2271,8 +2283,8 @@
       "on": "2026-11-06"
      }
     },
-    "rows": 123558,
-    "rows_dividing": 53047,
+    "rows": 123577,
+    "rows_dividing": 53049,
     "rows_printing_a_part": 1260,
     "rows_no_pill": 2,
     "uncovered": 0
@@ -2971,7 +2983,7 @@
     "shapes": 5,
     "shapes_dividing": [],
     "branches": {},
-    "rows": 286,
+    "rows": 293,
     "rows_dividing": 0,
     "rows_printing_a_part": 0,
     "rows_no_pill": 0,
@@ -3423,11 +3435,11 @@
   },
   "totals": {
    "ledgered_sources": 43,
-   "rows": 652885,
-   "rows_dividing": 71448,
+   "rows": 652954,
+   "rows_dividing": 71454,
    "rows_printing_a_part": 2685,
    "rows_no_pill": 603,
-   "rows_whose_slot_moved": 0,
+   "rows_whose_slot_moved": 6,
    "uncovered": 0
   },
   "overlays": {
