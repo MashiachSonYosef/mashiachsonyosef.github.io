@@ -1,5 +1,6 @@
 {
  "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
  "source_key": "macula_hebrew_cherith_surface_english_2022",
  "m_ids": [
   "M3"
@@ -619,7 +620,22 @@
     },
     {
      "id": "no_pill",
-     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are.",
+     "print": {
+      "kind": "none"
+     },
+     "examples": [
+      {
+       "key": "ה",
+       "row": "(2019a=1886a+6483)",
+       "prints": ""
+      },
+      {
+       "key": "ה",
+       "row": "(6997a=1886a+6997)",
+       "prints": ""
+      }
+     ]
     }
    ],
    "resting": "as_written"
@@ -639,7 +655,30 @@
     },
     {
      "id": "number_off",
-     "means": "The page prints Ben as one reading and leaves the number off the pill. The store keeps the text as it is."
+     "means": "The page prints Ben as one reading and leaves the number off the pill. The store keeps the text as it is.",
+     "print": {
+      "kind": "remove",
+      "at": [
+       "open_paren.holds_one_number"
+      ]
+     },
+     "examples": [
+      {
+       "key": "דקר",
+       "row": "Deker (1128)",
+       "prints": "Deker"
+      },
+      {
+       "key": "בן",
+       "row": "Ben (1128)",
+       "prints": "Ben"
+      },
+      {
+       "key": "בן",
+       "row": "Ben (1127)",
+       "prints": "Ben"
+      }
+     ]
     }
    ],
    "resting": "number_stays"

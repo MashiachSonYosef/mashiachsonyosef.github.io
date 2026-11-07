@@ -1,5 +1,6 @@
 {
  "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
  "source_key": "panlex_hebrew_english_definitions_20250201",
  "m_ids": [
   "M42"
@@ -2562,7 +2563,27 @@
     },
     {
      "id": "no_pill",
-     "means": "The page prints no pill for these rows, whatever the answer on the left-over marks, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+     "means": "The page prints no pill for these rows, whatever the answer on the left-over marks, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are.",
+     "print": {
+      "kind": "none"
+     },
+     "examples": [
+      {
+       "key": "קרל",
+       "row": "\"transliterations of \"\"Carl\"\"\"",
+       "prints": ""
+      },
+      {
+       "key": "לוויין",
+       "row": "w:Woodstock (novel)",
+       "prints": ""
+      },
+      {
+       "key": "פתגם",
+       "row": "w:Dave Duncan (writer)",
+       "prints": ""
+      }
+     ]
     }
    ],
    "resting": "as_written"
@@ -2583,7 +2604,39 @@
     },
     {
      "id": "without_note",
-     "means": "The page prints the words without the note (day after tomorrow; David; a programming language), once it has the one step of its own that this answer needs; until then they print as written. The store keeps each text as it is."
+     "means": "The page prints the words without the note (day after tomorrow; David; a programming language), once it has the one step of its own that this answer needs; until then they print as written. The store keeps each text as it is.",
+     "print": [
+      {
+       "kind": "remove",
+       "at": [
+        "hyphen.before_a_note_to_the_source_keepers"
+       ],
+       "to_end": true
+      },
+      {
+       "kind": "remove",
+       "at": [
+        "open_paren.holds_a_note_to_the_source_keepers"
+       ]
+      }
+     ],
+     "examples": [
+      {
+       "key": "מחרתיים",
+       "row": "day after tomorrow - translation entry",
+       "prints": "day after tomorrow"
+      },
+      {
+       "key": "לואה",
+       "row": "a programming language (transliterations)",
+       "prints": "a programming language"
+      },
+      {
+       "key": "פלפלת",
+       "row": "plant of the genus Capsicum (only terms covering capsicum in general apply, NOT species-specific)",
+       "prints": "plant of the genus Capsicum"
+      }
+     ]
     }
    ],
    "resting": "as_written"

@@ -188,8 +188,8 @@ const NAMES_AFTER_SEMICOLON = ["--Enos","Shijon","Jeuel","Almon","Padon","-Jehie
 const SPELLING_CLAUSES = ["or (feminine) mtsuwdah","or mtsudah","or callown","or netsach","or pidyom","also pidyown","or pidyon"];
 const LABELS_AFTER_SEMICOLON = ["causatively","by implication","properly","but usually (adverbially)","hence"];
 const ORIGIN_OPENERS = ["(Aramaic) corresponding to","(Aramaic) from","a primitive root","apparently from","feminine of","for ","from ","of uncertain derivation","probably identical with","the same as"];
-const ABBREVIATIONS = ["Marg","Prop","Incl","marg","includ","etym","etc"];
-const BOOK_ABBREVIATIONS = ["Psa","Jer","Ezek","Hos"];
+const ABBREVIATIONS = ["Marg","Prop","Incl","marg","includ","etym","etc","Prob"];
+const BOOK_ABBREVIATIONS = ["Psa","Jer","Ezek","Hos","Isa"];
 const WORD_ENDS_ALONE = ["-s","-th"];
 const sentenceText = (text) => text.includes(";") && !TWO_RENDERINGS_TEXTS.includes(text);
 const isWholeText = (text, g) => { const t = text.trim(); return t === "(" + g + ")" || t === "X (" + g + ")"; };

@@ -1,5 +1,6 @@
 {
  "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
  "source_key": "openscriptures_bdb_1906",
  "m_ids": [
   "M5"
@@ -1034,7 +1035,27 @@
     },
     {
      "id": "leave_off",
-     "means": "The page leaves off the last sign when it prints the row, a step of its own: have a just cause as one reading. The stored text does not change."
+     "means": "The page leaves off the last sign when it prints the row, a step of its own: have a just cause as one reading. The stored text does not change.",
+     "print": {
+      "kind": "remove",
+      "at": [
+       "comma.at_end_of_text",
+       "period.closes_the_text"
+      ],
+      "to_end": true
+     },
+     "examples": [
+      {
+       "key": "צדק",
+       "row": "have a just cause,",
+       "prints": "have a just cause"
+      },
+      {
+       "key": "מבטח",
+       "row": "security.",
+       "prints": "security"
+      }
+     ]
     }
    ],
    "resting": "as_written"

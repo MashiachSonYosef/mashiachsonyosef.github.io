@@ -72,58 +72,16 @@ const T = (option, kind, print) => ({ option, kind, print });
 // from the row and refuses to combine with a cut.
 const noPill = () => T("no_pill", "none", () => []);
 
+// 7 November 2026: the corpus lane's reissues under ask v1.2 carry the print step as data in the
+// declaration for every answered branch but two (tools/ledger-print-from-declaration-v1.mjs reads them);
+// their hand entries and examples are gone from here. The two that stay are steps the six kinds of ask
+// v1.2 cannot write exactly (v135.1: the one word before the bracket; v123.1: several removals composed
+// on one row), and they retire when the ask gains the kinds or the lane lists their rows by hand.
 export const PRINT_RULES = {
   // --- a name or a word with filing marks around it ----------------------------------------------------------------
-  "biblicaltools_living_lexicon:B02": T("name_alone", "keep", (text, marks) => {
-    const m = first(marks, "period.before_a_pointer_with_no_target", "open_paren.holds_a_correction_with_its_number_lost");
-    return m ? [before(text, m.i)] : null;
-  }),
-  "biblicaltools_living_lexicon:B03": T("name_alone", "keep", (text, marks) => {
-    const ms = all(marks, "semicolon.between_parts_of_a_sentence_on_one_name");
-    return ms.length ? [after(text, ms[ms.length - 1].i)] : null;
-  }),
-  "biblicaltools_living_lexicon:B04": T("two_forms", "forms", (text, marks) => {
-    const p = pair(marks, "open_paren.holds_a_part_that_may_join", "close_paren.holds_a_part_that_may_join");
-    return p ? twoForms(text, p[0], p[1]) : null;
-  }),
   "biblicaltools_living_lexicon:B05": T("name_alone", "keep", (text, marks) => {
     const m = first(marks, "open_paren.holds_a_note_on_the_margin", "open_paren.holds_a_note_on_the_article", "open_paren.holds_a_verse_place_beside_a_name");
     return m ? [[wordBefore(text, m.i)]] : null;
-  }),
-  "hewiktionary_hebrew_exact_english_translation:B03": T("no_number", "remove", (text, marks) => {
-    const p = pair(marks, "open_paren.holds_a_definition_number", "close_paren.holds_a_definition_number");
-    return p ? [remove(whole(text), p[0], p[1] + 1)] : null;
-  }),
-  "lexibank_analysed_v2_2_northeuralex_hebrew:B01": T("two_readings", "forms", (text, marks) => {
-    const p = pair(marks, "open_paren.holds_another_wording", "close_paren.holds_another_wording");
-    if (!p) return null;
-    const out = [before(text, p[0])];
-    let from = p[0] + 1;
-    for (const m of all(marks, "comma.between_wordings_in_round_brackets")) { if (m.i > p[0] && m.i < p[1]) { out.push([[from, m.i]]); from = m.i + 1; } }
-    out.push([[from, p[1]]]);
-    return out;
-  }),
-  "lexibank_analysed_v2_2_northeuralex_hebrew:B02": T("word_alone", "keep", (text, marks) => {
-    const m = first(marks, "open_paren.holds_a_stand_in", "open_paren.holds_a_tie_word_phrase", "open_paren.holds_a_kind_label", "open_paren.holds_narrowing_words");
-    return m ? [before(text, m.i)] : null;
-  }),
-  "macula_hebrew_cherith_surface_english_2022:B03": T("number_off", "remove", (text, marks) => {
-    const p = pair(marks, "open_paren.holds_one_number", "close_paren.holds_one_number");
-    return p ? [remove(whole(text), p[0], p[1] + 1)] : null;
-  }),
-  "openscriptures_bdb_1906:B04": T("leave_off", "remove", (text, marks) => {
-    const m = first(marks, "comma.at_end_of_text", "period.closes_the_text");
-    return m ? [remove(whole(text), m.i, text.length)] : null;
-  }),
-  "openscriptures_lexical_index:B01": T("before_those_words", "keep", (text, marks) => {
-    const m = first(marks, "period.before_a_pointing_word", "period.in_unbalanced_text");
-    if (m) return [before(text, m.i)];
-    const c = first(marks, "close_paren.holds_the_margin_note_before_a_pointing_word");
-    return c ? [[[0, c.i + 1]]] : null;
-  }),
-  "openscriptures_lexical_index:B02": T("two_forms", "forms", (text, marks) => {
-    const p = pair(marks, "open_paren.holds_an_ending_that_may_join", "close_paren.holds_an_ending_that_may_join");
-    return p ? twoForms(text, p[0], p[1]) : null;
   }),
   "panlex_hebrew_english_definitions_20250201:B02": T("without_marks", "remove", (text, marks) => {
     let keep = whole(text);
@@ -144,42 +102,7 @@ export const PRINT_RULES = {
     if (colon) keep = remove(keep, colon.i, colon.i + 1);
     return [keep];
   }),
-  "panlex_hebrew_english_definitions_20250201:B04": T("without_note", "remove", (text, marks) => {
-    let keep = whole(text);
-    const h = first(marks, "hyphen.before_a_note_to_the_source_keepers");
-    if (h) keep = remove(keep, h.i, text.length);
-    const p = pair(marks, "open_paren.holds_a_note_to_the_source_keepers", "close_paren.holds_a_note_to_the_source_keepers");
-    if (p) keep = remove(keep, p[0], p[1] + 1);
-    return h || p ? [keep] : null;
-  }),
-  "panlex_hebrew_english_meanings_20240301:B04": T("word_alone", "keep", (text, marks) => {
-    const link = first(marks, "pipe.between_a_link_target_and_its_word");
-    if (link) return [after(text, link.i)];
-    const low = first(marks, "low_line.between_a_word_and_its_kind");
-    if (low) return [before(text, low.i)];
-    const ap = first(marks, "apostrophe.doubled_with_nothing_inside");
-    if (ap) return [before(text, ap.i)];
-    const cy = first(marks, "period.after_a_cyrillic_letter");
-    if (cy) { const [s] = wordBefore(text, cy.i); return [before(text, s)]; }                    // «lioness ж.» → lioness
-    return null;
-  }),
-  "wikidata_hebrew_lexeme_gloss:B05": T("name_alone", "keep", (text, marks) => {
-    const p = pair(marks, "open_paren.holds_a_name_after_its_label", "close_paren.holds_a_name_after_its_label");
-    return p ? [between(p[0], p[1])] : null;
-  }),
-  "wikimedia_hebrew_english_interlanguage_title_20260701:B01": T("name_alone", "keep", (text, marks) => {
-    const m = first(marks, "open_paren.around_the_word_disambiguation");
-    return m ? [before(text, m.i)] : null;
-  }),
   // the branch reads its 13 rows one by one and says which side renders the Hebrew; the table is its words
-  "wikimedia_hebrew_english_interlanguage_title_20260701:B02": T("named_part", "keep", (text, marks) => {
-    const side = NAMED_PART[text];
-    if (side === undefined) throw new Error(`named_part: the branch's list does not name «${text}»`);
-    const m = first(marks, "number_sign.between_a_page_and_its_part");
-    if (!m) return null;
-    if (side === null) return NONE;
-    return [side === "after" ? after(text, m.i) : before(text, m.i)];
-  }),
   // --- the filing tags this corpus's own script wrote on ConceptNet's rows ---------------------------------------
   // The owner, 6 November: a tag this corpus wrote is not provider text, so it came off the route text itself
   // (row-strike-rule-v3, retext from the definition slot). The corpus lane reissued both ledgers against the
@@ -187,26 +110,6 @@ export const PRINT_RULES = {
   // tag_off entries that stood here until 7 November reach no shape and are gone; the rulings they applied stand
   // in data/ledger-branch-answers-v1.json under "retired", as the record of what was asked and answered.
   // --- rows that render nothing a translator could print ---------------------------------------------------------
-  "classical_hebrew_words:B05": noPill(),
-  "dbnary_english_wiktionary_hebrew_translation_gloss:B01": noPill(),
-  "hewiktionary_hebrew_exact_english_translation:B02": noPill(),
-  "hewiktionary_hebrew_explicit_full_spelling_english_translation:B02": noPill(),
-  "hewiktionary_hebrew_explicit_inflection_english_translation:B02": noPill(),
-  "hiperbiblia_sdbh:B03": noPill(),
-  "kaikki_english_wiktionary_hebrew_translation_table:B01": noPill(),
-  "macula_hebrew_cherith_surface_english_2022:B02": noPill(),
-  "omegawiki_structured_defined_meaning:B02": noPill(),
-  "panlex_hebrew_english_definitions_20250201:B03": noPill(),
-  "panlex_hebrew_english_meanings_20240301:B02": noPill(),
-  "panlex_hebrew_english_meanings_20240301:B03": noPill(),
-  "stepbible_tahot_aligned_translation:B01": noPill(),
-  "stepbible_tahot_aligned_translation:B02": noPill(),
-  "stepbible_tahot_aligned_translation:B03": noPill(),
-  "stepbible_tahot_aligned_translation:B04": noPill(),
-  "stepbible_tbesh_gloss:B04": noPill(),
-  "stepbible_tbesh_gloss:B05": noPill(),
-  "wikidata_hebrew_explicit_form_english_sense:B06": noPill(),
-  "wikidata_hebrew_lexeme_gloss:B04": noPill(),
 };
 
 /** Wikimedia B02, in the branch's own words: which side of the number sign renders the Hebrew, row by row */
@@ -248,33 +151,10 @@ export const printOf = (ruleKey, text, marks, cuts = []) => {
 
 /** the branch's own examples, from its "means" */
 export const FIXTURES = [
-  ["biblicaltools_living_lexicon:B02", "Merari. See also", ["Merari"]],
-  ["biblicaltools_living_lexicon:B02", "Tikvath (by correction for )", ["Tikvath"]],
-  ["biblicaltools_living_lexicon:B03", "once (Psalm 132:6) perhaps for Ephraim; also of an Israelitish woman; Ephrath", ["Ephrath"]],
-  ["biblicaltools_living_lexicon:B04", "fool (ish)", ["fool", "foolish"]],
-  ["biblicaltools_living_lexicon:B04", "Mede (-s)", ["Mede", "Medes"]],
-  ["biblicaltools_living_lexicon:B04", "(over) against", ["against", "over against"]],
-  ["biblicaltools_living_lexicon:B04", "Jobesh (-Gilead)", ["Jobesh", "Jobesh-Gilead"]],
-  ["biblicaltools_living_lexicon:B04", "to (wards)", ["to", "towards"]],
-  ["biblicaltools_living_lexicon:B04", "labour (er)", ["labour", "labourer"]],
   ["biblicaltools_living_lexicon:B05", "Ephai (from margin)", ["Ephai"]],
   ["biblicaltools_living_lexicon:B05", "and Zehoar (from the margin)", ["Zehoar"]],
   ["biblicaltools_living_lexicon:B05", "Hakkatan (including the article)", ["Hakkatan"]],
   ["biblicaltools_living_lexicon:B05", "Micaiah (2 Chronicles 18:8)", ["Micaiah"]],
-  ["hewiktionary_hebrew_exact_english_translation:B03", "mount (1)", ["mount"]],
-  ["lexibank_analysed_v2_2_northeuralex_hebrew:B01", "LONGING (WISH)", ["LONGING", "WISH"]],
-  ["lexibank_analysed_v2_2_northeuralex_hebrew:B01", "LID (COVER, CAP)", ["LID", "COVER", "CAP"]],
-  ["lexibank_analysed_v2_2_northeuralex_hebrew:B01", "DWELL (LIVE, RESIDE)", ["DWELL", "LIVE", "RESIDE"]],
-  ["lexibank_analysed_v2_2_northeuralex_hebrew:B02", "SWING (SOMETHING)", ["SWING"]],
-  ["lexibank_analysed_v2_2_northeuralex_hebrew:B02", "WAIT (FOR)", ["WAIT"]],
-  ["macula_hebrew_cherith_surface_english_2022:B03", "Ben (1128)", ["Ben"]],
-  ["openscriptures_bdb_1906:B04", "have a just cause,", ["have a just cause"]],
-  ["openscriptures_bdb_1906:B04", "security.", ["security"]],
-  ["openscriptures_lexical_index:B01", "Kadesh. Compare", ["Kadesh"]],
-  ["openscriptures_lexical_index:B01", "Dibon. (Als", ["Dibon"]],
-  ["openscriptures_lexical_index:B01", "Iddo (from the margin) See", ["Iddo (from the margin)"]],
-  ["openscriptures_lexical_index:B02", "Mede(-s)", ["Mede", "Medes"]],
-  ["openscriptures_lexical_index:B02", "Mehunim(-s)", ["Mehunim", "Mehunims"]],
   ["panlex_hebrew_english_definitions_20250201:B02", "tree of the ''Acer'' genus", ["tree of the Acer genus"]],
   ["panlex_hebrew_english_definitions_20250201:B02", "O<sub>3</sub>", ["O3"]],
   ["panlex_hebrew_english_definitions_20250201:B02", "<u>au</u>tomobile", ["automobile"]],
@@ -282,24 +162,6 @@ export const FIXTURES = [
   ["panlex_hebrew_english_definitions_20250201:B02", "\"personal pronoun \"\"he\"\"\"", ["personal pronoun \"he\""]],
   ["panlex_hebrew_english_definitions_20250201:B02", "#Barcelona (Englisch)|Barcelona", ["Barcelona"]],
   ["panlex_hebrew_english_definitions_20250201:B02", ": sex partner without emotional attachment", ["sex partner without emotional attachment"]],
-  ["panlex_hebrew_english_definitions_20250201:B04", "day after tomorrow - translation entry", ["day after tomorrow"]],
-  ["panlex_hebrew_english_definitions_20250201:B04", "David (disambiguation)", ["David"]],
-  ["panlex_hebrew_english_definitions_20250201:B04", "a programming language (transliterations)", ["a programming language"]],
-  ["panlex_hebrew_english_meanings_20240301:B04", "#Barcelona |Barcelona", ["Barcelona"]],
-  ["panlex_hebrew_english_meanings_20240301:B04", "Pole_person", ["Pole"]],
-  ["panlex_hebrew_english_meanings_20240301:B04", "labor '' ''", ["labor"]],
-  ["panlex_hebrew_english_meanings_20240301:B04", "lioness ж.", ["lioness"]],
-  ["wikidata_hebrew_lexeme_gloss:B05", "given name (Adva)", ["Adva"]],
-  ["wikidata_hebrew_lexeme_gloss:B05", "family name (Albert)", ["Albert"]],
-  ["wikimedia_hebrew_english_interlanguage_title_20260701:B01", "Dolls (disambiguation)", ["Dolls"]],
-  ["wikimedia_hebrew_english_interlanguage_title_20260701:B02", "Quartz#Citrine", ["Citrine"]],
-  ["wikimedia_hebrew_english_interlanguage_title_20260701:B02", "Moab#Moabite language", ["Moabite language"]],
-  ["wikimedia_hebrew_english_interlanguage_title_20260701:B02", "Brush#Paintbrushes", ["Brush"]],
-  ["wikimedia_hebrew_english_interlanguage_title_20260701:B02", "World#Religion and mythology", []],
-  ["stepbible_tahot_aligned_translation:B01", "<the>", []],
-  ["stepbible_tahot_aligned_translation:B03", "Pedah-", []],
-  ["dbnary_english_wiktionary_hebrew_translation_gloss:B01", "mega-", []],
-  ["hiperbiblia_sdbh:B03", "[untranslated]", []],
 ];
 
 /** Runs every fixture through the ledger's own classifier. `classifiers` maps source key -> classify(text); a fixture

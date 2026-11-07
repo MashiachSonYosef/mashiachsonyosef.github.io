@@ -41,6 +41,7 @@ const SHAPES = [
   { id: "close_paren.holds_a_kind_label", mark: ")", divides: false, test: (c) => KIND_LABELS.includes(c.group) },
   { id: "open_paren.holds_narrowing_words", mark: "(", divides: false, test: (c) => NARROWING_WORDS.includes(c.group) },
   { id: "close_paren.holds_narrowing_words", mark: ")", divides: false, test: (c) => NARROWING_WORDS.includes(c.group) },
+  { id: "hyphen.joins_the_parts_of_one_word", mark: "-", divides: false, test: (c) => c.text === "GOOD-LOOKING" },
 ];
 
 // ---- helpers of fragment ledger ----

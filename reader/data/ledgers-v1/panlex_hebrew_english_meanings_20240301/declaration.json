@@ -1,5 +1,6 @@
 {
  "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
  "source_key": "panlex_hebrew_english_meanings_20240301",
  "m_ids": [
   "M21"
@@ -797,7 +798,27 @@
     },
     {
      "id": "no_pill",
-     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are.",
+     "print": {
+      "kind": "none"
+     },
+     "examples": [
+      {
+       "key": "שוב",
+       "row": "re-",
+       "prints": ""
+      },
+      {
+       "key": "עצמי",
+       "row": "self-",
+       "prints": ""
+      },
+      {
+       "key": "אי",
+       "row": "in-",
+       "prints": ""
+      }
+     ]
     }
    ],
    "resting": "as_written"
@@ -817,7 +838,22 @@
     },
     {
      "id": "no_pill",
-     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are."
+     "means": "The page prints no pill for these rows, once it has the one step of its own that this answer needs; until then they print as they do today. They stay in the store as they are.",
+     "print": {
+      "kind": "none"
+     },
+     "examples": [
+      {
+       "key": "קרבן",
+       "row": "v.",
+       "prints": ""
+      },
+      {
+       "key": "כישרון",
+       "row": "Hayward?",
+       "prints": ""
+      }
+     ]
     }
    ],
    "resting": "as_written"
@@ -840,7 +876,51 @@
     },
     {
      "id": "word_alone",
-     "means": "The page prints Barcelona, Pole, labor and lioness, each as one reading, once it has the one step of its own that this answer needs; until then they print as written. The store keeps each text as it is."
+     "means": "The page prints Barcelona, Pole, labor and lioness, each as one reading, once it has the one step of its own that this answer needs; until then they print as written. The store keeps each text as it is.",
+     "print": [
+      {
+       "kind": "after",
+       "at": [
+        "pipe.between_a_link_target_and_its_word"
+       ]
+      },
+      {
+       "kind": "before",
+       "at": [
+        "low_line.between_a_word_and_its_kind",
+        "apostrophe.doubled_with_nothing_inside",
+        "period.after_a_cyrillic_letter"
+       ]
+      }
+     ],
+     "rows": [
+      {
+       "row": "lioness |ж.",
+       "side": "before"
+      }
+     ],
+     "examples": [
+      {
+       "key": "ברצלונה",
+       "row": "#Barcelona |Barcelona",
+       "prints": "Barcelona"
+      },
+      {
+       "key": "פולנית",
+       "row": "Pole_person",
+       "prints": "Pole"
+      },
+      {
+       "key": "עבודה",
+       "row": "labor '' ''",
+       "prints": "labor"
+      },
+      {
+       "key": "אריה",
+       "row": "lioness ж.",
+       "prints": "lioness"
+      }
+     ]
     }
    ],
    "resting": "as_written"

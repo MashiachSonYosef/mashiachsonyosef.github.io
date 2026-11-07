@@ -32,15 +32,24 @@ const SHAPES = [
   // ---- fragment ledger ----
   { id: "period.in_unbalanced_text", mark: ".", divides: false, test: (c) => unbalanced(c.text) },
   { id: "period.before_a_pointing_word", mark: ".", divides: false, test: (c) => beforeAPointingWord(c) },
+  { id: "period.closes_the_name_at_the_end", mark: ".", divides: false, test: (c) => c.after === "" },
   { id: "open_paren.in_unbalanced_text", mark: "(", divides: false, test: (c) => unbalanced(c.text) },
   { id: "open_paren.holds_the_margin_note", mark: "(", divides: false, test: (c) => c.group === "from the margin" },
   { id: "open_paren.holds_an_ending_that_may_join", mark: "(", divides: false, test: (c) => ENDINGS_THAT_MAY_JOIN.includes(c.group) },
   { id: "open_paren.holds_the_note_on_the_article", mark: "(", divides: false, test: (c) => c.group === "including the article" },
+  { id: "open_paren.holds_another_spelling_of_the_last_part", mark: "(", divides: false, test: (c) => OTHER_SPELLINGS_OF_THE_LAST_PART.includes(c.group) },
   { id: "close_paren.holds_the_margin_note_before_a_pointing_word", mark: ")", divides: false, test: (c) => c.group === "from the margin" && beforeAPointingWord(c) },
   { id: "close_paren.holds_the_margin_note", mark: ")", divides: false, test: (c) => c.group === "from the margin" },
   { id: "close_paren.holds_an_ending_that_may_join", mark: ")", divides: false, test: (c) => ENDINGS_THAT_MAY_JOIN.includes(c.group) },
   { id: "close_paren.holds_the_note_on_the_article", mark: ")", divides: false, test: (c) => c.group === "including the article" },
+  { id: "close_paren.holds_another_spelling_of_the_last_part", mark: ")", divides: false, test: (c) => OTHER_SPELLINGS_OF_THE_LAST_PART.includes(c.group) },
+  { id: "hyphen.in_unbalanced_text", mark: "-", divides: false, test: (c) => unbalanced(c.text) },
   { id: "hyphen.opens_an_ending_that_may_join", mark: "-", divides: false, test: (c) => ENDINGS_THAT_MAY_JOIN.includes(c.inner) },
+  { id: "hyphen.opens_another_spelling_of_the_last_part", mark: "-", divides: false, test: (c) => OTHER_SPELLINGS_OF_THE_LAST_PART.includes(c.inner) },
+  { id: "hyphen.joins_the_parts_of_one_word", mark: "-", divides: false, test: () => true },
+  { id: "colon.between_chapter_and_verse", mark: ":", divides: false, test: (c) => UNCLOSED_NOTE_TEXTS.includes(c.text) },
+  { id: "left_single_quotation_mark.opens_the_sense_of_a_name", mark: "\u2018", divides: false, test: (c) => c.before === "" },
+  { id: "right_single_quotation_mark.closes_the_sense_of_a_name", mark: "\u2019", divides: false, test: (c) => c.after === "" },
 ];
 
 // ---- the ask's own helper for rule 3 (ASK v1.1, rule 3), copied byte for byte ----
@@ -56,6 +65,8 @@ function unbalanced(text) {
 // ---- helpers of fragment ledger ----
 const POINTING_WORDS = ["Compare","See"];
 const ENDINGS_THAT_MAY_JOIN = ["-s"];
+const OTHER_SPELLINGS_OF_THE_LAST_PART = ["-addar"];
+const UNCLOSED_NOTE_TEXTS = ["Pi-hahiroth. (In Numbers 14:19 without Pi-."];
 function beforeAPointingWord(c) { return c.after[0] === " " && POINTING_WORDS.includes(c.after.slice(1)); }
 
 export function classify(text) {
