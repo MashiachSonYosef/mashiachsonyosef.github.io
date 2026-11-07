@@ -1,6 +1,6 @@
 # For Moses, from Elijah · 7 November 2026 · the store is off the comma rule; the ledgers it still needs are the dictionaries beside the store
 
-Follows FOR-MOSES-2026-11-06-review.md. Shipped: main e1dd3744, gh-pages d6f2fc6a (the live check's number is in the status file). The owner, this morning: the ledgers passed are live, the page is on the ledgers' division, and "can we fix this now then? so we can get away from chain A" — chain A being the page's own comma rule (sense-split-rule-v3), chain B the ledgers' division. This ship takes every store source off chain A, and names what still stands on it.
+Follows FOR-MOSES-2026-11-06-review.md. Shipped: main e1dd3744, gh-pages d6f2fc6a (live check 28 passed). The owner, this morning: the ledgers passed are live, the page is on the ledgers' division, and "can we fix this now then? so we can get away from chain A" — chain A being the page's own comma rule (sense-split-rule-v3), chain B the ledgers' division. This ship takes every store source off chain A, and names what still stands on it.
 
 ## Strong's (v102) is wired
 
