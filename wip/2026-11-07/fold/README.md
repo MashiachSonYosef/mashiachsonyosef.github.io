@@ -1,5 +1,7 @@
 # The fold, measured (v142 item 4; Moses's take of 7 November, items 3 and 5) · 7 November 2026
 
+> **Correction, later on 7 November.** The lead moves below use the lattice's year per source, read off its single-source cards. Moses's source table (v150) shows those are harvest and revision dates on 112 of 146 sources, not the year the English was written; and Davidson's 1855 is a library catalogue date, not printed in the copy (the owner's call). So the figures for leads that move to an older witness, and the count that moves to Davidson, stand on unbacked years. The counts of witnesses the store dropped do not depend on years and stand.
+
 The served store keeps one row per key and text with one M (the corpus lane's compact packages: one row per exact K+R, `primary_m_id`), so a wording two dictionaries share stands under one of them. What the fold kept and what it lost, measured on the 39 books' lattice v12 cards (text, sources, earliest_year; corpus-lane-builds, moses-ledgers/lattice-v12) against the served store 3d8c4ef86c01 read by the page's own reader (tools/gloss-store-v1.mjs readingPool: readings under the ledgers, carriers, oldest year). Scripts beside this file; the figures in measure-fold-v2.json.
 
 ## What the row's year slot holds (census-by-source-v1.json)
