@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-07.
 
-**141 rules declared · 128 named by a check · 13 unguarded.**
+**142 rules declared · 129 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -64,13 +64,14 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-q-site` | tools/check-implicit-maqaf-v1.mjs | check-implicit-maqaf-v1 |
 | `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
 | `joint-switch-cost-rule-v1-a-set-of-switches-is-priced-thrown-together-and-read-by-its-own-ids` | tools/gloss-m-v1.mjs, zone.html | check-source-switch-v1 |
+| `kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only` | tools/project-lattice-v12-v1.mjs, zone.html | check-kq-graded-v1 |
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs, tools/zone-lib-v1.mjs | check-kq-carried-v1, check-kq-lead-follows-switch-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
 | `lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving` | tools/emit-lane-state-v1.mjs | check-lane-state-v1 |
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-parts-in-card-v1, check-lattice-projection-v1 |
 | `ledger-division-rule-v1` | zone.html | **UNGUARDED** |
-| `ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say` | tools/apply-ledger-divisions-v1.mjs, tools/ledger-print-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs, tools/regloss-zone.mjs, zone.html | check-ledger-divisions-v1, check-provider-characters-v1, check-search-v1, check-witnessed-order-v1 |
+| `ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say` | tools/apply-ledger-divisions-v1.mjs, tools/ledger-print-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gloss-store-v1.mjs, tools/regloss-zone.mjs, zone.html | check-ledger-divisions-v1, check-provider-characters-v1, check-overlays-v1, check-search-v1, check-witnessed-order-v1 |
 | `ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for` | tools/emit-ledger-index-v1.mjs | check-ledger-declared-v1 |
 | `ledger-print-rule-v2-a-branchs-answer-prints-by-the-step-its-declaration-carries-and-nothing-is-added` | tools/ledger-print-from-declaration-v1.mjs | **UNGUARDED** |
 | `licence-columns-rule-v1-the-licence-preference-is-a-baked-order-column-so-the-line-and-the-card-answer-as-one` | tools/gloss-m-v1.mjs, tools/regloss-zone.mjs, zone.html | check-card-opens-on-the-line-v1, check-masorah-toggle-v1 |
@@ -90,7 +91,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
 | `orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration` | tools/check-orders-registered-together-v1.mjs | check-orders-registered-together-v1 |
 | `overlay-book-counts-rule-v1-a-dictionary-beside-the-store-is-counted-per-book-like-every-other` | tools/bake-overlay-book-counts-v1.mjs | check-source-switch-v1 |
-| `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html | check-overlays-v1, check-card-opens-on-the-line-v1, check-pointing-grade-v1, check-source-switch-v1, check-witnessed-order-v1 |
+| `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html, tools/apply-ledger-divisions-v1.mjs | check-overlays-v1, check-card-opens-on-the-line-v1, check-pointing-grade-v1, check-source-switch-v1, check-witnessed-order-v1 |
 | `partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing` | zone.html | check-partial-serve-declared-v1 |
 | `parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost` | zone.html | check-parts-read-right-to-left-v1 |
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs, tools/build-commentary-sidecar-v2.mjs | check-sealed-layers-v1 |

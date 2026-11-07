@@ -127,7 +127,8 @@
      "standing": "ruled",
      "overlay_rows": 967
     }
-   }
+   },
+   "ledger": "cowley-1909-samaritan-liturgy-vol2-glossary"
   },
   "MSAM2": {
    "key": "uhlemann-1837-institutiones",
@@ -193,7 +194,8 @@
      "standing": "awaiting the owner",
      "overlay_rows": 40
     }
-   }
+   },
+   "ledger": "florentin-tal-2025-index-of-differences-in-meaning"
   },
   "MSAM4": {
    "key": "nicholls-1858-grammar",
@@ -226,7 +228,8 @@
      "standing": "awaiting the owner",
      "overlay_rows": 1
     }
-   }
+   },
+   "ledger": "nicholls-1858-grammar"
   },
   "MSAM5": {
    "key": "wiktionary-samaritan-hebrew-lemmas",
@@ -255,7 +258,8 @@
      "standing": "ruled",
      "overlay_rows": 11
     }
-   }
+   },
+   "ledger": "wiktionary-samaritan-hebrew-lemmas"
   }
  },
  "counts": {
@@ -269,6 +273,60 @@
   "keys_not_in_base_store": 441
  },
  "price": "strand-build/outputs/price-v1.json",
- "store_version": "32545d00f4fd",
- "store_version_rule": "first 12 hex of sha256(the 256 overlay shard sha256 hex digests in 00..ff order + \"\\n\" + JSON.stringify(route_row) + \"\\n\" + the base store_version)"
+ "store_version": "9fc2af87c3b5",
+ "store_version_rule": "first 12 hex of sha256(the 256 overlay shard sha256 hex digests in 00..ff order + \"\\n\" + JSON.stringify(route_row) + \"\\n\" + the base store_version)",
+ "ledgers": {
+  "rule_id": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
+  "applied_on": "2026-11-07T18:52:09.833Z",
+  "applied_by": "tools/apply-ledger-divisions-v1.mjs",
+  "what": "an overlay row of a source under a ledger carries the page's division slots beyond the lane's own: row[8] the marks it divides at, row[9] the texts it prints ([] for no pill), which the page reads into slots 7 and 8 of the row it serves; slot 7 stays the lane's (the Samaritan lane, null where the lane wrote none); a row of a source under no ledger carries none; the lane's slots are byte for byte",
+  "counts": {
+   "rows": 2875,
+   "rows_of_ledgered_sources": 1025,
+   "rows_dividing": 169,
+   "rows_printing_a_part": 236,
+   "rows_no_pill": 47,
+   "rows_whose_slot_moved": 0,
+   "uncovered": 0
+  },
+  "by_source": {
+   "cowley-1909-samaritan-liturgy-vol2-glossary": {
+    "rows": 967,
+    "rows_dividing": 127,
+    "rows_printing_a_part": 227,
+    "rows_no_pill": 47,
+    "uncovered": 0
+   },
+   "florentin-tal-2025-index-of-differences-in-meaning": {
+    "rows": 40,
+    "rows_dividing": 37,
+    "rows_printing_a_part": 0,
+    "rows_no_pill": 0,
+    "uncovered": 0
+   },
+   "wiktionary-samaritan-hebrew-lemmas": {
+    "rows": 11,
+    "rows_dividing": 5,
+    "rows_printing_a_part": 2,
+    "rows_no_pill": 0,
+    "uncovered": 0
+   },
+   "nicholls-1858-grammar": {
+    "rows": 7,
+    "rows_dividing": 0,
+    "rows_printing_a_part": 7,
+    "rows_no_pill": 0,
+    "uncovered": 0
+   }
+  }
+ },
+ "store_version_delivered": "32545d00f4fd",
+ "store_version_history": [
+  {
+   "was": "32545d00f4fd",
+   "now": "9fc2af87c3b5",
+   "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
+   "on": "2026-11-07T18:52:09.833Z"
+  }
+ ]
 }

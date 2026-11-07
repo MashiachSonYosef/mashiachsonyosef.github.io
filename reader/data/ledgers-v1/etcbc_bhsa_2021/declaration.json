@@ -1,0 +1,57 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "source_key": "etcbc_bhsa_2021",
+ "m_ids": [
+  "M199"
+ ],
+ "routes": 149,
+ "read_from": "The route text as served: the field route of each line of scratch/by-source/etcbc_bhsa_2021.jsonl, extracted on 7 November 2026 AD from the served span store (reader/data/span-store/<book>.json at main 1d2470eb) for \"ETCBC BHSA 2021\" (M199), one line per span record: 149 routes (axis: routes) under 148 letters keys (axis: keys); the served route store is 87b13b1169b4, and this source is served in the span store only. The definition field equals the route text on every line. The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the dictionary store's records of M199 (149 records, axis: records) tie to the routes by row id on 149 routes and by the record's English on 0, 0 untied, and on 149 of 149 routes the route text equals the record's English (axis: routes); each record names its line of the source's gloss feature file (tf__2021__gloss.tf, whose own header calls the feature \"english translation of lexeme\") and of its lexeme file (tf__2021__voc_lex_utf8.tf), and the record carries no entry id the store dropped. The source's own key to its signs: none found; the gloss feature's header in the lane's source cache (ledgers/work/ldmprs/source-cache/etcbc-bhsa-2026-07-14/) describes the feature and names no sign, and the README there names none, so the one shape's meaning begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one UTF-16 unit of the JavaScript string (every route here holds only characters of 16 bits). The text is the whole route text as it stands, the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. Nothing is trimmed. A letter is any character the JavaScript test \\p{L} with the u flag matches, in any script; a lowercase letter is one \\p{Ll} matches. The character before the mark is the one at the mark's index less one, the character after it the one at the mark's index plus one. No test uses a word list, the words begins with or contains, the container, or the start or the end of the text.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence. This dictionary's routes hold one mark, the hyphen, and one shape, so every occurrence takes it."
+ },
+ "named_cases": {
+  "comma_top": "absent",
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": "absent",
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "hyphen.joins_the_parts_of_a_name",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one compound proper name that the source's English gloss writes as one word («Tiglath-Pileser», «Abel-beth-maacah», «Merib-Baal»), so that the whole name is one reading and the hyphen never cuts it; every hyphen here stands between two letters with no space on either side, 36 of 41 before a capital letter and 5 before a lowercase one (axis: occurrences).",
+   "test": "The mark is the hyphen; every hyphen takes this shape, with no further condition, since it is the only shape of its mark (terms, first_match). Counted by this ledger and not a condition of the test: the character before it and the character after it are letters.",
+   "count": 41,
+   "examples": [
+    {
+     "key": "תגלת פלאסר"
+    },
+    {
+     "key": "עבד מלך"
+    },
+    {
+     "key": "מי זהב"
+    }
+   ],
+   "read": 41
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text is the English gloss of one lexeme of the source and carries no entry number; the source's own lexeme (its vocalized lexeme in tf__2021__voc_lex_utf8.tf) stands in the store's record and not in the route. One letters key carries two texts (עבד נגו): the same key written with two glosses, so this count holds senses and homonyms together and the route text tells them apart under none.",
+  "keys_with_more_than_one_route_text": 1
+ },
+ "branches": [],
+ "not_done_here": "This ledger leaves to the span store every route that holds no mark (111 of 149 routes, axis: routes), among them the names the source writes as two words with a space (97 routes hold a space, axis: routes), because a shape stands only at a mark; nothing is struck and no route is divided."
+}

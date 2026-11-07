@@ -1,0 +1,269 @@
+{
+ "schema": "mishkan.provider_declaration.v2",
+ "ask": "ASK-provider-declarations-v1.2",
+ "source_key": "stepbible_tahot_expanded_strong",
+ "m_ids": [
+  "M197"
+ ],
+ "routes": 185,
+ "read_from": "The route text as served: the field route of each line of scratch/by-source/stepbible_tahot_expanded_strong.jsonl, extracted on 7 November 2026 AD from the served span store (reader/data/span-store/<book>.json at main 1d2470eb) for \"STEPBible TAHOT expanded Strong's\" (M197), one line per span record after deduplication by row id over the books (the serving lane counts 446 span rows over the books for this source, axis: span rows): 185 routes (axis: routes) under 166 letters keys (axis: keys); the served route store is 87b13b1169b4, and this source is served in the span store only. The definition field of a line is the record's expanded tag (the gloss, then the sign » and the name's unique id with its places), and it equals the route text on none of the lines but the 7 whose tag holds no » (axis: routes). The source audit (builder/02-audit.mjs, evidence about the source and no part of any test): the dictionary store's records of M197 (185 records, axis: records) tie to the routes by row id on 185 routes, 0 untied; on 181 of 185 routes the route text equals the record's English, and the 4 others stand in rows-for-the-store-v1.jsonl as the store's question. The source's own key to its signs: the notes at the head of the TAHOT files in the lane's source cache (ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/, the Gen-Deu file, the lines on \"Expanded Strong tags\"): each tag carries an English gloss and its sub-meaning after the sign », and people and place names carry a unique id such as Abram»Abraham@Gen.11.26-1Pe; those signs stand in the definition field and never in the route text, which is the gloss before them. The notes name no use of a hyphen, a round bracket, a quotation mark, a colon or a comma inside a gloss, so every shape's meaning here begins \"unverified:\".",
+ "definitions": {
+  "terms": "In every test a character is one UTF-16 unit of the JavaScript string (every route here holds only characters of 16 bits). The text is the whole route text as it stands, the field route of a line of the by-source JSONL, what the checker gives the classifier, and never the field def. Nothing is trimmed unless a test says so. What the bracket holds means, for a round bracket, the characters between that opener and its closer, nothing added and nothing taken away, spaces included: the template's c.group. The text before the mark means every character from the start of the text up to, and not including, the mark. Whitespace at the end taken off means the JavaScript trimEnd of the string. Begins with the string means that the string's characters are exactly the first characters of the text, with nothing before them. Is one of the strings in a list means is equal to one string of that list, character for character and whole. Every string and every list minds case. A string stands between « and », which are not part of it. Inside round brackets means the template's container paren: the innermost bracket round the mark is a round bracket; the text inside those brackets is the template's c.inner.",
+  "first_match": "For each mark the shapes are tried in the order they stand in this file; the first whose test holds names the occurrence, and no later shape is tried for it. The hyphen and the quotation mark each have one shape, which every occurrence takes.",
+  "names_before_a_comma": [
+   "Samgar"
+  ],
+  "optional_words": [
+   "Mount"
+  ]
+ },
+ "named_cases": {
+  "comma_top": [
+   "comma.between_two_names"
+  ],
+  "comma_in_paren": "absent",
+  "comma_in_brackets": "absent",
+  "semicolon_top": "absent",
+  "semicolon_in_paren": "absent",
+  "semicolon_in_brackets": "absent",
+  "slash_top": "absent",
+  "slash_in_paren": "absent",
+  "slash_in_brackets": "absent",
+  "parentheses": [
+   "open_paren.holds_an_optional_word",
+   "close_paren.holds_an_optional_word",
+   "open_paren.holds_the_kjv_form",
+   "close_paren.holds_the_kjv_form"
+  ],
+  "brackets": "absent"
+ },
+ "shapes": [
+  {
+   "id": "hyphen.joins_the_parts_of_a_name",
+   "mark": "-",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: joins the parts of one compound proper name that the source's gloss writes as one word («Beth-shemesh», «Nergal-sar-ezer», «Maher-shalal-hash-baz»), so that the whole name is one reading and the hyphen never cuts it; every hyphen here stands between two letters with no space on either side, 2 of 153 before a capital letter and 151 before a lowercase one (axis: occurrences).",
+   "test": "The mark is the hyphen; every hyphen takes this shape, with no further condition, since it is the only shape of its mark (terms, first_match).",
+   "count": 153,
+   "examples": [
+    {
+     "key": "אל בית־אל"
+    },
+    {
+     "key": "אזן שארה"
+    },
+    {
+     "key": "פי החירת"
+    }
+   ],
+   "read": 153
+  },
+  {
+   "id": "comma.between_two_names",
+   "mark": ",",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: separates two names the source gives for one place of the text, the second made with the next word's letters («Samgar, Nebu-sar-sekim»); whether the two are two readings is the question of B01, and at rest the row prints whole.",
+   "test": "The text before the mark is one of the strings in names_before_a_comma (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "סמגר־נבו"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_an_optional_word",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens round brackets that hold a word the name may carry before it or go without («(Mount )Baal-hermon»); the row prints as written at rest, and whether the page prints the name in both forms is the question of B02.",
+   "test": "What the bracket holds, with whitespace at its end taken off, is one of the strings in optional_words (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בעל חרמון"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_an_optional_word",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes round brackets that hold a word the name may carry before it or go without («(Mount )Baal-hermon»); the row prints as written at rest, and whether the page prints the name in both forms is the question of B02.",
+   "test": "What the bracket holds, with whitespace at its end taken off, is one of the strings in optional_words (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "בעל חרמון"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "open_paren.holds_the_kjv_form",
+   "mark": "(",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: opens round brackets that hold, after the label KJV and a colon, the King James form of a name the gloss gives in translation («My Delight Is in Her(KJV: Hephzibah)»); the label and the form are no reading of their own, and whether the page prints the translated name alone is the question of B03.",
+   "test": "What the bracket holds begins with the string «KJV:» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חפצי־בה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "close_paren.holds_the_kjv_form",
+   "mark": ")",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: closes round brackets that hold, after the label KJV and a colon, the King James form of a name the gloss gives in translation («My Delight Is in Her(KJV: Hephzibah)»); the label and the form are no reading of their own, and whether the page prints the translated name alone is the question of B03.",
+   "test": "What the bracket holds begins with the string «KJV:» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חפצי־בה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "colon.after_the_kjv_label",
+   "mark": ":",
+   "container": "paren",
+   "divides": false,
+   "means": "unverified: follows the label KJV inside round brackets and introduces the King James form of the name («My Delight Is in Her(KJV: Hephzibah)»); it never cuts, and the brackets it stands in are the question of B03.",
+   "test": "The mark stands inside round brackets, and the text inside those brackets begins with the string «KJV:» (terms, first_match).",
+   "count": 1,
+   "examples": [
+    {
+     "key": "חפצי־בה"
+    }
+   ],
+   "read": 1
+  },
+  {
+   "id": "quote.round_a_translated_name",
+   "mark": "\"",
+   "container": "top",
+   "divides": false,
+   "means": "unverified: stands at each end of a name the gloss gives as a translated phrase rather than a transliteration («\"Terror on Every Side\"»), as the name's own wording; the two quotation marks stay with the name, which is one reading.",
+   "test": "The mark is the quotation mark U+0022; every one takes this shape, with no further condition, since it is the only shape of its mark (terms, first_match).",
+   "count": 2,
+   "examples": [
+    {
+     "key": "מגור מסביב"
+    }
+   ],
+   "read": 2
+  }
+ ],
+ "precedence": [],
+ "homonyms": {
+  "entry_identity": "none",
+  "reason": "The route text is the name or gloss the source gives at a place and carries no entry number; the source's own unique id of a person or place (the part after » in the record's tag, with the dStrong number) stands in the store's record and not in the route. The key is a word form of two or more words, and its routes are the glosses at its places, so this count counts places, not entries: 3 keys carry more than one text (בית שמש, פרץ עזא, חפצי־בה), each a span glossed two ways at different places, and the route text tells senses from homonyms under none.",
+  "keys_with_more_than_one_route_text": 3
+ },
+ "branches": [
+  {
+   "id": "B01",
+   "question": "One row gives two names for one place of the text, with a comma between them: Samgar, Nebu-sar-sekim. The second name is made with the letters of the word that follows in the text. Today the page prints the row whole, as one pill. Does the comma divide, so that each name is a reading of its own?",
+   "shapes": [
+    "comma.between_two_names"
+   ],
+   "occurrences": 1,
+   "keys": [
+    "סמגר־נבו"
+   ],
+   "options": [
+    {
+     "id": "whole",
+     "means": "The comma does not cut: the page prints Samgar, Nebu-sar-sekim as one reading, as written, as it does today."
+    },
+    {
+     "id": "divides",
+     "means": "The comma cuts: the page prints Samgar and Nebu-sar-sekim as two readings."
+    }
+   ],
+   "resting": "whole"
+  },
+  {
+   "id": "B02",
+   "question": "One row gives a word in round brackets before a name, which the name may carry or go without: (Mount )Baal-hermon. Today the page prints the row whole, brackets and all. Should the page print the name in both forms instead, Baal-hermon and Mount Baal-hermon, as two readings? That needs one step of the page's own, since the store's text does not change.",
+   "shapes": [
+    "open_paren.holds_an_optional_word",
+    "close_paren.holds_an_optional_word"
+   ],
+   "occurrences": 2,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints the row as written, brackets and all: (Mount )Baal-hermon, as it does today."
+    },
+    {
+     "id": "both_forms",
+     "means": "The page prints the name in both forms, the row without the bracket and the row with the bracket's word joined on, as two readings: Baal-hermon and Mount Baal-hermon. Nothing is added: each is a run of the row's own characters in their own order, so the page needs one step of its own.",
+     "print": {
+      "kind": "forms",
+      "at": [
+       "open_paren.holds_an_optional_word"
+      ]
+     },
+     "examples": [
+      {
+       "key": "בעל חרמון",
+       "row": "(Mount )Baal-hermon",
+       "prints": [
+        "Baal-hermon",
+        "Mount Baal-hermon"
+       ]
+      }
+     ]
+    }
+   ],
+   "resting": "as_written"
+  },
+  {
+   "id": "B03",
+   "question": "One row gives a name in translation and, in round brackets after it, the label KJV with a colon and the King James form: My Delight Is in Her(KJV: Hephzibah). Today the page prints the row whole, label and all. Should the page print the translated name alone, My Delight Is in Her, with the brackets and the King James form left off? That needs one step of the page's own, since the store's text does not change.",
+   "shapes": [
+    "open_paren.holds_the_kjv_form",
+    "close_paren.holds_the_kjv_form",
+    "colon.after_the_kjv_label"
+   ],
+   "occurrences": 3,
+   "options": [
+    {
+     "id": "as_written",
+     "means": "The page prints the row as written, brackets, label and all: My Delight Is in Her(KJV: Hephzibah), as it does today."
+    },
+    {
+     "id": "name_alone",
+     "means": "The page prints only what stands before the round brackets, My Delight Is in Her, as one reading; the brackets with the label KJV and the form Hephzibah are left off. Nothing is added, so the page needs one step of its own.",
+     "print": {
+      "kind": "before",
+      "at": [
+       "open_paren.holds_the_kjv_form"
+      ]
+     },
+     "examples": [
+      {
+       "key": "חפצי־בה",
+       "row": "My Delight Is in Her(KJV: Hephzibah)",
+       "prints": "My Delight Is in Her"
+      }
+     ]
+    }
+   ],
+   "resting": "as_written"
+  }
+ ],
+ "not_done_here": "This ledger leaves to the span store every route that holds no mark (38 of 185 routes, axis: routes), because a shape stands only at a mark, and the 4 routes whose served text is not the record's English (rows-for-the-store-v1.jsonl), a question for the store; it leaves to the page the one step each of the answers both_forms (B02) and name_alone (B03) asks for, carried as a print step under ask v1.2. Nothing is struck and no route is divided at rest."
+}

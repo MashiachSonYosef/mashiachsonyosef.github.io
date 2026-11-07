@@ -1861,7 +1861,11 @@
     const ruled = ix.lanes ? new Set(Object.entries(ix.lanes).filter(([, l]) => l && l.standing === "ruled").map(([id]) => id)) : null;
     return data[key]
       .filter((row) => !ruled || !row[7] || (row[7].lanes || [row[7].lane]).some((l) => ruled.has(l)))
-      .map((row) => { const r = row.slice(0, 7); OVERLAY_ROWS.set(r, o.id); return r; });
+      // an overlay's slot 7 is the lane's own (the Samaritan lane, filtered on
+      // just above), so the division slots its ledger writes stand at 8 and 9
+      // in the shard (apply-ledger-divisions-v1, 7 November 2026) and are read
+      // into 7 and 8 here, where readingsOfRow reads every row's
+      .map((row) => { const r = row.slice(0, 7); if (row.length > 8) { r[7] = Array.isArray(row[8]) ? row[8] : null; r[8] = Array.isArray(row[9]) ? row[9] : null; } OVERLAY_ROWS.set(r, o.id); return r; });
   };
   const routesFor = async (key) => {
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
@@ -5101,7 +5105,20 @@
     // the lattice's grades are keyed by the pointed surface of the form that
     // stands open, and apply to its whole form only (bin === zone: a
     // commentary's or a dictionary's words are not positions of this book)
-    openPointed = bin === zone && region && region.s ? region.s : null;
+    // THE READ HALF IS GRADED BY ITS OWN VOWELS (the owner, 7 November 2026,
+    // adopting the corpus lane's v151: at a place written one way and read
+    // another, the vowels are the reading's), under
+    // kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only.
+    // The brackets around a qere are the source's notation, not the word, so
+    // the grade is keyed by the pointed form inside them, as the lattice keys
+    // it. With the brackets kept, the card found a grade for 62 of the 1,083
+    // read halves in books with a sidecar; inside them, for 1,034 (the other
+    // 49 are words of a read half of two or three words, which the sidecar
+    // does not grade). The
+    // written half has no vowels of its own: nothing to grade, letters only.
+    openPointed = bin === zone && region && region.s ? (region.role === "QERE" ? String(region.s).replace(/^\[+|\]+$/gu, "") : region.s) : null;
+    // the form this card grades against, for a check to read (check-kq-graded-v1)
+    window.__cardGradedBy = openPointed || "";
     // THE SITE THE CARD STANDS AT, for the piece store: the verse's label and
     // its words as written, marks not counted, so a cell can name its own
     // word's number (piecePlaceOf, below). It belongs to this card alone.
@@ -5280,13 +5297,16 @@
     // opposition, so the two labels are one juxtaposition and not two
     // sentences. They read nearly identically before, and the qere's said
     // both "reads" and "as written" in the same breath.
+    // And which half the card grades (kq-grade-rule-v1): the read half by its
+    // own vowels, the written half by its letters only, said where the role is
+    // said, so a reader never takes a written form's readings for graded ones.
     if (region && region.role === "KETIV") {
-      const roleLine = document.createElement("p"); roleLine.className = "kq-role";
-      roleLine.textContent = "ketiv \u2014 written";
+      const roleLine = document.createElement("p"); roleLine.className = "kq-role"; roleLine.dataset.graded = "letters";
+      roleLine.textContent = "ketiv \u2014 written \u00b7 no vowels of its own, so its readings are matched by letters only";
       head.append(roleLine);
     } else if (region && region.role === "QERE") {
-      const roleLine = document.createElement("p"); roleLine.className = "kq-role";
-      roleLine.textContent = "qere \u2014 read";
+      const roleLine = document.createElement("p"); roleLine.className = "kq-role"; roleLine.dataset.graded = "vowels";
+      roleLine.textContent = "qere \u2014 read \u00b7 its vowels are the reading, so its readings are graded by them";
       head.append(roleLine);
     }
     // And beside the branch selector, the notation's key — the marks teaching

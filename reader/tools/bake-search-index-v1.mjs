@@ -225,7 +225,10 @@ for (const id of readdirSync(join(DATA, "overlays")).sort()) {
       const src = (oix.m_sources || {})[row[3]];
       if (!src) continue;
       overlayRows += 1;
-      for (const p of pills(row, src)) add(joinSpan(p), L, row[3], null);
+      // an overlay's division slots stand at 8 and 9 (its slot 7 is the lane's
+      // own), read into 7 and 8 as the page reads them
+      const served = row.length > 8 ? [...row.slice(0, 7), Array.isArray(row[8]) ? row[8] : null, Array.isArray(row[9]) ? row[9] : null] : row.slice(0, 7);
+      for (const p of pills(served, src)) add(joinSpan(p), L, row[3], null);
     }
   }
 }

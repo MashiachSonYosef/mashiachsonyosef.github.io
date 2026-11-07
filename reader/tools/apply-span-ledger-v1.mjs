@@ -12,7 +12,10 @@
 // draft_candidate row of formulaic_clitic_candidate_v1, so the card withheld
 // the division the sources themselves name (TAHOT and MACULA: ב + ראשית), and
 // the same stamp hid the sources' own division at 53,731 places. The fix is
-// the lane's data:
+// the lane's data (first moses-compspan-v13.5, the build this note was written
+// against; served since 9 October 2026 from moses-compspan-v13.8, relay v59.3:
+// build/spans-ledger/<book>.spans-ledger-v5.json, each zone's
+// emitted_from.span_ledger naming it; v13.5 to v13.7 are superseded):
 //
 //   moses-compspan-v13.5/build/spans-ledger/<book>.spans-ledger-v3.json
 //     span_roles, span_rules, span_conf and spans replace the zone's four

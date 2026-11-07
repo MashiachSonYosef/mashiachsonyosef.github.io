@@ -54,10 +54,22 @@
 //      (data/span-store/<book>.json) take the same slots the same way: a
 //      span row of a ledgered source is a row like any, and until then it was
 //      served whole where the generic rule had divided it.
+//   6. (7 November 2026, the corpus lane's v153.1 and v155 to v160) The
+//      dictionaries beside the store (data/overlays/<id>/: Jastrow, the
+//      Samaritan sources) take the same slots, one further out (an overlay's
+//      slot 7 is the lane's own: the Samaritan lane), row for row in their
+//      own shards, and their index marks each ledgered source, as the
+//      span store's index marks its own two: the page merges both indexes'
+//      sources into the store's, so its readingsOfRow reads an overlay's slots
+//      as it reads the store's. The bytes the lane delivered are pinned in its
+//      MANIFEST-overlay-v1.json; every file this tool rewrites is pinned again
+//      in LEDGERED-overlay-v1.json beside it, with the delivered pin it stands
+//      on, so a check can hold each file to one of the two.
 //
 // Usage: node tools/apply-ledger-divisions-v1.mjs [--store data/route-store]
 //          [--ledgers data/ledgers-v1] [--answers data/ledger-branch-answers-v1.json]
-//          [--receipt data/ledger-divisions-receipt-v1.json] [--span-store data/span-store] [--dry]
+//          [--receipt data/ledger-divisions-receipt-v1.json] [--span-store data/span-store]
+//          [--overlays data/overlays] [--dry]
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -278,11 +290,74 @@ if (existsSync(join(SPAN, "index.json"))) {
     if (moved && !DRY) writeFileSync(path, JSON.stringify(file));   // the bake's own byte shape: one line, no indent
   }
   if (!DRY && !conflicts.length) {
+    // the span store's own sources under a ledger are marked as the store's are,
+    // so the page, which merges this index's sources into the store's, reads
+    // their rows' slots (until 7 November 2026 neither had a ledger)
+    for (const m of Object.keys(spanIndex.m_sources || {})) { const k = ((spanIndex.m_sources || {})[m] || {}).key; if (!keyOfM(m) && k && ledgers.has(k)) spanIndex.m_sources[m].ledger = k; else delete spanIndex.m_sources[m].ledger; }
     spanIndex.ledgers = { rule_id: LEDGER_DIVISION_RULE_ID, applied_on: new Date().toISOString(), applied_by: "tools/apply-ledger-divisions-v1.mjs",
       what: "a span row of a source under a ledger carries the page's division slots beyond the lane's seven, as a store row does: row[7] the marks it divides at, row[8] the texts it prints ([] for no pill); a row of a source under no ledger carries none; the first seven slots are the lane's, byte for byte",
       counts: { books: spanCounts.books, rows: spanCounts.rows, rows_of_ledgered_sources: spanCounts.rows_of_ledgered_sources, rows_dividing: spanCounts.rows_dividing, rows_printing_a_part: spanCounts.rows_printing_a_part, rows_no_pill: spanCounts.rows_no_pill, uncovered: spanCounts.uncovered } };
     writeFileSync(join(SPAN, "index.json"), JSON.stringify(spanIndex, null, 1));
   }
+}
+// ---- the dictionaries beside the store (data/overlays/<id>/), the same way ------------
+// (7 November 2026: Jastrow's and four of the Samaritan sources' ledgers, the
+// corpus lane's v153.1 and v155 to v158). An overlay row is a row like the
+// store's (overlay-rule-v2): the lane's seven slots byte for byte, and beyond
+// them the page's division slots where the row's source is under a ledger.
+const OVERLAYS_DIR = arg("overlays", join(K3, "data", "overlays"));
+// AN OVERLAY ROW'S SLOT 7 IS THE LANE'S OWN (the Samaritan rows carry their
+// lane there, which the page filters on; Jastrow's rows stop at seven), so the
+// page's division slots stand one further out in an overlay's shard: row[8]
+// the marks it divides at, row[9] the texts it prints. The page, the search
+// bake and its check read them into 7 and 8 of the row they serve, so
+// readingsOfRow reads every row alike (overlay-slots: the same convention in
+// zone.html overlayRowsFor, tools/bake-search-index-v1.mjs, check-search-v1).
+const setOverlaySlots = (row, cuts, prints) => {
+  const had = Array.isArray(row[8]) ? row[8] : null, hadPrint = Array.isArray(row[9]) ? row[9] : null;
+  const now = cuts.length ? cuts : null;
+  if (JSON.stringify(had) === JSON.stringify(now) && JSON.stringify(hadPrint) === JSON.stringify(prints)) return false;
+  if (!DRY) {
+    while (row.length < 8) row.push(null);   // the lane's slot 7 stays as it is, null where the lane wrote none
+    row[8] = now; row[9] = prints;
+    if (!prints) { row.length = 9; if (!now) row.length = row[7] === null || row[7] === undefined ? 7 : 8; }
+  }
+  return true;
+};
+const overlayCounts = {};
+const overlayUncovered = [];
+const overlayWrites = [];   // [dir, ix, bodies, moved]
+if (existsSync(OVERLAYS_DIR)) for (const d of readdirSync(OVERLAYS_DIR).sort()) {
+  const dir = join(OVERLAYS_DIR, d), ixPath = join(dir, "index.json");
+  if (!existsSync(ixPath) || !existsSync(join(dir, "shards"))) continue;
+  const ix = JSON.parse(readFileSync(ixPath, "utf8"));
+  const keyOfOvM = (m) => ((ix.m_sources || {})[m] || {}).key || null;
+  const c = (overlayCounts[d] = { rows: 0, rows_of_ledgered_sources: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, rows_whose_slot_moved: 0, uncovered: 0, by_source: {} });
+  const bodies = new Map(), moved = new Set();
+  for (const f of readdirSync(join(dir, "shards")).filter((x) => x.endsWith(".bin")).sort()) {
+    const body = JSON.parse(gunzipSync(readFileSync(join(dir, "shards", f))).toString("utf8"));
+    bodies.set(f, body);
+    for (const [k, rows] of Object.entries(body)) for (const row of rows) {
+      if (!Array.isArray(row)) continue;
+      c.rows += 1;
+      const key = keyOfOvM(String(row[3]));
+      const L = key && ledgers.has(key) ? ledgers.get(key) : null;
+      if (!L) { if (setOverlaySlots(row, [], null)) { moved.add(f); c.rows_whose_slot_moved += 1; } continue; }
+      c.rows_of_ledgered_sources += 1;
+      const bs = (c.by_source[key] ||= { rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, uncovered: 0 });
+      bs.rows += 1;
+      const text = String(row[1]);
+      const res = slotsOf(L, text);
+      let cuts = [], prints = null;
+      if (res.uncovered) { bs.uncovered += 1; c.uncovered += 1; if (overlayUncovered.length < 200) overlayUncovered.push({ overlay: d, source: key, key: k, m: String(row[3]), route: text, error: res.uncovered }); }
+      else if (res.conflict) conflicts.push(`${key} overlay ${d} ${k}: ${res.conflict} «${text.slice(0, 60)}»`);
+      else { cuts = res.cuts; prints = res.prints; }
+      if (setOverlaySlots(row, cuts, prints)) { moved.add(f); c.rows_whose_slot_moved += 1; }
+      if (cuts.length) { bs.rows_dividing += 1; c.rows_dividing += 1; }
+      if (prints) { if (prints.length) { bs.rows_printing_a_part += 1; c.rows_printing_a_part += 1; } else { bs.rows_no_pill += 1; c.rows_no_pill += 1; } }
+    }
+  }
+  overlayWrites.push([dir, ix, ixPath, bodies, moved, keyOfOvM, d]);
 }
 for (const [k, c] of Object.entries(unledgeredRows)) if (!(manifest.excluded || {})[k]) refuse(`${k} serves ${c} rows, has no ledger, and the manifest does not say why`);
 if (conflicts.length) refuse(`${conflicts.length} rows where a print step cannot be applied: ${conflicts.slice(0, 4).join(" · ")}`);
@@ -295,6 +370,8 @@ const totals = { ledgered_sources: ledgers.size, rows: rowsSeen, rows_dividing: 
 console.log(`ledger divisions · ${ledgers.size} ledgers · ${n(rowsSeen)} rows of ledgered sources · ${n(rowsDividing)} divide · ${n(rowsPrinting)} print a part · ${n(rowsNoPill)} print no pill · ${n(rowsChanged)} slots move · uncovered ${n(totals.uncovered)}`);
 console.log(`  span store · ${spanCounts.books} books · ${n(spanCounts.rows)} rows, ${n(spanCounts.rows_of_ledgered_sources)} of ledgered sources · ${n(spanCounts.rows_dividing)} divide · ${n(spanCounts.rows_printing_a_part)} print a part · ${n(spanCounts.rows_no_pill)} print no pill · ${n(spanCounts.rows_whose_slot_moved)} slots move · uncovered ${n(spanCounts.uncovered)}`);
 for (const u of spanUncovered.slice(0, 6)) console.log(`  span uncovered: ${u.source} ${u.book} ${u.key} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
+for (const [d, c] of Object.entries(overlayCounts)) console.log(`  overlay ${d} · ${n(c.rows)} rows, ${n(c.rows_of_ledgered_sources)} of ledgered sources · ${n(c.rows_dividing)} divide · ${n(c.rows_printing_a_part)} print a part · ${n(c.rows_no_pill)} print no pill · ${n(c.rows_whose_slot_moved)} slots move · uncovered ${n(c.uncovered)}`);
+for (const u of overlayUncovered.slice(0, 8)) console.log(`  overlay uncovered: ${u.overlay} ${u.source} ${u.key} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
 for (const [key, s] of Object.entries(sources)) if (s.rows) console.log(`  ${key.padEnd(66)} rows ${String(s.rows).padStart(7)} · divide ${String(s.rows_dividing).padStart(6)} · print ${String(s.rows_printing_a_part).padStart(5)} · no pill ${String(s.rows_no_pill).padStart(4)} · uncovered ${s.uncovered}`);
 for (const u of uncovered.slice(0, 12)) console.log(`  uncovered: ${u.source} ${u.key}#${u.rank} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
@@ -340,8 +417,43 @@ index.ledgers = {
   sources: Object.fromEntries(Object.entries(sources).map(([k, s]) => [k, { relay: s.relay, declaration_sha256: s.declaration_sha256, classifier_sha256: s.classifier_sha256, m_ids: s.m_ids, shapes: s.shapes, shapes_dividing: s.shapes_dividing, branches: Object.fromEntries(Object.entries(s.branches).map(([id, b]) => [id, { option: b.option, resting: b.resting, by: b.by, on: b.on, ...(b.prints ? { prints: b.prints, print_step_from: b.print_step_from } : {}) }])), rows: s.rows, rows_dividing: s.rows_dividing, rows_printing_a_part: s.rows_printing_a_part, rows_no_pill: s.rows_no_pill, uncovered: s.uncovered }])),
   totals,
 };
+index.ledgers.overlays = Object.fromEntries(Object.entries(overlayCounts).map(([d, c]) => [d, { file: `reader/data/overlays/${d}/shards/<shard>.bin`, ...Object.fromEntries(Object.entries(c).filter(([k]) => k !== "by_source")), by_source: c.by_source }]));
 index.counts = { ...(index.counts || {}), shard_bytes_total: shardBytes };
+// the overlays: the shards whose slots moved, each index's ledger marks and its
+// ledgers block, and the pin of every file as it now stands beside the
+// lane's delivered pin (LEDGERED-overlay-v1.json)
+for (const [dir, ix, ixPath, bodies, moved, keyOfOvM, d] of overlayWrites) {
+  for (const f of moved) writeFileSync(join(dir, "shards", f), gzipSync(Buffer.from(JSON.stringify(bodies.get(f))), { level: 9 }));
+  for (const m of Object.keys(ix.m_sources || {})) { const k = keyOfOvM(m); if (k && ledgers.has(k)) ix.m_sources[m].ledger = k; else delete ix.m_sources[m].ledger; }
+  const c = overlayCounts[d];
+  // the overlay's version follows its shards, as the store's does: the page
+  // asks a shard under ?v=<store_version>, so a version that stood still while
+  // the slots moved would leave a reader's cached shards printing whole
+  const ovDigest = createHash("sha256");
+  for (const f of readdirSync(join(dir, "shards")).filter((x) => x.endsWith(".bin")).sort()) ovDigest.update(readFileSync(join(dir, "shards", f)));
+  const ovWas = ix.store_version || null, ovNow = ovDigest.digest("hex").slice(0, 12);
+  if (ovNow !== ovWas) {
+    if (!ix.store_version_delivered) ix.store_version_delivered = ovWas;
+    ix.store_version = ovNow;
+    ix.store_version_history = [...(ix.store_version_history || []), { was: ovWas, now: ovNow, why: LEDGER_DIVISION_RULE_ID, on }];
+  }
+  ix.ledgers = { rule_id: LEDGER_DIVISION_RULE_ID, applied_on: on, applied_by: "tools/apply-ledger-divisions-v1.mjs",
+    what: "an overlay row of a source under a ledger carries the page's division slots beyond the lane's own: row[8] the marks it divides at, row[9] the texts it prints ([] for no pill), which the page reads into slots 7 and 8 of the row it serves; slot 7 stays the lane's (the Samaritan lane, null where the lane wrote none); a row of a source under no ledger carries none; the lane's slots are byte for byte",
+    counts: Object.fromEntries(Object.entries(c).filter(([k]) => k !== "by_source")), by_source: c.by_source };
+  writeFileSync(ixPath, JSON.stringify(ix, null, 1));
+  const delivered = existsSync(join(dir, "MANIFEST-overlay-v1.json")) ? JSON.parse(readFileSync(join(dir, "MANIFEST-overlay-v1.json"), "utf8")) : null;
+  const files = (delivered && Array.isArray(delivered.files) ? delivered.files : []).map((f) => {
+    const b = existsSync(join(dir, f.path)) ? readFileSync(join(dir, f.path)) : null;
+    const sha = b ? sha256(b) : null;
+    return sha === f.sha256 && b.length === f.bytes ? null : { path: f.path, delivered: { sha256: f.sha256, bytes: f.bytes }, now: b ? { sha256: sha, bytes: b.length } : null };
+  }).filter(Boolean);
+  writeFileSync(join(dir, "LEDGERED-overlay-v1.json"), JSON.stringify({ schema_version: "LEDGERED_OVERLAY_V1", rule_id: LEDGER_DIVISION_RULE_ID, applied_on: on, applied_by: "tools/apply-ledger-divisions-v1.mjs",
+    what: "the files this tool rewrote in the lane's delivered overlay, each with the delivered pin it stands on (MANIFEST-overlay-v1.json) and its pin now; every other file is the delivery's, byte for byte",
+    delivered_manifest: delivered ? { file: "MANIFEST-overlay-v1.json", store_version: delivered.store_version || null, files: (delivered.files || []).length } : null,
+    files }, null, 1) + "\n");
+  console.log(`  overlay ${d}: ${moved.size} shard${moved.size === 1 ? "" : "s"} rewritten · ${files.length} file${files.length === 1 ? "" : "s"} now pinned apart from the delivery`);
+}
 if (now !== was) { index.store_version = now; index.store_version_history = [...(index.store_version_history || []), { was, now, why: LEDGER_DIVISION_RULE_ID, on }]; }
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
-writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); tools/ledger-print-v1.mjs, the hand table, for the rest`, ran_at: on, store_version: { was, now }, totals, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered } }, null, 1));
+writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); tools/ledger-print-v1.mjs, the hand table, for the rest`, ran_at: on, store_version: { was, now }, totals, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered }, overlays: { ...overlayCounts, uncovered_rows: overlayUncovered } }, null, 1));
 console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · index.ledgers names ${ledgers.size} ledgers · receipt ${RECEIPT}`);
