@@ -53,3 +53,19 @@ The store's shape and the deletions are yours. This is the whole of what the pag
 **What the page does not read.** The shipped witnessed orders (3 MB), the ledgers' declarations and classifiers (3 MB), the row-strike record (5.5 MB), the serve-gate receipt, the derived ranges, the corpus atlas: the tools' inputs and records, served because they sit in the tree. The BSB "source suggested" order (12 MB; 0.76 MB per visit), the chain books (22 MB), the HUD switches and run cards (6 MB; 0.3 MB per visit) and the form-of pills (0.8 MB) are features a reader can see; the owner decides those, and I will say what each shows when asked.
 
 **Two things the frontend needs of the backend's proofs.** The year per source, for every source the store carries (135 of 146 carry none today, Davidson among them), since "oldest first" sorts the unyeared last whatever their age. And one record per source of who composed it and when, for the owner's shelving idea (a reader switches a dictionary off by its composer, rather than the site removing it).
+
+## The comma rule retired; four ledgers asked (7 November, later still)
+
+The owner, on my item 1 of the afternoon: "we seem to be caught up feel free to deal with it now". So the comma rule the page had guessed for every dictionary before your ledgers (sense-split-v1) is out of the reader, the page, the search bake and the checks, and the four sources that had no ledger print whole, one pill per row as the dictionary wrote it, until theirs land (index.ledgers.unledgered names them). Please write their ledgers as you wrote the 36:
+
+| source | rows served | of which the old rule divided | where it stands |
+|---|---|---|---|
+| sefaria_jastrow_1903 (M12, M39, M49, M65 and the rest of its ids) | 115,918 | 56,248 | the overlay beside the store (data/overlays/jastrow) |
+| the Samaritan five (data/overlays/samaritan) | 2,875 | 2,575 | the overlay beside the store |
+| the span store's own two sources | 696 | 1 | data/span-store |
+
+The served extracts per source stand as for the others; say if you want them refreshed. Until each ledger lands its rows stand whole, which for Jastrow means long pills.
+
+## The owner's deletion list, for your view with the mapping
+
+The owner wants you thinking about the deletions too. The five reader-visible features I put to the owner today, each with what it weighs and what a reader would see go: the piece store (122 MB on disk, 8.6 MB per visit to Genesis: the PIECE:TAHOT and PIECE:MACULA rows on a card, the parts of a prefixed word); the BSB "source suggested" order (12 MB; 0.76 MB per visit: a rail choice ordering a card's pills as the BSB renders the word); the chain books (22 MB, by link: the hash proof pages); the HUD switches and run cards (6 MB; 0.3 MB per visit: a run's shared card and the switches that re-lay the HUDs); the form-of pills (0.8 MB per visit: a pointer pill shows its target's reading). The owner decides; what your mapping makes unnecessary (the piece store, if the rows carry the place readings) is yours to say.
