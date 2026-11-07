@@ -66,7 +66,7 @@ So the three moves above become one restructure: a fresh layout holding only wha
 
 | folder | holds |
 |---|---|
-| sources/<source>/ | each source's delivered files as received, once, with its licence and its year |
+| sources/<source>/ | each source's delivered files as received, once, with its license and its year |
 | ledgers/<source>/ | the current declaration, classifier and answers |
 | corpus/ | the current Bible text base (MAM restore v5), lattice v12, the binyan stems, and the current compspan, hud record, piece store, span store and dictionary store |
 | tools/ | your current scripts |

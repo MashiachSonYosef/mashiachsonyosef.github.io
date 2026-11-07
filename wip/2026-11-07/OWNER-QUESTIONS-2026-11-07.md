@@ -18,7 +18,7 @@ In your order. The macro review is next (the rules, the data flow, the checks, t
 
 ## Your toggle idea: a dictionary's composer as a shelf on the source switch
 
-"Christian composed dictionaries only", or "non-Jew composed": instead of the site removing Jastrow, a reader switches a shelf off. This fits the source switch as it stands: the sources already shelve three ways (by century, by language, by licence), each shelf with its own baked switch cost, and a fourth shelving by composer is the same mechanism. What it needs is a declared record per source naming its composition with the evidence (as source-corpus-v1 names each source's corpus with a quote), from Moses, never a guess of the page's; and your names for the shelves. One rule I would keep from the corpus shelving: a source nobody has declared shelves as undeclared, not as "other". Queued after the deletions (task #39); say the names you want and I will put the ask to Moses with them.
+"Christian composed dictionaries only", or "non-Jew composed": instead of the site removing Jastrow, a reader switches a shelf off. This fits the source switch as it stands: the sources already shelve three ways (by century, by language, by license), each shelf with its own baked switch cost, and a fourth shelving by composer is the same mechanism. What it needs is a declared record per source naming its composition with the evidence (as source-corpus-v1 names each source's corpus with a quote), from Moses, never a guess of the page's; and your names for the shelves. One rule I would keep from the corpus shelving: a source nobody has declared shelves as undeclared, not as "other". Queued after the deletions (task #39); say the names you want and I will put the ask to Moses with them.
 
 ## Ketiv/qere: which governs where the written and the read part (the owner, 7 November: perhaps the most important question in the whole work)
 
@@ -61,7 +61,7 @@ The ETCBC ledger asks nothing.
 
 ## Davidson's year
 
-Moses's source table (v150) finds no printed date in the copy we have: the title leaf says "SECOND EDITION" with no year, and 1855 is the library's catalogue record. Does a library's catalogue date count for a printed book that prints none? If yes, Davidson's 85 rows sort as 1855 under "oldest first"; if no, they sort with the undated, last, as today.
+Moses's source table (v150) finds no printed date in the copy we have: the title leaf says "SECOND EDITION" with no year, and 1855 is the library's catalog record. Does a library's catalog date count for a printed book that prints none? If yes, Davidson's 85 rows sort as 1855 under "oldest first"; if no, they sort with the undated, last, as today.
 
 ## Moses's store mapping (v152): your word on road A
 
