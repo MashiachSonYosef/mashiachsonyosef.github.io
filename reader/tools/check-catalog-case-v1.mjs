@@ -89,7 +89,8 @@ let doorHtml = "";
 try { doorHtml = await (await fetch(`${ORIGIN}/`)).text(); } catch { doorHtml = ""; }
 if (!/class="atlas-row/u.test(doorHtml)) { console.log(`SKIPPED — no built door is served at ${ORIGIN}/ (the suite runner serves the reader tree; serve the site root to hold the door)`); process.exit(3); }
 const rowOf = (slug) => {
-  const m = doorHtml.match(new RegExp(`<a class="aw[^"]*" href="/${reEsc(slug)}" title="open this book">([^<]*)</a></span><span class="col-att">([\\s\\S]*?)</span></span><span class="pair pair-r">`, "u"));
+  // a work the owner has called in progress wears its status beside the name (work-status-rule-v1-a-work-the-owner-calls-in-progress-says-so-on-the-door-and-on-every-page-of-it); the name is still the link's own text
+  const m = doorHtml.match(new RegExp(`<a class="aw[^"]*" href="/${reEsc(slug)}" title="open this book">([^<]*)</a>(?:<span class="wip"[^>]*>[^<]*</span>)?</span><span class="col-att">([\\s\\S]*?)</span></span><span class="pair pair-r">`, "u"));
   return m ? { text: unescape(m[1]), att: m[2] } : null;
 };
 

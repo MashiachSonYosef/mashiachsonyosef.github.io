@@ -2,7 +2,7 @@
  "schema_version": 1,
  "rule_id": "ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for",
  "emitted_by": "tools/emit-ledger-index-v1.mjs",
- "emitted_on": "2026-11-07",
+ "emitted_on": "2026-11-08",
  "what_this_is": "which letter of the frame each of this lane's records is the ledger for, read from the '// LEDGER:' declaration in the header of the tool that writes it. Declared by the writer, never inferred here.",
  "letters_known_to_the_frame": [
   "A",
@@ -193,6 +193,7 @@
     "bezelal-front-door-counts-handoff-v1.json",
     "front-door-three-count-bindings-v1.json",
     "work-basis-v1.json",
+    "work-status-v1.json",
     "book-grouping-v1.json",
     "book-order-v1.json",
     "grouping-attestation-v1.json",
@@ -567,6 +568,14 @@
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one. The file it writes is a run artifact, not a claim about a work.",
    "writes": [
     "variant-sites-standing-v1.json"
+   ]
+  },
+  "check-work-status-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "work-status-v1.json"
    ]
   },
   "check-zone-single-pass-receipts-v1.mjs": {
