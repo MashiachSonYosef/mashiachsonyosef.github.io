@@ -1664,6 +1664,26 @@
   // of "no name is on record", and it fills when its record lands.
   // Every value is read from data/work-basis-v1.json, derived from the plan
   // and the hold ledgers; nothing on these lines is typed into this page.
+  // A work the owner has called in progress says so under its title
+  // (work-status-rule-v1-a-work-the-owner-calls-in-progress-says-so-on-the-door-and-on-every-page-of-it): the status and its note are the door's metas, out
+  // of the ruling file; the count is this zone's own, so it moves as the
+  // English is filled in and never goes stale.
+  {
+    const st = META("reader-status");
+    if (st) {
+      const el = document.getElementById("statusLine");
+      const lab = document.createElement("span");
+      lab.className = "st-lab";
+      lab.textContent = st.charAt(0).toUpperCase() + st.slice(1);
+      el.append(lab);
+      const note = META("reader-status-note");
+      if (note) el.append(` \u2014 ${note}`);
+      const c = zone.counts || {};
+      if (Number.isFinite(c.glossed_words) && Number.isFinite(c.words) && c.words > 0)
+        el.append(` So far ${c.glossed_words.toLocaleString()} of its ${c.words.toLocaleString()} words have an English reading.`);
+      el.hidden = false;
+    }
+  }
   // the demonstration banner, read from the zone's own receipts; the rule's
   // plain English rides in as a meta from the door, so the record says it
   // once and the page never re-words it

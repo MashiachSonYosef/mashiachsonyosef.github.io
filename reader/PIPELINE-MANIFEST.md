@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-07.
 
-**141 rules declared · 129 named by a check · 12 unguarded.**
+**142 rules declared · 130 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -151,6 +151,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit` | tools/bake-witnessed-order-v1.mjs, tools/import-witnessed-orders-v1.mjs, tools/type-witnessed-drops-v1.mjs | check-witnessed-order-v1 |
 | `work-attachment-rule-v1-parallel-numbering-is-not-intent` | tools/emit-work-attachment-v1.mjs | check-work-attachment-v1 |
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
+| `work-status-rule-v1-a-work-the-owner-calls-in-progress-says-so-on-the-door-and-on-every-page-of-it` | tools/build-front-door-v1.mjs, zone.html | check-catalog-case-v1, check-work-status-v1 |
 | `zone-commentary-rule-v2-everything-recorded-stands-somewhere` | tools/build-commentary-sidecar-v1.mjs | check-nothing-dropped-v1 |
 | `zone-commentary-rule-v2-sealed-chain-section-aligned` | tools/build-commentary-zone.mjs | check-commentary-section-aligned-v1 |
 | `zone-commentary-rule-v3-two-zones-one-coordinate` | tools/build-commentary-sidecar-v2.mjs | check-attachment-grain-v1, check-commentary-in-line-v1, check-commentary-section-aligned-v1 |
