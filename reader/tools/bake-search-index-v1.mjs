@@ -69,9 +69,15 @@ const fold = (t) => String(t || "").normalize("NFKC").toLowerCase()
   .replace(/[\u2018\u2019\u201b\u2032\u02bc]/gu, "'").replace(/[\u201c\u201d\u201e\u2033]/gu, "\"")
   .replace(/[/+]/gu, " ").replace(/[[\]()<>]/gu, "").split(/\s+/u).filter(Boolean).join(" ").replace(/\.$/u, "");
 const joinSpan = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
-const readShards = (dir) => {
+// a store's shards, all of them: where its index counts its shards, a folder
+// holding another number is a copy that is not whole and is refused (until
+// 10 November 2026 a missing shard was a hundredth of the store left out of
+// the index, quietly)
+const readShards = (dir, counted = null) => {
   const out = {};
-  for (const f of readdirSync(dir).filter((x) => /^[0-9a-f]{2}\.bin$/u.test(x)).sort()) Object.assign(out, JSON.parse(gunzipSync(readFileSync(join(dir, f))).toString("utf8")));
+  const files = readdirSync(dir).filter((x) => /^[0-9a-f]{2}\.bin$/u.test(x)).sort();
+  if (Number.isInteger(counted) && files.length !== counted) fail(`${dir} holds ${files.length} shards, its index counts ${counted}: this copy is not whole`);
+  for (const f of files) Object.assign(out, JSON.parse(gunzipSync(readFileSync(join(dir, f))).toString("utf8")));
   return out;
 };
 // the page's own split, read out of the page
@@ -108,7 +114,7 @@ const dix = JSON.parse(readFileSync(join(DATA, "dictionary-store/index.json"), "
 const rix = JSON.parse(readFileSync(join(DATA, "route-store/index.json"), "utf8"));
 const order = JSON.parse(readFileSync(join(DATA, "book-order-v1.json"), "utf8")).files || [];
 const struck = new Set([...((rix.language_admission || {}).struck_m_ids || []), ...((rix.source_strikes || {}).struck_m_ids || [])]);
-const store = readShards(join(DATA, "dictionary-store/shards"));
+const store = readShards(join(DATA, "dictionary-store/shards"), (dix.counts || {}).shards);
 if (Object.keys(store).length !== dix.counts.keys) fail(`the dictionary store holds ${Object.keys(store).length} keys, its index says ${dix.counts.keys}`);
 
 // the letters that stand somewhere, and how
@@ -195,7 +201,7 @@ const add = (t, L, by, places) => {
   }
 };
 let routeRows = 0, struckRows = 0, unnamedRows = 0, otherKeys = 0, pillCount = 0;
-const routes = readShards(join(DATA, "route-store/shards"));
+const routes = readShards(join(DATA, "route-store/shards"), (rix.counts || {}).shards);
 for (const [K, rows] of Object.entries(routes)) {
   const L = letters(K);
   // the card asks the store for a word's own letters; an abbreviation or a
@@ -215,9 +221,13 @@ for (const [K, rows] of Object.entries(routes)) {
 // which the reader may switch off
 let overlayRows = 0;
 for (const id of readdirSync(join(DATA, "overlays")).sort()) {
+  // an overlay whose index cannot be read is not skipped: until 10 November
+  // 2026 it was, and a search index without a whole overlay's rows would
+  // have been written and sealed
+  const oixPath = join(DATA, "overlays", id, "index.json");
   let oix = null;
-  try { oix = JSON.parse(readFileSync(join(DATA, "overlays", id, "index.json"), "utf8")); } catch { continue; }
-  const rows = readShards(join(DATA, "overlays", id, "shards"));
+  try { oix = JSON.parse(readFileSync(oixPath, "utf8")); } catch (e) { fail(`the overlay ${id} has no readable index at ${oixPath} (${e.message}): refusing to write a search index without it`); }
+  const rows = readShards(join(DATA, "overlays", id, "shards"), (oix.counts || {}).shards);
   for (const [K, rs] of Object.entries(rows)) {
     const L = letters(K);
     if (K !== L) continue;

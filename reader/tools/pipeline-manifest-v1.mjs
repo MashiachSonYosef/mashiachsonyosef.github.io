@@ -180,7 +180,10 @@ for (const f of (existsSync("data/zones") ? readdirSync("data/zones") : []).filt
 const inABuildFile = (tool) => BUILD_FILES.find((f) => files.get(f).includes(tool)) || null;
 
 // ---- write ---------------------------------------------------------------
-const ordered = [...rules.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+// names are ordered by their own code points, never by asking the machine how
+// its language sorts: the same tree writes the same manifest on any machine
+const byCodePoint = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+const ordered = [...rules.entries()].sort((a, b) => byCodePoint(a[0], b[0]));
 const unguarded = ordered.filter(([, r]) => !r.guardedBy.size);
 const heirlooms = PUBLISHED.filter((p) => !madeBy(p.what));
 
@@ -222,7 +225,7 @@ L.push("| kind | bins | route or schema | built by | written after its build by 
 L.push("|---|---|---|---|---|");
 const shelfTools = new Set();
 for (const [k, s] of shelf) {
-  const wrote = [...s.wrote.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([t, n]) => { shelfTools.add(t); const bf = inABuildFile(t); return `${t} (${n}; ${bf ? `run by ${bf}` : "**no build file runs it**"})`; });
+  const wrote = [...s.wrote.entries()].sort((a, b) => byCodePoint(a[0], b[0])).map(([t, n]) => { shelfTools.add(t); const bf = inABuildFile(t); return `${t} (${n}; ${bf ? `run by ${bf}` : "**no build file runs it**"})`; });
   const built = [...s.builders].map((b) => (b === "unnamed" ? "**unnamed**" : `${b} (${b.startsWith("tools/") && inABuildFile(b) ? `run by ${inABuildFile(b)}` : "no build file runs it"})`));
   L.push(`| ${k} | ${s.bins} | ${[...s.routes].join(", ")} | ${built.join(", ")} | ${wrote.join("; ") || "—"} |`);
 }

@@ -54,6 +54,23 @@ import { exactK } from "./k-normalization-v2.mjs";
 import { isSidecar, zonesSealed } from "./zones-on-disk-v1.mjs";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
+// A RECORD THE DOOR IS BUILT FROM IS READ, OR THE DOOR IS NOT BUILT. Until 10
+// November 2026 ten of them were read "if the file is there": an absent
+// filing, order, attestation, status ruling, source classification, color
+// contract, demonstrations record, overlay count, reference groups or
+// address history became a quiet default, and the door was written without
+// it and exited 0 (proven by taking each away in turn). An eleventh, the
+// posture table, was read behind a catch that could not fire. Every one of
+// them is in this repository, so an absent one is a broken tree, and a door
+// built from a broken tree is not a door.
+// TWO NAMES ARE ORDERED BY THEIR OWN CODE POINTS, never by asking the machine
+// how its language sorts: the same names file the same way wherever the
+// door is built.
+const byCodePoint = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+const recordAt = (path, what) => {
+  if (!existsSync(path)) throw new Error(`no ${path} (${what}) \u2014 refusing to write a door without it`);
+  return JSON.parse(readFileSync(path, "utf8"));
+};
 const ZONES = arg("zones", "data/zones");
 const OUT = arg("out", "deploy-root");
 const PLAN = arg("plan", "build/build-plan-v1.json");
@@ -345,7 +362,7 @@ const WB = JSON.parse(readFileSync(arg("basis", "data/work-basis-v1.json"), "utf
 // about it is typed here, and a work leaves the file when the owner says it is
 // done. The first, 2026-11-08: the Tikkunei Zohar.
 const WORK_STATUS_FILE = arg("work-status", "data/work-status-v1.json");
-const WORK_STATUS = existsSync(WORK_STATUS_FILE) ? JSON.parse(readFileSync(WORK_STATUS_FILE, "utf8")) : { works: {} };
+const WORK_STATUS = recordAt(WORK_STATUS_FILE, "the owner's ruling on the works in progress");
 const statusOf = (slug) => (WORK_STATUS.works || {})[slug] || null;
 const statusWords = (s) => `${s.status.charAt(0).toUpperCase()}${s.status.slice(1)}: ${s.note}`;
 const wipTag = (slug) => { const s = statusOf(slug); return s ? `<span class="wip" title="${esc(statusWords(s))}">${esc(s.status)}</span>` : ""; };
@@ -363,7 +380,7 @@ const STORE = openRouteStore(arg("store", "data/route-store"));
 // read here, hashed here, and the receipt names the hash; nothing about the
 // filing is typed into this file.
 const GROUPING_PATH = arg("grouping", "data/book-grouping-v1.json");
-const GROUPING = existsSync(GROUPING_PATH) ? JSON.parse(readFileSync(GROUPING_PATH, "utf8")) : null;
+const GROUPING = recordAt(GROUPING_PATH, "how the files are filed into the twenty-four books");
 const GROUPING_SHA = GROUPING ? createHash("sha256").update(readFileSync(GROUPING_PATH)).digest("hex") : "";
 const GROUPING_FILES = new Set(GROUPING ? GROUPING.groups.flatMap((g) => g.files) : []);
 // THE ORDER THE DOOR FILES THE BOOKS IN is a record, data/book-order-v1.json,
@@ -374,7 +391,7 @@ const GROUPING_FILES = new Set(GROUPING ? GROUPING.groups.flatMap((g) => g.files
 // nothing is dropped and no name is typed here.
 // book-order-rule-v1-the-door-files-the-books-in-the-order-the-record-names
 const ORDER_PATH = arg("book-order", "data/book-order-v1.json");
-const ORDER = existsSync(ORDER_PATH) ? JSON.parse(readFileSync(ORDER_PATH, "utf8")) : null;
+const ORDER = recordAt(ORDER_PATH, "the order the door files the books in");
 const ORDER_FILES = new Map(((ORDER && ORDER.files) || []).map((s, i) => [s, i]));
 const ORDER_24 = new Map(((ORDER && ORDER.books_24) || []).map((s, i) => [s, i]));
 const orderOf = (map, key, after) => (map.has(key) ? map.get(key) : map.size + after);
@@ -386,7 +403,7 @@ const orderOf = (map, key, after) => (map.has(key) ? map.get(key) : map.size + a
 // stops printing the filing rather than carrying an attestation of something
 // else forward.
 const GROUP_X_PATH = arg("grouping-attestation", "data/grouping-attestation-v1.json");
-const GROUP_X_RAW = existsSync(GROUP_X_PATH) ? JSON.parse(readFileSync(GROUP_X_PATH, "utf8")) : null;
+const GROUP_X_RAW = recordAt(GROUP_X_PATH, "the attestation the filing is printed on");
 const GROUP_X = (GROUP_X_RAW
   && GROUP_X_RAW.binds_to
   && GROUP_X_RAW.binds_to.grouping_ledger_sha256 === GROUPING_SHA
@@ -462,9 +479,7 @@ const doorRecordName = (door) => door.file || (door.sha256 ? `${door.sha256.slic
 // from its ledger and held to it by check-source-corpus-v1. Only the class
 // travels to the page — one word per source id.
 const CORPUS_CLASS = (() => {
-  const f = "data/source-corpus-v1.json";
-  if (!existsSync(f)) return {};
-  const rec = JSON.parse(readFileSync(f, "utf8"));
+  const rec = recordAt("data/source-corpus-v1.json", "the corpus lane's classification of each source");
   const out = {};
   for (const [m, v] of Object.entries(rec.witnesses || {})) if (v && v.corpus) out[m] = v.corpus;
   return out;
@@ -1310,7 +1325,7 @@ const familySection = (fam) => {
   // so (the owner, 2026-10-03)
   const filed24 = FILE_24_ON_THE_DOOR && !!(GROUPING && GROUPING_FILES.size && [...GROUPING_FILES].every((f) => shelfSlugs.has(f)));
   const rows24 = filed24
-    ? [...GROUPING.groups].sort((x, y) => orderOf(ORDER_24, x.book24, 0) - orderOf(ORDER_24, y.book24, 0) || x.book24.localeCompare(y.book24)).map((g) => (g.files.length > 1
+    ? [...GROUPING.groups].sort((x, y) => orderOf(ORDER_24, x.book24, 0) - orderOf(ORDER_24, y.book24, 0) || byCodePoint(x.book24, y.book24)).map((g) => (g.files.length > 1
         ? group24Row(g)
         : rowsHtml(shelfRows.filter((r) => addressOf(r.atlas.id) === g.files[0])).join("\n"))).join("\n")
     : "";
@@ -1483,7 +1498,7 @@ const countReceiptJson = JSON.stringify(countReceipt, null, 2) + "\n";
 // printed under every corpus, which is the collapse this line exists to
 // catch. The chip is built from each corpus's own served works.
 const N_STATEMENT = new Map();
-const POSTURE_NAME_OF = (() => { try { const p = JSON.parse(readFileSync(arg("postures", "data/license-postures-v1.json"), "utf8")).postures || {}; return (k) => (p[k] && p[k].name) || k; } catch { return (k) => k; } })();
+const POSTURE_NAME_OF = (() => { const p = recordAt(arg("postures", "data/license-postures-v1.json"), "the names of the license postures").postures || {}; return (k) => (p[k] && p[k].name) || k; })();
 const nStatementOf = (slug) => {
   if (N_STATEMENT.has(slug)) return N_STATEMENT.get(slug);
   let out = "no text named";
@@ -1571,7 +1586,7 @@ const RD_PATH = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "rul
 // stylesheet, never typed here: if the page and the record ever disagree, the
 // page is what a reader gets and the swatch says so.
 const CC_PATH = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "color-contract-v1.json");
-const CC = existsSync(CC_PATH) ? JSON.parse(readFileSync(CC_PATH, "utf8")) : null;
+const CC = recordAt(CC_PATH, "the color contract");
 // A channel's token and what actually carries it. v1 had three roles and this
 // map had three entries; v2 has five channels, and the two that were added are
 // the two a reader looks at most — the corpus's own letters and the reading
@@ -1604,7 +1619,7 @@ const CC_WEARS = {
 // hold the builder honest whether or not a page is served from them. Turning
 // the page back on is this one word.
 const RD_PUBLISH = true;
-const RD = RD_PUBLISH && existsSync(RD_PATH) ? JSON.parse(readFileSync(RD_PATH, "utf8")) : null;
+const RD = RD_PUBLISH ? recordAt(RD_PATH, "the rule demonstrations") : null;
 
 // The line that pointed at the demonstrations. The page is retired, so the
 // line is dead; it is kept as one string rather than deleted so that turning
@@ -2769,7 +2784,7 @@ const engineBlocks = (() => {
 // disk stay the source, and zone.html without the metas (the reader opened by
 // address) still fetches them whole.
 const PIN_RECORD = JSON.parse(readFileSync(arg("pins", "data/zone-store-v1.json"), "utf8"));
-const OVERLAY_COUNTS = (() => { try { return JSON.parse(readFileSync(arg("overlay-counts", "data/overlay-book-counts-v1.json"), "utf8")); } catch { return null; } })();
+const OVERLAY_COUNTS = recordAt(arg("overlay-counts", "data/overlay-book-counts-v1.json"), "each book's overlay counts");
 const pinsFor = (slug) => {
   const pins = {};
   for (const [name, pin] of Object.entries(PIN_RECORD.pins || {})) if (name === `${slug}.bin` || name.startsWith(`${slug}.`)) pins[name] = pin;
@@ -3282,8 +3297,8 @@ if (ORIGIN) {
 // record, not a text record); this page is derived from that record and
 // from the shelf's own state, and carries no words of any text.
 const REF_GROUPS_PATH = arg("reference-groups", "data/reference-groups-v1.json");
-if (existsSync(REF_GROUPS_PATH)) {
-  const RG = JSON.parse(readFileSync(REF_GROUPS_PATH, "utf8"));
+{
+  const RG = recordAt(REF_GROUPS_PATH, "the reference groups");
   for (const g of RG.groups || []) {
     // A gathering page presents several works at once, and works do not
     // share a license because a name gathers them. Each member carries its
@@ -3336,8 +3351,8 @@ ${rows}
 // data/address-history-v1.json, never by a list typed here.
 const HISTORY = arg("history", "data/address-history-v1.json");
 const SEALED_WORKS = new Set(zonesSealed(ZONES));
-if (existsSync(HISTORY)) {
-  const hist = JSON.parse(readFileSync(HISTORY, "utf8"));
+{
+  const hist = recordAt(HISTORY, "the recorded moves of an address");
   for (const row of hist.republished || []) {
     // the plan's tier can be empty now; a redirect's target is the work at
     // its derived address, wherever it stands: served from the shelf (a zone
