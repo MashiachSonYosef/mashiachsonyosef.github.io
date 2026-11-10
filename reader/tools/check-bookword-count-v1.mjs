@@ -46,6 +46,8 @@
 //   L3  every served book of the restore route carries a stamp (a counted
 //       work is served with its count on its page, never without)
 //   L4  the witness record names its sources and their hashes
+//   L5  the receipt on the shelf is what the stamps say today (held when the
+//       check is run without --write)
 //
 // What this does NOT prove: that the five rules which move no count are
 // right — the number is blind to italics, shirah layout, and the scribal
@@ -146,6 +148,27 @@ const receipt = {
   books: receiptBooks,
   totals: { exact: Object.values(receiptBooks).reduce((n, b) => n + b.exact, 0), differs: Object.values(receiptBooks).reduce((n, b) => n + b.differs, 0), no_witness: Object.values(receiptBooks).reduce((n, b) => n + b.no_witness, 0) },
 };
+// L5 (2026-11-10): THE RECEIPT ON THE SHELF IS WHAT THE STAMPS SAY. The receipt
+// is written here and only when asked (--write), and nothing read it back: a
+// work that joined the served set, or a witness record that was corrected,
+// left the committed receipt saying what the stamps used to say, and this
+// check passed beside it. The Tikkunei Zohar was served from 8 November and
+// was not in the receipt until the 10th. Without --write the receipt on disk
+// is now held to the recount, book by book.
+if (!WRITE) {
+  let onDisk = null;
+  try { onDisk = JSON.parse(readFileSync(RECEIPT, "utf8")); } catch { /* no receipt, or not one that reads */ }
+  const l5 = [];
+  if (!onDisk) l5.push("no receipt on the shelf");
+  else {
+    const was = onDisk.books || {};
+    for (const slug of Object.keys(receiptBooks)) { if (!was[slug]) l5.push(`${slug}: stamped and not in the receipt`); else if (JSON.stringify(was[slug]) !== JSON.stringify(receiptBooks[slug])) l5.push(`${slug}: the receipt says otherwise than the stamp`); }
+    for (const slug of Object.keys(was)) if (!receiptBooks[slug]) l5.push(`${slug}: in the receipt and not stamped`);
+    if (!l5.length && JSON.stringify(onDisk) !== JSON.stringify(receipt)) l5.push("the books agree and the receipt's own lines do not (its counts, its totals or its wording)");
+  }
+  check("L5  the receipt on the shelf is what the stamps say today", l5.length === 0,
+    l5.length ? `${l5.length} — ${few(l5)} · write it again with --write` : `${num(Object.keys(receiptBooks).length)} books, each as its stamp says`);
+}
 if (WRITE) { writeFileSync(RECEIPT, JSON.stringify(receipt, null, 2) + "\n"); console.log(`  receipt written · ${RECEIPT.replace(K3 + "/", "")}`); }
 console.log(`      stamps: ${num(receipt.totals.exact)} exact · ${num(receipt.totals.differs)} differ · ${num(receipt.totals.no_witness)} unwitnessed`);
 
