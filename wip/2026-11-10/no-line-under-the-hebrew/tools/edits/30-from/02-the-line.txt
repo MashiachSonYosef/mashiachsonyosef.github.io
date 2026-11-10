@@ -1,0 +1,47 @@
+  /* a named run: a license names these words as one thing. A thin blue rule
+     under each of its words, the reading's own color; open, the run's words
+     wear the selection together. */
+  /* A LINE ONLY UNDER WORDS ONE CARD JOINS (the owner, 2026-10-19: "lets
+     move to only underlining when it actually combines words / same as how
+     we do no blob if its a single 1:1, we do no underline if its a 1:1
+     (word:hud)"). A word that opens its own card alone draws no line under
+     it, at rest or under the hand: a ketiv-qere pair, which is one word in
+     two forms, and each word of a run that has no card of its own, alike. A
+     card that joins words (a maqaf compound, a named run, a span) keeps its
+     one line under the whole. The line keeps its room, unseen, so nothing
+     moves and a card's number sits where it sat. From 2026-10-03 every word
+     wore it ("i think underlining is nondistracting and can be added to
+     every word for now"). A word the page typed keeps its dashed mark,
+     which says that and is no card's line. */
+  .wb > .w { border-bottom: 1px solid var(--gold-dim); border-radius: 0; }
+  .he-text .wb:not(.wjoin .wb):not(.typed-here) > .w, .he-text .wb:not(.wjoin .wb):not(.typed-here):hover > .w,
+  .he-text .wjoin.apart .wb:not(.typed-here) > .w { border-bottom-color: transparent; }
+  .wjoin .wb > .w, .wb.mark > .w { border-bottom-color: transparent; }
+  /* a run with no card of its own (a pair inside it: each word its own card)
+     draws no line under the whole; each word keeps its own */
+  .wjoin.apart .wj-ink { border-bottom-color: transparent; }
+  .wjoin.apart .wb:not(.kq) > .w { border-bottom-color: var(--gold-dim); }
+  /* a named run reaching into a maqaf run (Judges 1:5, Adoni-bezek: its
+     first word is the second of et-Adoni) wears its own one-card line and
+     no second line under it; the word outside the name keeps its own (the
+     owner, 2026-10-08, read the two lines as a pair's mark) */
+  /* A RUN A LICENSE NAMES IS ONE CELL, AS A MAQAF RUN IS (the owner,
+     2026-10-09: "gold underline will indicate how many words are in a single
+     hud", and, of the strip of fused cells that stood here for a day, "id
+     really just make it the gold underline itself as a single unit across
+     the hebrew"). Its ink row wears the one-card line whole, in the run's
+     gold; a spacer stands where the text writes a space between its words.
+     A run too wide for the page wraps inside its cell rather than past it. */
+  .wjoin.lic .wj-ink { border-bottom: 1.5px solid var(--gold); }
+  /* OVER THE WORDS IN THE HEBREW READER (the owner, 2026-10-19, of a joined
+     card's line crossing its blob where the blob runs down from the letters
+     to the English: "put it as an overline, right"). The one-card line
+     stands on the letters' side away from the English: over them in the
+     Hebrew reader, where the English hangs below, and under them in the
+     English reader, where the letters are the card's foot and nothing runs
+     below them. Over, it is drawn as a shadow just outside the ink row's top
+     edge, in the card's own top padding, so it takes no room; the row's
+     bottom border keeps its room unseen. The card's numbers hang under it. */
+  body:not(.en) .he-text .wjoin > .wj-ink { border-bottom-color: transparent; box-shadow: 0 -1px 0 var(--gold-dim); }
+  body:not(.en) .he-text .wjoin.lic > .wj-ink { box-shadow: 0 -1.25px 0 var(--gold); }
+  body:not(.en) .he-text .wjoin.apart > .wj-ink { box-shadow: none; }

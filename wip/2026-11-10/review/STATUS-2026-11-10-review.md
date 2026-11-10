@@ -72,3 +72,11 @@ The review is `REVIEW-2026-11-10.md` beside this file; its section 9 lists what 
 - Attempt 5, at 20:30:03 UTC after 48 minutes with no attempt, succeeded in 28 seconds.
 - The live check: run 45, started by the first attempt's publish event at 18:45:55, waited its fifteen minutes for the new build and failed at 19:01:36, rightly, since the site still served the commit before. Run 46, started by hand at 20:31:52 (a re-run publishes without the event that starts the check), passed at 20:32:38: the public site is `main` 51a514d2.
 - The pattern across the last 18 ships is in the second round's notes (section 6, item 4), with what could be done about it.
+
+## After the review, the same evening: the underline is off
+
+The owner ruled the line under joined words off the page ("i think we can get rid of underlining because when things are underlined theyre already put into 1 card, 1 hud ..."). It shipped as `main` `6aae17d8` (`gh-pages` `3894522c`), live at 22:29 UTC on the first deployment attempt (run 1351; live check run 49). The whole account, with its proofs, pictures and what was left in place, is `../no-line-under-the-hebrew/NO-LINE-UNDER-THE-HEBREW-2026-11-10.md`. One check is new (`check-no-line-under-hebrew-v1`), one retired with its rule (`check-underline-joins-v1`).
+
+The corpus lane answered ask 5 the same hour: the space before a stop in Strong's and BDB texts was made by the lane's own flattening and will be closed as a print step, v168, which has not landed. Nothing is built for it. My letter back, with what I measured and where the page prints each text, is `../FOR-MOSES-2026-11-10-ask-5-received-what-the-page-prints.md`.
+
+Added to what is owed: **mine, when v168 lands**, wire its lists as the last print step (the line and pills print the route text; the card's record and the export print the definition text). **Stale words named and left** (none draws anything): the rule id that still says a run "wears one line", two checks that call a pair's bracket "the underline", and three comments; they are on the list of section 5.

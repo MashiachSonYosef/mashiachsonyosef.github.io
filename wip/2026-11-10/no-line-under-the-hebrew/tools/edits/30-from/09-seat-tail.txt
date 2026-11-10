@@ -1,0 +1,11 @@
+    // a run's one line, on the numbers' edge, gives way to them
+    const ruled = run && !cell.classList.contains("apart") ? cell.querySelector(":scope > .wj-ink") : null;
+    if (!ruled) return;
+    // (the line stands in the row's foot border, or as a shadow over its head: a number hung outside the card parts it only where it comes that near)
+    const R = ruled.getBoundingClientRect(), lineT = en ? R.bottom - (parseFloat(getComputedStyle(ruled).borderBottomWidth) || 1) : R.top - 1.25, lineB = en ? R.bottom : R.top;
+    const gaps = seats.filter((q) => q.y1 + NUM_RULE_GAP > lineT && q.y0 - NUM_RULE_GAP < lineB).map((q) => [Math.max(0, q.x0 - R.left - NUM_RULE_GAP), Math.min(R.width, q.x1 - R.left + NUM_RULE_GAP)]).filter(([a, b]) => b > a).sort((p, q) => p[0] - q[0]);
+    const stops = []; let from = 0;
+    for (const [a, b] of gaps) { if (a > from) stops.push(`var(--rule-ink) ${f(from)}px ${f(a)}px`); stops.push(`transparent ${f(Math.max(a, from))}px ${f(b)}px`); from = Math.max(from, b); }
+    stops.push(`var(--rule-ink) ${f(from)}px 100%`);
+    const img = gaps.length ? `linear-gradient(to right, ${stops.join(", ")})` : "";
+    if (ruled.style.getPropertyValue("--rule-img") !== img) { if (img) ruled.style.setProperty("--rule-img", img); else ruled.style.removeProperty("--rule-img"); }

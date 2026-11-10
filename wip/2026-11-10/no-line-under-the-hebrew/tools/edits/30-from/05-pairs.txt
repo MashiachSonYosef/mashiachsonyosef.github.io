@@ -1,0 +1,24 @@
+  /* the halves of a pair hover on their own, so the pair as a whole takes no
+     hover line; held, it keeps its ink like any word, and a ketiv-qere pair
+     keeps the one-card underline below */
+  .wb.multi:hover .w, .wb.multi.active .w { color: var(--shani-ink); }
+  .wb.multi:not(.kq):hover .w { border-bottom-color: transparent; }
+  .wb.multi.active:not(.kq) .w { border-bottom: 1px dashed transparent; }
+  .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
+  .wr:hover { border-bottom-color: var(--gold); }
+  /* AN UNDERLINE IS ONLY EVER ON THE HEBREW, AND MEANS ONE CARD HERE (the
+     owner, 2026-10-03): every word, thin and dim (above, with the runs); a
+     maqaf run or a span across words, one line under the whole; a ketiv-qere
+     pair, one line under both halves, its read half bracketed. All gold. Nothing else on the page is underlined: not a
+     reading, not a word with a commentary open, not a variant site, not a
+     word carrying a source's mark. */
+  /* The half of a source-marked pair that the shown English is reading from.
+     An underline in the selection role, not a new color: it marks provenance
+     of the gloss, never a choice about the text — both halves keep printing
+     exactly as the source wrote them, and text-decoration moves no glyph. */
+  /* KETIV AND QERE (the owner, 2026-10-03): both halves open one card, so the
+     pair wears the one-card underline under both; the half the English is
+     reading from wears a gold bracket above it. All gold, all on the Hebrew.
+     The bracket is drawn by ::after: a half's ::before carries its letters
+     when its marks are gold (EVERY MASORETIC MARK GOLD). */
+  .wb.kq > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }

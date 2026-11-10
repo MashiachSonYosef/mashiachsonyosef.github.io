@@ -1,0 +1,13 @@
+  /* A LINE GIVES WAY TO A NUMBER. The one line a run wears runs along the
+     edge the numbers stand on. With the numbers on it is drawn over the same
+     place by the row's own ::after, whole until seatNumbers writes the gaps
+     (--rule-img), and the border or shadow that drew it keeps its room,
+     unseen. A band of linen over the line would not do: the card's linen is
+     a veil over the woven ground. (A pair, written and read, wears no line.) */
+  body.nums .he-text .wjoin:not(.apart) > .wj-ink { border-bottom-color: transparent; box-shadow: none; --rule-ink: var(--gold-dim); }
+  body.nums .he-text .wjoin.lic:not(.apart) > .wj-ink { --rule-ink: var(--gold); }
+  body.nums .he-text .wjoin:not(.apart) > .wj-ink::after { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 1px;
+    background: var(--rule-img, var(--rule-ink)); pointer-events: none; }
+  body.nums .he-text .wjoin.lic:not(.apart) > .wj-ink::after { height: 1.25px; }
+  body.en.nums .he-text .wjoin:not(.apart) > .wj-ink::after { bottom: auto; top: 100%; }
+  body.en.nums .he-text .wjoin.lic:not(.apart) > .wj-ink::after { height: 1.5px; }
