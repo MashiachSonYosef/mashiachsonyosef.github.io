@@ -423,27 +423,27 @@
   "shards": 256,
   "shard_bytes_total": 2585225
  },
- "store_version": "c08bfd9ba3c8",
+ "store_version": "d5324f308ef9",
  "store_version_rule": "first 12 hex of sha256(the 256 overlay shard sha256 hex digests in 00..ff order + \"\\n\" + JSON.stringify(route_row) + \"\\n\" + the base store_version)",
  "ledgers": {
   "rule_id": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
-  "applied_on": "2026-11-07T21:19:21.384Z",
+  "applied_on": "2026-11-10T05:11:37.311Z",
   "applied_by": "tools/apply-ledger-divisions-v1.mjs",
   "what": "an overlay row of a source under a ledger carries the page's division slots beyond the lane's own: row[8] the marks it divides at, row[9] the texts it prints ([] for no pill), which the page reads into slots 7 and 8 of the row it serves; slot 7 stays the lane's (the Samaritan lane, null where the lane wrote none); a row of a source under no ledger carries none; the lane's slots are byte for byte",
   "counts": {
    "rows": 115918,
    "rows_of_ledgered_sources": 115918,
    "rows_dividing": 55814,
-   "rows_printing_a_part": 61,
+   "rows_printing_a_part": 149,
    "rows_no_pill": 0,
-   "rows_whose_slot_moved": 0,
+   "rows_whose_slot_moved": 88,
    "uncovered": 0
   },
   "by_source": {
    "sefaria_jastrow_1903": {
     "rows": 115918,
     "rows_dividing": 55814,
-    "rows_printing_a_part": 61,
+    "rows_printing_a_part": 149,
     "rows_no_pill": 0,
     "uncovered": 0
    }
@@ -456,6 +456,12 @@
    "now": "c08bfd9ba3c8",
    "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
    "on": "2026-11-07T18:52:09.833Z"
+  },
+  {
+   "was": "c08bfd9ba3c8",
+   "now": "d5324f308ef9",
+   "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
+   "on": "2026-11-10T05:11:37.311Z"
   }
  ]
 }

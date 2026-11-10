@@ -2,7 +2,7 @@
  "schema_version": 1,
  "rule_id": "ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for",
  "emitted_by": "tools/emit-ledger-index-v1.mjs",
- "emitted_on": "2026-11-08",
+ "emitted_on": "2026-11-10",
  "what_this_is": "which letter of the frame each of this lane's records is the ledger for, read from the '// LEDGER:' declaration in the header of the tool that writes it. Declared by the writer, never inferred here.",
  "letters_known_to_the_frame": [
   "A",
@@ -50,6 +50,7 @@
   "M": [
    "apply-ledger-divisions-v1.mjs",
    "apply-route-delta-v1.mjs",
+   "apply-source-years-v1.mjs",
    "check-restore-serve-v1.mjs",
    "check-source-corpus-v1.mjs",
    "emit-language-sweep-record-v1.mjs",
@@ -139,6 +140,16 @@
    "why": "",
    "writes": [
     "store-before-strike-witness-v1.json"
+   ]
+  },
+  "apply-source-years-v1.mjs": {
+   "letters": [
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "",
+   "writes": [
+    "source-years-receipt-v1.json"
    ]
   },
   "apply-span-ledger-v1.mjs": {
@@ -359,6 +370,14 @@
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
    "writes": []
   },
+  "check-hebrew-is-red-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the pages and judges them; it is not the ledger for one.",
+   "writes": [
+    "y-nav-labels-v1.json"
+   ]
+  },
   "check-hoh-sidecar-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -543,6 +562,14 @@
    "updates_no_letter": true,
    "why": "no frame letter. This writes nothing: it reads data/source-suggested/ (written by tools/project-source-suggested-v1.mjs) and the page.",
    "writes": []
+  },
+  "check-source-years-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
+   "writes": [
+    "source-years-receipt-v1.json"
+   ]
   },
   "check-span-receipt-carried-identical-v1.mjs": {
    "letters": [],
@@ -1065,8 +1092,10 @@
  "records_no_tool_in_this_tree_claims_to_write": [
   "corpus-defect-manifest-2026-08-22.json",
   "form-of-pills-v1.json",
+  "pins-not-kept-v1.json",
   "pointing-store-verify-v2.2-v1.json",
   "source-short-names-v1.json",
+  "store-path-map-v1.json",
   "v-volume-receipt-v1.json"
  ],
  "letters_declared_that_the_frame_does_not_name": [],

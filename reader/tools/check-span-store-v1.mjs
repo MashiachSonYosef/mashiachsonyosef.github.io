@@ -21,6 +21,15 @@
 //       and its inner place by the store's own keys: a rung piece written
 //       with a space is a key the store holds (the second review, 2026-10-17:
 //       the chain at Genesis 18:5 offered the place spaced)
+//   S6  a span card's pills stand in the store's own order (by_key: names
+//       first), each reading where its first row stands, wherever every pill
+//       is a span row's reading: a span row's year is said beside its credit
+//       and orders nothing (10 November 2026: the corpus lane's years list
+//       put years on 1,208 span rows, and the card's oldest-first sort led
+//       254 of the 1,047 book-and-key pairs with whichever source the list
+//       dates; a card where another store's row carries a reading too is
+//       not judged here, since that row keeps its own rank and year: the
+//       page says which readings stand on span rows alone, __poolOv)
 // The books are found in the data, never named here (check-scope-derived
 // S1): the first served book with places, and the first whose nested place
 // holds an inner key written with a maqaf inside an outer written with a
@@ -134,7 +143,7 @@ for (const book of BOOKS) {
   const drawnAlone = (x) => !r2.skippedAt.includes(`${x.ref}\u0001${x.key}`) && !r2.absorbed.includes(`${x.ref} ${x.key}`);
   const absorbedPick = file.placesList.find((x) => r2.absorbed.includes(`${x.ref} ${x.key}`) && !x.inside_of && !x.contains.length);
   const picks = [file.placesList.find((x) => drawnAlone(x) && x.key.includes(" ") && !x.inside_of && !x.contains.length), file.placesList.find((x) => drawnAlone(x) && x.key.includes("\u05be") && !x.inside_of && !x.contains.length), (file.placesList.find((x) => drawnAlone(x) && / /u.test(x.key) && (x.contains || []).some((k) => k.includes("\u05be"))) || file.placesList.find((x) => drawnAlone(x) && x.contains && x.contains.length)), absorbedPick ? { ...absorbedPick, absorbed: true } : null].filter(Boolean);
-  const r3 = [];
+  const r3 = [], r6 = [];
   for (const pl of picks) {
     const got = await p.evaluate(async (pl) => {
       const sec = [...document.querySelectorAll("section.seg")].find((s) => (s.querySelector(".vnum") || {}).textContent === pl.ref);
@@ -152,7 +161,7 @@ for (const book of BOOKS) {
       const d = (h.querySelector(".d-text") || {}).textContent || "";
       const lit = ([...h.querySelectorAll('.r-pills button[aria-pressed="true"]')][0] || {}).textContent || "";
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-      return { cuts, pills, d, lit: lit.trim(), off: [...(window.__sourcesOff || [])] };
+      return { cuts, pills, d, lit: lit.trim(), off: [...(window.__sourcesOff || [])], pool: [...(window.__pool || [])], ov: [...(window.__poolOv || [])] };
     }, pl);
     // the rows whose source the page has on; identical readings stand as one
     // pill with every record beneath (one-reading-one-pill), so the record
@@ -179,9 +188,20 @@ for (const book of BOOKS) {
     // ("outer + inner"), by its own key
     const rungsOk = pl.contains.every((k) => got.cuts.some((x) => x.t.split(" + ").includes(k)));
     const ok = !got.err && on && on.t === pl.key && rows.length > 0 && reads(rows[0], got.lit) && wantR.every(asPillsText) && dOk && rungsOk;
+    // S6: the store's readings in the store's order (a reading stands where its first row stands; one closing stop is not a
+    // different reading), against the pills that read them
+    const stopless = (t) => low(t).replace(/\.$/u, "");
+    const storeOrder = []; for (const r of rows) for (const x of readingsOfRow(r)) { const k = stopless(x); if (!storeOrder.includes(k)) storeOrder.push(k); }
+    // the pool as the page sorted it, and which of its readings stand on span rows alone (the page's own words: __pool,
+    // __poolOv); a reading another store's row also carries keeps that row's rank and year, and its card is not judged
+    const pillOrder = (got.pool || []).map(stopless);
+    const allSpan = pillOrder.length > 0 && (got.ov || []).length === pillOrder.length && got.ov.every((x) => x === "span-store") && pillOrder.length === storeOrder.length;
+    r6.push({ at: `${pl.ref} ${pl.key}`, judged: allSpan, ok: !allSpan || JSON.stringify(pillOrder) === JSON.stringify(storeOrder), pills: pillOrder, store: storeOrder });
     r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}${pl.absorbed ? " (inside a maqaf compound's cell)" : ""}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the store's first: "${rows.length ? spanJoin(rows[0].slots[1]) : "none on"}") · ${wantR.filter(asPillsText).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
   }
   check(`S3  ${book}: a cell's card opens on the span whole, its pills the rows' readings, the record the first row's D, an inner place a rung of the outer card`, r3.length > 0 && r3.every((x) => x.ok), r3.map((x) => x.say).join(" ‖ "));
+  check(`S6  ${book}: a span card's pills stand in the store's own order where every pill is a span row's reading (a span row's year is said and orders nothing)`, r6.every((x) => x.ok),
+    r6.map((x) => `${x.at}: ${!x.judged ? "another store's row carries a reading too, not judged" : x.ok ? `${x.pills.length} pills in the store's order` : `pills ${x.pills.join(" | ")} against the store's ${x.store.join(" | ")}`}`).join(" ‖ "));
   // S5: a nested place the ink writes as one maqaf chain, its first word's card
   const chainNest = file.placesList.find((x) => !/ /u.test(x.key) && (x.contains || []).length);
   if (chainNest) {

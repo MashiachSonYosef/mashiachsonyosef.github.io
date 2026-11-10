@@ -173,6 +173,19 @@ const unledgeredRows = {};
 // "no pill", a step that cannot combine with the row's cut, or a step whose
 // branch marks the row and that does not reach it (the review of 6 November:
 // such a row printed as if its branch were unanswered, uncounted).
+// rows_print lines on a row another branch cuts (8 November 2026): the line's
+// own texts for the cuts where it gives them, checked against the rule; else
+// the rule (ledger-print-from-declaration-v1.mjs, divideAtCuts). Every text
+// either way is named in the receipt, store, span store and overlays alike.
+const printCuts = new Map();   // "<source>:<branch>" -> { by_rule: Map(text -> rows), by_line: Map(text -> rows), line_parts_from_rule: Set(text) }
+const notePrintCuts = (ruleKey, text, r) => {
+  if (!r || !r.cuts_by) return;
+  const e = printCuts.get(ruleKey) || { by_rule: new Map(), by_line: new Map(), line_parts_from_rule: new Set() };
+  printCuts.set(ruleKey, e);
+  const m = r.cuts_by === "rule" ? e.by_rule : e.by_line;
+  m.set(text, (m.get(text) || 0) + 1);
+  if (r.cuts_by === "line" && !r.rule_agrees) e.line_parts_from_rule.add(text);
+};
 const slotsOf = (L, text) => {
   let marks;
   try { marks = L.classify(text); } catch (e) { return { uncovered: String(e.message || e).slice(0, 160) }; }
@@ -192,7 +205,7 @@ const slotsOf = (L, text) => {
     else {
       ruleKey = none || [...printRules][0];
       const branchMarks = marks.filter((g) => L.shapes.get(g.shape).prints === ruleKey);
-      try { const r = DATA_RULES.has(ruleKey) ? printUnder(DATA_RULES.get(ruleKey).option, text, branchMarks, cuts) : printOf(ruleKey, text, branchMarks, cuts); if (r) prints = r.texts; else conflict = `the print step ${ruleKey} does not reach a row its branch's shapes mark`; }
+      try { const r = DATA_RULES.has(ruleKey) ? printUnder(DATA_RULES.get(ruleKey).option, text, branchMarks, cuts) : printOf(ruleKey, text, branchMarks, cuts); if (r) { prints = r.texts; notePrintCuts(ruleKey, text, r); } else conflict = `the print step ${ruleKey} does not reach a row its branch's shapes mark`; }
       catch (e) { conflict = e.message; }
     }
   }
@@ -363,6 +376,11 @@ if (existsSync(OVERLAYS_DIR)) for (const d of readdirSync(OVERLAYS_DIR).sort()) 
 }
 for (const [k, c] of Object.entries(unledgeredRows)) if (!(manifest.excluded || {})[k]) refuse(`${k} serves ${c} rows, has no ledger, and the manifest does not say why`);
 if (conflicts.length) refuse(`${conflicts.length} rows where a print step cannot be applied: ${conflicts.slice(0, 4).join(" · ")}`);
+const printStepCuts = Object.fromEntries([...printCuts.keys()].sort().map((k) => { const e = printCuts.get(k); return [k, {
+  texts_divided_at_the_cuts_by_the_rule: [...e.by_rule.keys()].sort(), rows_divided_at_the_cuts_by_the_rule: [...e.by_rule.values()].reduce((a, b) => a + b, 0),
+  texts_by_the_lines_own_cuts_field: [...e.by_line.keys()].sort(), rows_by_the_lines_own_cuts_field: [...e.by_line.values()].reduce((a, b) => a + b, 0),
+  lines_whose_own_cuts_field_the_rule_does_not_give_back: [...e.line_parts_from_rule].sort() }]; }));
+const PRINT_STEP_CUTS_WHAT = "a rows_print line on a row another branch cuts prints the line's own prints_with_the_cuts_of_6_november where it carries one, and otherwise its parts divided at the cuts that fall inside them, the cut's mark dropped (the rule every kind combines with a cut by; 8 November 2026); each text either way, by branch, with its rows across the store, the span store and the overlays, and any line whose own field the rule does not give back";
 const sources = {};
 for (const [key, L] of ledgers) {
   const c = per[key] || { rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, marks: 0, marks_dividing: 0, by_shape: {}, by_print_rule: {}, uncovered: 0 };
@@ -376,6 +394,7 @@ for (const [d, c] of Object.entries(overlayCounts)) console.log(`  overlay ${d} 
 for (const u of overlayUncovered.slice(0, 8)) console.log(`  overlay uncovered: ${u.overlay} ${u.source} ${u.key} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
 for (const [key, s] of Object.entries(sources)) if (s.rows) console.log(`  ${key.padEnd(66)} rows ${String(s.rows).padStart(7)} · divide ${String(s.rows_dividing).padStart(6)} · print ${String(s.rows_printing_a_part).padStart(5)} · no pill ${String(s.rows_no_pill).padStart(4)} · uncovered ${s.uncovered}`);
 for (const u of uncovered.slice(0, 12)) console.log(`  uncovered: ${u.source} ${u.key}#${u.rank} ${u.m} «${u.route.slice(0, 70)}» — ${u.error}`);
+for (const [k, e] of Object.entries(printStepCuts)) console.log(`  rows_print on a cut row · ${k}: ${e.rows_divided_at_the_cuts_by_the_rule} rows (${e.texts_divided_at_the_cuts_by_the_rule.length} texts) divided at the cuts by the rule · ${e.rows_by_the_lines_own_cuts_field} rows (${e.texts_by_the_lines_own_cuts_field.length} texts) by the line's own field${e.lines_whose_own_cuts_field_the_rule_does_not_give_back.length ? ` · the rule parts from ${e.lines_whose_own_cuts_field_the_rule_does_not_give_back.length} of them` : ""}${e.texts_divided_at_the_cuts_by_the_rule.length ? `: ${e.texts_divided_at_the_cuts_by_the_rule.map((t) => `«${t.slice(0, 50)}»`).join(", ")}` : ""}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 
 // the sources with no ledger, printing whole until theirs land, named with their
@@ -415,6 +434,7 @@ index.ledgers = {
   unledgered: unledgered(),
   what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger is one reading as written, whole (7 November 2026: the comma rule the page had guessed retired), and those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
   print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"}; ${HAND_TABLE_WORDS}`,
+  print_step_cuts: { what: PRINT_STEP_CUTS_WHAT, branches: printStepCuts },
   span_store: { file: "reader/data/span-store/<book>.json", ...Object.fromEntries(Object.entries(spanCounts).filter(([k]) => k !== "by_source")) },
   sources: Object.fromEntries(Object.entries(sources).map(([k, s]) => [k, { relay: s.relay, declaration_sha256: s.declaration_sha256, classifier_sha256: s.classifier_sha256, m_ids: s.m_ids, shapes: s.shapes, shapes_dividing: s.shapes_dividing, branches: Object.fromEntries(Object.entries(s.branches).map(([id, b]) => [id, { option: b.option, resting: b.resting, by: b.by, on: b.on, ...(b.prints ? { prints: b.prints, print_step_from: b.print_step_from } : {}) }])), rows: s.rows, rows_dividing: s.rows_dividing, rows_printing_a_part: s.rows_printing_a_part, rows_no_pill: s.rows_no_pill, uncovered: s.uncovered }])),
   totals,
@@ -457,5 +477,5 @@ for (const [dir, ix, ixPath, bodies, moved, keyOfOvM, d] of overlayWrites) {
 }
 if (now !== was) { index.store_version = now; index.store_version_history = [...(index.store_version_history || []), { was, now, why: LEDGER_DIVISION_RULE_ID, on }]; }
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
-writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); ${HAND_TABLE_WORDS}`, ran_at: on, store_version: { was, now }, totals, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered }, overlays: { ...overlayCounts, uncovered_rows: overlayUncovered } }, null, 1));
+writeFileSync(RECEIPT, JSON.stringify({ schema_version: "LEDGER_DIVISIONS_RECEIPT_V3", rule_id: LEDGER_DIVISION_RULE_ID, print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"} (${[...DATA_RULES.keys()].join(", ")}); ${HAND_TABLE_WORDS}`, ran_at: on, store_version: { was, now }, totals, print_step_cuts: { what: PRINT_STEP_CUTS_WHAT, branches: printStepCuts }, sources, uncovered_rows: uncovered, span_store: { ...spanCounts, uncovered_rows: spanUncovered }, overlays: { ...overlayCounts, uncovered_rows: overlayUncovered } }, null, 1));
 console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · index.ledgers names ${ledgers.size} ledgers · receipt ${RECEIPT}`);
