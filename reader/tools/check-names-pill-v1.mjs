@@ -1,3 +1,4 @@
+// RUN: page
 // NO NAMES, PARKED (the owner, the evening of 2026-10-23: "id remove no names
 // toggle and just have it on /toggles/ for now"). The names-lead switch stood
 // in the row as a pill for a day (the owner, that morning: "no names and no

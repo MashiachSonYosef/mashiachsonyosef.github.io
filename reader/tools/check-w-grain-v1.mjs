@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: w-grain-rule-v1-a-component-system-is-drawn-on-a-W-and-a-W-is-recorded, w-list-rule-v1-the-record-says-which-entries-are-W
 //
 // The things a zone prints as words have to be the W the record holds.

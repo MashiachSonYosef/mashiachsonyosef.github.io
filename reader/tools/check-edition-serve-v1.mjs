@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: edition-serve-rule-v1-the-edition-is-the-text-the-door-is-the-rights
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

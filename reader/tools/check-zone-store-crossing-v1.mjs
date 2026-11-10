@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

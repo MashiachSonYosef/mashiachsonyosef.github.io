@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // What lands when the reader copies.
 //
 // There is no copy button on this page any more. A button writing to a

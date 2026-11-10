@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: source-switch-rule-v1-a-reading-remembers-who-carried-it
 //
 // THE LINE SAYS WHAT THE CARD SAYS, WHATEVER IS SWITCHED OFF.

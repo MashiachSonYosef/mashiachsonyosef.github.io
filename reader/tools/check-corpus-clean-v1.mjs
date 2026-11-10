@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: given
 // check-corpus-clean-v1 · does a served work carry only its own text?
 //
 // Written for the corpus lane, to be run there. The reader lane found that

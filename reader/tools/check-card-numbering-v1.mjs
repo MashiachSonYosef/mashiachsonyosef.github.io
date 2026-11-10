@@ -1,3 +1,4 @@
+// RUN: page
 // CARD NUMBERING (the owner, 2026-10-18: the numbers pill is "card
 // numbering" and the concordance pill "concordance hud"; "each card should
 // get its own number, no 3-4, and id not add extra space"; "for english

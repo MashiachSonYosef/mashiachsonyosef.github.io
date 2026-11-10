@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: source-switch-rule-v1-a-reading-remembers-who-carried-it
 //
 // A READING HAS TO REMEMBER WHO CARRIED IT.

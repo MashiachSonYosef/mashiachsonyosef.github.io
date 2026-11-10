@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // hand-typing-rule-v1-plain-english-descriptors-and-nothing-else
 //
 // What may be typed into these files by hand is plain English that names a
@@ -185,8 +186,8 @@ if (existsSync(zonesDir)) {
   // THE DEMO VERSE IS OWED ONLY WHERE THE DOOR PRINTS ONE. The door used to
   // carry a live sample — the opening words of whichever book sorts first,
   // each with its gloss — and those ten words are corpus text, so this file
-  // owed them. The owner had the panel switched off on 2026-09-06 (he could
-  // not tell what it was), and this clause went on owing words no page prints,
+  // owed them. The owner had the panel switched off on 2026-09-06 (it was not
+  // clear what it was), and this clause went on owing words no page prints,
   // which reads as ten words missing from a door that is correct. What is
   // owed is read from the door itself rather than assumed.
   const doorSrcPath = join(K3, "..", "index.html");

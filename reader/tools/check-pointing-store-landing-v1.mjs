@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land, pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said
 //
 // THE LANDING, RE-PROVED FROM THE CANDIDATE. The landing tool writes a

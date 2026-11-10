@@ -1,3 +1,4 @@
+// RUN: live
 // THE LIVE SITE IS THIS BUILD (the rebuild, 2026-10-23: nothing confirmed a
 // ship live; the build container cannot reach the public site). Run against
 // the public origin after a deploy, from anywhere that can reach it, with

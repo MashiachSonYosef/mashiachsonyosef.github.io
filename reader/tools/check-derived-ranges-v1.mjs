@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // The derived ranges record is exactly what the atlas derives, and every
 // range the build already trusts — typed or ledgered — agrees with it to
 // the row. Drift between the atlas and the records is an alarm, not a

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-workspace-staged-v1 · the first thing to run after a rollback
 //
 // Reads data/workspace-manifest-v1.json — written on the branch, which

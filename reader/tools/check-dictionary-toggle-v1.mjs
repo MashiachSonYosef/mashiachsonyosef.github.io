@@ -1,3 +1,4 @@
+// RUN: page
 // THE CONCORDANCE PILL AND ITS TABLE (the owner, 2026-10-17: "simple toggle,
 // cards unchanged, hud opens to a table hud"; "both should be openable";
 // "it would just be he created places, not close"; "agree keep it" of the

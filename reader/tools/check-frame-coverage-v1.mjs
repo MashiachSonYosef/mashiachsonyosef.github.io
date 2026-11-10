@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: frame-coverage-rule-v1-no-layer-is-on-one-work-and-off-another
 //
 // Which layers each published work carries — measured, per work, against the
@@ -34,7 +35,7 @@
 //
 // Run: node tools/check-frame-coverage-v1.mjs
 
-import { zonesServed, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { zonesServed, zonesSealed } from "./zones-on-disk-v1.mjs";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
@@ -276,7 +277,10 @@ const TARGET_OF = (z) => { const m = /^(.+?)-(?:on|to)-(.+)$/u.exec(z); return m
 const NAMED_BY = new Map();
 {
   const servedSet = new Set(servedNow);
-  for (const z of zonesOnDisk(ZONES)) {
+  // every work of the shelf, on this disk or held off the door under seal: a
+  // commentary work is seldom a served one, so a checkout does not hold its
+  // bin, and its name is what this reads
+  for (const z of zonesSealed(ZONES)) {
     const t = TARGET_OF(z);
     if (!t || z === t || !servedSet.has(t)) continue;
     if (!NAMED_BY.has(t)) NAMED_BY.set(t, []);

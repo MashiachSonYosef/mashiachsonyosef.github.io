@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // A page that gathers works under a traditional name owes each of them its
 // own license, and owes its own name the same honesty as every other name.
 //

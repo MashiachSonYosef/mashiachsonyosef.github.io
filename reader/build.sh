@@ -1,12 +1,29 @@
 #!/usr/bin/env bash
-# The Tabernacle · synthesis lane · one pass, sources to site
+# The Tabernacle · synthesis lane · the plan tier's build, sources to site
 #
-# Every published byte that has a generator comes out of this file, and the
-# ones that do not are named by tools/pipeline-manifest-v1.mjs at the end of
-# every run rather than left for somebody to discover. There is no step that
-# edits a zone after it is written, and no step that reaches for anything the
-# corpus lane has not sealed. Run it twice on the same inputs and the outputs
-# are byte-identical; that is the whole point of it existing.
+# WHAT THIS IS TODAY (10 November 2026). This file builds the works of the
+# plan's tier from the corpus lane's sealed workspace: serve, zone,
+# commentary, site. It needs that workspace (a mirror of the sealed corpus)
+# and so does not run on a checkout. It is not how the bytes the site
+# publishes today are made. The served shelf was built by the route builders
+# (tools/serve-from-restore-v5.mjs for the thirty-nine books, tools/serve-
+# edition-v1.mjs for an edition work), which need the corpus lane's files
+# too, and every served zone has since been written again, many times, by
+# the projections tools/round-v1.sh runs and by a few tools run by hand when
+# their input arrived. Each of those writes is typed on the zone it changed,
+# and tools/pipeline-manifest-v1.mjs reads them back off the bins: its last
+# table says which tool wrote which bins and whether a build file runs it.
+#
+# The paragraph that stood here until that day said every published byte
+# with a generator came out of this file and that no step edits a zone after
+# it is written. Both were true in August and neither is now, and the second
+# stage below had stood broken since a line was put inside its command: it
+# ran the store's manifest and then tried to run two unset names as a
+# program.
+#
+# Within its own tier the law is unchanged: no step here edits a zone after
+# it is written, and nothing reaches for what the corpus lane has not
+# sealed.
 #
 # This file names no work. It used to name three, thirty-two times — c0
 # ranges, work ids, titles, a deploy list — and every literal was a hand copy
@@ -112,10 +129,12 @@ for W in "${WORKS[@]}"; do
 done
 
 echo "── 2 · the route store, from the sealed definition packages ────────────"
+# (the two packages are named in the environment by whoever holds them; a
+# checkout that carries the store does not need them)
 [ -f data/route-store/index.json ] || node tools/build-route-store.mjs \
+  "${DEFPOC_RDM:?the sealed RDM definition package}" "${DEFPOC_BREADTH:?the sealed breadth package}" --out data/route-store
 # and the pin over what it built: every store file by exact bytes and sha256
 node tools/emit-store-manifest-v1.mjs
-  "$DEFPOC_RDM" "$DEFPOC_BREADTH" --out data/route-store
 
 echo "── 3 · titles, read out of the Y ledger where one is promoted ──────────"
 for W in "${WORKS[@]}"; do

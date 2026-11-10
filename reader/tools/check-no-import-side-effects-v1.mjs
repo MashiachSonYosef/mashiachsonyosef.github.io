@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail
 //
 // A tool that writes files at module scope writes them when it is IMPORTED,

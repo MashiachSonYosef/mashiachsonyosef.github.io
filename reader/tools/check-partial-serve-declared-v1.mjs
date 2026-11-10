@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

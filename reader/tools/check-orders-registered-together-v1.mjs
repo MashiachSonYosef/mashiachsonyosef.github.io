@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration
 //
 // AN ORDER'S READINGS AND THEIR CREDIT ARE REGISTERED TOGETHER. A zone's

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

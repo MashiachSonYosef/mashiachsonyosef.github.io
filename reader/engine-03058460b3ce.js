@@ -266,8 +266,8 @@
   // WHAT NEVER MOVES: the Hebrew on the page. Not a vowel, not a mark, not a
   // nun, not a ketiv or a qere. The Masoretic text is the licensed text and
   // the site changes nothing in it. This toggle reaches the card and the
-  // English line under the word, and nothing else — the owner's rule, in his
-  // words: "no masoretic markings can be removed from the book page".
+  // English line under the word, and nothing else — the owner's rule, in the
+  // owner's words: "no masoretic markings can be removed from the book page".
   //
   // THE DEFAULT IS "only" (the owner, 2026-11-06, asked whether "only this
   // pointing" becomes the default now that the pointing stands: "1 seems like
@@ -367,7 +367,7 @@
     const t = TOGGLES.find((x) => x.id === "masorah");
     const lab = t && (t.positions.find((q) => q.id === masorah) || {}).lab;
     for (const x of document.querySelectorAll('.rail .row[data-toggle="masorah"] .dfp')) { const on = x.textContent === lab; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); }
-    const reopen = () => { repaintGlossOrder(); if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } };
+    const reopen = () => { repaintGlossOrder(); reopenCard(); };
     if (masorah === "only" && !latticeStore) latticeReady().then(reopen); else reopen();
   };
   window.__masorah = masorah;
@@ -806,7 +806,7 @@
   // the piece store's book file, fetched once, the first time a cell can use
   // it, and only for a book the store's index lists. A fetch that did not
   // arrive is not kept as "no pieces": the next card asks again.
-  let PIECE_BOOK = null, pieceBookP = null;
+  let pieceBookP = null;
   const pieceBookListed = () => { const ix = OVERLAYS["piece-store"]; return !!(ix && Array.isArray(ix.books) && ix.books.includes(BOOK)); };
   // THE SPAN STORE IS ASKED FOR ONLY WHERE ITS INDEX LISTS THE BOOK, as the
   // piece store is: both are baked per book, and a work the lane has not
@@ -815,7 +815,6 @@
   const spanBookListed = () => { const ix = OVERLAYS["span-store"]; const b = ix && ix.books; return !!(b && (Array.isArray(b) ? b.includes(BOOK) : Object.prototype.hasOwnProperty.call(b, BOOK))); };
   const pieceBookReady = () => pieceBookP || (pieceBookP = fetch(`${ROOT}data/piece-store/${BOOK}.json`)
     .then((r) => { if (!r.ok) throw new Error(`piece store ${r.status}`); return r.json(); })
-    .then((j) => { PIECE_BOOK = j; return j; })
     .catch(() => { pieceBookP = null; return null; }));
   // THE READ FORM'S PIECES, PLACED (read-form-offsets-rule-v1; the corpus
   // lane's v108, 6 November 2026). At 475 of the 578 places where a read form
@@ -904,7 +903,7 @@
         if (id === "letters") { const pos = DEF_POS.find((p) => p.id === defOrder); if (pos && pos.needs === "lattice") { defOrder = "oldest"; try { localStorage.setItem(DEF_KEY, defOrder); } catch { /* same */ } } }
         // the card re-opens so its pool is rebuilt under the new position —
         // after the sidecar is here, never before, or it rebuilds unfiltered
-        const reopen = () => { repaintGlossOrder(); if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } };
+        const reopen = () => { repaintGlossOrder(); reopenCard(); };
         if (id === "only" && !latticeStore) latticeReady().then(reopen); else reopen();
       },
       now: () => ({ keep: "pointing kept", only: "only this pointing", letters: "the letters only" })[masorah] },
@@ -937,7 +936,7 @@
         window.__sourcesOff = [...sourcesOff];
         try { localStorage.setItem(SOURCES_KEY, JSON.stringify([...sourcesOff])); } catch { /* the choice still stands on this page */ }
         repaintGlossOrder();
-        if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+        reopenCard();
       },
       now: () => (sourcesOff.size ? `${sourcesOff.size} source id${sourcesOff.size === 1 ? "" : "s"} off` : "every source") },
     { id: "pairs", voice: "text", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
@@ -965,7 +964,7 @@
         suggested = id; window.__suggested = { on: id, laid: SUGGESTED ? SUGGESTED.counts.laid : 0 };
         try { localStorage.setItem(SUGGESTED_KEY, id); } catch { /* the choice still stands on this page */ }
         // the card re-opens with the row, after the book's file is here
-        const reopen = () => { if (activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } };
+        const reopen = () => reopenCard();
         if (id === "bsb" && !SUGGESTED) suggestedReady().then(reopen); else reopen();
       },
       now: () => (suggested === "bsb" ? "the BSB" : "off") },
@@ -1959,6 +1958,8 @@
     return data ? data[key] : null;
   };
   let activeEl = null;
+  // a half of a pair the reader moved the open card to (reopenCard, below)
+  let openNav = null;
   // EVERY OPEN OF THE CARD IS A GENERATION. The card's own closures — the
   // readings band, its retry a moment later, the fold discovery — await the
   // network, and a card the reader closed or replaced meanwhile is dead: a
@@ -1979,12 +1980,29 @@
     // a hidden card that keeps its pop replays it the moment it is shown
     // again, before anything has measured it; the tether starts the pop
     hud.classList.remove("pop");
-    activeEl = null; hudAnchor = null;
+    activeEl = null; hudAnchor = null; openNav = null;
     if (release) { hudMoved = false; hud.classList.remove("moved"); }
     // a card may have been opened from a whole block or from one W inside it,
     // so both marks are cleared rather than the one we happen to remember
     document.querySelectorAll(".wb.active, .wjoin.active").forEach((w) => w.classList.remove("active"));
     document.querySelectorAll(".wr.on").forEach((r) => r.classList.remove("on"));
+  };
+  // THE OPEN CARD, BUILT AGAIN UNDER A SWITCH THAT CHANGED WHAT IT HOLDS (the
+  // pointing, a source, the dictionary pill, the source-suggested row). The
+  // card is closed and the word pressed again, so every choice the press
+  // makes is made under the switches as they now stand. A press on a pair
+  // opens the half its line reads from (rule 1, kq-shapes), so where the
+  // reader had moved the card to the other half in its head, the rebuilt
+  // card came back on the half they had left: found by review, 10 November
+  // 2026, in five places that each pressed the word again in their own
+  // words. One function now, and a half the reader chose on the card is
+  // opened again as they chose it (openNav, set by openHud). The line is not
+  // touched: it reads from the half it read from.
+  const reopenCard = () => {
+    if (!activeEl) return;
+    const wb = activeEl, nav = openNav;
+    closeHud();
+    if (nav) nav(); else (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click();
   };
   // Anchor the HUD to whatever was tapped. Three surfaces open it now — a
   // word, a commentary word, and a section's commentary handle — and a
@@ -2205,7 +2223,6 @@
      corpus lane's word layer, and this switch is the frame they plug into. */
   const ORDER_KEY = "fh.order.kq";
   const KQ_ORDERS = ["KETIV", "QERE", "SOURCE"];
-  const KQ_SAYS = { KETIV: "ketiv first", QERE: "qere first", SOURCE: "as the source sets them" };
   let kqOrder = (() => { try { return KQ_ORDERS.includes(localStorage.getItem(ORDER_KEY)) ? localStorage.getItem(ORDER_KEY) : "KETIV"; } catch { return "KETIV"; } })();
   const KQ_STANDS = [];
   // AND THE SAME LEDGER FOR ORDINARY WORDS. The pairs ledger exists so the
@@ -2552,10 +2569,6 @@
     if (/(^|[^a-z])nd([^a-z]|$)/i.test(t) || /noderiv/i.test(t)) out.push(LICENCE_RULES.nd);
     return out;
   };
-  const postureOf = (mId) => {
-    const m = index.m_sources[mId];
-    return m ? String(m.licensePosture || "") : "";
-  };
   // Refusals are decided here and nowhere else, and they are read from the
   // declarations record rather than re-derived from the letters of the key.
   // A posture the record has not declared is not exported: no license is as
@@ -2676,7 +2689,12 @@
     const received = { mId, headwords: Array.isArray(lead[6]) ? lead[6].map(String) : [], route: String(lead[1] || ""), definition: String(lead[2] || "") };
     return post.ok
       ? { ok: true, text: ownText, piece, received, label: m.label, posture: m.licensePosture,
-          pointer: m.licensePointer, year: hasYear(m.sourceYear) ? m.sourceYear : "", obligations: post.obligations,
+          // two years, said apart (TWO YEARS, above): year is the edition's, for
+          // the Sources list; wy is this row's own, the year its wording was
+          // written, for the record. The file printed the edition's year under
+          // the word "wording", so a Strong's row of 1890 read "wording year
+          // not supplied" beside a chip on the page that said 1890.
+          pointer: m.licensePointer, year: hasYear(m.sourceYear) ? m.sourceYear : "", wy: hasYear(lead[4]) ? lead[4] : "", obligations: post.obligations,
           also: also.map((x) => `${x.label} · ${hasYear(x.sourceYear) ? `edition ${adYear(x.sourceYear)}` : "edition year not supplied"} · ${x.licensePosture}`) }
       : { ok: false, why: post.why, label: m.label };
   };
@@ -2743,7 +2761,17 @@
         a = a || missed;
         if (a.ok) { rec.en = a.text; rec.source = a; }
         else { rec.held = a.why; if (a.unreachable) rec.unreachable = true; }
-      } else if (!w.k) rec.held = "held by the ledger; no reading is offered";
+      }
+      // A SCRIBAL MARK IS TEXT, NOT A READING, AND A PAIR IS NOT A HOLD. Neither
+      // carries a key of its own, and both fell to the branch below: every
+      // exported verse counted its verse-end mark as a reading "not exported",
+      // and every word written one way and read another was listed as "held
+      // by the ledger" though the page reads it (found by review, 10 November
+      // 2026). A mark stands in the Hebrew and is counted nowhere; a pair
+      // says what is true of it, that this file does not carry its reading.
+      else if (w.mark) rec.mark = true;
+      else if (w.kq) rec.held = "written one way and read another: the page reads this word from one of its two forms, and this file does not carry that reading yet";
+      else if (!w.k) rec.held = "held by the ledger; no reading is offered";
       // A word that carries a key and shows no reading is the ordinary case —
       // 677 of Targum Ruth's 2,139 — and it had no branch here. It fell
       // through with held null and source null, and the tally below skips only
@@ -2758,6 +2786,7 @@
     const obligations = new Set();
     let held = 0, unreachable = 0;
     for (const w of words) {
+      if (w.mark) continue;
       if (w.unreachable) { unreachable += 1; continue; }
       if (w.held) { held += 1; continue; }
       const s = w.source;
@@ -2870,6 +2899,7 @@
         L.push("");
       }
       for (const w of b.words) {
+        if (w.mark) continue;
         if (w.unreachable) notReached += 1; else if (w.held) held += 1;
         else if (w.source && w.source.received) recs.push({ ...w.source, at: w.at || null });
       }
@@ -2900,8 +2930,10 @@
         head.slice(1).forEach((h) => L.push(`    ${h}`));
         // the word this record was cited for, in this site's own words (the
         // owner, 2026-10-17: "genesis 1:1:3"): book, chapter, verse and word
-        if (src.at) L.push(`    for: ${zone.work || ""} ${src.at}`.replace(/\s+/gu, " "));
-        L.push(`    source: [${cite(src)}] ${src.label}${src.year ? ` \u00b7 wording ${src.year}` : " \u00b7 wording year not supplied"}`);
+        // (the value's own spaces are settled, not the line's: settling the
+        // whole line took its indent with them and the line hung out of its record)
+        if (src.at) L.push(`    for: ${`${zone.work || ""} ${src.at}`.replace(/\s+/gu, " ").trim()}`);
+        L.push(`    source: [${cite(src)}] ${src.label}${hasYear(src.wy) ? ` \u00b7 wording ${adYear(src.wy)}${yearMarkOf(src.received.mId, src.wy) ? ` (${yearMarkOf(src.received.mId, src.wy)})` : ""}` : " \u00b7 wording year not supplied"}`);
         const deed = licenseDeed(src.posture);
         L.push(`    license: ${licenseName(src.posture)}${deed ? ` \u2014 ${deed}` : ""}`);
         if (/^https?:\/\//u.test(src.pointer || "")) L.push(`    from: ${src.pointer}`);
@@ -2973,7 +3005,7 @@
       L.push("");
       L.push("## Withheld");
       L.push("");
-      L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is marked [withheld] where it stood, carrying no citation number because there is no source to cite. A reading is withheld when its record carries a license that does not permit redistribution, when it carries no license at all, or when the reading on the page could not be matched to a record. The Hebrew is never withheld: it rides on the work's own license, not on any reading's.`);
+      L.push(`${held} reading${held === 1 ? " was" : "s were"} not exported. Each is named below with its reason and carries no citation number, because there is no source to cite. A reading is withheld when its record carries a license that does not permit redistribution, when it carries no license at all, when the reading on the page could not be matched to a record, or when the word is written one way and read another. The Hebrew is never withheld: it rides on the work's own license, not on any reading's.`);
       // each one by name, with its own reason (declarations-v1.json withholding.rule)
       L.push("");
       for (const b of bundles) for (const w of b.words) if (w.held && !w.unreachable) L.push(`- ${b.sec.label || ""} ${w.he}: ${w.held}`);
@@ -2982,7 +3014,7 @@
       L.push("");
       L.push("## Not reached");
       L.push("");
-      L.push(`${notReached} reading${notReached === 1 ? " was" : "s were"} not checked against the catalog: it could not be reached when this file was made. Each is marked [not reached] where it stood and carries no citation number. That is the network, not a license — nothing here says the reading lacks a record. Export again when the catalog answers.`);
+      L.push(`${notReached} reading${notReached === 1 ? " was" : "s were"} not checked against the catalog: it could not be reached when this file was made. None of them carries a citation number. That is the network, not a license — nothing here says the reading lacks a record. Export again when the catalog answers.`);
     }
     // ---- custody: the way back -------------------------------------------
     // Last, the way the colophon is last: everything above it is the text,
@@ -3065,7 +3097,8 @@
       try { g = await gather(); }
       catch (err) { b.classList.remove("busy"); note.textContent = `Could not read the records: ${err.message}`; return; }
       b.classList.remove("busy");
-      const words = g.bundles.reduce((a, x) => a + x.words.length, 0);
+      // the words, the scribal marks among them not counted (the address's own count)
+      const words = g.bundles.reduce((a, x) => a + x.words.filter((w) => !w.mark).length, 0);
       const srcs = new Set(); const obl = new Set(); let held = 0, notReached = 0;
       g.bundles.forEach((x) => { x.sources.forEach((s) => srcs.add(s.label)); x.obligations.forEach((o) => obl.add(o)); held += x.held; notReached += x.unreachable || 0; });
       note.replaceChildren();
@@ -3456,6 +3489,31 @@
     // first row ended under the record, present and dead (2026-10-23)
     if (overrun() > 1 && oneRow && oneRow.style.display !== "none") {
       oneRow.style.display = "none";   // the band's own display rule outranks the hidden attribute
+      bands = bands.filter((x) => x.el !== oneRow);
+      lastResort = true; handOut();
+    }
+    // AND IT YIELDS TO THE READINGS' THREE ROWS AS IT YIELDS TO AN OVERRUN
+    // (10 November 2026). The bands take whole rows, so a card one pixel
+    // short of the readings' third row stood at two, a whole row down, with
+    // the row of one block standing over them. Measured on a short phone
+    // (390x664), a chain's card, its word brought up as far as the page
+    // goes: the room beneath the word was 548.17px and the card held three
+    // rows; with the text above the word shifted by a third of a pixel the
+    // room was 547.86, the card was capped at 547, and the readings fell to
+    // two rows of fifty-four. Three clear rows are what the readings are
+    // owed (the owner, 2026-10-03 and 2026-10-22), and the row of one block
+    // repeats the pressed division: it gives way before they lose a row.
+    // Like every yield here it still answers "did not fit". Only where three
+    // rows are owed: on a window squashed flat (under 480px, where the bands
+    // are capped at one row and the readings are owed their floor) the row
+    // stands as it did.
+    const readingsShort = () => {
+      if (!read || !read.children.length) return false;
+      const rs = rowsOf(read);
+      return rs.filter((r) => r.bottom <= read.clientHeight + 1).length < Math.min(READ_MIN, rs.length);
+    };
+    if (window.innerHeight >= 480 && oneRow && oneRow.style.display !== "none" && readingsShort()) {
+      oneRow.style.display = "none";
       bands = bands.filter((x) => x.el !== oneRow);
       lastResort = true; handOut();
     }
@@ -4558,7 +4616,7 @@
   // changes what the card is about and does not move one character of the C0.
   const pickedQForm = new Map();
   // THE PAIR OPENS ON THE HALF THE SWITCH NAMES. The owner's rule, 2026-09-23,
-  // in his words: "both would always open together in 1 hud ... the toggle is
+  // in the owner's words: "both would always open together in 1 hud ... the toggle is
   // much smaller conceptually, it's just ... what english leads, so if you
   // clicked qere, when you meet a qere word, the qere megacompspan would
   // already be selected for you." Both halves print, both halves stand in the
@@ -5216,6 +5274,9 @@
     const bin = opts.bin || zone;
     const word = opts.word || region;
     const regionIndex = opts.regionIndex || 0;
+    // a half of a pair the reader moved the card to, in the card's own head
+    // or form row: what a rebuild of this card opens again (reopenCard)
+    { const at = opts.headIndex != null ? opts.headIndex : regionIndex; openNav = opts.kqNav && typeof opts.kqOpenAt === "function" && at >= 0 ? () => opts.kqOpenAt(at) : null; }
     // the lattice's grades are keyed by the pointed surface of the form that
     // stands open, and apply to its whole form only (bin === zone: a
     // commentary's or a dictionary's words are not positions of this book)
@@ -5407,7 +5468,7 @@
     // the roles lived only in hover titles, and a phone has no hover. The
     // ketiv/qere words are the tradition's own names for the halves, not
     // this file's coinage; what follows the dash is the plain English pair.
-    // The owner's ruling, 2026-08-31, in his words: "written read is good
+    // The owner's ruling, 2026-08-31, in the owner's words: "written read is good
     // plain english with the slash seperator" — the meaning IS the
     // opposition, so the two labels are one juxtaposition and not two
     // sentences. They read nearly identically before, and the qere's said
@@ -5710,6 +5771,9 @@
     const routeKey = (r) => spanJoin(r.text) + " | " +
       (r.records && r.records[0] ? r.records[0][3] : "no m");
     const cache = new Map();           // cell surface -> pool (or null)
+    // a block's place in the division open: the place the caller names where
+    // those letters do stand there, else the first block spelled so
+    const cellAt = (surface, at) => (at !== null && at >= 0 && cover[at] && cover[at].surface === surface ? at : cover.findIndex((c) => c.surface === surface));
     // AT THIS PLACE, the place a cell stands for: the word standing open, as
     // a whole form, or in a run the run's own word at that cell
     const placeOfCell = (surface) => {
@@ -5783,7 +5847,7 @@
     // where a source declares the equivalence and wrong where the page infers
     // it from the ink; of the card at Exodus 4:2:4 listing Mizzah, "exhausted"
     // and "one who sprinkles" under the letters of "what is this": "i see this
-    // is not right"; the rule he asked for: "the card specifically saying
+    // is not right"; the rule the owner asked for: "the card specifically saying
     // 'this exact spelling actually means what this exact spelling means'").
     // A ketiv is a spelling, not a key. The Masorah's note, carried verbatim
     // by the licensed source, says these written letters are read as the
@@ -5836,7 +5900,13 @@
       out.kqWritten = word.kq && word.kq.k ? kqBare(word.kq.k) : kqBare(region.s || region.k);
       return out;
     };
-    const textOfCell = (surface) => {
+    // at: the block's place in the division open, where the caller knows it. A
+    // division can hold the same letters twice (the conjunction and the
+    // suffix of one word, both a vav), and asked by its letters alone the
+    // second read the first's piece: "and + father + and" for "and + father
+    // + his", on the line itself, at one press on any block (found by
+    // review, 10 November 2026; 1,334 places stand on such a division)
+    const textOfCell = (surface, at = null) => {
       const p = picked.get(surface);
       if (p) return p.read ? `${spanJoin(p.text)} (read ${p.read})` : spanJoin(p.text);
       // a span the store names: its first row's reading, as the line reads it
@@ -5844,7 +5914,7 @@
       // on the source's own division, a block the reader left alone reads
       // the source's piece at its position (piecesAt), never the letters'
       // own first word
-      if (setCut && cover === setCut) { const i = cover.findIndex((c) => c.surface === surface); const pc = i >= 0 ? word.pg[i] : null; if (pc && pc.g) return spanJoin(String(pc.g).trim()); }
+      if (setCut && cover === setCut) { const i = cellAt(surface, at); const pc = i >= 0 ? word.pg[i] : null; if (pc && pc.g) return spanJoin(String(pc.g).trim()); }
       // the whole form, where the set stands on its division: what the form
       // as one word reads, never the set
       if (setCut && surface === region.k) {
@@ -5892,11 +5962,11 @@
     // one. [] where the cell reads a dash; null where the page cannot name
     // the reading, and then no new chip is given (a line whose words did not
     // change keeps its own).
-    const readingsOfCell = (surface) => {
+    const readingsOfCell = (surface, at = null) => {
       const p = picked.get(surface);
       if (p) { const r = mOfPick(p); return r ? [r] : null; }
       { const rows = spanRowsOn(surface); if (rows.length) return [readingOfRow(rows[0].slots)]; }
-      if (setCut && cover === setCut) { const i = cover.findIndex((c) => c.surface === surface); const pc = i >= 0 ? word.pg[i] : null; if (pc && pc.g) { const r = readingOfPiece(pc.s); return r ? [r] : null; } }
+      if (setCut && cover === setCut) { const i = cellAt(surface, at); const pc = i >= 0 ? word.pg[i] : null; if (pc && pc.g) { const r = readingOfPiece(pc.s); return r ? [r] : null; } }
       const lead = (pl) => (pl && pl.length && pl[0].records && pl[0].records[0] ? [readingOfRow(pl[0].records[0])] : []);
       if (setCut && surface === region.k) return lead(cache.get(poolKey(surface)));
       { const at = placeOfCell(surface); if (at) return at.rs.length ? at.rs : null; }
@@ -5956,11 +6026,11 @@
     // lacks: the row says it is asking, and says absence only once it knows
     const pendingNow = () => !setWhole && cover.some((c) => !picked.get(c.surface) && !cache.has(poolKey(c.surface)) && !(bin.gloss && bin.gloss[c.surface]));
     // what the open cover reads: the set whole, or its blocks joined
-    const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c) => formOfText(c.surface, textOfCell(c.surface))).join(" + "));
+    const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c, i) => formOfText(c.surface, textOfCell(c.surface, i))).join(" + "));
     // and the chip of what it reads: the set's own source, or each block's
     const coverChip = () => {
       let rs = setWhole ? (placeSet.rs.length ? placeSet.rs : null) : [];
-      if (!setWhole) for (const c of cover) { const r = readingsOfCell(c.surface); if (r === null) { rs = null; break; } rs.push(...r); }
+      if (!setWhole) for (const [i, c] of cover.entries()) { const r = readingsOfCell(c.surface, i); if (r === null) { rs = null; break; } rs.push(...r); }
       return rs && rs.length ? licenseChipFor(rs) : null;
     };
     const ASKING = "asking the catalog for this block\u2026";
@@ -6041,7 +6111,7 @@
       if (wordsOwn) {
         cover.forEach((c, j) => {
           if (c.from !== c.to || !memoryOf(kqCellKey(c.surface)).cells.get(c.surface)) return;
-          const t = textOfCell(c.surface);
+          const t = textOfCell(c.surface, j);
           const own = mOfPick(memoryOf(kqCellKey(c.surface)).cells.get(c.surface));
           for (const st of standsOf.get(kqCellKey(c.surface)) || []) {
             paintRuling(st.glossEl, st.glossParts ? (st.glossParts[st.partIndex] = t, st.glossParts.join(" + ")) : t, st.glossParts || !own ? null : licenseChipFor([own]));
@@ -6560,7 +6630,7 @@
         p.append(" ", again);
         readRow.append(p);
         dSlot.replaceChildren(); selectedRecordRef.m = null;
-        paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "), "the catalog could not be reached for this block");
+        paintNow(cover.map((c, i) => textOfCell(c.surface, i)).join(" + "), "the catalog could not be reached for this block");
         clampHud(); return;
       }
       if (!pool || !pool.length) {
@@ -6579,7 +6649,7 @@
           p.textContent = `${bits.join("; ")}. No record is left to read here. Nothing here says the shelf lacks it.`;
           readRow.append(p);
           dSlot.replaceChildren(); selectedRecordRef.m = null;
-          paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "), "every record for this block is withheld by your switches");
+          paintNow(cover.map((c, i) => textOfCell(c.surface, i)).join(" + "), "every record for this block is withheld by your switches");
           clampHud(); return;
         }
         // a rung of a run's lattice nothing on the shelf answers says so in
@@ -6604,7 +6674,7 @@
           mem.cut = null;
           for (const r of document.querySelectorAll(".wjoin")) if (r.__key === region.k) { if (!mem.cells.size) r.classList.remove("chosen"); refreshJoinGloss(r); }
         }
-        paintNow(cover.map((c) => textOfCell(c.surface)).join(" + "));
+        paintNow(cover.map((c, i) => textOfCell(c.surface, i)).join(" + "));
         clampHud(); return;
       }
       // How many readings there are, on the label, because the row shows about
@@ -6669,7 +6739,7 @@
           const pcs = wbx && wbx.querySelector(":scope > .g > .g-pcs");
           const parts = pcs ? [...pcs.querySelectorAll(":scope > .g-pc")] : [];
           const counts = pcs ? String(pcs.dataset.counts || "").split(",").map(Number) : [];
-          const i = cover.findIndex((c) => c.surface === surface);
+          const i = cellAt(surface, cellIdx);
           if (i >= 0 && parts.length === cover.length && counts.length === cover.length
             && cover.every((c, j) => [...String(c.surface)].length === counts[j])) {
             const t = parts[i].textContent.trim();
@@ -9599,12 +9669,11 @@
     const regions = (word.w ? word.w.filter((r) => !String((r.s || r.k) || "").includes("\u05be"))
                             : null) || [{ s: word.s, k: word.k }];
     const targets = built.regionEls.length ? built.regionEls : [built.wb];
-    // A PAIR OPENS ON THE HALF THE SWITCH NAMES. Whichever half is pressed,
-    // the card opens on the half the pairs switch names, or the half the
-    // reader pressed in the head at this place, or a ruled half, or the half
-    // the line fell back to when the switch's half has no reading. The other
-    // half stands in the head as it always did, one press away.
-    const site = `${unitId}:${wordPos}`;
+    // A PAIR OPENS ON THE HALF ITS LINE READS FROM (kqLead, below). Whichever
+    // half is pressed, the card opens on a ruled half, or the half the pairs
+    // switch names, or the half the line fell back to when the switch's half
+    // has no reading. The other half stands in the head as it always did, one
+    // press away, and a half pressed there is not remembered.
     const openRun = (runEl, clicked, on = null) => {
       const words = runEl.__words;
       const s = words.map((w) => w.s).join("");
@@ -10315,7 +10384,12 @@
       if (!alive) { btn.disabled = true; btn.setAttribute("aria-disabled", "true"); btn.title = t.waits || ""; }
       else btn.addEventListener("click", () => {
         onPick(pos.id);
-        for (const x of seg.children) { const on = x.textContent === pos.lab; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); }
+        // the position in force is the toggle's to say, not the press's: a
+        // press the toggle refused ("only this pointing" on a work with no
+        // lattice) lit its button while the page stayed where it was
+        const inForce = t.get ? t.get() : pos.id;
+        const lit = positions.find((q) => q.id === inForce) || pos;
+        for (const x of seg.children) { const on = x.textContent === lit.lab; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); }
         railSay();
       });
       seg.append(btn);
@@ -10540,7 +10614,6 @@
     // and on whose word the licence rests — and where only this project's own
     // manifest states the licence, the sentence says so rather than letting
     // the reader assume the source did.
-    const ourLicence = stem.silent.some((x) => x.aspect === "licence_material" && (x.why === "ONLY_OUR_MANIFEST_SAYS_IT" || x.why === "ONLY_OUR_DERIVED_FILE_SAYS_IT"));
     const theirLicence = [...stem.branches, ...stem.channels].some((b) => b.aspect === "licence_material");
     const lead = document.createElement("p"); lead.className = "decl-lead";
     lead.append(`${g.leads.toLocaleString()} line${g.leads === 1 ? "" : "s"} lead · reading at ${g.carries.toLocaleString()} word${g.carries === 1 ? "" : "s"}`);
@@ -11004,7 +11077,7 @@
     try { localStorage.setItem("fh.dict", DICT.pref); } catch { /* the choice still stands on this page */ }
     paintDict();
     // an open card is the other kind of card now: it is opened again
-    if (!hud.hidden && activeEl) { const wb = activeEl; closeHud(); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }
+    if (!hud.hidden) reopenCard();
   });
   paintDict();
   // NO BLANKS: no pill in the row (the owner, 2026-10-24: "dont overworry about
@@ -11607,7 +11680,7 @@
       // an unsourced English string, which nothing here may print.
       //
       // And the surface belongs to the witness — the owner's ruling,
-      // 2026-08-28, in his words: "either keep them in the drawer or a level
+      // 2026-08-28, in the owner's words: "either keep them in the drawer or a level
       // hidden." Where the masthead shows a witnessed title, a coexisting
       // guess never stands beside it: it folds one level down, reachable by
       // a press that says what it is before it opens, the same way the
@@ -11796,7 +11869,12 @@
   // labels the book actually carries, never unfolded by guesswork. And the
   // door's own meta names the chapter this address is: a chapter, not a
   // verse, so the page lands on the chapter head and marks nothing.
-  const hashAt = decodeURIComponent(location.hash || "").replace(/^#/, "");
+  // A HASH CUT IN THE MIDDLE OF AN ESCAPE (a link clipped by whatever carried
+  // it: "#%", half a letter) is read as it stands. Decoded bare, it threw
+  // here, before a single section was built, and the page stood empty (found
+  // by review, 10 November 2026; the two reads further down were the same).
+  const unescaped = (t) => { try { return decodeURIComponent(t); } catch { return t; } };
+  const hashAt = unescaped(location.hash || "").replace(/^#/, "");
   // A WORD'S ADDRESS (the owner, 2026-10-17: "genesis 1:1:3"): chapter, verse
   // and the word's number in the verse as written, the marks not counted; a
   // span's as 35:19:7-8. The page lands on the verse and opens the card on
@@ -12099,7 +12177,6 @@
       tally[sc.shape] += 1; tally.total += 1;
       if (sc.shape === 2 && sc.quoted > 0 && sc.quoted !== sc.run) tally.quoted_differs += 1;
     };
-    let lastServedC0 = -Infinity;
     for (const sec of zone.sections || []) {
       const u = units[sec.unit];
       if (!u) continue;
@@ -12114,6 +12191,11 @@
   const sectionOpeners = [];
   const nodeSections = {};
   const nodeHeads = [];
+  // where the section before this one ended, for an omission's place (the
+  // name stood declared inside the commentary tally above, where nothing
+  // read it, and was used here undeclared: a zone with an omission before
+  // its first section would have stopped the page at that section)
+  let lastServedC0 = -Infinity;
   zone.sections.forEach((sec) => {
     const n = nodes[sec.node] || {};
     if (sec.node !== curNode) {
@@ -12981,6 +13063,13 @@
   // the verse and opens that commentary where it lives, which is the same
   // place the handle would have opened it.
   const buildCommentaryIndex = () => {
+    // THE INDEX WAITS WITH THE COMMENTARY IT OPENS (COMMENTARY_ON). It was left
+    // standing on every plain page of a book with a sidecar after 16 October,
+    // a handle over buttons that scrolled to a verse and opened nothing there,
+    // since nothing under it is built without the flag (found by review, 10
+    // November 2026: "A book page draws no commentary bar, handle or switch
+    // unless the address asks")
+    if (!COMMENTARY_ON) return null;
     const units = (commentaryStore && commentaryStore.units) || null;
     if (!units) return null;
     const rows = [];
@@ -13240,11 +13329,11 @@
   document.addEventListener("click", (e) => {
     const a = e.target.closest && e.target.closest('a[href^="#"]');
     if (!a) return;
-    const id = decodeURIComponent(a.getAttribute("href").slice(1));
+    const id = unescaped(a.getAttribute("href").slice(1));
     if (id) materialise(document.getElementById(id));
   }, true);
   window.addEventListener("hashchange", () => {
-    const id = decodeURIComponent(location.hash.slice(1));
+    const id = unescaped(location.hash.slice(1));
     const w = WORD_AT.exec(id);
     if (w && byLabel.has(w[1])) {
       const target = document.getElementById(byLabel.get(w[1]));

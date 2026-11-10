@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // A card that opens with nothing on it to press is a card that does nothing.
 //
 // The reader's law, stated plainly: whatever the shape of the form — eight

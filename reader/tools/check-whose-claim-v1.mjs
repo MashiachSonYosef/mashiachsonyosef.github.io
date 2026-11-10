@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: attachment-authorship-rule-v1-the-placement-is-ours-and-says-so
 //
 // A placement this project made says so.
@@ -21,7 +22,7 @@
 
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk, zonesServedWithCommentary } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk, zonesServedWithCommentary } from "./zones-on-disk-v1.mjs";
 const SKIP_LABEL = "check-whose-claim-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so

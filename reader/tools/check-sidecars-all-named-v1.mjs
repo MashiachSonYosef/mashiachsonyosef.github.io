@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: front-door-rule-v1-the-door-lists-what-the-zones-carry
 //
 // NOBODY WRITES THE SUFFIX LIST TWICE.
@@ -37,7 +38,7 @@
 // Run: node tools/check-sidecars-all-named-v1.mjs
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { SIDECAR_SUFFIXES, zonesOnDisk, baseOfSidecar } from "./zones-on-disk-v1.mjs";
+import { SIDECAR_SUFFIXES, zonesOnDisk, zonesSealed, baseOfSidecar } from "./zones-on-disk-v1.mjs";
 
 const ZONES = process.env.ZONES_DIR || "data/zones";
 const REGISTRY = "zones-on-disk-v1.mjs";
@@ -109,11 +110,13 @@ if (!existsSync(RECEIPT)) {
   const r = JSON.parse(readFileSync(RECEIPT, "utf8"));
   const judged = [...(r.passed || []), ...(r.served || [])];
   const sidecars = judged.filter((s) => SIDECAR_SUFFIXES.some((x) => String(s).endsWith(x.replace(/\.bin$/u, ""))));
-  const shelf = zonesOnDisk(ZONES).length;
+  // the shelf as sealed: the works on this disk and the works held off the
+  // door, whose verdicts stand in the receipt unread
+  const shelf = zonesSealed(ZONES).length;
   check("S4  the gate judges books, not sidecars",
     sidecars.length === 0 && r.zones_on_the_shelf === shelf,
     sidecars.length ? `${sidecars.length} sidecar(s) judged — ${few(sidecars)}`
-      : `the receipt counts ${r.zones_on_the_shelf} on the shelf and the shelf holds ${shelf}`);
+      : `the receipt counts ${r.zones_on_the_shelf} on the shelf and the shelf, here and held, is ${shelf}`);
 }
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

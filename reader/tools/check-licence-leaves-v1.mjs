@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // Nothing licensed leaves this page without its licence.
 //
 // The Hebrew of 1 Kings is CC-BY-NC, ALLOW_WITH_OBLIGATIONS. It is the largest
@@ -26,7 +27,7 @@
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import fs from "node:fs";
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: hoh-sidecar-rule-v1-a-hebrew-definition-is-served-by-volume-and-quotes-only-from-the-floor
 //
 // The Hebrew-on-Hebrew panel draws on the card, and says the right thing in

@@ -1,3 +1,4 @@
+// RUN: site
 // THE DOOR'S LICENSES RIDE IN THE CARDS (the owner, 2026-10-19: "on the
 // splash page we still serve the CC BY 4.0 which could go into the huds").
 //   L1  no row of the door (a shelf's head, a book, a group of the

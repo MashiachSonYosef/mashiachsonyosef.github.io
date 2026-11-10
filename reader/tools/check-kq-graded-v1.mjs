@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only
 //
 // THE READ HALF IS GRADED; THE WRITTEN HALF IS MATCHED BY ITS LETTERS (the

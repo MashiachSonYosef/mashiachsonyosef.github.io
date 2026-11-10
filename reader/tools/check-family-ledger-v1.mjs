@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // Synthesis lane · family-ledger-rule-v1-values-are-ruled-works-are-not
 // GUARDS: the family ledger against the atlas and the store.
 //
@@ -9,7 +10,7 @@
 // lose it. Every Hebrew token that carries a key must carry the exact-K of
 // its own surface, and the store must answer for it — a key nobody can open
 // is a claim nobody can check.
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";

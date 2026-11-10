@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // A word the reader has ruled on says so after the card is closed.
 //
 // Closing the card used to leave the page exactly as it found it, so the only
@@ -7,7 +8,7 @@
 // nothing and leaves nothing behind.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk, zoneIdOf } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl, zoneIdOf } from "./zones-on-disk-v1.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 const SKIP_LABEL = "check-ruled-mark-v1";

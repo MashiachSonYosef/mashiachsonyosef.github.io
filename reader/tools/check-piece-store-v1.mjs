@@ -1,3 +1,4 @@
+// RUN: page
 // THE PIECE STORE SERVED (Moses, FOR-ELIJAH-v77, 2026-10-17; the owner,
 // 2026-10-16: "each piece in the + sign is RMD (r pill, M license, D
 // definition)"; "share the record, never share the claim"; "no default
@@ -48,7 +49,7 @@
 // store row prints, every such row undated or dated after MACULA's 2022, the
 // place the old record order let MACULA lead.
 // Usage: node tools/check-piece-store-v1.mjs [url]
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { gunzipSync } from "node:zlib";
@@ -113,6 +114,25 @@ check("P2 letters a <= b; a claim is ten short slots", badLetters === 0 && long 
     for (const m of Object.keys(M)) { const have = ((rec.books || {})[bk] || {})[m] || { carries: 0, rows: 0 }; const w = want[m] || { carries: 0, rows: 0 }; if (have.carries !== w.carries || have.rows !== w.rows) { off += 1; if (eg.length < 3) eg.push(`${bk} ${m} ${have.carries}/${have.rows} vs ${w.carries}/${w.rows}`); } }
   }
   check("P2 the sources row's counts record pins this piece index and counts what its files serve", pinned === sha && off === 0, `${pinned === sha ? "pinned" : `pins ${String(pinned).slice(0, 12)}, served ${sha.slice(0, 12)}`} · ${off} book-source counts off${eg.length ? ": " + eg.join(" | ") : ""}`); }
+
+// P2b THE COUNTS RECORD IS TODAY'S (10 November 2026). The record the sources
+// row is drawn from is baked from the served zones and from the dictionaries
+// beside the store. A work went up on 8 November and the record was not
+// baked again: that work's page drew no chip for any of those dictionaries,
+// the record's pins were a week old, and nothing said so. The bake is a step
+// of the round now, and this holds its outcome: the record lists every work
+// the door serves and no other, and pins each index as it stands.
+{ const rec = JSON.parse(readFileSync("data/overlay-book-counts-v1.json", "utf8"));
+  const served = zonesServed();
+  const counted = Object.keys(rec.books || {});
+  const missing = served.filter((z) => !(rec.books || {})[z]), extra = counted.filter((z) => !served.includes(z));
+  const stale = Object.entries(rec.overlays || {}).filter(([name, o]) => {
+    const at = [`data/overlays/${name}/index.json`, `data/${name}/index.json`].find((x) => existsSync(x));
+    return !at || createHash("sha256").update(readFileSync(at)).digest("hex") !== o.index_sha256;
+  }).map(([name]) => name);
+  check("P2b the counts record lists every served work and pins each dictionary beside the store as it stands",
+    missing.length === 0 && extra.length === 0 && stale.length === 0,
+    `${served.length} served, ${counted.length} counted${missing.length ? ` · served and not counted: ${missing.join(", ")}` : ""}${extra.length ? ` · counted and not served: ${extra.join(", ")}` : ""}${stale.length ? ` · pinned as it no longer stands: ${stale.join(", ")}` : ` · ${Object.keys(rec.overlays || {}).length} indexes pinned as they stand`}`); }
 
 // P10 THE BLANK LEDGER BESIDE THE INDEX (piece store v2.1, FOR-ELIJAH-v86):
 // every served row with no English is listed with one of the lane's classes,

@@ -1,8 +1,21 @@
 # The Tabernacle · synthesis lane · the pipeline
 
-Run `./build.sh` and every published byte is rebuilt from sealed inputs. Run it
-twice and the outputs are byte-identical. Nothing here edits a zone after it is
-written, and nothing reaches for text the corpus lane has not sealed.
+> **Read this first (10 November 2026).** This document records the pipeline
+> as it stood in August 2026, and its opening claim is no longer true of the
+> site. `build.sh` builds the plan tier's works from the corpus lane's
+> workspace and does not run on a checkout. What the site publishes today is
+> made in two steps: a route builder writes a work's zone once, from the
+> corpus lane's text; and `tools/round-v1.sh` projects every served zone
+> again over the records this repository holds, each write typed on the zone
+> it changes. `PIPELINE-MANIFEST.md` is generated from the code and the
+> published bins on every round and says what is declared, what is guarded,
+> and which tool wrote which bins. The sections below are kept as the record
+> of why the rules are what they are.
+
+As recorded on 2026-08-15: run `./build.sh` and every published byte is
+rebuilt from sealed inputs. Run it twice and the outputs are byte-identical.
+Nothing here edits a zone after it is written, and nothing reaches for text
+the corpus lane has not sealed.
 
 Recorded 2026-08-15. Component layer and the deep catalog added 2026-08-16.
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: declarations-branch-rule-v1-a-branch-is-what-the-source-says-about-itself-and-a-reserved-token-is-never-a-branch
 //
 // THE SOURCE BRANCH, HELD TO THE ONE RULE THAT DECIDES IT.

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // check-line-reads-the-place-v1 · under "at this place", the line is TAHOT's reading here
 //
 // GUARDS: place-order-rule-v1-the-line-reads-what-the-source-gives-at-this-place

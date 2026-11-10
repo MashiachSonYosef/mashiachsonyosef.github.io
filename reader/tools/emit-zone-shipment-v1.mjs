@@ -49,8 +49,8 @@ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 
 const PREFIX = arg("prefix", "site/zones").replace(/^\/+|\/+$/g, "");
 const OUT = arg("out", join(K3, "build", "zone-shipment-v1"));
 const ORIGINS = [arg("origin", null), ...(() => {
-  // the site's own names, read from the CNAME beside the door and the
-  // repository the store record derives, never typed
+  // the site's own names, read from the CNAME beside the door, never typed
+  // (the store record names no repository since 31 October 2026)
   const names = [];
   const cname = join(K3, "..", "CNAME");
   if (existsSync(cname)) { const h = readFileSync(cname, "utf8").trim(); if (h) { names.push(`https://${h}`); if (!h.startsWith("www.")) names.push(`https://www.${h}`); } }
@@ -60,8 +60,6 @@ const ORIGINS = [arg("origin", null), ...(() => {
 const RECORD = join(K3, "data", "zone-store-v1.json");
 if (!existsSync(RECORD)) { console.error("NO_STORE_RECORD: run tools/emit-zone-store-v1.mjs first"); process.exit(1); }
 const store = JSON.parse(readFileSync(RECORD, "utf8"));
-const repo = String(store.repository || "").replace(/^https:\/\/github\.com\//, "");
-if (repo) { const [owner, name] = repo.split("/"); if (owner && name && name.toLowerCase() === `${owner.toLowerCase()}.github.io`) ORIGINS.push(`https://${name.toLowerCase()}`); }
 
 const rows = Object.entries(store.pins || {}).sort(([a], [b]) => a.localeCompare(b)).map(([file, pin]) => {
   const name = file.replace(/\.bin$/, "");

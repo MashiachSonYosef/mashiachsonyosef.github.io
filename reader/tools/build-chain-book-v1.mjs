@@ -38,7 +38,7 @@
 //
 // Run: node tools/build-chain-book-v1.mjs --zone data/zones/amos.bin --out ../chain/amos
 //      node tools/build-chain-book-v1.mjs --index --dir ../chain
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { join, dirname } from "node:path";

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say
 // GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
 //

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words
 //
 // THE POINTING GATE ASKS WHAT THE SOURCES SAY, AND NOTHING MORE (2026-11-06).

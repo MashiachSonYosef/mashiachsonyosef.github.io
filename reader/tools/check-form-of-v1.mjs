@@ -1,3 +1,4 @@
+// RUN: page
 // A READING THAT POINTS AT ANOTHER WORD'S READING (the corpus lane's relay
 // v85, form-of/zone-pills-v1.jsonl: a source's reading written as "singular
 // construct state form of <Hebrew>" or "passive of <Hebrew>" points at a

@@ -31,7 +31,7 @@
 //
 // Run: node tools/build-demonstrations-v1.mjs [--record data/rule-demonstrations-v1.json]
 //        [--zones data/zones] [--work build/rule-demonstrations] [--only <rule id>]
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";

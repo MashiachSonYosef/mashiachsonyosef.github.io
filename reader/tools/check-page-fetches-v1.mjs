@@ -1,3 +1,4 @@
+// RUN: site
 // A BUILT PAGE FETCHES WHAT IT SHOWS (the rebuild, 2026-10-23: "same product,
 // lighter weight"). A chapter page fetched the whole shelf's pin record to
 // seal one book's bins, every book's overlay counts to draw one book's chips,

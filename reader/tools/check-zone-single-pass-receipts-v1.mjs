@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: zone-emit-rule-v8-single-pass-from-sealed-serve
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

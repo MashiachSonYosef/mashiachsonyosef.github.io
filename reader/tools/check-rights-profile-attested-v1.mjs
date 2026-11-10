@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: serving-rulings-record-v1-a-ruling-the-site-acts-on-is-written-where-the-site-can-read-it
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

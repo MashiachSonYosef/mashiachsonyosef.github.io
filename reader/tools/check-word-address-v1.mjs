@@ -1,3 +1,4 @@
+// RUN: page
 // A WORD'S ADDRESS (the owner, 2026-10-17: a book's name, then "1:1:3"):
 // book, chapter, verse and the word's number in the verse as written, the
 // marks not counted.

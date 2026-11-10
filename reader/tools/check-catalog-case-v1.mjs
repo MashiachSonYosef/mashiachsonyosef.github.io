@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: site
 // check-catalog-case-v1 · catalog-case-rule-v1-the-record-that-lists-the-work-spells-its-name
 //
 // The owner's ruling of 31 October 2026, on Tikkunei Zohar: the corpus lane's

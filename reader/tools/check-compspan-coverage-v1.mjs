@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // check-compspan-coverage-v1 · every word its source divides opens a card that offers the division
 //
 // GUARDS: compspan-coverage-rule-v1-a-word-its-source-divides-opens-with-its-divisions

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: chapter-page-rule-v2-the-chapters-address-is-the-reader-opened-at-the-chapter-and-its-readings-stand-in-plain-text-credited-and-no-ink
 // LEDGER: -
 // no frame letter. A check reads the pages and judges them; it is not the

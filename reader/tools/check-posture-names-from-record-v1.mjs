@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: licence-posture-name-rule-v1-the-record-names-the-licence
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

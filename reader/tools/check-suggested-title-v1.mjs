@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // A machine's title suggestion is a pointer at the work's own words, or it
 // is nothing at all.
 // GUARDS: suggested-title-rule-v1-a-guess-is-authored-by-name-and-witnessed-by-nothing
@@ -60,6 +61,15 @@ mkdirSync(FIXDIR, { recursive: true });
 const TYPES = { ".html": "text/html; charset=utf-8", ".json": "application/json", ".bin": "application/octet-stream" };
 const serveFixture = (slug, mutate) => {
   const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${served}.bin`))).toString("utf8"));
+  // THE FIXTURE STANDS IN THE REGISTER UNDER TEST: A WORK WITH NO WITNESSED
+  // TITLE. A pointer prints in the open only where the masthead has no
+  // witnessed title to show (the page's own branch). When this check was
+  // written the first zone on the shelf had none; every served zone carries
+  // one now, so the pointer never printed and four clauses were red, outside
+  // the round's chains, until the whole suite was run on 10 November 2026.
+  // The fixture's title tokens are taken off before each case lays its own
+  // (case 3 lays a witnessed title back to test the fold beside one).
+  delete z.work_he_tokens; delete z.work_he;
   mutate(z);
   const file = join(FIXDIR, `${slug}.bin`);
   writeFileSync(file, gzipSync(Buffer.from(JSON.stringify(z), "utf8")));
@@ -116,10 +126,10 @@ check("its subject is the named model, never an anonymous category",
 check("the dashed chip marks the selection — run and date ride on it",
   got.found && got.chipTitle.includes(SUG.run) && got.chipTitle.includes(SUG.date)
     && /selected the interval/.test(got.chipTitle),
-  got.chipTitle.slice(0, 80));
+  String(got.chipTitle || "").slice(0, 80));
 check("the interval is the work's own words, rendered as words",
-  got.words === SUG.tokens.length && got.heWords.join(" ") === SUG.tokens.map((t) => t.s).join(" "),
-  got.heWords.join(" "));
+  got.found && got.words === SUG.tokens.length && got.heWords.join(" ") === SUG.tokens.map((t) => t.s).join(" "),
+  (got.heWords || []).join(" "));
 check("its English arrives by route, on the words themselves — no free text, no inline license",
   got.glossed > 0 && got.pressable > 0 && got.licenseChipsInLine === 0,
   `${got.glossed} of ${got.words} glossed · ${got.pressable} pressable`);

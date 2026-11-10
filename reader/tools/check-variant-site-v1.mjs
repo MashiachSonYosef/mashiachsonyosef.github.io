@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the ledger for one. The file it writes is a run artifact, not a claim about a work.
 //

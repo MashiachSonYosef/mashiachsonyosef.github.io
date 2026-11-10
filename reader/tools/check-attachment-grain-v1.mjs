@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-attachment-grain-v1
 //
 // V's attachment grain policy, made enforceable:

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: front-door-rule-v2
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

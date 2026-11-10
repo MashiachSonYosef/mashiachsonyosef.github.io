@@ -25,7 +25,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `catalog-case-rule-v1-the-record-that-lists-the-work-spells-its-name` | tools/check-catalog-case-v1.mjs | check-catalog-case-v1 |
 | `chain-book-rule-v1-the-same-book-with-the-meaning-taken-out-so-only-the-joins-are-left` | tools/build-chain-book-v1.mjs | check-chain-book-v1 |
 | `chapter-page-rule-v2-the-chapters-address-is-the-reader-opened-at-the-chapter-and-its-readings-stand-in-plain-text-credited-and-no-ink` | tools/build-front-door-v1.mjs, zone.html | check-chapter-pages-v2 |
-| `check-variant-class-one-rule-v1` | tools/run-all-checks.sh | check-variant-class-one-rule-v1 |
+| `check-variant-class-one-rule-v1` | tools/check-variant-class-one-rule-v1.mjs | check-variant-class-one-rule-v1 |
 | `color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours` | tools/build-front-door-v1.mjs, zone.html | check-color-channels-v1, check-page-agrees-with-its-record-v1 |
 | `colour-role-rule-v1` | zone.html | check-color-channels-v1 |
 | `commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press` | zone.html | check-commentary-in-line-v1 |
@@ -108,7 +108,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-licence-leaves-v1, check-provider-characters-v1 |
 | `read-form-offsets-rule-v1-a-read-forms-piece-without-letters-takes-the-lanes-alignment-or-none` | tools/bake-read-form-offsets-v1.mjs, zone.html | check-read-form-offsets-v1 |
 | `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-card-opens-on-the-line-v1.mjs | check-card-opens-on-the-line-v1, check-first-reading-is-sorted-v1 |
-| `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
+| `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/emit-zone-store-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
 | `respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys` | tools/respan-zone-v1.mjs | check-respan-projection-v1 |
 | `route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now` | tools/apply-route-delta-v1.mjs | **UNGUARDED** |
@@ -177,7 +177,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 120 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 34 of the 120 tools that are not checks.
 
 Not called by any build stage:
 
@@ -190,15 +190,11 @@ Not called by any build stage:
 - `tools/bake-blank-ledger-v1.mjs`
 - `tools/bake-dictionary-store-v1.mjs`
 - `tools/bake-form-of-pills-v1.mjs`
-- `tools/bake-overlay-book-counts-v1.mjs`
 - `tools/bake-piece-store-v1.mjs`
 - `tools/bake-read-form-offsets-v1.mjs`
-- `tools/bake-search-index-v1.mjs`
 - `tools/bake-span-store-v1.mjs`
 - `tools/bake-span-store-v2.mjs`
-- `tools/bake-witnessed-order-v1.mjs`
 - `tools/bookword-measure-v1.mjs`
-- `tools/build-chain-book-v1.mjs`
 - `tools/build-commentary-sidecar-v2.mjs`
 - `tools/build-demonstrations-v1.mjs`
 - `tools/build-gloss-table.mjs`
@@ -212,16 +208,13 @@ Not called by any build stage:
 - `tools/emit-apparatus-baseline-v1.mjs`
 - `tools/emit-corpus-atlas-v1.mjs`
 - `tools/emit-language-sweep-record-v1.mjs`
-- `tools/emit-ledger-index-v1.mjs`
 - `tools/emit-mam-restore-v5-rights-v1.mjs`
 - `tools/emit-masorah-witnesses-v1.mjs`
-- `tools/emit-pointing-grade-recount-v1.mjs`
 - `tools/emit-source-corpus-v1.mjs`
 - `tools/emit-struck-ranks-v1.mjs`
 - `tools/emit-work-attachment-v1.mjs`
 - `tools/emit-workspace-manifest-v1.mjs`
 - `tools/emit-zone-shipment-v1.mjs`
-- `tools/emit-zone-store-v1.mjs`
 - `tools/enrich-gloss-m-v1.mjs`
 - `tools/gloss-m-v1.mjs`
 - `tools/gloss-store-v1.mjs`
@@ -246,7 +239,6 @@ Not called by any build stage:
 - `tools/project-declarations-v1.mjs`
 - `tools/project-hud-runs-v1.mjs`
 - `tools/project-hud-toggles-v1.mjs`
-- `tools/project-lattice-v12-v1.mjs`
 - `tools/project-masoretic-marks-v1.mjs`
 - `tools/project-piece-gloss-v1.mjs`
 - `tools/project-run-cards-v1.mjs`
@@ -257,17 +249,14 @@ Not called by any build stage:
 - `tools/pull-zones-from-store-v1.mjs`
 - `tools/push-toggles-v1.mjs`
 - `tools/redrive-zone-gloss-v1.mjs`
-- `tools/regloss-zone.mjs`
-- `tools/repin-zone-store-v1.mjs`
 - `tools/respan-zone-v1.mjs`
-- `tools/restamp-zone-v1.mjs`
 - `tools/restore-shelf-from-history-v1.mjs`
 - `tools/rights-join-v1.mjs`
+- `tools/run-checks-v1.mjs`
 - `tools/run-fleet-v2.mjs`
 - `tools/run-restore-v5-fleet-v1.mjs`
 - `tools/serve-edition-v1.mjs`
 - `tools/serve-from-body-v1.mjs`
-- `tools/serve-from-restore-v5.mjs`
 - `tools/serve-from-stream-v2.mjs`
 - `tools/span-slice-v1.mjs`
 - `tools/stem-family-v1.mjs`
@@ -281,5 +270,18 @@ Not called by any build stage:
 - `tools/weld-forms-v1.mjs`
 - `tools/work-holds-v1.mjs`
 - `tools/zone-lib-v1.mjs`
-- `tools/zones-on-disk-v1.mjs`
+
+## The served shelf
+
+Read off the bins in `data/zones`: who each kind says built it, and every tool
+typed on it as having written it after its build. A tool no build file runs
+is run by hand when its own input arrives; the bins it wrote cannot be made
+again from a checkout by a build file alone.
+
+| kind | bins | route or schema | built by | written after its build by |
+|---|---|---|---|---|
+| zone | 40 | MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, EDITION_DOOR_SERVE__BUILT_STREAM | tools/build-zone.mjs (run by build.sh) | tools/apply-span-ledger-v1.mjs (39; **no build file runs it**); tools/bake-witnessed-order-v1.mjs (39; run by tools/round-v1.sh); tools/project-lattice-v12-v1.mjs (39; run by tools/round-v1.sh); tools/project-piece-gloss-v1.mjs (39; **no build file runs it**); tools/project-toggle-headword-v1.mjs (39; **no build file runs it**); tools/regloss-zone.mjs (40; run by tools/round-v1.sh); tools/respan-zone-v1.mjs (39; **no build file runs it**); tools/restamp-zone-v1.mjs (39; run by tools/round-v1.sh); tools/strike-source-v1.mjs (23; **no build file runs it**); tools/type-witnessed-drops-v1.mjs (3; **no build file runs it**) |
+| commentary | 21 | ZONE_COMMENTARY_V2 | tools/build-commentary-sidecar-v2.mjs (no build file runs it) | tools/regloss-zone.mjs (21; run by tools/round-v1.sh); tools/strike-source-v1.mjs (20; **no build file runs it**) |
+| lattice | 39 | ZONE_LATTICE_V1 | tools/project-lattice-v12-v1.mjs (run by tools/round-v1.sh) | — |
+| volume | 39 | V_VOLUME_V1 | tools/project-v-volume-v1.mjs (no build file runs it) | — |
 

@@ -1,3 +1,4 @@
+// RUN: page
 // A RULED CELL IS THE CELL THE PAGE DRAWS FOR THAT READING (the owner,
 // 2026-10-17: "the default serve is specialized or hand selected and in the
 // systems after you dive in such as selected gloss it immediately relies on

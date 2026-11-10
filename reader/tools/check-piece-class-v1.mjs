@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: piece-class-rule-v1-a-one-letter-piece-is-asked-as-a-prefix-or-a-suffix-under-the-pointing
 //
 // THE POINTING STANDS FOR A PIECE TOO (the owner, 2026-11-06: the pointing

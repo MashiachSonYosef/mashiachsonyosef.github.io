@@ -1,3 +1,4 @@
+// RUN: page
 // THE CARD SPEAKS IN THE CHANNELS (the owner, 2026-10-18, on a card whose
 // head, divisions and record had all gone purple: "we seem to have lost our
 // color scheme inside the hud, the hebrew should still be red even the

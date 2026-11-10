@@ -1,3 +1,4 @@
+// RUN: given
 // SAME PRODUCT (the rebuild, 2026-10-23: "a full rebuild, same product,
 // lighter weight"). Two builds of the site, the one shipped and the one
 // proposed, served at two origins, print the same thing to a reader:

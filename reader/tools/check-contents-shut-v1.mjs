@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // The top of a book is the book, not its index.
 //
 // Fifty chapter cells and five dozen commentator names stood between a reader
@@ -56,10 +57,23 @@ const b = await chromium.launch(launchOptions());
 for (const book of BOOKS) {
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-  await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });
+  // THE COMMENTARY WAITS BEHIND THE ADDRESS (the owner, 2026-10-16), and its
+  // index waits with it: a plain page of a book that carries one draws no
+  // index (until 10 November 2026 it drew one whose hits opened nothing),
+  // and the page that asks for commentary draws it, shut, as a handle.
+  const asksCommentary = WITH_COMMENTARY.includes(book);
+  if (asksCommentary) {
+    await p.goto(`${BASE}?b=${book}`, { waitUntil: "networkidle" });
+    await p.waitForSelector("section.seg .he-text .wb");
+    await p.waitForTimeout(400);
+    const plain = await p.evaluate(() => ({ index: !!document.getElementById("cIndex"), bars: document.querySelectorAll(".c-bar, .c-mark").length }));
+    console.log(`— ${book}, as a reader opens it —`);
+    check("  a plain page draws no commentary index, bar or mark", !plain.index && plain.bars === 0, `index ${plain.index ? "drawn" : "not drawn"} · ${plain.bars} bars and marks`);
+  }
+  await p.goto(`${BASE}?b=${book}${asksCommentary ? "&commentary=on" : ""}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   await p.waitForTimeout(400);
-  console.log(`— ${book} —`);
+  console.log(`— ${book}${asksCommentary ? ", commentary asked for" : ""} —`);
 
   const shut = await p.evaluate(() => {
     const head = document.getElementById("tocHead"), body = document.getElementById("tocBody");
@@ -91,9 +105,9 @@ for (const book of BOOKS) {
   check("  it costs a line, not a screen", shut.tocH < 90, `${shut.tocH}px tall`);
   check("  the first word of the book is on screen without scrolling",
     shut.firstWordTop > 0 && shut.firstWordTop < 915, `${shut.firstWordTop}px down`);
-  if (shut.ciHead !== null) {
-    check("  the book's commentary is a handle too", !shut.ciOpen &&
-      /^C[\d,]+ Commentary$/.test(shut.ciHead), shut.ciHead);
+  if (asksCommentary) {
+    check("  the book's commentary is a handle too", shut.ciHead !== null && !shut.ciOpen &&
+      /^C[\d,]+ Commentary$/.test(shut.ciHead || ""), String(shut.ciHead));
   }
   // AND SO IS THE COUNT. It was the third thing standing between a reader and
   // the book, and the largest: five figures, a witness row apiece and a

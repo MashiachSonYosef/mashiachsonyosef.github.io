@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: division-evidence-rule-v1-a-division-we-have-not-established-is-not-offered
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

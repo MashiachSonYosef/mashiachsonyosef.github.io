@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word
 //
 // A section mark and the word after it are two things at two positions. When

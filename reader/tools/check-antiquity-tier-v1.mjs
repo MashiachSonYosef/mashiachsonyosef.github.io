@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
 //
 // The year in the gloss rule's name decides nothing, and this proves it every

@@ -63,7 +63,10 @@ const top = (p) => `:(top)${p}`;
 const TOP = git("rev-parse", "--show-toplevel").trim();
 const inRepo = (p) => relative(TOP, p).split("\\").join("/");
 const sha = (b) => createHash("sha256").update(b).digest("hex");
-const pins = JSON.parse(readFileSync(RECORD, "utf8")).pins || {};
+// every seal the shelf keeps: the bins the door publishes (the store record)
+// and the bins held off it (the held record beside it)
+const HELD_RECORD = join(dirname(RECORD), "zone-store-held-v1.json");
+const pins = { ...(existsSync(HELD_RECORD) ? (JSON.parse(readFileSync(HELD_RECORD, "utf8")).pins || {}) : {}), ...(JSON.parse(readFileSync(RECORD, "utf8")).pins || {}) };
 const exactOnDisk = (f) => {
   const p = join(ZONES, f);
   if (!existsSync(p)) return false;

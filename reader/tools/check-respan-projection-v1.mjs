@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys
 // GUARDS: span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole
 // LEDGER: -

@@ -1,3 +1,4 @@
+// RUN: page
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";

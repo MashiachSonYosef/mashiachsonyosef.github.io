@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-masoretic-gold-v1 · every Masoretic mark on the line is gold by its class, and its letters keep their ink and their place
 //
 // GUARDS: masoretic-marks-rule-v1-every-mark-is-gold-by-its-class-never-by-a-code-point-range
@@ -68,7 +69,10 @@ const zoneWords = new Map();
 for (const sec of Z.sections || []) zoneWords.set(sec.label, (sec.words || []).map((w) => w.s));
 // a work the record does not carry: the first the store pins that is not one of its books
 const store = JSON.parse(readFileSync("data/zone-store-v1.json", "utf8"));
-const outside = Object.keys(store.pins || {}).map((k) => k.replace(/\.bin$/u, "")).sort().filter((k) => !R.books.includes(k) && !k.includes("."));
+// (the store record pins what the door publishes; the held record beside it
+// keeps the seal of every other work of the shelf)
+const heldSeals = existsSync("data/zone-store-held-v1.json") ? (JSON.parse(readFileSync("data/zone-store-held-v1.json", "utf8")).pins || {}) : {};
+const outside = Object.keys({ ...heldSeals, ...(store.pins || {}) }).map((k) => k.replace(/\.bin$/u, "")).sort().filter((k) => !R.books.includes(k) && !k.includes(".") && !k.startsWith("fixture-"));
 const other = outside.find((k) => existsSync(`data/zones/${k}.bin`));
 const { chromium } = await loadPlaywright();
 const b = await chromium.launch(launchOptions());

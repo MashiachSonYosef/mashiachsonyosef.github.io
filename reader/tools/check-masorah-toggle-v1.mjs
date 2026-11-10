@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: masorah-toggle-rule-v1-the-pointing-is-kept-the-gate-or-lifted-and-the-page-never-changes
 //
 // THE POINTING TOGGLE, PRESSED.
@@ -197,7 +198,7 @@ check("M4  the line under the word is the sidecar's lenient leader, and the firs
       const t0 = Date.now(); while (Date.now() - t0 < 12000 && !h.querySelector(".r-pills button")) await wait(50);
       await wait(700);
       const pills = [...h.querySelectorAll(".r-pills button")].map((x) => ({ t: x.textContent.trim(), on: x.getAttribute("aria-pressed") === "true", by: String(x.dataset.by || "").split(" ").filter(Boolean) }));
-      return { line: (g ? g.childNodes[0]?.textContent : "").trim(), bare: !!(g && g.classList.contains("bare")), pills };
+      return { line: ((g && g.childNodes[0] && g.childNodes[0].textContent) || "").trim(), bare: !!(g && g.classList.contains("bare")), pills };
     }, target ? target.i : 0);
     await ctx.close();
   }

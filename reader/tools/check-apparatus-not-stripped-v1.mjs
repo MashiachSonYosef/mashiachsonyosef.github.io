@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: apparatus-baseline-rule-v1-arithmetic-over-positions-cannot-see-a-label-that-is-gone
 //
 // The check that is not blind to a stripped copy.

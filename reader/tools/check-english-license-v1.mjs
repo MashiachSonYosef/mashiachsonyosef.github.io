@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // The English and license reader: they never separate, even by a display
 // degree — the owner's ruling, 2026-08-30.
 // GUARDS: gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: megacompspan-rule-v1-one-maqaf-run-one-card, weld-forms-rule-v1-a-joined-run-is-offered-in-every-form-a-source-published-and-in-no-form-it-did-not
 //
 // A MAQAF RUN'S CARD HOLDS ITS LATTICE: AS WRITTEN, JOINED, AND WORD BY WORD.
@@ -56,7 +57,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 import { formsOfRun, MAQAF } from "./weld-forms-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
 let bad = 0;

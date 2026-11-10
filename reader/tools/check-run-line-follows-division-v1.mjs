@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling
 //
 // THE RUN'S LINE FOLLOWS THE DIVISION THE READER PRESSED (the owner,

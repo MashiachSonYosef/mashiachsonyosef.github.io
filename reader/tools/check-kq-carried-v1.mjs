@@ -1,3 +1,4 @@
+// RUN: tree
 // GUARDS: kq-rule-v1-both-halves-as-written
 //
 // Where the source writes a ketiv and a qere it writes both, and its licence
@@ -23,7 +24,7 @@
 //     "mam-kq" as if the provider wrote it
 // No served zone stands on MAM yet; the MAM tier says so and waits. The
 // law lands before the text returns, which is the right order.
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

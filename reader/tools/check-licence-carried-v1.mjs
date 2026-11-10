@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-licence-carried-v1 · every printed commentary entry carries its own licence
 //
 // The licence is the only gate, and it gates occurrences, not works. A printed

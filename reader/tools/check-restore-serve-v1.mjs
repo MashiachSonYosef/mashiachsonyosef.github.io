@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records, mam-restore-v5-rights-rule-v1-one-record-for-the-edition-the-credit-on-every-page
 // LEDGER: C0 M
 // the ink at its position, and the licence riding on every occurrence of it.

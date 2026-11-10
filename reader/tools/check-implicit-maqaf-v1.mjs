@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-q-site
 //
 // MAM marks 103 places where the accents join two words that the consonantal

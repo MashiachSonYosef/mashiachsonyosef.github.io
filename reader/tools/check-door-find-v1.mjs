@@ -1,3 +1,4 @@
+// RUN: site
 // THE DOOR FINDS A BOOK (the owner, 2026-10-18: "for books also by exact
 // hebrew or english answers"; "the splash page one would more be like
 // ezekiel"). The door's box finds a book by the name its row prints, in

@@ -1,9 +1,10 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: kq-rule-v1-both-halves-as-written
 //
 // THE PAIR OPENS ON THE HALF THE SWITCH NAMES.
 //
-// The owner's rule for the pairs switch, 2026-09-23, in his words: "both
+// The owner's rule for the pairs switch, 2026-09-23, in the owner's words: "both
 // would always open together in 1 hud ... the toggle is much smaller
 // conceptually, it's just ... what english leads, so if you clicked qere,
 // when you meet a qere word, the qere megacompspan would already be selected

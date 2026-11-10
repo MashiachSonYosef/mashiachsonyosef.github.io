@@ -1,3 +1,4 @@
+// RUN: page
 // NO BLANKS, PARKED (the owner, 2026-10-24: "dont overworry about the no
 // blanks toggle if anything we could move it to /toggles/ for now"). The
 // source signs switch stood in the row as a pill for a day (the owner,

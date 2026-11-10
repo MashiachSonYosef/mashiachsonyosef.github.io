@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // The title is the work's own opening words, read from the serve — or it is
 // nothing at all.
 // GUARDS: title-from-c0-rule-v1-the-title-is-the-works-own-opening-words
@@ -40,8 +41,10 @@ const BODY = "/home/user/body";
 const BRIDGE = "/home/user/ai-sdk-starter-deepinfra/ledgers/work/c0/current-c0-location-source-bridge-2026-07-10.csv.gz";
 const OPENINGS = join(BODY, "work-openings.json");
 if (!existsSync(BODY) || !existsSync(BRIDGE) || !existsSync(OPENINGS)) {
-  console.log("SKIP — the verified body, the bridge, and the openings survey live on the fleet machine; nothing to prove here without them");
-  process.exit(0);
+  // exit 3, the tree's code for "could not reach its inputs": a skip that
+  // exits 0 is counted as a pass by everything that reads exit codes
+  console.log("SKIPPED — the verified body, the bridge, and the openings survey live on the fleet machine; nothing to prove here without them");
+  process.exit(3);
 }
 
 let bad = 0;

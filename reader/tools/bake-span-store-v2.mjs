@@ -1,3 +1,9 @@
+// LEDGER: COMPspan D
+// the served span store: at each place, the spans a word divides into
+// (COMPspan) and the dictionary records that stand on each (D). The claims
+// are the corpus lane's; this tool writes the shape the page reads and
+// withholds what the owner's rules withhold.
+//
 // THE SPAN STORE, SERVED FROM V2 (Moses's relay v80, 22 October 2026: "span
 // store v2: 9 of 9 acceptance tests pass"). v2 SHARES THE RECORD, NEVER THE
 // CLAIM: a place is a claim naming the dictionary records (rids) that stand

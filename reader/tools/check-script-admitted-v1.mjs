@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: script-admission-rule-v1-a-published-word-is-written-in-hebrew-script
 //
 // The inclusion test, at the one grain where it is exact.

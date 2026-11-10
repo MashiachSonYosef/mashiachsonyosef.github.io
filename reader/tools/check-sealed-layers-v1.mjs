@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added
 //
 // No published zone is missing a layer the corpus lane sealed.

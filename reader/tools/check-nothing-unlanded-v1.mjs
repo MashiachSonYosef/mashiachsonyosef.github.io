@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist
 //
 // Everything this lane has made is on the branch, or it is named.

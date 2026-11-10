@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed
 // GUARDS: row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed
 //

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // What we print has to be characters the provider typed.
 //
 // A route's English is a field of the provider's own characters. We may divide

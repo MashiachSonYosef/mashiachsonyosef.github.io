@@ -14,7 +14,7 @@
 // fails); a patched file is rewritten with the same line bytes but for the
 // replaced lines (the new record lines are the patch's own bytes).
 // Usage: node tools/apply-piece-store-patch-v1.mjs --from <piece-store-v2> --patch <piece-store-v2.1> --out <folder>
-import { readFileSync, writeFileSync, mkdirSync, existsSync, linkSync, copyFileSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, linkSync, copyFileSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join, basename } from "node:path";
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };

@@ -43,7 +43,12 @@
    "run-restore-v5-fleet-v1.mjs",
    "serve-from-restore-v5.mjs"
   ],
+  "COMPspan": [
+   "bake-span-store-v2.mjs"
+  ],
   "D": [
+   "bake-dictionary-store-v1.mjs",
+   "bake-span-store-v2.mjs",
    "build-hoh-sidecar-v1.mjs",
    "project-lattice-v12-v1.mjs"
   ],
@@ -51,6 +56,7 @@
    "apply-ledger-divisions-v1.mjs",
    "apply-route-delta-v1.mjs",
    "apply-source-years-v1.mjs",
+   "bake-dictionary-store-v1.mjs",
    "check-restore-serve-v1.mjs",
    "check-source-corpus-v1.mjs",
    "emit-language-sweep-record-v1.mjs",
@@ -83,12 +89,16 @@
   "R": [
    "apply-ledger-divisions-v1.mjs",
    "apply-route-delta-v1.mjs",
+   "bake-form-of-pills-v1.mjs",
    "import-witnessed-orders-v1.mjs",
    "ledger-print-v1.mjs",
    "project-lattice-v12-v1.mjs",
    "strike-language-v1.mjs",
    "strike-rows-v1.mjs",
    "strike-source-v1.mjs"
+  ],
+  "S": [
+   "apply-source-years-v1.mjs"
   ],
   "U": [
    "emit-work-attachment-v1.mjs",
@@ -137,17 +147,18 @@
     "R"
    ],
    "updates_no_letter": false,
-   "why": "",
+   "why": "it lands rows in the route store: each row is a source's reading (R) under that source's license record (M). The rows are the corpus lane's; this tool places them and decides nothing about them.",
    "writes": [
     "store-before-strike-witness-v1.json"
    ]
   },
   "apply-source-years-v1.mjs": {
    "letters": [
-    "M"
+    "M",
+    "S"
    ],
    "updates_no_letter": false,
-   "why": "",
+   "why": "it writes the year a source's English was written (S, the year that sorts) on the rows of that source (M), from the corpus lane's list, kept here byte for byte. No year is decided here.",
    "writes": [
     "source-years-receipt-v1.json"
    ]
@@ -157,6 +168,27 @@
    "updates_no_letter": true,
    "why": "no frame letter. This reads the corpus lane's span ledgers and, when given, its piece-gloss files, and rewrites the four span fields (and each word's pg) of the zones they name. Run it on a restored shelf, then re-pin.",
    "writes": []
+  },
+  "bake-dictionary-store-v1.mjs": {
+   "letters": [
+    "D",
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "the served copy of the corpus lane's dictionary records: each record is a source's own definition (D) under the source it names (M). The shards are the lane's bytes, copied; the index beside them is this tool's.",
+   "writes": [
+    "license-postures-v1.json"
+   ]
+  },
+  "bake-form-of-pills-v1.mjs": {
+   "letters": [
+    "R"
+   ],
+   "updates_no_letter": false,
+   "why": "which readings of the route catalog (R) are a pointer to another entry, and the English the pointer resolves to. The corpus lane classed and resolved them; this folds its file into the one map the card reads.",
+   "writes": [
+    "form-of-pills-v1.json"
+   ]
   },
   "bake-overlay-book-counts-v1.mjs": {
    "letters": [],
@@ -172,6 +204,17 @@
    "why": "THE READ FORM'S PIECES, PLACED (the corpus lane's v108, 6 November 2026).",
    "writes": [
     "read-form-offsets-v1.json"
+   ]
+  },
+  "bake-span-store-v2.mjs": {
+   "letters": [
+    "COMPspan",
+    "D"
+   ],
+   "updates_no_letter": false,
+   "why": "the served span store: at each place, the spans a word divides into (COMPspan) and the dictionary records that stand on each (D). The claims are the corpus lane's; this tool writes the shape the page reads and withholds what the owner's rules withhold.",
+   "writes": [
+    "license-postures-v1.json"
    ]
   },
   "build-chain-book-v1.mjs": {
@@ -291,7 +334,8 @@
    "updates_no_letter": false,
    "why": "the ink, the mark itself, at its position: what the frame refuses to call a C0, applied to every position of every built book before it is served.",
    "writes": [
-    "serve-gate-receipt-v1.json"
+    "serve-gate-receipt-v1.json",
+    "zone-store-held-v1.json"
    ]
   },
   "check-card-opens-on-the-line-v1.mjs": {
@@ -456,7 +500,8 @@
    "why": "no frame letter. This writes nothing: it reads data/masoretic-marks-v1.json (written by tools/project-masoretic-marks-v1.mjs) and the page.",
    "writes": [
     "masoretic-marks-v1.json",
-    "zone-store-v1.json"
+    "zone-store-v1.json",
+    "zone-store-held-v1.json"
    ]
   },
   "check-numbering-gap-witnessed-v1.mjs": {
@@ -813,7 +858,8 @@
    "updates_no_letter": false,
    "why": "the named stream: which zone bin is published, and its bytes.",
    "writes": [
-    "zone-store-v1.json"
+    "zone-store-v1.json",
+    "zone-store-held-v1.json"
    ]
   },
   "import-witnessed-orders-v1.mjs": {
@@ -1000,6 +1046,12 @@
     "work-attachment-v1.json"
    ]
   },
+  "run-checks-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This runs the checks and reads their verdicts; the only files it writes are each check's own output under build/check-logs/, which is derived and not committed.",
+   "writes": []
+  },
   "run-restore-v5-fleet-v1.mjs": {
    "letters": [
     "C0"
@@ -1091,15 +1143,9 @@
    ]
   }
  },
- "tools_that_write_a_record_and_declare_nothing": [
-  "bake-dictionary-store-v1.mjs",
-  "bake-form-of-pills-v1.mjs",
-  "bake-span-store-v2.mjs",
-  "repin-zone-store-v1.mjs"
- ],
+ "tools_that_write_a_record_and_declare_nothing": [],
  "records_no_tool_in_this_tree_claims_to_write": [
   "corpus-defect-manifest-2026-08-22.json",
-  "form-of-pills-v1.json",
   "pins-not-kept-v1.json",
   "pointing-store-verify-v2.2-v1.json",
   "source-short-names-v1.json",

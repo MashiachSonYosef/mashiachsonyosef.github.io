@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: zone-commentary-rule-v2-sealed-chain-section-aligned, zone-commentary-rule-v3-two-zones-one-coordinate
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
@@ -49,6 +50,17 @@
 //   L5  where the commentary work is also a zone on this shelf, the words
 //       attached under a section are the words that zone carries for the same
 //       sealed unit
+//
+// WHERE THE COMMENTARY'S OWN ZONE IS HELD OFF THE DOOR. A commentary work is
+// seldom a served one, and a work the gate does not serve keeps its bin out
+// of the published tree: on a checkout the zone L5 and the count clause of
+// L4 want to open is not there. Where the held record keeps that zone's seal
+// the two say, each on a line of its own that begins "--", that they were
+// not read and for which books; they do not pass and they do not fail. A
+// commentary work the shelf's records do not know at all still fails L4: a
+// sidecar built from nothing is what that clause is for. Until 10 November
+// 2026 L4 failed on every checkout for the 21 it could not read, and L5
+// printed "ok" over a law it had not asked.
 //   L6  the receipts count what is on disk
 //   L7  every attachment stands on the declared basis
 //
@@ -64,11 +76,13 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { zonesHeld } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
 const ZONES = arg("zones", join(K3, "data", "zones"));
+const HELD = new Set(zonesHeld(ZONES));
 
 const SCHEMA = "ZONE_COMMENTARY_V2";
 const IDENTITY = "SEALED_UNIT_COORDINATE_IDENTITY";
@@ -172,6 +186,7 @@ const offBasis = [];                                      // L7
 let judged = 0, entriesRead = 0, wordsRead = 0, compared = 0, ownZonesUsed = 0;
 const byRule = {};
 const uncompared = [];
+const heldUnread = [];                                    // L4's count clause, where the work's own zone is held
 
 for (const f of candidates) {
   const slug = f.replace(/\.commentary\.bin$/u, "");
@@ -342,7 +357,9 @@ for (const f of candidates) {
   } else {
     works.forEach((w, i) => {
       const own = ownByWork[i];
-      if (!own) note(invented, `${slug}: ${(w && w.zone) || "work #" + i} is not a zone on this shelf, so its sealed count cannot be read`);
+      const name = (w && w.zone) || "work #" + i;
+      if (!own && HELD.has(name)) heldUnread.push(`${slug} (${name})`);
+      else if (!own) note(invented, `${slug}: ${name} is not a zone of this shelf, on this disk or held, so its sealed count cannot be read`);
       else if (own.words.size !== attachedPerWork[i]) note(invented, `${slug}: ${own.zone} carries ${own.words.size} units, ${attachedPerWork[i]} stand under a section`);
     });
   }
@@ -386,16 +403,16 @@ check("L4  no commentary unit is invented or folded",
   invented.length === 0,
   invented.length
     ? `${invented.length}: ${few(invented)}`
-    : "every attached unit is one sealed id, attached once, carrying its own words, and the sealed count is the count attached");
+    : `every attached unit is one sealed id, attached once, carrying its own words${heldUnread.length ? "" : ", and the sealed count is the count attached"}`);
+if (heldUnread.length) console.log(`  --  L4  the commentary work's sealed count is the count attached  ·  not read for ${heldUnread.length}: the work's own zone is held off the door, its seal kept in the held record — ${few(heldUnread, 3)}`);
 
-check("L5  the words attached are the words the commentary work's own zone carries",
+if (wordsDiffer.length || compared) check("L5  the words attached are the words the commentary work's own zone carries",
   wordsDiffer.length === 0,
   wordsDiffer.length
     ? `${wordsDiffer.length} differ: ${few(wordsDiffer, 2)}`
-    : compared
-      ? `${compared.toLocaleString()} units compared against ${ownZonesUsed} zone(s)` +
-        `${uncompared.length ? ` · uncompared, no zone of their own on this shelf: ${few(uncompared, 2)}` : ""}`
-      : `no commentary work here is a zone of its own on this shelf, so this one went unasked: ${few(uncompared, 2)}`);
+    : `${compared.toLocaleString()} units compared against ${ownZonesUsed} zone(s)` +
+      `${uncompared.length ? ` · uncompared, no zone of their own on this disk: ${few(uncompared, 2)}` : ""}`);
+else console.log(`  --  L5  the words attached are the words the commentary work's own zone carries  ·  not read: no commentary work here has its own zone on this disk — ${few(uncompared, 2)}`);
 
 check("L6  the receipts count what is on disk",
   receipts.length === 0,

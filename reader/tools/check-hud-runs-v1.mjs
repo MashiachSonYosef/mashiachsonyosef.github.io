@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-hud-runs-v1 · the HUD record's runs stand on the page as the file lays them
 //
 // RULE: hud-runs-rule-v1-a-stretch-the-record-puts-in-one-hud-wears-one-line

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
