@@ -280,7 +280,6 @@ if (startedAs(import.meta.url)) {
 <p>Things the owner has ruled on in principle and not yet checked, kept off the book page until then (16 October 2026):</p>
 <ul class="ph-list">
 <li><b>The commentary.</b> Each verse's bar with its works list, the word-anchored marks and the book's open-all switch. Drawn only under <a href="/${esc(BOOK)}/?commentary=on">?commentary=on</a>; the door's own way in, <code>?c=open</code>, still opens it. The owner: "id even potentially move the targum jonathan off for now".</li>
-<li><b>Two-word underlines.</b> One cell, one card and one blob over two or more spaced words, only where one dictionary record defines the span as one thing. None is drawn: the record that named the spans was wrong ("the data is wrong lets leave it out for now"), and the shelf answers two spans in all. Comes back span by span when the run store lands.</li>
 <li id="order"><b>The reading order.</b> The "reads first" switch: the source at this place, or the oldest witness for the form, or another order of the records. The page reads the source at this place; the other orders wait here (16 October: "oldest first toggle can go to toggle page as a placeholder").</li>
 <li><b>The order legend.</b> A small legend, in a layman's words, that says the Hebrew sets which card is first and shows the English reader's order as a row of numbers; with gold arrows on the line for the reading direction. The card's own number and arrow are the first piece of it.</li>
 ${(NAMED.named || []).length ? `</ul>
