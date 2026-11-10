@@ -23,7 +23,12 @@
 //     ink, the opening verse draws as it does with the gold off, to within
 //     the edge pixels a glyph drawn twice darkens (no pixel moves by more
 //     than 60 of 255 in any channel)
-// G4  a work the record does not carry is one color, as before
+// G4  a work the record does not carry is one color, as before: the first
+//     work the store pins outside the record whose zone this checkout holds
+//     (10 November 2026: it opened the first the store pins, wherever its
+//     zone was, and on a checkout without the unserved shelf it waited a
+//     minute for a page that could not load and never said G4; where no such
+//     work is held here the law says so and judges nothing)
 // G5  the card's head (the owner, 2026-10-10: "if you can do the vowels in
 //     gold in the same push go for it"): a card opened on a word that holds
 //     a mark wears the gold at its head, each run with its letters laid over
@@ -31,7 +36,7 @@
 //     still the word byte for byte, and drawn in one ink it is the plain head
 //     to within its edge pixels
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 const PORT = process.env.SERVE_PORT || "8899";   // the runner serves 8899; a hand run says its own
 let bad = 0;
@@ -63,7 +68,8 @@ const zoneWords = new Map();
 for (const sec of Z.sections || []) zoneWords.set(sec.label, (sec.words || []).map((w) => w.s));
 // a work the record does not carry: the first the store pins that is not one of its books
 const store = JSON.parse(readFileSync("data/zone-store-v1.json", "utf8"));
-const other = Object.keys(store.pins || {}).map((k) => k.replace(/\.bin$/u, "")).sort().find((k) => !R.books.includes(k));
+const outside = Object.keys(store.pins || {}).map((k) => k.replace(/\.bin$/u, "")).sort().filter((k) => !R.books.includes(k) && !k.includes("."));
+const other = outside.find((k) => existsSync(`data/zones/${k}.bin`));
 const { chromium } = await loadPlaywright();
 const b = await chromium.launch(launchOptions());
 const open = async (book) => {
@@ -211,7 +217,8 @@ if (other) {
   const g4 = await q.evaluate(() => ({ on: document.documentElement.dataset.markInk || "", n: document.querySelectorAll(".mg, .mg-all, [data-l]").length }));
   check(`G4  a work the record does not carry (${other}) is one color`, g4.on !== "gold" && g4.n === 0, `${g4.n} gold runs · ink ${g4.on || "unset"}`);
   await q.close();
-} else check("G4  a work the record does not carry is one color", false, "the store pins no work outside the record");
+} else if (outside.length) console.log(`  --  G4  a work the record does not carry is one color  ·  not judged: none of the ${outside.length.toLocaleString("en-US")} works the store pins outside the record has its zone on this checkout`);
+else check("G4  a work the record does not carry is one color", false, "the store pins no work outside the record");
 await b.close();
 console.log(bad ? `${bad} failure(s)` : "all ok");
 process.exit(bad ? 1 : 0);
