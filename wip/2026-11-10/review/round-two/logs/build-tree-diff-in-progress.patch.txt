@@ -1,0 +1,2317 @@
+diff --git a/reader/tools/apply-span-ledger-v1.mjs b/reader/tools/apply-span-ledger-v1.mjs
+index adbdb67495..5439e422a6 100644
+--- a/reader/tools/apply-span-ledger-v1.mjs
++++ b/reader/tools/apply-span-ledger-v1.mjs
+@@ -39,10 +39,11 @@
+ // component_system is recounted over the new table.
+ //
+ // Run: node tools/apply-span-ledger-v1.mjs --ledger <dir> [--pg <dir>] --stamp <stamp> [--relay <text>] [--zones data/zones] [--only <slug>]
+-import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+-import { gunzipSync, gzipSync } from "node:zlib";
++import { readFileSync, readdirSync, existsSync } from "node:fs";
++import { gunzipSync } from "node:zlib";
+ import { createHash } from "node:crypto";
+ import { join, basename } from "node:path";
++import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+ 
+ const RULE = "span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole";
+ const arg = (name, dflt = null) => { const i = process.argv.indexOf(`--${name}`); return i > 0 ? process.argv[i + 1] : dflt; };
+@@ -58,18 +59,13 @@ const letters = (t) => String(t || "").replace(/[^א-ת]/gu, "");
+ // Merged with the exemptions the zone already carries. --type-only types it
+ // on zones swapped before this was written, and changes nothing else.
+ function typePostBuild(zone, stamp) {
+-  const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+-  const ef = zone.emitted_from;
+-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
+-  const me = "tools/apply-span-ledger-v1.mjs";
+-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+-  for (const f of ["emitted_from.span_ledger"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+-  const why = "the zone's divisions are the corpus lane's span ledger, swapped in whole after the build, and its receipt names the ledger file";
+-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+-  const exp = "with this zone's rebuild by a build-zone run that reads the span ledger in its single pass";
+-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+-  pb.on = stamp;
+-  ef.post_build = pb;
++  typePostBuildWrite(zone, {
++    tool: "tools/apply-span-ledger-v1.mjs",
++    fields: ["emitted_from.span_ledger"],
++    why: "the zone's divisions are the corpus lane's span ledger, swapped in whole after the build, and its receipt names the ledger file",
++    expires: "with this zone's rebuild by a build-zone run that reads the span ledger in its single pass",
++    stamp,
++  });
+ }
+ 
+ if (TYPE_ONLY) {
+@@ -81,7 +77,7 @@ if (TYPE_ONLY) {
+     if (!zone.emitted_from || !zone.emitted_from.span_ledger) continue;
+     if (ONLY && f !== `${ONLY}.bin`) continue;
+     typePostBuild(zone, STAMP);
+-    writeFileSync(zPath, gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 }));
++    writeZone(zPath, zone);
+     typed += 1;
+   }
+   console.log(`${typed} zone(s) carry the span ledger's post-build record`);
+@@ -168,7 +164,7 @@ for (const slug of books) {
+   if (zone.emitted_from.span_layer) { receipt.replaced_span_layer = zone.emitted_from.span_layer; delete zone.emitted_from.span_layer; }
+   zone.emitted_from.span_ledger = receipt;
+   typePostBuild(zone, STAMP);
+-  writeFileSync(zPath, gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 }));
++  writeZone(zPath, zone);
+   console.log(`  ok  ${slug}: spans ${before} -> ${receipt.rows_after} · the ledger read ${readMatches}${receipt.pg ? ` · pg ${receipt.pg.replaced ?? 0} replaced, ${receipt.pg.unchanged ?? 0} unchanged, ${receipt.pg.cleared ?? 0} cleared, ${receipt.pg.held ?? 0} held${receipt.pg.held_at && receipt.pg.held_at.length ? ` (${receipt.pg.held_at.join(", ")})` : ""}` : ""}`);
+ }
+ console.log(bad ? `\n${bad} FAILED` : `\n${books.length} zones given the span ledger`);
+diff --git a/reader/tools/bake-witnessed-order-v1.mjs b/reader/tools/bake-witnessed-order-v1.mjs
+index 95b7598385..6110c886ab 100644
+--- a/reader/tools/bake-witnessed-order-v1.mjs
++++ b/reader/tools/bake-witnessed-order-v1.mjs
+@@ -50,11 +50,12 @@
+ //
+ // Run: node tools/bake-witnessed-order-v1.mjs --zone data/zones/<book>.bin --stamp YYYY-MM-DD
+ //        [--from data/witnessed-orders-v2.7] [--store data/route-store] [--out <file>]
+-import { readFileSync, writeFileSync, existsSync } from "node:fs";
++import { readFileSync, existsSync } from "node:fs";
+ import { createHash } from "node:crypto";
+-import { gzipSync, gunzipSync } from "node:zlib";
++import { gunzipSync } from "node:zlib";
+ import { join, basename } from "node:path";
+ import { openRouteStore } from "./gloss-store-v1.mjs";
++import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+ 
+ export const RULE = "witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit";
+ export const COLUMNS = [
+@@ -126,19 +127,12 @@ zone.emitted_from = zone.emitted_from || {};
+ zone.emitted_from.witnessed_order = receipt;
+ // typed under the single-pass exemption, merged with what regloss typed, so
+ // the receipts check counts this write rather than faulting it as patching
+-{
+-  const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+-  const ef = zone.emitted_from;
+-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: STAMP };
+-  const me = "tools/bake-witnessed-order-v1.mjs";
+-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+-  for (const f of ["gloss_orders", "gloss_m_orders", "emitted_from.witnessed_order"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+-  const why = "the owner selected the corpus lane's witnessed order (2026-09-25); its three columns are baked as shipped over this zone's own keys";
+-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+-  const exp = "with this zone's rebuild by a build-zone run, after which the columns are baked again";
+-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+-  pb.on = STAMP;
+-  ef.post_build = pb;
+-}
+-writeFileSync(OUT || ZONE, gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 }));
++typePostBuildWrite(zone, {
++  tool: "tools/bake-witnessed-order-v1.mjs",
++  fields: ["gloss_orders", "gloss_m_orders", "emitted_from.witnessed_order"],
++  why: "the owner selected the corpus lane's witnessed order (2026-09-25); its three columns are baked as shipped over this zone's own keys",
++  expires: "with this zone's rebuild by a build-zone run, after which the columns are baked again",
++  stamp: STAMP,
++});
++writeZone(OUT || ZONE, zone);
+ console.log(`${book}: ${COLUMNS.map(([o]) => `${o.replace("witnessed_", "")} ${receipt.columns[o].baked}/${receipt.columns[o].shipped}${receipt.columns[o].no_pill_withdrawals ? ` (${receipt.columns[o].no_pill_withdrawals.length} no pill)` : ""}`).join(" · ")} · against store ${receipt.baked_against_store}`);
+diff --git a/reader/tools/build-chain-book-v1.mjs b/reader/tools/build-chain-book-v1.mjs
+index 17d30eb36b..b4a3afb951 100644
+--- a/reader/tools/build-chain-book-v1.mjs
++++ b/reader/tools/build-chain-book-v1.mjs
+@@ -43,6 +43,7 @@ import { createHash } from "node:crypto";
+ import { gunzipSync, gzipSync } from "node:zlib";
+ import { join, dirname } from "node:path";
+ import { fileURLToPath } from "node:url";
++import { startedAs } from "./main-guard-v1.mjs";
+ import { openRouteStore } from "./gloss-store-v1.mjs";
+ 
+ export const CHAIN_RULE_ID = "chain-book-rule-v1-the-same-book-with-the-meaning-taken-out-so-only-the-joins-are-left";
+@@ -54,6 +55,9 @@ export const fp = (s) => createHash("sha256").update(String(s), "utf8").digest("
+ export const shortFp = (s) => fp(s).slice(0, CHAIN_SHORT);
+ 
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
++// a number prints one way on every machine: the pages' own sha256 is printed
++// as custody, and a page that follows the builder's locale is another file
++const num = (v) => Number(v).toLocaleString("en-US");
+ const esc = (s) => String(s).replace(/&/gu, "&amp;").replace(/</gu, "&lt;").replace(/>/gu, "&gt;").replace(/"/gu, "&quot;");
+ 
+ /** ONE STYLESHEET FOR BOTH PAGES, because the index and the books it lists are
+@@ -93,6 +97,7 @@ export const CHAIN_CSS = `
+  .w li i { font-style:normal; color:var(--faint); padding-left:.4rem; font-size:.7rem; }
+  .w .none { margin:.15rem 0 0; font-size:.72rem; color:var(--faint); }
+  .w li.more { color:var(--faint); font-size:.7rem; }
++ .w .h { margin:.25rem 0 0 .5rem; border-left:1px solid var(--line); padding-left:.45rem; }
+  footer { margin-top:2rem; font-size:.72rem; color:var(--faint); line-height:1.6; max-width:44rem; }
+  a { color:var(--muted); }
+  ul.books { list-style:none; margin:.2rem 0 0; padding:0; }
+@@ -137,7 +142,7 @@ export function writeIndex(dir, servedWords = null) {
+ 
+   const rows = books.map((b) => `<li>
+    <a href="${esc(b.slug)}/">${esc(b.slug)}</a>
+-   <span class="c"><b>${b.c.sections.toLocaleString()}</b> sections · <b>${b.c.words.toLocaleString()}</b> words · <b>${b.c.links.toLocaleString()}</b> links · <b>${b.c.distinct_fingerprints.toLocaleString()}</b> distinct fingerprints · ${(b.carKB + b.pgKB).toFixed(0)} KB</span>
++   <span class="c"><b>${num(b.c.sections)}</b> sections · <b>${num(b.c.words)}</b> words · <b>${num(b.c.links)}</b> links · <b>${num(b.c.distinct_fingerprints)}</b> distinct fingerprints · ${(b.carKB + b.pgKB).toFixed(0)} KB</span>
+    <span class="fp">chain-v1.json.gz &nbsp;${b.car}</span>
+    <span class="fp">index.html &nbsp;${b.pgfp}</span>
+   </li>`).join("\n");
+@@ -145,7 +150,7 @@ export function writeIndex(dir, servedWords = null) {
+   // said only while books are away: chained whole, the shelf has nothing to
+   // name as left out, and the paragraph would have claimed a subset of itself
+   const away = servedWords && servedWords.total && books.length < servedWords.books
+-    ? `<p class="away">This is ${books.length} book${books.length === 1 ? "" : "s"} of the ${servedWords.books} the reading side serves — ${tot.words.toLocaleString()} words of ${servedWords.total.toLocaleString()}. The rest are not here and the reason is size, not doubt: a word here costs about ${Math.round((tot.kb * 1024) / Math.max(1, tot.words))} bytes once its links are written out, because the links outnumber the words roughly ${Math.round(tot.links / Math.max(1, tot.words))} to one, so chaining the whole shelf would be near ${(Math.round((servedWords.total * (tot.kb / Math.max(1, tot.words))) / 1024 / 50) * 50).toLocaleString()} MB of files. Every book that is here was built by the same command from the same zone and the same route store as the page that reads it. Nothing was chosen for being clean.</p>`
++    ? `<p class="away">This is ${books.length} book${books.length === 1 ? "" : "s"} of the ${servedWords.books} the reading side serves — ${num(tot.words)} words of ${num(servedWords.total)}. The rest are not here and the reason is size, not doubt: a word here costs about ${Math.round((tot.kb * 1024) / Math.max(1, tot.words))} bytes once its links are written out, because the links outnumber the words roughly ${Math.round(tot.links / Math.max(1, tot.words))} to one, so chaining the whole shelf would be near ${num(Math.round((servedWords.total * (tot.kb / Math.max(1, tot.words))) / 1024 / 50) * 50)} MB of files. Every book that is here was built by the same command from the same zone and the same route store as the page that reads it. Nothing was chosen for being clean.</p>`
+     : "";
+ 
+   const page = `<!doctype html>
+@@ -157,7 +162,7 @@ ${canon("/chain/")}
+ <h1>the chain</h1>
+ <p class="lede">These are books this site serves, with the meaning taken out. Every word is the fingerprint of its own bytes, every reading is the fingerprint of its own text, and the line between them is the line a reader is shown on the reading page. <b>Nothing in them is written by this project.</b> Strip the language away and only the joins are left, so a stranger can walk a whole book without reading a sentence of our prose or believing any of it.</p>
+ <p class="lede">The two numbers under each book are the sha256 of the files themselves, as served. Download one, hash it, compare. If it matches, everything inside it is the copy this page stands behind — and every fingerprint inside it can be recomputed the same way, with a tool that is not ours.</p>
+-<p class="nums">${books.length} book${books.length === 1 ? "" : "s"} · ${tot.words.toLocaleString()} words · ${tot.links.toLocaleString()} links · ${(tot.kb / 1024).toFixed(1)} MB</p>
++<p class="nums">${books.length} book${books.length === 1 ? "" : "s"} · ${num(tot.words)} words · ${num(tot.links)} links · ${(tot.kb / 1024).toFixed(1)} MB</p>
+ <details class="recipe"><summary>how to recompute any number on this page</summary>
+ <dl>
+ <dt>the function</dt><dd>sha256 over the UTF-8 bytes of the string, with no normalisation, no trimming and no case folding. A book's pages print the first ${CHAIN_SHORT} hex digits; all 64 for every one of them are in that book's chain-v1.json.gz. The two numbers on this page are sha256 over the FILES, byte for byte as served.</dd>
+@@ -174,7 +179,7 @@ ${away}
+ </div></body></html>`;
+   mkdirSync(dir, { recursive: true });
+   writeFileSync(join(dir, "index.html"), page);
+-  console.log(`${join(dir, "index.html")} · ${books.length} books · ${tot.words.toLocaleString()} words · ${tot.links.toLocaleString()} links · ${(tot.kb / 1024).toFixed(1)} MB on disk`);
++  console.log(`${join(dir, "index.html")} · ${books.length} books · ${num(tot.words)} words · ${num(tot.links)} links · ${(tot.kb / 1024).toFixed(1)} MB on disk`);
+   return { books: books.length, words: tot.words, links: tot.links };
+ }
+ 
+@@ -185,14 +190,15 @@ ${away}
+ const SITE_HOST = (() => { try { return readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "..", "CNAME"), "utf8").trim(); } catch { return ""; } })();
+ const canon = (path) => (SITE_HOST ? `<link rel="canonical" href="https://${SITE_HOST}${path}">` : "");
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   if (process.argv.includes("--index")) {
+     const DIR = arg("--dir", join("..", "chain"));
+     // what the reading side serves, asked of the shelf rather than typed here
+     const { zonesServed } = await import("./zones-on-disk-v1.mjs");
+     const zs = zonesServed();
+     let total = 0;
+-    for (const z of zs) { const d = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8")); for (const s of d.sections || []) total += (s.words || []).length; }
++    for (const z of zs) { const d = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8")); for (const s of d.sections || []) total += (s.words || []).filter((w) => !w.mark).length; }
+     writeIndex(DIR, { books: zs.length, total });
+     process.exit(0);
+   }
+@@ -207,44 +213,76 @@ if (import.meta.url === `file://${process.argv[1]}`) {
+   const full = {};                      // short -> the whole 64, so nothing is only truncated
+   const keep = (s) => { const h = fp(s); full[h.slice(0, CHAIN_SHORT)] = h; return h.slice(0, CHAIN_SHORT); };
+ 
+-  let words = 0, linked = 0, links = 0, bare = 0;
++  let words = 0, marks = 0, linked = 0, links = 0, bare = 0, pairs = 0;
++  // the readings a key stands on, in the store's own order: the store's pool
++  // over every admitted row, oldest first, every source switched on (the
++  // reading page's card starts from this pool and then applies the reader's
++  // own switches, which a file of joins has none of)
++  const readsOf = (key) => {
++    const rrows = key ? (store.routesFor(key) || []).filter((r) => ms[r[3]]) : [];
++    const pool = rrows.length ? store.readingPool(rrows, "oldest") : [];
++    return pool.map((p) => {
++      links += 1;
++      // WHO CARRIES IT. The pool names its carriers in `by` — every m id
++      // whose record stands behind this reading. The chain prints the
++      // OLDEST of them, because that is the one the card credits, and
++      // carries the rest in the file: a link with no carrier named is a
++      // link a reader cannot follow back to anybody. Oldest is the store's
++      // own answer (carriersOf: by the row's wording year). Until 10
++      // November 2026 it was chosen here by the source's edition year, which
++      // most sources do not state, and the link named a later source than the
++      // card does.
++      const carriers = [...(p.by || [])].filter((m) => ms[m]);
++      const oldest = store.carriersOf(rrows, p.text)[0] || null;
++      return {
++        r: keep(p.text),
++        s: oldest ? keep(ms[oldest[3]].label) : null,
++        by: carriers.length > 1 ? carriers.map((m) => keep(ms[m].label)) : undefined,
++        y: Number.isFinite(p.year) ? p.year : null,
++      };
++    });
++  };
+   const rows = [];
+   for (const sec of zone.sections || []) {
+     const cells = [];
+     for (const w of (sec.words || [])) {
++      const wf = keep(String(w.s ?? ""));
++      // A MARK IS NOT A WORD. The scribes' marks (the verse end, the section
++      // breaks, the bar between two words) keep their place in the file, so
++      // the shape is still the book's shape entry for entry, and are counted
++      // as marks. Until 10 November 2026 each was counted as a word carrying
++      // no reading.
++      if (w.mark) { marks += 1; cells.push({ w: wf, k: null, reads: [], mark: keep(w.mark.kind) }); continue; }
+       words += 1;
+-      const surface = String(w.s ?? "");
++      // WRITTEN ONE WAY AND READ ANOTHER. The zone holds such a word as its
++      // halves, each with its own letters and its own key, and the reading
++      // page reads each half under that key. So does this file: the word's
++      // own fingerprint, then each half with its role, its key and its links.
++      // Until 10 November 2026 a pair was printed as a word with no key and
++      // no reading.
++      if (Array.isArray(w.w)) {
++        pairs += 1;
++        const halves = w.w.map((r) => {
++          const hk = String((r && r.k) ?? "");
++          const hw = keep(String((r && r.s) ?? "")), hkf = hk ? keep(hk) : null, role = keep(String((r && r.role) ?? ""));
++          return { role, w: hw, k: hkf, reads: readsOf(hk) };
++        });
++        if (halves.some((h) => h.reads.length)) linked += 1; else bare += 1;
++        cells.push({ w: wf, k: null, reads: [], halves, mark: null });
++        continue;
++      }
+       const key = String(w.k ?? "");
+-      const wf = keep(surface), kf = key ? keep(key) : null;
+-      // the readings this word's key stands on, in the order the card offers
+-      // them: the store's own pool, oldest first — the same call the page makes
+-      const rrows = key ? (store.routesFor(key) || []).filter((r) => ms[r[3]]) : [];
+-      const pool = rrows.length ? store.readingPool(rrows, "oldest") : [];
+-      if (pool.length) linked += 1; else bare += 1;
+-      const reads = pool.map((p) => {
+-        links += 1;
+-        // WHO CARRIES IT. The pool names its carriers in `by` — every m id
+-        // whose record stands behind this reading. The chain prints the
+-        // OLDEST of them, because that is the one the card credits, and
+-        // carries the rest in the file: a link with no carrier named is a
+-        // link a reader cannot follow back to anybody.
+-        const carriers = [...(p.by || [])].filter((m) => ms[m]);
+-        const oldest = carriers.map((m) => ({ m, y: Number.parseInt(ms[m].sourceYear, 10) }))
+-          .sort((a, b) => (Number.isFinite(a.y) ? a.y : Infinity) - (Number.isFinite(b.y) ? b.y : Infinity))[0];
+-        return {
+-          r: keep(p.text),
+-          s: oldest ? keep(ms[oldest.m].label) : null,
+-          by: carriers.length > 1 ? carriers.map((m) => keep(ms[m].label)) : undefined,
+-          y: Number.isFinite(p.year) ? p.year : null,
+-        };
+-      });
+-      cells.push({ w: wf, k: kf, reads, mark: w.mark ? keep(w.mark.kind) : null });
++      const kf = key ? keep(key) : null;
++      const reads = readsOf(key);
++      if (reads.length) linked += 1; else bare += 1;
++      cells.push({ w: wf, k: kf, reads, mark: null });
+     }
+     rows.push({ label: String(sec.label ?? ""), lf: keep(String(sec.label ?? "")), cells });
+   }
+ 
+   const sidecar = {
+-    schema_version: "CHAIN_BOOK_V1", rule_id: CHAIN_RULE_ID, work: slug,
++    schema_version: "CHAIN_BOOK_V2", rule_id: CHAIN_RULE_ID, work: slug,
++    shape: "sections[].cells[] in the book's own order, one cell per entry of the book. A word: { w, k, reads }. A scribal mark: { w, mark } with no key and no reads; it is not a word and is counted in counts.marks. A word written one way and read another: { w, halves: [{ role, w, k, reads }] }, each half under its own key (V2, 10 November 2026; V1 gave a pair no key and no reads, and counted a mark as a word with none). A read: { r, s, by, y } — the reading, its oldest carrier by the wording year of the carrier's own row, every carrier where more than one, the oldest wording year.",
+     recipe: {
+       function: "sha256 over the UTF-8 bytes of the string, with no normalisation, no trimming and no case folding",
+       printed: `the first ${CHAIN_SHORT} hex digits; the whole 64 for every one of them is in full_by_short below`,
+@@ -253,6 +291,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
+         key: "the consonantal key the word is looked up under",
+         reading: "the reading's English text as the card prints it",
+         source: "the source's label as the catalog states it",
++        mark: "the kind of a scribal mark as the book's own record names it",
++        role: "which half of a word written one way and read another, as the book's own record names it",
+         section: "the section's label as the page prints it",
+       },
+       recompute: "take the string, sha256 it, compare the first 12 hex digits. Nothing here needs this site's code to check.",
+@@ -260,7 +300,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
+     what_this_proves: "custody: that the bytes served are the bytes received, and that the line from a word to a reading goes where this site says it goes",
+     what_this_does_not_prove: "that any dictionary is right. A fingerprint is a fact about a file, never about the truth of what the file says.",
+     store: { dir: STORE, store_version: store.index.store_version, schema: store.index.schema_version },
+-    counts: { sections: rows.length, words, words_with_a_reading: linked, words_with_none: bare, links, distinct_fingerprints: Object.keys(full).length },
++    counts: { sections: rows.length, words, words_with_a_reading: linked, words_with_none: bare, marks, words_written_one_way_and_read_another: pairs, links, distinct_fingerprints: Object.keys(full).length },
+     full_by_short: full,
+     sections: rows,
+   };
+@@ -276,11 +316,17 @@ if (import.meta.url === `file://${process.argv[1]}`) {
+       // shows the first few and names how many it did not show, and the file
+       // beside it carries every link with no window at all. The auditor wants
+       // the file; the page is for seeing what shape the file is in.
+-      const shown = c.reads.slice(0, PAGE_SHOWS);
+-      const reads = shown.map((r) => `<li><b>${r.r}</b>${r.s ? `<i>${r.s}</i>` : ""}</li>`).join("");
+-      const rest = c.reads.length - shown.length;
+-      const more = rest > 0 ? `<li class="more">and ${rest.toLocaleString()} more link${rest === 1 ? "" : "s"}, in the file</li>` : "";
+-      return `<div class="w"><p class="k">${c.w}${c.k ? `<span>${c.k}</span>` : ""}</p>${reads ? `<ul>${reads}${more}</ul>` : `<p class="none">no reading</p>`}</div>`;
++      const list = (rs) => {
++        const shown = rs.slice(0, PAGE_SHOWS);
++        const reads = shown.map((r) => `<li><b>${r.r}</b>${r.s ? `<i>${r.s}</i>` : ""}</li>`).join("");
++        const rest = rs.length - shown.length;
++        const more = rest > 0 ? `<li class="more">and ${num(rest)} more link${rest === 1 ? "" : "s"}, in the file</li>` : "";
++        return reads ? `<ul>${reads}${more}</ul>` : `<p class="none">no reading</p>`;
++      };
++      // a mark says it is a mark; a pair prints its own fingerprint and then each half
++      if (c.mark) return `<div class="w"><p class="k">${c.w}</p><p class="none">a scribal mark, not a word</p></div>`;
++      if (c.halves) return `<div class="w"><p class="k">${c.w}</p><p class="none">written one way and read another</p>${c.halves.map((h) => `<div class="h"><p class="k">${h.w}${h.k ? `<span>${h.k}</span>` : ""}</p>${list(h.reads)}</div>`).join("")}</div>`;
++      return `<div class="w"><p class="k">${c.w}${c.k ? `<span>${c.k}</span>` : ""}</p>${list(c.reads)}</div>`;
+     }).join("");
+     return `<section><h2>${sec.lf}<i>${esc(sec.label)}</i></h2><div class="ws">${cells}</div></section>`;
+   }).join("\n");
+@@ -294,19 +340,21 @@ ${canon(`/chain/${slug}/`)}
+ <style>${CHAIN_CSS}</style></head><body><div class="wrap">
+ <h1><a href="../">the chain</a> · ${esc(slug)}</h1>
+ <p class="lede">This is the same book this site serves, with the meaning taken out. Every word is the fingerprint of its own bytes, every reading is the fingerprint of its own text, and the line between them is the line the reader is shown. <b>Nothing here is written by this project.</b> Strip the language away and only the joins are left, so you can walk the whole book without reading a sentence of our prose or believing any of it.</p>
+-<p class="nums">${c.sections.toLocaleString()} sections · ${c.words.toLocaleString()} words · ${c.words_with_a_reading.toLocaleString()} carry a reading · ${c.words_with_none.toLocaleString()} carry none · ${c.links.toLocaleString()} links · ${c.distinct_fingerprints.toLocaleString()} distinct fingerprints · route store ${esc(store.index.store_version)}</p>
+-<p class="nums">This page prints the first ${PAGE_SHOWS} links under each word and says how many it left out. <a href="chain-v1.json.gz">chain-v1.json.gz</a> beside it carries all ${c.links.toLocaleString()}, with every fingerprint at its full 64 digits.</p>
++<p class="nums">${num(c.sections)} sections · ${num(c.words)} words · ${num(c.words_with_a_reading)} carry a reading · ${num(c.words_with_none)} carry none · ${num(c.marks)} scribal marks, which are not words · ${num(c.links)} links · ${num(c.distinct_fingerprints)} distinct fingerprints · route store ${esc(store.index.store_version)}</p>
++<p class="nums">This page prints the first ${PAGE_SHOWS} links under each word and says how many it left out. <a href="chain-v1.json.gz">chain-v1.json.gz</a> beside it carries all ${num(c.links)}, with every fingerprint at its full 64 digits.</p>
+ <details class="recipe"><summary>how to recompute any number on this page</summary>
+ <dl>
+ <dt>the function</dt><dd>sha256 over the UTF-8 bytes of the string, with no normalisation, no trimming and no case folding. Printed as the first ${CHAIN_SHORT} hex digits; all 64 for every one of them are in <a href="chain-v1.json.gz">chain-v1.json.gz</a> beside this page.</dd>
+ <dt>a word</dt><dd>the Hebrew as the page prints it — vowels, cantillation and all, the licensed text untouched. The pale number beside it is its consonantal key.</dd>
+-<dt>a reading</dt><dd>the reading's English text as the card prints it. The pale number after it is the label of the oldest source carrying that reading; where more than one carries it, the file lists them all.</dd>
++<dt>a reading</dt><dd>the reading's English text as the card prints it. The pale number after it is the label of the oldest source carrying that reading, oldest by the year its own words for the reading were written; where more than one carries it, the file lists them all. The links under a word are every reading the catalog holds for its key, oldest first, with every source switched on; the reading page starts from the same list and then applies the reader's own switches.</dd>
++<dt>a mark</dt><dd>the scribes' marks (the end of a verse, a section break, the bar between two words) keep their place and are not words. The number is the mark as the page prints it.</dd>
++<dt>a word written one way and read another</dt><dd>the number is the whole word as the page prints it; under it stand its halves, each with its own key and its own links.</dd>
+ <dt>what it proves</dt><dd>custody: the bytes served are the bytes received, and the line from a word to a reading goes where this site says it goes.</dd>
+ <dt>what it does not prove</dt><dd>that any dictionary is right. A fingerprint is a fact about a file, never about the truth of what the file says.</dd>
+ </dl></details>
+ ${body}
+-<footer>Built by <code>tools/build-chain-book-v1.mjs</code> from the same zone and the same route store the reading page is built from, at the same moment, by the same code. If this book and that one ever disagree in shape — a word missing, a link moved, a count off — one of them is wrong, and both are published.</footer>
++<footer>Built by <code>tools/build-chain-book-v1.mjs</code> from the same zone and the same route store the reading page is built from, in the same round. If this book and that one ever disagree in shape — a word missing, a link moved, a count off — one of them is wrong, and both are published.</footer>
+ </div></body></html>`;
+   writeFileSync(join(OUT, "index.html"), page);
+-  console.log(`${join(OUT, "index.html")} · ${c.sections} sections · ${c.words.toLocaleString()} words · ${c.links.toLocaleString()} links · ${c.distinct_fingerprints.toLocaleString()} distinct fingerprints · ${(page.length / 1024).toFixed(0)} KB`);
++  console.log(`${join(OUT, "index.html")} · ${c.sections} sections · ${num(c.words)} words (${num(c.words_with_a_reading)} carry a reading, ${num(c.words_with_none)} none) · ${num(c.marks)} marks · ${num(c.links)} links · ${num(c.distinct_fingerprints)} distinct fingerprints · ${(page.length / 1024).toFixed(0)} KB`);
+ }
+diff --git a/reader/tools/build-front-door-v1.mjs b/reader/tools/build-front-door-v1.mjs
+index 13c15e82cc..35fa53ae95 100644
+--- a/reader/tools/build-front-door-v1.mjs
++++ b/reader/tools/build-front-door-v1.mjs
+@@ -258,6 +258,15 @@ const SITE_HOST = (() => {
+ // place either is decided, so the door, the work pages, the held addresses
+ // and the README cannot drift apart from one another.
+ const SITE_NAME = SITE_HOST || "The Tabernacle";
++// THE SMALL PAGES' COLORS, NAMED ONCE. The pages this builder writes outside
++// the door and the books (an address that is no file, a held address, a moved
++// one, a traditional name's page) carry no stylesheet of the site's; each has
++// a few lines of its own. They read the reader's own values from here (the
++// owner, 2026-10-10: one linen, the purple regular and dim, the dim gold), so
++// a change of palette reaches all of them. Until 10 November 2026 each typed
++// its colors again, and the page for an address that is no file had been
++// left on the palette of before 10 October.
++const SMALL_PAGE = Object.freeze({ paper: "#ebdec3", ink: "#642460", dim: "#753c6d", gold: "#a06c10" });
+ // The name's four parts, for the mark's four colors (the owner, 2026-10-02). Read
+ // off the name itself; a name this does not match stands whole.
+ // THE SITE'S DECLARATION, said once and printed wherever it is owed: the
+@@ -546,21 +555,20 @@ const titleReading = (tokens, en) => {
+   if (!key) return null;
+   const routes = STORE.routesFor(key);
+   if (!routes) return null;
+-  const want = String(en || "").trim().toLowerCase();
+-  if (!want) return null;
+-  const hits = routes.filter((row) => {
+-    if (!STORE.index.m_sources[row[3]]) return false;
+-    return STORE.readingsOf(row).some((x) => String(x).trim().toLowerCase() === want);
+-  });
++  if (!String(en || "").trim()) return null;
++  // who reads the name: the store's own answer (carriersOf: every admitted
++  // row whose readings print as the title prints, oldest wording first).
++  // Until 10 November 2026 this matched the reading as written, so Strong's
++  // «Amos.» did not attest «Amos» and the chip named a later source.
++  const hits = STORE.carriersOf(routes, String(en).trim());
+   if (!hits.length) return null;
+-  // fullest license first, and among equals the oldest source — the same
+-  // antiquity rule the rest of the page reads by
++  // fullest license first, and among equals the oldest wording (the order
++  // the store handed them over in; the sort is stable)
+   hits.sort((a, c) => {
+     const ra = licenseRank((STORE.index.m_sources[a[3]] || {}).licensePosture);
+     const rc = licenseRank((STORE.index.m_sources[c[3]] || {}).licensePosture);
+     for (let i = 0; i < ra.length; i += 1) if (ra[i] !== rc[i]) return ra[i] - rc[i];
+-    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
+-    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
++    return 0;
+   });
+   const m = STORE.index.m_sources[hits[0][3]];
+   return { lic: licenseName(m.licensePosture), label: m.label || "", year: hasYear(m.sourceYear) ? m.sourceYear : "", attests: hits.length };
+@@ -573,16 +581,9 @@ const glossSource = (key, text) => {
+   if (!key || !text) return null;
+   const routes = STORE.routesFor(key);
+   if (!routes) return null;
+-  const want = String(text).toLowerCase();
+-  const hits = routes.filter((row) => {
+-    if (!STORE.index.m_sources[row[3]]) return false;
+-    return STORE.readingsOf(row).some((x) => x.toLowerCase() === want);
+-  });
++  // the store's own answer (carriersOf), the rule the book's page credits by
++  const hits = STORE.carriersOf(routes, text);
+   if (!hits.length) return null;
+-  hits.sort((a, c) => {
+-    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
+-    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
+-  });
+   const m = STORE.index.m_sources[hits[0][3]];
+   // and the record itself, for the card to open on: the row's reading is one
+   // sense of it ("dove" of "dove, pigeon."), and a card opened on another
+@@ -2992,8 +2993,8 @@ writeFileSync(join(OUT, "index.html"), doc); listed("/");
+ // path gets a plain page that says so, with one way home; nothing external.
+ const notFound = `<!doctype html>
+ <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+-<meta name="robots" content="noindex"><title>Not here · fireandhail.com</title>
+-<style>body{margin:0;padding:2rem 1rem;font:1rem/1.6 Georgia,serif;color:#2b2420;background:#efe6d3;max-width:34rem}a{color:#5a3e8f}code{font-size:.95em}</style>
++<meta name="robots" content="noindex"><title>Not here · ${SITE_NAME}</title>
++<style>:root{color-scheme:light}body{margin:0;padding:2rem 1rem;font:1rem/1.6 Georgia,serif;color:${SMALL_PAGE.ink};background:${SMALL_PAGE.paper};max-width:34rem}a{color:${SMALL_PAGE.dim}}code{font-size:.95em}</style>
+ <script>
+ (function () {
+   var m = /^\\/([a-z0-9-]+)\\/(\\d+):(\\d+)(?::(\\d+(?:[-\\u2013]\\d+)?))?\\/?$/.exec(location.pathname);
+@@ -3237,9 +3238,9 @@ const heldPage = (reason = "", from = "") => `<!doctype html>
+ })();
+ </script>
+ <style>:root{color-scheme:light}
+-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#ebdec3;
+-  color:#753c6d;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
+-  a{color:#a06c10} p{max-width:34rem} .prov{font-size:.82em;color:#753c6d}</style>
++  body{margin:0;min-height:100vh;display:grid;place-items:center;background:${SMALL_PAGE.paper};
++  color:${SMALL_PAGE.dim};font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
++  a{color:${SMALL_PAGE.gold}} p{max-width:34rem} .prov{font-size:.82em;color:${SMALL_PAGE.dim}}</style>
+ </head>
+ <body><p>This address is kept, and the work behind it is not being served.<br><br>
+ ${reason ? esc(reason) + "<br><br>" : ""}Nothing is shown in the meantime, and the
+@@ -3467,12 +3468,12 @@ if (existsSync(REF_GROUPS_PATH)) {
+ <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>${esc(g.name_en)} \u00b7 ${SITE_NAME}</title>
+ <style>:root{color-scheme:light}
+-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#ebdec3;
+-  color:#642460;font:16px/1.6 Georgia,serif;padding:2rem}
+-  a{color:#753c6d} main{max-width:36rem} h1{font-size:1.3rem;letter-spacing:.08em;font-variant:small-caps;color:#a06c10}
+-  .prov{font-size:.82em;color:#753c6d}
+-  .lics{font-size:.82em;color:#753c6d}
+-  .lic{display:inline-block;margin-left:.35em;padding:0 .4em;border:1px solid #a06c10;
++  body{margin:0;min-height:100vh;display:grid;place-items:center;background:${SMALL_PAGE.paper};
++  color:${SMALL_PAGE.ink};font:16px/1.6 Georgia,serif;padding:2rem}
++  a{color:${SMALL_PAGE.dim}} main{max-width:36rem} h1{font-size:1.3rem;letter-spacing:.08em;font-variant:small-caps;color:${SMALL_PAGE.gold}}
++  .prov{font-size:.82em;color:${SMALL_PAGE.dim}}
++  .lics{font-size:.82em;color:${SMALL_PAGE.dim}}
++  .lic{display:inline-block;margin-left:.35em;padding:0 .4em;border:1px solid ${SMALL_PAGE.gold};
+     border-radius:.6em;font-size:.92em;white-space:nowrap}</style>
+ </head>
+ <body><main><h1>${esc(g.name_en)}</h1>
+@@ -3548,8 +3549,8 @@ if (existsSync(HISTORY)) {
+ })();
+ </script>
+ <style>:root{color-scheme:light}
+-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#ebdec3;
+-  color:#753c6d;font:16px Georgia,serif} a{color:#a06c10}</style>
++  body{margin:0;min-height:100vh;display:grid;place-items:center;background:${SMALL_PAGE.paper};
++  color:${SMALL_PAGE.dim};font:16px Georgia,serif} a{color:${SMALL_PAGE.gold}}</style>
+ </head>
+ <body><p>${esc(b.disp)} now lives at <a href="/${target}">/${target}</a></p>
+ </body>
+diff --git a/reader/tools/build-toggle-design-v1.mjs b/reader/tools/build-toggle-design-v1.mjs
+index 96f60b4a88..e5160a9e80 100644
+--- a/reader/tools/build-toggle-design-v1.mjs
++++ b/reader/tools/build-toggle-design-v1.mjs
+@@ -35,6 +35,7 @@
+ //
+ // Run: node tools/build-toggle-design-v1.mjs [--url http://127.0.0.1:8899/zone.html]
+ //      With no --url it photographs the first book the shelf holds.
++import { startedAs } from "./main-guard-v1.mjs";
+ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+ import { join, dirname } from "node:path";
+ import { fileURLToPath } from "node:url";
+@@ -104,7 +105,8 @@ export const VOICE_LEDE = Object.freeze({
+ const esc = (s) => String(s).replace(/&/gu, "&amp;").replace(/</gu, "&lt;").replace(/>/gu, "&gt;").replace(/"/gu, "&quot;");
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   const HERE = dirname(fileURLToPath(import.meta.url));
+   const PAGE = readFileSync(join(HERE, "..", "zone.html"), "utf8");
+   // published at /toggles/ and linked from nowhere: the owner, 2026-10-02, keeps
+diff --git a/reader/tools/check-chain-book-v1.mjs b/reader/tools/check-chain-book-v1.mjs
+index af1181defe..9f851b5624 100644
+--- a/reader/tools/check-chain-book-v1.mjs
++++ b/reader/tools/check-chain-book-v1.mjs
+@@ -22,14 +22,27 @@
+ //       same words, same order — re-derived from the zone the reading page is
+ //       built from, never from the chain's own counts block
+ //   K2  every word and key fingerprint is sha256 of the zone's own string,
+-//       recomputed here, for every word of every chained book
+-//   K3  the readings are the store's own pool for that key, in the order the
+-//       card offers them, and each reading and source fingerprint recomputes —
+-//       walked in full on the smallest chained book, which is named in the
+-//       output rather than left to be guessed at
++//       recomputed here, for every word of every chained book; a scribal
++//       mark carries its kind and no key; a word written one way and read
++//       another carries its halves, each with its role, its letters and its key
++//   K3  the readings are the store's own pool for that key, oldest first, and
++//       each reading and source fingerprint recomputes — walked in full on the
++//       smallest chained book, which is named in the output rather than left
++//       to be guessed at; the source is the oldest carrier by the store's own
++//       rule (carriersOf: the row's wording year)
++//   K3b on every chained book, wherever a word's first link is the reading
++//       the zone prints on its line, the link's source is the source the
++//       zone itself credits for that line (gloss_m): the chain and the
++//       reading page name one source for one reading
+ //   K4  the page prints the first twelve of a number the file carries at
+ //       sixty-four, every short on the page resolves in the file, and the
+ //       counts the page prints are what a walk of the file actually finds
++//   K4b and they are the BOOK's counts, read off the zone's own receipt,
++//       which the builder never reads: its words, its scribal marks, its
++//       words that carry a reading. (Until 10 November 2026 the builder
++//       counted a mark as a word with no reading and gave a pair none, and
++//       this check recounted the builder's file and agreed with it: Amos's
++//       page said 184 words carry no reading where the zone says 3.)
+ //   K5  the index's sha256 of each file is the sha256 of that file on disk —
+ //       the one number a reader checks first, and the root of the whole tree
+ //   K6  the index names every book that has a chain and no book that does not
+@@ -49,7 +62,7 @@ import { openRouteStore } from "./gloss-store-v1.mjs";
+ let bad = 0;
+ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+-const n = (v) => Number(v).toLocaleString();
++const n = (v) => Number(v).toLocaleString("en-US");
+ const few = (a, k = 3) => a.slice(0, k).join(" · ") + (a.length > k ? ` … and ${a.length - k} more` : "");
+ 
+ // THIS CHECK'S OWN HASH, taken from node and not from the thing under test.
+@@ -90,6 +103,21 @@ const haveZone = (b) => existsSync(`data/zones/${b}.bin`);
+         walked += 1;
+         const surface = String(zw[j].s ?? ""), key = String(zw[j].k ?? "");
+         if (cs[j].w !== short(surface)) { fpOff.push(`${b} ${zs[i].label} word ${j}: the word`); break; }
++        // a mark: its kind, no key, no links, and never a pair
++        if (zw[j].mark) {
++          if (cs[j].mark !== short(zw[j].mark.kind) || (cs[j].k ?? null) !== null || (cs[j].reads || []).length || cs[j].halves) { fpOff.push(`${b} ${zs[i].label} entry ${j}: the mark`); break; }
++          continue;
++        }
++        if ((cs[j].mark ?? null) !== null) { fpOff.push(`${b} ${zs[i].label} word ${j}: a word is printed as a mark`); break; }
++        // a pair: its halves, each by its own role, letters and key
++        if (Array.isArray(zw[j].w)) {
++          const hs = cs[j].halves;
++          const ok = Array.isArray(hs) && hs.length === zw[j].w.length && (cs[j].k ?? null) === null
++            && zw[j].w.every((r, x) => hs[x].w === short(String(r.s ?? "")) && (hs[x].k ?? null) === (r.k ? short(String(r.k)) : null) && hs[x].role === short(String(r.role ?? "")));
++          if (!ok) { fpOff.push(`${b} ${zs[i].label} word ${j}: the halves of a word written one way and read another`); break; }
++          continue;
++        }
++        if (cs[j].halves) { fpOff.push(`${b} ${zs[i].label} word ${j}: halves on a word the book holds whole`); break; }
+         const wantK = key ? short(key) : null;
+         if ((cs[j].k ?? null) !== wantK) { fpOff.push(`${b} ${zs[i].label} word ${j}: the key`); break; }
+       }
+@@ -113,33 +141,75 @@ const haveZone = (b) => existsSync(`data/zones/${b}.bin`);
+     const s = car(b), z = zoneOf(b), store = openRouteStore(STORE), ms = store.index.m_sources;
+     const off = [];
+     let links = 0;
++    // one key's links against the store's own pool; false stops the walk
++    const linksAgree = (key, got, where) => {
++      const rrows = key ? (store.routesFor(key) || []).filter((r) => ms[r[3]]) : [];
++      const pool = rrows.length ? store.readingPool(rrows, "oldest") : [];
++      if ((got || []).length !== pool.length) { off.push(`${where}: ${(got || []).length} links, the store offers ${pool.length}`); return false; }
++      for (let r = 0; r < pool.length; r += 1) {
++        links += 1;
++        if (got[r].r !== short(pool[r].text)) { off.push(`${where} link ${r}: the reading`); return false; }
++        // the oldest carrier is the store's own answer, by the row's wording year
++        const oldest = store.carriersOf(rrows, pool[r].text)[0] || null;
++        const wantS = oldest ? short(ms[oldest[3]].label) : null;
++        if ((got[r].s ?? null) !== wantS) { off.push(`${where} link ${r}: the source that carries it`); return false; }
++        const wantBy = [...(pool[r].by || [])].filter((m) => ms[m]);
++        const gotBy = got[r].by || [];
++        if (wantBy.length > 1 ? !(gotBy.length === wantBy.length && wantBy.every((m, x) => gotBy[x] === short(ms[m].label))) : gotBy.length !== 0) { off.push(`${where} link ${r}: its carriers`); return false; }
++      }
++      return true;
++    };
+     outer: for (let i = 0; i < (z.sections || []).length; i += 1) {
+       const zw = z.sections[i].words || [], cs = s.sections[i].cells;
+       for (let j = 0; j < zw.length; j += 1) {
+-        const key = String(zw[j].k ?? "");
+-        const rrows = key ? (store.routesFor(key) || []).filter((r) => ms[r[3]]) : [];
+-        const pool = rrows.length ? store.readingPool(rrows, "oldest") : [];
+-        const got = cs[j].reads;
+-        if (got.length !== pool.length) { off.push(`${z.sections[i].label} word ${j}: ${got.length} links, the store offers ${pool.length}`); break outer; }
+-        for (let r = 0; r < pool.length; r += 1) {
+-          links += 1;
+-          if (got[r].r !== short(pool[r].text)) { off.push(`${z.sections[i].label} word ${j} link ${r}: the reading`); break outer; }
+-          const carriers = [...(pool[r].by || [])].filter((m) => ms[m]);
+-          const oldest = carriers.map((m) => ({ m, y: Number.parseInt(ms[m].sourceYear, 10) }))
+-            .sort((a, c) => (Number.isFinite(a.y) ? a.y : Infinity) - (Number.isFinite(c.y) ? c.y : Infinity))[0];
+-          const wantS = oldest ? short(ms[oldest.m].label) : null;
+-          if ((got[r].s ?? null) !== wantS) { off.push(`${z.sections[i].label} word ${j} link ${r}: the source that carries it`); break outer; }
++        const where = `${z.sections[i].label} word ${j}`;
++        if (zw[j].mark) continue;
++        if (Array.isArray(zw[j].w)) {
++          for (let x = 0; x < zw[j].w.length; x += 1) if (!linksAgree(String(zw[j].w[x].k ?? ""), ((cs[j].halves || [])[x] || {}).reads, `${where} half ${x}`)) break outer;
++          continue;
+         }
++        if (!linksAgree(String(zw[j].k ?? ""), cs[j].reads, where)) break outer;
+       }
+     }
+-    check("K3  the readings are the store's own pool in the card's own order, and each reading and source fingerprint recomputes",
++    check("K3  the readings are the store's own pool, oldest first, and each reading, its oldest carrier and its carriers recompute",
+       off.length === 0, off.length ? `${b}: ${few(off)}` : `${b}, the smallest chained book: ${n(links)} links re-derived from ${store.index.store_version} and hashed again`);
+   }
+ }
+ 
++// ── K3b · the chain and the reading page name one source for one reading ──────
++{
++  // The zone credits the reading on its line in gloss_m (the M the page's chip
++  // prints). Wherever a word's first link IS that reading, the link's source
++  // must be that source. Read off the zone, on every chained book: no store
++  // is opened and nothing of the builder's is re-run.
++  const off = [];
++  let held = 0, lineIsNotFirst = 0, noCredit = 0;
++  for (const b of books.filter(haveZone)) {
++    const s = car(b), z = zoneOf(b), gloss = z.gloss || {}, gm = z.gloss_m || {};
++    const one = (key, reads, where) => {
++      if (!key || !reads || !reads.length || gloss[key] === undefined) return;
++      if (reads[0].r !== short(gloss[key])) { lineIsNotFirst += 1; return; }   // a name leads the line, or an order moved it: another reading's credit
++      if (!gm[key] || !gm[key].m) { noCredit += 1; return; }
++      held += 1;
++      if (reads[0].s !== short(gm[key].m)) off.push(`${b} ${where}`);
++    };
++    for (let i = 0; i < (z.sections || []).length; i += 1) {
++      const zw = z.sections[i].words || [], cs = s.sections[i].cells;
++      for (let j = 0; j < zw.length; j += 1) {
++        if (zw[j].mark) continue;
++        if (Array.isArray(zw[j].w)) { zw[j].w.forEach((r, x) => one(String(r.k ?? ""), ((cs[j].halves || [])[x] || {}).reads, `${z.sections[i].label} word ${j} half ${x}`)); continue; }
++        one(String(zw[j].k ?? ""), cs[j].reads, `${z.sections[i].label} word ${j}`);
++      }
++    }
++  }
++  check("K3b  wherever a word's first link is the reading on its line, its source is the source the zone credits for that line",
++    off.length === 0 && held > 0, off.length ? `${n(off.length)} of ${n(held)} name another source: ${few(off)}` : `${n(held)} first links against their zones' own credits · ${n(lineIsNotFirst)} words whose line is another reading (a name leads it) and ${n(noCredit)} with no credit on the zone, not held`);
++}
++
+ // ── K4 · the page against the file it stands on ───────────────────────────────
+ {
+-  const off = [], countOff = [];
++  const off = [], countOff = [], bookOff = [];
++  let booksHeld = 0;
+   for (const b of books) {
+     const s = car(b), page = readFileSync(join(DIR, b, "index.html"), "utf8");
+     // every short the page prints must resolve to a full 64 in the file, and
+@@ -159,18 +229,36 @@ const haveZone = (b) => existsSync(`data/zones/${b}.bin`);
+     if (lost.length) off.push(`${b}: ${lost.length} printed that the file does not carry`);
+     if (wrong.length) off.push(`${b}: ${wrong.length} whose full 64 does not begin with the short`);
+     // and the counts the page prints are what a walk of the file finds
+-    let words = 0, links = 0, linked = 0, bare = 0;
+-    for (const sec of s.sections) for (const c of sec.cells) { words += 1; links += c.reads.length; if (c.reads.length) linked += 1; else bare += 1; }
++    let words = 0, marks = 0, links = 0, linked = 0, bare = 0;
++    for (const sec of s.sections) for (const c of sec.cells) {
++      if (c.mark) { marks += 1; continue; }
++      words += 1;
++      const mine = c.halves ? c.halves.reduce((a, h) => a + h.reads.length, 0) : c.reads.length;
++      links += mine; if (mine) linked += 1; else bare += 1;
++    }
+     const c = s.counts;
+-    if (!(c.words === words && c.links === links && c.words_with_a_reading === linked && c.words_with_none === bare
++    if (!(c.words === words && c.marks === marks && c.links === links && c.words_with_a_reading === linked && c.words_with_none === bare
+       && c.sections === s.sections.length && c.distinct_fingerprints === Object.keys(s.full_by_short).length))
+-      countOff.push(`${b}: says ${n(c.words)}/${n(c.links)}, a walk finds ${n(words)}/${n(links)}`);
+-    for (const v of [c.words, c.links, c.sections]) if (!page.includes(Number(v).toLocaleString())) countOff.push(`${b}: the page does not print ${n(v)}`);
++      countOff.push(`${b}: says ${n(c.words)} words, ${n(c.marks)} marks, ${n(c.links)} links; a walk finds ${n(words)}, ${n(marks)}, ${n(links)}`);
++    for (const v of [c.words, c.words_with_a_reading, c.words_with_none, c.marks, c.links, c.sections]) if (!page.includes(n(v))) countOff.push(`${b}: the page does not print ${n(v)}`);
++    // K4b: the book's own counts, off the zone's receipt
++    if (haveZone(b)) {
++      const zc = zoneOf(b).counts || {};
++      const want = { words: zc.c0_on, marks: zc.c0_off, words_with_a_reading: zc.glossed_words };
++      if (Object.values(want).some((v) => !Number.isInteger(v))) bookOff.push(`${b}: the zone's receipt does not carry its words, marks and glossed words`);
++      else {
++        const diff = Object.entries(want).filter(([k, v]) => c[k] !== v).map(([k, v]) => `${k.replace(/_/gu, " ")} ${n(c[k])}, the book has ${n(v)}`);
++        if (diff.length) bookOff.push(`${b}: ${diff.join("; ")}`);
++        else booksHeld += 1;
++      }
++    }
+   }
+   check("K4  the page prints the first twelve of a number the file carries at sixty-four, and every short resolves",
+     off.length === 0, off.length ? few(off) : `${books.length} page(s), every printed fingerprint resolved in its own file`);
+   check("  and the counts the page prints are what a walk of the file finds",
+     countOff.length === 0, countOff.length ? few(countOff) : `${books.length} page(s) recounted from their own sections`);
++  check("K4b  and they are the book's own counts: its words, its scribal marks and its words that carry a reading, off the zone's receipt",
++    bookOff.length === 0 && booksHeld > 0, bookOff.length ? few(bookOff) : `${booksHeld} book(s) against their zones' own counts`);
+ }
+ 
+ // ── K5 / K6 · the index, which is the root of the tree ────────────────────────
+diff --git a/reader/tools/check-lane-state-v1.mjs b/reader/tools/check-lane-state-v1.mjs
+index ca41f6ae1f..007145597a 100644
+--- a/reader/tools/check-lane-state-v1.mjs
++++ b/reader/tools/check-lane-state-v1.mjs
+@@ -107,6 +107,20 @@ const onDisk = zonesOnDisk().length, served = zonesServed().length;
+ check("S6  the shelf it reports is the shelf on disk",
+   s.shelf.zones_on_disk === onDisk && s.shelf.zones_served === served && s.shelf.withheld === onDisk - served,
+   `${s.shelf.zones_served} served of ${s.shelf.zones_on_disk} on disk`);
++// S6b · and what is held off the door is what the shelf's own record says,
++// so a peer lane does not read "withheld 0" as "nothing is held"
++{
++  const recPath = join(ZONES, "..", "zone-store-v1.json");
++  const rec = existsSync(recPath) ? JSON.parse(readFileSync(recPath, "utf8")) : null;
++  const held = rec && rec.held_off_the_door ? rec.held_off_the_door : null;
++  const said = s.shelf.held_off_the_door || null;
++  check("S6b  the works held off the door are the shelf record's count, not a count of this directory",
++    held ? !!said && said.zones === held.zones && said.sidecars === held.sidecars : said === null,
++    held ? `${said ? said.zones : "nothing said"} held, the record says ${held.zones}` : "the shelf's record holds nothing off the door, and the state says nothing");
++}
++// S6c · the day of the round, never the clock
++check("S6c  built_at is the round's day, not a clock time",
++  /^\d{4}-\d{2}-\d{2}$/u.test(String(s.built_at || "")), String(s.built_at));
+ 
+ // S7 · the sidecars, counted off the files rather than off the summary.
+ const files = existsSync(ZONES) ? readdirSync(ZONES) : [];
+diff --git a/reader/tools/check-lattice-projection-v1.mjs b/reader/tools/check-lattice-projection-v1.mjs
+index 371c7c3c67..0ae6b92997 100644
+--- a/reader/tools/check-lattice-projection-v1.mjs
++++ b/reader/tools/check-lattice-projection-v1.mjs
+@@ -21,6 +21,19 @@
+ //   L4  in the sidecar every graded surface grades exactly the cards its key
+ //       carries, in the lattice's order, and every first-under entry names a
+ //       card of that key
++//   L4b every order's leader is credited to a row that carries its reading
++//       under the store's own rule (carriersOf: the printed form), with that
++//       row's wording year; under the orders that sort the whole pool
++//       (masoretic, vowels differ, cites here) it is the OLDEST such row —
++//       the source the card credits for the same pill. (Until 10 November
++//       2026 the projector found carriers by the text as written, and 16,816
++//       leaders on the 39 books stood on part of their carriers.)
++//   L4c the citations are the verse's: a surface's entry for another verse
++//       (v[<verse>]) lists cards of its key, differs from the first verse's
++//       list, and names a leader the store holds; and where the corpus
++//       lane's lattice is on this machine (--lattice <dir>, or LATTICE_DIR)
++//       every graded word place reads exactly the cards that name its own
++//       verse. Without the lattice that half says it was not judged.
+ //   L5  the fingerprints join the store: for the keys the sidecar carries,
+ //       the store's rows find their lattice card by fingerprint — and where
+ //       one does not, the count is on the record, never a guess
+@@ -34,8 +47,9 @@
+ //       line of such a word is still bare — the frame's finding stands
+ //
+ // Run: node tools/check-lattice-projection-v1.mjs [--zones data/zones]
+-import { readFileSync, readdirSync, existsSync } from "node:fs";
+-import { gunzipSync } from "node:zlib";
++import { readFileSync, readdirSync, existsSync, createReadStream } from "node:fs";
++import { gunzipSync, createGunzip } from "node:zlib";
++import { createInterface } from "node:readline";
+ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { openRouteStore } from "./gloss-store-v1.mjs";
+@@ -47,6 +61,9 @@ const HERE = dirname(fileURLToPath(import.meta.url));
+ const K3 = join(HERE, "..");
+ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
+ const ZONES = arg("zones", join(K3, "data", "zones"));
++// the corpus lane's lattice, where this machine holds it (it is too large to
++// keep beside the door): L4c's second half reads it
++const LATTICE = arg("lattice", process.env.LATTICE_DIR || null);
+ const PROJECTOR = join(HERE, "project-lattice-v12-v1.mjs");
+ 
+ let bad = 0;
+@@ -78,7 +95,10 @@ for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin") && !isSideca
+ if (!layered.length) { console.log("\nSKIPPED — no zone on this shelf carries the lattice layer"); process.exit(bad ? 1 : 3); }
+ console.log(`\n— ${layered.length} zones carry the lattice layer —`);
+ 
+-const l2 = [], l3 = [], l4 = [], l5 = [], l6 = [], l8 = [];
++const l2 = [], l3 = [], l4 = [], l4b = [], l4c = [], l5 = [], l6 = [], l8 = [];
++let leadersHeld = 0, versesOwn = 0, placesRead = 0, booksRead = 0;
++const labelOfRow = (row) => (store.index.m_sources[row[3]] || {}).label;
++const yearOfRow = (row) => { const y = store.wordingYear(row); return Number.isFinite(y) ? y : null; };
+ let hgAll = 0, ldAll = 0, surfacesAll = 0, joinRows = 0, joinHits = 0, pcAll = 0, pcPieces = 0, bareAll = 0;
+ const ROLES = new Set(["prefix", "core", "suffix", "between_cores"]);
+ for (const { slug, z, t } of layered) {
+@@ -177,6 +197,60 @@ for (const { slug, z, t } of layered) {
+       else if (!["c", "l", "la", "s"].includes(ch) && !has(ch)) badFirst += 1;
+     }
+   }
++  // L4b — who a leader is credited to
++  {
++    let notACarrier = 0, notTheOldest = 0;
++    const WHOLE_POOL = new Set(["m", "x", "c"]);
++    const judge = (k, ch, first) => {
++      if (!Array.isArray(first)) return;
++      leadersHeld += 1;
++      const carriers = store.carriersOf(store.routesFor(k) || [], first[0]);
++      if (!carriers.some((row) => labelOfRow(row) === first[1] && yearOfRow(row) === (first[3] ?? null))) { notACarrier += 1; return; }
++      if (WHOLE_POOL.has(ch) && !(labelOfRow(carriers[0]) === first[1] && yearOfRow(carriers[0]) === (first[3] ?? null))) notTheOldest += 1;
++    };
++    for (const gr of Object.values(grades)) {
++      for (const [ch, first] of Object.entries(gr.o || {})) judge(gr.k, ch, first);
++      for (const own of Object.values(gr.v || {})) judge(gr.k, "c", own && own.c);
++    }
++    if (notACarrier) note(l4b, `${slug}: ${notACarrier} leaders credited to a row that does not carry the reading`);
++    if (notTheOldest) note(l4b, `${slug}: ${notTheOldest} leaders of a whole-pool order credited to another carrier than the oldest`);
++  }
++  // L4c — the verse's own citations, as written
++  {
++    let malformed = 0;
++    for (const gr of Object.values(grades)) {
++      const r = routes[gr.k];
++      for (const own of Object.values(gr.v || {})) {
++        versesOwn += 1;
++        const ok = own && Array.isArray(own.n) && r && own.n.every((ix) => Number.isInteger(ix) && ix >= 0 && ix < r.f.length)
++          && JSON.stringify(own.n) !== JSON.stringify(gr.n || [])
++          && (own.c === null || (Array.isArray(own.c) && own.c.length === 4 && labels.has(own.c[1])))
++          && (own.n.length > 0 || own.c === null);
++        if (!ok) malformed += 1;
++      }
++    }
++    if (malformed) note(l4c, `${slug}: ${malformed} per-verse entries are not a list of the key's cards that differs from the first verse's, with a leader the store holds`);
++  }
++  // ... and against the lattice itself, place by place, where it is here
++  if (LATTICE && existsSync(join(LATTICE, `positions-${slug}-v12.jsonl.gz`))) {
++    booksRead += 1;
++    let wrong = 0;
++    const rl = createInterface({ input: createReadStream(join(LATTICE, `positions-${slug}-v12.jsonl.gz`)).pipe(createGunzip()), crlfDelay: Infinity });
++    for await (const line of rl) {
++      if (!line) continue;
++      const p = JSON.parse(line);
++      if (p.c0 !== "ON") continue;
++      for (const m of p.megacompspan || []) {
++        const gr = grades[m.surface], rg = m.route_grades, r = routes[m.key];
++        if (!gr || !rg || !r) continue;
++        placesRead += 1;
++        const theirs = (rg.names_this_verse || []).filter((ix) => ix < r.f.length);
++        const ours = gr.v && Object.prototype.hasOwnProperty.call(gr.v, p.ref) ? gr.v[p.ref].n : (gr.n || []);
++        if (JSON.stringify(theirs) !== JSON.stringify(ours)) wrong += 1;
++      }
++    }
++    if (wrong) note(l4c, `${slug}: ${wrong} graded word places read another verse's citing cards`);
++  }
+   if (badLen) note(l4, `${slug}: ${badLen} surfaces grade a different number of cards than their key carries`);
+   if (badFirst) note(l4, `${slug}: ${badFirst} first-under entries name no card or own-graded row of their key`);
+   if (s.counts.surfaces_graded !== Object.keys(grades).length || s.counts.keys !== Object.keys(routes).length) note(l4, `${slug}: sidecar counts do not match its tables`);
+@@ -206,6 +280,12 @@ for (const { slug, z, t } of layered) {
+ check("L2  every layered zone carries the receipt, and its sidecar is beside it, pinned, of the named schema", !l2.length, l2.length ? few(l2) : `${layered.length} sidecars, each pinned`);
+ check("L3  hg stands only on a word with a headword, with its M, a source the store holds; the counts are recounted", !l3.length, l3.length ? few(l3) : `${hgAll.toLocaleString()} headword readings, ${ldAll.toLocaleString()} Leningrad differences, as recorded`);
+ check("L4  every graded surface grades its key's cards in the lattice's order; every first-under names a card", !l4.length, l4.length ? few(l4) : `${surfacesAll.toLocaleString()} pointed surfaces graded`);
++check("L4b every leader is credited to a carrier of its reading by the store's own rule, and under a whole-pool order to the oldest", !l4b.length,
++  l4b.length ? few(l4b) : `${leadersHeld.toLocaleString("en-US")} leaders`);
++check("L4c the citations are the verse's: every per-verse entry lists its key's cards, differs from the first verse's, and names a held leader", !l4c.length,
++  l4c.length ? few(l4c) : `${versesOwn.toLocaleString("en-US")} verses carry their own list beside their surface's first${booksRead ? `; ${placesRead.toLocaleString("en-US")} graded word places on ${booksRead} books read against the lattice, each its own verse's cards` : ""}`);
++if (!booksRead) console.log(`  --  L4c's second half was not judged here: the corpus lane's lattice is not on this machine (--lattice <dir> or LATTICE_DIR), so no word place was read against the lattice's own list for its verse`);
++else if (booksRead < layered.length) console.log(`  --  L4c's second half was not judged for ${layered.length - booksRead} of ${layered.length} books: their positions file is not in ${LATTICE}`);
+ check("L5  the fingerprints join the store", !l5.length && joinHits > 0, l5.length ? few(l5) : `${joinHits.toLocaleString()} of ${joinRows.toLocaleString()} store rows find their lattice card (${(100 * joinHits / Math.max(1, joinRows)).toFixed(1)}%); the rest sort after the graded ones, never dropped`);
+ check("L6  the sidecar's sources are the sealed lattice files, by hash, as the receipt records them", !l6.length, l6.length ? few(l6) : "positions and routes sha256 agree on every layered zone");
+ check("L8  the parts ride only on a word nothing answers, each piece named and witnessed", !l8.length,
+diff --git a/reader/tools/emit-apparatus-baseline-v1.mjs b/reader/tools/emit-apparatus-baseline-v1.mjs
+index f9f10d3254..81ee73d6df 100644
+--- a/reader/tools/emit-apparatus-baseline-v1.mjs
++++ b/reader/tools/emit-apparatus-baseline-v1.mjs
+@@ -39,6 +39,7 @@
+ // were arrived at without choosing, which is the part that needs fixing.
+ //
+ // Run: node tools/emit-apparatus-baseline-v1.mjs
++import { startedAs } from "./main-guard-v1.mjs";
+ import { readFileSync, writeFileSync, existsSync } from "node:fs";
+ import { createHash } from "node:crypto";
+ import { dirname, join } from "node:path";
+@@ -66,7 +67,7 @@ export const APPARATUS_CLASSES = [
+ // passed against a census stripped on purpose. A check that rebuilds its own
+ // baseline cannot fail, and a tool with side effects at import is how that
+ // happens without anyone writing it down.
+-if (import.meta.url !== `file://${process.argv[1]}`) {
++if (!startedAs(import.meta.url)) {
+   // imported for APPARATUS_CLASSES and BASELINE_RULE_ID; write nothing
+ } else {
+ 
+diff --git a/reader/tools/emit-lane-state-v1.mjs b/reader/tools/emit-lane-state-v1.mjs
+index 7946188eb7..14378e10c6 100644
+--- a/reader/tools/emit-lane-state-v1.mjs
++++ b/reader/tools/emit-lane-state-v1.mjs
+@@ -41,13 +41,17 @@
+ // is picked by name out of the records, never spread wholesale, because a
+ // spread copies whatever a record happens to hold today.
+ //
+-// Run: node tools/emit-lane-state-v1.mjs [--out data/lane-state-v1.json]
++// Run: node tools/emit-lane-state-v1.mjs --stamp YYYY-MM-DD [--out data/lane-state-v1.json]
++//      (the round's day; the round passes it. Without it the record keeps the
++//      day it already carries, so a run that changes nothing writes the same
++//      bytes.)
+ 
+ import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
+ import { gunzipSync } from "node:zlib";
+ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+-import { zonesOnDisk, zonesServed, SIDECAR_SUFFIXES, baseOfSidecar } from "./zones-on-disk-v1.mjs";
++import { startedAs } from "./main-guard-v1.mjs";
++import { zonesOnDisk, zonesServed, SIDECAR_SUFFIXES, baseOfSidecar, ZONE_STORE_RECORD } from "./zones-on-disk-v1.mjs";
+ 
+ const HERE = dirname(fileURLToPath(import.meta.url));
+ const K3 = join(HERE, "..");
+@@ -68,7 +72,11 @@ export const LANE_STATE_RULE_ID = "lane-state-rule-v1-one-fetch-says-what-this-l
+ const readJson = (p) => (existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : null);
+ const readBin = (p) => (existsSync(p) ? JSON.parse(gunzipSync(readFileSync(p)).toString("utf8")) : null);
+ 
+-export const laneState = () => {
++// `day`: the round's stamp. A record of what is served carries the day of the
++// round that wrote it, never the clock: the clock made this file differ on
++// every round with nothing changed (in the twenty commits before 10 November
++// 2026 that touched it, built_at was the only line that moved).
++export const laneState = (day = null) => {
+   const index = readJson(join(STORE, "index.json"));
+   const manifest = readJson(join(STORE, "store-manifest-v1.json"));
+   const admission = readJson(join(K3, "data", "language-admission-v1.json"));
+@@ -78,8 +86,13 @@ export const laneState = () => {
+   // zonesServed, not zonesOnDisk. A check that asks "what does the door offer"
+   // wants what is served; the two differ and the difference is a fact worth
+   // carrying, so both are here with their names on them.
+-  const onDisk = zonesOnDisk();
+-  const served = zonesServed();
++  const onDisk = zonesOnDisk(ZONES);
++  const served = zonesServed(ZONES);
++  // what the shelf's own record says is held off the door (data/zone-store-v1.json,
++  // written by tools/emit-zone-store-v1.mjs): the works built and sealed whose
++  // files are not in this tree
++  const storeRecord = readJson(join(ZONES, "..", ZONE_STORE_RECORD));
++  const heldOff = (storeRecord && storeRecord.held_off_the_door) || null;
+   const sidecars = {};
+   for (const suffix of SIDECAR_SUFFIXES) {
+     const files = existsSync(ZONES) ? readdirSync(ZONES).filter((f) => f.endsWith(suffix)) : [];
+@@ -129,7 +142,7 @@ export const laneState = () => {
+       "one fetch that says what this lane is serving right now, so a peer lane can tell whether it is "
+       + "looking at the same store without asking anybody. Every number is read from the artifact that "
+       + "owns it at the moment this file is written.",
+-    built_at: new Date().toISOString(),
++    built_at: day,
+ 
+     store: {
+       scope: "the route store this site serves from",
+@@ -181,6 +194,12 @@ export const laneState = () => {
+       zones_on_disk: onDisk.length,
+       zones_served: served.length,
+       withheld: onDisk.length - served.length,
++      withheld_says: "works whose file is in this tree and which the gate does not serve",
++      // read from the shelf's record, never counted here: the works the gate
++      // does not serve are kept out of the published tree, so the directory
++      // cannot say how many there are (until 10 November 2026 this block said
++      // "withheld: 0" beside a gate receipt that counts 3,481 works)
++      held_off_the_door: heldOff ? { zones: heldOff.zones ?? null, sidecars: heldOff.sidecars ?? null, record: `reader/data/${ZONE_STORE_RECORD}`, says: "works built and sealed whose files are not in the published tree; the record seals them and says where their bytes stand" } : null,
+       sidecars,
+     },
+ 
+@@ -204,19 +223,28 @@ export const laneState = () => {
+       "that the works not served are unservable — most are held on a named gate, and the gate is in "
+         + "the build plan, not here",
+       "anything about the corpus lane's own state; this file describes one lane and says so",
+-      "that these numbers were true a minute ago. It is written by a build, and built_at is when",
++      "that these numbers were true a minute ago. It is written by a round, and built_at is that round's day",
+     ],
+   };
+ 
+   return state;
+ };
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
+-  const state = laneState();
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
++  const given = arg("stamp", null);
++  if (given !== null && !/^\d{4}-\d{2}-\d{2}$/u.test(String(given))) { console.error("--stamp YYYY-MM-DD"); process.exit(2); }
++  // no stamp: the day the record already carries stands (a run by hand that
++  // changes nothing writes the same bytes); a record written before this
++  // rule carries a clock time, and its day is kept
++  const before = readJson(OUT);
++  const day = given || (before && typeof before.built_at === "string" ? before.built_at.slice(0, 10) : null);
++  if (!day) { console.error("no --stamp given and no record to keep the day of"); process.exit(2); }
++  const state = laneState(day);
+   writeFileSync(OUT, `${JSON.stringify(state, null, 1)}\n`);
+   console.log(`${OUT.replace(`${K3}/`, "")}: store ${state.store.version} · ${state.store.sources} sources · `
+     + `${state.shelf.zones_served} of ${state.shelf.zones_on_disk} works served · `
+     + `${state.language_admission.sources_struck} struck `
+-    + `(${(state.language_admission.routes_struck || 0).toLocaleString()} routes) · `
++    + `(${(state.language_admission.routes_struck || 0).toLocaleString("en-US")} routes) · `
+     + `lattice on ${state.lattice.books_carrying_one} book(s)`);
+ }
+diff --git a/reader/tools/emit-ledger-index-v1.mjs b/reader/tools/emit-ledger-index-v1.mjs
+index c5162ed2c9..f37e0e10aa 100644
+--- a/reader/tools/emit-ledger-index-v1.mjs
++++ b/reader/tools/emit-ledger-index-v1.mjs
+@@ -22,10 +22,19 @@
+ // reason silence is refused of a source's language: an absent claim has
+ // never been a claim anywhere in this project.
+ //
+-// Run: node tools/emit-ledger-index-v1.mjs [--out data/ledger-index-v1.json]
++// WHAT IT CAN AND CANNOT SAY ABOUT A RECORD. The letter is declared, so it
++// is known. Which records a tool WRITES is not declared anywhere, and
++// reading a tool's source can only tell which records it NAMES: a tool that
++// reads a record names it as surely as the tool that writes it. So the index
++// lists, per tool, the records its source names, under that word. Until 10
++// November 2026 the list was called "writes".
++//
++// Run: node tools/emit-ledger-index-v1.mjs --stamp YYYY-MM-DD [--out data/ledger-index-v1.json]
++//      (the round's day; without it the record keeps the day it carries)
+ import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
++import { startedAs } from "./main-guard-v1.mjs";
+ 
+ const HERE = dirname(fileURLToPath(import.meta.url));
+ const K3 = join(HERE, "..");
+@@ -56,7 +65,13 @@ export const readDeclaration = (src) => {
+   return { letters, updates_no_letter: raw === "-", why: why.join(" ") };
+ };
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
++  const given = arg("stamp", null);
++  if (given !== null && !/^\d{4}-\d{2}-\d{2}$/u.test(String(given))) { console.error("--stamp YYYY-MM-DD"); process.exit(2); }
++  const before = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : null;
++  const day = given || (before && typeof before.emitted_on === "string" ? before.emitted_on.slice(0, 10) : null);
++  if (!day) { console.error("no --stamp given and no record to keep the day of"); process.exit(2); }
+   // The letters are read from the frame record so this file cannot invent one.
+   const win = {};
+   new Function("window", readFileSync(join(K3, "data", "frame-record-v1.js"), "utf8"))(win);
+@@ -67,18 +82,19 @@ if (import.meta.url === `file://${process.argv[1]}`) {
+   const byLetter = {}, byTool = {}, undeclared = [], unknownLetters = [];
+   for (const f of tools) {
+     const src = readFileSync(join(K3, "tools", f), "utf8");
+-    // Only a tool that writes into data/ is asked. A check reads; it is not a ledger.
++    // The records under data/ this tool's source NAMES, read or written.
+     // Two forms in this tree: a literal "data/x.json" path, and the join form
+     // join(K3, "data", "x.json") where the separator is an argument boundary.
+     // Missing the second made two records read as unclaimed when they are not.
+-    const writes = [
++    const names = [
+       ...[...src.matchAll(/data[/\\]([a-z0-9-]+\.json)/gi)].map((m) => m[1]),
+       ...[...src.matchAll(/"data"\s*,\s*"([a-z0-9-]+\.json)"/gi)].map((m) => m[1]),
+     ];
+-    const isWriter = /writeFileSync/.test(src) && writes.length > 0;
++    // a tool that writes a file and names a record is asked for a declaration
++    const isWriter = /writeFileSync/.test(src) && names.length > 0;
+     const d = readDeclaration(src);
+     if (d) {
+-      byTool[f] = { ...d, writes: [...new Set(writes)] };
++      byTool[f] = { ...d, names: [...new Set(names)] };
+       for (const L of d.letters) {
+         if (!KNOWN.has(L)) unknownLetters.push(`${f} declares ${L}`);
+         (byLetter[L] ||= []).push(f);
+@@ -89,22 +105,23 @@ if (import.meta.url === `file://${process.argv[1]}`) {
+   // and the other direction: a record on the shelf with nobody claiming it
+   const records = existsSync(join(K3, "data"))
+     ? readdirSync(join(K3, "data")).filter((f) => f.endsWith(".json")).sort() : [];
+-  const claimed = new Set(Object.values(byTool).flatMap((t) => t.writes));
+-  const unclaimed = records.filter((r) => !claimed.has(r));
++  const named = new Set(Object.values(byTool).flatMap((t) => t.names));
++  const unclaimed = records.filter((r) => !named.has(r));
+ 
+   const out = {
+     schema_version: 1,
+     rule_id: LEDGER_RULE_ID,
+     emitted_by: "tools/emit-ledger-index-v1.mjs",
+-    emitted_on: new Date().toISOString().slice(0, 10),
++    emitted_on: day,
+     what_this_is: "which letter of the frame each of this lane's records is the ledger for, read "
+       + "from the '// LEDGER:' declaration in the header of the tool that writes it. Declared by "
+       + "the writer, never inferred here.",
+     letters_known_to_the_frame: [...KNOWN],
+     by_letter: Object.fromEntries(Object.entries(byLetter).sort()),
+     by_tool: byTool,
++    by_tool_says: "per tool: its letters, its own words about them, and names — every record under data/ that its source names, whether it reads the record or writes it (a tool's source cannot say which)",
+     tools_that_write_a_record_and_declare_nothing: undeclared,
+-    records_no_tool_in_this_tree_claims_to_write: unclaimed,
++    records_no_declared_tool_names: unclaimed,
+     letters_declared_that_the_frame_does_not_name: unknownLetters,
+     standing_caveat: "this indexes THIS LANE only. A letter with no tool here is not a letter "
+       + "nobody keeps — the corpus lane keeps most of them. An empty list under a letter means "
+@@ -118,6 +135,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
+   const silent = Object.entries(byTool).filter(([, t]) => t.updates_no_letter).map(([f]) => f.replace(/\.mjs$/, ""));
+   if (silent.length) console.log(`\n  no letter  ${silent.join(", ")}`);
+   if (undeclared.length) console.log(`\n  UNDECLARED (writes a record, names no letter): ${undeclared.join(", ")}`);
+-  if (unclaimed.length) console.log(`\n  unclaimed records: ${unclaimed.join(", ")}`);
++  if (unclaimed.length) console.log(`\n  records no declared tool names: ${unclaimed.join(", ")}`);
+   console.log(`\n${OUT}`);
+ }
+diff --git a/reader/tools/emit-pointing-grade-recount-v1.mjs b/reader/tools/emit-pointing-grade-recount-v1.mjs
+index f279431e4e..1c246a8b81 100644
+--- a/reader/tools/emit-pointing-grade-recount-v1.mjs
++++ b/reader/tools/emit-pointing-grade-recount-v1.mjs
+@@ -16,6 +16,7 @@
+ // store) is counted apart and compared nowhere.
+ //
+ // Run: node tools/emit-pointing-grade-recount-v1.mjs [--store data/route-store] [--out data/pointing-grade-recount-v1.json]
++import { startedAs } from "./main-guard-v1.mjs";
+ import { readFileSync, writeFileSync, existsSync } from "node:fs";
+ import { gunzipSync } from "node:zlib";
+ import { openRouteStore } from "./gloss-store-v1.mjs";
+@@ -54,7 +55,8 @@ export const recountBook = (store, b, cross = {}) => {
+ };
+ 
+ // a library to the guard, a program at the shell: nothing below runs on import
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+   const STORE = arg("--store", "data/route-store"), OUT = arg("--out", "data/pointing-grade-recount-v1.json");
+   const store = openRouteStore(STORE);
+diff --git a/reader/tools/emit-struck-ranks-v1.mjs b/reader/tools/emit-struck-ranks-v1.mjs
+index 637ab22b12..0a528a7428 100644
+--- a/reader/tools/emit-struck-ranks-v1.mjs
++++ b/reader/tools/emit-struck-ranks-v1.mjs
+@@ -24,6 +24,7 @@
+ //
+ // Run: node tools/emit-struck-ranks-v1.mjs --before <pre-strike store dir>
+ //        [--after data/route-store] [--out data/route-store/struck-ranks-v1.json.gz]
++import { startedAs } from "./main-guard-v1.mjs";
+ import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+ import { gunzipSync, gzipSync } from "node:zlib";
+ import { dirname, join } from "node:path";
+@@ -107,7 +108,8 @@ export const recordStruckRanks = (storeDir, diff, made) => {
+   return record;
+ };
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
+   const BEFORE = arg("before", null);
+   const AFTER = arg("after", join(K3, "data", "route-store"));
+diff --git a/reader/tools/enrich-gloss-m-v1.mjs b/reader/tools/enrich-gloss-m-v1.mjs
+index 4c2cbdac00..e92cc41a36 100644
+--- a/reader/tools/enrich-gloss-m-v1.mjs
++++ b/reader/tools/enrich-gloss-m-v1.mjs
+@@ -19,14 +19,25 @@
+ //
+ // Idempotent: gloss_m is recomputed whole on every run.
+ //
+-// Run: node tools/enrich-gloss-m-v1.mjs [--zones data/zones]
+-import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+-import { gzipSync, gunzipSync } from "node:zlib";
++// Run: node tools/enrich-gloss-m-v1.mjs --stamp YYYY-MM-DD [--zones data/zones]
++//
++// WHERE IT STANDS (10 November 2026). Every served zone carries the M its
++// builder wrote, so this pass finds nothing to serve and leaves every zone
++// alone; and regloss-zone derives gloss_m, with each reading's carriers and
++// its alternate, on every projection. It is kept for a zone built before
++// 2 September 2026 that might come back onto the shelf. Until that day it
++// replaced a zone's whole post-build receipt (erasing every other tool's
++// typed write), dated it by the clock and wrote the zone at gzip's default
++// level; it types and writes through tools/zone-post-build-v1.mjs now.
++import { readFileSync, readdirSync } from "node:fs";
++import { gunzipSync } from "node:zlib";
+ import { join, dirname } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { openRouteStore } from "./gloss-store-v1.mjs";
+ import { glossSource as glossSourceFor } from "./gloss-m-v1.mjs";
+ import { isSidecar } from "./zones-on-disk-v1.mjs";
++import { typePostBuildWrite, writeZone, EXEMPTION_RULE_ID } from "./zone-post-build-v1.mjs";
++export { EXEMPTION_RULE_ID };
+ 
+ const HERE = dirname(fileURLToPath(import.meta.url));
+ const K3 = join(HERE, "..");
+@@ -45,8 +56,9 @@ const STORE = openRouteStore(join(K3, "data", "route-store"));
+ // zone's rebuild) — so the single-pass check counts it instead of faulting
+ // it, and a zone the builder already served is left alone.
+ const glossSource = (key, text) => glossSourceFor(STORE, key, text);
+-export const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+ const WROTE = ["gloss_m", "gloss_layer.store_version"];
++// the day of the round that runs this; asked for only when a zone is written
++const STAMP = arg("stamp", null);
+ 
+ const bins = readdirSync(ZONES)
+   .filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f))
+@@ -79,20 +91,22 @@ for (const f of bins) {
+   // the struck store. It is typed here under the same exemption, named to
+   // its writer, so the record says who wrote what rather than one tool
+   // claiming another's field.
+-  const wrote = [...WROTE];
+-  const byField = Object.fromEntries(WROTE.map((f) => [f, "tools/enrich-gloss-m-v1.mjs"]));
+-  if (gl.language_admission) { wrote.push("gloss_layer.language_admission"); byField["gloss_layer.language_admission"] = "tools/redrive-zone-gloss-v1.mjs"; }
+-  ef.post_build = {
+-    rule_id: EXEMPTION_RULE_ID,
+-    by: "tools/enrich-gloss-m-v1.mjs",
+-    wrote,
+-    by_field: byField,
+-    store_version: STORE.index.store_version || null,
++  if (!/^\d{4}-\d{2}-\d{2}$/u.test(String(STAMP || ""))) { console.error(`${f}: this zone would be written, and a zone is written under the day of its round: --stamp YYYY-MM-DD`); process.exit(2); }
++  const pb = typePostBuildWrite(z, {
++    tool: "tools/enrich-gloss-m-v1.mjs",
++    fields: WROTE,
+     why: "this zone was built before build-zone wrote gloss_m in its single pass (2026-09-02); its M is derived here from the store now on disk, the same derivation the builder runs",
+     expires: "with this zone's rebuild by a build-zone that writes gloss_m (gloss_layer.m_layer present)",
+-    on: new Date().toISOString().slice(0, 10),
+-  };
+-  writeFileSync(path, gzipSync(Buffer.from(JSON.stringify(z), "utf8")));
++    stamp: STAMP,
++  });
++  pb.store_version = STORE.index.store_version || null;
++  // the redrive's own mark, named to its writer and to no other
++  if (gl.language_admission) {
++    const f2 = "gloss_layer.language_admission";
++    if (!pb.wrote.includes(f2)) pb.wrote.push(f2);
++    if (!pb.by_field[f2]) pb.by_field[f2] = "tools/redrive-zone-gloss-v1.mjs";
++  }
++  writeZone(path, z);
+   zones += 1;
+   if (zoneDrift) driftZones.push(`${f.replace(/\.bin$/, "")}: ${zoneDrift}`);
+ }
+diff --git a/reader/tools/gloss-m-v1.mjs b/reader/tools/gloss-m-v1.mjs
+index 4b78e3a649..053d9da089 100644
+--- a/reader/tools/gloss-m-v1.mjs
++++ b/reader/tools/gloss-m-v1.mjs
+@@ -16,7 +16,6 @@
+ // not write the M it did not know how to derive. The M is a build input now:
+ // read before the zone is written, written during, never after.
+ import { readFileSync } from "node:fs";
+-import { readingKey } from "./gloss-store-v1.mjs";
+ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ 
+@@ -53,16 +52,9 @@ export const glossSource = (store, key, text) => {
+   if (!key || !text) return null;
+   const routes = store.routesFor(key);
+   if (!routes) return null;
+-  const want = readingKey(text);
+-  const hits = routes.filter((row) => {
+-    if (!store.index.m_sources[row[3]]) return false;
+-    return store.readingsOf(row).some((x) => readingKey(x) === want);
+-  });
++  // who carries it, oldest wording first: the store's own rule (carriersOf)
++  const hits = store.carriersOf(routes, text);
+   if (!hits.length) return null;
+-  hits.sort((a, c) => {
+-    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
+-    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
+-  });
+   const m = store.index.m_sources[hits[0][3]];
+   return { lic: licenseName(m.licensePosture), m: m.label || "", y: m.sourceYear || "", ...wordingYearOf(hits[0]) };
+ };
+@@ -95,12 +87,8 @@ export const glossSource = (store, key, text) => {
+ // alternate would otherwise be named as the alternate's witness while
+ // switched off, which is the switch contradicted on its own chip.
+ const sourceAmong = (store, key, text, omit) => {
+-  const routes = store.routesFor(key) || [];
+-  const want = readingKey(text);
+-  const hits = routes.filter((row) => store.index.m_sources[row[3]] && !omit.has(row[3])
+-    && store.readingsOf(row).some((x) => readingKey(x) === want));
++  const hits = store.carriersOf(store.routesFor(key) || [], text, omit);
+   if (!hits.length) return null;
+-  hits.sort((a, c) => { const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10); return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9); });
+   const m = store.index.m_sources[hits[0][3]];
+   return { lic: licenseName(m.licensePosture), m: m.label || "", y: m.sourceYear || "", ...wordingYearOf(hits[0]), by: [...new Set(hits.map((r) => r[3]))].sort() };
+ };
+@@ -110,10 +98,7 @@ export const glossCarriers = (store, key, text) => {
+   if (!key || !text) return null;
+   const routes = store.routesFor(key);
+   if (!routes) return null;
+-  const want = readingKey(text);
+-  const by = [...new Set(routes.filter((row) => store.index.m_sources[row[3]]
+-    && store.readingsOf(row).some((x) => readingKey(x) === want))
+-    .map((row) => row[3]))].sort();
++  const by = [...new Set(store.carriersOf(routes, text).map((row) => row[3]))].sort();
+   if (!by.length) return null;
+   const omit = new Set(by);
+   const next = store.glossFor(key, "oldest", null, omit);
+diff --git a/reader/tools/gloss-store-v1.mjs b/reader/tools/gloss-store-v1.mjs
+index 2c4b743bbf..29baba8f89 100644
+--- a/reader/tools/gloss-store-v1.mjs
++++ b/reader/tools/gloss-store-v1.mjs
+@@ -105,10 +105,21 @@ export const openRouteStore = (storeDir) => {
+   if (index.schema_version !== "ROUTE_STORE_V1" && index.schema_version !== "ROUTE_STORE_V2")
+     throw new Error(`unexpected store schema ${index.schema_version} — refusing output`);
+ 
++  // A SHARD THE INDEX COUNTS AND THE DISK DOES NOT HOLD IS A BROKEN COPY.
++  // A key lives in the shard named by the first two hex digits of its
++  // sha256, so a store whose index counts 256 shards has every one of them.
++  // Until 10 November 2026 an absent shard file was read as a shard with no
++  // keys: every key of it answered "the catalog has no entry", and whatever
++  // was built from that copy counted the hole as the catalog's own silence.
++  // A store whose index counts fewer shards (a fixture, a store of a few
++  // keys) may lack the others, and there an absent shard is an empty one.
++  const everyShardCounted = ((index.counts || {}).shards === 256);
+   const shardCache = new Map();
+   const shardBody = (name) => {
+     if (!shardCache.has(name)) {
+       const p = join(storeDir, "shards", `${name}.bin`);
++      if (!existsSync(p) && everyShardCounted)
++        throw new Error(`the store at ${storeDir} counts 256 shards in its index and shard ${name}.bin is not here: this copy is not whole — refusing output`);
+       shardCache.set(name, existsSync(p) ? JSON.parse(gunzipSync(readFileSync(p)).toString("utf8")) : {});
+     }
+     return shardCache.get(name);
+@@ -173,6 +184,30 @@ export const openRouteStore = (storeDir) => {
+     const row = rowOfText(k, text, mIds);
+     return row ? readingsOf(row) : [];
+   };
++  /** WHO CARRIES A READING. One rule, asked here by every tool that credits a
++   *  reading or sorts by who stands behind it (the credit beside the line, the
++   *  lattice's leaders, the door's chips, the chain's links): the admitted rows
++   *  of `routes` whose own readings, under readingsOf, print as `text` prints
++   *  (readingKey, rule 3), oldest WORDING year first (the row's own year, row[4],
++   *  never the edition year of its source), a row with no year after every dated
++   *  one, the catalog's row order breaking ties. `omit` leaves a set of sources
++   *  out before anything is matched, as readingPool's does.
++   *
++   *  Until 10 November 2026 this was typed again wherever it was needed, and
++   *  the copies had drifted: the projector matched the reading as written, so
++   *  Strong's «Eden.» was not counted as carrying «Eden» and a lattice order's
++   *  leader stood on an incomplete set of carriers; the chain chose the oldest
++   *  carrier by the edition year, which most sources do not state; the door's
++   *  chips matched as written too. */
++  const wordingYear = (row) => { const y = Number.parseInt(row && row[4], 10); return Number.isInteger(y) ? y : Infinity; };
++  const carriersOf = (routes, text, omit = null) => {
++    const want = readingKey(text);
++    return (routes || [])
++      .map((row, at) => ({ row, at, y: wordingYear(row) }))
++      .filter((x) => index.m_sources[x.row[3]] && !(omit && omit.has(x.row[3])) && readingsOf(x.row).some((t) => readingKey(t) === want))
++      .sort((a, b) => (a.y === b.y ? 0 : a.y < b.y ? -1 : 1) || a.at - b.at)
++      .map((x) => x.row);
++  };
+   /** The m ids a source label names, for a credit that carries the label alone. */
+   const mIdsOfLabel = (label) => Object.entries(index.m_sources || {}).filter(([, s]) => s && s.label === label).map(([id]) => id);
+ 
+@@ -351,5 +386,5 @@ export const openRouteStore = (storeDir) => {
+   // print" asks the store's own rule instead of re-implementing it (7 November
+   // 2026: the generic split helpers that rode here, packSplit and readingSplit,
+   // retired with the comma rule).
+-  return { index, routesFor, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, ORDERS };
++  return { index, routesFor, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, carriersOf, wordingYear, ORDERS };
+ };
+diff --git a/reader/tools/project-declarations-v1.mjs b/reader/tools/project-declarations-v1.mjs
+index e47c4570c7..46e524ecac 100644
+--- a/reader/tools/project-declarations-v1.mjs
++++ b/reader/tools/project-declarations-v1.mjs
+@@ -60,6 +60,7 @@
+ //
+ // Run: node tools/project-declarations-v1.mjs --ledger <dir holding fix/> [--store data/route-store]
+ //        [--out data/source-declarations-v1.bin] [--receipt data/source-declarations-receipt-v1.json] [--stamp YYYY-MM-DD]
++import { startedAs } from "./main-guard-v1.mjs";
+ import { readFileSync, writeFileSync, existsSync } from "node:fs";
+ import { createHash } from "node:crypto";
+ import { gzipSync } from "node:zlib";
+@@ -100,7 +101,8 @@ export const branchValues = (row, reserved) => (row.values || []).filter((v) =>
+ 
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   const LEDGER = arg("--ledger"), STORE = arg("--store", "data/route-store");
+   const OUT = arg("--out", "data/source-declarations-v1.bin"), RECEIPT = arg("--receipt", "data/source-declarations-receipt-v1.json");
+   const STAMP = arg("--stamp", new Date().toISOString().slice(0, 10));
+diff --git a/reader/tools/project-lattice-v12-v1.mjs b/reader/tools/project-lattice-v12-v1.mjs
+index dcd930fd3c..eb36665b0d 100644
+--- a/reader/tools/project-lattice-v12-v1.mjs
++++ b/reader/tools/project-lattice-v12-v1.mjs
+@@ -45,7 +45,12 @@
+ //      surface the tier of each card (m vowel match · n normalized · x vowel
+ //      mismatch) and which cards cite this verse. Keyed by the pointed
+ //      surface, because the grade is a fact about the pointing and repeats
+-//      wherever the pointing does.
++//      wherever the pointing does. THE CITATIONS DO NOT: which cards name a
++//      verse is a fact about the verse. The record carries the list of the
++//      surface's first verse in the book (n, and its leader o.c), and for
++//      every other verse of that surface whose list differs, that verse's
++//      own list and leader (v[<verse label>] = { n, c }). A verse not named
++//      there reads the first verse's, which is then also its own.
+ //   5. THE PARTS OF A WORD NOBODY DEFINES. v12 carries, per position, the
+ //      word's own pieces — prefix, core, suffix — each with its role and with
+ //      an English from TAHOT and from MACULA. They are taken for ONE case and
+@@ -82,11 +87,11 @@ import { createInterface } from "node:readline";
+ import { join } from "node:path";
+ 
+ import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
+-import { openRouteStore, readingKey } from "./gloss-store-v1.mjs";
++import { openRouteStore } from "./gloss-store-v1.mjs";
+ import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
+ import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
++import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+ export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
+-const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+ const GRADE_CHAR = { VOWEL_MATCH: "m", NORMALIZED: "n", VOWEL_MISMATCH: "x" };
+ 
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+@@ -260,14 +265,47 @@ if (stemsByPlace.size) for (const sec of zone.sections || []) {
+ const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
+   surfaces_unattested: 0, surfaces_with_stems: 0, surfaces_name_leads_under_only: 0, surfaces_with_lenient_leader: 0, surfaces_with_lenient_alternate: 0,
+   hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
+-  ld: 0, grades: 0, verses_held_j_not_sound: 0,
++  ld: 0, grades: 0, verses_with_their_own_citations: 0, verses_held_j_not_sound: 0,
+   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
+   held_examples: [] };
+-const grades = {};          // pointed surface -> { k, g, n }
+-const wordsTouched = [];    // for the recount
++const grades = {};          // pointed surface -> { k, g, n, o, v? }
++// what the sidecar prints of a reading's credit: its text, its oldest
++// carrier's label and licence key, and that row's wording year
++const credit = (text, row) => { const src = store.index.m_sources[row[3]]; const y = store.wordingYear(row); return [text, src.label, src.licensePosture, Number.isFinite(y) ? y : null]; };
++// WHO LEADS UNDER "CITES HERE", for one key and one verse's list of citing
++// cards: the first reading of the store's pool, oldest first, that a citing
++// card carries, credited to its oldest carrier — what the card puts first
++// when it sorts the citing readings ahead. Asked once for the surface's
++// first verse and again for every verse whose list differs. The pool and the
++// cards behind each reading are the key's, so they are kept per key.
++const citeGroupsByKey = new Map();
++const citeGroupsOf = (key, list) => {
++  if (!citeGroupsByKey.has(key)) {
++    const srows = store.routesFor(key) || [];
++    const fpIx = new Map(list.map((c, ix) => [c.fp, ix]));
++    const ixOf = (row) => { const src = store.index.m_sources[row[3]]; const ix = src ? fpIx.get(fnv1a(`${row[1]}|${src.label}`)) : undefined; return ix === undefined ? -1 : ix; };
++    citeGroupsByKey.set(key, store.readingPool(srows, "oldest").map((grp) => {
++      const carriers = store.carriersOf(srows, grp.text);
++      return { text: grp.text, first: carriers[0] || null, cards: carriers.map(ixOf).filter((ix) => ix >= 0) };
++    }));
++  }
++  return citeGroupsByKey.get(key);
++};
++const citesLeader = (key, list, names) => {
++  if (!names.length) return null;
++  const hit = citeGroupsOf(key, list).find((g) => g.cards.some((ix) => names.includes(ix)));
++  return hit && hit.first ? credit(hit.text, hit.first) : null;
++};
++const sameList = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+ for (const sec of zone.sections || []) {
+   const on = (sec.words || []).filter((w) => !w.mark && keysOf(w).length);
+   if (!on.length) continue;
++  // NOTHING OF AN EARLIER PROJECTION STANDS ON A WORD THIS ONE DOES NOT
++  // REACH. What this tool writes on a word is cleared here, before the verse
++  // is proved, so a verse held whole or absent from the lattice carries no
++  // reading, credit or difference a run before this one wrote (until 10
++  // November 2026 they were cleared only inside a joined verse).
++  for (const w of on) { delete w.hg; delete w.hm; delete w.ld; delete w.pc; }
+   stats.verses += 1; stats.words_on += on.length;
+   const rows = byRef.get(sec.label);
+   if (!rows) { stats.verses_absent_from_lattice += 1; continue; }
+@@ -295,15 +333,25 @@ for (const sec of zone.sections || []) {
+   stats.verses_joined += 1;
+   on.forEach((w, i) => {
+     const p = rows[i];
+-    delete w.hg; delete w.hm; delete w.ld;
+     // rule 4 · the grades, per pointed surface, over the lattice's own order
+     for (const m of p.megacompspan || []) {
+       const rg = m.route_grades;
+       const list = routes.get(m.key);
+-      if (!rg || !list || grades[m.surface]) continue;
++      if (!rg || !list) continue;
++      const names = (rg.names_this_verse || []).filter((ix) => ix < list.length);
++      // the surface is graded already, at its first verse: this verse adds
++      // only what is its own, the cards that name it, where they are not
++      // the first verse's
++      if (grades[m.surface]) {
++        const base = grades[m.surface];
++        if (!sameList(base.n, names) && !(base.v && Object.prototype.hasOwnProperty.call(base.v, sec.label))) {
++          (base.v ||= {})[sec.label] = { n: names, c: citesLeader(m.key, list, names) };
++          stats.verses_with_their_own_citations += 1;
++        }
++        continue;
++      }
+       const g = new Array(list.length).fill("-");
+       for (const [tier, idxs] of Object.entries(rg.grade_of_index || {})) for (const ix of idxs) if (ix < g.length) g[ix] = GRADE_CHAR[tier] || "-";
+-      const names = (rg.names_this_verse || []).filter((ix) => ix < list.length);
+       // THE LINE MOVES, NOT ONLY THE CARD (owner, 2026-09-09): under each
+       // lattice order the first card is baked here — the oldest card of the
+       // order's leading set, ties in lattice order — so the reading under the
+@@ -326,7 +374,6 @@ for (const sec of zone.sections || []) {
+       const srows = store.routesFor(m.key) || [];
+       const fpIx = new Map(list.map((c, ix) => [c.fp, ix]));
+       const rowIx = (row) => { const src = store.index.m_sources[row[3]]; const ix = src ? fpIx.get(fnv1a(`${row[1]}|${src.label}`)) : undefined; return ix === undefined ? -1 : ix; };
+-      const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.readingsOf(row).map((t) => t.toLowerCase()))]));
+       const pool = store.readingPool(srows, "oldest");
+       const TIER = { m: 0, n: 1, x: 2 };
+       // THE GRADE OF A ROW — pointing-grade-rule-v4, the same two steps the
+@@ -345,23 +392,23 @@ for (const sec of zone.sections || []) {
+         else { const ix = rowIx(row); if (ix < 0) { stats.rows_ungraded += 1; gc = "-"; } else { stats.rows_graded_from_lattice += 1; gc = g[ix] || "-"; } }
+         gradeCache.set(row, gc); return gc;
+       };
++      // WHO CARRIES A GROUP is the store's answer (carriersOf: every admitted
++      // row whose readings print as the group prints, oldest wording first),
++      // the same rows the page puts behind the pill. Until 10 November 2026
++      // this matched the reading as written, so a row that closes the reading
++      // with a stop was not among its carriers.
+       const groupInfo = pool.map((grp) => {
+-        const key = grp.text.toLowerCase();
+-        const carriers = srows.map((row, i) => ({ row, i })).filter((x) => store.index.m_sources[x.row[3]] && readingsOfRow.get(x.i).has(key));
+-        let tier = 3, cites = 1;
+-        for (const x of carriers) { const t = TIER[gradeOfRow(x.row)]; if (t !== undefined && t < tier) tier = t; const ix = rowIx(x.row); if (ix >= 0 && names.includes(ix)) cites = 0; }
+-        return { text: grp.text, tier, cites, carriers };
++        const carriers = store.carriersOf(srows, grp.text);
++        let tier = 3;
++        for (const row of carriers) { const t = TIER[gradeOfRow(row)]; if (t !== undefined && t < tier) tier = t; }
++        return { text: grp.text, tier, carriers };
+       });
+       const firstUnder = (rank, only) => {
+         const ordered = groupInfo.map((gi, at) => ({ gi, at, r: rank(gi) })).sort((a, b) => a.r - b.r || a.at - b.at);
+         const top = ordered[0];
+         if (!top || !only(top.gi)) return null;
+         // the M the card prints for that reading: its oldest record
+-        let best = null;
+-        for (const x of top.gi.carriers) { const y = Number.parseInt(x.row[4], 10); const yy = Number.isInteger(y) ? y : Infinity; if (!best || yy < best.y) best = { row: x.row, y: yy }; }
+-        if (!best) return null;
+-        const src = store.index.m_sources[best.row[3]];
+-        return [top.gi.text, src.label, src.licensePosture, Number.isFinite(best.y) ? best.y : null];
++        return top.gi.carriers.length ? credit(top.gi.text, top.gi.carriers[0]) : null;
+       };
+       // THE FILTER LEADERS, at the ROW grain. The three above lead a
+       // re-order of the whole pool; a group takes the best tier any card
+@@ -399,19 +446,10 @@ for (const sec of zone.sections || []) {
+         if (!p.length) return null;
+         const top = p[0];
+         // its M: the oldest kept row carrying the reading, as the card prints it
+-        let best = null;
+-        const by = new Set();
+-        for (const row of kept) {
+-          const carries = store.readingsOf(row).some((t) => readingKey(t) === readingKey(top.text));
+-          if (!carries) continue;
+-          by.add(String(row[3]));
+-          const y = Number.parseInt(row[4], 10); const yy = Number.isInteger(y) ? y : Infinity;
+-          if (!best || yy < best.y) best = { row, y: yy };
+-        }
+-        if (!best) return null;
+-        const src = store.index.m_sources[best.row[3]];
+-        const out = [top.text, src.label, src.licensePosture, Number.isFinite(best.y) ? best.y : null];
+-        return withBy ? [...out, [...by].sort()] : out;
++        const carriers = store.carriersOf(kept, top.text);
++        if (!carriers.length) return null;
++        const out = credit(top.text, carriers[0]);
++        return withBy ? [...out, [...new Set(carriers.map((row) => String(row[3])))].sort()] : out;
+       };
+       // THE FILTER'S OWN ALTERNATE (7 November 2026). The table's alternate
+       // (gloss_m[k].alt) is the next reading with the line's carriers off,
+@@ -429,7 +467,7 @@ for (const sec of zone.sections || []) {
+       const o = {
+         m: firstUnder((gi) => gi.tier, (gi) => gi.tier === 0),
+         x: firstUnder((gi) => ({ 2: 0, 1: 1, 0: 2 }[gi.tier] ?? 3), (gi) => gi.tier === 2),
+-        c: firstUnder((gi) => gi.cites, (gi) => gi.cites === 0),
++        c: citesLeader(m.key, list, names),
+         l,
+         la: l ? rowLeader(lenient, true, new Set(l[4]), true) : null,
+         s: rowLeader((gc) => gc === "m", false),
+@@ -445,9 +483,8 @@ for (const sec of zone.sections || []) {
+       // everywhere "only" stood, and "only" is the default (2026-11-06):
+       // under "oldest first" Amos's Israel read "he will rule as God".
+       const nameText = zone.gloss_names && zone.gloss && Object.prototype.hasOwnProperty.call(zone.gloss_names, m.key) && zone.gloss[m.key] === zone.gloss_names[m.key]
+-        ? String(zone.gloss_names[m.key]).toLowerCase() : null;
+-      const nl = !!nameText && srows.some((row) => store.index.m_sources[row[3]] && (attested ? gradeOfRow(row) !== "x" : true) && !otherStem(row)
+-        && store.readingsOf(row).some((t) => t.toLowerCase() === nameText));
++        ? String(zone.gloss_names[m.key]) : null;
++      const nl = !!nameText && store.carriersOf(srows.filter((row) => (attested ? gradeOfRow(row) !== "x" : true) && !otherStem(row)), nameText).length > 0;
+       if (nl) stats.surfaces_name_leads_under_only += 1;
+       grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}), ...(nl ? { nl: 1 } : {}) };
+       if (st) stats.surfaces_with_stems += 1;
+@@ -489,7 +526,6 @@ for (const sec of zone.sections || []) {
+     const ln = p.leningrad;
+     if (ln && ln.differs === true) { w.ld = { kind: ln.kind || null, mam: ln.letters_mam || null, other: ln.letters_macula || ln.letters_tahot || null }; stats.ld += 1; }
+     // rule 5 · the parts, for a word the catalog answers nothing for
+-    delete w.pc;
+     const g = zone.gloss || {};
+     const answered = keysOf(w).some((k) => g[k]) || !!(w.h && g[w.h]);
+     if (answered) stats.pc_skipped_word_has_an_english += 1;
+@@ -501,7 +537,6 @@ for (const sec of zone.sections || []) {
+       stats.pc += 1; stats.pc_pieces += w.pc.length;
+       if (w.pc.every((x) => x.t && x.m)) stats.pc_both_witnesses += 1;
+     }
+-    wordsTouched.push(w);
+   });
+ }
+ 
+@@ -521,7 +556,7 @@ const sidecar = {
+   fingerprint: "fnv1a-32 over the UTF-16 code units of `${text}|${primary_source}`, 8 hex digits; the store row's text and its source's label make the same string",
+   grade_chars: { m: "VOWEL_MATCH", n: "NORMALIZED", x: "VOWEL_MISMATCH", "-": "ungraded" },
+   first_under: {
+-    m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse",
++    m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse: o.c for the surface's first verse in the book, v[<verse>].c for every other verse whose citing cards differ",
+     l: "masorah · only (lenient) — the oldest reading among rows NOT graded VOWEL_MISMATCH: NORMALIZED and ungraded rows stay, computed row by row as the page filters; where no store row is graded VOWEL_MATCH the pointing withholds nothing; a row of another stem (the binyan ledger) is withheld",
+     s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row; a row of another stem is withheld",
+     la: "masorah · only (lenient), the alternate — the lenient leader among the kept rows with every carrier of l out: what the line reads when the reader switches off every source carrying l (or the name, where it led), one step, as gloss_m[k].alt is one step for the table; null where l is null or nothing kept remains",
+@@ -551,22 +586,17 @@ ef.toggles.lattice = {
+     witnesses: pieceWitness,
+     both_witnesses_ride: "TAHOT gives the English this position reads and MACULA the headword's; they differ at 205,953 of 466,981 pieces over the 39 books, so both are carried and neither is chosen",
+   },
+-  what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card, which cite this verse, and the first reading under each order (o.m, o.x, o.c) and under each masorah filter (o.l lenient, o.s strict) so the line under the word can move without a fetch; nl: 1 where the zone's line under the key is its name (proper-name-rule-v1) and a row the lenient filter keeps carries it, so under \"only\" the name leads as under \"keep\"",
++  what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card, which cite its first verse (n) and, for every other verse of the surface whose citing cards differ, that verse's own (v[<verse>].n, with its cites-here leader v[<verse>].c), and the first reading under each order (o.m, o.x, o.c) and under each masorah filter (o.l lenient, o.s strict) so the line under the word can move without a fetch; nl: 1 where the zone's line under the key is its name (proper-name-rule-v1) and a row the lenient filter keeps carries it, so under \"only\" the name leads as under \"keep\"",
+   rulings_owed: "the welded-form ruling is still owed and is a separate question from these affix pieces: it governs the maqaf toggle, which nothing here touches; licence_class puts cc0 in class 0 as the corpus lane's reading, and the page derives its own classes from the posture keys",
+ };
+-{
+-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
+-  const me = "tools/project-lattice-v12-v1.mjs";
+-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+-  for (const f of ["emitted_from.toggles"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+-  const why = "the lattice's grades, headword order and edition differences are projected over this zone's own positions";
+-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+-  const exp = "with this zone's rebuild by a build-zone run that projects the lattice in its single pass";
+-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+-  pb.on = stamp;
+-  ef.post_build = pb;
+-}
+-writeFileSync(outPath, gzipSync(Buffer.from(JSON.stringify(zone), "utf8"), { level: 9 }));
++typePostBuildWrite(zone, {
++  tool: "tools/project-lattice-v12-v1.mjs",
++  fields: ["emitted_from.toggles"],
++  why: "the lattice's grades, headword order and edition differences are projected over this zone's own positions",
++  expires: "with this zone's rebuild by a build-zone run that projects the lattice in its single pass",
++  stamp,
++});
++writeZone(outPath, zone);
+ const s = stats;
+ console.log(`${outPath} · ${s.hg.toLocaleString()} of ${s.words_on.toLocaleString()} words carry the headword's lemma-sorted reading · ${s.ld} differ in Leningrad · verses ${s.verses_joined} joined, ${s.verses_held} held, ${s.verses_absent_from_lattice} absent`);
+ console.log(`  ${sidecarPath} · ${Object.keys(sideRoutes).length.toLocaleString()} keys, ${routeCards.toLocaleString()} cards (${trCards} transliterations) · ${Object.keys(grades).length.toLocaleString()} pointed surfaces graded · ${(statSync(sidecarPath).size / 1024).toFixed(0)} KB`);
+diff --git a/reader/tools/project-piece-gloss-v1.mjs b/reader/tools/project-piece-gloss-v1.mjs
+index a932aa4907..c3ef040bca 100644
+--- a/reader/tools/project-piece-gloss-v1.mjs
++++ b/reader/tools/project-piece-gloss-v1.mjs
+@@ -40,15 +40,16 @@
+ // this site is held to.
+ //
+ // Run: node tools/project-piece-gloss-v1.mjs --col <piece-gloss-v1.jsonl.gz>
+-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+-import { gunzipSync, gzipSync } from "node:zlib";
++import { startedAs } from "./main-guard-v1.mjs";
++import { readFileSync, existsSync } from "node:fs";
++import { gunzipSync } from "node:zlib";
+ import { zonesServed } from "./zones-on-disk-v1.mjs";
++import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+ 
+ export const PIECE_GLOSS_RULE_ID = "piece-gloss-rule-v1-a-piece-reads-what-its-source-said-at-this-position-not-what-the-key-means-in-general";
+ // A post-build write is typed on the zone it patches and expires with that
+ // zone's rebuild — the single-pass gate's own rule id, spelled the same way
+ // the other four projectors spell it, so one exemption record holds them all.
+-const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+ 
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+ 
+@@ -59,7 +60,8 @@ export function byPosition(records) {
+   return m;
+ }
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   const COL = arg("--col");
+   if (!COL || !existsSync(COL)) { console.error("missing --col <piece-gloss-v1.jsonl.gz>"); process.exit(2); }
+   const DIR = arg("--zones", "data/zones");
+@@ -114,25 +116,14 @@ if (import.meta.url === `file://${process.argv[1]}`) {
+     // build-zone run projects this column in its own pass. The record is
+     // additive: four other projectors already ride here, and each of them
+     // appends rather than replacing, so a zone names all of its patchers.
+-    {
+-      const ef = (zz.emitted_from = zz.emitted_from || {});
+-      const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID
+-        ? ef.post_build
+-        : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: STAMP };
+-      const me = "tools/project-piece-gloss-v1.mjs";
+-      pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+-      for (const f of ["piece_gloss"]) {
+-        if (!pb.wrote.includes(f)) pb.wrote.push(f);
+-        pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me;
+-      }
+-      const why = "the piece gloss is the source's own English for each piece AT THIS POSITION, projected over this zone's own positions and joined by the running word index with the surface and the verse proved on every record";
+-      pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+-      const exp = "with this zone's rebuild by a build-zone run that projects the piece gloss in its single pass";
+-      pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+-      pb.on = STAMP;
+-      ef.post_build = pb;
+-    }
+-    writeFileSync(path, gzipSync(Buffer.from(JSON.stringify(zz)), { level: 9 }));
++    typePostBuildWrite(zz, {
++      tool: "tools/project-piece-gloss-v1.mjs",
++      fields: ["piece_gloss"],
++      why: "the piece gloss is the source's own English for each piece AT THIS POSITION, projected over this zone's own positions and joined by the running word index with the surface and the verse proved on every record",
++      expires: "with this zone's rebuild by a build-zone run that projects the piece gloss in its single pass",
++      stamp: STAMP,
++    });
++    writeZone(path, zz);
+     books += 1;
+   }
+   const n = (v) => Number(v).toLocaleString();
+diff --git a/reader/tools/project-toggle-headword-v1.mjs b/reader/tools/project-toggle-headword-v1.mjs
+index ae8e156d35..632fe33fc5 100644
+--- a/reader/tools/project-toggle-headword-v1.mjs
++++ b/reader/tools/project-toggle-headword-v1.mjs
+@@ -43,13 +43,13 @@
+ //
+ // Run: node tools/project-toggle-headword-v1.mjs --zone data/zones/genesis.bin
+ //        --ledger <word-lemma-v1.csv.gz> --stamp YYYY-MM-DD --out build/toggles/genesis.bin
+-import { readFileSync, writeFileSync, createReadStream, statSync } from "node:fs";
++import { readFileSync, createReadStream, statSync } from "node:fs";
+ import { createHash } from "node:crypto";
+-import { gzipSync, gunzipSync, createGunzip } from "node:zlib";
++import { gunzipSync, createGunzip } from "node:zlib";
+ import { createInterface } from "node:readline";
++import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+ 
+ export const TOGGLE_RULE_ID = "toggle-projection-rule-v1-a-toggle-is-a-ledger-projected-over-a-zones-own-positions";
+-const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+ 
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+ const zonePath = arg("--zone"), ledgerPath = arg("--ledger"), outPath = arg("--out"), stamp = arg("--stamp");
+@@ -137,22 +137,19 @@ ef.toggles.headword = {
+   what_the_word_carries: "h: the headword's consonantal key, hp: the pointed headword — only where both witnesses agree; where they differ the word carries nothing and is counted under witnesses_differ",
+   rulings_owed: "none for this toggle; the headword is imported, not sorted (the order INSIDE the headword's stack is lemma-sort, a separate projection)",
+ };
+-{
+-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
+-  const me = "tools/project-toggle-headword-v1.mjs";
+-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+-  // the receipts check names a mark by its box: emitted_from.<key>
+-  for (const f of ["emitted_from.toggles"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = me; }
+-  const why = "the look-up-by toggle is Moses's headword ledger projected over this zone's own positions";
+-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+-  const exp = "with this zone's rebuild by a build-zone run that projects the toggle ledgers in its single pass";
+-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+-  pb.on = stamp;
+-  ef.post_build = pb;
+-}
++// the receipts check names a mark by its box: emitted_from.<key>. Typed by
++// the one rule (zone-post-build-v1): this tool joins the writers of the box;
++// until 10 November 2026 it named itself the box's only writer, over the
++// lattice's and the sources' projections that write there too.
++typePostBuildWrite(zone, {
++  tool: "tools/project-toggle-headword-v1.mjs",
++  fields: ["emitted_from.toggles"],
++  why: "the look-up-by toggle is Moses's headword ledger projected over this zone's own positions",
++  expires: "with this zone's rebuild by a build-zone run that projects the toggle ledgers in its single pass",
++  stamp,
++});
+ 
+-const body = JSON.stringify(zone);
+-writeFileSync(outPath, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
++writeZone(outPath, zone);
+ const s = stats;
+ console.log(`${outPath} · ${s.words_with_headword.toLocaleString()} of ${s.words_on.toLocaleString()} words carry a headword · ${s.headword_differs_from_form.toLocaleString()} differ from their form · ${s.headword_reaches_more.toLocaleString()} reach an English the form lacks`);
+ console.log(`  verses: ${s.verses_joined} joined · ${s.verses_held} held (form keys did not prove) · ${s.verses_absent_from_ledger} absent from the ledger · witnesses differ at ${s.witnesses_differ} words`);
+diff --git a/reader/tools/push-toggles-v1.mjs b/reader/tools/push-toggles-v1.mjs
+index 4e82adff56..f0c4c81662 100644
+--- a/reader/tools/push-toggles-v1.mjs
++++ b/reader/tools/push-toggles-v1.mjs
+@@ -57,6 +57,7 @@
+ //        [--zones data/zones] [--lane-state data/lane-state-v1.json]
+ //      node tools/push-toggles-v1.mjs --inventory [--prefix <r2 prefix>]
+ //      node tools/push-toggles-v1.mjs --fetch <queue id | r2 prefix | r2 object> [--jobs 4] [--dry]
++import { startedAs } from "./main-guard-v1.mjs";
+ import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync, renameSync } from "node:fs";
+ import { createHash, createHmac } from "node:crypto";
+ import { gunzipSync } from "node:zlib";
+@@ -598,7 +599,8 @@ const fetchDelivery = async (q, what) => {
+   return 0;
+ };
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   if (STAMP !== null && !/^\d{4}-\d{2}-\d{2}$/.test(String(STAMP))) die(2, "--stamp must be YYYY-MM-DD");
+   const q = loadQueue();
+   let code = 0;
+diff --git a/reader/tools/regloss-zone.mjs b/reader/tools/regloss-zone.mjs
+index 6d65e520fb..d85738bb02 100644
+--- a/reader/tools/regloss-zone.mjs
++++ b/reader/tools/regloss-zone.mjs
+@@ -20,20 +20,31 @@
+ //
+ // Rules, declared before output:
+ //   1. Nothing is patched in place. This reads one zone and writes another.
+-//      Run it twice on the same inputs and you get the same bytes.
++//      Run it twice on the same inputs and you get the same bytes; and run
++//      it on its own output, with the same store and the same stamp, and
++//      you get that output again (10 November 2026: the receipt had compared
++//      each run with the run before it, so a second run rewrote the record
++//      of what the first had moved).
+ //   2. Only the gloss layer moves. Words, sections, spans, nodes, receipts for
+ //      the walk, the identity oracle and the licences are copied through
+ //      untouched — this tool has no opinion about any of them.
+ //   3. The keys asked for are the zone's own: every W of every occurrence,
+ //      every title token, and — where the zone carries a component system —
+ //      every cell surface of every form, which is what the card can open.
+-//   4. The zone records that it was re-projected, against which store, and
+-//      away from which gloss table, so the move is legible in the file rather
+-//      than only in a commit message.
++//   4. The zone records that it was re-projected and against which store,
++//      and, when the table this run writes is not the table the zone
++//      carried, which table it moved away from and how far (last_move). A
++//      run that moves nothing carries that record forward untouched, so the
++//      move stays legible in the file rather than only in a commit message.
++//   5. Every column the store itself defines is projected in this pass: the
++//      table, the names laid over it, the licence columns, and the two
++//      reader's orders the store computes (characters, corpus). A column this
++//      pass does not project (the witnessed columns, baked from what the
++//      corpus lane shipped) is refused unless it was baked against this store.
+ 
+-import { readFileSync, writeFileSync } from "node:fs";
++import { readFileSync } from "node:fs";
+ import { createHash } from "node:crypto";
+-import { gzipSync, gunzipSync } from "node:zlib";
++import { gunzipSync } from "node:zlib";
+ import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
+ import { glossMFor, sourceSwitchCosts, jointSwitchCosts, GLOSS_M_RULE_ID, licenceColumns, licClass } from "./gloss-m-v1.mjs";
+ import { nameLeadsFor, PROPER_NAME_RULE_ID, PROPER_NAME_RULE_TEXT } from "./proper-name-v1.mjs";
+@@ -43,6 +54,8 @@ import { formsOfRun, WELD_FORMS_RULE_ID } from "./weld-forms-v1.mjs";
+ import { SWITCH_RULE_ID } from "./gloss-store-v1.mjs";
+ import { cellsOf } from "./span-slice-v1.mjs";
+ import { require_ } from "./zone-lib-v1.mjs";
++import { wordListsOf } from "./zone-walk-v1.mjs";
++import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+ 
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+ const inPath = arg("--zone");
+@@ -65,15 +78,13 @@ const addWord = (w) => {
+   // can read under the headword without a fetch
+   if (w.h) keys.add(w.h);
+ };
+-for (const sec of zone.sections || []) (sec.words || []).forEach(addWord);
++// every word of the zone, a book's sections and a commentary's units alike
++const WORD_LISTS = wordListsOf(zone);
++for (const words of WORD_LISTS) words.forEach(addWord);
+ for (const n of zone.nodes || []) {
+   (n.name_tokens || []).forEach((t) => { if (t.k) keys.add(t.k); });
+   (n.part_tokens || []).forEach((t) => { if (t.k) keys.add(t.k); });
+ }
+-// a commentary zone carries its words under units rather than sections
+-for (const u of Object.values(zone.units || {}))
+-  for (const e of [...(u.section || []), ...Object.values(u.words || {}).flat()])
+-    (e.words || []).forEach(addWord);
+ 
+ // THE RUNS' WHOLE FORMS (the megacompspan, owner 2026-09-24): a maqaf run
+ // is one card whose lattice holds the run as written, joined and folded, and
+@@ -95,16 +106,35 @@ const walkRuns = (words) => {
+     run = [];
+   }
+ };
+-for (const sec of zone.sections || []) walkRuns(sec.words);
+-for (const u of Object.values(zone.units || {}))
+-  for (const e of [...(u.section || []), ...Object.values(u.words || {}).flat()]) walkRuns(e.words);
++for (const words of WORD_LISTS) walkRuns(words);
+ for (const f of runForms) keys.add(f);
+ 
+ const cells = new Set(keys);
+ for (const row of Object.values(zone.spans || {}))
+   for (const c of cellsOf(row[0])) cells.add(c.surface);
+ 
+-const { table: gloss, counts, sha256: baseSha256 } = store.tableFor([...cells]);
++// the corpus record the page shelves languages by, and the corpus order
++// sorts by: beside the zones when the zone is read from data/zones, else
++// beside the store this run projects. It is required: without it every
++// source shelves as "Hebrew in general" and the page, which has the record,
++// shelves otherwise (6 November 2026: a round that reglossed baked copies
++// from a scratch folder lost the record, and the switch check found two
++// shelves with no joint price)
++const corpusPath = /data\/zones\//u.test(String(inPath)) ? String(inPath).replace(/data\/zones\/.*$/u, "") + "data/source-corpus-v1.json" : join(dirname(storeDir), "source-corpus-v1.json");
++if (!existsSync_(corpusPath)) { console.log(`REFUSED — no corpus record at ${corpusPath}; the page shelves languages by it, so a projection without it would price shelves the page does not have`); process.exit(1); }
++const corpusRec = JSON.parse(readFileSync(corpusPath, "utf8"));
++const corpusOf = (mId) => ((corpusRec.witnesses || {})[mId] || {}).corpus || null;
++// THE READER'S ORDERS THE STORE DEFINES, PROJECTED WITH THE TABLE. tableFor
++// answers the default order and, for each other order of its own (the
++// catalog's rank: characters; the era's own witnesses first: corpus), the
++// keys where that order leads with another reading. The builder laid those
++// two columns once and this tool left them standing while it moved the
++// table under them: on 10 November 2026 the 40 served zones held 47,038
++// "characters" entries where the store gave 68,444, and of the 4,583
++// "corpus" entries the store still gave 699. The page lays a column over
++// the line (applyGlossOrder) and sorts the card live, so a stale entry is a
++// line that says one reading over a card that opens on another.
++const { table: gloss, deltas: orderDeltas, counts, sha256: baseSha256 } = store.tableFor([...cells], { corpusOf });
+ 
+ // ---- the names (proper-name-rule-v1) --------------------------------------
+ // A key whose two witnesses name it alike leads with the name instead of
+@@ -136,10 +166,7 @@ const countWord = (w) => {
+   const rs = w.w ? w.w : (w.k ? [{ k: w.k }] : []);
+   if (rs.some((r) => gloss[r.k])) glossedWords += 1;
+ };
+-for (const sec of zone.sections || []) (sec.words || []).forEach(countWord);
+-for (const u of Object.values(zone.units || {}))
+-  for (const e of [...(u.section || []), ...Object.values(u.words || {}).flat()])
+-    (e.words || []).forEach(countWord);
++for (const words of WORD_LISTS) words.forEach(countWord);
+ 
+ // The M rides with the gloss it licenses, derived over the same store in the
+ // same pass (gloss-m-rule-v1: a reading shown is a reading licensed). Until
+@@ -196,6 +223,17 @@ zone.emitted_from.proper_names_layer = {
+     columns: lc.counts,
+   };
+ }
++// the store's own two orders, replaced whole on every projection (rule 5);
++// their M is derived below with the other columns'
++const orderColumnsBefore = Object.fromEntries(Object.keys(orderDeltas).map((o) => [o, Object.keys((zone.gloss_orders || {})[o] || {}).length]));
++for (const [o, col] of Object.entries(orderDeltas)) zone.gloss_orders[o] = col;
++zone.emitted_from.reader_orders_layer = {
++  rule: "reader-orders-rule-v1-the-orders-the-store-defines-are-projected-with-the-table-on-every-projection",
++  projected_on: stamp, projected_by: "tools/regloss-zone.mjs",
++  what_the_zone_carries: "gloss_orders.characters and gloss_orders.corpus — for every key of the table where that order of the store's pool leads with another reading than the default order does, that reading (gloss-store-v1 tableFor: a key absent from a column is the positive fact that the order agrees there); their M in gloss_m_orders, derived with the other columns'",
++  corpus_record: "data/source-corpus-v1.json",
++  columns: Object.fromEntries(Object.entries(orderDeltas).map(([o, col]) => [o, Object.keys(col).length])),
++};
+ if (Object.keys(noname).length || (zone.gloss_orders && typeof zone.gloss_orders === "object")) {
+   zone.gloss_orders = zone.gloss_orders && typeof zone.gloss_orders === "object" ? zone.gloss_orders : {};
+   delete zone.gloss_orders.noname;
+@@ -247,20 +285,26 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
+       // column's would be; where no route stands on the reading any more it
+       // leaves the column, reading and credit together.
+       const kept = {}; let struckOut = 0, recredited = 0; const recreditedKeys = [];
++      // a key an earlier run of this tool re-credited stays typed as
++      // re-credited while it stands in the column: its credit is still the
++      // store's and not the lane's, whichever run replaced it
++      const wcBefore = zone.emitted_from.witnessed_order && zone.emitted_from.witnessed_order.columns && zone.emitted_from.witnessed_order.columns[o];
++      const recreditedBefore = new Set(wcBefore && Array.isArray(wcBefore.struck_credit_recredited_keys) ? wcBefore.struck_credit_recredited_keys : []);
+       for (const [k, m] of Object.entries(prevOM[o] || {})) {
+         const ids = typeof m === "string" ? [m] : (m && Array.isArray(m.by) ? m.by : []);
+         const altIds = m && m.alt && Array.isArray(m.alt.by) ? m.alt.by : [];
+         const touched = [...ids, ...altIds].some((id) => !store.index.m_sources[id]);
+-        if (!touched) { kept[k] = m; continue; }
++        if (!touched) { kept[k] = m; if (recreditedBefore.has(k) && table[k] !== undefined) { recredited += 1; recreditedKeys.push(k); } continue; }
+         const re = table[k] !== undefined ? glossMFor(store, { [k]: table[k] }).gloss_m[k] : null;
+         if (re) { kept[k] = re; recredited += 1; recreditedKeys.push(k); continue; }
+         delete table[k]; struckOut += 1; witnessedDrops += 1;
+         // TYPED BESIDE THE BAKE COUNT. The witnessed receipt's "baked" is the
+-        // bake's own fact and is not rewritten; the drop is appended to that
+-        // column's receipt and never replaced. This layer's own receipt is
+-        // replaced whole on every projection, so a count kept only there is
+-        // lost by the next run (the 2026-10-17 drops, gone by 2026-10-23).
+-        // check-witnessed-order-v1 W1 reads baked less these drops.
++        // bake's own fact and is not rewritten; the drop is typed on that
++        // column's receipt beside it. The bake writes the receipt whole on
++        // every round and lays the shipped credits again, so the drop is made
++        // and typed again by the projection that follows it, with that
++        // round's day. check-witnessed-order-v1 W1 reads baked less these
++        // drops.
+         const wc = zone.emitted_from.witnessed_order && zone.emitted_from.witnessed_order.columns && zone.emitted_from.witnessed_order.columns[o];
+         if (wc && !(Array.isArray(wc.struck_credit_drops) && wc.struck_credit_drops.some((d) => d.key === k)))
+           (wc.struck_credit_drops = Array.isArray(wc.struck_credit_drops) ? wc.struck_credit_drops : []).push({ key: k, by: [...ids, ...altIds], on: stamp, why: "source-strike-rule-v1: the credited source is no longer in the store and no route the store holds stands on the reading" });
+@@ -291,11 +335,32 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
+       ...(r.struck_credit_dropped ? { struck_credit_dropped: r.struck_credit_dropped } : {}),
+       ...(r.struck_credit_recredited ? { struck_credit_recredited: r.struck_credit_recredited } : {}),
+       ...(r.no_route_dropped ? { no_route_dropped: r.no_route_dropped } : {}),
+-      had_m_before: Object.keys(prevOM[o] || {}).length,
+     }])),
+   };
+ }
+ zone.counts.glossed_words = glossedWords;
++// THE MOVE, RECORDED WHEN THE TABLE MOVES (rule 4). A projection that writes
++// the table the zone already carried moved nothing, and the record of the
++// last move is carried forward as it stands. Zones projected before 10
++// November 2026 carry no such record: their receipt was a comparison with
++// the run before it, and every later run on the same store overwrote it
++// with "0 moved". For them the field says so and is null.
++const prevRe = previous.reprojected && typeof previous.reprojected === "object" ? previous.reprojected : {};
++const tableMoved = !!previous.gloss_table_sha256 && previous.gloss_table_sha256 !== sha256;
++const lastMove = tableMoved
++  ? {
++    on: stamp,
++    from_store_version: prevRe.store_version ?? previous.store_version ?? null,
++    to_store_version: store.index.store_version ?? null,
++    from_gloss_table_sha256: previous.gloss_table_sha256,
++    to_gloss_table_sha256: sha256,
++    forms_before: before.forms,
++    forms_after: Object.keys(gloss).length,
++    forms_whose_first_reading_moved: changed,
++    words_carrying_a_reading_before: before.words ?? null,
++    words_carrying_a_reading_after: glossedWords,
++  }
++  : (prevRe.last_move ?? null);
+ zone.emitted_from.gloss_layer = {
+   ...previous,
+   rule: `${GLOSS_RULE_ID}: ${GLOSS_RULE_TEXT}`,
+@@ -309,14 +374,13 @@ zone.emitted_from.gloss_layer = {
+     // the store this projection read: gloss_layer.store_version stays the
+     // build's own, and a re-gloss names the store it moved the zone onto
+     store_version: store.index.store_version ?? null,
+-    from_gloss_table_sha256: previous.gloss_table_sha256 || null,
+-    forms_before: before.forms,
+-    forms_after: Object.keys(gloss).length,
+-    forms_whose_first_reading_moved: changed,
+-    words_carrying_a_reading: `${before.words ?? "?"} → ${glossedWords}`,
++    forms: Object.keys(gloss).length,
++    words_carrying_a_reading: glossedWords,
++    last_move: lastMove,
++    last_move_says: "the last projection that wrote another table than the zone carried: the stores and the tables on either side of it and how many first readings moved; null where no projection since 10 November 2026 has moved this zone's table (before that day the receipt compared each run with the run before it, and a later run on the same store overwrote the move with zeros)",
+     why: "the route store moved; a zone that does not move with it prints one reading and offers another",
+     run_forms: `${WELD_FORMS_RULE_ID}: ${runForms.size} whole forms of this book's maqaf runs asked for (as written, joined, folded); ${[...runForms].filter((f) => gloss[f]).length} of them a dictionary published`,
+-    m_layer: `${GLOSS_M_RULE_ID}: gloss_m re-derived over the same store for every key of the re-projected table — ${Object.keys(glossM).length} readings carry their M (was ${mBefore}), ${glossMDrift} readings no route stands on and shown without a chip`,
++    m_layer: `${GLOSS_M_RULE_ID}: gloss_m re-derived over the same store for every key of the re-projected table — ${Object.keys(glossM).length} readings carry their M, ${glossMDrift} readings no route stands on and shown without a chip`,
+     names: `${PROPER_NAME_RULE_ID}: ${names.counts.led} keys lead with the entry's own name (${names.counts.words_led} words; ${names.counts.moved} lines moved off a derivation or a transliteration); held — ${names.counts.held_named_at_some_places_only} named at some places only, ${names.counts.held_two_names} named two ways, ${names.counts.held_no_matching_form} with no Strong's form matching the witness and the pointing`,
+   },
+ };
+@@ -330,18 +394,12 @@ zone.emitted_from.gloss_layer = {
+ // shard at a time. The unit the reader switches is the source's own key;
+ // the ids are the ledger's, and both are on the table.
+ const switchTable = sourceSwitchCosts(store, gloss, glossM);
+-// the corpus record the page shelves languages by: beside the zones when the
+-// zone is read from data/zones, else beside the store this run projects. It
+-// is required: without it every source shelves as "Hebrew in general" and the
+-// page, which has the record, shelves otherwise (6 November 2026: a round
+-// that reglossed baked copies from a scratch folder lost the record, and the
+-// switch check found two shelves with no joint price)
+-const corpusPath = /data\/zones\//u.test(String(inPath)) ? String(inPath).replace(/data\/zones\/.*$/u, "") + "data/source-corpus-v1.json" : join(dirname(storeDir), "source-corpus-v1.json");
+-if (!existsSync_(corpusPath)) { console.log(`REFUSED — no corpus record at ${corpusPath}; the page shelves languages by it, so a projection without it would price shelves the page does not have`); process.exit(1); }
+-const corpusRec = JSON.parse(readFileSync(corpusPath, "utf8"));
+-// positions per key: a word by its own key, a divided word by each part's
++// positions per key: a word by its own key, a divided word by each part's;
++// every word of the zone (the one walk: until 10 November 2026 this loop
++// read a book's sections only, and every commentary zone priced its
++// switches at 0 lines)
+ const weights = {};
+-for (const sec of zone.sections || []) for (const w of sec.words || []) {
++for (const words of WORD_LISTS) for (const w of words) {
+   if (w.k) weights[w.k] = (weights[w.k] || 0) + 1;
+   else if (Array.isArray(w.w)) for (const a of w.w) if (a && a.k && !String(a.k).includes("\u05be")) weights[a.k] = (weights[a.k] || 0) + 1;
+ }
+@@ -376,26 +434,20 @@ zone.emitted_from.toggles.sources = {
+ // exemption — who wrote it, which field, why, and when it expires — so the
+ // receipts check counts it rather than faulting it as anonymous patching.
+ // Merged, not replaced: the enrichment and the respan lane type theirs too.
+-{
+-  const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+-  const ef = zone.emitted_from;
+-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
+-  const me = "tools/regloss-zone.mjs";
+-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+-  for (const f of ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : []), ...(witnessedDrops ? ["emitted_from.witnessed_order"] : [])]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+-  const why = "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected";
+-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+-  const exp = "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass";
+-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+-  pb.on = stamp;
+-  ef.post_build = pb;
+-}
+-const body = gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 });
+-writeFileSync(outPath, body);
++typePostBuildWrite(zone, {
++  tool: "tools/regloss-zone.mjs",
++  fields: ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "emitted_from.reader_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : []), ...(witnessedDrops ? ["emitted_from.witnessed_order"] : [])],
++  why: "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected",
++  expires: "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass",
++  stamp,
++});
++const body = writeZone(outPath, zone);
+ console.log(
+   `${outPath}: ${Object.keys(gloss).length.toLocaleString()} forms glossed ` +
+   `(was ${before.forms.toLocaleString()}; ${changed.toLocaleString()} first readings moved) · ` +
+   `${glossedWords.toLocaleString()} words carry a reading (was ${before.words ?? "?"}) · ` +
+   `${names.counts.led} keys lead with a name (${names.counts.moved} moved) · ` +
++  `orders ${Object.entries(orderDeltas).map(([o, col]) => `${o} ${Object.keys(col).length} (was ${orderColumnsBefore[o]})`).join(", ")} · ` +
++  `gloss_m ${Object.keys(glossM).length} (was ${mBefore}) · ` +
+   `${(body.length / 1024).toFixed(1)} KB gz · sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}…`,
+ );
+diff --git a/reader/tools/respan-zone-v1.mjs b/reader/tools/respan-zone-v1.mjs
+index 125a0008b5..4a7e30af7e 100644
+--- a/reader/tools/respan-zone-v1.mjs
++++ b/reader/tools/respan-zone-v1.mjs
+@@ -44,11 +44,12 @@
+ //     --spans w-to-compspan-template-v6.csv.gz --stamp 2026-08-20 \
+ //     --out data/zones/genesis.bin
+ 
+-import { readFileSync, writeFileSync } from "node:fs";
++import { readFileSync } from "node:fs";
+ import { createHash } from "node:crypto";
+-import { gzipSync, gunzipSync } from "node:zlib";
++import { gunzipSync } from "node:zlib";
+ import { readSpanSlice, SPAN_RULE_ID } from "./span-slice-v1.mjs";
+ import { require_ } from "./zone-lib-v1.mjs";
++import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+ 
+ const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
+ const inPath = arg("--zone");
+@@ -140,24 +141,15 @@ const out = {
+ // exemption — who wrote it, which fields, why, and when it expires — so the
+ // receipts check counts it rather than faulting it as anonymous patching.
+ // Merged, not replaced: the enrichment and the regloss lane type theirs too.
+-{
+-  const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+-  const ef = out.emitted_from;
+-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
+-  const me = "tools/respan-zone-v1.mjs";
+-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+-  for (const f of ["span_layer.projected_on", "span_layer.projected_by", "span_layer.projected_away_from", "span_layer.gloss_layer_owed", "span_layer.held_for_a_double_answer"]) {
+-    if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = me;
+-  }
+-  const why = "the component layer is a projection of the COMPspan template over this zone's own keys, run here because the zone was built without --spans";
+-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+-  const exp = "with this zone's rebuild by a build-zone run given --spans";
+-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+-  pb.on = stamp;
+-  ef.post_build = pb;
+-}
++typePostBuildWrite(out, {
++  tool: "tools/respan-zone-v1.mjs",
++  fields: ["span_layer.projected_on", "span_layer.projected_by", "span_layer.projected_away_from", "span_layer.gloss_layer_owed", "span_layer.held_for_a_double_answer"],
++  why: "the component layer is a projection of the COMPspan template over this zone's own keys, run here because the zone was built without --spans",
++  expires: "with this zone's rebuild by a build-zone run given --spans",
++  stamp,
++});
+ const body = JSON.stringify(out);
+-writeFileSync(outPath, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
++writeZone(outPath, out);
+ const sha = createHash("sha256").update(body).digest("hex");
+ console.log(`${outPath} · ${span.spans.size.toLocaleString()} forms carry a component system · sha256 ${sha}`);
+ console.log(`  asked about ${keys.size.toLocaleString()} of this zone's own keys · ${span.scanned.toLocaleString()} template rows scanned`);
+diff --git a/reader/tools/restamp-zone-v1.mjs b/reader/tools/restamp-zone-v1.mjs
+index 2bee3537ae..35c08ae783 100644
+--- a/reader/tools/restamp-zone-v1.mjs
++++ b/reader/tools/restamp-zone-v1.mjs
+@@ -35,12 +35,13 @@
+ // Run: node tools/restamp-zone-v1.mjs --zone <zone .bin> --stamp YYYY-MM-DD
+ //        [--witnesses data/masorah-witnesses-v1.json] [--out <zone .bin>] [--dry]
+ import { readFileSync, writeFileSync } from "node:fs";
+-import { gunzipSync, gzipSync } from "node:zlib";
++import { gunzipSync } from "node:zlib";
+ import { createHash } from "node:crypto";
+ import { basename, dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { measureZone, MEASURE_RULE_ID, MEASURE_AXES } from "./bookword-measure-v1.mjs";
+ import { countStampOf } from "./count-stamp-v1.mjs";
++import { typePostBuildWrite, zoneBytes } from "./zone-post-build-v1.mjs";
+ 
+ const K3 = join(dirname(fileURLToPath(import.meta.url)), "..");
+ const arg = (n, d = null) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
+@@ -87,20 +88,15 @@ const reworded = now.rows.filter((r) => { const o = wasBy.get(keyOf(r)); return
+ // TYPED on the zone, as every post-build write is (single-pass-exemption-v1):
+ // who wrote, which field, why, and when it expires. Merged with the
+ // exemptions the zone already carries.
+-const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
+-const ef = zone.emitted_from || (zone.emitted_from = {});
+-const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: STAMP };
+-const me = "tools/restamp-zone-v1.mjs";
+-pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
+-for (const f of ["count_stamp"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (String(pb.by_field[f]).includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
+-const why = "the count stamp is set again from the witness record as it now stands, by the builder's own rule over this zone's own measure, after the record was corrected";
+-pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
+-const exp = "with this zone's rebuild by a build-zone run that reads the corrected witness record in its single pass";
+-pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
+-pb.on = STAMP;
+-ef.post_build = pb;
++typePostBuildWrite(zone, {
++  tool: "tools/restamp-zone-v1.mjs",
++  fields: ["count_stamp"],
++  why: "the count stamp is set again from the witness record as it now stands, by the builder's own rule over this zone's own measure, after the record was corrected",
++  expires: "with this zone's rebuild by a build-zone run that reads the corrected witness record in its single pass",
++  stamp: STAMP,
++});
+ zone.count_stamp = now;
+ 
+-const body = gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 });
++const body = zoneBytes(zone);
+ if (!DRY) writeFileSync(OUT, body);
+ console.log(`${slug}: ${DRY ? "would be " : ""}restamped from ${basename(WITNESSES)} ${now.witnesses.sha256.slice(0, 12)} (was ${String(was.witnesses.sha256).slice(0, 12)}) · ${now.rows.length} rows (${was.rows.length} before) · ${moved.length ? moved.join("; ") : "no figure moves"}${reworded ? ` · ${reworded} row${reworded === 1 ? "" : "s"} name their source anew` : ""} · zone sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}`);
+diff --git a/reader/tools/round-v1.sh b/reader/tools/round-v1.sh
+index b6a8028a78..78262b4c52 100755
+--- a/reader/tools/round-v1.sh
++++ b/reader/tools/round-v1.sh
+@@ -140,8 +140,8 @@ fi
+ if has door; then
+   echo "── door · the front door and every book's own pages ────────────────────"
+   node tools/build-front-door-v1.mjs > "$WORK/door.log" 2>&1 || { echo "round-v1: the door did not build" >&2; tail -8 "$WORK/door.log" >&2; exit 1; }
+-  node tools/emit-lane-state-v1.mjs > /dev/null
+-  node tools/emit-ledger-index-v1.mjs > /dev/null
++  node tools/emit-lane-state-v1.mjs --stamp "$STAMP" > /dev/null
++  node tools/emit-ledger-index-v1.mjs --stamp "$STAMP" > /dev/null
+   node tools/pipeline-manifest-v1.mjs --stamp "$STAMP" > /dev/null
+   cp -a deploy-root/. ..
+ fi
+diff --git a/reader/tools/run-checks-v1.mjs b/reader/tools/run-checks-v1.mjs
+index 382953c45d..183eacb898 100644
+--- a/reader/tools/run-checks-v1.mjs
++++ b/reader/tools/run-checks-v1.mjs
+@@ -50,6 +50,7 @@
+ //
+ // Usage: node tools/run-checks-v1.mjs [--zone <reader address>] [--panel] [--site <origin>]
+ //          [--live <origin>] [--only <regex on the check's name>] [--jobs 3] [--timeout 600]
++import { startedAs } from "./main-guard-v1.mjs";
+ import { readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
+ import { spawn, spawnSync } from "node:child_process";
+ import { dirname, join } from "node:path";
+@@ -102,7 +103,8 @@ export const shapePanel = () => {
+   return [...new Set(pick.values())];
+ };
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   process.chdir(READER);
+   const answers = async (url) => { try { const r = await fetch(url, { signal: AbortSignal.timeout(2500) }); return r.ok; } catch { return false; } };
+   // The servers the page checks ask, owned by the run: the reader on 8899
+diff --git a/reader/tools/strike-language-v1.mjs b/reader/tools/strike-language-v1.mjs
+index 9a72923f1d..46659a04e9 100644
+--- a/reader/tools/strike-language-v1.mjs
++++ b/reader/tools/strike-language-v1.mjs
+@@ -74,6 +74,7 @@
+ // Idempotent: a store already struck reports zero and rewrites nothing.
+ //
+ // Run: node tools/strike-language-v1.mjs [--store data/route-store] [--dry]
++import { startedAs } from "./main-guard-v1.mjs";
+ import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+ import { createHash } from "node:crypto";
+ import { gzipSync, gunzipSync } from "node:zlib";
+@@ -192,7 +193,8 @@ export const classify = (source) => {
+       + "is a label at the source naming what its own title page names, not an exception here." };
+ };
+ 
+-if (import.meta.url === `file://${process.argv[1]}`) {
++// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
++if (startedAs(import.meta.url)) {
+   const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
+   const decisions = {};
+   const struck = new Set();
+diff --git a/reader/zone.html b/reader/zone.html
+index 7677f7c334..8be6a2fac7 100644
+--- a/reader/zone.html
++++ b/reader/zone.html
+@@ -3077,6 +3077,25 @@
+   // the word standing open on the card: its pointed surface and its key,
+   // which is what the lattice's grades are keyed by
+   let openPointed = null, openKey = null;
++  // THE CITATIONS ARE THE VERSE'S. The lattice's record of a pointed surface
++  // is taken at the surface's first verse in the book, and which cards name
++  // a verse is a fact about that verse: the record carries the first verse's
++  // list (n, its leader o.c) and, for every other verse whose list differs,
++  // that verse's own (v[<verse label>] = { n, c }; tools/project-lattice-
++  // v12-v1.mjs, rule 4). So the card's sort and the line both ask for the
++  // verse the word stands in. Until 10 November 2026 every place of a
++  // surface read its first verse's list: 14,781 of 306,493 graded places on
++  // the 39 books, 4,129 of them in the first book.
++  let openVerse = null;                 // the label of the verse the open card stands in
++  const WORD_VERSE = new WeakMap();     // a word of the zone -> its verse's label
++  const versesOwn = (gr, verse) => (gr && gr.v && verse != null && Object.prototype.hasOwnProperty.call(gr.v, verse) ? gr.v[verse] : null);
++  const citingCards = (gr, verse) => { const own = versesOwn(gr, verse); return own ? own.n : (gr ? gr.n : []); };
++  // the baked leader of a lattice order for a surface at a verse (null: none)
++  const latticeLeader = (gr, order, verse) => {
++    if (!gr || !gr.o) return null;
++    if (order === "c") { const own = versesOwn(gr, verse); if (own) return own.c || null; }
++    return gr.o[order] || null;
++  };
+   // THE POINTING, CARD BY CARD. The rail sets where every card starts; a card
+   // may be lifted on its own, and that is the only scribal switch the reader
+   // gets, because the only place a scribal mark may be touched at all is
+@@ -3873,6 +3892,7 @@
+     // off the page it is checking proves only that the page is consistent
+     // with itself.
+     window.__zone = zone;
++    for (const sec of zone.sections || []) for (const w of sec.words || []) if (w && typeof w === "object") WORD_VERSE.set(w, sec.label);
+     // which orders this book can answer: the lattice ones where its sidecar
+     // rides beside it, the corpus one where the corpus record loaded — and a
+     // remembered choice this book cannot answer falls back to oldest first
+@@ -7076,7 +7096,8 @@
+     // them earned, and counts as citing, the era's own, or a transliteration
+     // if any witness under it is
+     const tierOf = (r) => { let best = 3; for (const row of rk(r)) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
+-    const cites = (r) => (gr && rk(r).some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
++    const citing = gr ? citingCards(gr, openVerse) : [];
++    const cites = (r) => (gr && rk(r).some((row) => citing.includes(idxOf(row))) ? 0 : 1);
+     const era = (r) => (rk(r).some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
+     const outside = (r) => (rk(r).some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
+     const lic = (r) => (rk(r).length ? Math.min(...rk(r).map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture))) : 9);
+@@ -7133,9 +7154,16 @@
+       && zone.gloss && zone.gloss[surface] === zone.gloss_names[surface] ? zone.gloss_names[surface] : null;
+     const nameYields = () => masorah === "letters"
+       || (masorah === "only" && gr && gr.o && gr.o.l && !gr.nl)
+-      || (pos.needs === "lattice" && gr && gr.o && gr.o[pos.lattice])
++      || (pos.needs === "lattice" && latticeLeader(gr, pos.lattice, openVerse))
+       || (pos.needs === "witnessed" && wCol);
+-    const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (a.text === nameLed ? 0 : 1) - (b.text === nameLed ? 0 : 1));
++    // found among the pills by the printed form, the key the pills are one
++    // reading by (readingKey): a pill's text is whichever spelling arrived
++    // first, «Gaza.» or «Gaza», and a compare letter for letter missed the
++    // name at 607 of the 2,684 keys a name leads (10 November 2026: Amos
++    // 1:6's line read «Gaza» and its card opened on «strong»)
++    const nameKey = nameLed ? readingKey(nameLed) : null;
++    const isName = (r) => readingKey(r.text) === nameKey;
++    const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (isName(a) ? 0 : 1) - (isName(b) ? 0 : 1));
+     // AT THIS PLACE, the place's own reading first (marked by poolFor on the
+     // reading the word standing open reads here); the rest keep their order
+     const placeLead = (a, b) => (defOrder !== "place" ? 0 : (a.placeFirst ? 0 : 1) - (b.placeFirst ? 0 : 1));
+@@ -7851,6 +7879,7 @@
+       return { ref: sec.__sec.label, numberOf: (w) => { const i = all.findIndex((x) => x.__word === w); return i >= 0 ? i + 1 : 0; }, wordOf: el.closest(".wb") ? el.closest(".wb").__word : null };
+     })();
+     openKey = bin === zone && region ? (region.form_k || region.k || null) : null;
++    openVerse = openSite ? openSite.ref : null;
+     // Only the atoms tile the occurrence, so only the atoms may be laid out in
+     // the header. Drawing the whole lattice printed each joined interval again
+     // between its own halves. When a joined interval is what was opened, every
+@@ -11728,9 +11757,9 @@
+         if (gr.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
+           && zone.gloss[word.k] === zone.gloss_names[word.k] && !(gm && allOff(gm.by))) return null;
+         const l = gr.o.l;
+-        if (l && !allOff(l[4])) return { text: l[0], rs: [{ posture: l[2], m: l[1], y: l[3], by: l[4] }], why: "masorah" };
++        if (l && !allOff(l[4])) return { text: l[0], rs: [{ posture: l[2], m: l[1], y: l[3], ya: "wording", by: l[4] }], why: "masorah" };
+         const la = gr.o.la;
+-        if (la && !allOff(la[4])) return { text: la[0], rs: [{ posture: la[2], m: la[1], y: la[3], by: la[4] }], why: "masorah" };
++        if (la && !allOff(la[4])) return { text: la[0], rs: [{ posture: la[2], m: la[1], y: la[3], ya: "wording", by: la[4] }], why: "masorah" };
+         if (l) return { text: "", rs: [], why: "sources-bare" };
+         // graded, and nothing survives the filter: the word goes bare here,
+         // which the frame calls a finding and not an error
+@@ -11782,13 +11811,13 @@
+     if (masorah === "letters") {
+       const gr = latticeStore && latticeStore.grades && word.s ? latticeStore.grades[word.s] : null;
+       const first = gr && gr.o && gr.o.x;
+-      return first ? { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: "letters" } : null;
++      return first ? { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3], ya: "wording" }], why: "letters" } : null;
+     }
+     const pos = DEF_POS.find((p) => p.id === defOrder);
+     if (pos && pos.needs === "lattice" && latticeStore && latticeStore.grades && word.s) {
+       const gr = latticeStore.grades[word.s];
+-      const first = gr && gr.o && gr.o[pos.lattice];
+-      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: pos.id };
++      const first = latticeLeader(gr, pos.lattice, WORD_VERSE.get(word));
++      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3], ya: "wording" }], why: pos.id };
+     }
+     return null;
+   };
