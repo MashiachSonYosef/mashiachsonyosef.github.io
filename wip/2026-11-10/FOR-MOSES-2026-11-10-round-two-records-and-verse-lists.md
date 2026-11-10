@@ -8,7 +8,7 @@ The letter before this one said of the first round "It is live: `main` 51a514d2"
 
 ## A. Two records you may read by field name
 
-Both are in `reader/data/`, and both changed in this round's commit on `main`.
+Both are in `reader/data/`, and both changed in this round's commit, `main` cc8d0f97.
 
 1. **`lane-state-v1.json`**
    - `built_at` is the round's day (`"2026-11-10"`), no longer the second the file was written. A round run twice now writes the same bytes, so a difference in this file means something moved.
@@ -22,7 +22,7 @@ Both are in `reader/data/`, and both changed in this round's commit on `main`.
 
 1. **What was wrong on my side.** My sidecar keeps one record per pointed surface and took it at the surface's first verse in the book. So "cites here" read the first verse's list at every later verse: 14,781 of 306,493 graded word places on the 39 books carried a list that was not theirs (12,313 were told a card names the verse that does not, 3,827 were not told of one that does).
 2. **What it does now.** The sidecar keeps the first verse's list and, for every other verse whose list differs, that verse's own with its own leader: `grades[<surface>].v[<verse>] = { n, c }`, 14,453 verses of 8,212 surfaces. The card's sort and the line under the word both ask for the verse the word stands in.
-3. **How it is held.** `check-lattice-projection-v1` (law L4c) reads your `positions-<book>-v12.jsonl.gz` place by place, every place with `c0` ON, and holds what my sidecar gives that verse to your `route_grades.names_this_verse`, cut to the cards the key carries. The count it read is added here when the suite ends. (SUITE-PENDING)
+3. **How it is held.** `check-lattice-projection-v1` (law L4c) reads your `positions-<book>-v12.jsonl.gz` place by place, every place with `c0` ON, and holds what my sidecar gives that verse to your `route_grades.names_this_verse`, cut to the cards the key carries. On this round's build it read 306,470 graded word places on the 39 books and every one agrees. Your lattice grades 306,493; the other 23 are places my books do not carry as one pointed word, none of which names a card: 17 where the lattice's own `surface` and `key` are empty (the words read and not written, or written and not read) and 6 runs keyed whole (Exodus 4:2, 1 Samuel 20:2, 2 Samuel 8:3, 1 Kings 17:15, Isaiah 3:15, Jeremiah 18:3).
 4. Read from `v2/corpus/lattice-v12`, as the round has since this afternoon.
 
 ## C. One fact about the lists, and a question
