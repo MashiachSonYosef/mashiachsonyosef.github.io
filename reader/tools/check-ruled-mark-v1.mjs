@@ -66,7 +66,7 @@ const RULED_KEY = flat.length > 1 ? flat[1].k : null;
 // every place that form stands inside what the page has drawn
 const EXPECT = isPrefix && RULED_KEY
   ? flat.slice(0, rendered.length).filter((w) => w.k === RULED_KEY).length : null;
-// and a neighbour that is NOT that form, so "it does not spread" is a real question
+// and a neighbor that is NOT that form, so "it does not spread" is a real question
 const OTHER = isPrefix && RULED_KEY ? flat.slice(0, rendered.length).findIndex((w, i) => i > 1 && w.k && w.k !== RULED_KEY) : 4;
 // the masthead's title is a word like any other: it wears the ruling when it
 // carries the ruled form, and there is nothing for it to follow when it does not
@@ -93,13 +93,27 @@ const marked = () => p.evaluate((q) => document.querySelectorAll(q).length, IN_T
 // three at once and reported a box growing 77px to 139px as if the mark had
 // done it. So the mark is taken off and put back on the settled word, with
 // nothing else touched, and the box is read on both sides of that.
+//
+// WHAT IS DRAWN IS MEASURED THE SAME WAY (2026-11-10). "Nothing drawn" was
+// asked as "no background and no shadow at all", which held while a word had
+// no ground of its own. Every word is a card now and every card wears the
+// card's wash, so that question was answered "a mark is drawn" of a word
+// drawn exactly as its unruled neighbors are. The law is that the ruling
+// adds nothing, so the paint is read with the ruling's class on and with it
+// off, on the word itself and on its letters and its English.
 const markCosts = () => p.evaluate(() => {
   const e = document.querySelectorAll("section.seg .he-text .wb.chosen")[0];
   if (!e) return null;
+  const paintOf = (el) => { if (!el) return ""; const cs = getComputedStyle(el);
+    return [cs.backgroundColor, cs.backgroundImage, cs.boxShadow, cs.outlineStyle, cs.outlineWidth, cs.outlineColor,
+      cs.color, cs.textDecorationLine, cs.textShadow, cs.fontWeight, cs.fontStyle, cs.opacity, cs.filter].join(" | "); };
+  const pseudo = (el, which) => { const cs = getComputedStyle(el, which); return [cs.content, cs.backgroundColor, cs.borderBottomWidth, cs.boxShadow].join(" | "); };
   const read = () => { const r = e.getBoundingClientRect(), cs = getComputedStyle(e);
     return { w: Math.round(r.width * 100) / 100, h: Math.round(r.height * 100) / 100,
       pad: ["Top", "Right", "Bottom", "Left"].map((k) => cs[`padding${k}`]).join(" "),
-      border: ["Top", "Right", "Bottom", "Left"].reduce((t, k) => t + parseFloat(cs[`border${k}Width`] || 0), 0) }; };
+      border: ["Top", "Right", "Bottom", "Left"].reduce((t, k) => t + parseFloat(cs[`border${k}Width`] || 0), 0),
+      paint: [paintOf(e), paintOf(e.querySelector(":scope > .w")), paintOf(e.querySelector(":scope > .g")),
+        document.body.classList.contains("nums") ? "" : pseudo(e, "::after"), pseudo(e, "::before")].join(" || ") }; };
   const on = read();
   e.classList.remove("chosen");
   void e.offsetHeight;
@@ -132,19 +146,16 @@ const after = await p.evaluate((q) => {
   const w = [...document.querySelectorAll(q)];
   const one = w[0];
   const cs = one ? getComputedStyle(one) : null;
+  const lineText = (wb) => { const g = wb.querySelector(":scope > .g"); if (!g) return ""; const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return c.textContent.trim(); };
   return {
     n: w.length,
     isTheWord: !!one && one === document.querySelectorAll("section.seg .he-text .wb")[1],
-    gloss: one ? one.querySelector(".g").textContent.trim() : "",
-    // THE LAW IS THAT THE MARK DOES NOT MOVE THE LINE, and the mechanism is
-    // the design's to choose. This asked for a background tint by name, so
-    // when the mark became an inset rule — drawn inside the word's own box,
-    // which is strictly better at the same job: it takes no layout AND puts
-    // no colour behind the letters — the check called a correct mark wrong.
-    // What is asked now is what the law says: something is drawn, it takes no
-    // border, and the word's box is the size an unmarked word's box is.
-    marks: !!cs && ((cs.backgroundColor !== "rgba(0, 0, 0, 0)" && cs.backgroundColor !== "transparent")
-      || (cs.boxShadow && cs.boxShadow !== "none")),
+    // THE READING IS THE LINE'S OWN TEXT. The line carries its license chip in
+    // its record and off the line (2026-10-16): the chip is in the element and
+    // is not drawn, so it is taken out before the line is read.
+    gloss: one ? lineText(one) : "",
+    // (what the ruled word wears is measured by markCosts, against the same
+    // word with the ruling's class taken off)
     borderPx: cs ? ["Top", "Right", "Bottom", "Left"].reduce((t, side) => t + parseFloat(cs[`border${side}Width`] || 0), 0) : -1,
 
     stillActive: document.querySelectorAll("section.seg .he-text .wb.active").length,
@@ -163,7 +174,8 @@ check("the word the reader ruled on is marked, and so is every other place that 
 {
   const spread = await p.evaluate((q) => {
     const ch = [...document.querySelectorAll(q)];
-    const gl = ch.map((e) => (e.querySelector(".g") || { textContent: "" }).textContent.trim());
+    const lineText = (wb) => { const g = wb.querySelector(":scope > .g"); if (!g) return ""; const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return c.textContent.trim(); };
+    const gl = ch.map(lineText);
     return { n: ch.length, distinct: [...new Set(gl)], };
   }, IN_TEXT);
   check("  and every one of them reads what was ruled, so the mark never lands on a word saying something else",
@@ -179,8 +191,8 @@ check("the word the reader ruled on is marked, and so is every other place that 
   // treatments i hate that stuff". The ruling is held (the counts above) and
   // the word is drawn exactly as a word nobody ruled on.
   check("the ruled word wears no mark of its own and moves nothing",
-    !after.marks && after.borderPx === 0 && free,
-    `${after.marks ? "a mark is drawn" : "nothing drawn"} · ${after.borderPx}px of border · ` +
+    !!m && m.on.paint === m.off.paint && after.borderPx === 0 && free,
+    `${!m ? "" : m.on.paint === m.off.paint ? "it is drawn as the same word unruled is" : "a mark is drawn: its paint differs from the same word's unruled"} · ${after.borderPx}px of border · ` +
     (!m ? "no marked word to measure"
         : free ? `the box is ${m.on.w}\u00d7${m.on.h} with the mark and without it`
                : `the mark costs layout: ${m.off.w}\u00d7${m.off.h} without, ${m.on.w}\u00d7${m.on.h} with`));
@@ -195,7 +207,7 @@ check("and the book's own title follows the same ruling, where the title carries
     ? (after.titleFollows ? "the masthead carries this form and wears the ruling too" : "the masthead carries this form and did NOT follow")
     : (after.titleFollows ? "the masthead does not carry this form yet wears the mark" : "this book's title does not carry the ruled form, so there is nothing here for it to follow"));
 
-// AND OPENING A DIFFERENT FORM RULES NOTHING. The neighbour is chosen for
+// AND OPENING A DIFFERENT FORM RULES NOTHING. The neighbor is chosen for
 // carrying a different key, so this asks a real question: looking at another
 // word must not add a mark, and must not take one away from the form that was
 // ruled.

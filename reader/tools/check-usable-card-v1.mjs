@@ -64,6 +64,15 @@ const wbDiv = divIx >= 0 ? wbs[divIx] : null;
   for (let i = 0; i < Math.min(wbs.length, WORDS); i += 1) {
     await wbs[i].click();
     await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
+    // THE CARD AS IT STANDS, NOT AS IT POPS. A card opened after another pops
+    // for its first fifth of a second, and the page does not snap a band to
+    // its rows through that transform (zone.html, snapBands: a band measured
+    // through it was pulled back to one row). Looked at 90ms after its pills
+    // showed, a band was caught mid-pop, five pills cut at its foot, and was
+    // whole 150ms later: this law read red from 6 November for that alone.
+    // The card is judged once nothing on it is still moving, and the frames
+    // after, in which the page's own loop examines the bands.
+    await p.waitForFunction(() => { const h = document.getElementById("hud"); return !h.getAnimations || !h.getAnimations().some((x) => x.playState === "running"); }, null, { timeout: 5000 }).catch(() => null);
     await p.waitForTimeout(90);
     seen.push(await p.evaluate(() => {
       const h = document.getElementById("hud"), hb = h.getBoundingClientRect();

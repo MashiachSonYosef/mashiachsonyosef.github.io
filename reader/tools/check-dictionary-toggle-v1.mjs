@@ -432,26 +432,53 @@ check("D10 when the catalog does not answer, the table does not claim the card h
   d10 ? `note "${d10.down.note}" · card says "${(d10.down.cardNotes[0] || "").slice(0, 60)}" · try again mirrored ${d10.down.again} · then "${d10.after ? d10.after.reading : ""}"` : "no word to open");
 
 // D11: a rail switch redraws the card's pills in another order: the
-// dropdown follows, and a pick from it is still a press on the card
+// dropdown follows, and a pick from it is still a press on the card.
+//
+// TWO KINDS OF SWITCH, AND THE LAW HOLDS FOR BOTH (2026-11-10). Since the
+// pointing stands (2026-11-06) an order whose line is baked without the gate
+// sets the default pointing at "keep", and the card standing open is rebuilt
+// under the moved gate (gateMoved in zone.html: a redraw re-sorts, it never
+// refilters). A rebuilt card's table comes back with its dropdown shut, as
+// every card's does. This pressed the first switch in the row, found no
+// dropdown, and fell over reading a pick that was not there. So each switch
+// is watched for what it did: where the gate stood still the card re-answered
+// in place and the dropdown must still be open; where the gate moved the card
+// was rebuilt and the dropdown is opened again. Either way it then holds the
+// card's pills in the card's order, and a pick from it presses the card.
+// Switches are pressed in the row's own order until both kinds were seen.
 await esc();
-let d11 = null;
+const d11 = [];
 if (t) {
   await tap(t.i); await tabState(); await settle();
-  await openMenu(); await p.waitForTimeout(250);
-  const switched = await p.evaluate(() => { const x = [...document.querySelectorAll("#defRow button")].find((y) => y.getAttribute("aria-pressed") !== "true" && !y.disabled); if (!x) return null; x.click(); return x.textContent; });
-  await p.waitForTimeout(1500);
-  if (switched) {
+  const labels = await p.evaluate(() => [...document.querySelectorAll("#defRow button")].filter((y) => y.getAttribute("aria-pressed") !== "true" && !y.disabled).map((y) => y.textContent));
+  for (const lab of labels) {
+    if (d11.some((x) => x.rebuilt) && d11.some((x) => !x.rebuilt)) break;
+    if (await p.evaluate(() => !document.querySelector("#hud .dict-tab tr.sub.reads"))) { await openMenu(); await p.waitForTimeout(250); }
+    const gateWas = await p.evaluate(() => window.__masorah);
+    const pressed = await p.evaluate((lab) => { const x = [...document.querySelectorAll("#defRow button")].find((y) => y.textContent === lab && y.getAttribute("aria-pressed") !== "true" && !y.disabled); if (!x) return false; x.click(); return true; }, lab);
+    if (!pressed) continue;
+    await p.waitForTimeout(1500);
+    const gateNow = await p.evaluate(() => window.__masorah);
+    const rebuilt = gateNow !== gateWas;
+    const stayedOpen = await p.evaluate(() => !!document.querySelector("#hud .dict-tab tr.sub.reads"));
+    if (!stayedOpen) { await tabState(); await settle(); await openMenu(); await p.waitForTimeout(250); }
     const c = await cardState(); const m = await menuOf();
-    const order = m.card.length === c.pills.length && m.card.every((x, j) => x.r === c.pills[j]);
+    const order = m.card.length > 0 && m.card.length === c.pills.length && m.card.every((x, j) => x.r === c.pills[j]);
     const pick = m.card.find((x) => x.pressed !== "true");
-    await pickMenu(pick.r, "card"); await p.waitForTimeout(1200);
-    const row = await rowOf(); const cps = await cardPills();
-    d11 = { switched, order, pick: pick.r, row, cardPressed: (cps.find((x) => x.pressed) || {}).t || null, line: await lineNow() };
+    const one = { switched: lab, gate: `${gateWas} to ${gateNow}`, rebuilt, stayedOpen, order, pills: c.pills.length, inMenu: m.card.length, pick: pick ? pick.r : null };
+    if (pick) {
+      await pickMenu(pick.r, "card"); await p.waitForTimeout(1200);
+      const row = await rowOf(); const cps = await cardPills();
+      Object.assign(one, { row: row ? row.reading : null, cardPressed: (cps.find((x) => x.pressed) || {}).t || null, line: await lineNow() });
+    }
+    d11.push(one);
   }
 }
-check("D11 a rail switch that redraws the card's pills is followed by the dropdown, and a pick from it is still a press on the card the line reads",
-  !!d11 && d11.order && d11.cardPressed === d11.pick && d11.row.reading === d11.pick && d11.line.includes(d11.pick),
-  d11 ? `switch "${d11.switched}" · order follows ${d11.order} · picked "${d11.pick}" · card "${d11.cardPressed}" · line "${d11.line.slice(0, 40)}"` : "no rail switch to press");
+const d11ok = (x) => x.order && (x.rebuilt || x.stayedOpen) && x.pick !== null && x.cardPressed === x.pick && x.row === x.pick && String(x.line || "").includes(x.pick);
+check("D11 a rail switch that redraws the card's pills is followed by the dropdown, and a pick from it is still a press on the card the line reads: left open where the card re-answered in place, opened again where the card was rebuilt under a moved gate",
+  d11.length > 0 && d11.every(d11ok),
+  d11.length ? d11.map((x) => `switch "${x.switched}" (the gate ${x.gate}: ${x.rebuilt ? "the card rebuilt" : "re-answered in place"}, the dropdown ${x.stayedOpen ? "stayed open" : "came back shut"}) · ${x.inMenu} of the card's ${x.pills} pills, order follows ${x.order} · picked "${x.pick}" · card "${x.cardPressed}" · line "${String(x.line || "").slice(0, 40)}"`).join(" | ")
+    + (d11.some((x) => x.rebuilt) && d11.some((x) => !x.rebuilt) ? "" : " | only one kind of switch on this row") : "no rail switch to press");
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);
