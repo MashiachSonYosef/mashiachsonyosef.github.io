@@ -13,7 +13,12 @@
 // a dictionary names as one thing, under one license, is cut there (the v64.2
 // relay, READY, candidate only). This only says where each HUD of two or more
 // words stands in the zone the page draws, so the page can give its words one
-// line, one strip and one card — the same lane the run cards already take:
+// cell and one card — the same lane the run cards already take. (The cell's
+// ink row wore one gold line too, which is what the rule's id still says,
+// until the owner's ruling of 2026-11-10: "i think we can get rid of
+// underlining because when things are underlined theyre already put into 1
+// card, 1 hud". The id is written into every file this tool projected and is
+// left as it was given.)
 //
 //   - a place is a zone word that is not a mark, counted from 0 within the
 //     book (the record's bp); the zone's words are checked against the
@@ -23,7 +28,7 @@
 //     and read under any branch
 //   - a HUD of one place is not written (it is the word's own card); a HUD of
 //     kind MAQAF_CHAIN alone is not written either (the page already joins a
-//     maqaf chain into one cell with one line); every other HUD of two or more
+//     maqaf chain into one cell); every other HUD of two or more
 //     places is a run: LICENCE_RUN, MAQAF_CHAIN+LICENCE_RUN, UNION_OF_PARTIAL_OVERLAPS,
 //     KETIV_QERE_SITE, CUT_REMAINDER
 //   - a run is written as its section and the index of each of its words in

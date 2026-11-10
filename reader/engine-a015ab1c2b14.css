@@ -906,13 +906,12 @@
   .wb { display: inline-flex; flex-direction: column; align-items: center; vertical-align: top;
     margin: 0 0.16rem 0.55rem; cursor: pointer; }
   .w { display: block; order: 1; border-bottom: 1px dashed transparent; border-radius: 2px; }
-  /* UNDER THE HAND THE LINE GOES GOLD, NOT THE LETTERS (the owner, 2026-10-16,
-     of a pressed word on a phone, where a tap leaves the word hovered: "you
-     made the entire hebrew word gold now thats not right"). Since the marks
-     wear the gold at rest and the letters laid over them take the word's
-     own color, a hover that turned the word gold turned the letters gold
-     with it. The hover keeps the ink and says itself by the line beneath. */
-  .wb:hover .w { border-bottom-color: var(--gold); }
+  /* UNDER THE HAND THE LETTERS KEEP THEIR INK (the owner, 2026-10-16, of a
+     pressed word on a phone, where a tap leaves the word hovered: "you made
+     the entire hebrew word gold now thats not right"). The hover turned the
+     line beneath the word gold instead, until the line itself went
+     (2026-11-10, NO LINE UNDER THE HEBREW, below). The hand is shown by the
+     pointer and a press by the pressed cell. */
   /* A word the chain holds is printed as the chain has it and not touched. But
      some of what it holds is not a word — the Miqra source's section markers
      arrive as a run of markup with no break in it, and an unbreakable run wider
@@ -933,8 +932,9 @@
      what is said by the cell and not by distance alone — on the English
      reader a two-line reading had stood as far from its word as from its
      neighbor. A maqaf run is one cell; a section mark is no word and has
-     none. The gold underline inside it still says how many words one card
-     covers, and a pair's bracket which half is selected. */
+     none. The cell is what says how many words one card covers (a gold line
+     said it too until 2026-11-10), and a pair's bracket which half is
+     selected. */
   .he-text .wb, .he-text .wjoin { background: var(--cell-wash); border-radius: 0.4rem; padding: 0.08rem 0.24rem 0.16rem; }
   .he-text .wjoin .wb, .he-text .wb.mark { background: none; padding: 0; border-radius: 0; }
   /* the pressed cell is the darkest linen (the owner's rule, 2026-10-03) */
@@ -945,53 +945,37 @@
   /* a pressed run is one pressed cell: its words keep their selected state
      for the card, and wear no box of their own inside the cell's */
   .wjoin.active .wb.active { outline: none; background: none; }
-  /* a named run: a license names these words as one thing. A thin blue rule
-     under each of its words, the reading's own color; open, the run's words
-     wear the selection together. */
-  /* A LINE ONLY UNDER WORDS ONE CARD JOINS (the owner, 2026-10-19: "lets
-     move to only underlining when it actually combines words / same as how
-     we do no blob if its a single 1:1, we do no underline if its a 1:1
-     (word:hud)"). A word that opens its own card alone draws no line under
-     it, at rest or under the hand: a ketiv-qere pair, which is one word in
-     two forms, and each word of a run that has no card of its own, alike. A
-     card that joins words (a maqaf compound, a named run, a span) keeps its
-     one line under the whole. The line keeps its room, unseen, so nothing
-     moves and a card's number sits where it sat. From 2026-10-03 every word
-     wore it ("i think underlining is nondistracting and can be added to
-     every word for now"). A word the page typed keeps its dashed mark,
-     which says that and is no card's line. */
-  .wb > .w { border-bottom: 1px solid var(--gold-dim); border-radius: 0; }
-  .he-text .wb:not(.wjoin .wb):not(.typed-here) > .w, .he-text .wb:not(.wjoin .wb):not(.typed-here):hover > .w,
-  .he-text .wjoin.apart .wb:not(.typed-here) > .w { border-bottom-color: transparent; }
-  .wjoin .wb > .w, .wb.mark > .w { border-bottom-color: transparent; }
-  /* a run with no card of its own (a pair inside it: each word its own card)
-     draws no line under the whole; each word keeps its own */
-  .wjoin.apart .wj-ink { border-bottom-color: transparent; }
-  .wjoin.apart .wb:not(.kq) > .w { border-bottom-color: var(--gold-dim); }
-  /* a named run reaching into a maqaf run (Judges 1:5, Adoni-bezek: its
-     first word is the second of et-Adoni) wears its own one-card line and
-     no second line under it; the word outside the name keeps its own (the
-     owner, 2026-10-08, read the two lines as a pair's mark) */
-  /* A RUN A LICENSE NAMES IS ONE CELL, AS A MAQAF RUN IS (the owner,
-     2026-10-09: "gold underline will indicate how many words are in a single
-     hud", and, of the strip of fused cells that stood here for a day, "id
-     really just make it the gold underline itself as a single unit across
-     the hebrew"). Its ink row wears the one-card line whole, in the run's
-     gold; a spacer stands where the text writes a space between its words.
-     A run too wide for the page wraps inside its cell rather than past it. */
-  .wjoin.lic .wj-ink { border-bottom: 1.5px solid var(--gold); }
-  /* OVER THE WORDS IN THE HEBREW READER (the owner, 2026-10-19, of a joined
-     card's line crossing its blob where the blob runs down from the letters
-     to the English: "put it as an overline, right"). The one-card line
-     stands on the letters' side away from the English: over them in the
-     Hebrew reader, where the English hangs below, and under them in the
-     English reader, where the letters are the card's foot and nothing runs
-     below them. Over, it is drawn as a shadow just outside the ink row's top
-     edge, in the card's own top padding, so it takes no room; the row's
-     bottom border keeps its room unseen. The card's numbers hang under it. */
-  body:not(.en) .he-text .wjoin > .wj-ink { border-bottom-color: transparent; box-shadow: 0 -1px 0 var(--gold-dim); }
-  body:not(.en) .he-text .wjoin.lic > .wj-ink { box-shadow: 0 -1.25px 0 var(--gold); }
-  body:not(.en) .he-text .wjoin.apart > .wj-ink { box-shadow: none; }
+  /* NO LINE UNDER THE HEBREW (the owner, 2026-11-10: "i think we can get rid
+     of underlining because when things are underlined theyre already put
+     into 1 card, 1 hud. it doesnt benefit i think. and maqafs are already
+     obvious but even for 2 words itll be on one visible card already"). The
+     words one card joins say so by their one cell of linen and by the card
+     that opens over them. The line's history, since it is why the rows are
+     spaced as they are: from 2026-10-03 every word wore it ("i think
+     underlining is nondistracting and can be added to every word for now");
+     from 2026-10-09 a run wore one ("gold underline will indicate how many
+     words are in a single hud"; and, of the strip of fused cells that stood
+     here for a day, "id really just make it the gold underline itself as a
+     single unit across the hebrew"); from 2026-10-19 only the words one card
+     joins wore it ("lets move to only underlining when it actually combines
+     words / same as how we do no blob if its a single 1:1, we do no
+     underline if its a 1:1 (word:hud)"), over the letters in the Hebrew
+     reader ("put it as an overline, right") and under them in the English,
+     parted where a card's number stood.
+     ITS ROOM IS KEPT, unseen: a word's letters and a run's ink row keep the
+     bottom border they had (a named run's and a pair's the wider), so no
+     row, no blob and no number moved the day the line went. A word the page
+     typed keeps its dashed mark, which says that and was never a card's
+     line. */
+  .wb > .w { border-bottom: 1px solid transparent; border-radius: 0; }
+  /* a scribal mark's own box (dim gold, above) has stood open at the foot
+     since 2026-10-19, when the line under a single word went and took the
+     box's bottom side with it; it is left exactly so */
+  .wb.mark > .w { border-bottom-color: transparent; }
+  /* a run a license names is one cell, as a maqaf run is; a spacer stands
+     where the text writes a space between its words, and a run too wide for
+     the page wraps inside its cell rather than past it */
+  .wjoin.lic .wj-ink { border-bottom-width: 1.5px; }
   /* the space the text writes between a run's words: a real space (so a copy
      of the line keeps it) held at a word gap's width inside the flex row,
      which would drop a bare one */
@@ -999,7 +983,6 @@
   .wjoin { max-width: 100%; }
   .wjoin .wj-ink { flex-wrap: wrap; justify-content: center; }
   .wjoin > .g.parts { flex-wrap: wrap; }
-  .wjoin.lic.active .wj-ink { border-bottom-color: var(--gold); }
   .wb.active .w { background: none; }
   .wb.mark.active .w { background: none; border-color: var(--gold); }
   /* A word the reader has ruled on keeps a mark after the card closes. Without
@@ -1055,7 +1038,7 @@
   .wjoin { white-space: nowrap; display: inline-flex; flex-direction: column;
     align-items: center; vertical-align: top; margin: 0 0.16rem 0.55rem; }
   .wjoin .wj-ink { display: inline-flex; align-items: flex-start;
-    border-bottom: 1px solid var(--gold-dim);
+    border-bottom: 1px solid transparent;   /* the room of the line a run wore (NO LINE UNDER THE HEBREW) */
     /* THE PIECES NEVER TURN AROUND. This row inherited its direction from
        whatever container it landed in, so in the English reader a maqaf
        compound drew its second piece first — the record's own order,
@@ -1190,30 +1173,19 @@
   body.en[data-chain="ltr"] .wjoin .wj-ink { direction: ltr; }
   .q-mark { font-size: 0.62em; vertical-align: super; color: var(--muted);
     margin-inline-start: 0.1em; cursor: help; }
-  /* the halves of a pair hover on their own, so the pair as a whole takes no
-     hover line; held, it keeps its ink like any word, and a ketiv-qere pair
-     keeps the one-card underline below */
+  /* the halves of a pair hover on their own; held, the pair keeps its ink
+     like any word */
   .wb.multi:hover .w, .wb.multi.active .w { color: var(--shani-ink); }
-  .wb.multi:not(.kq):hover .w { border-bottom-color: transparent; }
-  .wb.multi.active:not(.kq) .w { border-bottom: 1px dashed transparent; }
   .wr { border-bottom: 1px dashed transparent; border-radius: 2px; }
   .wr:hover { border-bottom-color: var(--gold); }
-  /* AN UNDERLINE IS ONLY EVER ON THE HEBREW, AND MEANS ONE CARD HERE (the
-     owner, 2026-10-03): every word, thin and dim (above, with the runs); a
-     maqaf run or a span across words, one line under the whole; a ketiv-qere
-     pair, one line under both halves, its read half bracketed. All gold. Nothing else on the page is underlined: not a
-     reading, not a word with a commentary open, not a variant site, not a
-     word carrying a source's mark. */
-  /* The half of a source-marked pair that the shown English is reading from.
-     An underline in the selection role, not a new color: it marks provenance
-     of the gloss, never a choice about the text — both halves keep printing
-     exactly as the source wrote them, and text-decoration moves no glyph. */
-  /* KETIV AND QERE (the owner, 2026-10-03): both halves open one card, so the
-     pair wears the one-card underline under both; the half the English is
-     reading from wears a gold bracket above it. All gold, all on the Hebrew.
-     The bracket is drawn by ::after: a half's ::before carries its letters
-     when its marks are gold (EVERY MASORETIC MARK GOLD). */
-  .wb.kq > .w { border-bottom: 1.5px solid var(--gold); border-radius: 0; }
+  /* KETIV AND QERE (the owner, 2026-10-03): both halves open one card; the
+     half the English is reading from wears a gold bracket above it, on the
+     Hebrew. The bracket marks the provenance of the gloss, never a choice
+     about the text: both halves keep printing exactly as the source wrote
+     them. It is drawn by ::after: a half's ::before carries its letters when
+     its marks are gold (EVERY MASORETIC MARK GOLD). The pair wore the
+     one-card line under both halves until 2026-10-19; its room is kept. */
+  .wb.kq > .w { border-bottom: 1.5px solid transparent; border-radius: 0; }
   .wb.kq .wr { position: relative; }
   .wb.kq .wr.backs-en::after { content: ""; position: absolute; left: 0.05em; right: 0.05em; top: -0.12em;
     height: 0.22em; border: 1.5px solid var(--gold); border-bottom: none; border-radius: 0.12em 0.12em 0 0; pointer-events: none; }
@@ -1983,19 +1955,8 @@
   body.en.nums .he-text .wb.cn-out:not(.mark)::after { bottom: auto; top: 100%; }
   body.nums .he-text .wjoin .wb.cn-out:not(.mark)::after { top: auto; bottom: calc(100% + 0.08rem); }
   body.en.nums .he-text .wjoin .wb.cn-out:not(.mark)::after { bottom: auto; top: calc(100% + 0.16rem + 1px); }
-  /* A LINE GIVES WAY TO A NUMBER. The one line a run wears runs along the
-     edge the numbers stand on. With the numbers on it is drawn over the same
-     place by the row's own ::after, whole until seatNumbers writes the gaps
-     (--rule-img), and the border or shadow that drew it keeps its room,
-     unseen. A band of linen over the line would not do: the card's linen is
-     a veil over the woven ground. (A pair, written and read, wears no line.) */
-  body.nums .he-text .wjoin:not(.apart) > .wj-ink { border-bottom-color: transparent; box-shadow: none; --rule-ink: var(--gold-dim); }
-  body.nums .he-text .wjoin.lic:not(.apart) > .wj-ink { --rule-ink: var(--gold); }
-  body.nums .he-text .wjoin:not(.apart) > .wj-ink::after { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 1px;
-    background: var(--rule-img, var(--rule-ink)); pointer-events: none; }
-  body.nums .he-text .wjoin.lic:not(.apart) > .wj-ink::after { height: 1.25px; }
-  body.en.nums .he-text .wjoin:not(.apart) > .wj-ink::after { bottom: auto; top: 100%; }
-  body.en.nums .he-text .wjoin.lic:not(.apart) > .wj-ink::after { height: 1.5px; }
+  /* (a run's own line stood on this edge and was drawn parted for the
+     numbers until 2026-11-10; no line stands there now) */
   /* and a frame's line, parted where a number had to stand on it (seatNumbers), is whole again with the numbers off */
   body:not(.nums) .he-text svg.wj-tie > path.wj-line { mask: none; }
   /* A commentary handle standing in the line of the verse, after the words it
@@ -2206,8 +2167,7 @@
      Frames, hovers, focus and pressed states draw their edges in the gold;
      fills and text keep their colors, and the dotted and dashed marks that
      say a state (a typed word, a reading that could not be reached, a word
-     with a question) keep theirs. The underline under a run's words is gold
-     as a maqaf run's is. */
+     with a question) keep theirs. */
   button, select { transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
   button:hover:not([disabled]) { border-color: var(--gold); }
   button:active:not([disabled]) { transform: translateY(0.5px); }

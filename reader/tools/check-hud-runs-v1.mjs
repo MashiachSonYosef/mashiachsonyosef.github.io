@@ -11,9 +11,12 @@
 //     are the zone's stands as one run on the page (the run cards' lane), or
 //     under a run card on the same words
 // H2  a run is one cell, as a maqaf run is: its words stand in one cell that
-//     carries the run, the cell's ink row wears one gold line along all of
-//     it (under it, or over it in the Hebrew reader), and its parts row
-//     holds one part per word under the words
+//     carries the run, the cell's ink row draws no line (it wore one gold
+//     line along all of it until the owner's ruling of 2026-11-10: "i think
+//     we can get rid of underlining because when things are underlined
+//     theyre already put into 1 card, 1 hud"; check-no-line-under-hebrew-v1
+//     holds that for every run and word), and its parts row holds one part
+//     per word under the words
 // H3  a cell never runs past the page: a run too wide for the page wraps
 //     inside its cell (its ink row on more lines than one), and the cell's
 //     box stays inside the page's width
@@ -54,16 +57,16 @@ for (const book of books) {
       if (!run || !els.every((e) => e.__run === run) || !c.idx.every((i) => run.idx.includes(i))) { out.missing.push(c.text); continue; }
       out.laid += 1;
       if (run.idx.length !== c.idx.length) continue;   // a longer run card holds these words; its cell is its own
-      // H2: one cell carrying the run, one line under its ink, one part per word
+      // H2: one cell carrying the run, no line on its ink, one part per word
       const cell = els[0].closest(".wjoin");
       if (!cell || cell.__run !== run || !cell.classList.contains("lic") || !els.every((e) => e.closest(".wjoin") === cell)) { out.cellBad += 1; if (out.astray.length < 3) out.astray.push(`cell ${c.text}`); continue; }
       const ink = cell.querySelector(":scope > .wj-ink");
       const cs = ink && getComputedStyle(ink);
-      // one line under its ink, or, in the Hebrew reader, over it (the owner,
-      // 2026-10-19: "put it as an overline, right"), drawn as a shadow
+      // no line under its ink and none over it (drawn as a shadow, as the
+      // Hebrew reader's was)
       const under = cs && parseFloat(cs.borderBottomWidth) > 0 && cs.borderBottomStyle !== "none" && !/rgba\(.*,\s*0\)$/.test(cs.borderBottomColor) && cs.borderBottomColor !== "transparent";
       const over = cs && /px\s+-[\d.]+px\s+0px/u.test(cs.boxShadow || "") && !/rgba\([^)]*,\s*0\)/u.test(cs.boxShadow);
-      if (!under && !over) { out.lineBad += 1; if (out.astray.length < 3) out.astray.push(`line ${c.text}`); }
+      if (under || over) { out.lineBad += 1; if (out.astray.length < 3) out.astray.push(`line ${c.text}`); }
       const parts = [...cell.querySelectorAll(":scope > .g.parts > .g-part")];
       // a run the span store names, or one a dictionary published whole,
       // reads as one line over all its ink (the store's first row; the
@@ -85,7 +88,7 @@ for (const book of books) {
   }, file.cards);
   console.log(`— ${book}: ${file.counts.runs} runs in the file, branch ${file.branch} —`);
   check("H1  every HUD run of the file stands as one run on the page", r.missing.length === 0, `${r.laid} of ${r.cards} laid${r.missing.length ? ` · missing ${r.missing.slice(0, 3).join(" | ")}` : ""}`);
-  check("H2  a run is one cell: one line under all its ink, one part per word", r.cellBad === 0 && r.lineBad === 0 && r.partsBad === 0, `${r.cellBad} cells wrong, ${r.lineBad} lines missing, ${r.partsBad} parts rows wrong${r.astray.length ? ` · ${r.astray.join(" | ")}` : ""}`);
+  check("H2  a run is one cell: no line on its ink, one part per word", r.cellBad === 0 && r.lineBad === 0 && r.partsBad === 0, `${r.cellBad} cells wrong, ${r.lineBad} runs wearing a line, ${r.partsBad} parts rows wrong${r.astray.length ? ` · ${r.astray.join(" | ")}` : ""}`);
   check("H3  no cell runs past the page; a wide run wraps inside its cell", r.pastPage === 0, `${r.wrapped} runs wrap inside their cell at 412px, ${r.pastPage} past the page`);
   check("H4  the parts of a run stand in the text's order", r.orderBad === 0, r.examples.join(" ‖ "));
   await p.close();

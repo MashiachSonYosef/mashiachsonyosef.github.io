@@ -40,8 +40,9 @@
 //       the page is photographed with the numbers drawn and again with their
 //       ink unseen (everything else as it stands, a line that gave way still
 //       parted), and what the numbers' drawing changed stands a pixel or
-//       more from every other gold pixel (a frame's line, a run's line, a
-//       point, an accent) and from every letter's and reading's ink ("the
+//       more from every other gold pixel (a frame's line, a point, an
+//       accent; a run wore a line too until 2026-11-10) and from every
+//       letter's and reading's ink ("the
 //       key is no overlap with other gold"); and no number lies on another
 //       number or in another card of its verse
 //   N6  numbering takes no room: every word cell's box (.wb and .wjoin) is
@@ -307,7 +308,7 @@ const n12 = await (async () => {
   const least = (k) => (drawn.length ? Math.min(...drawn.map((c) => c[k])) : 0);
   const say = (v) => (v >= 99 ? "nothing within 3px" : `${v.toFixed(1)}px`);
   const hits = Object.entries(n5.hit).filter(([, v]) => v.length);
-  check("N12 no number touches other gold (a frame's line, a run's line, a point) or a letter, by the page's own pixels; none lies on another number or in another card",
+  check("N12 no number touches other gold (a frame's line, a point) or a letter, by the page's own pixels; none lies on another number or in another card",
     drawn.length > 0 && runs.length > 0 && n5.tied > 0 && !touch.length && !hits.length,
     `${drawn.length} cards photographed with their numbers, ${runs.length} of them runs · the nearest other gold ${say(least("gold"))}, the nearest letter ${say(least("letter"))}`
       + `${touch.length ? ` · within a pixel: ${touch.slice(0, 5).map((c) => `#${c.cn} (gold ${say(c.gold)}, letter ${say(c.letter)})`).join(", ")}` : ""}`

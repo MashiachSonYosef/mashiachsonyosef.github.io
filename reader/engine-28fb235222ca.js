@@ -1320,7 +1320,8 @@
       // scribes joined is one cell as ever; it is built from the text.
       if (runsPref === "off") cards = [];
       // the span store's cells are laid whatever the runs switch says: they
-      // are the underlines the owner asked for, each one license over its words
+      // are the cells the owner asked for as underlines, each one license
+      // over its words
       const spans = spanCardsOf();
       const laid = layRunLanes([...spans.cards, ...cards], runsPref !== "off" || !name);
       // a place is laid as its own cell, or stands inside the cell of a
@@ -8704,8 +8705,8 @@
   //      letters' rows close, and a frame as wide as its card fills the
   //      edge), the number keeps its corner if the ink leaves it, else the
   //      other end, else the clearest place between, and THE FRAME'S LINE
-  //      GIVES WAY around it, as a run's line does (the owner's fourth point
-  //      of 2026-10-19: "the underline briefly gaps");
+  //      GIVES WAY around it (the owner's fourth point of 2026-10-19, said of
+  //      the line a run then wore: "the underline briefly gaps");
   //   3. where ink stands along the whole edge, so that every place lies on
   //      a letter or a point, the number hangs just outside its card's
   //      corner: ink cannot give way.
@@ -8850,17 +8851,6 @@
         lines.forEach((ln) => ln.setAttribute("mask", `url(#${id})`));
       }
     }
-    // a run's one line, on the numbers' edge, gives way to them
-    const ruled = run && !cell.classList.contains("apart") ? cell.querySelector(":scope > .wj-ink") : null;
-    if (!ruled) return;
-    // (the line stands in the row's foot border, or as a shadow over its head: a number hung outside the card parts it only where it comes that near)
-    const R = ruled.getBoundingClientRect(), lineT = en ? R.bottom - (parseFloat(getComputedStyle(ruled).borderBottomWidth) || 1) : R.top - 1.25, lineB = en ? R.bottom : R.top;
-    const gaps = seats.filter((q) => q.y1 + NUM_RULE_GAP > lineT && q.y0 - NUM_RULE_GAP < lineB).map((q) => [Math.max(0, q.x0 - R.left - NUM_RULE_GAP), Math.min(R.width, q.x1 - R.left + NUM_RULE_GAP)]).filter(([a, b]) => b > a).sort((p, q) => p[0] - q[0]);
-    const stops = []; let from = 0;
-    for (const [a, b] of gaps) { if (a > from) stops.push(`var(--rule-ink) ${f(from)}px ${f(a)}px`); stops.push(`transparent ${f(Math.max(a, from))}px ${f(b)}px`); from = Math.max(from, b); }
-    stops.push(`var(--rule-ink) ${f(from)}px 100%`);
-    const img = gaps.length ? `linear-gradient(to right, ${stops.join(", ")})` : "";
-    if (ruled.style.getPropertyValue("--rule-img") !== img) { if (img) ruled.style.setProperty("--rule-img", img); else ruled.style.removeProperty("--rule-img"); }
   };
   // EVERY BUILT CARD'S NUMBER FINDS ITS SEAT, when the numbers are turned on
   // over cards drawn without them: the cards near the screen at once, the
@@ -9034,8 +9024,9 @@
   // A RUN IS BUILT AS A MAQAF CHAIN IS (the owner, 2026-10-09: the strip of
   // fused cells "arent as clear as our maqaf ones ... id really just make it
   // the gold underline itself as a single unit across the hebrew"): the words
-  // a license names as one thing stand in one cell, one ink row with one line
-  // under all of it, one row of parts under their words, one card. `link`
+  // a license names as one thing stand in one cell, one ink row (which wore
+  // one line under all of it until 2026-11-10), one row of parts under their
+  // words, one card. `link`
   // says a word is joined to the one before or after by a run; where the text
   // writes a space between them a spacer keeps it, where it writes a maqaf
   // the maqaf is the join, as ever.
@@ -9085,8 +9076,8 @@
       else if (host.__wjoin.__run) host.__wjoin.__key = host.__wjoin.__run.spanKey || host.__wjoin.__run.keys.join(" ");
       else if (host.__wjoin.classList.contains("lic") && ws.every((w) => w.k)) host.__wjoin.__key = ws.map((w) => w.k).join(" ");
       // a run with no key of its own (a pair inside it) is one breath and
-      // several cards, and wears the one-card underline under each word
-      // rather than one line under all of them (the owner, 2026-10-08)
+      // several cards: a press on a word opens that word's own card (the
+      // owner, 2026-10-08, of the one line such a run then wore)
       if (!host.__wjoin.__key) host.__wjoin.classList.add("apart");
     }
     if (joinNext) {
