@@ -62,10 +62,10 @@ OUT = os.path.join(ROOT, 'mark')
 CNAME = os.path.join(ROOT, 'CNAME')
 
 # the site's own pairs (zone.html :root), a regular and a dim of each color
-S = '#9d4355'; S_DIM = '#b76670'   # shani: --shani, --shani-dim
+S = '#a52035'; S_DIM = '#be6367'   # shani: --shani, --shani-dim
 G = '#93661a'; G_DIM = '#a06c10'   # gold: --gold, --gold-dim
-B = '#34649a'; B_DIM = '#7f8ba8'   # tekhelet: --tekhelet, --tekhelet-dim
-U = '#561f86'; U_DIM = '#6c359e'   # argaman: --argaman, --argaman-dim
+B = '#23558a'; B_DIM = '#768ea2'   # tekhelet: --tekhelet, --tekhelet-dim
+U = '#642460'; U_DIM = '#753c6d'   # argaman: --argaman, --argaman-dim
 # each color's thread: its edge, its body, and the light along its middle.
 # The gold's body is its dim, since the and is the gold the frames wear at
 # rest, and its edge the regular; every other color's body and edge are its

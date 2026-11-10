@@ -199,8 +199,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>the switches</title>
 <style>
- :root { --ink:#561f86; --faint:#6c359e; --muted:#6c359e; --line:#a06c10; --paper:#ebdec3; --sel:#561f86;
-   --tekhelet:#34649a; --shani:#9d4355; --argaman:#561f86; }
+ :root { --ink:#642460; --faint:#753c6d; --muted:#753c6d; --line:#a06c10; --paper:#ebdec3; --sel:#642460;
+   --tekhelet:#23558a; --shani:#a52035; --argaman:#642460; }
  /* one face, linen, since 2026-09-10; the dark face came off this sheet 2026-10-02.
     The reader's own values since 2026-10-10 (the owner: "personally i dont see a
     gain from more than 2/2/2/2 and 3 linen"; "my main point is uniform coloring

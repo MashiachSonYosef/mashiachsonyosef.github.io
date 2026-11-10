@@ -95,8 +95,12 @@ const FAMILY = {
   "tola'at shani": { hue: [-15, 25], minSat: 0.20, light: [0.25, 0.75] },
   "tekhelet": { hue: [185, 235], minSat: 0.25, light: [0.30, 0.85] },
   // the field ink is argaman too, brought down to a neutral, so the box has
-  // to reach the light end where the night face writes
-  "argaman": { hue: [250, 320], minSat: 0.15, light: [0.30, 0.92] },
+  // to reach the light end where the night face writes; and its dark end is
+  // the owner's own purple: the swatch formalized on 2026-11-10 ("i do want
+  // to formalize the correct blue, scarlet and purple chatgpt showed") is
+  // #642460, lightness 0.27, a shade under the 0.30 this box began at when
+  // the page's purple was a violet of its own choosing
+  "argaman": { hue: [250, 320], minSat: 0.15, light: [0.25, 0.92] },
   // the grounds, which are surfaces and not channels
   "purple": { hue: [250, 320], minSat: 0.05, light: [0.01, 0.30] },
   "brown": { hue: [15, 50], minSat: 0.05, light: [0.01, 0.30] },

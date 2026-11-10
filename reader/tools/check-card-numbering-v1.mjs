@@ -9,8 +9,8 @@
 // forget rule 2 the opposite corner thing and align all per rule 3"). With
 // the pill on, every card on the
 // page wears its own number in its verse, a run's words each theirs, drawn by
-// the word's letters' box (its ::after, from the card's --cn), sitting on the
-// line under the letters, in both readers.
+// the card itself (its ::after, from the card's --cn), in the corner of the
+// edge its letters stand at, in both readers.
 //   N1  the pills read "card numbering" (#numsPill) and "concordance hud"
 //       (#dictPill), and ?nums=on presses the first
 //   N2  with numbers on, every word that is not a mark carries its number in
@@ -21,21 +21,28 @@
 //       in that verse, it is this word
 //   N4  every card its own number: a run's words each show their own, and
 //       the run no number of its own (no "3-4")
-//   N5  each number stands at the left of its own Hebrew word (within 1px),
-//       between its card's sides, a card of two words alike (no corners),
-//       and JUST OUTSIDE its card (the owner, 2026-11-10: "your card
-//       numbering is too crammed in there just put it somewhere smart"):
-//       in the English reader under the card, its top within 2.5px of the
-//       card's bottom edge; in the Hebrew reader over the card, its foot
-//       within 2.5px of the card's top edge (the owner, 2026-10-19: "on
-//       hebrew toggle id put numbers at the top, on english toggle id put
-//       them at the card bottom": the same ends, a few pixels further out).
-//       Until 2026-11-10 it stood inside the card, on the line under the
-//       letters or in the strip over them.
-//   N12 no number lies on a blob, its fill or its outline, on a line that is
-//       drawn, on another number, or in another card of its verse ("they
-//       shouldnt be in the way of blobs"); the digits' own ink is what is
-//       measured, not the box's leading
+//   N5  each number stands ON ITS CARD, on the edge its letters stand at (the
+//       owner, 2026-11-10: "i would still do somewhere on the card just you
+//       know like a corner or edge, the key is no overlap with other gold";
+//       2026-10-19: "on hebrew toggle id put numbers at the top, on english
+//       toggle id put them at the card bottom"): its box inside its card's,
+//       within 3px of the card's foot in the English reader and of its head
+//       in the Hebrew, in the left corner of its card (a run's word: at its
+//       own word's left) unless the page seated it elsewhere on that edge
+//       (--cn-x: ink or a frame stood in the corner) or hung it just outside
+//       the corner (cn-out: ink stood along the whole edge). The seated and
+//       the hung are counted, and on a phone's width the hung are at most
+//       one in a hundred. Until 2026-11-10 the number stood by its letters'
+//       box, on the line under them; for a few hours of that day it hung
+//       outside every card.
+//   N12 no number touches other gold or a letter, by the page's own pixels:
+//       the page is photographed with the numbers drawn and again with their
+//       ink unseen (everything else as it stands, a line that gave way still
+//       parted), and what the numbers' drawing changed stands a pixel or
+//       more from every other gold pixel (a frame's line, a run's line, a
+//       point, an accent) and from every letter's and reading's ink ("the
+//       key is no overlap with other gold"); and no number lies on another
+//       number or in another card of its verse
 //   N6  numbering takes no room: every word cell's box (.wb and .wjoin) is
 //       the same with numbers on and off, on the same page, blobs drawn
 //   N7  the blobs drawn with numbers on are the blobs drawn with numbers off
@@ -146,7 +153,7 @@ const verses = await p.evaluate(() => [...document.querySelectorAll("section.seg
   const wbs = [...sec.querySelectorAll(".he-text .wb:not(.mark)")];
   return {
     ref: ((sec.querySelector(".vnum") || {}).textContent || "").trim(),
-    words: wbs.map((wb) => { const w = wb.querySelector(":scope > .w"); const own = wb.style.getPropertyValue("--cn"); const cn = own ? JSON.parse(own) : null; const drawn = w ? getComputedStyle(w, "::after").content : "none"; return { cn, span: !wb.querySelector(".cn"), ink: w ? w.textContent : "", inRun: !!wb.closest(".wjoin"), shown: drawn !== "none" && drawn !== "normal", drawn: (drawn.match(/\d+/u) || [""])[0] }; }),
+    words: wbs.map((wb) => { const w = wb.querySelector(":scope > .w"); const own = wb.style.getPropertyValue("--cn"); const cn = own ? JSON.parse(own) : null; const drawn = getComputedStyle(wb, "::after").content; return { cn, span: !wb.querySelector(".cn"), ink: w ? w.textContent : "", inRun: !!wb.closest(".wjoin"), shown: drawn !== "none" && drawn !== "normal", drawn: (drawn.match(/\d+/u) || [""])[0] }; }),
     runs: [...sec.querySelectorAll(".he-text .wjoin")].map((run) => { const own = run.style.getPropertyValue("--cn"); return { badges: (own ? 1 : 0) + run.querySelectorAll(":scope > .cn").length, at: [...run.querySelectorAll(".wb:not(.mark)")].map((wb) => wbs.indexOf(wb) + 1) }; }),
   };
 }));
@@ -155,7 +162,7 @@ const builtFirst = await p.evaluate(() => document.querySelectorAll("section.seg
 // N2: the number of each word in its verse, counted here
 let words = 0; const wrong2 = [];
 for (const v of verses) v.words.forEach((w, i) => { words += 1; if (w.cn !== String(i + 1) || !w.span || !w.shown || w.drawn !== w.cn) wrong2.push(`${v.ref}#${i + 1}=${w.cn} drawn ${w.shown ? w.drawn : "none"}`); });
-check("N2  with numbers on, every word not a mark wears its number in its verse, drawn by its letters' box, first word 1, marks not counted, sections built later as well",
+check("N2  with numbers on, every word not a mark wears its number in its verse, drawn by its card, first word 1, marks not counted, sections built later as well",
   words > 0 && !wrong2.length && verses.length > 3,
   `${words} words in ${verses.length} verses built (of ${builtFirst} sections) · ${wrong2.length ? `wrong: ${wrong2.slice(0, 5).join(", ")}` : "every number its place"}`);
 
@@ -181,83 +188,130 @@ check("N4  every card its own number: a run's words each show their own, and the
   runs.length > 0 && !wrong4.length,
   `${runs.length} runs${run0 ? `, the first at ${run0.ref} words ${run0.at.join(",")} shows ${run0.inner.map((w) => w && w.cn).join(" and ")}` : " on this page: open one with a run card"} · ${wrong4.length ? `wrong: ${wrong4.slice(0, 3).map((r) => `${r.ref} (${r.badges} run badges, words ${r.at.join(",")})`).join("; ")}` : "each as it should"}`);
 
-// N5 and N12: where each number stands, read off its used offsets from its
-// letters' box (a pseudo-element has no box of its own to ask)
+// N5: where each number stands, read off its used offsets from its card's own
+// box (a pseudo-element has no box of its own to ask)
 const n5 = await p.evaluate(() => {
   const en = document.body.classList.contains("en");
-  const seen = (cs) => parseFloat(cs.borderBottomWidth) > 0 && cs.borderBottomStyle !== "none" && !/rgba\([^)]*,\s*0\)$/u.test(cs.borderBottomColor) && cs.borderBottomColor !== "transparent";
-  const off = [], hit = { fill: [], outline: [], line: [], number: [] };
-  let n = 0, inRuns = 0, corners = 0, worst = 0, tied = 0;
+  const off = [], hit = { number: [], card: [] };
+  let n = 0, inRuns = 0, moved = 0, hung = 0, worst = 0;
   const nums = [];
   for (const wb of document.querySelectorAll(".he-text .wb:not(.mark)")) {
-    const w = wb.querySelector(":scope > .w");
-    if (!w || !wb.getClientRects().length) continue;
-    const a = getComputedStyle(w, "::after"), ws = getComputedStyle(w);
+    if (!wb.getClientRects().length) continue;
+    const a = getComputedStyle(wb, "::after");
     if (a.content === "none" || a.content === "normal") continue;
-    const r = w.getBoundingClientRect();
-    const padL = r.left + parseFloat(ws.borderLeftWidth), padB = r.bottom - parseFloat(ws.borderBottomWidth);
-    const width = parseFloat(a.width) + parseFloat(a.paddingLeft) + parseFloat(a.paddingRight);
-    const height = parseFloat(a.height) + parseFloat(a.paddingTop) + parseFloat(a.paddingBottom);
-    const left = padL + parseFloat(a.left), right = left + width, foot = padB - parseFloat(a.bottom), top = foot - height;
-    const join = wb.closest(".wjoin"), ink = join && join.querySelector(".wj-ink");
-    const words = ink ? [...ink.children].filter((x) => x.classList.contains("wb")) : [wb];
-    const corner = false;   // every number at its own word's left: no corners
-    const lineEl = ink && seen(getComputedStyle(ink)) ? ink : w;
-    const lr = lineEl.getBoundingClientRect(), lineTop = lr.bottom - parseFloat(getComputedStyle(lineEl).borderBottomWidth);
-    const cardEl = join || wb, card = cardEl.getBoundingClientRect();
-    n += 1; if (join) inRuns += 1; if (corner) corners += 1;
-    // a number placed by its top (the English reader) is read off its top; by its bottom (the Hebrew reader), off its bottom
-    const topUsed = parseFloat(a.top), botUsed = parseFloat(a.bottom);
-    const boxTop = en ? r.top + parseFloat(ws.borderTopWidth) + topUsed : padB - botUsed - height;
-    const boxFoot = boxTop + height;
-    // how far outside the card's edge the number stands: under its foot (the English reader), over its head (the Hebrew reader)
-    const dx = corner ? right - r.right : left - r.left, dy = en ? boxTop - card.bottom : card.top - boxFoot;
-    worst = Math.max(worst, Math.abs(dy));
+    const r = wb.getBoundingClientRect();
+    const width = parseFloat(a.width), height = parseFloat(a.height);
+    const left = r.left + parseFloat(a.left), right = left + width;
+    const top = en ? r.bottom - parseFloat(a.bottom) - height : r.top + parseFloat(a.top), foot = top + height;
+    const join = wb.closest(".wjoin"), cardEl = join || wb, card = cardEl.getBoundingClientRect();
+    const seated = !!wb.style.getPropertyValue("--cn-x"), out = wb.classList.contains("cn-out");
+    n += 1; if (join) inRuns += 1; if (seated) moved += 1; if (out) hung += 1;
     const tag = `#${a.content.replace(/\D+/gu, "")}`;
-    // a word whose letters' box wears a line of its own (a pixel) hangs its number that pixel nearer; the digits' ink stands a pixel inside the number's own box, so it still clears the card (N12 reads the ink)
-    if (Math.abs(dx) > 1 || dy < -1.5 || dy > 2.5 || left < card.left - 0.5 || right > card.right + 0.5)
-      off.push(`${tag} ${dx.toFixed(1)}px off its word's ${corner ? "right" : "left"}, ${dy.toFixed(1)}px ${en ? "under the card's foot" : "over the card's head"}${left < card.left - 0.5 || right > card.right + 0.5 ? ", past its card's side" : ""}`);
-    // the digits' own ink, not the box's padding and leading
-    nums.push({ tag, cardEl, sec: wb.closest("section.seg"), R: { L: left + parseFloat(a.paddingLeft), R: right - parseFloat(a.paddingRight), T: boxTop + height * 0.12, B: boxTop + height * 0.88 } });
+    // how far inside the card's foot (the English reader) or head (the Hebrew) the number's box ends
+    const edge = en ? card.bottom - foot : top - card.top;
+    const dx = left - (join ? r.left : card.left);   // from the corner it stands in when nothing moved it
+    if (out) {
+      // hung just outside its corner: against the card's edge, at its corner still
+      const gap = en ? top - card.bottom : card.top - foot;
+      if (gap < -0.5 || gap > 2.5 || (join ? Math.abs(dx) > 1 : dx < 0 || dx > 5)) off.push(`${tag} hung ${gap.toFixed(1)}px from its card's ${en ? "foot" : "head"}, ${dx.toFixed(1)}px from its corner`);
+    } else {
+      worst = Math.max(worst, Math.abs(edge));
+      if (left < card.left - 0.5 || right > card.right + 0.5 || top < card.top - 0.5 || foot > card.bottom + 0.5) off.push(`${tag} stands past its card (${(left - card.left).toFixed(1)}px from its left, ${edge.toFixed(1)}px inside its ${en ? "foot" : "head"})`);
+      else if (edge > 3) off.push(`${tag} ${edge.toFixed(1)}px from its card's ${en ? "foot" : "head"}`);
+      else if (!seated && (join ? Math.abs(dx) > 1 : dx < 0 || dx > 5)) off.push(`${tag} ${dx.toFixed(1)}px from its ${join ? "word's" : "card's"} left with nothing said to stand in its way`);
+      else if (seated && width <= r.width + 0.5 && (left < r.left - 0.5 || right > r.right + 0.5)) off.push(`${tag} seated past its own ${join ? "word" : "card"}`);
+    }
+    nums.push({ tag, cardEl, sec: wb.closest("section.seg"), R: { L: left, R: right - 0.4, T: top + height * 0.12, B: top + height * 0.88 } });
   }
-  // the cards of each verse, for the number that hangs outside its own
+  // a number on another number; a number in another card of its verse
   const cardsOf = new Map();
   const cardsIn = (sec) => { if (!cardsOf.has(sec)) cardsOf.set(sec, [...sec.querySelectorAll(".he-text > .wb, .he-text .wjoin")].map((el) => ({ el, q: el.getBoundingClientRect() }))); return cardsOf.get(sec); };
-  hit.card = [];
   for (const x of nums) {
-    const R = x.R, card = x.cardEl;
+    const R = x.R;
     for (const y of nums) if (y !== x && y.sec === x.sec && R.L < y.R.R && R.R > y.R.L && R.T < y.R.B && R.B > y.R.T) { hit.number.push(x.tag); break; }
-    if (x.sec && cardsIn(x.sec).some((c) => R.L < c.q.right && R.R > c.q.left && R.T < c.q.bottom && R.B > c.q.top)) hit.card.push(x.tag);
-    const lines = [card.querySelector(":scope > .wj-ink"), ...card.querySelectorAll(".wb > .w")].filter((el) => el && seen(getComputedStyle(el))).map((el) => { const q = el.getBoundingClientRect(); return { L: q.left, R: q.right, T: q.bottom - parseFloat(getComputedStyle(el).borderBottomWidth), B: q.bottom }; });
-    // the overline: a shadow just over a joined card's ink row
-    const oink = card.querySelector(":scope > .wj-ink"), osh = oink && /(-?[\d.]+)px\s+(-?[\d.]+)px\s+0px/u.exec(getComputedStyle(oink).boxShadow || "");
-    if (osh && parseFloat(osh[2]) < 0) { const q = oink.getBoundingClientRect(); lines.push({ L: q.left, R: q.right, T: q.top + parseFloat(osh[2]), B: q.top }); }
-    if (lines.some((l) => R.L < l.R && R.R > l.L && R.T < l.B && R.B > l.T)) hit.line.push(x.tag);
-    let fill = false, outline = false;
-    const svgs = card.querySelectorAll("svg.wj-tie");
-    if (svgs.length) tied += 1;
-    for (const svg of svgs) {
-      const m = svg.getScreenCTM(); if (!m) continue; const inv = m.inverse();
-      for (let i = 0; i <= 6; i += 1) for (let j = 0; j <= 3; j += 1) {
-        const q = new DOMPoint(R.L + (R.R - R.L) * i / 6, R.T + (R.B - R.T) * j / 3).matrixTransform(inv);
-        const sp = svg.createSVGPoint(); sp.x = q.x; sp.y = q.y;
-        for (const path of svg.querySelectorAll("path")) {
-          if (path.classList.contains("wj-line") || path.getAttribute("fill") === "none") { if (path.isPointInStroke(sp)) outline = true; }
-          else if (path.isPointInFill(sp)) fill = true;
+    if (x.sec && cardsIn(x.sec).some((c) => c.el !== x.cardEl && R.L < c.q.right && R.R > c.q.left && R.T < c.q.bottom && R.B > c.q.top)) hit.card.push(x.tag);
+  }
+  return { en, n, inRuns, moved, hung, worst, off, hit, parted: document.querySelectorAll(".he-text svg.wj-tie > mask.cn-mask").length, tied: document.querySelectorAll(".he-text svg.wj-tie").length, width: innerWidth };
+});
+check(`N5  each number stands on its card, at the edge its letters stand at (${n5.en ? "its foot: the English reader" : "its head: the Hebrew reader"}), in its left corner, a run's word's at its own word's left, unless the page seated it elsewhere on that edge or hung it just outside`,
+  n5.n > 0 && n5.inRuns > 0 && !n5.off.length && (n5.width > 640 || n5.hung <= n5.n / 100),
+  `${n5.n} numbers, ${n5.inRuns} on a run's words, the furthest ${n5.worst.toFixed(2)}px inside ${n5.en ? "its card's foot" : "its card's head"} · ${n5.moved} seated away from their corner, ${n5.parted} cards part a frame's line for one, ${n5.hung} hung just outside${n5.off.length ? ` · ${n5.off.slice(0, 3).join("; ")}` : ""}`);
+
+// N12: the page's own pixels. One page, two photographs: the numbers drawn,
+// and their ink unseen with everything else as it stands. A pixel is an
+// ink's where it lies on the line from the linen to that ink.
+const n12 = await (async () => {
+  const c2 = await b.newContext({ viewport: { width: 412, height: 2600 }, deviceScaleFactor: 2 });
+  await c2.addInitScript(() => { try { localStorage.clear(); } catch { /* fresh reader */ } });
+  const q = await c2.newPage();
+  q.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); errors.push(e.message); });
+  await q.goto(withParams(URL0, { nums: "on" }), { waitUntil: "networkidle" });
+  await q.waitForSelector("section.seg .he-text .wb");
+  await ties(q);
+  const cells = await q.evaluate(() => [...document.querySelectorAll("section.seg .he-text > .wb:not(.mark), section.seg .he-text .wjoin")].map((c) => { const r = c.getBoundingClientRect(); return { x: r.x, y: r.y, w: r.width, h: r.height, run: c.classList.contains("wjoin"), cn: getComputedStyle(c.classList.contains("wjoin") ? c.querySelector(".wb:not(.mark)") : c).getPropertyValue("--cn").replace(/"/gu, "") }; }).filter((c) => c.y > 0 && c.y + c.h < innerHeight - 12));
+  const on = await q.screenshot();
+  await q.addStyleTag({ content: "body.nums .he-text .wb::after { color: transparent !important; -webkit-text-fill-color: transparent !important; }" });
+  await q.waitForTimeout(300);
+  const bare = await q.screenshot();
+  const res = await q.evaluate(async ({ a, c, cells }) => {
+    const DSF = 2;
+    const load = async (d) => { const im = new Image(); im.src = `data:image/png;base64,${d}`; await im.decode(); const cv = document.createElement("canvas"); cv.width = im.naturalWidth; cv.height = im.naturalHeight; const g = cv.getContext("2d", { willReadFrequently: true }); g.drawImage(im, 0, 0); return g.getImageData(0, 0, cv.width, cv.height); };
+    const A = await load(a), B = await load(c), W = A.width, H = A.height;
+    const probe = (v) => { const x = document.createElement("span"); x.style.color = v; document.documentElement.append(x); const k = getComputedStyle(x).color.match(/\d+/gu).slice(0, 3).map(Number); x.remove(); return k; };
+    const GROUNDS = [probe("var(--bg)"), probe("var(--press-wash)")];
+    const INKS = [["gold", probe("var(--gold-dim)")], ["gold", probe("var(--gold)")], ["ink", probe("var(--shani)")], ["ink", probe("var(--shani-dim)")], ["ink", probe("var(--tekhelet)")], ["ink", probe("var(--tekhelet-dim)")], ["ink", probe("var(--argaman)")]];
+    const kindOf = (d, i) => {
+      let best = 0, br = 34;
+      for (const g of GROUNDS) for (const [kind, k] of INKS) {
+        const vx = k[0] - g[0], vy = k[1] - g[1], vz = k[2] - g[2], px = d[i] - g[0], py = d[i + 1] - g[1], pz = d[i + 2] - g[2];
+        const t = (px * vx + py * vy + pz * vz) / (vx * vx + vy * vy + vz * vz);
+        if (t < 0.4) continue;
+        const tt = Math.min(t, 1.15), r = Math.hypot(px - tt * vx, py - tt * vy, pz - tt * vz);
+        if (r < br) { br = r; best = kind === "gold" ? 2 : 3; }
+      }
+      return best;
+    };
+    // 1 a number's ink (what its drawing changed, gold), 2 other gold, 3 a letter's or a reading's ink
+    const K = new Uint8Array(W * H);
+    for (let i = 0, n = 0; n < W * H; i += 4, n += 1) {
+      const changed = Math.abs(A.data[i] - B.data[i]) + Math.abs(A.data[i + 1] - B.data[i + 1]) + Math.abs(A.data[i + 2] - B.data[i + 2]) > 24;
+      const was = kindOf(A.data, i);
+      K[n] = changed && kindOf(B.data, i) === 2 ? 1 : was;
+    }
+    const out = []; const RAD = 6;
+    for (const cell of cells) {
+      // a hung number stands a few pixels outside its cell: the cell and a margin the height of a number
+      const X0 = Math.max(0, Math.floor((cell.x - 1) * DSF)), Y0 = Math.max(0, Math.floor((cell.y - 10) * DSF)), X1 = Math.min(W, Math.ceil((cell.x + cell.w + 1) * DSF)), Y1 = Math.min(H, Math.ceil((cell.y + cell.h + 10) * DSF));
+      let ink = 0, gold = 99, letter = 99;
+      for (let y = Y0; y < Y1; y += 1) for (let x = X0; x < X1; x += 1) {
+        if (K[y * W + x] !== 1) continue;
+        ink += 1;
+        for (let dy = -RAD; dy <= RAD; dy += 1) for (let dx = -RAD; dx <= RAD; dx += 1) {
+          const xx = x + dx, yy = y + dy; if (xx < 0 || yy < 0 || xx >= W || yy >= H) continue;
+          const k = K[yy * W + xx]; if (k < 2) continue;
+          const d = Math.hypot(dx, dy) / DSF;
+          if (k === 2) { if (d < gold) gold = d; } else if (d < letter) letter = d;
         }
       }
+      out.push({ cn: cell.cn, run: cell.run, ink, gold, letter });
     }
-    if (fill) hit.fill.push(x.tag); if (outline) hit.outline.push(x.tag);
-  }
-  return { en, n, inRuns, corners, worst, off, hit, tied };
-});
-check(`N5  each number stands at its own word's left, a two-word card's alike, just outside its card: ${n5.en ? "under its foot (the English reader)" : "over its head (the Hebrew reader)"}, a run's words alike`,
-  n5.n > 0 && n5.inRuns > 0 && !n5.off.length,
-  `${n5.n} numbers, ${n5.inRuns} on a run's words, the furthest ${n5.worst.toFixed(2)}px from ${n5.en ? "its card's foot" : "its card's head"}${n5.off.length ? ` · ${n5.off.slice(0, 3).join("; ")}` : ""}`);
-const hits = Object.entries(n5.hit).filter(([, v]) => v.length);
-check("N12 no number lies on a blob (its fill or its outline), on a line that is drawn, on another number, or in another card",
-  n5.n > 0 && n5.tied > 0 && !hits.length,
-  `${n5.n} numbers, ${n5.tied} on a card wearing a blob · ${hits.length ? hits.map(([k, v]) => `on a ${k === "fill" ? "blob's fill" : k === "outline" ? "blob's outline" : k === "line" ? "drawn line" : k === "card" ? "card" : "number"}: ${v.length} (${v.slice(0, 4).join(", ")})`).join("; ") : "none in the way of anything"}`);
+    return out;
+  }, { a: bare.toString("base64"), c: on.toString("base64"), cells });
+  await c2.close();
+  return res;
+})();
+{
+  const drawn = n12.filter((c) => c.ink > 0), runs = drawn.filter((c) => c.run);
+  const touch = drawn.filter((c) => c.gold < 1 || c.letter < 1);
+  const least = (k) => (drawn.length ? Math.min(...drawn.map((c) => c[k])) : 0);
+  const say = (v) => (v >= 99 ? "nothing within 3px" : `${v.toFixed(1)}px`);
+  const hits = Object.entries(n5.hit).filter(([, v]) => v.length);
+  check("N12 no number touches other gold (a frame's line, a run's line, a point) or a letter, by the page's own pixels; none lies on another number or in another card",
+    drawn.length > 0 && runs.length > 0 && n5.tied > 0 && !touch.length && !hits.length,
+    `${drawn.length} cards photographed with their numbers, ${runs.length} of them runs · the nearest other gold ${say(least("gold"))}, the nearest letter ${say(least("letter"))}`
+      + `${touch.length ? ` · within a pixel: ${touch.slice(0, 5).map((c) => `#${c.cn} (gold ${say(c.gold)}, letter ${say(c.letter)})`).join(", ")}` : ""}`
+      + `${hits.length ? ` · ${hits.map(([k, v]) => `on ${k === "card" ? "another card" : "another number"}: ${v.length} (${v.slice(0, 4).join(", ")})`).join("; ")}` : ""}`);
+}
 
 // N6, N7, N8: the same page with numbers on, off, and on again
 const snap = () => p.evaluate(() => {
@@ -265,7 +319,7 @@ const snap = () => p.evaluate(() => {
   return {
     boxes: [...document.querySelectorAll(".he-text .wb, .he-text .wjoin")].map((x) => { const r = x.getBoundingClientRect(); return [r.left + sx, r.top + sy, r.width, r.height]; }),
     blobs: [...document.querySelectorAll("svg.wj-tie path")].map((x) => x.getAttribute("d")),
-    badges: [...document.querySelectorAll(".he-text .wb:not(.mark) > .w")].map((x) => getComputedStyle(x, "::after").content),
+    badges: [...document.querySelectorAll(".he-text .wb:not(.mark)")].map((x) => getComputedStyle(x, "::after").content),
     ink: [...document.querySelectorAll(".he-text .mg, .he-text .mg-all, .he-text .wb:not(.mark) > .w")].map((x) => [getComputedStyle(x, "::before").content, getComputedStyle(x).webkitTextFillColor, getComputedStyle(x).color].join("|")),
     on: document.body.classList.contains("nums"),
   };
@@ -300,7 +354,7 @@ check("N8  with numbers off, every number is hidden",
 
 // N9: the arrow, this reader and the other one
 const arrows = (pg) => pg.evaluate(() => {
-  const w = [...document.querySelectorAll(".he-text .wb:not(.mark) > .w")].find((x) => !["none", "normal"].includes(getComputedStyle(x, "::after").content));
+  const w = [...document.querySelectorAll(".he-text .wb:not(.mark)")].find((x) => !["none", "normal"].includes(getComputedStyle(x, "::after").content));
   if (!w) return null;
   // the number drawn: the arrow before its digits, or after them
   const c = getComputedStyle(w, "::after").content, at = c.search(/\d/u);

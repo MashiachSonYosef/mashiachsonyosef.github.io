@@ -63,7 +63,21 @@
        the pressed purple, the faint label purple, and the bright and pale
        argaman; the old names stay, pointing at the two, so no rule had to
        learn a new one. */
-    --argaman: #561f86; --argaman-dim: #6c359e;
+    /* THE THREE DYES ARE THE SWATCHES' (the owner, 2026-11-10: "i do want to
+       formalize the correct blue, scarlet and purple chatgpt showed", of the
+       six tabernacle swatches the owner was shown on 2026-11-09). Each
+       regular is the swatch for its material, read off the owner's
+       screenshot, which printed no hex and held each swatch flat: the blue
+       #23558a, the purple #642460, the scarlet #a52035. Each dim is its
+       regular thinned with the linen until it reads as the dim it replaces
+       read: the red 3.06:1, the blue 2.56:1, the purple 6.0:1 on the linen.
+       The values before were this page's own: the purple a violet (#561f86,
+       8.2:1), the red and the blue softer (#9d4355, 4.68:1; #34649a,
+       4.59:1). The purple regular now reads 8.0:1 on the linen, 7.3:1 in a
+       word's cell and 6.7:1 on the pressed linen; its dim 6.0:1, 5.4:1 and
+       5.0:1, as before. The gold, the linens and the marks' gold are as they
+       were: the owner is choosing those from screenshots. */
+    --argaman: #642460; --argaman-dim: #753c6d;
     --ink: var(--argaman); --ink-strong: var(--argaman); --muted: var(--argaman-dim); --faint: var(--argaman-dim);
     --shesh: var(--argaman); --shesh-bright: var(--argaman);
     /* A PRESSED CONTROL IS PURPLE, WORN BOLD (the owner, 2026-10-03: "idk if
@@ -144,24 +158,27 @@
        The deeper blue a pressed reading wore from 2026-10-03 ("similar to our
        logo id have 2 blues: a bold and a regular, maybe the letters bold too
        not just the color") is gone and the bold letters stay. On the pressed
-       linen a pressed reading now reads 3.83:1 (it read 5.1:1 in the deeper
-       blue), the same as the open word's own reading on the line. The dim is
+       linen a pressed reading reads 4.81:1 in the swatch's blue (2026-11-10;
+       3.83:1 in the blue before it, 5.1:1 in the deeper blue before that),
+       the same as the open word's own reading on the line. The dim is
        never a word, only what stands between pieces or beside them: the +
        between a reading's parts, the red rail along a commentary, the edge of
        a source's tag, and the maqaf on a card's head in a work whose marks
-       are not gold. The regulars read 4.68:1 (red) and 4.59:1 (blue) on the
-       linen; the dims, 3.06:1 and 2.56:1, are too pale for a word. Nothing
+       are not gold. The regulars read 5.52:1 (red) and 5.76:1 (blue) on the
+       linen since they took the swatches' values (2026-11-10: the scarlet
+       #a52035 and the blue #23558a; 4.68:1 and 4.59:1 before); the dims,
+       3.06:1 and 2.56:1, are too pale for a word. Nothing
        is ever filled with a color ("we shouldnt ever have to full fill").
        The inks the channels are written in were held muted on 2026-09-11
        (mockup 4, "i still might make that red like a little more muted
        somehow"); every older name for them points here. */
-    --shani: #9d4355; --shani-dim: #b76670;
-    --tekhelet: #34649a; --tekhelet-dim: #7f8ba8;
+    --shani: #a52035; --shani-dim: #be6367;
+    --tekhelet: #23558a; --tekhelet-dim: #768ea2;
     --shani-ink: var(--shani); --tekhelet-ink: var(--tekhelet);
     --c-word: var(--shani); --en-word: var(--shani);
     /* the two regulars at three quarters, a glow for the halo accent
        (:root[data-accent="halo"]), which nothing turns on */
-    --halo-shani: rgba(157, 67, 85, 0.75); --halo-tekhelet: rgba(52, 100, 154, 0.75);
+    --halo-shani: rgba(165, 32, 53, 0.75); --halo-tekhelet: rgba(35, 85, 138, 0.75);
     /* (The washes of 2026-09-10 and the held word's opaque red and blue of
        2026-09-11, all retired that day, were still declared here until
        2026-10-10 with nothing reading them; they are gone.) */
@@ -1936,31 +1953,66 @@
      enough to fit it; in the English reader the letters are the card's foot
      and the number sits at the bottom, on the line or where the line would
      be. Each number stands at its word's left in both.
-     THE NUMBER HANGS JUST OUTSIDE ITS CARD (the owner, 2026-11-10: "your
-     card numbering is too crammed in there just put it somewhere smart").
-     Inside the card it stood in the few pixels between the letters' frame,
-     the vowels and accents under the letters, and a pair's line: it lay on
-     none of them (check-card-numbering N12 held) and was crowded by all of
-     them. The one strip nothing else is ever drawn in is the gap between
-     the rows of cards, so the number hangs there, against its own card's
-     edge and still at its own word's left: under the card in the English
-     reader, where the letters are the card's foot, and over it in the
-     Hebrew reader, where they are its head. It still takes no room: no
-     card and no row moves (N6). The two readers' numbers are one size now,
-     since neither has to fit a strip inside the card. */
+     ON THE CARD, IN ITS CORNER (the owner, 2026-11-10: "your card numbering
+     is too crammed in there just put it somewhere smart"; then, of the
+     numbers hung just outside the cards that morning: "i would still do
+     somewhere on the card just you know like a corner or edge, the key is
+     no overlap with other gold"). Inside the card the number had stood by
+     the letters' box, in the few pixels between a frame, the points under
+     the letters and a run's line: on none of them and against all of them
+     (within a pixel of the letters at 87 of the 122 one-word cards of
+     Genesis 1). The card's own corner is the place its gold leaves empty:
+     the frames and the points hug the letters, and the letters stand in
+     the card's middle. So the number is drawn by the card (its ::after,
+     from --cn) on the edge the letters stand at, the foot in the English
+     reader and the head in the Hebrew (the owner, 2026-10-19), at the
+     card's left corner. A run's words each wear theirs on that edge at
+     their own word's left, where the run's line runs, and the line gives
+     way (the owner's fourth point of 2026-10-19: "the underline briefly
+     gaps"): under the numbers the line is drawn over the ink row, with a
+     gap where a number stands (seatNumbers writes it). Where ink or a
+     frame's raised tab stands in the corner (a point over a word's last
+     letter, in a card no wider than its Hebrew), the number takes the
+     other end of the edge, and failing both the clearest place between
+     (seatNumbers, --cn-x). It still takes no room: no card and no row moves
+     (N6). The Hebrew reader's number is the smaller, as it was before: the
+     strip over the letters is the narrower one. */
   body.nums .he-text .wb:not(.mark) > .w { position: relative; z-index: 2; }
   /* a card carries its number in --cn (numberCells); one not yet numbered
      carries none, which draws nothing, not a lone arrow */
   .he-text .wb { --cn: none; }
-  body.nums .he-text .wb:not(.mark) > .w::after { content: "\25C2\00a0" var(--cn); position: absolute; z-index: -1;
-    left: 0; bottom: -0.04rem; padding: 0 0.1rem; direction: ltr; unicode-bidi: isolate; white-space: nowrap;
-    font: 0.56rem/1 Georgia, serif; font-weight: 400; letter-spacing: 0.04em; font-variant-numeric: lining-nums; color: var(--gold); -webkit-text-fill-color: var(--gold); text-shadow: none;
+  body.nums .he-text .wb:not(.mark)::after { content: "\25C2\00a0" var(--cn); position: absolute; z-index: 1;
+    left: var(--cn-x, 0.22rem); top: 0.04rem; direction: ltr; unicode-bidi: isolate; white-space: nowrap;
+    font: 0.5rem/1 Georgia, serif; font-weight: 400; letter-spacing: 0.04em; font-variant-numeric: lining-nums; color: var(--gold); -webkit-text-fill-color: var(--gold); text-shadow: none;
     pointer-events: none; user-select: none; -webkit-user-select: none; }
-  /* the card's edge from the letters' box: the card's own padding (0.16rem
-     at its foot, 0.08rem at its head), and a pair's line under its ink row */
-  body.en.nums .he-text .wb:not(.mark) > .w::after { content: var(--cn) "\00a0\25B8"; bottom: auto; top: calc(100% + 0.16rem); }
-  body.en.nums .he-text .wjoin .wb:not(.mark) > .w::after { top: calc(100% + 0.16rem + 1px); }
-  body.nums:not(.en) .he-text .wb:not(.mark) > .w::after { top: auto; bottom: calc(100% + 0.08rem); }
+  body.en.nums .he-text .wb:not(.mark)::after { content: var(--cn) "\00a0\25B8"; top: auto; bottom: 0.1rem; font-size: 0.56rem; }
+  /* a run's word: its box is the ink row's, inside the card's padding (0.08rem
+     at the head, 0.16rem and the line's own room at the foot) */
+  body.nums .he-text .wjoin .wb:not(.mark)::after { left: var(--cn-x, 0px); top: calc(0.04rem - 0.08rem); }
+  body.en.nums .he-text .wjoin .wb:not(.mark)::after { top: auto; bottom: calc(0.1rem - 0.16rem - 1px); }
+  body.en.nums .he-text .wjoin.lic .wb:not(.mark)::after { bottom: calc(0.1rem - 0.16rem - 1.5px); }
+  /* where its card leaves a number no place at all (ink along the whole
+     edge: a word as wide as its card on a wide page's close rows), it hangs
+     just outside that corner, in the gap between the rows (seatNumbers) */
+  body.nums .he-text .wb.cn-out:not(.mark)::after { top: auto; bottom: 100%; }
+  body.en.nums .he-text .wb.cn-out:not(.mark)::after { bottom: auto; top: 100%; }
+  body.nums .he-text .wjoin .wb.cn-out:not(.mark)::after { top: auto; bottom: calc(100% + 0.08rem); }
+  body.en.nums .he-text .wjoin .wb.cn-out:not(.mark)::after { bottom: auto; top: calc(100% + 0.16rem + 1px); }
+  /* A LINE GIVES WAY TO A NUMBER. The one line a run wears runs along the
+     edge the numbers stand on. With the numbers on it is drawn over the same
+     place by the row's own ::after, whole until seatNumbers writes the gaps
+     (--rule-img), and the border or shadow that drew it keeps its room,
+     unseen. A band of linen over the line would not do: the card's linen is
+     a veil over the woven ground. (A pair, written and read, wears no line.) */
+  body.nums .he-text .wjoin:not(.apart) > .wj-ink { border-bottom-color: transparent; box-shadow: none; --rule-ink: var(--gold-dim); }
+  body.nums .he-text .wjoin.lic:not(.apart) > .wj-ink { --rule-ink: var(--gold); }
+  body.nums .he-text .wjoin:not(.apart) > .wj-ink::after { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 1px;
+    background: var(--rule-img, var(--rule-ink)); pointer-events: none; }
+  body.nums .he-text .wjoin.lic:not(.apart) > .wj-ink::after { height: 1.25px; }
+  body.en.nums .he-text .wjoin:not(.apart) > .wj-ink::after { bottom: auto; top: 100%; }
+  body.en.nums .he-text .wjoin.lic:not(.apart) > .wj-ink::after { height: 1.5px; }
+  /* and a frame's line, parted where a number had to stand on it (seatNumbers), is whole again with the numbers off */
+  body:not(.nums) .he-text svg.wj-tie > path.wj-line { mask: none; }
   /* A commentary handle standing in the line of the verse, after the words it
      covers. It is inline, so it reads as part of the line; what it opens is
      block-level, so the words after it fall below and the words above it are
