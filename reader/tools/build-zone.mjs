@@ -35,6 +35,7 @@ import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1
 import { glossMFor, GLOSS_M_RULE_ID } from "./gloss-m-v1.mjs";
 import { K_RULE_ID, K_RULE_TEXT, exactK } from "./k-normalization-v2.mjs";
 import { measureZone, MEASURE_RULE_ID, MEASURE_AXES } from "./bookword-measure-v1.mjs";
+import { countStampOf } from "./count-stamp-v1.mjs";
 import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import {
   readServe, readBridge, parseWorkCoordinates, wordsOf, regionsOf, licensePosture, require_, sha256File,
@@ -214,36 +215,19 @@ for (const unit of servedUnits) {
 // nothing: it is shown as a difference, in the witness's own name.
 const measure = measureZone({ sections });
 for (const sec of sections) if (sec.words.some((w) => w.shirah)) sec.shirah = true;
-const COUNT_STAMP_RULE = "count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one";
 const witnesses = witnessesPath ? JSON.parse(readFileSync(witnessesPath, "utf8")) : null;
 if (witnesses) require_(witnesses.schema_version === "MASORAH_WITNESSES_V1", "WITNESSES_SCHEMA", witnesses.schema_version);
-const countStamp = (() => {
-  // a demonstration is an instrument, never a served work: it carries no
-  // count stamp, because the count of a passage beside no witness is not a
-  // claim about any book
-  if (serve.provenance.test_instrument) return null;
-  const entry = witnesses && witnesses.books && witnesses.books[slug];
-  const rows = [];
-  const measured = new Set();
-  for (const r of (entry ? entry.rows : [])) {
-    const ours = measure[r.axis];
-    require_(Number.isInteger(ours), "WITNESS_AXIS_UNKNOWN", `${slug}: ${r.axis}`);
-    const delta = ours - r.figure;
-    rows.push({ measure: r.measure, axis: r.axis, witness: r.witness, class: r.class, theirs: r.figure, ours, delta, verdict: delta === 0 ? "EXACT" : "DIFFERS",
-      ...(r.layer ? { layer: r.layer } : {}), ...(r.group_note ? { note: r.group_note } : {}), source: r.source });
-    measured.add(r.measure);
-  }
-  for (const m of ["verses", "words", "letters"]) if (!measured.has(m)) rows.push({ measure: m, axis: m, witness: null, class: "NO_WITNESS", theirs: null, ours: measure[m], delta: null, verdict: "NO_WITNESS" });
-  return {
-    rule_id: COUNT_STAMP_RULE,
-    measured_by: MEASURE_RULE_ID,
-    axes: MEASURE_AXES,
-    ours: { verses: measure.verses, words: measure.words, words_written: measure.words_written, letters: measure.letters, letters_read: measure.letters_read, c0_on: measure.c0_on, c0_off: measure.c0_off, kq_sites: measure.kq_sites, marks: measure.marks },
-    witnesses: witnesses ? { record: witnessesPath.split("/").pop(), sha256: sha256File(witnessesPath), section: entry ? entry.section : null, rows_held: entry ? entry.rows.length : 0 } : null,
-    rows,
-    says: "ours is the zone measured as built; theirs is the figure the witness published, on the axis named; the difference is ours less theirs. Nothing is adjusted and nothing is withheld for differing.",
-  };
-})();
+// the stamp's own rule (count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one)
+// stands in tools/count-stamp-v1.mjs, where the tool that restamps a built
+// zone reads it too. A demonstration is an instrument, never
+// a served work: it carries no count stamp, because the count of a passage
+// beside no witness is not a claim about any book
+const countStamp = serve.provenance.test_instrument ? null : countStampOf({
+  slug, measure, witnesses,
+  record: witnessesPath ? witnessesPath.split("/").pop() : null,
+  sha256: witnesses ? sha256File(witnessesPath) : null,
+  measuredBy: MEASURE_RULE_ID, axes: MEASURE_AXES, refuse: require_,
+});
 
 // ---- 4a. the surfaces are text, not markup -------------------------------
 // The capture leak: some source streams carry literal <b>/<br>/<small> tags

@@ -34,7 +34,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |
 | `compspan-coverage-rule-v1-a-word-its-source-divides-opens-with-its-divisions` | tools/check-compspan-coverage-v1.mjs | check-compspan-coverage-v1 |
 | `count-gate-rule-v1` | tools/check-clean-address-v1.mjs | check-clean-address-v1, check-front-door-three-counts-v1, check-nothing-hand-typed-v1 |
-| `count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one` | tools/build-zone.mjs, tools/emit-masorah-witnesses-v1.mjs | check-bookword-count-v1, check-c0-refusals-v1 |
+| `count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one` | tools/build-zone.mjs, tools/count-stamp-v1.mjs, tools/emit-masorah-witnesses-v1.mjs, tools/restamp-zone-v1.mjs | check-bookword-count-v1, check-c0-refusals-v1 |
 | `declarations-branch-rule-v1-a-branch-is-what-the-source-says-about-itself-and-a-reserved-token-is-never-a-branch` | tools/project-declarations-v1.mjs | check-declarations-branch-v1 |
 | `demo-verse-rule-v1` | tools/build-front-door-v1.mjs | check-clean-address-v1, check-nothing-hand-typed-v1 |
 | `derived-work-ranges-rule-v1-the-atlas-names-every-range-so-none-is-typed` | tools/emit-derived-work-ranges-v1.mjs | check-derived-ranges-v1 |
@@ -177,7 +177,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-`build.sh` calls 19 of the 118 tools that are not checks.
+`build.sh` calls 19 of the 120 tools that are not checks.
 
 Not called by any build stage:
 
@@ -206,6 +206,7 @@ Not called by any build stage:
 - `tools/build-toggle-design-v1.mjs`
 - `tools/carry-span-receipt-v1.mjs`
 - `tools/commentary-span-findings-v1.mjs`
+- `tools/count-stamp-v1.mjs`
 - `tools/declaration-v1.mjs`
 - `tools/door-filing-v1.mjs`
 - `tools/emit-apparatus-baseline-v1.mjs`
@@ -259,6 +260,7 @@ Not called by any build stage:
 - `tools/regloss-zone.mjs`
 - `tools/repin-zone-store-v1.mjs`
 - `tools/respan-zone-v1.mjs`
+- `tools/restamp-zone-v1.mjs`
 - `tools/restore-shelf-from-history-v1.mjs`
 - `tools/rights-join-v1.mjs`
 - `tools/run-fleet-v2.mjs`
