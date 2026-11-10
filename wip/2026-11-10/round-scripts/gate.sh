@@ -1,5 +1,5 @@
 #!/bin/bash
-# the same-product gate: the live tree (8914, main 3c282b48) against the build (8912)
+# the same-product gate: the live tree (8914, the build the site serves) against the build (8912)
 S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad
 cd $S/pt/reader || exit 1
 node tools/check-same-product-v1.mjs --old http://127.0.0.1:8914 --new http://127.0.0.1:8912 --diff $S/v26/gate-diff.txt > $S/v26/gate.log 2>&1
