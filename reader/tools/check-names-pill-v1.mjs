@@ -11,7 +11,14 @@
 //       leads" on a fresh visit
 //   P2  pressed to "no names" on the rail, the lines that change are exactly
 //       the lines of the words whose key the name led and whose displaced
-//       reading is baked: each reads that reading, and no other line moves
+//       reading is baked: each reads the reading the name displaced at its
+//       place, and no other line moves. Under "only this pointing" (the
+//       default since 2026-11-06, the pointing stands) that reading is the
+//       pointing's own leader at the place (the lattice sidecar's grade,
+//       o.l, or its alternate o.la with the leader's carriers switched off);
+//       the baked column answers where the form carries no grade, and under
+//       every other setting. A line whose displaced reading reads as its
+//       name does moves by its credit alone, so the credit is compared too.
 //   P3  the card of such a word opens pressed on what the line now says,
 //       the name is still among its pills, and the card no longer says the
 //       name leads
@@ -50,6 +57,18 @@ const open = async (url) => {
   await p.goto(url, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   for (let y = 0; y < 6000; y += 1500) { await p.evaluate((y) => window.scrollTo(0, y), y); await p.waitForTimeout(80); }
+  // THE SAME SECTIONS, EVERY TIME (2026-11-10). A reload under "no names"
+  // paints longer lines, so the page stands taller and the walk above stops a
+  // section short of where the first read stopped; that section's lines were
+  // then counted as lines that moved (34 "moved" of 19 owed, 18 of them one
+  // section that had not been built). Every section the first read counted is
+  // brought into view until it is built, and one that will not build is said.
+  for (const id of SECS || []) {
+    const built = await p.evaluate(async (id) => { const s = document.getElementById(id); if (!s) return false;
+      for (let i = 0; i < 40 && !s.querySelector(".he-text .wb"); i += 1) { s.scrollIntoView(); await new Promise((r) => setTimeout(r, 80)); }
+      return !!s.querySelector(".he-text .wb"); }, id);
+    if (!built) { console.log(`PAGE: section ${id}, built at the first read, did not build again`); bad += 1; }
+  }
   await p.evaluate(() => window.scrollTo(0, 0));
   await p.waitForTimeout(900);
 };
@@ -66,7 +85,7 @@ const snap = () => p.evaluate((secs) => {
       const g = wb.querySelector(":scope > .g"); if (!g) return;
       const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
       const k = words[wi].k, nn = (z.gloss_orders || {}).noname || {};
-      out.push({ id: `${si}|${wi}`, k, line: c.textContent.trim(), chip: ((g.querySelector(".g-lic") || {}).textContent || "").trim(),
+      out.push({ id: `${si}|${wi}`, k, s: words[wi].s, line: c.textContent.trim(), chip: ((g.querySelector(".g-lic") || {}).textContent || "").trim(), src: ((g.querySelector(".g-lic") || { dataset: {} }).dataset.line || ""),
         owed: !!(k && z.gloss_names && Object.prototype.hasOwnProperty.call(z.gloss_names, k) && Object.prototype.hasOwnProperty.call(nn, k)), want: k && Object.prototype.hasOwnProperty.call(nn, k) ? nn[k] : null });
     });
   });
@@ -74,6 +93,7 @@ const snap = () => p.evaluate((secs) => {
   return { built: [...document.querySelectorAll("section.seg")].filter((x) => x.querySelector(".he-text .wb")).map((x) => x.id), lines: out,
     pill: pill ? { inRow: !!pill.closest("#modeRow"), pressed: pill.getAttribute("aria-pressed"), on: pill.classList.contains("on"), disabled: pill.disabled } : null,
     stored: (() => { try { return localStorage.getItem("fh.nonames"); } catch { return null; } })(),
+    masorah: window.__masorah || null, off: (() => { try { return JSON.parse(localStorage.getItem("fh.sources.off") || "[]"); } catch { return []; } })(),
     resetSays: (document.getElementById("resetState") || {}).textContent,
     rail: (() => { const row = document.querySelector('#railRows [data-toggle="namelead"]'); return row ? [...row.querySelectorAll("button")].map((x) => `${x.textContent.trim()}${x.getAttribute("aria-pressed") === "true" || x.classList.contains("on") ? "*" : ""}`) : null; })() };
 }, SECS);
@@ -94,7 +114,25 @@ const railPress = async (lab) => {
   await p.waitForTimeout(1200);
 };
 // the lines of a snapshot against the first, by word: which moved
-const moved = (s0, s1) => s0.lines.map((x) => [x, s1.lines.find((y) => y.id === x.id)]).filter(([a, c]) => !c || a.line !== c.line || a.chip !== c.chip);
+const moved = (s0, s1) => s0.lines.map((x) => [x, s1.lines.find((y) => y.id === x.id)]).filter(([a, c]) => !c || a.line !== c.line || a.chip !== c.chip || a.src !== c.src);
+// THE READING THE NAME DISPLACED AT A PLACE, from the files and not from the
+// page: the lattice sidecar's grade for the word as it is pointed there, where
+// the setting in force is "only this pointing" and the form is graded; else
+// the zone's baked column. null where the sidecar grades the form and leaves
+// it no leader the reader's sources keep (the word goes bare by the reader's
+// own choice, which is another check's law).
+const DISK = (() => { const rd = (f) => { try { return JSON.parse(gunzipSync(readFileSync(`data/zones/${f}`)).toString("utf8")); } catch { return null; } }; return { zone: rd(`${BOOK}.bin`), lattice: rd(`${BOOK}.lattice.bin`) }; })();
+const displaced = (x, st) => {
+  const col = (((DISK.zone || {}).gloss_orders || {}).noname || {})[x.k];
+  const gr = st.masorah === "only" && DISK.lattice && DISK.lattice.grades && x.s ? DISK.lattice.grades[x.s] : null;
+  if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) {
+    const allOff = (by) => !!(st.off.length && Array.isArray(by) && by.length && by.every((m) => st.off.includes(m)));
+    if (gr.o.l && !allOff(gr.o.l[4])) return { text: gr.o.l[0], by: "pointing" };
+    if (gr.o.la && !allOff(gr.o.la[4])) return { text: gr.o.la[0], by: "pointing" };
+    return { text: null, by: "bare" };
+  }
+  return { text: col === undefined ? null : col, by: "column" };
+};
 await open(RAIL);
 const s0 = await snap(); SECS = s0.built;
 const m0 = await menuHas();
@@ -106,9 +144,12 @@ await railPress("no names");
 const s1 = await snap();
 const mv = moved(s0, s1);
 const wrongMove = mv.filter(([a]) => !a.owed), notMoved = owed.filter((x) => !mv.some(([a]) => a.id === x.id));
-const wrongText = mv.filter(([a, c]) => a.owed && c && c.line !== c.want.replace(/\.$/u, "").trim());
+const fold = (t) => String(t).replace(/\.$/u, "").trim();
+const owes = new Map(owed.map((x) => [x.id, displaced(x, s1)]));
+const wrongText = mv.filter(([a, c]) => a.owed && c && owes.get(a.id).text !== null && c.line !== fold(owes.get(a.id).text));
+const byPointing = owed.filter((x) => owes.get(x.id).by === "pointing").length, byColumn = owed.filter((x) => owes.get(x.id).by === "column").length, notDerived = owed.filter((x) => owes.get(x.id).text === null).length;
 check("P2 pressed to \"no names\" on the rail, exactly the lines the name led move, each to the reading the name displaced, and no other line", owed.length > 0 && railAt(s1) === "no names*" && !wrongMove.length && !notMoved.length && !wrongText.length,
-  `${mv.length} lines moved of ${owed.length} owed · ${wrongMove.length} moved that were not owed${wrongMove.length ? ` (${wrongMove.slice(0, 2).map(([a, c]) => `${a.k}: "${a.line}" → "${c ? c.line : "?"}"`).join("; ")})` : ""} · ${notMoved.length} owed that did not${notMoved.length ? ` (${notMoved.slice(0, 2).map((x) => `${x.k}: "${x.line}" wants "${x.want}"`).join("; ")})` : ""} · ${wrongText.length} read something else`);
+  `${mv.length} lines moved of ${owed.length} owed (the setting is "${s1.masorah}": ${byPointing} owed the pointing's own leader, ${byColumn} the baked column${notDerived ? `, ${notDerived} not derived` : ""}) · ${wrongMove.length} moved that were not owed${wrongMove.length ? ` (${wrongMove.slice(0, 2).map(([a, c]) => `${a.k}: "${a.line}" → "${c ? c.line : "?"}"`).join("; ")})` : ""} · ${notMoved.length} owed that did not${notMoved.length ? ` (${notMoved.slice(0, 2).map((x) => `${x.k}: "${x.line}" wants "${owes.get(x.id).text}"`).join("; ")})` : ""} · ${wrongText.length} read something else${wrongText.length ? ` (${wrongText.slice(0, 2).map(([a, c]) => `${a.k}: "${c.line}" for "${owes.get(a.id).text}"`).join("; ")})` : ""}`);
 // P3: the card of the first moved word
 if (mv.length) {
   const [si, wi] = mv[0][0].id.split("|").map(Number), was = mv[0][0].line, now = mv[0][1].line;
@@ -116,7 +157,7 @@ if (mv.length) {
   await p.waitForSelector("#hud > .rows .b-read .r-pills button", { timeout: 15000 }).catch(() => {});
   await p.waitForTimeout(700);
   const card = await p.evaluate(() => { const pills = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].map((x) => ({ t: x.textContent.trim(), on: x.getAttribute("aria-pressed") === "true" })); return { pressed: pills.filter((x) => x.on).map((x) => x.t), all: pills.map((x) => x.t), nameSentence: !!document.querySelector("#hud .r-piece, #hud .kq-role") && [...document.querySelectorAll("#hud .r-piece, #hud .kq-role")].some((x) => /name/u.test(x.textContent) && /lead/u.test(x.textContent)) }; });
-  const fold = (t) => String(t).replace(/\.$/u, "").trim().toLowerCase();
+  const fold = (t) => String(t).replace(/\.$/u, "").trim().toLowerCase();   // the card's pill may differ by case alone
   check("P3 the card opens pressed on what the line now says, the name is still among its pills, and the card no longer says the name leads",
     card.pressed.length === 1 && fold(card.pressed[0]) === fold(now) && card.all.some((t) => fold(t) === fold(was)) && !card.nameSentence,
     `line "${now}" · pressed ${JSON.stringify(card.pressed)} · the name "${was}" on the card ${card.all.some((t) => fold(t) === fold(was))} · says the name leads ${card.nameSentence}`);
