@@ -60,7 +60,7 @@ const esc = (s) => String(s).replace(/&/gu, "&amp;").replace(/</gu, "&lt;").repl
  *  the same publication and a reader who follows a link from one to the other
  *  should not be able to tell they were built by different code paths. */
 export const CHAIN_CSS = `
- :root { --ink:#561f86; --faint:#6c359e; --muted:#6c359e; --line:#a06c10; --paper:#ebdec3; --sel:#561f86; --tekhelet:#34649a; }
+ :root { --ink:#642460; --faint:#753c6d; --muted:#753c6d; --line:#a06c10; --paper:#ebdec3; --sel:#642460; --tekhelet:#23558a; }
  /* one face, linen, since 2026-09-10; the dark face came off this sheet 2026-10-02.
     The reader's own values since 2026-10-10 (the owner: "personally i dont see a
     gain from more than 2/2/2/2 and 3 linen"; "my main point is uniform coloring

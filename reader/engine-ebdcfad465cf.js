@@ -8109,10 +8109,12 @@
     }
     return out;
   };
+  const INK_NOW = new Map();   // a word's ink as its blob was just measured, for its number's seat (seatNumbers)
   const piecePairs = (wEl, enEl, wi) => {
     const map = textMap(wEl);
     const whole = inkBox(map, 0, map.text.length);
     if (!whole) return [];
+    INK_NOW.set(wEl, whole);
     whole.maqafs = maqafsIn(map);
     const row = enEl ? enEl.querySelector(":scope > .g-pcs") : null;
     const pcs = row ? [...row.querySelectorAll(":scope > .g-pc")] : [];
@@ -8580,11 +8582,209 @@
     if (!base) return;
     for (const k of RUN_FIT) { line.style.fontSize = `${Math.round(base * k * 100) / 100}px`; hugParts(line); if (fits()) return; }
   };
+  // THE NUMBER'S SEAT (card numbering; the owner, 2026-11-10: "somewhere on
+  // the card just you know like a corner or edge, the key is no overlap with
+  // other gold"). The sheet draws a card's number in the corner of the edge
+  // its letters stand at (the card's left; a run's word, its own left), and
+  // on a phone that corner is nearly always empty: the letters stand in the
+  // card's middle and the frames and points hug them. Where it is not, in
+  // this order:
+  //   1. the other end of the edge, or failing it the first place between
+  //      the two, where that is clear of ink and frame (a point over a
+  //      word's last letter, and the frame's raised tab around it, in a card
+  //      no wider than its Hebrew);
+  //   2. where the frame leaves no place on the edge (a wide page sets the
+  //      letters' rows close, and a frame as wide as its card fills the
+  //      edge), the number keeps its corner if the ink leaves it, else the
+  //      other end, else the clearest place between, and THE FRAME'S LINE
+  //      GIVES WAY around it, as a run's line does (the owner's fourth point
+  //      of 2026-10-19: "the underline briefly gaps");
+  //   3. where ink stands along the whole edge, so that every place lies on
+  //      a letter or a point, the number hangs just outside its card's
+  //      corner: ink cannot give way.
+  // What stands in the way is read from the ink the frames are drawn from
+  // (inkBox: each column of a word's ink, the letters' line, the one raised
+  // height), with a frame's breath and half its line added where a frame is
+  // drawn. A number never moves for a line it can part; it moves for ink.
+  // Asked for wherever a word's or a run's blob is, drawn or not: every
+  // layout of a cell passes there.
+  const NUM_BREATH = 2, NUM_RULE_GAP = 2.5;   // the clear space a number keeps from ink and a frame (the ink is measured to within a pixel); from the cut ends of a line
+  let numMaskSeq = 0;
+  // where a number's own ink stands in its box, top and foot: its digits and
+  // arrow as this device's face draws them (a face whose figures hang below
+  // the line reaches lower than one whose figures stand on it), measured
+  // once for each number in each face; the whole box where a browser does
+  // not say
+  const NUM_INK = new Map();
+  let numCtx = null;
+  const numberInk = (cs, nh) => {
+    const text = String(cs.content || "").replace(/"/gu, ""), font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`, key = `${font}|${nh}|${text}`;
+    let v = NUM_INK.get(key);
+    if (!v) {
+      v = [0, nh];
+      try {
+        if (!numCtx) numCtx = document.createElement("canvas").getContext("2d");
+        numCtx.font = font;
+        const m = numCtx.measureText(text);
+        if (m.fontBoundingBoxAscent != null && m.actualBoundingBoxAscent != null) {
+          const base = (nh - (m.fontBoundingBoxAscent + m.fontBoundingBoxDescent)) / 2 + m.fontBoundingBoxAscent;
+          v = [Math.max(0, base - m.actualBoundingBoxAscent), Math.min(nh, base + m.actualBoundingBoxDescent)];
+        }
+      } catch { /* the whole box stands for its ink */ }
+      NUM_INK.set(key, v);
+    }
+    return v;
+  };
+  const seatNumbers = (cell, framed) => {
+    if (!cell || !cell.isConnected || !document.body.classList.contains("nums")) return;
+    const run = cell.classList.contains("wjoin");
+    const wbs = run ? [...cell.querySelectorAll(":scope > .wj-ink > .wb:not(.mark)")] : [cell];
+    const en = document.body.classList.contains("en");
+    // each number back in its corner first: its box is read where the sheet puts it
+    for (const wb of wbs) { if (wb.style.getPropertyValue("--cn-x")) wb.style.removeProperty("--cn-x"); wb.classList.remove("cn-out"); }
+    const inks = [];
+    for (const wb of wbs) {
+      const w = wb.querySelector(":scope > .w"); if (!w) continue;
+      let k = INK_NOW.get(w);
+      if (!k) { const map = textMap(w); k = map.text ? inkBox(map, 0, map.text.length) : null; }
+      if (k) inks.push(k);
+    }
+    // a pair's bracket over its read form is gold the ink measure does not
+    // hold: it stands in the way as ink does
+    const brackets = [];
+    for (const br of cell.querySelectorAll(".wr.backs-en")) {
+      const bs = getComputedStyle(br, "::after");
+      if (bs.content === "none" || bs.content === "normal") continue;
+      const q = br.getBoundingClientRect(), L = q.left + (parseFloat(bs.left) || 0), T = q.top + (parseFloat(bs.top) || 0);
+      brackets.push({ L, R: L + (parseFloat(bs.width) || 0) + 2, T, B: T + (parseFloat(bs.height) || 0) + 1 });
+    }
+    // how near the ink (and, asked with the frame, the frame around it: two
+    // pixels outside the ink and half its line further) comes to the numbers'
+    // edge between two sides
+    const reach = (a, b, withFrame) => {
+      const pad = withFrame ? 2.5 : 0;
+      let lim = en ? -Infinity : Infinity;
+      for (const k of inks) {
+        const line = k.lineY != null ? k.lineY : k.capY != null ? k.capY : k.yA, foot = k.footY != null ? k.footY : k.yB;
+        if (withFrame && k.R + pad > a && k.L - pad < b) lim = en ? Math.max(lim, foot + pad) : Math.min(lim, line - pad);
+        for (const [x, t, bt] of k.cols || []) {
+          if (x + pad + 0.5 < a || x - pad - 0.5 > b) continue;
+          if (!withFrame) lim = en ? Math.max(lim, bt) : Math.min(lim, t);
+          // a frame rises (or drops) to its one set height wherever ink stands past the letters' line
+          else if (en ? bt > foot + 0.05 : t < line - 0.05) lim = en ? Math.max(lim, Math.max(k.dropY != null ? k.dropY : foot, k.B) + pad) : Math.min(lim, Math.min(k.liftY != null ? k.liftY : line, k.T) - pad);
+        }
+      }
+      for (const q of brackets) if (q.R > a && q.L < b) lim = en ? Math.max(lim, q.B) : Math.min(lim, q.T);
+      return lim;
+    };
+    const seats = [], C = cell.getBoundingClientRect();
+    const order = wbs.map((wb) => ({ wb, r: wb.getBoundingClientRect() })).sort((p, q) => p.r.left - q.r.left);
+    for (const { wb, r } of order) {
+      const cs = getComputedStyle(wb, "::after");
+      const nw = parseFloat(cs.width), nh = parseFloat(cs.height), inset = parseFloat(cs.left) || 0;
+      if (!(nw > 0) || !(nh > 0)) continue;
+      const boxTop = en ? r.bottom - (parseFloat(cs.bottom) || 0) - nh : r.top + (parseFloat(cs.top) || 0);
+      const [inkTop, inkFoot] = numberInk(cs, nh), y0 = boxTop + inkTop, y1 = boxTop + inkFoot;
+      const lo = r.left + inset, hi = Math.max(lo, r.right - inset - nw);
+      // the room a number has at a place: from its own ink to what reaches toward it
+      const room = (x, withFrame) => {
+        for (const q of seats) if (!q.out && q.x1 + 2 > x && q.x0 - 2 < x + nw) return -Infinity;   // another word's number stands there
+        const lim = reach(x - NUM_BREATH, x + nw + NUM_BREATH, withFrame);
+        return en ? y0 - lim : lim - y1;
+      };
+      // the corner; the other end; a place between that is clear of ink and
+      // frame; and where the frame leaves none, the corner again (or the
+      // nearest place the ink leaves), the frame's line parting for it
+      let at = lo, parts = false, out = false;
+      if (room(lo, framed) < NUM_BREATH) {
+        const tries = hi > lo ? [hi] : [];
+        for (let x = lo + 2; x < hi; x += 2) tries.push(x);
+        const clear = tries.find((x) => room(x, framed) >= NUM_BREATH);
+        if (clear !== undefined) at = clear;
+        else {
+          parts = framed;
+          let best = room(lo, false);
+          if (best < NUM_BREATH) for (const x of tries) { const v = room(x, false); if (v > best) { at = x; best = v; } if (v >= NUM_BREATH) break; }
+          // ink along the whole edge (a word as wide as its card, on a wide
+          // page's close rows): the number hangs just outside its corner
+          // sooner than lie on a letter or a point, which cannot give way
+          if (best < NUM_BREATH) { out = true; parts = false; at = lo; }
+        }
+      }
+      if (at !== lo) wb.style.setProperty("--cn-x", `${Math.round((at - r.left) * 10) / 10}px`);
+      if (out) wb.classList.add("cn-out");
+      // where the number's ink stands now: on the edge, or hung against it from outside
+      const top = out ? (en ? C.bottom + inkTop : C.top - nh + inkTop) : y0, foot = top + (inkFoot - inkTop);
+      // and a frame's line parts wherever a number stands within the gap of
+      // the frame (and a pixel and a half over: the frame is drawn with
+      // fillets and corners this measure does not trace), however its seat
+      // was found
+      if (framed && !parts) { const lim = reach(at - NUM_RULE_GAP - 2, at + nw + NUM_RULE_GAP + 2, true); parts = (en ? top - lim : lim - foot) < NUM_RULE_GAP + 1.5; }
+      seats.push({ x0: at, x1: at + nw, y0: top, y1: foot, parts, out });
+    }
+    const f = (n) => Math.round(n * 10) / 10;
+    // a frame's line gives way where a number has had to stand on it: a hole
+    // in the lines' mask, the number's box and a breath; the fill stays whole
+    const svg = cell.querySelector(":scope > svg.wj-tie");
+    if (svg) {
+      const holes = seats.filter((q) => q.parts);
+      const old = svg.querySelector(":scope > mask.cn-mask");
+      if (old) old.remove();
+      const lines = svg.querySelectorAll(":scope > path.wj-line");
+      if (!holes.length) lines.forEach((ln) => ln.removeAttribute("mask"));
+      else {
+        const id = `cn-mask-${(numMaskSeq += 1)}`, M = 60;
+        const mask = document.createElementNS(TIE_NS, "mask");
+        mask.setAttribute("class", "cn-mask"); mask.setAttribute("id", id); mask.setAttribute("maskUnits", "userSpaceOnUse");
+        mask.setAttribute("x", f(-M)); mask.setAttribute("y", f(-M)); mask.setAttribute("width", f(C.width + 2 * M)); mask.setAttribute("height", f(C.height + 2 * M));
+        mask.innerHTML = `<rect x="${f(-M)}" y="${f(-M)}" width="${f(C.width + 2 * M)}" height="${f(C.height + 2 * M)}" fill="#fff"/>`
+          + holes.map((q) => `<rect x="${f(q.x0 - C.left - NUM_RULE_GAP)}" y="${f(q.y0 - C.top - NUM_RULE_GAP)}" width="${f(q.x1 - q.x0 + 2 * NUM_RULE_GAP)}" height="${f(q.y1 - q.y0 + 2 * NUM_RULE_GAP)}" fill="#000"/>`).join("");
+        svg.append(mask);
+        lines.forEach((ln) => ln.setAttribute("mask", `url(#${id})`));
+      }
+    }
+    // a run's one line, on the numbers' edge, gives way to them
+    const ruled = run && !cell.classList.contains("apart") ? cell.querySelector(":scope > .wj-ink") : null;
+    if (!ruled) return;
+    // (the line stands in the row's foot border, or as a shadow over its head: a number hung outside the card parts it only where it comes that near)
+    const R = ruled.getBoundingClientRect(), lineT = en ? R.bottom - (parseFloat(getComputedStyle(ruled).borderBottomWidth) || 1) : R.top - 1.25, lineB = en ? R.bottom : R.top;
+    const gaps = seats.filter((q) => q.y1 + NUM_RULE_GAP > lineT && q.y0 - NUM_RULE_GAP < lineB).map((q) => [Math.max(0, q.x0 - R.left - NUM_RULE_GAP), Math.min(R.width, q.x1 - R.left + NUM_RULE_GAP)]).filter(([a, b]) => b > a).sort((p, q) => p[0] - q[0]);
+    const stops = []; let from = 0;
+    for (const [a, b] of gaps) { if (a > from) stops.push(`var(--rule-ink) ${f(from)}px ${f(a)}px`); stops.push(`transparent ${f(Math.max(a, from))}px ${f(b)}px`); from = Math.max(from, b); }
+    stops.push(`var(--rule-ink) ${f(from)}px 100%`);
+    const img = gaps.length ? `linear-gradient(to right, ${stops.join(", ")})` : "";
+    if (ruled.style.getPropertyValue("--rule-img") !== img) { if (img) ruled.style.setProperty("--rule-img", img); else ruled.style.removeProperty("--rule-img"); }
+  };
+  // EVERY BUILT CARD'S NUMBER FINDS ITS SEAT, when the numbers are turned on
+  // over cards drawn without them: the cards near the screen at once, the
+  // rest in slices, as the blobs are drawn (tieAgainNow). No blob is drawn
+  // again for it: a blob is the same with the numbers on and off.
+  const SEAT_LATER = [];
+  let seatTimer = 0;
+  const seatOne = (x) => { if (!x.isConnected) return; INK_NOW.clear(); seatNumbers(x, x.classList.contains("wjoin") ? !!x.querySelector(":scope > svg.wj-tie > path") : x.classList.contains("tied")); };
+  const seatStep = () => {
+    seatTimer = 0;
+    const t0 = performance.now(); let n = 0;
+    while (SEAT_LATER.length) { seatOne(SEAT_LATER.pop()); n += 1; if (n >= 8 && performance.now() - t0 > 40) break; }
+    window.__seatPending = SEAT_LATER.length;
+    if (SEAT_LATER.length) seatTimer = setTimeout(seatStep, 0);
+  };
+  const seatAllNumbers = () => {
+    SEAT_LATER.length = 0;
+    const vh = window.innerHeight || 800, near = [], far = [];
+    // every box is read before any number is seated, so the page is laid out once
+    for (const x of document.querySelectorAll(".he-text > .wb:not(.mark), .he-text .wjoin")) { const r = x.getBoundingClientRect(); (r.bottom > -vh && r.top < 2 * vh ? near : far).push(x); }
+    for (const x of near) seatOne(x);
+    for (let i = far.length - 1; i >= 0; i -= 1) SEAT_LATER.push(far[i]);
+    window.__seatPending = SEAT_LATER.length;
+    if (SEAT_LATER.length && !seatTimer) seatTimer = setTimeout(seatStep, 0);
+  };
   const drawTies = (run) => {
     if (!run || !run.__ink || !run.isConnected) return;
+    INK_NOW.clear();
     fitRunLine(run);
     // the switch off: a run wears no blob, its parts stay in their columns
-    if (blobsPref === "off") { drawPairs(run, []); return; }
+    if (blobsPref === "off") { drawPairs(run, []); seatNumbers(run, false); return; }
     const g = run.__gloss;
     const words = [...run.__ink.querySelectorAll(":scope > .wb > .w")];
     const parts = g && g.classList.contains("parts") ? [...g.querySelectorAll(":scope > .g-part")] : [];
@@ -8601,6 +8801,7 @@
     // whole entry) wears one blob over all its ink, tied to that one line.
     if (!parts.length && g && !g.classList.contains("bare") && g.textContent.trim() && words.length) pairs.push(...piecePairs(run.__ink, g, 0));
     drawPairs(run, pairs);
+    seatNumbers(run, pairs.length > 0);
   };
   // EVERY WORD (the owner, 2026-10-10, of "and + he said" standing bare under
   // its word on the live page: "no blobs on + signed words?"): the same blob
@@ -8610,8 +8811,15 @@
   // draws them on runs alone, as before. The blob switch (blobsPref) says
   // which now: every word, runs only, or none.
   const TIE_EVERY = () => blobsPref === "every";
+  // a word's blob, and then its number's seat beside what was drawn (a pair
+  // wears no blob and still wears a number)
   const drawWordTie = (wb) => {
-    if (!wb || !wb.isConnected || wb.closest(".wjoin") || wb.classList.contains("mark") || wb.classList.contains("kq")) return;
+    if (!wb || !wb.isConnected || wb.closest(".wjoin") || wb.classList.contains("mark")) return;
+    INK_NOW.clear();
+    if (!wb.classList.contains("kq")) wordTie(wb);
+    seatNumbers(wb, wb.classList.contains("tied"));
+  };
+  const wordTie = (wb) => {
     const w = wb.querySelector(":scope > .w"), ge = wb.querySelector(":scope > .g");
     if (!w || !ge) return;
     // A BLOB ONLY WHERE THERE IS SOMETHING TO TIE (the owner, 2026-10-10:
@@ -10764,16 +10972,23 @@
       // drawn again still wear it, and it is no text of the page's
       if (!wb.style.getPropertyValue("--cn")) wb.style.setProperty("--cn", JSON.stringify(String(i + 1)));
     });
+    // a run is drawn as it is built, before its words are numbered: its
+    // numbers take their seats now (a word alone is seated with its blob,
+    // which is drawn after)
+    if (document.body.classList.contains("nums")) for (const sec of secs) for (const r of sec.querySelectorAll(".he-text .wjoin")) { INK_NOW.clear(); seatNumbers(r, !!r.querySelector(":scope > svg.wj-tie > *")); }
   };
   const numsPill = document.getElementById("numsPill"), numsState = document.getElementById("numsState");
-  const paintNums = () => {
+  // (a press that turns the numbers on finds every built card's number its
+  // seat: the cards were drawn without them. At the page's opening nothing
+  // is built yet, and each section seats its own as it is built.)
+  const paintNums = (pressed) => {
     const on = numsPref === "on";
     document.body.classList.toggle("nums", on);
     numsPill.classList.toggle("on", on); numsPill.setAttribute("aria-pressed", String(on));
     numsState.textContent = "";
-    if (on) numberCells(document);
+    if (on) { numberCells(document); if (pressed) seatAllNumbers(); }
   };
-  numsPill.addEventListener("click", () => { numsPref = numsPref === "on" ? "off" : "on"; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); });
+  numsPill.addEventListener("click", () => { numsPref = numsPref === "on" ? "off" : "on"; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(true); });
   paintNums();
   const dictPill = document.getElementById("dictPill"), dictState = document.getElementById("dictState");
   const paintDict = () => {
@@ -10833,7 +11048,7 @@
     if (!hud.hidden) closeHud();
     if ((document.body.classList.contains("en") ? "en" : "he") !== SWITCHES_DEFAULT.mode) setMode(SWITCHES_DEFAULT.mode);
     if (blobsPref !== SWITCHES_DEFAULT.blobs) chooseBlobs(SWITCHES_DEFAULT.blobs);
-    if (numsPref !== SWITCHES_DEFAULT.nums) { numsPref = SWITCHES_DEFAULT.nums; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(); }
+    if (numsPref !== SWITCHES_DEFAULT.nums) { numsPref = SWITCHES_DEFAULT.nums; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(true); }
     if (DICT.pref !== SWITCHES_DEFAULT.dict) { DICT.pref = SWITCHES_DEFAULT.dict; try { localStorage.setItem("fh.dict", DICT.pref); } catch { /* the choice still stands on this page */ } paintDict(); }
     if (signsPref !== SWITCHES_DEFAULT.signs) chooseBlanks(SWITCHES_DEFAULT.signs);
     if (nonamesPref !== SWITCHES_DEFAULT.namelead) chooseNames(SWITCHES_DEFAULT.namelead);
