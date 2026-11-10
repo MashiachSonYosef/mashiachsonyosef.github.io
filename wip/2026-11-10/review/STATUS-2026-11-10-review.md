@@ -18,7 +18,7 @@ A correction: this table was headed "What is live" from 18:50 UTC, when the comm
 | `main` | cc8d0f9749203094acad739030c40c866fb1c597 |
 | `gh-pages` | 42287caddbdb942f3bc1909d36af9e351a22c820 ("gh-pages follows main") |
 | Pushed | 21:08 UTC |
-| Live | see the foot of `round-two/ROUND-TWO-2026-11-10.md` (section 9), which is kept current |
+| Live | since 21:09 UTC, on the first deployment attempt (69 seconds); the live check passed at 21:10 UTC |
 
 What it fixed, how each was measured and proven, what it left for the owner and what is not done: `round-two/ROUND-TWO-2026-11-10.md`. The letter for the corpus lane: `../FOR-MOSES-2026-11-10-round-two-records-and-verse-lists.md`.
 
