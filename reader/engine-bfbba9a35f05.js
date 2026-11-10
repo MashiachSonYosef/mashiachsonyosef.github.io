@@ -13,6 +13,57 @@
   // reader had been (the owner, 2026-10-08, Joshua: "i swear i was on 1:16").
   // The place is kept by verse instead, below (SPOT_KEY).
   try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch { /* a browser that will not be told still reads */ }
+  // HEBREW IS RED, EVERYWHERE (hebrew-is-red-rule-v1-every-hebrew-letter-the-site-prints-is-the-corpuss-red; the owner, 2026-11-09:
+  // "hebrew should never ever appear as anything but red anywhere"). The
+  // corpus's own words are red where they stand: the line, a card's head, a
+  // pill of letters, the verse's numeral. This is for every other place a
+  // Hebrew letter is printed: inside a dictionary's reading on the line or
+  // on a pill, in a record, in a note or a label of ours. Each run of
+  // Hebrew letters there is named to the browser as a highlight and painted
+  // the same red (the style above). Nothing in the page is rewritten for it:
+  // the run's characters, its node and its boxes are what they were, so the
+  // code that measures a line and draws a frame reads the same text. A
+  // browser without the highlight prints such a run in its sentence's own
+  // ink, as every browser did before; tools/check-hebrew-is-red-v1.mjs
+  // holds the rule in the browser the checks run in.
+  if (typeof Highlight === "function" && typeof CSS !== "undefined" && CSS.highlights) {
+    const HE_ANY = /[\u05D0-\u05EA\uFB1D-\uFB4F]/u;
+    const HE_RUN = /[\u05D0-\u05EA\uFB1D-\uFB4F][\u0591-\u05C7\u05D0-\u05F4\uFB1D-\uFB4F\u034F\u200D]*/gu;
+    // the corpus's own words, red by their own rule: a word on the line or a
+    // card's head (and the gold laid on its marks), a quoted run, a verse's
+    // numeral. The line's English stands inside the same paragraph as its
+    // word, so the paragraph itself is no test; anything else is asked its
+    // own ink, and a run already in the red needs no naming.
+    const OWN = ".w, .mg, .mg-all, .he-q, .v-he";
+    const RED = (() => { const x = document.createElement("span"); x.style.color = "var(--shani-ink)"; document.documentElement.append(x); const c = getComputedStyle(x).color; x.remove(); return c; })();
+    const SKIP = new Set(["SCRIPT", "STYLE", "TITLE", "NOSCRIPT", "TEXTAREA"]);
+    const hl = new Highlight(); CSS.highlights.set("fh-hebrew", hl);
+    const named = new WeakMap();   // text node -> the ranges standing on it
+    const name = (t) => {
+      const was = named.get(t); if (was) { for (const r of was) hl.delete(r); named.delete(t); }
+      const host = t.parentElement;
+      if (!host || !t.isConnected || !HE_ANY.test(t.data) || SKIP.has(host.tagName) || host.closest(OWN)) return;
+      if (getComputedStyle(host).color === RED) return;
+      const rs = [];
+      for (const m of t.data.matchAll(HE_RUN)) { const r = new Range(); r.setStart(t, m.index); r.setEnd(t, m.index + m[0].length); hl.add(r); rs.push(r); }
+      if (rs.length) named.set(t, rs);
+    };
+    const sweep = (root) => {
+      if (root.nodeType === 3) { name(root); return; }
+      if (root.nodeType !== 1) return;
+      const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      for (let n = w.nextNode(); n; n = w.nextNode()) if (HE_ANY.test(n.data)) name(n);
+    };
+    // a run whose node left the page lets its range go, so the set holds only what stands
+    const prune = () => { for (const r of [...hl]) if (r.collapsed || !r.startContainer.isConnected) hl.delete(r); };
+    let pruneAt = 0;
+    new MutationObserver((ms) => {
+      for (const m of ms) { if (m.type === "characterData") name(m.target); else for (const n of m.addedNodes) sweep(n); }
+      if (hl.size > pruneAt + 200) { prune(); pruneAt = hl.size; }
+    }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+    sweep(document.documentElement);
+    window.__hebrewRed = { runs: () => hl.size, covers: (t, a, b) => (named.get(t) || []).some((r) => r.startOffset <= a && r.endOffset >= b) };
+  }
   // Which work this page is, and where the reader's own files live. A work's
   // address serves the reader itself, and the build wrote both facts into
   // this page's head — nothing here guesses, and the address in the bar is
@@ -2294,6 +2345,33 @@
   // CE — and every year a source prints of itself is an AD year
   const adYear = (y) => (/^\d{3,4}$/.test(String(y)) ? `${y} AD` : String(y));
   const yearTag = (y, axis) => (hasYear(y) ? ` \u00b7 ${axis} ${adYear(y)}` : "");
+  // A YEAR THAT IS NOT THE BOOK'S OWN PRINT SAYS WHOSE IT IS (the owner, 7
+  // November 2026, of Davidson's lexicon, which prints no date: "if you know
+  // its 1855 thats fine"; 8 November, on the catalog record of its first
+  // edition: "i trust your findings 1848 makes sense"). A library's catalog
+  // date counts for a printed book that prints none, and the card says the
+  // year is the catalog's. The words are the corpus lane's own (its years
+  // list, relay v165, carried in the store's index as source_years by
+  // tools/apply-source-years-v1.mjs), printed beside a row's year wherever
+  // the row carries that source's own year; a row that carries an older
+  // witness's year carries no mark, since that year is not this source's.
+  const yearMarkOf = (mId, y) => {
+    const s = index && index.source_years && index.source_years.sources ? index.source_years.sources[mId] : null;
+    return s && s.mark_on_the_card && hasYear(y) && String(s.year) === String(y) ? String(s.mark_on_the_card) : "";
+  };
+  const yearSaid = (mId, y) => { const mk = yearMarkOf(mId, y); return mk ? `${y} (${mk})` : String(y); };
+  // a reading's wording year as a chip's title says it: the reading names its
+  // source by its line (an m id) where it has one, else by its label (a
+  // baked entry), and the mark follows the year the same way
+  let M_BY_LABEL = null;
+  const wordingTag = (r) => {
+    if (!r || !hasYear(r.wy)) return "";
+    const src = (index && index.m_sources) || {};
+    if (!M_BY_LABEL) { M_BY_LABEL = new Map(); for (const [id, m] of Object.entries(src)) if (m && m.label && !M_BY_LABEL.has(m.label)) M_BY_LABEL.set(m.label, id); }
+    const id = r.line && src[r.line] ? r.line : M_BY_LABEL.get(r.m) || null;
+    const mk = id ? yearMarkOf(id, r.wy) : "";
+    return `${yearTag(r.wy, "wording")}${mk ? ` (${mk})` : ""}`;
+  };
   /* THE LICENSE CHIP OF THE READING SHOWN, MADE IN ONE PLACE. The owner,
      2026-10-10: "the license ledger main purpose is to try to politely
      shove you into showing the license when i change the english showing".
@@ -2381,10 +2459,10 @@
         chip.append(s);
         if (i < terms.length - 1) chip.append(" ");
       });
-      chip.title = `${uniq[0].m}${yearTag(uniq[0].wy, "wording")}${yearTag(uniq[0].y, uniq[0].ya || "edition")} — the oldest witness carrying this reading; every other witness is on the word’s own card`;
+      chip.title = `${uniq[0].m}${wordingTag(uniq[0])}${yearTag(uniq[0].y, uniq[0].ya || "edition")} — the oldest witness carrying this reading; every other witness is on the word’s own card`;
     } else {
       chip.textContent = `${uniq.length} licenses`;
-      chip.title = uniq.map((m) => `${m.lic} — ${m.m}${yearTag(m.wy, "wording")}${yearTag(m.y, m.ya || "edition")}`).join("\n");
+      chip.title = uniq.map((m) => `${m.lic} — ${m.m}${wordingTag(m)}${yearTag(m.y, m.ya || "edition")}`).join("\n");
     }
     return chip;
   };
@@ -2510,11 +2588,26 @@
   // the record shown, its M, its license and the line's credit stay theirs.
   // MACULA's records are dated 2022, which put them before every undated row
   // and the 2023 SDBH (review, 2026-10-17: Obadiah 1:1:2 credited MACULA).
+  // A SPAN ROW'S YEAR IS SAID, AND ORDERS NOTHING (10 November 2026). The
+  // span store's rows stand in the corpus lane's own order (its by_key rule:
+  // names first), and until the lane's years list reached them none carried
+  // a year, so the card's oldest-first sort left that order alone. With the
+  // years on the rows the sort would lead with whichever source the list
+  // happens to date. Measured over the 1,047 book-and-key pairs: the first
+  // pill moves at 254 (a PHRASE row of 1906 ahead of the NAME rows of a
+  // name; a spelling of 1890 ahead of the store's first), the card opens off
+  // its line's row at 36, and a later row takes a reading's credit from the
+  // first row at 114. The order is the store's rule and the years list did
+  // not change it: a span row's year is printed beside its credit (yearSaid)
+  // and neither dates its reading nor moves its record, until the corpus
+  // lane says how its order and the years combine. Infinity is "no year to
+  // order by", as an undated row's is.
+  const orderYearOf = (row) => { if (OVERLAY_ROWS.get(row) === "span-store") return Infinity; const y = Number.parseInt(row[4], 10); return Number.isInteger(y) ? y : Infinity; };
   const EARLIEST_FIRST = (a, c) => {
     const pa = OVERLAY_ROWS.get(a) === "piece-store" ? 1 : 0, pc = OVERLAY_ROWS.get(c) === "piece-store" ? 1 : 0;
     if (pa !== pc) return pa - pc;
-    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
-    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
+    const ya = orderYearOf(a), yc = orderYearOf(c);
+    return (Number.isFinite(ya) ? ya : 9e9) - (Number.isFinite(yc) ? yc : 9e9);
   };
   const leadRecord = (route) => [...route.records].sort(EARLIEST_FIRST)[0];
 
@@ -4262,10 +4355,11 @@
       const byDrawn = new Map();
       for (const g of groups.values()) { const d = drawn(g.text); if (!byDrawn.has(d)) byDrawn.set(d, g); }
       extra.forEach((row) => {
-        const [rank, routeText, , mId, year] = row;
+        const [rank, routeText, , mId] = row;
         if (!index.m_sources[mId]) return;
-        const y = Number.parseInt(year, 10);
-        const yr = Number.isInteger(y) ? y : Infinity;
+        // the year the row is ordered by: its own, or none for a span row
+        // (orderYearOf: the span store's order stands, its years are said)
+        const yr = orderYearOf(row);
         const nd = isNoDerivs(index.m_sources[mId].licensePosture);
         (nd ? [String(routeText)] : readingsOfRow(row)).forEach((reading) => {
             const d = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : drawn(reading);
@@ -5245,18 +5339,19 @@
         b.append(seg);
       });
       if (kqTail) mqSpans(kqTail);
-    } else if (pointingNow() === "letters" && !word.mark && (region && (region.form_k || region.k))) {
-      // THE LETTERS ONLY, inside the card. The bare consonants lead; the
-      // pointed form stands faint beside them so nothing is hidden — the
-      // reader lifted the Masorah here and can see exactly what was lifted.
-      // The page above is untouched: this is the head of a card, not the text.
-      const bare = document.createElement("span"); bare.textContent = region.form_k || region.k;
-      const pointed = document.createElement("span"); pointed.textContent = word.s;
-      pointed.style.color = "var(--faint)"; pointed.style.marginInlineStart = "0.5em"; pointed.style.fontSize = "0.8em";
-      pointed.title = "as the page points it";
-      b.append(bare, pointed);
-      b.dataset.masorah = "letters";
-    } else b.textContent = word.s;
+    } else {
+      // THE HEAD IS THE WORD AS THE PAGE WRITES IT, ONCE (the owner,
+      // 2026-11-09: "inside the card it should just match outside: our red
+      // design with gold masoretic vowel marks. we shouldn't write the
+      // hebrew twice just write the pointed version not the stripped
+      // version"). Under "the letters only" the head had led with the bare
+      // consonants and set the pointed form faint beside them, in our own
+      // ink; the position is said in words on the line below, and what it
+      // does is in the readings, so the head is the page's word in every
+      // position (hebrew-is-red-rule-v1-every-hebrew-letter-the-site-prints-is-the-corpuss-red).
+      b.textContent = word.s;
+      if (pointingNow() === "letters" && !word.mark) b.dataset.masorah = "letters";
+    }
     // a mark's head is drawn as the page draws it — the brick gap is a ruled
     // span on the line, so it is a ruled span here, not the restore's stand-in
     // box (owner, 2026-09-11: "on the hud shows an actual box, but on the
@@ -6542,8 +6637,17 @@
       const lineSaid = (() => {
         // a span the store names opens on the store's first row, the one the
         // line under the cell prints (span-store I1: by_key, in the store's
-        // order) — whatever the pool's sort put first among its rows
-        { const rows = spanRowsOn(surface); if (rows.length) return spanJoin(rows[0].slots[1]).toLowerCase(); }
+        // order) — whatever the pool's sort put first among its rows. Where
+        // that row's ledger divides it, no pill reads the row whole, and the
+        // card opens on the row's first reading (10 November 2026: until
+        // then nothing said so, and such a card opened on whatever the sort
+        // put first, which was that reading only while no sort moved it)
+        { const rows = spanRowsOn(surface); if (rows.length) {
+          const whole = spanJoin(rows[0].slots[1]).toLowerCase();
+          if (pool.some((r) => spanJoin(r.text).toLowerCase() === whole)) return whole;
+          const first = readingsOfRow(rows[0].slots)[0];
+          return first ? spanJoin(first).toLowerCase() : whole;
+        } }
         // a named run's word opens on what the line under that word prints
         if (wordsOwn) {
           const cell = cover.find((c) => c.surface === surface && c.from === c.to);
@@ -6684,7 +6788,7 @@
           const [, , , mId, year] = row;
           const m = index.m_sources[mId];
           const att = document.createElement("p"); att.className = "att";
-          att.append(`${m.label} · ${hasYear(year) ? `wording ${year}` : "wording year not supplied"} `);
+          att.append(`${m.label} · ${hasYear(year) ? `wording ${yearSaid(mId, year)}` : "wording year not supplied"} `);
           // the chip IS the license's own address where the declarations name
           // its deed, which every CC license asks to travel with its material
           const deed = licenseDeed(m.licensePosture);
@@ -6816,7 +6920,7 @@
           const one = ({ row, group, text }) => {
             const m = index.m_sources[row[3]];
             const b = document.createElement("button"); b.type = "button"; b.className = "d-also-m";
-            b.append(`${m.label.split(/[,(]/)[0].trim()} · ${hasYear(row[4]) ? `wording ${row[4]}` : "no wording year"}`);
+            b.append(`${m.label.split(/[,(]/)[0].trim()} · ${hasYear(row[4]) ? `wording ${yearSaid(row[3], row[4])}` : "no wording year"}`);
             const lic = document.createElement("span"); lic.className = "lic-chip";
             lic.textContent = licenseTextOf(readingOfRow(row)); b.append(lic);
             if (text && text !== firstText) {
@@ -6848,7 +6952,7 @@
               const m = index.m_sources[x.row[3]];
               const says = x.text && x.text !== firstText ? ` · reads it “${x.text}”` : "";
               sel.append(Object.assign(document.createElement("option"),
-                { value: String(i), textContent: `${m.label} · ${x.row[4]}${says}` }));
+                { value: String(i), textContent: `${m.label} · ${hasYear(x.row[4]) ? yearSaid(x.row[3], x.row[4]) : "no wording year"}${says}` }));
             });
             sel.addEventListener("change", (ev) => {
               ev.stopPropagation();
@@ -6924,7 +7028,12 @@
         const RANK = { m: 0, n: 1, x: 2, "-": 3 };
         btn.dataset.grade = route.records.map((r) => rowGradeFor(r, surface)).sort((p, q) => RANK[p] - RANK[q])[0];
         const oldestM = index.m_sources[route.records[0][3]];
-        btn.title = [Number.isFinite(route.year) ? String(route.year) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
+        // the year the title says: the reading's oldest, or, where its lead
+        // record is a span row (whose year orders nothing: orderYearOf),
+        // that row's own year, said as every credit says it
+        const leadRow = route.records[0];
+        const titleYear = Number.isFinite(route.year) ? route.year : (OVERLAY_ROWS.get(leadRow) === "span-store" && /^\d{3,4}$/u.test(String(leadRow[4])) ? Number(leadRow[4]) : null);
+        btn.title = [titleYear !== null ? yearSaid(leadRow[3], titleYear) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
         btn.setAttribute("aria-pressed", String(route === selected));
         btn.addEventListener("click", () => {
           pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
@@ -8055,13 +8164,15 @@
     };
     const hebs = pairs.map((pr) => frame(pr.he, PAD, PAD, true)), engs = pairs.map((pr) => frame(pr.en, 2, 1, false));
     // THE SEAMS: two boxes side by side in one row never overlap, band by
-    // band. Where their inks stand apart in a band the seam is the middle
-    // of the space between; where only one has ink in a band (a lamed's
-    // flag over its neighbor, a vowel under it) the other steps back from
-    // it there; where they stand closer than the grain the two share the
+    // band. The seam is the line the letters set: the middle of the space
+    // between the two's letters. A band leaves that line only where ink
+    // reaches across it there (a lamed's flag over its neighbor, a vowel or
+    // an accent under it), and then only as far as clears the ink; where
+    // two inks stand closer than the grain in a band the two share the
     // difference; where they lie over one another in one band the seam is
     // where the line set the one's letters against the other's. Each keeps
-    // a hair on its own side.
+    // a hair on its own side. (Until 2026-11-09 each band was cut where its
+    // own inks stood, so a seam could jog at every band; see below.)
     const seam = (row) => {
       for (let i = 0; i < row.length; i += 1) for (let j = 0; j < row.length; j += 1) {
         const p = row[i], q = row[j];
@@ -8081,20 +8192,42 @@
           continue;
         }
         // where one ink reaches over or under the other (a lamed's flag, a
-        // maqaf's stroke, a vowel under the next letter), band by band
-        for (let k = 0; k < 3; k += 1) {
+        // maqaf's stroke, a vowel or an accent under the next letter), band
+        // by band.
+        // THE SEAM KEEPS THE LETTERS' LINE, AND LEAVES IT ONLY FOR INK THAT
+        // CROSSES IT (the owner, 2026-11-09, a phone's screenshot of the
+        // second word of Leviticus 1:17: the seam between the word's two
+        // pieces stood in three places, one per band, a stair down the
+        // letter). Each band had been cut where its own inks stood: in the
+        // middle of the space between two points far apart above the
+        // letters, between the letters themselves, and left of an accent
+        // under them, so the line jogged twice where one jog was owed. Now
+        // the line the letters set is the seam, and a band moves it only as
+        // far as clears the ink that reaches across it there: here the band
+        // above stays on the line and only the accent below turns it. Which
+        // band reaches across is the face's doing (a phone draws these
+        // letters in its own face), so the rule is the same in every face.
+        const band = (k) => {
           const pi = p.bands[k], qi = q.bands[k];
-          let pr, ql;
-          if (!pi && !qi) { const x = (p.aR + q.aL) / 2; pr = x - GAP; ql = x + GAP; }
-          else if (!pi) { ql = qi.iL - GRAIN; pr = ql - 2 * GAP; }
-          else if (!qi) { pr = pi.iR + GRAIN; ql = pr + 2 * GAP; }
-          else {
-            const sp = qi.iL - pi.iR;
-            if (sp >= 2 * GRAIN) { const x = (pi.iR + qi.iL) / 2, h = Math.min(GAP, sp / 2 - GRAIN); pr = x - h; ql = x + h; }
-            else if (sp > -0.3) { pr = ql = (pi.iR + qi.iL) / 2; }
-            else { const x = (p.aR + q.aL) / 2; pr = x - GAP; ql = x + GAP; }
+          if (!pi && !qi) return null;
+          if (!pi) return { lo: -Infinity, hi: qi.iL - GRAIN };
+          if (!qi) return { lo: pi.iR + GRAIN, hi: Infinity };
+          return { lo: pi.iR + GRAIN, hi: qi.iL - GRAIN, tight: qi.iL - pi.iR };
+        };
+        const mid = band(1);
+        // the letters' line: the middle of the space between the letters
+        // where they stand apart, where the line set the one against the
+        // other where they lie over one another or neither has letters
+        const line = mid && Number.isFinite(mid.lo) && Number.isFinite(mid.hi) && mid.tight > -0.3 ? (mid.lo + mid.hi) / 2 : (p.aR + q.aL) / 2;
+        for (let k = 0; k < 3; k += 1) {
+          const b = band(k);
+          let x = line, h = GAP;
+          if (b) {
+            if (b.lo <= b.hi) { x = Math.min(Math.max(line, b.lo), b.hi); h = Math.min(GAP, Math.max(0, Math.min(x - b.lo, b.hi - x))); }
+            else if (b.tight > -0.3) { x = (b.lo + b.hi) / 2; h = 0; }   // closer than the grain: the two share the difference
+            else { x = (p.aR + q.aL) / 2; }                               // over one another in this band: where the line set them
           }
-          p.Rb[k] = Math.min(p.Rb[k], pr); q.Lb[k] = Math.max(q.Lb[k], ql);
+          p.Rb[k] = Math.min(p.Rb[k], x - h); q.Lb[k] = Math.max(q.Lb[k], x + h);
         }
       }
       // a box with no bands of its own keeps its letters' band's sides
@@ -8405,6 +8538,34 @@
   // fit even so wraps as before. Measured on the row as it stands, so a
   // resize or the other reader fits it again.
   const RUN_FIT = [0.94, 0.88, 0.82, 0.78];
+  // A PART THAT WRAPS IS AS WIDE AS ITS WIDEST LINE (the owner, 2026-11-09,
+  // of the last pair of Genesis 1:7: "the spacing is slightly off for the
+  // english spacer ... like there's an indent or something"). A part wraps
+  // at a cell's width, and a box whose words wrap keeps that whole width
+  // however short its lines are: the words stood centered in a box wider
+  // than they are, so the + beside it looked pushed away from them. The box
+  // is set to its widest line, measured where the lines stand (and no
+  // narrower than its license chip or its pieces); a part on one line is
+  // left as the line set it. Measured again whenever the line is fitted.
+  const hugParts = (line) => {
+    for (const cell of line.querySelectorAll(":scope > .g-part")) {
+      cell.style.width = "";
+      const tn = [...cell.childNodes].find((n) => n.nodeType === 3 && n.data.trim());
+      if (!tn) continue;
+      const rg = document.createRange(); rg.selectNodeContents(tn);
+      const rows = new Map();   // a line of the part, by its top: where it starts and ends
+      for (const r of rg.getClientRects()) {
+        if (!(r.width > 0)) continue;
+        const k = Math.round(r.top), row = rows.get(k);
+        if (row) { row[0] = Math.min(row[0], r.left); row[1] = Math.max(row[1], r.right); } else rows.set(k, [r.left, r.right]);
+      }
+      if (rows.size < 2) continue;
+      let w = 0;
+      for (const [a, b] of rows.values()) w = Math.max(w, b - a);
+      for (const c of cell.children) w = Math.max(w, c.getBoundingClientRect().width);
+      cell.style.width = `${Math.ceil(w) + 1}px`;
+    }
+  };
   const fitRunLine = (run) => {
     const line = run && run.__gloss;
     if (!line || !line.isConnected || !line.classList.contains("parts") || line.children.length < 2) return;
@@ -8412,11 +8573,12 @@
     const colW = col ? col.clientWidth : 0;
     if (!colW) return;
     line.style.fontSize = "";
+    hugParts(line);
     const fits = () => { const tops = new Set(); for (const c of line.children) tops.add(Math.round(c.getBoundingClientRect().top)); return tops.size <= 1 && line.scrollWidth <= colW + 1; };
     if (fits()) return;
     const base = parseFloat(getComputedStyle(line).fontSize) || 0;
     if (!base) return;
-    for (const k of RUN_FIT) { line.style.fontSize = `${Math.round(base * k * 100) / 100}px`; if (fits()) return; }
+    for (const k of RUN_FIT) { line.style.fontSize = `${Math.round(base * k * 100) / 100}px`; hugParts(line); if (fits()) return; }
   };
   const drawTies = (run) => {
     if (!run || !run.__ink || !run.isConnected) return;

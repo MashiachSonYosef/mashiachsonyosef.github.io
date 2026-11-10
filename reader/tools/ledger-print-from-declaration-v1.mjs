@@ -38,6 +38,19 @@
 //             the texts printed when those cuts stand. A text the branch
 //             reaches that the list does not hold is an error, never a guess:
 //             the list is the store of its day, and a new text needs a line.
+//             A line with no such field, on a row another branch cuts, prints
+//             its parts divided at the cuts that fall inside them, the cut's
+//             mark dropped: the rule every kind below combines with a cut by
+//             (8 November 2026: the corpus lane's v153.2 holds three such
+//             texts, «how! how many!, how much!, how long!» among them; the
+//             rule gives back, character for character, both lines that do
+//             carry the field, v117.2's «congeal, become solid; be hard,
+//             stern» and v135.2's «corn; …»). A part is followed through the
+//             row character by character in order, so a part that leaves a
+//             mark out (v135.2's quotes) still finds its cuts; a part that is
+//             not the row's characters in order is an error. Each text so
+//             printed is named in the receipt, and a line that carries the
+//             field is checked against the rule there too.
 //   examples  [{ key?, row, prints }], served rows and what the step prints
 //             (a string, "" for no pill, or a list of strings); the checker
 //             (check-provider-declaration-v1.2) and the apply tool run them
@@ -113,6 +126,32 @@ const closerOf = (text, i) => {
 };
 
 /** the option's steps, normalized to a list; [] where the option carries no print */
+/**
+ * A rows_print line's parts on a row another branch cuts (8 November 2026):
+ * each part divides at the cuts that fall inside it and the cut's mark is
+ * dropped, the rule every kind combines with a cut by. A part is followed
+ * through the row character by character, in order, from where the part
+ * before it ended; null where a part is not the row's characters in order.
+ */
+export const divideAtCuts = (text, parts, cuts) => {
+  const out = []; let from = 0;
+  for (const part of parts) {
+    const pos = [];
+    for (const ch of part) { const at = text.indexOf(ch, from); if (at < 0) return null; pos.push(at); from = at + ch.length; }
+    if (!pos.length) continue;
+    const chars = [...part]; let piece = "";
+    const inside = new Set(cuts.filter((c) => c > pos[0] && c < pos[pos.length - 1]));
+    let crossed = new Set();
+    for (let j = 0; j < chars.length; j += 1) {
+      // a cut the part steps over ends the piece before this character
+      for (const c of inside) if (!crossed.has(c) && pos[j] >= c) { out.push(piece); piece = ""; crossed.add(c); }
+      if (inside.has(pos[j])) continue; // the cut's own mark goes
+      piece += chars[j];
+    }
+    out.push(piece);
+  }
+  return out.map((x) => x.trim()).filter(Boolean);
+};
 export const stepsOf = (option) => {
   const p = option && option.print;
   // a list of rows and what each prints is a step of its own (rows_print)
@@ -203,9 +242,17 @@ export const printUnder = (option, text, marks, cuts = []) => {
   if (!option.print && rowsPrintOf(option).length) {
     const line = rowsPrintOf(option).find((r) => r && r.row === text);
     if (!line) throw fail("the branch reaches a text its rows_print holds no line for");
-    const p = cuts.length && line.prints_with_the_cuts_of_6_november !== undefined ? line.prints_with_the_cuts_of_6_november : line.prints;
-    const texts = Array.isArray(p) ? p.map(String) : (p === "" ? [] : [String(p)]);
-    return { texts };
+    const asList = (p) => (Array.isArray(p) ? p.map(String) : (p === "" ? [] : [String(p)]));
+    const plain = asList(line.prints);
+    if (!cuts.length) return { texts: plain };
+    // another branch cuts the row: the line's own texts for it where it gives them, else the rule
+    const byRule = divideAtCuts(text, plain, cuts);
+    if (line.prints_with_the_cuts_of_6_november !== undefined) {
+      const texts = asList(line.prints_with_the_cuts_of_6_november);
+      return { texts, cuts_by: "line", rule_agrees: !!byRule && JSON.stringify(byRule) === JSON.stringify(texts) };
+    }
+    if (!byRule) throw fail("a part the line prints is not the row's own characters in order, so another branch's cut cannot be placed in it");
+    return JSON.stringify(byRule) === JSON.stringify(plain) ? { texts: plain } : { texts: byRule, cuts_by: "rule" };
   }
   const byRow = rowSideFor(option, text);
   let keeps;

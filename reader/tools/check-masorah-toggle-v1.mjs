@@ -23,9 +23,13 @@
 //   M4b the lenient leader names its carriers; with every one switched off
 //       the line reads the filter's own alternate (o.la) and the card opens
 //       pressed on it, or goes bare where no kept reading remains
-//   M5  LETTERS: the card's head leads with the bare consonants and keeps the
-//       pointed form beside them; every reading is back; a lattice order in
-//       "reads first" has fallen back to oldest
+//   M5  LETTERS: the card's head is the word as the page writes it, once, in
+//       the corpus's red (the owner, 2026-11-09: "we shouldn't write the
+//       hebrew twice just write the pointed version not the stripped
+//       version"; until then the head led with the bare consonants and set
+//       the pointed form faint beside them); the position is said in words
+//       under it; every reading is back; a lattice order in "reads first"
+//       has fallen back to oldest
 //   M6  and across all three, the Hebrew of the section never changed by a
 //       byte, and neither did the number of words on it
 //   M7  ONLY again, pressed by the reader, restores exactly the first pool,
@@ -105,6 +109,8 @@ const cardNow = () => p.evaluate(() => {
     headLine: (h.querySelector('.kq-role[data-masorah]') || {}).textContent || "",
     head: head ? head.textContent : "",
     headMode: head ? head.dataset.masorah || "" : "",
+    headInk: head ? getComputedStyle(head).color : "",
+    wordInk: wb ? getComputedStyle(wb.querySelector(".w")).color : "",
     surface: wb ? wb.querySelector(".w").textContent.trim() : null,
     line: wb ? wb.querySelector(".g").textContent.replace(/\s+/g, " ").trim() : null,
     order: (document.querySelector('#railNow b[data-toggle="order"]') || document.querySelector("#railNow b") || {}).textContent || "",
@@ -212,9 +218,9 @@ check("  \"the letters only\" can be pressed", pressedLetters);
 await p.waitForTimeout(900);
 const letters = await cardNow();
 const bareK = await p.evaluate(() => { const wb = document.querySelector("section.seg .he-text .wb.active"); const z = window.__zone; if (!wb || !z) return null; const s = wb.querySelector(".w").textContent.trim(); for (const sec of z.sections) for (const w of sec.words || []) if (w.s === s) return w.k || (w.w && w.w[0] && w.w[0].k) || null; return null; });
-check("M5  letters: the head leads with the bare consonants and keeps the pointed form; every reading is back",
-  letters && letters.headMode === "letters" && bareK && letters.head.startsWith(bareK) && letters.head.includes(letters.surface) && letters.withheld === 0 && keep && letters.pills.length === keep.pills.length && /letters only/u.test(letters.headLine),
-  letters ? `head "${letters.head}" · bare ${bareK} · ${letters.pills.length} readings (keep had ${keep ? keep.pills.length : "?"})` : "no card");
+check("M5  letters: the head is the word as the page writes it, once, in the word's own red; every reading is back",
+  letters && letters.headMode === "letters" && bareK && letters.head.trim() === letters.surface && letters.headInk === letters.wordInk && letters.withheld === 0 && keep && letters.pills.length === keep.pills.length && /letters only/u.test(letters.headLine),
+  letters ? `head "${letters.head}" (the line's word "${letters.surface}") · ink ${letters.headInk} (the word's ${letters.wordInk}) · ${letters.pills.length} readings (keep had ${keep ? keep.pills.length : "?"})` : "no card");
 check("    and a lattice order in \"reads first\" has fallen back to oldest", letters && /oldest/i.test(letters.order), letters ? `reads first: ${letters.order}` : "");
 
 // M6
