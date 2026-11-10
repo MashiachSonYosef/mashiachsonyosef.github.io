@@ -60,6 +60,7 @@
 //
 // Run: node tools/project-declarations-v1.mjs --ledger <dir holding fix/> [--store data/route-store]
 //        [--out data/source-declarations-v1.bin] [--receipt data/source-declarations-receipt-v1.json] [--stamp YYYY-MM-DD]
+import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
@@ -100,7 +101,8 @@ export const branchValues = (row, reserved) => (row.values || []).filter((v) => 
 
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   const LEDGER = arg("--ledger"), STORE = arg("--store", "data/route-store");
   const OUT = arg("--out", "data/source-declarations-v1.bin"), RECEIPT = arg("--receipt", "data/source-declarations-receipt-v1.json");
   const STAMP = arg("--stamp", new Date().toISOString().slice(0, 10));

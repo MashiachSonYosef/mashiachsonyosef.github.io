@@ -19,14 +19,25 @@
 //
 // Idempotent: gloss_m is recomputed whole on every run.
 //
-// Run: node tools/enrich-gloss-m-v1.mjs [--zones data/zones]
-import { readFileSync, writeFileSync, readdirSync } from "node:fs";
-import { gzipSync, gunzipSync } from "node:zlib";
+// Run: node tools/enrich-gloss-m-v1.mjs --stamp YYYY-MM-DD [--zones data/zones]
+//
+// WHERE IT STANDS (10 November 2026). Every served zone carries the M its
+// builder wrote, so this pass finds nothing to serve and leaves every zone
+// alone; and regloss-zone derives gloss_m, with each reading's carriers and
+// its alternate, on every projection. It is kept for a zone built before
+// 2 September 2026 that might come back onto the shelf. Until that day it
+// replaced a zone's whole post-build receipt (erasing every other tool's
+// typed write), dated it by the clock and wrote the zone at gzip's default
+// level; it types and writes through tools/zone-post-build-v1.mjs now.
+import { readFileSync, readdirSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { glossSource as glossSourceFor } from "./gloss-m-v1.mjs";
 import { isSidecar } from "./zones-on-disk-v1.mjs";
+import { typePostBuildWrite, writeZone, EXEMPTION_RULE_ID } from "./zone-post-build-v1.mjs";
+export { EXEMPTION_RULE_ID };
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -45,8 +56,9 @@ const STORE = openRouteStore(join(K3, "data", "route-store"));
 // zone's rebuild) — so the single-pass check counts it instead of faulting
 // it, and a zone the builder already served is left alone.
 const glossSource = (key, text) => glossSourceFor(STORE, key, text);
-export const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
 const WROTE = ["gloss_m", "gloss_layer.store_version"];
+// the day of the round that runs this; asked for only when a zone is written
+const STAMP = arg("stamp", null);
 
 const bins = readdirSync(ZONES)
   .filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f))
@@ -79,20 +91,22 @@ for (const f of bins) {
   // the struck store. It is typed here under the same exemption, named to
   // its writer, so the record says who wrote what rather than one tool
   // claiming another's field.
-  const wrote = [...WROTE];
-  const byField = Object.fromEntries(WROTE.map((f) => [f, "tools/enrich-gloss-m-v1.mjs"]));
-  if (gl.language_admission) { wrote.push("gloss_layer.language_admission"); byField["gloss_layer.language_admission"] = "tools/redrive-zone-gloss-v1.mjs"; }
-  ef.post_build = {
-    rule_id: EXEMPTION_RULE_ID,
-    by: "tools/enrich-gloss-m-v1.mjs",
-    wrote,
-    by_field: byField,
-    store_version: STORE.index.store_version || null,
+  if (!/^\d{4}-\d{2}-\d{2}$/u.test(String(STAMP || ""))) { console.error(`${f}: this zone would be written, and a zone is written under the day of its round: --stamp YYYY-MM-DD`); process.exit(2); }
+  const pb = typePostBuildWrite(z, {
+    tool: "tools/enrich-gloss-m-v1.mjs",
+    fields: WROTE,
     why: "this zone was built before build-zone wrote gloss_m in its single pass (2026-09-02); its M is derived here from the store now on disk, the same derivation the builder runs",
     expires: "with this zone's rebuild by a build-zone that writes gloss_m (gloss_layer.m_layer present)",
-    on: new Date().toISOString().slice(0, 10),
-  };
-  writeFileSync(path, gzipSync(Buffer.from(JSON.stringify(z), "utf8")));
+    stamp: STAMP,
+  });
+  pb.store_version = STORE.index.store_version || null;
+  // the redrive's own mark, named to its writer and to no other
+  if (gl.language_admission) {
+    const f2 = "gloss_layer.language_admission";
+    if (!pb.wrote.includes(f2)) pb.wrote.push(f2);
+    if (!pb.by_field[f2]) pb.by_field[f2] = "tools/redrive-zone-gloss-v1.mjs";
+  }
+  writeZone(path, z);
   zones += 1;
   if (zoneDrift) driftZones.push(`${f.replace(/\.bin$/, "")}: ${zoneDrift}`);
 }

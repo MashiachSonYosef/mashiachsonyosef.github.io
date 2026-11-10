@@ -35,12 +35,13 @@
 // Run: node tools/restamp-zone-v1.mjs --zone <zone .bin> --stamp YYYY-MM-DD
 //        [--witnesses data/masorah-witnesses-v1.json] [--out <zone .bin>] [--dry]
 import { readFileSync, writeFileSync } from "node:fs";
-import { gunzipSync, gzipSync } from "node:zlib";
+import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { measureZone, MEASURE_RULE_ID, MEASURE_AXES } from "./bookword-measure-v1.mjs";
 import { countStampOf } from "./count-stamp-v1.mjs";
+import { typePostBuildWrite, zoneBytes } from "./zone-post-build-v1.mjs";
 
 const K3 = join(dirname(fileURLToPath(import.meta.url)), "..");
 const arg = (n, d = null) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
@@ -87,20 +88,15 @@ const reworded = now.rows.filter((r) => { const o = wasBy.get(keyOf(r)); return 
 // TYPED on the zone, as every post-build write is (single-pass-exemption-v1):
 // who wrote, which field, why, and when it expires. Merged with the
 // exemptions the zone already carries.
-const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
-const ef = zone.emitted_from || (zone.emitted_from = {});
-const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: STAMP };
-const me = "tools/restamp-zone-v1.mjs";
-pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-for (const f of ["count_stamp"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (String(pb.by_field[f]).includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
-const why = "the count stamp is set again from the witness record as it now stands, by the builder's own rule over this zone's own measure, after the record was corrected";
-pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
-const exp = "with this zone's rebuild by a build-zone run that reads the corrected witness record in its single pass";
-pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
-pb.on = STAMP;
-ef.post_build = pb;
+typePostBuildWrite(zone, {
+  tool: "tools/restamp-zone-v1.mjs",
+  fields: ["count_stamp"],
+  why: "the count stamp is set again from the witness record as it now stands, by the builder's own rule over this zone's own measure, after the record was corrected",
+  expires: "with this zone's rebuild by a build-zone run that reads the corrected witness record in its single pass",
+  stamp: STAMP,
+});
 zone.count_stamp = now;
 
-const body = gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 });
+const body = zoneBytes(zone);
 if (!DRY) writeFileSync(OUT, body);
 console.log(`${slug}: ${DRY ? "would be " : ""}restamped from ${basename(WITNESSES)} ${now.witnesses.sha256.slice(0, 12)} (was ${String(was.witnesses.sha256).slice(0, 12)}) · ${now.rows.length} rows (${was.rows.length} before) · ${moved.length ? moved.join("; ") : "no figure moves"}${reworded ? ` · ${reworded} row${reworded === 1 ? "" : "s"} name their source anew` : ""} · zone sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}`);

@@ -43,13 +43,13 @@
 //
 // Run: node tools/project-toggle-headword-v1.mjs --zone data/zones/genesis.bin
 //        --ledger <word-lemma-v1.csv.gz> --stamp YYYY-MM-DD --out build/toggles/genesis.bin
-import { readFileSync, writeFileSync, createReadStream, statSync } from "node:fs";
+import { readFileSync, createReadStream, statSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { gzipSync, gunzipSync, createGunzip } from "node:zlib";
+import { gunzipSync, createGunzip } from "node:zlib";
 import { createInterface } from "node:readline";
+import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 
 export const TOGGLE_RULE_ID = "toggle-projection-rule-v1-a-toggle-is-a-ledger-projected-over-a-zones-own-positions";
-const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
 
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 const zonePath = arg("--zone"), ledgerPath = arg("--ledger"), outPath = arg("--out"), stamp = arg("--stamp");
@@ -137,22 +137,19 @@ ef.toggles.headword = {
   what_the_word_carries: "h: the headword's consonantal key, hp: the pointed headword — only where both witnesses agree; where they differ the word carries nothing and is counted under witnesses_differ",
   rulings_owed: "none for this toggle; the headword is imported, not sorted (the order INSIDE the headword's stack is lemma-sort, a separate projection)",
 };
-{
-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
-  const me = "tools/project-toggle-headword-v1.mjs";
-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  // the receipts check names a mark by its box: emitted_from.<key>
-  for (const f of ["emitted_from.toggles"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = me; }
-  const why = "the look-up-by toggle is Moses's headword ledger projected over this zone's own positions";
-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
-  const exp = "with this zone's rebuild by a build-zone run that projects the toggle ledgers in its single pass";
-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
-  pb.on = stamp;
-  ef.post_build = pb;
-}
+// the receipts check names a mark by its box: emitted_from.<key>. Typed by
+// the one rule (zone-post-build-v1): this tool joins the writers of the box;
+// until 10 November 2026 it named itself the box's only writer, over the
+// lattice's and the sources' projections that write there too.
+typePostBuildWrite(zone, {
+  tool: "tools/project-toggle-headword-v1.mjs",
+  fields: ["emitted_from.toggles"],
+  why: "the look-up-by toggle is Moses's headword ledger projected over this zone's own positions",
+  expires: "with this zone's rebuild by a build-zone run that projects the toggle ledgers in its single pass",
+  stamp,
+});
 
-const body = JSON.stringify(zone);
-writeFileSync(outPath, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
+writeZone(outPath, zone);
 const s = stats;
 console.log(`${outPath} · ${s.words_with_headword.toLocaleString()} of ${s.words_on.toLocaleString()} words carry a headword · ${s.headword_differs_from_form.toLocaleString()} differ from their form · ${s.headword_reaches_more.toLocaleString()} reach an English the form lacks`);
 console.log(`  verses: ${s.verses_joined} joined · ${s.verses_held} held (form keys did not prove) · ${s.verses_absent_from_ledger} absent from the ledger · witnesses differ at ${s.witnesses_differ} words`);

@@ -2,7 +2,7 @@
 // RUN: tree
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { pathToFileURL } from "node:url";
+import { startedAs } from "./main-guard-v1.mjs";
 
 const compareUtf8 = (a, b) => Buffer.compare(Buffer.from(a, "utf8"), Buffer.from(b, "utf8"));
 const fail = (code, detail = "") => { throw new Error(detail ? `${code}:${detail}` : code); };
@@ -103,7 +103,7 @@ export function loadWorkAttributionDisplayV3(path) {
   return { value, observed };
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (startedAs(import.meta.url)) {
   const path = process.argv[2] || "data/work-attribution-display-v3.json";
   const { observed } = loadWorkAttributionDisplayV3(path);
   console.log(`PASS_WORK_ATTRIBUTION_DISPLAY_V3__${observed.works}_WORKS__ROOT_CARD_ONLY`);

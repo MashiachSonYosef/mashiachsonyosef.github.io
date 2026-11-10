@@ -27,6 +27,14 @@
 // anything. A module that means to be both a library and a program says which
 // it is being.
 //
+// And it says so one way (10 November 2026): through the one function of
+// tools/main-guard-v1.mjs. Until then each tool compared its own address with
+// "file://" and the path it was started on, letter for letter. That guards an
+// import. It also fails the other way: from a folder with a space in its
+// name, or through a link, the two never match, so the tool run as a program
+// did nothing and exited 0, and a round shipped the record of the round
+// before. The second law here keeps a tool from asking in its own words.
+//
 // Run: node tools/check-no-import-side-effects-v1.mjs
 import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -48,7 +56,11 @@ for (const [f, s] of Object.entries(src))
   for (const m of s.matchAll(/from\s+"\.\/([a-z0-9.-]+\.mjs)"/g))
     (importedBy[m[1]] = importedBy[m[1]] || []).push(f);
 
-const MAIN_GUARD = /import\.meta\.url\s*[!=]==\s*`file:\/\/\$\{process\.argv\[1\]\}`/;
+// the guard as a statement: if (startedAs(import.meta.url)) or its negation
+const MAIN_GUARD = /^\s*if \(!?startedAs\(import\.meta\.url\)\)/m;
+const IMPORTS_THE_GUARD = /import\s*\{[^}]*\bstartedAs\b[^}]*\}\s*from\s*"\.\/main-guard-v1\.mjs"/;
+// a tool comparing its own address with anything, on either side of the sign
+const OWN_WORDS = /import\.meta\.url\s*[!=]==?|[!=]==?\s*import\.meta\.url/;
 // a write standing at column zero or one level of indentation, not inside a
 // function body — the shape that runs on import
 const MODULE_SCOPE_WRITE = /^(?!\s*(\/\/|\*))\s{0,2}(writeFileSync|mkdirSync|unlinkSync|rmSync|renameSync|appendFileSync)\(/gm;
@@ -57,7 +69,9 @@ const risky = [];
 for (const [mod, by] of Object.entries(importedBy)) {
   const s = src[mod];
   if (!s) continue;
-  if (MAIN_GUARD.test(s)) continue;
+  // either spelling keeps an import from doing the work; the second law
+  // refuses the old one for what it does to the program
+  if (MAIN_GUARD.test(s) || OWN_WORDS.test(s)) continue;
   const writes = [...s.matchAll(MODULE_SCOPE_WRITE)];
   if (writes.length) risky.push({ mod, by, writes: writes.length });
 }
@@ -68,6 +82,15 @@ check("no imported module does file work at import, unguarded",
   risky.length
     ? risky.map((r) => `${r.mod} (${r.writes} write${r.writes > 1 ? "s" : ""}, imported by ${r.by.join(", ")})`).join(" · ")
     : "every one either writes nothing or guards on being the program");
+
+const ownWords = files.filter((f) => OWN_WORDS.test(src[f]));
+const asking = files.filter((f) => MAIN_GUARD.test(src[f]));
+const unimported = asking.filter((f) => !IMPORTS_THE_GUARD.test(src[f]));
+check("a tool asks whether it is the program one way, through tools/main-guard-v1.mjs",
+  ownWords.length === 0 && unimported.length === 0 && asking.length > 0,
+  ownWords.length ? `${ownWords.length} compare their own address themselves: ${ownWords.join(", ")}`
+    : unimported.length ? `${unimported.length} call the guard without importing it from the module: ${unimported.join(", ")}`
+    : `${asking.length} tools ask, each through the module`);
 
 // And the second half of the trap, stated so it is not forgotten: a check must
 // not derive its own expectation from the thing it is judging. This cannot be

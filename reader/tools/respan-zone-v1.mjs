@@ -44,11 +44,12 @@
 //     --spans w-to-compspan-template-v6.csv.gz --stamp 2026-08-20 \
 //     --out data/zones/genesis.bin
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { gzipSync, gunzipSync } from "node:zlib";
+import { gunzipSync } from "node:zlib";
 import { readSpanSlice, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import { require_ } from "./zone-lib-v1.mjs";
+import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 const inPath = arg("--zone");
@@ -140,24 +141,15 @@ const out = {
 // exemption — who wrote it, which fields, why, and when it expires — so the
 // receipts check counts it rather than faulting it as anonymous patching.
 // Merged, not replaced: the enrichment and the regloss lane type theirs too.
-{
-  const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
-  const ef = out.emitted_from;
-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
-  const me = "tools/respan-zone-v1.mjs";
-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["span_layer.projected_on", "span_layer.projected_by", "span_layer.projected_away_from", "span_layer.gloss_layer_owed", "span_layer.held_for_a_double_answer"]) {
-    if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = me;
-  }
-  const why = "the component layer is a projection of the COMPspan template over this zone's own keys, run here because the zone was built without --spans";
-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
-  const exp = "with this zone's rebuild by a build-zone run given --spans";
-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
-  pb.on = stamp;
-  ef.post_build = pb;
-}
+typePostBuildWrite(out, {
+  tool: "tools/respan-zone-v1.mjs",
+  fields: ["span_layer.projected_on", "span_layer.projected_by", "span_layer.projected_away_from", "span_layer.gloss_layer_owed", "span_layer.held_for_a_double_answer"],
+  why: "the component layer is a projection of the COMPspan template over this zone's own keys, run here because the zone was built without --spans",
+  expires: "with this zone's rebuild by a build-zone run given --spans",
+  stamp,
+});
 const body = JSON.stringify(out);
-writeFileSync(outPath, gzipSync(Buffer.from(body, "utf8"), { level: 9 }));
+writeZone(outPath, out);
 const sha = createHash("sha256").update(body).digest("hex");
 console.log(`${outPath} · ${span.spans.size.toLocaleString()} forms carry a component system · sha256 ${sha}`);
 console.log(`  asked about ${keys.size.toLocaleString()} of this zone's own keys · ${span.scanned.toLocaleString()} template rows scanned`);

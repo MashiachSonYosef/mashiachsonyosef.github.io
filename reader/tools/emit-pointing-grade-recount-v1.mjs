@@ -16,6 +16,7 @@
 // store) is counted apart and compared nowhere.
 //
 // Run: node tools/emit-pointing-grade-recount-v1.mjs [--store data/route-store] [--out data/pointing-grade-recount-v1.json]
+import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { openRouteStore } from "./gloss-store-v1.mjs";
@@ -54,7 +55,8 @@ export const recountBook = (store, b, cross = {}) => {
 };
 
 // a library to the guard, a program at the shell: nothing below runs on import
-if (import.meta.url === `file://${process.argv[1]}`) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
   const STORE = arg("--store", "data/route-store"), OUT = arg("--out", "data/pointing-grade-recount-v1.json");
   const store = openRouteStore(STORE);

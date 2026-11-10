@@ -50,11 +50,12 @@
 //
 // Run: node tools/bake-witnessed-order-v1.mjs --zone data/zones/<book>.bin --stamp YYYY-MM-DD
 //        [--from data/witnessed-orders-v2.7] [--store data/route-store] [--out <file>]
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { gzipSync, gunzipSync } from "node:zlib";
+import { gunzipSync } from "node:zlib";
 import { join, basename } from "node:path";
 import { openRouteStore } from "./gloss-store-v1.mjs";
+import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 
 export const RULE = "witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit";
 export const COLUMNS = [
@@ -126,19 +127,12 @@ zone.emitted_from = zone.emitted_from || {};
 zone.emitted_from.witnessed_order = receipt;
 // typed under the single-pass exemption, merged with what regloss typed, so
 // the receipts check counts this write rather than faulting it as patching
-{
-  const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
-  const ef = zone.emitted_from;
-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: STAMP };
-  const me = "tools/bake-witnessed-order-v1.mjs";
-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["gloss_orders", "gloss_m_orders", "emitted_from.witnessed_order"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
-  const why = "the owner selected the corpus lane's witnessed order (2026-09-25); its three columns are baked as shipped over this zone's own keys";
-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
-  const exp = "with this zone's rebuild by a build-zone run, after which the columns are baked again";
-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
-  pb.on = STAMP;
-  ef.post_build = pb;
-}
-writeFileSync(OUT || ZONE, gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 }));
+typePostBuildWrite(zone, {
+  tool: "tools/bake-witnessed-order-v1.mjs",
+  fields: ["gloss_orders", "gloss_m_orders", "emitted_from.witnessed_order"],
+  why: "the owner selected the corpus lane's witnessed order (2026-09-25); its three columns are baked as shipped over this zone's own keys",
+  expires: "with this zone's rebuild by a build-zone run, after which the columns are baked again",
+  stamp: STAMP,
+});
+writeZone(OUT || ZONE, zone);
 console.log(`${book}: ${COLUMNS.map(([o]) => `${o.replace("witnessed_", "")} ${receipt.columns[o].baked}/${receipt.columns[o].shipped}${receipt.columns[o].no_pill_withdrawals ? ` (${receipt.columns[o].no_pill_withdrawals.length} no pill)` : ""}`).join(" · ")} · against store ${receipt.baked_against_store}`);

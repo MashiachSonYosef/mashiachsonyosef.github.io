@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-10.
 
-**144 rules declared · 132 named by a check · 12 unguarded.**
+**145 rules declared · 132 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -107,6 +107,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1, check-carrier-survives-v1, check-names-pill-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-licence-leaves-v1, check-provider-characters-v1 |
 | `read-form-offsets-rule-v1-a-read-forms-piece-without-letters-takes-the-lanes-alignment-or-none` | tools/bake-read-form-offsets-v1.mjs, zone.html | check-read-form-offsets-v1 |
+| `reader-orders-rule-v1-the-orders-the-store-defines-are-projected-with-the-table-on-every-projection` | tools/regloss-zone.mjs | **UNGUARDED** |
 | `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-card-opens-on-the-line-v1.mjs | check-card-opens-on-the-line-v1, check-first-reading-is-sorted-v1 |
 | `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/emit-zone-store-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
@@ -177,7 +178,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 34 of the 120 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 34 of the 123 tools that are not checks.
 
 Not called by any build stage:
 
@@ -226,6 +227,7 @@ Not called by any build stage:
 - `tools/lattice-lib-v1.mjs`
 - `tools/ledger-print-from-declaration-v1.mjs`
 - `tools/ledger-print-v1.mjs`
+- `tools/main-guard-v1.mjs`
 - `tools/make-fixture-zone-v1.mjs`
 - `tools/make-hoh-fixture-v1.mjs`
 - `tools/make-kq-fixture-zone-v1.mjs`
@@ -270,6 +272,8 @@ Not called by any build stage:
 - `tools/weld-forms-v1.mjs`
 - `tools/work-holds-v1.mjs`
 - `tools/zone-lib-v1.mjs`
+- `tools/zone-post-build-v1.mjs`
+- `tools/zone-walk-v1.mjs`
 
 ## The served shelf
 

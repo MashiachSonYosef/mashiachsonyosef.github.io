@@ -105,10 +105,21 @@ export const openRouteStore = (storeDir) => {
   if (index.schema_version !== "ROUTE_STORE_V1" && index.schema_version !== "ROUTE_STORE_V2")
     throw new Error(`unexpected store schema ${index.schema_version} — refusing output`);
 
+  // A SHARD THE INDEX COUNTS AND THE DISK DOES NOT HOLD IS A BROKEN COPY.
+  // A key lives in the shard named by the first two hex digits of its
+  // sha256, so a store whose index counts 256 shards has every one of them.
+  // Until 10 November 2026 an absent shard file was read as a shard with no
+  // keys: every key of it answered "the catalog has no entry", and whatever
+  // was built from that copy counted the hole as the catalog's own silence.
+  // A store whose index counts fewer shards (a fixture, a store of a few
+  // keys) may lack the others, and there an absent shard is an empty one.
+  const everyShardCounted = ((index.counts || {}).shards === 256);
   const shardCache = new Map();
   const shardBody = (name) => {
     if (!shardCache.has(name)) {
       const p = join(storeDir, "shards", `${name}.bin`);
+      if (!existsSync(p) && everyShardCounted)
+        throw new Error(`the store at ${storeDir} counts 256 shards in its index and shard ${name}.bin is not here: this copy is not whole — refusing output`);
       shardCache.set(name, existsSync(p) ? JSON.parse(gunzipSync(readFileSync(p)).toString("utf8")) : {});
     }
     return shardCache.get(name);
@@ -172,6 +183,30 @@ export const openRouteStore = (storeDir) => {
   const readingsOfText = (k, text, mIds = null) => {
     const row = rowOfText(k, text, mIds);
     return row ? readingsOf(row) : [];
+  };
+  /** WHO CARRIES A READING. One rule, asked here by every tool that credits a
+   *  reading or sorts by who stands behind it (the credit beside the line, the
+   *  lattice's leaders, the door's chips, the chain's links): the admitted rows
+   *  of `routes` whose own readings, under readingsOf, print as `text` prints
+   *  (readingKey, rule 3), oldest WORDING year first (the row's own year, row[4],
+   *  never the edition year of its source), a row with no year after every dated
+   *  one, the catalog's row order breaking ties. `omit` leaves a set of sources
+   *  out before anything is matched, as readingPool's does.
+   *
+   *  Until 10 November 2026 this was typed again wherever it was needed, and
+   *  the copies had drifted: the projector matched the reading as written, so
+   *  Strong's «Eden.» was not counted as carrying «Eden» and a lattice order's
+   *  leader stood on an incomplete set of carriers; the chain chose the oldest
+   *  carrier by the edition year, which most sources do not state; the door's
+   *  chips matched as written too. */
+  const wordingYear = (row) => { const y = Number.parseInt(row && row[4], 10); return Number.isInteger(y) ? y : Infinity; };
+  const carriersOf = (routes, text, omit = null) => {
+    const want = readingKey(text);
+    return (routes || [])
+      .map((row, at) => ({ row, at, y: wordingYear(row) }))
+      .filter((x) => index.m_sources[x.row[3]] && !(omit && omit.has(x.row[3])) && readingsOf(x.row).some((t) => readingKey(t) === want))
+      .sort((a, b) => (a.y === b.y ? 0 : a.y < b.y ? -1 : 1) || a.at - b.at)
+      .map((x) => x.row);
   };
   /** The m ids a source label names, for a credit that carries the label alone. */
   const mIdsOfLabel = (label) => Object.entries(index.m_sources || {}).filter(([, s]) => s && s.label === label).map(([id]) => id);
@@ -351,5 +386,5 @@ export const openRouteStore = (storeDir) => {
   // print" asks the store's own rule instead of re-implementing it (7 November
   // 2026: the generic split helpers that rode here, packSplit and readingSplit,
   // retired with the comma rule).
-  return { index, routesFor, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, ORDERS };
+  return { index, routesFor, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, carriersOf, wordingYear, ORDERS };
 };

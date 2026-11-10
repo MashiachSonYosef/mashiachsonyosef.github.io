@@ -74,6 +74,7 @@
 // Idempotent: a store already struck reports zero and rewrites nothing.
 //
 // Run: node tools/strike-language-v1.mjs [--store data/route-store] [--dry]
+import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
@@ -192,7 +193,8 @@ export const classify = (source) => {
       + "is a label at the source naming what its own title page names, not an exception here." };
 };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
   const decisions = {};
   const struck = new Set();

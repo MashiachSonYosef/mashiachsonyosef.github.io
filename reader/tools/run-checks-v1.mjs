@@ -50,6 +50,7 @@
 //
 // Usage: node tools/run-checks-v1.mjs [--zone <reader address>] [--panel] [--site <origin>]
 //          [--live <origin>] [--only <regex on the check's name>] [--jobs 3] [--timeout 600]
+import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { spawn, spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
@@ -102,7 +103,8 @@ export const shapePanel = () => {
   return [...new Set(pick.values())];
 };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   process.chdir(READER);
   const answers = async (url) => { try { const r = await fetch(url, { signal: AbortSignal.timeout(2500) }); return r.ok; } catch { return false; } };
   // The servers the page checks ask, owned by the run: the reader on 8899

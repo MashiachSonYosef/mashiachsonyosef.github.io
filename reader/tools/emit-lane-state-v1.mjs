@@ -41,13 +41,17 @@
 // is picked by name out of the records, never spread wholesale, because a
 // spread copies whatever a record happens to hold today.
 //
-// Run: node tools/emit-lane-state-v1.mjs [--out data/lane-state-v1.json]
+// Run: node tools/emit-lane-state-v1.mjs --stamp YYYY-MM-DD [--out data/lane-state-v1.json]
+//      (the round's day; the round passes it. Without it the record keeps the
+//      day it already carries, so a run that changes nothing writes the same
+//      bytes.)
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { zonesOnDisk, zonesServed, SIDECAR_SUFFIXES, baseOfSidecar } from "./zones-on-disk-v1.mjs";
+import { startedAs } from "./main-guard-v1.mjs";
+import { zonesOnDisk, zonesServed, SIDECAR_SUFFIXES, baseOfSidecar, ZONE_STORE_RECORD } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -68,7 +72,11 @@ export const LANE_STATE_RULE_ID = "lane-state-rule-v1-one-fetch-says-what-this-l
 const readJson = (p) => (existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : null);
 const readBin = (p) => (existsSync(p) ? JSON.parse(gunzipSync(readFileSync(p)).toString("utf8")) : null);
 
-export const laneState = () => {
+// `day`: the round's stamp. A record of what is served carries the day of the
+// round that wrote it, never the clock: the clock made this file differ on
+// every round with nothing changed (in the twenty commits before 10 November
+// 2026 that touched it, built_at was the only line that moved).
+export const laneState = (day = null) => {
   const index = readJson(join(STORE, "index.json"));
   const manifest = readJson(join(STORE, "store-manifest-v1.json"));
   const admission = readJson(join(K3, "data", "language-admission-v1.json"));
@@ -78,8 +86,13 @@ export const laneState = () => {
   // zonesServed, not zonesOnDisk. A check that asks "what does the door offer"
   // wants what is served; the two differ and the difference is a fact worth
   // carrying, so both are here with their names on them.
-  const onDisk = zonesOnDisk();
-  const served = zonesServed();
+  const onDisk = zonesOnDisk(ZONES);
+  const served = zonesServed(ZONES);
+  // what the shelf's own record says is held off the door (data/zone-store-v1.json,
+  // written by tools/emit-zone-store-v1.mjs): the works built and sealed whose
+  // files are not in this tree
+  const storeRecord = readJson(join(ZONES, "..", ZONE_STORE_RECORD));
+  const heldOff = (storeRecord && storeRecord.held_off_the_door) || null;
   const sidecars = {};
   for (const suffix of SIDECAR_SUFFIXES) {
     const files = existsSync(ZONES) ? readdirSync(ZONES).filter((f) => f.endsWith(suffix)) : [];
@@ -129,7 +142,7 @@ export const laneState = () => {
       "one fetch that says what this lane is serving right now, so a peer lane can tell whether it is "
       + "looking at the same store without asking anybody. Every number is read from the artifact that "
       + "owns it at the moment this file is written.",
-    built_at: new Date().toISOString(),
+    built_at: day,
 
     store: {
       scope: "the route store this site serves from",
@@ -181,6 +194,12 @@ export const laneState = () => {
       zones_on_disk: onDisk.length,
       zones_served: served.length,
       withheld: onDisk.length - served.length,
+      withheld_says: "works whose file is in this tree and which the gate does not serve",
+      // read from the shelf's record, never counted here: the works the gate
+      // does not serve are kept out of the published tree, so the directory
+      // cannot say how many there are (until 10 November 2026 this block said
+      // "withheld: 0" beside a gate receipt that counts 3,481 works)
+      held_off_the_door: heldOff ? { zones: heldOff.zones ?? null, sidecars: heldOff.sidecars ?? null, record: `reader/data/${ZONE_STORE_RECORD}`, says: "works built and sealed whose files are not in the published tree; the record seals them and says where their bytes stand" } : null,
       sidecars,
     },
 
@@ -204,19 +223,28 @@ export const laneState = () => {
       "that the works not served are unservable — most are held on a named gate, and the gate is in "
         + "the build plan, not here",
       "anything about the corpus lane's own state; this file describes one lane and says so",
-      "that these numbers were true a minute ago. It is written by a build, and built_at is when",
+      "that these numbers were true a minute ago. It is written by a round, and built_at is that round's day",
     ],
   };
 
   return state;
 };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-  const state = laneState();
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
+  const given = arg("stamp", null);
+  if (given !== null && !/^\d{4}-\d{2}-\d{2}$/u.test(String(given))) { console.error("--stamp YYYY-MM-DD"); process.exit(2); }
+  // no stamp: the day the record already carries stands (a run by hand that
+  // changes nothing writes the same bytes); a record written before this
+  // rule carries a clock time, and its day is kept
+  const before = readJson(OUT);
+  const day = given || (before && typeof before.built_at === "string" ? before.built_at.slice(0, 10) : null);
+  if (!day) { console.error("no --stamp given and no record to keep the day of"); process.exit(2); }
+  const state = laneState(day);
   writeFileSync(OUT, `${JSON.stringify(state, null, 1)}\n`);
   console.log(`${OUT.replace(`${K3}/`, "")}: store ${state.store.version} · ${state.store.sources} sources · `
     + `${state.shelf.zones_served} of ${state.shelf.zones_on_disk} works served · `
     + `${state.language_admission.sources_struck} struck `
-    + `(${(state.language_admission.routes_struck || 0).toLocaleString()} routes) · `
+    + `(${(state.language_admission.routes_struck || 0).toLocaleString("en-US")} routes) · `
     + `lattice on ${state.lattice.books_carrying_one} book(s)`);
 }
