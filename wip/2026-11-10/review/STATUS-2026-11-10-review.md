@@ -7,7 +7,11 @@
 | `main` | 51a514d24d741697f2ed4e08ca201a4de43fb8f7 |
 | `gh-pages` | 2ab92aee84076ff41aeb05957bd494f3628d7004 ("gh-pages follows main") |
 | Before it | `main` efdb4aaa, `gh-pages` 2bb488bc |
-| Pages deployment and live check | see the foot of this file |
+| Live since | 20:30 UTC, on the fifth deployment attempt; the live check passed at 20:32 UTC (the foot of this file) |
+
+A correction: this table was headed "What is live" from 18:50 UTC, when the commit was pushed and not deployed. For an hour and three quarters the site served the commit before it.
+
+The review's second round, built the same night, has its own notes: `round-two/ROUND-TWO-2026-11-10.md`.
 
 ## What shipped
 
@@ -45,4 +49,7 @@ The review is `REVIEW-2026-11-10.md` beside this file; its section 9 lists what 
 ## Deployment and live check
 
 - `gh-pages` 2ab92aee was pushed at 18:34 UTC. The Pages deployment (run 1348) built in 46 seconds and then stood at "syncing_files" for ten minutes, at which GitHub's deploy step canceled itself ("Timeout reached, aborting!", 18:45:52). This is the failure of runs 1339 (7 November) and 1343 to 1345 (this morning): the step waits on GitHub's file sync and nothing in the build is at fault. The published tree is 3,554 files and 370 MB, of which this ship changed 1,523 files and 71 MB.
-- The failed job was run again at 18:47 UTC (attempt 2). What it and the live check said is in the lines below, added when they ended.
+- The failed job was run again at 18:47 UTC (attempt 2), 18:58 (attempt 3) and 19:31 (attempt 4). Each stood at "syncing_files" for ten minutes and canceled itself; the fourth ended at 19:41:47.
+- Attempt 5, at 20:30:03 UTC after 48 minutes with no attempt, succeeded in 28 seconds.
+- The live check: run 45, started by the first attempt's publish event at 18:45:55, waited its fifteen minutes for the new build and failed at 19:01:36, rightly, since the site still served the commit before. Run 46, started by hand at 20:31:52 (a re-run publishes without the event that starts the check), passed at 20:32:38: the public site is `main` 51a514d2.
+- The pattern across the last 18 ships is in the second round's notes (section 6, item 4), with what could be done about it.
