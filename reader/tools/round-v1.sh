@@ -140,8 +140,8 @@ fi
 if has door; then
   echo "── door · the front door and every book's own pages ────────────────────"
   node tools/build-front-door-v1.mjs > "$WORK/door.log" 2>&1 || { echo "round-v1: the door did not build" >&2; tail -8 "$WORK/door.log" >&2; exit 1; }
-  node tools/emit-lane-state-v1.mjs > /dev/null
-  node tools/emit-ledger-index-v1.mjs > /dev/null
+  node tools/emit-lane-state-v1.mjs --stamp "$STAMP" > /dev/null
+  node tools/emit-ledger-index-v1.mjs --stamp "$STAMP" > /dev/null
   node tools/pipeline-manifest-v1.mjs --stamp "$STAMP" > /dev/null
   cp -a deploy-root/. ..
 fi

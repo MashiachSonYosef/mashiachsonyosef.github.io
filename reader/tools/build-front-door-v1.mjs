@@ -157,31 +157,6 @@ const commentaryTally = (slug) => {
   return t;
 };
 
-// O · the shelf says why it is short, in its own words rather than by looking
-// empty. A door that serves nothing and explains nothing is indistinguishable
-// from a door that is broken, and a reader deserves to know which. The numbers
-// come off the gate's receipt, so this line cannot go stale while the shelf
-// changes under it.
-const gateNotice = (() => {
-  const refusedAll = Object.entries(gateReceipt.refused || {});
-  const unreadable = refusedAll.filter(([, v]) => v.hits && v.hits["zone.unreadable"]).length;
-  const refused = refusedAll.length - unreadable;
-  const waiting = (gateReceipt.not_yet_stamped || {}).count || 0;
-  const served = (gateReceipt.served || []).length;
-  if (!refused && !waiting) return "";
-  // Said as a state line, not as a paragraph. This ran to a hundred words at
-  // the top of the door and pushed the books below the fold on every screen —
-  // the reader met an account of the gate before meeting a book. The account
-  // is true and still owed, so it did not go: it rides each figure's hover,
-  // and it stands in full in the gate's own receipt. What the frame does with
-  // a book it cannot vouch for is still say so; it says it in fewer words.
-  const chip = (v, label, why) => `<span class="gc" title="${why}">${n(v)} <span class="gl">${label}</span></span>`;
-  const parts = [chip(served, "served", "the counted works, each with its count stamped beside the figures other men reached for it, on its own page")];
-  if (refused) parts.push(chip(refused, "refused", "refused by a line of the frame's C0 letter: a position the frame will not call a word or a mark. Every line, and every book it refused, is named in the gate's receipt"));
-  if (waiting) parts.push(chip(waiting, "awaiting the stamp", "refused by no line, but built before the count was stamped; each waits for the rebuild under the one pipeline that stamps it"));
-  if (unreadable) parts.push(chip(unreadable, "unreadable", "could not be opened at all, and are named as such in the receipt"));
-  return `  <p class="face-line gate-notice">${parts.join("")}</p>`;
-})();
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const TEXT_PIN_RULE = "EXACT_GIT_BLOB_BYTES__LF_ENFORCED_BY_GITATTRIBUTES_V1";
 // The engine directory's name is read from where this tool stands, never
@@ -258,6 +233,15 @@ const SITE_HOST = (() => {
 // place either is decided, so the door, the work pages, the held addresses
 // and the README cannot drift apart from one another.
 const SITE_NAME = SITE_HOST || "The Tabernacle";
+// THE SMALL PAGES' COLORS, NAMED ONCE. The pages this builder writes outside
+// the door and the books (an address that is no file, a held address, a moved
+// one, a traditional name's page) carry no stylesheet of the site's; each has
+// a few lines of its own. They read the reader's own values from here (the
+// owner, 2026-10-10: one linen, the purple regular and dim, the dim gold), so
+// a change of palette reaches all of them. Until 10 November 2026 each typed
+// its colors again, and the page for an address that is no file had been
+// left on the palette of before 10 October.
+const SMALL_PAGE = Object.freeze({ paper: "#ebdec3", ink: "#642460", dim: "#753c6d", gold: "#a06c10" });
 // The name's four parts, for the mark's four colors (the owner, 2026-10-02). Read
 // off the name itself; a name this does not match stands whole.
 // THE SITE'S DECLARATION, said once and printed wherever it is owed: the
@@ -546,21 +530,20 @@ const titleReading = (tokens, en) => {
   if (!key) return null;
   const routes = STORE.routesFor(key);
   if (!routes) return null;
-  const want = String(en || "").trim().toLowerCase();
-  if (!want) return null;
-  const hits = routes.filter((row) => {
-    if (!STORE.index.m_sources[row[3]]) return false;
-    return STORE.readingsOf(row).some((x) => String(x).trim().toLowerCase() === want);
-  });
+  if (!String(en || "").trim()) return null;
+  // who reads the name: the store's own answer (carriersOf: every admitted
+  // row whose readings print as the title prints, oldest wording first).
+  // Until 10 November 2026 this matched the reading as written, so Strong's
+  // «Amos.» did not attest «Amos» and the chip named a later source.
+  const hits = STORE.carriersOf(routes, String(en).trim());
   if (!hits.length) return null;
-  // fullest license first, and among equals the oldest source — the same
-  // antiquity rule the rest of the page reads by
+  // fullest license first, and among equals the oldest wording (the order
+  // the store handed them over in; the sort is stable)
   hits.sort((a, c) => {
     const ra = licenseRank((STORE.index.m_sources[a[3]] || {}).licensePosture);
     const rc = licenseRank((STORE.index.m_sources[c[3]] || {}).licensePosture);
     for (let i = 0; i < ra.length; i += 1) if (ra[i] !== rc[i]) return ra[i] - rc[i];
-    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
-    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
+    return 0;
   });
   const m = STORE.index.m_sources[hits[0][3]];
   return { lic: licenseName(m.licensePosture), label: m.label || "", year: hasYear(m.sourceYear) ? m.sourceYear : "", attests: hits.length };
@@ -573,16 +556,9 @@ const glossSource = (key, text) => {
   if (!key || !text) return null;
   const routes = STORE.routesFor(key);
   if (!routes) return null;
-  const want = String(text).toLowerCase();
-  const hits = routes.filter((row) => {
-    if (!STORE.index.m_sources[row[3]]) return false;
-    return STORE.readingsOf(row).some((x) => x.toLowerCase() === want);
-  });
+  // the store's own answer (carriersOf), the rule the book's page credits by
+  const hits = STORE.carriersOf(routes, text);
   if (!hits.length) return null;
-  hits.sort((a, c) => {
-    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
-    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
-  });
   const m = STORE.index.m_sources[hits[0][3]];
   // and the record itself, for the card to open on: the row's reading is one
   // sense of it ("dove" of "dove, pigeon."), and a card opened on another
@@ -865,21 +841,6 @@ const bookCard = (b) => `    <div class="bookcard">
       </span>
 
     </div>`;
-// THE STAMP ON THE CARD. The same rows the book's own page carries: one per
-// witness, the difference with its sign, gold exact and scarlet differing;
-// a measure nobody published a figure for says so in the page's own linen.
-// A WITNESS NAMED IN HEBREW. The witness record carries a few names as the
-// source writes them (a siman HaKtav quotes an author by). The door may print
-// no Hebrew it cannot vouch for beyond the carried titles, so a Hebrew run in
-// a witness's name is marked here and given in full on the book's own page,
-// where the stamp stands beside the text it counts. Nothing is transliterated.
-const HEB_RUN = /[\u0590-\u05FF](?:[\u0590-\u05FF\s'"]*[\u0590-\u05FF])?/gu;
-const plainWitness = (w) => String(w ?? "").replace(HEB_RUN, "[a Hebrew name, given on the book's page]");
-const STAMP_AX = { verses: "verses", words: "words · read", words_written: "words · written", letters: "letters · written", letters_read: "letters · read" };
-const STAMP_CLS = { COUNTED_THIS_TEXT: "counted this text", THE_MASORAH: "the masorah", LATER_AUTHORITY: "later authority", TALMUD_GEONIM: "Talmud, Geonim", HELD_EDITION: "held edition", NO_WITNESS: "no witness" };
-const stampDelta = (d) => (d == null ? "—" : `${d < 0 ? "−" : "+"}${n(Math.abs(d))}`);
-const stampGlyph = (v) => (v === "EXACT" ? "●" : v === "DIFFERS" ? "○" : "·");
-const stampRows = (st) => `      <span class="stamp" title="the count of this book on every named axis, beside the figures other men reached for it; the difference is ours less theirs">${(st.rows || []).map((r) => `<span class="srow ${esc(String(r.verdict || "").toLowerCase())}"><span class="cls">${esc(STAMP_CLS[r.class] || String(r.class || "").toLowerCase())}</span><span class="wit">${esc(plainWitness(r.witness || "nobody published a figure on this axis"))}</span><span class="ax">${esc(STAMP_AX[r.axis] || r.axis)}</span><span class="num">${r.theirs == null ? "—" : n(r.theirs)}</span><span class="num">${n(r.ours)}</span><span class="num delta">${stampDelta(r.delta)}</span><span class="glyph">${stampGlyph(r.verdict)}</span>${r.layer ? `<span class="why">${esc(plainWitness(r.layer))}</span>` : ""}</span>`).join("")}</span>`;
 
 // A commentary entry is its own way in, so it opens one. ?c=open tells the
 // reader to press the first mark the book carries and the first work behind it
@@ -1041,43 +1002,6 @@ for (const [slug, s] of Object.entries(WORK_STATUS.works || {})) {
   if (!s.status || !s.note) throw new Error(`${WORK_STATUS_FILE}: ${slug} names no status or no note; refusing output`);
 }
 
-// THE SECTIONS' STAMP ON THE FACE. Torah, Neviim, Ketuvim, the whole Tanakh:
-// the served books' own counts summed per section, beside the figures other
-// men reached for the section — Pardes Yosef's 79,980 on the Torah, Ben
-// Asher's 5,845 verses, the Leningrad Codex counted the same way. A section
-// is summed only when every book of it is served and stamped; until then the
-// strip says how many are in and waits. Read from the same witness record
-// the builder stamped every book from.
-const WITNESSES_PATH = "data/masorah-witnesses-v1.json";
-const sectionStamp = (() => {
-  if (!existsSync(WITNESSES_PATH)) return "";
-  const W = JSON.parse(readFileSync(WITNESSES_PATH, "utf8"));
-  const stampOf = new Map([...ZONE_INFO.values()].filter((zi) => zi.stamp).map((zi) => [zi.slug, zi.stamp]));
-  if (!stampOf.size) return "";
-  const AX = { verses: "verses", words: "words · read", words_written: "words · written", letters: "letters · written", letters_read: "letters · read" };
-  const CLS = { COUNTED_THIS_TEXT: "counted this text", THE_MASORAH: "the masorah", LATER_AUTHORITY: "later authority", TALMUD_GEONIM: "Talmud, Geonim", HELD_EDITION: "held edition" };
-  const NAME = { torah: "Torah", neviim: "Neviim", ketuvim: "Ketuvim", tanakh: "the whole Tanakh" };
-  const blocks = [];
-  let i = 0;
-  for (const [scope, sec] of Object.entries(W.sections || {})) {
-    const inSet = (sec.books || []).filter((b) => stampOf.has(b));
-    const head = `<p class="sh">${esc(NAME[scope] || scope)} · <span class="ours">${n(inSet.length)} of ${n((sec.books || []).length)} books served</span></p>`;
-    if (inSet.length !== (sec.books || []).length) {
-      blocks.push(`${head}<p class="waits">the section's count is summed when every book of it is served and stamped; ${n((sec.books || []).length - inSet.length)} still wait${(sec.books || []).length - inSet.length === 1 ? "s" : ""}</p>`);
-      continue;
-    }
-    const ours = {};
-    for (const b of inSet) for (const [k, v] of Object.entries(stampOf.get(b).ours)) if (typeof v === "number") ours[k] = (ours[k] || 0) + v;
-    const rows = (sec.rows || []).map((r) => {
-      const o = ours[r.axis]; if (!Number.isInteger(o) || !Number.isInteger(r.figure)) return "";
-      const d = o - r.figure, v = d === 0 ? "exact" : "differs";
-      i += 1;
-      return `<tr class="${v}" style="animation-delay:${Math.min(i, 14) * 70}ms"><td class="wit"><span class="cls">${esc(CLS[r.class] || String(r.class).toLowerCase())}</span>${esc(plainWitness(r.witness))}</td><td>${esc(AX[r.axis] || r.axis)}</td><td class="num">${n(r.figure)}</td><td class="num">${n(o)}</td><td class="num delta">${d < 0 ? "−" : "+"}${n(Math.abs(d))}</td><td class="glyph">${d === 0 ? "●" : "○"}</td><td>${r.layer ? esc(plainWitness(r.layer)) : ""}</td></tr>`;
-    }).join("");
-    blocks.push(`${head.replace("</span></p>", ` · ${n(ours.words)} words read · ${n(ours.words_written)} written · ${n(ours.letters)} letters · ${n(ours.verses)} verses · ${n(ours.c0_off)} scribal marks</span></p>`)}<table>${rows}</table>`);
-  }
-  return `  <div id="sectstamp" title="the served books' own counts summed per section, beside the figures other men reached for the section; the difference is ours less theirs">${blocks.join("")}</div>`;
-})();
 // A book's name is a record too. The row stays two columns — the bridge's
 // name and the unit count — and the name itself opens the book's own card:
 // the masthead's frame at book grain, in a card so the rows stay uncluttered.
@@ -1704,24 +1628,6 @@ const demoHtml = demo ? `  <section id="demo" aria-label="The reader, working">
       : `<span class="dw"><span class="fw inert" lang="he">${esc(w.s)}</span></span>`).join(" ")}</span></p>
     <p class="of">the opening words of <a href="/${demo.slug}">${demo.label ? esc(demo.label) : `<span class="none" title="${esc(demo.slug)}">${NO_PLAIN_NAME}</span>`}</a>, cut from its own record — derived by rule, the first book on the shelf, never chosen. Each reading above is the store&#8217;s oldest displayable witness with its license; the whole book reads the same way, with its component lattice live on every word.</p>
   </section>` : "";
-// The census, worn in the title — a demonstration, same derived book as the
-// verse above (demo-verse-rule-v1's pick, never chosen). The owner's ask,
-// 2026-08-30: rather than a separate census place, the title itself wears
-// what the census would say about the work — its attested usage, its rows'
-// license, its measured size, whether its Hebrew title is witnessed. Every
-// chip below is read from the zone's own receipts at build time; nothing is
-// typed and no Hebrew is repeated (the shelf row keeps the witnessed title;
-// this line wears the facts).
-const censusDemoHtml = demo && demo.zi ? `  <section id="census-demo" aria-label="The census, worn in the title">
-    <p class="demo-lab">the census, worn in the title — a demonstration</p>
-    <p class="cd-line"><a class="cd-name" href="/${demo.slug}">${demo.label ? esc(demo.label) : `<span class="none" title="${esc(demo.slug)}">${NO_PLAIN_NAME}</span>`}</a>${
-      demo.zi.reading ? `<span class="chip" title="${esc(demo.zi.reading.label)}${demo.zi.reading.year ? ` · ${esc(String(demo.zi.reading.year))}` : ""} — attests this usage; a name is an identification, not licensed expression (FRAME v2.7)">attested: ${esc(demo.zi.reading.label)}</span>` : ""
-    }${demo.postures.map((p) => `<span class="chip" title="the license standing on this work&#8217;s rows, from the zone&#8217;s own per-occurrence receipts: ${esc(p.full)}">${esc(p.name)}</span>`).join("")
-    }<span class="chip" title="measured from the zone&#8217;s own sections at build time">${n(demo.zi.sections)} section${demo.zi.sections === 1 ? "" : "s"} · ${n(demo.zi.words)} words</span>${
-      demo.zi.heTokens.some((t) => t.k) ? `<span class="chip" title="the Hebrew title on the shelf row is the work&#8217;s own opening words, claimed from its own record — not supplied">title witnessed</span>` : ""
-    }</p>
-    <p class="of">every fact a census row would say, worn by the name instead — read from the book&#8217;s own receipts, derived for the same first book as the verse above. Where the census register is heading: into the titles, not a separate place.</p>
-  </section>` : "";
 const censusSections = [
   ...families.map(censusFamily),
   awaitingSection(awaitingRows.filter((r) => !rowServes(r))),
@@ -1749,20 +1655,6 @@ const censusHead = censusSections.length
     })()
   : "";
 const censusPageSections = [censusHead, ...censusSections].filter(Boolean);
-const censusPointer = censusSections.length
-  ? `    <section class="family census-head">
-      <p class="of"><a href="/census/">THE CENSUS</a> · every work the bridge records that does not serve yet stands at its own page — nothing hidden, nothing promised: each row carries its recorded id, its measured size, and what it awaits.</p>
-    </section>`
-  : "";
-const refPointer = (() => {
-  try {
-    const RG = JSON.parse(readFileSync(arg("reference-groups", "data/reference-groups-v1.json"), "utf8"));
-    const links = (RG.groups || []).map((g) => `<a href="/${g.slug}">${esc(g.name_en)}</a>`).join(" \u00b7 ");
-    return links ? `    <section class="family census-head">
-      <p class="of">REFERENCES \u00b7 ${links} \u2014 a traditional name gathering its sealed pieces; the pieces stay themselves.</p>
-    </section>` : "";
-  } catch { return ""; }
-})();
 // A corpus with nothing readable in it is a promise, not a shelf. Seventeen of
 // the eighteen families on this door held no book a reader could open, and each
 // wore a full row — Hebrew name, forced reading, attestation chip, three counts
@@ -2697,9 +2589,6 @@ if (heldWithAZone.length) {
     console.error(`  ${b.work_id} is withheld in the record and ${b.zone} was built anyway`);
   process.exit(2);
 }
-const titleCase = (t) => String(t).split("-").map((w) =>
-  (w.length <= 2 && w === w.toLowerCase() && /^[ivx]+$/.test(w)) ? w.toUpperCase()
-    : w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
 // The README is for somebody arriving at the repository, and what they need is
 // the rules this code is held to — not a snapshot of the corpus. Counts moved
@@ -2924,17 +2813,20 @@ const readerPage = (b) => {
       : b.en ? `<meta name="description" content="${esc(b.en)}, read word by word in Hebrew: every reading traced to the record that carries it, and every record to its license.">\n` : "") +
     `<link rel="canonical" href="${ORIGIN}${canonical}">\n`;
   const title = b.title || (b.en ? `${b.en} · ${SITE_NAME}` : "");
+  // every replacement below is a function: a string handed to replace as the
+  // replacement is read for "$&", "$'" and "$1", and what is laid in here is
+  // page data (a title, the page's records, a chapter's readings)
   const titled = (title
-    ? ZONE_HTML.replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`)
+    ? ZONE_HTML.replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>`)
     : ZONE_HTML).replace(/<p id="cc0Line"[^>]*>[\s\S]*?<\/p>/, () => OPEN_CLAIM.replace('<p class="open-claim">', '<p id="cc0Line" class="open-claim">'));
   const slot = `<main id="text"></main>`;
   if (b.porch && !titled.includes(slot))
     throw new Error("zone.html lost its text slot — refusing to emit a page with a porch and nowhere to stand it");
   return titled
-    .replace(anchor, metas + anchor)
-    .replace(engineBlocks.css.whole, `<link rel="stylesheet" href="/${ENGINE}/${engineBlocks.css.name}">`)
-    .replace(engineBlocks.js.whole, `<script src="/${ENGINE}/${engineBlocks.js.name}"></script>`)
-    .replace(slot, b.porch ? `${slot}\n${b.porch}` : slot);
+    .replace(anchor, () => metas + anchor)
+    .replace(engineBlocks.css.whole, () => `<link rel="stylesheet" href="/${ENGINE}/${engineBlocks.css.name}">`)
+    .replace(engineBlocks.js.whole, () => `<script src="/${ENGINE}/${engineBlocks.js.name}"></script>`)
+    .replace(slot, () => (b.porch ? `${slot}\n${b.porch}` : slot));
 };
 
 // The only Hebrew this page may print is a title carried from a zone — the
@@ -2992,8 +2884,8 @@ writeFileSync(join(OUT, "index.html"), doc); listed("/");
 // path gets a plain page that says so, with one way home; nothing external.
 const notFound = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex"><title>Not here · fireandhail.com</title>
-<style>body{margin:0;padding:2rem 1rem;font:1rem/1.6 Georgia,serif;color:#2b2420;background:#efe6d3;max-width:34rem}a{color:#5a3e8f}code{font-size:.95em}</style>
+<meta name="robots" content="noindex"><title>Not here · ${SITE_NAME}</title>
+<style>:root{color-scheme:light}body{margin:0;padding:2rem 1rem;font:1rem/1.6 Georgia,serif;color:${SMALL_PAGE.ink};background:${SMALL_PAGE.paper};max-width:34rem}a{color:${SMALL_PAGE.dim}}code{font-size:.95em}</style>
 <script>
 (function () {
   var m = /^\\/([a-z0-9-]+)\\/(\\d+):(\\d+)(?::(\\d+(?:[-\\u2013]\\d+)?))?\\/?$/.exec(location.pathname);
@@ -3136,55 +3028,6 @@ ${ccArticle}
   console.log(`  demonstrations: 1 index + ${rdPages} rule page(s) of ${RD.rules.length}`);
 }
 
-// THE BENCH, at its own address.
-//
-// The owner asked for the toggle work to have somewhere of its own rather than
-// riding the retired demonstrations page or the books under audit. This is
-// that page. It says what each position is, whether it can be answered from
-// what is on this disk today, and exactly which record answers it \u2014 and it is
-// emitted from DEF_POSITIONS, the same array the pill row is built from, so
-// the page cannot describe a position the reader does not actually get.
-//
-// It prints no Hebrew. Every position is a claim about ORDER, and order is
-// shown by pressing a word in a real book, not by a specimen typed here.
-const posSection = (pos, i) => `    <article class="tg${pos.live ? "" : " tg-wait"}">
-      <p class="tg-head"><span class="tg-n">${i + 1}</span><span class="tg-lab">${esc(pos.lab)}</span><span class="tg-badge">${pos.live ? "live" : "waiting"}</span></p>
-      <p class="tg-say">${esc(pos.say)}</p>
-      <p class="tg-from"><span class="tg-k">answered from</span> ${esc(pos.from)}</p>
-    </article>`;
-const benchHtml = `<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The order switch \u00b7 ${SITE_NAME}</title>
-<link rel="canonical" href="/toggles/">
-<style>${DOOR_CSS}
-  .tg { border:1px solid var(--line); border-radius:.5em; padding:.7em .9em; margin:.7em 0; background:var(--bg); }
-  .tg-wait { opacity:.62; }
-  .tg-head { margin:0 0 .35em; display:flex; align-items:baseline; gap:.55em; }
-  .tg-n { color:var(--faint); font-size:.85em; }
-  .tg-lab { color:var(--ink-strong); font-weight:600; }
-  .tg-badge { margin-left:auto; font-size:.78em; color:var(--muted); border:1px solid var(--line); border-radius:.6em; padding:0 .45em; }
-  .tg-say { margin:.2em 0 .5em; }
-  .tg-from { margin:.15em 0; font-size:.86em; color:var(--muted); }
-  .tg-try { margin:1.4em 0; }
-  .tg-trylab { margin:0 0 .5em; }
-  .tg-frame { display:block; width:100%; height:70vh; min-height:460px; border:1px solid var(--line);
-    border-radius:.5em; background:var(--bg); }
-  .tg-k { color:var(--faint); }
-</style></head><body><main>
-  <h1>The order switch</h1>
-  <p>A reading is not wrong for being late, and this site does not rank one licensed witness above another on its own authority. So the order the readings come in is the reader\u2019s, and these are the positions it can be put in. Press one at the top of any book and the card you have open re-sorts under you.</p>
-  <p>Each position below says what it is, whether it can be answered from what is on this disk today, and which record answers it. A position that cannot be answered yet is still listed, dimmed, with what it waits on written on it: a switch that quietly drops the questions it cannot handle teaches a reader those questions were never asked.</p>
-  <p>All seven are positions of one kind \u2014 they order the readings, they do not admit or refuse any. So exactly one of them is in force at a time and none of them has an off. A switch that admitted or refused rather than ordered would be a different kind of thing, and would have to say so here.</p>
-  <section class="tg-try">
-    <p class="tg-trylab">The reader, opened at the beginning of Genesis. Its switch is at the top of the frame: press a word to open its card, then press a position and watch the readings re-sort under you.</p>
-    <iframe class="tg-frame" src="/genesis/" title="the reader, opened at the beginning of Genesis" loading="lazy"></iframe>
-    <p class="tg-from">Not a specimen and not a copy \u2014 that frame holds the same page served at <a href="/genesis/">/genesis/</a>, with the same card, the same store and the same switch. This page types no Hebrew of its own: every character in the frame comes out of the zone, which is the only place characters of the text are allowed to come from.</p>
-  </section>
-${DEF_POSITIONS.map(posSection).join("\n")}
-  <p><a href="/genesis/">open it full size</a></p>
-  <footer>This page is emitted from the same list the switch itself is built from, so it cannot describe a position the reader does not get. Recorded in tools/build-front-door-v1.mjs as DEF_POSITIONS.</footer>
-</main></body></html>`;
 // THE SWITCHES PAGE IS NOT THIS BUILD'S ANY MORE. It was, and the page it
 // wrote described "The order switch" — singular — from DEF_POSITIONS, a typed
 // list. Eight more switches were built and the page never learned of one of
@@ -3237,9 +3080,9 @@ const heldPage = (reason = "", from = "") => `<!doctype html>
 })();
 </script>
 <style>:root{color-scheme:light}
-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#ebdec3;
-  color:#753c6d;font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
-  a{color:#a06c10} p{max-width:34rem} .prov{font-size:.82em;color:#753c6d}</style>
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:${SMALL_PAGE.paper};
+  color:${SMALL_PAGE.dim};font:16px/1.6 Georgia,serif;padding:2rem;text-align:center}
+  a{color:${SMALL_PAGE.gold}} p{max-width:34rem} .prov{font-size:.82em;color:${SMALL_PAGE.dim}}</style>
 </head>
 <body><p>This address is kept, and the work behind it is not being served.<br><br>
 ${reason ? esc(reason) + "<br><br>" : ""}Nothing is shown in the meantime, and the
@@ -3467,12 +3310,12 @@ if (existsSync(REF_GROUPS_PATH)) {
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(g.name_en)} \u00b7 ${SITE_NAME}</title>
 <style>:root{color-scheme:light}
-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#ebdec3;
-  color:#642460;font:16px/1.6 Georgia,serif;padding:2rem}
-  a{color:#753c6d} main{max-width:36rem} h1{font-size:1.3rem;letter-spacing:.08em;font-variant:small-caps;color:#a06c10}
-  .prov{font-size:.82em;color:#753c6d}
-  .lics{font-size:.82em;color:#753c6d}
-  .lic{display:inline-block;margin-left:.35em;padding:0 .4em;border:1px solid #a06c10;
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:${SMALL_PAGE.paper};
+  color:${SMALL_PAGE.ink};font:16px/1.6 Georgia,serif;padding:2rem}
+  a{color:${SMALL_PAGE.dim}} main{max-width:36rem} h1{font-size:1.3rem;letter-spacing:.08em;font-variant:small-caps;color:${SMALL_PAGE.gold}}
+  .prov{font-size:.82em;color:${SMALL_PAGE.dim}}
+  .lics{font-size:.82em;color:${SMALL_PAGE.dim}}
+  .lic{display:inline-block;margin-left:.35em;padding:0 .4em;border:1px solid ${SMALL_PAGE.gold};
     border-radius:.6em;font-size:.92em;white-space:nowrap}</style>
 </head>
 <body><main><h1>${esc(g.name_en)}</h1>
@@ -3548,8 +3391,8 @@ if (existsSync(HISTORY)) {
 })();
 </script>
 <style>:root{color-scheme:light}
-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#ebdec3;
-  color:#753c6d;font:16px Georgia,serif} a{color:#a06c10}</style>
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:${SMALL_PAGE.paper};
+  color:${SMALL_PAGE.dim};font:16px Georgia,serif} a{color:${SMALL_PAGE.gold}}</style>
 </head>
 <body><p>${esc(b.disp)} now lives at <a href="/${target}">/${target}</a></p>
 </body>

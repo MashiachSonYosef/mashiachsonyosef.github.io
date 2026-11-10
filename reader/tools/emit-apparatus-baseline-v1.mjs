@@ -39,6 +39,7 @@
 // were arrived at without choosing, which is the part that needs fixing.
 //
 // Run: node tools/emit-apparatus-baseline-v1.mjs
+import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
@@ -66,7 +67,7 @@ export const APPARATUS_CLASSES = [
 // passed against a census stripped on purpose. A check that rebuilds its own
 // baseline cannot fail, and a tool with side effects at import is how that
 // happens without anyone writing it down.
-if (import.meta.url !== `file://${process.argv[1]}`) {
+if (!startedAs(import.meta.url)) {
   // imported for APPARATUS_CLASSES and BASELINE_RULE_ID; write nothing
 } else {
 

@@ -107,6 +107,20 @@ const onDisk = zonesOnDisk().length, served = zonesServed().length;
 check("S6  the shelf it reports is the shelf on disk",
   s.shelf.zones_on_disk === onDisk && s.shelf.zones_served === served && s.shelf.withheld === onDisk - served,
   `${s.shelf.zones_served} served of ${s.shelf.zones_on_disk} on disk`);
+// S6b · and what is held off the door is what the shelf's own record says,
+// so a peer lane does not read "withheld 0" as "nothing is held"
+{
+  const recPath = join(ZONES, "..", "zone-store-v1.json");
+  const rec = existsSync(recPath) ? JSON.parse(readFileSync(recPath, "utf8")) : null;
+  const held = rec && rec.held_off_the_door ? rec.held_off_the_door : null;
+  const said = s.shelf.held_off_the_door || null;
+  check("S6b  the works held off the door are the shelf record's count, not a count of this directory",
+    held ? !!said && said.zones === held.zones && said.sidecars === held.sidecars : said === null,
+    held ? `${said ? said.zones : "nothing said"} held, the record says ${held.zones}` : "the shelf's record holds nothing off the door, and the state says nothing");
+}
+// S6c · the day of the round, never the clock
+check("S6c  built_at is the round's day, not a clock time",
+  /^\d{4}-\d{2}-\d{2}$/u.test(String(s.built_at || "")), String(s.built_at));
 
 // S7 · the sidecars, counted off the files rather than off the summary.
 const files = existsSync(ZONES) ? readdirSync(ZONES) : [];

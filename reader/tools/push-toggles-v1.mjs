@@ -57,6 +57,7 @@
 //        [--zones data/zones] [--lane-state data/lane-state-v1.json]
 //      node tools/push-toggles-v1.mjs --inventory [--prefix <r2 prefix>]
 //      node tools/push-toggles-v1.mjs --fetch <queue id | r2 prefix | r2 object> [--jobs 4] [--dry]
+import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync, renameSync } from "node:fs";
 import { createHash, createHmac } from "node:crypto";
 import { gunzipSync } from "node:zlib";
@@ -598,7 +599,8 @@ const fetchDelivery = async (q, what) => {
   return 0;
 };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   if (STAMP !== null && !/^\d{4}-\d{2}-\d{2}$/.test(String(STAMP))) die(2, "--stamp must be YYYY-MM-DD");
   const q = loadQueue();
   let code = 0;

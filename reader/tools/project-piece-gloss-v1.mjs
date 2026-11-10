@@ -40,15 +40,16 @@
 // this site is held to.
 //
 // Run: node tools/project-piece-gloss-v1.mjs --col <piece-gloss-v1.jsonl.gz>
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { gunzipSync, gzipSync } from "node:zlib";
+import { startedAs } from "./main-guard-v1.mjs";
+import { readFileSync, existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
+import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 
 export const PIECE_GLOSS_RULE_ID = "piece-gloss-rule-v1-a-piece-reads-what-its-source-said-at-this-position-not-what-the-key-means-in-general";
 // A post-build write is typed on the zone it patches and expires with that
 // zone's rebuild — the single-pass gate's own rule id, spelled the same way
 // the other four projectors spell it, so one exemption record holds them all.
-const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
 
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 
@@ -59,7 +60,8 @@ export function byPosition(records) {
   return m;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   const COL = arg("--col");
   if (!COL || !existsSync(COL)) { console.error("missing --col <piece-gloss-v1.jsonl.gz>"); process.exit(2); }
   const DIR = arg("--zones", "data/zones");
@@ -114,25 +116,14 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     // build-zone run projects this column in its own pass. The record is
     // additive: four other projectors already ride here, and each of them
     // appends rather than replacing, so a zone names all of its patchers.
-    {
-      const ef = (zz.emitted_from = zz.emitted_from || {});
-      const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID
-        ? ef.post_build
-        : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: STAMP };
-      const me = "tools/project-piece-gloss-v1.mjs";
-      pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-      for (const f of ["piece_gloss"]) {
-        if (!pb.wrote.includes(f)) pb.wrote.push(f);
-        pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me;
-      }
-      const why = "the piece gloss is the source's own English for each piece AT THIS POSITION, projected over this zone's own positions and joined by the running word index with the surface and the verse proved on every record";
-      pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
-      const exp = "with this zone's rebuild by a build-zone run that projects the piece gloss in its single pass";
-      pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
-      pb.on = STAMP;
-      ef.post_build = pb;
-    }
-    writeFileSync(path, gzipSync(Buffer.from(JSON.stringify(zz)), { level: 9 }));
+    typePostBuildWrite(zz, {
+      tool: "tools/project-piece-gloss-v1.mjs",
+      fields: ["piece_gloss"],
+      why: "the piece gloss is the source's own English for each piece AT THIS POSITION, projected over this zone's own positions and joined by the running word index with the surface and the verse proved on every record",
+      expires: "with this zone's rebuild by a build-zone run that projects the piece gloss in its single pass",
+      stamp: STAMP,
+    });
+    writeZone(path, zz);
     books += 1;
   }
   const n = (v) => Number(v).toLocaleString();

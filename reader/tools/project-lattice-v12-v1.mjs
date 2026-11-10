@@ -45,7 +45,12 @@
 //      surface the tier of each card (m vowel match · n normalized · x vowel
 //      mismatch) and which cards cite this verse. Keyed by the pointed
 //      surface, because the grade is a fact about the pointing and repeats
-//      wherever the pointing does.
+//      wherever the pointing does. THE CITATIONS DO NOT: which cards name a
+//      verse is a fact about the verse. The record carries the list of the
+//      surface's first verse in the book (n, and its leader o.c), and for
+//      every other verse of that surface whose list differs, that verse's
+//      own list and leader (v[<verse label>] = { n, c }). A verse not named
+//      there reads the first verse's, which is then also its own.
 //   5. THE PARTS OF A WORD NOBODY DEFINES. v12 carries, per position, the
 //      word's own pieces — prefix, core, suffix — each with its role and with
 //      an English from TAHOT and from MACULA. They are taken for ONE case and
@@ -82,11 +87,11 @@ import { createInterface } from "node:readline";
 import { join } from "node:path";
 
 import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
-import { openRouteStore, readingKey } from "./gloss-store-v1.mjs";
+import { openRouteStore } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
+import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
-const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
 const GRADE_CHAR = { VOWEL_MATCH: "m", NORMALIZED: "n", VOWEL_MISMATCH: "x" };
 
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
@@ -260,14 +265,47 @@ if (stemsByPlace.size) for (const sec of zone.sections || []) {
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
   surfaces_unattested: 0, surfaces_with_stems: 0, surfaces_name_leads_under_only: 0, surfaces_with_lenient_leader: 0, surfaces_with_lenient_alternate: 0,
   hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
-  ld: 0, grades: 0, verses_held_j_not_sound: 0,
+  ld: 0, grades: 0, verses_with_their_own_citations: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
   held_examples: [] };
-const grades = {};          // pointed surface -> { k, g, n }
-const wordsTouched = [];    // for the recount
+const grades = {};          // pointed surface -> { k, g, n, o, v? }
+// what the sidecar prints of a reading's credit: its text, its oldest
+// carrier's label and license key, and that row's wording year
+const credit = (text, row) => { const src = store.index.m_sources[row[3]]; const y = store.wordingYear(row); return [text, src.label, src.licensePosture, Number.isFinite(y) ? y : null]; };
+// WHO LEADS UNDER "CITES HERE", for one key and one verse's list of citing
+// cards: the first reading of the store's pool, oldest first, that a citing
+// card carries, credited to its oldest carrier — what the card puts first
+// when it sorts the citing readings ahead. Asked once for the surface's
+// first verse and again for every verse whose list differs. The pool and the
+// cards behind each reading are the key's, so they are kept per key.
+const citeGroupsByKey = new Map();
+const citeGroupsOf = (key, list) => {
+  if (!citeGroupsByKey.has(key)) {
+    const srows = store.routesFor(key) || [];
+    const fpIx = new Map(list.map((c, ix) => [c.fp, ix]));
+    const ixOf = (row) => { const src = store.index.m_sources[row[3]]; const ix = src ? fpIx.get(fnv1a(`${row[1]}|${src.label}`)) : undefined; return ix === undefined ? -1 : ix; };
+    citeGroupsByKey.set(key, store.readingPool(srows, "oldest").map((grp) => {
+      const carriers = store.carriersOf(srows, grp.text);
+      return { text: grp.text, first: carriers[0] || null, cards: carriers.map(ixOf).filter((ix) => ix >= 0) };
+    }));
+  }
+  return citeGroupsByKey.get(key);
+};
+const citesLeader = (key, list, names) => {
+  if (!names.length) return null;
+  const hit = citeGroupsOf(key, list).find((g) => g.cards.some((ix) => names.includes(ix)));
+  return hit && hit.first ? credit(hit.text, hit.first) : null;
+};
+const sameList = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
 for (const sec of zone.sections || []) {
   const on = (sec.words || []).filter((w) => !w.mark && keysOf(w).length);
   if (!on.length) continue;
+  // NOTHING OF AN EARLIER PROJECTION STANDS ON A WORD THIS ONE DOES NOT
+  // REACH. What this tool writes on a word is cleared here, before the verse
+  // is proved, so a verse held whole or absent from the lattice carries no
+  // reading, credit or difference a run before this one wrote (until 10
+  // November 2026 they were cleared only inside a joined verse).
+  for (const w of on) { delete w.hg; delete w.hm; delete w.ld; delete w.pc; }
   stats.verses += 1; stats.words_on += on.length;
   const rows = byRef.get(sec.label);
   if (!rows) { stats.verses_absent_from_lattice += 1; continue; }
@@ -295,15 +333,25 @@ for (const sec of zone.sections || []) {
   stats.verses_joined += 1;
   on.forEach((w, i) => {
     const p = rows[i];
-    delete w.hg; delete w.hm; delete w.ld;
     // rule 4 · the grades, per pointed surface, over the lattice's own order
     for (const m of p.megacompspan || []) {
       const rg = m.route_grades;
       const list = routes.get(m.key);
-      if (!rg || !list || grades[m.surface]) continue;
+      if (!rg || !list) continue;
+      const names = (rg.names_this_verse || []).filter((ix) => ix < list.length);
+      // the surface is graded already, at its first verse: this verse adds
+      // only what is its own, the cards that name it, where they are not
+      // the first verse's
+      if (grades[m.surface]) {
+        const base = grades[m.surface];
+        if (!sameList(base.n, names) && !(base.v && Object.prototype.hasOwnProperty.call(base.v, sec.label))) {
+          (base.v ||= {})[sec.label] = { n: names, c: citesLeader(m.key, list, names) };
+          stats.verses_with_their_own_citations += 1;
+        }
+        continue;
+      }
       const g = new Array(list.length).fill("-");
       for (const [tier, idxs] of Object.entries(rg.grade_of_index || {})) for (const ix of idxs) if (ix < g.length) g[ix] = GRADE_CHAR[tier] || "-";
-      const names = (rg.names_this_verse || []).filter((ix) => ix < list.length);
       // THE LINE MOVES, NOT ONLY THE CARD (owner, 2026-09-09): under each
       // lattice order the first card is baked here — the oldest card of the
       // order's leading set, ties in lattice order — so the reading under the
@@ -326,7 +374,6 @@ for (const sec of zone.sections || []) {
       const srows = store.routesFor(m.key) || [];
       const fpIx = new Map(list.map((c, ix) => [c.fp, ix]));
       const rowIx = (row) => { const src = store.index.m_sources[row[3]]; const ix = src ? fpIx.get(fnv1a(`${row[1]}|${src.label}`)) : undefined; return ix === undefined ? -1 : ix; };
-      const readingsOfRow = new Map(srows.map((row, i) => [i, new Set(store.readingsOf(row).map((t) => t.toLowerCase()))]));
       const pool = store.readingPool(srows, "oldest");
       const TIER = { m: 0, n: 1, x: 2 };
       // THE GRADE OF A ROW — pointing-grade-rule-v4, the same two steps the
@@ -345,23 +392,23 @@ for (const sec of zone.sections || []) {
         else { const ix = rowIx(row); if (ix < 0) { stats.rows_ungraded += 1; gc = "-"; } else { stats.rows_graded_from_lattice += 1; gc = g[ix] || "-"; } }
         gradeCache.set(row, gc); return gc;
       };
+      // WHO CARRIES A GROUP is the store's answer (carriersOf: every admitted
+      // row whose readings print as the group prints, oldest wording first),
+      // the same rows the page puts behind the pill. Until 10 November 2026
+      // this matched the reading as written, so a row that closes the reading
+      // with a stop was not among its carriers.
       const groupInfo = pool.map((grp) => {
-        const key = grp.text.toLowerCase();
-        const carriers = srows.map((row, i) => ({ row, i })).filter((x) => store.index.m_sources[x.row[3]] && readingsOfRow.get(x.i).has(key));
-        let tier = 3, cites = 1;
-        for (const x of carriers) { const t = TIER[gradeOfRow(x.row)]; if (t !== undefined && t < tier) tier = t; const ix = rowIx(x.row); if (ix >= 0 && names.includes(ix)) cites = 0; }
-        return { text: grp.text, tier, cites, carriers };
+        const carriers = store.carriersOf(srows, grp.text);
+        let tier = 3;
+        for (const row of carriers) { const t = TIER[gradeOfRow(row)]; if (t !== undefined && t < tier) tier = t; }
+        return { text: grp.text, tier, carriers };
       });
       const firstUnder = (rank, only) => {
         const ordered = groupInfo.map((gi, at) => ({ gi, at, r: rank(gi) })).sort((a, b) => a.r - b.r || a.at - b.at);
         const top = ordered[0];
         if (!top || !only(top.gi)) return null;
         // the M the card prints for that reading: its oldest record
-        let best = null;
-        for (const x of top.gi.carriers) { const y = Number.parseInt(x.row[4], 10); const yy = Number.isInteger(y) ? y : Infinity; if (!best || yy < best.y) best = { row: x.row, y: yy }; }
-        if (!best) return null;
-        const src = store.index.m_sources[best.row[3]];
-        return [top.gi.text, src.label, src.licensePosture, Number.isFinite(best.y) ? best.y : null];
+        return top.gi.carriers.length ? credit(top.gi.text, top.gi.carriers[0]) : null;
       };
       // THE FILTER LEADERS, at the ROW grain. The three above lead a
       // re-order of the whole pool; a group takes the best tier any card
@@ -399,19 +446,10 @@ for (const sec of zone.sections || []) {
         if (!p.length) return null;
         const top = p[0];
         // its M: the oldest kept row carrying the reading, as the card prints it
-        let best = null;
-        const by = new Set();
-        for (const row of kept) {
-          const carries = store.readingsOf(row).some((t) => readingKey(t) === readingKey(top.text));
-          if (!carries) continue;
-          by.add(String(row[3]));
-          const y = Number.parseInt(row[4], 10); const yy = Number.isInteger(y) ? y : Infinity;
-          if (!best || yy < best.y) best = { row, y: yy };
-        }
-        if (!best) return null;
-        const src = store.index.m_sources[best.row[3]];
-        const out = [top.text, src.label, src.licensePosture, Number.isFinite(best.y) ? best.y : null];
-        return withBy ? [...out, [...by].sort()] : out;
+        const carriers = store.carriersOf(kept, top.text);
+        if (!carriers.length) return null;
+        const out = credit(top.text, carriers[0]);
+        return withBy ? [...out, [...new Set(carriers.map((row) => String(row[3])))].sort()] : out;
       };
       // THE FILTER'S OWN ALTERNATE (7 November 2026). The table's alternate
       // (gloss_m[k].alt) is the next reading with the line's carriers off,
@@ -429,7 +467,7 @@ for (const sec of zone.sections || []) {
       const o = {
         m: firstUnder((gi) => gi.tier, (gi) => gi.tier === 0),
         x: firstUnder((gi) => ({ 2: 0, 1: 1, 0: 2 }[gi.tier] ?? 3), (gi) => gi.tier === 2),
-        c: firstUnder((gi) => gi.cites, (gi) => gi.cites === 0),
+        c: citesLeader(m.key, list, names),
         l,
         la: l ? rowLeader(lenient, true, new Set(l[4]), true) : null,
         s: rowLeader((gc) => gc === "m", false),
@@ -445,9 +483,8 @@ for (const sec of zone.sections || []) {
       // everywhere "only" stood, and "only" is the default (2026-11-06):
       // under "oldest first" Amos's Israel read "he will rule as God".
       const nameText = zone.gloss_names && zone.gloss && Object.prototype.hasOwnProperty.call(zone.gloss_names, m.key) && zone.gloss[m.key] === zone.gloss_names[m.key]
-        ? String(zone.gloss_names[m.key]).toLowerCase() : null;
-      const nl = !!nameText && srows.some((row) => store.index.m_sources[row[3]] && (attested ? gradeOfRow(row) !== "x" : true) && !otherStem(row)
-        && store.readingsOf(row).some((t) => t.toLowerCase() === nameText));
+        ? String(zone.gloss_names[m.key]) : null;
+      const nl = !!nameText && store.carriersOf(srows.filter((row) => (attested ? gradeOfRow(row) !== "x" : true) && !otherStem(row)), nameText).length > 0;
       if (nl) stats.surfaces_name_leads_under_only += 1;
       grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}), ...(nl ? { nl: 1 } : {}) };
       if (st) stats.surfaces_with_stems += 1;
@@ -489,7 +526,6 @@ for (const sec of zone.sections || []) {
     const ln = p.leningrad;
     if (ln && ln.differs === true) { w.ld = { kind: ln.kind || null, mam: ln.letters_mam || null, other: ln.letters_macula || ln.letters_tahot || null }; stats.ld += 1; }
     // rule 5 · the parts, for a word the catalog answers nothing for
-    delete w.pc;
     const g = zone.gloss || {};
     const answered = keysOf(w).some((k) => g[k]) || !!(w.h && g[w.h]);
     if (answered) stats.pc_skipped_word_has_an_english += 1;
@@ -501,7 +537,6 @@ for (const sec of zone.sections || []) {
       stats.pc += 1; stats.pc_pieces += w.pc.length;
       if (w.pc.every((x) => x.t && x.m)) stats.pc_both_witnesses += 1;
     }
-    wordsTouched.push(w);
   });
 }
 
@@ -521,7 +556,7 @@ const sidecar = {
   fingerprint: "fnv1a-32 over the UTF-16 code units of `${text}|${primary_source}`, 8 hex digits; the store row's text and its source's label make the same string",
   grade_chars: { m: "VOWEL_MATCH", n: "NORMALIZED", x: "VOWEL_MISMATCH", "-": "ungraded" },
   first_under: {
-    m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse",
+    m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse: o.c for the surface's first verse in the book, v[<verse>].c for every other verse whose citing cards differ",
     l: "masorah · only (lenient) — the oldest reading among rows NOT graded VOWEL_MISMATCH: NORMALIZED and ungraded rows stay, computed row by row as the page filters; where no store row is graded VOWEL_MATCH the pointing withholds nothing; a row of another stem (the binyan ledger) is withheld",
     s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row; a row of another stem is withheld",
     la: "masorah · only (lenient), the alternate — the lenient leader among the kept rows with every carrier of l out: what the line reads when the reader switches off every source carrying l (or the name, where it led), one step, as gloss_m[k].alt is one step for the table; null where l is null or nothing kept remains",
@@ -551,22 +586,17 @@ ef.toggles.lattice = {
     witnesses: pieceWitness,
     both_witnesses_ride: "TAHOT gives the English this position reads and MACULA the headword's; they differ at 205,953 of 466,981 pieces over the 39 books, so both are carried and neither is chosen",
   },
-  what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card, which cite this verse, and the first reading under each order (o.m, o.x, o.c) and under each masorah filter (o.l lenient, o.s strict) so the line under the word can move without a fetch; nl: 1 where the zone's line under the key is its name (proper-name-rule-v1) and a row the lenient filter keeps carries it, so under \"only\" the name leads as under \"keep\"",
+  what_the_sidecar_carries: "per key the cards' fingerprints in lattice order with transliteration flags; per pointed surface the tier of each card, which cite its first verse (n) and, for every other verse of the surface whose citing cards differ, that verse's own (v[<verse>].n, with its cites-here leader v[<verse>].c), and the first reading under each order (o.m, o.x, o.c) and under each masorah filter (o.l lenient, o.s strict) so the line under the word can move without a fetch; nl: 1 where the zone's line under the key is its name (proper-name-rule-v1) and a row the lenient filter keeps carries it, so under \"only\" the name leads as under \"keep\"",
   rulings_owed: "the welded-form ruling is still owed and is a separate question from these affix pieces: it governs the maqaf toggle, which nothing here touches; licence_class puts cc0 in class 0 as the corpus lane's reading, and the page derives its own classes from the posture keys",
 };
-{
-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
-  const me = "tools/project-lattice-v12-v1.mjs";
-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["emitted_from.toggles"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
-  const why = "the lattice's grades, headword order and edition differences are projected over this zone's own positions";
-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
-  const exp = "with this zone's rebuild by a build-zone run that projects the lattice in its single pass";
-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
-  pb.on = stamp;
-  ef.post_build = pb;
-}
-writeFileSync(outPath, gzipSync(Buffer.from(JSON.stringify(zone), "utf8"), { level: 9 }));
+typePostBuildWrite(zone, {
+  tool: "tools/project-lattice-v12-v1.mjs",
+  fields: ["emitted_from.toggles"],
+  why: "the lattice's grades, headword order and edition differences are projected over this zone's own positions",
+  expires: "with this zone's rebuild by a build-zone run that projects the lattice in its single pass",
+  stamp,
+});
+writeZone(outPath, zone);
 const s = stats;
 console.log(`${outPath} · ${s.hg.toLocaleString()} of ${s.words_on.toLocaleString()} words carry the headword's lemma-sorted reading · ${s.ld} differ in Leningrad · verses ${s.verses_joined} joined, ${s.verses_held} held, ${s.verses_absent_from_lattice} absent`);
 console.log(`  ${sidecarPath} · ${Object.keys(sideRoutes).length.toLocaleString()} keys, ${routeCards.toLocaleString()} cards (${trCards} transliterations) · ${Object.keys(grades).length.toLocaleString()} pointed surfaces graded · ${(statSync(sidecarPath).size / 1024).toFixed(0)} KB`);

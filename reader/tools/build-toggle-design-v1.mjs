@@ -35,6 +35,7 @@
 //
 // Run: node tools/build-toggle-design-v1.mjs [--url http://127.0.0.1:8899/zone.html]
 //      With no --url it photographs the first book the shelf holds.
+import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -104,7 +105,8 @@ export const VOICE_LEDE = Object.freeze({
 const esc = (s) => String(s).replace(/&/gu, "&amp;").replace(/</gu, "&lt;").replace(/>/gu, "&gt;").replace(/"/gu, "&quot;");
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   const HERE = dirname(fileURLToPath(import.meta.url));
   const PAGE = readFileSync(join(HERE, "..", "zone.html"), "utf8");
   // published at /toggles/ and linked from nowhere: the owner, 2026-10-02, keeps

@@ -530,6 +530,25 @@
   // the word standing open on the card: its pointed surface and its key,
   // which is what the lattice's grades are keyed by
   let openPointed = null, openKey = null;
+  // THE CITATIONS ARE THE VERSE'S. The lattice's record of a pointed surface
+  // is taken at the surface's first verse in the book, and which cards name
+  // a verse is a fact about that verse: the record carries the first verse's
+  // list (n, its leader o.c) and, for every other verse whose list differs,
+  // that verse's own (v[<verse label>] = { n, c }; tools/project-lattice-
+  // v12-v1.mjs, rule 4). So the card's sort and the line both ask for the
+  // verse the word stands in. Until 10 November 2026 every place of a
+  // surface read its first verse's list: 14,781 of 306,493 graded places on
+  // the 39 books, 4,129 of them in the first book.
+  let openVerse = null;                 // the label of the verse the open card stands in
+  const WORD_VERSE = new WeakMap();     // a word of the zone -> its verse's label
+  const versesOwn = (gr, verse) => (gr && gr.v && verse != null && Object.prototype.hasOwnProperty.call(gr.v, verse) ? gr.v[verse] : null);
+  const citingCards = (gr, verse) => { const own = versesOwn(gr, verse); return own ? own.n : (gr ? gr.n : []); };
+  // the baked leader of a lattice order for a surface at a verse (null: none)
+  const latticeLeader = (gr, order, verse) => {
+    if (!gr || !gr.o) return null;
+    if (order === "c") { const own = versesOwn(gr, verse); if (own) return own.c || null; }
+    return gr.o[order] || null;
+  };
   // THE POINTING, CARD BY CARD. The rail sets where every card starts; a card
   // may be lifted on its own, and that is the only scribal switch the reader
   // gets, because the only place a scribal mark may be touched at all is
@@ -1326,6 +1345,7 @@
     // off the page it is checking proves only that the page is consistent
     // with itself.
     window.__zone = zone;
+    for (const sec of zone.sections || []) for (const w of sec.words || []) if (w && typeof w === "object") WORD_VERSE.set(w, sec.label);
     // which orders this book can answer: the lattice ones where its sidecar
     // rides beside it, the corpus one where the corpus record loaded — and a
     // remembered choice this book cannot answer falls back to oldest first
@@ -2443,7 +2463,7 @@
     const w = s ? pieceWitnesses()[`english_${s}`] : null;
     if (!w) return null;
     const m = w.m && index && index.m_sources ? index.m_sources[w.m] : null;
-    return { line: `PIECE:${String(s).toUpperCase()}`, mId: w.m, posture: w.licence, m: m ? m.label : w.label, y: null };
+    return { line: `PIECE:${String(s).toUpperCase()}`, mId: w.m, posture: w.licence, m: m ? m.label : w.label, y: null, reads: "place" };
   };
   // the piece line a witness's m_id stands behind (M4 is TAHOT's pieces)
   const pieceLineOfM = (mId) => {
@@ -2476,7 +2496,15 @@
         chip.append(s);
         if (i < terms.length - 1) chip.append(" ");
       });
-      chip.title = `${uniq[0].m}${wordingTag(uniq[0])}${yearTag(uniq[0].y, uniq[0].ya || "edition")} — the oldest witness carrying this reading; every other witness is on the word’s own card`;
+      // a place's own piece is credited to the source that reads the word
+      // so here, and that is not a claim about age: the same words may stand
+      // in an older record, which is the one the card credits. Until 10
+      // November 2026 every chip said "the oldest witness carrying this
+      // reading" (Amos 1:3: said of the place's source for «Yahweh», beside
+      // a card crediting a lexicon of 1906; 15 of 80 words spread over that
+      // book). The card's own place line already says it this way.
+      const says = uniq[0].reads === "place" ? "the source that reads this word so at this place" : "the oldest witness carrying this reading";
+      chip.title = `${uniq[0].m}${wordingTag(uniq[0])}${yearTag(uniq[0].y, uniq[0].ya || "edition")} — ${says}; every other witness is on the word’s own card`;
     } else {
       chip.textContent = `${uniq.length} licenses`;
       chip.title = uniq.map((m) => `${m.lic} — ${m.m}${wordingTag(m)}${yearTag(m.y, m.ya || "edition")}`).join("\n");
@@ -4529,7 +4557,8 @@
     // them earned, and counts as citing, the era's own, or a transliteration
     // if any witness under it is
     const tierOf = (r) => { let best = 3; for (const row of rk(r)) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
-    const cites = (r) => (gr && rk(r).some((row) => gr.n.includes(idxOf(row))) ? 0 : 1);
+    const citing = gr ? citingCards(gr, openVerse) : [];
+    const cites = (r) => (gr && rk(r).some((row) => citing.includes(idxOf(row))) ? 0 : 1);
     const era = (r) => (rk(r).some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
     const outside = (r) => (rk(r).some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
     const lic = (r) => (rk(r).length ? Math.min(...rk(r).map((row) => licClass((index.m_sources[row[3]] || {}).licensePosture))) : 9);
@@ -4586,9 +4615,16 @@
       && zone.gloss && zone.gloss[surface] === zone.gloss_names[surface] ? zone.gloss_names[surface] : null;
     const nameYields = () => masorah === "letters"
       || (masorah === "only" && gr && gr.o && gr.o.l && !gr.nl)
-      || (pos.needs === "lattice" && gr && gr.o && gr.o[pos.lattice])
+      || (pos.needs === "lattice" && latticeLeader(gr, pos.lattice, openVerse))
       || (pos.needs === "witnessed" && wCol);
-    const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (a.text === nameLed ? 0 : 1) - (b.text === nameLed ? 0 : 1));
+    // found among the pills by the printed form, the key the pills are one
+    // reading by (readingKey): a pill's text is whichever spelling arrived
+    // first, «Gaza.» or «Gaza», and a compare letter for letter missed the
+    // name at 607 of the 2,684 keys a name leads (10 November 2026: Amos
+    // 1:6's line read «Gaza» and its card opened on «strong»)
+    const nameKey = nameLed ? readingKey(nameLed) : null;
+    const isName = (r) => readingKey(r.text) === nameKey;
+    const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (isName(a) ? 0 : 1) - (isName(b) ? 0 : 1));
     // AT THIS PLACE, the place's own reading first (marked by poolFor on the
     // reading the word standing open reads here); the rest keep their order
     const placeLead = (a, b) => (defOrder !== "place" ? 0 : (a.placeFirst ? 0 : 1) - (b.placeFirst ? 0 : 1));
@@ -5304,6 +5340,7 @@
       return { ref: sec.__sec.label, numberOf: (w) => { const i = all.findIndex((x) => x.__word === w); return i >= 0 ? i + 1 : 0; }, wordOf: el.closest(".wb") ? el.closest(".wb").__word : null };
     })();
     openKey = bin === zone && region ? (region.form_k || region.k || null) : null;
+    openVerse = openSite ? openSite.ref : null;
     // Only the atoms tile the occurrence, so only the atoms may be laid out in
     // the header. Drawing the whole lattice printed each joined interval again
     // between its own halves. When a joined interval is what was opened, every
@@ -9181,9 +9218,9 @@
         if (gr.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
           && zone.gloss[word.k] === zone.gloss_names[word.k] && !(gm && allOff(gm.by))) return null;
         const l = gr.o.l;
-        if (l && !allOff(l[4])) return { text: l[0], rs: [{ posture: l[2], m: l[1], y: l[3], by: l[4] }], why: "masorah" };
+        if (l && !allOff(l[4])) return { text: l[0], rs: [{ posture: l[2], m: l[1], y: l[3], ya: "wording", by: l[4] }], why: "masorah" };
         const la = gr.o.la;
-        if (la && !allOff(la[4])) return { text: la[0], rs: [{ posture: la[2], m: la[1], y: la[3], by: la[4] }], why: "masorah" };
+        if (la && !allOff(la[4])) return { text: la[0], rs: [{ posture: la[2], m: la[1], y: la[3], ya: "wording", by: la[4] }], why: "masorah" };
         if (l) return { text: "", rs: [], why: "sources-bare" };
         // graded, and nothing survives the filter: the word goes bare here,
         // which the frame calls a finding and not an error
@@ -9235,13 +9272,13 @@
     if (masorah === "letters") {
       const gr = latticeStore && latticeStore.grades && word.s ? latticeStore.grades[word.s] : null;
       const first = gr && gr.o && gr.o.x;
-      return first ? { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: "letters" } : null;
+      return first ? { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3], ya: "wording" }], why: "letters" } : null;
     }
     const pos = DEF_POS.find((p) => p.id === defOrder);
     if (pos && pos.needs === "lattice" && latticeStore && latticeStore.grades && word.s) {
       const gr = latticeStore.grades[word.s];
-      const first = gr && gr.o && gr.o[pos.lattice];
-      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3] }], why: pos.id };
+      const first = latticeLeader(gr, pos.lattice, WORD_VERSE.get(word));
+      if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3], ya: "wording" }], why: pos.id };
     }
     return null;
   };

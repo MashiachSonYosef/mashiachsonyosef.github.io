@@ -24,6 +24,7 @@
 //
 // Run: node tools/emit-struck-ranks-v1.mjs --before <pre-strike store dir>
 //        [--after data/route-store] [--out data/route-store/struck-ranks-v1.json.gz]
+import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
@@ -107,7 +108,8 @@ export const recordStruckRanks = (storeDir, diff, made) => {
   return record;
 };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
   const BEFORE = arg("before", null);
   const AFTER = arg("after", join(K3, "data", "route-store"));

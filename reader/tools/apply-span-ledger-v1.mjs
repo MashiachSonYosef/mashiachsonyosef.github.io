@@ -39,10 +39,11 @@
 // component_system is recounted over the new table.
 //
 // Run: node tools/apply-span-ledger-v1.mjs --ledger <dir> [--pg <dir>] --stamp <stamp> [--relay <text>] [--zones data/zones] [--only <slug>]
-import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
-import { gunzipSync, gzipSync } from "node:zlib";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { join, basename } from "node:path";
+import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 
 const RULE = "span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole";
 const arg = (name, dflt = null) => { const i = process.argv.indexOf(`--${name}`); return i > 0 ? process.argv[i + 1] : dflt; };
@@ -58,18 +59,13 @@ const letters = (t) => String(t || "").replace(/[^א-ת]/gu, "");
 // Merged with the exemptions the zone already carries. --type-only types it
 // on zones swapped before this was written, and changes nothing else.
 function typePostBuild(zone, stamp) {
-  const EXEMPTION_RULE_ID = "single-pass-exemption-v1-a-post-build-write-is-typed-on-the-zone-and-expires-with-its-rebuild";
-  const ef = zone.emitted_from;
-  const pb = ef.post_build && ef.post_build.rule_id === EXEMPTION_RULE_ID ? ef.post_build : { rule_id: EXEMPTION_RULE_ID, by: "", wrote: [], by_field: {}, why: "", expires: "", on: stamp };
-  const me = "tools/apply-span-ledger-v1.mjs";
-  pb.by = pb.by ? (pb.by.includes(me) ? pb.by : `${pb.by} + ${me}`) : me;
-  for (const f of ["emitted_from.span_ledger"]) { if (!pb.wrote.includes(f)) pb.wrote.push(f); pb.by_field[f] = pb.by_field[f] ? (pb.by_field[f].includes(me) ? pb.by_field[f] : `${pb.by_field[f]} + ${me}`) : me; }
-  const why = "the zone's divisions are the corpus lane's span ledger, swapped in whole after the build, and its receipt names the ledger file";
-  pb.why = pb.why ? (pb.why.includes(why) ? pb.why : `${pb.why}; ${why}`) : why;
-  const exp = "with this zone's rebuild by a build-zone run that reads the span ledger in its single pass";
-  pb.expires = pb.expires ? (pb.expires.includes(exp) ? pb.expires : `${pb.expires}; ${exp}`) : exp;
-  pb.on = stamp;
-  ef.post_build = pb;
+  typePostBuildWrite(zone, {
+    tool: "tools/apply-span-ledger-v1.mjs",
+    fields: ["emitted_from.span_ledger"],
+    why: "the zone's divisions are the corpus lane's span ledger, swapped in whole after the build, and its receipt names the ledger file",
+    expires: "with this zone's rebuild by a build-zone run that reads the span ledger in its single pass",
+    stamp,
+  });
 }
 
 if (TYPE_ONLY) {
@@ -81,7 +77,7 @@ if (TYPE_ONLY) {
     if (!zone.emitted_from || !zone.emitted_from.span_ledger) continue;
     if (ONLY && f !== `${ONLY}.bin`) continue;
     typePostBuild(zone, STAMP);
-    writeFileSync(zPath, gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 }));
+    writeZone(zPath, zone);
     typed += 1;
   }
   console.log(`${typed} zone(s) carry the span ledger's post-build record`);
@@ -168,7 +164,7 @@ for (const slug of books) {
   if (zone.emitted_from.span_layer) { receipt.replaced_span_layer = zone.emitted_from.span_layer; delete zone.emitted_from.span_layer; }
   zone.emitted_from.span_ledger = receipt;
   typePostBuild(zone, STAMP);
-  writeFileSync(zPath, gzipSync(Buffer.from(JSON.stringify(zone)), { level: 9 }));
+  writeZone(zPath, zone);
   console.log(`  ok  ${slug}: spans ${before} -> ${receipt.rows_after} · the ledger read ${readMatches}${receipt.pg ? ` · pg ${receipt.pg.replaced ?? 0} replaced, ${receipt.pg.unchanged ?? 0} unchanged, ${receipt.pg.cleared ?? 0} cleared, ${receipt.pg.held ?? 0} held${receipt.pg.held_at && receipt.pg.held_at.length ? ` (${receipt.pg.held_at.join(", ")})` : ""}` : ""}`);
 }
 console.log(bad ? `\n${bad} FAILED` : `\n${books.length} zones given the span ledger`);

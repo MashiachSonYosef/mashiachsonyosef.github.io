@@ -16,7 +16,6 @@
 // not write the M it did not know how to derive. The M is a build input now:
 // read before the zone is written, written during, never after.
 import { readFileSync } from "node:fs";
-import { readingKey } from "./gloss-store-v1.mjs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -53,16 +52,9 @@ export const glossSource = (store, key, text) => {
   if (!key || !text) return null;
   const routes = store.routesFor(key);
   if (!routes) return null;
-  const want = readingKey(text);
-  const hits = routes.filter((row) => {
-    if (!store.index.m_sources[row[3]]) return false;
-    return store.readingsOf(row).some((x) => readingKey(x) === want);
-  });
+  // who carries it, oldest wording first: the store's own rule (carriersOf)
+  const hits = store.carriersOf(routes, text);
   if (!hits.length) return null;
-  hits.sort((a, c) => {
-    const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10);
-    return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9);
-  });
   const m = store.index.m_sources[hits[0][3]];
   return { lic: licenseName(m.licensePosture), m: m.label || "", y: m.sourceYear || "", ...wordingYearOf(hits[0]) };
 };
@@ -95,12 +87,8 @@ export const glossSource = (store, key, text) => {
 // alternate would otherwise be named as the alternate's witness while
 // switched off, which is the switch contradicted on its own chip.
 const sourceAmong = (store, key, text, omit) => {
-  const routes = store.routesFor(key) || [];
-  const want = readingKey(text);
-  const hits = routes.filter((row) => store.index.m_sources[row[3]] && !omit.has(row[3])
-    && store.readingsOf(row).some((x) => readingKey(x) === want));
+  const hits = store.carriersOf(store.routesFor(key) || [], text, omit);
   if (!hits.length) return null;
-  hits.sort((a, c) => { const ya = Number.parseInt(a[4], 10), yc = Number.parseInt(c[4], 10); return (Number.isInteger(ya) ? ya : 9e9) - (Number.isInteger(yc) ? yc : 9e9); });
   const m = store.index.m_sources[hits[0][3]];
   return { lic: licenseName(m.licensePosture), m: m.label || "", y: m.sourceYear || "", ...wordingYearOf(hits[0]), by: [...new Set(hits.map((r) => r[3]))].sort() };
 };
@@ -110,10 +98,7 @@ export const glossCarriers = (store, key, text) => {
   if (!key || !text) return null;
   const routes = store.routesFor(key);
   if (!routes) return null;
-  const want = readingKey(text);
-  const by = [...new Set(routes.filter((row) => store.index.m_sources[row[3]]
-    && store.readingsOf(row).some((x) => readingKey(x) === want))
-    .map((row) => row[3]))].sort();
+  const by = [...new Set(store.carriersOf(routes, text).map((row) => row[3]))].sort();
   if (!by.length) return null;
   const omit = new Set(by);
   const next = store.glossFor(key, "oldest", null, omit);
