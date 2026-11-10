@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: mark-inventory-rule-v1-closed-set-over-route-text
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

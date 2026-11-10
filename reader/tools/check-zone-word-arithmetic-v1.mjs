@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-zone-word-arithmetic-v1 · a zone's numbers agree with its words
 //
 // The hostile review of 2026-08-22 found genesis.bin asserting 17,807 words

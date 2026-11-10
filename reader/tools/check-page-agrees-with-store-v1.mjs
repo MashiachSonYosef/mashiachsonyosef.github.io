@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // The word on the page and the pill in the card answer to the same store.
 //
 // A zone bakes one reading per form so the page can paint without fetching 256

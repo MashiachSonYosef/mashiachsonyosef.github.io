@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: v-volume-rule-v1-a-count-is-served-only-with-the-scope-it-was-counted-over
 //
 // THE COUNTS LAYER, PRESSED. The projection check reads the numbers out of

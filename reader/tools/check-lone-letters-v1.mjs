@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: given
 // LEDGER: C0
 // GUARDS: lone-letter-rule-v1-a-letter-the-print-leaves-standing-alone-is-printed-as-printed-and-marked-by-the-record-that-names-it
 //

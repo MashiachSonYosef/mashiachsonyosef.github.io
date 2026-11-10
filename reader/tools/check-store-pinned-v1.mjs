@@ -1,3 +1,4 @@
+// RUN: tree
 // GUARDS: store-manifest-rule-v1-what-ships-is-pinned
 //
 // The shipped route store answers for every reading on every page, and each

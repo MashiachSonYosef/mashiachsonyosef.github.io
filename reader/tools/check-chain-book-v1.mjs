@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: chain-book-rule-v1-the-same-book-with-the-meaning-taken-out-so-only-the-joins-are-left
 //
 // THE EVIDENCE PAGE, HELD TO WHAT IT CLAIMS.
@@ -38,7 +39,7 @@
 // SKIPS by name when no chain is on the shelf.
 //
 // Run: node tools/check-chain-book-v1.mjs [--dir ../chain]
-import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { join } from "node:path";

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store
 //
 // The lattice orders answer on the page. A word opened on a book that
@@ -9,6 +10,14 @@
 // sidecar baked a first card, and the edition toggle marks the words the
 // Leningrad codex spells otherwise. Every position is a re-order of the same
 // pool: the count of readings never changes.
+//
+// THE SAME POOL UNDER THE SAME POINTING (10 November 2026). Since 6 November
+// the pointing's default follows the order: "only this pointing" under the
+// two default orders, "keep" under a lattice order, and the two withhold
+// differently, so a card held 100 readings oldest first and 119 under
+// "masoretic" and this check, outside the round's chains, was red unseen.
+// The claim is about the orders, so the pointing is pinned at "keep" before
+// the page loads; what the pointing withholds is check-pointing-gate-v1's.
 //
 // Runs against the first zone on disk that carries the layer; SKIPS by name
 // when none does.
@@ -34,7 +43,7 @@ const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 // "at this place" the default (2026-10-03: "we dont do blanket oldest first
 // anymore thats a subtoggle"); it leads wherever TAHOT reads the word, and it
 // has its own check (check-line-reads-the-place-v1). A stored choice is kept.
-await p.addInitScript(() => { try { if (!localStorage.getItem("fh.def.order")) localStorage.setItem("fh.def.order", "oldest"); } catch { /* a device that remembers nothing still reads */ } });
+await p.addInitScript(() => { try { if (!localStorage.getItem("fh.def.order")) localStorage.setItem("fh.def.order", "oldest"); localStorage.setItem("fh.pointing-stands-2026-11-06", "1"); localStorage.setItem("fh.masorah", "keep"); } catch { /* a device that remembers nothing still reads */ } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");

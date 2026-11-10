@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

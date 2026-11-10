@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: front-door-rule-v1-the-door-lists-what-the-zones-carry, dibbur-hamatchil-rule-v2-the-window-is-the-verse
 //
 // A build step reads no file a flag cannot change.

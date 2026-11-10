@@ -74,18 +74,51 @@ export function baseOfSidecar(f) {
   return s ? String(f).slice(0, -s.length) : null;
 }
 
-/** Every zone on disk that is a work: not a sidecar, not a route shard, not a
- *  test instrument. Sorted, so a run is reproducible. */
+/** Whether a bin's name is a work's: not a sidecar, not a route shard, not a
+ *  test instrument. */
+const isWorkBin = (f) => f.endsWith(".bin")
+  && !isSidecar(f)
+  && !/^[0-9a-f]{2}\.bin$/.test(f)   // route-store shards
+  && f !== "w-top.bin"
+  && !f.startsWith("fixture-");       // instruments, not works
+
+/** Every zone on disk that is a work. Sorted, so a run is reproducible. */
 export function zonesOnDisk(dir = ZONES) {
   if (!existsSync(dir)) return [];
-  return readdirSync(dir)
-    .filter((f) => f.endsWith(".bin"))
-    .filter((f) => !isSidecar(f))
-    .filter((f) => !/^[0-9a-f]{2}\.bin$/.test(f))   // route-store shards
-    .filter((f) => f !== "w-top.bin")
-    .filter((f) => !f.startsWith("fixture-"))       // instruments, not works
-    .map((f) => f.replace(/\.bin$/, ""))
-    .sort();
+  return readdirSync(dir).filter(isWorkBin).map((f) => f.replace(/\.bin$/, "")).sort();
+}
+
+/** THE SHELF AS SEALED, which is more than the shelf as it stands on a disk.
+ *
+ *  A checkout holds the bins the door publishes and no others: a work the
+ *  gate does not serve keeps its bin out of the published tree. The seals of
+ *  every bin of the shelf are kept all the same, in two records beside the
+ *  zones: the store record pins the bins the door publishes, and the held
+ *  record keeps the seal of every other (tools/emit-zone-store-v1.mjs writes
+ *  both, divided by the gate's receipt).
+ *
+ *  So "what works has this lane built" and "what can be opened here" are two
+ *  questions. Until 10 November 2026 nothing told them apart: five checks
+ *  asked the directory for the shelf, and on every machine but the one that
+ *  built it they found forty books of 3,481 and failed, or passed on less
+ *  than they claimed. A check that asks what exists asks zonesSealed; one
+ *  that must open a bin asks zonesOnDisk, and says so when a work it wanted
+ *  is held. */
+export const ZONE_STORE_RECORD = "zone-store-v1.json";
+export const ZONE_STORE_HELD = "zone-store-held-v1.json";
+
+/** The works whose seal is kept and whose bin is not on this disk. */
+export function zonesHeld(dir = ZONES) {
+  const p = join(dir, "..", ZONE_STORE_HELD);
+  if (!existsSync(p)) return [];
+  const here = new Set(zonesOnDisk(dir));
+  return Object.keys(JSON.parse(readFileSync(p, "utf8")).pins || {}).filter(isWorkBin)
+    .map((f) => f.replace(/\.bin$/, "")).filter((z) => !here.has(z)).sort();
+}
+
+/** Every work of the shelf: on this disk, or held off the door under seal. */
+export function zonesSealed(dir = ZONES) {
+  return [...new Set([...zonesOnDisk(dir), ...zonesHeld(dir)])].sort();
 }
 
 /** Every zone the door may SERVE — the shelf, after the gate.

@@ -47,7 +47,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync } from "node:zlib";
-import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
+import { readSpanSlice, SPAN_RULE_ID } from "./span-slice-v1.mjs";
 import { require_ } from "./zone-lib-v1.mjs";
 
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };

@@ -1,3 +1,4 @@
+// RUN: page
 // THE SPAN STORE ON THE PAGE (Moses, relay v75.3; the owner: "an underline
 // is one license defining both words"; "right, no +, in fact basically the
 // opposite of most compspans"). Judged on disk and on the page:

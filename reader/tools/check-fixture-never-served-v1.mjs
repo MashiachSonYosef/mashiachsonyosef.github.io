@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

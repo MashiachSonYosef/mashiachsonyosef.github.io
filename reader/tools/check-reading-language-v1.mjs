@@ -1,3 +1,4 @@
+// RUN: page
 // THE LANGUAGE OF A PLACE ON THE CONCORDANCE ROW (dictionary store v1.2,
 // Moses's relay FOR-ELIJAH-v79.1, 22 October 2026: every place of a reading
 // carries the language its source's own line gives, HEBREW or ARAMAIC; the

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: source-switch-rule-v1-a-reading-remembers-who-carried-it
 // GUARDS: source-short-names-rule-v1-a-shelf-chip-wears-a-short-name-this-record-keeps-and-the-full-name-on-press
 //

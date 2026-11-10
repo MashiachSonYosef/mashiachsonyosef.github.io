@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: front-door-rule-v1-the-door-lists-what-the-zones-carry
 //
 // The front door names three grains. Physical and named-shelf counts are C0
@@ -12,7 +13,7 @@ import { resolve } from "node:path";
 import assert from "node:assert/strict";
 import { basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { zonesOnDisk, zonesServed, isSidecar } from "./zones-on-disk-v1.mjs";
+import { zonesServed, isSidecar } from "./zones-on-disk-v1.mjs";
 
 const arg = (name, fallback) => {
   const i = process.argv.indexOf(`--${name}`);

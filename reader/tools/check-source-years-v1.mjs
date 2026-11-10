@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: source-year-rule-v1-a-row-carries-its-sources-year-of-writing-and-an-older-witnesss-year-already-on-it-stands
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

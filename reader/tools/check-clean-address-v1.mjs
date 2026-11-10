@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // The front door, and the addresses it opens.
 //
 // The site's own root is a splash: the books that are finished, and nothing

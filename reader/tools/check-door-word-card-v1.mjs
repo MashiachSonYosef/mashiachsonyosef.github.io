@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // A word on the door opens its own record, and a word that titles a book
 // carries the way into that book as a layer of the same card.
 // GUARDS: front-door-rule-v1-the-door-lists-what-the-zones-carry, title-key-rule-v1-only-what-the-store-already-attests

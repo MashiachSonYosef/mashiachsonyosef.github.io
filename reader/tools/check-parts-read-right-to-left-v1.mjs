@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
@@ -38,9 +39,11 @@
 //
 // Run: node tools/check-parts-read-right-to-left-v1.mjs <served zone url>
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 
-const URL_ARG = process.argv[2];
-if (!URL_ARG || !/^https?:/u.test(URL_ARG)) { console.log("SKIPPED — needs a served zone url"); process.exit(3); }
+// handed nothing, the first work the door serves
+const URL_ARG = defaultZoneUrl();
+if (!/^https?:/u.test(URL_ARG)) { console.log("SKIPPED — needs a served zone url"); process.exit(3); }
 // The rows this judges are rare on the shelf — a component system the corpus
 // lane has established, rather than one the clitic pass proposed — so pressing
 // the first words of a page usually finds none. `--press <letters>` points the

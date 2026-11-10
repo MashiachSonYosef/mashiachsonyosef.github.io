@@ -1,11 +1,21 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: v-volume-rule-v1-a-count-is-served-only-with-the-scope-it-was-counted-over
 //
 // THE COUNTS, READ BACK OFF THE SHELF. The card check presses the page; this
 // one opens the 39 sidecars and asks whether the numbers in them are the
 // numbers the corpus lane shipped and whether they can hold each other up.
 //
-//   L1  every served book carries a volume sidecar, and no other book does
+//   L1  every book the V ledger covers carries a volume sidecar, and no other
+//       book does. WHICH BOOKS THOSE ARE is the ledger's own book table, one
+//       row a book, and the receipt of the projection carries its row count.
+//       A work this door serves that the ledger does not cover carries no
+//       sidecar and is named here as outside the ledger. Until 10 November
+//       2026 the law read "every served book", which was the same thing while
+//       the door served only what V covers and stopped being so on 8 November,
+//       when an edition work outside it was put on the shelf: the check went
+//       red on a page that was telling the truth (it prints no count it does
+//       not have).
 //   L2  THE NAME IS HELD. The owner ruled on 2026-09-14 that V's proposed
 //       book_display_name values are used as shipped. All 39 already agreed,
 //       character for character, with the name the zone carries from its own
@@ -31,6 +41,7 @@ import { join } from "node:path";
 import { zonesServed, zonesWithVolume } from "./zones-on-disk-v1.mjs";
 
 const ZONES = process.env.ZONES_DIR || "data/zones";
+const RECEIPT = process.env.V_VOLUME_RECEIPT || "data/v-volume-receipt-v1.json";
 const SCOPE_SAY = "among the works indexed so far";
 // The corpus lane's own figure, from v-ledger-v2.json:
 // the_merged_anchors.work_unit_id_pairs.reaching_a_verse. Five of the 50,346
@@ -53,13 +64,21 @@ const load = (p) => JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"));
 console.log(`— ${withVolume.length} volume sidecar(s) on a shelf of ${served.length} served book(s) —`);
 
 // L1 ------------------------------------------------------------------------
+// the ledger's coverage, off the receipt of the projection: the projector
+// writes one sidecar a row of the ledger's book table and refuses a row this
+// door does not serve, so "as many sidecars as rows, every one of them a served
+// book" is "every book the ledger covers carries one"
+const receipt = existsSync(RECEIPT) ? JSON.parse(readFileSync(RECEIPT, "utf8")) : null;
+const bookTable = receipt ? (((receipt.source || {}).tables || []).find((t) => /book-volume/.test(t.file)) || null) : null;
+const covered = bookTable ? bookTable.rows : null;
 const servedSet = new Set(served);
-const missing = served.filter((z) => !existsSync(join(ZONES, `${z}.volume.bin`)));
+const outside = served.filter((z) => !existsSync(join(ZONES, `${z}.volume.bin`)));
 const stray = withVolume.filter((z) => !servedSet.has(z));
-check("L1  every served book carries a volume sidecar, and no unserved book does",
-  missing.length === 0 && stray.length === 0,
-  missing.length || stray.length ? `${missing.length} served without · ${stray.length} unserved with — ${few([...missing, ...stray])}`
-    : `${withVolume.length} of ${served.length}`);
+check("L1  every book the V ledger covers carries a volume sidecar, and no other book does",
+  covered !== null && stray.length === 0 && withVolume.length === covered && receipt.sidecars === covered,
+  covered === null ? `no receipt of the projection at ${RECEIPT}, so the ledger's coverage cannot be read`
+    : stray.length ? `${stray.length} sidecar(s) for a book this door does not serve — ${few(stray)}`
+    : `${withVolume.length} sidecar(s) · the ledger's book table has ${covered} row(s) · the receipt says ${receipt.sidecars}${outside.length ? ` · outside the ledger, and carrying none: ${few(outside, 6)}` : ""}`);
 
 let nameOk = 0, nestBad = [], refBad = [], chBad = [], scopes = new Set(), total = 0;
 let withCount = 0, versesCarried = 0, chaptersCarried = 0, wordLayer = [], nameBad = [];
@@ -112,7 +131,7 @@ check("L3  the counts nest — verses into chapters, chapters into books",
 check("L4  every reference counted is a verse this book draws",
   refBad.length === 0 && chBad.length === 0,
   refBad.length || chBad.length ? `${refBad.length + chBad.length} — ${few([...refBad, ...chBad])}` : `${versesCarried.toLocaleString()} verse(s), ${chaptersCarried} chapter(s)`);
-check("L5  the 39 books carry the whole ledger, counted once",
+check(`L5  the ${withVolume.length} books carry the whole ledger, counted once`,
   total === PAIRS_REACHING_A_VERSE,
   `${total.toLocaleString()} of the corpus lane's ${PAIRS_REACHING_A_VERSE.toLocaleString()} folded pairs that reach a verse`);
 check("L6  one scope, said the same way on every book, and it is the owner's phrase",
@@ -121,7 +140,7 @@ check("L6  one scope, said the same way on every book, and it is the owner's phr
 check("L7  the word layer is named as not carried, and no sidecar carries one",
   wordLayer.length === 0, wordLayer.length ? `${wordLayer.length} — ${few(wordLayer)}` : `${withVolume.length} say so by name`);
 
-console.log(`\n  ${withCount} book(s) carry commentary and ${withVolume.length - withCount} carry none · ${versesCarried.toLocaleString()} verses of ${served.length} books`);
+console.log(`\n  ${withCount} book(s) carry commentary and ${withVolume.length - withCount} carry none · ${versesCarried.toLocaleString()} verses of ${withVolume.length} books${outside.length ? ` · ${outside.length} served work(s) outside the ledger` : ""}`);
 console.log("  what this does not say: that a comment is any good, or that this site can open it. V is an anchor.");
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

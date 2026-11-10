@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // However many divisions and readings a form carries, the record stays in view.
 //
 // The reader's law: a selected reading always shows the D that stands it up,
@@ -15,7 +16,7 @@
 //
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
@@ -60,11 +61,13 @@ for (const f of tools) {
 
 check("every tool that writes a record declares which letter it is the ledger for",
   undeclared.length === 0,
-  undeclared.length ? undeclared.slice(0, 5).join(" · ") : `${declared} declared, ${noLetter} of them "no letter" with a reason`);
+  // every one is named: a list cut at five hid the sixth tool for as long as
+  // five stood ahead of it
+  undeclared.length ? `${undeclared.length} — ${undeclared.join(" · ")}` : `${declared} declared, ${noLetter} of them "no letter" with a reason`);
 
 check("no declaration names a letter the frame does not carry",
   unknown.length === 0,
-  unknown.length ? unknown.slice(0, 4).join(" · ") : `all letters drawn from the frame's own ${KNOWN.size}`);
+  unknown.length ? `${unknown.length} — ${unknown.join(" · ")}` : `all letters drawn from the frame's own ${KNOWN.size}`);
 
 // The other direction. A record with no writer in this tree is not
 // automatically wrong — some arrive from the corpus lane — but it must be

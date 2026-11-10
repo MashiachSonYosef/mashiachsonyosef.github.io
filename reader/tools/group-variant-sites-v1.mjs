@@ -24,7 +24,7 @@
 //
 // Run: node tools/group-variant-sites-v1.mjs --body /home/user/body
 //        --bridge <csv.gz> --binding build/rights-binding [--jobs 2]
-import { readFileSync, writeFileSync, existsSync, unlinkSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, unlinkSync, mkdirSync } from "node:fs";
 import { execFile } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

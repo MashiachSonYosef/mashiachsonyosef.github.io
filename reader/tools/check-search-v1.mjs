@@ -1,3 +1,4 @@
+// RUN: page
 // THE SEARCH (the owner, 2026-10-18: "hebrew by character ... and any english
 // hits like create or be created or cut down", at the top of the book page;
 // no transliteration). Index baked by tools/bake-search-index-v1.mjs. Every

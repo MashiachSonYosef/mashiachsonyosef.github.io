@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-scope-derived-v1
 //
 // The check that checks the checks can run at all.

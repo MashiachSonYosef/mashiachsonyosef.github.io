@@ -57,12 +57,15 @@ end of a run, what the checks do not cover.
 
 ```
 cd reader
-./build.sh <mirror> <bridge.csv.gz> <serves> <YYYY-MM-DD>
+tools/round-v1.sh --stamp <YYYY-MM-DD> [--lattice <folder> --stems <folder>]
 tools/run-all-checks.sh
 ```
 
-The build runs from sealed inputs and is re-runnable: the same inputs give the
-same bytes. The checks run against the rendered page rather than the source.
+A work's text is built once, by its route builder, from the corpus lane's
+sealed text; that step needs the corpus lane's files. Everything a page says
+about the text is projected from the records in this repository by the round,
+which is re-runnable: the same inputs and the same date give the same bytes.
+The checks run against the rendered page rather than the source.
 They sweep every work that is served, they name what they skipped and why, and
 a run that could not reach its inputs is counted apart from one that passed —
 an empty run must never read as a clean one.

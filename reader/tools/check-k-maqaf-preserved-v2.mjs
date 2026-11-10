@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf, maqaf-rule-v2-one-c0-per-word, exact-k-rule-frame-38-rule-7-maqaf-preserved
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

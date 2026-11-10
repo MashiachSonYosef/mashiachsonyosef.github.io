@@ -1,3 +1,4 @@
+// RUN: page
 // A RULED SPLIT READING STANDS WHOLE IN ITS CELL (the owner, 2026-10-17, of
 // "and + plowshare" at the sixth word of Genesis 1:1: "selecting plowshare
 // glitched out the shading and width"). A word whose English splits into

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: source-corpus-rule-v1-a-witness-names-the-body-it-describes-or-is-not-sorted-by-one
 // LEDGER: M
 // the witness and what body it describes: this holds the served route store to

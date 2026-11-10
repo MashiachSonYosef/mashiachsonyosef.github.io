@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-maqaf-lattice-v1
 //
 // The gate a work passes before it is served again.
@@ -33,8 +34,9 @@
 //   L13 choosing a branch does not move one character of the C0
 
 import { readFileSync, existsSync } from "node:fs";
-import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+import { loadPlaywright } from "./playwright-v1.mjs";
 import { gunzipSync } from "node:zlib";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 
 // Named by codepoint, never typed. This file may not supply a character of
 // the text any more than the page may — the rule is the whole tree's, and
@@ -49,8 +51,10 @@ const flagUrl = args.includes("--url") ? args[args.indexOf("--url") + 1] : null;
 // a check that cannot be run the way the suite runs it is a check that does
 // not run. Given a URL it now finds the zone the URL names and checks both
 // halves against it; given a path it behaves as before.
-const asUrl = positional.find((a) => /^https?:\/\//.test(a)) || flagUrl;
+// Handed nothing, it picks its own work as every page check does: the first
+// the door serves. (Until 10 November 2026 it printed its usage and failed.)
 const asPath = positional.find((a) => !/^https?:\/\//.test(a));
+const asUrl = positional.find((a) => /^https?:\/\//.test(a)) || flagUrl || (asPath ? null : defaultZoneUrl(null));
 // letters in any script — most of the shelf's slugs are Hebrew
 const zoneIdOf = (u) => { const m = String(u || "").match(/[?&]b=([^&#]+)/); return m ? decodeURIComponent(m[1]) : null; };
 const slug = zoneIdOf(asUrl);

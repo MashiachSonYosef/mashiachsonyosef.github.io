@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one, bookword-measure-rule-v1-every-count-names-its-axis
 // LEDGER: Y
 // the measures of the address space: how many words, letters and verses a

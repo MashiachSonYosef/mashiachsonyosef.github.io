@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-docs-name-what-is-here-v1
 //
 // A document that tells you to run a tool the tree does not carry.

@@ -1,12 +1,18 @@
 #!/usr/bin/env node
+// RUN: tree
 // The door keeps the seals, the shelf keeps the weight — and a bin that
 // fails its seal is refused on the page, visibly, in words.
 // GUARDS: zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight
 //
-// Two halves. On disk: the store record exists, every served bin carries a
-// pin, every pin matches its bin byte for byte, and no pin names a bin that
-// is not there while the shelf stands beside the door (base null) — a stale
-// record is exactly the drift this rule exists to make loud. In the reader:
+// Two halves. On disk: the store record exists, every bin on this disk
+// carries a seal, every pin matches its bin byte for byte, and no pin names a
+// bin that is not there while the shelf stands beside the door (base null) —
+// a stale record is exactly the drift this rule exists to make loud. The
+// gate divides the shelf: the record pins the bins the door publishes, the
+// held record keeps the seal of every other, and no bin is in both, no
+// served work is held and no unserved one is pinned as published. A held bin
+// is not on a checkout and is not asked for; where one does stand on this
+// disk it matches its seal. In the reader:
 // a bin tampered in transit is refused — the page shows the refusal, in
 // words, and renders no text — proved by serving the real site with one
 // zone's bytes deliberately altered. Then the same page, served honestly,
@@ -19,7 +25,7 @@ import { createHash } from "node:crypto";
 import { createServer } from "node:http";
 import { dirname, join, extname, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
-import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk, zonesServed, baseOfSidecar, isSidecar, ZONE_STORE_HELD } from "./zones-on-disk-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -40,8 +46,11 @@ const bins = readdirSync(ZONES).filter((x) => x.endsWith(".bin")).sort();
 // 1 · the record against the disk
 check("the record declares its rule", store.rule === "zone-store-rule-v1-the-door-keeps-the-seals-the-shelf-keeps-the-weight", String(store.rule));
 check("base is null or an https host", store.base === null || /^https:\/\//.test(String(store.base)), String(store.base));
-const unpinned = bins.filter((f) => !(store.pins || {})[f]);
-check(`every served bin carries a pin (${bins.length} bins)`, unpinned.length === 0, unpinned.join(", ") || "all pinned");
+const HELD = join(K3, "data", ZONE_STORE_HELD);
+const heldBody = existsSync(HELD) ? readFileSync(HELD) : null;
+const held = heldBody ? (JSON.parse(heldBody.toString("utf8")).pins || {}) : {};
+const unpinned = bins.filter((f) => !(store.pins || {})[f] && !held[f]);
+check(`every bin on this disk carries a seal (${bins.length} bins)`, unpinned.length === 0, unpinned.join(", ") || "all sealed");
 let stale = [];
 for (const [f, pin] of Object.entries(store.pins || {})) {
   const p = join(ZONES, f);
@@ -50,7 +59,44 @@ for (const [f, pin] of Object.entries(store.pins || {})) {
   if (createHash("sha256").update(b).digest("hex") !== pin.sha256 || b.length !== pin.bytes)
     stale.push(`${f} drifted from its pin`);
 }
-check("every pin matches its bin, byte for byte", stale.length === 0, stale.join(" · ") || `${Object.keys(store.pins || {}).length} pins exact`);
+check("every pin matches its bin, byte for byte", stale.length === 0, stale.length ? `${stale.length} — ${stale.slice(0, 6).join(" · ")}` : `${Object.keys(store.pins || {}).length} pins exact`);
+
+// 1b · the bins held off the door
+{
+  const served = new Set(zonesServed(ZONES));
+  const publishedBin = (f) => f.startsWith("fixture-") || served.has(baseOfSidecar(f) || f.replace(/\.bin$/u, ""));
+  const heldNames = Object.keys(held);
+  const both = heldNames.filter((f) => (store.pins || {})[f]);
+  const servedHeld = heldNames.filter(publishedBin);
+  const pinnedUnserved = Object.keys(store.pins || {}).filter((f) => !publishedBin(f));
+  check("the gate divides the shelf: a bin is published or held, never both",
+    both.length === 0 && servedHeld.length === 0 && pinnedUnserved.length === 0,
+    both.length ? `${both.length} in both records — ${both.slice(0, 3).join(", ")}`
+      : servedHeld.length ? `${servedHeld.length} held though the gate serves it — ${servedHeld.slice(0, 3).join(", ")}`
+      : pinnedUnserved.length ? `${pinnedUnserved.length} pinned as published though the gate does not serve it — ${pinnedUnserved.slice(0, 3).join(", ")}`
+      : `${Object.keys(store.pins || {}).length} published · ${heldNames.length} held`);
+  const drifted = [];
+  let heldHere = 0;
+  for (const f of heldNames) {
+    const p = join(ZONES, f);
+    if (!existsSync(p)) continue;
+    heldHere += 1;
+    const b = readFileSync(p);
+    if (createHash("sha256").update(b).digest("hex") !== held[f].sha256 || b.length !== held[f].bytes) drifted.push(f);
+  }
+  check("a held bin that stands on this disk matches its seal", drifted.length === 0,
+    drifted.length ? `${drifted.length} drifted — ${drifted.slice(0, 3).join(", ")}` : `${heldHere} of ${heldNames.length} held bins stand on this disk`);
+  const d = store.held_off_the_door || null;
+  const count = { bins: heldNames.length, zones: heldNames.filter((f) => !isSidecar(f)).length, sidecars: heldNames.filter((f) => isSidecar(f)).length };
+  check("the record counts the held bins and seals the record that names them",
+    heldNames.length === 0 ? d === null
+      : !!d && d.bins === count.bins && d.zones === count.zones && d.sidecars === count.sidecars
+        && d.seals_read_off_the_disk_at_this_writing + d.seals_carried_from_the_record_before === d.bins
+        && !!d.seals && d.seals.bytes === heldBody.length && d.seals.sha256 === createHash("sha256").update(heldBody).digest("hex"),
+    heldNames.length === 0 ? (d === null ? "nothing is held, and the record says nothing of it" : "the record declares held bins and no held record names any")
+      : !d ? `${heldNames.length} seals are kept and the store record does not declare them`
+      : `${count.zones.toLocaleString("en-US")} works and ${count.sidecars} sidecars held · ${d.seals_read_off_the_disk_at_this_writing} seals read off the disk at the writing, ${d.seals_carried_from_the_record_before.toLocaleString("en-US")} carried`);
+}
 
 // 2 · the refusal, watched working in the real reader
 const SLUG = zonesOnDisk()[0];

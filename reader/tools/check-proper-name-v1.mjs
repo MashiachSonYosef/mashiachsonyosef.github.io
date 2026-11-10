@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike
 // LEDGER: -
 // no frame letter. A check reads the zones and the page and judges them; it
@@ -31,7 +32,7 @@
 //       switch subtracts exactly its sources' rows
 //
 // Run: node tools/check-proper-name-v1.mjs [zone url]
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -141,7 +142,7 @@ const openNamed = async (ctx) => {
     await wait(700);
     const by = Array.isArray(window.__poolBy) ? window.__poolBy : [];
     const pills = [...h.querySelectorAll(".r-pills button")].map((x, i) => ({ t: x.textContent.trim(), on: x.getAttribute("aria-pressed") === "true", by: String(by[i] || "").split(" ").filter(Boolean) }));
-    return { found: true, line: (g?.title || "").trim(), lineText: (g ? g.childNodes[0]?.textContent : "").trim(), now: (h.querySelector(".r-now .v")?.textContent || "").trim(),
+    return { found: true, line: (g?.title || "").trim(), lineText: ((g && g.childNodes[0] && g.childNodes[0].textContent) || "").trim(), now: (h.querySelector(".r-now .v")?.textContent || "").trim(),
       note: (h.querySelector(".r-now .n")?.textContent || "").trim(), pills };
   }, target.s);
 };

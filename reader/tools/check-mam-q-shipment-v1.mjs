@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: given
 // The intake gate for a Q shipment: a site's delimiters must close.
 //
 // MAM writes a pair inside its own delimiters — round for the written form,

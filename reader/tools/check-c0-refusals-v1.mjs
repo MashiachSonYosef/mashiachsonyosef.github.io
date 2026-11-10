@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it
 // LEDGER: C0
 // the ink, the mark itself, at its position: what the frame refuses to call
@@ -37,6 +38,15 @@
 // reproduced from the bytes; the body's shards re-hashed against the July
 // manifest), and the single-pass check holds every zone to those receipts.
 //
+// THE WORKS HELD OFF THE DOOR. A checkout holds the bins the door publishes
+// and no others, so on every machine but a builder with the whole shelf on
+// its disk this reads forty books of thousands. The verdict of a work whose
+// bin is held (the held record keeps its seal) is the one it was given when
+// its bytes were last read: it stands in the receipt, counted apart and said
+// to be unread, and a held work is served under no verdict. Until 10
+// November 2026 a run on a checkout wrote a receipt of forty books and the
+// round patched the other 3,441 back in from the commit before, by hand.
+//
 // The cache: a zone's verdict is a function of its bytes, so it is cached by
 // the zone's sha256 and a rebuilt zone is judged again. Nothing served is
 // judged from a cache entry whose hash is not the file's.
@@ -50,7 +60,7 @@ import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { exactK } from "./k-normalization-v2.mjs";
-import { isSidecar, baseOfSidecar } from "./zones-on-disk-v1.mjs";
+import { isSidecar, baseOfSidecar, zonesHeld } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -171,21 +181,43 @@ for (const f of zones) {
 mkdirSync(dirname(CACHE), { recursive: true });
 writeFileSync(CACHE, JSON.stringify({ schema_version: "REFUSALS_CACHE_V1", rule_id: RULE, lines_version: LINES_VERSION, note: "a verdict is a function of the zone's bytes and of the lines; keyed by the zone's sha256 under this file's own hash, a rebuilt zone or a changed line is judged again", by_sha256: cache }));
 
-const passed = [...verdicts.entries()].filter(([, v]) => v.verdict === "PASS").map(([s]) => s).sort();
+// ---- the works held off the door: their verdicts stand, unread --------------
+const standing = new Map();
+const unjudgedHeld = [];
+if (!ONLY) {
+  const before = existsSync(RECEIPT) ? JSON.parse(readFileSync(RECEIPT, "utf8")) : {};
+  const wasPassed = new Set(before.passed || []), wasStamped = new Set(before.stamped || []);
+  for (const slug of zonesHeld(ZONES)) {
+    if (verdicts.has(slug)) continue;
+    const r = (before.refused || {})[slug];
+    if (r) standing.set(slug, { verdict: "REFUSED", rows: r.rows, hits: r.hits || {}, examples: r.examples || {}, stamped: wasStamped.has(slug) });
+    else if (wasPassed.has(slug)) standing.set(slug, { verdict: "PASS", hits: {}, examples: {}, stamped: wasStamped.has(slug) });
+    else unjudgedHeld.push(slug);
+  }
+}
+const all = [...verdicts.entries(), ...standing.entries()];
+const passed = all.filter(([, v]) => v.verdict === "PASS").map(([s]) => s).sort();
 // THE LAUNCH OF THE COUNTED WORKS (owner, 2026-09-06): what the door serves
 // is a book no line refused AND whose count is stamped beside its witnesses
 // on its own page. A book built before the stamp existed is not refused; it
 // waits, named, for its rebuild under the one pipeline, which stamps it.
-const stamped = [...verdicts.entries()].filter(([, v]) => v.stamped).map(([s]) => s).sort();
-const served = passed.filter((s) => verdicts.get(s).stamped);
-const notStamped = passed.filter((s) => !verdicts.get(s).stamped);
-const refused = Object.fromEntries([...verdicts.entries()].filter(([, v]) => v.verdict !== "PASS").sort().map(([s, v]) => [s, { rows: v.rows, hits: v.hits, examples: v.examples }]));
+// Served is read from the bytes and from nothing else: a book whose bin is
+// not on this disk is served under no verdict, standing or otherwise.
+const stamped = all.filter(([, v]) => v.stamped).map(([s]) => s).sort();
+const served = passed.filter((s) => verdicts.has(s) && verdicts.get(s).stamped);
+const notStamped = passed.filter((s) => !(verdicts.get(s) || standing.get(s)).stamped);
+const refused = Object.fromEntries(all.filter(([, v]) => v.verdict !== "PASS").sort().map(([s, v]) => [s, { rows: v.rows, hits: v.hits, examples: v.examples }]));
 const lineTotals = {};
-for (const v of verdicts.values()) for (const [k, n] of Object.entries(v.hits)) lineTotals[k] = (lineTotals[k] || 0) + n;
+for (const [, v] of all) for (const [k, n] of Object.entries(v.hits)) lineTotals[k] = (lineTotals[k] || 0) + n;
 
 // ---- L1: the lines were run over every position of every zone ------------
 check("L1  every built zone was judged, position by position, from its bytes", verdicts.size === (ONLY ? 1 : zones.length) && unreadable === 0,
   `${num(verdicts.size)} zones · ${num(judgedNow)} judged now, ${num(fromCache)} from the cache by hash${unreadable ? ` · ${unreadable} unreadable` : ""}`);
+if (!ONLY) check("L1b a work held off the door keeps the verdict its bytes were last given, and none is held unjudged",
+  unjudgedHeld.length === 0 && ![...standing.values()].some((v) => v.verdict === "PASS" && v.stamped),
+  unjudgedHeld.length ? `${num(unjudgedHeld.length)} held and never judged — ${few(unjudgedHeld)}`
+    : [...standing.entries()].some(([, v]) => v.verdict === "PASS" && v.stamped) ? `a stamped, passing work is held: ${few([...standing.entries()].filter(([, v]) => v.verdict === "PASS" && v.stamped).map(([s]) => s))} · a served book's bin is published, never held`
+    : `${num(standing.size)} held, their verdicts standing unread (${num([...standing.values()].filter((v) => v.verdict === "PASS").length)} pass, ${num([...standing.values()].filter((v) => v.verdict !== "PASS").length)} refused)`);
 
 // ---- L2: what passed and what was refused, by line ------------------------
 const refusedN = Object.keys(refused).length;
@@ -203,7 +235,9 @@ const receipt = {
   rule_id: RULE,
   what: "The books no line of the frame's C0 letter refuses, position by position, as built (`passed`), and among them the books whose count is stamped beside its witnesses on their own page (`served`) — the counted works. The door serves `served` and nothing else. A book in `refused` is named with the line that refused it and one position it refused; a book in `passed` and not in `served` waits, unrefused, for its rebuild under the one pipeline, which stamps it. The count is not a gate: it is the stamp (count-stamp-rule-v1).",
   lines: Object.keys(LINES),
-  zones_on_the_shelf: zones.length,
+  zones_on_the_shelf: zones.length + standing.size,
+  read_from_their_bytes_in_this_run: zones.length,
+  ...(standing.size ? { standing_unread: { count: standing.size, says: "works whose bin is held off the door (data/zone-store-held-v1.json keeps its seal): the verdict each was given when its bytes were last read stands here and was not read again in this run. A held work is served under no verdict." } } : {}),
   served,
   served_sha256: Object.fromEntries(served.map((s) => [s, verdicts.get(s).sha256])),
   passed,
@@ -223,7 +257,7 @@ if (existsSync(OUT) && !ONLY) {
     if (name.startsWith(".") || name === "demonstrations" || name === "census") continue;
     const p = join(OUT, name);
     if (!statSync(p).isDirectory() || !existsSync(join(p, "index.html"))) continue;
-    if (!verdicts.has(name)) continue;           // not a shelf book: a group page, a redirect
+    if (!verdicts.has(name) && !standing.has(name)) continue;   // not a shelf book: a group page, a redirect
     if (!ok.has(name)) l3.push(name);
   }
 }

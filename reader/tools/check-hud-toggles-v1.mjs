@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-hud-toggles-v1 · each part of the megacompspan family is a safe switch: the cells re-lay from the lattice the corpus lane cut for it
 //
 // GUARDS: hud-toggles-rule-v1-a-part-of-the-family-turned-off-re-lays-the-huds-from-the-groups-that-stand

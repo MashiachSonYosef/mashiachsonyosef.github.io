@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: served-line-rule-v1-the-zones-gloss-field-is-the-line-the-page-draws-and-no-lane-need-model-the-sort
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
@@ -28,6 +29,22 @@
 //
 //   L1  the page and the disk agree on every word of the opening screen
 //   L2  and the agreement is not vacuous — the screen carried readings
+//
+// UNDER WHICH ORDER (10 November 2026). The rule was written when the line
+// had one order. Since 3 October the page opens "at this place", where a
+// word's line is what the source reads at that very place (word.pg, held by
+// check-line-reads-the-place-v1), and since 6 November the pointing may
+// withhold a reading the field holds (the lattice sidecar's leader, held by
+// check-pointing-gate-v1). So the field is the line under "oldest first" with
+// the pointing kept, and that is where this holds it: both are set before the
+// page loads, with the source signs "as printed" (at rest the line leaves a
+// piece that is only a source's sign undrawn: "<the>/ Carmel" stands as
+// "Carmel", which is drawing and not reading). Run with nothing set, the
+// check failed on 59 of 95 words of
+// Amos's opening screen and went unseen for five weeks, because it stood in
+// none of the round's chains. A count taken off zone.gloss is a count of what
+// a reader meets under oldest first; under the page's own default, the place
+// and the pointing are the other two records to read.
 //
 // Not covered: whether the reading is right, or which source it came from.
 // This says only that the field and the line are the same string, so a count
@@ -63,6 +80,8 @@ const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+// the order and the pointing position the field is the line under
+await p.addInitScript(() => { try { localStorage.clear(); localStorage.setItem("fh.def.order", "oldest"); localStorage.setItem("fh.pointing-stands-2026-11-06", "1"); localStorage.setItem("fh.masorah", "keep"); localStorage.setItem("fh.parked-2026-10-24", "1"); localStorage.setItem("fh.signs", "printed"); } catch { /* a device that remembers nothing still reads */ } });
 await p.goto(`${BASE}?b=${BOOK}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(2600);
@@ -88,7 +107,7 @@ for (let i = 0; i < drawn.length && i < flat.length; i += 1) {
   else if (bad_.length < 4) bad_.push(`${flat[i].k}: disk ${JSON.stringify(String(g).slice(0, 34))} vs line ${JSON.stringify(String(drawn[i].g).slice(0, 34))}`);
 }
 
-check("L1  the page and the disk agree on every word of the opening screen",
+check("L1  under oldest first, the pointing kept, the page and the disk agree on every word of the opening screen",
   judged > 0 && agree === judged,
   `${agree} of ${judged} agree${bad_.length ? " · " + bad_.join(" · ") : ""}`);
 check("L2  and the agreement is not vacuous", judged >= 20, `${judged} words carried a reading`);
@@ -97,7 +116,8 @@ console.log(`
   ${BOOK} · ${judged} words compared, disk field against drawn line
 
   what this buys: a count taken off zone.gloss is a count of what a reader
-  meets. Four wrong models were built in one day for want of this field.
+  meets under oldest first with the pointing kept. Four wrong models were
+  built in one day for want of this field.
 `);
 console.log(bad ? `${bad} FAILED` : "all checks passed");
 process.exit(bad ? 1 : 0);

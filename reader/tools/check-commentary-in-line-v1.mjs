@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // Commentary opens where it was asked for, and the verse reorganises around it.
 //
 // A commentary attached at a word used to be a chip that opened the reader's

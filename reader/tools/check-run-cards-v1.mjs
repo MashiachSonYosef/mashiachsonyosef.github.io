@@ -1,3 +1,4 @@
+// RUN: page
 // check-run-cards-v1 · one card for a run a license names, and nothing else moves
 //
 // GUARDS: run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling

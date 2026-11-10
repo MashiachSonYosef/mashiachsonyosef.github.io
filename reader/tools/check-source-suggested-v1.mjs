@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-source-suggested-v1 · the BSB's whole-word rendering stands on the card, credited, and never on the line
 //
 // GUARDS: source-suggested-rule-v1-a-running-bible-reads-the-whole-word-and-is-credited-by-name

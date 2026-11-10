@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // The exporter obeys the licence, the commentary lands where it opens.
 // GUARDS: export-rule-v2-numbered-citation-per-reading-hebrew-on-the-work
 //

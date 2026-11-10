@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

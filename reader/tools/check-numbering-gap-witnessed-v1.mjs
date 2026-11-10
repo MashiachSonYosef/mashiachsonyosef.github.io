@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

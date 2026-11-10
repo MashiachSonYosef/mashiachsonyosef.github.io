@@ -50,8 +50,8 @@ import { basename, dirname, join } from "node:path";
 import { FILE_24_ON_THE_DOOR } from "./door-filing-v1.mjs";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
-import { exactK, K_RULE_ID } from "./k-normalization-v2.mjs";
-import { isSidecar } from "./zones-on-disk-v1.mjs";
+import { exactK } from "./k-normalization-v2.mjs";
+import { isSidecar, zonesSealed } from "./zones-on-disk-v1.mjs";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const ZONES = arg("zones", "data/zones");
@@ -1672,8 +1672,8 @@ const CC_WEARS = {
 // from the shelf so nothing on it could be mistaken for a work — and it was
 // the right thing while nothing was readable. On 2026-09-06 all thirty-nine
 // books went live and every rule it demonstrated is now visible on real text
-// a reader can open at its own address, so the owner retired the page: he is
-// going through the live books one by one and only wants those.
+// a reader can open at its own address, so the owner retired the page: the
+// owner is going through the live books one by one and only wants those.
 //
 // What is retired is the PUBLISHING. The record, the builder, the eight zones
 // and every guard that holds them stay on disk and stay green, because they
@@ -2647,7 +2647,7 @@ const doc = pageDoc({
   counts: true,
   // THE READER PANEL IS OFF. It printed the opening words of whichever book
   // sorts first, each with its gloss and its license, as a live sample of the
-  // reader — and the owner, looking at his own door, could not tell what it
+  // reader — and the owner, looking at the site's own door, could not tell what it
   // was (2026-09-06). A panel that has to be explained is not a demonstration,
   // it is a delay: it stood between a reader and the books, and the page that
   // shows the frame working properly, with a caption per rule, is linked two
@@ -2767,12 +2767,15 @@ end of a run, what the checks do not cover.
 
 \`\`\`
 cd ${ENGINE}
-./build.sh <mirror> <bridge.csv.gz> <serves> <YYYY-MM-DD>
+tools/round-v1.sh --stamp <YYYY-MM-DD> [--lattice <folder> --stems <folder>]
 tools/run-all-checks.sh
 \`\`\`
 
-The build runs from sealed inputs and is re-runnable: the same inputs give the
-same bytes. The checks run against the rendered page rather than the source.
+A work's text is built once, by its route builder, from the corpus lane's
+sealed text; that step needs the corpus lane's files. Everything a page says
+about the text is projected from the records in this repository by the round,
+which is re-runnable: the same inputs and the same date give the same bytes.
+The checks run against the rendered page rather than the source.
 They sweep every work that is served, they name what they skipped and why, and
 a run that could not reach its inputs is counted apart from one that passed —
 an empty run must never read as a clean one.
@@ -3136,7 +3139,7 @@ ${ccArticle}
 // THE BENCH, at its own address.
 //
 // The owner asked for the toggle work to have somewhere of its own rather than
-// riding the retired demonstrations page or the books he is auditing. This is
+// riding the retired demonstrations page or the books under audit. This is
 // that page. It says what each position is, whether it can be answered from
 // what is on this disk today, and exactly which record answers it \u2014 and it is
 // emitted from DEF_POSITIONS, the same array the pill row is built from, so
@@ -3489,17 +3492,26 @@ ${rows}
 // where the work now lives — driven by the recorded events in
 // data/address-history-v1.json, never by a list typed here.
 const HISTORY = arg("history", "data/address-history-v1.json");
+const SEALED_WORKS = new Set(zonesSealed(ZONES));
 if (existsSync(HISTORY)) {
   const hist = JSON.parse(readFileSync(HISTORY, "utf8"));
   for (const row of hist.republished || []) {
-    // the plan's tier can be empty now; a redirect's target is wherever the
-    // work actually serves — the fleet shelf, judged by the zone on disk at
-    // the work's derived address
+    // the plan's tier can be empty now; a redirect's target is the work at
+    // its derived address, wherever it stands: served from the shelf (a zone
+    // the gate serves, in ZONE_INFO), or held off the door with its seal
+    // kept. A row whose target the shelf's records do not know at all is a
+    // redirect to nowhere and stops the build.
     const derived = addressOf(row.to_work_id);
     const target = slugOfWork.get(row.to_work_id)
-      || (existsSync(join(ZONES, `${derived}.bin`)) ? derived : null);
+      || (ZONE_INFO.has(derived) || SEALED_WORKS.has(derived) ? derived : null);
     if (!target) throw new Error(`address history points at ${row.to_work_id}, which nothing publishes — refusing a redirect to nowhere`);
-    const b = books.find((x) => x.slug === target);
+    // SERVED IS SERVED, WHICHEVER TIER SERVES IT. Until 10 November 2026 this
+    // looked for the target in the plan's tier alone, which has been empty
+    // since the fleet shelf took over: a work served from the shelf was not
+    // found, and its old address said "the work behind it is not being
+    // served" over a book a reader could open one address away.
+    const b = books.find((x) => x.slug === target)
+      || (ZONE_INFO.has(target) ? { slug: target, disp: ZONE_INFO.get(target).workEn } : null);
     mkdirSync(join(OUT, row.from), { recursive: true });
     // A published address is a promise, and a withdrawal does not release it.
     // When the work an address points at is not currently served, the address

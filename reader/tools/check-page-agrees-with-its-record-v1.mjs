@@ -1,3 +1,4 @@
+// RUN: site
 // check-page-agrees-with-its-record-v1
 //
 // WHY THIS EXISTS. On 2026-09-10 the demonstrations page printed, in one

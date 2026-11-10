@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: work-status-rule-v1-a-work-the-owner-calls-in-progress-says-so-on-the-door-and-on-every-page-of-it
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

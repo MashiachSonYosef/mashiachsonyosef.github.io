@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: hebrew-is-red-rule-v1-every-hebrew-letter-the-site-prints-is-the-corpuss-red
 // LEDGER: -
 // no frame letter. A check reads the pages and judges them; it is not the

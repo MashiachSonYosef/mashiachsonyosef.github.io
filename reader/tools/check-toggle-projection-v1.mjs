@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: toggle-projection-rule-v1-a-toggle-is-a-ledger-projected-over-a-zones-own-positions
 //
 // A toggle's layer on a zone is a projection of Moses's ledger, and the zone

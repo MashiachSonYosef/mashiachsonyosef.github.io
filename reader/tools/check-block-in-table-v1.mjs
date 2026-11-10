@@ -1,3 +1,4 @@
+// RUN: page
 // A BLOCK STANDS IN ITS WORD, ON THE CARD AND IN THE CONCORDANCE (the owner,
 // 2026-10-19, at Daniel 1:1, the word read "in + year": "the hud broke when i
 // selected what shouldve been 'in + sleep', it dropped the first word

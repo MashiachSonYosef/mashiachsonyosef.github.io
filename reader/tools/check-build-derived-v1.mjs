@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis, work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands
 //
 // The build is derived, the derivation is true, and the script cannot slide

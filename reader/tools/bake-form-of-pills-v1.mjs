@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// LEDGER: R
+// which readings of the route catalog (R) are a pointer to another entry, and
+// the English the pointer resolves to. The corpus lane classed and resolved
+// them; this folds its file into the one map the card reads.
+//
 // HEBREW DEFINED BY HEBREW, THE MAP THE CARD READS (the owner, on the card
 // of a two-word number: "the issue is defining hebrew with hebrew"; ask 2 of
 // 23 October to the corpus lane; its answer FOR-ELIJAH-v85, span store v2.1,

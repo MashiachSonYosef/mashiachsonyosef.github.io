@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: work-attachment-rule-v1-parallel-numbering-is-not-intent
 //
 // The record says what every work naming another work stands in. This asserts
@@ -21,9 +22,10 @@
 //                pointing the owner refused
 //
 // Run: node tools/check-work-attachment-v1.mjs
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { zonesSealed } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -43,10 +45,10 @@ console.log(`— ${rec.rule_id} —`);
 check("the record carries the ruling and whose it is",
   Boolean(rec.ruling && rec.ruled_by), rec.ruled_by ? "attributed" : "unattributed");
 
-// 1 · drift — the shelf is the authority on what exists
-const onShelf = existsSync(ZONES)
-  ? readdirSync(ZONES).filter((f) => f.endsWith(".bin")).map((f) => f.replace(/\.bin$/, ""))
-  : [];
+// 1 · drift — the shelf is the authority on what exists: every work whose
+// seal is kept, on this disk or held off the door (a work that names a base
+// is seldom served, so a checkout seldom holds its bin)
+const onShelf = zonesSealed(ZONES);
 const namesABase = onShelf.filter((id) => id.includes("-on-")).sort();
 const inRecord = new Set(rows.map((r) => r.work));
 const missing = namesABase.filter((id) => !inRecord.has(id));

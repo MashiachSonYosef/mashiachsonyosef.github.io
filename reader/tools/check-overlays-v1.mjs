@@ -1,3 +1,4 @@
+// RUN: page
 // check-overlays-v1 · an overlay's rows are rows like the store's, and its chips switch them
 //
 // GUARDS: overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores

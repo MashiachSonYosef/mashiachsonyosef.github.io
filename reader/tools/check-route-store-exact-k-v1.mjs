@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms
 // GUARDS: route-store-rule-v1-catalog-compact-top5
 // LEDGER: -

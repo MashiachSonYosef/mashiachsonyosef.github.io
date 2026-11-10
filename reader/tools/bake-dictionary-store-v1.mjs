@@ -1,3 +1,8 @@
+// LEDGER: D M
+// the served copy of the corpus lane's dictionary records: each record is a
+// source's own definition (D) under the source it names (M). The shards are
+// the lane's bytes, copied; the index beside them is this tool's.
+//
 // THE DICTIONARY STORE, SERVED (Moses, FOR-ELIJAH-v79, dictionary store
 // v1.1; the owner, 2026-10-17: "simple toggle, cards unchanged, hud opens to
 // a table hud", and on 2026-10-18 "lets go live with the toggle"). The lane's

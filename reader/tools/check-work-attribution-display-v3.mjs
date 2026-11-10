@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";

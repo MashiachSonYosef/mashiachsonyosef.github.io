@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving
 //
 // A SUMMARY THAT DISAGREES WITH WHAT IT SUMMARIZES IS A LIE IN A SMALLER FONT.

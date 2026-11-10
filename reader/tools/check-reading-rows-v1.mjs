@@ -1,3 +1,4 @@
+// RUN: page
 // THE READINGS STAND THREE ROWS HIGH WHEREVER THE CARD OPENS (the owner,
 // 2026-10-22, of a card of twenty-one readings showing one row of them: "this
 // is like our main product and we are still crunching the R pills into less

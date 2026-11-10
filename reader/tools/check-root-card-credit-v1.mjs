@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // A credit prints on the root card exactly as the cleared table says — and
 // nowhere else, and never past its own readiness.
 //

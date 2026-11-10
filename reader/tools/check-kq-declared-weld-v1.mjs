@@ -1,3 +1,4 @@
+// RUN: page
 // GUARDS: kq-declared-weld-v1-the-written-form-is-defined-by-what-is-read
 //
 // THE WRITTEN FORM OF A PAIR IS DEFINED BY WHAT IS READ.
@@ -5,7 +6,7 @@
 // The owner, 2026-10-30, of the card at a pair whose written letters the
 // catalog also reads as other words (Mizzah, "exhausted", "one who sprinkles"
 // under the letters the Masorah reads as "what is this"): "i see this is not
-// right"; and the rule he asked for: "the card specifically saying 'this exact
+// right"; and the rule the owner asked for: "the card specifically saying 'this exact
 // spelling actually means what this exact spelling means'". A weld is right
 // where a source declares the equivalence and wrong where the page infers it
 // from the ink. The Masorah's note, carried verbatim by the licensed source,

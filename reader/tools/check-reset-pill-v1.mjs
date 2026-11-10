@@ -1,3 +1,4 @@
+// RUN: page
 // THE RESET PILL (the owner, 2026-10-18: "maybe we need a reset to default
 // toggling button", a pill in the toggles row; "it would be: english toggle
 // off, blobs off, numbers on, concordance off").

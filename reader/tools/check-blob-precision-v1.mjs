@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-blob-precision-v1 · a blob holds its own ink, all of it, and no one else's
 //
 // GUARDS: blob-precision-rule-v1-a-blob-is-cut-to-the-ink-and-split-where-the-word-divides

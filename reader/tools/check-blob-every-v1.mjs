@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // check-blob-every-v1 · every "+" word can wear its blob: its pieces tile its letters
 //
 // GUARDS: blob-every-rule-v1-every-word-with-a-plus-wears-a-blob-piece-for-piece

@@ -2,7 +2,7 @@
 // The English and license reader: a gloss never stands without its M.
 // GUARDS: gloss-m-rule-v1-a-reading-shown-is-a-reading-licensed
 //
-// The owner's ruling, 2026-08-30, in his words: the English reader "is now
+// The owner's ruling, 2026-08-30, in the owner's words: the English reader "is now
 // english and license reader … never let them separate even by a display
 // degree." The zones bake their gloss table as key → English string; this
 // pass re-derives every baked gloss from the same route store the build

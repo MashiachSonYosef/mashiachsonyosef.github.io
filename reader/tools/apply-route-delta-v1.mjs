@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 // GUARDS: route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now
 // LEDGER: M R
+// it lands rows in the route store: each row is a source's reading (R) under
+// that source's license record (M). The rows are the corpus lane's; this tool
+// places them and decides nothing about them.
 //
 // THE 88 SHARDS THAT NEVER LANDED, LANDED AS A DELTA.
 //

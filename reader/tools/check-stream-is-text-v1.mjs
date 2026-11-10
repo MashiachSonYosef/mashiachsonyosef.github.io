@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: serve-from-stream-rule-v2-the-successor-stream-is-the-text-bridge-v2-is-its-identity-the-binding-is-the-rights
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
@@ -35,6 +36,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSidecar } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -56,10 +58,12 @@ const src = readFileSync(TOOL, "utf8");
 check("L1  the serving tool declares the rule and the route", src.includes(`"${RULE}"`) && src.includes(`"${ROUTE}"`), TOOL.split("/").pop());
 
 if (!existsSync(ZONES)) { console.log(`SKIPPED — no zones at ${ZONES}`); process.exit(3); }
-const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-")).sort();
+// zones, not the sidecars that ride beside them: a sidecar carries no route
+const bins = readdirSync(ZONES).filter((f) => f.endsWith(".bin") && !f.startsWith("fixture-") && !isSidecar(f)).sort();
 const l2 = [], l3 = [], l4 = [], l5 = [], l6 = [];
 const bridges = new Map();
 let onRoute = 0, zonesRead = 0, streams = 0, bodies = 0, rowsAdded = 0;
+const otherRoutes = new Map();
 for (const f of bins) {
   let z; try { z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8")); } catch { continue; }
   zonesRead += 1;
@@ -67,7 +71,7 @@ for (const f of bins) {
   const e = z.emitted_from || {}, walk = e.walk || {}, io = e.identity_oracle || {};
   const route = z.route || walk.route;
   if (route === EDITION_ROUTE) continue;
-  if (route !== ROUTE) { l2.push(`${name}: ${route || "no route"}`); continue; }
+  if (route !== ROUTE) { l2.push(`${name}: ${route || "no route"}`); otherRoutes.set(route || "no route", (otherRoutes.get(route || "no route") || 0) + 1); continue; }
   onRoute += 1;
   const so = walk.stream_oracle || {}, id = walk.identity || {}, r = walk.rights || {};
   // L3
@@ -119,8 +123,18 @@ for (const f of bins) {
   // L6
   if (walk.body_oracle || walk.sealed_oracle || walk.edition) l6.push(name);
 }
+// A SHELF THIS ROUTE DOES NOT SERVE IS NOT THIS CHECK'S TO JUDGE. L2 was
+// written when every zone rode this route (3 September 2026). The 39 books
+// were rebuilt from the restore within the week and ride its route, held by
+// check-restore-serve-v1; this check went on failing L2 for every one of them
+// and for every sidecar, outside the round's chains, while its two sister
+// checks said what is true: no zone here rides their route, so they have
+// nothing to judge. It says the same now, and names the routes it found.
+if (!onRoute) {
+  console.log(`SKIPPED — no zone in ${ZONES.replace(K3 + "/", "")} rides route ${ROUTE}; ${zonesRead} zones read, ${[...otherRoutes].map(([r, n]) => `${n} on ${r}`).join(", ") || "none on another route"}, so L2 to L7 had nothing to judge`);
+  process.exit(bad ? 1 : 3);
+}
 check("L2  every zone rides this route or the edition route; none is left on the predecessor bridge", l2.length === 0, l2.length ? `${l2.length} — ${few(l2)}` : `${onRoute} on the stream route among ${zonesRead}`);
-if (!onRoute) { console.log(`SKIPPED — none of ${zonesRead} zones rides ${ROUTE}; L3 to L7 had nothing to judge`); process.exit(bad ? 1 : 3); }
 check("L3  every zone names its text oracle with its hashes reproduced or its shards read", l3.length === 0, l3.length ? `${l3.length} — ${few(l3)}` : `${streams} from successor streams, ${bodies} from the July body unchanged`);
 check("L4  its identity is bridge-v2's with the predecessor named, and the receipt arithmetic holds", l4.length === 0, l4.length ? `${l4.length} — ${few(l4)}` : `${rowsAdded.toLocaleString()} rows added by the split across the shelf`);
 check("L5  its rights are a binding's, scoped to the predecessor, one posture, held following the axis", l5.length === 0, l5.length ? `${l5.length} — ${few(l5)}` : "source, scope and posture agree");

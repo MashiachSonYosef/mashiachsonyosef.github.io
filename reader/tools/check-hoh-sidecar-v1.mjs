@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: hoh-sidecar-rule-v1-a-hebrew-definition-is-served-by-volume-and-quotes-only-from-the-floor, hoh-fixture-rule-v1-a-real-chapter-with-entries-made-only-of-its-own-verses
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

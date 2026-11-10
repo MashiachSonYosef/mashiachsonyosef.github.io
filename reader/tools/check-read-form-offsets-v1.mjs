@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: read-form-offsets-rule-v1-a-read-forms-piece-without-letters-takes-the-lanes-alignment-or-none
 //
 // THE READ FORM'S PIECES ANSWER THEIR OWN BLOCKS (the corpus lane's v108,

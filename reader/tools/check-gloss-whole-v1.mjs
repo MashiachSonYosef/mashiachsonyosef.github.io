@@ -1,11 +1,12 @@
 #!/usr/bin/env node
+// RUN: page
 // The reading under a word is shown whole, in both readers, and the page does
 // not move while it is being read.
 // GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
 //
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
@@ -68,7 +69,7 @@ check("nothing is left ellipsising", he.clamp === "none", `line-clamp ${he.clamp
 // The page must not re-wrap while the reader works in it — and a reader who
 // RULES a longer reading is owed the whole of it. The old resolution froze
 // the box at first-paint height and let the hover title carry the tail, and
-// the owner met the result on a phone, where nothing hovers: his own ruling
+// the owner met the result on a phone, where nothing hovers: the owner's own ruling
 // clipped to "both…" — the one reading on the page the page refused to
 // show. The law now (owner, 2026-08-29): shown whole outranks held still.
 // The box grows by whole lines — a reading costs its own word a few lines,

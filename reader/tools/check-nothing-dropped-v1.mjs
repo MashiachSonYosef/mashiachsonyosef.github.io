@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: zone-commentary-rule-v2-everything-recorded-stands-somewhere
 //
 // Everything the record carries reaches the page, or is named as held.
@@ -33,7 +34,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { zonesOnDisk } from "./zones-on-disk-v1.mjs";
 const SKIP_LABEL = "check-nothing-dropped-v1";
 // A check about commentary needs a work that carries some. When none is
 // served, that is a fact about the corpus and not a defect in the reader, so

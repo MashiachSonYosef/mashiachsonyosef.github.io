@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: variant-site-grouping-v1-one-alignment-rule-per-encoding-class
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the

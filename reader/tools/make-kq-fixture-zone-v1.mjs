@@ -18,7 +18,7 @@ import { gzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
-import { readSpanSlice, cellsOf, SPAN_RULE_ID } from "./span-slice-v1.mjs";
+import { readSpanSlice, cellsOf } from "./span-slice-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");

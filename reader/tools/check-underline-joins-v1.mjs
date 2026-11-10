@@ -1,3 +1,4 @@
+// RUN: page
 // A LINE ONLY UNDER WORDS ONE CARD JOINS (the owner, 2026-10-19: "lets move
 // to only underlining when it actually combines words / same as how we do no
 // blob if its a single 1:1, we do no underline if its a 1:1 (word:hud)").

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: tree
 // The pair is presented as MAM writes it, and a branch choice moves nothing.
 //
 // Built against the construction lane's sealed candidate bundle: a fixture

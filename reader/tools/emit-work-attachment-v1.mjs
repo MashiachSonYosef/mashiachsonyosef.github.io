@@ -10,7 +10,7 @@
 // a commentary and by a translation, and 18 of the 32 here are Targum — an
 // Aramaic translation is not a commentary because it shares a preposition.
 //
-// The owner's ruling, 2026-08-31, in his words: "commentary should auto open
+// The owner's ruling, 2026-08-31, in the owner's words: "commentary should auto open
 // their base work," and "you'd need to ensure the commentary edition matches
 // the original by intent, not proportionally (e.g. not same edition, but
 // correctly pointed for each edition)."
@@ -54,7 +54,7 @@
 //
 // Run: node tools/emit-work-attachment-v1.mjs [--zones data/zones]
 //        [--out data/work-attachment-v1.json]
-import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";

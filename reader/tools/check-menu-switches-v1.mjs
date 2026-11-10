@@ -1,3 +1,4 @@
+// RUN: page
 // THE BOTTOM MENU HOLDS THE TOP ROW'S SWITCHES (the owner, 2026-10-19: "we
 // would want the same toggles on the menu bar at the bottom").
 //   M1  the bar's Menu holds one button for every switch the top row shows,

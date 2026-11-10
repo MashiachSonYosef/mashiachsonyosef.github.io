@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 // GUARDS: source-year-rule-v1-a-row-carries-its-sources-year-of-writing-and-an-older-witnesss-year-already-on-it-stands
-// LEDGER: M
+// LEDGER: M S
+// it writes the year a source's English was written (S, the year that sorts)
+// on the rows of that source (M), from the corpus lane's list, kept here byte
+// for byte. No year is decided here.
 //
 // THE YEAR EACH SOURCE'S ENGLISH WAS WRITTEN, ON ITS ROWS.
 //

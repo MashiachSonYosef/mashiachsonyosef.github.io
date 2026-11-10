@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // GUARDS: exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf, maqaf-rule-v2-one-c0-per-word, megacompspan-rule-v1-one-maqaf-run-one-card
 // LEDGER: -
 // no frame letter. A check reads the record and judges it; it is not the
@@ -37,11 +38,13 @@ import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
-const URL_ARG = process.argv[2];
-if (!URL_ARG || !/^https?:/u.test(URL_ARG)) { console.log("SKIPPED — needs a served zone url"); process.exit(3); }
+// handed nothing, the first work the door serves
+const URL_ARG = defaultZoneUrl();
+if (!/^https?:/u.test(URL_ARG)) { console.log("SKIPPED — needs a served zone url"); process.exit(3); }
 const slug = decodeURIComponent((URL_ARG.match(/[?&]b=([^&]+)/u) || [])[1] || "");
 const binPath = join(K3, "data", "zones", `${slug}.bin`);
 if (!slug || !existsSync(binPath)) { console.log(`SKIPPED — no zone file for ${slug || "(no b=)"}`); process.exit(3); }

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // A layout and behaviour check for the two things asked for: the card holds
 // still while the reader works inside it and can be moved by hand, and the
 // section's three acts sit at three different weights.
@@ -71,7 +72,9 @@ const readLevels = () => {
   return {
     hasBar: !!bar, hasXp: !!xp,
     barText: bar ? bar.innerText.replace(/\s+/g, " ").trim() : "",
-    segBottom: r(seg)?.bottom, barTop: r(bar)?.top, barW: r(bar)?.width,
+    // the commentary's line is its row: the bar and, beside it, the button
+    // that names the works (they share one row since the works list folded)
+    segBottom: r(seg)?.bottom, barTop: r(bar)?.top, barW: r(bar ? bar.closest(".c-barrow") || bar : null)?.width,
     xpTop: r(xp)?.top, secW: r(s)?.width,
     xpW: [...s.querySelectorAll(".seg-row .xp-open")].map((c) => Math.round(c.getBoundingClientRect().width)),
     xpInSegRow: !!(seg && xp && seg.contains(xp)),
@@ -98,10 +101,14 @@ const levels = await page.evaluate(readLevels);
 // line is asked of the first served book that carries a commentary, which is
 // stronger than what stood here: the clause used to hold only for whichever
 // work the run happened to be pointed at.
+// AND OF A PAGE THAT ASKS FOR IT (10 November 2026). Commentary has waited
+// behind the address since 16 October (?commentary=on), so the plain page of
+// a book that carries one draws no line, and these four clauses were red,
+// outside the round's chains, from that day (noted on 30 October and left).
 let cmv = levels, cmBook = null;
 if (!levels.hasBar) {
   cmBook = WITH_COMMENTARY[0];
-  await page.goto(`${URL.split("?")[0]}?b=${cmBook}`, { waitUntil: "networkidle" });
+  await page.goto(`${URL.split("?")[0]}?b=${cmBook}&commentary=on`, { waitUntil: "networkidle" });
   await page.waitForSelector("section.seg", { timeout: 20000 });
   await readThrough(page);
   cmv = await page.evaluate(readLevels);

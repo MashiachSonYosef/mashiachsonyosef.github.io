@@ -1,3 +1,4 @@
+// RUN: tree
 // licence-name-rule-v1-the-record-names-the-licence
 //
 // A licence chip prints what the declarations record carries for its posture;

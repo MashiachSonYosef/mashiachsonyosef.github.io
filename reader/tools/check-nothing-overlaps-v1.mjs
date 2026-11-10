@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// RUN: page
 // Three things a reader on a phone should never meet, none of which any other
 // check could see.
 //

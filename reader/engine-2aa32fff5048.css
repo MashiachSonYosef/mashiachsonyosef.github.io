@@ -527,9 +527,6 @@
   #statusLine .st-lab { color: var(--argaman); border: 1px solid var(--chip-line, var(--gold-dim)); border-radius: 0.6rem; padding: 0 0.4rem; margin-inline-end: 0.15rem; font-size: 0.78rem; letter-spacing: 0.04em; }
   #demoLine .demo-credit { color: var(--faint); overflow-wrap: anywhere; }
   header.top p#meta { margin: 0.55rem 0 0; font-size: 0.8rem; color: var(--muted); max-width: 60rem; }
-  .receipts-btn { background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
-    color: var(--link); font: inherit; font-size: 0.8rem; cursor: pointer; padding: 0; }
-  .receipts-btn:hover { color: var(--ink-strong); }
   .receipts-full { display: block; margin-top: 0.4rem; color: var(--faint); }
   .receipts-full[hidden] { display: none; }
   /* A work the ledger has not named in Hebrew keeps its English locator, but
@@ -721,7 +718,6 @@
   #toc .part { margin: 0 0 0.65rem; }
   #toc .part b { display: block; color: var(--ink-strong); font-variant: small-caps; letter-spacing: 0.1em;
     font-weight: normal; font-size: 0.92rem; margin-bottom: 0.15rem; }
-  #toc .part b .he-small { color: var(--ink); font-size: 1rem; margin-left: 0.6rem; }
   #toc a { color: var(--muted); text-decoration: none; font-size: 0.84rem; }
   #toc a:hover { color: var(--ink-strong); }
 
@@ -1433,7 +1429,6 @@
   .rail .src-open:hover .src-name { color: var(--sel); }
   .rail .src-name { line-height: 1.32; }
   .rail .src-row.off .src-name { color: var(--faint); text-decoration: line-through; text-decoration-color: var(--line); }
-  .rail .src-cost { display: block; font-style: normal; font-size: 0.64rem; color: var(--faint); }
   .rail .shelf .decl { margin: 0.35rem 0 0.1rem; }
   /* THE SOURCE'S OWN DECLARATIONS — the branch that opens under a source
      chip. Gold line-work only; the source's own strings carry the reading
@@ -1458,9 +1453,6 @@
   .rail .decl-bx:disabled::after { border-color: var(--line); }
   .rail .decl-branch:last-child { margin-bottom: 0; }
   .rail .decl-branch[data-klass] { opacity: 0.82; }
-  .rail .decl-aspect { margin: 0; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-  .rail .decl-aspect i { font-style: normal; letter-spacing: 0; text-transform: none; color: var(--faint); }
-  .rail .decl-aspect i.decl-work { font-size: 0.6rem; }
   .rail .decl-says { margin: 0; font-size: 0.74rem; color: var(--tekhelet); line-height: 1.5; }
   .rail .decl-lead-in { color: var(--ink); }
   .rail .decl-more { font: inherit; font-size: 0.66rem; color: var(--faint); background: none;
@@ -1480,13 +1472,6 @@
   .rail .decl-head i { font-style: normal; color: var(--faint); font-weight: 400; }
   .rail .decl-partial { margin: 0.1rem 0 0; font-size: 0.62rem; color: var(--muted); font-style: italic; }
   .rail .decl-silent, .rail .decl-none { margin: 0.35rem 0 0; font-size: 0.64rem; color: var(--faint); font-style: italic; }
-  .rail .def-order .declp { font: inherit; font-size: 0.6rem; letter-spacing: 0.04em;
-    color: var(--faint); background: none; border: none; border-bottom: 1px solid var(--line);
-    border-radius: 0; padding: 0 0 0.04rem; cursor: pointer; }
-  .rail .def-order .declp::after { content: " \25be"; }
-  .rail .def-order .declp[aria-expanded="true"]::after { content: " \25b4"; }
-  .rail .def-order .declp:hover { color: var(--ink); border-bottom-color: var(--gold); }
-  .rail .declp.decl-open[aria-expanded="true"] { color: var(--sel); border-bottom-color: var(--sel-dim); }
   @media (max-width: 30rem) { .rail .row { grid-template-columns: 1fr; } .rail .row .why { grid-column: 1; } }
   /* Which way the words run, and nothing else. The two readers differ in the
      direction of the flow, so that is what is said under them. */
@@ -2268,7 +2253,6 @@
   .c-bar .c-glyph { font-variant: small-caps; letter-spacing: 0.12em; font-size: 0.7rem;
     border: 1px solid currentColor; border-radius: 0.35rem; padding: 0 0.32rem; opacity: 0.75; }
   .c-bar .c-name { flex: 1 1 auto; }
-  .c-bar .c-hint { font-size: 0.66rem; opacity: 0.6; }
   /* Copying is the reader's act, not the page's. There is no button that writes
      to a clipboard here — a button doing that is the site handing text over,
      and text handed over carries obligations. A reader who selects and presses
@@ -2327,7 +2311,6 @@
     border: 1px solid transparent; border-radius: 0.45em; padding: 0.1em 0.4em; }
   .g .g-part { display: inline-block; vertical-align: top; text-align: center; }
   .g .g-part + .g-part { margin-left: 0.3em; }
-  .g .g-join { color: var(--tekhelet-dim); }
   /* the chip shows in both readers — the owner chose the demonstration look, 2026-08-30 */
   /* A reading is a reading wherever the run drew it. A joined word prints one
      shared reading on the run itself, outside any .wb, so this rule never

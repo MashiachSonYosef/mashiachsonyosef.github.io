@@ -18,7 +18,7 @@
 // an admission strike.
 //
 // Usage: node tools/strike-source-v1.mjs --ids M20[,M21] --reason "<why>" [--store data/route-store] [--dry]
-import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gzipSync, gunzipSync } from "node:zlib";

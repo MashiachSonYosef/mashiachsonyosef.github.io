@@ -1,9 +1,10 @@
 #!/usr/bin/env node
+// RUN: page
 // A card the reader drags may hang off the edge. A card the page placed may not.
 // Either way the head stays reachable, because it is the only way back.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
-import { defaultZoneUrl, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 const { chromium } = pw;
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad++; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };

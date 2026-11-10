@@ -24,7 +24,7 @@
 //
 // Run: node tools/emit-ledger-index-v1.mjs [--out data/ledger-index-v1.json]
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
-import { dirname, join, basename } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
