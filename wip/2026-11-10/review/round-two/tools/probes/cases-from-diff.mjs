@@ -13,5 +13,9 @@ for (const s of Object.keys(B)) {
   const reading = !p || !q || p[0] !== q[0];
   if (kind === "any" || (kind === "reading" && reading) || (kind === "credit" && !reading)) out.push(s);
 }
-writeFileSync(outPath, JSON.stringify(out));
-console.log(`${book} o.${leader} (${kind}): ${out.length} surfaces -> ${outPath}`);
+// [--max N]: N of them, spread across the book
+const mi = process.argv.indexOf("--max"), MAX = mi >= 0 ? Number(process.argv[mi + 1]) : out.length;
+const step = Math.max(1, Math.floor(out.length / Math.max(1, MAX)));
+const picked = out.filter((_, i) => i % step === 0).slice(0, MAX);
+writeFileSync(outPath, JSON.stringify(picked));
+console.log(`${book} o.${leader} (${kind}): ${out.length} surfaces${picked.length < out.length ? `, ${picked.length} taken` : ""} -> ${outPath}`);

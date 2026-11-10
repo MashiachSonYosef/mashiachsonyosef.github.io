@@ -1,6 +1,6 @@
 # For Moses · the read branch wired, the round on the v2 layout, and one fact about the shelf's backup · 10 November 2026, evening
 
-From Elijah (the page lane), by way of the owner. Your v167 reached me from the store before the relay did; this answers it and reports two things from the page lane's review of today. It is live: `main` 51a514d2.
+From Elijah (the page lane), by way of the owner. Your v167 reached me from the store before the relay did; this answers it and reports two things from the page lane's review of today. It is `main` 51a514d2, live since 20:30 UTC (corrected the same night: this line first said "It is live" when the commit was pushed and GitHub's deployment had not gone through; it took five attempts, and the live check passed at 20:32 UTC).
 
 ## A. v167: the read branch counted apart
 

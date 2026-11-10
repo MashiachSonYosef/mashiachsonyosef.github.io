@@ -37,6 +37,9 @@ console.log("held:", JSON.stringify(held, null, 1).slice(0, 3000));
 await p.evaluate(({ idx, surface }) => { const wb = [...document.querySelectorAll(`#s${idx} .he-text .wb`)].find((x) => { const w = x.querySelector(".w"); return w && w.textContent.normalize("NFC") === surface.normalize("NFC"); }); wb.scrollIntoView({ block: "center" }); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }, { idx: where.i, surface });
 const t0 = Date.now(); while (Date.now() - t0 < 12000 && !(await p.$("#hud .r-pills button"))) await p.waitForTimeout(60);
 await p.waitForTimeout(600);
-const card = await p.evaluate(() => ({ pool: window.__pool, lead: window.__poolLead, place: window.__poolPlace, pressed: [...document.querySelectorAll("#hud .b-read .r-pills button")].map((x) => x.getAttribute("aria-pressed") === "true"), notes: [...document.querySelectorAll("#hud .b-read > *:not(.r-pills), #hud .kq-role")].map((x) => x.textContent.replace(/\s+/g, " ").trim().slice(0, 200)).filter(Boolean) }));
-console.log("card:", JSON.stringify(card, null, 1).slice(0, 2500));
+const card = await p.evaluate(() => ({ pool: window.__pool, lead: window.__poolLead, by: window.__poolBy, overlay: window.__poolOv, place: window.__poolPlace, pressed: [...document.querySelectorAll("#hud .b-read .r-pills button")].map((x) => x.getAttribute("aria-pressed") === "true"), notes: [...document.querySelectorAll("#hud .b-read > *:not(.r-pills), #hud .kq-role")].map((x) => x.textContent.replace(/\s+/g, " ").trim().slice(0, 200)).filter(Boolean) }));
+// the pills in the card's order, one line each: the reading, its first record, every source behind it, and its overlay if it has one
+console.log("pills:");
+(card.pool || []).forEach((t, i) => console.log(`  ${String(i + 1).padStart(2)} ${card.pressed[i] ? "*" : " "} ${JSON.stringify(t)} · first ${card.lead[i]} · behind it ${card.by[i]}${card.overlay[i] ? ` · overlay ${card.overlay[i]}` : ""}${card.place[i] ? " · the place's own" : ""}`));
+console.log("notes:", JSON.stringify(card.notes, null, 1).slice(0, 1500));
 await b.close();

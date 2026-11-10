@@ -10,6 +10,8 @@ const argv = process.argv.slice(2);
 const ls = []; for (let i = argv.indexOf("--ls"); i > -1; i = argv.indexOf("--ls")) { ls.push(argv[i + 1]); argv.splice(i, 2); }
 const flag = (f, d) => { const i = argv.indexOf(f); if (i < 0) return d; const v = argv[i + 1]; argv.splice(i, 2); return v; };
 const LIMIT = Number(flag("--limit", "1000000")), SHOW = Number(flag("--show", "8"));
+// [--dump <file>]: every case asked, with the line it read and the card's first and pressed readings, as JSON
+const DUMP = flag("--dump", null), dumped = [];
 const [reader, base, book, casesPath] = argv;
 const cases = JSON.parse(readFileSync(casesPath, "utf8")).slice(0, LIMIT);
 const { loadPlaywright, launchOptions } = await import(pathToFileURL(join(reader, "tools", "playwright-v1.mjs")).href);
@@ -90,8 +92,10 @@ for (const one of cases) {
   const leadLabel = card.lead && LABELS[card.lead] ? LABELS[card.lead] : null;
   let creditSame = null;
   if (same) { if (!before.chipTitle || !leadLabel) out.credit_unread += 1; else { creditSame = before.chipTitle.startsWith(leadLabel); if (creditSame) out.credit_agree += 1; else out.credit_differ += 1; } }
+  dumped.push({ surface, at: where.label, line: norm(before.line), chip: before.chipTitle || "", first: norm(card.first), pressed: norm(card.pressed), lead: card.lead });
   if (out.rows.length < SHOW && (!same || creditSame === false)) out.rows.push({ surface, at: where.label, line: norm(before.line), first: norm(card.first), pressed: norm(card.pressed), title: before.title, chip: (before.chipTitle || "").slice(0, 110), lead: `${card.lead} ${leadLabel}`, prov: card.prov });
 }
 await b.close();
+if (DUMP) (await import("node:fs")).writeFileSync(DUMP, JSON.stringify(dumped, null, 1));
 console.log(`${book} · ${ls.join(" ") || "resting switches"} · ${out.asked} surfaces asked · ${out.found} found at a place · line and first reading agree at ${out.agree}, differ at ${out.differ} · where they agree, the credit agrees at ${out.credit_agree}, differs at ${out.credit_differ}, was not read at ${out.credit_unread} · in a maqaf run and not asked ${out.in_a_run} · a card of several words ${out.card_of_several_words} · no card ${out.no_card} · no line ${out.no_line} · no place ${out.no_place}${errors.length ? ` · page errors ${errors.length}: ${errors[0]}` : ""}`);
 for (const r of out.rows) console.log(`   ${r.at} ${r.surface}: line ${JSON.stringify(r.line)} · first ${JSON.stringify(r.first)} · pressed ${JSON.stringify(r.pressed)}\n      the line's chip ${JSON.stringify(r.chip)} · the card credits ${JSON.stringify(r.lead)}`);
