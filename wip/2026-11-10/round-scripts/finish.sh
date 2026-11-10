@@ -9,6 +9,8 @@ node tools/bake-search-index-v1.mjs > /dev/null && node tools/build-chain-book-v
 node tools/emit-pointing-grade-recount-v1.mjs > /dev/null
 node tools/repin-zone-store-v1.mjs .
 node tools/check-c0-refusals-v1.mjs --write | grep -E "PASS|REFUSED" | head -2
+# the count receipt, written again from the zones' own stamps every round (it went stale once: a work served and not in it)
+node tools/check-bookword-count-v1.mjs --write | grep -E "FAIL|receipt written|stamps:" | head -4
 cp data/serve-gate-receipt-v1.json $S/v26/receipt-new.json
 git show HEAD:reader/data/serve-gate-receipt-v1.json > $S/v26/receipt-head.json
 python3 -I - "$S/v26/receipt-head.json" "$S/v26/receipt-new.json" data/serve-gate-receipt-v1.json <<'PY'
