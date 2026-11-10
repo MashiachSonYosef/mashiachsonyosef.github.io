@@ -20,7 +20,17 @@ A correction: this table was headed "What is live" from 18:50 UTC, when the comm
 | Pushed | 21:08 UTC |
 | Live | since 21:09 UTC, on the first deployment attempt (69 seconds); the live check passed at 21:10 UTC |
 
-What it fixed, how each was measured and proven, what it left for the owner and what is not done: `round-two/ROUND-TWO-2026-11-10.md`. The letter for the corpus lane: `../FOR-MOSES-2026-11-10-round-two-records-and-verse-lists.md`.
+What it fixed, how each was measured and proven, what it left for the owner and what is not done: `round-two/ROUND-TWO-2026-11-10.md`.
+
+## The third, small round
+
+| | |
+|---|---|
+| `main` | 2a92ca6ed544ea230591788ba1fc28881c1782bf |
+| `gh-pages` | 9299ebfb0875536a1720539fd78e80263fad8940 ("gh-pages follows main") |
+| Live | since 21:31 UTC, first attempt (63 seconds); the live check passed at 21:31:52 UTC |
+
+Three tools, no served file: the door's records are read or the build refuses, the search index counts its shards, three sorts stop asking the machine's locale. Section 10 of the second round's notes. **This is what the site serves as of this note.** The letter for the corpus lane: `../FOR-MOSES-2026-11-10-round-two-records-and-verse-lists.md`.
 
 ## What shipped
 
