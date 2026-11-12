@@ -3048,6 +3048,22 @@
   // the 39 books, 4,129 of them in the first book.
   let openVerse = null;                 // the label of the verse the open card stands in
   const WORD_VERSE = new WeakMap();     // a word of the zone -> its verse's label
+  // THE WORD A POOL IS ASKED FOR. The card asks for the word standing open
+  // (openPointed, openKey, openVerse, set as it opens). The line a source
+  // switch repaints and the exported file ask for a word the reader may never
+  // have opened, and they name it (opts.word: its pointed surface s, its own
+  // key k, its verse v). Until 10 November 2026 the pool read the open card's
+  // word from the page's memory whoever asked, so a line read live was gated
+  // by no pointing at all, or by the pointing of whichever card was opened
+  // last on the same letters (Amos with four sources off: «bases» under
+  // Adonai, «Domesticated» under "from the house of", «to stage» under "in
+  // the days of", none of them on the word's own card). The pointing is
+  // asked only under the word's own key: a pool asked under a headword's key
+  // holds that headword's rows.
+  const NO_WORD = { pointed: null, verse: null };
+  const askedWord = (surface, named = null) => (named
+    ? (named.s && surface && surface === named.k ? { pointed: named.s, verse: named.v ?? null } : NO_WORD)
+    : (openPointed && surface && surface === openKey ? { pointed: openPointed, verse: openVerse } : NO_WORD));
   const versesOwn = (gr, verse) => (gr && gr.v && verse != null && Object.prototype.hasOwnProperty.call(gr.v, verse) ? gr.v[verse] : null);
   const citingCards = (gr, verse) => { const own = versesOwn(gr, verse); return own ? own.n : (gr ? gr.n : []); };
   // the baked leader of a lattice order for a surface at a verse (null: none)
@@ -5181,9 +5197,9 @@
   // record the card's foot shows. everySource: ask the pool with the switches
   // lifted (poolFor). An answer with miss set found nothing to cite under
   // this key, so another may be asked.
-  const attributionFor = async (surface, shownText, at = null, named = null, everySource = false) => {
+  const attributionFor = async (surface, shownText, at = null, named = null, everySource = false, word = null) => {
     let pool = null;
-    try { pool = await poolFor(surface, { ...(at && spanJoin(at.text) === shownText ? { place: at } : {}), everySource }); }
+    try { pool = await poolFor(surface, { ...(at && spanJoin(at.text) === shownText ? { place: at } : {}), everySource, ...(word ? { word } : {}) }); }
     catch { return { ok: false, unreachable: true, why: "the catalog could not be reached for this form; export again" }; }
     if (!pool || !pool.length) return { ok: false, miss: true, why: "no record in the catalog for this form" };
     // every pill that prints the words shown: the store keeps "name" and
@@ -5287,7 +5303,20 @@
         const named = ruled ? lineNamed(wb.querySelector(".g")) : null;
         const tries = keys.map((k) => [k, false]).concat(named && sourcesOff.size ? keys.map((k) => [k, true]) : []);
         let a = null, missed = null;
-        for (const [k, every] of tries) {
+        // AN UNRULED LINE IS ASKED FIRST OF THE POOL ITS WORD'S OWN CARD STANDS
+        // ON: the word is named, so its pointing gates the pool as it gates
+        // the card, and the record cited is the one the card's foot shows.
+        // The whole pool was asked for every word, so a reading could be
+        // credited to an older record of a source that points the word
+        // otherwise, one the card withholds. A reading that pool does not
+        // hold is asked of the whole pool next, as before, so what the file
+        // found until now it still finds; a ruled line goes straight there,
+        // as a ruling outranks the pointing as it outranks a switch.
+        if (!ruled && w.s) for (const k of keys) {
+          const r = await attributionFor(k, asked, at, null, false, { s: w.s, k: w.k, v: sec.label ?? null });
+          if (!r.miss) { a = r; break; }
+        }
+        if (!a) for (const [k, every] of tries) {
           const r = await attributionFor(k, asked, at, named, every);
           if (!r.miss) { a = r; break; }
           // the reason kept is the most telling one: a reading found without
@@ -6747,6 +6776,9 @@
   // line under a word asks it when a switch moves the line (repaintLive), so the
   // live line lands where the bake would, and an overlay's reading stands on the
   // card, sorted like any other, not on the line
+  // opts.word: the word the pool is asked for when it is not the one standing
+  // open (askedWord): the line read live and the exporter name theirs, so the
+  // pointing that gates the pool is that word's own
   // opts.everySource: the pool with the source switches lifted, for the
   // exporter only. A reading the reader chose outranks the switch that would
   // withhold it, so the line can show a record the switched pool no longer
@@ -6770,9 +6802,10 @@
     // would be a page deciding what a source said; withholding the row is
     // declining to ask that source about this pointing. Rows the lattice did
     // not grade stay: unknown is not a mismatch. The same guard sortPool
-    // uses — the open word's own pointed surface, and only that.
+    // uses — the asked word's own pointed surface, and only that.
+    const W = askedWord(surface, opts.word || null);
     let routes = all, withheld = 0, attested = false;
-    if (pointingNow(surface === openKey ? openPointed : null) === "only") {
+    if (pointingNow(W.pointed) === "only") {
       // the grade has to be here before the pool is built, not after: a
       // pool built while the sidecar was still arriving is an unfiltered
       // pool, and no later redraw filters it — a redraw re-sorts what was
@@ -6780,7 +6813,7 @@
       // 173 on a word with mismatch cards, because the card re-opened
       // before the lattice landed.
       if (!latticeStore) await latticeReady();
-      const gr = latticeStore && latticeStore.grades && openPointed && surface === openKey ? latticeStore.grades[openPointed] : null;
+      const gr = latticeStore && latticeStore.grades && W.pointed ? latticeStore.grades[W.pointed] : null;
       const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
       // a row that carries its source's own headwords is graded here, by
       // them, against the open word (pointing-grade-rule-v4); a row that does
@@ -6788,11 +6821,11 @@
       // vowels of its own (a title from the catalog) gives the gate nothing to
       // gate on: graded against bare letters, every pointed row would read as
       // pointed otherwise, and the door's card lost every dated source
-      const own = openPointed && surface === openKey && isPointed(openPointed);
+      const own = W.pointed && isPointed(W.pointed);
       if (lat || own) {
         const fpIdx = lat ? new Map(lat.f.map((fp, i) => [fp, i])) : null;
         const gradeOf = (row) => {
-          const sg = own ? gradeRow(row, openPointed) : "-";
+          const sg = own ? gradeRow(row, W.pointed) : "-";
           if (sg !== "-") return sg;
           if (!fpIdx) return "-";
           const m = index.m_sources[row[3]];
@@ -6858,8 +6891,8 @@
     // stems are its pointed surface's in this book (both sources' where they
     // disagree), baked in the lattice sidecar beside its grades.
     let withheldByStem = 0;
-    if (pointingNow(surface === openKey ? openPointed : null) === "only" && latticeStore && openPointed && surface === openKey) {
-      const gr = latticeStore.grades ? latticeStore.grades[openPointed] : null;
+    if (pointingNow(W.pointed) === "only" && latticeStore && W.pointed) {
+      const gr = latticeStore.grades ? latticeStore.grades[W.pointed] : null;
       const st = gr && Array.isArray(gr.st) && gr.st.length ? gr.st : null;
       const rs = st && latticeStore.stems ? latticeStore.stems[surface] : null;
       if (st && rs) {
@@ -6892,8 +6925,8 @@
     // switch above this one, not a rule inside it.
     // overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores
     if (extra.length) {
-      const pointingOnly = attested && pointingNow(surface === openKey ? openPointed : null) === "only" && openPointed && surface === openKey && isPointed(openPointed);
-      const kept = pointingOnly ? extra.filter((row) => gradeRow(row, openPointed) !== "x") : extra;
+      const pointingOnly = attested && pointingNow(W.pointed) === "only" && W.pointed && isPointed(W.pointed);
+      const kept = pointingOnly ? extra.filter((row) => gradeRow(row, W.pointed) !== "x") : extra;
       withheld += extra.length - kept.length;
       extra = kept;
     }
@@ -7009,7 +7042,7 @@
         g.pkl = Math.min(...own.map((row) => Number(row[0])));
       }
     }
-    const pool = sortPool([...groups.values()], surface);
+    const pool = sortPool([...groups.values()], surface, W);
     pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.rows = asked;
     return pool;
   };
@@ -7031,9 +7064,12 @@
   // the word standing open; a record the lattice did not grade sorts after
   // every graded one, and a card whose surface the lattice never graded
   // (a cell of a form, a book without a sidecar) falls through to oldest.
-  const sortPool = (list, surface = null) => {
+  const sortPool = (list, surface = null, asked = null) => {
     const pos = DEF_POS.find((p) => p.id === defOrder) || {};
-    const gr = latticeStore && latticeStore.grades && openPointed && surface && surface === openKey ? latticeStore.grades[openPointed] : null;
+    // the word this pool is sorted for: the one poolFor was asked for, else
+    // the word standing open (a card sorting its own pool again)
+    const W = asked || askedWord(surface);
+    const gr = latticeStore && latticeStore.grades && W.pointed ? latticeStore.grades[W.pointed] : null;
     const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
     const fpIdx = lat ? new Map(lat.f.map((fp, i) => [fp, i])) : null;
     const idxOf = (row) => {
@@ -7056,8 +7092,8 @@
     // the grade of one record: its own headwords against the open word when
     // it carries them (pointing-grade-rule-v4), the lattice card's grade
     // otherwise, "-" when neither can say
-    const own = openPointed && surface && surface === openKey;
-    const gradeOf = (row) => { const sg = own ? gradeRow(row, openPointed) : "-"; if (sg !== "-") return sg; const i = idxOf(row); return i >= 0 ? (gr.g[i] || "-") : "-"; };
+    const own = W.pointed;
+    const gradeOf = (row) => { const sg = own ? gradeRow(row, W.pointed) : "-"; if (sg !== "-") return sg; const i = idxOf(row); return i >= 0 ? (gr.g[i] || "-") : "-"; };
     // whether anything here is graded at all: the lattice's card, or rows
     // that brought their own headwords
     const graded = !!gr || (own && list.some((r) => rk(r).some(rowCarriesHeadwords)));
@@ -7065,7 +7101,7 @@
     // them earned, and counts as citing, the era's own, or a transliteration
     // if any witness under it is
     const tierOf = (r) => { let best = 3; for (const row of rk(r)) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < best) best = t; } return best; };
-    const citing = gr ? citingCards(gr, openVerse) : [];
+    const citing = gr ? citingCards(gr, W.verse) : [];
     const cites = (r) => (gr && rk(r).some((row) => citing.includes(idxOf(row))) ? 0 : 1);
     const era = (r) => (rk(r).some((row) => CORPUS_OF(row[3]) === "BIBLICAL") ? 0 : 1);
     const outside = (r) => (rk(r).some((row) => { const c = CORPUS_OF(row[3]); return !!c && c !== "BIBLICAL" && c !== "UNDECLARED"; }) ? 0 : 1);
@@ -7094,7 +7130,7 @@
       // pointing, then the ones that agree. Nothing is withheld and nothing
       // is added: the whole pool stands, in the order the switch asked for,
       // and the card says in words that the order moved.
-      if (pointingNow(surface === openKey ? openPointed : null) === "letters") {
+      if (pointingNow(W.pointed) === "letters") {
         if (!graded) return 0;
         const v = (r) => ({ 2: 0, 1: 1, 0: 2 }[tierOf(r)] ?? 3);
         return v(a) - v(b);
@@ -7123,7 +7159,7 @@
       && zone.gloss && zone.gloss[surface] === zone.gloss_names[surface] ? zone.gloss_names[surface] : null;
     const nameYields = () => masorah === "letters"
       || (masorah === "only" && gr && gr.o && gr.o.l && !gr.nl)
-      || (pos.needs === "lattice" && latticeLeader(gr, pos.lattice, openVerse))
+      || (pos.needs === "lattice" && latticeLeader(gr, pos.lattice, W.verse))
       || (pos.needs === "witnessed" && wCol);
     // found among the pills by the printed form, the key the pills are one
     // reading by (readingKey): a pill's text is whichever spelling arrived
@@ -12152,6 +12188,9 @@
     }
     if (table === zone.gloss && !wasRuled && !word.kq) {
       GLOSS_STANDS.push({ ge, ks: regions ? regions.map((r) => r.k) : (word.k ? [word.k] : []),
+        // each key's own pointed surface, and the verse: a line read live asks
+        // the pool for the word itself (repaintLive, askedWord)
+        ss: regions ? regions.map((r) => r.s || null) : (word.k ? [word.s || null] : []), v: WORD_VERSE.get(word) ?? null,
         word: regions && regions.length > 1 ? null : word });
     }
     wb.append(ge);
@@ -12742,7 +12781,10 @@
         // MARKED: the line says the switch's answer is not known yet, its chip
         // names only the carriers still on (a chip naming a switched-off
         // source is wrong, the page's own rule), and it is asked once more
-        try { pool = await poolFor(k, { storeOnly: true }); } catch {
+        // asked for this word itself, under its own key, so its pointing
+        // gates the pool as it gates the word's card
+        const own = st.ss && st.ss[i] && k === st.ks[i] ? { s: st.ss[i], k, v: st.v } : null;
+        try { pool = await poolFor(k, { storeOnly: true, ...(own ? { word: own } : {}) }); } catch {
           if (gen !== switchGen || !st.ge.isConnected) return;
           st.ge.dataset.off = "unreachable";
           st.ge.title = "the catalog could not be reached for this word; what your switches leave of it is not known yet";
