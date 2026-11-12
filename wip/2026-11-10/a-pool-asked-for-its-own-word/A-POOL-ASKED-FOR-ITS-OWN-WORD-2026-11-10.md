@@ -108,4 +108,4 @@ The rest of the readers' list in section 1 of the review: the pairs' ruling keys
 
 The machine this lane works on was restarted several times between 11 and 12 November, before the push. Nothing on disk was lost; the 13 checks that read the changed files were run again and pass.
 
-Pushed on 12 November 2026: `main` dc3254cf4d, `gh-pages` fb63562bab ("gh-pages follows main"). The commit message is `logs/commit-message-dc3254cf.txt`. `check-nothing-unlanded-v1` passes on the pushed tree (321 sources, all landed). SHIP_RESULT
+Pushed on 12 November 2026: `main` dc3254cf4d, `gh-pages` fb63562bab ("gh-pages follows main"). The commit message is `logs/commit-message-dc3254cf.txt`. `check-nothing-unlanded-v1` passes on the pushed tree (321 sources, all landed). The Pages deployment (run 1352) succeeded on its first attempt in 60 s, and the live check (run 50) passed against this build at 22:38 UTC (`logs/p28-deployment-poll.log`).

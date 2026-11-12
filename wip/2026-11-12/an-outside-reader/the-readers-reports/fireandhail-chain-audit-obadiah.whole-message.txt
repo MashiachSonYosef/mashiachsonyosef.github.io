@@ -1,0 +1,55 @@
+# fireandhail.com chain audit — notes (12 Nov 2026)
+
+Everything here was recomputed with Python's hashlib (sha256 over UTF-8 bytes, no normalisation), from files fetched from the live site and from the site's own export. Nothing was taken from the site's word for it.
+
+## Scope
+
+- All 12 chain books: file hashes only.
+- Obadiah: the chain file's insides, checked against the export (whole book) and against the reading page (Hebrew for verses 1:1-1:6; word cards for the 74 words of 1:1-1:6).
+- Not done: the other 11 books beyond file hashes; Obadiah's cards from 1:7 on; the concordance.
+
+## 1. Files as served — 24 of 24 match
+
+For each of the 12 books, `chain-v1.json.gz` and `index.html` were downloaded and hashed. All 24 equal the numbers printed on /chain/.
+
+## 2. Obadiah chain file, internally — consistent
+
+- Recount equals the file's own counts: 21 sections, 291 words, 21 marks, 15,586 links, 7,838 distinct fingerprints, 0 words with no reading.
+- Every 12-digit id used in a cell is in the 64-digit table, every 64-digit value starts with its 12-digit id, and the table has no unused ids.
+
+## 3. Hebrew and section labels — all match
+
+- Section labels ("1:1" ... "1:21") hash to the chain's label fingerprints: 21 of 21.
+- Hebrew from the export, split at spaces and after each maqaf: 312 of 312 cells match (291 words + 21 sof-pasuq marks).
+- Hebrew as the reading page prints it (DOM, verses 1:1-1:6): 80 of 80 cells match.
+
+## 4. Readings: export vs chain — 249 of 278 match directly
+
+The export (two presses: arm, then save; `obadiah-both.md`, 128,555 bytes) lists 278 records for 291 words (13 words have no record in it).
+
+- 249 records: the reading text hashes to a link on that same word. For 248 of them the source label and wording year also equal the chain's carrier and year.
+- 27 records: the export gives the whole record as received ("rock, Sela(-h).", "here; thus"); the chain holds the pieces ("rock", "Sela(-h).", "here", "thus"). The pieces are on the right word. This follows each file's stated rule, but it means the export alone cannot re-derive those fingerprints.
+- 2 records: Jastrow "Jerusalem" at 1:11:12 and 1:20:11 — no matching link on the word.
+- The Jastrow source label the export and page print ("Marcus Jastrow Dictionary via Sefaria structured MongoDB dump") is not among the chain's 35 carriers at all.
+
+## 5. Word cards: page vs chain (1:1-1:6, 74 words) — they do not match link for link
+
+1,915 route pills on the page; 3,729 links in the chain for the same words.
+
+- 1,744 pills hash to a link on the same word. Of these, 1,682 agree with the chain on oldest carrier and year; 62 do not (27 of the 62 are pills the page attributes to Jastrow).
+- 171 pills have no link in the chain:
+  - 36 differ only by a final period (the chain has "yonder.", the card prints "yonder").
+  - 71 are attributed by the page to one of three Jastrow sources (e.g. "to join", "knot" on אמר).
+  - 27 are STEP TAHOT joined forms the page prints with " + " ("of + Edom"); the chain has the same reading as "of/ Edom".
+  - 17 are long Kaikki glosses ("... (defective spelling of ...)"), 10 Cowley Samaritan Liturgy, 3 UBS Dictionary of Biblical Hebrew, 2 Classical Hebrew Words ("Yhwh"; the chain has "YHWH" and "Yahweh").
+  - 4 differ only by capitalisation: the card prints "Promise", "Command", "Little", "SAY"; the chain has the lower-case form on the same word.
+  - 1 is a PanLex gloss joined with " + ".
+- 1,985 chain links have no visible pill. The cards account for most of that themselves: 1,495 "pointed otherwise, withheld" and 201 "switched off" (1,696 together). The remaining gap was not traced.
+- The reading printed under each word is a link on that word for 47 of 74 words. Of the other 27, 26 are the " + " joined forms above and 1 is "Esau" at 1:6, where the chain has "Esau." with the period.
+
+## What this does and does not show
+
+- Custody of the files holds: what /chain/ says it serves is what it serves, and the Hebrew and the labels in Obadiah are exactly the page's.
+- The line from word to reading does not currently go, in every case, where the reading page shows it going. The chain page's own test is that the chain book and the page it mirrors agree in shape; for Obadiah's readings they presently do not.
+- The cause is not visible from outside. The pattern (whole sources present on the page and absent from the chain; display changes such as dropped periods, " + " joins and capitalisation) is what you would see if the reader had moved on since the chain books were built, or if the cards apply layers the chain builder does not.
+- Nothing here says any reading is right or wrong.
