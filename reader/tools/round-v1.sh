@@ -120,7 +120,7 @@ fi
 
 if has records; then
   echo "── records · what the shelf is, judged and sealed ──────────────────────"
-  node tools/emit-pointing-grade-recount-v1.mjs > /dev/null
+  node tools/emit-pointing-grade-recount-v1.mjs --stamp "$STAMP" > /dev/null
   # The gate and the count each write their receipt and then judge it. The
   # receipt is what the next steps read; a law that fails here is printed and
   # the round goes on to the door only if the receipt was written, so the

@@ -15,7 +15,13 @@
 // crossing table says which way they differ. A row without headwords (a v1
 // store) is counted apart and compared nowhere.
 //
-// Run: node tools/emit-pointing-grade-recount-v1.mjs [--store data/route-store] [--out data/pointing-grade-recount-v1.json]
+// THE DAY IS THE ROUND'S (11 November 2026). The record says the day it is
+// of ("on"). It read the clock, so a round run a little past midnight with
+// the stamp of the day before wrote another day into a record whose every
+// count was the same. It is the round's stamp now; with none given, the day
+// the record already carries stands, so a run by hand does not re-date it.
+//
+// Run: node tools/emit-pointing-grade-recount-v1.mjs --stamp YYYY-MM-DD [--store data/route-store] [--out data/pointing-grade-recount-v1.json]
 import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
@@ -59,6 +65,10 @@ export const recountBook = (store, b, cross = {}) => {
 if (startedAs(import.meta.url)) {
   const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
   const STORE = arg("--store", "data/route-store"), OUT = arg("--out", "data/pointing-grade-recount-v1.json");
+  const given = arg("--stamp", null);
+  if (given !== null && !/^\d{4}-\d{2}-\d{2}$/u.test(String(given))) { console.error("--stamp YYYY-MM-DD"); process.exit(2); }
+  const day = given || (() => { try { return JSON.parse(readFileSync(OUT, "utf8")).on || null; } catch { return null; } })();
+  if (!day) { console.error("no --stamp given and no record to keep the day of"); process.exit(2); }
   const store = openRouteStore(STORE);
   const books = {}; const cross = {};
   // a served work the lattice does not cover (the Tikkunei Zohar, on the
@@ -69,7 +79,7 @@ if (startedAs(import.meta.url)) {
   const sum = (k) => Object.values(books).reduce((a, x) => a + x[k], 0);
   const totals = Object.fromEntries(["surfaces", "surface_slots", "surface_differ", "entry_slots", "entry_differ", "rows_without_headwords", "rows_not_in_lattice"].map((k) => [k, sum(k)]));
   const rec = {
-    schema_version: "POINTING_GRADE_RECOUNT_V1", rule: POINTING_GRADE_RULE_ID, on: new Date().toISOString().slice(0, 10),
+    schema_version: "POINTING_GRADE_RECOUNT_V1", rule: POINTING_GRADE_RULE_ID, on: day,
     store: STORE, store_version: store.index.store_version, store_schema: store.index.schema_version,
     axes: { surface_slots: "unique pointed surfaces the lattice graded × store rows under their key that carry headwords and fingerprint to a lattice card", entry_slots: "the same, each surface weighted by the words on the page carrying it (a kq word's other branch counted as its own entry)" },
     what_differs: "the row's own grade (pointing-grade-v1, from [6] against the surface) against the lattice card's grade at the same (surface, text | source)",
