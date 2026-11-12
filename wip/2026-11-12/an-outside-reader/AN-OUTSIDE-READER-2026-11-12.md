@@ -85,7 +85,31 @@ The reader's fourteen cards hold 291 pills on the served build, card for card, i
 
 ## 7. The plain list under a chapter
 
-To be written when the mend is proven.
+**The fault.** Every chapter has an address of its own, and under the reader each carries a plain list of the chapter's readings, for a search engine and for a reader with no script (the door calls it the porch). The door built it from the zone's baked table, oldest witness first. Until 6 November that was also what the reader drew. That day the resting line became the reading of the place's own source, then the pointing's leader, and the list went on printing the table.
+
+**Proven on the live build.** `tools/probes/list-vs-line.mjs` reads the list off a chapter's own address and the lines the reader draws on the same page (`logs/f1-list-vs-line-genesis-1-the-live-build.log`). Genesis 1: the list holds 434 readings and the reader draws 430 lines; the same reading stands in the same place at 205; in none of the 31 verses is the list the line throughout. Verse 1 in the list: "in + beginning · create · judges · sign · the + heavens · and + <obj.> · the + earth". On the line: "in + beginning · he created · God · <obj.> · the + heavens · and + (a gap) · the + earth". Verse 8's "and he called" was, in the list, a line about the third book of the Old Testament.
+
+**Why the check passed.** `check-chapter-pages-v2` P3 held the list to the zone's baked table, which is what the door printed, and in a browser asked that three of one verse's readings be found somewhere on that verse's lines. It held the page to its builder's rule, not to the reader.
+
+**The mend: the list is a recording.** A second copy of the page's rule in a builder would drift from the first, and two copies drifting is the fault. So there is no second copy.
+
+- `tools/edits/37-every-section-built-on-request.mjs`: the page offers its own section builder (`window.__materialise`), the function the whole work's export already uses, so a tool can have every section built with nothing scrolled.
+- `tools/new/resting-lines-v1.mjs`: the one reading of "a line": under a section's Hebrew, every reading element that is drawn and stands in no other, in the page's order; under a word standing alone, its line; under words one card joins, the run's one line, or each word's part where the run reads word by word; the text with the license chip taken off, as the page's export reads it; the credit what the chip itself names.
+- `tools/new/bake-resting-lines-v1.mjs`: opens each served work as a first visit opens it, reads the lines it drew, and keeps one record per work in `data/resting-lines/`. A record names the page it was read off and every file that page asked for, each by its sha256.
+- `tools/edits/38-the-plain-list-is-the-readers-own-lines.mjs`: the door prints the record line by line and refuses a record that names another page or a file that has moved (`chapter-page-rule-v3`).
+- `tools/edits/39-the-round-reads-the-lines-before-the-door.mjs`: the round reads the lines before it builds the door.
+
+**What was read** (`logs/e1-bake-resting-lines-every-work.log`): 40 works, 453,713 words, 400,242 lines. The 39 books: 305,431 words, 302,959 lines, 2,177 of them one line over more than one word, 247 words under no line. The Tikkunei Zohar, in progress: 148,282 words, 97,283 lines. Two of its lines ("middle", twice) are carried by two sources of one label, so the chip names no one source; they are credited by the label in the chip's own words.
+
+**The same page, the new build** (`logs/f1-list-vs-line-genesis-1-the-new-build.log`): 430 of 430 the same, 31 of 31 verses.
+
+**The door refuses** (`tools/probes/door-refuses-stale-lines.sh`, `logs/f3-door-refuses-stale-lines.log`): with `zone.html` one byte longer than when the lines were read, with one data file one byte longer, and with one work's record taken away, the door exits 1 and says which; with everything back it builds.
+
+**The check.** `tools/new/check-chapter-pages-v3.mjs` replaces v2 (`logs/f2-check-chapter-pages-v3.log`): the list is the record on every chapter page (398,550 readings on 1,224 pages, text and credit); the record is of this tree (1,290 file fingerprints taken again); and in a browser, on one chapter of every book, at the chapter's own address, the list is the line (1,007 verses, 13,489 lines), the line is the record, and the browser's own rendering of those lines holds the same characters.
+
+VERIFY_RESULT
+
+TAMPER_RESULT
 
 ## 8. The chain book and the card
 
