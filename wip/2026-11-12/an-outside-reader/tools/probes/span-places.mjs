@@ -29,7 +29,8 @@ for (const f of readdirSync(join(R, "data/span-store")).filter((x) => x.endsWith
     if (!lead) continue;
     places += 1;
     const s = sec.get(p.ref);
-    const words = s ? (s.words || []).slice(p.first - 1, p.last) : [];
+    // the store counts a verse's words with the scribal marks left out (the page's own numbering)
+    const words = s ? (s.words || []).filter((w) => !w.mark).slice(p.first - 1, p.last) : [];
     const own = words.map((w) => (Array.isArray(w.pg) && w.pg.length ? w.pg.map((x) => String(x.g || "").trim()).join(" + ") : null));
     const placed = own.length > 0 && own.every((x) => x !== null && x !== "");
     if (placed) allPlaced += 1;
