@@ -138,4 +138,32 @@ The reader's fourteen cards hold 291 pills on the served build, card for card, i
 
 **With every switch lifted** (the pointing at "keep", every source on, signs printed) the same 74 cards print 3,440 pills; 3,092 are links, 348 are not (202 a dictionary beside the store, 100 the spelling), and 637 links have no pill, most of them on the whole-form rung of a divided word, which the card does not open on.
 
-The mend and its check: to be written when proven.
+**The mend: the chain is a recording of the cards** (13 November). As with the list, a second copy of the page's rule in a builder is what drifted, so there is no second copy.
+
+- `tools/new/card-readings-v1.mjs` is the one reading of a card. A word is pressed as a reader presses it, and the card the page opens is read when its readings have arrived: its rows of buttons with the one pressed, the lines it prints above its pills, and every pill with the year and the source its title says and the sources behind it. Twice, each a visit of its own: at rest, as a first visit finds the page; and with every switch that withholds a reading lifted (the pointing kept whatever a source points, signs printed, every source on). Three things are held in the reading itself: the card's own head must name the word that was pressed; after the walk the lines under the words must be the lines before it, and no word may be ruled; and what the page fetches late is waited for before any card is read.
+- `tools/new/build-chain-book-v2.mjs` replaces v1. It fingerprints what was read and writes each book's file, its page and the index. A file names the page and every file the page asked for, each by its sha256; one that is still of the tree is kept; the index is not written over one that is not; `--verify` reads again and fails on a difference.
+- `tools/new/check-chain-book-v2.mjs` replaces v1 and opens the cards (below).
+- `tools/edits/40-the-chain-is-read-off-the-cards.mjs`: the round reads the chain where the page is whole, after the records and the lines; the search index gets a step of its own; and the comment owed from section 7 is corrected.
+
+**What a link is now.** Under a word, the pills its card prints when the word is pressed, in the card's order, each with the source its title names. Only the word is pressed: a division or a block the card offers and does not open on is named in the file (its button is fingerprinted) and its readings are a press away. The file and its page say so, and count them.
+
+**What was read** (`logs/i5-chain-every-book-read-again.log`, `logs/i10-chain-totals.log`): 12 books, 14,354 words, 25 of them written one way and read another. At rest 435,246 links on 14,341 cards, and 13 cards print none. Lifted, 734,374. 27,865 lines above the pills. 28,758 buttons a press away, on 9,304 cards. 14.8 MB of files and 5.0 MB of pages, where the old chain was 21 MB.
+
+**The reader's audit, repeated on the new chain** (`tools/probes/chain-as-the-reader-audited.mjs`, `logs/i9-the-readers-audit-on-the-new-chain.log`). Obadiah 1:1 to 1:6, 74 words. At rest: 1,915 pills, all 1,915 a link under their word, at the same place in the list, credited to the source the chain names; 1,915 links, none without its pill. Lifted: 3,440 of 3,440, none left over. On the old chain: 1,755 of 1,915, 62 of them credited otherwise, and 1,974 links no pill printed.
+
+**The check** (`logs/i6-check-chain-book-v2.log`, 6 minutes). Offline, on every word of every book: the shape and the corpus fingerprints against the zones; each file is of this tree (6,465 file fingerprints taken again); each hangs together; its counts are what a walk finds; its page prints its first links in order; the index's sha256 of each file is the file's. In a browser, on the middle chapter of every book (2,838 words): every word pressed, its card hashed there, and it is the card the chain holds, at rest (89,878 pills) and lifted (151,245). And by a second road at rest: the pool the page itself says it offered is, pill for pill, what the chain holds (89,263 readings).
+
+**What the check caught in my own first build** (`logs/i4-check-chain-book-v2.log`). The check starts in the middle of a book, and the first word it pressed had no line from the suggested source where the chain had one: 24 cards, the first of each chapter in each state. The page fetches the suggested source's file for a book only when the first card of a visit opens, and opens that card again when the file is here. So my builder, reading from the top, had recorded each book's first word without that line. The reader now opens one card and waits for the file by name before it reads any. Read again after that, all twelve books come out the same bytes (`logs/i8-chain-verify-every-book-read-again.log`).
+
+**Two pills of one card can print one text** (12 in the twelve books). A reading the corpus lane's map classes as a pointer prints the target entry's English, and two that point one way print alike. Behind it is a larger fault that is not the chain's: section 9.
+
+## 9. A pill that points to another entry prints that entry's English in place of its own
+
+Found while recording the cards; measured in `logs/j1-form-of-map.log` (`tools/probes/form-of-map.py`, `tools/probes/form-of-key.py`, `tools/probes/card-of-word.mjs`). The corpus lane's map of pointer readings (`data/form-of-pills-v1.json`, relay v85) resolves 2,236 readings to "the target's first English under the same source", and the pill prints that English with the relation and the target in brackets.
+
+- 712 of them are a pointer and nothing else, which is the owner's "twelve (feminine of ...)".
+- 1,115 say more after the target, and 409 have English of their own first. Their own words are not on the pill.
+- The target is found by its letters alone. "plural indefinite form of חֹמֶר (chómer)" prints «Someone who leads a donkey or donkeys.», the entry of חַמָּר.
+- Hosea 4:14, word 12: English Wiktionary's "they (the third-person masculine plural personal pronoun, masculine plural of הוא)" prints «Used as a copula: is. (masculine plural of הוא)», and so does its "are (...)". Other sources' "they" still stands on the card.
+
+The classes and the resolution are the corpus lane's: `wip/2026-11-13/FOR-MOSES-2026-11-13-a-pointer-pill-prints-another-entrys-english.md`. What a reading with English of its own should print is the owner's call. Nothing on the page was changed for it.
