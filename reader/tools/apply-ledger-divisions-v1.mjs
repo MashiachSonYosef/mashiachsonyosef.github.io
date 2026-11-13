@@ -226,7 +226,9 @@ const setSlots = (row, cuts, prints) => {
   if (!DRY) {
     while (row.length < 7) row.push(null);
     row[7] = now; row[8] = prints;
-    if (!prints) { row.length = 8; if (!now) row.length = 7; }
+    // a row ends where its last slot stands; the slot past these two is the made
+    // spaces' (apply-made-spaces-v1), another tool's, and a row that carries it keeps it
+    if (row.length === 9 && !prints) { row.length = 8; if (!now) row.length = 7; }
   }
   return true;
 };

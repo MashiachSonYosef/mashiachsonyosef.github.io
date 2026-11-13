@@ -2187,6 +2187,17 @@ ${page.sections.join("\n")}
   // and it is a display order and not a claim about the text — the catalogue's
   // own order stands underneath it, unchanged, for anyone who has ruled
   // nothing.
+  // A SPACE OUR OWN BUILD MADE CLOSES WHERE A TEXT PRINTS (made-spaces-rule-v1:
+  // the places a row names in row[9], for its route text and for its
+  // definition text). The reader's page and tools/gloss-store-v1.mjs carry
+  // the same three functions under the same names.
+  function closed(text, places) {
+    var out = "", at = 0, i;
+    for (i = 0; places && i < places.length; i += 1) { out += text.slice(at, places[i]); at = places[i] + 1; }
+    return out + text.slice(at);
+  }
+  function routePrinted(row) { return closed(String(row[1] == null ? "" : row[1]), row[9] ? row[9][0] : null); }
+  function recordPrinted(row) { return row[2] ? closed(String(row[2]), row[9] ? row[9][1] : null) : routePrinted(row); }
   var RULED_KEY = "fh.door.ruled";
   var RULED = (function () {
     try { return JSON.parse(localStorage.getItem(RULED_KEY) || "{}") || {}; } catch (e) { return {}; }
@@ -2223,7 +2234,7 @@ ${page.sections.join("\n")}
   }
   function rule(key, row) {
     var m = (storeIndex && storeIndex.m_sources ? storeIndex.m_sources : {})[row[3]] || {};
-    var r = { text: row[1], lic: licName(m.licensePosture), m: m.label || row[3], mid: row[3],
+    var r = { text: routePrinted(row), lic: licName(m.licensePosture), m: m.label || row[3], mid: row[3],
               year: row[4] && row[4] !== "S_NO_SOURCE_YEAR" ? row[4] : "" };
     RULED[key] = r;
     try { localStorage.setItem(RULED_KEY, JSON.stringify(RULED)); } catch (e) { /* a reader who blocks storage still rules this page, just not the next one */ }
@@ -2239,12 +2250,12 @@ ${page.sections.join("\n")}
   // selection and repaints the record; nothing else on the door moves.
   function paint(rows, idx, idx0) {
     var r = rows[idx], m = (storeIndex.m_sources || {})[r[3]] || {};
-    wcard.querySelector(".r-now .v").textContent = r[1];
+    wcard.querySelector(".r-now .v").textContent = routePrinted(r);
     [].slice.call(wcard.querySelectorAll(".r-pills button")).forEach(function (b, i) {
       b.setAttribute("aria-pressed", i === idx ? "true" : "false");
     });
     var body = wcard.querySelector(".d-body");
-    body.textContent = r[2] || r[1];
+    body.textContent = recordPrinted(r);
     var foot = wcard.querySelector(".d-foot");
     foot.replaceChildren();
     foot.append((m.label || r[3]) + (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? " \u00b7 wording " + r[4] + " AD" : ""));
@@ -2267,12 +2278,12 @@ ${page.sections.join("\n")}
     // readings on the declaration's own marks — Strong's alone splits into
     // nineteen for one form — and every piece carries that provider's single
     // record. Counting rows called one source eighteen; the grouper is M.
-    var D = r[2] || r[1] || "";
+    var D = recordPrinted(r);
     var also = [], seenM = {};
     seenM[r[3]] = 1;
     for (var j = 0; j < rows.length; j += 1) {
       if (j === idx) continue;
-      if ((rows[j][2] || rows[j][1] || "") !== D) continue;
+      if (recordPrinted(rows[j]) !== D) continue;
       if (seenM[rows[j][3]]) continue;
       seenM[rows[j][3]] = 1;
       also.push(j);
@@ -2290,7 +2301,7 @@ ${page.sections.join("\n")}
       var c2 = document.createElement("span"); c2.className = "lic-chip";
       c2.textContent = licName(mj.licensePosture); btn.append(c2);
       var rd = document.createElement("span"); rd.className = "d-also-read";
-      rd.textContent = "reads it \u201c" + rows[j][1] + "\u201d";
+      rd.textContent = "reads it \u201c" + routePrinted(rows[j]) + "\u201d";
       btn.append(rd);
       btn.addEventListener("click", function (ev) { ev.stopPropagation(); paint(rows, j); });
       return btn;
@@ -2305,7 +2316,7 @@ ${page.sections.join("\n")}
       restJ.forEach(function (j, i2) {
         var mj = (storeIndex.m_sources || {})[rows[j][3]] || {};
         var o = document.createElement("option"); o.value = String(i2);
-        o.textContent = (mj.label || rows[j][3]) + " \u00b7 " + rows[j][4] + " \u00b7 reads it \u201c" + rows[j][1] + "\u201d";
+        o.textContent = (mj.label || rows[j][3]) + " \u00b7 " + rows[j][4] + " \u00b7 reads it \u201c" + routePrinted(rows[j]) + "\u201d";
         sel.append(o);
       });
       sel.addEventListener("change", function (ev) {
@@ -2384,7 +2395,7 @@ ${page.sections.join("\n")}
           ordered.forEach(function (r, i) {
             var m = (idx.m_sources || {})[r[3]] || {};
             var b = document.createElement("button");
-            b.type = "button"; b.textContent = r[1];
+            b.type = "button"; b.textContent = routePrinted(r);
             b.setAttribute("aria-pressed", "false");
             var cls = CORPUS[r[3]];
             b.title = (r[4] && r[4] !== "S_NO_SOURCE_YEAR" ? "wording " + r[4] + " AD \u00b7 " : "") + (m.label || r[3])

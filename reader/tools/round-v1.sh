@@ -34,7 +34,8 @@
 # after the records and the lines.
 #
 # WHAT IT DOES NOT RUN: the tools that change the store itself (the ledgers'
-# divisions, the sources' years, a strike, a landing). Each of those writes a
+# divisions, the sources' years, the made spaces' closes, a strike, a
+# landing). Each of those writes a
 # receipt of what it did to the rows, and run again over a store that already
 # carries its work it writes a receipt of having done nothing over the one
 # that says what was done (measured 10 November 2026: "rows whose slot moved"

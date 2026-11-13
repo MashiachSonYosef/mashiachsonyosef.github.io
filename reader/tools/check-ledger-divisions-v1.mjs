@@ -45,7 +45,7 @@ import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { openRouteStore } from "./gloss-store-v1.mjs";
+import { openRouteStore, routePrinted } from "./gloss-store-v1.mjs";
 import { printOf, PRINT_RULES } from "./ledger-print-v1.mjs";
 import { printUnder, kindOf, stepsOf } from "./ledger-print-from-declaration-v1.mjs";
 // a print rule is the hand table's entry, or (ask v1.2) the option the declaration carries the step on
@@ -249,7 +249,7 @@ if (!ONLY || ONLY === "D4") {
   const grab = (head, end) => { const a = zone.indexOf(head); if (a < 0 || zone.indexOf(head, a + 1) >= 0) throw new Error(`zone.html does not hold exactly one "${head.trim()}"`); const b = zone.indexOf(end, a); return zone.slice(a, b + end.length); };
   let pageFn = null, why = "";
   try {
-    pageFn = new Function("index", `${grab("\n  const readingsOfRow = (row) => {\n", "\n  };\n")} return readingsOfRow;`)(index);
+    pageFn = new Function("index", `${grab("\n  const closed = (text, places, from = 0, to = text.length) => {\n", "\n  };\n")}${grab("\n  const readingsOfRow = (row) => {\n", "\n  };\n")} return readingsOfRow;`)(index);
   } catch (e) { why = e.message; }
   const faults = []; let rows = 0;
   if (pageFn) {
@@ -338,22 +338,23 @@ if (!ONLY || ONLY === "D5") {
   const pw = await loadPlaywright();
   // a served word whose ledgered row has no slot and carries a comma outside its parentheses (the old comma rule would have cut it; its ledger keeps it whole)
   const pick = findWord(zonesServed, (rows) => rows.find((r) => {
-            if (!index.m_sources[r[3]].ledger || Array.isArray(r[7]) || Array.isArray(r[8]) || !/,/u.test(String(r[1])) || outside(String(r[1]), ";").length !== 1) return false;
+            const route = routePrinted(r);   // the route as it prints: a made space closed (made-spaces-rule-v1)
+            if (!index.m_sources[r[3]].ledger || Array.isArray(r[7]) || Array.isArray(r[8]) || !/,/u.test(route) || outside(route, ";").length !== 1) return false;
             // a list of short glosses, so every comma piece is a piece and none is the whole text
-            const whole = String(r[1]).trim().toLowerCase();
-            const pieces = outside(String(r[1]), ",").map((x) => x.toLowerCase());
+            const whole = route.trim().toLowerCase();
+            const pieces = outside(route, ",").map((x) => x.toLowerCase());
             if (pieces.length < 2 || pieces.includes(whole)) return false;
             // no other row under this key offers any of those pieces, nor the whole text,
             // compared as the card prints a pill (a closing stop dropped, "/" as " + "):
             // Strong's «Dibri.» prints «Dibri», the comma piece of its own «Dibri , an Israelite»
             const disp = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "").toLowerCase();
             const others = new Set(rows.filter((o) => o !== r).flatMap((o) => store.readingsOf(o).map(disp)));
-            return pieces.every((pc) => !others.has(disp(pc))) && !others.has(disp(String(r[1]).trim()));
+            return pieces.every((pc) => !others.has(disp(pc))) && !others.has(disp(route.trim()));
           }));
   if (!pick) check("D5  a ledgered row with a comma and no slot stands on the page as its ledger says", false, "no served word carries such a row");
   else {
     const { opened, got } = await pillsOnCard(pw, launchOptions, defaultZoneUrl, pick);
-    const whole = String(pick.row[1]).trim();
+    const whole = routePrinted(pick.row).trim();
     const pieces = outside(whole, ",").filter((pc) => pc.trim().toLowerCase() !== whole.toLowerCase());
     const wholeShown = got ? got.some((t) => t.toLowerCase() === whole.toLowerCase().replace(/\/\s*/gu, " + ").replace(/\.$/u, "") || t.toLowerCase() === whole.toLowerCase()) : false;
     const pieceShown = got ? pieces.some((pc) => got.some((t) => t.toLowerCase() === pc.toLowerCase())) : false;

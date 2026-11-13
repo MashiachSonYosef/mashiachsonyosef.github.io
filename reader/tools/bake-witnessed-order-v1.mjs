@@ -54,7 +54,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { join, basename } from "node:path";
-import { openRouteStore } from "./gloss-store-v1.mjs";
+import { openRouteStore, routePrinted } from "./gloss-store-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 
 export const RULE = "witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit";
@@ -109,7 +109,8 @@ for (const [order] of COLUMNS) {
     }
     const line = readings[0];
     col[k] = line; mcol[k] = M;
-    if (line !== text) cut += 1; else whole += 1;
+    // whole where the line is the shipped text as it prints: a made space in a row's route closes there (made-spaces-rule-v1)
+    if (line !== (String(row[1]) === text ? routePrinted(row) : text)) cut += 1; else whole += 1;
   }
   zone.gloss_orders[order] = col;
   zone.gloss_m_orders[order] = mcol;
