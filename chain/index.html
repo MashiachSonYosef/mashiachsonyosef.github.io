@@ -37,7 +37,6 @@
  .w li i { font-style:normal; color:var(--faint); padding-left:.4rem; font-size:.7rem; }
  .w .none { margin:.15rem 0 0; font-size:.72rem; color:var(--faint); }
  .w li.more { color:var(--faint); font-size:.7rem; }
- .w .h { margin:.25rem 0 0 .5rem; border-left:1px solid var(--line); padding-left:.45rem; }
  footer { margin-top:2rem; font-size:.72rem; color:var(--faint); line-height:1.6; max-width:44rem; }
  a { color:var(--muted); }
  ul.books { list-style:none; margin:.2rem 0 0; padding:0; }
@@ -50,91 +49,93 @@
  p.away { font-size:.76rem; color:var(--muted); line-height:1.6; max-width:44rem; margin:1.4rem 0 0; border-top:1px solid var(--line); padding-top:.8rem; }
 </style></head><body><div class="wrap">
 <h1>the chain</h1>
-<p class="lede">These are books this site serves, with the meaning taken out. Every word is the fingerprint of its own bytes, every reading is the fingerprint of its own text, and the line between them is the line a reader is shown on the reading page. <b>Nothing in them is written by this project.</b> Strip the language away and only the joins are left, so a stranger can walk a whole book without reading a sentence of our prose or believing any of it.</p>
+<p class="lede">These are books this site serves, with the meaning taken out. Every word is the fingerprint of its own bytes, every reading is the fingerprint of its own text, and the links under a word are what that word's card prints when a reader presses it, read off the reading page itself. <b>Nothing in them is written by this project.</b> Strip the language away and only the joins are left, so a stranger can walk a whole book without reading a sentence of our prose or believing any of it.</p>
 <p class="lede">The two numbers under each book are the sha256 of the files themselves, as served. Download one, hash it, compare. If it matches, everything inside it is the copy this page stands behind — and every fingerprint inside it can be recomputed the same way, with a tool that is not ours.</p>
-<p class="nums">12 books · 14,354 words · 810,162 links · 20.9 MB</p>
+<p class="nums">12 books · 14,354 words · 435,246 links at rest · 734,374 with the switches lifted · 18.8 MB</p>
 <details class="recipe"><summary>how to recompute any number on this page</summary>
 <dl>
 <dt>the function</dt><dd>sha256 over the UTF-8 bytes of the string, with no normalisation, no trimming and no case folding. A book's pages print the first 12 hex digits; all 64 for every one of them are in that book's chain-v1.json.gz. The two numbers on this page are sha256 over the FILES, byte for byte as served.</dd>
-<dt>a word</dt><dd>the Hebrew as the reading page prints it — vowels, cantillation and all, the licensed text untouched.</dd>
-<dt>a reading</dt><dd>the reading's English text as the card prints it, joined to the word by the same rule the reading page joins them by.</dd>
+<dt>a word</dt><dd>the Hebrew as the reading page prints it: vowels, cantillation and all, the licensed text untouched.</dd>
+<dt>a reading</dt><dd>a pill's text exactly as the word's card prints it. Open the reading page, press a word, hash each pill: those are the links under that word, credited to the source the pill's title names.</dd>
+<dt>at rest, and lifted</dt><dd>the cards were read twice: as a first visit finds the page, and with every switch that withholds a reading lifted. Each book's file holds both.</dd>
+<dt>what is not here</dt><dd>only the word is pressed. A division or a block the card offers and does not open on is named in the file and its readings are a press away.</dd>
 <dt>what it proves</dt><dd>custody: the bytes served are the bytes received, and the line from a word to a reading goes where this site says it goes.</dd>
 <dt>what it does not prove</dt><dd>that any dictionary is right. A fingerprint is a fact about a file, never about the truth of what the file says.</dd>
 </dl></details>
 <ul class="books">
 <li>
    <a href="amos/">amos</a>
-   <span class="c"><b>146</b> sections · <b>2,042</b> words · <b>115,193</b> links · <b>25,976</b> distinct fingerprints · 2768 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;dfa37cf857974544f183cb413a91b34e6e06a02e37b84b6e4ccf1fa56d80ae74</span>
-   <span class="fp">index.html &nbsp;c0e11882bb460b246a763dc5f75e46ffc9af9611e6a1aedeb09132ce160d02a7</span>
+   <span class="c"><b>146</b> sections · <b>2,042</b> words · <b>61,759</b> links at rest · <b>103,877</b> with the switches lifted · <b>26,362</b> distinct fingerprints · 2367 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;67343a94525d664081f49a6e1b8e536436100562b3fc068649c3b3a0a33c408b</span>
+   <span class="fp">index.html &nbsp;6a479c80d54f9649ca7435d08bcc1ba33d49ec37e4f4d5c47d3666d19ee5b53e</span>
   </li>
 <li>
    <a href="habakkuk/">habakkuk</a>
-   <span class="c"><b>56</b> sections · <b>671</b> words · <b>36,861</b> links · <b>16,943</b> distinct fingerprints · 1239 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;ca074cdc69aebef9dc2e0a1fec3ea64f68af82985212ae99b30be81f3b095a58</span>
-   <span class="fp">index.html &nbsp;b2766d39d0618dd4f66be3f8193806ecdd002bd2cee83933aa2252d7f7c14ed9</span>
+   <span class="c"><b>56</b> sections · <b>671</b> words · <b>20,232</b> links at rest · <b>32,971</b> with the switches lifted · <b>17,036</b> distinct fingerprints · 1225 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;848a9b8803a5c9a96f30f68b5d1e92794f86e6578521d584dbd6b7350e44b2a7</span>
+   <span class="fp">index.html &nbsp;7eca4761134dd77f7f469c6f3a4447e77adf4cfee6b427f3092f965f57a18cc4</span>
   </li>
 <li>
    <a href="haggai/">haggai</a>
-   <span class="c"><b>38</b> sections · <b>600</b> words · <b>34,416</b> links · <b>10,928</b> distinct fingerprints · 957 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;4dc552a5fa3cbad54422d11eb955440f154a292f27a8db3c0755b53b4c18a6cc</span>
-   <span class="fp">index.html &nbsp;8188fe693988088f83eb9c8acc347173599e601939666dfd87257388c7f8ca68</span>
+   <span class="c"><b>38</b> sections · <b>600</b> words · <b>16,849</b> links at rest · <b>31,318</b> with the switches lifted · <b>10,750</b> distinct fingerprints · 839 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;7b58c77c3f42f4e0262267c97e1799cfbccf5924937bf4956e0eec934d10ed9b</span>
+   <span class="fp">index.html &nbsp;84ef53f85257d3391326575818c7e7bb4a9fb230fbcbb32ac83aa58fc62104f8</span>
   </li>
 <li>
    <a href="hosea/">hosea</a>
-   <span class="c"><b>197</b> sections · <b>2,381</b> words · <b>129,241</b> links · <b>30,933</b> distinct fingerprints · 3218 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;4a2e5ef5252fb6c1cb88bdc62d6968910a243c084662f61133c43e8e3ca7de7b</span>
-   <span class="fp">index.html &nbsp;03b61b0d3f782541b96b423a68d75f6936b52d2168a1acbe69e82f4a46198936</span>
+   <span class="c"><b>197</b> sections · <b>2,381</b> words · <b>69,645</b> links at rest · <b>114,132</b> with the switches lifted · <b>32,021</b> distinct fingerprints · 2904 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;076e7f37971a43521aa2ef1eb3b7bc80c03976bad76a58513cf2fe95142f3189</span>
+   <span class="fp">index.html &nbsp;921444e4c77ff59dabd138b055b4961052815a0ada9e04d94ff25964ccf335e6</span>
   </li>
 <li>
    <a href="joel/">joel</a>
-   <span class="c"><b>73</b> sections · <b>957</b> words · <b>52,469</b> links · <b>18,714</b> distinct fingerprints · 1538 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;f35a7aff2f9926e6480a476cda1d58cb5e6c3299a37a436eb7f501b32aa70be4</span>
-   <span class="fp">index.html &nbsp;bc6e47179b700333768a2e8a6f760d88d3f3babb2e16cf9f2f24f5a796003611</span>
+   <span class="c"><b>73</b> sections · <b>957</b> words · <b>30,322</b> links at rest · <b>49,933</b> with the switches lifted · <b>18,993</b> distinct fingerprints · 1493 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;689c477aa1aabee358cf5191d0ab727183f543a2254cb80ef65eb9b4721e54c7</span>
+   <span class="fp">index.html &nbsp;5de5a8e1747913f3bd2e69f0f6d0688c3a67717a4de720c724acd34d06cdb26c</span>
   </li>
 <li>
    <a href="jonah/">jonah</a>
-   <span class="c"><b>48</b> sections · <b>688</b> words · <b>43,249</b> links · <b>13,439</b> distinct fingerprints · 1160 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;3afdf2b7566ae37935fa5d2b290e22336ee7641d814fb3c8a7bf7f87794db301</span>
-   <span class="fp">index.html &nbsp;4fdc3b945436538d64316f4adb01eddf37a61fc43429031773c769ac97df397c</span>
+   <span class="c"><b>48</b> sections · <b>688</b> words · <b>21,825</b> links at rest · <b>38,096</b> with the switches lifted · <b>12,563</b> distinct fingerprints · 991 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;0ab6aabcc270720099b6d9c8964d971b0ac08c4ac31cec4efa8cd732536f5dd1</span>
+   <span class="fp">index.html &nbsp;a9e0a12f51d49d421d9deddea969cf1d2fb9159b43413409c45b6521bac5a047</span>
   </li>
 <li>
    <a href="malachi/">malachi</a>
-   <span class="c"><b>55</b> sections · <b>876</b> words · <b>54,858</b> links · <b>17,041</b> distinct fingerprints · 1478 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;5491b458bd84490c464aff3dd3dceaebb4df5ac09b19b75b30d751f9dcb28360</span>
-   <span class="fp">index.html &nbsp;dbffe1376981e051db7b413caafdb2d904f3e4a5c993a1a023acded3373c9822</span>
+   <span class="c"><b>55</b> sections · <b>876</b> words · <b>29,689</b> links at rest · <b>50,514</b> with the switches lifted · <b>17,212</b> distinct fingerprints · 1357 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;96d1ebd53f44ae1051de3c84b543f5e16d1a33e1f57c7779b9220f681bab514e</span>
+   <span class="fp">index.html &nbsp;6cd23f5c122fde6102502bab263d81baf3ff4063c508464677bb5d143caa8907</span>
   </li>
 <li>
    <a href="micah/">micah</a>
-   <span class="c"><b>105</b> sections · <b>1,396</b> words · <b>76,747</b> links · <b>25,235</b> distinct fingerprints · 2181 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;7b2685e4b84855f83a7d4e245fc5848a21ff9c79e4696dc63c45d42cf36b122a</span>
-   <span class="fp">index.html &nbsp;9d7c27f17b1e9d71a8e25bd06113e64bb0795ff1ea1a99e4dd09f45eb47b3f35</span>
+   <span class="c"><b>105</b> sections · <b>1,396</b> words · <b>43,390</b> links at rest · <b>71,171</b> with the switches lifted · <b>25,412</b> distinct fingerprints · 2061 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;75d282a7b68eb82a7e30bae94441351c2d8aff339ff27ffaa0b1a0308e6cdcaf</span>
+   <span class="fp">index.html &nbsp;1e9ad56a5277a83fca122b37c6555bcc42d9159fa2d8857e49460ae5e97a4531</span>
   </li>
 <li>
    <a href="nahum/">nahum</a>
-   <span class="c"><b>47</b> sections · <b>558</b> words · <b>27,710</b> links · <b>14,988</b> distinct fingerprints · 1044 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;dc8d56220185e6f2cd13fdc05df0b329a97909416e3abb9d473adeddf00fb616</span>
-   <span class="fp">index.html &nbsp;cdeb658dad3cfae83765c572155e15a4d1b88507728769b474064399d54b7b60</span>
+   <span class="c"><b>47</b> sections · <b>558</b> words · <b>15,952</b> links at rest · <b>25,978</b> with the switches lifted · <b>15,534</b> distinct fingerprints · 1071 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;2afb942cf6dfe6fa53e954a8c82f8bf62f4d207ba3aed1b044ee3a4b57c5768c</span>
+   <span class="fp">index.html &nbsp;8706abd6cd72336fd3f252fe7e651331ee280bc6ff4bf172ad597a1a5ef919b5</span>
   </li>
 <li>
    <a href="obadiah/">obadiah</a>
-   <span class="c"><b>21</b> sections · <b>291</b> words · <b>15,586</b> links · <b>7,838</b> distinct fingerprints · 547 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;c2c906086658942387ac51ce609303ab8a5918100c52a04ff785d82117679e38</span>
-   <span class="fp">index.html &nbsp;da7c06d01ea65ce1e710b87eaaeb5972e5ecedd51b9cb5cb78989d3781da4a57</span>
+   <span class="c"><b>21</b> sections · <b>291</b> words · <b>8,073</b> links at rest · <b>13,921</b> with the switches lifted · <b>7,577</b> distinct fingerprints · 526 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;44d9851276cfe86d7d5ef3089a47397f1edf1a91e9c1686a105c1d120632d526</span>
+   <span class="fp">index.html &nbsp;e9071d67291611ab02381993cc57db1c838ac1044eaff0a760bbf481a4f66969</span>
   </li>
 <li>
    <a href="zechariah/">zechariah</a>
-   <span class="c"><b>211</b> sections · <b>3,127</b> words · <b>179,710</b> links · <b>32,990</b> distinct fingerprints · 3986 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;4cf66bdd871e1d98b2f875c0d5b994efad27f8b512037543e65c11d87acb2ca5</span>
-   <span class="fp">index.html &nbsp;68c7aa162ebd2bfb7827c442b399b024418a26e1182f8f334d74f3a8f490c6ee</span>
+   <span class="c"><b>211</b> sections · <b>3,127</b> words · <b>92,138</b> links at rest · <b>160,610</b> with the switches lifted · <b>33,619</b> distinct fingerprints · 3249 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;3f6a8d0e0038d3997cb1663110b46f45931e65acd923c0fa30d2983103169cd1</span>
+   <span class="fp">index.html &nbsp;5bfa797d0f7dda74faba869eada4b404e0b92c483bee709cb4401a842cab8c6a</span>
   </li>
 <li>
    <a href="zephaniah/">zephaniah</a>
-   <span class="c"><b>53</b> sections · <b>767</b> words · <b>44,122</b> links · <b>15,513</b> distinct fingerprints · 1260 KB</span>
-   <span class="fp">chain-v1.json.gz &nbsp;38aa7103342e3d97ccbb493cbec783880aa91c4071edc5d83e3c0dde035e0544</span>
-   <span class="fp">index.html &nbsp;233e30dd1b4b57ddbf75620a665bbd85926719af5ceb2eaab18454dc5f1db85d</span>
+   <span class="c"><b>53</b> sections · <b>767</b> words · <b>25,372</b> links at rest · <b>41,853</b> with the switches lifted · <b>15,523</b> distinct fingerprints · 1196 KB</span>
+   <span class="fp">chain-v1.json.gz &nbsp;07a3416720d43abf114080aaa55eff6ca53cb2ccbe2abfd88876311fdb39c13d</span>
+   <span class="fp">index.html &nbsp;e3a4d6fca85221d744cdab13e73f39163131adfbc155b56b0ee995bff1823cf7</span>
   </li>
 </ul>
-<p class="away">This is 12 books of the 40 the reading side serves — 14,354 words of 453,713. The rest are not here and the reason is size, not doubt: a word here costs about 1525 bytes once its links are written out, because the links outnumber the words roughly 56 to one, so chaining the whole shelf would be near 650 MB of files. Every book that is here was built by the same command from the same zone and the same route store as the page that reads it. Nothing was chosen for being clean.</p>
-<footer>Built by <code>tools/build-chain-book-v1.mjs</code> from the same zones and the same route store the reading pages are built from, by the same code. If a book here and the book it mirrors ever disagree in shape — a word missing, a link moved, a count off — one of them is wrong, and both are published.</footer>
+<p class="away">This is 12 books of the 40 the reading side serves — 14,354 words of 453,713. The rest are not here and the reason is size and time, not doubt: every word of a chained book is pressed twice and its card read, and a word here costs about 1,375 bytes once its links are written out, so chaining the whole shelf would be near 595 MB of files. Every book that is here was read off the same reading page by the same command. Nothing was chosen for being clean.</p>
+<footer>Read off the reading pages by <code>tools/build-chain-book-v2.mjs</code>: every word pressed, its card read. If a book here and the book it mirrors ever disagree — a word missing, a link moved, a count off — one of them is wrong, and both are published.</footer>
 </div></body></html>

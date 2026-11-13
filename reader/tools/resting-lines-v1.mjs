@@ -118,7 +118,10 @@ export const linesOnPage = async (p, { from = 0, to = Infinity, settleMs = 350, 
   const has = await p.evaluate(() => typeof window.__materialise === "function");
   if (!has) throw new Error("the page offers no __materialise: its sections cannot be built without scrolling");
   const total = await p.evaluate(([a, b]) => window.__materialise(a, b === null ? undefined : b), [from, Number.isFinite(to) ? to : null]);
-  const wantsLattice = await p.evaluate(() => !!(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice));
+  // the lattice is waited for where the work carries one and the pointing
+  // reads it; with the pointing lifted ("keep") the page orders no line by
+  // it and does not ask for it
+  const wantsLattice = await p.evaluate(() => window.__masorah !== "keep" && !!(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice));
   if (wantsLattice) {
     const t0 = Date.now();
     let landed = false;
@@ -181,18 +184,20 @@ export const readRecord = (path) => (existsSync(path) ? JSON.parse(gunzipSync(re
  *  each by its sha256. The same page over the same files draws the same
  *  lines, so a record whose every fingerprint stands is the lines this tree
  *  draws; one that names another page, or a file that has moved, is a
- *  recording of something else and is not printed. */
-export const whyNotOfThisTree = (readerDir, record, seen = null) => {
+ *  recording of something else and is not printed. Any recording read off
+ *  the page says of itself what a record of the lines says (read_off.files),
+ *  so it is asked the same way, by the shape it should have (`schema`). */
+export const whyNotOfThisTree = (readerDir, record, seen = null, schema = RESTING_LINES_SCHEMA) => {
   const why = [];
   if (!record) return ["no record is kept"];
-  if (record.schema_version !== RESTING_LINES_SCHEMA) why.push(`its shape is ${record.schema_version}, not ${RESTING_LINES_SCHEMA}`);
+  if (record.schema_version !== schema) why.push(`its shape is ${record.schema_version}, not ${schema}`);
   for (const [rel, sha] of Object.entries((record.read_off && record.read_off.files) || {})) {
     const p = join(readerDir, rel);
     if (!existsSync(p)) { why.push(`${rel} is not here`); continue; }
     // `seen` keeps a file's fingerprint across the records that name it: forty works name the same indexes
     const now = seen && seen.has(p) ? seen.get(p) : sha256Of(p);
     if (seen) seen.set(p, now);
-    if (now !== sha) why.push(`${rel} has changed since the lines were read`);
+    if (now !== sha) why.push(`${rel} has changed since the page was read`);
   }
   if (!record.read_off || !record.read_off.files || !record.read_off.files["zone.html"]) why.push("it does not name the page it was read off");
   return why;
