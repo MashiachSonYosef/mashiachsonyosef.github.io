@@ -20,7 +20,13 @@
 > text (`tools/apply-made-spaces-v1.mjs`, `data/made-spaces/` with one folder
 > per relay of the corpus lane's), and every
 > reader closes them where the text prints; the store's texts are the served
-> bytes, unchanged. `PIPELINE-MANIFEST.md` is generated from the code and the
+> bytes, unchanged. The map of readings that point at another entry is baked
+> from the corpus lane's own file, kept here byte for byte
+> (`tools/bake-form-of-pills-v1.mjs`, `data/pointer-entries/`), under the
+> owner's rulings as the lane pinned them (`data/rulings/`, read through
+> `tools/rulings-v1.mjs`); a file another lane wrote is read only as the
+> bytes its pin names (`tools/pinned-v1.mjs`). `PIPELINE-MANIFEST.md` is
+> generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record
 > of why the rules are what they are.
