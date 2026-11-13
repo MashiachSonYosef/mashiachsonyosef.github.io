@@ -171,7 +171,7 @@ const RECIPE = {
   },
   recompute: "take the string, sha256 it, compare the first 12 hex digits. Nothing here needs this site's code to check.",
 };
-const SHAPE = "sections[].cells[] in the book's own order, one cell per entry of the book. A word: { w, k, rest, lifted }. A scribal mark: { w, mark }; it is not a word and has no card. A word written one way and read another: { w, halves: [{ role, w, k }], rest, lifted }. `rest` and `lifted` are the word's card read in the two states read_off.states describes, each { forms, chain, chain_words, divisions, blocks, here, pool, on, over }: the first five are the card's rows of buttons where it has them, { of: [each button], on: the one pressed, or null }; `here` is the lines the card prints above its pills, [{ is: \"here\" or \"suggested\", r, s }]; `pool` is the index in pools[] of the card's pills, in the card's own order, or null where it prints none; `on` is the pill that stands pressed; `over`, where the word stands in a run one card joins, is the run's first and last word as the card's own head counts them, from 1 in the section with the marks not counted. A pill in a pool: { r, s, y, by, ym } — the reading, the source its title names, the year its title says (null where it says the source gives none), every source behind it where more than one, and any words the title sets beside the year. One list of pills is written once in pools[] and named by its index wherever a card prints it.";
+const SHAPE = "sections[].cells[] in the book's own order, one cell per entry of the book. A word: { w, k, rest, lifted }. A scribal mark: { w, mark }; it is not a word and has no card. A word written one way and read another: { w, halves: [{ role, w, k }], rest, lifted }. `rest` and `lifted` are the word's card read in the two states read_off.states describes, each { forms, chain, chain_words, divisions, blocks, here, pool, on, over }: the first five are the card's rows of buttons where it has them, { of: [each button], on: the one pressed, or null }; `here` is the lines the card prints above its pills, [{ is: \"here\" or \"suggested\", r, s }]; `pool` is the index in pools[] of the card's pills, in the card's own order, or null where it prints none; `on` is the pill that stands pressed; `over`, where the word stands in a run one card joins, is the run's first and last word as the card's own head counts them, from 1 in the section with the marks not counted. A pill in a pool: { r, s, y, by, ym } — the reading, the source its title names, the year its title says (null where it says the source gives none), every source behind it where more than one, and any words the title sets beside the year. One list of pills is written once in pools[] and named by its index wherever a card prints it. Two pills of one card can print one text (two readings that point to one other entry print that entry's English alike); they are two links here, as they are two pills there, and the counts say how many repeat another.";
 const NOT_HERE = "Only the word is pressed. A division, a block, a form or a run's word that the card offers and does not open on is named in its row and its readings are a press away: they are not in this file. counts.at_rest.buttons_a_press_away says how many there are.";
 
 /** One book's chain file, from its cards as read in the two states. Throws,
@@ -190,8 +190,8 @@ const chainOf = (readerDir, work, read, asked) => {
   const pools = [], poolAt = new Map();
   const counts = {
     sections: zs.length, words: 0, marks: 0, words_written_one_way_and_read_another: 0,
-    at_rest: { words_whose_card_prints_a_reading: 0, words_whose_card_prints_none: 0, words_in_a_run_one_card_joins: 0, links: 0, lines_above_the_pills: 0, buttons_a_press_away: 0, words_with_a_button_a_press_away: 0 },
-    lifted: { words_whose_card_prints_a_reading: 0, words_whose_card_prints_none: 0, words_in_a_run_one_card_joins: 0, links: 0, lines_above_the_pills: 0, buttons_a_press_away: 0, words_with_a_button_a_press_away: 0 },
+    at_rest: { words_whose_card_prints_a_reading: 0, words_whose_card_prints_none: 0, words_in_a_run_one_card_joins: 0, links: 0, links_that_print_what_another_link_of_their_card_prints: 0, lines_above_the_pills: 0, buttons_a_press_away: 0, words_with_a_button_a_press_away: 0 },
+    lifted: { words_whose_card_prints_a_reading: 0, words_whose_card_prints_none: 0, words_in_a_run_one_card_joins: 0, links: 0, links_that_print_what_another_link_of_their_card_prints: 0, lines_above_the_pills: 0, buttons_a_press_away: 0, words_with_a_button_a_press_away: 0 },
   };
   const cardOf = (raw, tally, where) => {
     let said;
@@ -219,6 +219,7 @@ const chainOf = (readerDir, work, read, asked) => {
     if (said.over[1] > said.over[0]) { card.over = said.over; tally.words_in_a_run_one_card_joins += 1; }
     if (list.length) tally.words_whose_card_prints_a_reading += 1; else tally.words_whose_card_prints_none += 1;
     tally.links += list.length;
+    tally.links_that_print_what_another_link_of_their_card_prints += said.twice;
     tally.lines_above_the_pills += said.here.length;
     tally.buttons_a_press_away += away;
     if (away) tally.words_with_a_button_a_press_away += 1;
@@ -501,7 +502,7 @@ if (startedAs(import.meta.url)) {
     if (d.failed) { console.log(`FAIL  ${d.work}  ·  ${d.failed}`); continue; }
     const c = d.chain.counts;
     total.words += c.words; total.rest += c.at_rest.links; total.lifted += c.lifted.links;
-    console.log(`  ${d.how} ${d.work}  ·  ${num(c.sections)} sections · ${num(c.words)} words · at rest ${num(c.at_rest.links)} links (${num(c.at_rest.words_whose_card_prints_none)} cards print none) · lifted ${num(c.lifted.links)} (${num(c.lifted.words_whose_card_prints_none)} none) · ${num(c.pools)} lists of pills · ${num(c.at_rest.buttons_a_press_away)} buttons a press away · ${Object.keys(d.chain.read_off.files).length} files asked for`);
+    console.log(`  ${d.how} ${d.work}  ·  ${num(c.sections)} sections · ${num(c.words)} words · at rest ${num(c.at_rest.links)} links (${num(c.at_rest.words_whose_card_prints_none)} cards print none, ${num(c.at_rest.links_that_print_what_another_link_of_their_card_prints)} links repeat another of their card) · lifted ${num(c.lifted.links)} (${num(c.lifted.words_whose_card_prints_none)} none, ${num(c.lifted.links_that_print_what_another_link_of_their_card_prints)} repeat) · ${num(c.pools)} lists of pills · ${num(c.at_rest.buttons_a_press_away)} buttons a press away · ${Object.keys(d.chain.read_off.files).length} files asked for`);
   }
   if (stalled.length) console.log(`the browser stopped answering and was opened again for: ${stalled.join(", ")}`);
   console.log(`${books.length} books · ${num(total.words)} words · ${num(total.rest)} links at rest · ${num(total.lifted)} lifted · ${VERIFY ? `${count("same ")} files the same, ${moved.length} not` : `${count("wrote")} written, ${count("same ")} read again and the same, ${count("kept ")} kept as still of this tree`}${failed.length ? ` · ${failed.length} FAILED` : ""}`);

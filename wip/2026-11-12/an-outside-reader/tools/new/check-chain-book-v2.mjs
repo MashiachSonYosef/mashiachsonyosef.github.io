@@ -252,7 +252,7 @@ const shortsOf = (s) => {
     const lost = [...new Set(drawn)].filter((h) => !s.full_by_short[h]);
     if (lost.length) off.push(`${b}: ${lost.length} printed that the file does not carry`);
     // the counts, walked
-    const walk = () => ({ words_whose_card_prints_a_reading: 0, words_whose_card_prints_none: 0, words_in_a_run_one_card_joins: 0, links: 0, lines_above_the_pills: 0, buttons_a_press_away: 0, words_with_a_button_a_press_away: 0 });
+    const walk = () => ({ words_whose_card_prints_a_reading: 0, words_whose_card_prints_none: 0, words_in_a_run_one_card_joins: 0, links: 0, links_that_print_what_another_link_of_their_card_prints: 0, lines_above_the_pills: 0, buttons_a_press_away: 0, words_with_a_button_a_press_away: 0 });
     const got = { sections: s.sections.length, words: 0, marks: 0, words_written_one_way_and_read_another: 0, at_rest: walk(), lifted: walk() };
     const want = [];   // what the page should print under the words, in order: [reading, source]
     for (const sec of s.sections) for (const c of sec.cells) {
@@ -263,6 +263,7 @@ const shortsOf = (s) => {
         const t = got[name], list = card.pool === null ? [] : s.pools[card.pool];
         if (list.length) t.words_whose_card_prints_a_reading += 1; else t.words_whose_card_prints_none += 1;
         t.links += list.length;
+        t.links_that_print_what_another_link_of_their_card_prints += list.length - new Set(list.map((l) => l.r)).size;
         t.lines_above_the_pills += (card.here || []).length;
         if (card.over) t.words_in_a_run_one_card_joins += 1;
         let away = 0;

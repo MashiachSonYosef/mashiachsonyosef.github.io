@@ -62,6 +62,11 @@
 // OPENING A CARD RULES NOTHING, AND THAT IS HELD: after the walk the lines
 // under the words are read again and must be the lines read before it, and
 // no word may wear the mark of a ruling.
+//
+// A CARD IS THE SAME CARD WHEREVER THE WALK BEGINS, AND THAT IS HELD TOO, by
+// the check: it opens one chapter from the middle of each book, and what it
+// reads there must be what the builder read on its way from the top. What
+// the page fetches late is waited for before any card is read (readCards).
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { linesInPage, linesOnPage } from "./resting-lines-v1.mjs";
@@ -183,10 +188,32 @@ export const readCards = async (browser, base, work, stateName, { from = 0, to =
       await p.reload({ waitUntil: "networkidle" });
     }
     await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+    // WHAT THE PAGE FETCHES LATE IS WAITED FOR BY NAME, where this tree holds
+    // it. The map of readings that point to another entry comes after the
+    // first paint, and the lines it touches are painted again when it is
+    // here. The suggested source's file for the book comes only with the
+    // first card a visit opens, and the page opens that card again when it
+    // has arrived: a card read before then is not the card a reader keeps.
+    // (Found 13 November 2026 by the check, which starts in the middle of a
+    // book: the first word it pressed had no suggested line, and the chain,
+    // read from the top, had one there and none at the book's first word.)
+    const late = await p.evaluate(async (book) => {
+      const ix = await fetch("data/source-suggested/index.json").then((r) => (r.ok ? r.json() : null)).catch(() => null);
+      const map = await fetch("data/form-of-pills-v1.json", { method: "HEAD" }).then((r) => r.ok).catch(() => false);
+      return { suggested: !!(ix && ix.books && ix.books[book]), map };
+    }, work);
+    if (late.map) await p.waitForFunction(() => window.__formOf !== undefined, null, { timeout: 30000 }).catch(() => { throw new Error("the map of pointer readings did not arrive"); });
     // every section built by the page's own function and its lines come to rest, as the resting lines are read
     const before = await linesOnPage(p, { from, to });
     const total = before.of;
     const last = Number.isFinite(to) ? Math.min(to, total) : total;
+    if (late.suggested) {
+      // one card opened and left open until the file is here, then shut; no card is read before this
+      await p.evaluate((i) => { const sec = document.querySelectorAll("section.seg")[i]; const wb = sec && sec.querySelector(".he-text .wb:not(.mark)"); if (wb) (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }, from);
+      await p.waitForFunction(() => window.__suggested !== undefined, null, { timeout: 30000 }).catch(() => { throw new Error("the suggested source's file for the book did not arrive with the first card"); });
+      await p.waitForTimeout(100);
+      await p.keyboard.press("Escape");
+    }
     if (state.holds) {
       const s = before.state;
       const off = JSON.stringify(s.sources_off) !== JSON.stringify(state.holds.sources_off);
@@ -284,6 +311,7 @@ export const labelsFor = (readerDir) => {
  *    on      the pill that stands pressed, or null
  *    over    [first, last]: the words of the section the card's head says
  *            it stands on, counted from 1, the marks not counted
+ *    twice   how many of its pills print a text another of its pills prints
  *  Throws, in words, where the card does not have the shape this reads. */
 export const saidOf = (card, labels) => {
   const rows = {};
@@ -318,6 +346,12 @@ export const saidOf = (card, labels) => {
     return { text, label: t.label, year: t.year, mark: t.mark, by: behind };
   });
   if (pressed.length > 1) throw new Error(`${pressed.length} pills stand pressed on one card`);
-  if (pills.length && new Set(pills.map((x) => x.text)).size !== pills.length) throw new Error(`one text stands on two pills of one card ("${pills.map((x) => x.text).find((t, i, a) => a.indexOf(t) !== i)}")`);
-  return { rows, here, pills, on: pressed.length ? pressed[0] : null, over: card.over };
+  // TWO PILLS OF ONE CARD CAN PRINT ONE TEXT, and are read as two: a pill
+  // whose reading points to another entry prints that entry's English with
+  // the pointer beside it, and two readings that point one way print alike
+  // (found 13 November 2026, when this refused them: three senses of one
+  // Wiktionary entry, each "defective spelling of" the same word). The card
+  // is recorded as it prints; how many pills repeat another is counted.
+  const twice = pills.length - new Set(pills.map((x) => x.text)).size;
+  return { rows, here, pills, on: pressed.length ? pressed[0] : null, over: card.over, twice };
 };
