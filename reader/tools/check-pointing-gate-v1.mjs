@@ -15,17 +15,19 @@
 //     none does (a word in pause, a headword pointed in half) the grade cannot
 //     tell a different form from this one, and nothing is withheld;
 //   - the stem: a record whose stems are known (the corpus lane's binyan
-//     ledger, version 2 of both files, v105.1) and none of them is in the
-//     family of the word's stems.
+//     ledger, version 2 of both files, v105.1, and its extension to three
+//     more dictionaries, v173) and none of them is in the family of the
+//     word's stems. It is asked of the store's records and, since the
+//     extension, of the records of the dictionaries beside the store.
 //
 //   G1  the page's stem families are the module's, name for name, and the
 //       Hebrew stem and its Aramaic name are one family (qal and peal,
 //       hiphil and haphel and aphel, piel and pael; stem-family-rule-v2)
 //   G2  a verb whose key carries records of another stem: under the default
-//       its card withholds exactly those records for the stem, after the
-//       place's gates and the pointing have withheld their own, and says so
-//       on its withheld line, naming the stem or stems the sidecar gives the
-//       word there
+//       its card withholds exactly those records for the stem, the store's
+//       and those beside the store, after the place's gates and the pointing
+//       have withheld their own, and says so on its withheld line, naming
+//       the stem or stems the sidecar gives the word there
 //   G3  the same card under "keep" withholds nothing for the stem
 //   G4  a word no record of the store points as the text does: under the
 //       default its card withholds nothing for the pointing, and has readings
@@ -57,6 +59,7 @@ import { STEM_FAMILY, isOtherStem } from "./stem-family-v1.mjs";
 import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
 import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
+import { openBesideTheStore, rowsBeside, besideAtAWord, restingOff } from "./rows-beside-the-store-v1.mjs";
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
 
 const pw = await loadPlaywright();
@@ -86,6 +89,12 @@ const gated = (w, rows, grades, isName) => {
     byPointing: rows.filter((r, j) => left(j) && verdicts[j] === "none" && attested && grades[j] === "x").length,
   };
 };
+
+// the records beside the store of another stem at a word, as the page counts them for a reader who has set nothing:
+// the sources that rest off are out first, then those records' own pointing is asked, then their stem
+const beside = openBesideTheStore(".");
+const restsOff = restingOff(".", [store.index, ...beside.map((x) => x.index)]);
+const besideOfAnotherStem = (w, attested, rs, st) => besideAtAWord(rowsBeside(beside, w.k), { surface: w.s, attested, rowStems: rs, wordStems: st, sourcesOff: restsOff }).ofAnotherStem.length;
 
 // ---- the words, from the data -----------------------------------------------
 const plain = (w) => w && !w.mark && w.k && typeof w.s === "string" && !w.kq && !w.s.includes("\u05BE") && isPointed(w.s);
@@ -121,15 +130,15 @@ for (const z of zonesServed()) {
       if (hasLedger && !verb && g && Array.isArray(g.st) && g.st.length && side.stems[w.k] && !(Array.isArray(w.pg) && w.pg.length > 1)) {
         const { kept, byPointing } = gated(w, rows, grades, isName(w));
         const rs = side.stems[w.k];
-        const other = kept.filter((r) => isOtherStem(rs[`${r[3]}\u0001${r[0]}\u0001${r[1]}`], g.st)).length;
-        if (other > 0) verb = { zone: z, label: sec.label, s: w.s, k: w.k, st: g.st, other, pointed: byPointing };
+        const ofTheStore = kept.filter((r) => isOtherStem(rs[`${r[3]}\u0001${r[0]}\u0001${r[1]}`], g.st)).length;
+        if (ofTheStore > 0) { const besideIt = besideOfAnotherStem(w, attested, rs, g.st); verb = { zone: z, label: sec.label, s: w.s, k: w.k, st: g.st, other: ofTheStore + besideIt, ofTheStore, besideIt, pointed: byPointing }; }
       }
       // G5's word: one its place divides into pieces that spell it, whose whole form's records the stem filters
       if (hasLedger && !divided && g && Array.isArray(g.st) && g.st.length && side.stems[w.k] && Array.isArray(w.pg) && w.pg.length > 1 && w.pg.map((x) => (x && x.k) || "").join("") === w.k) {
         const { kept } = gated(w, rows, grades, isName(w));
         const rs = side.stems[w.k];
-        const other = kept.filter((r) => isOtherStem(rs[`${r[3]}\u0001${r[0]}\u0001${r[1]}`], g.st)).length;
-        if (other > 0) divided = { zone: z, label: sec.label, s: w.s, k: w.k, st: g.st, other };
+        const ofTheStore = kept.filter((r) => isOtherStem(rs[`${r[3]}\u0001${r[0]}\u0001${r[1]}`], g.st)).length;
+        if (ofTheStore > 0) { const besideIt = besideOfAnotherStem(w, attested, rs, g.st); divided = { zone: z, label: sec.label, s: w.s, k: w.k, st: g.st, other: ofTheStore + besideIt, ofTheStore, besideIt }; }
       }
       // G4's word keeps a row once its place is asked, so its card has readings to show
       if (!unattested && !attested && grades.includes("x") && (w.pg || []).length === 0 && gated(w, rows, grades, isName(w)).kept.length > 0) unattested = { zone: z, label: sec.label, s: w.s, k: w.k, x: grades.filter((x) => x === "x").length, rows: rows.length };
@@ -207,12 +216,12 @@ else if (!ledgered) {
 else {
   const r = await open(verb);
   g1(r);
-  // the pointing's own count also grades the overlays' records, which this
-  // check does not load (check-masorah-toggle-v1 holds that count); the stem
-  // is asked of the store's records only, and so is this count
+  // the pointing's own count also grades the records beside the store
+  // (check-masorah-toggle-v1 holds that count); the stem's count is the
+  // store's records and theirs together, counted above as the page counts
   check("G2  a verb's card withholds exactly the records of another stem, after the pointing's own, and names the stem it held them to", !r.error && r.stem === verb.other && r.withheld >= verb.pointed
     && r.line.includes(`${verb.other} of another stem than ${verb.st.join(" or ")}, withheld`) && r.stems === verb.st.join("|"),
-    r.error || `${verb.zone} ${verb.label} ${verb.k} (${verb.st.join(", ")}) · stem ${r.stem} of the store's ${verb.other} · pointing ${r.withheld} (the store's own ${verb.pointed}) · "${r.line}"`);
+    r.error || `${verb.zone} ${verb.label} ${verb.k} (${verb.st.join(", ")}) · stem ${r.stem} of ${verb.other} (${verb.ofTheStore} of the store, ${verb.besideIt} beside it) · pointing ${r.withheld} (the store's own ${verb.pointed}) · "${r.line}"`);
   const k = await open(verb, "keep");
   check("G3  under \"keep\" the same card withholds nothing for the stem", !k.error && k.stem === 0 && k.withheld === 0, k.error || `stem ${k.stem} · pointing ${k.withheld} · ${k.pills} readings`);
 }
@@ -231,7 +240,7 @@ if (ledgered && !withdrawnIn.length) {
     const onLine = d.stem === divided.other && d.line.includes(`${divided.other} of another stem ${named}, withheld`);
     const inWords = d.pills === 0 && d.none.includes(`${divided.other} record${divided.other === 1 ? "" : "s"} withheld by the stem`) && d.none.includes(named);
     check("G5  a divided word's whole form says what the stem withheld, on its withheld line or in the sentence that says no record is left", !d.error && (onLine || inWords),
-      d.error || `${divided.zone} ${divided.label} ${divided.k} (${divided.st.join(", ")}) · the store's ${divided.other} · ${d.pills} readings · stem ${d.stem} · "${d.line || d.none}"`);
+      d.error || `${divided.zone} ${divided.label} ${divided.k} (${divided.st.join(", ")}) · ${divided.other} of another stem (${divided.ofTheStore} of the store, ${divided.besideIt} beside it) · ${d.pills} readings · stem ${d.stem} · "${d.line || d.none}"`);
   }
 }
 await b.close();

@@ -4559,15 +4559,21 @@
     // gate is asked, the stems it held the rows to ride on the pool, and
     // the card names them beside its count (13 November 2026: until then
     // the card said "of another stem" and never said than which).
-    let withheldByStem = 0, stemsHere = null;
+    // THE ROWS BESIDE THE STORE ARE ASKED THE SAME (stems-extension-rule-v1,
+    // 13 November 2026): the corpus lane's extension names the stems of the
+    // UBS dictionary's and the SDBH's rows, which are the store's, and of
+    // Jastrow's, which stand beside it. The sidecar keeps every row's stems
+    // under one id, so the question below is kept (ofAnotherStem) and put
+    // again to the rows beside the store where they enter the pool.
+    let withheldByStem = 0, stemsHere = null, ofAnotherStem = null;
     if (pointingNow(W.pointed) === "only" && latticeStore && W.pointed) {
       const gr = latticeStore.grades ? latticeStore.grades[W.pointed] : null;
       const st = gr && Array.isArray(gr.st) && gr.st.length ? gr.st : null;
       const rs = st && latticeStore.stems ? latticeStore.stems[surface] : null;
       if (st && rs) {
         const fams = new Set(st.map(stemFamily));
-        const other = (row) => { const x = rs[`${row[3]}\u0001${row[0]}\u0001${row[1]}`]; return Array.isArray(x) && x.length > 0 && !x.some((y) => fams.has(stemFamily(y))); };
-        const kept = routes.filter((row) => !other(row));
+        ofAnotherStem = (row) => { const x = rs[`${row[3]}\u0001${row[0]}\u0001${row[1]}`]; return Array.isArray(x) && x.length > 0 && !x.some((y) => fams.has(stemFamily(y))); };
+        const kept = routes.filter((row) => !ofAnotherStem(row));
         withheldByStem = routes.length - kept.length;
         stemsHere = st;
         routes = kept;
@@ -4599,6 +4605,12 @@
       const kept = pointingOnly ? extra.filter((row) => gradeRow(row, W.pointed) !== "x") : extra;
       withheld += extra.length - kept.length;
       extra = kept;
+      // and their stem, where the word's is known and a source names theirs
+      if (ofAnotherStem) {
+        const ofThisStem = extra.filter((row) => !ofAnotherStem(row));
+        withheldByStem += extra.length - ofThisStem.length;
+        extra = ofThisStem;
+      }
     }
     // ONE READING, ONE PILL (the owner, 2026-10-02: "shouldnt it be bundled into
     // 1 pill with 2 M"; the corpus lane's R pill ledger, resting position
