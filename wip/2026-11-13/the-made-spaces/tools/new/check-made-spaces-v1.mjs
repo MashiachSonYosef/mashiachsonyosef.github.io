@@ -48,8 +48,9 @@
 //       before closing where no row prints it so now
 //   M10 on the page: words whose cards hold such a row are pressed with every
 //       switch lifted; no pill prints a reading as it stood before closing,
-//       the closed reading stands on a pill credited to its source, and the
-//       record under that pill is the definition as it prints
+//       the closed reading stands on a pill credited to its source, the
+//       record under that pill is the definition as it prints, and the card
+//       calls the reading a piece of its record only where the store does
 //
 // Run: node tools/check-made-spaces-v1.mjs
 import { readFileSync, readdirSync, existsSync } from "node:fs";
@@ -335,7 +336,7 @@ const picks = [];
       if (!row) continue;
       seen.add(w.k);
       picks.push({ book: b, section: si, entry: e, label: sec.label, key: w.k, m: String(row[3]), label_of_m: index.m_sources[row[3]].label,
-        printed: printedForm(routePrinted(row).trim()), record: printedForm(recordPrinted(row)), was: [...stale.get(w.k)] });
+        printed: printedForm(routePrinted(row).trim()), record: printedForm(recordPrinted(row)), piece: row[5] === 1, was: [...stale.get(w.k)] });
       if (picks.length >= 6) break outer;
     }
   }
@@ -374,15 +375,16 @@ else {
           const buttons = [...hud.querySelectorAll(":scope > .rows > .b-read > .r-pills > button")];
           const said = buttons.map((x) => [x.textContent, x.dataset.by || ""]);
           const mine = buttons.find((x) => x.textContent === printed && (x.dataset.by || "").split(/[\s,]+/u).includes(m));
-          let record = null;
+          let record = null, cut = null;
           if (mine) {
             mine.click();
             await turn(); await turn();
             const d = hud.querySelector(".d-card .d-body .d-text");
             record = d ? d.textContent : null;
+            cut = !!hud.querySelector(".d-card .d-cut");
           }
           document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-          return { said, record, found: !!mine };
+          return { said, record, cut, found: !!mine };
         }, pick);
         const where = `${pick.book} ${pick.label}, entry ${pick.entry} (${pick.key})`;
         if (errors.length) faults.push(`${where}: the page threw: ${errors[0]}`);
@@ -392,10 +394,12 @@ else {
         if (!got.found) continue;   // the card opened on a division of the word, where the whole form's rows are a press away
         seenOn.push(where);
         if (got.record !== pick.record) faults.push(`${where}: under «${pick.printed.slice(0, 40)}» the record prints «${String(got.record).slice(0, 60)}», and as printed it is «${pick.record.slice(0, 60)}»`);
+        // the reading is the row's whole route as it prints, so the card calls it a piece of its record only where the store marks the row as one
+        if (got.cut !== pick.piece) faults.push(`${where}: the card ${got.cut ? "says" : "does not say"} «${pick.printed.slice(0, 40)}» is a piece cut out of its record, and the store ${pick.piece ? "marks" : "does not mark"} the row as one`);
       } finally { await ctx.close(); }
     }
   } finally { await browser.close().catch(() => {}); await tree.close(); }
-  check("M10 on the page, with every switch lifted: no pill prints a reading as it stood before closing; the closed reading stands on a pill of its source, and the record under it is the definition as it prints", faults.length === 0 && seenOn.length > 0,
+  check("M10 on the page, with every switch lifted: no pill prints a reading as it stood before closing; the closed reading stands on a pill of its source, the record under it is the definition as it prints, and it is called a piece only where the store marks it one", faults.length === 0 && seenOn.length > 0,
     faults.length ? `${faults.length} · ${first(faults)}` : !seenOn.length ? `${picks.length} words pressed and none of their cards offered the row` : `${picks.length} words pressed · ${nf(pills)} pills read · the closed reading and its record stood on ${seenOn.length} of the cards (${seenOn[0]})`);
 }
 
