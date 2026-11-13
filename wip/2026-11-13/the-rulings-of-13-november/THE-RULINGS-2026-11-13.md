@@ -6,7 +6,8 @@ Elijah, page lane. The corpus lane (Moses) sent seven relays on 13 November, v17
 |---|---|---|---|
 | A | The unabridged BDB's made spaces close at print (v178); the UBS dictionary's "literally ...; hence ..." pairs are one reading again | 3 | **live**: main `2f403ae430`, gh-pages `f9883c9f35`, deployment run 1357, live check run 55 |
 | B | The pointer map v1.3: a pointer names its entry, a reading with English of its own prints its own words, an ambiguous pointer takes the source's first entry; a pressed pointer no longer stands bare on the line | 5, 7 | **live**: main `6657800de0`, gh-pages `2c8ae39529`, deployment run 1358, live check run 56 |
-| C | The entry gate, with STEP's letters and BDB's own entries, and the names gate, in one ship (both are asked of the word's place before the pointing); the stems from three more sources follow as their own ship | 1, 6, 8; then 2 | proven in a development copy on all 39 books; in the build tree, in its round (section 3) |
+| C | The entry gate, with STEP's letters and BDB's own entries, and the names gate, in one ship (both are asked of the word's place before the pointing) | 1, 6, 8 | **live**: main `90eedeb6f3`, gh-pages `2d6f6b90f6`, deployment run 1359, live check run 57 |
+| C2 | The stems from the UBS dictionary, the SDBH and Jastrow, with both branches set | 2 | not begun; next |
 | D | The unabridged BDB's openings of a numbered sense print as a note, not a pill | 4 | not begun |
 
 ## 1. Ship A: two changes to the store's slots, no text touched
@@ -99,23 +100,92 @@ The 332 are the cost of the ship. Their English was found by letters alone, and 
 
 Main `6657800de0`, gh-pages `2c8ae39529`, deployment run 1358, live check run 56.
 
-## 3. Ship C: the entry gate, in a development copy
+## 3. Ship C: the card asks the word's place two things before the pointing (live)
 
-The design, proven on real cards before any of it goes into the build tree:
+The store keys a row by bare letters and several words share a key. The page told them apart by the pointing of each row's headword alone, which withheld a row of the right entry whose dictionary form is pointed otherwise than the verse's, and kept a row of another entry pointed alike or not at all. The owner ruled two gates (rulings 1 and 6 of v172, ruling 8 of v177). They went in as one ship because both are asked of the word's place, share the row's new slot, the projection's leaders and the page's pool.
 
-- **The row's half** rides on the row: a new slot 10, an object of facts (`n` its Strong's numbers, `t` its lettered STEP tags, `b` BDB's own entries), written by a new tool from the lane's row entries ledger (382,258 rows of fifteen sources; every line met its row and every row its line, though the store has moved on since the ledger was read). The ledger is 25 MB and stays on the lane's store, named in the tree by its size and sha256.
-- **The place's half** rides on the word: `tg`, the tag of the word's core piece as the lattice writes it (20,583 of Genesis's 20,612 words).
-- **The gate** is a small module (`entry-gate-v1.mjs`) and the page carries the same functions under the same names. It runs before the pointing: a row of another entry is withheld and counted; a row of the place's entry stands whatever its headword's points; a row with no number goes to the pointing as before. The two partings of ruling 6 are in it.
-- **The line** follows: the leaders under "only" are baked again per entry where the gate moves them (3,442 surface-and-entry pairs in Genesis).
+**The entry.** A row carries the entry its own source files it under; a place carries the entry that stands there (the tag on the word's core piece, TAHOT's). A row whose numbers hold the place's number stands whatever its points; a row with numbers, none of them the place's, is withheld and counted; a row with no number is left to the pointing. Two finer partings: STEP's letters (a row of TAHOT or TBESH none of whose lettered tags is the place's is another entry though the number is the same) and BDB's own entries (a BDB row with no number that names another of BDB's entries than those its numbered rows give the place).
 
-What the cards say (Genesis, development copy):
+**The name.** At a place that is not a name, a row its own source gives as a name is withheld and counted; at a place that is one, it stands. 7,412 rows and 34,577 places, as the lane listed them.
 
-    1:1 created (H1254A)   8 of another entry than H1254, withheld · 26 of 136 pointed otherwise, withheld · 9 of another stem than qal, withheld
-    1:1 the object marker  73 of another entry than H853, withheld · 9 of 149 pointed otherwise, withheld
-    1:4 good (H2895)       161 of another entry than H2895, withheld · 3 of 281 pointed otherwise, withheld · 1 of another stem than qal, withheld
+Both are asked only under "only this pointing", the default, in the order entry, name, pointing, stem. The card says each: «8 of another entry than H1254A, withheld · 1 given as a name by its source, withheld · 26 of 136 pointed otherwise, withheld · 9 of another stem than qal, withheld».
 
-«field» is off the card of "he created", «to fatten» (the other verb of the same number, by STEP's letter) is off it, and «he has created», a row of the right entry that the pointing used to withhold, is on it. The line under the object marker reads «self» where it read «plowshare».
+**In the tree.**
 
-A check with thirteen laws is written (`check-entry-gate-v1`): the pins, every row's facts, the lane's own counts source by source, the ledger line by line where it is on the machine, the page's functions against the module's for every key under every entry asked (7,220 keys, 251,205 verdicts in Genesis), every word's tags against the lattice's own position, the baked leaders, and six laws pressed on cards. All pass in the development copy.
+- A row's facts ride in a new slot (10): `n` its numbers, `t` its lettered STEP tags, `b` BDB's own entries, `name`. `tools/apply-row-entries-v1.mjs` writes the first three from the lane's ledger (25 MB, kept on the lane's store; `reader/data/row-entries/` names it by size and sha256 and keeps its rule and receipt). `tools/apply-name-rows-v1.mjs` writes the mark from the lists in `reader/data/names/`. Set beside the store before, 377,313 of 652,954 rows gain the slot and no other slot of any row differs (`logs/c-l66-…`).
+- The place's half rides on the word, written by the projection: `tg` (304,261 places) and `np` (34,577).
+- `tools/entry-gate-v1.mjs` and `tools/names-gate-v1.mjs` are the gates; the page carries the same functions under the same names. `tools/place-leaders-v1.mjs` names a kind of place (its tags, and whether it is a name), and the projection bakes the leaders of each kind beside the surface's own (64,051 kinds of place over 62,077 surfaces).
+- Two new checks, `check-entry-gate-v1` (thirteen laws) and `check-names-gate-v1` (eight), share one reading of a card (`tools/gated-card-v1.mjs`). Five existing checks learned the gates: check-pointing-gate, check-pointing-grade, check-masorah-toggle, check-names-pill, check-source-switch.
+- The made spaces' tool no longer takes a row's closes for its last slot, and its index keeps a second sha256 (the rows as they stood when a run found them as read). The check holds that the flag follows the two, which closes gap H of Ship A.
 
-Still owed before it ships: the other 38 books projected, the checks that read the sidecar's leaders taught about the entry's own, the made-spaces tool taught that a row can be longer than its slot (and the gap H above closed), the documents, the round, the suite, the gate.
+**What the wider run found that Genesis had not** (the gates were first proven on Genesis alone, then on all 39 books in a development copy):
+
+- *STEP's letters are sometimes small.* TAHOT's tags carry a small letter at 22 places where STEP ran past its capitals for one name (H5838x, H2148v, H4918y). The lane's rule calls small letters MACULA's. The ruling says "letter for letter", so a small letter is read as STEP's on both sides; four TAHOT rows carry one.
+- *A word in a cell one card joins.* The checks pressed Ecclesiastes 1:2's first word and Daniel 1:2's ninth and read a card that was not the word's: the page joins such a word to its neighbors and opens the cell's card (at Daniel 1:2 the card of the word for "vessels" holds one reading, «housewares», which is the cell's). The checks now ask the page whether a word stands in such a cell and press the next.
+- *A divided verb.* check-pointing-gate's first verb with a record of another stem left became a divided word (Amos 1:2's first), whose card opens on its division. Its law G2 now takes a word its place does not divide; G5 holds the whole form of a divided one.
+- *The pointing grade's count.* check-pointing-grade counted what the pointing withholds without the place's gates, and held that no pill pointed otherwise survives. It counts after the gates now, and holds that such a pill survives only where the place keeps a row of its own entry.
+
+**STEP's letters, measured on every book** (`logs/c-l78-…`, `tools/steps-letters-measured.mjs`). The lane measured the letter on the fourteen verb cards of Genesis 1 "and on nothing else": two pills. It is wired as ruled, and this is what it does on the thirty-nine books.
+
+| | |
+|---|---|
+| word places with a tag | 303,262 |
+| places whose every core tag carries a letter | 139,741 |
+| places where the letter withholds a row the number keeps | **75,998** (450,215 rows, place by place) |
+| … a capital up to F on both sides (as H1254A beside H1254B) | 10,003 |
+| … a later letter on one side or both | 65,995 |
+| TAHOT: a row of it withheld by letter / every row it has of the place's number | 68,588 places / 2,187 |
+| TBESH: the same | 29,362 places / **18,964** |
+| places that are one undivided word standing alone | 99,018 |
+| … of which the letter alone takes a pill off the card | 26,794 (181,862 pills, place by place) |
+
+What the later letters part: one word's senses (at "man", H376G, TAHOT's «anyone» is H376I's and «husband of» H376H's), God from gods (H430G, H430J), the bearers of one name (the Pharaohs), a name's compounds (at "king", TBESH's «Milcom»; at Egypt, «(Sea of) Egypt»; at "his son", «Beno»). The Name is the largest case: 5,698 places tagged H3068G, where TBESH's two rows are H3068H «The Lord» and H3068I «(Jerusalem of) the Lord». «The Lord» stays on the card from other sources' rows. TBESH is left bare at so many places because the store serves its later entries and not its first: of the 294 numbers under which its served rows name an entry lettered H or later, 166 have no served row lettered G (`logs/c-l87-…`).
+
+Because a row withheld by letter is its number's own, the card's note named the wrong thing: «34 of another entry than H376» at a place of H376I. The card now names the place's entry as the place is asked, with the letter where a row is asked by letter (edit 67; `entrySaid` in the module and on the page, held by E6, E9 and E11).
+
+**Where the only served row printing the place's own reading is another place's: 364 places** (`logs/c-l84-…`, `tools/the-places-own-row-and-the-letter.mjs`). At 208,993 of the 209,357 places where a TAHOT row prints the place's own reading under the word's key (as the page matches a reading: the printed form, letter case aside), the gate keeps that row. At 276 it is withheld by its letter and at 88 by its number, and by the ledger the gate is right each time: «gad», two places of H1410I, is the only TAHOT row under its key, and «Gad» stands at 53 places of H1410G with no served row of its own. Until this ship the page took «gad» for it. The reading still leads the card as the place's own. Whether the store should serve the missing rows is the lane's to say; nothing on the page papers over it.
+
+**What a reader sees, measured against the build before** (the round run whole):
+
+- Lines at rest: **1 of 400,242** reads otherwise (`logs/c-l67-…`). The line under a word is the place's own reading wherever the place has one, so the gates act on the card. The one: Isaiah 56:10's first word, with no tag and no reading of its place, read «Zepho»; the SDBH's row of that name is withheld there and Strong's «Tsepho» stands first among the rows left. Both are the name; Strong's was not read for names.
+- The leader under "only this pointing", which is the line of a reader who chooses "oldest first" (`logs/c-l89-…`, `tools/leaders-before-and-after.mjs`): **another reading at 92,344 of 302,281 places**; 351 places lose theirs and go bare under that order (every row under the word's letters is another entry's: the second half of Kiriath-jearim, tagged as the town, where «forest» led); 19 gain one. The first by places are what the gate is for: the object marker «mark» → «self» (6,478), "for" «burning» → «since» (4,225), "over" «Most High» → «over» (3,467), "all" «(be able to, can) abide» → «properly, the whole» (2,826), "the king" «consult» → «the/ king» (1,037). Two to know: the Name «The Lord» → «Jehovah», Strong's own first word (5,698 places; «The Lord» led on a row TBESH files under H3068H, which the letter withholds at H3068G), and "God of" «God» → «angels», the first word of Strong's list (451; "God" itself read «judges» before and still does).
+- "He created" at Genesis 1:1: 71 pills where there were 78. «Bara», «field», «he ate», «to fatten» are gone and «he has created» is on it (`logs/c-l83-…`).
+- The twelve chain books, card by card (`logs/c-l72-…`): of 14,354 cards at rest 8,084 hold the links they held; 1,793 only lose, 1,098 only gain, 3,379 do both. **67,343 links gone, 50,461 come** (431,006 to 414,124). Lifted, every card holds exactly what it held (728,474).
+- Search index: every count the same (`logs/c-l71-…`).
+- Weight: zones with sidecars 58.7 MB (were 56.2), store shards 16.1 MB (were 15.1).
+
+**Broken on purpose, nineteen ways** (`logs/c-l82-gates-checks-go-red.txt`, `tools/gates-checks-go-red-v1.sh`, `tools/gates-tamper-v1.py`). Each fault is put into one file of the tree, the check that should catch it is run, and the file is put back byte for byte. All three checks are green again at the end.
+
+| | The fault | The check says |
+|---|---|---|
+| A | a row is filed under another number than its ledger line gives | E2, E5, E8 red |
+| B | a row loses its facts | E3, E4, E5 red |
+| C | a row's STEP tag carries another letter | E5, E8 red |
+| D | a word carries another tag than the lattice's | E7's second half and E8 red, and every law that presses a card (the page draws no word of the book) |
+| E | a leader a kind of place holds is another text | E8, E13 red |
+| F | a surface loses its leaders at a kind of place | E13 red |
+| G | the page's pool keeps the rows of another entry | E9, both E11s, E13 red |
+| H | the page's numberOf writes a number another way | E6, E9, E10, both E11s, E13 red |
+| I | the page reads the surface's own leaders at every place | E6's second half, E13 red |
+| J | the ledger's receipt is other bytes than its pin names | E1 to E5 red |
+| S | the card names the place's entry by its number alone where a row is asked by letter | E9 and the letter's E11 red |
+| K | a listed row loses its mark | N3, N4 red |
+| L | a row no line lists is marked a name | N3, N4 red |
+| M | a listed place loses its mark | N5 red, and N7 and N8 (the page draws no word of the book) |
+| N | a place no line lists is marked a name place | N5 red, and N7 and N8 |
+| O | the page's pool keeps the rows given as a name | N7 red |
+| P | the page's nameWithheld is turned about | N6, N7 red |
+| Q | the list of name places is other bytes than its pin names | N1 to N5 red |
+| R | the index says a source's rows are not the rows its list was read from, while they are (gap H of Ship A) | M4 red |
+
+D, M and N write the fault into a zone's own bytes, and the page does not draw a book whose zone it cannot take. On the first run the two checks went red at the law that reads the zone and then ended on an uncaught timeout, waiting a minute for a word. `tools/gated-card-v1.mjs`, which both share, says of itself "a fault is said in words"; it now keeps that (edit 68), and the three were tried again (`logs/c-l94-…`): each law that presses a card says «the page drew no word of amos within a minute» and the check ends on its own count. The tree's changed and new files were fingerprinted before and after those three and are the same (`logs/c-l94-tree-before-and-after.txt`).
+
+**The machine restarted in the middle of the first run of these.** The run was on fault C, which had altered one shard of the store, and the restart killed it before it put the shard back. The kept copy was put back by hand and found to be the same bytes as the development copy's shard; no other file of the tree had been written since the run began. The whole run was then made again from the start, and `tools/ship-c-proofs.sh` writes a line as each stage ends so that a run cut short says where it stopped (`logs/c-l80-proofs-progress.txt`).
+
+**Suite, gate, lint.** 148 of 149 checks pass before the push (`logs/c-l80-suite-ship-c.txt`); the one red is the check that the tree is pushed, green after it (`logs/c-l91-…`). The suite ran whole twice. The first run found the pipeline's manifest stale (a check's comment names the entry gate's rule, so the manifest credits that check too). The second followed the note's mend (edit 67): the lines and the chain books record the page they were read from, so both were read again off the mended page, the same 400,242 lines and the same links on every card (`logs/c-l85-…`, and `logs/c-l67-…` and `logs/c-l72-…` made again and the same byte for byte). The same-product gate against the build before (`logs/c-l81-gate-ship-c.txt`): 9,383 sampled lines the same on 18 pages; 36 of 54 first cards differ (18 cards, each read on two chapter pages), and every differing pill is accounted for with the gates' own modules (`tools/gate-cards-ship-c.mjs`, `logs/c-l81-gate-ship-c-classified.txt`): 294 gone whose every row is another entry's, 12 gone as a name's at a place that is not a name, 722 come on a row of the place's own entry that its source points otherwise, 12 one reading written in another row's letters. None is unaccounted for and no card opens on another reading. After edit 68 the two gate checks were run again and pass, with the four checks that read the tools' own sources (`logs/c-l95-…`). Lint: the seventeen changed and new tools carry no finding their copies on the build before do not, and the page carries the 175 it carried (`logs/c-l86-…`).
+
+**Shipped.** main `90eedeb6f3`, gh-pages `2d6f6b90f6`, deployment run 1359, live check run 57 (`logs/c-l90-ship-c.txt`, `logs/c-l92-poll-ship-c.txt`). The commit message is `logs/c-commit-message-90eedeb6.txt`.
+
+**Put to the owner with this ship.** The letter's measure: it is live as ruled, and the owner can say if the later letters should stay together. The leader under "oldest first" at the Name («Jehovah») and at "God of" («angels»). And, still open from Ship B, whether to print the English the lane's file carries for 458 pointers at 58,007 places.
+
+**Put to the lane.** `wip/2026-11-13/FOR-MOSES-2026-11-13-the-rulings-of-13-november-wired.md`: seven things to look at, the first three in weight being STEP's own words on its letters, TBESH's first entries that the store does not serve, and the 364 places where TAHOT's own row is not served.

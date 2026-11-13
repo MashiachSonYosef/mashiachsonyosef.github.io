@@ -1,0 +1,156 @@
+the tree as it stands:
+   entry · exit 0
+      all checks passed
+   names · exit 0
+      all checks passed
+   spaces · exit 0
+      all checks passed
+A · a row is filed under another number than its ledger line gives:
+   אביך (M4, rank 1): filed under H1, now under H999999
+   exit 1
+   FAIL  E2  every row's facts are well formed, each on a row of a source that may carry it, and no row ends in an empty slot  ·  1 · אביך (M4, rank 1): a lettered tag that is not one, or whose number the row does not carry
+   FAIL  E5  every line of the ledger finds its row and every row its line, and each row carries exactly the facts its line gives  ·  1 rows carry other facts · אביך 1 M4 38689d681b860ff1: the row carries {"n":["H999999","H9021","H9022"],"t":["H1G"]} and its line gives {"n":["H1","H9021","H9022"]
+   FAIL  E8  the leaders at a kind of place speak for a place a word of their surface stands at, differ from the surface's own, and are credited to a row the place keeps that carries the reading; where the place withholds every row carrying the surface's own leader, it has leaders of its own  ·  72 ·
+   3 FAILED
+   data/route-store/shards/00.bin put back, byte for byte
+B · a row loses its facts:
+   אביך (M4, rank 1): its facts {"n": ["H1", "H9021", "H9022"], "t": ["H1G"]} are gone
+   exit 1
+   FAIL  E3  the store's index names the rule, the pin, the ledger and totals that are a recount's  ·  totals.rows_carrying_the_slot says 374685 and a recount gives 374684 · totals.rows_with_a_number says 373815 and a recount gives 373814 · totals.rows_with_several_numbers says 69332 and a recount g
+   FAIL  E4  the corpus lane's own counts, source by source: the rows of each source the ledger reads, and how many carry one number, several and none  ·  2 · M4: several 53814, the lane counts 53815 · M4: none 1, the lane counts 0
+   FAIL  E5  every line of the ledger finds its row and every row its line, and each row carries exactly the facts its line gives  ·  1 rows carry other facts · אביך 1 M4 38689d681b860ff1: the row carries null and its line gives {"n":["H1","H9021","H9022"],"t":["H1G"]}
+   3 FAILED
+   data/route-store/shards/00.bin put back, byte for byte
+C · a row's STEP tag carries another letter:
+   אביך (M4, rank 1): STEP's tag H1G is now H1Q
+   exit 1
+   FAIL  E5  every line of the ledger finds its row and every row its line, and each row carries exactly the facts its line gives  ·  1 rows carry other facts · אביך 1 M4 38689d681b860ff1: the row carries {"n":["H1","H9021","H9022"],"t":["H1Q"]} and its line gives {"n":["H1","H9021","H9022"],"t":
+   FAIL  E8  the leaders at a kind of place speak for a place a word of their surface stands at, differ from the surface's own, and are credited to a row the place keeps that carries the reading; where the place withholds every row carrying the surface's own leader, it has leaders of its own  ·  72 ·
+   2 FAILED
+   data/route-store/shards/00.bin put back, byte for byte
+D · a word carries another tag than the lattice's:
+   1:1 «דברי»: tagged "H1697G", now H99999
+   exit 1
+   FAIL      and each is the core tags of the lattice's own position, whose pieces spell the tagged form  ·  1 · amos 1:1 word 1: carries H99999 on דברי; the lattice's core tags are H1697G and its pieces spell דברי
+   FAIL  E8  the leaders at a kind of place speak for a place a word of their surface stands at, differ from the surface's own, and are credited to a row the place keeps that carries the reading; where the place withholds every row carrying the surface's own leader, it has leaders of its own  ·  1 · 
+     name: 'TimeoutError'
+   data/zones/amos.bin put back, byte for byte
+E · a leader a kind of place holds is another text:
+   the surface of key עמוס at a place of the kind "H5986|n": its leader «Amos, an Israelite prophet» is now «altered»
+   exit 1
+   FAIL  E8  the leaders at a kind of place speak for a place a word of their surface stands at, differ from the surface's own, and are credited to a row the place keeps that carries the reading; where the place withholds every row carrying the surface's own leader, it has leaders of its own  ·  2 · 
+   FAIL  E13 where the place moves the leader, the line under the word and the card's first pill are the place's leader  ·  1 · amos 1:2, entry 2 (יהוה under H3068G): the line reads «The Lord» and the place's leader is «Jehovah»
+   2 FAILED
+   data/zones/amos.lattice.bin put back, byte for byte
+F · a surface loses its leaders at a kind of place:
+   the surface of key עמוס: its leaders at 1 kind(s) of place are gone
+   exit 1
+   FAIL  E13 where the place moves the leader, the line under the word and the card's first pill are the place's leader  ·  1 · amos 1:2, entry 2 (יהוה under H3068G): the line reads «The Lord» and the place's leader is «Jehovah»
+   1 FAILED
+   data/zones/amos.lattice.bin put back, byte for byte
+G · the page's pool keeps the rows of another entry:
+   the pool keeps every row whatever its entry (the count still says how many are another entry's)
+   exit 1
+   FAIL  E9  a word whose key carries rows of another entry: its card withholds exactly those, says so naming the place's entry (with STEP's letter where a row is asked by letter), and prints no reading only such rows carry  ·  amos 1:1, entry 0 (דברי under H1697G) · 36 of 170 rows are another en
+   FAIL  E11 a row that is this entry by its number and another by STEP's letter, is withheld and counted, and a reading only such rows carry is on no pill  ·  amos 1:1, entry 0 (דברי under H1697G) · 1 such row(s) among 36 of another entry; the card says 0 · "1 given as a name by its source, wit
+   FAIL  E11 a row that is of no number, naming another of BDB's own entries, is withheld and counted, and a reading only such rows carry is on no pill  ·  amos 1:1, entry 7 (חזה under H2372) · 3 such row(s) among 41 of another entry; the card says 0 · "44 of 121 pointed otherwise, withheld" · �
+   FAIL  E13 where the place moves the leader, the line under the word and the card's first pill are the place's leader  ·  2 · amos 1:2, entry 2 (יהוה under H3068G): the first pill is «The Lord» and the place's leader is «Jehovah» · deuteronomy 1:1, entry 0 (אלה under H0428): the first p
+   4 FAILED
+   zone.html put back, byte for byte
+H · the page's numberOf writes a number another way:
+   numberOf writes H0 before the digits
+   exit 1
+   FAIL  E6  the page's own functions, read out of zone.html and run, give the module's verdict for every row of every key at every entry a served zone asks it under  ·  59,383 · דברי under H1697G: the place or BDB's entries there · עמוס under H5986: the place or BDB's entries there · אש�
+   FAIL  E9  a word whose key carries rows of another entry: its card withholds exactly those, says so naming the place's entry (with STEP's letter where a row is asked by letter), and prints no reading only such rows carry  ·  amos 1:1, entry 0 (דברי under H1697G) · 36 of 170 rows are another en
+   FAIL  E10 a row of the place's own entry that its source points otherwise stands: a reading only such rows carry is on the card, credited to its source  ·  amos 1:1, entry 0 (דברי under H1697G) · 13 row(s) of this entry are pointed otherwise · «words/ my» (M4) is on no pill · pointing with
+   FAIL  E11 a row that is this entry by its number and another by STEP's letter, is withheld and counted, and a reading only such rows carry is on no pill  ·  amos 1:1, entry 0 (דברי under H1697G) · 1 such row(s) among 36 of another entry; the card says 160 · "160 of another entry than H1697G, 
+   FAIL  E11 a row that is of no number, naming another of BDB's own entries, is withheld and counted, and a reading only such rows carry is on no pill  ·  amos 1:1, entry 7 (חזה under H2372) · 3 such row(s) among 41 of another entry; the card says 80 · "80 of another entry than H02372, withheld 
+   FAIL  E13 where the place moves the leader, the line under the word and the card's first pill are the place's leader  ·  4 · amos 1:2, entry 2 (יהוה under H3068G): the first pill is «pronounced שמה, and so rhymed: in alphab» and the place's leader is «Jehovah» · daniel 1:2, entry 14 (�
+   6 FAILED
+   zone.html put back, byte for byte
+I · the page reads the surface's own leaders at every place:
+   onlyLeaders reads the surface's own leaders at every place
+   exit 1
+   FAIL      and the same leaders for every surface of the first served zones, at each kind of place it holds leaders for, at a place with no tag (a name or not) and at one it holds none for  ·  amos עָמ֔וֹס at "H5986|n" · amos עַל־ at "H5921A" · amos בִּימֵ֣י at "H3117G"
+   FAIL  E13 where the place moves the leader, the line under the word and the card's first pill are the place's leader  ·  4 · amos 1:2, entry 2 (יהוה under H3068G): the line reads «The Lord» and the place's leader is «Jehovah» · daniel 1:2, entry 14 (בית under H1004Q): the line reads «
+   2 FAILED
+   zone.html put back, byte for byte
+J · the ledger's receipt is other bytes than its pin names:
+   bytes 14658 and 14659 changed places; the size is the same
+   exit 1
+   FAIL  E1  the ledger's rule and receipt are the bytes their pin names, the receipt names the ledger as the pin does, and each parting's sources are the store's  ·  row-entries-v1/receipt-v1.json is not the bytes its pin names (29309 bytes, c63c3819346c84de240265f712b714c2d6122344a1efcdbd124f2b3ad29
+   FAIL  E2  every row's facts are well formed, each on a row of a source that may carry it, and no row ends in an empty slot  ·  374,685 · אביך (M4, rank 1): an entry on a row of a source the ledger does not read · אביך (M4, rank 2): an entry on a row of a source the ledger does not read ·
+   FAIL  E3  the store's index names the rule, the pin, the ledger and totals that are a recount's  ·  the record says the ledger was read at another version of the store than the lane's receipt says · totals.sources says 15 and a recount gives 0 · totals.store_rows_of_those_sources says 382258 and 
+   FAIL  E4  the corpus lane's own counts, source by source: the rows of each source the ledger reads, and how many carry one number, several and none  ·  the lane's receipt was not read
+   FAIL  E5  every line of the ledger finds its row and every row its line, and each row carries exactly the facts its line gives  ·  382258 line(s) find no row, and the index says 0
+   5 FAILED
+   data/row-entries/row-entries-v1/receipt-v1.json put back, byte for byte
+K · a listed row loses its mark:
+   אדר (M18, rank 48): no longer marked a name
+   exit 1
+   FAIL  N3  every listed line finds exactly one row of the store, that row carries the mark, and no other row does  ·  1 · אדר (M18, rank 48): listed and carries no mark
+   FAIL  N4  the store's index names the rule, the pin and the list, and totals that are a recount's  ·  totals say 7412 listed, 7412 marked, 17 sources; a recount gives 7412, 7411, 17
+   2 FAILED
+   data/route-store/shards/00.bin put back, byte for byte
+L · a row no line lists is marked a name:
+   אביך (M4, rank 1): marked a name, though no line of the list names it
+   exit 1
+   FAIL  N3  every listed line finds exactly one row of the store, that row carries the mark, and no other row does  ·  1 (1 rows carry the mark unlisted) · אביך (M4, rank 1): carries the mark and no line lists it
+   FAIL  N4  the store's index names the rule, the pin and the list, and totals that are a recount's  ·  totals say 7412 listed, 7412 marked, 17 sources; a recount gives 7412, 7413, 17
+   2 FAILED
+   data/route-store/shards/00.bin put back, byte for byte
+M · a listed place loses its mark:
+   1:1 «עמוס»: no longer marked a name place
+   exit 1
+   FAIL  N5  in every book the list names, each listed place marks the word of that number in its verse and no other word carries the mark; each zone's receipt names the list and counts as a recount does  ·  2 · amos 1:1 word 2: listed as a name and carries no mark · amos: its receipt counts 272 lis
+     name: 'TimeoutError'
+   data/zones/amos.bin put back, byte for byte
+N · a place no line lists is marked a name place:
+   1:1 «דברי»: marked a name place, though no line of the list names it
+   exit 1
+   FAIL  N5  in every book the list names, each listed place marks the word of that number in its verse and no other word carries the mark; each zone's receipt names the list and counts as a recount does  ·  1 · amos 1:1 word 1: carries the mark and no line lists the place
+     name: 'TimeoutError'
+   data/zones/amos.bin put back, byte for byte
+O · the page's pool keeps the rows given as a name:
+   the pool keeps the rows given as a name
+   exit 1
+   FAIL  N7  at a place that is not a name, the card withholds exactly the rows given as a name that the entry left, says so, and prints no reading only such rows carry  ·  amos 1:1, entry 6 (אשר under H0834A) · 3 of 267 rows are a name's; the card says 0 and takes its place for "not a name" · "9
+   1 FAILED
+   zone.html put back, byte for byte
+P · the page's nameWithheld is turned about:
+   nameWithheld withholds at a place that is a name, and not where it is not one
+   exit 1
+   FAIL  N6  the page's own functions, read out of zone.html and run: the gate gives what the module gives, and a place is a name where its word is marked, or anywhere in a book whose receipt names no list  ·  the gate, for {"name":1} at a place that is a name · the gate, for {"name":1} at a place th
+   FAIL  N7  at a place that is not a name, the card withholds exactly the rows given as a name that the entry left, says so, and prints no reading only such rows carry  ·  amos 1:1, entry 6 (אשר under H0834A) · 3 of 267 rows are a name's; the card says 0 and takes its place for "not a name" · "9
+   2 FAILED
+   zone.html put back, byte for byte
+Q · the list of name places is other bytes than its pin names:
+   bytes 1398986 and 1398987 changed places; the size is the same
+   exit 1
+   FAIL  N1  the lists, their rule and their receipt are the bytes their pin names, and the corpus lane's receipt names both lists as the pin does  ·  names-v1/place-names-v1.jsonl is not the bytes its pin names (2797970 bytes, 4b56dafa4fa59af194b2344954211eadc5291de76065541f41390dec9460486e; the pin:
+   FAIL  N2  every listed place is a book, a verse and a word number, listed once and counted as the lane's receipt counts them; every listed row is a key, a rank, an m id and a hash, listed once, of a source the lane read for names  ·  3 · the lane's receipt counts 34577 name places and the list hol
+   FAIL  N3  every listed line finds exactly one row of the store, that row carries the mark, and no other row does  ·  6 (7,412 rows carry the mark unlisted) · אדר (M18, rank 48): carries the mark and no line lists it · אדר (M18, rank 52): carries the mark and no line lists it · אדר (M18,
+   FAIL  N4  the store's index names the rule, the pin and the list, and totals that are a recount's  ·  totals say 7412 listed, 7412 marked, 17 sources; a recount gives 0, 7412, 0
+   FAIL  N5  in every book the list names, each listed place marks the word of that number in its verse and no other word carries the mark; each zone's receipt names the list and counts as a recount does  ·  34,616 · amos 1:1 word 2: carries the mark and no line lists the place · amos 1:1 word 6: ca
+   5 FAILED
+   data/names/names-v1/place-names-v1.jsonl put back, byte for byte
+R · the index says M9's rows are not the rows its list was read from, while they are:
+   the index says M9's rows are not the rows its list was read from
+   exit 1
+   FAIL  M4  the store's index names the rule, the pin, its relays, the lists and the never-closed files, each source's rows as they stand, and totals that are a recount's  ·  the index says M9's rows are not the rows its list was read from, and its two records of them (as read 1a387414d89c, as they s
+   1 FAILED
+   data/route-store/index.json put back, byte for byte
+S · the card names the place's entry by its number alone, where a row is asked by letter:
+   the card names the place's entry by its numbers alone
+   exit 1
+   FAIL  E9  a word whose key carries rows of another entry: its card withholds exactly those, says so naming the place's entry (with STEP's letter where a row is asked by letter), and prints no reading only such rows carry  ·  amos 1:1, entry 0 (דברי under H1697G) · 36 of 170 rows are another en
+   FAIL  E11 a row that is this entry by its number and another by STEP's letter, is withheld and counted, and a reading only such rows carry is on no pill  ·  amos 1:1, entry 0 (דברי under H1697G) · 1 such row(s) among 36 of another entry; the card says 36 · "36 of another entry than H1697, wit
+   2 FAILED
+   zone.html put back, byte for byte
+everything back:
+   entry · exit 0
+      all checks passed
+   names · exit 0
+      all checks passed
+   spaces · exit 0
+      all checks passed
