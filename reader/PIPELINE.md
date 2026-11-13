@@ -46,7 +46,9 @@
 > the round's command line. The reader withholds a reading of another stem
 > than the word's, and asks that of the rows of the dictionaries beside the
 > store as of the store's own (`tools/rows-beside-the-store-v1.mjs` is how a
-> check counts those rows). A row's facts also say, since the same day,
+> check counts those rows). A book's sidecar carries the rows' stems only
+> under the keys a card of that book, or a leader baked for it, can ask
+> them under (`tools/stems-carried-v1.mjs`). A row's facts also say, since the same day,
 > where the row is only the words that open a numbered sense of its entry
 > (`tools/apply-sense-openings-v1.mjs`, from the corpus lane's list of the
 > unabridged BDB's openings kept in `data/sense-openings/`, under the

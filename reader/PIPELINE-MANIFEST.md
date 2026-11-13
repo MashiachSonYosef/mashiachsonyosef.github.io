@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-13.
 
-**152 rules declared · 139 named by a check · 13 unguarded.**
+**153 rules declared · 140 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -140,6 +140,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole` | tools/apply-span-ledger-v1.mjs | check-respan-projection-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words` | tools/stem-family-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-pointing-gate-v1 |
+| `stems-carried-rule-v1-a-key-carries-its-rows-stems-only-where-a-card-of-the-book-can-ask-them` | tools/stems-carried-v1.mjs, tools/project-lattice-v12-v1.mjs | check-stems-carried-v1, check-stems-extension-v1 |
 | `stems-extension-rule-v1-three-more-dictionaries-name-their-stems-as-the-owner-set-their-branches-and-a-row-beside-the-store-is-asked-its-stem-too` | tools/stems-extension-v1.mjs, zone.html | check-stems-extension-v1 |
 | `store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed` | tools/check-store-continuity-v1.mjs | check-store-continuity-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
@@ -185,7 +186,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 141 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 142 tools that are not checks.
 
 Not called by any build stage:
 
@@ -284,6 +285,7 @@ Not called by any build stage:
 - `tools/serve-tree-v1.mjs`
 - `tools/span-slice-v1.mjs`
 - `tools/stem-family-v1.mjs`
+- `tools/stems-carried-v1.mjs`
 - `tools/stems-extension-v1.mjs`
 - `tools/strike-language-v1.mjs`
 - `tools/strike-rows-v1.mjs`

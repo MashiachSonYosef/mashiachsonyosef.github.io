@@ -101,6 +101,7 @@ import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
 import { readStemsExtension, stemsId, STEMS_EXTENSION_RULE_ID, STEMS_EXTENSION_HOME } from "./stems-extension-v1.mjs";
+import { STEMS_CARRIED_RULE_ID, keysAskedWithStems } from "./stems-carried-v1.mjs";
 import { ENTRY_GATE_RULE_ID, placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
@@ -255,6 +256,7 @@ if (rowStemsPath) {
 // it finds the store's. A row both files name is a fault and is refused.
 const extensionPath = arg("--row-stems-extension");
 let extensionSaid = null;   // what the sidecar says of the extension, or null where none was read
+const extensionIdsByKey = new Map();   // key -> the ids of its rows the extension gave stems
 if (extensionPath) {
   if (!rowStemsPath) { console.error("refused: --row-stems-extension extends the binyan ledger's file 2 and is read with it (--row-stems)"); process.exit(1); }
   let ext;
@@ -266,6 +268,8 @@ if (extensionPath) {
     const id = stemsId(l.m, l.rank, l.route);
     if (Object.prototype.hasOwnProperty.call(held, id)) { console.error(`refused: the stems extension and file 2 both name the row ${l.m} rank ${l.rank} under «${l.key}»`); process.exit(1); }
     held[id] = l.stems;
+    if (!extensionIdsByKey.has(l.key)) extensionIdsByKey.set(l.key, new Set());
+    extensionIdsByKey.get(l.key).add(id);
     given += 1;
   }
   binyanFiles.push({ file: ext.pin.lines.file, sha256: ext.pin.lines.sha256 });
@@ -685,6 +689,30 @@ for (const sec of zone.sections || []) for (const w of sec.words || []) {
   }
 }
 
+// ---- the stems carried -----------------------------------------------------
+// THE STEMS A CARD CAN ASK (stems-carried-rule-v1, tools/stems-carried-v1.mjs):
+// a key's rows' stems where a card of this book or a leader baked here asks
+// them, and nothing else. The leaders above were baked from every key's.
+const keysAsked = keysAskedWithStems(zone, grades);
+const stemsCarried = {};
+const stemsCarriedSaid = { rule: STEMS_CARRIED_RULE_ID, keys_with_stems: 0, keys_carried: 0, rows_with_stems: 0, rows_carried: 0 };
+for (const [k, held] of Object.entries(stemsByKey)) {
+  const n = Object.keys(held).length;
+  stemsCarriedSaid.keys_with_stems += 1;
+  stemsCarriedSaid.rows_with_stems += n;
+  if (!keysAsked.has(k)) continue;
+  stemsCarried[k] = held;
+  stemsCarriedSaid.keys_carried += 1;
+  stemsCarriedSaid.rows_carried += n;
+}
+// the extension's count is of the rows the sidecar carries; the rows it named on this book's keys are said beside it
+if (extensionSaid) {
+  let carried = 0;
+  for (const [k, ids] of extensionIdsByKey) if (keysAsked.has(k)) carried += ids.size;
+  extensionSaid.rows_named_on_this_books_keys = extensionSaid.rows_given_stems_in_this_book;
+  extensionSaid.rows_given_stems_in_this_book = carried;
+}
+
 // ---- the sidecar ----------------------------------------------------------
 const sideRoutes = {};
 let trCards = 0;
@@ -714,7 +742,7 @@ const sidecar = {
   entry: { rule: ENTRY_GATE_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
   names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
   leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
-  ...(binyanFiles.length ? { stems: stemsByKey, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, ...(extensionSaid ? { extension: extensionSaid } : {}), kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each row on the key, by m, rank and route: the store's rows, and where the extension was read the rows of the dictionary beside the store that it names; a row not listed has no known stem" } } : {}),
+  ...(binyanFiles.length ? { stems: stemsCarried, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, carried: stemsCarriedSaid, ...(extensionSaid ? { extension: extensionSaid } : {}), kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each row on a key a card of this book asks them under (carried, stems-carried-rule-v1: a word's, a read half's or a piece's key whose pointed surface has a known stem here, or a graded surface's own key with one), by m, rank and route: the store's rows, and where the extension was read the rows of the dictionary beside the store that it names; on a key carried, a row not listed has no known stem" } } : {}),
 };
 writeFileSync(sidecarPath, gzipSync(Buffer.from(JSON.stringify(sidecar)), { level: 9 }));
 
