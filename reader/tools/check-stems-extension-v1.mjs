@@ -38,8 +38,10 @@
 //       it gave stems, which is a recount's. With the file: each row of the
 //       extension's sources carries in the sidecar exactly the stems its
 //       line gives under the settings, no row of those sources carries stems
-//       no line gives, and at every word of the book whose key holds a line
-//       with stems the sidecar holds that row
+//       no line gives, and at every word of the book asked its rows' stems
+//       under a key that holds a line with stems (stems-carried-rule-v1: the
+//       word's or a half's pointed surface has a known stem in the book) the
+//       sidecar holds that row
 //   B5  on the page, a verb whose key holds a row BESIDE THE STORE whose own
 //       source names its stem, another stem than the word's: under the
 //       default the card withholds for the stem exactly the rows this check
@@ -70,6 +72,7 @@ import { readPinned, PinFault } from "./pinned-v1.mjs";
 import { rulingsPinned, rulingOf, cited } from "./rulings-v1.mjs";
 import { STEMS_EXTENSION_RULE_ID, STEMS_EXTENSION_DIR, STEMS_EXTENSION_HOME, readStemsExtension, stemsId } from "./stems-extension-v1.mjs";
 import { openBesideTheStore, rowsBeside, besideAtAWord } from "./rows-beside-the-store-v1.mjs";
+import { keysAskedAtWord } from "./stems-carried-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
@@ -219,9 +222,11 @@ for (const z of zonesServed()) {
     const words = sec.words || [];
     for (const [e, w] of words.entries()) {
       if (w.mark) continue;
-      // every key the word is asked under: its own, and each half's where it is written one way and read another
+      // every key the word is asked its rows' stems under: its own, and each half's where it is written one way and
+      // read another, where that form's pointed surface has a known stem in the book (stems-carried-rule-v1)
+      const askedHere = keysAskedAtWord(w, side.grades || {});
       for (const k of new Set([w.k, ...(w.w || []).map((h) => h && h.k)].filter(Boolean))) {
-        if (!ext || !lineOf.has(k)) continue;
+        if (!ext || !lineOf.has(k) || !askedHere.has(k)) continue;
         b4.words += 1;
         const held = side.stems[k] || {};
         for (const [id, l] of lineOf.get(k)) if (l.stems.length && !same(held[id], l.stems)) { if (b4.faults.length < 40) b4.faults.push(`${z} ${sec.label} «${k}» ${l.m} rank ${l.rank}: its line gives ${l.stems.join("+")} and the sidecar holds ${held[id] ? held[id].join("+") : "nothing"}`); }
@@ -281,8 +286,8 @@ for (const z of zonesServed()) {
     }
   }
 }
-check(`B4  every book's sidecar that carries stems names the extension and the ruling it was read under, counts the rows it gave stems as a recount does${ext ? ", and holds for each row of the extension's sources exactly the stems its line gives, at every word whose key holds such a line" : ""}`, b4.books > 0 && b4.faults.length === 0,
-  b4.faults.length ? `${nf(b4.faults.length)}${b4.faults.length >= 40 ? " or more" : ""} · ${first(b4.faults)}` : `${b4.books} books · ${nf(b4.ids)} rows given stems, book by book${ext ? ` · ${nf(b4.words)} words stand on a key that holds a line` : " · the lines were not read (the file is not on this machine)"}`);
+check(`B4  every book's sidecar that carries stems names the extension and the ruling it was read under, counts the rows it gave stems as a recount does${ext ? ", and holds for each row of the extension's sources exactly the stems its line gives, at every word asked its rows' stems under a key that holds such a line" : ""}`, b4.books > 0 && b4.faults.length === 0,
+  b4.faults.length ? `${nf(b4.faults.length)}${b4.faults.length >= 40 ? " or more" : ""} · ${first(b4.faults)}` : `${b4.books} books · ${nf(b4.ids)} rows given stems, book by book${ext ? ` · ${nf(b4.words)} words are asked their rows' stems under a key that holds a line` : " · the lines were not read (the file is not on this machine)"}`);
 
 // ---- B5 to B8: on the page -------------------------------------------------------------------------
 const kinds = [
