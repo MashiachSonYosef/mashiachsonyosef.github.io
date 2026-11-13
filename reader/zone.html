@@ -6913,8 +6913,11 @@
     // word's stems is withheld and counted; a reading whose stem is unknown
     // stays (Strong's lists every stem's renderings together). The word's
     // stems are its pointed surface's in this book (both sources' where they
-    // disagree), baked in the lattice sidecar beside its grades.
-    let withheldByStem = 0;
+    // disagree), baked in the lattice sidecar beside its grades. Where the
+    // gate is asked, the stems it held the rows to ride on the pool, and
+    // the card names them beside its count (13 November 2026: until then
+    // the card said "of another stem" and never said than which).
+    let withheldByStem = 0, stemsHere = null;
     if (pointingNow(W.pointed) === "only" && latticeStore && W.pointed) {
       const gr = latticeStore.grades ? latticeStore.grades[W.pointed] : null;
       const st = gr && Array.isArray(gr.st) && gr.st.length ? gr.st : null;
@@ -6924,6 +6927,7 @@
         const other = (row) => { const x = rs[`${row[3]}\u0001${row[0]}\u0001${row[1]}`]; return Array.isArray(x) && x.length > 0 && !x.some((y) => fams.has(stemFamily(y))); };
         const kept = routes.filter((row) => !other(row));
         withheldByStem = routes.length - kept.length;
+        stemsHere = st;
         routes = kept;
       }
     }
@@ -7067,8 +7071,19 @@
       }
     }
     const pool = sortPool([...groups.values()], surface, W);
-    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.rows = asked;
+    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
     return pool;
+  };
+  // WHAT A POOL SAYS WAS WITHHELD RIDES WITH EVERY COPY OF IT. The card keeps
+  // a filtered copy of a pool in two places (the whole form of a word its
+  // place divides; the written half of a pair), and each copied the counts by
+  // name. The stem's count was not among the names, so on the whole form of a
+  // divided verb the card stopped saying what the stem withheld (a reader of
+  // this code, 10 November 2026; fixed 13 November). Every count a pool
+  // carries is named here once, and a copy takes them all.
+  const carryWithheld = (to, from) => {
+    to.withheld = from.withheld; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
+    return to;
   };
   const oldestFirst = (a, b) => {
     const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_AD ? 0 : 1);
@@ -8497,7 +8512,7 @@
         }
       }
       const out = sortPool(kept, surface);
-      out.withheld = pool.withheld; out.withheldBySources = pool.withheldBySources; out.rows = pool.rows;
+      carryWithheld(out, pool);
       out.kqWithheld = heldGroups.length;
       out.kqWithheldRows = heldGroups.reduce((n, g) => n + g.records.length, 0);
       // the read form as the source carries it, joiner and all
@@ -9133,9 +9148,7 @@
           // the whole form, where the set has its division: the set is not a
           // reading of the form as one word, and stands on its division
           if (got && setCut && surface === region.k) {
-            const kept = got.filter((g) => !isDividedReading(g));
-            kept.withheld = got.withheld; kept.withheldBySources = got.withheldBySources; kept.rows = got.rows;
-            got = kept;
+            got = carryWithheld(got.filter((g) => !isDividedReading(g)), got);
           }
           // the written branch of a pair, defined by what is read (kq-declared-weld-v1)
           if (got && kqWeldHere(surface)) got = await kqWeld(got, surface);
@@ -9249,7 +9262,7 @@
           const bits = [];
           if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
           if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
-          if (pool.withheldByStem) bits.push(`${pool.withheldByStem} record${pool.withheldByStem === 1 ? "" : "s"} withheld by the stem — their source reads another stem of this verb`);
+          if (pool.withheldByStem) bits.push(`${pool.withheldByStem} record${pool.withheldByStem === 1 ? "" : "s"} withheld by the stem — their source reads another stem of this verb than ${(pool.stems || []).join(" or ")}`);
           p.className = "kq-role sources-withheld";
           p.textContent = `${bits.join("; ")}. No record is left to read here. Nothing here says the shelf lacks it.`;
           readRow.append(p);
@@ -9763,6 +9776,7 @@
         // check can ask the page rather than recount the shard
         pills.dataset.withheld = String(pool.withheld || 0);
         pills.dataset.stemWithheld = String(pool.withheldByStem || 0);
+        pills.dataset.stems = (pool.stems || []).join("|");
         pills.dataset.withheldBySources = String(pool.withheldBySources || 0);
         pills.dataset.rows = String(pool.rows || 0);
         // the declared weld, said on the row and exposed (kq-declared-weld-v1)
@@ -9784,7 +9798,7 @@
           wLine.replaceChildren();
           const parts = [];
           if (pool.withheld) parts.push(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
-          if (pool.withheldByStem) parts.push(Object.assign(document.createElement("span"), { className: "stem-withheld", textContent: `${pool.withheldByStem} of another stem, withheld` }));
+          if (pool.withheldByStem) parts.push(Object.assign(document.createElement("span"), { className: "stem-withheld", textContent: `${pool.withheldByStem} of another stem than ${(pool.stems || []).join(" or ")}, withheld` }));
           if (pool.withheldBySources) parts.push(Object.assign(document.createElement("span"), { className: "sources-withheld", textContent: `${pool.withheldBySources} withheld by your source switches (${sourcesOffSay()})` }));
           parts.forEach((x, i) => { if (i) wLine.append(" \u00b7 "); wLine.append(x); });
         } else if (wLine) wLine.remove();
