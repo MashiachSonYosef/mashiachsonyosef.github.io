@@ -1175,7 +1175,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 15134930,
+  "shard_bytes_total": 15125863,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "a8429861023d",
+ "store_version": "a9373b8d30ef",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1520,6 +1520,18 @@
    "now": "a8429861023d",
    "why": "made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it",
    "on": "2026-11-13T03:07:14.956Z"
+  },
+  {
+   "was": "a8429861023d",
+   "now": "bb13929a3e90",
+   "why": "made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it",
+   "on": "2026-11-13T06:03:36.444Z"
+  },
+  {
+   "was": "bb13929a3e90",
+   "now": "a9373b8d30ef",
+   "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
+   "on": "2026-11-13T06:05:42.625Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -1604,7 +1616,7 @@
  },
  "ledgers": {
   "rule_id": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
-  "applied_on": "2026-11-10T05:11:37.311Z",
+  "applied_on": "2026-11-13T06:05:42.625Z",
   "manifest": "reader/data/ledgers-v1/manifest.json",
   "ask": "ASK-provider-declarations-v1.1",
   "checker": {
@@ -1613,7 +1625,7 @@
   },
   "answers": {
    "file": "reader/data/ledger-branch-answers-v1.json",
-   "sha256": "eec32353e9b4cde8a390e74823e84dad3823f955d4a11d3529a83c5f153038c9"
+   "sha256": "b9653660eba1177b8dccf9d684ea119f6198fad2299e418ba38f311a8f4d515e"
   },
   "excluded": {},
   "untabled": {
@@ -2910,24 +2922,20 @@
      "semicolon.before_alternative",
      "semicolon.before_meaning_under_opening_label",
      "semicolon.before_meaning_under_label_in_the_wording",
-     "semicolon.between_wording_and_meaning",
      "colon.before_meaning_under_opening_label",
-     "colon.between_wording_and_meaning",
-     "equals.between_wording_and_meaning",
      "comma.between_two_renderings_in_one_gloss",
      "comma.before_alternative_under_shared_note",
      "comma.before_other_meaning_under_label_or_note",
      "comma.before_other_meaning",
-     "comma.between_wording_and_meaning",
      "period.before_alternative",
      "exclamation.between_two_interjections"
     ],
     "branches": {
      "B01": {
-      "option": "divides",
+      "option": "whole",
       "resting": "whole",
       "by": "the owner",
-      "on": "2026-11-06"
+      "on": "2026-11-13"
      },
      "B02": {
       "option": "divides",
@@ -2949,7 +2957,7 @@
      }
     },
     "rows": 21626,
-    "rows_dividing": 3400,
+    "rows_dividing": 114,
     "rows_printing_a_part": 0,
     "rows_no_pill": 0,
     "uncovered": 0
@@ -3487,10 +3495,10 @@
   "totals": {
    "ledgered_sources": 43,
    "rows": 652954,
-   "rows_dividing": 71442,
+   "rows_dividing": 68156,
    "rows_printing_a_part": 2698,
    "rows_no_pill": 603,
-   "rows_whose_slot_moved": 13,
+   "rows_whose_slot_moved": 3287,
    "uncovered": 0
   },
   "overlays": {
@@ -3501,7 +3509,7 @@
     "rows_dividing": 55814,
     "rows_printing_a_part": 149,
     "rows_no_pill": 0,
-    "rows_whose_slot_moved": 88,
+    "rows_whose_slot_moved": 0,
     "uncovered": 0,
     "by_source": {
      "sefaria_jastrow_1903": {
@@ -3654,39 +3662,111 @@
  },
  "made_spaces": {
   "rule_id": "made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it",
-  "applied_on": "2026-11-13T03:07:14.956Z",
+  "applied_on": "2026-11-13T06:03:36.444Z",
   "applied_by": "tools/apply-made-spaces-v1.mjs",
-  "pin": "reader/data/made-spaces-v1/PIN.json",
-  "relay": "v168",
-  "from": "r2:mishkan/v2/ledgers/all/made-spaces/made-spaces-v1/ (the private store), 12 November 2026",
-  "rule": "reader/data/made-spaces-v1/RULE.md",
+  "pin": "reader/data/made-spaces/PIN.json",
+  "relays": [
+   {
+    "relay": "v168",
+    "of": "12 November 2026",
+    "letter": "r2:mishkan/v2/letters/moses-made-spaces-v1/FOR-ELIJAH-v168.md",
+    "from": "r2:mishkan/v2/ledgers/all/made-spaces/made-spaces-v1/ (the private store)",
+    "folder": "reader/data/made-spaces/made-spaces-v1",
+    "rule": "reader/data/made-spaces/made-spaces-v1/RULE.md",
+    "receipt": "reader/data/made-spaces/made-spaces-v1/receipt-v1.json",
+    "read_at_store_version": "90d9eb8e7082"
+   },
+   {
+    "relay": "v178",
+    "of": "13 November 2026",
+    "letter": "r2:mishkan/v2/letters/moses-made-spaces-v2/FOR-ELIJAH-v178.md",
+    "from": "r2:mishkan/v2/ledgers/all/made-spaces/made-spaces-v2/ (the private store)",
+    "folder": "reader/data/made-spaces/made-spaces-v2",
+    "rule": "reader/data/made-spaces/made-spaces-v2/RULE.md",
+    "receipt": "reader/data/made-spaces/made-spaces-v2/receipt-v2.json",
+    "read_at_store_version": "a8429861023d"
+   }
+  ],
   "lists": [
    {
     "m": "M9",
     "key": "openscriptures_strongs",
-    "file": "reader/data/made-spaces-v1/openscriptures_strongs.made-spaces-v1.jsonl",
+    "relay": "v168",
+    "file": "reader/data/made-spaces/made-spaces-v1/openscriptures_strongs.made-spaces-v1.jsonl",
     "sha256": "c984e7827db37f38fae5bdb0143ffc8de4657dbc9aab56b4a82d9e4a204aaa4b"
    },
    {
     "m": "M5",
     "key": "openscriptures_bdb_1906",
-    "file": "reader/data/made-spaces-v1/openscriptures_bdb_1906.made-spaces-v1.jsonl",
+    "relay": "v168",
+    "file": "reader/data/made-spaces/made-spaces-v1/openscriptures_bdb_1906.made-spaces-v1.jsonl",
     "sha256": "5fc6db699b281abe8ae225baa238b9c0d4f73cceace3a55180a1dcadbf87dd66"
+   },
+   {
+    "m": "M46",
+    "key": "unabridged_bdb_1906",
+    "relay": "v178",
+    "file": "reader/data/made-spaces/made-spaces-v2/unabridged_bdb_1906.made-spaces-v2.jsonl",
+    "sha256": "2f8b86bc175188e937ac8e0e474c92806d9ef2fca6627a1658b93f9cc511d645"
    }
   ],
-  "lists_read_from_store_version": "90d9eb8e7082",
-  "store_version_before": "90d9eb8e7082",
-  "store_version": "a8429861023d",
+  "never_closed": [
+   {
+    "m": "M46",
+    "key": "unabridged_bdb_1906",
+    "relay": "v178",
+    "file": "reader/data/made-spaces/made-spaces-v2/unabridged_bdb_1906.words-taken-out-v2.jsonl",
+    "sha256": "ad5d9463b768225cd05eb30602adefb798cee7735989a70680471e62d65cba71",
+    "texts": 750
+   }
+  ],
+  "read_and_found_none": [
+   {
+    "m": "M33",
+    "key": "openscriptures_lexical_index",
+    "relay": "v168"
+   },
+   {
+    "m": "M14",
+    "key": "wikisource_strongs_explicit_forms",
+    "relay": "v178"
+   }
+  ],
+  "sources": {
+   "M9": {
+    "key": "openscriptures_strongs",
+    "relay": "v168",
+    "read_at_store_version": "90d9eb8e7082",
+    "texts_sha256": "1a387414d89cff9e664b0f9dad16111b03d6501fab610d33501ce61df46b8dc9",
+    "texts_are_as_read": true
+   },
+   "M5": {
+    "key": "openscriptures_bdb_1906",
+    "relay": "v168",
+    "read_at_store_version": "90d9eb8e7082",
+    "texts_sha256": "8278ac96b15768c78eb1b93ad6a2b0a296b0c05d0829a631d0b73c24a53775a9",
+    "texts_are_as_read": true
+   },
+   "M46": {
+    "key": "unabridged_bdb_1906",
+    "relay": "v178",
+    "read_at_store_version": "a8429861023d",
+    "texts_sha256": "a1f7b60afec5bd08af856b9e635a874feeaf6748d4a01e3d985191844138ae74",
+    "texts_are_as_read": true
+   }
+  },
+  "store_version_before": "a8429861023d",
+  "store_version": "bb13929a3e90",
   "what": "a row of a source the corpus lane's made-spaces lists name carries, in slot 9, the places of its route text and of its definition text that close at print ([the route text's or null, the definition text's or null], UTF-16 units from 0), where its text is a line of its source's list with a close; the texts themselves are the served bytes, unchanged, and a reader takes the characters at those places out when it prints, after the ledger's division; a row with no close carries no such slot",
   "totals": {
-   "sources": 2,
-   "rows_of_listed_sources": 38884,
-   "rows_carrying_the_slot": 23230,
-   "rows_with_a_close_on_the_route_text": 4849,
-   "rows_with_a_close_on_the_definition_text": 23230,
-   "closes_on_route_texts": 6420,
-   "closes_on_definition_texts": 105830,
-   "span_store_rows_of_listed_sources": 486,
+   "sources": 3,
+   "rows_of_listed_sources": 47799,
+   "rows_carrying_the_slot": 23367,
+   "rows_with_a_close_on_the_route_text": 4986,
+   "rows_with_a_close_on_the_definition_text": 23367,
+   "closes_on_route_texts": 6606,
+   "closes_on_definition_texts": 106016,
+   "span_store_rows_of_listed_sources": 604,
    "span_store_rows_with_a_close": 0
   }
  }

@@ -70,8 +70,9 @@ export const readingKey = (t) => printedForm(t).toLowerCase();
 // MADE SPACES CLOSE AT PRINT (made-spaces-rule-v1, 13 November 2026). Our own
 // build put one space where each tag of a provider's XML stood, so the store
 // serves «Amos , an Israelite prophet» where the provider wrote «Amos, an
-// Israelite prophet». The corpus lane traced every such space and listed the
-// places that close (relay v168; data/made-spaces-v1/), and
+// Israelite prophet». The corpus lane traces every such space, source by
+// source, and lists the places that close (data/made-spaces/, one folder per
+// relay: v168, v178), and
 // tools/apply-made-spaces-v1.mjs writes them on the row, in slot 9: [the
 // route text's closes or null, the definition text's or null], UTF-16 units
 // from 0, rising. The texts stay the served bytes, because every list, ledger
