@@ -69,3 +69,29 @@ What the tool refuses, in words and with nothing written: a list that is not its
 - M10 on the page, with every switch lifted: no pill prints a reading as it stood before closing; the closed reading stands on a pill of its source; the record under it is the definition as it prints; and the card calls the reading a piece of its record only where the store marks the row as one.
 
 Run on the tree before the rebuild (`logs/l1`): M1 to M7 and M10 pass; M8 fails (the door is not rebuilt) and M9 fails with 3,419 baked readings that still print the space. That is the check failing where it should, on a tree that is half done.
+
+Run again after the rebuild (`logs/l6`): all ten pass. M9 read 69 zone files, 530 tables and 552,714 baked readings; 3,488 keys hold a reading that closing changed. M10 pressed 6 words and read 924 pills; the closed reading and its record stood on all 6 cards.
+
+Made to fail four ways on the tree and put back, byte for byte (`tools/probes/made-spaces-check-goes-red.sh`, `logs/l7`):
+
+- A, a store row that should carry its route's closes carries no slot: M3 fails and names the row.
+- B, a row's first close moved one place on: M3 and M6 fail (the route prints «to expand  i.e. be great», its line says «to expand, i.e. be great»).
+- C, the page's `closed` keeps the space it should leave out: M7 fails on the rows and M10 fails on the page («Dibri , an Israelite» on a pill).
+- D, a list's first close moved: M1, M2 and M3 fail.
+
+## 6. What changed on the site, measured
+
+The round was run whole (zones, stamps, search, records, lines, chain, door), 34 minutes, exit 0 (`logs/l2`).
+
+**The lines under the words** (`tools/probes/lines-before-and-after.py`, `logs/l4`; the recordings of the live build and of this one, unit by unit over 40 works):
+
+- 400,242 lines before and after; no unit only in one.
+- 569 lines print another text, every one by spaces alone, every one credited to Strong's via Open Scriptures. «Elim , a place in the Desert» is now «Elim, a place in the Desert».
+- 0 lines differ otherwise. 0 lines keep their text and change their credit.
+- Lines that print a space before a stop: 1,326 before, 757 after. The 757 are other sources' (the corpus lane's v168 §9 names them) and the provider's own.
+
+**The chain books** (`logs/l9`): 435,246 links at rest, as before; 734,372 with every switch lifted, where it was 734,374. Two pills joined a pill of another source that printed the same words once the space was closed. Every other count is what it was.
+
+**The search index** (`logs/l5`): 748,847 pills, as before, now drawn by the page's own functions; 160,470 English forms where it was 160,473 (three forms that differed by a made space are one).
+
+**The store**: section 3.

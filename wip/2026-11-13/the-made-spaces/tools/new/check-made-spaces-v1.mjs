@@ -298,7 +298,7 @@ const stale = new Map();
   const ZONES = join(K3, "data", "zones");
   const faults = []; let files = 0, tables = 0, readings = 0;
   for (const f of existsSync(ZONES) ? readdirSync(ZONES).filter((x) => x.endsWith(".bin")).sort() : []) {
-    let z = null;
+    let z;
     try { z = JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8")); } catch { continue; }   // not a zone's JSON (a shard of another kind)
     if (!z || typeof z.gloss !== "object" || !z.gloss) continue;
     files += 1;
