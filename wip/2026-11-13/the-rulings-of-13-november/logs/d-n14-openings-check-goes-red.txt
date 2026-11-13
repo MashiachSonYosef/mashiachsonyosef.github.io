@@ -1,0 +1,100 @@
+the tree as it stands:
+   exit 0
+      all checks passed
+A · the list of openings is other bytes than its pin names:
+   bytes 117486 and 117487 changed places; the size is the same
+   exit 1
+   FAIL  O1  the list, its rule and its receipt are the bytes their pin names, the lane's receipt names the list as the pin does, and one pinned ruling rules the list, sets the print this lane has wired and counts the rows the list holds  ·  pieces-v1/numbered-sense-openings-v1.jsonl is not the bytes 
+   FAIL  O2  every line is a key, a rank, a route and one entry with its point, marked only an opening and listed once, and the lines are counted as the lane's receipt counts them  ·  2 · the lane's receipt counts 2008 rows that are only an opening and the list holds 0 · by first word the lane's rec
+   FAIL  O3  every listed line finds exactly one row among the rows of the ruling's ledger, that row carries the line's entry and point, and no other row carries the mark  ·  7 (2,008 rows carry the mark unlisted) · אדר (M46, rank 60): carries the mark and no line lists it · אדר (M46, rank 61)
+   FAIL  O4  the store's index names the rule, the pin, the list and the ruling, and totals that are a recount's  ·  the record names the sources ["M46"] and the ruling's ledger has [] · totals say 2008 listed, 2008 marked, 8915 rows of the ruled sources; a recount gives 0, 2008, 0
+   FAIL  O5  a marked row gives no reading and names its sense as its line does, a key's readings are those of its other rows, and the page's own functions, read out of zone.html and run, give what the module gives for every row of every key that holds a note  ·  2,008 · אדר rank 60: the reader na
+   5 FAILED
+   data/sense-openings/pieces-v1/numbered-sense-openings-v1.jsonl put back, byte for byte
+B · the pinned rulings are other bytes than their pin names:
+   bytes 2380 and 2381 changed places; the size is the same
+   exit 1
+   FAIL  O1  the list, its rule and its receipt are the bytes their pin names, the lane's receipt names the list as the pin does, and one pinned ruling rules the list, sets the print this lane has wired and counts the rows the list holds  ·  rulings-v1/rulings-2026-11-13-v1.json is not the bytes its p
+   FAIL  O3  every listed line finds exactly one row among the rows of the ruling's ledger, that row carries the line's entry and point, and no other row carries the mark  ·  8 (2,008 rows carry the mark unlisted) · אדר (M46, rank 60): carries the mark and no line lists it · אדר (M46, rank 61)
+   FAIL  O4  the store's index names the rule, the pin, the list and the ruling, and totals that are a recount's  ·  the record names the sources ["M46"] and the ruling's ledger has [] · totals say 2008 listed, 2008 marked, 8915 rows of the ruled sources; a recount gives 2008, 2008, 0
+   3 FAILED
+   data/rulings/rulings-v1/rulings-2026-11-13-v1.json put back, byte for byte
+C · a listed row of the store loses its mark:
+   «אדר» rank 60 of M46: its mark BDB137 1. is gone
+   exit 1
+   FAIL  O3  every listed line finds exactly one row among the rows of the ruling's ledger, that row carries the line's entry and point, and no other row carries the mark  ·  1 · אדר (M46, rank 60): listed and carries no mark
+   FAIL  O4  the store's index names the rule, the pin, the list and the ruling, and totals that are a recount's  ·  totals say 2008 listed, 2008 marked, 8915 rows of the ruled sources; a recount gives 2008, 2007, 8915
+   2 FAILED
+   data/route-store/shards/00.bin put back, byte for byte
+D · a row of the ruled source that no line names is given a mark:
+   «אדר» rank 58 of M46, which no line names, is given the mark BDB0 1.
+   exit 1
+   FAIL  O3  every listed line finds exactly one row among the rows of the ruling's ledger, that row carries the line's entry and point, and no other row carries the mark  ·  1 (1 rows carry the mark unlisted) · אדר (M46, rank 58): carries the mark and no line lists it
+   FAIL  O4  the store's index names the rule, the pin, the list and the ruling, and totals that are a recount's  ·  totals say 2008 listed, 2008 marked, 8915 rows of the ruled sources; a recount gives 2008, 2009, 8915
+   FAIL  O5  a marked row gives no reading and names its sense as its line does, a key's readings are those of its other rows, and the page's own functions, read out of zone.html and run, give what the module gives for every row of every key that holds a note  ·  1 · אדר rank 58: the reader names 
+   FAIL  O6  no line stands on a note: in every served book, the line a key carries, each witnessed column's and every leader its sidecar keeps are no marked row's words, unless a row that is not marked prints the same  ·  3 · micah אדר: the column witnessed_entry is «aduru», the words of a note
+   4 FAILED
+   data/route-store/shards/00.bin put back, byte for byte
+E · a marked row names another point than its line gives:
+   «אדר» rank 60 of M46: its mark was BDB137 1. and is BDB137 99.
+   exit 1
+   FAIL  O3  every listed line finds exactly one row among the rows of the ruling's ledger, that row carries the line's entry and point, and no other row carries the mark  ·  1 · אדר (M46, rank 60): the mark is "BDB137 99." and its line gives "BDB137 1."
+   FAIL  O5  a marked row gives no reading and names its sense as its line does, a key's readings are those of its other rows, and the page's own functions, read out of zone.html and run, give what the module gives for every row of every key that holds a note  ·  1 · אדר rank 60: the reader names 
+   2 FAILED
+   data/route-store/shards/00.bin put back, byte for byte
+F · the index's record counts one row more than is marked:
+   the index's record counts one row more than is marked
+   exit 1
+   FAIL  O4  the store's index names the rule, the pin, the list and the ruling, and totals that are a recount's  ·  totals say 2008 listed, 2009 marked, 8915 rows of the ruled sources; a recount gives 2008, 2008, 8915
+   1 FAILED
+   data/route-store/index.json put back, byte for byte
+G · the index's record cites the ruling with another print than the pinned one:
+   the index's record cites the ruling with the print «as a pill»
+   exit 1
+   FAIL  O4  the store's index names the rule, the pin, the list and the ruling, and totals that are a recount's  ·  the record cites another ruling than the pinned one
+   1 FAILED
+   data/route-store/index.json put back, byte for byte
+H · amos's sidecar gives a surface the words of a note as its leader:
+   the leader of אֲשֶׁר־ (key אשר) was «which» and is «son of Jacob and Zilpah», the words of a note
+   exit 1
+   FAIL  O6  no line stands on a note: in every served book, the line a key carries, each witnessed column's and every leader its sidecar keeps are no marked row's words, unless a row that is not marked prints the same  ·  1 · amos אשר: the leader l of אֲשֶׁר־ is «son of Jacob and Zilpah»
+   1 FAILED
+   data/zones/amos.lattice.bin put back, byte for byte
+I · the page's readingsOfRow reads a marked row as any other:
+   the page's readingsOfRow reads a marked row as any other
+   exit 1
+   FAIL  O5  a marked row gives no reading and names its sense as its line does, a key's readings are those of its other rows, and the page's own functions, read out of zone.html and run, give what the module gives for every row of every key that holds a note  ·  2,008 · אדר rank 60: the page's re
+   1 FAILED
+   zone.html put back, byte for byte
+J · the page's pool leaves the marked rows among its rows and takes no notes:
+   the page's pool leaves the marked rows among its rows and takes no notes
+   exit 1
+   FAIL  O7  the card prints exactly the marked rows its switches keep as its notes, in the store's order, each with its entry, its point and its words, with the record of the reading held; and no pill prints a note's words  ·  amos 1:1, entry 6 (אשר under H0834A) · 2 of its 3 note(s) kept, of 267
+   FAIL  O8  a marked row the switches withhold is no note  ·  amos 1:1, entry 6 (אשר under H0834A) · 2 of its 3 note(s) kept · 0 note(s) nowhere: "" · "91 of another entry than H834A, withheld · 3 given as a name by their source, withheld · 26 of 304 pointed otherwise, wi"
+   FAIL      and under "keep" every marked row of the key is a note  ·  3 note(s) under the key · 0 note(s) nowhere: ""
+   3 FAILED
+   zone.html put back, byte for byte
+K · the page takes its notes from every row of the key, whatever its switches withhold:
+   the page takes its notes from every row of the key, whatever its switches withhold
+   exit 1
+   FAIL  O7  the card prints exactly the marked rows its switches keep as its notes, in the store's order, each with its entry, its point and its words, with the record of the reading held; and no pill prints a note's words  ·  amos 1:1, entry 6 (אשר under H0834A) · 2 of its 3 note(s) kept, of 267
+   FAIL  O8  a marked row the switches withhold is no note  ·  amos 1:1, entry 6 (אשר under H0834A) · 2 of its 3 note(s) kept · 3 note(s) with the record: "BDB unabr. opens its numbered senses with: BDB839 1. son of Jacob and Zilpah · BDB844 1. it includes its prono" · "91 of another entry than
+   2 FAILED
+   zone.html put back, byte for byte
+L · the page puts no notes line with the record:
+   the page puts no notes line with the record
+   exit 1
+   FAIL  O7  the card prints exactly the marked rows its switches keep as its notes, in the store's order, each with its entry, its point and its words, with the record of the reading held; and no pill prints a note's words  ·  amos 1:1, entry 6 (אשר under H0834A) · 2 of its 3 note(s) kept, of 267
+   FAIL  O8  a marked row the switches withhold is no note  ·  amos 1:1, entry 6 (אשר under H0834A) · 2 of its 3 note(s) kept · 2 note(s) nowhere: "" · "91 of another entry than H834A, withheld · 3 given as a name by their source, withheld · 26 of 304 pointed otherwise, wi"
+   FAIL      and under "keep" every marked row of the key is a note  ·  3 note(s) under the key · 3 note(s) nowhere: ""
+   3 FAILED
+   zone.html put back, byte for byte
+M · the store's reader reads a marked row as any other:
+   the store's reader reads a marked row as any other
+   exit 1
+   FAIL  O5  a marked row gives no reading and names its sense as its line does, a key's readings are those of its other rows, and the page's own functions, read out of zone.html and run, give what the module gives for every row of every key that holds a note  ·  4,912 · אדר rank 60: a marked row 
+   1 FAILED
+   tools/gloss-store-v1.mjs put back, byte for byte
+everything back:
+   exit 0
+      all checks passed

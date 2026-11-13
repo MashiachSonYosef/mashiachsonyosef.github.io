@@ -8,7 +8,7 @@ Elijah, page lane. The corpus lane (Moses) sent seven relays on 13 November, v17
 | B | The pointer map v1.3: a pointer names its entry, a reading with English of its own prints its own words, an ambiguous pointer takes the source's first entry; a pressed pointer no longer stands bare on the line | 5, 7 | **live**: main `6657800de0`, gh-pages `2c8ae39529`, deployment run 1358, live check run 56 |
 | C | The entry gate, with STEP's letters and BDB's own entries, and the names gate, in one ship (both are asked of the word's place before the pointing) | 1, 6, 8 | **live**: main `90eedeb6f3`, gh-pages `2d6f6b90f6`, deployment run 1359, live check run 57 |
 | C2 | The stems from the UBS dictionary, the SDBH and Jastrow, with both branches set, and the rows beside the store asked their stem too | 2 | **live**: main `bdf3735238`, gh-pages `c2af4081cf`, deployment run 1360, live check run 58 |
-| D | The unabridged BDB's openings of a numbered sense print as a note, not a pill | 4 | built; its proofs are running |
+| D | The unabridged BDB's openings of a numbered sense print as a note, not a pill | 4 | **live**: main `bc5f5f9b09`, gh-pages `a4ef9effc8` |
 
 ## 1. Ship A: two changes to the store's slots, no text touched
 
@@ -231,3 +231,45 @@ D, M and N write the fault into a zone's own bytes, and the page does not draw a
 **Suite, gate, lint.** 149 of 150 checks pass before the push (`logs/c2-m11-…`); the one red is the check that the tree is pushed, green after (`logs/c2-m23-…`). The gate (`logs/c2-m12-…`): 9,383 sampled lines the same on 18 pages; 4 of 54 first cards differ (Job's second word and Ruth's third, each on two pages), and every differing pill is accounted for with the extension's own stems (`logs/c2-m12-gate-classified.txt`): four of Jastrow's piel readings of "it was" and two of the UBS dictionary's niphal readings of "to judge" are gone, none comes. Lint: the five changed tools carry no new finding; the page 175 = 175 (`logs/c2-m20-…`).
 
 **Shipped.** main `bdf3735238`, gh-pages `c2af4081cf`, deployment run 1360, live check run 58 (`logs/c2-m22-…`, `logs/c2-m24-…`). The commit message is `logs/c2-commit-message-bdf37352.txt`. A container restart came after the proofs and before the ship; nothing was mid-change (the break tests had all been put back), and the servers were started again.
+
+## 5. Ship D: the openings of a numbered sense print as notes (live)
+
+**What came.** Relay v174: the corpus lane's list of the served rows of the unabridged BDB (M46) that are only the words opening a numbered sense of an entry, 2,008 rows under 896 keys, each with its entry and its point (`pieces-v1/numbered-sense-openings-v1.jsonl`, sha256 `a6593ffe…`). Ruling 4 of relay v176 («1-5. agree go ahead»): such a row prints as a note beside the sense's readings, not as a pill.
+
+**What was wired** (edits 74 to 79, 82 and 83, three new tools, one pin):
+
+- `data/sense-openings/`: the pin and the lane's list, rule and receipt byte for byte.
+- `tools/apply-sense-openings-v1.mjs` marks each listed row in its facts (`opens`: «BDB1300 1.»), reading the ruling from the lane's pin of it and refusing any print but the ruled one. All 2,008 lines find exactly one row among M46's 8,915; store `43acd0b3d9a3` → `4d1357b26ca5`, 650,946 of 652,954 rows the same in every slot, the 2,008 differing in their facts alone (`logs/d-n20-…`).
+- Edit 74, the store's reader: `senseOpened`; a marked row gives no reading. Edit 75, the page: the same function; the pool takes the kept marked rows out as notes and prints them in one line under the record of the reading held (the readings' band where the card holds none). Edit 76: the search index's bake and two checks read the page's functions through `tools/page-reading-v1.mjs`; the witnessed bake refuses a note by name. Edit 77: the gated-card harness reads the notes. Edit 78: PIPELINE.md. Edit 79: the page's `factsOf` moved above the gates that ask it (the lint's one new finding), and `check-entry-gate-v1` lifts it by its own text.
+- `tools/check-sense-openings-v1.mjs`, nine laws (O1 to O9), green on its first full run and again after edit 79 (`logs/d-n11-…`). Edits 82 and 83 teach two older checks the new fact (below).
+
+**Measured against the live build** (C2):
+
+- Lines at rest: 2 of 400,242 (`logs/d-n22-…`): Sharezer at Jeremiah 39:13 and Zechariah 7:2, «son of Sennach.» → the UBS dictionary's «man; ◄ son of Sennacherib, king of Assyria, ► who, together …».
+- The leader under "oldest first" (`logs/d-n23-…`): another at 43 of 302,300 places, 39 of them with a reading of their own; none gained or lost. BDB's openings led for names whichever bearer the place is; the next row in age leads now, at a few another bearer as before (Mattaniah H4983H, Nethaniah); at Rimmon (H5884) a row that is not a name's, «a small explosive bomb …» (put to the owner).
+- The witnessed columns (`logs/d-n19-…`): 1,935 + 731 + 1,365 shipped readings refused as notes; those lines fall back to the default line.
+- The chain books (`logs/d-n24-…`): at rest 2,388 of 14,354 cards lose links, 5,027 in all, and none gains; one opens on another reading (Zechariah 7:2); lifted, 3,008 cards lose 7,337 links.
+- The search index (`logs/d-n18-…`): route pills 745,559 → 743,519, English 158,594 → 157,138, pairs 487,588 → 485,730; all else the same.
+- Weight: zones with sidecars 64,165,998 → 64,020,156 bytes; shards 16,119,734 → 16,139,723.
+
+**Broken on purpose** (`logs/d-n14-…`), each file put back byte for byte, the check green again at the end, the tree's fingerprint the same before and after:
+
+| | What was broken | The check |
+|---|---|---|
+| A | the list of openings is other bytes than its pin names | O1 to O5 red |
+| B | the pinned rulings are other bytes | O1, O3, O4 red |
+| C | a listed row of the store loses its mark | O3, O4 red |
+| D | a row of the ruled source that no line names is given a mark | O3 to O6 red |
+| E | a marked row names another point than its line gives | O3, O5 red |
+| F | the index's record counts one row more than is marked | O4 red |
+| G | the index's record cites the ruling with another print | O4 red |
+| H | Amos's sidecar gives a surface a note's words as its leader | O6 red |
+| I | the page's readingsOfRow reads a marked row as any other | O5 red |
+| J | the page's pool keeps the marked rows among its rows and takes no notes | O7, O8 red |
+| K | the page takes its notes from every row of the key, whatever its switches withhold | O7, O8 red |
+| L | the page puts no notes line with the record | O7, O8 red |
+| M | the store's reader reads a marked row as any other | O5 red |
+
+**Suite, gate, lint.** 148 of 151 checks pass on the first run (`logs/d-n12-…`). Two had not been taught the new fact: `check-entry-gate-v1`'s E2 (a closed list of the facts a row may carry) and `check-made-spaces-v1`'s M6 (a second road to the readings of the 132 marked rows that also carry a closed space). Edits 82 and 83 teach them, and both pass every law (`logs/d-n26-…`, `logs/d-n27-…`); the regenerated manifest names M6's check among the rule's guards. The third red is the check that the tree is pushed, green after (`logs/d-n29-…`). The gate (`logs/d-n13-…`, accounted in `logs/d-n28-…`): 9,383 sampled lines the same; 16 of 54 first cards differ, 34 pills gone, each one a row that is a note now, and the cards print 34 notes; none comes, none opens on another reading. Lint (`logs/d-n25-…`): 10 changed tools, no finding their live copies lack; the page 175.
+
+**Shipped.** main `bc5f5f9b09`, gh-pages `a4ef9effc8` (deployment run 1361 and live check run 59, both green, `logs/d-n30-…`). The commit message is `logs/d-commit-message-bc5f5f9b.txt`.
