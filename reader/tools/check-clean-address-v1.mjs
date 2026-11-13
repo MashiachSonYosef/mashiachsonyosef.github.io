@@ -243,8 +243,8 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
     FINISHED.push("/toggles/");
     // And the chain, the door's fifth: the same books with the meaning taken
     // out, so only the joins are left. It is not built by the door and does
-    // not live under deploy-root — it is published beside the engine, from
-    // the zones and the route store, by tools/build-chain-book-v1.mjs — so
+    // not live under deploy-root — it is published beside the engine, read
+    // off the reading page by tools/build-chain-book-v2.mjs — so
     // it is asked for where it actually stands. It is not a book and must
     // never be counted as one: it prints no Hebrew and no English, only
     // fingerprints.
@@ -262,7 +262,7 @@ check("it names the site", splash.title.includes(SITE_NAME), `${splash.title} ·
         named.length > 0 && lost.length === 0,
         `${named.length} book(s) named${lost.length ? ` · nowhere to land: ${lost.slice(0, 4).join(", ")}` : ""}`);
       FINISHED.push("/chain/");
-    } else check("the chain stands at its own address", false, `${chainIndex} — the door carries a tab for it (build-front-door-v1.mjs altLink), so it must be built: node tools/build-chain-book-v1.mjs --index`);
+    } else check("the chain stands at its own address", false, `${chainIndex} — the door carries a tab for it (build-front-door-v1.mjs altLink), so it must be built: node tools/build-chain-book-v2.mjs`);
   // and the reference pages: each group in the typed reference record
   // (data/reference-groups-v1.json, the owner's naming ruling) is a
   // published address the door points at

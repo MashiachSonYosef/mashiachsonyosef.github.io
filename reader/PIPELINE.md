@@ -11,7 +11,11 @@
 > and keeps the lines it draws as each work first opens
 > (`tools/bake-resting-lines-v1.mjs`, `data/resting-lines/`): the plain list
 > under every chapter is that recording, and the door refuses one that is not
-> of the tree it builds from. `PIPELINE-MANIFEST.md` is generated from the code and the
+> of the tree it builds from. Since 13 November the chain books are a
+> recording of the same kind (`tools/build-chain-book-v2.mjs`, `../chain/`):
+> every word of a chained book is pressed and the card the page opens is
+> read, and the chain's index is not written over a book that is not of the
+> tree. `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record
 > of why the rules are what they are.

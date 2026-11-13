@@ -28,6 +28,10 @@
 # itself draws, read off the page (tools/bake-resting-lines-v1.mjs), and the
 # door refuses a recording that is not of the page and the files it builds
 # from. A round that cannot read the lines stops there, before the door.
+# The chain step needs the same browser: a chained book's links are what
+# each word's card prints, read off the page with every word pressed
+# (tools/build-chain-book-v2.mjs), so it runs where the page is whole,
+# after the records and the lines.
 #
 # WHAT IT DOES NOT RUN: the tools that change the store itself (the ledgers'
 # divisions, the sources' years, a strike, a landing). Each of those writes a
@@ -40,14 +44,14 @@
 #   usage:  tools/round-v1.sh --stamp YYYY-MM-DD
 #             [--lattice <folder holding lattice-<book>-v12.json and its positions and routes>]
 #             [--stems <folder holding place-stems-v2.jsonl and row-stems-v2.jsonl>]
-#             [--steps zones,stamps,chain,records,lines,door]   (default: all, in that order)
+#             [--steps zones,stamps,search,records,lines,chain,door]   (default: all, in that order)
 #
 # A step that fails stops the round. Nothing is copied over the site's root
 # until the door has been built whole.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-STAMP=""; LATTICE=""; STEMS=""; STEPS="zones,stamps,chain,records,lines,door"
+STAMP=""; LATTICE=""; STEMS=""; STEPS="zones,stamps,search,records,lines,chain,door"
 while [ $# -gt 0 ]; do
   case "$1" in
     --stamp) STAMP="${2:?--stamp needs a date}"; shift 2 ;;
@@ -111,16 +115,9 @@ if has stamps; then
   for b in $(served); do node tools/restamp-zone-v1.mjs --zone "data/zones/$b.bin" --stamp "$STAMP" | grep -v "left as it is" || true; done
 fi
 
-if has chain; then
-  echo "── chain · the chain books, from the zones they print ──────────────────"
-  # which books have a chain book is the chain's own folder, never a list here
-  for d in ../chain/*/; do
-    b="$(basename "$d")"
-    [ -f "data/zones/$b.bin" ] || continue
-    node tools/build-chain-book-v1.mjs --zone "data/zones/$b.bin" --out "../chain/$b" > /dev/null
-  done
+if has search; then
+  echo "── search · the index the search box reads, from the zones as they stand ─"
   node tools/bake-search-index-v1.mjs > /dev/null
-  node tools/build-chain-book-v1.mjs --index --dir ../chain > /dev/null
 fi
 
 if has records; then
@@ -148,6 +145,16 @@ if has lines; then
   # have moved is read again. The door, next, refuses any that is not.
   node tools/bake-resting-lines-v1.mjs > "$WORK/lines.log" 2>&1 || { echo "round-v1: the resting lines were not read" >&2; grep -E "^FAIL" "$WORK/lines.log" >&2 || true; tail -3 "$WORK/lines.log" >&2; exit 1; }
   tail -1 "$WORK/lines.log"
+fi
+
+if has chain; then
+  echo "── chain · the chain books, each word pressed and its card read ────────"
+  # which books have a chain book is the chain's own folder, never a list
+  # here. A file still of this tree is kept as it is; a book whose page or
+  # files have moved is read again, and the index is not written over one
+  # that is not of this tree.
+  node tools/build-chain-book-v2.mjs > "$WORK/chain.log" 2>&1 || { echo "round-v1: the chain was not read" >&2; grep -E "^FAIL" "$WORK/chain.log" >&2 || true; tail -3 "$WORK/chain.log" >&2; exit 1; }
+  tail -2 "$WORK/chain.log" | head -1
 fi
 
 if has door; then
