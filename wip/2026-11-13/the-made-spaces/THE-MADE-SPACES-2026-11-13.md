@@ -121,3 +121,10 @@ Not done here, and said:
 - The file a reader takes away says its records are "as received ... byte for byte". With our spaces closed that is nearer true than it was. At the 16 kept places a space of ours still stands where the provider's markup alone held two things apart, so "byte for byte" is not exact there. The sentence was not changed.
 - A reader who had ruled a reading that held a made space has a remembered key that no pill now matches; the card falls back to its own first reading, as it does whenever a store row changes.
 - The next two sources the corpus lane would trace (M46 and M14, the same two dictionaries from other files) need nothing new here: a list of the same shape goes into the pin and the tool is run again.
+
+## 10. Live
+
+- Pages deployment run 1355 succeeded (04:30 UTC, 13 November) on `gh-pages` 55062c18.
+- Live check run 53 succeeded on `main` d57c7a99.
+- check-nothing-unlanded-v1, run after the push: every source landed and every build output is the one this tree produced. With it the suite is 147 of 147.
+- The reply to the corpus lane is `wip/2026-11-13/FOR-MOSES-2026-11-13-the-made-spaces-are-closed-on-the-page.md`.
