@@ -1,0 +1,36 @@
+A space our own build made in Strong's and BDB closes where the text prints, as the corpus lane's lists name it
+
+The store serves «Amos , an Israelite prophet» where the provider's file holds `<def>Amos</def>, an Israelite prophet`. Our build turned a field of the provider's XML into text by a step that put one space where each tag stood. The corpus lane traced every such space in the two Open Scriptures dictionaries (relay v168, 12 November): a space is made when the provider's file holds tags and no whitespace there, and a made space closes unless closing would join two things the provider's markup alone held apart. One list per source names, for each served text, the places that close: Strong's 4,847 texts and 6,418 closes, BDB 4,864 texts and 20,547 closes; 16 made spaces are kept.
+
+The store's texts are not changed. Every list, ledger, lattice card, stem key and strike names a row by its served bytes, and the corpus lane's own words are that closing is a print step, run last, after the ledger's division. So the places ride on the row and the readers leave those characters out when they print.
+
+- data/made-spaces-v1/ keeps the two lists, the lane's rule and its receipt byte for byte, under a pin that names each by the sha256 the relay names.
+- tools/apply-made-spaces-v1.mjs writes row[9] = [the route text's closes or null, the definition text's or null] on a row of a listed source whose text is a line with a close, and on no other row: 23,230 rows (4,849 with a close on the route text, all Strong's; 23,230 on the definition text). It refuses, in words: bytes that are not the pin's, a malformed line, a row with a print slot and a close on its route (none today), a row of an unlisted source carrying the slot, a span-store row whose text has a close, and, while the store is the version the lists were read from, any count that is not the lane's. A second run moves nothing and writes nothing.
+- With the slot taken off every row, 0 of the 256 shards differ from the shards before, as JSON text. The store's version moves from 90d9eb8e7082 to a8429861023d; the shards weigh 129,923 bytes more.
+
+One rule in three places, under the same three names (closed, routePrinted, recordPrinted):
+
+- tools/gloss-store-v1.mjs: readingsOf gives each piece the closes that fall inside it. A text the corpus lane shipped is still looked for in the served bytes.
+- zone.html: the pills; the route of a no-derivatives record; the record under a pill and the key two records are told the same by; the note that says a reading is a piece cut out of its record (without this every closed whole row would have been called a piece); the file a reader takes away. The keys into the lattice and the stems are the served bytes and are not touched.
+- tools/build-front-door-v1.mjs: the door's own card.
+
+Around it: the search bake carried a second copy of the reading rule and now runs the page's own functions, read out of the page, as it already ran the page's no-derivatives test (748,847 pills before and after); the search check keeps its own count, with closing added. The ledger tool truncated a row to its own two slots and now leaves a slot past them alone. The ledger check reads the page's rule with the function it calls and looks for a whole row on the page as it prints. The witnessed bake's count of whole rows compares with the shipped text as it prints.
+
+The corpus lane's counts, recounted here from the store: every line's two row counts are the store's (4,847 of 4,847; 4,864 of 4,864); the rows that hold a close are its counts; and the rows that still print a space before a comma once closed, which are the provider's own spaces, are 3 and 9 for Strong's and 51 for BDB's definitions, as its receipt says.
+
+tools/check-made-spaces-v1.mjs, ten laws, each recomputed: the pinned bytes; every line; every row of the store against the lists; the index's totals; the lane's counts while the store's rows are the rows it read; what prints, by a second road, from the lists' own `prints`; the page's functions and the built door's, read out and run against the store reader on all 23,230 rows; no reading a zone bakes still printing a space the lists close (69 zone files, 552,714 readings); and on the page, with every switch lifted, 12 words pressed, 6 whose route closes and 6 whose definition alone does: no pill prints a reading as it stood before closing, the closed reading stands on a pill of its source, the record under it is the definition as it prints, and the card calls it a piece only where the store does. Run before the rebuild it failed where it should (the door, and 3,419 baked readings). It was made to fail four ways on the tree and put back byte for byte: a row without its slot (M3), a close moved one place (M3, M6), the page's function keeping the space (M7, M10), a list's close moved (M1, M2, M3).
+
+What changed on the site, measured against the live build's own recordings:
+
+- The lines under the words: 400,242 before and after. 569 print another text, every one by spaces alone and every one credited to Strong's; 562 of them are in the Tikkunei Zohar, where a dictionary's first reading leads the line, and 7 in the thirty-nine books. No other line moved, and no line changed its credit. Lines printing a space before a stop: 1,326 before, 757 after; those left are other sources' and the provider's own.
+- The chain books: 435,246 links at rest, as before; 734,372 with every switch lifted, where it was 734,374 (two pills joined a pill of another source that prints the same words once closed).
+- The search index: 160,470 English forms, where it was 160,473.
+
+The suite, run on this tree: 146 of 147. check-nothing-unlanded-v1 is red until this is pushed. After it began, the page law of the new check was widened to press BDB's rows too; the check as it stands passed inside the suite and its four tamper tests were run again on it. The page lint is as it was; the ten changed tools lint clean.
+
+The same product: 9,403 lines on 18 sampled pages are the same on the live build and this one (none of the 7 changed lines of the books is on a sampled page). 16 of 54 first cards differ, each read: every one is the same list of pills with a space closed, pill for pill, the same one pressed; 22 pills in all.
+
+Two defaults taken on the corpus lane's leans, open to the owner: the provider's note inside Strong's entry for "sister" prints inline, as the list's `prints`; and the six closes that fall inside a word print the provider's bytes, one of which runs two words together as its file has them («Qalthe youngest»).
+
+Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01YaByYdukgpv1g24zxvj3Td

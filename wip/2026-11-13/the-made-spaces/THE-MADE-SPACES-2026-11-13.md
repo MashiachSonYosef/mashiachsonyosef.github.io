@@ -95,3 +95,29 @@ The round was run whole (zones, stamps, search, records, lines, chain, door), 34
 **The search index** (`logs/l5`): 748,847 pills, as before, now drawn by the page's own functions; 160,470 English forms where it was 160,473 (three forms that differed by a made space are one).
 
 **The store**: section 3.
+
+Where the 569 lines stand (`tools/probes/lines-changed-by-chapter.py`, `logs/l12`): 562 are in the Tikkunei Zohar, where a dictionary's first reading leads the line, and 7 are in the thirty-nine books (I Chronicles 2, Exodus 1, Genesis 1, Jeremiah 1, Numbers 1, Proverbs 1), where the place's own reading leads nearly every line. On the cards the change is wider: every Strong's pill whose route held a made space (4,849 rows) and every record of the two dictionaries that held one (23,230 rows).
+
+## 7. The suite, the gate, the lint
+
+- **The suite** on the rebuilt tree (`logs/l8`): 146 of 147. The one failure was check-nothing-unlanded-v1, which is red until the work is pushed; run again after the push it passes.
+- While the suite ran I widened the new check's page law (M10) to press rows of the second kind: a row whose route does not close and whose definition does, which is every BDB row. Until then it pressed only Strong's rows, and the record path BDB takes on the card had been proved by the functions (M7) and never in a browser. The file was replaced before the suite reached it, the suite ran the check as it stands (12 words pressed, 1,459 pills read, the record read under 6 of 6 rows of each kind), and the four tamper tests were run again on it (`logs/l7` is that second run).
+- **The same product** (`logs/l10`, `logs/l10-gate-diff.txt`): 9,403 lines on 18 sampled pages are the same on the live build and this one. None of the 7 changed lines of the books stands on a sampled page (`logs/l12`). 16 of 54 first cards differ, and each was read (`tools/probes/gate-cards-classified.py`, `logs/l11`): all 16 are the same list of pills with a space closed, pill for pill, the same one pressed; 22 pills in all; none joined, none otherwise.
+- **Lint**: the page's findings are the ones it had (4, 176, 9, 1, 2); the ten changed tools have 0 findings their live copies did not have. Two of my own were found and fixed on the way (a value assigned and never read, twice, in the new check).
+
+## 8. Shipped
+
+`main` d57c7a997b, `gh-pages` 55062c18ab ("gh-pages follows main"). The deployment and the live check are in section 10.
+
+## 9. What is open
+
+For the owner, two small defaults taken on the corpus lane's leans:
+
+- **The note in Strong's entry for "sister" (H269).** The provider put a remark on its own file inside the entry: «[like 251 number 250, corrected to 251]». It prints inline, as the list's `prints`. The corpus lane's lean is to set it apart as a note; the third way is to leave it out. One text.
+- **Six closes fall inside a word.** Five mend a word the markup cut in two («error», «bare», «sunset» twice, «delapidation»). One runs two of the provider's words together, as its file has them: BDB's «Qalthe youngest still remains». It prints the provider's bytes. If the owner would rather keep our space there, it is one line of the list and the corpus lane carries it as a branch.
+
+Not done here, and said:
+
+- The file a reader takes away says its records are "as received ... byte for byte". With our spaces closed that is nearer true than it was. At the 16 kept places a space of ours still stands where the provider's markup alone held two things apart, so "byte for byte" is not exact there. The sentence was not changed.
+- A reader who had ruled a reading that held a made space has a remembered key that no pill now matches; the card falls back to its own first reading, as it does whenever a store row changes.
+- The next two sources the corpus lane would trace (M46 and M14, the same two dictionaries from other files) need nothing new here: a list of the same shape goes into the pin and the tool is run again.

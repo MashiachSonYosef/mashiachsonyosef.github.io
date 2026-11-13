@@ -47,7 +47,8 @@
 //       table, nor in a witnessed column, is a row's reading as it stood
 //       before closing where no row prints it so now
 //   M10 on the page: words whose cards hold such a row are pressed with every
-//       switch lifted; no pill prints a reading as it stood before closing,
+//       switch lifted, rows whose route closes and rows whose definition
+//       alone does; no pill prints a reading as it stood before closing,
 //       the closed reading stands on a pill credited to its source, the
 //       record under that pill is the definition as it prints, and the card
 //       calls the reading a piece of its record only where the store does
@@ -319,34 +320,44 @@ const stale = new Map();
 }
 
 // ---- M10: on the page -----------------------------------------------------------------------------
-// served words whose card holds a row of a listed source that the ledger leaves whole, whose route closes, and
-// whose closed reading no other row of the key prints: so its pill stands on that row alone, and the record under
-// the pill is that row's
+// served words whose card holds a row of a listed source that the ledger leaves whole and that is the oldest of
+// the store's rows carrying its reading, so the record under its pill is that row's unless an older row of a
+// dictionary beside the store stands first there. Two kinds: a row whose route closes, where the pill itself
+// changes; and a row whose route does not close and whose definition does, where the pill is as it was and the
+// record under it changes (every row of a source whose routes hold no made space is of this kind)
+const KINDS = [
+  { name: "route", most: 6, of: (r) => !!r[CLOSES_SLOT][0] && readingKey(String(r[1]).trim()) !== readingKey(routePrinted(r).trim()) },
+  { name: "record", most: 6, of: (r) => !r[CLOSES_SLOT][0] && !!r[CLOSES_SLOT][1] && !!r[2] && printedForm(String(r[2])) !== printedForm(recordPrinted(r)) },
+];
 const picks = [];
 {
-  const seen = new Set();
+  const seen = new Set(), found = Object.fromEntries(KINDS.map((kind) => [kind.name, 0]));
   outer: for (const b of zonesServed()) {
     const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${b}.bin`))).toString("utf8"));
     for (const [si, sec] of (z.sections || []).entries()) for (const [e, w] of (sec.words || []).entries()) {
-      if (!w.k || w.w || seen.has(w.k) || !stale.has(w.k)) continue;
+      if (!w.k || w.w || seen.has(w.k)) continue;
       const rows = (store.routesFor(w.k) || []).filter((r) => index.m_sources[r[3]]);
-      const row = rows.find((r) => LISTED.has(String(r[3])) && r.length > CLOSES_SLOT && r[CLOSES_SLOT][0] && !Array.isArray(r[7]) && !Array.isArray(r[8])
-        && readingKey(String(r[1]).trim()) !== readingKey(routePrinted(r).trim())
-        && !rows.some((o) => o !== r && store.readingsOf(o).some((x) => readingKey(x) === readingKey(routePrinted(r).trim()))));
-      if (!row) continue;
-      seen.add(w.k);
-      picks.push({ book: b, section: si, entry: e, label: sec.label, key: w.k, m: String(row[3]), label_of_m: index.m_sources[row[3]].label,
-        printed: printedForm(routePrinted(row).trim()), record: printedForm(recordPrinted(row)), piece: row[5] === 1, was: [...stale.get(w.k)] });
-      if (picks.length >= 6) break outer;
+      for (const kind of KINDS) {
+        if (found[kind.name] >= kind.most) continue;
+        const row = rows.find((r) => LISTED.has(String(r[3])) && r.length > CLOSES_SLOT && !Array.isArray(r[7]) && !Array.isArray(r[8]) && kind.of(r)
+          && store.carriersOf(rows, routePrinted(r).trim())[0] === r);
+        if (!row) continue;
+        seen.add(w.k); found[kind.name] += 1;
+        picks.push({ kind: kind.name, book: b, section: si, entry: e, label: sec.label, key: w.k, m: String(row[3]), source: index.m_sources[row[3]].label,
+          printed: printedForm(routePrinted(row).trim()), record: printedForm(recordPrinted(row)), piece: row[5] === 1, was: [...(stale.get(w.k) || [])] });
+        break;
+      }
+      if (KINDS.every((kind) => found[kind.name] >= kind.most)) break outer;
     }
   }
 }
-if (!picks.length) check("M10 on the page, a card that holds such a row prints it closed", false, "no served word carries a whole row whose route closes and whose closed reading stands on it alone");
+const lacking = KINDS.filter((kind) => !picks.some((pick) => pick.kind === kind.name)).map((kind) => kind.name);
+if (lacking.length) check("M10 on the page, a card that holds such a row prints it closed", false, `no served word carries a whole row of the kind: ${lacking.join(", ")}`);
 else {
   const tree = await serveTree(K3);
   const pw = await loadPlaywright();
   const browser = await pw.chromium.launch(launchOptions());
-  const faults = [], seenOn = [];
+  const faults = [], seenOn = [], judged = Object.fromEntries(KINDS.map((kind) => [kind.name, 0]));
   let pills = 0;
   try {
     for (const pick of picks) {
@@ -375,16 +386,17 @@ else {
           const buttons = [...hud.querySelectorAll(":scope > .rows > .b-read > .r-pills > button")];
           const said = buttons.map((x) => [x.textContent, x.dataset.by || ""]);
           const mine = buttons.find((x) => x.textContent === printed && (x.dataset.by || "").split(/[\s,]+/u).includes(m));
-          let record = null, cut = null;
+          let record = null, cut = null, credited = null;
           if (mine) {
             mine.click();
             await turn(); await turn();
-            const d = hud.querySelector(".d-card .d-body .d-text");
+            const d = hud.querySelector(".d-card .d-body .d-text"), att = hud.querySelector(".d-card .d-foot .att");
             record = d ? d.textContent : null;
+            credited = att ? att.textContent : null;
             cut = !!hud.querySelector(".d-card .d-cut");
           }
           document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-          return { said, record, cut, found: !!mine };
+          return { said, record, cut, credited, found: !!mine };
         }, pick);
         const where = `${pick.book} ${pick.label}, entry ${pick.entry} (${pick.key})`;
         if (errors.length) faults.push(`${where}: the page threw: ${errors[0]}`);
@@ -392,15 +404,17 @@ else {
         pills += got.said.length;
         for (const [text] of got.said) if (pick.was.includes(readingKey(text))) faults.push(`${where}: a pill prints «${text.slice(0, 50)}», a reading as it stood before closing`);
         if (!got.found) continue;   // the card opened on a division of the word, where the whole form's rows are a press away
-        seenOn.push(where);
+        // the record shown is the oldest carrier's: judged where the card's own source line names this row's source
+        if (!String(got.credited || "").startsWith(`${pick.source} \u00b7 `)) continue;
+        seenOn.push(where); judged[pick.kind] += 1;
         if (got.record !== pick.record) faults.push(`${where}: under «${pick.printed.slice(0, 40)}» the record prints «${String(got.record).slice(0, 60)}», and as printed it is «${pick.record.slice(0, 60)}»`);
         // the reading is the row's whole route as it prints, so the card calls it a piece of its record only where the store marks the row as one
         if (got.cut !== pick.piece) faults.push(`${where}: the card ${got.cut ? "says" : "does not say"} «${pick.printed.slice(0, 40)}» is a piece cut out of its record, and the store ${pick.piece ? "marks" : "does not mark"} the row as one`);
       } finally { await ctx.close(); }
     }
   } finally { await browser.close().catch(() => {}); await tree.close(); }
-  check("M10 on the page, with every switch lifted: no pill prints a reading as it stood before closing; the closed reading stands on a pill of its source, the record under it is the definition as it prints, and it is called a piece only where the store marks it one", faults.length === 0 && seenOn.length > 0,
-    faults.length ? `${faults.length} · ${first(faults)}` : !seenOn.length ? `${picks.length} words pressed and none of their cards offered the row` : `${picks.length} words pressed · ${nf(pills)} pills read · the closed reading and its record stood on ${seenOn.length} of the cards (${seenOn[0]})`);
+  check("M10 on the page, with every switch lifted: no pill prints a reading as it stood before closing; the closed reading stands on a pill of its source, the record under it is the definition as it prints, and it is called a piece only where the store marks it one", faults.length === 0 && KINDS.every((kind) => judged[kind.name] > 0),
+    faults.length ? `${faults.length} · ${first(faults)}` : `${picks.length} words pressed · ${nf(pills)} pills read · the record was read under ${KINDS.map((kind) => `${judged[kind.name]} of ${picks.filter((pick) => pick.kind === kind.name).length} rows whose ${kind.name} closes`).join(" and ")}${seenOn.length ? ` (${seenOn[0]})` : ""}`);
 }
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
