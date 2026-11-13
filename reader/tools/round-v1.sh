@@ -22,7 +22,12 @@
 # WHAT IT NEEDS FROM OUTSIDE THE TREE, and only these: the corpus lane's
 # lattice (one file per book) and its two binyan files, which are too large
 # to keep beside the door. They are named on the command line and never
-# guessed; a round with no lattice re-projects nothing and says so.
+# guessed; a round with no lattice re-projects nothing and says so. And, for
+# the lines step, a browser this machine can open (tools/playwright-v1.mjs):
+# the plain list under every chapter is a recording of the lines the reader
+# itself draws, read off the page (tools/bake-resting-lines-v1.mjs), and the
+# door refuses a recording that is not of the page and the files it builds
+# from. A round that cannot read the lines stops there, before the door.
 #
 # WHAT IT DOES NOT RUN: the tools that change the store itself (the ledgers'
 # divisions, the sources' years, a strike, a landing). Each of those writes a
@@ -35,14 +40,14 @@
 #   usage:  tools/round-v1.sh --stamp YYYY-MM-DD
 #             [--lattice <folder holding lattice-<book>-v12.json and its positions and routes>]
 #             [--stems <folder holding place-stems-v2.jsonl and row-stems-v2.jsonl>]
-#             [--steps zones,stamps,chain,records,door]   (default: all, in that order)
+#             [--steps zones,stamps,chain,records,lines,door]   (default: all, in that order)
 #
 # A step that fails stops the round. Nothing is copied over the site's root
 # until the door has been built whole.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-STAMP=""; LATTICE=""; STEMS=""; STEPS="zones,stamps,chain,records,door"
+STAMP=""; LATTICE=""; STEMS=""; STEPS="zones,stamps,chain,records,lines,door"
 while [ $# -gt 0 ]; do
   case "$1" in
     --stamp) STAMP="${2:?--stamp needs a date}"; shift 2 ;;
@@ -135,6 +140,14 @@ if has records; then
   node tools/emit-zone-store-v1.mjs
   node tools/emit-store-manifest-v1.mjs > /dev/null
   node tools/bake-overlay-book-counts-v1.mjs | tail -1
+fi
+
+if has lines; then
+  echo "── lines · what the reader draws as each work opens, read off the page ─"
+  # a record still of this tree is kept as it is; a work whose page or files
+  # have moved is read again. The door, next, refuses any that is not.
+  node tools/bake-resting-lines-v1.mjs > "$WORK/lines.log" 2>&1 || { echo "round-v1: the resting lines were not read" >&2; grep -E "^FAIL" "$WORK/lines.log" >&2 || true; tail -3 "$WORK/lines.log" >&2; exit 1; }
+  tail -1 "$WORK/lines.log"
 fi
 
 if has door; then

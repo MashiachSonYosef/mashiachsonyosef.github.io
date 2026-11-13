@@ -743,12 +743,13 @@
 
   main { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 5rem; }
 
-  /* THE PORCH (chapter-page-rule-v2). A chapter's address is this reader,
+  /* THE PORCH (chapter-page-rule-v3). A chapter's address is this reader,
      and the door writes under the text slot a plain-text copy of what the
-     lines will say: every verse a heading, the readings under it credited by
-     number. It stands in the page's own frame, in the page's own inks, until
-     the text is drawn — then it is hidden, because the same readings now
-     stand under the words. It stays if the book never arrives: a page with
+     lines say: every verse a heading, the readings under it credited by
+     number, read off this page's own lines as it first opens and kept
+     (tools/resting-lines-v1.mjs). It stands in the page's own frame, in the
+     page's own inks, until the text is drawn — then it is hidden, because
+     the same readings now stand under the words. It stays if the book never arrives: a page with
      no script, or a bin the shelf refused, still says what the chapter reads. */
   #porch { max-width: 48rem; margin: 0 auto; padding: 0.4rem 1.5rem 3rem; direction: ltr; text-align: left; }
   #porch[hidden] { display: none; }
@@ -3984,7 +3985,7 @@
       for (const n of document.querySelectorAll("#workTitle .t-note, #workTitle .t-sug")) n.remove();
     }
   }
-  // A chapter's address is this reader (chapter-page-rule-v2): the door wrote
+  // A chapter's address is this reader (chapter-page-rule-v3): the door wrote
   // which chapter into the head, and the title keeps it — a crawler that read
   // "Amos 3" in the head must not be handed "Amos" once the page has drawn,
   // or fifty chapter addresses of one book read as one page fifty times.
@@ -14441,7 +14442,7 @@
   // them claiming anything about the other.
   // Three ways to arrive at a place, in order of how exactly they ask. ?at=
   // names a coordinate outright. A hash of the form #v3-7 is a verse heading
-  // on the page's own porch (chapter-page-rule-v2) — the same label with its
+  // on the page's own porch (chapter-page-rule-v3) — the same label with its
   // punctuation folded to hyphens — and it is resolved below against the
   // labels the book actually carries, never unfolded by guesswork. And the
   // door's own meta names the chapter this address is: a chapter, not a
@@ -15768,7 +15769,7 @@
 
   main.append(frag);
   // the text is drawn, so the porch's plain-text copy of it stands down
-  // (chapter-page-rule-v2); it stays only on a page the book never reached
+  // (chapter-page-rule-v3); it stays only on a page the book never reached
   { const porch = document.getElementById("porch"); if (porch) porch.hidden = true; }
   {
     const ci = buildCommentaryIndex();
@@ -15845,6 +15846,11 @@
   // reads the readings off the page, and an anchor has to land on the section
   // at the height it is going to be, not the height it was reserved.
   const materialiseAll = () => { sectionEls.forEach(({ el }) => materialise(el)); };
+  // offered to the bake of the resting lines and to the checks that read the
+  // lines of a book (tools/resting-lines-v1.mjs): every section, or the
+  // stretch asked for, built as the whole work's export builds it, with
+  // nothing scrolled; it answers how many sections the book has
+  window.__materialise = (from = 0, to = sectionEls.length) => { sectionEls.slice(from, to).forEach(({ el }) => materialise(el)); return sectionEls.length; };
   // A verse is landed on (an address, the kept place, the way back) at the
   // reading line with what stands above it, as far as the observer reaches,
   // already built. Built after the scroll, the section above the verse grew

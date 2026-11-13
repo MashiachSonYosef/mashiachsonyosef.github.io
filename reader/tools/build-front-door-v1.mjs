@@ -52,6 +52,7 @@ import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { exactK } from "./k-normalization-v2.mjs";
 import { isSidecar, zonesSealed } from "./zones-on-disk-v1.mjs";
+import { readRecord, recordPath, whyNotOfThisTree, sha256Of, creditedIn } from "./resting-lines-v1.mjs";
 
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 // A RECORD THE DOOR IS BUILT FROM IS READ, OR THE DOOR IS NOT BUILT. Until 10
@@ -2808,7 +2809,7 @@ const readerPage = (b) => {
   // work's, where the work has a name: a crawler reads the head, not the
   // masthead the engine paints, and thirty-nine pages under one title read
   // as one page thirty-nine times.
-  // A CHAPTER'S ADDRESS IS THE READER TOO (chapter-page-rule-v2): the same
+  // A CHAPTER'S ADDRESS IS THE READER TOO (chapter-page-rule-v3): the same
   // page with one more meta naming the chapter it opens at, its own title
   // and description, and under the text slot the porch — the chapter's
   // readings in plain text, which the engine hides once the text is drawn.
@@ -3110,7 +3111,7 @@ for (const b of withheldBooks) {
   mkdirSync(join(OUT, b.slug), { recursive: true });
   writeFileSync(join(OUT, b.slug, "index.html"), heldPage(b.withheld_reason, heldFrom(b)));
 }
-// THE CHAPTER PAGES (chapter-page-rule-v2). A search for "Amos 3:7" cannot
+// THE CHAPTER PAGES (chapter-page-rule-v3). A search for "Amos 3:7" cannot
 // land on a reader that is one address per book with the text arriving
 // sealed: the crawler sees one page called Amos, if its render finishes,
 // and nothing called Amos 3:7. So every stamped book — the count stamp is
@@ -3118,10 +3119,10 @@ for (const b of withheldBooks) {
 // chapter, and THAT ADDRESS IS THE READER: the same page as the book's own,
 // told in its head which chapter it opens at, titled for the chapter, and
 // carrying under its text slot a porch — every verse a heading, under each
-// the English readings the shelf prints for its words, each credited to its
-// source and licence — in plain text a crawler reads before any script
-// runs. The engine hides the porch once the text is drawn, because the same
-// readings then stand under the words; on a page the book never reaches
+// the lines the reader draws under its words as it first opens, each
+// credited to its source and license — in plain text a crawler reads before
+// any script runs. The engine hides the porch once the text is drawn,
+// because the same lines then stand under the words; on a page the book never reaches
 // (no script, a refused bin) the porch stays and still says what the
 // chapter reads. Its verse headings are anchors the engine lands on
 // (#v3-7). No page carries a character of the Hebrew: the ink lives only in
@@ -3129,37 +3130,59 @@ for (const b of withheldBooks) {
 // there. The first cut of this rule (v1) wrote a separate plain page per
 // chapter with a link into the reader; the owner, 2026-09-28: "its not our
 // book page anymore" — so the porch moved into the book page itself.
-const CHAPTER_PAGE_RULE = "chapter-page-rule-v2-the-chapters-address-is-the-reader-opened-at-the-chapter-and-its-readings-stand-in-plain-text-credited-and-no-ink";
+//
+// V3 (12 November 2026): THE LIST IS THE READER'S OWN LINES. Under v2 the
+// list was built here from the zone's baked table, oldest witness first,
+// which was also what the reader drew until 6 November. That day the
+// reader's resting line became the reading of the place's own source, then
+// the pointing's leader, and the list went on printing the table: God was
+// "judges" in the list and "God" on the line above it, and the list is the
+// part a search engine reads. An outside reader set the two side by side on
+// 12 November. The list is now a recording: tools/bake-resting-lines-v1.mjs
+// opens the reader as a first visit does, reads the lines it drew and keeps
+// them beside the zones (data/resting-lines/), and this door prints that
+// record line by line. It refuses a record that names another page, or a
+// file that has moved since the lines were read, so a list that is not the
+// line cannot be built (resting-lines-rule-v1, tools/resting-lines-v1.mjs).
+const CHAPTER_PAGE_RULE = "chapter-page-rule-v3-the-chapters-address-is-the-reader-opened-at-the-chapter-and-the-lines-it-draws-stand-under-it-in-plain-text-credited-and-no-ink";
 const CHAPTER_PAGES = [];          // { slug, ch, page } — written after the book pages, listed after them
 const CHAPTER_LISTS = new Map();   // slug → [ch, ...] for the book page's own porch
 const CHAPTER_EN = new Map();      // slug → the name the chapter pages print
 const chapterReceipt = { rule: CHAPTER_PAGE_RULE,
   emitted_by: "tools/build-front-door-v1.mjs", letter: "Y",
-  what: "an address per chapter of every stamped book that serves the reader itself, opened at the chapter (meta reader-at), titled for the chapter, with a porch under the text slot: every verse a heading, the readings the zone bakes for its words credited by source, hidden by the engine once the text is drawn; the book's own page carries a porch listing its chapters; no character of the Hebrew",
+  what: "an address per chapter of every stamped book that serves the reader itself, opened at the chapter (meta reader-at), titled for the chapter, with a porch under the text slot: every verse a heading, the lines the reader draws under its words as it first opens (read off the page and kept in data/resting-lines/) credited by source, hidden by the engine once the text is drawn; the book's own page carries a porch listing its chapters; no character of the Hebrew",
   books: {} };
 {
   const stamped = [...ZONE_INFO.values()].filter((zi) => zi.stamp);
-  // a word's pieces are joined the way the reader joins them (spanJoin in
-  // zone.html, to the character): "and/ the/ man" prints as "and + the +
-  // man", and a period closing a reading is not printed ("Israel." → Israel)
-  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
+  // the page this door is built from, and each file a record names, fingerprinted once for every book
+  const PAGE_SHA = sha256Of(arg("reader", "zone.html"));
+  const FILE_SHA = new Map();
   let versesOn = 0;
   for (const zi of stamped) {
     const bytes = readFileSync(join(ZONES, `${zi.slug}.bin`));
     const z = JSON.parse(gunzipSync(bytes).toString("utf8"));
     const en = z.work || zi.workEn || zi.slug;
     if (HEBREW.test(en)) continue;
-    const gloss = z.gloss || {}, gm = z.gloss_m || {};
+    // THE LINES THE READER DREW, AND ONLY IF THEY ARE THIS TREE'S. The record
+    // names the page it was read off and every file that page asked for; a
+    // record of another page, or over a file that has since moved, is a
+    // recording of something else and is not printed.
+    const lines = readRecord(recordPath(".", zi.slug));
+    const stale = whyNotOfThisTree(".", lines, FILE_SHA);
+    if (lines && lines.read_off && lines.read_off.files && lines.read_off.files["zone.html"] !== PAGE_SHA) stale.push("it was read off another zone.html than the one this door is built from");
+    if (!stale.length && lines.sections.length !== (z.sections || []).length) stale.push(`it holds ${lines.sections.length} sections and the zone ${(z.sections || []).length}`);
+    if (stale.length) throw new Error(`${zi.slug}: the resting lines kept for it are not the lines this tree draws (${stale.slice(0, 3).join("; ")}${stale.length > 3 ? `; and ${stale.length - 3} more` : ""}). Read them again with tools/bake-resting-lines-v1.mjs — refusing output`);
     // chapters in the order the sections come; a label with no colon is
     // its own chapter (one section on the page)
     const chapters = new Map();
-    for (const sec of z.sections || []) {
+    (z.sections || []).forEach((sec, at) => {
       const label = String(sec.label || "");
-      if (!label) continue;
+      if (!label) return;
+      if (lines.sections[at][0] !== label) throw new Error(`${zi.slug}: the resting lines call section ${at} "${lines.sections[at][0]}" and the zone "${label}" — refusing output`);
       const ch = label.includes(":") ? label.split(":")[0] : label;
       if (!chapters.has(ch)) chapters.set(ch, []);
-      chapters.get(ch).push(sec);
-    }
+      chapters.get(ch).push({ sec, at });
+    });
     const chs = [...chapters.keys()];
     CHAPTER_LISTS.set(zi.slug, chs); CHAPTER_EN.set(zi.slug, en);
     const tally = { work: en, chapters: chs.length, verses: 0, readings: 0, readings_quoting_hebrew_held: 0 };
@@ -3173,22 +3196,18 @@ const chapterReceipt = { rule: CHAPTER_PAGE_RULE,
       const sources = new Map();
       const numOf = (who, lic) => { if (!sources.has(who)) sources.set(who, { n: sources.size + 1, lic }); return sources.get(who).n; };
       let quotesHebrew = 0;
-      const verses = secs.map((sec) => {
+      const verses = secs.map(({ sec, at }) => {
         const label = String(sec.label);
         const parts = [];
-        for (const w of sec.words || []) {
-          const keys = Array.isArray(w.w) ? w.w.map((r) => r.k) : (w.k ? [w.k] : []);
-          for (const k of keys) {
-            const g = gloss[k];
-            if (!g) continue;
-            const m = gm[k];
-            const who = m && m.m ? String(m.m) : "";
-            const lic = m && m.lic ? String(m.lic) : "";
-            if (HEBREW.test(String(g)) || HEBREW.test(who)) { quotesHebrew += 1; parts.push(`<i>a reading that quotes Hebrew letters, in the reader</i>`); continue; }
-            const sup = who ? `<sup>${numOf(who, lic)}</sup>` : "";
-            parts.push(`<span>${esc(spanJoin(g))}${sup}</span>`);
-          }
-        }
+        // one entry for each line the reader drew: under a word, or once over
+        // the words one card joins; the text is the line's own, as drawn
+        const credit = creditedIn(lines, at);
+        lines.sections[at][1].forEach(([, , text], j) => {
+          const who = credit[j];
+          if (HEBREW.test(String(text)) || who.some((w) => HEBREW.test(w.label))) { quotesHebrew += 1; parts.push(`<i>a reading that quotes Hebrew letters, in the reader</i>`); return; }
+          const sup = who.length ? `<sup>${who.map((w) => numOf(w.label, w.license)).join(",")}</sup>` : "";
+          parts.push(`<span>${esc(text)}${sup}</span>`);
+        });
         if (parts.length) versesOn += 1;
         tally.verses += 1; tally.readings += parts.filter((x) => x.startsWith("<span>")).length;
         const id = `v${label.replace(/[^0-9a-z]+/gi, "-")}`;
@@ -3201,23 +3220,24 @@ const chapterReceipt = { rule: CHAPTER_PAGE_RULE,
       const quotesNote = quotesHebrew ? ` ${quotesHebrew} reading${quotesHebrew === 1 ? "" : "s"} of this chapter quote${quotesHebrew === 1 ? "s" : ""} Hebrew letters and print${quotesHebrew === 1 ? "s" : ""} only under the words.` : "";
       const porch = `<section id="porch" lang="en" dir="ltr">
   <h2>${esc(en)} ${esc(ch)}</h2>
-  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the reading printed for each of its words, oldest witness first, credited by number to its source at the foot.</p>
+  <p class="porch-sub">Hebrew, word by word. The text arrives sealed from the shelf and is drawn above, every word pressable for its record. Under each verse here: the line the reader draws under its words as it first opens, one reading for a word or for the words one card joins, credited by number to its source at the foot.</p>
 ${verses.join("\n")}
   <nav class="porch-nav">${prev}<a href="/${zi.slug}/">${esc(en)}, from the beginning</a>${next}</nav>
   <footer>Sources, by the number beside each reading:
     <ol>
     ${srcList || "<li>no source</li>"}
     </ol>
-    Each carried reading keeps its own license, and a reading here is printed with its "/" pieces joined by " + " and a closing period dropped, which is our change, not the source's.${quotesNote} Noncommercial: nothing sold, no advertising, no payment taken. What this page adds of its own is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>; where it adapts a share-alike reading, the adaptation stays under that reading's license. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
+    Each carried reading keeps its own license. A reading is printed here as the reader prints it: its "/" pieces joined by " + ", a closing period dropped, and a piece that is only a source's own sign left as a gap. Those are our changes, not the source's, and the record on each word's own card carries the source's bytes whole.${quotesNote} Noncommercial: nothing sold, no advertising, no payment taken. What this page adds of its own is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>; where it adapts a share-alike reading, the adaptation stays under that reading's license. The Hebrew text is served only inside the reader, sealed and pinned.</footer>
 </section>`;
       const page = readerPage({ slug: zi.slug, en, canonical: `/${zi.slug}/${ch}`, at: ch,
         title: `${en} ${ch} · Hebrew, word by word · ${SITE_NAME}`,
-        description: `${en} ${ch} in Hebrew, word by word: the reader open at the chapter, and the English reading the shelf prints for every word of every verse, each credited to the dictionary that gives it and to its license.`,
+        description: `${en} ${ch} in Hebrew, word by word: the reader open at the chapter, and the English reading the reader draws under every word of every verse, each credited to the source that gives it and to its license.`,
         porch });
       if (HEBREW.test(page)) throw new Error(`${zi.slug} ${ch}: the chapter page printed a character of the text — refusing output`);
       CHAPTER_PAGES.push({ slug: zi.slug, ch, page });
       tally.readings_quoting_hebrew_held += quotesHebrew;
     });
+    tally.lines_read_off_the_page = { record: `data/resting-lines/${zi.slug}.json.gz`, sha256: sha256Of(recordPath(".", zi.slug)), lines: lines.counts.lines };
     chapterReceipt.books[zi.slug] = tally;
   }
   console.log(`  chapter pages: ${n(CHAPTER_PAGES.length)} across ${stamped.length} stamped books · ${n(versesOn)} verses with a reading`);
@@ -3260,7 +3280,7 @@ if (HEBREW.test(ZONE_HTML)) throw new Error("zone.html itself carries Hebrew —
     const zi = ZONE_INFO.get(slug);
     const en = zi && zi.workEn && zi.workEn !== slug && !HEBREW.test(zi.workEn) ? zi.workEn : undefined;
     // a stamped book's page carries the porch naming its chapters, the
-    // same as a plan book's (chapter-page-rule-v2)
+    // same as a plan book's (chapter-page-rule-v3)
     const page = readerPage({ slug, en, porch: bookPorch(slug) });
     const stripped = page.split(slug).join("");
     if (HEBREW.test(stripped)) throw new Error(`${slug}: the work page carries Hebrew beyond the recorded id — refusing output`);
