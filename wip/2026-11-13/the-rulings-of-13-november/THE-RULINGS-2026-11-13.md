@@ -1,6 +1,6 @@
 # The rulings of 13 November, wired — 13 November 2026 AD
 
-Elijah, page lane. The corpus lane (Moses) sent seven relays on 13 November, v172 to v178, and the owner ruled on the eight calls they put: «1-5. agree go ahead» (rulings 1 to 5, relay v176) and «1-3. ok agree» (rulings 6 to 8, relay v177). "The wiring is yours." This file is the record of that wiring, ship by ship. It is added to as each ship lands.
+Elijah, page lane. The corpus lane (Moses) sent seven relays on 13 November, v172 to v178, and the owner ruled on the eight calls they put: «1-5. agree go ahead» (rulings 1 to 5, relay v176) and «1-3. ok agree» (rulings 6 to 8, relay v177). "The wiring is yours." This file is the record of that wiring, ship by ship. It is added to as each ship lands. Ship E wires the corpus lane's relay v179, a mend of its own that needed no ruling.
 
 | Ship | What | Rulings | State |
 |---|---|---|---|
@@ -8,7 +8,8 @@ Elijah, page lane. The corpus lane (Moses) sent seven relays on 13 November, v17
 | B | The pointer map v1.3: a pointer names its entry, a reading with English of its own prints its own words, an ambiguous pointer takes the source's first entry; a pressed pointer no longer stands bare on the line | 5, 7 | **live**: main `6657800de0`, gh-pages `2c8ae39529`, deployment run 1358, live check run 56 |
 | C | The entry gate, with STEP's letters and BDB's own entries, and the names gate, in one ship (both are asked of the word's place before the pointing) | 1, 6, 8 | **live**: main `90eedeb6f3`, gh-pages `2d6f6b90f6`, deployment run 1359, live check run 57 |
 | C2 | The stems from the UBS dictionary, the SDBH and Jastrow, with both branches set, and the rows beside the store asked their stem too | 2 | **live**: main `bdf3735238`, gh-pages `c2af4081cf`, deployment run 1360, live check run 58 |
-| D | The unabridged BDB's openings of a numbered sense print as a note, not a pill | 4 | **live**: main `bc5f5f9b09`, gh-pages `a4ef9effc8` |
+| D | The unabridged BDB's openings of a numbered sense print as a note, not a pill | 4 | **live**: main `bc5f5f9b09`, gh-pages `a4ef9effc8`, deployment run 1361, live check run 59 |
+| E | The paseq the edition writes inside a read form prints there (relay v179, the corpus lane's own mend) | none needed | **live**: main `566a8b3585`, gh-pages `3d127480fa`, deployment run 1362, live check run 60 |
 
 ## 1. Ship A: two changes to the store's slots, no text touched
 
@@ -273,3 +274,45 @@ D, M and N write the fault into a zone's own bytes, and the page does not draw a
 **Suite, gate, lint.** 148 of 151 checks pass on the first run (`logs/d-n12-…`). Two had not been taught the new fact: `check-entry-gate-v1`'s E2 (a closed list of the facts a row may carry) and `check-made-spaces-v1`'s M6 (a second road to the readings of the 132 marked rows that also carry a closed space). Edits 82 and 83 teach them, and both pass every law (`logs/d-n26-…`, `logs/d-n27-…`); the regenerated manifest names M6's check among the rule's guards. The third red is the check that the tree is pushed, green after (`logs/d-n29-…`). The gate (`logs/d-n13-…`, accounted in `logs/d-n28-…`): 9,383 sampled lines the same; 16 of 54 first cards differ, 34 pills gone, each one a row that is a note now, and the cards print 34 notes; none comes, none opens on another reading. Lint (`logs/d-n25-…`): 10 changed tools, no finding their live copies lack; the page 175.
 
 **Shipped.** main `bc5f5f9b09`, gh-pages `a4ef9effc8` (deployment run 1361 and live check run 59, both green, `logs/d-n30-…`). The commit message is `logs/d-commit-message-bc5f5f9b.txt`.
+
+## 6. Ship E: the paseq stands in the read form (relay v179, the lane's own mend; live)
+
+**What came.** Relay v179: at 16 places written one way and read another, the edition writes a paseq inside the read form (11 close it, 5 stand between its two read words); the lane's restore v5 stood each after the whole place, and lattice v12 serves that order. The lane's list (`paseq-v1/paseq-in-the-read-form-v1.jsonl`, sha256 `c9be98b7…`) keys each to the lattice and the word place and gives the place as the edition prints it (`prints`) and the verse with the stroke in place (`stream_line_in_place`). Its second count found the same 16 from the streams alone; the Leningrad Codex sets the stroke after the same read word at all 16.
+
+**What was wired** (edits 80 and 81, two new tools, one pin; built first in a worktree of the live build, then on main after ruling 4):
+
+- `data/paseq-place/`: the pin and the lane's list, rule and receipt byte for byte.
+- `tools/apply-paseq-place-v1.mjs` writes two facts on the 12 zones: on the place `kq.stroke` (the glyph, copied from the mark's own `s`, and the read word it follows); on the mark `in_read_form`. It first holds each line to its zone and draws each place as the page draws it: 16 of 16 equal `prints`. Typed on each zone as a post-build write; expires with the zones built from the lane's next lattice. The round's three zone tools carry the facts through (shown on Job).
+- Edit 80, the page: one rule (`strokeIn`) says where the stroke stands. The line draws an empty span there and the stylesheet draws the glyph in it with the marks shown, so every reader of the place's text still reads its carrier; the mark's own block never shows, and a press on the stroke opens the paseq's card. The export writes the stroke in the place's Hebrew (`carrierWithStroke`) and nothing at the mark's own position. Edit 81, PIPELINE.md.
+- `tools/check-paseq-place-v1.mjs`, six laws (P1 to P6): the pin; the zones' facts, records and typing, and no fact elsewhere; with the marks off each place prints its carrier alone; with the marks on each prints as the list's `prints`; a press on the stroke opens the paseq's card; the export of each listed verse equals the list's `stream_line_in_place`, character for character.
+
+**Measured against the live build** (ruling 4), the round run from the stamps on:
+
+- Lines at rest: all 400,242 the same (`logs/e-p17-…`).
+- The chain books: all 14,354 cards the same, at rest and lifted (`logs/e-p18-…`); they hold none of the 16 places.
+- The store and the search index: every file the same; no count moved. The gate's receipt and the shelf's record pin the 12 zones' new bytes; the ledger index names the new tool.
+- Weight: the 12 zones 8,939,934 → 8,948,028 bytes.
+
+**Broken on purpose** (`logs/e-p21-…`), each file put back byte for byte, the tree's fingerprint the same before and after (`20fa720351124933`); where a zone was changed it was pinned again, so the page reads it:
+
+| | What was broken | The check |
+|---|---|---|
+| A | the pin names another sha256 for the list | P1, P2 red |
+| B | at Job 38:1 the place loses its stroke | P2 to P6 red |
+| C | at Job 38:1 the stroke follows read word 2 | P2, P4, P6 red |
+| D | a paseq of Job outside the list says it prints in a read form | P2 red |
+| E | the stylesheet draws the stroke whether the marks are shown or not | P3 red |
+| F | the mark's own block shows again with the marks | P4 red |
+| G | the page draws the stroke after the next read word | P3 to P6 red |
+| H | a press on the stroke opens nothing of the mark's | P5 red |
+| I | the stroke's span holds its glyph as text | P3, P4 red |
+| J | the export writes the mark at its own position too | P6 red |
+| K | the export writes the place without its stroke | P6 red |
+
+On the first run (`logs/e-p16-…`) G stopped the check: at a place of one read word the page drew no stroke, the check pressed the stroke it did not find, and it ended in an error that named no law. The check now says "the page drew no stroke to press" as a finding of P5, and a place it cannot read is a finding of its own, so one bad place does not stop the rest. All eleven were run again against it, and all eleven were caught.
+
+**Suite, gate, lint.** 150 of 152 checks pass on the first run (`logs/e-p14-…`). `check-nothing-hand-typed-v1` found two glyphs typed into the new tool's string literals (the paseq it compared a mark to, the maqaf it tested a join by); the Write tool had decoded the escapes I wrote. Neither was needed, and both are gone; the check passes (`logs/e-p19-…`), and the tool still holds all 16 lines to their zones. The other red is the check that the tree is pushed, green after (`logs/e-p22-…`). The gate (`logs/e-p15-…`): 9,383 sampled lines and the 54 first cards, all the same. Lint: the two new tools clean after two small mends; the page 175.
+
+**Also found** (`logs/e-p02-…`): the 28 read forms of two or more words carry no tag on any read word; at 14 the place has no pieces either, and the line under each read word is the table's line for its bare letters («manna» for מִ֥ן at Job 38:1 and 40:6, «to make bricks + jaminites» at 1 Chronicles 27:12, «beacon» at 2 Samuel 5:2, «Shammah.» at 2 Samuel 21:12). Put to the lane.
+
+**Shipped.** main `566a8b3585`, gh-pages `3d127480fa` (deployment run 1362 and live check run 60, both green, `logs/e-p23-…`). The commit message is `logs/e-commit-message-566a8b35.txt`.
