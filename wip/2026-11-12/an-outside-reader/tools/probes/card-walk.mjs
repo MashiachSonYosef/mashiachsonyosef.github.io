@@ -27,10 +27,15 @@ if (LIFT) {
   await p.reload({ waitUntil: "networkidle" });
 }
 await p.waitForSelector("section.seg");
-await p.waitForFunction(() => !!(window.__latticeStore || window.__latticeRefused) || !(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice), null, { timeout: 60000 });
+// the lattice is waited for where the pointing reads it: with the pointing lifted the page does not ask for it
+await p.waitForFunction(() => window.__masorah === "keep" || !!(window.__latticeStore || window.__latticeRefused) || !(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice), null, { timeout: 60000 });
 const state = await p.evaluate(() => ({ masorah: window.__masorah, signs: window.__signs, off: window.__sourcesOff || [], sections: document.querySelectorAll("section.seg").length }));
 const FROM = Number(fromArg), TO = Number(countArg) ? Math.min(state.sections, FROM + Number(countArg)) : state.sections;
 const tLoad = Date.now() - t00;
+const { linesInPage } = await import(pathToFileURL(join(reader, "tools", "resting-lines-v1.mjs")).href);
+await p.evaluate(([a, b]) => window.__materialise(a, b), [FROM, TO]);
+await p.waitForTimeout(1500);
+const linesBefore = await p.evaluate(linesInPage, [FROM, TO, false]);
 const t0 = Date.now();
 const got = await p.evaluate(async ({ from, to, rungs }) => {
   const hud = document.getElementById("hud");
@@ -107,7 +112,12 @@ const got = await p.evaluate(async ({ from, to, rungs }) => {
   return { out, words, slow, unsettled, presses, pressPills, pressMs };
 }, { from: FROM, to: TO, rungs: RUNGS });
 const tWalk = Date.now() - t0;
+await p.waitForTimeout(400);
+const linesAfter = await p.evaluate(linesInPage, [FROM, TO, false]);
+const chosen = await p.evaluate(() => document.querySelectorAll(".wb.chosen, .wjoin.chosen").length);
 await b.close();
+let linesMoved = 0; const movedEg = [];
+linesBefore.sections.forEach((s, x) => { const a = JSON.stringify(s.units), c = JSON.stringify(linesAfter.sections[x].units); if (a !== c) { linesMoved += 1; if (movedEg.length < 4) { const u = s.units.findIndex((y, z) => JSON.stringify(y) !== JSON.stringify(linesAfter.sections[x].units[z])); movedEg.push(`${s.label}: line ${u + 1} was ${JSON.stringify(s.units[u])} and is ${JSON.stringify(linesAfter.sections[x].units[u])}`); } } });
 const labelOf = (m) => (ix.m_sources[m] && ix.m_sources[m].label) || null;
 const T = { words: 0, opened: 0, faults: 0, pills: 0, noPills: 0, pieces: 0, cuts: 0, wordsWithCuts: 0, chainCards: 0, qCards: 0, titleNoLabel: 0, titleNotLead: 0, ovPills: 0, placePills: 0, pointer: 0, pillsInRuns: 0 };
 const eg = { titleNotLead: [], titleNoLabel: [], faults: [], noPills: [] };
@@ -137,6 +147,7 @@ console.log(`${book} sections ${FROM}..${TO - 1} · switches ${LIFT ? "lifted" :
 console.log(`  loaded in ${tLoad} ms · walked in ${tWalk} ms · ${T.words} words · ${T.opened} cards read · ${T.faults} faults · per card ${(msSum / Math.max(1, T.opened)).toFixed(1)} ms mean, ${msMax.toFixed(0)} ms max · ${got.slow} over 250 ms`);
 console.log(`  ${T.pills} pills · ${T.noPills} cards with no pill · ${T.pieces} "here the source reads" lines · ${T.wordsWithCuts} cards list divisions (${T.cuts} divisions) · ${T.chainCards} cards carry a chain's rows · ${T.qCards} a forms row`);
 console.log(`  pills from an overlay ${T.ovPills} · on a place's own reading ${T.placePills} · pointer pills ${T.pointer} · a title naming no label an index holds ${T.titleNoLabel} · a title naming another label than the lead record's ${T.titleNotLead}`);
+console.log(`  after the walk: ${chosen} words marked as ruled · ${linesMoved} sections whose lines are not the lines before the walk${movedEg.length ? ` · ${movedEg.join(" | ")}` : ""}`);
 if (RUNGS) console.log(`  rungs: ${got.presses} presses · ${got.pressPills} pills behind them · ${Math.round(got.pressMs)} ms`);
 for (const [k, v] of Object.entries(eg)) if (v.length) console.log(`  ${k}: ${v.join(" | ")}`);
 writeFileSync(out, `${JSON.stringify({ book, lift: LIFT, state, tLoad, tWalk, totals: T, sections: got.out })}\n`);
