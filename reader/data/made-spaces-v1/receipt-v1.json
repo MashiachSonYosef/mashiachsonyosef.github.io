@@ -1,0 +1,2337 @@
+{
+ "name": "made spaces v1: the spaces our build made in the three Open Scriptures sources, keyed by the served text",
+ "written": "12 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "answers": "The serving lane's ask 5 of 10 November 2026 AD: is the space before the comma in «Amos , an Israelite prophet» in the provider's file or made by our build, and would the ledger carry closing it as a print step.",
+ "current_effect": "NONE. The lists stand beside the ledgers. No ledger, no row of the store and no served text is changed by them.",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 10599,
+  "sha256": "2a00e42536a514fd99ce367fe2f13bc21f5a663078819611c61a7ac63a9aa83d"
+ },
+ "builder": {
+  "file": "build-made-spaces-v1.mjs",
+  "bytes": 45863,
+  "sha256": "57d9282ca8e233e328b6d26d597d20d8698f519bf6162079e984de9a9b94812b"
+ },
+ "inputs": {
+  "provider": {
+   "repository": "https://github.com/openscriptures/HebrewLexicon",
+   "commit_sha": "21c9add13bc727d3a951361778e97e3ff7afd1ce",
+   "fetched_at": "2026-07-14T16:31:08.488Z",
+   "license_posture": "cc_by_4_0_with_underlying_bdb_and_strongs_text_public_domain",
+   "license_pointer": "https://github.com/openscriptures/HebrewLexicon/blob/21c9add13bc727d3a951361778e97e3ff7afd1ce/readme.md#L37-L38",
+   "acquisition_method": "direct_https_files_only_no_git_repository",
+   "manifest": {
+    "bytes": 2305,
+    "sha256": "ac542c7f9255189336190b44fc8a3edd7761c6ab8983c3a27ccb3b5b9745a8ae"
+   },
+   "files": [
+    {
+     "file": "HebrewStrong.xml",
+     "bytes": 2749042,
+     "sha256": "a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4",
+     "source_url": "https://raw.githubusercontent.com/openscriptures/HebrewLexicon/21c9add13bc727d3a951361778e97e3ff7afd1ce/HebrewStrong.xml"
+    },
+    {
+     "file": "BrownDriverBriggs.xml",
+     "bytes": 2911253,
+     "sha256": "2b52658a4323d91674cda4090ab8b3ebddfff640f4f18143c28300e80b2c38f8",
+     "source_url": "https://raw.githubusercontent.com/openscriptures/HebrewLexicon/21c9add13bc727d3a951361778e97e3ff7afd1ce/BrownDriverBriggs.xml"
+    },
+    {
+     "file": "LexicalIndex.xml",
+     "bytes": 1782592,
+     "sha256": "8f7a605c58899d2f44430149c143c00903976e1e91232476677972a69e5bc85f",
+     "source_url": "https://raw.githubusercontent.com/openscriptures/HebrewLexicon/21c9add13bc727d3a951361778e97e3ff7afd1ce/LexicalIndex.xml"
+    }
+   ]
+  },
+  "route_store": {
+   "read_from": "https://fireandhail.com/reader/data/route-store/",
+   "schema_version": "ROUTE_STORE_V2",
+   "store_version": "90d9eb8e7082",
+   "index": {
+    "bytes": 144252,
+    "sha256": "385fc721c92d328a25135c82408c4907f3e1d762bc6d702b2ec2f1dfb79eaa9d"
+   },
+   "counts": {
+    "keys": 124901,
+    "routes": 652954,
+    "shards": 256,
+    "shard_bytes_total": 15005007
+   },
+   "shard_encoding": "gzip(JSON) — unpack with DecompressionStream('gzip')",
+   "shards_sha256": "a4e51436adc14472aec3f096e7db921d5970d3b7d68b1cc0304ab78828c0f151",
+   "shards_sha256_is": "the sha256 of the lines \"<name> <sha256 of the shard>\", one per shard in name order, each ending in a line feed",
+   "rows_read": 652954
+  },
+  "span_store": {
+   "read_from": "https://fireandhail.com/reader/data/span-store/",
+   "schema_version": "span-store-served-v1",
+   "from": "span-store-v2.1",
+   "index": {
+    "bytes": 15057,
+    "sha256": "3980e7124623d3554dcd0e371b970e81b49fb3e8a0dbea771e2343ee8ea095f6"
+   },
+   "books": 39,
+   "books_sha256": "f8992b5392edb536c3ff16ef2762968bab4133056667a611bedb82bdbce40b26",
+   "books_sha256_is": "the sha256 of the lines \"<file> <sha256 of the file>\", one per book file in name order, each ending in a line feed",
+   "rows_read": 3873
+  },
+  "step": {
+   "files": [
+    {
+     "file": "definition-poc/scripts/build_structured_evidence_catalog.mjs",
+     "bytes": 235232,
+     "sha256": "8154ee4f58611e5cb4351d01f52e322f95d2b89036a798e69e93133a72206167",
+     "functions": [
+      {
+       "name": "decodeXml",
+       "lines": [
+        1490,
+        1499
+       ],
+       "text": "function decodeXml(value) {\n  return String(value ?? '')\n    .replace(/&amp;/giu, '&')\n    .replace(/&quot;/giu, '\"')\n    .replace(/&apos;/giu, \"'\")\n    .replace(/&lt;/giu, '<')\n    .replace(/&gt;/giu, '>')\n    .replace(/&#(\\d+);/gu, (_, digits) => String.fromCodePoint(Number(digits)))\n    .replace(/&#x([0-9a-f]+);/giu, (_, digits) => String.fromCodePoint(Number.parseInt(digits, 16)));\n}"
+      },
+      {
+       "name": "stripXml",
+       "lines": [
+        1501,
+        1506
+       ],
+       "text": "function stripXml(value) {\n  return decodeXml(String(value ?? '').replace(/<[^>]+>/gu, ' '))\n    .replace(/[\\u200E\\u200F\\u202A-\\u202E\\u2066-\\u2069]/gu, '')\n    .replace(/\\s+/gu, ' ')\n    .trim();\n}"
+      }
+     ]
+    },
+    {
+     "file": "definition-poc/scripts/lib/openscriptures_strongs_routes.mjs",
+     "bytes": 2025,
+     "sha256": "10e531ab518c2c832a33a298c49385997c0685c5e13b1ed3bbecffbb280d2c82",
+     "functions": [
+      {
+       "name": "decodeOpenScripturesXml",
+       "lines": [
+        4,
+        13
+       ],
+       "text": "export function decodeOpenScripturesXml(value) {\n  return String(value ?? '')\n    .replace(/&amp;/giu, '&')\n    .replace(/&quot;/giu, '\"')\n    .replace(/&apos;/giu, \"'\")\n    .replace(/&lt;/giu, '<')\n    .replace(/&gt;/giu, '>')\n    .replace(/&#(\\d+);/gu, (_, digits) => String.fromCodePoint(Number(digits)))\n    .replace(/&#x([0-9a-f]+);/giu, (_, digits) => String.fromCodePoint(Number.parseInt(digits, 16)));\n}"
+      },
+      {
+       "name": "stripOpenScripturesXml",
+       "lines": [
+        15,
+        20
+       ],
+       "text": "export function stripOpenScripturesXml(value) {\n  return decodeOpenScripturesXml(String(value ?? '').replace(/<[^>]+>/gu, ' '))\n    .replace(/[\\u200E\\u200F\\u202A-\\u202E\\u2066-\\u2069]/gu, '')\n    .replace(/\\s+/gu, ' ')\n    .trim();\n}"
+      }
+     ]
+    },
+    {
+     "file": "definition-poc/scripts/lib/openscriptures_bdb_frames.mjs",
+     "bytes": 2260,
+     "sha256": "2d92201c4edc6e979f6a451da97851a3917435848771d19732b6a792f62b93fc",
+     "functions": [
+      {
+       "name": "decodeXml",
+       "lines": [
+        4,
+        13
+       ],
+       "text": "function decodeXml(value) {\n  return String(value ?? '')\n    .replace(/&amp;/giu, '&')\n    .replace(/&quot;/giu, '\"')\n    .replace(/&apos;/giu, \"'\")\n    .replace(/&lt;/giu, '<')\n    .replace(/&gt;/giu, '>')\n    .replace(/&#(\\d+);/gu, (_, digits) => String.fromCodePoint(Number(digits)))\n    .replace(/&#x([0-9a-f]+);/giu, (_, digits) => String.fromCodePoint(Number.parseInt(digits, 16)));\n}"
+      },
+      {
+       "name": "stripBdbXml",
+       "lines": [
+        15,
+        20
+       ],
+       "text": "export function stripBdbXml(value) {\n  return decodeXml(String(value ?? '').replace(/<[^>]+>/gu, ' '))\n    .replace(/[\\u200E\\u200F\\u202A-\\u202E\\u2066-\\u2069]/gu, '')\n    .replace(/\\s+/gu, ' ')\n    .trim();\n}"
+      }
+     ]
+    }
+   ],
+   "one_text": true,
+   "replayed_as": "decodeXml and flat(raw, \" \") in this builder for OURS; flat(raw, \"\") for THEIRS"
+  }
+ },
+ "sources": [
+  {
+   "source_key": "openscriptures_strongs",
+   "m_id": "M9",
+   "label": "Strong's Hebrew Dictionary via Open Scriptures",
+   "provider_file": "HebrewStrong.xml",
+   "file_axis": {
+    "entries": 8674,
+    "fields_read": {
+     "meaning": 8435,
+     "def": 14154,
+     "usage": 8673
+    },
+    "fields_with_empty_text": 0,
+    "fields_with_a_made_space": 5124,
+    "made_spaces_in_fields": 6701,
+    "fields_with_a_note": 1,
+    "distinct_texts_of_fields": 24359,
+    "distinct_texts_of_fields_with_a_made_space": 5121
+   },
+   "rows_axis": {
+    "route_store": {
+     "rows": 23646,
+     "pieces": 7889,
+     "field_1_differs_from_field_2": 7928,
+     "field_1_holds_a_made_space": 4849,
+     "field_2_holds_a_made_space": 10721,
+     "either_holds_a_made_space": 10721,
+     "field_1_holds_a_close": 4849,
+     "field_2_holds_a_close": 10721,
+     "either_holds_a_close": 10721,
+     "space_before_a_comma": {
+      "field_1": {
+       "rows": 3736,
+       "every_one_closes": 3733,
+       "mixed": 2,
+       "every_one_is_the_providers_own": 1,
+       "rows_that_still_print_one_after_closing": 3
+      },
+      "field_2": {
+       "rows": 8130,
+       "every_one_closes": 8121,
+       "mixed": 7,
+       "every_one_is_the_providers_own": 2,
+       "rows_that_still_print_one_after_closing": 9
+      }
+     },
+     "space_beside_a_stop": {
+      "field_1": {
+       "each": {
+        "before ,": 3736,
+        "before ;": 1072,
+        "before )": 373,
+        "before .": 272,
+        "after (": 76,
+        "before ]": 5,
+        "after [": 1
+       },
+       "unions": {
+        "before , ; . : ? !": 4640,
+        "before , ; . : ? ! )": 4842,
+        "before , ; . : ? ! ) ]": 4845,
+        "before , ; . : ? ! ) ] or after ( [": 4863
+       }
+      },
+      "field_2": {
+       "each": {
+        "before ,": 8130,
+        "before ;": 3495,
+        "before )": 1282,
+        "before .": 296,
+        "after (": 230,
+        "before ]": 14,
+        "after [": 3
+       },
+       "unions": {
+        "before , ; . : ? !": 10175,
+        "before , ; . : ? ! )": 10698,
+        "before , ; . : ? ! ) ]": 10703,
+        "before , ; . : ? ! ) ] or after ( [": 10721
+       }
+      }
+     }
+    },
+    "span_store": {
+     "rows": 315,
+     "field_1_differs_from_field_2": 0,
+     "field_1_holds_a_made_space": 0,
+     "field_2_holds_a_made_space": 0,
+     "either_holds_a_made_space": 0,
+     "field_1_holds_a_close": 0,
+     "field_2_holds_a_close": 0,
+     "either_holds_a_close": 0,
+     "space_before_a_comma": {
+      "field_1": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      },
+      "field_2": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      }
+     },
+     "space_beside_a_stop": {
+      "field_1": {
+       "each": {},
+       "unions": {
+        "before , ; . : ? !": 0,
+        "before , ; . : ? ! )": 0,
+        "before , ; . : ? ! ) ]": 0,
+        "before , ; . : ? ! ) ] or after ( [": 0
+       }
+      },
+      "field_2": {
+       "each": {},
+       "unions": {
+        "before , ; . : ? !": 0,
+        "before , ; . : ? ! )": 0,
+        "before , ; . : ? ! ) ]": 0,
+        "before , ; . : ? ! ) ] or after ( [": 0
+       }
+      }
+     }
+    }
+   },
+   "signs_after_a_space_in_field_1_of_the_route_store": {
+    "axis": "times, over the rows' field 1",
+    "signs": {
+     "(": {
+      "times": 6323,
+      "made_and_closes": 3,
+      "made_and_kept": 0,
+      "the_providers_own": 6320,
+      "text_not_traced": 0
+     },
+     ",": {
+      "times": 4307,
+      "made_and_closes": 4304,
+      "made_and_kept": 0,
+      "the_providers_own": 3,
+      "text_not_traced": 0
+     },
+     ";": {
+      "times": 1296,
+      "made_and_closes": 1296,
+      "made_and_kept": 0,
+      "the_providers_own": 0,
+      "text_not_traced": 0
+     },
+     "×": {
+      "times": 599,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 599,
+      "text_not_traced": 0
+     },
+     ")": {
+      "times": 441,
+      "made_and_closes": 427,
+      "made_and_kept": 0,
+      "the_providers_own": 14,
+      "text_not_traced": 0
+     },
+     "-": {
+      "times": 311,
+      "made_and_closes": 12,
+      "made_and_kept": 0,
+      "the_providers_own": 299,
+      "text_not_traced": 0
+     },
+     ".": {
+      "times": 273,
+      "made_and_closes": 273,
+      "made_and_kept": 0,
+      "the_providers_own": 0,
+      "text_not_traced": 0
+     },
+     "+": {
+      "times": 35,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 35,
+      "text_not_traced": 0
+     },
+     "'": {
+      "times": 27,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 27,
+      "text_not_traced": 0
+     },
+     "[": {
+      "times": 23,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 23,
+      "text_not_traced": 0
+     },
+     "]": {
+      "times": 9,
+      "made_and_closes": 9,
+      "made_and_kept": 0,
+      "the_providers_own": 0,
+      "text_not_traced": 0
+     }
+    }
+   },
+   "texts_axis": {
+    "distinct_field_1": 20749,
+    "distinct_field_2": 15113,
+    "distinct_over_both": 20783,
+    "traced": 20781,
+    "parts": 2,
+    "neither": 0,
+    "with_a_made_space": 4847,
+    "with_a_note": 1,
+    "with_a_note_and_no_made_space": 0,
+    "lines_in_the_list": 4847,
+    "with_a_made_space_by_the_first_field_it_comes_from": {
+     "meaning": 4559,
+     "usage": 288
+    },
+    "whose_fields_differ_in_the_tags_of_a_gap": 0,
+    "neither_listed": []
+   },
+   "spaces_axis": {
+    "made": 6419,
+    "closes": 6418,
+    "kept": {
+     "empty_element": 0,
+     "division": 0,
+     "end_then_start": 1
+    },
+    "neighbours_of_closes": {
+     "before ,": 4302,
+     "before ;": 1296,
+     "before )": 427,
+     "before .": 273,
+     "after (": 72,
+     "- then letter": 17,
+     "letter then -": 11,
+     "before ]": 9,
+     ". then letter": 3,
+     "after [": 3,
+     "letter then (": 3,
+     "letter then letter": 2
+    },
+    "neighbours_of_kept": {
+     "digit then letter": 1
+    }
+   },
+   "gap_table": [
+    {
+     "signature": "</def>",
+     "class": "closes",
+     "spaces": 5986,
+     "texts": 4547,
+     "sample": "H1006:meaning «Bajith[_], a place in Palestine»"
+    },
+    {
+     "signature": "</w>",
+     "class": "closes",
+     "spaces": 335,
+     "texts": 300,
+     "sample": "H1117:usage «Bamah. See also 1120[_].»"
+    },
+    {
+     "signature": "<def>",
+     "class": "closes",
+     "spaces": 93,
+     "texts": 70,
+     "sample": "H1319:meaning «o be fresh , i.e. full ([_]rosy , figuratively chee»"
+    },
+    {
+     "signature": "<w>",
+     "class": "closes",
+     "spaces": 3,
+     "texts": 1,
+     "sample": "H8453:meaning «ler but not outlandish [[_]5237 ]; especially (as d»",
+     "places": [
+      "H8453:meaning «ler but not outlandish [[_]5237 ]; especially (as d»",
+      "H8453:meaning «and a temporary inmate [[_]1616 ] or mere lodger [ »",
+      "H8453:meaning « 1616 ] or mere lodger [[_]3885 ]) resident alien»"
+     ]
+    },
+    {
+     "signature": "</note>",
+     "class": "closes",
+     "spaces": 1,
+     "texts": 1,
+     "sample": "H269:meaning «er 250, corrected to 251[_]], literally and figurat»",
+     "places": [
+      "H269:meaning «er 250, corrected to 251[_]], literally and figurat»"
+     ]
+    },
+    {
+     "signature": "</w><note>",
+     "class": "end_then_start",
+     "spaces": 1,
+     "texts": 1,
+     "sample": "H269:meaning «ed very widely [like 251[_]number 250, corrected to»",
+     "places": [
+      "H269:meaning «ed very widely [like 251[_]number 250, corrected to»"
+     ]
+    }
+   ],
+   "kept_places": [
+    {
+     "from": "H269:meaning",
+     "at": 36,
+     "why": "end_then_start",
+     "neighbours": "digit then letter",
+     "signature": "</w><note>",
+     "text": "«ed very widely [like 251[_]number 250, corrected to»"
+    }
+   ],
+   "closes_inside_a_word": {
+    "what": "closes with a letter or a digit on both sides",
+    "count": 2,
+    "listed": [
+     {
+      "from": "H4870:meaning",
+      "at": 6,
+      "neighbours": "letter then letter",
+      "signature": "</def>",
+      "text": "«an err[_]or»"
+     },
+     {
+      "from": "H5619:meaning",
+      "at": 94,
+      "neighbours": "letter then letter",
+      "signature": "</def>",
+      "text": "«its contrary (as if a de[_]lapidation)»"
+     }
+    ]
+   },
+   "closes_that_set_a_stop_or_a_bracket_against_a_word": {
+    "what": "closes after . , ; : ? ! or ) with a letter or a digit next, or between a letter or a digit and (. The printed characters are the provider's own at every one; listed so each can be read",
+    "count": 6,
+    "listed": [
+     {
+      "from": "H1571:meaning",
+      "at": 108,
+      "neighbours": ". then letter",
+      "signature": "<def>",
+      "text": "«ated as correl. both ...[_]and»"
+     },
+     {
+      "from": "H2006:meaning",
+      "at": 14,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«lo! also there[_](-fore), (un-) less , wh»"
+     },
+     {
+      "from": "H3974:meaning",
+      "at": 112,
+      "neighbours": ". then letter",
+      "signature": "<def>",
+      "text": "«ively, brightness , i.e.[_]cheerfulness ; specifica»"
+     },
+     {
+      "from": "H5069:meaning",
+      "at": 20,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«be (or give) liberal[_](-ly)»"
+     },
+     {
+      "from": "H7293:meaning",
+      "at": 7,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«bluster[_]( -er )»"
+     },
+     {
+      "from": "H996:meaning",
+      "at": 98,
+      "neighbours": ". then letter",
+      "signature": "<def>",
+      "text": "« conjunction, either ...[_]or»"
+     }
+    ]
+   },
+   "the_providers_own_spaces_beside_a_stop_that_stay": {
+    "texts": 32,
+    "spaces": 38,
+    "kept_made_spaces_beside_a_stop": 0,
+    "texts_not_traced_with_one": 0,
+    "listed": [
+     "H3966:usage «o) sore, utterly, very ([_]much, sore), well.»",
+     "H8672:usage «nine ([_]-teen, -teenth, -th).»",
+     "H8270:meaning «a string (as twisted[_]), i.e. (specifically) t»",
+     "H5704:usage «d, until, when, while, ([_]as) yet.»",
+     "H5869:usage «mble, knowledge, look, ([_]well), × me, open(-ly), »",
+     "H3117:usage « while (that), × whole ([_]age), (full) year(-ly), »",
+     "H6571:meaning « single nor for mounting[_]); also (by implication)»",
+     "H2796:usage «artificer, ([_]) carpenter, craftsman, »",
+     "H2796:usage «maker, mason, skilful, ([_]) smith, worker, workman»",
+     "H5331:usage «(-s), constantly, end, ([_]n-) ever(more), perpetua»",
+     "H7651:usage «([_]by) seven(-fold),-s, (-t»",
+     "H5769:usage «eginning of the) world ([_]without end). Compare 53»",
+     "H3384:usage «([_]) archer, cast, direct, »",
+     "H3868:meaning «to turn aside[_], i.e. (literally) to de»",
+     "H7657:usage «ty, threescore and ten ([_]-teen).»",
+     "H4399:usage «dustrious, occupation, ([_]-pied), officer, thing (»",
+     "H5977:usage «place, ([_]where) stood, upright.»",
+     "H6629:usage «(small) cattle, flock ([_]-s), lamb ( -s), sheep(-»",
+     "H6629:usage «tle, flock ( -s), lamb ([_]-s), sheep(-cote, -fold,»",
+     "H3190:usage «e (make) merry, please ([_]well), shew more (kindne»",
+     "H7676:usage «([_]every) sabbath.»",
+     "H6963:usage «eating, crackling, cry ([_]out), fame, lightness, l»",
+     "H1768:usage «× as, but, for(-asmuch[_]), now, of, seeing, than»",
+     "H6499:usage «([_]young) bull(-ock), calf,»",
+     "H7231:meaning «operly, to cast together[_], i.e. increase, especia»",
+     "H3282:usage «ause (that), forasmuch ([_]as), seeing then, that, »",
+     "H5314:meaning «ely, to be breathed upon[_], i.e. (figuratively) re»",
+     "H1241:usage «beeve, bull ([_]-ock), calf, cow, great »",
+     "H1242:usage «([_]) day, early, morning, m»",
+     "H2428:usage «able, activity, ([_]) army, band of men (sol»",
+     "H2428:usage «ong, substance, train, ([_]) valiant(-ly), valour, »",
+     "H1121:usage « ed one, appointed to, ([_]) arrow, (Assyr-) (Babyl»",
+     "H1121:usage «tage, × in, kid, lamb, ([_]) man, meet, mighty, nep»",
+     "H1121:usage «, mighty, nephew, old, ([_]) people, rebel, robber,»",
+     "H6635:usage «appointed time, ([_]) army, ( ) battle, comp»",
+     "H6635:usage «ointed time, ( ) army, ([_]) battle, company, host,»",
+     "H5236:usage «alien, strange ([_]-er).»",
+     "H5375:usage «gh, hold up, honorable ([_]man), lade, lay, lift (s»"
+    ]
+   },
+   "row_comparison": {
+    "rows_compared": 0,
+    "field_1_stands_in_field_2_and_agrees": 0,
+    "field_1_stands_in_field_2_and_differs": 0,
+    "field_1_does_not_stand_in_field_2": 0,
+    "differs_listed": []
+   },
+   "fields_with_a_made_space_that_no_row_serves": 274,
+   "list": {
+    "file": "openscriptures_strongs.made-spaces-v1.jsonl",
+    "bytes": 959880,
+    "sha256": "c984e7827db37f38fae5bdb0143ffc8de4657dbc9aab56b4a82d9e4a204aaa4b",
+    "lines": 4847
+   },
+   "ledger_comparison": {
+    "declaration": {
+     "file": "corpus-lane-builds/moses-provider-declarations-v1/openscriptures_strongs/v1.1/openscriptures_strongs.declaration.json",
+     "bytes": 173189,
+     "sha256": "4ac9499b80bf0cdd4059ea6402ad7f882f2fbcd70a19a511763a53de24a1e413",
+     "schema": "mishkan.provider_declaration.v2",
+     "routes": 23646,
+     "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Strong's Hebrew Dictionary via Open Scriptures\" (M9): 23,646 routes (axis: routes), 5,939 letters keys (axis: keys). The definition field of the same row is read only to understand a route, never classified. Routes against the definition field (axis: routes): 15,718 have route text equal to it (the source audit finds 7,463 of them to be a whole meaning field, 8,167 a whole usage field, which is the King James rendering list, and 88 whose text several entries of one key share (two entries in 87 of them, three in 1)); 7,889 carry the store's cut flag and are one tagged gloss cut from a meaning field; 39 more are one tagged gloss of an entry whose meaning field holds exactly that one gloss with a few untagged words round it, the flag left empty. The source's own key to its signs: none found. The lane's copy of the source (Open Scriptures HebrewLexicon, HebrewStrong.xml, commit 21c9add13bc727d3a951361778e97e3ff7afd1ce) shows its structure only: a meaning field whose glosses are tagged and a usage field that holds the King James list; it carries no key to its signs (no schema file and no documentation file in the copy), so every shape whose meaning rests on a sign convention begins \"unverified:\". The route text names neither the field it came from nor the entry's Strong's number; the lane read both from the source file by audit, which is evidence about the source and no part of any test."
+    },
+    "served_now": {
+     "route_store_rows": 23646,
+     "span_store_rows": 315
+    },
+    "note": "recorded, not a stop: a ledger was read at its own store version"
+   }
+  },
+  {
+   "source_key": "openscriptures_bdb_1906",
+   "m_id": "M5",
+   "label": "Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures",
+   "provider_file": "BrownDriverBriggs.xml",
+   "file_axis": {
+    "entries": 11845,
+    "fields_read": {
+     "segment": 7578,
+     "def": 21343
+    },
+    "fields_with_empty_text": 1,
+    "fields_with_a_made_space": 7168,
+    "made_spaces_in_fields": 25764,
+    "fields_with_a_note": 0,
+    "distinct_texts_of_fields": 18884,
+    "distinct_texts_of_fields_with_a_made_space": 7165
+   },
+   "bdb_status": {
+    "entries_with_one_status_and_it_is_last": 11845,
+    "entries_without_a_status": 0
+   },
+   "rows_axis": {
+    "route_store": {
+     "rows": 15238,
+     "pieces": 755,
+     "field_1_differs_from_field_2": 12689,
+     "field_1_holds_a_made_space": 0,
+     "field_2_holds_a_made_space": 12509,
+     "either_holds_a_made_space": 12509,
+     "field_1_holds_a_close": 0,
+     "field_2_holds_a_close": 12509,
+     "either_holds_a_close": 12509,
+     "space_before_a_comma": {
+      "field_1": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      },
+      "field_2": {
+       "rows": 10500,
+       "every_one_closes": 10449,
+       "mixed": 51,
+       "rows_that_still_print_one_after_closing": 51
+      }
+     },
+     "space_beside_a_stop": {
+      "field_1": {
+       "each": {
+        "before .": 1
+       },
+       "unions": {
+        "before , ; . : ? !": 1,
+        "before , ; . : ? ! )": 1,
+        "before , ; . : ? ! ) ]": 1,
+        "before , ; . : ? ! ) ] or after ( [": 1
+       }
+      },
+      "field_2": {
+       "each": {
+        "before .": 10787,
+        "before ,": 10500,
+        "before ]": 4980,
+        "after [": 4968,
+        "before )": 2168,
+        "before ;": 1963,
+        "after (": 1272,
+        "before ?": 277,
+        "before :": 167,
+        "before !": 1
+       },
+       "unions": {
+        "before , ; . : ? !": 12364,
+        "before , ; . : ? ! )": 12456,
+        "before , ; . : ? ! ) ]": 12499,
+        "before , ; . : ? ! ) ] or after ( [": 12502
+       }
+      }
+     }
+    },
+    "span_store": {
+     "rows": 171,
+     "field_1_differs_from_field_2": 0,
+     "field_1_holds_a_made_space": 0,
+     "field_2_holds_a_made_space": 0,
+     "either_holds_a_made_space": 0,
+     "field_1_holds_a_close": 0,
+     "field_2_holds_a_close": 0,
+     "either_holds_a_close": 0,
+     "space_before_a_comma": {
+      "field_1": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      },
+      "field_2": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      }
+     },
+     "space_beside_a_stop": {
+      "field_1": {
+       "each": {},
+       "unions": {
+        "before , ; . : ? !": 0,
+        "before , ; . : ? ! )": 0,
+        "before , ; . : ? ! ) ]": 0,
+        "before , ; . : ? ! ) ] or after ( [": 0
+       }
+      },
+      "field_2": {
+       "each": {},
+       "unions": {
+        "before , ; . : ? !": 0,
+        "before , ; . : ? ! )": 0,
+        "before , ; . : ? ! ) ]": 0,
+        "before , ; . : ? ! ) ] or after ( [": 0
+       }
+      }
+     }
+    }
+   },
+   "signs_after_a_space_in_field_1_of_the_route_store": {
+    "axis": "times, over the rows' field 1",
+    "signs": {
+     "(": {
+      "times": 7,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 7,
+      "text_not_traced": 0
+     },
+     "…": {
+      "times": 4,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 4,
+      "text_not_traced": 0
+     },
+     "&": {
+      "times": 3,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 3,
+      "text_not_traced": 0
+     },
+     "-": {
+      "times": 1,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 1,
+      "text_not_traced": 0
+     },
+     ".": {
+      "times": 1,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 1,
+      "text_not_traced": 0
+     }
+    }
+   },
+   "texts_axis": {
+    "distinct_field_1": 10444,
+    "distinct_field_2": 7036,
+    "distinct_over_both": 15459,
+    "traced": 15459,
+    "parts": 0,
+    "neither": 0,
+    "with_a_made_space": 4864,
+    "with_a_note": 0,
+    "with_a_note_and_no_made_space": 0,
+    "lines_in_the_list": 4864,
+    "with_a_made_space_by_the_first_field_it_comes_from": {
+     "segment": 4864
+    },
+    "whose_fields_differ_in_the_tags_of_a_gap": 0,
+    "neither_listed": []
+   },
+   "spaces_axis": {
+    "made": 20562,
+    "closes": 20547,
+    "kept": {
+     "empty_element": 0,
+     "division": 14,
+     "end_then_start": 1
+    },
+    "neighbours_of_closes": {
+     "before ,": 7562,
+     "before .": 6476,
+     "after [": 1776,
+     "before ]": 1776,
+     "before )": 936,
+     "before ;": 879,
+     "after (": 629,
+     "— then letter": 163,
+     "letter then —": 100,
+     "before ?": 82,
+     "before :": 47,
+     "letter then (": 36,
+     ") then letter": 14,
+     "letter then -": 11,
+     "— then hebrew": 10,
+     "√ then hebrew": 10,
+     "- then letter": 8,
+     "‘ then letter": 7,
+     "letter then ’": 5,
+     "letter then letter": 4,
+     "hebrew then ’": 3,
+     ". then letter": 2,
+     ") then hebrew": 1,
+     ", then hebrew": 1,
+     ", then letter": 1,
+     "- then (": 1,
+     "= then letter": 1,
+     "? then hebrew": 1,
+     "? then letter": 1,
+     "] then —": 1,
+     "before !": 1,
+     "hebrew then —": 1,
+     "letter then [": 1
+    },
+    "neighbours_of_kept": {
+     "digit then letter": 5,
+     "letter then letter": 5,
+     ". then letter": 2,
+     "; then letter": 1,
+     "] then letter": 1,
+     "— then letter": 1
+    }
+   },
+   "gap_table": [
+    {
+     "signature": "</def>",
+     "class": "closes",
+     "spaces": 8950,
+     "texts": 4177,
+     "sample": "a.aa.aa:segment0 «א Āleph[_], first letter; in postB»"
+    },
+    {
+     "signature": "</pos>",
+     "class": "closes",
+     "spaces": 4060,
+     "texts": 3843,
+     "sample": "a.ab.ac:segment1 «coll[_]. (Lag BN 207 Inf.) fres»"
+    },
+    {
+     "signature": "</w>",
+     "class": "closes",
+     "spaces": 2321,
+     "texts": 2067,
+     "sample": "a.ab.ab:segment0 «[ אֵב[_]] n.[m.] freshness , fre»"
+    },
+    {
+     "signature": "</stem>",
+     "class": "closes",
+     "spaces": 2146,
+     "texts": 1156,
+     "sample": "a.ah.aa:segment0 «ךְ ] vb . turn (?) Hithp[_]. roll , roll up , as vo»"
+    },
+    {
+     "signature": "<w>",
+     "class": "closes",
+     "spaces": 1859,
+     "texts": 1831,
+     "sample": "a.ab.ab:segment0 «[[_]אֵב ] n.[m.] freshness ,»"
+    },
+    {
+     "signature": "<def>",
+     "class": "closes",
+     "spaces": 605,
+     "texts": 571,
+     "sample": "a.ab.aa:segment0 «אבב ([_]fresh , bright , As. abâ»"
+    },
+    {
+     "signature": "</foreign>",
+     "class": "closes",
+     "spaces": 256,
+     "texts": 152,
+     "sample": "a.ab.ab:segment0 «e concr., cf. Ar. Arabic[_]; above stem & mng. bett»"
+    },
+    {
+     "signature": "<stem>",
+     "class": "closes",
+     "spaces": 139,
+     "texts": 139,
+     "sample": "b.bw.aa:segment0 « ] vb . curb , hold in —[_]Qal»"
+    },
+    {
+     "signature": "</em>",
+     "class": "closes",
+     "spaces": 94,
+     "texts": 65,
+     "sample": "a.ab.ab:segment0 «en (Lag B N 207 inf. ibb[_]; thence concr., cf. Ar.»"
+    },
+    {
+     "signature": "</asp>",
+     "class": "closes",
+     "spaces": 90,
+     "texts": 74,
+     "sample": "a.ba.aa:segment0 «vb . grieve ; Hiph . Inf[_]. to cause to grieve»"
+    },
+    {
+     "signature": "<foreign>",
+     "class": "closes",
+     "spaces": 10,
+     "texts": 10,
+     "sample": "a.aj.aa:segment0 «אבל (perh.[_]Arabic grow green , cf. »",
+     "places": [
+      "a.aj.aa:segment0 «אבל (perh.[_]Arabic grow green , cf. »",
+      "a.bc.aa:segment0 «אדם (cf. As. [[_]adâmu ] make, produce (?»",
+      "a.bd.aa:segment0 «אדם ([_]Arabic , Arabic tawny , »",
+      "a.be.aa:segment0 « disputed; (1) cf. As. [[_]adannu ] firm, strong ; »",
+      "a.dx.aa:segment0 «. be wide, roomy , As. [[_]amāmu ] whence ummu , wo»",
+      "a.fh.aa:segment0 « ; but connection of √ ([_]Arabic ) פּ´ע with אפר i»",
+      "b.di.aa:segment0 «ָא sweet ; Palm. בשימא ([_]משחא ) Vog JAs 1883, Aoû»",
+      "b.dq.aa:segment0 « cf. Ar. Arabic , secuit[_], resecuit, abrupit ).»",
+      "c.cc.aa:segment0 «גלל ([_]Arabic be great in rank »",
+      "k.ce.aa:segment0 «foll.; meaning dubious).[_]Arabic fence in, enclose»"
+     ]
+    },
+    {
+     "signature": "<em>",
+     "class": "closes",
+     "spaces": 7,
+     "texts": 7,
+     "sample": "a.ae.aw:segment0 «אַבְרָם n.pr.m . ([_]id ., Thes al. exalted f»",
+     "places": [
+      "a.ae.aw:segment0 «אַבְרָם n.pr.m . ([_]id ., Thes al. exalted f»",
+      "a.dy.ad:segment0 «אָמָּן ([_]ommān ) n.m . master-wor»",
+      "b.ab.aa:segment139 «al. down to, upon ([_]super with accus.), esp.»",
+      "b.cw.aa:segment0 «fashion , create Niph .—[_]Pass . be created with r»",
+      "l.ah.aa:segment0 «r. Labâʾ (Bez BM Labay [[_]a ]); poss. is also Lapa»",
+      "p.dt.aa:segment0 «esponse as one accused ([_]respondent ) Niph . make»",
+      "t.cd.aa:segment2 «n. ed. Lag. 4 (reading ‘[_]marahaefeth ’), cf. Di G»"
+     ]
+    },
+    {
+     "signature": "<pos>",
+     "class": "closes",
+     "spaces": 6,
+     "texts": 6,
+     "sample": "l.ai.ac:segment0 «לֵב 599 n.m . ([_]f .) inner man , mind , »",
+     "places": [
+      "l.ai.ac:segment0 «לֵב 599 n.m . ([_]f .) inner man , mind , »",
+      "m.an.aa:segment0 «ַה‍ּ , מֶה , מַ‍ּ , מָ —[_]pron.interrog . and inde»",
+      "m.dq.an:segment0 «מַמְרוֹר [[_]n.m .] bitter thing ;—on»",
+      "q.bf.ae:segment0 «פִּטְדָה n.f . ([_]m . acc. to Albr ZAW xvi»",
+      "r.cn.ae:segment0 «צֹנֶה , [ צֹנֶא ] [[_]n.m .] flocks»",
+      "w.bq.ad:segment0 «תֹּר , תּוֹר n.f . ([_]m .) turtle-dove»"
+     ]
+    },
+    {
+     "signature": "<sense><def>",
+     "class": "division",
+     "spaces": 6,
+     "texts": 6,
+     "sample": "n.gg.aa:segment0 «e , constitute Niph . 82[_]be given Be put , set Ho»",
+     "places": [
+      "n.gg.aa:segment0 «e , constitute Niph . 82[_]be given Be put , set Ho»",
+      "p.bj.ad:segment0 «ָה n.f . id. [ p.bj.ac ][_]den , lair of wild beast»",
+      "p.df.aa:segment0 «oe rare usages Hiph . 83[_]station , set cause to s»",
+      "p.fy.aa:segment0 «, days of life Niph . 97[_]be done be made , of con»",
+      "s.av.aa:segment0 «f , = rise up Hiph . 146[_]cause to arise , raise r»",
+      "v.ef.aa:segment0 «eks of harvest Niph . 36[_]be on one's guard keep o»"
+     ]
+    },
+    {
+     "signature": "</foreign><!---->",
+     "class": "closes",
+     "spaces": 4,
+     "texts": 4,
+     "sample": "a.es.aa:segment0 «l , Aram. אֲסָא , Syriac[_]).»",
+     "places": [
+      "a.es.aa:segment0 «l , Aram. אֲסָא , Syriac[_]).»",
+      "a.eu.aa:segment0 «er, store , Aram. Arabic[_]).»",
+      "a.ey.aa:segment0 « GN 1890, p. 15 prop وفد[_], come as ambassador , a»",
+      "a.fh.aa:segment0 « ; MV comp. Aram. Syriac[_], mantle, turban ; but c»"
+     ]
+    },
+    {
+     "signature": "</sense><sense>",
+     "class": "division",
+     "spaces": 2,
+     "texts": 1,
+     "sample": "p.bx.ak:segment0 «s Ēl ) Levites Simeonite[_]Benjamite repairer of wa»",
+     "places": [
+      "p.bx.ak:segment0 «s Ēl ) Levites Simeonite[_]Benjamite repairer of wa»",
+      "p.bx.ak:segment0 «ites Simeonite Benjamite[_]repairer of wall»"
+     ]
+    },
+    {
+     "signature": "<sense>",
+     "class": "division",
+     "spaces": 2,
+     "texts": 2,
+     "sample": "a.di.aa:segment0 «her physical or mental).[_]of motion to or unto a p»",
+     "places": [
+      "a.di.aa:segment0 «her physical or mental).[_]of motion to or unto a p»",
+      "b.cg.ab:segment0 «n.pr.m . ( quickness ?)—[_]kinsman of Naomi, who ma»"
+     ]
+    },
+    {
+     "signature": "<sense><stem>",
+     "class": "division",
+     "spaces": 2,
+     "texts": 2,
+     "sample": "b.br.aa:segment0 «[ בָּכַר ] vb .[_]Pi . bear early , new fr»",
+     "places": [
+      "b.br.aa:segment0 «[ בָּכַר ] vb .[_]Pi . bear early , new fr»",
+      "d.bi.aa:segment0 «ush , poet. not in Qal ;[_]Niph . crushed , fig. = »"
+     ]
+    },
+    {
+     "signature": "</def><sense><def>",
+     "class": "division",
+     "spaces": 1,
+     "texts": 1,
+     "sample": "p.ac.ak:segment0 «6 n.f . labour , service[_]labour , work labour of »",
+     "places": [
+      "p.ac.ak:segment0 «6 n.f . labour , service[_]labour , work labour of »"
+     ]
+    },
+    {
+     "signature": "</foreign><def>",
+     "class": "end_then_start",
+     "spaces": 1,
+     "texts": 1,
+     "sample": "h.bm.aa:segment0 « weak, Lane 820c, Arabic[_]hollow, depressed ground»",
+     "places": [
+      "h.bm.aa:segment0 « weak, Lane 820c, Arabic[_]hollow, depressed ground»"
+     ]
+    },
+    {
+     "signature": "</stem><sense><def>",
+     "class": "division",
+     "spaces": 1,
+     "texts": 1,
+     "sample": "q.dz.ae:segment0 « Niph . be deceived Piel[_]persuade , woman, seduce»",
+     "places": [
+      "q.dz.ae:segment0 « Niph . be deceived Piel[_]persuade , woman, seduce»"
+     ]
+    }
+   ],
+   "kept_places": [
+    {
+     "from": "a.di.aa:segment0",
+     "at": 117,
+     "why": "division",
+     "neighbours": ". then letter",
+     "signature": "<sense>",
+     "text": "«her physical or mental).[_]of motion to or unto a p»"
+    },
+    {
+     "from": "b.br.aa:segment0",
+     "at": 15,
+     "why": "division",
+     "neighbours": ". then letter",
+     "signature": "<sense><stem>",
+     "text": "«[ בָּכַר ] vb .[_]Pi . bear early , new fr»"
+    },
+    {
+     "from": "b.cg.ab:segment0",
+     "at": 32,
+     "why": "division",
+     "neighbours": "— then letter",
+     "signature": "<sense>",
+     "text": "«n.pr.m . ( quickness ?)—[_]kinsman of Naomi, who ma»"
+    },
+    {
+     "from": "d.bi.aa:segment0",
+     "at": 42,
+     "why": "division",
+     "neighbours": "; then letter",
+     "signature": "<sense><stem>",
+     "text": "«ush , poet. not in Qal ;[_]Niph . crushed , fig. = »"
+    },
+    {
+     "from": "h.bm.aa:segment0",
+     "at": 87,
+     "why": "end_then_start",
+     "neighbours": "letter then letter",
+     "signature": "</foreign><def>",
+     "text": "« weak, Lane 820c, Arabic[_]hollow, depressed ground»"
+    },
+    {
+     "from": "n.gg.aa:segment0",
+     "at": 84,
+     "why": "division",
+     "neighbours": "digit then letter",
+     "signature": "<sense><def>",
+     "text": "«e , constitute Niph . 82[_]be given Be put , set Ho»"
+    },
+    {
+     "from": "p.ac.ak:segment0",
+     "at": 55,
+     "why": "division",
+     "neighbours": "letter then letter",
+     "signature": "</def><sense><def>",
+     "text": "«6 n.f . labour , service[_]labour , work labour of »"
+    },
+    {
+     "from": "p.bj.ad:segment0",
+     "at": 29,
+     "why": "division",
+     "neighbours": "] then letter",
+     "signature": "<sense><def>",
+     "text": "«ָה n.f . id. [ p.bj.ac ][_]den , lair of wild beast»"
+    },
+    {
+     "from": "p.bx.ak:segment0",
+     "at": 58,
+     "why": "division",
+     "neighbours": "letter then letter",
+     "signature": "</sense><sense>",
+     "text": "«s Ēl ) Levites Simeonite[_]Benjamite repairer of wa»"
+    },
+    {
+     "from": "p.bx.ak:segment0",
+     "at": 68,
+     "why": "division",
+     "neighbours": "letter then letter",
+     "signature": "</sense><sense>",
+     "text": "«ites Simeonite Benjamite[_]repairer of wall»"
+    },
+    {
+     "from": "p.df.aa:segment0",
+     "at": 615,
+     "why": "division",
+     "neighbours": "digit then letter",
+     "signature": "<sense><def>",
+     "text": "«oe rare usages Hiph . 83[_]station , set cause to s»"
+    },
+    {
+     "from": "p.fy.aa:segment0",
+     "at": 406,
+     "why": "division",
+     "neighbours": "digit then letter",
+     "signature": "<sense><def>",
+     "text": "«, days of life Niph . 97[_]be done be made , of con»"
+    },
+    {
+     "from": "q.dz.ae:segment0",
+     "at": 109,
+     "why": "division",
+     "neighbours": "letter then letter",
+     "signature": "</stem><sense><def>",
+     "text": "« Niph . be deceived Piel[_]persuade , woman, seduce»"
+    },
+    {
+     "from": "s.av.aa:segment0",
+     "at": 484,
+     "why": "division",
+     "neighbours": "digit then letter",
+     "signature": "<sense><def>",
+     "text": "«f , = rise up Hiph . 146[_]cause to arise , raise r»"
+    },
+    {
+     "from": "v.ef.aa:segment0",
+     "at": 382,
+     "why": "division",
+     "neighbours": "digit then letter",
+     "signature": "<sense><def>",
+     "text": "«eks of harvest Niph . 36[_]be on one's guard keep o»"
+    }
+   ],
+   "closes_inside_a_word": {
+    "what": "closes with a letter or a digit on both sides",
+    "count": 4,
+    "listed": [
+     {
+      "from": "c.ca.aa:segment0",
+      "at": 304,
+      "neighbours": "letter then letter",
+      "signature": "</def>",
+      "text": "«ose , discover , lay bar[_]e make known , shew , re»"
+     },
+     {
+      "from": "p.ff.ab:segment0",
+      "at": 57,
+      "neighbours": "letter then letter",
+      "signature": "<def>",
+      "text": "«ning evening , orig. sun[_]set du. in phrase betwee»"
+     },
+     {
+      "from": "p.ff.ad:segment0",
+      "at": 40,
+      "neighbours": "letter then letter",
+      "signature": "<def>",
+      "text": "«est (late) (place of sun[_]set )»"
+     },
+     {
+      "from": "v.ak.aa:segment0",
+      "at": 41,
+      "neighbours": "letter then letter",
+      "signature": "</stem>",
+      "text": "«emain , be left over Qal[_]the youngest still remai»"
+     }
+    ]
+   },
+   "closes_that_set_a_stop_or_a_bracket_against_a_word": {
+    "what": "closes after . , ; : ? ! or ) with a letter or a digit next, or between a letter or a digit and (. The printed characters are the provider's own at every one; listed so each can be read",
+    "count": 57,
+    "listed": [
+     {
+      "from": "a.ae.ai:segment0",
+      "at": 32,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«הוּ n.pr.m . & f . ( Yah[_]( u ) is ( my ) father )»"
+     },
+     {
+      "from": "a.aj.aa:segment0",
+      "at": 10,
+      "neighbours": ". then letter",
+      "signature": "<foreign>",
+      "text": "«אבל (perh.[_]Arabic grow green , cf. »"
+     },
+     {
+      "from": "a.bx.aq:segment0",
+      "at": 30,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "« n.pr.loc . ( lofty tree[_]( s coll.?) i.e. palms?)»"
+     },
+     {
+      "from": "a.ck.ah:segment0",
+      "at": 92,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«.pr.m . ( brother of Yah[_]( u )) a priest a scribe»"
+     },
+     {
+      "from": "a.cl.ad:segment0",
+      "at": 49,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«, אַחְזַי n.pr.m . ( Yah[_]( u ) hath grasped ) kin»"
+     },
+     {
+      "from": "a.dl.an:segment0",
+      "at": 37,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«לִיָּ֫הוּ n.pr.m . ( Yah[_]( u ) is God ) Elijah , »"
+     },
+     {
+      "from": "a.ea.aj:segment0",
+      "at": 39,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«אֲמַרְיָה n.pr.m . ( Yah[_]( u ) hath promised ) a »"
+     },
+     {
+      "from": "a.fh.aa:segment0",
+      "at": 158,
+      "neighbours": ") then hebrew",
+      "signature": "<w>",
+      "text": "«nnection of √ ( Arabic )[_]פּ´ע with אפר is dub.)»"
+     },
+     {
+      "from": "a.gc.ac:segment0",
+      "at": 43,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«foundation , (mountain-)[_]slope»"
+     },
+     {
+      "from": "b.cm.aa:segment0",
+      "at": 101,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«f Pi . cut off , ( dis )[_]sever ; = finish , compl»"
+     },
+     {
+      "from": "b.cp.ad:segment0",
+      "at": 42,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«losure , i.e. ( sheep- )[_]fold ,»"
+     },
+     {
+      "from": "c.ac.ac:segment0",
+      "at": 22,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«גְּאֻלָּה 14 n.f . kin[_](?), redemption kin rede»"
+     },
+     {
+      "from": "c.aq.al:segment0",
+      "at": 30,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«ַלְיָ֫הוּ n.pr.m . ( Yah[_]( u ) is great ) a proph»"
+     },
+     {
+      "from": "c.bf.ae:segment0",
+      "at": 21,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«גֵּרוּת n.f . lodging[_]( -place )»"
+     },
+     {
+      "from": "d.bm.ag:segment0",
+      "at": 37,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "« דְּלָיָה n.pr.m . ( Yah[_]( u ) hath drawn ) a pri»"
+     },
+     {
+      "from": "d.bs.ab:segment0",
+      "at": 95,
+      "neighbours": ", then letter",
+      "signature": "<def>",
+      "text": "« appearance adverbially,[_]in likeness of , like as»"
+     },
+     {
+      "from": "f.ab.aa:segment0",
+      "at": 9,
+      "neighbours": ", then hebrew",
+      "signature": "<w>",
+      "text": "«וְ , וּ ,[_]וָ , demonstr.adv . and »"
+     },
+     {
+      "from": "g.cg.aa:segment0",
+      "at": 161,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«. Ethiopic all = (wine-)[_]skin , etc.; also NH זִי»"
+     },
+     {
+      "from": "h.cp.aa:segment0",
+      "at": 51,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«c adorn , Arabic (neck-)[_]ornament ).»"
+     },
+     {
+      "from": "h.cr.ab:segment0",
+      "at": 76,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«. hapless , luckless one[_]( s )»"
+     },
+     {
+      "from": "h.gr.ah:segment0",
+      "at": 41,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«ֲשַׁבְיָה n.pr.m . ( Yah[_]( u ) has taken account »"
+     },
+     {
+      "from": "h.gy.af:segment0",
+      "at": 32,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«dj . et n.gent . Hittite[_]( s )»"
+     },
+     {
+      "from": "i.ai.ag:segment0",
+      "at": 39,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«טוֹבִיָּה n.pr.m . ( Yah[_]( u ) is my good ) a Lev»"
+     },
+     {
+      "from": "j.ba.ae:segment0",
+      "at": 23,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«יָוָן n.pr.gent . Ionia[_]( ns ), Greece»"
+     },
+     {
+      "from": "k.ah.ab:segment0",
+      "at": 21,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«כֶּ֫בֶל n.[m.] fetter[_]( s )»"
+     },
+     {
+      "from": "k.bw.af:segment0",
+      "at": 27,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«ֹּ֫מֶר ] n.m . ( idol- )[_]priest»"
+     },
+     {
+      "from": "k.cd.ad:segment0",
+      "at": 25,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«ְּנַ֫עַן n.[m.] merchant[_]( s ) (because Canaanite»"
+     },
+     {
+      "from": "k.ce.aa:segment0",
+      "at": 61,
+      "neighbours": ". then letter",
+      "signature": "<foreign>",
+      "text": "«foll.; meaning dubious).[_]Arabic fence in, enclose»"
+     },
+     {
+      "from": "l.by.ac:segment0",
+      "at": 35,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«[m.] receptacle , wallet[_](?) (prop. collector )—o»"
+     },
+     {
+      "from": "m.dd.ac:segment0",
+      "at": 24,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«[ מִצְחָה ] n.f . greave[_]( s );—only sg. cstr.»"
+     },
+     {
+      "from": "m.de.ab:segment0",
+      "at": 39,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«leavened bread , or cake[_]( s )»"
+     },
+     {
+      "from": "n.fe.aa:segment0",
+      "at": 23,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«[ נָקָה ] vb . be empty[_](?), clean Qal Inf. Abs »"
+     },
+     {
+      "from": "n.gg.ag:segment0",
+      "at": 24,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«מַתָּן n.m . coll . gift[_]( s )»"
+     },
+     {
+      "from": "o.ac.ab:segment1",
+      "at": 29,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«drunkards , wine-bibbers[_](?)»"
+     },
+     {
+      "from": "p.cj.ab:segment0",
+      "at": 17,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«עַ֫יִט n.m . bird[_]( s ) of prey (from scre»"
+     },
+     {
+      "from": "p.dl.aa:segment0",
+      "at": 11,
+      "neighbours": "? then hebrew",
+      "signature": "<w>",
+      "text": "«[ עָמַס , ?[_]עָמַשׂ ] vb . 1. load . »"
+     },
+     {
+      "from": "p.dq.ab:segment0",
+      "at": 17,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«עֵנָב n.m . grape[_]( s )»"
+     },
+     {
+      "from": "p.ea.ab:segment0",
+      "at": 19,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«עָנָף n.[m.] branch[_]( es ), bough ( s )»"
+     },
+     {
+      "from": "p.ea.ab:segment0",
+      "at": 33,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«m.] branch ( es ), bough[_]( s )»"
+     },
+     {
+      "from": "p.ff.ab:segment0",
+      "at": 23,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«עֶ֫רֶב 131 n.[m.] (sun)[_]set , evening evening , »"
+     },
+     {
+      "from": "p.gg.aa:segment0",
+      "at": 25,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«ָשַׁת be smooth or shiny[_](?)»"
+     },
+     {
+      "from": "q.aj.aj:segment0",
+      "at": 24,
+      "neighbours": "? then letter",
+      "signature": "<def>",
+      "text": "«פַּדָּן 11 n.pr.loc . (?[_]garden , field )»"
+     },
+     {
+      "from": "q.df.ac:segment0",
+      "at": 43,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«m . act as leader , lead[_](?);—only»"
+     },
+     {
+      "from": "r.be.ab:segment0",
+      "at": 19,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«צוּף n.m . (honey-)[_]comb (as exuding honey)»"
+     },
+     {
+      "from": "s.dl.aa:segment0",
+      "at": 31,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "« ] vb . Pilp . tear down[_](?);—only»"
+     },
+     {
+      "from": "t.ab.ai:segment0",
+      "at": 74,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«rance sight , (warning-)[_]spectacle»"
+     },
+     {
+      "from": "t.bx.ab:segment0",
+      "at": 36,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«[m.] only du . ( hand- )[_]mill (prob. = two mill-s»"
+     },
+     {
+      "from": "t.bz.ag:segment0",
+      "at": 22,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«רַ֫חַם n.pr.m . ( girl[_](-like)?);—in Judah,»"
+     },
+     {
+      "from": "v.aw.aa:segment0",
+      "at": 236,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«ited mounting) with gold[_](-thread) shall they be »"
+     },
+     {
+      "from": "v.bh.af:segment0",
+      "at": 42,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "« (etym. dub. (1) (self-)[_]sufficient . (2) = Almig»"
+     },
+     {
+      "from": "v.dl.aa:segment0",
+      "at": 399,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«d , of wife; be impelled[_](?) Hiph . and I ( י׳ ) »"
+     },
+     {
+      "from": "v.eh.ac:segment0",
+      "at": 19,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«שָׁמִיר n.m . thorn[_]( s ), adamant , flint»"
+     },
+     {
+      "from": "v.fn.ab:segment0",
+      "at": 20,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«שָׁקֵד n.[m.] almond[_]( -tree )»"
+     },
+     {
+      "from": "w.ba.ae:segment0",
+      "at": 22,
+      "neighbours": "letter then (",
+      "signature": "</def>",
+      "text": "«תִּמֹרָה 19 n.f . palm[_](-tree) figure , as orna»"
+     },
+     {
+      "from": "w.bp.ac:segment0",
+      "at": 32,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "« n.[m.] a blast- (wind-)[_]instrument ;—abs.»"
+     },
+     {
+      "from": "xj.aa.ac:segment0",
+      "at": 21,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«יְגַר n.[m.] (stone-)[_]heap ;—cstr.»"
+     },
+     {
+      "from": "xp.ak.ab:segment0",
+      "at": 23,
+      "neighbours": ") then letter",
+      "signature": "<def>",
+      "text": "«[ עֵז ] n.[f.] ( she -)[_]goat ;—pl.»"
+     }
+    ]
+   },
+   "the_providers_own_spaces_beside_a_stop_that_stay": {
+    "texts": 85,
+    "spaces": 115,
+    "kept_made_spaces_beside_a_stop": 0,
+    "texts_not_traced_with_one": 0,
+    "listed": [
+     "i.ax.aa:segment0 «re; in this case טַלְמֹן[_],טֶלֶם will be Aramaic n»",
+     "r.cq.ab:segment0 «[צֵן] n.[m.] thorn[_]? barb ?»",
+     "r.cq.ab:segment0 «צֵן] n.[m.] thorn ? barb[_]?»",
+     "h.dg.aa:segment0 «im BP 84n.; Aram, חֲמֵישׁ[_],חֲמַט is sink or fall t»",
+     "c.ai.aa:segment0 «also NH גִּבֵּחַ, giant)[_].»",
+     "t.ae.af:segment0 «רְבָבָה n.f. multitude[_], myriad, ten thousand»",
+     "v.as.ae:segment0 «ng along, stretching out[_]?)»",
+     "c.ag.aa:segment0 «f. גבא supr.), NH גָּבָה[_],גְּבי, Aram. גְּבָא, Sy»",
+     "n.cb.aa:segment0 « increase;—Qal (or Hiph.[_]?) Impf. ינין Kt; > Niph»",
+     "k.al.aa:segment0 «כבר (√ of foll.;[_]? to intertwine, net; NH»",
+     "t.do.ae:segment0 «רַעְמָה n.f. vibration[_]? quivering mane ? of ho»",
+     "t.do.ae:segment0 «bration ? quivering mane[_]? of horse’s neck:»",
+     "c.ae.aa:segment0 « 431; v. also NH גָּבָשׁה[_],גבי Aram גְּבָא, Arabic»",
+     "m.bu.aa:segment0 «t qu. מִי ב׳ who among …[_]? strengthened and emph.»",
+     "t.bh.ac:segment0 «ָהִיט] n.m.coll. rafters[_]? boards ? (as strips ru»",
+     "t.bh.ac:segment0 «m.coll. rafters ? boards[_]? (as strips running bet»",
+     "t.bh.ac:segment0 «ps running between beams[_]?);—sf.»",
+     "d.cj.aa:segment0 «trong, of fortified city[_]; this, however, is dub.»",
+     "c.af.aa:segment0 «. e.g. As. gubbâni ša mê[_], cisterns of water Asrb»",
+     "t.ct.ab:segment0 «h. roughness (of ground;[_]? lit. binding, know); o»",
+     "t.dd.aa:segment0 «ה] vb. rattle (onomatop.[_]?);—Qal»",
+     "h.gh.aa:segment0 «c Pa. set free, חָרְתָּא[_],חֹרָא freed-man, -woman»",
+     "m.bu.ah:segment0 «r.m. (Who is what God is[_]?) a cousin of Moses one»",
+     "c.dc.aa:segment0 «גרן (√ of foll.;[_]? cf. Ar. Arabic, become»",
+     "e.ah.aa:segment0 «[הָבַר] vb.[_]? divide Qal»",
+     "t.dr.aa:segment0 «n, iron out of the north[_]? intrans. break = be br»",
+     "r.ax.ad:segment0 «old (prop. hunting-place[_]?) mountain-fastness mor»",
+     "n.dp.ab:segment0 «[מִנְלֶה] n.[m.][_]? gain, acquisition ?—On»",
+     "n.dp.ab:segment0 «[m.] ? gain, acquisition[_]?—Only sf.»",
+     "n.dc.ad:segment0 «[נְטִיפָה[_]?] n.[f.] drop, i.e. pen»",
+     "l.ai.aa:segment0 «ed passages indicated by[_]? under לֵבָב and לֵב wh»",
+     "a.ck.ap:segment0 «m. (my brother is a gift[_]?) son of Anak a Levite»",
+     "a.ae.aa:segment0 «7. 609 ff. Ol §123c; acc[_]. to DlW p. 22 אבה As. a»",
+     "t.dy.ab:segment0 «[מַרְפֵּשׂ[_]?] n.[m.] (water) befoul»",
+     "t.dy.ab:segment0 «.[m.] (water) befouled ([_]by trampling);—cstr.»",
+     "a.dy.aj:segment0 «pr.fl. a river (constant[_]? cf.»",
+     "j.dj.aa:segment1 «;[_]? be stupified»",
+     "c.aj.aa:segment0 «ence not only מִגְבָּלֹת[_],גַּבְלֻת, but also גְּב»",
+     "t.bm.ah:segment0 «ll-country of Ephr. (= 1[_]?), home of Samuel in As»",
+     "c.bn.aa:segment0 «. Arabic [=Aram. Syriac][_]; or possibly Arabic [=A»"
+    ]
+   },
+   "row_comparison": {
+    "rows_compared": 0,
+    "field_1_stands_in_field_2_and_agrees": 0,
+    "field_1_stands_in_field_2_and_differs": 0,
+    "field_1_does_not_stand_in_field_2": 0,
+    "differs_listed": []
+   },
+   "fields_with_a_made_space_that_no_row_serves": 2301,
+   "list": {
+    "file": "openscriptures_bdb_1906.made-spaces-v1.jsonl",
+    "bytes": 1483467,
+    "sha256": "5fc6db699b281abe8ae225baa238b9c0d4f73cceace3a55180a1dcadbf87dd66",
+    "lines": 4864
+   },
+   "ledger_comparison": {
+    "declaration": {
+     "file": "corpus-lane-builds/moses-provider-declarations-v1/openscriptures_bdb_1906/v1.2-r2/openscriptures_bdb_1906.declaration.json",
+     "bytes": 36994,
+     "sha256": "0ee6e780cced18e9683483a8fe779a3cd2728a02c5f2975bf5ee1c260a78092f",
+     "schema": "mishkan.provider_declaration.v2",
+     "routes": 15238,
+     "read_from": "The route text as served: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 306f3b285898, store_version 87b13b1169b4 (its index.json), for \"Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures\" (M5): 15,238 routes (axis: routes), 4,367 letters keys (axis: keys). The definition field of the same row is read only to understand a route, never classified. The source's own key to its signs: on file in part. The source's documentation, HebrewLexicon.pdf at commit 21c9add13bc727d3a951361778e97e3ff7afd1ce, and its schema BdbSchema.xsd stand at <tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/ (M5-openscriptures-HebrewLexicon-21c9add.pdf.txt, M5-openscriptures-BdbSchema-21c9add.xsd). They settle what a route is: the def element holds a definition that BDB sets in bold or in italics, and \"Normally, each in a series of definitions will have a separate\" element. They say a list of abbreviations will come with the lexicon's prefatory material, and they name no sign of punctuation. The printed book's list of abbreviations stands beside them in an annex copy, hebrewenglishlex00browuoft_djvu.txt, a scan's text whose printing the source does not name: it gives fr. as from, obj. as object, and the mark on a shortened Hebrew word, and it was searched for the others. So the geresh shape cites that list, and every other shape whose words say what a sign is for begins \"unverified:\". The route text names neither the entry nor the element it came from; the lane read both from the dictionary store's records/M5.jsonl by audit (builder/source-audit.mjs), which is evidence about the source and no part of any test. By the audit (axis: routes): 15,238 of 15,238 routes are the whole text of one def element, 755 of them with the store's cut flag, and none is a part of one. So this dictionary is the case of the ask's second sentence, where the store already gives each tagged definition its own route: a list inside one route offers no second reading that a test can tell from a second wording, so no comma divides at rest and the lists wait in branches."
+    },
+    "served_now": {
+     "route_store_rows": 15238,
+     "span_store_rows": 171
+    },
+    "note": "recorded, not a stop: a ledger was read at its own store version"
+   }
+  },
+  {
+   "source_key": "openscriptures_lexical_index",
+   "m_id": "M33",
+   "label": "Open Scriptures Hebrew Lexical Index",
+   "provider_file": "LexicalIndex.xml",
+   "file_axis": {
+    "entries": 10221,
+    "fields_read": {
+     "def": 9304
+    },
+    "fields_with_empty_text": 0,
+    "fields_with_a_made_space": 0,
+    "made_spaces_in_fields": 0,
+    "fields_with_a_note": 0,
+    "distinct_texts_of_fields": 6598,
+    "distinct_texts_of_fields_with_a_made_space": 0
+   },
+   "rows_axis": {
+    "route_store": {
+     "rows": 138,
+     "pieces": 0,
+     "field_1_differs_from_field_2": 0,
+     "field_1_holds_a_made_space": 0,
+     "field_2_holds_a_made_space": 0,
+     "either_holds_a_made_space": 0,
+     "field_1_holds_a_close": 0,
+     "field_2_holds_a_close": 0,
+     "either_holds_a_close": 0,
+     "space_before_a_comma": {
+      "field_1": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      },
+      "field_2": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      }
+     },
+     "space_beside_a_stop": {
+      "field_1": {
+       "each": {},
+       "unions": {
+        "before , ; . : ? !": 0,
+        "before , ; . : ? ! )": 0,
+        "before , ; . : ? ! ) ]": 0,
+        "before , ; . : ? ! ) ] or after ( [": 0
+       }
+      },
+      "field_2": {
+       "each": {},
+       "unions": {
+        "before , ; . : ? !": 0,
+        "before , ; . : ? ! )": 0,
+        "before , ; . : ? ! ) ]": 0,
+        "before , ; . : ? ! ) ] or after ( [": 0
+       }
+      }
+     }
+    },
+    "span_store": {
+     "rows": 416,
+     "field_1_differs_from_field_2": 0,
+     "field_1_holds_a_made_space": 0,
+     "field_2_holds_a_made_space": 0,
+     "either_holds_a_made_space": 0,
+     "field_1_holds_a_close": 0,
+     "field_2_holds_a_close": 0,
+     "either_holds_a_close": 0,
+     "space_before_a_comma": {
+      "field_1": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      },
+      "field_2": {
+       "rows": 0,
+       "rows_that_still_print_one_after_closing": 0
+      }
+     },
+     "space_beside_a_stop": {
+      "field_1": {
+       "each": {},
+       "unions": {
+        "before , ; . : ? !": 0,
+        "before , ; . : ? ! )": 0,
+        "before , ; . : ? ! ) ]": 0,
+        "before , ; . : ? ! ) ] or after ( [": 0
+       }
+      },
+      "field_2": {
+       "each": {},
+       "unions": {
+        "before , ; . : ? !": 0,
+        "before , ; . : ? ! )": 0,
+        "before , ; . : ? ! ) ]": 0,
+        "before , ; . : ? ! ) ] or after ( [": 0
+       }
+      }
+     }
+    }
+   },
+   "signs_after_a_space_in_field_1_of_the_route_store": {
+    "axis": "times, over the rows' field 1",
+    "signs": {
+     "(": {
+      "times": 8,
+      "made_and_closes": 0,
+      "made_and_kept": 0,
+      "the_providers_own": 8,
+      "text_not_traced": 0
+     }
+    }
+   },
+   "texts_axis": {
+    "distinct_field_1": 327,
+    "distinct_field_2": 327,
+    "distinct_over_both": 327,
+    "traced": 327,
+    "parts": 0,
+    "neither": 0,
+    "with_a_made_space": 0,
+    "with_a_note": 0,
+    "with_a_note_and_no_made_space": 0,
+    "lines_in_the_list": 0,
+    "with_a_made_space_by_the_first_field_it_comes_from": {},
+    "whose_fields_differ_in_the_tags_of_a_gap": 0,
+    "neither_listed": []
+   },
+   "spaces_axis": {
+    "made": 0,
+    "closes": 0,
+    "kept": {
+     "empty_element": 0,
+     "division": 0,
+     "end_then_start": 0
+    },
+    "neighbours_of_closes": {},
+    "neighbours_of_kept": {}
+   },
+   "gap_table": [],
+   "kept_places": [],
+   "closes_inside_a_word": {
+    "what": "closes with a letter or a digit on both sides",
+    "count": 0,
+    "listed": []
+   },
+   "closes_that_set_a_stop_or_a_bracket_against_a_word": {
+    "what": "closes after . , ; : ? ! or ) with a letter or a digit next, or between a letter or a digit and (. The printed characters are the provider's own at every one; listed so each can be read",
+    "count": 0,
+    "listed": []
+   },
+   "the_providers_own_spaces_beside_a_stop_that_stay": {
+    "texts": 0,
+    "spaces": 0,
+    "kept_made_spaces_beside_a_stop": 0,
+    "texts_not_traced_with_one": 0,
+    "listed": []
+   },
+   "row_comparison": {
+    "rows_compared": 0,
+    "field_1_stands_in_field_2_and_agrees": 0,
+    "field_1_stands_in_field_2_and_differs": 0,
+    "field_1_does_not_stand_in_field_2": 0,
+    "differs_listed": []
+   },
+   "fields_with_a_made_space_that_no_row_serves": 0,
+   "list": null,
+   "ledger_comparison": {
+    "declaration": {
+     "file": "corpus-lane-builds/moses-provider-declarations-v1/openscriptures_lexical_index/v1.2-r2/openscriptures_lexical_index.declaration.json",
+     "bytes": 24074,
+     "sha256": "9525785713caa1dc89906b7ea6b1817791765e89a68e9d2f57a1ec56412ea948",
+     "schema": "mishkan.provider_declaration.v2",
+     "routes": 336,
+     "read_from": "The route text as served, in the extract this reissue counts (the serving lane's merge of 7 November 2026 AD: the route store's rows of this source followed by the span store's records of it; a span record is one JSON per line with key, route, def, m, year and cut, and the span store's own fields, which are not marks). The route store's rows: field 1 (the route text) of each row of reader/data/route-store of the main branch at commit 1d2470eb356b, store_version 3d8c4ef86c01 (its index.json; the store served on 7 November 2026 AD, 652,885 routes in all), for \"Open Scriptures Hebrew Lexical Index\" (M33): 138 routes (axis: routes), byte for byte the 138 routes of the store of 31 October (commit 306f3b285898, store_version 87b13b1169b4) that the ledger of v139 read. The span store's records: the 198 records of this source in the span store as served (schema span-store-served-v1, from span-store-v2.1, dictionary store cc890b8a7992, ledgers applied on 2026-11-07; 1,698 records in all, axis: records), each a name or a phrase of two or more Hebrew words read as one, with its own route text, which the classifier reads like any route. Together 336 routes (axis: routes), 326 letters keys (axis: keys). The definition field of the same row equals the route text on 336 of the routes. The source audit (builder/02-audit.mjs of v139, evidence about the source and no part of any test) covers the route store's rows: the source is the Open Scriptures HebrewLexicon's LexicalIndex.xml, and each of those 138 routes equals, exactly, the one definition element of an entry filed under the same letters, as the dictionary store's records of M33 show; all 339 records there hold one definition element each. So such a route comes from one field, and no test here stands on a guess about a field. The span store's records were not audited against the source's file here; their texts are of the same kinds as the route store's (a name, with or without a pointing word, a margin note or a bracket), and the span store's own fields were not read for any test. The source's own key is on file: its documentation at commit 21c9add13bc7 (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M5-openscriptures-HebrewLexicon-21c9add.pdf.txt, the section Lexical Index). It says that the definition element holds a simple definition, in general the first BDB definition, and for a proper name the first Strong usage, with problematic cases decided on their own merit. Of the signs in these routes it speaks of none: its 341 lines hold no line that names the margin, the word Compare, the article, a hyphen, a full stop or a plural ending; its 1 line with the word See sends the reader to a list of language codes, and its 1 line that names parentheses speaks of how BDB numbers its senses (source-audit/key-search.json of v139). A second key stands on file for one sign: the section SIGNS EMPLOYED of Strong's own plan (<tabernacle>/corpus-lane-builds/moses-works-own-stamp-v1/strand-1-the-old-books/fetch/M14-strongs-scan-first12pages.txt, the text of a scan). It says that round brackets in the renderings from the King James Version denote a word or syllable sometimes given with the principal word to which it is annexed. It reaches the 2 rows with an ending in round brackets, because the source files each as a name and takes a name's text from the first Strong usage, and by entry number each Strong's list opens with the row's exact text. That section names no hyphen. So the two round-bracket shapes of those rows name the plan and do not begin \"unverified:\", the hyphen's meaning keeps it and says the plan backs its reading only, and the meaning of 18 of the 20 shapes begins \"unverified:\"."
+    },
+    "served_now": {
+     "route_store_rows": 138,
+     "span_store_rows": 416
+    },
+    "note": "recorded, not a stop: a ledger was read at its own store version"
+   }
+  }
+ ],
+ "element_tables": {
+  "HebrewStrong.xml": {
+   "w": {
+    "elements": 17784,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "def": {
+    "elements": 15469,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "usage": {
+    "elements": 8673,
+    "hold_another": 302,
+    "self_closed": 0
+   },
+   "source": {
+    "elements": 8668,
+    "hold_another": 6980,
+    "self_closed": 1
+   },
+   "meaning": {
+    "elements": 8435,
+    "hold_another": 8433,
+    "self_closed": 0
+   },
+   "note": {
+    "elements": 167,
+    "hold_another": 0,
+    "self_closed": 0
+   }
+  },
+  "BrownDriverBriggs.xml": {
+   "def": {
+    "elements": 21343,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "w": {
+    "elements": 17495,
+    "hold_another": 0,
+    "self_closed": 72
+   },
+   "status": {
+    "elements": 11845,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "pos": {
+    "elements": 9195,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "sense": {
+    "elements": 8989,
+    "hold_another": 7064,
+    "self_closed": 2
+   },
+   "ref": {
+    "elements": 3952,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "stem": {
+    "elements": 3149,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "foreign": {
+    "elements": 835,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "em": {
+    "elements": 312,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "asp": {
+    "elements": 129,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "page": {
+    "elements": 4,
+    "hold_another": 0,
+    "self_closed": 4
+   }
+  },
+  "LexicalIndex.xml": {
+   "w": {
+    "elements": 10221,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "xref": {
+    "elements": 10221,
+    "hold_another": 0,
+    "self_closed": 10221
+   },
+   "def": {
+    "elements": 9304,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "pos": {
+    "elements": 9304,
+    "hold_another": 0,
+    "self_closed": 0
+   },
+   "etym": {
+    "elements": 7585,
+    "hold_another": 0,
+    "self_closed": 1308
+   }
+  }
+ },
+ "division_kinds": {
+  "HebrewStrong.xml": {
+   "kinds_that_hold_another_element": [
+    "meaning",
+    "source",
+    "usage"
+   ],
+   "kinds_inside_the_fields_read": [
+    "def",
+    "note",
+    "w"
+   ],
+   "of_those_divisions": []
+  },
+  "BrownDriverBriggs.xml": {
+   "kinds_that_hold_another_element": [
+    "sense"
+   ],
+   "kinds_inside_the_fields_read": [
+    "asp",
+    "def",
+    "em",
+    "foreign",
+    "page",
+    "pos",
+    "sense",
+    "stem",
+    "w"
+   ],
+   "of_those_divisions": [
+    "sense"
+   ]
+  },
+  "LexicalIndex.xml": {
+   "kinds_that_hold_another_element": [],
+   "kinds_inside_the_fields_read": [],
+   "of_those_divisions": []
+  }
+ },
+ "whole_file": {
+  "HebrewStrong.xml": {
+   "direction_marks": 0,
+   "comments": {
+    "count": 0,
+    "texts": []
+   },
+   "u_00a0": 0,
+   "u_feff": 0,
+   "named_entities": {},
+   "numeric_references": {},
+   "entities_written_twice_over": 0
+  },
+  "BrownDriverBriggs.xml": {
+   "direction_marks": 2,
+   "comments": {
+    "count": 5,
+    "texts": [
+     "<!--Not sure about this character-->",
+     "<!--?-->",
+     "<!--?-->",
+     "<!--?-->",
+     "<!--?-->"
+    ]
+   },
+   "u_00a0": 218,
+   "u_feff": 1,
+   "named_entities": {
+    "amp": 185,
+    "lt": 15,
+    "gt": 9
+   },
+   "numeric_references": {
+    "U+1D517": 5,
+    "U+1D50A": 2,
+    "U+1D516": 2,
+    "U+221A": 1
+   },
+   "entities_written_twice_over": 0
+  },
+  "LexicalIndex.xml": {
+   "direction_marks": 0,
+   "comments": {
+    "count": 0,
+    "texts": []
+   },
+   "u_00a0": 0,
+   "u_feff": 0,
+   "named_entities": {},
+   "numeric_references": {},
+   "entities_written_twice_over": 0
+  }
+ },
+ "wide_view": {
+  "what": "rows whose field 1 or field 2 holds a space before , ; . : ? ! ) ] or after ( [, by source, read by that pattern alone: where a source is not one of the three, nothing here says whose space it is",
+  "route_store": {
+   "sources": 119,
+   "sources_with_none": 101,
+   "with_one": [
+    {
+     "m_id": "M9",
+     "key": "openscriptures_strongs",
+     "rows": 23646,
+     "field_1": 4863,
+     "field_2": 10721
+    },
+    {
+     "m_id": "M5",
+     "key": "openscriptures_bdb_1906",
+     "rows": 15238,
+     "field_1": 1,
+     "field_2": 12502
+    },
+    {
+     "m_id": "M14",
+     "key": "wikisource_strongs_explicit_forms",
+     "rows": 148343,
+     "field_1": 1,
+     "field_2": 2181
+    },
+    {
+     "m_id": "M4",
+     "key": "stepbible_tahot_aligned_translation",
+     "rows": 95033,
+     "field_1": 480,
+     "field_2": 480
+    },
+    {
+     "m_id": "M46",
+     "key": "unabridged_bdb_1906",
+     "rows": 8915,
+     "field_1": 276,
+     "field_2": 276
+    },
+    {
+     "m_id": "M17",
+     "key": "hiperbiblia_sdbh",
+     "rows": 14821,
+     "field_1": 14,
+     "field_2": 69
+    },
+    {
+     "m_id": "M25",
+     "key": "kaikki_wiktionary_hebrew",
+     "rows": 72066,
+     "field_1": 18,
+     "field_2": 18
+    },
+    {
+     "m_id": "M18",
+     "key": "ubs_sdbh_hebrew_v0_9_2",
+     "rows": 21626,
+     "field_1": 12,
+     "field_2": 12
+    },
+    {
+     "m_id": "M13",
+     "key": "kaikki_wiktionary_hebrew",
+     "rows": 16225,
+     "field_1": 11,
+     "field_2": 11
+    },
+    {
+     "m_id": "M43",
+     "key": "omw_hebrew_pwn30",
+     "rows": 4174,
+     "field_1": 9,
+     "field_2": 9
+    },
+    {
+     "m_id": "M3",
+     "key": "macula_hebrew_cherith_surface_english_2022",
+     "rows": 43294,
+     "field_1": 3,
+     "field_2": 3
+    },
+    {
+     "m_id": "M32",
+     "key": "omegawiki_structured_defined_meaning",
+     "rows": 5363,
+     "field_1": 2,
+     "field_2": 2
+    },
+    {
+     "m_id": "M42",
+     "key": "panlex_hebrew_english_definitions_20250201",
+     "rows": 9831,
+     "field_1": 2,
+     "field_2": 2
+    },
+    {
+     "m_id": "M50",
+     "key": "kaikki_wiktionary_hebrew",
+     "rows": 6278,
+     "field_1": 2,
+     "field_2": 2
+    },
+    {
+     "m_id": "M23",
+     "key": "classical_hebrew_words",
+     "rows": 7321,
+     "field_1": 1,
+     "field_2": 2
+    },
+    {
+     "m_id": "M15",
+     "key": "wikimedia_hebrew_english_interlanguage_title_20260701",
+     "rows": 12354,
+     "field_1": 1,
+     "field_2": 1
+    },
+    {
+     "m_id": "M45",
+     "key": "biblicaltools_living_lexicon",
+     "rows": 753,
+     "field_1": 1,
+     "field_2": 1
+    },
+    {
+     "m_id": "M37",
+     "key": "dbnary_english_wiktionary_hebrew_translation_gloss",
+     "rows": 6156,
+     "field_1": 0,
+     "field_2": 1
+    }
+   ]
+  },
+  "span_store": {
+   "sources": 18,
+   "sources_with_none": 17,
+   "with_one": [
+    {
+     "m_id": "M197",
+     "key": "stepbible_tahot_expanded_strong",
+     "rows": 446,
+     "field_1": 2,
+     "field_2": 2
+    }
+   ]
+  }
+ },
+ "print_step": {
+  "kind": "close",
+  "is_new": "a seventh kind beside none, before, after, inside, remove and forms (scripts/v1.2/print-fields-v1.json of the provider declarations)",
+  "what": "At print, the characters at `closes` are taken out of the served text. A made space at `kept` stays, and so does every space of the provider's own.",
+  "keyed_by": "the source's m_id and the served text: the list line whose `text` is the row's field 1 or field 2 (a span row's slot 1 or slot 2), byte for byte",
+  "offsets": "UTF-16 code units of `text`, counted from 0",
+  "when": "last: after the ledger's division and its shape classification, so no shape count moves and no row text changes",
+  "a_part": "a part cut from a served text by a ledger branch takes the closes that fall inside it, each less the part's start",
+  "lifted_by": "the next reissue of each source's ledger names its list; until then the list stands beside the ledger",
+  "the_root_mend": "flattening at build with nothing in place of a tag where this rule says close goes with road A; it would make each line's `prints` the served text itself"
+ },
+ "note_branch": {
+  "where": "a line with `note`: the provider's remark on its own file standing in a field",
+  "options": [
+   "as a note: the words at `in_prints` set apart as the provider's remark",
+   "inline: the line prints as `prints`, note and all",
+   "left out: the line prints as `prints_without_the_note`"
+  ],
+  "lean": "as a note",
+  "resting_order": "the owner's"
+ },
+ "checks": [
+  {
+   "check": "check 1: for every field, the gap reading gives the step's text, and its made places are the walk's",
+   "failures": 0
+  },
+  {
+   "check": "check 2: for every traced line, the text less the characters at closes and kept is THEIRS; with nothing kept, prints is THEIRS",
+   "failures": 0
+  },
+  {
+   "check": "check 3: for every line, every place is a space of the text, and text and prints are equal once every space is taken out",
+   "failures": 0
+  },
+  {
+   "check": "check 4: every tag in a field is an element's start, end or self-closed tag, or a whole comment",
+   "failures": 0
+  },
+  {
+   "check": "check 5: the entries nest cleanly: every end tag closes the element that is open, and none is left open",
+   "failures": 0
+  },
+  {
+   "check": "check 6: each provider file is the bytes and sha256 its acquisition manifest lists",
+   "failures": 0
+  },
+  {
+   "check": "check 7: the step's three copies are, once their names are set aside, one text, and the text this builder replays",
+   "failures": 0
+  },
+  {
+   "check": "one text from two fields never differs in THEIRS, a place, a class or a note",
+   "failures": 0
+  },
+  {
+   "check": "a BDB entry holds its status at most once, and nothing with text follows it",
+   "failures": 0
+  },
+  {
+   "check": "a field holds at most one note, and a note has a start and an end in order",
+   "failures": 0
+  },
+  {
+   "check": "a part stands in every one of its rows' field 2, its places are the same wherever it stands, and it holds no note",
+   "failures": 0
+  },
+  {
+   "check": "U+E000 stands in no field, and no entity decodes to it",
+   "failures": 0
+  },
+  {
+   "check": "every element name is lower case",
+   "failures": 0
+  },
+  {
+   "check": "every shard is gzip of JSON, and the rows read are the index's count of routes",
+   "failures": 0
+  },
+  {
+   "check": "each source key names exactly one m id of the route store, and the span store's own list of sources names none of the three",
+   "failures": 0
+  }
+ ],
+ "outputs": [
+  {
+   "file": "openscriptures_strongs.made-spaces-v1.jsonl",
+   "bytes": 959880,
+   "sha256": "c984e7827db37f38fae5bdb0143ffc8de4657dbc9aab56b4a82d9e4a204aaa4b",
+   "lines": 4847
+  },
+  {
+   "file": "openscriptures_bdb_1906.made-spaces-v1.jsonl",
+   "bytes": 1483467,
+   "sha256": "5fc6db699b281abe8ae225baa238b9c0d4f73cceace3a55180a1dcadbf87dd66",
+   "lines": 4864
+  }
+ ]
+}

@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-13.
 
-**146 rules declared · 133 named by a check · 13 unguarded.**
+**147 rules declared · 134 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -80,6 +80,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `licence-posture-name-rule-v1-the-record-names-the-licence` | tools/emit-license-postures-v1.mjs | check-posture-names-from-record-v1 |
 | `licence-wording-rule-v1-the-summary-is-ours-and-the-licence-governs` | zone.html | check-licence-leaves-v1 |
 | `lone-letter-rule-v1-a-letter-the-print-leaves-standing-alone-is-printed-as-printed-and-marked-by-the-record-that-names-it` | tools/apply-lone-letters-v1.mjs | check-lone-letters-v1 |
+| `made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it` | tools/apply-made-spaces-v1.mjs, tools/gloss-store-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/build-front-door-v1.mjs, zone.html | check-made-spaces-v1, check-ledger-divisions-v1, check-provider-characters-v1, check-search-v1 |
 | `mam-restore-v5-rights-rule-v1-one-record-for-the-edition-the-credit-on-every-page` | tools/emit-mam-restore-v5-rights-v1.mjs | check-restore-serve-v1 |
 | `maqaf-rule-v2-one-c0-per-word` | tools/zone-lib-v1.mjs, tools/regloss-zone.mjs, zone.html | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1, check-run-card-forms-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | check-mark-inventory-closed-v1 |
@@ -179,12 +180,13 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 127 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 128 tools that are not checks.
 
 Not called by any build stage:
 
 - `tools/apply-ledger-divisions-v1.mjs`
 - `tools/apply-lone-letters-v1.mjs`
+- `tools/apply-made-spaces-v1.mjs`
 - `tools/apply-piece-store-patch-v1.mjs`
 - `tools/apply-route-delta-v1.mjs`
 - `tools/apply-source-years-v1.mjs`

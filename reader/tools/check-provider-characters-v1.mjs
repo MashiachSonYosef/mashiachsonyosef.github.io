@@ -11,6 +11,13 @@
 // offers is a contiguous run of its own route's characters, and that the
 // pieces of a route rejoin into the route they came from.
 //
+// One kind of character in a served text is not the provider's: a space our
+// own build put where a tag of the provider's XML stood. The corpus lane
+// lists those, and a reading prints with them closed (made-spaces-rule-v1;
+// check-made-spaces-v1 holds that to the lists). The readings asked of the
+// store below are the readings as they print, so a closed space is counted
+// here as what it is: the provider's characters, with ours taken out.
+//
 // Reads the artifacts off disk. Takes no URL.
 // GUARDS: provider-declaration-rule-v1-closed-set-ship-whole-by-default, ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say
 //

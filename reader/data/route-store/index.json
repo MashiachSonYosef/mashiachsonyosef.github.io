@@ -1175,7 +1175,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 15005007,
+  "shard_bytes_total": 15134930,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "90d9eb8e7082",
+ "store_version": "a8429861023d",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1514,6 +1514,12 @@
    "now": "90d9eb8e7082",
    "why": "source-year-rule-v1-a-row-carries-its-sources-year-of-writing-and-an-older-witnesss-year-already-on-it-stands",
    "on": "2026-11-10T05:12:29.684Z"
+  },
+  {
+   "was": "90d9eb8e7082",
+   "now": "a8429861023d",
+   "why": "made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it",
+   "on": "2026-11-13T03:07:14.956Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -3644,6 +3650,44 @@
    "shards_rewritten": 1,
    "span_files_rewritten": 32,
    "rows_keeping_an_older_year": 319
+  }
+ },
+ "made_spaces": {
+  "rule_id": "made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it",
+  "applied_on": "2026-11-13T03:07:14.956Z",
+  "applied_by": "tools/apply-made-spaces-v1.mjs",
+  "pin": "reader/data/made-spaces-v1/PIN.json",
+  "relay": "v168",
+  "from": "r2:mishkan/v2/ledgers/all/made-spaces/made-spaces-v1/ (the private store), 12 November 2026",
+  "rule": "reader/data/made-spaces-v1/RULE.md",
+  "lists": [
+   {
+    "m": "M9",
+    "key": "openscriptures_strongs",
+    "file": "reader/data/made-spaces-v1/openscriptures_strongs.made-spaces-v1.jsonl",
+    "sha256": "c984e7827db37f38fae5bdb0143ffc8de4657dbc9aab56b4a82d9e4a204aaa4b"
+   },
+   {
+    "m": "M5",
+    "key": "openscriptures_bdb_1906",
+    "file": "reader/data/made-spaces-v1/openscriptures_bdb_1906.made-spaces-v1.jsonl",
+    "sha256": "5fc6db699b281abe8ae225baa238b9c0d4f73cceace3a55180a1dcadbf87dd66"
+   }
+  ],
+  "lists_read_from_store_version": "90d9eb8e7082",
+  "store_version_before": "90d9eb8e7082",
+  "store_version": "a8429861023d",
+  "what": "a row of a source the corpus lane's made-spaces lists name carries, in slot 9, the places of its route text and of its definition text that close at print ([the route text's or null, the definition text's or null], UTF-16 units from 0), where its text is a line of its source's list with a close; the texts themselves are the served bytes, unchanged, and a reader takes the characters at those places out when it prints, after the ledger's division; a row with no close carries no such slot",
+  "totals": {
+   "sources": 2,
+   "rows_of_listed_sources": 38884,
+   "rows_carrying_the_slot": 23230,
+   "rows_with_a_close_on_the_route_text": 4849,
+   "rows_with_a_close_on_the_definition_text": 23230,
+   "closes_on_route_texts": 6420,
+   "closes_on_definition_texts": 105830,
+   "span_store_rows_of_listed_sources": 486,
+   "span_store_rows_with_a_close": 0
   }
  }
 }

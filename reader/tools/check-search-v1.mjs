@@ -87,12 +87,17 @@ const isNoDerivs = (key) => /(^|[^a-z])nd([^a-z]|$)/iu.test(String(key || "")) |
 // the pieces a row prints: whole for a NoDerivatives source; as its row says for
 // a source under a ledger (ledger-division-rule-v2: the print slot row[8], else
 // the cuts in row[7], else whole); whole for a source with no ledger (7 November
-// 2026: the comma rule the page guessed for it retired)
+// 2026: the comma rule the page guessed for it retired); and in every one a
+// space our own build made is closed (made-spaces-rule-v1: the places row[9]
+// names for the route text are left out of the piece they fall in). Typed
+// here on its own, as the rest of this check's reading of a row is: the bake
+// runs the page's functions, and this is the second count beside them.
 const piecesOf = (row, src) => {
-  const t = String(row[1]);
-  if (isNoDerivs(src.licensePosture)) return [t];
-  if (src.ledger) { if (Array.isArray(row[8])) return row[8].map((x) => String(x)); const cuts = Array.isArray(row[7]) ? row[7] : []; if (!cuts.length) return [t.trim()].filter(Boolean); const out = []; let from = 0; for (const i of cuts) { out.push(t.slice(from, i)); from = i + 1; } out.push(t.slice(from)); return out.map((x) => x.trim()).filter(Boolean); }
-  return [t.trim()].filter(Boolean);
+  const t = String(row[1]), shut = Array.isArray(row[9]) ? row[9][0] || [] : [];
+  const part = (a, b) => { let s = ""; for (let i = a; i < b; i += 1) if (!shut.includes(i)) s += t[i]; return s; };
+  if (isNoDerivs(src.licensePosture)) return [part(0, t.length)];
+  if (src.ledger) { if (Array.isArray(row[8])) return row[8].map((x) => String(x)); const cuts = Array.isArray(row[7]) ? row[7] : []; const out = []; let from = 0; for (const i of cuts) { out.push(part(from, i)); from = i + 1; } out.push(part(from, t.length)); return out.map((x) => x.trim()).filter(Boolean); }
+  return [part(0, t.length).trim()].filter(Boolean);
 };
 // a ketiv/qere place reads "(ketiv) [qere]": its pointing is the qere's, and
 // the ketiv's letters stand there too
