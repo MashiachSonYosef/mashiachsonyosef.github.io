@@ -2,7 +2,7 @@
  "schema_version": 1,
  "rule_id": "ledger-index-rule-v1-the-writer-declares-which-letter-it-is-the-ledger-for",
  "emitted_by": "tools/emit-ledger-index-v1.mjs",
- "emitted_on": "2026-11-10",
+ "emitted_on": "2026-11-12",
  "what_this_is": "which letter of the frame each of this lane's records is the ledger for, read from the '// LEDGER:' declaration in the header of the tool that writes it. Declared by the writer, never inferred here.",
  "letters_known_to_the_frame": [
   "A",
@@ -206,6 +206,12 @@
     "read-form-offsets-v1.json"
    ]
   },
+  "bake-resting-lines-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This opens the reader as a first visit opens it, reads the lines it drew and writes one record per work, data/resting-lines/<work>.json.gz. It chooses no reading: the page did.",
+   "names": []
+  },
   "bake-span-store-v2.mjs": {
    "letters": [
     "COMPspan",
@@ -343,7 +349,7 @@
    "why": "no frame letter. A check reads the page and judges it; it is not the ledger for one.",
    "names": []
   },
-  "check-chapter-pages-v2.mjs": {
+  "check-chapter-pages-v3.mjs": {
    "letters": [],
    "updates_no_letter": true,
    "why": "no frame letter. A check reads the pages and judges them; it is not the ledger for one.",
@@ -1040,6 +1046,12 @@
     "masorah-witnesses-v1.json"
    ]
   },
+  "resting-lines-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This reads what the page drew and decides nothing: no reading is chosen, ordered or joined here.",
+   "names": []
+  },
   "restore-shelf-from-history-v1.mjs": {
    "letters": [
     "O"
@@ -1091,6 +1103,12 @@
    "names": [
     "mam-restore-v5-rights-v1.json"
    ]
+  },
+  "serve-tree-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This serves files as they stand and decides nothing.",
+   "names": []
   },
   "stem-family-v1.mjs": {
    "letters": [],

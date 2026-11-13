@@ -7,7 +7,11 @@
 > made in two steps: a route builder writes a work's zone once, from the
 > corpus lane's text; and `tools/round-v1.sh` projects every served zone
 > again over the records this repository holds, each write typed on the zone
-> it changes. `PIPELINE-MANIFEST.md` is generated from the code and the
+> it changes. Since 12 November 2026 the round also opens the reader itself
+> and keeps the lines it draws as each work first opens
+> (`tools/bake-resting-lines-v1.mjs`, `data/resting-lines/`): the plain list
+> under every chapter is that recording, and the door refuses one that is not
+> of the tree it builds from. `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record
 > of why the rules are what they are.
