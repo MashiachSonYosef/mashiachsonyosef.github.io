@@ -36,6 +36,7 @@ import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl, zoneIdOf, zonesOnDisk } from "./zones-on-disk-v1.mjs";
+import { onlyLeaders } from "./place-leaders-v1.mjs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  -  " + d : ""}`); };
 const URL0 = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "");
@@ -86,7 +87,7 @@ const snap = () => p.evaluate((secs) => {
       const g = wb.querySelector(":scope > .g"); if (!g) return;
       const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
       const k = words[wi].k, nn = (z.gloss_orders || {}).noname || {};
-      out.push({ id: `${si}|${wi}`, k, s: words[wi].s, line: c.textContent.trim(), chip: ((g.querySelector(".g-lic") || {}).textContent || "").trim(), src: ((g.querySelector(".g-lic") || { dataset: {} }).dataset.line || ""),
+      out.push({ id: `${si}|${wi}`, k, s: words[wi].s, tg: words[wi].tg || null, np: !!words[wi].np, line: c.textContent.trim(), chip: ((g.querySelector(".g-lic") || {}).textContent || "").trim(), src: ((g.querySelector(".g-lic") || { dataset: {} }).dataset.line || ""),
         owed: !!(k && z.gloss_names && Object.prototype.hasOwnProperty.call(z.gloss_names, k) && Object.prototype.hasOwnProperty.call(nn, k)), want: k && Object.prototype.hasOwnProperty.call(nn, k) ? nn[k] : null });
     });
   });
@@ -128,8 +129,11 @@ const displaced = (x, st) => {
   const gr = st.masorah === "only" && DISK.lattice && DISK.lattice.grades && x.s ? DISK.lattice.grades[x.s] : null;
   if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) {
     const allOff = (by) => !!(st.off.length && Array.isArray(by) && by.length && by.every((m) => st.off.includes(m)));
-    if (gr.o.l && !allOff(gr.o.l[4])) return { text: gr.o.l[0], by: "pointing" };
-    if (gr.o.la && !allOff(gr.o.la[4])) return { text: gr.o.la[0], by: "pointing" };
+    // the leaders under "only" at the word's own place: its own where its gates move them (its entry's tags
+    // and whether it is a name; a book whose places were not read for names reads every place as one)
+    const lead = onlyLeaders(gr, x.tg, !DISK.lattice.names || x.np);
+    if (lead.l && !allOff(lead.l[4])) return { text: lead.l[0], by: "pointing" };
+    if (lead.la && !allOff(lead.la[4])) return { text: lead.la[0], by: "pointing" };
     return { text: null, by: "bare" };
   }
   return { text: col === undefined ? null : col, by: "column" };

@@ -3004,6 +3004,64 @@
   });
   const stemFamily = (x) => STEM_FAMILY[x] || x;
   window.__stemFamily = stemFamily;
+  // THE ENTRY GATE (entry-gate-rule-v1; the owner, 13 November 2026: «1-5.
+  // agree go ahead», ruling 1, and «1-3. ok agree», ruling 6). The store keys
+  // a row by bare letters, and several words share a key: the verb "he
+  // created", the verb "he ate", an Aramaic noun for a field. Every source
+  // that numbers its entries knows which of them a row is, and the corpus
+  // lane read that out of each source onto the row (its facts slot, row[10]:
+  // n its Strong's numbers, t its STEP tags that carry a letter, b BDB's own
+  // entries). The lattice gives each place the entry that stands there: the
+  // tag of the word's core piece, on the word as tg. At a place with such a
+  // tag, under "only": a row whose numbers hold the place's number is THIS
+  // entry and stands whatever its headword's points; a row with numbers, none
+  // of them the place's, is ANOTHER and is withheld and counted; a row with
+  // no number is left to the pointing as before. Two partings beside it:
+  // where both the row's tags and the place's carry STEP's letter and none
+  // agrees, the row is another entry though the number is the same; and a
+  // row with no number that names BDB's own entry is another where the key's
+  // BDB rows of the place's number name entries and this is none of them.
+  // These are the functions of tools/entry-gate-v1.mjs, name for name, and
+  // check-entry-gate-v1 runs the two side by side.
+  const numberOf = (tag) => { const x = /^[HA]?0*(\d+)/u.exec(String(tag)); return x && x[1] !== "0" ? `H${x[1]}` : null; };
+  const tagOf = (tag) => String(tag).replace(/^H0*/u, "H");
+  const placeEntry = (coreTags) => {
+    const tags = (coreTags || []).filter(Boolean).map(tagOf);
+    const numbers = [...new Set(tags.map(numberOf).filter(Boolean))];
+    if (!numbers.length) return null;
+    return { tags, numbers, lettered: tags.every((t) => /[A-Za-z]$/u.test(t)) };
+  };
+  const entrySaid = (place) => (place.lettered ? [...new Set(place.tags)] : place.numbers);
+  const factsOf = (row) => { const f = Array.isArray(row) && row.length > 10 ? row[10] : null; return f && typeof f === "object" && !Array.isArray(f) ? f : null; };
+  const bdbEntriesAt = (place, factsOfRows) => {
+    const out = new Set();
+    for (const f of factsOfRows) if (f && Array.isArray(f.b) && Array.isArray(f.n) && f.n.some((x) => place.numbers.includes(x))) for (const e of f.b) out.add(e);
+    return out;
+  };
+  const entryVerdict = (facts, place, bdbHere) => {
+    const nums = facts && Array.isArray(facts.n) ? facts.n : [];
+    if (!nums.length) {
+      const b = facts && Array.isArray(facts.b) ? facts.b : [];
+      return b.length && bdbHere.size && !b.some((e) => bdbHere.has(e)) ? "other" : "none";
+    }
+    if (!nums.some((x) => place.numbers.includes(x))) return "other";
+    const t = facts && Array.isArray(facts.t) ? facts.t : [];
+    return t.length && place.lettered && !t.some((x) => place.tags.includes(x)) ? "other" : "this";
+  };
+  window.__entryGate = { numberOf, tagOf, placeEntry, entrySaid, factsOf, bdbEntriesAt, entryVerdict };
+  // THE NAMES GATE (names-gate-rule-v1; the owner, 13 November 2026: «1-3. ok
+  // agree», ruling 8). «Bara», a man's name from one inscription, stood on
+  // the card of the verb "he created": pointed as the verb is and carrying
+  // no Strong's number, so neither the pointing nor the entry parts it. Its
+  // own source says what it is. The corpus lane listed the served rows whose
+  // every entry their source marks a name (the row's facts carry name), and
+  // the word places of the thirty-nine books that are a name (the word
+  // carries np, projected with the lattice). At a place that is not a name,
+  // a row its source gives as a name is withheld and counted; at a place
+  // that is a name, it stands (isNamePlace, below the zone, says which a
+  // place is). nameWithheld is the function of tools/names-gate-v1.mjs, name
+  // for name.
+  const nameWithheld = (facts, placeIsAName) => !!(facts && facts.name) && !placeIsAName;
   const rowCarriesHeadwords = (row) => Array.isArray(row) && Array.isArray(row[6]);
   const gradeRow = (row, surface) => {
     if (!rowCarriesHeadwords(row)) return "-";
@@ -3069,6 +3127,9 @@
   // surface read its first verse's list: 14,781 of 306,493 graded places on
   // the 39 books, 4,129 of them in the first book.
   let openVerse = null;                 // the label of the verse the open card stands in
+  let openPlaceWord = null;             // the word of the book the open card stands at
+  let openTags = null;                  // the core tags of that place, where the form standing open is the one they tag
+  let openName = null;                  // whether that place is a name; null where the card stands at no place of the book
   const WORD_VERSE = new WeakMap();     // a word of the zone -> its verse's label
   // THE WORD A POOL IS ASKED FOR. The card asks for the word standing open
   // (openPointed, openKey, openVerse, set as it opens). The line a source
@@ -3082,10 +3143,41 @@
   // the days of", none of them on the word's own card). The pointing is
   // asked only under the word's own key: a pool asked under a headword's key
   // holds that headword's rows.
-  const NO_WORD = { pointed: null, verse: null };
+  // THE ENTRY AT A PLACE, FOR THE FORM ASKED (entry-gate-rule-v1). A word
+  // carries the tags of its core piece (tg), or at a place written one way
+  // and read another the half the pieces spell carries them. They speak for
+  // the whole form of that key, and for the core piece's own cell on the
+  // card, whose key is the core piece's letters: the tag is that piece's. A
+  // prefix's or a suffix's cell, and the written half of a pair, take none.
+  const tagHolder = (word) => (!word ? null : word.tg ? word : (word.w || word.kqw || []).find((r) => r && r.tg) || null);
+  const tagsAt = (word, key) => { const h = tagHolder(word); return h && key && h.k === key ? [].concat(h.tg) : null; };
+  const coreTagsAt = (word, key) => {
+    const h = tagHolder(word);
+    const cores = h && Array.isArray(word.pg) ? word.pg.filter((x) => x && x.r === "core") : [];
+    return h && key && cores.length === 1 && cores[0].k === key ? [].concat(h.tg) : null;
+  };
+  // name: whether the asked word's place is a name (true where the book's
+  // places were not read for names), as the one who names the word says it
+  // (isNamePlace); null where no place is known, and the names gate is then
+  // not asked
+  const NO_WORD = { pointed: null, verse: null, tags: null, name: null };
   const askedWord = (surface, named = null) => (named
-    ? (named.s && surface && surface === named.k ? { pointed: named.s, verse: named.v ?? null } : NO_WORD)
-    : (openPointed && surface && surface === openKey ? { pointed: openPointed, verse: openVerse } : NO_WORD));
+    ? (named.s && surface && surface === named.k ? { pointed: named.s, verse: named.v ?? null, tags: named.tg ? [].concat(named.tg) : null, name: typeof named.name === "boolean" ? named.name : null } : NO_WORD)
+    : (openPointed && surface && surface === openKey ? { pointed: openPointed, verse: openVerse, tags: openTags, name: openName }
+      : surface && surface !== openKey && openPlaceWord ? { pointed: null, verse: null, tags: coreTagsAt(openPlaceWord, surface), name: openName } : NO_WORD));
+  // THE LEADERS UNDER "ONLY" AT A PLACE (tools/place-leaders-v1.mjs, name for
+  // name): the place's own where its gates make them other than the
+  // surface's, else the surface's. The sidecar keeps them in grades[s].e by
+  // the kind of place: the core tags as the lattice writes them, joined by a
+  // space (none where the place carries no tag), with "|n" after them where
+  // the place is a name. A place with no tag that is a name reads the
+  // surface's own.
+  const PLACE_IS_A_NAME = "|n";
+  const leadersKey = (tags, isName) => `${tags ? [].concat(tags).join(" ") : ""}${isName ? PLACE_IS_A_NAME : ""}`;
+  const onlyLeaders = (gr, tags, isName) => {
+    const own = gr && gr.e ? gr.e[leadersKey(tags, isName)] : null;
+    return own ? { l: own.l || null, la: own.la || null, nl: !!own.nl } : { l: (gr && gr.o && gr.o.l) || null, la: (gr && gr.o && gr.o.la) || null, nl: !!(gr && gr.nl) };
+  };
   const versesOwn = (gr, verse) => (gr && gr.v && verse != null && Object.prototype.hasOwnProperty.call(gr.v, verse) ? gr.v[verse] : null);
   const citingCards = (gr, verse) => { const own = versesOwn(gr, verse); return own ? own.n : (gr ? gr.n : []); };
   // the baked leader of a lattice order for a surface at a verse (null: none)
@@ -3649,6 +3741,13 @@
     return (row && row.name) || p;
   };
   let zone, index;
+  // WHETHER A PLACE IS A NAME (names-gate-rule-v1): its word carries np where
+  // the corpus lane's list names the place. A book whose places were not read
+  // for names (its projection's receipt names no list) has none marked, and
+  // every place of it is read as a name: its names stand as they did before
+  // the gate.
+  const namesMarked = () => !!(zone && zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice && zone.emitted_from.toggles.lattice.names);
+  const isNamePlace = (word) => !namesMarked() || !!(word && word.np);
   try {
     [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
@@ -5349,7 +5448,7 @@
         // found until now it still finds; a ruled line goes straight there,
         // as a ruling outranks the pointing as it outranks a switch.
         if (!ruled && w.s) for (const k of keys) {
-          const r = await attributionFor(k, asked, at, null, false, { s: w.s, k: w.k, v: sec.label ?? null });
+          const r = await attributionFor(k, asked, at, null, false, { s: w.s, k: w.k, v: sec.label ?? null, tg: w.tg ?? null, name: isNamePlace(w) });
           if (!r.miss) { a = r; break; }
         }
         if (!a) for (const [k, every] of tries) {
@@ -6841,6 +6940,42 @@
     // uses — the asked word's own pointed surface, and only that.
     const W = askedWord(surface, opts.word || null);
     let routes = all, withheld = 0, attested = false;
+    // THE ENTRY AT THE PLACE, BEFORE THE POINTING (entry-gate-rule-v1). Under
+    // "only", at a place the lattice tags: a row its own source files under
+    // another entry than the place's never enters the pool, and the card
+    // says how many; a row of the place's entry is kept here and passes the
+    // pointing below whatever its headword's points (the dictionary's form
+    // of a verb is seldom pointed as the verse's is); a row with no number
+    // is neither, and the pointing speaks for it as before. The overlays'
+    // rows carry no entry and are not asked. The card names the place's
+    // entry as the place is asked (entrySaid): with STEP's letter where a
+    // row is asked by letter, since a row withheld by letter is its
+    // number's own.
+    let withheldByEntry = 0, entryHere = null;
+    const ofThisEntry = new Set();
+    if (pointingNow(W.pointed) === "only" && W.tags) {
+      const place = placeEntry(W.tags);
+      if (place) {
+        const bdbHere = bdbEntriesAt(place, all.map(factsOf));
+        const verdicts = all.map((row) => entryVerdict(factsOf(row), place, bdbHere));
+        routes = all.filter((row, i) => verdicts[i] !== "other");
+        withheldByEntry = all.length - routes.length;
+        all.forEach((row, i) => { if (verdicts[i] === "this") ofThisEntry.add(row); });
+        entryHere = entrySaid(place);
+      }
+    }
+    // WHETHER THE PLACE IS A NAME, WITH THE ENTRY (names-gate-rule-v1). Under
+    // "only", at a place that is not a name: a row its own source gives as a
+    // name never enters the pool, and the card says how many. A row the
+    // entry already withheld is counted there and not again. Where no place
+    // is known, and in a book whose places were not read for names, nothing
+    // is asked. The overlays' rows carry no such mark.
+    let withheldByName = 0;
+    if (pointingNow(W.pointed) === "only" && W.name === false) {
+      const kept = routes.filter((row) => !nameWithheld(factsOf(row), false));
+      withheldByName = routes.length - kept.length;
+      routes = kept;
+    }
     if (pointingNow(W.pointed) === "only") {
       // the grade has to be here before the pool is built, not after: a
       // pool built while the sidecar was still arriving is an unfiltered
@@ -6879,8 +7014,11 @@
         // asked, the overlays' are not: the line is baked from the store.
         attested = grades.includes("m");
         if (attested) {
-          routes = all.filter((row, i) => grades[i] !== "x");
-          withheld = all.length - routes.length;
+          // of the rows the entry left: a row of the place's own entry stays whatever its points
+          const gradeOfRow = new Map(all.map((row, i) => [row, grades[i]]));
+          const kept = routes.filter((row) => ofThisEntry.has(row) || gradeOfRow.get(row) !== "x");
+          withheld = routes.length - kept.length;
+          routes = kept;
         }
       }
     }
@@ -7084,6 +7222,7 @@
     }
     const pool = sortPool([...groups.values()], surface, W);
     pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
+    pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.withheldByName = withheldByName;
     return pool;
   };
   // WHAT A POOL SAYS WAS WITHHELD RIDES WITH EVERY COPY OF IT. The card keeps
@@ -7095,6 +7234,7 @@
   // carries is named here once, and a copy takes them all.
   const carryWithheld = (to, from) => {
     to.withheld = from.withheld; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
+    to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.withheldByName = from.withheldByName;
     return to;
   };
   const oldestFirst = (a, b) => {
@@ -7209,7 +7349,7 @@
     const nameLed = zone && zone.gloss_names && surface && Object.prototype.hasOwnProperty.call(zone.gloss_names, surface)
       && zone.gloss && zone.gloss[surface] === zone.gloss_names[surface] ? zone.gloss_names[surface] : null;
     const nameYields = () => masorah === "letters"
-      || (masorah === "only" && gr && gr.o && gr.o.l && !gr.nl)
+      || (masorah === "only" && gr && gr.o && onlyLeaders(gr, W.tags, W.name !== false).l && !onlyLeaders(gr, W.tags, W.name !== false).nl)
       || (pos.needs === "lattice" && latticeLeader(gr, pos.lattice, W.verse))
       || (pos.needs === "witnessed" && wCol);
     // found among the pills by the printed form, the key the pills are one
@@ -7936,6 +8076,14 @@
     })();
     openKey = bin === zone && region ? (region.form_k || region.k || null) : null;
     openVerse = openSite ? openSite.ref : null;
+    // the entry at the open word's place, for the gate (entry-gate-rule-v1)
+    openPlaceWord = openSite ? openSite.wordOf || null : null;
+    openTags = tagsAt(openPlaceWord, openKey);
+    // and whether that place is a name, for the names gate (names-gate-rule-v1)
+    openName = openPlaceWord ? isNamePlace(openPlaceWord) : null;
+    // the tags this card is gated by, and what it takes its place for, for a check to read
+    window.__cardEntry = openTags ? openTags.join(" ") : "";
+    window.__cardName = openName === null ? "" : openName ? "a name" : "not a name";
     // Only the atoms tile the occurrence, so only the atoms may be laid out in
     // the header. Drawing the whole lattice printed each joined interval again
     // between its own halves. When a joined interval is what was opened, every
@@ -9270,8 +9418,10 @@
         // exists, and a block whose every row they withheld was read as a
         // block no dictionary gives — and its rung forgotten. It says what
         // withheld it, keeps the rung, and stands on no record meanwhile.
-        if (pool && (pool.withheld || pool.withheldByStem || pool.withheldBySources)) {
+        if (pool && (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources)) {
           const bits = [];
+          if (pool.withheldByEntry) bits.push(`${pool.withheldByEntry} record${pool.withheldByEntry === 1 ? "" : "s"} withheld by the entry — their own source files them under another entry than ${(pool.entry || []).join(" or ")}, which stands here`);
+          if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
           if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
           if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
           if (pool.withheldByStem) bits.push(`${pool.withheldByStem} record${pool.withheldByStem === 1 ? "" : "s"} withheld by the stem — their source reads another stem of this verb than ${(pool.stems || []).join(" or ")}`);
@@ -9788,6 +9938,9 @@
         // check can ask the page rather than recount the shard
         pills.dataset.withheld = String(pool.withheld || 0);
         pills.dataset.stemWithheld = String(pool.withheldByStem || 0);
+        pills.dataset.entryWithheld = String(pool.withheldByEntry || 0);
+        pills.dataset.nameWithheld = String(pool.withheldByName || 0);
+        pills.dataset.entry = (pool.entry || []).join("|");
         pills.dataset.stems = (pool.stems || []).join("|");
         pills.dataset.withheldBySources = String(pool.withheldBySources || 0);
         pills.dataset.rows = String(pool.rows || 0);
@@ -9805,10 +9958,12 @@
         // the source switches' count share a line, each its own span, so the
         // pointing standing by default costs the readings band no row
         let wLine = readRow.querySelector(".withheld-line");
-        if (pool.withheld || pool.withheldByStem || pool.withheldBySources) {
+        if (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources) {
           if (!wLine) { wLine = document.createElement("p"); wLine.className = "kq-role withheld-line"; readRow.append(wLine); }
           wLine.replaceChildren();
           const parts = [];
+          if (pool.withheldByEntry) parts.push(Object.assign(document.createElement("span"), { className: "entry-withheld", textContent: `${pool.withheldByEntry} of another entry than ${(pool.entry || []).join(" or ")}, withheld` }));
+          if (pool.withheldByName) parts.push(Object.assign(document.createElement("span"), { className: "name-withheld", textContent: `${pool.withheldByName} given as a name by ${pool.withheldByName === 1 ? "its" : "their"} source, withheld` }));
           if (pool.withheld) parts.push(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
           if (pool.withheldByStem) parts.push(Object.assign(document.createElement("span"), { className: "stem-withheld", textContent: `${pool.withheldByStem} of another stem than ${(pool.stems || []).join(" or ")}, withheld` }));
           if (pool.withheldBySources) parts.push(Object.assign(document.createElement("span"), { className: "sources-withheld", textContent: `${pool.withheldBySources} withheld by your source switches (${sourcesOffSay()})` }));
@@ -11799,11 +11954,13 @@
         // the reader switched off every source carrying it. Names turned off
         // lay the noname column over the table, so the name no longer is the
         // line there, and the filter's leader answers as before.
-        if (gr.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
+        // at this place: the leaders its own gates leave, by its entry and whether it is a name (entry-gate-rule-v1, names-gate-rule-v1)
+        const here = onlyLeaders(gr, word.tg || null, isNamePlace(word));
+        if (here.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
           && zone.gloss[word.k] === zone.gloss_names[word.k] && !(gm && allOff(gm.by))) return null;
-        const l = gr.o.l;
+        const l = here.l;
         if (l && !allOff(l[4])) return { text: l[0], rs: [{ posture: l[2], m: l[1], y: l[3], ya: "wording", by: l[4] }], why: "masorah" };
-        const la = gr.o.la;
+        const la = here.la;
         if (la && !allOff(la[4])) return { text: la[0], rs: [{ posture: la[2], m: la[1], y: la[3], ya: "wording", by: la[4] }], why: "masorah" };
         if (l) return { text: "", rs: [], why: "sources-bare" };
         // graded, and nothing survives the filter: the word goes bare here,
@@ -12241,6 +12398,10 @@
         // each key's own pointed surface, and the verse: a line read live asks
         // the pool for the word itself (repaintLive, askedWord)
         ss: regions ? regions.map((r) => r.s || null) : (word.k ? [word.s || null] : []), v: WORD_VERSE.get(word) ?? null,
+        // and each key's own core tags, where the lattice gives its place any (entry-gate-rule-v1)
+        ts: regions ? regions.map((r) => r.tg || null) : (word.k ? [word.tg || null] : []),
+        // and whether the place is a name (names-gate-rule-v1)
+        name: isNamePlace(word),
         word: regions && regions.length > 1 ? null : word });
     }
     wb.append(ge);
@@ -12833,7 +12994,7 @@
         // source is wrong, the page's own rule), and it is asked once more
         // asked for this word itself, under its own key, so its pointing
         // gates the pool as it gates the word's card
-        const own = st.ss && st.ss[i] && k === st.ks[i] ? { s: st.ss[i], k, v: st.v } : null;
+        const own = st.ss && st.ss[i] && k === st.ks[i] ? { s: st.ss[i], k, v: st.v, tg: st.ts ? st.ts[i] : null, name: st.name } : null;
         try { pool = await poolFor(k, { storeOnly: true, ...(own ? { word: own } : {}) }); } catch {
           if (gen !== switchGen || !st.ge.isConnected) return;
           st.ge.dataset.off = "unreachable";

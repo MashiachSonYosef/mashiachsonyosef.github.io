@@ -41,7 +41,8 @@
 //
 // on a row of a listed source whose route text or definition text is a line
 // of its source's list with at least one close, and on no other row. A row
-// with no close keeps the length it had. The readers take the characters at
+// with no close carries none: the slot is absent, or stands empty where the
+// row carries a later one (its facts, slot 10). The readers take the characters at
 // those places out when they print (tools/gloss-store-v1.mjs: closed,
 // routePrinted, recordPrinted, readingsOf; zone.html: the same names), after
 // the ledger's division, so no cut moves: a piece cut from a route text takes
@@ -73,11 +74,15 @@
 // the version the relay's receipt names; or when every move of the store
 // since that version is this rule's own, which changes no text; or when the
 // source's rows hold exactly the texts they held when an earlier run found
-// them so (index.made_spaces.sources: the sha256 of the source's rows, each
-// as its key, its route text and its definition text). A ledger answered
-// anew or a year written moves the store's version and none of these texts,
-// and the counts are still held. After a row of the source is struck, landed
-// or re-keyed the same comparisons are recorded and no longer refuse: the
+// them so. The index keeps two sha256 of each source's rows, each row as its
+// key, its route text and its definition text (index.made_spaces.sources):
+// texts_sha256, the rows as they stand, and texts_sha256_as_read, the rows as
+// they stood when a run last found them the rows the list was read from.
+// While the two are the same the rows are those rows, and texts_are_as_read
+// says so. A ledger answered anew, a year written or an entry set on a row
+// moves the store's version and none of these texts, and the counts are
+// still held. After a row of the source is struck, landed or re-keyed the
+// two differ, the same comparisons are recorded and no longer refuse: the
 // closes of every text the list names still hold.
 //
 // Idempotent: a second run moves nothing and writes nothing. --dry prints
@@ -87,7 +92,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
-import { MADE_SPACES_RULE_ID, CLOSES_SLOT, closed } from "./gloss-store-v1.mjs";
+import { MADE_SPACES_RULE_ID, CLOSES_SLOT, closed, setSlot } from "./gloss-store-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -212,7 +217,7 @@ for (const name of shardNames) {
   for (const [k, rows] of Object.entries(body)) for (const row of rows) {
     const m = String(row[3]), L = LISTED.get(m);
     if (!L) {
-      if (row.length > CLOSES_SLOT) refuse(`${name} ${k}: a row of ${m}, which no list names, carries the closes slot`);
+      if ((row[CLOSES_SLOT] ?? null) !== null) refuse(`${name} ${k}: a row of ${m}, which no list names, carries the closes slot`);
       continue;
     }
     const t = of(m); t.rows += 1;
@@ -231,12 +236,11 @@ for (const name of shardNames) {
     if (definition) { t.rows_with_a_close_on_the_definition_text += 1; t.closes_on_definition_texts += definition.length; }
     if (route || definition) t.rows_with_a_close_on_either += 1;
     const want = route || definition ? [route, definition] : null;
-    const has = row.length > CLOSES_SLOT ? row[CLOSES_SLOT] : null;
+    const has = row[CLOSES_SLOT] ?? null;
     if (same(has, want)) continue;
     t.rows_moved += 1; moved += 1;
     if (DRY) continue;
-    if (want) { while (row.length < CLOSES_SLOT) row.push(null); row[CLOSES_SLOT] = want; }
-    else { row.length = CLOSES_SLOT; if (row[8] === null) { row.length = 8; if (row[7] === null) row.length = 7; } }
+    setSlot(row, CLOSES_SLOT, want);   // a later slot stays where it is
   }
   if (moved) { touched.push(name); if (!DRY) writeFileSync(path, gzipSync(Buffer.from(JSON.stringify(body)), { level: 9 })); }
 }
@@ -266,11 +270,18 @@ const movedOnlyByThisRule = (from) => {
   return since.every((h, i) => h.why === MADE_SPACES_RULE_ID && (!i || h.was === since[i - 1].now)) && since[since.length - 1].now === index.store_version;
 };
 const recorded = ((index.made_spaces || {}).sources) || {};
+// the sha256 a source's rows had when a run last found them the rows its list was read from, as the index keeps it
+// for the same relay's reading. A record written before the index kept it apart held one sha256 and the flag:
+// where that flag says the rows were as read, its sha256 is the one.
+const asReadWas = (m, L) => {
+  const r = recorded[m];
+  if (!r || r.read_at_store_version !== L.readAt) return null;
+  return r.texts_sha256_as_read !== undefined ? r.texts_sha256_as_read : r.texts_are_as_read === true ? r.texts_sha256 : null;
+};
 const asRead = (m, L, fingerprint) => {
   if (index.store_version === L.readAt) return "the store is the version the list was read from";
   if (movedOnlyByThisRule(L.readAt)) return "every move of the store since that version is this rule's, which changes no text";
-  const r = recorded[m];
-  if (r && r.texts_are_as_read === true && r.read_at_store_version === L.readAt && r.texts_sha256 === fingerprint) return "the source's rows hold the texts they held when an earlier run found them as read";
+  if (asReadWas(m, L) === fingerprint) return "the source's rows hold the texts they held when an earlier run found them as read";
   return null;
 };
 
@@ -293,7 +304,7 @@ for (const [m, L] of LISTED) {
   if (road && differ) refuse(`${L.file}: ${differ} line(s) state row counts that are not this store's, and the source's rows are the rows the list was read from (${L.readAt}: ${road}); first: ${JSON.stringify(differing[0])}`);
   if (road && !countsAgree) refuse(`${m}: rows holding a close are ${JSON.stringify(counts)} (here, the corpus lane's receipt) and the source's rows are the rows the list was read from (${L.readAt}: ${road})`);
   const noted = [...L.lines.values()].filter((l) => l.note);
-  named[m] = { key: L.key, relay: L.relay, read_at_store_version: L.readAt, texts_sha256: fingerprint, texts_are_as_read: !!road };
+  named[m] = { key: L.key, relay: L.relay, read_at_store_version: L.readAt, texts_sha256: fingerprint, texts_sha256_as_read: road ? fingerprint : asReadWas(m, L), texts_are_as_read: !!road };
   sources[m] = { key: L.key, label: L.label, relay: L.relay, list: { file: `${HOME}/${L.file}`, sha256: L.sha256, lines: L.lines.size,
       lines_with_a_close: [...L.lines.values()].filter((l) => l.closes.length).length, lines_no_row_serves: unserved,
       made_spaces_kept: [...L.lines.values()].reduce((a, l) => a + (l.kept || []).length, 0), lines_with_a_note: noted.length },

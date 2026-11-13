@@ -34,7 +34,10 @@
 //       of the listed sources hold no close
 //   M4  the store's index names the rule, the pin, the relays, the lists and
 //       the never-closed files, each source's rows as they stand now (the
-//       sha256 of their keys and texts) and totals that are a recount's
+//       sha256 of their keys and texts) and totals that are a recount's; and
+//       it says a source's rows are the rows its list was read from exactly
+//       where they stand as they stood when a run found them so (the second
+//       sha256 it keeps)
 //   M5  the corpus lane's own counts, for each source whose rows are the rows
 //       its list was read from: the rows that hold a close, and the rows
 //       that still print a space before a comma once closed (the provider's
@@ -42,7 +45,10 @@
 //       never touched). The rows are those rows where the store's own history
 //       shows no move but this rule's since the version the relay read, or
 //       where they hold the texts the index recorded when that was so. For a
-//       source whose rows have moved on, the counts are said and not judged
+//       source whose rows have moved on, the counts are said and not judged.
+//       (That record is the index's own witness: an index whose flag and
+//       second sha256 were both rewritten cannot be told from a store that
+//       moved on, and its counts are then said, not judged.)
 //   M6  by a second road, what prints: a row's route as printed is its line's
 //       `prints`; its record as printed is its definition line's; and its
 //       readings are that `prints` cut at the row's own marks, each mark's
@@ -208,9 +214,9 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
   for (const [k, rows] of Object.entries(body)) for (const row of rows) {
     storeRows += 1;
     const m = String(row[3]), L = LISTED.get(m);
-    const has = row.length > CLOSES_SLOT ? row[CLOSES_SLOT] : null;
-    if (row.length > CLOSES_SLOT + 1) rowFaults.push(`${f} ${k} (${m}): ${row.length} slots`);
-    if (!L) { if (has !== null || row.length > CLOSES_SLOT) rowFaults.push(`${f} ${k} (${m}): a row of a source no list names carries the slot`); continue; }
+    // the slot is asked by what it holds: a row may carry a later slot (its facts), whose shape is its own check's
+    const has = row[CLOSES_SLOT] ?? null;
+    if (!L) { if (has !== null) rowFaults.push(`${f} ${k} (${m}): a row of a source no list names carries the slot`); continue; }
     const c = (recount[m] ||= { rows: 0, route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0, texts: [] });
     c.rows += 1;
     c.texts.push(JSON.stringify([k, row[1] ?? null, row[2] ?? null]));
@@ -261,6 +267,7 @@ else {
     const r = (ms.sources || {})[m];
     if (!r || r.key !== L.key || r.relay !== L.relay || r.read_at_store_version !== L.readAt) indexFaults.push(`the index does not say which relay ${m}'s list is of, or the version it was read from`);
     else if (r.texts_sha256 !== standsAs(m)) indexFaults.push(`the index's record of ${m}'s rows (${String(r.texts_sha256).slice(0, 12)}) is not the rows as they stand (${standsAs(m).slice(0, 12)}): the tool has not run since they moved`);
+    else if (r.texts_are_as_read !== (typeof r.texts_sha256_as_read === "string" && r.texts_sha256_as_read === r.texts_sha256)) indexFaults.push(`the index says ${m}'s rows ${r.texts_are_as_read ? "are" : "are not"} the rows its list was read from, and its two records of them (as read ${String(r.texts_sha256_as_read).slice(0, 12)}, as they stand ${String(r.texts_sha256).slice(0, 12)}) say otherwise`);
   }
   for (const m of Object.keys(ms.sources || {})) if (!LISTED.has(m)) indexFaults.push(`the index records rows of ${m}, which no list names`);
   const t = ms.totals || {};
@@ -292,7 +299,7 @@ for (const [m, L] of LISTED) {
   const said = `${m} ${nf(c.route)}/${nf(c.definition)}/${nf(c.either)} rows close, ${c.stillRoute} and ${c.stillRecord} still print a space before a comma`;
   const rec = (ms && ms.sources && ms.sources[m]) || null;
   const byHistory = !!L.readAt && reachedByThisRuleAlone(L.readAt);
-  const byRecord = !!rec && rec.texts_are_as_read === true && rec.read_at_store_version === L.readAt && rec.texts_sha256 === standsAs(m);
+  const byRecord = !!rec && rec.read_at_store_version === L.readAt && typeof rec.texts_sha256_as_read === "string" && rec.texts_sha256_as_read === standsAs(m);
   if (byHistory && rec && rec.texts_are_as_read !== true) countFaults.push(`${m}: the store's history shows no move but this rule's since ${L.readAt}, and the index says the source's rows are not the rows its list was read from`);
   if (byHistory || byRecord) { countFaults.push(...differing); judgedSources.push(`${said} (as read at ${L.readAt}, ${byHistory ? "by the store's history" : "by the texts the index recorded"})`); }
   else saidOnly.push(`${said}${differing.length ? ` (${differing.length} of the corpus lane's counts differ now)` : ""}, its rows have moved on from ${L.readAt}`);
@@ -413,7 +420,9 @@ const KINDS = [
   { name: "route", most: 4, of: (r) => !!r[CLOSES_SLOT][0] && readingKey(String(r[1]).trim()) !== readingKey(routePrinted(r).trim()) },
   { name: "record", most: 4, of: (r) => !r[CLOSES_SLOT][0] && !!r[CLOSES_SLOT][1] && !!r[2] && printedForm(String(r[2])) !== printedForm(recordPrinted(r)) },
 ];
-const whole = (r) => r.length > CLOSES_SLOT && !Array.isArray(r[7]) && !Array.isArray(r[8]);
+// a row that carries closes, asked by what the slot holds (a row may carry a later slot and none here), and that
+// its ledger leaves whole
+const whole = (r) => Array.isArray(r[CLOSES_SLOT]) && !Array.isArray(r[7]) && !Array.isArray(r[8]);
 // the sources and kinds the store holds a whole row of: [m id, kind]
 const ASKED = [...LISTED.keys()].flatMap((m) => KINDS.filter((kind) => slotted.some(([, r]) => String(r[3]) === m && whole(r) && kind.of(r))).map((kind) => [m, kind]));
 const tag = (m, kind) => `${m} ${kind.name}`;

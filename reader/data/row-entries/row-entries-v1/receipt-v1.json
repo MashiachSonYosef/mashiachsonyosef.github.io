@@ -1,0 +1,1493 @@
+{
+ "name": "row entries v1: the entry each row of the route store belongs to, where its source says so",
+ "written": "13 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 11199,
+  "sha256": "da37422ae459d28e0f63edf4644dd14bf08f9c541730d6d785a759a43c321fc5"
+ },
+ "builder": {
+  "file": "build-row-entries-v1.mjs",
+  "bytes": 26776,
+  "sha256": "9808f9725028b62baf4340acefcd4f7760087f087af67e115dd70cd1a3273faf"
+ },
+ "inputs": {
+  "route_store": {
+   "read_from": "https://fireandhail.com/reader/data/route-store/",
+   "read_on": "12 November 2026 AD",
+   "store_version": "90d9eb8e7082",
+   "index": {
+    "file": "index.json",
+    "bytes": 144252,
+    "sha256": "385fc721c92d328a25135c82408c4907f3e1d762bc6d702b2ec2f1dfb79eaa9d"
+   },
+   "shards": 256,
+   "sha256_of_the_shards": "a4e51436adc14472aec3f096e7db921d5970d3b7d68b1cc0304ab78828c0f151"
+  },
+  "row_strikes": {
+   "read_from": "https://fireandhail.com/reader/data/row-strikes-v1.json",
+   "read_on": "13 November 2026 AD",
+   "file": "row-strikes-v1.json",
+   "bytes": 6069296,
+   "sha256": "9813318db49ac11e4915a1dbfe9d1379642105a50f3f07983ac6088eb791ce8b",
+   "schema_version": "ROW_STRIKES_V2",
+   "rounds": 16
+  },
+  "catalog": {
+   "file": "structured-evidence-catalog-v86.csv.gz",
+   "bytes": 136280475,
+   "sha256": "a563c2f33f07e26ada3cbe57e5924dfac710532b434978bc07b31b46bff8fedf",
+   "data_lines": 1156876,
+   "rows_of_the_fifteen_sources": 448776,
+   "by_source": {
+    "M4": 106797,
+    "M3": 51940,
+    "M17": 46856,
+    "M18": 46066,
+    "M9": 43836,
+    "M5": 37557,
+    "M7": 28536,
+    "M14": 24601,
+    "M23": 15247,
+    "M46": 14121,
+    "M45": 11997,
+    "M19": 11702,
+    "M33": 9297,
+    "M97": 116,
+    "M184": 107
+   }
+  },
+  "sidecar": {
+   "file": "store-unmerged/index.json",
+   "bytes": 97939,
+   "sha256": "671c48fbca0ab2f7a080f0d70ab72cbc6f1cf15a137c6e5af6bb8a7c94f6b534",
+   "cards_met": 425439
+  },
+  "providers": [
+   {
+    "file": "LexicalIndex.xml",
+    "bytes": 1782592,
+    "sha256": "8f7a605c58899d2f44430149c143c00903976e1e91232476677972a69e5bc85f"
+   },
+   {
+    "file": "unabridged-BDB-Hebrew-lexicon.csv",
+    "bytes": 33717788,
+    "sha256": "5e865974edbc704b58e6b33c2ccf96690fe1e2cda2fbc3442d2a30e8b2292ccc"
+   },
+   {
+    "file": "UBSHebrewDic-v0.9.2-en.JSON",
+    "bytes": 23110129,
+    "sha256": "1686a25dd31dc9afb7b932927e160070667c73caedad11aa7e4482c21f800e8e"
+   },
+   {
+    "file": "biblicaltools-2026-07-12-hebrew-word-of-day.json",
+    "bytes": 4018670,
+    "sha256": "aa3fc5c76ca24090b84334e4f95f86c83bce56dcb0becb10de0d86cb9437adb5"
+   },
+   {
+    "file": "macula-hebrew.tsv",
+    "bytes": 84382719,
+    "sha256": "965cb0599beed2fe31283b615bcc369178141c0e718a66d97518d94309cfc124"
+   },
+   {
+    "file": "TAHOT Gen-Deu - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 18190455,
+    "sha256": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b"
+   },
+   {
+    "file": "TAHOT Jos-Est - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 24500317,
+    "sha256": "195fee1dc3653bab33701f170734eb894ed647c10cd08cc61749375fe8b73775"
+   },
+   {
+    "file": "TAHOT Job-Sng - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 9540133,
+    "sha256": "84e118a97e5725e3847cdfdd593873513021c790c63cc91a0d41fca2b5db2ed5"
+   },
+   {
+    "file": "TAHOT Isa-Mal - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 17977518,
+    "sha256": "f3ded203d2a74d6368932c97ae550d1d0754b271af491dc0dedf36fe3ba0bcc5"
+   }
+  ],
+  "catalog_builder_code": [
+   {
+    "file": "stepbible_routes.mjs",
+    "bytes": 9141,
+    "sha256": "5f567a5bcce9f42ec6809c79c48ba845a93394350ba01ac384b9079111d4d0e4"
+   },
+   {
+    "file": "panlex_hebrew_english_routes.mjs",
+    "bytes": 13580,
+    "sha256": "a93856f41b9af881a3afd02c1a71edf1e7113a9e7ce77d5b26d125bf5eb3be03"
+   },
+   {
+    "file": "macula_hebrew_surface_gloss_routes.mjs",
+    "bytes": 11453,
+    "sha256": "a70944adbce45fee45fbe718c7caabc1a681130159e416eed22581b6d2baea2d"
+   }
+  ],
+  "sha256_of_the_shards": "the sha256 of the lines \"<shard> <sha256 of the shard>\", one per shard in name order, each ending in a line feed"
+ },
+ "output": {
+  "file": "row-entries-v1.jsonl",
+  "bytes": 25201587,
+  "sha256": "16f29ee3f43c3f94295aaf2d38a7c4859539449982e14154f63dcbb14632deb4",
+  "lines": 52793,
+  "line": "{\"k\": key, \"rows\": [row, ...]}, one per key, in the store's order",
+  "row_slots": [
+   "rank",
+   "m_id",
+   "the first 16 hex of the sha256 of the route text's UTF-8 bytes",
+   "road: text, definition, strikes or unreached",
+   "entries, distinct, in the order first met; for M4 and M3 each is [entry, places]",
+   "numbers, distinct, ascending"
+  ]
+ },
+ "totals_over_the_fifteen_sources": {
+  "rows": 382258,
+  "one number": 304483,
+  "several numbers": 69332,
+  "no number": 8443,
+  "unreached": 0
+ },
+ "totals_counting_only_numbers_below_H9000": {
+  "one entry's number": 356500,
+  "several entries' numbers": 16062,
+  "no entry's number": 9696,
+  "unreached": 0
+ },
+ "by_source": {
+  "M9": {
+   "label": "Strong's Hebrew Dictionary via Open Scriptures",
+   "rows": 23646,
+   "road": {
+    "text": 23644,
+    "definition": 2
+   },
+   "class": {
+    "one number": 23463,
+    "several numbers": 183
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 23463,
+    "several entries' numbers": 183
+   },
+   "distinct_entries": 8359,
+   "distinct_numbers": 8359,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "אדר",
+      "rank": 71,
+      "text": "Adar.",
+      "entries": [
+       "H143",
+       "H144"
+      ],
+      "numbers": [
+       "H143",
+       "H144"
+      ]
+     },
+     {
+      "k": "חלק",
+      "rank": 163,
+      "text": "smooth.",
+      "entries": [
+       "H2511",
+       "H2512"
+      ],
+      "numbers": [
+       "H2511",
+       "H2512"
+      ]
+     },
+     {
+      "k": "מישך",
+      "rank": 6,
+      "text": "Meshak.",
+      "entries": [
+       "H4335",
+       "H4336"
+      ],
+      "numbers": [
+       "H4335",
+       "H4336"
+      ]
+     },
+     {
+      "k": "עתיק",
+      "rank": 25,
+      "text": "antique",
+      "entries": [
+       "H6266",
+       "H6267"
+      ],
+      "numbers": [
+       "H6266",
+       "H6267"
+      ]
+     }
+    ],
+    "no number": []
+   }
+  },
+  "M14": {
+   "label": "Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource",
+   "rows": 148343,
+   "road": {
+    "text": 148210,
+    "definition": 133
+   },
+   "class": {
+    "one number": 146636,
+    "several numbers": 1707
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 146636,
+    "several entries' numbers": 1707
+   },
+   "distinct_entries": 5806,
+   "distinct_numbers": 5806,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "קדש",
+      "rank": 228,
+      "text": "saint",
+      "entries": [
+       "H6918",
+       "H6944"
+      ],
+      "numbers": [
+       "H6918",
+       "H6944"
+      ]
+     },
+     {
+      "k": "קדש",
+      "rank": 230,
+      "text": "saint",
+      "entries": [
+       "H6918",
+       "H6944"
+      ],
+      "numbers": [
+       "H6918",
+       "H6944"
+      ]
+     },
+     {
+      "k": "אסור",
+      "rank": 37,
+      "text": "band",
+      "entries": [
+       "H612",
+       "H613"
+      ],
+      "numbers": [
+       "H612",
+       "H613"
+      ]
+     },
+     {
+      "k": "אסור",
+      "rank": 38,
+      "text": "band",
+      "entries": [
+       "H612",
+       "H613"
+      ],
+      "numbers": [
+       "H612",
+       "H613"
+      ]
+     }
+    ],
+    "no number": []
+   }
+  },
+  "M5": {
+   "label": "Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures",
+   "rows": 15238,
+   "road": {
+    "text": 15238
+   },
+   "class": {
+    "one number": 13095,
+    "several numbers": 1273,
+    "no number": 870
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 13095,
+    "several entries' numbers": 1273,
+    "no entry's number": 870
+   },
+   "distinct_entries": 6182,
+   "distinct_numbers": 5796,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "אדר",
+      "rank": 33,
+      "text": "wide",
+      "entries": [
+       "a.bf.aa",
+       "a.bf.ab"
+      ],
+      "numbers": [
+       "H142",
+       "H145"
+      ]
+     },
+     {
+      "k": "אדר",
+      "rank": 36,
+      "text": "noble",
+      "entries": [
+       "a.bf.aa",
+       "a.bf.ad"
+      ],
+      "numbers": [
+       "H142",
+       "H146"
+      ]
+     },
+     {
+      "k": "קדש",
+      "rank": 148,
+      "text": "temple-prostitute",
+      "entries": [
+       "s.an.ae"
+      ],
+      "numbers": [
+       "H6945",
+       "H6948"
+      ]
+     },
+     {
+      "k": "קדש",
+      "rank": 149,
+      "text": "harlot",
+      "entries": [
+       "s.an.ae"
+      ],
+      "numbers": [
+       "H6945",
+       "H6948"
+      ]
+     }
+    ],
+    "no number": [
+     {
+      "k": "טלם",
+      "rank": 5,
+      "text": "oppress, injure",
+      "entries": [
+       "i.ax.aa"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אוה",
+      "rank": 18,
+      "text": "betake oneself",
+      "entries": [
+       "a.br.aa"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אוה",
+      "rank": 19,
+      "text": "be tenderly inclined",
+      "entries": [
+       "a.br.aa"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אוה",
+      "rank": 28,
+      "text": "to cry",
+      "entries": [
+       "a.bv.aa"
+      ],
+      "numbers": []
+     }
+    ]
+   }
+  },
+  "M33": {
+   "label": "Open Scriptures Hebrew Lexical Index",
+   "rows": 138,
+   "road": {
+    "text": 138
+   },
+   "class": {
+    "one number": 136,
+    "no number": 1,
+    "several numbers": 1
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 136,
+    "no entry's number": 1,
+    "several entries' numbers": 1
+   },
+   "distinct_entries": 141,
+   "distinct_numbers": 137,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "עזר",
+      "rank": 30,
+      "text": "Ezer. Compare",
+      "entries": [
+       "jgm",
+       "jgo"
+      ],
+      "numbers": [
+       "H5827",
+       "H5829"
+      ]
+     }
+    ],
+    "no number": [
+     {
+      "k": "ה",
+      "rank": 64,
+      "text": "interrogative particle",
+      "entries": [
+       "cxq",
+       "ogl"
+      ],
+      "numbers": []
+     }
+    ]
+   }
+  },
+  "M46": {
+   "label": "Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source",
+   "rows": 8915,
+   "road": {
+    "text": 8892,
+    "strikes": 23
+   },
+   "class": {
+    "one number": 7593,
+    "several numbers": 1270,
+    "no number": 52
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 7542,
+    "several entries' numbers": 1270,
+    "no entry's number": 103
+   },
+   "distinct_entries": 4773,
+   "distinct_numbers": 4931,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "קדש",
+      "rank": 185,
+      "text": "apartness, sacredness",
+      "entries": [
+       "BDB7322"
+      ],
+      "numbers": [
+       "H6946",
+       "H6994"
+      ]
+     },
+     {
+      "k": "קדש",
+      "rank": 186,
+      "text": "apartness, sacredness, holiness",
+      "entries": [
+       "BDB7322"
+      ],
+      "numbers": [
+       "H6946",
+       "H6994"
+      ]
+     },
+     {
+      "k": "קדש",
+      "rank": 187,
+      "text": "of places set apart as sacred by God's presence: a",
+      "entries": [
+       "BDB7322"
+      ],
+      "numbers": [
+       "H6946",
+       "H6994"
+      ]
+     },
+     {
+      "k": "קדש",
+      "rank": 188,
+      "text": "things consecrated at sacred places: a. furniture ",
+      "entries": [
+       "BDB7322"
+      ],
+      "numbers": [
+       "H6946",
+       "H6994"
+      ]
+     }
+    ],
+    "no number": [
+     {
+      "k": "אוה",
+      "rank": 37,
+      "text": "be tenderly inclined.",
+      "entries": [
+       "BDB173"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אסור",
+      "rank": 33,
+      "text": "band, bond",
+      "entries": [
+       "BDB637"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "שועל",
+      "rank": 10,
+      "text": "in Asher",
+      "entries": [
+       "BDB8913"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "מום",
+      "rank": 10,
+      "text": "physical, a. in man, as excluding from priestly se",
+      "entries": [
+       "BDB4488"
+      ],
+      "numbers": []
+     }
+    ]
+   }
+  },
+  "M4": {
+   "label": "STEP Bible Translators Amalgamated Hebrew OT aligned component translation",
+   "rows": 95033,
+   "road": {
+    "text": 95013,
+    "strikes": 20
+   },
+   "class": {
+    "several numbers": 53815,
+    "one number": 41218
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 93287,
+    "no entry's number": 1201,
+    "several entries' numbers": 545
+   },
+   "distinct_entries": 8848,
+   "distinct_numbers": 7188,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "אביך",
+      "rank": 1,
+      "text": "father/ your",
+      "entries": [
+       [
+        "H0001G",
+        100
+       ],
+       [
+        "H9021",
+        91
+       ],
+       [
+        "H9022",
+        9
+       ]
+      ],
+      "numbers": [
+       "H1",
+       "H9021",
+       "H9022"
+      ]
+     },
+     {
+      "k": "אביך",
+      "rank": 2,
+      "text": "ancestor/ your",
+      "entries": [
+       [
+        "H0001G",
+        11
+       ],
+       [
+        "H9021",
+        11
+       ]
+      ],
+      "numbers": [
+       "H1",
+       "H9021"
+      ]
+     },
+     {
+      "k": "אגפיה",
+      "rank": 1,
+      "text": "troops/ its",
+      "entries": [
+       [
+        "H0102",
+        1
+       ],
+       [
+        "H9024",
+        1
+       ]
+      ],
+      "numbers": [
+       "H102",
+       "H9024"
+      ]
+     },
+     {
+      "k": "אחזתו",
+      "rank": 1,
+      "text": "possession/ his",
+      "entries": [
+       [
+        "H0272",
+        14
+       ],
+       [
+        "H9023",
+        14
+       ]
+      ],
+      "numbers": [
+       "H272",
+       "H9023"
+      ]
+     }
+    ],
+    "no number": []
+   }
+  },
+  "M3": {
+   "label": "MACULA exact Hebrew morph surfaces with Cherith English definitions",
+   "rows": 43294,
+   "road": {
+    "text": 43294
+   },
+   "class": {
+    "one number": 42835,
+    "several numbers": 459
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 42835,
+    "several entries' numbers": 459
+   },
+   "distinct_entries": 5893,
+   "distinct_numbers": 5367,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "עיני",
+      "rank": 1,
+      "text": "eyes",
+      "entries": [
+       [
+        "5869",
+        368
+       ],
+       [
+        "5870",
+        1
+       ]
+      ],
+      "numbers": [
+       "H5869",
+       "H5870"
+      ]
+     },
+     {
+      "k": "קדש",
+      "rank": 244,
+      "text": "Holy",
+      "entries": [
+       [
+        "6944",
+        7
+       ],
+       [
+        "6918",
+        2
+       ]
+      ],
+      "numbers": [
+       "H6918",
+       "H6944"
+      ]
+     },
+     {
+      "k": "שבי",
+      "rank": 19,
+      "text": "sit",
+      "entries": [
+       [
+        "3427",
+        4
+       ],
+       [
+        "7628",
+        1
+       ]
+      ],
+      "numbers": [
+       "H3427",
+       "H7628"
+      ]
+     },
+     {
+      "k": "מתנת",
+      "rank": 1,
+      "text": "gifts",
+      "entries": [
+       [
+        "4979",
+        2
+       ],
+       [
+        "4978",
+        1
+       ]
+      ],
+      "numbers": [
+       "H4978",
+       "H4979"
+      ]
+     }
+    ],
+    "no number": []
+   }
+  },
+  "M7": {
+   "label": "unfoldingWord Hebrew-Aramaic Lexicon",
+   "rows": 293,
+   "road": {
+    "text": 293
+   },
+   "class": {
+    "one number": 293
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 293
+   },
+   "distinct_entries": 79,
+   "distinct_numbers": 79,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [],
+    "no number": []
+   }
+  },
+  "M17": {
+   "label": "Semantic Dictionary of Biblical Hebrew via HiperBiblia",
+   "rows": 14821,
+   "road": {
+    "text": 14820,
+    "definition": 1
+   },
+   "class": {
+    "one number": 11039,
+    "several numbers": 3782
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 11039,
+    "several entries' numbers": 3782
+   },
+   "distinct_entries": 5663,
+   "distinct_numbers": 5444,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "בטן",
+      "rank": 1,
+      "text": "belly",
+      "entries": [
+       "H990",
+       "H991"
+      ],
+      "numbers": [
+       "H990",
+       "H991"
+      ]
+     },
+     {
+      "k": "בטן",
+      "rank": 2,
+      "text": "womb",
+      "entries": [
+       "H990",
+       "H991"
+      ],
+      "numbers": [
+       "H990",
+       "H991"
+      ]
+     },
+     {
+      "k": "בטן",
+      "rank": 3,
+      "text": "stomach",
+      "entries": [
+       "H990",
+       "H991"
+      ],
+      "numbers": [
+       "H990",
+       "H991"
+      ]
+     },
+     {
+      "k": "בטן",
+      "rank": 4,
+      "text": "inmost parts",
+      "entries": [
+       "H990",
+       "H991"
+      ],
+      "numbers": [
+       "H990",
+       "H991"
+      ]
+     }
+    ],
+    "no number": []
+   }
+  },
+  "M18": {
+   "label": "UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses",
+   "rows": 21626,
+   "road": {
+    "text": 21626
+   },
+   "class": {
+    "one number": 14815,
+    "several numbers": 6804,
+    "no number": 7
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 14815,
+    "several entries' numbers": 6804,
+    "no entry's number": 7
+   },
+   "distinct_entries": 7603,
+   "distinct_numbers": 8321,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "אדר",
+      "rank": 48,
+      "text": "month, equivalent to period February/March; ► post",
+      "entries": [
+       "000143000000000"
+      ],
+      "numbers": [
+       "H143",
+       "H144"
+      ]
+     },
+     {
+      "k": "בטן",
+      "rank": 21,
+      "text": "front part of the human trunk below the ribs, cont",
+      "entries": [
+       "000920000000000"
+      ],
+      "numbers": [
+       "H990",
+       "H991"
+      ]
+     },
+     {
+      "k": "בטן",
+      "rank": 22,
+      "text": "entire human body ◄ as a metonymic extension of th",
+      "entries": [
+       "000920000000000"
+      ],
+      "numbers": [
+       "H990",
+       "H991"
+      ]
+     },
+     {
+      "k": "בטן",
+      "rank": 23,
+      "text": "belly-shaped rounded projection in a pillar",
+      "entries": [
+       "000920000000000"
+      ],
+      "numbers": [
+       "H990",
+       "H991"
+      ]
+     }
+    ],
+    "no number": [
+     {
+      "k": "ה",
+      "rank": 65,
+      "text": "marker denoting that the truth value of the follow",
+      "entries": [
+       "001736000000000"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "תוה",
+      "rank": 27,
+      "text": "state in which humans are unable to act, ◄ as a ph",
+      "entries": [
+       "007741000000000"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "תוה",
+      "rank": 28,
+      "text": "to be astonished",
+      "entries": [
+       "007741000000000"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "תוה",
+      "rank": 29,
+      "text": "to be stupefied",
+      "entries": [
+       "007741000000000"
+      ],
+      "numbers": []
+     }
+    ]
+   }
+  },
+  "M19": {
+   "label": "STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column",
+   "rows": 2645,
+   "road": {
+    "text": 2645
+   },
+   "class": {
+    "one number": 2609,
+    "several numbers": 36
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 2608,
+    "several entries' numbers": 36,
+    "no entry's number": 1
+   },
+   "distinct_entries": 2711,
+   "distinct_numbers": 2055,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "צלח",
+      "rank": 10,
+      "text": "to prosper",
+      "entries": [
+       "H6743B",
+       "H6744"
+      ],
+      "numbers": [
+       "H6743",
+       "H6744"
+      ]
+     },
+     {
+      "k": "נטל",
+      "rank": 7,
+      "text": "to lift",
+      "entries": [
+       "H5190",
+       "H5191"
+      ],
+      "numbers": [
+       "H5190",
+       "H5191"
+      ]
+     },
+     {
+      "k": "ימיני",
+      "rank": 4,
+      "text": "[Ben]jaminite",
+      "entries": [
+       "H3227B",
+       "H3228G"
+      ],
+      "numbers": [
+       "H3227",
+       "H3228"
+      ]
+     },
+     {
+      "k": "פלג",
+      "rank": 9,
+      "text": "to divide",
+      "entries": [
+       "H6385",
+       "H6386"
+      ],
+      "numbers": [
+       "H6385",
+       "H6386"
+      ]
+     }
+    ],
+    "no number": []
+   }
+  },
+  "M45": {
+   "label": "BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas",
+   "rows": 753,
+   "road": {
+    "text": 753
+   },
+   "class": {
+    "one number": 751,
+    "several numbers": 2
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "one entry's number": 751,
+    "several entries' numbers": 2
+   },
+   "distinct_entries": 737,
+   "distinct_numbers": 737,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [
+     {
+      "k": "מישך",
+      "rank": 3,
+      "text": "Meshak",
+      "entries": [
+       "h4336",
+       "h4335"
+      ],
+      "numbers": [
+       "H4335",
+       "H4336"
+      ]
+     },
+     {
+      "k": "תן",
+      "rank": 8,
+      "text": "serpent",
+      "entries": [
+       "h8577",
+       "h8565"
+      ],
+      "numbers": [
+       "H8565",
+       "H8577"
+      ]
+     }
+    ],
+    "no number": []
+   }
+  },
+  "M23": {
+   "label": "Classical Hebrew Words database",
+   "rows": 7321,
+   "road": {
+    "text": 7315,
+    "definition": 6
+   },
+   "class": {
+    "no number": 7321
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "no entry's number": 7321
+   },
+   "distinct_entries": 7261,
+   "distinct_numbers": 0,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [],
+    "no number": [
+     {
+      "k": "אדר",
+      "rank": 54,
+      "text": "be majestic",
+      "entries": [
+       "record:234"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אדר",
+      "rank": 55,
+      "text": "Addar (pr.n.)",
+      "entries": [
+       "record:236"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אדר",
+      "rank": 56,
+      "text": "Addar (pl.n.)",
+      "entries": [
+       "record:237"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אדר",
+      "rank": 57,
+      "text": "majesty",
+      "entries": [
+       "record:238"
+      ],
+      "numbers": []
+     }
+    ]
+   }
+  },
+  "M97": {
+   "label": "Davidson 1855 Analytical Hebrew and Chaldee Lexicon manually source-image-reviewed exact English definitions v1",
+   "rows": 85,
+   "road": {
+    "text": 85
+   },
+   "class": {
+    "no number": 85
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "no entry's number": 85
+   },
+   "distinct_entries": 6,
+   "distinct_numbers": 0,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [],
+    "no number": [
+     {
+      "k": "אבדון",
+      "rank": 25,
+      "text": "place of destruction",
+      "entries": [
+       "n105_w1800:1621,0,3243,4472"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אבדון",
+      "rank": 26,
+      "text": "abyss",
+      "entries": [
+       "n105_w1800:1621,0,3243,4472"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אבישוע",
+      "rank": 13,
+      "text": "father of prosperity",
+      "entries": [
+       "n105_w1800:0,0,1621,4472"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אביחיל",
+      "rank": 14,
+      "text": "father of valour",
+      "entries": [
+       "n104_w1800:1590,0,3180,4422"
+      ],
+      "numbers": []
+     }
+    ]
+   }
+  },
+  "M184": {
+   "label": "Kethoneth Yoseph 1887 source-image-reviewed exact Hebrew abbreviation definitions",
+   "rows": 107,
+   "road": {
+    "text": 107
+   },
+   "class": {
+    "no number": 107
+   },
+   "class_counting_only_numbers_below_H9000": {
+    "no entry's number": 107
+   },
+   "distinct_entries": 84,
+   "distinct_numbers": 0,
+   "rows_with_a_catalog_row_whose_entry_is_not_read": 0,
+   "examples": {
+    "several numbers": [],
+    "no number": [
+     {
+      "k": "בה״א",
+      "rank": 1,
+      "text": "the college of Hillel says.",
+      "entries": [
+       "printed-013-n26:266,1878,1751,2010"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "ש״ק",
+      "rank": 1,
+      "text": "the holy Sabbath.",
+      "entries": [
+       "printed-115-n128:269,976,1349,1107"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "אאע״ה",
+      "rank": 1,
+      "text": "our father Abraham, may peace be on him.",
+      "entries": [
+       "printed-002-n15:266,427,1747,650"
+      ],
+      "numbers": []
+     },
+     {
+      "k": "קה״ק",
+      "rank": 1,
+      "text": "the holy of holies.",
+      "entries": [
+       "printed-100-n113:239,455,1480,603"
+      ],
+      "numbers": []
+     }
+    ]
+   }
+  }
+ },
+ "sources_that_name_no_number": {
+  "what": "every other m_id of the store, with its rows; no line is written for them",
+  "rows": 270696,
+  "by_m_id": {
+   "M25": 72066,
+   "M21": 28424,
+   "M11": 25287,
+   "M6": 23065,
+   "M13": 16225,
+   "M15": 12354,
+   "M1": 10023,
+   "M42": 9831,
+   "M50": 6278,
+   "M37": 6156,
+   "M32": 5363,
+   "M10": 5294,
+   "M43": 4174,
+   "M22": 3955,
+   "M69": 3721,
+   "M41": 3617,
+   "M28": 3021,
+   "M74": 2679,
+   "M36": 2553,
+   "M29": 2273,
+   "M60": 2222,
+   "M38": 1939,
+   "M59": 1779,
+   "M53": 1543,
+   "M48": 1541,
+   "M62": 1449,
+   "M54": 1122,
+   "M96": 1059,
+   "M64": 974,
+   "M80": 974,
+   "M34": 850,
+   "M55": 827,
+   "M58": 735,
+   "M27": 657,
+   "M92": 642,
+   "M116": 575,
+   "M85": 571,
+   "M72": 499,
+   "M95": 452,
+   "M102": 428,
+   "M57": 313,
+   "M79": 269,
+   "M98": 267,
+   "M90": 259,
+   "M44": 223,
+   "M71": 209,
+   "M105": 161,
+   "M86": 158,
+   "M123": 148,
+   "M68": 130,
+   "M111": 122,
+   "M61": 114,
+   "M128": 110,
+   "M135": 107,
+   "M93": 106,
+   "M129": 75,
+   "M87": 73,
+   "M2": 53,
+   "M133": 49,
+   "M152": 48,
+   "M76": 46,
+   "M162": 39,
+   "M149": 36,
+   "M151": 25,
+   "M110": 24,
+   "M137": 22,
+   "M150": 21,
+   "M130": 20,
+   "M138": 20,
+   "M155": 20,
+   "M73": 19,
+   "M154": 15,
+   "M177": 14,
+   "M132": 13,
+   "M148": 13,
+   "M165": 13,
+   "M94": 12,
+   "M142": 11,
+   "M160": 11,
+   "M174": 11,
+   "M163": 10,
+   "M157": 9,
+   "M139": 8,
+   "M161": 8,
+   "M164": 7,
+   "M81": 7,
+   "M183": 6,
+   "M144": 5,
+   "M171": 5,
+   "M173": 5,
+   "M145": 4,
+   "M169": 4,
+   "M179": 4,
+   "M167": 3,
+   "M187": 3,
+   "M170": 2,
+   "M188": 2,
+   "M189": 2,
+   "M180": 1,
+   "M182": 1,
+   "M185": 1,
+   "M191": 1,
+   "M192": 1,
+   "M195": 1
+  }
+ },
+ "catalog_rows_whose_entry_is_not_read": {
+  "by_source": {},
+  "examples": []
+ },
+ "bridges": {
+  "M5": {
+   "bdb_ids_cited": 7328,
+   "with_a_number_in_the_lexical_index": 6994
+  },
+  "M33": {
+   "entries_cited": 9297,
+   "with_a_number": 9284
+  },
+  "M46": {
+   "bdb_ids_cited": 7031,
+   "with_a_number_in_its_own_column": 6994
+  },
+  "M18": {
+   "entries_cited": 7867,
+   "with_a_number_in_its_strong_codes": 7863
+  },
+  "M45": {
+   "records_whose_strongs_field_says_another_number": 0
+  }
+ },
+ "replays": {
+  "tahot": {
+   "records": 283721,
+   "aligned": 283721,
+   "spans": 651350,
+   "identities": 106797,
+   "pieces_with_no_tag": 29,
+   "tag_shapes": {
+    "HN": 623312,
+    "HNG": 93628,
+    "HNA": 65885,
+    "HNH": 25071,
+    "HNB": 12819,
+    "HNI": 8650,
+    "HNJ": 3657,
+    "HNC": 2301,
+    "HNM": 2239,
+    "HNL": 2104,
+    "HNK": 1893,
+    "HND": 1481,
+    "HNP": 1277,
+    "HNQ": 754,
+    "HNN": 568,
+    "HNO": 504,
+    "HNE": 257,
+    "HNR": 208,
+    "HNS": 67,
+    "HNW": 63,
+    "HNT": 44,
+    "HNU": 37,
+    "HNV": 22,
+    "HNX": 19,
+    "HNx": 15,
+    "HNZ": 13,
+    "HNY": 8,
+    "HNF": 4,
+    "HNv": 4,
+    "HNy": 4,
+    "HNz": 3,
+    "HNw": 1
+   },
+   "catalog_rows_checked": 106797,
+   "first_place_is_the_cited_place": 106797,
+   "misses": []
+  },
+  "macula": {
+   "words": 475911,
+   "words_with_a_reading": 451051,
+   "groups": 51940,
+   "catalog_rows_checked": 51940,
+   "first_line_last_line_and_count_are_the_cited": 51940,
+   "misses": []
+  }
+ },
+ "the_check": {
+  "what": "the evidence road of store v2.2: the sidecar cards at the row, their evidence ids, the catalog rows of those ids in the row's cell; each must be among the row's catalog rows",
+  "rows_the_evidence_road_reaches": 381492,
+  "catalog_rows_it_reaches": 425439,
+  "catalog_rows_outside_the_cell": 0,
+  "misses": []
+ },
+ "unreached": [],
+ "breaks": []
+}

@@ -1175,7 +1175,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 15125863,
+  "shard_bytes_total": 16119734,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "a9373b8d30ef",
+ "store_version": "43acd0b3d9a3",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1532,6 +1532,18 @@
    "now": "a9373b8d30ef",
    "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
    "on": "2026-11-13T06:05:42.625Z"
+  },
+  {
+   "was": "a9373b8d30ef",
+   "now": "fe4481a5366e",
+   "why": "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points",
+   "on": "2026-11-13T09:00:50.822Z"
+  },
+  {
+   "was": "fe4481a5366e",
+   "now": "43acd0b3d9a3",
+   "why": "names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name",
+   "on": "2026-11-13T09:00:56.477Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -3662,7 +3674,7 @@
  },
  "made_spaces": {
   "rule_id": "made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it",
-  "applied_on": "2026-11-13T06:03:36.444Z",
+  "applied_on": "2026-11-13T09:00:58.192Z",
   "applied_by": "tools/apply-made-spaces-v1.mjs",
   "pin": "reader/data/made-spaces/PIN.json",
   "relays": [
@@ -3738,6 +3750,7 @@
     "relay": "v168",
     "read_at_store_version": "90d9eb8e7082",
     "texts_sha256": "1a387414d89cff9e664b0f9dad16111b03d6501fab610d33501ce61df46b8dc9",
+    "texts_sha256_as_read": "1a387414d89cff9e664b0f9dad16111b03d6501fab610d33501ce61df46b8dc9",
     "texts_are_as_read": true
    },
    "M5": {
@@ -3745,6 +3758,7 @@
     "relay": "v168",
     "read_at_store_version": "90d9eb8e7082",
     "texts_sha256": "8278ac96b15768c78eb1b93ad6a2b0a296b0c05d0829a631d0b73c24a53775a9",
+    "texts_sha256_as_read": "8278ac96b15768c78eb1b93ad6a2b0a296b0c05d0829a631d0b73c24a53775a9",
     "texts_are_as_read": true
    },
    "M46": {
@@ -3752,6 +3766,7 @@
     "relay": "v178",
     "read_at_store_version": "a8429861023d",
     "texts_sha256": "a1f7b60afec5bd08af856b9e635a874feeaf6748d4a01e3d985191844138ae74",
+    "texts_sha256_as_read": "a1f7b60afec5bd08af856b9e635a874feeaf6748d4a01e3d985191844138ae74",
     "texts_are_as_read": true
    }
   },
@@ -3769,5 +3784,85 @@
    "span_store_rows_of_listed_sources": 604,
    "span_store_rows_with_a_close": 0
   }
+ },
+ "row_entries": {
+  "rule_id": "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points",
+  "applied_on": "2026-11-13T09:00:50.822Z",
+  "applied_by": "tools/apply-row-entries-v1.mjs",
+  "pin": "reader/data/row-entries/PIN.json",
+  "relay": "v172",
+  "letter": "r2:mishkan/v2/letters/moses-row-entries-v1/FOR-ELIJAH-v172.md",
+  "from": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1/ (the private store)",
+  "rule": "reader/data/row-entries/row-entries-v1/RULE.md",
+  "receipt": "reader/data/row-entries/row-entries-v1/receipt-v1.json",
+  "ledger": {
+   "file": "row-entries-v1.jsonl",
+   "bytes": 25201587,
+   "sha256": "16f29ee3f43c3f94295aaf2d38a7c4859539449982e14154f63dcbb14632deb4",
+   "lines": 52793,
+   "kept": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1/row-entries-v1.jsonl (the private store); not in this tree"
+  },
+  "read_at_store_version": "90d9eb8e7082",
+  "partings": [
+   {
+    "name": "STEP's letters",
+    "fact": "t",
+    "sources": {
+     "M4": "stepbible_tahot_aligned_translation",
+     "M19": "stepbible_tbesh_gloss"
+    }
+   },
+   {
+    "name": "BDB's own entries",
+    "fact": "b",
+    "sources": {
+     "M5": "openscriptures_bdb_1906"
+    }
+   }
+  ],
+  "totals": {
+   "sources": 15,
+   "keys_in_the_ledger": 52793,
+   "rows_in_the_ledger": 382258,
+   "store_rows_of_those_sources": 382258,
+   "rows_carrying_the_slot": 374685,
+   "rows_with_a_number": 373815,
+   "rows_with_several_numbers": 69332,
+   "rows_with_no_number": 8443,
+   "rows_carrying_steps_letters": 39738,
+   "rows_carrying_bdbs_entries": 15238,
+   "store_rows_with_no_line": 0,
+   "ledger_rows_with_no_store_row": 0
+  },
+  "store_version_before": "a9373b8d30ef",
+  "store_version": "fe4481a5366e",
+  "what": "a row with a line in the corpus lane's row entries ledger carries, in the facts slot (slot 10, an object), n: the Strong's numbers of the entries its own source files it under, where it has any; t: for a row of a source whose entries are STEP's own tags, those that carry STEP's letter; b: for a row of a source that names BDB's own entries, those entries. The texts are the served bytes, unchanged. At a place the gate reads these against the tag of the word's core piece"
+ },
+ "name_rows": {
+  "rule_id": "names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name",
+  "applied_on": "2026-11-13T09:00:56.477Z",
+  "applied_by": "tools/apply-name-rows-v1.mjs",
+  "pin": "reader/data/names/PIN.json",
+  "relay": "v177",
+  "letter": "r2:mishkan/v2/letters/moses-names-gate-v1/FOR-ELIJAH-v177.md",
+  "from": "r2:mishkan/v2/ledgers/all/names/names-v1/ (the private store)",
+  "rule": "reader/data/names/names-v1/RULE.md",
+  "receipt": "reader/data/names/names-v1/receipt-v1.json",
+  "name_rows": {
+   "file": "reader/data/names/names-v1/name-rows-v1.jsonl",
+   "sha256": "753217669da4c71da71959383cc598a0b314bbe07e3115f4d64d592da0f87f58",
+   "lines": 7412
+  },
+  "read_at_store_version": "90d9eb8e7082",
+  "totals": {
+   "sources": 17,
+   "rows_listed": 7412,
+   "rows_marked": 7412,
+   "lines_that_find_no_row": 0,
+   "lines_that_find_more_than_one_row": 0
+  },
+  "store_version_before": "fe4481a5366e",
+  "store_version": "43acd0b3d9a3",
+  "what": "a row the corpus lane's list of name rows names carries name: 1 in the facts slot (slot 10, an object): every entry its own source gives it is marked a name there. The texts are the served bytes, unchanged. At a place that is not a name such a row is withheld and counted; at a place that is a name it stands"
  }
 }
