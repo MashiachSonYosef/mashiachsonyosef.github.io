@@ -46,3 +46,13 @@ H is the fault C3 is built for: the check finds the keys the page asks without t
 **What changed besides the sidecars.** 1,069 files in the commit (two of them new: the rule's module and its check), nearly all a seal: each chapter page's line of its zones' pins (968 pages), the chain index's fingerprints of the 12 chain books, each book's resting-lines record and chain book (they name the files they were read off), the zone store's pins, the chapter pages' receipt; and the ledger index and the pipeline manifest, which name the two new tools and the rule's guards (153 rules declared, 140 named by a check).
 
 **Shipped.** main `2646018ea9`, gh-pages `f91fd5a576` (deployment run 1363 and live check run 61, both green, `logs/f-s19-…`). The commit message is `logs/f-commit-message-2646018e.txt`.
+
+## What is left to weigh
+
+Measured after the ship (`logs/f-s20-…`, `logs/f-s21-…`): the zones folder is 58.8 MB, of which the lattice sidecars are 31.6 MB, the zones themselves 22.7 MB and the commentary sidecars 4.4 MB. Inside the lattice sidecars: the lattice's card fingerprints by key (`routes`) 14.0 MB, the grades by surface 13.1 MB, the stems 5.0 MB. Three further cuts are measured, none made:
+
+- the stems named by source and rank instead of their whole route text: about 3.7 MB, if a stale sidecar is kept from giving a row another row's stems some other way (a version of the store named in the sidecar, held by a check);
+- the per-card grade strings (`grades[s].g`): 1.6 MB. The projector graded all 7,303,414 store rows it asked by their own headwords and none by the lattice, but the page falls back to these strings for a row without headwords, which the dictionaries beside the store may be;
+- the lattice cards no store row prints: 607,264 of 2,527,900 (24%), roughly 3.4 MB of the fingerprints, if neither a row beside the store nor a list of the cards citing a verse names them.
+
+Each changes what the page reads, so each is a ship of its own with its own proof.
