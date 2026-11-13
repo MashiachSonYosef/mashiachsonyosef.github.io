@@ -5,8 +5,8 @@ Elijah, page lane. The corpus lane (Moses) sent seven relays on 13 November, v17
 | Ship | What | Rulings | State |
 |---|---|---|---|
 | A | The unabridged BDB's made spaces close at print (v178); the UBS dictionary's "literally ...; hence ..." pairs are one reading again | 3 | **live**: main `2f403ae430`, gh-pages `f9883c9f35`, deployment run 1357, live check run 55 |
-| B | The pointer map v1.3: a pointer names its entry, a reading with English of its own prints its own words, an ambiguous pointer takes the source's first entry | 5, 7 | built, in its round (section 2) |
-| C | The entry gate, with STEP's letters and BDB's own entries; then the stems from three more sources; then the names gate | 1, 6; 2; 8 | the entry gate works on real cards in a development copy (section 3) |
+| B | The pointer map v1.3: a pointer names its entry, a reading with English of its own prints its own words, an ambiguous pointer takes the source's first entry; a pressed pointer no longer stands bare on the line | 5, 7 | **live**: main `6657800de0`, gh-pages `2c8ae39529`, deployment run 1358, live check run 56 |
+| C | The entry gate, with STEP's letters and BDB's own entries, and the names gate, in one ship (both are asked of the word's place before the pointing); the stems from three more sources follow as their own ship | 1, 6, 8; then 2 | proven in a development copy on all 39 books; in the build tree, in its round (section 3) |
 | D | The unabridged BDB's openings of a numbered sense print as a note, not a pill | 4 | not begun |
 
 ## 1. Ship A: two changes to the store's slots, no text touched
@@ -46,19 +46,58 @@ H is a real gap and is left open here, written down: with another rule's move in
 
 **Suite and gate.** 146 of 147 checks pass before the push, the one red being the check that the tree is pushed (`logs/a-l35-…`); after the push it passes. The same-product gate against the live build: 9,403 sampled lines the same on 18 pages; 6 of 54 first cards differ, and every differing pill is accounted for by `tools/gate-cards-ship-a.py` (`logs/a-l39-…`): 26 pairs of the UBS dictionary that stood as two pills stand as one (Amos 1 and 5, Zephaniah 1 and 2: three each on the word "who"; Job 1 and 22: seven each on "a man"), no other pill came or went, and the pill each card opens on is the same.
 
-## 2. Ship B: the pointer map v1.3 (built; in its round)
+## 2. Ship B: the pointer map v1.3 (live)
 
-What is in the build tree, not yet pushed:
+Some readings of the store are not English but a pointer to another entry in the source's own words («Masculine singular imperative of הָלַךְ (halách).»). The card prints the English of the entry pointed to, with the pointer beside it. Until this ship the entry was found by the pointer's bare letters, so that pointer printed «traveler, nomad, wayfarer» and a form of the preposition "to" printed «god».
+
+**In the tree.**
 
 - `reader/data/pointer-entries/` (the lane's map `zone-pills-v1.3.jsonl`, its rule and its receipt, byte for byte, under a pin) and `reader/data/rulings/` (the owner's rulings as the lane pinned them, two files, with the owner's own words). Two small modules read them: `tools/pinned-v1.mjs` (a file another lane wrote is read only as the bytes its pin names) and `tools/rulings-v1.mjs` (a tool that applies a ruling reads it from the pin and cites it; it does not carry the ruling in its code).
-- `tools/bake-form-of-pills-v1.mjs`, rewritten to read the pinned map under the pinned rulings. 3,015 pills read: 2,140 pure pointers carried under 1,581 keys, **1,524 resolved** (1,215 by the pointer's own words, 309 by the source's first entry under ruling 7) and 616 not; 568 readings with English of their own are not carried at all and so print as themselves (ruling 5); 243 wait on the owner's branch.
-- One resolution is itself a pure pointer and is not printed as English (the lane's file resolves מבקשים to «bare infinitive … of ביקש», 12 places). To tell Moses.
+- `tools/bake-form-of-pills-v1.mjs`, rewritten to read the pinned map under the pinned rulings. 3,015 readings read: 2,140 pure pointers carried under 1,581 keys, **1,524 resolved** (1,215 by the pointer's own words, 309 by the source's first entry under ruling 7) and 616 not; 568 readings with English of their own are not carried at all and so print as themselves (ruling 5); 243 wait on the owner's branch; 64 are no pointer.
 
-**A question for the owner comes out of this ship.** 458 pure pointers (at 58,007 places) name an entry whose English the store serves no row with. The lane carries that English in its file; the rulings as pinned print English only where the store serves a row with it, so those pills print the pointer's own text. Example: the first word of Amos, «plural construct state form of דָּבָר (davár)», where the lane carries the entry's English and the store has no row of that source with it. For 469 of the 585 such lines (pure and mixed) the very same text is served under the target's key by another source. My recommendation will be to print it; it is the owner's to say.
+**What a reader sees**, reading by reading against the map served before (the 2,708 readings both maps carry; `logs/b-l45-…`):
 
-**The check, restated.** `tools/check-form-of-v1.mjs` found its word by "a cell whose lead is a resolved pointer". Under the new map there is none in the 40 works, and there was never a pure one: the 40 plain words whose lead was a "pointer" under the old map were all readings with English of their own (Daniel's «(Aramaic) corresponding to …; -deliver» printed as «ascribe»), which is the fault ruling 5 ends (`tools/pointer-leads-in-zones.mjs`). So laws F3 to F5 are restated where the pointer still is: on its pill, and on the line once the pill is pressed. Two laws are new: F6 derives the record again from the pinned file under the pinned rulings, and F7 presses cards and holds that a reading with English of its own stands as its own words and carries no pointer.
+| | readings | places |
+|---|---|---|
+| pure pointers that keep the English they printed | 1,336 | 109,951 |
+| print another English, the right entry's («god …» became «to, towards, into») | 177 | 15,439 |
+| printed their own text, print an English now | 11 | 1,390 |
+| a reading with English of its own stops printing another entry's English and prints its own words | 391 | 88,821 |
+| the same kind, with no resolution before either | 177 | 58,052 |
+| pure pointers that printed an English and print their own text now | 332 | 43,862 |
+| pure pointers that print their own text as before | 284 | 28,549 |
 
-**A page fault found by the restated check, and fixed.** The page finds a reading's entry in the map by its text. The pill hands in its row's text as written; a ruled line hands in the reading as it prints, where a "/" of the source's is " + ". The two were compared as written, so a pointer whose text holds a "/" resolved on its pill and, once that pill was pressed, stood on the line bare: Amos 1:1, first word, pill «to speak (say words) (Feminine singular imperative of דיבר)», line «Feminine singular imperative of דיבר + דִּבֵּר (dibér)». 58 of the 1,524 resolved pointers hold a "/" (127 of 2,268 under the map before, so this is live today). The entry is now found by the text as it prints, on both sides. No line at rest moves by it (no lead is a pure pointer).
+The 332 are the cost of the ship. Their English was found by letters alone, and it was not always wrong: «plural construct state form of בֵּן (ben)» printed «A direct male descendant.» For 294 of them the entry has an English that the lane carries in its file and the store serves no row with (160 named by the pointer; 134 the source's first of several under ruling 7); 36 point at a form no entry has, and 2 at a target that itself points on to several.
+
+**The question this puts to the owner.** 458 pure pointers (at 58,007 places) name an entry whose English the lane carries and the store serves no row with. The rulings as pinned print English only where the store serves a row with it, so those pills print the pointer's own text. My recommendation is to print the English the lane carries; it is the owner's to say, and Moses's rule to restate if so.
+
+**One resolution is itself a pure pointer** and is not printed as English (the lane's file resolves מבקשים to «bare infinitive … of ביקש», 12 places). For Moses.
+
+**A page fault found by the check, and fixed.** The page finds a reading's entry in the map by its text. The pill hands in its row's text as written; a ruled line hands in the reading as it prints, where a "/" of the source's is " + ". The two were compared as written, so a pointer whose text holds a "/" resolved on its pill and, once that pill was pressed, stood on the line bare: Amos 1:1, first word, pill «to speak (say words) (Feminine singular imperative of דיבר)», line «Feminine singular imperative of דיבר + דִּבֵּר (dibér)». 58 of the 1,524 resolved pointers hold a "/" (127 of 2,268 under the map before, so it was live). The entry is now found by the text as it prints, on both sides.
+
+**The check, `tools/check-form-of-v1.mjs`.** It found its word by "a cell whose lead is a resolved pointer". Under the new map there is none, and there was never a pure one: the 40 plain words whose lead was a "pointer" under the old map were all readings with English of their own. Laws F3 to F5 are restated where the pointer is: on its pill, and on the line once the pill is pressed. Three laws are new: F6 derives the record again from the pinned file under the pinned rulings; F7 presses cards and holds that a reading with English of its own stands as its own words and carries no pointer; F8 holds F3 to F5 again on a second word found on purpose, whose pointer's text holds a "/". The first word the check came to happened to carry such a pointer, which is how the fault showed, and a fault is not held by luck (`logs/b-l56-…`).
+
+**The check made to fail on purpose, nine ways** (`tools/form-of-tamper-v1.py`, `tools/form-of-check-goes-red-v1.sh`, `logs/b-l57-…`), each file put back byte for byte:
+
+| | What was broken | The check |
+|---|---|---|
+| A | the lane's map is other bytes of the same size | F6 red (and F7, with nothing to press) |
+| B | the pinned rulings are other bytes | F6 red |
+| C | a resolved pointer has another English in the record | F6 red |
+| D | a pure pointer is left out of the record | F6 red |
+| E | a pointer is resolved where the file and the rulings leave it unresolved | F6 red |
+| F | the 568 readings with English of their own are carried as pointers | F6 and F7 red |
+| G | the page finds a pointer's entry by its text as written (the fault itself) | **F8 red, F3 to F5 green**: only the word chosen for it holds the fault |
+| H | the page prints the English without the pointer beside it | F3, F4, F5, F8 red |
+| I | the pill does not carry the pointer's own text | F3 and F8 red |
+
+(I did not apply on the first run: its text stood twice in the page. It was run again alone, `logs/b-l57-…-i.txt`.)
+
+**What moved at rest: nothing** (the round run whole, 40 works). Of 400,242 lines under the words, none reads otherwise than on the build before (`logs/b-l44-…`): no line rests on a pure pointer. The twelve chain books hold the same links, 431,006 at rest and 728,474 lifted; distinct readings 229,531 to 229,538; the 12 links that printed what another link of the same card printed are gone (`logs/b-l51-…`).
+
+**Suite and gate.** 146 of 147 before the push, the one red being the check that the tree is pushed (`logs/b-l50-…`); it passes after (`logs/b-l59-…`). F8 was added after the suite ran; the check was run again with the five checks that read the tools' own sources. The same-product gate against the build before: 9,403 sampled lines the same on 18 pages; 14 of 54 first cards differ, and each of the 24 differing pills is one pointer under the two maps (`tools/gate-cards-ship-b.mjs`, `logs/b-l55-…`): 2 print another English, 2 are readings with English of their own printing their own words («Rabshakeh (intensive of …)» became «surely. (Prop. intensive of ….)»), 20 are pure pointers printing their own text (14 whose entry's English the store does not serve, 6 where several entries share the letters or the form and the first's English is not served). No other pill came or went.
+
+Main `6657800de0`, gh-pages `2c8ae39529`, deployment run 1358, live check run 56.
 
 ## 3. Ship C: the entry gate, in a development copy
 

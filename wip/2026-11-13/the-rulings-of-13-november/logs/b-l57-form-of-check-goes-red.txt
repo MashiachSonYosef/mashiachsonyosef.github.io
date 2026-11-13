@@ -1,0 +1,91 @@
+the tree as it stands:
+   exit 0
+   all checks passed
+A · the corpus lane's map is other bytes than its pin names:
+   bytes 1179591 and 1179592 changed places (fa -> af); the size is the same
+   exit 1
+   FAIL  F6  the record is the corpus lane's pinned file under the owner's pinned rulings, derived again: every pure pointer and no other reading, each resolved as the file and the rulings say  ·  2141 · pointer-entries-v1/zone-pills-v1.3.jsonl is not the bytes its pin names (2359172 bytes, 84d51477405635c23cac94feb99a2ab77eee1c9
+   FAIL  F7  a reading with English of its own beside its pointer stands on a pill as its own words, and carries no pointer  ·  none of 0 cards pressed showed such a reading on a pill of its own
+   FAIL 2
+   data/pointer-entries/pointer-entries-v1/zone-pills-v1.3.jsonl put back, byte for byte
+B · the owner's rulings as the lane pinned them are other bytes:
+   bytes 2380 and 2381 changed places (ce -> ec); the size is the same
+   exit 1
+   FAIL  F6  the record is the corpus lane's pinned file under the owner's pinned rulings, derived again: every pure pointer and no other reading, each resolved as the file and the rulings say  ·  310 · rulings-v1/rulings-2026-11-13-v1.json is not the bytes its pin names (4747 bytes, 33b6678759e8777ccadb8019eaec424fea8a901453dbd9
+   FAIL 1
+   data/rulings/rulings-v1/rulings-2026-11-13-v1.json put back, byte for byte
+C · the record gives a resolved pointer another English than the lane's file:
+   under אב, the English of «singular construct state form of אָב (av).» was «father (a male parent, especially of a h» and is «altered»
+   exit 1
+   FAIL  F6  the record is the corpus lane's pinned file under the owner's pinned rulings, derived again: every pure pointer and no other reading, each resolved as the file and the rulings say  ·  1 · the record resolves a pointer otherwise than the lane's file under the rulings: אב · M13 · singular construct state form of א
+   FAIL 1
+   data/form-of-pills-v1.json put back, byte for byte
+D · a pure pointer of the lane's file is missing from the record:
+   under אבדן, the unresolved pointer «defective spelling of אובדן.» left the record; the record's count of pointers carried follows
+   exit 1
+   FAIL  F6  the record is the corpus lane's pinned file under the owner's pinned rulings, derived again: every pure pointer and no other reading, each resolved as the file and the rulings say  ·  1 · a pure pointer of the lane's file is not in the record: אבדן · M13 · defective spelling of אובדן.
+   FAIL 1
+   data/form-of-pills-v1.json put back, byte for byte
+E · the record resolves a pointer the lane's file and the rulings leave unresolved:
+   under אבדן, the unresolved pointer «defective spelling of אובדן.» is given the English «altered»; the record's count of resolved follows
+   exit 1
+   FAIL  F6  the record is the corpus lane's pinned file under the owner's pinned rulings, derived again: every pure pointer and no other reading, each resolved as the file and the rulings say  ·  1 · the record resolves a pointer otherwise than the lane's file under the rulings: אבדן · M13 · defective spelling of אובד�
+   FAIL 1
+   data/form-of-pills-v1.json put back, byte for byte
+F · the record carries the readings with English of their own as pointers with an English:
+   568 readings with English of their own are carried as pointers, each with the English «altered»; the record's counts follow
+   exit 1
+   FAIL  F6  the record is the corpus lane's pinned file under the owner's pinned rulings, derived again: every pure pointer and no other reading, each resolved as the file and the rulings say  ·  568 · the record carries a reading that is no pure pointer of the lane's file: אבטח · M13 · First-person singular future (prefix
+   FAIL  F7  a reading with English of its own beside its pointer stands on a pill as its own words, and carries no pointer  ·  7 · amos 1:3, entry 4 (שלשה, M13): «defective spelling of שְׁלוֹשָׁה (sh'loshá, “three» is printed over as «altered (form of x)» · amos 1:11, entry 22 (נצח, M14): «or netsach; f
+   FAIL 2
+   data/form-of-pills-v1.json put back, byte for byte
+G · the page finds a pointer's entry by its text as written:
+   formOfFor sets the texts side by side as written, a closing period aside (the page's code until 13 November)
+   exit 1
+   FAIL  F8  a pointer whose text holds a "/": its pill prints the resolution, the line prints the same once it is pressed, and pressed again after another it is put back  ·  amos 1:1, entry 0 (דברי): pointer "Feminine singular imperative of דיבר / דִּבֵּר (dibér)" · pill "to speak (say words) (Feminine singular i
+   FAIL 1
+   zone.html put back, byte for byte
+H · the page prints a resolved pointer's English without the pointer beside it:
+   formOfSays prints the English alone
+   exit 1
+   FAIL  F3  with every switch lifted the pointer's pill prints the resolved reading with the relation and target in parentheses and carries the pointer's own text; the pointer's bare text stands on no pill  ·  amos 1:1, entry 6 (אשר): pill "to approve, allow" · wanted "to approve, allow (defective spelling of אישר)" · da
+   FAIL  F4  that pill pressed, the line under the word prints the same, and the Hebrew is the Hebrew  ·  line "to approve, allow" · wanted "to approve, allow (defective spelling of אישר)" · the pill pressed · Hebrew unmoved
+   FAIL  F5  another pill pressed moves the line to it; the pointer pill pressed again puts the resolution back; the Hebrew never moved  ·  "which" -> line "which" · back -> "to approve, allow" · Hebrew unmoved
+   FAIL  F8  a pointer whose text holds a "/": its pill prints the resolution, the line prints the same once it is pressed, and pressed again after another it is put back  ·  amos 1:1, entry 0 (דברי): pointer "Feminine singular imperative of דיבר / דִּבֵּר (dibér)" · pill "to speak (say words)" · pressed, line "t
+   FAIL 4
+   zone.html put back, byte for byte
+I · the pill does not carry the pointer's own text:
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v31/probes/form-of-tamper-v1.py", line 81, in <module>
+    page("btn.dataset.pointer = spanJoin(route.text); ", "")
+  File "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v31/probes/form-of-tamper-v1.py", line 19, in page
+    assert s.count(old) == 1, (old[:70], s.count(old))
+           ^^^^^^^^^^^^^^^^^
+AssertionError: ('btn.dataset.pointer = spanJoin(route.text); ', 2)
+   exit 0
+   all checks passed
+   zone.html put back, byte for byte
+everything back:
+   exit 0
+   all checks passed
+ M ../amos/1/index.html
+ M ../amos/2/index.html
+ M ../amos/3/index.html
+ M ../amos/4/index.html
+ M ../amos/5/index.html
+ M ../amos/6/index.html
+ M ../amos/7/index.html
+ M ../amos/8/index.html
+ M ../amos/9/index.html
+ M ../amos/index.html
+ M ../chain/amos/chain-v1.json.gz
+ M ../chain/amos/index.html
+ M ../chain/habakkuk/chain-v1.json.gz
+ M ../chain/haggai/chain-v1.json.gz
+ M ../chain/hosea/chain-v1.json.gz
+ M ../chain/hosea/index.html
+ M ../chain/index.html
+ M ../chain/joel/chain-v1.json.gz
+ M ../chain/jonah/chain-v1.json.gz
+ M ../chain/jonah/index.html
+exit 0
