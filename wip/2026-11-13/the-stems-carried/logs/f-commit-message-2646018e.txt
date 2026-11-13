@@ -1,0 +1,29 @@
+A book's sidecar carries the rows' stems only where a card can ask them
+
+Each book's lattice sidecar has carried the known stems of every row under every key its words are read under: since 6 November from the corpus lane's binyan ledger, and since 13 November from its extension to the UBS dictionary, the SDBH and Jastrow. The page asks them on one kind of card only: one whose word, or the half of a word written one way and read another, has a pointed surface whose places in the book have a known stem, under that form's own key. The projector asks them for the leaders it bakes under the same condition, under the graded surface's own key. At 13,791 of the 51,971 keys no such card or leader asks, and the stems of their 427,331 rows were carried for nothing: 5.25 MB of the 37.4 MB the sidecars weighed gzipped, measured before this was written.
+
+What is in the tree.
+
+- tools/stems-carried-v1.mjs holds the rule (stems-carried-rule-v1) in one place: the keys a book's rows' stems are asked under. Its pairs are taken wide, a piece's key too though a piece's card asks no stem today, so no key a card asks is left out.
+- tools/project-lattice-v12-v1.mjs bakes its leaders from every key's stems as before, then carries the stems of the keys the rule names and no others, and says so in the sidecar's binyan record (carried: the rule, the keys and rows the projection held, the keys and rows it carries). The extension's count is of the rows carried; the rows it named on the book's keys are said beside it.
+- tools/check-stems-carried-v1.mjs, three laws: every sidecar that carries stems names the rule and counts what it carries as a recount does (C1); every key a sidecar carries is one a card of the book asks its rows' stems under (C2); and with the binyan ledger's file 2 on the machine, at every key the page asks a row's stems under that the projection reads, the sidecar holds each of the file's lines with exactly its stems (C3). C3 finds those keys as the page finds them, not through the rule's module, so a rule that left a key out would be caught rather than agreed with.
+- check-stems-extension-v1's B4 holds each line of the extension at every word asked its rows' stems under that line's key, no longer at every key of every word.
+- PIPELINE.md says it.
+
+Measured against the live build, the round run whole (its zones step projects every book under the rule):
+
+- The new check: 39 books; 38,180 keys and 510,019 rows carried, of the 51,971 and 937,350 the projection held; every key carried is one a card asks; at the 38,170 keys the page asks a row's stems under that the projection reads, all 394,339 lines of file 2 held with their stems.
+- Lines at rest: all 400,242 the same.
+- The chain books: all 14,354 cards the same, at rest and lifted.
+- Weight: the lattice sidecars are 31,637,210 bytes where they were 36,863,953; the zones folder 58,801,507 where it was 64,028,250 (5,226,743 bytes, 8.2%, less).
+- Outside the zones every file is the same bytes but those that name the zones' fingerprints: the zone store's pins, each book's resting-lines record and chain book (they name the files they were read off), the chain index, each chapter page's seal of its zones (968 pages, that one line each) and the pages' receipt, and the ledger index and the pipeline manifest, which name the two new tools and the rule's guards. The search index, the store and the receipts of the gate and the counts are the same bytes.
+
+What it does not do. Naming each row by its source and rank instead of its whole route text would save about 3.7 MB more, measured on the sidecars as this leaves them; but the route text is what keeps a stale sidecar from giving a row another row's stems, and that is a change of its own, not made here.
+
+Red first: on the live sidecars the new check fails C1 (no sidecar names the rule) and C2 (13,791 keys carried that no card asks), and C3 holds (38,170 keys, 394,339 lines). Broken on purpose eight ways on Amos, each file put back byte for byte and the tree's fingerprint the same before and after: the sidecar's record of the rule gone (C1); its count of rows off by one (C1); a key no card asks given a row's stems (C2); an asked key's stems dropped (C3); one row's stem changed (C3); a row of the extension dropped (the extension's B4, and three of its laws on the page); the projector carrying every key again, Amos projected anew with it (C2 and C1); and the rule's module asking no key at all, Amos projected anew under it (C3 and C2). All eight were caught.
+
+Suite, gate, lint. 152 of 153 checks pass; the other is the check that the tree is pushed, which this commit answers. check-stems-extension-v1 passes every law, the four that press cards on the page among them. The same-product gate against the live build: 9,383 sampled lines on 18 pages and the 54 first cards, all the same. Lint: the four changed tools carry no finding their live copies lack.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01YaByYdukgpv1g24zxvj3Td
+
