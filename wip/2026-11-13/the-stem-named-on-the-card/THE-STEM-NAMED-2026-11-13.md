@@ -52,3 +52,22 @@ On the whole-form division of a divided word, the readings that read the word in
 - where no switch withheld anything: "No displayable route in the catalog for this form." (about 40,000 places).
 
 Both are true of that view and neither says where the readings went: the catalog does have routes for the form, and they are on the other division. A plainer sentence there ("the catalog reads this form in its parts only; those readings stand on its division") would be a wording change on a common view, so it is put to the owner and not made here.
+
+## What did not move, the suite, the gate
+
+- The page changed, so the round read every work's lines and every chained book's cards again (`logs/l15`): 400,242 lines, 435,246 links at rest and 734,372 lifted, as on the live build. Unit for unit, 0 lines differ from the live build's recording (`logs/l20`).
+- The suite on this tree (`logs/l16`): 146 of 147; check-nothing-unlanded-v1 is red until the push and passes after it. check-pointing-gate-v1 passed inside the suite with its five laws.
+- The same product (`logs/l21`): 9,403 lines on 18 sampled pages and the pills of 54 first cards, the same one pressed, are the same on the live build and this one. The line that says what was withheld is not something the gate compares; the gate's own check holds it.
+- Lint: the page's findings are the ones it had; the changed check has none its live copy did not have.
+
+## Shipped
+
+`main` 3088ee824a, `gh-pages` ac05592696.
+
+## Live
+
+- Pages deployment run 1356 succeeded (05:46 UTC, 13 November) on `gh-pages` ac055926.
+- Live check run 54 succeeded on `main` 3088ee82.
+- check-nothing-unlanded-v1, run after the push, passes; with it the suite is 147 of 147.
+
+Pictures of the card are in `shots/`: Amos 1:3, word 2, before and after.
