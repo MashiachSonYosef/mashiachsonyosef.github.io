@@ -47,6 +47,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { openRouteStore, routePrinted } from "./gloss-store-v1.mjs";
 import { printOf, PRINT_RULES } from "./ledger-print-v1.mjs";
+import { pageReading } from "./page-reading-v1.mjs";
 import { printUnder, kindOf, stepsOf } from "./ledger-print-from-declaration-v1.mjs";
 // a print rule is the hand table's entry, or (ask v1.2) the option the declaration carries the step on
 const ruleKind = (C, r) => (C.options && C.options.has(r) ? kindOf(C.options.get(r)) : PRINT_RULES[r].kind);
@@ -245,12 +246,8 @@ if (!ONLY || ONLY === "D8") {
 
 // D4 — the page's function, read out of the page
 if (!ONLY || ONLY === "D4") {
-  const zone = readFileSync(join(K3, "zone.html"), "utf8");
-  const grab = (head, end) => { const a = zone.indexOf(head); if (a < 0 || zone.indexOf(head, a + 1) >= 0) throw new Error(`zone.html does not hold exactly one "${head.trim()}"`); const b = zone.indexOf(end, a); return zone.slice(a, b + end.length); };
   let pageFn = null, why = "";
-  try {
-    pageFn = new Function("index", `${grab("\n  const closed = (text, places, from = 0, to = text.length) => {\n", "\n  };\n")}${grab("\n  const readingsOfRow = (row) => {\n", "\n  };\n")} return readingsOfRow;`)(index);
-  } catch (e) { why = e.message; }
+  try { pageFn = pageReading(readFileSync(join(K3, "zone.html"), "utf8"), index).readingsOfRow; } catch (e) { why = e.message; }
   const faults = []; let rows = 0;
   if (pageFn) {
     for (const key of Object.keys(sample)) for (const [k, row] of sample[key].rows) {

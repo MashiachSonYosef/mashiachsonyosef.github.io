@@ -1175,7 +1175,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 16119734,
+  "shard_bytes_total": 16139723,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "43acd0b3d9a3",
+ "store_version": "4d1357b26ca5",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1544,6 +1544,12 @@
    "now": "43acd0b3d9a3",
    "why": "names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name",
    "on": "2026-11-13T09:00:56.477Z"
+  },
+  {
+   "was": "43acd0b3d9a3",
+   "now": "4d1357b26ca5",
+   "why": "sense-openings-rule-v1-the-words-that-open-a-numbered-sense-print-as-a-note-beside-the-readings-and-not-as-a-pill",
+   "on": "2026-11-13T14:47:00.108Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -3864,5 +3870,46 @@
   "store_version_before": "fe4481a5366e",
   "store_version": "43acd0b3d9a3",
   "what": "a row the corpus lane's list of name rows names carries name: 1 in the facts slot (slot 10, an object): every entry its own source gives it is marked a name there. The texts are the served bytes, unchanged. At a place that is not a name such a row is withheld and counted; at a place that is a name it stands"
+ },
+ "sense_openings": {
+  "rule_id": "sense-openings-rule-v1-the-words-that-open-a-numbered-sense-print-as-a-note-beside-the-readings-and-not-as-a-pill",
+  "applied_on": "2026-11-13T14:47:00.108Z",
+  "applied_by": "tools/apply-sense-openings-v1.mjs",
+  "pin": "reader/data/sense-openings/PIN.json",
+  "relay": "v174",
+  "letter": "r2:mishkan/v2/letters/moses-pieces-not-readings-v1/FOR-ELIJAH-v174.md",
+  "from": "r2:mishkan/v2/ledgers/all/pieces/pieces-v1/ (the private store)",
+  "rule": "reader/data/sense-openings/pieces-v1/RULE.md",
+  "receipt": "reader/data/sense-openings/pieces-v1/receipt-v1.json",
+  "openings": {
+   "file": "reader/data/sense-openings/pieces-v1/numbered-sense-openings-v1.jsonl",
+   "sha256": "a6593ffe1e922f915086f6a4bdc96cbe2ee615f95b5a1fd12d7ad4e2a700fce6",
+   "lines": 2008
+  },
+  "ruling": {
+   "n": 4,
+   "relay": "v176",
+   "the_owners_words": "1-5. agree go ahead",
+   "pinned_in": {
+    "file": "reader/data/rulings/rulings-v1/rulings-2026-11-13-v1.json",
+    "sha256": "89bdf2a250397b77c8b16c737093f191d8546effdfe765f8e31d68e03f71794e"
+   },
+   "ledger": "unabridged_bdb_1906",
+   "print": "as a note beside the sense's readings, not as a pill"
+  },
+  "sources": [
+   "M46"
+  ],
+  "read_at_store_version": "90d9eb8e7082",
+  "totals": {
+   "rows_listed": 2008,
+   "rows_marked": 2008,
+   "rows_of_the_ruled_sources": 8915,
+   "lines_that_find_no_row": 0,
+   "lines_that_find_more_than_one_row": 0
+  },
+  "store_version_before": "43acd0b3d9a3",
+  "store_version": "4d1357b26ca5",
+  "what": "a row the corpus lane's list of openings names carries opens in the facts slot (slot 10, an object): the entry and the point of the numbered sense whose opening words the row is, as the list gives them. The texts are the served bytes, unchanged. Such a row gives no reading, so no line, pill or link stands on it, and where the card keeps it the card prints it among its notes with its point (tools/gloss-store-v1.mjs, senseOpened)"
  }
 }

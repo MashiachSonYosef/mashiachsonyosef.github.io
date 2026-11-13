@@ -35,9 +35,10 @@
 // its word. The division is the row's own (ledger-division-rule-v2: the cuts
 // and the prints the ledger wrote; whole where the source has no ledger; a
 // made space closed, made-spaces-rule-v1), and the page's own functions are
-// read out of zone.html and run (isNoDerivs, closed, routePrinted and
-// readingsOfRow), so the two cannot drift apart (until 13 November 2026 the
-// reading rule was typed here a second time). Only the keys a word's card asks for are read (a key
+// read out of zone.html and run (tools/page-reading-v1.mjs), so the two
+// cannot drift apart (until 13 November 2026 the reading rule was typed here
+// a second time). A row that only opens a numbered sense is a note on the
+// card and no pill (sense-openings-rule-v1), and is indexed as none. Only the keys a word's card asks for are read (a key
 // that is its own letters); a route whose source the store does not name,
 // or has struck, is left out, as the card leaves it out.
 //
@@ -49,6 +50,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { join } from "node:path";
+import { pageReading, pageReadingSource, PageFault } from "./page-reading-v1.mjs";
 
 const DATA = new URL("../data/", import.meta.url).pathname;
 const ZONE = new URL("../zone.html", import.meta.url).pathname;
@@ -83,27 +85,18 @@ const readShards = (dir, counted = null) => {
 };
 // the page's own split, read out of the page
 const zone = readFileSync(ZONE, "utf8");
-const grab = (head, end) => {
-  const a = zone.indexOf(head);
-  if (a < 0 || zone.indexOf(head, a + 1) >= 0) fail(`zone.html does not hold exactly one "${head.trim()}"`);
-  const b = zone.indexOf(end, a);
-  if (b < 0) fail(`zone.html's "${head.trim()}" has no end`);
-  return zone.slice(a, b + end.length);
-};
-const { isNoDerivs } = new Function(`${grab("\n  const isNoDerivs = (key) => ", ";\n")}; return { isNoDerivs };`)();
-// THE PILLS OF A ROW ARE THE PAGE'S OWN. A no-derivatives record prints its
-// route whole; any other row prints the readings the page's readingsOfRow
-// gives: as its ledger says (ledger-division-rule-v2), whole where its source
-// has none, a made space closed in either (made-spaces-rule-v1). The
-// functions are the page's, read out of it and run against the index the
-// row's source stands in: the store's, or an overlay's own.
-const PAGE_CLOSED = grab("\n  const closed = (text, places, from = 0, to = text.length) => {\n", "\n  };\n");
-const PAGE_ROUTE = grab("\n  const routePrinted = (row) => ", ";\n");
-const PAGE_READINGS = grab("\n  const readingsOfRow = (row) => {\n", "\n  };\n");
-const { routePrinted } = new Function(`${PAGE_CLOSED}${PAGE_ROUTE}; return { routePrinted };`)();
+const pageAt = (ix) => { try { return pageReading(zone, ix); } catch (e) { if (e instanceof PageFault) fail(e.message); throw e; } };
+// THE PILLS OF A ROW ARE THE PAGE'S OWN. A row that only opens a numbered
+// sense is a note and gives no pill (sense-openings-rule-v1). A
+// no-derivatives record prints its route whole. Any other row prints the
+// readings the page's readingsOfRow gives: as its ledger says
+// (ledger-division-rule-v2), whole where its source has none, a made space
+// closed in either (made-spaces-rule-v1). The functions are the page's, run
+// against the index the row's source stands in: the store's, or an
+// overlay's own.
 const pillsUnder = (ix) => {
-  const readingsOfRow = new Function("index", `${PAGE_CLOSED}${PAGE_READINGS} return readingsOfRow;`)(ix);
-  return (row, src) => (isNoDerivs(src.licensePosture) ? [routePrinted(row)] : readingsOfRow(row));
+  const page = pageAt(ix);
+  return (row, src) => (page.senseOpened(row) ? [] : page.isNoDerivs(src.licensePosture) ? [page.routePrinted(row)] : page.readingsOfRow(row));
 };
 
 const dix = JSON.parse(readFileSync(join(DATA, "dictionary-store/index.json"), "utf8"));
@@ -282,7 +275,7 @@ const index = {
   he_shard_rule: "he/<the first letter's code point, 4 hex>.bin: [letters, places, pointed, book, ref, w, [[pointing, places]]] sorted by letters; letters are a dictionary-store key, a ketiv's letters, or a run's words' letters joined by one space; pointed is the most common print of the most common pointing",
   pointing: "NFD; the letters U+05D0 to U+05EA and the points U+05B0 to U+05BC, U+05BF, U+05C1, U+05C2, U+05C7, in order; cantillation and meteg dropped",
   en_shard_rule: "en/<first two hex of sha256(utf8(folded))>.bin: { folded: [[letters, [source ids], places a source reads exactly these words, { per-place source: its places }]] }",
-  from: { dictionary_store_version: dix.store_version, route_store_version: rix.store_version, zone_split_sha256: sha(Buffer.from(String(isNoDerivs) + PAGE_CLOSED + PAGE_ROUTE + PAGE_READINGS)).slice(0, 12) },
+  from: { dictionary_store_version: dix.store_version, route_store_version: rix.store_version, zone_split_sha256: sha(Buffer.from(pageReadingSource(zone))).slice(0, 12) },
   counts: { letters: he.size, english: en.size, pairs: [...en.values()].reduce((n, m) => n + m.size, 0), route_rows: routeRows, route_pills: pillCount, struck_rows_left_out: struckRows, unnamed_rows_left_out: unnamedRows, other_keys_left_out: otherKeys, kq_places: kqSeen.size, kq_added_to_ketiv_rows: kqAdded.ketiv, kq_added_to_qere_rows: kqAdded.qere, overlay_rows: overlayRows, run_places: spanPlaces, run_rows: spanRows, piece_places_passed_over: piecePlacesPassedOver, files: files.length, bytes: files.reduce((n, f) => n + f.bytes, 0) },
   index_version: sha(Buffer.from(files.map((f) => f.sha256).join("\n"))).slice(0, 12),
   files,
