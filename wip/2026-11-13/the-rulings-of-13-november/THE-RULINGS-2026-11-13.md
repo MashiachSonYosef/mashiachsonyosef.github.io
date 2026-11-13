@@ -7,8 +7,8 @@ Elijah, page lane. The corpus lane (Moses) sent seven relays on 13 November, v17
 | A | The unabridged BDB's made spaces close at print (v178); the UBS dictionary's "literally ...; hence ..." pairs are one reading again | 3 | **live**: main `2f403ae430`, gh-pages `f9883c9f35`, deployment run 1357, live check run 55 |
 | B | The pointer map v1.3: a pointer names its entry, a reading with English of its own prints its own words, an ambiguous pointer takes the source's first entry; a pressed pointer no longer stands bare on the line | 5, 7 | **live**: main `6657800de0`, gh-pages `2c8ae39529`, deployment run 1358, live check run 56 |
 | C | The entry gate, with STEP's letters and BDB's own entries, and the names gate, in one ship (both are asked of the word's place before the pointing) | 1, 6, 8 | **live**: main `90eedeb6f3`, gh-pages `2d6f6b90f6`, deployment run 1359, live check run 57 |
-| C2 | The stems from the UBS dictionary, the SDBH and Jastrow, with both branches set | 2 | not begun; next |
-| D | The unabridged BDB's openings of a numbered sense print as a note, not a pill | 4 | not begun |
+| C2 | The stems from the UBS dictionary, the SDBH and Jastrow, with both branches set, and the rows beside the store asked their stem too | 2 | **live**: main `bdf3735238`, gh-pages `c2af4081cf`, deployment run 1360, live check run 58 |
+| D | The unabridged BDB's openings of a numbered sense print as a note, not a pill | 4 | built; its proofs are running |
 
 ## 1. Ship A: two changes to the store's slots, no text touched
 
@@ -189,3 +189,45 @@ D, M and N write the fault into a zone's own bytes, and the page does not draw a
 **Put to the owner with this ship.** The letter's measure: it is live as ruled, and the owner can say if the later letters should stay together. The leader under "oldest first" at the Name («Jehovah») and at "God of" («angels»). And, still open from Ship B, whether to print the English the lane's file carries for 458 pointers at 58,007 places.
 
 **Put to the lane.** `wip/2026-11-13/FOR-MOSES-2026-11-13-the-rulings-of-13-november-wired.md`: seven things to look at, the first three in weight being STEP's own words on its letters, TBESH's first entries that the store does not serve, and the 364 places where TAHOT's own row is not served.
+
+## 4. Ship C2: three more dictionaries name their stems, and a row beside the store is asked its stem too (live)
+
+**What came.** Relay v173: the binyan ledger's file 2 extended to the UBS dictionary (M18), the SDBH via HiperBiblia (M17) and Jastrow (M12, M39, M49), 31,487 lines, one for each of their rows on a verb's letters (`row-stems-extension-v1.jsonl`, 6,976,834 bytes, sha256 `a51b8cd2…`). It carries two branches for the owner: `the_ubs_edition` (an SDBH line takes the stems of the UBS edition's meanings of the same entry that give the same gloss) and `the_base_stem` (a Jastrow reading before an entry's first heading takes its base stem). Ruling 2 of relay v176 sets both. Under the settings 19,007 rows gain stems (M12 8,201, M17 3,117, M18 6,004, M39 223, M49 1,462), 6,357 by a branch.
+
+**What was wired** (edits 69 to 73, three new tools, one pin):
+
+- `data/stems-extension/`: the pin (the file of lines stays on the lane's store and is named by size and sha256) and the lane's rule and receipt byte for byte.
+- `tools/stems-extension-v1.mjs` reads the lines only as the pinned bytes, and the settings from the lane's pin of the ruling: a branch set to its option takes that option's verdict, NONE leaves the line, anything else is refused.
+- Edit 69, the projection (`--row-stems-extension`): each row's stems go into the sidecar under the same id as file 2's, a row both files name is refused, and each sidecar records the file, the ruling, the settings and how many rows it gave stems. Edit 70, the round (`--stems-extension`, required with `--lattice`).
+- Edit 71, the page: the rows beside the store (Jastrow's) are asked their stem where they join the card, after their own pointing. Until now only the store's rows were asked.
+- `tools/rows-beside-the-store-v1.mjs` says once which rows beside the store a card takes and what it asks them; edit 72 has `check-pointing-gate-v1` count them with the store's. Edit 73, PIPELINE.md.
+- `tools/check-stems-extension-v1.mjs`, eight laws (B1 to B8): the pin and the ruling; the lines as pinned and counted as the lane's receipt counts them; every line finds exactly one row (15,139 of the store, 16,348 beside it); every book's sidecar names the extension and holds exactly each line's stems (39 books, 350,636 rows given stems book by book); four laws pressed on cards (Amos 1:1, Amos 2:7, Daniel 2:19, Amos 3:6).
+
+**Measured before wiring** (`logs/c2-m01-…`): 73,630 word places are asked their stem; at 7,141 the extension withholds a row the earlier gates leave (counted place by place: M18 56,947 rows at 5,371 places, M17 10,552 at 3,918, M12 32,014 at 4,243, M49 6,070 at 1,998, M39 568 at 91). The commonest pairs: hiphil against qal 41,497, piel against qal 14,903, niphal against qal 14,155. Eleven of Jastrow's stem names are in no family and no place carries them (61 rows): told to the lane.
+
+**Measured against the live build** (Ship C):
+
+- Lines at rest: 1 of 400,242 (`logs/c2-m15-…`). 2 Kings 18:17's last word, the Fuller's Field: «fuller» led on the SDBH's early rank; the UBS edition files «fuller» under the piel participle, the place is qal, so the SDBH's row is withheld and Strong's «trample» comes first. «fuller» and «Fuller's Field» stay on the card.
+- The leader under "only" (`logs/c2-m06-…`): another at 23 of 302,300 places, none gained or lost; nine are the piel of "uncover" («open» → «uncover»).
+- The chain books (`logs/c2-m14-…`): at rest 366 cards lose links and none gains, 414,124 → 408,861; lifted, every card the same (728,474).
+- The search index: every count the same (`logs/c2-m16-…`).
+- Weight: zones with sidecars 58.7 MB → 64.2 MB. The sidecar names a row by source, rank and whole route text; source and rank alone do not tell rows apart (144,587 rows share both with another row of their key, `logs/c2-m17-…`). A short fingerprint of the text would take Genesis's stems from 405 KB to about 100 KB: a cleanup of its own, next.
+- The outside reader's fourteen verb cards (`logs/c2-m19-…`, `logs/c2-m21-…`): of the 12 pills the reader called "the same entry, another stem" that one of these three carries, 11 are gone; «to cut down» stands because Wiktionary gives it too and names no stem. 2 "another word" and 2 "unsure" gone; none of the 132 "right" gone. 18 pills gone across the cards, none come. "He created": 71 → 58 pills, «25 of another stem than qal, withheld» where it said 9. This agrees with the lane's own measure in v173 (12, 2, 2, 0), but for the one pill a source naming no stem also carries.
+
+**Broken on purpose** (`logs/c2-m13-…`), each file put back byte for byte, the check green again at the end, the tree's fingerprint the same before and after:
+
+| | What was broken | The check |
+|---|---|---|
+| A | the extension's receipt is other bytes than its pin names | B1, B2, B4 red |
+| B | the pinned rulings are other bytes | B1, B2, B4 red; the card laws find no word to press |
+| C | in Amos's sidecar, a row of the extension carries another stem than its line | B4 red, and the card laws in that book |
+| D | in Amos's sidecar, a row of the extension loses its stems | B4 red, and the card laws in that book |
+| E | in Amos's sidecar, a row no line names is given stems | B4 red, and the card laws in that book |
+| F | Amos's sidecar says a branch rests at NONE | B4 red |
+| G | Amos's sidecar counts one row more than it gave stems | B4 red, and the card laws in that book |
+| H | the page does not ask the rows beside the store their stem | B5, B7, B8 red |
+| I | the file of lines handed to the check is other bytes | B2 red |
+
+**Suite, gate, lint.** 149 of 150 checks pass before the push (`logs/c2-m11-…`); the one red is the check that the tree is pushed, green after (`logs/c2-m23-…`). The gate (`logs/c2-m12-…`): 9,383 sampled lines the same on 18 pages; 4 of 54 first cards differ (Job's second word and Ruth's third, each on two pages), and every differing pill is accounted for with the extension's own stems (`logs/c2-m12-gate-classified.txt`): four of Jastrow's piel readings of "it was" and two of the UBS dictionary's niphal readings of "to judge" are gone, none comes. Lint: the five changed tools carry no new finding; the page 175 = 175 (`logs/c2-m20-…`).
+
+**Shipped.** main `bdf3735238`, gh-pages `c2af4081cf`, deployment run 1360, live check run 58 (`logs/c2-m22-…`, `logs/c2-m24-…`). The commit message is `logs/c2-commit-message-bdf37352.txt`. A container restart came after the proofs and before the ship; nothing was mid-change (the break tests had all been put back), and the servers were started again.
