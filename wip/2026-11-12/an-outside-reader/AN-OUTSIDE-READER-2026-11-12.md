@@ -107,9 +107,12 @@ The reader's fourteen cards hold 291 pills on the served build, card for card, i
 
 **The check.** `tools/new/check-chapter-pages-v3.mjs` replaces v2 (`logs/f2-check-chapter-pages-v3.log`): the list is the record on every chapter page (398,550 readings on 1,224 pages, text and credit); the record is of this tree (1,290 file fingerprints taken again); and in a browser, on one chapter of every book, at the chapter's own address, the list is the line (1,007 verses, 13,489 lines), the line is the record, and the browser's own rendering of those lines holds the same characters.
 
-VERIFY_RESULT
+**Read again** (`logs/f4-bake-verify-every-work-read-again.log`): `bake-resting-lines-v1.mjs --verify` opens every work a second time and sets what it reads beside the record kept: 40 records the same, 0 not.
 
-TAMPER_RESULT
+**The check goes red** (`tools/probes/check-goes-red.sh`, `logs/f5-check-goes-red-two-ways.log`), two ways, each undone byte for byte afterwards.
+
+- One reading changed by hand in the list of genesis/1, the record and the reader untouched: P3 fails and names it ("reading 1 is "in + the beginning" in the list and "in + beginning" on the line").
+- One reading changed by hand in Obadiah's kept record, and the door built again from it. The door cannot refuse this, since the record still names the page and the files as they stand, and it builds. The check fails at L1 and L2, where the page is read again: the list's "[the] vision of (changed by hand)" is not the line the reader draws.
 
 ## 8. The chain book and the card
 
