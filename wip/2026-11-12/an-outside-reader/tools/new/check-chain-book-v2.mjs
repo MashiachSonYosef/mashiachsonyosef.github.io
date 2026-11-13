@@ -67,7 +67,7 @@
 // A BROWSER THAT STOPS ANSWERING IS SAID, AND THE CHAPTER READ AGAIN: each
 // book's chapter is given a time (CARD_STALL_MS, 240 s); past it the browser
 // is closed whole and opened again and the chapter read once more; a chapter
-// unread twice is a failure in words.
+// unread twice is a failure in words. Two browsers read at once (CARD_JOBS).
 //
 // SKIPS by name when no chain is on the shelf.
 //
@@ -448,81 +448,100 @@ const offeredInPage = async ([from, to]) => {
 
 const CARD_MS = Number(process.env.CARD_STALL_MS) || 240000;
 const labels = labelsFor(READER);
-const tree = await serveTree(READER);
 const pw = await loadPlaywright();
-let browser = await pw.chromium.launch(launchOptions());
-const within = async (work) => {
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    let timer = null;
-    const late = new Promise((_, no) => { timer = setTimeout(() => no(new Error("STALLED")), CARD_MS); });
-    try { return { got: await Promise.race([work(), late]) }; }
-    catch (e) {
-      const why = String((e && e.message) || e).split("\n")[0];
-      if (why !== "STALLED") return { why };
-      await Promise.race([browser.close(), new Promise((q) => setTimeout(q, 5000))]).catch(() => {});
-      browser = await pw.chromium.launch(launchOptions());
-    } finally { clearTimeout(timer); }
-  }
-  return { why: `the browser stopped answering twice (${CARD_MS / 1000} s each)` };
-};
+// THE BOOKS ARE READ BY TWO BROWSERS AT ONCE (CARD_JOBS), each with a server
+// of its own, so the check's time is not the sum of every book's walk. What
+// is found is gathered book by book and said in the books' own order,
+// whichever browser finished first.
+const JOBS = Math.max(1, Number(process.env.CARD_JOBS) || 2);
 const T = { rest: { off: [], unread: [], words: 0, pills: 0, buttons: 0, lines: 0 }, lifted: { off: [], unread: [], words: 0, pills: 0, buttons: 0, lines: 0 } };
 const road = { off: [], unread: [], words: 0, pills: 0, more: 0 };
-const read = [];
-try {
-  for (const b of books.filter(haveZone)) {
-    const s = car(b), z = zoneOf(b);
-    const { ch, from, to } = middleChapter(z);
-    read.push(`${b} ${ch}`);
-    for (const name of ["rest", "lifted"]) {
-      const t = T[name];
-      const r = await within(() => readCards(browser, tree.base, b, name, { from, to }));
-      if (!r.got) { t.unread.push(`${b} ${ch}: ${r.why}`); continue; }
-      for (const sec of r.got.sections) {
-        const cells = s.sections[sec.i].cells;
-        for (const raw of sec.cards) {
-          t.words += 1;
-          let here;
-          try { here = cardHere(saidOf(raw, labels)); } catch (e) { t.off.push(`${b} ${s.sections[sec.i].label}, entry ${raw.e}: ${String((e && e.message) || e)}`); continue; }
-          t.pills += here.list.length;
-          t.lines += (here.card.here || []).length;
-          for (const k of ["forms", "chain", "chain_words", "divisions", "blocks"]) if (here.card[k]) t.buttons += here.card[k].of.length;
-          const kept = cells[raw.e] && cells[raw.e][name];
-          const why = kept ? partsAt(here, kept, s.pools) : "the chain holds no card for it";
-          if (why) t.off.push(`${b} ${s.sections[sec.i].label}, entry ${raw.e}: ${why}`);
+const mid = books.filter(haveZone).map((b) => ({ b, ...middleChapter(zoneOf(b)) }));
+const read = mid.map((m) => `${m.b} ${m.ch}`);
+const foundAt = new Map();
+const queue = [...mid];
+const worker = async () => {
+  const tree = await serveTree(READER);
+  let browser = await pw.chromium.launch(launchOptions());
+  const within = async (work) => {
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      let timer = null;
+      const late = new Promise((_, no) => { timer = setTimeout(() => no(new Error("STALLED")), CARD_MS); });
+      try { return { got: await Promise.race([work(), late]) }; }
+      catch (e) {
+        const why = String((e && e.message) || e).split("\n")[0];
+        if (why !== "STALLED") return { why };
+        await Promise.race([browser.close(), new Promise((q) => setTimeout(q, 5000))]).catch(() => {});
+        browser = await pw.chromium.launch(launchOptions());
+      } finally { clearTimeout(timer); }
+    }
+    return { why: `the browser stopped answering twice (${CARD_MS / 1000} s each)` };
+  };
+  try {
+    for (let job = queue.shift(); job; job = queue.shift()) {
+      const { b, ch, from, to } = job;
+      const s = car(b);
+      const found = { rest: { off: [], unread: [] }, lifted: { off: [], unread: [] }, road: { off: [], unread: [] } };
+      foundAt.set(b, found);
+      for (const name of ["rest", "lifted"]) {
+        const t = T[name], mine = found[name];
+        const r = await within(() => readCards(browser, tree.base, b, name, { from, to }));
+        if (!r.got) { mine.unread.push(`${b} ${ch}: ${r.why}`); continue; }
+        for (const sec of r.got.sections) {
+          const cells = s.sections[sec.i].cells;
+          for (const raw of sec.cards) {
+            t.words += 1;
+            let here;
+            try { here = cardHere(saidOf(raw, labels)); } catch (e) { mine.off.push(`${b} ${s.sections[sec.i].label}, entry ${raw.e}: ${String((e && e.message) || e)}`); continue; }
+            t.pills += here.list.length;
+            t.lines += (here.card.here || []).length;
+            for (const k of ["forms", "chain", "chain_words", "divisions", "blocks"]) if (here.card[k]) t.buttons += here.card[k].of.length;
+            const kept = cells[raw.e] && cells[raw.e][name];
+            const why = kept ? partsAt(here, kept, s.pools) : "the chain holds no card for it";
+            if (why) mine.off.push(`${b} ${s.sections[sec.i].label}, entry ${raw.e}: ${why}`);
+          }
+          const wordsOf = cells.filter((c) => !c.mark).length;
+          if (sec.cards.length !== wordsOf) mine.off.push(`${b} ${s.sections[sec.i].label}: ${sec.cards.length} cards read for ${wordsOf} words`);
         }
-        const wordsOf = cells.filter((c) => !c.mark).length;
-        if (sec.cards.length !== wordsOf) t.off.push(`${b} ${s.sections[sec.i].label}: ${sec.cards.length} cards read for ${wordsOf} words`);
+      }
+      // the second road, at rest: the page's own account of what it offered
+      const r2 = await within(async () => {
+        const ctx = await browser.newContext({ viewport: { width: 412, height: 915 } });
+        try {
+          const p = await ctx.newPage();
+          await p.goto(`${tree.base}/zone.html?b=${b}`, { waitUntil: "networkidle" });
+          await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+          await p.evaluate(([a, c]) => window.__materialise(a, c), [from, to]);
+          await p.waitForFunction(() => !!(window.__latticeStore || window.__latticeRefused) || !(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice), null, { timeout: 30000 });
+          await p.waitForTimeout(700);
+          return await p.evaluate(offeredInPage, [from, to]);
+        } finally { await ctx.close(); }
+      });
+      if (!r2.got) found.road.unread.push(`${b} ${ch}: ${r2.why}`);
+      else for (const sec of r2.got) for (const c of sec.cards) {
+        road.words += 1;
+        const kept = s.sections[sec.i].cells[c.e].rest;
+        const list = kept.pool === null ? [] : s.pools[kept.pool];
+        const where = `${b} ${s.sections[sec.i].label}, entry ${c.e}`;
+        if (c.pool === null) { if (list.length || !c.none) found.road.off.push(`${where}: the page gave no account of a pool and the chain holds ${list.length} links`); continue; }
+        if (c.pool.length !== list.length) { found.road.off.push(`${where}: the page says it offered ${c.pool.length} and the chain holds ${list.length}`); continue; }
+        c.pool.forEach((text, x) => {
+          if (!c.plain[x]) { road.more += 1; return; }
+          road.pills += 1;
+          if (short(text) !== list[x].r) found.road.off.push(`${where}: reading ${x + 1} of the page's own account is not link ${x + 1}`);
+        });
       }
     }
-    // the second road, at rest: the page's own account of what it offered
-    const r2 = await within(async () => {
-      const ctx = await browser.newContext({ viewport: { width: 412, height: 915 } });
-      try {
-        const p = await ctx.newPage();
-        await p.goto(`${tree.base}/zone.html?b=${b}`, { waitUntil: "networkidle" });
-        await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
-        await p.evaluate(([a, c]) => window.__materialise(a, c), [from, to]);
-        await p.waitForFunction(() => !!(window.__latticeStore || window.__latticeRefused) || !(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice), null, { timeout: 30000 });
-        await p.waitForTimeout(700);
-        return await p.evaluate(offeredInPage, [from, to]);
-      } finally { await ctx.close(); }
-    });
-    if (!r2.got) road.unread.push(`${b} ${ch}: ${r2.why}`);
-    else for (const sec of r2.got) for (const c of sec.cards) {
-      road.words += 1;
-      const kept = s.sections[sec.i].cells[c.e].rest;
-      const list = kept.pool === null ? [] : s.pools[kept.pool];
-      const where = `${b} ${s.sections[sec.i].label}, entry ${c.e}`;
-      if (c.pool === null) { if (list.length || !c.none) road.off.push(`${where}: the page gave no account of a pool and the chain holds ${list.length} links`); continue; }
-      if (c.pool.length !== list.length) { road.off.push(`${where}: the page says it offered ${c.pool.length} and the chain holds ${list.length}`); continue; }
-      c.pool.forEach((text, x) => {
-        if (!c.plain[x]) { road.more += 1; return; }
-        road.pills += 1;
-        if (short(text) !== list[x].r) road.off.push(`${where}: reading ${x + 1} of the page's own account is not link ${x + 1}`);
-      });
-    }
-  }
-} finally { await browser.close().catch(() => {}); await tree.close(); }
+  } finally { await browser.close().catch(() => {}); await tree.close(); }
+};
+await Promise.all(Array.from({ length: Math.min(JOBS, queue.length) }, () => worker()));
+for (const { b } of mid) {
+  const f = foundAt.get(b);
+  if (!f) continue;
+  T.rest.off.push(...f.rest.off); T.rest.unread.push(...f.rest.unread);
+  T.lifted.off.push(...f.lifted.off); T.lifted.unread.push(...f.lifted.unread);
+  road.off.push(...f.road.off); road.unread.push(...f.road.unread);
+}
 const said = (t) => `${read.length} chapter(s) (${few(read, 4)}) · ${n(t.words)} words pressed · ${n(t.pills)} pills, each a link under its word, and no link without its pill · ${n(t.buttons)} buttons · ${n(t.lines)} lines above the pills`;
 check("C1  at rest, every word's card, opened here and hashed here, is the card the chain holds under that word",
   T.rest.off.length === 0 && T.rest.unread.length === 0 && T.rest.words > 0, T.rest.unread.length ? `not read: ${few(T.rest.unread)}` : T.rest.off.length ? `${n(T.rest.off.length)} of ${n(T.rest.words)}: ${few(T.rest.off)}` : said(T.rest));

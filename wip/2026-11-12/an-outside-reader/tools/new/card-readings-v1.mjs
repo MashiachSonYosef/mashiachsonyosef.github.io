@@ -85,7 +85,7 @@ export const STATES = {
   },
   lifted: {
     says: "lifted: every switch that withholds a reading lifted — the pointing kept whatever a source points, a source's own signs printed, every source on",
-    keep: { "fh.masorah": "keep", "fh.signs": "printed", "fh.sources.off": "[]", "fh.sources.shelve": "[]" },
+    keep: { "fh.masorah": "keep", "fh.signs": "printed", "fh.sources.off": "[]" },
     holds: { pointing: "keep", signs: "printed", sources_off: [] },
   },
 };

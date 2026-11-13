@@ -118,7 +118,7 @@ The reader's fourteen cards hold 291 pills on the served build, card for card, i
 
 **Shipped** (`logs/commit-message-acebd64e.txt`, `logs/g3-deployment-poll.log`): `main` acebd64ec7, `gh-pages` 50f4fcd73f. Pages deployment run 1353 succeeded at 00:27 UTC on 13 November, and the live check (run 51) passed on that commit.
 
-**Owed.** One comment in `zone.html` still names the check's old version (`check-chapter-pages-v2`). It goes with the next page change, since changing the page means reading every line again.
+**Owed, and paid on 13 November.** One comment in `zone.html` still named the check's old version (`check-chapter-pages-v2`). It was corrected with the chain's round (section 8), and every work's lines were read again for it: the same 400,242 lines.
 
 ## 8. The chain book and the card
 
@@ -154,6 +154,16 @@ The reader's fourteen cards hold 291 pills on the served build, card for card, i
 **The check** (`logs/i6-check-chain-book-v2.log`, 6 minutes). Offline, on every word of every book: the shape and the corpus fingerprints against the zones; each file is of this tree (6,465 file fingerprints taken again); each hangs together; its counts are what a walk finds; its page prints its first links in order; the index's sha256 of each file is the file's. In a browser, on the middle chapter of every book (2,838 words): every word pressed, its card hashed there, and it is the card the chain holds, at rest (89,878 pills) and lifted (151,245). And by a second road at rest: the pool the page itself says it offered is, pill for pill, what the chain holds (89,263 readings).
 
 **What the check caught in my own first build** (`logs/i4-check-chain-book-v2.log`). The check starts in the middle of a book, and the first word it pressed had no line from the suggested source where the chain had one: 24 cards, the first of each chapter in each state. The page fetches the suggested source's file for a book only when the first card of a visit opens, and opens that card again when the file is here. So my builder, reading from the top, had recorded each book's first word without that line. The reader now opens one card and waits for the file by name before it reads any. Read again after that, all twelve books come out the same bytes (`logs/i8-chain-verify-every-book-read-again.log`).
+
+**The check goes red** (`tools/probes/chain-check-goes-red.sh`, `logs/i11-chain-check-goes-red-three-ways.log`), three ways, on a copy of one book's chain, each put back. Two links swapped by hand, past the window the book's page prints, in a list a card prints only at rest: the file still hangs together and its page is the page, and C1 names the pill (the second road fails too). The same in a list printed only lifted: C2. A data file the cards were read off made one byte longer: K3 says the file is not of this tree, and the builder refuses to write the index.
+
+**The suite and the gate** (`logs/k1-suite-the-chain-tree.log`, `logs/k3-gate.log`): 145 of 146, the one red being `check-nothing-unlanded-v1` until the push. After the suite the check was set to read with two browsers at once (3 minutes 25 seconds; it had taken 6 minutes 45 inside the suite) and one key that withholds nothing was taken out of the lifted state; the chain check, the checks that read the tools, two books read again and the tamper tests were run again on the result (`logs/k2-check-chain-book-v2-two-browsers.log`). The same product: 9,403 lines on 18 pages and 54 first cards are the same on the live build and the new one.
+
+**Shipped** (`logs/commit-message-0d84ed08.txt`, `logs/k5-deployment-poll.log`): `main` 0d84ed0859, `gh-pages` 91b0987432. Pages deployment run 1354 succeeded at 02:37 UTC on 13 November, and the live check (run 52) passed on that commit.
+
+**Not built, and measured.** The divisions and blocks a press away could be recorded the same way. On Obadiah's first six verses, pressing every one costs about twice the reading time for 3.4 times the pills (`dumps/h3-card-walk-obadiah-6-rest-rungs.json`).
+
+**A reading can print in two spellings.** One reading prints in the spelling of the first row the switches keep, so 22 of Obadiah's 8,073 resting pills differ by a capital from the same pill with the switches lifted ("Promise", "promise"). The chain holds each state as it prints.
 
 **Two pills of one card can print one text** (12 in the twelve books). A reading the corpus lane's map classes as a pointer prints the target entry's English, and two that point one way print alike. Behind it is a larger fault that is not the chain's: section 9.
 
