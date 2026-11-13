@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-13.
 
-**151 rules declared · 138 named by a check · 13 unguarded.**
+**152 rules declared · 139 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -98,6 +98,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html, tools/apply-ledger-divisions-v1.mjs, tools/rows-beside-the-store-v1.mjs, tools/stems-extension-v1.mjs | check-overlays-v1, check-card-opens-on-the-line-v1, check-pointing-grade-v1, check-source-switch-v1, check-witnessed-order-v1 |
 | `partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing` | zone.html | check-partial-serve-declared-v1 |
 | `parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost` | zone.html | check-parts-read-right-to-left-v1 |
+| `paseq-place-rule-v1-a-paseq-the-edition-writes-inside-a-read-form-prints-there-and-not-after-the-place` | tools/apply-paseq-place-v1.mjs, zone.html | check-paseq-place-v1 |
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs, tools/build-commentary-sidecar-v2.mjs | check-sealed-layers-v1 |
 | `piece-class-rule-v1-a-one-letter-piece-is-asked-as-a-prefix-or-a-suffix-under-the-pointing` | zone.html | check-piece-class-v1 |
 | `piece-gloss-rule-v1-a-piece-reads-what-its-source-said-at-this-position-not-what-the-key-means-in-general` | tools/project-piece-gloss-v1.mjs | **UNGUARDED** |
@@ -184,7 +185,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 140 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 141 tools that are not checks.
 
 Not called by any build stage:
 
@@ -192,6 +193,7 @@ Not called by any build stage:
 - `tools/apply-lone-letters-v1.mjs`
 - `tools/apply-made-spaces-v1.mjs`
 - `tools/apply-name-rows-v1.mjs`
+- `tools/apply-paseq-place-v1.mjs`
 - `tools/apply-piece-store-patch-v1.mjs`
 - `tools/apply-route-delta-v1.mjs`
 - `tools/apply-row-entries-v1.mjs`
@@ -305,7 +307,7 @@ again from a checkout by a build file alone.
 
 | kind | bins | route or schema | built by | written after its build by |
 |---|---|---|---|---|
-| zone | 40 | MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, EDITION_DOOR_SERVE__BUILT_STREAM | tools/build-zone.mjs (run by build.sh) | tools/apply-span-ledger-v1.mjs (39; **no build file runs it**); tools/bake-witnessed-order-v1.mjs (39; run by tools/round-v1.sh); tools/project-lattice-v12-v1.mjs (39; run by tools/round-v1.sh); tools/project-piece-gloss-v1.mjs (39; **no build file runs it**); tools/project-toggle-headword-v1.mjs (39; **no build file runs it**); tools/regloss-zone.mjs (40; run by tools/round-v1.sh); tools/respan-zone-v1.mjs (39; **no build file runs it**); tools/restamp-zone-v1.mjs (39; run by tools/round-v1.sh); tools/strike-source-v1.mjs (23; **no build file runs it**); tools/type-witnessed-drops-v1.mjs (3; **no build file runs it**) |
+| zone | 40 | MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, EDITION_DOOR_SERVE__BUILT_STREAM | tools/build-zone.mjs (run by build.sh) | tools/apply-paseq-place-v1.mjs (12; **no build file runs it**); tools/apply-span-ledger-v1.mjs (39; **no build file runs it**); tools/bake-witnessed-order-v1.mjs (39; run by tools/round-v1.sh); tools/project-lattice-v12-v1.mjs (39; run by tools/round-v1.sh); tools/project-piece-gloss-v1.mjs (39; **no build file runs it**); tools/project-toggle-headword-v1.mjs (39; **no build file runs it**); tools/regloss-zone.mjs (40; run by tools/round-v1.sh); tools/respan-zone-v1.mjs (39; **no build file runs it**); tools/restamp-zone-v1.mjs (39; run by tools/round-v1.sh); tools/strike-source-v1.mjs (23; **no build file runs it**); tools/type-witnessed-drops-v1.mjs (3; **no build file runs it**) |
 | commentary | 21 | ZONE_COMMENTARY_V2 | tools/build-commentary-sidecar-v2.mjs (no build file runs it) | tools/regloss-zone.mjs (21; run by tools/round-v1.sh); tools/strike-source-v1.mjs (20; **no build file runs it**) |
 | lattice | 39 | ZONE_LATTICE_V1 | tools/project-lattice-v12-v1.mjs (run by tools/round-v1.sh) | — |
 | volume | 39 | V_VOLUME_V1 | tools/project-v-volume-v1.mjs (no build file runs it) | — |
