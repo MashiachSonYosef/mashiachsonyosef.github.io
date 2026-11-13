@@ -17,7 +17,8 @@
 > read, and the chain's index is not written over a book that is not of the
 > tree. Since the same day a row of the store carries, where the corpus
 > lane's list names one, the places of a space our own build made in its
-> text (`tools/apply-made-spaces-v1.mjs`, `data/made-spaces-v1/`), and every
+> text (`tools/apply-made-spaces-v1.mjs`, `data/made-spaces/` with one folder
+> per relay of the corpus lane's), and every
 > reader closes them where the text prints; the store's texts are the served
 > bytes, unchanged. `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,

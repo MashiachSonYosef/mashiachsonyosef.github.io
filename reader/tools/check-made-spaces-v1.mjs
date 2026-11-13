@@ -8,32 +8,41 @@
 // A SPACE OUR OWN BUILD MADE CLOSES WHERE A TEXT PRINTS, AND NOTHING ELSE
 // MOVES. The store served «Amos , an Israelite prophet» where the provider's
 // file holds «Amos, an Israelite prophet»: our build put a space where each
-// tag of the provider's XML stood. The corpus lane traced every such space
-// and listed the places that close (relay v168; data/made-spaces-v1/, with
-// its rule). tools/apply-made-spaces-v1.mjs writes those places on the rows,
-// in slot 9, and the readers leave the characters there out when they print.
-// The store's texts are not touched.
+// tag of the provider's XML stood. The corpus lane traces every such space,
+// source by source, and lists the places that close (data/made-spaces/, one
+// folder per relay with its rule and its receipt; PIN.json names them).
+// tools/apply-made-spaces-v1.mjs writes those places on the rows, in slot 9,
+// and the readers leave the characters there out when they print. The
+// store's texts are not touched.
 //
 // What is held here, each recomputed and none read from the tool's receipt:
 //
-//   M1  the lists, their rule and the corpus lane's receipt are the bytes
-//       their pin names, and that receipt names each list by the same sha256
+//   M1  every relay's lists, its rule, its receipt and its never-closed files
+//       are the bytes their pin names; the receipt of the same relay names
+//       each file by the same sha256 and gives each list its source, which
+//       the store holds under that m id, key and label; no source has two
 //   M2  every line is well formed: its closes are spaces of its text, in
 //       rising order; its `prints` is the text with them taken out; a kept
-//       place is a space that does not close
+//       place is a space that does not close. A never-closed line's places
+//       are spaces of its text, or its start or end, and no list closes a
+//       space that stands for words taken out
 //   M3  every row of the store, read again from the lists: a row of a listed
 //       source whose route text or definition text is a line with a close
 //       carries exactly those places in slot 9, and no other row carries the
 //       slot; no row carries a print slot and a close on its route text; no
 //       close stands at a mark its ledger divides at; the span store's rows
 //       of the listed sources hold no close
-//   M4  the store's index names the rule and the lists, and its totals are a
-//       recount's
-//   M5  the corpus lane's own counts, while the store's rows are the rows the
-//       lists were read from: the rows that hold a close, and the rows that
-//       still print a space before a comma once closed (the provider's own
-//       spaces, which are never touched). After the store has moved on these
-//       are said and not judged
+//   M4  the store's index names the rule, the pin, the relays, the lists and
+//       the never-closed files, each source's rows as they stand now (the
+//       sha256 of their keys and texts) and totals that are a recount's
+//   M5  the corpus lane's own counts, for each source whose rows are the rows
+//       its list was read from: the rows that hold a close, and the rows
+//       that still print a space before a comma once closed (the provider's
+//       own spaces and the spaces that stand for words taken out, which are
+//       never touched). The rows are those rows where the store's own history
+//       shows no move but this rule's since the version the relay read, or
+//       where they hold the texts the index recorded when that was so. For a
+//       source whose rows have moved on, the counts are said and not judged
 //   M6  by a second road, what prints: a row's route as printed is its line's
 //       `prints`; its record as printed is its definition line's; and its
 //       readings are that `prints` cut at the row's own marks, each mark's
@@ -47,11 +56,12 @@
 //       table, nor in a witnessed column, is a row's reading as it stood
 //       before closing where no row prints it so now
 //   M10 on the page: words whose cards hold such a row are pressed with every
-//       switch lifted, rows whose route closes and rows whose definition
-//       alone does; no pill prints a reading as it stood before closing,
-//       the closed reading stands on a pill credited to its source, the
-//       record under that pill is the definition as it prints, and the card
-//       calls the reading a piece of its record only where the store does
+//       switch lifted, for each listed source rows whose route closes and
+//       rows whose definition alone does; no pill prints a reading as it
+//       stood before closing, the closed reading stands on a pill credited
+//       to its source, the record under that pill is the definition as it
+//       prints, and the card calls the reading a piece of its record only
+//       where the store does
 //
 // Run: node tools/check-made-spaces-v1.mjs
 import { readFileSync, readdirSync, existsSync } from "node:fs";
@@ -69,7 +79,8 @@ import { STATES } from "./card-readings-v1.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const STORE = join(K3, "data", "route-store");
-const LISTS = join(K3, "data", "made-spaces-v1");
+const LISTS = join(K3, "data", "made-spaces");
+const HOME = "reader/data/made-spaces";   // the same folder as the index names it
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
@@ -78,51 +89,76 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const first = (list, n = 3) => list.slice(0, n).join(" · ");
 
 console.log(`— ${MADE_SPACES_RULE_ID} —\n`);
-if (!existsSync(join(LISTS, "PIN.json"))) { console.log("SKIPPED — no made-spaces lists on this disk (data/made-spaces-v1/PIN.json)"); process.exit(3); }
+if (!existsSync(join(LISTS, "PIN.json"))) { console.log("SKIPPED — no made-spaces lists on this disk (data/made-spaces/PIN.json)"); process.exit(3); }
 const pin = JSON.parse(readFileSync(join(LISTS, "PIN.json"), "utf8"));
+const relays = Array.isArray(pin.relays) ? pin.relays : [];
 const store = openRouteStore(STORE);
 const index = store.index;
 
-// ---- M1: the pinned bytes -------------------------------------------------------------------
+// ---- M1: the pinned bytes, relay by relay ---------------------------------------------------
 const pinFaults = [];
-const bytesOf = (p) => {
-  const path = join(LISTS, p.file);
-  if (!existsSync(path)) { pinFaults.push(`${p.file} is not here`); return null; }
+if (pin.schema_version !== "MADE_SPACES_PIN_V2" || !relays.length) pinFaults.push("the pin names no relays");
+const bytesOf = (relay, p) => {
+  const name = `${relay.folder}/${p.file}`, path = join(LISTS, relay.folder, p.file);
+  if (!existsSync(path)) { pinFaults.push(`${name} is not here`); return null; }
   const b = readFileSync(path);
-  if (b.length !== p.bytes || sha256(b) !== p.sha256) pinFaults.push(`${p.file} is ${b.length} bytes, ${sha256(b).slice(0, 12)}; its pin names ${p.bytes}, ${String(p.sha256).slice(0, 12)}`);
+  if (b.length !== p.bytes || sha256(b) !== p.sha256) pinFaults.push(`${name} is ${b.length} bytes, ${sha256(b).slice(0, 12)}; its pin names ${p.bytes}, ${String(p.sha256).slice(0, 12)}`);
   return b;
 };
-bytesOf(pin.rule);
-const theirsBytes = bytesOf(pin.receipt);
-const theirs = theirsBytes ? JSON.parse(theirsBytes.toString("utf8")) : { outputs: [], sources: [], inputs: {} };
-const LISTED = new Map();   // m id -> { key, file, lines: Map(text -> line), theirs }
-const raws = [];
-for (const p of pin.lists || []) {
-  const b = bytesOf(p);
-  const out = (theirs.outputs || []).find((o) => o.file === p.file);
-  if (!out || out.sha256 !== p.sha256) pinFaults.push(`the corpus lane's receipt does not name ${p.file} by its pin's sha256`);
-  const src = (theirs.sources || []).find((s) => s.source_key === p.file.split(".")[0]);
-  if (!src) { pinFaults.push(`the corpus lane's receipt names no source for ${p.file}`); continue; }
-  const mine = index.m_sources[src.m_id];
-  if (!mine || mine.key !== src.source_key || mine.label !== src.label) pinFaults.push(`${src.m_id} is not ${src.source_key} in the store's index`);
-  if (b) raws.push({ p, src, text: b.toString("utf8") });
+const raws = [];        // each list's bytes with its relay and its source, read line by line in M2
+const rawsNever = [];   // each never-closed file's, the same
+const readAtOf = {};    // relay -> the store version its receipt says the lists were read from
+let pinnedFiles = 0;
+for (const relay of relays) {
+  bytesOf(relay, relay.rule);
+  const receipt = bytesOf(relay, relay.receipt);
+  pinnedFiles += 2;
+  const theirs = receipt ? JSON.parse(receipt.toString("utf8")) : { outputs: [], sources: [], inputs: {} };
+  readAtOf[relay.relay] = (((theirs.inputs || {}).route_store || {}).store_version) || null;
+  if (!readAtOf[relay.relay]) pinFaults.push(`relay ${relay.relay}: its receipt names no store version it read`);
+  const sourceOf = (p) => {
+    const name = `${relay.folder}/${p.file}`;
+    const out = (theirs.outputs || []).find((o) => o.file === p.file);
+    if (!out || out.sha256 !== p.sha256) pinFaults.push(`relay ${relay.relay}: the corpus lane's receipt does not name ${name} by its pin's sha256`);
+    const src = (theirs.sources || []).find((s) => s.source_key === p.file.split(".")[0]);
+    if (!src) { pinFaults.push(`relay ${relay.relay}: the corpus lane's receipt names no source for ${name}`); return null; }
+    const mine = index.m_sources[src.m_id];
+    if (!mine || mine.key !== src.source_key || mine.label !== src.label) pinFaults.push(`${src.m_id} is not ${src.source_key} in the store's index`);
+    return src;
+  };
+  for (const p of relay.lists || []) {
+    const b = bytesOf(relay, p), src = sourceOf(p);
+    pinnedFiles += 1;
+    if (src && (!src.list || src.list.sha256 !== p.sha256)) pinFaults.push(`relay ${relay.relay}: its receipt does not give ${src.m_id} the list ${p.file}`);
+    if (src && raws.some((r) => r.src.m_id === src.m_id)) pinFaults.push(`two lists name ${src.m_id}`);
+    else if (b && src) raws.push({ relay: relay.relay, name: `${relay.folder}/${p.file}`, p, src, text: b.toString("utf8") });
+  }
+  for (const p of relay.never_closed || []) {
+    const b = bytesOf(relay, p), src = sourceOf(p);
+    pinnedFiles += 1;
+    if (b && src) rawsNever.push({ relay: relay.relay, name: `${relay.folder}/${p.file}`, p, src, text: b.toString("utf8") });
+  }
 }
-check("M1  the lists, their rule and the corpus lane's receipt are the bytes their pin names, and the receipt names each list by the same sha256", pinFaults.length === 0,
-  pinFaults.length ? first(pinFaults) : `relay ${pin.relay} · ${(pin.lists || []).length} lists, the rule and the receipt`);
+check("M1  every relay's lists, rule, receipt and never-closed files are the bytes their pin names; its receipt names each by the same sha256 and gives each list its source, which the store holds so; no source has two lists", pinFaults.length === 0,
+  pinFaults.length ? first(pinFaults) : `${relays.length} relays (${relays.map((r) => r.relay).join(", ")}) · ${pinnedFiles} files: ${raws.length} lists, ${rawsNever.length} never-closed, a rule and a receipt each`);
 
 // ---- M2: every line ---------------------------------------------------------------------------
 // the text with the characters at `places` taken out, typed here on its own: one character at a time
 const without = (text, places) => { let s = ""; for (let i = 0; i < text.length; i += 1) if (!places.includes(i)) s += text[i]; return s; };
 const lineFaults = []; let lines = 0, closing = 0, closes = 0, kept = 0, noted = 0;
-for (const { p, src, text } of raws) {
+const LISTED = new Map();   // m id -> { key, relay, file, sha256, lines: Map(text -> line), theirs, readAt }
+const NEVER = new Map();    // m id -> { key, relay, file, sha256, places: Map(text -> the spaces of the text that stand for words taken out) }
+const linesOf = (name, p, text) => {
+  const rows = text.endsWith("\n") ? text.slice(0, -1).split("\n") : (lineFaults.push(`${name} does not end in a line end`), text.split("\n"));
+  if (rows.length !== p.lines) lineFaults.push(`${name} holds ${rows.length} lines; its pin says ${p.lines}`);
+  return rows.map((s, at) => { try { return JSON.parse(s); } catch { lineFaults.push(`${name} line ${at + 1} is not JSON`); return null; } });
+};
+for (const { relay, name, p, src, text } of raws) {
   const map = new Map();
-  const rows = text.endsWith("\n") ? text.slice(0, -1).split("\n") : (lineFaults.push(`${p.file} does not end in a line end`), text.split("\n"));
-  if (rows.length !== p.lines) lineFaults.push(`${p.file} holds ${rows.length} lines; its pin says ${p.lines}`);
-  rows.forEach((s, at) => {
-    let l = null;
-    try { l = JSON.parse(s); } catch { lineFaults.push(`${p.file} line ${at + 1} is not JSON`); return; }
+  linesOf(name, p, text).forEach((l, at) => {
+    if (!l) return;
     lines += 1;
-    const where = `${p.file} line ${at + 1}`;
+    const where = `${name} line ${at + 1}`;
     if (typeof l.text !== "string" || !Array.isArray(l.closes) || typeof l.prints !== "string") { lineFaults.push(`${where}: no text, closes or prints`); return; }
     if (map.has(l.text)) lineFaults.push(`${where}: its text is named twice`);
     if (l.closes.some((c, i) => !Number.isInteger(c) || l.text[c] !== " " || (i && c <= l.closes[i - 1]))) lineFaults.push(`${where}: a close is not a space of the text, or the closes do not rise`);
@@ -132,16 +168,40 @@ for (const { p, src, text } of raws) {
     closes += l.closes.length; kept += (l.kept || []).length; if (l.note) noted += 1;
     map.set(l.text, l);
   });
-  LISTED.set(src.m_id, { key: src.source_key, file: p.file, sha256: p.sha256, lines: map, theirs: src });
+  LISTED.set(src.m_id, { key: src.source_key, relay, file: name, sha256: p.sha256, lines: map, theirs: src, readAt: readAtOf[relay] });
 }
-check("M2  every line is well formed: closes are spaces of the text and rise, prints is the text with them taken out, a kept place does not close", lineFaults.length === 0,
-  lineFaults.length ? first(lineFaults) : `${nf(lines)} lines · ${nf(closing)} with a close · ${nf(closes)} closes · ${kept} made spaces kept · ${noted} with a note`);
+let neverTexts = 0, standing = 0, inBoth = 0;
+for (const { relay, name, p, src, text } of rawsNever) {
+  const places = new Map();
+  linesOf(name, p, text).forEach((l, at) => {
+    if (!l) return;
+    const where = `${name} line ${at + 1}`;
+    if (typeof l.text !== "string" || !l.text || !Array.isArray(l.at)) { lineFaults.push(`${where}: no text or no places`); return; }
+    if (places.has(l.text)) lineFaults.push(`${where}: its text is named twice`);
+    // a place is the space that stands for the words, or the text's start or its end where the words stood there
+    if (l.at.some((a) => !Number.isInteger(a) || a < 0 || a > l.text.length || (a !== 0 && a !== l.text.length && l.text[a] !== " "))) lineFaults.push(`${where}: a place is not a space of the text, its start or its end`);
+    const spaces = l.at.filter((a) => l.text[a] === " ");
+    neverTexts += 1; standing += spaces.length;
+    places.set(l.text, spaces);
+  });
+  NEVER.set(src.m_id, { key: src.source_key, relay, file: name, sha256: p.sha256, places });
+  const L = LISTED.get(src.m_id);
+  if (L) for (const [t, l] of L.lines) {
+    const stands = places.get(t);
+    if (!stands) continue;
+    inBoth += 1;
+    if (l.closes.some((c) => stands.includes(c))) lineFaults.push(`${L.file}: «${t.slice(0, 50)}» closes a space that ${name} says stands for words taken out`);
+  }
+}
+check("M2  every line is well formed: closes are spaces of the text and rise, prints is the text with them taken out, a kept place does not close; a never-closed place is a space, a start or an end, and no list closes a space that stands for words taken out", lineFaults.length === 0,
+  lineFaults.length ? first(lineFaults) : `${nf(lines)} lines · ${nf(closing)} with a close · ${nf(closes)} closes · ${kept} made spaces kept · ${noted} with a note · ${nf(neverTexts)} never-closed texts with ${nf(standing)} spaces that stand for words, ${inBoth} of them texts a list names too`);
 
 // ---- M3: every row of the store -------------------------------------------------------------
 const lineOf = (L, text) => { const l = L && L.lines.get(String(text ?? "")); return l && l.closes.length ? l : null; };
+const comma = / ,/u;
 const rowFaults = [];
 const slotted = [];   // [key, row] for every row that carries the slot
-const recount = {};   // m id -> { rows, route, definition, either }
+const recount = {};   // m id -> { rows, route, definition, either, stillRoute, stillRecord, texts: one line per row }
 let storeRows = 0;
 for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bin")).sort()) {
   const body = JSON.parse(gunzipSync(readFileSync(join(STORE, "shards", f))).toString("utf8"));
@@ -151,8 +211,9 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
     const has = row.length > CLOSES_SLOT ? row[CLOSES_SLOT] : null;
     if (row.length > CLOSES_SLOT + 1) rowFaults.push(`${f} ${k} (${m}): ${row.length} slots`);
     if (!L) { if (has !== null || row.length > CLOSES_SLOT) rowFaults.push(`${f} ${k} (${m}): a row of a source no list names carries the slot`); continue; }
-    const c = (recount[m] ||= { rows: 0, route: 0, definition: 0, either: 0 });
+    const c = (recount[m] ||= { rows: 0, route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0, texts: [] });
     c.rows += 1;
+    c.texts.push(JSON.stringify([k, row[1] ?? null, row[2] ?? null]));
     const r = lineOf(L, row[1]), d = lineOf(L, row[2]);
     if (r) c.route += 1;
     if (d) c.definition += 1;
@@ -162,6 +223,9 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
     if (r && Array.isArray(row[8])) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): a print slot and a close on the route text`);
     if (r && Array.isArray(row[7]) && r.closes.some((x) => row[7].includes(x))) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): a close stands at a mark the ledger divides at`);
     if (has) slotted.push([k, row]);
+    // what the source's rows still print before a comma once closed, over every row of the source (M5)
+    if (comma.test(routePrinted(row))) c.stillRoute += 1;
+    if (row[2] && comma.test(recordPrinted(row))) c.stillRecord += 1;
   }
 }
 let spanRows = 0;
@@ -180,43 +244,62 @@ check("M3  every store row carries exactly the closes the lists give its texts, 
   rowFaults.length ? `${rowFaults.length} · ${first(rowFaults)}` : `${nf(storeRows)} store rows read · ${nf(total("rows"))} of ${LISTED.size} listed sources · ${nf(total("either"))} carry the slot (${nf(total("route"))} close on the route text, ${nf(total("definition"))} on the definition text) · ${nf(spanRows)} span rows of those sources, none with a close`);
 
 // ---- M4: the index ------------------------------------------------------------------------------
+// a source's rows as they stand: the sha256 of one line per row (its key, its route text, its definition text), sorted
+const standsAs = (m) => sha256(((recount[m] || {}).texts || []).slice().sort().join("\n") + "\n");
 const ms = index.made_spaces || null;
-const wantLists = [...LISTED.entries()].map(([m, L]) => ({ m, key: L.key, file: `reader/data/made-spaces-v1/${L.file}`, sha256: L.sha256 }));
+const wantLists = [...LISTED.entries()].map(([m, L]) => ({ m, key: L.key, relay: L.relay, file: `${HOME}/${L.file}`, sha256: L.sha256 }));
+const wantNever = [...NEVER.entries()].map(([m, N]) => ({ m, key: N.key, relay: N.relay, file: `${HOME}/${N.file}`, sha256: N.sha256, texts: N.places.size }));
 const indexFaults = [];
 if (!ms) indexFaults.push("the index names no made spaces (index.made_spaces)");
 else {
   if (ms.rule_id !== MADE_SPACES_RULE_ID) indexFaults.push(`the index names the rule ${ms.rule_id}`);
+  if (ms.pin !== `${HOME}/PIN.json`) indexFaults.push(`the index names the pin ${ms.pin}`);
+  if (!same((ms.relays || []).map((r) => [r.relay, r.folder, r.read_at_store_version]), relays.map((r) => [r.relay, `${HOME}/${r.folder}`, readAtOf[r.relay]]))) indexFaults.push("the index does not name the pin's relays, each with its folder and the store version it read");
   if (!same(ms.lists, wantLists)) indexFaults.push("the index does not name the pinned lists by their sha256");
+  if (!same(ms.never_closed, wantNever)) indexFaults.push("the index does not name the pinned never-closed files by their sha256");
+  for (const [m, L] of LISTED) {
+    const r = (ms.sources || {})[m];
+    if (!r || r.key !== L.key || r.relay !== L.relay || r.read_at_store_version !== L.readAt) indexFaults.push(`the index does not say which relay ${m}'s list is of, or the version it was read from`);
+    else if (r.texts_sha256 !== standsAs(m)) indexFaults.push(`the index's record of ${m}'s rows (${String(r.texts_sha256).slice(0, 12)}) is not the rows as they stand (${standsAs(m).slice(0, 12)}): the tool has not run since they moved`);
+  }
+  for (const m of Object.keys(ms.sources || {})) if (!LISTED.has(m)) indexFaults.push(`the index records rows of ${m}, which no list names`);
   const t = ms.totals || {};
   if (t.rows_of_listed_sources !== total("rows") || t.rows_carrying_the_slot !== total("either") || t.rows_with_a_close_on_the_route_text !== total("route") || t.rows_with_a_close_on_the_definition_text !== total("definition"))
     indexFaults.push(`the index's totals (${t.rows_of_listed_sources}, ${t.rows_carrying_the_slot}, ${t.rows_with_a_close_on_the_route_text}, ${t.rows_with_a_close_on_the_definition_text}) are not a recount's (${total("rows")}, ${total("either")}, ${total("route")}, ${total("definition")})`);
 }
-check("M4  the store's index names the rule and the lists, and its totals are a recount's", indexFaults.length === 0,
-  indexFaults.length ? first(indexFaults) : `applied ${String(ms.applied_on).slice(0, 10)} · store ${ms.store_version_before} -> ${ms.store_version}`);
+check("M4  the store's index names the rule, the pin, its relays, the lists and the never-closed files, each source's rows as they stand, and totals that are a recount's", indexFaults.length === 0,
+  indexFaults.length ? first(indexFaults) : `applied ${String(ms.applied_on).slice(0, 10)} · this rule's last move of the store ${ms.store_version_before} -> ${ms.store_version} · ${LISTED.size} sources' rows recorded`);
 
 // ---- M5: the corpus lane's own counts -------------------------------------------------------
-// the rows are the rows the lists were read from while nothing has changed the store since the slot was written on that version
-const listedAt = (((theirs.inputs || {}).route_store || {}).store_version) || null;
-const sameRows = !!ms && ms.store_version_before === listedAt && ms.store_version === index.store_version;
-const comma = / ,/u;
-const still = {};   // m id -> rows that still print a space before a comma: [in the route as printed, in the record as printed]
-for (const [, row] of slotted) {
-  const s = (still[String(row[3])] ||= [0, 0]);
-  if (lineOf(LISTED.get(String(row[3])), row[1]) && comma.test(routePrinted(row))) s[0] += 1;
-  if (row[2] && lineOf(LISTED.get(String(row[3])), row[2]) && comma.test(recordPrinted(row))) s[1] += 1;
-}
-const countFaults = [], said = [];
+// by the store's own history: walking back from the store's version over moves that are this rule's (which changes no
+// text), is the version the relay read reached?
+const history = index.store_version_history || [];
+const reachedByThisRuleAlone = (from) => {
+  let v = index.store_version;
+  for (let i = history.length - 1; v !== from && i >= 0; i -= 1) {
+    if (history[i].now !== v || history[i].why !== MADE_SPACES_RULE_ID) return false;
+    v = history[i].was;
+  }
+  return v === from;
+};
+const countFaults = [], judgedSources = [], saidOnly = [];
 for (const [m, L] of LISTED) {
-  const stated = ((L.theirs.rows_axis || {}).route_store) || {}, c = recount[m] || { route: 0, definition: 0, either: 0 }, s = still[m] || [0, 0];
+  const stated = ((L.theirs.rows_axis || {}).route_store) || {}, c = recount[m] || { route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0 };
   const sc = stated.space_before_a_comma || {};
   const pairs = [["rows with a close on the route text", c.route, stated.field_1_holds_a_close], ["on the definition text", c.definition, stated.field_2_holds_a_close], ["on either", c.either, stated.either_holds_a_close],
-    ["rows whose route still prints a space before a comma", s[0], (sc.field_1 || {}).rows_that_still_print_one_after_closing], ["rows whose definition still does", s[1], (sc.field_2 || {}).rows_that_still_print_one_after_closing]];
-  for (const [what, here, there] of pairs) if (here !== there) countFaults.push(`${m}: ${what} ${here} here, ${there} in the corpus lane's receipt`);
-  said.push(`${m} ${nf(c.route)}/${nf(c.definition)}/${nf(c.either)} rows close, ${s[0]} and ${s[1]} still print a space before a comma (the provider's own)`);
+    ["rows whose route still prints a space before a comma", c.stillRoute, (sc.field_1 || {}).rows_that_still_print_one_after_closing], ["rows whose definition still does", c.stillRecord, (sc.field_2 || {}).rows_that_still_print_one_after_closing]];
+  const differing = pairs.filter(([, here, there]) => here !== there).map(([what, here, there]) => `${m}: ${what} ${here} here, ${there} in the corpus lane's receipt`);
+  const said = `${m} ${nf(c.route)}/${nf(c.definition)}/${nf(c.either)} rows close, ${c.stillRoute} and ${c.stillRecord} still print a space before a comma`;
+  const rec = (ms && ms.sources && ms.sources[m]) || null;
+  const byHistory = !!L.readAt && reachedByThisRuleAlone(L.readAt);
+  const byRecord = !!rec && rec.texts_are_as_read === true && rec.read_at_store_version === L.readAt && rec.texts_sha256 === standsAs(m);
+  if (byHistory && rec && rec.texts_are_as_read !== true) countFaults.push(`${m}: the store's history shows no move but this rule's since ${L.readAt}, and the index says the source's rows are not the rows its list was read from`);
+  if (byHistory || byRecord) { countFaults.push(...differing); judgedSources.push(`${said} (as read at ${L.readAt}, ${byHistory ? "by the store's history" : "by the texts the index recorded"})`); }
+  else saidOnly.push(`${said}${differing.length ? ` (${differing.length} of the corpus lane's counts differ now)` : ""}, its rows have moved on from ${L.readAt}`);
 }
-if (sameRows) check("M5  the corpus lane's own counts are the store's: the rows that hold a close, and the rows that still print a space before a comma once closed", countFaults.length === 0,
-  countFaults.length ? first(countFaults) : `${said.join(" · ")} · the store's rows are the rows the lists were read from (${listedAt})`);
-else console.log(`  --  M5  said, not judged: the store has moved on from the version the lists were read from (${listedAt}; the slot was written on ${ms ? ms.store_version_before : "none"}, the store is ${index.store_version}) · ${said.join(" · ")}${countFaults.length ? ` · ${countFaults.length} of the corpus lane's counts differ now` : ""}`);
+if (judgedSources.length) check("M5  the corpus lane's own counts are the store's, for each source whose rows are the rows its list was read from: the rows that hold a close, and the rows that still print a space before a comma once closed", countFaults.length === 0,
+  countFaults.length ? first(countFaults) : `${judgedSources.join(" · ")}${saidOnly.length ? ` · said, not judged: ${saidOnly.join(" · ")}` : ""}`);
+else console.log(`  --  M5  said, not judged: no source's rows are the rows its list was read from · ${saidOnly.join(" · ")}`);
 
 // ---- M6: what prints, by a second road -------------------------------------------------------
 const printFaults = [];
@@ -239,7 +322,7 @@ for (const [k, row] of slotted) {
   if (!same(store.readingsOf(row), want)) printFaults.push(`${where}: the readings are ${JSON.stringify(store.readingsOf(row)).slice(0, 80)}, the printed route cut at its marks gives ${JSON.stringify(want).slice(0, 80)}`);
 }
 check("M6  by a second road: a row's route and record print as their lines' `prints`, and its readings are that printed route cut at the row's own marks", printFaults.length === 0,
-  printFaults.length ? `${printFaults.length} · ${first(printFaults)}` : `${nf(slotted.length)} rows`);
+  printFaults.length ? `${printFaults.length} · ${first(printFaults)}` : `${nf(slotted.length)} rows · ${slotted.filter(([, row]) => Array.isArray(row[7])).length} of them divided by a ledger`);
 
 // ---- M7: the page's functions -------------------------------------------------------------------
 {
@@ -322,42 +405,46 @@ const stale = new Map();
 // ---- M10: on the page -----------------------------------------------------------------------------
 // served words whose card holds a row of a listed source that the ledger leaves whole and that is the oldest of
 // the store's rows carrying its reading, so the record under its pill is that row's unless an older row of a
-// dictionary beside the store stands first there. Two kinds: a row whose route closes, where the pill itself
-// changes; and a row whose route does not close and whose definition does, where the pill is as it was and the
-// record under it changes (every row of a source whose routes hold no made space is of this kind)
+// dictionary beside the store stands first there. Two kinds, asked of each listed source: a row whose route
+// closes, where the pill itself changes; and a row whose route does not close and whose definition does, where the
+// pill is as it was and the record under it changes (every row of a source whose routes hold no made space is of
+// this kind). A source has a kind where a row of the store is of it
 const KINDS = [
-  { name: "route", most: 6, of: (r) => !!r[CLOSES_SLOT][0] && readingKey(String(r[1]).trim()) !== readingKey(routePrinted(r).trim()) },
-  { name: "record", most: 6, of: (r) => !r[CLOSES_SLOT][0] && !!r[CLOSES_SLOT][1] && !!r[2] && printedForm(String(r[2])) !== printedForm(recordPrinted(r)) },
+  { name: "route", most: 4, of: (r) => !!r[CLOSES_SLOT][0] && readingKey(String(r[1]).trim()) !== readingKey(routePrinted(r).trim()) },
+  { name: "record", most: 4, of: (r) => !r[CLOSES_SLOT][0] && !!r[CLOSES_SLOT][1] && !!r[2] && printedForm(String(r[2])) !== printedForm(recordPrinted(r)) },
 ];
+const whole = (r) => r.length > CLOSES_SLOT && !Array.isArray(r[7]) && !Array.isArray(r[8]);
+// the sources and kinds the store holds a whole row of: [m id, kind]
+const ASKED = [...LISTED.keys()].flatMap((m) => KINDS.filter((kind) => slotted.some(([, r]) => String(r[3]) === m && whole(r) && kind.of(r))).map((kind) => [m, kind]));
+const tag = (m, kind) => `${m} ${kind.name}`;
 const picks = [];
 {
-  const seen = new Set(), found = Object.fromEntries(KINDS.map((kind) => [kind.name, 0]));
+  const seen = new Set(), found = Object.fromEntries(ASKED.map(([m, kind]) => [tag(m, kind), 0]));
   outer: for (const b of zonesServed()) {
     const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${b}.bin`))).toString("utf8"));
     for (const [si, sec] of (z.sections || []).entries()) for (const [e, w] of (sec.words || []).entries()) {
       if (!w.k || w.w || seen.has(w.k)) continue;
       const rows = (store.routesFor(w.k) || []).filter((r) => index.m_sources[r[3]]);
-      for (const kind of KINDS) {
-        if (found[kind.name] >= kind.most) continue;
-        const row = rows.find((r) => LISTED.has(String(r[3])) && r.length > CLOSES_SLOT && !Array.isArray(r[7]) && !Array.isArray(r[8]) && kind.of(r)
-          && store.carriersOf(rows, routePrinted(r).trim())[0] === r);
+      for (const [m, kind] of ASKED) {
+        if (found[tag(m, kind)] >= kind.most) continue;
+        const row = rows.find((r) => String(r[3]) === m && whole(r) && kind.of(r) && store.carriersOf(rows, routePrinted(r).trim())[0] === r);
         if (!row) continue;
-        seen.add(w.k); found[kind.name] += 1;
-        picks.push({ kind: kind.name, book: b, section: si, entry: e, label: sec.label, key: w.k, m: String(row[3]), source: index.m_sources[row[3]].label,
+        seen.add(w.k); found[tag(m, kind)] += 1;
+        picks.push({ kind: tag(m, kind), book: b, section: si, entry: e, label: sec.label, key: w.k, m, source: index.m_sources[m].label,
           printed: printedForm(routePrinted(row).trim()), record: printedForm(recordPrinted(row)), piece: row[5] === 1, was: [...(stale.get(w.k) || [])] });
         break;
       }
-      if (KINDS.every((kind) => found[kind.name] >= kind.most)) break outer;
+      if (ASKED.every(([m, kind]) => found[tag(m, kind)] >= kind.most)) break outer;
     }
   }
 }
-const lacking = KINDS.filter((kind) => !picks.some((pick) => pick.kind === kind.name)).map((kind) => kind.name);
-if (lacking.length) check("M10 on the page, a card that holds such a row prints it closed", false, `no served word carries a whole row of the kind: ${lacking.join(", ")}`);
+const lacking = ASKED.filter(([m, kind]) => !picks.some((pick) => pick.kind === tag(m, kind))).map(([m, kind]) => tag(m, kind));
+if (!ASKED.length || lacking.length) check("M10 on the page, a card that holds such a row prints it closed", false, !ASKED.length ? "no row of the store carries the slot whole" : `no served word carries a whole row that leads its reading, of: ${lacking.join(", ")}`);
 else {
   const tree = await serveTree(K3);
   const pw = await loadPlaywright();
   const browser = await pw.chromium.launch(launchOptions());
-  const faults = [], seenOn = [], judged = Object.fromEntries(KINDS.map((kind) => [kind.name, 0]));
+  const faults = [], seenOn = [], judged = Object.fromEntries(ASKED.map(([m, kind]) => [tag(m, kind), 0]));
   let pills = 0;
   try {
     for (const pick of picks) {
@@ -405,7 +492,7 @@ else {
         for (const [text] of got.said) if (pick.was.includes(readingKey(text))) faults.push(`${where}: a pill prints «${text.slice(0, 50)}», a reading as it stood before closing`);
         if (!got.found) continue;   // the card opened on a division of the word, where the whole form's rows are a press away
         // the record shown is the oldest carrier's: judged where the card's own source line names this row's source
-        if (!String(got.credited || "").startsWith(`${pick.source} \u00b7 `)) continue;
+        if (!String(got.credited || "").startsWith(`${pick.source} · `)) continue;
         seenOn.push(where); judged[pick.kind] += 1;
         if (got.record !== pick.record) faults.push(`${where}: under «${pick.printed.slice(0, 40)}» the record prints «${String(got.record).slice(0, 60)}», and as printed it is «${pick.record.slice(0, 60)}»`);
         // the reading is the row's whole route as it prints, so the card calls it a piece of its record only where the store marks the row as one
@@ -413,8 +500,9 @@ else {
       } finally { await ctx.close(); }
     }
   } finally { await browser.close().catch(() => {}); await tree.close(); }
-  check("M10 on the page, with every switch lifted: no pill prints a reading as it stood before closing; the closed reading stands on a pill of its source, the record under it is the definition as it prints, and it is called a piece only where the store marks it one", faults.length === 0 && KINDS.every((kind) => judged[kind.name] > 0),
-    faults.length ? `${faults.length} · ${first(faults)}` : `${picks.length} words pressed · ${nf(pills)} pills read · the record was read under ${KINDS.map((kind) => `${judged[kind.name]} of ${picks.filter((pick) => pick.kind === kind.name).length} rows whose ${kind.name} closes`).join(" and ")}${seenOn.length ? ` (${seenOn[0]})` : ""}`);
+  const unjudged = ASKED.filter(([m, kind]) => !judged[tag(m, kind)]).map(([m, kind]) => tag(m, kind));
+  check("M10 on the page, with every switch lifted: no pill prints a reading as it stood before closing; for each listed source the closed reading stands on a pill of its source, the record under it is the definition as it prints, and it is called a piece only where the store marks it one", faults.length === 0 && unjudged.length === 0,
+    faults.length ? `${faults.length} · ${first(faults)}` : unjudged.length ? `no card showed the record of a row of: ${unjudged.join(", ")}` : `${picks.length} words pressed · ${nf(pills)} pills read · the record was read under ${ASKED.map(([m, kind]) => `${judged[tag(m, kind)]} of ${picks.filter((pick) => pick.kind === tag(m, kind)).length} ${m} rows whose ${kind.name} closes`).join(", ")}${seenOn.length ? ` (${seenOn[0]})` : ""}`);
 }
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
