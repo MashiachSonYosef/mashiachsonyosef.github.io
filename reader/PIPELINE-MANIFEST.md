@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-13.
 
-**147 rules declared · 134 named by a check · 13 unguarded.**
+**149 rules declared · 136 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -43,6 +43,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
 | `door-filing-rule-v1-the-door-files-the-thirty-nine` | tools/door-filing-v1.mjs | **UNGUARDED** |
 | `edition-serve-rule-v1-the-edition-is-the-text-the-door-is-the-rights` | tools/serve-edition-v1.mjs | check-edition-serve-v1 |
+| `entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points` | tools/apply-row-entries-v1.mjs, tools/entry-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-entry-gate-v1, check-pointing-grade-v1 |
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | check-k-maqaf-preserved-v2 |
 | `exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf` | tools/k-normalization-v2.mjs | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1 |
 | `export-custody-rule-v1-what-leaves-carries-its-own-way-back` | zone.html | check-licence-leaves-v1 |
@@ -88,6 +89,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `masoretic-marks-rule-v1-every-mark-is-gold-by-its-class-never-by-a-code-point-range` | tools/project-masoretic-marks-v1.mjs, zone.html | check-masoretic-gold-v1, check-color-channels-v1 |
 | `megacompspan-rule-v1-one-maqaf-run-one-card` | tools/check-maqaf-pair-drawn-v1.mjs | check-maqaf-pair-drawn-v1, check-run-card-forms-v1, check-choice-memory-v1 |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | check-serve-oracle-checked-v1 |
+| `names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name` | tools/apply-name-rows-v1.mjs, tools/names-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-names-gate-v1 |
 | `no-names-rule-v1-the-reading-a-name-displaced-is-kept-beside-the-name-so-a-switch-puts-it-back-on-that-line-alone` | tools/regloss-zone.mjs | **UNGUARDED** |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
@@ -180,15 +182,17 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 130 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 136 tools that are not checks.
 
 Not called by any build stage:
 
 - `tools/apply-ledger-divisions-v1.mjs`
 - `tools/apply-lone-letters-v1.mjs`
 - `tools/apply-made-spaces-v1.mjs`
+- `tools/apply-name-rows-v1.mjs`
 - `tools/apply-piece-store-patch-v1.mjs`
 - `tools/apply-route-delta-v1.mjs`
+- `tools/apply-row-entries-v1.mjs`
 - `tools/apply-source-years-v1.mjs`
 - `tools/apply-span-ledger-v1.mjs`
 - `tools/bake-blank-ledger-v1.mjs`
@@ -221,6 +225,8 @@ Not called by any build stage:
 - `tools/emit-workspace-manifest-v1.mjs`
 - `tools/emit-zone-shipment-v1.mjs`
 - `tools/enrich-gloss-m-v1.mjs`
+- `tools/entry-gate-v1.mjs`
+- `tools/gated-card-v1.mjs`
 - `tools/gloss-m-v1.mjs`
 - `tools/gloss-store-v1.mjs`
 - `tools/group-variant-sites-v1.mjs`
@@ -238,7 +244,9 @@ Not called by any build stage:
 - `tools/mam-apparatus-census-v1.mjs`
 - `tools/mark-inventory-v1.mjs`
 - `tools/name-the-titles-v1.mjs`
+- `tools/names-gate-v1.mjs`
 - `tools/pinned-v1.mjs`
+- `tools/place-leaders-v1.mjs`
 - `tools/plan-work-shards-v1.mjs`
 - `tools/planned-packs-v1.mjs`
 - `tools/pointing-grade-v1.mjs`

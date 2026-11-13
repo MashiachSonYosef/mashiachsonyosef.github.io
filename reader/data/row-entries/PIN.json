@@ -1,0 +1,22 @@
+{
+ "schema_version": "ROW_ENTRIES_PIN_V1",
+ "what": "the corpus lane's row entries ledger: for each row of the fifteen sources that name their entries, the entry it belongs to as its own source says it, and the Strong's numbers of that entry. Its rule and its receipt are kept here byte for byte; the ledger itself is 25 MB and is kept on the lane's store, named here by its size and its sha256 and read only as those bytes. tools/apply-row-entries-v1.mjs writes it onto the rows",
+ "relay": "v172",
+ "of": "13 November 2026",
+ "letter": "r2:mishkan/v2/letters/moses-row-entries-v1/FOR-ELIJAH-v172.md",
+ "from": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1/ (the private store)",
+ "folder": "row-entries-v1",
+ "rule": { "file": "RULE.md", "bytes": 11199, "sha256": "da37422ae459d28e0f63edf4644dd14bf08f9c541730d6d785a759a43c321fc5" },
+ "receipt": { "file": "receipt-v1.json", "bytes": 29309, "sha256": "77f0b1d179f1c6d38e4b22269c9dc0b6aa2fdbbca8826d1bac5315dc8350803c" },
+ "ledger": { "file": "row-entries-v1.jsonl", "bytes": 25201587, "sha256": "16f29ee3f43c3f94295aaf2d38a7c4859539449982e14154f63dcbb14632deb4", "lines": 52793,
+   "kept": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1/row-entries-v1.jsonl (the private store); not in this tree" },
+ "partings": [
+  { "name": "STEP's letters", "fact": "t",
+    "sources": { "M4": "stepbible_tahot_aligned_translation", "M19": "stepbible_tbesh_gloss" },
+    "from_the_ruling": "ruling 6 of 13 November 2026 (relay v177), rows_it_reads: rows of TAHOT (M4: slot 5 holds its tags, each with its places) and of TBESH (M19: slot 5 holds its number with STEP's letter)" },
+  { "name": "BDB's own entries", "fact": "b",
+    "sources": { "M5": "openscriptures_bdb_1906" },
+    "from_the_ruling": "ruling 6 of 13 November 2026 (relay v177), rows_it_reads: rows of BDB via Open Scriptures (M5) whose slot 6 is empty: slot 5 holds BDB's own entry" }
+ ],
+ "note": "every sha256 here is the one the relay's letter names for the file. The two partings are the ones the owner added to the gate on 13 November («1-3. ok agree», ruling 6); which sources each reads is the ruling's own statement, set here as data so the tool names no source in its code"
+}

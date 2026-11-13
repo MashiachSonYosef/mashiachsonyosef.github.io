@@ -40,6 +40,16 @@
 //            lattice's lemma is that same key, and the stack is in routes;
 //        hm  that reading's source and year, so its chip can say who;
 //        ld  where the Leningrad codex differs: the kind and its letters.
+//        tg  the tag of the word's core piece, as the lattice writes it:
+//            the entry TAHOT reads at this place (entry-gate-rule-v1). At a
+//            place written one way and read another it rides on the half
+//            whose letters the pieces spell; a place whose pieces spell
+//            neither, or whose core carries no tag, carries none.
+//        np  1 where the place is a name: the corpus lane's list of name
+//            places (data/names/, relay v177: TAHOT's grammar or MACULA's
+//            type says so), by the verse and the word's number in it as
+//            the card's head counts it (names-gate-rule-v1). A tree that
+//            holds no list marks none, and its receipt says so.
 //   4. In the sidecar, per key the lattice's card fingerprints in the
 //      lattice's own order with the transliteration flags, and per pointed
 //      surface the tier of each card (m vowel match · n normalized · x vowel
@@ -87,9 +97,13 @@ import { createInterface } from "node:readline";
 import { join } from "node:path";
 
 import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
-import { openRouteStore } from "./gloss-store-v1.mjs";
+import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
+import { ENTRY_GATE_RULE_ID, placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
+import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
+import { readPinnedLines } from "./pinned-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
 const GRADE_CHAR = { VOWEL_MATCH: "m", NORMALIZED: "n", VOWEL_MISMATCH: "x" };
@@ -267,6 +281,8 @@ const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows
   hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_with_their_own_citations: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
+  places_tagged: 0, places_with_no_core_tag: 0, places_whose_pieces_spell_no_key_of_the_word: 0,
+  name_places_listed: 0, name_places_marked: 0, name_places_with_no_word: 0, leaders_asked_at_a_kind_of_place: 0, leaders_the_place_moves: 0,
   held_examples: [] };
 const grades = {};          // pointed surface -> { k, g, n, o, v? }
 // what the sidecar prints of a reading's credit: its text, its oldest
@@ -297,6 +313,72 @@ const citesLeader = (key, list, names) => {
   return hit && hit.first ? credit(hit.text, hit.first) : null;
 };
 const sameList = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+// THE LEADERS AT EACH KIND OF PLACE (entry-gate-rule-v1, names-gate-rule-v1;
+// tools/place-leaders-v1.mjs says what the keys are). Under "only this
+// pointing" the page asks two things of a place before it asks the pointing.
+// Its entry: a row whose own source files it under another entry than the
+// place's is withheld, a row of the place's entry stands whatever its
+// headword's points, and a row with no number goes to the pointing as
+// before. And whether the place is a name: where it is not, a row its own
+// source gives as a name is withheld. The leaders baked for the filter (o.l,
+// its alternate o.la, and nl, whether the name still leads) are computed
+// with the pointing and the stem alone, and they stay so: they are what a
+// place with no tag that is a name reads. For each kind of place a pointed
+// surface stands at in this book they are computed again, row by row with
+// the gates, and kept where they are not the same: grades[surface].e[<the
+// place's key>] = { l, la, nl }. What a surface's rows grade as, and which
+// stems part them, is the surface's and is kept from its first verse.
+const sameJson = (a, b) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
+const surfaceRows = new Map();   // pointed surface -> { srows, gradeOfRow, attested, otherStem, nameText, asked: the kinds of place asked so far }
+const leadersAt = ({ srows, gradeOfRow, attested, otherStem, nameText }, place, isName) => {
+  const bdbHere = place ? bdbEntriesAt(place, srows.map(factsOf)) : null;
+  const verdict = new Map(srows.map((row) => [row, place ? entryVerdict(factsOf(row), place, bdbHere) : "none"]));
+  const keeps = (row) => { const v = verdict.get(row); return v !== "other" && !nameWithheld(factsOf(row), isName) && (v === "this" || !attested || gradeOfRow(row) !== "x") && !otherStem(row); };
+  const leader = (omit) => {
+    const kept = srows.filter((row) => store.index.m_sources[row[3]] && !(omit && omit.has(String(row[3]))) && keeps(row));
+    const pool = store.readingPool(kept, "oldest");
+    if (!pool.length) return null;
+    const carriers = store.carriersOf(kept, pool[0].text);
+    return carriers.length ? [...credit(pool[0].text, carriers[0]), [...new Set(carriers.map((row) => String(row[3])))].sort()] : null;
+  };
+  const l = leader(null);
+  return { l, la: l ? leader(new Set(l[4])) : null, nl: !!nameText && store.carriersOf(srows.filter(keeps), nameText).length > 0 };
+};
+// ---- the name places of this book (names-gate-rule-v1) --------------------
+// The corpus lane's list names each name place by its book, its verse and the
+// word's number in the verse as the card's head counts it (the marks not
+// counted). The list is kept under a pin in data/names/ and read only as those
+// bytes. Every word's mark is cleared first, so a place an earlier list named
+// and this one does not carries none.
+const namesDir = arg("--names", join(zonePath.replace(/data\/zones\/.*$/u, ""), "data", "names"));
+let namesSaid = null;   // what the receipt says of the list, or null where the tree holds none
+for (const sec of zone.sections || []) for (const w of sec.words || []) delete w.np;
+if (existsSync(join(namesDir, "PIN.json"))) {
+  const pin = JSON.parse(readFileSync(join(namesDir, "PIN.json"), "utf8"));
+  if (pin.schema_version !== "NAMES_PIN_V1" || !pin.place_names) { console.error(`the pin of the names names no list of name places (${join(namesDir, "PIN.json")})`); process.exit(1); }
+  const here = new Map();   // verse label -> the numbers of its words that are a name
+  for (const l of readPinnedLines(join(namesDir, pin.folder, pin.place_names.file), pin.place_names, `${pin.folder}/${pin.place_names.file}`)) {
+    if (l.book !== slug) continue;
+    const cut = String(l.place).lastIndexOf(":");
+    const verse = String(l.place).slice(0, cut), n = Number(String(l.place).slice(cut + 1));
+    if (cut < 1 || !Number.isInteger(n) || n < 1) { console.error(`the list of name places names a place that is no verse and word number: ${JSON.stringify(l.place)}`); process.exit(1); }
+    (here.get(verse) || here.set(verse, new Set()).get(verse)).add(n);
+    stats.name_places_listed += 1;
+  }
+  for (const sec of zone.sections || []) {
+    const listed = here.get(String(sec.label));
+    if (!listed) continue;
+    const words = (sec.words || []).filter((w) => !w.mark);
+    for (const n of listed) { if (words[n - 1]) { words[n - 1].np = 1; stats.name_places_marked += 1; } }
+  }
+  stats.name_places_with_no_word = stats.name_places_listed - stats.name_places_marked;
+  namesSaid = { rule: NAMES_GATE_RULE_ID, relay: pin.relay, place_names: { file: pin.place_names.file, sha256: pin.place_names.sha256, lines: pin.place_names.lines },
+    listed_for_this_book: stats.name_places_listed, marked: stats.name_places_marked, with_no_word: stats.name_places_with_no_word };
+}
+// a place is a name where the list marks it; a book whose places were not read for names treats every place as one,
+// so its names stand as they did before the gate
+const isNamePlace = (w) => !namesSaid || !!w.np;
+
 for (const sec of zone.sections || []) {
   const on = (sec.words || []).filter((w) => !w.mark && keysOf(w).length);
   if (!on.length) continue;
@@ -305,7 +387,7 @@ for (const sec of zone.sections || []) {
   // is proved, so a verse held whole or absent from the lattice carries no
   // reading, credit or difference a run before this one wrote (until 10
   // November 2026 they were cleared only inside a joined verse).
-  for (const w of on) { delete w.hg; delete w.hm; delete w.ld; delete w.pc; }
+  for (const w of on) { delete w.hg; delete w.hm; delete w.ld; delete w.pc; delete w.tg; for (const r of w.w || []) delete r.tg; }
   stats.verses += 1; stats.words_on += on.length;
   const rows = byRef.get(sec.label);
   if (!rows) { stats.verses_absent_from_lattice += 1; continue; }
@@ -333,6 +415,13 @@ for (const sec of zone.sections || []) {
   stats.verses_joined += 1;
   on.forEach((w, i) => {
     const p = rows[i];
+    // the entry at the place: the tags of its core pieces, on the word, or on the half the pieces spell
+    const cores = (p.pieces || []).filter((x) => x && x.role === "core" && x.tag).map((x) => String(x.tag));
+    const spelled = (p.pieces || []).map((x) => (x && x.consonants) || "").join("");
+    const tagged = !cores.length ? null : w.w ? w.w.find((r) => r.k === spelled) || null : w.k === spelled ? w : null;
+    if (tagged) { tagged.tg = cores.length === 1 ? cores[0] : cores; stats.places_tagged += 1; }
+    else if (cores.length) stats.places_whose_pieces_spell_no_key_of_the_word += 1;
+    else stats.places_with_no_core_tag += 1;
     // rule 4 · the grades, per pointed surface, over the lattice's own order
     for (const m of p.megacompspan || []) {
       const rg = m.route_grades;
@@ -489,6 +578,7 @@ for (const sec of zone.sections || []) {
       grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}), ...(nl ? { nl: 1 } : {}) };
       if (st) stats.surfaces_with_stems += 1;
       stats.grades += 1;
+      surfaceRows.set(m.surface, { srows, gradeOfRow, attested, otherStem, nameText, asked: new Set() });
     }
     // rule 3 · hg, the headword's first reading under lemma-sort v3
     const entry = (p.megacompspan || []).find((m) => m.lemma) || null;
@@ -540,6 +630,32 @@ for (const sec of zone.sections || []) {
   });
 }
 
+// ---- the leaders at each kind of place, asked once every surface is graded --
+// Every word of the book, and at a place written one way and read another
+// each half, is a form the page may read leaders for: by its pointed surface
+// (a read half's without the source's brackets), its own tags and whether its
+// place is a name. A form whose surface the lattice graded under its own key
+// is asked once for each kind of place it stands at.
+for (const sec of zone.sections || []) for (const w of sec.words || []) {
+  if (w.mark) continue;
+  const isName = isNamePlace(w);
+  for (const form of [w, ...(w.w || [])]) {
+    if (!form || typeof form.s !== "string" || !form.k) continue;
+    const surface = form === w ? form.s : form.s.replace(/^\[+|\]+$/gu, "");
+    const rec = grades[surface], held = surfaceRows.get(surface);
+    if (!rec || !held || rec.k !== form.k) continue;
+    const tags = form.tg ? [].concat(form.tg) : null;
+    const key = leadersKey(tags, isName);
+    if (key === PLACE_IS_A_NAME || held.asked.has(key)) continue;   // no tag and a name: the surface's own leaders
+    held.asked.add(key);
+    stats.leaders_asked_at_a_kind_of_place += 1;
+    const now = leadersAt(held, tags ? placeEntry(tags) : null, isName);
+    if (sameJson(now.l, rec.o.l) && sameJson(now.la, rec.o.la) && now.nl === !!rec.nl) continue;
+    (rec.e ||= {})[key] = { l: now.l, la: now.la, ...(now.nl ? { nl: 1 } : {}) };
+    stats.leaders_the_place_moves += 1;
+  }
+}
+
 // ---- the sidecar ----------------------------------------------------------
 const sideRoutes = {};
 let trCards = 0;
@@ -566,6 +682,9 @@ const sidecar = {
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats } },
   routes: sideRoutes, grades,
+  entry: { rule: ENTRY_GATE_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
+  names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
+  leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
   ...(binyanFiles.length ? { stems: stemsByKey, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each store row on the key, by m, rank and route; a row not listed has no known stem" } } : {}),
 };
 writeFileSync(sidecarPath, gzipSync(Buffer.from(JSON.stringify(sidecar)), { level: 9 }));
@@ -580,7 +699,8 @@ ef.toggles.lattice = {
   join: "verse by verse, ON positions only (kind, not rule); the n-th ON word takes the n-th ON row, proved by key at every position AND by j being distinct and ascending across the verse's rows (j is the position identity — i repeats across the parts of a maqaf compound); a verse that does not prove is held whole",
   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
   counts: { ...stats },
-  what_the_word_carries: "hg: the headword's first reading under lemma-sort v3, with hm (source, licence key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source; ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
+  names: namesSaid,
+  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; hg: the headword's first reading under lemma-sort v3, with hm (source, licence key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source; ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
   pieces: {
     rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
     witnesses: pieceWitness,
@@ -602,4 +722,5 @@ console.log(`${outPath} · ${s.hg.toLocaleString()} of ${s.words_on.toLocaleStri
 console.log(`  ${sidecarPath} · ${Object.keys(sideRoutes).length.toLocaleString()} keys, ${routeCards.toLocaleString()} cards (${trCards} transliterations) · ${Object.keys(grades).length.toLocaleString()} pointed surfaces graded · ${(statSync(sidecarPath).size / 1024).toFixed(0)} KB`);
 console.log(`  parts: ${s.pc} of ${s.bare} words with no English of their own carry their pieces (${s.pc_pieces} pieces, ${s.pc_both_witnesses} with both witnesses) · ${s.bare_without_pieces} bare words the lattice has no pieces for · ${s.pc_skipped_word_has_an_english.toLocaleString()} words answered by the catalog and not carried`);
 console.log(`  hg skipped: ${s.hg_skipped_no_h} no headword · ${s.hg_skipped_witnesses_differ} witnesses differ · ${s.hg_skipped_lemma_differs_from_h} lemma is not h · ${s.hg_skipped_same_as_form} headword is the form · ${s.hg_skipped_lemma_not_in_routes} stack has no cards in this book`);
+console.log(`  places: ${s.places_tagged.toLocaleString()} carry their entry's tag · ${namesSaid ? `${s.name_places_marked.toLocaleString()} of ${s.name_places_listed.toLocaleString()} listed name places marked` : "no list of name places in this tree"} · leaders asked at ${s.leaders_asked_at_a_kind_of_place.toLocaleString()} kinds of place, ${s.leaders_the_place_moves.toLocaleString()} moved`);
 if (s.held_examples.length) console.log(`  held: ${s.held_examples.join(" | ")}`);

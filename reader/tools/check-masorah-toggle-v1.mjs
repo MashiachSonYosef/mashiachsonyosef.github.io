@@ -19,7 +19,8 @@
 //   M3  KEEP is the pointing as printed: the head shows the pointed word, no
 //       record is withheld, and the default's pool is never larger
 //   M4  ONLY moves the line under the word to the sidecar's own row-level
-//       leader (o.l), and the card's first pill says the same — one answer,
+//       leader (o.l, or its place's own where the entry or the names gate
+//       moves it), and the card's first pill says the same — one answer,
 //       two places
 //   M4b the lenient leader names its carriers; with every one switched off
 //       the line reads the filter's own alternate (o.la) and the card opens
@@ -46,6 +47,7 @@
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
+import { onlyLeaders } from "./place-leaders-v1.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
@@ -149,6 +151,10 @@ await p.waitForTimeout(700);
 // the card as it opens, under the default
 const only = await cardNow();
 const gr = side.grades[target ? target.s : ""];
+// the leaders under "only" at the word's own place: its own where its gates move them (its entry's tags
+// and whether it is a name; a book whose places were not read for names reads every place as one)
+const at = target ? await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i].__word; return { tags: w && w.tg ? [].concat(w.tg) : null, np: !!(w && w.np) }; }, target.i) : { tags: null, np: false };
+const lead = onlyLeaders(gr, at.tags, !side.names || at.np);
 
 // M2
 check("M2  only, the default, withholds, and the card says how many and why, with nothing in its head",
@@ -165,9 +171,9 @@ check("M3  keep is the pointing as printed: pointed head, nothing withheld, read
   keep ? `${keep.pills.length} readings · head "${keep.head}"` : "no card");
 check("    and the default's pool is smaller or equal, never larger", only && keep && only.pills.length <= keep.pills.length, `${only ? only.pills.length : "?"} ≤ ${keep ? keep.pills.length : "?"}`);
 // M4
-check("M4  the line under the word is the sidecar's lenient leader, and the first pill says the same",
-  only && gr && gr.o.l && only.line.toLowerCase().startsWith(String(gr.o.l[0]).toLowerCase().slice(0, 12)) && only.pills[0] && only.pills[0].toLowerCase() === String(gr.o.l[0]).toLowerCase(),
-  only ? `line "${only.line}" · pill "${only.pills[0]}" · o.l "${gr && gr.o.l ? gr.o.l[0] : "—"}"` : "no card");
+check("M4  the line under the word is the sidecar's lenient leader at its place, and the first pill says the same",
+  only && lead.l && only.line.toLowerCase().startsWith(String(lead.l[0]).toLowerCase().slice(0, 12)) && only.pills[0] && only.pills[0].toLowerCase() === String(lead.l[0]).toLowerCase(),
+  only ? `line "${only.line}" · pill "${only.pills[0]}" · the leader "${lead.l ? lead.l[0] : "—"}"${at.tags ? ` (at a place of ${at.tags.join(" ")})` : ""}` : "no card");
 
 // M4b — THE FILTER'S OWN ALTERNATE (7 November 2026). The lenient leader
 // names its carriers (o.l[4]); with every one of them switched off, the line
@@ -177,9 +183,9 @@ check("M4  the line under the word is the sidecar's lenient leader, and the firs
 // baked over every row, may name a row the filter withholds, and before this
 // the line read it while the card pressed another reading.
 {
-  const l = gr && gr.o && gr.o.l;
+  const l = lead.l;
   const ids = l && Array.isArray(l[4]) && l[4].length ? l[4] : null;
-  const la = gr && gr.o ? gr.o.la : null;
+  const la = lead.la;
   let r = null;
   if (ids) {
     const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });

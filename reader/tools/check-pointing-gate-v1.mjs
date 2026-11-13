@@ -4,7 +4,12 @@
 //
 // THE POINTING GATE ASKS WHAT THE SOURCES SAY, AND NOTHING MORE (2026-11-06).
 // Under "only this pointing", the default, two things withhold a record, and
-// each is counted on the card:
+// each is counted on the card. (Since 13 November 2026 two more are asked
+// before them, of the word's place: its entry, and whether it is a name.
+// tools/check-entry-gate-v1.mjs and tools/check-names-gate-v1.mjs hold
+// those; here the rows they leave are counted as the page counts them: a
+// row of another entry is out, a row given as a name is out where the place
+// is not one, and a row of the place's own entry stays whatever its points.)
 //   - the pointing: a record whose source points the word otherwise; but only
 //     where some record of the store points the word as the text does. Where
 //     none does (a word in pause, a headword pointed in half) the grade cannot
@@ -18,8 +23,9 @@
 //       hiphil and haphel and aphel, piel and pael; stem-family-rule-v2)
 //   G2  a verb whose key carries records of another stem: under the default
 //       its card withholds exactly those records for the stem, after the
-//       pointing has withheld its own, and says so on its withheld line,
-//       naming the stem or stems the sidecar gives the word there
+//       place's gates and the pointing have withheld their own, and says so
+//       on its withheld line, naming the stem or stems the sidecar gives the
+//       word there
 //   G3  the same card under "keep" withholds nothing for the stem
 //   G4  a word no record of the store points as the text does: under the
 //       default its card withholds nothing for the pointing, and has readings
@@ -48,7 +54,9 @@ import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { gradeRow, isPointed } from "./pointing-grade-v1.mjs";
 import { STEM_FAMILY, isOtherStem } from "./stem-family-v1.mjs";
-import { openRouteStore } from "./gloss-store-v1.mjs";
+import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
+import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { nameWithheld } from "./names-gate-v1.mjs";
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
 
 const pw = await loadPlaywright();
@@ -61,6 +69,23 @@ const WITHDRAWN = new Map([
   ["33d94ffb1c03a2407e7a503aaf7ac2d7ecea0a5199ed76477dff64cd526ecb36", "row-stems-v1.jsonl"],
 ]);
 const rowsOf = (k) => (store.routesFor(k) || []).filter((r) => store.index.m_sources[r[3]]);
+// what the place's gates and the pointing leave of a word's rows, as the page gates them: a row of another entry
+// than the place's is out; a row its source gives as a name is out where the place is not one; a row of the
+// place's own entry stays whatever its points; any other row is out where some row of the store points the word as
+// the text does and this one points it otherwise. A word with no tag is not asked its entry, and a book whose
+// places were not read for names is not asked for names.
+const gated = (w, rows, grades, isName) => {
+  const attested = grades.includes("m");
+  const place = w.tg ? placeEntry([].concat(w.tg)) : null;
+  const facts = rows.map(factsOf);
+  const bdbHere = place ? bdbEntriesAt(place, facts) : null;
+  const verdicts = rows.map((r, j) => (place ? entryVerdict(facts[j], place, bdbHere) : "none"));
+  const left = (j) => verdicts[j] !== "other" && !nameWithheld(facts[j], isName);
+  return {
+    kept: rows.filter((r, j) => left(j) && (verdicts[j] === "this" || !attested || grades[j] !== "x")),
+    byPointing: rows.filter((r, j) => left(j) && verdicts[j] === "none" && attested && grades[j] === "x").length,
+  };
+};
 
 // ---- the words, from the data -----------------------------------------------
 const plain = (w) => w && !w.mark && w.k && typeof w.s === "string" && !w.kq && !w.s.includes("\u05BE") && isPointed(w.s);
@@ -77,6 +102,9 @@ for (const z of zonesServed()) {
   }
   if (unattested && any && ((verb && divided) || !hasLedger)) continue;
   const zone = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8"));
+  // a place is a name where its word is marked; a book whose places were not read for names reads every place as one
+  const namesRead = !!((((zone.emitted_from || {}).toggles || {}).lattice || {}).names);
+  const isName = (w) => !namesRead || !!w.np;
   for (const sec of zone.sections || []) {
     const ws = (sec.words || []).filter((w) => !w.mark);
     ws.forEach((w, i) => {
@@ -87,20 +115,24 @@ for (const z of zonesServed()) {
       const grades = rows.map((r) => gradeRow(r, w.s));
       const attested = grades.includes("m");
       if (!any && attested) any = { zone: z, label: sec.label, s: w.s, k: w.k };
-      if (hasLedger && !verb && g && Array.isArray(g.st) && g.st.length && side.stems[w.k]) {
-        const kept = attested ? rows.filter((r, j) => grades[j] !== "x") : rows;
+      // G2's word is one its place does not divide, so its card opens on its whole form (a divided word's card
+      // opens on its division; G5 holds its whole form). Found on 13 November 2026, when the entry was first
+      // asked before the pointing: the first verb with a record of another stem left was then a divided one
+      if (hasLedger && !verb && g && Array.isArray(g.st) && g.st.length && side.stems[w.k] && !(Array.isArray(w.pg) && w.pg.length > 1)) {
+        const { kept, byPointing } = gated(w, rows, grades, isName(w));
         const rs = side.stems[w.k];
         const other = kept.filter((r) => isOtherStem(rs[`${r[3]}\u0001${r[0]}\u0001${r[1]}`], g.st)).length;
-        if (other > 0) verb = { zone: z, label: sec.label, s: w.s, k: w.k, st: g.st, other, pointed: attested ? grades.filter((x) => x === "x").length : 0 };
+        if (other > 0) verb = { zone: z, label: sec.label, s: w.s, k: w.k, st: g.st, other, pointed: byPointing };
       }
       // G5's word: one its place divides into pieces that spell it, whose whole form's records the stem filters
       if (hasLedger && !divided && g && Array.isArray(g.st) && g.st.length && side.stems[w.k] && Array.isArray(w.pg) && w.pg.length > 1 && w.pg.map((x) => (x && x.k) || "").join("") === w.k) {
-        const kept = attested ? rows.filter((r, j) => grades[j] !== "x") : rows;
+        const { kept } = gated(w, rows, grades, isName(w));
         const rs = side.stems[w.k];
         const other = kept.filter((r) => isOtherStem(rs[`${r[3]}\u0001${r[0]}\u0001${r[1]}`], g.st)).length;
         if (other > 0) divided = { zone: z, label: sec.label, s: w.s, k: w.k, st: g.st, other };
       }
-      if (!unattested && !attested && grades.includes("x") && (w.pg || []).length === 0) unattested = { zone: z, label: sec.label, s: w.s, k: w.k, x: grades.filter((x) => x === "x").length, rows: rows.length };
+      // G4's word keeps a row once its place is asked, so its card has readings to show
+      if (!unattested && !attested && grades.includes("x") && (w.pg || []).length === 0 && gated(w, rows, grades, isName(w)).kept.length > 0) unattested = { zone: z, label: sec.label, s: w.s, k: w.k, x: grades.filter((x) => x === "x").length, rows: rows.length };
     });
     if (unattested && any && ((verb && divided) || !hasLedger)) break;
   }

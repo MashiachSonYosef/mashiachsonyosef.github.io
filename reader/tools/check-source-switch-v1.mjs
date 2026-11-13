@@ -40,6 +40,7 @@
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
+import { onlyLeaders } from "./place-leaders-v1.mjs";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
@@ -63,13 +64,16 @@ const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean
 // "only" (nl) is the table's line and is left out here, its carriage being
 // the table's and its alternate the leader's; an ungraded surface reads the
 // table, with gloss_m's carriers and alternate
-const modelOf = (surface, k) => {
+const modelOf = (surface, k, tags = null, np = false) => {
   const gm = zone.gloss_m[k]; if (!gm || !gm.by) return null;
   const gr = side && side.grades ? side.grades[surface] : null;
   if (gr && gr.o && Object.prototype.hasOwnProperty.call(gr.o, "l")) {
-    if (gr.nl && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, k) && zone.gloss[k] === zone.gloss_names[k]) return null;
-    const l = gr.o.l; if (!l || !Array.isArray(l[4]) || !l[4].length) return null;
-    const la = gr.o.la;
+    // the leaders under "only" at the word's own place: its own where its gates move them (its entry's tags
+    // and whether it is a name; a book whose places were not read for names reads every place as one)
+    const lead = onlyLeaders(gr, tags, !side.names || np);
+    if (lead.nl && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, k) && zone.gloss[k] === zone.gloss_names[k]) return null;
+    const l = lead.l; if (!l || !Array.isArray(l[4]) || !l[4].length) return null;
+    const la = lead.la;
     return { text: l[0], by: l[4], alt: la ? { text: la[0], m: la[1], by: la[4] } : null, from: "sidecar" };
   }
   return { text: zone.gloss[k], by: gm.by, alt: gm.alt || null, from: "table" };
@@ -288,7 +292,7 @@ check("S2  the receipt agrees with the chips and with gloss_m",
 // a baked alternate, AND carry some other visible line with a second carrier
 const visible = await p.evaluate(() => [...document.querySelectorAll("section.seg .he-text .wb")].slice(0, 120).map((wb, i) => {
   const g = wb.querySelector(".g"); const w = wb.querySelector(".w");
-  return { i, s: w ? w.textContent.trim() : "", bare: !g || g.classList.contains("bare"), regions: wb.querySelectorAll(".wr").length, line: g ? g.textContent.replace(/\s+/g, " ").trim() : "" };
+  return { i, s: w ? w.textContent.trim() : "", tg: wb.__word && wb.__word.tg ? [].concat(wb.__word.tg) : null, np: !!(wb.__word && wb.__word.np), bare: !g || g.classList.contains("bare"), regions: wb.querySelectorAll(".wr").length, line: g ? g.textContent.replace(/\s+/g, " ").trim() : "" };
 }));
 const kOf = (s) => { for (const sec of zone.sections) for (const w of sec.words || []) if (w.s === s) return w.k || (w.w && w.w[0] && w.w[0].k) || null; return null; };
 const groups = new Map();
@@ -301,7 +305,7 @@ for (const [gk, ids] of groups) {
   for (const v of visible) {
     if (v.bare || v.regions > 1) continue;
     const k = kOf(v.s); const gm = k && zone.gloss_m[k]; if (!gm || !gm.by) continue;
-    const model = modelOf(v.s, k); if (!model) continue;
+    const model = modelOf(v.s, k, v.tg, v.np); if (!model) continue;
     // the model must read what the page prints, or it models nothing
     modelled += 1;
     if (spanJoin(model.text).toLowerCase() !== lineSays(v)) { disagree += 1; continue; }

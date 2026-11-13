@@ -56,7 +56,9 @@
   "M": [
    "apply-ledger-divisions-v1.mjs",
    "apply-made-spaces-v1.mjs",
+   "apply-name-rows-v1.mjs",
    "apply-route-delta-v1.mjs",
+   "apply-row-entries-v1.mjs",
    "apply-source-years-v1.mjs",
    "bake-dictionary-store-v1.mjs",
    "check-restore-serve-v1.mjs",
@@ -156,6 +158,16 @@
     "made-spaces-receipt-v1.json"
    ]
   },
+  "apply-name-rows-v1.mjs": {
+   "letters": [
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "it marks, on the rows whose own source gives every entry of theirs as a name (M), that they are a name's. No row is judged here and no text is changed.",
+   "names": [
+    "name-rows-receipt-v1.json"
+   ]
+  },
   "apply-route-delta-v1.mjs": {
    "letters": [
     "M",
@@ -165,6 +177,16 @@
    "why": "it lands rows in the route store: each row is a source's reading (R) under that source's license record (M). The rows are the corpus lane's; this tool places them and decides nothing about them.",
    "names": [
     "store-before-strike-witness-v1.json"
+   ]
+  },
+  "apply-row-entries-v1.mjs": {
+   "letters": [
+    "M"
+   ],
+   "updates_no_letter": false,
+   "why": "it writes, on the rows of the sources that name their entries (M), the entry each row belongs to as its own source says it. No entry is decided here and no text is changed.",
+   "names": [
+    "row-entries-receipt-v1.json"
    ]
   },
   "apply-source-years-v1.mjs": {
@@ -416,6 +438,12 @@
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
    "names": []
   },
+  "check-entry-gate-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the ledger's pin, the store, the zones and the pages and judges them; it is not the ledger for one.",
+   "names": []
+  },
   "check-every-reading-licensed-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -537,6 +565,12 @@
     "zone-store-v1.json",
     "zone-store-held-v1.json"
    ]
+  },
+  "check-names-gate-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the lists' pin, the store, the zones and the pages and judges them; it is not the ledger for one.",
+   "names": []
   },
   "check-numbering-gap-witnessed-v1.mjs": {
    "letters": [],
@@ -897,6 +931,18 @@
     "zone-store-held-v1.json"
    ]
   },
+  "entry-gate-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. The gate's own functions: they read a row's entry and a place's, and write nothing.",
+   "names": []
+  },
+  "gated-card-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. It opens the reader in a browser and reads what a card says; it writes nothing.",
+   "names": []
+  },
   "import-witnessed-orders-v1.mjs": {
    "letters": [
     "M",
@@ -945,10 +991,22 @@
     "ben-yehuda-posture-v1.json"
    ]
   },
+  "names-gate-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. The gate's own function: it reads a row's mark and a place's, and writes nothing.",
+   "names": []
+  },
   "pinned-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
    "why": "no frame letter. It reads a pinned file and writes nothing.",
+   "names": []
+  },
+  "place-leaders-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. It reads the sidecar's record of a surface and a place's two facts, and writes nothing.",
    "names": []
   },
   "plan-build-v1.mjs": {

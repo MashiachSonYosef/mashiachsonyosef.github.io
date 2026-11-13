@@ -25,8 +25,20 @@
 > (`tools/bake-form-of-pills-v1.mjs`, `data/pointer-entries/`), under the
 > owner's rulings as the lane pinned them (`data/rulings/`, read through
 > `tools/rulings-v1.mjs`); a file another lane wrote is read only as the
-> bytes its pin names (`tools/pinned-v1.mjs`). `PIPELINE-MANIFEST.md` is
-> generated from the code and the
+> bytes its pin names (`tools/pinned-v1.mjs`). Since the same day a row
+> also carries a slot of facts: the entry its own source files it under
+> (`tools/apply-row-entries-v1.mjs`, from the corpus lane's row entries
+> ledger, which stays on the lane's store and is named in
+> `data/row-entries/` by its size and sha256) and whether its source gives
+> it as a name (`tools/apply-name-rows-v1.mjs`, from the lists kept in
+> `data/names/`). The round's projection writes on each word the entry that
+> stands at its place and whether the place is a name. The reader asks both
+> of the place before it asks the pointing: a row of another entry than the
+> word's is withheld, a row of the word's own entry stands whatever its
+> points, and a row given as a name is withheld where the word is not one
+> (`tools/entry-gate-v1.mjs`, `tools/names-gate-v1.mjs`; the line under
+> each word follows by `tools/place-leaders-v1.mjs`).
+> `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record
 > of why the rules are what they are.
