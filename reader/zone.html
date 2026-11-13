@@ -3223,16 +3223,35 @@
       .then((f) => { SUGGESTED = f && f.book === BOOK && Array.isArray(f.places) ? f : null; window.__suggested = { on: suggested, laid: SUGGESTED ? SUGGESTED.counts.laid : 0 }; return SUGGESTED; }).catch(() => null);
     return suggestedWait;
   };
+  // The reader's display law: route texts pack morpheme spans with "/"; the
+  // page never shows the raw packing — spans join with " + ", exactly the
+  // reader's own cell join. One route on display at a time, everywhere.
+  // And the one other mark the page does not show: a period closing a
+  // reading. Strong's ends every usage list with one ("Israel.", "spear.")
+  // and a definition that is a sentence ends with one; neither is part of
+  // the word, and a line that printed "Israel." under a name read as a typo
+  // the day names began to lead (proper-name-rule-v1). The stored text is
+  // untouched: the pill, the record beneath it and the export still carry
+  // the period, and the porch and every check join readings by this same
+  // function, to the character.
+  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
   // HEBREW DEFINED BY HEBREW (the owner, on the card of a two-word number:
-  // "the issue is defining hebrew with hebrew"; the corpus lane's answer,
-  // span store v2.1, relay v85, folded by tools/bake-form-of-pills-v1.mjs
-  // into data/form-of-pills-v1.json). A pill of the route catalog whose text
-  // is a pointer to another entry in the source's own words ("singular
-  // construct state form of ...") is classed by the lane, and for a pointer
-  // the lane resolved the target: the target's first English under the same
-  // source. The page prints the English with the pointer beside it, on the
-  // pill and on the line, and never respells anything: the pill's own text
-  // rides on it. The map is fetched once, after the first paint, and the
+  // "the issue is defining hebrew with hebrew"; the corpus lane's map of
+  // pointer readings, since 13 November 2026 its relay v175, folded by
+  // tools/bake-form-of-pills-v1.mjs into data/form-of-pills-v1.json). A pill
+  // of the route catalog whose whole text is a pointer to another entry in
+  // the source's own words ("singular construct state form of ...") is
+  // classed by the lane, and the lane names the entry the pointer points to
+  // from the pointer's own bytes: its points, its romanization, a gloss it
+  // quotes. Where the pointer cannot tell its entries apart the source's own
+  // first entry is taken (the owner's ruling 7 of 13 November). The
+  // resolution is that entry's first English in the source's own order,
+  // where the store serves a row with it. The page prints the English with
+  // the pointer beside it, on the pill and on the line, and never respells
+  // anything: the pill's own text rides on it. A pill the map does not
+  // resolve prints as itself, and so does a reading that has English of its
+  // own beside its pointer, whole (the owner's ruling 5): the map does not
+  // hold those. The map is fetched once, after the first paint, and the
   // lines it touches are painted again when it is here. JUDGMENT and
   // USAGE_NOTE pointers wait on the owner's branch and are not in the map.
   let FORM_OF = null, formOfWait = null;
@@ -3242,15 +3261,20 @@
       .then((f) => { FORM_OF = f && f.keys ? f : null; window.__formOf = FORM_OF ? { keys: Object.keys(FORM_OF.keys).length, pills: FORM_OF.counts.pills, resolved: FORM_OF.counts.resolved } : null; return FORM_OF; }).catch(() => null);
     return formOfWait;
   };
-  const noDot = (t) => String(t).replace(/\.$/u, "");
   // the pointer entry for a reading: by the route key, then the source where
-  // one is named, then the text's own bytes (a closing period not counted)
+  // one is named, then the text as it prints (spanJoin: a closing period is
+  // not counted, and a "/" of the source's prints " + "). The pill hands in
+  // its row's text as written; a ruled line and a baked lead hold the
+  // reading as it prints. Until 13 November 2026 the two were set side by
+  // side as written, so a pointer whose text holds a "/" resolved on its
+  // pill and stood bare on the line once that pill was pressed (58 of the
+  // 1,524 pointers the map resolves hold one).
   const formOfFor = (key, m, text) => {
     const l = FORM_OF && key ? FORM_OF.keys[key] : null;
     if (!l) return null;
-    const ts = new Set([String(text), noDot(text), Array.isArray(text) ? spanJoin(text) : String(text)].map(noDot));
+    const t = spanJoin(text);
     const mids = Array.isArray(m) ? m.map(String) : m ? [String(m)] : [];
-    return l.find((e) => mids.includes(e.m) && ts.has(noDot(e.t))) || l.find((e) => ts.has(noDot(e.t))) || null;
+    return l.find((e) => mids.includes(e.m) && spanJoin(e.t) === t) || l.find((e) => spanJoin(e.t) === t) || null;
   };
   // the target as the source wrote it, cut out of the text at the lane's byte range
   const formOfTarget = (e) => {
@@ -4403,18 +4427,6 @@
   const MAQAF_SPLIT = /(\u05be)/;
 
   const hud = document.getElementById("hud");
-  // The reader's display law: route texts pack morpheme spans with "/"; the
-  // page never shows the raw packing — spans join with " + ", exactly the
-  // reader's own cell join. One route on display at a time, everywhere.
-  // And the one other mark the page does not show: a period closing a
-  // reading. Strong's ends every usage list with one ("Israel.", "spear.")
-  // and a definition that is a sentence ends with one; neither is part of
-  // the word, and a line that printed "Israel." under a name read as a typo
-  // the day names began to lead (proper-name-rule-v1). The stored text is
-  // untouched: the pill, the record beneath it and the export still carry
-  // the period, and the porch and every check join readings by this same
-  // function, to the character.
-  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
   // ONE READING, ONE PILL (the gloss rule since its v6 of 7 November 2026; tools/gloss-store-v1.mjs readingKey):
   // two readings are one where they print the same, case folded
   const readingKey = (t) => spanJoin(t).toLowerCase();

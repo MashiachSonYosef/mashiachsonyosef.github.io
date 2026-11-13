@@ -180,7 +180,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 128 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 130 tools that are not checks.
 
 Not called by any build stage:
 
@@ -238,6 +238,7 @@ Not called by any build stage:
 - `tools/mam-apparatus-census-v1.mjs`
 - `tools/mark-inventory-v1.mjs`
 - `tools/name-the-titles-v1.mjs`
+- `tools/pinned-v1.mjs`
 - `tools/plan-work-shards-v1.mjs`
 - `tools/planned-packs-v1.mjs`
 - `tools/pointing-grade-v1.mjs`
@@ -258,6 +259,7 @@ Not called by any build stage:
 - `tools/resting-lines-v1.mjs`
 - `tools/restore-shelf-from-history-v1.mjs`
 - `tools/rights-join-v1.mjs`
+- `tools/rulings-v1.mjs`
 - `tools/run-checks-v1.mjs`
 - `tools/run-fleet-v2.mjs`
 - `tools/run-restore-v5-fleet-v1.mjs`
