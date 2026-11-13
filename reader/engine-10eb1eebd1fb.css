@@ -361,6 +361,17 @@
   .wb.mark-off { display: none; }
   body.marks-on .wb.mark-off { display: inline-flex; }
   body.marks-on .wb.mark-off .w { color: var(--muted); }
+  /* A PASEQ THE EDITION WRITES INSIDE A READ FORM (paseq-place-rule-v1; the
+     corpus lane's relay v179, 16 places) shows there with the other marks,
+     dressed as every mark is, and its own block after the place never shows:
+     one mark, printed once, where the edition writes it. The glyph is the
+     zone's (data-s), drawn by the style, so the place's text stays its
+     carrier for everything that reads the line. */
+  body.marks-on .wb .kq-stroke::before { content: attr(data-s); display: inline-block; margin-inline-start: 0.25em;
+    padding: 0 0.08em; font-size: 0.8em; letter-spacing: 0.06em; line-height: 1.15; border: 1px solid var(--gold-dim);
+    color: var(--muted); cursor: pointer; }
+  :root[data-mark-ink="gold"] body.marks-on .he-text .kq-stroke::before { -webkit-text-fill-color: var(--mark-ink); }
+  body.marks-on .wb.mark-off.in-read-form { display: none; }
   /* RULE 10 ON THE PAGE: a brick gap is the space the scribes leave inside a
      song line. The zone carries the restore's stand-in glyph; the page draws
      the space, not the glyph, and rules a faint line under it so the gap is

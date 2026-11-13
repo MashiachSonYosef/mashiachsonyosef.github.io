@@ -2913,6 +2913,36 @@
   // hash verifies nothing.
   const CUSTODY_RULE = "export-custody-rule-v1-what-leaves-carries-its-own-way-back";
 
+  // WHERE A PASEQ THE EDITION WRITES INSIDE A READ FORM STANDS
+  // (paseq-place-rule-v1; the corpus lane's relay v179): after the read word
+  // the zone names (kq.stroke), inside the bracket where that word's own
+  // region closes it. regions are the place's atoms, as the line cuts them.
+  // The line draws the stroke there with the marks (wordBlock), and the
+  // export writes it there (gatherSection).
+  const strokeIn = (word, regions) => {
+    const st = word && word.kq && word.kq.stroke;
+    if (!st || !st.s || !regions) return null;
+    let n = 0;
+    const i = regions.findIndex((r) => r.role === "QERE" && (n += 1) === st.after_read_word);
+    return i < 0 ? null : { i, s: st.s, inside: String(regions[i].s).endsWith("]") };
+  };
+  // the place's carrier with that stroke written in, set off by the space a
+  // mark stands apart by: the place as the edition prints it
+  const carrierWithStroke = (word) => {
+    const regions = (word.w || []).filter((r) => !String((r && (r.s || r.k)) || "").includes("\u05be"));
+    const at = strokeIn(word, regions);
+    if (!at) return word.s;
+    let rest = String(word.s), out = "";
+    for (let i = 0; i < regions.length; i += 1) {
+      const r = regions[i], k = rest.indexOf(r.s);
+      if (k < 0) return word.s;
+      out += rest.slice(0, k);
+      rest = rest.slice(k + r.s.length);
+      out += i !== at.i ? r.s : at.inside ? `${r.s.slice(0, -1)} ${at.s}]` : `${r.s} ${at.s}`;
+    }
+    return out + rest;
+  };
+
   /** Gather one section. Returns everything the writer and the confirm need. */
   const gatherSection = async (sec, el) => {
     const words = [];
@@ -2922,6 +2952,9 @@
       const w = sec.words[i];
       const wb = wbs[i];
       if (!w.mark) wordN += 1;
+      // a paseq the edition writes inside the read form of the place before
+      // it is written there, in the place's Hebrew (paseq-place-rule-v1)
+      if (w.mark && w.mark.in_read_form) continue;
       const shown = wb ? (() => {
         // the reading as shown, without its frame: the license chip rides
         // inside .g for display, but it is frame, not text — an export that
@@ -2933,7 +2966,7 @@
         c.querySelectorAll(".g-lic").forEach((x) => x.remove());
         return (c.textContent || "").trim();
       })() : "";
-      const rec = { he: w.s, joinNext: !!(w.presentation_join && w.presentation_join.join_next_without_separator), en: null, held: null, source: null, at: w.mark ? null : `${sec.label || ""}:${wordN}` };
+      const rec = { he: carrierWithStroke(w), joinNext: !!(w.presentation_join && w.presentation_join.join_next_without_separator), en: null, held: null, source: null, at: w.mark ? null : `${sec.label || ""}:${wordN}` };
       if (w.k && shown && shown !== "—") {
         const at = placeLine(w);
         const drawn = at && placeShown(at);
@@ -9813,6 +9846,9 @@
       wb.classList.add("mark");
       wb.dataset.mark = word.mark.kind;
       if (word.mark.toggleable) wb.classList.add("mark-off");
+      // a paseq the edition writes inside the read form of the place before
+      // it prints there (paseq-place-rule-v1), never here
+      if (word.mark.in_read_form) wb.classList.add("in-read-form");
       // the empty verse prints its reason on the line, so a reader is not left
       // wondering whether the page broke. The words are the builder's own
       // sentence for the mark, cut at its colon; nothing here is typed.
@@ -9832,6 +9868,7 @@
     const regions = allRegions ? allRegions.filter((r) => !hasMaqaf(r)) : null;
     const joined = allRegions ? allRegions.filter(hasMaqaf) : [];
     const regionEls = [];
+    let strokeEl = null;
     const markEls = [];
     if (word.kq && regions && regions.length) {
       // A source-marked pair. The line prints the exact MAM carrier \u2014 the
@@ -9843,17 +9880,29 @@
       // never typed here.
       wb.classList.add("multi", "kq");
       const lmMarked = markedLettersOf(word), lmState = { li: 0 };
+      // a paseq the edition writes inside the read form (strokeIn): an empty
+      // span where it stands, which the stylesheet draws the zone's glyph in
+      // when the marks are shown, so the place reads as its carrier, whole
+      const stroke = strokeIn(word, regions);
+      if (stroke) {
+        strokeEl = Object.assign(document.createElement("span"), { className: "kq-stroke" });
+        strokeEl.dataset.s = stroke.s;
+        strokeEl.dataset.mark = "PASEQ";
+      }
       let rest = word.s;
       regions.forEach((r, i) => {
         const at = rest.indexOf(r.s);
         if (at > 0) appendLettered(w, rest.slice(0, at), lmMarked, lmState);
         rest = rest.slice(at + r.s.length);
         const seg = document.createElement("span"); seg.className = "wr";
-        appendLettered(seg, r.s, lmMarked, lmState);
+        const strokeHere = !!stroke && i === stroke.i;
+        if (strokeHere && stroke.inside) { appendLettered(seg, r.s.slice(0, -1), lmMarked, lmState); seg.append(strokeEl); appendLettered(seg, "]", lmMarked, lmState); }
+        else appendLettered(seg, r.s, lmMarked, lmState);
         seg.title = r.role === "KETIV"
           ? "ketiv \u2014 the form the source writes; opens the card, on the half the line reads from"
           : "qere \u2014 the form the source reads; opens the card, on the half the line reads from";
         w.append(seg); regionEls.push(seg);
+        if (strokeHere && !stroke.inside) w.append(strokeEl);
       });
       if (rest) appendLettered(w, rest, lmMarked, lmState);
     } else if (regions) {
@@ -10014,7 +10063,7 @@
     else if (word.k) standAt(word.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 });
     joined.forEach((r) => standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 }));
     if (wasRuled) wb.classList.add("chosen");
-    return { wb, regionEls, markEls, joined, glossParts: parts,
+    return { wb, regionEls, markEls, joined, glossParts: parts, strokeEl,
       kqStand: word.kq && regions && regions.length > 1 ? { regions, parts, table, word } : null };
   };
 
@@ -10036,7 +10085,7 @@
     // lattice made the second half of a maqaf'd word open the whole chain.
     const regions = (word.w ? word.w.filter((r) => !String((r.s || r.k) || "").includes("\u05be"))
                             : null) || [{ s: word.s, k: word.k }];
-    const targets = built.regionEls.length ? built.regionEls : [built.wb];
+    const targets = built.regionEls.length ? built.regionEls : [built.pressAt || built.wb];
     // A PAIR OPENS ON THE HALF ITS LINE READS FROM (kqLead, below). Whichever
     // half is pressed, the card opens on a ruled half, or the half the pairs
     // switch names, or the half the line fell back to when the switch's half
@@ -13368,9 +13417,13 @@
     // first word exists.
     const buildBody = () => {
     const he = document.createElement("p"); he.className = "he-text"; he.lang = "he"; he.dir = "rtl";
-    let wIdx = 0;
+    let wIdx = 0, builtBefore = null;
     sec.words.forEach((word) => {
       const built = wordBlock(word, zone.gloss);
+      // a paseq the place before it holds in its read form is pressed where
+      // it prints (paseq-place-rule-v1)
+      if (word.mark && word.mark.in_read_form && builtBefore && builtBefore.strokeEl) built.pressAt = builtBefore.strokeEl;
+      builtBefore = built;
       goldMarks(built.wb, word);
       const myIdx = wIdx; wIdx += 1;
       wireWord(built, word, zone, sec.unit, myIdx);
