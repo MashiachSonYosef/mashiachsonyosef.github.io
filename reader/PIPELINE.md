@@ -37,7 +37,16 @@
 > word's is withheld, a row of the word's own entry stands whatever its
 > points, and a row given as a name is withheld where the word is not one
 > (`tools/entry-gate-v1.mjs`, `tools/names-gate-v1.mjs`; the line under
-> each word follows by `tools/place-leaders-v1.mjs`).
+> each word follows by `tools/place-leaders-v1.mjs`). The projection also
+> bakes, for each row a source names a stem for, that stem: from the corpus
+> lane's two binyan files and, since 13 November, from their extension to
+> the UBS dictionary, the SDBH and Jastrow (`data/stems-extension/`, read
+> through `tools/stems-extension-v1.mjs` under the owner's setting of its
+> two branches). The three files stay on the lane's store and are named on
+> the round's command line. The reader withholds a reading of another stem
+> than the word's, and asks that of the rows of the dictionaries beside the
+> store as of the store's own (`tools/rows-beside-the-store-v1.mjs` is how a
+> check counts those rows).
 > `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record

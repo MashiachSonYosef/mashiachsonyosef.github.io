@@ -100,6 +100,7 @@ import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
 import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
+import { readStemsExtension, stemsId, STEMS_EXTENSION_RULE_ID, STEMS_EXTENSION_HOME } from "./stems-extension-v1.mjs";
 import { ENTRY_GATE_RULE_ID, placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
@@ -241,6 +242,34 @@ if (rowStemsPath) {
     (stemsByKey[l.key] ||= {})[`${l.m}\u0001${l.rank}\u0001${l.route}`] = l.stems;
   }
   binyanFiles.push({ file: rowStemsPath.split("/").pop(), sha256: sha256File(rowStemsPath) });
+}
+// THE STEMS EXTENSION (the corpus lane's relay v173; the owner's ruling 2 of
+// 13 November 2026). File 2 names stems where BDB, TAHOT and MACULA say
+// them. The extension is the same format for three more dictionaries: the
+// UBS dictionary and the SDBH, whose rows the store serves, and Jastrow,
+// whose rows stand in the dictionary beside the store. It is read through
+// tools/stems-extension-v1.mjs: the file only as the bytes its pin names
+// (data/stems-extension/), and each of its two branches as the lane's own
+// pin of the owner's ruling sets it. Its stems join the same record under
+// the same id, so the page finds the stems of a row beside the store where
+// it finds the store's. A row both files name is a fault and is refused.
+const extensionPath = arg("--row-stems-extension");
+let extensionSaid = null;   // what the sidecar says of the extension, or null where none was read
+if (extensionPath) {
+  if (!rowStemsPath) { console.error("refused: --row-stems-extension extends the binyan ledger's file 2 and is read with it (--row-stems)"); process.exit(1); }
+  let ext;
+  try { ext = readStemsExtension(extensionPath); } catch (e) { console.error(`refused: the stems extension: ${e.message}`); process.exit(1); }
+  let given = 0;
+  for (const l of ext.lines) {
+    if (!wanted.has(l.key) || !l.stems.length) continue;
+    const held = (stemsByKey[l.key] ||= {});
+    const id = stemsId(l.m, l.rank, l.route);
+    if (Object.prototype.hasOwnProperty.call(held, id)) { console.error(`refused: the stems extension and file 2 both name the row ${l.m} rank ${l.rank} under «${l.key}»`); process.exit(1); }
+    held[id] = l.stems;
+    given += 1;
+  }
+  binyanFiles.push({ file: ext.pin.lines.file, sha256: ext.pin.lines.sha256 });
+  extensionSaid = { rule: STEMS_EXTENSION_RULE_ID, pin: `${STEMS_EXTENSION_HOME}/PIN.json`, relay: ext.pin.relay, lines_sha256: ext.pin.lines.sha256, ruling: ext.cited, branches: Object.fromEntries(ext.resting), rows_given_stems_in_this_book: given };
 }
 // a pointed surface's stems: the union over its places in this book, the
 // place counted as the piece store counts it (the verse's words, marks not
@@ -685,7 +714,7 @@ const sidecar = {
   entry: { rule: ENTRY_GATE_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
   names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
   leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
-  ...(binyanFiles.length ? { stems: stemsByKey, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each store row on the key, by m, rank and route; a row not listed has no known stem" } } : {}),
+  ...(binyanFiles.length ? { stems: stemsByKey, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, ...(extensionSaid ? { extension: extensionSaid } : {}), kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each row on the key, by m, rank and route: the store's rows, and where the extension was read the rows of the dictionary beside the store that it names; a row not listed has no known stem" } } : {}),
 };
 writeFileSync(sidecarPath, gzipSync(Buffer.from(JSON.stringify(sidecar)), { level: 9 }));
 
