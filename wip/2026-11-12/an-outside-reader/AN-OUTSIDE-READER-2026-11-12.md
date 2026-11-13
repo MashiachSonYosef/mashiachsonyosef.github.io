@@ -114,6 +114,12 @@ The reader's fourteen cards hold 291 pills on the served build, card for card, i
 - One reading changed by hand in the list of genesis/1, the record and the reader untouched: P3 fails and names it ("reading 1 is "in + the beginning" in the list and "in + beginning" on the line").
 - One reading changed by hand in Obadiah's kept record, and the door built again from it. The door cannot refuse this, since the record still names the page and the files as they stand, and it builds. The check fails at L1 and L2, where the page is read again: the list's "[the] vision of (changed by hand)" is not the line the reader draws.
 
+**The suite and the gate** (`logs/g1-suite-the-plain-list-tree.log`, `logs/g2-gate.log`): 145 of 146, the one red being `check-nothing-unlanded-v1`, which holds the site to this tree's build and passed once the commit was pushed. The same product: 9,403 lines on 18 pages and 54 first cards are the same on the live build and the new one. The reader's lines and cards did not move; what moved is the list under them.
+
+**Shipped** (`logs/commit-message-acebd64e.txt`, `logs/g3-deployment-poll.log`): `main` acebd64ec7, `gh-pages` 50f4fcd73f. Pages deployment run 1353 succeeded at 00:27 UTC on 13 November, and the live check (run 51) passed on that commit.
+
+**Owed.** One comment in `zone.html` still names the check's old version (`check-chapter-pages-v2`). It goes with the next page change, since changing the page means reading every line again.
+
 ## 8. The chain book and the card
 
 `tools/probes/chain-vs-card.mjs`, `tools/probes/chain-only.mjs` (`logs/c1-…at-rest.log`, `logs/c2-…lifted.log`, `logs/c3-chain-only-….log`, `shots/obadiah-1-1-10.png`).

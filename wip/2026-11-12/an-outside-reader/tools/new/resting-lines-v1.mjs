@@ -26,8 +26,8 @@
 // page's own function, and the lines it drew are read off it and kept: the
 // list is a recording. tools/bake-resting-lines-v1.mjs writes the record,
 // tools/build-front-door-v1.mjs prints it and refuses one that is not of
-// the tree it builds from, and tools/check-plain-list-is-the-line-v1.mjs
-// reads the page again.
+// the tree it builds from, and tools/check-chapter-pages-v3.mjs reads the
+// page again.
 //
 // WHAT A LINE IS, read here and nowhere else: under a section's Hebrew,
 // every reading element that is drawn and stands in no other, in the page's
