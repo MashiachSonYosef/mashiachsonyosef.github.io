@@ -10,7 +10,9 @@
 // tools/check-names-gate-v1.mjs). Both ask the same things of a card: its
 // pills with the sources behind each, what each gate withheld, the line that
 // says so, what the card takes its place for, and the line under the word.
-// This is that one reading.
+// This is that one reading. It also reads the card's notes (the words a
+// dictionary opens a numbered sense with, sense-openings-rule-v1), for
+// tools/check-sense-openings-v1.mjs.
 //
 //   plainWord(words, e)   whether the e-th entry of a section's words is a
 //                         word of one region that its place does not divide
@@ -43,6 +45,8 @@ export const cardInPage = async ({ section, entry }) => {
   const sec = document.querySelectorAll("section.seg")[section];
   const wb = sec ? sec.querySelectorAll(".he-text .wb")[entry] : null;
   if (!wb) return { fault: "the word is not on the page" };
+  // what the last card said of its notes is not this card's
+  window.__poolNotes = null;
   (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click();
   const t0 = performance.now();
   while (!settled() && performance.now() - t0 < 20000) await turn();
@@ -55,6 +59,11 @@ export const cardInPage = async ({ section, entry }) => {
     line: (hud.querySelector(".withheld-line") || {}).textContent || "",
     none: (hud.querySelector(":scope > .rows > .b-read > p.sources-withheld") || {}).textContent || "",
     entry: window.__cardEntry || "", name: window.__cardName || "",
+    // the card's notes: what the page says they are, and the line that prints them ([source, entry, point, the
+    // note as printed] for each), how many it says it holds, and whether it stands with the record or in the band
+    notes: ((line) => ({ said: window.__poolNotes || [], counted: line ? Number(line.dataset.notes) : 0, text: line ? line.textContent : "",
+      where: line ? (line.closest(".d-card") ? "record" : line.closest(".b-read") ? "band" : "elsewhere") : null,
+      spans: line ? [...line.querySelectorAll(".sense-note")].map((x) => [x.dataset.m || "", x.dataset.entry || "", x.dataset.point || "", x.textContent]) : [] }))(hud.querySelector(".sense-notes")),
     state: { pointing: window.__masorah || null, sources_off: [...(window.__sourcesOff || [])] },
     // a word the page joins to its neighbors in one cell (a run one license names, a chain the scribes joined)
     // opens the cell's card, not its own: a law about one word's rows is not judged on it

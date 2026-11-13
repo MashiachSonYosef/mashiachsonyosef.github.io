@@ -187,6 +187,30 @@
   };
   const routePrinted = (row) => closed(String(row[1] ?? ""), Array.isArray(row[9]) ? row[9][0] : null);
   const recordPrinted = (row) => (row[2] ? closed(String(row[2]), Array.isArray(row[9]) ? row[9][1] : null) : routePrinted(row));
+  // WHAT THE CORPUS LANE'S LEDGERS SAY OF A ROW rides on the row, in its
+  // facts slot (row[10], an object; FACTS_SLOT in tools/gloss-store-v1.mjs):
+  // the entry its own source files it under, whether its source gives it as
+  // a name, the numbered sense it opens. Read here once for every gate.
+  const factsOf = (row) => { const f = Array.isArray(row) && row.length > 10 ? row[10] : null; return f && typeof f === "object" && !Array.isArray(f) ? f : null; };
+  // THE WORDS THAT OPEN A NUMBERED SENSE ARE A NOTE, NOT A READING
+  // (sense-openings-rule-v1, 13 November 2026). The catalog made a route of
+  // the words that open each numbered sense of an entry of the unabridged
+  // BDB, and BDB opens a sense with what the word is said of as often as
+  // with a rendering («object heaven and earth» under "he created"). The
+  // corpus lane listed the served rows that are only such an opening and
+  // the owner ruled how they print (ruling 4 of relay v176): as a note
+  // beside the sense's readings, not as a pill. A listed row names the
+  // sense in its facts (opens: the entry and the point, as the source
+  // names them). It gives no reading (readingsOfRow, below), and where the
+  // card keeps it the card prints it among its notes. This is the function
+  // of tools/gloss-store-v1.mjs under the same name, and
+  // check-sense-openings-v1 runs the two side by side.
+  const senseOpened = (row) => {
+    const o = (factsOf(row) || {}).opens;
+    if (typeof o !== "string" || !o) return null;
+    const at = o.indexOf(" ");
+    return { entry: at < 0 ? o : o.slice(0, at), point: at < 0 ? "" : o.slice(at + 1), text: routePrinted(row) };
+  };
   // P · two D records are one record when their wording is the same by the
   // printed form, case folded (readingKey: "/" pieces joined, one closing
   // stop dropped). The bytes each source wrote stay its own and print
@@ -213,6 +237,8 @@
   // word). The same function stands in tools/gloss-store-v1.mjs (readingsOf),
   // so the line baked there and the pill pressed here say one thing.
   const readingsOfRow = (row) => {
+    // the words that open a numbered sense are a note, not a reading (sense-openings-rule-v1)
+    if (senseOpened(row)) return [];
     const text = String(row[1] ?? "");
     // the made spaces of the route text that close (made-spaces-rule-v1)
     const shut = Array.isArray(row[9]) ? row[9][0] : null;
@@ -524,7 +550,6 @@
     return { tags, numbers, lettered: tags.every((t) => /[A-Za-z]$/u.test(t)) };
   };
   const entrySaid = (place) => (place.lettered ? [...new Set(place.tags)] : place.numbers);
-  const factsOf = (row) => { const f = Array.isArray(row) && row.length > 10 ? row[10] : null; return f && typeof f === "object" && !Array.isArray(f) ? f : null; };
   const bdbEntriesAt = (place, factsOfRows) => {
     const out = new Set();
     for (const f of factsOfRows) if (f && Array.isArray(f.b) && Array.isArray(f.n) && f.n.some((x) => place.numbers.includes(x))) for (const e of f.b) out.add(e);
@@ -4592,6 +4617,16 @@
       withheldBySources += extra.length - keptExtra.length;
       extra = keptExtra;
     }
+    // THE WORDS THAT OPEN A NUMBERED SENSE ARE NOTES (sense-openings-rule-v1,
+    // 13 November 2026). Such a row gives no reading, so no pill stands on
+    // it. Where the switches above keep it, it leaves the rows here and
+    // rides on the pool as a note, in the store's own order, and the card
+    // prints the notes under its pills. A row the switches withhold is
+    // counted with what withheld it and is no note: the opening of another
+    // entry's sense is not said of this word. The dictionaries beside the
+    // store carry no such mark.
+    const notes = [];
+    routes = routes.filter((row) => { const o = senseOpened(row); if (o && index.m_sources[row[3]]) notes.push({ ...o, m: row[3] }); return !o; });
     // THE OVERLAYS' ROWS ARE ROWS LIKE THE STORE'S (the owner, 2026-10-03: "i
     // wouldnt autosort jastrow or samaritans last, no, just treat them normal,
     // we will add a toggle layer higher up to pull them out as modernity").
@@ -4727,6 +4762,7 @@
     const pool = sortPool([...groups.values()], surface, W);
     pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
     pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.withheldByName = withheldByName;
+    pool.notes = notes;
     return pool;
   };
   // WHAT A POOL SAYS WAS WITHHELD RIDES WITH EVERY COPY OF IT. The card keeps
@@ -4739,6 +4775,7 @@
   const carryWithheld = (to, from) => {
     to.withheld = from.withheld; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
     to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.withheldByName = from.withheldByName;
+    to.notes = from.notes;
     return to;
   };
   const oldestFirst = (a, b) => {
@@ -6915,6 +6952,44 @@
         paintNow(cover.map((c, i) => textOfCell(c.surface, i)).join(" + "), "the catalog could not be reached for this block");
         clampHud(); return;
       }
+      // THE CARD'S NOTES (sense-openings-rule-v1, 13 November 2026): the words
+      // a dictionary opens a numbered sense of its entry with, which the
+      // owner ruled a note and not a reading. One small line: the source
+      // named once, each note with its point as the source numbers it, in
+      // the dictionary's blue; where the notes are of more entries than one,
+      // each note names its entry before its point. The line stands with
+      // the record of the reading held, right under the record's own text
+      // and before its corroboration, in the body that scrolls and that no
+      // fit of the bands above it hides (a band's own small print is the
+      // first thing a tight card gives up, and the card of "he created" is
+      // tight on a phone). On a card with no reading to hold it stands in
+      // the readings' band, under what the band says.
+      // What the line holds is said on it and exposed, so a check can ask
+      // the page.
+      const notesLine = () => {
+        const notes = (pool && pool.notes) || [];
+        window.__poolNotes = notes.map((x) => ({ m: x.m, entry: x.entry, point: x.point, text: x.text }));
+        if (!notes.length) return null;
+        const line = document.createElement("p"); line.className = "sense-notes";
+        const bySource = new Map();
+        for (const x of notes) (bySource.get(x.m) || bySource.set(x.m, []).get(x.m)).push(x);
+        const severalEntries = new Set(notes.map((x) => x.entry)).size > 1;
+        for (const [m, own] of bySource) {
+          const s = index.m_sources[m];
+          const name = (s && ((SHORT_REC && SHORT_REC.names && SHORT_REC.names[s.key]) || s.label)) || m;
+          if (line.childNodes.length) line.append("; ");
+          line.append(`${name} opens ${own.length === 1 ? "a numbered sense" : "its numbered senses"} with: `);
+          own.forEach((x, i) => {
+            if (i) line.append(" \u00b7 ");
+            const note = document.createElement("span"); note.className = "sense-note";
+            note.dataset.m = m; note.dataset.entry = x.entry; note.dataset.point = x.point;
+            note.textContent = `${severalEntries ? `${x.entry} ` : ""}${x.point} ${x.text}`;
+            line.append(note);
+          });
+        }
+        line.dataset.notes = String(notes.length);
+        return line;
+      };
       if (!pool || !pool.length) {
         const p = document.createElement("p");
         // A POOL THE READER'S OWN SWITCHES EMPTIED IS NOT AN ABSENCE. The
@@ -6932,6 +7007,7 @@
           p.className = "kq-role sources-withheld";
           p.textContent = `${bits.join("; ")}. No record is left to read here. Nothing here says the shelf lacks it.`;
           readRow.append(p);
+          { const nl = notesLine(); if (nl) readRow.append(nl); }
           dSlot.replaceChildren(); selectedRecordRef.m = null;
           paintNow(cover.map((c, i) => textOfCell(c.surface, i)).join(" + "), "every record for this block is withheld by your switches");
           clampHud(); return;
@@ -6947,6 +7023,7 @@
             : "No dictionary on this shelf gives the run joined as one word. The words one by one are a press away.")
           : pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
         readRow.append(p);
+        { const nl = notesLine(); if (nl) readRow.append(nl); }
         // THE RECORD SLOT IS THIS BLOCK'S. A block with no reading stands on
         // no record, and the last block's record was left standing under it —
         // "he will rule as God", with its cut note, under a block that said it
@@ -7176,6 +7253,8 @@
         const firstText = first.text;
         const firstGroup = first.rows;
         body.append(dText(firstText, isNoDerivs((index.m_sources[firstGroup[0][3]] || {}).licensePosture), firstGroup[0]));
+        // the card's notes, under the record held and before its corroboration (sense-openings-rule-v1)
+        { const nl = notesLine(); if (nl) body.append(nl); }
         // The M is the one line that never scrolls: it is who says this, and a
         // reading whose source has scrolled out of sight is a reading standing
         // on nothing the reader can see. Everything else about the record —

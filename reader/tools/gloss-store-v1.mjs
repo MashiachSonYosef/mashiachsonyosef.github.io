@@ -101,6 +101,9 @@ export const recordPrinted = (row) => (row[2] ? closed(String(row[2]), closesOf(
 //   b     for a row of a source that names BDB's own entries, those entries
 //   name  1 where every entry its own source gives the row is a name (relay
 //         v177)
+//   opens for a row that is only the words opening a numbered sense of its
+//         entry, that entry and the sense's point as the source names them
+//         ("BDB1300 1."; relay v174)
 // A row with none of these carries no such slot. The texts are not touched.
 export const FACTS_SLOT = 10;
 export const factsOf = (row) => { const f = row.length > FACTS_SLOT ? row[FACTS_SLOT] : null; return f && typeof f === "object" && !Array.isArray(f) ? f : null; };
@@ -122,6 +125,34 @@ export const setFacts = (row, facts) => {
   const keys = Object.keys(now).sort();
   return setSlot(row, FACTS_SLOT, keys.length ? Object.fromEntries(keys.map((k) => [k, now[k]])) : null);
 };
+// THE WORDS THAT OPEN A NUMBERED SENSE ARE A NOTE, NOT A READING
+// (sense-openings-rule-v1, 13 November 2026). The catalog made a route of
+// the words that open each numbered sense of an entry of the unabridged BDB,
+// and BDB opens a sense with what the word is said of as often as with a
+// rendering: «object heaven and earth» and «of transformations: a clean
+// heart» under "he created", «son of Bela, grandson of Benjm.» under a name.
+// An outside reader took four such pills on the verb cards of Genesis 1 for
+// broken pieces. The corpus lane listed the served rows that are only such
+// an opening (relay v174), and the owner ruled how they print (ruling 4 of
+// relay v176, «1-5. agree go ahead»): as a note beside the sense's readings,
+// not as a pill. tools/apply-sense-openings-v1.mjs marks each listed row in
+// its facts (opens). A marked row gives no reading (readingsOf, below), so
+// no line, no pill, no link and no index entry stands on it. It is still a
+// row of its key and is asked whatever a row is asked; where it is kept,
+// the card prints it among its notes, with its point. The page carries the
+// same function under the same name.
+export const SENSE_OPENINGS_RULE_ID = "sense-openings-rule-v1-the-words-that-open-a-numbered-sense-print-as-a-note-beside-the-readings-and-not-as-a-pill";
+/** How the owner ruled such a row prints, in the ruling's own words. The tool that marks the rows refuses a ruling
+ *  that says anything else, since this is what the reader and the page were made to do. */
+export const SENSE_OPENINGS_PRINT = "as a note beside the sense's readings, not as a pill";
+/** The numbered sense a row opens: its entry and its point as the source names them, and the row's words as they
+ *  print. null for a row that opens none. */
+export const senseOpened = (row) => {
+  const o = (factsOf(row) || {}).opens;
+  if (typeof o !== "string" || !o) return null;
+  const at = o.indexOf(" ");
+  return { entry: at < 0 ? o : o.slice(0, at), point: at < 0 ? "" : o.slice(at + 1), text: routePrinted(row) };
+};
 // the era cut, one constant: 1940 AD is 5700 AM, the last year of the 57th
 // century; the engine derives the same number from ERA_CUT_AM
 export const ERA_CUT_AD = 1940;
@@ -130,6 +161,7 @@ export const GLOSS_RULE_TEXT =
   "only at the marks its row names (row[7]), prints the texts its print slot names (row[8]: a part of itself, or no pill) where its ledger and the owner say so, and a row that names neither is one reading as the source wrote it, brackets and all; " +
   "a source with no ledger is one reading as written, whole, until its ledger lands (7 November 2026); " +
   "a space our own build made in a text closes where the text prints, at the places its row names (row[9]; made-spaces-rule-v1); " +
+  "a row that is only the words opening a numbered sense of its entry (its facts name the sense; sense-openings-rule-v1) gives no reading and prints as a note; " +
   "pool = every reading of every exact route, deduped by " +
   "the printed form case folded (the '/' pieces joined with ' + ', one closing stop dropped), with min year and min rank and every carrier of either; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
   "reading stored verbatim; the page joins '/'-packed spans with ' + '; " +
@@ -203,6 +235,8 @@ export const openRouteStore = (storeDir) => {
   // `shut` is the made spaces of the route text that close (made-spaces-rule-v1):
   // the row's own for what prints, none for the pieces of the served bytes
   const readingsWith = (row, shut) => {
+    // the words that open a numbered sense are a note, not a reading (sense-openings-rule-v1)
+    if (senseOpened(row)) return [];
     const text = String(row[1] ?? "");
     if (!ledgerOf(row[3])) { const t = closed(text, shut).trim(); return t ? [t] : []; }
     // the print slot (ledger-division-rule-v2): where the row's ledger and the

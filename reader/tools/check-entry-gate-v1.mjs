@@ -27,7 +27,10 @@
 //       none empty; n a list of Strong's numbers with no repeat; t a list of
 //       lettered tags, each of a number in n, on a row of the first
 //       parting's sources only; b a list of entries, on a row of the second
-//       parting's only; and no row ends in an empty slot
+//       parting's only; opens an entry and the point of the numbered sense
+//       the row opens (tools/apply-sense-openings-v1.mjs; which rows carry it
+//       is check-sense-openings-v1's to hold); and no row ends in an empty
+//       slot
 //   E3  the store's index names the rule, the pin, the ledger and totals
 //       that are a recount's
 //   E4  the corpus lane's own counts, source by source: the rows of each
@@ -147,7 +150,7 @@ const FACT_OF = new Map();   // m id -> the fact a parting reads on its rows
 const READ = new Map(Object.entries((theirs && theirs.by_source) || {}));
 
 // ---- E2, E3, E4: every row of the store -------------------------------------------------------
-const KNOWN = new Set(["n", "t", "b", "name"]);
+const KNOWN = new Set(["n", "t", "b", "name", "opens"]);
 const tally = {};   // m id -> the recount
 const of = (m) => (tally[m] ||= { rows: 0, one: 0, several: 0, none: 0, t: 0, b: 0, slot: 0 });
 const byKeyId = new Map();   // for E5: key, then "rank m sha16" -> the facts the store's rows carry, as JSON
@@ -176,6 +179,7 @@ const mineOf = (f) => { if (!f) return null; const o = {}; for (const k of ["n",
           if (f.t.some((x) => letteredOf(x) !== x || !(f.n || []).includes(numberOf(x)))) faults.push(`${where}: a lettered tag that is not one, or whose number the row does not carry`);
         }
         if (Array.isArray(f.b) && FACT_OF.get(m) !== "b") faults.push(`${where}: BDB's entries on a row of a source the parting does not read`);
+        if ("opens" in f && (typeof f.opens !== "string" || !/^\S+( \S+)?$/u.test(f.opens))) faults.push(`${where}: opens is not an entry and its point`);
         if (mineOf(f) && !READ.has(m)) faults.push(`${where}: an entry on a row of a source the ledger does not read`);
       }
       if (!READ.has(m)) continue;
@@ -283,7 +287,7 @@ let page = null, pageWhy = "";
 try {
   const html = readFileSync(join(K3, "zone.html"), "utf8");
   const grab = (head, end) => { const a = html.indexOf(head); if (a < 0 || html.indexOf(head, a + 1) >= 0) throw new Error(`zone.html does not hold exactly one "${head.trim()}"`); const b = html.indexOf(end, a); if (b < 0) throw new Error(`zone.html does not close "${head.trim()}"`); return html.slice(a, b); };
-  page = new Function(`${grab("\n  const numberOf = (tag) => ", "\n  window.__entryGate = ")}${grab("\n  const PLACE_IS_A_NAME = ", "\n  const versesOwn = ")}\n return { numberOf, tagOf, placeEntry, entrySaid, factsOf, bdbEntriesAt, entryVerdict, leadersKey, onlyLeaders };`)();
+  page = new Function(`${grab("\n  const factsOf = (row) => ", ";\n")}${grab("\n  const numberOf = (tag) => ", "\n  window.__entryGate = ")}${grab("\n  const PLACE_IS_A_NAME = ", "\n  const versesOwn = ")}\n return { numberOf, tagOf, placeEntry, entrySaid, factsOf, bdbEntriesAt, entryVerdict, leadersKey, onlyLeaders };`)();
 } catch (e) { pageWhy = e.message; }
 
 const served = zonesServed().filter((z) => existsSync(join(ZONES, `${z}.lattice.bin`)));

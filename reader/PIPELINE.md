@@ -46,7 +46,14 @@
 > the round's command line. The reader withholds a reading of another stem
 > than the word's, and asks that of the rows of the dictionaries beside the
 > store as of the store's own (`tools/rows-beside-the-store-v1.mjs` is how a
-> check counts those rows).
+> check counts those rows). A row's facts also say, since the same day,
+> where the row is only the words that open a numbered sense of its entry
+> (`tools/apply-sense-openings-v1.mjs`, from the corpus lane's list of the
+> unabridged BDB's openings kept in `data/sense-openings/`, under the
+> owner's ruling that such a row prints as a note and not as a pill). The
+> store's reader gives such a row no reading, so no line, pill, link or
+> index entry stands on it, and the reader prints the ones its switches
+> keep as the card's notes, with the record of the reading held.
 > `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record

@@ -52,7 +52,8 @@
 //   M6  by a second road, what prints: a row's route as printed is its line's
 //       `prints`; its record as printed is its definition line's; and its
 //       readings are that `prints` cut at the row's own marks, each mark's
-//       place less the closes before it
+//       place less the closes before it, or none where the row's facts say it
+//       only opens a numbered sense of its entry (sense-openings-rule-v1)
 //   M7  the page's own functions, read out of zone.html and run, give what
 //       the store reader gives for every row that carries the slot: the
 //       route, the record, the readings
@@ -75,8 +76,9 @@ import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { openRouteStore, MADE_SPACES_RULE_ID, CLOSES_SLOT, routePrinted, recordPrinted, readingKey, printedForm } from "./gloss-store-v1.mjs";
+import { openRouteStore, MADE_SPACES_RULE_ID, CLOSES_SLOT, routePrinted, recordPrinted, readingKey, printedForm, factsOf } from "./gloss-store-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
+import { pageReading } from "./page-reading-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
 import { linesOnPage } from "./resting-lines-v1.mjs";
@@ -325,7 +327,8 @@ for (const [k, row] of slotted) {
   const pieces = []; let from = 0;
   for (const i of cuts) { pieces.push(route.slice(from, i)); from = i + 1; }
   pieces.push(route.slice(from));
-  const want = pieces.map((x) => x.trim()).filter(Boolean);
+  // a row that only opens a numbered sense prints as a note and gives no reading (sense-openings-rule-v1)
+  const want = (factsOf(row) || {}).opens ? [] : pieces.map((x) => x.trim()).filter(Boolean);
   if (!same(store.readingsOf(row), want)) printFaults.push(`${where}: the readings are ${JSON.stringify(store.readingsOf(row)).slice(0, 80)}, the printed route cut at its marks gives ${JSON.stringify(want).slice(0, 80)}`);
 }
 check("M6  by a second road: a row's route and record print as their lines' `prints`, and its readings are that printed route cut at the row's own marks", printFaults.length === 0,
@@ -333,12 +336,8 @@ check("M6  by a second road: a row's route and record print as their lines' `pri
 
 // ---- M7: the page's functions -------------------------------------------------------------------
 {
-  const zone = readFileSync(join(K3, "zone.html"), "utf8");
-  const grab = (head, end) => { const a = zone.indexOf(head); if (a < 0 || zone.indexOf(head, a + 1) >= 0) throw new Error(`zone.html does not hold exactly one "${head.trim()}"`); const b = zone.indexOf(end, a); return zone.slice(a, b + end.length); };
   let page = null, why = "";
-  try {
-    page = new Function("index", `${grab("\n  const closed = (text, places, from = 0, to = text.length) => {\n", "\n  };\n")}${grab("\n  const routePrinted = (row) => ", ";\n")}${grab("\n  const recordPrinted = (row) => ", ";\n")}${grab("\n  const readingsOfRow = (row) => {\n", "\n  };\n")} return { routePrinted, recordPrinted, readingsOfRow };`)(index);
-  } catch (e) { why = e.message; }
+  try { page = pageReading(readFileSync(join(K3, "zone.html"), "utf8"), index); } catch (e) { why = e.message; }
   const faults = [];
   if (page) for (const [k, row] of slotted) {
     if (page.routePrinted(row) !== routePrinted(row)) faults.push(`${k} (${row[3]}): the route`);

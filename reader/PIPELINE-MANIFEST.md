@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-13.
 
-**150 rules declared · 137 named by a check · 13 unguarded.**
+**151 rules declared · 138 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -123,6 +123,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1 |
 | `run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling` | tools/project-run-cards-v1.mjs, zone.html | check-run-cards-v1, check-run-line-follows-division-v1, check-run-card-forms-v1 |
 | `script-admission-rule-v1-a-published-word-is-written-in-hebrew-script` | tools/check-script-admitted-v1.mjs | check-script-admitted-v1 |
+| `sense-openings-rule-v1-the-words-that-open-a-numbered-sense-print-as-a-note-beside-the-readings-and-not-as-a-pill` | tools/apply-sense-openings-v1.mjs, tools/gloss-store-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gated-card-v1.mjs, zone.html | check-sense-openings-v1, check-made-spaces-v1 |
 | `serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights` | tools/serve-from-body-v1.mjs | check-body-is-text-binding-is-rights-v1 |
 | `serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records` | tools/run-restore-v5-fleet-v1.mjs, tools/serve-from-restore-v5.mjs, tools/build-front-door-v1.mjs | check-restore-serve-v1 |
 | `serve-from-stream-rule-v2-the-successor-stream-is-the-text-bridge-v2-is-its-identity-the-binding-is-the-rights` | tools/serve-from-stream-v2.mjs | check-stream-is-text-v1 |
@@ -183,7 +184,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 138 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 140 tools that are not checks.
 
 Not called by any build stage:
 
@@ -194,6 +195,7 @@ Not called by any build stage:
 - `tools/apply-piece-store-patch-v1.mjs`
 - `tools/apply-route-delta-v1.mjs`
 - `tools/apply-row-entries-v1.mjs`
+- `tools/apply-sense-openings-v1.mjs`
 - `tools/apply-source-years-v1.mjs`
 - `tools/apply-span-ledger-v1.mjs`
 - `tools/bake-blank-ledger-v1.mjs`
@@ -246,6 +248,7 @@ Not called by any build stage:
 - `tools/mark-inventory-v1.mjs`
 - `tools/name-the-titles-v1.mjs`
 - `tools/names-gate-v1.mjs`
+- `tools/page-reading-v1.mjs`
 - `tools/pinned-v1.mjs`
 - `tools/place-leaders-v1.mjs`
 - `tools/plan-work-shards-v1.mjs`
