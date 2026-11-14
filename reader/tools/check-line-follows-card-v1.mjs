@@ -124,8 +124,10 @@ for (const l of underShelf.slice(0, 60)) {
   if (l.bare && c.count > 0) { bareWithReadings += 1; if (eg.length < 3) eg.push(`bare over ${c.count} readings`); }
   // a piece that is a sign alone ("<the>") prints as a gap on the line while the
   // card's pill prints the sign (the gap rule, 2026-10-16; the signs switch off):
-  // the two are read with the sign and the gap set aside
-  const same = (t) => String(t || "").replace(/<[^<>]*>/gu, "").replace(/\u200b/gu, "").replace(/\s*\+\s*/gu, " + ").replace(/^\s*\+\s*/u, "").trim();
+  // the two are read with the sign and the gap set aside, and since 2026-11-14 the gap
+  // takes no joiner of its own on the line (sign-gap-joiner-rule-v1), so a run of
+  // joiners reads as one and a joiner at either end as none
+  const same = (t) => String(t || "").replace(/<[^<>]*>/gu, "").replace(/\u200b/gu, "").replace(/(\s*\+\s*)+/gu, " + ").replace(/^\s*\+\s*/u, "").replace(/\s*\+\s*$/u, "").trim();
   const lt = same(l.text), ct = same(c.text);
   if (!l.bare && c.text && !ct.startsWith(lt.slice(0, Math.min(12, lt.length))) && !lt.startsWith(ct.slice(0, 12))) { differs += 1; if (eg.length < 3) eg.push(`line "${l.text.slice(0, 24)}" · card "${c.text.slice(0, 24)}"`); }
 }
