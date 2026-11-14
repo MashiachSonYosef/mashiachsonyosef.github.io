@@ -32,9 +32,20 @@ Some of Jastrow's entries open a sense with a short note in square brackets on t
 - The switch also stands on the rail (?rail=all) and on the switches page (/toggles/, built again from the rail: 14 switches) as «word senses: held back / shown». The reset pill puts it back to held back.
 - The search index takes no word sense as a reading, as it takes no opening of a numbered sense, because a card at rest shows none.
 
-## Not yet: the legend
+## The legend, in purple, where it is true
 
-The owner's legend, «brackets mean sense, not definition», is in the lane's `legends-v1.json`. But it holds on only 2,479 of the 4,814 Jastrow rows whose definition holds a bracket. On 550 the bracket is an aside, which the lane lists and is putting to the owner. On 1,785 the lane could not match the bracket to a sense. The rows where it holds are counted but not listed, so the page cannot yet put the legend only where it is true. A letter asks the corpus lane for the list (`FOR-MOSES-2026-11-14-word-senses-wired.md`).
+The owner, 14 November: «i dont really see your legend that signifies its a sense, should it say that in purple somewhere if we are stripping the brackets / or is a sense not a comment?».
+
+A word sense is the source's comment on the word, so it is purple. Two things now say so:
+
+- **The pill.** It strips the brackets and says «word sense, not definition: » before the words, in purple.
+- **The record card.** The card keeps Jastrow's brackets, as the owner asked, and the owner's legend, «brackets mean sense, not definition», stands in purple under the record, but only where it is true.
+
+The corpus lane's legend file holds that it is not true of every bracket: on 550 cards a bracket is an aside, and 1,785 rows it could not match. The rows where it holds are counted but not listed. So the page shows it where the lane's own lists prove it: the record shows exactly one bracket, the lane lists that bracket's words as a word sense under the same key, source and definition field, and no row with that definition field is on the aside list. That is 3,328 of the 4,814 Jastrow rows whose definition holds a bracket (`tools/count-legend.py`). The bake carries them in the record (`legend`), and the page asks it of the row whose wording prints.
+
+Most of Jastrow's bracketed entries never print on a card at all: the overlay serves each one behind a bare row of the same reading and source (4,021 of 4,814), and the card prints the earliest row. So the legend shows where a bracketed entry is the record a card prints: 580 of the 3,328 rows. W6 finds them, for example Malachi 3:22, word 12, «rule»: «… [circle, drawing, engraving,] law, rule, custom …», with the legend under it, and asks that the other records pressed show none.
+
+The letter to the corpus lane still asks for the list of the 2,479 cards where the legend holds by its own count.
 
 ## The files
 
