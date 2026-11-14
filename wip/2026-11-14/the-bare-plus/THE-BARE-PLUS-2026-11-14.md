@@ -1,6 +1,6 @@
 # A hidden sign's gap takes no joiner of its own
 
-14 November 2026. Page lane (Elijah). The owner's call 9 of 13 November, answered on 14 November with «just go with your recommendations its fine»: the bare "+". Keep the gap, drop the joiner beside it.
+14 November 2026. Page lane (Elijah). Shipped: main 82da4fbaf8, gh-pages cc869d602f. The owner's call 9 of 13 November, answered on 14 November with «just go with your recommendations its fine»: the bare "+". Keep the gap, drop the joiner beside it.
 
 ## What was wrong
 
@@ -58,8 +58,11 @@ The gap keeps its place, and its slot where the line is laid in pieces or in a r
   - `tools/fault-sign-gap-joiner.py`, 7 of 7 as meant (`logs/g09-…`): the sound recordings pass, and each broken recording fails on the line it names. The broken ones are the old page's own recordings, a joiner left out, a joiner on both sides, the gap dropped, no gap between two printed pieces, and one leading joiner.
   - `tools/fault-sign-gap-joiner-page.py`, 6 of 6 as meant (`logs/g11-…`): the page passes G3, and five broken copies of it fail G3. The broken copies are: the fit counting a hidden joiner (edit 92 undone), the gap's cell held to nothing (edit 94 undone), a run drawing its joiner beside a gap, a laid line doing the same, and a run leaving out every joiner.
 - **The two edited checks** pass (`logs/g05-…`, `logs/g06-…`).
-- **The suite:** SUITE.
-- **The gate:** GATE.
+- **The suite** (`logs/g17-suite.txt`, on the final tree): 152 of 154 pass. Two are red:
+  - `check-nothing-unlanded-v1`, which is red until a build ships, as before every ship. It passed once this one shipped (`logs/g20-…`).
+  - `check-block-in-table-v1`, the timing fault above. It ran before edit 96, and passes with it.
+  The two earlier runs were stopped, one for the fit fix and one by the restart (`logs/g10-…`, `logs/g14-…`). Neither had a red besides these two.
+- **The gate** (`logs/g18-…`, `logs/g19-…`): 9,383 lines on 18 pages of 9 books, and 54 cards. 400 lines differ, every one by the joiner beside the gap alone, with the chip unchanged. The cards carry the same pills, with the same one pressed.
 - **Lint:** the changed tools carry no finding their live copies lack.
 
 ## Pictures
