@@ -1783,6 +1783,20 @@
      letters the regular blue, worn bold (the owner, 2026-10-10: "i dont
      like our bold that much"; the bold is the weight, not a deeper blue) */
   #hud .r-pills button[aria-pressed="true"] { color: var(--tekhelet-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  /* A WORD SENSE IS PURPLE (word-senses-rule-v1). Blue is a reading, a source's
+     word for the word; a word sense is the source's own note on the word's
+     sense, which is a comment, and our comments are purple. The owner,
+     2026-11-14: "maybe instead of in blue it should be in purple, purple is
+     usually our comments but it could be arguable that the licenses comments
+     are the same?". The regular purple, as the regular blue on a reading;
+     pressed, the same purple worn bold. It keeps the purple's face, the
+     page's Georgia, since the reading face is the blue's alone (THE READINGS
+     WEAR A STEADIER FACE, below). */
+  #hud .r-pills button.sense { color: var(--argaman); font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+  #hud .r-pills button.sense[aria-pressed="true"] { color: var(--argaman); font-weight: 700; }
+  /* the owner's legend under a Jastrow record whose one bracket is a word
+     sense: the page's purple, a size down, under the record it explains */
+  #hud .d-card .sense-legend { margin: 0 0 0.3rem; font-size: 0.74rem; color: var(--argaman); }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
@@ -1816,6 +1830,7 @@
   /* a band's own note — what a switch withheld, what the pointing withheld —
      is the band's small print, not a heading over its pills */
   #hud .rows .band > .kq-role { margin: 0.05rem 0 0.3rem; font-size: 0.66rem; line-height: 1.35; color: var(--faint); }
+  #hud .withheld-line .senses-switch { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 0.2em; }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
   /* The record is a dictionary's words, so it is the blue throughout, and

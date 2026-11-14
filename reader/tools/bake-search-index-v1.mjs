@@ -219,12 +219,25 @@ for (const id of readdirSync(join(DATA, "overlays")).sort()) {
   try { oix = JSON.parse(readFileSync(oixPath, "utf8")); } catch (e) { fail(`the overlay ${id} has no readable index at ${oixPath} (${e.message}): refusing to write a search index without it`); }
   const rows = readShards(join(DATA, "overlays", id, "shards"), (oix.counts || {}).shards);
   const pillsHere = pillsUnder(oix);
+  // A WORD SENSE GIVES NO PILL AT REST (word-senses-rule-v1): a row of
+  // Jastrow's the corpus lane lists as a word sense is held back from the card
+  // while its switch rests off, where it rests, so it enters no search; a
+  // reader who turns the switch on meets it on the card. Named by key, rank and
+  // source id, as data/word-senses/jastrow-v1.json names it.
+  const senses = new Set();
+  if (id === "jastrow") {
+    const wsPath = join(DATA, "word-senses", "jastrow-v1.json");
+    let ws = null;
+    try { ws = JSON.parse(readFileSync(wsPath, "utf8")); } catch (e) { fail(`the word senses record cannot be read at ${wsPath} (${e.message}): refusing to write a search index that would take them as readings`); }
+    for (const [K, list] of Object.entries(ws.rows || {})) for (const [rank, m] of list) senses.add(`${K}|${rank}|${m}`);
+  }
   for (const [K, rs] of Object.entries(rows)) {
     const L = letters(K);
     if (K !== L) continue;
     for (const row of rs) {
       const src = (oix.m_sources || {})[row[3]];
       if (!src) continue;
+      if (senses.has(`${K}|${row[0]}|${row[3]}`)) continue;
       overlayRows += 1;
       // an overlay's division slots stand at 8 and 9 (its slot 7 is the lane's
       // own), read into 7 and 8 as the page reads them

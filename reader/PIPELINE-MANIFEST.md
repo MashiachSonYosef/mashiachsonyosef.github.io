@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-14.
 
-**156 rules declared · 143 named by a check · 13 unguarded.**
+**157 rules declared · 144 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -33,7 +33,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
 | `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |
 | `compspan-coverage-rule-v1-a-word-its-source-divides-opens-with-its-divisions` | tools/check-compspan-coverage-v1.mjs | check-compspan-coverage-v1 |
-| `core-block-rule-v1-a-card-whose-one-pill-is-the-places-set-opens-on-its-core-block-the-set-still-on-top` | zone.html | check-card-opens-on-the-line-v1, check-citations-v1, check-compspan-coverage-v1, check-dictionary-toggle-v1, check-line-follows-card-v1, check-line-reads-the-place-v1, check-piece-store-v1, check-reading-language-v1 |
+| `core-block-rule-v1-a-card-whose-one-pill-is-the-places-set-opens-on-its-core-block-the-set-still-on-top` | zone.html | check-card-opens-on-the-line-v1, check-citations-v1, check-compspan-coverage-v1, check-dictionary-toggle-v1, check-line-follows-card-v1, check-line-reads-the-place-v1, check-piece-store-v1, check-reading-language-v1, check-ruled-equals-first-paint-v1 |
 | `count-gate-rule-v1` | tools/check-clean-address-v1.mjs | check-clean-address-v1, check-front-door-three-counts-v1, check-nothing-hand-typed-v1 |
 | `count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one` | tools/build-zone.mjs, tools/count-stamp-v1.mjs, tools/emit-masorah-witnesses-v1.mjs, tools/restamp-zone-v1.mjs | check-bookword-count-v1, check-c0-refusals-v1 |
 | `declarations-branch-rule-v1-a-branch-is-what-the-source-says-about-itself-and-a-reserved-token-is-never-a-branch` | tools/project-declarations-v1.mjs | check-declarations-branch-v1 |
@@ -163,6 +163,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `w-list-rule-v1-the-record-says-which-entries-are` | tools/w-list-v1.mjs | check-w-grain-v1 |
 | `weld-forms-rule-v1-a-joined-run-is-offered-in-every-form-a-source-published-and-in-no-form-it-did-not` | tools/weld-forms-v1.mjs, zone.html | check-run-card-forms-v1 |
 | `witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit` | tools/bake-witnessed-order-v1.mjs, tools/import-witnessed-orders-v1.mjs, tools/type-witnessed-drops-v1.mjs | check-witnessed-order-v1 |
+| `word-senses-rule-v1-a-word-sense-is-not-a-definition-and-prints-only-under-the-word-senses-switch-which-rests-off` | tools/bake-word-senses-v1.mjs, zone.html, tools/bake-search-index-v1.mjs | check-word-senses-v1, check-search-v1 |
 | `work-attachment-rule-v1-parallel-numbering-is-not-intent` | tools/emit-work-attachment-v1.mjs | check-work-attachment-v1 |
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
 | `work-status-rule-v1-a-work-the-owner-calls-in-progress-says-so-on-the-door-and-on-every-page-of-it` | tools/build-front-door-v1.mjs, zone.html | check-catalog-case-v1, check-work-status-v1 |
@@ -189,7 +190,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 36 of the 142 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 37 of the 143 tools that are not checks.
 
 Not called by any build stage:
 

@@ -27,7 +27,7 @@
   try { localStorage.removeItem("scheme"); } catch { /* a device that remembers nothing still reads */ }
 })();
 </script>
-<link rel="stylesheet" href="/reader/engine-98cb3a6468a9.css">
+<link rel="stylesheet" href="/reader/engine-b23f95d61a8c.css">
 </head>
 <body>
 <header class="top">
@@ -102,8 +102,12 @@
     <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-pressed="false" aria-describedby="dirEn" title="the positioning layer applied to the Hebrew cards: the same cards, placed in English reading order; turn the numbers on to see each card’s place as written">English reader</button><span class="mode-dir" id="dirEn">right to left</span></span>
     <!-- THE BLOB PILL (the owner, 2026-10-16: "just do it as a nice pill like
          the english reader toggle ... this one can sit live ... on off"): one
-         pill beside the readers, on or off, kept on this device. -->
-    <span class="mode-pick"><button type="button" class="blob-btn on" id="blobPill" aria-pressed="true" aria-describedby="blobState">blobs</button><span class="mode-dir" id="blobState"></span></span>
+         pill beside the readers, on or off, kept on this device. It says
+         "framed" (the owner, 2026-11-14: "oh gold frame is a good wording
+         lets use that on the pill over blob", and then "maybe just "framed" no
+         gold"); the address flag ?blobs= and the choice kept on the device keep
+         their names. -->
+    <span class="mode-pick"><button type="button" class="blob-btn on" id="blobPill" aria-pressed="true" aria-describedby="blobState">framed</button><span class="mode-dir" id="blobState"></span></span>
     <!-- THE NUMBERS PILL (the owner, 2026-10-16: "id also move the numbering
          and arrow to the book page runner cards and add that as a toggle
          too"): each card's number in its verse as written, with the arrow the
@@ -115,6 +119,14 @@
          of the word's exact readings and where each stands, from the corpus
          lane's dictionary store (data/dictionary-store/). Kept on this device. -->
     <span class="mode-pick"><button type="button" class="blob-btn" id="dictPill" aria-pressed="false" aria-describedby="dictState" title="a word&#8217;s card opens to its exact reading and every place it stands, and the other readings of its letters">concordance hud</button><span class="mode-dir" id="dictState"></span></span>
+    <!-- THE WORD SENSES PILL (word-senses-rule-v1; the owner, 2026-11-13:
+         "toggle on word senses"). Off, where it rests, a note Jastrow sets in
+         brackets on a word's sense is held back from the card; on, each prints
+         as "word sense, not definition: ..." in purple. The card's own "show"
+         sits in a line a tight card folds away, most cards on a phone (the
+         review of 2026-11-14), so the switch stands here too, where nothing
+         folds it. Kept on this device. -->
+    <span class="mode-pick"><button type="button" class="blob-btn" id="sensesPill" aria-pressed="false" aria-describedby="sensesState" title="Jastrow&#8217;s notes in square brackets on a word&#8217;s sense: held back from the card, or shown as word senses, never as definitions">word senses</button><span class="mode-dir" id="sensesState"></span></span>
     <!-- RESET TO DEFAULT (the owner, 2026-10-18: "maybe we need a reset to
          default toggling button", a pill in this row). It forgets every pick
          made on this page, and every line is drawn again as it was drawn at
@@ -127,7 +139,7 @@
          2026-10-23 to its evening; the owner: "id remove no names toggle and
          just have it on /toggles/ for now". The switch stays on the rail
          (?rail=all) and on /toggles/; nothing on this row offers it. -->
-    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, blobs off, card numbering on, the concordance hud off) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
+    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, framed off, card numbering on, the concordance hud off, word senses off) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
     <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
          a megatoggle at the top that opens all of it, without losing the drop
          down"). It always did open every verse's commentary; it was labelled
@@ -271,6 +283,6 @@
 <section id="bookEnd">
   <p id="cc0Line" class="open-claim">Noncommercial: nothing sold, no advertising, no payment taken — declared 2026-08-30, standing as long as this page serves. That is how the records here released on noncommercial terms are honored. Every carried text and reading keeps its own license, named with it; nothing here relicenses it. What this site adds of its own — its code, layout, receipts and the words it writes — is <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0 1.0</a>. Where it adapts a share-alike record (the Hebrew as laid out here, a reading cut or joined for display), the adaptation stays under that record’s license.</p>
 </section>
-<script src="/reader/engine-94ed1c634045.js"></script>
+<script src="/reader/engine-948ef173fc14.js"></script>
 </body>
 </html>

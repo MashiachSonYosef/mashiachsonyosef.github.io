@@ -197,6 +197,11 @@ const loadModel = async (DATA) => {
   // which overlays the page reads, from the page's own list of them
   const zoneText = String((await fetchBuf(new URL("../zone.html", DATA).href)) || "");
   const overlayIds = [...zoneText.matchAll(/dir: "data\/overlays\/([a-z0-9-]+)\/"/gu)].map((m) => m[1]);
+  // a word sense gives no pill at rest (word-senses-rule-v1), and the index
+  // takes none: the model leaves out the rows the record names, by key, rank
+  // and source id, as the bake does, so a fault in the bake's skip shows here
+  const senseRows = new Set();
+  { const ws = await maybeJson(`${DATA}word-senses/jastrow-v1.json`); for (const [K, list] of Object.entries((ws && ws.rows) || {})) for (const [rank, m] of list) senseRows.add(`${K}|${rank}|${m}`); }
   for (const id of overlayIds) {
     const oix = await maybeJson(`${DATA}overlays/${id}/index.json`);
     if (!oix) continue;
@@ -207,6 +212,7 @@ const loadModel = async (DATA) => {
         for (const row of rows) {
           const src = (oix.m_sources || {})[row[3]];
           if (!src) continue;
+          if (id === "jastrow" && senseRows.has(`${K}|${row[0]}|${row[3]}`)) continue;
           // an overlay's division slots stand at 8 and 9 (its slot 7 is the
           // lane's own), read into 7 and 8 as the page reads them
           const served = row.length > 8 ? [...row.slice(0, 7), Array.isArray(row[8]) ? row[8] : null, Array.isArray(row[9]) ? row[9] : null] : row.slice(0, 7);

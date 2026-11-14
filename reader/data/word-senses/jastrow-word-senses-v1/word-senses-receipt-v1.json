@@ -1,0 +1,147 @@
+{
+ "name": "Jastrow's bracketed word senses v1",
+ "written": "14 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "current_effect": "NONE. Nothing served is changed; the page wires the branches and the legend.",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 8511,
+  "sha256": "dcddbad2253f2bf17478e00903add6d9dcd46d93f8bd601740b3e3f2bf49cfd0"
+ },
+ "builder": {
+  "file": "build-word-senses-v1.mjs",
+  "bytes": 12860,
+  "sha256": "556f76de895e1b766ef975fce57436ac2ad5ca4f87d9cc480fe606d7d831e617"
+ },
+ "inputs": {
+  "overlay": {
+   "read_from": "https://fireandhail.com/reader/data/overlays/jastrow/",
+   "store_version": "d5324f308ef9",
+   "index_sha256": "eceea194f8621dd11c89f38a59543c2b8d09eb030499d2660ae9f6b87e8148d6",
+   "rows": 115918,
+   "keys": 25210
+  },
+  "records": {
+   "file": "ledgers/work/ldmprs/source-cache/sefaria-dump-2026-07-14/jastrow-dictionary-entries.jsonl",
+   "bytes": 42953639,
+   "sha256": "4c64ff0324946065a8a02118f7519648662b623e6e47e175125a4b7768437478"
+  },
+  "trial": {
+   "file": "../trial-v1/lines-a-b-v1.jsonl",
+   "bytes": 217291,
+   "sha256": "2ba1e6663a451d4290a9db21c2e0f566df09c3600f75fce14f705c3e4801bd5a"
+  }
+ },
+ "the_brackets_in_the_records": {
+  "records": 32512,
+  "senses": 44668,
+  "brackets": 5793,
+  "sense_notes": {
+   "PLAIN": {
+    "FIRST": 1007,
+    "LATER": 116
+   },
+   "WITH_MORE": {
+    "FIRST": 245,
+    "LATER": 41
+   }
+  },
+  "asides": {
+   "FIRST": 510,
+   "LATER": 3874
+  },
+  "nested": 19,
+  "unclosed": 154
+ },
+ "rows_read": 115918,
+ "branches": {
+  "WORD_SENSE": {
+   "rows": 2974,
+   "keys": 1559,
+   "rows_by_m": {
+    "M12": 2656,
+    "M39": 255,
+    "M75": 11,
+    "M49": 33,
+    "M65": 15,
+    "M106": 4
+   },
+   "found_by": {
+    "PLAIN_NOTE": 2026,
+    "ITS_DEF_FIELD": 456,
+    "NOTE_WITH_MORE": 492
+   }
+  },
+  "NOTE_WORDS_ALSO_A_WORDING": {
+   "rows": 26,
+   "keys": 9,
+   "rows_by_m": {
+    "M12": 26
+   }
+  },
+  "ASIDE_WORDING": {
+   "rows": 329,
+   "keys": 149,
+   "rows_by_m": {
+    "M12": 328,
+    "M39": 1
+   }
+  },
+  "NOT_A_BRACKET": {
+   "rows": 112589,
+   "keys": 25201,
+   "rows_by_m": {
+    "M12": 78506,
+    "M49": 8640,
+    "M106": 610,
+    "M39": 21428,
+    "M65": 1593,
+    "M75": 1812
+   }
+  }
+ },
+ "the_d_m_cards": {
+  "rows_whose_def_field_holds_a_bracket": 4814,
+  "ONLY_SENSE_NOTES": 2479,
+  "SOME_ASIDE": 550,
+  "NOT_MATCHED": 1785
+ },
+ "the_coverage_trial_s_line_b": {
+  "lines_b_from_jastrow_first": 397,
+  "of_them": {
+   "NOT_A_BRACKET": 361,
+   "WORD_SENSE": 36
+  }
+ },
+ "checks": [
+  {
+   "check": "check 1: every row read, each in exactly one branch",
+   "failures": 0
+  },
+  {
+   "check": "check 2: every WORD_SENSE row is a sense note's words and no wording",
+   "failures": 0
+  },
+  {
+   "check": "check 4: no path of this machine and no name of its owner in any file written",
+   "failures": 0
+  }
+ ],
+ "outputs": [
+  {
+   "file": "word-senses-v1.jsonl",
+   "bytes": 1150843,
+   "sha256": "67e782637b58d5b2b4a797da0f12d9287238e2d62ac94c843a85805172dde56d"
+  },
+  {
+   "file": "cards-with-an-aside-v1.jsonl",
+   "bytes": 135868,
+   "sha256": "b1b90d159edda5d086dbc070763168015dd0320455b4c051bdc5e7272f9d85d4"
+  },
+  {
+   "file": "legends-v1.json",
+   "bytes": 958,
+   "sha256": "77612fda2f6c02490bd8752569e9d476370a9bc73e99117ae13e7ab13f996a3e"
+  }
+ ]
+}

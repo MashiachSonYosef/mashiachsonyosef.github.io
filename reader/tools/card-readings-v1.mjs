@@ -84,9 +84,9 @@ export const STATES = {
     holds: null,
   },
   lifted: {
-    says: "lifted: every switch that withholds a reading lifted — the pointing kept whatever a source points, a source's own signs printed, every source on",
-    keep: { "fh.masorah": "keep", "fh.signs": "printed", "fh.sources.off": "[]" },
-    holds: { pointing: "keep", signs: "printed", sources_off: [] },
+    says: "lifted: every switch that withholds a reading lifted — the pointing kept whatever a source points, a source's own signs printed, every source on, the word senses shown",
+    keep: { "fh.masorah": "keep", "fh.signs": "printed", "fh.sources.off": "[]", "fh.senses": "on" },
+    holds: { pointing: "keep", signs: "printed", sources_off: [], senses: "on" },
   },
 };
 
@@ -166,7 +166,7 @@ export const cardsInPage = async ([from, to, perCardMs = 15000]) => {
   return {
     sections: out, of: secs.length,
     ruled: document.querySelectorAll(".wb.chosen, .wjoin.chosen").length,
-    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, sources_off: [...(window.__sourcesOff || [])].sort() },
+    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort() },
   };
 };
 
@@ -217,7 +217,7 @@ export const readCards = async (browser, base, work, stateName, { from = 0, to =
     if (state.holds) {
       const s = before.state;
       const off = JSON.stringify(s.sources_off) !== JSON.stringify(state.holds.sources_off);
-      if (s.pointing !== state.holds.pointing || s.signs !== state.holds.signs || off) throw new Error(`the page did not take the lifted switches: it reports the pointing ${s.pointing}, signs ${s.signs}, sources off ${JSON.stringify(s.sources_off)}`);
+      if (s.pointing !== state.holds.pointing || s.signs !== state.holds.signs || s.senses !== state.holds.senses || off) throw new Error(`the page did not take the lifted switches: it reports the pointing ${s.pointing}, signs ${s.signs}, word senses ${s.senses}, sources off ${JSON.stringify(s.sources_off)}`);
     }
     const sections = [];
     let pageState = before.state, ruled = 0;

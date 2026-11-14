@@ -172,7 +172,7 @@ const isCard = (c) => !!c && typeof c === "object" && "pool" in c && "on" in c;
     const st = (s.read_off && s.read_off.states) || {};
     const lifted = st.lifted && st.lifted.page, rest = st.rest && st.rest.page;
     const want = STATES.lifted.holds;
-    if (!lifted || lifted.pointing !== want.pointing || lifted.signs !== want.signs || JSON.stringify(lifted.sources_off) !== JSON.stringify(want.sources_off)) stateOff.push(`${b}: lifted is said as ${JSON.stringify(lifted)}`);
+    if (!lifted || lifted.pointing !== want.pointing || lifted.signs !== want.signs || lifted.senses !== want.senses || JSON.stringify(lifted.sources_off) !== JSON.stringify(want.sources_off)) stateOff.push(`${b}: lifted is said as ${JSON.stringify(lifted)}`);
     const lines = readRecord(recordPath(READER, b));
     if (!rest || !lines || JSON.stringify(rest) !== JSON.stringify(lines.read_off.state)) stateOff.push(`${b}: at rest is said as ${JSON.stringify(rest)} and the resting lines were read as ${lines ? JSON.stringify(lines.read_off.state) : "(no record)"}`);
   }
