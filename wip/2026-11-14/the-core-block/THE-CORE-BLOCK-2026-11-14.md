@@ -1,6 +1,6 @@
 # A card of one pill opens on its core block, the place's reading on top
 
-14 November 2026. Page lane (Elijah). The owner's call 10 of 13 November, answered on 14 November with «just go with your recommendations its fine»: cards of one pill open on the part that carries the meaning, with the place's reading still on top.
+14 November 2026. Page lane (Elijah). Shipped: main 140e482203, gh-pages 5e29fbebad, Pages run 1366, live check 64 green (`logs/h10-poll.txt`). The owner's call 10 of 13 November, answered on 14 November with «just go with your recommendations its fine»: cards of one pill open on the part that carries the meaning, with the place's reading still on top.
 
 ## What was wrong
 
@@ -68,4 +68,12 @@ The fresh readers counted this in relay v184 §5: «a card of one pill that only
 
 ## Proofs
 
-SUITE. GATE.
+- **The suite** (`logs/h09-suite.txt`, on the final tree): 153 of 154 pass. The one red is `check-nothing-unlanded-v1`, which is red until a build ships, as before every ship. The run before the check edits (`logs/h05-suite.txt`) had seven red: the five checks edited for the core block (citations, the dictionary toggle, the place, the piece store, the reading's language), the manifest (emitted again), and nothing-unlanded.
+
+- **The gate** (`logs/h07-gate.txt`, `logs/h07-gate-diff.txt`), against main (82da4fbaf8):
+  - 9,403 lines on 18 pages of 9 books, every one the same on both builds.
+  - 54 cards, 14 of which differ, every one by the rule alone (`logs/h07-gate-cards-accounted.txt`, `tools/gate-cards-core-block.py`). 12 open on the core block with the line's own piece pressed. On the two Job pages the third card is בְאֶרֶץ, «in + [the] land of»: the block of אֶרֶץ offers neither piece, so its first pill, «earth», is pressed.
+  - The gate's note "not compared: old lacks the switch (36)" is not this change. It names the "no blanks" and "no names" switches, which neither build carries any more. The gate says "old" whenever either build lacks a switch, and the earlier gate today printed the same 36.
+  - Seen in passing: on a chapter page the gate reads the first three cards in the page's order. That is the book's first verse wherever that section is built, not the chapter's own first verse: both Job pages read Job 1:1. A follow-up for the gate, not for this change.
+- **Lint:** the page script and the eight changed checks carry no finding their live copies lack.
+- **After the ship:** `check-nothing-unlanded-v1` passes (`logs/h11-…`). The SHA256s on gh-pages 5e29fbebad, read from git's stored file contents (`logs/h12-…`): all 24 fingerprints on the chain index, all 9,191 files the 52 records say they were read off, and all 3,547 zone pins on 1,272 pages. That is 12,762 of 12,762, none wrong. The twelve chain books now name more files, because their cards hold the cores' readings.
