@@ -47,6 +47,26 @@ Most of Jastrow's bracketed entries never print on a card at all: the overlay se
 
 The letter to the corpus lane still asks for the list of the 2,479 cards where the legend holds by its own count.
 
+## The independent review, and what it changed
+
+Four reviewers each read one part of the update (the gate and the switch; the rulings; the tools and checks; what the reader sees and the conventions). For every finding, a skeptic tried to refute it on the tree and on main. What was confirmed, and is now fixed:
+
+- **A word sense's bare twin stood at rest as a definition** (456 rows under 428 keys; Obadiah 1:8, «retentive» by M39, blue beside «1 word sense … held back»). The corpus lane lists both twins of a note it found in the record, and only the bracketed one of a note it found by the definition field. The record now carries such twins apart (`counts.twins` 456) and the page holds them back with the list's own. W3 and the new W7 hold it; the letter asks the lane to list them.
+- **A ketiv's welded card counted the wrong word's senses** (Daniel 5:21: «5 word senses … held back — show», and «show» brought none). The welded card prints the read word's readings, so it now counts the read word's word senses (Daniel 5:10: «1 … held back — show» brings «word sense, not definition: turning about (read עַלַּת)»).
+- **Most readers could not reach the switch.** The card's «show» sits in a line a tight card folds away, which is most cards on a phone. The switch now also stands in the page's row of pills, «word senses», beside «framed», and the reset puts it back off.
+- **Turning the switch off forgot a division the reader pressed**, and a reading a word sense was pressed over. It now forgets the word senses alone, and gives back the reading under one.
+- **The chain books' lifted state** said every withholding switch was lifted and left word senses held back. It now shows them, and both recordings say where the switch stood.
+- **The record is marked only against the overlay version it was baked from**, so a stale cached record marks nothing rather than the wrong rows.
+- **check-search-v1's model** counted the word senses the index leaves out; it now leaves them out as the bake does.
+- **Smaller:** the rail credits the switch to "this project's claim", not to the sources; the card's switch keeps one name with aria-pressed, and keeps the focus when the card is built again; the bake's header says it is the ledger for no letter; the rule's comment says what moves; /toggles/ was built again after «framed».
+
+Refuted or not taken:
+- A word sense pressed over a reading "loses it when the switch goes off": refuted. The reading went when the word sense was pressed over it, as any pill pressed over another does. The forgetting now gives it back anyway (`under`).
+- «Show» reopens the card on its default block, not on a block the reader pressed: confirmed. It is how every switch that rebuilds the card behaves (the pointing, a source), so it stays as it is and is noted.
+- A pressed word sense prints on the line under the word in the reading blue. That is the owner's call: it was put to the owner on 14 November with no answer yet, so the line stays blue for now.
+
+The review also confirmed the core-block finding against the first fix: a division kept for the whole form opened the card off its own division where the same letters divide otherwise (Ruth 2:18 and 4:15). That fix is in `../the-core-block-ruling/`.
+
 ## The files
 
 - `reader/data/word-senses/jastrow-word-senses-v1/`: the lane's folder, byte for byte (RULE.md, the list, its receipt, the legend, the aside cards), and `PIN.json` naming each file's bytes and sha256 as the relay gives them.

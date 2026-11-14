@@ -23,18 +23,16 @@ The same happens when the joined-words switch lays the sections again, and at an
 
 ## The fix
 
-A reading pressed on a block of the place's own division remembers that division, exactly as pressing the division first would have (`blockRuled`, in both places a reading is pressed: its pill, and a witness pressed in the card's record). Every painter already reads a ruling made that way, so nothing else had to learn anything new.
+The ruling is read where it was made, on the place's own pieces (`placeCutOf`, read by `ruledLine0`, `ruledMs` and `piecesAt`): a ruling with no division pressed, whose block is one of this place's own pieces, is read on this place's own division. A ruling none of whose blocks stands at a place is no ruling there, and the place keeps its own line (`ruledSurfaces`); it used to print the baked column there instead.
 
-- It does not apply to a run's card: runs remember their own rungs.
-- It does not apply to TAHOT's set chosen whole, which is filed under its division already.
-
-On the tree, the same steps end on «in + understanding + his».
+The first fix (`blockRuled`) kept the division for the whole form, as a press on the division keeps it. The independent review found the fault in that: the same letters divide otherwise elsewhere, and a division kept for the form opened the card off its own division there (Ruth: a reading pressed at 2:18, word 15, on «מ + שבע + ה»; at 4:15, word 17, the same letters stand as «מ + שבעה»). It was withdrawn. With the ruling read per place, Ruth 4:15 stays on «מ + שבעה» as it does on main (`tools/two-places.mjs` in `../the-word-senses/`), and Obadiah 1:3 ends on «in + understanding + his».
 
 ## Proofs
 
 - **The guard.** `check-ruled-equals-first-paint-v1` gained a kind of cell and a check of its own. Its split words had always pressed a division before a reading, so the path every one-pill card now takes was never asked. E4 rules a split word on the block its card opened on, with no division pressed, lays the section again, and asks that the line still reads the reading pressed.
   - On the tree: E1–E4 pass in both readers (`logs/q05-…`): 4 words, «and + in + age», «face», «the + quaking», «and + declare».
   - On main: E4 fails 4 of 4 in both readers, and E1 fails on the same cells (`logs/q06-…`). For example, «age» pressed reads «and + in + age», and laid again reads «and + in + [the] days of».
+- **After the review**, E1–E4 pass again with the per-place fix (`logs/q17-…`).
 - **The word senses' W5** also holds the neighbor's ruling through the switch's relay (`../the-word-senses/`).
 
 SUITE. GATE.

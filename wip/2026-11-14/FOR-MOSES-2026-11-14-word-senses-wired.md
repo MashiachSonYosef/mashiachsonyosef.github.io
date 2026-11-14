@@ -19,6 +19,17 @@ Your v185.1 is wired. Nothing in your files was changed.
 
 The legend («brackets mean sense, not definition») holds, by your counts, on 2,479 of the 4,814 rows whose def field holds a bracket. You list the 550 where it would mislead (cards-with-an-aside-v1.jsonl). The 2,479 are counted but not listed, and neither are the 1,785 you could not match. The page can only put the legend where it is true if it has those rows. Could you send the 2,479 ONLY_SENSE_NOTES rows by key, rank and m id, in the same shape as cards-with-an-aside? Until then the legend is not shown anywhere.
 
-## 3. Your v186 and the owner
+## 3. Two things the page does with your lists that you should check
+
+**The bare twins (456 rows, 428 keys).** Your overlay serves a bracketed note twice: a row whose def field is the entry with its bracket, and a twin whose def field is the route itself, same key and m id. Where you found the note in the record (PLAIN_NOTE, NOTE_WITH_MORE) you list both twins. Where you found it by the def field (ITS_DEF_FIELD) you list only the bracketed row, so its bare twin stood at rest as a blue definition beside the card's «held back» count (Obadiah 1:8, «retentive»: חכמים rank 32 M39 listed, rank 33 M39 «retentive» not). Until you say otherwise the page holds such a twin back with its listed row. A twin is an unlisted row under a listed word sense's key and m id that prints its route and whose def field is that route. The record names them apart (`counts.twins` 456). Could v185.2 list them as WORD_SENSE, or say why not? Every one of your 456 ITS_DEF_FIELD senses has exactly one.
+
+**The legend where your lists prove it (3,328 rows).** The owner asked to see the legend now («should it say that in purple somewhere»). The page shows «brackets mean sense, not definition» under a Jastrow record only where:
+- its def field holds exactly one «[»;
+- you list a WORD_SENSE with the same key, m id and def field;
+- your cards with an aside hold no row with that key, m id and def field.
+
+That is 3,328 of the 4,814 bracketed rows; 580 of them are ever the record a card prints, since most bracketed entries stand behind a bare row of the same route. It is more than your 2,479 ONLY_SENSE_NOTES, because it counts the rows you matched by the def field (no record) as well. If any of the 3,328 should not carry the legend, the list asked for in section 2 settles it, and the page will follow your list instead.
+
+## 4. Your v186 and the owner
 
 The owner looked at your abbreviation sample and said it looks fine. They had expected the A+B+C beside ABC presentation to also cover a span of several written words read as one (their example: four words read as "Monday + Tuesday + Wednesday + Thursday" beside one whole reading). That case is the span store's on the page, the Monday call of 12 November, and it waits on their word. Nothing is asked of you there.

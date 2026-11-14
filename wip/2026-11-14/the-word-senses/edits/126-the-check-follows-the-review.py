@@ -71,3 +71,5 @@ one("""check("W6  the owner's legend""", """check("W7  every served Jastrow row 
   w7.outside.length ? `${w7.outside.length} row(s) outside it, standing at rest as definitions · ${first(w7.outside)}` : `${w7.rows} served row(s) print the words of the ${w7.senses} listed word senses, every one in the record (${record.counts.twins} as a twin)`);
 check("W6  the owner's legend""")
 open(p, "w", encoding="utf-8").write(s); print("check-word-senses-v1: the review's findings held")
+# (then, by hand on the same tree: W5 asks that the line under the word beside it holds the word sense pressed over its
+# reading anywhere among its pieces, «in + word sense, not definition: innermost + his», not that it begins with it)
