@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // RUN: tree
-// GUARDS: sign-gap-joiner-rule-v1-a-joiner-stands-between-two-pieces-that-print-and-never-beside-a-hidden-signs-gap
+// GUARDS: sign-gap-joiner-rule-v1-a-joiner-stands-between-two-pieces-that-print-and-never-beside-a-hidden-signs-gap, gap-blob-rule-v1-a-hidden-signs-letters-wear-a-blob-of-their-own-ink-and-tie-to-nothing
 // LEDGER: -
 // no frame letter. A check reads the resting lines the reader drew, and the page itself, and judges them; it is not the
 // ledger for one.
@@ -31,6 +31,14 @@
 //       nothing it draws: each run is fitted to its column again by the page's own redraw with the hidden joiners in
 //       place and with them taken out, and comes out the same size both times (on 14 November 2026 a hidden joiner
 //       was counted as a second row of its run, and every run that holds a gap was drawn at four fifths of its size)
+//   G4  a hidden sign's letters wear a blob of their own, closed around their ink, and it ties to nothing (the owner,
+//       14 November 2026, once the joiner beside the gap went: "spacing looks better but blobs will need updated").
+//       On the pages G3 opens, once their blobs are all drawn, and on the first of them again under the English
+//       reader: every gap the page lays in a word or a run that wears blobs has a blob marked as the gap's, on its
+//       own word; that blob stands within its letters' columns and stops short of the English row (it never reaches
+//       the middle of the gap's slot); and every other blob reaches over its English whole. Until 14 November the
+//       gap's blob ran down to its empty slot, a stalk pressed against the blob beside it, crossing it in the
+//       English reader
 //
 // The recordings are read off the page by the round (data/resting-lines), so G1 holds the page's drawing at every
 // line of every work at rest, and G3 the joiners between the pieces of the lines it lays. The words are found in
@@ -122,6 +130,47 @@ const joinersInPage = () => {
   for (const row of document.querySelectorAll(".he-text .g > .g-pcs")) { r.laid += 1; if (judge(row, "g-pc", "g-pp", " + ")) r.laidWithGap += 1; }
   return r;
 };
+/** IN THE PAGE. Every blob drawn, judged: a gap's (data-gap) closed on its letters, every other reaching its English. */
+const blobsInPage = () => {
+  const r = { en: document.body.classList.contains("en"), hosts: 0, gapPieces: 0, gapBlobs: 0, ties: 0, faults: [] };
+  const where = (el) => { const sec = el.closest("section.seg"); return (sec && sec.querySelector(".vnum") || {}).textContent || "?"; };
+  const nums = (v) => String(v || "").split(",").map(Number);
+  for (const svg of document.querySelectorAll(".he-text svg.wj-tie")) {
+    const host = svg.parentElement; r.hosts += 1;
+    const paths = [...svg.querySelectorAll("path[data-wi]")];
+    for (const g of host.querySelectorAll(".g-pc.gap, .g-part.gap")) {
+      r.gapPieces += 1;
+      const part = g.closest(".g-part"), wi = part ? String(part.dataset.wi) : "0";
+      if (!paths.some((x) => x.dataset.gap === "1" && x.dataset.wi === wi) && r.faults.length < 6) r.faults.push(`${where(host)}: a gap whose letters wear no blob of their own`);
+    }
+    for (const x of paths) {
+      const bb = x.getBBox(), [hL, hR] = nums(x.dataset.he), [, , eT, eB] = nums(x.dataset.en);
+      const top = bb.y, bottom = bb.y + bb.height, mid = (eT + eB) / 2;
+      if (x.dataset.gap === "1") {
+        r.gapBlobs += 1;
+        const inColumns = bb.x >= hL - 1.5 && bb.x + bb.width <= hR + 1.5;
+        const short = r.en ? top > mid : bottom < mid;
+        if ((!inColumns || !short) && r.faults.length < 6) r.faults.push(`${where(host)}: a gap's blob ${!inColumns ? "leaves its letters' columns" : "reaches the English row"} (${Math.round(top)}..${Math.round(bottom)}, its slot ${Math.round(eT)}..${Math.round(eB)})`);
+      } else {
+        r.ties += 1;
+        if (!(top <= eT + 1.5 && bottom >= eB - 1.5) && r.faults.length < 6) r.faults.push(`${where(host)}: a blob that does not reach over its English (${Math.round(top)}..${Math.round(bottom)}, its English ${Math.round(eT)}..${Math.round(eB)})`);
+      }
+    }
+  }
+  return r;
+};
+const g4 = { readers: [], hosts: 0, gapPieces: 0, gapBlobs: 0, ties: 0, faults: [] };
+const addBlobs = (r, work) => {
+  g4.readers.push(`${work} ${r.en ? "English on top" : "Hebrew on top"}: ${nf(r.gapBlobs)} gap blobs`);
+  for (const k of ["hosts", "gapPieces", "gapBlobs", "ties"]) g4[k] += r[k];
+  for (const x of r.faults) if (g4.faults.length < 12) g4.faults.push(`${work}${r.en ? " (English on top)" : ""} ${x}`);
+};
+const blobsDrawn = async (p) => {
+  await p.evaluate(() => { window.__tieMs = null; window.__drawAllTies(); });
+  await p.waitForFunction(() => !!window.__tieMs, null, { timeout: 30000 });
+  await p.waitForFunction(() => !window.__tiePending, null, { timeout: 60000 });
+  return p.evaluate(blobsInPage);
+};
 const g3 = { opened: [], runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithoutSlot: 0, faults: [], notOff: [], refitted: 0, noRedraw: [] };
 /** IN THE PAGE. Every run's line, where it stands and the size it is drawn at. */
 const runSizes = () => [...document.querySelectorAll(".he-text .wjoin > .g.parts")].map((g) => { const sec = g.closest("section.seg"); return [(sec && sec.querySelector(".vnum") || {}).textContent || "?", getComputedStyle(g).fontSize]; });
@@ -151,6 +200,7 @@ try {
           return p.evaluate(runSizes);
         };
         const withThem = await fitted();
+        addBlobs(await blobsDrawn(p), work);
         await p.evaluate(() => { for (const x of document.querySelectorAll(".he-text .g-sep.at-gap, .he-text .g-pp.at-gap")) x.remove(); });
         const without = await fitted();
         g3.refitted += withThem.length;
@@ -163,6 +213,17 @@ try {
       for (const x of got.faults) if (g3.faults.length < 12) g3.faults.push(`${work} ${x}`);
     } finally { await ctx.close(); }
   }
+  // the first work again, under the English reader: its English stands over the letters
+  if (g3.opened.length && !g3.noRedraw.length) {
+    const ctx = await browser.newContext({ viewport: { width: 412, height: 915 } });
+    try {
+      const p = await ctx.newPage();
+      await p.goto(`${tree.base}/zone.html?b=${g3.opened[0]}&mode=en`, { waitUntil: "networkidle", timeout: 120000 });
+      await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+      await linesOnPage(p);
+      addBlobs(await blobsDrawn(p), g3.opened[0]);
+    } finally { await ctx.close(); }
+  }
 } finally { await browser.close(); await tree.close(); }
 check("G3  on the page, each separator between the pieces of a run or a laid line shows only between two pieces that print, every gap keeps its slot, and a hidden joiner moves nothing drawn",
   g3.opened.length > 0 && !g3.notOff.length && !g3.noRedraw.length && g3.runsWithGap > 0 && g3.laidWithGap > 0 && g3.refitted > 0 && !g3.faults.length && !g3.gapsWithoutSlot,
@@ -171,6 +232,11 @@ check("G3  on the page, each separator between the pieces of a run or a laid lin
     : g3.noRedraw.length ? `the page offers no __drawAllTies to fit its runs again: ${first(g3.noRedraw)}`
     : g3.faults.length ? `${g3.faults.length}${g3.faults.length >= 12 ? " or more" : ""} · ${first(g3.faults, 3).split(GAP).join("[gap]")}`
     : `${g3.opened.join(", ")} · ${nf(g3.runs)} runs, ${nf(g3.runsWithGap)} with a gap · ${nf(g3.laid)} laid lines, ${nf(g3.laidWithGap)} with a gap · ${nf(g3.separators)} separators · ${nf(g3.gapsWithoutSlot)} gaps without their slot · ${nf(g3.refitted)} runs fitted again, each the same size without the hidden joiners`);
+check("G4  a hidden sign's letters wear a blob of their own, closed around their ink, tied to no English; every other blob reaches over its English",
+  g4.readers.length >= 2 && g4.gapBlobs > 0 && g4.gapPieces > 0 && !g4.faults.length,
+  g4.readers.length < 2 ? `blobs were judged under ${g4.readers.length} reader(s), not both: ${first(g4.readers)}`
+    : g4.faults.length ? `${g4.faults.length}${g4.faults.length >= 12 ? " or more" : ""} · ${first(g4.faults, 3)}`
+    : `${g4.readers.join(" · ")} · ${nf(g4.gapPieces)} gaps laid where blobs are worn, each with its own blob · ${nf(g4.ties)} other blobs, each over its English`);
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

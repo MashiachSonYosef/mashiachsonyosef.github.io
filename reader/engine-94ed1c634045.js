@@ -775,9 +775,10 @@
   // well-being" under signs off: "my vote is to leave it like that: and + +
   // well-being, rather than leave stuff out"). The sign is not drawn, but its
   // piece stays as a gap, so the line still has one part per piece of the
-  // source's division, and the gap's letters wear their own blob. The gap is
-  // a zero-width space, which no trim removes; the row gives it a little
-  // width to tie to. Where every piece is a sign, the signs stand.
+  // source's division, and the gap's letters wear their own blob, closed
+  // around their ink (drawPairs). The gap is a zero-width space, which no
+  // trim removes; the row keeps it a little width, its place in the line.
+  // Where every piece is a sign, the signs stand.
   const SIGN_GAP = "\u200b";
   const trimSigns = (pieces) => (pieces.every(signOnly) ? pieces : pieces.map((x) => (signOnly(x) ? SIGN_GAP : x)));
   // A GAP TAKES NO JOINER OF ITS OWN (the owner, 14 November 2026, taking the
@@ -8605,8 +8606,10 @@
     // A GAP IS STILL A PIECE (the owner, 2026-10-23, of the object marker's
     // word in a chain, its sign undrawn under the signs switch, standing
     // with no blob beside words that wore one: "2 examples of a missing
-    // blob"): the gap has no ink to measure, so its blob ties to a hair's
-    // breadth where the gap stands, and the letters keep their shape
+    // blob"): the gap has no ink to measure, so it is measured as a hair's
+    // breadth where it stands, and the letters keep their shape. Since
+    // 2026-11-14 the letters' blob closes around them and ties to nothing
+    // (drawPairs); the hair still says where the gap stands among the pieces
     const q = el.getBoundingClientRect();
     if (!q.height) return null;
     const cx = q.left + q.width / 2;
@@ -8637,10 +8640,10 @@
     const spans = counts && counts.length === pcs.length && counts.length > 1 ? pieceSpans(map.text, counts) : null;
     const boxes = spans ? spans.map(([a, b]) => inkBox(map, a, b)) : null;
     const enBoxes = spans ? pcs.map(rectOf) : null;
-    if (!boxes || boxes.some((x) => !x) || enBoxes.some((x) => !x)) { const e = enWhole(enEl); return e ? [{ he: whole, en: e, wi, piece: 0, n: 1 }] : []; }
+    if (!boxes || boxes.some((x) => !x) || enBoxes.some((x) => !x)) { const e = enWhole(enEl); return e ? [{ he: whole, en: e, wi, piece: 0, n: 1, gap: !!(enEl && enEl.classList.contains("gap")) }] : []; }
     // one height for the word, its ink's; a maqaf belongs to the piece it stands in
     for (const x of boxes) { x.T = whole.T; x.B = whole.B; x.maqafs = whole.maqafs.filter((m) => m.R > x.L && m.L < x.R); }
-    return boxes.map((x, i) => ({ he: x, en: enBoxes[i], wi, piece: i, n: boxes.length }));
+    return boxes.map((x, i) => ({ he: x, en: enBoxes[i], wi, piece: i, n: boxes.length, gap: pcs[i].classList.contains("gap") }));
   };
   // the shapes for a host (a run, or one word) from its pairs, each a box of
   // Hebrew ink and a box of English in the window's frame
@@ -8750,7 +8753,7 @@
       // a box with no bands of its own keeps its letters' band's sides
       for (const x of row) if (!x.banded) { x.Lb = [x.Lb[1], x.Lb[1], x.Lb[1]]; x.Rb = [x.Rb[1], x.Rb[1], x.Rb[1]]; }
     };
-    seam(hebs); seam(engs);
+    seam(hebs); seam(engs.filter((_, k) => !pairs[k].gap));
     // the level the outline keeps: a breath off the tallest letter of the
     // row it stands in (the boxes that share its height), and off the lowest
     // foot; a run that wraps keeps one level per line
@@ -8995,6 +8998,18 @@
       const F = (n) => Math.round(n * 10) / 10;
       return topPath(mirror).replace(/([MLQ])([^MLQ]*)/g, (m, c, nums) => (c === "M" ? "L" : c) + nums.trim().split(/\s+/).map((v, i) => (i % 2 ? F(flip(Number(v))) : v)).join(" ") + " ");
     };
+    // a path of M, L and Q, every point written whole, walked from its far end: the same line, the other way
+    const backward = (d) => {
+      const segs = []; let at = null;
+      for (const [, c, nums] of d.matchAll(/([MLQ])([^MLQ]*)/g)) {
+        const v = nums.trim().split(/ +/).map(Number);
+        if (c === "Q") { segs.push({ from: at, ctl: [v[0], v[1]], to: [v[2], v[3]] }); at = [v[2], v[3]]; continue; }
+        if (at && c === "L") segs.push({ from: at, to: [v[0], v[1]] });
+        at = [v[0], v[1]];
+      }
+      if (!at) return "";
+      return [`L${f(at[0])} ${f(at[1])}`, ...segs.reverse().map((x) => (x.ctl ? `Q${f(x.ctl[0])} ${f(x.ctl[1])} ${f(x.from[0])} ${f(x.from[1])}` : `L${f(x.from[0])} ${f(x.from[1])}`))].join(" ");
+    };
     for (const [k, pr] of pairs.entries()) {
       const he = hebs[k], eB = engs[k];
       const U = en ? eB : he, D = en ? he : eB;
@@ -9003,15 +9018,26 @@
       // the English box's corners round as far as the room its letters leave
       const room = (x, y) => { const a2 = Math.sqrt(Math.max(0, x - 0.4)), b2 = Math.sqrt(Math.max(0, y - 0.4)); return (a2 + b2) * (a2 + b2); };
       const r0 = T.round || 0;
+      // the top keeps the band walls too: where a neighbor's mark reaches
+      // over this piece (a telisha, a lamed's flag), the top steps down to
+      // this piece's own letters there, on the line the two now share
+      const inBand = (x, k) => x >= he.Lb[k] - GRAIN && x <= he.Rb[k] + GRAIN;
+      const topCap = (x) => (inBand(x, 0) ? null : inBand(x, 1) ? he.yA : inBand(x, 2) ? he.yB : null);
       let d;
-      if (!en) {
+      // RULE: gap-blob-rule-v1-a-hidden-signs-letters-wear-a-blob-of-their-own-ink-and-tie-to-nothing
+      // A HIDDEN SIGN'S LETTERS WEAR A BLOB CLOSED AROUND THEIR INK (the
+      // owner, 2026-11-14, of the vav and the object marker at Genesis 1:1,
+      // once the joiner beside the gap went: "spacing looks better but blobs
+      // will need updated"). The gap prints nothing, and its letters' blob ran
+      // down to its empty slot, a stalk pressed against the blob beside it,
+      // and in the English reader it crossed that blob. The letters still wear
+      // a blob of their own (2026-10-23: "2 examples of a missing blob"): its
+      // top and its foot are drawn as every blob's far side is, and it ties to
+      // nothing. The gap keeps its slot in the line (2026-10-16).
+      if (pr.gap) d = `${topPath({ ...he, capAt: topCap })} ${backward(footPath(he))} Z`;
+      else if (!en) {
         const h = hebrewEdge(he, "top", y1);
         const rd = Math.max(0, Math.min(r0, (D.R - D.L) / 2, (D.B - y2) / 2, room(D.iL - D.L, D.B - D.iB), room(D.R - D.iR, D.B - D.iB)));
-        // the top keeps the band walls too: where a neighbor's mark reaches
-        // over this piece (a telisha, a lamed's flag), the top steps down to
-        // this piece's own letters there, on the line the two now share
-        const inBand = (x, k) => x >= he.Lb[k] - GRAIN && x <= he.Rb[k] + GRAIN;
-        const topCap = (x) => (inBand(x, 0) ? null : inBand(x, 1) ? he.yA : inBand(x, 2) ? he.yB : null);
         d = `${topPath({ ...he, capAt: topCap })} ${P(h.toNeck)} L${f(h.nR)} ${f(y1)}`
           + ` C${f(h.nR)} ${f(ym)} ${f(D.R)} ${f(ym)} ${f(D.R)} ${f(y2)} L${f(D.R)} ${f(D.B - rd)} Q${f(D.R)} ${f(D.B)} ${f(D.R - rd)} ${f(D.B)}`
           + ` L${f(D.L + rd)} ${f(D.B)} Q${f(D.L)} ${f(D.B)} ${f(D.L)} ${f(D.B - rd)} L${f(D.L)} ${f(y2)} C${f(D.L)} ${f(ym)} ${f(h.nL)} ${f(ym)} ${f(h.nL)} ${f(y1)}`
@@ -9027,7 +9053,7 @@
           + ` C${f(h.nR)} ${f(ym)} ${f(U.R)} ${f(ym)} ${f(U.R)} ${f(y1)} L${f(U.R)} ${f(U.T + ru)} Q${f(U.R)} ${f(U.T)} ${f(U.R - ru)} ${f(U.T)} Z`;
       }
       he.L = Math.min(...he.Lb); he.R = Math.max(...he.Rb);
-      const tag = `data-wi="${pr.wi}" data-piece="${pr.piece}" data-n="${pr.n}" data-he="${f(he.L)},${f(he.R)},${f(he.T)},${f(he.B)}" data-en="${f(eB.L)},${f(eB.R)},${f(eB.T)},${f(eB.B)}"`;
+      const tag = `data-wi="${pr.wi}" data-piece="${pr.piece}" data-n="${pr.n}" data-he="${f(he.L)},${f(he.R)},${f(he.T)},${f(he.B)}" data-en="${f(eB.L)},${f(eB.R)},${f(eB.T)},${f(eB.B)}"${pr.gap ? ' data-gap="1"' : ""}`;
       // THE FILL UNDER, THE LINE OVER (the owner, 2026-10-10, ringing where
       // two blobs cross: "the overlap drops one of the blob lining"): since
       // the blob took the pressed linen, solid, a blob drawn later covered the
