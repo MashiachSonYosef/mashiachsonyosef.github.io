@@ -106,8 +106,25 @@ The review also confirmed the core-block finding against the first fix: a divisi
   - Before the forgetting, the probe showed the line printing the word sense with the switch off (`logs/q00-…`).
 - **Lint:** the page script, the bake and the check carry no finding; the search index's bake none its live copy lacks.
 
-SUITE. GATE.
+## The suite and the gate
+
+- **The suite** (`logs/q24-suite.txt`): 154 of 155 checks pass, 172 runs in 29 minutes. The one red is check-nothing-unlanded-v1, which is red until the update lands, as at every ship. 157 rules declared, 13 unguarded, the same 13 as before.
+- **The gate** (`logs/q25-gate.txt`, `q25-gate-diff.txt`), main (f2ba077659) against the tree:
+  - S1: 9,423 lines on 18 pages are the same under every switch both builds carry. 36 pairs of a page and a switch were not compared because main lacks that switch; the same 36 stand in every gate since 13 November.
+  - S2: of 54 first cards, 50 are the same. 4 lose one pill and nothing else: «being» on the relative pronoun (אשר), card 3 of Amos 1 and 5 and Zephaniah 1 and 2. It is Jastrow's M12 ranks 284 (def «being») and 285 (def «… [being,] who, which.»), both in the word senses record. It is held back at rest, as this update means. The gate reads S2 as a failure because any pill that moves is one; this one is explained.
 
 ## Pictures
 
 PICTURES.
+
+## Shipped
+
+14 November 2026: main ace7f07eba, gh-pages fb3d183306 («gh-pages follows main»). Pages run 1368 and live check 66 succeeded on that pair (`logs/q26-poll.txt`). check-nothing-unlanded-v1 passes after the push. The audit of gh-pages against main finds 0 of 3,547 zone pins and 9,243 read-off files that do not match.
+
+## Pictures (the shipped tree, Obadiah 1:3, word 11, a first visit)
+
+- `pictures/obadiah-1-3-11-1-at-rest.png`: the card at rest, «2 word senses, not definitions, held back — show» on the line of counts. This was taken on a tall screen. On a phone-height card the counts are hidden by the tight layout, as the pointing's and the entry's counts are, so the switch also stands in the row of pills.
+- `pictures/obadiah-1-3-11-2-switched-on.png`: switched on. «word sense, not definition: who will?» and «… is there any?;» are purple, among the blue readings.
+- `pictures/obadiah-1-3-11-3-pressed-record.png`: «who will?» pressed. The record prints Jastrow's «[who will?,] Oh that!» with its brackets, and the legend «brackets mean sense, not definition» stands under it in purple. The line at the head prints «word sense, not definition: who will?» in the reading's blue (the owner's open question: purple there too?).
+- `pictures/obadiah-1-3-11-4-header-pill.png`: the row of pills, «framed» and «word senses» (pressed).
+- Taken by `tools/shots.mjs` (H=1500 for the first).
