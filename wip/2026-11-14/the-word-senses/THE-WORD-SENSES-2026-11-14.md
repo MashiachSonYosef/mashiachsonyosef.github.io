@@ -88,9 +88,12 @@ The review also confirmed the core-block finding against the first fix: a divisi
   - W4: the reset puts the switch back where it rests.
   - W5: a word sense pressed prints on the line; with the switch turned off, the line reads what it read before the press, and a reading pressed on the word beside it stays where it was. The last half found a live fault of its own (`../the-core-block-ruling/`).
 
-## What moved
+## What moved, against main (f2ba077659)
 
-MEASURES.
+- **Resting lines:** none. 400,242 of 400,242 are the same (`logs/m01-…`).
+- **The chain books at rest:** 1,077 cards lose 1,553 links, and none gain one: the word senses held back, their twins with them (`logs/m02-…`). By book: Zechariah −354, Hosea −201, Amos −185, Micah −156, Joel −141, Malachi −110, Jonah −82, Habakkuk −72, Haggai −67, Nahum −53, Obadiah −40, and Zephaniah.
+- **The chain books lifted** (the word senses shown, as the lifted state now says): 2,358 links go and 2,522 come, the word senses printed as word senses.
+- **The search index:** 157,138 English terms become 156,960, and its pairs 485,730 become 484,957. Overlay rows read go from 112,078 to 108,798.
 
 ## Proofs
 
