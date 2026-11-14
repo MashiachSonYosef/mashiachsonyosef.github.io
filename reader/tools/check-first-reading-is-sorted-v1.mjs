@@ -135,14 +135,15 @@ await p.waitForTimeout(3200);
 const pool = await p.evaluate(() => (window.__pool || []).slice(0, 8));
 
 const first = norm(pool[0]);
-// A route is sense-split and reading-split before it becomes a pill, and the
-// groups are keyed by the reading with the LOWEST rank any row gave it — so a
+// A route is divided where its source's ledger divides it (a source with no
+// ledger stands whole) before it becomes a pill, and the groups are keyed by
+// the reading with the LOWEST rank any row gave it — so a
 // pill cannot be traced back to one row by its wording, and several rows can
 // share a rank. What is judged is therefore the thing the rule is actually
 // about: the AGE of the row the first pill came from. An order that sorts
 // oldest first must answer from the oldest year the key carries; an order
 // that serves the stored row answers from whatever year happens to sit at
-// rank one. This survives the split, the grouping and a tie.
+// rank one. This survives the division, the grouping and a tie.
 const from = (row) => { const r = norm(row[1]); return !!first && (first === r || r.includes(first) || first.includes(r)); };
 const rowsHere = rowsFor(site.key) || [];
 const minYear = Math.min(...rowsHere.map(yearOf));
