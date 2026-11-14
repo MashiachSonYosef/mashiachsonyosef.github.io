@@ -780,10 +780,35 @@
   // width to tie to. Where every piece is a sign, the signs stand.
   const SIGN_GAP = "\u200b";
   const trimSigns = (pieces) => (pieces.every(signOnly) ? pieces : pieces.map((x) => (signOnly(x) ? SIGN_GAP : x)));
+  // A GAP TAKES NO JOINER OF ITS OWN (the owner, 14 November 2026, taking the
+  // page lane's answer to the fresh readers' remark of relay v184 §5: keep the
+  // gap, drop the "+" beside it), under
+  // sign-gap-joiner-rule-v1-a-joiner-stands-between-two-pieces-that-print-and-never-beside-a-hidden-signs-gap.
+  // A joiner stands between two pieces that print and nowhere else: under
+  // signs off "and + <obj.>" draws "and" and its gap, "<the> + this" its gap
+  // and "this", and "and + <the> + well-being" draws "and", its gap, " + " and
+  // "well-being". The gap keeps its place, and where the line is laid in its
+  // pieces its slot (2026-10-16: nothing left out); only the joiner beside it
+  // goes. The line's text is what it draws, so a line that holds a gap is read
+  // back into its pieces by the gap as well as by its joiners.
+  const isGap = (x) => String(x ?? "").trim() === SIGN_GAP;
+  const joinerBefore = (pieces, i) => i > 0 && !isGap(pieces[i]) && pieces.slice(0, i).some((x) => !isGap(x));
+  const joinDrawn = (pieces) => pieces.map((x, i) => `${i && joinerBefore(pieces, i) ? " + " : ""}${x}`).join("");
+  const piecesOfDrawn = (text) => {
+    const out = [];
+    for (const chunk of String(text).split(" + ")) {
+      let a = 0, b = chunk.length, tail = 0;
+      while (a < b && chunk[a] === SIGN_GAP) { out.push(SIGN_GAP); a += 1; }
+      while (b > a && chunk[b - 1] === SIGN_GAP) { tail += 1; b -= 1; }
+      if (b > a) out.push(chunk.slice(a, b));
+      for (let t = 0; t < tail; t += 1) out.push(SIGN_GAP);
+    }
+    return out;
+  };
   // a line as the page prints it under the signs switch: its sign-only pieces
   // undrawn when the signs are off, whatever order led it there (the owner,
   // 2026-10-08, Judges 1:31 under oldest first: "and + <obj.> + Ahlab")
-  const signsOffLine = (text) => (signsPref === "off" ? trimSigns(String(text).split(" + ")).join(" + ") : String(text));
+  const signsOffLine = (text) => (signsPref === "off" ? joinDrawn(trimSigns(String(text).split(" + "))) : String(text));
   // the place's reading as the line draws it under "off": its sign-only
   // pieces left undrawn, the rest as printed; the whole stays on .full
   const placeShown = (at) => {
@@ -2970,7 +2995,7 @@
       if (w.k && shown && shown !== "—") {
         const at = placeLine(w);
         const drawn = at && placeShown(at);
-        const asked = drawn && drawn.full && spanJoin(drawn.text) === shown ? spanJoin(at.text) : shown;
+        const asked = drawn && drawn.full && signsOffLine(spanJoin(drawn.text)) === shown ? spanJoin(at.text) : shown;
         // The file cites the reading under the key the line was read from.
         // Under "look up by: the headword" that is the headword's key, but a
         // reading ruled under the form, or a lattice order's leader, still
@@ -8188,13 +8213,13 @@
       drawTies(run);
       return;
     }
-    line.title = unreached ? "the catalog could not be reached for a word of this run; what your switches leave of it is not known yet" : text;
+    line.title = unreached ? "the catalog could not be reached for a word of this run; what your switches leave of it is not known yet" : joinDrawn(piecesOfDrawn(text));
     line.classList.remove("bare");
     line.classList.add("parts");
     parts.forEach((part, i) => {
       // the joiner stands between the cells now that the row never wraps
       // (each part a column under its own word, 2026-10-09)
-      if (i) { const sep = document.createElement("span"); sep.className = "g-sep"; sep.textContent = "+"; line.append(sep); }
+      if (i) { const sep = document.createElement("span"); const j = joinerBefore(parts.map((p) => p.t), i); sep.className = j ? "g-sep" : "g-sep at-gap"; sep.textContent = j ? "+" : ""; line.append(sep); }
       const cell = document.createElement("span");
       cell.className = "g-part";
       cell.dataset.wi = String(part.wi);   // the word of the run this part reads, for the tie
@@ -8500,17 +8525,19 @@
       const other = [...el.childNodes].some((n) => n.nodeType === 3 && n.data.trim());
       const counts = other ? null : divisionFor(word, words.map((x) => x.trim()));
       if (counts && counts.join(",") === had.dataset.counts) return had;
-      if (other) had.remove(); else had.replaceWith(document.createTextNode(words.join(" + ")));
+      if (other) had.remove(); else had.replaceWith(document.createTextNode(joinDrawn(words)));
     }
     const tn = [...el.childNodes].find((n) => n.nodeType === 3 && n.data.trim());
-    if (!tn || !tn.data.includes(" + ")) return null;
-    const raw = tn.data.split(" + ");
+    if (!tn) return null;
+    // the pieces as the line holds them: a gap is its own piece, a joiner beside it or not
+    const raw = piecesOfDrawn(tn.data);
+    if (raw.length < 2) return null;
     const counts = divisionFor(word, raw.map((x) => x.trim()));
     if (!counts) return null;
     const row = document.createElement("span"); row.className = "g-pcs";
     row.dataset.counts = counts.join(",");
     raw.forEach((t, i) => {
-      if (i) { const sep = document.createElement("span"); sep.className = "g-pp"; sep.textContent = " + "; row.append(sep); }
+      if (i) { const sep = document.createElement("span"); const j = joinerBefore(raw, i); sep.className = j ? "g-pp" : "g-pp at-gap"; sep.textContent = j ? " + " : ""; row.append(sep); }
       const pc = document.createElement("span"); pc.className = "g-pc" + (t.trim() === SIGN_GAP ? " gap" : ""); pc.textContent = t; row.append(pc);
     });
     // the piece that wraps when the row is wider than the text's column
@@ -9048,7 +9075,9 @@
     if (!colW) return;
     line.style.fontSize = "";
     hugParts(line);
-    const fits = () => { const tops = new Set(); for (const c of line.children) tops.add(Math.round(c.getBoundingClientRect().top)); return tops.size <= 1 && line.scrollWidth <= colW + 1; };
+    // a child the line does not draw (a joiner beside a hidden sign's gap, 2026-11-14) stands in no row: its
+    // rectangle reads a top of 0, and counted it let every run that holds a gap down to four fifths
+    const fits = () => { const tops = new Set(); for (const c of line.children) if (c.getClientRects().length) tops.add(Math.round(c.getBoundingClientRect().top)); return tops.size <= 1 && line.scrollWidth <= colW + 1; };
     if (fits()) return;
     const base = parseFloat(getComputedStyle(line).fontSize) || 0;
     if (!base) return;

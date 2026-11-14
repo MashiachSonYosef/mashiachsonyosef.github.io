@@ -79,7 +79,15 @@ const read = (p) => p.evaluate(() => {
     count: cnt,
   };
 });
-const settle = async (p) => { await p.waitForTimeout(700); await p.waitForFunction(() => { const tr = document.querySelector("#hud .dict-tab tbody tr.pick"); return !!tr; }, null, { timeout: 8000 }).catch(() => {}); await p.waitForTimeout(500); };
+// the card and its concordance row given time to stand: true where the row came, false where it did not come in 20
+// seconds (a machine just started reads its first shards slowly), so a row that is not there is said to be missing,
+// never judged as a row that reads nothing
+const settle = async (p) => {
+  await p.waitForTimeout(700);
+  const came = await p.waitForFunction(() => !!document.querySelector("#hud .dict-tab tbody tr.pick"), null, { timeout: 20000 }).then(() => true, () => false);
+  await p.waitForTimeout(500);
+  return came;
+};
 for (const url of URLS) {
   if (met.length >= WANT) break;
   const p = await ctx.newPage();
@@ -99,7 +107,7 @@ for (const url of URLS) {
     let done = false;
     for (let j = r.blocks.length - 1; j >= 0 && !done; j -= 1) {
       await p.evaluate((j) => document.querySelectorAll("#hud > .rows .b-cell .s-pills button")[j].click(), j);
-      await settle(p);
+      const rowCame = await settle(p);
       r = await read(p);
       const piece = spanJoin(r.parts[j] || "").toLowerCase();
       if (!r.pills.some((x) => spanJoin(x.t).toLowerCase() === piece)) continue;
@@ -108,10 +116,13 @@ for (const url of URLS) {
       if (!lit || spanJoin(lit.t).toLowerCase() !== piece) b1.push(`${tag} block ${j + 1}: lit "${lit && lit.t}", the line reads "${r.parts[j]}"`);
       const wantHe = r.blocks.map((x) => x.t);
       const wantPieces = r.parts.map((x, k) => (k === j ? r.rowPill : x));
-      if (JSON.stringify(r.rowHeParts) !== JSON.stringify(wantHe) || JSON.stringify(r.rowPieces) !== JSON.stringify(wantPieces))
-        b2.push(`${tag}: row ${JSON.stringify(r.rowHeParts.length)} blocks, reads ${JSON.stringify(r.rowPieces)}, the line ${JSON.stringify(r.parts)}`);
-      const want3 = await storeCount(r.blocks[j].L, r.rowPill);
-      if (r.count !== want3) b3.push(`${tag} "${r.rowPill}": the row ${r.count}, the store ${want3}`);
+      if (!rowCame) { b2.push(`${tag}: the concordance row never came (20 s)`); b3.push(`${tag}: the concordance row never came, so no count was read`); }
+      else {
+        if (JSON.stringify(r.rowHeParts) !== JSON.stringify(wantHe) || JSON.stringify(r.rowPieces) !== JSON.stringify(wantPieces))
+          b2.push(`${tag}: row ${JSON.stringify(r.rowHeParts.length)} blocks, reads ${JSON.stringify(r.rowPieces)}, the line ${JSON.stringify(r.parts)}`);
+        const want3 = await storeCount(r.blocks[j].L, r.rowPill);
+        if (r.count !== want3) b3.push(`${tag} "${r.rowPill}": the row ${r.count}, the store ${want3}`);
+      }
       // B5: the reading the card stands lit on, picked from the concordance's
       // own list, is on the line after (the owner's own path)
       {

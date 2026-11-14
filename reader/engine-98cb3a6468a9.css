@@ -1109,6 +1109,10 @@
   .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
   .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
   .g-pc.gap, .g-part.gap { display: inline-block; min-width: 0.55em; }   /* a hidden sign's place */
+  .g-pp.at-gap, .g-sep.at-gap { display: none; }   /* and no joiner beside it (2026-11-14) */
+  /* and a run's cell keeps that place too: the run's own cells take min-width 0 so a long reading wraps inside
+     its cell, which held a gap's cell to nothing; with no joiner beside it to mark the spot, it holds its slot */
+  .wjoin > .g.parts .g-part.gap { min-width: 0.55em; }
   /* THE ENGLISH READER KEEPS ITS OWN ORDER (the owner, 2026-10-10, on the
      first word of Genesis: "for hebrew reader it would be non zig zag. for
      english reader it would be zig zag"). In the Hebrew reader a split

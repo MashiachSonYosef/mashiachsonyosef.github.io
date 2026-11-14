@@ -42,7 +42,15 @@ const b = await pw.chromium.launch(launchOptions());
 // rendered section whose blocks line up one to one with its words
 const LINES = () => {
   const z = window.__zone;
-  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
+  // a hidden sign's gap takes no joiner of its own (sign-gap-joiner-rule-v1-a-joiner-stands-between-two-pieces-that-print-and-never-beside-a-hidden-signs-gap,
+  // the owner, 2026-11-14): the line as drawn joins two pieces that print, and the gap stands beside its neighbor
+  const GAPC = String.fromCharCode(0x200b);
+  const drawnJoin = (pieces) => {
+    const xs = pieces.join("/").split("/").map((x) => x.trim()).filter(Boolean);
+    const printed = (x) => x !== GAPC;
+    const s = xs.map((x, i) => `${i && printed(x) && xs.slice(0, i).some(printed) ? " + " : ""}${x}`).join("");
+    return s.endsWith(".") ? s.slice(0, -1) : s;
+  };
   const lineOf = (wb) => { const g = wb.querySelector(":scope > .g"); if (!g) return null; const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return (c.textContent || "").trim(); };
   const secs = [...document.querySelectorAll("section.seg")];
   const out = [];
@@ -69,7 +77,7 @@ const LINES = () => {
       const isSign = (x) => window.__signs === "off" && /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(x);
       const baseAll = z.gloss && z.gloss[w.k] ? String(z.gloss[w.k]).split("/").map((x) => x.trim()).filter(Boolean) : null;
       const basePlain = baseAll ? (baseAll.every(isSign) ? baseAll : baseAll.map((x) => (isSign(x) ? "\u200b" : x))) : null;
-      out.push({ si, i, k: w.k, line: lineOf(wb), place: spanJoin((plain.length ? plain : all).join("/")), base: baseAll ? spanJoin((basePlain.length ? basePlain : baseAll).join("/")) : null, by: (z.gloss_m && z.gloss_m[w.k] && z.gloss_m[w.k].by) || [] });
+      out.push({ si, i, k: w.k, line: lineOf(wb), place: drawnJoin(plain.length ? plain : all), base: baseAll ? drawnJoin(basePlain.length ? basePlain : baseAll) : null, by: (z.gloss_m && z.gloss_m[w.k] && z.gloss_m[w.k].by) || [] });
     });
   }
   return { out, judged, skipped };
@@ -110,7 +118,9 @@ const ready = async (p) => {
     const r = await p.evaluate(() => {
       const isS = (x) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(x.trim());
       const trim = (all) => (all.every(isS) ? all : all.map((x) => (isS(x) ? "\u200b" : x)));   // a hidden sign keeps its place as a gap (2026-10-16)
-      const drawn = (t) => (t && window.__signs === "off" ? trim(t.split(" + ")).join(" + ") : t);
+      const G = String.fromCharCode(0x200b);
+      const joinD = (xs) => xs.map((x, i) => `${i && x.trim() !== G && xs.slice(0, i).some((y) => y.trim() !== G) ? " + " : ""}${x}`).join("");   // no joiner beside a gap (2026-11-14)
+      const drawn = (t) => (t && window.__signs === "off" ? joinD(trim(t.split(" + "))) : t);
       return { pressed: drawn(document.querySelector('#hud .r-pills button[aria-pressed="true"]')?.textContent.trim()), first: drawn(document.querySelector("#hud .r-pills button")?.textContent.trim()) };
     });
     n += 1;
