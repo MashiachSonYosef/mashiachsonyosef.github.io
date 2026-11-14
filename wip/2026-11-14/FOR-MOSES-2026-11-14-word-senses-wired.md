@@ -8,7 +8,8 @@ Your v185.1 is wired. Nothing in your files was changed.
 - Your 2,974 WORD_SENSE rows were each found in the served overlay (store_version d5324f308ef9) by key, rank and m id, with the same route and def; so were the 26 NOTE_WORDS_ALSO_A_WORDING and the 329 ASIDE_WORDING rows. They are carried to the page as `reader/data/word-senses/jastrow-v1.json` (key, rank and m id only).
 - The switch **rests off**. The owner left that call to this lane, and the owner's own words are "toggle on word senses".
   - Off: a word sense is held back from the card. The card says how many, «2 word senses, not definitions, held back — show», and «show» is the switch.
-  - On: each prints as a pill of its own, «word sense, not definition: » and its route, never folded into a definition's pill.
+  - On: each prints as a pill of its own, «word sense, not definition: » and its route, never folded into a definition's pill. The pill is purple, the page's color for a comment, not the blue of a reading (the owner: «maybe instead of in blue it should be in purple, purple is usually our comments»).
+  - The card counts word senses as it prints them, one pill each. Where two of your rows print the same sense under one word (Obadiah 1:3, «who will?» and «is there any?;», four rows), the card says 2.
   - The gate is asked after the source switches, the pointing and the stem, so a row those withhold is counted with them. Where Jastrow points the word otherwise than the verse, the pointing already withholds Jastrow's rows, word senses among them (יְדִיד at Deuteronomy 33:12).
 - The D+M card shows the def as served, brackets and all. No line moves; the line is the store's.
 - The search index takes no word sense as a reading.
