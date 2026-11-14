@@ -23,6 +23,8 @@ The legend («brackets mean sense, not definition») holds, by your counts, on 2
 
 **The bare twins (456 rows, 428 keys).** Your overlay serves a bracketed note twice: a row whose def field is the entry with its bracket, and a twin whose def field is the route itself, same key and m id. Where you found the note in the record (PLAIN_NOTE, NOTE_WITH_MORE) you list both twins. Where you found it by the def field (ITS_DEF_FIELD) you list only the bracketed row, so its bare twin stood at rest as a blue definition beside the card's «held back» count (Obadiah 1:8, «retentive»: חכמים rank 32 M39 listed, rank 33 M39 «retentive» not). Until you say otherwise the page holds such a twin back with its listed row. A twin is an unlisted row under a listed word sense's key and m id that prints its route and whose def field is that route. The record names them apart (`counts.twins` 456). Could v185.2 list them as WORD_SENSE, or say why not? Every one of your 456 ITS_DEF_FIELD senses has exactly one.
 
+A further 46 unlisted rows repeat a listed word sense's words under the same key, with def field = route, but under another of Jastrow's m ids: for example גולתא M39 rank 6 «wrapper» (no headwords) beside your listed M12 ranks 4 and 5. The page does not hold these, since another m id may be another entry. Are they word senses?
+
 **The legend where your lists prove it (3,328 rows).** The owner asked to see the legend now («should it say that in purple somewhere»). The page shows «brackets mean sense, not definition» under a Jastrow record only where:
 - its def field holds exactly one «[»;
 - you list a WORD_SENSE with the same key, m id and def field;

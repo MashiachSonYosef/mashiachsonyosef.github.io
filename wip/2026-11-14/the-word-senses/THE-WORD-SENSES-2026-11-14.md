@@ -1,6 +1,6 @@
 # Jastrow's word senses: held back at rest, shown as word senses on a press
 
-14 November 2026. Page lane (Elijah). The corpus lane's relay v185.1, carrying the owner's ruling of 13 November on Jastrow's brackets. The «gold frames» label rides in the same update.
+14 November 2026. Page lane (Elijah). The corpus lane's relay v185.1, carrying the owner's ruling of 13 November on Jastrow's brackets. The frames' pill, now «framed», rides in the same update, and a live fault found while testing this one (`../the-core-block-ruling/`).
 
 ## What was wrong
 
@@ -65,12 +65,18 @@ Refuted or not taken:
 - «Show» reopens the card on its default block, not on a block the reader pressed: confirmed. It is how every switch that rebuilds the card behaves (the pointing, a source), so it stays as it is and is noted.
 - A pressed word sense prints on the line under the word in the reading blue. That is the owner's call: it was put to the owner on 14 November with no answer yet, so the line stays blue for now.
 
+The review's completeness critic read the notes against the tree and found:
+
+- **A word sense pressed showed the bare twin's words on the record card**, no bracket and no legend, for about four in five word senses. A word sense's record card now prints Jastrow's bracketed entry before the bare row of the same words: at Obadiah 1:3, «who will?» pressed shows «[who will?,] Oh that!», lit, with the legend under it.
+- **The card asked about a word sense's record by the pill's print**, prefix and all, so the record was never lit and the card said «this reading is a piece cut out of the record above». It now asks by the source's words. W3 presses each word sense it shows and holds all three.
+- /toggles/ said the claim group held «the only switch here»; the chain book page defined «lifted» without the word senses. Both say it now, and «normalization» is spelled so.
+
 The review also confirmed the core-block finding against the first fix: a division kept for the whole form opened the card off its own division where the same letters divide otherwise (Ruth 2:18 and 4:15). That fix is in `../the-core-block-ruling/`.
 
 ## The files
 
 - `reader/data/word-senses/jastrow-word-senses-v1/`: the lane's folder, byte for byte (RULE.md, the list, its receipt, the legend, the aside cards), and `PIN.json` naming each file's bytes and sha256 as the relay gives them.
-- `reader/tools/bake-word-senses-v1.mjs`: the list carried to the page, `reader/data/word-senses/jastrow-v1.json` (53,827 bytes: each row by key, rank and source id). It refuses a file that is not its pinned bytes, a line it cannot read, a row listed twice, and a word sense the served overlay does not hold as the list says. The round runs it before the search index.
+- `reader/tools/bake-word-senses-v1.mjs`: the list carried to the page, `reader/data/word-senses/jastrow-v1.json` (115,884 bytes: the word senses by key, rank and source id with their bare twins, and the legend's text with the rows it holds on). It refuses a file that is not its pinned bytes, a line it cannot read, a row listed twice, and a word sense the served overlay does not hold as the list says. The round runs it before the search index.
 - `reader/zone.html`: the switch (`fh.senses`, ?senses=), the rows marked as they come from the overlay, the gate in the pool and its count, the pill's print and its purple, the card's count and press, the rail's switch, the reset, and the forgetting of a word sense pressed (`forgetSensePicks`).
 - `toggles/index.html` and `toggles/shots/row-senses.png`: the switches page, built again.
 - `reader/tools/bake-search-index-v1.mjs`: no word sense enters the index.
