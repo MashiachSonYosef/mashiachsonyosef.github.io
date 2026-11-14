@@ -122,6 +122,9 @@ fi
 
 if has search; then
   echo "── search · the index the search box reads, from the zones as they stand ─"
+  # Jastrow's word senses first: the record the page holds them back by, which
+  # the search index reads so that it takes no word sense as a reading
+  node tools/bake-word-senses-v1.mjs | tail -1
   node tools/bake-search-index-v1.mjs > /dev/null
 fi
 

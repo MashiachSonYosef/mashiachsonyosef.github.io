@@ -35,7 +35,7 @@
 //
 // WHAT A FINGERPRINT IS COMPUTED FROM, exactly, so anyone can recompute it
 // without asking us. Every hash below is sha256 over UTF-8 bytes, with no
-// normalisation, no trimming and no case folding, printed as its first 12 hex
+// normalization, no trimming and no case folding, printed as its first 12 hex
 // digits and carried in full in the file beside the page:
 //
 //   the word        the Hebrew as the page prints it, vowels, cantillation
@@ -156,7 +156,7 @@ const canon = (path) => (SITE_HOST ? `<link rel="canonical" href="https://${SITE
 
 /** How the recipe is said, once, on both pages and in the file. */
 const RECIPE = {
-  function: "sha256 over the UTF-8 bytes of the string, with no normalisation, no trimming and no case folding",
+  function: "sha256 over the UTF-8 bytes of the string, with no normalization, no trimming and no case folding",
   printed: `the first ${CHAIN_SHORT} hex digits; the whole 64 for every one of them is in full_by_short`,
   inputs: {
     word: "the Hebrew as the page prints it: vowels, cantillation and all, the licensed text untouched",
@@ -329,10 +329,10 @@ ${canon(`/chain/${slug}/`)}
 <p class="nums">This page prints the first ${PAGE_SHOWS} links a first visit is shown under each word and says how many it left out. <a href="${CHAIN_FILE}">${CHAIN_FILE}</a> beside it carries them all, in both states, with every fingerprint at its full 64 digits.</p>
 <details class="recipe"><summary>how to recompute any number on this page</summary>
 <dl>
-<dt>the function</dt><dd>sha256 over the UTF-8 bytes of the string, with no normalisation, no trimming and no case folding. Printed as the first ${CHAIN_SHORT} hex digits; all 64 for every one of them are in <a href="${CHAIN_FILE}">${CHAIN_FILE}</a> beside this page.</dd>
+<dt>the function</dt><dd>sha256 over the UTF-8 bytes of the string, with no normalization, no trimming and no case folding. Printed as the first ${CHAIN_SHORT} hex digits; all 64 for every one of them are in <a href="${CHAIN_FILE}">${CHAIN_FILE}</a> beside this page.</dd>
 <dt>a word</dt><dd>the Hebrew as the page prints it: vowels, cantillation and all, the licensed text untouched. The pale number beside it is its consonantal key.</dd>
 <dt>a reading</dt><dd>a pill's text exactly as the card prints it. The pale number after it is the label of the source the pill's title names. Open the reading page, press the word, hash each pill: those are the links under the word here, in the card's own order.</dd>
-<dt>at rest, and lifted</dt><dd>the cards were read twice. At rest: as a first visit finds the page, nothing kept on the device. Lifted: with every switch that withholds a reading lifted, which is the pointing kept whatever a source points, a source's own signs printed and every source on. The file holds both; this page prints the first.</dd>
+<dt>at rest, and lifted</dt><dd>the cards were read twice. At rest: as a first visit finds the page, nothing kept on the device. Lifted: with every switch that withholds a reading lifted, which is the pointing kept whatever a source points, a source's own signs printed, every source on and the word senses shown. The file holds both; this page prints the first.</dd>
 <dt>what is not here</dt><dd>only the word is pressed. A division or a block the card offers and does not open on is named in the file and its readings are a press away: they are not in it. At rest that is ${num(c.at_rest.buttons_a_press_away)} buttons on ${num(c.at_rest.words_with_a_button_a_press_away)} cards.</dd>
 <dt>a mark</dt><dd>the scribes' marks (the end of a verse, a section break, the bar between two words) keep their place and are not words. The number is the mark as the page prints it.</dd>
 <dt>a word written one way and read another</dt><dd>the number is the whole word as the page prints it; the links are those of the card the page opens for it, and the file names its halves.</dd>
@@ -405,7 +405,7 @@ ${canon("/chain/")}
 <p class="nums">${books.length} book${books.length === 1 ? "" : "s"} · ${num(tot.words)} words · ${num(tot.rest)} links at rest · ${num(tot.lifted)} with the switches lifted · ${(tot.kb / 1024).toFixed(1)} MB</p>
 <details class="recipe"><summary>how to recompute any number on this page</summary>
 <dl>
-<dt>the function</dt><dd>sha256 over the UTF-8 bytes of the string, with no normalisation, no trimming and no case folding. A book's pages print the first ${CHAIN_SHORT} hex digits; all 64 for every one of them are in that book's ${CHAIN_FILE}. The two numbers on this page are sha256 over the FILES, byte for byte as served.</dd>
+<dt>the function</dt><dd>sha256 over the UTF-8 bytes of the string, with no normalization, no trimming and no case folding. A book's pages print the first ${CHAIN_SHORT} hex digits; all 64 for every one of them are in that book's ${CHAIN_FILE}. The two numbers on this page are sha256 over the FILES, byte for byte as served.</dd>
 <dt>a word</dt><dd>the Hebrew as the reading page prints it: vowels, cantillation and all, the licensed text untouched.</dd>
 <dt>a reading</dt><dd>a pill's text exactly as the word's card prints it. Open the reading page, press a word, hash each pill: those are the links under that word, credited to the source the pill's title names.</dd>
 <dt>at rest, and lifted</dt><dd>the cards were read twice: as a first visit finds the page, and with every switch that withholds a reading lifted. Each book's file holds both.</dd>

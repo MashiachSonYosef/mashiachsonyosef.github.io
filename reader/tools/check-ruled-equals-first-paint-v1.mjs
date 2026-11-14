@@ -15,6 +15,12 @@
 //       opened and closed with nothing chosen, no cell or line carries an
 //       inline width or height
 //   E3  the page never scrolls sideways
+//   E4  a split word whose card opens on its core block (core-block-rule-v1),
+//       ruled on that block with no division pressed, reads the reading pressed
+//       on its line, and still reads it after the page lays the section again:
+//       the reading was remembered under the block with no division, and the
+//       first repaint printed the baked line back over it (found 14 November
+//       2026: «in + understanding + his» back to «in + heart + his»)
 // The words are found on the page, never named here (check-scope-derived S1).
 // Usage: node tools/check-ruled-equals-first-paint-v1.mjs [url]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -36,7 +42,7 @@ for (const mode of ["he", "en"]) {
   // the cells under test: the first sections' lone words, each named by its
   // section and its place among the section's cells
   const targets = await p.evaluate(() => {
-    const out = []; let single = 0, split = 0, open = 0;
+    const out = []; let single = 0, split = 0, open = 0, core = 0;
     for (const sec of [...document.querySelectorAll("section.seg")].slice(0, 8)) {
       const label = (sec.querySelector(".vnum") || {}).textContent;
       const cells = [...sec.querySelectorAll(".he-text > .wb")];
@@ -44,6 +50,7 @@ for (const mode of ["he", "en"]) {
         if (wb.classList.contains("kq") || wb.classList.contains("mark") || !wb.__word) return;
         const isSplit = !!wb.querySelector(":scope > .g > .g-pcs") && Array.isArray(wb.__word.pg) && wb.__word.pg.length > 1;
         if (isSplit && split < 3) { split += 1; out.push({ label, i, kind: "split" }); }
+        else if (isSplit && core < 4) { core += 1; out.push({ label, i, kind: "core" }); }
         else if (!isSplit && single < 3) { single += 1; out.push({ label, i, kind: "single" }); }
         else if (!isSplit && open < 1) { open += 1; out.push({ label, i, kind: "open" }); }
       });
@@ -72,7 +79,14 @@ for (const mode of ["he", "en"]) {
       ok = await pressed("#hud .b-cut .s-pills button", "return xs.find((x) => x.textContent.includes('+'));")
         && await pressed("#hud .b-cell .s-pills button", "return xs[xs.length - 1];");
     }
-    if (ok && t.kind !== "open") ok = await pressed("#hud .b-read .r-pills button", "const now = (document.querySelector('#hud .r-now .v') || {}).textContent || ''; const s = xs.filter((x) => !x.textContent.includes('+') && x.textContent.trim() !== now.trim()).sort((a, c) => c.textContent.length - a.textContent.length); return s[0];");
+    // a core word is ruled where its card opened, on a block, no division pressed; a card that did not open on a
+    // block is not one (its one pill is the set's), and is let go
+    if (t.kind === "core") ok = await p.evaluate(() => !!document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]'));
+    if (ok && t.kind === "core") {
+      t.took = await p.evaluate(() => { const xs = [...document.querySelectorAll("#hud .b-read .r-pills button")]; const x = xs.find((y) => y.getAttribute("aria-pressed") !== "true" && !y.textContent.includes("+")); if (x) x.click(); return x ? x.textContent.trim() : null; });
+      await p.waitForTimeout(900);
+      ok = !!t.took;
+    } else if (ok && t.kind !== "open") ok = await pressed("#hud .b-read .r-pills button", "const now = (document.querySelector('#hud .r-now .v') || {}).textContent || ''; const s = xs.filter((x) => !x.textContent.includes('+') && x.textContent.trim() !== now.trim()).sort((a, c) => c.textContent.length - a.textContent.length); return s[0];");
     await p.keyboard.press("Escape"); await p.waitForTimeout(700);
     if (ok) ruled.push(t);
   }
@@ -99,6 +113,12 @@ for (const mode of ["he", "en"]) {
   const held = ruled.filter((t, k) => after[k] && after[k].inline).map((t) => `${t.label}#${t.i} (${t.kind})`);
   check(`E2  ${reader}: no cell holds a size of its own after a ruling or an open`, !held.length, held.length ? held.join(", ") : `${ruled.length} cells free`);
   check(`E3  ${reader}: the page never scrolls sideways`, docW1 === docW0 && docW0 === 412, `${docW0}px → ${docW1}px`);
+  // E4: each core word's line read the reading pressed, and reads it after the section is laid again
+  const cores = ruled.map((t, k) => ({ t, a: after[k], f: fresh[k] })).filter((x) => x.t.kind === "core");
+  const lost = cores.filter((x) => !x.a || !x.f || !x.a.text.includes(x.t.took) || x.f.text !== x.a.text)
+    .map((x) => `${x.t.label}#${x.t.i}: pressed «${x.t.took}», the line read «${x.a ? x.a.text : "?"}», laid again «${x.f ? x.f.text : "?"}»`);
+  check(`E4  ${reader}: a reading pressed on the block a card opened on, no division pressed, stands on the line when the section is laid again`, relayed && cores.length >= 1 && !lost.length,
+    !cores.length ? "no split word's card opened on a block in the first sections" : lost.length ? `${lost.length} of ${cores.length} · ${lost.slice(0, 3).join(" | ")}` : `${cores.length} words: ${cores.map((x) => `${x.t.label}#${x.t.i} «${x.a.text}»`).join(" · ")}`);
   await p.close();
 }
 await b.close();

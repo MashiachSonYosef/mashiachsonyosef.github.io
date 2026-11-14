@@ -106,7 +106,7 @@ export const linesInPage = ([from, to, seen = false]) => {
   }
   return {
     sections: out, credits, unnamed, of: secs.length,
-    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, sources_off: [...(window.__sourcesOff || [])].sort() },
+    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort() },
   };
 };
 

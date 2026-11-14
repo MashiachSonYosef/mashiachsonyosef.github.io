@@ -1803,6 +1803,20 @@
      letters the regular blue, worn bold (the owner, 2026-10-10: "i dont
      like our bold that much"; the bold is the weight, not a deeper blue) */
   #hud .r-pills button[aria-pressed="true"] { color: var(--tekhelet-ink); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+  /* A WORD SENSE IS PURPLE (word-senses-rule-v1). Blue is a reading, a source's
+     word for the word; a word sense is the source's own note on the word's
+     sense, which is a comment, and our comments are purple. The owner,
+     2026-11-14: "maybe instead of in blue it should be in purple, purple is
+     usually our comments but it could be arguable that the licenses comments
+     are the same?". The regular purple, as the regular blue on a reading;
+     pressed, the same purple worn bold. It keeps the purple's face, the
+     page's Georgia, since the reading face is the blue's alone (THE READINGS
+     WEAR A STEADIER FACE, below). */
+  #hud .r-pills button.sense { color: var(--argaman); font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+  #hud .r-pills button.sense[aria-pressed="true"] { color: var(--argaman); font-weight: 700; }
+  /* the owner's legend under a Jastrow record whose one bracket is a word
+     sense: the page's purple, a size down, under the record it explains */
+  #hud .d-card .sense-legend { margin: 0 0 0.3rem; font-size: 0.74rem; color: var(--argaman); }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
@@ -1836,6 +1850,7 @@
   /* a band's own note — what a switch withheld, what the pointing withheld —
      is the band's small print, not a heading over its pills */
   #hud .rows .band > .kq-role { margin: 0.05rem 0 0.3rem; font-size: 0.66rem; line-height: 1.35; color: var(--faint); }
+  #hud .withheld-line .senses-switch { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 0.2em; }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
   /* The record is a dictionary's words, so it is the blue throughout, and
@@ -2436,8 +2451,12 @@
     <span class="mode-pick"><button type="button" class="mode-btn" id="modeEn" aria-pressed="false" aria-describedby="dirEn" title="the positioning layer applied to the Hebrew cards: the same cards, placed in English reading order; turn the numbers on to see each card’s place as written">English reader</button><span class="mode-dir" id="dirEn">right to left</span></span>
     <!-- THE BLOB PILL (the owner, 2026-10-16: "just do it as a nice pill like
          the english reader toggle ... this one can sit live ... on off"): one
-         pill beside the readers, on or off, kept on this device. -->
-    <span class="mode-pick"><button type="button" class="blob-btn on" id="blobPill" aria-pressed="true" aria-describedby="blobState">blobs</button><span class="mode-dir" id="blobState"></span></span>
+         pill beside the readers, on or off, kept on this device. It says
+         "framed" (the owner, 2026-11-14: "oh gold frame is a good wording
+         lets use that on the pill over blob", and then "maybe just "framed" no
+         gold"); the address flag ?blobs= and the choice kept on the device keep
+         their names. -->
+    <span class="mode-pick"><button type="button" class="blob-btn on" id="blobPill" aria-pressed="true" aria-describedby="blobState">framed</button><span class="mode-dir" id="blobState"></span></span>
     <!-- THE NUMBERS PILL (the owner, 2026-10-16: "id also move the numbering
          and arrow to the book page runner cards and add that as a toggle
          too"): each card's number in its verse as written, with the arrow the
@@ -2449,6 +2468,14 @@
          of the word's exact readings and where each stands, from the corpus
          lane's dictionary store (data/dictionary-store/). Kept on this device. -->
     <span class="mode-pick"><button type="button" class="blob-btn" id="dictPill" aria-pressed="false" aria-describedby="dictState" title="a word&#8217;s card opens to its exact reading and every place it stands, and the other readings of its letters">concordance hud</button><span class="mode-dir" id="dictState"></span></span>
+    <!-- THE WORD SENSES PILL (word-senses-rule-v1; the owner, 2026-11-13:
+         "toggle on word senses"). Off, where it rests, a note Jastrow sets in
+         brackets on a word's sense is held back from the card; on, each prints
+         as "word sense, not definition: ..." in purple. The card's own "show"
+         sits in a line a tight card folds away, most cards on a phone (the
+         review of 2026-11-14), so the switch stands here too, where nothing
+         folds it. Kept on this device. -->
+    <span class="mode-pick"><button type="button" class="blob-btn" id="sensesPill" aria-pressed="false" aria-describedby="sensesState" title="Jastrow&#8217;s notes in square brackets on a word&#8217;s sense: held back from the card, or shown as word senses, never as definitions">word senses</button><span class="mode-dir" id="sensesState"></span></span>
     <!-- RESET TO DEFAULT (the owner, 2026-10-18: "maybe we need a reset to
          default toggling button", a pill in this row). It forgets every pick
          made on this page, and every line is drawn again as it was drawn at
@@ -2461,7 +2488,7 @@
          2026-10-23 to its evening; the owner: "id remove no names toggle and
          just have it on /toggles/ for now". The switch stays on the rail
          (?rail=all) and on /toggles/; nothing on this row offers it. -->
-    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, blobs off, card numbering on, the concordance hud off) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
+    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, framed off, card numbering on, the concordance hud off, word senses off) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
     <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
          a megatoggle at the top that opens all of it, without losing the drop
          down"). It always did open every verse's commentary; it was labelled
@@ -3482,6 +3509,41 @@
     const q = QUERY.get("blobs"); if (BLOBS.includes(q)) return q;
     try { const v = localStorage.getItem(BLOBS_KEY); return BLOBS.includes(v) ? v : "every"; } catch { return "every"; }
   })();
+  // RULE: word-senses-rule-v1-a-word-sense-is-not-a-definition-and-prints-only-under-the-word-senses-switch-which-rests-off
+  // A WORD SENSE IS NOT A DEFINITION (the owner, 13 November 2026, of the
+  // note Jastrow sets in square brackets on a word's sense, which the served
+  // overlay serves as a reading of its own: «pointed out» under yadid, whose
+  // entry reads "[pointed out,] chosen, beloved; chosen spot": "toggle it so
+  // it could be like 'toggle on word senses' and the actual R pill showing
+  // something like 'word sense, not definition: pointed out'"; whether it
+  // rests on or off, "leave that to elijah"). The corpus lane lists the rows
+  // (relay v185.1; data/word-senses/jastrow-v1.json, by key, rank and source
+  // id, tools/bake-word-senses-v1.mjs). While the switch is off, where it
+  // rests, such a row is held back from the card, and the card says how many
+  // with a press that shows them; the switch also stands in the row of pills
+  // («word senses»). On, it prints as SENSE_PRINTS and its route, a pill of
+  // its own beside the definitions, purple. The resting line is the store's,
+  // and no switch moves it; a word sense the reader presses prints on its
+  // line as any pill pressed does, and goes back when the switch goes off
+  // (forgetSensePicks). Kept on this device; ?senses= sets it for one load
+  // (the checks ask it).
+  const SENSES_KEY = "fh.senses", SENSE_PRINTS = "word sense, not definition: ";
+  let sensesPref = (() => {
+    const q = QUERY.get("senses"); if (q === "on" || q === "off") return q;
+    try { return localStorage.getItem(SENSES_KEY) === "on" ? "on" : "off"; } catch { return "off"; }
+  })();
+  window.__senses = sensesPref;
+  let WORD_SENSES = null;               // the record, once it is here
+  const SENSE_ROWS = new WeakSet();     // a card's rows that are a word sense
+  const LEGEND_ROWS = new WeakSet();    // a card's rows whose record the owner's legend holds on
+  let reopenForSenses = () => {};       // the switch answered on the page (set after the sections' relay, below)
+  let sensesFocus = false;              // the card's press was the switch: its rebuilt press takes the focus
+  const chooseSenses = (id) => {
+    if (id !== "on" && id !== "off") return;
+    sensesPref = id; window.__senses = id;
+    try { localStorage.setItem(SENSES_KEY, id); } catch { /* the choice still stands on this page */ }
+    reopenForSenses();
+  };
   let HUD_TOGGLES_IX = null, HUD_TOGGLES = null, hudTogglesWait = null;
   let MARKS_REC = null;
   const HUD_LANES = { lay: null, relaySections: null };
@@ -3509,8 +3571,9 @@
    *  The source tree is built to contain nothing of ours; the pointing is
    *  this project making a claim of its own. Drawing them identically was
    *  the project wearing the sources’ clothes, which is the one thing the
-   *  source tree exists to avoid. So every row names its voice, and the one
-   *  claim that is ours is marked as ours. */
+   *  source tree exists to avoid. So every row names its voice, and the
+   *  claims that are ours (the pointing; which of Jastrow's brackets is a word
+   *  sense) are marked as ours. */
   const VOICE = {
     them: ["the sources", "what a dictionary says about itself, in its own words"],
     text: ["the manuscripts", "something the text itself carries"],
@@ -3702,6 +3765,15 @@
     // SOURCE SUGGESTED — see the note above SUGGESTED_KEY. A source's own
     // reading of the whole word at this place, credited and licensed as the
     // BSB; the card shows it beside the readings, the line never moves.
+    // WORD SENSES — see the note above SENSES_KEY. Jastrow's notes on a word's
+    // sense, held back, or shown on the card as word senses.
+    { id: "senses", voice: "claim", lab: "word senses", why: "Jastrow's notes in square brackets on a word's sense, which the dictionary beside the store serves as readings of their own: held back, or shown on the card as «word sense, not definition: …», never as a definition",
+      positions: [{ id: "off", lab: "held back" }, { id: "on", lab: "shown" }],
+      live: () => !!WORD_SENSES,
+      waits: "the corpus lane's list of Jastrow's word senses (tools/bake-word-senses-v1.mjs)",
+      get: () => sensesPref,
+      set: (id) => chooseSenses(id),
+      now: () => (sensesPref === "on" ? "shown" : "held back") },
     { id: "suggested", voice: "them", lab: "source suggested", why: "how a running English Bible puts the whole word into its sentence at this place: the Berean Standard Bible's own cell, byte for byte, on the card under the readings — never on the line. On for now, on every card, while the readings are checked",
       positions: [{ id: "off", lab: "off" }, { id: "bsb", lab: "the BSB" }],
       forced: "the BSB, for now",
@@ -3818,7 +3890,7 @@
   const namesMarked = () => !!(zone && zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice && zone.emitted_from.toggles.lattice.names);
   const isNamePlace = (word) => !namesMarked() || !!(word && word.np);
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, WORD_SENSES, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -3860,6 +3932,9 @@
       // lane's classes (EVERY MARK GOLD, below); without it every word is one
       // color, as it was
       fetch(`${ROOT}data/masoretic-marks-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // the rows of Jastrow's that are a word sense (word-senses-rule-v1); without
+      // it no row is marked and every row prints as it did
+      fetch(`${ROOT}data/word-senses/jastrow-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
     // an overlay's sources join the index's under their own ids, which the store
@@ -3881,6 +3956,8 @@
       } catch { /* nothing remembered, nothing to carry */ }
     });
     window.__overlays = Object.keys(OVERLAYS);
+    // whether the record of word senses was baked against the served overlay (word-senses-rule-v1), for a check
+    window.__sensesFit = !!(WORD_SENSES && WORD_SENSES.overlay && OVERLAYS.jastrow && WORD_SENSES.overlay.store_version === OVERLAYS.jastrow.store_version);
     // the record's resting-off sources, once per version for this reader
     if (SOURCE_DEFAULTS && SOURCE_DEFAULTS.off && index && index.m_sources) {
       const ver = String(SOURCE_DEFAULTS.version || "");
@@ -4675,13 +4752,20 @@
     const data = await overlayShards.get(ck);
     if (!data || !data[key]) return [];
     const ruled = ix.lanes ? new Set(Object.entries(ix.lanes).filter(([, l]) => l && l.standing === "ruled").map(([id]) => id)) : null;
+    // a word sense is marked by its key, rank and source id, as the record names it (word-senses-rule-v1),
+    // and so is a row whose record card the owner's legend holds on (its legend)
+    // only against the overlay the record was baked from: rows are named by rank, and a reissued overlay ranks
+    // them anew (the review of 14 November), so a record of another version marks nothing
+    const fits = o.id === "jastrow" && !!(WORD_SENSES && WORD_SENSES.overlay && WORD_SENSES.overlay.store_version && WORD_SENSES.overlay.store_version === ix.store_version);
+    const senses = fits && WORD_SENSES.rows ? WORD_SENSES.rows[key] || null : null;
+    const legendOn = fits && WORD_SENSES.legend && WORD_SENSES.legend.rows ? WORD_SENSES.legend.rows[key] || null : null;
     return data[key]
       .filter((row) => !ruled || !row[7] || (row[7].lanes || [row[7].lane]).some((l) => ruled.has(l)))
       // an overlay's slot 7 is the lane's own (the Samaritan lane, filtered on
       // just above), so the division slots its ledger writes stand at 8 and 9
       // in the shard (apply-ledger-divisions-v1, 7 November 2026) and are read
       // into 7 and 8 here, where readingsOfRow reads every row's
-      .map((row) => { const r = row.slice(0, 7); if (row.length > 8) { r[7] = Array.isArray(row[8]) ? row[8] : null; r[8] = Array.isArray(row[9]) ? row[9] : null; } OVERLAY_ROWS.set(r, o.id); return r; });
+      .map((row) => { const r = row.slice(0, 7); if (row.length > 8) { r[7] = Array.isArray(row[8]) ? row[8] : null; r[8] = Array.isArray(row[9]) ? row[9] : null; } OVERLAY_ROWS.set(r, o.id); if (senses && senses.some(([rk, m]) => rk === r[0] && m === r[3])) SENSE_ROWS.add(r); if (legendOn && legendOn.some(([rk, m]) => rk === r[0] && m === r[3])) LEGEND_ROWS.add(r); return r; });
   };
   const routesFor = async (key) => {
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
@@ -4849,14 +4933,43 @@
   // block as forms of their own, it printed "describe + both" under
   // Strong's where the reader had chosen TAHOT's "and + [the] two".
   const setRuling = (m) => { const s = m.cells.get(SET_CELL); return s && (!m.cut || s.cut === m.cut) ? s : null; };
+  // A RULING ON A BLOCK OF THE PLACE'S OWN DIVISION, NO DIVISION PRESSED. A
+  // card stands on the place's own division without a press (the set's
+  // division; since core-block-rule-v1 every one-pill card, opened on its
+  // core block), and a reading pressed on one of its blocks is remembered
+  // under that block alone, as the card itself reads it. The painters read a
+  // ruling on its division, and with none they read this one on the whole
+  // form, found nothing there and printed the baked line back over it at the
+  // next repaint: at Obadiah 1:3, «understanding» pressed, the line went back
+  // to «in + heart + his» when the source signs switch moved (found 14
+  // November 2026, on main too). So such a ruling is read on each place's own
+  // pieces, where they hold the block it was pressed on. It is never kept as a
+  // division of the form: the same letters divide otherwise elsewhere, and a
+  // division kept for the form opened the card off its own division there
+  // (the review of 14 November, Ruth 2:18 and 4:15).
+  const placeCutOf = (m, k, word) => {
+    if (!m || m.cut || !word || word.k !== k || !Array.isArray(word.pg) || word.pg.length < 2) return null;
+    const pcs = word.pg.map((x) => (x && x.k) || "");
+    return pcs.join("") === k && pcs.some((sf) => sf && sf !== k && m.cells.has(sf)) ? pcs.join("+") : null;
+  };
+  // the blocks a ruling is read on at a place, or null where none of its
+  // blocks stands there: a ruling none of whose blocks is at a place is no
+  // ruling there, and the place keeps its own line (it printed the baked
+  // column instead, the place's own reading forgotten)
+  const ruledSurfaces = (m, k, table, word) => {
+    const cut = m.cut || placeCutOf(m, k, word);
+    const run = k.includes("\u05be") && !(table && table[k]);
+    const surfaces = cut ? cut.split("+") : run ? k.split("\u05be") : [k];
+    return m.cut || surfaces.some((sf) => m.cells.has(sf)) ? surfaces : null;
+  };
   // the readings a ruled line shows, block by block as ruledLine reads them
   const ruledMs = (k, table, word) => {
     const m = pickedByForm.get(k);
     if (!m || (!m.cut && !m.cells.size)) return null;
     const set = setRuling(m);
     if (set) { const r = mOfPick(set); return r ? [r] : null; }
-    const run = k.includes("\u05be") && !(table && table[k]);
-    const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
+    const surfaces = ruledSurfaces(m, k, table, word);
+    if (!surfaces) return null;
     const pg = piecesAt(word, k, m);
     const ms = [];
     for (const [i, s] of surfaces.entries()) {
@@ -4883,8 +4996,9 @@
   // division, at a place that carries the source's pieces, with the source
   // switched on.
   const piecesAt = (word, k, m) => {
-    if (!word || word.k !== k || !m || !m.cut || !Array.isArray(word.pg) || word.pg.length < 2) return null;
-    if (m.cut !== word.pg.map((p) => (p && p.k) || "").join("+")) return null;
+    const cut = m ? m.cut || placeCutOf(m, k, word) : null;
+    if (!word || word.k !== k || !cut || !Array.isArray(word.pg) || word.pg.length < 2) return null;
+    if (cut !== word.pg.map((p) => (p && p.k) || "").join("+")) return null;
     if (word.pg.some((p) => { const r = readingOfPiece(p && p.s); return r && r.mId && sourcesOff.has(r.mId); })) return null;
     return word.pg;
   };
@@ -4914,8 +5028,9 @@
     // under the division its card opened on: as written where the table
     // reads the run whole, else word by word. Read as one form it printed a
     // dash for the whole run the moment one word of it was chosen.
-    const run = k.includes("\u05be") && !(table && table[k]);
-    const surfaces = m.cut ? m.cut.split("+") : run ? k.split("\u05be") : [k];
+    // (ruledSurfaces: and a block of the place's own division, placeCutOf)
+    const surfaces = ruledSurfaces(m, k, table, word);
+    if (!surfaces) return null;
     const parts = surfaces.map((s, i) => {
       const p = m.cells.get(s);
       // a read word's reading ruled on the written form prints with its read
@@ -7232,6 +7347,22 @@
         extra = ofThisStem;
       }
     }
+    // WORD SENSES (word-senses-rule-v1): a row of Jastrow's that is a word
+    // sense is held back while the switch rests off, and counted; on, it
+    // stays, and prints as a word sense below. It is asked last, so a row a
+    // source switch, the pointing or the stem already withheld is counted
+    // there and not again, and the count is what pressing "show" brings.
+    // Counted as the card prints them: one word sense, one pill, however
+    // many of Jastrow's rows print it (ONE READING, ONE PILL, below, keyed
+    // as it keys them). Counted by rows, the card said «4 word senses ...
+    // held back» at Obadiah 1:3 and its press brought 2 pills.
+    const sensesDrawn = (rows) => new Set(rows.filter((row) => SENSE_ROWS.has(row) && index.m_sources[row[3]]).flatMap((row) => {
+      const nd = isNoDerivs(index.m_sources[row[3]].licensePosture);
+      return (nd ? [routePrinted(row)] : readingsOfRow(row)).map((x) => (nd ? `\u0001nd\u0001${row[3]}\u0001${SENSE_PRINTS}${x}` : readingKey(`${SENSE_PRINTS}${x}`)));
+    })).size;
+    let withheldBySense = 0, sensesShown = 0;
+    if (sensesPref === "on") sensesShown = sensesDrawn(extra);
+    else { withheldBySense = sensesDrawn(extra); extra = extra.filter((row) => !SENSE_ROWS.has(row)); }
     // ONE READING, ONE PILL (the owner, 2026-10-02: "shouldnt it be bundled into
     // 1 pill with 2 M"; the corpus lane's R pill ledger, resting position
     // TOGETHER) is the printed form (spanJoin: "/" pieces joined, one closing
@@ -7290,7 +7421,7 @@
         // (orderYearOf: the span store's order stands, its years are said)
         const yr = orderYearOf(row);
         const nd = isNoDerivs(index.m_sources[mId].licensePosture);
-        (nd ? [routePrinted(row)] : readingsOfRow(row)).forEach((reading) => {
+        (nd ? [routePrinted(row)] : readingsOfRow(row)).map((x) => (SENSE_ROWS.has(row) ? `${SENSE_PRINTS}${x}` : x)).forEach((reading) => {
             const d = nd ? `\u0001nd\u0001${mId}\u0001${reading}` : drawn(reading);
             let g = byDrawn.get(d);
             // a piece store row neither dates nor ranks its group (as above)
@@ -7347,6 +7478,7 @@
     const pool = sortPool([...groups.values()], surface, W);
     pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
     pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.withheldByName = withheldByName;
+    pool.withheldBySense = withheldBySense; pool.sensesShown = sensesShown;
     pool.notes = notes;
     return pool;
   };
@@ -7360,6 +7492,7 @@
   const carryWithheld = (to, from) => {
     to.withheld = from.withheld; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
     to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.withheldByName = from.withheldByName;
+    to.withheldBySense = from.withheldBySense; to.sensesShown = from.sensesShown;
     to.notes = from.notes;
     return to;
   };
@@ -8795,11 +8928,13 @@
       const drawnOf = (t) => spanJoin(t).toLowerCase();
       const have = new Set(kept.map((g) => drawnOf(g.text)));
       const reads = kqReadRegions();
+      let heldSenses = 0;
       for (const r of reads) {
         const qk = r.k;
         let qp = null;
         try { const at = placeOfCell(qk); qp = await poolFor(qk, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(qk) }); } catch { qp = null; }
         if (!qp) continue;
+        heldSenses += qp.withheldBySense || 0;
         const read = kqBare(r.s || qk);
         for (const g of qp) {
           const d = drawnOf(g.text);
@@ -8810,6 +8945,12 @@
       }
       const out = sortPool(kept, surface);
       carryWithheld(out, pool);
+      // the word senses are the read word's: its readings print here, and the
+      // written letters' are withheld by the weld itself (word-senses-rule-v1;
+      // the review of 14 November: Daniel 5:21, «5 word senses ... show»
+      // brought none, counted on the written letters' catalog)
+      out.withheldBySense = heldSenses;
+      out.sensesShown = out.filter((g) => g.records.length && g.records.every((x) => SENSE_ROWS.has(x))).length;
       out.kqWithheld = heldGroups.length;
       out.kqWithheldRows = heldGroups.reduce((n, g) => n + g.records.length, 0);
       // the read form as the source carries it, joiner and all
@@ -8967,6 +9108,9 @@
     // pressed on it is: without its division remembered, the ruling was read
     // word by word and the line fell back to its words' pieces.
     const rungRuled = () => { if (opts.run && cover.length === 1 && mem.cut !== cutKey(cover)) mem.cut = cutKey(cover); };
+    // a word sense pressed over a reading on the same block keeps that reading
+    // under it, so the switch turned off gives it back (forgetSensePicks)
+    const underOf = (prev) => (prev ? (prev.sense ? prev.under || null : prev) : null);
     if (opts.run && opts.run.on && cover.length > 1 && cutKey(cover) === opts.run.on && mem.cut !== opts.run.on) { mem.cut = opts.run.on; markRuled(); }
 
     // ONE PAINT PATH (the owner, 2026-10-17, of the cells after a pick: "the
@@ -9598,8 +9742,9 @@
         // exists, and a block whose every row they withheld was read as a
         // block no dictionary gives — and its rung forgotten. It says what
         // withheld it, keeps the rung, and stands on no record meanwhile.
-        if (pool && (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources)) {
+        if (pool && (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense)) {
           const bits = [];
+          if (pool.withheldBySense) bits.push(`${pool.withheldBySense} word sense${pool.withheldBySense === 1 ? "" : "s"} held back — Jastrow's note${pool.withheldBySense === 1 ? "" : "s"} on the word's sense, not a definition, shown under the word senses switch`);
           if (pool.withheldByEntry) bits.push(`${pool.withheldByEntry} record${pool.withheldByEntry === 1 ? "" : "s"} withheld by the entry — their own source files them under another entry than ${(pool.entry || []).join(" or ")}, which stands here`);
           if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
           if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
@@ -9751,11 +9896,22 @@
         // and left a sliver of the text it was pointing at (the owner,
         // 2026-10-03, Genesis 1:1). Saying a change beside the credit is
         // where a license asks for it.
-        const leadRow = [...selected.records].sort(EARLIEST_FIRST)[0];
-        const cutNote = (selected.records.some((r) => r[5] === 1) || (leadRow && spanJoin(routePrinted(leadRow)).toLowerCase() !== spanJoin(selected.text).toLowerCase()))
+        // A WORD SENSE'S RECORD (word-senses-rule-v1): its pill prints the
+        // page's own words before the source's, so the record is asked about
+        // the source's words alone; and Jastrow's bracketed entry prints before
+        // the bare row of the same words, so the card shows the bracket the
+        // owner asked to keep, and the legend under it (the review of 14
+        // November 2026: at Obadiah 1:3 «who will?» printed, «[who will?,] Oh
+        // that!» behind it)
+        const senseGroup = selected.records.length > 0 && selected.records.every((r) => SENSE_ROWS.has(r));
+        const plainText = senseGroup && String(selected.text).startsWith(SENSE_PRINTS) ? String(selected.text).slice(SENSE_PRINTS.length) : selected.text;
+        const bracketed = (r) => (/\[/u.test(String(r[2] || "")) ? 1 : 0);
+        const recordOrder = (a, b) => (senseGroup ? bracketed(b) - bracketed(a) : 0) || EARLIEST_FIRST(a, b);
+        const leadRow = [...selected.records].sort(recordOrder)[0];
+        const cutNote = (selected.records.some((r) => r[5] === 1) || (leadRow && spanJoin(routePrinted(leadRow)).toLowerCase() !== spanJoin(plainText).toLowerCase()))
           ? Object.assign(document.createElement("span"), { className: "d-cut", textContent: "this reading is a piece cut out of the record above" })
           : null;
-        const recs = [...selected.records].sort(EARLIEST_FIRST);
+        const recs = [...selected.records].sort(recordOrder);
         // Grouped by P, not by bytes: sources whose D carries the same
         // readings stand together whatever their packing, and the first
         // source's own wording is the one that prints.
@@ -9794,7 +9950,7 @@
           const src = row && index.m_sources[row[3]];
           if (src && src.ledger && String(text) === routePrinted(row)) {
             const s = document.createElement("span");
-            const sel = readingKey(selected.text);
+            const sel = readingKey(plainText);
             const whole = routePrinted(row);
             const holds = readingKey(whole) === sel || readingsOfRow(row).some((reading) => readingKey(reading) === sel);
             s.className = holds ? "d-sense on" : "d-sense";
@@ -9807,7 +9963,7 @@
           // until then the page divided it by the comma rule it had guessed)
           {
             const s = document.createElement("span");
-            const sel = readingKey(selected.text);
+            const sel = readingKey(plainText);
             const holds = readingKey(text) === sel || (row ? readingsOfRow(row).some((reading) => readingKey(reading) === sel) : false);
             s.className = holds ? "d-sense on" : "d-sense";
             s.textContent = spanJoin(text);
@@ -9854,6 +10010,23 @@
         const firstText = first.text;
         const firstGroup = first.rows;
         body.append(dText(firstText, isNoDerivs((index.m_sources[firstGroup[0][3]] || {}).licensePosture), firstGroup[0]));
+        // THE LEGEND, IN PURPLE (word-senses-rule-v1). Jastrow's record keeps
+        // its brackets here, as the owner asked ("in the D+M card we would
+        // leave it bracketed"), and the owner's legend says what they mean,
+        // "brackets mean sense, not definition", under a record where the
+        // record of word senses says it holds: one bracket, its words a word
+        // sense on the corpus lane's list (the owner, 14 November 2026: "i
+        // dont really see your legend that signifies its a sense, should it
+        // say that in purple somewhere"). It is the page speaking about the
+        // source's sign, so it is the page's purple. It is asked of the row
+        // whose wording prints (a group prints its first source's wording),
+        // never of a row standing behind it. The card says which row printed,
+        // and under which key, for a check to ask.
+        dCard.dataset.row = `${firstGroup[0][0]}|${firstGroup[0][3]}`;
+        dCard.dataset.key = surface;
+        if (WORD_SENSES && WORD_SENSES.legend && LEGEND_ROWS.has(firstGroup[0])) {
+          body.append(Object.assign(document.createElement("p"), { className: "sense-legend", textContent: WORD_SENSES.legend.text }));
+        }
         // the card's notes, under the record held and before its corroboration (sense-openings-rule-v1)
         { const nl = notesLine(); if (nl) body.append(nl); }
         // The M is the one line that never scrolls: it is who says this, and a
@@ -9945,7 +10118,8 @@
             // on its pieces' line, and TAHOT's set on the division it was
             // chosen on
             selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
-              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}) });
+              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}),
+              ...(group.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}) });
             if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
             [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String((x.dataset.pointer || x.textContent) === group.text || x.textContent === spanJoin(group.text))));
             rungRuled(); markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
@@ -10035,7 +10209,10 @@
         body.append(more, drawer);
       };
       const choose = (route) => {
+        // a word sense chosen is remembered as one, so the switch turned off
+        // can hold it back from the line too (forgetSensePicks)
         selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
+          ...(route.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}),
           place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null, ...(route.kqRead ? { read: route.kqRead } : {}) });
         // any other reading chosen: the set stands whole no longer
         if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
@@ -10056,6 +10233,9 @@
         // who carries it, on the pill and exposed, so a check can ask the
         // page whether a switched-off source still stands behind a reading
         btn.dataset.by = [...new Set(route.records.map((r) => r[3]))].sort().join(" ");
+        // a word sense is the source's note on the word, not a reading, so its
+        // pill wears the page's purple and says so (word-senses-rule-v1)
+        if (route.records.every((row) => SENSE_ROWS.has(row))) { btn.classList.add("sense"); btn.dataset.sense = "1"; }
         // and its grade against the open word — the best any record under
         // it earned (m match · n silent · x otherwise · - ungraded), exposed
         // so a check can ask the page how it graded rather than regrade
@@ -10142,7 +10322,7 @@
         // the source switches' count share a line, each its own span, so the
         // pointing standing by default costs the readings band no row
         let wLine = readRow.querySelector(".withheld-line");
-        if (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources) {
+        if (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || pool.sensesShown) {
           if (!wLine) { wLine = document.createElement("p"); wLine.className = "kq-role withheld-line"; readRow.append(wLine); }
           wLine.replaceChildren();
           const parts = [];
@@ -10151,6 +10331,20 @@
           if (pool.withheld) parts.push(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
           if (pool.withheldByStem) parts.push(Object.assign(document.createElement("span"), { className: "stem-withheld", textContent: `${pool.withheldByStem} of another stem than ${(pool.stems || []).join(" or ")}, withheld` }));
           if (pool.withheldBySources) parts.push(Object.assign(document.createElement("span"), { className: "sources-withheld", textContent: `${pool.withheldBySources} withheld by your source switches (${sourcesOffSay()})` }));
+          // the word senses' count is the switch itself: one press shows them, or holds them back again
+          const nS = pool.withheldBySense || pool.sensesShown || 0;
+          if (nS) {
+            const b = Object.assign(document.createElement("button"), { type: "button", className: "senses-switch",
+              textContent: pool.withheldBySense ? `${nS} word sense${nS === 1 ? "" : "s"}, not definition${nS === 1 ? "" : "s"}, held back — show` : `${nS} word sense${nS === 1 ? "" : "s"} shown — hide` });
+            // one name whatever it shows, and aria-pressed says where it stands;
+            // pressed, the card is built again under it and the focus comes back
+            // to it there (the review of 14 November 2026)
+            b.setAttribute("aria-label", "word senses");
+            b.setAttribute("aria-pressed", String(!pool.withheldBySense));
+            b.addEventListener("click", (e) => { e.stopPropagation(); sensesFocus = true; chooseSenses(pool.withheldBySense ? "on" : "off"); });
+            if (sensesFocus) { sensesFocus = false; requestAnimationFrame(() => { if (b.isConnected) b.focus({ preventScroll: true }); }); }
+            parts.push(b);
+          }
           parts.forEach((x, i) => { if (i) wLine.append(" \u00b7 "); wLine.append(x); });
         } else if (wLine) wLine.remove();
       };
@@ -14080,6 +14274,16 @@
   };
   numsPill.addEventListener("click", () => { numsPref = numsPref === "on" ? "off" : "on"; try { localStorage.setItem(NUMS_KEY, numsPref); } catch { /* the choice still stands on this page */ } paintNums(true); });
   paintNums();
+  // the word senses pill: on or off, as the switch stands (chooseSenses, which
+  // answers through reopenForSenses, paints it again)
+  const sensesPill = document.getElementById("sensesPill"), sensesState = document.getElementById("sensesState");
+  const paintSensesPill = () => {
+    const on = sensesPref === "on";
+    sensesPill.classList.toggle("on", on); sensesPill.setAttribute("aria-pressed", String(on));
+    sensesState.textContent = "";
+  };
+  sensesPill.addEventListener("click", (e) => { e.stopPropagation(); chooseSenses(sensesPref === "on" ? "off" : "on"); });
+  paintSensesPill();
   const dictPill = document.getElementById("dictPill"), dictState = document.getElementById("dictState");
   const paintDict = () => {
     const on = dictOn();
@@ -14115,11 +14319,11 @@
   // blobs off, numbers on, concordance off"). The lines are laid again
   // through the page's one first paint, so each is the line it opened as.
   // It cannot be pressed while there is nothing to put back.
-  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off", namelead: "lead" };
+  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off", namelead: "lead", senses: "off" };
   const resetPill = document.getElementById("resetPill"), resetState = document.getElementById("resetState");
   const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + pickedQForm.size;
   const switchesAtDefault = () => (document.body.classList.contains("en") ? "en" : "he") === SWITCHES_DEFAULT.mode
-    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs && nonamesPref === SWITCHES_DEFAULT.namelead;
+    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs && nonamesPref === SWITCHES_DEFAULT.namelead && sensesPref === SWITCHES_DEFAULT.senses;
   const paintReset = () => {
     const n = picksNow(), at = switchesAtDefault();
     resetPill.disabled = !n && at;
@@ -14142,6 +14346,7 @@
     if (DICT.pref !== SWITCHES_DEFAULT.dict) { DICT.pref = SWITCHES_DEFAULT.dict; try { localStorage.setItem("fh.dict", DICT.pref); } catch { /* the choice still stands on this page */ } paintDict(); }
     if (signsPref !== SWITCHES_DEFAULT.signs) chooseBlanks(SWITCHES_DEFAULT.signs);
     if (nonamesPref !== SWITCHES_DEFAULT.namelead) chooseNames(SWITCHES_DEFAULT.namelead);
+    if (sensesPref !== SWITCHES_DEFAULT.senses) chooseSenses(SWITCHES_DEFAULT.senses);
     paintReset();
   });
   // a pick is made inside a card; the count follows any press on the page
@@ -16328,6 +16533,45 @@
     return relaid;
   };
   HUD_LANES.relaySections = relayBuiltSections;
+  // A WORD SENSE PRESSED IS HELD BACK WITH THE REST (word-senses-rule-v1). A
+  // reading the reader pressed outranks every switch (THE ORDER TOGGLES, the
+  // precedence), but a word sense prints only while its switch is on. Turned
+  // off, the switch forgets the word senses the reader pressed, and nothing
+  // else they pressed, and the built sections are laid again as the reset
+  // pill lays them, so each such line reads what it read before the press.
+  // A reading a word sense was pressed over on the same block comes back
+  // (under), and a division the reader pressed stays where it was.
+  // The line printed the word sense on after the card had held it back
+  // (found by the page lane's own probe, 14 November 2026, at Obadiah 1:3).
+  // Says how many it forgot.
+  const forgetSensePicks = () => {
+    let gone = 0;
+    const bare = [];
+    for (const [k, m] of pickedByForm) {
+      let here = 0;
+      for (const [sf, pk] of [...m.cells]) if (pk && pk.sense) { if (pk.under) m.cells.set(sf, pk.under); else m.cells.delete(sf); here += 1; }
+      if (here && !m.cut && !m.cells.size) bare.push(k);
+      gone += here;
+    }
+    if (!gone) return 0;
+    // a form with no ruling left is no longer marked chosen where it stands
+    // outside the sections (the book's title word); the sections' own words
+    // are built again below, marked as their memory now says
+    for (const k of bare) { ruledAt.delete(k); for (const st of standsOf.get(k) || []) if (st.wb) st.wb.classList.remove("chosen"); }
+    relayBuiltSections();
+    repaintGlossOrder();
+    return gone;
+  };
+  // THE WORD SENSES SWITCH, ANSWERED (chooseSenses): the rail drawn again and
+  // the open card built again under it. Off, a word sense the reader pressed
+  // is forgotten first; where one was, the sections are laid again and the
+  // card stands closed, as under every switch that lays them again.
+  reopenForSenses = () => {
+    if (sensesPref !== "on") forgetSensePicks();
+    paintSensesPill();
+    if (document.getElementById("railRows")) railSwitch();
+    reopenCard();
+  };
   {
     const fold = window.innerHeight * 2.5;
     const built = [];

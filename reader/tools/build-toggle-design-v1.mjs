@@ -99,7 +99,7 @@ export const VOICE_LEDE = Object.freeze({
   them: "Someone else wrote these. Every one of them is a dictionary, and the switch decides which of them are asked — never what any of them said.",
   text: "The scribes put these in the text. Nobody is interpreting anything: the switch decides which of two things the ink already carries the English follows.",
   arrange: "These are ours, and they only ever move the order. Nothing is hidden by any of them, and no reading is added or taken away.",
-  claim: "This one is a statement this project makes. It is the only switch here that is not somebody else's material, or our arrangement of it, and it is marked so a reader can refuse it.",
+  claim: "These are statements this project makes. They are not somebody else's material, or our arrangement of it, and they are marked so a reader can refuse them.",
 });
 
 const esc = (s) => String(s).replace(/&/gu, "&amp;").replace(/</gu, "&lt;").replace(/>/gu, "&gt;").replace(/"/gu, "&quot;");
@@ -176,7 +176,8 @@ if (startedAs(import.meta.url)) {
   // the book is the photographed page's, else the first zone on disk: a slug
   // typed here is a claim about the future (check-scope-derived S1)
   const BOOK = (() => { try { return new URL(URL).searchParams.get("b") || zoneIdOf(defaultZoneUrl("")); } catch { return zoneIdOf(defaultZoneUrl("")); } })();
-  const SERVED = new Set(["sources", "suggested"]);
+  // the word senses switch also stands in a book page's row of pills («word senses»)
+  const SERVED = new Set(["sources", "suggested", "senses"]);
   const tryIt = (t) => `<p class="try">${SERVED.has(t.id) ? "on every book page" : "drawn only with the switches"} · <a href="/${esc(BOOK)}/?rail=all#rail">try it on ${esc(BOOK)}</a></p>`;
   const openCount = toggles.filter((t) => props[t.id]).length;
   const card = (t) => {
@@ -272,7 +273,7 @@ if (startedAs(import.meta.url)) {
 <p class="lede">Since 14 October 2026 a book page draws two rows of this rail, the sources and the label <b>source suggested</b>, which is forced on while the readings are checked (the owner: "move most of our toggle controls into the /toggles/ branch of the website until we have checked most of them"). Every other switch still works and is reachable live on any book under <code>?rail=all</code>, for example <a href="/genesis/?rail=all">/genesis/?rail=all</a>.</p>
 <div class="law">
 <p class="big">Previews, by address.</p>
-<p>Besides the switches, a few ways of drawing the page are behind an address flag while the owner checks them: <a href="/${esc(BOOK)}/?mode=en">?mode=en</a> opens the English reader (the last reader chosen on a device is remembered); <a href="/${esc(BOOK)}/?mode=en&amp;chain=ltr">?chain=ltr</a> lays a maqaf chain's Hebrew words left to right in the English reader, each under its English, instead of as written; <a href="/${esc(BOOK)}/?blobs=runs">?blobs=runs</a> draws the blobs on runs alone, as before 10 October; <a href="/${esc(BOOK)}/?rail=all#rail">?rail=all</a> draws every switch below.</p>
+<p>Besides the switches, a few ways of drawing the page are behind an address flag while the owner checks them: <a href="/${esc(BOOK)}/?mode=en">?mode=en</a> opens the English reader (the last reader chosen on a device is remembered); <a href="/${esc(BOOK)}/?mode=en&amp;chain=ltr">?chain=ltr</a> lays a maqaf chain's Hebrew words left to right in the English reader, each under its English, instead of as written; <a href="/${esc(BOOK)}/?blobs=runs">?blobs=runs</a> draws the frames on runs alone, as before 10 October; <a href="/${esc(BOOK)}/?rail=all#rail">?rail=all</a> draws every switch below.</p>
 </div>
 
 <div class="law">
