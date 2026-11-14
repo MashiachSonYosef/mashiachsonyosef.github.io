@@ -37,7 +37,7 @@ await p.waitForSelector("section.seg");
 // typed here would go stale the day the store moves, and the check would be
 // measuring a phantom string against a real layout. The same readings as the
 // page's: the store's own readingsOf (a source under a ledger as its row says,
-// the rest at the pack mark and the declared comma rule).
+// a source with no ledger whole).
 const LONG = await (async () => {
   const { readFileSync, readdirSync } = await import("node:fs");
   const { gunzipSync } = await import("node:zlib");

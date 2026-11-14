@@ -115,7 +115,7 @@ if (!ONLY || ONLY === "D1") {
   for (const id of found) if (!named.has(id)) faults.push(`${id} has no ledger and the index does not name it`);
   for (const id of named) if (!found.has(id)) faults.push(`the index names ${id} as having no ledger, and it has one`);
   check("D1  every served source is under a ledger the index names, with the rows it counts, or excluded with why; the sources with no ledger are exactly the ones the index names", faults.length === 0,
-    faults.length ? faults.slice(0, 4).join(" · ") : `${Object.keys(L.sources).length} ledgers over ${nf(Object.values(L.sources).reduce((a, s) => a + s.rows, 0))} rows · excluded: ${Object.entries(L.excluded || {}).map(([k, v]) => `${k} (${nf(v.rows)} rows)`).join(", ") || "none"} · on the generic rule: ${Object.entries(L.unledgered || {}).map(([id, u]) => `${id} (${u.where}${u.rows !== null && u.rows !== undefined ? `, ${nf(u.rows)} rows` : ""})`).join(", ") || "none"}`);
+    faults.length ? faults.slice(0, 4).join(" · ") : `${Object.keys(L.sources).length} ledgers over ${nf(Object.values(L.sources).reduce((a, s) => a + s.rows, 0))} rows · excluded: ${Object.entries(L.excluded || {}).map(([k, v]) => `${k} (${nf(v.rows)} rows)`).join(", ") || "none"} · whole until a ledger lands: ${Object.entries(L.unledgered || {}).map(([id, u]) => `${id} (${u.where}${u.rows !== null && u.rows !== undefined ? `, ${nf(u.rows)} rows` : ""})`).join(", ") || "none"}`);
 }
 
 // D2

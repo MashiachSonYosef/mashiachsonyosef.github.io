@@ -172,7 +172,7 @@ for (const book of BOOKS) {
     const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
     // the pool lowercases to group (one reading, one pill), and a row's
     // readings are what the store gives it (gloss-store-v1 readingsOf: the
-    // ledger's slots on a ledgered source's row, else the generic rule), so a
+    // ledger's slots on a ledgered source's row, else the row whole), so a
     // row stands as one pill or as its readings, case aside
     const low = (t) => String(t).toLowerCase();
     const pills = (got.pills || []).map(low);
