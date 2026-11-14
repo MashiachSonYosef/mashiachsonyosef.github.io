@@ -23,6 +23,13 @@
 // A setting whose column is not baked on this book is reported, not failed,
 // on C2: the rail says so in words, and C1 still holds there.
 //
+// A CARD OF ONE PILL OPENS ON ITS CORE BLOCK (core-block-rule-v1, the owner,
+// 14 November 2026). Where the line reads the source's set, the card opens on
+// the set's division with the core block pressed: the reading row and the line
+// are still the set, and the pressed pill is the line's own piece for that
+// block. Its pills are that block's, in its own pool's order, so C2 is not
+// asked of it; such cards are counted and said.
+//
 // THE BAKE KNOWS THE STORE'S SOURCES. The dictionaries beside the store
 // (Jastrow, the Samaritan dictionaries) sort on the card like every other
 // since 2026-10-03 (overlay-rule-v2; the owner: "just treat them normal"), but
@@ -64,7 +71,7 @@ const OV_IDS = existsSync(OV_DIR) ? readdirSync(OV_DIR).filter((d) => existsSync
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());
 const c1 = [], c2 = [], unbaked = [];
-let opened = 0;
+let opened = 0, coreOpened = 0;
 const passes = [];
 for (const [k, v] of trials) { passes.push([k, v, false]); if (OV_IDS.length) passes.push([k, v, true]); }
 for (const [k, v, bakeOnly] of passes) {
@@ -90,7 +97,10 @@ for (const [k, v, bakeOnly] of passes) {
         await wait(700);
         const pills = [...h.querySelectorAll(".r-pills button")];
         const pressed = pills.find((x) => x.getAttribute("aria-pressed") === "true");
-        out.push({ w: (wb.querySelector(".w")?.textContent || "").replace(/[֑-ׇ]/g, ""), line: (g?.title || "").trim(), now: (h.querySelector(".r-now .v")?.textContent || "").trim(), first: pills[0] ? pills[0].textContent.trim() : null, pressed: pressed ? pressed.textContent.trim() : null });
+        const block = h.querySelector('.b-cell .s-pills button[aria-pressed="true"]');
+        const blocks = [...h.querySelectorAll(".b-cell .s-pills button")];
+        const pcs = [...wb.querySelectorAll(":scope > .g > .g-pcs > .g-pc")].map((x) => x.textContent.trim());
+        out.push({ core: block && blocks.length > 1 ? { at: blocks.indexOf(block), pieces: pcs } : null, w: (wb.querySelector(".w")?.textContent || "").replace(/[֑-ׇ]/g, ""), line: (g?.title || "").trim(), now: (h.querySelector(".r-now .v")?.textContent || "").trim(), first: pills[0] ? pills[0].textContent.trim() : null, pressed: pressed ? pressed.textContent.trim() : null });
         document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })); await wait(150);
       }
       // the switch's own words on the rail: a column the book does not carry
@@ -101,6 +111,13 @@ for (const [k, v, bakeOnly] of passes) {
     opened += r.out.length;
     for (const x of r.out) {
       if (x.pressed === null) continue;   // a card that says a reason instead of readings is not this check's
+      if (x.core) {
+        // opened on a block of the set's division: the row and the line the set, the pill the line's piece there
+        coreOpened += 1;
+        const piece = x.core.pieces.length > x.core.at ? x.core.pieces[x.core.at] : (x.line.split(" + ")[x.core.at] || "");
+        if (!(x.now === x.line && x.pressed.toLowerCase() === piece.toLowerCase())) c1.push(`${tag}${bakeOnly ? " (beside-store chips off)" : ""} · ${x.w} (on its core block): line "${x.line}" · row "${x.now}" · pressed "${x.pressed}", owed the line's piece "${piece}"`);
+        continue;
+      }
       if (!(x.pressed === x.now && x.now === x.line)) c1.push(`${tag}${bakeOnly ? " (beside-store chips off)" : ""} · ${x.w}: line "${x.line}" · row "${x.now}" · pressed "${x.pressed}"`);
       if ((bakeOnly || !OV_IDS.length) && !CARD_ONLY.has(tag) && x.first !== x.line) {
         if (r.unbaked) unbaked.push(`${tag} · ${x.w}`);
@@ -111,7 +128,7 @@ for (const [k, v, bakeOnly] of passes) {
   await ctx.close();
 }
 await b.close();
-console.log(`— ${trials.length} settings · ${opened} cards opened cold —`);
+console.log(`— ${trials.length} settings · ${opened} cards opened cold, ${coreOpened} of them on the core block of their set —`);
 check("C1  under every remembered setting the pressed pill, the reading row and the line are one reading", c1.length === 0, c1.slice(0, 3).join(" | "));
 check("C2  and the card's first pill is the line wherever the setting is baked for this book, among the sources the bake was made from", c2.length === 0, c2.slice(0, 3).join(" | ") || (unbaked.length ? `${unbaked.length} not baked here (reported, not failed): ${unbaked.slice(0, 2).join(", ")}` : "every sort and the line agree"));
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

@@ -41,7 +41,8 @@
 //       showed: the old page's open place leaked into the export there)
 //   P9  a piece file that did not arrive is asked again: the first fetch of
 //       the book's file fails, and the next card at the same cell carries
-//       its claims
+//       its claims (a card that opens on the core block of its set asks as it
+//       opens, core-block-rule-v1: that open is the first ask)
 // P2 also: no TAHOT record is named at two words of a verse (a line over two
 // ink words gives the later word the first word's English), and the sources
 // row's counts record pins this piece index and counts what its files serve.
@@ -338,15 +339,21 @@ if (A) {
     await p.evaluate(() => { try { localStorage.setItem("fh.sources.off", "[]"); sessionStorage.removeItem("fh.check.keep"); } catch { /* as above */ } });
   }
 }
-// P9: the first fetch of the book's piece file fails; the next card asks again
+// P9: the book's piece file does not arrive while it is held back; let through, the next card asks again
 if (A) {
-  let failed = 0;
-  await p.route(`**/data/piece-store/${A.book}.json`, (r) => { if (failed === 0) { failed += 1; return r.abort(); } return r.continue(); });
+  let failed = 0, holding = true;
+  await p.route(`**/data/piece-store/${A.book}.json`, (r) => { if (holding) { failed += 1; return r.abort(); } return r.continue(); });
   // a fresh load (the same address would only move the hash, and the page
   // would keep the file it already has); routing turns the HTTP cache off
   await p.goto("about:blank");
-  await land(A.book, A.at); await press(CUT, A.cut); await press(CELL, A.cell);
+  await land(A.book, A.at);
+  // a card on the core block of its set asks the book's file as it opens (core-block-rule-v1); the block is then
+  // pressed as before, and the page's own second ask a moment later is refused too
+  const onCore = await p.evaluate(() => !!document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]') && document.querySelectorAll("#hud .b-cell .s-pills button").length > 1);
+  await press(CUT, A.cut); await press(CELL, A.cell);
+  await p.waitForTimeout(1500);
   const first = await piecePills();
+  holding = false;
   await p.keyboard.press("Escape"); await p.waitForTimeout(300);
   // the same word again, on the same page: no reload
   await p.evaluate(({ ref, n }) => { const sec = [...document.querySelectorAll("section.seg")].find((s) => (s.querySelector(".vnum") || {}).textContent === ref); const wb = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")][n - 1] : null; if (wb) (wb.querySelector(".w span") || wb.querySelector(".w")).click(); }, { ref: A.ref, n: A.n });
@@ -355,7 +362,7 @@ if (A) {
   await press(CUT, A.cut); await press(CELL, A.cell);
   const again = await piecePills();
   await p.unroute(`**/data/piece-store/${A.book}.json`);
-  check("P9 a piece file that did not arrive is asked again on the next card", failed === 1 && first.length === 0 && again.some((h) => h.t === A.R), `first fetch failed: ${failed === 1} · then ${first.length} piece pills · again ${JSON.stringify(again)}`);
+  check("P9 a piece file that did not arrive is asked again on the next card", failed >= 1 && first.length === 0 && again.some((h) => h.t === A.R), `${failed} fetch(es) refused while held · the card opened on ${onCore ? "its core block" : "the set or a remembered cell"} · then ${first.length} piece pills · again ${JSON.stringify(again)}`);
 }
 await b.close();
 console.log(bad ? `FAIL ${bad}` : "PASS piece-store-v1");

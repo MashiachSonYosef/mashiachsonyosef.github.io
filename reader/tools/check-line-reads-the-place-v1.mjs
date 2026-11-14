@@ -20,9 +20,13 @@
 //       a run, prints exactly them on its line ("/" joined, as the store packs
 //       a divided reading, drawn with " + ")
 //   P3  each card opens pressed on its line, and the line's reading is its
-//       first pill
+//       first pill; a card whose line reads the source's set opens on the
+//       set's core block (core-block-rule-v1, the owner, 14 November 2026),
+//       the set, its line, said on top, pressed on the line's piece there
 //   P4  a word whose reading here no row of the store prints still opens on
-//       it, as TAHOT's own row (the page stands it up from the piece gloss)
+//       it, as TAHOT's own row (the page stands it up from the piece gloss);
+//       a card that opens on a block of the set's division is read on the set
+//       whole, its division pressed again
 //   P5  TAHOT switched off (and the pointing kept, so the baked line is the
 //       line): no line reads the place any more where oldest
 //       first reads otherwise, and every such line is the baked one
@@ -106,9 +110,9 @@ const ready = async (p) => {
 
   // P3 · the cards, on the first glossed words
   const wbs = await p.$$("section.seg .he-text .wb:has(.g:not(.bare))");
-  let n = 0, same = 0; const diff = [];
+  let n = 0, same = 0, onCore = 0; const diff = [];
   for (const w of wbs.slice(0, 30)) {
-    const line = await w.evaluate((e) => { const g = e.querySelector(":scope > .g"); const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return c.textContent.trim(); });
+    const { line, pieces } = await w.evaluate((e) => { const g = e.querySelector(":scope > .g"); const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return { line: c.textContent.trim(), pieces: [...e.querySelectorAll(":scope > .g > .g-pcs > .g-pc")].map((x) => x.textContent.trim()) }; });
     await w.click();
     try { await p.waitForSelector("#hud .r-pills button", { timeout: 15000 }); } catch { continue; }
     await p.waitForTimeout(200);
@@ -121,13 +125,22 @@ const ready = async (p) => {
       const G = String.fromCharCode(0x200b);
       const joinD = (xs) => xs.map((x, i) => `${i && x.trim() !== G && xs.slice(0, i).some((y) => y.trim() !== G) ? " + " : ""}${x}`).join("");   // no joiner beside a gap (2026-11-14)
       const drawn = (t) => (t && window.__signs === "off" ? joinD(trim(t.split(" + "))) : t);
-      return { pressed: drawn(document.querySelector('#hud .r-pills button[aria-pressed="true"]')?.textContent.trim()), first: drawn(document.querySelector("#hud .r-pills button")?.textContent.trim()) };
+      const blocks = [...document.querySelectorAll("#hud .b-cell .s-pills button")];
+      const top = document.querySelector("#hud .r-piece:not(.r-sug) b")?.textContent.trim();
+      return { pressed: drawn(document.querySelector('#hud .r-pills button[aria-pressed="true"]')?.textContent.trim()), first: drawn(document.querySelector("#hud .r-pills button")?.textContent.trim()),
+        blockAt: blocks.length > 1 ? blocks.findIndex((x) => x.getAttribute("aria-pressed") === "true") : -1, top: top ? drawn(top) : null };
     });
     n += 1;
-    if (r.pressed === line && r.first === line) same += 1; else if (diff.length < 3) diff.push(`line "${line}" · pressed "${r.pressed}" · first "${r.first}"`);
+    if (r.blockAt >= 0) {
+      // on the core block of the set: the set on top is the line, the pill pressed is the line's piece there
+      onCore += 1;
+      const piece = (pieces.length > r.blockAt ? pieces[r.blockAt] : line.split(" + ")[r.blockAt] || "").trim();
+      if (r.top === line && String(r.pressed || "").toLowerCase() === piece.toLowerCase()) same += 1;
+      else if (diff.length < 3) diff.push(`line "${line}" · on its core block, the set on top "${r.top}" · pressed "${r.pressed}", owed the line's piece "${piece}"`);
+    } else if (r.pressed === line && r.first === line) same += 1; else if (diff.length < 3) diff.push(`line "${line}" · pressed "${r.pressed}" · first "${r.first}"`);
     await p.keyboard.press("Escape"); await p.waitForTimeout(40);
   }
-  check("P3  each card opens pressed on its line, and the line's reading is its first pill", n > 0 && same === n, `${same} of ${n}${diff.length ? ` · ${diff.join(" | ")}` : ""}`);
+  check("P3  each card opens pressed on its line, and the line's reading is its first pill", n > 0 && same === n, `${same} of ${n}, ${onCore} of them on the core block of their set${diff.length ? ` · ${diff.join(" | ")}` : ""}`);
 
   await ctx.close();
 }
@@ -188,6 +201,9 @@ const ready = async (p) => {
       const t0 = Date.now();
       while (Date.now() - t0 < 12000 && !document.querySelector("#hud .r-pills button")) await new Promise((x) => setTimeout(x, 50));
       await new Promise((x) => setTimeout(x, 300));
+      // a card on a block of the set's division is stood on the set whole again (core-block-rule-v1)
+      { const blk = document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]'); const cut = document.querySelector('#hud .b-cut .s-pills button[aria-pressed="true"]');
+        if (blk && cut && document.querySelectorAll("#hud .b-cell .s-pills button").length > 1) { cut.click(); await new Promise((x) => setTimeout(x, 900)); } }
       return { first: (window.__pool || [])[0], lead: (window.__poolLead || [])[0], placeRow: (window.__poolPlace || [])[0],
         pressed: document.querySelector('#hud .r-pills button[aria-pressed="true"]')?.textContent.trim() };
     }, found.s);
