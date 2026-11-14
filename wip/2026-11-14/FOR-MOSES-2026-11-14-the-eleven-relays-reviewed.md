@@ -124,6 +124,11 @@ Your order holds: call 5 before v188, which then skips its 48 lines; v188.1 pinn
 
 - Spelling, by CLAUDE.md (American English): write «license»/«licenses» in FOR-ELIJAH-v191.md:9, pointer-map-v1.4 RULE.md:71, FOR-ELIJAH-v193.md:23, jastrow-word-senses-v2 RULE.md:23 and build-word-senses-v2.mjs («licence pointer»), and answers-v1 RULE.md:23 («licences»). The page keeps these files byte for byte, so only a reissue fixes them. Jastrow's own «centre» stays.
 
+### The default picks' UBS line
+
+- UBS «-» (10,910 pieces) and «NO DATA YET» (13 pick 1s, 17 picks in all): the page takes both as no line pick, so the second source fills those words. What does «-» mean at a place: no reading in UBS, or a reading the ledger did not carry? And «NO DATA YET» is UBS's editors' note, not a meaning; should those 13 picks leave the ledger?
+- A pick that is only a sign is taken as no pick for every source: MACULA's «?» at Deuteronomy 32:6:1 and Lamentations 2:20:7 and 2:20:13, and a lone backtick at II Samuel 20:20:5. Say if any of them is meant as a reading.
+
 ## 3. With the owner
 
 The owner has the questions your relays raise, in plain words, with the page lane's recommendation on each (`OWNER-QUESTIONS-2026-11-14.md` beside this letter). Where an answer changes a list of yours, the page lane will say so.
