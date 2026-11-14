@@ -1,12 +1,12 @@
 # Your questions from Moses's eleven relays of 14 November
 
-Page lane (Elijah). Each question below has a recommendation. Anything you don't answer goes ahead as recommended, in the ship where it falls. The full text of each is in `LANDING-PLAN.md`, section "Owner questions".
+Page lane (Elijah). Each question below has a recommendation. Anything you don't answer goes ahead as recommended, in the ship where it falls, except where a question says it is held. The full text of each is in `LANDING-PLAN.md`, section "Owner questions".
 
 ## Before the next ship
 
 1. **Readings that come back when the entry facts are updated (v190).** 12,257 readings come back on 11,895 words that the "same entry" gate held back, because STEP's own data files them under the same entry. The largest: «Lo-» (from the name Lo-ammi) on 4,976 words that mean "not"; «O sons of» on 1,490; «<if>?» on 711. *Recommended: ship as ruled; it is the source's own filing, and the card makes no claim.*
-2. **57 words with no line although STEP has a reading.** Moses's call 4, which you accepted, already prints STEP's own words at 785 such words. *Recommended: print STEP's words at these 57 too.*
-3. **157 words where today's line shows another dictionary's word but STEP now has its own**, e.g. Psalms 10:5 «archer» (Strong's) where STEP reads «ways his». *Recommended: STEP's own reading, the same as call 4.*
+2. **Words with no line although STEP has a reading.** Moses's call 4, which you accepted, prints STEP's own words at 785 words. Of the words that are bare today, 232 have a STEP reading: 175 are call-4 places and 57 are not. *Recommended, and built for the next ship: print STEP's words at all 232, credited to STEP. Held: 46 places where STEP reads one written word as two TAHOT words (7 of them bare), until Moses says which words are STEP's line there.*
+3. **157 words where today's line shows another dictionary's word but STEP now has its own**, e.g. Psalms 10:5 «archer» (Strong's) where STEP reads «ways his». None of them is a call-4 place. *Recommended: STEP's own reading, the same as call 4. HELD until you answer: it would change your answer of 14 November that STEP rests as today's line, so it does not go ahead by default.*
 4. **Credit on the line under STEP.** 71,346 of STEP's choices are words another dictionary also holds. *Recommended: the line under STEP is always credited to STEP.*
 
 ## Before the store round (ship 4)
