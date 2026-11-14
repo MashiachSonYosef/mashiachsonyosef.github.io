@@ -12,7 +12,9 @@
 //
 //   F1  with a whole century shelf thrown, on a sample of words across the
 //       book: a line is bare only where the card has no reading, and where
-//       the card has one, the line is the card's first pill
+//       the card has one, the line is the card's first pill; a card that opens
+//       on the core block of the source's set (core-block-rule-v1, the owner,
+//       14 November 2026) is read by the set it says on top, its line
 //   F2  no chip on a line names a source that is switched off
 //   F3  under an order column ("characters"), with the source that carries
 //       that column's reading switched off, the line leaves it: no line's
@@ -112,9 +114,13 @@ const cardFirst = async (idx) => p.evaluate(async (i) => {
   const pill = document.querySelector("#hud .r-pills button");
   const text = pill ? pill.textContent.replace(/\s+/g, " ").trim() : null;
   const count = document.querySelectorAll("#hud .r-pills button").length;
+  // a card standing on a block of the set's division says the set on top
+  const onBlock = !!document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]') && document.querySelectorAll("#hud .b-cell .s-pills button").length > 1;
+  const topEl = onBlock ? document.querySelector("#hud .r-piece:not(.r-sug) b") : null;
+  const top = topEl ? topEl.textContent.replace(/\s+/g, " ").trim() : null;
   document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   await new Promise((r) => setTimeout(r, 80));
-  return { text, count };
+  return { text: top || text, count };
 }, idx);
 let bareWithReadings = 0, differs = 0, looked = 0;
 const eg = [];

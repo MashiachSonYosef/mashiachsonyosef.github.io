@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-14.
 
-**154 rules declared · 141 named by a check · 13 unguarded.**
+**155 rules declared · 142 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -33,6 +33,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
 | `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |
 | `compspan-coverage-rule-v1-a-word-its-source-divides-opens-with-its-divisions` | tools/check-compspan-coverage-v1.mjs | check-compspan-coverage-v1 |
+| `core-block-rule-v1-a-card-whose-one-pill-is-the-places-set-opens-on-its-core-block-the-set-still-on-top` | zone.html | check-card-opens-on-the-line-v1, check-citations-v1, check-compspan-coverage-v1, check-dictionary-toggle-v1, check-line-follows-card-v1, check-line-reads-the-place-v1, check-piece-store-v1, check-reading-language-v1 |
 | `count-gate-rule-v1` | tools/check-clean-address-v1.mjs | check-clean-address-v1, check-front-door-three-counts-v1, check-nothing-hand-typed-v1 |
 | `count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one` | tools/build-zone.mjs, tools/count-stamp-v1.mjs, tools/emit-masorah-witnesses-v1.mjs, tools/restamp-zone-v1.mjs | check-bookword-count-v1, check-c0-refusals-v1 |
 | `declarations-branch-rule-v1-a-branch-is-what-the-source-says-about-itself-and-a-reserved-token-is-never-a-branch` | tools/project-declarations-v1.mjs | check-declarations-branch-v1 |

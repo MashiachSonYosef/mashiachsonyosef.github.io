@@ -335,6 +335,9 @@ for (let i = 0; i < Math.min(60, n1) && !(d7 && d8); i += 1) {
   if (!(await tap(i))) break;
   if ((await tabState()) !== "table") { await esc(); continue; }
   await settle();
+  // a card that opens on the core block of the source's set (core-block-rule-v1, 14 November 2026) is stood on
+  // the set whole again, its division pressed, so the set's own row is the one read here
+  if (!d7 && await p.evaluate(() => { const blk = document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]'); const cut = document.querySelector('#hud .b-cut .s-pills button[aria-pressed="true"]'); if (blk && cut && document.querySelectorAll("#hud .b-cell .s-pills button").length > 1) { cut.click(); return true; } return false; })) await settle();
   const row = await rowOf();
   if (!d7 && row && row.here && row.raw.includes("/")) { const cps = await cardPills(); d7 = { row, cardPressed: (cps.find((x) => x.pressed) || {}).t || null }; }
   if (!d8) {

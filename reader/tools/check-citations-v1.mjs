@@ -176,6 +176,9 @@ for (const w of walk) {
   await p.evaluate((i) => { const wb = document.querySelector("section.seg").querySelectorAll(".he-text .wb")[i]; (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); }, w.i);
   await p.waitForSelector("#hud .r-pills button", { timeout: 20000 });
   await p.waitForTimeout(250);
+  // a card that opens on the core block of the source's set (core-block-rule-v1, 14 November 2026) shows that
+  // block's record; the line, and so the file, reads the set: the card is stood on the set whole again first
+  if (await p.evaluate(() => { const blk = document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]'); const cut = document.querySelector('#hud .b-cut .s-pills button[aria-pressed="true"]'); if (blk && cut && document.querySelectorAll("#hud .b-cell .s-pills button").length > 1) { cut.click(); return true; } return false; })) await p.waitForTimeout(700);
   const card = await p.evaluate(() => {
     const att = (document.querySelector("#hud .d-card .d-foot .att")?.textContent || "");
     return { reading: (document.querySelector("#hud .r-now .v")?.textContent || "").trim(), source: att.split(" · ")[0].trim(), wording: (/wording (\d{3,4})/u.exec(att) || [])[1] || null };
