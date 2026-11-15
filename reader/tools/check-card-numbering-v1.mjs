@@ -36,12 +36,13 @@
 //       one in a hundred. Until 2026-11-10 the number stood by its letters'
 //       box, on the line under them; for a few hours of that day it hung
 //       outside every card.
-//   N12 no number touches other gold or a letter, by the page's own pixels:
+//   N12 no number touches other line work or a letter, by the page's own pixels:
 //       the page is photographed with the numbers drawn and again with their
 //       ink unseen (everything else as it stands, a line that gave way still
 //       parted), and what the numbers' drawing changed stands a pixel or
-//       more from every other gold pixel (a frame's line, a point, an
-//       accent; a run wore a line too until 2026-11-10) and from every
+//       more from every other pixel of line work (a frame's line in bronze
+//       or silver, a point or an accent in gold since 2026-11-15; a run wore
+//       a line too until 2026-11-10) and from every
 //       letter's and reading's ink ("the
 //       key is no overlap with other gold"); and no number lies on another
 //       number or in another card of its verse
@@ -261,7 +262,9 @@ const n12 = await (async () => {
     const A = await load(a), B = await load(c), W = A.width, H = A.height;
     const probe = (v) => { const x = document.createElement("span"); x.style.color = v; document.documentElement.append(x); const k = getComputedStyle(x).color.match(/\d+/gu).slice(0, 3).map(Number); x.remove(); return k; };
     const GROUNDS = [probe("var(--bg)"), probe("var(--press-wash)")];
-    const INKS = [["gold", probe("var(--gold-dim)")], ["gold", probe("var(--gold)")], ["ink", probe("var(--shani)")], ["ink", probe("var(--shani-dim)")], ["ink", probe("var(--tekhelet)")], ["ink", probe("var(--tekhelet-dim)")], ["ink", probe("var(--argaman)")]];
+    // the line work a number must keep clear of is now three metals (color-channel-rule-v3): the bronze of the
+    // frame at rest and under the hand (the numbers' own ink), the silver of a blob's or a frame's line, the signs' gold
+    const INKS = [["metal", probe("var(--bronze-dim)")], ["metal", probe("var(--bronze)")], ["metal", probe("var(--silver)")], ["metal", probe("var(--gold)")], ["ink", probe("var(--shani)")], ["ink", probe("var(--shani-dim)")], ["ink", probe("var(--tekhelet)")], ["ink", probe("var(--tekhelet-dim)")], ["ink", probe("var(--argaman)")]];
     const kindOf = (d, i) => {
       let best = 0, br = 34;
       for (const g of GROUNDS) for (const [kind, k] of INKS) {
@@ -269,11 +272,11 @@ const n12 = await (async () => {
         const t = (px * vx + py * vy + pz * vz) / (vx * vx + vy * vy + vz * vz);
         if (t < 0.4) continue;
         const tt = Math.min(t, 1.15), r = Math.hypot(px - tt * vx, py - tt * vy, pz - tt * vz);
-        if (r < br) { br = r; best = kind === "gold" ? 2 : 3; }
+        if (r < br) { br = r; best = kind === "metal" ? 2 : 3; }
       }
       return best;
     };
-    // 1 a number's ink (what its drawing changed, gold), 2 other gold, 3 a letter's or a reading's ink
+    // 1 a number's ink (what its drawing changed, bronze), 2 other line work in a metal, 3 a letter's or a reading's ink
     const K = new Uint8Array(W * H);
     for (let i = 0, n = 0; n < W * H; i += 4, n += 1) {
       const changed = Math.abs(A.data[i] - B.data[i]) + Math.abs(A.data[i + 1] - B.data[i + 1]) + Math.abs(A.data[i + 2] - B.data[i + 2]) > 24;
@@ -308,10 +311,10 @@ const n12 = await (async () => {
   const least = (k) => (drawn.length ? Math.min(...drawn.map((c) => c[k])) : 0);
   const say = (v) => (v >= 99 ? "nothing within 3px" : `${v.toFixed(1)}px`);
   const hits = Object.entries(n5.hit).filter(([, v]) => v.length);
-  check("N12 no number touches other gold (a frame's line, a point) or a letter, by the page's own pixels; none lies on another number or in another card",
+  check("N12 no number touches other line work (a frame's line in bronze or silver, a point in gold) or a letter, by the page's own pixels; none lies on another number or in another card",
     drawn.length > 0 && runs.length > 0 && n5.tied > 0 && !touch.length && !hits.length,
-    `${drawn.length} cards photographed with their numbers, ${runs.length} of them runs · the nearest other gold ${say(least("gold"))}, the nearest letter ${say(least("letter"))}`
-      + `${touch.length ? ` · within a pixel: ${touch.slice(0, 5).map((c) => `#${c.cn} (gold ${say(c.gold)}, letter ${say(c.letter)})`).join(", ")}` : ""}`
+    `${drawn.length} cards photographed with their numbers, ${runs.length} of them runs · the nearest other metal ${say(least("gold"))}, the nearest letter ${say(least("letter"))}`
+      + `${touch.length ? ` · within a pixel: ${touch.slice(0, 5).map((c) => `#${c.cn} (metal ${say(c.gold)}, letter ${say(c.letter)})`).join(", ")}` : ""}`
       + `${hits.length ? ` · ${hits.map(([k, v]) => `on ${k === "card" ? "another card" : "another number"}: ${v.length} (${v.slice(0, 4).join(", ")})`).join("; ")}` : ""}`);
 }
 

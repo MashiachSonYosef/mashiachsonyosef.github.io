@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // RUN: page
-// GUARDS: color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours
+// GUARDS: color-channel-rule-v3-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours
 //
 // The page paints the channels the contract records, and this reads the
 // contract to find out what they are.
@@ -8,8 +8,9 @@
 // A channel is not a decoration: it says who is speaking. The corpus speaks in
 // tola'at shani, the reading offered for one of its words speaks in tekhelet
 // because a dictionary said it and not the source, and this project speaks in
-// argaman. Gold is the frame around any of them: at rest its dim, and its
-// regular where the reader's hand is on it.
+// argaman. The metals carry no voice (the owner, 2026-11-15): gold is only
+// ever a Masoretic mark, bronze is the frame that holds the page, and silver
+// is the layer this project draws over the text.
 //
 // WHAT THIS CHECK STOPPED ASSERTING, AND WHY.
 // Under v1 the load-bearing assertion was that structure and reader selection
@@ -28,9 +29,10 @@
 // channels must be mutually far apart, so a reader can always tell the corpus
 // from a dictionary from us.
 //
-// What is checked is the channel, never the value. Exodus names tekhelet,
-// argaman, tola'at shani and shesh over and over and never says what any of
-// them looked like; the hexes are this page's and always were.
+// What is checked is the channel, never the value. Exodus names gold, silver
+// and bronze, tekhelet, argaman, tola'at shani and shesh over and over and
+// never says what any of them looked like; the hexes are this page's and
+// always were.
 //
 // Run: node tools/check-color-channels-v1.mjs [url]
 
@@ -58,11 +60,13 @@ const channels = contract.channels || {};
 // electric blue; v2 moved it, and a move that does not say where it came from
 // is a value quietly changing its mind.
 {
-  check("the record names what it supersedes", typeof contract.supersedes === "string" && contract.supersedes.includes("colour-role-rule-v1"));
+  check("the record names what it supersedes", typeof contract.supersedes === "string" && contract.supersedes.includes("color-channel-rule-v2"));
   check("the ruling says who decided the channels, not just what they are",
     !!(contract.who_decided_what && contract.who_decided_what.the_owner && contract.who_decided_what.the_ledger));
   check("the channel that moved off its v1 value says where it moved from",
     typeof (channels.reader_selection || {}).moved_from === "string");
+  check("and so does the frame, which moved off gold on 2026-11-15",
+    typeof (channels.structure || {}).moved_from === "string" && /\bgold\b/u.test(channels.structure.moved_from));
   // the fixture this all descends from still has to agree about structure,
   // which is the one channel v2 did not touch
   const LEDGER = join(HERE, "..", "data", "y-genesis-navigation-v1.js");
@@ -75,8 +79,9 @@ const channels = contract.channels || {};
       // a face that does not exist, and quietly dropping the comparison would
       // read as though it still passed. So the surviving half is asserted, and
       // the other half is stated as retired rather than deleted.
-      check("the fixture's structure role is carried forward unchanged",
-        old.structure === (channels.structure || {}).material,
+      if (old.structure === (channels.structure || {}).material) check("the fixture's structure role is carried forward unchanged", true, `fixture ${old.structure} vs contract ${old.structure}`);
+      else check(`the fixture's structure role (${old.structure}) is stated as retired: the record says structure moved from it`,
+        typeof (channels.structure || {}).moved_from === "string" && channels.structure.moved_from.includes(old.structure),
         `fixture ${old.structure} vs contract ${(channels.structure || {}).material}`);
       const retired = [old.base_surface, old.commentary_surface].filter(Boolean);
       console.log(`  --    the fixture's surfaces (${retired.join(", ")}) described the dark face, `
@@ -89,7 +94,15 @@ const channels = contract.channels || {};
 // on the wheel; lightness separates a brown from a gold and an argaman ink
 // from the argaman ground, which are the same angle.
 const FAMILY = {
-  "gold": { hue: [35, 60], minSat: 0.25, light: [0.30, 0.85] },
+  // the real gold, never the orange one (the owner, 2026-11-15: "i still
+  // prefer the pale/real gold, not the orangey one"): #967c26, #a48829 and #d3af37 are
+  // hue 46; the orange #93661a and #a06c10 were 38, and fall outside
+  "gold": { hue: [42, 52], minSat: 0.25, light: [0.30, 0.85] },
+  // bronze, a brown and not an orange ("bronze is distinctly not orange"):
+  // #7f6044 is hue 28 at 0.30; made darker or lighter it keeps both
+  "bronze": { hue: [22, 34], minSat: 0.15, maxSat: 0.40, light: [0.25, 0.55] },
+  // silver, a cool gray ("silver is distinct too"): #7c8187 is hue 213 at 0.04
+  "silver": { hue: [180, 260], minSat: 0, maxSat: 0.12, light: [0.35, 0.80] },
   // (gold at its amber value was measured here while a selection was amber;
   // it has been purple since 2026-10-03 and the amber was folded away on
   // 2026-10-10, so no channel names it)
@@ -134,7 +147,7 @@ const inFamily = (colour, name) => {
   const f = FAMILY[name]; if (!f) return { ok: false, why: `no measurement declared for "${name}"` };
   const lo = f.hue[0], hi = f.hue[1];
   const hueOk = lo < 0 ? (h >= 360 + lo || h <= hi) : (h >= lo && h <= hi);
-  const ok = hueOk && s >= f.minSat && l >= f.light[0] && l <= f.light[1];
+  const ok = hueOk && s >= f.minSat && (f.maxSat == null || s <= f.maxSat) && l >= f.light[0] && l <= f.light[1];
   return { ok, why: `hue ${h.toFixed(0)}° sat ${s.toFixed(2)} light ${l.toFixed(2)}` };
 };
 // CIE L*, because a ground has to be judged by how big a STEP it makes and a
@@ -190,9 +203,13 @@ const SAMPLE = {
   reading_ink: ["section.seg .he-text .g:not(.bare)", "color"],
   our_own_voice: ["header.top p#meta", "color"],
   structure: [".vnum", "borderColor"],
+  // the marks' gold, where the page draws the marks (data-mark-ink="gold")
+  masoretic_marks: ["section.seg .he-text .mg, section.seg .he-text .mg-all", "webkitTextFillColor"],
+  // our layering: the line round a blob and the frame round joined words
+  our_layering: ["section.seg .he-text svg.wj-tie path.wj-line", "stroke"],
   reader_selection: [".mode-btn.on, .blob-btn.on", "color"],
 };
-const FINAL = ["text_as_written", "reading_as_shown", "our_own_voice"];
+const FINAL = Object.entries(channels).filter(([k, d]) => k !== "rule" && d && d.final).map(([k]) => k);
 
 const BASE = (process.argv[2] || "http://127.0.0.1:8899/zone.html").split("?")[0];
 const b = await pw.chromium.launch(launchOptions());
@@ -203,6 +220,7 @@ p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 await p.goto(`${BASE}?b=${zonesWithCommentary()[0] || zonesOnDisk()[0]}&c=open`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(2600);
+await p.waitForFunction(() => (window.__tiePending || 0) === 0, null, { timeout: 60000 }).catch(() => console.log("  note: the blobs were still drawing after 60s"));
 
 // and whether THIS page carries one: a built chapter page of a work without
 // a commentary has no commentary surface to read, whatever the shelf holds
@@ -232,6 +250,8 @@ const painted = await p.evaluate((sample) => {
   const out = {};
   for (const [k, [sel, prop]] of Object.entries(sample)) out[k] = cs(sel, prop);
   out.base_surface = cs("body", "backgroundColor");
+  out.markInk = document.documentElement.dataset.markInk || "";
+  out.anyTie = !!document.querySelector("section.seg .he-text svg.wj-tie path.wj-line");
   // a word's commentary opens in a slot, a section's in its own line; either is the surface
   const cEl = ["section.seg .c-mark-slot:not(.c-choose)", "section.seg .c-inline:not([hidden])", "#cIndex"].map((s) => document.querySelector(s)).find(Boolean);
   out.commentary_surface = cEl ? getComputedStyle(cEl).backgroundColor : null;
@@ -244,6 +264,8 @@ const painted = await p.evaluate((sample) => {
 for (const [key, decl] of Object.entries(channels)) {
   if (key === "rule") continue;
   const got = painted[key];
+  if (!got && key === "masoretic_marks" && painted.markInk !== "gold") { console.log(`  --    masoretic marks: this work draws no mark in gold (data-mark-ink="${painted.markInk || ""}"), so the channel is absent here, not judged`); continue; }
+  if (!got && key === "our_layering" && !painted.anyTie) { console.log("  --    our layering: no blob or frame is drawn on this page, so the channel is absent here, not judged"); continue; }
   if (!got) { check(`  ${key.replace(/_/gu, " ")} is painted at all`, false, "nothing on this page carries it"); continue; }
   // a channel borne as a WASH is its material at a tint: the same hue, held
   // pale so the one ink reads over it. It is judged on hue and on being a
@@ -340,7 +362,15 @@ for (let i = 0; i < FINAL.length; i += 1) for (let j = i + 1; j < FINAL.length; 
     // be read. It got brighter when it stopped being text, and this is the
     // number that says brighter was allowed.
     ["structure, as a rule on the ground", painted.structure, 3],
+    // our layering is line work as the frame is, so it is held to the same
+    // floor a rule has to clear to be seen
+    ["our layering, as a line on the ground", painted.our_layering, 3],
+    // the marks are read with their letters, and the owner chose their gold
+    // at 2.6:1 (2026-11-15); the floor keeps the pale gold of the name, 1.6:1,
+    // off the line
+    ["the Masoretic marks on the ground", painted.masoretic_marks, 2.5],
   ]) {
+    if (!colour) { console.log(`  --    ${what}: not drawn on this page, not judged`); continue; }
     const c = rgb(colour);
     const r2 = c && ground ? ratio(c, ground) : 0;
     check(`  ${what} reads (>= ${floor}:1)`, r2 >= floor, `${r2.toFixed(1)}:1`);
@@ -398,6 +428,11 @@ if (commentaryHere) {
   });
   check("no gold is laid down as a ground \u2014 it is thread, and thread has no surface",
     golden.length === 0, golden.length ? `${golden.length} filled: ${golden.slice(0, 4).map((x) => x.where + " " + x.bg).join(" · ")}` : "checked every element on the page");
+  // nor bronze nor silver: Exodus makes sockets, hooks, bands and pegs of
+  // them, the fittings that hold the cloth, and the cloth is the ground
+  const metal = grounds.filter((x) => inFamily(`rgb(${x.r}, ${x.g}, ${x.b})`, "bronze").ok || inFamily(`rgb(${x.r}, ${x.g}, ${x.b})`, "silver").ok);
+  check("nor is bronze or silver: they are fittings, and the linen is the only ground",
+    metal.length === 0, metal.length ? `${metal.length} filled: ${metal.slice(0, 4).map((x) => x.where + " " + x.bg).join(" · ")}` : "checked every element on the page");
 
   // AND GOLD IS NEVER INK AT REST. Ruled 2026-09-10 with the field: gold is
   // rules, borders and boxes, and the only glyph it may reach is one the
@@ -411,7 +446,7 @@ if (commentaryHere) {
       // two more the reader holds or the owner ruled (2026-10-02): the summary of
       // what this page answers under, which is the reader's own choice shown back
       // in gold; and the site's name, whose .com is gold as a mark, not as ink
-      if (e.closest('.rail .now, #home a.home, .wordmark')) continue;
+      if (e.closest('#home a.home, .wordmark')) continue;
       // and one the owner voted (relayed by Moses, 2026-10-11): "every mark
       // gold, vowels included". A Masoretic mark is gold at rest, by its
       // class (masoretic-marks-rule-v1); the letters laid over it keep the
@@ -434,8 +469,26 @@ if (commentaryHere) {
     const { h, s: sat, l } = hsl([x.r, x.g, x.b]);
     return h >= 30 && h <= 62 && sat >= 0.45 && l >= 0.20 && l <= 0.80;
   });
-  check("no glyph is left gold at rest, so gold reaches a word only under the reader's hand",
+  check("no glyph but a Masoretic mark is gold",
     goldInk.length === 0, goldInk.length ? `${goldInk.length} in gold: ${goldInk.slice(0, 4).map((x) => x.where + " " + x.c).join(" / ")}` : "checked every text-bearing element at rest");
+  // and no line: since 2026-11-15 the frame is bronze and our layering silver,
+  // so a gold border, outline or stroke is a frame left on the old metal
+  const goldLines = await p.evaluate(() => {
+    const out = [];
+    const nm = (e) => e.tagName.toLowerCase() + (e.id ? `#${e.id}` : "") + (typeof e.className === "string" && e.className.trim() ? `.${e.className.trim().split(/\s+/u).join(".")}` : "");
+    for (const e of document.querySelectorAll("body *")) {
+      if (e.closest('#home a.home, .wordmark')) continue;
+      const cs = getComputedStyle(e);
+      if (cs.display === "none") continue;
+      for (const s of ["Top", "Right", "Bottom", "Left"]) if (parseFloat(cs[`border${s}Width`]) > 0 && cs[`border${s}Style`] !== "none") out.push([nm(e) + " border", cs[`border${s}Color`]]);
+      if (cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) > 0) out.push([nm(e) + " outline", cs.outlineColor]);
+      if (e instanceof SVGElement && cs.stroke && cs.stroke !== "none") out.push([nm(e) + " stroke", cs.stroke]);
+    }
+    return out;
+  });
+  const goldLine = goldLines.filter(([, c]) => { const m = String(c).match(/(\d+(?:\.\d+)?)/gu); if (!m || m.length < 3 || (m.length > 3 && Number(m[3]) < 0.02)) return false; const { h, s: sat, l } = hsl([+m[0], +m[1], +m[2]]); return h >= 30 && h <= 62 && sat >= 0.45 && l >= 0.20 && l <= 0.80; });
+  check("and no border, outline or line is gold: the frame is bronze and our layering silver",
+    goldLine.length === 0, goldLine.length ? `${goldLine.length} in gold: ${[...new Set(goldLine.map(([w, c]) => `${w} ${c}`))].slice(0, 5).join(" / ")}` : `${goldLines.length} lines read`);
 
   // EVERY TOKEN A RULE ASKS FOR IS DECLARED. On 2026-09-10 the night block was
   // deleted and --link went with it, because it had been declared there and
@@ -510,9 +563,22 @@ if (commentaryHere) {
   const held = await faceOf(first);
   const triplet = (c) => (rgb(c) || []).join(",");
   check("a word keeps its ink when the reader takes hold of it", !!atRest && !!held && atRest.ink === held.ink, `${atRest && atRest.ink} → ${held && held.ink}`);
-  const boxed = !!held && held.box !== "none" ? inFamily(held.box, "gold") : { ok: false, why: "no outline" };
-  check("and is boxed in gold, the whole block, rather than being filled", boxed.ok && !!held && alphaOf(held.wash) < 0.02,
+  const frameMat = (channels.structure || {}).material || "bronze";
+  const boxed = !!held && held.box !== "none" ? inFamily(held.box, frameMat) : { ok: false, why: "no outline" };
+  check(`and is boxed in ${frameMat}, the whole block, rather than being filled`, boxed.ok && !!held && alphaOf(held.wash) < 0.02,
     `outline ${held && held.box} · ${boxed.why} · ground ${held && held.wash}`);
+  // the card is that box projected forward: its outline and its two pointer
+  // lines are the frame's material too (the owner, 2026-11-15: "if bronze
+  // held the tent maybe that's the hud color"; on 15 November the card's
+  // outline was still the purple's dim, and no law read it)
+  const cardLines = await p.evaluate(() => {
+    const hud = document.getElementById("hud");
+    const lines = [...document.querySelectorAll("#tether path")].filter((x) => (x.getAttribute("d") || "").trim());
+    return { edge: hud && !hud.hidden ? getComputedStyle(hud).borderTopColor : null, lines: lines.map((x) => getComputedStyle(x).stroke) };
+  });
+  const cardOk = !!cardLines.edge && inFamily(cardLines.edge, frameMat).ok && cardLines.lines.length > 0 && cardLines.lines.every((c) => inFamily(c, frameMat).ok);
+  check(`and the card it opens is outlined in ${frameMat}, with its pointer lines`, cardOk,
+    `outline ${cardLines.edge} · ${cardLines.lines.length} pointer lines ${[...new Set(cardLines.lines)].join(", ")}`);
   const selInk = await p.evaluate(() => { const e = document.querySelector(".mode-btn.on, .blob-btn.on"); return e ? getComputedStyle(e).color : null; });
   check("and nothing about the held word is the amber the page keeps for its own controls",
     !!held && held.ink !== selInk && triplet(held.wash) !== triplet(selInk || ""), `held ${held && held.ink} on ${held && held.wash}; amber is ${selInk}`);
@@ -542,8 +608,13 @@ if (commentaryHere) {
   const got = await p.evaluate(() => {
     const probe = document.createElement("i"); document.body.append(probe);
     const as = (prop, v) => { probe.style[prop] = v; return getComputedStyle(probe)[prop]; };
-    const INKS = ["--shani", "--shani-dim", "--tekhelet", "--tekhelet-dim", "--argaman", "--argaman-dim", "--gold", "--gold-dim"];
+    const INKS = ["--shani", "--shani-dim", "--tekhelet", "--tekhelet-dim", "--argaman", "--argaman-dim", "--mark-ink"];
     const inks = Object.fromEntries(INKS.map((t) => [as("color", `var(${t})`), t]));
+    // the apparatus's numbers (a word's address on its card) are written in the
+    // regular bronze, and nothing else is: the one place a metal other than the
+    // marks' gold is ink (color-channel-rule-v3, structure.reads_as)
+    const NUMBERS = "#hud .head .wn";
+    const numberInk = as("color", "var(--bronze)");
     const ground = { bg: as("backgroundColor", "var(--bg)"), cell: as("backgroundColor", "var(--cell-wash)"), press: as("backgroundColor", "var(--press-wash)") };
     probe.remove();
     const trip = (c) => (String(c).match(/[\d.]+/gu) || []).slice(0, 3).join(",");
@@ -564,7 +635,7 @@ if (commentaryHere) {
       const c = cs.webkitTextFillColor && cs.webkitTextFillColor !== "currentcolor" ? cs.webkitTextFillColor : cs.color;
       if (alpha(c) === 0) continue;                     // a glyph drawn by its background (the name's .com) has no ink of its own
       glyphs += 1;
-      if (!inks[c] && strayInk.length < 6) strayInk.push(`${nm(e)} ${c}`);
+      if (!inks[c] && !(c === numberInk && e.matches(NUMBERS)) && strayInk.length < 6) strayInk.push(`${nm(e)} ${c}`);
     }
     for (const path of document.querySelectorAll("svg.wj-tie path")) {
       grounds += 1;
@@ -579,7 +650,7 @@ if (commentaryHere) {
     const pressed = on ? { on: getComputedStyle(on).color, weight: Number(getComputedStyle(on).fontWeight), off: off ? getComputedStyle(off).color : null, reading: inks[getComputedStyle(on).color] || null } : null;
     return { glyphs, grounds, strayInk, strayGround, pressed, card: !!document.querySelector("#hud:not([hidden])") };
   });
-  check("every glyph is one of the eight inks: a regular and a dim of each of the four colors",
+  check("every glyph is one of the eight inks: a regular and a dim of each of the three dyes, the marks' gold, and the numbers' bronze on the numbers alone",
     got.glyphs > 0 && got.strayInk.length === 0,
     got.strayInk.length ? `off the palette: ${got.strayInk.join(" · ")}` : `${got.glyphs} glyphs read, a card ${got.card ? "open" : "not open"}`);
   check("every ground is one of the three linens: the ground (or a veil of it), the cell, the pressed linen",
