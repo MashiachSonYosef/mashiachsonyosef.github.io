@@ -12,3 +12,49 @@ Tree: scratch `b4c`, branch `ledgers-build-ship2` (base ec1c8a6764). Scratch: `v
 ## The pins, byte for byte
 
 The five files in the tree equal the downloaded relay byte for byte (cmp), and their sha256 are the letter's and the plan's (4.2): RULE.md ca6bd38f…, receipt-v1.json 0332351b…, read-word-tags-v1.jsonl 9fac39df… (57 lines), stroke-facts-v1.jsonl ff65b5de… (16 lines), counts-v1.json c24d35e0…. The receipt's `outputs` name the two lists, the counts and the rule by the same bytes and sha256. The receipt's 39 `lattice v12 <book>` inputs equal the positions files the round projects from (`dl-v2/v2/corpus/lattice-v12`) at 15 of 15 books the 28 places stand in.
+
+## The review of what was left (08:45 to 09:00 UTC)
+
+Read as someone else's work: the pin, `read-words-v1.mjs`, the apply, the check, the page change, E7, the round's step, PIPELINE.md.
+
+Holds as left:
+- The pin names the five files by the letter's bytes and sha256; `pieces_held` names Psalms 10:10 at the list's own position (i 1008, j 1131); `named_readings` are the list's own pieces for Job 38:1 read word 1 («from») and I Chronicles 27:12 read word 1 («of the/ Ben»), and the tool refuses a pin that names any other.
+- `placesOf`: 28 places, 57 read words, 56 main tags, each the tag of its read word's one core piece; 14 NEW (13 to lay, Psalms 10:10 held because its piece spells חיל where the read word is חל), 14 TIES (36 pieces, tied in order).
+- `findPlace` compares letters and keys, not surfaces (the 7 regions whose surface drops the maqaf the line keeps).
+- The apply refuses every state the plan does not name: other tags, other pieces, a held place carrying pieces, a tag on a read word of several no line names in any zone on disk, a zone projected from other lattice positions than the lane read. It is idempotent by construction (nothing to write when every place carries the list's), has `--dry`, types its write.
+- The page: `tagHolder(word, key)` takes the tagged region whose key is the asked key, else the first, as before; with one tagged region (every word outside the 28 places; E7 holds it) the answer is the old one. `coreTagsAt` answers a read word of several by its own region. So the page moves nothing where no read word carries a tag.
+
+Changed by me:
+- E7: the stopped builder's clause excluded the read words from the halves, and with them dropped one refusal: a tag on the word itself beside tagged read words passed. It is refused again (`w.tg && (halves.length || own.length)`), and E7's header says so.
+- `strokesAgainst` now also holds each stroke line's `among_the_listed_places` to the list of read words (both ways); the apply and R2 call it with the places.
+- Headers: `apply-read-words-v1.mjs` declares GUARDS and LEDGER (it said RULE), `read-words-v1.mjs` declares GUARDS beside its LEDGER.
+- PIPELINE.md: the note says the pin may hold a place's pieces back.
+
+The plan's card figures (4.2: 1,074 withheld, 1,562 kept) were measured on store 4d1357b26ca5, before v190's facts. On this tree's store (v1.1 facts) the same recount gives 1,073 and 1,563 (3,209 rows under the 56 read words' keys; 573 of no entry either way). The one row: «Lo-» (לא, rank 24, M4) under I Samuel 20:2 read word 1 (H3808), facts n [H3818, H3819] before v190, [H3808, H3818, H3819] after: v190's largest mover. `fin/gate-two-stores.mjs`.
+
+## The proof, from the commit (09:00 to 09:25 UTC)
+
+1. The round's zone tools over the 15 books the 28 places stand in (the stopped builder's `zones-step.sh`, which calls bake-witnessed-order, regloss-zone and project-lattice-v12 as `round-v1.sh` does; stamp 2026-11-15; log `fin/logs/zones-step.out`). All 30 files (15 zones, 15 sidecars) came out byte for byte the shipped main's (46bbbf7d50). So the state before the apply is the live state of those books.
+2. `emit-zone-store-v1` (the page checks a zone's bytes against its pin).
+3. Before, with the old page (the commit's zone.html, which is the shipped one): the resting lines of the 15 books baked one book at a time. All 15 equal the shipped main's records line for line (sections, counts, sources); only the zone store differs among the files they read (other books' pins) and, in 5 books, the commentary sidecar the page also asked for (not re-glossed here). So the shipped records are the before.
+4. The apply, `--dry`: 57 lines, 28 places on 15 zones, 57 read words, 56 with a main tag; tags 56 to write at 28 places; pieces 13 places to lay (41 pieces), 14 places whose own pieces are the list's (36 pieces), 1 held back (Psalms 10:10); strokes 16 of 16 equal relay v179's list, nothing to write.
+5. The apply: 15 zones written. Again: «nothing to write», every zone the same bytes; again with another stamp (2026-11-16): the same. The 15 applied zones equal the stopped builder's applied zones byte for byte.
+6. `emit-zone-store-v1`; then the new page's resting lines, one book at a time.
+7. `fin/moved-at-rest.mjs`, the shipped records against the new ones, every word entry: 230,597 entries in 15 books, 13 moved, all 13 at listed NEW places, 0 elsewhere. At the 14 NEW places 29 read words: the list's pieces change 21 of them; 19 change on the page (Psalms 10:10's two held, its line «common + broken» as before). The 14 TIES places: 0 moved. At all 28 places each read word's cut of the line is the recorded line (before: the zone's table reading of each read word; after: its pieces).
+   - Job 38:1 «manna + the + tempest» → «from + the + tempest»; Job 40:6 «manna + tempest» → «from + a tempest».
+   - I Chronicles 27:12 «to make bricks + jaminites» → «of the + Ben + jaminites».
+   - Proverbs 21:29 «Jabin, the name of two Canaanitish kings + archer» → «he considers + way + his».
+   - Nehemiah 2:13 «them + X abroad» → «they + were broken down».
+   - Each moved line is now credited PIECE:TAHOT. The full list: `fin/logs/moved-at-rest.out`.
+
+## The checks (09:25 to 10:00 UTC)
+
+- check-read-words-v1: all 7 laws green. 28 places on 15 zones; 56 read words carry their main tag, 1 none; 13 places laid (41 pieces), 14 tied (36 pieces), 1 held (Psalms 10:10); 27 lines are their pieces, Job 38:1 read word 1 «from», I Chronicles 27:12 read word 1 «of the + Ben», the held place credited to no piece; 56 read words asked their own entry on 28 cards, 1,073 rows of another entry withheld, 1,563 of their own entries stand, the one with no tag asked none.
+  - Red, my new R2 clause: two stroke lines' `among_the_listed_places` flipped (Jeremiah 48:20 made false, Joshua 18:19 made true) and the pin renamed to the new bytes: the apply refuses (the receipt's sha256, and both flags, 3 faults, nothing written); the check R1 and R2 red, R3 to R7 green. Put back byte for byte (`fin/wrong-flags.py`).
+- check-paseq-place-v1: P1 to P6 green (16 places on 12 zones).
+- check-entry-gate-v1 `--ledger` v1.1 `--lattice`, the served list narrowed for the run to the 15 projected books (the other 24 zones of this base still name ledger v172 in their sidecars, which the round's projection mends, as the shipped main shows): E1 to E14 green. E7: 208,875 tagged places in 15 zones, 5 lists, 672 on a half of a pair, 56 read words carry their own; each lattice tag the lattice's core tags at 15 of 15 books. E8 green.
+  - Red, E7: four wrong states at once (`fin/wrong-e7.mjs`): 1a the word itself tagged beside its read words (Job 38:1; such a word has no key); 1b the same with a key given (Job 40:6); 2 a pair of one read word with both halves tagged (Psalms 10:10, the word before); 3 a read word's tag made a list (Jeremiah 14:14); 4 the record of the read words off by one (Nehemiah). Mine: 6 faults (3, 1a twice, 1b, 4, 2). The stopped builder's clause: 4 faults, 1b not among them. So the builder's E7 let a tag on the word stand beside tagged read words wherever the word has a key; at a real place written one way and read another the word has none, and the old clause «not a tag on a word with a key» still caught it.
+  - The first wrong run crashed instead of reporting: E6's key loop asked the store for the rows of `undefined` when a tagged form has no key (`rowsOf(h.k)`). Guarded (`const keys = h.k ? [h.k] : []`); the fault is the one E7 already says.
+- The kq checks, on the 15 books (served list narrowed for the run): check-kq-carried-v1 122 ok; check-kq-graded-v1 3 ok (15 sidecars, 283 places with a stem: 273 to the read half, 10 read as several words); check-kq-declared-weld-v1 11 ok (its sites: Exodus 4:2:4, a listed TIES place, and I Chronicles 23:9:3); check-kq-presentation-v1 SKIPPED (no MAM presentation bundle on this machine).
+  - check-kq-lead-follows-switch-v1 (it takes the first served book with pairs: Deuteronomy): 124 ok, 1 FAIL: «K1 both halves of every pair are printed and pressable · 2,2,2,2,2,2,3». The seventh pair is Deuteronomy 33:2, a read form of two words, drawn as three halves (one per read word) since the owner's two branches of 30 October. The same red on the before state (the old page over the zone before the apply). Not this ship's: the check's K1 counts exactly two halves and has only ever been run on Amos, whose two pairs are of one read word each. Every one of the 15 books holds such a pair.
+- check-default-picks-v1 `--node` with picks v1.2: D0 to D19 green, D3 among them (the index against the new records of the resting lines).

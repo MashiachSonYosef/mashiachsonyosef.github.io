@@ -1,0 +1,418 @@
+[
+ {
+  "lens": "review:data",
+  "severity": "should-fix",
+  "file": "reader/tools/check-same-product-v1.mjs",
+  "line": 124,
+  "finding": "S1 --expect reads only the sections both builds happen to have built: about the first ten verses of the book and of each sampled chapter (the scroll at 122-125, `common` at 185). An owed line missing, or an unowed line moved, farther down a sampled chapter passes green, and on the gate's default sample S1 reaches about 3 of the 232 owed places and neither neighbor, so the integration note's «the gate (its S1 owes the 232 and the 2 neighbors)» is not what the gate will check.",
+  "scenario": "Fault copy A: the page served an index without II Kings 11:18:9's STEP words (11:18:9 stays bare, 11:18:8 stays «<obj.>»); S1 on ii-kings 1 and 11 with --expect: «ok ... 1,138 lines compared on 2 pages · 0 fill(s)». Fault copy B: held I Samuel 14:49:6 given STEP's words (the page prints them); S1 on i-samuel 1 and 14: green, 1,094 lines. The same faults inside the stretch go red (A2 II Chronicles 11:11:3, B2 Psalms 102:4:6, C I Samuel 18:7:7). Fix: build the sampled chapter whole on both builds (window.__materialise), or say how many owed places of the sampled chapters were not reached; and hold all 39 books by a node law over the re-read records (see the D5 finding).",
+  "verified": "v61/data/logs/s1.fault-a-owed-line-missing.log and s1.fault-b-unowed-line-moved.log (green on the fault); built-sections.log (ii-kings 11 on old and new, 3 readings: built s0..s305, 11:18 is s313; i-samuel 14:49 is s344 and ruth 3:14 is s58, neither built); s1-default-sample-coverage.log (sample amos, exodus, haggai, ii-chronicles, job, lamentations, nehemiah, ruth, zephaniah: 8 owed places stand in a sampled chapter, Job 1:4:11, Nehemiah 7:4:4 and Zephaniah 2:8:4 in the built stretch; II Chronicles 11 and II Kings 11 are not sampled). The data part's run of 15 November compared 5,642 lines on the same two ii-kings pages under load where mine compared 1,138, so the stretch also varies with the machine. Not rated blocking: the reading limit is S1's own on main too, and the 232 and the 2 neighbors are proven over all 39 books by three other roads (below).",
+  "suggested": null
+ },
+ {
+  "lens": "review:data",
+  "severity": "should-fix",
+  "file": "reader/tools/bake-default-picks-v1.mjs",
+  "line": 821,
+  "finding": "The receipt's new picks_printed says of STEP «made 65», and its rule («made is the least the card makes, pills less printed_whole_by_a_row_it_names the most») bounds it at 65, but the card makes STEP's pill at all 232 places where STEP's words print: every row those picks name stands under another key than the word's, which the card never looks up. The STEP-as-second cells (line 827) count every step_words place the first leaves (MACULA 17, UBS 64, BDB 542 pills) where STEP's words print at 0, 2 and 104 of them; no check holds either new measure.",
+  "scenario": "Ruth 3:14:2 at rest: the pick names [another spelling's key, rank 1, M4], the card's only pill is the made «feet + his» {M4}; the receipt counts it under names_a_row_of_its_own_source and printed_whole, not under made. The ship notes would publish «STEP: 1,015 pills, made 65» where a reader meets 232 made pills. Fix: count STEP's cells at the places the record draws bare, and count a named row only where it stands under a key the card asks (the word's own or a piece's); say «may fill» in the STEP-as-second cells or count what prints.",
+  "verified": "v61/data/picks_printed.py reproduces all seven cells of the receipt from the ledger, the zones, the records and the store, and counts the bare-only variant (step.step 232 pills, 18 naming no row; macula.step 0; ubs.step 2; bdb.step 104). made_at_rest.py: of the 232, 18 name no row, 214 name rows only under another key than the word's, and the store holds no row under the word's own key printing those words at any of the 232. Browser: logs/probe-ruth-made.log, probe-step-words.log (one pressed pill {M4} at Ruth 3:14:2, 1:19:8, I Samuel 18:7:7, 21:14:7, Daniel 10:1:12).",
+  "suggested": null
+ },
+ {
+  "lens": "review:data",
+  "severity": "nit",
+  "file": "reader/tools/bake-default-picks-v1.mjs",
+  "line": 1053,
+  "finding": "The receipt, the bake and the check say a place where STEP's line rests bare «counts in no fill» (bake 55, 95, 991, 1053, 1144; check-default-picks 35, 43 and D3's message at 748, which also says «counted in no has»). The index counts such places in the fills between the other sources, 12 counts at 6 of the 7 held bare places, and the page prints those lines, so the counts are right and the sentence is not.",
+  "scenario": "Psalms under UBS with MACULA chosen as second: 44:15:6, 57:10:5 and 102:4:6 read «among», «among», «like» [M3, filling out UBS]; Job 18:15:3 under BDB with MACULA reads «from nothing» [M3]. The index counts them: Psalms fills.ubs.macula 2,776 (2,771 without the five), ubs.bdb 368 (367), bdb.macula 10,752 (10,748); Job bdb.macula 4,466 (4,465), bdb.ubs 3,287 (3,286). Say instead: it counts in no fill of STEP's or by STEP, and not in has.step.",
+  "verified": "v61/data/derive.py (the sentence read strictly) differs from the index at exactly those five cells; derive2.py (only STEP's own pairs left out, as the code at bake 787-793 and check countBook do) equals the index in all 39 books. Browser: logs/probe-held-bare.log.",
+  "suggested": null
+ },
+ {
+  "lens": "review:data",
+  "severity": "nit",
+  "file": "reader/tools/check-default-picks-v1.mjs",
+  "line": 789,
+  "finding": "The sign rule the round put into S1 was not carried into this check: its model of STEP's words is packed(t) (242, used at 789 and in layerAt at 937), so at the nine whole-piece-sign places it owes «<on> + thousands + his» where the page draws the hidden sign's gap. It is latent in D5, D7 and D8 because w1-w3 (ii-samuel, obadiah, nahum) hold none of the nine; D5's node line, a side line that judges nothing, will report them wrongly after the round.",
+  "scenario": "Run on the ship tree's re-read records, D5's own test says of the 232: 0 draw no line, 223 draw STEP's words, 9 «draw another line» (Deuteronomy 3:25:13, Ezra 4:12:15, I Samuel 18:7:7, 21:12:17, 21:12:19, 29:5:13, Judges 18:5:7, Leviticus 19:4:4, Zechariah 5:8:12). Should the ledger change which works are w1-w3, D5 and D7 would go red on a correct page. Fix: draw STEP's words as S1's drawnStep does, and make the node line a law over all 39 records once they carry the defaults (no step_words place drawn bare; each drawn under M4 as drawnStep of its words).",
+  "verified": "v61/data/d5-after-round.mjs (the check's own packed and blank cut out of the file, run over scratch rt's records, read only). I found no law in the changed checks that holds all 39 books' resting lines to the owed set; D5's page law reads w1-w3 and S1 its stretch.",
+  "suggested": null
+ },
+ {
+  "lens": "review:data",
+  "severity": "nit",
+  "file": "reader/tools/round-v1.sh",
+  "line": 136,
+  "finding": "The round bakes the defaults after the zones step and before the lines step, so the receipt it writes says every record of the resting lines it read was of another zone (bake 501-502). The receipt that ships would carry that sentence for all 39 books although the 15 places hold in the re-read records.",
+  "scenario": "Scratch rt at 06:47 UTC, the round still on its chain step: data/default-picks-receipt-v1.json (written 06:38:57, after ruth.bin 06:38:12 and before ruth.json.gz 06:42:08) reads step_line_rests_bare.records {read 39, of_the_zone_on_disk 0, of_another_zone: all 39 books}; in pt it reads 39 of 39. Running the defaults step once more after lines rewrites only the receipt.",
+  "verified": "Read only in rt: the receipt's records block and the three file times. v61/data/logs/bake-dry-with-ship-records.log: pt's bake with --records pointing at rt's re-read records and --dry: the same 15 places, the same runs, «1 of 47 files would change» (the receipt alone; the index and the 39 book files stand).",
+  "suggested": null
+ },
+ {
+  "lens": "review:data",
+  "severity": "nit",
+  "file": "reader/data/default-picks/PIN.json",
+  "line": 4,
+  "finding": "The pin now names the v189 letter by its store path, but it names no letter for its own three relays (v180, v180.1, v195), where every other pin in the tree names its relay's letter. A search for the v195 letter finds nothing in the tree.",
+  "scenario": "grep for FOR-ELIJAH-v195 or FOR-ELIJAH-v180 over reader/data, reader/tools and zone.html returns nothing; the note says in prose «the letter of relay v195 names receipt-v1.2». The letter stands at r2:mishkan/v2/letters/moses-default-picks-v1/FOR-ELIJAH-v195.md (the downloaded copy is under scratch dl-v195/v2/letters/moses-default-picks-v1/).",
+  "verified": "grep of \"letter\" across data/*/PIN.json: made-spaces, names, paseq-place, pointer-entries, row-entries, rulings, sense-openings, stems-extension and both word-senses pins carry one; data/default-picks/PIN.json only at line 126, inside held_split_v189.",
+  "suggested": null
+ },
+ {
+  "lens": "review:data",
+  "severity": "nit",
+  "file": "reader/tools/check-default-picks-v1.mjs",
+  "line": 1683,
+  "finding": "The fault harness (H1-H10) holds no fault for three things the third round changed: D12's MACULA-piece places, D13's own-line sample, and D3's places where STEP's line rests bare. Each does go red on its fault, but only by hand-made fault trees, so the plan's rule that every law is shown red is not kept by the tool for them.",
+  "scenario": "A later edit that drops macPieces from atRest, or the own-line sample from d13, leaves --self-test all green. Three more faults would close it: the pieces' line always naming STEP; STEP's picks 2..n dropped from its own line; an index whose has.step counts a place the record draws bare.",
+  "verified": "--self-test on the tree: H1-H10 all as they should (logs/check-default-picks.self-test.log, 4 min 20 s). Fault tree fault-d12-d13 (two lines of zone.html changed): the full check ends «2 FAILED», D12 at ii-samuel 16:23:8 and 18:20:18 («the line of the pieces begins here STEP reads»), D13 at obadiah 1:11:10, ii-samuel 1:11:3 and the two MACULA-piece places, 24 other laws ok (logs/check-default-picks.fault-d12-d13.log). Fault tree fault-d3 (Psalms has.step set to its places, held 102:4:6 given STEP's words): --node ends «1 FAILED», D3 naming both (logs/check-default-picks.fault-d3.log).",
+  "suggested": null
+ },
+ {
+  "lens": "review:data",
+  "severity": "nit",
+  "file": "reader/zone.html",
+  "line": 3759,
+  "finding": "For the page lens: the hold keeps STEP's half reading off the line at the 46 places, but the card's STEP line still leads with it. STEP's second reading of the word is listed as a later numbered pick with no note, so it reads as an alternative, not as the other half.",
+  "scenario": "Psalms 44:15:6 at rest (the line bare, held): the card says «here STEP reads not · 2 «people» (another number) · 3 «peoples»»; 102:4:6 «here STEP reads like · 2 «a hearth»»; I Samuel 14:49:6 «here STEP reads and/ Malki- · 2 «Shua»»; Job 18:15:3 «here STEP reads because/ not · 2 «[belonging] to/ him»». All 46 held places carry exactly two readings (kind r) in the ledger. A note on a second reading («STEP reads this word as two») would say what the source does.",
+  "verified": "logs/probe-held-bare.log and probe-step-words.log (browser, 8921); two_readings.py: 46 of 46 held places have two kind-r picks, and all 1,015 step_words places, the 232 among them, have one.",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "blocking",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 9340,
+  "finding": "A reader's ruling is painted over by the default source as soon as the ruled word's card is opened (or stands open) under another default than the one it was ruled under, at every word whose place has a set of several pieces. The card opens on another division (the whole form under MACULA, UBS, BDB because of `!defaultAt(word)`; the set's division under STEP), finds no pick there, and the open's own paint (lines 9832-9841) writes that division's reading on the line; the label still says «reading · at every place this form stands». Check D9 never opens a ruled word's card after a switch, so no check can see it.",
+  "scenario": "Ruth at rest: open 1:1:1, press «happen»: the line reads «and + happen» at 1:1:1 and 1:1:5. Press MACULA: both lines keep the ruling. Open the card at 1:1:5: its line becomes «that there was» [M3], MACULA's pill is pressed, 1:1:1 still reads «and + happen» (two lines for one ruled form). With the card left open while MACULA is pressed (a row pill does not close the card) the open word flips at once to «and happened». The other way: under MACULA press its own pill «and happened» at 1:1:1, press MACULA again (STEP), open 1:1:5: the line becomes «and + it was» [PIECE:TAHOT] with «beacon» pressed. Daniel 1:1:1 ruled «year» under UBS does the same back on STEP. A one-piece word (Ruth 1:1:3 «vindicate») keeps its ruling. Such sets are about half of all words: Ruth 675 of 1,296, II Samuel 5,316 of 11,032, Psalms 8,828 of 19,583.",
+  "verified": "In the browser on the tree, by evaluate-clicks at 8921 and by real pointer presses at 8922/reader (fonts loaded): probes/ruling-across.mjs, ruling-open-card2.mjs, ruling-tap.mjs; outputs ruling-across-ruth-macula.json, ruling-open-card-ruth.json, shots/ruling-lost-ruth-1-1-5.png under v61/page. Live (8914) does the same only through the rail's «the line reads» row, which is hidden at rest (ruling-across-live-ruth.json): the four pills put an old fault on the main row. D9 read at tools/check-default-picks-v1.mjs 1357-1430: it rules, switches and reads lines, and opens only unruled words afterwards. Suggested: let a ruling decide the division the card opens on (keep the cut with every pick), and do not repaint a ruled line at open.",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "should-fix",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 5801,
+  "finding": "Under MACULA and UBS the fill leaves one half of TAHOT's two-word readings standing alone. Where TAHOT writes a reading across two words («and/ Abed-» + «-nego», «from/ Beth-» + «-lehem», «some of/ [the] deli-» + «-caci[es] of») and the source has a line at the first word only, the first word takes the source's line and the second keeps TAHOT's half as «the line as it rests».",
+  "scenario": "Daniel under MACULA, 2:49:13-14: «and» «-nego»; 1:5:7-8: «from» «-caci[es] of». Under UBS: «Abednego» «-nego»; «food» «-caci[es] of». Ruth 1:1:10-11: «of» «-lehem» (MACULA), «Bethlehem» «-lehem» (UBS). Amos 5:5:16-17: «and» «-el», «Bethel» «-el». II Samuel 10:6:15-17 under UBS: «Aram Zoba» «Aram» «Zobah». At rest every one of these is whole.",
+  "verified": "On the page with every section built (probes/split-count.mjs, split-count.json): pairs drawn with a lone half: at rest 0 (whole: Ruth 4, Amos 3, Daniel 16); under MACULA 4, 3, 16; under UBS 4, 3, 16; under BDB 0. From the data (probes/split-names.mjs): TAHOT writes 313 such pairs in the 39 books, and exactly one of the two words has the source's line at 195 (MACULA), 305 (UBS), 65 (BDB) of them; fewer are drawn so where a run's own whole line stands (Amos 3:14 «Bethel», 3:2 «therefore»). The picks at these places read from the book files (MACULA «and» and nothing at Daniel 2:49:13-14). Suggested: a half takes the source's line only where the source reads both words, as a joined run does.",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "should-fix",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 6174,
+  "finding": "A ruled line whose reading was a default source's own made pill is withheld from the export («the reading on the page does not match any record in the store») at every other place its form stands, and at the ruled place too once the default changes. The made row (line 7975) exists only in the pool of the place and layer it was made for, and the export asks the place's pool for the M the line's chip names.",
+  "scenario": "Ruth under MACULA: at 1:1:1 press MACULA's own pill «and happened» (it rules 1:1:1, 1:1:5, 1:19:7, 2:17:9, 3:8:1). Export verse 1:1 (hebrew + english): 1:1:1 is cited from MACULA, 1:1:5 is «1 reading was not exported». Export 1:19: 1:19:7 the same. Press MACULA again (STEP): the lines keep the ruling, and the export of 1:1 now withholds both 1:1:1 and 1:1:5.",
+  "verified": "probes/export-ruled.mjs; export-ruled-ruth.json and exports/ruled-under-macula-ruth-1_1.md, ruled-under-macula-ruth-1_19.md, ruled-back-on-step-ruth-1_1.md (their Withheld sections quoted above).",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "should-fix",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 11056,
+  "finding": "A pointer withheld by item 12's gate (7716-7721) is counted in «N given as a name by its source, withheld» (11056; 10467 says «their own source gives it as a name»). Its own source gives the pointer as a form of another word; the name is the entry the lane's map resolved it to, so the card states the site's inference as the source's word (the no-claims note). For 4 of the 34 marked pointers the source's words are a grammatical form of a homograph, and the withheld record is the source's own reading of the very word.",
+  "scenario": "Genesis 32:29:11 (the verb «you have struggled», not a name place): Wiktionary's row «second-person masculine singular past (suffix conjugation) of [sará]» is withheld and the card says «2 given as a name by their source, withheld» (live says 1 and printed the pill as «a female given name, equivalent to English Sarah (…)»). Genesis 42:16:1: «singular form of … with third-person masculine singular personal pronoun as possessor» withheld as the name «Salah».",
+  "verified": "probes/names.mjs (names.json), tree against live; data/form-of-pills-v1.json holds 34 resolutions with name: 1, four of them kind FORM with a grammatical relation (Sarah, Salah, «G-d», Levi). Suggested: at a non-name place print such a pointer as itself, unresolved (the name's English is what the gate withholds), or count it apart in true words.",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 7718,
+  "finding": "Item 12 makes the card at every non-name place wait for data/form-of-pills-v1.json (628,046 bytes, 106,796 gzipped) before it draws any pill (`if (!FORM_OF) await formOfReady()`), where live draws at once and resolves pointers when the map lands.",
+  "scenario": "Ruth 1:1:3 opened right after load with the map held back 12 s: the tree shows 0 pills at 1.5 s, 3 s and 6 s and 67 once the map lands; live shows 67 at 1.5 s. With the map refused the tree draws at once, ungated.",
+  "verified": "probes/formof-wait.mjs (request interception), output quoted.",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 5365,
+  "finding": "Item 5's kept credit goes with the ruling to every place the form stands and across later switches: the chip title «MACULA’s own reading at this place, chosen on the row of sources» stands where MACULA reads other words, and after the row is back on STEP. The chip is not drawn on the line (display: none), so the false words reach the line's record and the checks, not the eye.",
+  "scenario": "Ruth ?default=macula: at 1:1:1 press «and happened». The chip at 1:1:5 (MACULA reads «that there was»), 1:19:7 («and he was») and 2:17:9 («and was») carries that title; press MACULA again and it still does.",
+  "verified": "probes/press.mjs; press-ruth-macula-vayhi.json (linesBefore, linesAfter, linesThen).",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 10580,
+  "finding": "After a made pill is ruled and the default changes, the card at the ruled place shows the ruling as its reading but presses another pill: the made row is not in the new layer's pool and the selection falls back to the default's own pill.",
+  "scenario": "Ruth at rest, 1:19:8: press STEP's own pill «when + came + they»; press MACULA; open 1:19:8: the reading and the line are «when + came + they», the card's one pill is «when came they» (MACULA 1), pressed. Under MACULA still, after «and happened» is ruled at 1:1:1, the card at 1:1:5 reads «and happened» with «that there was» pressed.",
+  "verified": "press-ruth-step-1198.json (cardThen) and ruling-across-ruth-macula.json (reopenUnderSrc).",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 2549,
+  "finding": "Three sentences still stand against the lead's rule. (a) The reset pill's title says «the line from STEP with a second source chosen for each book»: under v1.2 no book has a second for STEP (the receipt's second_source.step: none 39). (b) Under another order the STEP pill's title (15174) reads «…press to read it from STEP here». (c) The rail's «second source» row (4189) still takes a source that fills nothing under STEP; the lit pill then reads «>99.9% · then MACULA» (15183) and the note «Where STEP has none, MACULA fills out 0%», with no chooser left in the note to undo it.",
+  "scenario": "(a) Hover reset in any book. (b) Ruth ?rail=all, set «the line reads» to «oldest first», hover STEP. (c) II Samuel ?rail=all: press MACULA on the «second source» row, then press STEP to open the note.",
+  "verified": "probes/small-words.mjs and rail-second.mjs (titles and notes quoted from the page); data/default-picks-receipt-v1.json second_source.",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 1803,
+  "finding": "A source's other picks on the card (`.r-more`) are that source's words, painted in the page's own purple (--muted, argaman-dim) together with the page's «· 2» and «(another number)»; the first pick beside them wears the reading's blue.",
+  "scenario": "Ruth 3:14:2 under BDB: «here STEP reads feet/ his» is blue and «· 2 «foot/ his» (a meaning variant, K)» is purple.",
+  "verified": "probes/colors.mjs: computed color of `#hud .r-dflt b` is --tekhelet and of `#hud .r-dflt .r-more` --argaman-dim.",
+  "suggested": null
+ },
+ {
+  "lens": "review:page",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 17929,
+  "finding": "Item 10's disclosure attributes are on the row's pill only. The Menu's mirror copies aria-pressed, the words and the title, so the lit STEP in the Menu opens and closes the note with nothing said of it; on a phone that note is at the top of the page.",
+  "scenario": "Ruth at 360 px: open the Menu and press STEP twice. The row's pill goes aria-expanded false, true, false; the mirror has no aria-expanded or aria-controls at any point.",
+  "verified": "probes/small-words.mjs (menuAtRest, menuAfterStepPressed).",
+  "suggested": null
+ },
+ {
+  "lens": "review:merge",
+  "severity": "should-fix",
+  "file": "/home/user/mashiachsonyosef.github.io/wip/2026-11-14/the-default-toggles/fix-round-3/integration/INTEGRATION-2026-11-15.md",
+  "line": 19,
+  "finding": "The reset timings are not of a reset after a ruling: no ruling was made in any of the four runs, so the handler never laid a line again, and the conclusion (the 47 to 70 seconds were contention; reset is as fast as live's) does not follow. With a ruling and every section built, reset on II Samuel is about 11 to 14 s on the tree and 36 to 60 s on live, on a quiet machine too: the tree is faster than live by tens of seconds, because of the one shared measuring range (zone.html:11744), not slower and not equal.",
+  "scenario": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v59/integrate.sh line 27 passes «live» / «tree» as the probe's third argument; probe-reset-time.mjs uses that argument as the word's address (location.hash), so no card opens and reset-timing.log says «ruled null» four times. What was timed (1,076 ms live, 858 ms tree) is a fresh visit's reset: framed off and numbering on over the built sections (a fresh visit stands with framed on and numbering off, so reset is pressable, on live too); the 3,530 ms run is that plus one repaint under STEP. Runs with a ruling («death» at II Samuel 1:1:3): tree 11.7 to 14.1 s against live 41.5 and 43.6 s (v55/page/final-batch.log); and at load 0.4 to 3.5, tree 10.9 to 11.7 s against live 35.8 and 60.4 s (v55/integrate/timings/timings.log). The page part's profile (v55/page/reset-profile3.log) puts 30 to 50 s of the old handler in node removals with thousands of live ranges, on live as well.",
+  "verified": "Read v59/reset-timing.log, v59/integrate.sh and v54/integrate/scripts/probe-reset-time.mjs. Replayed the probe's own steps on Ruth with the page's state logged at each step, not timed (v61/merge/probes/reset-state.ruth.tree.rest.log: ruled null; reset not disabled before the press; one click fired). Read a fresh visit on both builds (v61/merge/probes/reset-at-load.tree.log and .live.log: framed pressed, numbering not, reset pressable). Read the four call sites of the shared range: each reads its rects before the range is set again. Did not re-time.",
+  "suggested": null
+ },
+ {
+  "lens": "review:merge",
+  "severity": "should-fix",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 2531,
+  "finding": "At a phone's width the four default pills (331 px wide) take a row of their own and push reset alone onto a fourth row: the row of pills grows from 100 to 209 px, and check-contents-shut-v1 («the first word of the book is on screen without scrolling») is red on the tree and green on live. This is a third red that the integration's «all green but two, both known» does not name, because that check was not among the ones run.",
+  "scenario": "412x915, zone.html?b=amos&commentary=on: the first word of Amos stands 920 px down on the tree (857 on live), past the check's 915. Psalms 841 (live 732); Obadiah with commentary 905 (live 842). As a reader opens Amos or Ruth: 855 px against 746. Rows on the tree: [English, framed, card numbering] [concordance, word senses] [STEP MACULA UBS BDB] [reset]; on live reset shares the second row. Seating reset beside the sources' group, or before it, gives back one row.",
+  "verified": "Ran tools/check-contents-shut-v1.mjs with SERVE_PORT=8921 (exit 1, 1 FAILED on Amos) and with SERVE_BASE=http://127.0.0.1:8914/reader (exit 0): v61/merge/checks/check-contents-shut-v1.tree.log and .live.log. Measured each pill's row on both builds with v61/merge/probes/top-height.mjs (top-height.amos.log, top-height.amos-plain.log, top-height.psalms.log, top-height.ruth.log). The lead's suite on the ship tree shows the same red (scratchpad/v63/suite.log line 24).",
+  "suggested": null
+ },
+ {
+  "lens": "review:merge",
+  "severity": "should-fix",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/tools/check-card-opens-on-the-line-v1.mjs",
+  "line": 93,
+  "finding": "The wait this change added can only end by its 30 s timeout at rest, because the page says its picks are ready only after a card has asked for the book's file. 40 of the check's 46 page loads stand under STEP, so the check went from about 275 s to about 1,500 s and the suite stops it with no verdict, whatever its laws would say. check-ruled-equals-first-paint-v1.mjs:45 carries the same wait on its two loads at rest (60 s).",
+  "scenario": "node tools/run-checks-v1.mjs with its default --timeout 600, or the lead's 1200: check-card-opens-on-the-line-v1 «no verdict in 1200 s; stopped», counted FAILED. A real fault in its laws, including the three default-source settings this change added to it, would read exactly the same in the suite. Fix: wait only where a source other than STEP is in force (d.book && d.on !== \"step\"), as tools/resting-lines-v1.mjs line 132 does.",
+  "verified": "Probe on Amos at rest (v61/merge/probes/ready-at-rest.amos.log): window.__default.ready is false 2 s and 12 s after the page settles and true 3 s after the first card opens. The check's own counts: 23 trials x 2 passes; 20 trials under STEP x 2 x 30 s = 1,200 s. Durations in the logs: 275 s and 273 s before this change (scratchpad/v58/suite.log, v60/suite.log), 1,501 s run alone (v59/summary.txt), FAILED at 1,200 s (v63/suite.log line 50).",
+  "suggested": null
+ },
+ {
+  "lens": "review:merge",
+  "severity": "should-fix",
+  "file": "/home/user/mashiachsonyosef.github.io/wip/2026-11-14/the-default-toggles/fix-round-3/integration/INTEGRATION-2026-11-15.md",
+  "line": 15,
+  "finding": "«41 the same» is true of the pills only. All 48 cards differ from live in their text at rest: the place line now names STEP and says «· on the line», and a line is added for each other source. The second review said this of the earlier report (BUILD-REVIEW-2-2026-11-14.md line 128) and the new report repeats it.",
+  "scenario": "Ruth 1:1:7, counted «same»: live «here the source reads in the + land»; tree «here STEP reads in the + land · on the line», «here MACULA reads in the land», «here UBS reads earth / ground / land / country / region / area». Psalms 1:1:4 and Amos 1:1:17 the same way. The live audit and the ship notes should say that the card changes at rest at every word that is not a pair.",
+  "verified": "v54/integrate/scripts/cards-vs-live.mjs compares only each pill's text, pressed state and credit, and prints the withheld notes. Opened nine cards in fresh contexts on both builds with v61/merge/probes/cards-both.mjs (cards-both.1.log, cards-both.2.log): the seven that differ and two counted the same.",
+  "suggested": null
+ },
+ {
+  "lens": "review:merge",
+  "severity": "should-fix",
+  "file": "/home/user/mashiachsonyosef.github.io/wip/2026-11-14/the-default-toggles/fix-round-3/integration/INTEGRATION-2026-11-15.md",
+  "line": 23,
+  "finding": "The gate does not owe «the 232 and the 2 neighbors»: it samples 18 chapter pages, which hold 8 of the 232 places, none of the 9 sign-gap places and neither neighbor line. The all-lines comparison that carries the claim was run before the round, belongs to no step of the round, the suite or the gate, and exits 1 on its own stale expectation (v54/integrate/scripts/rest-vs-live.mjs line 50 owes the plain packing at the 9 places; two of the nine do not begin with the sign: Deuteronomy 3:25:13 «and/ <the>/ Lebanon», Ezra 4:12:15 «and/ evil/ <the>»).",
+  "scenario": "The lead's gate on the ship tree: «9,356 lines compared on 18 pages · 5 fill(s) and STEP's words at rest on them, 0 gap(s) beside them» (scratchpad/v63/gate.log). A line moved by the round's re-projection in one of the other 30 books, or outside the sampled chapters, would pass the suite and the gate unseen; the landing plan asks for the comparator over every line after v190's re-projection (LANDING-PLAN.md, ship 1, MOVES AT REST). The round's own records make that cheap: diff data/resting-lines before and after the round.",
+  "verified": "Computed the gate's sample from the tree as the check computes it (amos 1,5; exodus 1,21; haggai 1,2; ii-chronicles 1,19; job 1,22; lamentations 1,3; nehemiah 1,7; ruth 1,3; zephaniah 1,2). Compared the 40 records of the resting lines before the round (pt, which are main's) with the ones the lead's round wrote on the ship tree: 400,474 lines, 234 differ: 223 STEP's words as the plain packing, 9 with the sign drawn as the gap, 2 neighbors, 0 other (v61/merge/probes/records-diff.py; v61/merge/records-diff.pt-vs-rt.log). So the claim itself holds after the round; the gate is not what shows it.",
+  "suggested": null
+ },
+ {
+  "lens": "review:merge",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/tools/round-v1.sh",
+  "line": 154,
+  "finding": "The round bakes the defaults after its zones step has restamped every zone and before its lines step reads the records again, so the receipt it ships says every record the bake read was of another zone. The index does not move, and no check reads the field (bake-default-picks-v1.mjs lines 501-502).",
+  "scenario": "After the round: data/default-picks-receipt-v1.json, step_line_rests_bare.records = read 39, of_the_zone_on_disk 0, of_another_zone [39 books], though the lines step has by then read every record off the zones on disk. Running the defaults step once more after the lines step rewrites only the receipt (39 of the zone on disk) and leaves the index's sha256 as it is, so no record has to be read again.",
+  "verified": "The ship tree's receipt after the lead's round reads so (scratchpad/rt/reader/data/default-picks-receipt-v1.json; v63/round.log: «wrote 1 of 47 files», index f20c8e4f… unchanged). Reproduced without touching the tree: the bake with --zones on a folder where Joel and Amos are re-projected, written under v61/merge/bake-shadow: the 46 files under default-picks are byte for byte the tree's, and the receipt differs only in of_the_zone_on_disk 37 and of_another_zone [joel, amos]. The bake with --dry on the tree as it stands: 0 of 47 files would change.",
+  "suggested": null
+ },
+ {
+  "lens": "review:merge",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/tools/check-default-picks-v1.mjs",
+  "line": 789,
+  "finding": "The check models STEP's words as the plain packing (lines 789 and 937), where the page draws a piece that is a sign alone as the hidden sign's gap. After the round its side note files 22 places where STEP's words stand under M4 as «another line», and its page model (D5, D7, D15) would owe the sign printed at any of the 9 new places; it passes only because none of its three derived works holds one.",
+  "scenario": "After the round, check-default-picks-v1 --node says «390 draw STEP's words under its credit · 625 draw another line»; read with the page's sign rule the same records give 412 and 603 (13 such places stood before the round; the 9 new ones are Leviticus 19:4:4, Deuteronomy 3:25:13, Judges 18:5:7, I Samuel 18:7:7, 21:12:17, 21:12:19 and 29:5:13, Ezra 4:12:15, Zechariah 5:8:12). The works are derived (ii-samuel, obadiah, nahum); a ledger that moves one of them to a book holding such a place turns the page laws red on a right page. check-same-product-v1 already draws them with its signsOff.",
+  "verified": "Read lines 242, 789, 869-870 and 937. Side note after the round: scratchpad/v63/fast-picks.log line 16 (before: v59/check-default-picks-v1.node.log line 16, 232 / 167 / 616). Recounted from the ship tree's records and index with the sign rule. The page's line at Zechariah 5:8:12 is U+200B then «lead» under M4 (v61/merge/probes/lines-both.1.log).",
+  "suggested": null
+ },
+ {
+  "lens": "review:merge",
+  "severity": "nit",
+  "file": "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt/reader/zone.html",
+  "line": 2549,
+  "finding": "The reset pill's title says the default is «the line from STEP with a second source chosen for each book». Under ledger v1.2 no second is chosen for STEP in any of the 39 books, and by the lead's own rule the layer is the line as it rests, not a line from STEP.",
+  "scenario": "Any book at rest, the pointer over reset: the STEP pill beside it says «100%» with no «· then …», window.__default.second and .auto are null, and STEP's note names no second. The title could say what reset does: the line as it rests (the STEP pill), and every source's second back to the one chosen for the book.",
+  "verified": "Read the title at zone.html line 2549. The page on Ruth at rest (v61/merge/probes/reset-at-load.tree.log: second null, auto null, the pill's share «100%»). check-default-picks D3 on the ship tree: «seconds STEP: none, none in 39» (scratchpad/v63/fast-picks.log line 13).",
+  "suggested": null
+ },
+ {
+  "lens": "verify:data",
+  "skeptic_verdict": "confirmed",
+  "claim": "reader/tools/check-same-product-v1.mjs:124 - S1 --expect reads only the sections both builds have built (about the first verses of the book and of each sampled chapter), so an owed line missing or moved farther down a sampled chapter passes green; on the gate's sample S1 reaches a handful of the 232 owed places and neither neighbor",
+  "reason": "CODE: lines() reads only section.seg that hold .he-text .wb (128-129); the scroll is three steps of 1,000 px (122-125); only sections built on both are compared (185). The same limit stands on main 857a3dc0fb (its lines 50-53, 93). BUILT STRETCH (my built.mjs, S1's own open and scroll): Ruth 3 builds s0..s5 and s41..s55 at all three origins (live main 8914; the ship tree's real chapter pages, served read only on my port 8952; the tree's zone.html at a chapter address on my 8951); Ruth 3:14 is s58. Ruth 1 builds s0..s11; 1:19 is s18. FAULT A (my server 8953: the page served an index without Ruth 3:14:2's STEP words and with 1:19:8 reworded; my probe shows the page then draws 3:14:2 bare and 1:19:8 «when + came + they (a fault)»): the tree's own S1 with --expect on Ruth 1 and 3, the gate's own pages for Ruth: «ok S1 ... 1,036 lines compared on 2 pages · 0 fill(s) and STEP's words at rest on them, 0 gap(s) beside them, each as owed», «all checks passed», exit 0. CONTROL, fault B (Zephaniah 2:8:4 missing, inside the stretch): «FAIL S1 ... zephaniah 2 s25 #4: \"\" [], STEP's words owed \"and + [the] reviling words of\" [M4]». THE LEAD'S OWN GATE on the ship tree (scratch v63/gate.log, default sample): «9,356 lines compared on 18 pages · 5 fill(s) and STEP's words at rest on them, 0 gap(s) beside them»; gate-diff.txt names Job 1:4:11 (met twice, on job 1 and job 22), Lamentations 3:13:2, Nehemiah 7:4:4, Zephaniah 2:8:4: 4 of the 232 and no neighbor. My sample.mjs: 8 owed places stand in a sampled chapter (Ruth 1:19:8, Ruth 3:14:2, Nehemiah 7:65:13, Job 22:24:5 were not reached); II Chronicles 11 and II Kings 11 can never be read, since the pages are chapter 1 and chs[floor(n/2)] (19 and 13), with --every 1 too. TWO CORRECTIONS to the reviewer: «about 3» is 4 in the real gate; and the sentence that the stretch varies with the machine (5,642 lines against 1,138) is wrong: that run used a scratch copy of the check that scrolls 30,000 px (v55/data/same-product/deep/site/reader/tools/check-same-product-deep.mjs, its line 1 says so). Repeated readings gave the same sections but for one at the edge (Zephaniah 2: s14..s28 old, s14..s27 new). I did not run a fault of the third kind (an unowed line moved); it takes the same path. Logs: v61/data-skeptic/logs/s1.ruth.fault-a.log, s1.zephaniah.fault-b.log, built-ruth-zephaniah.log, sample.log."
+ },
+ {
+  "lens": "verify:data",
+  "skeptic_verdict": "confirmed",
+  "claim": "reader/tools/bake-default-picks-v1.mjs:821 - the receipt's picks_printed says of STEP «made 65», bounded at 65 by its own rule, but the card makes STEP's pill at all 232 places where STEP's words print; the STEP-as-second cells (827) count every step_words place the first leaves (17, 64, 542 pills) where STEP's words print at 0, 2 and 104; no check holds the measure",
+  "reason": "RECEIPT (the tree's, and the one shipped on origin/main 46bbbf7d50): step.step pills 1,015, names_no_row 65, printed_whole_by_a_row_it_names 950, made 65, so its «least ... most» is 65 to 65. MY RE-COUNT (analyze.mjs, from the ledger, zones, records and store): 1,015 step_words places, 232 bare in the record; of the 232 picks 18 name no row and 214 name rows, none of them a row under the word's own key or a piece key (in five books every named row stands under the zone's other spelling, w.ld.other); at none of the 232 does the store hold a row under the word's own key that prints the words (229 of those keys hold no row at all). BROWSER, all 232 places in 35 books at rest on 8921 (logs/probe-made-pills.log, probe-made-pills-all.log): 232 of 232 lines credited [M4], the pressed pill a row made for the place (window.__poolPlace true), lead M4, records of M4 alone; 231 cards hold that one pill; no page error. Ruth 3:14:2: the ledger's pick names row 153120 = [the other spelling's key, rank 1, M4], the zone's key is the MAM spelling, the card's only pill is the made «feet + his». STEP AS SECOND: my count gives the receipt's 17, 64, 542 pills (at 13, 62, 473 places) and, at the places bare today, 0, 2, 104 pills (0, 2, 82 places). NO CHECK: grep finds picks_printed in no tool but the bake. ONE ADDITION: the same miscount reaches the other sources' «the most» bound. whole-by-key.mjs: pick 1s the receipt counts as printed whole by a named row that stands only under another key than the word's: MACULA 763, UBS 8,694, BDB 6,616; a browser sample (logs/probe-other-sources-made.log) finds the pressed pill made at 10 of 11 such cards (UBS Ruth 1:4:1, 1:4:13, 1:6:3, 1:6:9; BDB Ruth 1:4:4, 1:5:9, 1:13:7, 1:21:2, 1:22:14; MACULA Amos 1:8:15, 3:7:4; not MACULA Ruth 1:17:11)."
+ },
+ {
+  "lens": "verify:data",
+  "skeptic_verdict": "confirmed",
+  "claim": "reader/tools/bake-default-picks-v1.mjs:1053 - the receipt, the bake and the check say a place where STEP's line rests bare «counts in no fill» (and D3 says «counted in no has»), but the index counts such places in the fills between the other sources (12 counts at 6 of the 7 held bare places) and the page prints those lines",
+  "reason": "THE SENTENCES: bake 54-56, 93-95, 991, 1053, 1144; check-default-picks-v1.mjs 34-35, 42-43, 748. THE CODE (bake 744-749, check 371-373) leaves out only STEP's own pairs. MY RE-COUNT (analyze.mjs): has and fills equal the index in 39 of 39 books; read strictly, the sentence differs from the index at exactly five cells: Job bdb.macula 4,466 (4,465), bdb.ubs 3,287 (3,286); Psalms ubs.macula 2,776 (2,771), ubs.bdb 368 (367), bdb.macula 10,752 (10,748): 12 counts at 6 of the 7 held bare places. The seventh, I Samuel 14:49:6, has a line from all three other sources, so has.macula, has.ubs and has.bdb count it: «counted in no has» is wrong too. BROWSER on 8921 (logs/probe-held-places.log, probe-held-places-psalms.log): Psalms ?default=ubs&second=macula: 44:15:6 «among», 57:10:5 «among», 102:4:6 «like», 108:4:5 «among», 149:7:5 «on», all [M3]; ?default=ubs&second=bdb: 102:4:6 «a burning mass» [M46]; ?default=bdb&second=macula: 44:15:6, 57:10:5, 108:4:5, 149:7:5 [M3]; Job ?default=bdb&second=macula: 18:15:3 «from nothing» [M3], chip «MACULA’s own reading at this place, filling out BDB». So 11 of the 12 counted fills were seen drawn (Job bdb.ubs not opened): the counts are right and the sentence is not. The shipped receipt on origin/main carries the sentence."
+ },
+ {
+  "lens": "verify:data",
+  "skeptic_verdict": "confirmed",
+  "claim": "reader/tools/check-default-picks-v1.mjs:789 - the check's model of STEP's words is packed(t) (242, used at 789 and in layerAt at 937) with no sign rule, so at the nine whole-piece-sign places it owes «<on> + thousands + his» where the page draws the hidden sign's gap; latent in D5, D7, D8 (w1-w3 hold none of the nine), and D5's node side line reports them wrongly after the round",
+  "reason": "CODE: the check has packed at 242, used at 789 and 937, and no sign rule (grep finds only blank's ​); S1 carries signOnly, signsOff and drawnStep (check-same-product-v1.mjs 79-85). THE SHIP TREE'S RE-READ RECORDS (scratch rt after its round, read only; my records-after-round.mjs): of the 232 places bare before, 223 are drawn as packed(t) under M4 and 9 with the sign as the gap under M4, 0 otherwise; the nine are Leviticus 19:4:4, Deuteronomy 3:25:13, Judges 18:5:7, I Samuel 18:7:7, 21:12:17, 21:12:19, 29:5:13, Ezra 4:12:15, Zechariah 5:8:12 (e.g. «<on>/ thousands/ his» drawn as the gap then «thousands + his»). All 232 equal S1's drawnStep. Over all 1,015 places: 390 packed, 22 with a gap under M4, 603 another line. THE LEAD'S OWN NODE RUN after the round (scratch v63/fast-picks.log) prints «0 draw no line ... 390 draw STEP's words under its credit ... 625 draw another line»: 22 lines of STEP's words under M4 are counted as another line, 9 of them among the 232. w1-w3 are ii-samuel, obadiah, nahum (v59/check-default-picks-v1.full.log line 19); none of the nine stands in them, so the page laws are green today."
+ },
+ {
+  "lens": "verify:data",
+  "skeptic_verdict": "confirmed",
+  "claim": "reader/tools/round-v1.sh:136 - the round bakes the defaults after the zones step and before the lines step, so the receipt says every record of the resting lines it read was of another zone, for all 39 books, although the 15 places hold in the re-read records",
+  "reason": "ORDER: round-v1.sh 61 (zones, stamps, search, defaults, records, lines, chain, door); the bake's test at 500-502. THE SHIP TREE after its finished round (scratch rt, read only): data/default-picks-receipt-v1.json step_line_rests_bare.records = read 39, of_the_zone_on_disk 0, of_another_zone all 39; file times: receipt 06:38:57, ruth.bin 06:38:12, ruth.json.gz 06:42:08; now 40 of 40 records are of the zone on disk. A SECOND BAKE read only (the tree's bake with --dry on rt's data, and my rebake-diff.mjs, nothing written): only the receipt would change, and in it only records.of_the_zone_on_disk 0 to 39 and the 39 names leaving of_another_zone; the 15 places are the same; the index and the 39 book files stand (the pin path and index sha lines in my log come from running out of tree). THE SHIPPED RECEIPT on origin/main 46bbbf7d50 reads 0 of the zone on disk, 39 of another zone. Logs: logs/bake-dry-on-rt-after-the-round.log, rebake-diff-on-rt.log."
+ },
+ {
+  "lens": "verify:data",
+  "skeptic_verdict": "confirmed",
+  "claim": "reader/data/default-picks/PIN.json:4 - the pin names the v189 letter by its store path but names no letter for its own three relays (v180, v180.1, v195), where every other pin in the tree names its relay's letter",
+  "reason": "grep of \"letter\" over the 12 PIN.json files under reader/data: default-picks has it only at line 126, inside held_split_v189; made-spaces, names, paseq-place, pointer-entries, row-entries, rulings, sense-openings, stems-extension and both word-senses pins each name one. ONE CORRECTION: data/source-years-v1/PIN.json (relay v165, not part of this change) names no letter either, so it is 10 of the 11 other pins, not every one. grep for FOR-ELIJAH-v195 or FOR-ELIJAH-v180 over reader/data, reader/tools and zone.html finds nothing; the pin's note names the v195 letter only in prose. A copy of the letter stands at scratch dl-v195/v2/letters/moses-default-picks-v1/FOR-ELIJAH-v195.md (sha256 db8fb543a487...); I found no copy of a v180 or v180.1 letter in the scratch downloads."
+ },
+ {
+  "lens": "verify:data",
+  "skeptic_verdict": "confirmed",
+  "claim": "reader/tools/check-default-picks-v1.mjs:1683 - the fault harness (H1-H10) holds no fault for D12's MACULA-piece places, D13's own-line sample, or D3's places where STEP's line rests bare; each goes red on its fault only by hand-made fault trees",
+  "reason": "CODE (1625-1741, and the header 154-166): H1 and H2 fault D1, H3 D2, H4 D3 (a tie's order), H5 D3 (signs counted as lines), H6 D6, H7 D7, H8 D15, H9 and H10 D4. None faults D12, D13 or D3's rests-bare places. D3 BY HAND: my own fault tree (v61/data-skeptic/fault-d3: Psalms has.step set to its places, held 102:4:6 given STEP's words), --node: «FAIL D3 ... psalms: has is {\"step\":19577,...} here, {\"step\":19583,...} in the index | psalms: step_words is ...», «1 FAILED» (logs/check-default-picks.fault-d3.log). D12 AND D13: I did not run the 17-minute full check on a fault tree. I read the laws (macPieces 1120-1131, d13 1104-1118), saw in the lead's full log (v59, lines 28-29) that they open ii-samuel 16:23:8, 18:20:18, 1:11:3 and obadiah 1:11:10, and on my own two-line fault copy of the page (served on my port 8955) read what they read: the pieces' line «here STEP reads inquired» at 16:23:8 (unfaulted «here MACULA reads inquired»), and STEP's own line without its « · 2 «he enquires» (a meaning variant, K)» at 16:23:8, 18:20:18 and 1:11:3 (logs/probe-macula-pieces.log, probe-macula-pieces.fault.log). The reviewer's full run on the same two faults ends «2 FAILED» at those places."
+ },
+ {
+  "lens": "verify:data",
+  "skeptic_verdict": "confirmed",
+  "claim": "reader/zone.html:3759 (page lens) - at the 46 held places the hold keeps STEP's half reading off the line, but the card's STEP line still leads with it, and STEP's second reading is listed as a later numbered pick with no note, so it reads as an alternative",
+  "reason": "CODE: zone.html 3759-3760 (dfltPicks, STEP): a pick of kind r carries the note \"\" whatever its number; only a variant and an alternative are noted. BROWSER at rest on 8921 (logs/probe-held-places.log, probe-held-places-psalms.log), each line bare: Psalms 44:15:6 «here STEP reads not · 2 «people» (another number) · 3 «peoples»»; 102:4:6 «here STEP reads like · 2 «a hearth»»; 57:10:5 «here STEP reads not · 2 «nations» · 3 «people» (another number)»; I Samuel 14:49:6 «here STEP reads and/ Malki- · 2 «Shua»»; Job 18:15:3 «here STEP reads because/ not · 2 «[belonging] to/ him»». DATA (the 39 book files): all 46 held places carry exactly two picks of kind r (40 with two picks, 6 with an alternative as well); all 1,015 step_words places carry one; 11 more places in the corpus carry two or three readings (9 of them call 4's other « | » places)."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "1. zone.html:9340 — a reader's ruling is painted over by the default source when the ruled word's card is opened (or stands open) under another default than the one it was ruled under, at every word whose place has a set of several pieces; the label still says «reading · at every place this form stands»; D9 never opens a ruled word's card after a switch.",
+  "reason": "Reproduced from scratch with my own probes. (a) Tree 8921, Ruth at rest: 1:1:1 «happen» pressed -> 1:1:1 and 1:1:5 read «and + happen» [PIECE:TAHOT M14]; MACULA pressed -> both keep it; card opened at 1:1:5 -> 1:1:5 reads «that there was» [M3], 1:1:1 still «and + happen», card label «reading · at every place this form stands», reading «that there was», MACULA's pill pressed. (b) 8922/reader, real pointer presses: card left open at 1:1:1 while MACULA is pressed -> 1:1:1 flips to «and happened» [M3], 1:1:5 keeps the ruling. (c) Under MACULA its own pill «and happened» pressed at 1:1:1 (both lines take it), MACULA again (STEP), card at 1:1:5 -> «and + it was» [PIECE:TAHOT], «beacon» pressed, same label, 1:1:1 keeps «and happened». (d) Daniel under UBS: 1:1:1 «year» pressed, UBS again, card at 1:1:1 -> «in + year» [PIECE:TAHOT]. (e) One-piece Ruth 1:1:3 «vindicate» keeps its ruling under MACULA and back on STEP. Live 8914: at rest the card at 1:1:5 keeps «and + happen»; with ?rail=all and «the line reads» on «oldest first» it paints «and + there was» [M4] at 1:1:5 while 1:1:1 keeps the ruling; that row is under the fold drawn only with ?rail=all (zone.html 14964). The paint-over lasts until the lines are next drawn: pressing UBS afterwards brought «and + happen» back at 1:1:5 (the memory keeps the ruling). Reach, counted from the zones on disk: Ruth 675 of 1,296, II Samuel 5,316 of 11,032, Psalms 8,828 of 19,583, all 39 books 144,258 of 305,431; it bites where the source in force has a line at the place. Code: 9340 gates the set's division by !defaultAt(word); 9349-9352 take covers[0] or setCut when no division was pressed; 9832-9840 paint the open's reading. D9 (tools/check-default-picks-v1.mjs 1359-1433) rules, presses and reads lines (1406, 1433); its second rule() takes a word outside the ruled set, so no ruled card is opened after a switch; the six other page checks that press these pills open cold or rule nothing before a switch (I read those seven, not the whole suite). Outputs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f1-a-tree.json, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f1-b.log, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f1-c.log, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f1-d.log."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "2. zone.html:5801 — under MACULA and UBS the fill leaves one half of TAHOT's two-word readings standing alone («Bethlehem» «-lehem», «and» «-nego»).",
+  "reason": "My probe read every line of Ruth, Daniel and Amos at rest and under each source. Ruth at rest: 1:1:10-11 «from + Beth-» «-lehem», whole at 1:2:13, 2:4:4, 4:11:28 too. Under MACULA: «of» «-lehem», «from» «-lehem», «from» «-lehem», «in» «-lehem». Under UBS: «Bethlehem» «-lehem» at all four. Under BDB: whole. (At 1:19:5, 1:19:9, 1:22:12 the words are a joined run whose own line «Bethlehem» [M17] is what is drawn, under every source.) Daniel: 2:49:13-14 «and» «-nego» (MACULA), «Abednego» «-nego» (UBS); 1:5:7-8, a chain drawn in parts, «from» + «-caci[es] of» and «food» + «-caci[es] of». One thing the finding does not say: the mirror also happens, the second word taking the source's line while the first keeps TAHOT's half: Daniel 3:19:11-12 and 3:29:17-18 under UBS «and + Abed-» «Abednego», 11:26:2-3 under MACULA «<of> deli-» «his», Amos 3:2:7-8 under UBS. Data, counted by the page's own rules (lineOf, dfltLinePick): 313 such pairs in the 39 books; exactly one word has the source's line at 195 (MACULA), 305 (UBS: 155 first word only, 150 second only), 65 (BDB, every one joined by a maqaf); outside a maqaf run, where the words are surely drawn one by one: 34 (MACULA, 9 books), 56 (UBS, 12 books), 0 (BDB). The reviewer's figures match. Outputs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f2.log, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f2-runs-daniel.json, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/halves-count.log."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "3. zone.html:6174 — a ruled line whose reading was a default source's own made pill is withheld from the export at every other place its form stands, and at the ruled place too once the default changes.",
+  "reason": "Ruth ?default=macula on the tree: at 1:1:1 MACULA's own pill «and happened» pressed; 1:1:1, 1:1:5 and 1:19:7 read «and happened» [M3], chosen. Export of verse 1:1 (hebrew + english): record 1 is «reading: and happened · for: Ruth 1:1:1 · source: [1] MACULA exact Hebrew morph surfaces with Cherith English definitions»; the Withheld section says «1 reading was not exported» and names the fifth word: «the reading on the page does not match any record in the store». Export of 1:19: 1 withheld, the seventh word. MACULA pressed again (STEP): the lines keep the ruling, and the export of 1:1 says «2 readings were not exported», the first and the fifth word. Code: attributionFor hands the pool the place only where the place's own text equals the words shown (6026), and the made row (7977-7981) is made only then. Files: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/exports/under-macula-ruth-1_1.md, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/exports/under-macula-ruth-1_19.md, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/exports/back-on-step-ruth-1_1.md; log /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f3.log."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "4. zone.html:11056 (and 10467) — a pointer withheld by item 12's gate (7716-7721) is counted in «N given as a name by its source, withheld», though its own source gives it as a form of another word; for 4 of the 34 marked pointers the withheld record is the source's own reading of the very word.",
+  "reason": "Genesis on the tree and on live, my own probe. 32:29:11 (line «you have struggled», H8280): tree «8 of another entry than H8280, withheld · 2 given as a name by their source, withheld · 2 of 20 pointed otherwise, withheld», 11 pills; live «… 1 given as a name by its source, withheld …», 12 pills, one of them «a female given name, equivalent to English Sarah (second-person masculine singular past (suffix conjugation) of …)». 42:16:1 (line «send»): tree «1 given as a name by its source, withheld»; live says nothing of names and prints «a male given name, equivalent to English Salah (singular form of … with third-person masculine singular personal pronoun as possessor …)». At the name place 11:29:9 both builds print the pointer pill and withhold none as a name. So the gate does what item 12 set out to do; the sentence is what is untrue. Data (reader/data/form-of-pills-v1.json): 34 resolutions carry name: 1 (27 FORM, 5 DIMINUTIVE_OF, 2 SEE); the four with a grammatical relation to a homograph are the reviewer's (Sarah, Salah, «G-d», Levi). Outputs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f4.log."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "5. zone.html:7718 — the card at every non-name place waits for data/form-of-pills-v1.json before it draws any pill, where live draws at once.",
+  "reason": "Ruth 1:1:3 opened right after load with the map held back 20 seconds by request interception: the tree's card is open with 0 pills at 3, 6, 10 and 15 seconds and has 67 once the map lands; live has 67 at 3 seconds. With the map refused (404) the tree draws 67 at 3 seconds, ungated. The line `if (!FORM_OF) await formOfReady();` is the change's own (git diff 857a3dc0fb HEAD). By the same line, a request that never answers leaves every such card without pills for as long as it hangs. Output: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f5.log."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "6. zone.html:5365 — item 5's kept credit goes with the ruling to every place the form stands and across later switches: «MACULA’s own reading at this place, chosen on the row of sources» stands where MACULA reads other words, and after the row is back on STEP; the chip is not drawn on the line.",
+  "reason": "Ruth ?default=macula: before any press MACULA's lines are 1:1:5 «that there was», 1:19:7 «and he was», 2:17:9 «and was». After «and happened» is pressed at 1:1:1, the chips at 1:1:5, 1:19:7, 2:17:9 and 3:8:1 all carry «MACULA exact Hebrew morph surfaces with Cherith English definitions · edition 2022 AD — MACULA’s own reading at this place, chosen on the row of sources; every other witness is on the word’s own card», and still do after MACULA is pressed again (STEP). The chip's computed display on the line is none (zone.html 2344), so the words reach the line's record, the export and the checks, not the eye. Output: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f-small.log (A0, A1, A3)."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "7. zone.html:10580 — after a made pill is ruled and the default changes, the card at the ruled place shows the ruling as its reading but presses another pill.",
+  "reason": "Ruth at rest, 1:19:8: line «when + came + they» [M4]; STEP's own pill pressed; MACULA pressed; card opened at 1:19:8: label «reading · at every place this form stands», reading and line «when + came + they», the card's one pill «when came they», pressed. Ruth under MACULA with «and happened» ruled at 1:1:1: the card at 1:1:5 reads «and happened» with «that there was» pressed; the line holds. Code: 10580 falls back to the line's or the pool's first pill when the remembered pick is not in the pool, and the made row is only in the pool of the place and layer it was made for. Output: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f-small.log (A2, B0 to B3)."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "8. zone.html:2549, 15174, 4189/15183 — three sentences against the lead's rule: the reset's title, the STEP pill's title under another order, and a second source that fills nothing under STEP.",
+  "reason": "(a) The reset's title on the page: «… word senses off, the line from STEP with a second source chosen for each book) and every reading picked on this page forgotten»; reader/data/default-picks-receipt-v1.json second_source.step is {none: 39}, and the index has no book where a source fills anything under STEP. (b) Ruth ?rail=all with «the line reads» on «oldest first»: STEP's title is «the line reads «oldest first» on the switches; press to read it from STEP here» (the note beside it: «Press a source to read the line from it here.»). (c) II Samuel ?rail=all: MACULA pressed on the rail's «second source» row -> STEP's line under the pill reads «>99.9% · then MACULA»; STEP pressed -> the note ends «Where STEP has none, MACULA fills out 0%. Today’s line stands at the other <0.1%.» and holds no chooser; the rail row still offers «chosen for this book», so there is a way back, on the rail and by reset, only not in the note. Output: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f-small.log (C0, C2, E)."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "9. zone.html:1803 — a source's other picks on the card (.r-more) are that source's words, painted in the page's own purple with the page's « · 2» and «(another number)»; the first pick beside them wears the reading's blue.",
+  "reason": "Ruth 3:14:2 under BDB, computed styles: «here STEP reads» label rgb(117, 60, 109) (--argaman-dim); the first pick «feet/ his» rgb(35, 85, 138) (--tekhelet), weight 600; the other pick « · 2 «foot/ his» (a meaning variant, K)» rgb(117, 60, 109), the purple. The owner's rule the card check keeps (check-card-channels-v1 C2) is that a dictionary's words are the blue; that check does not read these lines. One more thing I found: the same span has cursor: pointer and 12.16px against the line's 12.8px, because an older rule for a class of the same name (`#hud .r-more { … color: var(--link); … cursor: pointer … }`, zone.html 1862, used by no element on main) now applies to it. Output: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f-small.log (C3)."
+ },
+ {
+  "lens": "verify:page",
+  "skeptic_verdict": "confirmed",
+  "claim": "10. zone.html:17929 — item 10's disclosure attributes are on the row's pill only; the Menu's mirror of the lit STEP opens and closes the note with nothing said of it, and on a phone that note is at the top of the page.",
+  "reason": "Ruth at 360 px, scrolled into the book, Menu open, STEP pressed twice in the Menu: the row's pill goes aria-expanded false, true, false with aria-controls=\"default-note\"; the mirror (button[data-for=\"default-step\"]) has neither attribute at any point; while the note is open its top is about 1,900 px above the window and the row is out of view. Code: paintMenu (17917-17933) copies the words, the line under the pill, aria-pressed, the lit class, disabled and the title, nothing else. Output: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/page-skeptic/out/f-small.log (D)."
+ },
+ {
+  "lens": "verify:merge",
+  "skeptic_verdict": "confirmed",
+  "claim": "1. INTEGRATION-2026-11-15.md line 19: the reset timings are not of a reset after a ruling, and the conclusion (contention; as fast as live's) does not follow",
+  "reason": "Code: v54/integrate/scripts/probe-reset-time.mjs line 14 sets location.hash to its third argument; v59/integrate.sh line 27 passes «live» / «tree» there; v59/reset-timing.log says «ruled null» in all four runs. zone.html:15343 lays the lines again only under `if (hadPicks)`.\nReproduced with my own probes on II Samuel (695 sections, 12,003 built lines), each line's element marked before the press so the lines made anew can be counted:\n- the lead's hash, no ruling: no card opens, reset reads «» (not «1 picked») and is pressable only because a fresh visit stands with framed pressed and card numbering not; handler tree 912 ms, live 1,157 ms; 0 of 12,003 lines made anew on both (the lead's 858 and 1,076 ms).\n- a real ruling («death» at 1:1:3, reset says «1 picked»): tree 12,912 and 12,617 ms; live 71,771 and 59,536 ms; all 12,003 lines made anew every time.\n- from MACULA with UBS chosen: no ruling 4,064 ms, 0 lines made anew, the lines repainted in place (the lead's 3,530 ms run); with the ruling 13,505 ms, 12,003 made anew.\n- the cause: the tree's own zone.html served by route with only line 11745 put back to a range made per measure (file under v61/merge-skeptic/fault/) ran 58,142 ms on the tree's data. The four call sites (11924, 12064, 12086, 12559) read their rects in the statement after the range is set.\nLoad was 1.0 to 1.8 during these runs; I rest the verdict on the order (about 1 s with no ruling; about 12 s against about a minute with one), not on the seconds. Logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/logs/f1-reset-ruled.ii-samuel.log, f1-reset-ruled.ii-samuel.range-per-measure.log, f1-reset-macula.ii-samuel.log, f1-reset-state.ruth.tree.hash-tree.log (same folder)."
+ },
+ {
+  "lens": "verify:merge",
+  "skeptic_verdict": "confirmed",
+  "claim": "2. zone.html line 2531: at a phone's width the four source pills take a row of their own and push reset down; check-contents-shut-v1 is red on the tree and green on live, a red the integration does not name",
+  "reason": "Ran tools/check-contents-shut-v1.mjs from the tree's reader. SERVE_PORT=8921: exit 1, «FAIL the first word of the book is on screen without scrolling · 920px down» (amos, commentary asked for); Psalms 841, Obadiah 905. SERVE_BASE=http://127.0.0.1:8914/reader: exit 0; 857, 732, 842.\nMeasured each pill's row at 412x915 with my own probe: tree Psalms, Amos, Ruth: [English reader, framed, card numbering] [concordance hud, word senses] [STEP MACULA UBS BDB] [reset], the row 209 px, first word 841 / 855 / 855; live: reset on the second row, 100 px, 732 / 746 / 746. The group is 331x54. With commentary reset shares the fourth row with «open all commentary» (tree 225 px, live 163).\nv59/integrate.sh lines 10-24 never ran this check; v63/suite.log line 24 says FAILED on the ship tree.\nThe finding's remedy is only partly right. Tried in the page's DOM at run time, nothing written: reset before the group gives back a row on plain pages (Amos and Ruth 855 to 808, Psalms 841 to 795) but Amos with commentary stays at 920 and Obadiah at 905, so the check stays red: 1,088 px of pills cannot stand in three rows of 364 px, and the commentary pill takes the fourth. Reset inside the group after BDB gives nothing back (331 + 9 + 65 px wraps inside the group). Reset and the commentary pill before the group, with the group's pills flowing with the row (display: contents): Amos with commentary 903, Obadiah 888, plain Amos 808; no sideways scroll at 320, 360 or 412 px. Logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/checks/check-contents-shut-v1.tree.log and .live.log; /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/logs/f2-rows.*.log, f2-fixes2.amos.commentary.log, f2-fixes2.more.log."
+ },
+ {
+  "lens": "verify:merge",
+  "skeptic_verdict": "confirmed",
+  "claim": "3. check-card-opens-on-the-line-v1.mjs line 93 (and check-ruled-equals-first-paint-v1.mjs line 45): the added wait can only end by its 30 s timeout at rest, so the check gives no verdict inside the suite's limit",
+  "reason": "zone.html:3850 says `ready: !DFLT_BOOK || !!DEFAULT_PICKS`. My probe on Amos: at rest, after the page settled, ready is false and only data/default-picks/index.json was fetched; the check's own wait «TIMED OUT at 30 s»; ready is true right after the first card opens (amos.bin fetched then). With fh.defaults=macula kept, ready is true at load and the wait ends at once. With fh.def.order=corpus kept it times out too.\nCounts from the check: 23 settings x 2 passes = 46 loads; the 20 settings that are not a default source x 2 = 40 loads x 30 s = 1,200 s. Durations in the logs: 275 s and 273 s before this change (v58/suite.log, v60/suite.log line 16), 1,501 s alone (v59/summary.txt), «FAILED (1200 s) · no verdict in 1200 s; stopped» (v63/suite.log lines 50-51), 1,537 s alone (v63/card-opens-alone.log). run-checks-v1.mjs line 67: the default limit is 600 s. The wait is in the diff against main.\nThe fix tested: a copy of the check under my folder with only line 93's condition changed, run against 8921: exit 0, «23 settings · 230 cards opened cold, 20 of them on the core block», C1 and C2 ok, in 320 s with the load at 2.5 to 7.5: the same counts as the lead's 1,537 s run.\ncheck-ruled-equals-first-paint-v1.mjs line 45: the same predicate on the loads [he, null] and [en, null]; by the code and the probe, 2 x 30 s; not run.\nSeverity: the suite says red, so nothing passes unseen, but a real fault in the check's laws reads exactly the same there. Logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/logs/f3-ready.amos.log; /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/checks/check-card-opens-on-the-line-v1.fixed.log."
+ },
+ {
+  "lens": "verify:merge",
+  "skeptic_verdict": "confirmed",
+  "claim": "4. INTEGRATION-2026-11-15.md line 15: «41 the same» is true of the pills only; every card's text differs from live at rest",
+  "reason": "v54/integrate/scripts/cards-vs-live.mjs lines 33-39 and 64-67 compare each pill's text, pressed state and credit, and print the withheld notes; nothing else of the card.\nMy own probe opened the lead's same 48 cards (addresses from v59/cards-vs-live.json) in fresh contexts on both builds and read every line of the reading block. Pills: the same at 41, different at the same 7 the lead lists. The card's other words differ at 48 of 48: at 40 live's «here the source reads X» is «here STEP reads X · on the line» on the tree; the other 8 gain a line for STEP; a MACULA line is added at 48, a UBS line at 41, a BDB line at 18. Ruth 1:1:7: live «here the source reads in the + land»; tree «here STEP reads in the + land · on the line», «here MACULA reads in the land», «here UBS reads earth / ground / land / country / region / area».\nOne correction to the finding: pairs change too. Three ketiv/qere cards in Ruth (1:8:10, 2:1:2, 3:3:4): same pills, and «here the source reads may he deal» is «here STEP reads may he deal» on the tree. So it is every card I opened, 51 of 51. 0 page errors on either build. Logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/logs/f4-cards.1.log, f4-cards.2.log, f4-cards.kq.log."
+ },
+ {
+  "lens": "verify:merge",
+  "skeptic_verdict": "confirmed",
+  "claim": "5. INTEGRATION-2026-11-15.md line 23: the gate's S1 does not owe «the 232 and the 2 neighbors»; the all-lines comparison is no step of the round, the suite or the gate",
+  "reason": "Computed the gate's sample as check-same-product-v1.mjs lines 54-58 compute it, on the tree and on the ship tree: 9 of 39 books, 18 pages: amos 1, 5; exodus 1, 21; haggai 1, 2; ii-chronicles 1, 19; job 1, 22; lamentations 1, 3; nehemiah 1, 7; ruth 1, 3; zephaniah 1, 2.\nMy own diff of the 40 records of the resting lines, the tree's (main's: git diff against 857a3dc0fb is empty) against the ship tree's (the round's: «40 records written»): 400,474 lines, 234 differ: 223 STEP's words as the plain packing where no line stood, 9 with a whole-piece sign drawn as the gap, 2 neighbors («<obj.>» to the gap at II Chronicles 11:11:2 and II Kings 11:18:8), 0 other. On the 18 sampled chapters stand 8 of them, all plain packing (Job 1:4:11, 22:24:5; Lamentations 3:13:2; Nehemiah 7:4:4, 7:65:13; Ruth 1:19:8, 3:14:2; Zephaniah 2:8:4), none of the 9 and neither neighbor; the gate itself saw 5 (v63/gate.log: «9,356 lines compared on 18 pages · 5 fill(s) … 0 gap(s) beside them»). So the claim holds after the round, and the gate is not what shows it.\nrest-vs-live.mjs line 50 owes `packed(w)`; v59/summary.txt: «rest-vs-live exit 1 (796 s) · 8 work(s) off»; the script stands only in the scratchpad, not in reader/tools. Deuteronomy 3:25:13 is «and/ <the>/ Lebanon» and Ezra 4:12:15 «and/ evil/ <the>», so two of the nine do not begin with the sign. LANDING-PLAN.md line 106 asks for the comparator over every line after v190's re-projection (line 182 again for ship 4). On the tree's page the nine draw as the records say and live draws them bare (f7-lines.log). Logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/logs/f5-records-diff.pt-vs-rt.log, f5-sample.pt.json, f7-lines.log."
+ },
+ {
+  "lens": "verify:merge",
+  "skeptic_verdict": "confirmed",
+  "claim": "6. round-v1.sh line 154: the round bakes the defaults before its lines step reads the records again, so the shipped receipt says every record the bake read was of another zone",
+  "reason": "bake-default-picks-v1.mjs lines 501-502 count a record as of the zone on disk only when the record names the zone's sha256; round-v1.sh runs zones, then defaults (lines 136-168), then lines (189-195).\nThe ship tree's receipt after the lead's round: step_line_rests_bare.records = read 39, of_the_zone_on_disk 0, of_another_zone [39 books], while all 40 records on disk there name the sha256 of the zone on disk. The tree's receipt before the round: 39 of 39.\nRan the bake with --dry on the ship tree as it stands (writes nothing): «records of the resting lines read 39 (39 of the zone on disk)» and «1 of 47 files would change». Baked again from the ship tree's zones, store, records and pin into my own folder: the 46 files under default-picks are byte for byte the ship tree's, the index's sha256 is f20c8e4f… on both, and the receipt differs in exactly two fields: of_the_zone_on_disk 0 to 39 and of_another_zone to []. Only the bake names those fields in reader/tools; the records name data/default-picks/index.json among the files their page read, not the receipt, so rewriting the receipt stales no record. Logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/logs/f6-bake-dry.rt.log, f6-bake-after-lines.log; the receipt written: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/bake-after-lines/default-picks-receipt-v1.json."
+ },
+ {
+  "lens": "verify:merge",
+  "skeptic_verdict": "confirmed",
+  "claim": "7. check-default-picks-v1.mjs line 789 (and 937): the check models STEP's words as the plain packing, where the page draws a piece that is a sign alone as the hidden sign's gap",
+  "reason": "Code: line 242 `packed` has no sign rule; line 789 files a record's line as STEP's only when it equals packed(t); line 937 owes `line: packed(t)` for STEP's words, which modelOf (lines 962-968) holds the page to wherever today's line is bare.\nRecounted the side note from the records and the index with my own script. Before the round (the tree): 232 draw no line, 167 STEP's words, 616 another line, the check's own figures (v59/check-default-picks-v1.node.log line 16); with the page's sign rule 180 and 603. After the round (the ship tree): 0, 390, 625, as v63/fast-picks.log line 16 says; with the sign rule 412 and 603. The 22 filed as «another line» are 13 that stood before the round and the 9 new ones: Leviticus 19:4:4, Deuteronomy 3:25:13, Judges 18:5:7, I Samuel 18:7:7, 21:12:17, 21:12:19, 29:5:13, Ezra 4:12:15, Zechariah 5:8:12.\nThe page laws ran on ii-samuel, obadiah and nahum (v59/check-default-picks-v1.full.log line 19), which hold none of the nine, so the model's fault is never met. On the tree's page I Samuel 18:7:7 draws the gap then «thousands + his» under STEP's chip, where the model would owe «<on> + thousands + his». The check opens no page with the signs printed, so the sign rule is right for every state it reads. Logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/logs/f7-side-note.log, f7-lines.log."
+ },
+ {
+  "lens": "verify:merge",
+  "skeptic_verdict": "confirmed",
+  "claim": "8. zone.html line 2549: the reset pill's title says the default is «the line from STEP with a second source chosen for each book»",
+  "reason": "The title at line 2549 reads so, and this change wrote those words (the diff against main adds them). The index: no source fills what STEP leaves in any of the 39 books (fills.step all 0; STEP leaves one place, in II Samuel); the receipt's second for STEP is none in 39 books and STEP for MACULA, UBS and BDB in 39. On the page at rest, Ruth and II Samuel: window.__default second null and auto null; the STEP pill's share «100%» and «>99.9%» with no second named; the STEP pill's own title beside it begins «the line as it rests: the place’s own reading …». zone.html lines 15078-15084 state the lead's rule that the line is never said to be STEP's where its chip names another source. No tool holds the title's text. Log: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v61/merge-skeptic/logs/f8-reset-title.log."
+ }
+]

@@ -21,3 +21,9 @@ Live at rest 1,076 ms; the tree at rest 858 ms; the tree under MACULA with UBS c
 ## What is left before the toggles ship
 
 The independent review of the third round's fixes (after 19 November), then the round (zones re-projected under the v1.1 ledger, which turns E7 green), the suite, the gate (its S1 owes the 232 and the 2 neighbors) and the ship.
+
+## Corrections (the third review's merge lens, 15 November, after the ship)
+
+- «41 the same» is true of the pills only: every card's text differs from live at rest, since the place line now names STEP and says «· on the line», and a line is added for each other source.
+- The gate does not owe «the 232 and the 2 neighbors»: it samples 18 chapter pages, which hold 8 of the 232 places, none of the 9 sign-gap places and neither neighbor line. The all-lines comparison that carries the claim was a one-off of this integration, no step of the round, the suite or the gate.
+- The reset timings were not of a reset after a ruling: no ruling was made in any of the four runs, so the handler never laid a line again. The claim that reset is as fast as live's does not follow; it is measured again in the toggles fixes (`../../../2026-11-15/the-toggles-fixes/`).
