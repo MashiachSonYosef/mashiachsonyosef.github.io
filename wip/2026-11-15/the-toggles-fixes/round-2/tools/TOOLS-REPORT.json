@@ -1,0 +1,139 @@
+{
+ "status": "done",
+ "summary": "All five items are done, proven red before and green after, and committed on toggles-fixes in the scratch tree pt, by explicit blobs, without touching zone.html. (1) N6: build-toggle-design-v1 now says where a book page serves each switch: word senses in the row of pills; the default sources (a pill per source) and the second source (in the note under that row) on every book page the default picks reach; and the lede names the three. It checks those claims against the reader opened without ?rail=all and refuses a page that disagrees. It photographs each row scrolled to the top and refuses one that anything covers. With no --url it serves the tree itself (serve-tree-v1) instead of the typed port 8899. Built in scratch: the new row-defaults.png shows the whole sentence (viewed); HEAD's had the Home/Menu/Top/Chapter bar across it. (2) The readiness wait in five checks is now a fault after 30 s. Each was timed before and after on HEAD's page and goes red on a page that never says ready. (3) gloss-store-v1 escapes SIGN_GAP and the signs ¿ and × (14/14 probe lines answer as before). check-same-product-v1 imports SIGN_GAP, signOnly and signsOff from it. (4) check-default-picks-v1: D7 gains w5, found from data (Hosea, held halves outside a run). D20 recounts the named-row cells with the ledger. D5 holds the gap beside STEP's words over all 39 records in node mode. ready() now throws. The receipt was baked only in scratch. (5) The new tool compare-resting-lines-v1 runs in round-v1.sh after the lines step. Lint shows no new warnings, and the 3-way merge of every file with kinds-build over 46bbbf7d50 has 0 conflicts. Two files I changed (check-default-picks-v1, check-same-product-v1) also carry the page builder's uncommitted hunks. I committed only my own hunks (HEAD plus mine, staged by blob) and left theirs unstaged in the working files. Scratch servers 8975-8978 are stopped and the big scratch copies and shadow reader deleted. Notes: /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-toggles-fixes/round-2/tools/RUNNING-NOTES.md. New toggles page and photos: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/tools/toggles-mine/ (HEAD's photo: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/tools/toggles-head-photo/row-defaults.head.png). Logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/tools/logs/.",
+ "commits": [
+  "ac005067ae The round sets every resting line beside the line HEAD's records hold, and says each one that moved (compare-resting-lines-v1.mjs new; round-v1.sh)",
+  "9d671a18f1 The signs at rest are one rule in one place, and the gate's S1 fails a page that never says its lines stand (gloss-store-v1.mjs, check-same-product-v1.mjs)",
+  "312ae4bebf Three more checks wait for the page to say its lines stand, and a page that does not is a fault (check-line-follows-card-v1.mjs, check-reset-pill-v1.mjs, check-word-senses-v1.mjs)",
+  "6559ae7181 The default picks' check meets the hold outside a run, recounts the receipt's named rows, and holds the gap beside STEP's words in every record (check-default-picks-v1.mjs)",
+  "3e2e86f059 The page about the switches says where a book page serves each one, and photographs each row clear of the page (build-toggle-design-v1.mjs)"
+ ],
+ "outcomes": [
+  {
+   "finding": "N6: /toggles/ said default source and second source are 'drawn only with the switches' while their pills stand on every book page; row-defaults.png had the fixed bottom bar across the row's sentence",
+   "outcome": "fixed",
+   "proof": "Scratch builds against the same reader (this branch's page, Amos): HEAD's builder 6 s, mine 16 s, both 16 switches and 16 photographed. The page text differs in exactly 4 lines: the lede, plus the try-lines of word senses, default source and second source. Mine's lede reads 'Of them, these also stand above the rail on a book page, in its row of pills: word senses, default source and second source.' I viewed both photos: HEAD's row-defaults.png has #nav across the sentence, mine shows it whole (row-second.png is clear too). A default run with no --url (serveTree, first work on disk = amos) gives the same page in 14 s. Red proofs from scratch variants: (a) HEAD's claim (defaults and second left out of SERVED) is refused with 'defaults is drawn on a book page and would be said drawn only with the switches; second is drawn on a book page ...'. (b) Rows scrolled to the window's foot, as HEAD's photos were, are refused with 'something of the page stood over the row of masorah (#nav, #navHome, #navMenu, #navTop, #navChapter, #navPrev, #navNext) ...' for every row.",
+   "changed": "reader/tools/build-toggle-design-v1.mjs (3e2e86f059). The tree's toggles/ is not rebuilt: that is the lead's ship command."
+  },
+  {
+   "finding": "Five checks swallowed the window.__default.ready wait (check-default-picks ready(), check-line-follows-card F6, check-reset-pill R1, check-same-product after a source press, check-word-senses W5 under UBS)",
+   "outcome": "fixed",
+   "proof": "Each now waits on !d||d.ready||d.failed for 30 s, and a page that does not say ready by then is a fault. Timings are HEAD's check (before) and mine (after) on HEAD's page of this branch; the red runs used scratch copies that never say ready (ready: false), served on 8975-8978. reset-pill: 26 s / 26 s green; never ready: HEAD's ALL GREEN in 297 s, mine red at R1 in 56 s. line-follows-card: 232 s / 226 s green; never ready: mine red at F6 under MACULA, UBS and BDB ('the page did not say in 30 s ...') in 284 s. word-senses: 33 s / 34 s green; never ready: HEAD's green in 58 s ('W5 under UBS not judged here'), mine red at W5 under UBS in 57 s. same-product, S1/S2 on 2 books (--every 38, Amos 1 and 5, Zephaniah 1 and 2) against 8914: 155 s / 156 s with identical output; against main's engine cut to never say ready (8976), mine is red at S1 and S2 ('failed to read: ... under English reader the page did not say in 30 s ...', 0 lines compared) in 232 s. default-picks whole: HEAD 343 s, 28 green; mine 317 s, 29 green; never ready, mine red at D4-D19 ('it threw: the page did not say in 30 s ...') in 210 s.",
+   "changed": "check-same-product-v1.mjs read() (9d671a18f1); check-line-follows-card-v1.mjs, check-reset-pill-v1.mjs, check-word-senses-v1.mjs (312ae4bebf); check-default-picks-v1.mjs ready() (6559ae7181)"
+  },
+  {
+   "finding": "gloss-store-v1.mjs held a raw ZWSP in SIGN_GAP and raw ¿ and × in signOnly; check-same-product-v1.mjs kept its own copy of the five sign helpers",
+   "outcome": "fixed",
+   "proof": "probes/same-signs.mjs: HEAD's helpers and mine give the same answers on 14 of 14 lines (signs alone, bracketed, beside words, all signs, empty); SIGN_GAP is the same, U+200b, length 1. scan-chars finds 0 raw invisible or Hebrew characters in the final files (HEAD's gloss-store had 1). check-same-product imports SIGN_GAP, signOnly and signsOff from gloss-store-v1, and its S1 output is identical to HEAD's on 2 books. git merge-file with kinds-build over 46bbbf7d50 has 0 conflicts in both files, and both parse.",
+   "changed": "reader/tools/gloss-store-v1.mjs, reader/tools/check-same-product-v1.mjs (9d671a18f1)"
+  },
+  {
+   "finding": "check-default-picks D7 never met a held half outside a run (its works were picked for other reasons)",
+   "outcome": "fixed",
+   "proof": "w5 is found from the data: the smallest work where each non-STEP source reads a reading across words in part, outside any run drawn whole. On this tree that is Hosea: MACULA 2:25:9, UBS 1:8:3 and 2:25:6, BDB 2:25:9. Tree: D7 green. On a scratch page with the hold cut out (no-hold): HEAD's D7 red at 14 (II Samuel w1, in runs), mine red at 18 (+D8, D9), 326 s. The 4 extra equal Hosea's 4 held places; the check prints only its first 2 faults.",
+   "changed": "check-default-picks-v1.mjs: header, heldHalvesIn + W5, PAGE works/pool/D7 (6559ae7181)"
+  },
+  {
+   "finding": "D20 did not recount the receipt's named-row cells (names_a_row_of_its_own_source, names_another_sources_row_only, names_no_row, printed_whole_by_a_row_it_names)",
+   "outcome": "fixed",
+   "proof": "With the ledger, mine recounts each cell the way the bake does. In node mode on a receipt baked in scratch from this tree (--receipt-only): green, e.g. STEP 232 = own row 210, another's only 4, none 18, printed whole 0. A wrong receipt (one STEP pill moved: names_no_row 18 to 17, own 210 to 211): HEAD green in 40 s, mine red at D20 (1 fault) in 43 s. Self-test H15 goes red as it should, and H1-H15 are green with --ledger (113 s). The tree's committed receipt is stale even for HEAD's own D20 (7 faults: STEP's pills 232 here, 1,015 in the receipt; MACULA made 218,750 vs 10,798), so the round's bake must rewrite it.",
+   "changed": "check-default-picks-v1.mjs: placesOf, expectedPlaces named, NAMED, resolveRows/ROW_M/ROW_TEXT, D20 (6559ae7181)"
+  },
+  {
+   "finding": "The gap lines beside STEP's words (II Chronicles 11:11:2, II Kings 11:18:8) were held only by the gate S1's sampling",
+   "outcome": "fixed",
+   "proof": "This is now a node law (D5) over all records read with the default sources laid: 39 of 39 records. It finds 3 such words where today's line was bare (ii-kings 11:18:8, ii-chronicles 11:11:2, daniel 1:16:4), 2 of them gaps only because STEP's words stand in the run, and 9 where STEP's words are today's line. A wrong record (ii-kings 11:18:8 drawn «<obj.>»): HEAD green; mine red at exactly this law (1: '... «<obj.>» [PIECE:TAHOT], owed the hidden sign's gap [PIECE:TAHOT]'). Self-test H14 goes red as it should.",
+   "changed": "check-default-picks-v1.mjs: recordLineOver, judgeGaps, the GAPS check (6559ae7181)"
+  },
+  {
+   "finding": "Resting lines moved by a ship were counted by sampling; the round needs an every-line before/after report",
+   "outcome": "fixed",
+   "proof": "compare-resting-lines-v1. Tree vs HEAD: 40 works, 400,474 lines, 0 moved, 2 s. Vs 857a3dc0fb: 234 moved (232 bare before, M4 19,362 to 19,594; 2 text changes: II Chronicles 11:11:2 and II Kings 11:18:8). Two books with lines moved in scratch record copies: exactly 3 moved (M17 8 to 9, M3 0 to 1, PIECE:TAHOT 3,279 to 3,278). Failure only when it cannot read: --before nosuchrev exits 1 ('cannot read the records at nosuchrev'), a truncated amos record exits 1 ('cannot read amos in ...: unexpected end of file'), a good folder exits 0. Wired into round-v1.sh after the lines step; bash -n passes and the merge with kinds-build has 0 conflicts.",
+   "changed": "reader/tools/compare-resting-lines-v1.mjs (new), reader/tools/round-v1.sh (ac005067ae)"
+  },
+  {
+   "finding": "The tree's /toggles/ page and photos are still the old ones; data/default-picks-receipt-v1.json is stale for D20",
+   "outcome": "left-for-lead",
+   "proof": "Both are generated paths, which this part must not commit. The scratch build is at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/tools/toggles-mine/ and the scratch receipt at /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/tools/receipt/default-picks-receipt-v1.json. The tree's files are untouched: git diff HEAD on reader/data, reader/build and toggles is empty."
+  }
+ ],
+ "checks_run": [
+  {
+   "check": "check-reset-pill-v1: HEAD's on HEAD's page / mine / mine never-ready / HEAD's never-ready",
+   "result": "green 26 s / green 26 s / red R1 56 s / ALL GREEN 297 s (swallowed)"
+  },
+  {
+   "check": "check-line-follows-card-v1: HEAD's / mine on HEAD's page (8977); mine on never-ready (8975)",
+   "result": "green 232 s / green 226 s; red F6 under MACULA, UBS, BDB 284 s"
+  },
+  {
+   "check": "check-word-senses-v1: HEAD's / mine on HEAD's page (shadow); mine / HEAD's on never-ready",
+   "result": "green 33 s / green 34 s; mine red W5 under UBS 57 s; HEAD's green 58 s ('W5 under UBS not judged here')"
+  },
+  {
+   "check": "check-same-product-v1 --old 8914 --new 8922 --every 38 --expect data/default-picks/index.json: HEAD's / mine; mine with --new 8976 (never-ready engine)",
+   "result": "155 s / 156 s with identical output (S1 red at Amos 5 because the tree's built engine is main's; S2 green, 12 cards); never ready: S1 and S2 red 'failed to read', 232 s"
+  },
+  {
+   "check": "check-default-picks-v1 whole on the tree: HEAD's / mine; no-hold page: HEAD's / mine; never-ready: mine",
+   "result": "28 green 343 s / 29 green 317 s; D7 red 14 (361 s) / D7 red 18 + D8, D9 (326 s); red D4-D19 'it threw' 210 s"
+  },
+  {
+   "check": "check-default-picks-v1 --node --self-test on the scratch-baked receipt; --self-test --ledger; wrong receipt+record HEAD's / mine; HEAD's --node on the tree's committed receipt",
+   "result": "all green 49 s; H1-H15 green 113 s; HEAD green 40 s / mine red at exactly D5 gaps (1) and D20 (1) 43 s; HEAD's own D20 red (7 faults: the receipt is stale)"
+  },
+  {
+   "check": "build-toggle-design-v1 in scratch: HEAD's --url 8978 Amos / mine same / mine with no --url / wrong-served variant / rows-at-foot variant",
+   "result": "16 photographed 6 s / 16 photographed 16 s, 4 page lines differ, row-defaults.png clear (viewed) / same page 14 s / refused (defaults, second said not served) / refused (#nav over every row)"
+  },
+  {
+   "check": "compare-resting-lines-v1: tree vs HEAD; vs 857a3dc0fb; two books moved in scratch; bad revision; truncated record",
+   "result": "0 moved of 400,474 (2 s); 234 moved; exactly 3 moved; exit 1 'cannot read'; exit 1 'cannot read amos'"
+  },
+  {
+   "check": "probes/same-signs.mjs HEAD's gloss-store helpers vs mine",
+   "result": "14 of 14 the same; SIGN_GAP U+200b, length 1"
+  },
+  {
+   "check": "eslint (v29 config) on my final versions vs HEAD's (cdd93e381f)",
+   "result": "the same 2 pre-existing warnings (check-word-senses no-useless-assignment, gloss-store routeText unused); none new"
+  },
+  {
+   "check": "scan-chars (raw invisible characters and Hebrew) on the final files and commit messages",
+   "result": "0 (HEAD's gloss-store had 1, the raw gap)"
+  },
+  {
+   "check": "git merge-file -p ours(committed HEAD:path) base(46bbbf7d50:path) theirs(kinds-build:path) for all 8 changed files; also the tree's working copies of the 2 shared files",
+   "result": "0 conflicts each; every merge parses (node --check / bash -n); compare-resting-lines-v1.mjs is absent on kinds-build (new file)"
+  }
+ ],
+ "changed_ranges": [
+  "reader/tools/gloss-store-v1.mjs 77-83: the exported sign helpers block (comment; SIGN_GAP and signOnly's pattern as \\u escapes). Commit 9d671a18f1",
+  "reader/tools/check-same-product-v1.mjs 57: import { SIGN_GAP, signOnly, signsOff } from ./gloss-store-v1.mjs. 90-92: a comment in place of the five local helpers (old 89-95). read() 257-262: the wait after each state's press is said or throws. Commit 9d671a18f1",
+  "reader/tools/check-line-follows-card-v1.mjs 240-245: F6 per-source loop (the page did not say: a fault, close, continue). Commit 312ae4bebf",
+  "reader/tools/check-reset-pill-v1.mjs R1 among the default sources: 165-174 (unsaid, answered()), 214 (steps line 'THE PAGE DID NOT SAY in 30 s ...'), 220-221 (verdict && !unsaid). Commit 312ae4bebf",
+  "reader/tools/check-word-senses-v1.mjs 407-416: W5 under UBS (said, or a fault). Commit 312ae4bebf",
+  "reader/tools/check-default-picks-v1.mjs, commit 6559ae7181. Header: 97-104 (D5 gaps), 110-113 (D20 cells), 122-126 (w5), 146 (D7), 191-195 (H14, H15). 226: import adds signOnly, SIGN_GAP. placesOf 331-335 (jn, signAlone). expectedPlaces 533, 590-601, 603 (named). NAMED 661, 692. resolveRows/ROWS/ROW_M/ROW_TEXT 753-755, 766, 772-774, 778-781. recordLineOver + judgeGaps + GAPS check 928-972. NAMED_CELLS + judgeD20 974-977. D20 add()/judgeD20/check/side 995-1052. ready() 1145-1153. heldHalvesIn + W5 1251-1270. PAGE works line/side/pool/D7 verdict 1908-1910, 1914, 1925. SELF_TEST H14/H15 2012-2031",
+  "reader/tools/build-toggle-design-v1.mjs, commit 3e2e86f059. Run comment 36-38. import serveTree 44. Main block: site/URL0 default 124-129; photograph loop (scroll to top, laidOver) 168-191; SERVED + probe without ?rail=all + servedWrong 192-235; refusals 236-239; inTheRow/tryIt 247-248; lede sentence 340",
+  "reader/tools/compare-resting-lines-v1.mjs 1-188: new file (COMPARE_SCHEMA, compareRecords, CLI). Commit ac005067ae",
+  "reader/tools/round-v1.sh 197-201: lines step, the compare call and its failure. Commit ac005067ae"
+ ],
+ "not_done": [
+  "The tree's toggles/ (index.html, shots/) is not rebuilt; it is a generated path, and the ship command is in lead_must_run. toggles/shots/row-order.png is an orphan that no page references.",
+  "data/default-picks-receipt-v1.json is not baked in the tree; it is generated. HEAD's own D20 is already red on it (7 faults), so D20 stays red until the round bakes it.",
+  "Not run: HEAD's line-follows-card, same-product and default-picks checks on the never-ready page. Each would run out its 30 s waits and pass, and the swallow (.catch(() => {})) is visible in their code. Also not run: the whole suite, the round and the gate (by rule).",
+  "D7 evidence limit: there is no cut that removes the hold only outside runs. HEAD's D7 was already red at 14 on the full no-hold cut, because II Samuel w1 has held halves inside runs. Mine finds 18; the 4 extra equal Hosea's 4 held places, but the check prints only its first 2 faults.",
+  "check-same-product S1 against the tree's built engine (8922) is red before and after at Amos 5 (4 lines): the built engine is main's and does not hold a reading across words yet. The round's engine rebuild owes it; neither check's change causes it.",
+  "Out of scope, seen: check-blob-every-v1.mjs (line 30, and a raw ZWSP at 44) and check-live-line-asks-its-own-word-v1.mjs (line 53, and a raw ZWSP at 55) keep their own signOnly copies with raw ¿ and ×. The same fold into gloss-store-v1 applies.",
+  "Out of scope, seen: check-rulings-under-sources-v1 open()/ready() still swallow a 120 s wait (lines 254, 258). The page builder has that file modified in this tree.",
+  "Out of scope, seen: zone.html TOGGLES has the id 'licence' (label 'license'). Renaming an id touches stored state; it is the page team's file.",
+  "Merging with kinds-build leaves check-same-product with two import lines from ./gloss-store-v1.mjs (kinds' and mine). The lead may fold them into one.",
+  "A refused toggles build has already written its new photos into shots/ (the refusals come after the photographs, as HEAD's did). Only the page is withheld."
+ ],
+ "lead_must_run": [
+  "Ship the toggles page from the ship tree once the page part is in (it photographs the tree's own reader on a free port): cd reader && nice -n 10 node tools/build-toggle-design-v1.mjs && cd .. && git rm -q toggles/shots/row-order.png && git add toggles/index.html toggles/shots && git commit (then look at toggles/shots/row-defaults.png).",
+  "The round with --default-picks <the ledger folder holding default-picks-v1/, v1.1/, v1.2/>, so that round-v1.sh lines 204-207 bake data/default-picks-receipt-v1.json (--receipt-only) and run check-default-picks-v1 --node --ledger over it. D20 cannot be green on the receipt the tree holds now. The same round prints the compare summary and writes build/round-v1/resting-lines-compare.json.",
+  "check-default-picks-v1 --ledger <the ledger folder> on the page after that bake, for D20's named-row cells and D7 with w5.",
+  "check-same-product-v1 S1 against the tree's own rebuilt engine (the built engine on 8922 is still main's, so S1 is red at Amos 5 until the round rebuilds it)."
+ ]
+}
