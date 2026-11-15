@@ -44,6 +44,8 @@ Fourteen cards of one chapter are a direction, not a measure. And by the owner's
 
 Decide per kind of dictionary, never per card: the Bible dictionaries stand as now, gated by their own marks; Wiktionary stands, its own kinds applied wholesale; the word lists and knowledge bases take one shelf of their own on the card, shut at rest, one switch to open, nothing deleted; Jastrow takes its own rabbinic shelf (the owner's shelving idea, task 39). The heading over each shelf is the dictionary's own description of itself, so the card still makes no claim. Asked: is that the shape, and is the word lists' shelf shut or open at rest.
 
+**Not awaited.** The owner's next words (`../HOW-THE-OWNER-WANTS-TO-WORK-2026-11-15.md`, word 3): nothing agreed is held, a question buried in a write-up is a quiz, the site is where things are tested. So the shape is built as put: each dictionary filed by what it says it is, the word lists and knowledge bases shut at rest behind one switch, Jastrow under its own heading, nothing deleted. It ships after the ledgers; the owner meets it on a card.
+
 ## Next
 
 The full table of the 119: what each says it is (quoted), what kinds of entry it marks in its own data (names, parts of speech, labels, senses, pointing, entry numbers, stems), its rows, and what a rule over each kind would move on the whole shelf.
