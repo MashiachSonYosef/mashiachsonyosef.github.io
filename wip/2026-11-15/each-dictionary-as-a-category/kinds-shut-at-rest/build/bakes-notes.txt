@@ -1,0 +1,115 @@
+Part 4 of DESIGN.md (the store reader and the bakes), as the other parts can read it.
+Working note of the bakes builder, 15 November 2026. Commit dbf4b277f4 on kinds-build (5 files:
+tools/gloss-store-v1.mjs, tools/regloss-zone.mjs, tools/project-lattice-v12-v1.mjs,
+tools/bake-search-index-v1.mjs, PIPELINE.md). No generated file is committed: the lead's round bakes them.
+
+WHAT PART 4 WRITES
+  zone.emitted_from.rests_off   only on a zone of the record's scope (the 39 books); removed from any other
+    rule, record ("data/dictionary-kinds-v1.json"), version, sha256, projected_on, projected_by, scope,
+    what_the_zone_carries, keys_bare_at_rest (a number),
+    entries: { <entry id>: { say, ids: { <M id>: keys carrying a row of it }, keys, rows } }
+    (counted over every row the store holds for the zone's keys, open or shut)
+  zone.emitted_from.witnessed_order.columns[<column>].rests_shut_recredited_keys   [keys], beside
+    struck_credit_recredited_keys: the lane's credit named a shut source and is now the store's credit at rest
+  zone.emitted_from.gloss_m_orders_layer.per_order[<column>].rests_shut_recredited  a number
+  zone.emitted_from.post_build.wrote gains "emitted_from.rests_off", and "emitted_from.witnessed_order"
+    when a key is typed
+  sidecar <book>.lattice.bin: rests_off { rule, record, version, sha256, what }; absent off the scope
+  data/search-index/index.json: rests_off { rule, record, version, sha256, facts_left_out,
+    entries_left_out, says }
+
+THE STORE READER
+  openRouteStore(dir, { atRest: true }): routesFor gives the rows that rest open ([] where every one rests
+  shut); routesWhole gives them whole; atRest = { rule, record, version, sha256 } (null opened whole);
+  restsOff = row -> the resting entry or null (null opened whole); glossFor's reason
+  EVERY_READING_RESTS_SHUT; tableFor's counts.every_reading_rests_shut. It reads the record from the
+  store's parent folder (reader/data) and throws one sentence when the record is missing or does not hold.
+  The projector refuses a book in scope whose zone carries no stamp, or a stamp of another sha256, and a
+  zone out of scope that carries one.
+
+MEASURED (the round's zones and lattice steps narrowed to these four works, outside the tree)
+  The record's scope, asked of every zone the round reads: the 39 books in, and out the Tikkunei Zohar
+  (EDITION_DOOR_SERVE__BUILT_STREAM) and the 21 commentary zones (ZONE_COMMENTARY_V2), which are projected
+  whole. The Tikkunei Zohar's zone is byte-identical (30dc945f273ad729); Obadiah's and Ruth's commentary
+  zones re-run with their own stamp are byte-identical too. HEAD's tools reproduce every committed
+  zone and sidecar byte for byte, and HEAD's page over HEAD's zones reproduces the committed resting lines.
+  The line at every word, before and after, under the page at 2ed036f33f:
+    Esther 3,027 lines, 1 moved; Genesis 20,473 -> 20,475, 11 moved; Exodus 16,581, 70 moved;
+    Tikkunei Zohar 97,283, 0 moved (its 8,358 lines credited to the kind stay, by addition 1).
+    Every line a shut source carried before moved; no line after is credited to a shut source.
+  Esther
+    9:17 [1:1]  «three» [M14]  ->  «+ fork» [M14]   (the rank-loss class)
+  Genesis
+    23:12 [3:2]  «people of the Land (of Israel)» [M2]  ->  «commoners, laymen» [M13]
+    23:13 [4:2]  «people of the Land (of Israel)» [M2]  ->  «commoners, laymen» [M13]
+    32:33 [4:2]  «the Jewish people» [M2]  ->  «the Children of Israel, Israelites, Jews» [M13]
+    39:6 [18:2]  «GOOD-LOOKING» [M64]  ->  its words' own lines «handsome of» + «form» [PIECE:TAHOT]
+    40:20 [4:2]  «birthday» [M2]  ->  its words' own lines «[the] day of» + «being born» [PIECE:TAHOT]
+    42:5 [1:2], 45:21 [2:2], 46:5 [5:2], 46:8 [2:2]  «the Jewish people» [M2]  ->  «the Children of Israel, Israelites, Jews» [M13]
+    49:11 [2:1]  «an urban area with a fixed boundary that is smaller than a city» [M43]  ->  «city + towards» [M4]
+    49:13 [6:1]  «ship» [M28]  ->  «ships» [M4]   (the design has it bare; STEP's own words fill a bare line)
+  Exodus
+    4:10 [7:2]  «rhetorician» [M2]  ->  «one who is eloquent or fluent in one's speech» [M13]
+    5:5 [5:2]  «people of the Land (of Israel)» [M2]  ->  «commoners, laymen» [M13]
+    13:17 [8:2]  «Derekh eretz, the decorum, dignified behaviour, and gentlemanly conduct that should characterize a Jew at all times» [M2]  ->  «manners, etiquette; moral norms or customs» [M13]
+    and 67 lines «the Jewish people» [M2]  ->  «the Children of Israel, Israelites, Jews» [M13]:
+    1:1 [2:2] 1:9 [5:2] 1:12 [9:2] 2:23 [8:2] 3:9 [3:2] 3:10 [8:2] 4:29 [7:2] 5:14 [2:2] 5:15 [2:2]
+    5:19 [2:2] 6:5 [6:2] 6:12 [6:2] 7:4 [13:2] 9:6 [11:2] 9:26 [5:2] 11:7 [2:2] 12:27 [9:2] 12:28 [2:2]
+    12:37 [1:2] 12:40 [1:2] 13:18 [11:2] 14:8 [9:2] 14:10 [3:2] 14:10 [15:2] 14:16 [11:2] 14:22 [1:2]
+    16:1 [5:2] 16:2 [3:2] 16:3 [2:2] 16:9 [8:2] 16:10 [6:2] 16:12 [3:2] 16:15 [1:2] 16:17 [2:2] 17:1 [3:2]
+    17:7 [8:2] 19:1 [3:2] 24:5 [3:2] 24:11 [2:2] 24:17 [8:2] 27:21 [20:2] 28:1 [10:2] 28:9 [8:2]
+    28:11 [11:2] 28:21 [4:2] 28:29 [4:2] 28:30 [19:2] 28:38 [11:2] 29:28 [6:2] 29:28 [14:2] 29:45 [2:2]
+    30:12 [4:2] 30:16 [5:2] 31:16 [1:2] 31:17 [2:2] 33:6 [1:2] 34:35 [1:2] 35:1 [5:2] 35:4 [5:2]
+    35:20 [3:2] 35:29 [17:2] 36:3 [8:2] 39:6 [12:2] 39:14 [3:2] 39:32 [7:2] 39:42 [8:2] 40:36 [5:2]
+  Under the live page (46bbbf7d50), which does not know the kinds, the same zones move only the three
+  one-word lines (Esther 9:17, Genesis 49:11, 49:13): the span lines are the page's (part 2).
+  Genesis 1:22's card goes from 19 pills to 13; the six that leave are Peru, pro, Republic of Peru,
+  Tarica, country in South America, and «A country in South America, with capital Lima».
+
+THE SIGN COUNT (addition 3, report only)
+  Over the 39 records (Genesis, Exodus and Esther as re-read above): 73,251 of 303,193 resting lines are
+  led by a reading carrying its own source's sign (STEP 73,236, Strong's 14, MACULA 1); 52,496 show the
+  sign and 20,755 hold a hidden sign's gap. Before: 73,249 of 303,191 (Genesis +1 «[the] day of»,
+  Esther +1 «+ fork»).
+  By book (signed of lines): genesis 4819/20475, exodus 4178/16581, leviticus 3113/11908,
+  numbers 4341/16190, deuteronomy 3249/14235, joshua 2800/9885, judges 2483/9773, i-samuel 3124/13198,
+  ii-samuel 2465/10961, i-kings 2965/13047, ii-kings 2983/12184, isaiah 3918/16800,
+  jeremiah 5579/21666, ezekiel 4679/18544, hosea 439/2361, joel 213/957, amos 489/2025, obadiah 71/291,
+  jonah 130/687, micah 306/1390, nahum 126/555, habakkuk 159/666, zephaniah 200/765, haggai 173/587,
+  zechariah 785/3082, malachi 224/851, psalms 4020/19514, proverbs 1918/6878, job 1650/8311,
+  song-of-songs 367/1243, ruth 280/1293, lamentations 298/1534, ecclesiastes 822/2979, esther 670/3027,
+  daniel 1259/5905, ezra 884/3705, nehemiah 1281/5267, i-chronicles 2647/10628, ii-chronicles 3144/13245.
+  Strong's lines by book: numbers 1, deuteronomy 1, i-kings 2, jeremiah 2, ezekiel 1, hosea 1, psalms 1,
+  proverbs 1, job 1, esther 1, nehemiah 2; MACULA: jeremiah 1.
+  Ten examples (a hidden sign's gap shown as _):
+    genesis 1:1 [3:1] «<obj.>» [PIECE:TAHOT] STEP          genesis 1:1 [5:1] «and_» [PIECE:TAHOT] STEP
+    genesis 1:2 [1:1] «<it> was» [PIECE:TAHOT] STEP        genesis 1:2 [5:1] «[was] over» [PIECE:TAHOT] STEP
+    numbers 3:43 [5:1] «+ command» [M14] Strong's          deuteronomy 28:59 [8:1] «+ aloud» [M14] Strong's
+    i-kings 7:41 [14:1] «+ advertise» [M14] Strong's       jeremiah 5:12 [3:1] «X before» [M14] Strong's
+    ezekiel 7:13 [1:1] «X at all» [M14] Strong's           jeremiah 50:29 [12:1] «there ~ be» [PIECE:MACULA] MACULA
+
+FOR THE CHECKS (part 5): the tree's working copies run on the bakes above
+  1. check-witnessed-order-v1 W2 (working copy, not committed): creditShut asks only the lane's main
+     credit (M.by, M.m). The bake also re-credits an entry whose ALTERNATE names a shut source (the
+     page draws the alternate, with its chip, where a reader switches the main credit's sources off). Replayed on the at-rest zones, W2 would flag 27 of Genesis's 29 typed keys
+     and 4 of Exodus's 5 («Abraham», «Hagar», «Hashem», «Joseph», «enemy», «beam», ...), every one where
+     the shut source is in the lane's alternate alone; Esther's 2 pass. Asking the alternate as well,
+     creditShut(k, text, M) || (M.alt && creditShut(k, M.alt.text, M.alt)), all 36 pass, each credit the
+     store's at rest. Over the 39 books 189 of the 325 re-credited entries are of this kind.
+  2. check-lattice-projection-v1 (working copy): green on the at-rest bakes (L4b 100,423 leaders, every
+     law ok); red on HEAD's whole bakes of the same three books (L4: Exodus 2 first-under entries; L4b:
+     Esther 435, Exodus 1,563, Genesis 2,123 leaders credited to a row that rests shut). It goes red on the
+     tree until the round re-bakes the 39 books, and green after.
+  3. check-zone-single-pass-receipts-v1 L6 passes on the three at-rest zones (the stamp is typed).
+
+FOR THE LEAD
+  - Run the round whole with --lattice: the zones step bakes the 39 books at rest; the Tikkunei Zohar and
+    the other works are projected whole and do not change.
+  - The front door (tools/build-front-door-v1.mjs) reads the store whole and is left so: at rest its
+    title readings would differ from the cards it prints (it refuses: Judges' title at rest reads M13's
+    «plural indefinite form of ...»). Whole, it names a shut source on 6 titles (Leviticus M43, Judges M48;
+    the «attested» chips of Ecclesiastes M21, Jeremiah M1, Lamentations M37, Obadiah M21) and on 3 family
+    heads (Talmud and Kabbalah M43, Grammar M1). Its page carries no zone stamp, so the kinds do not act
+    there. A decision for the lead.
+  - Other bakes read: the default picks (M4, M19, M3, M18, M46), the pointing recount (not served), the
+    word senses (the overlay only), the commentary (?commentary=on only) name no shut id.

@@ -107,7 +107,7 @@ Every ship ends: commit on main, merge main into gh-pages with the message «gh-
 - CARDS:
   - v190: 12,257 rows go from withheld to kept at 11,895 places («Lo-» 4,976, «O sons of» 1,490, «<if>?» 711).
   - v191: 459 FORM_OF pills move at 58,017 places; resolved goes from 1,524 to 1,982.
-  - v185.2 (Jastrow on): 1,078 more rows held back; the legend goes from 3,328 to 3,958; search drops 1,078 rows.
+  - v185.2 (Jastrow on): 1,078 more rows held back; the legend goes from 3,328 to 3,958; search drops 1,078 rows (as shipped: 988). *(As shipped, main 46bbbf7d50, 15 November: corrected by the toggles review's critic, N5.)*
 - CHECKS:
   - check-entry-gate E1-E13 with --ledger v1.1 and --lattice (E4: M4 41,185 / 53,848; E5: 52,793 / 382,258).
   - check-v190.mjs: the moved set equals facts-slot-v1.1.tsv.
@@ -142,7 +142,7 @@ Every ship ends: commit on main, merge main into gh-pages with the message «gh-
   - bdb_mend_v1_2: 1148f2cf…, 165 lines
   - rows_added_v1_2: 0088a1ed…, 1,935 rows, the first numbered 152,648
 - picks-waiting, entry-gate and call5-repoints are pinned and counted. The merged and small-letter branches stay off at rest.
-- Expected: has.step 305,430; step_leaves 1 (II Samuel 7:22:5); rest_fills 0; place_reading_answers 0; no STEP auto second in 39 books; 14,784 STEP line picks name no row.
+- Expected: has.step 305,430; step_leaves 1 (II Samuel 7:22:5); rest_fills 0; place_reading_answers 0; no STEP auto second in 39 books; 14,784 STEP line picks name no row. As shipped: has.step 305,415; place_reading_answers 1; 14,783 picks name no row; and at rest STEP's own words print at the 232 bare words, with 2 neighbor lines in the same runs (not «nothing on the line»). *(As shipped, main 46bbbf7d50, 15 November: corrected by the toggles review's critic, N5.)*
 - MOVES AT REST: nothing on the line. Pills only: «100%» in 38 books, «>99.9%» in II Samuel.
 - PLAN-MERGED lines to change:
   - line 26 and §7: 212 rest fills → 0
@@ -207,7 +207,7 @@ Every ship ends: commit on main, merge main into gh-pages with the message «gh-
   - The check holds 2,177 lines over 4,402 words.
   - II Samuel 6:10:16 is the call-4 place under a run that lands.
 - MOVES AT REST:
-  - Call 4: 785 lines; 178 appear where none stood and 607 replace a line. 175 of them are among the default picks' 239 bare words.
+  - Call 4: 785 lines; 178 appear where none stood and 607 replace a line. 175 of them are among the default picks' 239 bare words. Since ship 3 those 175 already print STEP's words, so call 4 makes 3 lines appear where none stood: the gate's owed set for ship 5 counts 3, not 178. *(As shipped, main 46bbbf7d50, 15 November: corrected by the toggles review's critic, N5.)*
   - Call 3: the run lines rest word by word over 4,402 words.
   - Call 7: lifted rows leave the resting pool, so lines move wherever a lifted row printed one. The reviewer counted 17,352 pills at 5,744 keys for the full lists; recount with 17,046. Under UBS's default no line moves.
 - PLAN-MERGED: §8 call 3 is superseded. §0.1 #1 and §0.5.1 now hold except at call 4's places.

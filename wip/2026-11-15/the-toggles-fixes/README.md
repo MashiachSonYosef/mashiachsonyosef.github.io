@@ -13,3 +13,18 @@ The independent review of the default toggles' third fix round (workflow toggles
 Workflow `toggles-fixes-after-review-3` (w2xyc151l, wf_5f503e37-d57) in scratch `pt`, branch `toggles-fixes` from main 46bbbf7d50: a page builder and a tools builder at once, then an independent review, then the fixes. Merged with the kinds' branch for the next ship (both edit zone.html; each keeps its changes local and lists its ranges).
 
 The integration notes of 15 November (`../../2026-11-14/the-default-toggles/fix-round-3/integration/INTEGRATION-2026-11-15.md`) say three things the merge lens showed not to follow; a correction is appended to them.
+
+## The completeness critic (re-run on Opus, 10:50 UTC)
+
+`CRITIC-2026-11-15.json`. None of the 25 confirmed findings is wrong in substance. New, most serious first (each probed on the shipped site):
+
+1. **N1, wrong data.** With the concordance on, the table says «0 locations» for the line's own reading wherever that reading is a row the page made for a default source: all 232 STEP-words places at rest, and about half the lines under MACULA or UBS. No check opens the concordance under a source.
+2. **N2, doubled words.** Where a source files one two-word unit at each of the two words, the line prints the unit under both («Bethel · sense 1» twice at Amos 3:14 under BDB; «with food» twice at Daniel 1:8 under MACULA). One rule fixes it with finding 2: a unit the source reads at both words prints once, as a joined run does.
+3. **N3, a freeze.** A source press repaints every built line in one task: about 10 to 12 s on Psalms fully built, against 0.15 s with the first sections only.
+4. **N4, a jump.** The first card of a visit is rebuilt when the book file lands; its pills move about 200 px on a desktop and focus falls to the body; a click aimed at a pill can rule another.
+5. **N5, records.** The landing plan's figures for ship 3 and ship 5's call 4 were stale: corrected in both copies the same morning (ship 5's owed set counts 3 new lines for call 4, not 178).
+6. Nits: N6 (/toggles/ calls the source pills «drawn only with the switches»; a photograph under the bottom bar), N7 (a kept source's book file is fetched after the zone, not beside it), N8 (MACULA's title says «press again to go back to STEP» when STEP is switched off), N9 («TAHOT at this place» beside «here STEP reads» on one card).
+
+Process points taken: the checks' wait is fixed by its condition (do not wait at rest), not by a longer suite timeout; the all-lines comparison of the resting lines becomes a step of the round; the next ship, which moves resting lines (the kinds), bakes the defaults after its lines step and owes the lines where STEP's words newly print.
+
+These go to a second round of the toggles fixes, in the same tree, once the first round returns.

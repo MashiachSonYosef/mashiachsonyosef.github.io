@@ -1,0 +1,45 @@
+Part 5 of DESIGN.md (the read-off tools and the checks), working notes of its builder, 15 November 2026.
+Plain facts for the lead and the other parts. The report is the builder's final answer; this file is the scratch trail.
+
+WHAT THE READ-OFF TOOLS NOW SAY OF A PAGE
+  state.kinds   "shut" | "open" where the page says the dictionaries that rest shut act on the book
+                (window.__kindsHere), null where they do not (the Tikkunei Zohar, a commentary, a fixture).
+                Same expression in resting-lines-v1 linesInPage, card-readings-v1 cardsInPage, gated-card-v1 cardInPage,
+                so a chain book's state at rest equals its book's resting-lines record (check-chain-book-v2 K3).
+  lifted        card-readings STATES.lifted.keep adds "fh.kinds": "open@<record version>" (read from
+                data/dictionary-kinds-v1.json at import), holds adds kinds: "open"; readCards refuses a lifted
+                reading whose page reports otherwise.
+  refusal       linesOnPage (and so readAtRest, readCards, openGatedCard) throws where window.__kindsFailed:
+                a page that was to act and could not take the record draws span lines over shut rows.
+  gated card    openGatedCard(..., { kinds: "rest" | "open" }); "open" loads ?kinds=open; anything else throws.
+
+THE CHECKS AND HOW EACH ASKS
+  check-dictionary-kinds-v1   K3 (bakes at rest), K4 (page at rest, browser), K5 (records, chain books); --only for
+                              proofs on a few works (prints a "not judged on every work" line).
+  check-chain-book-v2 K3      lifted holds kinds "open" on a book the record rests shut (null elsewhere).
+  check-search-v1             offOf adds the record's whole-shut ids where the page says the kinds act and stand
+                              shut; the model leaves out the fact entry's rows as the bake does; S18 holds the index's
+                              rests_off header (sha256, version, facts_left_out, entries) to a recount.
+  check-same-product-v1       --expect given twice, each told by rule_id (default-picks-rule-v1-..., the kinds rule);
+                              any other refused (exit 2). Kinds: S1 owed classes "a shut source's line",
+                              "a shut source's run line", "a rank a shut co-carrier gave" (old zone gloss_m.by,
+                              old sidecar l/la/e carriers, fetched from --old); S2 lost pills only of shut-whole or
+                              fact-family carriers, held back counted, no new pill, order kept (readingKey), pressed
+                              moves only with an owed line. Out of scope works compared as before.
+  names checks                check-names-gate-v1 N7/N8, check-names-pill-v1, check-proper-name-v1 N4/N5 ask with the
+                              kinds open (?kinds=open); proper-name N1/N3 ask the store at rest for a book at rest.
+  rebuild checks              carrier-survives C2, lattice-projection L4/L4b, sense-openings O6: the store at rest
+                              for a book the record rests shut, whole otherwise. witnessed-order W2 accepts
+                              rests_shut_recredited_keys when the credit is glossMFor(store at rest) and the lane's
+                              credit named a shut source. antiquity-tier: unchanged (no baked column; the tier is a
+                              non-decreasing function of the year, so no subset of rows can make the cut decide).
+  other gate checks           check-entry-gate-v1 E9-E12 ask with the kinds open, E13 at rest (it holds the line);
+                              check-stems-extension-v1 B5-B8 with the kinds open; check-sense-openings O7-O9 open.
+
+PROOF TREES (scratch, nothing in the tree touched)
+  farm   scratchpad/kinds-checks-v1/farm: symlinks over rt; zones genesis exodus esther obadiah baked at rest with
+         the committed bakes (farm-bake.sh: witnessed, regloss, lattice, pins); records of those four and the
+         Tikkunei Zohar re-read (bake-resting-lines --only); obadiah's chain book rebuilt.
+  farm5  the same with only those five works on disk (zonesServed = 5), for checks that walk every served zone.
+  Run in a farm: NODE_PATH=/opt/node-tools/node_modules node --preserve-symlinks --preserve-symlinks-main tools/<check>
+  (main-guarded tools, the bakes, run with plain node from the farm's reader folder: they read ".").
