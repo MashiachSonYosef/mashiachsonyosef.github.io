@@ -13,3 +13,8 @@
 - Bronze is not used like gold, and not in the logo. The logo's gold (the word «and», the flame's heart) is the pale gold, so the logo and the site stay one color (the owner, 10 October: «my main point is uniform coloring between logo and site»).
 - Dark mode in bronze: the options of 10 November drawn again on today's page, for the owner to choose; nothing ships until then.
 - It ships with the next ship (the default toggles and the corpus lane's first landings), so the round runs once.
+
+## Later on 15 November
+
+7. «option 3 is fine» (the logo: pale gold thread with a deeper gold edge). «i like my darkmodes dark so deep bronze is nice» (the dark mode: #2b1f16, the dyes lifted to read on it). «is bronze a fair thing to put the words of a tabernacle on though or is this a liberty not described by moses» — answered from Exodus: bronze is the court's metal (25:3; 27:2, 10, 17, 19; 30:18; 38:8), and the four colors hang over bronze at the court's gate and the tent's door (27:16–17; 26:36–37); bronze as a ground, and its shade, are the page's reading, not the text's.
+8. «maybe the way to differentiate our logo is with a linen/bronze background patterning of some sort too» → `pictures/logo-grounds.png`: 1 linen cloth, 2 linen on a bronze base (the court's hangings on bronze sockets), 3 bronze threads crossing the linen, 4 deep bronze by night.
