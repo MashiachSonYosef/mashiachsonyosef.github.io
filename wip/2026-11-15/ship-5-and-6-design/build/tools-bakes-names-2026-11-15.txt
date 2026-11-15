@@ -1,0 +1,35 @@
+Ships 5 and 6, the tools and bakes part (page lane), 15 November 2026. Tree: scratchpad/b5, branch ship56-build.
+Names the checks and the gate can read. Kept up to date as the part lands.
+
+The sign rule (commit 087469eda7)
+  zone:     emitted_from.signs_rest_last = signsRestLastStamp(kinds.rec) (tools/gloss-store-v1.mjs), on a zone restsOffIn reaches; none elsewhere
+  sidecar:  emitted_from.signs_rest_last, the same object (written by tools/project-lattice-v12-v1.mjs; it refuses a zone whose stamp differs)
+  sidecar join counts: hg_stepped_past_a_signed_card (only on a book of the scope)
+  witnessed rule id: witnessed-order-bake-rule-v2-three-columns-as-shipped-each-reading-with-its-own-credit-an-entry-whose-row-prints-only-strongs-signed-renderings-is-refused-where-the-pool-holds-a-plain-one
+    (bake-witnessed-order-v1 :2 and RULE, import-witnessed-orders-v1 :2 and :45, type-witnessed-drops-v1 :2; check-witnessed-order-v1:3 is the checks builder's)
+  witnessed receipt: version stays 2 (check-witnessed-order W0 asks 2); per column, on a book of the scope:
+    strongs_sign_refused (count), strongs_sign_refused_keys (the keys), refused_why["a rendering carrying Strong's sign leads no line where the key's pool at rest holds one without it"]
+  the refusal: every reading of the row (store.readingsOf over the store whole, as the bake finds the row) opensWithStrongSign, and
+    openRouteStore(store, { atRest: true, signLast: true }).readingPool(routesFor(k)) holds a reading that does not
+  figure on this tree: 2,477 entries on 2,475 keys (entry-and-lists 2,475, same-place 1, entry 1) = the design's 2,453 + 24 bracketed (call 1)
+
+UBS collocations (commit 4e093aefeb)
+  pin: data/ubs-collocations/PIN.json made_here.list (ubs-collocation-rows-v1.jsonl, 2,649 lines, 689,389 bytes, 694d3fcd...)
+       made_here.receipt (ubs-collocation-rows-receipt-v1.json, 3,879 bytes, 8bca4d34...); both written by store step 1, beside the pin
+  list line: { k, rank, m, sha, collocations, meanings, picked_at } sorted by key then rank; picked_at [] where no pick names the row (6 rows)
+  facts on the row (apply): collocations (the list's); picked_at only where non-empty (2,643 rows); a row off the list loses both
+  index key ubs_collocations { rule_id, applied_on, applied_by, pin, rule, dictionary, routes, list {file, sha256, lines}, receipt {file, sha256}, read_at_store_version, totals, followed, store_version_before, store_version, what }
+  receipt: data/ubs-collocations-receipt-v1.json (runs)
+  tools take --dictionary <UBSHebrewDic-v0.9.2-en.JSON> --routes <...csv.gz> --ledger <default picks ledger> (derive); apply takes --on, --dry
+
+Call 4 (commit 4fea289305): index step_words rows [n, words, 1] at the 785 stands places (the 6 pairs among them); receipt.steps_reading_stands
+  { rule_id, listed 853, met, letters_equal, by_class {stands 785, read_form_of_several_words 14, held_split 46, none 8},
+    stands { places 785, plain_words 779, pairs 6, whose_place_pieces_answer, words_equal 785, were_bare_before 3 } }
+  figures line: stands, stands_by_class, stands_pairs, stands_were_bare_before, step_line_rests_bare, run_lines, run_words
+  dry on this tree: has.step 305,418 (was 305,415), step_line_rests_bare 12 (was 15), step_words 1,021 (was 1,015)
+Call 3 (commit 746eef37a3): runs_read_whole.what restated; no count moves in the bake
+
+Question 12 (commit 9c3bb7b856): data/form-of-pills-v1.json rule_id form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill
+  one_pill { rule: pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it, what, store {version, at_rest}, counts }
+  counts over the store at rest: 806 pills at 665 keys (r5's figure); check-form-of-v1:101 holds the v2 id today (the checks builder's)
+  the bake now reads the store at rest (--store): run it after the store changes (the store steps do)
