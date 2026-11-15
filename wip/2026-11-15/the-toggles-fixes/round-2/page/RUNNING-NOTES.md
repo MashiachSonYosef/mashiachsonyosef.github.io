@@ -175,3 +175,26 @@ they stand apart, as it now does for BDB's units.
   kinds-build; this part adds none.
 - Lint: the page at its baseline (4 · 175 · 9 · 1 · 2); the eight tools this part wrote or changed, no warning (one in
   the new landing check, a flag polled in a loop, taken out by waiting on a promise).
+- check-press-paints-before-seen-v1 on the tree, WORKS=ruth,psalms: all green, 20 min 39 s. L1 Psalms built whole:
+  the longest task 564 ms (148 long tasks, 26.4 s in all; the blobs of the whole book are drawn in the same slices'
+  turns), its lines stand after 28.6 s. L2: Ruth (85 sections) and Psalms (2,527 sections), under MACULA, UBS, BDB and
+  back on STEP, every window equal to the first paint under the same source in the frame its scroll brought (Psalms:
+  2,832, 2,941, 2,946 and 2,847 sections seen in 369 to 493 windows), and every section after. Live's L1 is red
+  (the longest task 9.5 s, the run before's log).
+- The rest of the brief's list on the tree (Ruth unless said): check-card-opens-on-the-line-v1 green, 5 min 13 s;
+  check-reset-pill-v1 green 25 s; check-menu-switches-v1 green 9 s; check-form-of-v1 green 75 s; check-names-gate-v1
+  green 27 s; check-color-channels-v1 green 7 s; check-levels-v1 green 16 s; check-landing-holds-the-card-v1 again
+  green 27 s.
+- check-ruled-equals-first-paint-v1: Amos (its own default book) green, 100 s. Ruth red under UBS at E1 (1:1#0 and
+  1:1#4, a split cell ruled to the longest pill reads «and + to be: (Third-person masculine sin…» after the ruling and
+  «and + Third-person masculine singular ju…» when laid again; 1:4#1, a core cell 78 against 82 px, «to <the> + he»
+  against «for <the> + he») and E4 (1:4#1, pressed «they»). HEAD's own page (a shadow of HEAD's zone.html) is red at
+  the same three cells, line for line: older than this part, left for the lead (round 1 ran this check on Amos only).
+
+## Committed (branch toggles-fixes, scratch pt)
+
+- 76af3ee50c the page: zone.html, and the two readers of a part over several words (resting-lines-v1,
+  check-same-product-v1).
+- b152652e7f the checks: check-rulings-under-sources-v1 (U10, U0), check-default-picks-v1 (unitsOnce),
+  check-landing-holds-the-card-v1, check-press-paints-before-seen-v1, check-row-and-card-name-sources-v1 (new).
+N1 was 47c5a68277 (before the restart).
