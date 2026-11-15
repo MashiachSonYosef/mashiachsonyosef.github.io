@@ -8830,7 +8830,7 @@
     const out = [], lines = [];
     // the blob's dress; a screenshot probe may set a trial one on window.__tie
     // (a fill, an outline, walls, the corners' radius), the live page never does
-    const T = window.__tie || { fill: "var(--press-wash)", stroke: "var(--gold-dim)", strokeW: 1, strokeOp: 1, round: 8 };
+    const T = window.__tie || { fill: "var(--press-wash)", stroke: "var(--silver)", strokeW: 1, strokeOp: 1, round: 8 };
     const g = T.grow || 0;
     const boxes = [];
     const f = (n) => Math.round(n * 10) / 10;

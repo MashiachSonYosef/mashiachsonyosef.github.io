@@ -4,11 +4,13 @@
 <title>The rules of the frame · fireandhail.com</title>
 <link rel="canonical" href="/demonstrations/">
 <meta name="robots" content="noindex">
-<style>  /* color-channel-rule-v2 · the materials are the ledger's, the channels are
-     the owner's ruling of 2026-09-10, and the values are ours. A channel says
-     who is speaking: the corpus in tola'at shani, a dictionary's reading of
-     one of its words in tekhelet, this project's own prose in argaman, and
-     gold the frame around any of them. The door had fallen two whole channels
+<style>  /* color-channel-rule-v3 · the materials are the ledger's, the channels are
+     the owner's rulings of 2026-09-10 and 2026-11-15, and the values are ours.
+     A channel says who is speaking: the corpus in tola'at shani, a
+     dictionary's reading of one of its words in tekhelet, this project's own
+     prose in argaman. The metals speak for no one: bronze is the frame
+     around any of them, silver the layer this project draws over the text,
+     and gold only the Masoretic signs. The door had fallen two whole channels
      behind the reader — tekhelet and argaman were defined there and nowhere
      here — so the way in was painting with a smaller vocabulary than the
      rooms, and the invented blue-grey it claimed to have dropped was still
@@ -30,19 +32,22 @@
        hover and a chip wear), and the pressed linen; a card stands on the
        ground */
     --bg:#ebdec3; --cell-wash:rgba(74,48,8,.06); --press-wash:#dccbaa;
-    /* two golds: the dim at rest, every frame, chip and line and the and of
-       the name; the regular under the hand, a hover and a pressed edge. The
-       name's own brighter gold of 2026-10-02 and the amber are folded in. The
-       selection is the dim as a tint the words read through. */
-    --gold:#93661a; --gold-dim:#a06c10;
-    --line:var(--gold-dim); --chip-line:var(--gold-dim);
-    --sel-text:rgba(160, 108, 16, 0.2);
+    /* the three metals (the owner, 2026-11-15: "if bronze held the tent maybe
+       that's the hud color", "maybe silver would be like outlining all the
+       compspan boxes", "gold as masoretic signs"; the reader's own block says
+       why each value): two bronzes, the dim at rest, every frame, chip and
+       line, the regular under the hand, a hover and a pressed edge; silver the
+       line of our layering; gold only the signs, and the and of the typed
+       name. The selection is the bronze as a tint the words read through. */
+    --bronze:#6d523a; --bronze-dim:#7f6044; --silver:#6e7378; --gold:#967c26;
+    --line:var(--bronze-dim); --chip-line:var(--bronze-dim);
+    --sel-text:rgba(127, 96, 68, 0.17);
     /* two purples: the regular for titles, values and what is pressed, the
        dim for running text, notes, labels and links at rest ("titles get
        regular and text gets dim") */
     --argaman:#642460; --argaman-dim:#753c6d;
     --ink:var(--argaman); --ink-strong:var(--argaman); --muted:var(--argaman-dim); --faint:var(--argaman-dim);
-    --sel:var(--argaman); --sel-dim:var(--argaman-dim); --link:var(--argaman-dim);
+    --sel:var(--argaman); --link:var(--argaman-dim);
     --shesh:var(--argaman); --shesh-bright:var(--argaman);
     /* FOUR COLORS, ruled 2026-10-02: one soft red, one soft blue, the gold and the
      purple, and the purple alone at its full depth. The deep red the titles wore and the royal blue are retired; the deep
@@ -69,7 +74,7 @@
   /* THE NAME IS THE MARK, in four colors (the owner, 2026-10-02, and 2026-10-03: "remember the tabernacles red and blue are crafted from gold ... maybe and should be gold. and .com should be purple"): fire in shani, and in gold, hail in tekhelet, the .com in argaman, its dot still turning out of the blue (the owner: "a transition into the purple .com right so its not so standoutish ... even if just the . is blueish purple"), each word its own color, solid (the and once turned red into gold into blue, and the turn from gold to blue passed through a green no thread of the mark is dyed, so since 2026-10-08 it is gold through). Each word wears its color's regular, and the and the dim gold every frame wears at rest, the very pairs the drawn mark is woven in (the owner, 2026-10-10: "my main point is uniform coloring between logo and site"); the name's own brighter gold is folded away. The split is the owner's ruling on this one name, read from CNAME; any other name stands whole in shani. The face is Outfit at 600 (SIL Open Font License 1.1, subset to the letters of the name, its license beside it at /fonts/); where it has not loaded, Georgia. The and is gold at rest by the owner's ruling on the name, and the color check names the mark. */
   @font-face { font-family:'wordmark'; src:url('/fonts/outfit-wordmark-600.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
   .masthead { margin:0 0 .4rem; }
-  .wordmark { display:inline-block; margin:0; font-family:'wordmark',Georgia,serif; font-size:2.1rem; letter-spacing:-.01em; font-weight:600; color:var(--shani-ink); text-decoration:none; padding-bottom:.06em; border-bottom:1px solid var(--gold-dim); }
+  .wordmark { display:inline-block; margin:0; font-family:'wordmark',Georgia,serif; font-size:2.1rem; letter-spacing:-.01em; font-weight:600; color:var(--shani-ink); text-decoration:none; padding-bottom:.06em; border-bottom:1px solid var(--bronze-dim); }
   a.wordmark { font-size:1.2rem; }
   /* the drawn mark, on the door: as wide as 26rem allows, its threads two to
      three pixels apart */
@@ -79,7 +84,7 @@
   a.wordmark { border-bottom:none; padding-bottom:0; }
   a.wordmark img.wm-mark-s { display:block; height:1.5rem; width:auto; max-width:min(100%, calc(100vw - 2.5rem)); }
   /* (the window caps it too: a mark that failed to load has no shape of its own, and its box stood 416px wide on a 412px phone) */
-  .wordmark .wm-fire { color:var(--shani); } .wordmark .wm-and { color:var(--gold-dim); } @supports ((-webkit-background-clip:text) or (background-clip:text)) { .wordmark .wm-tld { background-image:linear-gradient(90deg, var(--tekhelet) 0%, var(--argaman) 30%, var(--argaman) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; } } .wordmark .wm-hail { color:var(--tekhelet); } .wordmark .wm-tld { color:var(--argaman); }
+  .wordmark .wm-fire { color:var(--shani); } .wordmark .wm-and { color:var(--gold); } .wordmark .wm-hail { color:var(--tekhelet); } .wordmark .wm-tld { color:var(--argaman); }
   p.sub { margin:0 0 .4rem; color:var(--muted); font-size:.9rem; }
   /* The face speaks plainly; the audited panel stands whole behind one quiet
      fold, its grains and receipts byte-identical for the count guard. What a
@@ -108,7 +113,7 @@
   .countboard { margin:.8rem 0 1.2rem; padding:.75rem; border:1px solid var(--line);
                 border-radius:.65rem; background:var(--bg); }
   .countgrid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.45rem; }
-  .count { margin:0; padding:.45rem .5rem; border-left:2px solid var(--gold-dim); }
+  .count { margin:0; padding:.45rem .5rem; border-left:2px solid var(--bronze-dim); }
   .count .num { display:block; color:var(--ink-strong); font-size:1rem; font-variant-numeric:tabular-nums; }
   .count .grain { display:block; color:var(--muted); font-size:.7rem; line-height:1.35; }
   .count-detail, .count-grain, .count-audit { margin:.55rem 0 0; color:var(--faint); font-size:.68rem; line-height:1.45; }
@@ -125,14 +130,14 @@
   .bookcard { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            border:1px solid var(--line); border-radius:.7rem; background:var(--bg);
            padding:.7rem .9rem .6rem; }
-  .bookcard:hover { border-color:var(--gold); }
+  .bookcard:hover { border-color:var(--bronze); }
   a.book { display:flex; flex-direction:column; align-items:flex-start; gap:.15rem;
            text-decoration:none; color:var(--ink); align-self:stretch; }
   /* Two ways in, and the Hebrew one comes first: the title opens the word's
      own record — readings oldest source first — because the answer this
      project gives to an unreadable word is never the force-read below it. */
   a.titleway { text-decoration:none; display:inline-flex; flex-direction:column; align-items:flex-start; gap:.05rem; }
-  a.titleway .g { font-size:.72rem; color:var(--argaman-dim); border-bottom:1px dotted var(--gold-dim); }
+  a.titleway .g { font-size:.72rem; color:var(--argaman-dim); border-bottom:1px dotted var(--bronze-dim); }
   a.titleway:hover .g { color:var(--tekhelet-ink); }
   a.titleway:hover .he { color:var(--argaman); }
   /* The title is the book's own. The English beside it is not a translation of
@@ -159,7 +164,7 @@
      specificity than a bare class, and this is the third rule in this file to
      lose that race quietly */
   details.fam > summary .n-row span.n-chip { display:inline-block; font-size:.66rem; letter-spacing:.04em;
-    color:var(--argaman-dim); background:none; border:1px solid var(--gold-dim);
+    color:var(--argaman-dim); background:none; border:1px solid var(--bronze-dim);
     border-radius:.6rem; padding:.12rem .5rem;
     /* it wraps rather than ellipsising: a provenance line cut to "Miqra
        accord\u2026" names an edition without naming it, which is worse than
@@ -176,7 +181,7 @@
   #find input { width:100%; padding:.6rem .9rem; border:1px solid var(--line); border-radius:.55rem;
     background:var(--bg); color:var(--ink); font:inherit; font-size:.92rem; }
   #find input::placeholder { color:var(--faint); }
-  #find input:focus { outline:none; border-color:var(--gold); }
+  #find input:focus { outline:none; border-color:var(--bronze); }
   .workgroup { border:1px solid var(--line); border-radius:.7rem; background:var(--bg); overflow:hidden; }
   .workgroup .bookcard { border:none; border-radius:0; background:none; }
   a.sub-work { display:block; padding:.6rem .9rem .6rem 1.7rem; border-top:1px solid var(--line);
@@ -228,16 +233,16 @@
   #poc .pc-at { font-size: .74rem; color: var(--faint); }
   #poc .pc-title { margin: .1rem 0 .5rem; font-size: .92rem; }
   #poc .pc-verse { margin: .5rem 0 .2rem; font-size: 1.15rem; line-height: 2.1; }
-  #poc .pc-site { border-bottom: 2px solid var(--gold-dim); padding-bottom: .1rem; }
+  #poc .pc-site { border-bottom: 2px solid var(--bronze-dim); padding-bottom: .1rem; }
   #poc .pc-verse-en { margin: 0 0 .1rem; font-size: .8rem; color: var(--faint); line-height: 1.5; }
   #poc .pc-ref { margin: 0 0 .6rem; font-size: .72rem; color: var(--faint); }
   #poc .pc-law { margin: 0 0 1.1rem; font-size: .78rem; color: var(--muted); }
   #poc .pc-mode { font-size: .62rem; letter-spacing: .1em; border: 1px solid var(--line); border-radius: 3px; padding: 0 .3rem; color: var(--faint); }
-  #poc .pc-under { border-bottom: 2px solid var(--gold); padding-bottom: .12rem; }
+  #poc .pc-under { border-bottom: 2px solid var(--bronze); padding-bottom: .12rem; }
   #poc .pc-btns { display: flex; gap: .4rem; flex-wrap: wrap; margin: .5rem 0 .4rem; }
   #poc .pc-pick { font: inherit; font-size: .76rem; padding: .2rem .55rem; border-radius: 3px;
     border: 1px solid var(--line); background: none; color: var(--muted); cursor: pointer; }
-  #poc .pc-pick[aria-pressed="true"] { color: var(--ink-strong); font-weight: 700; border-color:var(--gold); background:var(--press-wash); box-shadow:0 0 0 1px var(--gold); }
+  #poc .pc-pick[aria-pressed="true"] { color: var(--ink-strong); font-weight: 700; border-color:var(--bronze); background:var(--press-wash); box-shadow:0 0 0 1px var(--bronze); }
   #poc .pc-delim { margin-inline-start: .3rem; color: var(--faint); }
   /* the transmitted-form pill when the record writes it in Latin: it is a
      term, not a word of the text, so it wears the spacing the row labels do. */
@@ -285,7 +290,7 @@
      nothing has to. */
   .pc-hudwrap { position: static;  max-width: 23rem; width: min(23rem, 92vw); max-height: min(84vh, 50rem);
     display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
-    background: var(--bg); border: 1px solid var(--sel-dim); border-radius: 0.7rem;
+    background: var(--bg); border: 1px solid var(--bronze-dim); border-radius: 0.7rem;
     padding: 0.85rem 1.05rem; box-shadow: var(--shadow-card); }
 /* what scrolls, and what does not */
   /* The card is a stack of bands, and each keeps its own share.
@@ -406,7 +411,7 @@
      far the record below it has been scrolled. */
   .pc-hudwrap .head { cursor: grab; touch-action: none; flex: 0 0 auto; }
 .pc-hudwrap .head:active { cursor: grabbing; }
-.pc-hudwrap.moved { box-shadow: var(--shadow-card), 0 0 0 1px var(--sel-dim); }
+.pc-hudwrap.moved { box-shadow: var(--shadow-card), 0 0 0 1px var(--bronze-dim); }
 .pc-hudwrap .head button { cursor: pointer; }
 .pc-hudwrap .head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem;
     flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; margin-bottom: 0.3rem; }
@@ -433,15 +438,15 @@
   .pc-hudwrap .r-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 0.9rem; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
-.pc-hudwrap .r-pills button[aria-pressed="true"] { color: var(--tekhelet-ink); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+.pc-hudwrap .r-pills button[aria-pressed="true"] { color: var(--tekhelet-ink); border-color: var(--bronze); background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
 .pc-hudwrap .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
 .pc-hudwrap .r-overflow { margin-top: 0.45rem; }
 .pc-hudwrap .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--muted);
     background: var(--bg); border: 1px solid var(--line); border-radius: 0.45rem;
     padding: 0.3rem 0.5rem; cursor: pointer; }
-.pc-hudwrap .r-overflow select:hover { border-color:var(--gold); }
-.pc-hudwrap .r-overflow select.on { color: var(--tekhelet-ink); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+.pc-hudwrap .r-overflow select:hover { border-color:var(--bronze); }
+.pc-hudwrap .r-overflow select.on { color: var(--tekhelet-ink); border-color: var(--bronze); background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
 .pc-hudwrap .d-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
 /* P — the sources that carry the same record. A corroboration is not a
      louder kind of source, so it wears the same chip and the same weight as
@@ -453,19 +458,19 @@
 .pc-hudwrap .d-also-m { font: inherit; font-size: 0.74rem; color: var(--muted); cursor: pointer;
     background: var(--bg); border: 1px solid var(--line); border-radius: 0.6rem;
     padding: 0.16rem 0.55rem; text-align: left; max-width: 100%; }
-.pc-hudwrap .d-also-m:hover { border-color: var(--sel-dim); color: var(--ink); }
+.pc-hudwrap .d-also-m:hover { border-color: var(--bronze); color: var(--ink); }
 .pc-hudwrap .d-also-read { display: block; color: var(--faint); font-size: 0.68rem; }
 .pc-hudwrap .d-also-more { font: inherit; font-size: 0.72rem; color: var(--muted);
     background: var(--bg); border: 1px solid var(--line); border-radius: 0.5rem;
     padding: 0.16rem 0.4rem; cursor: pointer; max-width: 100%; }
 .pc-hudwrap .d-cut { margin: 0 0 0.35rem; font-size: 0.72rem; color: var(--muted);
-    border-inline-start: 2px solid var(--gold-dim); padding-inline-start: 0.5rem; }
+    border-inline-start: 2px solid var(--bronze-dim); padding-inline-start: 0.5rem; }
 /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
   .pc-hudwrap .d-card .d-text { margin: 0.25rem 0; color: var(--muted); }
 .pc-hudwrap .d-card .d-sense.on { color: var(--sel); }
 .pc-hudwrap .d-card .d-sep { color: var(--faint); }
-.pc-hudwrap .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--gold-dim);
+.pc-hudwrap .d-more { margin-top: 0.35rem; background: none; border: 0; border-bottom: 1px dotted var(--bronze-dim);
     color: var(--muted); font: inherit; font-size: 0.72rem; cursor: pointer; padding: 0 0 0.05rem; text-align: left; }
 .pc-hudwrap .d-more:hover { color: var(--ink-strong); }
 .pc-hudwrap .d-more[aria-expanded="true"] { color: var(--ink-strong); }
@@ -482,8 +487,8 @@
     border-radius: 0.4rem; padding: 0.18rem 0.6rem; font: inherit; font-size: 0.9rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
-.pc-hudwrap .s-pills button:hover { border-color:var(--gold); color: var(--shesh); }
-.pc-hudwrap .s-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+.pc-hudwrap .s-pills button:hover { border-color:var(--bronze); color: var(--shesh); }
+.pc-hudwrap .s-pills button[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--bronze); background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
 .pc-hudwrap .s-pills button .none { font: 0.62rem/1 Georgia, serif; color:var(--argaman-dim); margin-inline-start: 0.35rem; }
 .pc-hudwrap .b-q { flex: 0 0 auto; min-height: 0; }
 .pc-hudwrap .b-q .q-role { font: 0.6rem/1 Georgia, serif; letter-spacing: 0.06em;
@@ -497,7 +502,7 @@
 .pc-hudwrap .c-pills button { border: 1px solid var(--line); background: var(--bg); color: var(--muted);
     border-radius: 999px; padding: 0.22rem 0.7rem; font: inherit; font-size: 0.76rem; cursor: pointer;
     max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pc-hudwrap .c-pills button[aria-pressed="true"] { color: var(--sel); border-color: var(--gold); background: var(--press-wash); box-shadow: 0 0 0 1px var(--gold); }
+.pc-hudwrap .c-pills button[aria-pressed="true"] { color: var(--sel); border-color: var(--bronze); background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
 .pc-hudwrap .c-card { margin-top: 0.55rem; border-top: 1px solid var(--line); padding-top: 0.45rem; }
 .pc-hudwrap .c-card .c-he { margin: 0.3rem 0; font-size: 1.05rem; line-height: 1.9; color: var(--ink-strong);
     font-family: "Frank Ruehl CLM", "Frank Ruehl", "David Libre", "SBL Hebrew", Georgia, serif; }
@@ -533,7 +538,7 @@
 .pc-hudwrap .d-foot { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
 .pc-hudwrap { box-shadow: var(--shadow-hud); }
 .pc-hudwrap .r-pills button[aria-pressed="true"], .pc-hudwrap .s-pills button[aria-pressed="true"] {
-    box-shadow: 0 0 0 1px var(--gold); }
+    box-shadow: 0 0 0 1px var(--bronze); }
   /* The reader's card is width: min(23rem, 92vw) because it FLOATS over the
      page and answers to the window. Standing inside a column it has to answer
      to the column instead, or it runs past the right edge and takes the close
@@ -548,9 +553,9 @@
   #poc .pc-open { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
   #poc .pc-open:hover { color: var(--ink-strong); }
   #poc .pc-sitewords { border-bottom: 0; padding-bottom: 0; }
-  #poc .pc-word { border-bottom: 2px solid var(--gold-dim); padding-bottom: .1rem; }
-  #poc .pc-word + .pc-word { border-inline-start: 1px solid var(--gold); }
-  #poc .pc-word:hover { border-bottom-color:var(--gold); }
+  #poc .pc-word { border-bottom: 2px solid var(--bronze-dim); padding-bottom: .1rem; }
+  #poc .pc-word + .pc-word { border-inline-start: 1px solid var(--bronze); }
+  #poc .pc-word:hover { border-bottom-color:var(--bronze); }
   #poc .pc-carried { margin: .15rem 0; font-size: .72rem; color: var(--muted); line-height: 1.5; overflow-wrap: anywhere; }
   #poc .pc-credit { color: var(--faint); }
   #poc .pc-credit a { color: var(--link); }
@@ -563,7 +568,7 @@
   .rd-tier { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; border-radius: 3px; padding: 0 .35rem; }
   .rd-carried { color: var(--shesh); border: 1px solid var(--chip-line); background: var(--cell-wash); }
   .rd-typed { color: var(--faint); border: 1px dashed var(--line); }
-  .rd-part-typed { color: var(--muted); border: 1px dashed var(--gold-dim); background: var(--cell-wash); }
+  .rd-part-typed { color: var(--muted); border: 1px dashed var(--bronze-dim); background: var(--cell-wash); }
   .rd-law { margin: .1rem 0; font-size: .8rem; color: var(--muted); }
   .rd-plain { margin: .3rem 0; font-size: .88rem; line-height: 1.6; }
   .rd-src { margin: .3rem 0; font-size: .74rem; color: var(--faint); line-height: 1.55; }
@@ -628,7 +633,7 @@
      a gold-dim edge, rounded like every other card here, and narrow
      enough to read as a sentence rather than a banner */
   .tip { position:fixed; z-index:60; max-width:min(26rem, calc(100vw - 1.4rem)); padding:.45rem .6rem;
-    background:var(--bg); color:var(--ink); border:1px solid var(--gold-dim);
+    background:var(--bg); color:var(--ink); border:1px solid var(--bronze-dim);
     border-radius:.5rem; box-shadow:var(--shadow-card); font-size:.76rem;
     line-height:1.45; pointer-events:none; }
   .tip[hidden] { display:none; }
@@ -687,7 +692,7 @@
     border:1px solid var(--line); border-radius:.55rem; padding:.4rem .6rem; }
   .atlas-row.built + .atlas-row.built { margin-top:.3rem; }
   /* related books in one frame (the owner, 2026-10-03), each its own card */
-  .book-group { display:block; margin:.3rem 0; padding:.3rem; border:1.5px solid var(--gold-dim); border-radius:1.15rem; }
+  .book-group { display:block; margin:.3rem 0; padding:.3rem; border:1.5px solid var(--bronze-dim); border-radius:1.15rem; }
   .book-group > .atlas-row.built + .atlas-row.built { margin-top:.3rem; }
   .atlas-row.built + .book-group, .book-group + .atlas-row.built { margin-top:.3rem; }
   .book-group:not(:has(.atlas-row:not([hidden]))) { display:none; }
@@ -702,9 +707,9 @@
   .atlas-row.built + .sub-book .en { font-size:.84rem; }
   .atlas-row.built + .sub-book .of { font-size:.72rem; }
   .sub-book + .atlas-row.built { margin-top:.3rem; }
-  .atlas-row.g24 { border-color:var(--gold); }
+  .atlas-row.g24 { border-color:var(--bronze); }
   /* the head of a shelf is the frame round its books, not another book; its edge is gold like every edge (the owner, 2026-10-03: "i would keep all borders gold") */
-  details.fam > summary .row:first-child { border-color:var(--gold); background:var(--cell-wash); }
+  details.fam > summary .row:first-child { border-color:var(--bronze); background:var(--cell-wash); }
   .pair { display:contents; }
   .col-en { grid-column:1; }
   /* A book sits under its corpus, and the eye should be able to see that
@@ -736,8 +741,8 @@
   .filing-pick .fp { font:inherit; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase;
     color:var(--faint); background:none; border:1px solid var(--line); border-radius:999px;
     padding:.2rem .6rem; cursor:pointer; }
-  .filing-pick .fp:hover { color:var(--ink); border-color:var(--gold); }
-  .filing-pick .fp.on { color:var(--sel); border-color:var(--gold); background:var(--press-wash); box-shadow:0 0 0 1px var(--gold); }
+  .filing-pick .fp:hover { color:var(--ink); border-color:var(--bronze); }
+  .filing-pick .fp.on { color:var(--sel); border-color:var(--bronze); background:var(--press-wash); box-shadow:0 0 0 1px var(--bronze); }
   .filing-24 { display:none; }
   body[data-filing="24"] .filing-39 { display:none; }
   body[data-filing="24"] .filing-24 { display:block; }
@@ -854,7 +859,7 @@
   #wcard { position:fixed; z-index:70; max-width:23rem; width:min(23rem,92vw); max-height:min(84vh,50rem);
     left:50%; transform:translateX(-50%); bottom:1rem;
     display:flex; flex-direction:column; overflow-y:auto; overflow-x:hidden;
-    background:var(--bg); border:1px solid var(--sel-dim); border-radius:.7rem;
+    background:var(--bg); border:1px solid var(--bronze-dim); border-radius:.7rem;
     padding:.85rem 1.05rem; box-shadow:var(--shadow-card); }
   #wcard[hidden] { display:none; }
   #wcard .head { display:flex; justify-content:space-between; align-items:baseline; gap:.6rem;
@@ -879,7 +884,7 @@
   .def-order .dfp { font:inherit; font-size:.6rem; letter-spacing:.1em; text-transform:uppercase;
     color:var(--faint); background:none; border:1px solid var(--line); border-radius:999px;
     padding:.16rem .55rem; cursor:pointer; }
-  .def-order .dfp:hover:not(:disabled) { color:var(--ink); border-color:var(--gold); }
+  .def-order .dfp:hover:not(:disabled) { color:var(--ink); border-color:var(--bronze); }
   .def-order 
   /* THE POSITION IN FORCE IS A READER'S SELECTION, so it wears the channel the
      contract gives a reader's selection. It wore gold, then blue for a
@@ -892,7 +897,7 @@
      arriving under the reader's hand and leaving with it, which is the thing
      the check asserts. */
 
-  .dfp.on { color:var(--sel); border-color:var(--gold); background:var(--press-wash); box-shadow:0 0 0 1px var(--gold); }
+  .dfp.on { color:var(--sel); border-color:var(--bronze); background:var(--press-wash); box-shadow:0 0 0 1px var(--bronze); }
   .def-order .dfp.waiting { opacity:.45; cursor:not-allowed;
     text-decoration-thickness:1px; }
   #wcard .r-pills { display:flex; flex-wrap:wrap; gap:.35rem; direction:ltr;
@@ -912,7 +917,7 @@
      own ink, the regular blue, worn bold, for a reading (the owner, 2026-10-10:
      "i dont like our bold that much": the bold is the weight, not a deeper
      blue) */
-  #wcard .r-pills button[aria-pressed="true"] { color:var(--tekhelet-ink); font-weight:bold; border-color:var(--gold); background:var(--press-wash); box-shadow:0 0 0 1px var(--gold); }
+  #wcard .r-pills button[aria-pressed="true"] { color:var(--tekhelet-ink); font-weight:bold; border-color:var(--bronze); background:var(--press-wash); box-shadow:0 0 0 1px var(--bronze); }
   #wcard .d-card { margin-top:.55rem; border-top:1px solid var(--line); padding-top:.45rem;
     flex:0 0 auto; display:flex; flex-direction:column; overflow:hidden; max-height:32vh; }
   #wcard .d-body { flex:1 1 auto; min-height:1.2rem; overflow-y:auto; color:var(--ink); font-size:.86rem; }
@@ -932,7 +937,7 @@
   #wcard .d-also-m { font:inherit; font-size:.74rem; color:var(--muted); cursor:pointer;
     background:var(--bg); border:1px solid var(--line); border-radius:.6rem;
     padding:.16rem .55rem; text-align:left; max-width:100%; }
-  #wcard .d-also-m:hover { border-color:var(--sel-dim); color:var(--ink); }
+  #wcard .d-also-m:hover { border-color:var(--bronze); color:var(--ink); }
   #wcard .d-also-read { display:block; color:var(--faint); font-size:.68rem; }
   #wcard .d-also-more { font:inherit; font-size:.72rem; color:var(--muted);
     background:var(--bg); border:1px solid var(--line); border-radius:.5rem;
@@ -1038,7 +1043,7 @@
   ::selection { background: var(--sel-text); color: inherit; }
   *::-webkit-scrollbar { width: 8px; height: 8px; }
   *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
-  *::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+  *::-webkit-scrollbar-thumb:hover { background: var(--bronze); }
   a, summary, button, input { transition: color 120ms ease, border-color 120ms ease, background-color 120ms ease; }
   :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; border-radius: 3px; }
   @media (prefers-reduced-motion: reduce) { a, summary, button, input { transition: none; } }
@@ -1091,7 +1096,7 @@
   .kind { font-size:.66rem; letter-spacing:.03em; color:var(--muted); font-variant:normal; text-transform:none; margin-inline-end:.4rem; }
   /* AN ATTESTED NAME IS BLUE (the owner, 2026-10-02): an English name stands on this site only because a licensed source attests it, so the name itself speaks in the reading's channel, tekhelet, in the reading's face. The attestation chip beside it keeps its own color; a name nothing attests stays in our own voice. */
   details.fam > summary .en.attested, .bookcard .en.attested, span.atlas-row.built a.aw.attested { color:var(--tekhelet-ink); font-family:'reading', Georgia, serif; font-weight:500; }
-  span.atlas-row.built a.aw.attested:hover, details.fam > summary:hover .en.attested { color:var(--tekhelet-ink); text-decoration:underline; text-decoration-color:var(--gold-dim); text-underline-offset:.18em; }
+  span.atlas-row.built a.aw.attested:hover, details.fam > summary:hover .en.attested { color:var(--tekhelet-ink); text-decoration:underline; text-decoration-color:var(--bronze-dim); text-underline-offset:.18em; }
   /* THE SEARCH HIDES A ROW BY ITS hidden FLAG, and a row's own display rule was
      overriding the flag, so every query showed every book (found 2026-10-02).
      hidden means hidden, whatever else the element is. */
@@ -1136,7 +1141,7 @@
   .bookcard .srow.exact .delta, .bookcard .srow.exact .glyph, .atlas-row .srow.exact .delta, .atlas-row .srow.exact .glyph { color:var(--ink-strong); font-weight:600; }
   .bookcard .srow.differs .delta, .bookcard .srow.differs .glyph, .atlas-row .srow.differs .delta, .atlas-row .srow.differs .glyph { color:var(--argaman); font-weight:600; }
   .bookcard .srow.no_witness, .atlas-row .srow.no_witness { color:var(--faint); }
-  #sectstamp { margin:.6rem 0 .4rem; padding:.35rem 0 .4rem; border-top:1px solid var(--gold-dim); border-bottom:1px solid var(--gold-dim); font-size:.78rem; overflow-x:auto; }
+  #sectstamp { margin:.6rem 0 .4rem; padding:.35rem 0 .4rem; border-top:1px solid var(--bronze-dim); border-bottom:1px solid var(--bronze-dim); font-size:.78rem; overflow-x:auto; }
   #sectstamp .sh { font-variant:small-caps; letter-spacing:.12em; color:var(--ink-strong); margin:0 0 .25rem; }
   #sectstamp .sh .ours { color:var(--ink); font-variant:normal; letter-spacing:.02em; font-variant-numeric:tabular-nums; }
   #sectstamp table { border-collapse:collapse; font-variant-numeric:tabular-nums; }
@@ -1148,7 +1153,7 @@
   #sectstamp tr.differs td.delta, #sectstamp tr.differs td.glyph { color:var(--argaman); font-weight:600; }
   #sectstamp tr.no_witness td { color:var(--faint); }
   #sectstamp tr { animation: stamp-flash 1100ms ease-out both; }
-  @keyframes stamp-flash { 0% { box-shadow: inset 0 0 0 1px var(--sel-dim); } 100% { box-shadow: inset 0 0 0 1px transparent; } }
+  @keyframes stamp-flash { 0% { box-shadow: inset 0 0 0 1px var(--bronze); } 100% { box-shadow: inset 0 0 0 1px transparent; } }
   @media (prefers-reduced-motion: reduce) { #sectstamp tr { animation: none; } }
   #sectstamp .waits { color:var(--faint); font-style:italic; margin:.25rem 0 0; }
 </style>
@@ -1157,20 +1162,24 @@
   <h1>The color channels</h1>
   <p class="sub">Approved and in use. This page prints the record so it can be checked against what the page paints; it is not a design awaiting a decision.</p>
   <article class="rd" data-id="color-channels">
-      <p class="rd-head"><span class="rd-n">·</span><span class="rd-kind">the color channels</span><span class="rd-letter">A channel is not a decoration. It says who is speaking. The corpus speaks in tola'at shani, its reading speaks in tekhelet, this project speaks in argaman, and gold is only ever the frame around one of them.</span><span class="rd-tier rd-carried">ruled</span></p>
-      <p class="rd-law">Exodus names the materials — tekhelet, argaman, tola'at shani, shesh — and gold beside them, over and over, and never once says what any of them looked like.</p>
-      <p class="rd-plain">Which material carries which channel, ruled on 2026-09-10. Gold is not a final color: it is an in-process color — huds, boxes, the frame — the way the gold in the tabernacle was worked into the blue that is actually shown. That leaves purple for this project's own voice.</p>
+      <p class="rd-head"><span class="rd-n">·</span><span class="rd-kind">the color channels</span><span class="rd-letter">A channel is not a decoration. It says who is speaking. The corpus speaks in tola'at shani, its reading speaks in tekhelet, this project speaks in argaman; the metals carry no voice of their own: gold is only ever a Masoretic mark, bronze is the frame that holds the page, and silver is the layer this project draws over the text.</span><span class="rd-tier rd-carried">ruled</span></p>
+      <p class="rd-law">Exodus names the materials — gold, silver and bronze (25:3), tekhelet, argaman, tola'at shani and shesh — over and over, and says what each was made into, and never once says what any of them looked like.</p>
+      <p class="rd-plain">Which material carries which channel: the dyes ruled on 2026-09-10, the metals on 2026-11-15. The three dyes keep their channels. Gold is kept for the Masoretic marks alone (&quot;gold as masoretic signs switching back to that&quot;); bronze takes the frame that holds the page, the card, its outline and its pointer lines (&quot;if bronze held the tent maybe that's the hud color&quot;); silver is our layering, the blobs and the frames around joined words (&quot;maybe silver would be like outlining all the compspan boxes since that's kind of our layering?&quot;). Purple stays this project's own voice (&quot;obviously purple stays as the commentary layer&quot;).</p>
       <p class="rd-kindline"><span class="cc-sw" style="background:var(--shani)"></span><span class="rd-kv">tola'at shani</span><span class="rd-kdrawn">the ink the Hebrew is written in, a quiet rose-red, with nothing behind the letters</span><span class="rd-kn">--shani</span></p>
       <p class="rd-kat">every Hebrew word of the corpus, its titles among them</p>
-      <p class="rd-kindline"><span class="cc-sw" style="background:var(--tekhelet)"></span><span class="rd-kv">tekhelet</span><span class="rd-kdrawn">the ink the reading is written in, a quiet blue, inside a gold hairline so it stays a label</span><span class="rd-kn">--tekhelet</span></p>
+      <p class="rd-kindline"><span class="cc-sw" style="background:var(--tekhelet)"></span><span class="rd-kv">tekhelet</span><span class="rd-kdrawn">the ink the reading is written in, a quiet blue, with nothing around it</span><span class="rd-kn">--tekhelet</span></p>
       <p class="rd-kat">the English under a word, and every reading on its card</p>
       <p class="rd-kindline"><span class="cc-sw" style="background:var(--argaman)"></span><span class="rd-kv">argaman</span><span class="rd-kdrawn">the ink itself — every glyph on the page is this</span><span class="rd-kn">--argaman</span></p>
       <p class="rd-kat">what this page says about itself: titles and values in the regular; counting notes, rule statements, labels, and every line saying a record holds nothing here, in the dim</p>
-      <p class="rd-kindline"><span class="cc-sw" style="background:var(--gold-dim)"></span><span class="rd-kv">gold</span><span class="rd-kdrawn">line work only: rules, borders, boxes, never ink at rest</span><span class="rd-kn">--gold-dim</span></p>
-      <p class="rd-kat">verse numbers, the frame of a card, the marks of the page itself, in the dim gold at rest</p>
-      <p class="rd-kindline"><span class="cc-sw" style="background:var(--sel)"></span><span class="rd-kv">argaman</span><span class="rd-kdrawn">ink on the page's own controls under the reader's hand, worn bold, and gone when they let go; a held word keeps its own ink inside a gold box</span><span class="rd-kn">--sel</span></p>
+      <p class="rd-kindline"><span class="cc-sw" style="background:var(--gold)"></span><span class="rd-kv">gold</span><span class="rd-kdrawn">the ink of the vowel points and the accents, and of nothing else: a real gold, never the orange one, over letters that keep the corpus's red</span><span class="rd-kn">--gold</span></p>
+      <p class="rd-kat">the vowel points and the accents over the Hebrew, in the real gold, and nothing else</p>
+      <p class="rd-kindline"><span class="cc-sw" style="background:var(--bronze-dim)"></span><span class="rd-kv">bronze</span><span class="rd-kdrawn">line work: the card's outline and its pointer lines, rules, borders and boxes; and, in its regular, the ink of the apparatus's numbers (a word's address on its card, the card numbers on the line), which were gold ink before; never any other ink</span><span class="rd-kn">--bronze-dim</span></p>
+      <p class="rd-kat">verse numbers, the frame of a card and its lines to a held word, the edges of buttons, pills and switches, the rules between parts: the dim bronze at rest, the regular under the hand</p>
+      <p class="rd-kindline"><span class="cc-sw" style="background:var(--silver)"></span><span class="rd-kv">silver</span><span class="rd-kdrawn">line work only: the outline of a blob and the frame around joined words, never ink and never a ground; the blob's own ground is the pressed linen</span><span class="rd-kn">--silver</span></p>
+      <p class="rd-kat">the line of every blob and of every frame drawn round words joined into one card</p>
+      <p class="rd-kindline"><span class="cc-sw" style="background:var(--sel)"></span><span class="rd-kv">argaman</span><span class="rd-kdrawn">ink on the page's own controls under the reader's hand, worn bold, and gone when they let go; a held word keeps its own ink inside a bronze box</span><span class="rd-kn">--sel</span></p>
       <p class="rd-kat">whatever the reader is holding, and only while they hold it</p>
       <p class="rd-plain">One face. The courtyard: linen hangings in daylight. There is nothing here for a reader to choose and nothing kept on the device.</p>
-      <p class="rd-hide">TYPED_IN_THE_OPEN · decided 2026-09-10 · supersedes colour-role-rule-v1-the-roles-are-the-ledgers-and-the-values-are-ours. Every hex value below, and every one before it. A role is recorded; a hex is a tradition, and the traditions disagree. No reader should come away thinking a hex code is attested — only that a channel was assigned, by a person, on a date. The swatches above are painted with the page's own tokens, so they cannot drift from what a reader is shown — if the record and the stylesheet ever disagree, these squares show the stylesheet.</p>
+      <p class="rd-hide">TYPED_IN_THE_OPEN · decided 2026-11-15 · supersedes color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours. Every hex value below, and every one before it. A role is recorded; a hex is a tradition, and the traditions disagree. No reader should come away thinking a hex code is attested — only that a channel was assigned, by a person, on a date. The swatches above are painted with the page's own tokens, so they cannot drift from what a reader is shown — if the record and the stylesheet ever disagree, these squares show the stylesheet.</p>
     </article>
 </main></body></html>
