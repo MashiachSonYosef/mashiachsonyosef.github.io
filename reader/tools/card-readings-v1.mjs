@@ -86,7 +86,7 @@ export const STATES = {
   lifted: {
     says: "lifted: every switch that withholds a reading lifted — the pointing kept whatever a source points, a source's own signs printed, every source on, the word senses shown",
     keep: { "fh.masorah": "keep", "fh.signs": "printed", "fh.sources.off": "[]", "fh.senses": "on" },
-    holds: { pointing: "keep", signs: "printed", sources_off: [], senses: "on" },
+    holds: { pointing: "keep", signs: "printed", sources_off: [], senses: "on", defaults: "step" },
   },
 };
 
@@ -166,7 +166,7 @@ export const cardsInPage = async ([from, to, perCardMs = 15000]) => {
   return {
     sections: out, of: secs.length,
     ruled: document.querySelectorAll(".wb.chosen, .wjoin.chosen").length,
-    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort() },
+    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort(), defaults: (window.__default || {}).on || null, second: (window.__default || {}).second || null, book: (window.__default || {}).book || null },
   };
 };
 
@@ -214,10 +214,34 @@ export const readCards = async (browser, base, work, stateName, { from = 0, to =
       await p.waitForTimeout(100);
       await p.keyboard.press("Escape");
     }
+    // THE DEFAULT SOURCES' FILE FOR THE BOOK (default-picks-rule-v1) comes
+    // the same way: with the first card that asks for it, and the page opens
+    // that card again when it has arrived. A pair, a joined run's card and a
+    // scribal mark ask for nothing, so cards are opened from the stretch's
+    // first words, one at a time, until the file is here; no card is read
+    // before then.
+    if (await p.evaluate(() => { const d = window.__default; return !!(d && d.book && !d.ready && !d.failed); })) {
+      let landed = false;
+      for (let k = 0; k < 12 && !landed; k += 1) {
+        const opened = await p.evaluate(([i, at]) => {
+          const secs = document.querySelectorAll("section.seg"), ws = [];
+          for (let x = i; x < secs.length && ws.length <= at; x += 1) ws.push(...secs[x].querySelectorAll(".he-text > .wb:not(.mark):not(.kq)"));
+          const wb = ws[at];
+          if (!wb) return false;
+          (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click();
+          return true;
+        }, [from, k]);
+        if (!opened) break;
+        landed = await p.waitForFunction(() => { const d = window.__default; return !!(d && (d.ready || d.failed)); }, null, { timeout: 5000 }).then(() => true, () => false);
+        await p.waitForTimeout(100);
+        await p.keyboard.press("Escape");
+      }
+      if (!landed) throw new Error("the default sources' file for the book did not arrive with the first cards");
+    }
     if (state.holds) {
       const s = before.state;
       const off = JSON.stringify(s.sources_off) !== JSON.stringify(state.holds.sources_off);
-      if (s.pointing !== state.holds.pointing || s.signs !== state.holds.signs || s.senses !== state.holds.senses || off) throw new Error(`the page did not take the lifted switches: it reports the pointing ${s.pointing}, signs ${s.signs}, word senses ${s.senses}, sources off ${JSON.stringify(s.sources_off)}`);
+      if (s.pointing !== state.holds.pointing || s.signs !== state.holds.signs || s.senses !== state.holds.senses || off || s.defaults !== state.holds.defaults) throw new Error(`the page did not take the lifted switches: it reports the pointing ${s.pointing}, signs ${s.signs}, word senses ${s.senses}, sources off ${JSON.stringify(s.sources_off)}, the default source ${s.defaults}`);
     }
     const sections = [];
     let pageState = before.state, ruled = 0;

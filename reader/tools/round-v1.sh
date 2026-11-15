@@ -22,8 +22,11 @@
 # WHAT IT NEEDS FROM OUTSIDE THE TREE, and only these: the corpus lane's
 # lattice (one file per book), its two binyan files and their extension to
 # three more dictionaries (pinned in data/stems-extension/ by its size and
-# sha256), which are too large to keep beside the door. They are named on
-# the command line and never guessed; a round with no lattice re-projects nothing and says so. And, for
+# sha256), and its ledger of each source's own picks at every word place (the
+# default sources' pills; pinned in data/default-picks/PIN.json), which are
+# too large to keep beside the door. They are named on the command line and
+# never guessed; a round with no lattice re-projects nothing and says so, and
+# one with no ledger of picks bakes none and says so. And, for
 # the lines step, a browser this machine can open (tools/playwright-v1.mjs):
 # the plain list under every chapter is a recording of the lines the reader
 # itself draws, read off the page (tools/bake-resting-lines-v1.mjs), and the
@@ -47,20 +50,22 @@
 #             [--lattice <folder holding lattice-<book>-v12.json and its positions and routes>]
 #             [--stems <folder holding place-stems-v2.jsonl and row-stems-v2.jsonl>]
 #             [--stems-extension <the corpus lane's row-stems-extension-v1.jsonl>]
-#             [--steps zones,stamps,search,records,lines,chain,door]   (default: all, in that order)
+#             [--default-picks <folder holding default-picks-v1/, default-picks-v1.1/ and default-picks-v1.2/>]
+#             [--steps zones,stamps,search,defaults,records,lines,chain,door]   (default: all, in that order)
 #
 # A step that fails stops the round. Nothing is copied over the site's root
 # until the door has been built whole.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-STAMP=""; LATTICE=""; STEMS=""; EXTENSION=""; STEPS="zones,stamps,search,records,lines,chain,door"
+STAMP=""; LATTICE=""; STEMS=""; EXTENSION=""; DEFAULT_PICKS=""; STEPS="zones,stamps,search,defaults,records,lines,chain,door"
 while [ $# -gt 0 ]; do
   case "$1" in
     --stamp) STAMP="${2:?--stamp needs a date}"; shift 2 ;;
     --lattice) LATTICE="${2:?--lattice needs a folder}"; shift 2 ;;
     --stems) STEMS="${2:?--stems needs a folder}"; shift 2 ;;
     --stems-extension) EXTENSION="${2:?--stems-extension needs a file}"; shift 2 ;;
+    --default-picks) DEFAULT_PICKS="${2:?--default-picks needs a folder}"; shift 2 ;;
     --steps) STEPS="${2:?--steps needs a list}"; shift 2 ;;
     *) echo "round-v1: unknown argument $1" >&2; exit 2 ;;
   esac
@@ -124,8 +129,42 @@ if has search; then
   echo "── search · the index the search box reads, from the zones as they stand ─"
   # Jastrow's word senses first: the record the page holds them back by, which
   # the search index reads so that it takes no word sense as a reading
-  node tools/bake-word-senses-v1.mjs | tail -1
+  node tools/bake-word-senses-v2.mjs | tail -1
   node tools/bake-search-index-v1.mjs > /dev/null
+fi
+
+if has defaults; then
+  echo "── defaults · each source's own picks laid on the zones, and counted ────"
+  # After the zones (the picks are laid on their words, a pair word and a
+  # place's pieces read off them) and before the records and the lines: the
+  # gate opens pages, which read the index at boot, and each record the
+  # lines step writes names the index among the files its page read
+  # (read_off.files; bake-resting-lines-v1 refuses a reading whose page did
+  # not read it, defaultsNotAtRest), so a record is read again when the
+  # index moves. No manifest names these files (emit-store-manifest-v1 pins
+  # data/route-store alone): the index names each book file by its bytes
+  # and sha256, and the receipt names the index. The bake reads the records
+  # of the resting lines as they stand, for where STEP's line as it rests is
+  # bare and for the lines over more than one word; the lines step reads
+  # them again after it, and check-default-picks-v1 D3, with the suite,
+  # holds the index to them as they then stand (red where a record now reads
+  # one of those places otherwise: bake the defaults again).
+  # The corpus lane's ledger is named on the command line and never guessed.
+  if [ -n "$DEFAULT_PICKS" ]; then
+    node tools/bake-default-picks-v1.mjs --ledger "$DEFAULT_PICKS" > "$WORK/defaults.log" 2>&1 || { echo "round-v1: the default picks were not baked" >&2; grep -E "^REFUSED" "$WORK/defaults.log" >&2 || true; tail -3 "$WORK/defaults.log" >&2; exit 1; }
+    tail -1 "$WORK/defaults.log"
+  else
+    echo "   no --default-picks given: data/default-picks stands as it is"
+  fi
+  # the check's node laws: the rule, the index's counts against the book
+  # files and the zones as they now stand, the source words, and with the
+  # ledger the bake against it; its page laws run with the suite
+  # (exit 3: no picks are baked on this tree, which is said and not a fault)
+  code=0
+  node tools/check-default-picks-v1.mjs --node ${DEFAULT_PICKS:+--ledger "$DEFAULT_PICKS"} > "$WORK/defaults-check.log" 2>&1 || code=$?
+  if [ "$code" = "3" ]; then sed -n 's/^SKIPPED/   skipped/p' "$WORK/defaults-check.log"
+  elif [ "$code" != "0" ]; then echo "round-v1: the default picks do not hold" >&2; grep -E "^FAIL" "$WORK/defaults-check.log" >&2 || true; tail -2 "$WORK/defaults-check.log" >&2; exit 1
+  else echo "   $(grep -cE '^  ok  ' "$WORK/defaults-check.log") node laws held (tools/check-default-picks-v1.mjs --node)"; fi
 fi
 
 if has records; then

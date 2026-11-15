@@ -35,8 +35,9 @@
 //   K3  each file is of this tree: the page and every file it names stand
 //       as it names them, so the cards it holds are the cards this tree
 //       prints; and the two states are the states it says: lifted is every
-//       withholding switch lifted, and at rest is the state the resting
-//       lines of the same book were read in
+//       withholding switch lifted, with the line read from STEP (the
+//       default sources, default-picks-rule-v1), and at rest is the state
+//       the resting lines of the same book were read in
 //   K4  each file hangs together: every list of pills a card names is in
 //       the file and every list in the file is named; a pressed pill and a
 //       pressed button are ones the card has; every fingerprint is carried
@@ -172,7 +173,7 @@ const isCard = (c) => !!c && typeof c === "object" && "pool" in c && "on" in c;
     const st = (s.read_off && s.read_off.states) || {};
     const lifted = st.lifted && st.lifted.page, rest = st.rest && st.rest.page;
     const want = STATES.lifted.holds;
-    if (!lifted || lifted.pointing !== want.pointing || lifted.signs !== want.signs || lifted.senses !== want.senses || JSON.stringify(lifted.sources_off) !== JSON.stringify(want.sources_off)) stateOff.push(`${b}: lifted is said as ${JSON.stringify(lifted)}`);
+    if (!lifted || lifted.pointing !== want.pointing || lifted.signs !== want.signs || lifted.senses !== want.senses || JSON.stringify(lifted.sources_off) !== JSON.stringify(want.sources_off) || lifted.defaults !== want.defaults) stateOff.push(`${b}: lifted is said as ${JSON.stringify(lifted)}`);
     const lines = readRecord(recordPath(READER, b));
     if (!rest || !lines || JSON.stringify(rest) !== JSON.stringify(lines.read_off.state)) stateOff.push(`${b}: at rest is said as ${JSON.stringify(rest)} and the resting lines were read as ${lines ? JSON.stringify(lines.read_off.state) : "(no record)"}`);
   }

@@ -106,7 +106,7 @@ export const linesInPage = ([from, to, seen = false]) => {
   }
   return {
     sections: out, credits, unnamed, of: secs.length,
-    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort() },
+    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort(), defaults: (window.__default || {}).on || null, second: (window.__default || {}).second || null, book: (window.__default || {}).book || null },
   };
 };
 
@@ -127,6 +127,17 @@ export const linesOnPage = async (p, { from = 0, to = Infinity, settleMs = 350, 
     let landed = false;
     while (Date.now() - t0 < 30000) { landed = await p.evaluate(() => !!(window.__latticeStore || window.__latticeRefused)); if (landed) break; await p.waitForTimeout(100); }
     if (!landed) throw new Error("the work carries a lattice and it did not arrive: the lines would be read without the pointing's leaders");
+  }
+  // the default sources (default-picks-rule-v1): a source other than STEP
+  // kept on the device prints from the book's own file, so its lines are
+  // read once that file is here (or said not to be); at rest the line needs
+  // no book file and nothing is waited for
+  const dfltWaits = await p.evaluate(() => { const d = window.__default; return !!(d && d.book && d.on !== "step"); });
+  if (dfltWaits) {
+    const t0 = Date.now();
+    let landed = false;
+    while (Date.now() - t0 < 30000) { landed = await p.evaluate(() => { const d = window.__default; return !!(d && (d.ready || d.failed)); }); if (landed) break; await p.waitForTimeout(100); }
+    if (!landed) throw new Error("a default source other than STEP is in force and its book's file did not arrive: the lines would be read before they are its");
   }
   const range = [from, Number.isFinite(to) ? Math.min(to, total) : total, seen];
   let last = null, got = null, tries = 0;

@@ -201,7 +201,7 @@ const loadModel = async (DATA) => {
   // takes none: the model leaves out the rows the record names, by key, rank
   // and source id, as the bake does, so a fault in the bake's skip shows here
   const senseRows = new Set();
-  { const ws = await maybeJson(`${DATA}word-senses/jastrow-v1.json`); for (const [K, list] of Object.entries((ws && ws.rows) || {})) for (const [rank, m] of list) senseRows.add(`${K}|${rank}|${m}`); }
+  { const ws = await maybeJson(`${DATA}word-senses/jastrow-v2.json`); for (const [K, list] of Object.entries((ws && ws.rows) || {})) for (const [rank, m] of list) senseRows.add(`${K}|${rank}|${m}`); }
   for (const id of overlayIds) {
     const oix = await maybeJson(`${DATA}overlays/${id}/index.json`);
     if (!oix) continue;

@@ -22,12 +22,16 @@
 //   F4  a ketiv/qere pair's line is re-read when the order changes: the half
 //       it shows says what the table now says for that half
 //   F5  everything switched back on: every sampled line is what it was
+//   F6  under each default source other than STEP (default-picks-rule-v1, for
+//       one load by ?default=), each sampled line says what its card's first
+//       pill says; and with that source switched off on the rail, its pill
+//       cannot be pressed and no chip on a line names it
 //
 // Runs against the served book with the most pairs among those on disk
 // (pairs make F4 bite), or the one named with --zone.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
 let bad = 0;
@@ -71,7 +75,7 @@ await openRail();
 
 // what every sampled line says now: text, chip ids, and whether it is bare
 const SAMPLE = 160;
-const lines = () => p.evaluate((n) => {
+const lines = (pg = p, sample = SAMPLE) => pg.evaluate((n) => {
   // the line the reader sees: a word inside a cell that reads whole (a span
   // the store names) keeps its own line out of sight, and the cell's stands
   const wbs = [...document.querySelectorAll("section.seg .he-text .wb:not(.kq)")].filter((w) => w.querySelector(":scope > .g") && w.querySelector(":scope > .g").getClientRects().length);
@@ -83,7 +87,7 @@ const lines = () => p.evaluate((n) => {
     const text = (chip ? g.textContent.replace(chip.textContent, "") : g.textContent).trim();
     return { idx: [...document.querySelectorAll("section.seg .he-text .wb:not(.kq)")].indexOf(w), text, bare: g.classList.contains("bare"), chipTitle: chip ? chip.title : "" };
   });
-}, SAMPLE);
+}, sample);
 const before = await lines();
 
 // F1 / F2 — throw the century shelf that holds the most chips
@@ -100,7 +104,7 @@ const thrown = await p.evaluate(() => {
 const t0 = Date.now(); await p.waitForFunction(() => window.__livePending === 0, null, { timeout: 600000 }); await p.waitForTimeout(300); const settledIn = Date.now() - t0;
 const underShelf = await lines();
 // the card for each sampled word: open it and read its first pill
-const cardFirst = async (idx) => p.evaluate(async (i) => {
+const cardFirst = async (idx, pg = p) => pg.evaluate(async (i) => {
   const w = [...document.querySelectorAll("section.seg .he-text .wb:not(.kq)")][i];
   w.scrollIntoView({ block: "center" });
   (w.querySelector(".w span") || w.querySelector(".w")).click();
@@ -139,6 +143,8 @@ for (const l of underShelf.slice(0, 60)) {
 }
 check(`F1  with the ${thrown ? thrown.shelf : "?"} shelf thrown, no line is bare while its card has readings`, bareWithReadings === 0, `${bareWithReadings} of ${looked} · the page settled in ${(settledIn / 1000).toFixed(1)} s${eg.length ? ` · ${eg.join(" | ")}` : ""}`);
 check("F1  and each line says what its card's first pill says", differs === 0, `${differs} of ${looked} differ`);
+// the fold F1 reads a line and a pill by
+const sameText = (t) => String(t || "").replace(/<[^<>]*>/gu, "").replace(/\u200b/gu, "").replace(/(\s*\+\s*)+/gu, " + ").replace(/^\s*\+\s*/u, "").replace(/\s*\+\s*$/u, "").trim();
 const offChips = await p.evaluate(() => {
   const off = new Set(window.__sourcesOff || []);
   const row = document.querySelector('.rail .row[data-toggle="sources"]');
@@ -217,6 +223,53 @@ const f4 = await p.evaluate(() => {
   return out;
 });
 check("F4  under an order, each pair's line reads what the table now says for its half", f4 && f4.stale === 0, f4 ? `${f4.pairs} pairs · ${f4.stale} stale${f4.eg ? ` · ${f4.eg}` : ""}` : "the page exposes no zone to compare against");
+
+// F6 — under each default source other than STEP, and with it switched off
+const DFLT_IX = existsSync("data/default-picks/index.json") ? JSON.parse(readFileSync("data/default-picks/index.json", "utf8")) : null;
+const dfltHere = !!(DFLT_IX && DFLT_IX.books && DFLT_IX.books[ZONE]);
+if (!dfltHere) console.log(`  --  F6  not judged here: the default sources are not laid on ${ZONE} (data/default-picks/index.json)`);
+else {
+  const f6 = [];
+  let looked6 = 0;
+  for (const src of DFLT_IX.sources.filter((x) => x.id !== "step")) {
+    const q = await b.newPage({ viewport: { width: 412, height: 915 } });
+    q.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+    await q.addInitScript(() => { try { localStorage.clear(); localStorage.setItem("fh.signs", "printed"); } catch { /* fresh reader */ } });
+    await q.goto(`${BASE}?b=${ZONE}&default=${src.id}`, { waitUntil: "networkidle" });
+    await q.waitForSelector("section.seg .he-text .wb");
+    await q.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
+    // the sections the page builds as it opens: a source's line is the same rule at every word, and building the
+    // whole book three times over took the check past the runner's ten minutes
+    await q.waitForTimeout(500);
+    for (const l of (await lines(q, 20)).slice(0, 20)) {
+      const c = await cardFirst(l.idx, q);
+      looked6 += 1;
+      if (l.bare && c.count > 0) f6.push(`${src.pill}: bare over ${c.count} readings`);
+      else if (!l.bare && c.text && sameText(c.text) !== sameText(l.text) && !sameText(c.text).startsWith(sameText(l.text).slice(0, 12))) f6.push(`${src.pill}: line "${l.text.slice(0, 24)}" · card "${c.text.slice(0, 24)}"`);
+    }
+    // the source switched off on the rail: every id it is credited by
+    const ms = [...new Set(typeof src.m === "string" ? [src.m] : Object.values(src.m))];
+    await q.evaluate(() => { const r = document.getElementById("rail"); if (r) r.open = true; document.querySelectorAll(".rail details").forEach((d) => { d.open = true; }); });
+    const thrown = await q.evaluate((ids) => {
+      const row = document.querySelector('.rail .row[data-toggle="sources"]');
+      const btn = row && [...row.querySelectorAll(".dfp[data-ids]")].find((x) => x.dataset.ids.split(" ").some((id) => ids.includes(id)));
+      if (!btn) return false;
+      btn.click(); return true;
+    }, ms);
+    await q.waitForFunction(() => window.__livePending === 0, null, { timeout: 600000 }).catch(() => {});
+    await q.waitForTimeout(500);
+    const off = await q.evaluate(([id, ids]) => {
+      const pill = document.getElementById(`default-${id}`);
+      const named = [...document.querySelectorAll("section.seg .he-text .wb > .g .g-lic[data-line]")].filter((c) => c.dataset.line.split(" ").some((m) => ids.includes(m))).length;
+      return { dead: !!pill && pill.disabled, named };
+    }, [src.id, ms]);
+    if (!thrown) f6.push(`${src.pill}: no switch on the rail for ${ms.join(" ")}`);
+    else if (!off.dead || off.named) f6.push(`${src.pill} switched off: its pill ${off.dead ? "is dead" : "can still be pressed"}, ${off.named} chip(s) name it`);
+    await q.close();
+  }
+  check("F6  under each default source other than STEP each sampled line says what its card's first pill says, and switched off it names no line and its pill cannot be pressed", !f6.length,
+    `${looked6} cards under ${DFLT_IX.sources.filter((x) => x.id !== "step").map((x) => x.pill).join(", ")}${f6.length ? ` · ${f6.length} · ${f6.slice(0, 3).join(" | ")}` : ""}`);
+}
 
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall green");

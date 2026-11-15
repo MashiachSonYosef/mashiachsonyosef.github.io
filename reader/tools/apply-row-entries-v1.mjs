@@ -11,8 +11,10 @@
 // number, BDB by its own entry and the number beside it, TAHOT by the tag it
 // gives the word at every place. The corpus lane read that out of each
 // source, row by row (relay v172, 13 November 2026 AD: the row entries
-// ledger, 382,258 rows of fifteen sources; its rule stands in
-// data/row-entries/row-entries-v1/RULE.md), and the lattice already says
+// ledger, 382,258 rows of fifteen sources; reissued as v1.1 in relay v190,
+// 14 November, which also reads TAHOT's lines that carry the Hebrew verse
+// beside the English one; data/row-entries/PIN.json names the ledger in
+// force and the folder its rule stands in), and the lattice already says
 // which entry stands at each place (the tag on the word's core piece). With
 // both, a row of another entry can be told from a row of the word's own, and
 // the owner ruled that it be (13 November: «1-5. agree go ahead», ruling 1,
@@ -55,7 +57,7 @@
 //
 // Idempotent: a second run moves nothing and writes nothing. --dry prints
 // and writes nothing.
-// Usage: node tools/apply-row-entries-v1.mjs --ledger <row-entries-v1.jsonl> [--dry] [--the-store-has-moved-on]
+// Usage: node tools/apply-row-entries-v1.mjs --ledger <the ledger data/row-entries/PIN.json names> [--dry] [--the-store-has-moved-on]
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -78,7 +80,7 @@ const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 const refuse = (why) => { console.error(`REFUSED · ${why}`); process.exit(1); };
 const n = (x) => Number(x).toLocaleString("en-US");
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-if (!LEDGER) refuse("the ledger is not in this tree and has to be named: --ledger <row-entries-v1.jsonl>");
+if (!LEDGER) refuse("the ledger is not in this tree and has to be named: --ledger <the ledger data/row-entries/PIN.json names>");
 
 // ---- the ledger, as the corpus lane wrote it --------------------------------------------
 let pin, lines, theirs;

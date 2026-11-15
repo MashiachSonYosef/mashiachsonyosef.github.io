@@ -225,6 +225,14 @@
    "why": "no frame letter. This reads the corpus lane's span ledgers and, when given, its piece-gloss files, and rewrites the four span fields (and each word's pg) of the zones they name. Run it on a restored shelf, then re-pin.",
    "names": []
   },
+  "bake-default-picks-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. It reads the corpus lane's pinned ledger of default picks (named on the command line), the served zones, the served route store and the records of the resting lines (data/resting-lines/, what the page draws as each work opens, read off the page by tools/bake-resting-lines-v1.mjs), and writes into data/: one file per book under data/default-picks/, their index data/default-picks/index.json, the lane's three rules and three receipts kept beside them byte for byte, and data/default-picks-receipt-v1.json. No row is judged here and no text is changed.",
+   "names": [
+    "default-picks-receipt-v1.json"
+   ]
+  },
   "bake-dictionary-store-v1.mjs": {
    "letters": [
     "D",
@@ -241,7 +249,7 @@
     "R"
    ],
    "updates_no_letter": false,
-   "why": "which readings of the route catalog (R) are a pointer to another entry, and the English the pointer resolves to. The corpus lane classed and resolved them and the owner ruled on its branches; this folds its file into the one map the card reads.",
+   "why": "which readings of the route catalog (R) are a pointer to another entry, and the English the pointer resolves to. The corpus lane classed and resolved them and the owner ruled on its branches; this folds its map into the one map the card reads.",
    "names": [
     "form-of-pills-v1.json"
    ]
@@ -279,10 +287,10 @@
     "license-postures-v1.json"
    ]
   },
-  "bake-word-senses-v1.mjs": {
+  "bake-word-senses-v2.mjs": {
    "letters": [],
    "updates_no_letter": true,
-   "why": "no frame letter. It reads the corpus lane's pinned list and the Jastrow overlay beside the store, and writes one record, data/word-senses/ jastrow-v1.json. No row is judged here and no text is changed.",
+   "why": "no frame letter. It reads the corpus lane's pinned list and the Jastrow overlay beside the store, and writes one record, data/word-senses/ jastrow-v2.json. No row is judged here and no text is changed.",
    "names": []
   },
   "build-chain-book-v2.mjs": {
@@ -436,6 +444,14 @@
    "updates_no_letter": true,
    "why": "no frame letter. This reads a served zone and the page drawn from it, and writes nothing.",
    "names": []
+  },
+  "check-default-picks-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the bake, the corpus lane's ledger where this machine holds it, and the page, and judges them; it is not the ledger for one.",
+   "names": [
+    "default-picks-receipt-v1.json"
+   ]
   },
   "check-demonstrations-v1.mjs": {
    "letters": [],
@@ -1099,6 +1115,12 @@
    "names": [
     "serve-rebuild-receipt-2026-08-22.json"
    ]
+  },
+  "pointer-map-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. It reads the pinned map and writes nothing.",
+   "names": []
   },
   "pointing-grade-v1.mjs": {
    "letters": [],

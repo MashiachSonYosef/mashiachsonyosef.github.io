@@ -81,7 +81,7 @@ TEKHELET = ('dye', '#23558a', '#768ea2')    # --tekhelet, --tekhelet-dim
 ARGAMAN = ('dye', '#642460', '#753c6d')     # --argaman, --argaman-dim
 GOLD = ('metal', '#967c26', '#d3af37')      # the Masoretic signs' gold; the swatch's pale gold
 BRONZE = ('metal', '#7f6044', '#9a7656')    # the card's bronze; its light
-SILVER = ('metal', '#6e7378', '#b4b8bd')    # --silver, the blobs' line; its light
+SILVER = ('metal', '#6e7378', '#b4b8bd')    # --silver-dim, the blobs' line; its light
 # each part's warp and weft, by the letter its pattern is named with; a part
 # of one color is that color woven with itself
 WORDS = {'S': (SHANI, SHANI),           # fire, and the flame

@@ -165,7 +165,9 @@ for (let i = 0; i < Math.min(40, n0) && !t && !storeFail; i += 1) {
     const store = await storeHere();
     await openMenu(); await p.waitForTimeout(250);
     const menu = await menuOf();
-    const notes = await p.evaluate(() => ({ card: [...document.querySelectorAll("#hud > .rows .b-read > p:not(.r-label):not(.r-piece)")].map((x) => (x.firstChild || x).textContent), menu: [...document.querySelectorAll("#hud .dict-tab .menu > p.card-note")].map((x) => x.firstChild.textContent) }));
+    // the card's notes, as zone.html's cardNotes() reads them: not the place's
+    // line (.r-piece) nor the default sources' lines (.r-dflt), here and below
+    const notes = await p.evaluate(() => ({ card: [...document.querySelectorAll("#hud > .rows .b-read > p:not(.r-label):not(.r-piece):not(.r-dflt)")].map((x) => (x.firstChild || x).textContent), menu: [...document.querySelectorAll("#hud .dict-tab .menu > p.card-note")].map((x) => x.firstChild.textContent) }));
     if (menu.card.length + menu.rest.length > 1) t = { i, ...card, row, cps, cardPressed: (cps.find((x) => x.pressed) || {}).t || null, store, menu, notes };
     else await esc();
   } else await esc();
@@ -321,7 +323,7 @@ let d7 = null, d8 = null, chain = null;
 const cardState = () => p.evaluate(() => ({
   pills: [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].map((x) => x.textContent.trim()),
   label: (document.querySelector("#hud > .rows .b-read .r-label") || {}).textContent || "",
-  notes: [...document.querySelectorAll("#hud > .rows .b-read > p:not(.r-label):not(.r-piece)")].map((x) => (x.firstChild || x).textContent),
+  notes: [...document.querySelectorAll("#hud > .rows .b-read > p:not(.r-label):not(.r-piece):not(.r-dflt)")].map((x) => (x.firstChild || x).textContent),
   bands: [...document.querySelectorAll("#hud > .rows > .band:not(.b-read)")].map((b) => [...b.querySelectorAll(".s-pills button")].map((x) => `${x.textContent}${x.getAttribute("aria-pressed") === "true" ? "*" : ""}`)).filter((r) => r.length),
   bandCls: [...document.querySelectorAll("#hud > .rows > .band:not(.b-read)")].filter((b) => b.querySelector(".s-pills button")).map((b) => [...b.classList].find((c) => c !== "band")),
   chain: !!document.querySelector("#hud > .rows > .band.b-chain .s-pills button") }));
@@ -423,7 +425,7 @@ if (t && await tap(t.i)) {
   const down = await p.evaluate(() => ({
     note: (document.querySelector("#hud .dict-tab tr.pick.none td.note") || {}).textContent || "",
     menuNotes: [...document.querySelectorAll("#hud .dict-tab .menu > p.card-note")].map((x) => x.firstChild.textContent),
-    cardNotes: [...document.querySelectorAll("#hud > .rows .b-read > p:not(.r-label):not(.r-piece)")].map((x) => (x.firstChild || x).textContent),
+    cardNotes: [...document.querySelectorAll("#hud > .rows .b-read > p:not(.r-label):not(.r-piece):not(.r-dflt)")].map((x) => (x.firstChild || x).textContent),
     again: !!document.querySelector("#hud .dict-tab .menu > p.card-note button") }));
   await p.unroute("**/data/route-store/shards/**");
   await p.evaluate(() => { const x = document.querySelector("#hud .dict-tab .menu > p.card-note button"); if (x) x.click(); });

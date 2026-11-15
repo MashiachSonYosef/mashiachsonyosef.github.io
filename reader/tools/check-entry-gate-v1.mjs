@@ -8,7 +8,8 @@
 // A ROW OF ANOTHER ENTRY THAN THE WORD'S IS WITHHELD, AND A ROW OF ITS OWN
 // ENTRY STANDS WHATEVER ITS POINTS. The store keys a row by bare letters and
 // several words share a key. The corpus lane's row entries ledger (relay
-// v172) gives each row the entry its own source files it under;
+// v172, reissued as v1.1 in relay v190; data/row-entries/PIN.json names the
+// one in force) gives each row the entry its own source files it under;
 // tools/apply-row-entries-v1.mjs writes that on the row (the facts slot);
 // the lattice gives each place the entry that stands there, and
 // tools/project-lattice-v12-v1.mjs writes that on the word (tg) and bakes
@@ -73,10 +74,21 @@
 //   E12 a word its place gives no tag is not gated
 //   E13 where the place moves the leader, the line under the word and the
 //       card's first pill are the place's leader
+//   E14 where the pin names the list of rows its ledger moves (a reissue's
+//       facts list): the list is the bytes its pin names, each line changes
+//       a row's facts and none but those the tool writes, and each names one
+//       row of the store by key, rank, m id and route text that carries the
+//       facts the line gives (a line that finds no row counts against the
+//       lines the index says the store has moved on by). With both ledgers
+//       on this machine (--ledger, and --ledger-was <the ledger the pin
+//       replaces>, or ROW_ENTRIES_LEDGER_WAS): the rows whose facts the
+//       pinned ledger gives otherwise than the one it replaces are exactly
+//       the list's, each from the line's facts before to its facts after.
+//       Without them that half is said and not judged
 //
 // The words are found in the data, never named.
 //
-// Run: node tools/check-entry-gate-v1.mjs [--ledger <row-entries-v1.jsonl>] [--lattice <dir>]
+// Run: node tools/check-entry-gate-v1.mjs [--ledger <the pinned ledger>] [--ledger-was <the ledger it replaces>] [--lattice <dir>]
 import { readFileSync, readdirSync, existsSync, createReadStream } from "node:fs";
 import { gunzipSync, createGunzip } from "node:zlib";
 import { createInterface } from "node:readline";
@@ -103,6 +115,7 @@ const ZONES = join(K3, "data", "zones");
 const HOME = "reader/data/row-entries";   // the same folder as the index names it
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const LEDGER = arg("ledger", process.env.ROW_ENTRIES_LEDGER || null);
+const LEDGER_WAS = arg("ledger-was", process.env.ROW_ENTRIES_LEDGER_WAS || null);
 const LATTICE = arg("lattice", process.env.LATTICE_DIR || null);
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
@@ -148,6 +161,38 @@ const FACT_OF = new Map();   // m id -> the fact a parting reads on its rows
 }
 // the sources the ledger reads, from the lane's own receipt
 const READ = new Map(Object.entries((theirs && theirs.by_source) || {}));
+// what a ledger row gives its store row, as tools/apply-row-entries-v1.mjs writes it (E5, E14)
+const wantOf = (m, entries, numbers) => {
+  const f = {};
+  if (numbers.length) f.n = numbers;
+  if (FACT_OF.get(m) === "t") { const t = [...new Set(entries.map((e) => (Array.isArray(e) ? e[0] : e)).map(tagOf).filter((x) => /^H\d+[A-Za-z]$/u.test(x)))]; if (t.length) f.t = t; }
+  if (FACT_OF.get(m) === "b" && entries.length) f.b = entries.map(String);
+  return Object.keys(f).length ? f : null;
+};
+// the pinned ledger, where it is on this machine (E5, E14)
+let ledgerLines = null, ledgerWhy = "";
+if (LEDGER) try { ledgerLines = readPinnedLines(LEDGER, pin.ledger, pin.ledger.file); } catch (e) { if (e instanceof PinFault) ledgerWhy = e.message; else throw e; }
+
+// ---- E14's list: the rows the pinned ledger moves, each found in the walk below -------------------
+// A header, then key, rank, m id, route text, the row's facts before and after, and what changes.
+const moves = [], movesByKey = new Map(), movesFaults = [];
+if (pin.moves) {
+  try {
+    const text = readPinned(join(PINS, pin.folder, pin.moves.file), pin.moves, `${pin.folder}/${pin.moves.file}`).toString("utf8");
+    if (!text.endsWith("\n")) throw new PinFault(`${pin.moves.file} does not end in a line end`);
+    const [head, ...body] = text.slice(0, -1).split("\n");
+    const cols = head.split("\t");
+    if (cols.length !== 7 || !same(cols.slice(0, 5), ["key", "rank", "m_id", "route_text", "facts_now"]) || !/^facts_under_/u.test(cols[5]) || cols[6] !== "what_changes") throw new PinFault(`${pin.moves.file} opens with another header: ${cols.join(" | ")}`);
+    if (body.length !== pin.moves.lines) throw new PinFault(`${pin.moves.file} holds ${body.length} lines and its pin says ${pin.moves.lines}`);
+    for (const [i, line] of body.entries()) {
+      const c = line.split("\t");
+      if (c.length !== 7) throw new PinFault(`${pin.moves.file} line ${i + 2} holds ${c.length} fields`);
+      const x = { at: i + 2, k: c[0], rank: Number(c[1]), m: c[2], text: c[3], was: JSON.parse(c[4]), now: JSON.parse(c[5]), found: 0, got: null };
+      moves.push(x);
+      (movesByKey.get(x.k) || movesByKey.set(x.k, []).get(x.k)).push(x);
+    }
+  } catch (e) { if (e instanceof PinFault || e instanceof SyntaxError) movesFaults.push(e.message); else throw e; }
+}
 
 // ---- E2, E3, E4: every row of the store -------------------------------------------------------
 const KNOWN = new Set(["n", "t", "b", "name", "opens"]);
@@ -163,6 +208,7 @@ const mineOf = (f) => { if (!f) return null; const o = {}; for (const k of ["n",
     for (const [k, list] of Object.entries(body)) for (const row of list) {
       rows += 1;
       const m = String(row[3]);
+      for (const x of movesByKey.get(k) || []) if (x.rank === row[0] && x.m === m && x.text === String(row[1] ?? "")) { x.found += 1; x.got = factsOf(row); }
       const where = `${k} (${m}, rank ${row[0]})`;
       if (row.length > 7 && (row[row.length - 1] === null || row[row.length - 1] === undefined)) faults.push(`${where}: ends in an empty slot`);
       const raw = row.length > FACTS_SLOT ? row[FACTS_SLOT] : null;
@@ -234,18 +280,12 @@ const sum = (f) => Object.values(tally).reduce((a, t) => a + t[f], 0);
 }
 
 // ---- E5: the ledger itself, where it is here ---------------------------------------------------
-if (!LEDGER) console.log("  --  E5 was not judged here: the corpus lane's row entries ledger is not on this machine (--ledger <row-entries-v1.jsonl> or ROW_ENTRIES_LEDGER), so no row's facts were read against its own line");
+if (!LEDGER) console.log(`  --  E5 was not judged here: the corpus lane's row entries ledger is not on this machine (--ledger <${pin.ledger.file}> or ROW_ENTRIES_LEDGER), so no row's facts were read against its own line`);
 else {
   const faults = [];
-  let lines = null, ledgerRows = 0, met = 0;
-  try { lines = readPinnedLines(LEDGER, pin.ledger, pin.ledger.file); } catch (e) { if (e instanceof PinFault) faults.push(e.message); else throw e; }
-  const wantOf = (m, entries, numbers) => {
-    const f = {};
-    if (numbers.length) f.n = numbers;
-    if (FACT_OF.get(m) === "t") { const t = [...new Set(entries.map((e) => (Array.isArray(e) ? e[0] : e)).map(tagOf).filter((x) => /^H\d+[A-Za-z]$/u.test(x)))]; if (t.length) f.t = t; }
-    if (FACT_OF.get(m) === "b" && entries.length) f.b = entries.map(String);
-    return Object.keys(f).length ? f : null;
-  };
+  const lines = ledgerLines;
+  let ledgerRows = 0, met = 0;
+  if (!lines) faults.push(ledgerWhy);
   let noRow = 0, wrong = 0;
   for (const x of lines || []) {
     const want = new Map();
@@ -270,6 +310,65 @@ else {
     faults.length ? `${wrong ? `${nf(wrong)} rows carry other facts · ` : ""}${first(faults)}` : `${nf(lines.length)} lines · ${nf(ledgerRows)} rows of the ledger, ${nf(met)} met by a row of the store carrying their facts`);
 }
 byKeyId.clear();
+
+// ---- E14: the rows the pinned ledger moves ------------------------------------------------------
+if (!pin.moves) console.log("  --  E14 was not judged: the pin names no list of the rows its ledger moves");
+else {
+  const faults = [...movesFaults];
+  const othersOf = (f) => { const o = { ...(f || {}) }; for (const k of ["n", "t", "b"]) delete o[k]; return o; };
+  const gone = (rec && rec.totals && rec.totals.ledger_rows_with_no_store_row) || 0;
+  let carried = 0, unfound = 0;
+  for (const x of moves) {
+    const where = `${pin.moves.file} line ${x.at} (${x.k} rank ${x.rank}, ${x.m})`;
+    if (same(mineOf(x.was), mineOf(x.now))) faults.push(`${where}: moves no fact the tool writes`);
+    if (!same(othersOf(x.was), othersOf(x.now))) faults.push(`${where}: changes a fact the tool does not write`);
+    if (!x.found) { unfound += 1; continue; }
+    if (x.found > 1) faults.push(`${where}: names ${x.found} rows of the store`);
+    else if (!same(mineOf(x.got), mineOf(x.now))) faults.push(`${where}: the row carries ${JSON.stringify(mineOf(x.got))} and the line gives ${JSON.stringify(mineOf(x.now))}`);
+    else carried += 1;
+  }
+  if (unfound > gone) faults.push(`${unfound} line(s) name no row of the store, and the index says the store has moved on by ${gone} line(s) of the ledger`);
+  check("E14 the rows the pinned ledger moves: the list is the bytes its pin names, each line moves only facts the tool writes, and each names one row of the store, which carries the facts the line gives", faults.length === 0 && moves.length > 0,
+    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(moves.length)} lines of ${pin.moves.file} · ${nf(carried)} rows carry their facts${unfound ? ` · ${unfound} name no row, within the ${gone} lines the store has moved on by` : ""}`);
+  const wasPin = (pin.replaces || {}).ledger || null;
+  if (!wasPin) console.log("  --  E14's second half was not judged: the pin names no ledger it replaces");
+  else if (!LEDGER || !LEDGER_WAS) console.log(`  --  E14's second half was not judged here: it reads both ledgers (--ledger <${pin.ledger.file}> and --ledger-was <${wasPin.file}>, or ROW_ENTRIES_LEDGER_WAS), and ${!LEDGER ? "the pinned one" : "the one it replaces"} is not named`);
+  else {
+    const faults2 = [];
+    let wasLines = null;
+    try { wasLines = readPinnedLines(LEDGER_WAS, wasPin, wasPin.file); } catch (e) { if (e instanceof PinFault) faults2.push(e.message); else throw e; }
+    if (!ledgerLines) faults2.push(ledgerWhy);
+    // key and "rank m sha16" -> the facts each line gives the row, once for each time the ledger lists it, as JSON
+    const factsBy = (lines) => {
+      const by = new Map();
+      for (const x of lines) for (const r of x.rows) { const id = `${x.k}\u0001${r[0]} ${r[1]} ${r[2]}`; (by.get(id) || by.set(id, []).get(id)).push(JSON.stringify(wantOf(String(r[1]), r[4], r[5]))); }
+      return by;
+    };
+    let movedRows = 0, named = 0;
+    const unnamed = [];
+    if (wasLines && ledgerLines) {
+      const a = factsBy(wasLines), b = factsBy(ledgerLines);
+      const moved = new Map();   // id -> [facts before, facts after] for each listing whose facts move
+      for (const id of new Set([...a.keys(), ...b.keys()])) {
+        const was = a.get(id) || [], now = b.get(id) || [];
+        if (was.length !== now.length) { faults2.push(`${id.replace("\u0001", " ")}: the replaced ledger lists the row ${was.length} time(s) and the pinned one ${now.length}`); continue; }
+        for (const [i, w] of was.entries()) if (w !== now[i]) { movedRows += 1; (moved.get(id) || moved.set(id, []).get(id)).push([w, now[i]]); }
+      }
+      for (const x of moves) {
+        const id = `${x.k}\u0001${x.rank} ${x.m} ${sha256(Buffer.from(x.text, "utf8")).slice(0, 16)}`;
+        const got = moved.get(id) || [];
+        const at = got.findIndex((p) => same(p, [JSON.stringify(mineOf(x.was)), JSON.stringify(mineOf(x.now))]));
+        if (at < 0) { faults2.push(`${pin.moves.file} line ${x.at} (${x.k} rank ${x.rank}, ${x.m}): ${got.length ? "the two ledgers move the row otherwise" : "the two ledgers give the row the same facts"}`); continue; }
+        named += 1;
+        got.splice(at, 1);
+      }
+      for (const [id, list] of moved) for (const [w, now] of list) unnamed.push(`${id.replace("\u0001", " ")} ${w} -> ${now}`);
+      if (unnamed.length) faults2.push(`${nf(unnamed.length)} row(s) the ledgers move are not on the list; first: ${unnamed[0]}`);
+    }
+    check("    and the rows whose facts the pinned ledger gives otherwise than the one it replaces are exactly the list's, each moved as its line says", !!wasLines && !!ledgerLines && faults2.length === 0,
+      faults2.length ? `${nf(faults2.length)} · ${first(faults2)}` : `${wasPin.file} -> ${pin.ledger.file}: ${nf(movedRows)} rows move, ${nf(named)} of them named by the list's ${nf(moves.length)} lines`);
+  }
+}
 
 // ---- the zones: what is asked, and the words for the page --------------------------------------
 const rowsOf = (k) => (store.routesFor(k) || []).filter((r) => index.m_sources[r[3]]);

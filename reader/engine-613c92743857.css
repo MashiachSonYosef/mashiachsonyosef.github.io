@@ -118,25 +118,29 @@
        color here keeps a pair (the owner, 2026-10-10: "id probably go regular
        and dim"): the dim at rest; the regular under the reader's hand (a
        hover, a pressed cell's doubled edge, the box round a held word and its
-       lines to the card) and as the numbers' ink. Both keep hue 28 degrees and
-       saturation 30%, which is why bronze reads brown and never orange (the
-       owner: "bronze is distinctly not orange"); the gold of before was orange
-       by its saturation, 70 to 82%. The dim reads 4.3:1 on the linen, 3.9:1 in
-       a word's cell and 3.6:1 on the pressed linen; the regular 5.4:1, 4.9:1
-       and 4.5:1, so a number written in it reads as text must.
+       lines to the card). Both keep hue 28 degrees and saturation 30%, which
+       is why bronze reads brown and never orange (the owner: "bronze is
+       distinctly not orange"); the gold of before was orange by its
+       saturation, 70 to 82%. The dim reads 4.3:1 on the linen, 3.9:1 in a
+       word's cell and 3.6:1 on the pressed linen; the regular 5.4:1, 4.9:1
+       and 4.5:1.
        SILVER is our layering: the line of every blob and of every frame drawn
-       round a run's words (window.__tie's stroke). It is the swatch #7c8187
-       made a step darker at its own hue, because a frame's line also sits on
-       the blob's pressed linen, where the swatch read 2.5:1 and a line a
-       reader needs must reach 3:1: this reads 3.6:1 on the linen, 3.3:1 in a
-       cell and 3.0:1 on the pressed linen. The woven name's silver thread is
-       edged in the same value.
+       round a run's words (window.__tie's stroke), and the card numbers, our
+       own mark on every word (the owner, 2026-11-15: "i would do card numbers
+       silver that was our mark"). Two silvers, as every color keeps a pair:
+       the dim is the line, the swatch #7c8187 made a step darker at its own
+       hue, because a frame's line also sits on the blob's pressed linen, where
+       the swatch read 2.5:1 and a line a reader needs must reach 3:1: it reads
+       3.6:1 on the linen, 3.3:1 in a cell and 3.0:1 on the pressed linen. The
+       regular is the numbers' ink, the same gray darker, so a number reads as
+       text must: 5.5:1 on the linen, 5.0:1 in a cell, 4.6:1 on the pressed
+       linen. The woven name's silver thread is edged in the dim.
        GOLD is now only the Masoretic signs, below. Older comments on this
        page that call a frame, a box, a rule or a line gold were written before
        this ruling: read them as bronze, or as silver for the line of a blob or
        of a frame round a run; gold on a mark still means the signs. */
     --bronze: #6d523a; --bronze-dim: #7f6044;
-    --silver: #6e7378;
+    --silver: #53575b; --silver-dim: #6e7378;
     --gold: #967c26;
     --line: var(--bronze-dim); --line-c: var(--bronze-dim); --chip-line: var(--bronze-dim);
     /* text the reader drags across: bronze as a tint the word reads through
@@ -1312,6 +1316,16 @@
   #searchOut button.more { all: unset; cursor: pointer; display: block; margin: 0.4rem 0 0.2rem; font-size: 0.8rem; color: var(--argaman); }
   #searchOut button.more::after { content: " \25BE"; color: var(--bronze-dim); }
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
+  /* the default sources: four pills kept together, and the note under the
+     row on a line of its own; the chooser in it is the order row's (.def-order).
+     On a narrow phone the four wrap inside the group rather than push the
+     page sideways (the review of 14 November 2026: 331px of pills scrolled a
+     320px page), and the lit pill's share wraps under its own name */
+  #modeRow .default-pick { display: inline-flex; gap: 0.55rem; flex-wrap: wrap; min-width: 0; max-width: 100%; }
+  #modeRow .default-pick[hidden] { display: none; }
+  #modeRow .default-note { flex-basis: 100%; margin: 0; font-size: 0.78rem; color: var(--muted); max-width: 46rem; }
+  #modeRow .default-note .def-order { display: inline-flex; margin: 0.25rem 0 0; align-items: baseline; }
+  #modeRow .default-note .dfp:disabled { opacity: 0.45; cursor: default; }
   /* the rail: the page's toggles as one control block (see the header) */
   /* the cloth shows through it: the panel's lightest tone stood out as the
      brightest thing on the page (the owner, 2026-10-03: "so bright white"),
@@ -1560,7 +1574,7 @@
      pill present and none pressable. The reading itself (.v) stays, and the
      sources row still says what is switched off. The head's explainer under a
      large or small letter goes too; the line saying which letter stays. */
-  #hud.tight .rows .band > .kq-role, #hud.tight .rows .band > .r-piece, #hud.tight .r-now .k, #hud.tight .r-now .n,
+  #hud.tight .rows .band > .kq-role, #hud.tight .rows .band > .r-piece, #hud.tight .rows .band > .r-dflt, #hud.tight .r-now .k, #hud.tight .r-now .n,
   #hud.tight .head .kq-key { display: none; }
   /* overflow-x hidden as well as overflow-y auto: setting one axis to auto makes
      the other auto too, and a horizontal scrollbar nobody asked for took nine
@@ -1665,6 +1679,14 @@
     max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
   #hud .r-now .v.none { color: var(--argaman-dim); font-style: italic; }
   #hud .r-now .n { display: block; color: var(--faint); font-size: 0.72rem; font-style: italic; line-height: 1.35; margin-top: 0.15rem; }
+  /* whose reading the line is, said only on a tight card, where the label
+     above folds away (under a source other than STEP; the review of 14
+     November 2026): a small tag beside the reading, never inside it */
+  #hud .r-now .r-src-tag { display: none; }
+  #hud.tight:not(.floor) > .r-now.tagged { display: flex; align-items: baseline; gap: 0.45em; }
+  #hud.tight:not(.floor) > .r-now.tagged > .v { flex: 1 1 auto; min-width: 0; }
+  #hud.tight .r-now .r-src-tag { display: inline; flex: 0 0 auto; color: var(--faint); font-size: 0.6rem;
+    letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
   #hud[hidden] { display: none; }
   /* the brick gap's head on the card is the ruled span the line draws, not the
      restore's stand-in box */
@@ -1755,11 +1777,21 @@
   #hud .r-piece i { font-style: normal; font-size: 0.66rem; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--faint); padding-inline-end: 0.35rem; }
   #hud .r-piece b { font-weight: 600; }
+  /* what each default source reads at this word (default-picks-rule-v1): a
+     line of text under STEP's, never a switch; its other picks and whether
+     it is the line ride after its words, quieter */
+  #hud .r-dflt { margin: 0 0 0.3rem; direction: ltr; font-size: 0.8rem; color: var(--tekhelet-ink); }
+  #hud .r-dflt i { font-style: normal; font-size: 0.62rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--faint); padding-inline-end: 0.35rem; }
+  #hud .r-dflt b { font-weight: 600; }
+  #hud .r-dflt .n, #hud .r-more, #hud .r-on { font-weight: normal; color: var(--muted); }
+  #hud .r-on { font-style: italic; }
+  #hud .r-dflt .g-lic { display: inline; margin: 0 0 0 0.35em; padding: 0 0.3em; font-size: 0.62rem; line-height: 1; vertical-align: baseline; }
   #hud .r-sug b .n { font-weight: normal; color: var(--muted); }
   /* its chip rides the same line: a line of its own took a readings row */
   #hud .r-piece .g-lic { display: inline; margin: 0 0 0 0.35em; padding: 0 0.3em; font-size: 0.62rem; line-height: 1; vertical-align: baseline; }
   #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
-  #hud .head .wn { font-size: 0.82rem; font-weight: 600; color: var(--bronze); letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
+  #hud .head .wn { font-size: 0.82rem; font-weight: 600; color: var(--silver); letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
     margin-inline-end: 0.55em; align-self: center; white-space: nowrap; }
   /* A pill shows its whole reading. It used to clamp at two lines, which made
      the card claim a reading it was not showing — the code beneath says R is
@@ -1808,8 +1840,8 @@
      WEAR A STEADIER FACE, below). */
   #hud .r-pills button.sense { color: var(--argaman); font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
   #hud .r-pills button.sense[aria-pressed="true"] { color: var(--argaman); font-weight: 700; }
-  /* the owner's legend under a Jastrow record whose one bracket is a word
-     sense: the page's purple, a size down, under the record it explains */
+  /* the owner's legend under a Jastrow record the corpus lane says it holds
+     on: the page's purple, a size down, under the record it explains */
   #hud .d-card .sense-legend { margin: 0 0 0.3rem; font-size: 0.74rem; color: var(--argaman); }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
@@ -1988,7 +2020,7 @@
   .he-text .wb { --cn: none; }
   body.nums .he-text .wb:not(.mark)::after { content: "\25C2\00a0" var(--cn); position: absolute; z-index: 1;
     left: var(--cn-x, 0.22rem); top: 0.04rem; direction: ltr; unicode-bidi: isolate; white-space: nowrap;
-    font: 0.5rem/1 Georgia, serif; font-weight: 400; letter-spacing: 0.04em; font-variant-numeric: lining-nums; color: var(--bronze); -webkit-text-fill-color: var(--bronze); text-shadow: none;
+    font: 0.5rem/1 Georgia, serif; font-weight: 400; letter-spacing: 0.04em; font-variant-numeric: lining-nums; color: var(--silver); -webkit-text-fill-color: var(--silver); text-shadow: none;
     pointer-events: none; user-select: none; -webkit-user-select: none; }
   body.en.nums .he-text .wb:not(.mark)::after { content: var(--cn) "\00a0\25B8"; top: auto; bottom: 0.1rem; font-size: 0.56rem; }
   /* a run's word: its box is the ink row's, inside the card's padding (0.08rem

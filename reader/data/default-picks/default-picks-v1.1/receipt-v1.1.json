@@ -1,0 +1,131 @@
+{
+ "name": "default picks v1.1: STEP's dictionary read by the number TAHOT names; issued as what changes from v1",
+ "written": "13 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "mends": "a fault of default picks v1 (relay v180), found by the audit of lines and pills (relay v181): TBESH was read by its first column, and TAHOT names the number in its second",
+ "current_effect": "NONE. Nothing served is changed.",
+ "rule_amendment": {
+  "file": "RULE-AMENDMENT.md",
+  "bytes": 3764,
+  "sha256": "ff65e904f556d99656d7e20ce7594df23f7b9efaba11c39d27a5cb3b7d39308f"
+ },
+ "mender": {
+  "file": "mend-default-picks-v1.1.mjs",
+  "bytes": 17002,
+  "sha256": "38ebead712976c0037b02bc126ba0f5c9fa0aadd360cb3c667ea22d2fa907223"
+ },
+ "v1": {
+  "receipt": {
+   "file": "default-picks-v1/receipt-v1.json",
+   "bytes": 28573,
+   "sha256": "89b2a4b618cd8339fe981c3fac9836979d437ed17c9a2ba48bb23ed08a438116"
+  },
+  "rows_table": {
+   "file": "default-picks-v1/rows-v1.jsonl",
+   "bytes": 6106263,
+   "sha256": "21f2a35bd6bf37b64eb5139125c6119693a9b0d58b39afab49766db74fb128d8",
+   "lines": 152423
+  },
+  "book_files": "default-picks-v1/<book>.jsonl, each the bytes v1's receipt names (read here, not written)"
+ },
+ "inputs": {
+  "tahot": [
+   {
+    "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Gen-Deu - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 18190455,
+    "sha256": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b"
+   },
+   {
+    "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Jos-Est - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 24500317,
+    "sha256": "195fee1dc3653bab33701f170734eb894ed647c10cd08cc61749375fe8b73775"
+   },
+   {
+    "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Job-Sng - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 9540133,
+    "sha256": "84e118a97e5725e3847cdfdd593873513021c790c63cc91a0d41fca2b5db2ed5"
+   },
+   {
+    "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Isa-Mal - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 17977518,
+    "sha256": "f3ded203d2a74d6368932c97ae550d1d0754b271af491dc0dedf36fe3ba0bcc5"
+   }
+  ],
+  "tbesh": {
+   "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Lexicons/TBESH - Translators Brief lexicon of Extended Strongs for Hebrew - STEPBible.org CC BY.txt",
+   "bytes": 3288045,
+   "sha256": "464dccadd95fd8620dd05fa0d7a4caba58ec3c4d5db3ebf38e43d046ca25b591"
+  },
+  "route_store": {
+   "store_version": "a9373b8d30ef",
+   "rows_read": 652954
+  }
+ },
+ "tbesh": {
+  "bare_numbers_read_as_the_entry_itself": 55,
+  "bare_numbers_with_no_one_entry_itself": 50,
+  "lines_read": 11674,
+  "numbers": 11674,
+  "lines_with_no_number_in_the_second_column": 0,
+  "lines_whose_number_was_already_read": 0,
+  "numbers_whose_first_column_differs_from_the_second": 4350,
+  "first_column_numbers_that_stand_for_several_lines": 948
+ },
+ "places": 305431,
+ "mend": {
+  "places": 305431,
+  "places_whose_step_picks_change": 1265,
+  "picks_changed_by_kind": {
+   "a": 1088,
+   "v": 298
+  },
+  "alternatives": {
+   "in_v1": 5391,
+   "with_no_words_in_v1": 1001,
+   "with_no_words_now": 102,
+   "whose_words_change": 1088,
+   "that_gain_rows": 795
+  },
+  "variants": {
+   "in_v1": 748,
+   "with_no_rows_in_v1": 367,
+   "with_no_rows_now": 69,
+   "that_gain_rows": 298
+  },
+  "picks_that_fall_together": 15
+ },
+ "how_to_apply": "default picks v1.1 is v1 with the step array of each place listed in step-mend-v1.1.jsonl replaced, and the lines of rows-added-v1.1.jsonl appended to v1's rows table (the first is row number 152423, counting from 0)",
+ "checks": [
+  {
+   "check": "check 1: at every place the pick of kind r is v1's, and the place's picks of MACULA, UBS and BDB are read from v1 and not rebuilt",
+   "failures": 0
+  },
+  {
+   "check": "check 2: every place whose step picks do not change equals v1's; every place that changes differs only in picks of kind v or a",
+   "failures": 0
+  },
+  {
+   "check": "check 3: every row a mended pick names stands in the served store under its key with the TBESH gloss of the pick's entry",
+   "failures": 0
+  },
+  {
+   "check": "check 4: the picks of each listed place are numbered 1 to n",
+   "failures": 0
+  }
+ ],
+ "outputs": [
+  {
+   "file": "step-mend-v1.1.jsonl",
+   "bytes": 187094,
+   "sha256": "29953b99d886881465432319790c67573634710afd469cb475d3364b3c59e03b",
+   "lines": 1265
+  },
+  {
+   "file": "rows-added-v1.1.jsonl",
+   "bytes": 8743,
+   "sha256": "f6064de772b426659cf93990613264fe16c64c30523dcaab146a47176818f015",
+   "lines": 225,
+   "first_row_number": 152423
+  }
+ ]
+}

@@ -1,13 +1,37 @@
 {
- "schema_version": "POINTER_ENTRIES_PIN_V1",
- "what": "the corpus lane's map of the readings that point to another entry, kept here byte for byte in the folder the lane keeps it in: each reading classed, and for a pointer the entry it names and that entry's first English in the source's own order. tools/bake-form-of-pills-v1.mjs folds it, under the owner's rulings, into the map the card reads (data/form-of-pills-v1.json)",
- "relay": "v175",
- "of": "13 November 2026",
- "letter": "r2:mishkan/v2/letters/moses-pointer-entries-v1/FOR-ELIJAH-v175.md",
- "from": "r2:mishkan/v2/ledgers/all/pointer-entries/pointer-entries-v1/ (the private store)",
- "folder": "pointer-entries-v1",
- "rule": { "file": "RULE.md", "bytes": 8711, "sha256": "c05cbf59c5980a71f36d2948685e5740f881d5673c76ea8c62adfcc5f81d17c8" },
- "receipt": { "file": "receipt-v1.json", "bytes": 17241, "sha256": "ae884a601e36c777d80f6da7be439b6c837e920eb92de3347b86de982258c3fd" },
- "map": { "file": "zone-pills-v1.3.jsonl", "bytes": 2359172, "sha256": "9a532facc2b5b9a92402bcfe44ca387180676ad0683957d0760723ca3ab780d1", "lines": 3015 },
- "note": "every sha256 here is the one the relay's letter names for the file, and the bytes taken hash to it. The map replaces the one of relay v101 (form-of/zone-pills-v1.2.jsonl), which was read from outside this tree; each line keeps what that map resolved beside the new resolution, as resolved_in_v1_2"
+ "schema_version": "POINTER_ENTRIES_PIN_V2",
+ "what": "the corpus lane's map of the readings that point to another entry, kept here byte for byte in the folders the lane keeps it in: each reading classed, and for a pointer the entry it names and that entry's first English in the source's own order. One entry per relay: the first sends the map whole, each later one sends the lines it changes, each carrying `line`, its number in the map; tools/pointer-map-v1.mjs lays them together, and tools/bake-form-of-pills-v1.mjs folds the map so made, under the owner's rulings, into the map the card reads (data/form-of-pills-v1.json)",
+ "relays": [
+  {
+   "relay": "v175",
+   "of": "13 November 2026",
+   "letter": "r2:mishkan/v2/letters/moses-pointer-entries-v1/FOR-ELIJAH-v175.md",
+   "from": "r2:mishkan/v2/ledgers/all/pointer-entries/pointer-entries-v1/ (the private store)",
+   "folder": "pointer-entries-v1",
+   "rule": { "file": "RULE.md", "bytes": 8711, "sha256": "c05cbf59c5980a71f36d2948685e5740f881d5673c76ea8c62adfcc5f81d17c8" },
+   "receipt": { "file": "receipt-v1.json", "bytes": 17241, "sha256": "ae884a601e36c777d80f6da7be439b6c837e920eb92de3347b86de982258c3fd" },
+   "map": { "file": "zone-pills-v1.3.jsonl", "bytes": 2359172, "sha256": "9a532facc2b5b9a92402bcfe44ca387180676ad0683957d0760723ca3ab780d1", "lines": 3015 }
+  },
+  {
+   "relay": "v191",
+   "of": "14 November 2026",
+   "letter": "r2:mishkan/v2/letters/moses-pointer-entries-v1/FOR-ELIJAH-v191.md",
+   "letter_sha256": "bbecea009928a1031c71ee32f25e4709b8570b5642f7cc3020f133260579bc70",
+   "from": "r2:mishkan/v2/ledgers/all/pointer-entries/pointer-map-v1.4/ (the private store)",
+   "folder": "pointer-map-v1.4",
+   "rule": { "file": "RULE.md", "bytes": 20668, "sha256": "f159f6531c4e7237495079a8c32db50cc4c66d1a4d8cd44174f71031c5bf7421" },
+   "receipt": { "file": "receipt-v1.4.json", "bytes": 65664, "sha256": "d904341a8876b8791cbb36608afceedadbff8372d818d95e63fec8f813372929" },
+   "verify_receipt": { "file": "verify-receipt-v1.4.json", "bytes": 5037, "sha256": "734d2b2f5367b0dd3b072c729d79ff79cebed2feb88eb7e0b76ca93d5d83a4d9" },
+   "changes": { "file": "zone-pills-v1.4.changed.jsonl", "bytes": 846913, "sha256": "e5596740120d3fc100989813517d4a4fce22ba29eb43415e9e7c624adcc0a435", "lines": 682 },
+   "the_458": { "file": "the-458-v1.4.jsonl", "bytes": 566896, "sha256": "63c8484710511aa553cf9166f0cb2993252ace5dd153c188d9b39736a4771856", "lines": 458 }
+  }
+ ],
+ "assembled": {
+  "what": "the map as the relays lay it, map v1.4: each changed line, its `line` taken off, in place of the line it names, every line one JSON value, newline-terminated",
+  "lines": 3015,
+  "bytes": 2667023,
+  "sha256": "79b26cf230214a903e59edf92793e1f728f4ad4942073018bcdd89b30053f433",
+  "confirmed_by_the_lane": "not yet: the letter of v191 gives no sha256 for the whole map, and the page lane asked the corpus lane on 14 November to confirm this one or give its own"
+ },
+ "note": "every sha256 of a relay's file here is the one the relay's letter names for it, and the bytes taken hash to it. The map of v175 replaces the one of relay v101 (form-of/zone-pills-v1.2.jsonl), which was read from outside this tree; each line keeps what that map resolved beside the new resolution, as resolved_in_v1_2. The lines of v191 keep v1.3's resolution beside theirs where it changes (resolved_in_v1_3, in_v1_3). The owner's rulings 5 and 7 (data/rulings/) name the map of v175 by its sha256, and v191's rule keeps v1.3 standing in every part it does not name, so they are read by that sha256"
 }

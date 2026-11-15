@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-15.
 
-**159 rules declared · 145 named by a check · 14 unguarded.**
+**160 rules declared · 147 named by a check · 13 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -38,6 +38,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `count-gate-rule-v1` | tools/check-clean-address-v1.mjs | check-clean-address-v1, check-front-door-three-counts-v1, check-nothing-hand-typed-v1 |
 | `count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one` | tools/build-zone.mjs, tools/count-stamp-v1.mjs, tools/emit-masorah-witnesses-v1.mjs, tools/restamp-zone-v1.mjs | check-bookword-count-v1, check-c0-refusals-v1 |
 | `declarations-branch-rule-v1-a-branch-is-what-the-source-says-about-itself-and-a-reserved-token-is-never-a-branch` | tools/project-declarations-v1.mjs | check-declarations-branch-v1 |
+| `default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second` | tools/bake-default-picks-v1.mjs, zone.html, tools/bake-resting-lines-v1.mjs, tools/card-readings-v1.mjs, tools/resting-lines-v1.mjs | check-default-picks-v1, check-card-opens-on-the-line-v1, check-chain-book-v2, check-line-follows-card-v1, check-live-v1, check-menu-switches-v1, check-page-fetches-v1, check-reset-pill-v1, check-ruled-equals-first-paint-v1, check-same-product-v1, check-word-senses-v1 |
 | `demo-verse-rule-v1` | tools/build-front-door-v1.mjs | check-clean-address-v1, check-nothing-hand-typed-v1 |
 | `derived-work-ranges-rule-v1-the-atlas-names-every-range-so-none-is-typed` | tools/emit-derived-work-ranges-v1.mjs | check-derived-ranges-v1 |
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
@@ -53,7 +54,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `family-ledger-rule-v1-values-are-ruled-works-are-not` | tools/check-family-ledger-v1.mjs | check-family-ledger-v1 |
 | `fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words` | tools/make-fixture-zone-v1.mjs | check-fixture-never-served-v1 |
 | `fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner` | tools/plan-fleet-v1.mjs, tools/run-fleet-v2.mjs | check-derived-ranges-v1 |
-| `form-of-pills-rule-v1-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it` | tools/bake-form-of-pills-v1.mjs | **UNGUARDED** |
+| `form-of-pills-rule-v2-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries` | tools/bake-form-of-pills-v1.mjs | check-form-of-v1 |
 | `frame-coverage-rule-v1-no-layer-is-on-one-work-and-off-another` | tools/check-frame-coverage-v1.mjs | check-frame-coverage-v1 |
 | `from-restore-rule-v1` | tools/check-front-door-three-counts-v1.mjs | check-front-door-three-counts-v1 |
 | `front-door-rule-v1-the-door-lists-what-the-zones-carry` | tools/build-front-door-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-three-counts-v1, check-nothing-hard-wired-v1, check-sidecars-all-named-v1 |
@@ -164,7 +165,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `w-list-rule-v1-the-record-says-which-entries-are` | tools/w-list-v1.mjs | check-w-grain-v1 |
 | `weld-forms-rule-v1-a-joined-run-is-offered-in-every-form-a-source-published-and-in-no-form-it-did-not` | tools/weld-forms-v1.mjs, zone.html | check-run-card-forms-v1 |
 | `witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit` | tools/bake-witnessed-order-v1.mjs, tools/import-witnessed-orders-v1.mjs, tools/type-witnessed-drops-v1.mjs | check-witnessed-order-v1 |
-| `word-senses-rule-v1-a-word-sense-is-not-a-definition-and-prints-only-under-the-word-senses-switch-which-rests-off` | tools/bake-word-senses-v1.mjs, zone.html, tools/bake-search-index-v1.mjs | check-word-senses-v1, check-search-v1 |
+| `word-senses-rule-v1-a-word-sense-is-not-a-definition-and-prints-only-under-the-word-senses-switch-which-rests-off` | tools/bake-word-senses-v2.mjs, zone.html, tools/bake-search-index-v1.mjs | check-word-senses-v1, check-search-v1 |
 | `wordmark-rule-v2-the-name-is-the-mark-woven-of-the-dyes-and-the-metals-with-a-flame-and-a-hailstone-for-its-dots` | tools/check-woven-name-v1.mjs | check-woven-name-v1 |
 | `work-attachment-rule-v1-parallel-numbering-is-not-intent` | tools/emit-work-attachment-v1.mjs | check-work-attachment-v1 |
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
@@ -192,7 +193,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 37 of the 143 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 39 of the 145 tools that are not checks.
 
 Not called by any build stage:
 
@@ -262,6 +263,7 @@ Not called by any build stage:
 - `tools/place-leaders-v1.mjs`
 - `tools/plan-work-shards-v1.mjs`
 - `tools/planned-packs-v1.mjs`
+- `tools/pointer-map-v1.mjs`
 - `tools/pointing-grade-v1.mjs`
 - `tools/project-declarations-v1.mjs`
 - `tools/project-hud-runs-v1.mjs`

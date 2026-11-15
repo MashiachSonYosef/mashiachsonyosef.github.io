@@ -610,11 +610,11 @@ if (commentaryHere) {
     const as = (prop, v) => { probe.style[prop] = v; return getComputedStyle(probe)[prop]; };
     const INKS = ["--shani", "--shani-dim", "--tekhelet", "--tekhelet-dim", "--argaman", "--argaman-dim", "--mark-ink"];
     const inks = Object.fromEntries(INKS.map((t) => [as("color", `var(${t})`), t]));
-    // the apparatus's numbers (a word's address on its card) are written in the
-    // regular bronze, and nothing else is: the one place a metal other than the
-    // marks' gold is ink (color-channel-rule-v3, structure.reads_as)
+    // the card numbers (a word's address on its card) are written in the
+    // regular silver, our own mark, and nothing else is: the one place a metal
+    // other than the marks' gold is ink (color-channel-rule-v3, our_layering.reads_as)
     const NUMBERS = "#hud .head .wn";
-    const numberInk = as("color", "var(--bronze)");
+    const numberInk = as("color", "var(--silver)");
     const ground = { bg: as("backgroundColor", "var(--bg)"), cell: as("backgroundColor", "var(--cell-wash)"), press: as("backgroundColor", "var(--press-wash)") };
     probe.remove();
     const trip = (c) => (String(c).match(/[\d.]+/gu) || []).slice(0, 3).join(",");
@@ -650,7 +650,7 @@ if (commentaryHere) {
     const pressed = on ? { on: getComputedStyle(on).color, weight: Number(getComputedStyle(on).fontWeight), off: off ? getComputedStyle(off).color : null, reading: inks[getComputedStyle(on).color] || null } : null;
     return { glyphs, grounds, strayInk, strayGround, pressed, card: !!document.querySelector("#hud:not([hidden])") };
   });
-  check("every glyph is one of the eight inks: a regular and a dim of each of the three dyes, the marks' gold, and the numbers' bronze on the numbers alone",
+  check("every glyph is one of the eight inks: a regular and a dim of each of the three dyes, the marks' gold, and the numbers' silver on the numbers alone",
     got.glyphs > 0 && got.strayInk.length === 0,
     got.strayInk.length ? `off the palette: ${got.strayInk.join(" · ")}` : `${got.glyphs} glyphs read, a card ${got.card ? "open" : "not open"}`);
   check("every ground is one of the three linens: the ground (or a veil of it), the cell, the pressed linen",
