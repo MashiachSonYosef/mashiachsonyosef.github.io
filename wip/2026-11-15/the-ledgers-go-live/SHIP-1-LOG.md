@@ -10,7 +10,7 @@ Tree: scratch `rt`, branch `ship-wip` (ec1c8a6764). Pipeline: scratch `v63/pipel
 | the switches page | exit 0 |
 | check-color-channels-v1, check-woven-name-v1, check-default-picks-v1 (node), check-entry-gate-v1 (ledger v1.1) | each exit 0 |
 | the suite (3 at a time, 1,200 s a check) | 154 of 157 pass (174 runs, 44 min); the three below |
-| the gate | running from 07:45 |
+| the gate | read at 07:55 (532 s): S1 the same but for the owed lines; S2 16 of 54 first cards differ, each by v191's pointer pills only |
 
 ## The suite's three reds
 
@@ -32,3 +32,18 @@ On the scratch copy served apart, with the fix: check-contents-shut-v1, check-me
 ## The lead's call on the first ship
 
 The ship goes as it stands once the gate is read, with check-contents-shut-v1's red said in the commit: it is a phone's first screen with commentary asked for, 5px, and the owner's word is to push. The fix rides the next ship, which reads every page again. check-card-opens-on-the-line-v1 is run again alone, without a limit, before the commit.
+
+## The gate (07:55)
+
+- S1: 9,356 lines compared on 18 pages under every switch both builds carry. The same, but for 5 places on those pages where the line was bare and STEP's own words now print (Job 1:4:11 «sisters + their», Lamentations 3:13:2 «in + kidneys + my», Nehemiah 7 «and + large», Zephaniah 2 «and + [the] reviling words of»), each as the index owes it, under the default and under the English reader (10 lines listed).
+- S2: 54 first cards compared; 16 differ. Every one differs only by pointer pills that now carry the English of the entry they point to (v191): «defective spelling of ...» is «happiness (defective spelling of ...)», «see ...» is «valley (see ...)», «plural construct state form of ...» is «thing (plural construct state form of ...)». The same pill pressed on each.
+- Its note «old lacks the switch (90)» is 18 pages by five switches the live build lacked: no blanks, no names, MACULA, UBS, BDB.
+- The differing cards in full: scratch `v63/gate-diff.txt`.
+
+## Shipped (08:00 UTC)
+
+- main 46bbbf7d50, gh-pages 8cc09f3ece (gh-pages follows main). One commit: «The default sources on the line, the corpus lane's relays v190, v191 and v185.2, and the card numbers in silver».
+- check-nothing-unlanded-v1 after landing: passes. The sha audit of gh-pages against main: 52 records, 9,307 read-off files and 3,547 zone pins on 1,272 pages stated, 0 that do not match.
+- Shipped with one known red, said in the commit: check-contents-shut-v1 (Amos with commentary asked for, on a phone, 5px under the first screen). Its fix is measured and rides the next ship.
+- check-card-opens-on-the-line-v1, alone and without a limit on this tree: see below when it ends.
+- The Pages deployment and the live check: see below.
