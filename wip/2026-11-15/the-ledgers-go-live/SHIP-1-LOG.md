@@ -46,4 +46,4 @@ The ship goes as it stands once the gate is read, with check-contents-shut-v1's 
 - check-nothing-unlanded-v1 after landing: passes. The sha audit of gh-pages against main: 52 records, 9,307 read-off files and 3,547 zone pins on 1,272 pages stated, 0 that do not match.
 - Shipped with one known red, said in the commit: check-contents-shut-v1 (Amos with commentary asked for, on a phone, 5px under the first screen). Its fix is measured and rides the next ship.
 - check-card-opens-on-the-line-v1, alone and without a limit on this tree: see below when it ends.
-- The Pages deployment and the live check: see below.
+- The Pages deployment: run 1370, success, at 8cc09f3e (07:58 UTC). The live check: run 68, success, at 46bbbf7d (07:59 UTC). The site is this build.

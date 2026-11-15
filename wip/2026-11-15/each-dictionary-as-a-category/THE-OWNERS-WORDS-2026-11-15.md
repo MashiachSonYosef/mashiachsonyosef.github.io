@@ -49,3 +49,12 @@ Decide per kind of dictionary, never per card: the Bible dictionaries stand as n
 ## Next
 
 The full table of the 119: what each says it is (quoted), what kinds of entry it marks in its own data (names, parts of speech, labels, senses, pointing, entry numbers, stems), its rows, and what a rule over each kind would move on the whole shelf.
+
+## The first ship of it: the word lists and knowledge bases rest shut (the lead's design calls, 08:05 UTC)
+
+Built without waiting, on the owner's word that nothing agreed is held.
+
+- One record files every dictionary by what it says it is: `reader/data/dictionary-kinds-v1.json` (family, kind, the dictionary's own words for itself and where they stand). Kinds: Bible dictionaries (and the place's own reading); general Hebrew dictionaries with entries (Wiktionary and the like); the rabbinic dictionary (Jastrow); Aramaic dictionaries; word-pair lists, knowledge bases and encyclopedia titles.
+- First ship: the last kind rests shut on every card. Nothing leaves the store. The card says how many readings are shut in the dictionaries' own terms, one press on the card or one switch on the rail opens them, the device keeps the choice, reset returns to shut. The line at rest never reads a shut dictionary. A reading a shut dictionary shares with an open one stands, credited to the open one.
+- Later ship: headings on the card by kind; an Aramaic dictionary set apart at a Hebrew place.
+- Three teams: the table of the 119 and the whole-shelf measures (workflow dictionary-categories), the design from a reading of the page and the pipeline with the effect measured (workflow kinds-shut-at-rest-design; its notes in `kinds-shut-at-rest/`), then the builders.
