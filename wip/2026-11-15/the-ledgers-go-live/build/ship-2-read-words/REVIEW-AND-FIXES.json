@@ -1,0 +1,360 @@
+{
+ "review": {
+  "verdict": "sound-with-fixes",
+  "findings": [
+   {
+    "title": "II Samuel 8:3: the written half's own card is now gated under read word 1's entry",
+    "severity": "should-fix",
+    "where": "reader/zone.html tagHolder/tagsAt (about lines 3300-3306); the place is II Samuel 8:3, word 12 (section 189, entry 11)",
+    "evidence": "The written half (בנהר) and read word 1 בִּֽנְהַר have the same key, בנהר. tagsAt matches by key, so after the apply the written form's own card picks up read word 1's tag. Page probe on shipped main + this commit + applied zones: «form (בנהר) ketiv — written · __cardEntry \"H5104G\" · readings ask \"H5104G\", withhold 2 · 2 of another entry than H5104G, withheld». The two rows withheld are TAHOT M4 ranks 2 and 3, «at/ [the] river of» and «in the/ river», both lettered H5104H. On the shipped zones no region at this place carries a tag, so the written card asked no entry before. The page's own comment above tagHolder says the written half of a pair takes none, and E12 says a form its place gives no tag is not gated. I scanned every listed place: this is the only one where a written half shares its key with a read word. No check sees it. R7 reads only the read words' blocks, E6 and E7 never run tagsAt, and the commit message says only the read words' blocks change. The function-level diff shows the cause is the tagged data plus key matching. On the applied zones the old tagsAt also returns [H5104G] for בנהר; on the shipped zones it returns null.",
+    "reproduce": "Build a scratch reader: `git -C <b4c> archive 46bbbf7d50 reader | tar -x`, then `git apply` /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/review-ship2/ship2.patch. Run `node tools/apply-read-words-v1.mjs --stamp 2026-11-15` and `node tools/emit-zone-store-v1.mjs`. Serve the copy with v64/review-ship2/js/serve.mjs on 8935. Run `node v64/review-ship2/js/probe.mjs <reader> http://127.0.0.1:8935 ii-samuel 8:3 11`. My output is in v64/review-ship2/logs/probe-ii-samuel-8-3-after.out; the function level is in logs/tagfns-after-zones.out, line «ii-samuel 8:3 word@11 key בנהר (KETIV+QERE)».",
+    "suggested_fix": "Make tagsAt (the open form's tags) never answer with a read word of several: `h && key && h.k === key && !readWordOfSeveral(word, h)`, and declare readWordOfSeveral before tagsAt. Blocks keep their tags through coreTagsAt, so R7's 56 are unchanged. Add a law to check-read-words-v1: the written half at each listed place asks only what the lattice gives it."
+   },
+   {
+    "title": "Psalms 10:10: the line at rest prints a reading that the read word's own card now withholds",
+    "severity": "should-fix",
+    "where": "data/read-words/PIN.json pieces_held (Psalms 10:10) with tools/apply-read-words-v1.mjs landing that place's tags; Psalms 10:10 word 5",
+    "evidence": "The pieces are held, so the resting line is unchanged before and after: [4, 1, «common + broken», M9 M14]. On the page after the ship, the read form's card opens on the block for read word 1 (חל). That block asks H2428A, withholds 50 rows «of another entry than H2428A», and leads with «surrounding». In the store, 60 rows stand under חל. The five rows that read «common» (M17, M5, M46, M9, M14) all carry n H2455, so they are withheld. The 10 rows kept carry no facts («city wall», «to wait», «secular», «round about», ...), and none of them is of H2428A. Before the ship the block asked no entry and kept all 60. Plan 4.2 lands these tags while holding the pieces, and the builder raised the same point as a decision for the lead. I confirm it on the page and in the store.",
+    "reproduce": "In the scratch reader built as for the first finding, run `node v64/review-ship2/js/probe.mjs <reader> http://127.0.0.1:8935 psalms 10:10 4` (output in logs/probe-psalms-10-10-after.out). Run `node v64/review-ship2/js/rows.mjs <reader> חל H2428A`. The line is in data/resting-lines/psalms.json.gz before and after.",
+    "suggested_fix": "Decide before shipping. One option: hold Psalms 10:10's tags together with its pieces until put-back 35 (the pin's held entry also holds tags; the apply, R3 and R5 then count 54 tags). The other: ship as planned and record for the owner that the line and the card disagree at this place."
+   },
+   {
+    "title": "E7's check without the lattice accepts any tag on a written half beside tagged read words",
+    "severity": "note",
+    "where": "reader/tools/check-entry-gate-v1.mjs, E7 (the own/halves split in the zone walk)",
+    "evidence": "In a scratch copy of job.bin I tagged the written half at Job 38:1 with H4480A beside its two tagged read words and raised the receipt's places_tagged by 1. The new E7 without --lattice passes (exit 0). With --lattice, its second half fails: «job 38:1 word 5: carries H4480A on מנהסערה; the lattice's core tags are none». check-read-words-v1 does not see it, because R3 reads only the read words. The relaxation is needed for the four places where the lattice itself tags the written half (Deuteronomy 33:2, Jeremiah 6:29, Psalms 55:16, I Chronicles 9:4). At all four, the written half's tags equal the read words' main tags in order. Before the ship, a receipt-consistent forged tag on a lone written half also passed the first half, so no refusal is lost. But on a machine without the lattice, such as CI, nothing judges it. A well-formed but wrong read-word tag (Job 38:12 read word 1 given H3046) also passes E7, by design; R3 and R7 caught it.",
+    "reproduce": "Logs: v64/review-ship2/logs/e7-jobC-new-nolattice.out, e7-jobC-new-lattice.out and rw-wrong.out. The mutator is v64/review-ship2/py/mut.py, mode jobC; run it on a scratch zone only, with served narrowed to job.",
+    "suggested_fix": "Beside tagged read words, require a tagged half's tags to equal the read words' main tags in order, either in E7 or as a law in check-read-words-v1. The check without the lattice can then judge it."
+   },
+   {
+    "title": "E6 no longer covers every key and entry the page asks: 13 of the 56 read-word pairs are never judged row by row",
+    "severity": "note",
+    "where": "reader/tools/check-entry-gate-v1.mjs, E6 key set (h.k and the single core piece only)",
+    "evidence": "E6 takes its (key, tags) pairs only from a tagged word or a tagged half; the read words' (letters, main tag) pairs are added nowhere. I recounted over the 39 served zones: E6 asks 59,383 pairs, and 13 read-word pairs are never asked. They are Genesis 30:11 rw2 H1409; II Samuel 8:3 rw1 H5104G; II Samuel 21:12 rw1 H8511; Jeremiah 14:14 rw1 H0457 and rw2 H8649B; Psalms 10:10 rw1 H2428A and rw2 H3512B; Psalms 55:16 rw1 H5377; Psalms 123:4 rw1 H1343 and rw2 H3238; Job 38:1 rw2 H5591B; Nehemiah 2:13 rw2 H6555; and I Chronicles 9:4 rw1 H1137I. R7 holds each block's withheld count to the module's recount through the page, so these pairs are covered by count, not row by row. The v190-v192 review spec also asked E7 to hold read-word tags to the pinned list with --lattice; E7 leaves that to R3.",
+    "reproduce": "Run `python3 -I v64/review-ship2/py/e6pairs.py <zones dir> <read-word-tags-v1.jsonl> <serve-gate-receipt-v1.json>` over the applied zones.",
+    "suggested_fix": "Add each read word's (letters, tag) pair to E6's asked set, or narrow E6's wording."
+   },
+   {
+    "title": "The new check holds the list's counts and each block, not the plan's totals",
+    "severity": "note",
+    "where": "reader/tools/check-read-words-v1.mjs R1 and R7; landing plan 4.2",
+    "evidence": "R1 recounts the list against the lane's counts-v1.json. R7 asserts each block's entry and withheld count, but only prints its totals. Those totals are 1,073 withheld and 1,563 kept; plan 4.2 says 1,074 and 1,562. I recounted under the 56 tags: 1,073 other, 1,563 this, 573 none. The one-row difference is TAHOT's «Lo-» (לא rank 24, M4): its n was [H3818, H3819] in row entries v1 and became [H3808, H3818, H3819] in v1.1, so under I Samuel 20:2 read word 1 (H3808) it moves from another entry to its own. The builder's explanation holds. No check holds the plan's figure of 21 read words changed by the list (19 changed on the page) at the 14 places; I recounted 19 read words on 13 lines.",
+    "reproduce": "Run `node v64/review-ship2/js/gate56.mjs <reader>` (log in logs/gate56.out). Compare rank 24 under the key לא in ROW_ENTRIES_LEDGER_WAS and ROW_ENTRIES_LEDGER.",
+    "suggested_fix": "If the lead wants a red when the store moves these totals, pin them, as the pin already does for the named readings. Otherwise update plan 4.2 to 1,073 and 1,563."
+   },
+   {
+    "title": "The commit alone is red until the round's outputs are committed with it",
+    "severity": "note",
+    "where": "b9da2703b7 as cherry-picked onto 46bbbf7d50",
+    "evidence": "check-manifest-prints-unguarded-v1 L5 fails on the committed manifest: «STALE · 1 found that the page does not print: read-words-rule-v1-...». A fresh emission registers the rule (declared in the apply, the module and zone.html; guarded by check-read-words-v1) and lists apply-read-words-v1 (15; run by tools/round-v1.sh). The zones in the tree carry no read-word tags (the shipped zone dump shows none), so check-read-words-v1 R3 cannot hold on the tree's own zones until the round lays them. zone.html changed, so all 40 resting-line records stop being records of this tree. The builder said all of this; I list it so the ship is not cut from the cherry-pick alone.",
+    "reproduce": "Run `node tools/check-manifest-prints-unguarded-v1.mjs` in the scratch reader (logs/manifest-check.out).",
+    "suggested_fix": "Commit the round's 15 zones, the zone store, the re-read lines and the regenerated PIPELINE-MANIFEST.md together with the cherry-pick."
+   },
+   {
+    "title": "Two books' plain lists lose a credited source with the planned moves",
+    "severity": "note",
+    "where": "data/resting-lines/i-samuel.json.gz and proverbs.json.gz (sources)",
+    "evidence": "After the bake, I Samuel's record no longer credits M1 (ConceptNet 5.7), and Proverbs' no longer credits M9 (Strong's Hebrew Dictionary via Open Scriptures). Their only credited lines were I Samuel 20:2 «not + accomplish» (M1 M14) and Proverbs 21:29 «Jabin, the name of two Canaanitish kings + archer» (M9 M14). Both lines are now credited to PIECE:TAHOT. This follows from planned moves, not from a separate move, but it is not in the builder's moved_at_rest list. The door's license notes for those books will change once the lines step runs.",
+    "reproduce": "Run `python3 -I v64/review-ship2/py/rlcmp.py <shipped records> <after records> <books>` (logs/rl-moved.txt, lines «sources differ»)."
+   }
+  ],
+  "what_was_checked": [
+   "Pins: the 5 files under data/read-words/read-words-v1/ are byte-identical (cmp) to the relay's; their sha256 and sizes match PIN.json, the letter and plan 4.2. All 39 of the receipt's lattice inputs match the positions files in LATTICE_DIR.",
+   "Built a scratch reader from shipped main 46bbbf7d50 plus the commit's diff. git apply was clean, and the 13 touched files equal b9da2703b7's.",
+   "The apply over shipped main's 15 zones: the dry run gave the plan's figures (56 tags at 28 places; 13 places laid, 41 pieces; 14 tied, 36 pieces; Psalms 10:10 held; strokes 16 of 16). The real run's sha256 equal the builder's rehearsal for 15 of 15 zones. A second run with another stamp wrote nothing and left the same bytes.",
+   "A JSON diff of each zone before and after the apply: the only changes are tg on exactly the list's read-word regions (Isaiah 3:15 read word 2 untouched), pg at the 13 NEW places equal to the list's pieces in order, emitted_from.read_words, and the post_build typing. TIES and Psalms 10:10 are unwritten.",
+   "The apply refused 3 hand-made wrong states (a TIES piece altered, pieces at the held place, other pieces at a NEW place), writing nothing.",
+   "The round's place for the step: the witnessed bake and regloss over an applied zone give the same bytes; the lattice projection clears only the read words' tags; the apply after it restores the rehearsal's bytes; restamp gives the same bytes. bash -n round-v1.sh is clean.",
+   "Page functions: old against new tagHolder, tagsAt and coreTagsAt over every word and key of the served zones. 0 differences over 761,130 asks on the shipped zones; 55 differences on the applied zones, all at the 28 places.",
+   "Page probes: at Job 38:1 the old page over the applied zones asks no entry for מן; the new page asks H4480A and withholds 61 rows, including the «manna» rows (H4478). Also probed II Samuel 8:3 and Psalms 10:10.",
+   "check-entry-gate-v1 with the ledger, ledger-was and lattice over all 39 served zones of shipped main plus ship 2: all green (E7: 304,261 tagged places, 56 read words). The old check over the same zones fails E7 with 41 faults.",
+   "E7 on hand-made wrong states in a scratch Amos (a book with no read words): old and new both refuse «X1 is not a tag» and «both halves of a pair carry tags». The old check crashes on a tagged pair word with no key, which the new one reports. The new one also refuses a forged read-words record. Job states are in the third finding.",
+   "check-read-words-v1 is green on the clean applied state (R1 to R7: 1,073 and 1,563, the named readings «from» and «of the + Ben»). On hand-made wrong states it was red: R3 (wrong tag), R4 (missing pieces), R5 (record count), R6 (line «Jabin...») and R7 (block asked the wrong entry).",
+   "Resting lines for the 15 books, both recomputed. Before: bake --verify with the shipped page and zones reproduces the shipped records, 15 of 15 the same. After: a bake with the new page and applied zones. Exactly 13 of 208,287 lines move, all at NEW places (19 read words); Psalms 10:10 and the 14 TIES places are unmoved, nothing else moves, and the plan's examples hold.",
+   "Card totals recounted from the store (1,073 other, 1,563 own, 573 none), with the one-row difference from the plan traced to the «Lo-» row's v1.1 facts.",
+   "check-default-picks-v1 --node passes, D3 included, against the new records. check-paseq-place-v1 P1 to P6 and check-kq-carried-v1 (122 ok) are green, as are check-nothing-hand-typed-v1, check-no-import-side-effects-v1 and check-ledger-declared-v1.",
+   "The fresh manifest registers the rule, its guard and the round step; check-manifest-prints-unguarded-v1 L5 is red on the committed manifest, as expected.",
+   "No Hebrew characters in the authored code (they appear only in the relay's data files), and no British spellings in the added lines or the commit message. The rule id is spelled the same in every file. Pin key style matches the sibling pins.",
+   "Lint with the lane's eslint config: the 4 tools have no findings, and the old gate check has none either. The page script has 191 messages before and after (4/175/9/1/2), with none new.",
+   "Stopped my server on 8935; the tree b4c is untouched (git status clean at b9da2703b7)."
+  ],
+  "not_checked": [
+   "The resting lines of the 24 books with no read words were not re-baked. The only proof there is function level: the tag functions give 0 differences over their zones, and the rest of zone.html is unchanged.",
+   "Not run: the full round, the suite, the site gate (check-c0-refusals), the chain books, the door pages, the search index and the live site.",
+   "Not re-run: check-kq-graded-v1, check-kq-declared-weld-v1, check-kq-lead-follows-switch-v1, check-kq-presentation-v1, check-line-reads-the-place-v1 and check-disk-gloss-is-the-line-v1. I did not verify the builder's two 'pre-existing' reds (K1 at Deuteronomy 33:2, P3 on the opening screens).",
+   "E9 to E13 of check-entry-gate ran only on their own sample words, none at a listed place.",
+   "The cherry-pick was checked by applying the patch to an archive of 46bbbf7d50, not by git merge-tree or cherry-pick in the repository.",
+   "I did not execute the builder's fin/ship2-steps.sh; I only read it.",
+   "No visual or phone-width check of the cards. Card behavior was read from the DOM (dataset entry and withheld counts), not from screenshots.",
+   "My scratch reader copy was deleted afterwards for disk space (96% full). The logs, the patch and the scripts remain under /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/review-ship2/."
+  ]
+ },
+ "fixes": {
+  "outcomes": [
+   {
+    "title": "II Samuel 8:3: the written half's own card is gated under read word 1's entry",
+    "outcome": "fixed",
+    "commit": "9ea59d5940",
+    "evidence": "Reproduced on the shipped main's 15 zones and sidecars (from 46bbbf7d50) after the apply. The 15 applied zones are byte for byte the builder's rehearsal table and the reviewer's z-after copies. With the commit's page (b9da2703b7), the written form «(בנהר)» had __cardEntry \"H5104G\"; its readings asked H5104G and withheld 2, «2 of another entry than H5104G, withheld». The two rows are M4 «at/ [the] river of» and «in the/ river», n [H5104,H9003], t [H5104H]. The shipped page over the applied zones does the same. Over the shipped zones, both pages ask nothing. A scan of all 28 places (fix/dump-places.mjs) finds this is the only place where a written region's key equals a read word's key.\n\nThe fix is in zone.html: tagsAt never answers with a read word of several, and readWordOfSeveral is now declared before it. coreTagsAt is unchanged.\n\nThe missing check is new law R8 in tools/check-read-words-v1.mjs: the written form of every listed place is asked only what its written half carries, both the card (__cardEntry) and each block that is a written word.\n- Red with the commit's page: 2 faults, both at II Samuel 8:3; R1 to R7 green.\n- Red with the shipped page over the applied zones: R7 55, R8 the same 2.\n- Red with a page mutated so no word written one way and read another is asked an entry: 8 faults, at the 4 written halves that carry the lattice's tags (Deuteronomy 33:2, Jeremiah 6:29, I Chronicles 9:4, Psalms 55:16).\n- Green with the mended page: R1 to R8. R8 reads 28 written forms (4 tagged), 38 written-word blocks (11 with no row under their key), and 17 rows withheld under the written words' own tags. R7 is unchanged: 56 read words on 28 cards, 1,073 withheld, 1,563 stand.\n\nFunction level (fix/tagfns.mjs):\n- Shipped page against the mended page, over the shipped zones: 0 differences in 418,602 asks.\n- Commit's page against the mended page, over all 48 zones on disk: 56 differences, all tagsAt at the 56 tagged read words' keys, and 0 in coreTagsAt. Only II Samuel 8:3's key is one a card opens on.\n\nProbe after the fix: the written card asks nothing and withholds 0. The read form's blocks are unchanged: בנהר H5104G withholds 2, פרת H6578 withholds 28.\n\nLint: the check has no finding before or after; the page holds at 4/175/9/1/2. No Hebrew in any added line.\n\nLogs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship2/fix/logs/ (check-read-words-v1.commit-page.out, .fixed-page.out, .shipped-page.out, .wrong-kq-none.out, probe-ii-samuel-8-3-*.out, tagfns-*.out)."
+   },
+   {
+    "title": "Psalms 10:10: the line at rest prints a reading that the read word's own card now withholds",
+    "outcome": "left-for-lead",
+    "evidence": "Reproduced:\n- The line at rest reads «common + broken», credited M9 M14, both before and after the ship.\n- On the read form's card after the ship, block חל asks H2428A, withholds 50 of 60, and opens on «surrounding». Block כאים asks H3512B, withholds 1 (M3 «helpless»), and opens on «broken».\n- Before the ship (shipped page, shipped zones), both blocks asked nothing, and חל opened on «common».\n- Every row printing «common» carries n H2455 and is called «other» under H2428A: M17, M9 and M14 «common», M5 «commonness», M46 «profaneness | commonness». The 10 rows kept carry no facts.\n- Why the line is ungated: the sidecar grades no read word of several, and with the pieces held the line falls back to the zone's table reading. It is never asked under the tag.\n\nWhy it is left for the lead: plan 4.2 rules this exact state («Psalms 10:10's tags land, but its pieces are held until put-back 35»; 19 lines with Psalms 10:10 held). Every remedy changes ruled figures. Measured options:\n- (a) Hold both tags. 54 tags land; withheld 1,022 (1,073 − 50 − 1), own 1,563 − 4 = 1,559. The pin entry must hold tags too, and the apply's dry-run line, R3, R5 and ship2-steps.sh change from 56 to 54.\n- (b) Ship as planned and note it for the owner.\n- (c) Hold only read word 1's tag H2428A. 55 tags; withheld 1,023, own 1,563. Read word 2's line «broken» is of its own entry, so it does not disagree.\n\nLogs: fix/logs/probe-psalms-10-10-*.out, rows-psalms-10-10*.out."
+   }
+  ],
+  "commits": [
+   "9ea59d5940 The written form is never asked a read word's entry: at II Samuel 8:3 its card took read word 1's tag (branch ledgers-build-ship2, tree /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/b4c; 2 files: reader/zone.html, reader/tools/check-read-words-v1.mjs; on top of b9da2703b7; git merge-tree onto 46bbbf7d50 (base ec1c8a6764) is clean, tree 37f833f784, which holds both files)"
+  ],
+  "figures_after": [
+   "Pins: 5 of 5 files byte for byte the relay's; sha256 ca6bd38f6a26, 0332351b4350, 9fac39dfaf81 (57 lines), ff65b5def857 (16 lines), c24d35e0cda7, as the pin, the letter and plan 4.2 give them. HOLDS",
+   "Apply dry run on the shipped zones: 57 lines, 28 places on 15 zones, 56 tags; 13 places to lay (41 pieces); 14 tied (36 pieces); Psalms 10:10 held; strokes 16 of 16. Real run: 15 zones, the rehearsal's bytes. Run again with the same stamp, then with 2026-11-16: nothing to write, same bytes. HOLDS",
+   "Projection: the round's zone tools, rerun for II Samuel only, give zone 981eed81acaa and sidecar c2ad54367eb8, byte for byte 46bbbf7d50's. The other 14 books were not rerun, because no zone tool reads zone.html and 9ea59d5940 touches only zone.html and the check. HOLDS (2 of 30 files rerun)",
+   "Old page over the shipped zones, rerun for II Samuel and Psalms: every section equals the shipped record. The 15 shipped records the comparison reads are 46bbbf7d50's bytes. HOLDS",
+   "Resting lines with the mended page, 15 books: every record's sections equal the builder's after-records; only read_off differs. Of 230,597 entries, 13 moved, all at listed NEW places, 0 elsewhere. At the NEW places the list's pieces change 21 of 29 read words, and 19 change on the page. TIES places: 0 of 14 move. Examples: Job 38:1 and 40:6 «manna» to «from»; I Chronicles 27:12 «to make bricks» to «of the + Ben»; Proverbs 21:29 «he considers + way + his»; Nehemiah 2:13 «were broken down». HOLDS",
+   "check-read-words-v1: R1 to R7 hold the builder's figures (56 read words asked on 28 cards; 1,073 withheld, 1,563 stand; named readings «from» and «of the + Ben»). New R8 is green. HOLDS. Against the plan, 1,073 and 1,562... the plan says 1,074 and 1,562; this store gives 1,073 and 1,563, the builder's reading (the «Lo-» row under I Samuel 20:2, which v190 changed).",
+   "check-entry-gate-v1 with the ledger, ledger-was and lattice (served list narrowed to the 15 books, then put back): E1 to E14 green, line for line the builder's output. E7: 208,875 tagged places, 5 lists, 672 on a half of a pair, 56 read words. HOLDS",
+   "Single checks: check-paseq-place-v1 P1 to P6; check-kq-carried-v1 122 ok; check-kq-graded-v1 3 ok; check-kq-declared-weld-v1 11 ok; check-kq-presentation-v1 SKIPPED (no bundle), as before; check-disk-gloss-is-the-line-v1 15 of 15; check-default-picks-v1 --node with picks v1.2, 10 ok, line for line the builder's; check-nothing-hand-typed-v1 6 ok; check-ledger-declared-v1 3 ok; check-no-import-side-effects-v1 2 ok. HOLDS",
+   "The builder's two reds older than this ship, both confirmed (the reviewer had not checked them). check-kq-lead-follows-switch-v1 on Deuteronomy: 124 ok and 1 FAIL K1 «2,2,2,2,2,2,3», with the same verdict lines on the shipped page over the shipped zones. check-line-reads-the-place-v1 P3 on II Samuel and Exodus: 6 ok and 1 FAIL each, the same character for character on the shipped page over the shipped zones; the other 13 books were not rerun.",
+   "Round step as round-v1.sh writes it: exit 0; tags 0 to write, 56 already; pieces 0 to lay, 13 already, 14 tied, 1 held. bash -n passes. fin/ship2-steps.sh on the shipped main's zones: dry run gives the plan's figures; --real writes 15 of 15 zones with the rehearsal's bytes; run again: nothing to write. HOLDS",
+   "Not rerun: the E7 wrong states (check-entry-gate-v1.mjs unchanged since b9da2703b7); the wrong-zones, wrong-apply and wrong-strokes states (the apply, read-words-v1.mjs and the R1 to R5 code are unchanged).",
+   "Generated paths changed during the proofs, all put back to 9ea59d5940 (git status clean): reader/data/zones/{genesis,exodus,deuteronomy,i-samuel,ii-samuel,i-kings,ii-kings,isaiah,jeremiah,ezekiel,psalms,proverbs,job,nehemiah,i-chronicles}.bin and the same 15 .lattice.bin; reader/data/zone-store-v1.json; reader/data/resting-lines/<the same 15>.json.gz; reader/data/serve-gate-receipt-v1.json (narrowed three times for runs, put back each time). Nothing generated is committed.",
+   "My server on 8933 is stopped; 8934 was not used. Scratch page copies and line records were removed; the scripts and logs remain in /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship2/fix/. Notes: /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-ledgers-go-live/build/ship-2-read-words/NOTES-after-the-review.md. Lint copies: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v29/lint/tools/ship2-review/ and ship2-review-head/."
+  ]
+ },
+ "build": {
+  "status": "done",
+  "summary": "Ship 2 (v192, the read words) is finished and committed as b9da2703b7 on ledgers-build-ship2, in scratch tree b4c. It cherry-picks onto the shipped main 46bbbf7d50 without a conflict (checked with git merge-tree).\n\n**Review of the stopped builder's work.**\n- The pins hold. The 5 files equal the relay byte for byte, and their sha256 match the letter, the receipt and plan 4.2. The receipt's 39 lattice inputs match the positions files the round projects from, for all 15 books.\n- The apply, the module, the check, the page change and the round step hold as the builder left them.\n- I made 7 fixes or additions:\n  1. E7 had stopped refusing a tag on the word itself next to tagged read words. It refuses that again.\n  2. E7 crashed (`rowsOf(undefined)`) on a tagged form with no key. It now reports the fault instead.\n  3. `strokesAgainst` now also checks each stroke line's `among_the_listed_places` against the list.\n  4. The apply now declares GUARDS (it said RULE).\n  5. `read-words-v1` now declares GUARDS.\n  6. PIPELINE.md's note now says that the pin can hold a place's pieces back.\n  7. A step script for the lead, `fin/ship2-steps.sh`.\n\n**The proof, starting from the commit.**\n- The round's zone tools re-projected the 15 books. All 30 zone and sidecar files came out byte for byte the shipped main's.\n- The old page over those zones draws the shipped resting lines, line for line, in all 15 books. So the shipped records are the before state.\n- Apply dry run: 56 tags at 28 places; 13 places laid (41 pieces); 14 places whose own pieces equal the list's (36 pieces); Psalms 10:10 held; stroke facts equal v179's at 16 of 16.\n- Real run: writes the 15 zones. A second run writes nothing, same bytes, even with another stamp.\n- Resting lines, word by word, over 230,597 entries: 13 lines move, all at NEW places, 0 elsewhere.\n  - Of the 29 read words at the NEW places, the list's pieces change 21. 19 change on the page; Psalms 10:10 is held.\n  - The 14 TIES places do not move.\n  - The plan's examples all hold.\n- The step script, run on the shipped main's own zones, wrote 15 of 15 zones with the same bytes as this rehearsal.\n\n**Figures that differ from the plan.**\n- Cards: 1,073 rows withheld and 1,563 kept, where the plan says 1,074 and 1,562. The plan counted on the store before v190. The one row is TAHOT's «Lo-» (לא, rank 24), under I Samuel 20:2 read word 1; v190 gave it H3808.\n- check-entry-gate E7 is green only with the served list narrowed to the 15 re-projected books. On this base, the other 24 zones' sidecars still name the v172 ledger.\n\n**Two reds that also stand without this change.** Both are shown on the before state.\n- check-kq-lead-follows-switch-v1 on Deuteronomy, K1: it expects 2 halves per pair and finds 3 at 33:2, a read form of two words.\n- check-line-reads-the-place-v1, P3, on the opening screens of 12 of the 15 books. The failing cards are runs and sets in the first verses, none at a listed place. The suite runs both checks only on Amos, where they pass.\n\n**One thing to decide: Psalms 10:10.** The plan lands its tags and holds its pieces, so its line still reads «common + broken». Every row that prints «common» is of H2455, another entry than the read word's tag H2428A, so the read word's block on the card withholds them. The line prints a reading its own card withholds.\n\n**PIPELINE-MANIFEST.md is not committed.** The round's door step writes it. Its emission on this tree registers the rule, the guard check-read-words-v1, and the step run by round-v1.sh.\n\n**Notes and scratch.**\n- Notes: /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-ledgers-go-live/build/ship-2-read-words/NOTES.md\n- Scratch and logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship2/fin/",
+  "commits": [
+   "b9da2703b7 A read form of several words: each read word asked its own entry, and the place drawn from its pieces (branch ledgers-build-ship2, tree /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/b4c; 13 files; git merge-tree onto 46bbbf7d50 is clean)"
+  ],
+  "files_authored": [
+   "reader/data/read-words/PIN.json",
+   "reader/data/read-words/read-words-v1/RULE.md",
+   "reader/data/read-words/read-words-v1/receipt-v1.json",
+   "reader/data/read-words/read-words-v1/read-word-tags-v1.jsonl",
+   "reader/data/read-words/read-words-v1/stroke-facts-v1.jsonl",
+   "reader/data/read-words/read-words-v1/counts-v1.json",
+   "reader/tools/read-words-v1.mjs",
+   "reader/tools/apply-read-words-v1.mjs",
+   "reader/tools/check-read-words-v1.mjs",
+   "reader/zone.html",
+   "reader/tools/check-entry-gate-v1.mjs",
+   "reader/tools/round-v1.sh",
+   "reader/PIPELINE.md",
+   "(not committed, for the lead) /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship2/fin/ship2-steps.sh",
+   "(notes) /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-ledgers-go-live/build/ship-2-read-words/NOTES.md"
+  ],
+  "figures": [
+   {
+    "what": "pins sha256 (RULE.md, receipt-v1.json, read-word-tags-v1.jsonl, stroke-facts-v1.jsonl, counts-v1.json)",
+    "expected": "ca6bd38f, 0332351b, 9fac39df (57 lines), ff65b5de (16 lines), c24d35e0",
+    "got": "ca6bd38f6a26, 0332351b4350, 9fac39dfaf81 (57), ff65b5def857 (16), c24d35e0cda7; byte for byte the relay; the receipt names the same",
+    "holds": true
+   },
+   {
+    "what": "tg written",
+    "expected": "56 regions; Isaiah 3:15 read word 2 none",
+    "got": "56 tags at 28 places; 1 read word with no tag carries none",
+    "holds": true
+   },
+   {
+    "what": "pg at the NEW places",
+    "expected": "14 NEW places, Psalms 10:10's pieces held",
+    "got": "13 places laid (41 pieces), 1 held (psalms 10:10)",
+    "holds": true
+   },
+   {
+    "what": "TIES places asserted",
+    "expected": "14 places, pieces equal the list's",
+    "got": "14 places, 36 pieces equal",
+    "holds": true
+   },
+   {
+    "what": "stroke facts",
+    "expected": "equal v179 at 16 of 16, nothing written",
+    "got": "16 of 16, nothing written; 6 at listed places, each the word v179 numbers",
+    "holds": true
+   },
+   {
+    "what": "idempotent",
+    "expected": "second run writes nothing",
+    "got": "«nothing to write», all zones the same bytes; also with another stamp",
+    "holds": true
+   },
+   {
+    "what": "projection of the 15 books",
+    "expected": "(none in the plan) the shipped main's state",
+    "got": "30 of 30 zone and sidecar files byte for byte 46bbbf7d50's; old-page lines equal the shipped records in 15 of 15 books",
+    "holds": true
+   },
+   {
+    "what": "read words whose line changes at the 14 NEW places",
+    "expected": "21 of 29 (19 with Psalms 10:10 held)",
+    "got": "21 of 29 changed by the list's pieces; 19 change on the page",
+    "holds": true
+   },
+   {
+    "what": "lines moved at rest in the 15 books",
+    "expected": "only at the NEW places; TIES places 0; nothing else",
+    "got": "13 lines of 230,597 word entries, all at NEW places; TIES 0 of 14; 0 elsewhere",
+    "holds": true
+   },
+   {
+    "what": "examples",
+    "expected": "Job 38:1/40:6 «manna»->«from»; I Chr 27:12 «to make bricks»->«of the/ Ben»; Prov 21:29 «Jabin…»->«he considers», «archer»->«way/ his»; Neh 2:13 «X abroad»->«were broken down»",
+    "got": "all as listed (drawn with « + »: «of the + Ben», «way + his»)",
+    "holds": true
+   },
+   {
+    "what": "cards: read words gated under their own entry",
+    "expected": "56",
+    "got": "56 on 28 cards (R7)",
+    "holds": true
+   },
+   {
+    "what": "cards: rows of another entry withheld",
+    "expected": "1,074",
+    "got": "1,073",
+    "holds": false,
+    "note": "The plan counted on store 4d1357b26ca5 (before v190). On the v1.1 store, «Lo-» (לא rank 24, M4) under I Samuel 20:2 read word 1 (H3808) went from other to own: facts n [H3818,H3819] became [H3808,H3818,H3819]."
+   },
+   {
+    "what": "cards: rows of their own entry kept",
+    "expected": "1,562",
+    "got": "1,563",
+    "holds": false,
+    "note": "the same row; totals 3,209 rows, 573 of no entry, both stores"
+   },
+   {
+    "what": "check-read-words named readings",
+    "expected": "Job 38:1 rw1 «from»; I Chr 27:12 rw1 «of the/ Ben»",
+    "got": "«from»; «of the + Ben»",
+    "holds": true
+   },
+   {
+    "what": "E7",
+    "expected": "green, one tag per QERE region allowed, all else refused as before",
+    "got": "green over the 15 projected books (208,875 tagged places, 56 read words); red on wrong states, catching the one the builder's clause passed",
+    "holds": true,
+    "note": "Over all 39 served zones of this base, E7 would fault on the 24 unprojected zones, whose sidecars name the v172 ledger. That is not this ship's; the shipped main has them re-projected."
+   }
+  ],
+  "checks_run": [
+   {
+    "check": "check-read-words-v1 (rerun on my state)",
+    "result": "R1-R7 green; red on my new R2 clause (two stroke flags flipped + pin renamed): R1, R2 red, the apply refuses with 3 faults; restored byte for byte"
+   },
+   {
+    "check": "check-paseq-place-v1",
+    "result": "P1-P6 green (16 places, 12 zones)"
+   },
+   {
+    "check": "check-entry-gate-v1 --ledger v1.1 --lattice (served narrowed to the 15 projected books)",
+    "result": "E1-E14 green; E7: 56 read words carry their own; E8 green"
+   },
+   {
+    "check": "check-entry-gate-v1 E7 on 5 wrong states (mine vs the builder's clause)",
+    "result": "mine 6 faults; the builder's 4, which missed a tag on the word itself (given a key) beside tagged read words. The first run crashed at rowsOf(undefined); now fixed"
+   },
+   {
+    "check": "check-kq-carried-v1",
+    "result": "122 ok"
+   },
+   {
+    "check": "check-kq-graded-v1",
+    "result": "3 ok"
+   },
+   {
+    "check": "check-kq-declared-weld-v1",
+    "result": "11 ok (sites Exodus 4:2:4, I Chronicles 23:9:3)"
+   },
+   {
+    "check": "check-kq-presentation-v1",
+    "result": "SKIPPED (no MAM presentation bundle on this machine)"
+   },
+   {
+    "check": "check-kq-lead-follows-switch-v1 (Deuteronomy)",
+    "result": "124 ok, 1 FAIL K1 «2,2,2,2,2,2,3» at 33:2; the same red on the before state (old page, unapplied zone)"
+   },
+   {
+    "check": "check-disk-gloss-is-the-line-v1, each of the 15 books",
+    "result": "15 of 15 green"
+   },
+   {
+    "check": "check-line-reads-the-place-v1, each of the 15 books",
+    "result": "3 green; 12 red on P3 only, at runs and sets of the first verses, no listed place; the same P3 line before and after at Exodus, Proverbs, Nehemiah"
+   },
+   {
+    "check": "check-default-picks-v1 --node --ledger picks v1.2",
+    "result": "green, D3 included, against the new resting lines"
+   },
+   {
+    "check": "check-nothing-hand-typed-v1, check-ledger-declared-v1, check-no-import-side-effects-v1",
+    "result": "green"
+   },
+   {
+    "check": "lint, the four tools (ship2-fin) vs the commit's check-entry-gate (ship2-fin-head)",
+    "result": "no findings either side"
+   },
+   {
+    "check": "lint-page zone.html",
+    "result": "4/175/9/1/2, equal to the baseline and the commit's page"
+   },
+   {
+    "check": "round-v1.sh step, run as written over the applied zones",
+    "result": "exit 0; tags 0 to write, 56 already; pieces 13 already laid, 14 tied, 1 held"
+   },
+   {
+    "check": "fin/ship2-steps.sh on the shipped main's zones",
+    "result": "3 dry runs green; real run 15 of 15 zones the rehearsal's bytes; run again: nothing to write"
+   },
+   {
+    "check": "builder's logs reused, not rerun",
+    "result": "wrong-zones (R3-R7 red), page-reverted (R7 red), wrong-apply (8 refusals), wrong-strokes (R1, R2 red); code paths unchanged except strokesAgainst's new clause, whose red I ran"
+   }
+  ],
+  "not_done": [
+   "PIPELINE-MANIFEST.md is not committed. The round's door step generates it, so I left it out under the rule on generated files. Its emission on this tree (/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship2/fin/PIPELINE-MANIFEST.fresh.md) adds the read-words rule row (guarded by check-read-words-v1), the module tools/read-words-v1.mjs, and apply-read-words-v1 (15 zones, run by tools/round-v1.sh).",
+   "check-kq-lead-follows-switch-v1 was run on Deuteronomy only, about 3 min a book; it always takes the first served book with pairs.",
+   "Resting lines were baked for the 15 books only. Every other work's record will need re-reading by the round's lines step, because zone.html changed.",
+   "The Psalms 10:10 line-versus-card mismatch is left as the plan rules it (tags land, pieces held until put-back 35)."
+  ],
+  "generated_paths": [
+   "reader/data/zones/{genesis,exodus,deuteronomy,i-samuel,ii-samuel,i-kings,ii-kings,isaiah,jeremiah,ezekiel,psalms,proverbs,job,nehemiah,i-chronicles}.bin (projected, then applied)",
+   "reader/data/zones/{the same 15}.lattice.bin (projected; equal to 46bbbf7d50)",
+   "reader/data/resting-lines/{the same 15}.json.gz",
+   "reader/data/zone-store-v1.json",
+   "reader/data/serve-gate-receipt-v1.json (served list narrowed only for check runs)",
+   "All restored to the commit; git status is clean at b9da2703b7"
+  ],
+  "moved_at_rest": [
+   "i-samuel 20:2 entry 6: «not + accomplish» (M1 M14) -> «not + he does» (PIECE:TAHOT)",
+   "ii-samuel 5:2 entry 9: «beacon + who + brought out» -> «you were + the + one who led out»",
+   "ii-samuel 21:12 entry 21: «they had hung up + them + Shammah + Philistine» -> «they had hung up + them + there + towards + the Philistines»",
+   "i-kings 17:15 entry 5: «it + and + he» -> «she + and + he»",
+   "jeremiah 14:14 entry 17: «and + an idol + and + [the] deceitfulness of» -> «and + an idol + and + the deceitfulness of»",
+   "jeremiah 48:20 entry 4: «(make to) howl + and + cry out» -> «wail + and + cry out»",
+   "ezekiel 42:9 entry 0: «and + [are] <from> + beneath + the + store-rooms» -> «and + was from + under + the + rooms»",
+   "proverbs 21:29 entry 7: «Jabin, the name of two Canaanitish kings + archer» -> «he considers + way + his»",
+   "job 38:1 entry 4: «manna + the + tempest» -> «from + the + tempest»",
+   "job 38:12 entry 3: «certify + the + dawn» -> «you caused to know + the + dawn»",
+   "job 40:6 entry 4: «manna + tempest» -> «from + a tempest»",
+   "nehemiah 2:13 entry 16: «them + X abroad» -> «they + were broken down»",
+   "i-chronicles 27:12 entry 5: «to make bricks + jaminites» -> «of the + Ben + jaminites»",
+   "Every moved line is now credited to PIECE:TAHOT. Psalms 10:10 and the 14 TIES places are unmoved. 0 other moves among 230,597 entries in the 15 books."
+  ],
+  "lead_must_run": [
+   "Cherry-pick b9da2703b7 onto the shipped main; merge-tree shows no conflict.",
+   "Run the full round with --lattice. The zones step lays the read words after the projection. Optionally run /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship2/fin/ship2-steps.sh <reader> [--real] there: it holds the plan's figures and the rehearsal's sha256 for the 15 zones (fin/sha-after-apply.txt).",
+   "Let the lines step re-read every work, since zone.html changed. Let the door step regenerate PIPELINE-MANIFEST.md; check-manifest-prints-unguarded-v1 L5 needs it.",
+   "Run the suite and the gate. The gate's 18 sampled pages hold no listed place and no moved line, so S1 cannot see this ship's 13 moves. The proof of them is fin/logs/moved-at-rest.out and R6.",
+   "Decide whether Psalms 10:10's tags stay landed while its line keeps «common», which its card now withholds, or are held with its pieces until put-back 35."
+  ],
+  "plan_did_not_hold": [
+   "Cards: 1,073 withheld and 1,563 kept, where the plan says 1,074 and 1,562. The plan counted on the store before v190. The one row is «Lo-» under I Samuel 20:2 read word 1, which v190 gave H3808.",
+   "E7 cannot be green over all 39 served zones of this base: 24 unprojected zones' sidecars name the v172 ledger. It was held green over the 15 projected books; the shipped main has them all re-projected.",
+   "Two reds that are not this ship's, each shown the same on the before state. check-kq-lead-follows-switch-v1 K1 counts 3 halves at Deuteronomy 33:2. check-line-reads-the-place-v1 P3 fails on 12 of the 15 books' opening screens. The suite runs both only on Amos."
+  ]
+ }
+}
