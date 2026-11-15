@@ -237,7 +237,12 @@ else {
     await q.addInitScript(() => { try { localStorage.clear(); localStorage.setItem("fh.signs", "printed"); } catch { /* fresh reader */ } });
     await q.goto(`${BASE}?b=${ZONE}&default=${src.id}`, { waitUntil: "networkidle" });
     await q.waitForSelector("section.seg .he-text .wb");
-    await q.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
+    // the page says when every line stands as the sources in force draw it (window.__default.ready: under a source
+    // once its book file is here; failed where it could not be fetched); a page that does not say so in 30 s is a
+    // fault, said under F6, not a wait run out and its lines sampled all the same (the completeness critic of 15
+    // November 2026)
+    const said = await q.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).then(() => true, () => false);
+    if (!said) { f6.push(`${src.pill}: the page did not say in 30 s that its lines stand as the sources in force draw them (window.__default.ready)`); await q.close(); continue; }
     // the sections the page builds as it opens: a source's line is the same rule at every word, and building the
     // whole book three times over took the check past the runner's ten minutes
     await q.waitForTimeout(500);

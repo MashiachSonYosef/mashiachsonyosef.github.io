@@ -38,7 +38,13 @@
 //       as it rests, the new build's own line at rest there, where an older
 //       build printed a source's line at one word of it and the other's half
 //       alone (zone.html dfltHalvesOf, the review of the toggles fixes, 15
-//       November 2026). The owed lines are read from the index, the zones,
+//       November 2026); and so does a word of one unit a source reads at
+//       every word of it from one pick (one entry across words, or one such
+//       reading) whose words stand apart on the page, in no one cell, where
+//       an older build printed the unit under each word (zone.html
+//       dfltApartUnit, the review of the second fix round, 15 November
+//       2026: BDB's «in Babylonia» at both words of Tel-melah, Nehemiah
+//       7:61:3-4). The owed lines are read from the index, the zones,
 //       the default picks' book files and the page, never named; a line not
 //       drawn as owed is said once
 //   S2  the cards of the first words of the chapter carry the same pills in
@@ -82,6 +88,7 @@ import { existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { autoSecond } from "./bake-default-picks-v1.mjs";
+import { SIGN_GAP, signOnly, signsOff } from "./gloss-store-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { readingKey, openRouteStore } from "./gloss-store-v1.mjs";
@@ -191,13 +198,9 @@ const M_OF = new Map();
 const packed = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
 // a line that draws no words: none, or only the hidden sign's gap
 const blank = (t) => !String(t || "").replace(/\u200b/gu, "").trim();
-// THE SIGNS AT REST (the page's signsOffLine): a piece that is a sign alone is drawn as the hidden sign's gap beside
-// pieces that carry words, and every piece a sign, they stand; a joiner stands only between two pieces that print
-const SIGN_GAP = "\u200b";
-const signOnly = (t) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(String(t).trim());
-const isGap = (x) => String(x ?? "").trim() === SIGN_GAP;
-const joinDrawn = (pieces) => pieces.map((x, i) => `${i && !isGap(x) && pieces.slice(0, i).some((y) => !isGap(y)) ? " + " : ""}${x}`).join("");
-const signsOff = (text) => { const pieces = String(text).split(" + "); return joinDrawn(pieces.every(signOnly) ? pieces : pieces.map((x) => (signOnly(x) ? SIGN_GAP : x))); };
+// THE SIGNS AT REST (the page's signsOffLine) are gloss-store-v1's SIGN_GAP, signOnly and signsOff, imported above, the
+// rule the page and the default picks' bake and check read: one rule in one place (the review of the toggles fixes, 15
+// November 2026: this file kept its own copy of the five helpers)
 // STEP's words as the line draws them at rest
 const drawnStep = (t) => signsOff(packed(t));
 if (EXPECT) {
@@ -226,9 +229,11 @@ if (EXPECT) {
 // bare, which a word whose pieces print is not. Per book, from the index, the zone and the book file the new build
 // serves: source -> the WORD_N held to the line as it rests
 const HELD = new Map();
+// and per book, per source, the units a source reads at every word of them (heldIn, below)
+const UNITS = new Map();
 const HELD_SLOT = { macula: 1, ubs: 2, bdb: 3 };
 const SRC_OF_STATE = new Map(STATES.filter(([, id]) => /^default-(?!step$)/u.test(id || "")).map(([nm, id]) => [nm, id.slice("default-".length)]));
-let heldSeen = 0;
+let heldSeen = 0, apartSeen = 0;
 const heldIn = (z, src) => {
   if (!EXPECT) return null;
   if (!HELD.has(z)) {
@@ -261,6 +266,35 @@ const heldIn = (z, src) => {
         else if (!g) { g = [q]; groups.push(g); }
       }
     }
+    // ONE UNIT A SOURCE READS AT EVERY WORD OF IT (zone.html dfltEntriesOf, dfltUnitOf, dfltApartUnit; the review of
+    // the second fix round, 15 November 2026: S1 owed the halves held and not the units held, and went red on a build
+    // of the round's own engine at BDB's «in Babylonia», the two words of Tel-melah at Nehemiah 7:61:3-4). Its words:
+    // one entry across words (the lattice's headword the same at each of them, its letters running across their
+    // boundary), else one reading across words (the groups above), where the source's line at every word is its own,
+    // one source's as the halves leave it, from one and the same pick in its book file. Per source, each word of such
+    // a unit -> its words' WORD_N; where they stand apart on the page, in no one cell, each keeps the line as it rests
+    // (the loop below reads the cells the new build draws)
+    const letters = (t) => [...String(t || "").normalize("NFD")].filter((ch) => { const u = ch.codePointAt(0); return u >= 0x5d0 && u <= 0x5ea; }).join("");
+    const halfOf = new Map(), entryOf = new Map(), words = [];
+    for (const g of groups) for (const q of g) halfOf.set(q.n, g);
+    let m = 0;
+    for (const sec of zone.sections || []) {
+      const es = [];
+      for (const w of sec.words || []) { m += 1; if (w.mark) continue; words.push({ w, n: m }); if (!w.kq) es.push({ w, n: m }); }
+      for (let a = 0; a < es.length;) {
+        let c = a;
+        while (es[a].w.h && c + 1 < es.length && es[c + 1].w.h === es[a].w.h) c += 1;
+        const ks = es.slice(a, c + 1).map((q) => letters(q.w.k)), h = letters(es[a].w.h), at = c > a && h ? ks.join("").indexOf(h) : -1;
+        if (at >= 0) {
+          let from = -1, to = -1, pos = 0;
+          ks.forEach((k, j) => { if (from < 0 && at < pos + k.length) from = j; if (at + h.length > pos) to = j; pos += k.length; });
+          if (to > from) { const g = es.slice(a + from, a + to + 1); for (const q of g) entryOf.set(q.n, g); }
+        }
+        a = c + 1;
+      }
+    }
+    const byUnit = new Map();
+    UNITS.set(z, byUnit);
     for (const x of Object.keys(HELD_SLOT)) {
       const y = autoSecond(e.fills, x);
       const srcAt = (q) => (q.w.kq ? null : lineAt(q.n, x) ? x : y && y !== "step" && lineAt(q.n, y) ? y : null);
@@ -271,10 +305,21 @@ const heldIn = (z, src) => {
         g.forEach((q, j) => { if (s[j]) held.add(q.n); });
       }
       bySrc.set(x, held);
+      // the source's line at a word as a reading across words leaves it (dfltAcross), and the pick it prints from
+      const across = (q) => { const s = srcAt(q), g = halfOf.get(q.n); return s && (!g || g.every((r) => srcAt(r) === s)) ? s : null; };
+      const pick = (q, s) => JSON.stringify((bf.places[q.n - 1] || [])[HELD_SLOT[s]]);
+      const units = new Map();
+      for (const q of words) {
+        const ws = entryOf.get(q.n) || halfOf.get(q.n), s = ws ? across(q) : null;
+        if (s && ws.every((r) => across(r) === s && pick(r, s) === pick(q, s))) units.set(q.n, ws.map((r) => r.n));
+      }
+      byUnit.set(x, units);
     }
   }
   return HELD.get(z).get(src) || null;
 };
+// per source, each word of one unit the source reads at every word of it -> its words' WORD_N (heldIn, UNITS)
+const unitsIn = (z, src) => (heldIn(z, src) ? (UNITS.get(z) || new Map()).get(src) || null : null);
 // a section's first WORD_N, from the zone the page is built from (sections are s<index>, words in order)
 const baseN = new Map();
 const firstN = (z, secId) => {
@@ -330,7 +375,7 @@ const read = async (origin, z, ch) => {
           const run = wb.closest(".wjoin"), runG = run ? run.querySelector(":scope > .g") : null, rg = runG && drawnEl(runG) ? runG : null;
           const key = run ? `r${runs.indexOf(run)}` : "";
           let g = wb.querySelector(":scope > .g");
-          if (rg && rg.classList.contains("parts")) g = rg.querySelector(`:scope > .g-part[data-wi="${[...run.querySelectorAll(".wb")].indexOf(wb)}"]`);
+          if (rg && rg.classList.contains("parts")) { const wi = [...run.querySelectorAll(".wb")].indexOf(wb); g = [...rg.querySelectorAll(":scope > .g-part")].find((x) => Number(x.dataset.wi) <= wi && wi < Number(x.dataset.wi) + Number(x.dataset.wn || 1)) || null; }
           else if (rg) g = rg;
           if (!g) return [said, "", "", "", key];
           const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
@@ -370,8 +415,12 @@ const read = async (origin, z, ch) => {
       if (!has) { out.absent.push(name); continue; }
       await p.evaluate(() => window.scrollTo(0, 0)); await p.waitForTimeout(100);
       await p.click(`#${id}`); await p.waitForTimeout(1500);
-      // a default source's picks are the book's own file, asked on the press
-      await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
+      // a default source's picks are the book's own file, asked on the press: the page says when every line stands as
+      // the sources in force draw it (window.__default.ready, once that file is here; failed where it could not be
+      // fetched), and a page that does not say so in 30 s is a page that failed to read, not a wait run out (the
+      // completeness critic of 15 November 2026: the wait was swallowed, and the lines read after it were compared)
+      const said = await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).then(() => true, () => false);
+      if (!said) throw new Error(`under ${name} the page did not say in 30 s that its lines stand as the sources in force draw them (window.__default.ready)`);
       out.states[name] = await lines();
       await p.click(`#${back}`); await p.waitForTimeout(800);
     }
@@ -432,15 +481,19 @@ for (const { z, ch } of pages) {
           continue;
         }
         // under a source pressed, a word of a reading across words no one source reads at every word: the line as it
-        // rests, the new build's own at rest there, its text and its chip (heldIn)
+        // rests, the new build's own at rest there, its text and its chip (heldIn); and so at a word of one unit its
+        // source reads at every word of it whose words stand apart (unitsIn): not all in the one cell, the run the new
+        // build draws this word in
         const holds = SRC_OF_STATE.has(name) ? heldIn(z, SRC_OF_STATE.get(name)) : null;
-        if (holds && holds.has(nOf(i)) && x[0] === y[0]) {
+        const unit = SRC_OF_STATE.has(name) ? (unitsIn(z, SRC_OF_STATE.get(name)) || new Map()).get(nOf(i)) : null;
+        const apart = !!unit && !unit.every((w) => { const r = (C[k][w - firstN(z, k) - 1] || [])[4]; return !!r && r === y[4]; });
+        if (((holds && holds.has(nOf(i))) || apart) && x[0] === y[0]) {
           const rest = c.states.default && c.states.default[k] ? c.states.default[k][i] : null;
           if (rest && y[1] === rest[1] && y[2] === rest[2] && y[3] === rest[3]) {
-            if (x[1] !== y[1] || x[2] !== y[2]) { heldSeen += 1; if (DIFF) diffLines.push(`held whole: ${z} ${ch} ${name} ${k} #${i + 1}: "${x[1]}" [${x[2]}] → "${y[1]}" [${y[2]}]`); }
+            if (x[1] !== y[1] || x[2] !== y[2]) { if (apart) apartSeen += 1; else heldSeen += 1; if (DIFF) diffLines.push(`${apart ? "held apart" : "held whole"}: ${z} ${ch} ${name} ${k} #${i + 1}: "${x[1]}" [${x[2]}] → "${y[1]}" [${y[2]}]`); }
             continue;
           }
-          expected.push(`${at}: "${y[1]}" [${y[3]}], the line as it rests owed at a word of a reading across words ${name} does not read whole ("${rest ? rest[1] : ""}" [${rest ? rest[3] : ""}])`);
+          expected.push(`${at}: "${y[1]}" [${y[3]}], the line as it rests owed at a word of ${apart ? `one unit ${name} reads at every word of it, its words standing apart` : `a reading across words ${name} does not read whole`} ("${rest ? rest[1] : ""}" [${rest ? rest[3] : ""}])`);
           continue;
         }
         // a neighbor in the run: its sign alone drawn as the hidden sign's gap, under its own chip
@@ -507,7 +560,7 @@ for (const { z, ch } of pages) {
   }
 }
 // the lines that moved as heldIn owes them, said apart (a line held whole that differs from the old build's)
-if (EXPECT) console.log(`readings across words (S1): under a source pressed, ${heldSeen} line(s) at a word of one no one source reads at every word moved to the line as it rests, as owed`);
+if (EXPECT) console.log(`readings across words (S1): under a source pressed, ${heldSeen} line(s) at a word of one no one source reads at every word moved to the line as it rests, as owed; ${apartSeen} at a word of one unit a source reads at every word of it, its words standing apart`);
 await b.close();
 const kindsSaid = KINDS ? ` · the dictionaries that rest shut (${KINDS.path}): ${Object.entries(kindsMoved).map(([why, nn]) => `${nn} ${why}`).join(", ")}, each as owed` : "";
 check(`S1 every sampled line and its chip are the same on both builds, under every switch both carry${EXPECT ? ", but the fills at rest the index names, each reading the second's words, STEP's own words where the old line is bare, and the hidden sign's gap beside them in their run" : ""}${KINDS ? ", and on a book the record rests shut, the lines a source it rests shut carried or ranked, each moved to a source it does not" : ""}`, !failed.length && pages.length > 0 && !s1.length && !expected.length,

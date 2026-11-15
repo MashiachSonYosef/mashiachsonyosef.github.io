@@ -102,13 +102,23 @@
 //       place STEP's words may fill: a line is drawn, and one under STEP's
 //       credit that is not today's (no TAHOT row under a key the card asks
 //       there is drawn so) is STEP's words as the line draws them (a "/" a
-//       joint, a piece that is a sign alone the hidden sign's gap)
+//       joint, a piece that is a sign alone the hidden sign's gap); and beside
+//       them, over the same records: at every place a record draws STEP's own
+//       words under STEP's credit, each word a maqaf joins to it whose own
+//       reading is a sign alone is drawn as the hidden sign's gap under the
+//       place's own credit (a run's part that is a sign alone gives way to the
+//       gap where another part carries words: II Chronicles 11:11:2 and II
+//       Kings 11:18:8 since the default sources were laid, held until 15
+//       November only by the gate's S1 on the pages it samples)
 //   D20 (node) the receipt's pills the card prints (picks_printed) are this
 //       check's: under each first and its second, each source's pills where
 //       its words print (STEP's own words only where they print, read off the
 //       records as D5 reads them), and those the card makes, where no row of
 //       the pill's own source under a key the card asks (the word's own, its
-//       pieces') prints it whole
+//       pieces') prints it whole; and, with the ledger, each cell's pills by
+//       the rows their picks name (a row of the pill's own source, another
+//       source's row only, or none) and those a row they name, under a key
+//       the card asks, prints whole (names_*, printed_whole_by_a_row_it_names)
 //   D19 (node) the source words the page prints whole: at rest none holds a
 //       "/"; under each source none is a text a TAHOT (M4) row prints in that
 //       book; and the rows of the whole store that print one of them are the
@@ -117,7 +127,11 @@
 // PAGE LAWS, on works found from the data, never named here: w1 the smallest
 // work (fewest places) holding a place both STEP and its second leave; w2 the
 // smallest where STEP has no second; w3 the smallest with a fill at rest at a
-// word today's line draws bare; w4 a work on disk the index does not list.
+// word today's line draws bare; w4 a work on disk the index does not list;
+// w5 the smallest where each source other than STEP reads a reading the place
+// gives across words in part at a word under a line of its own, outside any
+// run drawn whole (the record of the resting lines says which), so that D7
+// meets the hold there under every source.
 // "Today's line" is read off the page itself, with the index refused, so the
 // page draws no default layer (the risk the plan guards: the index fails to
 // load and the page stands as it was).
@@ -137,14 +151,22 @@
 //       own reading and that line stands; a source STEP's layer fills out is
 //       filled out by «the line as it rests»); a lit pill pressed again does
 //       what the plan says
-//   D7  under each source, every line of w1-w3 is the model: a pair keeps
+//   D7  under each source, every line of w1-w3 and w5 is the model: a pair keeps
 //       today's line, a joined run keeps its line unless the source reads
 //       every word of it, a word of a reading the place gives across words
 //       («Beth-» «-lehem», «Tubal-» «Cain»: a reading ending with a hyphen
 //       goes on in the next word) keeps its line unless one source has a line
 //       at every word of it, else the source's line, else the second's (STEP
 //       as a second is the line under STEP: today's line, or STEP's words
-//       where today's is bare), else today's line
+//       where today's is bare), else today's line; and a unit the source reads
+//       at every word of it (the words of a reading the place gives across
+//       words, or of one entry across words, the lattice's headword the same
+//       at each and its letters running across their boundary, its line at
+//       each from one and the same pick) prints once where its words stand in
+//       one run of the page: one part over all its words, the run's only part
+//       where it is the whole run (the completeness critic of 15 November
+//       2026: BDB's «Bethel · sense 1» under both words of Amos 3:14:10-11);
+//       where they stand apart each keeps today's line
 //   D8  the second can be changed: the lines that move are the model's, the
 //       note follows, the choice is kept for that source, reset brings auto
 //   D9  a ruling outranks a source, across switching, across joined words
@@ -182,7 +204,11 @@
 // off at one place (D1), H3 one row's sha16 flipped (D2), H4 one tie broken
 // the other way (D3), H5 a sign alone and BDB's picks with no words counted
 // as lines, and that fault only (D3), H13 an index whose has.step counts the
-// places where STEP's line rests bare (D3). Page side: H6 the left share printed
+// places where STEP's line rests bare (D3), H14 a record whose hidden sign's
+// gap beside STEP's words is written back as the sign, as the page drew it
+// before STEP's words stood there (D5's node law beside them), H15 a receipt
+// one of whose named-row cells is off by one (D20, with the ledger). Page
+// side: H6 the left share printed
 // as a remainder (D6, on the page's own notes; under --node not judged
 // here). Through p.route,
 // never touching the disk: H7 one MACULA pick changed in a served book file
@@ -214,7 +240,7 @@ import { linesOnPage, readRecord, recordPath } from "./resting-lines-v1.mjs";
 import { DEFAULT_PICKS_RULE_ID } from "./bake-default-picks-v1.mjs";
 import { defaultsNotAtRest } from "./bake-resting-lines-v1.mjs";
 import { openFollower, FollowFault } from "./row-strikes-follow-v1.mjs";
-import { routePrinted, signsOff } from "./gloss-store-v1.mjs";
+import { routePrinted, signsOff, signOnly, SIGN_GAP } from "./gloss-store-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -319,6 +345,11 @@ const placesOf = (zone) => {
         // reading the place gives across words (TAHOT's «from/ Beth-» «-lehem», «Tubal-» «Cain»), held together on
         // the line (acrossOf)
         endsHalf: !mark && pgAnswers(w) && /-$/u.test(String(w.pg[w.pg.length - 1].g).trim()),
+        // whether a maqaf joins the word to the next (the scribes' joiner: the two stand in one run, read word by word
+        // where no line is drawn over all of it), and the place's own reading where every piece of it is a sign alone
+        // (D5's node law beside STEP's words), else null
+        jn: !!(w && w.presentation_join && w.presentation_join.join_next_without_separator),
+        signAlone: !mark && pgAnswers(w) && w.pg.every((x) => signOnly(String(x.g))) ? w.pg.map((x) => String(x.g).trim()).join(" + ") : null,
         keys: mark ? [] : [w.k, ...(Array.isArray(w.pg) ? w.pg.map((x) => x && x.k) : [])].filter(Boolean) });
     });
   });
@@ -518,7 +549,7 @@ const REFS = new Map();   // row number -> how many picks name it after the mend
 const expectedPlaces = (book, lines, zp, { skip = null, refs = null } = {}) => {
   const names = (list) => { if (refs) for (const r of Array.isArray(list) ? list : []) refs.set(r, (refs.get(r) || 0) + 1); };
   const words = zp.filter((p) => !p.mark);
-  const out = new Array(zp.length).fill(null);
+  const out = new Array(zp.length).fill(null), named = new Array(zp.length).fill(null);
   const faults = [];
   if (words.length !== lines.length) faults.push(`${book}: the zone has ${n0(words.length)} words and the ledger ${n0(lines.length)} places`);
   const kinds = { v1: KINDS0(), v1_1: KINDS0(), v1_2: KINDS0() };
@@ -578,8 +609,20 @@ const expectedPlaces = (book, lines, zp, { skip = null, refs = null } = {}) => {
     const bdb = bdbList.length ? bdbList.map((x) => [senseOf(x), hasText(x[5]) ? x[5] : 0]) : 0;
     const slots = [step.length ? step : 0, mac, ubs, bdb];
     out[p.n - 1] = slots.every((s) => s === 0) ? null : slots;
+    // the rows each pill's pick names (D20), in the order the card prints the pills (pillsOf): STEP's picks, the first
+    // and those after it with words; MACULA's one pick, the rows of its pieces; UBS's line, the rows of each piece's
+    // pick 1 that is a line pick, then each piece's picks after its first with words; BDB's picks, the first and those
+    // after it with words
+    const rowsOf = (r) => (Array.isArray(r) ? r : []);
+    named[p.n - 1] = {
+      step: st.filter((x, j) => j === 0 || hasText(x[4])).map((x) => rowsOf(x[5])),
+      macula: [d.macula && Array.isArray(d.macula[1]) ? d.macula[1].flatMap((pc) => (Array.isArray(pc) ? rowsOf(pc[3]) : [])) : []],
+      ubs: [(d.ubs || []).flatMap((pc) => { const l = (pc && pc[2]) || []; return l.length && Array.isArray(l[0]) && linePick(l[0][2]) ? rowsOf(l[0][3]) : []; }),
+        ...(d.ubs || []).flatMap((pc) => ((pc && pc[2]) || []).slice(1).filter((x) => Array.isArray(x) && hasText(x[2])).map((x) => rowsOf(x[3])))],
+      bdb: bdbList.filter((x, j) => j === 0 || hasText(x[5])).map((x) => rowsOf(x[4])),
+    };
   });
-  return { places: out, faults, kinds, m11, m12, bdbM, per };
+  return { places: out, named, faults, kinds, m11, m12, bdbM, per };
 };
 /** Where a book file's places differ from the ledger's, each place's BDB words read through bdb_words. */
 const placesDiffer = (book, bf, want) => {
@@ -637,6 +680,7 @@ for (const r of PIN.relays || []) {
 }
 if (SPLIT_HELD.fault) keptFaults.push(SPLIT_HELD.fault);
 const LEDGER_BOOKS = new Map();   // book -> its parsed ledger lines, kept only for the harness's book
+const NAMED = new Map();   // book -> per place (n - 1), the rows each pill's pick names, per source (expectedPlaces): D20
 let harnessBook = null;
 if (ledgerHere) {
   for (const k of PINNED) {
@@ -667,6 +711,7 @@ if (ledgerHere) {
     const lines = bytes.toString("utf8").split("\n").filter((l) => l.length).map((l) => JSON.parse(l));
     if (book === harnessBook) LEDGER_BOOKS.set(book, lines);
     const want = expectedPlaces(book, lines, slim(book).places, { refs: REFS });
+    NAMED.set(book, want.named);
     D1.b.push(...want.faults, ...placesDiffer(book, bookRead(book), want.places));
     add(kinds, want.kinds); add(m11, want.m11); add(m12, want.m12); add(bdbM, want.bdbM);
     for (const s of Object.keys(per)) for (const [b, c] of Object.entries(want.per[s])) per[s][b] = (per[s][b] || 0) + c;
@@ -730,8 +775,10 @@ const shard = (sh) => { const p = join(STORE, "shards", `${sh}.bin`); return exi
 const rowsUnder = (served, [key, rank, m, h]) => (served[key] || []).filter((x) => Array.isArray(x) && x[0] === rank && x[3] === m && typeof x[1] === "string" && sha256(Buffer.from(x[1], "utf8")).slice(0, 16) === h);
 /** Every row of the tables found again: as named, or where `follow` (the row-strikes record, from the store the
  *  tables were read at) says it went. A row a round moved is found under the name it has now; a row a round struck or
- *  withheld is set apart; a row found twice is said; anything else is missing. `refs` counts the picks naming a row. */
-const resolveRows = (rows, { follow = null, refs = null } = {}) => {
+ *  withheld is set apart; a row found twice is said; anything else is missing. `refs` counts the picks naming a row.
+ *  `keep`, where given, takes the served row found for each (the first, where it is found twice, as the bake takes it;
+ *  a row a round moved, the row under its name now), for D20's count by the rows a pick names. */
+const resolveRows = (rows, { follow = null, refs = null, keep = null } = {}) => {
   const missing = [], twice = [], notAsNamed = [], followed = [], struck = [], withheld = [];
   const byShard = new Map();
   rows.forEach((r, i) => { const sh = shardOf(r[0]); if (!byShard.has(sh)) byShard.set(sh, []); byShard.get(sh).push(i); });
@@ -741,6 +788,7 @@ const resolveRows = (rows, { follow = null, refs = null } = {}) => {
       const found = rowsUnder(served, rows[i]);
       if (!found.length) notAsNamed.push(i);
       else if (found.length > 1) twice.push(i);
+      if (keep && found.length) keep[i] = found[0];
     }
   }
   const cache = new Map();
@@ -749,25 +797,31 @@ const resolveRows = (rows, { follow = null, refs = null } = {}) => {
     const went = follow ? follow.nowOf(rows[i]) : { state: "served" };
     if (went.state === "struck") struck.push(i);
     else if (went.state === "withheld") withheld.push(i);
-    else if (went.state === "re-keyed" && rowsUnder(servedAt(went.name[0]), went.name).length === 1) followed.push(i);
+    else if (went.state === "re-keyed" && rowsUnder(servedAt(went.name[0]), went.name).length === 1) { followed.push(i); if (keep) keep[i] = rowsUnder(servedAt(went.name[0]), went.name)[0]; }
     else missing.push(i);
   }
   const picks = (list) => list.reduce((a, i) => a + ((refs && refs.get(i)) || 0), 0);
   return { missing, twice, followed, struck, withheld, still_named: struck.filter((i) => refs && refs.get(i)), picks: { followed: picks(followed), withheld: picks(withheld) } };
 };
 let ROWS = null;
+// each row of the tables as the served store holds it: its source id and its text as the card prints it, null where it
+// is not found (D2 says so); for D20's count by the rows a pick names, as the bake counts it
+let ROW_M = null, ROW_TEXT = null;
 if (ledgerFault) check("D2  every row a pick names is found again in the served store", false, ledgerFault);
 else if (ledgerHere) {
   ROWS = [PIN.rows, PIN.rows_added, PIN.rows_added_v1_2].flatMap((e) => linesOfFile(ledgerFile(e.file)));
   const storeIndex = readJson(join(STORE, "index.json"));
   const mSources = storeIndex.m_sources || {};
+  const kept = new Array(ROWS.length).fill(null);
   const unnamed = [...new Set(ROWS.map((r) => r[2]))].filter((m) => !mSources[m]);
   // where the rows the tables name have gone since the store v1.2 read, by the row-strikes record
   let follow = null, D2 = null, followWhy = "";
   try {
     follow = openFollower({ data: join(K3, "data"), index: storeIndex, readAt: (((R12.inputs || {}).page_store || {}).store_version) || null });
-    D2 = resolveRows(ROWS, { follow, refs: REFS });
+    D2 = resolveRows(ROWS, { follow, refs: REFS, keep: kept });
   } catch (e) { if (e instanceof FollowFault) followWhy = e.message; else throw e; }
+  ROW_M = kept.map((r) => (r ? r[3] : null));
+  ROW_TEXT = kept.map((r) => (r ? routePrinted(r) : null));
   if (!D2) check("D2  every row a pick names is found again in the served store, as named or where the row-strikes record says it went", false, followWhy);
   else {
     const mine = { rows_re_keyed_and_found_under_their_new_name: { rows: D2.followed.length, picks_naming_them: D2.picks.followed }, rows_struck_since_that_no_pick_names: D2.struck.length - D2.still_named.length, rows_withheld_since: { rows: D2.withheld.length, picks_naming_them: D2.picks.withheld } };
@@ -938,7 +992,56 @@ const STEP_WORDS = new Map();   // book -> Map(n -> STEP's words): the places ST
   side("D5  (node) the places call 4 writes with « | », held", `${n0(held.length)} where STEP's pick 1 is a line pick, no pair, no pieces that answer: no STEP words in the index, today's line stands; the record draws ${heldBare.length} of them bare, and they stay bare at rest${heldBare.length ? ` (${heldBare.join(", ")})` : ""}`);
 }
 
+// ---- D5 (node) · beside STEP's words, the hidden sign's gap --------------------------------------------------------
+/** The line a record draws over a place: the unit standing over its entry, or null. */
+const recordLineOver = (rec, p) => ((rec.sections[p.i] || [])[1] || []).find((x) => p.e >= x[0] && p.e < x[0] + x[1]) || null;
+/** Every record read with the default sources laid, at every place it draws STEP's own words under STEP's credit
+ *  (today's line or not): each word a maqaf joins to that place (the run it stands in, read word by word) whose own
+ *  reading is a sign alone is drawn as the hidden sign's gap, under the place's own credit. A run's part that is a
+ *  sign alone keeps its place as a gap where another part carries words, and stands as the sign only where none
+ *  does (zone.html, the run's parts under the signs switch at rest); so where STEP's words fill a word today's line
+ *  drew bare, the sign beside it gives way to the gap (II Chronicles 11:11:2, II Kings 11:18:8, when the default
+ *  sources were laid), and the gate's S1 held those two lines only on the pages it samples (the review of the
+ *  toggles fixes, 15 November 2026). `recOf` reads a work's record; the fault H14 hands one with a gap written back
+ *  as its sign. Each place beside STEP's words is said by whether STEP's words there are today's line, and those
+ *  where they are not by whether any other word of the run draws words: where none does, the gap stands only because
+ *  STEP's words do, a line the default sources moved when they were laid. */
+const judgeGaps = (recOf = recordOf) => {
+  const faults = [], beside = { bare: [], today: [], alone: [] };
+  let laid = 0;
+  for (const b of BOOKS) {
+    const rec = recOf(b);
+    if (!rec || !Array.isArray(rec.sections) || !(((rec.read_off || {}).state || {}).defaults)) continue;
+    laid += 1;
+    const ps = slim(b).places;
+    for (const [n, t] of STEP_WORDS.get(b)) {
+      const p = ps[n - 1], u = recordLineOver(rec, p);
+      if (!u || u[1] !== 1 || u[3] !== MOF("step") || u[2] !== drawnStep(t)) continue;
+      const today = todayAt(p, u[2]);
+      // the words a maqaf joins to it, each way along the chain, within its section
+      const chain = [];
+      for (let j = p.n - 2; j >= 0 && ps[j].i === p.i && ps[j].jn; j -= 1) chain.push(ps[j]);
+      for (let j = p.n - 1; j + 1 < ps.length && ps[j].jn && ps[j + 1].i === p.i; j += 1) chain.push(ps[j + 1]);
+      for (const q of chain) {
+        if (q.mark || q.kq || q.signAlone === null) continue;
+        const v = recordLineOver(rec, q), credit = q.pgS.length === 1 ? `PIECE:${q.pgS[0].toUpperCase()}` : null;
+        (today ? beside.today : beside.bare).push({ b, q, p });
+        if (!today && !chain.some((r) => r !== q && r.signAlone === null && !blank((recordLineOver(rec, r) || [0, 0, ""])[2]))) beside.alone.push({ b, q, p });
+        if (!v || v[1] !== 1 || v[2] !== SIGN_GAP || (credit && v[3] !== credit)) faults.push(`${b} ${q.label} beside STEP's words at ${p.label}: ${v ? `${said(v[2], 24)} [${v[3]}]` : "no line"}, owed the hidden sign's gap${credit ? ` [${credit}]` : ""}`);
+      }
+    }
+  }
+  return { faults, beside, laid };
+};
+const GAPS = judgeGaps();
+check("D5  (node) beside STEP's words: every record read with the default sources laid draws each word a maqaf joins to a place of STEP's own words, whose own reading is a sign alone, as the hidden sign's gap under the place's own credit", !GAPS.faults.length,
+  GAPS.faults.length ? `${GAPS.faults.length} · ${first(GAPS.faults)}` : `${GAPS.laid} of ${BOOKS.length} records · ${GAPS.beside.bare.length} beside STEP's words where today's line was bare${GAPS.beside.bare.length ? ` (${GAPS.beside.bare.map((x) => `${x.b} ${x.q.label}`).join(", ")})` : ""}, of which ${GAPS.beside.alone.length} the gap only because STEP's words stand in the run${GAPS.beside.alone.length ? ` (${GAPS.beside.alone.map((x) => `${x.b} ${x.q.label}`).join(", ")})` : ""}; ${GAPS.beside.today.length} beside them where they are today's line`);
+
 // ---- D20 (node) · the pills the card prints, as the receipt counts them -------------------------------------------
+// the cells of the receipt's picks_printed counted by the rows a pill's pick names (bake-default-picks-v1, PRINTED)
+const NAMED_CELLS = ["names_a_row_of_its_own_source", "names_another_sources_row_only", "names_no_row", "printed_whole_by_a_row_it_names"];
+// D20's judgment of a receipt against this check's count, set in D20's block (the harness hands it another receipt)
+let judgeD20;
 /** A source's pills at a place, as the card prints them where its line is printed: pick 1 (UBS's line of its pieces'
  *  pick 1s, BDB's words with the sense's number), then picks 2..n with words (UBS's numbered in each piece), each
  *  [its text, the source id that credits it]. STEP's pick 1 is its reading's (M4); its variants and alternatives M19. */
@@ -956,9 +1059,26 @@ const pillsOf = (bf, p, src) => {
   // each book, the pills the card prints for the source whose words the line prints (x's where x has a line; y's where
   // x has none and y fills; STEP's own words only where they print, never where they only may; STEP's picks 2..n are
   // text at rest, pills under another first), and those the card makes: no row of the pill's own source that the
-  // store holds under a key the card asks there (the word's own, its pieces') prints it whole
+  // store holds under a key the card asks there (the word's own, its pieces') prints it whole. With the ledger, each
+  // pill is counted too by the rows its pick names (the ledger's, mends applied: NAMED), as the bake counts them: a row
+  // of the pill's own source among them, another source's row only, or none; and printed whole by a row it names that
+  // stands under a key the card asks there (the row as the served store holds it, read as the card reads a pill)
   const got = Object.fromEntries(IDS.map((x) => [x, {}]));
-  const add = (x, y, p, list) => { for (const [t, own] of list) { const c = (got[x][y] = got[x][y] || { pills: 0, made: 0 }); c.pills += 1; if (!p.keys.some((k) => servedUnder(k).some(([m, r]) => m === own && samePill(r, t)))) c.made += 1; } };
+  const misaligned = [];
+  const add = (x, y, b, p, src, only1 = false) => {
+    const all = pillsOf(bookRead(b), p, src), list = only1 ? all.slice(0, 1) : all;
+    const at = NAMED.has(b) ? (NAMED.get(b)[p.n - 1] || {})[src] || [] : null;
+    if (at && at.length !== all.length && misaligned.length < 5) misaligned.push(`${b} ${p.label} ${PILL[src]}: ${all.length} pill(s) in the book file, ${at.length} pick(s) in the ledger`);
+    list.forEach(([t, own], j) => {
+      const c = (got[x][y] = got[x][y] || { pills: 0, made: 0, ...Object.fromEntries(NAMED_CELLS.map((k) => [k, 0])) });
+      c.pills += 1;
+      if (!p.keys.some((k) => servedUnder(k).some(([m, r]) => m === own && samePill(r, t)))) c.made += 1;
+      if (!at || !ROW_M) return;
+      const rs = (at[j] || []).filter((r) => Number.isInteger(r) && r >= 0 && r < ROWS.length);
+      c[!rs.length ? "names_no_row" : rs.some((r) => ROW_M[r] === own) ? "names_a_row_of_its_own_source" : "names_another_sources_row_only"] += 1;
+      if (rs.some((r) => p.keys.includes(ROWS[r][0]) && typeof ROW_TEXT[r] === "string" && samePill(ROW_TEXT[r], t))) c.printed_whole_by_a_row_it_names += 1;
+    });
+  };
   let noRecord = 0;
   for (const b of BOOKS) {
     const bf = bookRead(b), rec = readRecord(recordPath(K3, b)), ix = IX.books[b];
@@ -971,24 +1091,32 @@ const pillsOf = (bf, p, src) => {
       const has = Object.fromEntries(IDS.map((s) => [s, lineAt(bf, p, s) !== null && !(s === "step" && rests)]));
       const sw = stepWordsAt(bf, p, b);
       const prints = sw !== null && stepPrints(rec, p, sw);
-      if (prints) add("step", "step", p, pillsOf(bf, p, "step").slice(0, 1));
-      if (second.step && leaves.has(p.n) && has[second.step]) add("step", second.step, p, pillsOf(bf, p, second.step).slice(0, 1));
+      if (prints) add("step", "step", b, p, "step", true);
+      if (second.step && leaves.has(p.n) && has[second.step]) add("step", second.step, b, p, second.step, true);
       for (const x of IDS.filter((s) => s !== "step")) {
-        if (has[x]) { add(x, x, p, pillsOf(bf, p, x)); continue; }
+        if (has[x]) { add(x, x, b, p, x); continue; }
         const y = second[x];
-        if (y === "step" ? prints : y && has[y]) add(x, y, p, pillsOf(bf, p, y));
+        if (y === "step" ? prints : y && has[y]) add(x, y, b, p, y);
       }
     }
   }
-  const want = (RECEIPT && RECEIPT.picks_printed && RECEIPT.picks_printed.by_first) || {};
-  const faults = [];
-  for (const x of IDS) for (const y of new Set([...Object.keys(got[x]), ...Object.keys(want[x] || {})])) {
-    const g = got[x][y] || { pills: 0, made: 0 }, w = (want[x] || {})[y] || {};
-    if (g.pills !== w.pills || g.made !== w.made) faults.push(`under ${PILL[x]}, ${PILL[y]}'s pills ${n0(g.pills)} here (made ${n0(g.made)}), ${w.pills === undefined ? "none" : n0(w.pills)} in the receipt (made ${w.made === undefined ? "none" : n0(w.made)})`);
-  }
-  const say = IDS.map((x) => `${PILL[x]}: ${Object.entries(got[x]).map(([y, c]) => `${PILL[y]} ${n0(c.pills)} (made ${n0(c.made)})`).join(", ") || "none"}`).join(" · ");
-  check("D20 (node) the receipt's pills the card prints (picks_printed), each source's where its words print and STEP's only where its own words print, and those the card makes, no row of the pill's own source under a key the card asks printing it, are this check's", !!RECEIPT && !faults.length && !noRecord,
+  // the receipt's cells held to these: pills and made always; the named-row cells where the ledger is here
+  const named = !!ROW_M && NAMED.size > 0;
+  judgeD20 = (receipt) => {
+    const want = (receipt && receipt.picks_printed && receipt.picks_printed.by_first) || {};
+    const out = [...misaligned];
+    for (const x of IDS) for (const y of new Set([...Object.keys(got[x]), ...Object.keys(want[x] || {})])) {
+      const g = got[x][y] || {}, w = (want[x] || {})[y] || {};
+      const keys = ["pills", "made", ...(named ? NAMED_CELLS : [])].filter((k) => (g[k] || 0) !== w[k]);
+      if (keys.length) out.push(`under ${PILL[x]}, ${PILL[y]}'s ${keys.map((k) => `${k} ${n0(g[k] || 0)} here, ${w[k] === undefined ? "none" : n0(w[k])} in the receipt`).join("; ")}`);
+    }
+    return out;
+  };
+  const faults = judgeD20(RECEIPT);
+  const say = IDS.map((x) => `${PILL[x]}: ${Object.entries(got[x]).map(([y, c]) => `${PILL[y]} ${n0(c.pills)} (made ${n0(c.made)}${named ? `; names its own source's row ${n0(c.names_a_row_of_its_own_source)}, another's only ${n0(c.names_another_sources_row_only)}, none ${n0(c.names_no_row)}; printed whole by a row it names ${n0(c.printed_whole_by_a_row_it_names)}` : ""})`).join(", ") || "none"}`).join(" · ");
+  check("D20 (node) the receipt's pills the card prints (picks_printed), each source's where its words print and STEP's only where its own words print, and those the card makes, no row of the pill's own source under a key the card asks printing it, are this check's; with the ledger, so are its cells by the rows each pill's pick names", !!RECEIPT && !faults.length && !noRecord,
     faults.length ? `${faults.length} · ${first(faults, 2)}` : `${say}${noRecord ? ` · ${noRecord} works with no record` : ""}`);
+  if (!named) side("D20 (node) the cells by the rows each pill's pick names not judged here", ledgerFault || "the ledger is not on this machine (give --ledger)");
 }
 
 // ---- D19 (node) · the source words ----------------------------------------------------------------------------
@@ -1081,8 +1209,15 @@ const acrossOf = (b, p) => {
   return p ? acrossIn.get(b).get(p.n) || null : null;
 };
 
-// the page has answered its sources: the book file landed or failed where it was needed
-const ready = (p) => p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 60000 }).catch(() => {});
+// the page has said every line stands as the sources in force draw it (window.__default.ready: at once where the line
+// rests on STEP or no source is in force, under MACULA, UBS or BDB once that source's book file is here; failed where
+// it could not be fetched). A page that does not say so in 30 s is a fault, thrown and said under the law whose page it
+// was (the completeness critic of 15 November 2026: this wait ran out its 60 s at every open at rest and was
+// swallowed, so a page that never said it passed)
+const ready = async (p) => {
+  const said = await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).then(() => true, () => false);
+  if (!said) throw new Error("the page did not say in 30 s that its lines stand as the sources in force draw them (window.__default.ready)");
+};
 /** A page of a work, opened as a first visit opens it: nothing kept on the device but `kept`, the files named in
  *  `refuse` refused, those in `serve` answered by the function given. What it asks for and every error it throws are
  *  kept with it. */
@@ -1180,6 +1315,89 @@ const modelOf = (b, X, Y, base) => sectionsOf(b).map((sec, i) => {
   }
   return m;
 });
+/** w5: the smallest work where each source other than STEP reads a reading the place gives across words in part, a
+ *  word of it with that source's line as the model has it and the hold taking it back to today's line (wholeAcross),
+ *  every word of the reading under a line of its own in the record of the resting lines, so outside any run drawn
+ *  whole (where the run's own rule holds it). D7 then meets the hold under every source (the review of the toggles
+ *  fixes, 15 November 2026: every such word of w1-w3 sat inside a run drawn whole, and D7 stayed green with the
+ *  page's hold taken out). Found from the data, as check-rulings-under-sources-v1 finds U5's work. Per source, the
+ *  first word of each such reading. */
+const heldHalvesIn = (b) => {
+  const rec = recordOf(b);
+  if (!rec || !Array.isArray(rec.sections)) return null;
+  acrossOf(b, null);
+  const groups = [...new Set(acrossIn.get(b).values())];
+  const own = (q) => { const u = recordLineOver(rec, q); return !u || u[1] === 1; };
+  const bare = (q) => { const u = recordLineOver(rec, q); return !u || blank(u[2]); };
+  return Object.fromEntries(IDS.filter((x) => x !== "step").map((X) => {
+    const Y = autoSecond(IX.books[b].fills, X);
+    return [X, groups.filter((g) => g.every(own) && g.some((q) => { const d = layerAt(b, X, Y, q, bare(q)); return !!d && !wholeAcross(b, X, Y, q, d); })).map((g) => g[0].label)];
+  }));
+};
+const W5 = PAGE ? byPlaces.find((b) => { const h = heldHalvesIn(b); return !!h && Object.values(h).every((l) => l.length > 0); }) || null : null;
+/** THE UNITS (zone.html dfltUnitOf): per work, the words of one reading the place gives across words (acrossOf) and of
+ *  one entry across words (the lattice's headword the same at each word, its letters running across their boundary),
+ *  each as its places. */
+const unitGroupsIn = new Map();   // book -> [[place, ...], ...]
+const unitGroupsOf = (b) => {
+  if (!unitGroupsIn.has(b)) {
+    const z = zoneRead(b), groups = [];
+    const letters = (t) => [...String(t || "").normalize("NFD")].filter((c) => { const n = c.codePointAt(0); return n >= 0x5d0 && n <= 0x5ea; }).join("");
+    acrossOf(b, null);
+    for (const g of new Set(acrossIn.get(b).values())) groups.push(g);
+    (z.sections || []).forEach((sec, i) => {
+      const live = (sec.words || []).map((w, e) => ({ w, p: placeAt(b, i, e) })).filter((x) => x.w && !x.w.mark && !x.w.kq);
+      for (let a = 0; a < live.length;) {
+        let c = a;
+        while (live[a].w.h && c + 1 < live.length && live[c + 1].w.h === live[a].w.h) c += 1;
+        const ks = live.slice(a, c + 1).map((x) => letters(x.w.k)), h = letters(live[a].w.h), at = c > a && h ? ks.join("").indexOf(h) : -1;
+        if (at >= 0) {
+          let from = -1, to = -1, pos = 0;
+          ks.forEach((k, x) => { if (from < 0 && at < pos + k.length) from = x; if (at + h.length > pos) to = x; pos += k.length; });
+          if (to > from) groups.push(live.slice(a + from, a + to + 1).map((x) => x.p));
+        }
+        a = c + 1;
+      }
+    });
+    unitGroupsIn.set(b, groups);
+  }
+  return unitGroupsIn.get(b);
+};
+/** IN THE PAGE. Per section, the entries of each run on the page (counted as linesOnPage counts them). */
+const runsInPage = () => [...document.querySelectorAll("section.seg")].map((s) => {
+  const he = s.querySelector(".he-text");
+  if (!he) return [];
+  const wbs = [...he.querySelectorAll(".wb")];
+  return [...he.querySelectorAll(".wjoin")].map((r) => [...r.querySelectorAll(".wb")].map((w) => wbs.indexOf(w)));
+});
+/** The model with each unit as the page draws it (zone.html dfltUnitOf, dfltTogether, refreshJoinGloss). A unit is a
+ *  group every word of which takes one source's line under X with its second Y (not STEP's; wholeAcross over
+ *  layerAt) from one and the same pick in its book file. Where its words stand in one run of the page (`runs`,
+ *  runsInPage), one line over all its words (one part over them where the run reads in parts); where they stand
+ *  apart, each keeps today's line (`base`, the line as it rests), as the page holds it. A run the model keeps whole
+ *  keeps its own line either way. */
+const unitsOnce = (b, X, Y, model, runs, base) => {
+  const bf = bookRead(b);
+  for (const g of unitGroupsOf(b)) {
+    if (!g.length || g.some((p) => !p || p.i !== g[0].i)) continue;
+    const ds = g.map((p) => wholeAcross(b, X, Y, p, layerAt(b, X, Y, p)));
+    if (!ds[0] || ds[0].src === "step" || ds.some((d) => !d || d.src !== ds[0].src || d.layer !== ds[0].layer)) continue;
+    const pick = (p) => JSON.stringify((bf.places[p.n - 1] || [])[SLOT[ds[0].src]]);
+    if (g.some((p) => pick(p) !== pick(g[0]))) continue;
+    const m = model[g[0].i], es = g.map((p) => p.e);
+    if (!m) continue;
+    const single = (e) => { const u = m.get(e); return !!u && u[1] === 1; };
+    if ((runs[g[0].i] || []).some((r) => es.every((e) => r.includes(e)))) {
+      if (!es.every(single)) continue;
+      for (const e of es.slice(1)) m.delete(e);
+      m.set(es[0], [es[0], es.length, ds[0].line, ds[0].m]);
+      continue;
+    }
+    const rest = new Map((base.sections[g[0].i] || { units: [] }).units.filter((u) => u[1] === 1).map((u) => [u[0], u]));
+    for (const e of es) if (single(e)) { if (rest.has(e)) m.set(e, rest.get(e)); else m.delete(e); }
+  }
+  return model;
+};
 /** Where a reading differs from the model, each said by its verse and entry. */
 const differ = (b, model, got, skip = new Set()) => {
   const out = [];
@@ -1460,7 +1678,7 @@ const underEach = async (b, isW1) => {
       const L = await lines(s);
       const Y = autoSecond(IX.books[b].fills, X);
       if (!L || !B) { law("D7").faults.push(`${b} under ${PILL[X]}: the lines were not read`); continue; }
-      const d = differ(b, modelOf(b, X, Y, B), L);
+      const d = differ(b, unitsOnce(b, X, Y, modelOf(b, X, Y, B), await s.p.evaluate(runsInPage), B), L);
       law("D7").faults.push(...d.map((x) => `under ${PILL[X]} ${sayDiff(x)}`));
       const credits = new Set(L.sections.flatMap((sec) => sec.units.map((u) => u[3])));
       law("D7").saw.push(`${b} under ${PILL[X]} (second ${Y ? PILL[Y] : "none"}): ${unitCount(L)} lines, ${L.sections.reduce((a, sec) => a + sec.units.filter((u) => u[3] === MOF(X)).length, 0)} ${PILL[X]}'s${credits.has(MOF("step")) ? "" : ""}`);
@@ -1486,7 +1704,7 @@ const underEach = async (b, isW1) => {
         if (!can) { law("D8").saw.push(`${PILL[X]}: ${PILL[Z]} fills nothing in ${b}, its button cannot be pressed`); continue; }
         await s.p.waitForTimeout(250); await ready(s.p);
         const L2 = await lines(s), r = await row(s);
-        const d2 = L2 ? differ(b, modelOf(b, X, Z, B), L2) : [{ where: "the lines were not read" }];
+        const d2 = L2 ? differ(b, unitsOnce(b, X, Z, modelOf(b, X, Z, B), await s.p.evaluate(runsInPage), B), L2) : [{ where: "the lines were not read" }];
         const moved = L2 ? differ(b, L.sections.map((sec) => new Map(sec.units.map((u) => [u[0], u]))), L2).length : 0;
         const kept = (() => { try { return JSON.parse(r.keptSecond || "{}")[X] || null; } catch { return null; } })();
         const say = noteSay({ first: X, second: Z, auto: Y, counts, work });
@@ -1636,7 +1854,8 @@ const rulingAndReset = async (b) => {
       const L = await lines(s);
       held(L, `under ${PILL[X]}`);
       if (!(await chosen(A))) f9.push(`under ${PILL[X]} ${A.p.label} is no longer marked chosen`);
-      const d = L ? differ(b, modelOf(b, X, autoSecond(IX.books[b].fills, X), B), L, skip()) : [];
+      const Y9 = autoSecond(IX.books[b].fills, X);
+      const d = L ? differ(b, unitsOnce(b, X, Y9, modelOf(b, X, Y9, B), await s.p.evaluate(runsInPage), B), L, skip()) : [];
       if (d.length) f9.push(`under ${PILL[X]} with a ruling, ${d.length} other line(s) off the model \u00b7 ${sayDiff(d[0])}`);
     }
     const relay = (label) => s.p.evaluate((t) => { const l = [...document.querySelectorAll(".row .lab")].find((x) => x.textContent.startsWith("joined words")); const x = l && [...l.nextElementSibling.querySelectorAll("button")].find((y) => y.textContent === t); if (x) x.click(); return !!x; }, label);
@@ -1817,10 +2036,13 @@ if (PAGE) {
     await pool([["D5", () => baseOf(W1)], ["D5", () => baseOf(W2)], ["D5", async () => { W3 = await findW3(); }]]);
     if (!W3) side("D5  on w3 not judged here", "no work has a fill at rest at a word today's line draws bare");
     const works = [...new Set([W1, W2, W3].filter(Boolean))];
-    console.log(`the works: w1 ${W1} (both STEP and its second leave a place), w2 ${W2} (STEP has no second), w3 ${W3} (a fill at a word today draws bare), w4 ${W4 || "none"} (not in the index)`);
+    console.log(`the works: w1 ${W1} (both STEP and its second leave a place), w2 ${W2} (STEP has no second), w3 ${W3} (a fill at a word today draws bare), w4 ${W4 || "none"} (not in the index), w5 ${W5 || "none"} (each source reads a reading across words in part, outside a run drawn whole)`);
+    if (!W5) side("D7  on w5 not judged here", "no work holds a reading across words that each source reads in part outside a run drawn whole");
+    else { const h = heldHalvesIn(W5); law("D7").saw.push(`${W5} (w5) holds the hold under ${IDS.filter((x) => x !== "step").map((x) => `${PILL[x]} at ${h[x].length} (${h[x].slice(0, 2).join(", ")})`).join(", ")}`); }
     await pool([
       ...works.map((b) => ["D5", () => atRest(b, b === W1)]),
       ...works.map((b) => ["D7", () => underEach(b, b === W1)]),
+      ...(W5 && !works.includes(W5) ? [["D7", () => underEach(W5, false)]] : []),
       ["D4", () => pillsAndNote(W1)],
       ["D15", () => fetches(W1)],
       ["D17", () => oldestFirst(W1)],
@@ -1831,7 +2053,7 @@ if (PAGE) {
   verdict("D4", "a first visit: «STEP» alone lit, the index's pills in its order, no note, nothing kept, the second counted here, the Menu mirroring the four pills and no chooser");
   verdict("D5", "at rest every line is today's, except exactly where STEP's second fills a place it leaves, or STEP's own words fill a word today's line draws bare: that line, its chip, its card pressed on it");
   verdict("D6", "each pill pressed on the row and in the Menu leaves one lit, is kept and kept over a reload, ?default= is not kept; the note and its shares are this check's; a lit pill pressed again does as the plan says");
-  verdict("D7", "under each source every line of w1-w3 is the model: a pair and a run the source does not read whole keep today's line, else the source's, else its second's (STEP's: today's line, or its own words where that is bare), else today's");
+  verdict("D7", "under each source every line of w1-w3 and w5 is the model: a pair and a run the source does not read whole keep today's line, else the source's, else its second's (STEP's: today's line, or its own words where that is bare), else today's");
   verdict("D8", "the second can be changed: the lines that move are the model's, the note follows, the choice is kept for that source, the auto source pressed clears it");
   verdict("D9", "a ruling outranks a source: across every source, joined words out and back, and back on STEP");
   verdict("D10", "reset from a source with a chosen second and two rulings: STEP with its auto second, every line the first paint's");
@@ -1917,6 +2139,26 @@ if (SELF_TEST) {
     ix13.books[h13At[0]].has.step += h13At[1];
     const h13 = judgeD3({ index: ix13 });
     went("H13", !D3.faults.length, h13.faults.length > 0, `an index whose has.step counts the ${h13At[1]} place(s) of ${h13At[0]} where STEP's line rests bare: D3 finds ${h13.faults.length} fault(s) · ${first(h13.faults, 1)}`);
+  }
+  // H14: D5's law beside STEP's words on a record whose gap beside them is written back as its sign, as the page drew
+  // it before STEP's words stood there (in memory: the first place whose gap stands only because STEP's words do)
+  const g14 = GAPS.beside.alone[0] || GAPS.beside.bare[0] || GAPS.beside.today[0] || null;
+  if (!g14) side("H14 not judged here", "no record draws a word beside STEP's words whose own reading is a sign alone");
+  else {
+    const rec14 = structuredClone(recordOf(g14.b)), u14 = recordLineOver(rec14, g14.q);
+    if (u14) u14[2] = g14.q.signAlone;
+    const h14 = judgeGaps((b) => (b === g14.b ? rec14 : recordOf(b)));
+    went("H14", !GAPS.faults.length, h14.faults.length === 1 && h14.faults[0].startsWith(`${g14.b} ${g14.q.label} `), `${g14.b} ${g14.q.label}, beside STEP's words at ${g14.p.label}, drawn ${said(g14.q.signAlone)} in its record: D5 finds ${h14.faults.length} · ${first(h14.faults, 1)}`);
+  }
+  // H15: D20 on a receipt one of whose cells by the rows a pill's pick names is one off (with the ledger)
+  const c15 = RECEIPT && RECEIPT.picks_printed && RECEIPT.picks_printed.by_first ? IDS.flatMap((x) => Object.keys(RECEIPT.picks_printed.by_first[x] || {}).map((y) => [x, y])).find(([x, y]) => (RECEIPT.picks_printed.by_first[x][y].names_no_row || 0) > 0) : null;
+  if (!ROW_M || !c15) side("H15 not judged here", !ROW_M ? "the ledger is not on this machine" : "no cell of the receipt counts a pill whose pick names no row");
+  else {
+    const r15 = structuredClone(RECEIPT);
+    r15.picks_printed.by_first[c15[0]][c15[1]].names_no_row -= 1;
+    r15.picks_printed.by_first[c15[0]][c15[1]].names_a_row_of_its_own_source += 1;
+    const base = judgeD20(RECEIPT), h15 = judgeD20(r15);
+    went("H15", !base.length, h15.length === 1, `under ${PILL[c15[0]]}, one of ${PILL[c15[1]]}'s pills that names no row counted as naming one of its own source's: D20 finds ${h15.length} · ${first(h15, 1)}`);
   }
   // H6: D6's note with the left share printed as a remainder
   const noteFaults = (notes, b, left) => notes.filter((x) => { const Y = autoSecond(IX.books[b].fills, x.X); return x.say !== noteSay({ first: x.X, second: Y, auto: Y, counts: IX.books[b], work: slim(b).work, left, macula: maculaPiecesIn(b) }); });

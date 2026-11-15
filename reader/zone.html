@@ -3871,7 +3871,13 @@
   // STEP's own pick 1 prints there, credited to STEP (the page lane's
   // recommendation on the owner's question 2 of 14 November, which stands
   // unless the owner rules otherwise; the index carries those words,
-  // step_words); its second fills only the places STEP leaves. A sign or a
+  // step_words); its second fills only the places STEP leaves. STEP's own
+  // words never replace a line another dictionary gives: where today's line
+  // is another dictionary's reading and STEP has its own (157 words of the
+  // 39 books, «archer» [M14] at Psalms 10:5:2, «bride» [M11] at Ruth 1:7:8),
+  // that line stands at rest, and under MACULA, UBS or BDB the source's own
+  // line takes it as it takes any word (the owner's question 3 of 14
+  // November, held so until the owner answers it). A sign or a
   // stop alone is no source's line. A ruling outranks a source, and a pair
   // keeps today's line under every source.
   // Kept on this device; ?default= and ?second= set them for one load.
@@ -3915,6 +3921,13 @@
   // November 2026: STEP's pressed pill at Ruth 1:19:8 went to PIECE:TAHOT,
   // «the oldest witness carrying this reading», where the word has no pieces)
   const DFLT_MADE = new WeakMap();
+  // the built sections a press of the default sources left to paint, each
+  // with its words' lines (dfltRepaint, below): painted before they are seen
+  const DFLT_STALE = new Map();
+  // the book's file asked beside the zone under a kept source (at boot, before
+  // the zone is read): the file the index names and that request, for the
+  // first fetch to take (defaultPicksReady)
+  let dfltEarly = null;
   // a source as the index names it: its pill and the M its words are credited to
   const dfltSource = (id) => (DFLT_IX && Array.isArray(DFLT_IX.sources) ? DFLT_IX.sources.find((s) => s && s.id === id) : null) || null;
   const dfltPill = (id) => { const s = dfltSource(id); return (s && s.pill) || String(id || "").toUpperCase(); };
@@ -4082,12 +4095,13 @@
   // be fetched, and every line is the line as it rests). It said «the book
   // file is here», so at rest it turned true only after a card had asked
   // for the file, and two checks waited out 30 seconds on every page they
-  // loaded at rest (the review of 15 November 2026)
+  // loaded at rest (the review of 15 November 2026). And not while a built
+  // section a press left to paint still waits (DFLT_STALE, dfltRepaint)
   const dfltSay = () => {
     const first = dfltFirstNow() || dfltFirst;
     const note = document.getElementById("default-note");
     window.__default = { on: dfltFirst, second: DFLT_BOOK ? dfltSecond(first) : null, auto: DFLT_BOOK ? dfltAuto(first) : null, chosen: { ...dfltChosen },
-      ready: !DFLT_BOOK || !!DEFAULT_PICKS || !dfltFirstNow() || dfltFirstNow() === "step", failed: dfltFailed, book: DFLT_BOOK ? BOOK : null, note: note && !note.hidden ? (note.querySelector(".say") || note).textContent : null };
+      ready: (!DFLT_BOOK || !!DEFAULT_PICKS || !dfltFirstNow() || dfltFirstNow() === "step") && !DFLT_STALE.size, failed: dfltFailed, book: DFLT_BOOK ? BOOK : null, note: note && !note.hidden ? (note.querySelector(".say") || note).textContent : null };
   };
   // the book's picks, fetched once (modeled on pieceBookReady and
   // suggestedReady): refused unless it is this book's file with a place for
@@ -4101,7 +4115,8 @@
   // the file landing by any path (a press, a card, the boot) draws again
   // what reads it: under a source other than STEP every line, the pills,
   // the note and the card standing open; under STEP, or none lit, only the
-  // pills, the note and the card, since STEP's lines read the index alone
+  // pills and the note, since STEP's lines read the index alone (the card
+  // standing open is not built again there: reopenCardFree)
   // (the review of 14 November 2026: the first card at rest repainted every
   // built line of Psalms in one task of 22 seconds and moved none of them).
   // One that fails says so on the row and in the note, the lines already as
@@ -4111,14 +4126,17 @@
     if (!DFLT_BOOK) return Promise.resolve(null);
     if (!dfltWait) {
       dfltFailed = false;
-      dfltWait = fetch(`${ROOT}data/default-picks/${DFLT_BOOK.file}`)
+      // the request made beside the zone for this file (dfltEarly), taken once
+      const early = dfltEarly, ask = () => fetch(`${ROOT}data/default-picks/${DFLT_BOOK.file}`);
+      dfltEarly = null;
+      dfltWait = (early ? early.then((e) => (e && e.file === DFLT_BOOK.file ? e.res : ask())) : ask())
         .then((r) => { if (!r.ok) throw new Error(`default picks ${r.status}`); return unpack(r); })
         .then((f) => {
           if (!f || f.schema_version !== "DEFAULT_PICKS_BOOK_V1" || f.book !== BOOK || !Array.isArray(f.places) || f.places.length !== DFLT_BOOK.entries || !Array.isArray(f.bdb_words))
             throw new Error("default picks: not this book's file");
           return f;
         })
-        .then((f) => { const first = dfltFirstNow(); DEFAULT_PICKS = f; dfltFailed = false; reopenForDefaults(!first || first === "step"); return f; },
+        .then((f) => { const first = dfltFirstNow(); DEFAULT_PICKS = f; dfltFailed = false; reopenForDefaults(!first || first === "step", true); return f; },
           (e) => { dfltWait = null; dfltFailed = true; dfltSay(); paintDefaultPills(); throw e; });
     }
     return dfltWait;
@@ -4556,6 +4574,23 @@
   // the gate.
   const namesMarked = () => !!(zone && zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice && zone.emitted_from.toggles.lattice.names);
   const isNamePlace = (word) => !namesMarked() || !!(word && word.np);
+  // THE BOOK'S FILE ASKED BESIDE THE ZONE (the completeness critic of 15
+  // November 2026: under a kept MACULA, UBS or BDB no word is drawn until the
+  // book's file is here, and it was asked only once the zone and every index
+  // had been read, Psalms under BDB at 618 ms against the zone's 290 ms, so
+  // its transfer came after the zone's instead of beside it). Under a source
+  // other than STEP the index is asked here too, and the book's file the
+  // moment the index names it, while the zone is still on its way; the first
+  // fetch of the file takes that request (dfltEarly). At rest nothing is
+  // asked here: STEP's lines read the index alone
+  if (dfltFirst !== "step") {
+    dfltEarly = fetch(`${ROOT}data/default-picks/index.json`).then((r) => (r.ok ? r.json() : null))
+      .then((ix) => {
+        const b = ix && ix.schema_version === "DEFAULT_PICKS_INDEX_V1" && ix.books ? ix.books[BOOK] : null;
+        return b && b.file ? { file: b.file, res: fetch(`${ROOT}data/default-picks/${b.file}`).catch((e) => ({ ok: false, status: String((e && e.message) || e) })) } : null;
+      })
+      .catch(() => null);
+  }
   try {
     [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, WORD_SENSES, DFLT_IX, KINDS_REC, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
@@ -6149,14 +6184,22 @@
     }
     return DFLT_HALVES.get(word) || null;
   };
-  const defaultAt = (word) => {
+  // (the source's line at a word with such a reading held whole: dfltAcross; defaultAt, below, also holds one unit)
+  const dfltAcross = (word) => {
     const d = defaultAtWord(word);
     const across = d ? dfltHalvesOf(word) : null;
     return !across || across.every((w) => w === word || (defaultAtWord(w) || {}).src === d.src) ? d : null;
   };
+  // the words of one unit its source reads at every word of it, where they
+  // stand apart on the page, for a word of it, or null (set with dfltUnitOf,
+  // below, where the unit is told): its line is held, the line as it rests
+  let dfltApartUnit = () => null;
+  const defaultAt = (word) => { const d = dfltAcross(word); return d && dfltApartUnit(word) ? null : d; };
   // the source's own line at a word of such a reading, held back because the
   // source does not read every word of it (said on the card), or null
-  const dfltHalfHeld = (word) => (word && !defaultAt(word) ? (dfltHalvesOf(word) ? defaultAtWord(word) : null) : null);
+  const dfltHalfHeld = (word) => (word && !defaultAt(word) && !dfltApartUnit(word) ? (dfltHalvesOf(word) ? defaultAtWord(word) : null) : null);
+  // and at a word of one unit whose words stand apart, with those words (said on the card), or null
+  const dfltUnitHeld = (word) => { const ws = word ? dfltApartUnit(word) : null, d = ws ? dfltAcross(word) : null; return d ? { d, ws } : null; };
   // a joined run takes the source's line only where the first source itself
   // reads every word of it (the brief's call 5); elsewhere the run's own line
   // stands, and STEP, today's line, never takes one
@@ -8890,6 +8933,60 @@
     const whole = filed();
     for (const g of (v && v.readings) || []) for (const q of g.places) whole.file(g, q);
     for (const a of alts) for (const g of (a && a.v && a.v.readings) || []) for (const q of g.places) if (isHere(q)) whole.file(g, q);
+    // A DEFAULT SOURCE'S OWN WORDS COUNT WHERE THEY STAND (the completeness
+    // critic of 15 November 2026: with the concordance on, the table said «0
+    // locations» for the line's own reading wherever it was a row the page
+    // made for a default source, STEP's own words at all 232 of their places
+    // at rest, MACULA's «and happened» at Ruth 1:1:1, about half the lines
+    // under MACULA or UBS; the owner's words on such a zero are quoted
+    // below). The store files no row the page made, so the default sources'
+    // own readings are filed beside the store's, for the whole word: at every
+    // place of this book where these letters stand and a source reads those
+    // words (each pick, as the card makes its pills; from its book file, and
+    // STEP's own words and the places STEP leaves from the index until the
+    // file is here), this place among them, by the store's byte equality. A
+    // place takes the language the store gives it where the store reads it.
+    const madeIn = { picks: undefined, bt: null };
+    const madeOf = (t) => {
+      if (!DFLT_BOOK || !zone) return [];
+      if (madeIn.picks !== DEFAULT_PICKS || !madeIn.bt) {
+        madeIn.picks = DEFAULT_PICKS; madeIn.bt = new Map();
+        // the places of this book by their letters, made once a page (DICT.atLetters)
+        if (!DICT.atLetters) {
+          DICT.atLetters = new Map();
+          for (const sec of zone.sections || []) {
+            let wp = 0;
+            for (const w of sec.words || []) {
+              if (!w || w.mark) continue;
+              wp += 1;
+              if (w.kq || !w.k) continue;
+              const L = lettersOf(w.k);
+              if (!DICT.atLetters.has(L)) DICT.atLetters.set(L, []);
+              DICT.atLetters.get(L).push({ n: WORD_N.get(w), book: BOOK, ref: sec.label, w_page: wp, pointed: String(w.s || "").replace(/\u05be+$/u, ""), kind: "word" });
+            }
+          }
+        }
+        const langAt = new Map();
+        for (const g of (v && v.readings) || []) for (const q of g.places) if (q.lang && !langAt.has(placeKey(q))) langAt.set(placeKey(q), q.lang);
+        for (const at of DICT.atLetters.get(key) || []) {
+          if (!at.n) continue;
+          const texts = new Set();
+          for (const src of DFLT_IDS) {
+            if (DEFAULT_PICKS) { for (const p of dfltPicks(src, at.n)) if (p.text) texts.add(p.text); const l = lineOf(src, at.n); if (l) texts.add(l); }
+            else if (src === "step") { if (DFLT_STEP_WORDS && DFLT_STEP_WORDS.has(at.n)) texts.add(DFLT_STEP_WORDS.get(at.n)); }
+            else { const l = leafLine(DFLT_LEAVES ? DFLT_LEAVES.get(at.n) : null, src); if (l) texts.add(l); }
+          }
+          const q = { book: at.book, ref: at.ref, w_page: at.w_page, pointed: at.pointed, kind: at.kind, ...(langAt.has(placeKey(at)) ? { lang: langAt.get(placeKey(at)) } : {}) };
+          for (const x of texts) {
+            const t = spanJoin(x);
+            if (!madeIn.bt.has(t)) madeIn.bt.set(t, new Map());
+            madeIn.bt.get(t).set(placeKey(q), q);
+          }
+        }
+      }
+      const m = madeIn.bt.get(t);
+      return m ? [...m.values()] : [];
+    };
     // A BLOCK'S OWN LETTERS (the owner, 2026-10-19, at Daniel 1:1, of a
     // reading of the word's second block counted at no place: "why would
     // sleep be 0 other places"). A reading pressed on a block of the word's
@@ -8924,9 +9021,15 @@
       const L = b ? lettersOf(b.textContent) : null;
       return bs.length > 1 && L && L !== key ? L : null;
     };
-    const placesOfText = (t) => { const e = byText.get(t); return e ? [...e.places.values()] : []; };
+    // (the whole word's readings with the default sources' own beside them, madeOf; a block's own letters without)
+    const placesOfText = (t) => {
+      const e = byText.get(t), own = e ? [...e.places.values()] : [];
+      if (byText !== whole.bt) return own;
+      const seen = new Set(own.map(placeKey));
+      return [...own, ...madeOf(t).filter((q) => !seen.has(placeKey(q)))];
+    };
     const piecesOfText = (t) => { const e = byText.get(t); return e ? [...e.pieces.values()] : []; };
-    const countOf = (t) => { const e = byText.get(t); return e ? e.places.size : 0; };
+    const countOf = (t) => placesOfText(t).length;
     // THE LANGUAGE OF A PLACE (dictionary store v1.2, Moses's relay
     // FOR-ELIJAH-v79.1, 22 October 2026): every place of a reading carries
     // the language its source's own line gives, HEBREW or ARAMAIC (TAHOT's
@@ -10152,7 +10255,11 @@
     // while the chip beside said MACULA (the integration of 14 November 2026),
     // and the three each worked it out apart (the review of that night)
     const piecesWho = !opts.run && bin === zone && word ? pieceSource(word.pg) : null;
-    const placeWho = piecesWho === "macula" ? dfltPill("macula") : "TAHOT";
+    // named as the source's pill names it, and so as the piece line below
+    // names it («here STEP reads»): TAHOT's pieces are STEP's reading (the
+    // completeness critic of 15 November 2026: one card said «reading ·
+    // TAHOT at this place» over «here STEP reads» for the same pieces)
+    const placeWho = pieceSourcePill(piecesWho) || dfltPill("step");
     // a form the reader has ruled reads the ruling: the label says its reach
     // from the card's opening, as markRuled says it at the press, and names
     // no source (it said «TAHOT at this place» over a ruled «vindicate» at
@@ -10163,6 +10270,13 @@
       const p0 = dAt.src === "bdb" ? dfltPicks("bdb", WORD_N.get(word))[0] : null;
       nowK.textContent = `reading \u00b7 ${dfltPill(dAt.src)} at this place${p0 ? ` \u00b7 ${p0.note}` : ""}`;
     } else if (dAt) nowK.textContent = `reading \u00b7 ${dfltPill(dAt.src)} at this place \u00b7 ${dfltPill(dAt.of)} has none here`;
+    // a word of one unit its source reads at every word of it, held because
+    // its words stand apart (dfltUnitHeld): the place's line stands, and the
+    // label says why
+    else if (!opts.run && bin === zone && word && dfltUnitHeld(word)) {
+      const h = dfltUnitHeld(word);
+      nowK.textContent = `reading \u00b7 ${placeWho} at this place \u00b7 ${dfltPill(h.d.src)} reads these ${h.ws.length} words as one, and they stand apart`;
+    }
     // a word of the place's reading across words, its source's own line held
     // back because that source does not read every word of it (dfltHalvesOf):
     // the place's line stands, and the label says why, not «has none here»
@@ -10687,7 +10801,7 @@
       // line, filling out UBS» at Ruth 1:1:3, where UBS reads «to judge»);
       // and not where the first's own line is held back at a word of the
       // place's reading across words (dfltHalfHeld): it has one there
-      return { n, on: null, piece: placeHere, filling: DEFAULT_PICKS && first && first !== "step" && !dfltHalfHeld(word) ? first : null };
+      return { n, on: null, piece: placeHere, filling: DEFAULT_PICKS && first && first !== "step" && !dfltHalfHeld(word) && !dfltUnitHeld(word) ? first : null };
     };
     // " · on the line", or " · on the line, filling out STEP"
     const dfltOnLine = (of) => Object.assign(document.createElement("span"), { className: "r-on", textContent: ` \u00b7 on the line${of ? `, filling out ${dfltPill(of)}` : ""}` });
@@ -10877,9 +10991,9 @@
       // the words as it gives them (UBS's «-» and «NO DATA YET» too, which the
       // line never takes). Text, never a switch: the row of pills stays the
       // one place a source is chosen. The source whose words the line prints
-      // says so. The book's file arrives with the first card, asked once, and
-      // this card opened again when it is here, as the BSB's does.
-      // (its landing draws again what reads it, this card with it: reopenForDefaults)
+      // says so. The book's file is asked by the first card, once; at rest
+      // that card is not built again when it lands, and the cards opened
+      // after carry these lines (reopenForDefaults, reopenCardFree)
       if (dfltHere && !DEFAULT_PICKS && !dfltWait) defaultPicksReady().catch(() => { /* said on the row and in the note */ });
       // every source but the one the place's line said (pieceSaid): STEP's
       // own picks stand here wherever the place's line did not say them (no
@@ -11109,7 +11223,14 @@
         // the line's pieces are this division's blocks, letter for letter.
         if (!opts.run && !setWhole && cover.length > 1) {
           const wbx = el && el.closest ? el.closest(".wb") : null;
-          const pcs = wbx && wbx.querySelector(":scope > .g > .g-pcs");
+          // a word of a run: the line under it is the run's part for it,
+          // which carries the pieces (refreshJoinGloss); its own line is not
+          // drawn there and carries none (the chain's word at Ruth 1:2:9
+          // opened on the book's «young» for its block while its part read
+          // «sons», on live too: check-line-reads-the-place-v1 P3)
+          const runx = wbx && wbx.closest(".wjoin");
+          const partx = runx && runx.__gloss && runx.__ink ? runx.__gloss.querySelector(`:scope > .g-part[data-wi="${[...runx.__ink.querySelectorAll(":scope > .wb")].indexOf(wbx)}"]`) : null;
+          const pcs = partx ? partx.querySelector(":scope > .g-pcs") : wbx && wbx.querySelector(":scope > .g > .g-pcs");
           const parts = pcs ? [...pcs.querySelectorAll(":scope > .g-pc")] : [];
           const counts = pcs ? String(pcs.dataset.counts || "").split(",").map(Number) : [];
           const i = cellAt(surface, cellIdx);
@@ -12105,6 +12226,85 @@
       b_n: w.b_n || null,
     };
   };
+  // ONE UNIT A SOURCE READS AT EVERY WORD OF IT PRINTS ONCE (the completeness
+  // critic of 15 November 2026: a source that files one reading at each of
+  // two words printed it under both, BDB's «Bethel · sense 1» twice at Amos
+  // 3:14:10-11, MACULA's «with food» twice at Daniel 1:8:8-9). The converse
+  // of the hold on a reading across words (dfltHalfHeld), decided from the
+  // data and never from the words' likeness: the words of one reading the place gives across words
+  // (dfltHalvesOf) or of one entry across words, the lattice's headword the
+  // same at each and its letters running across their boundary («Bethel» at
+  // «Beth-» «-el», the headword of both words at Daniel 1:8:8-9), where the
+  // source's line at every word is its own, of one layer, from one and the
+  // same pick in its book file (the record and sense BDB places by the
+  // entry's number, the UBS meaning with its pieces, MACULA's words as its
+  // book file gives them at both places), are one unit: it prints once, as
+  // a joined run read whole prints, over the words (refreshJoinGloss), where
+  // its words stand in one cell of the page (dfltTogether). Where they stand
+  // apart (39 units of BDB's in the 39 books, none of MACULA's or UBS's:
+  // «older name of Hebron» at Kiriath Arba, Genesis 23:2:3-4; «comrade of
+  // Daniel» at Abed Nego; Pi of Pi-hahiroth standing in another run's cell
+  // at Numbers 33:7:5) no line stands over them all: printed under each it
+  // is the doubled word, and under one of them it would read as that word's
+  // alone. So, as a joined run the source does not read whole keeps its own
+  // line (runTakesDefault), each keeps its line as it rests, and the card
+  // says why (dfltUnitHeld). The
+  // same text at two words of two entries («Noah, Noah», «Tent of Meeting» at
+  // both its words) is two readings and prints twice. Not told: a source's
+  // line that reads its neighbors' words where the data marks nothing across
+  // them (UBS's «Aram Zoba» filed at the object marker of II Samuel 10:6:15,
+  // «Aram» and «Zobah» beside it unread by UBS): the book file gives each
+  // place UBS's meaning and its pieces but not the words that meaning covers,
+  // which the corpus lane's ledger would have to give (UBS's own word span
+  // for each meaning it files) before the page can tell it
+  let DFLT_ENTRIES = null, DFLT_SEAT = null;   // each word of one entry across words -> its words; each word -> [its section, its index there]
+  const dfltEntriesOf = (word) => {
+    if (!DFLT_ENTRIES) {
+      DFLT_ENTRIES = new WeakMap(); DFLT_SEAT = new WeakMap();
+      for (const sec of zone.sections || []) {
+        (sec.words || []).forEach((w, i) => { if (w && typeof w === "object") DFLT_SEAT.set(w, [sec, i]); });
+        const ws = (sec.words || []).filter((w) => w && !w.mark && !w.kq);
+        for (let i = 0; i < ws.length;) {
+          let j = i;
+          while (ws[i].h && j + 1 < ws.length && ws[j + 1].h === ws[i].h) j += 1;
+          if (j > i) {
+            // the words the headword's letters stand in, from the first to the last
+            const ks = ws.slice(i, j + 1).map((w) => lettersOf(w.k)), h = lettersOf(ws[i].h), at = h ? ks.join("").indexOf(h) : -1;
+            if (at >= 0) {
+              let from = -1, to = -1, pos = 0;
+              ks.forEach((k, x) => { if (from < 0 && at < pos + k.length) from = x; if (at + h.length > pos) to = x; pos += k.length; });
+              if (to > from) { const g = ws.slice(i + from, i + to + 1); for (const w of g) DFLT_ENTRIES.set(w, g); }
+            }
+          }
+          i = j + 1;
+        }
+      }
+    }
+    return DFLT_ENTRIES.get(word) || null;
+  };
+  // the unit a word's line is a word of under the sources in force, or null
+  const dfltUnitOf = (word) => {
+    const ws = word && DEFAULT_PICKS ? dfltEntriesOf(word) || dfltHalvesOf(word) : null;
+    const d = ws ? dfltAcross(word) : null;
+    if (!d || d.src === "step") return null;
+    const pickAt = (w) => { const at = DEFAULT_PICKS.places[(WORD_N.get(w) || 0) - 1]; return at ? JSON.stringify(at[DFLT_SLOT[d.src]]) : ""; };
+    const p0 = pickAt(word);
+    return p0 && ws.every((w) => { const e = w === word ? d : dfltAcross(w); return !!e && e.src === d.src && e.layer === d.layer && pickAt(w) === p0; }) ? ws : null;
+  };
+  // whether a unit's words stand in one cell of the page, as the section lays
+  // them (appendWord): each and the next joined by the maqaf the text writes
+  // while the maqaf joins (the joined words switch), or held in one run the
+  // lanes laid (runAt), with any mark between them inside it
+  const dfltTogether = (ws) => ws.every((w, x) => {
+    if (!x) return true;
+    const a = DFLT_SEAT.get(ws[x - 1]), b = DFLT_SEAT.get(w);
+    if (!a || !b || a[0] !== b[0]) return false;
+    const pj = ws[x - 1].presentation_join;
+    if (b[1] === a[1] + 1 && pj && pj.join_next_without_separator && (maqafJoin !== "pieces" || !HUD_TOGGLES_IX)) return true;
+    const r = runAt(a[0].unit, a[1]), q = runAt(b[0].unit, b[1]);
+    return !!((r && r.idx.includes(b[1])) || (q && q.idx.includes(a[1])));
+  });
+  dfltApartUnit = (word) => { const u = dfltUnitOf(word); return u && !dfltTogether(u) ? u : null; };
 
   // One word block, used by the text, by the titles, and by a commentary that
   // came through the chain — same shape, same gloss line, same tap. The gloss
@@ -12204,6 +12404,24 @@
       }
     }
     const wbs = [...run.__ink.querySelectorAll(":scope > .wb")];
+    // ONE UNIT A SOURCE READS AT EVERY WORD OF IT PRINTS ONCE (dfltUnitOf):
+    // one part over all its words (data-wn), with the words and the chip its
+    // first word's line wears, tied to all their ink as a run read whole is
+    // (drawTies), the run's only part where it is every word of the run; its
+    // other words draw no part of their own (whether or not the run takes
+    // the source's line whole: its words' lines are drawn in parts either
+    // way). Only where each word's own line is the source's (not ruled, not
+    // a live answer) and its words stand side by side in the run
+    const unitSkip = new Set(), unitSpan = new Map();
+    if (heldRun === null && run.__words && run.__words.length === wbs.length) {
+      const units = run.__words.map((w) => dfltUnitOf(w));
+      const own = (j) => { const g = wbs[j].querySelector(":scope > .g"); return !!g && !g.dataset.live && !!g.dataset.src && g.dataset.src === (defaultAt(run.__words[j]) || {}).src; };
+      units.forEach((u, j) => {
+        const at = u ? u.map((w) => run.__words.indexOf(w)) : [];
+        if (!u || at.some((x, k) => x < 0 || x !== at[0] + k) || !at.every(own)) return;
+        if (at[0] === j) unitSpan.set(j, u.length); else unitSkip.add(j);
+      });
+    }
     const parts = [];
     if (heldRun !== null) run.classList.add("chosen");
     for (const [j, wb] of wbs.entries()) {
@@ -12213,6 +12431,7 @@
         parts.push({ t: spanJoin(chosen.text), lic: wm ? licenseChipFor([wm]) : null, wi: j });
         continue;
       }
+      if (unitSkip.has(j)) continue;
       const g = wb.querySelector(":scope > .g");
       if (!g) continue;
       const c = g.cloneNode(true);
@@ -12222,7 +12441,7 @@
       const said = t && t !== "\u2014" ? t : "";
       // a chip may never be dropped for want of a reading beside it
       if (!said && !lic) continue;
-      parts.push({ t: said, lic, wi: j });
+      parts.push({ t: said, lic, wi: j, wn: unitSpan.get(j) || 1 });
     }
     let line = run.__gloss;
     if (!line) {
@@ -12267,6 +12486,7 @@
       const cell = document.createElement("span");
       cell.className = "g-part";
       cell.dataset.wi = String(part.wi);   // the word of the run this part reads, for the tie
+      if (part.wn > 1) cell.dataset.wn = String(part.wn);   // and the words after it a unit's part reads with it
       if (part.t === SIGN_GAP) cell.classList.add("gap");
       cell.append(document.createTextNode(part.t || "\u2014"));
       pieceLine(cell, (run.__words || [])[part.wi]);
@@ -12684,6 +12904,17 @@
     // one height for the word, its ink's; a maqaf belongs to the piece it stands in
     for (const x of boxes) { x.T = whole.T; x.B = whole.B; x.maqafs = whole.maqafs.filter((m) => m.R > x.L && m.L < x.R); }
     return boxes.map((x, i) => ({ he: x, en: enBoxes[i], wi, piece: i, n: boxes.length, gap: pcs[i].classList.contains("gap") }));
+  };
+  // a part a unit prints once over several words of a run (refreshJoinGloss,
+  // data-wn) is tied to all their ink, from the first's to the last's, one
+  // blob, as a run read whole is tied to all of its own
+  const spanPairs = (ink, from, to, enEl, wi) => {
+    const map = textMap(ink);
+    const a = map.nodes.find((t) => from.contains(t.n)), z = [...map.nodes].reverse().find((t) => to.contains(t.n));
+    const he = a && z ? inkBox(map, a.at, z.at + z.len) : null, en = he ? enWhole(enEl) : null;
+    if (!he || !en) return [];
+    he.maqafs = maqafsIn(map).filter((m) => m.R > he.L && m.L < he.R);
+    return [{ he, en, wi, piece: 0, n: 1, gap: false }];
   };
   // the shapes for a host (a run, or one word) from its pairs, each a box of
   // Hebrew ink and a box of English in the window's frame
@@ -13364,7 +13595,7 @@
     // division answers the part's + for +; a part dropped under the signs
     // switch leaves its word with no tie, and the others keep theirs
     const pairs = [];
-    for (const p of parts) { const wi = Number(p.dataset.wi); if (words[wi]) pairs.push(...piecePairs(words[wi], p, wi)); }
+    for (const p of parts) { const wi = Number(p.dataset.wi), wn = Number(p.dataset.wn || 1); if (words[wi]) pairs.push(...(wn > 1 && words[wi + wn - 1] ? spanPairs(run.__ink, words[wi], words[wi + wn - 1], p, wi) : piecePairs(words[wi], p, wi))); }
     // ONE BLOB FOR A RUN READ WHOLE (the owner, 2026-10-14, of et-haraqia (Genesis 1:7):
     // "when i have the megacompspan weld or full form it should
     // automatically merge the blob and get rid of the + sign in
@@ -14601,10 +14832,12 @@
     const c = ge.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
     return c.textContent === line;
   };
-  /** Redraw every enrolled word's line under the table as it now stands. */
-  const repaintGlossOrder = () => {
+  /** Redraw every enrolled word's line under the table as it now stands
+   *  (stands: these words alone, of the sections a press of the default
+   *  sources paints in turn, dfltRepaint: no pairs, no new switch). */
+  const repaintGlossOrder = (stands = null) => {
     const runs = new Set();
-    for (const st of GLOSS_STANDS) {
+    for (const st of stands || GLOSS_STANDS) {
       // a one-form word may read past the baked column (the headword's
       // lemma-sorted reading, or a lattice order's first card); the joined
       // parts of a several-form word keep to the column
@@ -14655,13 +14888,15 @@
     for (const r of runs) refreshJoinGloss(r);
     // the pairs are enrolled apart (their line reads ONE half), and move with
     // the table the same way
-    paintPairs();
+    if (!stands) paintPairs();
     // every line is painted: the lone words' blobs near the screen are drawn
     // from them now, in the same turn, as the runs' were above, and the rest
-    // follow (tieAgainNow)
-    tieAgainNow();
-    switchGen += 1;
-    repaintLive(GLOSS_STANDS);
+    // follow (tieAgainNow; for a stretch, once its caller has painted all it
+    // paints in that turn)
+    if (!stands) tieAgainNow();
+    // all painted: no section waits for an earlier press of the sources
+    if (!stands) { switchGen += 1; DFLT_STALE.clear(); }
+    repaintLive(stands || GLOSS_STANDS);
   };
 
   // THE LINE FOLLOWS THE CARD UNDER THE SOURCE SWITCHES.
@@ -15854,7 +16089,11 @@
       else if (!place) btn.title = `the line reads «${dfltOrderSaid()}» on the switches; press ${id === "step" ? `for ${DFLT_AS_IT_RESTS}` : `to read it from ${dfltPill(id)}`} here`;
       // STEP: what its layer is, then the share where STEP has its own reading and that line stands (has.step)
       else if (id === "step") btn.title = `${dfltStepLayer()} — STEP has its own reading, and this line stands, at ${a} of ${work}${on ? " · press to show or hide the note" : ""}`;
-      else btn.title = `${DFLT_TITLES[id] || dfltPill(id)} — ${a} of ${work}${on ? " · press again to go back to STEP" : ""}`;
+      // pressed again, a lit pill gives the line back to STEP; where STEP is
+      // switched off no pill is lit after it, and the line is as the switches
+      // leave it (the completeness critic of 15 November 2026: the title
+      // promised STEP while STEP's pill was dead)
+      else btn.title = `${DFLT_TITLES[id] || dfltPill(id)} — ${a} of ${work}${!on ? "" : dfltOn("step") ? " · press again to go back to STEP" : ` · press again for the line as the switches leave it, no pill lit: ${dfltShort("step")} is switched off on the switches`}`;
       // the lit STEP shows and hides the note: a disclosure, and said so
       if (on && id === "step" && place) { btn.setAttribute("aria-controls", "default-note"); btn.setAttribute("aria-expanded", String(!!dfltNote)); }
       else { btn.removeAttribute("aria-controls"); btn.removeAttribute("aria-expanded"); }
@@ -18179,10 +18418,83 @@
   // of the sections that happened to be built when it was turned on — a
   // section arriving later arrives into it.
   let commentaryLayerOn = false;
+  // A PRESS OF THE DEFAULT SOURCES PAINTS WHAT IS IN VIEW AT ONCE, AND THE
+  // REST BEFORE IT IS SEEN (the completeness critic of 15 November 2026: a
+  // press repainted every built line in one task, and Psalms built whole
+  // held the page for 10 to 12 seconds). The press (reopenForDefaults)
+  // paints the sections within a screen of the window and the open card's
+  // at once (dfltRepaint), and leaves every other built section stale
+  // (DFLT_STALE, with its words' lines): each is painted in slices of about
+  // a fifth of a second (dfltFreshStep), those nearest the window first, as
+  // the blobs are drawn (tieLaterStep), and at once wherever it is about to
+  // be seen: a scroll
+  // that brings it within a screen of the window (a scroll is handled
+  // before the frame it brings is drawn), and anything that reaches into a
+  // section's words (materialise: a landing, the export, a tool reading the
+  // lines). Until the last is painted the page does not say its lines
+  // stand (dfltSay).
+  const dfltFresh = (el) => {
+    const sts = DFLT_STALE.get(el);
+    if (!sts) return;
+    DFLT_STALE.delete(el);
+    repaintGlossOrder(sts);
+  };
+  // the section at a height of the window (the first whose bottom is below it), by halves of the page's order
+  const sectionAtY = (y) => {
+    let lo = 0, hi = sectionEls.length - 1;
+    while (lo < hi) { const m = (lo + hi) >> 1; if (sectionEls[m].el.getBoundingClientRect().bottom < y) lo = m + 1; else hi = m; }
+    return lo;
+  };
+  // A slice paints for about a fifth of a second: between slices the
+  // browser lays out and paints the page, and on a book built whole that
+  // costs as much as the slice (Psalms under MACULA: 40 ms slices took over
+  // two minutes in all, a fifth of a second 38 seconds, the one task of
+  // before 10 to 12 seconds, twice: the press and the book file's landing)
+  let dfltFreshTimer = 0;
+  const dfltFreshStep = () => {
+    dfltFreshTimer = 0;
+    const at = DFLT_STALE.size && sectionEls.length ? sectionAtY((window.innerHeight || 800) / 2) : 0, t0 = performance.now();
+    let d = 0;
+    for (; DFLT_STALE.size && (at - d >= 0 || at + d < sectionEls.length) && performance.now() - t0 < 200; d += 1) {
+      if (at + d < sectionEls.length) dfltFresh(sectionEls[at + d].el);
+      if (d && at - d >= 0) dfltFresh(sectionEls[at - d].el);
+    }
+    // a stale section the page's sections do not hold is painted as it is
+    if (DFLT_STALE.size && at - d < 0 && at + d >= sectionEls.length) for (const el of [...DFLT_STALE.keys()]) dfltFresh(el);
+    tieAgainNow();
+    if (DFLT_STALE.size) dfltFreshTimer = setTimeout(dfltFreshStep, 0); else dfltSay();
+  };
+  window.addEventListener("scroll", () => {
+    if (!DFLT_STALE.size || !sectionEls.length) return;
+    const vh = window.innerHeight || 800, n = DFLT_STALE.size;
+    for (let i = sectionAtY(-vh); i < sectionEls.length && sectionEls[i].el.getBoundingClientRect().top < 2 * vh; i += 1) dfltFresh(sectionEls[i].el);
+    if (DFLT_STALE.size < n) tieAgainNow();
+    if (!DFLT_STALE.size) dfltSay();
+  }, { passive: true });
+  const dfltRepaint = () => {
+    clearTimeout(dfltFreshTimer); dfltFreshTimer = 0;
+    DFLT_STALE.clear();
+    const vh = window.innerHeight || 800, open = activeEl && activeEl.closest ? activeEl.closest("section.seg") : null;
+    const near = new Map(), now = [];
+    for (const st of GLOSS_STANDS) {
+      const sec = st.ge.isConnected ? st.ge.closest("section.seg") : null;
+      if (sec && !near.has(sec)) { const r = sec.getBoundingClientRect(); near.set(sec, sec === open || (r.bottom > -vh && r.top < 2 * vh)); }
+      if (!sec || near.get(sec)) { now.push(st); continue; }
+      if (!DFLT_STALE.has(sec)) DFLT_STALE.set(sec, []);
+      DFLT_STALE.get(sec).push(st);
+    }
+    switchGen += 1;
+    paintPairs();
+    repaintGlossOrder(now);
+    tieAgainNow();
+    if (DFLT_STALE.size) dfltFreshTimer = setTimeout(dfltFreshStep, 0);
+  };
   const materialise = (el) => {
     const build = el && el.__body;
-    if (!build) return false;
+    // a built section a press left stale is painted before anything reads it
+    if (!build) { if (el && DFLT_STALE.has(el)) { dfltFresh(el); clearTimeout(tieAgainTimer); tieAgainTimer = setTimeout(tieAgainNow, 60); } return false; }
     el.__body = null;
+    DFLT_STALE.delete(el);   // laid again, it reads the sources as they stand
     build();
     el.classList.remove("seg-wait");
     // a section drawn while sources are off draws its baked lines first, then
@@ -18329,11 +18641,55 @@
   // stands as the sources now draw it, because the reads switch or the
   // reset has just drawn them, or the book's file landed under STEP, whose
   // lines read the index alone), and the open card built again under it.
-  // No cell moves, so no section is laid again.
-  reopenForDefaults = (drawn = false) => {
+  // No cell moves, so no section is laid again. The lines in view are
+  // painted at once, the rest before they are seen (dfltRepaint). The book's
+  // file landing (landed) builds the open card again only where it moved
+  // the lines, and never under the reader's hand (reopenCardFree).
+  // THE FILE LANDS UNDER THE READER'S HAND (the completeness critic of 15
+  // November 2026: at rest the first card asks for the book's file, and
+  // when it landed the card was built again at once: at 1100 by 900 the
+  // source lines it added sent the card tight, its pills went up 183 px and
+  // the focus fell to the page). AT REST IT IS NOT BUILT AGAIN (the review
+  // of the second fix round, 15 November 2026: held only for a pointer
+  // resting on it, the card a finger opened on a phone, and one opened and
+  // left alone, were still built again, their pills 184 px up; and tight,
+  // the card hid the very lines the file added, and the place's own line
+  // with them). Under STEP, or none lit, every line stood as drawn before
+  // the file landed and nothing on the card is contradicted: what the file
+  // adds, each source's line at the place, comes with the next card opened.
+  // Under a source still waiting for its file the line under the word has
+  // just moved, and the card follows it, but not under the reader's hand:
+  // the pointer over the card, the focus in it, or a finger's last press on
+  // it or on the word that opened it (a finger has no hover). There the card
+  // stands as it is until the hand leaves (the pointer off it, the focus out
+  // of it, a press anywhere else), and is built again then; a card closed or
+  // built again meanwhile is let be.
+  let dfltHeld = false;
+  // a finger's last press (a pen's too; a mouse's hand is its hover): the
+  // word whose card it pressed, where it pressed a card, and what it pressed
+  let dfltFinger = null;
+  document.addEventListener("pointerdown", (e) => { dfltFinger = e.pointerType === "mouse" ? null : { on: !hud.hidden && hud.contains(e.target) ? activeEl : null, at: e.target }; }, true);
+  const reopenCardFree = () => {
+    if (!activeEl || hud.hidden) return;
+    const wordOf = (x) => (x && x.closest ? x.closest(".wb") : null);
+    const onHand = () => hud.matches(":hover") || hud.contains(document.activeElement)
+      || !!(dfltFinger && activeEl && (dfltFinger.on === activeEl || activeEl.contains(dfltFinger.at) || (!!wordOf(dfltFinger.at) && wordOf(dfltFinger.at) === wordOf(activeEl))));
+    if (!onHand()) { reopenCard(); return; }
+    if (dfltHeld) return;
+    const gen = hudGen, h = {};
+    const stop = () => { hud.removeEventListener("pointerleave", h.look); hud.removeEventListener("focusout", h.look); document.removeEventListener("click", h.look, true); dfltHeld = false; };
+    h.look = () => setTimeout(() => {
+      if (gen !== hudGen || hud.hidden) stop();
+      else if (!onHand()) { stop(); reopenCard(); }
+    }, 0);
+    dfltHeld = true;
+    hud.addEventListener("pointerleave", h.look); hud.addEventListener("focusout", h.look); document.addEventListener("click", h.look, true);
+  };
+  reopenForDefaults = (drawn = false, landed = false) => {
     rebuildSourceWords(); paintDefaultPills(); dfltRailRows();
-    if (!drawn) repaintGlossOrder();
-    reopenCard(); dfltSay();
+    if (!drawn) dfltRepaint();
+    if (!landed) reopenCard(); else if (!drawn) reopenCardFree();
+    dfltSay();
   };
   {
     const fold = window.innerHeight * 2.5;

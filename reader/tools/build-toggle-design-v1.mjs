@@ -33,13 +33,15 @@
 // speaks in, the sentence it says to a reader, and — for the ones that are
 // dark — what they are waiting on, in the words the rail itself uses.
 //
-// Run: node tools/build-toggle-design-v1.mjs [--url http://127.0.0.1:8899/zone.html]
-//      With no --url it photographs the first book the shelf holds.
+// Run (from reader/): node tools/build-toggle-design-v1.mjs [--url <a reader address, zone.html?b=<work>>] [--out <folder>]
+//      With no --url it serves this tree from the site's root and photographs its own reader on the first book the
+//      shelf holds; with no --out it writes the site's /toggles/ (index.html and shots/).
 import { startedAs } from "./main-guard-v1.mjs";
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { zonesOnDisk, zoneIdOf, defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { serveTree } from "./serve-tree-v1.mjs";
 
 export const TOGGLE_DESIGN_RULE_ID = "toggle-design-rule-v1-the-page-about-the-switches-is-built-from-the-switches";
 
@@ -119,7 +121,12 @@ if (startedAs(import.meta.url)) {
   // every switch is drawn only under ?rail=all since 2026-10-14 (the book page
   // serves the sources and the forced source suggested label); this page
   // photographs them all, so it opens the reader that way
-  const URL0 = arg("--url", `http://127.0.0.1:8899/zone.html?b=${zonesOnDisk()[0]}`);
+  // THE PAGE PHOTOGRAPHED IS THIS TREE'S OWN unless --url names another: the tree is served here from the site's
+  // root, so the reader's fonts load as they do on the site, on a port the machine gives (tools/serve-tree-v1.mjs).
+  // Until 15 November 2026 the default was a typed port (8899), which another tree's server held that day, so the
+  // pictures could be of a page this tree does not serve
+  const site = arg("--url") ? null : await serveTree(join(HERE, "..", ".."));
+  const URL0 = arg("--url", site ? `${site.base}/reader/zone.html?b=${zonesOnDisk()[0]}` : "");
   const URL = URL0.includes("rail=all") ? URL0 : `${URL0}${URL0.includes("?") ? "&" : "?"}rail=all`;
   // A SWITCH KEPT AS A PLACEHOLDER (the owner, 2026-10-16: "oldest first toggle
   // can go to toggle page as a placeholder"): listed below with the other
@@ -158,15 +165,88 @@ if (startedAs(import.meta.url)) {
   // is a photograph of nothing
   await p.evaluate(() => { const r = document.getElementById("rail"); if (r) r.open = true; document.querySelectorAll(".rail details").forEach((d) => { d.open = true; }); });
   await p.waitForTimeout(400);
-  const drew = [];
+  // EACH ROW PHOTOGRAPHED CLEAR (the completeness critic of 15 November 2026, N6: row-defaults.png had the page's
+  // fixed bottom bar, «Home Menu Top Chapter 1», across the row's sentence). A row is scrolled to the top of the
+  // window, where nothing of the page's stands, and photographed only when every point of it the window shows is
+  // the row's own: a bar, a panel or a card laid over it refuses the page, as a row the rail did not draw does
+  // A ROW TALLER THAN THE CLEAR WINDOW (the sources row on a phone carries the dictionaries that rest shut beside the
+  // sources' own chips, about 912px of a 915px window): no place in a 915px window leaves it clear of the page's
+  // fixed bottom bar, so it is photographed in a window as tall as the row and the bar, at the same width, and the
+  // window goes back after it; every other row is photographed in the phone's own window
+  const PHONE = { width: 412, height: 915 };
+  const drew = [], laidOver = [];
   for (const t of toggles) {
     const el = await p.$(`.rail .row[data-toggle="${t.id}"]`);
     if (!el) continue;
+    const need = await el.evaluate((row) => {
+      const nav = document.getElementById("nav"), bar = nav ? Math.ceil(nav.getBoundingClientRect().height || 0) : 0;
+      return Math.ceil(row.getBoundingClientRect().height) + Math.max(bar, 64) + 24;
+    });
+    const tall = need > PHONE.height;
+    if (tall) { await p.setViewportSize({ width: PHONE.width, height: Math.min(need, 2400) }); await p.waitForTimeout(300); }
+    await el.evaluate((row) => row.scrollIntoView({ block: "start" }));
+    await p.waitForTimeout(250);
+    const over = await el.evaluate((row) => {
+      const r = row.getBoundingClientRect(), seen = new Set();
+      for (let y = Math.max(r.top, 0) + 1; y < Math.min(r.bottom, innerHeight) - 1; y += 6) {
+        for (let x = Math.max(r.left, 0) + 1; x < Math.min(r.right, innerWidth) - 1; x += 6) {
+          const at = document.elementFromPoint(x, y);
+          if (at && !row.contains(at)) { const host = at.closest("[id]"); seen.add(host ? `#${host.id}` : at.tagName.toLowerCase()); }
+        }
+      }
+      return [...seen];
+    });
+    if (over.length) { laidOver.push(`${t.id} (${over.join(", ")})`); if (tall) await p.setViewportSize(PHONE); continue; }
     await el.screenshot({ path: join(SHOTS, `row-${t.id}.png`) });
+    if (tall) { await p.setViewportSize(PHONE); await p.waitForTimeout(200); }
     drew.push(t.id);
   }
+  // WHERE A BOOK PAGE SERVES A SWITCH without ?rail=all, said truly (the completeness critic of 15 November 2026, N6:
+  // the default source and the second source were said «drawn only with the switches» while their pills stood in
+  // every book page's row of pills). A book page's rail draws two rows, the sources and the forced label (zone.html,
+  // THE BOOK PAGE SERVES TWO ROWS); three switches stand above the rail, in the row of pills: the word senses pill,
+  // one pill per default source on a work the default picks reach, and the second source, chosen in the note under
+  // that row. Every other switch is drawn only with the switches
+  const SERVED = new Map([
+    ["sources", "on every book page"],
+    ["suggested", "on every book page"],
+    ["senses", "on every book page, its pill in the row of pills"],
+    ["defaults", "on every book page the default picks reach, a pill per source in the row of pills"],
+    ["second", "on every book page the default picks reach, in the note under the row of pills"],
+  ]);
+  // WHAT A BOOK PAGE SERVES, SEEN THERE: the reader opened as a reader opens it, without ?rail=all, and each switch
+  // it draws found on it: a row of the rail drawn outside the fold, the word senses pill and the default sources'
+  // pills in the row of pills, and the chooser of the second in the note a source other than STEP opens. Where
+  // SERVED says a switch stands must be where it was found, or the page is refused: the page of 15 November said the
+  // default source and its second were drawn only with the switches while both stood on every book page
+  const q = await b.newPage({ viewport: { width: 412, height: 915 } });
+  await q.goto(URL0.replace(/([?&])rail=all(&|$)/u, (_, a, c) => (c ? a : "")), { waitUntil: "networkidle" });
+  await q.waitForSelector("section.seg .he-text .wb");
+  const found = await q.evaluate(() => {
+    const shown = (el) => !!el && !el.closest("[hidden]");
+    const out = { rail: [...document.querySelectorAll(".rail .row[data-toggle]")].filter(shown).map((r) => r.dataset.toggle), pills: [] };
+    if (shown(document.getElementById("sensesPill"))) out.pills.push("senses");
+    if (shown(document.getElementById("default-pick"))) out.pills.push("defaults");
+    return out;
+  });
+  const other = await q.$("#default-pick button:not(#default-step):not([disabled])");
+  if (other) {
+    // the chooser stands in the note once that source's book file is here (until then the note says it is fetching)
+    await other.click();
+    if (await q.waitForSelector("#default-note:not([hidden]) .def-order button[data-second]", { timeout: 15000 }).then(() => true, () => false)) found.pills.push("second");
+  }
+  await q.close();
   await b.close();
+  if (site) await site.close();
+  const ids = new Set(toggles.map((t) => t.id)), seenServed = [...found.rail, ...found.pills].filter((id) => ids.has(id));
+  const pillSaid = (id) => /row of pills/u.test(SERVED.get(id) || "");
+  const servedWrong = [...seenServed.filter((id) => !SERVED.has(id)).map((id) => `${id} is drawn on a book page and would be said drawn only with the switches`),
+    ...[...SERVED.keys()].filter((id) => ids.has(id) && !seenServed.includes(id)).map((id) => `${id} would be said ${SERVED.get(id)} and is not drawn there`),
+    ...found.rail.filter((id) => ids.has(id) && pillSaid(id)).map((id) => `${id} stands in the rail, not in the row of pills`),
+    ...found.pills.filter((id) => SERVED.has(id) && !pillSaid(id)).map((id) => `${id} stands in the row of pills, and would be said ${SERVED.get(id)}`)];
+  if (servedWrong.length) throw new Error(`where a book page serves its switches, as found on ${URL0}: ${servedWrong.join("; ")} — refusing to publish a page that says otherwise`);
   if (shotErr) throw new Error(`the reader threw while being photographed, so the pictures cannot be trusted: ${shotErr}`);
+  if (laidOver.length) throw new Error(`something of the page stood over the row of ${laidOver.join("; ")} as it was to be photographed — refusing to publish a picture of a switch with the page laid across it`);
   const missing = toggles.filter((t) => !drew.includes(t.id));
   if (missing.length) throw new Error(`the rail drew no row for ${missing.map((t) => t.id).join(", ")} — refusing to publish a page about switches it could not photograph`);
 
@@ -176,9 +256,8 @@ if (startedAs(import.meta.url)) {
   // the book is the photographed page's, else the first zone on disk: a slug
   // typed here is a claim about the future (check-scope-derived S1)
   const BOOK = (() => { try { return new URL(URL).searchParams.get("b") || zoneIdOf(defaultZoneUrl("")); } catch { return zoneIdOf(defaultZoneUrl("")); } })();
-  // the word senses switch also stands in a book page's row of pills («word senses»)
-  const SERVED = new Set(["sources", "suggested", "senses"]);
-  const tryIt = (t) => `<p class="try">${SERVED.has(t.id) ? "on every book page" : "drawn only with the switches"} · <a href="/${esc(BOOK)}/?rail=all#rail">try it on ${esc(BOOK)}</a></p>`;
+  const inTheRow = toggles.filter((t) => /row of pills/u.test(SERVED.get(t.id) || ""));
+  const tryIt = (t) => `<p class="try">${SERVED.get(t.id) || "drawn only with the switches"} · <a href="/${esc(BOOK)}/?rail=all#rail">try it on ${esc(BOOK)}</a></p>`;
   const openCount = toggles.filter((t) => props[t.id]).length;
   const card = (t) => {
     const pr = props[t.id];
@@ -270,7 +349,7 @@ if (startedAs(import.meta.url)) {
 <p class="lede">And every control says <b>whose statement it is</b>, because a reader should never have to guess whether they are reading a dictionary's opinion, a scribe's mark, this site's arrangement, or a claim this project is making on its own account. The switches below are grouped that way and run in that order — <b>least us to most us</b>.</p>
 
 <p class="lede" style="margin-top:1.1rem">${live.length} switch${live.length === 1 ? "" : "es"} a reader can press today${dark.length ? `, and ${dark.length} drawn and dark` : ""}. Each picture is the rail itself, photographed; this page holds no typed copy of any switch.</p>
-<p class="lede">Since 14 October 2026 a book page draws two rows of this rail, the sources and the label <b>source suggested</b>, which is forced on while the readings are checked (the owner: "move most of our toggle controls into the /toggles/ branch of the website until we have checked most of them"). Every other switch still works and is reachable live on any book under <code>?rail=all</code>, for example <a href="/genesis/?rail=all">/genesis/?rail=all</a>.</p>
+<p class="lede">Since 14 October 2026 a book page draws two rows of this rail, the sources and the label <b>source suggested</b>, which is forced on while the readings are checked (the owner: "move most of our toggle controls into the /toggles/ branch of the website until we have checked most of them"). Every other switch still works and is reachable live on any book under <code>?rail=all</code>, for example <a href="/genesis/?rail=all">/genesis/?rail=all</a>.${inTheRow.length ? ` Of them, ${inTheRow.length === 1 ? "one also stands" : "these also stand"} above the rail on a book page, in its row of pills: ${inTheRow.map((t) => `<b>${esc(t.lab)}</b>`).join(", ").replace(/, ([^,]*)$/u, " and $1")}.` : ""}</p>
 <div class="law">
 <p class="big">Previews, by address.</p>
 <p>Besides the switches, a few ways of drawing the page are behind an address flag while the owner checks them: <a href="/${esc(BOOK)}/?mode=en">?mode=en</a> opens the English reader (the last reader chosen on a device is remembered); <a href="/${esc(BOOK)}/?mode=en&amp;chain=ltr">?chain=ltr</a> lays a maqaf chain's Hebrew words left to right in the English reader, each under its English, instead of as written; <a href="/${esc(BOOK)}/?blobs=runs">?blobs=runs</a> draws the frames on runs alone, as before 10 October; <a href="/${esc(BOOK)}/?rail=all#rail">?rail=all</a> draws every switch below.</p>

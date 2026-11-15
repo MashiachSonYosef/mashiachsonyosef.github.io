@@ -404,9 +404,16 @@ try {
       await p.addInitScript(() => { try { if (!sessionStorage.getItem("ws-check5")) { localStorage.clear(); sessionStorage.setItem("ws-check5", "1"); } } catch { /* a page with no memory is a first visit */ } });
       await p.goto(`${tree.base}/zone.html?b=${w5.work}&default=ubs`, { waitUntil: "networkidle", timeout: 120000 });
       await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
-      await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
-      w5u.laid = await p.evaluate(() => !!(window.__default && window.__default.book && window.__default.on === "ubs" && window.__default.ready));
-      if (w5u.laid) { w5u.judged = true; Object.assign(w5u, await w5Run(p, w5.at, `${w5.work} ${w5.at.label}:${w5.at.n} under UBS`)); }
+      // the page says when every line stands as the sources in force draw it (window.__default.ready: under UBS once
+      // its book file is here; failed where it could not be fetched); a page that does not say so in 30 s is a fault
+      // said under W5, not a wait run out and the law passed over as not judged (the completeness critic of 15
+      // November 2026)
+      const said = await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).then(() => true, () => false);
+      if (!said) Object.assign(w5u, { laid: true, judged: true, ok: false, said: `${w5.work} under UBS: the page did not say in 30 s that its lines stand as the sources in force draw them (window.__default.ready)` });
+      else {
+        w5u.laid = await p.evaluate(() => !!(window.__default && window.__default.book && window.__default.on === "ubs" && window.__default.ready));
+        if (w5u.laid) { w5u.judged = true; Object.assign(w5u, await w5Run(p, w5.at, `${w5.work} ${w5.at.label}:${w5.at.n} under UBS`)); }
+      }
     } finally { await ctx.close(); }
   }
 } finally { await browser.close(); await tree.close(); }
