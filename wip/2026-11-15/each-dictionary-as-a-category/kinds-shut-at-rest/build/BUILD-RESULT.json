@@ -1,0 +1,1307 @@
+{
+ "reports": {
+  "part1": {
+   "status": "done",
+   "summary": "I built part 1 of the kinds design (the record, the rule module and the check) and committed it as 41a2b11a8e on kinds-build. The tree now holds only that commit. Nothing on the site moves yet, because no bake and no page reads the record.\n\nEvery figure matches the design: 38 source keys and 146 M ids are filed in 27 store families. The 6 overlay keys are filed in 2 more families (Jastrow and the Samaritan works). The kind that rests shut covers 14 keys and 27 M ids (25 with rows), 118,674 rows. The name entry covers 1,590 + 92 = 1,682 rows. The store has 652,954 rows. restsOffIds gives the same 27 ids.\n\nEach family's name, shape, its two table cells and its 54 own-word quotes were copied out of the table file by a script, not retyped. Every one was then matched back to the table's bytes: 181 comparisons, none missing. The 5 silent families of the kind are the five the design names.\n\nAddition 1 (which zones rest shut) is now data. A zone rests shut when its own schema_version and route are ZONE_V1 and MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, which is the Miqra according to the Masorah restore. restsOffIn answers it. K1 holds it to the disk: it picks exactly the 39 files of data/book-order-v1.json, all of them served. It leaves out the Tikkunei Zohar, the 21 Targum sidecars and the 8 fixtures.\n\nThe check runs in about 6.5 s, reading the 256 shards and 69 zones once. On the tree today K1 holds (6 laws judged). K2 prints \"not judged: the page does not carry the rule yet\" and the check exits 3, which the suite counts apart and never as a pass.\n\nI showed the check refusing 18 wrong states:\n- **9 bad records, all K1 red, exit 1:** an unfiled key, a key filed twice, an unknown kind, an overlay family in an entry, an own word that is not a quote, a missing file, a Hebrew letter in a say, the scope moved to the Tikkunei Zohar's route, and a family key the store's index does not name.\n- **9 bad page copies, all K2 red, exit 1:** one that ignores the fact, one that reverses the entries' order, one that drops the ids' sort, a loose `is`, a `has` that reads a string as a list, one that reaches outside itself, one opened twice, one never closed, and one that refuses nothing.\n\nA verbatim page copy turns K2 green and the check exits 0 (\"the page's text is the module's, line for line\"). My first K2 missed the reversed-order and unsorted-ids copies, because today's record cannot tell them apart. I added made-up probe records and a reversed index, and both went red.\n\nBoth tools lint with no warnings. Pasted into a copy of the page (zone.html), the block adds one no-unused-vars on `restsOffIds` until part 2 calls it; the rest of the page lint stays at 4/175/9/2.",
+   "commits": [
+    "41a2b11a8e The kinds of dictionary: every source filed by what it says it is, and what rests shut (kinds-build; reader/data/dictionary-kinds-v1.json, reader/tools/dictionary-kinds-v1.mjs, reader/tools/check-dictionary-kinds-v1.mjs; 569 lines added)"
+   ],
+   "files_authored": [
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/data/dictionary-kinds-v1.json",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/dictionary-kinds-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-dictionary-kinds-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v71/kinds/extract.mjs (proof: the table's cells byte for byte -> cells.json)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v71/kinds/make-record.mjs (writes the record from cells.json and the filing decisions)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v71/kinds/against-table.mjs (holds the record to the TABLE's bytes: node against-table.mjs <TABLE.md> <record>)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v71/kinds/states.mjs (writes the wrong records and pages used for the red runs; outputs removed)"
+   ],
+   "checks_run": [
+    {
+     "check": "node tools/check-dictionary-kinds-v1.mjs (the tree, no page copy)",
+     "result": "exit 3: K1 holds (6 laws ok); '--  K2  not judged: the page does not carry the rule yet'; 'SKIPPED — K1 holds; K2 is not judged until the page carries the rule, and a law not judged is not passed'"
+    },
+    {
+     "check": "check with --record-in <wrong record> x9 (key unfiled, key twice, unknown kind, overlay family in an entry, own word not a quote, files path missing, Hebrew letter in say, scope on EDITION_DOOR route, family key not in index)",
+     "result": "all 9 exit 1, one FAIL each naming the fault"
+    },
+    {
+     "check": "check with --page <verbatim copy of the module's block inserted at nameWithheld>",
+     "result": "exit 0, all checks passed; K2: 652,954 rows + 1,350 probe rows under each of 4 records answered alike, same 27 ids over the index in either order, 3 records refused by both, the page's text is the module's line for line"
+    },
+    {
+     "check": "check with --page <wrong copy> x9 (ignores the fact, entries' order reversed, ids unsorted, is loose ==, has reads a string, reaches outside itself, opened twice, not closed, no refusal)",
+     "result": "all 9 exit 1 (two of them passed the first version of K2; probe records and a reversed index were added and they went red)"
+    },
+    {
+     "check": "against-table.mjs: record vs TABLE-what-each-dictionary-is.md",
+     "result": "181 comparisons (says, where, own words, silent clauses, shapes against the table's kind column), 0 not found"
+    },
+    {
+     "check": "npx eslint (v29 config) on the two new tools",
+     "result": "0 warnings (4 no-useless-assignment found on the first pass, fixed)"
+    },
+    {
+     "check": "lint-page.sh: zone.html, and a scratch copy of it with the block inserted",
+     "result": "tree 4/175/9/1/2 (the stated baseline); with the block 4/175/9/2/2, the extra one being 'restsOffIds' unused until the page calls it"
+    },
+    {
+     "check": "pipeline-manifest-v1.mjs --out <scratch> (not committed: the round's door step writes it)",
+     "result": "the rule listed as declared in tools/dictionary-kinds-v1.mjs and guarded by check-dictionary-kinds-v1; 161 rules declared, 148 guarded (committed manifest: 160, 147)"
+    },
+    {
+     "check": "Hebrew characters and control characters in the two tools; British spellings in my own words",
+     "result": "0 and 0 (a regex had been written with literal Hebrew code points; restored to \\u escapes and re-proven); none"
+    }
+   ],
+   "not_done": [
+    "PIPELINE.md and round-v1.sh are unchanged. Part 1 adds no step, and neither file lists checks. The design gives the PIPELINE.md sentence (the zones and lattice steps read data/dictionary-kinds-v1.json) to part 4.",
+    "PIPELINE-MANIFEST.md is not committed: the round's door step writes it. It picks up the new rule and guard from the sources; I verified that into scratch.",
+    "K3 to K5 (the bakes at rest, the page at rest, the records and chain books) are part 5's and are not in the check yet.",
+    "No notes file was written in wip/.../kinds-shut-at-rest/build/: this report is the record."
+   ],
+   "api": "tools/dictionary-kinds-v1.mjs (imports only node:fs, node:crypto, node:path; nothing from the store reader)\n\nCONSTANTS\n- DICTIONARY_KINDS_RULE_ID = \"dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut\"\n- DICTIONARY_KINDS_SCHEMA = \"DICTIONARY_KINDS_V1\"\n- DICTIONARY_KINDS_RECORD = \"data/dictionary-kinds-v1.json\". This is the path from the reader root: the page fetches `${ROOT}data/dictionary-kinds-v1.json`, and a stamp's `record` names it.\n\nFUNCTIONS\n- readKinds(dataDir) -> { rec, sha256, path }.\n  - dataDir is the FOLDER HOLDING THE RECORD: reader/data, the same as join(storeDir, \"..\").\n  - It throws one sentence when the record is missing, is not JSON, or kindsFault(rec) is not null.\n  - Passing the reader folder refuses, with a sentence saying which folder it wants.\n- kindsFault(rec) -> null | string, every fault joined by \"; \". It needs no store. It checks:\n  - the schema, the rule id, and the version (YYYY-MM-DD plus an optional letter);\n  - the kinds: each has a say without a Hebrew letter and its shapes, and no shape sits under two kinds;\n  - the families: only known fields; a unique kebab-case id and a unique name; a known kind; a shape the kind gathers; shelf \"store\" or \"overlay\" (an overlay family names its folder); non-empty keys, none filed twice in one index; says and where present; every `files` key named in where; each own word a «quote» of says, or `silent` a clause of says;\n  - each entry's id, its say (no Hebrew letter) and its ruling;\n  - the scope's say, zone (which must name schema_version), how and ruling.\n- restsOffIn(rec, zone) -> boolean (addition 1).\n  - True when every field of rec.scope.zone equals the zone's own field. Today that is {schema_version:\"ZONE_V1\", route:\"MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE\"}.\n  - Ask it of a parsed book zone, never of a sidecar. A Targum commentary (ZONE_COMMENTARY_V2), the Tikkunei Zohar (EDITION_DOOR_SERVE__BUILT_STREAM) and the fixtures (DEMONSTRATION_PASSAGE__INSTRUMENT) answer false.\n  - It throws when given an object with no string schema_version.\n  - The round's regloss input is named build/round-v1/zones/<b>.baked.bin, so the scope is read from the zone's content, never its file name.\n- restsOffOf(rec, mSources, factsOf) -> (row) => entry | null.\n  - mSources is the route store's index.m_sources. factsOf is the store reader's factsOf; the page passes its own.\n  - It resolves each entry once: kinds -> every store family of that kind; families -> those store families' keys.\n  - Per row: m = row[3]. If m is not an own key of mSources the answer is null (overlay ids, MSAM*, PIECE:*, M197, M199).\n  - Otherwise it returns the first entry, in rec.rests_off order, whose keys hold mSources[m].key and which either names no fact or whose fact the row carries:\n    - with is: factsOf(row)[fact] === is;\n    - with has: Array.isArray(v) && v.includes(has);\n    - with neither: the fact is truthy.\n  - The entry returned is the record's own object: {id, say, ruling, kinds|families, fact?, is?, has?}. Results are memoized per M id.\n  - It THROWS at construction, one sentence listing every fault, when:\n    - an index key is filed by no store family, or a key is filed by two;\n    - an entry names an unknown kind or a non-store (overlay) family, or shuts no store key;\n    - an entry has is/has without fact, or both;\n    - an entry carries a field outside id, say, kinds, families, fact, is, has, ruling.\n  - On the page, catch the throw and treat it as \"the record did not hold\" (nothing gated, __kindsFailed).\n- restsOffIds(rec, mSources) -> string[].\n  - The M ids for which a row with no facts rests shut, i.e. whole-source entries.\n  - Sorted by length, then code order.\n  - Today 27: M1 M2 M6 M10 M15 M16 M21 M22 M28 M32 M34 M37 M42 M43 M48 M53 M57 M61 M62 M64 M73 M76 M81 M87 M94 M138 M194.\n\nPAGE COPY (what K2 lifts and runs)\n- zone.html carries restsOffOf and restsOffIds verbatim, without \"export\": module lines 194-242.\n- The copy starts at the line \"const restsOffOf = (rec, mSources, factsOf) => {\" (any indent, exactly once).\n- It ends with the line \"// end of the kinds' rule (tools/dictionary-kinds-v1.mjs)\" (exactly once).\n- Nothing between those two lines may reach outside them. The block uses Object.hasOwn, which the page already uses.\n\nRECORD reader/data/dictionary-kinds-v1.json\n- Version 2026-11-15a, sha256 53f799f09cd8ec68add49b4c5b37179f95a8014f249fc6a95aaceb96d2f38f96. One family per line, one entry per line.\n- Top level: schema_version, rule_id, version, kept_by, table, scope {say, zone, how, ruling}, kinds, families, rests_off.\n- kinds: each is {say, shapes[]}:\n  - bible: \"Bible dictionaries and the place's own reading\"\n  - general-with-entries: \"general Hebrew dictionaries with entries\"\n  - rabbinic: \"the rabbinic dictionary\"\n  - aramaic: \"Aramaic dictionaries\"\n  - lists-and-bases: \"word lists, knowledge bases and encyclopedia titles\"\n  - other: \"not filed under a kind\"\n- families[]: each is {id, family (the table's name), kind, shape (the table's kind column), shelf \"store\"|\"overlay\", overlay? (\"jastrow\"|\"samaritan\"), keys[] (source keys of the store index, or of that overlay's index), says (table cell, bytes), where (table cell, bytes), files {string as where names it: path from reader/}, own_words [quotes of says], silent? (the table's clause; present only when own_words is empty)}.\n- The 9 families of lists-and-bases: panlex, muse, lexibank, english-wiktionary-translation-tables, conceptnet, omegawiki, wikidata-lexemes, hebrew-wordnet, hebrew-wikipedia-titles.\n  - Silent: conceptnet, omegawiki, muse, wikidata-lexemes, hebrew-wikipedia-titles.\n- rests_off:\n  - {id:\"lists-and-bases\", say:\"from word lists, knowledge bases and encyclopedia titles\", kinds:[\"lists-and-bases\"], ruling}\n  - {id:\"english-wiktionary-name\", say:\"that English Wiktionary files as a name\", families:[\"english-wiktionary-hebrew-entries\",\"english-wiktionary-aramaic-entries\"], fact:\"name\", ruling}\n\nCHECK tools/check-dictionary-kinds-v1.mjs\n- Header: RUN: tree, GUARDS (the rule id), LEDGER: -.\n- Options: --record-in <folder> and --page <file> read another record or page; the store and zones are always the tree's.\n- Exit codes: 1 on any FAIL; 3 when K2 cannot be judged; 0 when every law is judged and holds.",
+   "design_did_not_hold": [
+    "readKinds takes the data folder, not the reader folder. The design's section 1 says readKinds(readerDir), but its section 3 calls readKinds(join(storeDir, \"..\")), which is reader/data. I followed section 3. A call with the reader folder refuses with a sentence naming the folder it wants.",
+    "own_words is shaped differently from the design's sketch of [{text, where}]. The table gives one 'where' cell per family, so each family carries both table cells byte for byte (says, where), plus own_words as a list of quotes. Each quote is verified to be a «quote» inside says. silent is the table's own clause, verified to be a substring of says, not a composed sentence. files maps each name as the where cell gives it to a path in the tree, and every path exists. This keeps every word the table's and makes K1 mechanical.",
+    "Overlay families are keyed by their overlay index's source keys plus the overlay folder, not by M ids, the same way store families are. K1 checks that every overlay key is filed and that every family key is in that overlay's index.",
+    "kinds carries shapes, so the mapping from the table's kinds to the lead's is data. K1 refuses a family whose shape its kind does not gather.",
+    "The design's K2 method (rows of shut keys plus one row per M id) cannot see two real faults: a reversed entry order and an unsorted restsOffIds. Today's record never has two entries meet on a row, never compares a value with is/has, and the index already lists ids in order. K2 now also runs made-up probe records (two entries over one row; an `is` entry; a `has` entry) and a reversed index, over every row of the store rather than a sample.",
+    "restsOffOf throws on an index key that no family files, rather than answering null for it (the house rule: a tool refuses what it does not know). The page's copy throws too, so part 2 must catch the throw and treat the record as not holding.",
+    "Consequence of addition 1 for parts 2 and 4: the 21 Targum sidecars (<book>.commentary.bin) are not among the 39, so they keep today's rest and their bakes read the store whole. But they are drawn on 21 Bible books' pages. The page must therefore gate each word by its own zone's rests_off stamp, not by the page's book. Otherwise a Targum word's card would hide what its baked line still reads.",
+    "Not filed, because they are packagings rather than dictionaries: the dictionary store, the piece store (its pieces are TAHOT's and MACULA's own, under their keys) and the span store's own two sources (M197, M199). None of them is in the route store index, so restsOffOf answers null for their rows."
+   ],
+   "figures": [
+    {
+     "what": "store index: source keys / M ids filed",
+     "design": "38 keys, 146 M ids",
+     "got": "38 keys, 146 M ids in 27 store families; 6 overlay keys in 2 overlay families",
+     "holds": true
+    },
+    {
+     "what": "the kind that rests shut (lists-and-bases)",
+     "design": "9 families, 14 keys, 27 M ids, 25 with rows, 118,674 rows",
+     "got": "9 families, 14 keys, 27 M ids, 25 with rows, 118,674 rows (counted from the 256 shards)",
+     "holds": true
+    },
+    {
+     "what": "English Wiktionary's name rows (english-wiktionary-name)",
+     "design": "1,590 + 92 = 1,682",
+     "got": "1,590 (Hebrew entries) + 92 (Aramaic entries) = 1,682; 2 keys, 11 M ids, 8 with rows",
+     "holds": true
+    },
+    {
+     "what": "restsOffIds",
+     "design": "the kind's 27 M ids",
+     "got": "27 ids",
+     "holds": true
+    },
+    {
+     "what": "silent families in the kind",
+     "design": "ConceptNet, OmegaWiki, MUSE, Wikidata, Hebrew Wikipedia's titles",
+     "got": "the same five; PanLex, Lexibank, Hebrew WordNet and the translation tables carry own words (2, 1, 3, 3 quotes)",
+     "holds": true
+    },
+    {
+     "what": "store rows read",
+     "design": "652,954 (the table's census)",
+     "got": "652,954",
+     "holds": true
+    },
+    {
+     "what": "scope (addition 1)",
+     "design": "the 39 Bible books only",
+     "got": "39 zones picked = the 39 files of data/book-order-v1.json, all served; tikkunei-zohar, 21 Targum sidecars and 8 fixtures not picked",
+     "holds": true
+    },
+    {
+     "what": "record against the table's bytes",
+     "design": "own words byte for byte from the table",
+     "got": "181 comparisons, 0 not found; 54 quotes of 18 families, 11 families silent",
+     "holds": true
+    },
+    {
+     "what": "pipeline manifest (generated into scratch)",
+     "design": "the new guard registered",
+     "got": "161 rules declared, 148 named by a check (committed manifest: 160 / 147)",
+     "holds": true
+    },
+    {
+     "what": "page lint with the rule's block inserted",
+     "design": "no new warnings",
+     "got": "4/175/9/2/2 against the baseline 4/175/9/1/2",
+     "holds": false,
+     "note": "The extra one is no-unused-vars on restsOffIds, which nothing calls until part 2 builds RESTS_OFF_IDS from it. Once called, the block adds nothing."
+    }
+   ],
+   "lead_must_run": [
+    "After part 2 lands, run node tools/check-dictionary-kinds-v1.mjs from reader/. It should exit 0, with K2 judged against the page's copy. Exit 3 means the page does not carry the block between its two lines.",
+    "The round's door step (tools/pipeline-manifest-v1.mjs) will rewrite PIPELINE-MANIFEST.md with the new rule and its guard; commit it with the round's outputs.",
+    "Pass part 2 the Targum point: gate each word by its own zone's stamp, because the 21 commentary sidecars keep today's rest."
+   ]
+  },
+  "page": {
+   "status": "done",
+   "summary": "I built the page's part of the kinds (the design's parts 2 and 3) in reader/zone.html, together with the fold-ins, and committed it as 2ed036f33f on kinds-build. The tree now holds only part 4's uncommitted tools besides it.\n\n**What the page does now**\n- **Where it acts.** Only on a zone that carries emitted_from.rests_off and whose record holds. A zone with no stamp (the Tikkunei Zohar, a Targum, a fixture) draws nothing new.\n- **The rule on the page.** The page carries restsOffOf and restsOffIds line for line from tools/dictionary-kinds-v1.mjs. K2 is now judged and green. The page runs them over a copy of the store's own index, taken before the overlays' ids join it.\n- **The gate.** It holds shut rows out of the pool after every other gate. It covers the span store's rows too, because they carry their source's own M (Wikidata M2's «the Jewish people» at Exodus 1:1).\n- **The card.** It counts what it holds back in pills, in the record's words, with a press. On Genesis 1:22's fifth word it reads «6 from word lists, knowledge bases and encyclopedia titles · show», and opened it reads «6 shut at rest, shown · hide». A card the kinds empty says so, with the same press. A pill an opened dictionary brought wears a dotted edge. A shut reading that was pressed is forgotten when the switch shuts again; forgetPicksWhere now serves two callers.\n- **The rail.** A «Shut at rest» block stands above \"shelve by\". Its switch reads shut | open. The 14 shut source keys are kind-chips, disabled while shut and never .dfp; each chip's title gives the family's own words or the table's silent clause.\n- **Reset** shuts the kinds again, only where they act, and leaves the reader's source switches alone.\n- **Search** answers what the cards show.\n- **The span line** never reads a shut row.\n- **The choice is kept** as fh.kinds \"open@<record version>\"; ?kinds= sets it for one load.\n- **No header pill.**\n\n**Port and zones for the proof.** Part 4 had not landed, so I stamped Genesis, Exodus, Amos, Obadiah and Psalms by hand into a scratch overlay and served it on port 8943. Port 8941 was already held by another process (pid 17894, a python http.server serving rt, started 09:15 from scratchpad/v61/critic), and I left it alone. The page before my change was served on 8944. Both of my servers are stopped and the stamped zones are removed. The hand stamp does not bake the line at rest: lines carried by shut rows still read them; span lines are drawn on the page and do follow the gate.\n\n**The proof (K4 by hand)**\n- On stamped Genesis all 10 laws hold:\n  - fresh reader: kinds shut, 27 ids, sources off MSAM2\n  - 6 held back; one press brings exactly those 6, dotted, and fh.kinds is kept\n  - a reload stays open\n  - reset shuts again, sources untouched\n  - 14 chips, disabled while shut\n  - 0 live lines at first paint\n- The same probe on the old page with the same stamped zone fails 8 laws, so the probe tells a wrong state from a right one.\n- **Tikkunei Zohar and unstamped Ruth, old page against new:** the header row, the rail's line, the 41 or 40 chips, the lines of the first three sections and the cards are the same. One card's pointer wording varied between runs; it varies the same way on the old page against itself, so it is a race already there, not this ship.\n\n**Three things the design did not hold, settled by me (figures in the fields)**\n1. The design gated the store's rows only. The span store's rows also reach the card, carrying their source's M, so the page gates them too.\n2. « · 14 shut» on the rail's line wraps it on a phone, 23px to 52px. I moved it into the line's title.\n3. The masthead's name is attested by any dictionary on record, shut or open. Asked of the open ones only, Obadiah fell to \"listed in the catalog as obadiah … a proper name will show once a source on record uses one\", in lower case, 40px taller. Points 2 and 3 together put the first word at 815, 961 and 936 px on stamped Psalms, Obadiah and Amos (check-contents-shut red). After the change it is 787, 893 and 908 px, the same as unstamped.\n\n**A fault fixed in passing.** railSwitch drew the sources row empty: the word senses pill took Obadiah's strip from 40 chips to 0 until a reload. railSwitch now fills the rows it draws.\n\n**Fold-ins**\n- The layout fix is applied (Amos with commentary: 908px).\n- The channels' rule is named v3.\n- «source» (source-leads) is deleted from toggles-named-v1.json, and /toggles/ is rebuilt.\n\n**Fact for the lead.** Genesis 1:22's card is \"tight\" at 412×915 and at 1280×1400. Its withheld line folds away there, taking the count and the press with it, as the word senses' press does. On such cards the rail's block is the switch a reader sees.",
+   "commits": [
+    "2ed036f33f The dictionaries that rest shut, on the page: held back on every card of a book baked at rest, a press away, and the phone's top kept (kinds-build; reader/zone.html +402/-42, reader/data/toggles-named-v1.json, toggles/index.html and 16 rebuilt row shots in toggles/shots/)"
+   ],
+   "files_authored": [
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/zone.html",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/data/toggles-named-v1.json",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/toggles/index.html (and toggles/shots/row-*.png, 16 files, written by node tools/build-toggle-design-v1.mjs)",
+    "/home/user/mashiachsonyosef.github.io/wip/2026-11-15/each-dictionary-as-a-category/kinds-shut-at-rest/build/page-interface-notes.txt (the hooks and stamp fields the page reads, for parts 4 and 5)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/probe-k4.mjs (K4 by hand: node probe-k4.mjs <readerDir> <base> genesis 21 4)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/probe-same.mjs (two servers, fresh readers: header row, rail line, strip, lines, cards)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/probe-more.mjs, probe-empty.mjs, probe-failed.mjs, probe-query.mjs, probe-title.mjs, probe-top.mjs, probe-head.mjs, probe-strip.mjs, probe-reset.mjs (read-only probes)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/stamp-by-hand.mjs (scratch stamp in part 4's shape; overlay zones removed after the proof)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/serve-overlay.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/title-attest.mjs (which mastheads' names stand only on shut rows)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/patch-page.py, patch-page-2.py (the edits as applied)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/shots/rail-block-phone.png, rail-block-desk.png, card-genesis-1-22-5-phone.png, card-genesis-1-22-5-desk.png",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-page-v1/checks/ (every check's log: final-*, stamped-final-*)"
+   ],
+   "checks_run": [
+    {
+     "check": "node tools/check-dictionary-kinds-v1.mjs (tree, final page)",
+     "result": "exit 0, 7 ok: K1 holds; K2 now judged: the page's restsOffOf/restsOffIds answer as the module's on 652,954 rows plus 1,350 probe rows under each of 4 records, the same 27 ids, the same 3 refusals; 'the page's text is the module's, line for line'"
+    },
+    {
+     "check": "check-contents-shut-v1 (tree, 8899, unstamped zones)",
+     "result": "exit 0, 50 ok; first word 787px (Psalms), 893px (Obadiah with commentary), 908px (Amos with commentary)"
+    },
+    {
+     "check": "check-contents-shut-v1 (SERVE_PORT=8943, Psalms, Obadiah and Amos stamped by hand)",
+     "result": "first run 2 FAIL (815, 961, 936px: the rail's line wrapped by « · 14 shut», and Obadiah's masthead fell to the catalog register); after both fixes exit 0, 787/893/908px"
+    },
+    {
+     "check": "check-menu-switches-v1 (tree; and stamped via 8943)",
+     "result": "exit 0 both, 5 ok (M1-M5); no new pill in the row, reset mirrors"
+    },
+    {
+     "check": "check-reset-pill-v1 (tree; and stamped via 8943)",
+     "result": "exit 0 both, 7 ok"
+    },
+    {
+     "check": "check-source-switch-v1 (tree; and stamped via 8943)",
+     "result": "exit 0 both, 15 ok; S0 '40 chips · 1 resting off' (the kind-chips are not .dfp)"
+    },
+    {
+     "check": "check-color-channels-v1 (tree; and stamped via 8943)",
+     "result": "exit 0 both, 47 ok"
+    },
+    {
+     "check": "check-word-senses-v1 (tree)",
+     "result": "exit 0, 9 ok (forgetSensePicks now forgetPicksWhere((pk) => pk.sense))"
+    },
+    {
+     "check": "lint-page.sh on reader/zone.html, findings compared message by message with the page before",
+     "result": "4 no-misleading-character-class · 175 no-use-before-define · 9 no-useless-assignment · 1 no-unused-vars · 2 no-unmodified-loop-condition: the same findings as before (first pass added a no-undef and a no-use-before-define; both fixed). No tool changed."
+    },
+    {
+     "check": "probe-k4.mjs on stamped Genesis (8943, the final page)",
+     "result": "10 laws ok (fresh reader shut, 27 ids, sources off MSAM2; 6 held back with an unpressed press; one press brings those 6, all dotted, fh.kinds=open@2026-11-15a; a reload keeps it; reset shuts and leaves sources off and fh.sources.off as they were; 14 chips, 14 disabled while shut; the rail's line does not count them as off, its title says 14 rest shut; 0 live lines; no page errors)"
+    },
+    {
+     "check": "probe-k4.mjs against the page as it stood before, with the same stamped Genesis (8944): the wrong state",
+     "result": "8 FAIL, 2 ok (the old page draws 19 pills there, the 6 shut ones among them)"
+    },
+    {
+     "check": "probe-more.mjs (stamped Genesis)",
+     "result": "a shut reading pressed while open: «be fruitful» to «Peru» (reset says 1 picked), then shut: «be fruitful», the pick forgotten; search shut: peru 0, tarica 0, sperm 1; open: peru 1; Zoar (Genesis 19:22) «5 of another entry than H6820, withheld · 2 from word lists... · show»; the word senses switch keeps the strip 40 to 40 to 40 chips with the block"
+    },
+    {
+     "check": "probe-empty.mjs (every source off but PanLex's two, stamped Genesis 1:22:5)",
+     "result": "the emptied card says «2 readings shut at rest: 2 from word lists, knowledge bases and encyclopedia titles — the button opens them; ...» with the press; pressed, «Tarica» and «country in South America» appear, dotted"
+    },
+    {
+     "check": "probe-failed.mjs (stamped Genesis, record unreadable; record that does not hold)",
+     "result": "both: __kindsHere false, __kindsFailed true, the fault sentence kept, the block says the record did not arrive or does not hold, the card shows all 19 pills, 0 page errors"
+    },
+    {
+     "check": "probe-query.mjs",
+     "result": "?kinds=open opens for one load (__kinds open, the block pressed open), nothing kept; the plain address after it is shut"
+    },
+    {
+     "check": "probe-same.mjs, old page (8944) against new (8943)",
+     "result": "Tikkunei Zohar: header row, rail line, 41 chips, no block or switch, lines of 3 sections, 8 cards the same (one pointer card differed in one run; old page against itself differs the same way: the form-of map's arrival). Ruth (unstamped): all the same. Exodus (stamped): line 0 «the Jewish people» to «the Children of Israel, Israelites, Jews»; the chain's card loses «the Jewish people» [M2] and says «1 from word lists, knowledge bases and encyclopedia titles · show»"
+    },
+    {
+     "check": "probe-strip.mjs on the tree before my change (8899, Obadiah)",
+     "result": "the sources strip 40 chips, 0 after the word senses pill, 0 after it again: the fault railSwitch now fixes"
+    },
+    {
+     "check": "node tools/build-toggle-design-v1.mjs (no url)",
+     "result": "16 switches (16 live, 0 dark), 16 photographed, 22 KB; the named «source» list item gone; the row shots differ in most pixels from the committed ones (the committed shots predate the current palette)"
+    }
+   ],
+   "not_done": [
+    "Proof on 8899 itself waits on part 4: the tree's zones carry no rests_off stamp, so on 8899 every book shows nothing new (proven identical for the Tikkunei Zohar and Ruth). The K4 laws were proven on zones stamped by hand, served on 8943, because 8941 was held by another process (pid 17894, python http.server serving rt, started 09:15 from scratchpad/v61/critic), which I left running. The hand stamp leaves the line unbaked at rest.",
+    "No check written: K4 belongs to part 5. probe-k4.mjs is the by-hand version (red on the old page, green on the new).",
+    "No header pill (addition 2): paintKindsPill does not exist, and the Menu mirrors nothing new except the reset pill's new title. The interface names it; nothing calls it.",
+    "The card's count and press sit on the withheld line. A tight card folds that line away, as it does the word senses' press, and Genesis 1:22's card is tight at 412x915 and at 1280x1400. There the rail's block is the visible switch. I left this as designed. One way to keep it on every card: the readings band's label, which the fold keeps. That is the lead's call.",
+    "/toggles/ does not document the kinds switch: it is not a TOGGLES row, as the design asked. The rebuilt row-sources.png photographs Amos unstamped, so the block shows there only after a rebuild once the round has stamped Amos.",
+    "Nothing to register in PIPELINE-MANIFEST.md, PIPELINE.md or round-v1.sh: no new guard, step or check of mine. The round's door step will list zone.html among the rule's declarations.",
+    "Addition 3 (counting resting lines led by a source's own sign) belongs to part 4 and was not touched."
+   ],
+   "api": "reader/zone.html, dictionary-kinds-rule-v1 (one RULE line, above the state)\n\nWHEN IT ACTS\n- The kinds act only when both hold:\n  - zone.emitted_from.rests_off exists;\n  - data/dictionary-kinds-v1.json arrives and restsOffOf accepts it over a copy of the store's own index.m_sources, taken before the overlays join.\n- When both hold: kindsHere = true.\n- When the stamp is there but the record fails: nothing is gated, window.__kindsFailed = true, and window.__kindsFault holds the sentence.\n- Fields the page reads from the stamp:\n  - .entries[<entry id>].ids {M: n}: the rail's chips, the M ids with n > 0, grouped by source key in the record's family order;\n  - .entries[<entry id>].rows: the rail's \"N records on this book <say>\".\n  - No other field is read. Part 4's in-progress regloss writes exactly this shape.\n\nSTATE (beside SENSES_KEY)\n- KINDS_KEY = \"fh.kinds\", holding \"open@<record version>\" or \"shut\".\n- kindsAsked comes from ?kinds=open|shut and lasts one load.\n- kindsPref is resolved once the record is here: \"open\" only when the kept value equals open@<version>.\n- Other bindings: KINDS_REC, restsOff (the rule; () => null where nothing acts), RESTS_OFF_IDS, kindsHere, reopenForKinds.\n- chooseKinds(id) does nothing unless kindsHere.\n- kindsHeldN(pool) gives the number held back; kindsSwitchFor(pool) gives button.kinds-switch[aria-label=\"dictionaries shut at rest\"][aria-pressed].\n\nHOOKS\n- window.__kinds: the reader's choice, \"shut\" or \"open\". It is set on the Tikkunei Zohar too, where nothing acts.\n- window.__kindsHere: true where the gate acts.\n- window.__restsOffIds: 27 ids today.\n- window.__kindsVersion: the record's version.\n- window.__kindsFailed and window.__kindsFault, as above.\n\nPOOL (poolFor)\n- The gate, kindsHere && !opts.everySource && !opts.everyKind && (kindsPref === \"shut\" || opts.storeOnly), takes out:\n  - routes, after the source switches;\n  - extra (span store rows), after the overlays' pointing and stem.\n- So the live line (storeOnly) never takes a shut row, open or shut.\n- pool.withheldByKind is [{ id, say, n }]: pills, a reading an open group also prints is not counted, each reading counted under the first entry in the record's order, sense openings skipped.\n- pool.kindsShown counts the groups standing on shut rows alone; set when open.\n- Both ride through carryWithheld and the ketiv/qere weld.\n- attributionFor(surface, shown, at, named, everySource, word, everyKind): the masthead passes everyKind = true.\n\nCARD\n- .r-pills[data-kind-withheld].\n- The press sits on .withheld-line, after the word senses' press: «N <say> · ... · show» / «N shut at rest, shown · hide».\n- On an emptied card: p.sources-withheld carries «N reading(s) shut at rest: ... — the button opens them» and the press.\n- A pill standing on shut rows alone is button.rests[data-rests=\"1\"] (dotted).\n- Picks of such pills carry { kind: true, under }. underOf unwraps both sense and kind picks. forgetPicksWhere(test) serves forgetSensePicks and forgetKindPicks.\n\nRAIL\n- #kindsRow.kinds-block sits inside the sources fold, above .shelve-by.\n- .kinds-opt[data-kinds=\"shut\"|\"open\"][aria-pressed].\n- p.kinds-entry, one per entry.\n- .kind-chip[data-key][data-ids][data-family][aria-pressed] is disabled while shut. Open, it calls TOGGLES sources.set.\n- drawKinds(host) redraws the block; kindsOnBook() reads the stamp.\n- The line under #railNow's sources token never counts the shut keys. Its title says \"N more rest shut\".\n- railSwitch now ends with defSwitch(), pairSwitch() and sourceSwitch().\n\nRESET AND SEARCH\n- SWITCHES_DEFAULT.kinds = \"shut\".\n- switchesAtDefault and the click handler act only where kindsHere.\n- english() off(): kindsHere && kindsPref === \"shut\" && RESTS_OFF_IDS.has(id).",
+   "design_did_not_hold": [
+    "The gate on the store's rows only (design 2E: 'It applies to routes only ... an overlay's id is not in the store's index'). The span store's rows enter the pool as extra and carry their source's own store M. In data/span-store/exodus.json, Exodus 1:1's «the Jewish people» is M2 (Wikidata). Gated on routes only, the chain's card kept that pill. The page gates extra too, after the overlays' pointing and stem gates; Jastrow's and the Samaritan works' ids answer null.",
+    "The rail's line (design 2J: add « · M shut»). On a 412px phone that wraps the rail's summary from 23px to 52px. With the masthead change below, the first word stood at 815, 961 and 936px on stamped Psalms, Obadiah and Amos (check-contents-shut red). The line keeps its old text, and the token's title says 'N more rest shut'. The laws hold: the line never counts the shut keys as off.",
+    "Not in the design: the masthead's name. Its attestation goes through attributionFor and poolFor, so shut dictionaries stopped attesting it. Obadiah («Obadiah» stands on PanLex alone) fell to 'listed in the catalog as obadiah — its catalog entry read as plain words; a proper name will show once a source on record uses one', 40px taller on a phone. Over the store, the rows that read the name rest shut, every one, for 4 of the 39 books: Jeremiah, Obadiah, Lamentations, Ecclesiastes. A first stricter count named 7, Amos among them; the browser shows Amos keeps «Amos», attested by Strong's. The masthead now asks with everyKind, so a shut dictionary still attests the name: it is shut on the cards, not struck.",
+    "Building the rule after the defaults merge (design 2C: 'beside 4383'). By then the overlays' ids are merged into index.m_sources, and restsOffOf refuses them ('filed by no family of the store'). The rule is built right after the boot's Promise.all, over a copy of the store's own m_sources.",
+    "The design's reopenForKinds calls railSwitch() if the rail is drawn. railSwitch drew the sources row empty and never filled it: Obadiah's strip went from 40 chips to 0 after the word senses pill, on the tree before this ship. railSwitch now fills the rows it draws. reopenForKinds redraws only the block (drawKinds) and the rail's line.",
+    "Design 2A reads fh.kinds 'open@<version>' at parse time. The version is unknown until the record arrives, so kindsPref is resolved at boot (?kinds= still wins for one load).",
+    "Design 2K (the header pill) and its paintKindsPill were not built (addition 2). The design's own reason for the pill stands: Genesis 1:22's card is tight at 412x915 and at 1280x1400, its withheld line folds away, and the rail's block is the visible switch there."
+   ],
+   "figures": [
+    {
+     "what": "Genesis 1:22, fifth word: readings held back on the card",
+     "design": "6 pills only the kind prints: Peru, Republic of Peru, Tarica, country in South America, pro, OmegaWiki's definition",
+     "got": "6: Peru [M1 M32], pro [M1], Republic of Peru [M32], Tarica [M21], country in South America [M42], A country in South America, with capital Lima [M32]; card 13 pills shut, 19 open; line «1 given as a name by its source, withheld · 2 of 25 pointed otherwise, withheld · 6 from word lists, knowledge bases and encyclopedia titles · show»",
+     "holds": true
+    },
+    {
+     "what": "M ids shut whole (restsOffIds, on the page)",
+     "design": "27",
+     "got": "27 (window.__restsOffIds)",
+     "holds": true
+    },
+    {
+     "what": "shut source keys drawn as chips on Genesis",
+     "design": "14 keys in the kind",
+     "got": "14 kind-chips, 14 disabled while shut",
+     "holds": true
+    },
+    {
+     "what": "Exodus 1:1's span line",
+     "design": "«the Jewish people» [Wikidata] to «the Children of Israel, Israelites, Jews» [English Wiktionary]",
+     "got": "the same, on hand-stamped Exodus",
+     "holds": true
+    },
+    {
+     "what": "search at rest",
+     "design": "«peru», «republic of peru», «tarica», «wheatberry» find nothing; «sperm» keeps M17",
+     "got": "peru 0, tarica 0, sperm 1 hit; open: peru 1 hit",
+     "holds": true,
+     "note": "«republic of peru» and «wheatberry» were not typed"
+    },
+    {
+     "what": "Zoar, Genesis 19:22",
+     "design": "2 shut pills («Officer cadet», «cadet»)",
+     "got": "«2 from word lists, knowledge bases and encyclopedia titles · show»",
+     "holds": true
+    },
+    {
+     "what": "live line asks at first paint",
+     "design": "0",
+     "got": "0 (window.__liveLines) on hand-stamped Genesis",
+     "holds": true
+    },
+    {
+     "what": "K2, the page's copy against the module's",
+     "design": "the same answers on every row",
+     "got": "652,954 rows plus 1,350 probe rows under each of 4 records answered alike; the same 27 ids; the text line for line",
+     "holds": true
+    },
+    {
+     "what": "first word on a 412x915 screen (Psalms; Obadiah and Amos with commentary)",
+     "design": "under 915px; Amos 908px with the layout fix",
+     "got": "787 / 893 / 908 px on the tree and on stamped zones; 815 / 961 / 936 before the rail and masthead changes",
+     "holds": true
+    },
+    {
+     "what": "Tikkunei Zohar shows nothing new",
+     "design": "nothing on it moves",
+     "got": "the same header row, rail line, 41 chips, no block or switch, lines of the first 3 sections, 8 cards (the one varying card varies on the old page against itself)",
+     "holds": true
+    },
+    {
+     "what": "page lint",
+     "design": "4 / 175 / 9 / 1 / 2",
+     "got": "4 / 175 / 9 / 1 / 2, the same findings message by message",
+     "holds": true
+    },
+    {
+     "what": "the rail's line on a phone with « · 14 shut»",
+     "design": "the line says « · M shut» while shut",
+     "got": "summary 23px to 52px tall; moved into the token's title",
+     "holds": false
+    },
+    {
+     "what": "mastheads whose name stands only on shut rows",
+     "design": "not in the design",
+     "got": "4 of 39 by the store's rows (Jeremiah, Obadiah, Lamentations, Ecclesiastes); Obadiah confirmed in the browser (title row 54px to 94px); kept attested via everyKind",
+     "holds": false
+    },
+    {
+     "what": "hand stamp counts (scratch, over each zone's gloss keys and word keys; part 4's own keys will differ slightly)",
+     "got": "Genesis: lists-and-bases 15,108 rows on 2,257 keys, 23 ids; English Wiktionary's names 434 rows on 258 keys, 3 ids. Exodus: 13,451 on 1,963, 22 ids; 338 on 201. Amos 7,095 on 819; 186 on 109. Obadiah 2,233 on 210; 63 on 32. Psalms 18,129 on 2,897; 407 on 250",
+     "holds": true,
+     "note": "for the proof only; not a bake"
+    },
+    {
+     "what": "the sources strip after the word senses pill (tree before this ship, Obadiah)",
+     "got": "40 chips to 0; after the fix 40 to 40 to 40",
+     "holds": true
+    }
+   ],
+   "lead_must_run": [
+    "After part 4's round stamps the zones: check-contents-shut-v1 on the real bakes. With hand stamps it is 787/893/908px. The masthead and the rail's line no longer move it, but the real bakes are what ship.",
+    "The K4 laws on the round's zones: probe-k4.mjs <readerDir> http://127.0.0.1:8899 genesis 21 4, until part 5's check exists.",
+    "/toggles/ rebuilt after the round (node tools/build-toggle-design-v1.mjs) if row-sources.png should show the «Shut at rest» block. Today it photographs Amos unstamped.",
+    "The round, the suite and the gate with both expectations, then the merge into gh-pages and its push (CLAUDE.md).",
+    "Part 5 to know: on the Tikkunei Zohar window.__kinds is 'shut' while nothing acts, and window.__kindsHere is false. A resting-lines record there should carry both, or K5 should skip zones outside the scope.",
+    "Your calls: whether the card's count should survive a tight card (for example in the readings band's label), and whether the masthead should go back to open dictionaries only (four books' names fall to the catalog register)."
+   ]
+  },
+  "bakes": {
+   "status": "partial",
+   "summary": "Part 4 is built and committed on kinds-build in commits dbf4b277f4 and 2ba4470a3a (the second fixes a figure in a code comment). One thing is open: the front door.\n\nWhat the five files now do:\n- tools/gloss-store-v1.mjs: openRouteStore(dir, { atRest }). At rest, routesFor gives only the rows that rest open, and [] where every row rests shut. routesWhole gives the rows whole. A key whose every reading rests shut is its own silence, EVERY_READING_RESTS_SHUT. The store reports which record it was opened under.\n- tools/regloss-zone.mjs: the record's scope is asked of each zone's own fields. The 39 books are projected at rest and stamped in emitted_from.rests_off; the page writer's notes read this exact shape. Every other zone is projected whole and loses any old stamp; the Tikkunei Zohar and 21 commentary zones come out byte-identical.\n- Witnessed credits: the corpus lane credited 325 of the 39 books' 102,434 witnessed entries to a shut source. The design did not expect this. Each one is re-credited from the store at rest and listed in rests_shut_recredited_keys. One with no open row would be refused; none exists.\n- tools/project-lattice-v12-v1.mjs: the leaders are baked at rest and the sidecar is stamped. It refuses a book in scope whose zone carries no stamp or another record's stamp, and a zone outside the scope that carries one.\n- tools/bake-search-index-v1.mjs: leaves out the rows of the fact entry (English Wiktionary's names), 1,634 rows.\n- PIPELINE.md: says all of this.\n\nProof, with the zones and lattice steps narrowed to Genesis, Exodus, Esther and the Tikkunei Zohar, outside the tree. I read the line at every word of those works before and after, using the page at 2ed036f33f:\n- Esther: 1 line moved, the rank loss at 9:17, «three» to «+ fork».\n- Genesis: 11 lines moved.\n- Exodus: 70 lines moved. Exodus 1:1 now reads «the Children of Israel, Israelites, Jews».\n- Tikkunei Zohar: 0 lines moved.\n- Every line a shut source carried has moved, and no line is credited to one afterwards.\n- Genesis 1:22's card loses the six Peru-shape pills.\n\nWhere the design did not hold:\n- Genesis 49:13 is filled by STEP's «ships» rather than going bare.\n- The search index leaves out 1,634 rows, not 1,682. The other 48 sit on keys the index never reads.\n\nThe front door is not done. Opened at rest it refuses to build. Left whole, it names a shut source on 6 titles and 3 family heads. I reverted it to HEAD for the lead to decide.\n\nThe checks writer's working copy of check-witnessed-order-v1 W2 needs one change before it can pass on these zones; the fix is under lead_must_run. Notes are in build/bakes-notes.txt.",
+   "commits": [
+    "dbf4b277f4 (kinds-build, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt) The dictionaries that rest shut, in the bakes: the store opened at rest for the thirty-nine books, the zone and the sidecar stamped, the search index without the rows of a fact (reader/tools/gloss-store-v1.mjs, reader/tools/regloss-zone.mjs, reader/tools/project-lattice-v12-v1.mjs, reader/tools/bake-search-index-v1.mjs, reader/PIPELINE.md)",
+    "2ba4470a3a (kinds-build) regloss-zone: the witnessed measure in rule 6's comment counts each entry once (comment only: the 2 credits whose chip names a shut source are among the 122, so 311 = 122 + 189)"
+   ],
+   "files_authored": [
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/gloss-store-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/regloss-zone.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/project-lattice-v12-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/bake-search-index-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/PIPELINE.md",
+    "/home/user/mashiachsonyosef.github.io/wip/2026-11-15/each-dictionary-as-a-category/kinds-shut-at-rest/build/bakes-notes.txt (plain note: the interface, every moved line, the sign count by book, findings for parts 5 and the lead)",
+    "scratch aids, not committed: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/zones-step.sh",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/lattice-step.sh",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/analyze.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/read-lines.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/lines-report.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/cmp-lines.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/card-probe.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/cmp-search.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/door-probe.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/sign-count.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/witnessed-shut.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v72/bakes/w2-replay.mjs"
+   ],
+   "checks_run": [
+    {
+     "check": "HEAD's tools on HEAD's inputs: zones and lattice steps for Esther, Genesis, Exodus and the Tikkunei Zohar",
+     "result": "Byte-identical to the committed zones and sidecars (e.g. Genesis zone 63f238c47702932c, sidecar 14bd489422321302). HEAD's page over HEAD's zones reproduces the committed resting lines. This validates the method."
+    },
+    {
+     "check": "Addition 1: the new tools on zones outside the scope",
+     "result": "The Tikkunei Zohar's zone is byte-identical (30dc945f273ad729). Obadiah's and Ruth's commentary zones, re-run with their own stamp, are byte-identical (262962700bd88c6d, d2fd721ea4d93004)."
+    },
+    {
+     "check": "The record's scope asked of every served and commentary zone",
+     "result": "Exactly the 39 books are in. Out: the Tikkunei Zohar (EDITION_DOOR_SERVE__BUILT_STREAM) and the 21 commentary zones (ZONE_COMMENTARY_V2)."
+    },
+    {
+     "check": "The new tools on Esther, Genesis and Exodus",
+     "result": "Zones after regloss: e3116a64fb470330, 4b021e6d582a2462, a8dff9596cb81fa7. After the lattice step: 5d1dc07212e24c18, 8e60403896b5bd79, b4c285e98d2c07d7. Sidecars: 1c221b740a68a4fc, 3c24236e7e0650da, a33b52a881fd2565. Regloss run on its own output gives the same bytes."
+    },
+    {
+     "check": "Column and leader analysis, old against new (analyze.mjs)",
+     "result": "Every moved reading, column entry and sidecar leader is owed to a shut row. Afterwards no carrier, alternate, label, order column or leader names a shut source. The switches' table goes from 22, 23 and 22 shut ids to 0."
+    },
+    {
+     "check": "The line at every word of the four works, before and after (read-lines.mjs, lines-report.mjs)",
+     "result": "Under the page at 2ed036f33f: Esther 1, Genesis 11, Exodus 70 and the Tikkunei Zohar 0 lines moved. Every line a shut source carried moved, and 0 lines are credited to a shut source afterwards. Under the live page (46bbbf7d50), only the 3 one-word lines move."
+    },
+    {
+     "check": "Genesis 1:22 card probe (card-probe.mjs)",
+     "result": "19 pills become 13. The six Peru-shape pills are held back, and the line «bear» stays."
+    },
+    {
+     "check": "Red and green on regloss-zone",
+     "result": "REFUSED with exit 1 on: R1 no record beside the store; R2 a record that is not JSON; R3 an index key filed by no family (M21's key); R4 an entry that names an unknown kind. Green on the real record."
+    },
+    {
+     "check": "Red and green on project-lattice-v12-v1",
+     "result": "REFUSED with exit 1 on: R5 a book of the scope whose zone was not projected at rest; R6 a book stamped under another record; R7 a zone outside the scope that carries a stamp. Green on a book projected at rest under the record."
+    },
+    {
+     "check": "Red and green on the witnessed re-credit",
+     "result": "A planted credit on an English Wiktionary name row (M13 «Jerusalem…») was kept by the first version, which was red. The final version refuses it with exit 1."
+    },
+    {
+     "check": "Red and green on bake-search-index-v1",
+     "result": "Refuses a missing record and a broken record (exit 1). Green on the real record: index bbe77041758f. HEAD's bake reproduces the committed 7b3e4b97e222."
+    },
+    {
+     "check": "Search index, old against new (cmp-search.mjs)",
+     "result": "706 of 156,892 folded readings now answer nothing and 808 pairs drop. 924 source credits are removed (M13 822, M25 67, M60 35). Nothing is removed from any other source, and nothing is added."
+    },
+    {
+     "check": "check-lattice-projection-v1, the tree's working copy (another builder's), on the at-rest bakes and on HEAD's",
+     "result": "Green on the at-rest bakes: every law ok, L4b over 100,423 leaders. Red on HEAD's whole bakes: L4 Exodus 2; L4b Esther 435, Exodus 1,563, Genesis 2,123."
+    },
+    {
+     "check": "W2 of check-witnessed-order-v1, the tree's working copy, replayed on the at-rest zones (w2-replay.mjs)",
+     "result": "Flags 27 of Genesis's 29 typed keys and 4 of Exodus's 5. In every one the shut source is in the lane's alternate alone; Esther's 2 pass. With the alternate asked too, 0 of 36 are flagged and each credit is the store's at rest."
+    },
+    {
+     "check": "Witnessed measure over the 39 books (witnessed-shut.mjs)",
+     "result": "325 of 102,434 entries stand on shut rows. 311 name a source shut whole: 122 among the carriers (2 of them also as the chip) and 189 in the alternate alone. 14 name a source that carries the reading only in English Wiktionary name rows. Every one of the 325 has an open re-credit."
+    },
+    {
+     "check": "check-zone-single-pass-receipts-v1 on the 3 at-rest zones",
+     "result": "L6 ok; all passed."
+    },
+    {
+     "check": "check-ledger-declared-v1",
+     "result": "Passes."
+    },
+    {
+     "check": "PIPELINE-MANIFEST generated in scratch",
+     "result": "161 rules declared, 148 guarded. The kinds rule is declared in the 4 tools."
+    },
+    {
+     "check": "ESLint (v29 lint/tools/kinds-bakes against kinds-bakes-before)",
+     "result": "The same 3 pre-existing warnings before and after; no new warning."
+    },
+    {
+     "check": "Scan of the added lines",
+     "result": "No Hebrew characters, no invisible characters, no British spellings. The only non-ASCII characters are « » · — …"
+    },
+    {
+     "check": "Sign count, addition 3 (sign-count.mjs)",
+     "result": "73,251 of 303,193 resting lines, by book and with ten examples (see figures and build/bakes-notes.txt)."
+    }
+   ],
+   "not_done": [
+    "The front door (tools/build-front-door-v1.mjs): it neither reads the store at rest nor is proven free of shut ids. At rest it refuses to build: Judges' title would print M13's «plural indefinite form of …», a character beyond the carried titles. Whole, it names a shut source on 6 titles and 3 family heads. Reverted to HEAD for the lead to decide.",
+    "The 39-book line measure: only Genesis, Exodus, Esther and the Tikkunei Zohar were re-baked and read, as the task narrowed it. The totals (39 one-word lines, 521 span lines) wait for the round.",
+    "PIPELINE-MANIFEST.md is not committed. The round's door step generates it, and it was checked only in scratch.",
+    "No new step in round-v1.sh: the record is an input of the existing zones and lattice steps, which re-bake every served zone on each round. Their order (regloss before the lattice) already meets the projector's stamp check.",
+    "check-witnessed-order-v1 W2 and the other amended checks are the checks writer's uncommitted working copies. I did not touch them, and I report what they do on these bakes."
+   ],
+   "api": "Store reader (tools/gloss-store-v1.mjs):\n- openRouteStore(storeDir, { atRest = false } = {}).\n- At rest, routesFor(k) gives the rows that rest open: [] where every row rests shut, null where the catalog has no entry. routesWhole(k) gives the rows whole.\n- atRest: { rule, record: \"data/dictionary-kinds-v1.json\", version, sha256 }, or null when opened whole.\n- restsOff: row -> the resting entry that shuts it, or null; restsOff itself is null when opened whole.\n- glossFor -> { text: null, reason: \"EVERY_READING_RESTS_SHUT\" }.\n- tableFor counts gain every_reading_rests_shut, at rest only.\n- The record is read from join(storeDir, \"..\"). If it is missing or does not hold, the reader throws one sentence.\n\nZone (regloss-zone):\n- emitted_from.rests_off: { rule, record, version, sha256, projected_on, projected_by, scope, what_the_zone_carries, keys_bare_at_rest, entries: { <entry id>: { say, ids: { <M id>: keys carrying a row of it }, keys, rows } } }. Present only in scope; deleted elsewhere.\n- emitted_from.witnessed_order.columns[c].rests_shut_recredited_keys.\n- emitted_from.gloss_m_orders_layer.per_order[c].rests_shut_recredited.\n- post_build.wrote gains \"emitted_from.rests_off\", and \"emitted_from.witnessed_order\" when any key is typed.\n\nSidecar (project-lattice): rests_off { rule, record, version, sha256, what }. Present only in scope.\n\nSearch index (data/search-index/index.json): rests_off { rule, record, version, sha256, facts_left_out, entries_left_out, says }.\n\nRefusals: each prints \"REFUSED — <one sentence>\" and exits 1.",
+   "figures": [
+    {
+     "what": "The Tikkunei Zohar at rest (addition 1)",
+     "design": "does not move",
+     "got": "Zone byte-identical (30dc945f273ad729). 0 of 97,283 lines moved; its 8,358 lines credited to the kind stay.",
+     "holds": true
+    },
+    {
+     "what": "Works outside the 39 books (addition 1)",
+     "design": "keep today's rest exactly",
+     "got": "The scope is exactly the 39 books. The Tikkunei Zohar and the 21 commentary zones are projected whole; Obadiah's and Ruth's commentary zones come out byte-identical.",
+     "holds": true
+    },
+    {
+     "what": "Genesis 1:22 card",
+     "design": "the six Peru-shape pills leave",
+     "got": "19 pills become 13. Leaving: Peru, pro, Republic of Peru, Tarica, country in South America, «A country in South America, with capital Lima». The withheld line ends «6 from word lists, knowledge bases and encyclopedia titles · show», and the line «bear» stays.",
+     "holds": true
+    },
+    {
+     "what": "Exodus 1:1 span line",
+     "design": "«the Jewish people» -> «the Children of Israel, Israelites, Jews»",
+     "got": "«the Jewish people» [M2] -> «the Children of Israel, Israelites, Jews» [M13], under the page at 2ed036f33f.",
+     "holds": true,
+     "note": "Span lines are the page's (part 2). The live page 46bbbf7d50, which does not know the kinds, keeps «the Jewish people» over the same zones."
+    },
+    {
+     "what": "One-word lines that move on the three Bible books measured",
+     "design": "39 over the 39 books; for these books: Esther 9:17 rank loss, Genesis 49:11 to the place's source, Genesis 49:13 bare",
+     "got": "3 lines: Esther 9:17 «three» [M14] -> «+ fork» [M14]; Genesis 49:11 «an urban area with a fixed boundary that is smaller than a city» [M43] -> «city + towards» [M4]; Genesis 49:13 «ship» [M28] -> «ships» [M4].",
+     "holds": true,
+     "note": "The same three lines the design names. The other 36 are in books this step did not re-bake."
+    },
+    {
+     "what": "Genesis 49:13",
+     "design": "goes bare",
+     "got": "«ships» [M4]",
+     "holds": false,
+     "note": "My reading: the bake at rest leaves this word with no open reading, as the design measured. The page then fills a bare line with STEP's own words (defaultAt, the default sources shipped in 46bbbf7d50). The design's measure rebuilt the baked leaders, not the page's fill."
+    },
+    {
+     "what": "Span lines that move on Genesis and Exodus",
+     "design": "521 over the 39 books: 502 to the next open row (370 «the Jewish people» -> «the Children of Israel, Israelites, Jews»); 19 back to their words' own lines",
+     "got": "79 lines. Genesis 9: 23:12 and 23:13 «people of the Land (of Israel)» [M2] -> «commoners, laymen» [M13]; 32:33, 42:5, 45:21, 46:5, 46:8 «the Jewish people» -> «the Children of Israel, Israelites, Jews» [M13]; 39:6 «GOOD-LOOKING» [M64] -> its words' own TAHOT lines «handsome of» + «form»; 40:20 «birthday» [M2] -> «[the] day of» + «being born». Exodus 70: 67 «the Jewish people» -> «the Children of Israel, Israelites, Jews» [M13] (listed in build/bakes-notes.txt); 4:10 «rhetorician» -> «one who is eloquent or fluent in one's speech»; 5:5 «people of the Land (of Israel)» -> «commoners, laymen»; 13:17 «Derekh eretz, the decorum, dignified behaviour, and gentlemanly conduct that should characterize a Jew at all times» -> «manners, etiquette; moral norms or customs» (all [M2] -> [M13]). Esther 0.",
+     "holds": true,
+     "note": "Every one is a span line a shut source carried, and they fall in the design's classes. The 39-book total is the round's."
+    },
+    {
+     "what": "Zone columns after the bake (Esther / Genesis / Exodus)",
+     "design": "no line column names a whole-source shut id",
+     "got": "Readings moved: 37 / 111 / 95. Of those, every carrier was shut in 10 / 37 / 26, the rank was lost in 26 / 73 / 69, and a fact's rows were involved in 1 / 1 / 0. Keys bare at rest: 2 / 12 / 4. Glossed keys: 1,477 -> 1,475; 6,413 -> 6,401; 5,383 -> 5,379. Shut ids in the switches' table: 22 / 23 / 22 -> 0. No carrier, alternate, label or order column names a shut source.",
+     "holds": true
+    },
+    {
+     "what": "Stamp entries: keys / rows / ids",
+     "got": "lists-and-bases: Esther 690 / 5,979 / 22; Genesis 2,257 / 15,108 / 23; Exodus 1,963 / 13,451 / 22. english-wiktionary-name: Esther 93 / 141 / 3; Genesis 258 / 434 / 3; Exodus 201 / 338 / 3.",
+     "holds": true
+    },
+    {
+     "what": "The sidecar's leaders",
+     "design": "o.l moves only where its carriers held a shut id; no leader names one",
+     "got": "Moved: Genesis la 1,614, e 1,356, l 1,045, x 497, m 273, s 125, c 26, v 1. Exodus la 1,186, e 944, l 733, x 335, m 215, s 66, c 7, v 1. Esther la 328, e 234, l 172, x 91, m 52, s 21. Every move is owed to a shut row, and no new leader names a shut source.",
+     "holds": true,
+     "note": "The lattice's own cards are unchanged, and hg moved 0. On 10 words (Genesis 5, Exodus 5), hg's credit names a shut source. hg is the lattice's own headword reading, read only under the headword lookup, not at rest, so it is left whole by rule 6."
+    },
+    {
+     "what": "Witnessed columns credited to a shut source",
+     "design": "bake-witnessed-order keeps the whole store, and K3 proves no witnessed column credits a shut id",
+     "got": "325 of the 39 books' 102,434 entries credit one: 311 a source shut whole, 14 English Wiktionary name rows only. All 325 also stand on an open row. Regloss re-credits them at rest and types them: Genesis 29 keys, Exodus 5, Esther 2.",
+     "holds": false,
+     "note": "bake-witnessed-order still keeps the whole store, as designed. The re-credit happens in regloss, so after the zones step no column names a shut source."
+    },
+    {
+     "what": "Search index rows left out",
+     "design": "English Wiktionary's 1,682 name rows leave the index outright",
+     "got": "1,634 rows left out (facts_left_out). The index goes from 7b3e4b97e222 to bbe77041758f.",
+     "holds": false,
+     "note": "My reading: the other 48 of the 1,682 rows sit on keys that are not their own letters. The index never reads those keys (other_keys_left_out), so there is nothing to leave out. Every name row the index reads is left out."
+    },
+    {
+     "what": "Sign count, addition 3 (report only)",
+     "got": "73,251 of 303,193 resting lines over the 39 books are led by a reading carrying its own source's sign: STEP 73,236, Strong's 14, MACULA 1. 52,496 show the sign and 20,755 hold a hidden sign's gap. Before the three books were re-read: 73,249 of 303,191 (Genesis +1 «[the] day of», Esther +1 «+ fork»). By book: Genesis 4,819, Exodus 4,178, Jeremiah 5,579, ...; the full list is in build/bakes-notes.txt. Ten examples: genesis 1:1 [3:1] «<obj.>» [PIECE:TAHOT]; genesis 1:1 [5:1] «and» + gap [PIECE:TAHOT]; genesis 1:2 [1:1] «<it> was»; genesis 1:2 [5:1] «[was] over»; numbers 3:43 [5:1] «+ command» [M14]; deuteronomy 28:59 [8:1] «+ aloud» [M14]; i-kings 7:41 [14:1] «+ advertise» [M14]; jeremiah 5:12 [3:1] «X before» [M14]; ezekiel 7:13 [1:1] «X at all» [M14]; jeremiah 50:29 [12:1] «there ~ be» [PIECE:MACULA].",
+     "holds": true,
+     "note": "Report only; the design gives no figure."
+    },
+    {
+     "what": "The front door",
+     "design": "follows the records",
+     "got": "It reads the store whole. It names a shut source on 6 titles: Leviticus M43, Judges M48, and the «attested» chips of Ecclesiastes M21, Jeremiah M1, Lamentations M37 and Obadiah M21. It also names one on 3 family heads: Talmud and Kabbalah M43, Grammar M1. Opened at rest, it refuses to build.",
+     "holds": false,
+     "note": "The door's page carries no zone stamp, so the kinds do not act there, and its whole titles match its whole cards."
+    },
+    {
+     "what": "Other bakes the page shows at rest",
+     "got": "Default picks use only M4, M19, M3, M18 and M46, none shut. The pointing recount is not served. Word senses read the overlay only. The commentary shows only with ?commentary=on and is outside the scope.",
+     "holds": true
+    }
+   ],
+   "design_did_not_hold": [
+    "The witnessed columns do credit shut sources: 325 of the 39 books' 102,434 entries. The design expected none. bake-witnessed-order keeps the whole store as designed; regloss re-credits each entry from the store at rest and lists it in rests_shut_recredited_keys.",
+    "The front door does not simply follow the records. It reads the store whole and names shut ids on 6 titles and 3 family heads. Opened at rest, it refuses to build, because Judges' title would print M13's «plural indefinite form of …».",
+    "Genesis 49:13 does not go bare on the page. The bake leaves it bare, and the page's default sources fill it with STEP's «ships» [M4].",
+    "The search index leaves out 1,634 rows, not 1,682. The other 48 name rows sit on keys the index never reads."
+   ],
+   "lead_must_run": [
+    "Run the whole round with --lattice (tools/round-v1.sh --stamp <date> --lattice … --stems … --stems-extension … --default-picks …). Its zones step bakes and stamps the 39 books at rest before the lattice step, which refuses an unstamped book. The search, lines, chain and door steps follow. The gate runs after it.",
+    "check-witnessed-order-v1 W2, in the checks writer's working copy: creditShut must ask the lane's alternate too, for example `creditShut(k, col[k], M) || !!(M && M.alt && creditShut(k, M.alt.text, M.alt))`. As it stands, it flags 27 of Genesis's 29 typed keys and 4 of Exodus's 5, all alternate-only. With the change, all 36 pass.",
+    "Decide the front door: keep it whole as now (it names M43, M48, M21, M1 and M37 on titles and chips), or give it a rule of its own for titles at rest.",
+    "Until the round re-bakes the 39 books, these go red on the committed zones: check-lattice-projection-v1's working copy (L4b on HEAD's Genesis, Exodus and Esther: 2,123, 1,563 and 435 leaders) and check-page-agrees-with-store.",
+    "For K3: the stamps are at zone emitted_from.rests_off.sha256 and at sidecar rests_off.sha256. Both equal the record's sha256 (53f799f09cd8ec68…) for version 2026-11-15a."
+   ]
+  },
+  "checks": {
+   "status": "done",
+   "summary": "Part 5 is built and proven on scratch farms over the tree, without the round, the suite or the gate. There are two commits on branch kinds-build in the scratch tree (`rt`), each made by explicit path.\n\n**6b6c67fc44**, 16 files:\n- The read-off tools record `kinds` (\"shut\", \"open\", or null where the dictionaries do not act). Lifted opens them; linesOnPage refuses a page that could not take the record; openGatedCard takes `{kinds}`.\n- check-dictionary-kinds-v1 adds K3 (bakes at rest), K4 (page at rest) and K5 (records and chain books), plus `--only`.\n- check-chain-book-v2 K3: lifted holds the kinds open.\n- check-search-v1 adds S18 and a model of the shut rows.\n- The gate takes `--expect` twice and gains the kinds classes.\n- The names and entry-gate checks ask with the kinds open.\n- The rebuild checks ask the store at rest.\n\n**210877ad95**, 4 files, found by sweeping every check that reads the resting state (about 80 checks, run at rest against the same five works whole):\n- witnessed-order W2 now also asks the credit's alternate, as regloss does, and refuses a kept credit that stands on a shut source.\n- span-store S2/S3/S6: a cell whose every span row rests shut draws its pieces, and the card is judged by the rows that rest open.\n- card-opens-on-the-line adds the remembered setting fh.kinds=open (card-only).\n- The gate's S1 owes a line whose credit stood only on rows a category rests shut (the name-category class).\n\n**Results:**\n- Every new or amended law was red on a wrong state and green on the right one. The one exception is the gate, which the rules leave to the lead.\n- Across both sweeps, the only real difference between at rest and whole outside my checks is levels-v1: at rest, the card moves 50px when a pill is pressed. That is the page writer's to fix.\n- Every other red is a farm artifact, or red whole and at rest alike, or red on the tree as it stands.\n- I stopped my servers (8957, 8958, 8960; 8959 and 8961 earlier) and removed the farms and lint copies. The tree's git status is clean.",
+   "commits": [
+    "6b6c67fc44 (branch kinds-build, /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt): The dictionaries that rest shut, held: the bakes at rest, the page at rest, the records and the chain books (16 files)",
+    "210877ad95 (branch kinds-build, same tree): The dictionaries that rest shut, held further: the witnessed alternates, the span lines, a kept switch, the gate's category lines (4 files)"
+   ],
+   "files_authored": [
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/card-readings-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/resting-lines-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/gated-card-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-dictionary-kinds-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-chain-book-v2.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-search-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-same-product-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-names-gate-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-names-pill-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-proper-name-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-entry-gate-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-stems-extension-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-sense-openings-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-carrier-survives-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-lattice-projection-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-witnessed-order-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-span-store-v1.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/rt/reader/tools/check-card-opens-on-the-line-v1.mjs",
+    "/home/user/mashiachsonyosef.github.io/wip/2026-11-15/each-dictionary-as-a-category/kinds-shut-at-rest/build/part5-checks-notes.txt (plain note, not committed)"
+   ],
+   "checks_run": [
+    {
+     "check": "check-dictionary-kinds-v1 --only genesis,exodus,esther,obadiah,tikkunei-zohar (scratch farm, 4 Bible books baked at rest)",
+     "result": "Exit 0 under every law.\n- K1 and K2: green.\n- K3: 4 zones stamped, 48,031 keys of 6 zones, 18 keys bare at rest, 73,089 credits, 27 ids under 15 labels, 6 zones rebuilt (4 at rest, 2 whole), 4 sidecars with 114,920 leaders.\n- K4: live asks 0 at first paint and 0 with the whole book built. Genesis 1:1 entry 1 holds back 4 pills; 14 chips; the Tikkunei Zohar draws nothing of the kinds.\n- K5: 5 records with 40,374 lines; Obadiah's chain has 12,853 pills at rest."
+    },
+    {
+     "check": "check-dictionary-kinds-v1, wrong states",
+     "result": "Red on each wrong state:\n- every K3 law on its hand-made wrong zone, including an Esther credit standing on name-category rows (M13) alone;\n- K4 on the page before the kinds work;\n- K5 on the old records (91 faults) and on the old chain (1,943 pills at rest standing on shut sources alone)."
+    },
+    {
+     "check": "check-dictionary-kinds-v1 --only genesis,obadiah,tikkunei-zohar on the tree as it stands (before the round)",
+     "result": "Exit 1, as expected before the round.\n- K1 and K2: green.\n- K3 red: no stamp; 2,955 credits name a source shut whole; 2,971 credits stand only on shut rows; 111 of Genesis's 10,336 keys read otherwise at rest; the sidecars name no record.\n- K4 red on Genesis (the kinds do not act on it yet), green on the Tikkunei Zohar.\n- K5 red: 17 faults in the records, 3 in the chain book."
+    },
+    {
+     "check": "check-chain-book-v2 --dir <a folder holding only Obadiah's chain, read at rest>",
+     "result": "Exit 0: K0 to K8 green; C1 12,853 pills, C2 26,502, C3 green.\n\nRed cases:\n- The same file with the lifted state's kinds removed: only the K3 state law is red.\n- The tree's old Obadiah chain: K3, K6, C1 (220 of 291 words hold links the card no longer prints at rest), C2 and C3 are red."
+    },
+    {
+     "check": "check-search-v1 (full farm, index baked at rest)",
+     "result": "Exit 0, S1 to S18. S18: 1,634 rows left out under english-wiktionary-name, recounted the same.\n\nRun against the old index, only S18 is red."
+    },
+    {
+     "check": "check-witnessed-order-v1 --zone genesis and --zone exodus (farm at rest)",
+     "result": "Before the fix, W2 was red on every key re-credited on its alternate alone. After the fix:\n- W2 is green, with 29 re-credits on Genesis and 5 on Exodus, each the store's at rest.\n- The new converse law is red on the tree's own Exodus: it keeps credits naming shut sources until the round re-credits them.\n- W4 is red on Exodus at rest, but equally red on the tree and with the page as shipped at 46bbbf7d50, so it predates this work."
+    },
+    {
+     "check": "check-span-store-v1 (amended)",
+     "result": "Green on:\n- the farm at rest, naming 2 cells whose every row rests shut (Genesis 39:6 and 40:20), drawn as their pieces;\n- the same five works whole;\n- the tree.\n\nRed on Genesis where the page could not take the record on a stamped zone: S2 names the lines «GOOD-LOOKING» and «birthday» read from shut rows, and says the page does not act where the stamp is."
+    },
+    {
+     "check": "check-card-opens-on-the-line-v1 (amended), Obadiah at rest",
+     "result": "C1 green under 24 settings, fh.kinds=open among them, with 240 cards opened cold.\n\nC2 is red once (masoretic order, the divine name: first pill «Yahweh», line «The Lord»). It is red whole as well (first pill «God»), so it predates this work."
+    },
+    {
+     "check": "check-default-picks-v1, node and page laws (full farm)",
+     "result": "Exit 0. D3 holds against the records of Genesis, Exodus, Esther and Obadiah read at rest. The page laws ran on w1 = Obadiah at rest."
+    },
+    {
+     "check": "Rebuild and gate checks in the five-work farm",
+     "result": "All exit 0:\n- carrier-survives (C2: 26,287 of 26,287);\n- lattice-projection (L4b: 101,607 leaders);\n- sense-openings (O6);\n- entry-gate;\n- stems-extension;\n- proper-name;\n- run-card-forms on Obadiah at rest.\n\nIn the full farm, names-gate-v1 and piece-store-v1 also exit 0."
+    },
+    {
+     "check": "check-names-pill-v1 on Exodus (kinds open)",
+     "result": "P1, P2 (14 of 14 owed lines moved), P4, P5 and P6 green.\n\nP3 is red, but equally red on the tree and with the page as shipped, so it predates this work. On Genesis it owes 0 lines, both on the tree and at rest."
+    },
+    {
+     "check": "Sweep 1: 47 checks in the five-work farm, triaged against the tree and the full farm",
+     "result": "Green or not affected.\n- chapter-pages-v3 P3 is red at exactly the 80 verses the records moved (Genesis 11, Exodus 68, Esther 1). The door was not rebuilt in the farm, so its pages pin the old bins; clean-address and page-fetches are red for the same reason.\n- The rest are green, or identical whole and at rest, or have a book missing from the five-work farm."
+    },
+    {
+     "check": "Sweep 3: the 33 remaining checks that read pills, lines or records, at rest against whole",
+     "result": "Only two differ between at rest and whole:\n- levels-v1: a real page behavior at rest, the page writer's.\n- page-fetches-v1: the door-pin artifact.\n\nThe other 31 are green, or identical whole and at rest (record-pinned, reading-rows, english-license, front-door-opens-title and dictionary-toggle are red on the tree too)."
+    },
+    {
+     "check": "eslint (the project config in the v29 lint folder) on every changed file, before against after",
+     "result": "No new warnings. The pre-existing no-unused-vars warnings are unchanged: 3 in the first commit's files, 4 in the second's."
+    },
+    {
+     "check": "pipeline-manifest-v1 --out <scratch>",
+     "result": "161 rules declared, 149 named by a check, 12 unguarded. The kinds rule is named by 14 checks. The output was not committed."
+    }
+   ],
+   "not_done": [
+    "I did not run the gate (check-same-product-v1); the rules leave it to the lead. Its kinds classes in S1 and S2 are unproven red and green, including the new class for a line credited only on rows a category rests shut.",
+    "K3 to K5, the rebuild checks, the records and the chain were proven on four Bible books (Genesis, Exodus, Esther, Obadiah) and the Tikkunei Zohar. The other 35 books get theirs in the round.",
+    "The new fh.kinds trial in check-card-opens-on-the-line-v1 has no red state shown: making one would take a fault in the page.",
+    "levels-v1 is red at rest: on Obadiah 1:1:1 with commentary on, pressing the second pill moves the card from 136.672px to 86.672px; whole, it holds at 80.672px. This is a fix in zone.html for the page writer, not a check change.",
+    "These reds predate this work and are not mine to fix, because each is red whole too, on the tree, or with the page as shipped: names-pill P3 on Exodus; witnessed-order W4 on Exodus; line-reads-the-place P3; card-opens C2 on Obadiah under the masoretic order; record-pinned; reading-rows R1/R3; english-license; front-door-opens-title L6; dictionary-toggle on the tree.",
+    "The check runs overwrote 6 screenshots in the tree's reader/build/shots, which is gitignored, through the farms' build symlink: drag-offscreen, gloss-whole-en, gloss-whole-he, levels-hud, levels-section and long-pill. Their earlier bytes cannot be put back; each check run writes them again."
+   ],
+   "api": "**Read-off tools**\n- `resting-lines-v1` `linesInPage`, `card-readings-v1` `cardsInPage` and `gated-card-v1` `cardInPage` record `state.kinds`: \"shut\" or \"open\" where `window.__kindsHere`, otherwise null.\n- `card-readings-v1` `STATES.lifted.keep['fh.kinds']` = \"open@\" plus the record's version, read at import. `STATES.lifted.holds.kinds` = \"open\". `readCards` refuses a lifted page that reports otherwise.\n- `linesOnPage` throws where `window.__kindsFailed` is set.\n- `openGatedCard(browser, base, pick, { masorah = null, sources = 'all', kinds = 'rest' })`: \"open\" loads `&kinds=open`; any other value throws.\n\n**Checks**\n- `check-dictionary-kinds-v1 [--only work,...]` narrows K3 to K5 and prints a line saying they were not judged on every work.\n- `check-same-product-v1 ... --expect data/default-picks/index.json --expect data/dictionary-kinds-v1.json`: each file is told by its `rule_id`. Any other file, or a duplicate, is refused with exit 2.\n  - Its diff marks lines `kinds (<class>)`. The classes are: a shut source's line; a shut source's run line; a rank a shut co-carrier gave; a reading on rows a category rests shut.\n- `check-chain-book-v2 [--dir <chain folder>]`, together with `build-chain-book-v2 --index --dir <folder>`, lets a proof run over one book's chain.",
+   "design_did_not_hold": [
+    "The design's list of amended checks (section 4) missed three that read the resting state:\n- check-span-store-v1: S2 was red at rest at Genesis 39:6 and 40:20, where every span row rests shut and the cell draws its pieces.\n- check-card-opens-on-the-line-v1: fh.kinds=open is a new remembered setting.\n- check-witnessed-order-v1 W2: it must ask the credit's alternate too, because regloss re-credits on it; per regloss's own count, 189 of the 325 witnessed re-credits stand on the alternate alone.\nAll three are amended in 210877ad95.",
+    "The gate's owed classes as designed (a shut-whole chip, a shut co-carrier) miss a line whose credit stood only on the name category's rows.\n- On the tree's 39 books, 34 keys stand so and 30 read otherwise at rest. Examples: «Zilpah.» and «Gershom.» [M13 M9]; «Scriptio continua form of …» [M13], which goes bare.\n- None of them moved a resting line in the four books baked here, so section 5's «0 lines from Wiktionary's name category» held where measured.\n- I added a fourth owed class to S1.",
+    "levels-v1 «switching reading does not move the card» is red only at rest: the card moves 50px when a pill is pressed (Obadiah 1:1:1 with commentary on). The design expected nothing on the page to move except what the kinds hold back."
+   ],
+   "figures": [
+    {
+     "what": "The record's resting entries (K1)",
+     "design": "14 keys, 27 M ids, 25 with rows, 118,674 rows; 1,590 + 92 name rows",
+     "got": "14 keys, 27 M ids, 25 with rows, 118,674 rows; 1,682 name rows (1,590 + 92)",
+     "holds": true
+    },
+    {
+     "what": "Genesis 1:22 פרו card at rest",
+     "design": "6 pills only the kind prints: Peru, Republic of Peru, Tarica, country in South America, pro, OmegaWiki's definition",
+     "got": "Held back 6, with 13 pills standing. Pressing the switch brings back Peru, pro, Republic of Peru, Tarica, country in South America, and «A country in South America, with capital Lima», each dotted.",
+     "holds": true
+    },
+    {
+     "what": "Live asks at first paint",
+     "design": "0",
+     "got": "0 on Genesis at first paint, and 0 with the whole book built (K4)",
+     "holds": true
+    },
+    {
+     "what": "The Exodus 1:1 class: «the Jewish people» to «the Children of Israel, Israelites, Jews»",
+     "design": "370 lines across the Bible",
+     "got": "70 lines in Exodus and 7 in Genesis, all moving from M2 to M13",
+     "holds": true,
+     "note": "Only 4 books were baked; the others are the round's."
+    },
+    {
+     "what": "Rank loss",
+     "design": "«three» to «+ fork» at Esther 9:17 (and 1 Chronicles 23:23)",
+     "got": "At Esther 9:17, «three» became «+ fork», credited to M14 before and after. It was the only line Esther's record moved.",
+     "holds": true
+    },
+    {
+     "what": "Span lines falling back to their words' own lines",
+     "design": "19 across the Bible",
+     "got": "2 in Genesis: 39:6 «GOOD-LOOKING» (M64) and 40:20 «birthday» (M2), both drawn as their pieces",
+     "holds": true
+    },
+    {
+     "what": "Lines moved from Wiktionary's name category",
+     "design": "0",
+     "got": "0 resting lines in the 4 books baked. At the key level, 34 keys across 39 books stand on name rows only, and 30 of them read otherwise at rest.",
+     "holds": true,
+     "note": "The gate now owes such a line if one appears."
+    },
+    {
+     "what": "Name rows left out of the search index",
+     "design": "1,682 leave the index outright",
+     "got": "1,634 are left out (checked by S18's recount). The other 48 stand under keys the index never reads (a key that is not its own letters).",
+     "holds": true
+    },
+    {
+     "what": "Resting lines moved in the farm",
+     "design": "39 one-word lines and 521 span lines across the Bible",
+     "got": "Genesis: 32 record entries in 11 verses. Exodus: 70 in 68 verses. Esther: 1. Obadiah and the Tikkunei Zohar: 0. That makes 80 verses in all, the same 80 that chapter-pages P3 names.",
+     "holds": true
+    },
+    {
+     "what": "Witnessed credits re-credited at rest",
+     "design": "325 of 102,434 witnessed entries across the 39 books (regloss's own measure)",
+     "got": "Genesis 29 and Exodus 5, each the store's credit at rest, judged by W2",
+     "holds": true
+    },
+    {
+     "what": "check-default-picks-v1 D3 at the moved lines",
+     "design": "Not established (section 7)",
+     "got": "Green with the records of Genesis, Exodus, Esther and Obadiah read at rest, under both the node and the page laws",
+     "holds": true
+    },
+    {
+     "what": "Obadiah's chain book read at rest",
+     "design": "Not measured",
+     "got": "12,853 links at rest and 26,502 lifted. No pill at rest stands on shut sources alone.",
+     "holds": true
+    }
+   ],
+   "lead_must_run": [
+    "The round with --lattice (and its usual --stems, --stems-extension and --default-picks inputs):\n- all 39 Bible zones baked at rest and stamped;\n- the records and chain books read again;\n- the search index baked;\n- the door and chapter pages rebuilt.\nUntil the door is rebuilt, chapter-pages-v3, clean-address and page-fetches stay red, because the old pages pin the old bins.",
+    "After the round, run `node tools/check-dictionary-kinds-v1.mjs` with no --only. It must be green.",
+    "check-default-picks-v1 --node (the round runs it after the defaults step), then again with the suite: D3 must hold against the records read again at rest. If it is red, bake the defaults again.",
+    "The suite. witnessed-order W2, carrier-survives, lattice-projection, sense-openings, proper-name and kinds K3/K5 judge every in-scope zone by the record's scope, so before the round they are red; after it they should be green. Already red before this work: names-pill P3 (Exodus), witnessed-order W4 (Exodus), line-reads-the-place P3, record-pinned, reading-rows, english-license, front-door-opens-title, dictionary-toggle. levels-v1 is newly red at rest and is the page writer's.",
+    "The gate. First the design's two-book dry run:\n`node tools/check-same-product-v1.mjs --old <live origin> --new <built origin> --every 39 --chapters 1 --expect data/default-picks/index.json --expect data/dictionary-kinds-v1.json`\nThen the full run:\n`node tools/check-same-product-v1.mjs --old <live origin> --new <built origin> --expect data/default-picks/index.json --expect data/dictionary-kinds-v1.json --diff build/kinds-gate.diff`\nEvery kinds difference must fall in one of the 4 classes, and every lost pill must be held back.",
+    "Merge branch kinds-build (6b6c67fc44, 210877ad95) into main with the other parts. Then merge main into gh-pages («gh-pages follows main») and push."
+   ]
+  },
+  "integrator": {
+   "status": "done",
+   "summary": "I read the six commits on kinds-build (41a2b11a8e to 210877ad95) and found no seam between the parts that needed a fix, so I committed nothing. Every stamp one part writes is read by the part that needs it, under one name:\n- the zone's emitted_from.rests_off, read by the page, the projector and K3;\n- the sidecar's rests_off, read by K3;\n- the search index's rests_off, read by S18;\n- the page's hooks (__kinds, __kindsHere, __restsOffIds, __kindsVersion, __kindsFailed, __kindsFault), read by resting-lines, card-readings, gated-card and the checks;\n- fh.kinds \"open@<record version>\" and ?kinds=open;\n- the pills' data-by, data-rests and data-kind-withheld, read by K4 and the gate.\n\nI then rehearsed the round's steps, in the round's order, on scratch-side copies of what each step writes. I ran zones with --lattice, then stamps, search, records and lines --only. The works were Genesis, Exodus, Esther, Daniel and the Tikkunei Zohar. I added Amos, Obadiah and Psalms so that check-contents-shut and two chain books could be proven on real bakes at rest.\n\n**Lines.** Every line that moved is of the design's classes:\n- **Genesis:** 11 lines, plus the second halves of 2 runs that fell to their words.\n- **Exodus:** 70 lines, 67 of them «the Jewish people» to «the Children of Israel, Israelites, Jews».\n- **Esther:** 1 line, the rank loss at 9:17, «three» to «+ fork».\n- **Daniel:** 2 lines. The 92 Aramaic name rows move none.\n- **Amos:** 6 lines, plus 1 half.\n- **Psalms:** 7 lines, plus 4 halves.\n- **Obadiah and the Tikkunei Zohar:** 0. The Tikkunei Zohar's zone is byte-identical and its record keeps kinds null.\n- No new line is credited to a source shut whole.\n\n**Checks.**\n- **check-dictionary-kinds-v1:** green narrowed, on the 5 works and on the 8 works with both rebuilt chain books.\n- **Red on wrong states:** with Amos's old chain book, K5 is red on Amos alone. With --only ruth, a book not baked at rest, there are 8 FAILs across K3, K4 and K5.\n- **Green:** check-chain-book-v2 on the new Amos and Obadiah chains, search S1 to S18, contents-shut (787, 893 and 908 px), reset-pill, card-opens-on-the-line on Esther (1,586 s), and the rebuild, names, entry, stems, span, source and menu checks.\n- **Four reds that are red the same way on the shipped tree** (scratchpad/old at 8914):\n  - witnessed-order W4 and names-pill P3 on Exodus (only the card's text changed);\n  - line-reads-the-place P3 on Genesis;\n  - ruled-equals-first-paint E1 under UBS at Genesis 1:6.\n\n**Default picks.** Re-baked after the lines, the index and every book file are byte for byte the tree's; only the receipt's count of runs read whole moves. So the defaults belong after the lines.\n\n**Lint.** The page is at its baseline (4/175/9/1/2). The 23 changed tools give the same 9 messages before and after.\n\n**The combined ship.** The record holds over ship-next's store index (no key unfiled). Merging kinds-build into ship-next conflicts in zone.html (2 hunks) and in PIPELINE.md; the resolutions are below.\n\nI put all 272 generated paths back from HEAD; git diff HEAD is empty.",
+   "commits": [],
+   "files_authored": [
+    "/home/user/mashiachsonyosef.github.io/wip/2026-11-15/each-dictionary-as-a-category/kinds-shut-at-rest/build/integrator-notes.txt",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-int/zones-step.sh (the round's zones step narrowed: witnessed, regloss, commentary regloss compared byte for byte, lattice)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-int/after-zones.sh (stamps, search, defaults node laws, records, lines --only)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-int/lines-moved.mjs (every resting line before, from git HEAD, and after, by the design's class)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-int/zones-moved.mjs and ol-moved.mjs (zone credits and sidecar leaders that moved, by class)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-int/make-farm5.sh, make-oldfarm.sh, run-checks.sh, run-old.sh, probe-key.mjs",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-int/PIPELINE-MANIFEST.fresh.md (the manifest as the door step would write it)",
+    "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-int/logs/ (every step's and check's output)"
+   ],
+   "checks_run": [
+    {
+     "check": "zones step (bake-witnessed-order, regloss-zone, project-lattice-v12 as round-v1.sh runs them), 8 works, stamp 2026-11-15",
+     "result": "exit 0. 7 books baked at rest and stamped. The Tikkunei Zohar was projected whole, byte-identical. The amos and obadiah commentaries were byte-identical. Lattice times: genesis 51 s, exodus 40, esther 14, daniel 19, amos 13, obadiah 4, psalms 52."
+    },
+    {
+     "check": "stamps, search, records, lines --only (round order)",
+     "result": "Stamps unchanged. Word senses the same. Search index: 1,634 fact rows left out. Zone store: 8, then 6, bins moved. Serve gate receipt rewritten for the new shas. Count stamp and overlay counts byte-identical. 8 records read."
+    },
+    {
+     "check": "check-default-picks-v1 --node --ledger (before and after the lines moved)",
+     "result": "exit 0 both times. D0 to D19 green, D3 included."
+    },
+    {
+     "check": "bake-default-picks-v1 --out scratch after the lines",
+     "result": "Index sha f20c8e4f9f8c and every book file are the tree's bytes. Only the receipt moves: runs_read_whole 2,177 to 2,170 lines and 4,402 to 4,388 words, and records 'of another zone' 39 to 0."
+    },
+    {
+     "check": "lines-moved (git HEAD records against the new ones, 8 works)",
+     "result": "Every moved line is of the design's classes: lines whose old chip was a source shut whole, their runs' second halves, and the rank loss. No other class. No new line credited to a source shut whole."
+    },
+    {
+     "check": "check-dictionary-kinds-v1 --only genesis,exodus,esther,daniel,tikkunei-zohar",
+     "result": "exit 0 in 83 s. K1 to K5 all ok. K5 says no chain book among these works."
+    },
+    {
+     "check": "check-dictionary-kinds-v1 --only the 8 works, with the rebuilt amos and obadiah chain books in place",
+     "result": "exit 0. K5: 2 chain books, 104,532 pills at rest, 18,986 lifted pills that shut sources alone carry."
+    },
+    {
+     "check": "check-dictionary-kinds-v1 on a wrong state",
+     "result": "With Amos's old chain book, K5 is red on amos only (exit 1). With --only ruth (not baked at rest): 8 FAIL across K3, K4 and K5."
+    },
+    {
+     "check": "check-chain-book-v2 --dir <scratch holding the new amos and obadiah chains>",
+     "result": "exit 0, all passed (K0 to K8, C1 to C3)."
+    },
+    {
+     "check": "page probe probe-k4.mjs at Genesis 1:22, 5th word, on 8899 with the real bake",
+     "result": "All 10 laws ok. 13 pills at rest. «6 from word lists, knowledge bases and encyclopedia titles · show». One press brings Peru, pro, Republic of Peru, Tarica, country in South America, and «A country in South America, with capital Lima», all dotted."
+    },
+    {
+     "check": "Tree checks in a farm serving only the 8 works",
+     "result": "All exit 0: carrier-survives (11 ok), lattice-projection (11), sense-openings (10), zone-single-pass-receipts (7), entry-gate (19), stems-extension (11). names-gate N5 is red only in the farm; on the whole tree names-gate passes (9 ok)."
+    },
+    {
+     "check": "Page checks on 8899, part 1",
+     "result": "Green: proper-name (genesis), witnessed-order on genesis (W2: 29 credits re-credited at rest), span-store on genesis, exodus, amos and psalms (15 ok), search (S1 to S18; S18: 1,634 rows, recounted equal)."
+    },
+    {
+     "check": "Page checks on 8899, part 2",
+     "result": "Green: disk-gloss-is-the-line, contents-shut (50 ok: 787, 893 and 908 px on Psalms, Obadiah and Amos baked at rest), reset-pill, source-switch (15 ok), menu-switches."
+    },
+    {
+     "check": "Page checks on 8899, the reds",
+     "result": "Red: witnessed-order W4 on exodus, names-pill P3 on exodus, line-reads-the-place P3 on genesis, ruled-equals-first-paint E1 under UBS on genesis."
+    },
+    {
+     "check": "The same four red checks on the shipped tree (scratchpad/old read through a farm, against 8914)",
+     "result": "Red the same way, so they predate this branch. W4 and P3 differ only in naming «the Jewish people» where the branch names «the Children of Israel»."
+    },
+    {
+     "check": "check-card-opens-on-the-line-v1 on esther, baked at rest",
+     "result": "exit 0 in 1,586 s. C1 and C2 ok."
+    },
+    {
+     "check": "lint: v29 lint-page.sh on zone.html, and npx eslint on the 23 tools the branch changed (copies before and after)",
+     "result": "Page: 4 no-misleading-character-class, 175 no-use-before-define, 9 no-useless-assignment, 1 no-unused-vars (ORDER_RULE_ID), 2 no-unmodified-loop-condition, which is the baseline. Tools: the same 9 messages before and after, 0 in the two new tools."
+    },
+    {
+     "check": "House rules on the branch's added lines",
+     "result": "0 Hebrew characters in added code lines. British spellings only in quoted table bytes and in the existing field name licence_orders_layer."
+    },
+    {
+     "check": "pipeline-manifest-v1 --out scratch",
+     "result": "161 rules declared, 149 named by a check, 12 unguarded (committed: 160/147/13). The kinds rule is declared in 9 files and guarded by 14 checks."
+    },
+    {
+     "check": "Record over the other branches' store indexes, and git merge-tree ship-next kinds-build",
+     "result": "The record holds over ledgers-build, ledgers-build-ship2 and ship-next (146 M ids, 38 keys, 27 ids shut whole). The merge conflicts in reader/zone.html (2 hunks) and reader/PIPELINE.md."
+    }
+   ],
+   "not_done": [
+    "No seam fix was needed, so I made no commit.",
+    "Latent seam inside part 5, not fixed. card-readings-v1 readCards refuses a lifted page that reports kinds null. check-chain-book-v2 K3 and check-dictionary-kinds-v1 K5 want null on a work the record does not rest shut. All 12 chain books are in the scope, so this is never met; a chain built for a work outside the scope would be refused by the builder. A one-line relaxation in readCards would close it, if the lead wants it.",
+    "Follow-up outside the parts, not done. tools/check-page-agrees-with-its-record-v1.mjs still names color-channel-rule-v2 as the rule it guards. Now that zone.html names v3, the manifest lists v2 as declared by that check alone.",
+    "The door step was not run narrowed: every other work's record names the page from before this branch, so the door would refuse it. check-chapter-pages-v3 was not run.",
+    "Chain books: only Amos and Obadiah were rebuilt (into scratch, copied in for the checks, then put back). The other 10 are the round's.",
+    "I did not bake 1 Chronicles, so the second rank-loss place (23:23) was not seen.",
+    "I did not run the suite or the gate (they are the lead's), and I did not merge into ship-next (the conflicts and their resolutions are given)."
+   ],
+   "design_did_not_hold": [
+    "The design said these one-word lines go bare. They are drawn with STEP's own words, credited M4: Genesis 49:13 «ship» [M28] became «ships», Psalms 63:3 «war front, ...» [M10] became «I have seen + you», and Psalms 64:5 «lyre, ...» [M10] became «to + shoot». Reason: the default sources' rule draws STEP's pick-1 words wherever the line rests bare. The design's measure modeled the lattice leaders without the default picks. The gate owes them as «a shut source's line».",
+    "The design says English Wiktionary's 1,682 name rows leave the search index. The bake leaves out 1,634, and check-search S18 recounts the same 1,634. The other 48 stand on keys the index never reads (a key with a maqaf, or an abbreviation's key).",
+    "The lifted chain state is not byte for byte the old one where a run's every row rests shut. A span line never reads a shut row, open or shut, so the run is no longer laid and its words carry their own cards. At Amos 8:3, cells 10 and 11 had 1 pill each lifted; they now have 165 and 83, so Amos lifted is 183,106 links before and 183,352 after. Obadiah lifted is unchanged at 26,502.",
+    "Round order: run the defaults after the lines (the lead's own note), not in round-v1.sh's fixed order. Re-baked after the lines, the index and every book file are unchanged for these works. Only the receipt's runs_read_whole and its 'records of another zone' become true. Before the lines, every one of the 39 records is 'of another zone'.",
+    "The Tikkunei Zohar's 8,358 lines credited to the kind (the design calls them span lines) are one-word lines: the work has no line over more than one word. By addition 1 they stand, unchanged."
+   ],
+   "figures": [
+    {
+     "what": "the record over the store (K1)",
+     "design": "38 keys, 146 M ids; the kind 14 keys, 27 M ids (25 with rows), 118,674 rows; names 1,590 + 92 = 1,682; 652,954 rows",
+     "got": "the same, recounted from the 256 shards; 29 families (27 of the store), 54 quotes of 18 families, 11 silent",
+     "holds": true
+    },
+    {
+     "what": "K2, one rule in one place",
+     "design": "the page's restsOffOf answers as the module's",
+     "got": "652,954 rows plus 1,350 probe rows under 4 records answer alike; the page's text is the module's, line for line",
+     "holds": true
+    },
+    {
+     "what": "scope (addition 1)",
+     "design": "the 39 Bible books only",
+     "got": "39 books rest shut; the Tikkunei Zohar, 21 commentaries and 8 fixtures keep today's rest; the Tikkunei Zohar's zone is byte-identical, 0 of its 97,283 lines moved, and its record says kinds null",
+     "holds": true
+    },
+    {
+     "what": "lines moved, by book (git HEAD records against the new ones)",
+     "design": "only a shut carrier leaving the line, and the rank-loss class",
+     "got": "Genesis 11 (+2 halves of runs that fell to their words); Exodus 70; Esther 1 (rank loss); Daniel 2; Amos 6 (+1 half); Obadiah 0; Psalms 7 (+4 halves); Tikkunei Zohar 0. 0 of any other class; 0 new lines credited to a source shut whole",
+     "holds": true,
+     "note": "the bakes builder's Genesis 11, Exodus 70 and Esther 1 are reproduced; one-word 7, runs 90 (83 to the next open row, 7 to their words)"
+    },
+    {
+     "what": "Exodus 1:1, Esther 9:17",
+     "design": "«the Jewish people» to «the Children of Israel, Israelites, Jews»; «three» to «+ fork»",
+     "got": "the same",
+     "holds": true
+    },
+    {
+     "what": "Genesis 1:22, fifth word",
+     "design": "6 pills only the kind prints",
+     "got": "19 pills become 13; «6 from word lists, knowledge bases and encyclopedia titles · show»; the 6 come back dotted on one press",
+     "holds": true
+    },
+    {
+     "what": "lines moved by English Wiktionary's name category",
+     "design": "0; the 92 Aramaic rows expected small",
+     "got": "0 lines on 8 works; Daniel 0",
+     "holds": true
+    },
+    {
+     "what": "live asks at first paint",
+     "design": "0",
+     "got": "0, at first paint and with Genesis built whole (K4)",
+     "holds": true
+    },
+    {
+     "what": "lines the design called bare",
+     "design": "Genesis 49:13, Psalms 63:3 and 64:5 bare",
+     "got": "STEP's own words, credited M4",
+     "holds": false,
+     "note": "the default sources fill a line left bare at rest"
+    },
+    {
+     "what": "name rows left out of the search index",
+     "design": "1,682",
+     "got": "1,634 (S18 recounts 1,634)",
+     "holds": false,
+     "note": "48 stand on keys the index never reads"
+    },
+    {
+     "what": "witnessed credits re-credited at rest",
+     "design": "part 5: Genesis 29, Exodus 5",
+     "got": "Genesis 29, Exodus 5, Esther 2, Daniel 4, Amos 2, Psalms 7; W2 green on Genesis and Exodus",
+     "holds": true
+    },
+    {
+     "what": "keys bare at rest",
+     "design": "counted in the stamp, recounted by K3",
+     "got": "Genesis 12, Exodus 4, Esther 2, Daniel 6, Amos 0, Obadiah 0, Psalms 14 (38 in all); the K3 recount is equal",
+     "holds": true
+    },
+    {
+     "what": "phone header, first word on a 412 by 915 screen (check-contents-shut-v1)",
+     "design": "under 915 px; the layout fix gave 908",
+     "got": "787 px Psalms, 893 px Obadiah with commentary, 908 px Amos with commentary, all three baked at rest",
+     "holds": true
+    },
+    {
+     "what": "chain book pills at rest",
+     "design": "10.4% of the 12 chain books' pills leave (membership A)",
+     "got": "Obadiah 14,858 to 12,853 links (-13.5%), Amos 107,041 to 91,679 (-14.4%); 0 cards emptied",
+     "holds": false,
+     "note": "the ship is membership B plus the name category (Wikidata, WordNet, the translation tables, Wiktionary's names), so more leave; 2 books, not 12"
+    },
+    {
+     "what": "chain book links lifted",
+     "design": "lifted opens the kinds",
+     "got": "Obadiah 26,502 = 26,502; Amos 183,106 to 183,352",
+     "holds": false,
+     "note": "only Amos 8:3, where a run whose every row rests shut is no longer laid, so its words carry their own cards"
+    },
+    {
+     "what": "resting lines led by a source's own sign (addition 3), recounted",
+     "design": "the bakes builder: genesis 4,819/20,475, exodus 4,178/16,581, esther 670/3,027, daniel 1,259/5,905, obadiah 71/291, amos 489/2,025, psalms 4,020/19,514",
+     "got": "the same for the first five; amos 489/2,026 and psalms 4,024/19,518 once re-read here",
+     "holds": true,
+     "note": "the 4 Psalms runs that fell to their words carry STEP's [ ]; Esther's 1 Strong's is «+ fork»"
+    },
+    {
+     "what": "default picks after the lines move",
+     "design": "whether D3 goes red: not established",
+     "got": "D3 green; the index and book files unchanged; the receipt changes (runs read whole 2,177 to 2,170)",
+     "holds": true
+    },
+    {
+     "what": "lint",
+     "design": "no new warnings",
+     "got": "page 4/175/9/1/2 (the baseline); tools: the same 9 messages before and after",
+     "holds": true
+    },
+    {
+     "what": "pipeline manifest",
+     "design": "the new guard registered",
+     "got": "161 declared, 149 named by a check, 12 unguarded (committed 160/147/13)",
+     "holds": true
+    }
+   ],
+   "lead_must_run": [
+    "Merging kinds-build into ship-next conflicts in two files. reader/zone.html, hunk 1, the reset pill: keep the one before the default sources (kinds-build's phone fix) and delete the one after them. Give it ship-next's title with the kinds' clause: '... word senses off, the dictionaries that rest shut, shut again, the line as it rests on the STEP pill, and each source’s second back to the one chosen for the book) ...'. reader/zone.html, hunk 2, the route pick (near line 11414 of the merge): keep both additions, kinds-build's ...kindPick(route.records, picked.get(surface)) after the sense pick, and ship-next's own: DFLT_OWN... beside dflt. reader/PIPELINE.md: keep both paragraphs.",
+    "Then from reader/ of the ship tree, after '. $S/v54/integrate/env.sh' (S = the scratchpad), using the day's date as the stamp. Round, pass 1: bash tools/round-v1.sh --stamp 2026-11-15 --lattice $S/dl-v2/v2/corpus/lattice-v12 --stems $S/dl-v2/v2/corpus/binyan-ledger/build-r2 --stems-extension $STEMS_EXTENSION --default-picks $S/v54/picks-v1-2/ledger --steps zones,stamps,search,records,lines",
+    "Round, pass 2 (the defaults after the lines): bash tools/round-v1.sh --stamp 2026-11-15 --default-picks $S/v54/picks-v1-2/ledger --steps defaults,records,lines,chain,door. The lines step keeps every record still of this tree, so it reads again only if the default index moved. Then the 12 chain books (about 16 min), and the door, which writes PIPELINE-MANIFEST.md.",
+    "timeout 1800 node tools/build-toggle-design-v1.mjs (no url: its sources row photographs Amos, now baked at rest)",
+    "Fast checks: node tools/check-dictionary-kinds-v1.mjs (no --only: K1 to K5 over every work and all 12 chain books); node tools/check-default-picks-v1.mjs --ledger $S/v54/picks-v1-2/ledger --node; node tools/check-entry-gate-v1.mjs --ledger $ROW_ENTRIES_LEDGER --ledger-was $ROW_ENTRIES_LEDGER_WAS --lattice $LATTICE_DIR; timeout 900 node tools/check-color-channels-v1.mjs; node tools/check-woven-name-v1.mjs",
+    "Suite: node tools/run-checks-v1.mjs --jobs 3 --timeout 2700 (card-opens-on-the-line took 1,586 s on Esther alone). Known red: check-nothing-unlanded-v1 until landing. Red on the shipped tree too, on Exodus and Genesis: witnessed-order W4, names-pill P3, line-reads-the-place P3, ruled-equals-first-paint E1 under UBS. The suite opens Amos by default, where the v63 suite had them green.",
+    "Gate: timeout 5400 node tools/check-same-product-v1.mjs --old http://127.0.0.1:8914 --new http://127.0.0.1:8912 --diff $S/<ship folder>/kinds-gate.diff --expect data/default-picks/index.json --expect data/dictionary-kinds-v1.json",
+    "Commit the round's outputs with PIPELINE-MANIFEST.md, merge main into gh-pages with the message 'gh-pages follows main', and push both."
+   ]
+  }
+ },
+ "review": {
+  "page": {
+   "verdict": "sound-with-fixes",
+   "findings": [
+    {
+     "title": "Targum words on a Bible page at rest: the line reads a reading the card says is shut",
+     "severity": "blocking",
+     "where": "reader/zone.html: kindsHere is set once for the whole page from the book's stamp (4534); poolFor's kindsGate (8041) then gates every card on the page, including the Targum's words. Those words are drawn from the commentary sidecar's own gloss (wordBlock(word, commentaryStore.gloss) at 16549 and 17257). The record's scope leaves the 21 ZONE_COMMENTARY_V2 sidecars projected whole.",
+     "evidence": "Setup: Obadiah and Amos baked at rest with the branch's own tools into scratch, served on 8951, with ?commentary=on and the commentary switch pressed.\n\nWhat the page shows: the Targum's «יְיָ» (key יי) at Obadiah 1:1 (twice), 1:8, 1:15 and 1:18 reads «pronominal possessive enclitics» on its line. In obadiah.commentary.bin, gloss_m.יי.by is [\"M138\"], which is Wikidata and rests shut whole.\n- Its card shows only «Adonai, the Lord» and «woe!» [M12].\n- The card's withheld line says «3 from word lists, knowledge bases and encyclopedia titles · 1 that English Wiktionary files as a name · show».\n- The card's reading-now line still says «pronominal possessive enclitics».\n- Amos is the same.\n- On the unstamped tree (8899), the same card lists «pronominal possessive enclitics [M138]» among its pills.\n\nScale, over the 21 sidecars in the tree: 3,465 keys at 6,462 word places have a baked line that only shut rows carry. Of those, 2,065 are «יְיָ» → «pronominal possessive enclitics», 849 are «דיי» → «Dey» [M15 M6], and 320 are «דלא» → «dela» [M6].\n\nPart 1's report asked part 2 for exactly this: gate each word by its own zone's stamp, not by the page's book. The bakes notes say the commentary names no shut id. That holds for the commentary bakes those notes checked, but not for the sidecars' gloss_m.by.",
+     "reproduce": "1. Bake at rest into the scratch overlay: scratchpad/v72/review-page/bake-at-rest.sh obadiah amos.\n2. Serve it: node serve-overlay.mjs 8951 <rt/reader> <scratch site>.\n3. Run node scratchpad/v72/review-page/probes/p14-targum.mjs http://127.0.0.1:8951 obadiah.\n4. Run the same probe against http://127.0.0.1:8899 to compare.",
+     "suggested_fix": "Make a Targum word's card and its line follow one rule. Either:\n- gate only the words of a zone that carries rests_off, so a pool asked for a commentaryStore word is not gated; or\n- bake the commentary sidecars at rest as well. That is the lead's call, and K3 would then have to cover them."
+    },
+    {
+     "title": "The card's count and its press are folded away on most cards, and «show» can fold away its own «hide»",
+     "severity": "should-fix",
+     "where": "reader/zone.html: the count and the press ride on p.kq-role.withheld-line (kindsSwitchFor, 3776). Whenever fitBands marks a card tight, #hud.tight .rows .band > .kq-role {display:none} (1621) hides that line. There is no header pill, by the lead's call, and the rail's block sits inside the closed <details id=rail> and the sources fold.",
+     "evidence": "Obadiah 1:1–1:6 at rest, each word scrolled to the middle of the window, each card shut and then opened by its own press. 52 cards carry the press. It is on screen while shut on:\n- 6 of 52 at 1280×900\n- 4 of 52 at 412×915\n- 2 of 52 at 1440×1400\n\nThe other cards are tight, and the press's box has height 0.\n\nAt 1280×900, on 2 of those 6 (Obadiah 1:2, words 1 and 5), «show» makes the card tight. «hide» disappears, and the focus falls to the page body, because kindsFocus calls focus() on a display:none button.\n\nGenesis 1:22's fifth word, the design's own example, is tight at 1280×900, 412×915 and 320×640. Its «6 from word lists… · show» exists only in the DOM. On Genesis 1:1–1:6 at 1600×2400 the press is seen on 49 of 52 cards, so the window is the cause, not the data.\n\nThe gate also changes how cards fit. On 3 of 80 Obadiah cards (1:1 word 2, 1:2 word 6, 1:5 word 16), the withheld line was shown on the unstamped tree and is folded at rest. At 1:5 word 16, the at-rest card has 4 pills, is anchored below the word in a 402px region, and folds the band labels, «HERE STEP READS» and «7 of another entry than H9032, withheld». The same zone with ?kinds=open, or with a record that does not hold, is not tight. Screenshots: scratchpad/v72/review-page/shots/obadiah-1-5-16-unstamped.png and obadiah-1-5-16-atrest.png.",
+     "reproduce": "Sweep the cards: node scratchpad/v72/review-page/probes/p6-sweep.mjs obadiah 0 5 1280 900 (and 412 915, 1440 1400, genesis 0 5 1600 2400).\n\nCompare the fold: probes/p9-tight.mjs on http://127.0.0.1:8899 and on 8951.\n\nTake the screenshots: probes/p10-shot.mjs <base> obadiah 4 15 1280 900 <out.png>.",
+     "suggested_fix": "The lead's call, with these numbers in hand. Either:\n- put the count and press where the fit never folds them (the readings band's label survives tight); or\n- bring back the design's header pill.\n\nK4 should also measure the press's box on screen, not only that the button exists."
+    },
+    {
+     "title": "A focus flag left standing moves the focus to a later card's press, and a Space then opens the kinds",
+     "severity": "should-fix",
+     "where": "reader/zone.html: kindsSwitchFor's click handler sets kindsFocus=true (3776). When a kind's reading was pressed, reopenForKinds (17960) → forgetKindPicks (17945) → relayBuiltSections closes the card. reopenCard then returns with no card, and nothing consumes the flag.",
+     "evidence": "Genesis at rest, 1600×2400:\n1. «show» on 1:22's fifth word.\n2. Press «Peru». The line reads Peru.\n3. Click «hide». The card closes, the line is back to «be fruitful» (both right), and the focus is on BODY.\n4. A plain mouse click opens Genesis 1:28's seventh word. document.activeElement is now that card's .kinds-switch «6 from word lists, knowledge bases and encyclopedia titles · show».\n5. A Space meant for the page opens the kinds: __kinds \"open\" and fh.kinds \"open@2026-11-15a\" are stored.",
+     "reproduce": "node scratchpad/v72/review-page/probes/p5-focus.mjs (with BASE at an at-rest Genesis).",
+     "suggested_fix": "Clear kindsFocus in reopenForKinds when no card was rebuilt (hud.hidden after reopenCard), or set it only when a card will be rebuilt. sensesFocus follows the same pattern. I did not test it."
+    },
+    {
+     "title": "The rail block's shut | open and its chips drop the keyboard focus on every press",
+     "severity": "should-fix",
+     "where": "reader/zone.html drawKinds (15015) starts with host.replaceChildren(). It runs from reopenForKinds and from each chip's click handler.",
+     "evidence": "At 1280×900, 412×915 and 320×640:\n- Focus «open» and press Enter: __kinds becomes \"open\", but document.activeElement is BODY.\n- Focus the DBnary chip and press Enter: M37 joins sourcesOff, and the focus is again BODY.\n\nThe shelf chooser just below keeps the focus after Enter. The strip's own .dfp chips also lose it, which is older behavior.\n\nWhile the kinds are shut, the chips are disabled and cannot take focus at all. The family's own words, which the design gives to each chip, live only in that chip's title, so keyboard and touch readers cannot reach them while shut.",
+     "reproduce": "node scratchpad/v72/review-page/probes/p7-rail.mjs genesis; compare with probes/p8-railfocus-compare.mjs http://127.0.0.1:8951 genesis.",
+     "suggested_fix": "When the focused element was inside the block, give focus back after drawKinds to the button with the same data-kinds, or the chip with the same data-key. Consider showing the own words somewhere readable, not only in a title."
+    },
+    {
+     "title": "At rest a card jumps 50px when the reader presses a second pill (check-levels-v1's law), and the suite does not see it",
+     "severity": "should-fix",
+     "where": "reader/zone.html card placement and fit (hudAnchor/fitBands). The at-rest pool triggers it. zone.html is unchanged since 2ed036f33f.",
+     "evidence": "Obadiah at 412×915, the first word's card, second pill pressed, following check-levels-v1's own steps:\n- At rest with ?commentary=on, the card's top goes from 136.672px to 86.6719px. Without commentary it goes from 74.39px to 24.39px.\n- On the unstamped tree, and at rest with ?kinds=open, it stays at 80.6719px.\n\ncheck-levels-v1 against my at-rest overlay still passes. It samples the first commentary book on disk, Amos, which holds at 72.6094 → 72.6094.\n\nPart 5's notes reported this as «a page behavior at rest, for the page's writer», and nothing changed after.",
+     "reproduce": "node scratchpad/v72/review-page/probes/p22-cardmove.mjs http://127.0.0.1:8951 obadiah \"&commentary=on\"; repeat against 8899, and against 8951 with \"&kinds=open&commentary=on\".",
+     "suggested_fix": "Find why a tight 21-pill card is anchored below the word and then moved on the first press. Add an at-rest Obadiah 1:1:1 to check-levels-v1's panel."
+    },
+    {
+     "title": "What an emptied card says is wrong in places when a reader's own switch also took a reading",
+     "severity": "note",
+     "where": "reader/zone.html 10709 (the bit) and 10723 (onlyShut and the reading-now text)",
+     "evidence": "Genesis 49:13's «אֳנִיֹּת» with STEP (M4) switched off. The card reads «1 reading shut at rest: 1 from word lists, knowledge bases and encyclopedia titles — the button opens them…»:\n- «them» is used for a single reading.\n- Its reading-now says «every record for this block rests shut». But STEP's own place reading there was taken by the reader's switch. withheldBySources counts no store row for it, so onlyShut is true.\n- After «show», the card shows the pill «ship» while its reading-now says «no reading in the catalog for this form».\n- The line under the word goes from blank to «—» when the kinds open, and stays «—» when they shut again.",
+     "reproduce": "node scratchpad/v72/review-page/probes/p12-empty.mjs genesis 1486 6 M4 (BASE at an at-rest Genesis).",
+     "suggested_fix": "Use «it» when n is 1. Count a place reading the switches took before choosing «rests shut». Word the open-but-unreadable case as «the line reads no dictionary shut at rest» or similar."
+    },
+    {
+     "title": "At rest, Obadiah's masthead credits a dictionary that rests shut on every card",
+     "severity": "note",
+     "where": "reader/zone.html 16202 (attributionFor with everyKind)",
+     "evidence": "Obadiah at rest reads «commonly force read as Obadiah · attested: PanLex 2024 exact same-meaning Hebrew-English lexical expression», and the chip's title names ConceptNet 5.7 next. Both rest shut on every card of the page. Lifting the kinds for the masthead is the page builder's own settlement (point 3 of their report). It is in neither the design nor the lead's additions.",
+     "reproduce": "node scratchpad/v72/review-page/probes/p18-mast.mjs http://127.0.0.1:8951 obadiah",
+     "suggested_fix": "The lead should rule on it explicitly. Either keep it and say so in the record, or fall back as before."
+    },
+    {
+     "title": "After a reset, the rail's line counts a source that rests shut as «off»",
+     "severity": "note",
+     "where": "reader/zone.html railSay (sourcesOff.size)",
+     "evidence": "Open the kinds, switch the DBnary chip off, then reset from the Menu. Reset shuts the kinds and keeps fh.sources.off [\"MSAM2\",\"M37\"], as designed. The rail's line then reads «26 dictionaries · 2 off» while M37 rests shut. In that state, K4's law that railSay does not count shut ids as off fails.",
+     "reproduce": "node scratchpad/v72/review-page/probes/p17-reset.mjs",
+     "suggested_fix": "While the kinds are shut, leave RESTS_OFF_IDS out of the rail's count of sources off (the off chips still show inside the block)."
+    },
+    {
+     "title": "Search results already on screen do not follow the switch; the record is not revalidated, and its stamp is never compared",
+     "severity": "note",
+     "where": "reader/zone.html: the search runs on input only. The record fetch at 4517 has no cache:\"no-cache\", unlike route-store/index.json. Nothing on the page reads emitted_from.rests_off.version or sha256.",
+     "evidence": "«the jewish people», shown with the kinds open, lists Wikidata gloss's בני ישראל. After shutting from the rail, the list still shows it until the query is typed again. The source switches behave the same way, which is older behavior.\n\nIf a later record replaced this one while a reader's cache still held the old one, the cards would be gated by a record other than the one the line was baked under. I did not show this live.",
+     "reproduce": "node scratchpad/v72/review-page/probes/p19-search.mjs; the fetch difference is in the code at 4517.",
+     "suggested_fix": "Run the search again on chooseKinds. Fetch the record with cache:\"no-cache\", and say «the record changed» when the stamp's sha256 is not the record's."
+    }
+   ],
+   "what_was_checked": [
+    "The zone.html diff (2ed036f33f) read in full against DESIGN.md §2 and the lead's additions. Genesis, Exodus, Obadiah and Amos were baked at rest with the branch's committed tools into my own scratch overlay, served on 8951. The tree was not touched (git status empty), and the 8951 server is stopped.",
+    "State and the device's memory, on Obadiah at rest:\n- fresh → shut, with 27 ids and record version 2026-11-15a\n- open@2026-11-15a → open\n- stale open@2026-11-14, a bare «open», and a wrong-case value → shut\n- ?kinds=open and ?kinds=shut act for one load without writing; ?kinds=bogus is ignored\n- with storage throwing SecurityError on every access, the page stands, the rail press opens the kinds, and there are no page errors",
+    "The gate's count is in pills, not rows: data-kind-withheld equals the dotted pills one press brings, the open count, and the new pills, on every card of these sweeps:\n- Obadiah 1:1–1:6 (52 cards)\n- Genesis 1:1–1:6 (52)\n- Exodus 1:1–1:4 (19)\n- 6 ketiv/qere words (Genesis 4, Exodus 2)\n\nShared readings stand, credited to the open dictionary (e.g. «thigh» and «hip» at Genesis 32:26). No pressed place pill was ever dotted.",
+    "The line never moves: across 437 words of Genesis 1:1–1:27 and 398 of Exodus 1–6, no line under a word changed text or position when the kinds were opened or shut by the card or by the rail, or when a kind's chip was switched while open. A kind's reading pressed onto the line is forgotten, and the line restored, when the kinds are shut by the card, by the rail, or by reset.",
+    "The card's words, shut and open, on Genesis 1:22, Exodus 1:1, the empty card, and Exodus 95:3 «Aaron», which has both entries. Keyboard:\n- Enter and Space on a non-tight card's press toggle it, and the focus returns to the rebuilt press.\n- Enter on the empty card's press works too, and the focus returns.",
+    "The rail block:\n- its text and chips (14, disabled while shut)\n- a chip toggled while open\n- no sideways scroll with the block open at 320, 412 and 1280\n- the rail line's title",
+    "Reset, pressed through the Menu's mirror:\n- the kinds go shut and fh.kinds is stored as «shut»\n- fh.sources.off is left alone\n- the lines are restored and the pill reads «default»\n\nThe Menu: the reset mirror now sits before the four sources, there is no kinds pill, and the reset title carries the kinds clause.",
+    "Search: with the kinds shut, «peru» and «tarica» find nothing and «sperm» finds SDBH. Open, «peru» finds ConceptNet SA and OmegaWiki, and «tarica» finds PanLex 24.",
+    "The Tikkunei Zohar: 60 cards of its first two sections are identical on the old page (8914, 46bbbf7d50) and the new page with fh.kinds=open@2026-11-15a kept. There is no block, no press, and __kindsHere is false.",
+    "Phone: no sideways scroll at 320×640 and 412×915 at first paint, with a card shut and opened. The header row is 155px against the old 209px at 412, and 243px against 301px at 320. check-contents-shut-v1 with SERVE_PORT=8951 passes, with at-rest Obadiah at 893px.",
+    "The page's restsOffOf and restsOffIds, lifted out of the served zone.html with the page's own factsOf, against the module's with gloss-store's factsOf. On 10,031 rows I chose there are 0 differences. The rows include:\n- odd ids: __proto__, toString, numbers, MSAM2, PIECE:TAHOT, M197\n- odd facts: true, false, 0, 1, \"\", [], an array or a string as the slot\n- a probe record with is and has entries\n- 641 real rows of 12 keys\n\nrestsOffIds gives the same 27 ids in the same order.",
+    "The Targum on at-rest Obadiah and Amos (finding 1), and the card placement against check-levels-v1 (finding 5)."
+   ],
+   "not_checked": [
+    "Any book at rest beyond Genesis, Exodus, Obadiah and Amos. In my overlay, Psalms and every other book were served unstamped.",
+    "The ketiv/qere written-half weld (kqWeld): its count sums per read word and does not dedupe against the written form's kept pills. I had no case that exercises it.",
+    "Run (multi-word) cards and the span store's rows on run cards with the kinds open. Piece cards beyond the sweeps.",
+    "A Genesis 1:1–1:41 sweep. It crashed: the browser target was killed for lack of memory while a second browser ran. Only Genesis 1:1–1:6 is counted.",
+    "Browsers other than Chromium, real touch devices, and actual screen-reader output. The aria-label «dictionaries shut at rest» replaces the visible count, the same pattern as the word senses switch.",
+    "A record that does not arrive, together with a live line ask. The storeOnly gate is off when kindsHere is false.",
+    "Whether sensesFocus has the same stale-flag fault as kindsFocus.",
+    "GitHub Pages caching of data/dictionary-kinds-v1.json.",
+    "The bakes, K3 and K5, the gate (check-same-product), the round and the suite. None were run, as instructed.",
+    "The fresh-reader reset pill is enabled with an empty label. That is the same on the old page (8914), so it predates this ship and was not pursued."
+   ]
+  },
+  "data": {
+   "verdict": "sound-with-fixes",
+   "findings": [
+    {
+     "title": "Targum words on a Bible page: the card holds the shut reading back while the line under the word still reads it",
+     "severity": "should-fix",
+     "where": "reader/zone.html poolFor (const kindsGate = kindsHere && ..., ~line 8041; kindsHere is set once per page from the book's own zone stamp, ~4529-4534); commentary words are drawn by wordBlock(word, commentaryStore.gloss) (~16549, 17257) from <book>.commentary.bin, which tools/regloss-zone.mjs projects over the whole store because the record's scope leaves ZONE_COMMENTARY_V2 out; data/dictionary-kinds-v1.json scope.how says such a zone 'keeps today's rest ... and its page draws no switch and no count'",
+     "evidence": "My count over the 21 commentary zones: 3,945 keys whose line stands on shut sources alone, under 8,391 Targum words. Browser probe on Ruth baked at rest in a scratch farm, ?commentary=on, 'open all commentary' pressed: 2,139 Targum words drawn, 97 of them under a line whose reading only shut sources give. Four cards opened: Ruth 1:1 Targum דְּיֵיתֵי, line «Milvus, genus of birds» (Wikidata M10); its card says '1 reading shut at rest: 1 from word lists, knowledge bases and encyclopedia titles — the button opens them. No record is left to read here.' לחמא, line «bread» (PanLex M21); the card holds back 7 and shows only Jastrow's «meat», «flesh». יו, line «pronominal possessive enclitics» (Wikidata M138); the card holds back 4. בנהא, line «Banha» (Wikipedia M15); the card is empty with 1 held back. The front door links 21 books with ?c=open, so readers reach this view directly. No check sees it: K3 treats commentaries as whole, and K4 opens no commentary. The part-1 builder had asked the lead to gate each word by its own zone's stamp; the page gates by the book's stamp.",
+     "reproduce": "cd scratchpad/v72/review-data; ./bake.sh ruth (regloss and lattice into bake/); put bake/lattice/ruth.bin and ruth.lattice.bin into a symlink farm with re-pinned data/zone-store-v1.json (as farm/reader); node probe-targum.mjs $PWD/farm/reader <rt>/reader ruth. Count: node commentary-shut.mjs <rt>/reader",
+     "suggested_fix": "Either gate a word's pool by the stamp of the zone the word comes from (a Targum word: its commentary zone, which has no stamp, so no gate and today's rest), or bring the commentary zones into the scope and bake them at rest so their lines move too. Add a K4 law that opens a Targum word with ?commentary=on."
+    },
+    {
+     "title": "Under 'look up by headword', 300 words read a shut source's reading (hg) on the line while the card holds it back",
+     "severity": "should-fix",
+     "where": "tools/project-lattice-v12-v1.mjs rule 6 and ~line 677: hg and hm are built from the lattice's cards and kept whole by choice; reader/zone.html lineUnder ~13329: lookup === 'headword' && word.hg returns word.hg with hm's chip; tools/check-dictionary-kinds-v1.mjs K3 leaves hg out ('read whole')",
+     "evidence": "Across the 39 committed zones (hg is the same at rest), 300 words carry an hg whose credited source gives that reading only in rows that rest shut. 275 of them are credited by label to a source shut whole: Hebrew WordNet 241, PanLex 24, Wikidata 5, DBnary 3, OmegaWiki 2. They span 29 books, e.g. Jeremiah 59, Isaiah 32, ii-chronicles 23, judges 22. My at-rest bake of Genesis still carries 5 and of Exodus 5. Browser probe, Genesis baked at rest, fh.lookup=headword, kinds shut: at Genesis 19:25 יֹשְׁבֵי the line reads «be an inhabitant of or reside in» under the chip 'WordNet Notices + CC BY 4.0 · M57 · Hebrew WordNet ...'. The same card says '10 from word lists, knowledge bases and encyclopedia titles · show', and none of its 227 pills is WordNet's. This breaks the rail chip's own words 'the line under a word never reads it' under a switch any reader can set.",
+     "reproduce": "node probe-headword.mjs <farm>/reader <rt>/reader genesis 482 9 (scratchpad/v72/review-data); the 39-book count is the inline node script over data/zones/*.bin with openRouteStore whole vs { atRest: true } (carriersOf at w.h)",
+     "suggested_fix": "At rest, keep hg only where its credited source still carries it in a row that rests open (the projector already holds the store at rest); otherwise drop it or take the next lemma-sorted reading. Add hg/hm to K3's leader law."
+    },
+    {
+     "title": "The search on the Tikkunei Zohar page still answers with shut sources and opens Bible cards that hold them back",
+     "severity": "should-fix",
+     "where": "reader/zone.html english() off ~15794 (if (kindsHere && kindsPref === 'shut' && RESTS_OFF_IDS.has(id))); RESTS_OFF_IDS is filled only when the page's zone is stamped (~4532); tools/bake-search-index-v1.mjs keeps whole sources in the index for the page to leave out",
+     "evidence": "Every place the index opens is a Bible place. My pass over the 256 dictionary-store shards found places in the 39 books only, and the span store holds Bible books only. Browser probe, same farm, typing «peru»: on the Genesis page it answers 'no word is read “peru” by a source on this shelf'. On the Tikkunei Zohar page (kinds 'shut', __kindsHere false) it answers פְּרוּ '5 places in all · first Genesis 1:22:5 · ConceptNet SA · OmegaWiki', a hit that opens a card where Peru is held back. This breaks the design's line that with the kind shut, the search answers what the cards show.",
+     "reproduce": "node probe-search.mjs <farm>/reader <rt>/reader peru genesis tikkunei-zohar (scratchpad/v72/review-data)",
+     "suggested_fix": "Compute RESTS_OFF_IDS whenever the record holds, independent of the page's own stamp, and leave those ids out of the search while kindsPref is 'shut', since every hit opens a book at rest."
+    },
+    {
+     "title": "The gate's rank-loss class excuses almost a third of the lines on every book at rest",
+     "severity": "should-fix",
+     "where": "reader/tools/check-same-product-v1.mjs S1, kinds branch: carried = the old zone's gloss_m[kk].by for every key of the word, plus the old sidecar's o.l, o.la and every e[*].l / e[*].la carrier; any shut id there books any differing line (same surface, new chip open) as 'a rank a shut co-carrier gave'",
+     "evidence": "On the committed zones, the share of words whose carried set holds a shut id: Genesis 6,831 of 22,329 (30.6%), Exodus 5,258 of 18,211 (28.9%), Esther 930 of 3,281 (28.3%). Of those, 2,678, 2,098 and 389 reach a shut id only through an alternate (la) the line never stood on. On those words, a line moved by an unrelated regression (defaults, the page) would pass S1 as owed. The design asks for the line's own carriers. I did not run the gate, per the task rule, so this rests on the code and these counts. S2 is held tighter by its data-kind-withheld count.",
+     "reproduce": "Inline node script in my log: for each word of data/zones/<book>.bin, collect gloss_m.by of its keys and the l/la/e carriers of <book>.lattice.bin grades[w.s], and count words where any id is in restsOffIds",
+     "suggested_fix": "Excuse a line only where the store whole leads the word's key with the old reading and the store at rest does not (storesOf() is already open). Count only the carriers of the leader the line read (o.l, or the e[] entry for the place), never la."
+    },
+    {
+     "title": "The front door still prints shut sources on Bible titles after the ship",
+     "severity": "note",
+     "where": "reader/tools/build-front-door-v1.mjs opens the store whole; the round's door step rebuilds index.html whole",
+     "evidence": "index.html, under ויקרא: «the third book of the Old Testament; contains Levitical law and ritual precedents» with data-m=\"M43\" (Hebrew WordNet). The bakes builder counted 6 titles and 3 family heads and left it as 'a decision for the lead'. No check covers it, so it ships as is unless decided.",
+     "reproduce": "grep -o 'data-m=\"M43\" data-r=\"the third book[^\"]*\"' index.html in the tree"
+    },
+    {
+     "title": "K1 holds none of the design's figures, and nothing in the tree holds the record's filing to the table",
+     "severity": "note",
+     "where": "reader/tools/check-dictionary-kinds-v1.mjs K1 (count line printed, not compared; the design says it names no figure)",
+     "evidence": "A scratch record that files Hebrew WordNet under bible / bible-dictionary passes every K1 and K2 law. K1 prints 'lists-and-bases: 12 keys, 25 M ids (23 with rows), 114,187 rows' where the design's figure is 14 / 27 / 25 / 118,674. Kinds, shapes, says and own words are held to the TABLE only by part 1's against-table.mjs, which lives in scratch. My own comparison of the shipped record against TABLE-what-each-dictionary-is.md: 29 families, 58 cells (says and where), byte-equal. Every own word is a «quote» of its says, every store key and every overlay key is filed once, and every files path exists.",
+     "reproduce": "node tools/check-dictionary-kinds-v1.mjs --record-in scratchpad/v72/review-data/wrong-record --only obadiah | grep K1"
+    },
+    {
+     "title": "Manifest registrations: a retired rule is credited to a check, and the kinds check is credited with the maqaf rule",
+     "severity": "note",
+     "where": "reader/tools/check-page-agrees-with-its-record-v1.mjs ~line 41 names color-channel-rule-v2; reader/tools/check-dictionary-kinds-v1.mjs ~358 startsWith('maqaf-rule-v2'); tools/pipeline-manifest-v1.mjs credits any mention",
+     "evidence": "Manifest generated into scratch: 161 rules declared, 149 named, 12 unguarded (committed: 160 / 147 / 13). It lists color-channel-rule-v2 as 'declared in tools/check-page-agrees-with-its-record-v1.mjs', guarded by that check and check-color-channels-v1, while v3 (now named in zone.html) is not credited to the check that actually reads the record. The stale-name fold-in is half done. maqaf-rule-v2-one-c0-per-word lists check-dictionary-kinds-v1 among its guards, though that check only uses the prefix to find maqaf runs.",
+     "reproduce": "cd <rt>/reader; node tools/pipeline-manifest-v1.mjs --out <scratch>/manifest.md; grep -n 'color-channel-rule-v2\\|maqaf-rule-v2' <scratch>/manifest.md"
+    },
+    {
+     "title": "The round: nothing stops a zones step without --lattice, and the defaults receipt is written from records the lines step then replaces",
+     "severity": "note",
+     "where": "reader/tools/round-v1.sh (unchanged by the branch)",
+     "evidence": "With --steps zones and no --lattice, the 39 zones get the at-rest stamp while their sidecars keep whole leaders, which drive the 'only this pointing' line. The round does not refuse this; only K3 and check-lattice-projection L4b see it later. I made one such leader in scratch and L4b went red. The defaults step reads the resting-lines records before the lines step re-reads them. The integrator measured that its receipt moves (runs read whole 2,177→2,170, records of another zone 39→0) when re-baked after the lines, so a single round ships a receipt drawn from pre-kinds records.",
+     "reproduce": "Read round-v1.sh lines 104-125 and 136-170; the integrator's notes (build/integrator-notes.txt) give the receipt figures"
+    },
+    {
+     "title": "The rank loss at Esther 9:17 comes from the catalog's rank, not the year",
+     "severity": "note",
+     "where": "DESIGN.md §0.4 ('the shut dictionary's year goes with it'); tools/gloss-store-v1.mjs readingPool tie-break",
+     "evidence": "At שלושה the whole pool leads «three» y1890 r1 by M1,M14,M64. ConceptNet's M1 row has rank 1 and year 2022; M14 gives «three» and «+ fork» both at rank 7, year 1890. At rest «three» falls to rank 7, ties «+ fork», and loses on row order. The resting line moves «three» [M14] → «+ fork» [M14], as the builders found. The class should be described by rank and row order; its size at rest stands.",
+     "reproduce": "Inline node: openRouteStore whole and at rest, readingPool(routesFor('שלושה'))"
+    }
+   ],
+   "what_was_checked": [
+    "Recomputed each figure with my own scripts and checked it against the design, not the builders' outputs",
+    "The record: 29 families against TABLE-what-each-dictionary-is.md; says and where are byte-equal in all 58 cells; every own word is a «quote» of its says, every silent clause is in says, and every files path exists. All 38 store keys (146 M ids) are filed once, and so are the 6 overlay keys (Jastrow 1, Samaritan 5)",
+    "Shut rows recounted from the 256 shards with a predicate typed from the design: 652,954 rows. The kind: 14 keys, 27 M ids, 25 with rows (M16 and M194 none), 118,674 rows. Name rows: 1,590 + 92 = 1,682 on M13 M25 M50 M60 M69. Wikidata's 78 name rows fall inside the kind; other name rows (UBS 4,335, Classical Hebrew 868, SDBH 449) are not shut",
+    "Scope: exactly the 39 ZONE_V1 / MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE zones match. The Tikkunei Zohar, 21 commentaries and 8 fixtures do not",
+    "openRouteStore atRest: read the code and grepped all 55 callers. gloss-m-v1 and proper-name-v1 go through routesFor. glossFor's new reason is equivalent when the store is opened whole",
+    "Bakes in scratch (witnessed bake, then regloss, then lattice projection) of Genesis, Exodus, Esther, Ruth and Obadiah at rest, and the Tikkunei Zohar whole. The Tikkunei Zohar zone and the Ruth and Amos commentary zones came out byte-identical to the tree",
+    "Independent at-rest table (the store's own readingPool over rows my predicate keeps) equals the baked zone.gloss at every key not led by a name: 0 differences in Genesis, Exodus and Esther. Name leads are unchanged in all 5 books; no line or order credit names a shut id or label; no shut id is in the switch table",
+    "Moved zone.gloss keys: Genesis 111, Exodus 95, Esther 37. Every one had a shut carrier, or name rows alone, behind its old reading. Sidecar leaders' moves, checked the same way, show nothing unexplained",
+    "Lines read in a browser with my own DOM reader, against the committed records: Genesis 13 entries (20,473 → 20,475 lines), Exodus 70, Esther 1 (9:17 «three» → «+ fork», the rank loss), the Tikkunei Zohar 0 of 97,283. All equal the builders' figures; every move had a shut credit or was the rank loss",
+    "With the pointing kept, only the same one-word lines move (Genesis 49:11 and 49:13, Esther 9:17); with BDB as the default source, Esther moves none",
+    "Search index baked into a scratch farm and diffed against the served one: 1,634 fact rows left out, equal to my count of name rows on keys the index reads (48 more stand on other keys). 706 English readings and 808 pairs leave, and 115 pairs lose fact ids only. Nothing else differs, and the header names the record's sha256",
+    "Stamps: the zone's emitted_from.rests_off, the sidecar's rests_off and the index's rests_off read and recounted",
+    "check-dictionary-kinds-v1 run in a farm. On Esther and the Tikkunei Zohar at rest, K1 to K4 hold; K5 is red, as expected, because the records were not re-read. On wrong states I made, all six K3 laws went red: a shut id among the line's carriers, a name-row line put back, the stamp's rows +1, a ConceptNet leader in the sidecar, and a stamped commentary",
+    "check-lattice-projection-v1: green on correct Esther at rest; red (L4b) on the ConceptNet leader",
+    "Pipeline manifest generated into scratch, and PIPELINE.md read",
+    "Browser probes: Targum cards with ?commentary=on, the headword lookup, and the search on two pages"
+   ],
+   "not_checked": [
+    "Did not run the gate (check-same-product-v1), the round or the suite, per the task rule. The gate's kinds logic was judged by reading it and by measuring how many lines its excuse covers",
+    "Did not bake or read lines for the other 34 Bible books. The 39-book totals (39 one-word lines, 521 span lines, 325 witnessed re-credits) are the builders', not mine",
+    "Did not run check-search-v1 (S18), check-chain-book-v2, check-span-store-v1, check-witnessed-order-v1, check-proper-name-v1, check-sense-openings-v1, check-carrier-survives-v1 or the names checks on wrong states. They need served pages or the whole shelf",
+    "Did not judge K5 on re-read resting-lines records or rebuilt chain books: making them would mean running bake-resting-lines and the chain builder in a farm",
+    "Did not verify the suite's time limit for check-card-opens-on-the-line-v1. The integrator measured 1,586 s on Esther; the runner's default is 600 s",
+    "Did not review the page's rail, card wording, reset, phone header fix or the «source» toggles fold-in. These are outside this lens",
+    "Of the front door's titles naming shut sources, re-verified only Leviticus, not the other 5 titles and 3 family heads",
+    "Did not check the default-picks bake or the chain step after the lines move"
+   ]
+  }
+ },
+ "fixes": {
+  "outcomes": [
+   {
+    "title": "Targum words on a Bible page at rest: the line reads a reading the card says is shut",
+    "outcome": "fixed",
+    "commit": "3d76f5357d",
+    "evidence": "Reproduced on HEAD's page, served over the reviewers' at-rest bakes on port 8962. On Obadiah, the Targum's word yy reads «pronominal possessive enclitics» (Wikidata) on its line. Its card leads «Adonai, the Lord» and «woe!» [M12] and holds 4 back («3 from word lists… · 1 that English Wiktionary files as a name · show»). On reviewer 2's Ruth bake, HEAD holds back Milvus 1 (empty card), bread 7, yy 4 and Banha 1 (empty card). Scale: 3,465 Targum keys at 6,462 word places over the 21 sidecars, the same as reviewer 1's count; reviewer 2's wider test gives 3,945 keys at 8,391 places. Cause: kindsHere was set once per page from the book's stamp. Fix in zone.html: kindsActOn(bin) gates a card, its count and its press by the stamp of that word's own zone (bin is passed to both card poolFor calls). A sidecar the bake leaves whole therefore keeps today's rest, as the record's scope.how says. After the fix, on port 8961: held 0, no press, and the line's reading is a pill again («pronominal possessive enclitics» [M138]). This is the same card the unstamped tree (8899) draws. Ruth's four cards hold 0. New K4 Targum law in check-dictionary-kinds-v1: red on HEAD's page, green on the fixed page, and green on the tree's Amos Targum in the 8-work run. Probe logs: scratchpad/kinds-review-fix/proofs/p14-targum-{8962,8961,8899}.log and probe-targum-ruth-farm{-head,}.log."
+   },
+   {
+    "title": "Targum words on a Bible page: the card holds the shut reading back while the line under the word still reads it",
+    "outcome": "fixed",
+    "commit": "3d76f5357d",
+    "evidence": "This is reviewer 2's report of the same defect as finding 1, with the same cause and the same fix (kindsActOn by the word's own zone stamp). The Ruth cards were reproduced from reviewer 2's bake: on HEAD they held back Milvus 1, bread 7, yy 4 and Banha 1 (two of them empty cards). On the fixed page all four hold 0 and draw no switch and no count, as data/dictionary-kinds-v1.json scope.how says for a zone it leaves whole. The K4 Targum law is red on HEAD's page and green on the fixed page."
+   },
+   {
+    "title": "The card's count and its press are folded away on most cards, and «show» can fold away its own «hide»",
+    "outcome": "fixed",
+    "commit": "3d76f5357d",
+    "evidence": "Swept Obadiah 1:1–1:6 with probes/sweep.mjs. A press counts as reachable only if it is the topmost element at its own middle and is on screen. 52 cards carry the press. HEAD: press seen while shut on 6 cards at 1280x900 (5 in a second run; reviewer 6), 5 or 6 at 412x915 (reviewer 4), 2 at 1440x1400 (reviewer 2). At 1280 the focus stayed on the press after «show» on 6 of 52 cards and fell to BODY on 46. Genesis 1:22 word 5 at 1280x900, 412x915 and 320x640 on HEAD: press never seen, focus BODY. Fixed page: press seen shut on 52 of 52, seen after «show» on 52 of 52, and focus on the shown press 52 of 52, at all three sizes. Genesis 1:22 word 5: seen in the label and focused. Fix: kindsAtLabel adds a short press («N shut at rest · show», with the record's words in its title) to the readings' label, shown only while #hud.tight. That label is the line the fit keeps, so one press is on screen at a time. A fitBands wrapper moves the focus to the shown press whenever the fit folds the focused one, and kindsSwitchFor focuses the shown press. New K4 laws measure the press's box on screen: «one press a reader can press on screen» and «after the press … holds the focus». Both are red on HEAD's page and green on the fixed page. Not changed: which cards the fit folds (tight while shut: 45 to 47 of 52 on both pages, varying by 1 or 2 between runs). The reviewer's 3 of 80 cards that fold only at rest go with finding 5. The header pill stays out, per the lead's call."
+   },
+   {
+    "title": "A focus flag left standing moves the focus to a later card's press, and a Space then opens the kinds",
+    "outcome": "fixed",
+    "commit": "3d76f5357d",
+    "evidence": "Reproduced with probes p5-focus. On HEAD, pressing a kind's reading closed the card; the next card's press then took the focus, and Space stored open@2026-11-15a. On the fixed page the focus is BODY and the kinds stay shut. The word senses have the same flaw (sensesFocus). With probes/senses-focus.mjs on HEAD, the next card's senses press took the focus and Space turned the senses on; on the fixed page the focus is BODY and Space does nothing. Fix: reopenForKinds and reopenForSenses clear their flag when no card was rebuilt (if (!activeEl) …Focus = false). New K4 law «no focus owed after a card closes», asked at 1600x2400: red on HEAD's page, green on the fixed page. At 412x915 the law could not tell the two pages apart, because the next card's press was folded there."
+   },
+   {
+    "title": "The rail block's shut | open and its chips drop the keyboard focus on every press",
+    "outcome": "fixed",
+    "commit": "3d76f5357d",
+    "evidence": "probes p7-rail at 1280x900, 412x915 and 320x640. On HEAD, «open» + Enter sets __kinds to open but leaves activeElement on BODY. The DBnary chip + Enter puts M37 in sourcesOff and also leaves BODY. On the fixed page the focus stays on «open» and on the chip. Fix: drawKinds records the focused .kinds-opt[data-kinds] or .kind-chip[data-key] and focuses the redrawn control unless it is disabled. New K4 rail keyboard law (opens the #railNow sources token, focuses .kinds-opt, presses Enter): red on HEAD's page, green on the fixed page. Left for the lead: the families' own words are readable only in each chip's title while the kinds are shut and the chips are disabled. The design puts them there; moving them is a design call. The strip's .dfp chips also lose the focus, but that is older behavior, not this build's."
+   },
+   {
+    "title": "At rest a card jumps 50px when the reader presses a second pill (check-levels-v1's law), and the suite does not see it",
+    "outcome": "left-for-lead",
+    "evidence": "Reproduced with probes/move-trace.mjs (Obadiah 1:1 word 1, commentary on, 412x915, second pill). HEAD at rest: card top 136.672 -> 86.6719, matching the reviewer exactly. Fixed page: 117.672 -> 86.6719, so the card still moves. Unstamped tree (8899): holds at 80.6719. How it happens: (1) The kinds count makes the withheld line two lines (43px instead of 29px). (2) The card's first fit goes tight inside placeHud (675px), so the card is placed by its tight height flush above its word (bottom 839.67, word at 848). (3) The card grows to 703px and the clamp keeps it flush. (4) The press refits it untight (753px), and the word moves down 16px. (5) The card would now stand on its word, so placeInBoundsOnly places it again 50px higher. The unstamped card was placed by its untight height (759px) and kept 30px of slack. Why it is left: the fix belongs to the placement law (placeHud / placeInBoundsOnly) for every card, not to the kinds. check-levels-v1 samples Amos and takes no URL. Adding an at-rest Obadiah 1:1:1 to its panel, as the reviewer suggests, would be red until that law changes. That is the lead's call. The reviewer's 3 of 80 Obadiah cards that fold only at rest (not with ?kinds=open) come from the same longer withheld line. I did not measure them separately. Trace logs: scratchpad/kinds-review-fix/proofs/move-trace-{8962,8961,8899}.log."
+   },
+   {
+    "title": "Under 'look up by headword', 300 words read a shut source's reading (hg) on the line while the card holds it back",
+    "outcome": "fixed",
+    "commit": "3d76f5357d",
+    "evidence": "Reproduced over the 39 committed zones with gate/hg-count-39.mjs and gate/hg-diff-39.mjs. Using carriersOf at w.h (the reviewer's rule): 300 words (Jeremiah 59). Of these, 275 are credited by label to a source shut whole: Hebrew WordNet 241, PanLex 24, Wikidata 5, DBnary 3, OmegaWiki 2, as the reviewer counted. Fix in tools/project-lattice-v12-v1.mjs, rule 6 at rest (restsShutAtRest): no hg is laid where the card's source is shut whole by label, or gives that text under the headword only in rows that rest shut. Over the same zones this rule names 317 words in 29 books: all 300, plus 17 credited to a source shut whole whose rows under the headword never give that text. By book it names Genesis 5, Exodus 5, Daniel 3 and Esther 0; these equal the bakes' «hg skipped … rest shut» counts in the tree. Genesis at rest: words carrying hg go from 10,375 to 10,370, and nothing else in the zone or sidecar moves except counts and two descriptions. probe-headword at Genesis 19:25: «be an inhabitant of or reside in» [M57] becomes «remain» [M9], the card's own pressed pill. New K3 headword law: red on the reviewer's Genesis bake (5 words), green on the new bake. Over the 7 zones baked at rest in the tree, 32,646 headword readings pass. It takes effect when the lead's round projects the 39 books at rest (--lattice)."
+   },
+   {
+    "title": "The search on the Tikkunei Zohar page still answers with shut sources and opens Bible cards that hold them back",
+    "outcome": "fixed",
+    "commit": "3d76f5357d",
+    "evidence": "probe-search «peru»: on HEAD's Tikkunei Zohar page it found Genesis 1:22 word 5 by ConceptNet and OmegaWiki and opened a card that held them back. On the fixed page it finds nothing, as on Genesis. Fix in zone.html: at boot, RESTS_OFF_IDS is filled from the record on every page where the record holds. The rule acts on cards only where the zone is stamped. english() leaves those ids out while the kinds are shut. New K4 law searches the book's held reading on both pages. HEAD: «daughter» matches 39 Hebrew words on Genesis and 42 on the Tikkunei Zohar page. Fixed page: the same count on both. check-search-v1 now models the shut ids on every page (shut = __kinds is shut, the record version is set, and it did not fail). The search check gives 18 ok (S1–S18) in the five-work farm."
+   },
+   {
+    "title": "The gate's rank-loss class excuses almost a third of the lines on every book at rest",
+    "outcome": "fixed",
+    "commit": "3d76f5357d",
+    "evidence": "Fixed in check-same-product-v1. The gate itself was not run; that is the lead's. I lifted the gate's S1 kinds class out and ran it (gate/rank-class.mjs). On HEAD it excuses Genesis 6,831 of 22,329 words (30.6%), Exodus 5,258 of 18,211 (28.9%) and Esther 930 of 3,281 (28.3%), the reviewer's figures. Of those, 3,524, 2,767 and 549 are excused through no leader the line reads; the reviewer counts 2,678, 2,098 and 389 that reach a shut id through an alternate (la) only. Fix: leadersRead takes the leader the line reads (o.l or its place's e[].l, or the table where the word is not graded; never la or alt). kindsMovedWhy then excuses a word in two cases. Rank: such a leader had a shut source among its carriers and the at-rest build leads otherwise. Category: the leader's fact ids rest shut. After the fix the class excuses Genesis 1,794 words (8.0%: rank 1,386, category 408), Exodus 1,345 (7.4%: rank 1,320, category 25) and Esther 136 (4.1%: rank 124, category 12). Esther 9:17 word 2, «three» [M1 M14 M64] -> «+ fork» [M14], is the rank-loss case the design names and is still excused. Genesis 1:1 words 1, 4 and 5, which HEAD excused through table carriers the line never read, are no longer excused."
+   }
+  ],
+  "commits": [
+   "3d76f5357d on kinds-build (over 210877ad95): «The dictionaries that rest shut, after the review: a Targum's word, the press where the fit keeps it, the focus, the headword, the search on every page, the gate's rank class». 6 authored files: reader/zone.html, reader/tools/check-dictionary-kinds-v1.mjs, reader/tools/check-search-v1.mjs, reader/tools/check-same-product-v1.mjs, reader/tools/project-lattice-v12-v1.mjs, reader/PIPELINE.md (+403/-74). It keeps the right parts of the interrupted run's diff, which are now proven. After the proofs, 268 generated paths under reader/data were checked out from HEAD. git status --porcelain --untracked-files=all is empty, and HEAD is still 3d76f5357d."
+  ],
+  "proofs_after": [
+   "Zones step on genesis, exodus, esther and daniel plus the Tikkunei Zohar (narrowed round step in the tree): holds. 5 works ok (lattice: genesis 50 s, exodus 39, esther 14, daniel 17). The Tikkunei Zohar zone is byte-identical. New with finding 7: hg «rest shut» skipped on genesis 5, exodus 5, esther 0, daniel 3.",
+   "Zone stamps (emitted_from.rests_off): holds, unchanged.",
+   "Search index: holds, 1,634 fact rows left out.",
+   "Defaults node laws: holds, 6 ok.",
+   "Records step: holds. The zone store is re-pinned: 8 entries moved in batch 1 and 6 in batch 2.",
+   "Resting lines: holds, identical. genesis 20,475, exodus 16,581, esther 3,027, daniel 5,905, Tikkunei Zohar 97,283.",
+   "Lines moved: holds, identical to the integrator. Batch 1: 86 lines moved, 2 of no class of the design, 8,358 new lines credited to a source shut whole (the Tikkunei Zohar's, by addition 1). Batch 2: 18 moved, 1 of no class (Psalms 68:6 «(none)» -> «fatherless ones» [PIECE:TAHOT]), 0 new.",
+   "check-dictionary-kinds-v1 on the tree, --only the 5 works: holds. 29 ok, 0 FAIL in 107 s (integrator: 23 ok in 83 s; the extra laws are the new K3/K4 ones). Over the 8 works: 30 ok, 1 FAIL. The failure is K5, on the Amos and Obadiah chain books, because the tree still has HEAD's chain books (not rebuilt in the tree). This is the integrator's own kinds-check-8 state before its rebuild. All the new K4 laws are green, including the Amos Targum.",
+   "Five-work farm checks: hold, all green. carrier-survives 11, lattice-projection 11, sense-openings 10, zone-single-pass-receipts 7, entry-gate 19, stems-extension 11, proper-name 5, disk-gloss-is-the-line 2, reset-pill 7, source-switch 15, menu-switches 5, search 18 (S1–S18), span-store 15 (268 s), witnessed-order genesis 6 (174 s).",
+   "Checks that are red as on the integrator's and the shipped tree: hold. names-pill P3 is identical. line-reads-the-place P3 (28 of 30) is identical. witnessed-order exodus W4 is identical. names-gate N5 is a farm artifact with a different figure: 35 here, 32 for the integrator. My farm lacked the second batch's books (Amos is first among the books named), which the integrator's farm had.",
+   "check-contents-shut: holds, 50 ok at 787, 893 and 908 px (Psalms, Obadiah and Amos at rest), identical.",
+   "Obadiah chain book rebuilt into scratch: holds. 12,853 at rest and 26,502 lifted, identical. check-chain-book-v2 --dir gives 17 ok, all passed.",
+   "Lint: page 4/175/9/1/2 before and after (the baseline). The four tools show the same 2 warnings before and after. No Hebrew characters in added code lines.",
+   "Not rerun: card-opens-on-the-line on esther (the integrator's run was 2 ok in 1,586 s), ruled-equals-first-paint (red on the shipped tree too), and the gate (check-same-product), which is the lead's.",
+   "Cleanup: my servers 8961/8962 are stopped; 8899 and 8912 are still up. The farms, bakes, round outputs, chain book and HEAD page copy are removed. Kept (about 1.1 MB of logs and scripts): /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/kinds-review-fix/{proofs,probes,gate,int,int-logs,logs}. Notes: /home/user/mashiachsonyosef.github.io/wip/2026-11-15/each-dictionary-as-a-category/kinds-shut-at-rest/build/review-fixes-notes.txt"
+  ]
+ }
+}

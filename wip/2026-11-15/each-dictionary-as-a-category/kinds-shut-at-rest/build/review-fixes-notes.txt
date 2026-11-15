@@ -1,0 +1,79 @@
+The kinds build after the two reviewers' findings, 15 November 2026 (after the 15:50 UTC restart).
+Working note of the fixer. The report is the fixer's final answer; this file is the trail.
+Commit on kinds-build: 3d76f5357d (over 210877ad95). Scratch: scratchpad/kinds-review-fix/.
+
+HOW IT WAS PROVEN
+  farms of symlinks over the tree (make-farm.sh, add-zones.sh), the books baked at rest by the reviewers with the
+  branch's own tools (v72/review-page/site: genesis exodus obadiah amos; v72/review-data/bake/lattice: ruth esther),
+  served on 8961 (the page as fixed, farm/) and 8962 (HEAD's page, farm-head/); 8899 is the tree, unstamped.
+  Every page fix was shown on 8962 (red) and 8961 (green); proofs/ holds every log.
+
+THE FINDINGS
+  1+6 Targum words gated by the book's stamp: kindsActOn(bin) gates a card by its word's own zone. Reproduced
+      (Obadiah yy: card held back 4, the line read «pronominal possessive enclitics»; Ruth: Milvus, bread, yy, Banha);
+      scale 3,465 keys at 6,462 word places (targum-count.mjs), the reviewer's 3,945/8,391 by their wider test.
+      Fixed: held 0, no press, the line's reading a pill, the card as on the unstamped tree. K4 law red/green.
+  2   press folded on tight cards: kindsAtLabel (the label's press, shown only while tight) and the fit's focus.
+      sweep.mjs (pressable = topmost at its own middle, on screen): Obadiah 1:1-6, 52 cards with a press:
+        1280x900 HEAD 6 seen / 6 after show / focus 6; fixed 52 / 52 / 52
+        412x915  HEAD 5 / 7 / 6;                        fixed 52 / 52 / 52
+        1440x1400 HEAD 2 / 1 / 1;                       fixed 52 / 52 / 52
+      Genesis 1:22 word 5 at 1280x900, 412x915, 320x640: HEAD not seen, focus BODY; fixed seen in the label, focused.
+      The 1600x2400 Genesis control was stopped (time). K4: «after the press ... holds the focus» red/green.
+  3   kindsFocus left standing: cleared where no card was built; the senses' twin likewise (senses-focus.mjs:
+      HEAD the next card's senses press took the focus and Space turned the senses on; fixed BODY, Space nothing).
+      p5-focus.mjs: HEAD focus on 27:6's press, Space stored open@2026-11-15a; fixed BODY, kinds still shut.
+      K4 law (asked at 1600x2400) red/green.
+  4   rail block dropped focus: drawKinds gives it back. p7-rail.mjs at 1280/412/320: HEAD BODY after «open» and
+      after the DBnary chip; fixed on «open» and on the chip. K4 law red/green. Left for the lead: the families' own
+      words live only in each chip's title (the design's place for them); a reader without a pointer cannot read them.
+  5   card moves 50px on a second pill (check-levels-v1's law): reproduced (move-trace.mjs, Obadiah 1:1:1,
+      commentary on, 412x915): HEAD at rest 136.672 -> 86.6719, fixed page 117.672 -> 86.6719, unstamped 80.6719
+      holds. Cause: the kinds count makes the withheld line two lines (43px against 29), the card's first fit goes
+      tight inside placeHud (675px), so it is placed by its tight height flush above its word (bottom 839.67, the
+      word at 848); it grows to 703 and the clamp keeps it flush; the press re-fits it untight (753), the word itself
+      moves down 16px, the card would stand on its word, and placeInBoundsOnly places it again 50px higher. The
+      unstamped card was placed by its untight height (759) and kept 30px of slack. Not fixed: a change to the
+      placement law (placeHud / placeInBoundsOnly) for every card; left for the lead with this trace.
+  7   hg at rest: the projector drops a headword's reading whose card's source is shut whole or gives it only in rows
+      that rest shut (restsShutAtRest). Genesis at rest: 10,375 -> 10,370 words carry hg, the 5 Hebrew WordNet words
+      (14:13 word 16 «a married man; ...», 19:25 word 10, 34:30 word 10, 36:20 word 5, 50:11 word 2 «be an inhabitant
+      of or reside in»); nothing else in the zone or sidecar moves but the counts and the two descriptions
+      (json-diff.mjs). K3g red on the reviewer's bake (5), green on the new. probe-headword.mjs 19:25: «be an
+      inhabitant of or reside in» [M57] -> «remain» [M9], the card's pressed pill.
+  8   search on the Tikkunei Zohar: RESTS_OFF_IDS from the record on any page; english() leaves them out while shut.
+      probe-search.mjs «peru»: HEAD TZ found Genesis 1:22:5 by ConceptNet and OmegaWiki; fixed: nothing, as on
+      Genesis. K4 law (the book's held reading searched on both pages): «daughter» 39 Hebrew words on Genesis, 42 on
+      HEAD's TZ; the same on the fixed page.
+  9   the gate's rank class: leadersRead + kindsMovedWhy (the leader the line reads, never la or alt; moved at rest).
+      rank-class.mjs (the gate's text lifted and run): words the class excuses, HEAD -> now:
+        genesis 6,831 of 22,329 (30.6%) -> 1,794 (8.0%: rank 1,386, category 408)
+        exodus  5,258 of 18,211 (28.9%) -> 1,345 (7.4%: rank 1,320, category 25)
+        esther    930 of 3,281 (28.3%) ->   136 (4.1%: rank 124, category 12)
+      Esther 9:17 word 2 «three» [M1 M14 M64] -> «+ fork» [M14] still owed. Genesis 1:1 words 1, 4, 5 (lines of M4,
+      M9, M4) were excused by HEAD through table carriers the line never read; now not. The gate itself not run.
+
+CHECKS (the kinds check in the farm, --only genesis,obadiah,tikkunei-zohar)
+  fixed page, new genesis bake: 29 ok, 2 FAIL (K5 records and chain book: the farm's are not read again)
+  HEAD page, same zones: 24 ok, 7 FAIL (the five new K4 laws, and K5)
+  old genesis bake (any page): K3g red, 5 words
+  lint: the page 4/175/9/1/2 (baseline); the four tools the same 2 warnings before and after; no Hebrew in added lines
+
+AFTER THE COMMIT (the last measures, before the scratch was cleared)
+  7   the reviewer's 39-zone count reproduced (gate/hg-count-39.mjs, gate/hg-diff-39.mjs over the committed zones,
+      whose hg the at-rest bake keeps until the projector is run again): carriersOf at w.h, the reviewer's rule, 300
+      words (Jeremiah 59); credited by label to a source shut whole 275 (Hebrew WordNet 241, PanLex 22+2, Wikidata 5,
+      DBnary 3, OmegaWiki 2), as the reviewer counted. The projector's rule names 317 words in 29 books: all 300, and
+      17 more credited to a source shut whole whose rows under the headword never give that text (no reading of such a
+      source stands on a card at rest). By book it names genesis 5, exodus 5, daniel 3, esther 0: the bakes' own
+      «hg skipped ... rest shut» in the tree. K3 headword law over the 7 zones baked at rest in the tree: 32,646 ok.
+  2   the sweeps' tight counts move from run to run by 1 or 2 on either page (HEAD 1280: tight shut 46 and 47 in two
+      runs; 412: 47 and 46); the fit's folding is not changed by the fix. HEAD's press seen at 1280: 6 and 5 in two
+      runs (the reviewer 6); at 412: 5 and 6 (the reviewer 4); at 1440: 2 (the reviewer 2). The fixed page: 52 of 52
+      in every run. The reviewer's 3 of 80 Obadiah cards that fold only at rest (not with ?kinds=open, by their own
+      control) fold for the kinds' words on the withheld line, the cause finding 5 traces; not measured here, and
+      left with finding 5.
+  9   Esther 9:17 word 2 «three» [M1 M14 M64] -> «+ fork» [M14], the rank-loss class the design names, is still
+      excused by the narrowed class («a rank a shut co-carrier gave»).
+  scratch cleared: the farms, the bake, the round's outputs, the chain book, HEAD's page copy; servers 8961/8962
+  stopped. Kept: kinds-review-fix/proofs, probes, gate, int, int-logs, logs (about 1 MB of logs and scripts).
