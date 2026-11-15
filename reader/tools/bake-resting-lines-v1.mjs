@@ -20,6 +20,12 @@
 // [first entry, how many entries the line stands under, the text, who is
 // credited]. No date: the same lines are the same bytes.
 //
+// A DEFAULT SOURCE KEPT ON THE DEVICE IS REFUSED (default-picks-rule-v1). A
+// first visit reads the line from STEP with the second source the page
+// chooses for the book; a reading in any other state of the default sources,
+// or one where the page did not read their index for a work it lists, is
+// not the line at rest, and is said and not written (defaultsNotAtRest).
+//
 // A BROWSER THAT STOPS ANSWERING IS SAID AND THE WORK READ AGAIN. Each work
 // is given a time (RESTING_STALL_MS, 300 s). Past it the browser is closed
 // whole and opened again and the work read once more; a work unread twice
@@ -68,9 +74,43 @@ const labelsFor = (readerDir, zone) => {
   return labels;
 };
 
+/** WHY THE DEFAULT SOURCES ARE NOT AT REST ON THIS READING, in words; "" when
+ *  they are (default-picks-rule-v1). A first visit reads the line from STEP,
+ *  with the second source the page chooses for the book: of the sources on,
+ *  the one that fills the most of what STEP leaves, ties in the index's own
+ *  order, as the page counts it; worked out again here from the index's
+ *  counts. A choice kept on the device that reached this reading would be
+ *  recorded as the line at rest; and where the index lists the work, the
+ *  page must have read it and bound the work to it (window.__default.book,
+ *  which linesInPage records as state.book: an index the page read and
+ *  refused, its schema or its bytes, binds none), or the places STEP leaves
+ *  would stand unfilled and be recorded so. Exported for
+ *  check-default-picks-v1, whose fault harness (H10) asks this refusal
+ *  itself of a state with a source kept. */
+export const defaultsNotAtRest = (readerDir, work, state, asked) => {
+  const at = "data/default-picks/index.json";
+  if (!existsSync(join(readerDir, at))) return "";
+  const ix = JSON.parse(readFileSync(join(readerDir, at), "utf8"));
+  const book = ix && ix.books ? ix.books[work] : null;
+  if (!book) return "";
+  if (!asked.has(at)) return `the defaults did not load: ${at} lists ${work} and the page did not read it`;
+  if (state.book !== work) return `the defaults did not load: ${at} lists ${work}, the page read it and bound ${state.book ? `the book ${state.book}` : "no book"} (window.__default.book), so it refused the index`;
+  const sources = Array.isArray(ix.sources) ? ix.sources : [];
+  const mOf = (s) => (typeof s.m === "string" ? s.m : (s.m || {}).r);
+  const off = new Set(state.sources_off || []);
+  const fills = (book.fills || {}).step || {};
+  let auto = null, most = 0;
+  for (const s of sources) if (s.id !== "step" && !off.has(mOf(s)) && Number(fills[s.id]) > most) { auto = s.id; most = Number(fills[s.id]); }
+  if (state.defaults !== "step") return `a stored default leaked into a first visit: the page reads the line from ${state.defaults || "no source"}, not step`;
+  if ((state.second || null) !== auto) return `a stored default leaked into a first visit: the page's second source is ${state.second || "none"}, and the one the index's counts choose for ${work} is ${auto || "none"}`;
+  return "";
+};
+
 /** One work's record, from what the page drew. Throws where the reading does
  *  not fit the zone it is of. */
 const recordOf = (readerDir, work, got, asked) => {
+  const leaked = defaultsNotAtRest(readerDir, work, got.state || {}, asked);
+  if (leaked) throw new Error(leaked);
   const zone = JSON.parse(gunzipSync(readFileSync(join(readerDir, "data/zones", `${work}.bin`))).toString("utf8"));
   const zs = zone.sections || [];
   if (got.of !== zs.length || got.sections.length !== zs.length) throw new Error(`the page drew ${got.sections.length} of its ${got.of} sections and the zone has ${zs.length}`);

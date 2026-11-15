@@ -21,6 +21,11 @@
 //       the reading was remembered under the block with no division, and the
 //       first repaint printed the baked line back over it (found 14 November
 //       2026: «in + understanding + his» back to «in + heart + his»)
+// And once more in the Hebrew reader under the UBS dictionary's own readings
+// (?default=ubs, default-picks-rule-v1): its line is the source's words, and a
+// ruling made under it is laid again as it was. Its cards open on the whole
+// form where UBS reads the word, so a split word opens on a block only where
+// UBS has nothing and today's line stands; where none does, E4 says so.
 // The words are found on the page, never named here (check-scope-derived S1).
 // Usage: node tools/check-ruled-equals-first-paint-v1.mjs [url]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -30,18 +35,19 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 const URL = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "");
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());
-for (const mode of ["he", "en"]) {
-  const reader = mode === "en" ? "the English reader" : "the Hebrew reader";
+for (const [mode, dflt] of [["he", null], ["en", null], ["he", "ubs"]]) {
+  const reader = `${mode === "en" ? "the English reader" : "the Hebrew reader"}${dflt ? ` under ${dflt.toUpperCase()}` : ""}`;
   const p = await b.newPage({ viewport: { width: 412, height: 915 } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.addInitScript((mode) => { try { localStorage.clear(); if (mode === "en") localStorage.setItem("fh.mode", "en"); } catch { /* fresh reader */ } }, mode);
-  await p.goto(URL, { waitUntil: "networkidle" });
+  await p.goto(dflt ? `${URL}${URL.includes("?") ? "&" : "?"}default=${dflt}` : URL, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
+  await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
   await p.waitForTimeout(1200);
   const docW0 = await p.evaluate(() => document.documentElement.scrollWidth);
   // the cells under test: the first sections' lone words, each named by its
   // section and its place among the section's cells
-  const targets = await p.evaluate(() => {
+  const targets = await p.evaluate((most) => {
     const out = []; let single = 0, split = 0, open = 0, core = 0;
     for (const sec of [...document.querySelectorAll("section.seg")].slice(0, 8)) {
       const label = (sec.querySelector(".vnum") || {}).textContent;
@@ -51,12 +57,12 @@ for (const mode of ["he", "en"]) {
         const isSplit = !!wb.querySelector(":scope > .g > .g-pcs") && Array.isArray(wb.__word.pg) && wb.__word.pg.length > 1;
         if (isSplit && split < 3) { split += 1; out.push({ label, i, kind: "split" }); }
         else if (isSplit && core < 4) { core += 1; out.push({ label, i, kind: "core" }); }
-        else if (!isSplit && single < 3) { single += 1; out.push({ label, i, kind: "single" }); }
+        else if (!isSplit && single < most) { single += 1; out.push({ label, i, kind: "single" }); }
         else if (!isSplit && open < 1) { open += 1; out.push({ label, i, kind: "open" }); }
       });
     }
     return out;
-  });
+  }, dflt ? 5 : 3);
   const cellOf = (t) => `[...document.querySelectorAll("section.seg")].find((s) => (s.querySelector(".vnum") || {}).textContent === ${JSON.stringify(t.label)}).querySelectorAll(".he-text > .wb")[${t.i}]`;
   const measure = (t) => p.evaluate((src) => {
     const wb = eval(src); if (!wb) return null;
@@ -117,7 +123,9 @@ for (const mode of ["he", "en"]) {
   const cores = ruled.map((t, k) => ({ t, a: after[k], f: fresh[k] })).filter((x) => x.t.kind === "core");
   const lost = cores.filter((x) => !x.a || !x.f || !x.a.text.includes(x.t.took) || x.f.text !== x.a.text)
     .map((x) => `${x.t.label}#${x.t.i}: pressed «${x.t.took}», the line read «${x.a ? x.a.text : "?"}», laid again «${x.f ? x.f.text : "?"}»`);
-  check(`E4  ${reader}: a reading pressed on the block a card opened on, no division pressed, stands on the line when the section is laid again`, relayed && cores.length >= 1 && !lost.length,
+  // under a source other than STEP a card opens on a block only where the source has nothing at the word
+  if (dflt && !cores.length) console.log(`  --  E4  ${reader}: not judged here: no split word's card in the first sections opened on a block (${dflt.toUpperCase()} reads them, and their cards open on the whole form)`);
+  else check(`E4  ${reader}: a reading pressed on the block a card opened on, no division pressed, stands on the line when the section is laid again`, relayed && cores.length >= 1 && !lost.length,
     !cores.length ? "no split word's card opened on a block in the first sections" : lost.length ? `${lost.length} of ${cores.length} · ${lost.slice(0, 3).join(" | ")}` : `${cores.length} words: ${cores.map((x) => `${x.t.label}#${x.t.i} «${x.a.text}»`).join(" · ")}`);
   await p.close();
 }

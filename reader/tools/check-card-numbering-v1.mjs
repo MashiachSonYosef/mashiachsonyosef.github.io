@@ -264,7 +264,7 @@ const n12 = await (async () => {
     const GROUNDS = [probe("var(--bg)"), probe("var(--press-wash)")];
     // the line work a number must keep clear of is now three metals (color-channel-rule-v3): the bronze of the
     // frame at rest and under the hand (the numbers' own ink), the silver of a blob's or a frame's line, the signs' gold
-    const INKS = [["metal", probe("var(--bronze-dim)")], ["metal", probe("var(--bronze)")], ["metal", probe("var(--silver)")], ["metal", probe("var(--gold)")], ["ink", probe("var(--shani)")], ["ink", probe("var(--shani-dim)")], ["ink", probe("var(--tekhelet)")], ["ink", probe("var(--tekhelet-dim)")], ["ink", probe("var(--argaman)")]];
+    const INKS = [["metal", probe("var(--bronze-dim)")], ["metal", probe("var(--bronze)")], ["metal", probe("var(--silver)")], ["metal", probe("var(--silver-dim)")], ["metal", probe("var(--gold)")], ["ink", probe("var(--shani)")], ["ink", probe("var(--shani-dim)")], ["ink", probe("var(--tekhelet)")], ["ink", probe("var(--tekhelet-dim)")], ["ink", probe("var(--argaman)")]];
     const kindOf = (d, i) => {
       let best = 0, br = 34;
       for (const g of GROUNDS) for (const [kind, k] of INKS) {

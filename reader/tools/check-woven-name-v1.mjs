@@ -45,7 +45,7 @@ const tok = (n) => { const m = root.match(new RegExp(`--${n}:\\s*(#[0-9a-f]{6})`
 // each thread: its edge (the page's value) and its body (one light of it, the name's own)
 const THREADS = {
   shani: [tok("shani"), tok("shani-dim")], tekhelet: [tok("tekhelet"), tok("tekhelet-dim")], argaman: [tok("argaman"), tok("argaman-dim")],
-  gold: [tok("gold"), "#d3af37"], bronze: [tok("bronze-dim"), "#9a7656"], silver: [tok("silver"), "#b4b8bd"],
+  gold: [tok("gold"), "#d3af37"], bronze: [tok("bronze-dim"), "#9a7656"], silver: [tok("silver-dim"), "#b4b8bd"],
 };
 const missing = Object.entries(THREADS).filter(([, v]) => !v[0]).map(([k]) => k);
 if (missing.length) { console.log(`FAIL  zone.html declares no value for: ${missing.join(", ")}`); process.exit(1); }

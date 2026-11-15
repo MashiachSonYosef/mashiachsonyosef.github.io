@@ -223,10 +223,10 @@ for (const id of readdirSync(join(DATA, "overlays")).sort()) {
   // Jastrow's the corpus lane lists as a word sense is held back from the card
   // while its switch rests off, where it rests, so it enters no search; a
   // reader who turns the switch on meets it on the card. Named by key, rank and
-  // source id, as data/word-senses/jastrow-v1.json names it.
+  // source id, as data/word-senses/jastrow-v2.json names it.
   const senses = new Set();
   if (id === "jastrow") {
-    const wsPath = join(DATA, "word-senses", "jastrow-v1.json");
+    const wsPath = join(DATA, "word-senses", "jastrow-v2.json");
     let ws = null;
     try { ws = JSON.parse(readFileSync(wsPath, "utf8")); } catch (e) { fail(`the word senses record cannot be read at ${wsPath} (${e.message}): refusing to write a search index that would take them as readings`); }
     for (const [K, list] of Object.entries(ws.rows || {})) for (const [rank, m] of list) senses.add(`${K}|${rank}|${m}`);

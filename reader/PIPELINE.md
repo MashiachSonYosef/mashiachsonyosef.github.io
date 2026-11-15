@@ -21,8 +21,9 @@
 > per relay of the corpus lane's), and every
 > reader closes them where the text prints; the store's texts are the served
 > bytes, unchanged. The map of readings that point at another entry is baked
-> from the corpus lane's own file, kept here byte for byte
-> (`tools/bake-form-of-pills-v1.mjs`, `data/pointer-entries/`), under the
+> from the corpus lane's own files, kept here byte for byte and laid together
+> as each relay's pin names them (`tools/pointer-map-v1.mjs`,
+> `tools/bake-form-of-pills-v1.mjs`, `data/pointer-entries/`), under the
 > owner's rulings as the lane pinned them (`data/rulings/`, read through
 > `tools/rulings-v1.mjs`); a file another lane wrote is read only as the
 > bytes its pin names (`tools/pinned-v1.mjs`). Since the same day a row
@@ -37,7 +38,10 @@
 > word's is withheld, a row of the word's own entry stands whatever its
 > points, and a row given as a name is withheld where the word is not one
 > (`tools/entry-gate-v1.mjs`, `tools/names-gate-v1.mjs`; the line under
-> each word follows by `tools/place-leaders-v1.mjs`). The projection also
+> each word follows by `tools/place-leaders-v1.mjs`), as is a pointer whose
+> English is such a row: the map marks it from the list of name rows, read
+> as the bytes `data/names/PIN.json` names (`tools/bake-form-of-pills-v1.mjs`).
+> The projection also
 > bakes, for each row a source names a stem for, that stem: from the corpus
 > lane's two binyan files and, since 13 November, from their extension to
 > the UBS dictionary, the SDBH and Jastrow (`data/stems-extension/`, read

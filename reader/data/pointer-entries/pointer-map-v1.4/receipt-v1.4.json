@@ -1,0 +1,2527 @@
+{
+ "name": "pointer map v1.4: the owner's ruled print for the pure pointers, with the lane check's corrections",
+ "written": "14 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "rule": {
+  "file": "<the Tabernacle>/corpus-lane-builds/moses-pointer-entries-v1/pointer-map-v1.4/RULE.md",
+  "bytes": 20668,
+  "sha256": "f159f6531c4e7237495079a8c32db50cc4c66d1a4d8cd44174f71031c5bf7421"
+ },
+ "builder": {
+  "file": "<the Tabernacle>/corpus-lane-builds/moses-pointer-entries-v1/pointer-map-v1.4/build-pointer-map-v1.4.mjs",
+  "bytes": 58620,
+  "sha256": "f5cb69021e3f9a83759bb3675c7d462b5552728631c2f33bbf3fc4246299f1c7"
+ },
+ "inputs": {
+  "map": {
+   "file": "<the Tabernacle>/corpus-lane-builds/moses-pointer-entries-v1/pointer-entries-v1/zone-pills-v1.3.jsonl",
+   "bytes": 2359172,
+   "sha256": "9a532facc2b5b9a92402bcfe44ca387180676ad0683957d0760723ca3ab780d1",
+   "lines": 3015
+  },
+  "route_store": {
+   "file": "<given> store-now",
+   "store_version": "4d1357b26ca5",
+   "shards": 256,
+   "rows": 652954,
+   "sha256_of_the_shards": "053dc685f30f8a25b3573f17cad18b9d5a79294a21e2a9694081f765413601bc"
+  },
+  "kaikki_he": {
+   "file": "<999 footsteps>/ledgers/work/ldmprs/source-cache/kaikki-2026-07-12/kaikki.org-dictionary-Hebrew.jsonl",
+   "bytes": 55916128,
+   "sha256": "f1c363c34c61d1673974074a8b3072cc60414f157799efcd8b61f70b6512de6b"
+  },
+  "kaikki_ar": {
+   "file": "<999 footsteps>/ledgers/work/ldmprs/source-cache/kaikki-aramaic-2026-07-14/kaikki.org-dictionary-Aramaic-words.jsonl",
+   "bytes": 3764301,
+   "sha256": "1ed77f23419dcce9bf027fb897b2d37a29ac66cbd76af7b584256522667d0749"
+  },
+  "ubs": {
+   "file": "<999 footsteps>/ledgers/work/ldmprs/source-cache/ubs-sdbh-hebrew-2026-07-15/UBSHebrewDic-v0.9.2-en.JSON",
+   "bytes": 23110129,
+   "sha256": "1686a25dd31dc9afb7b932927e160070667c73caedad11aa7e4482c21f800e8e"
+  },
+  "catalog": {
+   "file": "<999 footsteps>/definition-poc/output/structured-evidence-catalog-v86.csv.gz",
+   "bytes": 136280475,
+   "sha256": "a563c2f33f07e26ada3cbe57e5924dfac710532b434978bc07b31b46bff8fedf",
+   "rows": 1156876,
+   "rows_of_the_three_sources": 221698,
+   "rows_kept": 5035,
+   "rows_not_whole": 0
+  }
+ },
+ "same_source_m_ids": {
+  "kaikki_wiktionary_hebrew": [
+   "M11",
+   "M13",
+   "M25",
+   "M30",
+   "M35",
+   "M50",
+   "M69"
+  ],
+  "kaikki_wiktionary_aramaic": [
+   "M60",
+   "M72",
+   "M112",
+   "M177"
+  ],
+  "ubs_sdbh_hebrew_v0_9_2": [
+   "M18"
+  ]
+ },
+ "pointer_test": {
+  "relations_the_map_carries": 230,
+  "senses_with_a_gloss_read": 42202,
+  "senses_a_pointer_by_their_own_words": 3620,
+  "map_text_test_would_add": 48,
+  "map_text_test_would_add_list": [
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "masculine construct state of שניים \\ שְׁנַיִם"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "a diminutive of the male given names אַבְרָהָם (avrahám) or אַבְנֵר (avnér)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "plural indefinite form of אב m (av)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "plural indefinite form of אבא m (ába)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of מוספר: passive of מִסְפֵּר (mispér)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "singular construct state form of קוֹל (qól), defective spelling: singular construct state form of קֹל."
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "plural indefinite form of דֶּרֶךְ f (dérekh)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of חודשים; plural indefinite form of חודש / חֹדֶשׁ (khódesh)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of יִפְרוֹץ: third-person masculine singular future (prefix conjugation) of פָּרַץ."
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of יַעֲבִידוּ: third-person masculine plural future (prefix conjugation) of הֶעֱבִיד."
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of עֲבוֹדָתָם: singular form of עֲבֹדָה (avodá) with third-person masculine plural personal pronoun as possessor."
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of נַעֲרוֹתֶיהָ: plural form of נַעֲרָה (naará) with third-person feminine singular personal pronoun as possessor"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of הוֹלְכוֹת: feminine plural present participle and present tense of הָלַךְ (halách)."
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of יְלִידֵי: plural construct state form of יְלִיד (y'líd)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of פּוֹסְחִים (poskhím): masculine plural present participle and present tense of פָּסַח (pasákh)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of אלפיים: dual of אֶלֶף"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of מצווה: masculine singular present participle and present tense of ציווה / צִוָּה (tsivá)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "defective spelling of מצווה: masculine singular present participle and present tense of צווה / צֻוָּה (tsuvá)"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "Masoretic spelling of רַגְלְךָ: singular form of רֶגֶל (régel) with second-person masculine singular personal pronoun as possessor"
+   },
+   {
+    "source": "kaikki_wiktionary_hebrew",
+    "gloss": "plural indefinite form of אביר m (abír)"
+   }
+  ]
+ },
+ "slots": 3096,
+ "slots_by_v1_3_kind": {
+  "resolved served": 1574,
+  "first served": 512,
+  "not_served not served": 503,
+  "none no English": 308,
+  "first not served": 178,
+  "first no English": 21
+ },
+ "slots_by_outcome": {
+  "FORM_OF target resolved served -> served at the_key_the_pointer_names": 1138,
+  "FORM_OF target first served -> served at the_key_the_pointer_names": 299,
+  "FORM_OF target not_served not served -> ruled_print": 204,
+  "MIXED target resolved served -> served at the_key_the_pointer_names": 146,
+  "FORM_OF target not_served not served -> served at the_lines_own_key": 108,
+  "MIXED target resolved served -> served": 100,
+  "FORM_OF target first not served -> ruled_print": 95,
+  "MIXED target not_served not served -> ruled_print": 87,
+  "MIXED target first served -> served at the_key_the_pointer_names": 84,
+  "FORM_OF target none no English -> unresolved: NO_ENTRY_UNDER_THE_LETTERS": 82,
+  "USAGE_NOTE target first served -> served at the_key_the_pointer_names": 80,
+  "MIXED target none no English -> unresolved: NO_ENTRY_UNDER_THE_LETTERS": 48,
+  "FORM_OF target first not served -> served at the_lines_own_key": 45,
+  "FORM_OF target resolved served -> served": 40,
+  "FORM_OF target resolved served -> served at the_key_followed_to": 38,
+  "FORM_OF target none no English -> unresolved: NO_ENTRY_HAS_THE_FORM": 36,
+  "FORM_OF also resolved served -> served at the_key_followed_to": 35,
+  "USAGE_NOTE target not_served not served -> unresolved: A_PREFIX_IS_NOT_THE_LETTERS_ENTRY": 30,
+  "USAGE_NOTE target not_served not served -> ruled_print": 28,
+  "USAGE_NOTE target resolved served -> served at the_key_the_pointer_names": 28,
+  "MIXED target none no English -> unresolved: NO_ENTRY_HAS_THE_FORM": 26,
+  "FORM_OF also none no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 22,
+  "JUDGMENT target first served -> served": 22,
+  "FORM_OF also resolved served -> served at the_key_the_pointer_names": 20,
+  "FORM_OF also none no English -> unresolved: NO_ENTRY_UNDER_THE_LETTERS": 19,
+  "JUDGMENT target not_served not served -> ruled_print": 17,
+  "MIXED target first not served -> ruled_print": 15,
+  "USAGE_NOTE target none no English -> unresolved: NO_ENTRY_UNDER_THE_LETTERS": 12,
+  "FORM_OF target none no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 10,
+  "MIXED target not_served not served -> served at the_lines_own_key": 10,
+  "MIXED target resolved served -> served at the_key_followed_to": 10,
+  "JUDGMENT target none no English -> unresolved: NO_ENTRY_UNDER_THE_LETTERS": 9,
+  "FORM_OF also none no English -> unresolved: NO_ENTRY_HAS_THE_FORM": 8,
+  "FORM_OF target first served -> served": 8,
+  "MIXED target first not served -> served at the_lines_own_key": 8,
+  "MIXED target first served -> served": 8,
+  "MIXED target none no English -> unresolved: NOT_SERVED": 8,
+  "FORM_OF target first no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 7,
+  "FORM_OF target first no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 7,
+  "FORM_OF target none no English -> unresolved: NOT_SERVED": 7,
+  "JUDGMENT target resolved served -> served": 7,
+  "FORM_OF also not_served not served -> ruled_print": 6,
+  "MIXED also resolved served -> served at the_key_the_pointer_names": 5,
+  "MIXED target first not served -> unresolved: A_PREFIX_IS_NOT_THE_LETTERS_ENTRY": 5,
+  "FORM_OF also first served -> served at the_key_the_pointer_names": 4,
+  "FORM_OF target none no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 4,
+  "USAGE_NOTE target first not served -> ruled_print": 4,
+  "FORM_OF target not_served not served -> served at the_key_the_pointer_names": 3,
+  "MIXED also none no English -> unresolved: NO_ENTRY_HAS_THE_FORM": 3,
+  "MIXED also not_served not served -> ruled_print": 3,
+  "MIXED target first no English -> unresolved: SEVERAL_ENTRIES_SHARE_THE_FORM": 3,
+  "MIXED target none no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 3,
+  "FORM_OF target first not served -> served at the_key_the_pointer_names": 2,
+  "FORM_OF target first served -> served at the_key_followed_to": 2,
+  "FORM_OF target none no English -> unresolved: THE_TARGET_POINTS_ON_AGAIN": 2,
+  "MIXED also none no English -> unresolved: THE_TARGET_POINTS_ON_AGAIN": 2,
+  "MIXED also resolved served -> served at the_key_followed_to": 2,
+  "MIXED target first no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 2,
+  "USAGE_NOTE also not_served not served -> ruled_print": 2,
+  "USAGE_NOTE target resolved served -> served at the_key_followed_to": 2,
+  "FORM_OF also first not served -> ruled_print": 1,
+  "FORM_OF also first served -> served": 1,
+  "FORM_OF also none no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 1,
+  "FORM_OF also not_served not served -> served at the_lines_own_key": 1,
+  "FORM_OF also resolved served -> served": 1,
+  "FORM_OF target first no English -> unresolved: SEVERAL_ENTRIES_SHARE_THE_FORM": 1,
+  "FORM_OF target none no English -> unresolved: THE_TARGET_POINTS_ON_TO_NO_ENTRY_UNDER_THE_LETTERS": 1,
+  "FORM_OF target not_served not served -> unresolved: NO_ENTRY_HAS_THE_FORM": 1,
+  "JUDGMENT target none no English -> unresolved: NOT_SERVED": 1,
+  "JUDGMENT target none no English -> unresolved: NO_ENTRY_HAS_THE_FORM": 1,
+  "JUDGMENT target not_served not served -> served at the_lines_own_key": 1,
+  "MIXED also first not served -> ruled_print": 1,
+  "MIXED also first served -> served": 1,
+  "MIXED also first served -> served at the_key_the_pointer_names": 1,
+  "MIXED also none no English -> unresolved: NO_ENTRY_UNDER_THE_LETTERS": 1,
+  "MIXED also none no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 1,
+  "MIXED also not_served not served -> served at the_key_the_pointer_names": 1,
+  "MIXED also resolved served -> served": 1,
+  "MIXED target first no English -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 1,
+  "MIXED target first not served -> served at the_key_the_pointer_names": 1,
+  "MIXED target first served -> served at the_key_followed_to": 1,
+  "MIXED target not_served not served -> served at the_key_the_pointer_names": 1,
+  "MIXED target resolved served -> unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 1,
+  "USAGE_NOTE also first not served -> ruled_print": 1,
+  "USAGE_NOTE also first served -> served at the_key_the_pointer_names": 1,
+  "USAGE_NOTE target none no English -> unresolved: NO_SOURCE_FILE_READ_FOR_M50": 1
+ },
+ "slots_against_v1_3": {
+  "same English and entry": 3040,
+  "v1.4 English or entry differs from v1.3": 56
+ },
+ "v1_3_served_rows_in_this_store": {
+  "v1.3 served row still served (resolved)": 1574,
+  "v1.3 served row still served (first)": 512
+ },
+ "v1_3_read_again": {
+  "slots_with_a_file_entry": 2641,
+  "the_file_gives_v1_3s_english": 2641,
+  "it_does_not": []
+ },
+ "v1_3_reasons_read_again": {
+  "slots_with_an_entry_and_no_english": 63,
+  "the_same_reason": 63,
+  "another_reason": []
+ },
+ "naming_again": {
+  "v1_3_naming_reproduced": 2655,
+  "not_checked_v1_3_wrote_no_entry": 79,
+  "not_reproduced": 88,
+  "not_reproduced_by_how": {
+   "own_pointing": 82,
+   "first_in_the_sources_order": 6
+  },
+  "not_reproduced_list": [
+   {
+    "line": 76,
+    "key": "אדני",
+    "text": "defective spelling of אדוני",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 3786",
+    "again": "SEVERAL line 3786 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 151,
+    "key": "אים",
+    "text": "defective spelling of איום.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9283",
+    "again": "SEVERAL line 9283 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 152,
+    "key": "אים",
+    "text": "defective spelling of איים",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 7318",
+    "again": "SEVERAL line 7318 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 183,
+    "key": "אלהי",
+    "text": "defective spelling of אלוהי",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 8257",
+    "again": "SEVERAL line 8257 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 211,
+    "key": "אלף",
+    "text": "alternative spelling of אל״ף",
+    "which": "target",
+    "how": "first_in_the_sources_order",
+    "v1_3": "SEVERAL line 390 ",
+    "again": "SEVERAL line 388 of 6",
+    "relation": "alternative spelling of"
+   },
+   {
+    "line": 217,
+    "key": "אמה",
+    "text": "defective spelling of אומה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9128",
+    "again": "SEVERAL line 9128 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 218,
+    "key": "אמה",
+    "text": "defective spelling of אימה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 12000",
+    "again": "SEVERAL line 11997 of 4",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 224,
+    "key": "אמן",
+    "text": "defective spelling of אומן",
+    "which": "target",
+    "how": "first_in_the_sources_order",
+    "v1_3": "SEVERAL line 7939 ",
+    "again": "SEVERAL line 7938 of 5",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 231,
+    "key": "אמר",
+    "text": "defective spelling of אומר",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 4885",
+    "again": "SEVERAL line 4885 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 258,
+    "key": "אפן",
+    "text": "defective spelling of אופן",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 8001",
+    "again": "SEVERAL line 8001 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 260,
+    "key": "אפר",
+    "text": "defective spelling of אפור",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 8270",
+    "again": "SEVERAL line 8270 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 270,
+    "key": "ארז",
+    "text": "defective spelling of אורז.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 3048",
+    "again": "SEVERAL line 3048 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 271,
+    "key": "ארח",
+    "text": "defective spelling of אורח",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 3099",
+    "again": "SEVERAL line 3098 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 331,
+    "key": "בדד",
+    "text": "defective spelling of בודד",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 10555",
+    "again": "SEVERAL line 10551 of 5",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 361,
+    "key": "בית",
+    "text": "alternative form of בי״ת",
+    "which": "target",
+    "how": "first_in_the_sources_order",
+    "v1_3": "SEVERAL line 374 ",
+    "again": "SEVERAL line 373 of 8",
+    "relation": "alternative form of"
+   },
+   {
+    "line": 410,
+    "key": "בץ",
+    "text": "defective spelling of בוץ",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 8888",
+    "again": "SEVERAL line 8888 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 412,
+    "key": "בקר",
+    "text": "defective spelling of בוקר",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 1632",
+    "again": "SEVERAL line 1630 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 413,
+    "key": "בקר",
+    "text": "defective spelling of בוקר.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 1630",
+    "again": "SEVERAL line 1630 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 455,
+    "key": "גדל",
+    "text": "defective spelling of גדול",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 1472",
+    "again": "SEVERAL line 1472 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 464,
+    "key": "גלה",
+    "text": "defective spelling of גולה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 10023",
+    "again": "SEVERAL line 10022 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 465,
+    "key": "גלה",
+    "text": "defective spelling of גילה.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 5625",
+    "again": "SEVERAL line 5625 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 483,
+    "key": "גר",
+    "text": "defective spelling of גיר (“chalk, lime”)",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 1593",
+    "again": "SEVERAL line 1593 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 501,
+    "key": "דבר",
+    "text": "defective spelling of דובר",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 4790",
+    "again": "SEVERAL line 4790 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 524,
+    "key": "דין",
+    "text": "defective spelling of דיין.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 10261",
+    "again": "SEVERAL line 10261 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 527,
+    "key": "דלת",
+    "text": "alternative spelling of דל״ת",
+    "which": "target",
+    "how": "first_in_the_sources_order",
+    "v1_3": "SEVERAL line 1136 ",
+    "again": "SEVERAL line 1135 of 3",
+    "relation": "alternative spelling of"
+   },
+   {
+    "line": 531,
+    "key": "דמה",
+    "text": "defective spelling of דומה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 14799",
+    "again": "SEVERAL line 14798 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 645,
+    "key": "הצל",
+    "text": "defective spelling of הוצל",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9971",
+    "again": "SEVERAL line 9971 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 649,
+    "key": "הראה",
+    "text": "defective spelling of הוראה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 5713",
+    "again": "SEVERAL line 5712 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 866,
+    "key": "חוה",
+    "text": "defective spelling of חווה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 5525",
+    "again": "SEVERAL line 5524 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 867,
+    "key": "חוה",
+    "text": "defective spelling of חווה.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 5524",
+    "again": "SEVERAL line 5524 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 868,
+    "key": "חוט",
+    "text": "defective spelling of חיווט",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 10646",
+    "again": "SEVERAL line 10645 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 928,
+    "key": "חם",
+    "text": "defective spelling of חום",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 2334",
+    "again": "SEVERAL line 2332 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 946,
+    "key": "חנך",
+    "text": "defective spelling of חונך.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9118",
+    "again": "SEVERAL line 9118 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 967,
+    "key": "חק",
+    "text": "defective spelling of חוק",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9101",
+    "again": "SEVERAL line 6210 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 978,
+    "key": "חשב",
+    "text": "defective spelling of חושב: to be calculate.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9558",
+    "again": "SEVERAL line 9558 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1034,
+    "key": "ידע",
+    "text": "defective spelling of יודע",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9241",
+    "again": "SEVERAL line 9241 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1129,
+    "key": "יצר",
+    "text": "defective spelling of יוצר",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 13531",
+    "again": "SEVERAL line 13530 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1241,
+    "key": "כתבה",
+    "text": "Defective spelling of כתובה.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 10534",
+    "again": "SEVERAL line 10534 of 2",
+    "relation": "Defective spelling of"
+   },
+   {
+    "line": 1247,
+    "key": "כתל",
+    "text": "defective spelling of כותל",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 4630",
+    "again": "SEVERAL line 4630 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1277,
+    "key": "לדה",
+    "text": "Defective spelling of לידה.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 2998",
+    "again": "SEVERAL line 2998 of 2",
+    "relation": "Defective spelling of"
+   },
+   {
+    "line": 1317,
+    "key": "לכוד",
+    "text": "defective spelling of ליכוד.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9137",
+    "again": "SEVERAL line 9137 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1327,
+    "key": "למד",
+    "text": "alternative form of למ״ד: the 12th letter of the Hebrew alphabet (ל)",
+    "which": "target",
+    "how": "first_in_the_sources_order",
+    "v1_3": "SEVERAL line 3157 ",
+    "again": "SEVERAL line 3155 of 5",
+    "relation": "alternative form of"
+   },
+   {
+    "line": 1451,
+    "key": "מחלה",
+    "text": "defective spelling of מחילה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 12110",
+    "again": "SEVERAL line 12110 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1489,
+    "key": "מלא",
+    "text": "defective spelling of מילא.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 7343",
+    "again": "SEVERAL line 7343 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1492,
+    "key": "מלה",
+    "text": "defective spelling of מילה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 14",
+    "again": "SEVERAL line 13 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1520,
+    "key": "מנין",
+    "text": "defective spelling of מניין.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 8219",
+    "again": "SEVERAL line 8219 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1554,
+    "key": "מצוה",
+    "text": "defective spelling of מצווה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 3365",
+    "again": "SEVERAL line 3365 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1572,
+    "key": "מקוה",
+    "text": "defective spelling of מקווה.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 1774",
+    "again": "SEVERAL line 1774 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1608,
+    "key": "מתג",
+    "text": "defective spelling of מותג",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 12983",
+    "again": "SEVERAL line 12982 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1641,
+    "key": "נח",
+    "text": "defective spelling of נוח.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 961",
+    "again": "SEVERAL line 961 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1670,
+    "key": "נפש",
+    "text": "defective spelling of נופש",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9273",
+    "again": "SEVERAL line 9273 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1723,
+    "key": "סוג",
+    "text": "defective spelling of סיווג",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 9951",
+    "again": "SEVERAL line 9951 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1777,
+    "key": "עגל",
+    "text": "defective spelling of עגול",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 11119",
+    "again": "SEVERAL line 11119 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1782,
+    "key": "עדף",
+    "text": "defective spelling of עודף",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 1887",
+    "again": "SEVERAL line 1887 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1810,
+    "key": "עיף",
+    "text": "defective spelling of עייף: tired.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 4766",
+    "again": "SEVERAL line 4765 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1864,
+    "key": "עצר",
+    "text": "defective spelling of עוצר",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 3343",
+    "again": "SEVERAL line 3343 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1878,
+    "key": "ערם",
+    "text": "defective spelling of ערום",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 997",
+    "again": "SEVERAL line 997 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1903,
+    "key": "פטר",
+    "text": "defective spelling of פוטר",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 10558",
+    "again": "SEVERAL line 10558 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1915,
+    "key": "פנה",
+    "text": "defective spelling of פונה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 11988",
+    "again": "SEVERAL line 11988 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1927,
+    "key": "פעל",
+    "text": "defective spelling of פועל",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 101",
+    "again": "SEVERAL line 101 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1952,
+    "key": "פשט",
+    "text": "defective spelling of פושט",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 4503",
+    "again": "SEVERAL line 4503 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1974,
+    "key": "צוות",
+    "text": "defective spelling of ציוות",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 12424",
+    "again": "SEVERAL line 12423 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1976,
+    "key": "צות",
+    "text": "defective spelling of צוות",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 7818",
+    "again": "SEVERAL line 7818 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1977,
+    "key": "צות",
+    "text": "defective spelling of ציוות",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 12423",
+    "again": "SEVERAL line 12423 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1978,
+    "key": "ציד",
+    "text": "defective spelling of צייד",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 6778",
+    "again": "SEVERAL line 6778 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 1995,
+    "key": "צר",
+    "text": "defective spelling of צור",
+    "which": "target",
+    "how": "first_in_the_sources_order",
+    "v1_3": "SEVERAL line 648 ",
+    "again": "SEVERAL line 645 of 5",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2006,
+    "key": "קבע",
+    "text": "defective spelling of קובע.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 8951",
+    "again": "SEVERAL line 8950 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2008,
+    "key": "קבץ",
+    "text": "defective spelling of קובץ",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 12315",
+    "again": "SEVERAL line 12315 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2018,
+    "key": "קדשה",
+    "text": "defective spelling of קדושה.",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 54",
+    "again": "SEVERAL line 54 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2061,
+    "key": "קצץ",
+    "text": "defective spelling of קוצץ",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 13738",
+    "again": "SEVERAL line 13736 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2064,
+    "key": "קר",
+    "text": "defective spelling of קור",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 10568",
+    "again": "SEVERAL line 10568 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2111,
+    "key": "רגע",
+    "text": "defective spelling of רוגע",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 8755",
+    "again": "SEVERAL line 8754 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2116,
+    "key": "רוח",
+    "text": "defective spelling of רווח",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 13821",
+    "again": "SEVERAL line 13821 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2131,
+    "key": "רטב",
+    "text": "defective spelling of רוטב",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 6229",
+    "again": "SEVERAL line 6229 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2132,
+    "key": "רטב",
+    "text": "defective spelling of רטוב",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 2663",
+    "again": "SEVERAL line 2663 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2161,
+    "key": "רפא",
+    "text": "defective spelling of רופא",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 1919",
+    "again": "SEVERAL line 1919 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2164,
+    "key": "רצה",
+    "text": "defective spelling of ריצה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 10031",
+    "again": "SEVERAL line 10031 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2219,
+    "key": "שוק",
+    "text": "defective spelling of שיווק",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 5528",
+    "again": "SEVERAL line 5527 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2226,
+    "key": "שחר",
+    "text": "defective spelling of שחור",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 77",
+    "again": "SEVERAL line 76 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2242,
+    "key": "שכר",
+    "text": "defective spelling of שיכר",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 14279",
+    "again": "SEVERAL line 14278 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2250,
+    "key": "שלו",
+    "text": "defective spelling of שליו (\"quail\").",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 16869",
+    "again": "SEVERAL line 16867 of 3",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2326,
+    "key": "שנה",
+    "text": "defective spelling of שונה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 2925",
+    "again": "SEVERAL line 2924 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2340,
+    "key": "שער",
+    "text": "defective spelling of שיער",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 2325",
+    "again": "SEVERAL line 2324 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2405,
+    "key": "תוך",
+    "text": "defective spelling of תווך",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 869",
+    "again": "SEVERAL line 869 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2406,
+    "key": "תוך",
+    "text": "defective spelling of תיווך",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 14640",
+    "again": "SEVERAL line 14640 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2463,
+    "key": "תקוה",
+    "text": "defective spelling of תקווה",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 6739",
+    "again": "SEVERAL line 6739 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2467,
+    "key": "תקן",
+    "text": "defective spelling of תיקן",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 11111",
+    "again": "SEVERAL line 11111 of 2",
+    "relation": "defective spelling of"
+   },
+   {
+    "line": 2476,
+    "key": "תרן",
+    "text": "defective spelling of תורן",
+    "which": "target",
+    "how": "own_pointing",
+    "v1_3": "ONE line 13228",
+    "again": "SEVERAL line 13228 of 2",
+    "relation": "defective spelling of"
+   }
+  ],
+  "own_pointing_kept_where_v1_4_would_name_another": [],
+  "changed_by_the_two_amendments": {
+   "ONE -> NONE (prefix)": 30,
+   "SEVERAL -> SEVERAL": 7,
+   "SEVERAL -> NONE (prefix)": 5,
+   "SEVERAL -> ONE (pointed)": 3,
+   "ONE -> NONE": 1,
+   "SEVERAL -> ONE (letters)": 1
+  }
+ },
+ "followed_naming_changed_by_the_amendments": [],
+ "unresolved_reason_changed": [],
+ "geresh_amendment": {
+  "slots": 12,
+  "lines": 12,
+  "places": 2383,
+  "of_the_458": [
+   {
+    "line": 586,
+    "key": "החג",
+    "places": 3,
+    "v1_4": "served",
+    "english": "holiday (day on which a festival or celebration is observed)",
+    "why": null
+   },
+   {
+    "line": 699,
+    "key": "ווים",
+    "places": 1,
+    "v1_4": "ruled_print",
+    "english": "hook",
+    "why": null
+   },
+   {
+    "line": 854,
+    "key": "חגים",
+    "places": 3,
+    "v1_4": "served",
+    "english": "holiday (day on which a festival or celebration is observed)",
+    "why": null
+   },
+   {
+    "line": 913,
+    "key": "חל",
+    "places": 14,
+    "v1_4": "ruled_print",
+    "english": "sand",
+    "why": null
+   },
+   {
+    "line": 1231,
+    "key": "כפו",
+    "places": 7,
+    "v1_4": "unresolved",
+    "english": null,
+    "why": "NO_ENTRY_HAS_THE_FORM"
+   }
+  ],
+  "others": [
+   {
+    "line": 737,
+    "key": "וימת",
+    "class": "MIXED",
+    "places": 134,
+    "v1_3": "Dead, having died.",
+    "v1_4": "Dead, having died."
+   },
+   {
+    "line": 853,
+    "key": "חגי",
+    "class": "MIXED",
+    "places": 20,
+    "v1_3": "hajj (the pilgrimage to Mecca made by pious Muslims; the fifth of the five pillars of Islam)",
+    "v1_4": "holiday (day on which a festival or celebration is observed)"
+   },
+   {
+    "line": 1037,
+    "key": "יה",
+    "class": "MIXED",
+    "places": 51,
+    "v1_3": null,
+    "v1_4": "THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS"
+   },
+   {
+    "line": 1806,
+    "key": "עיני",
+    "class": "MIXED",
+    "places": 700,
+    "v1_3": "eye",
+    "v1_4": "eye"
+   },
+   {
+    "line": 1807,
+    "key": "עיני",
+    "class": "MIXED",
+    "places": 700,
+    "v1_3": "eye",
+    "v1_4": "eye"
+   },
+   {
+    "line": 1808,
+    "key": "עיני",
+    "class": "MIXED",
+    "places": 700,
+    "v1_3": "eye",
+    "v1_4": "eye"
+   },
+   {
+    "line": 1965,
+    "key": "צדיקים",
+    "class": "FORM_OF",
+    "places": 50,
+    "v1_3": "tzaddik (a very righteous person, especially a Hassidic spiritual leader)",
+    "v1_4": "tzaddik (a very righteous person, especially a Hassidic spiritual leader)"
+   }
+  ]
+ },
+ "prefix_amendment": {
+  "slots": 35,
+  "lines": 35,
+  "places": 438,
+  "by_class": {
+   "USAGE_NOTE": 30,
+   "MIXED": 5
+  },
+  "by_v1_3_kind": {
+   "not_served not served": 30,
+   "first not served": 5
+  },
+  "by_letters_entry": {
+   "line 279 ל": 17,
+   "line 301 ש": 14,
+   "line 278 כ": 3,
+   "line 265 ב": 1
+  },
+  "v1_3_english": {
+   "Lamed: the twelfth letter of the Hebrew alphabet, after כ and before מ.": 17,
+   "Shin or sin: the twenty-first letter of the Hebrew alphabet, after ר and before ת.": 14,
+   "Kaph, kaf, khaph, khaf: the eleventh letter of the Hebrew alphabet, after י and before ל.": 3,
+   "Bet, beth, vet: the second letter of the Hebrew alphabet, after א and before ג.": 1
+  },
+  "draft_ruled_prints_withdrawn": 35,
+  "slots_whose_prefix_has_an_entry_of_its_own_in_the_file": 35,
+  "prefix_entries": {
+   "ב": [
+    {
+     "entry": "line 1692",
+     "headword": "בְּ־",
+     "first_english": "In (a place or time)."
+    }
+   ],
+   "ש": [
+    {
+     "entry": "line 2566",
+     "headword": "שֶׁ־",
+     "first_english": "Introduces a subordinate clause."
+    },
+    {
+     "entry": "line 2567",
+     "headword": "שֶׁ־",
+     "first_english": "may, would that"
+    }
+   ],
+   "ל": [
+    {
+     "entry": "line 3180",
+     "headword": "לְ־",
+     "first_english": "To; the first part of a to-infinitive."
+    },
+    {
+     "entry": "line 3181",
+     "headword": "לְ־",
+     "first_english": "To; indicating a destination or end-point."
+    }
+   ],
+   "כ": [
+    {
+     "entry": "line 1628",
+     "headword": "כְּ־",
+     "first_english": "Like, as."
+    }
+   ]
+  }
+ },
+ "pointer_resolutions": {
+  "slots": 9,
+  "by_class_and_slot": {
+   "MIXED target resolved": 4,
+   "FORM_OF also resolved": 3,
+   "FORM_OF target resolved": 2
+  },
+  "places_of_lines": 244,
+  "v1_4": {
+   "served row": 8,
+   "unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 1
+  },
+  "english_a_pointer_by_own_words": 9,
+  "list": [
+   {
+    "line": 323,
+    "key": "באה",
+    "class": "MIXED",
+    "which": "target",
+    "places": 62,
+    "v1_3": "bare infinitive (infinitive construct or gerund) of בָּא (bá)",
+    "v1_4": "THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM"
+   },
+   {
+    "line": 416,
+    "key": "בקש",
+    "class": "FORM_OF",
+    "which": "also 1",
+    "places": 47,
+    "v1_3": "bare infinitive (infinitive construct or gerund) of ביקש / בִּקֵּשׁ (bikésh).",
+    "v1_4": "to ask for, request"
+   },
+   {
+    "line": 417,
+    "key": "בקש",
+    "class": "FORM_OF",
+    "which": "also 1",
+    "places": 47,
+    "v1_3": "bare infinitive (infinitive construct or gerund) of ביקש / בִּקֵּשׁ (bikésh).",
+    "v1_4": "to ask for, request"
+   },
+   {
+    "line": 419,
+    "key": "בקשת",
+    "class": "MIXED",
+    "which": "target",
+    "places": 17,
+    "v1_3": "bare infinitive (infinitive construct or gerund) of ביקש / בִּקֵּשׁ (bikésh).",
+    "v1_4": "to ask for, request"
+   },
+   {
+    "line": 420,
+    "key": "בקשת",
+    "class": "MIXED",
+    "which": "target",
+    "places": 17,
+    "v1_3": "bare infinitive (infinitive construct or gerund) of ביקש / בִּקֵּשׁ (bikésh).",
+    "v1_4": "to ask for, request"
+   },
+   {
+    "line": 713,
+    "key": "ויבקש",
+    "class": "MIXED",
+    "which": "target",
+    "places": 13,
+    "v1_3": "bare infinitive (infinitive construct or gerund) of ביקש / בִּקֵּשׁ (bikésh).",
+    "v1_4": "to ask for, request"
+   },
+   {
+    "line": 1271,
+    "key": "לבקש",
+    "class": "FORM_OF",
+    "which": "also 1",
+    "places": 24,
+    "v1_3": "bare infinitive (infinitive construct or gerund) of ביקש / בִּקֵּשׁ (bikésh).",
+    "v1_4": "to ask for, request"
+   },
+   {
+    "line": 1324,
+    "key": "ללמד",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 5,
+    "v1_3": "to-infinitive of לָמַד (lamád).",
+    "v1_4": "to learn, to study"
+   },
+   {
+    "line": 1398,
+    "key": "מבקשים",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 12,
+    "v1_3": "bare infinitive (infinitive construct or gerund) of ביקש / בִּקֵּשׁ (bikésh).",
+    "v1_4": "to ask for, request"
+   }
+  ]
+ },
+ "ruled_prints": {
+  "slots": 464,
+  "lines": 456,
+  "places": 73098,
+  "by_class_slot_fills": {
+   "FORM_OF target resolved": 204,
+   "FORM_OF target first_in_the_sources_order": 95,
+   "MIXED target resolved": 87,
+   "USAGE_NOTE target resolved": 28,
+   "JUDGMENT target resolved": 17,
+   "MIXED target first_in_the_sources_order": 15,
+   "FORM_OF also resolved": 6,
+   "USAGE_NOTE target first_in_the_sources_order": 4,
+   "MIXED also resolved": 3,
+   "USAGE_NOTE also resolved": 2,
+   "FORM_OF also first_in_the_sources_order": 1,
+   "MIXED also first_in_the_sources_order": 1,
+   "USAGE_NOTE also first_in_the_sources_order": 1
+  },
+  "by_m": {
+   "M13": 373,
+   "M18": 50,
+   "M25": 28,
+   "M11": 9,
+   "M60": 4
+  },
+  "followed": 15,
+  "with_also_in_the_source": 14
+ },
+ "own_key_resolutions": {
+  "slots": 173,
+  "lines": 172,
+  "places": 16236,
+  "by_class": {
+   "FORM_OF": 154,
+   "MIXED": 18,
+   "JUDGMENT": 1
+  },
+  "by_m_of_the_row": {
+   "M25": 160,
+   "M11": 10,
+   "M18": 3
+  },
+  "by_line_m": {
+   "M13": 170,
+   "M18": 3
+  },
+  "v1_3_kind": {
+   "not_served not served": 120,
+   "first not served": 53
+  }
+ },
+ "the_458": {
+  "lines": 458,
+  "places": 58007,
+  "keys": 398,
+  "by_m": {
+   "M13": 434,
+   "M18": 23,
+   "M60": 1
+  },
+  "by_v1_3_kind": {
+   "not_served": 316,
+   "first_in_the_sources_order": 142
+  },
+  "reproduced_from_the_file": 458,
+  "v1_4": {
+   "served": {
+    "lines": 158,
+    "places": 15080,
+    "by_found_at": {
+     "the_lines_own_key": 153,
+     "the_key_the_pointer_names": 5
+    },
+    "by_found_at_places": {
+     "the_lines_own_key": 14995,
+     "the_key_the_pointer_names": 85
+    },
+    "by_m_of_the_row": {
+     "M25": 145,
+     "M11": 9,
+     "M13": 2,
+     "M18": 2
+    },
+    "own_key_by_m_of_the_row": {
+     "M25": 144,
+     "M11": 7,
+     "M18": 2
+    }
+   },
+   "ruled_print": {
+    "lines": 299,
+    "places": 42920,
+    "by_m": {
+     "M13": 277,
+     "M18": 21,
+     "M60": 1
+    }
+   },
+   "unresolved": {
+    "lines": 1,
+    "places": 7,
+    "by_why": {
+     "NO_ENTRY_HAS_THE_FORM": 1
+    }
+   }
+  },
+  "why_v1_3_found_no_row": {
+   "A": {
+    "lines": 3,
+    "places": 79,
+    "by_m": {
+     "M13": 3
+    },
+    "still_a_ruled_print_in_v1_4": 0,
+    "served_there_under": {}
+   },
+   "B": {
+    "lines": 374,
+    "places": 46529,
+    "by_m": {
+     "M13": 354,
+     "M18": 20
+    },
+    "still_a_ruled_print_in_v1_4": 261,
+    "served_there_under": {
+     "M1": 183,
+     "M17": 158,
+     "M14": 72,
+     "M22": 53,
+     "M21": 44,
+     "M32": 19,
+     "M5": 18,
+     "M18": 11,
+     "M3": 10,
+     "M28": 9,
+     "M85": 8,
+     "M4": 5,
+     "M53": 5,
+     "M44": 4,
+     "M46": 3,
+     "M9": 3,
+     "M10": 2,
+     "M19": 2,
+     "M48": 2,
+     "M74": 2,
+     "M96": 2,
+     "M135": 1,
+     "M54": 1,
+     "M6": 1,
+     "M68": 1,
+     "M79": 1,
+     "M95": 1
+    }
+   },
+   "C": {
+    "lines": 77,
+    "places": 11383,
+    "by_m": {
+     "M13": 73,
+     "M18": 3,
+     "M60": 1
+    },
+    "still_a_ruled_print_in_v1_4": 37,
+    "served_there_under": {}
+   },
+   "D": {
+    "lines": 0,
+    "places": 0,
+    "by_m": {},
+    "still_a_ruled_print_in_v1_4": 0,
+    "served_there_under": {}
+   },
+   "E": {
+    "lines": 4,
+    "places": 16,
+    "by_m": {
+     "M13": 4
+    },
+    "still_a_ruled_print_in_v1_4": 1,
+    "served_there_under": {}
+   }
+  },
+  "same_source_at_the_lines_own_key_with_v1_3s_english": {
+   "lines": 155,
+   "places": 15025
+  },
+  "followed": [
+   {
+    "line": 379,
+    "key": "בכרי",
+    "places": 13,
+    "named_entry": {
+     "entry": "line 7533",
+     "headword": "בְּכֹר"
+    },
+    "english_stands_in": {
+     "entry": "line 9910",
+     "headword": "בְּכוֹר",
+     "sense": 1
+    },
+    "english": "firstborn",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "ruled_print",
+    "found_at": null
+   },
+   {
+    "line": 380,
+    "key": "בכרך",
+    "places": 3,
+    "named_entry": {
+     "entry": "line 7533",
+     "headword": "בְּכֹר"
+    },
+    "english_stands_in": {
+     "entry": "line 9910",
+     "headword": "בְּכוֹר",
+     "sense": 1
+    },
+    "english": "firstborn",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "ruled_print",
+    "found_at": null
+   },
+   {
+    "line": 543,
+    "key": "דקות",
+    "places": 4,
+    "named_entry": {
+     "entry": "line 1324",
+     "headword": "דַּקָּה"
+    },
+    "english_stands_in": {
+     "entry": "line 3995",
+     "headword": "דַּק",
+     "sense": 1
+    },
+    "english": "thin",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "ruled_print",
+    "found_at": null
+   },
+   {
+    "line": 864,
+    "key": "חדשים",
+    "places": 49,
+    "named_entry": {
+     "entry": "line 7204",
+     "headword": "חֳדָשִׁים"
+    },
+    "english_stands_in": {
+     "entry": "line 1321",
+     "headword": "חֹדֶשׁ",
+     "sense": 1
+    },
+    "english": "month",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "served",
+    "found_at": "the_key_the_pointer_names"
+   },
+   {
+    "line": 997,
+    "key": "טריה",
+    "places": 2,
+    "named_entry": {
+     "entry": "line 10527",
+     "headword": "טְרִיָּה"
+    },
+    "english_stands_in": {
+     "entry": "line 10523",
+     "headword": "טָרִי",
+     "sense": 1
+    },
+    "english": "fresh",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "ruled_print",
+    "found_at": null
+   },
+   {
+    "line": 1032,
+    "key": "ידים",
+    "places": 28,
+    "named_entry": {
+     "entry": "line 8025",
+     "headword": "יָדַיִם"
+    },
+    "english_stands_in": {
+     "entry": "line 4",
+     "headword": "יָד",
+     "sense": 1
+    },
+    "english": "arm",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "served",
+    "found_at": "the_key_the_pointer_names"
+   },
+   {
+    "line": 1390,
+    "key": "מאלף",
+    "places": 2,
+    "named_entry": {
+     "entry": "line 391",
+     "headword": "אִלֵּף"
+    },
+    "english_stands_in": {
+     "entry": "line 10361",
+     "headword": "אִלֵּף",
+     "sense": 1
+    },
+    "english": "to tame, to train",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "served",
+    "found_at": "the_key_the_pointer_names"
+   },
+   {
+    "line": 1986,
+    "key": "צמוקים",
+    "places": 2,
+    "named_entry": {
+     "entry": "line 12307",
+     "headword": "צִמּוּקִים"
+    },
+    "english_stands_in": {
+     "entry": "line 11746",
+     "headword": "צִמּוּק",
+     "sense": 1
+    },
+    "english": "raisin",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "ruled_print",
+    "found_at": null
+   },
+   {
+    "line": 2278,
+    "key": "שלמה",
+    "places": 307,
+    "named_entry": {
+     "entry": "line 3305",
+     "headword": "שִׁלֵּם"
+    },
+    "english_stands_in": {
+     "entry": "line 12507",
+     "headword": "שִׁלֵּם",
+     "sense": 1
+    },
+    "english": "to pay",
+    "from_sense": 1,
+    "by": "tag",
+    "v1_4": "ruled_print",
+    "found_at": null
+   }
+  ],
+  "followed_carrying_both_entries_in_the_map": 9,
+  "also_in_the_source": [
+   {
+    "line": 148,
+    "key": "אילו",
+    "m_id": "M13",
+    "english": "these",
+    "stands_in": "line 6392",
+    "also": [
+     {
+      "entry": "line 6393",
+      "headword": "אֵלּוּ",
+      "keys": [
+       "אלו"
+      ]
+     }
+    ],
+    "v1_4": "ruled_print"
+   },
+   {
+    "line": 187,
+    "key": "אלהים",
+    "m_id": "M13",
+    "english": "God",
+    "stands_in": "line 354",
+    "also": [
+     {
+      "entry": "line 3807",
+      "headword": "אֱלוֹהַּ",
+      "keys": [
+       "אלוהים"
+      ]
+     }
+    ],
+    "v1_4": "ruled_print"
+   },
+   {
+    "line": 190,
+    "key": "אלוהי",
+    "m_id": "M13",
+    "english": "God",
+    "stands_in": "line 354",
+    "also": [
+     {
+      "entry": "line 3807",
+      "headword": "אֱלוֹהַּ",
+      "keys": [
+       "אלוהים"
+      ]
+     }
+    ],
+    "v1_4": "ruled_print"
+   },
+   {
+    "line": 191,
+    "key": "אלוהי",
+    "m_id": "M13",
+    "english": "God",
+    "stands_in": "line 354",
+    "also": [
+     {
+      "entry": "line 3807",
+      "headword": "אֱלוֹהַּ",
+      "keys": [
+       "אלוהים"
+      ]
+     }
+    ],
+    "v1_4": "ruled_print"
+   },
+   {
+    "line": 1066,
+    "key": "יושבי",
+    "m_id": "M13",
+    "english": "inhabitant",
+    "stands_in": "line 6909",
+    "also": [
+     {
+      "entry": "line 6911",
+      "headword": "יוֹשֶׁבֶת",
+      "keys": [
+       "יושב"
+      ]
+     }
+    ],
+    "v1_4": "served"
+   },
+   {
+    "line": 1068,
+    "key": "יושבים",
+    "m_id": "M13",
+    "english": "inhabitant",
+    "stands_in": "line 6909",
+    "also": [
+     {
+      "entry": "line 6911",
+      "headword": "יוֹשֶׁבֶת",
+      "keys": [
+       "יושב"
+      ]
+     }
+    ],
+    "v1_4": "served"
+   },
+   {
+    "line": 1159,
+    "key": "ישבי",
+    "m_id": "M13",
+    "english": "inhabitant",
+    "stands_in": "line 6909",
+    "also": [
+     {
+      "entry": "line 6911",
+      "headword": "יוֹשֶׁבֶת",
+      "keys": [
+       "יושב"
+      ]
+     }
+    ],
+    "v1_4": "ruled_print"
+   },
+   {
+    "line": 1160,
+    "key": "ישבים",
+    "m_id": "M13",
+    "english": "inhabitant",
+    "stands_in": "line 6909",
+    "also": [
+     {
+      "entry": "line 6911",
+      "headword": "יוֹשֶׁבֶת",
+      "keys": [
+       "יושב"
+      ]
+     }
+    ],
+    "v1_4": "ruled_print"
+   },
+   {
+    "line": 1569,
+    "key": "מקדם",
+    "m_id": "M13",
+    "english": "early",
+    "stands_in": "line 10748",
+    "also": [
+     {
+      "entry": "line 10749",
+      "headword": "מֻקְדָּם",
+      "keys": [
+       "מוקדם"
+      ]
+     }
+    ],
+    "v1_4": "ruled_print"
+   },
+   {
+    "line": 2755,
+    "key": "עד",
+    "m_id": "M18",
+    "english": "witness",
+    "stands_in": "005244000000000",
+    "also": [
+     {
+      "entry": "005245000000000",
+      "headword": "עַד",
+      "keys": [
+       "עד"
+      ]
+     }
+    ],
+    "v1_4": "ruled_print"
+   }
+  ]
+ },
+ "hard_stop_rows": {
+  "rows_named": 2266,
+  "rows_new_in_v1_4": 191
+ },
+ "served_rows_set_by_v1_4": {
+  "rows": 191,
+  "following_a_pointer": 14,
+  "carrying_both_entries": 14,
+  "list": [
+   {
+    "line": 416,
+    "key": "בקש",
+    "class": "FORM_OF",
+    "which": "also 1",
+    "places": 47,
+    "named_entry": {
+     "entry": "line 6957",
+     "headword": "בִּקֵּשׁ"
+    },
+    "entry": "line 7410",
+    "followed": {
+     "from_sense": 1,
+     "word": "ביקש",
+     "entry": "line 7410",
+     "by": "tag"
+    },
+    "row": {
+     "key": "ביקש",
+     "m": "M13",
+     "rank": 1,
+     "text": "to ask for, request",
+     "found_at": "the_key_followed_to"
+    }
+   },
+   {
+    "line": 417,
+    "key": "בקש",
+    "class": "FORM_OF",
+    "which": "also 1",
+    "places": 47,
+    "named_entry": {
+     "entry": "line 6957",
+     "headword": "בִּקֵּשׁ"
+    },
+    "entry": "line 7410",
+    "followed": {
+     "from_sense": 1,
+     "word": "ביקש",
+     "entry": "line 7410",
+     "by": "tag"
+    },
+    "row": {
+     "key": "ביקש",
+     "m": "M13",
+     "rank": 1,
+     "text": "to ask for, request",
+     "found_at": "the_key_followed_to"
+    }
+   },
+   {
+    "line": 419,
+    "key": "בקשת",
+    "class": "MIXED",
+    "which": "target",
+    "places": 17,
+    "named_entry": {
+     "entry": "line 6957",
+     "headword": "בִּקֵּשׁ"
+    },
+    "entry": "line 7410",
+    "followed": {
+     "from_sense": 1,
+     "word": "ביקש",
+     "entry": "line 7410",
+     "by": "tag"
+    },
+    "row": {
+     "key": "ביקש",
+     "m": "M13",
+     "rank": 1,
+     "text": "to ask for, request",
+     "found_at": "the_key_followed_to"
+    }
+   },
+   {
+    "line": 420,
+    "key": "בקשת",
+    "class": "MIXED",
+    "which": "target",
+    "places": 17,
+    "named_entry": {
+     "entry": "line 6957",
+     "headword": "בִּקֵּשׁ"
+    },
+    "entry": "line 7410",
+    "followed": {
+     "from_sense": 1,
+     "word": "ביקש",
+     "entry": "line 7410",
+     "by": "tag"
+    },
+    "row": {
+     "key": "ביקש",
+     "m": "M13",
+     "rank": 1,
+     "text": "to ask for, request",
+     "found_at": "the_key_followed_to"
+    }
+   },
+   {
+    "line": 713,
+    "key": "ויבקש",
+    "class": "MIXED",
+    "which": "target",
+    "places": 13,
+    "named_entry": {
+     "entry": "line 6957",
+     "headword": "בִּקֵּשׁ"
+    },
+    "entry": "line 7410",
+    "followed": {
+     "from_sense": 1,
+     "word": "ביקש",
+     "entry": "line 7410",
+     "by": "tag"
+    },
+    "row": {
+     "key": "ביקש",
+     "m": "M13",
+     "rank": 1,
+     "text": "to ask for, request",
+     "found_at": "the_key_followed_to"
+    }
+   },
+   {
+    "line": 864,
+    "key": "חדשים",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 49,
+    "named_entry": {
+     "entry": "line 7204",
+     "headword": "חֳדָשִׁים"
+    },
+    "entry": "line 1321",
+    "followed": {
+     "from_sense": 1,
+     "word": "חודש",
+     "entry": "line 1321",
+     "by": "tag"
+    },
+    "row": {
+     "key": "חודשים",
+     "m": "M11",
+     "rank": 3,
+     "text": "month",
+     "found_at": "the_key_the_pointer_names"
+    }
+   },
+   {
+    "line": 878,
+    "key": "חורפי",
+    "class": "FORM_OF",
+    "which": "also 1",
+    "places": 1,
+    "named_entry": {
+     "entry": "line 7673",
+     "headword": "חֹרֶף"
+    },
+    "entry": "line 1725",
+    "followed": {
+     "from_sense": 1,
+     "word": "חורף",
+     "entry": "line 1725",
+     "by": "tag"
+    },
+    "row": {
+     "key": "חורפי",
+     "m": "M11",
+     "rank": 5,
+     "text": "winter",
+     "found_at": "the_lines_own_key"
+    }
+   },
+   {
+    "line": 1032,
+    "key": "ידים",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 28,
+    "named_entry": {
+     "entry": "line 8025",
+     "headword": "יָדַיִם"
+    },
+    "entry": "line 4",
+    "followed": {
+     "from_sense": 1,
+     "word": "יָד",
+     "entry": "line 4",
+     "by": "tag"
+    },
+    "row": {
+     "key": "ידיים",
+     "m": "M11",
+     "rank": 3,
+     "text": "arm",
+     "found_at": "the_key_the_pointer_names"
+    }
+   },
+   {
+    "line": 1271,
+    "key": "לבקש",
+    "class": "FORM_OF",
+    "which": "also 1",
+    "places": 24,
+    "named_entry": {
+     "entry": "line 6957",
+     "headword": "בִּקֵּשׁ"
+    },
+    "entry": "line 7410",
+    "followed": {
+     "from_sense": 1,
+     "word": "ביקש",
+     "entry": "line 7410",
+     "by": "tag"
+    },
+    "row": {
+     "key": "ביקש",
+     "m": "M13",
+     "rank": 1,
+     "text": "to ask for, request",
+     "found_at": "the_key_followed_to"
+    }
+   },
+   {
+    "line": 1324,
+    "key": "ללמד",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 5,
+    "named_entry": {
+     "entry": "line 12676",
+     "headword": "לִלְמֹד"
+    },
+    "entry": "line 3155",
+    "followed": {
+     "from_sense": 1,
+     "word": "לָמַד",
+     "entry": "line 3155",
+     "by": "own_words"
+    },
+    "row": {
+     "key": "למד",
+     "m": "M13",
+     "rank": 45,
+     "text": "to learn, to study",
+     "found_at": "the_key_followed_to"
+    }
+   },
+   {
+    "line": 1390,
+    "key": "מאלף",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 2,
+    "named_entry": {
+     "entry": "line 391",
+     "headword": "אִלֵּף"
+    },
+    "entry": "line 10361",
+    "followed": {
+     "from_sense": 1,
+     "word": "אילף",
+     "entry": "line 10361",
+     "by": "tag"
+    },
+    "row": {
+     "key": "אלף",
+     "m": "M25",
+     "rank": 70,
+     "text": "to tame, to train",
+     "found_at": "the_key_the_pointer_names"
+    }
+   },
+   {
+    "line": 1398,
+    "key": "מבקשים",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 12,
+    "named_entry": {
+     "entry": "line 6957",
+     "headword": "בִּקֵּשׁ"
+    },
+    "entry": "line 7410",
+    "followed": {
+     "from_sense": 1,
+     "word": "ביקש",
+     "entry": "line 7410",
+     "by": "tag"
+    },
+    "row": {
+     "key": "ביקש",
+     "m": "M13",
+     "rank": 1,
+     "text": "to ask for, request",
+     "found_at": "the_key_followed_to"
+    }
+   },
+   {
+    "line": 2286,
+    "key": "שלשת",
+    "class": "MIXED",
+    "which": "target",
+    "places": 102,
+    "named_entry": {
+     "entry": "line 11815",
+     "headword": "שְׁלוֹשֶׁת"
+    },
+    "entry": "line 1306",
+    "followed": {
+     "from_sense": 1,
+     "word": "שְׁלוֹשָׁה",
+     "entry": "line 1306",
+     "by": "tag"
+    },
+    "row": {
+     "key": "שלושת",
+     "m": "M25",
+     "rank": 3,
+     "text": "three",
+     "found_at": "the_key_the_pointer_names"
+    }
+   },
+   {
+    "line": 2286,
+    "key": "שלשת",
+    "class": "MIXED",
+    "which": "also 1",
+    "places": 102,
+    "named_entry": {
+     "entry": "line 11815",
+     "headword": "שְׁלוֹשֶׁת"
+    },
+    "entry": "line 1306",
+    "followed": {
+     "from_sense": 1,
+     "word": "שְׁלוֹשָׁה",
+     "entry": "line 1306",
+     "by": "tag"
+    },
+    "row": {
+     "key": "שלושת",
+     "m": "M25",
+     "rank": 3,
+     "text": "three",
+     "found_at": "the_key_the_pointer_names"
+    }
+   }
+  ],
+  "with_the_names_gate_mark": [
+   {
+    "line": 1730,
+    "key": "סכות",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 32,
+    "row": {
+     "key": "סכות",
+     "m": "M25",
+     "rank": 25,
+     "text": "Sukkot",
+     "found_at": "the_lines_own_key"
+    }
+   },
+   {
+    "line": 2725,
+    "key": "חירום",
+    "class": "FORM_OF",
+    "which": "target",
+    "places": 3,
+    "row": {
+     "key": "חירום",
+     "m": "M18",
+     "rank": 6,
+     "text": "Huram",
+     "found_at": "the_lines_own_key"
+    }
+   }
+  ]
+ },
+ "v1_3_rows_that_followed_a_pointer_standing": 82,
+ "lines_changed": {
+  "lines": 682,
+  "by_class": {
+   "FORM_OF": 465,
+   "MIXED": 136,
+   "USAGE_NOTE": 63,
+   "JUDGMENT": 18
+  }
+ },
+ "form_of_full_count": {
+  "lines": 2140,
+  "keys": 1581,
+  "by_what_the_own_target_prints": {
+   "own target served row at the_key_the_pointer_names": 1143,
+   "first entry (ruling 7) served row at the_key_the_pointer_names": 299,
+   "own target ruled print": 204,
+   "own target served row at the_lines_own_key": 108,
+   "first entry (ruling 7) ruled print": 95,
+   "own target unresolved: NO_ENTRY_UNDER_THE_LETTERS": 82,
+   "first entry (ruling 7) served row at the_lines_own_key": 45,
+   "own target served row (v1.3's row, no source file read: M14)": 40,
+   "own target served row at the_key_followed_to": 38,
+   "own target unresolved: NO_ENTRY_HAS_THE_FORM": 37,
+   "own target unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 10,
+   "first entry (ruling 7) served row (v1.3's row, no source file read: M14)": 8,
+   "first entry (ruling 7) unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 7,
+   "first entry (ruling 7) unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 7,
+   "own target unresolved: NOT_SERVED": 7,
+   "own target unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 4,
+   "first entry (ruling 7) served row at the_key_followed_to": 2,
+   "own target unresolved: THE_TARGET_POINTS_ON_AGAIN": 2,
+   "first entry (ruling 7) unresolved: SEVERAL_ENTRIES_SHARE_THE_FORM": 1,
+   "own target unresolved: THE_TARGET_POINTS_ON_TO_NO_ENTRY_UNDER_THE_LETTERS": 1
+  },
+  "places": {
+   "own target served row at the_key_the_pointer_names": 93697,
+   "first entry (ruling 7) served row at the_key_the_pointer_names": 30760,
+   "first entry (ruling 7) ruled print": 22185,
+   "own target ruled print": 20735,
+   "own target served row at the_lines_own_key": 12066,
+   "own target unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 4930,
+   "first entry (ruling 7) unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_LETTERS": 4571,
+   "own target unresolved: NO_ENTRY_UNDER_THE_LETTERS": 3466,
+   "first entry (ruling 7) served row at the_lines_own_key": 2929,
+   "own target served row at the_key_followed_to": 2236,
+   "own target unresolved: NO_ENTRY_HAS_THE_FORM": 901,
+   "own target unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 202,
+   "first entry (ruling 7) unresolved: THE_TARGET_POINTS_ON_TO_SEVERAL_ENTRIES_SHARE_THE_FORM": 124,
+   "own target unresolved: THE_TARGET_POINTS_ON_TO_NO_ENTRY_UNDER_THE_LETTERS": 117,
+   "own target served row (v1.3's row, no source file read: M14)": 105,
+   "first entry (ruling 7) served row (v1.3's row, no source file read: M14)": 71,
+   "own target unresolved: NOT_SERVED": 60,
+   "first entry (ruling 7) unresolved: SEVERAL_ENTRIES_SHARE_THE_FORM": 25,
+   "first entry (ruling 7) served row at the_key_followed_to": 8,
+   "own target unresolved: THE_TARGET_POINTS_ON_AGAIN": 3
+  }
+ },
+ "open": {
+  "letters_read_as_another_word": [
+   {
+    "key": "אשר",
+    "lines_of_the_458": [
+     {
+      "line": 299,
+      "m_id": "M13",
+      "text": "defective spelling of אושר",
+      "english": "happiness",
+      "state": "ruled_print",
+      "row": null,
+      "places": 5555
+     }
+    ]
+   },
+   {
+    "key": "בן",
+    "lines_of_the_458": [
+     {
+      "line": 385,
+      "m_id": "M13",
+      "text": "Form of בְּ־ (b'-) including third-person feminine plural personal pronoun as object.",
+      "english": "In (a place or time).",
+      "state": "served",
+      "row": {
+       "key": "בן",
+       "m": "M25",
+       "rank": 108,
+       "found_at": "the_lines_own_key"
+      },
+      "places": 1756
+     },
+     {
+      "line": 2717,
+      "m_id": "M18",
+      "text": "see בֶּן־יְמִינִי",
+      "english": "Benjaminite",
+      "state": "served",
+      "row": {
+       "key": "בן",
+       "m": "M18",
+       "rank": 75,
+       "found_at": "the_lines_own_key"
+      },
+      "places": 1756
+     },
+     {
+      "line": 2718,
+      "m_id": "M18",
+      "text": "see גַּיְא",
+      "english": "valley",
+      "state": "ruled_print",
+      "row": null,
+      "places": 1756
+     }
+    ]
+   },
+   {
+    "key": "עד",
+    "lines_of_the_458": [
+     {
+      "line": 2755,
+      "m_id": "M18",
+      "text": "read עֵד",
+      "english": "witness",
+      "state": "ruled_print",
+      "row": null,
+      "places": 1394
+     }
+    ]
+   }
+  ],
+  "followed_pointer_names_several": {
+   "form_of_lines": 28,
+   "places": 9827
+  }
+ },
+ "outputs": {
+  "zone-pills-v1.4.changed.jsonl": {
+   "bytes": 846913,
+   "sha256": "e5596740120d3fc100989813517d4a4fce22ba29eb43415e9e7c624adcc0a435"
+  },
+  "the-458-v1.4.jsonl": {
+   "bytes": 566896,
+   "sha256": "63c8484710511aa553cf9166f0cb2993252ace5dd153c188d9b39736a4771856"
+  },
+  "naming-changes-v1.4.jsonl": {
+   "bytes": 35816,
+   "sha256": "be5c2b7a1ac2377f027f6282fb12cd3c29bc7c3dd6c9b6b20cbcb098f8760465"
+  },
+  "pointer-resolutions-v1.4.jsonl": {
+   "bytes": 6832,
+   "sha256": "be48b3caebad4b95aa3f0b5ea6362198c5e61518907c960f7f5aa75c4a356e70"
+  }
+ }
+}

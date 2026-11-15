@@ -9,6 +9,9 @@
 //   L3  the first served book's chapter page is live, carries its pins, and
 //       its bin arrives with the sha256 the page's pin names
 //   L4  the live door is this checkout's door, byte for byte
+//   L5  the live index of the default sources (data/default-picks/index.json,
+//       default-picks-rule-v1), which every page reads at boot and which says
+//       what the line fills at rest, is this checkout's, byte for byte
 // No browser; fetch and hash only. Usage: node tools/check-live-v1.mjs <origin> [--wait 600]
 import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -57,5 +60,13 @@ if (BOOK) {
 const door = await get("/").catch(() => ({ ok: false, status: "no answer", bytes: Buffer.alloc(0) }));
 const doorMine = readFileSync(join(SITE, "index.html"));
 check("L4 the live door is this checkout's door, byte for byte", door.ok && door.bytes.equals(doorMine), `status ${door.ok ? 200 : door.status} \u00b7 live ${door.bytes.length} bytes, sha ${sha(door.bytes).slice(0, 12)} \u00b7 mine ${doorMine.length} bytes, sha ${sha(doorMine).slice(0, 12)}`);
+// L5: the default sources' index, byte for byte
+const dfltPath = join(ENGINE, "data", "default-picks", "index.json");
+if (!existsSync(dfltPath)) console.log("  --  L5 not judged here: this checkout has no data/default-picks/index.json");
+else {
+  const ixMine = readFileSync(dfltPath);
+  const ixLive = await get(`/${HOME}/data/default-picks/index.json`).catch(() => ({ ok: false, status: "no answer", bytes: Buffer.alloc(0) }));
+  check("L5 the live index of the default sources is this checkout's, byte for byte", ixLive.ok && ixLive.bytes.equals(ixMine), `status ${ixLive.ok ? 200 : ixLive.status} \u00b7 live ${ixLive.bytes.length} bytes, sha ${sha(ixLive.bytes).slice(0, 12)} \u00b7 mine ${ixMine.length} bytes, sha ${sha(ixMine).slice(0, 12)}`);
+}
 console.log(bad ? `\n${bad} failing` : "\nall checks passed");
 process.exit(bad ? 1 : 0);

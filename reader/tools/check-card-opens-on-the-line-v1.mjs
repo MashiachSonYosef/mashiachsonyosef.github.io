@@ -56,6 +56,11 @@ const trials = [["(default)", null]];
 for (const v of ["corpus", "masoretic", "cites", "characters", "vowels-differ", "outside-era", "witnessed_same_place", "witnessed_entry", "witnessed_entry_and_lists", "oldest"]) trials.push(["fh.def.order", v]);
 for (const v of ["pd", "by", "by-sa"]) trials.push(["fh.licence", v]);
 trials.push(["fh.names", "sound"], ["fh.lookup", "headword"], ["fh.masorah", "only"], ["fh.masorah", "letters"], ["fh.edition", "diff"], ["fh.order.kq", "QERE"]);
+// THE DEFAULT SOURCES (default-picks-rule-v1): a source other than STEP kept on
+// the device prints its own pick on the line from the first paint, and its
+// card opens on that pick, pressed, first among the pills (the source's own
+// row made where none of the store's prints it)
+for (const v of ["macula", "ubs", "bdb"]) trials.push(["fh.defaults", v]);
 // settings the line is not expected to follow pill for pill: names-as-sound
 // sorts the card alone by the lattice's transliteration flag; under "look up
 // by the headword" the card opens on the headword's lemma-sorted first
@@ -84,6 +89,8 @@ for (const [k, v, bakeOnly] of passes) {
   try {
     await p.goto(URL, { waitUntil: "networkidle", timeout: 60000 });
     await p.waitForSelector("section.seg .he-text .wb", { timeout: 30000 });
+    // a kept default source's picks are the book's own file; the page awaits it before it paints
+    await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
     await p.waitForTimeout(800);
     const r = await p.evaluate(async (n) => {
       const wait = (ms) => new Promise((x) => setTimeout(x, ms));

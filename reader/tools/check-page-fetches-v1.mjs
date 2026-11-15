@@ -4,14 +4,18 @@
 // seal one book's bins, every book's overlay counts to draw one book's chips,
 // and the book's BSB file before any card asked for it.
 //   F1  a built chapter page's load fetches no shelf pin record, no overlay
-//       counts record and no BSB file
+//       counts record, no BSB file and no book file of the default sources
+//       (data/default-picks/<book>.bin, default-picks-rule-v1); their index,
+//       which the row's pills and the line at rest read, may be asked, once
 //   F2  the page's own pins (reader-zone-pins) are the record's pins for this
 //       book's bins, every one, byte for byte, and its overlay counts
 //       (reader-overlay-counts) are the record's for this book
 //   F3  the bin is still sealed: the page records the sha256 it hashed on
 //       arrival, equal to the pin
 //   F4  the first card to open fetches the book's BSB file once and carries
-//       the BSB's line, as before; a second card fetches nothing more
+//       the BSB's line, as before; a second card fetches nothing more; and the
+//       same for the default sources' book file, which the card's lines of
+//       what each source reads at the word are read from
 //   F5  the reader opened by address (zone.html?b=), without the metas, still
 //       fetches the records whole and shows the book
 // The site is served from the checkout itself, as check-door-word-card-v1
@@ -47,6 +51,8 @@ const RECORD = JSON.parse(readFileSync(join(ENGINE, "data", "zone-store-v1.json"
 const COUNTS = (() => { try { return JSON.parse(readFileSync(join(ENGINE, "data", "overlay-book-counts-v1.json"), "utf8")); } catch { return null; } })();
 const SUG_IX = (() => { try { return JSON.parse(readFileSync(join(ENGINE, "data", "source-suggested", "index.json"), "utf8")); } catch { return null; } })();
 const hasBsb = !!(SUG_IX && SUG_IX.books && SUG_IX.books[BOOK]);
+const DFLT_IX = (() => { try { return JSON.parse(readFileSync(join(ENGINE, "data", "default-picks", "index.json"), "utf8")); } catch { return null; } })();
+const hasDflt = !!(DFLT_IX && DFLT_IX.books && DFLT_IX.books[BOOK]);
 console.log(`the book: ${BOOK}${hasBsb ? "" : " (no BSB file laid on it)"}`);
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());
@@ -55,13 +61,14 @@ const p = await ctx.newPage();
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 const got = [];
 p.on("response", (r) => { got.push(r.url().replace(ORIGIN, "").split("?")[0]); });
-const RE = { pins: /\/data\/zone-store-v1\.json$/u, counts: /\/data\/overlay-book-counts-v1\.json$/u, bsb: new RegExp(`/data/source-suggested/${BOOK}\\.json$`, "u") };
+const RE = { pins: /\/data\/zone-store-v1\.json$/u, counts: /\/data\/overlay-book-counts-v1\.json$/u, bsb: new RegExp(`/data/source-suggested/${BOOK}\\.json$`, "u"),
+  dflt: new RegExp(`/data/default-picks/${hasDflt ? DFLT_IX.books[BOOK].file.replace(/\./gu, "\\.") : "-"}$`, "u"), dfltIx: /\/data\/default-picks\/index\.json$/u };
 await p.goto(`${ORIGIN}/${BOOK}/1/`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
 await p.waitForTimeout(1500);
-const onLoad = { pins: got.filter((u) => RE.pins.test(u)).length, counts: got.filter((u) => RE.counts.test(u)).length, bsb: got.filter((u) => RE.bsb.test(u)).length, all: got.length };
-check("F1 a built chapter page's load fetches no shelf pin record, no overlay counts record and no BSB file", onLoad.pins === 0 && onLoad.counts === 0 && onLoad.bsb === 0,
-  `${onLoad.all} requests on load · pin record ${onLoad.pins} · counts record ${onLoad.counts} · BSB file ${onLoad.bsb}`);
+const onLoad = { pins: got.filter((u) => RE.pins.test(u)).length, counts: got.filter((u) => RE.counts.test(u)).length, bsb: got.filter((u) => RE.bsb.test(u)).length, dflt: got.filter((u) => RE.dflt.test(u)).length, dfltIx: got.filter((u) => RE.dfltIx.test(u)).length, all: got.length };
+check("F1 a built chapter page's load fetches no shelf pin record, no overlay counts record, no BSB file and no default sources' book file; their index at most once", onLoad.pins === 0 && onLoad.counts === 0 && onLoad.bsb === 0 && onLoad.dflt === 0 && onLoad.dfltIx <= 1,
+  `${onLoad.all} requests on load · pin record ${onLoad.pins} · counts record ${onLoad.counts} · BSB file ${onLoad.bsb} · default sources' book file ${onLoad.dflt}, their index ${onLoad.dfltIx}`);
 const metas = await p.evaluate(() => ({ pins: document.querySelector('meta[name="reader-zone-pins"]')?.content || "", counts: document.querySelector('meta[name="reader-overlay-counts"]')?.content || "", shas: window.__binShas || null }));
 const own = metas.pins ? JSON.parse(metas.pins) : null;
 const wantPins = Object.fromEntries(Object.entries(RECORD.pins || {}).filter(([n]) => n === `${BOOK}.bin` || n.startsWith(`${BOOK}.`)));
@@ -82,13 +89,15 @@ const openCard = async (i) => {
   await p.keyboard.press("Escape"); await p.waitForTimeout(200);
   return sug;
 };
-const n0 = got.filter((u) => RE.bsb.test(u)).length;
+const n0 = got.filter((u) => RE.bsb.test(u)).length, d0 = got.filter((u) => RE.dflt.test(u)).length;
 const sug1 = await openCard(0);
-const n1 = got.filter((u) => RE.bsb.test(u)).length;
+const n1 = got.filter((u) => RE.bsb.test(u)).length, d1 = got.filter((u) => RE.dflt.test(u)).length;
 const sug2 = await openCard(1);
-const n2 = got.filter((u) => RE.bsb.test(u)).length;
+const n2 = got.filter((u) => RE.bsb.test(u)).length, d2 = got.filter((u) => RE.dflt.test(u)).length;
 check("F4 the first card fetches the book's BSB file once and carries the BSB's line; a second card fetches nothing more", hasBsb ? (n1 - n0 === 1 && n2 === n1 && (!!sug1 || !!sug2)) : (n2 === n0),
   hasBsb ? `BSB file fetched ${n1 - n0} time(s) by the first card, ${n2 - n1} by the second · first card: "${sug1 || "no BSB line"}" · second: "${sug2 || "no BSB line"}"` : "no BSB file for this book; none fetched");
+check("F4 the first card fetches the default sources' book file once; a second card fetches nothing more", hasDflt ? (d1 - d0 === 1 && d2 === d1) : (d2 === d0),
+  hasDflt ? `fetched ${d1 - d0} time(s) by the first card, ${d2 - d1} by the second` : "the default sources are not laid on this book; none fetched");
 // F5: the reader by address, no metas
 got.length = 0;
 await p.goto(`${ORIGIN}/${ENGINE.split("/").pop()}/zone.html?b=${BOOK}`, { waitUntil: "networkidle" });

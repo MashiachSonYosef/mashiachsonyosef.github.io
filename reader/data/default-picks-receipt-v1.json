@@ -1,0 +1,3183 @@
+{
+ "schema_version": "DEFAULT_PICKS_RECEIPT_V1",
+ "rule_id": "default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second",
+ "generated_by": "tools/bake-default-picks-v1.mjs",
+ "what": "each source's own picks at every word place of the books receipt-v1 lists (the corpus lane's default picks v1, with the v1.1 mend of STEP's dictionary picks and the v1.2 mend of STEP's and BDB's picks), laid on the zones' words by WORD_N and counted by one rule: a pick's words are a line pick where they hold a letter or digit and are not NO DATA YET (a sign alone is no pick for any source); STEP has a line where its pick 1 is a line pick or the zone's place pieces all carry words, and where the line as it rests draws one (not at a pair, or a place call 4 writes with « | », where its own words are never drawn, the pieces do not answer and the record of the resting lines holds no line over the word: step_line_rests_bare); MACULA, UBS and BDB have a line where the word is not ketiv/qere and, for MACULA, its pick is a line pick, for UBS some piece's pick 1 is one, for BDB pick 1's record's highlighted words are one; fills[x][y] counts the places where x has no line and y has one, never a place where STEP's line rests bare; STEP's second fills only the places STEP leaves (no pick); where the page's own line is bare and STEP's pick 1 is a line pick of its reading, the line under STEP prints those words, credited to STEP (step_words). The second source is the page's to work out; the one named here is worked out with every source on",
+ "pin": "data/default-picks/PIN.json",
+ "ledger": {
+  "relays": [
+   "v180",
+   "v180.1",
+   "v189",
+   "v195"
+  ],
+  "from": "r2:mishkan/v2/ledgers/all/default-picks/",
+  "book_files": 39,
+  "store_read": {
+   "v1": "a9373b8d30ef",
+   "v1_2": "4d1357b26ca5"
+  },
+  "store_resolved": "869e4ee14c3a"
+ },
+ "shape": {
+  "book_file": "data/default-picks/<book>.bin: gzip -9 of minified JSON; places[n - 1] for WORD_N n is null at a mark or where no source picks, else [step, macula, ubs, bdb], each 0 where the source has no pick; step [[kind 0 r | 1 v | 2 a, words | 0, a variant's letter], ...]; macula its words, as given; ubs [line | 0, [[piece (from 0, in the ledger's list of the word's pieces), words], ...]], the picks of a piece in its order, numbered from 1 within the piece by the page; bdb [[sense marker, or \"\" for the entry, one-based index into bdb_words | 0], ...]",
+  "index": "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source"
+ },
+ "rows": {
+  "named": 154583,
+  "of_v1": 152423,
+  "added_by_v1_1": 225,
+  "added_by_v1_2": 1935,
+  "found_once": 154582,
+  "found_more_than_once": 1,
+  "missing": 0,
+  "found_more_than_once_rows": [
+   {
+    "row": 119921,
+    "m": "M14",
+    "rank": 145,
+    "found": 2,
+    "one_text": true
+   }
+  ]
+ },
+ "mend": {
+  "v1_1": {
+   "places": 1265,
+   "picks_changed": {
+    "v": 298,
+    "a": 1088
+   },
+   "picks_that_fall_together": {
+    "v": 0,
+    "a": 15
+   },
+   "receipt_v1_says": {
+    "variant_picks": 850,
+    "alternative_picks": 5422,
+    "held": false,
+    "why": "receipt-v1's own counts of variants and alternatives are not those of its book files; the counts held are receipt-v1.1's (question 2 to the corpus lane, answered in relay v195: they were counted before the builder joined picks of one entry and words)"
+   }
+  },
+  "v1_2": {
+   "places": 43219,
+   "places_gaining_picks": 266,
+   "picks_gained_by_kind": {
+    "r": 259,
+    "v": 159,
+    "a": 28
+   },
+   "variants_added_behind_a_broken_bar": 1,
+   "bdb": {
+    "places": 165,
+    "picks_before": 0,
+    "picks_after": 175
+   }
+  },
+  "places_with_no_step_pick": {
+   "v1_1": 267,
+   "v1_2": 1
+  },
+  "picks_by_kind": {
+   "v1": {
+    "r": 305222,
+    "v": 748,
+    "a": 5391
+   },
+   "v1_1": {
+    "r": 305222,
+    "v": 748,
+    "a": 5376
+   },
+   "v1_2": {
+    "r": 305481,
+    "v": 908,
+    "a": 5404
+   }
+  }
+ },
+ "picks_per_place_in_v1": {
+  "step": {
+   "0": 267,
+   "1": 299349,
+   "2": 5500,
+   "3+": 315
+  },
+  "macula": {
+   "0": 8965,
+   "1": 296466
+  },
+  "ubs": {
+   "0": 48478,
+   "1": 255427,
+   "2": 1490,
+   "3+": 36
+  },
+  "bdb": {
+   "0": 189731,
+   "1": 110877,
+   "2": 4542,
+   "3+": 281
+  }
+ },
+ "totals": {
+  "what": "summed over the books: has, the places where each source has a line (for STEP, where its line as it rests draws one: step_line_rests_bare); fills and second_fills, as shape.index counts them; shares, has (own) and second_fills (second) over the places",
+  "books": 39,
+  "entries": 334826,
+  "places": 305431,
+  "kq_words": 1062,
+  "has": {
+   "step": 305415,
+   "macula": 295413,
+   "ubs": 245089,
+   "bdb": 103647
+  },
+  "fills": {
+   "step": {
+    "macula": 0,
+    "ubs": 0,
+    "bdb": 0
+   },
+   "macula": {
+    "step": 10009,
+    "ubs": 874,
+    "bdb": 685
+   },
+   "ubs": {
+    "step": 60328,
+    "macula": 51198,
+    "bdb": 6657
+   },
+   "bdb": {
+    "step": 201770,
+    "macula": 192451,
+    "ubs": 148099
+   }
+  },
+  "second_fills": {
+   "step": 0,
+   "macula": 10009,
+   "ubs": 60328,
+   "bdb": 201770
+  },
+  "shares": {
+   "step": {
+    "own": ">99.9%",
+    "second": "0%"
+   },
+   "macula": {
+    "own": "96.7%",
+    "second": "3.2%"
+   },
+   "ubs": {
+    "own": "80.2%",
+    "second": "19.7%"
+   },
+   "bdb": {
+    "own": "33.9%",
+    "second": "66.0%"
+   }
+  }
+ },
+ "second_source": {
+  "step": {
+   "by_source": {},
+   "none": 39,
+   "ties": 0,
+   "tied_books": []
+  },
+  "macula": {
+   "by_source": {
+    "step": 39
+   },
+   "none": 0,
+   "ties": 0,
+   "tied_books": []
+  },
+  "ubs": {
+   "by_source": {
+    "step": 39
+   },
+   "none": 0,
+   "ties": 0,
+   "tied_books": []
+  },
+  "bdb": {
+   "by_source": {
+    "step": 39
+   },
+   "none": 0,
+   "ties": 0,
+   "tied_books": []
+  }
+ },
+ "step_leaves": {
+  "what": "places where STEP has no pick (its pick 1 no line pick, and no place pieces that answer) and the word is not ketiv/qere; the index carries each with the other sources' lines. A place where STEP has a pick and its line as it rests is bare is none of them (step_line_rests_bare): its second does not fill it",
+  "count": 1,
+  "with_a_line": {
+   "macula": 0,
+   "ubs": 0,
+   "bdb": 0
+  },
+  "with_no_line": 1,
+  "with_no_line_places": [
+   {
+    "book": "ii-samuel",
+    "place": "7:22:5",
+    "n": 3044
+   }
+  ]
+ },
+ "rest_fills": {
+  "what": "STEP's leaves its second source (worked out with every source on) fills: the lines the second moves on a first visit",
+  "count": 0,
+  "books": 0,
+  "by_book": {},
+  "places": []
+ },
+ "step_words": {
+  "what": "places that are not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading (kind r), and that the corpus lane's call 4 (relay v189) does not write with « | »: the index carries each with its words, and the line under STEP prints them, credited to STEP (M4), where the page's own line there is bare (the owner's question 2 of 14 November, recommendation B); a pick naming no row, or naming a row the entry gate withholds, prints so too (relay v195, sections 2 and 8). Which of them are bare is the page's: today's line is worked out on the page. HELD (held_split): where call 4 writes STEP's words with « | », STEP reads one written word as two TAHOT words and its pick 1 is the first of them only, so the index carries no STEP words there and the line keeps today's until the lane says how STEP's line reads (its open question 1); held counts those places that would else be here, listed the places call 4 writes so; where today's line at one of them is bare, the line under STEP draws nothing there (step_line_rests_bare)",
+  "count": 1015,
+  "naming_no_row": 65,
+  "by_waiting_status": {
+   "WAITS_FOR_V188": 17,
+   "UNREAD_LINE_LANDING": 48
+  },
+  "entry_gate": {},
+  "entry_gate_after_call5": 0,
+  "angle_mark_only": 0,
+  "held_split": {
+   "listed": 55,
+   "held": 46,
+   "places": [
+    "numbers 2:12:10",
+    "numbers 7:54:8",
+    "numbers 10:19:8",
+    "numbers 10:23:8",
+    "i-samuel 4:21:3",
+    "i-samuel 14:49:6",
+    "i-samuel 31:2:14",
+    "ii-samuel 2:30:15",
+    "ii-samuel 3:27:17",
+    "ii-samuel 16:1:8",
+    "ii-samuel 16:4:8",
+    "ii-samuel 21:7:4",
+    "ii-samuel 23:24:1",
+    "ii-kings 18:17:10",
+    "ii-kings 18:19:3",
+    "ii-kings 18:26:8",
+    "ii-kings 18:27:3",
+    "ii-kings 18:28:2",
+    "ii-kings 18:37:21",
+    "ii-kings 19:4:8",
+    "ii-kings 19:8:2",
+    "i-chronicles 2:16:8",
+    "i-chronicles 8:33:14",
+    "i-chronicles 9:39:14",
+    "i-chronicles 10:2:14",
+    "i-chronicles 11:26:3",
+    "i-chronicles 27:7:4",
+    "job 18:15:3",
+    "psalms 44:15:6",
+    "psalms 57:10:5",
+    "psalms 102:4:6",
+    "psalms 108:4:5",
+    "psalms 149:7:5",
+    "isaiah 36:2:5",
+    "isaiah 36:4:3",
+    "isaiah 36:11:6",
+    "isaiah 36:12:2",
+    "isaiah 36:13:2",
+    "isaiah 36:22:22",
+    "isaiah 37:4:7",
+    "isaiah 37:8:2",
+    "jeremiah 39:3:10",
+    "jeremiah 39:3:18",
+    "jeremiah 39:9:16",
+    "jeremiah 39:13:9",
+    "zechariah 7:2:4"
+   ]
+  },
+  "books": 36,
+  "by_book": {
+   "genesis": 23,
+   "exodus": 31,
+   "leviticus": 16,
+   "numbers": 31,
+   "deuteronomy": 57,
+   "joshua": 14,
+   "judges": 31,
+   "ruth": 9,
+   "i-samuel": 43,
+   "ii-samuel": 42,
+   "i-kings": 29,
+   "ii-kings": 38,
+   "i-chronicles": 30,
+   "ii-chronicles": 39,
+   "ezra": 20,
+   "nehemiah": 25,
+   "esther": 16,
+   "job": 60,
+   "psalms": 75,
+   "proverbs": 42,
+   "ecclesiastes": 12,
+   "song-of-songs": 15,
+   "isaiah": 40,
+   "jeremiah": 54,
+   "lamentations": 14,
+   "ezekiel": 100,
+   "daniel": 75,
+   "hosea": 6,
+   "amos": 4,
+   "obadiah": 1,
+   "micah": 3,
+   "nahum": 5,
+   "habakkuk": 3,
+   "zephaniah": 2,
+   "zechariah": 7,
+   "malachi": 3
+  }
+ },
+ "step_line_rests_bare": {
+  "what": "places where STEP has a pick (its pick 1 a line pick) and its line as it rests draws nothing: its own words are never drawn at a pair (ketiv/qere: the pair keeps today's line) or at a place call 4 writes with « | » (held), and where the place pieces do not answer, today's line stands there; where the record of the resting lines holds no line over the word, that line is bare. Such a place is not counted in has.step, is no place STEP leaves (its second does not fill it), and counts in no fill. Read off the records as they stand (records); the default sources move nothing at these places, so the record's line there is today's whether or not it was read with them laid",
+  "count": 15,
+  "pair": 8,
+  "held_split": 7,
+  "places": [
+   {
+    "book": "judges",
+    "place": "16:26:9",
+    "n": 8038,
+    "why": "a pair: its line keeps today's, which is bare"
+   },
+   {
+    "book": "i-samuel",
+    "place": "14:49:6",
+    "n": 6037,
+    "why": "call 4 writes STEP's words here with « | »: held, and today's line is bare"
+   },
+   {
+    "book": "ii-samuel",
+    "place": "5:8:14",
+    "n": 2054,
+    "why": "a pair: its line keeps today's, which is bare"
+   },
+   {
+    "book": "ii-samuel",
+    "place": "18:8:4",
+    "n": 8214,
+    "why": "a pair: its line keeps today's, which is bare"
+   },
+   {
+    "book": "ii-kings",
+    "place": "2:16:26",
+    "n": 701,
+    "why": "a pair: its line keeps today's, which is bare"
+   },
+   {
+    "book": "ii-kings",
+    "place": "16:6:14",
+    "n": 7888,
+    "why": "a pair: its line keeps today's, which is bare"
+   },
+   {
+    "book": "job",
+    "place": "18:15:3",
+    "n": 3921,
+    "why": "call 4 writes STEP's words here with « | »: held, and today's line is bare"
+   },
+   {
+    "book": "psalms",
+    "place": "44:15:6",
+    "n": 6445,
+    "why": "call 4 writes STEP's words here with « | »: held, and today's line is bare"
+   },
+   {
+    "book": "psalms",
+    "place": "57:10:5",
+    "n": 8377,
+    "why": "call 4 writes STEP's words here with « | »: held, and today's line is bare"
+   },
+   {
+    "book": "psalms",
+    "place": "102:4:6",
+    "n": 15409,
+    "why": "call 4 writes STEP's words here with « | »: held, and today's line is bare"
+   },
+   {
+    "book": "psalms",
+    "place": "108:4:5",
+    "n": 17202,
+    "why": "call 4 writes STEP's words here with « | »: held, and today's line is bare"
+   },
+   {
+    "book": "psalms",
+    "place": "145:6:4",
+    "n": 22156,
+    "why": "a pair: its line keeps today's, which is bare"
+   },
+   {
+    "book": "psalms",
+    "place": "149:7:5",
+    "n": 22738,
+    "why": "call 4 writes STEP's words here with « | »: held, and today's line is bare"
+   },
+   {
+    "book": "isaiah",
+    "place": "10:13:12",
+    "n": 2852,
+    "why": "a pair: its line keeps today's, which is bare"
+   },
+   {
+    "book": "ezekiel",
+    "place": "6:3:15",
+    "n": 1659,
+    "why": "a pair: its line keeps today's, which is bare"
+   }
+  ],
+  "records": {
+   "dir": "data/resting-lines",
+   "read": 39,
+   "of_the_zone_on_disk": 0,
+   "of_another_zone": [
+    "genesis",
+    "exodus",
+    "leviticus",
+    "numbers",
+    "deuteronomy",
+    "joshua",
+    "judges",
+    "ruth",
+    "i-samuel",
+    "ii-samuel",
+    "i-kings",
+    "ii-kings",
+    "i-chronicles",
+    "ii-chronicles",
+    "ezra",
+    "nehemiah",
+    "esther",
+    "job",
+    "psalms",
+    "proverbs",
+    "ecclesiastes",
+    "song-of-songs",
+    "isaiah",
+    "jeremiah",
+    "lamentations",
+    "ezekiel",
+    "daniel",
+    "hosea",
+    "joel",
+    "amos",
+    "obadiah",
+    "jonah",
+    "micah",
+    "nahum",
+    "habakkuk",
+    "zephaniah",
+    "haggai",
+    "zechariah",
+    "malachi"
+   ]
+  }
+ },
+ "picks_printed": {
+  "what": "under each first source, with its second for each book (worked out with every source on), the pills the card prints for the source whose words the line prints: the first's pick 1, and its picks 2..n with words, where it has a line; its second's where the second fills. Under STEP: its pick 1 at the places its own words may fill (step_words; the page prints them where today's line is bare), its picks 2..n said as text and not as pills, and its second's pick 1 at the places STEP leaves. Each pill by the rows its pick names, as the corpus lane names them (its own source's rows that print its words where there are any, else every row under its key that prints them): a row of its own source, another source's row only, or none (names_no_row: no row under the key prints its words, so the card makes a pill of the source's own words, credited to it; made counts these); and apart, how many of them a row they name prints whole, read as the card reads a pill (a closing stop dropped, case folded, a \"/\" a joint or kept whole). Where a pick names rows and none prints the pill's whole reading (MACULA's words over several pieces, each piece naming its own rows; UBS's glosses, which name the meaning's rows; BDB's words with the sense's number), the card makes the pill too unless a row the pick does not name prints it: made is the least the card makes, pills less printed_whole_by_a_row_it_names the most. The card's gates (the pointing, the entry, the names) and the ledgers' divisions are not judged here. The corpus lane's receipt-v1 counts every pick of v1 by the rows it names (its picks_printed)",
+  "by_first": {
+   "step": {
+    "step": {
+     "pills": 1015,
+     "names_a_row_of_its_own_source": 839,
+     "names_another_sources_row_only": 111,
+     "names_no_row": 65,
+     "printed_whole_by_a_row_it_names": 950,
+     "made": 65
+    }
+   },
+   "macula": {
+    "macula": {
+     "pills": 295413,
+     "names_a_row_of_its_own_source": 168993,
+     "names_another_sources_row_only": 115622,
+     "names_no_row": 10798,
+     "printed_whole_by_a_row_it_names": 145942,
+     "made": 10798
+    },
+    "step": {
+     "pills": 17,
+     "names_a_row_of_its_own_source": 10,
+     "names_another_sources_row_only": 3,
+     "names_no_row": 4,
+     "printed_whole_by_a_row_it_names": 13,
+     "made": 4
+    }
+   },
+   "ubs": {
+    "ubs": {
+     "pills": 246570,
+     "names_a_row_of_its_own_source": 245716,
+     "names_another_sources_row_only": 68,
+     "names_no_row": 786,
+     "printed_whole_by_a_row_it_names": 10943,
+     "made": 786
+    },
+    "step": {
+     "pills": 64,
+     "names_a_row_of_its_own_source": 50,
+     "names_another_sources_row_only": 13,
+     "names_no_row": 1,
+     "printed_whole_by_a_row_it_names": 63,
+     "made": 1
+    }
+   },
+   "bdb": {
+    "bdb": {
+     "pills": 108219,
+     "names_a_row_of_its_own_source": 68008,
+     "names_another_sources_row_only": 34473,
+     "names_no_row": 5738,
+     "printed_whole_by_a_row_it_names": 19475,
+     "made": 5738
+    },
+    "step": {
+     "pills": 542,
+     "names_a_row_of_its_own_source": 416,
+     "names_another_sources_row_only": 98,
+     "names_no_row": 28,
+     "printed_whole_by_a_row_it_names": 463,
+     "made": 28
+    }
+   }
+  }
+ },
+ "runs_read_whole": {
+  "what": "the lines at rest over more than one word (a joined run's one line, as the records of the resting lines keep it), with the words under them, and for each source at how many of those lines it has a line at every word, at some, or at none; on the page a source other than STEP takes such a run only where it has a line at every word, and under STEP the run's own line stands",
+  "run_lines": 2177,
+  "words": 4402,
+  "by_source": {
+   "step": {
+    "every_word": 2177,
+    "some_words": 0,
+    "no_word": 0
+   },
+   "macula": {
+    "every_word": 1681,
+    "some_words": 144,
+    "no_word": 352
+   },
+   "ubs": {
+    "every_word": 1377,
+    "some_words": 745,
+    "no_word": 55
+   },
+   "bdb": {
+    "every_word": 278,
+    "some_words": 460,
+    "no_word": 1439
+   }
+  }
+ },
+ "place_reading_answers": {
+  "what": "places where STEP's pick 1 is no line pick, the word is not ketiv/qere, and the zone's place pieces all carry words: STEP has a line there (the place reading), so nothing is filled",
+  "count": 1,
+  "places": [
+   {
+    "book": "deuteronomy",
+    "place": "32:6:1",
+    "n": 14321,
+    "pieces": "tahot",
+    "macula_has_words": false
+   }
+  ]
+ },
+ "signs": {
+  "what": "pick 1s (for UBS, each piece's pick 1) whose words are a sign or a stop alone, by source and text: no pick for the line, printed on the card as given",
+  "sign_only_pick1": {
+   "step": {
+    "¿": 1
+   },
+   "macula": {
+    "?": 3,
+    "`": 1
+   },
+   "ubs": {
+    "-": 10910
+   },
+   "bdb": {}
+  },
+  "ubs_no_data_yet_pick1": 13,
+  "ubs_no_data_yet_picks": 17
+ },
+ "bdb": {
+  "records": 7774,
+  "pick1_without_highlight": 11673,
+  "picks_without_highlight": 12022
+ },
+ "step": {
+  "pick1_not_kind_r": 7,
+  "picks_without_words": 103,
+  "words_empty_string": 0,
+  "readings_naming_no_row": 14782
+ },
+ "lists_beside_v1_2": {
+  "what": "the lists receipt-v1.2 issues beside the picks, each held to v1.2's picks at its places and counted; none moves a line (the line under STEP prints the ledger's words, credited to STEP, whatever a pick's row); the two branches rest off and are not baked",
+  "picks_waiting": {
+   "lines": 14782,
+   "by_status": {
+    "WAITS_FOR_CALL5_REKEY": 1092,
+    "WAITS_FOR_V188": 8528,
+    "UNREAD_LINE_LANDING": 5146,
+    "NO_KEY": 1,
+    "NO_LANDING": 15
+   },
+   "first_picks": 14781
+  },
+  "entry_gate": {
+   "lines": 2291,
+   "active": 2214,
+   "stale": 77,
+   "by_bake": {
+    "skip the withheld row at this place; another named row stays": 1469,
+    "print the ledger's words, credited to STEP": 745,
+    "none: call 5 re-points this pick to a row the gate lets through": 77
+   },
+   "by_class": {
+    "C1": 1172,
+    "C4": 297,
+    "C5": 101,
+    "C6": 713,
+    "C3": 8
+   },
+   "until_row_entries_v1_1_lands": 5
+  },
+  "entry_gate_after_call5": {
+   "lines": 603,
+   "by_cause": {
+    "call 5": 600,
+    "question 1": 3
+   }
+  },
+  "call5_repoints": {
+   "lines": 3921,
+   "by_class": {
+    "SAME_SOURCE_TWIN": 3434,
+    "OTHER_SOURCE_TWIN": 461,
+    "NO_TWIN": 26
+   },
+   "references_by_class": {
+    "SAME_SOURCE_TWIN": 23888,
+    "OTHER_SOURCE_TWIN": 16013,
+    "NO_TWIN": 122
+   },
+   "to_none": 26
+  },
+  "branches": {
+   "merged": {
+    "lines": 192,
+    "rests": "off"
+   },
+   "small_letter": {
+    "lines": 310,
+    "rests": "off"
+   }
+  }
+ },
+ "line_picks": {
+  "what": "each source's line pick and its named rows. For MACULA, UBS and BDB it is the pick that prints the source's line, at every place the source has one (has). For STEP it is its pick 1 wherever that is a line pick, a pair and a place where its line as it rests is bare among them (step_line_rests_bare); the line under STEP prints its words only where today's line is bare (step_words), and today's line, under its own chip, stands elsewhere. Its named rows: none, or a first named row whose source is not the pick's own (M4 for STEP's reading, M19 for its variants and alternatives, M3, M18, M46)",
+  "step": {
+   "picks": 305429,
+   "naming_no_row": 14783,
+   "first_row_another_sources": 71346,
+   "first_row_by_m": {
+    "M17": 19128,
+    "M5": 25820,
+    "M3": 13307,
+    "M14": 6954,
+    "M1": 1650,
+    "M22": 28,
+    "M42": 14,
+    "M46": 3177,
+    "M110": 1,
+    "M13": 781,
+    "M60": 190,
+    "M19": 200,
+    "M59": 43,
+    "M80": 1,
+    "M21": 12,
+    "M29": 5,
+    "M9": 9,
+    "M18": 3,
+    "M41": 1,
+    "M55": 2,
+    "M27": 2,
+    "M45": 1,
+    "M102": 1,
+    "M10": 2,
+    "M92": 2,
+    "M7": 3,
+    "M132": 1,
+    "M74": 1,
+    "M32": 4,
+    "M28": 1,
+    "M23": 1,
+    "M97": 1
+   }
+  },
+  "macula": {
+   "picks": 295413,
+   "naming_no_row": 10798,
+   "first_row_another_sources": 176312,
+   "first_row_by_m": {
+    "M5": 96329,
+    "M17": 35111,
+    "M46": 26709,
+    "M1": 7239,
+    "M14": 9262,
+    "M79": 1,
+    "M92": 9,
+    "M22": 44,
+    "M9": 472,
+    "M23": 13,
+    "M80": 18,
+    "M110": 1,
+    "M13": 738,
+    "M60": 180,
+    "M37": 119,
+    "M55": 15,
+    "M27": 5,
+    "M90": 5,
+    "M43": 5,
+    "M61": 1,
+    "M93": 2,
+    "M34": 3,
+    "M4": 17,
+    "M154": 1,
+    "M132": 6,
+    "M102": 1,
+    "M97": 1,
+    "M7": 5
+   }
+  },
+  "ubs": {
+   "picks": 245089,
+   "naming_no_row": 706,
+   "first_row_another_sources": 68,
+   "first_row_by_m": {
+    "M42": 19,
+    "M17": 48,
+    "M21": 1
+   }
+  },
+  "bdb": {
+   "picks": 103647,
+   "naming_no_row": 5517,
+   "first_row_another_sources": 33138,
+   "first_row_by_m": {
+    "M17": 11109,
+    "M5": 20053,
+    "M14": 1320,
+    "M22": 91,
+    "M1": 425,
+    "M23": 16,
+    "M45": 9,
+    "M13": 113,
+    "M19": 2
+   }
+  }
+ },
+ "lines_holding_a_slash": {
+  "macula": 2,
+  "ubs": 132665,
+  "bdb": 25700
+ },
+ "lines_over_40_characters": {
+  "macula": {
+   "over": 2,
+   "longest": 47,
+   "longest_at": "deuteronomy 25:5:24"
+  },
+  "ubs": {
+   "over": 33745,
+   "longest": 142,
+   "longest_at": "deuteronomy 13:15:2"
+  },
+  "bdb": {
+   "over": 24907,
+   "longest": 351,
+   "longest_at": "genesis 1:11:17"
+  },
+  "bdb_words": {
+   "over": 15453,
+   "longest": 341,
+   "longest_at": "genesis 1:11:17"
+  }
+ },
+ "line_feeds": {
+  "count": 1,
+  "places": [
+   {
+    "book": "genesis",
+    "place": "30:37:11",
+    "source": "UBS"
+   }
+  ]
+ },
+ "hebrew_in_carried_texts": {
+  "step": 0,
+  "macula": 0,
+  "ubs": 0,
+  "bdb": 0
+ },
+ "books": {
+  "genesis": {
+   "work": "Genesis",
+   "entries": 22329,
+   "places": 20612,
+   "kq": 12,
+   "mend_places": {
+    "step_v1_1": 74,
+    "step_v1_2": 2961,
+    "bdb_v1_2": 3
+   },
+   "has": {
+    "step": 20612,
+    "macula": 19835,
+    "ubs": 16112,
+    "bdb": 7409
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 777,
+     "ubs": 81,
+     "bdb": 70
+    },
+    "ubs": {
+     "step": 4500,
+     "macula": 3804,
+     "bdb": 912
+    },
+    "bdb": {
+     "step": 13203,
+     "macula": 12496,
+     "ubs": 9615
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 23,
+   "file": {
+    "name": "genesis.bin",
+    "bytes": 258047,
+    "raw_bytes": 1746517,
+    "sha256": "01407255df8182d02a177e1bc4c6bcdbbcc78cef935c853e6276df73abe787a3"
+   }
+  },
+  "exodus": {
+   "work": "Exodus",
+   "entries": 18211,
+   "places": 16713,
+   "kq": 6,
+   "mend_places": {
+    "step_v1_1": 38,
+    "step_v1_2": 2453,
+    "bdb_v1_2": 4
+   },
+   "has": {
+    "step": 16713,
+    "macula": 16040,
+    "ubs": 13099,
+    "bdb": 5500
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 673,
+     "ubs": 14,
+     "bdb": 12
+    },
+    "ubs": {
+     "step": 3614,
+     "macula": 2955,
+     "bdb": 350
+    },
+    "bdb": {
+     "step": 11213,
+     "macula": 10552,
+     "ubs": 7949
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 31,
+   "file": {
+    "name": "exodus.bin",
+    "bytes": 198252,
+    "raw_bytes": 1395455,
+    "sha256": "4d7bf140b702f4c8682ebbe506b03c6125136177461ef9b9f58c2660cbc056b9"
+   }
+  },
+  "leviticus": {
+   "work": "Leviticus",
+   "entries": 12962,
+   "places": 11950,
+   "kq": 3,
+   "mend_places": {
+    "step_v1_1": 9,
+    "step_v1_2": 1881,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 11950,
+    "macula": 11482,
+    "ubs": 9116,
+    "bdb": 4219
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 468,
+     "ubs": 1,
+     "bdb": 6
+    },
+    "ubs": {
+     "step": 2834,
+     "macula": 2367,
+     "bdb": 157
+    },
+    "bdb": {
+     "step": 7731,
+     "macula": 7269,
+     "ubs": 5054
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 16,
+   "file": {
+    "name": "leviticus.bin",
+    "bytes": 125261,
+    "raw_bytes": 976455,
+    "sha256": "7b3fabfd6ea6aaf1da6fe23a66d10cd9dd36816765e7aa8cddd22967234e03d2"
+   }
+  },
+  "numbers": {
+   "work": "Numbers",
+   "entries": 17937,
+   "places": 16408,
+   "kq": 8,
+   "mend_places": {
+    "step_v1_1": 35,
+    "step_v1_2": 2289,
+    "bdb_v1_2": 2
+   },
+   "has": {
+    "step": 16408,
+    "macula": 15878,
+    "ubs": 13429,
+    "bdb": 4841
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 530,
+     "ubs": 27,
+     "bdb": 25
+    },
+    "ubs": {
+     "step": 2979,
+     "macula": 2476,
+     "bdb": 222
+    },
+    "bdb": {
+     "step": 11567,
+     "macula": 11062,
+     "ubs": 8810
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 31,
+   "file": {
+    "name": "numbers.bin",
+    "bytes": 178318,
+    "raw_bytes": 1374599,
+    "sha256": "b3a333461d7c03751381d3dff6d2b226f52a80c379a605c6be91af15e03e910e"
+   }
+  },
+  "deuteronomy": {
+   "work": "Deuteronomy",
+   "entries": 15560,
+   "places": 14294,
+   "kq": 7,
+   "mend_places": {
+    "step_v1_1": 24,
+    "step_v1_2": 1938,
+    "bdb_v1_2": 14
+   },
+   "has": {
+    "step": 14294,
+    "macula": 13828,
+    "ubs": 11132,
+    "bdb": 4566
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 466,
+     "ubs": 18,
+     "bdb": 11
+    },
+    "ubs": {
+     "step": 3162,
+     "macula": 2714,
+     "bdb": 297
+    },
+    "bdb": {
+     "step": 9728,
+     "macula": 9273,
+     "ubs": 6863
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 57,
+   "file": {
+    "name": "deuteronomy.bin",
+    "bytes": 195085,
+    "raw_bytes": 1250583,
+    "sha256": "c30c045edfc19aca29b49962d6057c471468661d8d122da4394565761cedc86d"
+   }
+  },
+  "joshua": {
+   "work": "Joshua",
+   "entries": 10881,
+   "places": 10031,
+   "kq": 29,
+   "mend_places": {
+    "step_v1_1": 44,
+    "step_v1_2": 1611,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 10031,
+    "macula": 9488,
+    "ubs": 7857,
+    "bdb": 2925
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 543,
+     "ubs": 83,
+     "bdb": 78
+    },
+    "ubs": {
+     "step": 2174,
+     "macula": 1714,
+     "bdb": 196
+    },
+    "bdb": {
+     "step": 7106,
+     "macula": 6641,
+     "ubs": 5128
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 14,
+   "file": {
+    "name": "joshua.bin",
+    "bytes": 119762,
+    "raw_bytes": 834861,
+    "sha256": "33751f9d8d94ce0d809b0ac55b609f51824b6d6d9da5c78c0b9e74f5342ee3e5"
+   }
+  },
+  "judges": {
+   "work": "Judges",
+   "entries": 10732,
+   "places": 9885,
+   "kq": 20,
+   "mend_places": {
+    "step_v1_1": 46,
+    "step_v1_2": 1465,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 9884,
+    "macula": 9438,
+    "ubs": 7818,
+    "bdb": 2923
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 446,
+     "ubs": 71,
+     "bdb": 59
+    },
+    "ubs": {
+     "step": 2066,
+     "macula": 1691,
+     "bdb": 174
+    },
+    "bdb": {
+     "step": 6961,
+     "macula": 6574,
+     "ubs": 5069
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 31,
+   "file": {
+    "name": "judges.bin",
+    "bytes": 130416,
+    "raw_bytes": 846471,
+    "sha256": "d4fa70740f6ba73eabb27b227a0aa3cfb7e912ae1a6acef6a59014d867e38aac"
+   }
+  },
+  "ruth": {
+   "work": "Ruth",
+   "entries": 1388,
+   "places": 1296,
+   "kq": 12,
+   "mend_places": {
+    "step_v1_1": 3,
+    "step_v1_2": 188,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 1296,
+    "macula": 1242,
+    "ubs": 1014,
+    "bdb": 411
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 54,
+     "ubs": 4,
+     "bdb": 1
+    },
+    "ubs": {
+     "step": 282,
+     "macula": 232,
+     "bdb": 23
+    },
+    "bdb": {
+     "step": 885,
+     "macula": 832,
+     "ubs": 626
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 9,
+   "file": {
+    "name": "ruth.bin",
+    "bytes": 19694,
+    "raw_bytes": 117468,
+    "sha256": "36d5400ac08ec3e069a0af4d4192ca8ca27c2ada540d4c02d65c3b406f6f38b6"
+   }
+  },
+  "i-samuel": {
+   "work": "I Samuel",
+   "entries": 14363,
+   "places": 13258,
+   "kq": 51,
+   "mend_places": {
+    "step_v1_1": 71,
+    "step_v1_2": 1954,
+    "bdb_v1_2": 14
+   },
+   "has": {
+    "step": 13257,
+    "macula": 12725,
+    "ubs": 10427,
+    "bdb": 3606
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 533,
+     "ubs": 50,
+     "bdb": 33
+    },
+    "ubs": {
+     "step": 2831,
+     "macula": 2348,
+     "bdb": 331
+    },
+    "bdb": {
+     "step": 9652,
+     "macula": 9152,
+     "ubs": 7152
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 43,
+   "file": {
+    "name": "i-samuel.bin",
+    "bytes": 179265,
+    "raw_bytes": 1136298,
+    "sha256": "6933d9a1b782876b0d2400cbe6582e49e15eb94f5b326e4a7b9dadb817c2d6f2"
+   }
+  },
+  "ii-samuel": {
+   "work": "II Samuel",
+   "entries": 12003,
+   "places": 11032,
+   "kq": 72,
+   "mend_places": {
+    "step_v1_1": 75,
+    "step_v1_2": 1800,
+    "bdb_v1_2": 8
+   },
+   "has": {
+    "step": 11029,
+    "macula": 10527,
+    "ubs": 8706,
+    "bdb": 2727
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 502,
+     "ubs": 65,
+     "bdb": 62
+    },
+    "ubs": {
+     "step": 2323,
+     "macula": 1886,
+     "bdb": 217
+    },
+    "bdb": {
+     "step": 8302,
+     "macula": 7862,
+     "ubs": 6196
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 1,
+   "rest_fills": 0,
+   "step_words": 42,
+   "file": {
+    "name": "ii-samuel.bin",
+    "bytes": 152668,
+    "raw_bytes": 944303,
+    "sha256": "720ba7d76c767e73ce3c38795d1963dcb9440a5b0b19b620b51fc946143f8cca"
+   }
+  },
+  "i-kings": {
+   "work": "I Kings",
+   "entries": 14174,
+   "places": 13139,
+   "kq": 38,
+   "mend_places": {
+    "step_v1_1": 49,
+    "step_v1_2": 1953,
+    "bdb_v1_2": 4
+   },
+   "has": {
+    "step": 13139,
+    "macula": 12592,
+    "ubs": 10473,
+    "bdb": 3801
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 547,
+     "ubs": 53,
+     "bdb": 23
+    },
+    "ubs": {
+     "step": 2666,
+     "macula": 2172,
+     "bdb": 269
+    },
+    "bdb": {
+     "step": 9338,
+     "macula": 8814,
+     "ubs": 6941
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 29,
+   "file": {
+    "name": "i-kings.bin",
+    "bytes": 162560,
+    "raw_bytes": 1107652,
+    "sha256": "74f6352132fa3b928783a809c796ff895d8bbe7cb338c684147c6fde2c14c92b"
+   }
+  },
+  "ii-kings": {
+   "work": "II Kings",
+   "entries": 13158,
+   "places": 12275,
+   "kq": 66,
+   "mend_places": {
+    "step_v1_1": 72,
+    "step_v1_2": 2023,
+    "bdb_v1_2": 7
+   },
+   "has": {
+    "step": 12273,
+    "macula": 11754,
+    "ubs": 9904,
+    "bdb": 3178
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 519,
+     "ubs": 42,
+     "bdb": 37
+    },
+    "ubs": {
+     "step": 2369,
+     "macula": 1892,
+     "bdb": 196
+    },
+    "bdb": {
+     "step": 9095,
+     "macula": 8613,
+     "ubs": 6922
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 38,
+   "file": {
+    "name": "ii-kings.bin",
+    "bytes": 155347,
+    "raw_bytes": 1055139,
+    "sha256": "43f55f6ba0745e89f0c618482183363af944957f01b1bf6a809afd722534dd90"
+   }
+  },
+  "i-chronicles": {
+   "work": "I Chronicles",
+   "entries": 12127,
+   "places": 10740,
+   "kq": 39,
+   "mend_places": {
+    "step_v1_1": 54,
+    "step_v1_2": 1521,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 10740,
+    "macula": 10169,
+    "ubs": 9022,
+    "bdb": 2900
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 571,
+     "ubs": 69,
+     "bdb": 34
+    },
+    "ubs": {
+     "step": 1718,
+     "macula": 1216,
+     "bdb": 122
+    },
+    "bdb": {
+     "step": 7840,
+     "macula": 7303,
+     "ubs": 6244
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 30,
+   "file": {
+    "name": "i-chronicles.bin",
+    "bytes": 142090,
+    "raw_bytes": 872891,
+    "sha256": "75af7c7f1f6b080936a6804ad94416526c87182d17ce67e3836cf10f80280572"
+   }
+  },
+  "ii-chronicles": {
+   "work": "II Chronicles",
+   "entries": 14385,
+   "places": 13314,
+   "kq": 39,
+   "mend_places": {
+    "step_v1_1": 74,
+    "step_v1_2": 1942,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 13314,
+    "macula": 12798,
+    "ubs": 10711,
+    "bdb": 3475
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 516,
+     "ubs": 49,
+     "bdb": 23
+    },
+    "ubs": {
+     "step": 2603,
+     "macula": 2136,
+     "bdb": 173
+    },
+    "bdb": {
+     "step": 9839,
+     "macula": 9346,
+     "ubs": 7409
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 39,
+   "file": {
+    "name": "ii-chronicles.bin",
+    "bytes": 183814,
+    "raw_bytes": 1125997,
+    "sha256": "1d5dd93da727fd661576537af3193f3fe7fe8711b6d4a3ec11f73b3ee1b27ed5"
+   }
+  },
+  "ezra": {
+   "work": "Ezra",
+   "entries": 4221,
+   "places": 3754,
+   "kq": 31,
+   "mend_places": {
+    "step_v1_1": 22,
+    "step_v1_2": 470,
+    "bdb_v1_2": 6
+   },
+   "has": {
+    "step": 3754,
+    "macula": 3671,
+    "ubs": 3147,
+    "bdb": 1489
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 83,
+     "ubs": 13,
+     "bdb": 17
+    },
+    "ubs": {
+     "step": 607,
+     "macula": 537,
+     "bdb": 186
+    },
+    "bdb": {
+     "step": 2265,
+     "macula": 2199,
+     "ubs": 1844
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 20,
+   "file": {
+    "name": "ezra.bin",
+    "bytes": 54366,
+    "raw_bytes": 314663,
+    "sha256": "d95d53b6a56748f1768930fa0260f19bec9bd7de5f88d4504f500c40d1049d33"
+   }
+  },
+  "nehemiah": {
+   "work": "Nehemiah",
+   "entries": 5881,
+   "places": 5312,
+   "kq": 22,
+   "mend_places": {
+    "step_v1_1": 39,
+    "step_v1_2": 711,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 5312,
+    "macula": 5150,
+    "ubs": 4456,
+    "bdb": 1683
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 162,
+     "ubs": 26,
+     "bdb": 25
+    },
+    "ubs": {
+     "step": 856,
+     "macula": 720,
+     "bdb": 83
+    },
+    "bdb": {
+     "step": 3629,
+     "macula": 3492,
+     "ubs": 2856
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 25,
+   "file": {
+    "name": "nehemiah.bin",
+    "bytes": 78959,
+    "raw_bytes": 463117,
+    "sha256": "5cd8a688b013411e6ea7e25dc738c70e0873f4efc553a1e8250a145aae8e9c45"
+   }
+  },
+  "esther": {
+   "work": "Esther",
+   "entries": 3281,
+   "places": 3045,
+   "kq": 13,
+   "mend_places": {
+    "step_v1_1": 13,
+    "step_v1_2": 455,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 3045,
+    "macula": 2951,
+    "ubs": 2453,
+    "bdb": 994
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 94,
+     "ubs": 2,
+     "bdb": 2
+    },
+    "ubs": {
+     "step": 592,
+     "macula": 500,
+     "bdb": 60
+    },
+    "bdb": {
+     "step": 2051,
+     "macula": 1959,
+     "ubs": 1519
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 16,
+   "file": {
+    "name": "esther.bin",
+    "bytes": 41039,
+    "raw_bytes": 260333,
+    "sha256": "1462774f507cbbce3af2a66d12ff9c47a73f08b21b7c9f38deb3eb24bfd7ff7c"
+   }
+  },
+  "job": {
+   "work": "Job",
+   "entries": 9545,
+   "places": 8339,
+   "kq": 32,
+   "mend_places": {
+    "step_v1_1": 39,
+    "step_v1_2": 1269,
+    "bdb_v1_2": 14
+   },
+   "has": {
+    "step": 8338,
+    "macula": 8261,
+    "ubs": 6887,
+    "bdb": 3800
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 78,
+     "ubs": 10,
+     "bdb": 5
+    },
+    "ubs": {
+     "step": 1452,
+     "macula": 1384,
+     "bdb": 200
+    },
+    "bdb": {
+     "step": 4538,
+     "macula": 4466,
+     "ubs": 3287
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 60,
+   "file": {
+    "name": "job.bin",
+    "bytes": 166753,
+    "raw_bytes": 779968,
+    "sha256": "b65db77d1c8e739717e03f14e0b6a24781a3247322e8d22c478c373ede839091"
+   }
+  },
+  "psalms": {
+   "work": "Psalms",
+   "entries": 22803,
+   "places": 19583,
+   "kq": 60,
+   "mend_places": {
+    "step_v1_1": 74,
+    "step_v1_2": 2355,
+    "bdb_v1_2": 8
+   },
+   "has": {
+    "step": 19577,
+    "macula": 19371,
+    "ubs": 16612,
+    "bdb": 8634
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 211,
+     "ubs": 17,
+     "bdb": 15
+    },
+    "ubs": {
+     "step": 2965,
+     "macula": 2776,
+     "bdb": 368
+    },
+    "bdb": {
+     "step": 10944,
+     "macula": 10752,
+     "ubs": 8346
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 75,
+   "file": {
+    "name": "psalms.bin",
+    "bytes": 351625,
+    "raw_bytes": 1830528,
+    "sha256": "eb4e7d2cbad8cb1897a7f29a50c9a97ae777a1b197f83c9429ab764e49d15afc"
+   }
+  },
+  "proverbs": {
+   "work": "Proverbs",
+   "entries": 7938,
+   "places": 6914,
+   "kq": 61,
+   "mend_places": {
+    "step_v1_1": 43,
+    "step_v1_2": 960,
+    "bdb_v1_2": 8
+   },
+   "has": {
+    "step": 6914,
+    "macula": 6834,
+    "ubs": 6071,
+    "bdb": 3416
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 80,
+     "ubs": 1,
+     "bdb": 1
+    },
+    "ubs": {
+     "step": 843,
+     "macula": 764,
+     "bdb": 84
+    },
+    "bdb": {
+     "step": 3498,
+     "macula": 3419,
+     "ubs": 2739
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 42,
+   "file": {
+    "name": "proverbs.bin",
+    "bytes": 137678,
+    "raw_bytes": 695440,
+    "sha256": "d33cdd65cf17ed7a04285994ba539665886b9723b7070d2f72f3d72750080469"
+   }
+  },
+  "ecclesiastes": {
+   "work": "Ecclesiastes",
+   "entries": 3250,
+   "places": 2987,
+   "kq": 10,
+   "mend_places": {
+    "step_v1_1": 15,
+    "step_v1_2": 423,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 2987,
+    "macula": 2903,
+    "ubs": 2321,
+    "bdb": 1166
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 84,
+     "ubs": 3,
+     "bdb": 2
+    },
+    "ubs": {
+     "step": 666,
+     "macula": 585,
+     "bdb": 121
+    },
+    "bdb": {
+     "step": 1821,
+     "macula": 1739,
+     "ubs": 1276
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 12,
+   "file": {
+    "name": "ecclesiastes.bin",
+    "bytes": 47764,
+    "raw_bytes": 275652,
+    "sha256": "2daf9e93a30f5e14e68c45df8f03301ebfddf29e2f4e6c001369930447d83829"
+   }
+  },
+  "song-of-songs": {
+   "work": "Song of Songs",
+   "entries": 1398,
+   "places": 1250,
+   "kq": 3,
+   "mend_places": {
+    "step_v1_1": 3,
+    "step_v1_2": 113,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 1250,
+    "macula": 1218,
+    "ubs": 1064,
+    "bdb": 713
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 32,
+     "ubs": 6,
+     "bdb": 4
+    },
+    "ubs": {
+     "step": 186,
+     "macula": 160,
+     "bdb": 28
+    },
+    "bdb": {
+     "step": 537,
+     "macula": 509,
+     "ubs": 379
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 15,
+   "file": {
+    "name": "song-of-songs.bin",
+    "bytes": 25788,
+    "raw_bytes": 116831,
+    "sha256": "74f5cef9275c6e9470758bbf137488a06f472ff2c4574ee0b38c5a3480114fcb"
+   }
+  },
+  "isaiah": {
+   "work": "Isaiah",
+   "entries": 18550,
+   "places": 16923,
+   "kq": 49,
+   "mend_places": {
+    "step_v1_1": 76,
+    "step_v1_2": 1855,
+    "bdb_v1_2": 5
+   },
+   "has": {
+    "step": 16922,
+    "macula": 16659,
+    "ubs": 14174,
+    "bdb": 7662
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 263,
+     "ubs": 30,
+     "bdb": 40
+    },
+    "ubs": {
+     "step": 2748,
+     "macula": 2515,
+     "bdb": 417
+    },
+    "bdb": {
+     "step": 9260,
+     "macula": 9037,
+     "ubs": 6929
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 40,
+   "file": {
+    "name": "isaiah.bin",
+    "bytes": 308862,
+    "raw_bytes": 1560379,
+    "sha256": "3cf06b8b1eaa924554fc3550129023b5879a51f0ee69c2d1e579c22177d61c76"
+   }
+  },
+  "jeremiah": {
+   "work": "Jeremiah",
+   "entries": 23633,
+   "places": 21831,
+   "kq": 129,
+   "mend_places": {
+    "step_v1_1": 120,
+    "step_v1_2": 3556,
+    "bdb_v1_2": 6
+   },
+   "has": {
+    "step": 21831,
+    "macula": 21080,
+    "ubs": 16932,
+    "bdb": 6226
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 751,
+     "ubs": 47,
+     "bdb": 35
+    },
+    "ubs": {
+     "step": 4899,
+     "macula": 4195,
+     "bdb": 366
+    },
+    "bdb": {
+     "step": 15605,
+     "macula": 14889,
+     "ubs": 11072
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 54,
+   "file": {
+    "name": "jeremiah.bin",
+    "bytes": 309102,
+    "raw_bytes": 1868701,
+    "sha256": "ba2e38bef29c350ca17cc2eba0c124447a122c5c3b5b43d4b41f8b4aeedbc4d9"
+   }
+  },
+  "lamentations": {
+   "work": "Lamentations",
+   "entries": 1838,
+   "places": 1540,
+   "kq": 20,
+   "mend_places": {
+    "step_v1_1": 18,
+    "step_v1_2": 183,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 1540,
+    "macula": 1507,
+    "ubs": 1275,
+    "bdb": 640
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 33,
+     "ubs": 3,
+     "bdb": 2
+    },
+    "ubs": {
+     "step": 265,
+     "macula": 235,
+     "bdb": 26
+    },
+    "bdb": {
+     "step": 900,
+     "macula": 869,
+     "ubs": 661
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 14,
+   "file": {
+    "name": "lamentations.bin",
+    "bytes": 33324,
+    "raw_bytes": 147730,
+    "sha256": "9bf244849058264a9ff16b9acef9eaf290f801d1bdf2c42860de66cd65054852"
+   }
+  },
+  "ezekiel": {
+   "work": "Ezekiel",
+   "entries": 20322,
+   "places": 18729,
+   "kq": 80,
+   "mend_places": {
+    "step_v1_1": 55,
+    "step_v1_2": 2446,
+    "bdb_v1_2": 45
+   },
+   "has": {
+    "step": 18728,
+    "macula": 18246,
+    "ubs": 14618,
+    "bdb": 6129
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 482,
+     "ubs": 38,
+     "bdb": 24
+    },
+    "ubs": {
+     "step": 4110,
+     "macula": 3666,
+     "bdb": 328
+    },
+    "bdb": {
+     "step": 12599,
+     "macula": 12141,
+     "ubs": 8817
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 100,
+   "file": {
+    "name": "ezekiel.bin",
+    "bytes": 240620,
+    "raw_bytes": 1602598,
+    "sha256": "d24b13e2055a8dd0db674a496d10d1d3b9f2fd9d8772c24634fff429c17ecdba"
+   }
+  },
+  "daniel": {
+   "work": "Daniel",
+   "entries": 6353,
+   "places": 5923,
+   "kq": 125,
+   "mend_places": {
+    "step_v1_1": 23,
+    "step_v1_2": 672,
+    "bdb_v1_2": 3
+   },
+   "has": {
+    "step": 5923,
+    "macula": 5741,
+    "ubs": 4579,
+    "bdb": 2995
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 182,
+     "ubs": 5,
+     "bdb": 5
+    },
+    "ubs": {
+     "step": 1344,
+     "macula": 1167,
+     "bdb": 483
+    },
+    "bdb": {
+     "step": 2928,
+     "macula": 2751,
+     "ubs": 2067
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 75,
+   "file": {
+    "name": "daniel.bin",
+    "bytes": 86945,
+    "raw_bytes": 515885,
+    "sha256": "51fcd203657a93fcc6b9716c30fbb5fca1819645086717a455ecd272f1c15139"
+   }
+  },
+  "hosea": {
+   "work": "Hosea",
+   "entries": 2606,
+   "places": 2381,
+   "kq": 6,
+   "mend_places": {
+    "step_v1_1": 12,
+    "step_v1_2": 274,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 2381,
+    "macula": 2318,
+    "ubs": 1907,
+    "bdb": 1064
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 63,
+     "ubs": 17,
+     "bdb": 12
+    },
+    "ubs": {
+     "step": 474,
+     "macula": 428,
+     "bdb": 73
+    },
+    "bdb": {
+     "step": 1317,
+     "macula": 1266,
+     "ubs": 916
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 6,
+   "file": {
+    "name": "hosea.bin",
+    "bytes": 47291,
+    "raw_bytes": 220129,
+    "sha256": "d1a417c5736f0f99609a004843538860bf4ad0cbf8ce16bbd5192d9299cf1fdd"
+   }
+  },
+  "joel": {
+   "work": "Joel",
+   "entries": 1036,
+   "places": 957,
+   "kq": 1,
+   "mend_places": {
+    "step_v1_1": 3,
+    "step_v1_2": 105,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 957,
+    "macula": 943,
+    "ubs": 790,
+    "bdb": 390
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 14,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "ubs": {
+     "step": 167,
+     "macula": 153,
+     "bdb": 15
+    },
+    "bdb": {
+     "step": 567,
+     "macula": 553,
+     "ubs": 415
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 0,
+   "file": {
+    "name": "joel.bin",
+    "bytes": 18967,
+    "raw_bytes": 88307,
+    "sha256": "bfcd36c8496e462c967fdefbbcbc251147a7377ec2c9fd30d3f547a4a1a904bb"
+   }
+  },
+  "amos": {
+   "work": "Amos",
+   "entries": 2221,
+   "places": 2042,
+   "kq": 2,
+   "mend_places": {
+    "step_v1_1": 12,
+    "step_v1_2": 275,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 2042,
+    "macula": 1976,
+    "ubs": 1685,
+    "bdb": 901
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 66,
+     "ubs": 13,
+     "bdb": 15
+    },
+    "ubs": {
+     "step": 357,
+     "macula": 304,
+     "bdb": 48
+    },
+    "bdb": {
+     "step": 1141,
+     "macula": 1090,
+     "ubs": 832
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 4,
+   "file": {
+    "name": "amos.bin",
+    "bytes": 37263,
+    "raw_bytes": 184716,
+    "sha256": "be1c887721292f72995cc447a81e7230ae53557f238c109b093ec958104ccbc2"
+   }
+  },
+  "obadiah": {
+   "work": "Obadiah",
+   "entries": 312,
+   "places": 291,
+   "kq": 0,
+   "mend_places": {
+    "step_v1_1": 1,
+    "step_v1_2": 44,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 291,
+    "macula": 283,
+    "ubs": 236,
+    "bdb": 103
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 8,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "ubs": {
+     "step": 55,
+     "macula": 47,
+     "bdb": 0
+    },
+    "bdb": {
+     "step": 188,
+     "macula": 180,
+     "ubs": 133
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 1,
+   "file": {
+    "name": "obadiah.bin",
+    "bytes": 6655,
+    "raw_bytes": 27484,
+    "sha256": "821a30393b2c7db555c4f899ec6419c458b0bc550f4038b2b250ab7b6b9e5370"
+   }
+  },
+  "jonah": {
+   "work": "Jonah",
+   "entries": 742,
+   "places": 688,
+   "kq": 0,
+   "mend_places": {
+    "step_v1_1": 0,
+    "step_v1_2": 104,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 688,
+    "macula": 675,
+    "ubs": 550,
+    "bdb": 208
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 13,
+     "ubs": 1,
+     "bdb": 0
+    },
+    "ubs": {
+     "step": 138,
+     "macula": 126,
+     "bdb": 7
+    },
+    "bdb": {
+     "step": 480,
+     "macula": 467,
+     "ubs": 349
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 0,
+   "file": {
+    "name": "jonah.bin",
+    "bytes": 12295,
+    "raw_bytes": 61162,
+    "sha256": "e2fa2024cd0042e4fc342c2f21d9dc0088502f20cca1c4d876f081f9440ae644"
+   }
+  },
+  "micah": {
+   "work": "Micah",
+   "entries": 1523,
+   "places": 1396,
+   "kq": 4,
+   "mend_places": {
+    "step_v1_1": 11,
+    "step_v1_2": 151,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 1396,
+    "macula": 1370,
+    "ubs": 1162,
+    "bdb": 588
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 26,
+     "ubs": 4,
+     "bdb": 2
+    },
+    "ubs": {
+     "step": 234,
+     "macula": 212,
+     "bdb": 34
+    },
+    "bdb": {
+     "step": 808,
+     "macula": 784,
+     "ubs": 608
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 3,
+   "file": {
+    "name": "micah.bin",
+    "bytes": 31300,
+    "raw_bytes": 135244,
+    "sha256": "b9de1a91dc268ffbe3dc92baba39cd43f3409b5a5cd82c72c2645231226147f3"
+   }
+  },
+  "nahum": {
+   "work": "Nahum",
+   "entries": 610,
+   "places": 558,
+   "kq": 4,
+   "mend_places": {
+    "step_v1_1": 1,
+    "step_v1_2": 38,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 558,
+    "macula": 552,
+    "ubs": 469,
+    "bdb": 282
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 6,
+     "ubs": 0,
+     "bdb": 1
+    },
+    "ubs": {
+     "step": 89,
+     "macula": 83,
+     "bdb": 18
+    },
+    "bdb": {
+     "step": 276,
+     "macula": 271,
+     "ubs": 205
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 5,
+   "file": {
+    "name": "nahum.bin",
+    "bytes": 14983,
+    "raw_bytes": 55435,
+    "sha256": "57ba64ff99c03ce5097e7851f23e7627168dc2fd8fb149f5e2eaeb3039262fc2"
+   }
+  },
+  "habakkuk": {
+   "work": "Habakkuk",
+   "entries": 737,
+   "places": 671,
+   "kq": 0,
+   "mend_places": {
+    "step_v1_1": 1,
+    "step_v1_2": 65,
+    "bdb_v1_2": 2
+   },
+   "has": {
+    "step": 671,
+    "macula": 663,
+    "ubs": 572,
+    "bdb": 320
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 8,
+     "ubs": 4,
+     "bdb": 0
+    },
+    "ubs": {
+     "step": 99,
+     "macula": 95,
+     "bdb": 13
+    },
+    "bdb": {
+     "step": 351,
+     "macula": 343,
+     "ubs": 265
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 3,
+   "file": {
+    "name": "habakkuk.bin",
+    "bytes": 17649,
+    "raw_bytes": 68567,
+    "sha256": "6d6f6907fb96087d49cb4a42b9543c46503e009260394c93cd2d85e6554ade4d"
+   }
+  },
+  "zephaniah": {
+   "work": "Zephaniah",
+   "entries": 831,
+   "places": 767,
+   "kq": 1,
+   "mend_places": {
+    "step_v1_1": 2,
+    "step_v1_2": 106,
+    "bdb_v1_2": 1
+   },
+   "has": {
+    "step": 767,
+    "macula": 751,
+    "ubs": 626,
+    "bdb": 299
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 16,
+     "ubs": 0,
+     "bdb": 1
+    },
+    "ubs": {
+     "step": 141,
+     "macula": 125,
+     "bdb": 9
+    },
+    "bdb": {
+     "step": 468,
+     "macula": 453,
+     "ubs": 336
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 2,
+   "file": {
+    "name": "zephaniah.bin",
+    "bytes": 16534,
+    "raw_bytes": 72948,
+    "sha256": "69a532f15d5bb53a2194e1ea721bdf2a3e31b14518fc7f2bd95a9c5f06843e2e"
+   }
+  },
+  "haggai": {
+   "work": "Haggai",
+   "entries": 650,
+   "places": 600,
+   "kq": 1,
+   "mend_places": {
+    "step_v1_1": 1,
+    "step_v1_2": 109,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 600,
+    "macula": 589,
+    "ubs": 484,
+    "bdb": 182
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 11,
+     "ubs": 1,
+     "bdb": 0
+    },
+    "ubs": {
+     "step": 116,
+     "macula": 106,
+     "bdb": 10
+    },
+    "bdb": {
+     "step": 418,
+     "macula": 407,
+     "ubs": 312
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 0,
+   "file": {
+    "name": "haggai.bin",
+    "bytes": 9422,
+    "raw_bytes": 51895,
+    "sha256": "c37897931e2896c3c8351e72d541f291a8ccfdeb7405bc201920d4b322731318"
+   }
+  },
+  "zechariah": {
+   "work": "Zechariah",
+   "entries": 3390,
+   "places": 3127,
+   "kq": 6,
+   "mend_places": {
+    "step_v1_1": 13,
+    "step_v1_2": 404,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 3127,
+    "macula": 3045,
+    "ubs": 2488,
+    "bdb": 966
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 82,
+     "ubs": 5,
+     "bdb": 3
+    },
+    "ubs": {
+     "step": 639,
+     "macula": 562,
+     "bdb": 36
+    },
+    "bdb": {
+     "step": 2161,
+     "macula": 2082,
+     "ubs": 1558
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 7,
+   "file": {
+    "name": "zechariah.bin",
+    "bytes": 47783,
+    "raw_bytes": 275374,
+    "sha256": "1a46ec593a7e27bde0354de373fa97676b5f499a63b7795354b4055613587dd6"
+   }
+  },
+  "malachi": {
+   "work": "Malachi",
+   "entries": 945,
+   "places": 876,
+   "kq": 0,
+   "mend_places": {
+    "step_v1_1": 0,
+    "step_v1_2": 97,
+    "bdb_v1_2": 0
+   },
+   "has": {
+    "step": 876,
+    "macula": 860,
+    "ubs": 711,
+    "bdb": 316
+   },
+   "fills": {
+    "step": {
+     "macula": 0,
+     "ubs": 0,
+     "bdb": 0
+    },
+    "macula": {
+     "step": 16,
+     "ubs": 1,
+     "bdb": 0
+    },
+    "ubs": {
+     "step": 165,
+     "macula": 150,
+     "bdb": 5
+    },
+    "bdb": {
+     "step": 560,
+     "macula": 544,
+     "ubs": 400
+    }
+   },
+   "second": {
+    "step": null,
+    "macula": "step",
+    "ubs": "step",
+    "bdb": "step"
+   },
+   "second_tied": {
+    "step": false,
+    "macula": false,
+    "ubs": false,
+    "bdb": false
+   },
+   "step_leaves": 0,
+   "rest_fills": 0,
+   "step_words": 3,
+   "file": {
+    "name": "malachi.bin",
+    "bytes": 16973,
+    "raw_bytes": 83876,
+    "sha256": "8e247793fd97956b08f58cc1081767c07501ec3d8fd8ed923a89ca3812c85502"
+   }
+  }
+ },
+ "index": {
+  "file": "index.json",
+  "bytes": 41570,
+  "sha256": "f20c8e4f9f8c8cf3f49f28f1d95522d24396b83b20a4a9fa508f82e51a060221"
+ },
+ "sizes": {
+  "book_files_bytes": 4360519,
+  "book_files_raw_bytes": 26541651
+ }
+}

@@ -1,15 +1,20 @@
 {
  "schema_version": "ROW_ENTRIES_PIN_V1",
  "what": "the corpus lane's row entries ledger: for each row of the fifteen sources that name their entries, the entry it belongs to as its own source says it, and the Strong's numbers of that entry. Its rule and its receipt are kept here byte for byte; the ledger itself is 25 MB and is kept on the lane's store, named here by its size and its sha256 and read only as those bytes. tools/apply-row-entries-v1.mjs writes it onto the rows",
- "relay": "v172",
- "of": "13 November 2026",
- "letter": "r2:mishkan/v2/letters/moses-row-entries-v1/FOR-ELIJAH-v172.md",
- "from": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1/ (the private store)",
- "folder": "row-entries-v1",
- "rule": { "file": "RULE.md", "bytes": 11199, "sha256": "da37422ae459d28e0f63edf4644dd14bf08f9c541730d6d785a759a43c321fc5" },
- "receipt": { "file": "receipt-v1.json", "bytes": 29309, "sha256": "77f0b1d179f1c6d38e4b22269c9dc0b6aa2fdbbca8826d1bac5315dc8350803c" },
- "ledger": { "file": "row-entries-v1.jsonl", "bytes": 25201587, "sha256": "16f29ee3f43c3f94295aaf2d38a7c4859539449982e14154f63dcbb14632deb4", "lines": 52793,
-   "kept": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1/row-entries-v1.jsonl (the private store); not in this tree" },
+ "relay": "v190",
+ "of": "14 November 2026",
+ "letter": "r2:mishkan/v2/letters/moses-row-entries-v1/FOR-ELIJAH-v190.md",
+ "from": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1.1/ (the private store)",
+ "folder": "row-entries-v1.1",
+ "rule": { "file": "RULE.md", "bytes": 11360, "sha256": "ea13ca427f16ec76c0bebeeb641207f72d69ef65e4390235a3785a0e2a446597" },
+ "receipt": { "file": "receipt-v1.1.json", "bytes": 178702, "sha256": "e5eb1d31357d81d2519ae33f0990a60ded759afe13dbd8e47b686012b753c94b" },
+ "ledger": { "file": "row-entries-v1.1.jsonl", "bytes": 25207542, "sha256": "e63c2402ceb655dda6789f91d0a96c3cb22729dedbbee8dd59ba06984875754e", "lines": 52793,
+   "kept": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1.1/row-entries-v1.1.jsonl (the private store); not in this tree" },
+ "moves": { "file": "facts-slot-v1.1.tsv", "bytes": 50743, "sha256": "c0a7e556c4a023e890074cb1caf75b274b947ec8433c6504c7a5ab89ded8cdb6", "lines": 385,
+   "what": "the rows whose facts this ledger gives otherwise than the one it replaces: a header, then one line per row (key, rank, m_id, route_text, facts_now, facts_under_v1.1, what_changes). tools/check-entry-gate-v1.mjs (E14) holds the store to it" },
+ "replaces": { "relay": "v172", "of": "13 November 2026", "folder": "row-entries-v1",
+   "ledger": { "file": "row-entries-v1.jsonl", "bytes": 25201587, "sha256": "16f29ee3f43c3f94295aaf2d38a7c4859539449982e14154f63dcbb14632deb4", "lines": 52793,
+     "kept": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1/row-entries-v1.jsonl (the private store); not in this tree" } },
  "partings": [
   { "name": "STEP's letters", "fact": "t",
     "sources": { "M4": "stepbible_tahot_aligned_translation", "M19": "stepbible_tbesh_gloss" },
@@ -18,5 +23,5 @@
     "sources": { "M5": "openscriptures_bdb_1906" },
     "from_the_ruling": "ruling 6 of 13 November 2026 (relay v177), rows_it_reads: rows of BDB via Open Scriptures (M5) whose slot 6 is empty: slot 5 holds BDB's own entry" }
  ],
- "note": "every sha256 here is the one the relay's letter names for the file. The two partings are the ones the owner added to the gate on 13 November («1-3. ok agree», ruling 6); which sources each reads is the ruling's own statement, set here as data so the tool names no source in its code"
+ "note": "every sha256 here is the one the relay's letter names for the file. v1.1 is v1's ledger with one amendment (RULE.md): the replay also reads TAHOT's lines that carry the Hebrew verse beside the English one, so the facts of 385 TAHOT rows change (100 gain a number, 263 a lettered tag, 16 of them both, and 38 only the order of their tags); v1's rule and receipt stay in row-entries-v1/ as the record of the first run. The two partings are the ones the owner added to the gate on 13 November («1-3. ok agree», ruling 6); which sources each reads is the ruling's own statement, set here as data so the tool names no source in its code"
 }

@@ -138,25 +138,29 @@
        color here keeps a pair (the owner, 2026-10-10: "id probably go regular
        and dim"): the dim at rest; the regular under the reader's hand (a
        hover, a pressed cell's doubled edge, the box round a held word and its
-       lines to the card) and as the numbers' ink. Both keep hue 28 degrees and
-       saturation 30%, which is why bronze reads brown and never orange (the
-       owner: "bronze is distinctly not orange"); the gold of before was orange
-       by its saturation, 70 to 82%. The dim reads 4.3:1 on the linen, 3.9:1 in
-       a word's cell and 3.6:1 on the pressed linen; the regular 5.4:1, 4.9:1
-       and 4.5:1, so a number written in it reads as text must.
+       lines to the card). Both keep hue 28 degrees and saturation 30%, which
+       is why bronze reads brown and never orange (the owner: "bronze is
+       distinctly not orange"); the gold of before was orange by its
+       saturation, 70 to 82%. The dim reads 4.3:1 on the linen, 3.9:1 in a
+       word's cell and 3.6:1 on the pressed linen; the regular 5.4:1, 4.9:1
+       and 4.5:1.
        SILVER is our layering: the line of every blob and of every frame drawn
-       round a run's words (window.__tie's stroke). It is the swatch #7c8187
-       made a step darker at its own hue, because a frame's line also sits on
-       the blob's pressed linen, where the swatch read 2.5:1 and a line a
-       reader needs must reach 3:1: this reads 3.6:1 on the linen, 3.3:1 in a
-       cell and 3.0:1 on the pressed linen. The woven name's silver thread is
-       edged in the same value.
+       round a run's words (window.__tie's stroke), and the card numbers, our
+       own mark on every word (the owner, 2026-11-15: "i would do card numbers
+       silver that was our mark"). Two silvers, as every color keeps a pair:
+       the dim is the line, the swatch #7c8187 made a step darker at its own
+       hue, because a frame's line also sits on the blob's pressed linen, where
+       the swatch read 2.5:1 and a line a reader needs must reach 3:1: it reads
+       3.6:1 on the linen, 3.3:1 in a cell and 3.0:1 on the pressed linen. The
+       regular is the numbers' ink, the same gray darker, so a number reads as
+       text must: 5.5:1 on the linen, 5.0:1 in a cell, 4.6:1 on the pressed
+       linen. The woven name's silver thread is edged in the dim.
        GOLD is now only the Masoretic signs, below. Older comments on this
        page that call a frame, a box, a rule or a line gold were written before
        this ruling: read them as bronze, or as silver for the line of a blob or
        of a frame round a run; gold on a mark still means the signs. */
     --bronze: #6d523a; --bronze-dim: #7f6044;
-    --silver: #6e7378;
+    --silver: #53575b; --silver-dim: #6e7378;
     --gold: #967c26;
     --line: var(--bronze-dim); --line-c: var(--bronze-dim); --chip-line: var(--bronze-dim);
     /* text the reader drags across: bronze as a tint the word reads through
@@ -1332,6 +1336,16 @@
   #searchOut button.more { all: unset; cursor: pointer; display: block; margin: 0.4rem 0 0.2rem; font-size: 0.8rem; color: var(--argaman); }
   #searchOut button.more::after { content: " \25BE"; color: var(--bronze-dim); }
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
+  /* the default sources: four pills kept together, and the note under the
+     row on a line of its own; the chooser in it is the order row's (.def-order).
+     On a narrow phone the four wrap inside the group rather than push the
+     page sideways (the review of 14 November 2026: 331px of pills scrolled a
+     320px page), and the lit pill's share wraps under its own name */
+  #modeRow .default-pick { display: inline-flex; gap: 0.55rem; flex-wrap: wrap; min-width: 0; max-width: 100%; }
+  #modeRow .default-pick[hidden] { display: none; }
+  #modeRow .default-note { flex-basis: 100%; margin: 0; font-size: 0.78rem; color: var(--muted); max-width: 46rem; }
+  #modeRow .default-note .def-order { display: inline-flex; margin: 0.25rem 0 0; align-items: baseline; }
+  #modeRow .default-note .dfp:disabled { opacity: 0.45; cursor: default; }
   /* the rail: the page's toggles as one control block (see the header) */
   /* the cloth shows through it: the panel's lightest tone stood out as the
      brightest thing on the page (the owner, 2026-10-03: "so bright white"),
@@ -1580,7 +1594,7 @@
      pill present and none pressable. The reading itself (.v) stays, and the
      sources row still says what is switched off. The head's explainer under a
      large or small letter goes too; the line saying which letter stays. */
-  #hud.tight .rows .band > .kq-role, #hud.tight .rows .band > .r-piece, #hud.tight .r-now .k, #hud.tight .r-now .n,
+  #hud.tight .rows .band > .kq-role, #hud.tight .rows .band > .r-piece, #hud.tight .rows .band > .r-dflt, #hud.tight .r-now .k, #hud.tight .r-now .n,
   #hud.tight .head .kq-key { display: none; }
   /* overflow-x hidden as well as overflow-y auto: setting one axis to auto makes
      the other auto too, and a horizontal scrollbar nobody asked for took nine
@@ -1685,6 +1699,14 @@
     max-height: 3.9em; overflow-y: auto; overflow-x: hidden; }
   #hud .r-now .v.none { color: var(--argaman-dim); font-style: italic; }
   #hud .r-now .n { display: block; color: var(--faint); font-size: 0.72rem; font-style: italic; line-height: 1.35; margin-top: 0.15rem; }
+  /* whose reading the line is, said only on a tight card, where the label
+     above folds away (under a source other than STEP; the review of 14
+     November 2026): a small tag beside the reading, never inside it */
+  #hud .r-now .r-src-tag { display: none; }
+  #hud.tight:not(.floor) > .r-now.tagged { display: flex; align-items: baseline; gap: 0.45em; }
+  #hud.tight:not(.floor) > .r-now.tagged > .v { flex: 1 1 auto; min-width: 0; }
+  #hud.tight .r-now .r-src-tag { display: inline; flex: 0 0 auto; color: var(--faint); font-size: 0.6rem;
+    letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
   #hud[hidden] { display: none; }
   /* the brick gap's head on the card is the ruled span the line draws, not the
      restore's stand-in box */
@@ -1775,11 +1797,21 @@
   #hud .r-piece i { font-style: normal; font-size: 0.66rem; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--faint); padding-inline-end: 0.35rem; }
   #hud .r-piece b { font-weight: 600; }
+  /* what each default source reads at this word (default-picks-rule-v1): a
+     line of text under STEP's, never a switch; its other picks and whether
+     it is the line ride after its words, quieter */
+  #hud .r-dflt { margin: 0 0 0.3rem; direction: ltr; font-size: 0.8rem; color: var(--tekhelet-ink); }
+  #hud .r-dflt i { font-style: normal; font-size: 0.62rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--faint); padding-inline-end: 0.35rem; }
+  #hud .r-dflt b { font-weight: 600; }
+  #hud .r-dflt .n, #hud .r-more, #hud .r-on { font-weight: normal; color: var(--muted); }
+  #hud .r-on { font-style: italic; }
+  #hud .r-dflt .g-lic { display: inline; margin: 0 0 0 0.35em; padding: 0 0.3em; font-size: 0.62rem; line-height: 1; vertical-align: baseline; }
   #hud .r-sug b .n { font-weight: normal; color: var(--muted); }
   /* its chip rides the same line: a line of its own took a readings row */
   #hud .r-piece .g-lic { display: inline; margin: 0 0 0 0.35em; padding: 0 0.3em; font-size: 0.62rem; line-height: 1; vertical-align: baseline; }
   #hud .r-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; direction: ltr; }
-  #hud .head .wn { font-size: 0.82rem; font-weight: 600; color: var(--bronze); letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
+  #hud .head .wn { font-size: 0.82rem; font-weight: 600; color: var(--silver); letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
     margin-inline-end: 0.55em; align-self: center; white-space: nowrap; }
   /* A pill shows its whole reading. It used to clamp at two lines, which made
      the card claim a reading it was not showing — the code beneath says R is
@@ -1828,8 +1860,8 @@
      WEAR A STEADIER FACE, below). */
   #hud .r-pills button.sense { color: var(--argaman); font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
   #hud .r-pills button.sense[aria-pressed="true"] { color: var(--argaman); font-weight: 700; }
-  /* the owner's legend under a Jastrow record whose one bracket is a word
-     sense: the page's purple, a size down, under the record it explains */
+  /* the owner's legend under a Jastrow record the corpus lane says it holds
+     on: the page's purple, a size down, under the record it explains */
   #hud .d-card .sense-legend { margin: 0 0 0.3rem; font-size: 0.74rem; color: var(--argaman); }
   #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
     font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
@@ -2008,7 +2040,7 @@
   .he-text .wb { --cn: none; }
   body.nums .he-text .wb:not(.mark)::after { content: "\25C2\00a0" var(--cn); position: absolute; z-index: 1;
     left: var(--cn-x, 0.22rem); top: 0.04rem; direction: ltr; unicode-bidi: isolate; white-space: nowrap;
-    font: 0.5rem/1 Georgia, serif; font-weight: 400; letter-spacing: 0.04em; font-variant-numeric: lining-nums; color: var(--bronze); -webkit-text-fill-color: var(--bronze); text-shadow: none;
+    font: 0.5rem/1 Georgia, serif; font-weight: 400; letter-spacing: 0.04em; font-variant-numeric: lining-nums; color: var(--silver); -webkit-text-fill-color: var(--silver); text-shadow: none;
     pointer-events: none; user-select: none; -webkit-user-select: none; }
   body.en.nums .he-text .wb:not(.mark)::after { content: var(--cn) "\00a0\25B8"; top: auto; bottom: 0.1rem; font-size: 0.56rem; }
   /* a run's word: its box is the ink row's, inside the card's padding (0.08rem
@@ -2490,6 +2522,22 @@
          review of 2026-11-14), so the switch stands here too, where nothing
          folds it. Kept on this device. -->
     <span class="mode-pick"><button type="button" class="blob-btn" id="sensesPill" aria-pressed="false" aria-describedby="sensesState" title="Jastrow&#8217;s notes in square brackets on a word&#8217;s sense: held back from the card, or shown as word senses, never as definitions">word senses</button><span class="mode-dir" id="sensesState"></span></span>
+    <!-- THE DEFAULT SOURCES (default-picks-rule-v1; the owner, 2026-11-14: "can
+         we serve up each of the default toggles now so its not just STEP,
+         thats just one option"; "it could just say BDB, and when they select
+         it maybe it notes to them its partial and they need to select a
+         secondary other source to fill it out and %s then"). One pill per
+         source, its name alone, one on at a time: STEP, where the page rests
+         (the line as it is today), MACULA, UBS, BDB. Under the lit pill, its
+         share of the book and the second source that fills it out; the note
+         under the row says both shares and lets the reader choose another
+         second. Hidden on a work the corpus lane's picks do not reach. -->
+    <span class="default-pick" id="default-pick" role="group" aria-label="the source the line under each word reads" hidden>
+      <span class="mode-pick"><button type="button" class="blob-btn" id="default-step" aria-pressed="true" aria-describedby="default-step-dir">STEP</button><span class="mode-dir" id="default-step-dir"></span></span>
+      <span class="mode-pick"><button type="button" class="blob-btn" id="default-macula" aria-pressed="false" aria-describedby="default-macula-dir">MACULA</button><span class="mode-dir" id="default-macula-dir"></span></span>
+      <span class="mode-pick"><button type="button" class="blob-btn" id="default-ubs" aria-pressed="false" aria-describedby="default-ubs-dir">UBS</button><span class="mode-dir" id="default-ubs-dir"></span></span>
+      <span class="mode-pick"><button type="button" class="blob-btn" id="default-bdb" aria-pressed="false" aria-describedby="default-bdb-dir">BDB</button><span class="mode-dir" id="default-bdb-dir"></span></span>
+    </span>
     <!-- RESET TO DEFAULT (the owner, 2026-10-18: "maybe we need a reset to
          default toggling button", a pill in this row). It forgets every pick
          made on this page, and every line is drawn again as it was drawn at
@@ -2502,7 +2550,7 @@
          2026-10-23 to its evening; the owner: "id remove no names toggle and
          just have it on /toggles/ for now". The switch stays on the rail
          (?rail=all) and on /toggles/; nothing on this row offers it. -->
-    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, framed off, card numbering on, the concordance hud off, word senses off) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
+    <span class="mode-pick"><button type="button" class="blob-btn" id="resetPill" aria-describedby="resetState" title="the switches back to their default (English off, framed off, card numbering on, the concordance hud off, word senses off, the line from STEP with a second source chosen for each book) and every reading picked on this page forgotten" disabled>reset</button><span class="mode-dir" id="resetState">default</span></span>
     <!-- ONE SWITCH OPENS ALL OF IT (owner, 2026-09-24: "commentary should have
          a megatoggle at the top that opens all of it, without losing the drop
          down"). It always did open every verse's commentary; it was labelled
@@ -2518,6 +2566,10 @@
          which leads. An order, never a selection: both halves stay printed
          and both stay open. The owner's design of 2026-09-06; the other
          classes he drew wait on the corpus lane's word layer. -->
+    <!-- THE DEFAULT SOURCES' NOTE: the first source's share of this work and
+         the second's, and the chooser of the second (its buttons carry no id,
+         so the Menu mirrors only the four pills). Hidden at rest. -->
+    <p class="default-note" id="default-note" aria-live="polite" hidden></p>
   </div>
   <!-- THE RAIL · every toggle the page has, one row each, drawn from the
        TOGGLES registry below. Closed, it is one line saying how the page is
@@ -3436,24 +3488,43 @@
   // untouched: the pill, the record beneath it and the export still carry
   // the period, and the porch and every check join readings by this same
   // function, to the character.
-  const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
+  // A SOURCE'S OWN WORDS ARE NOT A PACKING (default-picks-rule-v1). The
+  // default sources (STEP, MACULA, UBS, BDB, below) print a pick's words as
+  // the source gives them, and a UBS gloss writes "heaven / sky" as two
+  // glosses, not two pieces. So the texts of the sources now on the line in
+  // this book that hold a "/", and those the reader has ruled, are kept here
+  // (rebuildSourceWords) and pass whole, a closing period still dropped. The
+  // set is made again on every switch, never grown: at rest it holds none,
+  // and a text with no "/" prints the same either way.
+  const SOURCE_WORDS = new Set();
+  const spanJoin = (t) => {
+    const s = String(t);
+    if (SOURCE_WORDS.has(s)) return s.trim().replace(/\.$/, "");
+    return s.split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/, "");
+  };
   // HEBREW DEFINED BY HEBREW (the owner, on the card of a two-word number:
   // "the issue is defining hebrew with hebrew"; the corpus lane's map of
-  // pointer readings, since 13 November 2026 its relay v175, folded by
-  // tools/bake-form-of-pills-v1.mjs into data/form-of-pills-v1.json). A pill
-  // of the route catalog whose whole text is a pointer to another entry in
-  // the source's own words ("singular construct state form of ...") is
-  // classed by the lane, and the lane names the entry the pointer points to
-  // from the pointer's own bytes: its points, its romanization, a gloss it
-  // quotes. Where the pointer cannot tell its entries apart the source's own
-  // first entry is taken (the owner's ruling 7 of 13 November). The
-  // resolution is that entry's first English in the source's own order,
-  // where the store serves a row with it. The page prints the English with
-  // the pointer beside it, on the pill and on the line, and never respells
-  // anything: the pill's own text rides on it. A pill the map does not
-  // resolve prints as itself, and so does a reading that has English of its
-  // own beside its pointer, whole (the owner's ruling 5): the map does not
-  // hold those. The map is fetched once, after the first paint, and the
+  // pointer readings, its relay v175 of 13 November 2026 with the lines its
+  // v191 of 14 November changes, laid together by tools/pointer-map-v1.mjs
+  // and folded by tools/bake-form-of-pills-v1.mjs into
+  // data/form-of-pills-v1.json). A pill of the route catalog whose whole
+  // text is a pointer to another entry in the source's own words ("singular
+  // construct state form of ...") is classed by the lane, and the lane names
+  // the entry the pointer points to from the pointer's own bytes: its points,
+  // its romanization, a gloss it quotes. Where the pointer cannot tell its
+  // entries apart the source's own first entry is taken (the owner's ruling
+  // 7 of 13 November). The resolution is that entry's first English in the
+  // source's own order: a row of the same source that the store serves with
+  // it, or, where the store serves none, the English the lane's map carries
+  // for the entry from the source's own file (a ruled print, by the owner's
+  // answer of 14 November to call 8). The record marks a ruled print and
+  // names no key for it; the page reads the text alone, and the pill stays
+  // the pointer's own row, credited to its own source. The page prints the
+  // English with the pointer beside it, on the pill and on the line, and
+  // never respells anything: the pill's own text rides on it. A pill the map
+  // does not resolve prints as itself, and so does a reading that has English
+  // of its own beside its pointer, whole (the owner's ruling 5): the map does
+  // not hold those. The map is fetched once, after the first paint, and the
   // lines it touches are painted again when it is here. JUDGMENT and
   // USAGE_NOTE pointers wait on the owner's branch and are not in the map.
   let FORM_OF = null, formOfWait = null;
@@ -3469,8 +3540,8 @@
   // its row's text as written; a ruled line and a baked lead hold the
   // reading as it prints. Until 13 November 2026 the two were set side by
   // side as written, so a pointer whose text holds a "/" resolved on its
-  // pill and stood bare on the line once that pill was pressed (58 of the
-  // 1,524 pointers the map resolves hold one).
+  // pill and stood bare on the line once that pill was pressed (77 of the
+  // 1,982 pointers the map resolves hold one).
   const formOfFor = (key, m, text) => {
     const l = FORM_OF && key ? FORM_OF.keys[key] : null;
     if (!l) return null;
@@ -3478,6 +3549,12 @@
     const mids = Array.isArray(m) ? m.map(String) : m ? [String(m)] : [];
     return l.find((e) => mids.includes(e.m) && spanJoin(e.t) === t) || l.find((e) => spanJoin(e.t) === t) || null;
   };
+  // A POINTER THAT PRINTS A NAME'S ENGLISH (names-gate-rule-v1, carried by
+  // tools/bake-form-of-pills-v1.mjs): the row a pointer resolves to is one
+  // its own source marks a name (resolved.name, the names gate's own mark on
+  // that row), so the pill prints a name, and it is withheld where the place
+  // is not a name, as that row itself is (the review of 14 November 2026)
+  const formOfIsAName = (key, row) => { const e = formOfFor(key, row[3], row[1]); return !!(e && e.resolved && e.resolved.name); };
   // the target as the source wrote it, cut out of the text at the lane's byte range
   const formOfTarget = (e) => {
     if (!e.at) return e.target;
@@ -3531,8 +3608,8 @@
   // it could be like 'toggle on word senses' and the actual R pill showing
   // something like 'word sense, not definition: pointed out'"; whether it
   // rests on or off, "leave that to elijah"). The corpus lane lists the rows
-  // (relay v185.1; data/word-senses/jastrow-v1.json, by key, rank and source
-  // id, tools/bake-word-senses-v1.mjs). While the switch is off, where it
+  // (relay v185.2; data/word-senses/jastrow-v2.json, by key, rank and source
+  // id, tools/bake-word-senses-v2.mjs). While the switch is off, where it
   // rests, such a row is held back from the card, and the card says how many
   // with a press that shows them; the switch also stands in the row of pills
   // («word senses»). On, it prints as SENSE_PRINTS and its route, a pill of
@@ -3558,6 +3635,316 @@
     try { localStorage.setItem(SENSES_KEY, id); } catch { /* the choice still stands on this page */ }
     reopenForSenses();
   };
+  // RULE: default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second
+  // THE DEFAULT SOURCES (the owner, 14 November 2026: "can we serve up each of
+  // the default toggles now so its not just STEP, thats just one option";
+  // "when they select it maybe it notes to them its partial and they need to
+  // select a secondary other source to fill it out and %s then"; "even if its
+  // 99.9% TAHOT you could still auto select a second source if it fills in
+  // the 0.1%"). Each source that names its own meaning at a word place is a
+  // pill of the row, saying only its name: STEP, where the page rests,
+  // MACULA, UBS and BDB, one on at a time. The corpus lane's ledger
+  // (default-picks v1 with its v1.1 and v1.2 mends) gives each source's picks at
+  // every place, 1, 2, 3 in its own order; tools/bake-default-picks-v1.mjs
+  // lays them on each book (data/default-picks/): an index of counts, fetched
+  // at boot, and a book file of picks, fetched the first time a card or a
+  // source other than STEP needs it. The source chosen prints its pick 1 on
+  // the line as it gives it; where it has none, a second source fills it out,
+  // for each book the one that fills the most of what the first leaves, or
+  // the reader's own choice; where neither has one, today's line stands. STEP
+  // is today's line (the owner's answer of 14 November: "Which default rests
+  // first: STEP's, today's line"), and where today's line has no words at all
+  // STEP's own pick 1 prints there, credited to STEP (the page lane's
+  // recommendation on the owner's question 2 of 14 November, which stands
+  // unless the owner rules otherwise; the index carries those words,
+  // step_words); its second fills only the places STEP leaves. A sign or a
+  // stop alone is no source's line. A ruling outranks a source, and a pair
+  // keeps today's line under every source.
+  // Kept on this device; ?default= and ?second= set them for one load.
+  const DFLT_KEY = "fh.defaults", DFLT_SECOND_KEY = "fh.defaults.second";
+  const DFLT_IDS = ["step", "macula", "ubs", "bdb"];
+  let dfltFirst = (() => {
+    const q = QUERY.get("default"); if (DFLT_IDS.includes(q)) return q;
+    try { const v = localStorage.getItem(DFLT_KEY); return DFLT_IDS.includes(v) ? v : "step"; } catch { return "step"; }
+  })();
+  // the reader's second for each first ({first: second}; a first it does not
+  // name takes the auto second): as kept on the device, and as it stands on
+  // this page, where ?second= speaks for the first in force, for this load
+  let dfltChosenKept = (() => {
+    try {
+      const v = JSON.parse(localStorage.getItem(DFLT_SECOND_KEY) || "{}");
+      return v && typeof v === "object" && !Array.isArray(v) ? Object.fromEntries(Object.entries(v).filter(([f, s]) => DFLT_IDS.includes(f) && DFLT_IDS.includes(s) && f !== s)) : {};
+    } catch { return {}; }
+  })();
+  let dfltChosen = (() => {
+    const q = QUERY.get("second"), out = { ...dfltChosenKept };
+    if (q === "auto") delete out[dfltFirst];
+    else if (DFLT_IDS.includes(q) && q !== dfltFirst) out[dfltFirst] = q;
+    return out;
+  })();
+  let DFLT_IX = null, DFLT_BOOK = null, DFLT_LEAVES = null, DFLT_STEP_WORDS = null, DEFAULT_PICKS = null, dfltWait = null, dfltFailed = false, dfltNote = false;
+  let reopenForDefaults = () => {};     // the switch answered on the page (set after the sections' relay, below)
+  let paintDefaultPills = () => {};     // the row's four pills and the note under them (set with the row's other pills, below)
+  let dfltRailRows = () => {};          // the rail's two rows of them drawn again where they stand (set with the rail's rows, below)
+  let dfltReadsHere = () => {};         // the reads switch set to «the source here» (set with that switch, below)
+  let dfltTodayBare = () => false;      // whether today's line draws no words at a word (set with lineUnder, below)
+  const SOURCE_WORDS_RULED = new Set(); // the "/"-bearing texts the reader ruled from a source's own pill (SOURCE_WORDS)
+  // a row made of a default source's own words where the page's line adds
+  // to them: those words, and the page's addition said apart (dfltOwn), for
+  // the export's record as received
+  const DFLT_OWN = new WeakMap();
+  // a row made of a default source's own words (poolFor), with the credit
+  // its line gives it (made: the source, the layer, the source it fills
+  // out; a pick after the first, its number). Chosen on the card it keeps
+  // that credit, its own M, and never the place's pieces' line
+  // (PIECE:TAHOT, PIECE:MACULA), which are not its own (the review of 14
+  // November 2026: STEP's pressed pill at Ruth 1:19:8 went to PIECE:TAHOT,
+  // «the oldest witness carrying this reading», where the word has no pieces)
+  const DFLT_MADE = new WeakMap();
+  // a source as the index names it: its pill and the M its words are credited to
+  const dfltSource = (id) => (DFLT_IX && Array.isArray(DFLT_IX.sources) ? DFLT_IX.sources.find((s) => s && s.id === id) : null) || null;
+  const dfltPill = (id) => { const s = dfltSource(id); return (s && s.pill) || String(id || "").toUpperCase(); };
+  // WHOSE THE ZONE'S PLACE PIECES ARE, by the lattice's piece witness on them
+  // (tahot or macula; the chip says PIECE:TAHOT or PIECE:MACULA): the one
+  // source they name, or null where they name more than one or none
+  const pieceSource = (pg) => { const s = new Set((pg || []).map((p) => p && p.s).filter(Boolean)); return s.size === 1 ? [...s][0] : null; };
+  // and as the card names it: TAHOT's pieces are STEP's reading at this place
+  const pieceSourcePill = (s) => (s === "tahot" ? dfltPill("step") : s === "macula" ? dfltPill("macula") : null);
+  // STEP's reading is its TAHOT translation (r), its variants and other numbers its dictionary's (v, a)
+  const dfltM = (id, kind = "r") => { const s = dfltSource(id); if (!s || !s.m) return null; return typeof s.m === "string" ? s.m : s.m[kind] || null; };
+  // a source is on while its M is not switched off on the rail; STEP's is its TAHOT reading
+  const dfltOn = (id) => { const m = dfltM(id); return !!m && !sourcesOff.has(m); };
+  // the first source the line reads from where it reads «the source here»
+  // (the reads switch): the reader's while it is on, else STEP while STEP is on
+  const dfltFirstHere = () => (dfltOn(dfltFirst) ? dfltFirst : dfltOn("step") ? "step" : null);
+  // the first source in force: that one, and none while the line reads another order
+  const dfltFirstNow = () => (defOrder === "place" ? dfltFirstHere() : null);
+  // THE LAYER THE LINE DRAWS: the first in force once its book file is here.
+  // A source other than STEP that waits for its file, or could not get it,
+  // draws STEP's layer meanwhile, the line as it rests (STEP's own words
+  // where today's line is bare among it: the review of 14 November 2026:
+  // those words went bare while such a source waited, and the note said
+  // every line stood as today's); none where STEP is switched off, as at rest
+  const dfltLayerNow = () => { const f = dfltFirstNow(); return f && f !== "step" && !DEFAULT_PICKS ? (dfltOn("step") ? "step" : null) : f; };
+  // the auto second: of the other sources on, the one that fills the most of
+  // what the first leaves in this book, ties in the row's order; none fills, none
+  const dfltAuto = (first) => {
+    const f = (DFLT_BOOK && DFLT_BOOK.fills && DFLT_BOOK.fills[first]) || {};
+    let best = null, most = 0;
+    for (const y of DFLT_IDS) if (y !== first && dfltOn(y) && Number(f[y]) > most) { best = y; most = Number(f[y]); }
+    return best;
+  };
+  // the second in force: the reader's own while it is on and is not the
+  // first (one that fills nothing stays chosen), else the auto second
+  const dfltSecondIsAuto = (first) => { const c = first ? dfltChosen[first] : null; return !(c && c !== first && dfltOn(c)); };
+  const dfltSecond = (first) => (!first ? null : dfltSecondIsAuto(first) ? dfltAuto(first) : dfltChosen[first]);
+  // a share as the row says it, each from its own count and never a remainder
+  const dfltPct = (c, n) => {
+    if (!n || !c) return "0%";
+    if (c >= n) return "100%";
+    if (c * 1000 < n) return "<0.1%";
+    if (c * 1000 >= 999 * n) return ">99.9%";
+    return `${(Math.floor((1000 * c) / n) / 10).toFixed(1)}%`;
+  };
+  // A SOURCE'S PICKS AT A PLACE, from the book file (data/default-picks/<book>.bin,
+  // its places by WORD_N): each with its number in the source's own order
+  // (UBS's from 1 in each piece), its words as the source gives them, byte
+  // for byte, or null where the pick has none, and what the card says after
+  // them. The line takes pick 1; STEP's pick 1 prints only where today's line has no words (step_words).
+  const DFLT_SLOT = { step: 0, macula: 1, ubs: 2, bdb: 3 };
+  const DFLT_KIND = ["r", "v", "a"];
+  // BDB's line: the record's highlighted words, and the sense's number after them where it files the verse under one
+  const dfltBdbText = (words, sense) => (sense !== "" ? `${words} · sense ${sense}` : String(words));
+  const dfltPicks = (src, n) => {
+    const at = DEFAULT_PICKS && n ? DEFAULT_PICKS.places[n - 1] : null;
+    const slot = at ? at[DFLT_SLOT[src]] : 0;
+    if (!slot) return [];
+    if (src === "macula") return typeof slot === "string" && slot ? [{ n: 1, text: slot, note: "" }] : [];
+    if (src === "step") return slot.map((p, i) => ({ n: i + 1, text: p[1] || null, kind: DFLT_KIND[p[0]] || "r", m: dfltM("step", DFLT_KIND[p[0]] || "r"),
+      note: p[0] === 1 ? `a meaning variant${p[2] ? `, ${p[2]}` : ""}` : p[0] === 2 ? "another number" : "" }));
+    if (src === "ubs") {
+      let piece = null, k = 0;
+      return (slot[1] || []).map(([pc, words]) => { if (pc !== piece) { piece = pc; k = 0; } k += 1; return { n: k, piece: pc, text: words || null, note: "" }; });
+    }
+    if (src === "bdb") return slot.map(([sense, w], i) => {
+      const words = w ? DEFAULT_PICKS.bdb_words[w - 1] || null : null;
+      return { n: i + 1, words, sense, text: words ? dfltBdbText(words, sense) : null, note: sense !== "" ? `sense ${sense}` : "the entry" };
+    });
+    return [];
+  };
+  // whether a source's words are a line pick, for every source alike: a
+  // letter or a digit, and not UBS's «NO DATA YET»; a sign or a stop alone
+  // (UBS's «-», MACULA's «?» and «`») is no line, and the card prints it as given
+  const dfltLinePick = (t) => typeof t === "string" && /[\p{L}\p{N}]/u.test(t) && t !== "NO DATA YET";
+  // the line a source prints at place n, as the bake laid it: MACULA's words,
+  // UBS's pick 1 glosses of its pieces that have one joined by " + ", BDB's
+  // record's highlighted words with the sense's number; null while the book
+  // file is not here, so today's line stands until it lands
+  const lineOf = (src, n) => {
+    const at = DEFAULT_PICKS && n ? DEFAULT_PICKS.places[n - 1] : null;
+    const slot = at ? at[DFLT_SLOT[src]] : 0;
+    if (!slot) return null;
+    if (src === "macula") return dfltLinePick(slot) ? slot : null;
+    if (src === "ubs") return dfltLinePick(slot[0]) ? slot[0] : null;
+    if (src === "bdb") { const p = dfltPicks("bdb", n)[0]; return p && dfltLinePick(p.words) ? p.text : null; }
+    return null;
+  };
+  // a place STEP leaves, as the index carries it ([n, MACULA's line, UBS's
+  // line, BDB's [sense, words]]): the second's line there, with no book file
+  const leafLine = (leaf, src) => {
+    if (!leaf) return null;
+    if (src === "macula") return dfltLinePick(leaf[1]) ? leaf[1] : null;
+    if (src === "ubs") return dfltLinePick(leaf[2]) ? leaf[2] : null;
+    if (src === "bdb") { const b = leaf[3]; return Array.isArray(b) && dfltLinePick(b[1]) ? dfltBdbText(b[1], b[0]) : null; }
+    return null;
+  };
+  // A LINE'S OWN WORDS AND WHAT THE PAGE ADDS TO THEM, where it adds anything
+  // (the review of 14 November 2026: the export credited « · sense 1» to the
+  // BDB as the BDB's own text): the source's words as it gives them, one
+  // text per piece it reads, and the page's addition said in the page's own
+  // words. BDB's line adds the sense's number to its highlighted words; UBS's
+  // joins the glosses of the word's pieces with « + ». Every other line is
+  // the source's words alone (null).
+  const dfltSenseOwn = (words, sense) => (words && sense !== "" ? { parts: [words], adds: `\u00ab \u00b7 sense ${sense}\u00bb after these words: the number of the sense the entry files this verse under` } : null);
+  const dfltOwn = (src, n, leaf = null) => {
+    if (src === "bdb") {
+      if (leaf) { const b = leaf[3]; return Array.isArray(b) && b[1] ? dfltSenseOwn(String(b[1]), b[0]) : null; }
+      const p = dfltPicks("bdb", n)[0];
+      return p ? dfltSenseOwn(p.words, p.sense) : null;
+    }
+    if (src === "ubs" && DEFAULT_PICKS) {
+      // pick 1 of each piece that has a line, as the bake joins them
+      const at = DEFAULT_PICKS.places[n - 1], slot = at ? at[DFLT_SLOT.ubs] : 0;
+      const parts = [];
+      let piece = null;
+      for (const [pc, w] of (slot && slot[1]) || []) { if (pc === piece) continue; piece = pc; if (dfltLinePick(w)) parts.push(w); }
+      return parts.length > 1 && parts.join(" + ") === lineOf("ubs", n) ? { parts, adds: `\u00ab + \u00bb between these, joining the readings of the word\u2019s ${parts.length} pieces` } : null;
+    }
+    return null;
+  };
+  // THE SOURCE WORDS, made again (SOURCE_WORDS, at spanJoin): every
+  // "/"-bearing text the sources in force can print in this book (the
+  // first's lines and picks, the second's where the first has none; under
+  // STEP only the places it leaves), and the texts the reader has ruled
+  const rebuildSourceWords = () => {
+    SOURCE_WORDS.clear();
+    for (const t of SOURCE_WORDS_RULED) SOURCE_WORDS.add(t);
+    const first = DFLT_BOOK ? dfltLayerNow() : null;
+    if (!first) return;
+    const second = dfltSecond(first);
+    const add = (t) => { if (typeof t === "string" && t.includes("/")) SOURCE_WORDS.add(t); };
+    if (first === "step") {
+      if (second && DFLT_LEAVES) for (const leaf of DFLT_LEAVES.values()) add(leafLine(leaf, second));
+      return;
+    }
+    if (!DEFAULT_PICKS) return;
+    for (let n = 1; n <= DEFAULT_PICKS.places.length; n += 1) {
+      if (!DEFAULT_PICKS.places[n - 1]) continue;
+      add(lineOf(first, n)); for (const p of dfltPicks(first, n)) add(p.text);
+      if (second && second !== "step" && !lineOf(first, n)) { add(lineOf(second, n)); for (const p of dfltPicks(second, n)) add(p.text); }
+    }
+  };
+  // what the page says of the sources, for the checks: the first chosen, the
+  // second in force and the auto one, the reader's seconds, whether the book
+  // file is here (or not needed), whether it failed, and the note as shown
+  const dfltSay = () => {
+    const first = dfltFirstNow() || dfltFirst;
+    const note = document.getElementById("default-note");
+    window.__default = { on: dfltFirst, second: DFLT_BOOK ? dfltSecond(first) : null, auto: DFLT_BOOK ? dfltAuto(first) : null, chosen: { ...dfltChosen },
+      ready: !DFLT_BOOK || !!DEFAULT_PICKS, failed: dfltFailed, book: DFLT_BOOK ? BOOK : null, note: note && !note.hidden ? (note.querySelector(".say") || note).textContent : null };
+  };
+  // the book's picks, fetched once (modeled on pieceBookReady and
+  // suggestedReady): refused unless it is this book's file with a place for
+  // every entry of the zone; a fetch that failed is not kept, and the next
+  // press or card asks again. ONE RULE DRAWS THE PAGE, never two (the review
+  // of 14 November 2026: a file that failed after a press left the lines
+  // built before it on the old source and the rest on today's): every line
+  // is always drawn from the sources as they stand, so a source still
+  // waiting for its file draws the line as it rests (dfltLayerNow). A fetch
+  // under way is not a failure, so the row says fetching until it answers;
+  // the file landing by any path (a press, a card, the boot) draws again
+  // what reads it: under a source other than STEP every line, the pills,
+  // the note and the card standing open; under STEP, or none lit, only the
+  // pills, the note and the card, since STEP's lines read the index alone
+  // (the review of 14 November 2026: the first card at rest repainted every
+  // built line of Psalms in one task of 22 seconds and moved none of them).
+  // One that fails says so on the row and in the note, the lines already as
+  // they rest.
+  const defaultPicksReady = () => {
+    if (DEFAULT_PICKS) return Promise.resolve(DEFAULT_PICKS);
+    if (!DFLT_BOOK) return Promise.resolve(null);
+    if (!dfltWait) {
+      dfltFailed = false;
+      dfltWait = fetch(`${ROOT}data/default-picks/${DFLT_BOOK.file}`)
+        .then((r) => { if (!r.ok) throw new Error(`default picks ${r.status}`); return unpack(r); })
+        .then((f) => {
+          if (!f || f.schema_version !== "DEFAULT_PICKS_BOOK_V1" || f.book !== BOOK || !Array.isArray(f.places) || f.places.length !== DFLT_BOOK.entries || !Array.isArray(f.bdb_words))
+            throw new Error("default picks: not this book's file");
+          return f;
+        })
+        .then((f) => { const first = dfltFirstNow(); DEFAULT_PICKS = f; dfltFailed = false; reopenForDefaults(!first || first === "step"); return f; },
+          (e) => { dfltWait = null; dfltFailed = true; dfltSay(); paintDefaultPills(); throw e; });
+    }
+    return dfltWait;
+  };
+  // the page answering a source set: a source other than STEP that needs
+  // this book's file asks for it, and the page is drawn now under the
+  // sources as they stand (drawn: the reads switch has just drawn it)
+  const dfltAnswer = (drawn = false) => {
+    const first = dfltFirstNow();
+    if (DFLT_BOOK && !DEFAULT_PICKS && first && first !== "step") defaultPicksReady().catch(() => { /* said on the row and in the note */ });
+    reopenForDefaults(drawn);
+  };
+  // the first source, kept on the device (the reset sets STEP through this,
+  // before it lays the page again once)
+  const keepDefault = (id) => {
+    dfltFirst = id;
+    try { localStorage.setItem(DFLT_KEY, id); } catch { /* the choice still stands on this page */ }
+  };
+  // the first source, set and answered
+  const setDefault = (id) => { if (DFLT_IDS.includes(id)) { keepDefault(id); dfltAnswer(); } };
+  // A SOURCE CHOSEN, on the row or the rail, the one switch on two faces: one
+  // not in force opens the note; under another order on the reads switch the
+  // line first reads «the source here», and that switch draws the page,
+  // once, under the source already set
+  const chooseDefault = (id) => {
+    if (!DFLT_IDS.includes(id)) return;
+    if (defOrder === "place") { if (id !== dfltFirstNow()) dfltNote = true; setDefault(id); return; }
+    keepDefault(id); dfltNote = true;
+    dfltReadsHere();
+    dfltAnswer(true);
+  };
+  // THE SECOND CHOSEN for the first in force (the first the row lights, which
+  // the note's chooser and the rail's row both show, the review of 14
+  // November 2026): the auto source pressed clears the reader's choice, any
+  // other is kept for that first; under another order the line first reads
+  // «the source here», as a pill pressed there does
+  const chooseDefaultSecond = (id) => {
+    const first = dfltFirstHere();
+    if (!first) return;
+    if (id === "auto" || id === dfltAuto(first)) { delete dfltChosen[first]; delete dfltChosenKept[first]; }
+    else if (DFLT_IDS.includes(id) && id !== first) { dfltChosen[first] = id; dfltChosenKept[first] = id; }
+    else return;
+    try {
+      if (Object.keys(dfltChosenKept).length) localStorage.setItem(DFLT_SECOND_KEY, JSON.stringify(dfltChosenKept));
+      else localStorage.removeItem(DFLT_SECOND_KEY);
+    } catch { /* the choice still stands on this page */ }
+    if (defOrder === "place") { dfltAnswer(); return; }
+    dfltReadsHere();
+    dfltAnswer(true);
+  };
+  // the rail's words for the two switches, as the row lights them
+  const sayDefault = () => { const f = dfltFirstNow(); return f ? dfltPill(f) : "none here"; };
+  const saySecond = () => {
+    const f = dfltFirstNow();
+    if (!f) return "none here";
+    if (!dfltSecondIsAuto(f)) return dfltPill(dfltChosen[f]);
+    const a = DFLT_BOOK ? dfltAuto(f) : null;
+    return a ? `chosen for this book: ${dfltPill(a)}` : "chosen for this book";
+  };
+  // the second's position as the rail lights it: the reader's own while it
+  // is in force, else the one chosen for the book; none under another order
+  const dfltSecondPos = () => { const f = dfltFirstNow(); return !f ? null : dfltSecondIsAuto(f) ? "auto" : dfltChosen[f]; };
   let HUD_TOGGLES_IX = null, HUD_TOGGLES = null, hudTogglesWait = null;
   let MARKS_REC = null;
   const HUD_LANES = { lay: null, relaySections: null };
@@ -3761,6 +4148,9 @@
         for (const id of ids) { if (on) sourcesOff.delete(id); else sourcesOff.add(id); }
         window.__sourcesOff = [...sourcesOff];
         try { localStorage.setItem(SOURCES_KEY, JSON.stringify([...sourcesOff])); } catch { /* the choice still stands on this page */ }
+        // a default source switched off gives no line, its pill goes dark and
+        // the auto second is found again among the sources still on
+        rebuildSourceWords(); paintDefaultPills(); dfltRailRows(); dfltSay();
         repaintGlossOrder();
         reopenCard();
       },
@@ -3784,10 +4174,23 @@
     { id: "senses", voice: "claim", lab: "word senses", why: "Jastrow's notes in square brackets on a word's sense, which the dictionary beside the store serves as readings of their own: held back, or shown on the card as «word sense, not definition: …», never as a definition",
       positions: [{ id: "off", lab: "held back" }, { id: "on", lab: "shown" }],
       live: () => !!WORD_SENSES,
-      waits: "the corpus lane's list of Jastrow's word senses (tools/bake-word-senses-v1.mjs)",
+      waits: "the corpus lane's list of Jastrow's word senses (tools/bake-word-senses-v2.mjs)",
       get: () => sensesPref,
       set: (id) => chooseSenses(id),
       now: () => (sensesPref === "on" ? "shown" : "held back") },
+    // THE DEFAULT SOURCES — see the note above DFLT_KEY. The same two switches
+    // as the row's four pills and the note's chooser under them, lit as the
+    // row lights them (the first in force, none under another order); on the
+    // second's row the first source's own position is drawn dead.
+    { id: "defaults", voice: "them", lab: "default source", why: "which source the line under each word reads: MACULA’s own reading, the UBS dictionary’s or the unabridged BDB’s, each as the source gives it, or STEP: the line as it rests, which is the place’s own reading (TAHOT’s, or MACULA’s where the place’s pieces are MACULA’s), STEP’s own words only where today’s line was bare, and elsewhere today’s line, whose chip names its own source; where the source chosen has none a second source fills it out, and where neither has one the line stands as it is",
+      positions: [{ id: "step", lab: "STEP" }, { id: "macula", lab: "MACULA" }, { id: "ubs", lab: "UBS" }, { id: "bdb", lab: "BDB" }],
+      live: () => !!DFLT_BOOK, waits: "the corpus lane’s default picks laid on this book (tools/bake-default-picks-v1.mjs)",
+      get: () => dfltFirstNow(), set: (id) => chooseDefault(id), now: () => sayDefault() },
+    { id: "second", voice: "them", lab: "second source", why: "the source that fills the words the default source leaves: for each book the one that fills the most, or your own choice",
+      positions: [{ id: "auto", lab: "chosen for this book" }, { id: "step", lab: "STEP" }, { id: "macula", lab: "MACULA" }, { id: "ubs", lab: "UBS" }, { id: "bdb", lab: "BDB" }],
+      live: () => !!DFLT_BOOK, waits: "the corpus lane’s default picks laid on this book (tools/bake-default-picks-v1.mjs)",
+      get: () => dfltSecondPos(), set: (id) => chooseDefaultSecond(id), now: () => saySecond(),
+      deadAt: () => dfltFirstHere() },
     { id: "suggested", voice: "them", lab: "source suggested", why: "how a running English Bible puts the whole word into its sentence at this place: the Berean Standard Bible's own cell, byte for byte, on the card under the readings — never on the line. On for now, on every card, while the readings are checked",
       positions: [{ id: "off", lab: "off" }, { id: "bsb", lab: "the BSB" }],
       forced: "the BSB, for now",
@@ -3904,7 +4307,7 @@
   const namesMarked = () => !!(zone && zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice && zone.emitted_from.toggles.lattice.names);
   const isNamePlace = (word) => !namesMarked() || !!(word && word.np);
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, WORD_SENSES, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, WORD_SENSES, DFLT_IX, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -3948,7 +4351,11 @@
       fetch(`${ROOT}data/masoretic-marks-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       // the rows of Jastrow's that are a word sense (word-senses-rule-v1); without
       // it no row is marked and every row prints as it did
-      fetch(`${ROOT}data/word-senses/jastrow-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      fetch(`${ROOT}data/word-senses/jastrow-v2.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // which books carry the default sources' picks, with their counts and
+      // the places STEP leaves (default-picks-rule-v1); without it the row's
+      // four pills stay hidden and every line is today's
+      fetch(`${ROOT}data/default-picks/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
     // an overlay's sources join the index's under their own ids, which the store
@@ -4164,6 +4571,17 @@
     // entry, marks included, in section order (as the lane and
     // tools/apply-span-ledger-v1.mjs number them)
     { let n = 0; for (const sec of zone.sections || []) for (const w of sec.words || []) WORD_N.set(w, ++n); }
+    // the default sources on this book (default-picks-rule-v1): its counts
+    // and the places STEP leaves ride in the index, so the line at rest needs
+    // no book file; a source other than STEP kept from an earlier visit waits
+    // for the book's file here, so the first paint is already its line (as
+    // the run cards are waited for, above)
+    DFLT_BOOK = DFLT_IX && DFLT_IX.schema_version === "DEFAULT_PICKS_INDEX_V1" && DFLT_IX.books && DFLT_IX.books[BOOK] || null;
+    DFLT_LEAVES = new Map((DFLT_BOOK && Array.isArray(DFLT_BOOK.step_leaves) ? DFLT_BOOK.step_leaves : []).map((r) => [r[0], r]));
+    // and STEP's own pick 1 words at the places they may fill ([n, words]: no
+    // pair, the zone's place pieces do not answer, a line pick of its reading)
+    DFLT_STEP_WORDS = new Map((DFLT_BOOK && Array.isArray(DFLT_BOOK.step_words) ? DFLT_BOOK.step_words : []).map((r) => [r[0], r[1]]));
+    if (DFLT_BOOK && dfltFirst !== "step") await defaultPicksReady().catch(() => {});
     if (!(SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK])) SUGGESTED_IX = null;
     // the book's file (744 KB on Genesis) is fetched by the first card that
     // opens, not here: the line never reads it (the rebuild, 2026-10-23)
@@ -4204,6 +4622,9 @@
         latticeReady().then((s) => { if (s) repaintGlossOrder(); });
       if (editionMark === "diff") document.body.classList.add("ed-mark");
     }
+    // the source words for the order now known (the default sources stand
+    // only under «the source here»)
+    rebuildSourceWords(); dfltSay();
   } catch (e) {
     // a refusal is not an absence: a bin that failed its seal says so in the
     // refusal's own words, and a page with no book keeps the honest silence
@@ -4804,6 +5225,10 @@
   let activeEl = null;
   // a half of a pair the reader moved the open card to (reopenCard, below)
   let openNav = null;
+  // the open card's word and the default source's line it was drawn on
+  // (defaultAt), so a switch that moves the line's order can tell whether
+  // the card's made pills and labels still stand (chooseDefOrder)
+  let hudLayer = null;
   // EVERY OPEN OF THE CARD IS A GENERATION. The card's own closures — the
   // readings band, its retry a moment later, the fold discovery — await the
   // network, and a card the reader closed or replaced meanwhile is dead: a
@@ -4939,6 +5364,9 @@
     // a place's own reading chosen (TAHOT's set, or the place's own row
     // where no store row prints it) stands on the place's pieces' line
     if (r && p.place) r.line = pieceLineOfM(p.mId) || r.line;
+    // a default source's own row chosen keeps its own credit, its M and the
+    // words its line said of it (DFLT_MADE)
+    if (r && p.dflt) Object.assign(r, p.dflt);
     return r;
   };
   // TAHOT'S SET, CHOSEN WHOLE on its own division, is the ruling while that
@@ -5330,11 +5758,78 @@
     const s = id && index && index.m_sources ? index.m_sources[id] : null;
     return s ? { line: id, posture: s.licensePosture, m: s.label, y: s.sourceYear, wy } : null;
   };
+  // THE DEFAULT SOURCE'S LAYER (default-picks-rule-v1; see DFLT_KEY): the line
+  // a word reads from the source chosen on the row. It stands where the
+  // place's own reading stands (placeLine, below) and yields where that
+  // yields; it is declared here, ahead of the export, the runs and the card
+  // that ask it, rather than beside placeLine.
+  // WHERE THE PLACE YIELDS: a switch the reader set that moves the line past
+  // the source here: the headword, a license class, the letters only, or a
+  // name that yields its line to the entry's first reading
+  const placeYields = (word) => {
+    if (defOrder !== "place") return true;
+    if (lookup === "headword" || licencePref !== "any" || masorah === "letters") return true;
+    return !!(nonamesPref === "yield" && word && word.k && zone && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
+      && zone.gloss_orders && zone.gloss_orders.noname && Object.prototype.hasOwnProperty.call(zone.gloss_orders.noname, word.k));
+  };
+  // a source's words on the line, credited to that source: the chip names
+  // its M, and whether it fills out another source, and whether the page
+  // chose that for the book
+  // (own: the source's own words where the page adds to them, dfltOwn)
+  const made = (src, text, layer, of = null, own = null) => {
+    const M = dfltM(src), r = readingOfId(M);
+    if (!text || !r) return null;
+    return { text, rs: [{ ...r, reads: "default", src, layer, of, auto: layer === "second" && dfltSecondIsAuto(of) }], why: "default", src, layer, of, mId: M, own };
+  };
+  const defaultAt = (word) => {
+    if (!DFLT_BOOK || !word || word.kq || placeYields(word)) return null;
+    // the layer drawn: the first in force, or STEP's while another waits for its book file (dfltLayerNow)
+    const n = WORD_N.get(word), first = dfltLayerNow();
+    if (!n || !first) return null;
+    // the place rides on the answer, for the card's picks there
+    const at = (d) => (d ? Object.assign(d, { n }) : null);
+    // the line under STEP, first or second: today's line, or STEP's own pick
+    // 1 words where today's line has none (drawn as a reading's packing, a
+    // "/" a joint, so never among the source words)
+    const stepOwn = (layer, of = null) => (DFLT_STEP_WORDS.has(n) && dfltTodayBare(word) ? at(made("step", DFLT_STEP_WORDS.get(n), layer, of)) : null);
+    if (first === "step") {
+      // the places STEP leaves (it has no pick there) are filled by its second
+      const leaf = DFLT_LEAVES.get(n);
+      const second = leaf ? dfltSecond(first) : null;
+      return (second ? at(made(second, leafLine(leaf, second), "second", first, dfltOwn(second, n, leaf))) : null) || stepOwn("first");
+    }
+    const t1 = lineOf(first, n);
+    if (t1) return at(made(first, t1, "first", null, dfltOwn(first, n)));
+    const second = dfltSecond(first);
+    if (!second) return null;
+    if (second === "step") return stepOwn("second", first);
+    const t2 = lineOf(second, n);
+    return t2 ? at(made(second, t2, "second", first, dfltOwn(second, n))) : null;
+  };
+  // a joined run takes the source's line only where the first source itself
+  // reads every word of it (the brief's call 5); elsewhere the run's own line
+  // stands, and STEP, today's line, never takes one
+  const runTakesDefault = (run) => !!(run && run.__words && run.__words.length && dfltLayerNow() !== "step"
+    && run.__words.every((w) => { const d = defaultAt(w); return !!d && d.layer === "first"; }));
+  // what a line's chip says of a source's own reading
+  // (a pick after the first, made on the card and chosen there, by its number)
+  const dfltSays = (r) => (r.layer === "pick" ? `${dfltPill(r.src)}’s own reading at this place (${dfltPill(r.src)} ${r.n})`
+    : r.layer === "second"
+      ? `${dfltPill(r.src)}’s own reading at this place, filling out ${dfltPill(r.of)}${r.auto ? ` — chosen for ${zone.work}` : ""}`
+      : r.src === "step" ? `${dfltPill(r.src)}’s own reading at this place, where today’s line has no words`
+        : `${dfltPill(r.src)}’s own reading at this place, chosen on the row of sources`);
+  // the credit a made row of a default source's words keeps (DFLT_MADE): its line's, or a later pick's number
+  const dfltCredit = (place, n = 1) => {
+    const r = place && place.rs && place.rs[0];
+    if (!r || r.reads !== "default") return null;
+    return n > 1 ? { reads: "default", src: r.src, layer: "pick", n } : { reads: "default", src: r.src, layer: r.layer, of: r.of, auto: r.auto };
+  };
   // a record of the store (or an overlay's) by its m_id; the place's own
-  // row (PLACE_ROWS: no store row prints the place's reading) by its pieces'
+  // row (PLACE_ROWS: no store row prints the place's reading) by its pieces',
+  // and a default source's own row made at the place (DFLT_MADE) by its own
   const readingOfRow = (rec) => {
     const s = (index && index.m_sources && index.m_sources[rec[3]]) || {};
-    return { line: (PLACE_ROWS.has(rec) && pieceLineOfM(rec[3])) || rec[3], posture: s.licensePosture, m: s.label || rec[3], y: s.sourceYear || "", wy: rec[4] };
+    return { line: (PLACE_ROWS.has(rec) && !DFLT_MADE.has(rec) && pieceLineOfM(rec[3])) || rec[3], posture: s.licensePosture, m: s.label || rec[3], y: s.sourceYear || "", wy: rec[4] };
   };
   const licenseChipFor = (rs) => {
     if (!rs || !rs.length || rs.some((r) => !r)) return null;
@@ -5358,7 +5853,9 @@
       // reading" (Amos 1:3: said of the place's source for «Yahweh», beside
       // a card crediting a lexicon of 1906; 15 of 80 words spread over that
       // book). The card's own place line already says it this way.
-      const says = uniq[0].reads === "place" ? "the source that reads this word so at this place" : "the oldest witness carrying this reading";
+      // and a default source's own reading is said as the row chose it
+      const says = uniq[0].reads === "place" ? "the source that reads this word so at this place"
+        : uniq[0].reads === "default" ? dfltSays(uniq[0]) : "the oldest witness carrying this reading";
       chip.title = `${uniq[0].m}${wordingTag(uniq[0])}${yearTag(uniq[0].y, uniq[0].ya || "edition")} — ${says}; every other witness is on the word’s own card`;
     } else {
       chip.textContent = `${uniq.length} licenses`;
@@ -5571,7 +6068,9 @@
     // own headwords, its reading text, its definition text, byte for byte
     // (a space our own build put where a tag stood is not the source's, and
     // is closed here as it is on the card: made-spaces-rule-v1)
-    const received = { mId, headwords: Array.isArray(lead[6]) ? lead[6].map(String) : [], route: routePrinted(lead), definition: lead[2] ? recordPrinted(lead) : "" };
+    // (own: a default source's own words where the page's line adds to them,
+    // the addition said apart as the page's, never inside the source's text)
+    const received = { mId, headwords: Array.isArray(lead[6]) ? lead[6].map(String) : [], route: routePrinted(lead), definition: lead[2] ? recordPrinted(lead) : "", own: DFLT_OWN.get(lead) || null };
     return post.ok
       ? { ok: true, text: ownText, piece, received, label: m.label, posture: m.licensePosture,
           // two years, said apart (TWO YEARS, above): year is the edition's, for
@@ -5649,9 +6148,16 @@
       })() : "";
       const rec = { he: carrierWithStroke(w), joinNext: !!(w.presentation_join && w.presentation_join.join_next_without_separator), en: null, held: null, source: null, at: w.mark ? null : `${sec.label || ""}:${wordN}` };
       if (w.k && shown && shown !== "—") {
-        const at = placeLine(w);
-        const drawn = at && placeShown(at);
-        const asked = drawn && drawn.full && signsOffLine(spanJoin(drawn.text)) === shown ? spanJoin(at.text) : shown;
+        // the default source's line, or the place's own reading (a source's
+        // words are printed whole, so the signs switch does not reach them)
+        const at = defaultAt(w) || placeLine(w);
+        const drawn = at && (at.why === "default" ? at : placeShown(at));
+        // the reading whole where the line drew part of it: the place's sign
+        // pieces left undrawn (placeShown), or a default source's words with
+        // a sign piece drawn as the hidden sign's gap, as wordBlock draws
+        // them (the review of 14 November 2026: STEP's «<on>/ thousands/ his»
+        // drawn «thousands + his» at I Samuel 18:7:7 was cited from no record)
+        const asked = drawn && (drawn.full ? signsOffLine(spanJoin(drawn.text)) === shown : at.why === "default" && signsOffLine(spanJoin(at.text)) === shown) ? spanJoin(at.text) : shown;
         // The file cites the reading under the key the line was read from.
         // Under "look up by: the headword" that is the headword's key, but a
         // reading ruled under the form, or a lattice order's leader, still
@@ -5666,7 +6172,10 @@
         // outranks a switch. An unruled line is cited from the reading's
         // oldest carrier, the record its card shows.
         const ruled = keys.some((k) => ruledLine(k, zone.gloss) !== null);
-        const named = ruled ? lineNamed(wb.querySelector(".g")) : null;
+        // and an unruled line a default source prints is cited from that
+        // source's own record, the one its chip names, not the oldest
+        // carrier of the same words (the review of 14 November 2026)
+        const named = ruled ? lineNamed(wb.querySelector(".g")) : at && at.why === "default" && spanJoin(at.text) === asked ? { mId: at.mId } : null;
         const tries = keys.map((k) => [k, false]).concat(named && sourcesOff.size ? keys.map((k) => [k, true]) : []);
         let a = null, missed = null;
         // AN UNRULED LINE IS ASKED FIRST OF THE POOL ITS WORD'S OWN CARD STANDS
@@ -5679,7 +6188,7 @@
         // found until now it still finds; a ruled line goes straight there,
         // as a ruling outranks the pointing as it outranks a switch.
         if (!ruled && w.s) for (const k of keys) {
-          const r = await attributionFor(k, asked, at, null, false, { s: w.s, k: w.k, v: sec.label ?? null, tg: w.tg ?? null, name: isNamePlace(w) });
+          const r = await attributionFor(k, asked, at, named, false, { s: w.s, k: w.k, v: sec.label ?? null, tg: w.tg ?? null, name: isNamePlace(w) });
           if (!r.miss) { a = r; break; }
         }
         if (!a) for (const [k, every] of tries) {
@@ -5855,8 +6364,11 @@
         const r = src.received;
         const head = [];
         if (r.headwords.length) head.push(`headword: ${r.headwords.join(" | ")}`);
-        head.push(`reading: ${r.route}`);
+        // a line the page made of a source's own words: those words as the
+        // source gives them, each piece's apart, and then what the page added
+        for (const x of r.own && r.own.parts.length > 1 ? r.own.parts : [r.route]) head.push(`reading: ${x}`);
         if (r.definition && r.definition !== r.route) head.push(`definition: ${r.definition}`);
+        if (r.own && r.own.adds) head.push(`the page adds, in its own words: ${r.own.adds}`);
         L.push(`${i + 1}. ${head[0]}`);
         head.slice(1).forEach((h) => L.push(`    ${h}`));
         // the word this record was cited for, in this site's own words (the
@@ -7156,7 +7668,8 @@
     const stored = await routesFor(surface);
     let extra = [];
     if (!opts.storeOnly) for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface, opts.piecePlace || null).catch(() => []));
-    if (!stored && !extra.length) return null;
+    // a default source's own reading stands as its own row where no row prints it (below)
+    if (!stored && !extra.length && !(opts.place && opts.place.why === "default")) return null;
     const all = stored || [];
     // every record asked for this word, the overlays' with the store's, before
     // any switch withholds one: the "of N" the card's withheld counts stand on
@@ -7200,10 +7713,14 @@
     // name never enters the pool, and the card says how many. A row the
     // entry already withheld is counted there and not again. Where no place
     // is known, and in a book whose places were not read for names, nothing
-    // is asked. The overlays' rows carry no such mark.
+    // is asked. The overlays' rows carry no such mark. A pointer whose pill
+    // prints the English of a row its source marks a name is withheld with
+    // it (formOfIsAName): the map is asked for first, so the gate does not
+    // depend on whether it had landed (the review of 14 November 2026)
     let withheldByName = 0;
     if (pointingNow(W.pointed) === "only" && W.name === false) {
-      const kept = routes.filter((row) => !nameWithheld(factsOf(row), false));
+      if (!FORM_OF) await formOfReady();
+      const kept = routes.filter((row) => !nameWithheld(factsOf(row), false) && !formOfIsAName(surface, row));
       withheldByName = routes.length - kept.length;
       routes = kept;
     }
@@ -7454,28 +7971,67 @@
     // place, byte for byte, the piece gloss's), and either way it answers first
     let placeG = null;
     if (opts.place && opts.place.text && opts.place.mId && index.m_sources[opts.place.mId] && !sourcesOff.has(opts.place.mId)) {
+      // a row made for the reading at this place, credited as the line is:
+      // TAHOT's pieces, or a default source's own words (its record holds
+      // those words alone; what the page's line adds to them is said apart),
+      // which keeps the source's own credit when chosen (DFLT_MADE; n: the
+      // number of a pick after the first)
+      const madeRow = (text, own = null, n = 1) => {
+        const t = own && own.parts.length === 1 ? own.parts[0] : text;
+        const row = [0, t, t, opts.place.mId, null, null, null];
+        PLACE_ROWS.add(row); if (own) DFLT_OWN.set(row, own);
+        const credit = opts.place.why === "default" ? dfltCredit(opts.place, n) : null;
+        if (credit) DFLT_MADE.set(row, credit);
+        return row;
+      };
       const d = drawn(opts.place.text);
       placeG = [...groups.values()].find((g) => drawn(g.text) === d) || null;
       // a group the piece store alone reads is not a row of the store printing
       // it: TAHOT's own row still stands, first in that group, the piece
       // store's rows its witnesses (piece-store-serve-v1)
       if (placeG && placeG.records.length && placeG.records.every((row) => OVERLAY_ROWS.get(row) === "piece-store")) {
-        const row = [0, opts.place.text, opts.place.text, opts.place.mId, null, null, null];
-        PLACE_ROWS.add(row); placeG.records.unshift(row); placeG.ov = undefined; placeG.place = true;
+        placeG.records.unshift(madeRow(opts.place.text, opts.place.own)); placeG.ov = undefined; placeG.place = true;
       }
       // one reading, one pill, case folded: the pill that is the place's
       // prints it as the line prints it (TAHOT's "Yahweh", not another
       // row's "yahweh")
       if (placeG) placeG.text = opts.place.text;
       if (!placeG) {
-        const row = [0, opts.place.text, opts.place.text, opts.place.mId, null, null, null];
-        PLACE_ROWS.add(row);
-        placeG = { text: opts.place.text, year: Infinity, ledger: 0, records: [row], place: true };
+        placeG = { text: opts.place.text, year: Infinity, ledger: 0, records: [madeRow(opts.place.text, opts.place.own)], place: true };
         groups.set(`\u0001${d}`, placeG);
       }
       // marked on the reading itself, so every re-sort of this pool (the row
       // is redrawn from a fresh copy) still puts it first
       placeG.placeFirst = true;
+      // A DEFAULT SOURCE'S OWN READING (default-picks-rule-v1) is credited to
+      // that source, as the line's chip credits it: its own record first in
+      // the reading, or its own row made where none of its records prints it.
+      // Under a source other than STEP its picks 2..n follow in its own order,
+      // each found among the readings or made the same way. Made rows stand
+      // above the pointing's, the entry's and the names' gates, as TAHOT's does.
+      if (opts.place.why === "default") {
+        const credit = (g, text, own = null, n = 1) => {
+          const at = g.records.findIndex((row) => row[3] === opts.place.mId);
+          if (at > 0) g.records.unshift(g.records.splice(at, 1)[0]);
+          else if (at < 0) { g.records.unshift(madeRow(text, own, n)); g.ov = undefined; }
+        };
+        credit(placeG, opts.place.text, opts.place.own);
+        placeG.dfltRank = 1;
+        // picks 2..n (UBS's numbered in each piece), never a pick with no
+        // words; the pills say whose they are only under a layer other than
+        // STEP's, so the card at rest, and while a source waits for its book
+        // file, keeps its pills as they were
+        const notStep = dfltLayerNow() !== "step";
+        if (notStep) { placeG.dfltN = 1; placeG.dfltPill = dfltPill(opts.place.src); }
+        const more = notStep ? dfltPicks(opts.place.src, opts.place.n).filter((p) => p.n >= 2 && p.text) : [];
+        more.forEach((p, i) => {
+          const d2 = drawn(p.text);
+          let g = [...groups.values()].find((x) => drawn(x.text) === d2) || null;
+          if (!g) { g = { text: p.text, year: Infinity, ledger: 0, records: [], place: true }; groups.set(`\u0002${d2}`, g); }
+          credit(g, p.text, opts.place.src === "bdb" ? dfltSenseOwn(p.words, p.sense) : null, p.n);
+          if (!g.dfltRank) { g.dfltRank = i + 2; g.dfltN = p.n; g.dfltPill = dfltPill(opts.place.src); }
+        });
+      }
     }
     // a reading of the piece's own kind stands on its rows of that kind: their
     // oldest year and best rank, not a silent row's that carries the same
@@ -7635,7 +8191,11 @@
     const nameLead = (a, b) => (!nameLed || nameYields() ? 0 : (isName(a) ? 0 : 1) - (isName(b) ? 0 : 1));
     // AT THIS PLACE, the place's own reading first (marked by poolFor on the
     // reading the word standing open reads here); the rest keep their order
-    const placeLead = (a, b) => (defOrder !== "place" ? 0 : (a.placeFirst ? 0 : 1) - (b.placeFirst ? 0 : 1));
+    // and a default source's picks after it, in that source's own order; both
+    // only under «the source here», and under another order the card ranks
+    // as that order does (the review of 14 November 2026)
+    const placeRank = (g) => (defOrder !== "place" ? Infinity : g.dfltRank || (g.placeFirst ? 1 : Infinity));
+    const placeLead = (a, b) => { const ra = placeRank(a), rb = placeRank(b); return ra === rb ? 0 : ra < rb ? -1 : 1; };
     // the source signs, after plain readings where the reader asked so (an
     // order, never a filter: every reading stays on the card as printed)
     const signLast = (a, b) => (signsPref !== "below" ? 0 : (hasSourceSign(a.text) ? 1 : 0) - (hasSourceSign(b.text) ? 1 : 0));
@@ -7738,6 +8298,8 @@
     // and the line reads the words meanwhile; the words' division opens the
     // words' cards
     if (m && m.cut) return !m.cut.includes("+");
+    // a run the default source reads word by word opens the pressed word's card
+    if (runTakesDefault(run)) return false;
     if (!run.__table && spanRowsOn(run.__key).length) return true;
     if (run.__table == null && run.__words.every((w) => placeLine(w))) return false;
     const table = run.__table || zone.gloss || {};
@@ -7938,7 +8500,7 @@
     const cardPills = () => [...hud.querySelectorAll(":scope > .rows .b-read .r-pills button")];
     const cardPressed = () => cardPills().find((x) => x.getAttribute("aria-pressed") === "true") || null;
     const cardBands = () => [...hud.querySelectorAll(":scope > .rows > .band:not(.b-read)")].map((b) => [...b.querySelectorAll(".s-pills button")]).filter((bs) => bs.length);
-    const cardNotes = () => [...hud.querySelectorAll(":scope > .rows .b-read > p:not(.r-label):not(.r-piece)")];
+    const cardNotes = () => [...hud.querySelectorAll(":scope > .rows .b-read > p:not(.r-label):not(.r-piece):not(.r-dflt)")];
     const cardPending = () => !!hud.querySelector(":scope > .rows .b-read > p.r-wait");
     const cardUnreached = () => !!hud.querySelector(":scope > .rows .b-read > p.r-unreachable");
     // the n-th pill of these words, as the card stands now
@@ -8777,7 +9339,9 @@
     // and never on a piece pressed in another division. The whole form keeps
     // only readings of the form as one word, and a card whose line reads the
     // set opens on the set's division, each block on its own gloss.
-    const placeSet = bin === zone && !opts.run && word && Array.isArray(word.pg) && word.pg.length > 1 && region
+    // (under a default source other than STEP the line is that source's whole
+    // reading, and the card opens on the whole form, as the line reads it)
+    const placeSet = !defaultAt(word) && bin === zone && !opts.run && word && Array.isArray(word.pg) && word.pg.length > 1 && region
       && word.pg.map((x) => (x && x.k) || "").join("") === region.k ? placeLine(word) : null;
     const setCut = placeSet && placeSet.mId && index.m_sources[placeSet.mId]
       ? covers.find((c) => c.length === word.pg.length && c.every((x, i) => x.surface === word.pg[i].k)) || null : null;
@@ -8846,13 +9410,14 @@
         const ws = opts.run.words;
         const cell = ws ? cover.find((c) => c.surface === surface && c.from === c.to) : null;
         const w = cell ? ws[cell.from] : null;
-        return w && w.k === surface ? placeLine(w) : null;
+        return w && w.k === surface ? defaultAt(w) || placeLine(w) : null;
       }
       if (!word) return null;
       // the set stands whole on its division, never on the whole form and
       // never piece by piece
       if (setCut) return null;
-      return surface === region.k ? placeLine(word) : null;
+      // the default source chosen on the row reads the word whole, as its line does
+      return surface === region.k ? defaultAt(word) || placeLine(word) : null;
     };
     // THE CELL'S OWN PLACE, for the piece store: the word under the cell (its
     // number in the verse as written), the cell's letters [a, b] in it, and
@@ -9081,8 +9646,47 @@
     // the reader presses a reading, the label says that reading's reach,
     // every place the form stands (markRuled). The name does not lead where
     // the place does, so its sentence is not said there.
-    const atPlace = !opts.run && bin === zone && !!word && !!placeLine(word);
-    if (atPlace) nowK.textContent = "reading \u00b7 TAHOT at this place";
+    // Under a default source the label names it: the source chosen, or the
+    // second filling out the first where the first has none, or TAHOT's own
+    // reading where neither has one and the place reads it
+    const dAt = !opts.run && bin === zone && word ? defaultAt(word) : null;
+    hudLayer = !opts.run && bin === zone && word ? { word, d: dAt ? dAt.text : null } : null;
+    const placeHere = !opts.run && bin === zone && !!word && !!placeLine(word);
+    const atPlace = !!dAt || placeHere;
+    // WHOSE THE PLACE'S PIECES ARE, worked out once for the card (pieceSource:
+    // the one source their chip names, PIECE:TAHOT or PIECE:MACULA), and said
+    // by the label, the tight card's tag and the place's own line below:
+    // MACULA's pieces on 47 plain words and 9 pairs were said to be TAHOT's
+    // while the chip beside said MACULA (the integration of 14 November 2026),
+    // and the three each worked it out apart (the review of that night)
+    const piecesWho = !opts.run && bin === zone && word ? pieceSource(word.pg) : null;
+    const placeWho = piecesWho === "macula" ? dfltPill("macula") : "TAHOT";
+    // a form the reader has ruled reads the ruling: the label says its reach
+    // from the card's opening, as markRuled says it at the press, and names
+    // no source (it said «TAHOT at this place» over a ruled «vindicate» at
+    // Ruth 1:1:3, on live too; found by this part's probe, 15 November 2026)
+    const ruledHere = !opts.run && bin === zone && !!word && ruledLine(memKey, zone.gloss, word) !== null;
+    if (ruledHere) { /* the label as made: the reach of the ruling */ }
+    else if (dAt && dAt.layer === "first") {
+      const p0 = dAt.src === "bdb" ? dfltPicks("bdb", WORD_N.get(word))[0] : null;
+      nowK.textContent = `reading \u00b7 ${dfltPill(dAt.src)} at this place${p0 ? ` \u00b7 ${p0.note}` : ""}`;
+    } else if (dAt) nowK.textContent = `reading \u00b7 ${dfltPill(dAt.src)} at this place \u00b7 ${dfltPill(dAt.of)} has none here`;
+    // (that the first has none here is said only once its file is here: before, the page cannot know it)
+    else if (atPlace && DFLT_BOOK && DEFAULT_PICKS && !word.kq && dfltFirstNow() && dfltFirstNow() !== "step") nowK.textContent = `reading \u00b7 ${placeWho} at this place \u00b7 ${dfltPill(dfltFirstNow())} has none here`;
+    else if (atPlace) nowK.textContent = `reading \u00b7 ${placeWho} at this place`;
+    // WHOSE READING THE LINE IS, ON A TIGHT CARD (the review of 14 November
+    // 2026): the label above folds away there (#hud.tight .r-now .k), and
+    // under a source other than STEP nothing else on the card said whose the
+    // reading is. A small tag after the reading, never inside it, names it:
+    // the source whose own reading the line is, the source of the place's
+    // pieces where the place reads it, or today's line where neither source
+    // has one. Its title is the label's own words; a ruling takes it off.
+    {
+      const first = dfltFirstNow();
+      const who = !opts.run && bin === zone && word && !word.kq && DFLT_BOOK && first && first !== "step" && !ruledHere
+        ? (dAt ? dfltPill(dAt.src) : placeHere ? placeWho : "today\u2019s line") : null;
+      if (who) { nowV.after(Object.assign(document.createElement("span"), { className: "r-src-tag", textContent: who, title: nowK.textContent })); now.classList.add("tagged"); }
+    }
     if (!atPlace && bin === zone && zone.gloss_names && zone.gloss && cover.some((c) => Object.prototype.hasOwnProperty.call(zone.gloss_names, c.surface) && zone.gloss[c.surface] === zone.gloss_names[c.surface])) {
       const nn = document.createElement("span"); nn.className = "n";
       nn.textContent = "a name: the witness reading this place and the entry it belongs to name it alike, so the name leads; the derivation the entry gives first stands among the readings below";
@@ -9115,7 +9719,15 @@
     // not holding that list in their head. It marks a ruling, not a visit:
     // opening a word and closing it again changes nothing and leaves no mark.
     let ruled = false;
-    const markRuled = () => { ruled = true; noteRuled(memKey); if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands"; };
+    const markRuled = () => {
+      ruled = true; noteRuled(memKey); if (wbEl && wbEl.classList && !wordsOwn) wbEl.classList.add("chosen"); nowK.textContent = "reading \u00b7 at every place this form stands";
+      // the line is the reader's now, no source's (the tag on a tight card)
+      const tag = now.querySelector(".r-src-tag"); if (tag) { tag.remove(); now.classList.remove("tagged"); }
+      // and no source's line on the card is «on the line» any more, said at
+      // once and not at the card's next opening (the review of 14 November
+      // 2026, Ruth 1:1:3: «vindicate» pressed, STEP's line still said it)
+      if (now.parentElement) now.parentElement.querySelectorAll(".rows .r-on").forEach((x) => x.remove());
+    };
     // A READING PRESSED ON A RUN'S WHOLE RUNG RULES THE RUNG (the owner,
     // 2026-10-22, of a joined card: "same error i cant change the selected
     // gloss"). The rung the card merely opened on is no ruling, but a reading
@@ -9251,6 +9863,8 @@
       for (const s of stands) {
         const line = s.glossParts ? (s.glossParts[s.partIndex] = mine, s.glossParts.join(" + ")) : mine;
         paintRuling(s.glossEl, line, s.glossParts || !ruledM ? null : ruledM.cloneNode(true));
+        // a ruled line is the reader's, no default source's
+        delete s.glossEl.dataset.src; delete s.glossEl.dataset.layer;
         // a ruling on one half of a pair moves the provenance mark with it:
         // the English now reads from the ruled branch, everywhere it stands —
         // and the English wears the matching mark, the other end of the claim
@@ -9547,6 +10161,42 @@
     // position in the division, and only when the division this reader has
     // open is the one the source drew: same number of pieces, same keys, in
     // the same order. Anything else and nothing is claimed.
+    // THE DEFAULT SOURCES AT THIS WORD (default-picks-rule-v1), for the lines
+    // under the readings: the word's place, which default source's words the
+    // line prints, or whether it prints the place's own pieces (neither where
+    // the reader ruled it), and the source that one fills out. A pair, a run's
+    // cell and another work's word have none.
+    const dfltHereNow = () => {
+      const n = DFLT_BOOK && bin === zone && word && !word.kq && !opts.run ? WORD_N.get(word) : null;
+      if (!n) return null;
+      if (ruledLine(memKey, zone.gloss, word) !== null) return { n, on: null, piece: false, filling: null };
+      const d = defaultAt(word), first = dfltFirstNow();
+      if (d) return { n, on: d.src, piece: false, filling: d.layer === "second" ? d.of : null };
+      // that the place's reading fills out the first is said only once the
+      // first's file is here, as the label says it: before, the page cannot
+      // know the first has none here (the review of 14 November 2026: «on the
+      // line, filling out UBS» at Ruth 1:1:3, where UBS reads «to judge»)
+      return { n, on: null, piece: placeHere, filling: DEFAULT_PICKS && first && first !== "step" ? first : null };
+    };
+    // " · on the line", or " · on the line, filling out STEP"
+    const dfltOnLine = (of) => Object.assign(document.createElement("span"), { className: "r-on", textContent: ` \u00b7 on the line${of ? `, filling out ${dfltPill(of)}` : ""}` });
+    // a source's other picks, after its reading: " · 2 «pleasant» (another
+    // number)", each credited, in its title, to the record it prints through;
+    // a pick with no words says so before its note, never a bare note (the
+    // review of 14 November 2026 read BDB's «1 (sense 2)» as its reading)
+    const dfltMore = (picks) => {
+      if (!picks.length) return null;
+      const span = document.createElement("span"); span.className = "r-more";
+      for (const x of picks) {
+        const one = document.createElement("span");
+        const words = x.words !== undefined ? x.words : x.text;
+        one.textContent = ` \u00b7 ${x.n}${words ? ` «${words}»` : " (no words given)"}${x.note ? ` (${x.note})` : ""}`;
+        const m = x.m && index && index.m_sources ? index.m_sources[x.m] : null;
+        if (m) { one.title = m.label; one.dataset.line = x.m; }
+        span.append(one);
+      }
+      return span;
+    };
     const pieceGloss = (cells, idx) => {
       const pg = word && Array.isArray(word.pg) ? word.pg : null;
       if (!pg || !pg.length) return null;
@@ -9625,6 +10275,10 @@
       }
       const pool = unreachable ? null : cache.get(poolKey(surface));
       readRow.replaceChildren(label);
+      const dfltHere = dfltHereNow();
+      // the default source whose reading the place's line said (its pieces':
+      // STEP's where TAHOT's, MACULA's where MACULA's), not said again below
+      let pieceSaid = null;
       // It leads and it is labelled. The store's readings for this key all
       // still stand below, in their own order: this is priority, never a
       // filter, and a reader can see both the source's word for this place
@@ -9653,15 +10307,69 @@
         const whoM = who && who.m && index && index.m_sources ? index.m_sources[who.m] : null;
         if (hit && !(who && who.m && sourcesOff.has(who.m)) && !(signsPref === "off" && signOnly(hit.g) && word.pg.some((p) => p && !signOnly(p.g || "")))) {
           const line = document.createElement("p"); line.className = "r-piece";
-          const lab2 = document.createElement("i"); lab2.textContent = "here the source reads ";
+          // WHOSE PIECES THEY ARE, as their chip says (the review of 14
+          // November 2026): STEP's where they are TAHOT's, MACULA's where the
+          // lattice drew MACULA's (PIECE:MACULA), as the label says (piecesWho)
+          const lab2 = document.createElement("i"); lab2.textContent = `here ${pieceSourcePill(piecesWho) || "the source"} reads `;
           const val = document.createElement("b"); val.textContent = hit.g;
           line.append(lab2, val);
+          // ONE LINE A SOURCE (the review of 14 November 2026: MACULA said twice
+          // at II Samuel 16:23:8, here and on its own line below). The source
+          // the pieces are is said here once: «on the line» where the pieces
+          // print there or its own words do (MACULA's words at its pieces'
+          // places are the pieces' own, joined otherwise), then its own picks
+          // after the first; its own line below is not said again
+          if (dfltHere) {
+            pieceSaid = piecesWho === "tahot" ? "step" : piecesWho === "macula" ? "macula" : null;
+            if (dfltHere.piece || (pieceSaid && dfltHere.on === pieceSaid)) line.append(dfltOnLine(dfltHere.filling));
+            if (pieceSaid) {
+              const more = dfltMore(dfltPicks(pieceSaid, dfltHere.n).filter((x) => x.n >= 2));
+              if (more) line.append(more);
+            }
+          }
           if (whoM) {
             const chip = licenseChipFor([readingOfPiece(hit.s)]);
             if (chip) { chip.title = `${whoM.label || who.label} — the source that reads this word so at this place${hasYear(whoM.sourceYear) ? ` · edition ${whoM.sourceYear}` : ""}`; line.append(" ", chip); }
           }
           readRow.append(line);
         }
+      }
+      // THE SOURCES AT THIS PLACE (default-picks-rule-v1): what each default
+      // source on the row reads at this word, its own picks in its own order,
+      // the words as it gives them (UBS's «-» and «NO DATA YET» too, which the
+      // line never takes). Text, never a switch: the row of pills stays the
+      // one place a source is chosen. The source whose words the line prints
+      // says so. The book's file arrives with the first card, asked once, and
+      // this card opened again when it is here, as the BSB's does.
+      // (its landing draws again what reads it, this card with it: reopenForDefaults)
+      if (dfltHere && !DEFAULT_PICKS && !dfltWait) defaultPicksReady().catch(() => { /* said on the row and in the note */ });
+      // every source but the one the place's line said (pieceSaid): STEP's
+      // own picks stand here wherever the place's line did not say them (no
+      // pieces, or pieces of another source's), as text, and «on the line»
+      // where its pick 1 is the line (today's line had no words there)
+      if (dfltHere && DEFAULT_PICKS) for (const src of DFLT_IDS) {
+        if (src === pieceSaid || !dfltOn(src)) continue;
+        const picks = dfltPicks(src, dfltHere.n);
+        if (!picks.length) continue;
+        const line = document.createElement("p"); line.className = "r-dflt"; line.dataset.src = src;
+        const lab2 = document.createElement("i"); lab2.textContent = `here ${dfltPill(src)} reads `;
+        const val = document.createElement("b");
+        // the line's words: STEP's pick 1, MACULA's, UBS's pick 1 of each
+        // piece that has one, BDB's record's highlighted words with the
+        // sense's number beside them
+        // (a sign alone is no line: it stands among the other picks, as given)
+        const said = src === "ubs" ? lineOf("ubs", dfltHere.n) : dfltLinePick(src === "bdb" ? picks[0].words : picks[0].text) ? (src === "bdb" ? picks[0].words : picks[0].text) : null;
+        const onLine = (x) => x.n === 1 && !!said && (src !== "ubs" || dfltLinePick(x.text));
+        if (said) val.textContent = said;
+        line.append(lab2, val);
+        if (said && src === "bdb") line.append(Object.assign(document.createElement("span"), { className: "n", textContent: ` \u00b7 ${picks[0].note}` }));
+        if (dfltHere.on === src) line.append(dfltOnLine(dfltHere.filling));
+        const more = dfltMore(picks.filter((x) => !onLine(x)));
+        if (more) line.append(more);
+        // the chip names the record the words are credited to: STEP's pick 1 by its kind (TAHOT, or its dictionary's)
+        const own = readingOfId(src === "step" ? picks[0].m : dfltM(src)), chip = own ? licenseChipFor([own]) : null;
+        if (chip) { chip.title = `${own.m} \u2014 ${dfltPill(src)}’s own pick at this place`; line.append(" ", chip); }
+        readRow.append(line);
       }
       // SOURCE SUGGESTED, on the card (source-suggested-rule-v1): the BSB's
       // rendering of the whole word at this place, its cell byte for byte in
@@ -10028,8 +10736,8 @@
         // its brackets here, as the owner asked ("in the D+M card we would
         // leave it bracketed"), and the owner's legend says what they mean,
         // "brackets mean sense, not definition", under a record where the
-        // record of word senses says it holds: one bracket, its words a word
-        // sense on the corpus lane's list (the owner, 14 November 2026: "i
+        // record of word senses says it holds: a row the corpus lane lists, card
+        // by card, as one it holds on (the owner, 14 November 2026: "i
         // dont really see your legend that signifies its a sense, should it
         // say that in purple somewhere"). It is the page speaking about the
         // source's sign, so it is the page's purple. It is asked of the row
@@ -10131,8 +10839,10 @@
             // remembered as a pill press is (choose): a place's own row stands
             // on its pieces' line, and TAHOT's set on the division it was
             // chosen on
+            if (SOURCE_WORDS.has(String(group.text))) SOURCE_WORDS_RULED.add(String(group.text));   // a source's own words, ruled, print whole
             selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
-              place: PLACE_ROWS.has(row), cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}),
+              place: PLACE_ROWS.has(row) && !DFLT_MADE.has(row), ...(DFLT_MADE.has(row) ? { dflt: DFLT_MADE.get(row) } : {}),
+              cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}),
               ...(group.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}) });
             if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
             [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String((x.dataset.pointer || x.textContent) === group.text || x.textContent === spanJoin(group.text))));
@@ -10225,9 +10935,13 @@
       const choose = (route) => {
         // a word sense chosen is remembered as one, so the switch turned off
         // can hold it back from the line too (forgetSensePicks)
+        // a source's own words, ruled, print whole after the source is switched away (SOURCE_WORDS)
+        if (SOURCE_WORDS.has(String(route.text))) SOURCE_WORDS_RULED.add(String(route.text));
         selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
           ...(route.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}),
-          place: PLACE_ROWS.has(route.records[0]), cut: surface === SET_KEY ? cutKey(cover) : null, ...(route.kqRead ? { read: route.kqRead } : {}) });
+          // a place's own row stands on its pieces' line; a default source's own row made there keeps its own credit
+          place: PLACE_ROWS.has(route.records[0]) && !DFLT_MADE.has(route.records[0]), ...(DFLT_MADE.has(route.records[0]) ? { dflt: DFLT_MADE.get(route.records[0]) } : {}),
+          cut: surface === SET_KEY ? cutKey(cover) : null, ...(route.kqRead ? { read: route.kqRead } : {}) });
         // any other reading chosen: the set stands whole no longer
         if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
         rungRuled(); markRuled();
@@ -10262,6 +10976,8 @@
         const leadRow = route.records[0];
         const titleYear = Number.isFinite(route.year) ? route.year : (OVERLAY_ROWS.get(leadRow) === "span-store" && /^\d{3,4}$/u.test(String(leadRow[4])) ? Number(leadRow[4]) : null);
         btn.title = [titleYear !== null ? yearSaid(leadRow[3], titleYear) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
+        // a default source's own pick says whose it is and its number at this place
+        if (route.dfltPill) btn.title = `${route.dfltPill} ${route.dfltN} at this place \u00b7 pressing it rules this reading wherever this form stands`;
         btn.setAttribute("aria-pressed", String(route === selected));
         btn.addEventListener("click", () => {
           pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
@@ -10876,7 +11592,9 @@
     // one blob over all its words; several rows, the first by the store's
     // order (NAME rows first), a row whose source the reader switched off
     // giving way to the next
-    if (heldRun === null && run.__key && !run.__table && SPAN_BY_KEY.has(run.__key)) {
+    // A run the default source reads word by word (runTakesDefault) reads
+    // its words' own lines, below, not a span's or a whole form's
+    if (heldRun === null && run.__key && !run.__table && SPAN_BY_KEY.has(run.__key) && !runTakesDefault(run)) {
       const rows = spanRowsOn(run.__key);
       if (rows.length) {
         const l = lineEl();
@@ -10890,7 +11608,7 @@
         return;
       }
     }
-    if (heldRun === null && run.__key && run.__words && !(run.__table == null && run.__words.every((w) => placeLine(w)))) {
+    if (heldRun === null && run.__key && run.__words && !(run.__table == null && run.__words.every((w) => placeLine(w))) && !runTakesDefault(run)) {
       const table = run.__table || zone.gloss || {};
       const gmT = run.__table ? null : zone.gloss_m;
       const form = runWholeForms(run.__words.map((w) => w.k)).slice(0, 1).find((f) => {
@@ -11016,6 +11734,19 @@
     return { nodes, text: nodes.map((x) => x.n.data).join("") };
   };
   const unionOf = (rs) => rs.reduce((u, r) => (u ? { L: Math.min(u.L, r.left), R: Math.max(u.R, r.right), T: Math.min(u.T, r.top), B: Math.max(u.B, r.bottom) } : { L: r.left, R: r.right, T: r.top, B: r.bottom }), null);
+  // ONE RANGE MEASURES TEXT, made once and set again for each measure
+  // (inkBox, enWhole, maqafsIn, hugParts). A range made for each measure
+  // stays attached to the page until a full collection, and every node
+  // taken out of the page, or out of a copy of a line, walks every range
+  // attached. The reset of II Samuel, every section built, spent 14 to 55
+  // of its 42 to 93 seconds in removals, here and on live, and took 12 to
+  // 14 seconds in all with the one range (timed and profiled, 15 November
+  // 2026); 3,000 license chips taken out of copies of lines took 8 ms with
+  // no such range alive and 6.9 seconds after 20,000 measures. What a
+  // measure reads (its rects) is a copy, and no measure is read after the
+  // next one sets the range.
+  const INK_RANGE = document.createRange();
+  const inkRange = (a, ao, b, bo) => { INK_RANGE.setStart(a, ao); INK_RANGE.setEnd(b, bo); return INK_RANGE; };
   // THE INK IN THREE BANDS, as the face paints it: above the letters (the
   // accents and points over them, a lamed's flag, a maqaf), the letters,
   // and below them (the vowels, a final letter's tail). A stretch is painted
@@ -11194,7 +11925,7 @@
       if (last && last.font === font && last.host === host && last.e === s) { last.e = e; last.to = t; } else stretches.push({ font, host, s, e, from: t, to: t });
     }
     for (const { font, s, e, from, to } of stretches) {
-      const rg = document.createRange(); rg.setStart(from.n, s - from.at); rg.setEnd(to.n, e - to.at);
+      const rg = inkRange(from.n, s - from.at, to.n, e - to.at);
       const adv = unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
       if (!adv) continue;
       const str = map.text.slice(s, e);
@@ -11334,7 +12065,7 @@
     const tn = [...el.childNodes].find((n) => n.nodeType === 3 && n.data.trim());
     if (!tn) return null;
     let a = 0, b = tn.data.length; while (a < b && /\s/u.test(tn.data[a])) a += 1; while (b > a && /\s/u.test(tn.data[b - 1])) b -= 1;
-    const rg = document.createRange(); rg.setStart(tn, a); rg.setEnd(tn, b);
+    const rg = inkRange(tn, a, tn, b);
     const box = unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
     if (box) return box;
     // A GAP IS STILL A PIECE (the owner, 2026-10-23, of the object marker's
@@ -11356,7 +12087,7 @@
     const out = [];
     for (const t of map.nodes) for (let i = 0; i < t.len; i += 1) {
       if (t.n.data[i] !== "\u05be") continue;
-      const rg = document.createRange(); rg.setStart(t.n, i); rg.setEnd(t.n, i + 1);
+      const rg = inkRange(t.n, i, t.n, i + 1);
       const r = rg.getBoundingClientRect(); if (r.width > 0) out.push({ L: r.left, R: r.right });
     }
     return out;
@@ -11397,7 +12128,7 @@
     const out = [], lines = [];
     // the blob's dress; a screenshot probe may set a trial one on window.__tie
     // (a fill, an outline, walls, the corners' radius), the live page never does
-    const T = window.__tie || { fill: "var(--press-wash)", stroke: "var(--silver)", strokeW: 1, strokeOp: 1, round: 8 };
+    const T = window.__tie || { fill: "var(--press-wash)", stroke: "var(--silver-dim)", strokeW: 1, strokeOp: 1, round: 8 };
     const g = T.grow || 0;
     const boxes = [];
     const f = (n) => Math.round(n * 10) / 10;
@@ -11829,7 +12560,7 @@
       cell.style.width = "";
       const tn = [...cell.childNodes].find((n) => n.nodeType === 3 && n.data.trim());
       if (!tn) continue;
-      const rg = document.createRange(); rg.selectNodeContents(tn);
+      const rg = inkRange(tn, 0, tn, tn.data.length);
       const rows = new Map();   // a line of the part, by its top: where it starts and ends
       for (const r of rg.getClientRects()) {
         if (!(r.width > 0)) continue;
@@ -12317,15 +13048,14 @@
     const pc = ((((zone || {}).emitted_from || {}).toggles || {}).lattice || {}).pieces;
     return pc && pc.witnesses && pc.witnesses.english_tahot ? pc.witnesses.english_tahot : null;
   };
+  // The place yields (placeYields, beside the default layer): under another
+  // order, the headword, a license class, the letters only, and NO NAMES: a
+  // word whose line is its name reads the entry's first reading instead,
+  // under the place order too (TAHOT names it here, which is what let the
+  // name lead); the place yields for that word alone, and the table, laid
+  // over with the noname column (applyGlossOrder), answers
   const placeLine = (word) => {
-    if (defOrder !== "place" || !word || !Array.isArray(word.pg) || !word.pg.length) return null;
-    if (lookup === "headword" || licencePref !== "any" || masorah === "letters") return null;
-    // NO NAMES: a word whose line is its name reads the entry's first reading
-    // instead, under the place order too (TAHOT names it here, which is what
-    // let the name lead); the place yields for that word alone, and the
-    // table, laid over with the noname column (applyGlossOrder), answers
-    if (nonamesPref === "yield" && word.k && zone && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
-      && zone.gloss_orders && zone.gloss_orders.noname && Object.prototype.hasOwnProperty.call(zone.gloss_orders.noname, word.k)) return null;
+    if (!word || placeYields(word) || !Array.isArray(word.pg) || !word.pg.length) return null;
     const who = tahotWitness();
     if (who && sourcesOff.has(who.m)) return null;
     const parts = word.pg.map((p) => String((p && p.g) || "").trim());
@@ -12343,10 +13073,15 @@
     if (rs.some((r) => r && r.mId && sourcesOff.has(r.mId))) return null;
     return { text: parts.join("/"), rs: rs.every(Boolean) ? rs : [], why: "place", mId: rs[0] ? rs[0].mId : null };
   };
-  const lineUnder = (word, table) => {
+  // (beneath: the line as it stands without the default sources' layer, for
+  // whether today's line has words at all, dfltTodayBare)
+  const lineUnder = (word, table, beneath = false) => {
     if (!word || table !== zone.gloss) return null;
     if (lookup === "headword" && word.hg && word.h && table[word.h])
       return { text: word.hg, rs: word.hm ? [{ posture: word.hm.lic, m: word.hm.m, y: word.hm.y, ya: "wording" }] : [], why: "headword" };
+    // the default source chosen on the row (defaultAt), where it reads this
+    // place; above the pointing's filter, as the place's own reading stands
+    if (!beneath) { const d = defaultAt(word); if (d) return d; }
     { const at = placeLine(word); if (at) return placeShown(at); }
     // THE POINTING'S OWN LEADER, AND ITS OWN ALTERNATE. Under "only this
     // pointing" the card withholds the rows whose source points the word
@@ -12443,6 +13178,14 @@
       if (first) return { text: first[0], rs: [{ posture: first[2], m: first[1], y: first[3], ya: "wording" }], why: pos.id };
     }
     return null;
+  };
+  // TODAY'S LINE HAS NO WORDS at this word: the line beneath the default
+  // sources' layer, else the baked column, drawn as the painter draws a word
+  // of one form (wordBlock), is empty or only the hidden sign's gap
+  dfltTodayBare = (word) => {
+    const ov = lineUnder(word, zone.gloss, true);
+    const t = ov ? ov.text : word.k ? zone.gloss[lookupKey(word, word.k, zone.gloss)] : null;
+    return !(t && signsOffLine(spanJoin(t)).replace(/\u200b/gu, "").trim());
   };
   // THE PARTS OF A WORD NOBODY DEFINES.
   //
@@ -12797,6 +13540,8 @@
       : (parts.filter((p) => p !== "—").length ? parts.join(" + ") : ""));
     if (word.kq && kqShown >= 0 && line) kqShownAll.forEach((ix) => { if (regionEls[ix]) regionEls[ix].classList.add("backs-en"); });
     const ge = document.createElement("span"); ge.className = "g";
+    // a default source's own line says whose it is and whether it fills out another
+    if (lineMoved && lineMoved.why === "default") { ge.dataset.src = lineMoved.src; ge.dataset.layer = lineMoved.layer; }
     if (word.kq && kqShown >= 0 && line) ge.classList.add("backs-en");
     if (line) { ge.textContent = line; ge.title = line; }
     else { ge.textContent = " "; ge.classList.add("bare"); }
@@ -13250,8 +13995,9 @@
     }
     // HEBREW DEFINED BY HEBREW: a lead that is a pointer to another entry in
     // the source's own words prints the target's English with the pointer
-    // beside it, once the map is here; its M stands (the resolution is a row
-    // of the same source under the target key). A key the map first touches
+    // beside it, once the map is here; its M stands (the resolution is the
+    // same source's English: a row it serves, or the English its own file
+    // gives the entry, a ruled print). A key the map first touches
     // joins the base, so every later fit restores it before laying anything
     if (FORM_OF) for (const k in zone.gloss) {
       const m = zone.gloss_m ? zone.gloss_m[k] : undefined;
@@ -13299,6 +14045,7 @@
         const chip = ruledChip(st.word.k, zone.gloss, st.word);
         const run0 = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
         if (run0) runs.add(run0);
+        delete st.ge.dataset.src; delete st.ge.dataset.layer;   // a ruling is no source's default
         if (held && lineStands(st.ge, held, chip)) continue;
         st.ge.replaceChildren(); delete st.ge.dataset.off; delete st.ge.dataset.live;
         st.ge.textContent = held; st.ge.title = held; st.ge.classList.remove("bare");
@@ -13317,6 +14064,9 @@
         : null;
       const run = st.ge.parentElement && st.ge.parentElement.closest && st.ge.parentElement.closest(".wjoin");
       if (run) runs.add(run);
+      // whose default the line is, set before the test below, which reads neither
+      if (moved && moved.why === "default") { st.ge.dataset.src = moved.src; st.ge.dataset.layer = moved.layer; }
+      else { delete st.ge.dataset.src; delete st.ge.dataset.layer; }
       if (lineStands(st.ge, line, chip)) continue;
       st.ge.replaceChildren();
       delete st.ge.dataset.off; delete st.ge.dataset.live;   // a repaint from the table is a fresh answer
@@ -13535,6 +14285,10 @@
     {
         defOrder = pos.id;
         try { localStorage.setItem(DEF_KEY, pos.id); } catch { /* the choice still stands on this page */ }
+        // the default sources stand only under «the source here»: their pills
+        // and their rows on the rail go dark under any other order and light
+        // again under it
+        rebuildSourceWords(); paintDefaultPills(); dfltRailRows();
         const gateWas = masorah;
         for (const x of (document.getElementById("defRow") || { children: [] }).children) {
           const on = x.textContent === pos.lab;
@@ -13548,14 +14302,20 @@
         applyGlossOrder(defOrder);
         if (settleDefaultPointing() || masorah !== gateWas) { gateMoved(); railSay(); return; }
         repaintGlossOrder();
-        // and the word standing open re-answers without closing
-        if (redrawReadings) redrawReadings();
+        // and the word standing open re-answers without closing; one the
+        // default source answered, or answers now, is built again under the
+        // order, as the card opened there is (its made pills, labels and
+        // the source's own words are the source's, not this order's)
+        if (activeEl && hudLayer && ((defaultAt(hudLayer.word) || {}).text || null) !== hudLayer.d) reopenCard();
+        else if (redrawReadings) redrawReadings();
         railSay();
         // a lattice order fetches its sidecar the first time it is chosen,
         // then the line and the card move again with what it says
         if (pos.needs === "lattice" && !latticeStore) latticeReady().then((s) => { if (!s || defOrder !== pos.id) return; repaintGlossOrder(); if (redrawReadings) redrawReadings(); });
     }
   };
+  // a source pressed under another order sets «the source here» first (chooseDefault)
+  dfltReadsHere = () => chooseDefOrder("place");
   // the rail's one-line summary: the word each toggle is standing at
   const railSay = () => {
     const now = document.getElementById("railNow");
@@ -13601,12 +14361,16 @@
   const segRow = (t, positions, current, onPick) => {
     const seg = document.createElement("span"); seg.className = "def-order"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
     const alive = t.live();
+    // a position a toggle draws dead where it stands (the second source's row:
+    // the first source cannot fill itself out)
+    const deadAt = alive && t.deadAt ? t.deadAt() : null;
     for (const pos of positions) {
       const btn = document.createElement("button"); btn.type = "button";
       btn.className = "dfp" + (alive ? "" : " waiting") + (alive && pos.id === current ? " on" : "");
       btn.textContent = pos.lab;
       btn.setAttribute("aria-pressed", String(alive && pos.id === current));
       if (!alive) { btn.disabled = true; btn.setAttribute("aria-disabled", "true"); btn.title = t.waits || ""; }
+      else if (pos.id === deadAt) { btn.disabled = true; btn.classList.add("waiting"); btn.setAttribute("aria-disabled", "true"); btn.title = "the default source itself"; }
       else btn.addEventListener("click", () => {
         onPick(pos.id);
         // the position in force is the toggle's to say, not the press's: a
@@ -13620,6 +14384,16 @@
       seg.append(btn);
     }
     return seg;
+  };
+  // the rail's two rows of the default sources drawn again where they stand,
+  // for the switches that move them from outside (the reads order, the
+  // sources), so the row and the rail light one state
+  dfltRailRows = () => {
+    for (const t of TOGGLES.filter((x) => x.id === "defaults" || x.id === "second")) {
+      const row = document.querySelector(`#railRows .row[data-toggle="${t.id}"]`);
+      const host = row && row.children[1];
+      if (host) host.replaceChildren(segRow(t, t.positions || [], t.get(), (id) => t.set(id)));
+    }
   };
   const pairSwitch = () => {
     const host = document.getElementById("pairRow");
@@ -14298,6 +15072,211 @@
   };
   sensesPill.addEventListener("click", (e) => { e.stopPropagation(); chooseSenses(sensesPref === "on" ? "off" : "on"); });
   paintSensesPill();
+  // THE DEFAULT SOURCES' PILLS AND NOTE (see the note above DFLT_KEY). The
+  // lit pill is the first source in force; under it, its share of the book
+  // and the second that fills it out, which the Menu copies. The note says
+  // both shares, each from its own count, and holds the chooser of the
+  // second. Every number is read from the index's counts, every name from
+  // the index and the zone; none is typed.
+  const dfltGroup = document.getElementById("default-pick"), dfltNoteEl = document.getElementById("default-note");
+  // SAY ONLY WHAT IS TRUE OF THE LINE AS DRAWN (the lead's rule of 14
+  // November 2026; the review's critic: the title said «STEP’s own reading
+  // at each word» over Psalms 10:5:2 «archer», a Strong's line). STEP's
+  // layer is the line as it rests: TAHOT's reading at the place, STEP's own
+  // words where today's line was bare, and elsewhere today's line, whose
+  // chip names its own source. The line is never said to be STEP's where
+  // its chip names another source. STEP's share is the index's has.step,
+  // the places where STEP has its own reading (its pick 1, or the place's
+  // pieces) and this line stands, and is said as exactly that: at a pair,
+  // or a place call 4 writes with « | », whose line rests bare, STEP's
+  // reading is not drawn, and the share leaves the place out (the
+  // integration of 15 November 2026: «STEP has its own reading at >99.9% of
+  // Psalms» said less than all, where STEP has its own reading at every
+  // word and the line rests bare at six).
+  // Said of this book: where the place's own pieces are MACULA's (PIECE:
+  // MACULA, at 56 words of 21 books) the place's reading is MACULA's, not
+  // TAHOT's, so the words say so where the book has any; STEP's words stand
+  // only where today's line was bare, and not at every such word (a few
+  // are held back), so the words say «only where».
+  const DFLT_AS_IT_RESTS = "the line as it rests";
+  let dfltMaculaPlaces = null;
+  const dfltStepLayer = () => {
+    if (dfltMaculaPlaces === null) {
+      dfltMaculaPlaces = 0;
+      for (const sec of zone.sections || []) for (const w of sec.words || []) if (pieceSource(w.pg) === "macula") dfltMaculaPlaces += 1;
+    }
+    const at = dfltMaculaPlaces ? `the place’s own reading (TAHOT’s, and MACULA’s at ${dfltMaculaPlaces.toLocaleString("en-US")} word${dfltMaculaPlaces === 1 ? "" : "s"})` : "TAHOT’s reading at the place";
+    return `${DFLT_AS_IT_RESTS}: ${at}, STEP’s own words only where today’s line was bare, and elsewhere today’s line, whose chip names its own source`;
+  };
+  const DFLT_TITLES = {
+    macula: "MACULA’s own words at each word, as MACULA gives them",
+    ubs: "the UBS dictionary’s meaning filed at each word, its glosses as it gives them",
+    bdb: "the unabridged BDB’s sense filed at each word: the entry’s highlighted words, with the sense’s number",
+  };
+  // the source's short name on the shelf, for a pill whose source is off
+  const dfltShort = (id) => {
+    const m = dfltM(id), s = m && index && index.m_sources ? index.m_sources[m] : null;
+    return (s && SHORT_REC && SHORT_REC.names && SHORT_REC.names[s.key]) || (s && s.label) || dfltPill(id);
+  };
+  // the line's order on the reads switch, in its own words
+  const dfltOrderSaid = () => { const t = TOGGLES.find((x) => x.id === "reads"); return (t && t.now()) || defOrder; };
+  // a share with its exact count in its title
+  const dfltShare = (c, n, title) => Object.assign(document.createElement("span"), { textContent: dfltPct(c, n), title: title || `${Number(c || 0).toLocaleString("en-US")} of ${Number(n || 0).toLocaleString("en-US")} words` });
+  const dfltPress = (id) => {
+    const lit = dfltFirstNow();
+    // an unlit pill chooses its source (under another order on the reads
+    // switch none is lit, and the line first reads the source here)
+    if (id !== lit) { chooseDefault(id); return; }
+    // the lit STEP opens or closes the note; any other lit pill gives the line back to STEP
+    if (id === "step") { dfltNote = !dfltNote; paintDefaultPills(); return; }
+    dfltNote = false; setDefault("step");
+  };
+  // THE NOTE PUT UP: made apart and put up only where it says something new,
+  // so the live region is not read out again for a repaint that changed
+  // nothing (a source switched on the rail, an order); a note appearing is
+  // put up empty and said a frame later, so a screen reader hears it; and
+  // the chooser's button the reader pressed has the focus back on the note
+  // drawn anew, as the word senses switch gives it back (the review of 14
+  // November 2026: the focus fell to the page after every choice)
+  let dfltNoteGen = 0, dfltFocus = null;
+  const putNote = (made) => {
+    const gen = ++dfltNoteGen;
+    if (!made) { dfltNoteEl.hidden = true; dfltNoteEl.replaceChildren(); dfltFocus = null; dfltSay(); return; }
+    if (!dfltNoteEl.hidden && made.innerHTML === dfltNoteEl.innerHTML) { dfltFocus = null; dfltSay(); return; }
+    const fill = () => {
+      if (gen !== dfltNoteGen) return;
+      const had = dfltNoteEl.contains(document.activeElement);
+      dfltNoteEl.replaceChildren(...made.childNodes);
+      dfltSay();
+      // the focus goes back only where the note held it or it fell to the page
+      const back = dfltFocus ? dfltNoteEl.querySelector(`.dfp[data-second="${dfltFocus}"]`) : null;
+      dfltFocus = null;
+      const now = document.activeElement;
+      if (back && (had || !now || now === document.body)) back.focus({ preventScroll: true });
+    };
+    if (dfltNoteEl.hidden) { dfltNoteEl.replaceChildren(); dfltNoteEl.hidden = false; requestAnimationFrame(fill); }
+    else fill();
+  };
+  paintDefaultPills = () => {
+    if (!dfltGroup || !dfltNoteEl) return;
+    dfltGroup.hidden = !DFLT_BOOK;
+    if (!DFLT_BOOK) { putNote(null); return; }
+    const N = Number(DFLT_BOOK.places) || 0, work = zone.work || "";
+    const has = DFLT_BOOK.has || {}, fills = DFLT_BOOK.fills || {};
+    const first = dfltFirstNow(), place = defOrder === "place";
+    const second = first ? dfltSecond(first) : null;
+    const waiting = !!(first && first !== "step" && !DEFAULT_PICKS);
+    for (const id of DFLT_IDS) {
+      const btn = document.getElementById(`default-${id}`), dir = document.getElementById(`default-${id}-dir`);
+      if (!btn || !dir) continue;
+      btn.textContent = dfltPill(id);
+      const on = id === first;
+      btn.classList.toggle("on", on); btn.setAttribute("aria-pressed", String(on));
+      btn.disabled = !dfltOn(id);
+      const a = dfltPct(has[id], N);
+      if (btn.disabled) btn.title = `${dfltShort(id)} is switched off on the switches`;
+      else if (!place) btn.title = `the line reads «${dfltOrderSaid()}» on the switches; press to read it from ${dfltPill(id)} here`;
+      // STEP: what its layer is, then the share where STEP has its own reading and that line stands (has.step)
+      else if (id === "step") btn.title = `${dfltStepLayer()} — STEP has its own reading, and this line stands, at ${a} of ${work}${on ? " · press to show or hide the note" : ""}`;
+      else btn.title = `${DFLT_TITLES[id] || dfltPill(id)} — ${a} of ${work}${on ? " · press again to go back to STEP" : ""}`;
+      // the lit STEP shows and hides the note: a disclosure, and said so
+      if (on && id === "step" && place) { btn.setAttribute("aria-controls", "default-note"); btn.setAttribute("aria-expanded", String(!!dfltNote)); }
+      else { btn.removeAttribute("aria-controls"); btn.removeAttribute("aria-expanded"); }
+      // under the lit pill: its share and its second; unlit pills say nothing
+      dir.textContent = !on ? "" : waiting ? (dfltFailed ? "could not be fetched" : "fetching…")
+        : `${a}${second && Number(has[id]) < N ? ` · then ${dfltPill(second)}` : ""}`;
+    }
+    // the note: shown under a source other than STEP, when the reader opened
+    // it on STEP, and under another order on the reads switch
+    const show = !place || (first && first !== "step") || (first === "step" && dfltNote);
+    if (!show) { putNote(null); return; }
+    // its sentences, and after them the chooser of the second
+    const made = document.createElement("p");
+    const sayEl = document.createElement("span"); sayEl.className = "say";
+    made.append(sayEl);
+    if (!place || !first) {
+      sayEl.textContent = `The line reads «${dfltOrderSaid()}» on the switches. Press a source to read the line from it here.`;
+      putNote(made); return;
+    }
+    const X = dfltPill(first);
+    // a source whose file is not here draws the line as it rests meanwhile,
+    // and one whose file could not be fetched goes on drawing it: one rule
+    // for every line (dfltLayerNow), and the note says so in those words
+    if (waiting) {
+      sayEl.textContent = dfltFailed ? `${X}: its readings for ${work} could not be fetched, so every line is ${DFLT_AS_IT_RESTS}. The next press or card tries again.`
+        : `${X}: fetching its readings for ${work}\u2026 Until they are here, every line is ${DFLT_AS_IT_RESTS}.`;
+      putNote(made); return;
+    }
+    const hx = Number(has[first]) || 0;
+    const f = fills[first] || {};
+    const b = second ? Number(f[second]) || 0 : 0;
+    const c = N - hx - b;
+    // a second named in a sentence: STEP's layer as what it is, the line as
+    // it rests, and any other source by its name
+    const secondSaid = (y) => (y === "step" ? `${DFLT_AS_IT_RESTS[0].toUpperCase()}${DFLT_AS_IT_RESTS.slice(1)}` : dfltPill(y));
+    if (first === "step") {
+      // STEP's note says what its layer is, then the share where STEP has its
+      // own reading and that line stands (has.step; the lead's rule: «STEP
+      // reads every word» said the line was STEP's over another dictionary's
+      // line, and «STEP has its own reading at >99.9%» said less than all
+      // where the line rests bare at a held place or a pair)
+      const layer = dfltStepLayer();
+      sayEl.append(`${layer[0].toUpperCase()}${layer.slice(1)}.`);
+      if (hx >= N) { sayEl.append(` STEP has its own reading, and this line stands, at every word of ${work}.`); putNote(made); return; }
+      sayEl.append(" STEP has its own reading, and this line stands, at ", dfltShare(hx, N), ` of ${work}.`);
+      // a second fills only where STEP has no reading of its own (a held
+      // place or a pair whose line rests bare is none of them), so the rest
+      // is said of the line as drawn, not of what other sources hold there,
+      // which is the index's count (under the index of 15 November it held
+      // none in Psalms, where MACULA reads «among» at the held 44:15:6)
+      if (second) sayEl.append(` Where STEP has none, ${dfltPill(second)} fills out `, dfltShare(b, N), dfltSecondIsAuto(first) ? ", chosen for this book." : ".");
+      if (c > 0) sayEl.append(" Today’s line stands at the other ", dfltShare(c, N), ".");
+    } else {
+      if (hx >= N) { sayEl.textContent = `${X} reads every word of ${work}.`; putNote(made); return; }
+      // the sentences, each share its own count: «BDB is partial: its own
+      // reading at 31.6% of Ruth. The line as it rests fills out 68.2%,
+      // chosen for this book. Today’s line stands at the other 0.2%.»
+      sayEl.append(`${X} is partial: its own reading at `, dfltShare(hx, N), ` of ${work}.`);
+      if (second) sayEl.append(` ${secondSaid(second)} fills out `, dfltShare(b, N), dfltSecondIsAuto(first) ? ", chosen for this book." : ".");
+      else sayEl.append(" No other source reads the rest.");
+      if (c > 0) {
+        const kq = Number(DFLT_BOOK.kq) || 0;
+        sayEl.append(" Today’s line stands at the other ", dfltShare(c, N,
+          `pairs written one way and read another (${kq.toLocaleString("en-US")} words of ${work}) keep today’s line under every source; joined words a dictionary reads as one keep its line unless ${X} reads every word of them`), ".");
+      }
+    }
+    // the chooser of the second: every other source with what it would fill;
+    // one that fills nothing here, or is switched off, cannot be pressed, and
+    // where no other source fills anything there is no chooser at all (under
+    // STEP in II Samuel it was a labeled group of three buttons at 0%, none
+    // of which could be pressed: the review of 14 November 2026)
+    if (!DFLT_IDS.some((y) => y !== first && Number(f[y]) > 0)) { putNote(made); return; }
+    const pick = document.createElement("span"); pick.className = "def-order"; pick.setAttribute("role", "group"); pick.setAttribute("aria-label", "fill it out with");
+    pick.append("fill it out with ");
+    const auto = dfltAuto(first);
+    for (const y of DFLT_IDS) {
+      if (y === first) continue;
+      const fy = Number(f[y]) || 0;
+      const bt = document.createElement("button"); bt.type = "button"; bt.className = "dfp" + (y === second ? " on" : "");
+      bt.dataset.second = y; bt.setAttribute("aria-pressed", String(y === second));
+      bt.textContent = `${dfltPill(y)} ${dfltPct(fy, N)}`;
+      bt.disabled = !fy || !dfltOn(y);
+      // STEP as the second is the line as it rests where the first has none, and its title says so
+      const words = y === "step" ? `${fy.toLocaleString("en-US")} of ${N.toLocaleString("en-US")} words, where ${X} has none, STEP has its own reading, and ${DFLT_AS_IT_RESTS} stands there`
+        : `${fy.toLocaleString("en-US")} of ${N.toLocaleString("en-US")} words`;
+      bt.title = !dfltOn(y) ? `${dfltShort(y)} is switched off on the switches`
+        : y === auto ? `chosen for ${work}: the source that fills the most of what ${X} leaves here · ${words}` : words;
+      bt.addEventListener("click", (e) => { e.stopPropagation(); dfltFocus = y; chooseDefaultSecond(y); });
+      pick.append(bt);
+    }
+    made.append(" ", pick);
+    putNote(made);
+  };
+  for (const id of DFLT_IDS) {
+    const btn = document.getElementById(`default-${id}`);
+    if (btn) btn.addEventListener("click", (e) => { e.stopPropagation(); dfltPress(id); });
+  }
+  paintDefaultPills();
   const dictPill = document.getElementById("dictPill"), dictState = document.getElementById("dictState");
   const paintDict = () => {
     const on = dictOn();
@@ -14333,11 +15312,17 @@
   // blobs off, numbers on, concordance off"). The lines are laid again
   // through the page's one first paint, so each is the line it opened as.
   // It cannot be pressed while there is nothing to put back.
-  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off", namelead: "lead", senses: "off" };
+  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off", namelead: "lead", senses: "off", defaults: "step" };
+  // the default sources at their default (the plan's table: «Reset: STEP,
+  // auto second, note closed»): the line from STEP, no second chosen for any
+  // first, kept or for this load, and the note closed; on a work the picks
+  // do not reach there is nothing of theirs to put back
+  const dfltAtDefault = () => !DFLT_BOOK || (dfltFirst === SWITCHES_DEFAULT.defaults && !Object.keys(dfltChosen).length && !Object.keys(dfltChosenKept).length && !dfltNote);
   const resetPill = document.getElementById("resetPill"), resetState = document.getElementById("resetState");
   const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + pickedQForm.size;
   const switchesAtDefault = () => (document.body.classList.contains("en") ? "en" : "he") === SWITCHES_DEFAULT.mode
-    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs && nonamesPref === SWITCHES_DEFAULT.namelead && sensesPref === SWITCHES_DEFAULT.senses;
+    && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs && nonamesPref === SWITCHES_DEFAULT.namelead && sensesPref === SWITCHES_DEFAULT.senses
+    && dfltAtDefault();
   const paintReset = () => {
     const n = picksNow(), at = switchesAtDefault();
     resetPill.disabled = !n && at;
@@ -14345,8 +15330,24 @@
   };
   resetPill.addEventListener("click", (e) => {
     e.stopPropagation();
-    if (picksNow()) {
+    // THE DEFAULT SOURCES SET BACK FIRST, AND THE PAGE DRAWN ONCE (the review
+    // of 14 November 2026: from MACULA with a ruling, every built line was
+    // laid again and repainted under MACULA, then repainted a third time
+    // under STEP; II Samuel's reset took about a minute). STEP, every
+    // first's second back to the one chosen for each book and the note
+    // closed are set, not pressed (a press on the lit STEP would open the
+    // note), before the rulings are forgotten and the sections laid again;
+    // the row, the rail and the card answer after, the lines already drawn
+    const dfltBack = !dfltAtDefault(), hadPicks = !!picksNow();
+    if (dfltBack) {
+      dfltChosen = {}; dfltChosenKept = {}; dfltNote = false;
+      try { localStorage.removeItem(DFLT_SECOND_KEY); } catch { /* the choice still stands on this page */ }
+      keepDefault(SWITCHES_DEFAULT.defaults);
+    }
+    if (hadPicks) {
       pickedByForm.clear(); pickedQForm.clear(); ruledAt.clear();
+      // a source's own words the reader ruled are forgotten with the rulings
+      SOURCE_WORDS_RULED.clear(); rebuildSourceWords();
       relayBuiltSections();
       // the book's title word stands outside the sections: its line and its
       // chosen mark go back with the rest
@@ -14361,6 +15362,9 @@
     if (signsPref !== SWITCHES_DEFAULT.signs) chooseBlanks(SWITCHES_DEFAULT.signs);
     if (nonamesPref !== SWITCHES_DEFAULT.namelead) chooseNames(SWITCHES_DEFAULT.namelead);
     if (sensesPref !== SWITCHES_DEFAULT.senses) chooseSenses(SWITCHES_DEFAULT.senses);
+    // the default sources set back above: the row, the rail and the card
+    // answer, and the lines are repainted only where no relay drew them
+    if (dfltBack) reopenForDefaults(hadPicks);
     paintReset();
   });
   // a pick is made inside a card; the count follows any press on the page
@@ -16585,6 +17589,22 @@
     paintSensesPill();
     if (document.getElementById("railRows")) railSwitch();
     reopenCard();
+  };
+  // THE DEFAULT SOURCES ANSWERED (chooseDefault, chooseDefaultSecond, the
+  // reset, and the book's file landing by any path): the source words made
+  // again, the row's pills and note painted, the rail's two rows of them
+  // drawn again (only those: the whole rail drawn again left its sources
+  // row empty, which only the page's first paint fills), every built line
+  // repainted (a section built later reads the source as it is built:
+  // materialise, wordBlock, lineUnder; drawn: every built line already
+  // stands as the sources now draw it, because the reads switch or the
+  // reset has just drawn them, or the book's file landed under STEP, whose
+  // lines read the index alone), and the open card built again under it.
+  // No cell moves, so no section is laid again.
+  reopenForDefaults = (drawn = false) => {
+    rebuildSourceWords(); paintDefaultPills(); dfltRailRows();
+    if (!drawn) repaintGlossOrder();
+    reopenCard(); dfltSay();
   };
   {
     const fold = window.innerHeight * 2.5;

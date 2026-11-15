@@ -6,9 +6,12 @@
 //   M2  each wears its pill's state: pressed, its state line, disabled
 //   M3  a press in the menu presses the row's pill: the English reader, blobs,
 //       card numbering and the concordance hud each flip, the page with them,
-//       and the menu stays open for the next press
-//   M4  reset in the menu puts the switches at their default, and its button
-//       then says "default" and cannot be pressed, as the row's does
+//       and the menu stays open for the next press; and MACULA among the
+//       default sources (default-picks-rule-v1) lights in the row and the menu
+//       while STEP goes dark, on a work the sources are laid on
+//   M4  reset in the menu puts the switches at their default, STEP lit among
+//       the default sources, and its button then says "default" and cannot be
+//       pressed, as the row's does
 //   M5  the menu closes on a press outside it and on the Menu button again;
 //       no page errors
 // The page is found by the served zones, never named here (check-scope-derived S1).
@@ -53,25 +56,32 @@ check("M1 the menu holds every switch the row shows, in its order and words", m.
 check("M2 each wears its pill's state", same(r, m.items), JSON.stringify(m.items.map((x) => [x.text, x.pressed, x.said, x.disabled])));
 
 const flips = [];
-for (const [id, read] of [["modeEn", () => p.evaluate(() => document.body.classList.contains("en"))], ["blobPill", null], ["numsPill", () => p.evaluate(() => document.body.classList.contains("nums"))], ["dictPill", null]]) {
+// the default sources stand on the row only where the book's picks are laid (the index lists it)
+const dfltLaid = await p.evaluate(() => !!(window.__default && window.__default.book));
+const flipList = [["modeEn", () => p.evaluate(() => document.body.classList.contains("en"))], ["blobPill", null], ["numsPill", () => p.evaluate(() => document.body.classList.contains("nums"))], ["dictPill", null]];
+if (dfltLaid) flipList.push(["default-macula", () => p.evaluate(() => `${(window.__default || {}).on}:${(document.getElementById("default-step") || { getAttribute: () => null }).getAttribute("aria-pressed")}`)]);
+else console.log("  --  M3  the default sources not judged here: their picks are not laid on this book");
+for (const [id, read] of flipList) {
   if (!ids.includes(id)) { flips.push(`${id} absent`); continue; }
   const before = (await row()).find((x) => x.id === id), page0 = read ? await read() : null;
   await press(id);
   const after = (await row()).find((x) => x.id === id), page1 = read ? await read() : null;
   const mm = await menu();
-  const flipped = before.pressed !== after.pressed && (!read || page0 !== page1);
+  const flipped = before.pressed !== after.pressed && (!read || page0 !== page1)
+    // a source lit in the Menu puts STEP out in the row and the Menu
+    && (id !== "default-macula" || (page1 === "macula:false" && (mm.items.find((x) => x.id === "default-step") || {}).pressed === "false"));
   flips.push(`${after.text}: ${before.pressed} to ${after.pressed}${read ? `, page ${page0} to ${page1}` : ""}${flipped ? "" : " (did not flip)"}${mm.open ? "" : " (menu closed)"}`);
   if (!flipped || !mm.open || !same(await row(), mm.items)) flips.bad = true;
 }
-check("M3 a press in the menu presses the row's pill, and the menu stays open", !flips.bad && flips.length === 4 && !flips.some((x) => / absent$/u.test(x)), flips.join(" | "));
+check("M3 a press in the menu presses the row's pill, and the menu stays open", !flips.bad && flips.length === flipList.length && !flips.some((x) => / absent$/u.test(x)), flips.join(" | "));
 
 await press("resetPill");
 r = await row(); m = await menu();
 const at = (id) => (r.find((x) => x.id === id) || {}).pressed;
 const reset = m.items.find((x) => x.id === "resetPill") || {};
 check("M4 reset in the menu puts the switches at their default, and says so",
-  at("modeEn") === "false" && at("blobPill") === "false" && at("numsPill") === "true" && at("dictPill") === "false" && reset.said === "default" && reset.disabled === true && same(r, m.items),
-  `English ${at("modeEn")}, blobs ${at("blobPill")}, numbering ${at("numsPill")}, concordance ${at("dictPill")}, reset "${reset.said}" ${reset.disabled ? "disabled" : "pressable"}`);
+  at("modeEn") === "false" && at("blobPill") === "false" && at("numsPill") === "true" && at("dictPill") === "false" && (!dfltLaid || (at("default-step") === "true" && at("default-macula") === "false")) && reset.said === "default" && reset.disabled === true && same(r, m.items),
+  `English ${at("modeEn")}, blobs ${at("blobPill")}, numbering ${at("numsPill")}, concordance ${at("dictPill")}${dfltLaid ? `, STEP ${at("default-step")}` : ""}, reset "${reset.said}" ${reset.disabled ? "disabled" : "pressable"}`);
 
 // the press outside lands in the page's gutter, where no word stands: a
 // press on a word opened its card over the Menu button (the row grew by a
