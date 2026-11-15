@@ -58,3 +58,33 @@ The plan's card figures (4.2: 1,074 withheld, 1,562 kept) were measured on store
 - The kq checks, on the 15 books (served list narrowed for the run): check-kq-carried-v1 122 ok; check-kq-graded-v1 3 ok (15 sidecars, 283 places with a stem: 273 to the read half, 10 read as several words); check-kq-declared-weld-v1 11 ok (its sites: Exodus 4:2:4, a listed TIES place, and I Chronicles 23:9:3); check-kq-presentation-v1 SKIPPED (no MAM presentation bundle on this machine).
   - check-kq-lead-follows-switch-v1 (it takes the first served book with pairs: Deuteronomy): 124 ok, 1 FAIL: «K1 both halves of every pair are printed and pressable · 2,2,2,2,2,2,3». The seventh pair is Deuteronomy 33:2, a read form of two words, drawn as three halves (one per read word) since the owner's two branches of 30 October. The same red on the before state (the old page over the zone before the apply). Not this ship's: the check's K1 counts exactly two halves and has only ever been run on Amos, whose two pairs are of one read word each. Every one of the 15 books holds such a pair.
 - check-default-picks-v1 `--node` with picks v1.2: D0 to D19 green, D3 among them (the index against the new records of the resting lines).
+- check-disk-gloss-is-the-line-v1 on each of the 15 books' opening screens: 15 of 15 green (2 ok each).
+- check-line-reads-the-place-v1 on each of the 15 books' opening screens: 3 green (II Kings, Isaiah, I Chronicles), 12 red on P3 only («each card opens pressed on its line»: 25 to 29 of 30), at the books' first verses, none at a listed place: runs and pairs (Exodus 1:1 «[the] sons of» pressed «the Jewish people», Proverbs 1:1 «[the] son of + David» pressed «A (male) cousin», Deuteronomy «ten» pressed «eleven»), and a set's core block pressed on another piece (Genesis «and + there was» pressed «beacon», Job 1:1 «in + [the] land of» pressed «earth»). The same P3 line, character for character, on the before state (the old page over the zones before the apply) at Exodus, Proverbs and Nehemiah. Not this ship's: the suite runs this check on Amos alone, which is green.
+- check-nothing-hand-typed-v1, check-ledger-declared-v1, check-no-import-side-effects-v1: green.
+- The round's new step, run as `round-v1.sh` writes it over the applied zones: «tags: 0 to write … 56 already written», «pieces: 0 places to lay … 13 already laid … 14 … 1 held back», exit 0.
+
+## The cards, read off the page (`fin/card-probe.mjs`)
+
+- Job 38:1: the written form's card asks no entry. The read form's card offers the whole read form (no entry asked) and the read words one by one: «מן» asks H4480A and withholds 61, «הסערה» asks H5591B and withholds 0. No division into pieces is offered on a read form's card, so no piece cell of a read word is asked anything.
+- I Chronicles 27:12: «לבן» asks H1121G, withholds 53 (and 3 given as a name); «ימיני» asks H3227B, withholds 15.
+- I Chronicles 9:4 (whose written letters are its read letters): the written form keeps its own tag list (H1137I and H4480A, as before); its division into בני + מן, on the written card and on the read card alike, now asks each read word's own entry (H1137I, withholding 156; H4480A, withholding 61). Before this change those two blocks asked none. That is the page comment's «a block of its branch's card and of the written form's».
+- Psalms 10:10 (tags landed, pieces held): «חל» asks H2428A and withholds 50 of its 60 rows, every numbered one (the store holds no row of H2428A under חל; 10 rows carry no entry); «כאים» asks H3512B and withholds 1. The line at rest still reads «common + broken», and every row that prints «common» (M17, M5, M46, M9, M14, all of H2455) is among the 50 the read word's block now withholds. The plan lands these tags and holds the pieces (put-back 35); while it does, this one line prints a reading its own card withholds.
+
+## The gate's sample
+
+check-same-product's sample (every fifth book, two chapters: 18 pages) holds no listed place and no moved line (`v64/ship2/gate-sample.mjs`): the gate cannot see this ship's 13 moves; the proof of them is `fin/logs/moved-at-rest.out` and R6.
+
+## PIPELINE-MANIFEST.md
+
+Not committed: the door step writes it. Its emission on this tree (`fin/PIPELINE-MANIFEST.fresh.md`, equal to the stopped builder's `PIPELINE-MANIFEST.after.md`) adds the rule row «read-words-rule-v1-… | tools/apply-read-words-v1.mjs, tools/read-words-v1.mjs, zone.html | check-read-words-v1», lists `tools/read-words-v1.mjs` among the modules no build file calls, and names `tools/apply-read-words-v1.mjs (15; run by tools/round-v1.sh)` on the zones. The rest of its difference from the committed file on this base is drift the shipped main already carries (default picks, form-of v2, word senses v2, pointer map) and this machine's missing build plan.
+
+## Committed, and the tree put back (10:20 UTC)
+
+- Commit b9da2703b7 on `ledgers-build-ship2` (13 files, by explicit path): the pin and its five files, `read-words-v1.mjs`, `apply-read-words-v1.mjs`, `check-read-words-v1.mjs`, `zone.html`, `check-entry-gate-v1.mjs`, `round-v1.sh`, `PIPELINE.md`. The five pinned files in the commit hash to the relay's sha256. `git merge-tree --merge-base ec1c8a6764 46bbbf7d50 b9da2703b7` is clean: the commit picks onto the shipped main without a conflict.
+- Lint: the four tools no finding (the commit's check-entry-gate-v1 none either); the page 4 · 175 · 9 · 1 · 2, as its baseline.
+- The 46 generated paths the proof changed (30 zone files of the 15 books, their 15 resting-line records, the zone store) put back to the commit; `git status` clean. The gate receipt narrowed for the check runs was put back after them.
+- Kept in `fin/`: the scripts, `logs/`, the resting-line records (`lines-shipped/`, `lines-before-oldpage/`, `lines-after/`), the fresh manifest, the commit message. The zone copies are removed.
+
+## The step for the lead (`fin/ship2-steps.sh <reader dir> [--real]`)
+
+Runs the apply dry and stops unless its figures are the plan's (57 lines, 28 places on 15 zones, 56 tags, 13 places to lay with 41 pieces, 14 tied with 36, Psalms 10:10 held, strokes 16 of 16); with `--real` writes, prints the sha256 of the 15 zones and holds them to this rehearsal's table (`fin/sha-after-apply.txt`), then runs again and requires «nothing to write». Rehearsed on the shipped main's own zones (taken from 46bbbf7d50 into this tree, then put back): three dry runs green, the real run 15 of 15 zones the rehearsal's bytes, and «nothing to write» after. A first version used `grep -q` in a pipe under pipefail and missed a figure it had printed (the echo cut short reads as a miss); it reads a here-string now.

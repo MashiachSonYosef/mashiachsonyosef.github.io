@@ -1,0 +1,22 @@
+Ship 4, the facts side: plain notes of the second facts builder, 15 November 2026, 09:33 to 10:10 UTC.
+S = /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad
+The whole account is the builder's report to the lead; these notes only say where things are.
+
+Tree S/b4, branch ledgers-build at 27feeb2ea2 (no new commit: nothing authored was missing).
+Its reader/data is the state after store steps 1 to 3 plus facts steps 6 to 8:
+store ccec4fa3071b, 651,752 routes, 122,496 keys; reader/data snapshot S/v64/ship4-facts/mine/data-after-run-B.sha.
+
+Evidence, all under S/v64/ship4-facts/mine/:
+  facts-run-A/, facts-run-B/      two runs from the after-3 state, the same table (sha256 543611353f7d...)
+  facts-run-M/                    the same steps on main 46bbbf7d50's zones, sidecars and resting lines: the same table
+  final/                          every check of the plan's 4.4 that holds the facts and the store, on the final state
+  red/                            F9, F10 and N7 red on a wrong state, then the right bytes put back
+  recount-twins.out               call 5's same-source twins recounted from call 5's list and the ledger: 2 pairs
+  gate-after-call5.*.out          the 600 lines of relay v195's entry-gate-after-call5 list, before and after
+  after3-facts-paths/             the after-3 bytes of every path the facts steps write (state.sh's saved states are gone)
+
+The lead's commands on the shipped tree (each must print what the report says):
+  SHIP4_STORE_OUT=<dir1> bash S/v64/steps/ship4-store-steps.sh <tree> --through 3
+  sed '/^== the end/,$d' <dir1>/sha256-table.txt | cmp - <(sed '/^== step 4/,$d' S/v64/steps/ship4-store-sha256.txt)
+  SHIP4_FACTS_OUT=<dir2> bash S/v64/steps/ship4-facts-steps.sh <tree>
+  cmp <dir2>/sha256-table.txt S/v64/steps/ship4-facts-sha256.txt

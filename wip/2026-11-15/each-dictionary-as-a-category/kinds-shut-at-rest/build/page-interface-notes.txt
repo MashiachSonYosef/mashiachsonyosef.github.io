@@ -1,0 +1,35 @@
+The page's part of the kinds (zone.html, parts 2 and 3 of DESIGN.md), as the other parts can read it.
+Working note of the page builder, 15 November 2026. Plain facts, for parts 4 and 5.
+
+WHAT THE PAGE READS FROM A ZONE
+  zone.emitted_from.rests_off present  -> the kinds act on this page (addition 1). Absent -> nothing new is drawn.
+  .entries[<entry id>].ids   {M: n}   whole-source entry: the rail's chips, one per source key with n > 0
+  .entries[<entry id>].rows  number   the rail's line "N records on this book <say>"
+  .version / .sha256                  read only for checks; the card follows the record as fetched
+  (keys, keys_bare_at_rest, scope... are not read.) Part 4's in-progress regloss writes exactly this shape.
+
+THE RECORD
+  fetched beside the store's index: data/dictionary-kinds-v1.json. restsOffOf/restsOffIds run over a copy of
+  the store's own index.m_sources taken before the overlays join it. A record missing or not holding:
+  window.__kindsFailed = true, window.__kindsFault = the sentence, nothing gated, the rail block says so.
+
+HOOKS FOR CHECKS
+  window.__kinds        "shut" | "open": the reader's choice (also on the Tikkunei Zohar, where nothing acts)
+  window.__kindsHere    true only where the zone is stamped and the record held: the gate acts
+  window.__restsOffIds  the 27 M ids shut whole (restsOffIds)
+  window.__kindsVersion the record's version
+  localStorage fh.kinds "open@<record version>" | "shut"; ?kinds=open|shut for one load (not kept)
+  card: .r-pills[data-kind-withheld] (pills held back), button.kinds-switch[aria-pressed] on the withheld
+        line and on an emptied card, pill button.rests[data-rests="1"] = stands on shut rows alone
+  rail: #kindsRow (inside the sources strip's fold, above "shelve by"), .kinds-opt[data-kinds=shut|open],
+        .kind-chip[data-key][data-ids][data-family] (disabled while shut; never .dfp)
+  railNow's sources token: its title says "N more rest shut"; its text does not count them
+
+WHERE THE GATE STANDS IN poolFor
+  after the entry, names, pointing, piece, stem and source switches gates, for the store's rows (routes), and
+  after the overlays' pointing and stem for extra: the span store's rows carry their source's own M (Wikidata
+  M2 «the Jewish people» at Exodus 1:1) and rest shut with it. Overlays' own ids answer null.
+  storeOnly pools (the live line) are always gated where the kinds act; everySource (exporter) and
+  everyKind (the masthead's name) lift it.
+
+PROBES (scratch, read-only): scratchpad/kinds-page-v1/probe-k4.mjs <readerDir> <base> genesis 21 4
