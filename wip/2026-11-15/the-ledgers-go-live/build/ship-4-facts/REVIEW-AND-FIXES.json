@@ -1,0 +1,336 @@
+{
+ "review": {
+  "verdict": "sound-with-fixes",
+  "findings": [
+   {
+    "title": "Merging toggles-fixes conflicts in the default picks' bake and its check, and the facts rehearsal's step 7 was made with this branch's bake",
+    "severity": "should-fix",
+    "where": "reader/tools/bake-default-picks-v1.mjs and reader/tools/check-default-picks-v1.mjs (ledgers-build 27feeb2ea2 against toggles-fixes 05f65ef014 in S/pt); S/v64/steps/ship4-facts-steps.sh step 7 (lines 127-136) and S/v64/steps/ship4-facts-sha256.txt",
+    "evidence": "I ran a three-way git merge-file from base ec1c8a6764 on scratch copies. In bake-default-picks there are 3 conflicting hunks: (1) the import of row-strikes-follow against toggles-fixes' import of printedForm/routePrinted/signsOff; (2) `shardBody(sh)` against `readShard(sh)`; (3) pillOf. This is the risky one: this branch filters `rowM[r] !== null` so a withheld row prints nothing, and toggles-fixes rewrites pillOf with `keys` and `servedUnder`. check-default-picks has 1 conflicting hunk (the imports). round-v1.sh merges clean. Commit 05f65ef014 changes what the receipt counts (picks_printed by the keys the card asks, and fills where STEP's line rests bare). So default-picks-receipt-v1.json from step 7 cannot match the rehearsal's sha256 line on the merged tree, and the held step-7 figures may also move (I did not measure this). STATE 09:45 names only zone.html and check-same-product-v1 as files two of the four branches edit. The facts script warns only that 'the kinds ship' might change the bake, but kinds-build does not touch it. Kinds-build and ship 2 each conflict with this branch only in reader/PIPELINE.md (this confirms the builder's (d)).",
+    "reproduce": "R=S/v64/review-ship4/merge; git show ec1c8a6764:reader/tools/bake-default-picks-v1.mjs > $R/base; git show 27feeb2ea2:reader/tools/bake-default-picks-v1.mjs > $R/ours; git -C S/pt show HEAD:reader/tools/bake-default-picks-v1.mjs > $R/theirs; git merge-file $R/ours $R/base $R/theirs  -> exit 3. Do the same for check-default-picks-v1.mjs -> exit 1. My merged copies with conflict markers are in S/v64/review-ship4/merge/*.merged.",
+    "suggested_fix": "Resolve both files by hand and keep both sides: the follower block, plus `rowM[r] !== null` inside toggles-fixes' new pillOf. Then take step 7's held figures from a dry run on the merged tree after step 6 and make the facts sha256 table again on that tree before the lead compares tables. Or land toggles-fixes first and rehearse ship 4 on top of it."
+   },
+   {
+    "title": "check-audit-calls A4 follows call 5's moved rows by its own walk, and passes a retext that the follower refuses",
+    "severity": "should-fix",
+    "where": "reader/tools/check-audit-calls-v1.mjs:194-212 (A4; the walk is at :196-205)",
+    "evidence": "A4 does not use row-strikes-follow-v1.mjs. It walks the rounds after call 5's itself (at most 8 hops, matching by m, key, rank and route) and passes any later action that is not a re-key as 'acted on since'. I made a wrong state in scratch: the moved M4 «Aaron» row (rank 13 under its plain key) is retexted by the last round, in both the record and the store. On it, A4 reads 'ok · 357 rows · 1 acted on since: line 87: retext since by land-v188-v1.jsonl'. On the same state, apply-row-entries --dry gives 'REFUSED · the row of M4 at rank 13 (324a17d21917a99c) was retexted ... following one waits on the landing of relay v187'. This is a second copy of the one rule, and it holds green a state the rule refuses. Today no later round touches a moved row, so A4 is green for the right reason.",
+    "reproduce": "cd S/v64/review-ship4 && unshare -m bash run-wrong-states.sh rekeyed-row-retexted:audit-calls,apply-row-entries-dry   (logs: S/v64/review-ship4/w/rekeyed-row-retexted/logs/)",
+    "suggested_fix": "Have A4 ask the follower (openFollower read at 869e4ee14c3a, the version call 5's round started from) where each moved row stands now, and fail on a FollowFault. Keep its own walk only as a recount."
+   },
+   {
+    "title": "The made spaces' second road picks its rounds by the versions reached since, and does not refuse a row strike the record lacks",
+    "severity": "note",
+    "where": "reader/tools/made-spaces-second-road-v1.mjs:67-73",
+    "evidence": "This confirms the builder's (c), with a demonstration. `since = new Set(history.slice(at + 1).map((h) => h.now))` keeps a round of the record whenever its 'now' version is in that set. That is the version-reached test the follower's header says is never asked, and it never refuses a history move by a row-strike rule that the record does not hold. I made a wrong state whose history holds one such move. apply-made-spaces --dry went on ('counts_held: the second road', 0 rows move). apply-row-entries --dry and check-entry-gate E3, E4 and E5 refused the same state ('the store's history holds 1 row strike(s) since 90d9eb8e7082 that the row-strikes record does not hold'). Today secondRoad and roundsSince() pick the same two rounds (call 5 and v188); I checked this with both modules.",
+    "reproduce": "cd S/v64/review-ship4 && unshare -m bash run-wrong-states.sh history-lost-strike:apply-made-spaces-dry   (log: w/history-lost-strike/logs/apply-made-spaces-dry.log; the follower's refusal on the same mutation is in w/history-lost-strike.batch2/logs/)",
+    "suggested_fix": "Take the rounds from roundsSince(record, index, base), which the follower exports, so the second road refuses what the follower refuses."
+   },
+   {
+    "title": "The follower refuses a struck name that a later round reuses, but not a moved name",
+    "severity": "note",
+    "where": "reader/tools/row-strikes-follow-v1.mjs:192-197 (walkOn); bake-default-picks-v1.mjs:404-414 and check-default-picks resolveRows (they find a row as named before asking)",
+    "evidence": "Probe on a made-up record. If a name is struck and a later round lands a row under the same name, nowOf refuses: 'a name cannot say which of the two a list means'. If the name is re-keyed instead and a later round lands a row under the old name, nowOf answers 're-keyed' to the new key, while thenOf says the row under the old name 'landed after'. One name then means two rows and nothing refuses. The default picks' bake and check D2 match a row as named first, so they would take the newly landed row, while apply-row-entries would follow the moved one. Today's record has no such case: 0 names that call 5 took were landed again by v188.",
+    "reproduce": "node S/v64/review-ship4/js/follower-probe2.mjs S/b4/reader/tools/row-strikes-follow-v1.mjs   (output: S/v64/review-ship4/follower-probe2.out)",
+    "suggested_fix": "In walkOn's re-keyed branch, refuse when a round from i on puts a row under the old name, as the struck/withheld branch already does at :193-194."
+   },
+   {
+    "title": "Both steps scripts say 'Nothing of this step was written' even when they stop after a real write",
+    "severity": "note",
+    "where": "S/v64/steps/ship4-store-steps.sh:95 (stop), reached after writes at :150-152 (call 5 already landed at :148), :163 (the derived lists already written at :161) and :118; S/v64/steps/ship4-facts-steps.sh:85, reached after writes at :107 (dry run again after the real run), :135 (after the bake wrote 41 files) and :159",
+    "evidence": "stop() always prints that nothing of the step was written. Several of its callers run after the step's tool has already written to reader/data. A lead who sees this message after a failed figure would take a half-written tree for an untouched one.",
+    "reproduce": "Read the lines named above. For example, if the re-key map's dry figures differ at store step 1, the script stops with 'STOPPED at step 1 ... Nothing of this step was written', but call 5 has already landed.",
+    "suggested_fix": "Pass stop() whether the step has already written, and name the tool that wrote and the files the snapshot shows changed."
+   },
+   {
+    "title": "The default picks' bake gives the wrong reason when the record says where a row went but the store does not hold it there",
+    "severity": "note",
+    "where": "reader/tools/bake-default-picks-v1.mjs:950 (the comment at :435 names both cases)",
+    "evidence": "I made a wrong state where the moved «Aaron» row is gone from its new key. The record says it was re-keyed to rank 13 under the plain key. The bake refuses with: 'row 33,730 (M4, rank 1) is not in the served store under its key with its text, and the row-strikes record does not say where it went; named at numbers 4:15:2'. It still refuses, but the stated cause is wrong, and it does not name the key and rank where the row should stand.",
+    "reproduce": "cd S/v64/review-ship4 && unshare -m bash run-wrong-states.sh rekeyed-row-gone:bake-default-picks-dry   (log: w/rekeyed-row-gone/logs/bake-default-picks-dry.log)",
+    "suggested_fix": "Give the second case its own words: 'the record says it moved to <key> rank <r>, and the store does not hold it there'."
+   },
+   {
+    "title": "The three store-side commits carry no attribution trailers",
+    "severity": "note",
+    "where": "668e0a5ca5, 362eb5b0ba, 0ea924a80a",
+    "evidence": "The other eight commits on the branch, and the recent commits on main, end with Co-Authored-By and Claude-Session lines. These three have none. The store builder cited a rule ('no model or tool names') that CLAUDE.md does not state.",
+    "reproduce": "git -C S/b4 log --format='%h%n%(trailers)' ec1c8a6764..HEAD",
+    "suggested_fix": "Add the trailers when the commits are cherry-picked onto the shipped tree."
+   }
+  ],
+  "what_was_checked": [
+   "All evidence is under S/v64/review-ship4 (S = /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad). Every run happened in a private mount namespace on an overlay of b4, with b4 and the repository's .git bound read-only. b4's reader/data is byte for byte the same before and after my review (2,089 files; data-now.sha = data-at-end.sha). HEAD is still 27feeb2ea2 and the worktree index was not rewritten.",
+   "Steps scripts, both run by me. ship4-store-steps.sh --through 3, run from the committed state of the 312 generated paths: exit 0, every figure held, and the table through step 3 is byte-equal to ship4-store-sha256.txt. The resulting after-3 snapshot equals the builder's data-after3.sha, and the builder's saved after3-facts-paths (314 files) match either the rehearsal table or HEAD.",
+   "ship4-facts-steps.sh, run from my own after-3 state: exit 0, every dry-run figure held, and the table is byte-equal to ship4-facts-sha256.txt (543611353f7d…). The final reader/data equals b4's.",
+   "Follower (row-strikes-follow-v1.mjs), probed with made-up records (follower-probe.out). It answers served, struck, withheld, re-keyed (followed through two hops), landed after (thenOf) and re-keyed (thenOf), and its gone/landed/rekeyed lists and followedRecord counts are right. It refuses: an unknown or null readAt, a lost row strike, a ran_at that does not match the history, folded, rejoined, restored, retexted (the seam), an unknown action, a struck name reused later, and thenOf of a row the record says left. The record's 18 rounds each match exactly one history entry by versions and moment; every action in the record is one the follower knows.",
+   "Consumers refuse on states the record does not explain, all made in scratch. apply-row-entries refused an unlanded extra row, a row gone with no round, an unknown action, a lost strike and a retext. apply-name-rows, apply-sense-openings and bake-default-picks all refused the unknown action. In the facts tools, --the-store-has-moved-on now appears only in comments.",
+   "Checks green on the final state (my baselines): E1-E6, E8 and E14 (E7 red, as the builder reported; the round's job); N1-N8; O1-O5; check-default-picks --node 11 ok, including both D2 laws; A1-A9; F9 and F10; C0a-C5; L1-L10; fold-strike landing F1-F7; ledger-declared.",
+   "Checks red on wrong states I made in scratch: E3 (totals, its followed record, and the twin clause), E4, E5, N3, N4, N7, O3, O4, D2 (both laws), A2, A4, A6, A7 and F10. One limit: E4 alone stays green when a twin loses its given numbers, but E3 and E5 go red there.",
+   "Twin mend, my own recount (twins.out, twins2.out). Call 5 has 4,109 SAME_SOURCE_TWIN lines. Every one has a same-source twin with the exact same words under the plain key in the after-3 store (one line has two). 4,061 of them are of the ledger's 15 sources. There are 0 disagreements with repoint_picks_to, 0 struck rows whose recorded n differs from their ledger line, and 0 OTHER_SOURCE_TWIN lines whose own source also holds the words. Exactly 2 pairs carry an entry their twin lacks: M5 rank 1 to rank 12 «from» and M5 rank 20 to rank 41 «out of», each lacking n H4480 and b m.cl.aa. After the facts steps both twins carry their own entries first and then the given ones, and they are the only 2 rows of 651,752 whose bytes differ from after-3.",
+   "«from» at H4480, my count (from-places.mjs): 737 places in 35 served books, 619 words keyed מן plus 118 core-piece cells. At every one, both rows go from 'other' to 'this'. The builder's 736 leaves out I Chronicles 9:4:9, a word with two core pieces whose second is keyed מן. No M5 row under מן lacks n, so giving b as well as n changes no other verdict, and no code reads a row's first n.",
+   "Calls 6 and 2 (calls62.out). 448 of call 6's 449 rows stand once and untouched. Line 293 (M74 פעלי־ rank 3) was struck by call 5's own list; A6 names it as the one exception. Both call-2 rows stand, and all 42 openings stand. No round lands either list, and no tool except check-audit-calls reads them; call6-picks-words-withheld-too is applied by nothing. The default picks have 0 withheld rows.",
+   "Default picks: all 39 book files differ from after-3 only in the store_resolved version.",
+   "Lint: across the 22 changed .mjs tools there are 2 warnings, both already present at base (check-store-continuity); a probe file proved the linter reads the folder. There is no Hebrew in added tool lines, and no British spelling in added lines, pins or commit messages. bash -n passes on round-v1.sh and both steps scripts. A fresh manifest emission to scratch passes L0-L6, with the new rules guarded, and both new checks carry RUN headers.",
+   "Integration: no reader/tools file differs between ec1c8a6764 and main 46bbbf7d50. Main's non-zone data differences are not inputs of the steps' tools. m_sources are unchanged by ship 4."
+  ],
+  "not_checked": [
+   "I did not run the steps on the shipped tree (main 46bbbf7d50 with the fold-ins, ship 2, kinds and the toggles fixes), only on b4's committed state. state.sh's saved states are gone and were not used.",
+   "Page laws (E9-E13, N9, O6-O9, F1-F8 and F11 in the browser) and check-made-spaces, which needs its own server. Note: in my first wrong-state run, the baseline check-entry-gate and check-names-gate reached their page parts and started their own server (on a port the OS chose) and a headless browser for a few seconds before I killed them; nothing of mine was left running. I did not use ports 8935 or 8936.",
+   "The round's work: E7 on main's sidecars, manifest L5 against the committed file, D3 after the round, check-line-reads-the-place-v1, check-disk-gloss-is-the-line-v1, the suite and the gate.",
+   "Relay v195's 600-line entry-gate-after-call5 measurement (468 let through, 132 withheld) was not re-derived independently. The 132 OTHER_SOURCE_TWIN STEP picks and call 5's 1,294-row list are outside the mend, as the lead decided.",
+   "The store-side internals (strike-rows v6, derive-fold-strike-landing, the made spaces' first road): I checked them only through the store steps' held figures and the baseline checks, and made no red state for them.",
+   "Whether v188's 4,201 landed rows should carry facts. None carries entry numbers, a name mark or an opening mark; 868 are of the names list's sources and 20 are M46. The plan expects no line for them.",
+   "Whether toggles-fixes actually moves step 7's held has/fills figures. I only showed the conflicts and the receipt change.",
+   "At the start I ran one git status in b4 without GIT_OPTIONAL_LOCKS=0. It took and released the worktree index lock but did not rewrite the index (its mtime is still 10:04:47)."
+  ]
+ },
+ "fixes": {
+  "outcomes": [
+   {
+    "title": "check-audit-calls A4 follows call 5's moved rows by its own walk, and passes a retext that the follower refuses",
+    "outcome": "fixed",
+    "commit": "ff2de162a3e95158c0af1067a35120f7a41bf802",
+    "evidence": "REPRODUCED. I made the reviewer's state in an overlay of b4, with b4 bound read-only. The moved row is M4 «Aaron», rank 13 under its plain key (map line 19). The last round of the record retexts it, and the store's shard is changed to match. The committed check gave: ok A4 · 357 rows · 1 acted on since: line 87: retext since by land-v188-v1.jsonl. On the same state, apply-row-entries --dry gave: REFUSED · the row of M4 at rank 13 (324a17d21917a99c) was retexted ... waits on the landing of relay v187. A4 was a second copy of the follow rule, and a looser one.\n\nFIX (ff2de162a3, reader/tools/check-audit-calls-v1.mjs and one sentence in reader/PIPELINE.md). A4 now opens the follower with the record it already parsed, so --record still works. The follower is read at call 5's round's store_version.was (869e4ee14c3a). A4 refuses unless the follower's first round is call 5's round. For each re-key line it asks nowOf(the list's own name). Behavior:\n- FollowFault: A4 fails, in the follower's words.\n- struck or withheld since: named, not failed (as before).\n- re-keyed by call 5 only: the row must stand once there, with the headwords its line names.\n- moved again by a later round: named, and the row must stand once under the follower's name.\n- served: a fault.\nThe check's own 8-hop walk is gone. So is the scan that pre-added later re-key keys; the follower's names now feed the store read. The local sha16 copy is replaced by the follower's sha16Of. GUARDS and LEDGER are unchanged (no new guard, as for the other follower consumers). I did not keep the old walk as a recount: it read the same record, so it would only be a second copy of the rule. The independent evidence A4 holds the follower's answer to is the store.\n\nRED BEFORE AND GREEN AFTER (S/v65/fix4/js/mutate-a4.mjs, run-a4-states.sh, logs/HEAD and logs/FIXED; each state in an overlay):\n- right state (b4 as left): ok -> ok. A4 now reads «357 rows · followed from store 869e4ee14c3a through 2 round(s) of the record, call 5's the first · none acted on by a later round». Every other law's line is byte-identical.\n- retexted: ok -> FAIL (the follower's v187 seam sentence).\n- folded: ok («re-key since») -> FAIL (folded into another row by a re-key ... no plan names the answer).\n- a row strike in the store's history that the record does not hold: ok -> FAIL.\n- history returning to 869e4ee14c3a: ok -> FAIL (the new guard's sentence).\n- row gone with no round: FAIL -> FAIL («stands 0 times»).\n- moved again to rank 9001: ok, named -> ok, named.\n- struck since: ok, named -> ok, named.\n- another row of the key retexted: ok -> ok (A4 stays narrow).\nIn every FIXED red, only A4 fails (8 ok).\n\nHOUSE RULES:\n- eslint is clean at HEAD~ and now; a probe file in the same folder warned, so the folder was read.\n- No Hebrew characters in the 41 added lines or anywhere in the tool; no British spellings.\n- The linted file equals the committed file.\n- Only the two paths were committed; nothing is staged.\n- No tool parses PIPELINE.md. The sentence sits inside this branch's own block, so the PIPELINE.md conflicts with ship 2 and kinds-build remain the single conflict hunk each that the builder reported."
+   },
+   {
+    "title": "Merging toggles-fixes conflicts in the default picks' bake and its check, and the facts rehearsal's step 7 was made with this branch's bake",
+    "outcome": "left-for-lead",
+    "evidence": "REPRODUCED. I read the branches only through the shared object store, never in S/pt. git merge-file from base ec1c8a6764 gives:\n- bake-default-picks: exit 3 (3 conflicts: imports, shardBody vs readShard, pillOf);\n- check-default-picks: exit 1 (imports);\n- round-v1.sh: merges clean.\nThe same result holds against 05f65ef014, against 4c7edc00f3 and against today's toggles-fixes daa33c2785; the branch moved 3 commits during the review.\n\nWHY THE LEAD'S. The conflict is between this branch and toggles-fixes, which is still moving in another workflow's tree. It can only be resolved where the branches meet, so it is the merge's.\n\nBEYOND THE MARKERS, three semantic points (candidates in S/v65/fix4/merge/):\n(a) Withheld rows must print nothing: `rowM[r] !== null`, the reviewer's point. No figure moves in ship 4, since there are 0 withheld rows.\n(b) toggles-fixes' pillOf judges `keys.includes(rows[r][0])`. For the 26 followed rows (122 picks), that is still the old maqaf key, which no card asks. It must take followedTo's key.\n(c) A silent mis-merge with no marker: the main loop takes toggles-fixes' `rowText[i] = routePrinted(found[0])`, but this branch's follower block keeps `rowText[i] = found[0][1]`.\n\nMEASURED (S/v65/fix4/measure-merge.sh, measure/). Overlays of b4's final state carry main 46bbbf7d50's 140 zone and resting-line files, and toggles-fixes' gloss-store and picks PIN.json (this branch changes neither).\n- Control (this branch's bake): 20 of 20 held step-7 figures; 41 of 41 step-7 files byte-equal to the rehearsal's table.\n- Resolved merge: 20 of 20 held figures, so ship4-facts-steps.sh would not stop at step 7. 40 of 41 files keep their bytes; only default-picks-receipt-v1.json moves. That is toggles-fixes' own new picks_printed, for example bdb/bdb made 5,738 -> 101,454, step/step pills 1,015 -> 232, and macula/step removed.\n- The resolved check-default-picks --node is 13 ok, 0 FAIL.\n- The naive textual resolution writes the same 41 files byte for byte today, so (b) and (c) are latent. D20 recounts only pills and made, not printed_whole, so no check would catch them later.\n\nSO: on a merged tree, the lead's cmp of the facts table differs at exactly one line, the step-7 receipt. Re-take the table there, or land toggles-fixes first.\n\nALSO:\n- The facts steps script has no sentence about «the kinds ship»; grep finds none there or in the branch.\n- STATE 09:45's overlap list is short. This branch shares the bake, check-default-picks and round-v1.sh with toggles-fixes; PIPELINE.md, check-entry-gate and round-v1.sh with ship 2; PIPELINE.md, check-entry-gate, check-names-gate and check-sense-openings with kinds-build (2ba4470a3a). Ship 2 and toggles-fixes also share zone.html and round-v1.sh; kinds-build and toggles-fixes share check-same-product, gloss-store and zone.html.\n- Of this branch's shared files, only the bake (3) and the picks check (1) conflict with toggles-fixes, and only PIPELINE.md conflicts with ship 2 and kinds-build. check-form-of and check-names-gate, which toggles-fixes' two newest commits touch, merge clean."
+   }
+  ],
+  "commits": [
+   "ff2de162a3e95158c0af1067a35120f7a41bf802"
+  ],
+  "proofs_after": [
+   "Store steps (ship4-store-steps.sh --through 3): rerun after the fix in an overlay of b4, with b4 and .git bound read-only, from the committed state of the 313 generated paths at HEAD ff2de162a3 (store 869e4ee14c3a). Exit 0 in 137 s; 50 figures held, 0 differ. The table through step 3 (667 files) is byte-equal to ship4-store-sha256.txt down to its step 3. The after-3 snapshot equals the builder's data-after3.sha (store 5bee25fd9681, 651,752 routes, 122,496 keys). HOLDS.",
+   "Facts steps (ship4-facts-steps.sh), run from that after-3 state: exit 0 in 90 s; 80 figures held, 0 differ. The table (46 files) is byte-equal to ship4-facts-sha256.txt (sha256 543611353f7d...). The two twin pairs were given as before: M5 rank 1 to rank 12 and rank 20 to rank 41, each n H4480 and b m.cl.aa. The final snapshot (2,089 files, store ccec4fa3071b) equals b4's reader/data as the builder left it. HOLDS. Logs: S/v65/fix4/run-steps-overlay.log, run-store/, run-facts/.",
+   "Checks on b4's final state, singly, logs in S/v65/fix4/final/. Each law line equals the builder's final logs byte for byte, except A4's (the fix). Green:\n- check-route-store-exact-k L1-L10 (11 ok);\n- check-store-continuity C0a-C5 (10);\n- check-audit-calls A1-A9 (9);\n- check-fold-strike-landing F1-F7 (7);\n- check-made-spaces M1-M10 (10);\n- check-entry-gate: 20 ok, E1-E6 and E8-E14;\n- check-names-gate N1-N9 (10);\n- check-sense-openings O1-O9 (10);\n- check-default-picks --node (11);\n- check-ledger-declared (3);\n- check-manifest-prints-unguarded L0-L6 against a fresh scratch emission (7), which is byte-identical to the builder's;\n- check-form-of F0-F11 (12).\nHOLDS.",
+   "check-form-of, first run: it failed early (5 laws, then a timeout) because my runner served b4's root, not reader/ (404 on /zone.html). Served at reader/ on port 8931, it gave F0-F11 ok. The server is stopped and the ports are free.",
+   "Still red, both the round's, as the builder reported: check-entry-gate E7 (39 sidecars name relay v172's ledger) and manifest L5 against the committed, stale manifest.",
+   "Tree left as the builder left it: S/b4 at ff2de162a3 (27feeb2ea2 plus the one fix commit); nothing staged. reader/data is byte-equal to its state at my start (2,089 files); git status shows the same 313 generated paths. No overlay, server or process of mine is left. Plain notes: /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-ledgers-go-live/build/ship-4-facts/NOTES-review-fixes.txt."
+  ]
+ },
+ "build": {
+  "status": "done",
+  "summary": "Ship 4's facts side is finished and proven. I wrote no code: nothing authored was missing, and the tree has no new commit. The twin mend was already in place, in commit 0378a53493 (the follower's twinKeyOf plus apply-row-entries). Tree /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/b4, branch ledgers-build, HEAD 27feeb2ea2, holds the 3 store commits and the 8 facts commits. Its reader/data is the after-3 state plus facts steps 6 to 8: store ccec4fa3071b, 651,752 routes, 122,496 keys, 310 modified and 2 untracked generated paths, all uncommitted, nothing staged.\n\n1. REVIEW\n- Before I ran anything the tree was at after-3: store 5bee25fd9681, 651,752 routes, 122,496 keys, and all 269 generated paths match state/after3/SHA256.txt. The builder had re-made it at 09:28 to 09:30 by running the store steps through 3 at HEAD, and that table equals the proven one.\n- state.sh can no longer load anything. The saved files of state/after3 and state/after5 were deleted at about 09:26; only MANIFEST.txt and SHA256.txt are left. `state.sh load` would first reset every generated path to the commit and then fail on the copy. Do not use it. In its place I saved the after-3 bytes of the 46 paths the facts steps write in /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship4-facts/mine/after3-facts-paths.\n- Calls 6 and 2 are held as the lead decided. data/audit-calls/PIN.json gives each landing a `held` entry with its reason. A6 and A7 are green. The strike record has no call-6 or call-2 round, and no tool reads call6-picks-words-withheld-too.\n- Twin mend, checked by an independent recount from call 5's own list and the ledger (scripts/recount-twins.py). There are 4,109 SAME_SOURCE_TWIN lines; 4,061 are of the ledger's 15 sources, and every one has its twin in the ledger. Call 5's repoint_picks_to agrees with the twin found by source and words in every case. Exactly 2 pairs have a twin that lacks an entry: M5 rank 1 «from» gives n H4480 and b m.cl.aa to rank 12, and M5 rank 20 «out of» gives the same to rank 41. Both pairs are recorded in data/row-entries-receipt-v1.json and index.row_entries.followed.entries_given_to_a_twin, with the two rows named.\n- The builder also gives BDB's own entry (b), not only the number. That is right: with n alone, the twin would carry the numbers of two entries but BDB's entry of only one. It changes no other verdict, because no BDB (M5) row under the key lacks a number.\n- Lint: the 11 changed tools are clean at the base and at HEAD, and a probe file shows the linter reads the folder. No Hebrew characters in the tools, and no British spellings in the added lines.\n\n2. PROOF OF THE MEND\n- The 600 call-5 lines of entry-gate-after-call5-v1.2.jsonl, measured with the page's own gate functions at each place's core tags:\n  - after-3: 0 let through, 600 withheld;\n  - final state: 468 let through (all «from»), 132 still withheld.\n- All 132 still withheld are OTHER_SOURCE_TWIN on call 5's list. In each case a STEP (M4) row was struck because another source holds its words under the plain key, and v1.2 re-pointed the pick to that row, which is another entry's at the place. Examples: «of» at H1768 goes to M5 H1767/H4078; «on» and «concerning» at H5922 go to M5 H5920/H5921. The mend covers same-source twins only, so these stay withheld. Their return under the plain keys, each with its own credit, is the 1,294-row list already asked of the corpus lane.\n- «from» (rank 12) and «out of» (rank 41) stand at all 736 places in 35 books where the page asks their key with H4480 among the core tags. That was 0 before. The builder's 619 counted only words whose own key is that one.\n- check-entry-gate E3 to E5 and check-default-picks D2 are green on the final state; their figures are below.\n\n3. RUNS\n- Two runs of ship4-facts-steps.sh from after-3. Between them I restored only the 46 paths the facts steps write, and the full 2,089-file snapshot was then equal to after-3. Both tables are the same bytes (sha256 543611353f7d…), which equals the builder's ship4-facts-sha256.txt, and reader/data after run A equals reader/data after run B.\n- A third run on main 46bbbf7d50's zones, sidecars and resting lines (the shipped tree differs from the build tree in those 140 files) gave the same table byte for byte.\n\n4. CHECKS on the final state\n- Green:\n  - check-route-store-exact-k L1 to L10;\n  - check-store-continuity C0a to C5;\n  - check-audit-calls A1 to A9;\n  - check-fold-strike-landing F1 to F7;\n  - check-made-spaces M1 to M10;\n  - check-entry-gate E1 to E6 and E8 to E14;\n  - check-names-gate N1 to N9, N7 included;\n  - check-sense-openings O1 to O9;\n  - check-default-picks --node D0, D1, D2, D3, D5, D19;\n  - check-form-of F0 to F11;\n  - check-ledger-declared;\n  - check-manifest-prints-unguarded L0 to L6, run against a fresh scratch emission.\n- Red on a wrong state and green on the right one:\n  - F9, F10 and N7 are my proofs. F9 and F10 went red on a strike record with one v188 landing removed and one re-key's rank changed; N7 went red on a store where one addendum row carries the name mark. Each time the right bytes were put back.\n  - The builder's earlier proofs: E3, E5, N4, O4 and D2 red before the facts steps; A6 and A7 red on the after-5 state.\n- Two reds remain, and both are the round's, so the lead's:\n  - E7: the build tree's lattice sidecars name relay v172's ledger. Main's sidecars already name v190's, so E7 may be green on the shipped tree.\n  - Manifest L5 against the committed manifest: it is stale since ships 1 and 3 and is regenerated by the round.\n- Also the lead's after the round, because they read projected zones and records: D3 again, the page laws D4 to D19, check-line-reads-the-place-v1 and check-disk-gloss-is-the-line-v1. The builder ran the last two at 09:24 on data identical to mine, and both were green.\n\n5. FINDINGS left for the lead's call (no code changed)\n- (a) Two tools compute the twin's union: apply-row-entries, and check-entry-gate E5 as its own recount. E3's twin clause is an independent check of the same property.\n- (b) apply-row-entries looks for a twin only among rows the ledger lists. A same-source twin landed since (with no line) would be skipped without a word; E3 would turn red. This case does not occur today.\n- (c) made-spaces-second-road-v1.mjs (the store side) walks the strike record by \"versions reached since\", which the follower's header says is never asked. That breaks \"one rule in one place\".\n- (d) Ship 2's branch ledgers-build-ship2 (b9da2703b7) conflicts with ledgers-build only in reader/PIPELINE.md: both add a paragraph after the same line, so keep both. check-entry-gate-v1.mjs and round-v1.sh merge without conflict.\n- (e) No path authored on ledgers-build has changed on main since ec1c8a6764, so the 11 commits cherry-pick cleanly onto main 46bbbf7d50.\n\nNotes: /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-ledgers-go-live/build/ship-4-facts/NOTES.txt. Evidence: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship4-facts/mine/ (facts-run-A, -B, -M, final/, red/, recount-twins.out, gate-after-call5.*.out).",
+  "commits": [],
+  "files_authored": [
+   "/home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-ledgers-go-live/build/ship-4-facts/NOTES.txt",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship4-facts/mine/scripts/recount-twins.py",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship4-facts/mine/scripts/gate-after-call5.mjs",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship4-facts/mine/scripts/rows-under.mjs",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship4-facts/mine/scripts/checks-final.sh",
+   "/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v64/ship4-facts/mine/scripts/red-proofs.sh"
+  ],
+  "figures": [
+   {
+    "what": "the tree's store before anything ran",
+    "real": "5bee25fd9681 · 651,752 routes · 122,496 keys; all 269 generated paths equal state/after3/SHA256.txt; nothing else differs from the commit",
+    "plan": "the state after step 3, calls 6 and 2 held",
+    "holds": true
+   },
+   {
+    "what": "facts steps twice from after-3 (only the 46 written paths restored between runs)",
+    "real": "both tables are the same bytes (sha256 543611353f7d...), equal to v64/steps/ship4-facts-sha256.txt; reader/data after run A = after run B (2,089 files)",
+    "holds": true
+   },
+   {
+    "what": "facts steps on main 46bbbf7d50's zones, sidecars and resting lines",
+    "real": "the same table, byte for byte",
+    "holds": true,
+    "note": "the 140 zone and record files that differ between the build base and main change nothing the facts steps write"
+   },
+   {
+    "what": "row entries: lines whose row was struck / withheld / followed to another key / rows landed with no line",
+    "real": "4,664 / 0 / 45 / 3,039",
+    "plan": "4,664 / 31 (29 call 6 + 2 call 2) / 45 / 3,040",
+    "dry": "4,664 / 0 / 45 / 3,039",
+    "holds": false,
+    "note": "calls 6 and 2 are held; 3,039 = 3,040 less v188 line 1881 (M4, the one source of the ledger among the 3 lines not landed for their key)"
+   },
+   {
+    "what": "row entries: rows moved",
+    "real": "2 (1 shard, ed.bin)",
+    "plan": "0",
+    "dry": "2",
+    "holds": false,
+    "note": "the lead's twin mend of 08:40"
+   },
+   {
+    "what": "same-source twins of struck rows, and pairs whose twin lacked an entry",
+    "real": "4,061 struck rows with a twin of their own source; 2 pairs: M5 rank 1 to rank 12 («from»), M5 rank 20 to rank 41 («out of»), each given n H4480 and b m.cl.aa",
+    "holds": true,
+    "note": "independent recount from call 5's list and the ledger: 4,109 SAME_SOURCE_TWIN lines, 4,061 of the ledger's sources, every one with its twin in the ledger, 0 disagreements with call 5's repoint_picks_to, 2 pairs"
+   },
+   {
+    "what": "relay v195 entry-gate-after-call5: the 600 call-5 STEP pick references",
+    "real": "after-3: 0 let through, 600 withheld; final: 468 let through (all «from»), 132 withheld",
+    "holds": false,
+    "note": "all 132 are OTHER_SOURCE_TWIN on call 5's list (M4 struck, re-pointed to another source's row of another entry), outside the same-source mend; their return with their own credit is the 1,294-row list asked of the corpus lane"
+   },
+   {
+    "what": "«from» (rank 12) and «out of» (rank 41) at places asking their key with H4480",
+    "real": "736 places in 35 books: 0 this entry before, 736 after",
+    "holds": true,
+    "note": "the builder counted 619, words whose own key is that key; 736 adds the core-piece cells"
+   },
+   {
+    "what": "name rows",
+    "real": "7,412 marked of 7,412; 0 lines withheld; 0 rows moved",
+    "plan": "107 call-6 lines withheld",
+    "holds": false,
+    "note": "call 6 held"
+   },
+   {
+    "what": "sense openings",
+    "real": "2,008 marked of 2,008; 8,935 rows of M46; 0 moved",
+    "plan": "1 row withheld",
+    "holds": false,
+    "note": "call 6 held"
+   },
+   {
+    "what": "default picks rows followed",
+    "real": "26 re-keyed rows found (122 picks); 3,895 struck and named by no pick; 0 withheld; 1,092 waiting picks on 25 rows, all now with their row",
+    "plan": "26 rows / 122 refs; 1,092 waiting picks; 23 withheld rows (453 refs)",
+    "holds": false,
+    "note": "only the withheld rows differ, because call 6 is held"
+   },
+   {
+    "what": "call6-picks-words-withheld-too-v1.jsonl",
+    "real": "applied by nothing: no tool names it; no call-6 or call-2 round in the strike record",
+    "plan": "18 suppress lines applied in step 7",
+    "holds": false,
+    "note": "the lead's decision"
+   },
+   {
+    "what": "form-of pills and F10",
+    "real": "re-baked to the same bytes (101f0ed4cd84); F10: 2,266 rows named, 18 slots name ל־ 3 M13, followed to ל",
+    "plan": "F10 follows ל־ at 18 slots",
+    "holds": true
+   },
+   {
+    "what": "F9's v188 slots",
+    "real": "17 rows on 14 slots of 14 lines; 13 rows on 11 slots the record prints",
+    "plan": "17 slots",
+    "holds": false,
+    "note": "the plan's 17 counts rows, not slots"
+   },
+   {
+    "what": "routes and keys after the facts steps",
+    "real": "651,752 routes, 122,496 keys (store ccec4fa3071b)",
+    "plan": "651,305 after the whole round",
+    "holds": false,
+    "note": "652,954 − 5,403 + 4,201; v188 landed 4,201 not 4,204 (store builder's report), calls 6 and 2 held; the facts move no route"
+   },
+   {
+    "what": "v194 names addendum",
+    "real": "pinned (99a414fb..., 26 lines; rule 7b7a0408, receipt 9f0bf4a5, the letter's own sha256s, byte-equal to the relay); N7: 26 rows stand, none marked (22 partly a name, 4 not reached)",
+    "plan": "pin 99a414fb..., 26 lines, N7, nothing applied",
+    "holds": true
+   }
+  ],
+  "checks_run": [
+   {
+    "check": "check-route-store-exact-k-v1",
+    "result": "L1 to L10 ok (11 laws)",
+    "state": "final"
+   },
+   {
+    "check": "check-store-continuity-v1",
+    "result": "C0a, C0 to C5 ok (10)",
+    "state": "final"
+   },
+   {
+    "check": "check-audit-calls-v1",
+    "result": "A1 to A9 ok (A6 and A7: calls 6 and 2 held, 448 and 2 rows stand)",
+    "state": "final"
+   },
+   {
+    "check": "check-fold-strike-landing-v1",
+    "result": "F1 to F7 ok",
+    "state": "final"
+   },
+   {
+    "check": "check-made-spaces-v1",
+    "result": "M1 to M10 ok (its own server on the tree)",
+    "state": "final"
+   },
+   {
+    "check": "check-entry-gate-v1 --ledger --ledger-was --lattice",
+    "result": "E1 to E6 and E8 to E14 ok. E3: 380,633 rows, 370,021 carry the slot; 4,664 struck, 0 withheld, 45 followed, 3,039 landed; 4,061 twins, 2 given. E4: 301,395 one number / 67,756 several / 11,482 none. E5: 377,594 met, 4,664 gone, 3,039 landed, 2 twins. FAIL E7 only: 39 sidecars name relay v172's ledger (the round's projection)",
+    "state": "final"
+   },
+   {
+    "check": "check-names-gate-v1",
+    "result": "N1 to N9 ok; N7: 26 rows stand, none marked",
+    "state": "final"
+   },
+   {
+    "check": "check-sense-openings-v1",
+    "result": "O1 to O9 ok",
+    "state": "final"
+   },
+   {
+    "check": "check-default-picks-v1 --node --ledger v54/picks-v1-2/ledger",
+    "result": "D0, D1, D2, D3, D5, D19 ok. D2: 154,583 rows, 0 missing, 26 moved (122 picks), 3,895 struck and named by no pick, 0 withheld; 1,092 waiting picks on 25 rows, 0 still waiting",
+    "state": "final"
+   },
+   {
+    "check": "check-form-of-v1 http://127.0.0.1:8931 (server stopped after)",
+    "result": "F0 to F11 ok; F9: 17 rows on 14 slots (13 on 11 printed); F10: 18 slots followed",
+    "state": "final"
+   },
+   {
+    "check": "check-ledger-declared-v1",
+    "result": "ok (3)",
+    "state": "final"
+   },
+   {
+    "check": "check-manifest-prints-unguarded-v1 --committed <scratch emission>",
+    "result": "L0 to L6 ok: 163 rules, 150 guarded, 13 unguarded; against the committed manifest L5 is red (stale, regenerated by the round)",
+    "state": "final"
+   },
+   {
+    "check": "check-form-of-v1 on wrong state W1 (strike record: one v188 landing removed, one call-5 re-key rank changed)",
+    "result": "FAIL F9 (a row that stood when the map was made serves the ruled print) and FAIL F10 (18 slots name a row that stands 0 times where the follower says); then restored byte for byte",
+    "state": "red"
+   },
+   {
+    "check": "check-names-gate-v1 on wrong state W2 (one addendum row carries the name mark)",
+    "result": "FAIL N7 (and N3); then restored byte for byte",
+    "state": "red"
+   },
+   {
+    "check": "eslint over the 11 changed tools (base 0ea924a80a and HEAD)",
+    "result": "0 warnings both; a probe file proved the folder is read",
+    "state": "final"
+   }
+  ],
+  "lead_must_run": [
+   "S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad; T=<the shipped tree, main 46bbbf7d50 plus fold-ins>",
+   "git -C $T cherry-pick ec1c8a6764..ledgers-build   # 11 commits, 668e0a5ca5 to 27feeb2ea2; no path conflicts with main. If ship 2 is merged too, reader/PIPELINE.md conflicts: keep both paragraphs",
+   "SHIP4_STORE_OUT=$S/v64/steps/ship-store bash $S/v64/steps/ship4-store-steps.sh $T --through 3   # must exit 0 with every figure 'held'. Step 1: 5,403 struck, 357 re-keyed, 2,550 keys emptied, routes 647,551, keys 122,351, map 357 lines. Step 2: 4,201 landed, 51 not landed, 145 keys made, cuts M9 42 / M5 19, routes 651,752. Step 3: 93 slots, years 0 moved, made spaces M9 30 / M5 84 / M46 0. Ends with '== the end · store 5bee25fd9681 · 651752 routes · 122496 keys' and 'done · steps 1 to 3 ... (667 files' sha256)'",
+   "sed '/^== the end/,$d' $S/v64/steps/ship-store/sha256-table.txt | cmp - <(sed '/^== step 4/,$d' $S/v64/steps/ship4-store-sha256.txt) && echo same   # must print 'same'; the extract's sha256 is b6a6d2ecb905...",
+   "SHIP4_FACTS_OUT=$S/v64/steps/ship-facts bash $S/v64/steps/ship4-facts-steps.sh $T   # must exit 0 with every figure 'held'. It prints two 'given:' lines (M5 rank 1 to rank 12, M5 rank 20 to rank 41, each {\"n\":[\"H4480\"],\"b\":[\"m.cl.aa\"]}); 'held the form-of pills ... (101f0ed4cd84)'; 'held the addendum: relay v194, 26 lines, 99a414fb7c7c'; '== the end · store ccec4fa3071b · 651752 routes · 122496 keys'; and 'done · steps 6 to 8 ... (46 files' sha256)'",
+   "cmp $S/v64/steps/ship-facts/sha256-table.txt $S/v64/steps/ship4-facts-sha256.txt && echo same   # must print 'same'; sha256 543611353f7d.... Step 7's lines are the bytes of bake-default-picks-v1.mjs at 27feeb2ea2: if the kinds ship changes that tool, step 6's lines must still match",
+   ". $S/v54/integrate/env.sh; cd $T/reader; then the node checks, as in $S/v64/ship4-facts/mine/scripts/checks-final.sh with the tree changed: check-route-store-exact-k, check-store-continuity, check-audit-calls, check-fold-strike-landing, check-made-spaces, check-entry-gate (--ledger, --ledger-was, --lattice), check-names-gate, check-sense-openings, check-default-picks --node --ledger $S/v54/picks-v1-2/ledger, check-ledger-declared; all green; E7 may be green on main's sidecars",
+   "then the round (it re-projects the sidecars for E7, regenerates PIPELINE-MANIFEST.md for L5, re-bakes the default picks and the resting lines), the suite (--timeout 2700) with check-line-reads-the-place-v1, check-disk-gloss-is-the-line-v1 and check-default-picks D3 to D19, the gate, the ship"
+  ],
+  "not_done": [
+   "No code changed for findings (a) to (c): the twin's union computed in two places (apply-row-entries, and check-entry-gate E5's recount); apply-row-entries skips without a word a same-source twin landed since (not present today; E3 would turn red); made-spaces-second-road-v1.mjs follows the strike record by 'versions reached since' instead of through the follower. These are the lead's call.",
+   "state.sh's saved states (after3, after5) were not re-saved; their files are gone and `state.sh load` must not be used. The after-3 bytes of the 46 paths the facts steps write are kept in v64/ship4-facts/mine/after3-facts-paths.",
+   "The round's checks were not judged here: E7, manifest L5 against the committed file, D3 after the re-baked lines, D4 to D19 page laws, check-line-reads-the-place-v1 and check-disk-gloss-is-the-line-v1.",
+   "The 132 OTHER_SOURCE_TWIN pick references stay withheld by the gate. They wait on the corpus lane's list of the 1,294 rows, to come back under their plain keys with their own credit."
+  ],
+  "plan_did_not_hold": [
+   "Row entries move 2 rows, not 0: the lead's twin mend gives two BDB rows the Hebrew entry their struck twins under the key with a maqaf carried.",
+   "Rows landed with no line: 3,039, not 3,040. Of the three v188 lines not landed for their key, one (line 1881, M4) is of the ledger's sources.",
+   "Withheld lines are 0 everywhere, against the plan's 29 + 2 (row entries), 107 (name rows), 1 (sense openings) and 23 rows / 453 picks (default picks): calls 6 and 2 are held.",
+   "call6-picks-words-withheld-too (18 suppress lines) is applied by nothing: call 6 is held.",
+   "F9's '17 v188 slots' are 17 rows on 14 slots of 14 lines; the record prints 13 rows on 11 slots.",
+   "Routes are 651,752, not 651,305: v188 landed 4,201, not 4,204, and calls 6 and 2 are held.",
+   "Of the relay's 600 call-5 pick references, 132 stay withheld after the mend: all are other-source twins, outside the same-source mend."
+  ]
+ }
+}
