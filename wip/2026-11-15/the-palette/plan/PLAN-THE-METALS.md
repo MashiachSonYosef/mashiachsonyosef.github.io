@@ -65,3 +65,7 @@ This palette ship goes from main on its own, ahead of the default toggles, whose
 - Checks: `check-color-channels-v1` (the checks part's revision; its inks law now names the numbers' bronze, on the numbers alone): all pass. `check-card-numbering-v1`: its line work is the three metals: all 13 pass on Exodus. New `check-woven-name-v1` (the pin, the threads, «and» gold×bronze, «.com» purple×silver, every page naming the drawing): passes, and goes red on today's drawing (W1, W2, W3). The changed tools lint as before (9 warnings, the same 9).
 
 - The owner's answer (word 20): the signs' gold #967c26, a step darker than #a48829 at the same hue (3.0:1 on the linen, 2.8:1 in a cell, 1.8:1 on the scarlet letters). Set in the page, the door, the name's gold thread edge (redrawn, repinned 37a73037…) and the record; the round run again from the start.
+
+## Left for the next ship that touches zone.html
+
+- zone.html:439 still heads the channels' rules «color-channel-rule-v2, ruled 2026-09-10»; it is v3 now. Changing a comment changes the page's hash, which every resting-line record and chain book pins, so it rides the next ship that edits the page (the default toggles).
