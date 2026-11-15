@@ -1,0 +1,291 @@
+{
+ "page": {
+  "status": "done",
+  "summary": "The page part of round 2 is finished and committed on toggles-fixes in scratch pt. 47c5a68277 (N1, before the restart) is followed by 76af3ee50c (the page) and b152652e7f (the checks). The working tree is clean. Every finding was reproduced on live (8914), on HEAD's page or on a scratch page with the fix taken out, then shown fixed on the tree, each with a check that goes red before and green after.\n\nN1: the concordance shows at least «1 location · here» for the line's own reading. The critic's Ruth scenario was run again with N2 in place.\n\nN2: a unit (one entry, or one reading across words, with the same pick at each word) now prints once where its words stand in one run (one part over them, data-wn, one blob). Where its words stand apart (39 units, all BDB's), each word keeps its line as it rests and the card says why, because no line can stand over both words. Count over the data's 215 units: live 212 twice and 3 span lines; tree 175 once, 39 held, 1 span line, 0 twice. UBS's «Aram Zoba» is left, and the notes say what the corpus lane would have to give (each UBS meaning's word span).\n\nN3: a press paints the sections in view at once and the rest in slices of about 200 ms, nearest first, and at once on scroll or read. Psalms built whole: the longest task fell from 10.0 s (press) and 11.8 s (back on STEP) to 0.48 s and 0.58 s. Lines read after scrolling Ruth and Psalms under each source and back on STEP all equal the first paint.\n\nN4: when the book file lands, the card is not rebuilt while the pointer or the focus is on it. 0 of 8 pills move at 1100x900 and 412x915; on live all 8 move about 205 px.\n\nN7: under a kept source the book file is asked as soon as the index names it (24 ms on the tree against 293 ms on live). The cost is one extra index request, because the boot's index fetch line is one the kinds team changes.\n\nN8 and N9: titles and labels are fixed (one name, STEP).\n\nQuestion 3 is now stated in the page's comment.\n\nP3 on Ruth: the page was wrong, and it is fixed. A word inside a run read its pieces off its own hidden line.\n\nLint: the page is at baseline and the tools have no new warnings. Merge with kinds-build: zone.html has 2 conflicts, and both are identical, block for block, to HEAD's own 2 conflicts. This part adds none, and the tools have 0.\n\nNotes: /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-toggles-fixes/round-2/page/RUNNING-NOTES.md. Probes and logs: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/page/p2/ (out/, checks/).",
+  "commits": [
+   "47c5a68277 The concordance counts a default source's own words where they stand (N1; zone.html renderDictTab, new check-concordance-counts-the-line-v1; committed before the restart)",
+   "76af3ee50c A unit a source reads at both words prints once, a press paints what is in view first, and the book's file lands without moving the card (reader/zone.html, reader/tools/resting-lines-v1.mjs, reader/tools/check-same-product-v1.mjs)",
+   "b152652e7f The checks that hold the second round's page fixes: a unit once or held, a press painted before it is seen, the card under the hand, one name for a source (check-rulings-under-sources-v1, check-default-picks-v1, new check-landing-holds-the-card-v1, check-press-paints-before-seen-v1, check-row-and-card-name-sources-v1)"
+  ],
+  "outcomes": [
+   {
+    "finding": "N1: the concordance said «0 locations» for the line's own reading wherever that reading is a row the page made for a default source",
+    "outcome": "fixed",
+    "proof": "Fixed in 47c5a68277 before the restart. Re-proven after the restart with N2 in place (p2/out/n1-concord-tree.json), Ruth with ?dict=on. At rest, 1:19:8 «when + came + they» and 3:14:2 «feet + his» read «1 location», with «here · Ruth …» first. Under MACULA, 1:1:1 «and happened» reads «2 locations» (here and 3:8:1), and 1:1:3, 1:1:5 and 1:19:8 read «1 location». Under UBS and BDB, 1:1:3 and 1:19:8 read «1 location». Live and the tree before both said «0 locations» (v75/page/out/n1-concord-{live,tree-before}.json). check-concordance-counts-the-line-v1: tree green K1-K4, 1 min 36 s; live red K1-K4 («0 locations»), 11 min 40 s.",
+    "changed": "zone.html renderDictTab: madeOf and placesOfText (47c5a68277)"
+   },
+   {
+    "finding": "N2: a unit a source files at each of two words printed under both words (Amos 3:14:10-11 BDB «Bethel · sense 1»; Daniel 1:8:8-9 MACULA «with food»)",
+    "outcome": "fixed",
+    "proof": "One unit means the words of one entry across words (the lattice's headword is the same at each word and its letters run across the boundary) or of one reading the place gives across words (TAHOT's hyphen), where the source's line at every word comes from the same pick in its book file. For BDB that is the record and sense; for UBS the meaning and its pieces; for MACULA the words as given. Units are never matched by text likeness. Where the words stand in one run, the unit prints once: one part over its words (data-wn) and one blob (spanPairs). Amos 3:14:10-11 now shows one part «Bethel · sense 1» with wn=2, and Daniel 1:8:8-9 one part «with food» with wn=2 (p2/out/n2-tree.json). Where the words stand apart, a line cannot stand over both, so each word keeps its line as it rests. Genesis 23:2:3-4 shows «at + Kiriath» «Arba», and the card says «reading · STEP at this place · BDB reads these 2 words as one, and they stand apart». This is the same hold call 5 gives a run the source does not read whole. Count over the data's 215 units (BDB 202, UBS 8, MACULA 5), each under its own source (p2/out/units-by-source-and-book.txt). Live: 212 twice and 3 a run's span line. Tree: 175 once, 39 held (all BDB: Kiriath Arba, Abed Nego, Bethel at Jeremiah 48:13, the Pi of Pi-hahiroth standing in another run's cell, and others), 1 a run's span line (I Kings 13:1 «El-bethel»), 0 twice. Check U10 of check-rulings-under-sources-v1: tree green. Live is red («with food» under both words). A scratch page with the apart hold taken out is red at exactly Zechariah 7:2:5-6 («exilic» «exilic»). check-default-picks-v1 D7, D8 and D9 are green with the unit model.",
+    "changed": "zone.html: dfltAcross / defaultAt / dfltHalfHeld / dfltUnitHeld 5936-5954; dfltEntriesOf (+DFLT_SEAT), dfltUnitOf, dfltTogether, dfltApartUnit 11863-11941; refreshJoinGloss 12041-12123; spanPairs 12542-12552; drawTies 13232; openHud label 9946-9952 and dfltHereNow 10473. resting-lines-v1 97 and check-same-product-v1 225 read a part over several words."
+   },
+   {
+    "finding": "N2 remainder: a UBS line filed at one word that reads its neighbors' words with no mark across them (II Samuel 10:6:15 «Aram Zoba»)",
+    "outcome": "left-for-lead",
+    "proof": "The book file gives each place UBS's meaning and its pieces, but never the words of the verse that meaning covers. At 10:6:15 (the object marker) UBS has «Aram Zoba», and Aram (16) and Zobah (17) carry no UBS meaning at all. TAHOT marks nothing across these words, and each word has its own headword. The page therefore cannot tell this case without reading the English, and does not guess. What the corpus lane would have to give: for each UBS meaning it files at a place, the verse words it covers (place numbers or the source's word ids), or at least a mark that the meaning is filed at a word that is not its head. This text is in the notes for the lane's letter, and in the page's comment above dfltEntriesOf.",
+    "changed": ""
+   },
+   {
+    "finding": "N3: a source press repainted every built line in one task (Psalms fully built: 10 to 12 s)",
+    "outcome": "fixed",
+    "proof": "The sections within a screen of the window, and the open card's section, are painted at once (dfltRepaint). Every other built section is left stale and painted in slices of about 200 ms, nearest first (dfltFreshStep). A stale section is painted at once when a scroll brings it within a screen, or when anything reads its words (materialise). window.__default.ready waits for the last slice. Psalms built whole (2,527 sections, 22,803 blocks), browser long-task timing (p2/out/n3-*.json). Live: the MACULA press took 9.9 s in the click, its longest task was 10.0 s, and 2 tasks ran over 1 s (the press, then the file landing); back on STEP took 11.7 s in the click, longest task 11.8 s. Tree: the press took 0.11 s in the click, its longest task was 0.48 s, with none over 1 s, and the lines stood at 29.8 s; back on STEP took 0.58 s, longest task 0.58 s. check-press-paints-before-seen-v1 with WORKS=ruth,psalms: tree green (L1: longest task 564 ms; L2: Ruth and Psalms under each source and back on STEP, every window and then every section equal to the first paint under ?default=), 20 min 39 s. A scratch page that never paints its stale sections: L1 and L2 red (MACULA at Ruth sections 7-9 seen with TAHOT's lines). Live L1 is red (9.5 s).",
+    "changed": "zone.html: DFLT_STALE 3713-3715; dfltSay 3887-3893; repaintGlossOrder(stands) 14469-14533; dfltFresh / sectionAtY / dfltFreshStep / scroll listener / dfltRepaint 17940-18010; materialise 18013-18016; reopenForDefaults 18134-18165"
+   },
+   {
+    "finding": "N4: at rest the first card was rebuilt when the book file landed, pills jumped about 200 px and focus fell to the body",
+    "outcome": "fixed",
+    "proof": "reopenCardFree: when the file lands, the card is rebuilt only if the reader's hand is not on it (the pointer is over the card or the focus is inside it). Otherwise it is rebuilt once the hand leaves, and a card that was closed or replaced in the meantime is left alone. check-landing-holds-the-card-v1, with the book file held 6 s and the hand on the first pill. Tree: H1 (1100x900) and H2 (412x915) green: 0 of 8 pills move, focus stays on the pill, and 3 source lines appear once the hand leaves. Live: H1 red (8 of 8 pills moved -205 px, focus out of the card) and H2 red too (8 of 8 moved -206 px on the phone).",
+    "changed": "zone.html reopenCardFree / dfltHeld / reopenForDefaults(landed) 18134-18165; defaultPicksReady passes landed (3927)"
+   },
+   {
+    "finding": "N7: under a kept MACULA, UBS or BDB the book file was requested only after the zone and every index had been read",
+    "outcome": "fixed",
+    "proof": "When a source other than STEP is kept, the page asks for the index before the boot fetches, and asks for the book file the moment that index names it. defaultPicksReady takes that request once (dfltEarly). At rest nothing changes. Psalms with fh.defaults=bdb (p2/out/n7-*.json): on live the zone and the index are asked at 0 and 2 ms and the book file at 293 ms; on the tree the index is asked at 0 (and again at 2), the zone at 0, and the book file at 24 ms. With the file held 10 s, the first word appears at 11.8 s on live and 11.4 s on the tree, so a stalled file still holds the page blank, by plan. check-landing-holds-the-card-v1 H3 (UBS kept, the zone held 3 s): tree green (book file at 331 ms, zone at 3,300 ms); live red (book file at 3,357 ms, after the zone).",
+    "changed": "zone.html dfltEarly 3716-3719, boot 4361-4377, defaultPicksReady 3917-3920"
+   },
+   {
+    "finding": "N8: with STEP's TAHOT switched off, the lit MACULA's title still said «press again to go back to STEP»",
+    "outcome": "fixed",
+    "proof": "The title now ends «press again for the line as the switches leave it, no pill lit: STEP TAHOT is switched off on the switches». A second press does exactly that: no pill lit. check-row-and-card-name-sources-v1 W1: tree green, live red (the old title).",
+    "changed": "zone.html paintDefaultPills 15627-15631"
+   },
+   {
+    "finding": "N9: «reading · TAHOT at this place» over «here STEP reads» on one card",
+    "outcome": "fixed",
+    "proof": "The label now names the place's pieces the way their pill and the piece line do: «STEP» for TAHOT's pieces, «MACULA» for MACULA's. The switches' strip names the same M4 «STEP TAHOT». check-row-and-card-name-sources-v1 W2: tree green (12 cards STEP/STEP); live red (12 cards «TAHOT» over «here STEP reads»).",
+    "changed": "zone.html openHud placeWho 9931-9935"
+   },
+   {
+    "finding": "The question-3 hold (STEP's words never replace another dictionary's line) was written only in the owner sheet",
+    "outcome": "fixed",
+    "proof": "It is now stated in the page's comment where question 2 is named. That comment counts 157 words across the 39 books, the build review's measure, with Psalms 10:5:2 «archer» [M14] and Ruth 1:7:8 «bride» [M11] as examples, and says the hold stands until the owner answers.",
+    "changed": "zone.html the default sources' comment 3663-3669"
+   },
+   {
+    "finding": "check-line-reads-the-place-v1 P3 fails on Ruth, on live too",
+    "outcome": "fixed",
+    "proof": "The page was wrong. At Ruth 1:2:9 «sons + his», a word inside the run «[the] two + sons + his», the card opened on its core block and pressed «young». The card read the place's pieces off the word's own line, which inside a run is not drawn and carries no pieces, so it fell back to the pool's first reading. It now reads the run's part for the word. P3 on Ruth: tree 30 of 30; live and a shadow of HEAD's page 29 of 30. The p3 probe shows HEAD pressing «young» at 1:2:9 and the tree pressing «sons» (1:1:19 was already right on HEAD). Amos stays green.",
+    "changed": "zone.html openHud lineSaid 10868-10875"
+   },
+   {
+    "finding": "check-rulings-under-sources-v1's readiness waits were 120 s and swallowed (seen by the tools builder; the file was this part's)",
+    "outcome": "fixed",
+    "proof": "The waits are now 30 s, and a page that does not say it is ready in that time is a fault (U0). Live is red: 15 pages at rest never say ready. The tree is green.",
+    "changed": "check-rulings-under-sources-v1 259-275, 642"
+   }
+  ],
+  "checks_run": [
+   {
+    "check": "check-rulings-under-sources-v1 (U1-U10, U0, U6) on the tree / live 8914 / scratch page with the apart hold out",
+    "result": "all green 1 min 56 s / red U1-U5, U7-U10, U0 9 min 22 s / red at U10 only (Zechariah 7:2:5-6) 1 min 50 s"
+   },
+   {
+    "check": "check-default-picks-v1 whole (page laws on ii-samuel, obadiah, nahum, hosea, tikkunei-zohar; node laws)",
+    "result": "24 green including D7, D8 and D9 with units; D20 red, as on HEAD, because the receipt on disk is the ship's (STEP's pills 232 here against 1,015 in the receipt); 6 min 3 s"
+   },
+   {
+    "check": "check-concordance-counts-the-line-v1 (new, N1) tree / live",
+    "result": "green K1-K4, 1 min 36 s / red K1-K4, 11 min 40 s (run before the restart)"
+   },
+   {
+    "check": "check-landing-holds-the-card-v1 (new, N4 and N7) tree / live",
+    "result": "green H1, H2, H3, H0, 27 s (run twice) / red H1, H2, H3, 2 min 27 s"
+   },
+   {
+    "check": "check-row-and-card-name-sources-v1 (new, N8 and N9) tree / live",
+    "result": "green 18 s / red W1, W2, 2 min 18 s"
+   },
+   {
+    "check": "check-press-paints-before-seen-v1 (new, N3) WORKS=ruth,psalms on the tree / WORKS=ruth on a scratch page that never paints stale sections",
+    "result": "all green 20 min 39 s (L1 longest task 564 ms, lines stand at 28.6 s; L2 Ruth and Psalms) / red L1 and L2, 15 min 17 s; live L1 red (9.5 s) in the run before"
+   },
+   {
+    "check": "check-line-reads-the-place-v1 Ruth tree / Ruth live / Ruth HEAD's page / Amos tree",
+    "result": "green (P3 30/30) 70 s / red P3 29/30 / red P3 29/30 / green 70 s"
+   },
+   {
+    "check": "check-card-opens-on-the-line-v1 Ruth (timed)",
+    "result": "green, 5 min 13 s"
+   },
+   {
+    "check": "check-ruled-equals-first-paint-v1 Amos tree / Ruth tree / Ruth HEAD's page",
+    "result": "green 100 s / red under UBS at E1 (1:1#0, 1:1#4, 1:4#1) and E4 (1:4#1) / red at the same cells, line for line; older than this part"
+   },
+   {
+    "check": "check-reset-pill-v1, check-menu-switches-v1, check-form-of-v1, check-names-gate-v1, check-color-channels-v1, check-levels-v1 (Ruth, tree)",
+    "result": "all green: 25 s, 9 s, 75 s, 27 s, 7 s, 16 s"
+   },
+   {
+    "check": "probes p2/n2-count.mjs over the data's 215 units, live / tree",
+    "result": "212 twice, 3 span lines / 175 once, 39 held, 1 span line, 0 twice"
+   },
+   {
+    "check": "probes p2/n3.mjs (Psalms built whole), n7.mjs (request order, the file held), n2.mjs, n1-concord, p3.mjs",
+    "result": "as in the outcomes"
+   },
+   {
+    "check": "lint: the page (v29 lint-page.sh) and the 8 tools written or changed (v29 eslint), compared with HEAD's",
+    "result": "the page at baseline 4 · 175 · 9 · 1 · 2; tools 0 warnings (one in the new landing check was removed)"
+   },
+   {
+    "check": "git merge-file with kinds-build over 46bbbf7d50, committed files",
+    "result": "zone.html: 2 conflicts, the same two blocks line for line as HEAD's own merge (round 1's reset-pill title; remember()'s DFLT_OWN beside kindPick); none from this part. check-default-picks-v1, check-same-product-v1, resting-lines-v1: 0 conflicts, all parse. check-rulings and the 3 new checks are not on kinds-build."
+   },
+   {
+    "check": "scan for Hebrew and raw invisible characters in added lines, new files and commit messages",
+    "result": "0"
+   }
+  ],
+  "changed_ranges": [
+   "reader/zone.html (commit 76af3ee50c; line numbers in that commit): 3663-3669 the default sources' comment (question 3); 3713-3719 DFLT_STALE and dfltEarly declarations; 3887-3893 dfltSay (comment, ready waits on DFLT_STALE); 3917-3920 and 3927 defaultPicksReady (dfltEarly; landed=true); 4361-4377 the book file asked beside the zone (before the boot's try, after isNamePlace); 5936-5954 dfltAcross (the former defaultAt), dfltApartUnit placeholder, defaultAt, dfltHalfHeld, dfltUnitHeld; 9931-9935 openHud placeWho (N9); 9946-9952 openHud label for a held unit; 10473 openHud dfltHereNow filling; 10868-10875 openHud lineSaid reads the run's part (P3); 11863-11941 unit comment, DFLT_ENTRIES/DFLT_SEAT, dfltEntriesOf, dfltUnitOf, dfltTogether, dfltApartUnit; 12041-12058, 12068, 12078, 12123 refreshJoinGloss (unitSkip/unitSpan, data-wn); 12542-12552 spanPairs (new); 13232 drawTies; 14469-14474, 14525, 14528-14533 repaintGlossOrder(stands); 15627-15631 paintDefaultPills (lit pill's title, N8); 17940-18010 dfltFresh, sectionAtY, dfltFreshStep, scroll listener, dfltRepaint (before materialise); 18013-18016 materialise; 18134-18165 dfltHeld, reopenCardFree, reopenForDefaults. No CSS and nothing in the header row.",
+   "reader/tools/check-default-picks-v1.mjs (b152652e7f): 153-161 D7 header text; 1279-1341 unitGroupsOf, runsInPage, unitsOnce(b, X, Y, model, runs, base); 1622 D7, 1648 D8 and 1798-1799 D9 call sites",
+   "reader/tools/check-rulings-under-sources-v1.mjs (b152652e7f): 57-72 header U10, U0; 83-86 works comment; 206-253 unitsIn (with maqaf), unitWork, apartWorks; 259-263 unsaid/said30; 271 open's wait; 275 ready; 571-639 U10 (drawnOf, judgeWork, search for a unit drawn apart); 642 U0",
+   "reader/tools/check-same-product-v1.mjs (76af3ee50c): 225 read(), the part covering a word (data-wn)",
+   "reader/tools/resting-lines-v1.mjs (76af3ee50c): 97 linesInPage, a part over several words",
+   "reader/tools/check-landing-holds-the-card-v1.mjs (new, 1-153), reader/tools/check-press-paints-before-seen-v1.mjs (new, 1-159), reader/tools/check-row-and-card-name-sources-v1.mjs (new, 1-113)",
+   "/home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-toggles-fixes/round-2/page/RUNNING-NOTES.md (notes, appended)"
+  ],
+  "not_done": [
+   "Units whose words stand apart are held, not printed once. These are 39 BDB units, 78 words. A page line cannot stand over two words that stand apart: printed under each word it is the doubled word, and printed under one word it reads as that word's alone. If the owner wants such a unit printed, the page would have to lay its words as one cell under the source, which means re-laying sections when the source is pressed.",
+   "N3 costs more in total time: Psalms built whole takes about 28-35 s of sliced repaint, against 10-12 s for each of the old single tasks (the press and the file's landing). The page stays responsive and in-view lines change at once. Tools that press on a big book built whole should allow about 30 s before the page says it is ready (check-default-picks' 30 s on II Samuel passed).",
+   "N7: under a kept source the index is requested twice (41 KB), because the boot's index fetch line and the line under it are lines the kinds branch changes. A stalled book file still holds the page blank under a kept source, as PLAN-MERGED line 74 intends; only the start of the request moved.",
+   "check-same-product-v1's one-line change (a part over several words) was only parsed, linted and merged. The gate's S1 reads chapter pages built from main's engine until the round rebuilds it.",
+   "check-ruled-equals-first-paint-v1 on Ruth under UBS is red at E1 and E4 (1:1#0, 1:1#4, 1:4#1). HEAD's page fails the same way, so it is not from this part and was not investigated further.",
+   "Edge: 1 Chronicles 2:54 has two words that sit in both a headword unit and a different halves group. The page takes the headword group; check-default-picks' model iterates both. D7's works do not include this case.",
+   "The verse export still cites each word of a unit inside a run with the unit's text, as BDB files it at each word. The line prints it once.",
+   "The default picks note's BDB share still counts the 78 held words as BDB's. That count is the bake's to change.",
+   "D20 of check-default-picks-v1 stays red until the round bakes the receipt again (the tools builder's finding)."
+  ],
+  "lead_must_run": [
+   "After merging kinds-build into toggles-fixes, resolve zone.html's 2 conflicts. Both were already there between round 1's tip and kinds-build: the reset pill's title in the row of pills, and remember()'s DFLT_OWN beside kindPick. Then run check-rulings-under-sources-v1, check-landing-holds-the-card-v1, check-row-and-card-name-sources-v1, check-default-picks-v1 and check-press-paints-before-seen-v1 (WORKS=ruth,psalms, about 21 min) on the merged tree.",
+   "The round with --default-picks (receipt bake), so D20 can go green, and the engine rebuild, so chapter pages carry these page changes. Then check-same-product-v1 S1 under a source exercises the data-wn reading.",
+   "Decide whether check-ruled-equals-first-paint-v1's Ruth failure under UBS (pre-existing on HEAD) gets its own fix round.",
+   "Put the UBS span request into the corpus lane's letter. The text is in the round-2 page notes, in the section 'For the corpus lane's letter'."
+  ]
+ },
+ "tools": {
+  "done_before_the_restart": true,
+  "report_file": "/home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-toggles-fixes/round-2/tools/TOOLS-REPORT.json",
+  "commits": [
+   "ac005067ae",
+   "9d671a18f1",
+   "312ae4bebf",
+   "6559ae7181",
+   "3e2e86f059"
+  ],
+  "note": "the tools builder finished before the restart; its whole report is in report_file: read it"
+ },
+ "review": {
+  "verdict": "sound-with-fixes",
+  "findings": [
+   {
+    "title": "N4 is fixed only for a mouse pointer resting on the card. On a touch phone, and in the critic's own scenario (a card opened and left alone), the card is still rebuilt when the file lands, and its pills jump about 184 px",
+    "severity": "should-fix",
+    "where": "reader/zone.html:18147-18160 (reopenCardFree: onHand = hud.matches(':hover') || hud.contains(document.activeElement)); reader/tools/check-landing-holds-the-card-v1.mjs:88 and :112 (H2 drives the 412x915 page with p.mouse.move and pill.focus())",
+    "evidence": "Probe: /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/review/probes/n4-shift.mjs, at rest with the book file held 6 s. Output: v75/review/out/n4-shift-tree.json and n4-shift-live.json.\n\nThe critic's own scenario (Ruth 1:1:3 at 1100x900, opened by a click while the pointer is elsewhere, then left alone):\n- tree: the first pill goes from y 516 to 333, all 4 pills move, and 3 source lines are added\n- live: 511 to 306\n\nA phone with touch (hasTouch and isMobile, 412x915, the word tapped):\n- tree, Ruth 1:1:3: 501 to 317\n- tree, Obadiah 1:1:1 (the check's own word): 506 to 322\n- live, the same two words: 523 to 317 and 526 to 320\n- hover false and focus not in the card in every case, so the hold never applies\n\nThe hold does work for a real mouse click on desktop: the card opens under the pointer, and 0 pills move at Ruth 1:1:3 and Psalms 1:1:4. The critic's harm (a tap aimed at a pill as the file lands hits another pill, and a pill press rules that reading everywhere the form stands) therefore remains on phones. The tree there is the same as live.\n\nThe report's «0 of 8 pills move at 1100x900 and 412x915» comes from H2. H2 puts a mouse pointer and programmatic focus on a phone-sized page, a state a touch phone never has. A page held only for the mouse passes H2.",
+    "reproduce": "cd /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/review/probes && WHICH=tree node n4-shift.mjs (then WHICH=live). The cases are synthetic (critic), desktop-click, and phone-tap (touchscreen.tap).",
+    "suggested_fix": "Add the source lines into the standing card without rebuilding it, below the pill block so nothing above the pills moves. Or, on touch, hold the rebuild until the next tap outside the card. Make H2 open and tap with hasTouch/isMobile instead of a mouse pointer, and add the critic's open-and-wait case."
+   },
+   {
+    "title": "After the round rebuilds the engine, the gate's S1 goes red on this round's own apart-unit hold: Nehemiah 7:61:3-4 under BDB, which S1 does not owe",
+    "severity": "should-fix",
+    "where": "reader/tools/check-same-product-v1.mjs:124 (heldIn owes only the halves held across words) against reader/zone.html:11941 (dfltApartUnit) and defaultAt (the apart hold)",
+    "evidence": "I served scratch pt on 8966 with the tree's own engine, extracted as build-front-door does (v75/review/engine/engine.js, md5 29ee76f2…), in place of /reader/engine-d043256cf007.js. This is what the round's door step will build. Then I ran check-same-product-v1 --old 8914 --new 8966 --every 30 --expect data/default-picks/index.json, which samples amos, nehemiah and zephaniah: 6 pages, 10,455 lines.\n\nResult: FAIL S1, «2 differ»:\n- nehemiah 7 BDB s184 #3: «in Babylonia» → «from + Tel»\n- #4: «in Babylonia» → «Melah»\n\nLog: v75/review/logs/s1-every30.log, out/s1-every30.diff.txt. S2 was green.\n\nThese two lines are one of the builder's 39 held units (bdb nehemiah 7:61:3,7:61:4 in p2/out/n2-count-tree.json). The gate's default --every 5 sample also takes Nehemiah, and its middle chapter is 7, so the lead's gate after the round meets these lines.\n\nThe units printed once do not show up in S1, because it reads one line per word. Amos 5's Bethel units gave no difference.\n\nThis is the same class as round 1's finding 1. The page builder said S1's change was «only parsed, linted and merged».",
+    "reproduce": "S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad\n1. node $S/v75/review/probes/extract-engine.mjs $S/pt/reader/zone.html $S/v75/review/engine\n2. node $S/v75/review/probes/serve-over.mjs 8966 $S/pt /reader/engine-d043256cf007.js=$S/v75/review/engine/engine.js /reader/engine-613c92743857.css=$S/v75/review/engine/engine.css\n3. cd $S/pt/reader && node tools/check-same-product-v1.mjs --old http://127.0.0.1:8914 --new http://127.0.0.1:8966 --every 30 --expect data/default-picks/index.json",
+    "suggested_fix": "Owe the apart hold in S1 the way heldIn owes the halves: under BDB, each word of a unit whose words stand apart keeps the new build's line as it rests, computed from the zones and book files. Or have the lead name the two lines with --diff in the ship notes."
+   },
+   {
+    "title": "U10, the law written for N2, stays green on a page that prints every unit in a run twice (the critic's own Daniel 1:8 «with food»)",
+    "severity": "note",
+    "where": "reader/tools/check-rulings-under-sources-v1.mjs:588 (drawnOf takes the first part whose span covers the word, ps.findIndex)",
+    "evidence": "Scratch page: v75/review/shadow/overlap, which is the tree's zone.html with `else unitSkip.add(j)` removed at zone.html:12056. It draws «0+2:with food | 1:with food» at Daniel 1:8 under MACULA and «0+2:Bethel · sense 1 | 1:Bethel · sense 1» at Amos 3:14 under BDB. The tree draws one part. A reader sees the doubled word.\n\n- check-rulings-under-sources-v1 against it (SERVE_BASE 8966): every law ok, including U10 «MACULA daniel 4 unit(s) once in their run…» (v75/review/logs/rulings-overlap.log). For the second word, drawnOf finds the first part (wi 0, wn 2), so the second part over that word is never seen.\n- check-default-picks-v1 against the same page: D7 red (21 faults, e.g. «under BDB hosea 1:6 entry 10: «symbolic name of Hosea's daugh…» [M46], owed no line»), and D8 and D9 red (logs/default-picks-overlap.log).\n\nSo the suite holds the state through D7, not U10.",
+    "reproduce": "S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad\n1. bash $S/v75/review/mkshadow.sh overlap $S/v75/review/mut/overlap.py serve 8966\n2. WHICH=m66 node $S/v75/review/probes/parts.mjs daniel 1:8 macula\n3. cd $S/pt/reader && SERVE_BASE=http://127.0.0.1:8966 node tools/check-rulings-under-sources-v1.mjs → all checks passed",
+    "suggested_fix": "In U10, collect every part whose span covers each word of the unit, and fault a word that stands under two lines."
+   },
+   {
+    "title": "The new concordance check holds only «at least one location, here first». A page that counts only the place itself passes K1-K4",
+    "severity": "note",
+    "where": "reader/tools/check-concordance-counts-the-line-v1.mjs:138 (counted)",
+    "evidence": "Scratch page hereonly: madeOf in renderDictTab returns only the places where isHere is true (v75/review/mut/hereonly.py).\n- On that page, MACULA's «and happened» at Ruth 1:1:1 says «1 location». The tree says «2 locations», here and 3:8:1, as the builder reports (out/n1-concord-tree.json).\n- check-concordance-counts-the-line-v1 against it: K1, K2, K3, K4 and K0 all ok, in 2 min 7 s (logs/concord-hereonly.log).\n\nThe made rows' other places, the second half of the fix, are held by no law.",
+    "reproduce": "bash /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v75/review/mkshadow.sh hereonly <scratchpad>/v75/review/mut/hereonly.py serve 8965, then in pt/reader: SERVE_BASE=http://127.0.0.1:8965 node tools/check-concordance-counts-the-line-v1.mjs",
+    "suggested_fix": "Hold one made row at a place the book file reads elsewhere too: the count equals the places in the book file where a source reads exactly those words."
+   },
+   {
+    "title": "Three of the four new checks swallow the readiness wait, the pattern this round removed from five other checks",
+    "severity": "note",
+    "where": "check-concordance-counts-the-line-v1.mjs:67 (120 s, .catch(() => {})); check-landing-holds-the-card-v1.mjs:97 (60 s); check-row-and-card-name-sources-v1.mjs:59 and :64 (60 s)",
+    "evidence": "The code is as cited. The tools part turned this exact wait into a 30 s fault in check-default-picks, check-line-follows-card, check-reset-pill, check-same-product and check-word-senses, and U0 does the same in the rulings check. The new checks wait silently instead. That is why the builder's live run of the concordance check took 11 min 40 s («live's page never says ready at rest»): each page was judged after the wait ran out.",
+    "reproduce": "grep -n 'catch(() => {})' reader/tools/check-concordance-counts-the-line-v1.mjs reader/tools/check-landing-holds-the-card-v1.mjs reader/tools/check-row-and-card-name-sources-v1.mjs",
+    "suggested_fix": "Use the same said-or-fault 30 s wait (said30 / U0) in the three checks."
+   },
+   {
+    "title": "N3's sliced repaint does not apply to a press made under another reads order: the press still repaints every built line in one task",
+    "severity": "note",
+    "where": "reader/zone.html:3952-3958 (chooseDefault: dfltReadsHere(), then dfltAnswer(true)) → 14762 → chooseDefOrder → repaintGlossOrder() whole (14748)",
+    "evidence": "Probe v75/review/probes/ready-times.mjs: II Samuel built whole (695 sections) at 412x915.\n- Tree with fh.def.order=oldest kept: the MACULA press holds the click 4,620 ms, and the page says ready at 14.3 s (out/ready-times-tree-ii-samuel-oldest.json).\n- Tree under the default order: 90-220 ms clicks.\n- Round 1's page: 3,364-4,639 ms clicks.\n\nThis is check-default-picks D17's state («under oldest first … a pill pressed puts the line back on the source here»). It is reachable only for a reader who kept another order from ?rail=all.",
+    "reproduce": "cd <scratchpad>/v75/review/probes && ORDER=oldest IDS=macula WHICH=tree node ready-times.mjs ii-samuel (compare: WHICH=tree node ready-times.mjs ii-samuel)",
+    "suggested_fix": "When a press sets the order to «the source here», draw the lines through dfltRepaint (dfltAnswer(false)) instead of chooseDefOrder's whole repaint."
+   },
+   {
+    "title": "The verse export cites a unit at each of its words while the line prints it once (disclosed in the builder's not_done)",
+    "severity": "note",
+    "where": "reader/zone.html:6291-6307 (gatherSection reads each word's own .g)",
+    "evidence": "Probe v75/review/probes/unit-export.mjs (out/unit-export-tree-daniel-1-8-macula.json): Daniel 1:8 under MACULA on the tree. The exported file cites «with food» 2 times, and the line prints it 1 time. The line and the export now disagree, where before this round both doubled the word.",
+    "reproduce": "cd <scratchpad>/v75/review/probes && WHICH=tree node unit-export.mjs daniel 1:8 macula 'with food'",
+    "suggested_fix": "Export a unit from the run's part that spans its words (data-wn), or say it in the ship notes."
+   }
+  ],
+  "what_was_checked": [
+   "N1, by the critic's own Ruth probe on the tree (v75/review/probes/n1-concord.mjs, out/n1-concord-tree.json): «1 location · here» at 1:19:8 and 3:14:2 at rest; under MACULA, «2 locations» at 1:1:1 and «1 location» at 1:1:5 and 1:19:8; under UBS and BDB, «1 location» at 1:1:3 and 1:19:8. The concordance at rest on Ruth's first 40 cards against round 1's tip (served on 8965): 2 cards differ, both the P3 card change (1:2:9 now «sons», 1:2:19 now «they were»).",
+   "N2, the critic's scenarios on the tree: Amos 3:14:10-11 under BDB and Daniel 1:8:8-9 under MACULA print one part (data-wn 2), with one blob in the screenshots (v75/review/shots/). Genesis 23:2:3-4 is held, and the card says «BDB reads these 2 words as one, and they stand apart». Every line of the first paint under ?default=bdb, against round 1's tip, on Amos, Zechariah, Hosea and Genesis: every difference is a unit printed once (7, 1, 5, 10) or a unit held apart (Zechariah 7:2, Genesis 23:2).",
+   "The line at rest: every line of Ruth, Amos, Daniel, Obadiah, Zechariah and Hosea, read on the tree and on live with resting-lines-v1's linesOnPage: 0 sections differ.",
+   "N3: Psalms built whole on the tree (load ~7). The MACULA press takes 229 ms in the click, with a longest task of 897 ms. Back on STEP takes 889 ms, with ready at 52.9 s. A jump to 70% of the page right after the press: 0 of 8 sections in the frame differ from the settled lines. II Samuel built whole at 412x915 says ready 8.3-9.7 s after each press, against 3.7-8.9 s on round 1's page, where each click itself took 3.4-4.6 s.",
+   "N4 (finding 1), and the landing check against my wrong state (the held card never rebuilt): H1 and H2 go red.",
+   "N7: Psalms with BDB kept. Tree: the zone is asked at 235 ms, the index at 234/244 ms and the book file at 332 ms. Live: zone 293 ms, index 295 ms, book 656 ms.",
+   "N8, N9 and P3 on the tree, all with live in its old state: MACULA's title with M4 off ends «no pill lit: STEP TAHOT is switched off», and a second press lights none; «reading · STEP at this place» over «here STEP reads»; Ruth 1:2:9 presses «sons».",
+   "N6: build-toggle-design-v1 --url 8921 --out scratch. The page text says the default and second sources stand on every book page in or under the row of pills, and row-defaults.png (viewed) is clear of the bottom bar.",
+   "compare-resting-lines-v1 on a scratch copy of the 40 records, with Ruth moved 7 ways (text, credit, a word after a mark, a run split, a line removed, two lines merged, a run's text): 9 moved rows over 10 words, each named at the right place (1:2:10 after the mark at entry 9). The round-v1.sh wiring was read. The tree was not written.",
+   "Checks run on the tree: check-reset-pill-v1 and check-menu-switches-v1 (Amos) green; check-line-follows-card-v1 green (F6 under each source); the gate's S1/S2 on --every 30 with the tree's engine (finding 2).",
+   "Mutations: overlap (U10 green, D7/D8/D9 red), hereonly (K green), heldforever (H red). The press-paints guard was cut from the scroll listener: a jump right after the press still showed painted lines, because the next slice re-centers before the frame, so I filed nothing.",
+   "Lint (v29 eslint config): the page at 4·175·9·1·2 both at HEAD and at cdd93e381f; the 14 changed tools carry the same 2 pre-existing warnings, none new.",
+   "Three-way merge with kinds-build over 46bbbf7d50: zone.html has 2 conflicts, identical block for block to round 1's tip's own two; every other changed file has 0 conflicts and parses; the merged check-same-product's two gloss-store imports resolve against the merged gloss-store's exports.",
+   "House rules: no British spelling in the added lines or the commit messages (only the existing identifier materialise), and no Hebrew or invisible characters. The tree is clean, and my scratch servers on 8965/8966 are stopped."
+  ],
+  "not_checked": [
+   "The merged page (kinds-build plus this round) was neither served nor run: only the textual merge and the parse were checked, so no interplay of the kinds that rest shut with madeOf, the hold or the slices was tested.",
+   "The full suite, the round and the full gate (by rule). S1 ran only on --every 30. The gate's --every 5 sample was not run, but its sampling code takes Nehemiah 7.",
+   "check-press-paints-before-seen-v1, check-concordance-counts-the-line-v1 and check-rulings-under-sources-v1 on the tree itself: I trusted the builders' green runs and ran only my mutations. check-default-picks-v1 was not run on the tree. My one run of it against the overlap page threw D5 and D11 at the new 30 s readiness fault on II Samuel built whole, with the machine at load ~7 and other probes running. My direct timing on the tree is 8.3-9.7 s per press, so I did not reproduce it, but the margin is smaller than before N3.",
+   "D20 with the ledger (not on this machine) and the receipt bake.",
+   "Real compositor scrolling (wheel or scrollbar drag) during a 200 ms slice: whether a stale line can show for a frame. Playwright's scrollTo and scrollBy run on the main thread.",
+   "Cards opened by keyboard, and the focus hold for keyboard users.",
+   "UBS «Aram Zoba» (left for the lead), the 157-word count in the question-3 comment, the 215-unit census beyond the four books I compared, and check-ruled-equals-first-paint-v1's pre-existing Ruth failure.",
+   "check-word-senses-v1 on the final page, and S2 beyond the 6 pages of my S1 run."
+  ]
+ },
+ "fixes": {
+  "outcomes": [
+   {
+    "title": "N4 held the card only for a resting mouse pointer. A card tapped on a touch phone, or opened and left alone (the critic's case), was still rebuilt when the default sources' book file landed, and its pills jumped about 184 px",
+    "outcome": "fixed",
+    "commit": "7386615f10",
+    "evidence": "REPRODUCED on the tree before the change, with the reviewer's own probe copied to scratch v75/fix/probes/n4-shift.mjs (output v75/fix/out/n4-shift-tree-before.json). Critic's case, Ruth 1:1:3 at 1100x900, script click: 4 pills moved from y 516 to 333. Phone with touch, word tapped: Ruth 1:1:3 moved 501 to 317, Obadiah 1:1:1 moved 506 to 322. A real mouse click was held (0 moved).\n\nWhat the rebuild did (n4-seen-tree-before.json): the card went tight. That hid the 3 source lines it had just added, and also the «here STEP reads» and BSB lines that were showing before.\n\nA second case in the same class (n4-press-tree-before.json): on a touch phone, MACULA (or BDB) is tapped while its file is still loading, then the word is tapped. When the file lands, 5 of 5 pills move (Obadiah 503 to 320).\n\nFIX (zone.html):\n- reopenForDefaults: `if (!landed) reopenCard(); else if (!drawn) reopenCardFree();`. At rest (STEP lit, or none lit), the landing never rebuilds the open card. Every line already stood as drawn before the file arrived, and nothing on the card contradicts it. What the file adds comes with the next card the reader opens.\n- When a source's file was still loading, the line under the word moves on landing, so the card follows it. But it never rebuilds under the reader's hand. The hand now also counts a finger's last press on the card or on the word that opened it (dfltFinger, set by a capture pointerdown listener; a mouse press clears it).\n- The hold ends on pointerleave, on focusout, or on a click anywhere (capture listener, checked after the click's own handlers run). A card closed or rebuilt in the meantime (hudGen changed) is left alone.\n- Two comments that said the landing rebuilds the card were corrected: the one above defaultPicksReady and the one on the sources' lines in renderReadings.\n\nAFTER: all 5 reviewer cases and the press case move 0 pills (n4-shift-tree-after.json, n4-press-tree-after.json).\n\nCHECK check-landing-holds-the-card-v1:\n- H2 now uses hasTouch/isMobile and touchscreen.tap.\n- H1 now also requires that the card stays as it opened once the hand leaves, and that the card opened again carries 3 source lines.\n- New H4 is the critic's open-and-wait case.\n- New H5 is the press case on touch.\n- Tree: all green, 50 s.\n- HEAD's page (served as a shadow on 8963): red at H1, H2, H4, H5. H2: 8 of 8 pills moved -184 px. H4: -183 px. H5: 8 of 8 moved. H1: rebuilt with 3 lines once the hand left.\n- A scratch page with the finger rule removed: red only at H5.\n\nOTHER CHECKS:\n- check-press-paints-before-seen-v1 L2 relied on the first card being rebuilt. It now reopens the card until it shows the source lines. L2 run alone on Ruth (scratch copy with L1 skipped): green, 24 s.\n- check-default-picks-v1 whole: green except D20, which is red on HEAD too (the receipt on disk is the ship's). 5 min 33 s.\n\nRANGES CHANGED, zone.html: 3907-3908 (comment above defaultPicksReady); 10643-10645 (renderReadings comment); 18137-18157 (comments above reopenForDefaults); 18159-18162 (dfltFinger and its listener); 18163-18178 (reopenCardFree); 18182 (reopenForDefaults).\n\nRANGES CHANGED, tools: check-landing-holds-the-card-v1 (H1 and H2 rewritten, H4 and H5 added); check-press-paints-before-seen-v1 lines 20-22 and 119-129.\n\nMERGE: git merge-file with kinds-build over base 46bbbf7d50 gives 2 conflicts in zone.html, identical line for line to HEAD's own 2 (the reset pill's title; DFLT_OWN against kindPick in remember()). This part adds none. Neither check exists on kinds-build.\n\nLINT: page at baseline (4/175/9/1/2). The three tools: 0 warnings.\n\nNotes: /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-toggles-fixes/round-2/review-fixes/RUNNING-NOTES.md"
+   },
+   {
+    "title": "After the round rebuilds the engine, the gate's S1 goes red on this round's apart-unit hold (Nehemiah 7:61:3-4 under BDB), which S1 did not allow for",
+    "outcome": "fixed",
+    "commit": "5685197294",
+    "evidence": "Port 8914 now serves scratch old at add346d851 (the lead's combined ship, kinds included), not 46bbbf7d50. Compared with it, S1 also shows the kinds' own differences: Nehemiah 1:6, and 18 S2 cards with Wiktionary pills. Those are logged in v75/fix/logs/s1-every30-before.log, which also holds the two Nehemiah 7 lines. So the clean comparison here is round 1's page against the tree: cdd93e381f's zone.html engine, extracted the way build-front-door does it, served over the tree on 8963, against the tree's own engine on 8964. Same data on both sides.\n\nREPRODUCED with HEAD's tool (--every 30 --expect data/default-picks/index.json): FAIL S1, 2 differ. nehemiah 7 BDB s184 #3 «in Babylonia» → «from + Tel», and #4 «in Babylonia» → «Melah». S2 green. 3 min 57 s.\n\nFIX (check-same-product-v1): heldIn now also works out, per source, the units the source reads at every word, the same way the page does (dfltEntriesOf, dfltHalvesOf, dfltAcross, dfltUnitOf). A unit is either one entry across words (the headword's letters run across the word boundary) or one reading across words, where every word's line is that one source's and comes from the same pick in the book file. In the loop, a word of such a unit whose words are not all in one cell (the run key the new build draws) is owed the new build's line as it rests: text, chip and M. These are counted separately and written as «held apart» in --diff.\n\nThe node model finds 215 units in the 39 books (BDB 202, UBS 8, MACULA 5), matching the page builder's count, and none at rest (v75/fix/out/units-node.json).\n\nAFTER: S1 and S2 green, 2 held apart, 3 min 52 s. Wrong state (round 1's engine as both old and new, so the unit prints under both apart words): S1 red at exactly those two lines, «the line as it rests owed at a word of one unit BDB reads at every word of it, its words standing apart». Units printed once (Nehemiah 7:11, 7:28, Amos 5) are not held.\n\nRANGES CHANGED, check-same-product-v1: 38-44 (S1 header); 127-128 (UNITS); 131 (apartSeen); 164-192 and 203-211 (inside heldIn); 216-217 (unitsIn); 367-381 (the loop's hold); 398 (summary line).\n\nMERGE with kinds-build: 0 conflicts (HEAD also 0), and the merged file parses.\n\nLINT: 0 warnings.\n\nLEFT FOR THE LEAD: the tools now group units in two places, check-default-picks-v1 unitGroupsOf and this one. A module both import would make it one place. check-default-picks-v1 is not this finding's file, so I did not touch it."
+   },
+   {
+    "title": "The same N4 harm comes through the BSB's book file (source suggested, on at rest): the first card is rebuilt when that file lands, and its pills jump about 132 px",
+    "outcome": "left-for-lead",
+    "evidence": "FOUND while proving N4. renderReadings has suggestedReady().then(... closeHud(); wb.__reopen()), at zone.html 10685 (base line 10384).\n\nMEASURED on the tree after this fix (v75/fix/probes/n4-bsb.mjs, out/n4-bsb-tree.json), with the BSB's file held 6 s and the default file let through, at Ruth 1:1:3:\n- critic's case: 4 pills moved from 464 to 332\n- phone tap: moved from 449 to 317\n- the rebuilt card is tight, with the BSB line and the 3 source lines.\n\nWith nothing held (out/first-card-files-tree.json): the default file lands at 1,955 ms and the BSB's at 1,956 ms, and the BSB's reopen rebuilds the first card. So in real use the first card at rest is still rebuilt once, by whichever file lands last. The BSB file is 2-3 times the size of the default picks file (Ruth 49 KB against 20 KB, Psalms 759 KB against 352 KB). This fix removes the default file's own rebuild, and with it the second jump.\n\nWHY NOT CHANGED: the finding names the default sources' file. The BSB's reopen is what makes the owner's «on for now, on every card» true for the first card, so changing it is a call against an owner's rule.\n\nOPTIONS:\n(a) Do not rebuild for the BSB either; its line comes with the next card. One line at zone.html 10685, clear of the kinds hunks (theirs are at base 10252 and 10467).\n(b) Fetch the BSB file at idle after the first paint. Every visitor then downloads it.\n(c) Hold its rebuild under the hand the way reopenCardFree does. The critic's open-and-wait case would still jump."
+   }
+  ],
+  "commits": [
+   "7386615f10 At rest the book's file lands without building the open card again, and a finger's last press holds the card as a pointer does (reader/zone.html, reader/tools/check-landing-holds-the-card-v1.mjs, reader/tools/check-press-paints-before-seen-v1.mjs)",
+   "5685197294 The gate's S1 owes the line as it rests at a word of a unit a source reads whole, its words standing apart (reader/tools/check-same-product-v1.mjs)"
+  ]
+ }
+}
