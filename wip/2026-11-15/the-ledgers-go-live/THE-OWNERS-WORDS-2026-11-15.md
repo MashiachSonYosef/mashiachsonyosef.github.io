@@ -1,0 +1,13 @@
+# The ledgers go live: the owner's words of 15 November 2026, in order
+
+1. «my other agent still says nothing has changed but i thought you said we pushed.» What had shipped that morning was the palette alone, which moves no text.
+2. «"independent review of the last round of fixes, which needs the helper agents, and those are blocked until November 19 at 8pm UTC." not true bro please do it now» The session's model had changed; the helpers started at once (workflow toggles-review-3).
+3. «toggles is good but the checker from the other bot i am using is going to be for accuracy and whether we agree with him or not he said it was 48% and hasnt gone up at all yet meaning the red flag im taking away is you havent actually pushed anything live» Answered with the other agent's own fourteen cards read again from the live build (`../the-accuracy-question/GENESIS-1-VERB-CARDS-12-NOV-AND-NOW.md`): 291 pills on 12 November, 264 now, all 132 called right still there, 51 of the 159 called not right gone since the ship of 13 November; nothing shipped since 14 November changes which readings a card holds, and the default toggles do not either.
+4. «just push the ledgers we did live bro i cant check everyone before we push stuff» and «same thing with if we have some more toggles worth bringing back in we can start thinking about it. i know we have a ton of them sidelined as placeholders on /toggles/».
+
+## What the page lane does with word 4
+
+- The corpus lane's eleven relays of 14 November land ship by ship on the page lane's own proofs (the round, the suite, the gate, the live check), without waiting for the owner to answer each question: every recommendation of `../../2026-11-14/the-relays-v185-2-to-v195/OWNER-QUESTIONS-2026-11-14.md` stands as taken, but question 3, which stays held. An independent review no longer holds a ship back: it runs beside the ship and what it confirms is fixed in the next one.
+- The first of them goes now as one ship: the card numbers in silver, the default toggles (the landing plan's ship 3) and ship 1 (row entries v1.1, pointer map v1.4, word senses v2). The separate ship of the silver numbers was folded into it to save a whole suite and gate.
+- Then the rest in the landing plan's order: ship 2 (the read words, v192), ship 4 (the store round: call 5, v188 with v188.1, call 6, call 2, the names addendum), ship 5 (calls 7, 4 and 3: the phrases switch, STEP's words as the line, runs resting word by word), ship 6 (v187's retexts).
+- The switches sidelined on /toggles/: a short list of the ones worth bringing back is put to the owner, and built after the ledgers.

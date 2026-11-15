@@ -2,6 +2,8 @@
 
 Page lane (Elijah). Each question below has a recommendation. Anything you don't answer goes ahead as recommended, in the ship where it falls, except where a question says it is held. The full text of each is in `LANDING-PLAN.md`, section "Owner questions".
 
+**The owner, 15 November 2026:** «just push the ledgers we did live bro i cant check everyone before we push stuff». So every question below goes ahead as recommended, ship by ship, without waiting for an answer; each ship's notes say which recommendations it took, so any can be overturned afterward. The one exception stays question 3, which would reverse the owner's own answer of 14 November: it is not built, blocks no ledger, and stays held.
+
 ## Before the next ship
 
 1. **Readings that come back when the entry facts are updated (v190).** 12,257 readings come back on 11,895 words that the "same entry" gate held back, because STEP's own data files them under the same entry. The largest: «Lo-» (from the name Lo-ammi) on 4,976 words that mean "not"; «O sons of» on 1,490; «<if>?» on 711. *Recommended: ship as ruled; it is the source's own filing, and the card makes no claim.*
