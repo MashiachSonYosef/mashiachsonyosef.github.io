@@ -1,0 +1,33 @@
+Ships 5 and 6, the foundation (page lane), 15 November 2026. Tree: scratchpad/b5, branch ship56-build.
+Commits on 0b8d555d12: 00d29b2b2d pins · 8fd131f9b3 UBS kind · e3e68424d4 sign rule (gloss v8) · ef192262b3 follower v2 (ship 6, drops with it).
+
+tools/gloss-store-v1.mjs
+  STRONG_SIGN = /^(X|×|\+) /u                      the source-signs ledger's pattern, the page's SOURCE_SIGN[0] byte for byte
+  STRONG_SIGN_ALONE = /^\(\s*(X|×|\+)\s*\)/u        the sign held alone in a round bracket at the head (lead's call 1)
+  opensWithStrongSign(t) -> boolean                       either; String(t ?? ""); «(X great) delight» false
+    block between the line opening "const STRONG_SIGN = " and "// end of Strong's sign (tools/gloss-store-v1.mjs)";
+    the page copies it but for "export"; lifting it is K2's method
+  openRouteStore(dir, { atRest = false, signLast = false }) -> { ...as before, signLast }   signLast must be boolean
+    with signLast, readingPool's three orders take opensWithStrongSign as their first key (plain first); without it,
+    byte for byte 0b8d555d12
+  GLOSS_RULE_ID = zone-gloss-rule-v8-printed-form-ledger-division-whole-without-a-ledger-at-rest-a-rendering-carrying-strongs-sign-after-every-plain-one-antiquity-1940-lastuary
+  SIGNS_REST_LAST_RULING (string); signsRestLastStamp(kindsRec) -> { rule: GLOSS_RULE_ID, scope: "data/dictionary-kinds-v1.json scope: <rec.scope.say>", ruling }
+    a bake opens { atRest, signLast: atRest } with atRest = restsOffIn(kindsRec, zone), and writes emitted_from.signs_rest_last = signsRestLastStamp(kindsRec)
+  FACTS_WRITTEN_BY = { n, t, b: "row_entries", name: "name_rows", opens: "sense_openings", collocations, picked_at: "ubs_collocations" }
+  setFacts refuses a key FACTS_WRITTEN_BY does not name
+
+tools/dictionary-kinds-v1.mjs
+  restsOffOf(rec, mSources, factsOf) -> (row, place = null) => entry | null
+    an entry with stands_at passes over a row at a place in factsOf(row)[stands_at]; place a string or null, else refused
+    refuses stands_at that is not a non-empty string, or beside no fact; still refuses a field it does not read
+  restsOffIds unchanged. The page's copy (zone.html) is the module's, line for line.
+data/dictionary-kinds-v1.json 2026-11-15b (sha256 02f1fcb9...): entry ubs-collocation {families [ubs-dictionary], fact collocations, stands_at picked_at}
+
+tools/row-strikes-follow-v1.mjs  ROW_FOLLOW_RULE_ID = row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words
+  nowOf / thenOf -> also { state: "retexted", name: [key, rank, m, sha16Of(new route text)], text: new route text, was: text read, by }
+  lists: retexted [{ name, now, text, was, by }]; followedRecord(f, { left, rekeyed, retexted, landed }) adds rows_retexted_and_followed where non-empty
+  a retext row of the record: { action: "retext", key, rank, m, route (old), row (old, whole), to_text (new slot 1, closes not taken out), from_slot }
+
+data/audit-calls/PIN.json rule_id audit-calls-landing-rule-v1-each-call-lands-as-its-landing-says-rows-through-the-row-strikes-tool-a-rule-under-its-own-id-or-held-with-the-reason
+  landings for 7 (one per list 7a-7e), 4, 3; v181's list at call3_lines_over_several_words_v181 (folder lines-and-pills-v1)
+data/ubs-collocations/PIN.json: the UBS file and the route file by key, bytes, sha256; facts; index_key ubs_collocations; made_here {} for the derived list
