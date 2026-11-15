@@ -4,7 +4,7 @@ The owner, 15 November: «if we have some more toggles worth bringing back in we
 
 ## Where the switches stand today
 
-The page's registry (`reader/zone.html`, `TOGGLES`) holds 17 switches once this morning's ship lands. A book page shows the sources strip and the forced «source suggested» label on its rail (the owner, 14 October: «move most of our toggle controls into the /toggles/ branch of the website until we have checked most of them»), and, from this ship, the default source pills and the second source's chooser in the header row. Every other switch works under `?rail=all`, which /toggles/ links to, and every check reaches each by its id.
+The page's registry (`reader/zone.html`, `TOGGLES`) holds 17 switches once this morning's ship lands. A book page shows, in its header row, the pills English reader, framed, card numbering, concordance hud, word senses and reset; on its rail, the sources strip and the forced «source suggested» label (the owner, 14 October: «move most of our toggle controls into the /toggles/ branch of the website until we have checked most of them»), and, from this ship, the default source pills and the second source's chooser in the header row. Every other switch works under `?rail=all`, which /toggles/ links to, and every check reaches each by its id.
 
 | switch | positions | on a book page today |
 |---|---|---|
@@ -14,7 +14,7 @@ The page's registry (`reader/zone.html`, `TOGGLES`) holds 17 switches once this 
 | second source | chosen for this book, or one of the four | the default note (new in this ship) |
 | the pointing | keep, only this pointing, the letters only | sidelined |
 | pairs | which half of a written-and-read pair the English follows | sidelined |
-| word senses | held back, shown | sidelined |
+| word senses | held back, shown | header row, as a pill (since 14 November) |
 | edition | MAM, mark where Leningrad differs | sidelined |
 | reads first, the line reads | which dictionary answers first; the source here or oldest first | sidelined |
 | look up by | the form, the headword | sidelined |
@@ -33,13 +33,14 @@ Bring back to the book page, in this order. Each is built, each is held by check
 
 1. **The vowels** (the registry's «the pointing»: keep, only this pointing, the letters only). It is the switch that decides the most on a card: «only this pointing» is what holds back every reading pointed otherwise, and a reader cannot see or lift that today. The wording proposal is ready (`reader/data/toggle-wording-proposals-v1.json`: «the vowels», in the owner's own phrase of 19 September). Bringing it back also delivers the named «Masoretic preferred».
 2. **Written vs read** (the registry's «pairs»). The corpus lane's read words (v192) land in the next ship and put the right entry under each read word, so this is the moment the switch has the data it was waiting for. It shows only in books that have such a place.
-3. **Word senses** (held back, shown). Built on 14 November, off at rest, with the corpus lane's second list in this ship. A reader who wants Jastrow's sense notes has no way to them from a book page today.
-4. **Other manuscripts** (the registry's «edition»: mark where Leningrad differs). It only marks; no reading moves.
+3. **Other manuscripts** (the registry's «edition»: mark where Leningrad differs). It only marks; no reading moves.
+
+(Corrected the same morning: the first writing of this list had «word senses» as its third. It already stands on the book page as a pill in the header row, since 14 November; it needs no bringing back.)
 
 Next to build, of the named ones:
 
-5. **Newest first.** Needs nothing: the card's order already knows each reading's year. It is the mirror of «oldest first».
-6. **The named «source»** (one dictionary leads wherever it has a reading) is what the default source pills do. It should leave the named list when the switches ship, by that list's own rule («a toggle built is deleted from here»).
+4. **Newest first.** Needs nothing: the card's order already knows each reading's year. It is the mirror of «oldest first».
+5. **The named «source»** (one dictionary leads wherever it has a reading) is what the default source pills do. It should leave the named list when the switches ship, by that list's own rule («a toggle built is deleted from here»).
 
 Not yet, and why:
 
@@ -50,4 +51,4 @@ Not yet, and why:
 
 ## How it would be built
 
-One ship after the ledgers: the four rows move out from under the fold (the `LEAD` set in `railSwitch`), the three open wordings are written into `TOGGLES` and deleted from the proposals file, the named «source» and «Masoretic preferred» leave the named list, /toggles/ is rebuilt, and the checks that count the rail's rows are amended with it.
+One ship after the ledgers: the three rows move out from under the fold (the `LEAD` set in `railSwitch`), the three open wordings are written into `TOGGLES` and deleted from the proposals file, the named «source» and «Masoretic preferred» leave the named list, /toggles/ is rebuilt, and the checks that count the rail's rows are amended with it.
