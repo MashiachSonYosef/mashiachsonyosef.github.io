@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points
+// GUARDS: row-strikes-follow-rule-v1-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed
 // LEDGER: -
 // no frame letter. A check reads the ledger's pin, the store, the zones and
 // the pages and judges them; it is not the ledger for one.
@@ -33,24 +34,42 @@
 //       is check-sense-openings-v1's to hold); and no row ends in an empty
 //       slot
 //   E3  the store's index names the rule, the pin, the ledger and totals
-//       that are a recount's
+//       that are a recount's; its record of how the store has moved on since
+//       the ledger was read is the row-strikes record's own, counted again
+//       here through tools/row-strikes-follow-v1.mjs (the lines whose row a
+//       round struck or withheld, the rows followed to another key, the rows
+//       landed since, which have no line); and no entry went with a struck
+//       row: where a row was struck as the twin of a row of its own source,
+//       that row carries every entry the struck row carried, and each twin
+//       the index says was given entries was given the struck row's own
 //   E4  the corpus lane's own counts, source by source: the rows of each
 //       source the ledger reads, and how many carry one number, several and
-//       none, less the rows the index says the store has moved on by
+//       none, exactly, once the rows a round took since are taken off them,
+//       the rows landed since are added (they carry none) and the twins
+//       given a struck row's numbers are counted as they now stand
 //   E5  with the ledger on this machine (--ledger <file>, or
-//       ROW_ENTRIES_LEDGER): every line finds its row and every row its
-//       line, and each row carries exactly the facts its line gives. Without
-//       the ledger this is said and not judged
+//       ROW_ENTRIES_LEDGER): every line finds its row where the follower
+//       says it now stands, and every row its line, but the lines whose row
+//       a round struck or withheld since and the rows a round landed since;
+//       and each row carries exactly the facts its line gives, a struck
+//       row's twin with the entries that row's line gave it. Without the
+//       ledger this is said and not judged
 //   E6  the page's own functions, read out of zone.html and run, give the
 //       module's verdict for every row of every key at every entry a served
 //       zone asks it under, and the same leaders
 //   E7  a word's tags: a tag, or a list of several, each as the lattice
 //       writes a tag; on a word with a key, or on one half of a place
 //       written one way and read another, never both; the zone's receipt
-//       counts them as a recount does. With the lattice on this machine
-//       (--lattice <dir>, or LATTICE_DIR) each is the core tags of the
-//       lattice's own position, and its pieces spell the tagged form.
-//       Without the lattice that half is said and not judged
+//       counts them as a recount does. Beside them, at a place whose read
+//       form holds several words, each read word may carry one tag of its
+//       own, never a list and never beside a tag on the word itself (the
+//       corpus lane's read words, written by
+//       tools/apply-read-words-v1.mjs; check-read-words-v1 holds each to
+//       its list): the zone's record of the read words counts those. With
+//       the lattice on this machine (--lattice <dir>, or LATTICE_DIR) each
+//       tag the lattice gives is the core tags of the lattice's own
+//       position, and its pieces spell the tagged form. Without the
+//       lattice that half is said and not judged
 //   E8  the leaders at a kind of place (grades[surface].e): each speaks for
 //       a kind of place a word of that surface stands at in the book,
 //       differs from the surface's own leaders, and is credited to a row
@@ -78,8 +97,9 @@
 //       facts list): the list is the bytes its pin names, each line changes
 //       a row's facts and none but those the tool writes, and each names one
 //       row of the store by key, rank, m id and route text that carries the
-//       facts the line gives (a line that finds no row counts against the
-//       lines the index says the store has moved on by). With both ledgers
+//       facts the line gives (a line whose row a round has struck or
+//       withheld since finds none and is counted so, and one whose row a
+//       round moved is asked where it stands now). With both ledgers
 //       on this machine (--ledger, and --ledger-was <the ledger the pin
 //       replaces>, or ROW_ENTRIES_LEDGER_WAS): the rows whose facts the
 //       pinned ledger gives otherwise than the one it replaces are exactly
@@ -100,6 +120,7 @@ import { ENTRY_GATE_RULE_ID, numberOf, tagOf, letteredOf, placeEntry, entrySaid,
 import { nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, onlyLeaders, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
+import { openFollower, followedRecord, sha16Of, twinKeyOf, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { gradeRow } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
@@ -161,6 +182,28 @@ const FACT_OF = new Map();   // m id -> the fact a parting reads on its rows
 }
 // the sources the ledger reads, from the lane's own receipt
 const READ = new Map(Object.entries((theirs && theirs.by_source) || {}));
+// how the store has moved on since the ledger was read, by the row-strikes record kept beside it (E3, E4, E5, E14):
+// the rows of the ledger's sources a round since took, moved or landed
+let follow = null, followWhy = "the lane's receipt was not read, so the version the ledger was read at is not known";
+if (theirs) try {
+  follow = openFollower({ data: dirname(STORE), index, readAt: (((theirs.inputs || {}).route_store || {}).store_version) || null });
+  follow.gone;   // the lists are refused where a round since did what no answer names
+} catch (e) { if (e instanceof FollowFault) { follow = null; followWhy = e.message; } else throw e; }
+const ofRead = (list) => list.filter((x) => READ.has(x.name[2]));
+const GONE = follow ? ofRead(follow.gone) : [], REKEYED = follow ? ofRead(follow.rekeyed) : [], LANDED = follow ? ofRead(follow.landed) : [];
+// a struck row whose words still stand under another key: its twins there, rows of its own source and words, are
+// found in the walk below
+const twinOfStruck = new Map();   // the struck row's name -> { g, rows }
+const twinsWanted = new Map();    // the twin's key, source and words -> those struck rows
+for (const g of GONE) {
+  const key = twinKeyOf(g.name, g);
+  if (!key) continue;
+  const pair = { g, rows: [] };
+  twinOfStruck.set(g.name.join("\u0001"), pair);
+  const id = `${key}\u0001${g.name[2]}\u0001${g.name[3]}`;
+  (twinsWanted.get(id) || twinsWanted.set(id, []).get(id)).push(pair);
+}
+const twinKeys = new Set([...twinsWanted.keys()].map((id) => id.split("\u0001")[0]));
 // what a ledger row gives its store row, as tools/apply-row-entries-v1.mjs writes it (E5, E14)
 const wantOf = (m, entries, numbers) => {
   const f = {};
@@ -187,11 +230,15 @@ if (pin.moves) {
     for (const [i, line] of body.entries()) {
       const c = line.split("\t");
       if (c.length !== 7) throw new PinFault(`${pin.moves.file} line ${i + 2} holds ${c.length} fields`);
-      const x = { at: i + 2, k: c[0], rank: Number(c[1]), m: c[2], text: c[3], was: JSON.parse(c[4]), now: JSON.parse(c[5]), found: 0, got: null };
+      const x = { at: i + 2, k: c[0], rank: Number(c[1]), m: c[2], text: c[3], was: JSON.parse(c[4]), now: JSON.parse(c[5]), found: 0, got: null, gone: null };
       moves.push(x);
-      (movesByKey.get(x.k) || movesByKey.set(x.k, []).get(x.k)).push(x);
+      // where the row the line names stands now: as named, under the key a round moved it to, or nowhere
+      const went = follow ? follow.nowOf([x.k, x.rank, x.m, sha16Of(x.text)]) : { state: "served", name: [x.k, x.rank] };
+      if (went.state === "struck" || went.state === "withheld") { x.gone = went; continue; }
+      [x.k_now, x.rank_now] = went.name;
+      (movesByKey.get(x.k_now) || movesByKey.set(x.k_now, []).get(x.k_now)).push(x);
     }
-  } catch (e) { if (e instanceof PinFault || e instanceof SyntaxError) movesFaults.push(e.message); else throw e; }
+  } catch (e) { if (e instanceof PinFault || e instanceof SyntaxError || e instanceof FollowFault) movesFaults.push(e.message); else throw e; }
 }
 
 // ---- E2, E3, E4: every row of the store -------------------------------------------------------
@@ -208,7 +255,8 @@ const mineOf = (f) => { if (!f) return null; const o = {}; for (const k of ["n",
     for (const [k, list] of Object.entries(body)) for (const row of list) {
       rows += 1;
       const m = String(row[3]);
-      for (const x of movesByKey.get(k) || []) if (x.rank === row[0] && x.m === m && x.text === String(row[1] ?? "")) { x.found += 1; x.got = factsOf(row); }
+      for (const x of movesByKey.get(k) || []) if (x.rank_now === row[0] && x.m === m && x.text === String(row[1] ?? "")) { x.found += 1; x.got = factsOf(row); }
+      if (twinKeys.has(k)) for (const pair of twinsWanted.get(`${k}\u0001${m}\u0001${sha16Of(row[1])}`) || []) pair.rows.push(row);
       const where = `${k} (${m}, rank ${row[0]})`;
       if (row.length > 7 && (row[row.length - 1] === null || row[row.length - 1] === undefined)) faults.push(`${where}: ends in an empty slot`);
       const raw = row.length > FACTS_SLOT ? row[FACTS_SLOT] : null;
@@ -265,18 +313,78 @@ const sum = (f) => Object.values(tally).reduce((a, t) => a + t[f], 0);
   check("E3  the store's index names the rule, the pin, the ledger and totals that are a recount's", faults.length === 0,
     faults.length ? first(faults) : `${nf(sum("rows"))} rows of ${READ.size} sources · ${nf(sum("slot"))} carry the slot · ${nf(sum("one") + sum("several"))} a number (${nf(sum("several"))} several) · STEP's letters on ${nf(sum("t"))} · BDB's entries on ${nf(sum("b"))}`);
 }
+// the twins the index says were given a struck row's entries, each held to the record and the store (E3, E4)
+const givenSaid = (rec && rec.followed && Array.isArray(rec.followed.entries_given_to_a_twin)) ? rec.followed.entries_given_to_a_twin : [];
+const FACTS = ["n", "t", "b"];
 {
-  // the store has moved on by what the index says it has: rows with no line, lines with no row
-  const moved = rec ? (rec.totals.store_rows_with_no_line || 0) + (rec.totals.ledger_rows_with_no_store_row || 0) : 0;
   const faults = [];
+  const said = (rec && rec.followed) || {}, t = (rec && rec.totals) || {};
+  if (!follow) faults.push(followWhy);
+  else {
+    const mine = followedRecord(follow, { left: GONE, rekeyed: REKEYED, landed: LANDED });
+    for (const key of Object.keys(mine)) if (!same(said[key], mine[key])) faults.push(`the index says followed.${key} is ${JSON.stringify(said[key] ?? null)} and the row-strikes record gives ${JSON.stringify(mine[key])}`);
+    if (t.ledger_rows_with_no_store_row !== GONE.length) faults.push(`totals.ledger_rows_with_no_store_row says ${t.ledger_rows_with_no_store_row} and the record's rounds since took ${GONE.length} rows of the ledger's sources`);
+    if (t.store_rows_with_no_line !== LANDED.length) faults.push(`totals.store_rows_with_no_line says ${t.store_rows_with_no_line} and the record's rounds since landed ${LANDED.length} rows of the ledger's sources`);
+  }
+  check("    and its record of how the store has moved on since the ledger was read is the row-strikes record's own: the lines whose row a round struck or withheld, the rows followed to another key, the rows landed since with no line", !!follow && faults.length === 0,
+    faults.length ? first(faults) : `since store ${follow.readAt}, ${follow.rounds.length} round(s): ${nf(GONE.filter((g) => g.state === "struck").length)} rows struck, ${nf(GONE.filter((g) => g.state === "withheld").length)} withheld, ${nf(REKEYED.length)} followed to another key, ${nf(LANDED.length)} landed with no line`);
+}
+{
+  // no entry went with a struck row: its twin of its own source carries every entry it carried
+  const faults = [];
+  let withATwin = 0;
+  for (const { g, rows } of twinOfStruck.values()) {
+    if (!rows.length) continue;   // no row of its own source carries its words there: the strike took the source's credit with it
+    withATwin += 1;
+    const s = mineOf(factsOf(g.row)) || {};
+    for (const row of rows) {
+      const now = mineOf(factsOf(row)) || {};
+      for (const key of FACTS) { const lost = (s[key] || []).filter((y) => !(now[key] || []).includes(y)); if (lost.length) faults.push(`the row of ${g.name[2]} at rank ${g.name[1]} (${g.name[3]}), struck by ${g.by.list}, carried ${key} ${lost.join(" ")}, and its twin at rank ${row[0]} does not`); }
+    }
+  }
+  const told = [];
+  for (const p of givenSaid) {
+    const pair = Array.isArray(p.from) ? twinOfStruck.get(p.from.join("\u0001")) : null;
+    const where = `the pair the index names (${(p.from || [])[2]} rank ${(p.from || [])[1]} to rank ${(p.to || [])[1]})`;
+    const twin = pair ? pair.rows.find((row) => row[0] === (p.to || [])[1]) : null;
+    if (!pair || pair.rows.length !== 1 || !twin || twinKeyOf(pair.g.name, pair.g) !== p.to[0]) { faults.push(`${where} is no struck row with one twin of its own source under the key its words stand under`); continue; }
+    const s = mineOf(factsOf(pair.g.row)) || {}, now = mineOf(factsOf(twin)) || {};
+    for (const [key, list] of Object.entries(p.gave || {})) if (!FACTS.includes(key) || !Array.isArray(list) || !list.length || list.some((y) => !(s[key] || []).includes(y) || !(now[key] || []).includes(y))) faults.push(`${where}: what it says was given (${key}) is not the struck row's and the twin's`);
+    told.push(`${p.from[2]} rank ${p.from[1]} gave ${Object.entries(p.gave || {}).map(([key, list]) => `${key} ${list.join(" ")}`).join(", ")} to rank ${p.to[1]}`);
+  }
+  const saidCount = rec && rec.followed ? rec.followed.struck_rows_with_a_twin_of_their_own_source : undefined;
+  if (follow && saidCount !== withATwin) faults.push(`the index says ${saidCount} struck rows have a twin of their own source, and a recount gives ${withATwin}`);
+  check("    and no entry went with a struck row: where a row was struck as the twin of a row of its own source, that row carries every entry the struck row carried, and each twin the index says was given entries was given the struck row's own", !!follow && faults.length === 0,
+    !follow ? followWhy : faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(withATwin)} struck rows have a twin of their own source · ${givenSaid.length} twin(s) given entries${told.length ? `: ${first(told, 4)}` : ""}`);
+}
+{
+  // exactly: the lane's counts, less the rows a round took since (each by the numbers it carried), plus the rows
+  // landed since (they carry none), each twin given a struck row's numbers counted as it now stands
+  const classOf = (numbers) => (numbers.length > 1 ? "several" : numbers.length === 1 ? "one" : "none");
+  const numbersOf = (row) => (mineOf(factsOf(row)) || {}).n || [];
+  const moves = {};
+  const of2 = (m) => (moves[m] ||= { rows: 0, one: 0, several: 0, none: 0 });
+  for (const g of GONE) { const a = of2(g.name[2]); a.rows -= 1; a[classOf(numbersOf(g.row))] -= 1; }
+  for (const l of LANDED) { const a = of2(l.name[2]); a.rows += 1; a.none += 1; }
+  let recounted = 0;
+  for (const p of givenSaid) {
+    const pair = Array.isArray(p.from) ? twinOfStruck.get(p.from.join("\u0001")) : null;
+    const twin = pair ? pair.rows.find((row) => row[0] === (p.to || [])[1]) : null;
+    const gave = (p.gave || {}).n || [];
+    if (!twin || !gave.length) continue;
+    const now = numbersOf(twin), a = of2(p.to[2]);
+    a[classOf(now.filter((y) => !gave.includes(y)))] -= 1; a[classOf(now)] += 1; recounted += 1;
+  }
+  const faults = [];
+  if (!follow) faults.push(followWhy);
   for (const [m, s] of READ) {
     const t = tally[m] || { rows: 0, one: 0, several: 0, none: 0 };
-    const c = s.class || {};
-    const want = { rows: s.rows, one: c["one number"] || 0, several: c["several numbers"] || 0, none: c["no number"] || 0 };
-    for (const k of Object.keys(want)) if (Math.abs(t[k] - want[k]) > moved) faults.push(`${m}: ${k} ${t[k]}, the lane counts ${want[k]}`);
+    const c = s.class || {}, a = moves[m] || { rows: 0, one: 0, several: 0, none: 0 };
+    const want = { rows: s.rows + a.rows, one: (c["one number"] || 0) + a.one, several: (c["several numbers"] || 0) + a.several, none: (c["no number"] || 0) + a.none };
+    for (const k of Object.keys(want)) if (t[k] !== want[k]) faults.push(`${m}: ${k} ${t[k]}, and the lane's ${want[k] - a[k]} with the rounds since make ${want[k]}`);
   }
-  check("E4  the corpus lane's own counts, source by source: the rows of each source the ledger reads, and how many carry one number, several and none", !!theirs && READ.size > 0 && faults.length === 0,
-    !theirs ? "the lane's receipt was not read" : faults.length ? `${faults.length} · ${first(faults)}` : `${READ.size} sources · ${nf(sum("rows"))} rows: ${nf(sum("one"))} one number, ${nf(sum("several"))} several, ${nf(sum("none"))} none${moved ? ` · within the ${moved} row(s) the index says the store has moved on by` : ""}`);
+  check("E4  the corpus lane's own counts, source by source: the rows of each source the ledger reads, and how many carry one number, several and none, exactly, with the rows the rounds since took, landed and gave entries to", !!theirs && READ.size > 0 && faults.length === 0,
+    !theirs ? "the lane's receipt was not read" : faults.length ? `${faults.length} · ${first(faults)}` : `${READ.size} sources · ${nf(sum("rows"))} rows: ${nf(sum("one"))} one number, ${nf(sum("several"))} several, ${nf(sum("none"))} none · the lane's counts less ${nf(GONE.length)} rows taken since, plus ${nf(LANDED.length)} landed, ${recounted} twin(s) recounted with the numbers given them`);
 }
 
 // ---- E5: the ledger itself, where it is here ---------------------------------------------------
@@ -286,28 +394,62 @@ else {
   const lines = ledgerLines;
   let ledgerRows = 0, met = 0;
   if (!lines) faults.push(ledgerWhy);
-  let noRow = 0, wrong = 0;
-  for (const x of lines || []) {
-    const want = new Map();
-    for (const r of x.rows) { ledgerRows += 1; const id = `${r[0]} ${r[1]} ${r[2]}`; (want.get(id) || want.set(id, []).get(id)).push(JSON.stringify(wantOf(String(r[1]), r[4], r[5]))); }
-    const held = byKeyId.get(x.k) || new Map();
-    for (const [id, list] of want) {
+  if (!follow) faults.push(followWhy);
+  let noRow = 0, wrong = 0, goneLines = 0, twinsGiven = 0;
+  // the ledger's rows, each under the name its row has now; the lines whose row a round took, set apart
+  const wantAt = new Map();   // key now -> "rank m sha16" -> the facts each line gives, as JSON
+  const struckTwins = [];     // a struck line whose words still stand under another key, with what the line says
+  if (follow) try {
+    for (const x of lines || []) for (const r of x.rows) {
+      ledgerRows += 1;
+      const name = [x.k, r[0], String(r[1]), r[2]], facts = wantOf(String(r[1]), r[4], r[5]);
+      const went = follow.nowOf(name);
+      if (went.state === "struck" || went.state === "withheld") { goneLines += 1; const key = twinKeyOf(name, went); if (key) struckTwins.push({ key, m: name[2], sha: name[3], facts }); continue; }
+      const want = wantAt.get(went.name[0]) || wantAt.set(went.name[0], new Map()).get(went.name[0]);
+      const id = `${went.name[1]} ${r[1]} ${r[2]}`;
+      (want.get(id) || want.set(id, []).get(id)).push(facts);
+    }
+    // a struck row's twin carries its own entries, then those of the struck row's line that it lacks
+    for (const s of struckTwins) for (const [id, list] of wantAt.get(s.key) || []) {
+      if (!id.endsWith(` ${s.m} ${s.sha}`)) continue;
+      list.forEach((own, at) => {
+        const out = {};
+        let gains = false;
+        for (const key of FACTS) { const add = ((s.facts || {})[key] || []).filter((y) => !((own || {})[key] || []).includes(y)); if (add.length) gains = true; const all = [...((own || {})[key] || []), ...add]; if (all.length) out[key] = all; }
+        if (gains) { list[at] = out; twinsGiven += 1; }
+      });
+    }
+  } catch (e) { if (e instanceof FollowFault) faults.push(e.message); else throw e; }
+  for (const [k, want] of wantAt) {
+    const held = byKeyId.get(k) || new Map();
+    for (const [id, facts] of want) {
+      const list = facts.map((f) => JSON.stringify(f));
       const got = held.get(id) || [];
       if (got.length < list.length) noRow += list.length - got.length;
       met += Math.min(got.length, list.length);
-      if (got.length === list.length && !same([...got].sort(), [...list].sort())) { wrong += 1; if (faults.length < 6) faults.push(`${x.k} ${id}: the row carries ${got[0]} and its line gives ${list[0]}`); }
+      if (got.length === list.length && !same([...got].sort(), [...list].sort())) { wrong += 1; if (faults.length < 6) faults.push(`${k} ${id}: the row carries ${got[0]} and its line gives ${list[0]}`); }
       held.delete(id);
     }
-    if (!held.size) byKeyId.delete(x.k);
+    if (!held.size) byKeyId.delete(k);
   }
-  let noLine = 0;
-  for (const held of byKeyId.values()) for (const got of held.values()) noLine += got.length;
+  // the rows left have no line: each is one a round landed since the ledger was read, or the record does not explain it
+  let landedSince = 0, noLine = 0;
+  if (follow) try {
+    for (const [k, held] of byKeyId) for (const [id, got] of held) {
+      const [rank, m, sha] = id.split(" ");
+      if (follow.thenOf([k, Number(rank), m, sha]).state === "landed after") landedSince += got.length;
+      else { noLine += got.length; if (faults.length < 6) faults.push(`${k} ${id}: a row with no line, which no round of the row-strikes record landed`); }
+    }
+  } catch (e) { if (e instanceof FollowFault) faults.push(e.message); else throw e; }
   const t = (rec && rec.totals) || {};
-  if (lines && noRow !== (t.ledger_rows_with_no_store_row || 0)) faults.push(`${noRow} line(s) find no row, and the index says ${t.ledger_rows_with_no_store_row || 0}`);
-  if (lines && noLine !== (t.store_rows_with_no_line || 0)) faults.push(`${noLine} row(s) of the ledger's sources have no line, and the index says ${t.store_rows_with_no_line || 0}`);
+  if (lines && noRow) faults.push(`${nf(noRow)} line(s) find no row, and no round of the row-strikes record took their row`);
+  if (lines && noLine) faults.push(`${nf(noLine)} row(s) of the ledger's sources have no line, and no round landed them`);
+  if (lines && follow && goneLines !== (t.ledger_rows_with_no_store_row || 0)) faults.push(`${goneLines} line(s) name a row a round struck or withheld since, and the index says ${t.ledger_rows_with_no_store_row || 0}`);
+  if (lines && follow && landedSince !== (t.store_rows_with_no_line || 0)) faults.push(`${landedSince} row(s) landed since have no line, and the index says ${t.store_rows_with_no_line || 0}`);
+  if (lines && follow && twinsGiven !== givenSaid.length) faults.push(`${twinsGiven} twin(s) are given a struck row's entries by the ledger's own lines, and the index names ${givenSaid.length}`);
   if (lines && ledgerRows !== t.rows_in_the_ledger) faults.push(`the ledger holds ${ledgerRows} rows and the index says ${t.rows_in_the_ledger}`);
-  check("E5  every line of the ledger finds its row and every row its line, and each row carries exactly the facts its line gives", !!lines && faults.length === 0,
-    faults.length ? `${wrong ? `${nf(wrong)} rows carry other facts · ` : ""}${first(faults)}` : `${nf(lines.length)} lines · ${nf(ledgerRows)} rows of the ledger, ${nf(met)} met by a row of the store carrying their facts`);
+  check("E5  every line of the ledger finds its row where the follower says it stands, and every row its line, but the lines whose row a round struck or withheld since and the rows landed since; each row carries exactly the facts its line gives, a struck row's twin with what that row's line gave it", !!lines && !!follow && faults.length === 0,
+    faults.length ? `${wrong ? `${nf(wrong)} rows carry other facts · ` : ""}${first(faults)}` : `${nf(lines.length)} lines · ${nf(ledgerRows)} rows of the ledger: ${nf(met)} met by a row of the store carrying their facts, ${nf(goneLines)} whose row a round struck or withheld since · ${nf(landedSince)} rows landed since with no line · ${twinsGiven} twin(s) carry a struck row's entries after their own`);
 }
 byKeyId.clear();
 
@@ -316,20 +458,19 @@ if (!pin.moves) console.log("  --  E14 was not judged: the pin names no list of 
 else {
   const faults = [...movesFaults];
   const othersOf = (f) => { const o = { ...(f || {}) }; for (const k of ["n", "t", "b"]) delete o[k]; return o; };
-  const gone = (rec && rec.totals && rec.totals.ledger_rows_with_no_store_row) || 0;
-  let carried = 0, unfound = 0;
+  let carried = 0, taken = 0;
   for (const x of moves) {
     const where = `${pin.moves.file} line ${x.at} (${x.k} rank ${x.rank}, ${x.m})`;
     if (same(mineOf(x.was), mineOf(x.now))) faults.push(`${where}: moves no fact the tool writes`);
     if (!same(othersOf(x.was), othersOf(x.now))) faults.push(`${where}: changes a fact the tool does not write`);
-    if (!x.found) { unfound += 1; continue; }
+    if (x.gone) { taken += 1; continue; }   // its row was struck or withheld since: it finds none, and that is counted
+    if (!x.found) { faults.push(`${where}: names no row of the store, and no round of the row-strikes record took its row`); continue; }
     if (x.found > 1) faults.push(`${where}: names ${x.found} rows of the store`);
     else if (!same(mineOf(x.got), mineOf(x.now))) faults.push(`${where}: the row carries ${JSON.stringify(mineOf(x.got))} and the line gives ${JSON.stringify(mineOf(x.now))}`);
     else carried += 1;
   }
-  if (unfound > gone) faults.push(`${unfound} line(s) name no row of the store, and the index says the store has moved on by ${gone} line(s) of the ledger`);
   check("E14 the rows the pinned ledger moves: the list is the bytes its pin names, each line moves only facts the tool writes, and each names one row of the store, which carries the facts the line gives", faults.length === 0 && moves.length > 0,
-    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(moves.length)} lines of ${pin.moves.file} · ${nf(carried)} rows carry their facts${unfound ? ` · ${unfound} name no row, within the ${gone} lines the store has moved on by` : ""}`);
+    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(moves.length)} lines of ${pin.moves.file} · ${nf(carried)} rows carry their facts${taken ? ` · ${taken} name a row a round of the row-strikes record struck or withheld since` : ""}`);
   const wasPin = (pin.replaces || {}).ledger || null;
   if (!wasPin) console.log("  --  E14's second half was not judged: the pin names no ledger it replaces");
   else if (!LEDGER || !LEDGER_WAS) console.log(`  --  E14's second half was not judged here: it reads both ledgers (--ledger <${pin.ledger.file}> and --ledger-was <${wasPin.file}>, or ROW_ENTRIES_LEDGER_WAS), and ${!LEDGER ? "the pinned one" : "the one it replaces"} is not named`);
@@ -399,7 +540,7 @@ const picks = {};       // kind -> the words found for it, MOST at most
 const more = (kind) => (picks[kind] || []).length < MOST;
 const found = (kind, pick) => { (picks[kind] ||= []).push(pick); };
 const leaders = new Map();   // E13's words: zone -> three at most, of four zones at most
-const e6 = { pairs: 0, rows: 0, faults: [] }, e7 = { tagged: 0, lists: 0, halves: 0, faults: [], lattice: 0, latticeFaults: [], books: 0 }, e8 = { entries: 0, faults: [], spoken: 0 };
+const e6 = { pairs: 0, rows: 0, faults: [] }, e7 = { tagged: 0, lists: 0, halves: 0, readWords: 0, faults: [], lattice: 0, latticeFaults: [], books: 0 }, e8 = { entries: 0, faults: [], spoken: 0 };
 const asked = new Set();   // key, then the tags: judged once for E6
 // a reading only rows of the given kind carry, among the key's rows: [text, a row carrying it] or null
 const readingOnlyOf = (rows, isOfKind, wanted) => {
@@ -416,7 +557,7 @@ for (const z of served) {
   const zone = gz(join(ZONES, `${z}.bin`));
   const side = gz(join(ZONES, `${z}.lattice.bin`));
   const grades = side.grades || {};
-  const recount = { places_tagged: 0 };
+  const recount = { places_tagged: 0, read_words_tagged: 0 };
   // a place is a name where its word is marked; a book whose places were not read for names reads every place as one
   const namesRead = !!((((zone.emitted_from || {}).toggles || {}).lattice || {}).names);
   const isName = (w) => !namesRead || !!w.np;
@@ -434,8 +575,13 @@ for (const z of served) {
     const theirsHere = byRef ? byRef.get(sec.label) || null : null;
     for (const [e, w] of words.entries()) {
       if (w.mark) continue;
-      const halves = (w.w || []).filter((r) => r && r.tg);
-      if (w.tg && halves.length) e7.faults.push(`${z} ${sec.label}: a pair and its half both carry tags`);
+      // a read form of several words: each read word may carry one tag of its own, beside the half the lattice tags
+      const reads = w.kq ? (w.w || []).filter((r) => r && r.role === "QERE") : [];
+      const own = reads.length > 1 ? reads.filter((r) => r.tg) : [];
+      for (const r of own) { recount.read_words_tagged += 1; e7.readWords += 1; if (!r.k || typeof r.tg !== "string" || !TAG.test(r.tg)) e7.faults.push(`${z} ${sec.label}: a read word's tag ${JSON.stringify(r.tg)} is not one tag on a word with a key`); }
+      const halves = (w.w || []).filter((r) => r && r.tg && !own.includes(r));
+      // a tag on the word itself stands alone: beside a tagged half or a tagged read word it is refused, as before the read words
+      if (w.tg && (halves.length || own.length)) e7.faults.push(`${z} ${sec.label}: a pair and its half both carry tags`);
       if (halves.length > 1) e7.faults.push(`${z} ${sec.label}: both halves of a pair carry tags`);
       const h = w.tg ? w : halves[0] || null;
       if (h) {
@@ -451,7 +597,8 @@ for (const z of served) {
           else if (!same(cores, tags) || spelled !== h.k) e7.latticeFaults.push(`${z} ${sec.label} word ${at + 1}: carries ${tags.join(" ")} on ${h.k}; the lattice's core tags are ${cores.join(" ") || "none"} and its pieces spell ${spelled}`);
         }
         // every key the page asks under these tags: the tagged form's, and the core piece's own cell
-        const keys = [h.k];
+        // (a tag on a form with no key is the fault said above, and no key is asked for it)
+        const keys = h.k ? [h.k] : [];
         const cores = Array.isArray(w.pg) ? w.pg.filter((x) => x && x.r === "core") : [];
         if (cores.length === 1 && cores[0].k && cores[0].k !== h.k) keys.push(cores[0].k);
         for (const k of keys) {
@@ -532,6 +679,8 @@ for (const z of served) {
   // E7: the receipt's count
   const said = (((zone.emitted_from || {}).toggles || {}).lattice || {}).counts || {};
   if (said.places_tagged !== recount.places_tagged) e7.faults.push(`${z}: the receipt counts ${said.places_tagged} tagged places and the zone carries ${recount.places_tagged}`);
+  const readSaid = (((zone.emitted_from || {}).read_words || {}).counts || {}).read_words_tagged || 0;
+  if (readSaid !== recount.read_words_tagged) e7.faults.push(`${z}: its record of the read words counts ${readSaid} tagged and the zone carries ${recount.read_words_tagged}`);
   if (recount.places_tagged && (!side.entry || side.entry.rule !== ENTRY_GATE_RULE_ID || !side.entry.row_entries || side.entry.row_entries.ledger_sha256 !== pin.ledger.sha256)) e7.faults.push(`${z}: its sidecar does not name the gate's rule and this ledger`);
   // E8: the leaders at each kind of place (tools/place-leaders-v1.mjs: the place's tags, and "|n" where it is a name)
   const labelOfRow = (row) => (index.m_sources[row[3]] || {}).label;
@@ -591,8 +740,8 @@ check("E6  the page's own functions, read out of zone.html and run, give the mod
   }
   check("    and the same leaders for every surface of the first served zones, at each kind of place it holds leaders for, at a place with no tag (a name or not) and at one it holds none for", !!page && asked2 > 0 && faults.length === 0, !page ? pageWhy : faults.length ? first(faults) : `${nf(asked2)} asked`);
 }
-check("E7  a word's tags are a tag or a list of several, on a word with a key or on one half of a pair, and each zone's receipt counts them as a recount does", e7.tagged > 0 && e7.faults.length === 0,
-  e7.faults.length ? `${nf(e7.faults.length)} · ${first(e7.faults)}` : `${nf(e7.tagged)} tagged places in ${served.length} zones · ${nf(e7.lists)} carry several · ${nf(e7.halves)} on a half of a pair`);
+check("E7  a word's tags are a tag or a list of several, on a word with a key or on one half of a pair; a read word of a read form of several words may carry one tag of its own; and each zone's receipt, and its record of the read words, count them as a recount does", e7.tagged > 0 && e7.faults.length === 0,
+  e7.faults.length ? `${nf(e7.faults.length)} · ${first(e7.faults)}` : `${nf(e7.tagged)} tagged places in ${served.length} zones · ${nf(e7.lists)} carry several · ${nf(e7.halves)} on a half of a pair · ${nf(e7.readWords)} read words of a read form of several words carry their own`);
 if (!e7.books) console.log("  --  E7's second half was not judged here: the corpus lane's lattice is not on this machine (--lattice <dir> or LATTICE_DIR), so no word's tags were read against the lattice's own position");
 else {
   check("    and each is the core tags of the lattice's own position, whose pieces spell the tagged form", e7.latticeFaults.length === 0,
@@ -610,7 +759,10 @@ else {
   const tree = await serveTree(K3);
   const pw = await loadPlaywright();
   const browser = await pw.chromium.launch(launchOptions());
-  const open = (pick, masorah = null, sources = "all") => openGatedCard(browser, tree.base, pick, { masorah, sources });
+  // the dictionaries that rest shut (dictionary-kinds-rule-v1) are asked open for E9 to E12, which hold the entry
+  // gate over words found over the store whole, as a card with them open reads it; E13 holds the line, which is
+  // baked at rest, so it reads the card as the record rests it, the kinds shut with the sources
+  const open = (pick, masorah = null, sources = "all") => openGatedCard(browser, tree.base, pick, { masorah, sources, kinds: sources === "rest" ? "rest" : "open" });
   const where = (pick) => `${pick.zone} ${pick.label}, entry ${pick.entry} (${pick.k} under ${(pick.tags || []).join(" ") || "no tag"})`;
   const pillOf = (got, pick) => got.said.find(([text, by, own]) => [text, own].some((t) => t && readingKey(t) === readingKey(pick.reading)) && by.split(/[\s,]+/u).includes(pick.m)) || null;
   // the card names the place's entry as the place is asked: with STEP's letter where a row is asked by letter

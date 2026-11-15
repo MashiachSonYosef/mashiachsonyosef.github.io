@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Synthesis lane · regloss-rule-v1-project-the-store-over-a-zones-own-keys
+// GUARDS: regloss-rule-v1-project-the-store-over-a-zones-own-keys, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
 // LEDGER: -
 // no frame letter. This writes only the zone it was given, a projection of
 // the store over that zone's own keys; it decides nothing. It reads the
@@ -41,6 +42,19 @@
 //      reader's orders the store computes (characters, corpus). A column this
 //      pass does not project (the witnessed columns, baked from what the
 //      corpus lane shipped) is refused unless it was baked against this store.
+//   6. A zone the record of what each dictionary is rests shut
+//      (data/dictionary-kinds-v1.json, dictionary-kinds-rule-v1: its scope,
+//      asked of the zone's own fields, is the thirty-nine books) is projected
+//      over the store at rest: every column above reads the rows that rest
+//      open and no other, so the line under a word at rest never reads a shut
+//      row, and the switches' table prices only the sources a reader can
+//      switch. The zone says so in emitted_from.rests_off: the record by its
+//      path, version and sha256, and for each resting entry what it holds
+//      shut on this zone's keys. Every other zone (the Tikkunei Zohar, a
+//      Targum beside a book, a fixture) is projected over the store whole,
+//      as before, and carries no such stamp; one an earlier run stamped
+//      loses it. A record that is missing or does not hold is refused, here
+//      and in the store reader, never guessed past.
 
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -56,6 +70,7 @@ import { cellsOf } from "./span-slice-v1.mjs";
 import { require_ } from "./zone-lib-v1.mjs";
 import { wordListsOf } from "./zone-walk-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+import { readKinds, restsOffIn, restsOffIds } from "./dictionary-kinds-v1.mjs";
 
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 const inPath = arg("--zone");
@@ -66,7 +81,18 @@ for (const [flag, v] of [["--zone", inPath], ["--out", outPath], ["--stamp", sta
   require_(v, "MISSING_ARG", flag);
 
 const zone = JSON.parse(gunzipSync(readFileSync(inPath)).toString("utf8"));
-const store = openRouteStore(storeDir);
+// ---- rule 6 · the dictionaries that rest shut ------------------------------
+// The record beside the store (its parent folder, as the store reader reads
+// it) says whether this zone rests shut; the store is opened at rest for it,
+// and whole for any other.
+const refuse = (why) => { console.log(`REFUSED — ${why}`); process.exit(1); };
+let kinds = null, atRest = false, store = null;
+try {
+  kinds = readKinds(join(storeDir, ".."));
+  atRest = restsOffIn(kinds.rec, zone);
+  store = openRouteStore(storeDir, { atRest });
+} catch (e) { refuse(String((e && e.message) || e)); }
+if (atRest && store.atRest.sha256 !== kinds.sha256) refuse(`the record of dictionary kinds moved while this ran (${kinds.sha256.slice(0, 12)}… then ${store.atRest.sha256.slice(0, 12)}…)`);
 
 // ---- rule 3 · the zone's own keys ----------------------------------------
 const keys = new Set();
@@ -265,7 +291,20 @@ zone.emitted_from.no_names_layer = {
     if (against !== now) { console.log(`REFUSED — the witnessed columns were baked against store ${against}, and this projects store ${now}; run tools/bake-witnessed-order-v1.mjs on the zone first`); process.exit(1); }
   }
 }
-let ordersM = null, witnessedDrops = 0;
+let ordersM = null, witnessedDrops = 0, witnessedTyped = false;
+// at rest, the sources the record rests shut whole on this book, by id and by the label a chip carries (rule 6)
+const shutIds = new Set(atRest ? restsOffIds(kinds.rec, store.index.m_sources) : []);
+const shutLabels = new Set([...shutIds].map((id) => (store.index.m_sources[id] || {}).label).filter(Boolean));
+// whether a credit of a reading stands on a source the record rests shut: it names a source shut whole, as a carrier
+// or as the source its chip names, or a source it names carries the reading in the store whole and not in the rows
+// that rest open (a category its own data marks, as English Wiktionary's names)
+const idsCarrying = (rows, text) => new Set(store.carriersOf(rows, text).map((row) => String(row[3])));
+const shutCredit = (k, text, ids, label) => {
+  if (!atRest || typeof text !== "string") return false;
+  if (ids.some((id) => shutIds.has(id)) || shutLabels.has(label)) return true;
+  const whole = idsCarrying(store.routesWhole(k) || [], text), open = idsCarrying(store.routesFor(k) || [], text);
+  return ids.some((id) => whole.has(id) && !open.has(id));
+};
 if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
   ordersM = {};
   const prevOM = zone.gloss_m_orders || {};
@@ -284,18 +323,44 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
       // or its alternate's) is re-credited from the store as an unshipped
       // column's would be; where no route stands on the reading any more it
       // leaves the column, reading and credit together.
-      const kept = {}; let struckOut = 0, recredited = 0; const recreditedKeys = [];
+      //
+      // AT REST (rule 6) A SHUT CREDIT IS NOT KEPT EITHER. The lane credited
+      // its readings over the whole shelf, so a credit can name, among a
+      // reading's carriers, as the source its chip names, or in its
+      // alternate, a source the record rests shut on this book, or a source
+      // that carries the reading only in rows a category of its own data
+      // shuts (measured 15 November 2026: 325 of the 39 books' 102,434
+      // witnessed entries; 311 name a source shut whole, 122 among the
+      // carriers (2 of them as the source the chip names too) and 189 in
+      // the alternate alone, and 14 a source that carries the reading only
+      // in rows of English Wiktionary's names, as «Gilead»; every one stands
+      // on a row that rests open too). Such an entry is re-credited from the store at rest, as a
+      // struck credit is: the column keeps the lane's reading, and its credit
+      // names only sources that carry it in rows that rest open. It is typed
+      // apart (rests_shut_recredited_keys), never as struck. A reading no row
+      // that rests open stands on is refused, not dropped: the receipt types
+      // drops for a struck credit alone.
+      const kept = {}; let struckOut = 0, recredited = 0, restsRecredited = 0; const recreditedKeys = [], restsRecreditedKeys = [];
       // a key an earlier run of this tool re-credited stays typed as
       // re-credited while it stands in the column: its credit is still the
       // store's and not the lane's, whichever run replaced it
       const wcBefore = zone.emitted_from.witnessed_order && zone.emitted_from.witnessed_order.columns && zone.emitted_from.witnessed_order.columns[o];
       const recreditedBefore = new Set(wcBefore && Array.isArray(wcBefore.struck_credit_recredited_keys) ? wcBefore.struck_credit_recredited_keys : []);
+      const restsRecreditedBefore = new Set(atRest && wcBefore && Array.isArray(wcBefore.rests_shut_recredited_keys) ? wcBefore.rests_shut_recredited_keys : []);
       for (const [k, m] of Object.entries(prevOM[o] || {})) {
         const ids = typeof m === "string" ? [m] : (m && Array.isArray(m.by) ? m.by : []);
         const altIds = m && m.alt && Array.isArray(m.alt.by) ? m.alt.by : [];
         const touched = [...ids, ...altIds].some((id) => !store.index.m_sources[id]);
-        if (!touched) { kept[k] = m; if (recreditedBefore.has(k) && table[k] !== undefined) { recredited += 1; recreditedKeys.push(k); } continue; }
+        const shut = !touched && atRest && (shutCredit(k, table[k], ids, typeof m === "string" ? m : m && m.m) || !!(m && m.alt && shutCredit(k, m.alt.text, altIds, m.alt.m)));
+        if (!touched && !shut) {
+          kept[k] = m;
+          if (recreditedBefore.has(k) && table[k] !== undefined) { recredited += 1; recreditedKeys.push(k); }
+          if (restsRecreditedBefore.has(k) && table[k] !== undefined) { restsRecredited += 1; restsRecreditedKeys.push(k); }
+          continue;
+        }
         const re = table[k] !== undefined ? glossMFor(store, { [k]: table[k] }).gloss_m[k] : null;
+        if (re && shut) { kept[k] = re; restsRecredited += 1; restsRecreditedKeys.push(k); continue; }
+        if (shut) refuse(`${o}/${k}: the corpus lane credits «${table[k]}» to a source the record rests shut on this book, and no route that rests open stands on it; a witnessed reading is re-credited at rest, never dropped`);
         if (re) { kept[k] = re; recredited += 1; recreditedKeys.push(k); continue; }
         delete table[k]; struckOut += 1; witnessedDrops += 1;
         // TYPED BESIDE THE BAKE COUNT. The witnessed receipt's "baked" is the
@@ -310,8 +375,8 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
           (wc.struck_credit_drops = Array.isArray(wc.struck_credit_drops) ? wc.struck_credit_drops : []).push({ key: k, by: [...ids, ...altIds], on: stamp, why: "source-strike-rule-v1: the credited source is no longer in the store and no route the store holds stands on the reading" });
       }
       // the keys re-credited from the store are typed on the column's receipt too, so check-witnessed-order W2 can tell them from the lane's own credit
-      { const wc = zone.emitted_from.witnessed_order && zone.emitted_from.witnessed_order.columns && zone.emitted_from.witnessed_order.columns[o]; if (wc) { if (recreditedKeys.length) wc.struck_credit_recredited_keys = recreditedKeys; else delete wc.struck_credit_recredited_keys; } }
-      ordersM[o] = { gloss_m: kept, drift: 0, struck_credit_dropped: struckOut, struck_credit_recredited: recredited };
+      { const wc = zone.emitted_from.witnessed_order && zone.emitted_from.witnessed_order.columns && zone.emitted_from.witnessed_order.columns[o]; if (wc) { if (recreditedKeys.length) wc.struck_credit_recredited_keys = recreditedKeys; else delete wc.struck_credit_recredited_keys; if (restsRecreditedKeys.length) wc.rests_shut_recredited_keys = restsRecreditedKeys; else delete wc.rests_shut_recredited_keys; if (restsRecreditedKeys.length) witnessedTyped = true; } }
+      ordersM[o] = { gloss_m: kept, drift: 0, struck_credit_dropped: struckOut, struck_credit_recredited: recredited, rests_shut_recredited: restsRecredited };
     } else {
       // A READING NO ROUTE STANDS ON LEAVES THE COLUMN, as a shipped
       // column's does above: an order column is the store's projection as
@@ -334,6 +399,7 @@ if (zone.gloss_orders && typeof zone.gloss_orders === "object") {
       no_route_stands_on: r.drift,
       ...(r.struck_credit_dropped ? { struck_credit_dropped: r.struck_credit_dropped } : {}),
       ...(r.struck_credit_recredited ? { struck_credit_recredited: r.struck_credit_recredited } : {}),
+      ...(r.rests_shut_recredited ? { rests_shut_recredited: r.rests_shut_recredited } : {}),
       ...(r.no_route_dropped ? { no_route_dropped: r.no_route_dropped } : {}),
     }])),
   };
@@ -366,7 +432,7 @@ zone.emitted_from.gloss_layer = {
   rule: `${GLOSS_RULE_ID}: ${GLOSS_RULE_TEXT}`,
   gloss_table_sha256: sha256,
   distinct_forms_glossed: counts.glossed,
-  distinct_forms_bare: counts.no_exact_route + counts.no_displayable_route,
+  distinct_forms_bare: counts.no_exact_route + counts.no_displayable_route + (counts.every_reading_rests_shut || 0),
   store_inputs: store.index.inputs,
   reprojected: {
     rule: "regloss-rule-v1-project-the-store-over-a-zones-own-keys",
@@ -430,13 +496,46 @@ zone.emitted_from.toggles.sources = {
   rulings_owed: "none for the switch itself; which sources are ADMITTED at all is the language admission rule, and the Jastrow lean is not a ruling (serving-rulings-v1.json)",
 };
 
+// ---- rule 6 · the stamp: the record this zone was baked at rest under -------
+// What each resting entry holds shut on this zone's keys (the keys the table
+// above was asked under), counted over every row the store holds for them:
+// the M ids it shuts here, with how many keys carry a row of each (ids); how
+// many keys carry one (keys); how many rows (rows). The rail draws the
+// switch's block from it with no fetch. keys_bare_at_rest are the keys whose
+// every reading rests shut. A zone the record does not rest shut carries none.
+if (atRest) {
+  const entries = {};
+  for (const e of kinds.rec.rests_off) entries[e.id] = { say: e.say, ids: {}, keys: 0, rows: 0 };
+  for (const k of [...cells].sort()) {
+    const met = new Set();
+    for (const row of store.routesWhole(k) || []) {
+      const e = store.restsOff(row);
+      if (!e) continue;
+      const at = entries[e.id], m = String(row[3]);
+      at.rows += 1;
+      if (!met.has(e.id)) { met.add(e.id); at.keys += 1; }
+      if (!met.has(`${e.id}\u0001${m}`)) { met.add(`${e.id}\u0001${m}`); at.ids[m] = (at.ids[m] || 0) + 1; }
+    }
+  }
+  const byM = (a, b) => a.length - b.length || (a < b ? -1 : a > b ? 1 : 0);
+  for (const at of Object.values(entries)) at.ids = Object.fromEntries(Object.keys(at.ids).sort(byM).map((m) => [m, at.ids[m]]));
+  zone.emitted_from.rests_off = {
+    rule: store.atRest.rule, record: store.atRest.record, version: store.atRest.version, sha256: store.atRest.sha256,
+    projected_on: stamp, projected_by: "tools/regloss-zone.mjs",
+    scope: kinds.rec.scope.say,
+    what_the_zone_carries: "the gloss layer projected over the rows of this zone's keys that rest open under the record: gloss, gloss_m with its carriers and alternates, gloss_names, the orders the store defines and the license columns with their M, and toggles.sources; the witnessed columns keep the corpus lane's readings, and a credit of theirs that named a shut source is the store's at rest (rests_shut_recredited_keys on their receipt); keys_bare_at_rest: the keys whose every reading rests shut; entries: for each resting entry, on the keys this zone asks the store under, the M ids it holds shut with how many keys carry a row of each (ids), how many keys carry one (keys) and how many rows (rows)",
+    keys_bare_at_rest: counts.every_reading_rests_shut,
+    entries,
+  };
+} else delete zone.emitted_from.rests_off;
+
 // TYPED on the zone: a post-build write is named under the single-pass
 // exemption — who wrote it, which field, why, and when it expires — so the
 // receipts check counts it rather than faulting it as anonymous patching.
 // Merged, not replaced: the enrichment and the respan lane type theirs too.
 typePostBuildWrite(zone, {
   tool: "tools/regloss-zone.mjs",
-  fields: ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "emitted_from.reader_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : []), ...(witnessedDrops ? ["emitted_from.witnessed_order"] : [])],
+  fields: ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "emitted_from.reader_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : []), ...(witnessedDrops || witnessedTyped ? ["emitted_from.witnessed_order"] : []), ...(atRest ? ["emitted_from.rests_off"] : [])],
   why: "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected",
   expires: "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass",
   stamp,
@@ -449,5 +548,6 @@ console.log(
   `${names.counts.led} keys lead with a name (${names.counts.moved} moved) · ` +
   `orders ${Object.entries(orderDeltas).map(([o, col]) => `${o} ${Object.keys(col).length} (was ${orderColumnsBefore[o]})`).join(", ")} · ` +
   `gloss_m ${Object.keys(glossM).length} (was ${mBefore}) · ` +
+  (atRest ? `at rest under ${store.atRest.record} ${store.atRest.version} (${counts.every_reading_rests_shut} keys bare at rest) · ` : "the store whole (the record does not rest this zone shut) · ") +
   `${(body.length / 1024).toFixed(1)} KB gz · sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}…`,
 );

@@ -301,7 +301,9 @@ else {
   const tree = await serveTree(K3);
   const pw = await loadPlaywright();
   const browser = await pw.chromium.launch(launchOptions());
-  const open = (pick, masorah = null) => openGatedCard(browser, tree.base, pick, { masorah });
+  // the dictionaries that rest shut (dictionary-kinds-rule-v1) are asked open: this holds the stem gate, and the
+  // words were found over the store whole, as a card with them open reads it
+  const open = (pick, masorah = null) => openGatedCard(browser, tree.base, pick, { masorah, kinds: "open" });
   const where = (pick) => `${pick.zone} ${pick.label}, entry ${pick.entry} (${pick.k}, ${pick.st.join(" or ")})`;
   const pillOf = (got, pick) => got.said.find(([text, by, own]) => [text, own].some((t) => t && readingKey(t) === readingKey(pick.reading)) && by.split(/[\s,]+/u).includes(pick.m)) || null;
   const own = async (list) => {

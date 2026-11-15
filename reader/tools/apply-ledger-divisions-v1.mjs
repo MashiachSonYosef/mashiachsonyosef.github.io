@@ -69,13 +69,18 @@
 // Usage: node tools/apply-ledger-divisions-v1.mjs [--store data/route-store]
 //          [--ledgers data/ledgers-v1] [--answers data/ledger-branch-answers-v1.json]
 //          [--receipt data/ledger-divisions-receipt-v1.json] [--span-store data/span-store]
-//          [--overlays data/overlays] [--dry]
+//          [--overlays data/overlays] [--on <moment>] [--dry]
+// --on gives the moment the run is recorded under (tools/step-moment-v1.mjs:
+// the index, the receipt, the span store's index and each overlay's write it),
+// so a run made again on the same store writes the same bytes; with none it
+// is the clock's.
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { PRINT_RULES, printOf, selfTest } from "./ledger-print-v1.mjs";
+import { givenMoment, momentOf } from "./step-moment-v1.mjs";
 import { printUnder, kindOf, selfTestDeclaration, stepsOf } from "./ledger-print-from-declaration-v1.mjs";
 // the hand table's share of the print steps, in words: since v135.2 and v123.2 it holds none, and the index says so
 const HAND_TABLE_WORDS = Object.keys(PRINT_RULES).length ? `tools/ledger-print-v1.mjs, the hand table, for the rest (${Object.keys(PRINT_RULES).length})` : "the hand table (tools/ledger-print-v1.mjs) holds none";
@@ -94,6 +99,9 @@ export const LEDGER_DIVISION_RULE_ID = "ledger-division-rule-v2-a-ledgered-row-d
 const refuse = (msg) => { console.log(`REFUSED — ${msg}`); process.exit(1); };
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
 const n = (x) => Number(x).toLocaleString("en-US");
+// the moment the run is recorded under, where one is given (read before any ledger is, so a moment that is none stops here)
+let GIVEN_ON = null;
+try { GIVEN_ON = givenMoment(); } catch (e) { refuse(e.message); }
 
 // ---- the ledgers, each file at the bytes its manifest pins ------------------------
 const manifest = JSON.parse(readFileSync(join(LEDGERS, "manifest.json"), "utf8"));
@@ -311,7 +319,7 @@ if (existsSync(join(SPAN, "index.json"))) {
     // so the page, which merges this index's sources into the store's, reads
     // their rows' slots (until 7 November 2026 neither had a ledger)
     for (const m of Object.keys(spanIndex.m_sources || {})) { const k = ((spanIndex.m_sources || {})[m] || {}).key; if (!keyOfM(m) && k && ledgers.has(k)) spanIndex.m_sources[m].ledger = k; else delete spanIndex.m_sources[m].ledger; }
-    spanIndex.ledgers = { rule_id: LEDGER_DIVISION_RULE_ID, applied_on: new Date().toISOString(), applied_by: "tools/apply-ledger-divisions-v1.mjs",
+    spanIndex.ledgers = { rule_id: LEDGER_DIVISION_RULE_ID, applied_on: momentOf(GIVEN_ON), applied_by: "tools/apply-ledger-divisions-v1.mjs",
       what: "a span row of a source under a ledger carries the page's division slots beyond the lane's seven, as a store row does: row[7] the marks it divides at, row[8] the texts it prints ([] for no pill); a row of a source under no ledger carries none; the first seven slots are the lane's, byte for byte",
       counts: { books: spanCounts.books, rows: spanCounts.rows, rows_of_ledgered_sources: spanCounts.rows_of_ledgered_sources, rows_dividing: spanCounts.rows_dividing, rows_printing_a_part: spanCounts.rows_printing_a_part, rows_no_pill: spanCounts.rows_no_pill, uncovered: spanCounts.uncovered } };
     writeFileSync(join(SPAN, "index.json"), JSON.stringify(spanIndex, null, 1));
@@ -426,7 +434,7 @@ const unledgered = () => {
 for (const name of touched) writeFileSync(join(STORE, "shards", name), gzipSync(Buffer.from(JSON.stringify(shards.get(name))), { level: 9 }));
 const digest = createHash("sha256"); let shardBytes = 0;
 for (const name of shardNames) { const b = readFileSync(join(STORE, "shards", name)); digest.update(b); shardBytes += b.length; }
-const was = index.store_version || null, now = digest.digest("hex").slice(0, 12), on = new Date().toISOString();
+const was = index.store_version || null, now = digest.digest("hex").slice(0, 12), on = momentOf(GIVEN_ON);
 for (const m of Object.keys(index.m_sources)) { const k = keyOfM(m); if (ledgers.has(k)) index.m_sources[m].ledger = k; else delete index.m_sources[m].ledger; }
 index.ledgers = {
   rule_id: LEDGER_DIVISION_RULE_ID, applied_on: on, manifest: "reader/data/ledgers-v1/manifest.json", ask: manifest.ask, checker: manifest.checker,

@@ -1,4 +1,7 @@
 // RUN: page
+// GUARDS: search-index-v1-hebrew-letters-and-english-readings-folded-arithmetic-over-served-stores, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
+// LEDGER: -
+// no frame letter. A check reads what is served and judges it; it is not the ledger for one.
 // THE SEARCH (the owner, 2026-10-18: "hebrew by character ... and any english
 // hits like create or be created or cut down", at the top of the book page;
 // no transliteration). Index baked by tools/bake-search-index-v1.mjs. Every
@@ -49,12 +52,29 @@
 //   S16 a hit chosen with the keyboard leaves focus inside the card
 //   S17 with TAHOT switched off on the rail, a reading TAHOT gives no longer
 //       answers for the word it alone reads so, or its count drops
+//   S18 the index names the record of what each dictionary is
+//       (dictionary-kinds-rule-v1) it was baked under, by the sha256 of the
+//       record as served, and leaves out exactly the rows a category of
+//       their own source rests shut (an entry that names a fact: what
+//       English Wiktionary files as a name), counted again here
+// THE DICTIONARIES THAT REST SHUT, in every count here as on the page: a row
+// a category of its source rests shut is in the index nowhere, open or shut,
+// and the model leaves it out as the bake does; a source the record rests
+// shut whole stays in the index, and the page leaves it out while it rests
+// shut, as it leaves out a source the reader switched off, on any page,
+// since every place the index answers is of a book the record rests shut;
+// so the model does too (its ids from the record and the store's index as
+// served; whether they stand shut and the record held, from the page's own
+// state).
 // The words are found on the page or in the data, never named here
 // (check-scope-derived S1).
 // Usage: node tools/check-search-v1.mjs [url]
 import { gunzipSync } from "node:zlib";
+import { createHash } from "node:crypto";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { factsOf } from "./gloss-store-v1.mjs";
+import { restsOffOf, restsOffIds } from "./dictionary-kinds-v1.mjs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const START = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "");
@@ -131,6 +151,14 @@ const loadModel = async (DATA) => {
   const at = (q) => [bookIx(q.book), ...String(q.ref).split(":").map(Number), q.w];
   const before = (a, b) => { const x = at(a), y = at(b); for (let i = 0; i < 4; i += 1) if (x[i] !== y[i]) return x[i] - y[i]; return 0; };
   const struck = new Set([...((rix.language_admission || {}).struck_m_ids || []), ...((rix.source_strikes || {}).struck_m_ids || [])]);
+  // the record of what each dictionary is, as served: the ids it rests shut whole, and the rows its entries that
+  // name a fact rest shut (left out wherever a row of the store is read, as the bake leaves them out)
+  const kindsBytes = await fetchBuf(`${DATA}dictionary-kinds-v1.json`);
+  if (!kindsBytes) throw new Error(`not served: ${DATA}dictionary-kinds-v1.json`);
+  const kindsRec = JSON.parse(kindsBytes.toString("utf8"));
+  const factEntries = (kindsRec.rests_off || []).filter((e) => e.fact);
+  const restsFact = restsOffOf({ ...kindsRec, rests_off: factEntries }, rix.m_sources, factsOf);
+  const kinds = { sha256: createHash("sha256").update(kindsBytes).digest("hex"), version: kindsRec.version, ids: restsOffIds(kindsRec, rix.m_sources), facts: factEntries.map((e) => e.id), factRows: 0 };
   // the per-place sources and the M that carries each one's key on the rail
   const perM = {};
   for (const [id, rs] of Object.entries(dix.readings_sources || {})) perM[id] = Object.keys(rix.m_sources || {}).find((m) => rix.m_sources[m].key === rs.key) || null;
@@ -179,6 +207,7 @@ const loadModel = async (DATA) => {
       for (const row of rows) {
         const m = row[3], src = (rix.m_sources || {})[m];
         if (!src || struck.has(m)) continue;
+        if (restsFact(row)) { kinds.factRows += 1; continue; }
         const nd = isNoDerivs(src.licensePosture);
         const pieces = piecesOf(row, src);
         for (const piece of pieces) {
@@ -240,6 +269,7 @@ const loadModel = async (DATA) => {
       for (const r of sp.keys[pl.key] || []) {
         const row = r.slots || [], m = row[3], src = (rix.m_sources || {})[m];
         if (!src || struck.has(m)) continue;
+        if (restsFact(row)) { kinds.factRows += 1; continue; }
         const pieces = piecesOf(row, src);
         for (const piece of pieces) {
           const f = fold(spanJoin(piece));
@@ -262,7 +292,7 @@ const loadModel = async (DATA) => {
   const forms = (L) => { const m = new Map(); for (const q of (places.get(L) || new Map()).values()) m.set(q.pt, (m.get(q.pt) || 0) + 1); return m; };
   const sorted = (L, book = null) => [...(places.get(L) || new Map()).values()].filter((q) => !book || q.book === book).sort(before);
   return {
-    dix, rix, ORDER, perM, places, kq, perPlace, perFolds, routeBy, odd, before, forms, sorted, shardOf,
+    dix, rix, six, kinds, ORDER, perM, places, kq, perPlace, perFolds, routeBy, odd, before, forms, sorted, shardOf,
     // the rows that are these letters, a final letter matching its medial
     exactOf: (L) => { if (!exactMemo.has(L)) { const F = medial(L); exactMemo.set(L, (shardOf(L) || []).filter((r) => med.get(r) === F)); } return exactMemo.get(L); },
     // every other row that begins with these letters; a pointing typed puts
@@ -319,7 +349,14 @@ const here = await p.evaluate(() => ({
 }));
 const BOOK = here.book;
 const modelP = loadModel(here.data);
-const offOf = (pg) => pg.evaluate(() => { try { const v = JSON.parse(localStorage.getItem("fh.sources.off") || "[]"); return Array.isArray(v) ? v : []; } catch { return []; } }).then((v) => new Set(v));
+// what is off on a page: the reader's own switches, and, where the page says the dictionaries that rest shut stand
+// shut and the record held there, the sources the record rests shut whole (their ids from the record as served, not
+// the page): on any page, since every place the search answers is of a book the record rests shut
+const offOf = (pg) => pg.evaluate(() => {
+  let v = [];
+  try { const x = JSON.parse(localStorage.getItem("fh.sources.off") || "[]"); if (Array.isArray(x)) v = x; } catch { v = []; }
+  return { off: v, shut: window.__kinds === "shut" && !!window.__kindsVersion && !window.__kindsFailed };
+}).then(async ({ off, shut }) => new Set([...off, ...(shut ? (await modelP).kinds.ids : [])]));
 
 // the results, settled: each label with the hits under it
 const readOut = (pg) => pg.evaluate(() => {
@@ -426,7 +463,9 @@ check("S1  the search field stands above the toggles row, empty, with no results
 const M = await modelP;
 // nothing is switched off by this check; a source the owner rests off by
 // default (data/source-defaults-v1.json) is off on the rail, and is left out
-// of every count here as the page leaves it out
+// of every count here as the page leaves it out; so is a source the record of
+// what each dictionary is rests shut whole, on a book it rests shut, while
+// the switch rests shut (dictionary-kinds-rule-v1)
 const OFF = await offOf(p);
 const pageWords = [...new Set((await p.evaluate(() => [...document.querySelectorAll(".he-text .wb:not(.mark)")].filter((x) => x.__word && x.__word.k && !x.__run).map((x) => x.__word.k))).map(letters).filter(Boolean))];
 // a word this check can hold to one row: it stands somewhere, no ketiv/qere
@@ -755,6 +794,15 @@ if (c17) {
 }
 check("S17 with TAHOT switched off on the rail, a reading TAHOT gives no longer answers for the word it alone reads so, or its count drops by TAHOT's places",
   !!s17 && s17.ok, s17 ? `"${c17.f}" (${c17.L}, ${c17.at.ref}:${c17.at.w}) on: ${s17.nOn} words (counted ${c17.nOn}), ${s17.onHit ? `"${s17.onHit.meta}"` : "not among them"} (store ${c17.on.exact.size}) · ${tahotM} off (rail ${s17.offC.join(",")}): ${s17.off.size ? `${s17.nOff} words (counted ${s17.off.size})` : `"${s17.rOff.notes.join(" ")}"`}, ${s17.offHit ? `"${s17.offHit.meta}"` : "not among them"} (store ${s17.offL ? s17.offL.exact.size : "no answer"})` : "no reading TAHOT gives that switching it off would change");
+
+// S18: the index and the record of what each dictionary is
+{
+  const said = (M.six && M.six.rests_off) || null;
+  const ok = !!said && said.sha256 === M.kinds.sha256 && said.version === M.kinds.version && Number(said.facts_left_out) === M.kinds.factRows
+    && JSON.stringify(said.entries_left_out || []) === JSON.stringify(M.kinds.facts);
+  check("S18 the index names the record of what each dictionary is it was baked under, and leaves out exactly the rows a category of their own source rests shut, counted again here", ok,
+    said ? `the index: record ${String(said.sha256).slice(0, 12)}… (${said.version}), ${said.facts_left_out} rows left out under ${(said.entries_left_out || []).join(", ") || "no entry"} · served: ${M.kinds.sha256.slice(0, 12)}… (${M.kinds.version}), ${M.kinds.factRows} such rows counted again under ${M.kinds.facts.join(", ") || "no entry"}${OFF.size ? ` · off on this page: ${OFF.size} ids` : ""}` : "the index names no record of what rests shut: it was baked before the dictionaries rested shut");
+}
 
 await browser.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

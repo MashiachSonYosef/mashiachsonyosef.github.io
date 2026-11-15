@@ -420,7 +420,9 @@
   .wb.mark[data-mark="EMPTY_VERSE"] .w { font-size: 1em; letter-spacing: 0; order: 1; padding: 0 0.45em; }
   .wb.mark[data-mark="EMPTY_VERSE"]::before { content: ""; order: 2; flex: 1 1 auto; border-top: 1px solid var(--bronze-dim); }
   .wb.mark[data-mark="EMPTY_VERSE"] .g { display: none; }
-  /* THE CHANNELS ON THE PAGE · color-channel-rule-v2, ruled 2026-09-10.
+  /* THE CHANNELS ON THE PAGE · color-channel-rule-v3 (data/color-contract-v1.json),
+     ruled 2026-11-15, which carries v2's channels of 2026-09-10 and adds
+     the Masoretic marks in gold and our layering in silver.
      A channel says who is speaking, and that is the whole of it. The corpus
      speaks in tola'at shani; the reading offered for one of its words speaks
      in tekhelet, because a dictionary said it and not the source; this
@@ -1316,6 +1318,9 @@
   #searchOut button.more { all: unset; cursor: pointer; display: block; margin: 0.4rem 0 0.2rem; font-size: 0.8rem; color: var(--argaman); }
   #searchOut button.more::after { content: " \25BE"; color: var(--bronze-dim); }
   #modeRow { margin-top: 0.75rem; display: flex; gap: 0.55rem; align-items: flex-start; flex-wrap: wrap; }
+  /* on a phone the row is three or four lines of pills, and the top of a book is the book
+     (check-contents-shut-v1): there the lines stand closer */
+  @media (max-width: 30rem) { #modeRow { row-gap: 0.3rem; } }
   /* the default sources: four pills kept together, and the note under the
      row on a line of its own; the chooser in it is the order row's (.def-order).
      On a narrow phone the four wrap inside the group rather than push the
@@ -1446,6 +1451,25 @@
   .rail .src-name { line-height: 1.32; }
   .rail .src-row.off .src-name { color: var(--faint); text-decoration: line-through; text-decoration-color: var(--line); }
   .rail .shelf .decl { margin: 0.35rem 0 0.1rem; }
+  /* THE DICTIONARIES SHUT AT REST (dictionary-kinds-rule-v1): a block above the shelves, its switch two
+     words with the pressed one in the chooser's rule, then what rests shut on this book, the sources of
+     a kind as chips that switch nothing while shut. Gold stays line work. */
+  .rail .kinds-block { margin: 0 0 0.55rem; padding: 0 0 0.45rem; border-bottom: 1px solid var(--line); font-size: 0.72rem; color: var(--ink); }
+  .rail .kinds-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.5rem; margin: 0 0 0.3rem; }
+  .rail .kinds-title { font-weight: 600; color: var(--ink-strong); font-size: 0.78rem; }
+  .rail .kinds-opt { font: inherit; font-size: 0.68rem; padding: 0.16rem 0.55rem; border: 1px solid var(--line);
+    border-radius: 0.5rem; background: none; color: var(--ink); cursor: pointer; }
+  .rail .kinds-opt:hover { border-color: var(--bronze); }
+  .rail .kinds-opt[aria-pressed="true"] { color: var(--sel); font-weight: 700; border-color: var(--bronze); background: var(--press-wash); box-shadow: 0 0 0 1px var(--bronze); }
+  .rail .kinds-entry { margin: 0.25rem 0 0; font-size: 0.66rem; color: var(--muted); }
+  .rail .kinds-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.25rem 0 0; }
+  .rail .kind-chip { font: inherit; font-size: 0.7rem; padding: 0.1rem 0.5rem; border: 1px solid var(--line);
+    border-radius: 1rem; background: none; color: var(--ink); cursor: pointer; }
+  .rail .kind-chip:hover:not(:disabled) { border-color: var(--bronze); }
+  .rail .kind-chip:disabled { color: var(--faint); border-style: dotted; cursor: default; }
+  .rail .kind-chip[aria-pressed="true"] { border-color: var(--bronze); }
+  .rail .kind-chip[aria-pressed="false"]:not(:disabled) { color: var(--faint); text-decoration: line-through; text-decoration-color: var(--line); }
+  .rail .kinds-note { margin: 0.3rem 0 0; font-size: 0.62rem; color: var(--faint); }
   /* THE SOURCE'S OWN DECLARATIONS — the branch that opens under a source
      chip. Gold line-work only; the source's own strings carry the reading
      ink, because they are the source speaking, not this project. */
@@ -1785,6 +1809,8 @@
     text-transform: uppercase; color: var(--faint); padding-inline-end: 0.35rem; }
   #hud .r-dflt b { font-weight: 600; }
   #hud .r-dflt .n, #hud .r-more, #hud .r-on { font-weight: normal; color: var(--muted); }
+  /* a source's other picks are its words: the reading's ink, the page's number and note around them its own */
+  #hud .r-more .w { color: var(--tekhelet-ink); }
   #hud .r-on { font-style: italic; }
   #hud .r-dflt .g-lic { display: inline; margin: 0 0 0 0.35em; padding: 0 0.3em; font-size: 0.62rem; line-height: 1; vertical-align: baseline; }
   #hud .r-sug b .n { font-weight: normal; color: var(--muted); }
@@ -1843,8 +1869,6 @@
   /* the owner's legend under a Jastrow record the corpus lane says it holds
      on: the page's purple, a size down, under the record it explains */
   #hud .d-card .sense-legend { margin: 0 0 0.3rem; font-size: 0.74rem; color: var(--argaman); }
-  #hud .r-more { margin-top: 0.35rem; background: none; border: 0; color: var(--link);
-    font: inherit; font-size: 0.76rem; cursor: pointer; padding: 0; }
   #hud .r-overflow { margin-top: 0.45rem; }
   #hud .r-overflow select { width: 100%; font: inherit; font-size: 0.78rem; color: var(--tekhelet-ink);
     background: var(--bg); border: 1px solid var(--line); border-radius: 0.45rem;
@@ -1877,6 +1901,17 @@
      is the band's small print, not a heading over its pills */
   #hud .rows .band > .kq-role { margin: 0.05rem 0 0.3rem; font-size: 0.66rem; line-height: 1.35; color: var(--faint); }
   #hud .withheld-line .senses-switch { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 0.2em; }
+  /* the dictionaries that rest shut (dictionary-kinds-rule-v1): the card's count is its press, as the word
+     senses' is, on the withheld line and on a card they emptied; a pill a dictionary opened from rest brought
+     wears a dotted edge, so the reader sees which pills the press brought */
+  #hud .kinds-switch { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 0.2em; }
+  #hud .r-pills button.rests { border-style: dotted; }
+  /* and on a tight card, which folds the withheld line away, the press stands
+     in the readings' label, the one line of the band the fit keeps
+     (kindsAtLabel): one press on screen at a time (the review of 15 November
+     2026) */
+  #hud .band.b-read > .r-label > .kinds-at { display: none; }
+  #hud.tight .band.b-read > .r-label > .kinds-at { display: inline; }
   /* The D record, whole and never clipped. The sense the reader selected is
      lit inside it, so a truncated pill still resolves to something readable. */
   /* The record is a dictionary's words, so it is the blue throughout, and

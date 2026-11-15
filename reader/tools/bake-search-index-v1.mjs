@@ -1,3 +1,10 @@
+// Synthesis lane · search-index-v1-hebrew-letters-and-english-readings-folded-arithmetic-over-served-stores
+// GUARDS: search-index-v1-hebrew-letters-and-english-readings-folded-arithmetic-over-served-stores, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
+// LEDGER: -
+// no frame letter. This writes the index the search box reads
+// (data/search-index), arithmetic over the stores the page already serves;
+// it chooses no reading and writes no record a letter is kept in.
+//
 // THE SEARCH INDEX (the owner, 2026-10-18: "and what about a search bar";
 // "hebrew by character ... and any english hits like create or be created
 // or cut down", at the top of the book page; no transliteration: "not our
@@ -45,12 +52,29 @@
 // Only letters that stand at a place are indexed (a hit always opens at a
 // place).
 //
+// A ROW ITS OWN SOURCE'S CATEGORY RESTS SHUT IS INDEXED AS NONE
+// (dictionary-kinds-rule-v1, 15 November 2026). The record of what each
+// dictionary is (data/dictionary-kinds-v1.json) rests rows shut on the
+// Bible's cards: whole sources (word lists, knowledge bases and encyclopedia
+// titles), and rows a source marks in its own data (what English Wiktionary
+// files as a name, the fact in the row's facts slot). The index counts per
+// source, so a whole source stays in it and the page leaves it out while it
+// rests shut, as it leaves out a source the reader switched off. A category
+// inside a source cannot be left out so: its rows are left out here, open or
+// shut, wherever a row of the store is read (the store's routes and the span
+// store's rows), and the index says how many (rests_off.facts_left_out). The
+// places a hit opens at are the Bible's (the dictionary store's and the span
+// store's), so this is the Bible's rest. A record that is missing or does
+// not hold is refused, never guessed past.
+//
 // Usage: node tools/bake-search-index-v1.mjs
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { join } from "node:path";
 import { pageReading, pageReadingSource, PageFault } from "./page-reading-v1.mjs";
+import { factsOf } from "./gloss-store-v1.mjs";
+import { readKinds, restsOffOf, DICTIONARY_KINDS_RULE_ID, DICTIONARY_KINDS_RECORD } from "./dictionary-kinds-v1.mjs";
 
 const DATA = new URL("../data/", import.meta.url).pathname;
 const ZONE = new URL("../zone.html", import.meta.url).pathname;
@@ -104,6 +128,14 @@ const rix = JSON.parse(readFileSync(join(DATA, "route-store/index.json"), "utf8"
 const pills = pillsUnder(rix);
 const order = JSON.parse(readFileSync(join(DATA, "book-order-v1.json"), "utf8")).files || [];
 const struck = new Set([...((rix.language_admission || {}).struck_m_ids || []), ...((rix.source_strikes || {}).struck_m_ids || [])]);
+// the record of what rests shut, read for its entries that name a fact (a category inside a source): a row one of
+// them shuts is left out wherever a row of the store is read (dictionary-kinds-rule-v1)
+let kinds = null, restsFact = null;
+try {
+  kinds = readKinds(DATA);
+  restsFact = restsOffOf({ ...kinds.rec, rests_off: kinds.rec.rests_off.filter((e) => e.fact) }, rix.m_sources, factsOf);
+} catch (e) { fail(String((e && e.message) || e)); }
+let factRows = 0;
 const store = readShards(join(DATA, "dictionary-store/shards"), (dix.counts || {}).shards);
 if (Object.keys(store).length !== dix.counts.keys) fail(`the dictionary store holds ${Object.keys(store).length} keys, its index says ${dix.counts.keys}`);
 
@@ -202,6 +234,7 @@ for (const [K, rows] of Object.entries(routes)) {
     if (struck.has(m)) { struckRows += 1; continue; }
     const src = rix.m_sources[m];
     if (!src) { unnamedRows += 1; continue; }
+    if (restsFact(row)) { factRows += 1; continue; }
     routeRows += 1;
     for (const p of pills(row, src)) { pillCount += 1; add(joinSpan(p), L, m, null); }
   }
@@ -254,6 +287,7 @@ for (const sp of spanBooks) for (const pl of sp.placesList) {
   for (const r of sp.keys[pl.key] || []) {
     const row = r.slots || [], m = row[3];
     if (struck.has(m) || !rix.m_sources[m]) continue;
+    if (restsFact(row)) { factRows += 1; continue; }
     spanRows += 1;
     for (const p of pills(row, rix.m_sources[m])) add(joinSpan(p), R, m, null);
   }
@@ -289,6 +323,9 @@ const index = {
   pointing: "NFD; the letters U+05D0 to U+05EA and the points U+05B0 to U+05BC, U+05BF, U+05C1, U+05C2, U+05C7, in order; cantillation and meteg dropped",
   en_shard_rule: "en/<first two hex of sha256(utf8(folded))>.bin: { folded: [[letters, [source ids], places a source reads exactly these words, { per-place source: its places }]] }",
   from: { dictionary_store_version: dix.store_version, route_store_version: rix.store_version, zone_split_sha256: sha(Buffer.from(pageReadingSource(zone))).slice(0, 12) },
+  rests_off: { rule: DICTIONARY_KINDS_RULE_ID, record: DICTIONARY_KINDS_RECORD, version: kinds.rec.version, sha256: kinds.sha256,
+    facts_left_out: factRows, entries_left_out: kinds.rec.rests_off.filter((e) => e.fact).map((e) => e.id),
+    says: "a row a resting entry that names a fact shuts (a category inside a source) is left out of the index, open or shut, wherever a row of the store is read; a whole source a resting entry shuts stays in the index, and the page leaves it out while it rests shut (window.__restsOffIds), as it leaves out a source the reader switched off" },
   counts: { letters: he.size, english: en.size, pairs: [...en.values()].reduce((n, m) => n + m.size, 0), route_rows: routeRows, route_pills: pillCount, struck_rows_left_out: struckRows, unnamed_rows_left_out: unnamedRows, other_keys_left_out: otherKeys, kq_places: kqSeen.size, kq_added_to_ketiv_rows: kqAdded.ketiv, kq_added_to_qere_rows: kqAdded.qere, overlay_rows: overlayRows, run_places: spanPlaces, run_rows: spanRows, piece_places_passed_over: piecePlacesPassedOver, files: files.length, bytes: files.reduce((n, f) => n + f.bytes, 0) },
   index_version: sha(Buffer.from(files.map((f) => f.sha256).join("\n"))).slice(0, 12),
   files,
@@ -296,4 +333,4 @@ const index = {
 writeFileSync(join(TMP, "index.json"), JSON.stringify(index, null, 1) + "\n");
 rmSync(OUT, { recursive: true, force: true });
 renameSync(TMP, OUT);
-console.log(`search index baked: ${index.counts.letters} letters, ${index.counts.english} English readings, ${index.counts.pairs} pairs, ${files.length} files, ${(index.counts.bytes / 1e6).toFixed(1)} MB, version ${index.index_version} (${routeRows} route rows as ${pillCount} pills; left out: ${struckRows} struck, ${unnamedRows} unnamed, ${otherKeys} other keys; ${kqSeen.size} ketiv/qere places; ${overlayRows} overlay rows; ${spanPlaces} run places, ${spanRows} run rows)`);
+console.log(`search index baked: ${index.counts.letters} letters, ${index.counts.english} English readings, ${index.counts.pairs} pairs, ${files.length} files, ${(index.counts.bytes / 1e6).toFixed(1)} MB, version ${index.index_version} (${routeRows} route rows as ${pillCount} pills; left out: ${struckRows} struck, ${unnamedRows} unnamed, ${otherKeys} other keys, ${factRows} rows a category of their source rests shut; ${kqSeen.size} ketiv/qere places; ${overlayRows} overlay rows; ${spanPlaces} run places, ${spanRows} run rows)`);

@@ -41,9 +41,18 @@
 // sources the bake was made from. Whether their readings reach the line is a
 // bake of its own, and the owner's to call.
 //
+// THE DICTIONARIES THAT REST SHUT (dictionary-kinds-rule-v1). On a book baked
+// at rest the card holds their readings back and the line was baked without
+// them, so the default trial asks both laws of the page at rest. A reader who
+// opens them keeps that on the device ("open@" the record's version): the
+// line stays as it was baked and the card offers their readings again, sorted
+// with the rest, so under that setting the press is asked (C1) and the sort
+// is not (C2), as under the other card-only settings.
+//
 // Run: node tools/check-card-opens-on-the-line-v1.mjs [zone url]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { readKinds } from "./dictionary-kinds-v1.mjs";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -61,12 +70,17 @@ trials.push(["fh.names", "sound"], ["fh.lookup", "headword"], ["fh.masorah", "on
 // card opens on that pick, pressed, first among the pills (the source's own
 // row made where none of the store's prints it)
 for (const v of ["macula", "ubs", "bdb"]) trials.push(["fh.defaults", v]);
+// the dictionaries that rest shut, opened and kept so (the record's version names the choice)
+const KINDS_OPEN = `open@${readKinds("data").rec.version}`;
+trials.push(["fh.kinds", KINDS_OPEN]);
 // settings the line is not expected to follow pill for pill: names-as-sound
 // sorts the card alone by the lattice's transliteration flag; under "look up
 // by the headword" the card opens on the headword's lemma-sorted first
 // reading, which the line prints, while its pills stand in the headword
-// pool's own order (the open says so on the card)
-const CARD_ONLY = new Set(["fh.names=sound", "fh.lookup=headword"]);
+// pool's own order (the open says so on the card); with the dictionaries that
+// rest shut opened, the card sorts their readings in while the line stays as
+// baked at rest
+const CARD_ONLY = new Set(["fh.names=sound", "fh.lookup=headword", `fh.kinds=${KINDS_OPEN}`]);
 
 // every source id beside the store, read off the overlays' own indexes
 const OV_DIR = join("data", "overlays");
@@ -89,8 +103,13 @@ for (const [k, v, bakeOnly] of passes) {
   try {
     await p.goto(URL, { waitUntil: "networkidle", timeout: 60000 });
     await p.waitForSelector("section.seg .he-text .wb", { timeout: 30000 });
-    // a kept default source's picks are the book's own file; the page awaits it before it paints
-    await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
+    // the page says when every line stands as the sources in force draw it (window.__default.ready): at once where
+    // the line rests on STEP or no source is in force, and under a kept source once that source's book file is here
+    // (failed: it could not be fetched, and every line is the line as it rests). It said «the book file is here», so
+    // at rest it waited out 30 s on every load (the review of 15 November 2026); a page that does not say so now is
+    // a fault, not a wait run out
+    const ready = await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).then(() => true, () => false);
+    if (!ready) throw new Error("the page did not say in 30 s that its lines stand as the sources in force draw them (window.__default.ready)");
     await p.waitForTimeout(800);
     const r = await p.evaluate(async (n) => {
       const wait = (ms) => new Promise((x) => setTimeout(x, ms));

@@ -3,7 +3,9 @@
 // would want the same toggles on the menu bar at the bottom").
 //   M1  the bar's Menu holds one button for every switch the top row shows,
 //       in the row's order, in the row's words
-//   M2  each wears its pill's state: pressed, its state line, disabled
+//   M2  each wears its pill's state: pressed, its state line, disabled, and
+//       the note a pill opens and closes (aria-expanded, aria-controls: the
+//       lit STEP's; the review of 15 November 2026)
 //   M3  a press in the menu presses the row's pill: the English reader, blobs,
 //       card numbering and the concordance hud each flip, the page with them,
 //       and the menu stays open for the next press; and MACULA among the
@@ -32,13 +34,14 @@ await p.waitForSelector("section.seg .he-text .wb");
 // the row as the page shows it, and the menu as it stands
 const row = () => p.evaluate(() => [...document.querySelectorAll("#modeRow button")].filter((x) => x.id && !x.hidden && !x.closest("[hidden]")).map((x) => {
   const said = document.getElementById(x.getAttribute("aria-describedby") || "");
-  return { id: x.id, text: x.textContent, pressed: x.getAttribute("aria-pressed"), on: x.classList.contains("on"), disabled: x.disabled, said: said ? said.textContent : "" };
+  return { id: x.id, text: x.textContent, pressed: x.getAttribute("aria-pressed"), on: x.classList.contains("on"), disabled: x.disabled, said: said ? said.textContent : "", expanded: x.getAttribute("aria-expanded"), controls: x.getAttribute("aria-controls") };
 }));
 const menu = () => p.evaluate(() => {
   const m = document.getElementById("menuPick");
-  return { open: !m.hidden, items: [...m.querySelectorAll("button")].map((x) => ({ id: x.dataset.for, text: x.firstChild.textContent, pressed: x.getAttribute("aria-pressed"), on: x.classList.contains("on"), disabled: x.disabled, said: x.lastChild.textContent })) };
+  return { open: !m.hidden, items: [...m.querySelectorAll("button")].map((x) => ({ id: x.dataset.for, text: x.firstChild.textContent, pressed: x.getAttribute("aria-pressed"), on: x.classList.contains("on"), disabled: x.disabled, said: x.lastChild.textContent, expanded: x.getAttribute("aria-expanded"), controls: x.getAttribute("aria-controls") })) };
 });
-const same = (r, m) => r.length === m.length && r.every((x, i) => m[i].id === x.id && m[i].text === x.text && m[i].pressed === x.pressed && m[i].on === (x.pressed === "true" || x.on) && m[i].disabled === x.disabled && m[i].said === x.said);
+const same = (r, m) => r.length === m.length && r.every((x, i) => m[i].id === x.id && m[i].text === x.text && m[i].pressed === x.pressed && m[i].on === (x.pressed === "true" || x.on) && m[i].disabled === x.disabled && m[i].said === x.said
+  && m[i].expanded === x.expanded && m[i].controls === x.controls);
 const openMenu = async () => {
   await p.evaluate(() => window.scrollTo(0, Math.min(document.body.scrollHeight - innerHeight, 2400)));
   await p.waitForTimeout(500);
@@ -53,7 +56,7 @@ let r = await row(), m = await menu();
 const ids = r.map((x) => x.id);
 check("M1 the menu holds every switch the row shows, in its order and words", m.open && m.items.length === r.length && m.items.every((x, i) => x.id === r[i].id && x.text === r[i].text),
   m.items.map((x) => x.text).join(" | "));
-check("M2 each wears its pill's state", same(r, m.items), JSON.stringify(m.items.map((x) => [x.text, x.pressed, x.said, x.disabled])));
+check("M2 each wears its pill's state", same(r, m.items), JSON.stringify(m.items.map((x, i) => [x.text, x.pressed, x.said, x.disabled, ...(x.expanded !== null || (r[i] && r[i].expanded !== null) ? [`expanded ${x.expanded} (the pill ${r[i] ? r[i].expanded : "none"})`, `controls ${x.controls} (the pill ${r[i] ? r[i].controls : "none"})`] : [])])));
 
 const flips = [];
 // the default sources stand on the row only where the book's picks are laid (the index lists it)

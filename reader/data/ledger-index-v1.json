@@ -64,6 +64,8 @@
    "bake-dictionary-store-v1.mjs",
    "check-restore-serve-v1.mjs",
    "check-source-corpus-v1.mjs",
+   "derive-fold-strike-landing-v1.mjs",
+   "emit-call5-rekey-map-v1.mjs",
    "emit-language-sweep-record-v1.mjs",
    "emit-mam-restore-v5-rights-v1.mjs",
    "emit-source-corpus-v1.mjs",
@@ -97,6 +99,8 @@
    "apply-route-delta-v1.mjs",
    "apply-sense-openings-v1.mjs",
    "bake-form-of-pills-v1.mjs",
+   "derive-fold-strike-landing-v1.mjs",
+   "emit-call5-rekey-map-v1.mjs",
    "import-witnessed-orders-v1.mjs",
    "ledger-print-v1.mjs",
    "project-lattice-v12-v1.mjs",
@@ -167,6 +171,7 @@
    "updates_no_letter": false,
    "why": "it marks, on the rows whose own source gives every entry of theirs as a name (M), that they are a name's. No row is judged here and no text is changed.",
    "names": [
+    "row-strikes-v1.json",
     "name-rows-receipt-v1.json"
    ]
   },
@@ -174,6 +179,12 @@
    "letters": [],
    "updates_no_letter": true,
    "why": "no frame letter. This reads the corpus lane's list of such strokes, pinned in data/paseq-place/, and writes two small facts on the zones it names; it moves no word, no position, no count and no key.",
+   "names": []
+  },
+  "apply-read-words-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This reads the corpus lane's list of read words, pinned in data/read-words/, and writes on the zones it names a tag on each read word and, where the place had none, the place's pieces; it moves no word, no position, no count and no key.",
    "names": []
   },
   "apply-route-delta-v1.mjs": {
@@ -194,6 +205,7 @@
    "updates_no_letter": false,
    "why": "it writes, on the rows of the sources that name their entries (M), the entry each row belongs to as its own source says it. No entry is decided here and no text is changed.",
    "names": [
+    "row-strikes-v1.json",
     "row-entries-receipt-v1.json"
    ]
   },
@@ -205,6 +217,7 @@
    "updates_no_letter": false,
    "why": "it marks, on the rows of the source the owner's ruling names (M), those whose route text (R) is only the words opening a numbered sense of its entry. No row is judged here and no text is changed.",
    "names": [
+    "row-strikes-v1.json",
     "sense-openings-receipt-v1.json"
    ]
   },
@@ -230,7 +243,8 @@
    "updates_no_letter": true,
    "why": "no frame letter. It reads the corpus lane's pinned ledger of default picks (named on the command line), the served zones, the served route store and the records of the resting lines (data/resting-lines/, what the page draws as each work opens, read off the page by tools/bake-resting-lines-v1.mjs), and writes into data/: one file per book under data/default-picks/, their index data/default-picks/index.json, the lane's three rules and three receipts kept beside them byte for byte, and data/default-picks-receipt-v1.json. No row is judged here and no text is changed.",
    "names": [
-    "default-picks-receipt-v1.json"
+    "default-picks-receipt-v1.json",
+    "row-strikes-v1.json"
    ]
   },
   "bake-dictionary-store-v1.mjs": {
@@ -275,6 +289,14 @@
    "updates_no_letter": true,
    "why": "no frame letter. This opens the reader as a first visit opens it, reads the lines it drew and writes one record per work, data/resting-lines/<work>.json.gz. It chooses no reading: the page did.",
    "names": []
+  },
+  "bake-search-index-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. This writes the index the search box reads (data/search-index), arithmetic over the stores the page already serves; it chooses no reading and writes no record a letter is kept in.",
+   "names": [
+    "dictionary-kinds-v1.json"
+   ]
   },
   "bake-span-store-v2.mjs": {
    "letters": [
@@ -375,7 +397,16 @@
    "updates_no_letter": true,
    "why": "no frame letter. This reads what the page drew and decides nothing: no reading is chosen, ordered, joined or credited here.",
    "names": [
+    "dictionary-kinds-v1.json",
     "form-of-pills-v1.json"
+   ]
+  },
+  "check-audit-calls-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the lists, the record and the store and judges them; it is not the ledger for one.",
+   "names": [
+    "row-strikes-v1.json"
    ]
   },
   "check-blob-every-v1.mjs": {
@@ -427,6 +458,18 @@
    "why": "no frame letter. A check reads the page and judges it; it is not the ledger for one.",
    "names": []
   },
+  "check-carrier-survives-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads what is served and judges it; it is not the ledger for one.",
+   "names": []
+  },
+  "check-chain-book-v2.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads what is served and judges it; it is not the ledger for one.",
+   "names": []
+  },
   "check-chapter-pages-v3.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -459,6 +502,15 @@
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
    "names": [
     "rule-demonstrations-v1.json"
+   ]
+  },
+  "check-dictionary-kinds-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the record of dictionary kinds, the store's index and shards, the overlays' indexes, the zones and the page, and judges them; it is not the ledger for one.",
+   "names": [
+    "dictionary-kinds-v1.json",
+    "book-order-v1.json"
    ]
   },
   "check-disk-gloss-is-the-line-v1.mjs": {
@@ -504,6 +556,14 @@
    "updates_no_letter": true,
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
    "names": []
+  },
+  "check-fold-strike-landing-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the lists, the record and the store and judges them; it is not the ledger for one.",
+   "names": [
+    "row-strikes-v1.json"
+   ]
   },
   "check-front-door-opens-title-v1.mjs": {
    "letters": [],
@@ -611,6 +671,14 @@
    "letters": [],
    "updates_no_letter": true,
    "why": "no frame letter. A check reads the lists' pin, the store, the zones and the pages and judges them; it is not the ledger for one.",
+   "names": [
+    "form-of-pills-v1.json"
+   ]
+  },
+  "check-names-pill-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads what is served and judges it; it is not the ledger for one. NO NAMES, PARKED (the owner, the evening of 2026-10-23: \"id remove no names toggle and just have it on /toggles/ for now\"). The names-lead switch stood in the row as a pill for a day (the owner, that morning: \"no names and no blanks, if i flip them on or off it should just change those select cells\"); it is off the row now and stays on the rail (?rail=all) and on /toggles/. Where a word's line is its name (proper-name-rule-v1), the reading the name displaced is baked beside it (gloss_orders.noname, tools/regloss-zone.mjs); the switch lays it over those lines and no other. P1  nothing on the book page offers it: no pill in the row, no entry in the bottom Menu; the rail's row stands under ?rail=all at \"the name leads\" on a fresh visit P2  pressed to \"no names\" on the rail, the lines that change are exactly the lines of the words whose key the name led and whose displaced reading is baked: each reads the reading the name displaced at its place, and no other line moves. Under \"only this pointing\" (the default since 2026-11-06, the pointing stands) that reading is the pointing's own leader at the place (the lattice sidecar's grade, o.l, or its alternate o.la with the leader's carriers switched off); the baked column answers where the form carries no grade, and under every other setting. A line whose displaced reading reads as its name does moves by its credit alone, so the credit is compared too. P3  the card of such a word opens pressed on what the line now says, the name is still among its pills, and the card no longer says the name leads P4  pressed back to \"the name leads\", every line is the line of the first paint, byte for byte P5  the choice is kept on the device: a reload opens with the lines moved; reset puts them back and says \"default\" P6  /toggles/ lists the switch among the rail's, drawn only with the switches, never on every book page The page is the first served zone that carries the column, found on disk; no book is named here (check-scope-derived S1). Usage: node tools/check-names-pill-v1.mjs [url]",
    "names": []
   },
   "check-numbering-gap-witnessed-v1.mjs": {
@@ -660,6 +728,12 @@
    "why": "no frame letter. A check reads the zones and the page and judges them; it is not the ledger for one.",
    "names": []
   },
+  "check-read-words-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads the list's pin, the zones, the store and the pages and judges them; it is not the ledger for one.",
+   "names": []
+  },
   "check-respan-projection-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -693,11 +767,33 @@
    "why": "no frame letter. A check reads the record and judges it; it is not the ledger for one.",
    "names": []
   },
+  "check-rulings-under-sources-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check opens the page and reads what it draws; it is not the ledger for anything.",
+   "names": []
+  },
   "check-run-cards-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
    "why": "no frame letter. This writes nothing: it reads data/run-cards/ and the page the reader draws from it.",
    "names": []
+  },
+  "check-same-product-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads what is served and judges it; it is not the ledger for one. SAME PRODUCT (the rebuild, 2026-10-23: \"a full rebuild, same product, lighter weight\"). Two builds of the site, the one shipped and the one proposed, served at two origins, print the same thing to a reader: S1  on every sampled chapter page, read whole (every section of the chapter built and read, not only the stretch the arrival builds; a section of it one build did not build is said), every word's line and its chip are the same, under the default switches, with no blanks on, with no names on, in the English reader, and under each default source other than STEP pressed and then STEP pressed to come back (default-picks-rule-v1; a switch one build lacks is reported, not compared). A word's line is the line drawn over it: its own, or, where it stands in words one card joins, the run's part under it (none where the run draws it bare) or the run's one line over all of them (the lines resting-lines-v1 reads). With --expect data/default-picks/index.json, the lines the new build fills at rest (where STEP leaves a word and its second, the source that fills most of what STEP leaves in the book, reads it) are the differences the batch makes on purpose: every line that differs is one of them, and every one of them on a sampled page reads the second's words under the second's chip; so are the lines where the old build's line is bare and the index carries STEP's own words (step_words): there the new line is STEP's words drawn as the page draws them (a \"/\" a joint; under the signs switch at rest a piece that is a sign alone, beside pieces that carry words, drawn as the hidden sign's gap), under STEP's chip (M4), under every switch both builds carry; and so are the lines of their neighbors in the run: a word whose part was a sign alone, standing because no part of the run carried words, is drawn as the hidden sign's gap under its own chip once STEP's words stand beside it; and under each default source pressed, a word of a reading the place gives across words (a reading ending with a hyphen goes on in the next word: TAHOT's «from/ Beth-» «-lehem», «Tubal-» «Cain») that no one source reads at every word of it keeps the line as it rests, the new build's own line at rest there, where an older build printed a source's line at one word of it and the other's half alone (zone.html dfltHalvesOf, the review of the toggles fixes, 15 November 2026). The owed lines are read from the index, the zones, the default picks' book files and the page, never named; a line not drawn as owed is said once S2  the cards of the first words of the chapter carry the same pills in the same order with the same one pressed THE DICTIONARIES THAT REST SHUT (dictionary-kinds-rule-v1, 15 November 2026). With --expect data/dictionary-kinds-v1.json, on a book the record rests shut (its scope, asked of the new build's zone), the differences the record makes on purpose are owed: on S1, a line that differs is one whose old chip names a source the record rests shut whole (a word's line or a run's), or whose old leader at its place (the old sidecar's o.l, or its place's own e[…].l, under «only»; the old zone's table line where the word is not graded or its name leads; never an alternate, la or alt, which the line reads only under the reader's switches) held one among its own carriers and the new build at rest leads the word otherwise, a reading that lost the rank a shut co-carrier's year gave it, or named a source that carries the credited reading only in rows a category of its own data rests shut (English Wiktionary's names: «Zilpah.», «Gershom.»), asked of the new build's store whole and at rest; its new chip names no such source; and every old line whose chip named one differs. On S2, a card that differs lost only pills whose every old carrier is a source shut whole or of a family a fact entry rests shut in part (English Wiktionary's names), and says it holds back at least as many (data-kind-withheld); it carries no pill the old card lacks, the pills both carry keep their order (each compared by its printed form, case folded, as the card groups them), and its pressed pill moves only where its word's line moved as owed. A work the record does not rest shut is compared as before, line for line and pill for pill. --expect may be given twice, and each file is told by its own rule_id; a file of another rule is refused, never guessed. The sample: every fifth served book with a chapter page, the first and the last among them, chapter 1 and the middle chapter of each; no book is named here (check-scope-derived S1). Without two origins the check skips. Usage: node tools/check-same-product-v1.mjs --old <origin> --new <origin> [--every 5] [--chapters 2] [--diff <path>] [--expect <data/default-picks/index.json>] [--expect <data/dictionary-kinds-v1.json>] --diff writes every differing card in full (old pills, new pills, the pills only one build carries) and, after the cards, every differing line (old and new, with their chips), one per \"line:\" entry, so a batch that changes pills or lines on purpose can name each difference in its notes",
+   "names": [
+    "dictionary-kinds-v1.json"
+   ]
+  },
+  "check-search-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads what is served and judges it; it is not the ledger for one. THE SEARCH (the owner, 2026-10-18: \"hebrew by character ... and any english hits like create or be created or cut down\", at the top of the book page; no transliteration). Index baked by tools/bake-search-index-v1.mjs. Every number the page prints is counted again here, in node, from the files the page is served (the dictionary store, the route store, the index's he/ shards, the books' order), never by asking the page's own functions. S1  the field stands above the toggles row, empty, with no results shown S2  a page word's letters, typed: \"these letters\" is that word, with the store's count of its places; \"starting with these letters · N\" is every other word that begins so (a final letter matching its medial form), N as the he/ shards count it and at least two, and the hits shown are the first twelve of them, by places, then letters S3  two readings a word's card draws, typed in English: one a per-place source reads (\"read so at N places\", N counted again, with who reads it) and one only a dictionary gives (\"a dictionary reads it so\"); each label's \"N Hebrew words\" counted from the route store, pieced as the card pieces it, and the dictionary store S4  with the card shut for real, a hit opens that word's card as the concordance at its first place in this book, and the page stays S5  a reading no source gives says so, and clearing the field clears it S6  a word typed in a pointing other than its first place's is found by its consonants, says \"N pointed so\" (fewer than all its places), and opens at the first place in this book pointed so, not at the letters' first place (the owner, 2026-10-18: \"always find despite voweling, go off consonants only with voweling as best match preferencing\") S7  letters that stand only in other books open at the first of their places in the books' order: the address is that book's page with dict=on and the place, and the card there is the concordance S8  the same from a page opened with ?dict=off: the address still says dict=on, and the card is the concordance S9  a pointing typed among the words that start with its letters: the words that stand so, or begin so, come first, each saying how many places stand in the pointing it shows S10 a word typed with its final letter also lists the longer words that go on with the medial form; typed with a medial last letter it finds the word written with the final S11 a query that starts with a final letter is read as its letter (one consonant, one letter): it answers as the medial form does, never \"did not answer\" S12 the fold's odd inputs: a curly and a straight apostrophe, a reading in angle brackets and its words bare, answer alike, and as many words as the fold written here counts S13 a ketiv/qere pasted from the page, \"(ketiv) [qere]\", is read by its qere: the qere's word, with how many places stand pointed so S14 the ketiv's letters find the ketiv/qere place, and the hit opens there S15 Escape while a search is on its way clears the box, and the late answer never paints S16 a hit chosen with the keyboard leaves focus inside the card S17 with TAHOT switched off on the rail, a reading TAHOT gives no longer answers for the word it alone reads so, or its count drops S18 the index names the record of what each dictionary is (dictionary-kinds-rule-v1) it was baked under, by the sha256 of the record as served, and leaves out exactly the rows a category of their own source rests shut (an entry that names a fact: what English Wiktionary files as a name), counted again here THE DICTIONARIES THAT REST SHUT, in every count here as on the page: a row a category of its source rests shut is in the index nowhere, open or shut, and the model leaves it out as the bake does; a source the record rests shut whole stays in the index, and the page leaves it out while it rests shut, as it leaves out a source the reader switched off, on any page, since every place the index answers is of a book the record rests shut; so the model does too (its ids from the record and the store's index as served; whether they stand shut and the record held, from the page's own state). The words are found on the page or in the data, never named here (check-scope-derived S1). Usage: node tools/check-search-v1.mjs [url]",
+   "names": [
+    "source-defaults-v1.json"
+   ]
   },
   "check-sense-openings-v1.mjs": {
    "letters": [],
@@ -781,6 +877,12 @@
     "variant-sites-standing-v1.json"
    ]
   },
+  "check-witnessed-order-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. A check reads what is served and judges it; it is not the ledger for one.",
+   "names": []
+  },
   "check-word-senses-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -819,6 +921,25 @@
     "zone-store-v1.json"
    ]
   },
+  "derive-fold-strike-landing-v1.mjs": {
+   "letters": [
+    "M",
+    "R"
+   ],
+   "updates_no_letter": false,
+   "why": "it writes the list of rows a landing lands, each of its own source (M) with its own route text (R), and the list of the lines it does not land, with why. It writes no row of the store: tools/strike-rows-v1.mjs lands the list.",
+   "names": [
+    "row-strikes-v1.json"
+   ]
+  },
+  "dictionary-kinds-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. The rule's own functions: they read the record of what each dictionary is, a row of the store and a zone, and write nothing.",
+   "names": [
+    "dictionary-kinds-v1.json"
+   ]
+  },
   "door-filing-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -836,6 +957,17 @@
    "why": "the source's own marks, per named stream. The census counts MAM's classes and records which copy of each stream it read them from.",
    "names": [
     "apparatus-baseline-v1.json"
+   ]
+  },
+  "emit-call5-rekey-map-v1.mjs": {
+   "letters": [
+    "M",
+    "R"
+   ],
+   "updates_no_letter": false,
+   "why": "it writes, for each row call 5 moved from a key that ends in a maqaf to its plain key, the name the row had (R, under its source M) and the name it has: a map read out of the row-strikes record. It writes no row.",
+   "names": [
+    "row-strikes-v1.json"
    ]
   },
   "emit-corpus-atlas-v1.mjs": {
@@ -1054,6 +1186,12 @@
    "why": "THE PRINT STEP: the one step of the page's own that a ledger's branch asks for.",
    "names": []
   },
+  "made-spaces-second-road-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. It reads the store's index, the row-strikes record and two pinned lists, and writes nothing.",
+   "names": []
+  },
   "main-guard-v1.mjs": {
    "letters": [],
    "updates_no_letter": true,
@@ -1156,6 +1294,7 @@
    "updates_no_letter": false,
    "why": "R because every order this tool projects is a SELECTION over readings the store already holds — masoretic, vowels differ, cites here, licence, names as sound — and rule 1 above is that it adds, removes and reorders nothing in the store itself. D because the parts band carries a named source's English for a COMPcell, two witnesses per piece, carried and never composed into a reading of the word. It creates no M and no S; it carries the ones the card it grades already names.",
    "names": [
+    "dictionary-kinds-v1.json",
     "license-postures-v1.json",
     "language-admission-v1.json",
     "source-strikes-v1.json"
@@ -1212,12 +1351,19 @@
     "lane-state-v1.json"
    ]
   },
+  "read-words-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. The one reading of the corpus lane's list of read words: it reads the pinned files and a zone, and writes nothing.",
+   "names": []
+  },
   "regloss-zone.mjs": {
    "letters": [],
    "updates_no_letter": true,
    "why": "no frame letter. This writes only the zone it was given, a projection of the store over that zone's own keys; it decides nothing. It reads the served source corpus (data/source-corpus-v1.json) to price the shelf switches and writes no record into data/ itself.",
    "names": [
-    "source-corpus-v1.json"
+    "source-corpus-v1.json",
+    "dictionary-kinds-v1.json"
    ]
   },
   "restamp-zone-v1.mjs": {
@@ -1244,6 +1390,14 @@
     "zone-store-v1.json",
     "license-postures-v1.json",
     "work-attachment-v1.json"
+   ]
+  },
+  "row-strikes-follow-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. It reads the row-strikes record and the store's index, and writes nothing.",
+   "names": [
+    "row-strikes-v1.json"
    ]
   },
   "rows-beside-the-store-v1.mjs": {
@@ -1322,6 +1476,12 @@
    "letters": [],
    "updates_no_letter": true,
    "why": "no frame letter. It reads the corpus lane's extension and the owner's pinned ruling on it, and writes nothing.",
+   "names": []
+  },
+  "step-moment-v1.mjs": {
+   "letters": [],
+   "updates_no_letter": true,
+   "why": "no frame letter. It reads the process's own arguments and the clock, and writes nothing.",
    "names": []
   },
   "strike-language-v1.mjs": {

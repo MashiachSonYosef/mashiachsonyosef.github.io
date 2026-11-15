@@ -1,6 +1,7 @@
 // Synthesis lane · what a word's card prints when a reader presses the word, read off the page that draws it
 //
 // RULE: chain-book-rule-v2-the-same-book-with-the-meaning-taken-out-and-the-links-under-a-word-are-what-its-card-prints-read-off-the-page
+// GUARDS: chain-book-rule-v2-the-same-book-with-the-meaning-taken-out-and-the-links-under-a-word-are-what-its-card-prints-read-off-the-page, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
 // LEDGER: -
 // no frame letter. This reads what the page drew and decides nothing: no
 // reading is chosen, ordered, joined or credited here.
@@ -59,6 +60,19 @@
 // first row the switches keep, and that row can differ. So neither state is
 // derived from the other. Both are read.
 //
+// THE DICTIONARIES THAT REST SHUT ARE A SWITCH THAT WITHHOLDS READINGS
+// (dictionary-kinds-rule-v1, 15 November 2026). On a book the record of
+// what each dictionary is rests shut (data/dictionary-kinds-v1.json: the
+// thirty-nine books), a first visit finds the word lists, knowledge bases
+// and encyclopedia titles, and what English Wiktionary files as a name,
+// held back on every card; lifted opens them, as a reader who pressed the
+// rail's switch keeps it (fh.kinds, "open@" the record's version: an open
+// holds for the record it was pressed under). The page reports where the
+// switch stands, and the state says so (kinds: "shut" or "open" where the
+// page says the kinds act on this book, null where they do not), so a
+// card read at rest with the record failed is never taken for a card at
+// rest: the reading refuses it (linesOnPage, tools/resting-lines-v1.mjs).
+//
 // OPENING A CARD RULES NOTHING, AND THAT IS HELD: after the walk the lines
 // under the words are read again and must be the lines read before it, and
 // no word may wear the mark of a ruling.
@@ -68,10 +82,16 @@
 // reads there must be what the builder read on its way from the top. What
 // the page fetches late is waited for before any card is read (readCards).
 import { readFileSync, existsSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { linesInPage, linesOnPage } from "./resting-lines-v1.mjs";
+import { readKinds } from "./dictionary-kinds-v1.mjs";
 
 export const CHAIN_RULE_ID = "chain-book-rule-v2-the-same-book-with-the-meaning-taken-out-and-the-links-under-a-word-are-what-its-card-prints-read-off-the-page";
+
+// the press that opens the dictionaries that rest shut, as the page keeps it: "open@" the record's version, read
+// from the record beside the store of this tree (readKinds refuses, in one sentence, a record missing or not holding)
+const KINDS_OPEN = `open@${readKinds(join(dirname(fileURLToPath(import.meta.url)), "..", "data")).rec.version}`;
 
 /** THE TWO STATES. `keep` is what a visit keeps on the device before the page
  *  draws: nothing at rest; for lifted, the page's own switches at the
@@ -84,9 +104,9 @@ export const STATES = {
     holds: null,
   },
   lifted: {
-    says: "lifted: every switch that withholds a reading lifted — the pointing kept whatever a source points, a source's own signs printed, every source on, the word senses shown",
-    keep: { "fh.masorah": "keep", "fh.signs": "printed", "fh.sources.off": "[]", "fh.senses": "on" },
-    holds: { pointing: "keep", signs: "printed", sources_off: [], senses: "on", defaults: "step" },
+    says: "lifted: every switch that withholds a reading lifted — the pointing kept whatever a source points, a source's own signs printed, every source on, the word senses shown, the dictionaries that rest shut opened",
+    keep: { "fh.masorah": "keep", "fh.signs": "printed", "fh.sources.off": "[]", "fh.senses": "on", "fh.kinds": KINDS_OPEN },
+    holds: { pointing: "keep", signs: "printed", sources_off: [], senses: "on", defaults: "step", kinds: "open" },
   },
 };
 
@@ -166,7 +186,8 @@ export const cardsInPage = async ([from, to, perCardMs = 15000]) => {
   return {
     sections: out, of: secs.length,
     ruled: document.querySelectorAll(".wb.chosen, .wjoin.chosen").length,
-    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort(), defaults: (window.__default || {}).on || null, second: (window.__default || {}).second || null, book: (window.__default || {}).book || null },
+    // kinds: where the dictionaries that rest shut stand, where the page says they act on this book; null where not
+    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort(), defaults: (window.__default || {}).on || null, second: (window.__default || {}).second || null, book: (window.__default || {}).book || null, kinds: window.__kindsHere ? window.__kinds || null : null },
   };
 };
 
@@ -241,7 +262,7 @@ export const readCards = async (browser, base, work, stateName, { from = 0, to =
     if (state.holds) {
       const s = before.state;
       const off = JSON.stringify(s.sources_off) !== JSON.stringify(state.holds.sources_off);
-      if (s.pointing !== state.holds.pointing || s.signs !== state.holds.signs || s.senses !== state.holds.senses || off || s.defaults !== state.holds.defaults) throw new Error(`the page did not take the lifted switches: it reports the pointing ${s.pointing}, signs ${s.signs}, word senses ${s.senses}, sources off ${JSON.stringify(s.sources_off)}, the default source ${s.defaults}`);
+      if (s.pointing !== state.holds.pointing || s.signs !== state.holds.signs || s.senses !== state.holds.senses || off || s.defaults !== state.holds.defaults || s.kinds !== state.holds.kinds) throw new Error(`the page did not take the lifted switches: it reports the pointing ${s.pointing}, signs ${s.signs}, word senses ${s.senses}, sources off ${JSON.stringify(s.sources_off)}, the default source ${s.defaults}, the dictionaries that rest shut ${s.kinds === null ? "not acting on this book" : s.kinds}`);
     }
     const sections = [];
     let pageState = before.state, ruled = 0;

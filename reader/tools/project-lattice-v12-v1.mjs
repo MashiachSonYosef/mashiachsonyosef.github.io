@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Synthesis lane · lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store
+// GUARDS: lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
 // LEDGER: R D
 // R because every order this tool projects is a SELECTION over readings the
 // store already holds — masoretic, vowels differ, cites here, licence,
@@ -86,6 +87,30 @@
 //      English this position reads, MACULA the headword's — so BOTH ride and
 //      neither is chosen. The maqaf toggle is a different question and still
 //      waits on the welded-form ruling; nothing here touches it.
+//   6. THE LEADERS ARE THE REST'S (dictionary-kinds-rule-v1, 15 November
+//      2026). A book the record of what each dictionary is rests shut
+//      (data/dictionary-kinds-v1.json, its scope asked of the zone's own
+//      fields) is projected over the store at rest: every leader baked here
+//      from the store's rows (o.m, o.x, o.c, the filter's l, la and s, the
+//      leaders at each kind of place, nl) reads the rows that rest open and
+//      no other, so a word whose leader a shut dictionary carried reads the
+//      next open reading, as its card does, and the line under it at rest
+//      never reads a shut row. The lattice's own cards (their fingerprints,
+//      grades and citations) are the corpus lane's and are read whole. The
+//      headword's lemma-sorted reading hg is the corpus lane's card too, but
+//      it is a line, the line under "the headword": on a book at rest a word
+//      carries none where its card's source is one the record rests shut
+//      whole, or gives that reading only in rows that rest shut, and the
+//      line under the headword then reads the headword's own column, baked
+//      at rest (the review of 15 November 2026: 300 words of the 39 books
+//      read a shut source's reading under the headword while their cards
+//      held it back, Genesis 19:25 Hebrew WordNet's «be an inhabitant of or
+//      reside in»). Its year is still its source's own row's, read whole. The
+//      zone must have been projected at rest under the same record
+//      (emitted_from.rests_off, tools/regloss-zone.mjs), since nl reads its
+//      table; a zone that was not, or one stamped and outside the scope, is
+//      refused. The sidecar names the record (rests_off: its version and
+//      sha256). Every other zone is projected over the store whole.
 //
 // Run: node tools/project-lattice-v12-v1.mjs --zone data/zones/genesis.bin
 //        --lattice <dir with positions-<book>-v12.jsonl.gz, routes-<book>-v12.jsonl.gz, lattice-<book>-v12.json>
@@ -107,6 +132,7 @@ import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
 import { readPinnedLines } from "./pinned-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+import { readKinds, restsOffIn, restsOffIds, DICTIONARY_KINDS_RECORD } from "./dictionary-kinds-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
 const GRADE_CHAR = { VOWEL_MATCH: "m", NORMALIZED: "n", VOWEL_MISMATCH: "x" };
 
@@ -134,8 +160,21 @@ for (const [k, want] of [["positions", latticeReceipt.files.positions.sha256], [
 }
 
 // the store, for the reading pool a card is grouped into, and the witness
-// ids its labels stand for — a lattice card names its source by label
-const store = openRouteStore(arg("--store", join(zonePath.replace(/data\/zones\/.*$/u, ""), "data", "route-store")));
+// ids its labels stand for — a lattice card names its source by label; at
+// rest where the record rests this book shut (rule 6), and the zone said to
+// have been projected under the same record
+const storeDir = arg("--store", join(zonePath.replace(/data\/zones\/.*$/u, ""), "data", "route-store"));
+let kinds = null, atRest = false, store = null;
+try {
+  kinds = readKinds(join(storeDir, ".."));
+  atRest = restsOffIn(kinds.rec, zone);
+  store = openRouteStore(storeDir, { atRest });
+} catch (e) { console.error(`REFUSED — ${String((e && e.message) || e)}`); process.exit(1); }
+{
+  const said = (zone.emitted_from || {}).rests_off || null;
+  if (atRest && (!said || said.sha256 !== kinds.sha256)) { console.error(`REFUSED — ${slug} rests shut under ${DICTIONARY_KINDS_RECORD} (sha256 ${kinds.sha256.slice(0, 12)}…) and its zone ${said ? `was projected at rest under another record (${String(said.sha256).slice(0, 12)}…)` : "was not projected at rest"}: run tools/regloss-zone.mjs on it first`); process.exit(1); }
+  if (!atRest && said) { console.error(`REFUSED — ${slug}'s zone says it was projected at rest, and ${DICTIONARY_KINDS_RECORD} does not rest it shut: run tools/regloss-zone.mjs on it first`); process.exit(1); }
+}
 const labelToM = new Map(Object.entries(store.index.m_sources || {}).map(([id, m]) => [m.label, id]));
 
 // THE TWO WITNESSES BEHIND A PIECE, and the licence they are served under.
@@ -171,8 +210,19 @@ const routes = new Map();   // key -> [{ fp, text, src, lic, year, corpus, tr }]
 // the wording year the served store gives a source's own row for a reading
 const labelOf = new Map(Object.entries(store.index.m_sources || {}).map(([id, s]) => [id, s.label || ""]));
 const heldLabels = new Set(labelOf.values());
+// RULE 6 FOR THE HEADWORD'S READING: on a book at rest, a lattice card whose source the record rests shut whole, or
+// whose source gives its reading under the headword only in rows that rest shut, is not the headword's line; off the
+// scope nothing here holds a card back
+const shutLabels = atRest ? new Set(restsOffIds(kinds.rec, store.index.m_sources).map((m) => labelOf.get(m)).filter(Boolean)) : new Set();
+const restsShutAtRest = (key, card) => {
+  if (!atRest) return false;
+  if (shutLabels.has(card.src)) return true;
+  const rows = (store.routesWhole(key) || []).filter((r) => labelOf.get(r[3]) === card.src && String(r[1]) === String(card.text));
+  return rows.length > 0 && rows.every((r) => !!store.restsOff(r));
+};
+// (the lattice's own card, so the store's rows are read whole: a source the record rests shut still wrote its row)
 const wordingYearOf = (key, card) => {
-  const rows = store.routesFor(key) || [];
+  const rows = store.routesWhole(key) || [];
   const hit = rows.find((r) => labelOf.get(r[3]) === card.src && String(r[1]) === String(card.text));
   const y = hit ? String(hit[4]) : "";
   return /^\d{4}$/.test(y) ? Number(y) : null;
@@ -311,7 +361,7 @@ if (stemsByPlace.size) for (const sec of zone.sections || []) {
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
   surfaces_unattested: 0, surfaces_with_stems: 0, surfaces_name_leads_under_only: 0, surfaces_with_lenient_leader: 0, surfaces_with_lenient_alternate: 0,
-  hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
+  hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, ...(atRest ? { hg_skipped_rests_shut: 0 } : {}), hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_with_their_own_citations: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
   places_tagged: 0, places_with_no_core_tag: 0, places_whose_pieces_spell_no_key_of_the_word: 0,
@@ -635,6 +685,9 @@ for (const sec of zone.sections || []) {
       // carries no hg, and the line under "the headword" reads the headword's
       // own baked column, as at every other word without one.
       if (top && !heldLabels.has(top.src)) stats.hg_skipped_source_not_held += 1;
+      // and on a book at rest, a card of a source the record rests shut whole, or of rows that rest shut alone, is
+      // not the line under the headword either (rule 6): the word carries no hg, as above
+      else if (top && restsShutAtRest(L.key, top)) stats.hg_skipped_rests_shut += 1;
       // THE CREDIT'S YEAR IS THE STORE'S. The lattice card carries a year of
       // its own (BDB's 1906 on a reading SDBH repeats), and pairing it with
       // the card's source named one source with another's year on 655 of
@@ -741,6 +794,8 @@ const sidecar = {
   routes: sideRoutes, grades,
   entry: { rule: ENTRY_GATE_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
   names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
+  // rule 6: the record the leaders were baked at rest under; absent where the book does not rest shut
+  ...(atRest ? { rests_off: { ...store.atRest, what: "every leader here baked from the store's rows (o.m, o.x, o.c, o.l, o.la, o.s, v[…].c, e[…], nl) read the rows that rest open under the record and no other; the lattice's own cards, grades and citations are the corpus lane's and were read whole; a word's hg (the zone's) is carried only where its card's source is not shut whole and gives that reading in a row that rests open" } } : {}),
   leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
   ...(binyanFiles.length ? { stems: stemsCarried, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, carried: stemsCarriedSaid, ...(extensionSaid ? { extension: extensionSaid } : {}), kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each row on a key a card of this book asks them under (carried, stems-carried-rule-v1: a word's, a read half's or a piece's key whose pointed surface has a known stem here, or a graded surface's own key with one), by m, rank and route: the store's rows, and where the extension was read the rows of the dictionary beside the store that it names; on a key carried, a row not listed has no known stem" } } : {}),
 };
@@ -757,7 +812,7 @@ ef.toggles.lattice = {
   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
   counts: { ...stats },
   names: namesSaid,
-  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; hg: the headword's first reading under lemma-sort v3, with hm (source, licence key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source; ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
+  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open; ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
   pieces: {
     rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
     witnesses: pieceWitness,
@@ -778,6 +833,6 @@ const s = stats;
 console.log(`${outPath} · ${s.hg.toLocaleString()} of ${s.words_on.toLocaleString()} words carry the headword's lemma-sorted reading · ${s.ld} differ in Leningrad · verses ${s.verses_joined} joined, ${s.verses_held} held, ${s.verses_absent_from_lattice} absent`);
 console.log(`  ${sidecarPath} · ${Object.keys(sideRoutes).length.toLocaleString()} keys, ${routeCards.toLocaleString()} cards (${trCards} transliterations) · ${Object.keys(grades).length.toLocaleString()} pointed surfaces graded · ${(statSync(sidecarPath).size / 1024).toFixed(0)} KB`);
 console.log(`  parts: ${s.pc} of ${s.bare} words with no English of their own carry their pieces (${s.pc_pieces} pieces, ${s.pc_both_witnesses} with both witnesses) · ${s.bare_without_pieces} bare words the lattice has no pieces for · ${s.pc_skipped_word_has_an_english.toLocaleString()} words answered by the catalog and not carried`);
-console.log(`  hg skipped: ${s.hg_skipped_no_h} no headword · ${s.hg_skipped_witnesses_differ} witnesses differ · ${s.hg_skipped_lemma_differs_from_h} lemma is not h · ${s.hg_skipped_same_as_form} headword is the form · ${s.hg_skipped_lemma_not_in_routes} stack has no cards in this book`);
+console.log(`  hg skipped: ${s.hg_skipped_no_h} no headword · ${s.hg_skipped_witnesses_differ} witnesses differ · ${s.hg_skipped_lemma_differs_from_h} lemma is not h · ${s.hg_skipped_same_as_form} headword is the form · ${s.hg_skipped_lemma_not_in_routes} stack has no cards in this book · ${s.hg_skipped_source_not_held} source not held${atRest ? ` · ${s.hg_skipped_rests_shut} rest shut` : ""}`);
 console.log(`  places: ${s.places_tagged.toLocaleString()} carry their entry's tag · ${namesSaid ? `${s.name_places_marked.toLocaleString()} of ${s.name_places_listed.toLocaleString()} listed name places marked` : "no list of name places in this tree"} · leaders asked at ${s.leaders_asked_at_a_kind_of_place.toLocaleString()} kinds of place, ${s.leaders_the_place_moves.toLocaleString()} moved`);
 if (s.held_examples.length) console.log(`  held: ${s.held_examples.join(" | ")}`);

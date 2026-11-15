@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-15.
 
-**160 rules declared · 147 named by a check · 13 unguarded.**
+**165 rules declared · 153 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -18,6 +18,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 |---|---|---|
 | `apparatus-baseline-rule-v1-arithmetic-over-positions-cannot-see-a-label-that-is-gone` | tools/emit-apparatus-baseline-v1.mjs | check-apparatus-not-stripped-v1 |
 | `attachment-authorship-rule-v1-the-placement-is-ours-and-says-so` | tools/generate-attachment-map-v2.mjs, zone.html | check-whose-claim-v1 |
+| `audit-calls-rule-v1-a-call-lands-as-its-list-names-each-row-and-the-record-says-where-each-row-went` | tools/emit-call5-rekey-map-v1.mjs | check-audit-calls-v1 |
 | `blob-every-rule-v1-every-word-with-a-plus-wears-a-blob-piece-for-piece` | tools/check-blob-every-v1.mjs | check-blob-every-v1 |
 | `blob-precision-rule-v1-a-blob-is-cut-to-the-ink-and-split-where-the-word-divides` | zone.html | check-blob-precision-v1 |
 | `book-order-rule-v1-the-door-files-the-books-in-the-order-the-record-names` | tools/build-front-door-v1.mjs | **UNGUARDED** |
@@ -26,8 +27,8 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `chain-book-rule-v2-the-same-book-with-the-meaning-taken-out-and-the-links-under-a-word-are-what-its-card-prints-read-off-the-page` | tools/build-chain-book-v2.mjs, tools/card-readings-v1.mjs | check-chain-book-v2 |
 | `chapter-page-rule-v3-the-chapters-address-is-the-reader-opened-at-the-chapter-and-the-lines-it-draws-stand-under-it-in-plain-text-credited-and-no-ink` | tools/build-front-door-v1.mjs, zone.html | check-chapter-pages-v3 |
 | `check-variant-class-one-rule-v1` | tools/check-variant-class-one-rule-v1.mjs | check-variant-class-one-rule-v1 |
-| `color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours` | zone.html | check-page-agrees-with-its-record-v1, check-color-channels-v1 |
-| `color-channel-rule-v3-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours` | tools/build-front-door-v1.mjs | check-color-channels-v1, check-card-numbering-v1 |
+| `color-channel-rule-v2-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours` | tools/check-page-agrees-with-its-record-v1.mjs | check-page-agrees-with-its-record-v1, check-color-channels-v1 |
+| `color-channel-rule-v3-the-materials-are-the-ledgers-the-channels-are-the-owners-ruling-and-the-values-are-ours` | tools/build-front-door-v1.mjs, zone.html | check-color-channels-v1, check-card-numbering-v1 |
 | `colour-role-rule-v1` | zone.html | **UNGUARDED** |
 | `commentary-chooser-rule-v1-twelve-on-the-first-screen-then-a-press` | zone.html | check-commentary-in-line-v1 |
 | `commentary-order-rule-v2-oldest-first-on-the-earliest-date-recorded` | zone.html | check-commentary-in-line-v1 |
@@ -38,10 +39,11 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `count-gate-rule-v1` | tools/check-clean-address-v1.mjs | check-clean-address-v1, check-front-door-three-counts-v1, check-nothing-hand-typed-v1 |
 | `count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one` | tools/build-zone.mjs, tools/count-stamp-v1.mjs, tools/emit-masorah-witnesses-v1.mjs, tools/restamp-zone-v1.mjs | check-bookword-count-v1, check-c0-refusals-v1 |
 | `declarations-branch-rule-v1-a-branch-is-what-the-source-says-about-itself-and-a-reserved-token-is-never-a-branch` | tools/project-declarations-v1.mjs | check-declarations-branch-v1 |
-| `default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second` | tools/bake-default-picks-v1.mjs, zone.html, tools/bake-resting-lines-v1.mjs, tools/card-readings-v1.mjs, tools/resting-lines-v1.mjs | check-default-picks-v1, check-card-opens-on-the-line-v1, check-chain-book-v2, check-line-follows-card-v1, check-live-v1, check-menu-switches-v1, check-page-fetches-v1, check-reset-pill-v1, check-ruled-equals-first-paint-v1, check-same-product-v1, check-word-senses-v1 |
+| `default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second` | tools/bake-default-picks-v1.mjs, zone.html, tools/bake-resting-lines-v1.mjs, tools/card-readings-v1.mjs, tools/resting-lines-v1.mjs | check-default-picks-v1, check-rulings-under-sources-v1, check-same-product-v1, check-card-opens-on-the-line-v1, check-chain-book-v2, check-line-follows-card-v1, check-live-v1, check-menu-switches-v1, check-page-fetches-v1, check-reset-pill-v1, check-ruled-equals-first-paint-v1, check-word-senses-v1 |
 | `demo-verse-rule-v1` | tools/build-front-door-v1.mjs | check-clean-address-v1, check-nothing-hand-typed-v1 |
 | `derived-work-ranges-rule-v1-the-atlas-names-every-range-so-none-is-typed` | tools/emit-derived-work-ranges-v1.mjs | check-derived-ranges-v1 |
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
+| `dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut` | tools/bake-search-index-v1.mjs, tools/card-readings-v1.mjs, tools/dictionary-kinds-v1.mjs, tools/gated-card-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/regloss-zone.mjs, tools/resting-lines-v1.mjs, zone.html, tools/gloss-store-v1.mjs | check-chain-book-v2, check-dictionary-kinds-v1, check-same-product-v1, check-search-v1, check-card-opens-on-the-line-v1, check-carrier-survives-v1, check-entry-gate-v1, check-lattice-projection-v1, check-names-gate-v1, check-names-pill-v1, check-sense-openings-v1, check-span-store-v1, check-stems-extension-v1, check-witnessed-order-v1 |
 | `division-evidence-rule-v1-a-division-we-have-not-established-is-not-offered` | tools/check-division-established-v1.mjs | check-division-established-v1 |
 | `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
 | `door-filing-rule-v1-the-door-files-the-thirty-nine` | tools/door-filing-v1.mjs | **UNGUARDED** |
@@ -54,6 +56,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `family-ledger-rule-v1-values-are-ruled-works-are-not` | tools/check-family-ledger-v1.mjs | check-family-ledger-v1 |
 | `fixture-rule-v1-a-real-zone-with-its-own-commentary-hung-at-words` | tools/make-fixture-zone-v1.mjs | check-fixture-never-served-v1 |
 | `fleet-rule-v1-a-work-builds-the-day-its-shards-arrive-and-not-a-day-sooner` | tools/plan-fleet-v1.mjs, tools/run-fleet-v2.mjs | check-derived-ranges-v1 |
+| `fold-strike-landing-rule-v1-a-line-lands-at-the-hole-its-struck-row-left-unless-a-row-under-its-key-now-prints-its-words` | tools/derive-fold-strike-landing-v1.mjs | check-fold-strike-landing-v1 |
 | `form-of-pills-rule-v2-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries` | tools/bake-form-of-pills-v1.mjs | check-form-of-v1 |
 | `frame-coverage-rule-v1-no-layer-is-on-one-work-and-off-another` | tools/check-frame-coverage-v1.mjs | check-frame-coverage-v1 |
 | `from-restore-rule-v1` | tools/check-front-door-three-counts-v1.mjs | check-front-door-three-counts-v1 |
@@ -87,14 +90,14 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `lone-letter-rule-v1-a-letter-the-print-leaves-standing-alone-is-printed-as-printed-and-marked-by-the-record-that-names-it` | tools/apply-lone-letters-v1.mjs | check-lone-letters-v1 |
 | `made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it` | tools/apply-made-spaces-v1.mjs, tools/gloss-store-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/build-front-door-v1.mjs, zone.html | check-made-spaces-v1, check-ledger-divisions-v1, check-provider-characters-v1, check-search-v1 |
 | `mam-restore-v5-rights-rule-v1-one-record-for-the-edition-the-credit-on-every-page` | tools/emit-mam-restore-v5-rights-v1.mjs | check-restore-serve-v1 |
-| `maqaf-rule-v2-one-c0-per-word` | tools/zone-lib-v1.mjs, tools/regloss-zone.mjs, zone.html | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1, check-run-card-forms-v1 |
+| `maqaf-rule-v2-one-c0-per-word` | tools/zone-lib-v1.mjs, tools/regloss-zone.mjs, zone.html | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1, check-dictionary-kinds-v1, check-run-card-forms-v1 |
 | `mark-inventory-rule-v1-closed-set-over-route-text` | tools/mark-inventory-v1.mjs | check-mark-inventory-closed-v1 |
 | `masorah-toggle-rule-v1-the-pointing-is-kept-the-gate-or-lifted-and-the-page-never-changes` | zone.html | check-masorah-toggle-v1 |
 | `masoretic-marks-rule-v1-every-mark-is-gold-by-its-class-never-by-a-code-point-range` | tools/project-masoretic-marks-v1.mjs, zone.html | check-masoretic-gold-v1, check-color-channels-v1 |
 | `megacompspan-rule-v1-one-maqaf-run-one-card` | tools/check-maqaf-pair-drawn-v1.mjs | check-maqaf-pair-drawn-v1, check-run-card-forms-v1, check-choice-memory-v1 |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | check-serve-oracle-checked-v1 |
 | `names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name` | tools/apply-name-rows-v1.mjs, tools/names-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-names-gate-v1 |
-| `no-names-rule-v1-the-reading-a-name-displaced-is-kept-beside-the-name-so-a-switch-puts-it-back-on-that-line-alone` | tools/regloss-zone.mjs | **UNGUARDED** |
+| `no-names-rule-v1-the-reading-a-name-displaced-is-kept-beside-the-name-so-a-switch-puts-it-back-on-that-line-alone` | tools/regloss-zone.mjs | check-names-pill-v1 |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |
 | `orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration` | tools/check-orders-registered-together-v1.mjs | check-orders-registered-together-v1 |
@@ -115,6 +118,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1, check-carrier-survives-v1, check-names-pill-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-licence-leaves-v1, check-provider-characters-v1 |
 | `read-form-offsets-rule-v1-a-read-forms-piece-without-letters-takes-the-lanes-alignment-or-none` | tools/bake-read-form-offsets-v1.mjs, zone.html | check-read-form-offsets-v1 |
+| `read-words-rule-v1-each-read-word-of-a-read-form-of-several-words-carries-its-own-entry-and-the-place-reads-their-pieces` | tools/apply-read-words-v1.mjs, tools/read-words-v1.mjs, zone.html | check-read-words-v1 |
 | `reader-orders-rule-v1-the-orders-the-store-defines-are-projected-with-the-table-on-every-projection` | tools/regloss-zone.mjs | **UNGUARDED** |
 | `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-card-opens-on-the-line-v1.mjs | check-card-opens-on-the-line-v1, check-first-reading-is-sorted-v1 |
 | `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/emit-zone-store-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
@@ -124,7 +128,8 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now` | tools/apply-route-delta-v1.mjs | **UNGUARDED** |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | check-route-store-exact-k-v1 |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
-| `row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed` | tools/strike-rows-v1.mjs | check-store-continuity-v1 |
+| `row-strike-rule-v6-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted` | tools/strike-rows-v1.mjs | check-audit-calls-v1, check-fold-strike-landing-v1, check-store-continuity-v1 |
+| `row-strikes-follow-rule-v1-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed` | tools/row-strikes-follow-v1.mjs | check-entry-gate-v1 |
 | `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1 |
 | `run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling` | tools/project-run-cards-v1.mjs, zone.html | check-run-cards-v1, check-run-line-follows-division-v1, check-run-card-forms-v1 |
 | `script-admission-rule-v1-a-published-word-is-written-in-hebrew-script` | tools/check-script-admitted-v1.mjs | check-script-admitted-v1 |
@@ -133,7 +138,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `serve-from-restore-rule-v1-the-restore-is-the-text-the-split-is-this-lanes-the-rights-are-the-records` | tools/run-restore-v5-fleet-v1.mjs, tools/serve-from-restore-v5.mjs, tools/build-front-door-v1.mjs | check-restore-serve-v1 |
 | `serve-from-stream-rule-v2-the-successor-stream-is-the-text-bridge-v2-is-its-identity-the-binding-is-the-rights` | tools/serve-from-stream-v2.mjs | check-stream-is-text-v1 |
 | `served-line-rule-v1-the-zones-gloss-field-is-the-line-the-page-draws-and-no-lane-need-model-the-sort` | tools/regloss-zone.mjs | check-disk-gloss-is-the-line-v1 |
-| `sign-gap-joiner-rule-v1-a-joiner-stands-between-two-pieces-that-print-and-never-beside-a-hidden-signs-gap` | zone.html | check-line-reads-the-place-v1, check-sign-gap-joiner-v1, check-line-follows-card-v1 |
+| `sign-gap-joiner-rule-v1-a-joiner-stands-between-two-pieces-that-print-and-never-beside-a-hidden-signs-gap` | tools/gloss-store-v1.mjs, zone.html | check-line-reads-the-place-v1, check-sign-gap-joiner-v1, check-line-follows-card-v1 |
 | `source-corpus-rule-v1-a-witness-names-the-body-it-describes-or-is-not-sorted-by-one` | tools/emit-source-corpus-v1.mjs | check-source-corpus-v1 |
 | `source-defaults-rule-v1-a-source-may-rest-off-by-the-owners-ruling-and-the-reader-may-turn-it-on` | zone.html | check-overlays-v1, check-source-switch-v1 |
 | `source-short-names-rule-v1-a-shelf-chip-wears-a-short-name-this-record-keeps-and-the-full-name-on-press` | tools/check-source-switch-v1.mjs | check-source-switch-v1 |
@@ -193,7 +198,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 39 of the 145 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 41 of the 153 tools that are not checks.
 
 Not called by any build stage:
 
@@ -226,8 +231,11 @@ Not called by any build stage:
 - `tools/commentary-span-findings-v1.mjs`
 - `tools/count-stamp-v1.mjs`
 - `tools/declaration-v1.mjs`
+- `tools/derive-fold-strike-landing-v1.mjs`
+- `tools/dictionary-kinds-v1.mjs`
 - `tools/door-filing-v1.mjs`
 - `tools/emit-apparatus-baseline-v1.mjs`
+- `tools/emit-call5-rekey-map-v1.mjs`
 - `tools/emit-corpus-atlas-v1.mjs`
 - `tools/emit-language-sweep-record-v1.mjs`
 - `tools/emit-mam-restore-v5-rights-v1.mjs`
@@ -250,6 +258,7 @@ Not called by any build stage:
 - `tools/lattice-lib-v1.mjs`
 - `tools/ledger-print-from-declaration-v1.mjs`
 - `tools/ledger-print-v1.mjs`
+- `tools/made-spaces-second-road-v1.mjs`
 - `tools/main-guard-v1.mjs`
 - `tools/make-fixture-zone-v1.mjs`
 - `tools/make-hoh-fixture-v1.mjs`
@@ -277,11 +286,13 @@ Not called by any build stage:
 - `tools/proper-name-v1.mjs`
 - `tools/pull-zones-from-store-v1.mjs`
 - `tools/push-toggles-v1.mjs`
+- `tools/read-words-v1.mjs`
 - `tools/redrive-zone-gloss-v1.mjs`
 - `tools/respan-zone-v1.mjs`
 - `tools/resting-lines-v1.mjs`
 - `tools/restore-shelf-from-history-v1.mjs`
 - `tools/rights-join-v1.mjs`
+- `tools/row-strikes-follow-v1.mjs`
 - `tools/rows-beside-the-store-v1.mjs`
 - `tools/rulings-v1.mjs`
 - `tools/run-checks-v1.mjs`
@@ -317,7 +328,7 @@ again from a checkout by a build file alone.
 
 | kind | bins | route or schema | built by | written after its build by |
 |---|---|---|---|---|
-| zone | 40 | MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, EDITION_DOOR_SERVE__BUILT_STREAM | tools/build-zone.mjs (run by build.sh) | tools/apply-paseq-place-v1.mjs (12; **no build file runs it**); tools/apply-span-ledger-v1.mjs (39; **no build file runs it**); tools/bake-witnessed-order-v1.mjs (39; run by tools/round-v1.sh); tools/project-lattice-v12-v1.mjs (39; run by tools/round-v1.sh); tools/project-piece-gloss-v1.mjs (39; **no build file runs it**); tools/project-toggle-headword-v1.mjs (39; **no build file runs it**); tools/regloss-zone.mjs (40; run by tools/round-v1.sh); tools/respan-zone-v1.mjs (39; **no build file runs it**); tools/restamp-zone-v1.mjs (39; run by tools/round-v1.sh); tools/strike-source-v1.mjs (23; **no build file runs it**); tools/type-witnessed-drops-v1.mjs (3; **no build file runs it**) |
+| zone | 40 | MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, EDITION_DOOR_SERVE__BUILT_STREAM | tools/build-zone.mjs (run by build.sh) | tools/apply-paseq-place-v1.mjs (12; **no build file runs it**); tools/apply-read-words-v1.mjs (15; run by tools/round-v1.sh); tools/apply-span-ledger-v1.mjs (39; **no build file runs it**); tools/bake-witnessed-order-v1.mjs (39; run by tools/round-v1.sh); tools/project-lattice-v12-v1.mjs (39; run by tools/round-v1.sh); tools/project-piece-gloss-v1.mjs (39; **no build file runs it**); tools/project-toggle-headword-v1.mjs (39; **no build file runs it**); tools/regloss-zone.mjs (40; run by tools/round-v1.sh); tools/respan-zone-v1.mjs (39; **no build file runs it**); tools/restamp-zone-v1.mjs (39; run by tools/round-v1.sh); tools/strike-source-v1.mjs (23; **no build file runs it**); tools/type-witnessed-drops-v1.mjs (3; **no build file runs it**) |
 | commentary | 21 | ZONE_COMMENTARY_V2 | tools/build-commentary-sidecar-v2.mjs (no build file runs it) | tools/regloss-zone.mjs (21; run by tools/round-v1.sh); tools/strike-source-v1.mjs (20; **no build file runs it**) |
 | lattice | 39 | ZONE_LATTICE_V1 | tools/project-lattice-v12-v1.mjs (run by tools/round-v1.sh) | — |
 | volume | 39 | V_VOLUME_V1 | tools/project-v-volume-v1.mjs (no build file runs it) | — |

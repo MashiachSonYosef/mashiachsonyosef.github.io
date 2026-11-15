@@ -1,0 +1,39 @@
+{
+ "schema_version": "FOLD_STRIKE_LANDING_PIN_V1",
+ "what": "the corpus lane's landing list for the readings the store lost when a source that held their credit was struck whole (relay v188), kept here byte for byte in the folder the lane keeps it in, with its rule, its counts, the readings it leaves out and its proofs; and, derived from it here, the list the page lands and the list of its lines the page does not land. tools/derive-fold-strike-landing-v1.mjs derives the two on the store as it stands after call 5 of relay v189; tools/strike-rows-v1.mjs lands the first; tools/check-fold-strike-landing-v1.mjs holds the store to both",
+ "relay": "v188",
+ "of": "14 November 2026",
+ "letter": "r2:mishkan/v2/letters/moses-fold-strike-landing-v1/FOR-ELIJAH-v188.md",
+ "letter_sha256": "a700f64e1702aa6ddc749c87ea34df111f1bcd3fed5a0b42e788e5a2aa11516c",
+ "from": "r2:mishkan/v2/ledgers/all/fold-strike-landing/landing-v1/ (the private store)",
+ "folder": "landing-v1",
+ "rule": { "file": "RULE.md", "bytes": 8821, "sha256": "38dfeeda82de00a5b499e3395008671c8f9ed505adeb5213bc1d3b9ba53f40da" },
+ "counts": { "file": "counts-v1.json", "bytes": 18309, "sha256": "3a1b3fe99a62a02d57a2df00f78e4dcf1b572024a2d09c14b1c985aa1650883f" },
+ "landing": { "file": "landing-fold-strike-v1.jsonl", "bytes": 11581861, "sha256": "c199049388e47991e1b3d8af0c22708f516ebb773cbbdad367efe2928c6ade4f", "lines": 4252 },
+ "left_out": { "file": "left-out-v1.jsonl", "bytes": 453819, "sha256": "74ea7eacfd7ca6ae242d5b5c86bb5464bf28cdd7ee525c6588150b596b64bb77", "lines": 865 },
+ "proofs": [
+  { "file": "replication-test-v1.json", "bytes": 732, "sha256": "054c0aad31154ca177056d77d919975b3b72233d2af480a2d6b841d050bf471a" },
+  { "file": "replication-sample-v1.jsonl", "bytes": 38017, "sha256": "115bb01ac5529d52ddfc612de88c8339bafeb351a71f04845ca7029f3fc9085e", "lines": 40 },
+  { "file": "second-count-v1.json", "bytes": 5264, "sha256": "f74677e3d4c3e634018312fe5af890acdf7cda1629c09ce6e9fff5bee4165e4f" }
+ ],
+ "read_at_store_version": "4d1357b26ca5",
+ "lands_after": { "relay": "v189", "call": 5, "pin": "../audit-calls/PIN.json", "file": "call5-maqaf-keys-v1.jsonl", "sha256": "7c1778fe7b5270194281e2f80cc936b3d15b94c406309e6ae0bd75ef84a52d0c", "why": "48 lines of the list name words that stand under their key with a maqaf at its end (served_now_under_the_key_with_a_maqaf), and call 5 moves those rows to the plain key; both letters ask that the move land first and that this list then skip the lines whose words its key prints, which is the list's own rule for what is left out" },
+ "derived": {
+  "folder": "land-v188-v1",
+  "by": "tools/derive-fold-strike-landing-v1.mjs",
+  "landed": { "file": "land-v188-v1.jsonl", "bytes": 4285260, "sha256": "c31008de4b0bae9412f098989f209acc071b180df10667a6cfbc6c18f0182fba", "lines": 4201 },
+  "not_landed": { "file": "not-landed-v188-v1.jsonl", "bytes": 38010, "sha256": "7e758442b2f077c1ff998cb5830a103c2b483464c344d0416af7d170239c626c", "lines": 51 },
+  "lines_under_a_key_that_ends_in_a_maqaf": {
+   "lines": [
+    { "line": 961, "m": "M59", "key": "\u05d4\u05be", "rank": 4, "route": "the" },
+    { "line": 1881, "m": "M4", "key": "\u05db\u05dc\u05be", "rank": 2, "route": "all" },
+    { "line": 1983, "m": "M21", "key": "\u05dc\u05be", "rank": 1, "route": "to" }
+   ],
+   "not_landed": true,
+   "why": "the line's key ends in a maqaf. Call 5 took every row under such a key off the store, on the owner's answer of 14 November 2026 (move the readings the plain key lacks, drop the rest), because a key that ends in a maqaf is never looked up; the list was made before that. A row under the line's plain key prints its words now, so call 5's own rule would have struck this row, not moved it. Neither letter speaks of these three lines: the page does not land them, names them here, and puts them back to the corpus lane"
+  },
+  "what": "the lane's list as its own rule reads on the store that stands after call 5: the lines that land, each with the fields the landing reads and its line in the lane's file, and the lines that do not, each with its words, its definition and why: the row that prints its words under its key and the move that put that row there, or, for the three lines named above, the rows that print its words under its plain key. The two sha256 are the ones the derivation gave on the store this pin was written against; the tool writes the two files only where it gives those bytes again"
+ },
+ "landed_by": { "tool": "tools/strike-rows-v1.mjs", "reason": "relay v188: readings the store lost when a struck source held their credit, landed at the rank the struck row left; not landed: its 48 lines whose words call 5 moved under their key, and its 3 lines under a key that ends in a maqaf" },
+ "note": "every sha256 under rule, counts, landing, left_out and proofs is the one the relay's letter names for the file, and the bytes taken hash to it. The lane's five scripts (lib.mjs, replicate.mjs, landing.mjs, second-count.mjs and the ship's) are not kept: nothing of another lane's is run in this tree"
+}

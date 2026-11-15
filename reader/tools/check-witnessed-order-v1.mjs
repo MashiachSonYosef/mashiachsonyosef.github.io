@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // RUN: page
 // GUARDS: witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit
+// LEDGER: -
+// no frame letter. A check reads what is served and judges it; it is not the ledger for one.
 //
 // THE WITNESSED ORDER, PRESSED.
 //
@@ -15,7 +17,15 @@
 //       was refused by the bake, typed, and is in no column
 //   W2  each baked reading is the first reading the store's own rule cuts
 //       from the row the corpus lane shipped, re-derived here from the
-//       shipped input for every shipped key
+//       shipped input for every shipped key; its credit is the lane's,
+//       verbatim, or the store's where the receipt types it re-credited:
+//       for a struck source, or, on a book the record of what each
+//       dictionary is rests shut (dictionary-kinds-rule-v1), for a source
+//       that rests shut there, whose credit is then the store's at rest
+//       for the reading, and the lane's credit named a source shut whole,
+//       or one that carries the reading only in rows that rest shut, as a
+//       carrier, as the source its chip names, or in its alternate; and no
+//       credit kept as the lane gave it stands on such a source there
 //   W3  the order switch offers the three positions, live on this book
 //   W4  under each, the lines move, and every sampled moved line is what its
 //       card offers first, with a chip
@@ -31,6 +41,8 @@
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
+import { glossMFor } from "./gloss-m-v1.mjs";
+import { readKinds, restsOffIn, restsOffIds } from "./dictionary-kinds-v1.mjs";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
@@ -46,6 +58,29 @@ const rec = zone.emitted_from && zone.emitted_from.witnessed_order;
 if (!rec) { console.log(`SKIPPED — ${ZONE} carries no witnessed order; run tools/bake-witnessed-order-v1.mjs`); process.exit(3); }
 const store = openRouteStore("data/route-store");
 const { index } = store;
+// THE DICTIONARIES THAT REST SHUT (dictionary-kinds-rule-v1): on a book the record rests shut, a witnessed credit
+// that named a source resting shut is re-credited by the store at rest (tools/regloss-zone.mjs, typed on the
+// column's receipt as rests_shut_recredited_keys); the store opened at rest says what that credit is
+const kinds = readKinds("data");
+const zoneRests = restsOffIn(kinds.rec, zone);
+const storeAtRest = zoneRests ? openRouteStore("data/route-store", { atRest: true }) : null;
+const shutIds = new Set(zoneRests ? restsOffIds(kinds.rec, index.m_sources) : []);
+const shutLabels = new Set([...shutIds].map((id) => (index.m_sources[id] || {}).label).filter(Boolean));
+const carrierIds = (st, k, text) => new Set(st.carriersOf(st.routesFor(k) || [], text).map((row) => String(row[3])));
+// whether the lane's credit for a reading stood on a source that rests shut: one shut whole, by id or by the label
+// its chip names, or a source that carries the reading in the store whole and in no row that rests open; asked of
+// the credit and of its alternate (the reading it gives in second place, with its own carriers), as the bake asks
+const creditShut = (k, text, M) => {
+  if (!storeAtRest || !M) return false;
+  const standsShut = (t, c) => {
+    if (typeof t !== "string" || !c) return false;
+    const ids = Array.isArray(c.by) ? c.by.map(String) : c.m ? store.mIdsOfLabel(c.m) : [];
+    if (ids.some((id) => shutIds.has(id)) || shutLabels.has(c.m)) return true;
+    const whole = carrierIds(store, k, t), open = carrierIds(storeAtRest, k, t);
+    return ids.some((id) => whole.has(id) && !open.has(id));
+  };
+  return standsShut(text, M) || !!(M.alt && standsShut(M.alt.text, M.alt));
+};
 // the drops typed on a column's receipt (regloss-zone, source-strike-rule-v1)
 const dropsOf = (o) => (Array.isArray(rec.columns[o].struck_credit_drops) ? rec.columns[o].struck_credit_drops : []);
 // a reading whose row prints no pill under the owner's answer to its ledger's branch was refused by the bake (ledger-division-rule-v2)
@@ -95,7 +130,7 @@ check("W1  three columns with their receipt, every reading with its own credit",
 // W2 — against the shipped input, every key the lane shipped
 if (shipped) {
   const first = (k, t, M) => { const ids = M && Array.isArray(M.by) ? M.by : M && M.m ? store.mIdsOfLabel(M.m) : null; const rs = store.readingsOfText(k, t, ids); return rs.length ? rs[0] : null; };
-  const w2 = []; let keys = 0;
+  const w2 = []; let keys = 0, shutRecredited = 0;
   for (const [o] of COLS) {
     const c = shipped.columns[o] || {}, mEntries = c.m_entries || {};
     const col = zone.gloss_orders[o], mcol = zone.gloss_m_orders[o] || {}, dropped = new Set(dropsOf(o).map((d) => d.key));
@@ -107,11 +142,22 @@ if (shipped) {
       keys += 1;
       const want = first(k, t, M);
       if (want === null ? k in col : col[k] !== want) w2.push(`${o}/${k}: "${col[k]}" for "${t}", the store's rule gives "${want}"`);
-      // the credit is the lane's, verbatim, unless regloss re-credited it for a struck source (then the receipt says so)
-      else if (want !== null && JSON.stringify(mcol[k]) !== JSON.stringify(M) && !(rec.columns[o].struck_credit_recredited_keys || []).includes(k)) w2.push(`${o}/${k}: the credit is not the lane's`);
+      // the credit is the lane's, verbatim, unless regloss re-credited it for a struck source (then the receipt says
+      // so), or for a source the record rests shut on this book: then it is the store's credit at rest for the
+      // reading, and the lane's credit named a source that rests shut (the receipt says that too)
+      else if (want !== null && JSON.stringify(mcol[k]) !== JSON.stringify(M)) {
+        if ((rec.columns[o].rests_shut_recredited_keys || []).includes(k)) {
+          shutRecredited += 1;
+          if (!storeAtRest) w2.push(`${o}/${k}: typed re-credited for a source that rests shut, on a book the record does not rest shut`);
+          else if (!creditShut(k, col[k], M)) w2.push(`${o}/${k}: typed re-credited for a source that rests shut, and the lane's credit names none`);
+          else if (JSON.stringify(mcol[k]) !== JSON.stringify(glossMFor(storeAtRest, { [k]: col[k] }).gloss_m[k] || null)) w2.push(`${o}/${k}: re-credited for a source that rests shut, and the credit is not the store's at rest`);
+        } else if (!(rec.columns[o].struck_credit_recredited_keys || []).includes(k)) w2.push(`${o}/${k}: the credit is not the lane's`);
+      }
+      // and the lane's credit kept as it came must not stand on a source that rests shut here: that one is re-credited
+      else if (want !== null && creditShut(k, col[k], M)) w2.push(`${o}/${k}: the lane's credit stands on a source that rests shut on ${ZONE}, and the column keeps it`);
     }
   }
-  check("W2  each reading is the first the store's rule cuts from the row the lane shipped, with the lane's credit", w2.length === 0, w2.length ? w2.slice(0, 3).join(" | ") : `${keys} shipped keys re-derived`);
+  check("W2  each reading is the first the store's rule cuts from the row the lane shipped, with the lane's credit, or the store's where the receipt types it re-credited", w2.length === 0, w2.length ? w2.slice(0, 3).join(" | ") : `${keys} shipped keys re-derived${zoneRests ? ` · ${shutRecredited} credit(s) the lane gave a source that rests shut on ${ZONE}, each the store's at rest` : ""}`);
 } else console.log("  --  W2  not judged: the shipped input is not on disk (W0)");
 
 // W3–W5 on the page

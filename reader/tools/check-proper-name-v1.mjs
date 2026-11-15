@@ -31,6 +31,14 @@
 //       witnesses may still carry the name on the card, unpressed, since the
 //       switch subtracts exactly its sources' rows
 //
+// A BOOK THE RECORD OF WHAT EACH DICTIONARY IS RESTS SHUT (dictionary-kinds-
+// rule-v1: the thirty-nine books) was baked over the store at rest, the rows
+// that rest shut left out, and N1 and N3 ask the rule of the store as that
+// book was baked (openRouteStore(…, { atRest: true })); any other book, of the
+// store whole. N4 and N5 read the card with those dictionaries open
+// (?kinds=open): this holds the names lead, not them, and the line under the
+// word is baked at rest and does not move with them.
+//
 // Run: node tools/check-proper-name-v1.mjs [zone url]
 import { readFileSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
@@ -40,6 +48,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { nameLeadsFor, tahotNameOf, isStrongs } from "./proper-name-v1.mjs";
+import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -52,6 +61,10 @@ const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean
 const NAME_FORM = /^[A-Z][A-Za-z'À-ſ-]+\.?$/u;
 
 const store = openRouteStore(join(K3, "data", "route-store"));
+// the store a book was baked over: at rest where the record rests the book shut, whole for any other
+const kinds = readKinds(join(K3, "data"));
+const storeAtRest = openRouteStore(join(K3, "data", "route-store"), { atRest: true });
+const storeOf = (z) => (restsOffIn(kinds.rec, z) ? storeAtRest : store);
 const stamped = [];
 for (const f of readdirSync(ZONES)) {
   if (!f.endsWith(".bin") || f.slice(0, -4).includes(".") || f.startsWith("fixture-")) continue;
@@ -65,7 +78,7 @@ const n1 = [], n2 = [], n3 = [];
 let ledKeys = 0, ledWords = 0, booksLed = 0;
 for (const { slug, z } of stamped) {
   const baked = z.gloss_names || {};
-  const today = nameLeadsFor(store, z, z.gloss || {});
+  const today = nameLeadsFor(storeOf(z), z, z.gloss || {});
   const keys = new Set([...Object.keys(baked), ...Object.keys(today.leads)]);
   for (const k of keys) if (baked[k] !== today.leads[k]) { n1.push(`${slug} ${k}: baked ${JSON.stringify(baked[k] ?? null)}, the rule gives ${JSON.stringify(today.leads[k] ?? null)}`); }
   if (Object.keys(baked).length) booksLed += 1;
@@ -85,7 +98,7 @@ for (const { slug, z } of stamped) {
     if (!NAME_FORM.test(text)) { n2.push(`${slug} ${k}: ${JSON.stringify(text)} is not a bare capitalised form`); continue; }
     const wits = (places.get(k) || []).map(tahotNameOf).filter((x) => x !== null);
     if (!wits.length || wits.some((w) => w.toLowerCase() !== text.replace(/\.$/u, "").toLowerCase())) { n2.push(`${slug} ${k}: TAHOT prints ${JSON.stringify([...new Set(wits)])}, the line ${JSON.stringify(text)}`); continue; }
-    const pool = store.readingPool(store.routesFor(k) || [], "oldest");
+    const pool = storeOf(z).readingPool(storeOf(z).routesFor(k) || [], "oldest");
     if (pool.length && pool[0].text !== text && !pool.some((r) => r.text === pool[0].text)) n3.push(`${slug} ${k}: ${JSON.stringify(pool[0].text)} no longer pools`);
   }
 }
@@ -109,7 +122,7 @@ outer: for (let si = 0; si < (zone.sections || []).length; si += 1) for (const w
 target = target || first;
 if (!target) { console.log(`SKIPPED — ${pick.slug} carries gloss_names but no named word stands in its sections`); process.exit(bad ? 1 : 3); }
 const base = URL.replace(/[?&]b=[^&#]+/, "").replace(/\?$/, "");
-const url = `${base}${base.includes("?") ? "&" : "?"}b=${pick.slug}&at=${encodeURIComponent(String(zone.sections[target.sec].label || ""))}`;
+const url = `${base}${base.includes("?") ? "&" : "?"}b=${pick.slug}&at=${encodeURIComponent(String(zone.sections[target.sec].label || ""))}&kinds=open`;
 const carriers = (zone.gloss_m[target.k] && zone.gloss_m[target.k].by) || [];
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());

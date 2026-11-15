@@ -1,0 +1,40 @@
+{
+ "schema_version": "AUDIT_CALLS_PIN_V1",
+ "what": "the corpus lane's lists for the owner's eight audit calls (relay v189), kept here byte for byte in the folder the lane keeps them in, with its rule, its receipt, its counts and its second count: every row a call strikes, withholds, re-keys, lifts or names, by its key, rank, source and text. tools/strike-rows-v1.mjs lands call 5 on the store, as `landings` says; calls 6 and 2 are HELD and land nothing (each landing's `held` says why, and its other fields say how the rehearsal of 15 November 2026 landed it); calls 7, 4 and 3 are rules of the page and land with their own tools; tools/check-audit-calls-v1.mjs holds the store and the row-strikes record to the lists",
+ "relay": "v189",
+ "of": "14 November 2026",
+ "letter": "r2:mishkan/v2/letters/moses-audit-calls-v1/FOR-ELIJAH-v189.md",
+ "letter_sha256": "88232ec9509acadd72924260be41146b65caa7aa6abb9c51f0d3d602878e66ed",
+ "from": "r2:mishkan/v2/ledgers/all/audit-calls/calls-v1/ (the private store)",
+ "folder": "calls-v1",
+ "rule": { "file": "RULE.md", "bytes": 17811, "sha256": "96fc0cea9ac3cbe8c3c8adb9fb0973b16b8deca9bbcfd5e7da29ad3df833c7fa" },
+ "receipt": { "file": "receipt-v1.json", "bytes": 23272, "sha256": "c71d937bec9a51692f912b8f8d84c9e2d01a7dea69f18836325787276a1c6454" },
+ "counts": { "file": "counts-v1.json", "bytes": 42971, "sha256": "749fa2ecfd479765372ea101b3cc815436ad599883dfb187414b039e05c3b810" },
+ "verify_receipt": { "file": "verify-receipt-v1.json", "bytes": 6072, "sha256": "6a62ef2fc1eea874fabfb23565e24e531e2a6a280ab0f70703f6f9fdc331c321" },
+ "lists": {
+  "call2_withhold": { "file": "call2-withhold-v1.jsonl", "bytes": 770, "sha256": "e27481059b55fc384dd8a8c999df6aa87feb96e8ca4172263147cfc38b6bb506", "lines": 2, "call": 2 },
+  "call2_bdb_openings_not_withheld": { "file": "call2-bdb-openings-not-withheld-v1.jsonl", "bytes": 23901, "sha256": "75ca6dd28a24759f942f84a13a148bc14c3012a68b221899cfcfeeb83b3bf0b6", "lines": 42, "call": 2 },
+  "call4_steps_reading_stands": { "file": "call4-steps-reading-stands-v1.jsonl", "bytes": 439435, "sha256": "8e08514bee6b381c5e303b369d4fe0c11b966e97f20f54da0bf82001a17f5a52", "lines": 853, "call": 4 },
+  "call5_maqaf_keys": { "file": "call5-maqaf-keys-v1.jsonl", "bytes": 3126366, "sha256": "7c1778fe7b5270194281e2f80cc936b3d15b94c406309e6ae0bd75ef84a52d0c", "lines": 5760, "call": 5 },
+  "call6_withhold": { "file": "call6-withhold-v1.jsonl", "bytes": 209658, "sha256": "fbd208dd2b0417c04a163203702ca4451d04b100c86e316085cd540794a5a29a", "lines": 449, "call": 6 },
+  "call6_picks_words_withheld_too": { "file": "call6-picks-words-withheld-too-v1.jsonl", "bytes": 8579, "sha256": "6e9e6d1907d33c28211c6ce15d23f6ea31cbbb98b9b9db53286b91c6531456c3", "lines": 18, "call": 6 },
+  "call6_bdb_point_words_not_printed": { "file": "call6-bdb-point-words-not-printed-v1.jsonl", "bytes": 89371, "sha256": "cbacb00320ed6b1fb4721cb677137f5b7dc1d0f635c664cd1fc065e3b9e46484", "lines": 230, "call": 6 },
+  "call7a_strongs_sign_a_press_away": { "file": "call7a-strongs-sign-a-press-away-v1.jsonl", "bytes": 4223035, "sha256": "19af846b18c88f70f1bf3f71997227cb5b3c40399d6f88a9bacc3ce9f0cf28b0", "lines": 16091, "call": 7 },
+  "call7b_ubs_phrases_a_press_away": { "file": "call7b-ubs-phrases-a-press-away-v1.jsonl", "bytes": 623629, "sha256": "fd5a27b153b49f4f1a004703683adf4c1db21b36451d330fa9f5edf4fbffc147", "lines": 1261, "call": 7 },
+  "call7c_ubs_one_word_senses_at_rest": { "file": "call7c-ubs-one-word-senses-at-rest-v1.jsonl", "bytes": 973475, "sha256": "6ca9ad3723b01aa55c0380b4760e720c65eb293a7884887720855caee96301a0", "lines": 2202, "call": 7 },
+  "call7d_sdbh_held": { "file": "call7d-sdbh-held-v1.jsonl", "bytes": 46099, "sha256": "b9b740bd9ffd583618838aa4c17be490a09ecf2cb0278d0fba6b2734fd55cc24", "lines": 192, "call": 7 },
+  "call7e_ubs_phrase_rows_named_by_a_ubs_pick": { "file": "call7e-ubs-phrase-rows-named-by-a-ubs-pick-v1.jsonl", "bytes": 1118823, "sha256": "e6445c1812f56534f0c2de2963f2b4268ee3af2ced7cde54f4a01f80c84f2b23", "lines": 5222, "call": 7 }
+ },
+ "landings": [
+  { "call": 5, "list": "call5_maqaf_keys", "tool": "tools/strike-rows-v1.mjs", "reason": "v189 call 5: keys ending in a maqaf", "leave_off": [], "order": "first, before any other list adds a row under its 178 plain keys: a row it moves takes the next rank of its new key, and the re-key map records the ranks of this order" },
+  { "call": 6, "list": "call6_withhold", "tool": "tools/strike-rows-v1.mjs", "reason": "v189 call 6: placeholders and rows that only name the class of word", "leave_off": [{"m": "M74", "key": "\u05e4\u05e2\u05dc\u05d9\u05be", "why": "struck by v189 call 5, the same row"}], "order": "after call 5: one of its lines names a row call 5 strikes (call 5's line 4850, this list's line 293), which is left off here by its source and key; no other line of this list stands under that key",
+    "held": { "on": "2026-11-15", "by": "the lead of the page lane, on the owner's rule", "rule": "a row is set apart only on what its own source says of it, and never row by row", "why": "the call's test reads a row's English text (that it only names its class of word), not anything the row's own source says of it, and it withholds true readings: «verb» under the Hebrew word for verb, «pronoun» under the word for pronoun, MACULA's own «surname» at Isaiah 45:4:9", "lists": "kept as data, byte for byte: call6_withhold, call6_picks_words_withheld_too (not applied to the default picks) and call6_bdb_point_words_not_printed" } },
+  { "call": 2, "list": "call2_withhold", "tool": "tools/strike-rows-v1.mjs", "reason": "v189 call 2: rows that are not their source's sentence", "leave_off": [], "order": "after call 5; the 42 openings of the unabridged BDB the call names beside these two are not withheld (call2_bdb_openings_not_withheld)",
+    "held": { "on": "2026-11-15", "by": "the lead of the page lane, on the owner's rule", "rule": "a row is set apart only on what its own source says of it, and never row by row", "why": "its two rows are their source's own sentence: they only looked otherwise because the page's own round of 7 November 2026 decoded the source's font codes in them", "lists": "kept as data, byte for byte: call2_withhold; the 42 openings of call2_bdb_openings_not_withheld stand, as the call itself asks" } }
+ ],
+ "made_here": {
+  "call5_rekey_map": { "file": "call5-rekey-map-v1.jsonl", "bytes": 65803, "sha256": "1d62a7ca8c97affb85579b68615369f9c0670227c32418c5bf86726b86ff944c", "lines": 357, "by": "tools/emit-call5-rekey-map-v1.mjs", "what": "for each of the 357 rows call 5 moved to its plain key, the name it had and the name it has, [key, rank, source, sha16], read out of the round of the row-strikes record that landed the list; kept beside this pin, not in the lane's folder" }
+ },
+ "also_named_by": "data/default-picks/PIN.json (held_split_v189) names call 4's list by the same size and sha256, and the bake of the default picks reads it through that pin",
+ "note": "every sha256 under rule, receipt, counts, verify_receipt and lists is the one the relay's letter names for the file (its lines 104 to 121), and the bytes taken hash to it; the lane's receipt names the twelve lists among its outputs. The lane's two scripts (build-calls-v1.mjs, verify-calls-v1.mjs) are not kept: nothing of another lane's is run in this tree. The re-key map's sha256 is the one its tool gave on the store this pin was written against, with call 5 landed first"
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed
+// GUARDS: row-strike-rule-v6-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted
 // LEDGER: M R
 // Acts on named store ROWS, not whole sources: rows a provider's parse filed
 // under a key that is not their word's, rows the owner has ruled off the
@@ -87,6 +87,46 @@
 //             in the same run, where the record prints the landed text after
 //             them (v162: a sense the record lists after the one the store
 //             kept, read from the record's own order and named in the line).
+// VERSION 6 (15 November 2026, the corpus lane's v188: readings the store
+// lost when a source that held their credit was struck whole, to land at the
+// ranks the struck rows left). Two things a landing could not yet say:
+//   the cut     a landed row is a cut of a sibling record where its list
+//             says so (cut 1, the store's rule 8: its words stand inside a
+//             longer route of the same key, source and definition), and it
+//             carries that in slot 5, as every such row of the store does.
+//             Version 5 landed every row with the slot empty. The index's
+//             cut table (counts.cuts_by_source, and its total,
+//             readings_that_are_a_cut_of_a_sibling_record) rises by the
+//             cuts a round lands, as it always fell by the cuts a round
+//             takes, and the round records both (cuts_taken, cuts_landed):
+//             check-store-continuity C5 holds that table to the shards and
+//             went red on the first landed cut. A list that lands a cut on a
+//             store whose index keeps no such table is refused.
+//   the moment  a round may be given the moment it is recorded under (--on,
+//             tools/step-moment-v1.mjs), so the same list landed again on
+//             the same store writes the same bytes; with none given it is
+//             the clock's, as before.
+// And one thing a taking could not: A ROW TAKEN FROM A HOLE THAT WAS ALREADY
+// TYPED. A landing fills a hole an earlier strike left and types nothing. If
+// a later list takes that landed row, the rank it leaves is a rank the
+// struck-ranks record already types, and the record keeps one entry for a
+// key and rank against what earlier strikes left (the hole is typed once).
+// So the round's rows taken and the ranks the record gains part by one for
+// each such row. The first is the classical_hebrew_words row under rank 18
+// of its key, a half withheld on 6 November, landed whole and decoded on 7
+// November (v147), and withheld again by the lane's call 2; every row v188
+// lands stands in such a hole. A round now counts them (ranks_already_typed,
+// and the record's cumulative), and check-store-continuity C3 takes them
+// from the ranks it expects of the record.
+// The summary a round prints now ends in one line of its figures as JSON
+// (`figures {...}`), dry or not, for a script that holds a round to what was
+// rehearsed before it lets it write.
+// NOT IN THIS VERSION: a retext that gives a row back the words our build
+// took out of it (the corpus lane's v187, from_slot "words_back"). The retext
+// here takes a text from the row's own definition slot or from the source's
+// own Unicode and cuts the row to its first seven slots, which would take
+// such a row's closes and facts off it; a list that asks for it is refused,
+// as any from_slot this tool does not know is.
 // The arithmetic: routes_struck counts every row a round takes off the store
 // (a strike, a withholding, a re-key that folds, and the rows a rejoin joins
 // beyond the one it keeps), routes_rekeyed the re-keys that land as a row of
@@ -101,13 +141,14 @@
 //
 // Usage: node tools/strike-rows-v1.mjs --list <list.jsonl> --reason "<why>"
 //          [--branches <branches.json> --branch B01] [--store data/route-store]
-//          [--leave-off "<m>|<key>|<why>"]... [--dry]
-import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+//          [--leave-off "<m>|<key>|<why>"]... [--on <moment>] [--dry]
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gzipSync, gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
-import { recordStruckRanks } from "./emit-struck-ranks-v1.mjs";
+import { recordStruckRanks, readStruckRanks } from "./emit-struck-ranks-v1.mjs";
+import { givenMoment, momentOf } from "./step-moment-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -119,13 +160,16 @@ const LIST = arg("list", null);
 const BRANCHES = arg("branches", null);
 const BRANCH = arg("branch", null);
 const REASON = arg("reason", "");
-export const ROW_STRIKE_RULE_ID = "row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed";
+export const ROW_STRIKE_RULE_ID = "row-strike-rule-v6-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted";
 const RECORD = join(K3, "data", "row-strikes-v1.json");
 if (!LIST || !REASON || (BRANCHES && !BRANCH) || (BRANCH && !BRANCHES)) {
-  console.log("usage: --list <list.jsonl> --reason \"<the review this stands on>\" [--branches <branches.json> --branch B01] [--store dir] [--leave-off \"<m>|<key>|<why>\"]... [--dry]");
+  console.log("usage: --list <list.jsonl> --reason \"<the review this stands on>\" [--branches <branches.json> --branch B01] [--store dir] [--leave-off \"<m>|<key>|<why>\"]... [--on <moment>] [--dry]");
   process.exit(2);
 }
 const refuse = (msg) => { console.log(`REFUSED — ${msg}`); process.exit(1); };
+// the moment the round is recorded under, where one is given (read before the store is, so a moment that is none stops here)
+let GIVEN_ON = null;
+try { GIVEN_ON = givenMoment(); } catch (e) { refuse(e.message); }
 const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
 const shardOf = (k) => `${sha256(Buffer.from(k, "utf8")).slice(0, 2)}.bin`;
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -134,6 +178,7 @@ const ACTIONS = ["strike", "withhold", "re-key", "headword", "rejoin", "retext",
 // ---- what is asked ------------------------------------------------------------
 const leaveOff = args("leave-off").map((s) => { const [m, key, ...why] = String(s).split("|"); return { m, key, why: why.join("|") }; });
 if (leaveOff.some((l) => !l.m || !l.key || !l.why)) refuse("a --leave-off names its m, its key and why: \"<m>|<key>|<why it stays off>\"");
+if (!existsSync(LIST)) refuse(`the list is not here (${LIST})`);
 const listBytes = readFileSync(LIST);
 const leftOff = [];
 const asked = [];
@@ -155,6 +200,7 @@ listBytes.toString("utf8").split("\n").forEach((l, i) => {
     if (!Array.isArray(e.headwords) || !e.headwords.length || e.headwords.some((h) => typeof h !== "string" || !h)) refuse(`list line ${line}: a landing names the record's headwords`);
     if (typeof e.year !== "string") refuse(`list line ${line}: a landing names the row's year as the source's rows carry it (year)`);
     if (e.place !== undefined && e.place !== "before" && e.place !== "after") refuse(`list line ${line}: a landing stands "before" or "after" its record's rows at its rank, not "${e.place}"`);
+    if (e.cut !== undefined && e.cut !== null && e.cut !== 1) refuse(`list line ${line}: a landing's cut is 1 (its words are a cut of a sibling record) or nothing, not ${JSON.stringify(e.cut)}`);
   }
   if (e.action === "retext" && e.to_text === e.route) refuse(`list line ${line}: a retext names the text the row already has`);
   if (e.action === "restore") {
@@ -170,7 +216,7 @@ listBytes.toString("utf8").split("\n").forEach((l, i) => {
     headwords_now: e.headwords_now ?? null, headwords_to: e.headwords_to ?? null,
     rejoined_text: e.rejoined_text ?? null, to_text: e.action === "retext" ? e.to_text : null, from_slot: e.action === "retext" ? e.from_slot : null,
     runs: e.action === "retext" && Array.isArray(e.runs) ? e.runs : null,
-    land: e.action === "land" ? { rank: e.rank, route: e.route, definition: e.definition, headwords: e.headwords, year: e.year, rank_from: e.rank_from ?? null, strongs: e.strongs ?? null, beside: Array.isArray(e.beside) ? e.beside : null, definition_source: e.definition_source ?? null, headwords_source: e.headwords_source ?? null, headwords_in_list: Array.isArray(e.headwords_in_list) ? e.headwords_in_list : null, place: e.place ?? "before", record_order: e.record_order ?? null, record_loc: e.record_loc ?? null, record_file: e.record_file ?? null } : null,
+    land: e.action === "land" ? { rank: e.rank, route: e.route, definition: e.definition, headwords: e.headwords, year: e.year, rank_from: e.rank_from ?? null, strongs: e.strongs ?? null, beside: Array.isArray(e.beside) ? e.beside : null, definition_source: e.definition_source ?? null, headwords_source: e.headwords_source ?? null, headwords_in_list: Array.isArray(e.headwords_in_list) ? e.headwords_in_list : null, place: e.place ?? "before", record_order: e.record_order ?? null, record_loc: e.record_loc ?? null, record_file: e.record_file ?? null, cut: e.cut === 1 ? 1 : null } : null,
     restore_row: e.action === "restore" ? [...e.row.slice(0, 7)] : null, restored_from: e.action === "restore" ? e.restored_from : null, why: "list", list_why: e.why ?? null, kind: e.kind ?? null });
 });
 for (const lo of leaveOff) if (!leftOff.some((x) => x.m === lo.m && x.key === lo.key)) refuse(`--leave-off ${lo.m}|${lo.key} names no line of the list`);
@@ -228,14 +274,17 @@ for (const e of asked) {
 
 // ---- the round, counted before anything is written --------------------------------
 const ranks = { keys: {}, rows: 0, keys_touched: 0, on_struck_records: 0, on_other_records: 0 };
+// the ranks the struck-ranks record types before this round: a row taken at one of them adds no rank to it (version 6)
+const typedBefore = (readStruckRanks(STORE) || { keys: {} }).keys;
+let ranksAlreadyTyped = 0;
 const taken = [];               // every row acted on, whole, with what was done with it
-const perSource = {}, cutsTaken = {};
+const perSource = {}, cutsTaken = {}, cutsLanded = {};
 const byAction = { strike: 0, withhold: 0, re_key_landed: 0, re_key_folded: 0, rejoin_joins: 0, rejoin_rows_taken: 0, rejoin_folded: 0, headword: 0, retext: 0, retext_folded: 0, restore: 0, restore_already_held: 0, land: 0, land_already_held: 0 };
 let routesLanded = 0; const landedNow = new Set();
 const keysTouched = new Set(), keysEmptied = [], keysMadeNew = [];
 const touchedShards = new Set();
 let routesTaken = 0, routesRekeyed = 0, routesRestored = 0;
-const typeRank = (key, r) => { (ranks.keys[key] ||= []).push([r[0], String(r[3])]); ranks.rows += 1; ranks.on_struck_records += 1; perSource[r[3]] = (perSource[r[3]] || 0) + 1; };
+const typeRank = (key, r) => { (ranks.keys[key] ||= []).push([r[0], String(r[3])]); ranks.rows += 1; ranks.on_struck_records += 1; perSource[r[3]] = (perSource[r[3]] || 0) + 1; if ((typedBefore[key] || []).some((x) => x[0] === r[0])) ranksAlreadyTyped += 1; };
 const takeOff = (key, r) => {
   const body = shards.get(shardOf(key));
   const left = body[key].filter((x) => x !== r);
@@ -246,7 +295,7 @@ const takeOff = (key, r) => {
 for (const e of asked) {
   if (e.action === "land") {
     const L = e.land;
-    const row = [L.rank, L.route, L.definition, String(e.m), L.year, null, L.headwords];
+    const row = [L.rank, L.route, L.definition, String(e.m), L.year, L.cut, L.headwords];   // slot 5: 1 where the landed words are a cut of a sibling record (version 6)
     const held = rowsOf(e.key).filter((x) => String(x[3]) === String(e.m) && x[1] === L.route);
     if (held.length) {
       byAction.land_already_held += 1;
@@ -274,6 +323,7 @@ for (const e of asked) {
     landedNow.add(row);
     keysTouched.add(e.key); touchedShards.add(shardOf(e.key));
     routesLanded += 1; byAction.land += 1;
+    if (L.cut === 1) cutsLanded[String(e.m)] = (cutsLanded[String(e.m)] || 0) + 1;
     taken.push({ action: "land", why: e.why, kind: e.kind ?? null, key: e.key, row, land: L, landed_at: at });
     continue;
   }
@@ -372,7 +422,9 @@ const keysAfter = keysBefore - keysEmptied.length + keysMadeNew.length;
 const routesAfter = routesBefore - routesTaken + routesRestored + routesLanded;     // a re-key that lands moves a row; it neither takes nor adds one; a restore adds one back; a landing adds one the store never held
 let routesNow = 0; for (const body of shards.values()) for (const rows of Object.values(body)) routesNow += rows.length;
 if (routesNow !== routesAfter) refuse(`internal: the shards hold ${routesNow} routes, the arithmetic says ${routesAfter}`);
-console.log(`row strike v5 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, ${routesRestored} restored, ${routesLanded} landed, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
+// a landed cut is counted in the index's cut table, which must be there to count it in
+if (Object.keys(cutsLanded).length && !(index.counts && index.counts.cuts_by_source)) refuse(`the list lands ${Object.values(cutsLanded).reduce((a, x) => a + x, 0)} row(s) that are a cut of a sibling record, and the store's index keeps no cut table (counts.cuts_by_source) to count them in`);
+console.log(`row strike v6 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, ${routesRestored} restored, ${routesLanded} landed, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)} · cuts taken ${JSON.stringify(cutsTaken)}, landed ${JSON.stringify(cutsLanded)}${ranksAlreadyTyped ? ` · ${ranksAlreadyTyped} row(s) taken at a rank already typed` : ""}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
 for (const t of taken.filter((x) => x.action === "re-key")) console.log(`  re-key ${t.key} rank ${t.row[0]} "${t.row[1]}" -> ${t.to_key} ${t.folded_into ? `folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : `rank ${t.to_rank}${t.to_headwords ? ` headwords ${JSON.stringify(t.to_headwords)}` : ""}`}`);
 for (const t of taken.filter((x) => x.action === "rejoin")) console.log(`  rejoin ${t.key} ${t.rows.map((r) => `${r[3]}@${r[0]}`).join("+")} -> «${t.rejoined_text}»${t.folded_into ? ` folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : ` at rank ${t.kept_rank}`}`);
 for (const t of taken.filter((x) => x.action === "headword")) console.log(`  headword ${t.key} rank ${t.row[0]} "${t.row[1]}" ${JSON.stringify(t.row[6])} -> ${JSON.stringify(t.headwords_to)}`);
@@ -380,13 +432,17 @@ for (const t of taken.filter((x) => x.action === "headword")) console.log(`  hea
 { const rs = taken.filter((x) => x.action === "restore"); if (rs.length) console.log(`  restore ${rs.length} rows (${rs.filter((x) => x.already_held).length} already held), e.g. ${rs.slice(0, 3).map((t) => `${t.key} ${t.row[3]} "${t.row[1]}"${t.already_held ? " (held)" : ` rank ${t.to_rank}`}`).join("; ")}`); }
 { const ld = taken.filter((x) => x.action === "land"); if (ld.length) console.log(`  land ${ld.length} rows (${ld.filter((x) => x.already_held).length} already held), e.g. ${ld.slice(0, 3).map((t) => `${t.key} ${t.row[3]} rank ${t.row[0]} "${t.row[1]}"${t.already_held ? " (held)" : ""}`).join("; ")}`); }
 for (const l of leftOff) console.log(`  left off: line ${l.line} ${l.m} ${l.key} (${l.action}) — ${l.why}`);
+// the round's figures, one line of JSON, for a script that holds a round to what was rehearsed
+console.log(`figures ${JSON.stringify({ list: basename(LIST), list_sha256: sha256(listBytes), lines: asked.filter((e) => e.why === "list").length, left_off: leftOff.length,
+  routes_before: routesBefore, routes_after: routesAfter, keys_before: keysBefore, keys_after: keysAfter, routes_struck: routesTaken, routes_rekeyed: routesRekeyed, routes_restored: routesRestored, routes_landed: routesLanded,
+  by_action: byAction, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, cuts_taken: cutsTaken, cuts_landed: cutsLanded, ranks_already_typed: ranksAlreadyTyped })}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 
 // ---- the shards, then the version from their bytes ---------------------------------
 for (const name of touchedShards) writeFileSync(join(STORE, "shards", name), gzipSync(Buffer.from(JSON.stringify(shards.get(name))), { level: 9 }));
 const digest = createHash("sha256"); let shardBytes = 0;
 for (const name of shardNames) { const b = readFileSync(join(STORE, "shards", name)); digest.update(b); shardBytes += b.length; }
-const was = index.store_version || null, now = digest.digest("hex").slice(0, 12), on = new Date().toISOString();
+const was = index.store_version || null, now = digest.digest("hex").slice(0, 12), on = momentOf(GIVEN_ON);
 const ranAt = on.slice(0, 10);
 
 // the typed hole, in the one struck-ranks record, beside the other strikes'
@@ -404,7 +460,7 @@ const rounds = [...((prior && prior.rounds) || []).map((r) => ({ rule_id: (prior
   rule_id: ROW_STRIKE_RULE_ID, ran_at: on, reason: REASON,
   list: { file: basename(LIST), sha256: sha256(listBytes), lines: asked.filter((e) => e.why === "list").length, left_off: leftOff },
   branch,
-  counts: { routes_before: routesBefore, routes_struck: routesTaken, routes_rekeyed: routesRekeyed, routes_restored: routesRestored, routes_landed: routesLanded, by_action: byAction, keys_before: keysBefore, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, per_source: perSource, cuts_taken: cutsTaken },
+  counts: { routes_before: routesBefore, routes_struck: routesTaken, routes_rekeyed: routesRekeyed, routes_restored: routesRestored, routes_landed: routesLanded, by_action: byAction, keys_before: keysBefore, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, per_source: perSource, cuts_taken: cutsTaken, cuts_landed: cutsLanded, ranks_already_typed: ranksAlreadyTyped },
   store_version: { was, now },
   rows: taken.map((t) => (t.action === "rejoin"
     ? { action: t.action, why: t.why, kind: t.kind, key: t.key, m: String(t.rows[0][3]), rejoined_text: t.rejoined_text, rows: t.rows, ...(t.kept_rank !== undefined ? { kept_rank: t.kept_rank } : { folded_into: t.folded_into }) }
@@ -420,6 +476,7 @@ const cumulative = {
   routes_rekeyed: rounds.reduce((a, r) => a + r.counts.routes_rekeyed, 0),
   routes_restored: rounds.reduce((a, r) => a + (r.counts.routes_restored || 0), 0),
   routes_landed: rounds.reduce((a, r) => a + (r.counts.routes_landed || 0), 0),
+  ranks_already_typed: rounds.reduce((a, r) => a + (r.counts.ranks_already_typed || 0), 0),
   by_action_since_version_2: sumBy("by_action"),
   keys_touched: rounds.reduce((a, r) => a + r.counts.keys_touched, 0),
   rounds: rounds.length,
@@ -428,7 +485,7 @@ const record = {
   schema_version: "ROW_STRIKES_V2", rule_id: ROW_STRIKE_RULE_ID,
   what: "every store row a named list the page lane reviewed struck, withheld, re-keyed, rejoined, re-headed, retexted, restored or landed: rows a provider's parse filed under a key that is not their word's, rows the owner ruled off the cards, rows a cut left in pieces, every row a branch's resting option withholds until the owner rules, and the rows an earlier round folded into another source's row and a later round put back; each row is kept whole here, so what went can be read and put back; the rank each row taken or re-keyed left is typed in the store's struck-ranks record and never renumbered",
   ran_at: on, rounds, rulings: (prior && prior.rulings) || [], cumulative,
-  counts_scope: "cumulative is the whole of this record; rounds[] holds each round's own arithmetic. routes_struck counts every row a round took off the store: a strike, a withholding, a re-key whose text its new key already held from the same source (it folds; before version 4, from any source), and the rows a rejoin joined beyond the one it kept. routes_rekeyed counts the re-keys that landed as a row of their own; a re-heading takes nothing; routes_restored counts the rows a restore landed back (version 4), routes_landed the rows a landing added that the store never held (version 5), so rows before, less routes_struck, plus routes_restored and routes_landed, are the rows served. by_action splits each round from version 2 on",
+  counts_scope: "cumulative is the whole of this record; rounds[] holds each round's own arithmetic. routes_struck counts every row a round took off the store: a strike, a withholding, a re-key whose text its new key already held from the same source (it folds; before version 4, from any source), and the rows a rejoin joined beyond the one it kept. routes_rekeyed counts the re-keys that landed as a row of their own; a re-heading takes nothing; routes_restored counts the rows a restore landed back (version 4), routes_landed the rows a landing added that the store never held (version 5), so rows before, less routes_struck, plus routes_restored and routes_landed, are the rows served. by_action splits each round from version 2 on. cuts_taken counts, by source, the rows a round took that were a cut of a sibling record (slot 5), and cuts_landed (version 6) the rows it landed that are one: the index's cut table falls by the first and rises by the second. ranks_already_typed (version 6) counts the rows a round took at a rank the struck-ranks record already typed, a row that had landed in a hole an earlier strike left: such a row adds no rank to that record, so its ranks are routes_struck and routes_rekeyed less these",
 };
 writeFileSync(RECORD, JSON.stringify(record, null, 1));
 
@@ -438,6 +495,7 @@ const counts = { ...(index.counts || {}), keys: keysAfter, routes: routesAfter, 
 if (counts.cuts_by_source) {
   counts.cuts_by_source = { ...counts.cuts_by_source };
   for (const [m, c] of Object.entries(cutsTaken)) if (counts.cuts_by_source[m] !== undefined) counts.cuts_by_source[m] -= c;
+  for (const [m, c] of Object.entries(cutsLanded)) counts.cuts_by_source[m] = (counts.cuts_by_source[m] || 0) + c;   // a landed cut is counted where the shards now hold it (version 6)
   if (Number.isFinite(Number(counts.readings_that_are_a_cut_of_a_sibling_record))) counts.readings_that_are_a_cut_of_a_sibling_record = Object.values(counts.cuts_by_source).reduce((a, x) => a + x, 0);
 }
 index.counts = counts;

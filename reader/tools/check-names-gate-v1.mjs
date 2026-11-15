@@ -27,11 +27,13 @@
 //       id and a hash, listed once, of a source the lane read for names,
 //       and the rows are counted source by source as the receipt counts
 //       them
-//   N3  every row of the store: a listed line finds exactly one row, and
-//       that row carries the mark; no other row carries it (less the lines
-//       the index says the store has moved on by)
-//   N4  the store's index names the rule, the pin and the list, and totals
-//       that are a recount's
+//   N3  every row of the store: a listed line finds exactly one row where
+//       the row-strikes record says its row now stands (as listed, or under
+//       the key a round since moved it to: tools/row-strikes-follow-v1.mjs),
+//       and that row carries the mark; no other row carries it; a line whose
+//       row a round struck or withheld since finds none, and is counted so
+//   N4  the store's index names the rule, the pin and the list, totals that
+//       are a recount's, and the rounds since as the record gives them
 //   N5  the places on the words: in every book the list names, each listed
 //       place marks the word of that number in its verse, as the card's
 //       head counts it, and no other word carries the mark; the zone's
@@ -40,18 +42,40 @@
 //   N6  the page's own functions, read out of zone.html and run: the gate
 //       itself gives what the module gives, and a place is a name where its
 //       word is marked, or anywhere in a book whose receipt names no list
-//   N7  on the page, at a place that is not a name whose key carries a row
+//   N7  the addendum (relay v194: the 26 served rows names v1 counted and
+//       did not list, 22 whose source gives part of them as a name and part
+//       not, 4 its reading did not reach): its list, rule and receipt are the
+//       bytes the pin names, and the lane's receipt names the list so; every
+//       line is a key, a rank, an m id and a hash, listed once and on no line
+//       of the name rows; each finds exactly one row of the store where the
+//       record says it stands, with the line's own route and definition; no
+//       such row carries the mark (tools/apply-name-rows-v1.mjs never reads
+//       this list); and the lines are counted source by source as names v1's
+//       own receipt counts its rows partly a name and unreached
+//   N8  on the page, at a place that is not a name whose key carries a row
 //       given as a name: under the default the card withholds exactly those
 //       rows (the entry's own withheld are not counted twice), says so on
 //       its withheld line, and prints no reading that only such rows carry;
 //       under "keep" it withholds none and the reading is back
-//   N8  at a place that is a name the same kind of row stands: nothing is
+//   N9  at a place that is a name the same kind of row stands: nothing is
 //       withheld as a name, and a reading only such rows carry is on the
 //       card, credited to its source
+//   N9  a pointer whose target the form-of map resolves to a row its source
+//       marks a name (data/form-of-pills-v1.json, resolved.name) is no row
+//       given as a name: its own source gives it as a form of another word.
+//       At a place that is not a name, under the default, the card counts
+//       as given as a name exactly N7's rows, and the pointer's pill prints
+//       the pointer as itself, unresolved; under "keep" it prints the
+//       name's English with the pointer beside it (the review of 15
+//       November 2026: the card counted such pointers «given as a name by
+//       its source» and withheld them)
 //
 // The words are found in the data, never named.
 //
-// Run: node tools/check-names-gate-v1.mjs
+// Run: node tools/check-names-gate-v1.mjs   (SERVE_BASE=<a reader's
+// address, the folder of its zone.html> presses that page's cards instead
+// of this checkout's: the page laws N7 to N9 then judge it against this
+// checkout's data)
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
@@ -61,6 +85,7 @@ import { openRouteStore, factsOf, readingKey } from "./gloss-store-v1.mjs";
 import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
 import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
+import { openFollower, followedRecord, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { gradeRow } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
@@ -155,9 +180,22 @@ const listed = new Map();     // key -> "rank m sha16" -> the line
 }
 
 // ---- N3, N4: every row of the store -----------------------------------------------------------
+// where the rows the lists read have gone since, by the row-strikes record kept beside the store
+const followerSince = (readAt) => { try { return [openFollower({ data: dirname(STORE), index, readAt }), ""]; } catch (e) { if (e instanceof FollowFault) return [null, e.message]; throw e; } };
+const [follow, followWhy] = theirs ? followerSince((((theirs.inputs || {}).route_store || {}).store_version) || null) : [null, "the lane's receipt was not read, so the version the list was read at is not known"];
+// the list's rows, each under the name its row has now; the lines whose row a round since struck or withheld, set apart
+const listedNow = new Map();   // key now -> "rank m sha16" -> the line
+const goneLines = [], rekeyedLines = [], followFaults = [];
+for (const [k, mine] of listed) for (const l of mine.values()) {
+  let went = { state: "served", name: [k, l.rank] };
+  if (follow) try { went = follow.nowOf([k, l.rank, l.m, l.sha]); } catch (e) { if (e instanceof FollowFault) { followFaults.push(e.message); continue; } throw e; }
+  if (went.state === "struck" || went.state === "withheld") { goneLines.push(went); continue; }
+  if (went.state === "re-keyed") rekeyedLines.push(went);
+  (listedNow.get(went.name[0]) || listedNow.set(went.name[0], new Map()).get(went.name[0])).set(`${went.name[1]} ${l.m} ${l.sha}`, l);
+}
 let marked = 0;
 {
-  const faults = [];
+  const faults = follow ? [...followFaults] : [followWhy];
   const met = new Map();   // key, then the line's id -> how many rows of the store are that row
   let rows = 0, strays = 0;
   for (const name of readdirSync(join(STORE, "shards")).filter((f) => f.endsWith(".bin")).sort()) {
@@ -167,7 +205,7 @@ let marked = 0;
       const f = factsOf(row);
       const has = !!(f && "name" in f);
       if (has && f.name !== 1) faults.push(`${k} (${row[3]}, rank ${row[0]}): the mark is ${JSON.stringify(f.name)}, not 1`);
-      const mine = listed.get(k);
+      const mine = listedNow.get(k);
       const id = `${row[0]} ${row[3]} ${sha256(Buffer.from(String(row[1] ?? ""), "utf8")).slice(0, 16)}`;
       const isListed = !!(mine && mine.has(id));
       if (isListed) met.set(`${k}\u0001${id}`, (met.get(`${k}\u0001${id}`) || 0) + 1);
@@ -177,12 +215,13 @@ let marked = 0;
     }
   }
   let none = 0, several = 0;
-  for (const [k, mine] of listed) for (const id of mine.keys()) { const n = met.get(`${k}\u0001${id}`) || 0; if (!n) none += 1; else if (n > 1) several += 1; }
+  for (const [k, mine] of listedNow) for (const id of mine.keys()) { const n = met.get(`${k}\u0001${id}`) || 0; if (!n) none += 1; else if (n > 1) several += 1; }
   const t = (rec && rec.totals) || {};
-  if (none !== (t.lines_that_find_no_row || 0)) faults.push(`${none} line(s) find no row, and the index says ${t.lines_that_find_no_row || 0}`);
+  if (none) faults.push(`${none} line(s) find no row, and no round of the row-strikes record struck, withheld or moved their row`);
+  if (goneLines.length !== (t.lines_that_find_no_row || 0)) faults.push(`${goneLines.length} line(s) name a row a round struck or withheld since, and the index says ${t.lines_that_find_no_row || 0}`);
   if (several !== (t.lines_that_find_more_than_one_row || 0)) faults.push(`${several} line(s) find more rows than one, and the index says ${t.lines_that_find_more_than_one_row || 0}`);
-  check("N3  every listed line finds exactly one row of the store, that row carries the mark, and no other row does", listed.size > 0 && faults.length === 0,
-    faults.length ? `${nf(faults.length)}${strays ? ` (${nf(strays)} rows carry the mark unlisted)` : ""} · ${first(faults)}` : `${nf(rows)} rows read · ${nf(marked)} carry the mark, each a listed line's one row`);
+  check("N3  every listed line finds exactly one row of the store where the row-strikes record says its row stands, that row carries the mark, and no other row does; a line whose row a round struck or withheld since finds none", listed.size > 0 && faults.length === 0,
+    faults.length ? `${nf(faults.length)}${strays ? ` (${nf(strays)} rows carry the mark unlisted)` : ""} · ${first(faults)}` : `${nf(rows)} rows read · ${nf(marked)} carry the mark, each a listed line's one row · since store ${follow.readAt}, ${follow.rounds.length} round(s): ${goneLines.length} line(s) name a row struck or withheld, ${rekeyedLines.length} followed to another key`);
 }
 {
   const faults = [];
@@ -194,8 +233,10 @@ let marked = 0;
     if (rec.read_at_store_version !== ((((theirs || {}).inputs || {}).route_store || {}).store_version || null)) faults.push("the record says the list was read at another version of the store than the lane's receipt says");
     const t = rec.totals || {};
     if (t.rows_listed !== rowLines.length || t.rows_marked !== marked || t.sources !== new Set(rowLines.map((l) => l.m)).size) faults.push(`totals say ${t.rows_listed} listed, ${t.rows_marked} marked, ${t.sources} sources; a recount gives ${rowLines.length}, ${marked}, ${new Set(rowLines.map((l) => l.m)).size}`);
+    if (!follow) faults.push(followWhy);
+    else if (!same(rec.followed, followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines }))) faults.push("the record's account of the rounds since the list was read is not the row-strikes record's");
   }
-  check("N4  the store's index names the rule, the pin and the list, and totals that are a recount's", faults.length === 0, faults.length ? first(faults) : `${nf(marked)} rows marked of ${nf(rowLines.length)} listed`);
+  check("N4  the store's index names the rule, the pin and the list, totals that are a recount's, and the rounds since as the row-strikes record gives them", faults.length === 0, faults.length ? first(faults) : `${nf(marked)} rows marked of ${nf(rowLines.length)} listed`);
 }
 
 // ---- N5: the places on the words, and the words for the page ----------------------------------
@@ -212,6 +253,11 @@ const readingOnlyOf = (rows, isOfKind, wanted) => {
   return null;
 };
 const served = zonesServed().filter((z) => existsSync(join(ZONES, `${z}.lattice.bin`)));
+// N9: the pointers the form-of map resolves to a row its source marks a name (resolved.name), by the key they stand
+// under: the page's map, as it carries it (tools/bake-form-of-pills-v1.mjs)
+const FORM_OF_FILE = join(K3, "data", "form-of-pills-v1.json");
+const FORM_OF = existsSync(FORM_OF_FILE) ? JSON.parse(readFileSync(FORM_OF_FILE, "utf8")) : null;
+const pointersToAName = (k) => (((FORM_OF && FORM_OF.keys) || {})[k] || []).filter((x) => x && x.resolved && x.resolved.name);
 // The words for the page, a few of each kind (notAName, aName): a word the page joins to its neighbors in one cell
 // opens the cell's card and not its own, which only the page can say, so the first whose card is its own is judged.
 const MOST = 4;
@@ -223,7 +269,7 @@ for (const z of served) {
   const said = (((zone.emitted_from || {}).toggles || {}).lattice || {}).names || null;
   const mine = placesOf.get(z) || null;
   let marks = 0, hit = 0, missing = 0;
-  const grades = (existsSync(join(ZONES, `${z}.lattice.bin`)) && (more("notAName") || more("aName"))) ? gz(join(ZONES, `${z}.lattice.bin`)) : null;
+  const grades = (existsSync(join(ZONES, `${z}.lattice.bin`)) && (more("notAName") || more("aName") || more("pointer"))) ? gz(join(ZONES, `${z}.lattice.bin`)) : null;
   for (const [si, sec] of (zone.sections || []).entries()) {
     const words = sec.words || [];
     const numbered = words.filter((w) => !w.mark);
@@ -239,13 +285,16 @@ for (const z of served) {
     for (const w of words) if (w.mark && w.np) n5.faults.push(`${z} ${sec.label}: a mark of the text carries the name mark`);
     if (here) for (const n of here) if (!numbered[n - 1]) missing += 1;
     // the words for the page: one region its place does not divide, in a book whose places were read for names
-    if (!said || !grades || (!more("notAName") && !more("aName"))) continue;
+    if (!said || !grades || (!more("notAName") && !more("aName") && !more("pointer"))) continue;
     for (const [e, w] of words.entries()) {
       if (!plainWord(words, e)) continue;
       const kind = w.np ? "aName" : "notAName";
-      if (!more(kind)) continue;
+      // (N9: at a place that is not a name, the pointers under its key whose target is a name)
+      const pointers = !w.np && more("pointer") ? pointersToAName(w.k) : [];
+      if (!more(kind) && !pointers.length) continue;
       const rows = rowsOf(w.k);
-      if (!rows.some((r) => (factsOf(r) || {}).name)) continue;
+      const named = rows.some((r) => (factsOf(r) || {}).name);
+      if (!named && !pointers.length) continue;
       // what the entry and the pointing do with each row here, as the page asks them
       const place = w.tg ? placeEntry([].concat(w.tg)) : null;
       const facts = rows.map(factsOf);
@@ -257,12 +306,18 @@ for (const z of served) {
       const otherStem = (row) => !!(rs && gr && Array.isArray(gr.st) && gr.st.length && isOtherStem(rs[`${row[3]}\u0001${row[0]}\u0001${row[1]}`], gr.st));
       // a name's row the entry leaves; and one the pointing and the stem would leave too
       const nameLeft = (row, i) => !!(facts[i] && facts[i].name) && verdicts[i] !== "other";
-      const stands = (row, i) => nameLeft(row, i) && (verdicts[i] === "this" || !attested || rowGrades[i] !== "x") && !otherStem(row);
+      // (a row the entry, the pointing and the stem all leave)
+      const left = (row, i) => verdicts[i] !== "other" && (verdicts[i] === "this" || !attested || rowGrades[i] !== "x") && !otherStem(row);
+      const stands = (row, i) => nameLeft(row, i) && left(row, i);
       const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: w.tg ? [].concat(w.tg) : null, rows: rows.length, names: rows.filter(nameLeft).length };
+      // N9: a pointer to a name whose own row, no name's, every other gate leaves here
+      const pointer = pointers.find((x) => rows.some((row, i) => String(row[3]) === x.m && !(facts[i] && facts[i].name) && store.carriersOf([row], x.t).length && left(row, i)));
+      if (pointer) (picks.pointer ||= []).push({ ...pick, pointer });
+      if (!named || !more(kind)) continue;
       if (kind === "notAName") {
         // a reading that only withheld rows carry: a name's, or another entry's
         const only = readingOnlyOf(rows, (row, i) => nameLeft(row, i) || verdicts[i] === "other", stands);
-        if (only && rows.some((row, i) => !nameLeft(row, i) && verdicts[i] !== "other" && (verdicts[i] === "this" || !attested || rowGrades[i] !== "x") && !otherStem(row))) (picks.notAName ||= []).push({ ...pick, reading: only[0], m: String(only[1][3]) });
+        if (only && rows.some((row, i) => !nameLeft(row, i) && left(row, i))) (picks.notAName ||= []).push({ ...pick, reading: only[0], m: String(only[1][3]) });
       } else {
         const only = readingOnlyOf(rows, nameLeft, stands);
         if (only) (picks.aName ||= []).push({ ...pick, reading: only[0], m: String(only[1][3]) });
@@ -301,14 +356,65 @@ check("N5  in every book the list names, each listed place marks the word of tha
   check("N6  the page's own functions, read out of zone.html and run: the gate gives what the module gives, and a place is a name where its word is marked, or anywhere in a book whose receipt names no list", !!page && faults.length === 0, faults.length ? first(faults) : "10 askings of the gate · 5 of the place");
 }
 
-// ---- N7, N8: on the page -----------------------------------------------------------------------
+// ---- N7: the addendum, the rows names v1 counted and did not list ----------------------------------
+{
+  const faults = [], a = pin.addendum || null;
+  let lines = [], theirsToo = null;
+  if (!a || !a.list || !a.rule || !a.receipt || !a.folder) faults.push("the pin names no addendum with its list, rule and receipt");
+  else try {
+    readPinned(join(PINS, a.folder, a.rule.file), a.rule, `${a.folder}/${a.rule.file}`);
+    theirsToo = JSON.parse(readPinned(join(PINS, a.folder, a.receipt.file), a.receipt, `${a.folder}/${a.receipt.file}`).toString("utf8"));
+    lines = readPinnedLines(join(PINS, a.folder, a.list.file), a.list, `${a.folder}/${a.list.file}`);
+  } catch (e) { if (e instanceof PinFault) faults.push(e.message); else throw e; }
+  const out = (theirsToo && theirsToo.output) || {}, counts = (theirsToo && theirsToo.counts) || {};
+  if (theirsToo && (out.sha256 !== a.list.sha256 || out.bytes !== a.list.bytes || counts.lines !== a.list.lines)) faults.push("the lane's receipt names another list than the pin's addendum");
+  // each line's row, where the record says it stands: the addendum was read at its own receipt's store
+  const [f2, why2] = theirsToo ? followerSince((((theirsToo.inputs || {}).store || {}).store_version) || null) : [null, ""];
+  if (theirsToo && !f2) faults.push(why2);
+  const wanted = new Map();   // key now -> the lines to find under it
+  const seen = new Set(), byKind = {};
+  lines.forEach((l, at) => {
+    const where = `${a.list.file} line ${at + 1}`;
+    if (typeof l.k !== "string" || !Number.isInteger(l.rank) || typeof l.m !== "string" || !/^[0-9a-f]{16}$/u.test(String(l.sha)) || typeof l.route !== "string" || typeof l.definition !== "string" || typeof l.kind !== "string") { faults.push(`${where} names no key, rank, m id, hash, route, definition and kind`); return; }
+    const id = `${l.rank} ${l.m} ${l.sha}`;
+    if (seen.has(`${l.k}\u0001${id}`)) faults.push(`${where}: the row ${id} is listed twice`);
+    seen.add(`${l.k}\u0001${id}`);
+    if ((listed.get(l.k) || new Map()).has(id)) faults.push(`${where}: the row ${id} is on the list of name rows too`);
+    (byKind[l.kind] ||= {})[l.m] = ((byKind[l.kind] || {})[l.m] || 0) + 1;
+    let went = { state: "served", name: [l.k, l.rank] };
+    if (f2) try { went = f2.nowOf([l.k, l.rank, l.m, l.sha]); } catch (e) { if (e instanceof FollowFault) { faults.push(e.message); return; } throw e; }
+    if (went.state === "struck" || went.state === "withheld") { faults.push(`${where}: its row (${id}) was ${went.state} by ${went.by.list} since the addendum was read, and the addendum's rows are to stand`); return; }
+    (wanted.get(went.name[0]) || wanted.set(went.name[0], []).get(went.name[0])).push({ l, rank: went.name[1], where, id });
+  });
+  let stand = 0;
+  for (const [k, list] of wanted) for (const { l, rank, where, id } of list) {
+    const rows = (store.routesFor(k) || []).filter((r) => r[0] === rank && String(r[3]) === l.m && sha256(Buffer.from(String(r[1] ?? ""), "utf8")).slice(0, 16) === l.sha);
+    if (rows.length !== 1) { faults.push(`${where}: the row ${id} stands ${rows.length} times in the store`); continue; }
+    if (rows[0][1] !== l.route || String(rows[0][2] ?? "") !== l.definition) faults.push(`${where}: the row ${id} has another route or definition than the line`);
+    if ((factsOf(rows[0]) || {}).name) faults.push(`${where}: the row ${id} carries the mark of a name row, and the addendum's rows are none`);
+    stand += 1;
+  }
+  // names v1's own receipt counted these rows and did not list them: partly a name, and unreached
+  const sorted = (o) => Object.fromEntries(Object.entries(o || {}).sort());
+  const said = (theirs && theirs.rows) || {};
+  if (theirs && (!same(sorted(byKind["partly a name"]), sorted(said.partly_a_name)) || !same(sorted(byKind["not reached"]), sorted(said.unreached)) || Object.keys(byKind).some((kind) => kind !== "partly a name" && kind !== "not reached")))
+    faults.push(`by kind and source the addendum holds ${JSON.stringify(byKind)}, and names v1's receipt counts partly a name ${JSON.stringify(said.partly_a_name)} and unreached ${JSON.stringify(said.unreached)}`);
+  check("N7  the addendum of rows names v1 counted and did not list: its list, rule and receipt are the bytes the pin names; every line is listed once and on no line of the name rows, finds exactly one row of the store with its own route and definition, and that row carries no mark; the lines are counted as names v1's receipt counts its rows partly a name and unreached", !!a && lines.length > 0 && faults.length === 0,
+    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `relay ${a.relay} · ${lines.length} lines (${String(a.list.sha256).slice(0, 12)}…) · ${stand} rows stand, none marked · ${Object.entries(byKind).map(([kind, by]) => `${kind} ${Object.values(by).reduce((x, y) => x + y, 0)}`).join(", ")} · read at store ${f2 ? f2.readAt : "?"}, ${f2 ? f2.rounds.length : 0} round(s) since`);
+}
+
+// ---- N8, N9: on the page -----------------------------------------------------------------------
 const lacking = ["notAName", "aName"].filter((kind) => !picks[kind]);
-if (lacking.length) check("N7–N8 on the page", false, `no served word was found: ${lacking.map((k) => (k === "aName" ? "at a place that is a name, whose key carries a row given as a name that the other gates leave" : "at a place that is not a name, whose key carries such a row and another reading")).join("; ")}`);
+if (lacking.length) check("N8–N9 on the page", false, `no served word was found: ${lacking.map((k) => (k === "aName" ? "at a place that is a name, whose key carries a row given as a name that the other gates leave" : "at a place that is not a name, whose key carries such a row and another reading")).join("; ")}`);
 else {
-  const tree = await serveTree(K3);
+  // SERVE_BASE: another reader's page pressed instead of this checkout's (the Run line above)
+  const tree = process.env.SERVE_BASE ? { base: process.env.SERVE_BASE.replace(/\/$/u, ""), close: async () => {} } : await serveTree(K3);
   const pw = await loadPlaywright();
   const browser = await pw.chromium.launch(launchOptions());
-  const open = (pick, masorah = null) => openGatedCard(browser, tree.base, pick, { masorah });
+  // the dictionaries that rest shut (dictionary-kinds-rule-v1) are asked open: this holds the names gate, and the
+  // words were found over the store whole, as a card with them open reads it (English Wiktionary's own names rest
+  // shut at a name place too, so N8's reading would be held back by the kinds, not the gate)
+  const open = (pick, masorah = null) => openGatedCard(browser, tree.base, pick, { masorah, kinds: "open" });
   const where = (pick) => `${pick.zone} ${pick.label}, entry ${pick.entry} (${pick.k}${pick.tags ? ` under ${pick.tags.join(" ")}` : ""})`;
   const pillOf = (got, pick) => got.said.find(([text, by, own]) => [text, own].some((t) => t && readingKey(t) === readingKey(pick.reading)) && by.split(/[\s,]+/u).includes(pick.m)) || null;
   // the first of the words found whose card is its own, opened; [null, null] where the page joins every one of them
@@ -322,7 +428,7 @@ else {
     {
       const [pick, got] = await own(picks.notAName);
       const says = pick ? `${pick.names} given as a name by ${pick.names === 1 ? "its" : "their"} source, withheld` : "";
-      check("N7  at a place that is not a name, the card withholds exactly the rows given as a name that the entry left, says so, and prints no reading only such rows carry", !!pick && !got.fault && !!got.data && Number(got.data.nameWithheld) === pick.names && got.line.includes(says) && got.name === "not a name" && !pillOf(got, pick),
+      check("N8  at a place that is not a name, the card withholds exactly the rows given as a name that the entry left, says so, and prints no reading only such rows carry", !!pick && !got.fault && !!got.data && Number(got.data.nameWithheld) === pick.names && got.line.includes(says) && got.name === "not a name" && !pillOf(got, pick),
         !pick ? JOINED(picks.notAName) : got.fault || `${where(pick)} · ${pick.names} of ${pick.rows} rows are a name's; the card says ${got.data ? got.data.nameWithheld : "nothing"} and takes its place for ${JSON.stringify(got.name)} · "${got.line}" · «${String(pick.reading).slice(0, 40)}» (${pick.m}) ${pillOf(got, pick) ? "stands on a pill" : "is on no pill"} · ${got.said.length} pills`);
       if (pick) {
         const keep = await open(pick, "keep");
@@ -332,8 +438,26 @@ else {
     }
     {
       const [pick, got] = await own(picks.aName);
-      check("N8  at a place that is a name the same kind of row stands: nothing is withheld as a name, and a reading only such rows carry is on the card, credited to its source", !!pick && !got.fault && !!got.data && Number(got.data.nameWithheld) === 0 && !/given as a name/u.test(got.line) && got.name === "a name" && !!pillOf(got, pick),
+      check("N9  at a place that is a name the same kind of row stands: nothing is withheld as a name, and a reading only such rows carry is on the card, credited to its source", !!pick && !got.fault && !!got.data && Number(got.data.nameWithheld) === 0 && !/given as a name/u.test(got.line) && got.name === "a name" && !!pillOf(got, pick),
         !pick ? JOINED(picks.aName) : got.fault || `${where(pick)} · ${pick.names} of ${pick.rows} rows are a name's; the card says ${got.data ? got.data.nameWithheld : "nothing"} and takes its place for ${JSON.stringify(got.name)} · "${got.line}" · «${String(pick.reading).slice(0, 40)}» (${pick.m}) ${pillOf(got, pick) ? "stands on a pill" : "is on no pill"}`);
+    }
+    {
+      // N9: a pointer to a name at a place that is not a name, counted with no name of its source's and printed as
+      // itself; under "keep" resolved to the name's English, the pointer beside it
+      const law = "N9  at a place that is not a name, a pointer whose target is a name is no row given as a name: the card counts N7's rows alone, and the pointer's pill prints the pointer as itself, unresolved";
+      const [pick, got] = await own(picks.pointer);
+      if (!pick) check(law, false, picks.pointer ? JOINED(picks.pointer) : "no served word was found at a place that is not a name whose key carries such a pointer on a row every other gate leaves");
+      else {
+        const x = pick.pointer, isIt = (t) => !!t && readingKey(t) === readingKey(x.t);
+        const asItself = got.said.find(([t, , ptr]) => isIt(t) && !ptr) || null;
+        const resolved = got.said.find(([, , ptr]) => isIt(ptr)) || null;
+        check(law, !got.fault && !!got.data && Number(got.data.nameWithheld) === pick.names && !!asItself && !resolved,
+          got.fault || `${where(pick)} · the pointer «${String(x.t).slice(0, 60)}» (${x.m}) resolves to «${String(x.resolved.text).slice(0, 40)}», a name · ${pick.names} row(s) its source gives as a name here; the card says ${got.data ? got.data.nameWithheld : "nothing"} · "${got.line}" · the pointer ${asItself ? "stands as itself" : resolved ? "prints the name" : "is on no pill"} · ${got.said.length} pills`);
+        const keep = await open(pick, "keep");
+        const back = keep.said.find(([t, , ptr]) => isIt(ptr) && String(t).includes(x.resolved.text)) || null;
+        check("    and under \"keep\" the pointer's pill prints the name's English, the pointer beside it", !keep.fault && !!back,
+          keep.fault || `«${back ? String(back[0]).slice(0, 80) : "no pill resolves it"}» · ${keep.said.length} pills`);
+      }
     }
   } finally { await browser.close().catch(() => {}); await tree.close(); }
 }

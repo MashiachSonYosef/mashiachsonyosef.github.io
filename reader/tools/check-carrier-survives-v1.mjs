@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: source-switch-rule-v1-a-reading-remembers-who-carried-it
+// LEDGER: -
+// no frame letter. A check reads what is served and judges it; it is not the ledger for one.
 //
 // A READING HAS TO REMEMBER WHO CARRIED IT.
 //
@@ -52,6 +54,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { openRouteStore, SWITCH_RULE_ID, readingKey } from "./gloss-store-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
+import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 
 let bad = 0;
 const check = (name, ok, detail = "") => {
@@ -67,6 +70,14 @@ if (!SERVED.length || !existsSync("data/route-store/index.json")) {
 
 const store = openRouteStore("data/route-store");
 console.log(`— ${SWITCH_RULE_ID} · ${SERVED.length} served work(s) —`);
+// THE STORE A ZONE WAS BAKED OVER (dictionary-kinds-rule-v1, 15 November
+// 2026): a book the record of what each dictionary is rests shut (the
+// thirty-nine books) was projected over the rows that rest open, so C2 asks
+// its readings of the store opened at rest; any other zone, of the store
+// whole. C3 to C9 hold the switch's machinery, not a baked column, and ask
+// the store whole.
+const kinds = readKinds("data");
+const storeAtRest = openRouteStore("data/route-store", { atRest: true });
 
 // ---- C2 · the page does not move ----------------------------------------
 //
@@ -80,25 +91,27 @@ console.log(`— ${SWITCH_RULE_ID} · ${SERVED.length} served work(s) —`);
 // first reading on purpose; check-proper-name-v1 holds those to their rule,
 // and here they are compared to what that rule says, not to the pool.
 const shipped = [];
-let named = 0;
+let named = 0, atRest = 0;
 for (const z of SERVED) {
   const p = `data/zones/${z}.bin`;
   if (!existsSync(p)) continue;
   const zone = JSON.parse(gunzipSync(readFileSync(p)).toString("utf8"));
   const names = zone.gloss_names || {};
+  const rests = restsOffIn(kinds.rec, zone);
+  if (rests) atRest += 1;
   for (const [k, v] of Object.entries(zone.gloss || {})) {
-    if (Object.prototype.hasOwnProperty.call(names, k)) { named += 1; shipped.push([z, k, v, names[k]]); }
-    else shipped.push([z, k, v, null]);
+    if (Object.prototype.hasOwnProperty.call(names, k)) { named += 1; shipped.push([z, k, v, names[k], rests]); }
+    else shipped.push([z, k, v, null, rests]);
   }
 }
 let moved = 0, firstMove = "";
-for (const [z, k, v, name] of shipped) {
-  const want = name !== null ? name : store.glossFor(k).text;
+for (const [z, k, v, name, rests] of shipped) {
+  const want = name !== null ? name : (rests ? storeAtRest : store).glossFor(k).text;
   if (want !== v) { moved += 1; if (!firstMove) firstMove = `${z} ${k}: ${JSON.stringify(v)} -> ${JSON.stringify(want)}`; }
 }
 check("C1  there is a shelf to ask about", shipped.length > 10000, `${shipped.length.toLocaleString()} shipped readings`);
 check("C2  every shipped reading still computes identically", moved === 0,
-  moved ? `${moved.toLocaleString()} moved · first: ${firstMove}` : `${shipped.length.toLocaleString()} of ${shipped.length.toLocaleString()} unchanged (${named.toLocaleString()} of them a name lead, held to its own rule)`);
+  moved ? `${moved.toLocaleString()} moved · first: ${firstMove}` : `${shipped.length.toLocaleString()} of ${shipped.length.toLocaleString()} unchanged (${named.toLocaleString()} of them a name lead, held to its own rule) · ${atRest} of ${SERVED.length} works asked of the store at rest, as the record rests them`);
 
 // ---- the sample the carrier assertions stand on --------------------------
 //

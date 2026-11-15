@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // RUN: tree
-// GUARDS: chain-book-rule-v2-the-same-book-with-the-meaning-taken-out-and-the-links-under-a-word-are-what-its-card-prints-read-off-the-page
+// GUARDS: chain-book-rule-v2-the-same-book-with-the-meaning-taken-out-and-the-links-under-a-word-are-what-its-card-prints-read-off-the-page, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
+// LEDGER: -
+// no frame letter. A check reads what is served and judges it; it is not the ledger for one.
 //
 // THE EVIDENCE PAGE, HELD TO WHAT IT CLAIMS.
 //
@@ -36,8 +38,11 @@
 //       as it names them, so the cards it holds are the cards this tree
 //       prints; and the two states are the states it says: lifted is every
 //       withholding switch lifted, with the line read from STEP (the
-//       default sources, default-picks-rule-v1), and at rest is the state
-//       the resting lines of the same book were read in
+//       default sources, default-picks-rule-v1) and the dictionaries that
+//       rest shut opened where the record of what each dictionary is rests
+//       the book shut (dictionary-kinds-rule-v1; null on a book it does
+//       not, where they do not act), and at rest is the state the resting
+//       lines of the same book were read in
 //   K4  each file hangs together: every list of pills a card names is in
 //       the file and every list in the file is named; a pressed pill and a
 //       pressed button are ones the card has; every fingerprint is carried
@@ -81,6 +86,7 @@ import { CHAIN_RULE_ID, CHAIN_SCHEMA, CHAIN_FILE, CHAIN_SHORT, PAGE_SHOWS, chain
 import { STATES, readCards, labelsFor, saidOf } from "./card-readings-v1.mjs";
 import { readRecord, recordPath, whyNotOfThisTree } from "./resting-lines-v1.mjs";
 import { openRouteStore } from "./gloss-store-v1.mjs";
+import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
 
@@ -96,6 +102,8 @@ const short = (s) => sha(s).slice(0, CHAIN_SHORT);
 
 const READER = ".";
 const DIR = arg("--dir", join("..", "chain"));
+// the record of what each dictionary is, for which books it rests shut (K3's lifted state)
+const KINDS = readKinds(join(READER, "data"));
 const STORE = arg("--store", "data/route-store");
 if (!existsSync(DIR)) { console.log(`SKIPPED — no chain on the shelf at ${DIR}`); process.exit(3); }
 const books = chainedBooks(DIR);
@@ -172,14 +180,15 @@ const isCard = (c) => !!c && typeof c === "object" && "pool" in c && "on" in c;
     files += Object.keys((s.read_off && s.read_off.files) || {}).length;
     const st = (s.read_off && s.read_off.states) || {};
     const lifted = st.lifted && st.lifted.page, rest = st.rest && st.rest.page;
-    const want = STATES.lifted.holds;
-    if (!lifted || lifted.pointing !== want.pointing || lifted.signs !== want.signs || lifted.senses !== want.senses || JSON.stringify(lifted.sources_off) !== JSON.stringify(want.sources_off) || lifted.defaults !== want.defaults) stateOff.push(`${b}: lifted is said as ${JSON.stringify(lifted)}`);
+    // lifted opens the dictionaries that rest shut where the record rests the book shut; elsewhere they do not act
+    const want = { ...STATES.lifted.holds, kinds: haveZone(b) && restsOffIn(KINDS.rec, zoneOf(b)) ? STATES.lifted.holds.kinds : null };
+    if (!lifted || lifted.pointing !== want.pointing || lifted.signs !== want.signs || lifted.senses !== want.senses || JSON.stringify(lifted.sources_off) !== JSON.stringify(want.sources_off) || lifted.defaults !== want.defaults || lifted.kinds !== want.kinds) stateOff.push(`${b}: lifted is said as ${JSON.stringify(lifted)}`);
     const lines = readRecord(recordPath(READER, b));
     if (!rest || !lines || JSON.stringify(rest) !== JSON.stringify(lines.read_off.state)) stateOff.push(`${b}: at rest is said as ${JSON.stringify(rest)} and the resting lines were read as ${lines ? JSON.stringify(lines.read_off.state) : "(no record)"}`);
   }
   check("K3  each file is of this tree: the page and every file it names stand as it names them",
     off.length === 0, off.length ? few(off) : `${books.length} file(s) · ${n(files)} file fingerprints taken again`);
-  check("  and its two states are the states it says: lifted withholds nothing, and at rest is the state the book's resting lines were read in",
+  check("  and its two states are the states it says: lifted withholds nothing (the dictionaries that rest shut opened on a book the record rests shut), and at rest is the state the book's resting lines were read in",
     stateOff.length === 0, stateOff.length ? few(stateOff) : `${books.length} book(s)`);
 }
 

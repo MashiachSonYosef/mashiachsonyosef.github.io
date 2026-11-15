@@ -192,6 +192,68 @@
   // the entry its own source files it under, whether its source gives it as
   // a name, the numbered sense it opens. Read here once for every gate.
   const factsOf = (row) => { const f = Array.isArray(row) && row.length > 10 ? row[10] : null; return f && typeof f === "object" && !Array.isArray(f) ? f : null; };
+  // WHAT RESTS SHUT, BY THE RECORD OF WHAT EACH DICTIONARY IS
+  // (dictionary-kinds-rule-v1, declared with the switch below; the owner, 15
+  // November 2026: «we need to think in terms of each dictionary as a
+  // category»). data/dictionary-kinds-v1.json files every source key of the
+  // store's index under one family and each family under one kind, and names
+  // what rests shut: a kind, or a category a dictionary marks in its own data
+  // (a fact the row carries in its facts slot, factsOf above). The two
+  // functions below are tools/dictionary-kinds-v1.mjs's, name for name and
+  // line for line, so the card and the bakes hold one rule in one place;
+  // check-dictionary-kinds-v1 K2 reads them out of this page and runs them
+  // beside the module's over every row of the store. Nothing between the line
+  // that opens restsOffOf and the line that closes the rule reaches outside
+  // them: the page hands them the record, the store's own index and factsOf.
+  const restsOffOf = (rec, mSources, factsOf) => {
+    const said = [];
+    const all = Array.isArray(rec.families) ? rec.families : [];
+    const store = all.filter((f) => f.shelf === "store");
+    const filed = new Map();   // source key -> the family of the store that files it
+    for (const f of store) for (const k of f.keys) {
+      if (filed.has(k)) said.push(`${k} is filed by two families (${filed.get(k).id}, ${f.id})`);
+      else filed.set(k, f);
+    }
+    for (const m of Object.keys(mSources)) if (!filed.has((mSources[m] || {}).key)) said.push(`the index's ${m} (${(mSources[m] || {}).key}) is filed by no family of the store`);
+    const reads = ["id", "say", "kinds", "families", "fact", "is", "has", "ruling"];
+    const entries = (Array.isArray(rec.rests_off) ? rec.rests_off : []).map((e) => {
+      const keys = new Set();
+      for (const field of Object.keys(e)) if (!reads.includes(field)) said.push(`the entry ${e.id} carries ${field}, which this rule does not read`);
+      for (const k of e.kinds || []) {
+        if (!rec.kinds || !rec.kinds[k]) said.push(`the entry ${e.id} names the kind ${k}, which the record does not hold`);
+        for (const f of store) if (f.kind === k) for (const x of f.keys) keys.add(x);
+      }
+      for (const id of e.families || []) {
+        const f = all.find((x) => x.id === id);
+        if (!f || f.shelf !== "store") said.push(`the entry ${e.id} names ${id}, which is no family of the store`);
+        else for (const x of f.keys) keys.add(x);
+      }
+      if (!keys.size) said.push(`the entry ${e.id} shuts no source key of the store`);
+      if ((e.is !== undefined || e.has !== undefined) && !e.fact) said.push(`the entry ${e.id} compares a value and names no fact`);
+      if (e.is !== undefined && e.has !== undefined) said.push(`the entry ${e.id} reads both is and has`);
+      return { e, keys };
+    });
+    if (said.length) throw new Error(`the record of dictionary kinds does not hold over this store's index: ${said.join("; ")}`);
+    const byM = new Map();   // M id -> the entries whose keys hold its source's key, in the record's order
+    return (row) => {
+      const m = row[3];
+      const source = Object.hasOwn(mSources, m) ? mSources[m] : null;
+      if (!source) return null;
+      let list = byM.get(m);
+      if (!list) { list = entries.filter((x) => x.keys.has(source.key)).map((x) => x.e); byM.set(m, list); }
+      for (const e of list) {
+        if (!e.fact) return e;
+        const v = (factsOf(row) || {})[e.fact];
+        if (e.is !== undefined ? v === e.is : e.has !== undefined ? Array.isArray(v) && v.includes(e.has) : !!v) return e;
+      }
+      return null;
+    };
+  };
+  const restsOffIds = (rec, mSources) => {
+    const shut = restsOffOf(rec, mSources, () => null);
+    return Object.keys(mSources).filter((m) => shut([null, null, null, m]) !== null).sort((a, b) => a.length - b.length || (a < b ? -1 : a > b ? 1 : 0));
+  };
+  // end of the kinds' rule (tools/dictionary-kinds-v1.mjs)
   // THE WORDS THAT OPEN A NUMBERED SENSE ARE A NOTE, NOT A READING
   // (sense-openings-rule-v1, 13 November 2026). The catalog made a route of
   // the words that open each numbered sense of an entry of the unabridged
@@ -666,10 +728,37 @@
   // the whole form of that key, and for the core piece's own cell on the
   // card, whose key is the core piece's letters: the tag is that piece's. A
   // prefix's or a suffix's cell, and the written half of a pair, take none.
-  const tagHolder = (word) => (!word ? null : word.tg ? word : (word.w || word.kqw || []).find((r) => r && r.tg) || null);
-  const tagsAt = (word, key) => { const h = tagHolder(word); return h && key && h.k === key ? [].concat(h.tg) : null; };
+  // A READ FORM OF SEVERAL WORDS CARRIES A TAG FOR EACH READ WORD, under
+  // read-words-rule-v1-each-read-word-of-a-read-form-of-several-words-carries-its-own-entry-and-the-place-reads-their-pieces
+  // (the corpus lane's relay v192 of 14 November 2026, written on the zone
+  // by tools/apply-read-words-v1.mjs): at the places read as two or three
+  // words (28; 27 while the pin holds Psalms 10:10 whole, its tags and its
+  // pieces, until the lane's put-back 35 lands), each read word's own region
+  // carries its main tag, beside whatever
+  // the half the pieces spell carries. A place then holds several tagged
+  // forms, so the one that answers is the one whose key is the key asked.
+  // And a read word of several never stands open as a card's own form: it
+  // is a block of its branch's card and of the written form's, so there too
+  // it answers by its own key. Until this the first tagged region spoke for
+  // the place and a read word was asked no entry: at Job 38:1 the read word
+  // TAHOT tags «from» opened on «manna», another entry with the same letters.
+  // So the open form's tags (tagsAt) are never a read word's of several. A
+  // written form may have the letters of one of the read words: at II Samuel
+  // 8:3 the written form is the letters of read word 1 of «at the river
+  // Euphrates», and asked by its key it took that read word's tag, so its
+  // own card withheld two rows as another entry's though the written half
+  // carries no tag (the review of 15 November 2026; check-read-words-v1 R8).
+  const tagHolder = (word, key) => {
+    if (!word) return null;
+    if (word.tg) return word;
+    const tagged = (word.w || word.kqw || []).filter((r) => r && r.tg);
+    return tagged.find((r) => r.k === key) || tagged[0] || null;
+  };
+  const readWordOfSeveral = (word, r) => r !== word && r.role === "QERE" && (word.w || word.kqw || []).filter((x) => x && x.role === "QERE").length > 1;
+  const tagsAt = (word, key) => { const h = tagHolder(word, key); return h && key && h.k === key && !readWordOfSeveral(word, h) ? [].concat(h.tg) : null; };
   const coreTagsAt = (word, key) => {
-    const h = tagHolder(word);
+    const h = tagHolder(word, key);
+    if (h && key && h.k === key && readWordOfSeveral(word, h)) return [].concat(h.tg);
     const cores = h && Array.isArray(word.pg) ? word.pg.filter((x) => x && x.r === "core") : [];
     return h && key && cores.length === 1 && cores[0].k === key ? [].concat(h.tg) : null;
   };
@@ -930,12 +1019,15 @@
     const mids = Array.isArray(m) ? m.map(String) : m ? [String(m)] : [];
     return l.find((e) => mids.includes(e.m) && spanJoin(e.t) === t) || l.find((e) => spanJoin(e.t) === t) || null;
   };
-  // A POINTER THAT PRINTS A NAME'S ENGLISH (names-gate-rule-v1, carried by
-  // tools/bake-form-of-pills-v1.mjs): the row a pointer resolves to is one
+  // A POINTER THAT WOULD PRINT A NAME'S ENGLISH (names-gate-rule-v1, carried
+  // by tools/bake-form-of-pills-v1.mjs): the row a pointer resolves to is one
   // its own source marks a name (resolved.name, the names gate's own mark on
-  // that row), so the pill prints a name, and it is withheld where the place
-  // is not a name, as that row itself is (the review of 14 November 2026)
-  const formOfIsAName = (key, row) => { const e = formOfFor(key, row[3], row[1]); return !!(e && e.resolved && e.resolved.name); };
+  // that row). Where the names gate stands at a place that is not a name
+  // (nameHeld: under «only», as it withholds the rows given as a name there)
+  // the pointer prints as itself, its source's own words, and the name's
+  // English is what the gate keeps off: the pointer is no row given as a
+  // name (the review of 15 November 2026; see the gate in poolFor)
+  const formOfResolves = (e, nameHeld = false) => !!(e && e.resolved && !(nameHeld && e.resolved.name));
   // the target as the source wrote it, cut out of the text at the lane's byte range
   const formOfTarget = (e) => {
     if (!e.at) return e.target;
@@ -943,8 +1035,8 @@
   };
   // what the line and the pill print for a pointer with a resolution
   const formOfSays = (e) => (e && e.resolved ? `${e.resolved.text} (${e.relation} ${formOfTarget(e)})` : null);
-  // a line's text, the pointer resolved where the map resolves it
-  const formOfText = (key, text) => { const e = formOfFor(key, null, text); return e && e.resolved ? formOfSays(e) : text; };
+  // a line's text, the pointer resolved where the map resolves it (nameHeld: formOfResolves)
+  const formOfText = (key, text, nameHeld = false) => { const e = formOfFor(key, null, text); return formOfResolves(e, nameHeld) ? formOfSays(e) : text; };
   // what the BSB means by a cell that is a sign, and why a place has none, in words
   const SUG_KIND_SAYS = { DASH: "the BSB leaves this word without English", THREE_DOTS: "the neighboring English carries it", VVV: "the neighboring English carries it", EMPTY: "the BSB's cell is empty" };
   const SUG_WHY_SAYS = { UNMATCHED_LETTERS_DIFFER: "the BSB's Hebrew spells this word otherwise", UNMATCHED_ONLY_OURS: "the BSB's Hebrew lacks this word", UNMATCHED_ORDER_DIFFERS: "the BSB's Hebrew orders these words otherwise", AMBIGUOUS: "the BSB's words could pair with this place more than one way", ONE_BSB_WORD_OVER_SEVERAL_PLACES: "one BSB word covers this place with its neighbor" };
@@ -1015,6 +1107,90 @@
     sensesPref = id; window.__senses = id;
     try { localStorage.setItem(SENSES_KEY, id); } catch { /* the choice still stands on this page */ }
     reopenForSenses();
+  };
+  // RULE: dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
+  // THE DICTIONARIES THAT REST SHUT (the owner, 15 November 2026, of a
+  // country called Peru on the card of "be fruitful": «we need to think in
+  // terms of each dictionary as a category», and of the names one dictionary
+  // marks: «wouldnt the wiser thing be to doubt all wiktionary "name"
+  // categories?»). The record (restsOffOf, above) names what rests shut: the
+  // word lists, knowledge bases and encyclopedia titles, and what English
+  // Wiktionary files as a name. On a book the record's scope reaches, which
+  // its zone says by the bake's stamp (emitted_from.rests_off: the
+  // thirty-nine books), a row that rests shut is held back from every card
+  // while the switch rests shut, and the card says how many readings, in the
+  // record's own words, with a press that opens them; the rail's block above
+  // the sources' shelves holds the switch too (no pill in the row: the row
+  // is a phone's whole top already, check-contents-shut-v1). Nothing leaves
+  // the store. The line under a word was baked with the shut rows out, so no
+  // switch moves it; a reading of an opened dictionary the reader presses
+  // prints on its line as any press does, and goes back when the switch
+  // shuts (forgetKindPicks). Kept on this device per version of the record:
+  // an «open» holds for the record it was pressed under, so a category a
+  // later record adds rests shut for every reader until opened again.
+  // ?kinds= sets it for one load (the checks ask it). A work the scope does
+  // not reach (the Tikkunei Zohar) carries no stamp: its page draws no switch
+  // and no count, and nothing on it moves (the lead, 15 November 2026).
+  const KINDS_KEY = "fh.kinds";
+  const kindsAsked = ["open", "shut"].includes(QUERY.get("kinds")) ? QUERY.get("kinds") : null;
+  const kindsKept = (() => { try { return localStorage.getItem(KINDS_KEY) || ""; } catch { return ""; } })();
+  let kindsPref = kindsAsked || "shut";   // read against the record's version once it is here
+  window.__kinds = kindsPref;
+  let KINDS_REC = null;                   // the record, once it is here
+  let restsOff = () => null;              // the rule over the store's own index (restsOffOf), once the record holds
+  let RESTS_OFF_IDS = new Set();          // the M ids every row of which rests shut (restsOffIds)
+  let kindsHere = false;                  // this book was baked at rest (its stamp) and the record holds: the switch acts here
+  // AND ON A WORD BY ITS OWN ZONE'S STAMP, NOT THE BOOK'S. A card asks the
+  // store for a word of the book, or for a word drawn from a sidecar beside
+  // it: a Targum's words, a commentary's, a dictionary's own (bin, openHud).
+  // Such a word's line was baked from its own sidecar, which the record's
+  // scope leaves whole and unstamped (the twenty-one Targum sidecars of the
+  // thirty-nine books), so its card keeps today's rest too: it holds nothing
+  // back, counts nothing and draws no switch, and its card and its line stand
+  // on one rule. On Obadiah at rest the Targum's «yy» read «pronominal
+  // possessive enclitics» (Wikidata) on its line while its card held that
+  // reading back as shut (the review of 15 November 2026: 3,465 keys at
+  // 6,462 Targum word places, over the 21 sidecars).
+  const kindsActOn = (bin) => kindsHere && !!(bin && bin.emitted_from && bin.emitted_from.rests_off);
+  let reopenForKinds = () => {};          // the switch answered on the page (set after the sections' relay, below)
+  let kindsFocus = false;                 // the card's press was the switch: its rebuilt press takes the focus
+  const chooseKinds = (id) => {
+    if ((id !== "open" && id !== "shut") || !kindsHere) return;
+    kindsPref = id; window.__kinds = id;
+    try { localStorage.setItem(KINDS_KEY, id === "open" ? `open@${KINDS_REC.version}` : id); } catch { /* the choice still stands on this page */ }
+    reopenForKinds();
+  };
+  // what a pool holds back as shut, in pills (poolFor), and the card's press
+  // that opens it or shuts it again: the count is the switch itself, as the
+  // word senses' count is
+  const kindsHeldN = (pool) => (pool && Array.isArray(pool.withheldByKind) ? pool.withheldByKind.reduce((n, x) => n + x.n, 0) : 0);
+  // short: the press the readings' label carries on a tight card (kindsAtLabel,
+  // in the card), the count alone, the record's words in its title
+  const kindsSwitchFor = (pool, short = false) => {
+    const held = kindsHeldN(pool), shown = (pool && pool.kindsShown) || 0;
+    if (!kindsHere || (!held && !shown)) return null;
+    const said = held ? pool.withheldByKind.map((x) => `${x.n} ${x.say}`).join(" \u00b7 ") : "";
+    const b = Object.assign(document.createElement("button"), { type: "button", className: "kinds-switch",
+      textContent: !held ? `${shown} shut at rest, shown \u00b7 hide` : short ? `${held} shut at rest \u00b7 show` : `${said} \u00b7 show` });
+    if (short && held) b.title = said;
+    // one name whatever it shows, and aria-pressed says whether they stand open;
+    // pressed, the card is built again under it and the focus comes back to it
+    b.setAttribute("aria-label", "dictionaries shut at rest");
+    b.setAttribute("aria-pressed", String(!held));
+    b.addEventListener("click", (e) => { e.stopPropagation(); kindsFocus = true; chooseKinds(held ? "open" : "shut"); });
+    // to the press the rebuilt card shows: a tight card folds the withheld
+    // line's away and shows the label's, and a folded press cannot hold the
+    // focus (the review of 15 November 2026: «show» made the card tight, and
+    // the focus fell to the page)
+    if (kindsFocus) {
+      kindsFocus = false;
+      requestAnimationFrame(() => {
+        const card = b.closest("#hud");
+        const seen = card ? [...card.querySelectorAll(".kinds-switch")].find((x) => x.getClientRects().length) : null;
+        if (seen) seen.focus({ preventScroll: true }); else if (b.isConnected) b.focus({ preventScroll: true });
+      });
+    }
+    return b;
   };
   // RULE: default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second
   // THE DEFAULT SOURCES (the owner, 14 November 2026: "can we serve up each of
@@ -1115,9 +1291,15 @@
     for (const y of DFLT_IDS) if (y !== first && dfltOn(y) && Number(f[y]) > most) { best = y; most = Number(f[y]); }
     return best;
   };
-  // the second in force: the reader's own while it is on and is not the
-  // first (one that fills nothing stays chosen), else the auto second
-  const dfltSecondIsAuto = (first) => { const c = first ? dfltChosen[first] : null; return !(c && c !== first && dfltOn(c)); };
+  // the second in force: the reader's own while it is on, is not the first
+  // and fills something the first leaves in this book, else the auto second.
+  // A chosen second that fills nothing is no second (the review of 15
+  // November 2026: under STEP, MACULA taken on the rail filled 0%, and the row
+  // said «>99.9% · then MACULA» and the note «MACULA fills out 0%», with no
+  // chooser left in it to undo that); the choice stays kept for the books
+  // where it fills, and the rail's row cannot take one (dfltDeadSeconds)
+  const dfltFills = (first, y) => Number(((DFLT_BOOK && DFLT_BOOK.fills && DFLT_BOOK.fills[first]) || {})[y]) || 0;
+  const dfltSecondIsAuto = (first) => { const c = first ? dfltChosen[first] : null; return !(c && c !== first && dfltOn(c) && dfltFills(first, c) > 0); };
   const dfltSecond = (first) => (!first ? null : dfltSecondIsAuto(first) ? dfltAuto(first) : dfltChosen[first]);
   // a share as the row says it, each from its own count and never a remainder
   const dfltPct = (c, n) => {
@@ -1141,8 +1323,15 @@
     const slot = at ? at[DFLT_SLOT[src]] : 0;
     if (!slot) return [];
     if (src === "macula") return typeof slot === "string" && slot ? [{ n: 1, text: slot, note: "" }] : [];
-    if (src === "step") return slot.map((p, i) => ({ n: i + 1, text: p[1] || null, kind: DFLT_KIND[p[0]] || "r", m: dfltM("step", DFLT_KIND[p[0]] || "r"),
-      note: p[0] === 1 ? `a meaning variant${p[2] ? `, ${p[2]}` : ""}` : p[0] === 2 ? "another number" : "" }));
+    // a reading of STEP's after its first (kind r again) is the word read as
+    // two, not an alternative, and says so (the review of 15 November 2026:
+    // at the 46 places whose line is held, «here STEP reads like · 2 «a
+    // hearth»» read as another choice, where STEP reads the word in two)
+    if (src === "step") {
+      const rs = slot.filter((p) => p[0] === 0).length, SAY = ["", "one", "two", "three", "four"];
+      return slot.map((p, i) => ({ n: i + 1, text: p[1] || null, kind: DFLT_KIND[p[0]] || "r", m: dfltM("step", DFLT_KIND[p[0]] || "r"),
+        note: p[0] === 1 ? `a meaning variant${p[2] ? `, ${p[2]}` : ""}` : p[0] === 2 ? "another number" : rs > 1 && slot.findIndex((x) => x[0] === 0) !== i ? `STEP reads this word as ${SAY[rs] || rs}` : "" }));
+    }
     if (src === "ubs") {
       let piece = null, k = 0;
       return (slot[1] || []).map(([pc, words]) => { if (pc !== piece) { piece = pc; k = 0; } k += 1; return { n: k, piece: pc, text: words || null, note: "" }; });
@@ -1227,12 +1416,21 @@
   };
   // what the page says of the sources, for the checks: the first chosen, the
   // second in force and the auto one, the reader's seconds, whether the book
-  // file is here (or not needed), whether it failed, and the note as shown
+  // file is here (or not needed), whether it failed, and the note as shown.
+  // READY: every line stands as the sources in force draw it. At once where
+  // the line rests on STEP, or no source is in force (another order on the
+  // reads switch, a work the index does not list): STEP's lines read the
+  // index alone, and the book file is asked only by a card. Under MACULA,
+  // UBS or BDB, once that source's book file is here (failed: it could not
+  // be fetched, and every line is the line as it rests). It said «the book
+  // file is here», so at rest it turned true only after a card had asked
+  // for the file, and two checks waited out 30 seconds on every page they
+  // loaded at rest (the review of 15 November 2026)
   const dfltSay = () => {
     const first = dfltFirstNow() || dfltFirst;
     const note = document.getElementById("default-note");
     window.__default = { on: dfltFirst, second: DFLT_BOOK ? dfltSecond(first) : null, auto: DFLT_BOOK ? dfltAuto(first) : null, chosen: { ...dfltChosen },
-      ready: !DFLT_BOOK || !!DEFAULT_PICKS, failed: dfltFailed, book: DFLT_BOOK ? BOOK : null, note: note && !note.hidden ? (note.querySelector(".say") || note).textContent : null };
+      ready: !DFLT_BOOK || !!DEFAULT_PICKS || !dfltFirstNow() || dfltFirstNow() === "step", failed: dfltFailed, book: DFLT_BOOK ? BOOK : null, note: note && !note.hidden ? (note.querySelector(".say") || note).textContent : null };
   };
   // the book's picks, fetched once (modeled on pieceBookReady and
   // suggestedReady): refused unless it is this book's file with a place for
@@ -1326,6 +1524,16 @@
   // the second's position as the rail lights it: the reader's own while it
   // is in force, else the one chosen for the book; none under another order
   const dfltSecondPos = () => { const f = dfltFirstNow(); return !f ? null : dfltSecondIsAuto(f) ? "auto" : dfltChosen[f]; };
+  // the second's positions the rail draws dead for the first in force, each
+  // with why: the first itself, and a source that fills nothing where the
+  // first has none in this book (as the note's chooser cannot press one)
+  const dfltDeadSeconds = () => {
+    const f = dfltFirstHere();
+    if (!f) return {};
+    const out = { [f]: "the default source itself" };
+    for (const y of DFLT_IDS) if (y !== f && !(dfltFills(f, y) > 0)) out[y] = `fills nothing where ${dfltPill(f)} has none in this book`;
+    return out;
+  };
   let HUD_TOGGLES_IX = null, HUD_TOGGLES = null, hudTogglesWait = null;
   let MARKS_REC = null;
   const HUD_LANES = { lay: null, relaySections: null };
@@ -1425,7 +1633,11 @@
     .then((j) => (j && j.books && j.books[BOOK]) || {})
     .catch(() => { readFormOffsetsP = null; return null; }));
   const SPAN_BY_KEY = new Map();        // ink key -> rows, in the store's order (NAME rows first)
-  const spanRowsOn = (key) => (SPAN_BY_KEY.get(key) || []).filter((r) => !sourcesOff.has(r.slots[3]));
+  // a row of a dictionary that rests shut stands on no span line, open or
+  // shut (dictionary-kinds-rule-v1): a line never reads a shut row; a span
+  // store row carries its source's own M and no facts, so only a whole
+  // source's entry reaches it
+  const spanRowsOn = (key) => (SPAN_BY_KEY.get(key) || []).filter((r) => !sourcesOff.has(r.slots[3]) && !restsOff(r.slots));
   const OVERLAYS = {};
   const OVERLAY_ROWS = new WeakMap();   // a row the card holds -> the overlay it came from
   let OVERLAY_IX = [];
@@ -1571,7 +1783,7 @@
       positions: [{ id: "auto", lab: "chosen for this book" }, { id: "step", lab: "STEP" }, { id: "macula", lab: "MACULA" }, { id: "ubs", lab: "UBS" }, { id: "bdb", lab: "BDB" }],
       live: () => !!DFLT_BOOK, waits: "the corpus lane’s default picks laid on this book (tools/bake-default-picks-v1.mjs)",
       get: () => dfltSecondPos(), set: (id) => chooseDefaultSecond(id), now: () => saySecond(),
-      deadAt: () => dfltFirstHere() },
+      deadAt: () => dfltDeadSeconds() },
     { id: "suggested", voice: "them", lab: "source suggested", why: "how a running English Bible puts the whole word into its sentence at this place: the Berean Standard Bible's own cell, byte for byte, on the card under the readings — never on the line. On for now, on every card, while the readings are checked",
       positions: [{ id: "off", lab: "off" }, { id: "bsb", lab: "the BSB" }],
       forced: "the BSB, for now",
@@ -1688,7 +1900,7 @@
   const namesMarked = () => !!(zone && zone.emitted_from && zone.emitted_from.toggles && zone.emitted_from.toggles.lattice && zone.emitted_from.toggles.lattice.names);
   const isNamePlace = (word) => !namesMarked() || !!(word && word.np);
   try {
-    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, WORD_SENSES, DFLT_IX, ...OVERLAY_IX] = await Promise.all([
+    [zone, index, POSTURES, CORPUS_REC, LANG_REC, SHORT_REC, OVERLAY_BOOKS, SOURCE_DEFAULTS, RUN_CARDS, HUD_RUNS, SUGGESTED_IX, HUD_TOGGLES_IX, MARKS_REC, WORD_SENSES, DFLT_IX, KINDS_REC, ...OVERLAY_IX] = await Promise.all([
       fetchBin(BOOK),
       // The index names the store's version, and every shard URL carries it.
       // So this one small file is the only thing that must never be stale:
@@ -1737,8 +1949,40 @@
       // the places STEP leaves (default-picks-rule-v1); without it the row's
       // four pills stay hidden and every line is today's
       fetch(`${ROOT}data/default-picks/index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      // the record of what each dictionary is and what rests shut
+      // (dictionary-kinds-rule-v1); without it nothing is shut on this visit,
+      // and the line stands as it was baked
+      fetch(`${ROOT}data/dictionary-kinds-v1.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
+    // THE DICTIONARIES THAT REST SHUT (dictionary-kinds-rule-v1): the rule is
+    // read over the store's own index, before the overlays' ids join it below
+    // (an overlay's dictionary is filed in the record beside the store, and no
+    // resting entry reaches it), and acts only where this book's zone was
+    // baked at rest (its stamp). A record that did not arrive, or does not hold
+    // over this index, shuts nothing on this visit, and the rail says so; the
+    // line stands right whatever the card does, since it was baked at rest.
+    if (KINDS_REC && !kindsAsked) kindsPref = kindsKept === `open@${KINDS_REC.version}` ? "open" : "shut";
+    // The ids shut whole are the record's wherever it holds, on any page: the
+    // search answers places of the thirty-nine books from every page, and
+    // every one of them rests shut, so it leaves those sources out from a
+    // work the record does not rest shut too, as the card it opens does (the
+    // review of 15 November 2026: «peru» on the Tikkunei Zohar's page found
+    // Genesis 1:22's word by ConceptNet and OmegaWiki, and opened a card that
+    // held them back). The cards act only where this book's zone says it
+    // was baked at rest.
+    const kindsStamped = !!(zone && zone.emitted_from && zone.emitted_from.rests_off);
+    if (KINDS_REC || kindsStamped) {
+      try {
+        if (!KINDS_REC) throw new Error("the record of what rests shut did not arrive");
+        const own = { ...index.m_sources };
+        const rule = restsOffOf(KINDS_REC, own, factsOf);
+        RESTS_OFF_IDS = new Set(restsOffIds(KINDS_REC, own));
+        if (kindsStamped) { restsOff = rule; kindsHere = true; }
+      } catch (e) { restsOff = () => null; RESTS_OFF_IDS = new Set(); window.__kindsFailed = true; window.__kindsFault = String((e && e.message) || e); }
+    }
+    window.__kinds = kindsPref; window.__kindsHere = kindsHere;
+    window.__restsOffIds = [...RESTS_OFF_IDS]; window.__kindsVersion = KINDS_REC ? KINDS_REC.version : null;
     // an overlay's sources join the index's under their own ids, which the store
     // does not use; a store source is never overwritten
     OVERLAY_DEFS.forEach((o, i) => {
@@ -2746,8 +2990,8 @@
     // where no store row prints it) stands on the place's pieces' line
     if (r && p.place) r.line = pieceLineOfM(p.mId) || r.line;
     // a default source's own row chosen keeps its own credit, its M and the
-    // words its line said of it (DFLT_MADE)
-    if (r && p.dflt) Object.assign(r, p.dflt);
+    // place it is that source's own (DFLT_MADE), said as the reader's choice
+    if (r && p.dflt) Object.assign(r, p.dflt, { ruled: true });
     return r;
   };
   // TAHOT'S SET, CHOSEN WHOLE on its own division, is the ruling while that
@@ -2811,6 +3055,22 @@
     return ms.length ? ms : null;
   };
   const ruledChip = (k, table, word) => { const ms = ruledMs(k, table, word); return ms ? licenseChipFor(ms) : null; };
+  // A RULED LINE THAT IS A DEFAULT SOURCE'S OWN MADE READING (a pick whose
+  // row poolFor made, DFLT_MADE), as a place a pool makes that row for again,
+  // wherever the form stands. The export asks the place's own pool for the
+  // record the line's chip names, and the made row stood only in the pool of
+  // the place and the source it was made for, so the ruled line was withheld
+  // at every other place its form stands, and at its own once the row moved
+  // (the review of 15 November 2026: MACULA's «and happened» ruled at Ruth
+  // 1:1:1, withheld at 1:1:5 and 1:19:7, and at 1:1:1 too back on STEP)
+  const ruledMadeAt = (k, word) => {
+    const m = pickedByForm.get(k);
+    if (!m || setRuling(m)) return null;
+    const surfaces = ruledSurfaces(m, k, zone.gloss, word);
+    const p = surfaces && surfaces.length === 1 ? m.cells.get(surfaces[0]) : null;
+    const r = p && p.dflt ? mOfPick(p) : null;
+    return r ? { text: p.text, rs: [r], why: "default", src: p.dflt.src, layer: p.dflt.layer, of: p.dflt.of || null, mId: p.mId, own: p.own || null } : null;
+  };
   // THE SOURCE'S PIECES UNDER A RULING ON ITS DIVISION (2026-10-16): a word
   // ruled on the division its source drew, one piece chosen, reads the
   // source's own piece at every position the reader left alone ("and + add
@@ -2876,8 +3136,10 @@
     return parts.join(" + ");
   };
   // the ruled line, its pointer resolved where the map resolves it (the
-  // ruling stays the route's own bytes; only what is printed changes)
-  const ruledLine = (k, table, word) => { const t = ruledLine0(k, table, word); return t === null ? null : formOfText(k, t); };
+  // ruling stays the route's own bytes; only what is printed changes), and
+  // printed as itself where its target is a name and the names gate stands
+  // at a place that is not a name, as its pill prints there (formOfResolves)
+  const ruledLine = (k, table, word) => { const t = ruledLine0(k, table, word); return t === null ? null : formOfText(k, t, !!word && masorah === "only" && !isNamePlace(word)); };
 
   /* ── THE ORDER TOGGLES ────────────────────────────────────────────────────
      Where the ink offers more than one reading at one position, the reader
@@ -3162,7 +3424,8 @@
     if (!text || !r) return null;
     return { text, rs: [{ ...r, reads: "default", src, layer, of, auto: layer === "second" && dfltSecondIsAuto(of) }], why: "default", src, layer, of, mId: M, own };
   };
-  const defaultAt = (word) => {
+  // (the source's line at one word, its neighbors not asked: defaultAt, below, holds a reading across words together)
+  const defaultAtWord = (word) => {
     if (!DFLT_BOOK || !word || word.kq || placeYields(word)) return null;
     // the layer drawn: the first in force, or STEP's while another waits for its book file (dfltLayerNow)
     const n = WORD_N.get(word), first = dfltLayerNow();
@@ -3187,23 +3450,91 @@
     const t2 = lineOf(second, n);
     return t2 ? at(made(second, t2, "second", first, dfltOwn(second, n))) : null;
   };
+  // THE PLACE'S READING ACROSS WORDS STANDS OR GOES WHOLE (the review of 15
+  // November 2026). Where the place's own reading of a word ends with a
+  // hyphen, TAHOT's «from/ Beth-» «-lehem», it and the next word's (the marks
+  // not counted) are one reading written across two words. Under MACULA and
+  // UBS the word the source reads took its line and its neighbor kept its
+  // half alone: «Bethlehem» «-lehem» at Ruth 1:1:10-11, «and» «-nego» at
+  // Daniel 2:49:13-14, «food» «-caci[es] of» at Daniel 1:5:7-8 (313 such
+  // readings written with both hyphens in the 39 books; one of the two words
+  // read by MACULA at 195 of them, by UBS at 305, by BDB at 65). So, as a
+  // joined run takes a source's line only where the source reads every word
+  // of it, a word of such a reading takes a source's line only where that
+  // source reads every word of it; elsewhere each keeps the line as it rests.
+  // THE HYPHEN AT THE END IS THE MARK (the review of the toggles fixes, 15
+  // November 2026): the next word need not begin with one, and TAHOT writes
+  // about half of them so, «Tubal-» «Cain», «fif-» «teen», «In-» «deed»,
+  // «there-» «fore». Held only where both hyphens stood, UBS printed
+  // «Tubal-Cain» «Cain» at Genesis 4:22:6-7 and «Baal-Hamon» «Hamon» at Song
+  // of Songs 8:11:4-5, and BDB «there-» «so» at Habakkuk 1:17:1-2 (674 such
+  // readings in the 39 books, 361 more than the 313 written with both; read
+  // in part by MACULA at 231, by UBS at 469, by BDB at 153). Not held: a
+  // source's line that reads its neighbors' words where TAHOT marks nothing
+  // across them (UBS's «Aram Zoba» at II Samuel 10:6:15, «Aram» «Zobah»
+  // beside it), which the page cannot tell from that source's reading of the
+  // word itself
+  let DFLT_HALVES = null;   // each word of a reading across words -> its words
+  const dfltHalvesOf = (word) => {
+    if (!DFLT_HALVES) {
+      DFLT_HALVES = new WeakMap();
+      // the place's reading as placeLine draws it, every piece glossed
+      const said = (w) => (Array.isArray(w.pg) && w.pg.length && w.pg.every((p) => p && String(p.g || "").trim()) ? w.pg.map((p) => String(p.g).trim()).join("/") : "");
+      for (const sec of zone.sections || []) {
+        const ws = (sec.words || []).filter((w) => w && !w.mark);
+        for (let i = 0; i + 1 < ws.length; i += 1) {
+          if (!/-$/u.test(said(ws[i]))) continue;
+          const across = DFLT_HALVES.get(ws[i]) || [ws[i]];
+          across.push(ws[i + 1]);
+          DFLT_HALVES.set(ws[i], across); DFLT_HALVES.set(ws[i + 1], across);
+        }
+      }
+    }
+    return DFLT_HALVES.get(word) || null;
+  };
+  const defaultAt = (word) => {
+    const d = defaultAtWord(word);
+    const across = d ? dfltHalvesOf(word) : null;
+    return !across || across.every((w) => w === word || (defaultAtWord(w) || {}).src === d.src) ? d : null;
+  };
+  // the source's own line at a word of such a reading, held back because the
+  // source does not read every word of it (said on the card), or null
+  const dfltHalfHeld = (word) => (word && !defaultAt(word) ? (dfltHalvesOf(word) ? defaultAtWord(word) : null) : null);
   // a joined run takes the source's line only where the first source itself
   // reads every word of it (the brief's call 5); elsewhere the run's own line
   // stands, and STEP, today's line, never takes one
   const runTakesDefault = (run) => !!(run && run.__words && run.__words.length && dfltLayerNow() !== "step"
     && run.__words.every((w) => { const d = defaultAt(w); return !!d && d.layer === "first"; }));
+  // a place by its number (WORD_N) as a reader cites it: the work, the verse
+  // and the word's count in it, the marks not counted (the card's own address)
+  let DFLT_PLACES = null;
+  const dfltPlaceSaid = (n) => {
+    if (!DFLT_PLACES) {
+      DFLT_PLACES = [];
+      for (const sec of zone.sections || []) { let k = 0; for (const w of sec.words || []) DFLT_PLACES.push(w.mark ? null : `${sec.label}:${++k}`); }
+    }
+    const at = n ? DFLT_PLACES[n - 1] : null;
+    return at ? `${zone.work} ${at}` : "another place of this form";
+  };
   // what a line's chip says of a source's own reading
   // (a pick after the first, made on the card and chosen there, by its number)
-  const dfltSays = (r) => (r.layer === "pick" ? `${dfltPill(r.src)}’s own reading at this place (${dfltPill(r.src)} ${r.n})`
+  // RULED, it says where it is that source's own (the review of 15 November
+  // 2026: «MACULA’s own reading at this place, chosen on the row of sources»
+  // went with a ruling to Ruth 1:1:5, 1:19:7 and 2:17:9, where MACULA reads
+  // other words, and stayed after the row was back on STEP): the place it was
+  // made at, and the reader's choice, words true at every place it reaches
+  const dfltSays = (r) => (r.ruled ? `${dfltPill(r.src)}’s own reading at ${dfltPlaceSaid(r.at)}${r.layer === "pick" ? ` (${dfltPill(r.src)} ${r.n})` : ""}, chosen by the reader for every place this form stands`
+    : r.layer === "pick" ? `${dfltPill(r.src)}’s own reading at this place (${dfltPill(r.src)} ${r.n})`
     : r.layer === "second"
       ? `${dfltPill(r.src)}’s own reading at this place, filling out ${dfltPill(r.of)}${r.auto ? ` — chosen for ${zone.work}` : ""}`
       : r.src === "step" ? `${dfltPill(r.src)}’s own reading at this place, where today’s line has no words`
         : `${dfltPill(r.src)}’s own reading at this place, chosen on the row of sources`);
-  // the credit a made row of a default source's words keeps (DFLT_MADE): its line's, or a later pick's number
+  // the credit a made row of a default source's words keeps (DFLT_MADE): its
+  // line's, or a later pick's number, and the place it was made at (at)
   const dfltCredit = (place, n = 1) => {
     const r = place && place.rs && place.rs[0];
     if (!r || r.reads !== "default") return null;
-    return n > 1 ? { reads: "default", src: r.src, layer: "pick", n } : { reads: "default", src: r.src, layer: r.layer, of: r.of, auto: r.auto };
+    return n > 1 ? { reads: "default", src: r.src, layer: "pick", n, at: place.n } : { reads: "default", src: r.src, layer: r.layer, of: r.of, auto: r.auto, at: place.n };
   };
   // a record of the store (or an overlay's) by its m_id; the place's own
   // row (PLACE_ROWS: no store row prints the place's reading) by its pieces',
@@ -3404,11 +3735,13 @@
   };
   // named: lineNamed's answer, or null to credit the oldest carrier, the
   // record the card's foot shows. everySource: ask the pool with the switches
-  // lifted (poolFor). An answer with miss set found nothing to cite under
-  // this key, so another may be asked.
-  const attributionFor = async (surface, shownText, at = null, named = null, everySource = false, word = null) => {
+  // lifted (poolFor). everyKind: ask it with the dictionaries that rest shut
+  // open (dictionary-kinds-rule-v1), for the masthead's name, below. An
+  // answer with miss set found nothing to cite under this key, so another may
+  // be asked.
+  const attributionFor = async (surface, shownText, at = null, named = null, everySource = false, word = null, everyKind = false) => {
     let pool = null;
-    try { pool = await poolFor(surface, { ...(at && spanJoin(at.text) === shownText ? { place: at } : {}), everySource, ...(word ? { word } : {}) }); }
+    try { pool = await poolFor(surface, { ...(at && spanJoin(at.text) === shownText ? { place: at } : {}), everySource, ...(word ? { word } : {}), ...(everyKind ? { everyKind } : {}) }); }
     catch { return { ok: false, unreachable: true, why: "the catalog could not be reached for this form; export again" }; }
     if (!pool || !pool.length) return { ok: false, miss: true, why: "no record in the catalog for this form" };
     // every pill that prints the words shown: the store keeps "name" and
@@ -3573,7 +3906,9 @@
           if (!r.miss) { a = r; break; }
         }
         if (!a) for (const [k, every] of tries) {
-          const r = await attributionFor(k, asked, at, named, every);
+          // a ruled line that is a default source's own made reading is asked of
+          // a pool that makes its row again (ruledMadeAt), wherever it stands
+          const r = await attributionFor(k, asked, (ruled && ruledMadeAt(k, w)) || at, named, every);
           if (!r.miss) { a = r; break; }
           // the reason kept is the most telling one: a reading found without
           // the record the line credits says more than a reading not found
@@ -4017,7 +4352,7 @@
   const READ_MIN = 3;
   let readsShort = false;
   const rowsOverrun = () => { const rowsEl = hud.querySelector(".rows"); return Math.max(rowsEl ? [...rowsEl.children].reduce((n, c) => n + c.offsetHeight, 0) - rowsEl.clientHeight : 0, readsShort ? 2 : 0); };
-  const fitBands = () => {
+  const fitBandsNow = () => {
     readsShort = false; delete hud.dataset.readRows;
     if (hud.hidden) return;
     const rowsEl = hud.querySelector(".rows");
@@ -4411,6 +4746,24 @@
       hud.dataset.readRows = String(whole);
     }
     return stands <= rowsEl.clientHeight + 1 && !lastResort && !readsShort;
+  };
+  // THE FOCUS ON A PRESS OF THE DICTIONARIES THAT REST SHUT RIDES THE FIT.
+  // The card carries that press twice, on its withheld line and in its
+  // readings' label, and the fit shows one of them (a tight card the label's,
+  // kindsAtLabel): a fit that turns the card tight, or back, folds the press
+  // the reader stood on, and a folded press drops the focus to the page (the
+  // review of 15 November 2026: «show» on Obadiah 1:2's first word made its
+  // card tight). The focus goes to the press the card shows.
+  const fitBands = () => {
+    const a = document.activeElement;
+    const had = !!(a && a.classList && a.classList.contains("kinds-switch") && hud.contains(a));
+    const fit = fitBandsNow();
+    const now = document.activeElement;
+    if (had && !(now && now.classList && now.classList.contains("kinds-switch") && now.getClientRects().length)) {
+      const seen = [...hud.querySelectorAll(".kinds-switch")].find((x) => x.getClientRects().length);
+      if (seen) seen.focus({ preventScroll: true });
+    }
+    return fit;
   };
 
   // AT THE END OF THE PLACEMENT, AND THE END MEANS THE END. The snap below was
@@ -5094,16 +5447,23 @@
     // name never enters the pool, and the card says how many. A row the
     // entry already withheld is counted there and not again. Where no place
     // is known, and in a book whose places were not read for names, nothing
-    // is asked. The overlays' rows carry no such mark. A pointer whose pill
-    // prints the English of a row its source marks a name is withheld with
-    // it (formOfIsAName): the map is asked for first, so the gate does not
-    // depend on whether it had landed (the review of 14 November 2026)
-    let withheldByName = 0;
+    // is asked. The overlays' rows carry no such mark. A POINTER WHOSE
+    // TARGET THE MAP RESOLVES TO A ROW ITS SOURCE MARKS A NAME is no row
+    // given as a name: its own source gives it as a form of another word, and
+    // the name is the entry the lane's map resolved it to, so here it prints
+    // as itself, unresolved (namesHeld; formOfResolves), and is neither
+    // withheld nor counted as a name. Withheld (the review of 14 November
+    // 2026), it was counted «given as a name by its source», the site's
+    // inference said as the source's word, and at 4 of the 34 such pointers
+    // the source's own reading of the very word went with it (the review of
+    // 15 November 2026: Genesis 32:29:11, «second-person masculine singular
+    // past (suffix conjugation) of» the verb; Genesis 42:16:1); and the
+    // card waited for the map before it drew a pill at every such place
+    let withheldByName = 0, namesHeld = false;
     if (pointingNow(W.pointed) === "only" && W.name === false) {
-      if (!FORM_OF) await formOfReady();
-      const kept = routes.filter((row) => !nameWithheld(factsOf(row), false) && !formOfIsAName(surface, row));
+      const kept = routes.filter((row) => !nameWithheld(factsOf(row), false));
       withheldByName = routes.length - kept.length;
-      routes = kept;
+      routes = kept; namesHeld = true;
     }
     if (pointingNow(W.pointed) === "only") {
       // the grade has to be here before the pool is built, not after: a
@@ -5229,6 +5589,22 @@
       withheldBySources += extra.length - keptExtra.length;
       extra = keptExtra;
     }
+    // THE DICTIONARIES THAT REST SHUT (dictionary-kinds-rule-v1), at the same
+    // grain and after every gate above, so a row the entry, the name, the
+    // pointing, the stem or a source switch withheld is counted there and not
+    // again. While the switch rests shut, a row the record rests shut never
+    // enters the pool; the line's own pool (storeOnly, asked when a switch
+    // moves a line live) never takes one, open or shut, since the line never
+    // reads a shut row. Only on a book the record's scope reaches (kindsHere);
+    // lifted with the switches for the exporter (everySource), and alone for
+    // the masthead's name (everyKind). Counted below, in pills, once the open
+    // rows' pills are known. A word drawn from a sidecar the bake left whole
+    // (opts.bin: a Targum's words) is not gated and not counted (kindsActOn).
+    const kindsAct = kindsActOn(opts.bin || zone);
+    const kindsGate = kindsAct && !opts.everySource && !opts.everyKind && (kindsPref === "shut" || !!opts.storeOnly);
+    const shutRows = [];
+    const shutAway = (rows) => rows.filter((row) => { if (!restsOff(row)) return true; shutRows.push(row); return false; });
+    if (kindsGate) routes = shutAway(routes);
     // THE WORDS THAT OPEN A NUMBERED SENSE ARE NOTES (sense-openings-rule-v1,
     // 13 November 2026). Such a row gives no reading, so no pill stands on
     // it. Where the switches above keep it, it leaves the rows here and
@@ -5259,6 +5635,10 @@
         extra = ofThisStem;
       }
     }
+    // a span store row carries its source's own M and rests shut with it; an
+    // overlay's own sources are filed beside the store, and no resting entry
+    // reaches them (restsOff answers null for an id the store's index lacks)
+    if (kindsGate && extra.length) extra = shutAway(extra);
     // WORD SENSES (word-senses-rule-v1): a row of Jastrow's that is a word
     // sense is held back while the switch rests off, and counted; on, it
     // stays, and prints as a word sense below. It is asked last, so a row a
@@ -5426,10 +5806,41 @@
         g.pkl = Math.min(...own.map((row) => Number(row[0])));
       }
     }
+    // WHAT RESTS SHUT HERE, IN PILLS, as the card would print them
+    // (sensesDrawn's lesson): a reading an open row also prints stands,
+    // credited to it, and is not counted; each reading is counted once, under
+    // the first resting entry, in the record's order, whose row prints it; a
+    // row that only opens a numbered sense gives no pill. With the switch
+    // open, the pills that stand on shut rows alone are counted instead: what
+    // shutting it takes away.
+    const withheldByKind = [];
+    let kindsShown = 0;
+    if (kindsAct && !opts.storeOnly) {
+      if (shutRows.length) {
+        const open = new Set();
+        for (const [gk, g] of groups) open.add(gk.startsWith("\u0001nd\u0001") ? gk : drawn(g.text));
+        const counted = new Set();
+        for (const e of KINDS_REC.rests_off) {
+          let n = 0;
+          for (const row of shutRows) {
+            if (restsOff(row) !== e || !index.m_sources[row[3]] || senseOpened(row)) continue;
+            const nd = isNoDerivs(index.m_sources[row[3]].licensePosture);
+            for (const x of nd ? [routePrinted(row)] : readingsOfRow(row)) {
+              const key = nd ? `\u0001nd\u0001${row[3]}\u0001${x}` : drawn(x);
+              if (open.has(key) || counted.has(key)) continue;
+              counted.add(key); n += 1;
+            }
+          }
+          if (n) withheldByKind.push({ id: e.id, say: e.say, n });
+        }
+      }
+      if (kindsPref === "open") kindsShown = [...groups.values()].filter((g) => g.records.length && g.records.every((row) => restsOff(row))).length;
+    }
     const pool = sortPool([...groups.values()], surface, W);
     pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
-    pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.withheldByName = withheldByName;
+    pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.withheldByName = withheldByName; pool.namesHeld = namesHeld;
     pool.withheldBySense = withheldBySense; pool.sensesShown = sensesShown;
+    pool.withheldByKind = withheldByKind; pool.kindsShown = kindsShown;
     pool.notes = notes;
     return pool;
   };
@@ -5442,8 +5853,9 @@
   // carries is named here once, and a copy takes them all.
   const carryWithheld = (to, from) => {
     to.withheld = from.withheld; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
-    to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.withheldByName = from.withheldByName;
+    to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.withheldByName = from.withheldByName; to.namesHeld = from.namesHeld;
     to.withheldBySense = from.withheldBySense; to.sensesShown = from.sensesShown;
+    to.withheldByKind = from.withheldByKind; to.kindsShown = from.kindsShown;
     to.notes = from.notes;
     return to;
   };
@@ -6259,6 +6671,9 @@
     el.__reopen = () => openHud(el, region, unitId, wordPos, opts);
     if (!opts.mark) el.classList.add("active");
     const bin = opts.bin || zone;
+    // the dictionaries that rest shut act on this card where its word's own
+    // zone was baked at rest (kindsActOn): a Targum's word keeps today's rest
+    const kindsOn = kindsActOn(bin);
     const word = opts.word || region;
     const regionIndex = opts.regionIndex || 0;
     // a half of a pair the reader moved the card to, in the card's own head
@@ -6722,7 +7137,21 @@
     // set opens on the set's division, each block on its own gloss.
     // (under a default source other than STEP the line is that source's whole
     // reading, and the card opens on the whole form, as the line reads it)
-    const placeSet = !defaultAt(word) && bin === zone && !opts.run && word && Array.isArray(word.pg) && word.pg.length > 1 && region
+    // A RULING DECIDES THE DIVISION THE CARD OPENS ON, under every source (the
+    // review of 15 November 2026: Ruth 1:1:1 «happen» ruled at rest, MACULA
+    // pressed, the card at 1:1:5 opened on the whole form, as MACULA's line
+    // reads it, found no reading pressed there and painted MACULA's «that
+    // there was» over the ruling; MACULA's own «and happened» ruled whole and
+    // the row back on STEP, the card opened on the set's division and painted
+    // the set; at about half of all words, those whose place has a set). A
+    // form ruled on the place's own pieces (a block of them pressed with no
+    // division, the set whole, or the set's division pressed) opens on them,
+    // as its line reads them; one ruled whole with no division pressed opens
+    // on the whole form; any other division pressed opens as pressed (below)
+    const ruledOnPieces = bin === zone && !opts.run && !!word && !!region && Array.isArray(word.pg) && word.pg.length > 1
+      && !!(setRuling(mem) || placeCutOf(mem, region.k, word) || (mem.cut && mem.cut === word.pg.map((x) => (x && x.k) || "").join("+")));
+    const ruledWhole = bin === zone && !opts.run && !!word && !!region && !mem.cut && !ruledOnPieces && mem.cells.has(region.k);
+    const placeSet = (ruledOnPieces || !defaultAt(word)) && bin === zone && !opts.run && word && Array.isArray(word.pg) && word.pg.length > 1 && region
       && word.pg.map((x) => (x && x.k) || "").join("") === region.k ? placeLine(word) : null;
     const setCut = placeSet && placeSet.mId && index.m_sources[placeSet.mId]
       ? covers.find((c) => c.length === word.pg.length && c.every((x, i) => x.surface === word.pg[i].k)) || null : null;
@@ -6734,7 +7163,7 @@
     if (mem.cut) {
       const found = covers.find((c) => cutKey(c) === mem.cut);
       if (found) cover = found;
-    } else if (setCut) cover = setCut;
+    } else if (setCut && !ruledWhole) cover = setCut;
     // ONE SET, ONE PILL (the owner, 2026-10-03: "the key is to not fan out
     // those R pills as if theyre solo ... the license is 1 whole still"). On
     // the set's division the card first stands on the division whole, where
@@ -6779,6 +7208,27 @@
     // identifies a route in the record instead: its text and the M behind it.
     const routeKey = (r) => spanJoin(r.text) + " | " +
       (r.records && r.records[0] ? r.records[0][3] : "no m");
+    // A READING RULED FROM A DEFAULT SOURCE'S OWN MADE PILL STANDS AS A PILL
+    // WHEREVER ITS FORM STANDS. Its row was made in the pool of the place and
+    // the source it was made for (poolFor), and nowhere else, so the card at
+    // another place, or under another source, read the ruling and pressed
+    // another pill (the review of 15 November 2026: Ruth 1:19:8 «when + came +
+    // they» ruled, MACULA pressed, MACULA's «when came they» pressed there;
+    // under MACULA «and happened» ruled at 1:1:1, «that there was» pressed at
+    // 1:1:5). The row is made again as poolFor makes it, credited as it was
+    // chosen (its credit names the place it is that source's own), first in
+    // the reading that prints the same where the pool holds one
+    const withRuledMade = (pool, p) => {
+      if (!Array.isArray(pool) || !p || !p.dflt || !p.mId || !index.m_sources[p.mId] || pool.some((r) => routeKey(r) === p.key)) return pool;
+      const t = p.own && p.own.parts.length === 1 ? p.own.parts[0] : p.text;
+      const row = [0, t, t, p.mId, null, null, null];
+      PLACE_ROWS.add(row); DFLT_MADE.set(row, p.dflt); if (p.own) DFLT_OWN.set(row, p.own);
+      const d = readingKey(p.text);
+      const g = pool.find((x) => readingKey(x.text) === d);
+      if (g) { g.records.unshift(row); g.ov = undefined; g.text = p.text; g.ruledMade = p.dflt; }
+      else pool.push({ text: p.text, year: Infinity, ledger: 0, records: [row], place: true, ruledMade: p.dflt });
+      return pool;
+    };
     const cache = new Map();           // cell surface -> pool (or null)
     // a block's place in the division open: the place the caller names where
     // those letters do stand there, else the first block spelled so
@@ -6889,12 +7339,14 @@
       const have = new Set(kept.map((g) => drawnOf(g.text)));
       const reads = kqReadRegions();
       let heldSenses = 0;
+      const heldKinds = new Map();   // the read word's shut readings, by resting entry (dictionary-kinds-rule-v1)
       for (const r of reads) {
         const qk = r.k;
         let qp = null;
-        try { const at = placeOfCell(qk); qp = await poolFor(qk, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(qk) }); } catch { qp = null; }
+        try { const at = placeOfCell(qk); qp = await poolFor(qk, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(qk), bin }); } catch { qp = null; }
         if (!qp) continue;
         heldSenses += qp.withheldBySense || 0;
+        for (const x of qp.withheldByKind || []) { const h = heldKinds.get(x.id); if (h) h.n += x.n; else heldKinds.set(x.id, { ...x }); }
         const read = kqBare(r.s || qk);
         for (const g of qp) {
           const d = drawnOf(g.text);
@@ -6911,6 +7363,8 @@
       // brought none, counted on the written letters' catalog)
       out.withheldBySense = heldSenses;
       out.sensesShown = out.filter((g) => g.records.length && g.records.every((x) => SENSE_ROWS.has(x))).length;
+      out.withheldByKind = kindsOn ? KINDS_REC.rests_off.map((e) => heldKinds.get(e.id)).filter(Boolean) : [];
+      out.kindsShown = kindsOn && kindsPref === "open" ? out.filter((g) => g.records.length && g.records.every((x) => restsOff(x))).length : 0;
       out.kqWithheld = heldGroups.length;
       out.kqWithheldRows = heldGroups.reduce((n, g) => n + g.records.length, 0);
       // the read form as the source carries it, joiner and all
@@ -7052,6 +7506,13 @@
       const p0 = dAt.src === "bdb" ? dfltPicks("bdb", WORD_N.get(word))[0] : null;
       nowK.textContent = `reading \u00b7 ${dfltPill(dAt.src)} at this place${p0 ? ` \u00b7 ${p0.note}` : ""}`;
     } else if (dAt) nowK.textContent = `reading \u00b7 ${dfltPill(dAt.src)} at this place \u00b7 ${dfltPill(dAt.of)} has none here`;
+    // a word of the place's reading across words, its source's own line held
+    // back because that source does not read every word of it (dfltHalvesOf):
+    // the place's line stands, and the label says why, not «has none here»
+    else if (!opts.run && bin === zone && word && dfltHalfHeld(word)) {
+      const h = dfltHalfHeld(word), ws = dfltHalvesOf(word);
+      nowK.textContent = `reading \u00b7 ${placeWho} at this place \u00b7 one reading across ${ws.length} words, ${dfltPill(h.src)} reads ${ws.filter((w) => (defaultAtWord(w) || {}).src === h.src).length} of them`;
+    }
     // (that the first has none here is said only once its file is here: before, the page cannot know it)
     else if (atPlace && DFLT_BOOK && DEFAULT_PICKS && !word.kq && dfltFirstNow() && dfltFirstNow() !== "step") nowK.textContent = `reading \u00b7 ${placeWho} at this place \u00b7 ${dfltPill(dfltFirstNow())} has none here`;
     else if (atPlace) nowK.textContent = `reading \u00b7 ${placeWho} at this place`;
@@ -7083,7 +7544,8 @@
     // lacks: the row says it is asking, and says absence only once it knows
     const pendingNow = () => !setWhole && cover.some((c) => !picked.get(c.surface) && !cache.has(poolKey(c.surface)) && !(bin.gloss && bin.gloss[c.surface]));
     // what the open cover reads: the set whole, or its blocks joined
-    const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c, i) => formOfText(c.surface, textOfCell(c.surface, i))).join(" + "));
+    // (a pointer whose target is a name printed as itself where the names gate stands here: formOfResolves)
+    const coverText = () => (setWhole ? spanJoin(placeSet.text) : cover.map((c, i) => formOfText(c.surface, textOfCell(c.surface, i), bin === zone && openName === false && pointingNow(openPointed) === "only")).join(" + "));
     // and the chip of what it reads: the set's own source, or each block's
     const coverChip = () => {
       let rs = setWhole ? (placeSet.rs.length ? placeSet.rs : null) : [];
@@ -7115,9 +7577,13 @@
     // pressed on it is: without its division remembered, the ruling was read
     // word by word and the line fell back to its words' pieces.
     const rungRuled = () => { if (opts.run && cover.length === 1 && mem.cut !== cutKey(cover)) mem.cut = cutKey(cover); };
-    // a word sense pressed over a reading on the same block keeps that reading
-    // under it, so the switch turned off gives it back (forgetSensePicks)
-    const underOf = (prev) => (prev ? (prev.sense ? prev.under || null : prev) : null);
+    // a word sense, or a reading of a dictionary that rests shut, pressed over
+    // a reading on the same block keeps that reading under it, so the switch
+    // turned off, or shut, gives it back (forgetSensePicks, forgetKindPicks)
+    const underOf = (prev) => (prev ? (prev.sense || prev.kind ? prev.under || null : prev) : null);
+    // a reading that stands on rows resting shut alone, pressed, is remembered
+    // as one, so shutting the switch forgets it (dictionary-kinds-rule-v1)
+    const kindPick = (records, prev) => (kindsOn && records.length && records.every((x) => restsOff(x)) ? { kind: true, under: underOf(prev) } : {});
     if (opts.run && opts.run.on && cover.length > 1 && cutKey(cover) === opts.run.on && mem.cut !== opts.run.on) { mem.cut = opts.run.on; markRuled(); }
 
     // ONE PAINT PATH (the owner, 2026-10-17, of the cells after a pick: "the
@@ -7220,6 +7686,11 @@
         // painted and the provenance mark stays with the half the line
         // reads from
         if (opts.kqNav) return;
+        // a form the reader ruled stands under its ruling, which the painters
+        // drew at every place it stands: an open paints nothing over it (the
+        // review of 15 November 2026: the open painted the source in force
+        // over the ruling at every word whose place has a set)
+        if (ruledHere) return;
         // with the chip of the words it paints: opening a card may paint
         // other words (a pair's other half, the division the card opens on)
         paintRuling(glossEl, glossParts ? (glossParts[regionIndex] = mine, glossParts.join(" + ")) : mine, glossParts ? null : coverChip());
@@ -7556,8 +8027,10 @@
       // that the place's reading fills out the first is said only once the
       // first's file is here, as the label says it: before, the page cannot
       // know the first has none here (the review of 14 November 2026: «on the
-      // line, filling out UBS» at Ruth 1:1:3, where UBS reads «to judge»)
-      return { n, on: null, piece: placeHere, filling: DEFAULT_PICKS && first && first !== "step" ? first : null };
+      // line, filling out UBS» at Ruth 1:1:3, where UBS reads «to judge»);
+      // and not where the first's own line is held back at a word of the
+      // place's reading across words (dfltHalfHeld): it has one there
+      return { n, on: null, piece: placeHere, filling: DEFAULT_PICKS && first && first !== "step" && !dfltHalfHeld(word) ? first : null };
     };
     // " · on the line", or " · on the line, filling out STEP"
     const dfltOnLine = (of) => Object.assign(document.createElement("span"), { className: "r-on", textContent: ` \u00b7 on the line${of ? `, filling out ${dfltPill(of)}` : ""}` });
@@ -7571,7 +8044,11 @@
       for (const x of picks) {
         const one = document.createElement("span");
         const words = x.words !== undefined ? x.words : x.text;
-        one.textContent = ` \u00b7 ${x.n}${words ? ` «${words}»` : " (no words given)"}${x.note ? ` (${x.note})` : ""}`;
+        // the source's words in the reading's ink (.w); the page's number,
+        // quotes and note in its own (the review of 15 November 2026)
+        one.append(` \u00b7 ${x.n}`);
+        if (words) one.append(" «", Object.assign(document.createElement("span"), { className: "w", textContent: words }), "»");
+        one.append(`${words ? "" : " (no words given)"}${x.note ? ` (${x.note})` : ""}`);
         const m = x.m && index && index.m_sources ? index.m_sources[x.m] : null;
         if (m) { one.title = m.label; one.dataset.line = x.m; }
         span.append(one);
@@ -7594,6 +8071,27 @@
       for (let i = 0; i < cells.length; i += 1) if (cells[i].surface !== pg[i].k) return null;
       const hit = pg[idx];
       return hit && hit.g ? hit : null;
+    };
+    // THE PRESS WHERE NO FIT FOLDS IT (dictionary-kinds-rule-v1; the review
+    // of 15 November 2026). A tight card, most cards on a phone, folds the
+    // withheld line away with its press (#hud.tight .rows .band > .kq-role),
+    // and with no pill for the switch in the row above the book (the lead, 15
+    // November 2026: that row is a phone's whole top) the card's press is the
+    // switch's one door on the card: at 412 by 915 it stood on screen on 4 of
+    // the 52 cards of Obadiah 1:1-6 that carry it. So the readings' label,
+    // the one line of the band a tight card keeps, carries the press too, the
+    // count alone with the record's words in its title, and the stylesheet
+    // shows it only while the withheld line is folded: one press on screen
+    // at a time
+    const kindsAtLabel = (pool) => {
+      const lab = readRow.querySelector(":scope > .r-label");
+      if (!lab) return;
+      for (const x of lab.querySelectorAll(":scope > .kinds-at")) x.remove();
+      const kb = kindsSwitchFor(pool, true);
+      if (!kb) return;
+      const at = Object.assign(document.createElement("span"), { className: "kinds-at" });
+      at.append(" · ", kb);
+      lab.append(at);
     };
     const renderReadings = async () => {
       const surface = setWhole ? SET_KEY : cover[cellIdx].surface;
@@ -7630,7 +8128,7 @@
       if (!cache.has(askKey)) {
         try {
           const at = placeOfCell(surface);
-          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace });
+          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace, bin });
           // the whole form, where the set has its division: the set is not a
           // reading of the form as one word, and stands on its division
           if (got && setCut && surface === region.k) {
@@ -7638,6 +8136,8 @@
           }
           // the written branch of a pair, defined by what is read (kq-declared-weld-v1)
           if (got && kqWeldHere(surface)) got = await kqWeld(got, surface);
+          // a reading ruled from a default source's own made pill, made again here (withRuledMade)
+          got = withRuledMade(got, picked.get(surface));
           cache.set(askKey, got);
         }
         catch (e) { unreachable = e; }
@@ -7845,8 +8345,11 @@
         // exists, and a block whose every row they withheld was read as a
         // block no dictionary gives — and its rung forgotten. It says what
         // withheld it, keeps the rung, and stands on no record meanwhile.
-        if (pool && (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense)) {
+        if (pool && (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || kindsHeldN(pool))) {
           const bits = [];
+          // what rests shut emptied it, in the record's words, with the press that opens them (dictionary-kinds-rule-v1)
+          const nK = kindsHeldN(pool);
+          if (nK) bits.push(`${nK} reading${nK === 1 ? "" : "s"} shut at rest: ${pool.withheldByKind.map((x) => `${x.n} ${x.say}`).join(", ")} \u2014 the button opens them`);
           if (pool.withheldBySense) bits.push(`${pool.withheldBySense} word sense${pool.withheldBySense === 1 ? "" : "s"} held back — Jastrow's note${pool.withheldBySense === 1 ? "" : "s"} on the word's sense, not a definition, shown under the word senses switch`);
           if (pool.withheldByEntry) bits.push(`${pool.withheldByEntry} record${pool.withheldByEntry === 1 ? "" : "s"} withheld by the entry — their own source files them under another entry than ${(pool.entry || []).join(" or ")}, which stands here`);
           if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
@@ -7855,10 +8358,13 @@
           if (pool.withheldByStem) bits.push(`${pool.withheldByStem} record${pool.withheldByStem === 1 ? "" : "s"} withheld by the stem — their source reads another stem of this verb than ${(pool.stems || []).join(" or ")}`);
           p.className = "kq-role sources-withheld";
           p.textContent = `${bits.join("; ")}. No record is left to read here. Nothing here says the shelf lacks it.`;
+          { const kb = kindsSwitchFor(pool); if (kb) p.append(" ", kb); }
+          kindsAtLabel(pool);
           readRow.append(p);
           { const nl = notesLine(); if (nl) readRow.append(nl); }
           dSlot.replaceChildren(); selectedRecordRef.m = null;
-          paintNow(cover.map((c, i) => textOfCell(c.surface, i)).join(" + "), "every record for this block is withheld by your switches");
+          const onlyShut = nK && !(pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense);
+          paintNow(cover.map((c, i) => textOfCell(c.surface, i)).join(" + "), onlyShut ? "every record for this block rests shut" : "every record for this block is withheld by your switches");
           clampHud(); return;
         }
         // a rung of a run's lattice nothing on the shelf answers says so in
@@ -8222,9 +8728,9 @@
             // chosen on
             if (SOURCE_WORDS.has(String(group.text))) SOURCE_WORDS_RULED.add(String(group.text));   // a source's own words, ruled, print whole
             selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
-              place: PLACE_ROWS.has(row) && !DFLT_MADE.has(row), ...(DFLT_MADE.has(row) ? { dflt: DFLT_MADE.get(row) } : {}),
+              place: PLACE_ROWS.has(row) && !DFLT_MADE.has(row), ...(DFLT_MADE.has(row) ? { dflt: DFLT_MADE.get(row), own: DFLT_OWN.get(row) || null } : {}),
               cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}),
-              ...(group.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}) });
+              ...(group.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}), ...kindPick(group.records, picked.get(surface)) });
             if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
             [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String((x.dataset.pointer || x.textContent) === group.text || x.textContent === spanJoin(group.text))));
             rungRuled(); markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
@@ -8313,18 +8819,24 @@
         });
         body.append(more, drawer);
       };
-      const choose = (route) => {
+      // a reading remembered for this block as a press of its pill remembers it
+      // (choose, and a division pressed with no reading pressed on it, below)
+      const remember = (route) => {
         // a word sense chosen is remembered as one, so the switch turned off
         // can hold it back from the line too (forgetSensePicks)
         // a source's own words, ruled, print whole after the source is switched away (SOURCE_WORDS)
         if (SOURCE_WORDS.has(String(route.text))) SOURCE_WORDS_RULED.add(String(route.text));
         selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
-          ...(route.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}),
-          // a place's own row stands on its pieces' line; a default source's own row made there keeps its own credit
-          place: PLACE_ROWS.has(route.records[0]) && !DFLT_MADE.has(route.records[0]), ...(DFLT_MADE.has(route.records[0]) ? { dflt: DFLT_MADE.get(route.records[0]) } : {}),
+          ...(route.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}), ...kindPick(route.records, picked.get(surface)),
+          // a place's own row stands on its pieces' line; a default source's own row made there keeps its own credit,
+          // and its own words where the line adds to them (DFLT_OWN), so the row is made again where the ruling reaches
+          place: PLACE_ROWS.has(route.records[0]) && !DFLT_MADE.has(route.records[0]), ...(DFLT_MADE.has(route.records[0]) ? { dflt: DFLT_MADE.get(route.records[0]), own: DFLT_OWN.get(route.records[0]) || null } : {}),
           cut: surface === SET_KEY ? cutKey(cover) : null, ...(route.kqRead ? { read: route.kqRead } : {}) });
         // any other reading chosen: the set stands whole no longer
         if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
+      };
+      const choose = (route) => {
+        remember(route);
         rungRuled(); markRuled();
         selectedRecordRef.m = index.m_sources[route.records[0][3]] || null;
         renderDCard(); paintGloss(); clampHud();
@@ -8335,7 +8847,8 @@
         // HEBREW DEFINED BY HEBREW: a pointer pill prints the target's English
         // with the pointer beside it (the owner: "twelve (feminine of ...)");
         // its own text rides on the pill, for a check and for the eye
-        { const fo = formOfFor(surface, route.records.map((r) => r[3]), route.text); if (fo && fo.resolved) { btn.dataset.pointer = spanJoin(route.text); btn.textContent = formOfSays(fo); } }
+        // (a pointer whose target is a name prints as itself where the names gate stands: formOfResolves)
+        { const fo = formOfFor(surface, route.records.map((r) => r[3]), route.text); if (formOfResolves(fo, !!pool.namesHeld)) { btn.dataset.pointer = spanJoin(route.text); btn.textContent = formOfSays(fo); } }
         // a read word's reading on the written branch of a pair says which read
         // word it reads (kq-declared-weld-v1); its own text rides on the pill
         if (route.kqRead) { btn.dataset.pointer = spanJoin(route.text); btn.dataset.read = route.kqRead; btn.textContent = `${spanJoin(route.text)} (read ${route.kqRead})`; }
@@ -8345,6 +8858,8 @@
         // a word sense is the source's note on the word, not a reading, so its
         // pill wears the page's purple and says so (word-senses-rule-v1)
         if (route.records.every((row) => SENSE_ROWS.has(row))) { btn.classList.add("sense"); btn.dataset.sense = "1"; }
+        // a reading the dictionaries opened from rest brought wears a dotted edge (dictionary-kinds-rule-v1)
+        if (kindsOn && route.records.length && route.records.every((row) => restsOff(row))) { btn.classList.add("rests"); btn.dataset.rests = "1"; }
         // and its grade against the open word — the best any record under
         // it earned (m match · n silent · x otherwise · - ungraded), exposed
         // so a check can ask the page how it graded rather than regrade
@@ -8359,6 +8874,8 @@
         btn.title = [titleYear !== null ? yearSaid(leadRow[3], titleYear) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
         // a default source's own pick says whose it is and its number at this place
         if (route.dfltPill) btn.title = `${route.dfltPill} ${route.dfltN} at this place \u00b7 pressing it rules this reading wherever this form stands`;
+        // a source's own reading the reader ruled, made again here (withRuledMade), says where it is that source's own
+        else if (route.ruledMade) btn.title = dfltSays({ ...route.ruledMade, ruled: true });
         btn.setAttribute("aria-pressed", String(route === selected));
         btn.addEventListener("click", () => {
           pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
@@ -8418,6 +8935,8 @@
         pills.dataset.entry = (pool.entry || []).join("|");
         pills.dataset.stems = (pool.stems || []).join("|");
         pills.dataset.withheldBySources = String(pool.withheldBySources || 0);
+        // what rests shut, in pills, on the row and exposed (dictionary-kinds-rule-v1)
+        pills.dataset.kindWithheld = String(kindsHeldN(pool));
         pills.dataset.rows = String(pool.rows || 0);
         // the declared weld, said on the row and exposed (kq-declared-weld-v1)
         pills.dataset.kqWithheld = String(pool.kqWithheld || 0);
@@ -8433,7 +8952,7 @@
         // the source switches' count share a line, each its own span, so the
         // pointing standing by default costs the readings band no row
         let wLine = readRow.querySelector(".withheld-line");
-        if (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || pool.sensesShown) {
+        if (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || pool.sensesShown || kindsHeldN(pool) || pool.kindsShown) {
           if (!wLine) { wLine = document.createElement("p"); wLine.className = "kq-role withheld-line"; readRow.append(wLine); }
           wLine.replaceChildren();
           const parts = [];
@@ -8456,12 +8975,30 @@
             if (sensesFocus) { sensesFocus = false; requestAnimationFrame(() => { if (b.isConnected) b.focus({ preventScroll: true }); }); }
             parts.push(b);
           }
+          // so is the count of what rests shut: one press opens them, or shuts them again
+          { const kb = kindsSwitchFor(pool); if (kb) parts.push(kb); }
           parts.forEach((x, i) => { if (i) wLine.append(" \u00b7 "); wLine.append(x); });
         } else if (wLine) wLine.remove();
+        // and the label's, for the card the fit makes tight (kindsAtLabel)
+        kindsAtLabel(pool);
       };
       // the page's own switch redraws whatever card is open, so a change of
       // order reaches the reading standing under the word without closing it
       redrawReadings = () => { drawPills(); fitBands(); clampHud(); };
+      // A DIVISION PRESSED WITH NO READING PRESSED ON IT IS RULED ON THE
+      // READING THE PRESS DREW (the review of the toggles fixes, 15 November
+      // 2026). The press painted the card's reading of the whole form at every
+      // place the form stands, and the painters, which read a block left alone
+      // from the baked column, drew another the next time the lines were
+      // drawn: Ruth 1:1:1, the whole form pressed at rest, «to be: …» [M13] on
+      // both lines, «and + there was» [M4] after any switch, and the card at
+      // 1:1:5 under MACULA reading «that there was» over it (on live, painted
+      // over it). The reading pressed here is the one the press drew, so it is
+      // remembered as a press of its pill remembers it, and the line, the card
+      // and the export read it under every source and at every place. The
+      // whole form only: a block of another division left alone reads the
+      // baked column on the card as on the line
+      if (ruled && !opts.run && !wordsOwn && bin === zone && word && cover.length === 1 && surface === region.k && mem.cut === cutKey(cover) && !picked.get(surface)) remember(selected);
       drawPills();
       readRow.append(pills);
       selectedRecordRef.m = index.m_sources[selected.records[0][3]] || null;
@@ -11697,6 +12234,30 @@
   };
   // a source pressed under another order sets «the source here» first (chooseDefault)
   dfltReadsHere = () => chooseDefOrder("place");
+  // THE DICTIONARIES THAT REST SHUT ON THIS BOOK (dictionary-kinds-rule-v1),
+  // read off the bake's stamp (emitted_from.rests_off.entries: per resting
+  // entry, the M ids it held shut on this book's keys, the keys and the rows),
+  // in the record's order: each entry with its rows here and, for an entry
+  // that shuts whole sources (it names no fact), those sources by their key,
+  // in the record's family order, each with its family
+  const kindsOnBook = () => {
+    const stamp = zone && zone.emitted_from && zone.emitted_from.rests_off;
+    if (!kindsHere || !stamp || !stamp.entries) return [];
+    const familyOf = new Map(), rank = new Map();
+    KINDS_REC.families.forEach((f, i) => { if (f.shelf === "store") for (const k of f.keys) { familyOf.set(k, f); rank.set(k, i); } });
+    return KINDS_REC.rests_off.map((e) => {
+      const at = stamp.entries[e.id] || {};
+      const byKey = new Map();
+      if (!e.fact) for (const [m, n] of Object.entries(at.ids || {})) {
+        const s = index.m_sources[m];
+        if (!n || !s || !familyOf.has(s.key)) continue;
+        if (!byKey.has(s.key)) byKey.set(s.key, { key: s.key, ids: [], family: familyOf.get(s.key), label: s.label });
+        byKey.get(s.key).ids.push(m);
+      }
+      const groups = [...byKey.values()].sort((a, b) => rank.get(a.key) - rank.get(b.key) || (a.key < b.key ? -1 : 1));
+      return { e, rows: Number(at.rows) || 0, groups };
+    });
+  };
   // the rail's one-line summary: the word each toggle is standing at
   const railSay = () => {
     const now = document.getElementById("railNow");
@@ -11721,7 +12282,12 @@
     const drawn = window.__sourcesShelved || 0;
     const s = document.createElement("b"); s.dataset.toggle = "sources";
     s.textContent = `${drawn ? `${drawn} ` : ""}dictionaries${sourcesOff.size ? ` \u00b7 ${sourcesOff.size} off` : ""} \u25BE`;
-    s.title = "the dictionaries this book's readings stand on; press to switch any off";
+    // the sources that rest shut are not the reader's switches, and the line
+    // does not count them (dictionary-kinds-rule-v1); its title says them,
+    // since a word more wraps the rail's one line on a phone, a line of the
+    // phone's top more (check-contents-shut-v1)
+    const shutN = kindsHere && kindsPref === "shut" ? kindsOnBook().reduce((n, x) => n + x.groups.length, 0) : 0;
+    s.title = `the dictionaries this book's readings stand on; press to switch any off${shutN ? `; ${shutN} more rest shut, on the cards a press away (Shut at rest, inside)` : ""}`;
     const g = document.createElement("b"); g.dataset.toggle = "suggested"; g.classList.add("still");
     g.textContent = "source suggested: the BSB";
     g.title = "the Berean Standard Bible's own cell stands on every card, for now";
@@ -11742,16 +12308,17 @@
   const segRow = (t, positions, current, onPick) => {
     const seg = document.createElement("span"); seg.className = "def-order"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
     const alive = t.live();
-    // a position a toggle draws dead where it stands (the second source's row:
-    // the first source cannot fill itself out)
-    const deadAt = alive && t.deadAt ? t.deadAt() : null;
+    // a position a toggle draws dead where it stands, with why (the second
+    // source's row: the first source cannot fill itself out, and a source
+    // that fills nothing it leaves cannot be taken)
+    const dead = (alive && t.deadAt && t.deadAt()) || {};
     for (const pos of positions) {
       const btn = document.createElement("button"); btn.type = "button";
       btn.className = "dfp" + (alive ? "" : " waiting") + (alive && pos.id === current ? " on" : "");
       btn.textContent = pos.lab;
       btn.setAttribute("aria-pressed", String(alive && pos.id === current));
       if (!alive) { btn.disabled = true; btn.setAttribute("aria-disabled", "true"); btn.title = t.waits || ""; }
-      else if (pos.id === deadAt) { btn.disabled = true; btn.classList.add("waiting"); btn.setAttribute("aria-disabled", "true"); btn.title = "the default source itself"; }
+      else if (dead[pos.id]) { btn.disabled = true; btn.classList.add("waiting"); btn.setAttribute("aria-disabled", "true"); btn.title = dead[pos.id]; }
       else btn.addEventListener("click", () => {
         onPick(pos.id);
         // the position in force is the toggle's to say, not the press's: a
@@ -12110,6 +12677,63 @@
       of: (g) => licShelf(g.lic),
       rank: (title) => ({ "public domain": 0, "credit required (CC BY)": 1, "share-alike (CC BY-SA)": 2, "non-commercial": 3, "other terms": 4 })[title] ?? 9 },
   ];
+  // the block: the switch, shut | open, then what rests shut on this book,
+  // a whole source's entry with its sources as chips. While shut a chip is
+  // drawn shut and switches nothing; open, each is a source switch like any
+  // chip of the strip, on cards only, since the line under a word never reads
+  // it. A book whose zone carries no stamp draws no block.
+  const drawKinds = (host) => {
+    // the control the reader stands on takes the focus again once the block
+    // is drawn anew (below): drawn anew under every press of its own, it
+    // dropped the focus to the page on each one, where the shelf chooser
+    // under it keeps it (the review of 15 November 2026)
+    const was = host.contains(document.activeElement) ? document.activeElement : null;
+    const back = !was ? null : was.dataset.kinds ? `.kinds-opt[data-kinds="${was.dataset.kinds}"]` : was.dataset.key ? `.kind-chip[data-key="${was.dataset.key}"]` : null;
+    host.replaceChildren();
+    const stamp = zone && zone.emitted_from && zone.emitted_from.rests_off;
+    host.hidden = !stamp;
+    if (!stamp) return;
+    const head = document.createElement("div"); head.className = "kinds-head";
+    head.append(Object.assign(document.createElement("span"), { className: "kinds-title", textContent: "Shut at rest" }));
+    host.append(head);
+    if (!kindsHere) {
+      host.append(Object.assign(document.createElement("p"), { className: "kinds-entry", textContent: "the record of what rests shut did not arrive, or does not hold over this store; nothing is shut on this visit" }));
+      return;
+    }
+    const open = kindsPref === "open";
+    for (const id of ["shut", "open"]) {
+      const b = Object.assign(document.createElement("button"), { type: "button", className: "kinds-opt", textContent: id });
+      b.dataset.kinds = id;
+      b.setAttribute("aria-pressed", String(kindsPref === id));
+      b.title = id === "shut" ? "held back from every card, each card saying how many with a press that opens them; kept on this device" : "on every card, each pill they alone bring wearing a dotted edge; the line under a word never reads them; kept on this device";
+      b.addEventListener("click", () => chooseKinds(id));
+      head.append(b);
+    }
+    const sources = TOGGLES.find((x) => x.id === "sources");
+    for (const { e, rows, groups } of kindsOnBook()) {
+      if (!rows && !groups.length) continue;
+      host.append(Object.assign(document.createElement("p"), { className: "kinds-entry", textContent: `${rows.toLocaleString()} record${rows === 1 ? "" : "s"} on this book ${e.say}` }));
+      if (!groups.length) continue;
+      const strip = document.createElement("div"); strip.className = "kinds-chips";
+      for (const g of groups) {
+        const isOff = g.ids.every((m) => sourcesOff.has(m));
+        const chip = Object.assign(document.createElement("button"), { type: "button", className: "kind-chip",
+          textContent: (SHORT_REC && SHORT_REC.names && SHORT_REC.names[g.key]) || g.label || g.key });
+        chip.dataset.key = g.key; chip.dataset.ids = g.ids.join(" "); chip.dataset.family = g.family.id;
+        chip.disabled = !open;
+        chip.setAttribute("aria-pressed", String(open && !isOff));
+        const own = g.family.own_words.length ? g.family.own_words.map((w) => `\u00ab${w}\u00bb`).join(" ") : (g.family.silent || "says nothing of itself in any record read");
+        chip.title = `${g.family.family}\n${own}\n${open ? `on cards only: the line under a word never reads it\n${isOff ? "switched off: press to switch it back on" : "press to switch it off"}` : `shut at rest, ${e.say}; the switch above opens it`}`;
+        chip.addEventListener("click", () => { if (kindsPref !== "open") return; sources.set(g.ids, g.ids.every((m) => sourcesOff.has(m))); drawKinds(host); railSay(); });
+        strip.append(chip);
+      }
+      host.append(strip);
+    }
+    host.append(Object.assign(document.createElement("p"), { className: "kinds-note", textContent: "the record of what each dictionary says it is shuts these at rest; nothing leaves the store, and the line under a word never reads them" }));
+    // a chip shut again cannot hold it: the focus then stays where the press left it
+    const to = back ? host.querySelector(back) : null;
+    if (to && !to.disabled) to.focus({ preventScroll: true });
+  };
   const sourceSwitch = () => {
     const host = document.getElementById("sourcesRow");
     if (!host) return;
@@ -12306,7 +12930,11 @@
       window.__shortNameFallbacks = ordered.filter((g) => g.shortIsFallback).map((g) => g.key);
     };
 
-    seg.append(chooser, shelvesHost);
+    // the dictionaries that rest shut, above the shelves, on a book baked at rest
+    const kindsHost = document.createElement("div"); kindsHost.className = "kinds-block"; kindsHost.id = "kindsRow";
+    kindsHost.setAttribute("role", "group"); kindsHost.setAttribute("aria-label", "dictionaries shut at rest");
+    drawKinds(kindsHost);
+    seg.append(kindsHost, chooser, shelvesHost);
     draw(); sayFold();
     fold.append(sum, seg);
     host.append(fold);
@@ -12381,6 +13009,15 @@
     rows.append(more);
     readsSwitch();
     railSay();
+    // AND THE ROWS IT DRAWS EMPTY ARE FILLED AGAIN. The rows the order, the
+    // pairs and the sources stand in are filled by their own functions, which
+    // only the page's first paint called after this, so a switch that drew
+    // the rail again (the word senses, the source signs, the names lead, the
+    // reset) left the strip of sources empty until the page was loaded again:
+    // forty chips on Obadiah, none after the word senses pill (found 15
+    // November 2026, by the page lane, building the dictionaries' block that
+    // stands in that strip)
+    defSwitch(); pairSwitch(); sourceSwitch();
   };
   // THE READER IS REMEMBERED (the owner, 2026-10-14: "the cache should carry
   // the english toggle too"): the last reader chosen on this device opens
@@ -12556,7 +13193,8 @@
       btn.disabled = !dfltOn(id);
       const a = dfltPct(has[id], N);
       if (btn.disabled) btn.title = `${dfltShort(id)} is switched off on the switches`;
-      else if (!place) btn.title = `the line reads «${dfltOrderSaid()}» on the switches; press to read it from ${dfltPill(id)} here`;
+      // (STEP's layer is the line as it rests, never «from STEP», the lead's rule above)
+      else if (!place) btn.title = `the line reads «${dfltOrderSaid()}» on the switches; press ${id === "step" ? `for ${DFLT_AS_IT_RESTS}` : `to read it from ${dfltPill(id)}`} here`;
       // STEP: what its layer is, then the share where STEP has its own reading and that line stands (has.step)
       else if (id === "step") btn.title = `${dfltStepLayer()} — STEP has its own reading, and this line stands, at ${a} of ${work}${on ? " · press to show or hide the note" : ""}`;
       else btn.title = `${DFLT_TITLES[id] || dfltPill(id)} — ${a} of ${work}${on ? " · press again to go back to STEP" : ""}`;
@@ -12576,7 +13214,7 @@
     const sayEl = document.createElement("span"); sayEl.className = "say";
     made.append(sayEl);
     if (!place || !first) {
-      sayEl.textContent = `The line reads «${dfltOrderSaid()}» on the switches. Press a source to read the line from it here.`;
+      sayEl.textContent = `The line reads «${dfltOrderSaid()}» on the switches. Press STEP for ${DFLT_AS_IT_RESTS} here, or another source to read the line from it.`;
       putNote(made); return;
     }
     const X = dfltPill(first);
@@ -12623,7 +13261,7 @@
       if (c > 0) {
         const kq = Number(DFLT_BOOK.kq) || 0;
         sayEl.append(" Today’s line stands at the other ", dfltShare(c, N,
-          `pairs written one way and read another (${kq.toLocaleString("en-US")} words of ${work}) keep today’s line under every source; joined words a dictionary reads as one keep its line unless ${X} reads every word of them`), ".");
+          `pairs written one way and read another (${kq.toLocaleString("en-US")} words of ${work}) keep today’s line under every source; joined words a dictionary reads as one keep its line unless ${X} reads every word of them; so do the words of a reading the place gives across words («Beth-» «-lehem»)`), ".");
       }
     }
     // the chooser of the second: every other source with what it would fill;
@@ -12693,7 +13331,7 @@
   // blobs off, numbers on, concordance off"). The lines are laid again
   // through the page's one first paint, so each is the line it opened as.
   // It cannot be pressed while there is nothing to put back.
-  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off", namelead: "lead", senses: "off", defaults: "step" };
+  const SWITCHES_DEFAULT = { mode: "he", blobs: "off", nums: "on", dict: "off", signs: "off", namelead: "lead", senses: "off", kinds: "shut", defaults: "step" };
   // the default sources at their default (the plan's table: «Reset: STEP,
   // auto second, note closed»): the line from STEP, no second chosen for any
   // first, kept or for this load, and the note closed; on a work the picks
@@ -12703,6 +13341,8 @@
   const picksNow = () => [...pickedByForm.values()].filter((m) => m.cut || m.cells.size).length + pickedQForm.size;
   const switchesAtDefault = () => (document.body.classList.contains("en") ? "en" : "he") === SWITCHES_DEFAULT.mode
     && blobsPref === SWITCHES_DEFAULT.blobs && numsPref === SWITCHES_DEFAULT.nums && DICT.pref === SWITCHES_DEFAULT.dict && signsPref === SWITCHES_DEFAULT.signs && nonamesPref === SWITCHES_DEFAULT.namelead && sensesPref === SWITCHES_DEFAULT.senses
+    // the dictionaries that rest shut, on a book where they do (dictionary-kinds-rule-v1); the reader's own source switches are theirs, and reset leaves them
+    && (!kindsHere || kindsPref === SWITCHES_DEFAULT.kinds)
     && dfltAtDefault();
   const paintReset = () => {
     const n = picksNow(), at = switchesAtDefault();
@@ -12726,10 +13366,17 @@
       keepDefault(SWITCHES_DEFAULT.defaults);
     }
     if (hadPicks) {
+      // ONLY THE SECTIONS A RULING STANDS IN ARE LAID AGAIN (the review of 15
+      // November 2026: with every section of II Samuel built, a reset after
+      // one ruling laid all 695 again, 12,003 lines made anew, about 13
+      // seconds): a ruled word wears «chosen» wherever its form stands, and
+      // every other line is drawn again in place below (repaintGlossOrder)
+      const ruledIn = new Set();
+      for (const x of document.querySelectorAll("section.seg .wb.chosen, section.seg .wjoin.chosen")) ruledIn.add(x.closest("section.seg"));
       pickedByForm.clear(); pickedQForm.clear(); ruledAt.clear();
       // a source's own words the reader ruled are forgotten with the rulings
       SOURCE_WORDS_RULED.clear(); rebuildSourceWords();
-      relayBuiltSections();
+      relayBuiltSections(ruledIn);
       // the book's title word stands outside the sections: its line and its
       // chosen mark go back with the rest
       document.querySelectorAll(".wb.chosen, .wjoin.chosen").forEach((x) => x.classList.remove("chosen"));
@@ -12743,6 +13390,7 @@
     if (signsPref !== SWITCHES_DEFAULT.signs) chooseBlanks(SWITCHES_DEFAULT.signs);
     if (nonamesPref !== SWITCHES_DEFAULT.namelead) chooseNames(SWITCHES_DEFAULT.namelead);
     if (sensesPref !== SWITCHES_DEFAULT.senses) chooseSenses(SWITCHES_DEFAULT.senses);
+    if (kindsHere && kindsPref !== SWITCHES_DEFAULT.kinds) chooseKinds(SWITCHES_DEFAULT.kinds);
     // the default sources set back above: the row, the rail and the card
     // answer, and the lines are repainted only where no relay drew them
     if (dfltBack) reopenForDefaults(hadPicks);
@@ -12829,6 +13477,9 @@
       // its key, and its places leave the count with it
       const off = (id) => {
         if (sourcesOff.has(id)) return true;
+        // a dictionary that rests shut does not answer while it rests shut, as on the cards (dictionary-kinds-rule-v1):
+        // from any page, since every place the search opens is of a book at rest (RESTS_OFF_IDS, at boot)
+        if (kindsPref === "shut" && RESTS_OFF_IDS.has(id)) return true;
         const rs = ((dix && dix.readings_sources) || {})[id];
         return !!rs && Object.entries((index && index.m_sources) || {}).some(([m, s2]) => s2.key === rs.key && sourcesOff.has(m));
       };
@@ -13226,7 +13877,17 @@
       return { name, file: String(d.file || ""), sha256: String(d.sha256 || "") };
     })();
     let a = null;
-    if (key) { try { a = await attributionFor(key, zone.work); } catch { a = null; } }
+    // THE NAME IS ATTESTED BY EVERY DICTIONARY ON RECORD, SHUT OR OPEN
+    // (dictionary-kinds-rule-v1). A dictionary that rests shut is shut on the
+    // cards, not struck: it is on record, and where it alone uses the book's
+    // common name the masthead keeps the name and says who attests it (of the
+    // thirty-nine, the store's rows that read the name rest shut, every one,
+    // for Obadiah, PanLex's, and for Jeremiah, Lamentations and Ecclesiastes,
+    // counted 15 November 2026). Asked of the open dictionaries only, Obadiah
+    // fell to the catalog's own entry in lower case, saying that no source on
+    // record uses a proper name, which is not so, and on a phone the longer
+    // row put its first word under the fold (check-contents-shut-v1).
+    if (key) { try { a = await attributionFor(key, zone.work, null, null, false, null, true); } catch { a = null; } }
     if (a && a.ok) {
       lab.textContent = "commonly force read as";
       enT.textContent = zone.work;
@@ -14915,12 +15576,13 @@
   // closes, the section's text and its rows are taken down and built as a
   // section coming within reach is built, and the lines' registry forgets
   // the elements that went. A section not built yet needs nothing.
-  const relayBuiltSections = () => {
+  // (only: the sections to lay again, where the caller knows which: the reset)
+  const relayBuiltSections = (only = null) => {
     if (!sectionEls.length) return;
     closeHud();
     let relaid = 0;
     for (const { el } of sectionEls) {
-      if (el.__body || !el.__rebuild) continue;
+      if (el.__body || !el.__rebuild || (only && !only.has(el))) continue;
       for (const x of [...el.children]) if (["he-text", "c-bar", "c-slot", "xp-row"].some((c) => x.classList.contains(c))) x.remove();
       el.__body = el.__rebuild;
       if (materialise(el)) relaid += 1;
@@ -14942,13 +15604,15 @@
   // (under), and a division the reader pressed stays where it was.
   // The line printed the word sense on after the card had held it back
   // (found by the page lane's own probe, 14 November 2026, at Obadiah 1:3).
-  // Says how many it forgot.
-  const forgetSensePicks = () => {
+  // Says how many it forgot. One loop forgets the picks a test names: the
+  // word senses' (forgetSensePicks) and, since 15 November 2026, the readings
+  // of the dictionaries that rest shut (forgetKindPicks, below).
+  const forgetPicksWhere = (test) => {
     let gone = 0;
     const bare = [];
     for (const [k, m] of pickedByForm) {
       let here = 0;
-      for (const [sf, pk] of [...m.cells]) if (pk && pk.sense) { if (pk.under) m.cells.set(sf, pk.under); else m.cells.delete(sf); here += 1; }
+      for (const [sf, pk] of [...m.cells]) if (pk && test(pk)) { if (pk.under) m.cells.set(sf, pk.under); else m.cells.delete(sf); here += 1; }
       if (here && !m.cut && !m.cells.size) bare.push(k);
       gone += here;
     }
@@ -14961,6 +15625,13 @@
     repaintGlossOrder();
     return gone;
   };
+  const forgetSensePicks = () => forgetPicksWhere((pk) => pk.sense);
+  // A READING OF A DICTIONARY THAT RESTS SHUT, PRESSED, IS SHUT AGAIN WITH IT
+  // (dictionary-kinds-rule-v1), as a word sense is held back with the rest:
+  // shutting the switch forgets the readings the reader pressed that stand on
+  // shut rows alone, and nothing else they pressed; a reading pressed under
+  // one comes back (under), and the line reads what it read before the press
+  const forgetKindPicks = () => forgetPicksWhere((pk) => pk.kind);
   // THE WORD SENSES SWITCH, ANSWERED (chooseSenses): the rail drawn again and
   // the open card built again under it. Off, a word sense the reader pressed
   // is forgotten first; where one was, the sections are laid again and the
@@ -14970,6 +15641,26 @@
     paintSensesPill();
     if (document.getElementById("railRows")) railSwitch();
     reopenCard();
+    // as the kinds' below: no card built again, no focus owed to one
+    if (!activeEl) sensesFocus = false;
+  };
+  // THE DICTIONARIES THAT REST SHUT, ANSWERED (chooseKinds): shut, a reading
+  // of theirs the reader pressed is forgotten first, and where one was, the
+  // sections are laid again; the rail's block and its one line say where the
+  // switch stands; the open card is built again under it
+  reopenForKinds = () => {
+    if (kindsPref !== "open") forgetKindPicks();
+    const kb = document.getElementById("kindsRow");
+    if (kb) drawKinds(kb);
+    railSay();
+    reopenCard();
+    // the focus the card's press asked for is the card's built again here,
+    // and no other's: where laying the sections again closed the card (a
+    // reading of theirs pressed, then forgotten), no card was built, and the
+    // flag left standing sent the focus to the press of the next card the
+    // reader opened, where a Space opened them (the review of 15 November
+    // 2026)
+    if (!activeEl) kindsFocus = false;
   };
   // THE DEFAULT SOURCES ANSWERED (chooseDefault, chooseDefaultSecond, the
   // reset, and the book's file landing by any path): the source words made
@@ -15312,6 +16003,9 @@
       m.classList.toggle("on", pressed === "true" || pill.classList.contains("on"));
       m.disabled = pill.disabled;
       m.title = pill.title || "";
+      // a pill that opens and closes a note says so on its mirror too (the lit
+      // STEP; the review of 15 November 2026: the mirror said nothing of it)
+      for (const a of ["aria-expanded", "aria-controls"]) { const v = pill.getAttribute(a); if (v == null) m.removeAttribute(a); else m.setAttribute(a, v); }
     });
   };
   new MutationObserver(() => { if (!menuPick.hidden) paintMenu(); })

@@ -51,9 +51,11 @@
 //     line pick;
 //   - BDB has a line where the word is not kq and its pick 1's record's
 //     highlighted words (the ledger's slot 5) are a line pick;
-//   - fills[x][y] counts the places where x has no line and y has one, but
-//     never a place where STEP has a pick and its line rests bare: STEP's
-//     second does not fill it and STEP fills nothing there;
+//   - fills[x][y] counts the places where x has no line and y has one; at a
+//     place where STEP has a pick and its line rests bare, no fill of STEP's
+//     counts it (its second does not fill it) and STEP fills nothing there,
+//     while the other sources' has and fills count it as anywhere else (the
+//     page prints their lines there);
 //   - STEP's leaves are the places where STEP has no pick (no line pick at
 //     pick 1, no pieces that answer) and the word is not kq. Its second
 //     source fills them, and only them (v1.2 leaves one, and no source picks
@@ -92,14 +94,17 @@
 // place pieces do not answer, the line as it rests is today's line, and where
 // today's line is bare it draws nothing, though STEP has a pick: STEP has no
 // line there (has.step), it is no place STEP leaves (its second fills only
-// those), and no fill counts it. Whether today's line is bare there is read
+// those), and no fill of STEP's or by STEP counts it; the other sources' has
+// and fills count it as anywhere else. Whether today's line is bare there is read
 // off the page's own record of the line at rest (data/resting-lines/<book>
-// .json.gz): no line of the record stands over the word. The default sources
-// move nothing at those places (no STEP words, no fill), so the record's line
+// .json.gz): no line of the record stands over the word. At rest the default
+// sources move nothing at those places (no STEP words, and STEP's second fills
+// nothing there), so the record's line
 // there is today's whether or not it was read with the defaults laid. The
-// round reads the lines after this bake; where it then reads one of those
-// places otherwise, check-default-picks-v1 D3, which holds the index to the
-// records as they stand, goes red there, and the defaults are baked again.
+// round reads the lines after this bake, and bakes again after them with
+// --receipt-only, which writes the receipt of the records just read and
+// refuses where they would move the index; check-default-picks-v1 D3, which
+// holds the index to the records as they stand, is red there too.
 // The same records give the lines at rest over more than one word (a joined
 // run's one line), and which of them each source reads whole.
 //
@@ -153,9 +158,11 @@
 //      nor "the entry"; STEP's pick 1 of another kind than r at a place its
 //      words may fill;
 //   5. a named row the served store does not hold under its key with its
-//      rank, its source id and its text's sha256, a row whose source id the
-//      store names in no m_sources, a pick naming a row the tables do not
-//      hold, or a pill crediting a source the store does not name;
+//      rank, its source id and its text's sha256, and that the row-strikes
+//      record does not account for (THE ROWS FOLLOWED, below); a row a round
+//      struck since that a pick still names; a row whose source id the store
+//      names in no m_sources, a pick naming a row the tables do not hold, or
+//      a pill crediting a source the store does not name;
 //   6. one BDB record with two different highlights at two of its picks;
 //   7. a carried text holding U+FFFD or a control character other than a line
 //      feed (U+000A, which is counted);
@@ -182,6 +189,28 @@
 //      of the zone's sections (their number and labels): where the line as it
 //      rests is bare is read off the record, never guessed.
 //
+// THE ROWS FOLLOWED (15 November 2026). The rows tables name each row as the
+// store held it when v1.2 read it (its receipt names that version). Named
+// lists have moved rows since (tools/strike-rows-v1.mjs, each round kept in
+// data/row-strikes-v1.json), so a row not found as named is asked of that
+// record (tools/row-strikes-follow-v1.mjs), and nothing is guessed:
+//   - a row a round moved to another key (call 5 of relay v189: the rows
+//     under a key ending in a maqaf that the plain key lacked) is found
+//     under the name it has now, and counted with the picks that name it;
+//   - a row a round struck is counted where no pick names it any more (v1.2
+//     re-pointed every pick off the rows call 5 strikes: its own list,
+//     call5_repoints, says where to), and refused where one still does;
+//   - a row a round withheld is counted as withheld, with the picks that
+//     name it: it prints nothing on a card, and the pick stands on its other
+//     rows or on the source's own words;
+//   - a row the record says nothing of is refused, as before (refusal 5).
+// The two lists of v1.2 that speak of call 5 are held to the same record:
+// each row of call5_repoints is as v1.2 read it, or went where its line says
+// (struck with a row to point to, moved with none); and each pick that waits
+// on call 5's re-key (picks_waiting) names a row that is still under its key
+// with a maqaf, or now stands under the plain key its line names. A retext
+// since is the follower's seam (relay v187), refused there until it lands.
+//
 // COUNTED, in data/default-picks-receipt-v1.json: per book and per source, has
 // and fills; the rest fills (STEP's leaves its second fills), each with its
 // place; the places STEP's words may fill, by book, with those naming no row
@@ -191,9 +220,12 @@
 // each source's picks that are a sign alone, and UBS's «NO DATA YET»; BDB pick
 // 1s with no highlight; line picks naming no row, or whose first named row is
 // another source's; under each first source, the picks the card prints as
-// pills for it and for its second, by what prints their words (a row of the
-// pick's own source the pick names, another source's row it names, or none,
-// where the card makes a pill of the source's own words: picks_printed); the
+// pills for it and for its second (STEP's where its own words print), by the
+// rows the pick names (a row of its own source, another source's only, or
+// none), whether a named row under a key the card asks prints it whole, and
+// whether the card makes it: no row of the pill's own source under the keys
+// the card asks at the place (the word's own, its pieces') prints it, so the
+// card makes a pill of the source's own words (picks_printed); the
 // lines at rest over more than one word, and how many of them each source
 // reads at every word, at some, or at none (runs_read_whole); lines holding a
 // slash; lines over 40 characters; line feeds; ketiv/qere words; rows found
@@ -201,8 +233,13 @@
 //
 // Idempotent: only changed bytes are written, so a second run writes nothing.
 // --dry prints and writes nothing. Nothing it prints holds Hebrew.
+// --receipt-only writes the receipt alone, and refuses where any other file
+// would change: the round runs the bake so a second time, after its lines
+// step, so that the receipt it ships is of the records of the resting lines
+// that step read (their zones the zones on disk), while the index and the
+// book files stay those the records and the lines were read with.
 //
-// Run: node tools/bake-default-picks-v1.mjs --ledger <dir holding default-picks-v1/, default-picks-v1.1/ and default-picks-v1.2/> [--out data/default-picks] [--zones data/zones] [--store data/route-store] [--records data/resting-lines] [--pin data/default-picks/PIN.json] [--receipt data/default-picks-receipt-v1.json] [--dry]
+// Run: node tools/bake-default-picks-v1.mjs --ledger <dir holding default-picks-v1/, default-picks-v1.1/ and default-picks-v1.2/> [--out data/default-picks] [--zones data/zones] [--store data/route-store] [--records data/resting-lines] [--pin data/default-picks/PIN.json] [--receipt data/default-picks-receipt-v1.json] [--receipt-only] [--dry]
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { basename, dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -211,6 +248,8 @@ import { gunzipSync, gzipSync } from "node:zlib";
 import { readPinned, readPinnedLines, sha256Of, PinFault } from "./pinned-v1.mjs";
 import { startedAs } from "./main-guard-v1.mjs";
 import { readRecord, RESTING_DIR } from "./resting-lines-v1.mjs";
+import { openFollower, followedRecord, followedSaid, FollowFault } from "./row-strikes-follow-v1.mjs";
+import { printedForm, routePrinted, signsOff } from "./gloss-store-v1.mjs";
 
 export const DEFAULT_PICKS_RULE_ID = "default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second";
 
@@ -267,9 +306,14 @@ const pillKeys = (t) => { const s = String(t).trim().replace(/\.$/u, "").toLower
 const samePill = (a, b) => { const [x1, x2] = pillKeys(a), [y1, y2] = pillKeys(b); return x1 === y1 || x2 === y2; };
 // the rows a pill's pick names, as the corpus lane names them (its own source's rows that print its words where there
 // are any, else every row under its key that prints them): a row of the pick's own source, another source's row
-// only, or none (no row under the key prints its words: the card makes a pill of the source's own words, credited
-// to it); and apart, whether a row it names prints the pill's whole reading
-const PRINTED = ["names_a_row_of_its_own_source", "names_another_sources_row_only", "names_no_row", "printed_whole_by_a_row_it_names"];
+// only, or none; and apart, whether a row it names under a key the card asks at the place (the word's own, or one of
+// its pieces') prints the pill's whole reading, and whether the card makes the pill (made: no row of the pill's own
+// source that the store holds under a key the card asks prints it whole, so the card makes a row of the source's own
+// words, credited to it)
+const PRINTED = ["names_a_row_of_its_own_source", "names_another_sources_row_only", "names_no_row", "printed_whole_by_a_row_it_names", "made"];
+// STEP's words as the line draws them at rest: the reading's printed form, its "/" a joint, under the signs switch at
+// rest (signsOff: a piece that is a sign alone, beside pieces that carry words, is the hidden sign's gap)
+const drawnStep = (t) => signsOff(printedForm(t));
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const chars = (s) => [...s].length;
 // numbers grouped by threes, the same on every machine (no locale)
@@ -368,24 +412,60 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     if (!mSources[m]) throw new Refused(`the served store names no source ${m}, which the ${s.pill} pill credits`);
   }
   const rowM = new Array(rows.length).fill(null);
-  // each row's text as the store serves it, for what prints a pill's words (picks_printed)
+  // each row's text as the card prints it (made spaces closed), for what prints a pill's words (picks_printed)
   const rowText = new Array(rows.length).fill(null);
+  // every row the store holds under a key, as [its source id, its text as the card prints it], kept for every key of
+  // a shard once the shard is read: what a key the card asks at a place prints (picks_printed)
+  const printedUnder = new Map(), shardsRead = new Set();
+  const shardBody = (sh) => { const p = join(store, "shards", `${sh}.bin`); return existsSync(p) ? JSON.parse(gunzipSync(readFileSync(p)).toString("utf8")) : {}; };
+  const readShard = (sh) => {
+    const served = shardBody(sh);
+    if (!shardsRead.has(sh)) {
+      shardsRead.add(sh);
+      for (const [k, list] of Object.entries(served)) printedUnder.set(k, (Array.isArray(list) ? list : []).filter((x) => Array.isArray(x) && typeof x[1] === "string").map((x) => [x[3], routePrinted(x)]));
+    }
+    return served;
+  };
+  const servedUnder = (key) => { const sh = shardOf(key); if (!shardsRead.has(sh)) readShard(sh); return printedUnder.get(key) || []; };
   const byShard = new Map();
   rows.forEach((r, i) => { const sh = shardOf(r[0]); if (!byShard.has(sh)) byShard.set(sh, []); byShard.get(sh).push(i); });
   const missing = new Map();   // row number -> places naming it (up to 5)
   const doubles = [];
   let foundOnce = 0;
+  const rowsUnder = (served, [key, rank, m, h]) => (served[key] || []).filter((x) => Array.isArray(x) && x[0] === rank && x[3] === m && typeof x[1] === "string" && sha256(Buffer.from(x[1], "utf8")).slice(0, 16) === h);
+  const notAsNamed = [];
   for (const sh of [...byShard.keys()].sort()) {
-    const p = join(store, "shards", `${sh}.bin`);
-    const served = existsSync(p) ? JSON.parse(gunzipSync(readFileSync(p)).toString("utf8")) : {};
+    const served = readShard(sh);
     for (const i of byShard.get(sh)) {
-      const [key, rank, m, h] = rows[i];
-      const found = (served[key] || []).filter((x) => Array.isArray(x) && x[0] === rank && x[3] === m && typeof x[1] === "string" && sha256(Buffer.from(x[1], "utf8")).slice(0, 16) === h);
-      if (!found.length) { missing.set(i, []); continue; }
+      const m = rows[i][2];
+      const found = rowsUnder(served, rows[i]);
+      if (!found.length) { notAsNamed.push(i); continue; }
       if (!mSources[m]) { refuse(`row ${n0(i)} is served under ${m}, which the store's m_sources does not name`); continue; }
-      if (found.length > 1) doubles.push({ row: i, m, rank, found: found.length, one_text: found.every((x) => x[1] === found[0][1]) });
+      if (found.length > 1) doubles.push({ row: i, m, rank: rows[i][1], found: found.length, one_text: found.every((x) => x[1] === found[0][1]) });
       else foundOnce += 1;
       rowM[i] = m;
+      rowText[i] = routePrinted(found[0]);
+    }
+  }
+  // THE ROWS FOLLOWED: a row not found as named is asked of the row-strikes record, from the store v1.2 read
+  let follow;
+  try { follow = openFollower({ data: dirname(store), index: storeIx, readAt: ((in12.page_store || {}).store_version) || null }); }
+  catch (e) { if (e instanceof FollowFault) throw new Refused(e.message); throw e; }
+  const followedTo = new Map(), struckSince = new Map(), withheldSince = new Map();   // row number -> the follower's answer
+  const refCount = new Int32Array(rows.length);   // how many picks name each row, counted in the pass below
+  const namedAt = new Map();                      // a struck row -> the first places naming it
+  {
+    const cache = new Map();
+    const served = (key) => { const sh = shardOf(key); if (!cache.has(sh)) cache.set(sh, shardBody(sh)); return cache.get(sh); };
+    for (const i of notAsNamed) {
+      let went;
+      try { went = follow.nowOf(rows[i]); } catch (e) { if (e instanceof FollowFault) throw new Refused(e.message); throw e; }
+      if (went.state === "struck") { struckSince.set(i, went); namedAt.set(i, []); continue; }
+      if (went.state === "withheld") { withheldSince.set(i, went); continue; }
+      const found = went.state === "re-keyed" ? rowsUnder(served(went.name[0]), went.name) : [];
+      if (found.length !== 1) { missing.set(i, []); continue; }   // the record says nothing of it, or the store does not hold it where the record says
+      followedTo.set(i, went);
+      rowM[i] = rows[i][2];
       rowText[i] = found[0][1];
     }
   }
@@ -421,18 +501,43 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
   for (const [name, list] of Object.entries(branches)) list.forEach((d, i) => { if (!d || d.rests !== "off") refuse(`the ${name} branch's line ${i + 1} does not rest off: no branch is baked`); });
   const rowsOf = (list) => (Array.isArray(list) ? list.map((r) => rows[r] || null) : null);
   const lists = {
-    waiting: { by_status: {}, first_picks: 0 },
+    waiting: { by_status: {}, first_picks: 0, waits_for_call5_rekey: { picks: 0, rows: 0, rows_now_under_their_plain_key: 0, picks_whose_row_now_stands_under_its_plain_key: 0 } },
     gate: { active: 0, stale: 0, by_bake: {}, by_class: {}, until_row_entries_v1_1_lands: 0 },
     gate5: { by_cause: {} },
-    repoints: { lines: repoints.length, by_class: {}, references_by_class: {}, to_none: 0 },
+    repoints: { lines: repoints.length, by_class: {}, references_by_class: {}, to_none: 0, rows_as_v1_2_read_them: 0, rows_struck_since: 0, rows_re_keyed_since: 0 },
   };
+  const asks = (name) => { try { return follow.nowOf(name); } catch (e) { if (e instanceof FollowFault) throw new Refused(e.message); throw e; } };
   repoints.forEach((d, i) => {
     if (!d || typeof d.class !== "string" || !Number.isInteger(d.references)) { refuse(`call 5's re-point line ${i + 1} names no class and references`); return; }
     tally(lists.repoints.by_class, d.class);
     lists.repoints.references_by_class[d.class] = (lists.repoints.references_by_class[d.class] || 0) + d.references;
     if (d.to === null) lists.repoints.to_none += 1;
     else if (!rowNumber.has(JSON.stringify(d.to))) refuse(`call 5's re-point line ${i + 1} points to a row the rows tables do not hold`);
+    // the row is as v1.2 read it, or went where its line says: struck where the line gives a row to point to, moved where it gives none
+    if (!Array.isArray(d.row)) { refuse(`call 5's re-point line ${i + 1} names no row`); return; }
+    const went = asks(d.row);
+    if (went.state === "served") lists.repoints.rows_as_v1_2_read_them += 1;
+    else if (went.state === "struck" && d.to !== null) { lists.repoints.rows_struck_since += 1; if (rowM[rowNumber.get(JSON.stringify(d.to))] === null) refuse(`call 5's re-point line ${i + 1} points to a row the served store does not hold`); }
+    else if (went.state === "re-keyed" && d.to === null && went.name[0] === d.to_key) lists.repoints.rows_re_keyed_since += 1;
+    else refuse(`call 5's re-point line ${i + 1} is not borne out by the row-strikes record: its row was ${went.state}${went.state === "re-keyed" ? " to another key than the line names" : ""}, and the line ${d.to === null ? "says it moves to the plain key" : "gives a row to point to"}`);
   });
+  // the picks that wait on call 5's re-key: each names a row still under its key with a maqaf, or one that now stands under the plain key its line names
+  {
+    const W = lists.waiting.waits_for_call5_rekey, all = new Set(), moved = new Set();
+    waiting.forEach((x, i) => {
+      if (!x || x.status !== "WAITS_FOR_CALL5_REKEY") return;
+      if (!Array.isArray(x.call5_row) || typeof x.to_key !== "string") { refuse(`the waiting list's line ${i + 1} waits on call 5's re-key and names no row and key`); return; }
+      W.picks += 1;
+      const id = JSON.stringify(x.call5_row), went = asks(x.call5_row);
+      all.add(id);
+      if (went.state === "served") return;
+      if (went.state !== "re-keyed" || went.name[0] !== x.to_key) { refuse(`the waiting list's line ${i + 1} waits on call 5's re-key, and its row was ${went.state}${went.state === "re-keyed" ? " to another key than the line names" : ""}`); return; }
+      moved.add(id);
+      W.picks_whose_row_now_stands_under_its_plain_key += 1;
+    });
+    W.rows = all.size;
+    W.rows_now_under_their_plain_key = moved.size;
+  }
 
   // 4 · per book, in the order receipt-v1 lists them
   const recordWords = new Map();   // BDB record -> its highlighted words as first read (refusal 6)
@@ -461,11 +566,15 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
   const recordsRead = { read: 0, of_the_zone_on_disk: 0, of_another_zone: [] };
   // the lines at rest over more than one word, and which of them each source reads at every word
   const runs = { lines: 0, words: 0, by_source: Object.fromEntries(IDS.map((s) => [s, { every_word: 0, some_words: 0, no_word: 0 }])) };
-  // a pill by the rows its pick names (PRINTED): [0 its own source's, 1 another source's only, 2 none, and whether one
-  // of them prints the pill's whole reading]
-  const pillOf = (txt, list, own) => {
-    const rs = (Array.isArray(list) ? list : []).filter((r) => Number.isInteger(r) && r >= 0 && r < rows.length);
-    return [!rs.length ? 2 : rs.some((r) => rowM[r] === own) ? 0 : 1, rs.some((r) => typeof rowText[r] === "string" && samePill(rowText[r], txt)) ? 1 : 0];
+  // a pill by the rows its pick names (PRINTED): [0 its own source's, 1 another source's only, 2 none; whether one of
+  // them under a key the card asks (`keys`: the word's own, its pieces') prints the pill's whole reading; and whether
+  // the card makes it: no row of the pill's own source under those keys prints it whole]
+  const pillOf = (txt, list, own, keys) => {
+    // a row the store no longer serves (a round withheld it since) prints nothing: the pill stands on the pick's other rows
+    const rs = (Array.isArray(list) ? list : []).filter((r) => Number.isInteger(r) && r >= 0 && r < rows.length && rowM[r] !== null);
+    return [!rs.length ? 2 : rs.some((r) => rowM[r] === own) ? 0 : 1,
+      rs.some((r) => keys.includes(rows[r][0]) && typeof rowText[r] === "string" && samePill(rowText[r], txt)) ? 1 : 0,
+      keys.some((k) => servedUnder(k).some(([m, t]) => m === own && samePill(t, txt))) ? 0 : 1];
   };
   // per first source, its pills and its second's where the line is theirs, by what prints their words
   const picksPrinted = Object.fromEntries(IDS.map((x) => [x, {}]));
@@ -501,6 +610,8 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     if (((restRec.read_off || {}).files || {})[`data/zones/${book}.bin`] === sha256(zoneBytes)) recordsRead.of_the_zone_on_disk += 1;
     else recordsRead.of_another_zone.push(book);
     const underALine = (si, ei) => restRec.sections[si][1].some((u) => Array.isArray(u) && ei >= u[0] && ei < u[0] + u[1]);
+    // the record's line over a word, or null
+    const lineOver = (si, ei) => restRec.sections[si][1].find((u) => Array.isArray(u) && ei >= u[0] && ei < u[0] + u[1]) || null;
     // per place, what the tallies after the pass need: which sources have a line, whether STEP's words may fill it,
     // and what prints each source's pills there (pick 1, then picks 2..n with words)
     const lineBits = new Uint8Array(entries.length);
@@ -529,6 +640,8 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       for (const r of list) {
         if (!Number.isInteger(r) || r < 0 || r >= rows.length) { refuse(`${book} ${where}: a pick names row ${r}, which the rows tables do not hold`); continue; }
         if (missing.has(r) && missing.get(r).length < 5) missing.get(r).push(`${book} ${where}`);
+        refCount[r] += 1;
+        if (namedAt.has(r) && namedAt.get(r).length < 3) namedAt.get(r).push(`${book} ${where}`);
       }
       return list;
     };
@@ -755,17 +868,19 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       }
       // what prints each source's pills here, where its line is printed: pick 1 (UBS's line of its pieces' pick 1s,
       // BDB's words with the sense's number), then picks 2..n with words (UBS's numbered in each piece)
-      const tally4 = (list) => { const t = [0, 0, 0, 0]; for (const [txt, rws, own] of list) { const [c, whole] = pillOf(txt, rws, own); t[c] += 1; t[3] += whole; } return t; };
+      // the keys the card asks at this place: the word's own and its pieces'
+      const keys = [...new Set([w.k, ...pg.map((x) => x && x.k)].filter(hasText))];
+      const tally4 = (list) => { const t = [0, 0, 0, 0, 0]; for (const [txt, rws, own] of list) { const [c, whole, made] = pillOf(txt, rws, own, keys); t[c] += 1; t[3] += whole; t[4] += made; } return t; };
       const stepMore = st.slice(1).filter((x) => Array.isArray(x) && hasText(x[4])).map((x) => [x[4], x[5], OWN_M[x[1]]]);
       const ubsMore = [];
       pieces.forEach((pc) => (Array.isArray(pc) && Array.isArray(pc[2]) ? pc[2] : []).forEach((x, k) => { if (k >= 1 && Array.isArray(x) && hasText(x[2])) ubsMore.push([x[2], x[3], OWN_M.ubs]); }));
       const bdbText = (x) => `${x[5]}${senseOf(x) ? `${SENSE_SAYS}${senseOf(x)}` : ""}`;
       const bdbMore = b.slice(1).filter((x) => Array.isArray(x) && hasText(x[5]) && senseOf(x) !== undefined).map((x) => [bdbText(x), x[4], OWN_M.bdb]);
       pillsAt[n - 1] = {
-        step: [stepPick1 ? pillOf(st[0][4], st[0][5], OWN_M[st[0][1]] || OWN_M.r) : null, tally4(stepMore)],
-        macula: [line.macula ? pillOf(macWords, macRows, OWN_M.macula) : null, [0, 0, 0, 0]],
-        ubs: [line.ubs ? pillOf(ubsLine, ubsRows, OWN_M.ubs) : null, tally4(ubsMore)],
-        bdb: [line.bdb ? pillOf(bdbText(b[0]), b[0][4], OWN_M.bdb) : null, tally4(bdbMore)],
+        step: [stepPick1 ? pillOf(st[0][4], st[0][5], OWN_M[st[0][1]] || OWN_M.r, keys) : null, tally4(stepMore)],
+        macula: [line.macula ? pillOf(macWords, macRows, OWN_M.macula, keys) : null, [0, 0, 0, 0, 0]],
+        ubs: [line.ubs ? pillOf(ubsLine, ubsRows, OWN_M.ubs, keys) : null, tally4(ubsMore)],
+        bdb: [line.bdb ? pillOf(bdbText(b[0]), b[0][4], OWN_M.bdb, keys) : null, tally4(bdbMore)],
       };
       if (!stepPick1 && pgAnswers && !isKq) answered.push([book, label, n, [...new Set(pg.map((x) => String((x && x.g) || "").trim() ? String((x && x.s) || "") : ""))].sort().join("+"), line.macula ? 1 : 0]);
       // STEP's own words, where the page's own line may be bare: its reading, credited to TAHOT
@@ -777,6 +892,14 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
         else {
           stepWords.push([n, st[0][4]]);
           stepWordsAt[n - 1] = 1;
+          // WHERE THEY PRINT (picks_printed): where today's line there is bare, which the record of the resting lines
+          // says: it draws no line over the word (a record of the page before the default sources were laid), or it
+          // draws STEP's words as the line draws them, under STEP's credit, where no TAHOT row the card asks there is
+          // drawn so (one that is makes the line today's, that row's: II Kings 17:6:2 «<the>/ ninth» is drawn as
+          // STEP's «<of the>/ ninth» is)
+          const u = lineOver(si, ei);
+          const drawn = u && u[1] === 1 ? String(u[2]) : null;
+          if (!u || (drawn === drawnStep(st[0][4]) && u[3] === OWN_M.r && !keys.some((k) => servedUnder(k).some(([m, t]) => m === OWN_M.r && drawnStep(t) === drawn)))) stepWordsAt[n - 1] = 2;
           stepWordsC.count += 1;
           if (ANGLE_MARK.test(st[0][4])) stepWordsC.angle_mark_only += 1;
           if (!(Array.isArray(st[0][5]) && st[0][5].length)) stepWordsC.naming_no_row += 1;
@@ -804,27 +927,27 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
 
     // THE PILLS THE CARD PRINTS FOR A SOURCE, under each first source with its second for this book (every source
     // on): the first's own pick 1 and picks 2..n where it has a line, and its second's where the second fills. Under
-    // STEP its line is today's except where its own words fill a bare line (step_words, counted where they may),
-    // its picks 2..n are said as text, not pills, and its second fills only the places it leaves; under the others,
-    // STEP as the second prints only its own words, where they may fill
+    // STEP its line is today's except where its own words fill a bare line (step_words, counted where they print:
+    // stepWordsAt 2), its picks 2..n are said as text, not pills, and its second fills only the places it leaves;
+    // under the others, STEP as the second prints only its own words, where they print
     const has1 = (n, x) => (lineBits[n - 1] >> IDS.indexOf(x)) & 1;
     const leafAt = new Set(leaves.map((l) => l[0]));
-    const pp = (x, y) => { if (!picksPrinted[x][y]) picksPrinted[x][y] = [0, 0, 0, 0]; return picksPrinted[x][y]; };
+    const pp = (x, y) => { if (!picksPrinted[x][y]) picksPrinted[x][y] = [0, 0, 0, 0, 0]; return picksPrinted[x][y]; };
     const addPills = (x, y, at, more) => {
-      if (at[0]) { pp(x, y)[at[0][0]] += 1; pp(x, y)[3] += at[0][1]; }
+      if (at[0]) { pp(x, y)[at[0][0]] += 1; pp(x, y)[3] += at[0][1]; pp(x, y)[4] += at[0][2]; }
       if (more) at[1].forEach((k, c) => { pp(x, y)[c] += k; });
     };
     const secondOf = Object.fromEntries(IDS.map((x) => [x, autoSecond(fills, x)]));
     for (const i of placeAt) {
       const n = i + 1, at = pillsAt[i];
       if (!at) continue;
-      if (stepWordsAt[i]) addPills("step", "step", at.step, false);
+      if (stepWordsAt[i] === 2) addPills("step", "step", at.step, false);
       const y0 = secondOf.step;
       if (y0 && leafAt.has(n) && has1(n, y0)) addPills("step", y0, at[y0], false);
       for (const x of IDS.filter((s) => s !== "step")) {
         if (has1(n, x)) { addPills(x, x, at[x], true); continue; }
         const y = secondOf[x];
-        if (y === "step" ? stepWordsAt[i] : y && has1(n, y)) addPills(x, y, at[y], true);
+        if (y === "step" ? stepWordsAt[i] === 2 : y && has1(n, y)) addPills(x, y, at[y], true);
       }
     }
     // THE LINES AT REST OVER MORE THAN ONE WORD (a joined run's one line, as the record keeps it), and which of them
@@ -870,7 +993,17 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     else if (read.has(m.book) && !m.used) refuse(`${what} names ${id}, a place v1 lacks`);
   }
   for (const [id, l] of listed) if (read.has(l.book) && !l.used) refuse(`a list beside v1.2's picks names ${id}, a place v1 lacks`);
-  for (const [i, where] of missing) refuse(`row ${n0(i)} (${rows[i][2]}, rank ${rows[i][1]}) is not in the served store under its key with its text${where.length ? `; named at ${where.join(", ")}` : "; no place names it"}`);
+  for (const [i, where] of missing) refuse(`row ${n0(i)} (${rows[i][2]}, rank ${rows[i][1]}) is not in the served store under its key with its text, and the row-strikes record does not say where it went${where.length ? `; named at ${where.join(", ")}` : "; no place names it"}`);
+  // a row a round struck since: v1.2 re-pointed its picks, so none names it; one that does is refused
+  for (const [i, where] of namedAt) if (where.length) refuse(`row ${n0(i)} (${rows[i][2]}, rank ${rows[i][1]}) was struck by ${struckSince.get(i).by.list} since the store v1.2 read, and ${n0(refCount[i])} pick(s) still name it (${where.join(", ")})`);
+  const refsOf = (map) => [...map.keys()].reduce((a, i) => a + refCount[i], 0);
+  const bySource = (map) => { const o = {}; for (const i of map.keys()) tally(o, rows[i][2]); return o; };
+  const rowsFollowed = {
+    ...followedRecord(follow, { left: [...struckSince.values(), ...withheldSince.values()], rekeyed: [...followedTo.values()] }),
+    rows_re_keyed_and_found_under_their_new_name: { rows: followedTo.size, picks_naming_them: refsOf(followedTo), by_source: bySource(followedTo) },
+    rows_struck_since_that_no_pick_names: struckSince.size,
+    rows_withheld_since: { rows: withheldSince.size, picks_naming_them: refsOf(withheldSince), by_source: bySource(withheldSince) },
+  };
   const totalPlaces = books.reduce((a, x) => a + x.places, 0);
   if (books.length === outputs.length) {
     if (totalPlaces !== r1.places) refuse(`the books hold ${n0(totalPlaces)} places and receipt-v1 says ${n0(r1.places)}`);
@@ -1005,6 +1138,10 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       named: rows.length, of_v1: pin.rows.lines, added_by_v1_1: pin.rows_added.lines, added_by_v1_2: pin.rows_added_v1_2.lines,
       found_once: foundOnce, found_more_than_once: doubles.length, missing: 0,
       found_more_than_once_rows: doubles,
+      followed: {
+        what: "the rows the tables name that are not in the store as named, each where the row-strikes record says it went since the store v1.2 read (tools/row-strikes-follow-v1.mjs): moved to another key and found there, with the picks that name it; struck, and named by no pick (v1.2 re-pointed them); withheld, with the picks that name it, which stand on their other rows or on the source's own words. found_once and found_more_than_once count the rows found as named",
+        ...rowsFollowed,
+      },
     },
     mend: {
       v1_1: {
@@ -1050,14 +1187,14 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       by_book: Object.fromEntries(books.filter((x) => x.stepWords.length).map((x) => [x.book, x.stepWords.length])),
     },
     step_line_rests_bare: {
-      what: "places where STEP has a pick (its pick 1 a line pick) and its line as it rests draws nothing: its own words are never drawn at a pair (ketiv/qere: the pair keeps today's line) or at a place call 4 writes with « | » (held), and where the place pieces do not answer, today's line stands there; where the record of the resting lines holds no line over the word, that line is bare. Such a place is not counted in has.step, is no place STEP leaves (its second does not fill it), and counts in no fill. Read off the records as they stand (records); the default sources move nothing at these places, so the record's line there is today's whether or not it was read with them laid",
+      what: "places where STEP has a pick (its pick 1 a line pick) and its line as it rests draws nothing: its own words are never drawn at a pair (ketiv/qere: the pair keeps today's line) or at a place call 4 writes with « | » (held), and where the place pieces do not answer, today's line stands there; where the record of the resting lines holds no line over the word, that line is bare. Such a place is not counted in has.step, is no place STEP leaves (its second does not fill it), and counts in no fill of STEP's or by STEP; the other sources' has and fills count it as anywhere else, as the page prints their lines there. Read off the records as they stand (records); the default sources move nothing at these places, so the record's line there is today's whether or not it was read with them laid",
       count: restsBare.places.length, pair: restsBare.pair, held_split: restsBare.held_split,
       places: restsBare.places,
       records: { dir: relative(K3, records).split("\\").join("/") || records, ...recordsRead },
     },
     picks_printed: {
-      what: "under each first source, with its second for each book (worked out with every source on), the pills the card prints for the source whose words the line prints: the first's pick 1, and its picks 2..n with words, where it has a line; its second's where the second fills. Under STEP: its pick 1 at the places its own words may fill (step_words; the page prints them where today's line is bare), its picks 2..n said as text and not as pills, and its second's pick 1 at the places STEP leaves. Each pill by the rows its pick names, as the corpus lane names them (its own source's rows that print its words where there are any, else every row under its key that prints them): a row of its own source, another source's row only, or none (names_no_row: no row under the key prints its words, so the card makes a pill of the source's own words, credited to it; made counts these); and apart, how many of them a row they name prints whole, read as the card reads a pill (a closing stop dropped, case folded, a \"/\" a joint or kept whole). Where a pick names rows and none prints the pill's whole reading (MACULA's words over several pieces, each piece naming its own rows; UBS's glosses, which name the meaning's rows; BDB's words with the sense's number), the card makes the pill too unless a row the pick does not name prints it: made is the least the card makes, pills less printed_whole_by_a_row_it_names the most. The card's gates (the pointing, the entry, the names) and the ledgers' divisions are not judged here. The corpus lane's receipt-v1 counts every pick of v1 by the rows it names (its picks_printed)",
-      by_first: Object.fromEntries(IDS.map((x) => [x, Object.fromEntries(Object.entries(picksPrinted[x]).map(([y, t]) => [y, { pills: t[0] + t[1] + t[2], ...Object.fromEntries(PRINTED.map((k, c) => [k, t[c]])), made: t[2] }]))])),
+      what: "under each first source, with its second for each book (worked out with every source on), the pills the card prints for the source whose words the line prints: the first's pick 1, and its picks 2..n with words, where it has a line; its second's where the second fills. Under STEP: its pick 1 where its own words print (step_words, where the page's own line is bare: the record of the resting lines draws no line over the word, a record of the page before the default sources were laid, or draws STEP's words as the line draws them under STEP's credit, M4, where no TAHOT row under a key the card asks there is drawn so, which would make the line today's), its picks 2..n said as text and not as pills, and its second's pick 1 at the places STEP leaves; under the others, STEP as the second prints its pick 1, and its picks 2..n as pills, where its own words print. Each pill by the rows its pick names, as the corpus lane names them (its own source's rows that print its words where there are any, else every row under its key that prints them): a row of its own source, another source's row only, or none; how many of them a row they name, standing under a key the card asks at the place (the word's own, or one of its pieces'), prints whole, read as the card reads a pill (a closing stop dropped, case folded, a \"/\" a joint or kept whole, the made spaces closed); and made, the pills no row of the pill's own source that the served store holds under a key the card asks prints whole: the card makes a row of the source's own words for each, credited to it. Made is the least the card makes: where the card's gates (the pointing, the entry, the names) withhold the row that prints a pill, or a ledger's division prints it in parts, the card makes that pill too; those are not judged here. The corpus lane's receipt-v1 counts every pick of v1 by the rows it names (its picks_printed)",
+      by_first: Object.fromEntries(IDS.map((x) => [x, Object.fromEntries(Object.entries(picksPrinted[x]).map(([y, t]) => [y, { pills: t[0] + t[1] + t[2], ...Object.fromEntries(PRINTED.map((k, c) => [k, t[c]])) }]))])),
     },
     runs_read_whole: {
       what: "the lines at rest over more than one word (a joined run's one line, as the records of the resting lines keep it), with the words under them, and for each source at how many of those lines it has a line at every word, at some, or at none; on the page a source other than STEP takes such a run only where it has a line at every word, and under STEP the run's own line stands",
@@ -1097,14 +1234,14 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     sizes: { book_files_bytes: books.reduce((a, x) => a + x.gz.length, 0), book_files_raw_bytes: books.reduce((a, x) => a + x.raw, 0) },
   };
   const receiptBytes = Buffer.from(`${JSON.stringify(receipt, null, 1)}\n`, "utf8");
-  return { books, index, indexBytes, receipt, receiptBytes, kept, total, seconds, restFills, doubles, mend11Count, mend12Count, bdbMendCount, kinds, rows, foundOnce, leavesAll };
+  return { books, index, indexBytes, receipt, receiptBytes, kept, total, seconds, restFills, doubles, mend11Count, mend12Count, bdbMendCount, kinds, rows, foundOnce, leavesAll, rowsFollowed };
 };
 
 if (startedAs(import.meta.url)) {
   const arg = (n, d = null) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
   const LEDGER = arg("ledger");
   if (!LEDGER) {
-    console.log("usage: node tools/bake-default-picks-v1.mjs --ledger <dir holding default-picks-v1/, default-picks-v1.1/ and default-picks-v1.2/> [--out data/default-picks] [--zones data/zones] [--store data/route-store] [--records data/resting-lines] [--pin data/default-picks/PIN.json] [--receipt data/default-picks-receipt-v1.json] [--dry]");
+    console.log("usage: node tools/bake-default-picks-v1.mjs --ledger <dir holding default-picks-v1/, default-picks-v1.1/ and default-picks-v1.2/> [--out data/default-picks] [--zones data/zones] [--store data/route-store] [--records data/resting-lines] [--pin data/default-picks/PIN.json] [--receipt data/default-picks-receipt-v1.json] [--receipt-only] [--dry]");
     process.exit(2);
   }
   const OUT = arg("out", join(K3, "data", "default-picks"));
@@ -1114,6 +1251,11 @@ if (startedAs(import.meta.url)) {
   const PIN = arg("pin", join(K3, "data", "default-picks", "PIN.json"));
   const RECEIPT = arg("receipt", join(K3, "data", "default-picks-receipt-v1.json"));
   const DRY = process.argv.includes("--dry");
+  // THE RECEIPT ALONE, from the records of the resting lines as the round's lines step has just read them (round-v1.sh
+  // runs the bake so after its lines step): the index and the book files were baked before the records and the lines,
+  // which read them, so they are not written here, and where the records read anew would move one of them the bake
+  // refuses and writes nothing
+  const RECEIPT_ONLY = process.argv.includes("--receipt-only");
   console.log(`\u2014 ${DEFAULT_PICKS_RULE_ID} \u2014`);
   console.log(`LEDGER: ${LEDGER}`);
   try {
@@ -1122,6 +1264,14 @@ if (startedAs(import.meta.url)) {
     const k3 = (k) => `r ${n0(k.r)}, v ${n0(k.v)}, a ${n0(k.a)}`;
     console.log(`  pins: ${PINNED.length} files and ${r.books.length} book files are the bytes the pin and receipt-v1 name; the three receipts name the pinned bytes`);
     console.log(`  rows: ${n0(r.rows.length)} named (v1 ${n0(receipt.rows.of_v1)}, v1.1 ${n0(receipt.rows.added_by_v1_1)}, v1.2 ${n0(receipt.rows.added_by_v1_2)}) · ${n0(r.foundOnce)} found once · ${r.doubles.length} found more than once${r.doubles.length ? ` (${r.doubles.map((d) => `row ${n0(d.row)} ${d.m} x${d.found}`).join(", ")})` : ""} · 0 missing`);
+    const RF = r.rowsFollowed, WC = receipt.lists_beside_v1_2.picks_waiting.waits_for_call5_rekey, RP = receipt.lists_beside_v1_2.call5_repoints;
+    console.log(`  rows followed since the store v1.2 read (${RF.read_at_store_version}), ${RF.rounds_since.length} round(s): ${followedSaid(RF)} · ${n0(RF.rows_re_keyed_and_found_under_their_new_name.rows)} found under the key a round moved them to (${n0(RF.rows_re_keyed_and_found_under_their_new_name.picks_naming_them)} picks name them) · ${n0(RF.rows_struck_since_that_no_pick_names)} struck and named by no pick · ${n0(RF.rows_withheld_since.rows)} withheld (${n0(RF.rows_withheld_since.picks_naming_them)} picks name them) · call 5's re-point list: ${n0(RP.rows_struck_since)} rows struck, ${RP.rows_re_keyed_since} moved, ${n0(RP.rows_as_v1_2_read_them)} as v1.2 read them · picks waiting on call 5's re-key: ${n0(WC.picks)} on ${WC.rows} rows, ${n0(WC.picks_whose_row_now_stands_under_its_plain_key)} of them now with a row under the plain key (${WC.rows_now_under_their_plain_key} rows)`);
+    console.log(`figures ${JSON.stringify({ store_version: r.index.store_version, rows_named: r.rows.length, found_once: r.foundOnce, found_more_than_once: r.doubles.length,
+      rows_re_keyed_and_found: RF.rows_re_keyed_and_found_under_their_new_name.rows, picks_naming_re_keyed_rows: RF.rows_re_keyed_and_found_under_their_new_name.picks_naming_them,
+      rows_struck_since_that_no_pick_names: RF.rows_struck_since_that_no_pick_names, rows_withheld_since: RF.rows_withheld_since.rows, picks_naming_withheld_rows: RF.rows_withheld_since.picks_naming_them,
+      repoints_struck: RP.rows_struck_since, repoints_re_keyed: RP.rows_re_keyed_since, repoints_as_read: RP.rows_as_v1_2_read_them,
+      waiting_on_call5_picks: WC.picks, waiting_on_call5_rows: WC.rows, waiting_on_call5_picks_now_with_a_row: WC.picks_whose_row_now_stands_under_its_plain_key, waiting_on_call5_rows_now_under_their_plain_key: WC.rows_now_under_their_plain_key,
+      has: receipt.totals.has, step_leaves: receipt.step_leaves.count, rest_fills: receipt.rest_fills.count, step_words: receipt.step_words.count, index_sha256: receipt.index.sha256 })}`);
     console.log(`  mend v1.1: ${n0(m11.places)} places · alternatives ${n0(m11.changed.a)} and variants ${n0(m11.changed.v)} changed · ${m11.merged.a + m11.merged.v} fall together (a ${m11.merged.a}, v ${m11.merged.v}) · after it ${k3(kinds.v1_1)} (receipt-v1 says v ${n0(receipt.mend.v1_1.receipt_v1_says.variant_picks)}, a ${n0(receipt.mend.v1_1.receipt_v1_says.alternative_picks)}: not held, question 2)`);
     console.log(`  mend v1.2: ${n0(m12.places)} places · ${n0(m12.gained.places)} gain STEP picks (${k3(m12.gained.picks)}) · ${m12.broken_bar} variant behind a broken bar where v1.1 has picks · BDB ${n0(bm.places)} places, ${n0(bm.picks_before)} picks before, ${n0(bm.picks_after)} after · after it ${k3(kinds.v1_2)} · no STEP pick at ${n0(receipt.mend.places_with_no_step_pick.v1_1)} places, then ${n0(receipt.mend.places_with_no_step_pick.v1_2)}`);
     const L2 = receipt.lists_beside_v1_2;
@@ -1141,9 +1291,9 @@ if (startedAs(import.meta.url)) {
     const SW = receipt.step_words;
     console.log(`  STEP's words where the page's line may be bare: ${n0(SW.count)} places in ${SW.books} books · naming no row ${SW.naming_no_row} ${JSON.stringify(SW.by_waiting_status)} · on the entry gate's lists ${JSON.stringify(SW.entry_gate)} and ${SW.entry_gate_after_call5} · only a mark ${SW.angle_mark_only} · held where call 4 writes STEP's words with « | » ${SW.held_split.held} (of ${SW.held_split.listed} it lists so)`);
     const RB = receipt.step_line_rests_bare;
-    console.log(`  STEP has a pick and its line as it rests is bare at ${RB.count} places (pairs ${RB.pair}, held where call 4 writes with « | » ${RB.held_split}): not in has.step, no leaf, in no fill${RB.count ? `; ${RB.places.map((x) => `${x.book} ${x.place}`).join(", ")}` : ""} · records of the resting lines read ${RB.records.read} (${RB.records.of_the_zone_on_disk} of the zone on disk${RB.records.of_another_zone.length ? `, of another zone: ${RB.records.of_another_zone.join(", ")}` : ""})`);
+    console.log(`  STEP has a pick and its line as it rests is bare at ${RB.count} places (pairs ${RB.pair}, held where call 4 writes with « | » ${RB.held_split}): not in has.step, no leaf, in no fill of STEP's or by STEP${RB.count ? `; ${RB.places.map((x) => `${x.book} ${x.place}`).join(", ")}` : ""} · records of the resting lines read ${RB.records.read} (${RB.records.of_the_zone_on_disk} of the zone on disk${RB.records.of_another_zone.length ? `, of another zone: ${RB.records.of_another_zone.join(", ")}` : ""})`);
     const PP = receipt.picks_printed.by_first;
-    console.log(`  pills the card prints, under each first (made: no row under the key prints the words; at most: no row the pick names prints the pill whole): ${IDS.map((x) => `${PILL[x]}: ${Object.entries(PP[x]).map(([y, t]) => `${PILL[y]} ${n0(t.pills)} (made ${n0(t.made)}, at most ${n0(t.pills - t.printed_whole_by_a_row_it_names)})`).join(", ") || "none"}`).join(" · ")}`);
+    console.log(`  pills the card prints, under each first (made: no row of the pill's own source under a key the card asks prints it whole, so the card makes it): ${IDS.map((x) => `${PILL[x]}: ${Object.entries(PP[x]).map(([y, t]) => `${PILL[y]} ${n0(t.pills)} (made ${n0(t.made)})`).join(", ") || "none"}`).join(" · ")}`);
     const RW = receipt.runs_read_whole;
     console.log(`  lines at rest over more than one word: ${n0(RW.run_lines)} over ${n0(RW.words)} words; read at every word by ${IDS.map((x) => `${PILL[x]} ${n0(RW.by_source[x].every_word)}`).join(", ")}`);
     console.log(`  signs alone (no pick): ${JSON.stringify(receipt.signs.sign_only_pick1)} · NO DATA YET pick 1s ${receipt.signs.ubs_no_data_yet_pick1} (picks ${receipt.signs.ubs_no_data_yet_picks}) · BDB pick 1s with no highlight ${n0(receipt.bdb.pick1_without_highlight)} · line feeds ${receipt.line_feeds.count}`);
@@ -1157,7 +1307,12 @@ if (startedAs(import.meta.url)) {
       [RECEIPT, r.receiptBytes],
     ];
     let moved = 0;
+    if (RECEIPT_ONLY) {
+      const would = plan.filter(([path, bytes]) => path !== RECEIPT && !(existsSync(path) && readFileSync(path).equals(bytes))).map(([path]) => relative(process.cwd(), path));
+      if (would.length) throw new Refused(`--receipt-only: the records of the resting lines as they now stand would move ${would.length} file(s) the records and the lines read (${would.slice(0, 3).join(", ")}${would.length > 3 ? ", ..." : ""}): bake the defaults and read the lines again (round-v1.sh --steps defaults,records,lines)`);
+    }
     for (const [path, bytes] of plan) {
+      if (RECEIPT_ONLY && path !== RECEIPT) continue;
       const was = existsSync(path) ? readFileSync(path) : null;
       if (was && was.equals(bytes)) continue;
       moved += 1;
@@ -1165,7 +1320,8 @@ if (startedAs(import.meta.url)) {
       mkdirSync(dirname(path), { recursive: true });
       writeFileSync(path, bytes);
     }
-    console.log(DRY ? `  --dry: ${moved} of ${plan.length} files would change; nothing written` : moved ? `  wrote ${moved} of ${plan.length} files (${relative(process.cwd(), OUT) || "."}, ${relative(process.cwd(), RECEIPT)}) · index sha256 ${sha256Of(r.indexBytes)}` : `  the same as before: nothing written (${plan.length} files)`);
+    const of = RECEIPT_ONLY ? 1 : plan.length;
+    console.log(DRY ? `  --dry: ${moved} of ${of} files would change; nothing written` : moved ? `  wrote ${moved} of ${of} files (${RECEIPT_ONLY ? "the receipt alone: " : `${relative(process.cwd(), OUT) || "."}, `}${relative(process.cwd(), RECEIPT)}) · index sha256 ${sha256Of(r.indexBytes)}` : `  the same as before: nothing written (${of} files)`);
   } catch (e) {
     if (e instanceof Refused || e instanceof PinFault) {
       for (const why of e.whys || [e.message]) console.error(`REFUSED · ${why}`);

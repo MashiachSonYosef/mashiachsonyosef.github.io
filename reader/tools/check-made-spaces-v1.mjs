@@ -17,10 +17,16 @@
 //
 // What is held here, each recomputed and none read from the tool's receipt:
 //
-//   M1  every relay's lists, its rule, its receipt and its never-closed files
-//       are the bytes their pin names; the receipt of the same relay names
-//       each file by the same sha256 and gives each list its source, which
-//       the store holds under that m id, key and label; no source has two
+//   M1  every relay's lists, its rule, its receipt, its never-closed files
+//       and the files it sent beside them are the bytes their pin names, and
+//       so are the lists and the receipt of a relay it replaces, kept as the
+//       record of the first reading. Its receipt names each list by the same
+//       bytes (sha256, size, lines; never by its name: relay v188.1's
+//       receipts are the builders' own) and gives it its source, which the
+//       store holds under that m id, key and label; it names the rule of its
+//       lists by the sha256 of a rule the pin holds; a receipt that read a
+//       store no page served as such has its pin say what store that is; no
+//       source has two lists
 //   M2  every line is well formed: its closes are spaces of its text, in
 //       rising order; its `prints` is the text with them taken out; a kept
 //       place is a space that does not close. A never-closed line's places
@@ -49,6 +55,20 @@
 //       (That record is the index's own witness: an index whose flag and
 //       second sha256 were both rewritten cannot be told from a store that
 //       moved on, and its counts are then said, not judged.)
+//       Where a receipt read a served store with a landing laid on it (relay
+//       v188.1: no served store is ever that one), its counts are judged by
+//       THE SECOND ROAD (tools/made-spaces-second-road-v1.mjs): each line's
+//       row counts, the source's rows, its rows that hold a close and its
+//       rows that still print a space before a comma are the receipt's, less
+//       the rows the row-strikes record took since that store and the lines
+//       of the landing the page did not land. And those rows and lines are
+//       the ones the lane's own count names (meets-v1.json, kept beside the
+//       lists): every row gone behind a list line is a row its falls name,
+//       every row its falls name of a list the page has landed is gone, and
+//       the lines not landed behind a list line are the lines its skip
+//       names. A road the records cannot open fails, in words: that is
+//       where a row retexted since stands until relay v187 lands with its
+//       own part of the road
 //   M6  by a second road, what prints: a row's route as printed is its line's
 //       `prints`; its record as printed is its definition line's; and its
 //       readings are that `prints` cut at the row's own marks, each mark's
@@ -83,6 +103,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
 import { linesOnPage } from "./resting-lines-v1.mjs";
 import { STATES } from "./card-readings-v1.mjs";
+import { secondRoad, fallOf } from "./made-spaces-second-road-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -105,9 +126,9 @@ const index = store.index;
 
 // ---- M1: the pinned bytes, relay by relay ---------------------------------------------------
 const pinFaults = [];
-if (pin.schema_version !== "MADE_SPACES_PIN_V2" || !relays.length) pinFaults.push("the pin names no relays");
-const bytesOf = (relay, p) => {
-  const name = `${relay.folder}/${p.file}`, path = join(LISTS, relay.folder, p.file);
+if (pin.schema_version !== "MADE_SPACES_PIN_V3" || !relays.length) pinFaults.push("the pin names no relays (MADE_SPACES_PIN_V3)");
+const bytesOf = (relay, p, folder = relay.folder) => {
+  const name = `${folder}/${p.file}`, path = join(LISTS, folder, p.file);
   if (!existsSync(path)) { pinFaults.push(`${name} is not here`); return null; }
   const b = readFileSync(path);
   if (b.length !== p.bytes || sha256(b) !== p.sha256) pinFaults.push(`${name} is ${b.length} bytes, ${sha256(b).slice(0, 12)}; its pin names ${p.bytes}, ${String(p.sha256).slice(0, 12)}`);
@@ -124,31 +145,43 @@ for (const relay of relays) {
   const theirs = receipt ? JSON.parse(receipt.toString("utf8")) : { outputs: [], sources: [], inputs: {} };
   readAtOf[relay.relay] = (((theirs.inputs || {}).route_store || {}).store_version) || null;
   if (!readAtOf[relay.relay]) pinFaults.push(`relay ${relay.relay}: its receipt names no store version it read`);
-  const sourceOf = (p) => {
+  // the rule its lists were built under, as the receipt names it, is a rule the pin holds: the relay's own, or the
+  // one of the relay whose lists it reissues
+  const listsRule = relay.lists_rule || relay.rule;
+  if (relay.lists_rule) { bytesOf(relay, relay.lists_rule, relay.lists_rule.folder); pinnedFiles += 1; }
+  if (receipt && (!theirs.rule || theirs.rule.sha256 !== listsRule.sha256)) pinFaults.push(`relay ${relay.relay}: its receipt names another rule for its lists than the pin holds`);
+  // a served store's version is twelve hex characters; a receipt that read anything else has its pin say what store that is
+  const readAt = readAtOf[relay.relay], servedAsSuch = /^[0-9a-f]{12}$/u.test(String(readAt));
+  if (readAt && (servedAsSuch ? !!relay.read_at : !relay.read_at || relay.read_at.store_version !== readAt)) pinFaults.push(`relay ${relay.relay}: its receipt read «${readAt}», and its pin ${relay.read_at ? `says «${relay.read_at.store_version}»` : "does not say what store that is (read_at)"}`);
+  // the files the relay sent beside its lists, and the lists and receipt it replaces: kept, each the bytes its pin names
+  for (const p of [...(relay.beside || []), ...(relay.meets ? [relay.meets] : []), ...((relay.receipt || {}).replaces ? [relay.receipt.replaces] : [])]) { bytesOf(relay, p); pinnedFiles += 1; }
+  if (relay.replaces) for (const p of [relay.replaces.receipt, ...(relay.replaces.lists || [])].filter(Boolean)) { bytesOf(relay, p, relay.replaces.folder); pinnedFiles += 1; }
+  // a pinned file and a file the receipt names are the same bytes: sha256, size and count of lines, whatever the name
+  const sameBytes = (t, p) => !!t && t.sha256 === p.sha256 && t.bytes === p.bytes && t.lines === p.lines;
+  // the source the receipt gives a pinned file's bytes to: `slot` reads, of one of its sources, the file it gives it
+  const sourceOf = (p, slot) => {
     const name = `${relay.folder}/${p.file}`;
-    const out = (theirs.outputs || []).find((o) => o.file === p.file);
-    if (!out || out.sha256 !== p.sha256) pinFaults.push(`relay ${relay.relay}: the corpus lane's receipt does not name ${name} by its pin's sha256`);
-    const src = (theirs.sources || []).find((s) => s.source_key === p.file.split(".")[0]);
-    if (!src) { pinFaults.push(`relay ${relay.relay}: the corpus lane's receipt names no source for ${name}`); return null; }
-    const mine = index.m_sources[src.m_id];
-    if (!mine || mine.key !== src.source_key || mine.label !== src.label) pinFaults.push(`${src.m_id} is not ${src.source_key} in the store's index`);
-    return src;
+    if (!(theirs.outputs || []).some((o) => sameBytes(o, p))) pinFaults.push(`relay ${relay.relay}: the corpus lane's receipt names no output of the bytes its pin names for ${name}`);
+    const srcs = (theirs.sources || []).filter((s) => sameBytes(slot(s), p));
+    if (srcs.length !== 1) { pinFaults.push(`relay ${relay.relay}: the corpus lane's receipt gives the bytes of ${name} to ${srcs.length} sources`); return null; }
+    const mine = index.m_sources[srcs[0].m_id];
+    if (!mine || mine.key !== srcs[0].source_key || mine.label !== srcs[0].label) pinFaults.push(`${srcs[0].m_id} is not ${srcs[0].source_key} in the store's index`);
+    return srcs[0];
   };
   for (const p of relay.lists || []) {
-    const b = bytesOf(relay, p), src = sourceOf(p);
+    const b = bytesOf(relay, p), src = sourceOf(p, (s) => s.list);
     pinnedFiles += 1;
-    if (src && (!src.list || src.list.sha256 !== p.sha256)) pinFaults.push(`relay ${relay.relay}: its receipt does not give ${src.m_id} the list ${p.file}`);
     if (src && raws.some((r) => r.src.m_id === src.m_id)) pinFaults.push(`two lists name ${src.m_id}`);
-    else if (b && src) raws.push({ relay: relay.relay, name: `${relay.folder}/${p.file}`, p, src, text: b.toString("utf8") });
+    else if (b && src) raws.push({ relay: relay.relay, name: `${relay.folder}/${p.file}`, p, src, text: b.toString("utf8"), entry: relay });
   }
   for (const p of relay.never_closed || []) {
-    const b = bytesOf(relay, p), src = sourceOf(p);
+    const b = bytesOf(relay, p), src = sourceOf(p, (s) => (s.words_taken_out || {}).list);
     pinnedFiles += 1;
     if (b && src) rawsNever.push({ relay: relay.relay, name: `${relay.folder}/${p.file}`, p, src, text: b.toString("utf8") });
   }
 }
-check("M1  every relay's lists, rule, receipt and never-closed files are the bytes their pin names; its receipt names each by the same sha256 and gives each list its source, which the store holds so; no source has two lists", pinFaults.length === 0,
-  pinFaults.length ? first(pinFaults) : `${relays.length} relays (${relays.map((r) => r.relay).join(", ")}) · ${pinnedFiles} files: ${raws.length} lists, ${rawsNever.length} never-closed, a rule and a receipt each`);
+check("M1  every relay's lists, rule, receipt, never-closed files and the files kept beside them are the bytes their pin names; its receipt names each list by the same bytes and gives it its source, which the store holds so, and names the rule of its lists by a rule the pin holds; a receipt that read a store no page served has its pin say what store that is; no source has two lists", pinFaults.length === 0,
+  pinFaults.length ? first(pinFaults) : `${relays.length} relays (${relays.map((r) => `${r.relay}${r.replaces ? `, in the place of ${r.replaces.relay}` : ""}`).join("; ")}) · ${pinnedFiles} files: ${raws.length} lists, ${rawsNever.length} never-closed, a rule and a receipt each, and the files kept beside them`);
 
 // ---- M2: every line ---------------------------------------------------------------------------
 // the text with the characters at `places` taken out, typed here on its own: one character at a time
@@ -161,7 +194,7 @@ const linesOf = (name, p, text) => {
   if (rows.length !== p.lines) lineFaults.push(`${name} holds ${rows.length} lines; its pin says ${p.lines}`);
   return rows.map((s, at) => { try { return JSON.parse(s); } catch { lineFaults.push(`${name} line ${at + 1} is not JSON`); return null; } });
 };
-for (const { relay, name, p, src, text } of raws) {
+for (const { relay, name, p, src, text, entry } of raws) {
   const map = new Map();
   linesOf(name, p, text).forEach((l, at) => {
     if (!l) return;
@@ -176,7 +209,7 @@ for (const { relay, name, p, src, text } of raws) {
     closes += l.closes.length; kept += (l.kept || []).length; if (l.note) noted += 1;
     map.set(l.text, l);
   });
-  LISTED.set(src.m_id, { key: src.source_key, relay, file: name, sha256: p.sha256, lines: map, theirs: src, readAt: readAtOf[relay] });
+  LISTED.set(src.m_id, { key: src.source_key, relay, file: name, sha256: p.sha256, lines: map, theirs: src, readAt: readAtOf[relay], readAtIs: entry.read_at || null, meets: entry.meets ? join(LISTS, entry.folder, entry.meets.file) : null });
 }
 let neverTexts = 0, standing = 0, inBoth = 0;
 for (const { relay, name, p, src, text } of rawsNever) {
@@ -209,7 +242,7 @@ const lineOf = (L, text) => { const l = L && L.lines.get(String(text ?? "")); re
 const comma = / ,/u;
 const rowFaults = [];
 const slotted = [];   // [key, row] for every row that carries the slot
-const recount = {};   // m id -> { rows, route, definition, either, stillRoute, stillRecord, texts: one line per row }
+const recount = {};   // m id -> { rows, route, definition, either, stillRoute, stillRecord, texts: one line per row, served: list text -> [rows serving it as the route text, as the definition text] }
 let storeRows = 0;
 for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bin")).sort()) {
   const body = JSON.parse(gunzipSync(readFileSync(join(STORE, "shards", f))).toString("utf8"));
@@ -219,9 +252,10 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
     // the slot is asked by what it holds: a row may carry a later slot (its facts), whose shape is its own check's
     const has = row[CLOSES_SLOT] ?? null;
     if (!L) { if (has !== null) rowFaults.push(`${f} ${k} (${m}): a row of a source no list names carries the slot`); continue; }
-    const c = (recount[m] ||= { rows: 0, route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0, texts: [] });
+    const c = (recount[m] ||= { rows: 0, route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0, texts: [], served: new Map() });
     c.rows += 1;
     c.texts.push(JSON.stringify([k, row[1] ?? null, row[2] ?? null]));
+    for (const f of [1, 2]) { const s = String(row[f] ?? ""); if (L.lines.has(s)) (c.served.get(s) || c.served.set(s, [0, 0]).get(s))[f - 1] += 1; }
     const r = lineOf(L, row[1]), d = lineOf(L, row[2]);
     if (r) c.route += 1;
     if (d) c.definition += 1;
@@ -291,23 +325,87 @@ const reachedByThisRuleAlone = (from) => {
   }
   return v === from;
 };
+// the second road, one for the sources whose receipts read the same store; null for a receipt that read a served store
+const roads = new Map();
+const secondOf = (L) => {
+  if (!L.readAtIs) return null;
+  const id = JSON.stringify(L.readAtIs);
+  if (!roads.has(id)) roads.set(id, secondRoad({ data: join(K3, "data"), index, readAt: L.readAtIs, listed: [...LISTED].filter(([, x]) => JSON.stringify(x.readAtIs) === id).map(([mm]) => mm) }));
+  return roads.get(id);
+};
 const countFaults = [], judgedSources = [], saidOnly = [];
 for (const [m, L] of LISTED) {
-  const stated = ((L.theirs.rows_axis || {}).route_store) || {}, c = recount[m] || { route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0 };
+  const stated = ((L.theirs.rows_axis || {}).route_store) || {}, c = recount[m] || { rows: 0, route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0, served: new Map() };
   const sc = stated.space_before_a_comma || {};
-  const pairs = [["rows with a close on the route text", c.route, stated.field_1_holds_a_close], ["on the definition text", c.definition, stated.field_2_holds_a_close], ["on either", c.either, stated.either_holds_a_close],
-    ["rows whose route still prints a space before a comma", c.stillRoute, (sc.field_1 || {}).rows_that_still_print_one_after_closing], ["rows whose definition still does", c.stillRecord, (sc.field_2 || {}).rows_that_still_print_one_after_closing]];
+  // the receipt's five counts, each less what a road takes from it (nothing, on the first road)
+  const pairsLess = (less) => [["rows with a close on the route text", c.route, stated.field_1_holds_a_close - less.route], ["on the definition text", c.definition, stated.field_2_holds_a_close - less.definition], ["on either", c.either, stated.either_holds_a_close - less.either],
+    ["rows whose route still prints a space before a comma", c.stillRoute, (sc.field_1 || {}).rows_that_still_print_one_after_closing - less.stillRoute], ["rows whose definition still does", c.stillRecord, (sc.field_2 || {}).rows_that_still_print_one_after_closing - less.stillRecord]];
+  const pairs = pairsLess({ route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0 });
   const differing = pairs.filter(([, here, there]) => here !== there).map(([what, here, there]) => `${m}: ${what} ${here} here, ${there} in the corpus lane's receipt`);
   const said = `${m} ${nf(c.route)}/${nf(c.definition)}/${nf(c.either)} rows close, ${c.stillRoute} and ${c.stillRecord} still print a space before a comma`;
   const rec = (ms && ms.sources && ms.sources[m]) || null;
   const byHistory = !!L.readAt && reachedByThisRuleAlone(L.readAt);
   const byRecord = !!rec && rec.read_at_store_version === L.readAt && typeof rec.texts_sha256_as_read === "string" && rec.texts_sha256_as_read === standsAs(m);
   if (byHistory && rec && rec.texts_are_as_read !== true) countFaults.push(`${m}: the store's history shows no move but this rule's since ${L.readAt}, and the index says the source's rows are not the rows its list was read from`);
+  const second = byHistory || byRecord ? null : secondOf(L);
   if (byHistory || byRecord) { countFaults.push(...differing); judgedSources.push(`${said} (as read at ${L.readAt}, ${byHistory ? "by the store's history" : "by the texts the index recorded"})`); }
+  else if (second && !second.open) countFaults.push(`${m}: its receipt read «${L.readAt}», a store no page served, and the second road is shut: ${second.why}`);
+  else if (second) {
+    // the rows gone since the store the receipt read, and the lines of the landing not landed, each with its texts as
+    // its list prints them (a line's own `prints`, the text with its closes taken out)
+    const off = [...(second.gone.get(m) || []), ...(second.notLanded.get(m) || [])];
+    const routeOf = (x) => { const l = lineOf(L, x.route); return l ? l.prints : x.route; }, recordOf = (x) => { if (!x.definition) return routeOf(x); const l = lineOf(L, x.definition); return l ? l.prints : x.definition; };
+    const less = { route: off.filter((x) => lineOf(L, x.route)).length, definition: off.filter((x) => lineOf(L, x.definition)).length, either: off.filter((x) => lineOf(L, x.route) || lineOf(L, x.definition)).length,
+      stillRoute: off.filter((x) => comma.test(routeOf(x))).length, stillRecord: off.filter((x) => x.definition && comma.test(recordOf(x))).length };
+    const faults = pairsLess(less).filter(([, here, there]) => here !== there).map(([what, here, there]) => `${m}: ${what} ${here} here, ${there} by the second road`);
+    if (c.rows !== stated.rows - off.length) faults.push(`${m}: ${nf(c.rows)} rows here, ${nf(stated.rows - off.length)} by the second road (the receipt's ${nf(stated.rows)} less ${off.length})`);
+    let heldLines = 0;
+    for (const [text, l] of L.lines) {
+      const [r1, r2] = c.served.get(text) || [0, 0], [f1, f2] = fallOf(second, m, text);
+      if (r1 === (l.rows_field_1 || 0) - f1 && r2 === (l.rows_field_2 || 0) - f2) heldLines += 1;
+      else if (faults.length < 6) faults.push(`${L.file}: «${text.slice(0, 50)}» states ${l.rows_field_1 || 0} and ${l.rows_field_2 || 0} rows, less ${f1} and ${f2} by the second road, and ${r1} and ${r2} serve it`);
+      else faults.push(null);
+    }
+    countFaults.push(...faults.filter(Boolean));
+    judgedSources.push(`${said} (by the second road: the receipt's counts at «${L.readAt}», less ${(second.gone.get(m) || []).length} rows gone since ${second.base} and ${(second.notLanded.get(m) || []).length} lines of relay ${second.landing.relay} not landed; ${nf(heldLines)} of ${nf(L.lines.size)} lines hold)`);
+  }
   else saidOnly.push(`${said}${differing.length ? ` (${differing.length} of the corpus lane's counts differ now)` : ""}, its rows have moved on from ${L.readAt}`);
 }
-if (judgedSources.length) check("M5  the corpus lane's own counts are the store's, for each source whose rows are the rows its list was read from: the rows that hold a close, and the rows that still print a space before a comma once closed", countFaults.length === 0,
-  countFaults.length ? first(countFaults) : `${judgedSources.join(" · ")}${saidOnly.length ? ` · said, not judged: ${saidOnly.join(" · ")}` : ""}`);
+// the lane's own count of where its lists meet the other relays (meets-v1.json), against what the second road took:
+// one reading of it per road, over the sources whose lists that road counts
+const meetsSaid = [];
+for (const second of roads.values()) {
+  if (!second.open) continue;
+  const mine = [...LISTED].filter(([, L]) => secondOf(L) === second);
+  const meetsPath = (mine.find(([, L]) => L.meets) || [null, {}])[1].meets;
+  if (!meetsPath || !existsSync(meetsPath)) continue;
+  const meets = JSON.parse(readFileSync(meetsPath, "utf8"));
+  // the lane's count names each list as it shipped it and by its sha256; a list kept here under another name is the same bytes
+  const theirName = new Map((((meets.inputs || {}).lists_after_v188) || []).map((l) => [l.sha256, l.file]));
+  for (const [m, L] of mine) if (!theirName.has(L.sha256)) countFaults.push(`the lane's count (${meetsPath.split("/").pop()}) was not made over ${m}'s list ${L.file} (${L.sha256.slice(0, 12)})`);
+  const listName = (L) => theirName.get(L.sha256) || L.file.split("/").pop(), landed = new Set(second.rounds.map((r) => r.list));
+  // rows gone behind a list line, as the page's record has them: list, text, then the rows
+  const gone = [];
+  for (const [m, L] of mine) for (const x of second.gone.get(m) || []) for (const text of new Set([x.route, x.definition])) if (L.lines.has(text)) gone.push({ list: listName(L), text, m, key: x.key, rank: x.rank, action: x.action });
+  const named = ((meets.v189 || {}).falls || []).flatMap((f) => (f.by || []).map((b) => ({ list: f.list, text: f.text, m: b.m, key: b.key, rank: b.rank, action: b.action, of: String(b.file).split("/").pop() })));
+  const idOf = (x) => [x.list, x.text, x.m, x.key, x.rank, x.action].join("\u0001");
+  const namedIds = new Set(named.map(idOf)), goneIds = new Set(gone.map(idOf));
+  for (const x of gone) if (!namedIds.has(idOf(x))) countFaults.push(`${x.m} ${x.key} rank ${x.rank} (${x.action}) is gone behind «${x.text.slice(0, 40)}» of ${x.list}, and the lane's count of the falls (${meetsPath.split("/").pop()}) does not name it`);
+  const due = named.filter((x) => landed.has(x.of));
+  for (const x of due) if (!goneIds.has(idOf(x))) countFaults.push(`the lane's count names ${x.m} ${x.key} rank ${x.rank} (${x.action}, ${x.of}) as gone behind «${x.text.slice(0, 40)}», its list has landed, and the row-strikes record did not take it`);
+  // the lines of the landing not landed that stand behind a list line: the lane's own skip
+  const fieldOf = (L, x) => [L.lines.has(x.route) ? "route" : null, L.lines.has(x.definition) ? "definition" : null].filter(Boolean).join(" and ");
+  const skipped = mine.flatMap(([m, L]) => (second.notLanded.get(m) || []).filter((x) => fieldOf(L, x)).map((x) => [x.key, x.rank, m, listName(L), fieldOf(L, x)])).map((x) => x.join("\u0001")).sort();
+  const skip = meets.v188_maqaf_skip || {};
+  const theirs = (skip.lines || []).map((l) => [l.v188_key, l.v188_rank, l.m, l.list, l.field].join("\u0001")).sort();
+  if (!same(skipped, theirs)) countFaults.push(`${skipped.length} line(s) of relay ${second.landing.relay} not landed stand behind a list line, and the lane's count names ${theirs.length} (v188_maqaf_skip), or other ones`);
+  const notLandedOfThese = mine.reduce((a, [m]) => a + (second.notLanded.get(m) || []).length, 0);
+  if (skip.of_M9_M5_M46 !== undefined && skip.of_M9_M5_M46 !== notLandedOfThese) countFaults.push(`${notLandedOfThese} lines of relay ${second.landing.relay} not landed are of these sources, and the lane's count says ${skip.of_M9_M5_M46}`);
+  meetsSaid.push(`the lane's own count (${meetsPath.split("/").pop()}): ${gone.length} of the ${named.length} rows its ${((meets.v189 || {}).falls || []).length} falls name are gone${due.length === named.length ? ", every list of them landed" : `, ${named.length - due.length} of them of a list not landed yet`}; of the ${notLandedOfThese} lines not landed of these sources, ${skipped.length} stand${skipped.length === 1 ? "s" : ""} behind a list line, as its skip names`);
+}
+if (judgedSources.length) check("M5  the corpus lane's own counts are the store's, for each source whose rows are the rows its list was read from, or by the second road where its receipt read a served store with a landing laid on it: the rows that hold a close, and the rows that still print a space before a comma once closed", countFaults.length === 0,
+  countFaults.length ? `${countFaults.length} · ${first(countFaults)}` : `${judgedSources.join(" · ")}${meetsSaid.length ? ` · ${meetsSaid.join(" · ")}` : ""}${saidOnly.length ? ` · said, not judged: ${saidOnly.join(" · ")}` : ""}`);
+else if (countFaults.length) check("M5  the corpus lane's own counts are the store's, for each source whose rows are the rows its list was read from, or by the second road", false, `${countFaults.length} · ${first(countFaults)}`);
 else console.log(`  --  M5  said, not judged: no source's rows are the rows its list was read from · ${saidOnly.join(" · ")}`);
 
 // ---- M6: what prints, by a second road -------------------------------------------------------
