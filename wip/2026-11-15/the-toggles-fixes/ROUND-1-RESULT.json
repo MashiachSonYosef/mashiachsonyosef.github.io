@@ -1,0 +1,565 @@
+{
+  "summary": "Fix what the independent review of the default toggles confirmed (a ruling painted over at card open, lone halves under MACULA and UBS, the export of ruled made pills, names wording, the readiness signal, the gate and receipts), then a review and the fixes",
+  "agentCount": 4,
+  "logs": [],
+  "result": {
+    "page": {
+      "status": "done",
+      "summary": "I fixed all seven items of the third review's default-sources findings in reader/zone.html of tree pt (branch toggles-fixes). For each fix I ran the reviewer's case on the live page (8914) before and on the tree (8921) after. Every fix that changes behavior has a check that fails on live and passes on the tree, except the wording and ink nits, which have probe proof only. Two commits: 4c7edc00f3 (the page fixes, the D7 model in check-default-picks-v1 and the new check-rulings-under-sources-v1) and daa33c2785 (three checks that hold the fixes: check-names-gate-v1 N9, check-form-of-v1 F12, check-menu-switches-v1 M2). The page lint is at its baseline and every tool I changed lints clean.\n\nAll the listed checks pass on the tree with two exceptions:\n- **D20 in check-default-picks-v1** fails because the receipt on disk is still the one from main 46bbbf7d50. The tools builder's notes say it passes once the receipt is baked again, and that bake is the lead's step.\n- **check-line-reads-the-place-v1 P3 on Ruth** fails the same way on live, so it was there before these changes. It passes on Amos, the default book.\n\nReadiness contract, for the tools builder (they made their two checks hold it in ec22497676): window.__default.ready is true once every line stands as the sources in force draw it.\n- At rest on STEP, or with no source in force (another reads order, or a book the index does not list), it is true at once.\n- Under MACULA, UBS or BDB it turns true once that source's book file has loaded.\n- failed is true when the file could not be fetched; every line is then the line as it rests.\n- A card that asks for the file at rest does not make ready false. Checks can wait on `!d || d.ready || d.failed` and will not run out their 30 s at rest.\n\nReset timing with every section built: Psalms went from 57.1 s on live to 20.5 s, and II Samuel from 13.5 s to 9.6 s. As loaded (only the first sections built) the reset takes 0.4–0.7 s on both. What remains is the source switch's own repaint (completeness critic N3), which I did not change. Notes are in /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-toggles-fixes/page/RUNNING-NOTES.md, and probes and logs are under /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v73/page/.",
+      "commits": [
+        "4c7edc00f3 A ruling holds at its card under every source; a reading across words stands or goes whole (reader/zone.html, reader/tools/check-default-picks-v1.mjs, new reader/tools/check-rulings-under-sources-v1.mjs)",
+        "daa33c2785 Three checks hold the page part's fixes: a pointer to a name, the card that does not wait, the Menu's note (reader/tools/check-names-gate-v1.mjs, reader/tools/check-form-of-v1.mjs, reader/tools/check-menu-switches-v1.mjs)"
+      ],
+      "outcomes": [
+        {
+          "finding": "1 BLOCKING: a ruling painted over by the default source when the ruled word's card opens, or stands open, under another default (words whose place has a set of several pieces)",
+          "outcome": "fixed",
+          "proof": "Probe f1-ruling-open (v73/page/out/f1-ruling-open-{live,tree}.log). Live had 9 faults: Ruth 1:1:5 painted «that there was» under MACULA; the card left open at 1:1:1 flipped to «and happened»; MACULA's own «and happened», ruled, came back on STEP painted «and + it was» at 1:1:5 with «beacon» pressed; Daniel 1:1:1 «year» painted «in + year». On the tree every ruling holds and the card presses it. New check check-rulings-under-sources-v1: U1, U2 and U3 fail on live (Obadiah 1:5:4 and 1:7:9) and pass on the tree. check-default-picks-v1 D9, D10 and D11 pass on the tree.",
+          "changed": "zone.html openHud: the cover choice (ruledOnPieces, ruledWhole, placeSet, setCut) 9463-9477 and 9489; withRuledMade 9534-9554; paintGloss 10004-10008; renderReadings 10433-10434; goTo 11019; choose 11117-11119; makePill 11158-11159; mOfPick 5403-5404"
+        },
+        {
+          "finding": "2 Lone halves of TAHOT's two-word readings under MACULA and UBS (313 pairs)",
+          "outcome": "fixed",
+          "proof": "Probe split-count (f2-split-{live,tree}.json): live had lone halves under MACULA and UBS in Ruth (4), Daniel (16) and Amos (3); the tree has 0 under every source. check-rulings-under-sources-v1 U5 fails on live («of» «-lehem» at Ruth 1:1:10) and passes on the tree (MACULA, UBS and BDB each keep all 4 Ruth pairs whole). The D7 model in check-default-picks-v1 now applies the same rule (wholeAcross), and D7 and D8 pass on the tree.",
+          "changed": "zone.html: defaultAtWord (renamed from defaultAt) 5837-5838; DFLT_HALVES/dfltHalvesOf, a new defaultAt and dfltHalfHeld 5863-5900; the held-half label in openHud 9828-9834; dfltHereNow 10345-10348. check-default-picks-v1.mjs: placesOf 308-310, acrossIn/acrossOf 1006-1021, wholeAcross 1089-1095 and 1098-1099, modelOf 1112 and 1117, the D7 header 134-135"
+        },
+        {
+          "finding": "3 A ruled made pill withheld from the export elsewhere and after the default changes",
+          "outcome": "fixed",
+          "proof": "Probe export-ruled (f3-export-{live,tree}.json): live says «1 reading was not exported» at Ruth 1:1 and 1:19 under MACULA, and «2» back on STEP; the tree withholds 0 and cites MACULA each time. check-rulings-under-sources-v1 U4 fails on live («under MACULA: 1 reading was not exported») and passes on the tree.",
+          "changed": "zone.html: ruledMadeAt (new) 5468-5483; gatherSection 6305-6307; dfltCredit 5935"
+        },
+        {
+          "finding": "4 The names gate counted pointer pills as «given as a name by its source»",
+          "outcome": "fixed",
+          "proof": "A pointer whose target resolves to a name is no longer counted or withheld; where the gate stands it prints its own text, unresolved, and it resolves under «keep» or at a name place. Probe f4-names: live Genesis 32:29:11 said «2 given as a name» and 42:16:1 said «1»; the tree says «1» and «0», and the pointers print as themselves. The new law check-names-gate-v1 N9 fails on live (Esther 9:10, entry 10: the card says 1 and the pointer is on no pill) and passes on the tree (0, the pointer stands as itself, and it resolves under «keep»).",
+          "changed": "zone.html: formOfResolves (replaces formOfIsAName) 3552-3560; formOfText 3568-3569; poolFor names gate 7828-7844 and 8169; carryWithheld 8183; ruledLine 5549-5552; coverText in openHud 9866-9867; makePill 11133-11134. check-names-gate-v1.mjs: N9 and SERVE_BASE"
+        },
+        {
+          "finding": "5 Readiness: window.__default.ready never turned true at rest",
+          "outcome": "fixed",
+          "proof": "Probe n5-ready (out/n5-ready.log): live Ruth at rest reports {on: step, ready: false} and does not say ready within 35 s; the tree says ready at first paint (4 ms); under ?default=macula both say ready once the book file has loaded. On the tree, check-ruled-equals-first-paint-v1 passes with no E0 line (96 s) and check-card-opens-on-the-line-v1 passes in 307 s (the tools builder measured 1,522 s for the old check on live). The contract is in the summary.",
+          "changed": "zone.html dfltSay 3865-3879 (the READY comment and the ready expression)"
+        },
+        {
+          "finding": "6a Nit: the card waited for the form-of map before drawing",
+          "outcome": "fixed",
+          "proof": "Probe formof-wait (n6a-formof-wait.json): with the map held back 12 s, live shows 0 pills at 1.5 s and the tree 67. The new law check-form-of-v1 F12 fails on live (Amos 1:1, entry 6: 0 pills 2.5 s after the press) and passes on the tree (120 pills, kept when the map lands).",
+          "changed": "zone.html poolFor names gate 7828-7844 (no await of formOfReady)"
+        },
+        {
+          "finding": "6b Nit: the kept credit's chip title was false after a ruling",
+          "outcome": "fixed",
+          "proof": "Probe n6-small: the tree's chip says «MACULA’s own reading at Ruth 1:1:1, chosen by the reader for every place this form stands»; live says «at this place, chosen on the row of sources». check-rulings-under-sources-v1 U3 (the chip names the place) fails on live and passes on the tree.",
+          "changed": "zone.html: DFLT_PLACES/dfltPlaceSaid (new) 5906-5916; dfltSays 5919-5931; dfltCredit 5935; mOfPick 5403-5404"
+        },
+        {
+          "finding": "6c Nit: the pressed pill after a ruled made pill and a switch",
+          "outcome": "fixed",
+          "proof": "Probe n6-small: on the tree the pressed pill is the ruling at Ruth 1:1:5 and 1:19:8. check-rulings-under-sources-v1 U1 and U3 test the pressed pill: they fail on live and pass on the tree.",
+          "changed": "zone.html: withRuledMade 9534-9554; makePill title 11158-11159; goTo 11019 and choose 11117-11119 (picks keep own)"
+        },
+        {
+          "finding": "6d Nit: three sentences (the reset title; STEP's pill title under another order; a second that fills nothing under STEP)",
+          "outcome": "fixed",
+          "proof": "Probe n6-small (out/n6-small-{live,tree}.log, C0, C1, C2, E). Live's reset title says «the line from STEP with a second source chosen for each book»; the tree's says «the line as it rests on the STEP pill, and each source’s second back to the one chosen for the book». Under another order STEP's title reads «press for the line as it rests here». A second that fills nothing is not counted as a chosen second, and the rail draws it dead with the reason. No check law covers these wordings.",
+          "changed": "zone.html: resetPill title 2553 (header row markup); dfltFills and dfltSecondIsAuto 3740-3748; dfltDeadSeconds (new) 3973-3982; the TOGGLES second row deadAt 4228; segRow 14543-14546 and 14553; paintDefaultPills 15358-15359, 15379 and 15426"
+        },
+        {
+          "finding": "6e Nit: a source's other picks (.r-more) painted in the page's purple",
+          "outcome": "fixed",
+          "proof": "Probe n6-small C3: the picks' words now wear the reading's ink. The dead «#hud .r-more» rule (cursor and size) is removed. check-color-channels-v1 passes on the tree. No law tests this ink, because purple is one of the page's allowed inks.",
+          "changed": "zone.html: CSS 1808-1809 (#hud .r-more .w) and the removed dead rule at about 1867; dfltMore 10362-10366"
+        },
+        {
+          "finding": "6f Nit: the Menu mirror lacked aria-expanded and aria-controls",
+          "outcome": "fixed",
+          "proof": "check-menu-switches-v1 M2 (now also M3 and M4, which compare the menu the same way) fails on live: STEP's mirror has expanded null and controls null where the pill has false and default-note. It passes on the tree.",
+          "changed": "zone.html paintMenu 18123-18125; check-menu-switches-v1.mjs row(), menu(), same() and the M2 detail"
+        },
+        {
+          "finding": "6g Nit: STEP's second reading at the 46 held places",
+          "outcome": "fixed",
+          "proof": "Probe n6-small G (Psalms held places): the note now says «STEP reads this word as two». The moreWant model in check-default-picks-v1 now expects that wording, and D13 passes on the tree, but D13's sample includes none of the 46 places, so the probe is the proof.",
+          "changed": "zone.html dfltPicks 3772-3780; check-default-picks-v1.mjs moreWant 1209-1212"
+        },
+        {
+          "finding": "7 Reset after a ruling (MACULA with a UBS second, then reset) on II Samuel and Psalms against live",
+          "outcome": "fixed",
+          "proof": "Probe t7-reset (out/t7-reset-*.log). As loaded both builds take 0.4–0.7 s. With every section built, the cause was the reset itself: it laid every built section again (12,003 lines made anew in II Samuel). It now lays again only the sections a ruling stands in. II Samuel: 13.5 s live, 9.6 s tree (113 lines made anew). Psalms: 57.1 s live, 20.5 s tree (974 made anew). In both, 0 lines differ from a fresh page's first paint. check-reset-pill-v1 passes, and check-default-picks-v1 D10 passes.",
+          "changed": "zone.html: the resetPill click handler 15529-15535 and 15539; relayBuiltSections(only) 17725-17726 and 17731"
+        },
+        {
+          "finding": "7b What remains of the reset cost: the switch's own repaint with every section built",
+          "outcome": "left-for-lead",
+          "proof": "Probe t7-switch: pressing STEP from MACULA with every section built takes 12.3 s on Psalms and about 5.2 s on II Samuel, the same on live. In the CPU profile the largest self time is fitRunLine (2.75 s in II Samuel), whose layout reads are forced for every run. This is the completeness critic's N3, in repaintGlossOrder and fitRunLine, outside the finding's functions.",
+          "changed": ""
+        },
+        {
+          "finding": "Observed while running the checks: check-line-reads-the-place-v1 P3 fails on Ruth",
+          "outcome": "left-for-lead",
+          "proof": "It fails the same way on live (main 46bbbf7d50) and on the tree: at Ruth 1:1:19 and 1:2:9 («sons + his») the card opens on the core block and presses «young» where the line's piece «sons» is owed. The check passes on Amos (30 of 30). This is the core block's selection (core-block-rule-v1), not one of these findings.",
+          "changed": ""
+        }
+      ],
+      "checks_run": [
+        {
+          "check": "check-rulings-under-sources-v1 (new; U1-U6)",
+          "result": "tree: all pass, 43 s. live: 5 fail (U1-U5)"
+        },
+        {
+          "check": "check-default-picks-v1 (node laws, then page laws on ii-samuel, obadiah, nahum, tikkunei-zohar)",
+          "result": "tree: D0-D19 pass, including page laws D4-D19 (D7's new model, D9 rulings, D10 reset, D13). D20 (node) fails because the receipt on disk is HEAD's; the tools builder's D20 passes on the re-baked receipt. 405 s"
+        },
+        {
+          "check": "check-ruled-equals-first-paint-v1 (the tools builder's wait)",
+          "result": "tree: all pass (no E0), 96 s"
+        },
+        {
+          "check": "check-card-opens-on-the-line-v1 (timed)",
+          "result": "tree: all pass, 307 s (23 settings, 230 cards); the tools builder timed the old check on live at 1,522 s"
+        },
+        {
+          "check": "check-reset-pill-v1",
+          "result": "tree: all pass, 26 s"
+        },
+        {
+          "check": "check-menu-switches-v1 (M2 now checks aria-expanded and aria-controls)",
+          "result": "tree: all pass, 10 s. live: M2, M3, M4 fail (the mirror lacks the note attributes)"
+        },
+        {
+          "check": "check-dictionary-toggle-v1",
+          "result": "tree: all pass, 65 s"
+        },
+        {
+          "check": "check-line-reads-the-place-v1, Ruth",
+          "result": "tree: P3 fails, 75 s; live: P3 fails the same way (pre-existing: Ruth 1:1:19 core block presses «young», owed «sons»)"
+        },
+        {
+          "check": "check-line-reads-the-place-v1, Amos (the default book)",
+          "result": "tree: all pass, 72 s"
+        },
+        {
+          "check": "check-form-of-v1 (with F12)",
+          "result": "tree: all pass, 97 s. live: F12 fails (0 pills 2.5 s after the press with the map held back)"
+        },
+        {
+          "check": "check-names-gate-v1 (with N9)",
+          "result": "tree: all pass, 30 s. live (SERVE_BASE): N9 fails (Esther 9:10, entry 10: the card says 1 given as a name, the pointer is on no pill)"
+        },
+        {
+          "check": "check-color-channels-v1",
+          "result": "tree: all pass, 8 s"
+        },
+        {
+          "check": "page lint (v29/lint-page.sh)",
+          "result": "baseline: 4 no-misleading-character-class, 175 no-use-before-define, 9 no-useless-assignment, 1 no-unused-vars (ORDER_RULE_ID, existing before), 2 no-unmodified-loop-condition"
+        },
+        {
+          "check": "tools lint (eslint on copies in v29/lint/tools/page73, page73n)",
+          "result": "clean: check-default-picks-v1, check-rulings-under-sources-v1, check-names-gate-v1, check-form-of-v1, check-menu-switches-v1"
+        },
+        {
+          "check": "probe n5-ready (readiness)",
+          "result": "live at rest: ready false, not said in 35 s. tree: ready at first paint (4 ms). Under MACULA both ready once the book file loads"
+        }
+      ],
+      "changed_ranges": [
+        "reader/zone.html 1808-1809: CSS #hud .r-more .w in the reading's ink (new rule); about 1867: the dead #hud .r-more rule removed (2 lines)",
+        "reader/zone.html 2553: the resetPill title (header row markup; this line will conflict with the other team's phone fix)",
+        "reader/zone.html 3552-3560: formOfResolves (new, replaces formOfIsAName); 3568-3569: formOfText (nameHeld)",
+        "reader/zone.html 3740-3748: dfltFills (new) and dfltSecondIsAuto",
+        "reader/zone.html 3772-3780: dfltPicks (STEP branch, «STEP reads this word as …»)",
+        "reader/zone.html 3865-3879: dfltSay (READY comment and the ready expression)",
+        "reader/zone.html 3973-3982: dfltDeadSeconds (new); 4228: the TOGGLES second row deadAt",
+        "reader/zone.html 5403-5404: mOfPick (a ruled pick keeps its dflt)",
+        "reader/zone.html 5468-5483: ruledMadeAt (new, after ruledChip)",
+        "reader/zone.html 5549-5552: ruledLine (formOfText nameHeld)",
+        "reader/zone.html 5837-5838: defaultAtWord (renamed from defaultAt); 5863-5900: DFLT_HALVES/dfltHalvesOf, defaultAt (new), dfltHalfHeld",
+        "reader/zone.html 5906-5916: DFLT_PLACES/dfltPlaceSaid (new); 5919-5931: dfltSays (ruled branch); 5935: dfltCredit (at)",
+        "reader/zone.html 6305-6307: gatherSection (attributionFor with ruledMadeAt)",
+        "reader/zone.html 7828-7844: poolFor names gate (no map wait, namesHeld); 8169: poolFor (pool.namesHeld); 8183: carryWithheld",
+        "reader/zone.html openHud: 9463-9477 and 9489 (cover choice: ruledOnPieces, ruledWhole, placeSet, setCut); 9534-9554 withRuledMade (new); 9828-9834 the held-half label; 9866-9867 coverText; 10004-10008 paintGloss; 10345-10348 dfltHereNow; 10362-10366 dfltMore; 10433-10434 renderReadings; 11019 goTo; 11117-11119 choose; 11133-11134 and 11158-11159 makePill",
+        "reader/zone.html 14543-14546 and 14553: segRow (deadAt)",
+        "reader/zone.html 15358-15359, 15379, 15426: paintDefaultPills (STEP title under another order, the note, the share title)",
+        "reader/zone.html 15529-15535 and 15539: the resetPill click handler (relays only the ruled sections)",
+        "reader/zone.html 17725-17726 and 17731: relayBuiltSections(only)",
+        "reader/zone.html 18123-18125: paintMenu (mirror copies aria-expanded and aria-controls)",
+        "reader/tools/check-default-picks-v1.mjs (4c7edc00f3): 134-135 the D7 header; 308-310 placesOf (beginsHalf, endsHalf); 1006-1021 acrossIn/acrossOf (new); 1089-1095 and 1098-1099 wholeAcross (new); 1112 and 1117 modelOf; 1209-1212 moreWant",
+        "reader/tools/check-rulings-under-sources-v1.mjs (new file, 336 lines, 4c7edc00f3): laws U1-U6; RUN tree, GUARDS default-picks-rule-v1, LEDGER -; SERVE_BASE option",
+        "reader/tools/check-names-gate-v1.mjs (daa33c2785): 51-59 the N9 header; 63-66 the Run line (SERVE_BASE); 227-231 FORM_OF and pointersToAName (new); 243 the grades condition; 259, 263-265, 267-268 the words loop (pointers, named); 280-282 left/stands; 284-287 the N9 pick; 291 the notAName pick uses left; 334-335 SERVE_BASE; 365-382 the N9 page law",
+        "reader/tools/check-form-of-v1.mjs (daa33c2785): 69-73 the F12 header; 463-501 the F12 law",
+        "reader/tools/check-menu-switches-v1.mjs (daa33c2785): 6-8 the M2 header; 37 row(); 41 menu(); 43-44 same(); 59 the M2 detail"
+      ],
+      "not_done": [
+        "The source switch's repaint with every section built (repaintGlossOrder and fitRunLine's forced layouts per run; the completeness critic's N3) is not optimized: the Psalms reset takes 20.5 s and the STEP press 12.3 s, the same on live. It is outside the finding's functions.",
+        "No check law for the wording and ink nits: the three sentences (reset title, STEP's title under another order, a dead second's reason), the .r-more ink, and «STEP reads this word as two» at the 46 held places (no page law samples one). Each is proven by probe n6-small only.",
+        "The default picks index and receipt still count a word that is half of a reading across words as the source's, though the page now holds it back where the source does not read every word, so the note's shares slightly overstate. That is the bake's (the tools builder's) to count.",
+        "check-line-reads-the-place-v1 P3 on Ruth is not fixed: it fails the same on live, in the core block's selection, outside these findings.",
+        "D20 of check-default-picks-v1 fails in this tree until the receipt is baked again (the tools builder's change; the lead's bake)."
+      ],
+      "lead_must_run": [
+        "Bake the default picks' receipt again (the round with --default-picks, or node tools/bake-default-picks-v1.mjs --ledger <dir> --receipt-only), then check-default-picks-v1 --ledger <dir> whole and --self-test; D20 should then pass.",
+        "After merging with the kinds' branch: resolve the resetPill title at zone.html line 2553 against the phone fix, then run check-rulings-under-sources-v1, check-default-picks-v1 (page laws), check-reset-pill-v1, check-menu-switches-v1, check-form-of-v1, check-names-gate-v1 and check-ruled-equals-first-paint-v1.",
+        "Decide what to do about check-line-reads-the-place-v1 P3 failing on Ruth (it fails on live too: Ruth 1:1:19 and 1:2:9, the core block presses «young», owed «sons»).",
+        "The gate on its default sample once (not run here, per the brief)."
+      ]
+    },
+    "tools": {
+      "status": "done",
+      "summary": "All three parts of the tools brief are fixed and committed on toggles-fixes in scratch pt, in three commits. Nothing in zone.html was touched. Each fix was shown red before and green after, except the reworded sentences (prose, so no check can be red or green on them).\n\n1. The gate's S1 now builds and reads every sampled chapter whole (commit 3757d0b30d). On a fault I made (Amos 5:27:5 changed in a copy of amos.bin served on 8961), HEAD's S1 was green and the new S1 is red. On the tree it is green. Two books took 160 s against 148 s before.\n\n2. The default picks' receipt and its check (commit 05f65ef014).\n   - STEP's cells now count where its words actually print: 232 pills, made 232 (they said 1,015, made 65).\n   - «made» now counts a pill the card makes, measured against the store under the keys the card looks up.\n   - A new law, D20, holds these counts. It is red on HEAD's receipt and green on the receipt the new bake writes.\n   - The «counts in no fill» sentences now say what the index does.\n   - The check's model of STEP's words has the sign rule, from a single copy in gloss-store-v1.mjs that the bake and the check both import.\n   - D5's side line is now a law over all 39 records: red with the old model at 38 places, green with the sign rule.\n   - The fault harness has three new faults, H11–H13; all go red as they should.\n   - The pin names the letters of v180, v180.1 and v195; a new D1 (d) clause is red on HEAD's pin and green after.\n   - On the round: I moved the receipt's writing rather than changing what the bake reads. The bake still runs before the gate and the lines step, which need the index. It runs again after the lines step with a new `--receipt-only` flag. That keeps one rule in one place (the bake), run twice. That second pass refuses if the re-read records would change the index.\n\n3. The two checks' waits (commit ec22497676). The page builder's commit 4c7edc00f3 sets the contract: the page says it is ready at once at rest, and under another source once its book file is loaded. Both checks now treat a page that does not say so within 30 s as a failure rather than waiting it out.\n   - check-card-opens-on-the-line-v1: 1,522 s before (HEAD's check on the live page), 309 s after (on the tree's page). Both green.\n   - check-ruled-equals-first-paint-v1: red on the live page (the page never says ready at rest), green on the tree.\n\nThe receipt itself is a generated file and is not committed. D20 stays red on the tree until the round (or the bake with `--receipt-only`) rewrites it.\n\nMy first picks commit had swept in the page builder's uncommitted D7 changes to check-default-picks-v1.mjs. I amended it to carry my changes only; they have since committed their part (4c7edc00f3).\n\nNotes are in /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-toggles-fixes/tools/RUNNING-NOTES.md. Logs are in /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/v73/tools/logs/.",
+      "commits": [
+        "3757d0b30d The gate's S1 reads every sampled chapter whole",
+        "05f65ef014 The default picks' receipt counts what the card prints, and its check holds it",
+        "ec22497676 Two checks wait for the page to say its lines stand, and a page that does not is a fault"
+      ],
+      "outcomes": [
+        {
+          "finding": "check-same-product-v1.mjs:124 S1 reads only the sections both builds happened to build (finding 0, skeptic 26)",
+          "outcome": "fixed",
+          "proof": "Fault: Amos 5:27:5 «he says» made «he says (moved)» in a scratch copy of amos.bin, served on 8961 with its pin moved (v73/tools/serve-fault.mjs). HEAD's S1, --old 8914 --new 8961 --every 38 --expect: green, 5,160 lines on 4 pages, 148 s (logs/s1.before.fault.log). New S1: FAIL «amos 5 s85 #5 he says → he says (moved)» under default, English reader and BDB, 5,585 lines, 160 s (logs/s1.after.fault.log; the committed version again 154 s, logs/s1.committed.fault.log). Tree (8922 vs 8914): green, 5,585 lines, 160 s (logs/s1.after.tree.log). Scroll fallback with __materialise removed: 7 sections built at arrival, 27 of 27 after 3 steps.",
+          "changed": "read() builds every section of the page's own chapter (__materialise, else scroll) and reads only those until two readings agree; the comparison's common is the chapter's sections, and any section of the chapter not read on both builds is reported (unread)."
+        },
+        {
+          "finding": "bake-default-picks-v1.mjs:821 picks_printed says STEP «made 65» where the card makes STEP's pill at all 232 places; the STEP-as-second cells count places where STEP's words do not print; the bound is wrong for the other sources too (finding 1, skeptic 27)",
+          "outcome": "fixed",
+          "proof": "New receipt (bake --receipt-only, kept at logs/default-picks-receipt-v1.new.json): STEP.STEP pills 232 made 232 (18 name no row, 214 name rows); UBS.STEP 2/2; BDB.STEP 104/104; MACULA made 218,750 of 295,413, UBS 244,315 of 246,570, BDB 101,507 of 108,219; printed_whole now counts only rows under keys the card looks up (MACULA 145,179, down by 763). New law D20: red on HEAD's receipt («under STEP, STEP's pills 232 here (made 232), 1,015 in the receipt (made 65)», logs/check-node.after-code.head-receipt.log), green on the new receipt (logs/check-node.after.new-receipt.log).",
+          "changed": "bake: STEP's cells count where its words print, read off the records (no line, or STEP's words drawn under M4 where no TAHOT row the card looks up draws that line; II Kings 17:6:2 is today's line); made means no row of the pill's own source under the word's or a piece's key prints the pill whole; named rows count as printing it whole only under those keys; row texts read as printed (routePrinted). check: D20 recounts pills and made."
+        },
+        {
+          "finding": "bake/check sentences «counts in no fill» / «counted in no has» not borne out by the index (finding 2, skeptic 28)",
+          "outcome": "fixed",
+          "proof": "No check can be red or green on prose. The index's own counts (reviewer derive2: Psalms ubs.macula 2,776 includes the held places) contradict the old wording and match the new: a rests-bare place counts in no fill of STEP's or by STEP, and the other sources' has and fills count it as anywhere else. D3's message now says exactly that and stays green.",
+          "changed": "bake header lines 54-58, 97-98, 100-102, the receipt's step_line_rests_bare.what (line 1099), the CLI line; check header lines 35-37 and 44-46, D3 message (line 784)."
+        },
+        {
+          "finding": "check-default-picks-v1.mjs 242/789/937: the model of STEP's words lacks the sign rule (findings 3, 24; skeptics 29, 50)",
+          "outcome": "fixed",
+          "proof": "D5's node side line is now a law over every record read with the defaults laid (none drawn bare; a line under M4 that is not today's must be STEP's words as drawn). A scratch copy with drawnStep set back to packed: FAIL «38 drawn otherwise: genesis 8:20:8 ... leviticus 19:4:4 «​worthless idols», owed «<the> + worthless idols»» (logs/check-node.packed-model.log). With the sign rule: green, 39 of 39 records, side line 232 fills / 180 today's / 603 another line (it said 390/625).",
+          "changed": "gloss-store-v1 exports the page's sign helpers under its names (SIGN_GAP, signOnly, isGap, joinDrawn, signsOff); the check's drawnStep is used in layerAt and D5; new helpers servedUnder, pillKeys, samePill, todayAt, stepPrints; D5 node law."
+        },
+        {
+          "finding": "round-v1.sh:136/154 bakes the defaults before the lines step, so the shipped receipt says every record was of another zone (findings 4, 23; skeptics 30, 49)",
+          "outcome": "fixed",
+          "proof": "HEAD's shipped receipt: records of_the_zone_on_disk 0, of another zone 39. The bake with --receipt-only on the tree wrote the receipt alone: 39 of 39, index sha f20c8e4f… unchanged (logs/bake-receipt-only.log). On a scratch record of Psalms 102:4:6 drawn, it refused: «would move 1 file(s) ... data/default-picks/index.json» and wrote nothing (logs/bake-receipt-only.refused.log). bash -n passes on round-v1.sh; the round itself was not run.",
+          "changed": "Moved the step rather than changing what the bake reads. The defaults step stays before records and lines (they read the index); the lines step now runs the bake again with --receipt-only, then check-default-picks --node. One rule (the bake), run twice; the pass refuses if the re-read records would change the index or a book file."
+        },
+        {
+          "finding": "default-picks PIN.json names no letter for relays v180, v180.1, v195 (finding 5, skeptic 31)",
+          "outcome": "fixed",
+          "proof": "New D1 (d) clause: red on HEAD's pin («the pin names no letter for relay v180 ... v180.1 ...», logs/check-node.pin-before.log), green after (logs/check-node.pin-after.log). Letters found in scratch: dl-v184/.../FOR-ELIJAH-v180.md sha 7d4a5576…, FOR-ELIJAH-v180.1.md 24e1a92b… (the same in dl-audit), dl-v195/.../FOR-ELIJAH-v195.md db8fb543…",
+          "changed": "PIN.json gains letters[] (relay, date, store path, letter_sha256, what it names); check D1 (d) holds every listed relay's letter."
+        },
+        {
+          "finding": "the fault harness lacks faults for D12's MACULA-piece places, D13's own-line sample and D3's rests-bare places (finding 6, skeptic 32)",
+          "outcome": "fixed",
+          "proof": "--self-test --ledger, 115 s (logs/check-selftest.full.log): H11 «line of the pieces naming STEP at the 2 place(s) of ii-samuel ... D12 finds 2»; H12 «STEP's picks 2..n dropped ... at the 3 place(s) ... D13 finds 3»; H13 «an index whose has.step counts the 6 place(s) of psalms ... D3 finds 1». Each is green as read and red with its fault. H1-H10 as before.",
+          "changed": "d13 and macPieces factored into d13Sample, moreJudged, macPiecePlaces, macPieceFault; judgeD3 takes an index; H11/H12 on w1's cards, H13 in memory."
+        },
+        {
+          "finding": "check-card-opens-on-the-line-v1:93 and check-ruled-equals-first-paint-v1:45 wait out 30 s at rest (finding 20, skeptic 46)",
+          "outcome": "fixed",
+          "proof": "The contract is the page builder's commit 4c7edc00f3: ready at once at rest and under another reading order; under another source once its book file is loaded. Probe (logs/ready-at-rest.log): live 8914 «NOT ready in 30 s»; tree 8921 ready in 20 ms (UBS kept 25 ms, oldest first 23 ms). check-card-opens: 1,522 s before (HEAD's check, live page) and 309 s after (new check, tree's page), both green. check-ruled-equals-first-paint: red on the live page (E0 for the Hebrew and the English reader, 156 s), green on the tree (95 s).",
+          "changed": "Both keep the predicate; a page that does not say it is ready within 30 s is now a failure (C1 reports it; the other check prints an E0 line) instead of a silent catch."
+        }
+      ],
+      "checks_run": [
+        {
+          "check": "check-same-product-v1 S1 (HEAD's version) --old 8914 --new 8961 (fault) --every 38 --expect",
+          "result": "green on the fault, 5,160 lines, 148 s (before)"
+        },
+        {
+          "check": "check-same-product-v1 S1 (new) --old 8914 --new 8961 (fault) --every 38 --expect",
+          "result": "red at amos 5 s85 #5, 5,585 lines, 160 s; the committed version also red, 154 s"
+        },
+        {
+          "check": "check-same-product-v1 S1 (new) --old 8914 --new 8922 (tree) --every 38 --expect",
+          "result": "green, 5,585 lines on 4 pages, 160 s; S2 green (12 cards)"
+        },
+        {
+          "check": "check-default-picks-v1 --node --ledger, HEAD's code",
+          "result": "green, 26 s; D5 side line 390 / 625 (the misfiling)"
+        },
+        {
+          "check": "check-default-picks-v1 --node --ledger, new code, HEAD's receipt",
+          "result": "only D20 red (STEP 232 here vs 1,015 in the receipt); D5 law green; 37-48 s"
+        },
+        {
+          "check": "check-default-picks-v1 --node --ledger, new code, new receipt (written into the tree, then restored)",
+          "result": "all green, 42 s"
+        },
+        {
+          "check": "check-default-picks-v1 --node, scratch copy with drawnStep = packed",
+          "result": "D5 law red at 38 places"
+        },
+        {
+          "check": "check-default-picks-v1 --node, letters clause on HEAD's pin, then the new pin",
+          "result": "red, then green"
+        },
+        {
+          "check": "check-default-picks-v1 --self-test --ledger (full, with the page side)",
+          "result": "H1-H13 all as they should; the only FAIL is D20 on the tree's stale receipt; 115 s"
+        },
+        {
+          "check": "bake-default-picks-v1 --dry (before / after)",
+          "result": "22 s, then 42 s; 1 of 47 files would change (the receipt only)"
+        },
+        {
+          "check": "bake-default-picks-v1 --receipt-only on the tree; again with a scratch faulted Psalms record",
+          "result": "wrote the receipt alone (39 of 39 of the zone on disk, index unchanged); refused on the fault, nothing written"
+        },
+        {
+          "check": "check-card-opens-on-the-line-v1 Amos: HEAD's check on live 8914 vs the new check on tree 8921",
+          "result": "green 1,522 s vs green 309 s"
+        },
+        {
+          "check": "check-ruled-equals-first-paint-v1 Amos: new check on live 8914 vs tree 8921",
+          "result": "red (E0 x2) 156 s vs green 95 s"
+        },
+        {
+          "check": "eslint on all changed tools (v29/lint/tools), HEAD's versions against the new",
+          "result": "no new warnings (the 1 pre-existing gloss-store routeText warning); bash -n round-v1.sh ok"
+        },
+        {
+          "check": "Hebrew in added lines; British spellings in added lines",
+          "result": "none in any of the three commits"
+        }
+      ],
+      "changed_ranges": [
+        "zone.html: nothing changed by this part",
+        "reader/tools/check-same-product-v1.mjs (HEAD lines): 5-8 header S1; read() 121, 125-144 (the chapter built whole, readLines), 146, 169-175 (lines(): read until two readings agree); comparison loop 209-212 (common and unread over the chapter's sections)",
+        "reader/tools/bake-default-picks-v1.mjs (HEAD lines): header 54-58, 97-98, 100-102, 104-107, 199-204, 212-216, 218; import 227; PRINTED and drawnStep 284-291; bakeDefaultPicks: rowText, printedUnder, readShard, servedUnder 390-404, store pass 411 and 420, pillOf 495-502, lineOver 538-539, keys and tally4 794-796, pillsAt 803-806, step_words where they print 818-825, picks_printed tally 853-873, receipt text 1099 and 1105-1106; CLI: usage 1153, RECEIPT_ONLY 1163-1167, write plan and output 1195-1225",
+        "reader/tools/check-default-picks-v1.mjs (HEAD lines, mine only): header 35-37, 44-46, 92-103, 175-176, 183-187; import 207; drawnStep 265-268; LETTERED letters law 615-621; D1 (d) message 693-694; judgeD3 index 746 and 752; D3 message 784; servedUnder, pillKeys, samePill, todayAt, stepPrints 787-812; D5 node law 836-877; D20 and pillsOf 881-933; layerAt drawnStep 1079; d13Sample, moreJudged, d13, macPiecePlaces, macPieceFault, macPieces 1241-1300; harness H13 1849-1859, label 1876, H11/H12 1920-1943",
+        "reader/tools/gloss-store-v1.mjs: 70-82 (SIGN_GAP, signOnly, isGap, joinDrawn, signsOff exported under the page's names)",
+        "reader/tools/round-v1.sh: 148-153 (the defaults step's comment), 197-204 (the lines step bakes the receipt again with --receipt-only, then the node laws)",
+        "reader/tools/check-card-opens-on-the-line-v1.mjs: 92-98 (the readiness wait)",
+        "reader/tools/check-ruled-equals-first-paint-v1.mjs: 45-48 (the readiness wait)",
+        "reader/data/default-picks/PIN.json: 12-34 (letters[])"
+      ],
+      "not_done": [
+        "The tree's data/default-picks-receipt-v1.json is still HEAD's (a generated file, not committed), so D20 is red on the tree until the round or the bake with --receipt-only rewrites it.",
+        "D20 holds only pills and made. The named-row cells (names_*, printed_whole_by_a_row_it_names) are written by the bake but not recounted by the check.",
+        "The two neighbor lines beside STEP's words (II Chronicles 11:11:2, II Kings 11:18:8, the hidden sign's gap) are held only by S1 on sampled pages, not by a node law over all 39 records.",
+        "The comparison of every line before and after re-projection that the landing plan asks for was not built.",
+        "The full gate was not run: S1 only on two books (--every 38). check-default-picks-v1's page laws D4-D19 were not run in full, only the page side of --self-test.",
+        "The round itself was not run. Its new lines-step block was checked with bash -n and by running its two commands separately.",
+        "Other checks still swallow the same 30-60 s readiness timeout silently: check-default-picks ready(), check-line-follows-card, check-reset-pill, check-same-product after a source press, check-word-senses. With the new page they end at once at rest; they were outside this brief."
+      ],
+      "lead_must_run": [
+        "The round with --default-picks: its defaults step, then its lines step, which now bakes the receipt again with --receipt-only. Without a whole round: node tools/bake-default-picks-v1.mjs --ledger <ledger dir> --receipt-only. Then check-default-picks-v1 --node --ledger <dir>; D20 goes green.",
+        "After the merge with the kinds' branch: check-default-picks-v1 --ledger <dir> (page laws) and --self-test.",
+        "The gate once on its default sample, to time S1 reading whole chapters (two books: 148 s before, 160 s after).",
+        "In the merge, check-same-product-v1.mjs: this branch changes read() (lines 121-175), the comparison's common and unread (209-212) and the header's S1 lines 5-8. The other team adds a second --expect to the same file."
+      ]
+    },
+    "review": {
+      "verdict": "sound-with-fixes",
+      "findings": [
+        {
+          "title": "After the round, the gate's S1 will be red on fix 2's own intended lines. Both 'S1 green on the tree' runs tested main's engine, not the tree's page code",
+          "severity": "should-fix",
+          "where": "reader/tools/check-same-product-v1.mjs (S1's owed model, lines 214-262). Chapter pages load /reader/engine-d043256cf007.js, which is still main's engine; build-front-door-v1.mjs engineBlocks 2759-2793 regenerates it only in the round's door step",
+          "evidence": "The tree's chapter pages (pt/ruth/1/ and the rest) run /reader/engine-d043256cf007.js. That file is the largest script block of 46bbbf7d50's zone.html: it holds no dfltHalvesOf, and its sha matches. Extracted the way build-front-door does it, the tree's own zone.html becomes engine-1d0b4b4f39cc.js. So S1 against 8922 compares main's engine with main's engine.\n\nRun 1, tree as served (new 8922, old 8914, --every 35: amos 1,5, ruth 1,3, zephaniah 1,2): ok, 8,720 lines, 229 s (v73/review/out/s1-tree.log).\n\nRun 2, the same pages served on 8966 with the tree's engine in place of the old file: FAIL, 8 lines differ (v73/review/out/s1-engine.log, s1-engine.diff.txt):\n- amos 5 MACULA s63 #16: «and» → «and + Beth-»\n- amos 5 MACULA s64 #13: «for» → «[will belong] to + Beth-»\n- the same two places under UBS: «Bethel» → TAHOT's halves\n- ruth 1 MACULA s0 #10: «of» → «from + Beth-»\n- ruth 1 MACULA s1 #14: «from» → «from + Beth-»\n- the same two places under UBS: «Bethlehem» → «from + Beth-»\n\nS1 owes only the fills at rest, so it reads these as plain differences. From the data, the 18 default gate pages hold 24 (place, source) held halves: MACULA 9, UBS 15, in amos 5, haggai 1, job 22, lamentations 1 and 3, nehemiah 7 and ruth 1. Every one not inside a run drawn whole will show up the same way. round-v1.sh's default steps include door (line 219), which rewrites the engine, so the lead's gate after the round meets these lines.",
+          "reproduce": "1. From scratchpad/pt/reader: node tools/check-same-product-v1.mjs --old http://127.0.0.1:8914 --new http://127.0.0.1:8922 --every 35 --expect data/default-picks/index.json → ok.\n2. Write the largest <script> and <style> bodies of pt/reader/zone.html to v73/review/engine/tree-engine.{js,css}.\n3. Serve them with: node v73/review/probes/serve-over.mjs 8966 <scratchpad>/pt /reader/engine-d043256cf007.js=<tree-engine.js> /reader/engine-613c92743857.css=<tree-engine.css>\n4. Rerun step 1 with --new http://127.0.0.1:8966 → FAIL, 8 differ.",
+          "suggested_fix": "Give S1 the across-words rule as owed differences under MACULA and UBS (as it owes the fills at rest), or have the lead name each line with --diff. Before calling S1 green on a tree, serve that tree's own engine to its chapter pages (or build the door in scratch)."
+        },
+        {
+          "title": "Finding 2's own II Samuel 10:6 example is unchanged: under UBS the name still prints twice",
+          "severity": "should-fix",
+          "where": "reader/zone.html 5863-5900 (dfltHalvesOf and defaultAt). The hold only groups words whose place readings end and begin with a hyphen",
+          "evidence": "II Samuel under UBS, identical on live 8914 and the tree 8921 (v73/review/out/ii-samuel-10-6-ubs.log):\n- 10:6:15 «Aram Zoba» [M18], run «Aram Zoba+Aram+Zobah»\n- 10:6:12-14 run «​Arameans of Beth-Rehob+Beth-Rehob+Rehob»\n\nThe original finding lists exactly this line in its scenario («Aram Zoba» «Aram» «Zobah»). TAHOT's pieces here are «Aram» and «Zobah», with no hyphen, so dfltHalvesOf never groups them. The builder's proof ('the tree has 0 under every source') counts hyphen halves only. My live-vs-tree diff of every line, every section built, found no difference other than hyphen-pair words in Ruth, Daniel, Amos and II Samuel under MACULA and UBS (lines-diff-*.json), so nothing else moved here.",
+          "reproduce": "node v73/review/probes/peek.mjs ii-samuel ubs 10:6:12,10:6:13,10:6:14,10:6:15,10:6:16,10:6:17 tree (and the same with live).",
+          "suggested_fix": "Either extend the hold to a source line that covers its neighbors' words (UBS's whole name at the first word of the run, TAHOT's parts beside it), or record finding 2 as fixed for hyphen-marked readings only and leave this scenario open."
+        },
+        {
+          "title": "A ruling made by pressing a division with no pill: after any source switch the card and its line disagree. No law holds the new open-paint guard",
+          "severity": "should-fix",
+          "where": "reader/zone.html 10008 (`if (ruledHere) return;` in paintGloss), with ruledLine/ruledMs (5436-5460), which read a cut with no pick from the baked table",
+          "evidence": "Ruth at rest. Open 1:1:1, press the division «ויהי» and no pill (the label says «reading · at every place this form stands»). 1:1:1 and 1:1:5 then read «to be: (Third-person … of הָיָה)» [M13].\n\nPress MACULA: both lines go to «and + there was» [M4], the baked column. Live does the same, so this drift predates the fix.\n\nTree: open 1:1:5 and the card reads «that there was», MACULA's pill pressed, while the line stays «and + there was». Back on STEP the card reads «to be: …» over the same line.\n\nLive: the open paints the card's reading over 1:1:5 instead (the old fault).\n\nSo the fix turns one inconsistency into another: the card no longer opens on its line (v73/review/out/f1-division-tree.log, f1-division-live.log). With a pill pressed on the same division, both builds hold.\n\nNo law covers the guard: with only that line removed (v73/review/mut/m1-guard.html), check-rulings-under-sources-v1 is U1-U6 all ok (out/mut-rulings.log). The cover choice alone carries the reviewer's scenarios.",
+          "reproduce": "node v73/review/probes/f1-division.mjs tree (and live). The guard: v73/review/probes/run-mut.sh check-rulings-under-sources-v1.mjs m1-guard.",
+          "suggested_fix": "Draw a division ruled with no pick the way the press drew it (the card's reading for each block), or open its card on the baked reading the painters draw. Add a U law that presses a division alone, switches source and opens the card at another place."
+        },
+        {
+          "title": "D7's amended across-words model is never red: with the page's hold removed, D7 stays green",
+          "severity": "note",
+          "where": "reader/tools/check-default-picks-v1.mjs 1006-1021 (acrossOf), 1089-1099 (wholeAcross), 1112 and 1117 (modelOf)",
+          "evidence": "Shadow tree v73/review/shadow/reader: tools copied, data linked, zone.html = m5-across.html (the tree's page with defaultAt returning defaultAtWord's answer). The full check gives «ok D7 under each source every line of w1-w3 is the model» (out/shadow-m5-default-picks.log, 333 s). Against the same page, U5 goes red (out/mut-rulings.log: «under MACULA 4 half(s) alone: 1:1:10 «of» «-lehem» …»).\n\nWhy: every held half in w1 (ii-samuel; MACULA 3, UBS 12) sits inside a run drawn whole («RUN therefore», «RUN Bethlehem», «RUN Bathsheba»), and obadiah and nahum hold none. D7 never meets the case it now models, the same latency the review found in its sign rule (findings 3 and 24). U5 alone holds the behavior.",
+          "reproduce": "Build a shadow reader folder with the tree's tools copied, data symlinked and zone.html = v73/review/mut/m5-across.html, then run node tools/check-default-picks-v1.mjs inside it: D7 ok. Then: SERVE_BASE pointed at that page, node tools/check-rulings-under-sources-v1.mjs: U5 FAIL.",
+          "suggested_fix": "Say in D7's line that the across rule is judged only where w1-w3 hold such a word outside a run drawn whole (none today), or pick a work for it from the data, as U5 does."
+        },
+        {
+          "title": "The shared sign helpers in gloss-store-v1.mjs hold an invisible literal U+200B and literal ¿ and ×",
+          "severity": "note",
+          "where": "reader/tools/gloss-store-v1.mjs 78-79 (export const SIGN_GAP and signOnly)",
+          "evidence": "Line 78 is `export const SIGN_GAP = \"<e2 80 8b>\";`, a raw zero-width space inside the quotes (cat -A shows M-bM-^@M-^K). The page (zone.html 3386, 3401) and check-same-product-v1.mjs 82-83 write \"​\", \"¿\" and \"×\". An editor or a whitespace cleanup that drops the invisible character would quietly turn the gap into \"\". check-same-product-v1.mjs also keeps its own copy of the same five helpers instead of importing this one, so the tools now carry the rule twice.",
+          "reproduce": "grep -n 'export const SIGN_GAP' reader/tools/gloss-store-v1.mjs | cat -A",
+          "suggested_fix": "Write \"​\", \"¿\" and \"×\" as the page does, and have check-same-product-v1 import the helpers."
+        },
+        {
+          "title": "Whole-chapter S1 costs about 1.5 times the last gate's time on the default sample",
+          "severity": "note",
+          "where": "reader/tools/check-same-product-v1.mjs read() 121-174",
+          "evidence": "6 pages (amos 1,5, ruth 1,3, zephaniah 1,2), 8,720 lines, 229-234 s at load 2-3.5 (out/s1-tree.log, s1-fault.log, s1-engine.log). The 18 default chapters hold 5,503 words against these 1,607 (3.4×). That projects to about 13 minutes for S1, against 532 s for the whole last gate (v63/pipeline.log, which also ran S2's 54 cards). This is an estimate, not a gate run. Correctness held:\n- unbuilt sections carry their .vnum on both builds, so the chapter list is whole (Ruth 3: 18 of 18; Psalms 119: 176 of 176; probes/vnum.mjs)\n- a fault outside the arrival stretch is caught: Ruth 3:14:2 (s58; the arrival builds s45-s56) served bare from a scratch index gives «FAIL … ruth 3 s58 #2 «feet + his» → «»» (out/s1-fault.log)",
+          "reproduce": "From pt/reader: node tools/check-same-product-v1.mjs --old http://127.0.0.1:8914 --new http://127.0.0.1:8922 --every 35 --expect data/default-picks/index.json; time it.",
+          "suggested_fix": "Budget the gate step for it (the pipeline's 5400 s timeout covers it)."
+        }
+      ],
+      "what_was_checked": [
+        "Lens 1: every fix replayed on the tree (8921) and on live (8914) with my own probes under v73/review/probes. Finding 1: a ruling holds across MACULA, UBS, BDB and STEP, including with the card left open through three switches (f1-near-tree.log, legs O, U, K). Finding 3: no reading withheld for MACULA's made pill at four verses, UBS's second pick at Ruth 2:1:4 or STEP's own words at 1:19:8, under the source and back on STEP; the pick's chip names Ruth 2:1:4 (f3-export-tree.log, f3-pick-tree.log). Finding 4: Genesis 32:29:11 says 1 given as a name (live 2) and prints the pointer as itself; ruled, it exports from Kaikki; 42:16:1 says 0 (f4-names-*.log). Finding 5: ready at the first read at rest and under another order, failed when the book file is refused (n5-n6a-*.log). 6a: 40 pills at once with the map held back, 4 pointers resolve when it lands. 6c: the ruling is pressed at Ruth 1:19:8 under MACULA (n6c). 6d, 6e, 6f: the rail's dead seconds with their reasons, the picks' ink equal to the first pick's (#23558a) with the cursor rule gone, and the Menu mirror's aria-expanded and aria-controls following the pill (n6-small-*.log).",
+        "Lens 2, at rest: every line of Amos, Daniel, Esther, I Samuel, Ruth, Genesis and Psalms with every section built, chip titles included, is the same on live and the tree. Under MACULA, UBS and BDB (Ruth, Daniel, Amos, II Samuel) the only differences are words of hyphen-marked readings across words, 0 others (batch-rest.log, lines-diff-*.json).",
+        "Lens 2, near the fixes: a pair (Ruth 1:8:10), a run's word (1:2:9), reset then the card, MACULA's own reading ruled then UBS and BDB, and unruled cards under MACULA including a held half, each card on its line (f1-near-tree.log). Exports at held halves cite TAHOT with nothing withheld (xp-held). Reset after four rulings of different shapes, sections built before or after: 0 of 1,296 lines differ from a fresh first paint (t7-reset-tree.log). II Samuel reset with one ruling: tree 8.4 s with 113 lines made anew, live 14.4 s with 12,003 (t7-time).",
+        "Lens 3: check-rulings-under-sources-v1 run against reverted copies of zone.html on 8965. U1, U2 and U3 go red when the cover choice is reverted; U3 when withRuledMade is removed; U4 when ruledMadeAt is reverted; U5 when the across hold is reverted; U3 when the chip wording is reverted. Removing the paint guard leaves all green. M2 (and M3, M4) and N9 are red on live and green on the tree, run by me. D20 is red on the receipt now on disk (shadow run). D7 stays green with the across hold reverted.",
+        "Lens 4: S1 builds and reads whole chapters. A fault at Ruth 3:14:2, outside the arrival stretch, is caught; unbuilt sections carry their .vnum on both builds; three timed 6-page runs; S1 against the tree's own engine (red, 8 lines).",
+        "Lens 5: page lint is at its baseline (4/175/9/1/2, only the moved relayBuiltSections call site differs). The 10 changed tools lint clean, apart from gloss-store-v1's unused variable, which main has too. round-v1.sh passes bash -n. No British spellings in added lines or commit messages. The new check's GUARDS line equals DEFAULT_PICKS_RULE_ID."
+      ],
+      "not_checked": [
+        "The full gate, the suite and the round, per the brief. S1 against the tree's own engine was run on 6 pages only, not the 18-page default sample, so the full list of differing lines there is estimated from the data.",
+        "D20 green on a re-baked receipt (the bake is the lead's step), and the tools builder's bake changes (picks_printed counts, the --receipt-only refusal, harness faults H11 to H13) beyond lint.",
+        "F12 of check-form-of-v1, check-card-opens-on-the-line-v1 and check-ruled-equals-first-paint-v1 were not run by me. I probed the held-back map and readiness directly instead.",
+        "Psalms reset timing and the source switch's own repaint (the builder's 7b).",
+        "Whether «STEP reads this word as two/three» is apt at the 11 places outside the held 46 (Proverbs 21:29:7, Jeremiah 14:14:18 and others). I only read them in the data.",
+        "The phone layout (check-contents-shut-v1) and the coming merge conflict at zone.html line 2553.",
+        "check-line-reads-the-place-v1 P3 on Ruth (pre-existing per the builder).",
+        "An export of a made pill from the second layer: Ruth under MACULA draws no second-layer line, and I did not look for one in another book.",
+        "Books other than Ruth under BDB, and books outside the ones named above, under MACULA and UBS."
+      ]
+    },
+    "fixes": {
+      "outcomes": [
+        {
+          "title": "A ruling made by pressing a division with no pill: after any source switch the card and its line disagree; no law held the new open-paint guard",
+          "outcome": "fixed",
+          "commit": "d4a0b0972e",
+          "evidence": "REPRODUCED with the reviewer's own probe (my copy, scratchpad/v74/probes/f1-division.mjs; logs v74/out/f1-division-tree.log and f1-division-live.log). Ruth at rest, the whole form of 1:1:1 pressed with no pill: both lines read «to be: …» [M13]. After MACULA both read «and + there was» [M4], because the painters read a block left alone from the baked column (live does the same). The card at 1:1:5 under MACULA read «that there was» with MACULA's pill pressed over that line, and back on STEP it read «to be: …» over it. On live the open painted over the line.\n\nFIX (reader/zone.html, renderReadings only): choose is split into remember (the press's record, unchanged text) and choose. Once the block's readings land, a whole-form division pressed with no reading pressed on it remembers the reading the press drew, exactly as a press of its pill would. After the fix (f1-division-tree-after.log), «to be: …» stays on both lines under MACULA and back on STEP, and the card at 1:1:5 reads it and presses it. Under MACULA the press rules MACULA's own made reading, and its chip names Ruth 1:1:1 (f1-division-under-tree.log).\n\nNEW LAWS in check-rulings-under-sources-v1, with places found from the zones (Obadiah 1:8:2 and 1:11:1):\n- U7: the whole form pressed alone holds under MACULA and back on STEP (both lines, the card's reading, its pressed pill, and nothing painted at the open).\n- U9 holds the guard: the same press with the form's catalog shard held back until the card is shut, then the card under MACULA at the other place must paint nothing over the ruled lines.\n\nRESULTS (logs in v74/out/checks): HEAD's page served on a scratch port: U7 FAIL. Live: U7 and U9 FAIL. A copy of the tree's page with only `if (ruledHere) return;` removed (v74/mut/zone-noguard.html): U9 alone FAIL. The tree: all U1-U9 pass (rulings.tree.final.log, 72 s).\n\nCHANGED in zone.html: 11122-11124 (remember, head), 11137-11139 (remember's end, choose calls remember), 11280-11293 (the division-alone block before drawPills).\n\nRESIDUAL, not this ship's: a division whose readings never came before its card closed stays the division alone. The guard keeps its line, but the card elsewhere can read another reading."
+        },
+        {
+          "title": "Finding 2's own II Samuel 10:6 example is unchanged — in reproducing it: the hold missed TAHOT's readings with a hyphen at the end of the first word only",
+          "outcome": "fixed",
+          "commit": "d4a0b0972e",
+          "evidence": "REPRODUCED (v74/out/peek-before-tree.log, hyphen-kinds.log, across-groups.log). The hold grouped only readings where both hyphens stood. TAHOT writes about half of its readings across words with the hyphen on the first word only («Tubal-» «Cain», «fif-» «teen», «In-» «deed»), and 361 of them were not held. On the tree:\n- UBS «Tubal-Cain» «Cain» (Genesis 4:22:6-7)\n- UBS «Baal-Hamon» «Hamon» (Song of Songs 8:11:4-5)\n- BDB «​there-» «so · sense 3» (Habakkuk 1:17:1-2)\n\nFIX: dfltHalvesOf groups on the first word's hyphen alone, giving 674 groups (313 with both hyphens). Read in part by MACULA 231 (+36), UBS 469 (+164), BDB 153 (+88). After: «Tubal-» «Cain», «at + Baal-» «Hamon», «there-» «fore» (peek-after-tree.log).\n\nLAW: new U8 in check-rulings-under-sources-v1 (Song of Songs under MACULA and UBS, Habakkuk under BDB, found from data). It fails on HEAD's page and on live and passes on the tree.\n\nMODEL: check-default-picks-v1 D7's acrossOf now groups the same way. The full check is green on the tree (D7 over obadiah, nahum and ii-samuel under all three sources) except D20, which fails because the receipt on disk is HEAD's (the lead's re-bake, as before; default-picks.tree.log, 352 s).\n\nCHANGED:\n- zone.html: 5863-5886 (dfltHalvesOf's comment, the page builder's paragraph reflowed), 5896 (dfltHalvesOf's condition).\n- check-default-picks-v1.mjs: 135-139 (D7 header), 309-312 (placesOf: endsHalf, beginsHalf dropped), 1009-1010 and 1018 (acrossOf).\n- check-rulings-under-sources-v1.mjs: 38-56 (header U7-U9), 64-67, 73 (import createHash), 156-186 (U7/U8 selection), 249-266 (pressWhole, drawnAt), 405-498 (U7, U8, U9).\n\nPage lint is at the baseline (4/175/9/1 ORDER_RULE_ID/2). The tools lint clean. No Hebrew in the added lines."
+        },
+        {
+          "title": "Finding 2's own II Samuel 10:6 example is unchanged: under UBS the name still prints twice (10:6:15-17 «Aram Zoba» «Aram» «Zobah»)",
+          "outcome": "left-for-lead",
+          "evidence": "REPRODUCED. Live and the tree are identical before and after my change: «Aram Zoba» [M18] «Aram» «Zobah» (v74/out/peek-after-tree.log).\n\nCAUSE, from the data (v74/probes/peek-data.mjs): UBS's own pick 1 at 10:6:15 is the name, filed at the object marker's word ואת, which a maqaf joins to «Aram». UBS has no line at 10:6:16-17, and TAHOT writes «Aram» «Zobah» with no mark across them. The same pattern accounts for about 340 words in 21 books under UBS (a text count, v74/out/names-unmarked.log: «Paddan-Aram / Mesopotamia» «Aram», «Kiriath-Arba» «Arba»).\n\nWHY LEFT: the page cannot tell a source line that reads its neighbors' words from that source's reading of its own word without guessing from the text, and no data field marks the span. The fix needs the corpus lane to say which words a UBS line spans, or a rule from the owner. This is the same family as the completeness critic's N2 (one unit printed at two words), which is already slated for the second round.\n\nThe zone.html comment at 5880-5886 records it as not held. Notes are in /home/user/mashiachsonyosef.github.io/wip/2026-11-15/the-toggles-fixes/review-fixes/RUNNING-NOTES.md."
+        },
+        {
+          "title": "After the round, the gate's S1 will be red on fix 2's own intended lines; both 'S1 green on the tree' runs tested main's engine",
+          "outcome": "fixed",
+          "commit": "cdd93e381f",
+          "evidence": "REPRODUCED. The tree's chapter pages load /reader/engine-d043256cf007.js, whose md5 equals the engine extracted from 46bbbf7d50's zone.html. I extracted the tree's own engine as build-front-door-v1 does (v74/probes/extract-engine.mjs) and served it on a scratch port (v74/probes/serve-zone.mjs, since stopped). Against it, HEAD's S1 (old 8914, --every 35, --expect) FAILED: 8 differ, amos 5 and ruth 1 under MACULA and UBS, e.g. «Bethlehem» to «from + Beth-» (v74/out/checks/s1-head-vs-tree-engine.log). The tree's own file was swapped to HEAD's only for this run and then restored.\n\nFIX (check-same-product-v1, S1 only): heldIn computes, from the zone, the default picks' book file and the index the new build serves (the second by the bake's autoSecond), the WORD_N whose reading across words no one source reads whole. Under each default source pressed, S1 owes such a word the new build's own line at rest, text and chip, and counts these lines apart. A line not drawn so goes to the owed failures.\n\nRESULTS:\n- Against the tree's own engine: ok, 8 held whole as owed (s1-mine-vs-tree-engine.log, 233 s).\n- With the live engine as the new build: FAIL, 8 «the line as it rests owed» (s1-mine-vs-live-engine.log).\n- A three-way git merge-file with kinds-build's copy of the file has no conflict, and the merged file parses.\n\nCHANGED in check-same-product-v1.mjs: 31-40 (the S1 header sentence), 56 (import autoSecond), 114-172 (heldIn), 317-328 (the owed case, before the neighbors in the run), 344-345 (the count line). The tool lints clean.\n\nFOR THE LEAD: before calling S1 green on a tree, serve that tree's own engine to its chapter pages or build the door in scratch. I did not run the gate."
+        }
+      ],
+      "commits": [
+        "d4a0b0972e A division pressed alone holds the reading it drew; a reading ending with a hyphen goes on in the next word (reader/zone.html, reader/tools/check-rulings-under-sources-v1.mjs, reader/tools/check-default-picks-v1.mjs)",
+        "cdd93e381f The gate's S1 owes a reading across words held whole under a source (reader/tools/check-same-product-v1.mjs)"
+      ]
+    }
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Build"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Review"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Fix"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "build:toggles-page-fixes",
+      "phaseIndex": 1,
+      "phaseTitle": "Build",
+      "agentId": "a514a4a21265ea2b4",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1794735256070,
+      "queuedAt": 1794735256036,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "done",
+      "promptPreview": "You work in the page lane of the reader site fireandhail.com (repository mashiachsonyosef.github.io: the reader and its pipeline under reader/). Under each Hebrew word of the Bible a card shows readings (pills) from many dictionaries; one reading prints as the line under the word.\nThis morning the site shipped the owner's DEFAULT SOURCES (main 46bbbf7d50, live): one pill per source in the header r…",
+      "promptFramed": true,
+      "lastProgressAt": 1794741264569,
+      "tokens": 344042,
+      "toolCalls": 345,
+      "durationMs": 6008499,
+      "resultPreview": "{\"status\":\"done\",\"summary\":\"I fixed all seven items of the third review's default-sources findings in reader/zone.html of tree pt (branch toggles-fixes). For each fix I ran the reviewer's case on the live page (8914) before and on the tree (8921) after. Every fix that changes behavior has a check that fails on live and passes on the tree, except the wording and ink nits, which have probe proof onl…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "build:toggles-tool-fixes",
+      "phaseIndex": 1,
+      "phaseTitle": "Build",
+      "agentId": "a63f88c9f34f72690",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1794735256070,
+      "queuedAt": 1794735256037,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "done",
+      "promptPreview": "You work in the page lane of the reader site fireandhail.com (repository mashiachsonyosef.github.io: the reader and its pipeline under reader/). Under each Hebrew word of the Bible a card shows readings (pills) from many dictionaries; one reading prints as the line under the word.\nThis morning the site shipped the owner's DEFAULT SOURCES (main 46bbbf7d50, live): one pill per source in the header r…",
+      "promptFramed": true,
+      "lastProgressAt": 1794740405778,
+      "tokens": 761765,
+      "toolCalls": 218,
+      "durationMs": 5148860,
+      "resultPreview": "{\"status\":\"done\",\"summary\":\"All three parts of the tools brief are fixed and committed on toggles-fixes in scratch pt, in three commits. Nothing in zone.html was touched. Each fix was shown red before and green after, except the reworded sentences (prose, so no check can be red or green on them).\\n\\n1. The gate's S1 now builds and reads every sampled chapter whole (commit 3757d0b30d). On a fault I…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "review:toggles-fixes",
+      "phaseIndex": 2,
+      "phaseTitle": "Review",
+      "agentId": "a2e1e44e7fde1dd6d",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1794741264616,
+      "queuedAt": 1794741264582,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "sound-with-fixes",
+      "promptPreview": "You are an independent reviewer in the page lane of the reader site fireandhail.com. Two builders have just fixed what an earlier review of the default sources confirmed, on branch toggles-fixes of /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad/pt (git -C /tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/sc…",
+      "promptFramed": true,
+      "lastProgressAt": 1794744682480,
+      "tokens": 606219,
+      "toolCalls": 169,
+      "durationMs": 3417863,
+      "resultPreview": "{\"verdict\":\"sound-with-fixes\",\"findings\":[{\"title\":\"After the round, the gate's S1 will be red on fix 2's own intended lines. Both 'S1 green on the tree' runs tested main's engine, not the tree's page code\",\"severity\":\"should-fix\",\"where\":\"reader/tools/check-same-product-v1.mjs (S1's owed model, lines 214-262). Chapter pages load /reader/engine-d043256cf007.js, which is still main's engine; build-…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "fix:toggles",
+      "phaseIndex": 3,
+      "phaseTitle": "Fix",
+      "agentId": "a12e77d175b6631c7",
+      "model": "claude-opus-5-5",
+      "state": "done",
+      "startedAt": 1794744682521,
+      "queuedAt": 1794744682487,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "promptPreview": "You work in the page lane of the reader site fireandhail.com (repository mashiachsonyosef.github.io: the reader and its pipeline under reader/). Under each Hebrew word of the Bible a card shows readings (pills) from many dictionaries; one reading prints as the line under the word.\nThis morning the site shipped the owner's DEFAULT SOURCES (main 46bbbf7d50, live): one pill per source in the header r…",
+      "promptFramed": true,
+      "lastProgressAt": 1794748579153,
+      "tokens": 693583,
+      "toolCalls": 192,
+      "durationMs": 3896631,
+      "resultPreview": "{\"outcomes\":[{\"title\":\"A ruling made by pressing a division with no pill: after any source switch the card and its line disagree; no law held the new open-paint guard\",\"outcome\":\"fixed\",\"commit\":\"d4a0b0972e\",\"evidence\":\"REPRODUCED with the reviewer's own probe (my copy, scratchpad/v74/probes/f1-division.mjs; logs v74/out/f1-division-tree.log and f1-division-live.log). Ruth at rest, the whole form …"
+    }
+  ],
+  "totalTokens": 2405609,
+  "totalToolCalls": 924
+}
