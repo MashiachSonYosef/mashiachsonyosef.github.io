@@ -33,3 +33,5 @@ The scheme as read back (pictures/scheme-sheet.png; not yet confirmed as final):
 - gold the Masoretic signs;
 - the logo: option 3, or «and» woven of gold, silver and bronze (pictures/logo-three-metals.png).
 This supersedes light mode D and the bronze dark mode if the owner confirms it.
+12. «and the logo would be: the . in .com as bronze i think, and and would be both silver and gold» → pictures/logo-gold-silver-bronze-dot.png.
+13. «i still prefer the pale/real gold, not the orangey one» → no orange gold anywhere: the logo's gold threads edged in the same gold made darker (#a48829, hue kept), the flame's heart real gold (pictures/logo-final-candidate.png, woven-final-candidate.svg); the Masoretic signs in the real gold, pale #d3af37 (1.6:1) or the same gold darker #a48829 (2.6:1) (pictures/scheme-real-gold-sheet.png).
