@@ -32,6 +32,21 @@
 // says anything else is refused in words; the owner's next word is then a
 // change here, made in the open.
 //
+// A STORE THAT HAS MOVED ON IS FOLLOWED, NOT GUESSED AT (15 November 2026).
+// The list was read from the store at one version, which its receipt names.
+// Since then named lists strike, withhold, move and land rows
+// (tools/strike-rows-v1.mjs), each round kept whole in
+// data/row-strikes-v1.json. Every line is followed through that record
+// (tools/row-strikes-follow-v1.mjs) before it is asked of the store: a line
+// whose row a round moved to another key is asked there, at the rank the
+// round gave it, and the row keeps its mark (a list line names no source: it
+// is followed as a row of each source the ruling's ledger holds, and a line
+// two of them answer for is refused); a line whose row a round struck
+// or withheld is expected to find none and is counted by the list that took
+// it. The switch this replaces (--the-store-has-moved-on) let any line with
+// no row pass, and would have taken the mark off every row a round had
+// moved; it is gone, and naming it is refused.
+//
 // REFUSED, each in words and with nothing written:
 //   - a list, rule or receipt that is not the bytes its pin names, or no
 //     one pinned ruling on the list, or a ruling that sets another print
@@ -39,14 +54,19 @@
 //   - a line that names no key, rank, route, entry and point, or that is
 //     not marked only an opening, or a row listed twice;
 //   - a ruling whose ledger no source of the store is under;
-//   - a line that finds no row, or finds more rows than one: the list was
-//     read from this store's rows. After rows are struck, landed or moved,
-//     --the-store-has-moved-on lets the run go on, marks the lines that
-//     still find their row, and records how many did not.
+//   - a store the record cannot be followed to from the version the list
+//     was read at, or a row a round since did something to that the follower
+//     does not name (a retext among them: relay v187 gives these very rows
+//     their words back, and lands with the tool that retexts);
+//   - a line that finds no row and that no round struck or withheld since,
+//     or a line that finds more rows than one: the record does not explain
+//     it, and nothing is guessed.
 //
 // Idempotent: a second run moves nothing and writes nothing. --dry prints
-// and writes nothing.
-// Usage: node tools/apply-sense-openings-v1.mjs [--dry] [--the-store-has-moved-on]
+// and writes nothing. --on gives the moment the run is recorded under
+// (tools/step-moment-v1.mjs); with none it is the clock's. The summary ends
+// in one line of its figures as JSON (`figures {...}`), dry or not.
+// Usage: node tools/apply-sense-openings-v1.mjs [--store data/route-store] [--on <moment>] [--dry]
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -55,11 +75,13 @@ import { createHash } from "node:crypto";
 import { factsOf, setFacts, SENSE_OPENINGS_RULE_ID, SENSE_OPENINGS_PRINT } from "./gloss-store-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { rulingsPinned, rulingOf, cited, RULINGS_DIR } from "./rulings-v1.mjs";
+import { openFollower, followedRecord, followedSaid, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
+import { givenMoment, momentOf } from "./step-moment-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
-const DRY = process.argv.includes("--dry"), MOVED_ON = process.argv.includes("--the-store-has-moved-on");
+const DRY = process.argv.includes("--dry");
 const STORE = arg("store", join(K3, "data", "route-store"));
 const PINS = arg("pin", join(K3, "data", "sense-openings"));
 const RULINGS = arg("rulings", RULINGS_DIR);
@@ -68,6 +90,12 @@ const HOME = "reader/data/sense-openings";
 const refuse = (why) => { console.error(`REFUSED · ${why}`); process.exit(1); };
 const n = (x) => Number(x).toLocaleString("en-US");
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+if (process.argv.includes("--the-store-has-moved-on")) refuse("--the-store-has-moved-on is gone: every line is followed through the row-strikes record from the store the list was read at (tools/row-strikes-follow-v1.mjs), and what the record does not explain is refused");
+// the moment the run is recorded under, where one is given
+let GIVEN_ON = null;
+try { GIVEN_ON = givenMoment(); } catch (e) { refuse(e.message); }
+// what the follower refuses, this tool refuses in its words
+const following = (ask) => { try { return ask(); } catch (e) { if (e instanceof FollowFault) refuse(e.message); throw e; } };
 
 // ---- the list and the ruling on it, as the corpus lane wrote them ----------------------------
 let pin, lines, theirs, ruling;
@@ -86,17 +114,32 @@ const readAt = (((theirs.inputs || {}).route_store || {}).store_version) || null
 // the rows of the ruling's ledger: every source of the store under it
 const ruled = new Set(Object.entries(index.m_sources || {}).filter(([, s]) => s && s.ledger === ruling.ledger).map(([m]) => m));
 if (!ruled.size) refuse(`ruling ${ruling.n} names the ledger ${ruling.ledger}, and no source of the store is under it`);
-const listed = new Map();   // key -> Map(rank and route -> the line)
+// where each row the list read has gone since, by the row-strikes record kept beside the store
+const follow = following(() => openFollower({ data: dirname(STORE), index, readAt }));
+// the list's rows, each under the name its row has NOW: key -> Map(rank and route -> the line). A row a round moved
+// since stands under its new key and rank; one a round struck or withheld is not here
+const listed = new Map();
+const named = new Set();
+const goneLines = [], rekeyedLines = [];   // the follower's answers for the lines whose row a round since took, and for those followed to a moved row
 const idOf = (rank, route) => `${rank}\u0001${route}`;
 lines.forEach((l, at) => {
   const where = `${pin.openings.file} line ${at + 1}`;
   if (typeof l.key !== "string" || !l.key || !Number.isInteger(l.rank) || typeof l.route !== "string" || !l.route) refuse(`${where} names no key, rank or route`);
   if (l.only_an_opening !== true) refuse(`${where} is not marked only an opening, and the ruling rules the lines that are`);
   if (!Array.isArray(l.entries) || l.entries.length !== 1 || !/^\S+ \S+$/u.test(String(l.entries[0]))) refuse(`${where} does not name one entry and one point`);
-  const rows = listed.get(l.key) || listed.set(l.key, new Map()).get(l.key);
-  const id = idOf(l.rank, l.route);
-  if (rows.has(id)) refuse(`${where} names a row an earlier line names (${l.key}, rank ${l.rank})`);
-  rows.set(id, { opens: l.entries[0], met: 0 });
+  const asRead = `${l.key}\u0001${idOf(l.rank, l.route)}`;
+  if (named.has(asRead)) refuse(`${where} names a row an earlier line names (${l.key}, rank ${l.rank})`);
+  named.add(asRead);
+  // the line names no source: it is followed as a row of each source of the ruling's ledger
+  const sha = sha16Of(l.route);
+  const acted = [...ruled].sort().map((m) => following(() => follow.nowOf([l.key, l.rank, m, sha]))).filter((went) => went.state !== "served");
+  if (acted.length > 1) refuse(`${where}: rounds since the store was ${readAt} acted on rows of ${acted.length} sources of the ruling's ledger under its key, rank and words, and the line names no source`);
+  const went = acted[0] || { state: "served", name: [l.key, l.rank] };
+  if (went.state === "struck" || went.state === "withheld") { goneLines.push(went); return; }
+  if (went.state === "re-keyed") rekeyedLines.push(went);
+  const [k, rankNow] = went.name;
+  const rows = listed.get(k) || listed.set(k, new Map()).get(k);
+  rows.set(idOf(rankNow, l.route), { opens: l.entries[0], met: 0 });
 });
 
 // ---- every row of the store, read first and written only when every line has found its row ---
@@ -132,20 +175,28 @@ walk(false);
 let unmet = 0; const firstUnmet = [];
 for (const [k, rows] of listed) for (const [id, x] of rows) if (!x.met) { unmet += 1; if (firstUnmet.length < 6) firstUnmet.push(`${k} (rank ${id.split("\u0001")[0]})`); }
 const sources = [...ruled].sort().map((m) => `${m} ${(index.m_sources[m] || {}).key}`);
-const totals = { rows_listed: lines.length, rows_marked: marked, rows_of_the_ruled_sources: ruledRows, lines_that_find_no_row: unmet, lines_that_find_more_than_one_row: twice.length };
+// lines_that_find_no_row: the lines whose row a round since struck or withheld (a line the record does not explain is refused below)
+const totals = { rows_listed: lines.length, rows_marked: marked, rows_of_the_ruled_sources: ruledRows, lines_that_find_no_row: goneLines.length, lines_that_find_more_than_one_row: twice.length };
+const followed = followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines });
 const shardsRewritten = touched.length, movedNow = moved;
-console.log(`sense openings · relay ${pin.relay}, ruling ${ruling.n} of relay ${ruling.relay_of_the_ruling} («${ruling.the_owners_words}») · ${n(lines.length)} rows listed (read from the store at ${readAt}) · ${n(marked)} marked among the ${n(ruledRows)} rows of ${sources.join(", ")} in the store of ${n(storeRows)} · ${unmet} lines find no row, ${twice.length} find more than one · ${n(movedNow)} rows to move in ${shardsRewritten} shards`);
-if ((unmet || twice.length) && !MOVED_ON) refuse(`${unmet} line(s) find no row${firstUnmet.length ? ` (first: ${firstUnmet[0]})` : ""} and ${twice.length} find more than one${twice.length ? ` (first: ${twice[0]})` : ""}. The list was read from the store at ${readAt}; if rows were struck, landed or moved since, say so with --the-store-has-moved-on`);
-if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
+console.log(`sense openings · relay ${pin.relay}, ruling ${ruling.n} of relay ${ruling.relay_of_the_ruling} («${ruling.the_owners_words}») · ${n(lines.length)} rows listed (read from the store at ${readAt}) · ${n(marked)} marked among the ${n(ruledRows)} rows of ${sources.join(", ")} in the store of ${n(storeRows)} · followed through ${follow.rounds.length} round(s) since: ${followedSaid(followed)} · unexplained: ${unmet} lines find no row, ${twice.length} find more than one · ${n(movedNow)} rows to move in ${shardsRewritten} shards`);
+if (unmet || twice.length) refuse(`${unmet} line(s) find no row that no round of the row-strikes record struck, withheld or moved since the store was ${readAt}${firstUnmet.length ? ` (first: ${firstUnmet[0]})` : ""}, and ${twice.length} find more than one${twice.length ? ` (first: ${twice[0]})` : ""}. The record does not explain them, and nothing is guessed`);
 const record = { pin: `${HOME}/PIN.json`, relay: pin.relay, letter: pin.letter, from: pin.from, rule: `${HOME}/${pin.folder}/${pin.rule.file}`, receipt: `${HOME}/${pin.folder}/${pin.receipt.file}`,
   openings: { file: `${HOME}/${pin.folder}/${pin.openings.file}`, sha256: pin.openings.sha256, lines: pin.openings.lines },
-  ruling: { ...cited(ruling), ledger: ruling.ledger, print: ruling.print }, sources: [...ruled].sort(), read_at_store_version: readAt, totals };
+  ruling: { ...cited(ruling), ledger: ruling.ledger, print: ruling.print }, sources: [...ruled].sort(), read_at_store_version: readAt, totals, followed };
 const had = index.sense_openings || null;
-if (!movedNow && had && Object.keys(record).every((k) => same(had[k], record[k]))) { console.log("nothing moves and the index names this list — nothing written"); process.exit(0); }
+const nothingToWrite = !movedNow && !!had && Object.keys(record).every((k) => same(had[k], record[k]));
+// the run's figures, one line of JSON, for a script that holds a run to what was rehearsed
+const count = (o) => Object.values(o || {}).reduce((a, c) => a + c, 0);
+console.log(`figures ${JSON.stringify({ relay: pin.relay, list_sha256: pin.openings.sha256, read_at_store_version: readAt, store_version: index.store_version || null, ...totals, rounds_since: follow.rounds.length,
+  lines_whose_row_was_struck: count(followed.lines_whose_row_was_struck), lines_whose_row_was_withheld: count(followed.lines_whose_row_was_withheld), rows_re_keyed_and_followed: count(followed.rows_re_keyed_and_followed),
+  rows_moved: movedNow, shards_moved: shardsRewritten, the_index_names_this_run: nothingToWrite })}`);
+if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
+if (nothingToWrite) { console.log("nothing moves and the index names this list as it is followed — nothing written"); process.exit(0); }
 if (movedNow) walk(true);
 
 // ---- write: the index, the receipt -------------------------------------------------------------
-const on = new Date().toISOString();
+const on = momentOf(GIVEN_ON);
 const digest = createHash("sha256");
 let shardBytes = 0;
 for (const name of shardNames) { const b = readFileSync(join(STORE, "shards", name)); digest.update(b); shardBytes += b.length; }
@@ -158,5 +209,5 @@ if (now !== was) { index.store_version = now; index.store_version_history = [...
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
 const prior = existsSync(RECEIPT) ? JSON.parse(readFileSync(RECEIPT, "utf8")) : null;
 writeFileSync(RECEIPT, JSON.stringify({ schema_version: "SENSE_OPENINGS_RECEIPT_V1", rule_id: SENSE_OPENINGS_RULE_ID, what: WHAT, pin: { file: `${HOME}/PIN.json`, relay: pin.relay, letter: pin.letter },
-  runs: [...((prior && prior.runs) || []), { ran_at: on, store_version: { was, now }, the_store_was_said_to_have_moved_on: MOVED_ON, shards_rewritten: shardsRewritten, rows_moved: movedNow, ruling: record.ruling, totals }] }, null, 1) + "\n");
+  runs: [...((prior && prior.runs) || []), { ran_at: on, store_version: { was, now }, followed, shards_rewritten: shardsRewritten, rows_moved: movedNow, ruling: record.ruling, totals }] }, null, 1) + "\n");
 console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · shards weigh ${n(shardBytes)} bytes · index.sense_openings names the list · receipt ${RECEIPT}`);

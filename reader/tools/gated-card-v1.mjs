@@ -1,4 +1,5 @@
 // Synthesis lane · one word's card read off the page, for the checks of the gates at a place
+// GUARDS: dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
 // LEDGER: -
 // no frame letter. It opens the reader in a browser and reads what a card
 // says; it writes nothing.
@@ -18,14 +19,23 @@
 //                         word of one region that its place does not divide
 //                         and no maqaf joins, so its card opens on its whole
 //                         form
-//   openGatedCard(browser, base, pick, { masorah, sources })
+//   openGatedCard(browser, base, pick, { masorah, sources, kinds })
 //                         the card of pick = { zone, section, entry }, with
 //                         a source's own signs printed (a pill then reads as
 //                         its row prints), the oldest reading first (the
 //                         line is then the pointing's leader), the pointing
 //                         where the page sets it or as `masorah` says, and
 //                         every source on (sources "all") or as the record
-//                         rests them (sources "rest")
+//                         rests them (sources "rest"); and the dictionaries
+//                         that rest shut (dictionary-kinds-rule-v1) as a
+//                         first visit finds them (kinds "rest": shut on a
+//                         book the record rests shut) or opened for this
+//                         load (kinds "open", the page's ?kinds=open). A
+//                         check of another gate asks with them open, since
+//                         it holds its own gate and not theirs; the state
+//                         it reads says where they stand (kinds: "shut" or
+//                         "open" where the page says they act on the book,
+//                         null where they do not)
 import { isPointed } from "./pointing-grade-v1.mjs";
 import { linesOnPage } from "./resting-lines-v1.mjs";
 
@@ -64,7 +74,7 @@ export const cardInPage = async ({ section, entry }) => {
     notes: ((line) => ({ said: window.__poolNotes || [], counted: line ? Number(line.dataset.notes) : 0, text: line ? line.textContent : "",
       where: line ? (line.closest(".d-card") ? "record" : line.closest(".b-read") ? "band" : "elsewhere") : null,
       spans: line ? [...line.querySelectorAll(".sense-note")].map((x) => [x.dataset.m || "", x.dataset.entry || "", x.dataset.point || "", x.textContent]) : [] }))(hud.querySelector(".sense-notes")),
-    state: { pointing: window.__masorah || null, sources_off: [...(window.__sourcesOff || [])] },
+    state: { pointing: window.__masorah || null, sources_off: [...(window.__sourcesOff || [])], kinds: window.__kindsHere ? window.__kinds || null : null },
     // a word the page joins to its neighbors in one cell (a run one license names, a chain the scribes joined)
     // opens the cell's card, not its own: a law about one word's rows is not judged on it
     joined: !!wb.closest(".wjoin"),
@@ -77,14 +87,16 @@ export const cardInPage = async ({ section, entry }) => {
  *  page is opened once as a first visit opens it, which is when it takes the record's resting switches, and then
  *  again with the switches asked for kept on the device, as a reader who set them would find it. A fault is said
  *  in words (`fault`). `joined` says the page draws the word in one cell with its neighbors, so the card is the
- *  cell's and not the word's own. */
-export const openGatedCard = async (browser, base, pick, { masorah = null, sources = "all" } = {}) => {
+ *  cell's and not the word's own. `kinds` is "rest" or "open" and nothing else: a state this does not know is
+ *  refused, never guessed. */
+export const openGatedCard = async (browser, base, pick, { masorah = null, sources = "all", kinds = "rest" } = {}) => {
+  if (kinds !== "rest" && kinds !== "open") throw new Error(`openGatedCard: kinds is "rest" or "open", not ${JSON.stringify(kinds)}`);
   const ctx = await browser.newContext({ viewport: { width: 412, height: 915 } });
   try {
     const p = await ctx.newPage();
     const errors = [];
     p.on("pageerror", (e) => errors.push(String(e && e.message)));
-    await p.goto(`${base}/zone.html?b=${pick.zone}`, { waitUntil: "networkidle" });
+    await p.goto(`${base}/zone.html?b=${pick.zone}${kinds === "open" ? "&kinds=open" : ""}`, { waitUntil: "networkidle" });
     await p.evaluate((kv) => { for (const [k, v] of Object.entries(kv)) localStorage.setItem(k, v); },
       { "fh.signs": "printed", "fh.def.order": "oldest", ...(sources === "all" ? { "fh.sources.off": "[]" } : {}), ...(masorah ? { "fh.masorah": masorah } : {}) });
     await p.reload({ waitUntil: "networkidle" });
@@ -95,6 +107,9 @@ export const openGatedCard = async (browser, base, pick, { masorah = null, sourc
     const lines = await linesOnPage(p, { from: pick.section, to: pick.section + 1 });
     const unit = (lines.sections[0].units || []).find((u) => u[0] === pick.entry) || null;
     const got = await p.evaluate(cardInPage, { section: pick.section, entry: pick.entry });
-    return { ...got, under: unit ? unit[2] : null, fault: errors.length ? `the page threw: ${errors[0]}` : got.fault || (sources === "all" && got.state.sources_off.length ? "the page did not take every source on" : null) };
+    // a card of a book the dictionaries that rest shut act on, asked with them open, must find them open
+    const kindsNot = got.state && got.state.kinds !== null && got.state.kinds !== (kinds === "open" ? "open" : "shut");
+    return { ...got, under: unit ? unit[2] : null, fault: errors.length ? `the page threw: ${errors[0]}` : got.fault || (sources === "all" && got.state.sources_off.length ? "the page did not take every source on" : null)
+      || (kindsNot ? `the page has the dictionaries that rest shut ${got.state.kinds}, and they were asked ${kinds === "open" ? "open" : "shut, as a first visit finds them"}` : null) };
   } finally { await ctx.close(); }
 };

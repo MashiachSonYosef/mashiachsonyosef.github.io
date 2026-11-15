@@ -60,6 +60,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
+import { readKinds, restsOffOf, DICTIONARY_KINDS_RULE_ID, DICTIONARY_KINDS_RECORD } from "./dictionary-kinds-v1.mjs";
 
 export const GLOSS_RULE_ID = "zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary";
 // THE PRINTED FORM (rule 3): what a reader sees of a reading. Two readings
@@ -67,6 +68,19 @@ export const GLOSS_RULE_ID = "zone-gloss-rule-v7-printed-form-ledger-division-wh
 // projector, the checks and the page's mirror key the pool the same way.
 export const printedForm = (t) => String(t ?? "").split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
 export const readingKey = (t) => printedForm(t).toLowerCase();
+// THE HIDDEN SIGN'S GAP (sign-gap-joiner-rule-v1-a-joiner-stands-between-two-pieces-that-print-and-never-beside-a-hidden-signs-gap):
+// a printed form as the line draws it under the signs switch at rest. A piece
+// that is a sign alone (a mark in angle or square brackets, «¿», «~», «X»,
+// «×», «+») beside pieces that carry words is drawn as the hidden sign's gap,
+// a zero-width space; where every piece is a sign, they stand; and a joiner
+// stands only between two pieces that print. The page carries these under the
+// same names (its signsOffLine is signsOff where the signs are off), so a
+// tool that reads a line the page drew reads it by the page's own rule.
+export const SIGN_GAP = "​";
+export const signOnly = (t) => /^(<[^>]*>|\[[^\]]*\]|¿|~|X|×|\+)$/u.test(String(t).trim());
+export const isGap = (x) => String(x ?? "").trim() === SIGN_GAP;
+export const joinDrawn = (pieces) => pieces.map((x, i) => `${i && !isGap(x) && pieces.slice(0, i).some((y) => !isGap(y)) ? " + " : ""}${x}`).join("");
+export const signsOff = (text) => { const pieces = String(text).split(" + "); return joinDrawn(pieces.every(signOnly) ? pieces : pieces.map((x) => (signOnly(x) ? SIGN_GAP : x))); };
 // MADE SPACES CLOSE AT PRINT (made-spaces-rule-v1, 13 November 2026). Our own
 // build put one space where each tag of a provider's XML stood, so the store
 // serves «Amos , an Israelite prophet» where the provider wrote «Amos, an
@@ -184,7 +198,29 @@ export const SWITCH_RULE_TEXT =
   "the unswitched pool did not hold; and a pool the switch emptied is named apart from a form the " +
   "catalog never carried";
 
-export const openRouteStore = (storeDir) => {
+// THE STORE AT REST (dictionary-kinds-rule-v1, 15 November 2026). A country
+// called Peru stood on the card of "be fruitful", and the owner answered the
+// card with its class: «we need to think in terms of each dictionary as a
+// category». The record data/dictionary-kinds-v1.json files every source key
+// of this index by what its dictionary says it is, and names what rests shut:
+// a kind of dictionary, or a category a dictionary marks in its own data (a
+// fact in the row's facts slot). Nothing leaves the store. The card holds a
+// shut row back, a press away; the line under a word is baked once and no
+// switch moves it, so the bakes read the store as the line reads at rest.
+// Opened { atRest: true }, routesFor gives a key's rows that rest open and no
+// other ([] where every one rests shut), so every function here that asks it
+// (glossFor, tableFor, rowOfText) and every caller that pools or credits the
+// rows it gives answers at rest with no other edit; routesWhole gives a key's
+// rows whole, from the same shards, for what counts the shut ones, and a key
+// whose every reading rests shut is a silence of its own (glossFor's
+// EVERY_READING_RESTS_SHUT, apart from a form the catalog never carried). The
+// rule is the record's and tools/dictionary-kinds-v1.mjs's (restsOffOf), read
+// here and never typed again. A store opened at rest reads the record from
+// beside itself (its parent folder, reader/data) and refuses, by throwing one
+// sentence, where the record is missing, does not hold, or does not file
+// every source key of this index. Which zones are baked at rest is the
+// record's scope (restsOffIn), asked by the tool that bakes the zone.
+export const openRouteStore = (storeDir, { atRest = false } = {}) => {
   const index = JSON.parse(readFileSync(join(storeDir, "index.json"), "utf8"));
   // v1, or v2 — the same rows with one slot added at [6], the source's own
   // headwords (pointing-store-landing-rule-v1: the served v2 folds to the
@@ -214,8 +250,26 @@ export const openRouteStore = (storeDir) => {
   };
   const shardOf = (k) => createHash("sha256").update(k, "utf8").digest("hex").slice(0, 2);
 
-  /** Every exact route row for K, or null when the catalog has no exact entry. */
-  const routesFor = (k) => shardBody(shardOf(k))[k] || null;
+  /** Every exact route row for K, whole, or null when the catalog has no exact entry. */
+  const routesWhole = (k) => shardBody(shardOf(k))[k] || null;
+  // AT REST: the record, the rule built over this index once, and what this store says of itself
+  let restsOff = null, atRestSaid = null;
+  if (atRest) {
+    const kinds = readKinds(join(storeDir, ".."));
+    restsOff = restsOffOf(kinds.rec, index.m_sources || {}, factsOf);
+    atRestSaid = { rule: DICTIONARY_KINDS_RULE_ID, record: DICTIONARY_KINDS_RECORD, version: kinds.rec.version, sha256: kinds.sha256 };
+  }
+  // a key's open rows, kept once asked: the same row objects as the shard's, the shard's own list where none rests shut
+  const openRows = new Map();
+  /** Every exact route row for K (at rest, every one that rests open, [] where every one rests shut), or null when
+   *  the catalog has no exact entry. */
+  const routesFor = !restsOff ? routesWhole : (k) => {
+    if (openRows.has(k)) return openRows.get(k);
+    const whole = routesWhole(k);
+    const open = whole && whole.some((row) => restsOff(row)) ? whole.filter((row) => !restsOff(row)) : whole;
+    openRows.set(k, open);
+    return open;
+  };
 
 
   /** LEDGER DIVISION (ledger-division-rule-v2, 6 November 2026). The readings
@@ -421,10 +475,15 @@ export const openRouteStore = (storeDir) => {
     // it never caused — the same overstatement in miniature as a mark that
     // covers every word. So when the switched pool is empty the unswitched
     // one is asked, and only a pool that HAD something names the switch.
+    //
+    // And at rest a third silence: a key whose every reading rests shut. The
+    // catalog carries it and the reader switched nothing; the record of what
+    // each dictionary is shut it, and it is counted as that, never as the
+    // catalog's limit.
     if (!pool.length) {
-      if (!omit || !omit.size) return { text: null, reason: "NO_DISPLAYABLE_ROUTE" };
-      const full = readingPool(routes, order, corpusOf, null);
-      return { text: null, reason: full.length ? "EVERY_CARRIER_SWITCHED_OFF" : "NO_DISPLAYABLE_ROUTE" };
+      if (omit && omit.size && readingPool(routes, order, corpusOf, null).length) return { text: null, reason: "EVERY_CARRIER_SWITCHED_OFF" };
+      if (restsOff && readingPool(routesWhole(k), order, corpusOf, null).length) return { text: null, reason: "EVERY_READING_RESTS_SHUT" };
+      return { text: null, reason: "NO_DISPLAYABLE_ROUTE" };
     }
     // by/sole ride along for a caller building a source switch: `by` is who
     // carries the printed reading, `sole` says whether turning one of them
@@ -456,12 +515,13 @@ export const openRouteStore = (storeDir) => {
     const table = {};
     const deltas = {};
     for (const o of orders) deltas[o] = {};
-    const counts = { keys_asked: 0, glossed: 0, no_exact_route: 0, no_displayable_route: 0 };
+    const counts = { keys_asked: 0, glossed: 0, no_exact_route: 0, no_displayable_route: 0, ...(restsOff ? { every_reading_rests_shut: 0 } : {}) };
+    const bare = { NO_EXACT_ROUTE: "no_exact_route", EVERY_READING_RESTS_SHUT: "every_reading_rests_shut" };
     for (const k of [...new Set(keys)].sort()) {
       counts.keys_asked += 1;
       const g = glossFor(k);
       if (g.text === null) {
-        counts[g.reason === "NO_EXACT_ROUTE" ? "no_exact_route" : "no_displayable_route"] += 1;
+        counts[bare[g.reason] || "no_displayable_route"] += 1;
         continue;
       }
       table[k] = g.text;
@@ -480,5 +540,8 @@ export const openRouteStore = (storeDir) => {
   // print" asks the store's own rule instead of re-implementing it (7 November
   // 2026: the generic split helpers that rode here, packSplit and readingSplit,
   // retired with the comma rule).
-  return { index, routesFor, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, carriersOf, wordingYear, ORDERS };
+  // At rest the store says so (atRest: the rule, the record by its path from the reader's root, its version and the
+  // sha256 of its bytes, for the bake's stamp; null opened whole), and carries the rule it was opened under
+  // (restsOff: row -> the resting entry that shuts it, or null; null opened whole) for what counts the shut rows.
+  return { index, routesFor, routesWhole, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, carriersOf, wordingYear, ORDERS, atRest: atRestSaid, restsOff };
 };

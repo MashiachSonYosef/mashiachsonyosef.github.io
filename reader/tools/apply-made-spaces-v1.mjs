@@ -20,10 +20,16 @@
 //
 // THE LISTS COME RELAY BY RELAY (data/made-spaces/PIN.json names each: v168,
 // 12 November 2026 AD, the two Open Scriptures dictionaries; v178, 13
-// November, the unabridged BDB). A relay's folder is kept as the corpus lane
-// keeps it, byte for byte, and each list is read with the receipt of its own
-// relay: which source it is, the store version it was read from, the counts
-// the lane states. A source has one list; a second naming it is refused.
+// November, the unabridged BDB; v188.1, 14 November, the first two again as
+// they stand once the lane's landing v188 is in the store, in v168's place,
+// with a new receipt for the third). A relay's folder is kept as the corpus
+// lane keeps it, byte for byte, and each list is read with the receipt its
+// entry names: which source it is, the store it was read from, the counts
+// the lane states. A list is matched to its receipt by its bytes (its
+// sha256, its size, its count of lines) and never by its name: v188.1's
+// receipts are the builders' own and name the lists as the builders did,
+// while the files as shipped carry the relay's names. A source has one
+// list; a second naming it is refused.
 //
 // A relay may also name texts where a space must NEVER close (`never_closed`
 // in the pin). The unabridged BDB's opening of a sense had whole Hebrew
@@ -49,8 +55,12 @@
 // the closes that fall inside it.
 //
 // REFUSED, each in words and with nothing written:
-//   - a file that is not the bytes its pin names, or a pin that names another
-//     sha256 than the corpus lane's own receipt of that relay;
+//   - a file that is not the bytes its pin names, or a pin that names other
+//     bytes than the corpus lane's own receipt of that relay gives a list, or
+//     another rule than the one that receipt names for its lists;
+//   - a receipt that read a store no page served as such (v188.1's read
+//     «4d1357b26ca5+v188») whose pin does not say what store that is
+//     (read_at), or says another;
 //   - a line that is not well formed: a text listed twice, a close that is
 //     not a space of its text, closes out of order, or a `prints` that is not
 //     the text with its closes taken out;
@@ -68,7 +78,15 @@
 //     read that store too and found none; its rows carry no such slot);
 //   - while a source's rows are the rows its list was read from: a line whose
 //     row counts are not the store's, or rows holding a close that are not
-//     the count the corpus lane's receipt states.
+//     the count the corpus lane's receipt states;
+//   - where a receipt read a served store with a landing laid on it (THE
+//     SECOND ROAD, tools/made-spaces-second-road-v1.mjs): a line whose row
+//     counts, or a source whose rows and rows holding a close, are not the
+//     receipt's less the rows the row-strikes record took since that store
+//     and the lines of the landing the page did not land; or records that
+//     cannot say how the two stores differ. That last is where a row
+//     retexted since stands (relay v187's words back) until the tool that
+//     retexts those rows lands with its own part of this road.
 //
 // WHEN ARE A SOURCE'S ROWS THE ROWS ITS LIST WAS READ FROM? When the store is
 // the version the relay's receipt names; or when every move of the store
@@ -83,16 +101,24 @@
 // moves the store's version and none of these texts, and the counts are
 // still held. After a row of the source is struck, landed or re-keyed the
 // two differ, the same comparisons are recorded and no longer refuse: the
-// closes of every text the list names still hold.
+// closes of every text the list names still hold. A receipt that read a
+// served store with a landing laid on it is never on that first road, since
+// no served store is the one it read: its counts are held by the second
+// road, on every run.
 //
 // Idempotent: a second run moves nothing and writes nothing. --dry prints
-// and writes nothing.
+// and writes nothing. --on gives the moment the run is recorded under
+// (tools/step-moment-v1.mjs); with none it is the clock's. Its last line of
+// counts is its figures as JSON, for a script that holds a run to what was
+// rehearsed.
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { MADE_SPACES_RULE_ID, CLOSES_SLOT, closed, setSlot } from "./gloss-store-v1.mjs";
+import { secondRoad, fallOf } from "./made-spaces-second-road-v1.mjs";
+import { givenMoment, momentOf } from "./step-moment-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -107,15 +133,18 @@ const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 const refuse = (why) => { console.error(`REFUSED · ${why}`); process.exit(1); };
 const n = (x) => Number(x).toLocaleString("en-US");
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+// the moment the run is recorded under, where one is given (read before anything else, so a moment that is none stops here)
+let GIVEN_ON = null;
+try { GIVEN_ON = givenMoment(); } catch (e) { refuse(e.message); }
 
 // ---- the relays, as the corpus lane wrote them -----------------------------------------
 const pinPath = join(LISTS, "PIN.json");
 if (!existsSync(pinPath)) refuse(`the pin of the made-spaces lists is missing (${pinPath})`);
 const pin = JSON.parse(readFileSync(pinPath, "utf8"));
-if (pin.schema_version !== "MADE_SPACES_PIN_V2" || !Array.isArray(pin.relays) || !pin.relays.length) refuse(`the pin names no relays (${pinPath}: MADE_SPACES_PIN_V2 is one entry per relay)`);
+if (pin.schema_version !== "MADE_SPACES_PIN_V3" || !Array.isArray(pin.relays) || !pin.relays.length) refuse(`the pin names no relays (${pinPath}: MADE_SPACES_PIN_V3 is one entry per relay whose lists are read)`);
 const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
-const pinned = (relay, p) => {
-  const name = `${relay.folder}/${p.file}`, path = join(LISTS, relay.folder, p.file);
+const pinned = (relay, p, folder = relay.folder) => {
+  const name = `${folder}/${p.file}`, path = join(LISTS, folder, p.file);
   if (!existsSync(path)) refuse(`${name} is named in the pin and is not here`);
   const bytes = readFileSync(path);
   if (bytes.length !== p.bytes || sha256(bytes) !== p.sha256) refuse(`${name} is not the bytes its pin names (${bytes.length} bytes, ${sha256(bytes)}; the pin: ${p.bytes}, ${p.sha256})`);
@@ -135,13 +164,16 @@ const held = (relay, src) => {
   if (!mine || mine.key !== src.source_key || mine.label !== src.label) refuse(`${src.m_id} is ${mine ? `${mine.key} (${mine.label})` : "no source"} in the store and ${src.source_key} (${src.label}) in the corpus lane's receipt of relay ${relay.relay}`);
   return src;
 };
-const sourceOf = (relay, theirs, p) => {
+// a pinned file and a file the receipt names are the same bytes: the same sha256, size and count of lines. A receipt
+// may name a file otherwise than it was shipped (relay v188.1's are the builders' own), so a name decides nothing
+const sameBytes = (theirs, p) => !!theirs && theirs.sha256 === p.sha256 && theirs.bytes === p.bytes && theirs.lines === p.lines;
+// the source the receipt gives a pinned file's bytes to: `slot` reads, of one of the receipt's sources, the file it gives it
+const sourceOf = (relay, theirs, p, slot) => {
   const name = `${relay.folder}/${p.file}`;
-  const out = (theirs.outputs || []).find((o) => o.file === p.file);
-  if (!out || out.sha256 !== p.sha256) refuse(`the corpus lane's receipt of relay ${relay.relay} does not name ${name} by the sha256 its pin names`);
-  const src = (theirs.sources || []).find((s) => s.source_key === p.file.split(".")[0]);
-  if (!src) refuse(`the corpus lane's receipt of relay ${relay.relay} names no source for ${name}`);
-  return held(relay, src);
+  if (!(theirs.outputs || []).some((o) => sameBytes(o, p))) refuse(`the corpus lane's receipt of relay ${relay.relay} names no output of the bytes its pin names for ${name} (${p.lines} lines, ${p.bytes} bytes, ${p.sha256})`);
+  const srcs = (theirs.sources || []).filter((s) => sameBytes(slot(s), p));
+  if (srcs.length !== 1) refuse(`the corpus lane's receipt of relay ${relay.relay} gives the bytes of ${name} to ${srcs.length} sources`);
+  return held(relay, srcs[0]);
 };
 
 const LISTED = new Map();   // m id -> { key, label, relay, file, sha256, lines: Map(text -> line), theirs, readAt }
@@ -151,13 +183,21 @@ const FOUND_NONE = [];      // the sources a relay's receipt says it read and fo
 for (const relay of pin.relays) {
   pinned(relay, relay.rule);
   const theirs = JSON.parse(pinned(relay, relay.receipt).toString("utf8"));   // the corpus lane's own receipt: which source each list is, and its counts
+  // the rule its lists were built under, as the receipt names it, is a rule this pin holds: the relay's own, or the one
+  // of the relay whose lists it reissues (lists_rule)
+  const listsRule = relay.lists_rule || relay.rule;
+  if (relay.lists_rule) pinned(relay, relay.lists_rule, relay.lists_rule.folder);
+  if (!theirs.rule || theirs.rule.sha256 !== listsRule.sha256) refuse(`the corpus lane's receipt of relay ${relay.relay} names ${String((theirs.rule || {}).sha256).slice(0, 12)} as the rule of its lists, and the pin holds ${String(listsRule.sha256).slice(0, 12)}`);
   const readAt = (((theirs.inputs || {}).route_store || {}).store_version) || null;   // the store version this relay's lists were read from
   if (!readAt) refuse(`the corpus lane's receipt of relay ${relay.relay} names no store version it read`);
+  // a served store's version is twelve hex characters; a receipt that read anything else read a store no page served
+  // as such, and its pin says what store that is
+  const servedAsSuch = /^[0-9a-f]{12}$/u.test(readAt);
+  if (servedAsSuch ? !!relay.read_at : !relay.read_at || relay.read_at.store_version !== readAt) refuse(`the corpus lane's receipt of relay ${relay.relay} read the store «${readAt}»${servedAsSuch ? ", a served store's version, and its pin gives it a read_at" : relay.read_at ? `, and its pin's read_at says «${relay.read_at.store_version}»` : ", which is no served store's version, and its pin does not say what store that is (read_at)"}`);
   RELAYS.push({ relay: relay.relay, of: relay.of, letter: relay.letter, from: relay.from, folder: `${HOME}/${relay.folder}`, rule: `${HOME}/${relay.folder}/${relay.rule.file}`,
     receipt: `${HOME}/${relay.folder}/${relay.receipt.file}`, read_at_store_version: readAt });
   for (const p of relay.lists || []) {
-    const src = sourceOf(relay, theirs, p), name = `${relay.folder}/${p.file}`;
-    if (!src.list || src.list.sha256 !== p.sha256) refuse(`the corpus lane's receipt of relay ${relay.relay} does not give ${src.m_id} the list ${name}`);
+    const src = sourceOf(relay, theirs, p, (s) => s.list), name = `${relay.folder}/${p.file}`;
     if (LISTED.has(src.m_id)) refuse(`two lists name ${src.m_id}: ${LISTED.get(src.m_id).file} and ${name}`);
     const lines = new Map();
     jsonLines(pinned(relay, p), name, p.lines).forEach((l, at) => {
@@ -172,10 +212,10 @@ for (const relay of pin.relays) {
       if (closed(l.text, l.closes) !== l.prints) refuse(`${where}: its prints is not its text with the closes taken out`);
       lines.set(l.text, l);
     });
-    LISTED.set(src.m_id, { key: src.source_key, label: src.label, relay: relay.relay, file: name, sha256: p.sha256, lines, theirs: src, readAt });
+    LISTED.set(src.m_id, { key: src.source_key, label: src.label, relay: relay.relay, file: name, sha256: p.sha256, lines, theirs: src, readAt, readAtIs: relay.read_at || null });
   }
   for (const p of relay.never_closed || []) {
-    const src = sourceOf(relay, theirs, p), name = `${relay.folder}/${p.file}`;
+    const src = sourceOf(relay, theirs, p, (s) => (s.words_taken_out || {}).list), name = `${relay.folder}/${p.file}`;
     if (NEVER.has(src.m_id)) refuse(`two never-closed files name ${src.m_id}: ${NEVER.get(src.m_id).file} and ${name}`);
     const places = new Map();
     jsonLines(pinned(relay, p), name, p.lines).forEach((l, at) => {
@@ -285,12 +325,24 @@ const asRead = (m, L, fingerprint) => {
   return null;
 };
 
+// ---- the second road: a receipt that read a served store with a landing laid on it ---------
+// one road for the sources whose receipts read the same store; null for a source whose receipt read a served store
+const roads = new Map();
+const secondOf = (L) => {
+  if (!L.readAtIs) return null;
+  const id = JSON.stringify(L.readAtIs);
+  if (!roads.has(id)) roads.set(id, secondRoad({ data: join(LISTS, ".."), index, readAt: L.readAtIs, listed: [...LISTED].filter(([, x]) => JSON.stringify(x.readAtIs) === id).map(([m]) => m) }));
+  return roads.get(id);
+};
+
 // ---- the lists against the store, and against the corpus lane's own counts -----------------
-const sources = {}, named = {};
+const sources = {}, named = {}, bySecondRoad = {};
 for (const [m, L] of LISTED) {
   const t = of(m), seen = served.get(m) || new Map();
   const fingerprint = sha256((texts.get(m) || []).sort().join("\n") + "\n");
   const road = asRead(m, L, fingerprint);
+  const second = road ? null : secondOf(L);
+  if (second && !second.open) refuse(`${m}: its receipt read «${L.readAt}», a store no page served, and the second road is shut: ${second.why}`);
   let agree = 0, differ = 0, unserved = 0; const differing = [];
   for (const [text, l] of L.lines) {
     const [r1, r2] = seen.get(text) || [0, 0];
@@ -303,6 +355,24 @@ for (const [m, L] of LISTED) {
   const countsAgree = Object.values(counts).every(([a, b]) => a === b);
   if (road && differ) refuse(`${L.file}: ${differ} line(s) state row counts that are not this store's, and the source's rows are the rows the list was read from (${L.readAt}: ${road}); first: ${JSON.stringify(differing[0])}`);
   if (road && !countsAgree) refuse(`${m}: rows holding a close are ${JSON.stringify(counts)} (here, the corpus lane's receipt) and the source's rows are the rows the list was read from (${L.readAt}: ${road})`);
+  // by the second road: each line's counts, the source's rows and its rows holding a close are the receipt's, less the
+  // rows the row-strikes record took since the store it read and the lines of the landing the page did not land
+  if (second) {
+    const off = [...(second.gone.get(m) || []), ...(second.notLanded.get(m) || [])];
+    let held = 0; const unheld = [];
+    for (const [text, l] of L.lines) {
+      const [r1, r2] = seen.get(text) || [0, 0], [f1, f2] = fallOf(second, m, text);
+      if (r1 === (l.rows_field_1 || 0) - f1 && r2 === (l.rows_field_2 || 0) - f2) held += 1;
+      else unheld.push({ text: text.slice(0, 80), list: [l.rows_field_1 || 0, l.rows_field_2 || 0], less: [f1, f2], store: [r1, r2] });
+    }
+    const less = { rows: off.length, route: off.filter((x) => closesOf(L, x.route)).length, definition: off.filter((x) => closesOf(L, x.definition)).length, either: off.filter((x) => closesOf(L, x.route) || closesOf(L, x.definition)).length };
+    const byRoad = { rows: [t.rows, stated.rows - less.rows], route: [counts.route[0], counts.route[1] - less.route], definition: [counts.definition[0], counts.definition[1] - less.definition], either: [counts.either[0], counts.either[1] - less.either] };
+    if (unheld.length) refuse(`${L.file}: ${unheld.length} line(s) state row counts that, less the rows gone since ${second.base} and the lines of relay ${second.landing.relay} not landed, are not this store's (the second road; the receipt read «${L.readAt}»); first: ${JSON.stringify(unheld[0])}`);
+    if (!Object.values(byRoad).every(([a, b]) => a === b)) refuse(`${m}: its rows, and its rows holding a close on the route text, the definition text and either, are ${JSON.stringify(byRoad)} (here; the corpus lane's receipt less the rows gone since ${second.base} and the lines of relay ${second.landing.relay} not landed): the second road does not hold (the receipt read «${L.readAt}»)`);
+    bySecondRoad[m] = { the_receipt_read: L.readAt, a_served_store: second.base, with_the_landing_of_relay: second.landing.relay, rounds_of_the_row_strikes_record_since: second.rounds.map((r) => r.list),
+      rows_gone_since: (second.gone.get(m) || []).length, lines_of_the_landing_not_landed: (second.notLanded.get(m) || []).length, lines_whose_row_counts_are_the_receipts_less_those: held,
+      rows_and_rows_with_a_close_here_and_by_the_road: byRoad };
+  }
   const noted = [...L.lines.values()].filter((l) => l.note);
   named[m] = { key: L.key, relay: L.relay, read_at_store_version: L.readAt, texts_sha256: fingerprint, texts_sha256_as_read: road ? fingerprint : asReadWas(m, L), texts_are_as_read: !!road };
   sources[m] = { key: L.key, label: L.label, relay: L.relay, list: { file: `${HOME}/${L.file}`, sha256: L.sha256, lines: L.lines.size,
@@ -313,8 +383,9 @@ for (const [m, L] of LISTED) {
     ...t,
     read_at_store_version: L.readAt, texts_sha256: fingerprint, the_rows_are_the_rows_the_list_was_read_from: road || false,
     against_the_list: { lines_whose_row_counts_are_the_stores: agree, lines_whose_row_counts_differ: differ, ...(differ ? { first_differing: differing } : {}) },
-    against_the_corpus_lanes_receipt: { rows_with_a_close_here_and_there: counts, agree: countsAgree } };
-  console.log(`  ${m.padEnd(4)} ${L.key.padEnd(26)} relay ${L.relay} · rows ${String(t.rows).padStart(6)} · a close on the route text ${String(t.rows_with_a_close_on_the_route_text).padStart(6)} · on the definition text ${String(t.rows_with_a_close_on_the_definition_text).padStart(6)} · on either ${String(t.rows_with_a_close_on_either).padStart(6)} · ${n(t.closes_on_route_texts)} and ${n(t.closes_on_definition_texts)} closes · divided by a ledger too ${t.rows_a_ledger_divides_with_a_close_on_the_route_text} (${t.closes_that_stand_at_a_ledgers_cut} closes at a cut) · list lines ${L.lines.size} (${agree} with the store's row counts, ${differ} not; ${unserved} no row serves)${NEVER.has(m) ? ` · ${n(t.rows_serving_a_text_with_words_taken_out)} rows serve a text with words taken out, none closed there` : ""} · moved ${t.rows_moved} · ${road ? `as read at ${L.readAt}: ${road}` : `the source's rows have moved on from ${L.readAt}: its counts are recorded, not held`}`);
+    against_the_corpus_lanes_receipt: { rows_with_a_close_here_and_there: counts, agree: countsAgree },
+    ...(second ? { by_the_second_road: bySecondRoad[m] } : {}) };
+  console.log(`  ${m.padEnd(4)} ${L.key.padEnd(26)} relay ${L.relay} · rows ${String(t.rows).padStart(6)} · a close on the route text ${String(t.rows_with_a_close_on_the_route_text).padStart(6)} · on the definition text ${String(t.rows_with_a_close_on_the_definition_text).padStart(6)} · on either ${String(t.rows_with_a_close_on_either).padStart(6)} · ${n(t.closes_on_route_texts)} and ${n(t.closes_on_definition_texts)} closes · divided by a ledger too ${t.rows_a_ledger_divides_with_a_close_on_the_route_text} (${t.closes_that_stand_at_a_ledgers_cut} closes at a cut) · list lines ${L.lines.size} (${agree} with the store's row counts, ${differ} not; ${unserved} no row serves)${NEVER.has(m) ? ` · ${n(t.rows_serving_a_text_with_words_taken_out)} rows serve a text with words taken out, none closed there` : ""} · moved ${t.rows_moved} · ${road ? `as read at ${L.readAt}: ${road}` : second ? `its receipt read «${L.readAt}»: its counts are held by the second road (${bySecondRoad[m].rows_gone_since} rows gone since ${second.base}, ${bySecondRoad[m].lines_of_the_landing_not_landed} lines of relay ${second.landing.relay} not landed)` : `the source's rows have moved on from ${L.readAt}: its counts are recorded, not held`}`);
 }
 const sum = (f) => Object.values(sources).reduce((a, s) => a + s[f], 0);
 const totals = { sources: LISTED.size, rows_of_listed_sources: sum("rows"), rows_carrying_the_slot: sum("rows_with_a_close_on_either"),
@@ -324,6 +395,10 @@ const totals = { sources: LISTED.size, rows_of_listed_sources: sum("rows"), rows
 const moved = sum("rows_moved");
 const foundNone = FOUND_NONE.filter((s) => !LISTED.has(s.m));
 console.log(`made spaces · ${pin.relays.length} relays (${pin.relays.map((r) => r.relay).join(", ")}) · ${LISTED.size} sources with a list${foundNone.length ? `, ${foundNone.length} read with none (${foundNone.map((s) => s.m).join(", ")})` : ""} · ${n(totals.rows_of_listed_sources)} rows · ${n(totals.rows_carrying_the_slot)} carry the slot (${n(totals.rows_with_a_close_on_the_route_text)} close on the route text, ${n(totals.rows_with_a_close_on_the_definition_text)} on the definition text) · ${n(moved)} rows move (${touched.length} shards) · the span store's ${n(spanRows)} rows of these sources hold no close`);
+// the run's figures, one line of JSON, for a script that holds a run to what was rehearsed
+console.log(`figures ${JSON.stringify({ store_version: index.store_version, relays: pin.relays.map((r) => r.relay), rows_moved: Object.fromEntries(Object.entries(sources).map(([m, s]) => [m, s.rows_moved])), shards_moved: touched.length,
+  rows_carrying_the_slot: totals.rows_carrying_the_slot, counts_held: Object.fromEntries(Object.entries(sources).map(([m, s]) => [m, s.the_rows_are_the_rows_the_list_was_read_from ? "as read" : s.by_the_second_road ? "the second road" : "recorded, not held"])),
+  by_the_second_road: bySecondRoad })}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 // what the index names: the pin, its relays, each list and never-closed file, and each source's rows as they stand
 const record = { pin: `${HOME}/PIN.json`, relays: RELAYS,
@@ -334,7 +409,7 @@ const had = index.made_spaces || null;
 if (!moved && had && Object.keys(record).every((k) => same(had[k], record[k]))) { console.log("nothing moves and the index names these relays, lists and rows — nothing written"); process.exit(0); }
 
 // ---- write: the index, the receipt -------------------------------------------------------------
-const on = new Date().toISOString();
+const on = momentOf(GIVEN_ON);
 const digest = createHash("sha256");
 // the shards' weight on disk, which the index states (counts.shard_bytes_total; check-route-store-exact-k L10): a slot
 // written into a row moves its shard's bytes, so the total is taken again from the shards as they now stand

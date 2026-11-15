@@ -1,6 +1,7 @@
 // Synthesis lane · the lines a reader sees when a book first opens, read off the page that draws them
 //
 // RULE: resting-lines-rule-v1-the-plain-list-under-a-chapter-is-a-recording-of-the-lines-the-reader-draws-as-it-opens
+// GUARDS: resting-lines-rule-v1-the-plain-list-under-a-chapter-is-a-recording-of-the-lines-the-reader-draws-as-it-opens, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
 // LEDGER: -
 // no frame letter. This reads what the page drew and decides nothing: no
 // reading is chosen, ordered or joined here.
@@ -41,6 +42,16 @@
 // license is the chip's own words. Where the chip names no one source,
 // because two sources of one label carry the reading, the line is credited
 // by that label, found in the chip's own title (the record's `unnamed`).
+//
+// THE STATE A READING WAS MADE IN is what the page reports of itself, each
+// switch as the page says it stands; among them, since 15 November 2026,
+// the dictionaries that rest shut (dictionary-kinds-rule-v1): "shut" or
+// "open" where the page says they act on this book (the thirty-nine books,
+// whose zones the bake stamps at rest), null where they do not. A page that
+// was to act on them and could not take the record of what rests shut (the
+// record did not arrive, or does not hold over the store) draws a span line
+// over a shut row; its lines are not the lines at rest, and are refused
+// (linesOnPage), never recorded.
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
@@ -106,7 +117,8 @@ export const linesInPage = ([from, to, seen = false]) => {
   }
   return {
     sections: out, credits, unnamed, of: secs.length,
-    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort(), defaults: (window.__default || {}).on || null, second: (window.__default || {}).second || null, book: (window.__default || {}).book || null },
+    // kinds: where the dictionaries that rest shut stand, where the page says they act on this book; null where not
+    state: { reader: document.body.classList.contains("en") ? "the English reader" : "the Hebrew reader", pointing: window.__masorah || null, signs: window.__signs || null, names: window.__nonames || null, senses: window.__senses || null, sources_off: [...(window.__sourcesOff || [])].sort(), defaults: (window.__default || {}).on || null, second: (window.__default || {}).second || null, book: (window.__default || {}).book || null, kinds: window.__kindsHere ? window.__kinds || null : null },
   };
 };
 
@@ -117,6 +129,10 @@ export const linesInPage = ([from, to, seen = false]) => {
 export const linesOnPage = async (p, { from = 0, to = Infinity, settleMs = 350, seen = false } = {}) => {
   const has = await p.evaluate(() => typeof window.__materialise === "function");
   if (!has) throw new Error("the page offers no __materialise: its sections cannot be built without scrolling");
+  // the dictionaries that rest shut (dictionary-kinds-rule-v1): a page that was to act on them and could not take
+  // their record draws a span line over a shut row, so its lines are not the lines at rest
+  const kindsFault = await p.evaluate(() => (window.__kindsFailed ? String(window.__kindsFault || "it did not arrive") : null));
+  if (kindsFault !== null) throw new Error(`the page could not take the record of the dictionaries that rest shut (${kindsFault}): its lines would be read with nothing shut`);
   const total = await p.evaluate(([a, b]) => window.__materialise(a, b === null ? undefined : b), [from, Number.isFinite(to) ? to : null]);
   // the lattice is waited for where the work carries one and the pointing
   // reads it; with the pointing lifted ("keep") the page orders no line by

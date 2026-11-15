@@ -1,4 +1,7 @@
 // RUN: page
+// GUARDS: no-names-rule-v1-the-reading-a-name-displaced-is-kept-beside-the-name-so-a-switch-puts-it-back-on-that-line-alone
+// LEDGER: -
+// no frame letter. A check reads what is served and judges it; it is not the ledger for one.
 // NO NAMES, PARKED (the owner, the evening of 2026-10-23: "id remove no names
 // toggle and just have it on /toggles/ for now"). The names-lead switch stood
 // in the row as a pill for a day (the owner, that morning: "no names and no
@@ -46,7 +49,10 @@ const carries = (z) => { try { const b = JSON.parse(gunzipSync(readFileSync(`dat
 const BOOK = [zoneIdOf(URL0), ...zonesOnDisk()].filter(Boolean).find(carries);
 if (!BOOK) { console.log("SKIPPED — no zone on disk carries the readings its names displaced (gloss_orders.noname)"); process.exit(3); }
 const urlFor = (book, extra = "") => { const u = new URL(URL0); u.searchParams.set("b", book); return `${u.href}${extra}`; };
-const RAIL = urlFor(BOOK, "&rail=all");
+// the dictionaries that rest shut (dictionary-kinds-rule-v1) open for these loads (?kinds=open): this holds the
+// names lead, and P3 asks the card for the name a line displaced, which a dictionary that rests shut may be the one
+// to print; the lines are baked at rest and do not move with them
+const RAIL = urlFor(BOOK, "&rail=all&kinds=open");
 console.log(`the book: ${BOOK}`);
 const pw = await loadPlaywright();
 const b = await pw.chromium.launch(launchOptions());

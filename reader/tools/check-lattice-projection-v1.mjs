@@ -46,6 +46,14 @@
 //       the receipt are in the store under the posture it records, and the
 //       line of such a word is still bare — the frame's finding stands
 //
+// THE STORE A SIDECAR'S LEADERS WERE BAKED OVER (dictionary-kinds-rule-v1,
+// 15 November 2026): a book the record of what each dictionary is rests shut
+// (the thirty-nine books) is projected over the rows that rest open, and its
+// sidecar says so (rests_off), so L4 and L4b ask its leaders of the store
+// opened at rest; any other book's, of the store whole. L5 joins the
+// lattice's own cards, which the corpus lane wrote over the store whole, and
+// asks the store whole.
+//
 // Run: node tools/check-lattice-projection-v1.mjs [--zones data/zones]
 import { readFileSync, readdirSync, existsSync, createReadStream } from "node:fs";
 import { gunzipSync, createGunzip } from "node:zlib";
@@ -54,6 +62,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { gradeRow } from "./pointing-grade-v1.mjs";
+import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { fnv1a, LATTICE_RULE_ID, SIDECAR_SCHEMA } from "./lattice-lib-v1.mjs";
 import { isSidecar } from "./zones-on-disk-v1.mjs";
 
@@ -84,6 +93,8 @@ const few = (arr, n = 3) => arr.filter(Boolean).slice(0, n).join(" · ");
 if (!existsSync(ZONES)) { console.log(`\nSKIPPED — no zones at ${ZONES}`); process.exit(bad ? 1 : 3); }
 const load = (f) => { try { return JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8")); } catch { return null; } };
 const store = openRouteStore(join(K3, "data", "route-store"));
+const kinds = readKinds(join(K3, "data"));
+const storeAtRest = openRouteStore(join(K3, "data", "route-store"), { atRest: true });
 const labels = new Set(Object.values(store.index.m_sources || {}).map((m) => m.label));
 const pins = existsSync(join(K3, "data", "zone-store-v1.json")) ? (JSON.parse(readFileSync(join(K3, "data", "zone-store-v1.json"), "utf8")).pins || {}) : {};
 const layered = [];
@@ -165,12 +176,14 @@ for (const { slug, z, t } of layered) {
   // key's cards OR among the key's store rows graded by their own headwords
   // against this surface. The sidecar says which rule it was projected under.
   const rowGraded = !!(s.first_under && s.first_under.row_grade);
+  // the store this book's leaders were baked over: at rest where the record rests the book shut, else whole
+  const baked = restsOffIn(kinds.rec, z) ? storeAtRest : store;
   for (const [surface, gr] of Object.entries(grades)) {
     const r = routes[gr.k];
     if (!r || r.f.length !== gr.g.length) { badLen += 1; continue; }
     if (!/^[mnx-]*$/u.test(gr.g)) badLen += 1;
     if ((gr.n || []).some((ix) => ix >= r.f.length)) badFirst += 1;
-    const own = rowGraded ? new Set((store.routesFor(gr.k) || []).filter((row) => store.index.m_sources[row[3]]).map((row) => gradeRow(row, surface)).filter((g) => g !== "-")) : new Set();
+    const own = rowGraded ? new Set((baked.routesFor(gr.k) || []).filter((row) => store.index.m_sources[row[3]]).map((row) => gradeRow(row, surface)).filter((g) => g !== "-")) : new Set();
     const has = (ch) => gr.g.includes(ch) || own.has(ch);
     // a first-under entry is [reading, source label, licence key, year]:
     // the reading is one the card would group, its witness is a source the
@@ -204,7 +217,7 @@ for (const { slug, z, t } of layered) {
     const judge = (k, ch, first) => {
       if (!Array.isArray(first)) return;
       leadersHeld += 1;
-      const carriers = store.carriersOf(store.routesFor(k) || [], first[0]);
+      const carriers = baked.carriersOf(baked.routesFor(k) || [], first[0]);
       if (!carriers.some((row) => labelOfRow(row) === first[1] && yearOfRow(row) === (first[3] ?? null))) { notACarrier += 1; return; }
       if (WHOLE_POOL.has(ch) && !(labelOfRow(carriers[0]) === first[1] && yearOfRow(carriers[0]) === (first[3] ?? null))) notTheOldest += 1;
     };

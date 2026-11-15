@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed
-// GUARDS: row-strike-rule-v5-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-and-the-hole-is-typed
+// GUARDS: row-strike-rule-v6-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted
 //
 // THE ROWS ARE ACCOUNTED FOR END TO END, OR THE STORE LOST SOMETHING.
 //
@@ -38,7 +38,11 @@
 //       it, less what that round struck. A round whose input is smaller than
 //       its predecessor's output is a round that was handed a short copy
 //   C3  the struck-ranks record and the admission record agree on how many
-//       routes the strike took, and name the same two store versions
+//       routes the strike took, and name the same two store versions. A row
+//       a list took from a hole that was already typed (a row that had
+//       landed where an earlier strike left a rank, taken in its turn) adds
+//       no rank to the record, and the row-strikes record counts those
+//       rows (ranks_already_typed, row-strike-rule-v6)
 //   C4  every version in the store's history moved for a reason the store can
 //       name, and a fold-identity move (the pointing store landing) moved no
 //       rows at all
@@ -141,6 +145,7 @@ const rowStruck = num(rw && rw.cumulative && rw.cumulative.routes_struck) || 0;
 const rowRekeyed = num(rw && rw.cumulative && rw.cumulative.routes_rekeyed) || 0;
 const rowRestored = num(rw && rw.cumulative && rw.cumulative.routes_restored) || 0;   // rows a restore put back (version 4): counted with the rows, never with the ranks
 const rowLanded = num(rw && rw.cumulative && rw.cumulative.routes_landed) || 0;       // rows a landing added that the store never held (version 5): counted with the rows, never with the ranks
+const rowAlreadyTyped = num(rw && rw.cumulative && rw.cumulative.ranks_already_typed) || 0;   // rows a list took at a rank the struck-ranks record already typed (version 6): they add no rank to it
 const cumStruck = admissionStruck === null ? null : admissionStruck + licenceStruck + rowStruck;
 if (ss) console.log(`  licence strike on the shelf: ${(ss.struck_sources || []).map((s) => s.m_id).join(", ")} · ${n(licenceStruck)} routes in ${(ss.rounds || []).length} round(s)`);
 if (rw) console.log(`  row strike on the shelf: ${n(rowStruck)} routes struck, ${n(rowRekeyed)} re-keyed, ${n(rowRestored)} restored and ${n(rowLanded)} landed by list in ${(rw.rounds || []).length} round(s)`);
@@ -206,11 +211,13 @@ else {
 if (!sr || !rec) note("C3  the struck-ranks record and the admission record agree", `${sr ? "" : "no struck-ranks record"}${!sr && !rec ? " and " : ""}${rec ? "" : "no admission record"} beside the store`);
 else {
   const srRanks = num(sr.counts && sr.counts.ranks), made = (sr.made || [])[0] || {};
-  const sameCount = srRanks === cumStruck + rowRekeyed;   // the admission strike's ranks, the licence strike's and the row strike's (a re-keyed row's rank too), in the one record
+  // the admission strike's ranks, the license strike's and the row strike's (a re-keyed row's rank too), in the one
+  // record; less the rows a list took at a rank already typed there, which the record keeps once
+  const sameCount = srRanks === cumStruck + rowRekeyed - rowAlreadyTyped;
   const sameAfter = made.after_store_version && (made.after_store_version === index.store_version || (index.store_version_history || []).some((h) => h.was === made.after_store_version || h.now === made.after_store_version));
   check("C3  the struck-ranks record and the admission record agree on the strike, and name the store it ran between",
     sameCount && !!made.before_store_version && !!sameAfter,
-    `struck-ranks ${n(srRanks)} ranks · struck ${n(cumStruck)} routes${rowRekeyed ? ` + ${n(rowRekeyed)} re-keyed` : ""} · between ${made.before_store_version || "—"} and ${made.after_store_version || "—"}`);
+    `struck-ranks ${n(srRanks)} ranks · struck ${n(cumStruck)} routes${rowRekeyed ? ` + ${n(rowRekeyed)} re-keyed` : ""}${rowAlreadyTyped ? ` − ${n(rowAlreadyTyped)} taken at a rank already typed` : ""} · between ${made.before_store_version || "—"} and ${made.after_store_version || "—"}`);
 }
 
 // C4 — every version move names a reason, and a fold move moves no rows

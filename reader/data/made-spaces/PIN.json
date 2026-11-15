@@ -1,19 +1,36 @@
 {
- "schema_version": "MADE_SPACES_PIN_V2",
- "what": "the corpus lane's lists of the spaces our own build made in a provider's text, kept here byte for byte in the folders the lane keeps them in: for each served text that holds one, the places that close at print. One entry per relay, and each list is read with the receipt of its own relay",
+ "schema_version": "MADE_SPACES_PIN_V3",
+ "what": "the corpus lane's lists of the spaces our own build made in a provider's text, kept here byte for byte in the folders the lane keeps them in: for each served text that holds one, the places that close at print. One entry per relay whose lists are read, and each list is read with the receipt its entry names. A relay that reissues an earlier relay's lists takes its place and names it (replaces); a receipt that read a store the page never served as such says what that store is (read_at); the files a relay sent beside its lists are kept and named (beside, meets)",
  "relays": [
   {
-   "relay": "v168",
-   "of": "12 November 2026",
-   "letter": "r2:mishkan/v2/letters/moses-made-spaces-v1/FOR-ELIJAH-v168.md",
-   "from": "r2:mishkan/v2/ledgers/all/made-spaces/made-spaces-v1/ (the private store)",
-   "folder": "made-spaces-v1",
-   "rule": { "file": "RULE.md", "bytes": 10599, "sha256": "2a00e42536a514fd99ce367fe2f13bc21f5a663078819611c61a7ac63a9aa83d" },
-   "receipt": { "file": "receipt-v1.json", "bytes": 77456, "sha256": "6b60f0fcd42b21114a8db4bbf2c489d6d2915349a595a8cf8c3631c9da3b2476" },
+   "relay": "v188.1",
+   "of": "14 November 2026",
+   "letter": "r2:mishkan/v2/letters/moses-fold-strike-landing-v1/FOR-ELIJAH-v188.1.md",
+   "letter_sha256": "8c0ce3c89dbd2ccfcec8eb7c391ce48293fed6df42126d17a1f8abc5b310b086",
+   "from": "r2:mishkan/v2/ledgers/all/fold-strike-landing/made-spaces-v1/ (the private store)",
+   "folder": "made-spaces-v1.1",
+   "rule": { "file": "RULE.md", "bytes": 12339, "sha256": "40d78ae97e8776b2e4220fd4b3b8520662b30105e697764fdf0d2bed5a4d766e" },
+   "lists_rule": { "folder": "made-spaces-v1", "file": "RULE.md", "bytes": 10599, "sha256": "2a00e42536a514fd99ce367fe2f13bc21f5a663078819611c61a7ac63a9aa83d", "what": "the rule the lists themselves were built under: relay v168's, unchanged, which this relay's receipt names by this sha256" },
+   "receipt": { "file": "receipt-v1.1.json", "bytes": 77461, "sha256": "b51c9aed0f631f53a0cde2e811e8739525ff93f9567272e4d4f388850c90264f" },
+   "read_at": { "store_version": "4d1357b26ca5+v188", "base_store_version": "4d1357b26ca5", "with_the_landing": {"relay": "v188", "pin": "../fold-strike-landing/PIN.json", "list_sha256": "c199049388e47991e1b3d8af0c22708f516ebb773cbbdad367efe2928c6ade4f"}, "what": "the receipt read the page's store 4d1357b26ca5 with all 4,252 lines of relay v188's landing list laid on it, a store no page ever served as such (the relay's RULE.md, \u00abThe store after v188\u00bb); the counts it states are held on the served store by the second road (tools/made-spaces-second-road-v1.mjs)" },
    "lists": [
-    { "file": "openscriptures_strongs.made-spaces-v1.jsonl", "bytes": 959880, "sha256": "c984e7827db37f38fae5bdb0143ffc8de4657dbc9aab56b4a82d9e4a204aaa4b", "lines": 4847 },
-    { "file": "openscriptures_bdb_1906.made-spaces-v1.jsonl", "bytes": 1483467, "sha256": "5fc6db699b281abe8ae225baa238b9c0d4f73cceace3a55180a1dcadbf87dd66", "lines": 4864 }
-   ]
+    { "file": "openscriptures_strongs.made-spaces-v1.1.jsonl", "bytes": 959880, "sha256": "333ef7bb905d9b53532353ced657a692f9f7a2f373e4f4248b287af20914a058", "lines": 4847 },
+    { "file": "openscriptures_bdb_1906.made-spaces-v1.1.jsonl", "bytes": 1486360, "sha256": "aef21b4844d5574e7569251f9cc94c19276b17964221b29784f22dd5629cccf8", "lines": 4878 }
+   ],
+   "beside": [
+    { "file": "lane-verify-receipt-v1.1.json", "bytes": 4616, "sha256": "5e4b8b413c58d230a59db1782ac3f844b6eb4c0aec92018534573619f15dca75", "what": "the lane's own verifier's receipt of these lists" },
+    { "file": "changes-after-v188-v1.jsonl", "bytes": 54591, "sha256": "cb5f17b0d3d3ca46b32cb4da83c5abc04be8679eef8949a4f08773e7d4ee7c53", "lines": 106, "what": "the 106 lines that differ from relay v168's lists: 14 new, 92 whose counts change" }
+   ],
+   "meets": { "file": "meets-v1.json", "bytes": 278723, "sha256": "a83dcff6ab4b7a2fc86b2ad4bb8e7b217a7e0e0ab2f161a9d9c14a542f704d17", "what": "the lane's own count of where these lists meet relays v187, v189 and v190 and the lines of v188 the page does not land; tools/check-made-spaces-v1.mjs holds the page's second road to it" },
+   "replaces": {
+    "relay": "v168", "of": "12 November 2026", "letter": "r2:mishkan/v2/letters/moses-made-spaces-v1/FOR-ELIJAH-v168.md", "folder": "made-spaces-v1",
+    "receipt": { "file": "receipt-v1.json", "bytes": 77456, "sha256": "6b60f0fcd42b21114a8db4bbf2c489d6d2915349a595a8cf8c3631c9da3b2476" },
+    "lists": [
+     { "file": "openscriptures_strongs.made-spaces-v1.jsonl", "bytes": 959880, "sha256": "c984e7827db37f38fae5bdb0143ffc8de4657dbc9aab56b4a82d9e4a204aaa4b", "lines": 4847 },
+     { "file": "openscriptures_bdb_1906.made-spaces-v1.jsonl", "bytes": 1483467, "sha256": "5fc6db699b281abe8ae225baa238b9c0d4f73cceace3a55180a1dcadbf87dd66", "lines": 4864 }
+    ],
+    "kept": "in made-spaces-v1/, as the record of the first reading (store 90d9eb8e7082); no tool reads its lists or its receipt, and its RULE.md is the rule of the lists that replace them (lists_rule)"
+   }
   },
   {
    "relay": "v178",
@@ -22,15 +39,18 @@
    "from": "r2:mishkan/v2/ledgers/all/made-spaces/made-spaces-v2/ (the private store)",
    "folder": "made-spaces-v2",
    "rule": { "file": "RULE.md", "bytes": 8865, "sha256": "5b3435e28f53434ba7635f6bd3e4ecd2b4514f8aa882a4386e75a8cd54d1a1d6" },
-   "receipt": { "file": "receipt-v2.json", "bytes": 52558, "sha256": "2dedb39f24e3c750ab6ed877c56d1462d0378c4886a75716e1d176925cc0ca63" },
+   "receipt": { "file": "receipt-v2.1.json", "bytes": 52564, "sha256": "c4bb842d2956a9abd37a13a730d4955bd391785da623d8296dbf323308585a31", "relay": "v188.1", "of": "14 November 2026", "what": "the lane's builder run again on the store its landing v188 makes: relay v188.1 sent it with the same two lists, byte for byte (its v2.1 files are these v2 files), and it takes the place of relay v178's own receipt", "replaces": {"file": "receipt-v2.json", "bytes": 52558, "sha256": "2dedb39f24e3c750ab6ed877c56d1462d0378c4886a75716e1d176925cc0ca63"} },
+   "read_at": { "store_version": "4d1357b26ca5+v188", "base_store_version": "4d1357b26ca5", "with_the_landing": {"relay": "v188", "pin": "../fold-strike-landing/PIN.json", "list_sha256": "c199049388e47991e1b3d8af0c22708f516ebb773cbbdad367efe2928c6ade4f"}, "what": "the receipt read the page's store 4d1357b26ca5 with all 4,252 lines of relay v188's landing list laid on it, a store no page ever served as such (the relay's RULE.md, \u00abThe store after v188\u00bb); the counts it states are held on the served store by the second road (tools/made-spaces-second-road-v1.mjs)" },
    "lists": [
     { "file": "unabridged_bdb_1906.made-spaces-v2.jsonl", "bytes": 26849, "sha256": "2f8b86bc175188e937ac8e0e474c92806d9ef2fca6627a1658b93f9cc511d645", "lines": 137 }
    ],
    "never_closed": [
-    { "file": "unabridged_bdb_1906.words-taken-out-v2.jsonl", "bytes": 161191, "sha256": "ad5d9463b768225cd05eb30602adefb798cee7735989a70680471e62d65cba71", "lines": 750,
-      "what": "the served texts of the same source that lost a word of the provider's, with the places where a space stands for it: the provider's own space, which no list closes" }
+    { "file": "unabridged_bdb_1906.words-taken-out-v2.jsonl", "bytes": 161191, "sha256": "ad5d9463b768225cd05eb30602adefb798cee7735989a70680471e62d65cba71", "lines": 750, "what": "the served texts of the same source that lost a word of the provider's, with the places where a space stands for it: the provider's own space, which no list closes" }
+   ],
+   "beside": [
+    { "file": "lane-verify-receipt-v2.1.json", "bytes": 4715, "sha256": "0342f5897d517c1636f197b244e4aceab030c446dc4a17120acd67818d6313c5", "what": "the lane's own verifier's receipt of that run" }
    ]
   }
  ],
- "note": "every sha256 here is the one the relay's letter names for the file, and the bytes taken hash to it; each receipt names its lists by the same sha256, and names the source key and m id of each. The second relay's receipt says of the Wikisource Strong's that none of its served texts holds a made space, so it has no list"
+ "note": "every sha256 here is the one the relay's letter names for the file, and the bytes taken hash to it; each receipt names its lists by the same sha256, size and count of lines, and gives each its source key and m id. Relay v188.1's receipts name the lists by the builders' own file names (made-spaces-v1.jsonl, made-spaces-v2.jsonl) and give the bytes of the files as shipped, so a list is matched to its receipt by its bytes, never by its name. Relay v178's receipt says of the Wikisource Strong's that none of its served texts holds a made space, and relay v188.1's says so again, so it has no list"
 }

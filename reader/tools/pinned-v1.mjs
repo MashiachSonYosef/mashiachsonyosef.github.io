@@ -16,6 +16,14 @@
 //   pin entry   { file, bytes, sha256 }, and `lines` for a file of JSON lines
 //   readPinned(path, entry, name)        -> Buffer
 //   readPinnedLines(path, entry, name)   -> one parsed value per line
+//
+// A FILE THIS LANE DERIVES FROM PINNED FILES IS PINNED TOO (15 November
+// 2026): the list a landing lands, derived from the corpus lane's list and
+// the store it meets, is named in its pin by the bytes its derivation gave
+// when it was reviewed, and the tool that derives it writes it only where it
+// gives those bytes again.
+//
+//   heldToPin(bytes, lines, entry)       -> whether these bytes are the entry's
 import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 
@@ -38,3 +46,6 @@ export const readPinnedLines = (path, entry, name = entry.file) => {
   if (raw.length !== entry.lines) throw new PinFault(`${name} holds ${raw.length} lines and its pin says ${entry.lines}`);
   return raw.map((s, at) => { try { return JSON.parse(s); } catch (e) { throw new PinFault(`${name} line ${at + 1} is not JSON (${e.message})`); } });
 };
+
+// bytes made here against the pin entry that names them: the same size and sha256, and the same count of lines where the entry counts them
+export const heldToPin = (bytes, lines, entry) => !!entry && entry.bytes === bytes.length && entry.sha256 === sha256Of(bytes) && (entry.lines === undefined || entry.lines === lines);

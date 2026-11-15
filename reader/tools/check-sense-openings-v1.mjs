@@ -29,11 +29,14 @@
 //       lines are counted as the lane's receipt counts them (in all, and by
 //       their first word)
 //   O3  every row of the store: a listed line finds exactly one row among
-//       the rows of the ruling's ledger, that row carries the line's entry
-//       and point, and no other row carries the mark (less the lines the
-//       index says the store has moved on by)
+//       the rows of the ruling's ledger, where the row-strikes record says
+//       its row now stands (tools/row-strikes-follow-v1.mjs), that row
+//       carries the line's entry and point, and no other row carries the
+//       mark; a line whose row a round struck or withheld since finds none,
+//       and is counted so
 //   O4  the store's index names the rule, the pin, the list and the ruling,
-//       and totals that are a recount's
+//       totals that are a recount's, and the rounds since as the record
+//       gives them
 //   O5  the store reader: a marked row gives no reading and names its sense
 //       as its line does, and the readings of a key that holds one are the
 //       readings of its other rows; the page's own functions, read out of
@@ -54,6 +57,14 @@
 //       in the readings' band (judged where a served word is so; said in
 //       words where none is)
 //
+// O6 ASKS THE STORE A BOOK WAS BAKED OVER (dictionary-kinds-rule-v1, 15
+// November 2026): a book the record of what each dictionary is rests shut
+// (the thirty-nine books) has its lines, columns and leaders baked over the
+// rows that rest open, so a note's words are no reading's where no row that
+// rests open prints them; any other book, of the store whole. O7 to O9 read
+// the card with those dictionaries open, as the words found for them were
+// counted, over the store whole.
+//
 // The words are found in the data, never named.
 //
 // Run: node tools/check-sense-openings-v1.mjs
@@ -66,6 +77,7 @@ import { nameWithheld } from "./names-gate-v1.mjs";
 import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { rulingsPinned, rulingOf, cited } from "./rulings-v1.mjs";
+import { openFollower, followedRecord, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { gradeRow, isPointed } from "./pointing-grade-v1.mjs";
 import { fnv1a } from "./lattice-lib-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
@@ -76,6 +88,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
 import { plainWord, openGatedCard } from "./gated-card-v1.mjs";
 import { pageReading, PageFault } from "./page-reading-v1.mjs";
+import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -96,6 +109,9 @@ const pin = JSON.parse(readFileSync(join(PINS, "PIN.json"), "utf8"));
 const store = openRouteStore(STORE);
 const index = store.index;
 const rec = index.sense_openings || null;
+// the store a book was baked over (O6): at rest where the record rests the book shut, whole for any other
+const kindsRec = readKinds(join(K3, "data")).rec;
+const storeAtRest = openRouteStore(STORE, { atRest: true });
 
 // ---- O1: the pinned bytes, and the ruling ------------------------------------------------------
 let theirs = null, lines = [], ruling = null;
@@ -149,10 +165,28 @@ const listed = new Map();   // key -> "rank route" -> the entry and point the li
 
 // ---- O3, O4: every row of the store ----------------------------------------------------------
 const ruled = new Set(ruling ? Object.entries(index.m_sources || {}).filter(([, s]) => s && s.ledger === ruling.ledger).map(([m]) => m) : []);
+// where the rows the list read have gone since, by the row-strikes record kept beside the store; a line names no
+// source, so it is followed as a row of each source of the ruling's ledger
+let follow = null, followWhy = "the lane's receipt was not read, so the version the list was read at is not known";
+if (theirs) try { follow = openFollower({ data: dirname(STORE), index, readAt: (((theirs.inputs || {}).route_store || {}).store_version) || null }); } catch (e) { if (e instanceof FollowFault) followWhy = e.message; else throw e; }
+const listedNow = new Map();   // key now -> "rank route" -> the entry and point the line gives
+const goneLines = [], rekeyedLines = [], followFaults = [];
+for (const [k, mine] of listed) for (const [id, opens] of mine) {
+  const [rank, route] = [Number(id.slice(0, id.indexOf("\u0001"))), id.slice(id.indexOf("\u0001") + 1)];
+  let went = { state: "served", name: [k, rank] };
+  if (follow) try {
+    const acted = [...ruled].sort().map((m) => follow.nowOf([k, rank, m, sha16Of(route)])).filter((x) => x.state !== "served");
+    if (acted.length > 1) { followFaults.push(`rounds since acted on rows of ${acted.length} sources of the ruling's ledger under one line's key, rank and words (rank ${rank})`); continue; }
+    if (acted.length) went = acted[0];
+  } catch (e) { if (e instanceof FollowFault) { followFaults.push(e.message); continue; } throw e; }
+  if (went.state === "struck" || went.state === "withheld") { goneLines.push(went); continue; }
+  if (went.state === "re-keyed") rekeyedLines.push(went);
+  (listedNow.get(went.name[0]) || listedNow.set(went.name[0], new Map()).get(went.name[0])).set(idOf(went.name[1], route), opens);
+}
 let marked = 0, ruledRows = 0;
 const keysWithAMark = new Set();
 {
-  const faults = [];
+  const faults = follow ? [...followFaults] : [followWhy];
   const met = new Map();
   let rows = 0, strays = 0;
   for (const name of readdirSync(join(STORE, "shards")).filter((f) => f.endsWith(".bin")).sort()) {
@@ -163,7 +197,7 @@ const keysWithAMark = new Set();
       if (isRuled) ruledRows += 1;
       const f = factsOf(row);
       const has = !!(f && "opens" in f);
-      const mine = isRuled ? listed.get(k) : null;
+      const mine = isRuled ? listedNow.get(k) : null;
       const id = idOf(row[0], String(row[1] ?? ""));
       const want = mine && mine.has(id) ? mine.get(id) : null;
       if (want !== null) met.set(`${k}\u0001${id}`, (met.get(`${k}\u0001${id}`) || 0) + 1);
@@ -174,13 +208,14 @@ const keysWithAMark = new Set();
     }
   }
   let none = 0, several = 0;
-  for (const [k, mine] of listed) for (const id of mine.keys()) { const n = met.get(`${k}\u0001${id}`) || 0; if (!n) none += 1; else if (n > 1) several += 1; }
+  for (const [k, mine] of listedNow) for (const id of mine.keys()) { const n = met.get(`${k}\u0001${id}`) || 0; if (!n) none += 1; else if (n > 1) several += 1; }
   const t = (rec && rec.totals) || {};
   if (!ruled.size) faults.push("no source of the store is under the ruling's ledger");
-  if (none !== (t.lines_that_find_no_row || 0)) faults.push(`${none} line(s) find no row, and the index says ${t.lines_that_find_no_row || 0}`);
+  if (none) faults.push(`${none} line(s) find no row, and no round of the row-strikes record struck, withheld or moved their row`);
+  if (goneLines.length !== (t.lines_that_find_no_row || 0)) faults.push(`${goneLines.length} line(s) name a row a round struck or withheld since, and the index says ${t.lines_that_find_no_row || 0}`);
   if (several !== (t.lines_that_find_more_than_one_row || 0)) faults.push(`${several} line(s) find more rows than one, and the index says ${t.lines_that_find_more_than_one_row || 0}`);
-  check("O3  every listed line finds exactly one row among the rows of the ruling's ledger, that row carries the line's entry and point, and no other row carries the mark", listed.size > 0 && faults.length === 0,
-    faults.length ? `${nf(faults.length)}${strays ? ` (${nf(strays)} rows carry the mark unlisted)` : ""} · ${first(faults)}` : `${nf(rows)} rows read · ${nf(ruledRows)} of ${[...ruled].sort().join(", ")} · ${nf(marked)} carry the mark, each a listed line's one row, under ${nf(keysWithAMark.size)} keys`);
+  check("O3  every listed line finds exactly one row among the rows of the ruling's ledger where the row-strikes record says its row stands, that row carries the line's entry and point, and no other row carries the mark; a line whose row a round struck or withheld since finds none", listed.size > 0 && faults.length === 0,
+    faults.length ? `${nf(faults.length)}${strays ? ` (${nf(strays)} rows carry the mark unlisted)` : ""} · ${first(faults)}` : `${nf(rows)} rows read · ${nf(ruledRows)} of ${[...ruled].sort().join(", ")} · ${nf(marked)} carry the mark, each a listed line's one row, under ${nf(keysWithAMark.size)} keys · since store ${follow.readAt}, ${follow.rounds.length} round(s): ${goneLines.length} line(s) name a row struck or withheld, ${rekeyedLines.length} followed to another key`);
 }
 {
   const faults = [];
@@ -194,8 +229,10 @@ const keysWithAMark = new Set();
     if (rec.read_at_store_version !== ((((theirs || {}).inputs || {}).route_store || {}).store_version || null)) faults.push("the record says the list was read at another version of the store than the lane's receipt says");
     const t = rec.totals || {};
     if (t.rows_listed !== lines.length || t.rows_marked !== marked || t.rows_of_the_ruled_sources !== ruledRows) faults.push(`totals say ${t.rows_listed} listed, ${t.rows_marked} marked, ${t.rows_of_the_ruled_sources} rows of the ruled sources; a recount gives ${lines.length}, ${marked}, ${ruledRows}`);
+    if (!follow) faults.push(followWhy);
+    else if (!same(rec.followed, followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines }))) faults.push("the record's account of the rounds since the list was read is not the row-strikes record's");
   }
-  check("O4  the store's index names the rule, the pin, the list and the ruling, and totals that are a recount's", faults.length === 0, faults.length ? first(faults) : `${nf(marked)} rows marked of ${nf(lines.length)} listed · ruling ${ruling ? ruling.n : "?"}`);
+  check("O4  the store's index names the rule, the pin, the list and the ruling, totals that are a recount's, and the rounds since as the row-strikes record gives them", faults.length === 0, faults.length ? first(faults) : `${nf(marked)} rows marked of ${nf(lines.length)} listed · ruling ${ruling ? ruling.n : "?"}`);
 }
 
 // ---- O5: the store reader, and the page's own functions ---------------------------------------
@@ -253,28 +290,32 @@ const served = zonesServed().filter((z) => existsSync(join(ZONES, `${z}.lattice.
 const MOST = 4;
 const picks = {};
 const more = (kind) => (picks[kind] || []).length < MOST;
-const o6 = { books: 0, texts: 0, faults: [] };
+const o6 = { books: 0, texts: 0, faults: [], atRest: 0 };
 let placesWithANote = 0, placesWithOnlyNotes = 0;
-// the words of the notes under a key that no row other than a note prints, case folded
+// the words of the notes under a key that no row other than a note prints, case folded; asked of the store whole
+// (the card with every dictionary open) or, for a book baked at rest, of the store at rest
 const noteOnly = new Map();
-const noteWordsOnly = (k) => {
-  if (!noteOnly.has(k)) {
-    const all = rowsOf(k);
-    const printed = new Set(store.readingPool(all, "oldest").map((g) => readingKey(g.text)));
+const noteWordsOnly = (k, st = store) => {
+  const at = `${st === store ? "whole" : "at rest"}\u0001${k}`;
+  if (!noteOnly.has(at)) {
+    const all = (st.routesFor(k) || []).filter((r) => index.m_sources[r[3]]);
+    const printed = new Set(st.readingPool(all, "oldest").map((g) => readingKey(g.text)));
     for (const row of rowsBeside(beside, k)) printed.add(readingKey(String(row[1] ?? "")));
-    noteOnly.set(k, new Set(all.filter(isMarked).map((r) => readingKey(senseOpened(r).text)).filter((t) => !printed.has(t))));
+    noteOnly.set(at, new Set(all.filter(isMarked).map((r) => readingKey(senseOpened(r).text)).filter((t) => !printed.has(t))));
   }
-  return noteOnly.get(k);
+  return noteOnly.get(at);
 };
 for (const z of served) {
   const zone = gz(join(ZONES, `${z}.bin`));
   const side = gz(join(ZONES, `${z}.lattice.bin`));
   const namesRead = !!((((zone.emitted_from || {}).toggles || {}).lattice || {}).names);
   o6.books += 1;
+  const baked = restsOffIn(kindsRec, zone) ? storeAtRest : store;
+  if (baked === storeAtRest) o6.atRest += 1;
   const judge = (k, text, what) => {
     if (typeof text !== "string" || !text) return;
     o6.texts += 1;
-    if (noteWordsOnly(k).has(readingKey(text))) o6.faults.push(`${z} ${k}: ${what} is «${text.slice(0, 50)}», the words of a note and of no reading`);
+    if (noteWordsOnly(k, baked).has(readingKey(text))) o6.faults.push(`${z} ${k}: ${what} is «${text.slice(0, 50)}», the words of a note and of no reading`);
   };
   for (const k of keysWithAMark) {
     if (zone.gloss && k in zone.gloss) judge(k, zone.gloss[k], "the key's line");
@@ -321,7 +362,7 @@ for (const z of served) {
   }
 }
 check("O6  no line stands on a note: in every served book, the line a key carries, each witnessed column's and every leader its sidecar keeps are no marked row's words, unless a row that is not marked prints the same", o6.books > 0 && o6.faults.length === 0,
-  o6.faults.length ? `${nf(o6.faults.length)} · ${first(o6.faults)}` : `${o6.books} books · ${nf(o6.texts)} lines and leaders under the ${nf(keysWithAMark.size)} keys that hold a note · at rest ${nf(placesWithANote)} word places print a note on their own card, ${nf(placesWithOnlyNotes)} of them and no reading`);
+  o6.faults.length ? `${nf(o6.faults.length)} · ${first(o6.faults)}` : `${o6.books} books (${o6.atRest} asked of the store at rest, as the record rests them) · ${nf(o6.texts)} lines and leaders under the ${nf(keysWithAMark.size)} keys that hold a note · at rest ${nf(placesWithANote)} word places print a note on their own card, ${nf(placesWithOnlyNotes)} of them and no reading`);
 
 // ---- O7, O8, O9: on the page -------------------------------------------------------------------
 const lacking = ["withNotes", "withheld"].filter((kind) => !picks[kind]);
@@ -330,7 +371,9 @@ else {
   const tree = await serveTree(K3);
   const pw = await loadPlaywright();
   const browser = await pw.chromium.launch(launchOptions());
-  const open = (pick, masorah = null) => openGatedCard(browser, tree.base, pick, { masorah });
+  // the dictionaries that rest shut (dictionary-kinds-rule-v1) are asked open: this holds the notes, and what the
+  // card's switches keep was counted above over the store whole, as a card with them open reads it
+  const open = (pick, masorah = null) => openGatedCard(browser, tree.base, pick, { masorah, kinds: "open" });
   const where = (pick) => `${pick.zone} ${pick.label}, entry ${pick.entry} (${pick.k}${pick.tags ? ` under ${pick.tags.join(" ")}` : ""})`;
   const own = async (list) => {
     for (const pick of list || []) { const got = await open(pick); if (got.fault || !got.joined) return [pick, got]; }

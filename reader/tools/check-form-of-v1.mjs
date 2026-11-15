@@ -55,17 +55,28 @@
 //       store does not serve it, read from one of the source files the
 //       lane's receipt names; and no row of its source (the store index's
 //       source key of that m id) carries the text at any key the lane looked
-//       at. A row a named list landed after the store the map was made on is
-//       counted and named, not failed, until the lane makes the map again on
-//       the store it stands in. The lane's own tally of the 458 pure pointers
-//       of v1.4 is the record's. The text against the source's own file is
-//       counted and not judged while the files are not in this tree
+//       at. The same is held of every ruled print the map carries, on every
+//       slot of every line, printed by the record or not. A row a named list
+//       put there after the store the map was made on (landed, or moved from
+//       another key: tools/row-strikes-follow-v1.mjs says so from the
+//       row-strikes record) is counted and named, not failed, until the lane
+//       makes the map again on the store it stands in. The lane's own tally
+//       of the 458 pure pointers of v1.4 is the record's. The text against
+//       the source's own file is counted and not judged while the files are
+//       not in this tree
 //   F10 every row the map names, on every slot, stands in the store at its
 //       key and rank with its m id and text, and its sha16 where it writes
-//       one; a row a named list re-keyed after the map's store is followed
-//       through the row-strikes record
+//       one; a row a named list moved to another key after the map's store
+//       is followed there through the row-strikes record
+//       (tools/row-strikes-follow-v1.mjs), and one a round struck or
+//       withheld since is a fault
 //   F11 a pointer whose pill prints a ruled print: F3 to F5 hold for it too.
 //       A word carrying one is found on purpose and pressed
+//   F12 under the page's defaults, at a place that is not a name (where the
+//       names gate stands), a card opened while the map is still on its way
+//       draws its readings at once, and keeps them when the map lands (the
+//       review of 15 November 2026: the card waited for the map before it
+//       drew a pill)
 // The words are found from the data on disk, never named here
 // (check-scope-derived S1). NO LINE RESTS ON A PURE POINTER under the maps of
 // 13 and 14 November 2026: the forty plain words whose lead was a pointer
@@ -80,6 +91,7 @@ import { zoneUrls, zoneIdOf } from "./zones-on-disk-v1.mjs";
 import { sha256Of } from "./pinned-v1.mjs";
 import { rulingsPinned } from "./rulings-v1.mjs";
 import { pointerMap } from "./pointer-map-v1.mjs";
+import { openFollower, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { openRouteStore, routePrinted, printedForm } from "./gloss-store-v1.mjs";
 import { STATES } from "./card-readings-v1.mjs";
 import { linesOnPage } from "./resting-lines-v1.mjs";
@@ -153,26 +165,25 @@ const store = openRouteStore("data/route-store");
 // the store index's own history of its versions
 const laneReceipt = laneMap ? laneMap.relays[laneMap.relays.length - 1].files.receipt || {} : {};
 const madeOn = ((laneReceipt.inputs || {}).route_store || {}).store_version || null;
-const since = new Set(madeOn ? [madeOn] : []);
-for (const h of store.index.store_version_history || []) if (since.has(h.was)) since.add(h.now);
-const strikes = existsSync("data/row-strikes-v1.json") ? JSON.parse(readFileSync("data/row-strikes-v1.json", "utf8")) : { rounds: [] };
-const roundsSince = (strikes.rounds || []).filter((r) => r.store_version && since.has(r.store_version.was));
-const placedSince = new Map(), rekeyedSince = new Map();
-for (const r of roundsSince) for (const x of r.rows || []) {
-  const at = x.action === "land" || x.action === "restore" ? x.key : x.action === "re-key" ? x.to_key : null;
-  if (at) placedSince.set(tupleId(at, x.m, x.route), `${x.action}, ${String(r.ran_at).slice(0, 10)}`);
-  if (x.action === "re-key") rekeyedSince.set(tupleId(x.key, x.rank, x.m, x.route), { key: x.to_key, rank: x.to_rank });
-}
+// where the rows the map names, and the rows under the keys it looked at, have gone since: the row-strikes record's to say
+let follow = null, followWhy = "the lane's receipt names no store the map was made on";
+if (madeOn) try { follow = openFollower({ data: "data", index: store.index, readAt: madeOn }); } catch (e) { if (e instanceof FollowFault) followWhy = e.message; else throw e; }
+// a row the store holds under `key` that a round since put there (landed it, or moved it from another key): by which list; else null
+const placedSince = (key, row) => {
+  const then = follow.thenOf([key, row[0], String(row[3]), sha16Of(row[1])]);
+  return then.state === "landed after" ? `landed by ${then.by.list}` : then.state === "re-keyed" ? `moved there by ${then.by.list}` : null;
+};
 
 // F9 every ruled print the record prints, against the lane's map, its receipts and the store
 {
-  const faults = [], named = [], byFile = {};
+  const faults = follow ? [] : [followWhy], named = [], byFile = {};
   const lineOf = new Map();
   for (const l of lane) if (l.class === "FORM_OF") lineOf.set(tupleId(l.key, l.m_id, l.text), l);
   // the source files the lane's receipts name, by file name
   const files = {};
   for (const r of laneMap ? laneMap.relays : []) for (const [name, f] of Object.entries((((r.files.verify_receipt || {}).inputs || {}).files) || {})) files[name] = f.sha256;
   const sourceOf = (m) => ((store.index.m_sources || {})[m] || {}).key || null;
+  const printed = new Set();   // the ruled prints of the map that the record prints
   for (const [k, list] of Object.entries(rec.keys)) for (const e of list) {
     if (!e.resolved || !e.resolved.ruled) continue;
     const where = `${k} ${e.m} «${e.resolved.text.slice(0, 40)}»`;
@@ -184,14 +195,33 @@ for (const r of roundsSince) for (const x of r.rows || []) {
     const file = rp.file || {};
     if (!files[file.file] || files[file.file] !== file.sha256) faults.push(`${where}: read from ${file.file} ${String(file.sha256).slice(0, 12)}, which no receipt of the lane names`);
     byFile[file.file] = (byFile[file.file] || 0) + 1;
-    const src = sourceOf(rp.m);
-    if (!src || !Array.isArray(rp.looked_at) || !rp.looked_at.length) { faults.push(`${where}: ${src ? "the lane names no key it looked at" : `the store's index names no source for ${rp.m}`}`); continue; }
-    for (const key of rp.looked_at) for (const row of store.routesFor(key) || []) {
-      if (sourceOf(String(row[3])) !== src || String(row[1]) !== rp.text) continue;
-      const placed = placedSince.get(tupleId(key, String(row[3]), String(row[1])));
-      (placed ? named : faults).push(`${where}: ${row[3]} serves it at ${key}, rank ${row[0]}${placed ? ` (${placed})` : ""}`);
-    }
+    printed.add(rp);
   }
+  // every ruled print the map carries, on every slot of every line: no row of its source that stood when the map was
+  // made serves its text where the lane looked; a row a round put there since is named
+  const slots = new Set(), linesNamed = new Set(), slotsPrinted = new Set();
+  let all = 0, namedPrinted = 0;
+  if (follow) try {
+    for (const [i, l] of lane.entries()) {
+      const fo = l.form_of || {};
+      [fo, ...(Array.isArray(fo.also) ? fo.also : [])].forEach((slot, at) => {
+        const rp = slot.ruled_print;
+        if (!rp) return;
+        all += 1;
+        const where = `line ${i + 1} (${l.key} ${l.m_id}${at ? `, further slot ${at}` : ""}) «${String(rp.text).slice(0, 40)}»`;
+        const src = sourceOf(rp.m);
+        if (!src || !Array.isArray(rp.looked_at) || !rp.looked_at.length) { faults.push(`${where}: ${src ? "the lane names no key it looked at" : `the store's index names no source for ${rp.m}`}`); return; }
+        for (const key of rp.looked_at) for (const row of store.routesFor(key) || []) {
+          if (sourceOf(String(row[3])) !== src || String(row[1]) !== rp.text) continue;
+          const placed = placedSince(key, row);
+          if (!placed) { faults.push(`${where}: ${row[3]} serves it at ${key}, rank ${row[0]}, a row that stood when the map was made`); continue; }
+          named.push(`${where}: ${row[3]} serves it at ${key}, rank ${row[0]} (${placed})`);
+          slots.add(`${i} ${at}`); linesNamed.add(i);
+          if (printed.has(rp)) { namedPrinted += 1; slotsPrinted.add(`${i} ${at}`); }
+        }
+      });
+    }
+  } catch (e) { if (e instanceof FollowFault) faults.push(e.message); else throw e; }
   // the lane's own tally of the 458 pure pointers that had no English of their own, against the record
   const tally = { ruled_print: 0, served: 0, unresolved: 0 }, off = [];
   const the458 = laneMap ? laneMap.relays.flatMap((r) => r.files.the_458 || []) : [];
@@ -204,10 +234,10 @@ for (const r of roundsSince) for (const x of r.rows || []) {
   const lanes = (laneReceipt.the_458 || {}).v1_4 || null;
   const laneTally = lanes ? { ruled_print: lanes.ruled_print.lines, served: lanes.served.lines, unresolved: lanes.unresolved.lines } : null;
   if (the458.length && JSON.stringify(tally) !== JSON.stringify(laneTally)) off.push(`the record's tally ${JSON.stringify(tally)} is not the lane's receipt's ${JSON.stringify(laneTally)}`);
-  check("F9  every ruled print the record prints is the lane's, byte for byte, credited to its pointer's own m id, served false, read from a file the lane's receipt names, and served by no row of its source where the lane looked; the lane's tally of the 458 is the record's",
+  check("F9  every ruled print the record prints is the lane's, byte for byte, credited to its pointer's own m id, served false, read from a file the lane's receipt names; every ruled print of the map, on every slot, is served by no row of its source that stood where the lane looked when the map was made; the lane's tally of the 458 is the record's",
     ruledPrinted.length > 0 && faults.length === 0 && off.length === 0,
     faults.length || off.length ? `${faults.length + off.length} · ${[...faults, ...off].slice(0, 3).join(" · ")}`
-      : `${ruledPrinted.length} ruled prints (${Object.entries(byFile).map(([f, n]) => `${f} ${n}`).join(", ")}) · the map made on store ${madeOn}; ${roundsSince.length} round(s) of named lists since, ${named.length} row(s) they put where a ruled print's source now serves its text${named.length ? `: ${named.slice(0, 3).join(" · ")}` : ""} · the 458: ${tally.ruled_print} ruled prints, ${tally.served} served, ${tally.unresolved} unresolved, as the lane's receipt says`);
+      : `${ruledPrinted.length} ruled prints (${Object.entries(byFile).map(([f, n]) => `${f} ${n}`).join(", ")}) of the map's ${all} on every slot · the map made on store ${madeOn}; ${follow.rounds.length} round(s) of named lists since, ${named.length} row(s) they put where a ruled print's source now serves its text, on ${slots.size} slot(s) of ${linesNamed.size} line(s) (${namedPrinted} of the rows on ${slotsPrinted.size} slot(s) the record prints)${named.length ? `: ${named.slice(0, 3).join(" · ")}` : ""} · the 458: ${tally.ruled_print} ruled prints, ${tally.served} served, ${tally.unresolved} unresolved, as the lane's receipt says`);
   console.log(`--  F9 the text against the source's own file is not judged here: the lane's source files (${Object.keys(files).join(", ")}) are not kept in this tree; ${ruledPrinted.length} ruled prints counted`);
 }
 
@@ -218,21 +248,23 @@ for (const r of roundsSince) for (const x of r.rows || []) {
     const fo = l.form_of || {};
     for (const slot of [fo, ...(Array.isArray(fo.also) ? fo.also : [])]) for (const r of [slot.resolved, ((slot.several_branch || {}).first_in_the_sources_order || {}).resolved]) if (r && r.key) named.push({ line: i + 1, ...r });
   }
-  const faults = [];
+  const faults = follow ? [] : [followWhy];
   let followed = 0, withSha = 0;
-  for (const r of named) {
-    const rowsAt = (p) => (store.routesFor(p.key) || []).filter((x) => x[0] === p.rank && String(x[3]) === r.m && String(x[1]) === r.text);
-    let at = { key: r.key, rank: r.rank }, rows = rowsAt(at), hops = 0;
-    for (let next; !rows.length && hops <= 8 && (next = rekeyedSince.get(tupleId(at.key, at.rank, r.m, r.text))); hops += 1) { at = next; rows = rowsAt(at); }
-    if (hops) followed += 1;
+  const movedRows = new Set();
+  for (const r of follow ? named : []) {
     const where = `line ${r.line}: ${r.m} rank ${r.rank} at ${r.key} «${String(r.text).slice(0, 40)}»`;
-    if (rows.length !== 1) faults.push(`${where} stands ${rows.length} times at ${at.key} rank ${at.rank}`);
+    let went;
+    try { went = follow.nowOf([r.key, r.rank, r.m, sha16Of(r.text)]); } catch (e) { if (e instanceof FollowFault) { faults.push(`${where}: ${e.message}`); continue; } throw e; }
+    if (went.state === "struck" || went.state === "withheld") { faults.push(`${where} was ${went.state} by ${went.by.list} since the map was made`); continue; }
+    if (went.state === "re-keyed") { followed += 1; movedRows.add(tupleId(r.key, r.rank, r.m, r.text)); }
+    const rows = (store.routesFor(went.name[0]) || []).filter((x) => x[0] === went.name[1] && String(x[3]) === r.m && String(x[1]) === r.text);
+    if (rows.length !== 1) faults.push(`${where} stands ${rows.length} times at ${went.name[0]} rank ${went.name[1]}`);
     if ("sha16" in r) { withSha += 1; if (sha256Of(Buffer.from(String(r.text), "utf8")).slice(0, 16) !== r.sha16) faults.push(`${where}: its text does not hash to its sha16 ${r.sha16}`); }
   }
   const lanes = laneReceipt.hard_stop_rows || {};
-  check("F10 every row the map names stands once in the store at its key and rank with its m id and text, its sha16 where it writes one, a row a named list re-keyed since followed",
+  check("F10 every row the map names stands once in the store at its key and rank with its m id and text, its sha16 where it writes one, a row a named list moved to another key since followed there through the row-strikes record",
     named.length > 0 && faults.length === 0 && named.length === lanes.rows_named,
-    faults.length ? `${faults.length} · ${faults.slice(0, 3).join(" · ")}` : `${named.length} rows named (the lane's receipt: ${lanes.rows_named}) · ${withSha} with a sha16 · ${followed} followed through a re-key since store ${madeOn} · store ${store.index.store_version}`);
+    faults.length ? `${faults.length} · ${faults.slice(0, 3).join(" · ")}` : `${named.length} rows named (the lane's receipt: ${lanes.rows_named}) · ${withSha} with a sha16 · ${followed} slot(s) name ${movedRows.size} row(s) a round moved to another key since store ${madeOn}, each followed there · store ${store.index.store_version}`);
 }
 
 // the words: served plain words whose key holds a row of the pointer's own source that carries a resolved pointer
@@ -454,6 +486,45 @@ else {
   }
   check("F7  a reading with English of its own beside its pointer stands on a pill as its own words, and carries no pointer", faults.length === 0 && judged.length > 0,
     faults.length ? `${faults.length} · ${faults.slice(0, 3).join(" · ")}` : judged.length ? `${judged.length} of ${picks.length} cards pressed showed the reading: ${judged[0]}` : `none of ${picks.length} cards pressed showed such a reading on a pill of its own`);
+}
+// F12: a card opened while the map is on its way, under the page's defaults (a first visit: the pointing "only",
+// the names gate standing where the place is not a name); the first of the words found whose place is not a name
+{
+  const HOLD = 12000;
+  const tried = [];
+  let got = null;
+  for (const c of candidates.slice(0, 3)) {
+    const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
+    try {
+      const q = await ctx.newPage();
+      q.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+      let asked = 0;
+      await q.route("**/data/form-of-pills-v1.json*", async (r) => { asked += 1; await new Promise((ok) => setTimeout(ok, HOLD)); await r.continue().catch(() => {}); });
+      await q.goto(c.url, { waitUntil: "domcontentloaded" });
+      await q.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+      await linesOnPage(q, { from: c.section, to: c.section + 1 });
+      const early = await q.evaluate(async ({ section, entry }) => {
+        const sec = document.querySelectorAll("section.seg")[section];
+        const wb = sec ? sec.querySelectorAll(".he-text .wb")[entry] : null;
+        if (!wb) return { fault: "the word is not on the page" };
+        wb.scrollIntoView({ block: "center" });
+        (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click();
+        await new Promise((r) => setTimeout(r, 2500));
+        return { mapHere: window.__formOf !== undefined, pills: document.querySelectorAll("#hud > .rows > .b-read > .r-pills > button").length };
+      }, c);
+      if (early.fault) { tried.push(`${c.id} ${c.label}, entry ${c.entry}: ${early.fault}`); continue; }
+      await q.waitForFunction(() => window.__formOf !== undefined, null, { timeout: HOLD + 30000 }).catch(() => null);
+      await q.waitForTimeout(1200);
+      const late = await q.evaluate(() => ({ mapHere: window.__formOf !== undefined, pills: document.querySelectorAll("#hud > .rows > .b-read > .r-pills > button").length, name: window.__cardName || "" }));
+      tried.push(`${c.id} ${c.label}, entry ${c.entry}: «${late.name}»`);
+      if (late.name !== "not a name") continue;
+      got = { c, early, late, asked };
+      break;
+    } finally { await ctx.close(); }
+  }
+  check("F12 under the page's defaults, at a place that is not a name, a card opened while the map is on its way draws its readings at once, and keeps them when the map lands",
+    !!got && !got.early.mapHere && got.early.pills > 0 && got.late.mapHere && got.late.pills > 0,
+    got ? `${got.c.id} ${got.c.label}, entry ${got.c.entry} (${got.c.key}) · the map held back ${HOLD / 1000} s (asked ${got.asked}) · 2.5 s after the press: ${got.early.pills} pill(s), the map ${got.early.mapHere ? "here" : "not yet here"} · once it landed: ${got.late.pills} pill(s)` : `no card judged: ${tried.join(" | ") || "no word found"}`);
 }
 await b.close();
 console.log(bad ? `\nFAIL ${bad}` : "\nall checks passed");

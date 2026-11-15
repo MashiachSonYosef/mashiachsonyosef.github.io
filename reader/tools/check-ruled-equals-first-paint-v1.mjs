@@ -42,7 +42,10 @@ for (const [mode, dflt] of [["he", null], ["en", null], ["he", "ubs"]]) {
   await p.addInitScript((mode) => { try { localStorage.clear(); if (mode === "en") localStorage.setItem("fh.mode", "en"); } catch { /* fresh reader */ } }, mode);
   await p.goto(dflt ? `${URL}${URL.includes("?") ? "&" : "?"}default=${dflt}` : URL, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
-  await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
+  // every line stands as the sources in force draw it once the page says so (window.__default.ready): at once at
+  // rest, and under ?default=ubs once its book file is here; a page that does not say so in 30 s is a fault
+  const ready = await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).then(() => true, () => false);
+  if (!ready) check(`E0  ${reader}: the page says in 30 s that its lines stand as the sources in force draw them (window.__default.ready)`, false, "it did not; the readings below may be of a page still painting");
   await p.waitForTimeout(1200);
   const docW0 = await p.evaluate(() => document.documentElement.scrollWidth);
   // the cells under test: the first sections' lone words, each named by its

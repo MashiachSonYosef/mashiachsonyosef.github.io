@@ -19,6 +19,14 @@
 # them. Run twice on the same inputs with the same stamp, the outputs are the
 # same bytes.
 #
+# THE ZONES STEP ENDS WITH THE READ WORDS. The lattice projection clears, as
+# it runs, every tag on a word and on a half of a place written one way and
+# read another. So the corpus lane's list of the read words of a read form
+# of several words (data/read-words/, relay v192) is laid after it, on every
+# round: tools/apply-read-words-v1.mjs gives each such read word its own tag
+# and, where the lattice gave the place no pieces, the place its pieces. It
+# reads only this tree, and over zones that carry its work it writes nothing.
+#
 # WHAT IT NEEDS FROM OUTSIDE THE TREE, and only these: the corpus lane's
 # lattice (one file per book), its two binyan files and their extension to
 # three more dictionaries (pinned in data/stems-extension/ by its size and
@@ -39,12 +47,26 @@
 #
 # WHAT IT DOES NOT RUN: the tools that change the store itself (the ledgers'
 # divisions, the sources' years, the made spaces' closes, a strike, a
-# landing). Each of those writes a
+# landing, and the derivation of the list a landing lands from the corpus
+# lane's list and the store it meets). Each of those writes a
 # receipt of what it did to the rows, and run again over a store that already
 # carries its work it writes a receipt of having done nothing over the one
 # that says what was done (measured 10 November 2026: "rows whose slot moved"
 # 13 became 0, and the day of the application became the day of the re-run).
 # They are run once, when their own input arrives, and the round follows.
+# A strike or a landing, the ledgers' divisions and the made spaces' closes
+# may each be given the moment they are recorded under (--on,
+# tools/step-moment-v1.mjs), so a step rehearsed on one tree can be held,
+# file by file, to the same step run on the tree that ships.
+# The facts a list of the corpus lane lays on the rows are of the same kind
+# and are not run here either (the row entries, the name rows and the sense
+# openings, each laid by a tool of its own): each is run once after a store
+# change, takes --on as well, and reads its list through the row-strikes
+# follower (the module row-strikes-follow-v1), which follows each row the
+# list names through the row-strikes record to where it stands on this
+# store. The default picks' bake below reads its rows tables through the
+# same module. None of them is named here by its path: the pipeline's
+# manifest counts a path in this file as a tool the round runs.
 #
 #   usage:  tools/round-v1.sh --stamp YYYY-MM-DD
 #             [--lattice <folder holding lattice-<book>-v12.json and its positions and routes>]
@@ -118,6 +140,13 @@ if has zones; then
   else
     echo "   no --lattice given: the lattice sidecars stand as they are, and so does every order they carry"
   fi
+
+  echo "── zones · each read word of a read form of several words, its own entry ─"
+  # after the lattice, whether or not it was projected: a zone that carries
+  # the list's tags and pieces is counted and left as it is
+  node tools/apply-read-words-v1.mjs --stamp "$STAMP" > "$WORK/read-words.log" 2>&1 \
+    || { echo "round-v1: the read words were not laid" >&2; grep -E "^FAIL" "$WORK/read-words.log" >&2 || true; tail -2 "$WORK/read-words.log" >&2; exit 1; }
+  grep -E "^  (tags|pieces):" "$WORK/read-words.log" | sed 's/^  /   /' || true
 fi
 
 if has stamps; then
@@ -145,10 +174,12 @@ if has defaults; then
   # data/route-store alone): the index names each book file by its bytes
   # and sha256, and the receipt names the index. The bake reads the records
   # of the resting lines as they stand, for where STEP's line as it rests is
-  # bare and for the lines over more than one word; the lines step reads
-  # them again after it, and check-default-picks-v1 D3, with the suite,
-  # holds the index to them as they then stand (red where a record now reads
-  # one of those places otherwise: bake the defaults again).
+  # bare, where STEP's own words print and for the lines over more than one
+  # word; those records were read off the zones before this round's zones
+  # step, so the lines step reads them again after it, and bakes again with
+  # --receipt-only: the receipt that ships is of the records it read (one
+  # rule, the bake's, run twice), and that pass refuses where the records
+  # read anew would move the index (bake the defaults again).
   # The corpus lane's ledger is named on the command line and never guessed.
   if [ -n "$DEFAULT_PICKS" ]; then
     node tools/bake-default-picks-v1.mjs --ledger "$DEFAULT_PICKS" > "$WORK/defaults.log" 2>&1 || { echo "round-v1: the default picks were not baked" >&2; grep -E "^REFUSED" "$WORK/defaults.log" >&2 || true; tail -3 "$WORK/defaults.log" >&2; exit 1; }
@@ -192,6 +223,14 @@ if has lines; then
   # have moved is read again. The door, next, refuses any that is not.
   node tools/bake-resting-lines-v1.mjs > "$WORK/lines.log" 2>&1 || { echo "round-v1: the resting lines were not read" >&2; grep -E "^FAIL" "$WORK/lines.log" >&2 || true; tail -3 "$WORK/lines.log" >&2; exit 1; }
   tail -1 "$WORK/lines.log"
+  # the default picks' receipt, of the records just read: the bake again,
+  # writing the receipt alone, then the check's node laws over it
+  if [ -n "$DEFAULT_PICKS" ] && [ -f data/default-picks/index.json ]; then
+    node tools/bake-default-picks-v1.mjs --ledger "$DEFAULT_PICKS" --receipt-only > "$WORK/defaults-receipt.log" 2>&1 || { echo "round-v1: the default picks' receipt was not written" >&2; grep -E "^REFUSED" "$WORK/defaults-receipt.log" >&2 || true; tail -3 "$WORK/defaults-receipt.log" >&2; exit 1; }
+    tail -1 "$WORK/defaults-receipt.log"
+    node tools/check-default-picks-v1.mjs --node --ledger "$DEFAULT_PICKS" > "$WORK/defaults-receipt-check.log" 2>&1 || { echo "round-v1: the default picks do not hold over the records just read" >&2; grep -E "^FAIL" "$WORK/defaults-receipt-check.log" >&2 || true; tail -2 "$WORK/defaults-receipt-check.log" >&2; exit 1; }
+    echo "   $(grep -cE '^  ok  ' "$WORK/defaults-receipt-check.log") node laws held over the records just read (tools/check-default-picks-v1.mjs --node)"
+  fi
 fi
 
 if has chain; then

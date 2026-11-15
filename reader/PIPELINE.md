@@ -67,7 +67,81 @@
 > and the reader prints it inside the read form, with the marks. That write
 > was made by hand, is typed on each zone it changed, and expires when the
 > zones are built from the lane's next lattice, which stands each stroke in
-> its place itself; the round's projections keep it.
+> its place itself; the round's projections keep it. At the 28 places whose
+> read form holds two or three words, a zone carries since 15 November each
+> read word's own entry and, where the lattice gave the place none and the
+> pin does not hold them back until the lane answers, the place's pieces
+> (`tools/apply-read-words-v1.mjs`, from the corpus lane's list kept in
+> `data/read-words/`, read through `tools/read-words-v1.mjs`):
+> the reader asks each read word its entry by its own key, and draws the
+> place's line from the pieces, as at every place that carries them. A place
+> the pin holds whole until the lane answers (Psalms 10:10, whose piece
+> spells another word than its read word) carries neither, as before. The
+> lattice projection clears the tags it finds, so the round lays them again
+> after it, each time; the write is typed on each zone it changes and
+> expires with the lane's next lattice, which carries them itself.
+> Since 15 November the rows call 5 of the corpus lane's audit calls names
+> are struck or moved to their word's key by `tools/strike-rows-v1.mjs` from
+> the lane's list, kept here byte for byte with the other calls'
+> (`data/audit-calls/`, whose pin says how each call lands, and that calls 6
+> and 2 are held and land nothing, with the reason: a row is set apart only
+> on what its own source says of it; `tools/emit-call5-rekey-map-v1.mjs`
+> writes, for the rows call 5 moved, the name each had and the name it
+> has). The lane's
+> landing list for the readings the store lost when a source that held their
+> credit was struck whole (`data/fold-strike-landing/`) is landed as its own
+> rule reads on the store it meets: `tools/derive-fold-strike-landing-v1.mjs`
+> derives the list that lands and names every line that does not, with why,
+> and the pin names both lists by their bytes. Every round is kept whole in
+> `data/row-strikes-v1.json`. A made-spaces receipt that read a store no
+> page served as such has its counts held by a second road, from that record
+> (`tools/made-spaces-second-road-v1.mjs`). A step that changes the store
+> may be given the moment it is recorded under (`tools/step-moment-v1.mjs`),
+> so a step rehearsed on one tree is held, file by file, to the same step on
+> the tree that ships. `tools/check-audit-calls-v1.mjs` and
+> `tools/check-fold-strike-landing-v1.mjs` hold the store to the lists.
+> A list read at an older store is laid on this one through
+> `tools/row-strikes-follow-v1.mjs`, which follows each row the list names
+> through that record and answers one of: served as named, moved to another
+> key (with the name it has now), struck or withheld (with the round and its
+> list), or, for a row the store holds now, landed since (no line of such a
+> list is expected for it); a retext since is its seam, refused by name until
+> the tool that retexts lands. The tools that lay the lane's facts on the
+> rows (`tools/apply-row-entries-v1.mjs`, `tools/apply-name-rows-v1.mjs`,
+> `tools/apply-sense-openings-v1.mjs`), the default picks' bake and the
+> checks of each read through it, record in the store's index what they
+> followed, and refuse what the record does not explain; the switch they had
+> for a store that had moved on is gone. `tools/check-audit-calls-v1.mjs`
+> asks it too where each row call 5 moved stands now, and walks no round of
+> the record itself. Where a row was struck as the twin
+> of a row of its own source (call 5: the same words under the key without
+> the maqaf), that row takes the entries the struck row's line alone carried,
+> and the index names each pair.
+> Since 15 November 2026 a record files every dictionary by what it says
+> it is and names what rests shut on the cards of the thirty-nine books
+> (`data/dictionary-kinds-v1.json`, read through
+> `tools/dictionary-kinds-v1.mjs`): the word lists, knowledge bases and
+> encyclopedia titles, and what English Wiktionary files as a name. It is an
+> input of the round's zones and lattice steps. `tools/regloss-zone.mjs` and
+> `tools/project-lattice-v12-v1.mjs` ask the record's scope of each zone's
+> own fields, and for a book it holds they open the store through
+> `openRouteStore(…, { atRest: true })` (`tools/gloss-store-v1.mjs`): the
+> line under a word, every column beside it and every leader the sidecar
+> bakes read only the rows that rest open, a word carries no headword's
+> reading (hg, the line under «the headword») whose lattice card is of a
+> source shut whole or that its source gives only in rows that rest shut,
+> a witnessed reading the corpus lane credited to a shut source is
+> credited from the store at rest, and
+> the zone (`emitted_from.rests_off`, with what each resting entry holds
+> shut on the book) and the sidecar (`rests_off`) name the record by its
+> sha256. Every other zone (the Tikkunei Zohar, a Targum beside a book, a
+> fixture) is projected over the store whole, as before, and the lattice
+> step refuses a book whose zone was not projected at rest under the same
+> record. The search index leaves out the rows a category inside a source
+> rests shut (`tools/bake-search-index-v1.mjs`, `rests_off.facts_left_out`);
+> a whole source stays in it, and the page leaves it out while it rests
+> shut, on the page of any work, since every place the index answers is of
+> a book at rest.
 > `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record
@@ -99,7 +173,7 @@ Every one of those is now a script with its rule declared at the top of it.
 | 0 | `tools/plan-mirror.mjs` | the chain's shard indexes | the exact file list the resident reader needs |
 | 1 | `tools/mishkan-serve-v1.mjs` | a C0 range, the sealed mirror | one NDJSON row per occurrence, oracle-checked |
 | 2 | `tools/build-route-store.mjs` | the sealed definition packages | 256 gzip shards, keyed by exact K |
-| 2b | `tools/regloss-zone.mjs` | a zone + a store | the same zone re-projected onto the store |
+| 2b | `tools/regloss-zone.mjs` | a zone + a store + the record of dictionary kinds | the same zone re-projected onto the store (at rest for a book the record holds) |
 | 3 | `tools/extract-y-nodes.mjs` | the Y navigation ledger | a work's title words, verbatim |
 | 3b | `tools/span-slice-v1.mjs` | the COMPspan template | each form's component list, for the forms one book contains |
 | 4 | `tools/build-zone.mjs` | 1 + 2 + 3 + 3b + the identity bridge | `<book>.bin` |
