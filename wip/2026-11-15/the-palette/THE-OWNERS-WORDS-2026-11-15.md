@@ -43,6 +43,8 @@ This supersedes light mode D and the bronze dark mode if the owner confirms it.
 
 19. «that's great, bronze is distinctly not orange, and silver is distinct too». Measured, so the plan keeps it so: the bronze #7f6044 is hue 28°, saturation 30% (its light #9a7656: 28°, 28%), brown; the gold the owner turned away from was orange by its saturation, #93661a 38° at 70% and #a06c10 38° at 82%; the real gold is yellower, #a48829 46° at 60%, #d3af37 46° at 64%; the silver #7c8187 is a cool gray, hue 213° at 4%. Any bronze made darker or lighter for contrast keeps its hue and its low saturation; any gold keeps hue 46°.
 
+20. «if you want to do a shade darker gold thats fine» (shown the signs in the orange, in #a48829 and a step darker, `pictures/signs-three-golds.png`) → the signs' gold is #967c26: hue 46° and 60% like #a48829, and 3.0:1 on the linen, as readable as the orange's 3.4:1 nearly; the woven name's gold threads are edged in it too, so the name and the page keep one gold.
+
 ## Where the palette stands (15 November)
 
 - The page: linen as today; scarlet the Hebrew, blue the readings, purple our voice, as today; silver the blobs and compspan boxes; bronze the card, its outlines, its pointer lines and the apparatus; gold only the Masoretic signs (#a48829, the real gold darker, never the orange).
