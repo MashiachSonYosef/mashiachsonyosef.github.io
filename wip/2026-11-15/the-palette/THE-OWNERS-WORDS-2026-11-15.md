@@ -18,3 +18,18 @@
 
 7. «option 3 is fine» (the logo: pale gold thread with a deeper gold edge). «i like my darkmodes dark so deep bronze is nice» (the dark mode: #2b1f16, the dyes lifted to read on it). «is bronze a fair thing to put the words of a tabernacle on though or is this a liberty not described by moses» — answered from Exodus: bronze is the court's metal (25:3; 27:2, 10, 17, 19; 30:18; 38:8), and the four colors hang over bronze at the court's gate and the tent's door (27:16–17; 26:36–37); bronze as a ground, and its shade, are the page's reading, not the text's.
 8. «maybe the way to differentiate our logo is with a linen/bronze background patterning of some sort too» → `pictures/logo-grounds.png`: 1 linen cloth, 2 linen on a bronze base (the court's hangings on bronze sockets), 3 bronze threads crossing the linen, 4 deep bronze by night.
+
+## The three metals (15 November)
+
+9. «i'm confused are you saying bronze is "gold silver and brass"» — no: Exodus 25:3 names three metals; the third, nechoshet, is the KJV's «brass» and the modern translations' «bronze».
+10. «so maybe we should be using more colors here. like huds and basic card outlining type stuff in silver, gold as masoretic signs switching back to that, and bronze/brass (you tell me) for our pointers specifically. and then we could add all 3 to the word and in the logo» … «but then we wouldn't change the linen background or add a darkmode».
+11. «if bronze held the tent maybe that's the hud color and we take silver for our voice» … «obviously purple stays as the commentary layer, but we added the qere ketiv line …» … «maybe silver would be like outlining all the compspan boxes since that's kind of our layering?» … «oh interesting you're saying blobing is our commentary, yea i guess that is the big one, true».
+
+The scheme as read back (pictures/scheme-sheet.png; not yet confirmed as final):
+- linen the ground, as today (#ebdec3); no dark mode;
+- scarlet the Hebrew, blue the readings, purple our text (commentary and the site's own words), as today;
+- silver the blobs, the compspan boxes (our layering);
+- bronze the card (the HUD), its outlines and its pointer lines, and the boxes of the apparatus (verse labels, buttons): bronze held the tent (Exodus 27:19; 35:18);
+- gold the Masoretic signs;
+- the logo: option 3, or «and» woven of gold, silver and bronze (pictures/logo-three-metals.png).
+This supersedes light mode D and the bronze dark mode if the owner confirms it.
