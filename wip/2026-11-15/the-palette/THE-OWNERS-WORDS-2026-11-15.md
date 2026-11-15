@@ -45,6 +45,8 @@ This supersedes light mode D and the bronze dark mode if the owner confirms it.
 
 20. «if you want to do a shade darker gold thats fine» (shown the signs in the orange, in #a48829 and a step darker, `pictures/signs-three-golds.png`) → the signs' gold is #967c26: hue 46° and 60% like #a48829, and 3.0:1 on the linen, as readable as the orange's 3.4:1 nearly; the woven name's gold threads are edged in it too, so the name and the page keep one gold.
 
+21. «i would do card numbers silver that was our mark, and hud outline itself in bronze right» → yes, the card's outline is bronze (#7f6044), and its pointer lines and edges; the card numbers (the numbers on the line, and a word's address on its card) go to silver, our layering. Since a number is text, it takes silver's regular #53575b (5.5:1 on the linen, 5.0:1 in a cell), the same gray darker; the lines keep the dim #6e7378 (`pictures/numbers-silver.png`: bronze as shipped, the lines' silver, the regular). Built in the main tree; it ships after the default toggles' integration batch frees the local servers.
+
 ## Where the palette stands (15 November)
 
 - The page: linen as today; scarlet the Hebrew, blue the readings, purple our voice, as today; silver the blobs and compspan boxes; bronze the card, its outlines, its pointer lines and the apparatus; gold only the Masoretic signs (#a48829, the real gold darker, never the orange).
