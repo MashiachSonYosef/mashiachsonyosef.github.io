@@ -1,0 +1,58 @@
+The integrator's narrowed rehearsal of the kinds (kinds-build, HEAD 210877ad95 over main 46bbbf7d50), 15 November 2026.
+Working note. The report is the integrator's final answer; this file is the trail. Scratch: scratchpad/kinds-int/.
+
+SEAMS READ (the six commits 41a2b11a8e..210877ad95)
+  Every stamp one part writes is read where another part needs it, and no name is spelled two ways:
+    zone emitted_from.rests_off {rule, record, version, sha256, keys_bare_at_rest, entries{id:{say, ids{M:n}, keys, rows}}}
+      written by regloss-zone; read by the page (entries[id].ids, .rows), the projector (sha256), K3 (all of it)
+    sidecar rests_off {rule, record, version, sha256, what}: written by the projector; read by K3
+    search index rests_off {.., facts_left_out, entries_left_out}: written by the bake; read by check-search S18
+    page hooks __kinds, __kindsHere, __restsOffIds, __kindsVersion, __kindsFailed, __kindsFault: read by
+      resting-lines-v1, card-readings-v1, gated-card-v1, check-search, check-span-store, K4
+    fh.kinds "open@<record version>": page, card-readings (lifted), check-card-opens, K4; ?kinds=open: page,
+      gated-card, check-proper-name, check-names-pill
+    pills: data-by, data-rests, .r-pills[data-kind-withheld], .kinds-switch, #kindsRow .kinds-opt/.kind-chip:
+      written by the page, read by K4 and the gate
+  No seam needed a fix; nothing committed by the integrator.
+  Latent, within part 5 (not exercised: the 12 chain books are all in the scope): card-readings-v1 readCards
+  refuses a lifted page that reports kinds null, while check-chain-book-v2 K3 and K5 want null on a work the record
+  does not rest shut. A chain built for a work outside the scope would be refused by the builder.
+  Follow-up outside the parts: tools/check-page-agrees-with-its-record-v1.mjs still names color-channel-rule-v2 as the
+  rule it guards; with zone.html now naming v3, the manifest lists v2 as declared by that check alone.
+
+THE ROUND'S STEPS, NARROWED (stamp 2026-11-15; lattice, stems, extension as v63/pipeline.sh names them)
+  zones: genesis exodus esther daniel tikkunei-zohar, then amos obadiah psalms (for the phone header and two chains)
+    regloss: at rest for the 7 books; the Tikkunei Zohar whole and byte-identical; amos and obadiah commentaries
+    byte-identical; lattice 51 s genesis, 40 exodus, 14 esther, 19 daniel, 13 amos, 4 obadiah, 52 psalms
+  stamps: unchanged; search: word senses the same, index 1,634 fact rows left out (the other 48 of the 1,682 stand
+    on keys the index never reads); records: zone store 8 then 6 bins moved; serve gate receipt the zones' sha;
+    count stamp and overlay counts byte-identical; lines --only: 8 records
+  defaults: node laws D0-D19 green before and after the lines moved; the bake into scratch after the lines gives
+    the same index (f20c8e4f9f8c) and book files; only the receipt moves (runs read whole 2,177 -> 2,170 lines,
+    4,402 -> 4,388 words: the 7 span lines these books split; records of another zone 39 -> 0)
+  chain: amos and obadiah built into scratch: obadiah at rest 14,858 -> 12,853 links, lifted 26,502 -> 26,502;
+    amos at rest 107,041 -> 91,679, lifted 183,106 -> 183,352 (only Amos 8:3 cells 10 and 11: the run whose every
+    row rests shut is no longer laid, open or shut, so its words carry their own cards, 165 and 83 pills lifted)
+
+LINES BEFORE (git HEAD) AND AFTER, every moved line by class (lines-moved.mjs)
+  genesis 13 entries: 11 lines of a source shut whole + the 2 second halves of the 2 runs that fell to their words
+  exodus 70: all of a source shut whole (67 «the Jewish people» -> «the Children of Israel, Israelites, Jews»)
+  esther 1: the rank loss, 9:17 «three» [M14] -> «+ fork» [M14]
+  daniel 2: 1:8 «food» [M76] -> «spoil (from the margin for 957.)» [M9]; 8:17 Homo sapiens [M2] -> M13; no line
+    moved by the 92 Aramaic name rows
+  amos 7 entries: 6 of a source shut whole (5 runs to M13, 8:3 «EVERYWHERE» [M64] to its words) + 1 second half
+  obadiah 0; psalms 11 entries: 7 of a source shut whole (63:3 and 64:5 Wikidata -> STEP's own words [M4]) + 4
+    second halves; tikkunei-zohar 0 (its 8,358 lines credited to the kind stand, outside the scope)
+  none of another class; no new line credited to a source shut whole on a book at rest
+
+CHECKS (narrowed; logs in scratchpad/kinds-int/logs)
+  check-dictionary-kinds-v1 --only the 5 works: all passed (K1-K5), 83 s; the 8 works with both new chains: all
+  passed; with Amos's old chain: K5 red on amos only; --only ruth (not baked at rest): 8 FAIL (K3, K4, K5)
+  green: carrier-survives, lattice-projection, sense-openings, zone-single-pass-receipts, witnessed-order (genesis),
+    entry-gate, stems-extension, proper-name, span-store, search (S1-S18), disk-gloss-is-the-line, contents-shut
+    (787/893/908 px on Psalms, Obadiah and Amos baked at rest), reset-pill, source-switch, menu-switches,
+    names-gate (whole tree; its N5 is red in a five-work farm only), chain-book-v2 (amos and obadiah)
+  red, and red the same way on the shipped tree (scratchpad/old at 8914, read through a farm): witnessed-order W4
+    (exodus), names-pill P3 (exodus), line-reads-the-place P3 (genesis), ruled-equals-first-paint E1 under UBS
+    (genesis 1:6#6); W4 and P3 name «the Children of Israel» where the shipped tree names «the Jewish people»
+  lint: the page 4/175/9/1/2 (the baseline); the 23 tools the branch changed: the same 9 messages before and after
