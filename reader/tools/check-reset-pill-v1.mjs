@@ -162,8 +162,16 @@ if ((await switches()).dflt === null) console.log("  --  R1  the default sources
 else {
   await p.keyboard.press("Escape"); await p.waitForTimeout(200);
   if (!(await pill()).disabled) { await p.click("#resetPill"); await p.waitForTimeout(1200); }
-  // a press waits for the page to answer its sources: the book's file landed or failed
-  const answered = () => p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).catch(() => {});
+  // a press waits for the page to say every line stands as the sources in force draw it (window.__default.ready: at
+  // once on STEP, under another source once its book file is here; failed where it could not be fetched); a page that
+  // does not say so in 30 s is a fault said under R1, and no later press waits on it again (the completeness critic of
+  // 15 November 2026: the wait was swallowed, and the steps after it were judged on a page still painting)
+  let unsaid = null;
+  const answered = async () => {
+    if (unsaid) return;
+    const said = await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).then(() => true, () => false);
+    if (!said) unsaid = await p.evaluate(() => JSON.stringify(window.__default ? { on: window.__default.on, ready: window.__default.ready, failed: window.__default.failed } : null));
+  };
   const press = async (id) => { await p.evaluate((x) => { const y = document.getElementById(x); if (y) y.click(); }, id); await p.waitForTimeout(800); await answered(); };
   const noteOpen = () => p.evaluate(() => { const n = document.getElementById("default-note"); return !!n && !n.hidden; });
   const keptSecond = () => p.evaluate(() => { try { return JSON.parse(localStorage.getItem("fh.defaults.second") || "null"); } catch { return null; } });
@@ -203,12 +211,14 @@ else {
     chose ? `${chose.second.toUpperCase()} chosen as ${chose.first.toUpperCase()}'s second: ${atChosen.disabled ? "NOT pressable" : "pressable"}, kept ${keptFor(keptChosen) ? "on the device" : "NOWHERE"}` : "NO SOURCE'S NOTE OFFERED A SECOND TO CHOOSE",
     `STEP lit again, its note ${shutKept ? "closed" : "NOT CLOSED"}, the second ${keptFor(keptStill) && wKept.chosen.split(" ").includes(chose ? chose.first : "") ? "still kept" : "NOT KEPT"}: ${atKept.disabled ? `NOT PRESSABLE (the pill says ${JSON.stringify(atKept.state)})` : "pressable"}`,
     `reset ${pressable ? "pressed" : "NOT PRESSABLE"} with STEP's note ${openAtReset ? "open" : "NOT OPEN"}: after it ${atReset.disabled ? "not pressable" : "PRESSABLE"}, ${JSON.stringify(atReset.state)}, chosen ${w2.chosen || "none"}, kept ${keptAfter === null ? "nothing" : JSON.stringify(keptAfter)}, STEP ${w2.dflt === "step" ? "lit" : "NOT LIT"}, the note ${closedAtReset ? "closed" : "OPEN"}`,
+    ...(unsaid ? [`THE PAGE DID NOT SAY in 30 s that its lines stand as the sources in force draw them (window.__default ${unsaid})`] : []),
   ];
   check("R1  among the default sources, a source other than STEP, a second chosen for any source (kept, with STEP lit and its note closed) or STEP's note left open is away from the default, and reset puts them back",
     at0.disabled && !atOther.disabled && openedOnStep && !atStepOpen.disabled && closedOnStep && atStep.disabled
       && !!chose && !atChosen.disabled && wChosen.chosen.split(" ").includes(chose.first) && keptFor(keptChosen)
       && wKept.dflt === "step" && shutKept && keptFor(keptStill) && wKept.chosen.split(" ").includes(chose.first) && !atKept.disabled
-      && openAtReset && pressable && atReset.disabled && atReset.state === "default" && !w2.chosen && w2.dflt === "step" && closedAtReset && keptAfter === null,
+      && openAtReset && pressable && atReset.disabled && atReset.state === "default" && !w2.chosen && w2.dflt === "step" && closedAtReset && keptAfter === null
+      && !unsaid,
     steps.join(" · "));
 }
 await b.close();

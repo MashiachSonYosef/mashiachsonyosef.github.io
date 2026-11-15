@@ -54,6 +54,22 @@
 //       and the card at another place reads its own reading of it there;
 //       opened under MACULA, that card paints nothing over the ruled lines
 //       (paintGloss: an open paints nothing over a form the reader ruled)
+//   U10 under each of MACULA, UBS and BDB, a unit the source reads at every
+//       word of it prints once (the completeness critic of 15 November 2026:
+//       BDB's «Bethel · sense 1» under both words at Amos 3:14:10-11, MACULA's
+//       «with food» under both at Daniel 1:8:8-9): the words of a reading the
+//       place gives across words, or of one entry across words (the lattice's
+//       headword the same at each, its letters running across their
+//       boundary), the source's line at each from one and the same pick in its
+//       book file, standing in one run: every word of it under one line that
+//       reads it, the run's one line where it is the whole run, else one part
+//       over its words (data-wn), never the same words under two lines and no
+//       word of it under none. Where its words stand apart (no run holds them
+//       all: no line stands over both, and printed under each it is the
+//       doubled word), each word keeps its line as it rests, and the card at
+//       its first word says the source reads them as one and they stand apart
+//   U0  every page opened, and every press, said within 30 s that its lines
+//       stand as the sources in force draw them (window.__default.ready)
 // The words are found from the zones and the default picks on disk, never
 // named here (check-scope-derived S1): for U1 to U4 the work with the fewest
 // places holding a form that stands at two places with a set of several
@@ -64,7 +80,10 @@
 // of such a reading and not the other; for U7 and U9 the first form as U1's,
 // work by work, whose baked column is a divided reading (the whole form's card
 // does not offer it, so the press draws another); for U8, for each source, the
-// work with the fewest places holding such a reading the source reads in part.
+// work with the fewest places holding such a reading the source reads in part;
+// for U10, for each source, the work with the fewest places holding a unit,
+// and the work with the fewest places holding one whose words the text writes
+// apart (no maqaf between them; the page then says whether a run holds them).
 // The page is the checkout's own, served here; SERVE_BASE names another (the
 // live build, to see these laws red before a fix). Nothing printed holds
 // Hebrew: a text is printed with any Hebrew as U+ codes.
@@ -184,11 +203,64 @@ for (const src of ["macula", "ubs", "bdb"]) {
     if (pairs.length) { endOnly[src] = { b, pairs }; break; }
   }
 }
+// U10: per source, the units it reads at every word of one reading across words or of one entry across words, the
+// same pick at each word (the page's dfltUnitOf)
+const lettersIn = (t) => [...String(t || "").normalize("NFD")].filter((c) => { const n = c.codePointAt(0); return n >= 0x5d0 && n <= 0x5ea; }).join("");
+const unitsIn = (z, bf, src) => {
+  const out = [];
+  const text = (w) => (Array.isArray(w.pg) && w.pg.length && w.pg.every((p) => p && String(p.g || "").trim()) ? w.pg.map((p) => String(p.g).trim()).join("/") : "");
+  const pickOf = (n) => JSON.stringify((bf.places[n - 1] || [])[SLOT[src]]);
+  const bySec = new Map();
+  for (const p of placesOf(z)) { if (!bySec.has(p.label)) bySec.set(p.label, []); bySec.get(p.label).push(p); }
+  for (const ps of bySec.values()) {
+    const groups = [];
+    let g = null;
+    for (const q of ps) { if (g) g.push(q); if (!/-$/u.test(text(q.w))) g = null; else if (!g) { g = [q]; groups.push(g); } }
+    const live = ps.filter((q) => !q.w.kq);
+    for (let i = 0; i < live.length;) {
+      let j = i;
+      while (live[i].w.h && j + 1 < live.length && live[j + 1].w.h === live[i].w.h) j += 1;
+      const ks = live.slice(i, j + 1).map((q) => lettersIn(q.w.k)), h = lettersIn(live[i].w.h), at = j > i && h ? ks.join("").indexOf(h) : -1;
+      if (at >= 0) {
+        let from = -1, to = -1, pos = 0;
+        ks.forEach((k, x) => { if (from < 0 && at < pos + k.length) from = x; if (at + h.length > pos) to = x; pos += k.length; });
+        if (to > from) groups.push(live.slice(i + from, i + to + 1));
+      }
+      i = j + 1;
+    }
+    const seen = new Set();
+    for (const gr of groups) {
+      const key = gr.map((q) => q.n).join(",");
+      if (seen.has(key) || gr.some((q) => q.w.kq)) continue;
+      seen.add(key);
+      if (gr.every((q) => lineAt(bf, q.n, src) && pickOf(q.n) === pickOf(gr[0].n))) out.push({ ats: gr.map((q) => q.at), text: lineAt(bf, gr[0].n, src), maqaf: gr.slice(0, -1).every((q) => /\u05be/u.test(String(q.w.s || "").slice(-2))) });
+    }
+  }
+  return out;
+};
+const unitWork = {};   // source -> { b, units }
+// source -> [{ b, units }, ...]: the works holding a unit of words the text writes apart (no maqaf between them), fewest
+// places first, up to four: the page says which it draws apart (a run the lanes laid may hold them)
+const apartWorks = {};
+for (const src of ["macula", "ubs", "bdb"]) {
+  apartWorks[src] = [];
+  for (const b of byPlaces) {
+    if (unitWork[src] && apartWorks[src].length >= 4) break;
+    const units = unitsIn(readGz(join(K3, "data", "zones", `${b}.bin`)), readGz(join(DP, IX.books[b].file)), src);
+    if (units.length && !unitWork[src]) unitWork[src] = { b, units };
+    if (units.some((u) => !u.maqaf) && apartWorks[src].length < 4) apartWorks[src].push({ b, units });
+  }
+}
 
 const tree = process.env.SERVE_BASE ? { base: process.env.SERVE_BASE.replace(/\/$/u, ""), close: async () => {} } : await serveTree(K3);
 const pw = await loadPlaywright();
 const browser = await pw.chromium.launch(launchOptions());
 const pageErrors = [];
+// the page says every line stands as the sources in force draw it (window.__default.ready); one that does not say so
+// in 30 s is a fault (U0), not a wait run out and passed over (it was 120 s, swallowed: a page that never said so
+// passed every law)
+const unsaid = [];
+const said30 = (p, what) => p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 30000 }).then(() => true, () => { unsaid.push(what); return false; });
 const open = async (b, query = "") => {
   const ctx = await browser.newContext({ viewport: { width: 412, height: 915 }, acceptDownloads: true });
   await ctx.addInitScript(() => { try { if (!sessionStorage.getItem("rus-check")) { localStorage.clear(); sessionStorage.setItem("rus-check", "1"); } } catch { /* a page with no memory is a first visit */ } });
@@ -196,11 +268,11 @@ const open = async (b, query = "") => {
   p.on("pageerror", (e) => pageErrors.push(`${b}${query}: ${String((e && e.message) || e).slice(0, 160)}`));
   await p.goto(`${tree.base}/zone.html?b=${b}${query}`, { waitUntil: "domcontentloaded", timeout: 120000 });
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 120000 });
-  await p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed || d.on === "step"; }, null, { timeout: 120000 }).catch(() => {});
+  await said30(p, `${b}${query} opened`);
   await p.waitForTimeout(800);
   return { ctx, p };
 };
-const ready = (p) => p.waitForFunction(() => { const d = window.__default; return !d || d.ready || d.failed; }, null, { timeout: 120000 }).catch(() => {});
+const ready = (p) => said30(p, "after a press");
 /** IN THE PAGE: the word at an address (marks not counted), its section built first. */
 const findWb = (at) => {
   const m = /^(.*):(\d+)$/u.exec(at);
@@ -496,7 +568,77 @@ try {
       fault || `${b} ${A.at} and ${B.at}: both lines ${said(t(before[0]))}, the card at ${B.at} reading ${said(card.now)}, painted nothing`);
     await ctx.close();
   }
+  // U10: per source, every unit of its works, under that source and at rest
+  if (!Object.keys(unitWork).length) check("U10", false, "no work on this disk holds a unit a source reads at every word of one reading or one entry across words");
+  else {
+    const faults = [], saw = [];
+    /** IN THE PAGE: each word of a unit, the cell it stands in (its run, or none) and the line over it. */
+    const drawnOf = (p, ats) => p.evaluate(({ ats, f }) => {
+      const find = (0, eval)(`(${f})`);
+      const txt = (el) => { const c = el.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return c.textContent.trim(); };
+      // every word found first (its section built), then the runs they stand in
+      const wbs = ats.map((at) => find(at));
+      const runs = [...document.querySelectorAll(".he-text .wjoin")];
+      return wbs.map((wb) => {
+        if (!wb) return null;
+        const run = wb.closest(".wjoin"), rg = run ? run.querySelector(":scope > .g") : null;
+        if (rg && !rg.classList.contains("parts")) return { run: runs.indexOf(run), el: "the run's line", t: txt(rg) };
+        // the part over the word: its own, or a part a unit prints over several words (data-wn)
+        const wi = run ? [...run.querySelectorAll(".wb")].indexOf(wb) : -1, ps = rg ? [...rg.querySelectorAll(":scope > .g-part")] : [];
+        const k = ps.findIndex((x) => Number(x.dataset.wi) <= wi && wi < Number(x.dataset.wi) + Number(x.dataset.wn || 1));
+        const g = rg ? ps[k] || null : wb.querySelector(":scope > .g");
+        return { run: run ? runs.indexOf(run) : -1, el: rg ? `part ${k}` : "its own", t: g ? txt(g) : "" };
+      });
+    }, { ats, f: findWb.toString() });
+    let apart = 0;
+    const judged = [];
+    const judgeWork = async (src, b, units) => {
+      judged.push(`${src} ${b}`);
+      const rest = await open(b);
+      const atRest = [];
+      for (const u of units) atRest.push(await drawnOf(rest.p, u.ats));
+      await rest.ctx.close();
+      const { ctx, p } = await open(b, `&default=${src}`);
+      await ready(p);
+      let once = 0, held = 0, said0 = null;
+      for (const [x, u] of units.entries()) {
+        const drawn = await drawnOf(p, u.ats);
+        if (drawn.some((d) => !d) || atRest[x].some((d) => !d)) { faults.push(`${src} ${b} ${u.ats.join(",")}: a word was not found`); continue; }
+        if (drawn[0].run >= 0 && drawn.every((d) => d.run === drawn[0].run)) {
+          once += 1;
+          // once over its words: every word of it under one line, the run's or one part, which reads the unit
+          const t = drawn[0].t, lines = new Set(drawn.map((d) => d.el));
+          if (!t || lines.size !== 1 || drawn.some((d) => d.t !== t)) faults.push(`under ${src.toUpperCase()} ${b} ${u.ats.join(", ")}: ${t ? `${said(t, 40)} under ${drawn.filter((d) => d.t === t).length} of its ${drawn.length} words, in ${lines.size} line(s)` : "no line at its first word"}`);
+          continue;
+        }
+        // its words apart: each keeps its line as it rests, and the card at its first word says why
+        held += 1;
+        const off = drawn.filter((d, i) => d.t !== atRest[x][i].t);
+        if (off.length) faults.push(`under ${src.toUpperCase()} ${b} ${u.ats.join(", ")} (its words apart): ${drawn.map((d) => said(d.t, 30)).join(" ")}, as it rests ${atRest[x].map((d) => said(d.t, 30)).join(" ")}`);
+        if (said0 === null) {
+          said0 = await p.evaluate(({ at, f }) => { const wb = (0, eval)(`(${f})`)(at); if (!wb) return ""; wb.scrollIntoView({ block: "center" }); (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); return true; }, { at: u.ats[0], f: findWb.toString() })
+            // (the label folds away on a tight card, and its words stand all the same)
+            .then(() => p.waitForSelector("#hud > .rows .b-read .r-pills button", { timeout: 15000 })).then(() => p.waitForTimeout(400))
+            .then(() => p.evaluate(() => { const k = document.querySelector("#hud .r-now .k"); return k ? k.textContent : ""; })).catch(() => "");
+          if (!/as one, and they stand apart/u.test(said0)) faults.push(`under ${src.toUpperCase()} ${b} ${u.ats[0]} (its words apart): the card says ${said(said0, 80)}`);
+          await p.keyboard.press("Escape");
+        }
+      }
+      apart += held;
+      saw.push(`${src.toUpperCase()} ${b} ${once} unit(s) once in their run${held ? `, ${held} of words apart held as they rest (the card: ${said(said0, 70)})` : ""}`);
+      await ctx.close();
+      return held;
+    };
+    // per source its work of units; then, until the page has drawn one unit apart, the works whose units the text
+    // writes apart, source by source
+    for (const src of Object.keys(unitWork)) await judgeWork(src, unitWork[src].b, unitWork[src].units);
+    for (const src of Object.keys(apartWorks)) for (const w of apartWorks[src]) if (!apart && !judged.includes(`${src} ${w.b}`)) await judgeWork(src, w.b, w.units);
+    if (!apart && Object.values(apartWorks).some((l) => l.length)) faults.push(`no unit of words the text writes apart was drawn apart in ${judged.join(", ")}`);
+    check("U10 under MACULA, UBS and BDB, a unit the source reads at every word of one reading or one entry across words prints once over its words where they stand in one run, and where they stand apart each word keeps its line as it rests, the card saying why", !faults.length,
+      faults.length ? faults.slice(0, 4).join(" \u00b7 ") : saw.join(", "));
+  }
 } finally { await browser.close(); await tree.close(); }
 check("U6  no page error", !pageErrors.length, pageErrors.length ? noHe(pageErrors[0]) : "none");
+check("U0  every page said within 30 s that its lines stand as the sources in force draw them", !unsaid.length, unsaid.length ? `${unsaid.length}: ${unsaid.slice(0, 3).join(" | ")}` : "every one");
 console.log(bad ? `${bad} FAILED` : "all checks passed");
 process.exit(bad ? 1 : 0);

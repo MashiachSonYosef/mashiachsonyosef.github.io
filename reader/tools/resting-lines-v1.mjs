@@ -105,7 +105,7 @@ export const linesInPage = ([from, to, seen = false]) => {
         if (up.classList.contains("wb")) { if (!up.classList.contains("mark")) push(wbs.indexOf(up), 1, g); continue; }
         if (up.classList.contains("wjoin")) {
           const rw = [...up.querySelectorAll(".wb")];
-          if (g.classList.contains("parts")) for (const part of g.querySelectorAll(":scope > .g-part")) { const w = rw[Number(part.dataset.wi)]; if (w) push(wbs.indexOf(w), 1, part); else rec.odd.push(`a part names word ${part.dataset.wi} of a run of ${rw.length}`); }
+          if (g.classList.contains("parts")) for (const part of g.querySelectorAll(":scope > .g-part")) { const w = rw[Number(part.dataset.wi)]; if (w) push(wbs.indexOf(w), Number(part.dataset.wn || 1), part); else rec.odd.push(`a part names word ${part.dataset.wi} of a run of ${rw.length}`); }
           else if (rw.length) push(wbs.indexOf(rw[0]), rw.length, g);
           else rec.odd.push("a run's line over no word");
           continue;

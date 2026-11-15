@@ -223,6 +223,11 @@ if has lines; then
   # have moved is read again. The door, next, refuses any that is not.
   node tools/bake-resting-lines-v1.mjs > "$WORK/lines.log" 2>&1 || { echo "round-v1: the resting lines were not read" >&2; grep -E "^FAIL" "$WORK/lines.log" >&2 || true; tail -3 "$WORK/lines.log" >&2; exit 1; }
   tail -1 "$WORK/lines.log"
+  # every resting line set beside the line HEAD's record holds over the same word (the completeness critic of 15
+  # November 2026: the all-lines comparison a step of the round, now that ships move resting lines on purpose): each
+  # line that moved, with the counts by work and by credit before and after, in a report the lead names each ship's
+  # owed classes from. A report, not a law: it stops the round only where it cannot read a record
+  node tools/compare-resting-lines-v1.mjs --before HEAD --out "$WORK/resting-lines-compare.json" || { echo "round-v1: the resting lines could not be compared with HEAD's records" >&2; exit 1; }
   # the default picks' receipt, of the records just read: the bake again,
   # writing the receipt alone, then the check's node laws over it
   if [ -n "$DEFAULT_PICKS" ] && [ -f data/default-picks/index.json ]; then

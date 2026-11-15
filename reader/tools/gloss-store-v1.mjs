@@ -75,9 +75,13 @@ export const readingKey = (t) => printedForm(t).toLowerCase();
 // a zero-width space; where every piece is a sign, they stand; and a joiner
 // stands only between two pieces that print. The page carries these under the
 // same names (its signsOffLine is signsOff where the signs are off), so a
-// tool that reads a line the page drew reads it by the page's own rule.
-export const SIGN_GAP = "​";
-export const signOnly = (t) => /^(<[^>]*>|\[[^\]]*\]|¿|~|X|×|\+)$/u.test(String(t).trim());
+// tool that reads a line the page drew reads it by the page's own rule. The
+// gap and the signs are written as escapes, as the page writes them: a
+// zero-width space typed raw is one an editor's whitespace cleanup can drop
+// unseen, and the gap would be "" (the review of the toggles fixes, 15
+// November 2026).
+export const SIGN_GAP = "\u200b";
+export const signOnly = (t) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(String(t).trim());
 export const isGap = (x) => String(x ?? "").trim() === SIGN_GAP;
 export const joinDrawn = (pieces) => pieces.map((x, i) => `${i && !isGap(x) && pieces.slice(0, i).some((y) => !isGap(y)) ? " + " : ""}${x}`).join("");
 export const signsOff = (text) => { const pieces = String(text).split(" + "); return joinDrawn(pieces.every(signOnly) ? pieces : pieces.map((x) => (signOnly(x) ? SIGN_GAP : x))); };
