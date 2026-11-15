@@ -69,3 +69,10 @@ This palette ship goes from main on its own, ahead of the default toggles, whose
 ## Left for the next ship that touches zone.html
 
 - zone.html:439 still heads the channels' rules «color-channel-rule-v2, ruled 2026-09-10»; it is v3 now. Changing a comment changes the page's hash, which every resting-line record and chain book pins, so it rides the next ship that edits the page (the default toggles).
+
+## Shipped (15 November 2026)
+
+- main 857a3dc0fb, gh-pages a4290a43d4 (gh-pages follows main); Pages run 1369 success; live check 67 success at 857a3dc0.
+- The suite: 155 of 156 checks pass (173 runs, 27 min); check-nothing-unlanded-v1 red until landing, green after. The gate: 9,423 lines on 18 pages and 54 first cards the same, 0 differences. The sha audit of gh-pages against main: 9,243 read-off files and 3,547 zone pins stated, 0 that do not match.
+- The logo file kept its address (/mark/fireandhail.com-woven-v1.svg), so a browser that cached it may show the old name until the cache lapses (Pages serves ten minutes) or a reload.
+- Next: the default toggles' tree (scratch pt, uncommitted, on ace7f07eba) takes main in before its fix round goes on; its round re-reads every page anyway. zone.html:439's stale rule name rides with it.

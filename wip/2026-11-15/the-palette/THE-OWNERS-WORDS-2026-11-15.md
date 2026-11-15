@@ -49,4 +49,4 @@ This supersedes light mode D and the bronze dark mode if the owner confirms it.
 
 - The page: linen as today; scarlet the Hebrew, blue the readings, purple our voice, as today; silver the blobs and compspan boxes; bronze the card, its outlines, its pointer lines and the apparatus; gold only the Masoretic signs (#a48829, the real gold darker, never the orange).
 - The woven name: no hand-off into «and»; «and» gold crossed with bronze, «.com» and its dot purple crossed with silver, fire scarlet, hail blue; woven both ways, steep, 21 units.
-- A read-only survey of every color on the site is mapping each use to its metal and writing one plan (`plan/PLAN-THE-METALS.md`); the change lands after the default toggles' fix round, in the same ship.
+- Shipped on 15 November on its own, ahead of the default toggles (whose fix round waits on the helper agents' weekly limit): main 857a3dc0fb, gh-pages a4290a43d4, live check 67. The plan and what was built: `plan/PLAN-THE-METALS.md`.
