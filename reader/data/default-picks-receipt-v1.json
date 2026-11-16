@@ -17,18 +17,18 @@
    "v1": "a9373b8d30ef",
    "v1_2": "4d1357b26ca5"
   },
-  "store_resolved": "ccec4fa3071b"
+  "store_resolved": "3c0b0da7dc2f"
  },
  "shape": {
   "book_file": "data/default-picks/<book>.bin: gzip -9 of minified JSON; places[n - 1] for WORD_N n is null at a mark or where no source picks, else [step, macula, ubs, bdb], each 0 where the source has no pick; step [[kind 0 r | 1 v | 2 a, words | 0, a variant's letter], ...]; macula its words, as given; ubs [line | 0, [[piece (from 0, in the ledger's list of the word's pieces), words], ...]], the picks of a piece in its order, numbered from 1 within the piece by the page; bdb [[sense marker, or \"\" for the entry, one-based index into bdb_words | 0], ...]",
-  "index": "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source"
+  "index": "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare; and [n, STEP's pick 1 words, 1], one per place where STEP's own reading stands, call 4's category, a pair among them: the line under STEP prints them whatever today's line is, steps_reading_stands); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source"
  },
  "rows": {
   "named": 154583,
   "of_v1": 152423,
   "added_by_v1_1": 225,
   "added_by_v1_2": 1935,
-  "found_once": 150661,
+  "found_once": 149962,
   "found_more_than_once": 1,
   "missing": 0,
   "found_more_than_once_rows": [
@@ -42,7 +42,7 @@
   ],
   "followed": {
    "what": "the rows the tables name that are not in the store as named, each where the row-strikes record says it went since the store v1.2 read (tools/row-strikes-follow-v1.mjs): moved to another key and found there, with the picks that name it; struck, and named by no pick (v1.2 re-pointed them); withheld, with the picks that name it, which stand on their other rows or on the source's own words. found_once and found_more_than_once count the rows found as named",
-   "rule_id": "row-strikes-follow-rule-v1-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed",
+   "rule_id": "row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words",
    "record": "reader/data/row-strikes-v1.json",
    "read_at_store_version": "4d1357b26ca5",
    "rounds_since": [
@@ -53,6 +53,10 @@
     {
      "ran_at": "2026-11-15T00:00:02.000Z",
      "list": "land-v188-v1.jsonl"
+    },
+    {
+     "ran_at": "2026-11-15T00:01:04.000Z",
+     "list": "retext-v1.jsonl"
     }
    ],
    "lines_whose_row_was_struck": {
@@ -62,11 +66,21 @@
    "rows_re_keyed_and_followed": {
     "call5-maqaf-keys-v1.jsonl": 26
    },
+   "rows_retexted_and_followed": {
+    "retext-v1.jsonl": 699
+   },
    "rows_re_keyed_and_found_under_their_new_name": {
     "rows": 26,
     "picks_naming_them": 122,
     "by_source": {
      "M4": 26
+    }
+   },
+   "rows_retexted_and_found_under_their_new_name": {
+    "rows": 699,
+    "picks_naming_them": 10100,
+    "by_source": {
+     "M46": 699
     }
    },
    "rows_struck_since_that_no_pick_names": 3895,
@@ -163,7 +177,7 @@
   "places": 305431,
   "kq_words": 1062,
   "has": {
-   "step": 305415,
+   "step": 305418,
    "macula": 295413,
    "ubs": 245089,
    "bdb": 103647
@@ -175,26 +189,26 @@
     "bdb": 0
    },
    "macula": {
-    "step": 10009,
+    "step": 10012,
     "ubs": 874,
     "bdb": 685
    },
    "ubs": {
-    "step": 60328,
+    "step": 60331,
     "macula": 51198,
     "bdb": 6657
    },
    "bdb": {
-    "step": 201770,
+    "step": 201773,
     "macula": 192451,
     "ubs": 148099
    }
   },
   "second_fills": {
    "step": 0,
-   "macula": 10009,
-   "ubs": 60328,
-   "bdb": 201770
+   "macula": 10012,
+   "ubs": 60331,
+   "bdb": 201773
   },
   "shares": {
    "step": {
@@ -272,8 +286,8 @@
   "places": []
  },
  "step_words": {
-  "what": "places that are not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading (kind r), and that the corpus lane's call 4 (relay v189) does not write with « | »: the index carries each with its words, and the line under STEP prints them, credited to STEP (M4), where the page's own line there is bare (the owner's question 2 of 14 November, recommendation B); a pick naming no row, or naming a row the entry gate withholds, prints so too (relay v195, sections 2 and 8). Which of them are bare is the page's: today's line is worked out on the page. HELD (held_split): where call 4 writes STEP's words with « | », STEP reads one written word as two TAHOT words and its pick 1 is the first of them only, so the index carries no STEP words there and the line keeps today's until the lane says how STEP's line reads (its open question 1); held counts those places that would else be here, listed the places call 4 writes so; where today's line at one of them is bare, the line under STEP draws nothing there (step_line_rests_bare)",
-  "count": 1015,
+  "what": "places that are not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading (kind r), and that the corpus lane's call 4 (relay v189) does not write with « | »: the index carries each with its words, and the line under STEP prints them, credited to STEP (M4), where the page's own line there is bare (the owner's question 2 of 14 November, recommendation B); a pick naming no row, or naming a row the entry gate withholds, prints so too (relay v195, sections 2 and 8). Which of them are bare is the page's: today's line is worked out on the page. HELD (held_split): where call 4 writes STEP's words with « | », STEP reads one written word as two TAHOT words and its pick 1 is the first of them only, so the index carries no STEP words there and the line keeps today's until the lane says how STEP's line reads (its open question 1); held counts those places that would else be here, listed the places call 4 writes so; where today's line at one of them is bare, the line under STEP draws nothing there (step_line_rests_bare). The places where STEP's own reading stands (call 4's category, steps_reading_stands) are among them too, each whatever its pieces and at a pair as well, with its words marked as standing",
+  "count": 1021,
   "naming_no_row": 65,
   "by_waiting_status": {
    "WAITS_FOR_V188": 17,
@@ -342,10 +356,10 @@
    "numbers": 31,
    "deuteronomy": 57,
    "joshua": 14,
-   "judges": 31,
+   "judges": 32,
    "ruth": 9,
    "i-samuel": 43,
-   "ii-samuel": 42,
+   "ii-samuel": 43,
    "i-kings": 29,
    "ii-kings": 38,
    "i-chronicles": 30,
@@ -354,14 +368,14 @@
    "nehemiah": 25,
    "esther": 16,
    "job": 60,
-   "psalms": 75,
+   "psalms": 77,
    "proverbs": 42,
    "ecclesiastes": 12,
    "song-of-songs": 15,
    "isaiah": 40,
    "jeremiah": 54,
-   "lamentations": 14,
-   "ezekiel": 100,
+   "lamentations": 15,
+   "ezekiel": 101,
    "daniel": 75,
    "hosea": 6,
    "amos": 4,
@@ -374,10 +388,31 @@
    "malachi": 3
   }
  },
+ "steps_reading_stands": {
+  "rule_id": "steps-reading-stands-rule-v1-where-step-spells-or-parts-the-word-otherwise-its-own-pick-1-is-the-line-credited-to-step",
+  "what": "the places of the corpus lane's call 4 (relay v189: data/audit-calls/calls-v1/, held to data/default-picks/PIN.json's held_split_v189), each by the class the bake reads at the zone word: stands where the list's action is steps_words_are_the_line, STEP's words hold no « | » and the zone word is not a pair whose read form is several words (kq.words_read); there the line under STEP is STEP's own pick 1, credited to STEP, whatever today's line is, and the index carries it as [n, words, 1]. Held by class: held_split (« | »: the owner's question 2, put back to the lane), none (the list's action), read_form_of_several_words (v192's read words carry those places). letters_equal: the zone word carries the list's letters; words_equal: at a place that stands, STEP's pick 1 after the mends is the list's words byte for byte; were_bare_before: the places that stand where the line under STEP rested bare before (pairs whose record draws no line)",
+  "listed": 853,
+  "met": 853,
+  "letters_equal": 853,
+  "by_class": {
+   "stands": 785,
+   "read_form_of_several_words": 14,
+   "held_split": 46,
+   "none": 8
+  },
+  "stands": {
+   "places": 785,
+   "plain_words": 779,
+   "pairs": 6,
+   "whose_place_pieces_answer": 1,
+   "words_equal": 785,
+   "were_bare_before": 0
+  }
+ },
  "step_line_rests_bare": {
   "what": "places where STEP has a pick (its pick 1 a line pick) and its line as it rests draws nothing: its own words are never drawn at a pair (ketiv/qere: the pair keeps today's line) or at a place call 4 writes with « | » (held), and where the place pieces do not answer, today's line stands there; where the record of the resting lines holds no line over the word, that line is bare. Such a place is not counted in has.step, is no place STEP leaves (its second does not fill it), and counts in no fill of STEP's or by STEP; the other sources' has and fills count it as anywhere else, as the page prints their lines there. Read off the records as they stand (records); the default sources move nothing at these places, so the record's line there is today's whether or not it was read with them laid",
-  "count": 15,
-  "pair": 8,
+  "count": 12,
+  "pair": 5,
   "held_split": 7,
   "places": [
    {
@@ -396,12 +431,6 @@
     "book": "ii-samuel",
     "place": "5:8:14",
     "n": 2054,
-    "why": "a pair: its line keeps today's, which is bare"
-   },
-   {
-    "book": "ii-samuel",
-    "place": "18:8:4",
-    "n": 8214,
     "why": "a pair: its line keeps today's, which is bare"
    },
    {
@@ -448,12 +477,6 @@
    },
    {
     "book": "psalms",
-    "place": "145:6:4",
-    "n": 22156,
-    "why": "a pair: its line keeps today's, which is bare"
-   },
-   {
-    "book": "psalms",
     "place": "149:7:5",
     "n": 22738,
     "why": "call 4 writes STEP's words here with « | »: held, and today's line is bare"
@@ -462,12 +485,6 @@
     "book": "isaiah",
     "place": "10:13:12",
     "n": 2852,
-    "why": "a pair: its line keeps today's, which is bare"
-   },
-   {
-    "book": "ezekiel",
-    "place": "6:3:15",
-    "n": 1659,
     "why": "a pair: its line keeps today's, which is bare"
    }
   ],
@@ -483,12 +500,12 @@
   "by_first": {
    "step": {
     "step": {
-     "pills": 239,
-     "names_a_row_of_its_own_source": 215,
-     "names_another_sources_row_only": 5,
-     "names_no_row": 19,
+     "pills": 842,
+     "names_a_row_of_its_own_source": 684,
+     "names_another_sources_row_only": 104,
+     "names_no_row": 54,
      "printed_whole_by_a_row_it_names": 0,
-     "made": 239
+     "made": 530
     }
    },
    "macula": {
@@ -499,6 +516,14 @@
      "names_no_row": 10798,
      "printed_whole_by_a_row_it_names": 145179,
      "made": 212923
+    },
+    "step": {
+     "pills": 15,
+     "names_a_row_of_its_own_source": 7,
+     "names_another_sources_row_only": 8,
+     "names_no_row": 0,
+     "printed_whole_by_a_row_it_names": 0,
+     "made": 14
     }
    },
    "ubs": {
@@ -511,12 +536,12 @@
      "made": 244256
     },
     "step": {
-     "pills": 2,
-     "names_a_row_of_its_own_source": 2,
-     "names_another_sources_row_only": 0,
+     "pills": 66,
+     "names_a_row_of_its_own_source": 49,
+     "names_another_sources_row_only": 17,
      "names_no_row": 0,
      "printed_whole_by_a_row_it_names": 0,
-     "made": 2
+     "made": 25
     }
    },
    "bdb": {
@@ -529,40 +554,40 @@
      "made": 101454
     },
     "step": {
-     "pills": 106,
-     "names_a_row_of_its_own_source": 90,
-     "names_another_sources_row_only": 11,
-     "names_no_row": 5,
-     "printed_whole_by_a_row_it_names": 0,
-     "made": 106
+     "pills": 454,
+     "names_a_row_of_its_own_source": 351,
+     "names_another_sources_row_only": 79,
+     "names_no_row": 24,
+     "printed_whole_by_a_row_it_names": 1,
+     "made": 276
     }
    }
   }
  },
  "runs_read_whole": {
-  "what": "the lines at rest over more than one word (a joined run's one line, as the records of the resting lines keep it), with the words under them, and for each source at how many of those lines it has a line at every word, at some, or at none; on the page a source other than STEP takes such a run only where it has a line at every word, and under STEP the run's own line stands",
-  "run_lines": 2158,
-  "words": 4363,
+  "what": "the lines at rest over more than one word (a joined run's one line, as the records of the resting lines keep it), with the words under them, and for each source at how many of those lines it has a line at every word, at some, or at none. A run keeps its joined line at rest only where some word of it has no reading of its own at the place (its place pieces, or STEP's words where STEP's own reading stands; a bridged mark set aside): every other run reads its words one by one, the joined reading a press away (run-reads-its-words-rule-v1, question 8, taken). So these are the runs held so; on the page a source other than STEP takes such a run only where it has a line at every word, and under STEP the run's own line stands",
+  "run_lines": 5,
+  "words": 10,
   "by_source": {
    "step": {
-    "every_word": 2158,
+    "every_word": 5,
     "some_words": 0,
     "no_word": 0
    },
    "macula": {
-    "every_word": 1662,
-    "some_words": 144,
-    "no_word": 352
+    "every_word": 2,
+    "some_words": 0,
+    "no_word": 3
    },
    "ubs": {
-    "every_word": 1364,
-    "some_words": 739,
-    "no_word": 55
+    "every_word": 3,
+    "some_words": 1,
+    "no_word": 1
    },
    "bdb": {
-    "every_word": 270,
-    "some_words": 454,
-    "no_word": 1434
+    "every_word": 3,
+    "some_words": 0,
+    "no_word": 2
    }
   }
  },
@@ -882,9 +907,9 @@
    "step_words": 23,
    "file": {
     "name": "genesis.bin",
-    "bytes": 258043,
+    "bytes": 258044,
     "raw_bytes": 1746517,
-    "sha256": "f420ba3ab8d1b101942b917367cfade69b02f47f3fb22c00fefa865dcbc7730a"
+    "sha256": "bd2919887d36afd48c10dafe11096bc741bb7a49c5180816015464e29f5881c9"
    }
   },
   "exodus": {
@@ -944,7 +969,7 @@
     "name": "exodus.bin",
     "bytes": 198251,
     "raw_bytes": 1395455,
-    "sha256": "843614c21d8c1c1c6f385f2c4cc856dae68f1b7082a843c79fd951e5d0f7917e"
+    "sha256": "323cfbe324954fbd26c60fc3fd54799def2db5d7895cb37603e7ef2fd5a5ea06"
    }
   },
   "leviticus": {
@@ -1004,7 +1029,7 @@
     "name": "leviticus.bin",
     "bytes": 125261,
     "raw_bytes": 976455,
-    "sha256": "48bd875ddbc98e58a7920ec62d1904cf2ebc130232bcc9b88b52292e3ddec90d"
+    "sha256": "2c86cfd427d82e3131ec595fdac36d1e1a90c83317bbd8c87aa29e52a5033ff0"
    }
   },
   "numbers": {
@@ -1062,9 +1087,9 @@
    "step_words": 31,
    "file": {
     "name": "numbers.bin",
-    "bytes": 178318,
+    "bytes": 178317,
     "raw_bytes": 1374599,
-    "sha256": "300bfbbaede9406d89154c6706020f7db4c9c1925d5d48132148cbd8d8315ab3"
+    "sha256": "8ac9b959a0e42606cea34ad9209190cd9133d60a189fbfe93bb4daa76d4f77d9"
    }
   },
   "deuteronomy": {
@@ -1124,7 +1149,7 @@
     "name": "deuteronomy.bin",
     "bytes": 195085,
     "raw_bytes": 1250583,
-    "sha256": "f459a334a560e108870418b4311a123847dab7c4a383fd0056468d66e14b61cb"
+    "sha256": "eab4ce2ddc8fdf39259039a4ad905f759df3dc72e3d422be68a2b1ff83b73f73"
    }
   },
   "joshua": {
@@ -1182,9 +1207,9 @@
    "step_words": 14,
    "file": {
     "name": "joshua.bin",
-    "bytes": 119762,
+    "bytes": 119763,
     "raw_bytes": 834861,
-    "sha256": "edc21f2a55cbd4a7aae3c637218e2f37abc0ae062a485a232ccabb26cbb9a707"
+    "sha256": "bea9a0b4e1ec4200ebd5caf2cb60efa9cbabc18f35dde23998a3661e84fd8eb9"
    }
   },
   "judges": {
@@ -1239,12 +1264,12 @@
    },
    "step_leaves": 0,
    "rest_fills": 0,
-   "step_words": 31,
+   "step_words": 32,
    "file": {
     "name": "judges.bin",
     "bytes": 130415,
     "raw_bytes": 846471,
-    "sha256": "b161d61c586a0064ca195234c12b8329f55531b89d44a589d36dad8f2c222512"
+    "sha256": "37f33624d82d6463f3b52373f0b2bf57f55517012f1188a58639f9d06240a6bc"
    }
   },
   "ruth": {
@@ -1304,7 +1329,7 @@
     "name": "ruth.bin",
     "bytes": 19694,
     "raw_bytes": 117468,
-    "sha256": "b78376773d0919ef2e7703d144ce97bc299018ab506647d67e673364862b2558"
+    "sha256": "bbb6a74467db7ff86aefc7bd34c5f4d4d4de3c22a0f4c84141114d61dbe3b969"
    }
   },
   "i-samuel": {
@@ -1364,7 +1389,7 @@
     "name": "i-samuel.bin",
     "bytes": 179264,
     "raw_bytes": 1136298,
-    "sha256": "a551e3e273872e8843c82ed55a0a6fb99b4c391eb11abc3918d10cfb9ba780e0"
+    "sha256": "8e463383ba8fff80dd0810b1029287baeaeaa0a130a99922dbdd9e9bdc70e11a"
    }
   },
   "ii-samuel": {
@@ -1378,7 +1403,7 @@
     "bdb_v1_2": 8
    },
    "has": {
-    "step": 11029,
+    "step": 11030,
     "macula": 10527,
     "ubs": 8706,
     "bdb": 2727
@@ -1390,17 +1415,17 @@
      "bdb": 0
     },
     "macula": {
-     "step": 502,
+     "step": 503,
      "ubs": 65,
      "bdb": 62
     },
     "ubs": {
-     "step": 2323,
+     "step": 2324,
      "macula": 1886,
      "bdb": 217
     },
     "bdb": {
-     "step": 8302,
+     "step": 8303,
      "macula": 7862,
      "ubs": 6196
     }
@@ -1419,12 +1444,12 @@
    },
    "step_leaves": 1,
    "rest_fills": 0,
-   "step_words": 42,
+   "step_words": 43,
    "file": {
     "name": "ii-samuel.bin",
     "bytes": 152667,
     "raw_bytes": 944303,
-    "sha256": "86193522c1716ae2956a7c7e16a578f9e7ddab548d63fb8aadc6f4d28d1d6561"
+    "sha256": "482cefae24c05bbe7aacfd3061bd83654cbe801eec65253ae4d3719b1ae49bb4"
    }
   },
   "i-kings": {
@@ -1484,7 +1509,7 @@
     "name": "i-kings.bin",
     "bytes": 162560,
     "raw_bytes": 1107652,
-    "sha256": "7ea119453857625de0c7a5f49bfdc7197c7e28018740fd91aa15e9a434255555"
+    "sha256": "9f2603450880003ac8e342650c83146b30992724c8fc4b844f9d7ade358dbb08"
    }
   },
   "ii-kings": {
@@ -1542,9 +1567,9 @@
    "step_words": 38,
    "file": {
     "name": "ii-kings.bin",
-    "bytes": 155346,
+    "bytes": 155347,
     "raw_bytes": 1055139,
-    "sha256": "3fc15f1fa1f9385a145a61fdc697ba0745d7f1c5267228713d87da0d68f1443f"
+    "sha256": "21ff12150a072b379b4d41a0bc753e324169c44616a1077a6a66c2a377acd003"
    }
   },
   "i-chronicles": {
@@ -1604,7 +1629,7 @@
     "name": "i-chronicles.bin",
     "bytes": 142089,
     "raw_bytes": 872891,
-    "sha256": "b0127fd42813813e9ec5e9bdd5ff494428dfbb1c792dbd19825ae3fe0b8334a1"
+    "sha256": "e225ed784b54a78e62cfefe9b3eb944e42c99b49117ee50bb74b814909cd853f"
    }
   },
   "ii-chronicles": {
@@ -1664,7 +1689,7 @@
     "name": "ii-chronicles.bin",
     "bytes": 183814,
     "raw_bytes": 1125997,
-    "sha256": "e6a4d71fa869a0d96f82118435c26cb4c1f1096c6ddd0e1873188e9f629e4ef4"
+    "sha256": "a58f32cbcb674f981d937e344b893b39cc3a1525237b3d632d4a543a8ac6e1e1"
    }
   },
   "ezra": {
@@ -1724,7 +1749,7 @@
     "name": "ezra.bin",
     "bytes": 54365,
     "raw_bytes": 314663,
-    "sha256": "f664499a232b3caf6744ec0d0aa572b69a292f8dd6c756ee912573bcccc3c49e"
+    "sha256": "f08df0fc87873962e5dc0255e35b0e9528f140b0a04475a36ef38e019b7b0e43"
    }
   },
   "nehemiah": {
@@ -1784,7 +1809,7 @@
     "name": "nehemiah.bin",
     "bytes": 78958,
     "raw_bytes": 463117,
-    "sha256": "82fd00fc7da7ff378ababce1e51f56f5c905c6d13987d5b8351ae0ee405d4a50"
+    "sha256": "0e0a1a553e6248da1f0281339af69d1207a1f8c06ccc498dc7d18b57f6f798d0"
    }
   },
   "esther": {
@@ -1844,7 +1869,7 @@
     "name": "esther.bin",
     "bytes": 41039,
     "raw_bytes": 260333,
-    "sha256": "c6de53d96808e89cba35609ef0a852a91700af555226c354f57f628893fb5de3"
+    "sha256": "a7d8c10b9d0fc288d582c4b7e34c3488f826782603c86c5f3aa7276d8588b8d8"
    }
   },
   "job": {
@@ -1902,9 +1927,9 @@
    "step_words": 60,
    "file": {
     "name": "job.bin",
-    "bytes": 166752,
+    "bytes": 166753,
     "raw_bytes": 779968,
-    "sha256": "6f0c8dd17ffbb72ffbf525d6608039dbb0d6c60d48f49b310355ad6d841491ed"
+    "sha256": "26278d5cf922b9b1547985286103d1f2ccae60388547d649607ebe5b489f2c9e"
    }
   },
   "psalms": {
@@ -1918,7 +1943,7 @@
     "bdb_v1_2": 8
    },
    "has": {
-    "step": 19577,
+    "step": 19578,
     "macula": 19371,
     "ubs": 16612,
     "bdb": 8634
@@ -1930,17 +1955,17 @@
      "bdb": 0
     },
     "macula": {
-     "step": 211,
+     "step": 212,
      "ubs": 17,
      "bdb": 15
     },
     "ubs": {
-     "step": 2965,
+     "step": 2966,
      "macula": 2776,
      "bdb": 368
     },
     "bdb": {
-     "step": 10944,
+     "step": 10945,
      "macula": 10752,
      "ubs": 8346
     }
@@ -1959,12 +1984,12 @@
    },
    "step_leaves": 0,
    "rest_fills": 0,
-   "step_words": 75,
+   "step_words": 77,
    "file": {
     "name": "psalms.bin",
     "bytes": 351629,
     "raw_bytes": 1830528,
-    "sha256": "93fcffb055d7136c9e0cabcc0f72134dbabe77f9bfe74c1e3968c6b1035bf643"
+    "sha256": "69d75dad70dda85dd0dc9827c732517799709e3733a12627a4b71352a9d0c2ee"
    }
   },
   "proverbs": {
@@ -2024,7 +2049,7 @@
     "name": "proverbs.bin",
     "bytes": 137677,
     "raw_bytes": 695440,
-    "sha256": "b275323890da7c00067e8e7193477d47b932c39bb4a31d1e8a994ddf08e61c00"
+    "sha256": "80e535c7ac5907f3f97cb1cbf37c3436343458780cb323597335372693eb8234"
    }
   },
   "ecclesiastes": {
@@ -2084,7 +2109,7 @@
     "name": "ecclesiastes.bin",
     "bytes": 47764,
     "raw_bytes": 275652,
-    "sha256": "f9803348ae3896654d63c9ae9c8d33651c67ed9a41fc3c29b300c9c754712dc6"
+    "sha256": "1a21461b4f13e9c24e5ed29e8f9899f2208f9d78f62f93057cf36454aacacddd"
    }
   },
   "song-of-songs": {
@@ -2144,7 +2169,7 @@
     "name": "song-of-songs.bin",
     "bytes": 25788,
     "raw_bytes": 116831,
-    "sha256": "4e474ba0dd7b3ce635221a789d02de7afa923028a5bb41029591877efd08fc83"
+    "sha256": "1c6454192a2976b70c32b8b65890cf0ab88ad28664872e44a2b0efd5dee64f4d"
    }
   },
   "isaiah": {
@@ -2204,7 +2229,7 @@
     "name": "isaiah.bin",
     "bytes": 308862,
     "raw_bytes": 1560379,
-    "sha256": "0a5ad0bc9473f5d4882bcb729e5457f2adb29c65a078861e67fa645e1aa22308"
+    "sha256": "386b122214e6df190231105ede63e49a4139035eaeba4822d974d7bc5e7fe32c"
    }
   },
   "jeremiah": {
@@ -2262,9 +2287,9 @@
    "step_words": 54,
    "file": {
     "name": "jeremiah.bin",
-    "bytes": 309100,
+    "bytes": 309098,
     "raw_bytes": 1868701,
-    "sha256": "4666b1d728f2bf74f45c3c212ded7e2c2150d778c185387b11ac20c481fd4693"
+    "sha256": "be48616f323e9c6c7c4eaff5b3268bda377ae8935390e58800fc653486284409"
    }
   },
   "lamentations": {
@@ -2319,12 +2344,12 @@
    },
    "step_leaves": 0,
    "rest_fills": 0,
-   "step_words": 14,
+   "step_words": 15,
    "file": {
     "name": "lamentations.bin",
     "bytes": 33324,
     "raw_bytes": 147730,
-    "sha256": "f8793425948449404590d29c4ab0707ba25bb3801bdeca40b442890458b8785c"
+    "sha256": "a03ba5f91f784ac714fa07b416ada002ee8549267e5b3c20a9c66b06f29312ef"
    }
   },
   "ezekiel": {
@@ -2338,7 +2363,7 @@
     "bdb_v1_2": 45
    },
    "has": {
-    "step": 18728,
+    "step": 18729,
     "macula": 18246,
     "ubs": 14618,
     "bdb": 6129
@@ -2350,17 +2375,17 @@
      "bdb": 0
     },
     "macula": {
-     "step": 482,
+     "step": 483,
      "ubs": 38,
      "bdb": 24
     },
     "ubs": {
-     "step": 4110,
+     "step": 4111,
      "macula": 3666,
      "bdb": 328
     },
     "bdb": {
-     "step": 12599,
+     "step": 12600,
      "macula": 12141,
      "ubs": 8817
     }
@@ -2379,12 +2404,12 @@
    },
    "step_leaves": 0,
    "rest_fills": 0,
-   "step_words": 100,
+   "step_words": 101,
    "file": {
     "name": "ezekiel.bin",
     "bytes": 240620,
     "raw_bytes": 1602598,
-    "sha256": "d00c9702193d358eb73b971fc524bbc6d7a8a486b178ba3a22c1009d225f63e0"
+    "sha256": "69bff7f80d18f5995ade2063d5d1a2a014189a6191eb6ddf288624cb5d9effad"
    }
   },
   "daniel": {
@@ -2442,9 +2467,9 @@
    "step_words": 75,
    "file": {
     "name": "daniel.bin",
-    "bytes": 86943,
+    "bytes": 86945,
     "raw_bytes": 515885,
-    "sha256": "5ee277314adff1a45c383b58d17a1aa86e49c1faad593861168c3eca156ccde1"
+    "sha256": "9e0f9be25b3e16bc84d53a0a42cd5907ff7d68c8c5f844b48f1e997d768b6ba0"
    }
   },
   "hosea": {
@@ -2504,7 +2529,7 @@
     "name": "hosea.bin",
     "bytes": 47290,
     "raw_bytes": 220129,
-    "sha256": "c5be1cffe549bff825bccfcb72e6318698b9a027d3e3675548e34cc6ae667508"
+    "sha256": "b1a706d1dd122ec49502228e9d5dc89be75de81d64310b59acad747f5cce5777"
    }
   },
   "joel": {
@@ -2562,9 +2587,9 @@
    "step_words": 0,
    "file": {
     "name": "joel.bin",
-    "bytes": 18965,
+    "bytes": 18967,
     "raw_bytes": 88307,
-    "sha256": "a3f186b4798a244dd37bbf18d415d701bdbff545fc7b6aeb2edfa740c1d38572"
+    "sha256": "8605d45da9aaa438fd796bf88197fe7b85262e413970e364ae1701abcf257367"
    }
   },
   "amos": {
@@ -2624,7 +2649,7 @@
     "name": "amos.bin",
     "bytes": 37263,
     "raw_bytes": 184716,
-    "sha256": "da143a08958ac4fcffde4dde50d41ae945cf6ee111ee00b43c19bf6d3da04659"
+    "sha256": "cafefc10922011e3195261280378433d257ada68f78446190a76134d36ff7352"
    }
   },
   "obadiah": {
@@ -2684,7 +2709,7 @@
     "name": "obadiah.bin",
     "bytes": 6654,
     "raw_bytes": 27484,
-    "sha256": "b41bb826b5e8f20a84277498eb3c201e8a4bc491c47c75847700af1b285688ff"
+    "sha256": "fd231c19bd7c51de848af68c94ebcc9494ac24bdaf5fb4b932fb4b2f92df6008"
    }
   },
   "jonah": {
@@ -2744,7 +2769,7 @@
     "name": "jonah.bin",
     "bytes": 12295,
     "raw_bytes": 61162,
-    "sha256": "3f69756996967526774365339002b4741f4cd600b87aef2469f71500f83a845b"
+    "sha256": "e157148b5bdb5780bb01a1b681e63f6b11c126f1a13c84c50a62264e0aad98ad"
    }
   },
   "micah": {
@@ -2802,9 +2827,9 @@
    "step_words": 3,
    "file": {
     "name": "micah.bin",
-    "bytes": 31300,
+    "bytes": 31299,
     "raw_bytes": 135244,
-    "sha256": "1add370b0a41c96f6146fe22e4c3981028cc2c68cb89ac752abdf576dfc20f18"
+    "sha256": "bfec1c53fba01e6dbdbc0c0e60021002f514fedefd1f2d8e8e6a84c5470a05e8"
    }
   },
   "nahum": {
@@ -2862,9 +2887,9 @@
    "step_words": 5,
    "file": {
     "name": "nahum.bin",
-    "bytes": 14983,
+    "bytes": 14984,
     "raw_bytes": 55435,
-    "sha256": "9616e9012526a8faaa002172f3e91a1d46228cc6d52b54a4e4932fe1b43cb3ad"
+    "sha256": "4cd4a864e99633bbe228c947886ba4cabaf948272a0c6343ba62e44d30b84a67"
    }
   },
   "habakkuk": {
@@ -2924,7 +2949,7 @@
     "name": "habakkuk.bin",
     "bytes": 17649,
     "raw_bytes": 68567,
-    "sha256": "8ceb053b6f08176868dec9e2b87eb5d6814737d61fdbe87e4b96f0e3c412136f"
+    "sha256": "7e0544dbf6a453e07027602f4cbfd5a7ce41406cac1cd1ab5a4d6868736eb6cc"
    }
   },
   "zephaniah": {
@@ -2984,7 +3009,7 @@
     "name": "zephaniah.bin",
     "bytes": 16533,
     "raw_bytes": 72948,
-    "sha256": "80cc242ce64dbc2888ce92ac39f4880a4b164b13062e42537e1949068bdf5d55"
+    "sha256": "cb5a2e2661cba06daff1e5bd91aa947fd877d3ccf0271ad8ed9e830d39ff80c6"
    }
   },
   "haggai": {
@@ -3042,9 +3067,9 @@
    "step_words": 0,
    "file": {
     "name": "haggai.bin",
-    "bytes": 9424,
+    "bytes": 9423,
     "raw_bytes": 51895,
-    "sha256": "59a5a9c4bd99fd643750eb5613a5abed38e8f7eea4a1caa6302c6a02d5e991fd"
+    "sha256": "85204a5a33e00b0ff945f1d7217415350fc8c5e3b7d40dbdd6bfd22b9d1117cf"
    }
   },
   "zechariah": {
@@ -3104,7 +3129,7 @@
     "name": "zechariah.bin",
     "bytes": 47783,
     "raw_bytes": 275374,
-    "sha256": "11d41d7816e144fa6a500de0b95e0060826c5fa3ed136ef64c4dfcdab3063774"
+    "sha256": "acf1c3f33272ded955438e58edffc14f2819bd464719296f0032fb4ff8d81cd4"
    }
   },
   "malachi": {
@@ -3164,17 +3189,17 @@
     "name": "malachi.bin",
     "bytes": 16973,
     "raw_bytes": 83876,
-    "sha256": "f2be6d2a42dc74fd0001c544077538714ad71f321f4e9f78135c46055259ae2d"
+    "sha256": "603c7806f0ea5882c439b3368bc1800fbc8aeba662a301e3821d392b795ac528"
    }
   }
  },
  "index": {
   "file": "index.json",
-  "bytes": 41570,
-  "sha256": "013fa911ec7316971f04f3cb4c13bcdc206864f230edaf050ee9da3159068b67"
+  "bytes": 43318,
+  "sha256": "db2b59135c7194f658e4a6dd8d401dda539660a1952c34861e17aa6a86c5be07"
  },
  "sizes": {
-  "book_files_bytes": 4360502,
+  "book_files_bytes": 4360506,
   "book_files_raw_bytes": 26541651
  }
 }

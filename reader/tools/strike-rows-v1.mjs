@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: row-strike-rule-v6-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted
+// GUARDS: row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts
 // LEDGER: M R
 // Acts on named store ROWS, not whole sources: rows a provider's parse filed
 // under a key that is not their word's, rows the owner has ruled off the
@@ -121,12 +121,28 @@
 // The summary a round prints now ends in one line of its figures as JSON
 // (`figures {...}`), dry or not, for a script that holds a round to what was
 // rehearsed before it lets it write.
-// NOT IN THIS VERSION: a retext that gives a row back the words our build
-// took out of it (the corpus lane's v187, from_slot "words_back"). The retext
-// here takes a text from the row's own definition slot or from the source's
-// own Unicode and cuts the row to its first seven slots, which would take
-// such a row's closes and facts off it; a list that asks for it is refused,
-// as any from_slot this tool does not know is.
+// VERSION 7 (15 November 2026, the corpus lane's v187; the design of ships 5
+// and 6, section 6). A RETEXT THAT GIVES A ROW BACK THE WORDS OUR BUILD TOOK
+// OUT OF IT (from_slot "words_back"). The catalog's step that made the
+// unabridged BDB's openings of a numbered sense took every Hebrew piece out
+// of them and left a space; the owner's call 11 of 13 November gives the
+// words back, and tools/derive-words-back-v1.mjs lists the rows that land,
+// by key and rank, each proved on the store. Such a row is not cut to its
+// first seven slots, as the retexts before it are: it keeps what rides on
+// it. The line names the text the row takes (to_text, BDB's words in their
+// places), the places of it that close at print (closes), the note as it
+// prints (prints), the closes the row holds today (route_closes) and the
+// sense it opens (opens). It is refused unless the row's route and
+// definition texts are both the line's route, its closes (slot 9) are the
+// line's route_closes on both halves (none where the line names none), its
+// facts name the line's sense, the closes are spaces of to_text in rising
+// order, and to_text with them taken out prints as the line says. It then
+// writes to_text in slots 1 and 2 and the closes in slot 9 on both halves
+// (none where there are none), and clears slots 7 and 8 for
+// tools/apply-ledger-divisions-v1.mjs to derive again; slots 0, 3 to 6 and
+// 10 stay as they were, and this record keeps the old row whole, with the
+// closes the row took (to_closes). Such a retext does not fold: where the
+// same source already holds to_text under the key, the list is refused.
 // The arithmetic: routes_struck counts every row a round takes off the store
 // (a strike, a withholding, a re-key that folds, and the rows a rejoin joins
 // beyond the one it keeps), routes_rekeyed the re-keys that land as a row of
@@ -149,6 +165,7 @@ import { gzipSync, gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { recordStruckRanks, readStruckRanks } from "./emit-struck-ranks-v1.mjs";
 import { givenMoment, momentOf } from "./step-moment-v1.mjs";
+import { closed, setSlot, factsOf, CLOSES_SLOT } from "./gloss-store-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -160,7 +177,7 @@ const LIST = arg("list", null);
 const BRANCHES = arg("branches", null);
 const BRANCH = arg("branch", null);
 const REASON = arg("reason", "");
-export const ROW_STRIKE_RULE_ID = "row-strike-rule-v6-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted";
+export const ROW_STRIKE_RULE_ID = "row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts";
 const RECORD = join(K3, "data", "row-strikes-v1.json");
 if (!LIST || !REASON || (BRANCHES && !BRANCH) || (BRANCH && !BRANCHES)) {
   console.log("usage: --list <list.jsonl> --reason \"<the review this stands on>\" [--branches <branches.json> --branch B01] [--store dir] [--leave-off \"<m>|<key>|<why>\"]... [--on <moment>] [--dry]");
@@ -191,7 +208,13 @@ listBytes.toString("utf8").split("\n").forEach((l, i) => {
   if (e.action === "re-key" && (!e.to_key || e.to_key === e.key)) refuse(`list line ${line}: a re-key names no other key`);
   if (e.action === "headword" && (!Array.isArray(e.headwords_now) || !Array.isArray(e.headwords_to))) refuse(`list line ${line}: a re-heading names the headwords now and the headwords to`);
   if (e.action === "rejoin" && (!Array.isArray(e.rows) || !e.rows.length || typeof e.rejoined_text !== "string" || !e.rejoined_text)) refuse(`list line ${line}: a rejoin names its rows and the text they rejoin to`);
-  if (e.action === "retext" && (typeof e.to_text !== "string" || !e.to_text.trim() || !["definition", "source_unicode"].includes(e.from_slot))) refuse(`list line ${line}: a retext names the text the row takes (to_text) and where it comes from (from_slot "definition", the row's own slot; or "source_unicode", the source's own Unicode for a run it wrote in a font encoding, with the runs decoded)`);
+  if (e.action === "retext" && (typeof e.to_text !== "string" || !e.to_text.trim() || !["definition", "source_unicode", "words_back"].includes(e.from_slot))) refuse(`list line ${line}: a retext names the text the row takes (to_text) and where it comes from (from_slot "definition", the row's own slot; "source_unicode", the source's own Unicode for a run it wrote in a font encoding, with the runs decoded; or "words_back", the row's own text with the words our build took out of it given back)`);
+  if (e.action === "retext" && e.from_slot === "words_back") {
+    // version 7: the closes are spaces of the new text, rising, and the new text with them taken out prints as the line says
+    if (typeof e.opens !== "string" || !e.opens || typeof e.prints !== "string" || !Array.isArray(e.closes) || !Array.isArray(e.route_closes)) refuse(`list line ${line}: a retext from words back names the sense the row opens (opens), the note as it prints (prints), the places of to_text that close at print (closes) and the closes the row holds today (route_closes, [] for none)`);
+    if (e.closes.some((c, j) => !Number.isInteger(c) || e.to_text[c] !== " " || (j > 0 && c <= e.closes[j - 1]))) refuse(`list line ${line}: the closes of a retext from words back are spaces of to_text in rising order`);
+    if (closed(e.to_text, e.closes) !== e.prints) refuse(`list line ${line}: to_text with its closes taken out does not print as the line says (prints)`);
+  }
   if (e.action === "retext" && e.from_slot === "source_unicode" && (!Array.isArray(e.runs) || !e.runs.length || e.runs.some((r) => !r || typeof r.run !== "string" || typeof r.decoded !== "string" || !r.key_rule))) refuse(`list line ${line}: a retext from the source's Unicode names each run, its decoding and the key rule`);
   if (e.action === "land") {
     if (typeof e.route !== "string" || !e.route.trim()) refuse(`list line ${line}: a landing names the text it lands (route)`);
@@ -216,6 +239,7 @@ listBytes.toString("utf8").split("\n").forEach((l, i) => {
     headwords_now: e.headwords_now ?? null, headwords_to: e.headwords_to ?? null,
     rejoined_text: e.rejoined_text ?? null, to_text: e.action === "retext" ? e.to_text : null, from_slot: e.action === "retext" ? e.from_slot : null,
     runs: e.action === "retext" && Array.isArray(e.runs) ? e.runs : null,
+    words_back: e.action === "retext" && e.from_slot === "words_back" ? { opens: e.opens, prints: e.prints, closes: e.closes, route_closes: e.route_closes } : null,
     land: e.action === "land" ? { rank: e.rank, route: e.route, definition: e.definition, headwords: e.headwords, year: e.year, rank_from: e.rank_from ?? null, strongs: e.strongs ?? null, beside: Array.isArray(e.beside) ? e.beside : null, definition_source: e.definition_source ?? null, headwords_source: e.headwords_source ?? null, headwords_in_list: Array.isArray(e.headwords_in_list) ? e.headwords_in_list : null, place: e.place ?? "before", record_order: e.record_order ?? null, record_loc: e.record_loc ?? null, record_file: e.record_file ?? null, cut: e.cut === 1 ? 1 : null } : null,
     restore_row: e.action === "restore" ? [...e.row.slice(0, 7)] : null, restored_from: e.action === "restore" ? e.restored_from : null, why: "list", list_why: e.why ?? null, kind: e.kind ?? null });
 });
@@ -262,6 +286,14 @@ for (const e of asked) {
     for (const r of e.runs) { const enc = `$$${r.run}$$`; if (!t.includes(enc)) refuse(`${e.m}|${e.key}|${e.named[0].rank}: the route holds no run «${enc}» to decode`); t = t.split(enc).join(r.decoded); }
     if (t !== e.to_text) refuse(`${e.m}|${e.key}|${e.named[0].rank}: the route with its runs decoded reads «${t}», not «${e.to_text}» as the list says`);
     if (t.includes("$$")) refuse(`${e.m}|${e.key}|${e.named[0].rank}: a run is left undecoded in «${t}»`);
+  }
+  // a retext from words back takes the row as the list read it (version 7): its route and definition texts the
+  // line's route, its closes the line's route_closes on both halves, its facts naming the line's sense
+  if (e.action === "retext" && e.words_back) {
+    const r = e.rows[0], rc = e.words_back.route_closes, at = `${e.m}|${e.key}|${e.named[0].rank}`, now = r.length > CLOSES_SLOT ? r[CLOSES_SLOT] : null;
+    if (r[2] !== e.named[0].route) refuse(`${at}: the row's definition text is not its route text, as the list read it`);
+    if (!same(now ?? null, rc.length ? [rc, rc] : null)) refuse(`${at}: the row's closes (slot 9) are ${JSON.stringify(now ?? null)}, not the line's route_closes on both halves`);
+    if ((factsOf(r) || {}).opens !== e.words_back.opens) refuse(`${at}: the row's facts do not name the line's sense (${e.words_back.opens}) as the one it opens`);
   }
   if (e.action === "re-key" && e.to_key_holds_text !== null) {
     // what the key held before this list touched it, from any source: the list was read against that store (the
@@ -364,10 +396,20 @@ for (const e of asked) {
     const r = e.rows[0];
     // the same source already holds the new text under this key: the row folds into it, as a re-key does
     const holders = rowsOf(e.key).filter((x) => x !== r && String(x[3]) === String(r[3]) && x[1] === e.to_text);
+    if (holders.length && e.words_back) refuse(`${e.m}|${e.key}|${r[0]}: ${holders.map((x) => `${x[3]}@${x[0]}`).join(",")} already holds its words back under the key; a retext from words back does not fold`);
     if (holders.length) {
       takeOff(e.key, r); typeRank(e.key, r); routesTaken += 1; byAction.retext_folded += 1;
       if (r.length > 5 && r[5] === 1) cutsTaken[r[3]] = (cutsTaken[r[3]] || 0) + 1;
       taken.push({ action: "retext", why: e.why, kind: e.kind ?? null, key: e.key, row: r, to_text: e.to_text, from_slot: e.from_slot, ...(e.runs ? { runs: e.runs } : {}), folded_into: holders.map((x) => ({ rank: x[0], m: String(x[3]) })) });
+      continue;
+    }
+    if (e.words_back) {
+      // version 7: both texts take the words back and the closes ride on the new text; the ledger's slots are derived again; the rest stays
+      const was = JSON.parse(JSON.stringify(r)), cl = e.words_back.closes;
+      r[1] = e.to_text; r[2] = e.to_text;
+      setSlot(r, 7, null); setSlot(r, 8, null); setSlot(r, CLOSES_SLOT, cl.length ? [cl, cl] : null);
+      keysTouched.add(e.key); touchedShards.add(shardOf(e.key)); byAction.retext += 1;
+      taken.push({ action: "retext", why: e.why, kind: e.kind ?? null, key: e.key, row: was, to_text: e.to_text, from_slot: e.from_slot, to_closes: cl });
       continue;
     }
     const was = [...r];
@@ -424,18 +466,18 @@ let routesNow = 0; for (const body of shards.values()) for (const rows of Object
 if (routesNow !== routesAfter) refuse(`internal: the shards hold ${routesNow} routes, the arithmetic says ${routesAfter}`);
 // a landed cut is counted in the index's cut table, which must be there to count it in
 if (Object.keys(cutsLanded).length && !(index.counts && index.counts.cuts_by_source)) refuse(`the list lands ${Object.values(cutsLanded).reduce((a, x) => a + x, 0)} row(s) that are a cut of a sibling record, and the store's index keeps no cut table (counts.cuts_by_source) to count them in`);
-console.log(`row strike v6 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, ${routesRestored} restored, ${routesLanded} landed, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)} · cuts taken ${JSON.stringify(cutsTaken)}, landed ${JSON.stringify(cutsLanded)}${ranksAlreadyTyped ? ` · ${ranksAlreadyTyped} row(s) taken at a rank already typed` : ""}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
+console.log(`row strike v7 · ${routesTaken} taken, ${routesRekeyed} re-keyed and landed, ${routesRestored} restored, ${routesLanded} landed, of ${routesBefore.toLocaleString()} routes · ${JSON.stringify(byAction)} · ${keysTouched.size} keys touched · ${keysEmptied.length} emptied · ${keysMadeNew.length} new · per source ${JSON.stringify(perSource)} · cuts taken ${JSON.stringify(cutsTaken)}, landed ${JSON.stringify(cutsLanded)}${ranksAlreadyTyped ? ` · ${ranksAlreadyTyped} row(s) taken at a rank already typed` : ""}${leftOff.length ? ` · ${leftOff.length} line(s) left off` : ""}${branch ? ` · branch ${branch.id} resting ${branch.resting}` : ""}`);
 for (const t of taken.filter((x) => x.action === "re-key")) console.log(`  re-key ${t.key} rank ${t.row[0]} "${t.row[1]}" -> ${t.to_key} ${t.folded_into ? `folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : `rank ${t.to_rank}${t.to_headwords ? ` headwords ${JSON.stringify(t.to_headwords)}` : ""}`}`);
 for (const t of taken.filter((x) => x.action === "rejoin")) console.log(`  rejoin ${t.key} ${t.rows.map((r) => `${r[3]}@${r[0]}`).join("+")} -> «${t.rejoined_text}»${t.folded_into ? ` folds into ${t.folded_into.map((f) => `${f.m}@${f.rank}`).join(",")}` : ` at rank ${t.kept_rank}`}`);
 for (const t of taken.filter((x) => x.action === "headword")) console.log(`  headword ${t.key} rank ${t.row[0]} "${t.row[1]}" ${JSON.stringify(t.row[6])} -> ${JSON.stringify(t.headwords_to)}`);
-{ const rt = taken.filter((x) => x.action === "retext"); if (rt.length) console.log(`  retext ${rt.length} rows (${rt.filter((x) => x.folded_into).length} fold), e.g. ${rt.slice(0, 3).map((t) => `${t.key} rank ${t.row[0]} "${t.row[1]}" -> "${t.to_text}"${t.folded_into ? " (folds)" : ""}`).join("; ")}`); }
+{ const rt = taken.filter((x) => x.action === "retext"); if (rt.length) console.log(`  retext ${rt.length} rows (${rt.filter((x) => x.folded_into).length} fold, ${rt.filter((x) => x.from_slot === "words_back").length} from words back), e.g. ${rt.slice(0, 3).map((t) => `${t.key} rank ${t.row[0]} "${t.row[1]}" -> "${t.to_text}"${t.folded_into ? " (folds)" : ""}`).join("; ")}`); }
 { const rs = taken.filter((x) => x.action === "restore"); if (rs.length) console.log(`  restore ${rs.length} rows (${rs.filter((x) => x.already_held).length} already held), e.g. ${rs.slice(0, 3).map((t) => `${t.key} ${t.row[3]} "${t.row[1]}"${t.already_held ? " (held)" : ` rank ${t.to_rank}`}`).join("; ")}`); }
 { const ld = taken.filter((x) => x.action === "land"); if (ld.length) console.log(`  land ${ld.length} rows (${ld.filter((x) => x.already_held).length} already held), e.g. ${ld.slice(0, 3).map((t) => `${t.key} ${t.row[3]} rank ${t.row[0]} "${t.row[1]}"${t.already_held ? " (held)" : ""}`).join("; ")}`); }
 for (const l of leftOff) console.log(`  left off: line ${l.line} ${l.m} ${l.key} (${l.action}) — ${l.why}`);
 // the round's figures, one line of JSON, for a script that holds a round to what was rehearsed
 console.log(`figures ${JSON.stringify({ list: basename(LIST), list_sha256: sha256(listBytes), lines: asked.filter((e) => e.why === "list").length, left_off: leftOff.length,
   routes_before: routesBefore, routes_after: routesAfter, keys_before: keysBefore, keys_after: keysAfter, routes_struck: routesTaken, routes_rekeyed: routesRekeyed, routes_restored: routesRestored, routes_landed: routesLanded,
-  by_action: byAction, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, cuts_taken: cutsTaken, cuts_landed: cutsLanded, ranks_already_typed: ranksAlreadyTyped })}`);
+  by_action: byAction, retexts_from_words_back: taken.filter((x) => x.action === "retext" && x.from_slot === "words_back").length, keys_touched: keysTouched.size, keys_emptied: keysEmptied.length, keys_made: keysMadeNew.length, cuts_taken: cutsTaken, cuts_landed: cutsLanded, ranks_already_typed: ranksAlreadyTyped })}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 
 // ---- the shards, then the version from their bytes ---------------------------------
@@ -466,7 +508,7 @@ const rounds = [...((prior && prior.rounds) || []).map((r) => ({ rule_id: (prior
     ? { action: t.action, why: t.why, kind: t.kind, key: t.key, m: String(t.rows[0][3]), rejoined_text: t.rejoined_text, rows: t.rows, ...(t.kept_rank !== undefined ? { kept_rank: t.kept_rank } : { folded_into: t.folded_into }) }
     : { action: t.action, why: t.why, kind: t.kind, key: t.key, rank: t.row[0], m: String(t.row[3]), route: t.row[1], row: t.row,
       ...(t.to_key ? { to_key: t.to_key } : {}), ...(t.to_rank !== undefined ? { to_rank: t.to_rank } : {}), ...(t.folded_into ? { folded_into: t.folded_into } : {}),
-      ...(t.to_headwords ? { to_headwords: t.to_headwords } : {}), ...(t.headwords_to ? { headwords_to: t.headwords_to } : {}), ...(t.to_text ? { to_text: t.to_text, from_slot: t.from_slot } : {}),
+      ...(t.to_headwords ? { to_headwords: t.to_headwords } : {}), ...(t.headwords_to ? { headwords_to: t.headwords_to } : {}), ...(t.to_text ? { to_text: t.to_text, from_slot: t.from_slot } : {}), ...(t.to_closes ? { to_closes: t.to_closes } : {}),
       ...(t.runs ? { runs: t.runs } : {}), ...(t.land ? { land: t.land, ...(t.landed_at !== undefined ? { landed_at: t.landed_at } : {}) } : {}),
       ...(t.restored_from ? { restored_from: t.restored_from } : {}), ...(t.already_held ? { already_held: t.already_held } : {}) })),
 }];

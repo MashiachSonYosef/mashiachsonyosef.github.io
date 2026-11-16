@@ -44,7 +44,9 @@
 //       divisions, the blocks) and its notes; a block pressed there is
 //       pressed on the card, and the dropdown holds exactly its pills
 //   D9  under "look up by: the headword" the counts are the inked word's
-//       letters; a named run's card stays the card
+//       letters; a named run's card stays the card (pressed on the first
+//       run whose words open the run's own card since call 3: one read
+//       whole, else one the store names with its words apart)
 //   D10 a catalog that does not answer is said in the card's words, with its
 //       "try again", never as a card with no reading
 //   D11 a rail switch that redraws the card's pills is followed: a pick from
@@ -379,8 +381,34 @@ check("D8  the dropdown carries every band of the card (its chain, divisions and
   `${d8 ? `block ${d8.target}: ${d8.c1.pills.length} pills · mirror ${d8.mirror} · pressed on the card ${d8.pressed} · counts ${d8.counts} · dropdown open ${d8.open}` : "no block of a word in pieces answered with pills"} · ${chain ? `chain word: ${chain.bands} bands, mirror ${chain.mirror}` : "no chain word among the words tried"}`);
 
 // D9: the headword lookup reads the word as inked; a named run's card stays
-// the card
-const runWb = () => p.evaluate(() => { const wb = [...document.querySelectorAll(".he-text .wb:not(.mark)")].find((x) => x.__run && x.querySelector(".g:not(.bare)")); if (!wb) return null; wb.scrollIntoView({ block: "center" }); (wb.querySelector(".w span") || wb.querySelector(".w")).click(); return true; });
+// the card (as the law was first written: a card that is not one word's
+// stays the card with the pill on).
+// WHICH RUN IS PRESSED, SINCE CALL 3 (run-reads-its-words-rule-v1, as the
+// lead landed it on 15 November 2026). A run whose every word has its own
+// reading at the place reads its words, and a press on one of them opens the
+// card its line reads: on a run the store names with its words apart, the
+// run's own card, standing on its words one by one with the pressed word's
+// block open, still the run's card and not one word's; on a run that is
+// exactly a maqaf chain, the pressed word's own card, the chain at its top
+// and the run's card a press away on its whole rung. That card is one word's,
+// so with the pill on it opens to the word's table, as D2 holds of every
+// word's card. This pressed the first named run on the page, which on the
+// first served book is such a chain (Amos 1:4), and failed on the table of a
+// card the clause is not about; a run that still reads whole is rare at rest
+// (five over the thirty-nine books, none in Amos). So the run pressed is the
+// first whose words open the run's own card: one whose line reads it whole,
+// else one the store names with its words apart. The card that opens stays
+// the card, and its head names the run's words, more than one, so a word's
+// own card opened there in its place is not taken for it (16 November 2026).
+const runWb = () => p.evaluate(() => {
+  const named = [...document.querySelectorAll(".he-text .wb:not(.mark)")].filter((x) => x.__run && x.querySelector(".g:not(.bare)"));
+  const whole = (x) => { const c = x.closest(".wjoin"), g = c && c.querySelector(":scope > .g"); return !!g && !g.classList.contains("parts") && !g.classList.contains("bare"); };
+  const apart = (x) => / /u.test(String(x.__run.spanKey || ""));
+  const wb = named.find(whole) || named.find(apart);
+  if (!wb) return null;
+  wb.scrollIntoView({ block: "center" }); (wb.querySelector(".w span") || wb.querySelector(".w")).click();
+  return { key: String(wb.__run.spanKey || (wb.__run.keys || []).join(" ")), whole: whole(wb) };
+});
 let run = await runWb();
 const nSec = await p.evaluate(() => document.querySelectorAll("section.seg").length);
 for (let j = 0; j < Math.min(120, nSec) && !run; j += 1) {
@@ -389,7 +417,9 @@ for (let j = 0; j < Math.min(120, nSec) && !run; j += 1) {
   run = await runWb();
 }
 let runCard = null;
-if (run) { await p.waitForTimeout(1500); runCard = await p.evaluate(() => { const hud = document.getElementById("hud"); return { open: !hud.hidden, dict: hud.classList.contains("dict"), tab: !!hud.querySelector(".dict-tab") }; }); await esc(); }
+if (run) { await p.waitForTimeout(1500); runCard = await p.evaluate(() => { const hud = document.getElementById("hud"); return { open: !hud.hidden, dict: hud.classList.contains("dict"), tab: !!hud.querySelector(".dict-tab"), head: ((hud.querySelector(".head .wn") || {}).textContent || "").trim().split(/\s/u)[0] }; }); await esc(); }
+// the run's card: open, no table, its head naming the run's words (a place from one word to another)
+const runCardOk = !!runCard && runCard.open && !runCard.dict && !runCard.tab && /^\d+:\d+:\d+–\d+$/u.test(runCard.head);
 let hw = null;
 await p.evaluate(() => localStorage.setItem("fh.lookup", "headword"));
 await p.reload({ waitUntil: "networkidle" }); await p.waitForTimeout(1500);
@@ -411,8 +441,8 @@ for (let i = 0; i < Math.min(60, n1) && !hw; i += 1) {
 }
 await p.evaluate(() => localStorage.removeItem("fh.lookup"));
 check("D9  under \"look up by: the headword\" the row is the card's pressed pill and every count is the word's inked letters', not the headword's; a named run's card stays the card",
-  !!hw && hw.storeKey === letters(hw.ink) && hw.row.reading === hw.cardPressed && hw.counts && (!run || (runCard && runCard.open && !runCard.dict && !runCard.tab)),
-  `${hw ? `headword ${hw.head}, inked ${hw.ink}: counts by ${hw.storeKey} ${hw.counts} · row "${hw.row.reading}" · card "${hw.cardPressed}"` : "no word looked up by a headword of other letters"} · ${run ? `run card ${JSON.stringify(runCard)}` : "no named run on this page"}`);
+  !!hw && hw.storeKey === letters(hw.ink) && hw.row.reading === hw.cardPressed && hw.counts && (!run || runCardOk),
+  `${hw ? `headword ${hw.head}, inked ${hw.ink}: counts by ${hw.storeKey} ${hw.counts} · row "${hw.row.reading}" · card "${hw.cardPressed}"` : "no word looked up by a headword of other letters"} · ${run ? `run card at ${runCard ? runCard.head : "?"} (${run.key}, ${run.whole ? "read whole" : "its words apart, reading its words"}) ${JSON.stringify(runCard)}` : "no named run whose words open the run's card on this page"}`);
 
 // D10: the card's catalog does not answer: the table says so in the card's
 // words, its "try again" presses the card's own, and the readings arrive

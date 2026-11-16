@@ -33,10 +33,13 @@
 //       its row now stands (tools/row-strikes-follow-v1.mjs), that row
 //       carries the line's entry and point, and no other row carries the
 //       mark; a line whose row a round struck or withheld since finds none,
-//       and is counted so
+//       and is counted so; a line whose row a round retexted since (relay
+//       v187's words back, row-strike-rule-v7) finds it at its key and rank
+//       under the words it took, as the follower answers
+//       (row-strikes-follow-rule-v2), and the row keeps its mark
 //   O4  the store's index names the rule, the pin, the list and the ruling,
 //       totals that are a recount's, and the rounds since as the record
-//       gives them
+//       gives them, the rows retexted and followed among them
 //   O5  the store reader: a marked row gives no reading and names its sense
 //       as its line does, and the readings of a key that holds one are the
 //       readings of its other rows; the page's own functions, read out of
@@ -170,7 +173,7 @@ const ruled = new Set(ruling ? Object.entries(index.m_sources || {}).filter(([, 
 let follow = null, followWhy = "the lane's receipt was not read, so the version the list was read at is not known";
 if (theirs) try { follow = openFollower({ data: dirname(STORE), index, readAt: (((theirs.inputs || {}).route_store || {}).store_version) || null }); } catch (e) { if (e instanceof FollowFault) followWhy = e.message; else throw e; }
 const listedNow = new Map();   // key now -> "rank route" -> the entry and point the line gives
-const goneLines = [], rekeyedLines = [], followFaults = [];
+const goneLines = [], rekeyedLines = [], retextedLines = [], followFaults = [];
 for (const [k, mine] of listed) for (const [id, opens] of mine) {
   const [rank, route] = [Number(id.slice(0, id.indexOf("\u0001"))), id.slice(id.indexOf("\u0001") + 1)];
   let went = { state: "served", name: [k, rank] };
@@ -181,7 +184,10 @@ for (const [k, mine] of listed) for (const [id, opens] of mine) {
   } catch (e) { if (e instanceof FollowFault) { followFaults.push(e.message); continue; } throw e; }
   if (went.state === "struck" || went.state === "withheld") { goneLines.push(went); continue; }
   if (went.state === "re-keyed") rekeyedLines.push(went);
-  (listedNow.get(went.name[0]) || listedNow.set(went.name[0], new Map()).get(went.name[0])).set(idOf(went.name[1], route), opens);
+  // a row a round retexted since (relay v187's words back, row-strike-rule-v7) stands at its key and rank under the words
+  // it took (the follower's answer, row-strikes-follow-rule-v2), and keeps its mark
+  if (went.state === "retexted") retextedLines.push(went);
+  (listedNow.get(went.name[0]) || listedNow.set(went.name[0], new Map()).get(went.name[0])).set(idOf(went.name[1], went.state === "retexted" ? went.text : route), opens);
 }
 let marked = 0, ruledRows = 0;
 const keysWithAMark = new Set();
@@ -230,7 +236,7 @@ const keysWithAMark = new Set();
     const t = rec.totals || {};
     if (t.rows_listed !== lines.length || t.rows_marked !== marked || t.rows_of_the_ruled_sources !== ruledRows) faults.push(`totals say ${t.rows_listed} listed, ${t.rows_marked} marked, ${t.rows_of_the_ruled_sources} rows of the ruled sources; a recount gives ${lines.length}, ${marked}, ${ruledRows}`);
     if (!follow) faults.push(followWhy);
-    else if (!same(rec.followed, followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines }))) faults.push("the record's account of the rounds since the list was read is not the row-strikes record's");
+    else if (!same(rec.followed, followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines, retexted: retextedLines }))) faults.push("the record's account of the rounds since the list was read is not the row-strikes record's");
   }
   check("O4  the store's index names the rule, the pin, the list and the ruling, totals that are a recount's, and the rounds since as the row-strikes record gives them", faults.length === 0, faults.length ? first(faults) : `${nf(marked)} rows marked of ${nf(lines.length)} listed · ruling ${ruling ? ruling.n : "?"}`);
 }
@@ -251,7 +257,9 @@ const isMarked = (row) => !!senseOpened(row);
       const o = senseOpened(row), mine = store.readingsOf(row);
       if (o) {
         notes += 1;
-        const want = (listed.get(k) || new Map()).get(idOf(row[0], String(row[1] ?? "")));
+        // the line as it stands now, where the row-strikes record says its row went (O3's): a row a round retexted
+        // since is named by the words it took
+        const want = (listedNow.get(k) || new Map()).get(idOf(row[0], String(row[1] ?? "")));
         if (mine.length) faults.push(`${k} rank ${row[0]}: a marked row gives ${mine.length} reading(s)`);
         if (`${o.entry} ${o.point}` !== want || o.text !== routePrinted(row) || !o.text) faults.push(`${k} rank ${row[0]}: the reader names its sense ${o.entry} ${o.point} «${o.text.slice(0, 30)}» and its line gives ${want}`);
       }

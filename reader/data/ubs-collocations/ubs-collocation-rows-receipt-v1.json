@@ -1,0 +1,118 @@
+{
+ "schema_version": "UBS_COLLOCATION_ROWS_RECEIPT_V1",
+ "rule_id": "ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it",
+ "generated_by": "tools/derive-ubs-collocations-v1.mjs",
+ "what": "the rows of the UBS dictionary every meaning of whose text UBS's own file marks with a collocation (LEXCollocations, read through the catalog's route file), less the rows the names gate reads as a name, each with its collocations as UBS writes them, its meanings' LEXIDs, and the places UBS's own default pick names it (picked_at); read on the store named here, the picks followed through the row-strikes record from the store the default picks ledger v1.2 read",
+ "inputs": {
+  "dictionary": {
+   "file": "UBSHebrewDic-v0.9.2-en.JSON",
+   "bytes": 23110129,
+   "sha256": "1686a25dd31dc9afb7b932927e160070667c73caedad11aa7e4482c21f800e8e"
+  },
+  "routes": {
+   "file": "ubs-sdbh-hebrew-definition-routes-v1.csv.gz",
+   "bytes": 2513081,
+   "sha256": "3567c700e4dfcf5832bcd0766ffa423f015ca361e273a8196700f838012aa875"
+  },
+  "default_picks": {
+   "pin": "data/default-picks/PIN.json",
+   "rows_tables": [
+    {
+     "file": "default-picks-v1/rows-v1.jsonl",
+     "sha256": "21f2a35bd6bf37b64eb5139125c6119693a9b0d58b39afab49766db74fb128d8",
+     "lines": 152423
+    },
+    {
+     "file": "default-picks-v1.1/rows-added-v1.1.jsonl",
+     "sha256": "f6064de772b426659cf93990613264fe16c64c30523dcaab146a47176818f015",
+     "lines": 225
+    },
+    {
+     "file": "default-picks-v1.2/rows-added-v1.2.jsonl",
+     "sha256": "0088a1edc8a95373c6b7476b6f131519f54311f1e652cf0e8317d0941f371df8",
+     "lines": 1935
+    }
+   ],
+   "book_files": 39,
+   "read_at_store_version": "4d1357b26ca5"
+  },
+  "call7b": {
+   "pin": "data/audit-calls/PIN.json",
+   "file": "call7b-ubs-phrases-a-press-away-v1.jsonl",
+   "sha256": "fd5a27b153b49f4f1a004703683adf4c1db21b36451d330fa9f5edf4fbffc147",
+   "lines": 1261,
+   "read_at_store_version": "4d1357b26ca5"
+  },
+  "store_version": "ccec4fa3071b",
+  "source": {
+   "m": "M18",
+   "key": "ubs_sdbh_hebrew_v0_9_2"
+  }
+ },
+ "meanings": {
+  "all": 16224,
+  "with_a_collocation": 1757
+ },
+ "rows": {
+  "of_the_dictionary": 21732,
+  "reached_by_the_route_file": 21732,
+  "marked": 3121,
+  "marked_keys": 862
+ },
+ "category": {
+  "rows": 2649,
+  "keys": 764,
+  "rows_with_places": 2643,
+  "rows_with_no_place": 6
+ },
+ "not_of_it": {
+  "name_rows": {
+   "rows": 425,
+   "why": "the names gate reads the row as a name (its facts carry name): «The Bible dictionaries' own name entries keep the gate as it is: they stand where the text's word is a name»"
+  },
+  "also_plain": {
+   "rows": 47,
+   "of_them_name_rows": 0,
+   "why": "the row's text is also the text of a meaning UBS gives no collocation: UBS itself says the text is also a plain meaning"
+  }
+ },
+ "picked_at": {
+  "references": 16299,
+  "at_pick_1": 16081,
+  "places": 8252,
+  "rows_named": 2643,
+  "references_to_a_row_a_round_took_since": 0,
+  "followed": {
+   "rule_id": "row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words",
+   "record": "reader/data/row-strikes-v1.json",
+   "read_at_store_version": "4d1357b26ca5",
+   "rounds_since": [
+    {
+     "ran_at": "2026-11-15T00:00:01.000Z",
+     "list": "call5-maqaf-keys-v1.jsonl"
+    },
+    {
+     "ran_at": "2026-11-15T00:00:02.000Z",
+     "list": "land-v188-v1.jsonl"
+    }
+   ],
+   "lines_whose_row_was_struck": {},
+   "lines_whose_row_was_withheld": {},
+   "rows_re_keyed_and_followed": {}
+  }
+ },
+ "call7b": {
+  "lines": 1261,
+  "by_class": {
+   "category": 1251,
+   "name_row": 7,
+   "also_plain": 3
+  }
+ },
+ "list": {
+  "file": "ubs-collocation-rows-v1.jsonl",
+  "bytes": 689389,
+  "sha256": "694d3fcd096b31dc6420cd44733dfc41a11e43057c78da6888fe9068d1f074c1",
+  "lines": 2649
+ }
+}

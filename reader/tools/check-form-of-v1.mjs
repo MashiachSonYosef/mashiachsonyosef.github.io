@@ -1,5 +1,5 @@
 // RUN: page
-// GUARDS: form-of-pills-rule-v2-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries
+// GUARDS: form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill, pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it
 // A READING THAT POINTS AT ANOTHER WORD'S READING (the corpus lane's map of
 // pointer readings: its relay v175 of 13 November 2026, map v1.3, and its
 // v191 of 14 November, the lines of map v1.4 that differ from it, kept in
@@ -32,7 +32,12 @@
 //       same, and the Hebrew is the Hebrew
 //   F5  another pill pressed moves the line to that reading; the pointer
 //       pill pressed again puts the resolved text back on the line, and the
-//       Hebrew never moved
+//       Hebrew never moved. Where the pointer's resolution prints as another
+//       reading of the card, the pointer is that reading's one pill (F13):
+//       F3 holds of the one pill, and F4 and F5 of the reading it puts on the
+//       line, the pointer beside it on the pill alone (lineOfPill); a word
+//       carrying the pointer on a pill of its own is taken first, where the
+//       list holds one
 //   F6  the record is the corpus lane's pinned map, as its relays lay it,
 //       under the owner's pinned rulings, derived again here: every pure
 //       pointer of the map and no other reading; each resolved as the map
@@ -77,6 +82,32 @@
 //       draws its readings at once, and keeps them when the map lands (the
 //       review of 15 November 2026: the card waited for the map before it
 //       drew a pill)
+//   F13 one reading, one pill, a pointer's too (pointer-one-pill-rule-v1,
+//       question 12 of relay v189, the lead's call 8 of 15 November 2026;
+//       the design names it F12, which round 2 had taken). The record says
+//       the page's rule, as zone.html names it, and its fold over the store
+//       at rest (one_pill) is derived again here: the pointer groups that
+//       fold and the keys holding one. On the page, with every switch
+//       lifted, on a card where a pointer's resolution prints as another
+//       reading of the card (as poolFor folds: every row printing the
+//       pointer's reading is a pointer of its own source that the map
+//       resolves, none under a license that forbids a cut, and a row that is
+//       no pointer prints the English): no two pills print that reading; the
+//       one that does prints it with the pointer beside it, carries the
+//       pointer's own text (data-pointer) and names the pointer's rows apart
+//       from its carriers (data-pointer-by). And a card whose line is the
+//       pointer opens on that one pill (its alias): no line at rest is a
+//       pointer, but a license's column can be one, so a word whose column
+//       for «by-sa» prints the pointer is read with «by-sa» chosen, where the
+//       line under it is the pointer
+//   F14 a card the reader moved stays where they put it when the map lands
+//       (the review of 16 November 2026: at Amos 1:1:22 a card dragged
+//       aside before the map landed was built again at its word, from 153 by
+//       223 to 403 by 163, the reader's move let go). At 1100 by 900, every
+//       switch lifted, the map held back: the first word F13 finds whose card
+//       opens, its card dragged aside by its head and the hand taken off it;
+//       when the map lands the card is built again, its pointer folded into
+//       the one pill, and stands where the reader put it, still the reader's
 // The words are found from the data on disk, never named here
 // (check-scope-derived S1). NO LINE RESTS ON A PURE POINTER under the maps of
 // 13 and 14 November 2026: the forty plain words whose lead was a pointer
@@ -92,13 +123,14 @@ import { sha256Of } from "./pinned-v1.mjs";
 import { rulingsPinned } from "./rulings-v1.mjs";
 import { pointerMap } from "./pointer-map-v1.mjs";
 import { openFollower, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
-import { openRouteStore, routePrinted, printedForm } from "./gloss-store-v1.mjs";
-import { STATES } from "./card-readings-v1.mjs";
+import { openRouteStore, routePrinted, printedForm, readingKey } from "./gloss-store-v1.mjs";
+import { pageReading } from "./page-reading-v1.mjs";
+import { STATES, lineOfPill } from "./card-readings-v1.mjs";
 import { linesOnPage } from "./resting-lines-v1.mjs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const RECORD = "data/form-of-pills-v1.json";
-const RULE_ID = "form-of-pills-rule-v2-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries";
+const RULE_ID = "form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill";
 const noDot = (t) => String(t).replace(/\.$/u, "");
 const target = (e) => { if (!e.at) return e.target; const b = Buffer.from(e.t, "utf8"); return b.subarray(e.at[0], e.at[1]).toString("utf8") || e.target; };
 const says = (e) => `${e.resolved.text} (${e.relation} ${target(e)})`;
@@ -114,8 +146,41 @@ const ruledPrinted = resolved.filter((e) => e.resolved.ruled);
 check("F1  the record, under the rule this check guards: a map by route key of pointers with source, text, relation and target, and the resolution, a served row's or a ruled print; its counts are its own entries",
   !!rec && rec.rule_id === RULE_ID && rec.keys && wellFormed && rec.counts.carried === entries.length && rec.counts.pills >= entries.length && rec.counts.resolved === resolved.length && resolved.length > 0
     && (rec.counts.resolved_by || {}).the_ruled_print === ruledPrinted.length,
-  rec ? `${rec.rule_id === RULE_ID ? "rule v2" : `rule "${rec.rule_id}"`} · ${Object.keys(rec.keys).length} keys · ${entries.length} pointers carried (record says ${rec.counts.carried} of ${rec.counts.pills} read) · ${resolved.length} resolved (record says ${rec.counts.resolved}), ${ruledPrinted.length} of them by a ruled print (record says ${(rec.counts.resolved_by || {}).the_ruled_print}) · well formed ${wellFormed}` : "no record");
+  rec ? `${rec.rule_id === RULE_ID ? "rule v3" : `rule "${rec.rule_id}"`} · ${Object.keys(rec.keys).length} keys · ${entries.length} pointers carried (record says ${rec.counts.carried} of ${rec.counts.pills} read) · ${resolved.length} resolved (record says ${rec.counts.resolved}), ${ruledPrinted.length} of them by a ruled print (record says ${(rec.counts.resolved_by || {}).the_ruled_print}) · well formed ${wellFormed}` : "no record");
 if (!rec) { console.log("\nFAIL"); process.exit(1); }
+// F13, the record: the page's rule for the fold, and the fold over the store at rest derived again as the record
+// counts it (bake-form-of-pills-v1, head): for every key of the map whose rows rest open, each group of the key's
+// resting pool whose every row is a pointer of its own source that resolves to one English another group prints
+const ONE_PILL_RULE = "pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it";
+const PAGE_HTML = readFileSync("zone.html", "utf8");
+{
+  const o = rec.one_pill || null, c = (o && o.counts) || {};
+  const rest = openRouteStore("data/route-store", { atRest: true });
+  const got = { pills: 0, keys: 0, same: 0, other: 0 };
+  for (const [k, list] of Object.entries(rec.keys)) {
+    const routes = rest.routesFor(k);
+    if (!routes || !routes.length) continue;
+    const pool = rest.readingPool(routes, "oldest");
+    const byReading = new Map(pool.map((g) => [readingKey(g.text), g]));
+    let folded = false;
+    for (const g of pool) {
+      const es = rest.carriersOf(routes, g.text).map((row) => list.find((e) => e.m === String(row[3]) && printedForm(e.t) === printedForm(g.text)) || null);
+      if (!es.length || !es.every((e) => e && e.resolved)) continue;
+      const to = new Set(es.map((e) => readingKey(e.resolved.text)));
+      const [res] = to;
+      if (to.size > 1 || res === readingKey(g.text) || !byReading.has(res)) continue;
+      got.pills += 1; folded = true;
+      if (es.some((e) => byReading.get(res).by.includes(e.m))) got.same += 1; else got.other += 1;
+    }
+    if (folded) got.keys += 1;
+  }
+  const storeNow = rest.index.store_version || null;
+  check("F13 the record says the page's rule for one pill (zone.html names it) and counts the fold over the store at rest as it is derived again here: the pointer groups that fold, the keys holding one, and how many join a reading their own source carries",
+    !!o && o.rule === ONE_PILL_RULE && PAGE_HTML.includes(`RULE: ${ONE_PILL_RULE}`) && (o.store || {}).version === storeNow
+      && c.pills === got.pills && c.keys === got.keys && c.joining_a_reading_its_own_source_carries === got.same && c.joining_a_reading_only_other_sources_carry === got.other,
+    !o ? `the record carries no one_pill (its rule ${rec.rule_id === RULE_ID ? "v3" : `«${String(rec.rule_id).slice(0, 26)}…»`}); derived here over the store at rest ${storeNow}: ${got.pills} pills fold at ${got.keys} keys (${got.same} into a reading their own source carries, ${got.other} into one only other sources carry)`
+      : `${o.rule === ONE_PILL_RULE ? "the rule" : `rule «${o.rule}»`}${PAGE_HTML.includes(`RULE: ${ONE_PILL_RULE}`) ? ", as zone.html names it" : ", which zone.html does not name"} · store ${(o.store || {}).version} (at rest now ${storeNow}) · the record ${c.pills} pills at ${c.keys} keys (${c.joining_a_reading_its_own_source_carries} + ${c.joining_a_reading_only_other_sources_carry}); derived here ${got.pills} at ${got.keys} (${got.same} + ${got.other})`);
+}
 
 // F6 the record against the lane's own map, as its relays lay it, and the owner's rulings, derived again
 const PIN_DIR = "data/pointer-entries";
@@ -329,22 +394,28 @@ const cardNow = ({ section, entry }) => {
   if (g) { const c = g.cloneNode(true); for (const x of c.querySelectorAll(".g-lic, .lic-chip, .lic")) x.remove(); line = c.textContent.trim(); }
   return {
     line, he: wb ? ((wb.querySelector(":scope > .w") || {}).textContent || "").trim() : "",
-    pills: [...document.querySelectorAll("#hud > .rows > .b-read > .r-pills > button")].map((x) => ({ t: x.textContent.trim(), pointer: x.dataset.pointer || null, by: x.dataset.by || "", pressed: x.getAttribute("aria-pressed") === "true" })),
+    pills: [...document.querySelectorAll("#hud > .rows > .b-read > .r-pills > button")].map((x) => ({ t: x.textContent.trim(), pointer: x.dataset.pointer || null, pointerBy: x.dataset.pointerBy || "", by: x.dataset.by || "", pressed: x.getAttribute("aria-pressed") === "true" })),
   };
 };
 const pressPill = (i) => { document.querySelectorAll("#hud > .rows > .b-read > .r-pills > button")[i].click(); };
-// the pill carries the pointer's own text as it prints (printedForm: a "/" of the source's prints " + ")
-const pointerPill = (card, e) => card.pills.findIndex((x) => x.pointer && printedForm(x.pointer) === printedForm(e.t) && x.by.split(/[\s,]+/u).includes(e.m));
+// the pill carries the pointer's own text as it prints (printedForm: a "/" of the source's prints " + "); the one pill
+// that took several pointers carries each, a middle dot between them (pointer-one-pill-rule-v1)
+const pointerPill = (card, e) => card.pills.findIndex((x) => x.pointer && x.pointer.split(" · ").some((t) => printedForm(t) === printedForm(e.t)) && x.by.split(/[\s,]+/u).includes(e.m));
 // the letters alone: accents, meteg, rafe, masora circle, paseq, sof pasuq and the marks U+05C4 to U+05C7 set aside
 // (points are kept: a resolution moves no point either)
 const MARKS = new RegExp("[\\u0591-\\u05AF\\u05BD\\u05BF\\u05C0\\u05C3-\\u05C7\\s]", "gu");
 const sameHe = (x, y) => String(x || "").normalize("NFC").replace(MARKS, "") === String(y || "").normalize("NFC").replace(MARKS, "");
 // One word's pointer, pressed as a reader presses it. The first word of the list whose card carries the pointer on
-// a pill is taken, and everything the laws ask is read from it: the pill as the card opens (F3), the line once the
-// pill is pressed (F4), and the line after another pill is pressed and the pointer's pressed again (F5).
+// a pill of its own is taken, and everything the laws ask is read from it: the pill as the card opens (F3), the line
+// once the pill is pressed (F4), and the line after another pill is pressed and the pointer's pressed again (F5).
+// Where the pointer's resolution prints as another reading of the card, the pointer is that reading's one pill
+// (pointer-one-pill-rule-v1, F13): the pill prints the reading with the pointer beside it, and pressed it rules the
+// reading, so the line prints the reading (lineOfPill). Such a word is passed by while a later one of the list may
+// carry the pointer on a pill of its own, and is judged so where none does.
 let map = null;
 const pressed = async (list) => {
   const tried = [];
+  let foldedFirst = null;
   for (const c of list) {
     const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
     const q = await ctx.newPage();
@@ -366,6 +437,10 @@ const pressed = async (list) => {
     if (at < 0) { await ctx.close(); continue; }
     const want = says(c.e);
     const pill = first.pills[at];
+    // the one pill of the reading the pointer resolves to (F13) puts that reading on the line
+    const folded = !!pill.pointerBy;
+    const lineWant = folded ? lineOfPill(pill.t, pill.pointerBy) : want;
+    if (folded) tried[tried.length - 1] += `, the one pill of «${lineWant}» (F13)`;
     const bare = first.pills.filter((x) => printedForm(x.t) === printedForm(c.e.t)).length;
     // the pill pressed: a ruling
     await q.evaluate(pressPill, at); await q.waitForTimeout(700);
@@ -383,26 +458,37 @@ const pressed = async (list) => {
       f5 = { other: ruled.pills[other].t, moved: moved.line, back: back >= 0, restored: restored.line, he0: ruled.he, he1: restored.he };
     }
     await ctx.close();
-    return { found: c, tried, want, first, pill, bare, ruled, stands, f5 };
+    const got = { found: c, tried, want, lineWant, folded, first, pill, bare, ruled, stands, f5 };
+    if (!folded) return got;
+    if (!foldedFirst) foldedFirst = got;
   }
-  return { found: null, tried };
+  return foldedFirst ? { ...foldedFirst, tried } : { found: null, tried };
 };
-// what the three laws ask of a pressed word
-const f3Holds = (x) => x.pill.t === x.want && x.bare === 0;
-const f4Holds = (x) => x.ruled.line === x.want && !!x.stands && x.stands.pressed && sameHe(x.ruled.he, x.found.surface);
-const f5Holds = (x) => !!x.f5 && x.f5.moved !== x.want && x.f5.moved.includes(noDot(x.f5.other).split(" + ")[0].slice(0, 12)) && x.f5.back && x.f5.restored === x.want && x.f5.he0 === x.f5.he1;
+// what the three laws ask of a pressed word. The pointer's own pill prints the resolution with the pointer beside it
+// (says), on the pill and on the line. The one pill a pointer joined prints the reading with every pointer it took
+// beside it, in one bracket (formOfSaysAll), this one among them; pressed, the line prints the reading, as the
+// reading's own rows give it, so it is held to the pill's reading with the case folded
+const faceHolds = (x) => x.pill.t === x.want || (x.folded && x.pill.t.startsWith(`${x.found.e.resolved.text} (`)
+  && x.pill.t.slice(x.found.e.resolved.text.length + 2, -1).split("; ").includes(`${x.found.e.relation} ${target(x.found.e)}`));
+const lineIs = (line, x) => (x.folded ? String(line).toLowerCase() === x.lineWant.toLowerCase() : line === x.want);
+const f3Holds = (x) => faceHolds(x) && x.bare === 0;
+// the words passed by, their pointer the one pill of the reading it resolves to (F13 judges those)
+const passedBy = (x) => { const n = x.tried.filter((t) => / \(F13\)$/u.test(t)).length - (x.folded ? 1 : 0); return n > 0 ? ` · ${n} word(s) passed by before it, the pointer there the one pill of the reading it resolves to (F13)` : ""; };
+const f4Holds = (x) => lineIs(x.ruled.line, x) && !!x.stands && x.stands.pressed && sameHe(x.ruled.he, x.found.surface);
+const f5Holds = (x) => !!x.f5 && !lineIs(x.f5.moved, x) && x.f5.moved.includes(noDot(x.f5.other).split(" + ")[0].slice(0, 12)) && x.f5.back && lineIs(x.f5.restored, x) && x.f5.he0 === x.f5.he1;
 const one = await pressed(candidates);
 check("F2  the page loads the map after its first paint and says so", !!map && map !== "never" && map.keys === Object.keys(rec.keys).length && map.pills === rec.counts.pills && map.resolved === rec.counts.resolved,
   JSON.stringify(map));
 if (!one.found) check("F3  the pointer's pill prints the resolved reading and carries the pointer's own text", false, `no card of ${candidates.length} pressed carried its pointer on a pill: ${one.tried.join(" | ")}`);
 else {
-  const { found, want, first, pill, bare, ruled, stands, f5, tried } = one;
+  const { found, want, lineWant, folded, first, pill, bare, ruled, stands, f5, tried } = one;
+  const owed = folded ? ` · the one pill of «${lineWant}» (F13): the line owes the reading` : "";
   check("F3  with every switch lifted the pointer's pill prints the resolved reading with the relation and target in parentheses and carries the pointer's own text; the pointer's bare text stands on no pill",
     f3Holds(one),
     `${found.id} ${found.label}, entry ${found.entry} (${found.key}): pill "${pill.t}" · wanted "${want}" · data-pointer "${pill.pointer}" · the bare pointer on ${bare} pill(s) · ${first.pills.filter((x) => x.pointer).length} pointer pill(s) of ${first.pills.length}${tried.length > 1 ? ` · tried ${tried.join(" | ")}` : ""}`);
   check("F4  that pill pressed, the line under the word prints the same, and the Hebrew is the Hebrew",
     f4Holds(one),
-    `line "${ruled.line}" · wanted "${want}" · the pill ${stands && stands.pressed ? "pressed" : "not pressed"} · Hebrew ${sameHe(ruled.he, found.surface) ? "unmoved" : `"${ruled.he}" vs "${found.surface}"`}`);
+    `line "${ruled.line}" · wanted "${lineWant}"${owed} · the pill ${stands && stands.pressed ? "pressed" : "not pressed"} · Hebrew ${sameHe(ruled.he, found.surface) ? "unmoved" : `"${ruled.he}" vs "${found.surface}"`}`);
   check("F5  another pill pressed moves the line to it; the pointer pill pressed again puts the resolution back; the Hebrew never moved",
     f5Holds(one),
     f5 ? `"${f5.other}" -> line "${f5.moved}" · back -> "${f5.restored}" · Hebrew ${f5.he0 === f5.he1 ? "unmoved" : "MOVED"}` : "the card offers no other plain pill to press");
@@ -416,7 +502,7 @@ else {
     slashed.length === 0 || (!!held && !!held.found && f3Holds(held) && f4Holds(held) && f5Holds(held)),
     slashed.length === 0 ? `no served plain word carries one on a row of its own source (${slashedInRecord} of the record's ${resolved.length} resolved pointers hold a "/"), so there is nothing to press`
       : !held.found ? `no card of ${slashed.length} pressed carried its pointer on a pill: ${held.tried.join(" | ")}`
-        : `${where}${held === one ? ", the word of F3 to F5" : ""}: pointer "${held.found.e.t}" · pill "${held.pill.t}" · pressed, line "${held.ruled.line}" · wanted "${held.want}"${held.f5 ? ` · after "${held.f5.other}" and back: "${held.f5.restored}"` : " · the card offers no other plain pill to press"} · ${slashed.length} such word(s) found, ${slashedInRecord} of the record's ${resolved.length} resolved pointers hold a "/"`);
+        : `${where}${held === one ? ", the word of F3 to F5" : ""}: pointer "${held.found.e.t}" · pill "${held.pill.t}" · pressed, line "${held.ruled.line}" · wanted "${held.lineWant}"${held.folded ? ` (the one pill of the reading it resolves to, F13: the line owes the reading; none of the ${slashed.length} carries it on a pill of its own)` : ""}${held.f5 ? ` · after "${held.f5.other}" and back: "${held.f5.restored}"` : " · the card offers no other plain pill to press"}${passedBy(held)} · ${slashed.length} such word(s) found, ${slashedInRecord} of the record's ${resolved.length} resolved pointers hold a "/"`);
 }
 // F11 the same on a pointer whose pill prints a ruled print
 {
@@ -427,7 +513,154 @@ else {
     ruledPrinted.length === 0 ? "the record prints no ruled print, so there is nothing to press"
       : !held ? `no served plain word carries one on a row of its own source (the record prints ${ruledPrinted.length})`
         : !held.found ? `no card of ${ruledOnes.length} pressed carried its pointer on a pill: ${held.tried.join(" | ")}`
-          : `${where}: pointer "${held.found.e.t}" (${held.found.e.m}) · pill "${held.pill.t}" · wanted "${held.want}" · pressed, line "${held.ruled.line}"${held.f5 ? ` · after "${held.f5.other}" and back: "${held.f5.restored}"` : " · the card offers no other plain pill to press"} · ${ruledOnes.length} such word(s) found, ${ruledPrinted.length} ruled prints in the record`);
+          : `${where}: pointer "${held.found.e.t}" (${held.found.e.m}) · pill "${held.pill.t}" · wanted "${held.lineWant}"${held.folded ? ` (the one pill of the reading it resolves to, F13: the line owes the reading; none of the ${ruledOnes.length} carries it on a pill of its own)` : ""} · pressed, line "${held.ruled.line}"${held.f5 ? ` · after "${held.f5.other}" and back: "${held.f5.restored}"` : " · the card offers no other plain pill to press"}${passedBy(held)} · ${ruledOnes.length} such word(s) found, ${ruledPrinted.length} ruled prints in the record`);
+}
+// F13 one reading, one pill, on the page. The words are found in the data: served plain words (as F3's) whose key
+// holds a pointer the page folds, read with every switch lifted; and words whose line in the «by-sa» column is such a
+// pointer, read with «by-sa» chosen (those without the place's own pieces first: the place's reading would stand on
+// the line there). A card is judged where the pointer stands on it and another reading prints its English; a word
+// whose card holds no such pair here is passed by and said
+{
+  const { isNoDerivs } = pageReading(PAGE_HTML, store.index);
+  const forbidsCut = (m) => isNoDerivs((store.index.m_sources[m] || {}).licensePosture);
+  const folds = [], aliases = [], seenF = new Set(), seenA = new Set();
+  const MAX_FOLDS = 6, MAX_ALIASES = 4;
+  for (const u of urls) {
+    const id = zoneIdOf(u), path = `data/zones/${id}.bin`;
+    if (!existsSync(path)) continue;
+    const z = JSON.parse(gunzipSync(readFileSync(path)).toString("utf8"));
+    const bySa = (z.gloss_orders || {}).licence_by_sa || {};
+    for (const [si, sec] of (z.sections || []).entries()) for (const [ei, w] of (sec.words || []).entries()) {
+      const l = w.k && !w.w ? rec.keys[w.k] : null;
+      if (!l || (z.spans && z.spans[w.k]) || /\u05BE/u.test(w.s || "") || (ei > 0 && /\u05BE$/u.test(sec.words[ei - 1].s || "")) || (Array.isArray(w.pg) && w.pg.length > 1)) continue;
+      const wantFold = folds.length < MAX_FOLDS && !seenF.has(w.k);
+      const line = bySa[w.k] ? readingKey(bySa[w.k]) : null;
+      const lineIs = (x) => !!line && !!x.resolved && (line === readingKey(x.t) || line === readingKey(says(x)));
+      if (!wantFold && !(l.some(lineIs) && !seenA.has(w.k))) continue;
+      // as poolFor folds (pointer-one-pill-rule-v1); a pointer resolved to a name is passed by (the names gate decides it)
+      const rows = (store.routesFor(w.k) || []).filter((r) => store.index.m_sources[r[3]]);
+      const isPointer = (r, text) => l.some((x) => x.m === String(r[3]) && readingKey(x.t) === readingKey(text));
+      const folds13 = (x) => {
+        if (!x.resolved || x.resolved.name) return false;
+        const pr = store.carriersOf(rows, x.t);
+        if (!pr.some((r) => String(r[3]) === x.m) || pr.some((r) => forbidsCut(r[3]) || !isPointer(r, x.t))) return false;
+        return store.carriersOf(rows, x.resolved.text).some((r) => !forbidsCut(r[3]) && !isPointer(r, x.resolved.text));
+      };
+      const here = { url: base ? `${base}/zone.html?b=${id}` : u, id, label: sec.label, section: si, entry: ei, key: w.k, placed: Array.isArray(w.pg) && w.pg.length > 0 };
+      const ef = wantFold ? l.find(folds13) : null;
+      if (ef) { seenF.add(w.k); folds.push({ ...here, e: ef }); }
+      const ea = l.find((x) => lineIs(x) && folds13(x));
+      if (ea && !seenA.has(w.k)) { seenA.add(w.k); aliases.push({ ...here, e: ea }); }
+    }
+  }
+  aliases.sort((x, y) => Number(x.placed) - Number(y.placed));
+  const readCard = async (c, keep) => {
+    const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
+    try {
+      const q = await ctx.newPage();
+      q.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+      await q.goto(c.url, { waitUntil: "networkidle" });
+      await q.evaluate((kv) => { for (const [k, v] of Object.entries(kv)) localStorage.setItem(k, v); }, keep);
+      await q.reload({ waitUntil: "networkidle" });
+      await q.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+      await q.waitForFunction(() => window.__formOf !== undefined, null, { timeout: 30000 }).catch(() => null);
+      await linesOnPage(q, { from: c.section, to: c.section + 1 });
+      const fault = await q.evaluate(openCard, c);
+      await q.waitForTimeout(600);
+      if (fault) return { fault };
+      return await q.evaluate(({ section, entry }) => {
+        const sec = document.querySelectorAll("section.seg")[section];
+        const wb = sec ? sec.querySelectorAll(".he-text .wb")[entry] : null;
+        const g = wb ? wb.querySelector(":scope > .g") : null;
+        let line = "";
+        if (g) { const cl = g.cloneNode(true); for (const x of cl.querySelectorAll(".g-lic, .lic-chip, .lic")) x.remove(); line = cl.textContent.trim(); }
+        return { line, pills: [...document.querySelectorAll("#hud > .rows > .b-read > .r-pills > button")].map((x) => ({ t: x.textContent.trim(), pointer: x.dataset.pointer || "", pointerBy: x.dataset.pointerBy || "", by: x.dataset.by || "", pressed: x.getAttribute("aria-pressed") === "true" })) };
+      }, c);
+    } finally { await ctx.close(); }
+  };
+  // what a card holds of one pointer: the pills carrying it, and the pills printing its English (a plain pill printing
+  // it as it stands, or a pill carrying a pointer that prints it with the pointer beside it, as formOfSays writes it:
+  // the resolution as the record holds it, then the bracket)
+  const heldOf = (got, e) => {
+    const ptr = readingKey(e.t), rk = readingKey(e.resolved.text), raw = `${String(e.resolved.text).toLowerCase()} (`;
+    const carries = (x) => !!x.pointer && x.pointer.split(" \u00b7 ").some((t) => readingKey(t) === ptr);
+    const printing = got.pills.filter((x) => { const t = readingKey(x.t); return t === rk || (!!x.pointer && (t.startsWith(`${rk} (`) || x.t.toLowerCase().startsWith(raw))); });
+    const one = printing.length === 1 && carries(printing[0]) && printing[0].pointerBy.split(" ").includes(e.m) ? printing[0] : null;
+    return { here: got.pills.some(carries), printing, one, plain: printing.filter((x) => !x.pointer).length };
+  };
+  const said = (c) => `${c.id} ${c.label}, entry ${c.entry} (${c.key}, ${c.e.m} «${c.e.t.slice(0, 40)}»)`;
+  const faults = [], judged = [], passed = [];
+  for (const c of folds) {
+    const got = await readCard(c, STATES.lifted.keep);
+    if (got.fault) { faults.push(`${said(c)}: ${got.fault}`); continue; }
+    const h = heldOf(got, c.e);
+    if (!h.here) { passed.push(`${said(c)}: the pointer is not on this card`); continue; }
+    if (h.printing.length === 1 && !h.plain && !h.one) { passed.push(`${said(c)}: no other reading prints its English on this card`); continue; }
+    if (!h.one) faults.push(`${said(c)}: ${h.printing.length} pill(s) print «${c.e.resolved.text.slice(0, 40)}» (${h.printing.map((x) => `«${x.t.slice(0, 50)}» by ${x.by}${x.pointer ? ` pointer «${x.pointer.slice(0, 30)}»` : ""}${x.pointerBy ? ` pointer by ${x.pointerBy}` : ""}`).join("; ")})`);
+    else judged.push(`${c.id} ${c.label} «${h.one.t.slice(0, 40)}» by ${h.one.by}, pointer by ${h.one.pointerBy}`);
+  }
+  // the alias: with «by-sa» chosen, a word whose line is the pointer opens on the one pill
+  let alias = null;
+  for (const c of aliases) {
+    const got = await readCard(c, { ...STATES.lifted.keep, "fh.licence": "by-sa" });
+    if (got.fault) { faults.push(`${said(c)} with «by-sa» chosen: ${got.fault}`); break; }
+    const line = readingKey(got.line);
+    if (line !== readingKey(c.e.t) && line !== readingKey(says(c.e))) { passed.push(`${said(c)} with «by-sa» chosen: the line reads «${got.line.slice(0, 40)}», not the pointer`); continue; }
+    const h = heldOf(got, c.e);
+    if (h.printing.length === 1 && !h.plain && !h.one) { passed.push(`${said(c)} with «by-sa» chosen: no other reading prints its English`); continue; }
+    const pressed = got.pills.find((x) => x.pressed) || null;
+    alias = { c, line: got.line, pressed, ok: !!h.one && h.one.pressed };
+    if (!alias.ok) faults.push(`${said(c)} with «by-sa» chosen: the line is the pointer, and ${h.one ? `the one pill «${h.one.t.slice(0, 40)}» is not pressed` : `${h.printing.length} pills print its English`}; the card opens on ${pressed ? `«${pressed.t.slice(0, 40)}»${pressed.pointerBy ? "" : " (no data-pointer-by)"}` : "no pill"}`);
+    break;
+  }
+  check("F13 one reading, one pill: with every switch lifted, where a pointer's resolution prints as another reading of the card, one pill prints it with the pointer beside it, carrying the pointer's text and naming its rows apart; and with «by-sa» chosen a card whose line is the pointer opens on that pill",
+    judged.length > 0 && !!alias && faults.length === 0,
+    `${faults.length ? `${faults.length} fault(s): ${faults.slice(0, 3).join(" | ")} · ` : ""}${judged.length} card(s) judged of ${folds.length} found${judged.length ? `: ${judged.slice(0, 2).join(" | ")}` : ""} · ${alias ? `the alias at ${alias.c.id} ${alias.c.label}, entry ${alias.c.entry}: the line «${alias.line.slice(0, 40)}», the card opens on «${alias.pressed ? alias.pressed.t.slice(0, 40) : "no pill"}»${alias.ok ? ", the one pill" : ", not the one pill"}` : `no alias judged among ${aliases.length} word(s) found`}${passed.length ? ` · passed by: ${passed.slice(0, 2).join(" | ")}` : ""}`);
+
+  // F14: the card dragged aside while the map is on its way, the hand taken off it, then the map let through; a word
+  // whose card built again under the map shows no one pill is passed by (F13 says why), and the next is tried
+  let moved = null;
+  const passedF14 = [];
+  for (const c of folds.slice(0, 4)) {
+    const ctx = await b.newContext({ viewport: { width: 1100, height: 900 } });
+    let letGo = () => {};
+    try {
+      await ctx.addInitScript((kv) => { try { for (const [k, v] of Object.entries(kv)) localStorage.setItem(k, v); } catch { /* a device that keeps nothing */ } }, STATES.lifted.keep);
+      const q = await ctx.newPage();
+      q.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
+      const held = new Promise((r) => { letGo = r; });
+      await q.route("**/data/form-of-pills-v1.json*", async (r) => { await held; await r.continue().catch(() => {}); });
+      await q.goto(c.url, { waitUntil: "domcontentloaded" });
+      await q.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+      await linesOnPage(q, { from: c.section, to: c.section + 1 });
+      if (await q.evaluate(openCard, c)) continue;
+      await q.waitForTimeout(600);
+      const head = await q.$("#hud .head");
+      const box = head ? await head.boundingBox() : null;
+      if (!box) continue;
+      await q.mouse.move(box.x + 30, box.y + box.height / 2);
+      await q.mouse.down(); await q.mouse.move(box.x + 30 - 240, box.y + box.height / 2 + 60, { steps: 8 }); await q.mouse.up();
+      await q.mouse.move(2, 2);
+      await q.waitForTimeout(400);
+      // where the card stands, whether it is the reader's, and whether it is the card the press built
+      const at = () => q.evaluate(() => { const h = document.getElementById("hud"), r = h.getBoundingClientRect(); return { open: !h.hidden, left: Math.round(r.left), top: Math.round(r.top), moved: h.classList.contains("moved"), same: !!window.__f14 && h.querySelector(".rows") === window.__f14, mapHere: window.__formOf !== undefined }; });
+      await q.evaluate(() => { window.__f14 = document.querySelector("#hud .rows"); });
+      const before = await at();
+      letGo();
+      await q.waitForFunction(() => window.__formOf !== undefined, null, { timeout: 30000 }).catch(() => null);
+      await q.waitForTimeout(1500);
+      // the card built again, its readings drawn
+      await q.waitForFunction(() => { const h = document.getElementById("hud"), read = h.querySelector(":scope > .rows > .b-read"); return h.hidden || (!!read && read.children.length > 0 && !read.querySelector(":scope > .r-wait")); }, null, { timeout: 20000 }).catch(() => null);
+      const after = await at();
+      const one = heldOf(await q.evaluate(cardNow, c), c.e).one;
+      if (after.open && !one) { passedF14.push(`${said(c)}: no one pill on the card built again`); continue; }
+      moved = { c, before, after, one };
+      break;
+    } finally { letGo(); await ctx.close(); }
+  }
+  check("F14 a card the reader moved stays where they put it when the map lands: with every switch lifted, a card opened before the map lands and dragged aside by its head, the hand off it, is built again, its pointer folded into the one pill, and stands where the reader put it, still the reader's",
+    !!moved && moved.before.moved && !moved.before.mapHere && moved.after.open && !moved.after.same && !!moved.one && moved.after.moved && Math.abs(moved.after.left - moved.before.left) <= 1 && Math.abs(moved.after.top - moved.before.top) <= 1,
+    moved ? `${said(moved.c)} · dragged to ${moved.before.left} by ${moved.before.top}${moved.before.moved ? "" : " (not taken as moved)"}, the map ${moved.before.mapHere ? "already here" : "held back"} · when it landed: ${!moved.after.open ? "the card closed" : `${moved.after.same ? "the same card" : "built again"} at ${moved.after.left} by ${moved.after.top}, ${moved.after.moved ? "still the reader's" : "the reader's move let go"}, ${moved.one ? `the one pill «${moved.one.t.slice(0, 40)}»` : "no one pill"}`}` : `no card judged of ${Math.min(folds.length, 4)} word(s) tried${passedF14.length ? `: ${passedF14.join(" | ")}` : ""}`);
 }
 // F7 a reading with English of its own prints its own words. The words are found in the data: a served plain word
 // whose key holds such a reading on a row its ledger leaves whole; its card is opened with every switch lifted

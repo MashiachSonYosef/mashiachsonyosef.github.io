@@ -83,10 +83,26 @@
 //     SECOND ROAD, tools/made-spaces-second-road-v1.mjs): a line whose row
 //     counts, or a source whose rows and rows holding a close, are not the
 //     receipt's less the rows the row-strikes record took since that store
-//     and the lines of the landing the page did not land; or records that
-//     cannot say how the two stores differ. That last is where a row
-//     retexted since stands (relay v187's words back) until the tool that
-//     retexts those rows lands with its own part of this road.
+//     and the lines of the landing the page did not land, and less, for the
+//     rows holding a close, the rows a round retexted since without folding
+//     (their old texts lose them; the rows stay); or records that cannot say
+//     how the two stores differ;
+//   - rows the row-strikes record says a round retexted from words back
+//     (below) when the pin names no list of them, or not the list that round
+//     landed; a line of that list that is not well formed; or a row so
+//     retexted that does not serve its words back in both its texts, or
+//     stands at its key and rank other than once.
+//
+// THE WORDS BACK (ship 6, relay v187). A row of the unabridged BDB whose
+// opening of a sense lost Hebrew words to our build takes them back by key
+// and rank (tools/derive-words-back-v1.mjs lists the rows, and
+// tools/strike-rows-v1.mjs retexts them, rule v7). Its new text is no line of
+// any relay's list: it takes its closes from the list that round landed
+// (data/made-spaces/PIN.json, words_back.derived.retext), by its key and
+// rank, where its route text is that list's words back, on both halves of
+// slot 9 as the retext wrote them. Those rows and closes are counted apart
+// (rows_closed_from_words_back, closes_from_words_back), since no relay's
+// receipt counts them; the rows' old texts lose them on the second road.
 //
 // WHEN ARE A SOURCE'S ROWS THE ROWS ITS LIST WAS READ FROM? When the store is
 // the version the relay's receipt names; or when every move of the store
@@ -118,6 +134,8 @@ import { gunzipSync, gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { MADE_SPACES_RULE_ID, CLOSES_SLOT, closed, setSlot } from "./gloss-store-v1.mjs";
 import { secondRoad, fallOf } from "./made-spaces-second-road-v1.mjs";
+import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
+import { RECORD_FILE } from "./row-strikes-follow-v1.mjs";
 import { givenMoment, momentOf } from "./step-moment-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -240,11 +258,46 @@ for (const [m, L] of LISTED) {
   }
 }
 
+// ---- the words back: the rows a round retexted from BDB's words, and the closes the list that landed them gives ----
+const WB = new Map();   // `${m}\u0001${key}\u0001${rank}` -> { m, key, rank, text, closes, met }
+let wbList = null;
+{
+  const recordPath = join(LISTS, "..", RECORD_FILE);
+  const rounds = existsSync(recordPath) ? (JSON.parse(readFileSync(recordPath, "utf8")).rounds || []) : [];
+  const took = rounds.map((r) => ({ r, rows: (r.rows || []).filter((x) => x.action === "retext" && x.from_slot === "words_back") })).filter((x) => x.rows.length);
+  if (took.length) {
+    const d = (pin.words_back || {}).derived || {};
+    if (!d.folder || !d.retext) refuse(`the row-strikes record holds ${took.length} round(s) that retexted rows from words back, and the pin names no list of them (words_back.derived.retext)`);
+    if (took.length !== 1 || !took[0].r.list || took[0].r.list.sha256 !== d.retext.sha256) refuse(`rows were retexted from words back by ${took.length} round(s) (${took.map((x) => (x.r.list ? x.r.list.file : "no list")).join(", ")}), not once by the list the pin names (${d.folder}/${d.retext.file})`);
+    const name = `${d.folder}/${d.retext.file}`;
+    let lines;
+    try { lines = readPinnedLines(join(LISTS, d.folder, d.retext.file), d.retext, name); } catch (e) { if (e instanceof PinFault) refuse(e.message); throw e; }
+    const byId = new Map();
+    lines.forEach((l, at) => {
+      const where = `${name} line ${at + 1}`;
+      if (l.from_slot !== "words_back" || typeof l.to_text !== "string" || !l.to_text || !Array.isArray(l.closes) || typeof l.prints !== "string") refuse(`${where} names no words back, closes or prints`);
+      if (!LISTED.has(String(l.m))) refuse(`${where} retexts a row of ${l.m}, which no list names`);
+      l.closes.forEach((c, i) => { if (!Number.isInteger(c) || l.to_text[c] !== " " || (i > 0 && c <= l.closes[i - 1])) refuse(`${where}: its closes are not spaces of its words back in rising order`); });
+      if (closed(l.to_text, l.closes) !== l.prints) refuse(`${where}: its prints is not its words back with the closes taken out`);
+      const id = `${l.m}\u0001${l.key}\u0001${l.rank}`;
+      if (byId.has(id)) refuse(`${where} names a row an earlier line names`);
+      byId.set(id, l);
+    });
+    // the rows the round retexted, each a line of the list with the words the round wrote (a line left off is no row of it)
+    for (const x of took[0].rows) {
+      const id = `${x.m}\u0001${x.key}\u0001${x.rank}`, l = byId.get(id);
+      if (!l || l.to_text !== x.to_text) refuse(`the row-strikes record says ${x.m} ${x.key} rank ${x.rank} took words back that ${name} does not give it`);
+      WB.set(id, { m: String(x.m), key: x.key, rank: x.rank, text: l.to_text, closes: l.closes, met: 0 });
+    }
+    wbList = { list: `${HOME}/${name}`, sha256: d.retext.sha256, round: { ran_at: took[0].r.ran_at, list: took[0].r.list.file } };
+  }
+}
+
 // ---- every row of the store ----------------------------------------------------------------
 const tally = {};
 const of = (m) => (tally[m] ||= { rows: 0, rows_with_a_close_on_the_route_text: 0, rows_with_a_close_on_the_definition_text: 0, rows_with_a_close_on_either: 0,
   closes_on_route_texts: 0, closes_on_definition_texts: 0, rows_a_ledger_divides_with_a_close_on_the_route_text: 0, closes_that_stand_at_a_ledgers_cut: 0,
-  rows_serving_a_text_with_words_taken_out: 0, rows_moved: 0 });
+  rows_serving_a_text_with_words_taken_out: 0, rows_retexted_from_words_back: 0, rows_closed_from_words_back: 0, closes_from_words_back: 0, rows_moved: 0 });
 const served = new Map();   // m id -> Map(text -> [rows serving it as the route text, as the definition text])
 const texts = new Map();    // m id -> one line per row of the source: its key, its route text, its definition text
 const closesOf = (L, text) => { const l = L.lines.get(String(text ?? "")); return l && l.closes.length ? l.closes : null; };
@@ -266,6 +319,20 @@ for (const name of shardNames) {
     for (const f of [1, 2]) { const s = String(row[f] ?? ""); if (L.lines.has(s)) (seen.get(s) || seen.set(s, [0, 0]).get(s))[f - 1] += 1; }
     const N = NEVER.get(m);
     if (N && (N.places.has(String(row[1] ?? "")) || N.places.has(String(row[2] ?? "")))) t.rows_serving_a_text_with_words_taken_out += 1;
+    // a row that took its words back: its closes are the ones the list that landed it gives, counted apart
+    const wb = WB.get(`${m}\u0001${k}\u0001${row[0]}`);
+    if (wb) {
+      if (row[1] !== wb.text || row[2] !== wb.text) refuse(`${name} ${k} (${m}, rank ${row[0]}): the row-strikes record says this row took its words back, and it does not serve them in both its texts`);
+      if (wb.closes.length && Array.isArray(row[8])) refuse(`${name} ${k} (${m}, rank ${row[0]}): the row carries a print slot and a close on the words it took back`);
+      wb.met += 1; t.rows_retexted_from_words_back += 1;
+      if (wb.closes.length) { t.rows_closed_from_words_back += 1; t.closes_from_words_back += wb.closes.length; }
+      const want = wb.closes.length ? [wb.closes, wb.closes] : null;
+      if (same(row[CLOSES_SLOT] ?? null, want)) continue;
+      t.rows_moved += 1; moved += 1;
+      if (DRY) continue;
+      setSlot(row, CLOSES_SLOT, want);
+      continue;
+    }
     const route = closesOf(L, row[1]), definition = closesOf(L, row[2]);
     if (route) {
       if (Array.isArray(row[8])) refuse(`${name} ${k} (${m}, rank ${row[0]}): the row carries a print slot and a close on its route text «${String(row[1]).slice(0, 60)}»`);
@@ -284,6 +351,7 @@ for (const name of shardNames) {
   }
   if (moved) { touched.push(name); if (!DRY) writeFileSync(path, gzipSync(Buffer.from(JSON.stringify(body)), { level: 9 })); }
 }
+for (const wb of WB.values()) if (wb.met !== 1) refuse(`${wb.m} ${wb.key} rank ${wb.rank}, which the row-strikes record says took its words back, stands ${wb.met} times in the store`);
 
 // ---- the span store: read, never written ---------------------------------------------------
 let spanRows = 0;
@@ -359,18 +427,20 @@ for (const [m, L] of LISTED) {
   // rows the row-strikes record took since the store it read and the lines of the landing the page did not land
   if (second) {
     const off = [...(second.gone.get(m) || []), ...(second.notLanded.get(m) || [])];
+    // a row retexted since without folding stays a row of the source; its old texts lose it, so it falls from the rows holding a close
+    const re = (second.retexted && second.retexted.get(m)) || [], lost = [...off, ...re];
     let held = 0; const unheld = [];
     for (const [text, l] of L.lines) {
       const [r1, r2] = seen.get(text) || [0, 0], [f1, f2] = fallOf(second, m, text);
       if (r1 === (l.rows_field_1 || 0) - f1 && r2 === (l.rows_field_2 || 0) - f2) held += 1;
       else unheld.push({ text: text.slice(0, 80), list: [l.rows_field_1 || 0, l.rows_field_2 || 0], less: [f1, f2], store: [r1, r2] });
     }
-    const less = { rows: off.length, route: off.filter((x) => closesOf(L, x.route)).length, definition: off.filter((x) => closesOf(L, x.definition)).length, either: off.filter((x) => closesOf(L, x.route) || closesOf(L, x.definition)).length };
+    const less = { rows: off.length, route: lost.filter((x) => closesOf(L, x.route)).length, definition: lost.filter((x) => closesOf(L, x.definition)).length, either: lost.filter((x) => closesOf(L, x.route) || closesOf(L, x.definition)).length };
     const byRoad = { rows: [t.rows, stated.rows - less.rows], route: [counts.route[0], counts.route[1] - less.route], definition: [counts.definition[0], counts.definition[1] - less.definition], either: [counts.either[0], counts.either[1] - less.either] };
     if (unheld.length) refuse(`${L.file}: ${unheld.length} line(s) state row counts that, less the rows gone since ${second.base} and the lines of relay ${second.landing.relay} not landed, are not this store's (the second road; the receipt read «${L.readAt}»); first: ${JSON.stringify(unheld[0])}`);
     if (!Object.values(byRoad).every(([a, b]) => a === b)) refuse(`${m}: its rows, and its rows holding a close on the route text, the definition text and either, are ${JSON.stringify(byRoad)} (here; the corpus lane's receipt less the rows gone since ${second.base} and the lines of relay ${second.landing.relay} not landed): the second road does not hold (the receipt read «${L.readAt}»)`);
     bySecondRoad[m] = { the_receipt_read: L.readAt, a_served_store: second.base, with_the_landing_of_relay: second.landing.relay, rounds_of_the_row_strikes_record_since: second.rounds.map((r) => r.list),
-      rows_gone_since: (second.gone.get(m) || []).length, lines_of_the_landing_not_landed: (second.notLanded.get(m) || []).length, lines_whose_row_counts_are_the_receipts_less_those: held,
+      rows_gone_since: (second.gone.get(m) || []).length, lines_of_the_landing_not_landed: (second.notLanded.get(m) || []).length, ...(re.length ? { rows_retexted_since: re.length } : {}), lines_whose_row_counts_are_the_receipts_less_those: held,
       rows_and_rows_with_a_close_here_and_by_the_road: byRoad };
   }
   const noted = [...L.lines.values()].filter((l) => l.note);
@@ -385,26 +455,28 @@ for (const [m, L] of LISTED) {
     against_the_list: { lines_whose_row_counts_are_the_stores: agree, lines_whose_row_counts_differ: differ, ...(differ ? { first_differing: differing } : {}) },
     against_the_corpus_lanes_receipt: { rows_with_a_close_here_and_there: counts, agree: countsAgree },
     ...(second ? { by_the_second_road: bySecondRoad[m] } : {}) };
-  console.log(`  ${m.padEnd(4)} ${L.key.padEnd(26)} relay ${L.relay} · rows ${String(t.rows).padStart(6)} · a close on the route text ${String(t.rows_with_a_close_on_the_route_text).padStart(6)} · on the definition text ${String(t.rows_with_a_close_on_the_definition_text).padStart(6)} · on either ${String(t.rows_with_a_close_on_either).padStart(6)} · ${n(t.closes_on_route_texts)} and ${n(t.closes_on_definition_texts)} closes · divided by a ledger too ${t.rows_a_ledger_divides_with_a_close_on_the_route_text} (${t.closes_that_stand_at_a_ledgers_cut} closes at a cut) · list lines ${L.lines.size} (${agree} with the store's row counts, ${differ} not; ${unserved} no row serves)${NEVER.has(m) ? ` · ${n(t.rows_serving_a_text_with_words_taken_out)} rows serve a text with words taken out, none closed there` : ""} · moved ${t.rows_moved} · ${road ? `as read at ${L.readAt}: ${road}` : second ? `its receipt read «${L.readAt}»: its counts are held by the second road (${bySecondRoad[m].rows_gone_since} rows gone since ${second.base}, ${bySecondRoad[m].lines_of_the_landing_not_landed} lines of relay ${second.landing.relay} not landed)` : `the source's rows have moved on from ${L.readAt}: its counts are recorded, not held`}`);
+  console.log(`  ${m.padEnd(4)} ${L.key.padEnd(26)} relay ${L.relay} · rows ${String(t.rows).padStart(6)} · a close on the route text ${String(t.rows_with_a_close_on_the_route_text).padStart(6)} · on the definition text ${String(t.rows_with_a_close_on_the_definition_text).padStart(6)} · on either ${String(t.rows_with_a_close_on_either).padStart(6)} · ${n(t.closes_on_route_texts)} and ${n(t.closes_on_definition_texts)} closes · divided by a ledger too ${t.rows_a_ledger_divides_with_a_close_on_the_route_text} (${t.closes_that_stand_at_a_ledgers_cut} closes at a cut) · list lines ${L.lines.size} (${agree} with the store's row counts, ${differ} not; ${unserved} no row serves)${NEVER.has(m) ? ` · ${n(t.rows_serving_a_text_with_words_taken_out)} rows serve a text with words taken out, none closed there` : ""} ${t.rows_retexted_from_words_back ? ` · ${n(t.rows_retexted_from_words_back)} rows took their words back (${n(t.rows_closed_from_words_back)} closed there, ${n(t.closes_from_words_back)} closes, counted apart)` : ""} · moved ${t.rows_moved} · ${road ? `as read at ${L.readAt}: ${road}` : second ? `its receipt read «${L.readAt}»: its counts are held by the second road (${bySecondRoad[m].rows_gone_since} rows gone since ${second.base}, ${bySecondRoad[m].lines_of_the_landing_not_landed} lines of relay ${second.landing.relay} not landed${bySecondRoad[m].rows_retexted_since ? `, ${bySecondRoad[m].rows_retexted_since} rows retexted since` : ""})` : `the source's rows have moved on from ${L.readAt}: its counts are recorded, not held`}`);
 }
 const sum = (f) => Object.values(sources).reduce((a, s) => a + s[f], 0);
 const totals = { sources: LISTED.size, rows_of_listed_sources: sum("rows"), rows_carrying_the_slot: sum("rows_with_a_close_on_either"),
   rows_with_a_close_on_the_route_text: sum("rows_with_a_close_on_the_route_text"), rows_with_a_close_on_the_definition_text: sum("rows_with_a_close_on_the_definition_text"),
   closes_on_route_texts: sum("closes_on_route_texts"), closes_on_definition_texts: sum("closes_on_definition_texts"),
-  span_store_rows_of_listed_sources: spanRows, span_store_rows_with_a_close: 0 };
+  span_store_rows_of_listed_sources: spanRows, span_store_rows_with_a_close: 0,
+  ...(WB.size ? { rows_retexted_from_words_back: sum("rows_retexted_from_words_back"), rows_closed_from_words_back: sum("rows_closed_from_words_back"), closes_from_words_back: sum("closes_from_words_back") } : {}) };
 const moved = sum("rows_moved");
 const foundNone = FOUND_NONE.filter((s) => !LISTED.has(s.m));
 console.log(`made spaces · ${pin.relays.length} relays (${pin.relays.map((r) => r.relay).join(", ")}) · ${LISTED.size} sources with a list${foundNone.length ? `, ${foundNone.length} read with none (${foundNone.map((s) => s.m).join(", ")})` : ""} · ${n(totals.rows_of_listed_sources)} rows · ${n(totals.rows_carrying_the_slot)} carry the slot (${n(totals.rows_with_a_close_on_the_route_text)} close on the route text, ${n(totals.rows_with_a_close_on_the_definition_text)} on the definition text) · ${n(moved)} rows move (${touched.length} shards) · the span store's ${n(spanRows)} rows of these sources hold no close`);
 // the run's figures, one line of JSON, for a script that holds a run to what was rehearsed
 console.log(`figures ${JSON.stringify({ store_version: index.store_version, relays: pin.relays.map((r) => r.relay), rows_moved: Object.fromEntries(Object.entries(sources).map(([m, s]) => [m, s.rows_moved])), shards_moved: touched.length,
-  rows_carrying_the_slot: totals.rows_carrying_the_slot, counts_held: Object.fromEntries(Object.entries(sources).map(([m, s]) => [m, s.the_rows_are_the_rows_the_list_was_read_from ? "as read" : s.by_the_second_road ? "the second road" : "recorded, not held"])),
+  rows_carrying_the_slot: totals.rows_carrying_the_slot, closed_from_words_back: { rows_retexted: sum("rows_retexted_from_words_back"), rows: sum("rows_closed_from_words_back"), closes: sum("closes_from_words_back") }, counts_held: Object.fromEntries(Object.entries(sources).map(([m, s]) => [m, s.the_rows_are_the_rows_the_list_was_read_from ? "as read" : s.by_the_second_road ? "the second road" : "recorded, not held"])),
   by_the_second_road: bySecondRoad })}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 // what the index names: the pin, its relays, each list and never-closed file, and each source's rows as they stand
 const record = { pin: `${HOME}/PIN.json`, relays: RELAYS,
   lists: [...LISTED.entries()].map(([m, L]) => ({ m, key: L.key, relay: L.relay, file: `${HOME}/${L.file}`, sha256: L.sha256 })),
   never_closed: [...NEVER.entries()].map(([m, N]) => ({ m, key: N.key, relay: N.relay, file: `${HOME}/${N.file}`, sha256: N.sha256, texts: N.places.size })),
-  read_and_found_none: foundNone, sources: named };
+  read_and_found_none: foundNone, sources: named,
+  ...(wbList ? { words_back: { ...wbList, rows: WB.size, rows_with_a_close: sum("rows_closed_from_words_back"), closes: sum("closes_from_words_back") } } : {}) };
 const had = index.made_spaces || null;
 if (!moved && had && Object.keys(record).every((k) => same(had[k], record[k]))) { console.log("nothing moves and the index names these relays, lists and rows — nothing written"); process.exit(0); }
 

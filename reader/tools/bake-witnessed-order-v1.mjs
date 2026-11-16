@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit
+// GUARDS: witnessed-order-bake-rule-v2-three-columns-as-shipped-each-reading-with-its-own-credit-an-entry-whose-row-prints-only-strongs-signed-renderings-is-refused-where-the-pool-holds-a-plain-one
 //
 // THE WITNESSED ORDER, BAKED AS SHIPPED. The owner selected it (2026-09-25):
 // a reading order, like "corpus" and "characters" — a column per order in
@@ -50,16 +50,43 @@
 // drops a reading whose credited source the store no longer holds,
 // source-strike-rule-v1, typed on this receipt beside the bake's own counts).
 //
+// THE RULE'S SECOND VERSION (15 November 2026; the bake's input and its
+// receipt's version, 2, are as above). A RENDERING
+// CARRYING STRONG'S SIGN LEADS NO LINE WHERE THE KEY'S POOL AT REST HOLDS ONE
+// WITHOUT IT. On a book the record of dictionary kinds rests shut (its scope,
+// the thirty-nine books, asked of the zone's own fields), the base table
+// reads the store's pool with Strong's sign last (zone-gloss-rule-v8, rule 7
+// of tools/gloss-store-v1.mjs; the lead's call of 15 November 2026 on call 7
+// of relay v189: «a rendering carrying its source's sign does not lead the
+// line while the signs switch rests off», in every position of the switch,
+// his call 3). A witnessed column cannot follow by taking the row's next
+// reading: at every entry it touched on the combined ship, the row the lane
+// shipped prints one signed rendering and nothing else («+ advertise», «X
+// common», «X after»). So the entry is refused, typed with that reason, where
+// every reading of its row opens with the sign (opensWithStrongSign: the
+// source-signs ledger's STRONG_SIGN at the head, or the sign held alone in a
+// round bracket there, the lead's call 1) and the pool the base table reads
+// for the key at rest holds a reading that does not. The key then leaves the
+// column, and the page lays a column only over its own keys, so the line
+// under that order reads the base table, as the card does. Where the pool
+// holds only signed readings too, the entry stands: the sign separates
+// nothing there. Off the scope (no book there has a shipped witnessed order
+// today) nothing is refused for it. The receipt counts the refusals of each
+// column and names their keys (strongs_sign_refused,
+// strongs_sign_refused_keys); check-witnessed-order-v1 refuses the same in its
+// rebuild.
+//
 // Run: node tools/bake-witnessed-order-v1.mjs --zone data/zones/<book>.bin --stamp YYYY-MM-DD
 //        [--from data/witnessed-orders-v2.7] [--store data/route-store] [--out <file>]
 import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
 import { join, basename } from "node:path";
-import { openRouteStore, routePrinted, senseOpened } from "./gloss-store-v1.mjs";
+import { openRouteStore, routePrinted, senseOpened, opensWithStrongSign } from "./gloss-store-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
+import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 
-export const RULE = "witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit";
+export const RULE = "witnessed-order-bake-rule-v2-three-columns-as-shipped-each-reading-with-its-own-credit-an-entry-whose-row-prints-only-strongs-signed-renderings-is-refused-where-the-pool-holds-a-plain-one";
 export const COLUMNS = [
   ["witnessed_same_place", "same-place"],
   ["witnessed_entry", "entry"],
@@ -68,11 +95,21 @@ export const COLUMNS = [
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 const ZONE = arg("--zone"), STAMP = arg("--stamp"), FROM = arg("--from", "data/witnessed-orders-v2.7"), OUT = arg("--out", null);
 if (!ZONE || !STAMP) { console.error("usage: --zone <book.bin> --stamp YYYY-MM-DD [--from data/witnessed-orders-v2.7] [--store data/route-store] [--out <file>]"); process.exit(2); }
-const store = openRouteStore(arg("--store", "data/route-store"));
+const STORE = arg("--store", "data/route-store");
+const store = openRouteStore(STORE);
 const sha = (b) => createHash("sha256").update(b).digest("hex");
 const book = basename(ZONE, ".bin");
 const zone = JSON.parse(gunzipSync(readFileSync(ZONE)).toString("utf8"));
 if (!zone.gloss) { console.error(`${book}: no gloss table`); process.exit(1); }
+// the rule's second version: on a book of the record's scope, the pool the base table reads for a key at rest (Strong's sign last); a
+// record that is missing or does not hold is refused, never guessed past
+let rest = null;
+try {
+  const kinds = readKinds(join(STORE, ".."));
+  if (restsOffIn(kinds.rec, zone)) rest = openRouteStore(STORE, { atRest: true, signLast: true });
+} catch (e) { console.error(`${book}: REFUSED — ${String((e && e.message) || e)}`); process.exit(1); }
+const SIGN_REFUSED = "a rendering carrying Strong's sign leads no line where the key's pool at rest holds one without it";
+const plainAtRest = (k) => (rest.readingPool(rest.routesFor(k) || [], "oldest")).some((g) => !opensWithStrongSign(g.text));
 const shippedPath = join(FROM, `${book}.bin`);
 if (!existsSync(shippedPath)) { console.log(`${book}: no shipped witnessed order in ${FROM}; nothing baked`); process.exit(3); }
 const shippedBytes = readFileSync(shippedPath);
@@ -95,7 +132,7 @@ zone.gloss_m_orders = zone.gloss_m_orders || {};
 for (const [order] of COLUMNS) {
   const c = shipped.columns[order];
   if (!c) { console.error(`${book}: the shipped input has no ${order}`); process.exit(1); }
-  const col = {}, mcol = {}, refused = [], noPill = [];
+  const col = {}, mcol = {}, refused = [], noPill = [], signRefused = [];
   let cut = 0, whole = 0, unmapped = 0;
   for (const [k, text] of Object.entries(c.entries || {})) {
     const M = (c.m_entries || {})[k];
@@ -110,6 +147,8 @@ for (const [order] of COLUMNS) {
       else refused.push([k, "no reading under its rule"]);
       continue;
     }
+    // the rule's second version: every reading of the row carries Strong's sign, and the key's pool at rest holds one that does not
+    if (rest && readings.every((x) => opensWithStrongSign(x)) && plainAtRest(k)) { signRefused.push(k); refused.push([k, SIGN_REFUSED]); continue; }
     const line = readings[0];
     col[k] = line; mcol[k] = M;
     // whole where the line is the shipped text as it prints: a made space in a row's route closes there (made-spaces-rule-v1)
@@ -125,6 +164,7 @@ for (const [order] of COLUMNS) {
     built_from_row: Object.values(mcol).filter((x) => x.built_from_row).length,
     refused: refused.length, refused_why: refused.reduce((a, [, why]) => { a[why] = (a[why] || 0) + 1; return a; }, {}), refused_first: refused.slice(0, 5),
     ...(noPill.length ? { no_pill_withdrawals: noPill } : {}),
+    ...(rest ? { strongs_sign_refused: signRefused.length, strongs_sign_refused_keys: signRefused } : {}),
   };
 }
 zone.emitted_from = zone.emitted_from || {};
@@ -139,4 +179,4 @@ typePostBuildWrite(zone, {
   stamp: STAMP,
 });
 writeZone(OUT || ZONE, zone);
-console.log(`${book}: ${COLUMNS.map(([o]) => `${o.replace("witnessed_", "")} ${receipt.columns[o].baked}/${receipt.columns[o].shipped}${receipt.columns[o].no_pill_withdrawals ? ` (${receipt.columns[o].no_pill_withdrawals.length} no pill)` : ""}`).join(" · ")} · against store ${receipt.baked_against_store}`);
+console.log(`${book}: ${COLUMNS.map(([o]) => `${o.replace("witnessed_", "")} ${receipt.columns[o].baked}/${receipt.columns[o].shipped}${receipt.columns[o].no_pill_withdrawals ? ` (${receipt.columns[o].no_pill_withdrawals.length} no pill)` : ""}${receipt.columns[o].strongs_sign_refused ? ` (${receipt.columns[o].strongs_sign_refused} refused for Strong's sign)` : ""}`).join(" · ")} · against store ${receipt.baked_against_store}${rest ? " · Strong's sign last at rest" : ""}`);

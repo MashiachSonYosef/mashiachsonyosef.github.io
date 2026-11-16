@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // RUN: page
-// GUARDS: run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling
+// GUARDS: run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling, run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away
 //
 // THE RUN'S LINE FOLLOWS THE DIVISION THE READER PRESSED (the owner,
 // 2026-11-05, of a run a dictionary names whole, its card switched to the
@@ -12,6 +12,12 @@
 //
 //   D1  before anything is pressed, the run's line reads the span store's
 //       entry for the whole run (the run this check opens is one it names)
+//       where some word of the run has no reading of its own at the place;
+//       where every word has one, the line reads the words, piece by piece,
+//       the entry a press away (run-reads-its-words-rule-v1, call 3 of relay
+//       v189 as the lead landed it, 15 November 2026: a word's own reading is
+//       its place's pieces, every one saying something, or a place where
+//       STEP's own words stand, call 4's stands in the default picks' index)
 //   D2  pressing the words' division on the run's card puts the words' own
 //       lines under the run, piece by piece, and no longer the whole entry
 //   D3  the division stays: the card closed, the run's line still reads
@@ -20,9 +26,12 @@
 //
 // The run is found in the data, never named: the first served zone whose
 // span store names a run of two or more words apart (no maqaf) at a place
-// of its own. SKIPS by name when none does.
+// of its own, one that still reads whole at rest where any does (call 3
+// leaves seven of 1,717 so on 15 November 2026), else the first. SKIPS by
+// name when none does.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { readFileSync, existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
 
 const pw = await loadPlaywright();
@@ -30,17 +39,41 @@ let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 
 // ---- the run, from the data -------------------------------------------------
-let found = null;
+// call 3: whether every word of a place has its own reading at the place (its place's pieces, every one saying
+// something, or call 4's stands, the default picks' index: step_words whose third element is 1), the marks aside
+const STANDS = (() => { try { const dp = JSON.parse(readFileSync("data/default-picks/index.json", "utf8")); return new Map(Object.entries(dp.books || {}).map(([bk, e]) => [bk, new Set((e.step_words || []).filter((r) => r[2] === 1).map((r) => r[0]))])); } catch { return new Map(); } })();
+// a place's words in its zone, the marks aside, with the word before them; a place whose first word follows a maqaf or
+// whose last word ends in one is drawn inside a compound's cell, not a run of its own
+const ZONES = new Map();
+const wordsOf = (slug, place) => {
+  if (!ZONES.has(slug)) { const f = `data/zones/${slug}.bin`; ZONES.set(slug, existsSync(f) ? JSON.parse(gunzipSync(readFileSync(f)).toString("utf8")) : null); }
+  const z = ZONES.get(slug);
+  let n = 0, ws = null;
+  for (const sec of (z && z.sections) || []) { const own = []; for (const w of sec.words || []) { n += 1; if (!w.mark) own.push({ w, n }); } if (String(sec.label) === String(place.ref)) ws = own; }
+  return { mine: (ws || []).slice(place.first - 1, place.last), before: (ws || [])[place.first - 2] || null };
+};
+const halfOfCompound = (q) => !!q && /\u05BE$/u.test(String(q.w.s || "").trim());
+const ownCell = (slug, place) => { const { mine, before } = wordsOf(slug, place); return mine.length > 1 && !halfOfCompound(before) && !halfOfCompound(mine[mine.length - 1]); };
+const readsItsWords = (slug, place) => {
+  const stands = STANDS.get(slug) || new Set();
+  const says = (w) => Array.isArray(w.pg) && w.pg.length > 0 && w.pg.every((x) => x && String(x.g || "").trim());
+  const { mine } = wordsOf(slug, place);
+  return mine.length > 0 && mine.every((q) => says(q.w) || stands.has(q.n));
+};
+let found = null, first = null;
 for (const slug of zonesServed()) {
   const p = `data/span-store/${slug}.json`;
   if (!existsSync(p)) continue;
   const s = JSON.parse(readFileSync(p, "utf8"));
-  const place = (s.placesList || []).find((x) => x && / /u.test(x.key) && !/\u05BE/u.test(x.key) && !x.inside_of
-    && Number.isInteger(x.first) && Number.isInteger(x.last) && x.last > x.first);
-  if (place) { found = { slug, ...place }; break; }
+  const places = (s.placesList || []).filter((x) => x && / /u.test(x.key) && !/\u05BE/u.test(x.key) && !x.inside_of
+    && Number.isInteger(x.first) && Number.isInteger(x.last) && x.last > x.first && ownCell(slug, x));
+  if (places.length && !first) first = { slug, ...places[0], words: readsItsWords(slug, places[0]) };
+  const whole = places.find((x) => !readsItsWords(slug, x));
+  if (whole) { found = { slug, ...whole, words: false }; break; }
 }
+if (!found) found = first;
 if (!found) { console.log("SKIPPED \u2014 no served zone's span store names a run of words apart at a place of its own"); process.exit(3); }
-console.log(`\u2014 ${found.slug} ${found.ref}, words ${found.first} to ${found.last} \u2014`);
+console.log(`\u2014 ${found.slug} ${found.ref}, words ${found.first} to ${found.last}${found.words ? ", every word reading its own at the place (no run of the span store reads whole here)" : ", some word with no reading of its own at the place"} \u2014`);
 
 const BASE = defaultZoneUrl().replace(/[?&]b=[^&#]+/, "").replace(/\?$/, "");
 const b = await pw.chromium.launch(launchOptions());
@@ -79,8 +112,10 @@ const divisionButton = (name) => p.evaluate((name) => {
 }, name);
 
 const before = await read();
-if (before.error) { check("D1  the run's line reads the span entry before anything is pressed", false, before.error); await b.close(); process.exit(1); }
-check("D1  the run's line reads the span entry before anything is pressed", before.span === found.key && !before.parts, `"${before.text}"`);
+const D1 = found.words ? "D1  every word of the run reads its own at the place, so before anything is pressed its line reads the words, piece by piece, the entry a press away (call 3)" : "D1  the run's line reads the span entry before anything is pressed, some word of it having no reading of its own at the place";
+if (before.error) { check(D1, false, before.error); await b.close(); process.exit(1); }
+check(D1, found.words ? before.span === null && before.parts && before.cells.length === found.last - found.first + 1 : before.span === found.key && !before.parts,
+  before.cells.length ? before.cells.map((c) => `"${c}"`).join(" + ") : `"${before.text}"`);
 
 await open();
 await p.waitForTimeout(1500);

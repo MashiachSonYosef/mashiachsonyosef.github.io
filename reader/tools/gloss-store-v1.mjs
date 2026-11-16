@@ -1,4 +1,4 @@
-// Synthesis lane · zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
+// Synthesis lane · zone-gloss-rule-v8-printed-form-ledger-division-whole-without-a-ledger-at-rest-a-rendering-carrying-strongs-sign-after-every-plain-one-antiquity-1940-lastuary
 //
 // The default reading printed under a word used to be chosen in the browser,
 // which meant the rule lived in a page: it could not be reviewed, diffed, or
@@ -55,6 +55,23 @@
 //   6. The sense is stored verbatim, "/" morpheme packing included. The page
 //      joins those spans with " + " at render; the ledger text is never
 //      rewritten here.
+//   7. Strong's sign follows (zone-gloss-rule-v8, 15 November 2026). On a
+//      zone the record of dictionary kinds rests (its scope: the thirty-nine
+//      books, asked of the zone's own fields by restsOffIn), a reading that
+//      carries Strong's sign (opensWithStrongSign, below) sorts after every
+//      reading that does not: the first key of every order, so the oldest
+//      first, the catalog's rank and the corpus orders alike. It is a sort,
+//      not a filter: a pool whose every reading carries the sign keeps its
+//      order, and nothing leaves a card. The tool that bakes such a zone
+//      opens the store { signLast: true } and stamps what it baked
+//      (signsRestLastStamp); every other zone (the Tikkunei Zohar, a Targum
+//      beside a book, a fixture) keeps today's order, the store opened
+//      without it. It rests on the lead's call of 15 November 2026 on call 7
+//      of relay v189 («a rendering carrying its source's sign does not lead
+//      the line while the signs switch rests off»), held in every position
+//      of the signs switch by his call 3 of the same day (one order, so no
+//      card disagrees with its line), the sign held alone in a bracket
+//      taken in by his call 1, and the scope by his call 2.
 
 import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -62,7 +79,7 @@ import { gunzipSync } from "node:zlib";
 import { join } from "node:path";
 import { readKinds, restsOffOf, DICTIONARY_KINDS_RULE_ID, DICTIONARY_KINDS_RECORD } from "./dictionary-kinds-v1.mjs";
 
-export const GLOSS_RULE_ID = "zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary";
+export const GLOSS_RULE_ID = "zone-gloss-rule-v8-printed-form-ledger-division-whole-without-a-ledger-at-rest-a-rendering-carrying-strongs-sign-after-every-plain-one-antiquity-1940-lastuary";
 // THE PRINTED FORM (rule 3): what a reader sees of a reading. Two readings
 // whose printed forms agree, case folded, are one reading. Exported so the
 // projector, the checks and the page's mirror key the pool the same way.
@@ -82,6 +99,32 @@ export const readingKey = (t) => printedForm(t).toLowerCase();
 // November 2026).
 export const SIGN_GAP = "\u200b";
 export const signOnly = (t) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(String(t).trim());
+// STRONG'S SIGN ON A RENDERING (rule 7 above; zone-gloss-rule-v8). The sign
+// the source-signs ledger of 3 October 2026 counts as Strong's (its
+// STRONG_SIGN: a reading that begins with X, the multiplication sign or +,
+// and a space), which is the page's first source sign byte for byte; and, by
+// the lead's call 1 of 15 November 2026, the sign held alone in a round
+// bracket at the head of a rendering (\u00ab(+) archer\u00bb, \u00ab(X) very\u00bb, \u00ab(+)valiant(-ly)\u00bb):
+// the M14 declaration's open_paren.holds_sign_alone, \u00abopens only a sign set on
+// the word after the bracket: the print's + ... or its multiplication sign
+// ..., which the edition writes as the capital X\u00bb, the sign on that
+// rendering by the source's own key. A bracket that holds the sign and words
+// (\u00ab(X great) delight\u00bb, open_paren.holds_words_before_the_word) sets the sign
+// on an optional word, not on the rendering, and is not taken. Source-blind,
+// as the ledger's pattern is. Measured over the combined ship's store
+// (ccec4fa3071b): 16,358 readings open with the sign (M14 15,605, M9 751,
+// M3 2) and 84 hold it alone in a bracket (M14 83, M9 1); no reading holds it
+// so anywhere but at its head.
+// ONE RULE, ONE PLACE: the page carries the lines from the one that opens
+// "const STRONG_SIGN = " to the line "// end of Strong's sign
+// (tools/gloss-store-v1.mjs)", as they stand below but for "export", and the
+// check of the sign rule lifts both copies out and runs them over every
+// reading of the store. So nothing between those two lines reaches outside
+// them.
+export const STRONG_SIGN = /^(X|\u00d7|\+) /u;
+export const STRONG_SIGN_ALONE = /^\(\s*(X|\u00d7|\+)\s*\)/u;
+export const opensWithStrongSign = (t) => { const s = String(t ?? ""); return STRONG_SIGN.test(s) || STRONG_SIGN_ALONE.test(s); };
+// end of Strong's sign (tools/gloss-store-v1.mjs)
 export const isGap = (x) => String(x ?? "").trim() === SIGN_GAP;
 export const joinDrawn = (pieces) => pieces.map((x, i) => `${i && !isGap(x) && pieces.slice(0, i).some((y) => !isGap(y)) ? " + " : ""}${x}`).join("");
 export const signsOff = (text) => { const pieces = String(text).split(" + "); return joinDrawn(pieces.every(signOnly) ? pieces : pieces.map((x) => (signOnly(x) ? SIGN_GAP : x))); };
@@ -122,8 +165,21 @@ export const recordPrinted = (row) => (row[2] ? closed(String(row[2]), closesOf(
 //   opens for a row that is only the words opening a numbered sense of its
 //         entry, that entry and the sense's point as the source names them
 //         ("BDB1300 1."; relay v174)
+//   collocations  for a row of the UBS dictionary every meaning of whose
+//         text UBS marks with a collocation (its own field LEXCollocations,
+//         read through the catalog's route file; data/ubs-collocations/),
+//         those collocations, byte for byte (ship 5, 15 November 2026)
+//   picked_at  for such a row, the places where UBS's own default pick
+//         names it, each "<book slug> <chapter>:<verse>:<word>" as the bake
+//         of the default picks labels a place ("i-samuel 6:10:15")
 // A row with none of these carries no such slot. The texts are not touched.
 export const FACTS_SLOT = 10;
+// WHICH TOOL WRITES EACH KEY of the slot, by the key of the store's index
+// under which that tool records its run: the keys above, as data, in one
+// place. A key this does not name is no fact of the slot, and setFacts
+// refuses it; a fact whose tool has not recorded a run on a store is not
+// yet on it (check-dictionary-kinds-v1 K1 says so, and does not pass it).
+export const FACTS_WRITTEN_BY = Object.freeze({ n: "row_entries", t: "row_entries", b: "row_entries", name: "name_rows", opens: "sense_openings", collocations: "ubs_collocations", picked_at: "ubs_collocations" });
 export const factsOf = (row) => { const f = row.length > FACTS_SLOT ? row[FACTS_SLOT] : null; return f && typeof f === "object" && !Array.isArray(f) ? f : null; };
 // A ROW'S SLOTS PAST ITS SEVENTH ARE OPTIONAL AND STAND BY POSITION. One is
 // set by filling the slots before it with null, and taken off by setting it
@@ -138,6 +194,7 @@ export const setSlot = (row, at, value) => {
 // some of a row's facts set (a value) or taken off (null). The keys are kept in one order, so a row's bytes do not
 // depend on which tool wrote first
 export const setFacts = (row, facts) => {
+  for (const k of Object.keys(facts)) if (!Object.hasOwn(FACTS_WRITTEN_BY, k)) throw new Error(`setFacts was given the fact ${k}, which is no key of the facts slot (FACTS_WRITTEN_BY): refusing`);
   const now = { ...(factsOf(row) || {}) };
   for (const [k, v] of Object.entries(facts)) { if (v === null || v === undefined) delete now[k]; else now[k] = v; }
   const keys = Object.keys(now).sort();
@@ -182,8 +239,20 @@ export const GLOSS_RULE_TEXT =
   "a row that is only the words opening a numbered sense of its entry (its facts name the sense; sense-openings-rule-v1) gives no reading and prints as a note; " +
   "pool = every reading of every exact route, deduped by " +
   "the printed form case folded (the '/' pieces joined with ' + ', one closing stop dropped), with min year and min rank and every carrier of either; oldest source year (<=1940 tier) leads, ties by semantic rank; " +
+  "on a zone the record of dictionary kinds rests (its scope), a reading that carries Strong's sign (X, the multiplication sign or + and a space at its head, the source-signs ledger's STRONG_SIGN; or the sign held alone in a round bracket at its head, the M14 declaration's open_paren.holds_sign_alone) follows every reading that does not, the first key of every order, and a pool whose every reading carries it keeps its order; " +
   "reading stored verbatim; the page joins '/'-packed spans with ' + '; " +
   "one reading on display at a time, everywhere";
+// WHAT A ZONE BAKED UNDER RULE 7 SAYS OF ITSELF: emitted_from.signs_rest_last
+// on the zone, and the same on its lattice sidecar, written by the tool that
+// baked it where it opened the store { signLast: true }, and on no other
+// zone. One stamp, made here, so the bakes and the checks hold one shape.
+export const SIGNS_REST_LAST_RULING = "the lead, 15 November 2026, on the design of ships 5 and 6: Strong's sign held alone in a bracket is the sign on the rendering (call 1); the sign rule stays on the thirty-nine books, and the Tikkunei Zohar and the Targum sidecars keep today's order (call 2); the sign is a key of the pool's order in every position of the signs switch (call 3)";
+/** The stamp of a zone baked with Strong's sign last: { rule, scope, ruling }. `kindsRec` is the record of dictionary
+ *  kinds the zone's scope was asked of (readKinds(...).rec); refuses, by throwing one sentence, what is not one. */
+export const signsRestLastStamp = (kindsRec) => {
+  if (!kindsRec || !kindsRec.scope || typeof kindsRec.scope.say !== "string") throw new Error("signsRestLastStamp was given no record of dictionary kinds with its scope: refusing");
+  return { rule: GLOSS_RULE_ID, scope: `${DICTIONARY_KINDS_RECORD} scope: ${kindsRec.scope.say}`, ruling: SIGNS_REST_LAST_RULING };
+};
 
 // THE SWITCH, declared here rather than in the check that guards it, because a
 // rule whose only witness is its own guard has no author.
@@ -224,7 +293,16 @@ export const SWITCH_RULE_TEXT =
 // sentence, where the record is missing, does not hold, or does not file
 // every source key of this index. Which zones are baked at rest is the
 // record's scope (restsOffIn), asked by the tool that bakes the zone.
-export const openRouteStore = (storeDir, { atRest = false } = {}) => {
+// STRONG'S SIGN LAST (rule 7; zone-gloss-rule-v8). Opened { signLast: true },
+// readingPool puts a reading that carries Strong's sign after every reading
+// that does not, as the first key of every order, so every leader drawn from
+// it (glossFor and tableFor, the columns, the projector's leaders) follows
+// with no other edit; opened without it, every order is today's, byte for
+// byte. The tool that bakes a zone asks the record's scope of the zone and
+// opens { atRest, signLast: atRest }. signLast is true or false; anything
+// else is refused.
+export const openRouteStore = (storeDir, { atRest = false, signLast = false } = {}) => {
+  if (typeof signLast !== "boolean") throw new Error(`openRouteStore was given signLast ${JSON.stringify(signLast)}, which is neither true nor false: refusing`);
   const index = JSON.parse(readFileSync(join(storeDir, "index.json"), "utf8"));
   // v1, or v2 — the same rows with one slot added at [6], the source's own
   // headwords (pointing-store-landing-rule-v1: the served v2 folds to the
@@ -440,14 +518,19 @@ export const openRouteStore = (storeDir, { atRest = false } = {}) => {
     });
     const tier = (r) => (Number.isFinite(r.year) && r.year <= ERA_CUT_AD ? 0 : 1);
     const byOldest = (a, b) => tier(a) - tier(b) || a.year - b.year || a.ledger - b.ledger;
+    // Rule 7: opened { signLast }, a reading that carries Strong's sign follows
+    // every reading that does not, the first key of every order; where every
+    // reading carries it, or none does, it separates nothing and the order is
+    // the order's own.
+    const signed = signLast ? (a, b) => Number(opensWithStrongSign(a.text)) - Number(opensWithStrongSign(b.text)) : () => 0;
     // Every order ends in the same tie-break, so two readings the order cannot
     // separate come out in the order rule 4 gives them rather than in whatever
     // order the shards happened to be read in.
     const cmp = order === "characters"
-      ? (a, b) => a.ledger - b.ledger || byOldest(a, b) || a.at - b.at
+      ? (a, b) => signed(a, b) || a.ledger - b.ledger || byOldest(a, b) || a.at - b.at
       : order === "corpus"
-        ? (a, b) => a.corpus - b.corpus || byOldest(a, b)
-        : byOldest;
+        ? (a, b) => signed(a, b) || a.corpus - b.corpus || byOldest(a, b)
+        : (a, b) => signed(a, b) || byOldest(a, b);
     // `by` leaves as a sorted array, never as the Set it was accumulated in:
     // a Set survives no JSON boundary, and a pool entry that serialises to
     // {} in one consumer and a list in another is the kind of difference
@@ -547,5 +630,6 @@ export const openRouteStore = (storeDir, { atRest = false } = {}) => {
   // At rest the store says so (atRest: the rule, the record by its path from the reader's root, its version and the
   // sha256 of its bytes, for the bake's stamp; null opened whole), and carries the rule it was opened under
   // (restsOff: row -> the resting entry that shuts it, or null; null opened whole) for what counts the shut rows.
-  return { index, routesFor, routesWhole, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, carriersOf, wordingYear, ORDERS, atRest: atRestSaid, restsOff };
+  // signLast says whether the pool puts Strong's sign last (rule 7), as it was opened.
+  return { index, routesFor, routesWhole, readingPool, glossFor, tableFor, readingsOf, readingsOfText, rowOfText, mIdsOfLabel, ledgerOf, carriersOf, wordingYear, ORDERS, atRest: atRestSaid, restsOff, signLast };
 };

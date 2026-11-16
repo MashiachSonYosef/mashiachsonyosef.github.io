@@ -90,7 +90,28 @@
 // text, and would print over the MIXED one); a list of name rows that is not
 // the bytes its pin names.
 //
-// Usage: node tools/bake-form-of-pills-v1.mjs [--from data/pointer-entries] [--rulings data/rulings] [--names data/names] [--out data/form-of-pills-v1.json]
+// ONE READING, ONE PILL (pointer-one-pill-rule-v1, 15 November 2026: the
+// owner's question 12, «153 pointer pills now print the same English as
+// another reading on the card ... Recommended: one pill», taken; the lead's
+// call 8 of the same day, «up to 805, any source, the Tikkunei Zohar's
+// cards too»). Where a pointer resolves to English that another reading of
+// the same card prints, the page shows one pill: that reading, with the
+// pointer beside it, as a pointer pill prints today, the pill naming the
+// pointer's rows apart from its carriers. The fold is the page's (poolFor);
+// this record says so under its own rule, form-of-pills-rule-v3, and counts
+// the fold over the store at rest (one_pill): for every key of the map whose
+// rows rest open, every group of the key's resting pool whose every row is a
+// pointer of its own source that resolves, to one English, where another
+// group of the same pool prints that English (both keyed as the pool keys a
+// reading, gloss-store-v1 readingKey). The count is over each key alone, no
+// place asked: a pointer resolved to a name folds only where the names gate
+// lets the name stand, and those are counted apart. The card asks a word's
+// own key and its pieces' keys, and at a place the gates choose its rows, so
+// the page's own count may be smaller; it is never larger. The store is read
+// at rest (--store, data/route-store beside the record of dictionary kinds),
+// so a bake on a store that moved since writes other counts.
+//
+// Usage: node tools/bake-form-of-pills-v1.mjs [--from data/pointer-entries] [--rulings data/rulings] [--names data/names] [--store data/route-store] [--out data/form-of-pills-v1.json]
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -98,6 +119,7 @@ import { PinFault, readPinnedLines, sha256Of } from "./pinned-v1.mjs";
 import { rulingsPinned, rulingOf, cited, RULINGS_DIR } from "./rulings-v1.mjs";
 import { pointerMap } from "./pointer-map-v1.mjs";
 import { NAMES_GATE_RULE_ID } from "./names-gate-v1.mjs";
+import { openRouteStore, printedForm, readingKey } from "./gloss-store-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -105,8 +127,11 @@ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i >= 0 
 const FROM = arg("from", join(K3, "data", "pointer-entries"));
 const OUT = arg("out", join(K3, "data", "form-of-pills-v1.json"));
 const NAMES = arg("names", join(K3, "data", "names"));
+const STORE = arg("store", join(K3, "data", "route-store"));
 const NAMES_HOME = "reader/data/names";   // the same folder as a record names it
-const RULE_ID = "form-of-pills-rule-v2-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries";
+const RULE_ID = "form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill";
+// the page's rule for the fold, recorded here so the gate can read it
+const ONE_PILL_RULE_ID = "pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it";
 const RULED_PRINT_RULE = "pointer-map-v1.4";   // the lane's own name for the rule its ruled prints are written under (RULE.md v1.4 §5)
 const refuse = (why) => { console.error(`REFUSED · ${why}`); process.exit(1); };
 const noDot = (t) => String(t).replace(/\.$/u, "");
@@ -218,6 +243,39 @@ if (both.length) refuse(`${both.length} text(s) stand under one key both as a po
 
 counts.keys = Object.keys(byKey).length;
 counts.carried = Object.values(byKey).reduce((n, l) => n + l.length, 0);   // the pills in the map: FORM_OF; a MIXED one prints as itself, the rest wait on the owner
+
+// ONE READING, ONE PILL: the fold counted over the store at rest, key by key (the head of this file)
+let rest;
+try { rest = openRouteStore(STORE, { atRest: true }); } catch (e) { refuse(String((e && e.message) || e)); }
+const one = { keys_of_the_map_read: 0, keys_whose_rows_rest_shut_or_are_none: 0, pills: 0, keys: 0,
+  joining_a_reading_its_own_source_carries: 0, joining_a_reading_only_other_sources_carry: 0, of_them_resolved_to_a_name: 0, of_them_by_a_ruled_print: 0,
+  pointer_groups_not_folded: { no_other_reading_prints_the_english: 0, the_english_is_the_pointers_own: 0, its_rows_resolve_to_more_than_one_english: 0 }, examples: [] };
+for (const [k, list] of Object.entries(byKey)) {
+  one.keys_of_the_map_read += 1;
+  const routes = rest.routesFor(k);
+  if (!routes || !routes.length) { one.keys_whose_rows_rest_shut_or_are_none += 1; continue; }
+  const pool = rest.readingPool(routes, "oldest");
+  const byReading = new Map(pool.map((g) => [readingKey(g.text), g]));
+  let folded = false;
+  for (const g of pool) {
+    // a group whose every row is a pointer of its own source that the map resolves
+    const rows = rest.carriersOf(routes, g.text);
+    const es = rows.map((row) => list.find((e) => e.m === String(row[3]) && printedForm(e.t) === printedForm(g.text)) || null);
+    if (!es.length || !es.every((e) => e && e.resolved)) continue;
+    const to = new Set(es.map((e) => readingKey(e.resolved.text)));
+    if (to.size > 1) { one.pointer_groups_not_folded.its_rows_resolve_to_more_than_one_english += 1; continue; }
+    const [res] = to;
+    if (res === readingKey(g.text)) { one.pointer_groups_not_folded.the_english_is_the_pointers_own += 1; continue; }
+    const target = byReading.get(res);
+    if (!target) { one.pointer_groups_not_folded.no_other_reading_prints_the_english += 1; continue; }
+    one.pills += 1; folded = true;
+    if (es.some((e) => target.by.includes(e.m))) one.joining_a_reading_its_own_source_carries += 1; else one.joining_a_reading_only_other_sources_carry += 1;
+    if (es.some((e) => e.resolved.name)) one.of_them_resolved_to_a_name += 1;
+    if (es.some((e) => e.resolved.ruled)) one.of_them_by_a_ruled_print += 1;
+    if (one.examples.length < 5) one.examples.push({ key: k, pointer: g.text, joins: target.text, by: es.map((e) => e.m) });
+  }
+  if (folded) one.keys += 1;
+}
 const out = {
   schema_version: "FORM_OF_PILLS_V4",
   rule_id: RULE_ID,
@@ -238,8 +296,17 @@ const out = {
     a_mixed_reading: { ...cited(mixedRuling), class: mixedRuling.class, print: mixedRuling.print },
     several_entries: { ...cited(severalRuling), branch: severalRuling.branch, resting: SEVERAL },
   },
-  counts, keys: byKey,
+  counts,
+  one_pill: {
+    rule: ONE_PILL_RULE_ID,
+    what: "the page shows one pill where a pointer resolves to English another reading of the same card prints: that reading, with the pointer beside it (as a pointer pill prints, formOfSays), its pill naming the pointer's rows apart from its carriers; the card still opens on the pointer's own reading key. Counted here over the store at rest, key by key, no place asked: for every key of this map whose rows rest open, each group of the key's resting pool whose every row is a pointer of its own source that the map resolves to one English, where another group of the same pool prints that English (keyed as the pool keys a reading); pills is those groups, keys the keys holding one. A pointer resolved to a name folds only where the names gate lets the name stand (of_them_resolved_to_a_name). The page's fold runs on every work's cards, the Tikkunei Zohar's too, and asks a word's own key and its pieces' keys at each place under that place's gates, so its count is never larger",
+    store: { version: rest.index.store_version || null, at_rest: rest.atRest ? { record: rest.atRest.record, version: rest.atRest.version, sha256: rest.atRest.sha256 } : null },
+    counts: one,
+  },
+  keys: byKey,
 };
 writeFileSync(OUT, JSON.stringify(out));
 const r = counts.resolved_by;
+console.log(`one reading, one pill, over the store at rest (${rest.index.store_version}): ${one.pills} pointer pills fold into another reading at ${one.keys} keys (${one.joining_a_reading_its_own_source_carries} into a reading their own source carries, ${one.joining_a_reading_only_other_sources_carry} into one only other sources carry; ${one.of_them_resolved_to_a_name} resolved to a name, ${one.of_them_by_a_ruled_print} by a ruled print) · not folded: ${JSON.stringify(one.pointer_groups_not_folded)} · ${one.keys_whose_rows_rest_shut_or_are_none} of the map's ${one.keys_of_the_map_read} keys have no row open at rest`);
+console.log(`figures ${JSON.stringify({ rule_id: RULE_ID, pills: counts.pills, carried: counts.carried, keys: counts.keys, resolved: counts.resolved, one_pill: { store_version: rest.index.store_version || null, pills: one.pills, keys: one.keys, same_source: one.joining_a_reading_its_own_source_carries, another_source_only: one.joining_a_reading_only_other_sources_carry } })}`);
 console.log(`form-of pills baked from relays ${map.relays.map((x) => x.relay).join(" + ")} (the map as laid ${map.assembled_sha256.slice(0, 12)}): ${counts.pills} pills read, by class ${JSON.stringify(counts.by_class)} · ${counts.carried} carried under ${counts.keys} keys: ${counts.resolved} resolved (${r.the_pointers_own_words} by the pointer's own words, ${r.the_sources_first_entry} by the source's first entry, ruling ${severalRuling.n}, ${r.the_ruled_print} by a ruled print: ${counts.ruled_prints.resolved} of the entry named, ${counts.ruled_prints.first_in_the_sources_order} of the source's first entry), ${counts.unresolved} not ${JSON.stringify(counts.unresolved_why)} · ${counts.resolved_to_a_name.pointers} resolved to a row its source gives as a name (names list ${namesPin.relay}, ${nameRows.length} rows) · ${counts.mixed_printing_their_own_words} MIXED print their own words (ruling ${mixedRuling.n}) · ${counts.with_branch_unset} wait on the owner's branch · ${OUT} ${JSON.stringify(out).length} bytes`);

@@ -36,8 +36,9 @@
 // of STEP's or by STEP counts it, and the other sources' count it as anywhere
 // else. A share is printed from its own count, never as a remainder.
 //
-// THE LINE AS IT RESTS. STEP's own words are never drawn at a pair or at a
-// place call 4 holds (below); where the place pieces do not answer there,
+// THE LINE AS IT RESTS. STEP's own words are never drawn at a pair (but at
+// the six where STEP's own reading stands, below) or at a place call 4 holds
+// (below); where the place pieces do not answer there,
 // today's line stands, and where the page's own record of the resting lines
 // (data/resting-lines/<book>.json.gz) holds no line over the word, STEP's
 // line as it rests is bare: STEP has no line there, the place is not one
@@ -56,7 +57,17 @@
 // zone's pieces do not answer, STEP's pick 1 a line pick of its reading, and
 // not a place the corpus lane's call 4, relay v189, writes with « | », where
 // the ledger's pick 1 is only the first of two TAHOT words); which of them are
-// bare is read off the page.
+// bare is read off the page. WHERE STEP'S OWN READING STANDS (call 4 of relay
+// v189 as the lead landed it on 15 November 2026,
+// steps-reading-stands-rule-v1: the index's [n, words, 1]) the line under
+// STEP, first or second, is STEP's own pick 1 words under STEP's credit
+// whatever today's line is; at the six pairs among those places only under
+// STEP's layer, as the page's dfltPairStands draws them, a pair keeping
+// today's line under every other source. And a run whose every word has a
+// reading of its own at the place, such a place counting as one, reads its
+// words under every source (run-reads-its-words-rule-v1, call 3; II Samuel
+// 6:10:15-16, «Obed-» from the place's pieces and «Edom» where STEP's
+// reading stands, which reads whole with the index refused).
 //
 // NODE LAWS, over all 39 books:
 //   D0  the rule this check guards is the rule the bake declares, and the one
@@ -80,7 +91,10 @@
 //       key, with its rank, its source id and its text's sha256, or where
 //       the row-strikes record says it went since the store v1.2 read
 //       (tools/row-strikes-follow-v1.mjs): a row a round moved to another
-//       key is found under the name it has now; a row a round struck is
+//       key is found under the name it has now; a row a round retexted
+//       (relay v187's words back, row-strike-rule-v7) is found at its key and
+//       rank under the words it took, named by their sha16
+//       (row-strikes-follow-rule-v2), and counted apart; a row a round struck is
 //       named by no pick any more; a row a round withheld is counted as
 //       withheld with the picks that name it; anything else is missing. The
 //       receipt's own account of those rows is this recount's. The picks
@@ -88,11 +102,18 @@
 //       with a maqaf or one that now stands under the plain key its line
 //       names. A row found twice is counted and named
 //   D3  the index's counts (has, fills, the places STEP leaves, the places
-//       STEP's words may fill) are those this check counts from the book
-//       files, the zones and the records of the resting lines (where STEP's
-//       line rests bare, which the receipt lists too); the second source of
-//       every first in every book follows the row's order on a tie, and is
-//       the one the receipt names
+//       STEP's words may fill, and the places where STEP's own reading
+//       stands) are those this check counts from the book files, the zones
+//       and the records of the resting lines (where STEP's line rests bare,
+//       which the receipt lists too); the second source of every first in
+//       every book follows the row's order on a tie, and is the one the
+//       receipt names. The places where STEP's reading stands
+//       (steps-reading-stands-rule-v1, call 4 of relay v189: [n, words, 1] in
+//       step_words, a pair among them) are counted from the pinned list
+//       (held_split_v189), the zones and the book files, never from the
+//       records: a place of the list whose action makes STEP's words the
+//       line, whose words hold no « | », and whose zone word is not a pair
+//       whose read form is several words; there STEP's line never rests bare
 //   D5  (node) no place STEP leaves is one the zone's place pieces answer, or
 //       a pair; the fills at rest are counted, and the record's lines at the
 //       places STEP's words may fill (those it draws bare are the words that
@@ -109,7 +130,17 @@
 //       place's own credit (a run's part that is a sign alone gives way to the
 //       gap where another part carries words: II Chronicles 11:11:2 and II
 //       Kings 11:18:8 since the default sources were laid, held until 15
-//       November only by the gate's S1 on the pages it samples)
+//       November only by the gate's S1 on the pages it samples). A record is
+//       judged only where its read_off.files names the index being checked by
+//       its sha256 (a record of the round's defaults step was read with the
+//       index before: it is counted, and not judged); a place where STEP's
+//       reading stands is no place STEP's words "may fill", and is D21's
+//   D21 (node) at each place where STEP's own reading stands (the index's
+//       [n, words, 1]), every record read with this index draws STEP's words
+//       as the line draws them, a line of its own under STEP's credit (M4),
+//       whatever today's line was; a record read with another index is
+//       counted and not judged, and with none judged the law holds with
+//       nothing to judge and says so
 //   D20 (node) the receipt's pills the card prints (picks_printed) are this
 //       check's: under each first and its second, each source's pills where
 //       its words print (STEP's own words only where they print, read off the
@@ -132,33 +163,47 @@
 // gives across words in part at a word under a line of its own, outside any
 // run drawn whole (the record of the resting lines says which), so that D7
 // meets the hold there under every source.
-// "Today's line" is read off the page itself, with the index refused, so the
-// page draws no default layer (the risk the plan guards: the index fails to
-// load and the page stands as it was).
+// "Today's line" is read off the page itself, served an index that names no
+// source (its sources dropped), so no source is in force and the page draws
+// no default layer, while the index's places where STEP's own reading stands
+// still give their words a reading of their own, as a run reads them under
+// every source (call 3 counts call 4's stands; with the index refused
+// II Samuel 6:10:15-16 reads whole, and with it, its words).
 //   D4  a first visit: «STEP» alone is pressed, the pills are the index's in
 //       its order, the note is hidden, nothing is kept, the second is the one
 //       counted here, and the Menu mirrors the four pills and no chooser
 //   D5  at rest every line is today's, byte for byte, except exactly at the
-//       places STEP leaves that its second fills, and at the places today's
-//       line draws bare where STEP's words may fill: there the second's line
-//       under the second's chip, or STEP's words under STEP's, and its card
-//       pressed on it
+//       places STEP leaves that its second fills, at the places today's line
+//       draws bare where STEP's words may fill, and at the places where STEP's
+//       own reading stands, a pair among them: there the second's line under
+//       the second's chip, or STEP's words under STEP's, and its card pressed
+//       on it
 //   D6  each pill, pressed on the row and in the Menu, leaves one lit; the
 //       choice is kept and a reload keeps it, ?default= is not kept; the note
 //       shows by its rule, its shares are this check's of the index's counts,
 //       and it says only what is true of the line as drawn (STEP's: what its
-//       layer is, the line as it rests, then the share where STEP has its
-//       own reading and that line stands; a source STEP's layer fills out is
+//       layer is, the line as it rests, STEP's own words where its reading
+//       stands counted where the book has any, then the share where STEP has
+//       its own reading and that line stands; a source STEP's layer fills out is
 //       filled out by «the line as it rests»); a lit pill pressed again does
 //       what the plan says
 //   D7  under each source, every line of w1-w3 and w5 is the model: a pair keeps
 //       today's line, a joined run keeps its line unless the source reads
-//       every word of it, a word of a reading the place gives across words
+//       every word of it (a joined run: one today's lines still draw whole,
+//       some word of it having no reading of its own at the place; a run
+//       whose every word has one, its place pieces or a place where STEP's
+//       own reading stands, reads its words, each word's line today's,
+//       run-reads-its-words-rule-v1, call 3 of relay v189 as the lead landed
+//       it, and today's lines drawing such a run whole is a fault), a word of
+//       a reading the place gives across words
 //       («Beth-» «-lehem», «Tubal-» «Cain»: a reading ending with a hyphen
 //       goes on in the next word) keeps its line unless one source has a line
-//       at every word of it, else the source's line, else the second's (STEP
+//       at every word of it (STEP's words beside a word its own place pieces
+//       read count as read at every word, the page's dfltAcross), else the
+//       source's line, else the second's (STEP
 //       as a second is the line under STEP: today's line, or STEP's words
-//       where today's is bare), else today's line; and a unit the source reads
+//       where today's is bare or where STEP's own reading stands), else
+//       today's line; and a unit the source reads
 //       at every word of it (the words of a reading the place gives across
 //       words, or of one entry across words, the lattice's headword the same
 //       at each and its letters running across their boundary, its line at
@@ -176,7 +221,10 @@
 //   D11 back on STEP after each source is the first paint: every line, and
 //       the first five cards
 //   D12 the card answers as the line under each source, on the first twenty
-//       words; at rest the card's line of the place's pieces names whose
+//       words (a pill that took the pointers resolving to it read as the line
+//       prints it, the pointer beside the reading on the pill alone:
+//       lineOfPill, pointer-one-pill-rule-v1, question 12 of relay v189); at
+//       rest the card's line of the place's pieces names whose
 //       pieces they are («here STEP reads » where they are TAHOT's, «here
 //       MACULA reads » where they are MACULA's: every place of w1-w3 whose
 //       pieces are MACULA's alone, found in the zone, is opened for it), and
@@ -241,6 +289,7 @@ import { DEFAULT_PICKS_RULE_ID } from "./bake-default-picks-v1.mjs";
 import { defaultsNotAtRest } from "./bake-resting-lines-v1.mjs";
 import { openFollower, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { routePrinted, signsOff, signOnly, SIGN_GAP } from "./gloss-store-v1.mjs";
+import { lineOfPill } from "./card-readings-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -338,7 +387,7 @@ const placesOf = (zone) => {
     (sec.words || []).forEach((w, e) => {
       n += 1;
       const mark = !!(w && w.mark);
-      out.push({ n, i, e, mark, label: mark ? null : `${sec.label}:${++k}`, k: mark ? 0 : k, kq: !!(w && w.kq), pgA: !mark && pgAnswers(w),
+      out.push({ n, i, e, mark, label: mark ? null : `${sec.label}:${++k}`, k: mark ? 0 : k, kq: !!(w && w.kq), kqSeveral: !!(w && w.kq && Number(w.kq.words_read) > 1), pgA: !mark && pgAnswers(w),
         // whose the place's pieces are, by the lattice's witness on each (tahot, macula)
         pgS: mark || !Array.isArray(w.pg) ? [] : [...new Set(w.pg.map((x) => x && x.s).filter(Boolean))],
         // whether the place's reading, as its pieces print it, ends with a hyphen: it goes on in the next word, a
@@ -401,10 +450,28 @@ const SPLIT_HELD = (() => {
   if (bytes.length !== e.bytes || sha256(bytes) !== e.sha256 || lines.length !== e.lines) return { set: new Set(), fault: `${e.file}: ${bytes.length} bytes, ${lines.length} lines, sha ${sha256(bytes).slice(0, 12)}, not its pin's` };
   return { set: new Set(lines.map((l) => JSON.parse(l)).filter((d) => typeof d.steps_words === "string" && d.steps_words.includes(" | ")).map((d) => `${d.book} ${d.p}`)), fault: null };
 })();
+/** The places where STEP's own reading stands (steps-reading-stands-rule-v1): the places of the same pinned copy of
+ *  call 4 whose action makes STEP's words the line and whose words hold no « | », by "<book> <place>"; a pair whose
+ *  read form is several words among them is v192's and is left out where the place is read (standsAt). */
+const STANDS_ACTION = "steps_words_are_the_line";
+const STANDS = (() => {
+  const e = PIN.held_split_v189;
+  const p = e && typeof e.file === "string" ? join(DP, e.file) : null;
+  if (!p || !existsSync(p)) return new Map();
+  return new Map(readFileSync(p, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l))
+    .filter((d) => d.action === STANDS_ACTION && typeof d.steps_words === "string" && !d.steps_words.includes(" | ")).map((d) => [`${d.book} ${d.p}`, d.steps_words]));
+})();
+/** STEP's own words where its reading stands, as the book file holds its pick 1 (kind r, credited M4); else null. */
+const standsAt = (bf, p, b) => {
+  if (p.mark || p.kqSeveral || !STANDS.has(`${b} ${p.label}`)) return null;
+  const s = (bf.places[p.n - 1] || [])[SLOT.step];
+  return Array.isArray(s) && s.length && s[0][0] === KIND_OF.r && hasText(s[0][1]) ? s[0][1] : null;
+};
 /** STEP's own words at a place where they may fill the line: no pair, the zone's pieces do not answer, STEP's pick 1
- *  is a line pick of its reading (kind r, credited M4), and call 4 does not write the place with « | »; else null. */
+ *  is a line pick of its reading (kind r, credited M4), call 4 does not write the place with « | », and STEP's reading
+ *  does not stand there (standsAt); else null. */
 const stepWordsAt = (bf, p, b) => {
-  if (p.mark || p.kq || p.pgA || SPLIT_HELD.set.has(`${b} ${p.label}`)) return null;
+  if (p.mark || p.kq || p.pgA || SPLIT_HELD.set.has(`${b} ${p.label}`) || standsAt(bf, p, b) !== null) return null;
   const s = (bf.places[p.n - 1] || [])[SLOT.step];
   return Array.isArray(s) && s.length && s[0][0] === KIND_OF.r && linePick(s[0][1]) ? s[0][1] : null;
 };
@@ -415,7 +482,7 @@ const recordOf = (b) => { if (!RECORDS.has(b)) RECORDS.set(b, readRecord(recordP
  *  pieces do not answer, STEP's pick 1 a line pick, and no line of the record over the word. null where the work has
  *  no record, so it cannot be told. */
 const restsBareAt = (bf, p, b) => {
-  if (p.mark || p.pgA || !(p.kq || SPLIT_HELD.set.has(`${b} ${p.label}`))) return false;
+  if (p.mark || p.pgA || !(p.kq || SPLIT_HELD.set.has(`${b} ${p.label}`)) || standsAt(bf, p, b) !== null) return false;
   const s = (bf.places[p.n - 1] || [])[SLOT.step];
   if (!(Array.isArray(s) && s.length && linePick(s[0][1]))) return false;
   const rec = recordOf(b);
@@ -450,8 +517,9 @@ const countBook = (within, bf, any = false, b = bf.book) => {
       const bw = b0 && b0[1] ? bf.bdb_words[b0[1] - 1] : null;
       leaves.push([p.n, lineAt(bf, p, "macula") || 0, lineAt(bf, p, "ubs") || 0, line.bdb && hasText(bw) ? [b0[0], bw] : 0]);
     }
-    const sw = stepWordsAt(bf, p, b);
-    if (sw !== null) words.push([p.n, sw]);
+    const sd = standsAt(bf, p, b), sw = sd === null ? stepWordsAt(bf, p, b) : null;
+    if (sd !== null) words.push([p.n, sd, 1]);
+    else if (sw !== null) words.push([p.n, sw]);
   }
   return { entries, places, kq, has, fills, step_leaves: leaves, step_words: words, bare, unknown };
 };
@@ -476,20 +544,25 @@ const leafLine = (leaf, src) => {
  *  where STEP has its own reading and that line stands (has.step, which leaves out a held place or a pair whose line
  *  rests bare), and a source filled out by STEP's layer is filled out by «the line as it rests»;
  *  `left` prints the share today's line keeps (the fault H6 prints it as a remainder). `macula` is the number of the
- *  book's words whose place pieces are MACULA's alone, which STEP's layer names. */
+ *  book's words whose place pieces are MACULA's alone, which STEP's layer names. `stands` is the number of the book's
+ *  places where STEP's own reading stands (the index's [n, words, 1], which D3 holds to this check's own count): STEP's
+ *  layer names them, its own words there whatever today's line is, and says «only where today's line was bare» only
+ *  in a book with none (steps-reading-stands-rule-v1, ship 5: the STEP pill's words drop «only» where they stand). */
 const AS_IT_RESTS = "the line as it rests";
 const upFirst = (t) => `${t[0].toUpperCase()}${t.slice(1)}`;
-const stepLayerSay = (macula) => `${AS_IT_RESTS}: ${macula ? `the place’s own reading (TAHOT’s, and MACULA’s at ${n0(macula)} word${macula === 1 ? "" : "s"})` : "TAHOT’s reading at the place"}, STEP’s own words only where today’s line was bare, and elsewhere today’s line, whose chip names its own source`;
+const stepLayerSay = (macula, stands = 0) => `${AS_IT_RESTS}: ${macula ? `the place’s own reading (TAHOT’s, and MACULA’s at ${n0(macula)} word${macula === 1 ? "" : "s"})` : "TAHOT’s reading at the place"}, ${stands ? `STEP’s own words where STEP spells or parts the word otherwise (${n0(stands)} word${stands === 1 ? "" : "s"}) and where today’s line was bare` : "STEP’s own words only where today’s line was bare"}, and elsewhere today’s line, whose chip names its own source`;
 const maculaPiecesIn = (b) => slim(b).places.filter((p) => same(p.pgS, ["macula"])).length;
+// (read once the index's stands are, STANDS_IX below)
+const standsIn = (b) => (STANDS_IX.get(b) || new Map()).size;
 const leftOwn = (c, b, hx, N) => (c > 0 ? pct(c, N) : null);
-const noteSay = ({ first, second, auto, counts, work, left = leftOwn, macula = 0 }) => {
+const noteSay = ({ first, second, auto, counts, work, left = leftOwn, macula = 0, stands = 0 }) => {
   const N = counts.places, hx = counts.has[first];
   const X = PILL[first];
   const b = second ? counts.fills[first][second] : 0;
   const c = N - hx - b, l = left(c, b, hx, N);
   const chosen = second === auto ? ", chosen for this book." : ".";
   if (first === "step") {
-    const s = `${upFirst(stepLayerSay(macula))}.`;
+    const s = `${upFirst(stepLayerSay(macula, stands))}.`;
     if (hx >= N) return `${s} STEP has its own reading, and this line stands, at every word of ${work}.`;
     let t = `${s} STEP has its own reading, and this line stands, at ${pct(hx, N)} of ${work}.`;
     // a second fills only where STEP has none; the rest said of the line as drawn: where STEP's line rests bare it
@@ -779,7 +852,7 @@ const rowsUnder = (served, [key, rank, m, h]) => (served[key] || []).filter((x) 
  *  `keep`, where given, takes the served row found for each (the first, where it is found twice, as the bake takes it;
  *  a row a round moved, the row under its name now), for D20's count by the rows a pick names. */
 const resolveRows = (rows, { follow = null, refs = null, keep = null } = {}) => {
-  const missing = [], twice = [], notAsNamed = [], followed = [], struck = [], withheld = [];
+  const missing = [], twice = [], notAsNamed = [], followed = [], retexted = [], struck = [], withheld = [];
   const byShard = new Map();
   rows.forEach((r, i) => { const sh = shardOf(r[0]); if (!byShard.has(sh)) byShard.set(sh, []); byShard.get(sh).push(i); });
   for (const sh of [...byShard.keys()].sort()) {
@@ -798,10 +871,13 @@ const resolveRows = (rows, { follow = null, refs = null, keep = null } = {}) => 
     if (went.state === "struck") struck.push(i);
     else if (went.state === "withheld") withheld.push(i);
     else if (went.state === "re-keyed" && rowsUnder(servedAt(went.name[0]), went.name).length === 1) { followed.push(i); if (keep) keep[i] = rowsUnder(servedAt(went.name[0]), went.name)[0]; }
+    // a row a round retexted since (relay v187's words back, row-strike-rule-v7): at its key and rank under the words it
+    // took, named by their sha16 (row-strikes-follow-rule-v2)
+    else if (went.state === "retexted" && rowsUnder(servedAt(went.name[0]), went.name).length === 1) { retexted.push(i); if (keep) keep[i] = rowsUnder(servedAt(went.name[0]), went.name)[0]; }
     else missing.push(i);
   }
   const picks = (list) => list.reduce((a, i) => a + ((refs && refs.get(i)) || 0), 0);
-  return { missing, twice, followed, struck, withheld, still_named: struck.filter((i) => refs && refs.get(i)), picks: { followed: picks(followed), withheld: picks(withheld) } };
+  return { missing, twice, followed, retexted, struck, withheld, still_named: struck.filter((i) => refs && refs.get(i)), picks: { followed: picks(followed), retexted: picks(retexted), withheld: picks(withheld) } };
 };
 let ROWS = null;
 // each row of the tables as the served store holds it: its source id and its text as the card prints it, null where it
@@ -824,7 +900,9 @@ else if (ledgerHere) {
   ROW_TEXT = kept.map((r) => (r ? routePrinted(r) : null));
   if (!D2) check("D2  every row a pick names is found again in the served store, as named or where the row-strikes record says it went", false, followWhy);
   else {
-    const mine = { rows_re_keyed_and_found_under_their_new_name: { rows: D2.followed.length, picks_naming_them: D2.picks.followed }, rows_struck_since_that_no_pick_names: D2.struck.length - D2.still_named.length, rows_withheld_since: { rows: D2.withheld.length, picks_naming_them: D2.picks.withheld } };
+    const mine = { rows_re_keyed_and_found_under_their_new_name: { rows: D2.followed.length, picks_naming_them: D2.picks.followed }, rows_struck_since_that_no_pick_names: D2.struck.length - D2.still_named.length, rows_withheld_since: { rows: D2.withheld.length, picks_naming_them: D2.picks.withheld },
+      // the receipt names the rows retexted since only where there are some, as the bake writes it
+      ...(D2.retexted.length || ((((RECEIPT || {}).rows || {}).followed || {}).rows_retexted_and_found_under_their_new_name) ? { rows_retexted_and_found_under_their_new_name: { rows: D2.retexted.length, picks_naming_them: D2.picks.retexted } } : {}) };
     const said = ((RECEIPT || {}).rows || {}).followed || null;
     const off = !RECEIPT ? [] : !said ? ["the receipt gives no account of the rows followed"] : Object.keys(mine).filter((k) => !same(typeof mine[k] === "object" ? { rows: (said[k] || {}).rows, picks_naming_them: (said[k] || {}).picks_naming_them } : said[k], mine[k])).map((k) => `the receipt's ${k} is ${JSON.stringify(said[k])} and this recount gives ${JSON.stringify(mine[k])}`);
     check("D2  every row a pick names is found again in the served store under its key, rank, source id and text, or where the row-strikes record says it went since the store v1.2 read: moved and found there, struck and named by no pick, or withheld and counted so; the receipt's account of them is this recount's", !D2.missing.length && !D2.still_named.length && !unnamed.length && !off.length,
@@ -927,6 +1005,11 @@ const stepPrints = (rec, p, words) => {
 // ---- D5 (node) · the places STEP leaves, and those its own words may fill -----------------------------------------
 const FILLS = new Map();   // book -> Map(n -> { src, text, m }): the second's fills at rest, every source on
 const STEP_WORDS = new Map();   // book -> Map(n -> STEP's words): the places STEP's own words fill where today's line is bare
+const STANDS_IX = new Map();    // book -> Map(n -> STEP's words): the places where STEP's own reading stands (the index's [n, words, 1])
+// a record of the resting lines is judged here only where it was read with the index being checked (its read_off.files
+// names it by its sha256); one the round's defaults step meets was read with the index before, and is counted
+const IX_SHA = sha256(INDEX_BYTES);
+const readWithThisIndex = (rec) => !!rec && ((rec.read_off || {}).files || {})["data/default-picks/index.json"] === IX_SHA;
 {
   const answered = [];
   let total = 0, bare = 0;
@@ -941,7 +1024,8 @@ const STEP_WORDS = new Map();   // book -> Map(n -> STEP's words): the places ST
       if (t) { m.set(leaf[0], { src: s, text: t, m: MOF(s) }); total += 1; } else bare += 1;
     }
     FILLS.set(b, m);
-    STEP_WORDS.set(b, new Map((e.step_words || []).map(([n, t]) => [n, t])));
+    STEP_WORDS.set(b, new Map((e.step_words || []).filter((r) => r[2] !== 1).map(([n, t]) => [n, t])));
+    STANDS_IX.set(b, new Map((e.step_words || []).filter((r) => r[2] === 1).map(([n, t]) => [n, t])));
   }
   const want = RECEIPT && RECEIPT.rest_fills ? RECEIPT.rest_fills.count : null;
   const words = [...STEP_WORDS.values()].reduce((a, m) => a + m.size, 0);
@@ -958,11 +1042,13 @@ const STEP_WORDS = new Map();   // book -> Map(n -> STEP's words): the places ST
   const lineOver = (rec, p) => ((rec.sections[p.i] || [])[1] || []).find((x) => p.e >= x[0] && p.e < x[0] + x[1]) || null;
   // the places call 4 writes with « | » that STEP's words would else fill: held, no STEP words in the index, and
   // today's line stands; where the record draws it bare it stays bare at rest
-  const held = [], heldBare = [];
+  const held = [], heldBare = [], notThisIndex = [];
   for (const b of BOOKS) {
     const rec = readRecord(recordPath(K3, b));
     if (!rec) { noRecord += STEP_WORDS.get(b).size; continue; }
-    const withDefaults = !!(((rec.read_off || {}).state || {}).defaults);
+    // a record read with another index is counted, not judged
+    if (!readWithThisIndex(rec)) notThisIndex.push(b);
+    const withDefaults = !!(((rec.read_off || {}).state || {}).defaults) && readWithThisIndex(rec);
     if (withDefaults) laid.push(b);
     for (const [n, t] of STEP_WORDS.get(b)) {
       const p = slim(b).places[n - 1];
@@ -990,6 +1076,29 @@ const STEP_WORDS = new Map();   // book -> Map(n -> STEP's words): the places ST
     missingLines.length || wrongLines.length ? `${missingLines.length ? `${missingLines.length} drawn bare: ${first(missingLines)}` : ""}${missingLines.length && wrongLines.length ? " · " : ""}${wrongLines.length ? `${wrongLines.length} drawn otherwise: ${first(wrongLines)}` : ""}` : `${laid.length} of ${BOOKS.length} records read with them laid${laid.length < BOOKS.length ? ` (the others, read before, are today's line and judge nothing)` : ""}`);
   side("D5  (node) the record's lines at the places STEP's own words may fill", `${n0(sum(drawsNone))} draw no line, in ${Object.keys(drawsNone).length} books (while the record is today's line, each a word that gains STEP's words at rest)${sum(drawsNone) ? `: ${byBook(drawsNone)}; e.g. ${first(rows, 3)}` : ""} · ${n0(sum(drawsStep))} draw STEP's own words under its credit where today's line is bare · ${n0(sum(drawsToday))} draw them as today's line, a TAHOT row the card asks · ${n0(other)} draw another line${noRecord ? ` · ${noRecord} in works with no record` : ""}`);
   side("D5  (node) the places call 4 writes with « | », held", `${n0(held.length)} where STEP's pick 1 is a line pick, no pair, no pieces that answer: no STEP words in the index, today's line stands; the record draws ${heldBare.length} of them bare, and they stay bare at rest${heldBare.length ? ` (${heldBare.join(", ")})` : ""}`);
+  if (notThisIndex.length) side("D5  (node) records read with another index", `${notThisIndex.length} book(s)' records were read with another index than this one (${first(notThisIndex, 4)}): their lines are counted above and not judged, until the lines step reads them again`);
+  // ---- D21 (node) · where STEP's own reading stands (steps-reading-stands-rule-v1) ----------------------------------
+  {
+    const faults = [], judgedBooks = [], waiting = [];
+    let places = 0, judgedPlaces = 0;
+    for (const b of BOOKS) {
+      const stands = STANDS_IX.get(b);
+      places += stands.size;
+      if (!stands.size) continue;
+      const rec = readRecord(recordPath(K3, b));
+      if (!readWithThisIndex(rec)) { waiting.push(b); continue; }
+      judgedBooks.push(b);
+      for (const [n, words] of stands) {
+        const p = slim(b).places[n - 1];
+        judgedPlaces += 1;
+        const u = p ? lineOver(rec, p) : null;
+        if (!p || !u || u[1] !== 1 || u[3] !== MOF("step") || u[2] !== drawnStep(words)) faults.push(`${b} ${p ? p.label : `n ${n}`}: the record draws ${u ? `${said(u[2], 30)} [${u[3]}]${u[1] !== 1 ? ` over ${u[1]} entries` : ""}` : "no line"}, and STEP's reading stands here: ${said(drawnStep(words), 30)} [${MOF("step")}]`);
+      }
+    }
+    check("D21 (node) at each place where STEP's own reading stands, every record read with this index draws STEP's words as the line draws them, a line of its own under STEP's credit, whatever today's line was",
+      !faults.length,
+      faults.length ? `${faults.length} · ${first(faults)}` : places === 0 ? "the index stands STEP's reading at no place: nothing to judge" : `${n0(places)} places in ${[...STANDS_IX.values()].filter((m) => m.size).length} books · ${n0(judgedPlaces)} judged on ${judgedBooks.length} records read with this index${waiting.length ? ` · ${waiting.length} record(s) read with another index counted and not judged (${first(waiting, 4)}): the lines step reads them again` : ""}`);
+  }
 }
 
 // ---- D5 (node) · beside STEP's words, the hidden sign's gap --------------------------------------------------------
@@ -1089,8 +1198,9 @@ const pillsOf = (bf, p, src) => {
       if (p.mark || !bf.places[p.n - 1]) continue;
       const rests = restsBareAt(bf, p, b);
       const has = Object.fromEntries(IDS.map((s) => [s, lineAt(bf, p, s) !== null && !(s === "step" && rests)]));
-      const sw = stepWordsAt(bf, p, b);
-      const prints = sw !== null && stepPrints(rec, p, sw);
+      // where STEP's own reading stands (call 4) its words are the line whatever today's line is, and print
+      const sd = standsAt(bf, p, b), sw = sd === null ? stepWordsAt(bf, p, b) : null;
+      const prints = sd !== null || (sw !== null && stepPrints(rec, p, sw));
       if (prints) add("step", "step", b, p, "step", true);
       if (second.step && leaves.has(p.n) && has[second.step]) add("step", second.step, b, p, second.step, true);
       for (const x of IDS.filter((s) => s !== "step")) {
@@ -1268,12 +1378,18 @@ const menu = async (s) => {
 /** The line a word reads from the default sources: X's own, else the second's, else none, which is today's line; a
  *  pair keeps today's line. The line under STEP, first or second, is today's line, or STEP's own words where today's
  *  line is `bare` and the index carries them (step_words), under STEP's credit and drawn as a reading's packing; STEP's
- *  second fills only the places STEP leaves. `line` is the text as the page draws it. */
+ *  second fills only the places STEP leaves. Where STEP's own reading stands (steps-reading-stands-rule-v1, call 4 as
+ *  the lead landed it: the index's [n, words, 1]) the line under STEP, first or second, is STEP's own words whatever
+ *  today's line is, and at a pair among those places it is so under STEP's layer alone (X is STEP, as at rest and while
+ *  another source waits for its book file: the page's dfltPairStands); under another source the pair keeps today's
+ *  line. `line` is the text as the page draws it. */
 const layerAt = (b, X, Y, p, bare = false) => {
-  if (!p || p.mark || p.kq) return null;
+  if (!p || p.mark) return null;
   const bf = bookRead(b);
   const of = (src, t, layer) => (t ? { src, text: t, line: src === "step" ? drawnStep(t) : drawn(t), m: MOF(src), layer } : null);
-  const stepOwn = (layer) => of("step", bare ? STEP_WORDS.get(b).get(p.n) || null : null, layer);
+  const stands = STANDS_IX.get(b).get(p.n) || null;
+  if (p.kq) return X === "step" ? of("step", stands, "first") : null;
+  const stepOwn = (layer) => of("step", stands || (bare ? STEP_WORDS.get(b).get(p.n) || null : null), layer);
   if (X === "step") {
     const leaf = IX.books[b].step_leaves.find((r) => r[0] === p.n);
     return of(Y, leaf && Y ? leafLine(leaf, Y) : null, "second") || stepOwn("first");
@@ -1284,10 +1400,13 @@ const layerAt = (b, X, Y, p, bare = false) => {
 };
 /** A word of a reading the place gives across words takes a source's line only where that source has a line at every
  *  word of it, and else keeps today's line, as its neighbor does (the review of 15 November 2026: under MACULA and UBS
- *  one half stood alone, «Bethlehem» «-lehem» at Ruth 1:1:10-11). d: the word's own layer (layerAt). */
+ *  one half stood alone, «Bethlehem» «-lehem» at Ruth 1:1:10-11). A word its own place pieces read is read by STEP,
+ *  whose layer is the line as it rests: where STEP's words are the line at a word of such a reading, a neighbor its
+ *  pieces read holds no half alone (the page's dfltAcross, ship 5: II Samuel 6:10:15-16, «Obed-» from the pieces and
+ *  «Edom» where STEP's own reading stands). d: the word's own layer (layerAt). */
 const wholeAcross = (b, X, Y, p, d) => {
   const across = d ? acrossOf(b, p) : null;
-  return !across || across.every((q) => q === p || (layerAt(b, X, Y, q) || {}).src === d.src) ? d : null;
+  return !across || across.every((q) => q === p || (layerAt(b, X, Y, q) || {}).src === d.src || (d.src === "step" && q.pgA)) ? d : null;
 };
 /** Every line of a work under X with its second Y, from today's lines (`base`, the page read with no default layer):
  *  per section, its units by their first entry, as linesOnPage gives them. A joined run keeps its line unless X
@@ -1429,7 +1548,7 @@ const cardNow = () => {
     open: !!h && !h.hidden, n: pills.length,
     pills: pills.map((x) => `${x.getAttribute("aria-pressed") === "true" ? "*" : ""}${x.textContent.trim()}`),
     first: pills[0] ? { text: pills[0].textContent.trim(), title: pills[0].title || "", by: pills[0].dataset.by || "", pressed: pills[0] === pressed } : null,
-    pressed: pressed ? pressed.textContent.trim() : null,
+    pressed: pressed ? pressed.textContent.trim() : null, pressedBy: pressed ? pressed.dataset.pointerBy || "" : "",
     now: ((document.querySelector("#hud .r-now .v") || {}).textContent || "").trim(), nowK: ((document.querySelector("#hud .r-now .k") || {}).textContent || "").trim(),
     line: c ? c.textContent.trim() : null, chosen: !!(act && act.classList.contains("chosen")),
     piece: piece ? { i: ((piece.querySelector(":scope > i") || {}).textContent || ""), b: ((piece.querySelector(":scope > b") || {}).textContent || ""), more: more(piece) } : null,
@@ -1438,6 +1557,12 @@ const cardNow = () => {
     core: !!document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]') && document.querySelectorAll("#hud .b-cell .s-pills button").length > 1,
   };
 };
+/** Whether a card's pressed pill puts `t` on the line: its text as it prints, or, where the pill took the pointers
+ *  resolving to its reading (it names their rows apart, data-pointer-by), the reading without the pointer printed
+ *  beside it on the pill alone, the case folded (pointer-one-pill-rule-v1, question 12 of relay v189, ship 5: the
+ *  fold matched the pointer to the reading by its printed form, case aside; lineOfPill, as eleven other checks read
+ *  such a pill). `draw` draws that reading as the line draws it (drawnStep for STEP's own words). */
+const pressedOn = (c, t, draw = (x) => x) => c.pressed !== null && (c.pressedBy ? fold(draw(lineOfPill(c.pressed, c.pressedBy))).toLowerCase() === fold(t).toLowerCase() : fold(draw(c.pressed)) === fold(t));
 const settledCard = async (s, test = (c) => c.open && (c.n > 0 || c.dflt.length > 0)) => {
   let last = "", now = null;
   for (let k = 0; k < 40; k += 1) {
@@ -1504,11 +1629,48 @@ const SUG = existsSync(join(K3, "data", "source-suggested", "index.json")) ? rea
 const V = {};   // each page law's faults and what it saw
 const law = (k) => { if (!V[k]) V[k] = { faults: [], saw: [] }; return V[k]; };
 
-/** Today's lines of a work: the page read with its index refused, so it draws no default layer. */
+/** Today's lines of a work: the page served an index that names no source (NO_SOURCE), so no source is in force and
+ *  it draws no default layer, while the index's places where STEP's own reading stands still give their words a
+ *  reading of their own, as a run reads them under every source (run-reads-its-words-rule-v1 counts call 4's stands,
+ *  ship 5: with the index refused, II Samuel 6:10:15-16 «Obed-Edom» read whole, and under every source the page reads
+ *  its words, «Obed-» from the place's pieces and «Edom»). A run these lines draw whole where every word of it has a
+ *  reading of its own at the place is a fault of D7 (runsReadWhole). */
+const NO_SOURCE_INDEX = JSON.stringify({ ...IX, sources: [] });
+const NO_SOURCE = [INDEX_AT, (r) => r.fulfill({ status: 200, contentType: "application/json", body: NO_SOURCE_INDEX })];
+/** The lines over several entries in `base` that are runs every word of which has a reading of its own at the place:
+ *  its place pieces, every one saying something (as placeLine reads them with nothing switched off), or a place where
+ *  STEP's own reading stands (the index's [n, words, 1]); a bridged mark is no word of it. Each said in words. */
+const runsReadWhole = (b, base) => {
+  const stands = STANDS_IX.get(b) || new Map(), out = [];
+  base.sections.forEach((sec, i) => {
+    for (const u of sec.units || []) {
+      if (u[1] < 2) continue;
+      const ws = Array.from({ length: u[1] }, (_, j) => placeAt(b, i, u[0] + j)).filter((p) => p && !p.mark);
+      if (ws.length && ws.every((p) => p.pgA || stands.has(p.n))) out.push(`${b} ${sectionsOf(b)[i].label} entry ${u[0] + 1}: today's lines draw ${said(u[2], 30)} [${u[3]}] over ${u[1]} entries, and every word of the run has its own reading at the place${ws.some((p) => stands.has(p.n)) ? " (STEP's own reading stands at a word of it)" : ""}: it reads its words`);
+    }
+  });
+  return out;
+};
 const BASE = new Map();
+let wholeRunFaults = 0;
 const baseOf = async (b) => {
-  if (!BASE.has(b)) { const s = await open(b, { refuse: [INDEX_AT] }); try { BASE.set(b, await lines(s)); } finally { await s.close(); } }
+  if (!BASE.has(b)) {
+    const s = await open(b, { serve: [NO_SOURCE] });
+    try {
+      const B = await lines(s);
+      BASE.set(b, B);
+      const whole = B ? runsReadWhole(b, B) : [];
+      wholeRunFaults += whole.length;
+      law("D7").faults.push(...whole);
+    } finally { await s.close(); }
+  }
   return BASE.get(b);
+};
+// what D7 saw of the runs today's lines draw whole, said once every base is read and none is a fault
+const wholeRunsSaid = () => {
+  const read = [...BASE.entries()].filter(([, B]) => !!B);
+  const whole = read.reduce((a, [, B]) => a + B.sections.reduce((k, sec) => k + (sec.units || []).filter((u) => u[1] > 1).length, 0), 0);
+  return `today's lines of ${read.map(([b]) => b).join(", ")}, read with the index naming no source: ${whole} run(s) drawn whole${whole ? ", each with a word that has no reading of its own at the place" : ""}`;
 };
 const REST = new Map();
 
@@ -1591,7 +1753,7 @@ const d11d12 = async (s, b, R) => {
   const misnamed = C0.filter((c) => c.piece && !whose(c).includes(c.piece.i));
   if (misnamed.length) law("D12").faults.push(`at rest the card's line of the place's pieces begins ${said(misnamed[0].piece.i)} at s${misnamed[0].sec} entry ${misnamed[0].e + 1}, whose pieces are ${(placeAt(b, misnamed[0].sec, misnamed[0].e) || { pgS: [] }).pgS.join(", ") || "none"}`);
   if (listed && !C0.some((c) => c.sug)) law("D12").faults.push(`at rest none of the first ${C0.length} cards of ${b} carries the BSB's line`);
-  for (const c of C0) if (!c.core && c.pressed !== null && !(fold(c.pressed) === fold(c.line) && fold(c.now) === fold(c.line))) law("D12").faults.push(`at rest ${b} s${c.sec} entry ${c.e + 1}: the line ${said(c.line, 30)}, the row ${said(c.now, 30)}, pressed ${said(c.pressed, 30)}`);
+  for (const c of C0) if (!c.core && c.pressed !== null && !(pressedOn(c, c.line) && fold(c.now) === fold(c.line))) law("D12").faults.push(`at rest ${b} s${c.sec} entry ${c.e + 1}: the line ${said(c.line, 30)}, the row ${said(c.now, 30)}, pressed ${said(c.pressed, 30)}`);
   law("D12").saw.push(`at rest ${C0.length} cards of ${b}: ${pieceSaid.filter((t) => t === `here ${PILL.step} reads `).length} say «here STEP reads», ${pieceSaid.filter((t) => t === `here ${PILL.macula} reads `).length} «here MACULA reads», ${C0.filter((c) => c.sug).length} carry the BSB's line`);
   const key = (c) => JSON.stringify([c.pills, c.pressed, c.now]);
   const five = C0.slice(0, 5).map(key);
@@ -1628,39 +1790,53 @@ const atRest = async (b, isW1) => {
     if (!B || !R) { law("D5").faults.push(`${b}: the lines were not read`); return; }
     const second = autoSecond(IX.books[b].fills, "step");
     const fills = restFillsOf(b, B);
-    // D5: the model at rest is today's line with STEP's leaves filled by its second, and STEP's own words where it is bare
+    // and the places where STEP's own reading stands (call 4, steps-reading-stands-rule-v1), a pair among them: STEP's
+    // words under STEP's chip whatever today's line is, held as a fill is, on the line, in the record and on the card
+    const stands = new Map([...STANDS_IX.get(b)].map(([n, t]) => [n, { src: "step", text: t, m: MOF("step"), stands: true }]));
+    const owed = new Map([...fills, ...stands]);
+    // D5: the model at rest is today's line with STEP's leaves filled by its second, STEP's own words where it is
+    // bare, and STEP's own words where its reading stands
     const d = differ(b, modelOf(b, "step", second, B), R);
     law("D5").faults.push(...d.map(sayDiff));
     const rec = readRecord(recordPath(K3, b));
-    let asToday = 0, asFilled = 0, fillsDrawn = 0, underRun = 0;
+    let asToday = 0, asFilled = 0, fillsDrawn = 0, standsDrawn = 0, underRun = 0;
     if (!rec) law("D5").faults.push(`${b}: no record of its resting lines`);
     else R.sections.forEach((sec, i) => {
       const recU = new Map((rec.sections[i] ? rec.sections[i][1] : []).map((u) => [u[0], u]));
       const baseU = new Map(((B.sections[i] || {}).units || []).map((u) => [u[0], u]));
       for (const e of new Set([...sec.units.map((u) => u[0]), ...recU.keys()])) {
         const p = placeAt(b, i, e), u = sec.units.find((x) => x[0] === e) || null, r = recU.get(e) || null;
-        const filled = !!(p && fills.has(p.n) && u && u[1] === 1 && u[3] === fills.get(p.n).m);
-        if (filled) { fillsDrawn += 1; if (same(r, u)) asFilled += 1; else if (same(r, baseU.get(e) || null)) asToday += 1; else law("D5").faults.push(`${b} ${sectionsOf(b)[i].label} entry ${e + 1}: the record holds ${r ? said(r[2], 30) : "no line"}, neither the fill nor today's line`); continue; }
+        const f = p ? owed.get(p.n) : null;
+        const filled = !!(f && u && u[1] === 1 && u[3] === f.m);
+        if (filled) { if (f.stands) standsDrawn += 1; else fillsDrawn += 1; if (same(r, u)) asFilled += 1; else if (same(r, baseU.get(e) || null)) asToday += 1; else law("D5").faults.push(`${b} ${sectionsOf(b)[i].label} entry ${e + 1}: the record holds ${r ? said(r[2], 30) : "no line"}, neither ${f.stands ? "STEP's words where its reading stands" : "the fill"} nor today's line`); continue; }
         if (!same(r, u)) law("D5").faults.push(`${b} ${sectionsOf(b)[i].label} entry ${e + 1}: the page ${u ? said(u[2], 30) : "draws no line"} [${u ? u[3] : ""}], the record ${r ? said(r[2], 30) : "no line"} [${r ? r[3] : ""}]`);
       }
     });
     for (const n of fills.keys()) { const p = slim(b).places[n - 1]; if (((B.sections[p.i] || { units: [] }).units).some((u) => u[1] > 1 && p.e >= u[0] && p.e < u[0] + u[1])) underRun += 1; }
-    law("D5").saw.push(`${b}: ${unitCount(R)} lines, ${fillsDrawn} of ${fills.size} fill(s) drawn${underRun ? ` (${underRun} under a joined run's line, which stands)` : ""}; the record ${!rec ? "absent" : fillsDrawn === 0 ? "as the page" : asFilled === fillsDrawn ? "carries the fills" : asToday === fillsDrawn ? "is of the page before the defaults" : `carries ${asFilled} fill(s), today's line at ${asToday}`}`);
+    const drawnAll = fillsDrawn + standsDrawn, them = stands.size ? "the fills and STEP's words where its reading stands" : "the fills";
+    law("D5").saw.push(`${b}: ${unitCount(R)} lines, ${fillsDrawn} of ${fills.size} fill(s) drawn${underRun ? ` (${underRun} under a joined run's line, which stands)` : ""}${stands.size ? `, STEP's own reading standing at ${standsDrawn} of ${stands.size}` : ""}; the record ${!rec ? "absent" : drawnAll === 0 ? "as the page" : asFilled === drawnAll ? `carries ${them}` : asToday === drawnAll ? "is of the page before the defaults" : `carries ${asFilled} of ${them}, today's line at ${asToday}`}`);
     // D19 (page): no line at rest prints a "/" today's line does not
     let slashed = 0;
     R.sections.forEach((sec, i) => { for (const u of sec.units) if (u[2].includes("/")) { slashed += 1; const t = ((B.sections[i] || { units: [] }).units.find((x) => x[0] === u[0]) || [])[2]; if (t !== u[2]) law("D19").faults.push(`${b} ${sectionsOf(b)[i].label} entry ${u[0] + 1}: ${said(u[2], 30)} at rest, ${said(t || "", 30)} today`); } });
     law("D19").saw.push(`${b}: ${slashed} line(s) at rest print a "/", each as today's`);
-    // D5's cards: at each fill drawn, the card pressed on the line; where the second fills, its reading row naming it
-    for (const n of fills.keys()) {
-      const p = slim(b).places[n - 1], f = fills.get(n);
+    // D5's cards: at each fill drawn and each place where STEP's own reading stands, the card pressed on the line;
+    // where the second fills, its reading row naming it
+    let standsCards = 0;
+    for (const n of owed.keys()) {
+      const p = slim(b).places[n - 1], f = owed.get(n);
       const u = (R.sections[p.i] || { units: [] }).units.find((x) => x[0] === p.e && x[1] === 1);
       if (!u) continue;
       const c = await openAt(s, p.label);
       const kOk = f.src === "step" || c.nowK.startsWith(`reading · ${PILL[f.src]} at this place · ${PILL.step} has none here`);
-      if (!(c.pressed !== null && fold(c.pressed) === fold(u[2]) && kOk)) law("D5").faults.push(`${b} ${p.label}: the line ${said(u[2], 30)}, the card pressed ${c.pressed === null ? "nothing" : said(c.pressed, 30)}, its row ${said(c.nowK, 60)}`);
+      // the pill pressed is the reading the line draws: STEP's own words drawn as the line draws them at rest, a piece
+      // that is a sign alone beside pieces that carry words the hidden sign's gap (the pill «<into> + rest», the line
+      // «rest» at II Samuel 14:17:8, where STEP's own reading stands); another source's words whole
+      if (!(pressedOn(c, u[2], f.src === "step" ? drawnStep : undefined) && kOk)) law("D5").faults.push(`${b} ${p.label}${f.stands ? " (STEP's own reading stands)" : ""}: the line ${said(u[2], 30)}, the card pressed ${c.pressed === null ? "nothing" : said(c.pressed, 30)}, its row ${said(c.nowK, 60)}`);
+      else if (f.stands) standsCards += 1;
       else law("D5").saw.push(`${b} ${p.label} ${said(u[2], 30)} [${u[3]}], its card pressed on it`);
       await shut(s);
     }
+    if (standsCards) law("D5").saw.push(`${b}: ${standsCards} card(s) where STEP's own reading stands pressed on its line`);
     // D13: a source's other picks on the card, in the ledger's order
     await d13(s, b);
     // D12: the cards at the places whose pieces are MACULA's alone
@@ -1688,7 +1864,7 @@ const underEach = async (b, isW1) => {
       let own = 0;
       for (const c of C) {
         if (c.core || c.pressed === null) continue;
-        if (!(fold(c.pressed) === fold(c.line) && fold(c.now) === fold(c.line))) law("D12").faults.push(`under ${PILL[X]} s${c.sec} entry ${c.e + 1}: the line ${said(c.line, 30)}, the row ${said(c.now, 30)}, pressed ${said(c.pressed, 30)}`);
+        if (!(pressedOn(c, c.line) && fold(c.now) === fold(c.line))) law("D12").faults.push(`under ${PILL[X]} s${c.sec} entry ${c.e + 1}: the line ${said(c.line, 30)}, the row ${said(c.now, 30)}, pressed ${said(c.pressed, 30)}`);
         const p = placeAt(b, c.sec, c.e), dd = layerAt(b, X, Y, p);
         if (dd && dd.layer === "first") {
           own += 1;
@@ -1765,7 +1941,7 @@ const pillsAndNote = async (b) => {
       const r = await row(s), Y = autoSecond(counts.fills, X);
       one(r, X, `${PILL[X]} pressed on the row`);
       if (r.kept !== X) f6.push(`${PILL[X]} pressed: the device keeps ${r.kept}`);
-      const say = noteSay({ first: X, second: Y, auto: Y, counts, work, macula: maculaPiecesIn(b) }), ch = chooserSays(X, Y, counts);
+      const say = noteSay({ first: X, second: Y, auto: Y, counts, work, macula: maculaPiecesIn(b), stands: standsIn(b) }), ch = chooserSays(X, Y, counts);
       notes.push({ X, say: r.say });
       if (r.noteHidden || r.say !== say) f6.push(`${PILL[X]} pressed: the note ${r.noteHidden ? "is hidden" : `says ${said(r.say, 100)}`}, owed ${said(say, 100)}`);
       if (!same(r.chooser.map((c) => [c.y, c.text, c.pressed, c.disabled]), ch.map((c) => [c.y, c.text, c.pressed, c.disabled]))) f6.push(`${PILL[X]} pressed: the chooser reads ${r.chooser.map((c) => `${c.text}${c.pressed ? "*" : ""}${c.disabled ? "(dead)" : ""}`).join(" ")}, owed ${ch.map((c) => `${c.text}${c.pressed ? "*" : ""}${c.disabled ? "(dead)" : ""}`).join(" ")}`);
@@ -1825,9 +2001,11 @@ const rulingAndReset = async (b) => {
     };
     const rule = async (w) => {
       await openAt(s, w.p.label);
-      const took = await s.p.evaluate(() => { const x = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].find((y) => y.getAttribute("aria-pressed") !== "true" && !y.textContent.includes("+")); if (!x) return null; x.click(); return x.textContent.trim(); });
+      const took = await s.p.evaluate(() => { const x = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].find((y) => y.getAttribute("aria-pressed") !== "true" && !y.textContent.includes("+")); if (!x) return null; x.click(); return { t: x.textContent.trim(), by: x.dataset.pointerBy || "" }; });
       await s.p.waitForTimeout(800); await shut(s);
-      return took;
+      // the words the press puts on the line: a reading that took the pointers resolving to it prints them beside it on
+      // its pill alone (pointer-one-pill-rule-v1, ship 5: lineOfPill), and is held to the line with the case folded
+      return took ? { t: took.t, reads: lineOfPill(took.t, took.by), folded: !!took.by } : null;
     };
     const chosen = (w) => s.p.evaluate(([i, e]) => { const wb = document.querySelectorAll(`#s${i} .he-text .wb`)[e]; return !!wb && wb.classList.contains("chosen"); }, [w.i, w.e]);
     // the ruled lines: every place a reading pressed moved, as the page drew it after the press
@@ -1847,7 +2025,8 @@ const rulingAndReset = async (b) => {
     if (!LA) { f9.push("the lines were not read after the ruling"); return; }
     for (const [k, u] of reachOf(R, LA)) ruled.set(k, u);
     const uA = ruled.get(`${A.i}:${A.e}`);
-    if (!tookA || !uA || !fold(uA[2]).includes(fold(tookA)) || !(await chosen(A))) f9.push(`${A.p.label}: pressed ${said(tookA || "nothing")}, the line ${uA ? said(uA[2]) : "did not move"}`);
+    const lineHas = (line, took) => (took.folded ? fold(line).toLowerCase().includes(fold(took.reads).toLowerCase()) : fold(line).includes(fold(took.reads)));
+    if (!tookA || !uA || !lineHas(uA[2], tookA) || !(await chosen(A))) f9.push(`${A.p.label}: pressed ${said(tookA ? tookA.t : "nothing")}${tookA && tookA.folded ? ` (it reads ${said(tookA.reads)} on the line)` : ""}, the line ${uA ? said(uA[2]) : "did not move"}`);
     const skip = () => new Set(ruled.keys());
     for (const X of IDS.filter((x) => x !== "step")) {
       await press(s, `default-${X}`);
@@ -1881,7 +2060,7 @@ const rulingAndReset = async (b) => {
     const LS = await lines(s);
     if (!Bw || !tookB) f9.push("no second word to rule under a source");
     else held(LS, "back on STEP");
-    law("D9").saw.push(`${b} ${A.p.label} ruled ${said(tookA || "")}${Bw ? `, ${Bw.p.label} ruled ${said(tookB || "")} under ${PILL[IDS[IDS.length - 1]]}` : ""}: ${ruled.size} line(s) ruled in all, held under every source, joined words out and back, and back on STEP`);
+    law("D9").saw.push(`${b} ${A.p.label} ruled ${said(tookA ? tookA.t : "")}${Bw ? `, ${Bw.p.label} ruled ${said(tookB ? tookB.t : "")} under ${PILL[IDS[IDS.length - 1]]}` : ""}: ${ruled.size} line(s) ruled in all, held under every source, joined words out and back, and back on STEP`);
     // D10: from a source with a chosen second and the rulings
     await press(s, "default-macula");
     const Z = await s.p.evaluate(() => { const x = [...document.querySelectorAll("#default-note .def-order button")].find((y) => !y.disabled && y.getAttribute("aria-pressed") !== "true"); if (!x) return null; x.click(); return x.dataset.second; });
@@ -1920,8 +2099,8 @@ const noDefaults = async (w) => {
 };
 
 // the book file refused: every line is the line as it rests (the layer under STEP, its second's fills and its own words
-// where today's line is bare: one rule while a source waits for its file, or could not have it), the note says it
-// could not be fetched, nothing throws
+// where today's line is bare and where its reading stands, a pair among those, which the index alone carries: one rule
+// while a source waits for its file, or could not have it), the note says it could not be fetched, nothing throws
 const restModel = (b, B) => modelOf(b, "step", autoSecond(IX.books[b].fills, "step"), B);
 const judgeRefused = (d, r, errors) => {
   const out = [];
@@ -1987,7 +2166,8 @@ const sourceOff = async (b) => {
   const R = REST.get(b);
   const off = [...new Set([...((R && R.state && R.state.sources_off) || []), MOF("macula")])];
   const kept = { "fh.sources.off": JSON.stringify(off) };
-  const s0 = await open(b, { kept, refuse: [INDEX_AT] });
+  // today's lines with MACULA off, read as baseOf reads them: the index naming no source
+  const s0 = await open(b, { kept, serve: [NO_SOURCE] });
   const Bo = await lines(s0).finally(() => s0.close());
   const s = await open(b, { kept });
   try {
@@ -2050,10 +2230,11 @@ if (PAGE) {
     ]);
     await pool([["D9", () => rulingAndReset(W1)], ["D18", () => sourceOff(W1)]]);
   } finally { await browser.close(); await tree.close(); }
+  if (!wholeRunFaults) law("D7").saw.unshift(wholeRunsSaid());
   verdict("D4", "a first visit: «STEP» alone lit, the index's pills in its order, no note, nothing kept, the second counted here, the Menu mirroring the four pills and no chooser");
-  verdict("D5", "at rest every line is today's, except exactly where STEP's second fills a place it leaves, or STEP's own words fill a word today's line draws bare: that line, its chip, its card pressed on it");
+  verdict("D5", "at rest every line is today's, except exactly where STEP's second fills a place it leaves, or STEP's own words fill a word today's line draws bare, or are the line where STEP's own reading stands: that line, its chip, its card pressed on it");
   verdict("D6", "each pill pressed on the row and in the Menu leaves one lit, is kept and kept over a reload, ?default= is not kept; the note and its shares are this check's; a lit pill pressed again does as the plan says");
-  verdict("D7", "under each source every line of w1-w3 and w5 is the model: a pair and a run the source does not read whole keep today's line, else the source's, else its second's (STEP's: today's line, or its own words where that is bare), else today's");
+  verdict("D7", "under each source every line of w1-w3 and w5 is the model: a pair and a run the source does not read whole keep today's line, else the source's, else its second's (STEP's: today's line, or its own words where that is bare or where its reading stands), else today's");
   verdict("D8", "the second can be changed: the lines that move are the model's, the note follows, the choice is kept for that source, the auto source pressed clears it");
   verdict("D9", "a ruling outranks a source: across every source, joined words out and back, and back on STEP");
   verdict("D10", "reset from a source with a chosen second and two rulings: STEP with its auto second, every line the first paint's");
@@ -2161,7 +2342,7 @@ if (SELF_TEST) {
     went("H15", !base.length, h15.length === 1, `under ${PILL[c15[0]]}, one of ${PILL[c15[1]]}'s pills that names no row counted as naming one of its own source's: D20 finds ${h15.length} · ${first(h15, 1)}`);
   }
   // H6: D6's note with the left share printed as a remainder
-  const noteFaults = (notes, b, left) => notes.filter((x) => { const Y = autoSecond(IX.books[b].fills, x.X); return x.say !== noteSay({ first: x.X, second: Y, auto: Y, counts: IX.books[b], work: slim(b).work, left, macula: maculaPiecesIn(b) }); });
+  const noteFaults = (notes, b, left) => notes.filter((x) => { const Y = autoSecond(IX.books[b].fills, x.X); return x.say !== noteSay({ first: x.X, second: Y, auto: Y, counts: IX.books[b], work: slim(b).work, left, macula: maculaPiecesIn(b), stands: standsIn(b) }); });
   let pageNotes = null;
   if (HARNESS_PAGE && W1) {
     tree = tree || await serveTree(K3);

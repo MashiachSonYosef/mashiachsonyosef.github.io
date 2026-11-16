@@ -76,8 +76,10 @@ console.log(`— ${SWITCH_RULE_ID} · ${SERVED.length} served work(s) —`);
 // its readings of the store opened at rest; any other zone, of the store
 // whole. C3 to C9 hold the switch's machinery, not a baked column, and ask
 // the store whole.
+// On those books the store is read with Strong's sign last as well (zone-gloss-rule-v8: the same scope, the bake
+// opening it { atRest, signLast: atRest }), so C2 asks the line of the store so opened.
 const kinds = readKinds("data");
-const storeAtRest = openRouteStore("data/route-store", { atRest: true });
+const storeAtRest = openRouteStore("data/route-store", { atRest: true, signLast: true });
 
 // ---- C2 · the page does not move ----------------------------------------
 //

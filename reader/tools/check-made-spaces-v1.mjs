@@ -37,7 +37,12 @@
 //       carries exactly those places in slot 9, and no other row carries the
 //       slot; no row carries a print slot and a close on its route text; no
 //       close stands at a mark its ledger divides at; the span store's rows
-//       of the listed sources hold no close
+//       of the listed sources hold no close. A row a round retexted from
+//       words back (relay v187, row-strike-rule-v7) is no line of a relay's
+//       list: it stands once at its key and rank under the words back the
+//       pinned list that landed it gives (words_back.derived.retext), and
+//       carries that list's closes on both halves of slot 9, or none where
+//       it gives none; those rows are counted apart from a relay's
 //   M4  the store's index names the rule, the pin, the relays, the lists and
 //       the never-closed files, each source's rows as they stand now (the
 //       sha256 of their keys and texts) and totals that are a recount's; and
@@ -70,7 +75,8 @@
 //       where a row retexted since stands until relay v187 lands with its
 //       own part of the road
 //   M6  by a second road, what prints: a row's route as printed is its line's
-//       `prints`; its record as printed is its definition line's; and its
+//       `prints` (for a row that took its words back, the words-back list's
+//       line's); its record as printed is its definition line's; and its
 //       readings are that `prints` cut at the row's own marks, each mark's
 //       place less the closes before it, or none where the row's facts say it
 //       only opens a numbered sense of its entry (sense-openings-rule-v1)
@@ -104,6 +110,8 @@ import { serveTree } from "./serve-tree-v1.mjs";
 import { linesOnPage } from "./resting-lines-v1.mjs";
 import { STATES } from "./card-readings-v1.mjs";
 import { secondRoad, fallOf } from "./made-spaces-second-road-v1.mjs";
+import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
+import { RECORD_FILE } from "./row-strikes-follow-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -237,8 +245,38 @@ for (const { relay, name, p, src, text } of rawsNever) {
 check("M2  every line is well formed: closes are spaces of the text and rise, prints is the text with them taken out, a kept place does not close; a never-closed place is a space, a start or an end, and no list closes a space that stands for words taken out", lineFaults.length === 0,
   lineFaults.length ? first(lineFaults) : `${nf(lines)} lines · ${nf(closing)} with a close · ${nf(closes)} closes · ${kept} made spaces kept · ${noted} with a note · ${nf(neverTexts)} never-closed texts with ${nf(standing)} spaces that stand for words, ${inBoth} of them texts a list names too`);
 
+// ---- the words back (ship 6, relay v187): the rows a round retexted from words_back (row-strike-rule-v7) take the
+// closes and the print the list that landed them gives (data/made-spaces/PIN.json, words_back.derived.retext), by key
+// and rank, where their route text is that list's words back; read here from the record and the pinned list
+const WB = new Map();   // `${m}\u0001${key}\u0001${rank}` -> { text, closes, prints, met }
+const wbFaults = [];
+{
+  const recordPath = join(LISTS, "..", RECORD_FILE);
+  const rounds = existsSync(recordPath) ? (JSON.parse(readFileSync(recordPath, "utf8")).rounds || []) : [];
+  const took = rounds.map((r) => ({ r, rows: (r.rows || []).filter((x) => x.action === "retext" && x.from_slot === "words_back") })).filter((x) => x.rows.length);
+  if (took.length) {
+    const d = (pin.words_back || {}).derived || {};
+    if (!d.folder || !d.retext) wbFaults.push(`the row-strikes record holds ${took.length} round(s) that retexted rows from words back, and the pin names no list of them`);
+    else if (took.length !== 1 || !took[0].r.list || took[0].r.list.sha256 !== d.retext.sha256) wbFaults.push(`rows were retexted from words back by ${took.length} round(s), not once by the list the pin names`);
+    else {
+      let lines = [];
+      try { lines = readPinnedLines(join(LISTS, d.folder, d.retext.file), d.retext, `${d.folder}/${d.retext.file}`); } catch (e) { if (!(e instanceof PinFault)) throw e; wbFaults.push(e.message); }
+      const byId = new Map(lines.map((l) => [`${l.m}\u0001${l.key}\u0001${l.rank}`, l]));
+      for (const x of took[0].rows) {
+        const id = `${x.m}\u0001${x.key}\u0001${x.rank}`, l = byId.get(id);
+        if (!l || l.to_text !== x.to_text || !Array.isArray(l.closes) || typeof l.prints !== "string") { wbFaults.push(`${x.m} ${x.key} rank ${x.rank}: the round retexted it to words the pinned list does not give it`); continue; }
+        WB.set(id, { text: l.to_text, closes: l.closes, prints: l.prints, met: 0 });
+      }
+    }
+  }
+}
+// the line of a row's text: a relay's list line, or for a row that took its words back, the words-back list's (its
+// closes on both halves of slot 9, as the retext wrote them)
+const wbOf = (k, row) => { const w = WB.get(`${row[3]}\u0001${k}\u0001${row[0]}`); return w && String(row[1] ?? "") === w.text ? w : null; };
+
 // ---- M3: every row of the store -------------------------------------------------------------
 const lineOf = (L, text) => { const l = L && L.lines.get(String(text ?? "")); return l && l.closes.length ? l : null; };
+const lineAt = (L, k, row, slot) => { const w = wbOf(k, row); if (w && String(row[slot] ?? "") === w.text) return w.closes.length ? w : null; return lineOf(L, row[slot]); };
 const comma = / ,/u;
 const rowFaults = [];
 const slotted = [];   // [key, row] for every row that carries the slot
@@ -256,18 +294,29 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
     c.rows += 1;
     c.texts.push(JSON.stringify([k, row[1] ?? null, row[2] ?? null]));
     for (const f of [1, 2]) { const s = String(row[f] ?? ""); if (L.lines.has(s)) (c.served.get(s) || c.served.set(s, [0, 0]).get(s))[f - 1] += 1; }
-    const r = lineOf(L, row[1]), d = lineOf(L, row[2]);
-    if (r) c.route += 1;
-    if (d) c.definition += 1;
-    if (r || d) c.either += 1;
+    const r = lineAt(L, k, row, 1), d = lineAt(L, k, row, 2), wb = wbOf(k, row);
+    // a row that took its words back holds the closes the words-back list gives it: counted apart, as the tool counts
+    // them (rows_closed_from_words_back), since no relay's receipt counts them
+    if (wb) { wb.met += 1; if (r || d) c.closedFromWordsBack = (c.closedFromWordsBack || 0) + 1; }
+    else {
+      if (r) c.route += 1;
+      if (d) c.definition += 1;
+      if (r || d) c.either += 1;
+    }
     const want = r || d ? [r ? r.closes : null, d ? d.closes : null] : null;
     if (!same(has, want)) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): the lists give ${JSON.stringify(want)}, the row carries ${JSON.stringify(has)}`);
     if (r && Array.isArray(row[8])) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): a print slot and a close on the route text`);
     if (r && Array.isArray(row[7]) && r.closes.some((x) => row[7].includes(x))) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): a close stands at a mark the ledger divides at`);
     if (has) slotted.push([k, row]);
-    // what the source's rows still print before a comma once closed, over every row of the source (M5)
-    if (comma.test(routePrinted(row))) c.stillRoute += 1;
-    if (row[2] && comma.test(recordPrinted(row))) c.stillRecord += 1;
+    // what the source's rows still print before a comma once closed, over every row of the source (M5); a row that took
+    // its words back is counted apart, as its closes are above: no relay's receipt counts its new words
+    if (wb) {
+      if (comma.test(routePrinted(row))) c.stillRouteFromWordsBack = (c.stillRouteFromWordsBack || 0) + 1;
+      if (row[2] && comma.test(recordPrinted(row))) c.stillRecordFromWordsBack = (c.stillRecordFromWordsBack || 0) + 1;
+    } else {
+      if (comma.test(routePrinted(row))) c.stillRoute += 1;
+      if (row[2] && comma.test(recordPrinted(row))) c.stillRecord += 1;
+    }
   }
 }
 let spanRows = 0;
@@ -281,6 +330,8 @@ if (existsSync(join(SPAN, "index.json"))) for (const f of readdirSync(SPAN).filt
     if (lineOf(L, r.slots[1]) || lineOf(L, r.slots[2])) rowFaults.push(`the span store's ${f}: a row of ${r.slots[3]} holds a text with a close`);
   }
 }
+rowFaults.push(...wbFaults);
+for (const [id, w] of WB) if (w.met !== 1) rowFaults.push(`${id.split("\u0001").join(" ")}: a row retexted from words back stands ${w.met} times at its key and rank under its words back`);
 const total = (f) => Object.values(recount).reduce((a, c) => a + c[f], 0);
 check("M3  every store row carries exactly the closes the lists give its texts, and no other row carries the slot; none has a print slot with a route close, or a close at a ledger's mark; the span store's rows hold none", rowFaults.length === 0,
   rowFaults.length ? `${rowFaults.length} · ${first(rowFaults)}` : `${nf(storeRows)} store rows read · ${nf(total("rows"))} of ${LISTED.size} listed sources · ${nf(total("either"))} carry the slot (${nf(total("route"))} close on the route text, ${nf(total("definition"))} on the definition text) · ${nf(spanRows)} span rows of those sources, none with a close`);
@@ -342,7 +393,7 @@ for (const [m, L] of LISTED) {
     ["rows whose route still prints a space before a comma", c.stillRoute, (sc.field_1 || {}).rows_that_still_print_one_after_closing - less.stillRoute], ["rows whose definition still does", c.stillRecord, (sc.field_2 || {}).rows_that_still_print_one_after_closing - less.stillRecord]];
   const pairs = pairsLess({ route: 0, definition: 0, either: 0, stillRoute: 0, stillRecord: 0 });
   const differing = pairs.filter(([, here, there]) => here !== there).map(([what, here, there]) => `${m}: ${what} ${here} here, ${there} in the corpus lane's receipt`);
-  const said = `${m} ${nf(c.route)}/${nf(c.definition)}/${nf(c.either)} rows close, ${c.stillRoute} and ${c.stillRecord} still print a space before a comma`;
+  const said = `${m} ${nf(c.route)}/${nf(c.definition)}/${nf(c.either)} rows close, ${c.stillRoute} and ${c.stillRecord} still print a space before a comma${c.stillRouteFromWordsBack || c.stillRecordFromWordsBack ? ` (and of the rows that took their words back, counted apart, ${c.stillRouteFromWordsBack || 0} and ${c.stillRecordFromWordsBack || 0})` : ""}`;
   const rec = (ms && ms.sources && ms.sources[m]) || null;
   const byHistory = !!L.readAt && reachedByThisRuleAlone(L.readAt);
   const byRecord = !!rec && rec.read_at_store_version === L.readAt && typeof rec.texts_sha256_as_read === "string" && rec.texts_sha256_as_read === standsAs(m);
@@ -354,9 +405,13 @@ for (const [m, L] of LISTED) {
     // the rows gone since the store the receipt read, and the lines of the landing not landed, each with its texts as
     // its list prints them (a line's own `prints`, the text with its closes taken out)
     const off = [...(second.gone.get(m) || []), ...(second.notLanded.get(m) || [])];
+    // and the rows a round retexted since without folding (relay v187's words back, the second road's retexted): each
+    // stays a row of the source, with other words, so its old texts lose it and the rows do not
+    const moved = (second.retexted && second.retexted.get(m)) || [];
+    const lost = [...off, ...moved];
     const routeOf = (x) => { const l = lineOf(L, x.route); return l ? l.prints : x.route; }, recordOf = (x) => { if (!x.definition) return routeOf(x); const l = lineOf(L, x.definition); return l ? l.prints : x.definition; };
-    const less = { route: off.filter((x) => lineOf(L, x.route)).length, definition: off.filter((x) => lineOf(L, x.definition)).length, either: off.filter((x) => lineOf(L, x.route) || lineOf(L, x.definition)).length,
-      stillRoute: off.filter((x) => comma.test(routeOf(x))).length, stillRecord: off.filter((x) => x.definition && comma.test(recordOf(x))).length };
+    const less = { route: lost.filter((x) => lineOf(L, x.route)).length, definition: lost.filter((x) => lineOf(L, x.definition)).length, either: lost.filter((x) => lineOf(L, x.route) || lineOf(L, x.definition)).length,
+      stillRoute: lost.filter((x) => comma.test(routeOf(x))).length, stillRecord: lost.filter((x) => x.definition && comma.test(recordOf(x))).length };
     const faults = pairsLess(less).filter(([, here, there]) => here !== there).map(([what, here, there]) => `${m}: ${what} ${here} here, ${there} by the second road`);
     if (c.rows !== stated.rows - off.length) faults.push(`${m}: ${nf(c.rows)} rows here, ${nf(stated.rows - off.length)} by the second road (the receipt's ${nf(stated.rows)} less ${off.length})`);
     let heldLines = 0;
@@ -367,7 +422,7 @@ for (const [m, L] of LISTED) {
       else faults.push(null);
     }
     countFaults.push(...faults.filter(Boolean));
-    judgedSources.push(`${said} (by the second road: the receipt's counts at «${L.readAt}», less ${(second.gone.get(m) || []).length} rows gone since ${second.base} and ${(second.notLanded.get(m) || []).length} lines of relay ${second.landing.relay} not landed; ${nf(heldLines)} of ${nf(L.lines.size)} lines hold)`);
+    judgedSources.push(`${said} (by the second road: the receipt's counts at «${L.readAt}», less ${(second.gone.get(m) || []).length} rows gone since ${second.base} and ${(second.notLanded.get(m) || []).length} lines of relay ${second.landing.relay} not landed${moved.length ? `, ${moved.length} rows retexted since off their old texts` : ""}; ${nf(heldLines)} of ${nf(L.lines.size)} lines hold)`);
   }
   else saidOnly.push(`${said}${differing.length ? ` (${differing.length} of the corpus lane's counts differ now)` : ""}, its rows have moved on from ${L.readAt}`);
 }
@@ -412,7 +467,7 @@ else console.log(`  --  M5  said, not judged: no source's rows are the rows its 
 const printFaults = [];
 for (const [k, row] of slotted) {
   const L = LISTED.get(String(row[3]));
-  const r = lineOf(L, row[1]), d = lineOf(L, row[2]);
+  const r = lineAt(L, k, row, 1), d = lineAt(L, k, row, 2);
   const where = `${k} (${row[3]}, rank ${row[0]})`;
   const route = r ? r.prints : String(row[1] ?? "");
   if (routePrinted(row) !== route) printFaults.push(`${where}: the route prints «${routePrinted(row).slice(0, 50)}», its line says «${route.slice(0, 50)}»`);

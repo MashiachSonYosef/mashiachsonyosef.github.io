@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit
+// GUARDS: witnessed-order-bake-rule-v2-three-columns-as-shipped-each-reading-with-its-own-credit-an-entry-whose-row-prints-only-strongs-signed-renderings-is-refused-where-the-pool-holds-a-plain-one
 // LEDGER: M R
 // THE WITNESSED ORDER'S SHIPPED INPUT, KEPT BESIDE THE ZONES.
 //
@@ -42,7 +42,7 @@ import { gzipSync, gunzipSync } from "node:zlib";
 import { join, basename } from "node:path";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 
-const RULE = "witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit";
+const RULE = "witnessed-order-bake-rule-v2-three-columns-as-shipped-each-reading-with-its-own-credit-an-entry-whose-row-prints-only-strongs-signed-renderings-is-refused-where-the-pool-holds-a-plain-one";
 const COLUMNS = [["witnessed_same_place", "same-place"], ["witnessed_entry", "entry"], ["witnessed_entry_and_lists", "entry-and-lists"]];
 const arg = (f, d = null) => { const i = process.argv.indexOf(f); return i >= 0 ? process.argv[i + 1] : d; };
 const DIR = arg("--dir"), TAKEN_FROM = arg("--taken-from", ""), ZONES = arg("--zones", "data/zones"), OUT = arg("--out", "data/witnessed-orders-v2.7"), STAMP = arg("--stamp", new Date().toISOString().slice(0, 10));

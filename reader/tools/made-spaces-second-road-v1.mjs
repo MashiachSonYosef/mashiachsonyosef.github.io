@@ -28,6 +28,12 @@
 //   - the lines of the landing the page did not land, each named with its
 //     words and its definition by tools/derive-fold-strike-landing-v1.mjs.
 //
+//   - the rows of the source that a round retexted since without folding
+//     (relay v187's words back, ship 6): the row stays, with other words, so
+//     its old texts lose it and the source's rows do not; its new words take
+//     their closes from that relay's own list, which apply-made-spaces reads
+//     apart.
+//
 // A line's counts on this store are its stated counts less those rows and
 // lines whose route text (field 1) or definition text (field 2) is its text.
 // A re-key that lands moves a row's key and no text, and counts for nothing.
@@ -37,11 +43,9 @@
 // is not in the store's history; the landing is not in the record, or did
 // not land every line of the derived list; a round since that version
 // restored or rejoined a row of the source, or landed one that is not the
-// landing's; or a round since retexted one. THE LAST IS A SEAM LEFT ON
-// PURPOSE: relay v187 gives rows of the unabridged BDB their words back by a
-// retext, such a row takes its closes from that relay's own list and its old
-// text loses the row, and none of that is built here. It lands with the tool
-// that retexts those rows.
+// landing's. A retext since that folded a row into another is a row taken,
+// as a strike is; one that did not is a row whose old texts lose it
+// (retexted, above).
 //
 //   secondRoad({ data, index, readAt, listed })
 //     data     the reader's data folder
@@ -49,9 +53,10 @@
 //     readAt   the pin's read_at of the relay
 //     listed   the m ids whose lists that relay's receipt counts
 //   -> { open: false, why }
-//    | { open: true, base, landing, rounds, gone, notLanded }
+//    | { open: true, base, landing, rounds, gone, notLanded, retexted }
 //        gone       m id -> the rows taken, { key, rank, route, definition, action, list }
 //        notLanded  m id -> the lines not landed, { key, rank, route, definition, line }
+//        retexted   m id -> the rows that stay with other words, { key, rank, route, definition (the old texts), to_text, list }
 //   fallOf(road, m, text) -> [rows fewer as the route text, rows fewer as the definition text]
 import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -88,25 +93,30 @@ export const secondRoad = ({ data, index, readAt, listed }) => {
   const notLanded = new Map();
   for (const l of lines) if (mine.has(String(l.m))) (notLanded.get(String(l.m)) || notLanded.set(String(l.m), []).get(String(l.m))).push({ key: l.key, rank: l.rank, route: l.route, definition: l.definition, line: (l.from || {}).line ?? null });
   // every row of a listed source a round since acted on
-  const gone = new Map();
+  const gone = new Map(), retexted = new Map();
   for (const r of rounds) for (const x of r.rows || []) {
     const list = r.list ? r.list.file : "a round with no list";
     if (x.action === "rejoin") { if ((x.rows || []).some((y) => mine.has(String(y[3])))) return shut(`${list} rejoined rows of ${x.m} since ${base}, which the second road does not count`); continue; }
     const m = String(x.m);
     if (!mine.has(m)) continue;
     const where = `${list}: ${m} ${x.key} rank ${x.rank}`;
-    if (x.action === "retext" && !x.folded_into) return shut(`${where} was retexted since ${base}: a retexted row takes its closes from its own relay's list and its old text loses the row, and the second road does not count that yet (relay v187's words back land with the tool that retexts them)`);
+    // a retext that did not fold: the row stays, and its old texts lose it (relay v187's words back)
+    if (x.action === "retext" && !x.folded_into) {
+      if (!Array.isArray(x.row) || typeof x.to_text !== "string") return shut(`${where} was retexted since ${base}, and the record does not keep the row whole and the text it took`);
+      (retexted.get(m) || retexted.set(m, []).get(m)).push({ key: x.key, rank: x.rank, route: String(x.row[1] ?? ""), definition: String(x.row[2] ?? ""), to_text: x.to_text, list });
+      continue;
+    }
     if (x.action === "restore") return shut(`${where} was restored since ${base}, which the second road does not count`);
     if (x.action === "land") { if (r !== landedBy[0]) return shut(`${where} was landed since ${base} by another list than relay ${landing.relay}'s, a row the store the receipt read never held`); continue; }
     const taken = x.action === "strike" || x.action === "withhold" || ((x.action === "re-key" || x.action === "retext") && !!x.folded_into);
     if (!taken) continue;   // a re-key that lands, a re-heading: the row stays, text and all
     (gone.get(m) || gone.set(m, []).get(m)).push({ key: x.key, rank: x.rank, route: String(x.row[1] ?? ""), definition: String(x.row[2] ?? ""), action: x.action, list });
   }
-  return { open: true, base, landing: { relay: landing.relay, list: derived.landed.file, not_landed: derived.not_landed.file }, rounds: rounds.map((r) => ({ list: r.list ? r.list.file : null, ran_at: r.ran_at })), gone, notLanded };
+  return { open: true, base, landing: { relay: landing.relay, list: derived.landed.file, not_landed: derived.not_landed.file }, rounds: rounds.map((r) => ({ list: r.list ? r.list.file : null, ran_at: r.ran_at })), gone, notLanded, retexted };
 };
 
 /** How many fewer rows serve `text` on this store than its line states: as the route text, as the definition text. */
 export const fallOf = (road, m, text) => {
-  const off = [...(road.gone.get(String(m)) || []), ...(road.notLanded.get(String(m)) || [])];
+  const off = [...(road.gone.get(String(m)) || []), ...(road.notLanded.get(String(m)) || []), ...((road.retexted && road.retexted.get(String(m))) || [])];
   return [off.filter((x) => x.route === text).length, off.filter((x) => x.definition === text).length];
 };

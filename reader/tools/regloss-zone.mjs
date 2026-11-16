@@ -55,11 +55,21 @@
 //      as before, and carries no such stamp; one an earlier run stamped
 //      loses it. A record that is missing or does not hold is refused, here
 //      and in the store reader, never guessed past.
+//   7. On the same zones, and on no other, a reading that carries Strong's
+//      sign follows every reading that does not (zone-gloss-rule-v8, rule 7
+//      of tools/gloss-store-v1.mjs; the lead's calls 1 to 3 of 15 November
+//      2026): the store is opened { atRest, signLast: atRest }, so the
+//      table, the names laid over it, the license columns and the two
+//      reader's orders all read the pool with the sign last, and the zone
+//      says so in emitted_from.signs_rest_last (the rule, the record's
+//      scope and the ruling: signsRestLastStamp). A zone outside the scope
+//      is projected in today's order and carries no such stamp; one an
+//      earlier run stamped loses it.
 
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
-import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT } from "./gloss-store-v1.mjs";
+import { openRouteStore, GLOSS_RULE_ID, GLOSS_RULE_TEXT, signsRestLastStamp } from "./gloss-store-v1.mjs";
 import { glossMFor, sourceSwitchCosts, jointSwitchCosts, GLOSS_M_RULE_ID, licenceColumns, licClass } from "./gloss-m-v1.mjs";
 import { nameLeadsFor, PROPER_NAME_RULE_ID, PROPER_NAME_RULE_TEXT } from "./proper-name-v1.mjs";
 import { existsSync as existsSync_ } from "node:fs";
@@ -81,16 +91,17 @@ for (const [flag, v] of [["--zone", inPath], ["--out", outPath], ["--stamp", sta
   require_(v, "MISSING_ARG", flag);
 
 const zone = JSON.parse(gunzipSync(readFileSync(inPath)).toString("utf8"));
-// ---- rule 6 · the dictionaries that rest shut ------------------------------
+// ---- rules 6 and 7 · the dictionaries that rest shut, and Strong's sign last --
 // The record beside the store (its parent folder, as the store reader reads
 // it) says whether this zone rests shut; the store is opened at rest for it,
-// and whole for any other.
+// with Strong's sign last, and whole and in today's order for any other.
 const refuse = (why) => { console.log(`REFUSED — ${why}`); process.exit(1); };
-let kinds = null, atRest = false, store = null;
+let kinds = null, atRest = false, store = null, signsStamp = null;
 try {
   kinds = readKinds(join(storeDir, ".."));
   atRest = restsOffIn(kinds.rec, zone);
-  store = openRouteStore(storeDir, { atRest });
+  store = openRouteStore(storeDir, { atRest, signLast: atRest });
+  if (atRest) signsStamp = signsRestLastStamp(kinds.rec);
 } catch (e) { refuse(String((e && e.message) || e)); }
 if (atRest && store.atRest.sha256 !== kinds.sha256) refuse(`the record of dictionary kinds moved while this ran (${kinds.sha256.slice(0, 12)}… then ${store.atRest.sha256.slice(0, 12)}…)`);
 
@@ -528,6 +539,9 @@ if (atRest) {
     entries,
   };
 } else delete zone.emitted_from.rests_off;
+// ---- rule 7 · the stamp: Strong's sign last, on the same zones and on no other
+if (signsStamp) zone.emitted_from.signs_rest_last = signsStamp;
+else delete zone.emitted_from.signs_rest_last;
 
 // TYPED on the zone: a post-build write is named under the single-pass
 // exemption — who wrote it, which field, why, and when it expires — so the
@@ -535,7 +549,7 @@ if (atRest) {
 // Merged, not replaced: the enrichment and the respan lane type theirs too.
 typePostBuildWrite(zone, {
   tool: "tools/regloss-zone.mjs",
-  fields: ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "emitted_from.reader_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : []), ...(witnessedDrops || witnessedTyped ? ["emitted_from.witnessed_order"] : []), ...(atRest ? ["emitted_from.rests_off"] : [])],
+  fields: ["gloss_layer.reprojected", "gloss_m", "emitted_from.toggles", "gloss_orders", "emitted_from.licence_orders_layer", "emitted_from.reader_orders_layer", "gloss_names", "emitted_from.proper_names_layer", "emitted_from.no_names_layer", ...(ordersM ? ["gloss_m_orders", "emitted_from.gloss_m_orders_layer"] : []), ...(witnessedDrops || witnessedTyped ? ["emitted_from.witnessed_order"] : []), ...(atRest ? ["emitted_from.rests_off", "emitted_from.signs_rest_last"] : [])],
   why: "the gloss layer is a projection of the route store over this zone's own keys, re-run here at cell grain after the component layer was projected",
   expires: "with this zone's rebuild by a build-zone run that writes its gloss layer in its single pass",
   stamp,
@@ -548,6 +562,6 @@ console.log(
   `${names.counts.led} keys lead with a name (${names.counts.moved} moved) · ` +
   `orders ${Object.entries(orderDeltas).map(([o, col]) => `${o} ${Object.keys(col).length} (was ${orderColumnsBefore[o]})`).join(", ")} · ` +
   `gloss_m ${Object.keys(glossM).length} (was ${mBefore}) · ` +
-  (atRest ? `at rest under ${store.atRest.record} ${store.atRest.version} (${counts.every_reading_rests_shut} keys bare at rest) · ` : "the store whole (the record does not rest this zone shut) · ") +
+  (atRest ? `at rest under ${store.atRest.record} ${store.atRest.version} (${counts.every_reading_rests_shut} keys bare at rest), Strong's sign last · ` : "the store whole, in today's order (the record does not rest this zone shut) · ") +
   `${(body.length / 1024).toFixed(1)} KB gz · sha256 ${createHash("sha256").update(body).digest("hex").slice(0, 16)}…`,
 );

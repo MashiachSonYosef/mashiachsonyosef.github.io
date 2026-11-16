@@ -49,6 +49,7 @@
 // when none does.
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
+import { lineOfPill } from "./card-readings-v1.mjs";
 import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
@@ -243,15 +244,15 @@ const ruled7 = await p.evaluate(async () => {
   const wait = (ms) => new Promise((x) => setTimeout(x, ms));
   const pill = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].find((x) => x.getAttribute("aria-pressed") !== "true");
   if (!pill) return { err: "no second reading to press on this form" };
-  const text = pill.textContent.trim(); pill.click(); await wait(900);
+  const text = pill.textContent.trim(), by = pill.dataset.pointerBy || ""; pill.click(); await wait(900);
   const w = document.querySelectorAll("section.seg .he-text .wb.kq")[0];
   const halves = [...w.querySelectorAll(".wr")];
   const c = (w.querySelector(":scope > .g") || document.createElement("i")).cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
-  return { text, line: c.textContent.replace(/\s+/g, " ").trim(), underline: halves.findIndex((x) => x.classList.contains("backs-en")), on: halves.findIndex((x) => x.classList.contains("on")), resetSays: (document.getElementById("resetState") || {}).textContent };
+  return { text, by, line: c.textContent.replace(/\s+/g, " ").trim(), underline: halves.findIndex((x) => x.classList.contains("backs-en")), on: halves.findIndex((x) => x.classList.contains("on")), resetSays: (document.getElementById("resetState") || {}).textContent };
 });
 const fold = (t) => String(t).replace(/\.$/u, "").trim().toLowerCase();
 check("K7  a reading pressed on the form the card moved to rules that form: the line reads it, the underline moves to that half, and it counts as a pick",
-  !ruled7.err && fold(ruled7.line) === fold(ruled7.text) && ruled7.underline === other6 && ruled7.on === other6 && ruled7.resetSays !== "default",
+  !ruled7.err && fold(ruled7.line) === fold(lineOfPill(ruled7.text, ruled7.by)) && ruled7.underline === other6 && ruled7.on === other6 && ruled7.resetSays !== "default",
   ruled7.err ? ruled7.err : `pressed "${ruled7.text}" · line "${ruled7.line}" · underline ${ruled7.underline} · on ${ruled7.on} · wanted ${other6} · reset says "${ruled7.resetSays}"`);
 await closeCard();
 const again7 = await openPair(0, 0);

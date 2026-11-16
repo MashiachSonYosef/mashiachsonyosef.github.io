@@ -74,14 +74,19 @@
 // in the index and in the receipt's run). Found by recount over every line
 // whose row was struck, never from a list of names.
 //
+// A ROW RETEXTED SINCE IS NAMED BY THE WORDS IT TOOK (relay v187, the words
+// our build took out given back, ship 6; row-strikes-follow-rule-v2). The
+// retext keeps the row's key, rank and facts and gives it new words, so its
+// line is asked at its key and rank under the sha16 of the route text the
+// follower names, and the row keeps what it carries.
+//
 // REFUSED, each in words and with nothing written:
 //   - a ledger, rule or receipt that is not the bytes its pin names;
 //   - a ledger row of a source the store does not hold under that m id, or a
 //     pinned parting that names a source the store names otherwise;
 //   - a store the record cannot be followed to from the version the ledger
 //     was read at, or a row a round since did something to that the follower
-//     does not name (a retext among them: relay v187's lands with the tool
-//     that retexts);
+//     does not name;
 //   - a row of the ledger's sources with no line that no round landed since,
 //     or a line with no row that no round struck or withheld since: the
 //     record does not explain it, and nothing is guessed;
@@ -171,7 +176,7 @@ const keysRead = new Set();
 const SOURCES = new Set();
 // the follower's answers for the lines whose row a round since struck or withheld, and for those followed to a moved
 // row; and the struck lines whose words still stand under another key, with what each line says of its row
-const goneLines = [], rekeyedLines = [], twinLines = [];
+const goneLines = [], rekeyedLines = [], retextedLines = [], twinLines = [];
 let ledgerRows = 0;
 for (const x of lines) {
   if (typeof x.k !== "string" || !Array.isArray(x.rows)) refuse("a line of the ledger names no key or no rows");
@@ -193,9 +198,11 @@ for (const x of lines) {
       continue;
     }
     if (went.state === "re-keyed") rekeyedLines.push(went);
-    const [k, rankNow] = went.name;
+    if (went.state === "retexted") retextedLines.push(went);
+    // a row retexted since is named by the sha16 of the words it took
+    const [k, rankNow, , shaNow] = went.name;
     const rows = ledger.get(k) || ledger.set(k, new Map()).get(k);
-    const id = `${rankNow} ${m} ${sha}`;
+    const id = `${rankNow} ${m} ${shaNow}`;
     (rows.get(id) || rows.set(id, []).get(id)).push(facts);
   }
 }
@@ -279,7 +286,7 @@ const totals = { sources: SOURCES.size, keys_in_the_ledger: lines.length, rows_i
   rows_carrying_steps_letters: sum("rows_carrying_steps_letters"), rows_carrying_bdbs_entries: sum("rows_carrying_bdbs_entries"),
   store_rows_with_no_line: landedRows.length, ledger_rows_with_no_store_row: goneLines.length };
 // how the store differs from the one the ledger was read at, as the row-strikes record says and this run found it
-const followed = { ...followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines, landed: landedRows }),
+const followed = { ...followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines, retexted: retextedLines, landed: landedRows }),
   struck_rows_with_a_twin_of_their_own_source: struckWithATwin, entries_given_to_a_twin: given };
 const moved = sum("rows_moved"), shardsRewritten = touched.length;
 console.log(`row entries · relay ${pin.relay} · ${n(ledgerRows)} rows of ${SOURCES.size} sources in the ledger (read from the store at ${readAt}) · ${n(totals.store_rows_of_those_sources)} rows of them in the store of ${n(storeRows)} · ${n(totals.rows_carrying_the_slot)} carry the slot (${n(totals.rows_with_a_number)} with a number, ${n(totals.rows_carrying_steps_letters)} with STEP's letters, ${n(totals.rows_carrying_bdbs_entries)} with BDB's entries) · followed through ${follow.rounds.length} round(s) since: ${followedSaid(followed)} · ${n(struckWithATwin)} struck rows have a twin of their own source, ${given.length} of them given entries · unexplained: ${n(rowsWithNoLine)} rows with no line, ${n(linesWithNoRow)} lines with no row · ${n(moved)} rows move (${touched.length} shards)`);
@@ -294,7 +301,7 @@ const nothingToWrite = !moved && !!had && Object.keys(record).every((k) => same(
 const count = (o) => Object.values(o || {}).reduce((a, c) => a + c, 0);
 console.log(`figures ${JSON.stringify({ relay: pin.relay, ledger_sha256: pin.ledger.sha256, read_at_store_version: readAt, store_version: index.store_version || null, ...totals,
   rounds_since: follow.rounds.length, lines_whose_row_was_struck: count(followed.lines_whose_row_was_struck), lines_whose_row_was_withheld: count(followed.lines_whose_row_was_withheld),
-  rows_re_keyed_and_followed: count(followed.rows_re_keyed_and_followed), rows_landed_since_with_no_line: count(followed.rows_landed_since_with_no_line),
+  rows_re_keyed_and_followed: count(followed.rows_re_keyed_and_followed), rows_retexted_and_followed: count(followed.rows_retexted_and_followed), rows_landed_since_with_no_line: count(followed.rows_landed_since_with_no_line),
   struck_rows_with_a_twin_of_their_own_source: struckWithATwin, entries_given_to_a_twin: given.length, rows_moved: moved, shards_moved: touched.length, the_index_names_this_run: nothingToWrite })}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 if (nothingToWrite) { console.log("nothing moves and the index names this ledger as it is followed — nothing written"); process.exit(0); }

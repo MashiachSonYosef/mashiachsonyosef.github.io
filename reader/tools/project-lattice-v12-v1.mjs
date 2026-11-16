@@ -111,6 +111,27 @@
 //      table; a zone that was not, or one stamped and outside the scope, is
 //      refused. The sidecar names the record (rests_off: its version and
 //      sha256). Every other zone is projected over the store whole.
+//   7. STRONG'S SIGN FOLLOWS (zone-gloss-rule-v8, rule 7 of
+//      tools/gloss-store-v1.mjs; the lead's calls 1 to 3 of 15 November 2026).
+//      On the same books, and on no other, the store is opened with the sign
+//      last as well, so every leader baked here from the store's pool (o.l,
+//      o.la, o.s, o.c, v[...].c, e[...]) puts a reading that carries Strong's
+//      sign after every reading that does not, as the table does. Two
+//      leaders are not drawn from the pool's own order and take the same
+//      key here: o.m and o.x rank the pool's groups by the tier of the cards
+//      that carry them, and sort by (the sign, that rank, the pool's order),
+//      so a signed reading does not lead because its tier ranks better; and
+//      hg, the line under "the headword", is the first card of the lattice's
+//      stack, in the stack's own order (sorted_route_index), whose text does
+//      not open with the sign, the top card where every card does, with
+//      the gates above (a source the store holds, a card that does not rest
+//      shut) asked of that card as they were of the top one
+//      (hg_stepped_past_a_signed_card counts the words it moves). The zone
+//      must have been projected so (emitted_from.signs_rest_last, written by
+//      tools/regloss-zone.mjs), and the sidecar carries the same stamp
+//      (emitted_from.signs_rest_last); a zone of the scope without it, or
+//      with another, and a zone outside the scope that carries one, are
+//      refused. Every other zone keeps today's order and carries none.
 //
 // Run: node tools/project-lattice-v12-v1.mjs --zone data/zones/genesis.bin
 //        --lattice <dir with positions-<book>-v12.jsonl.gz, routes-<book>-v12.jsonl.gz, lattice-<book>-v12.json>
@@ -122,7 +143,7 @@ import { createInterface } from "node:readline";
 import { join } from "node:path";
 
 import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
-import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
+import { openRouteStore, factsOf, opensWithStrongSign, signsRestLastStamp } from "./gloss-store-v1.mjs";
 import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
 import { readStemsExtension, stemsId, STEMS_EXTENSION_RULE_ID, STEMS_EXTENSION_HOME } from "./stems-extension-v1.mjs";
@@ -131,6 +152,7 @@ import { ENTRY_GATE_RULE_ID, placeEntry, bdbEntriesAt, entryVerdict } from "./en
 import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
 import { readPinnedLines } from "./pinned-v1.mjs";
+import { RECORD_FILE } from "./row-strikes-follow-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 import { readKinds, restsOffIn, restsOffIds, DICTIONARY_KINDS_RECORD } from "./dictionary-kinds-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
@@ -164,16 +186,21 @@ for (const [k, want] of [["positions", latticeReceipt.files.positions.sha256], [
 // rest where the record rests this book shut (rule 6), and the zone said to
 // have been projected under the same record
 const storeDir = arg("--store", join(zonePath.replace(/data\/zones\/.*$/u, ""), "data", "route-store"));
-let kinds = null, atRest = false, store = null;
+let kinds = null, atRest = false, store = null, signsStamp = null;
 try {
   kinds = readKinds(join(storeDir, ".."));
   atRest = restsOffIn(kinds.rec, zone);
-  store = openRouteStore(storeDir, { atRest });
+  store = openRouteStore(storeDir, { atRest, signLast: atRest });
+  if (atRest) signsStamp = signsRestLastStamp(kinds.rec);
 } catch (e) { console.error(`REFUSED — ${String((e && e.message) || e)}`); process.exit(1); }
 {
   const said = (zone.emitted_from || {}).rests_off || null;
   if (atRest && (!said || said.sha256 !== kinds.sha256)) { console.error(`REFUSED — ${slug} rests shut under ${DICTIONARY_KINDS_RECORD} (sha256 ${kinds.sha256.slice(0, 12)}…) and its zone ${said ? `was projected at rest under another record (${String(said.sha256).slice(0, 12)}…)` : "was not projected at rest"}: run tools/regloss-zone.mjs on it first`); process.exit(1); }
   if (!atRest && said) { console.error(`REFUSED — ${slug}'s zone says it was projected at rest, and ${DICTIONARY_KINDS_RECORD} does not rest it shut: run tools/regloss-zone.mjs on it first`); process.exit(1); }
+  // rule 7: the zone's stamp of Strong's sign last is the one this projection makes, or the zone carries none off the scope
+  const signs = (zone.emitted_from || {}).signs_rest_last || null;
+  if (atRest && JSON.stringify(signs) !== JSON.stringify(signsStamp)) { console.error(`REFUSED — ${slug} is baked with Strong's sign last (${DICTIONARY_KINDS_RECORD}'s scope) and its zone ${signs ? "carries another stamp of it" : "was not projected so (no emitted_from.signs_rest_last)"}: run tools/regloss-zone.mjs on it first`); process.exit(1); }
+  if (!atRest && signs) { console.error(`REFUSED — ${slug}'s zone says it was projected with Strong's sign last, and ${DICTIONARY_KINDS_RECORD}'s scope does not reach it: run tools/regloss-zone.mjs on it first`); process.exit(1); }
 }
 const labelToM = new Map(Object.entries(store.index.m_sources || {}).map(([id, m]) => [m.label, id]));
 
@@ -325,6 +352,47 @@ if (extensionPath) {
   binyanFiles.push({ file: ext.pin.lines.file, sha256: ext.pin.lines.sha256 });
   extensionSaid = { rule: STEMS_EXTENSION_RULE_ID, pin: `${STEMS_EXTENSION_HOME}/PIN.json`, relay: ext.pin.relay, lines_sha256: ext.pin.lines.sha256, ruling: ext.cited, branches: Object.fromEntries(ext.resting), rows_given_stems_in_this_book: given };
 }
+// THE STEMS FOLLOW A RETEXT (ship 6, the design of ships 5 and 6, section 6).
+// File 2 and the extension name a row by its source, its rank and its route
+// text as they read it, and the page asks a row's stems by the words it
+// serves now (its m, rank and route text). A round of the row-strikes record
+// that retexted a row without folding it left the row at its key and rank
+// under other words: the unabridged BDB's openings of a sense that took
+// their words back (relay v187), and the retexts before them. Each such name
+// is followed through every such round, in the record's order, to the words
+// the row serves now, so its stems still find it. A retext that folded took
+// the row off the store, and a re-key moved it to another key and rank:
+// neither is followed here. A name followed onto another name either file
+// gives is refused.
+let stemsFollowed = 0;
+if (rowStemsPath) {
+  const recordPath = join(storeDir, "..", RECORD_FILE);
+  const retextsOf = new Map();   // `${key}\u0001${m}\u0001${rank}` -> [[route, to_text], ...] in the record's order
+  if (existsSync(recordPath)) {
+    for (const r of JSON.parse(readFileSync(recordPath, "utf8")).rounds || []) for (const x of r.rows || []) {
+      if (x.action !== "retext" || x.folded_into || typeof x.to_text !== "string" || !Object.prototype.hasOwnProperty.call(stemsByKey, x.key)) continue;
+      const at = `${x.key}\u0001${x.m}\u0001${x.rank}`;
+      (retextsOf.get(at) || retextsOf.set(at, []).get(at)).push([x.route, x.to_text]);
+    }
+  }
+  for (const [k, held] of Object.entries(stemsByKey)) {
+    for (const id of Object.keys(held)) {
+      const [m, rank, route] = id.split("\u0001");
+      const chain = retextsOf.get(`${k}\u0001${m}\u0001${rank}`);
+      if (!chain) continue;
+      let now = route;
+      for (const [from, to] of chain) if (now === from) now = to;
+      if (now === route) continue;
+      const to = stemsId(m, rank, now);
+      if (Object.prototype.hasOwnProperty.call(held, to)) { console.error(`refused: the stems of ${m} rank ${rank} under «${k}» follow a retext onto words another line of the binyan files names`); process.exit(1); }
+      held[to] = held[id];
+      delete held[id];
+      const ext = extensionIdsByKey.get(k);
+      if (ext && ext.delete(id)) ext.add(to);
+      stemsFollowed += 1;
+    }
+  }
+}
 // a pointed surface's stems: the union over its places in this book, the
 // place counted as the piece store counts it (the verse's words, marks not
 // counted). A place written one way and read another gives its stems to the
@@ -361,7 +429,7 @@ if (stemsByPlace.size) for (const sec of zone.sections || []) {
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
   surfaces_unattested: 0, surfaces_with_stems: 0, surfaces_name_leads_under_only: 0, surfaces_with_lenient_leader: 0, surfaces_with_lenient_alternate: 0,
-  hg: 0, hm_year_unsaid: 0, hg_skipped_source_not_held: 0, ...(atRest ? { hg_skipped_rests_shut: 0 } : {}), hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
+  hg: 0, hm_year_unsaid: 0, ...(store.signLast ? { hg_stepped_past_a_signed_card: 0 } : {}), hg_skipped_source_not_held: 0, ...(atRest ? { hg_skipped_rests_shut: 0 } : {}), hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_with_their_own_citations: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
   places_tagged: 0, places_with_no_core_tag: 0, places_whose_pieces_spell_no_key_of_the_word: 0,
@@ -575,8 +643,10 @@ for (const sec of zone.sections || []) {
         for (const row of carriers) { const t = TIER[gradeOfRow(row)]; if (t !== undefined && t < tier) tier = t; }
         return { text: grp.text, tier, carriers };
       });
+      // rule 7: on a book whose store puts Strong's sign last, the sign is the first key here too, before the rank
+      const signedOf = store.signLast ? (gi) => Number(opensWithStrongSign(gi.text)) : () => 0;
       const firstUnder = (rank, only) => {
-        const ordered = groupInfo.map((gi, at) => ({ gi, at, r: rank(gi) })).sort((a, b) => a.r - b.r || a.at - b.at);
+        const ordered = groupInfo.map((gi, at) => ({ gi, at, r: rank(gi), sg: signedOf(gi) })).sort((a, b) => a.sg - b.sg || a.r - b.r || a.at - b.at);
         const top = ordered[0];
         if (!top || !only(top.gi)) return null;
         // the M the card prints for that reading: its oldest record
@@ -675,7 +745,13 @@ for (const sec of zone.sections || []) {
     else if (L.same_as_form === true) stats.hg_skipped_same_as_form += 1;
     else if (!L.in_routes || !Array.isArray(L.sorted_route_index) || !L.sorted_route_index.length || !routes.get(L.key)) stats.hg_skipped_lemma_not_in_routes += 1;
     else {
-      const top = routes.get(L.key)[L.sorted_route_index[0]];
+      // rule 7: on a book whose store puts Strong's sign last, the first card of the stack, in the stack's own order,
+      // whose text does not open with the sign; the top card where every card does. The gates below ask that card
+      const stack = routes.get(L.key);
+      const first = stack[L.sorted_route_index[0]];
+      const plainAt = store.signLast && first && opensWithStrongSign(first.text) ? L.sorted_route_index.find((ix) => stack[ix] && !opensWithStrongSign(stack[ix].text)) : undefined;
+      const top = plainAt === undefined ? first : stack[plainAt];
+      if (top !== first) stats.hg_stepped_past_a_signed_card += 1;
       // RULE 1 HOLDS FOR THE HEADWORD TOO: a card whose source the served
       // store does not hold is counted and never shown. The lattice is the
       // corpus lane's own catalog; the store struck seven of its sources for
@@ -790,14 +866,14 @@ const sidecar = {
     row_grade: { rule: POINTING_GRADE_RULE_ID, from: "a store row that carries its source's own headwords at [6] is graded by them against this pointed surface, any one matching headword a match; a row without the slot takes the lattice card's grade by fingerprint; the leaders m, x, l, s all rest on that one grade — per source, not merged" },
   },
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
-  emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats } },
+  emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats }, ...(signsStamp ? { signs_rest_last: signsStamp } : {}) },
   routes: sideRoutes, grades,
   entry: { rule: ENTRY_GATE_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
   names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
   // rule 6: the record the leaders were baked at rest under; absent where the book does not rest shut
   ...(atRest ? { rests_off: { ...store.atRest, what: "every leader here baked from the store's rows (o.m, o.x, o.c, o.l, o.la, o.s, v[…].c, e[…], nl) read the rows that rest open under the record and no other; the lattice's own cards, grades and citations are the corpus lane's and were read whole; a word's hg (the zone's) is carried only where its card's source is not shut whole and gives that reading in a row that rests open" } } : {}),
   leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
-  ...(binyanFiles.length ? { stems: stemsCarried, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, carried: stemsCarriedSaid, ...(extensionSaid ? { extension: extensionSaid } : {}), kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each row on a key a card of this book asks them under (carried, stems-carried-rule-v1: a word's, a read half's or a piece's key whose pointed surface has a known stem here, or a graded surface's own key with one), by m, rank and route: the store's rows, and where the extension was read the rows of the dictionary beside the store that it names; on a key carried, a row not listed has no known stem" } } : {}),
+  ...(binyanFiles.length ? { stems: stemsCarried, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, carried: stemsCarriedSaid, ...(extensionSaid ? { extension: extensionSaid } : {}), ...(stemsFollowed ? { followed_through_retexts: { record: `reader/data/${RECORD_FILE}`, rows_on_this_books_keys: stemsFollowed, what: "rows of this book's keys whose stems the binyan files name by route text a round of the record has since retexted without folding: named here by the words the row serves now" } } : {}), kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each row on a key a card of this book asks them under (carried, stems-carried-rule-v1: a word's, a read half's or a piece's key whose pointed surface has a known stem here, or a graded surface's own key with one), by m, rank and route: the store's rows, and where the extension was read the rows of the dictionary beside the store that it names; on a key carried, a row not listed has no known stem" } } : {}),
 };
 writeFileSync(sidecarPath, gzipSync(Buffer.from(JSON.stringify(sidecar)), { level: 9 }));
 
@@ -812,7 +888,7 @@ ef.toggles.lattice = {
   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
   counts: { ...stats },
   names: namesSaid,
-  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open; ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
+  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open, and the first card of the stack whose reading does not open with Strong's sign (the top card where every card's does; zone-gloss-rule-v8); ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
   pieces: {
     rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
     witnesses: pieceWitness,
@@ -833,6 +909,7 @@ const s = stats;
 console.log(`${outPath} · ${s.hg.toLocaleString()} of ${s.words_on.toLocaleString()} words carry the headword's lemma-sorted reading · ${s.ld} differ in Leningrad · verses ${s.verses_joined} joined, ${s.verses_held} held, ${s.verses_absent_from_lattice} absent`);
 console.log(`  ${sidecarPath} · ${Object.keys(sideRoutes).length.toLocaleString()} keys, ${routeCards.toLocaleString()} cards (${trCards} transliterations) · ${Object.keys(grades).length.toLocaleString()} pointed surfaces graded · ${(statSync(sidecarPath).size / 1024).toFixed(0)} KB`);
 console.log(`  parts: ${s.pc} of ${s.bare} words with no English of their own carry their pieces (${s.pc_pieces} pieces, ${s.pc_both_witnesses} with both witnesses) · ${s.bare_without_pieces} bare words the lattice has no pieces for · ${s.pc_skipped_word_has_an_english.toLocaleString()} words answered by the catalog and not carried`);
-console.log(`  hg skipped: ${s.hg_skipped_no_h} no headword · ${s.hg_skipped_witnesses_differ} witnesses differ · ${s.hg_skipped_lemma_differs_from_h} lemma is not h · ${s.hg_skipped_same_as_form} headword is the form · ${s.hg_skipped_lemma_not_in_routes} stack has no cards in this book · ${s.hg_skipped_source_not_held} source not held${atRest ? ` · ${s.hg_skipped_rests_shut} rest shut` : ""}`);
+console.log(`  hg skipped: ${s.hg_skipped_no_h} no headword · ${s.hg_skipped_witnesses_differ} witnesses differ · ${s.hg_skipped_lemma_differs_from_h} lemma is not h · ${s.hg_skipped_same_as_form} headword is the form · ${s.hg_skipped_lemma_not_in_routes} stack has no cards in this book · ${s.hg_skipped_source_not_held} source not held${atRest ? ` · ${s.hg_skipped_rests_shut} rest shut` : ""}${store.signLast ? ` · ${s.hg_stepped_past_a_signed_card} stepped past a card carrying Strong's sign` : ""}`);
 console.log(`  places: ${s.places_tagged.toLocaleString()} carry their entry's tag · ${namesSaid ? `${s.name_places_marked.toLocaleString()} of ${s.name_places_listed.toLocaleString()} listed name places marked` : "no list of name places in this tree"} · leaders asked at ${s.leaders_asked_at_a_kind_of_place.toLocaleString()} kinds of place, ${s.leaders_the_place_moves.toLocaleString()} moved`);
 if (s.held_examples.length) console.log(`  held: ${s.held_examples.join(" | ")}`);
+if (stemsFollowed) console.log(`  stems: ${stemsFollowed} row(s) of this book's keys named by the binyan files under words a round has since retexted, followed to the words they serve now`);

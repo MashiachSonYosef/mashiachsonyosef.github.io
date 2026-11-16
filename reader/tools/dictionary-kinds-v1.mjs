@@ -26,10 +26,19 @@
 //              store, and may name a fact a row carries in its facts slot
 //              (FACTS_SLOT of tools/gloss-store-v1.mjs), with `is` (the fact
 //              equals a value) or `has` (the fact is a list holding a value)
-//              beside it, or neither (the fact is there). The first ship
-//              holds two: the kind of word lists, knowledge bases and
-//              encyclopedia titles, and what English Wiktionary files as a
-//              name in its Hebrew and its Aramaic entries (fact name)
+//              beside it, or neither (the fact is there). An entry that
+//              names a fact may also name, in `stands_at`, the fact of the
+//              row that lists the places where the row stands all the same:
+//              the places its own source chose it at, each "<book slug>
+//              <chapter>:<verse>:<word>" (question 10 of 14 November 2026,
+//              taken: UBS's own phrase meanings where UBS itself chose them
+//              stay on the card at rest). The first ship held two: the kind
+//              of word lists, knowledge bases and encyclopedia titles, and
+//              what English Wiktionary files as a name in its Hebrew and its
+//              Aramaic entries (fact name). Ship 5 (15 November 2026) adds a
+//              third: what the UBS dictionary gives under a collocation, its
+//              own mark (fact collocations), standing where UBS's own pick
+//              names the row (picked_at)
 //   scope      which zones rest shut: a zone whose own fields equal
 //              scope.zone. Today that is the thirty-nine books, the zones
 //              served from the corpus lane's restore of the Miqra according
@@ -37,9 +46,14 @@
 //              a fixture keep today's rest
 //
 // A ROW RESTS SHUT under the first entry, in the record's order, whose keys
-// hold its source's key and whose fact, if it names one, the row carries.
-// Nothing leaves the store: the card holds a shut row back, a press away,
-// and the bakes leave it out of what the line under a word reads at rest.
+// hold its source's key and whose fact, if it names one, the row carries,
+// unless the rule is asked at a place the row's own facts name under the
+// entry's stands_at: there the entry passes over the row, and the next entry
+// in the record's order is asked. The bakes ask no place, so the line under
+// a word never reads such a row; the card asks the place of the word it is
+// open on. Nothing leaves the store: the card holds a shut row back, a press
+// away, and the bakes leave it out of what the line under a word reads at
+// rest.
 // A row is known by its source's key, never by its M id, so a new table of a
 // known source is filed with no edit; a key the record does not file is
 // refused, never guessed.
@@ -183,12 +197,16 @@ export const restsOffIn = (rec, zone) => {
 // THE RULE ITSELF, AS THE PAGE CARRIES IT (see ONE RULE, ONE PLACE above).
 //
 // restsOffOf(rec, mSources, factsOf) resolves each resting entry to the store's source keys once, and gives the
-// rule: (row) => the first entry, in the record's order, whose keys hold mSources[row[3]].key and whose fact, if it
-// names one, the row carries (factsOf(row)[fact] is truthy; with `is`, equal to it; with `has`, a list holding it),
-// else null. A row whose M id the index does not name answers null: an overlay's row, a span store source's.
+// rule: (row, place = null) => the first entry, in the record's order, whose keys hold mSources[row[3]].key and
+// whose fact, if it names one, the row carries (factsOf(row)[fact] is truthy; with `is`, equal to it; with `has`, a
+// list holding it), and, if it names stands_at, whose row does not list `place` in factsOf(row)[stands_at]; else
+// null. `place` is a place's name as a row's facts write it ("i-samuel 6:10:15"), or null where no place is asked;
+// the rule refuses anything else, by throwing one sentence. A row whose M id the index does not name answers null:
+// an overlay's row, a span store source's.
 // It refuses, by throwing one sentence, a record that does not hold over this index: a key the index names that no
 // family of the store files, a key two families file, an entry that shuts no key of the store or names a family
-// beside it, an entry it cannot read.
+// beside it, an entry it cannot read (a field it does not read; stands_at that is not the name of a fact, or beside
+// no fact).
 // restsOffIds(rec, mSources) gives the M ids every row of which rests shut whatever its facts (an entry that names
 // no fact holds their key), sorted as M1, M2, ... M10: the ids the search and the rail know the kind by.
 export const restsOffOf = (rec, mSources, factsOf) => {
@@ -201,7 +219,7 @@ export const restsOffOf = (rec, mSources, factsOf) => {
     else filed.set(k, f);
   }
   for (const m of Object.keys(mSources)) if (!filed.has((mSources[m] || {}).key)) said.push(`the index's ${m} (${(mSources[m] || {}).key}) is filed by no family of the store`);
-  const reads = ["id", "say", "kinds", "families", "fact", "is", "has", "ruling"];
+  const reads = ["id", "say", "kinds", "families", "fact", "is", "has", "stands_at", "ruling"];
   const entries = (Array.isArray(rec.rests_off) ? rec.rests_off : []).map((e) => {
     const keys = new Set();
     for (const field of Object.keys(e)) if (!reads.includes(field)) said.push(`the entry ${e.id} carries ${field}, which this rule does not read`);
@@ -217,11 +235,14 @@ export const restsOffOf = (rec, mSources, factsOf) => {
     if (!keys.size) said.push(`the entry ${e.id} shuts no source key of the store`);
     if ((e.is !== undefined || e.has !== undefined) && !e.fact) said.push(`the entry ${e.id} compares a value and names no fact`);
     if (e.is !== undefined && e.has !== undefined) said.push(`the entry ${e.id} reads both is and has`);
+    if (e.stands_at !== undefined && (typeof e.stands_at !== "string" || !e.stands_at)) said.push(`the entry ${e.id} stands at ${JSON.stringify(e.stands_at)}, which is not the name of a fact`);
+    else if (e.stands_at !== undefined && !e.fact) said.push(`the entry ${e.id} stands at the places its rows name and names no fact`);
     return { e, keys };
   });
   if (said.length) throw new Error(`the record of dictionary kinds does not hold over this store's index: ${said.join("; ")}`);
   const byM = new Map();   // M id -> the entries whose keys hold its source's key, in the record's order
-  return (row) => {
+  return (row, place = null) => {
+    if (place !== null && typeof place !== "string") throw new Error(`the rule of dictionary kinds was asked at ${JSON.stringify(place)}, which is not a place's name: refusing`);
     const m = row[3];
     const source = Object.hasOwn(mSources, m) ? mSources[m] : null;
     if (!source) return null;
@@ -229,8 +250,12 @@ export const restsOffOf = (rec, mSources, factsOf) => {
     if (!list) { list = entries.filter((x) => x.keys.has(source.key)).map((x) => x.e); byM.set(m, list); }
     for (const e of list) {
       if (!e.fact) return e;
-      const v = (factsOf(row) || {})[e.fact];
-      if (e.is !== undefined ? v === e.is : e.has !== undefined ? Array.isArray(v) && v.includes(e.has) : !!v) return e;
+      const facts = factsOf(row) || {};
+      const v = facts[e.fact];
+      if (!(e.is !== undefined ? v === e.is : e.has !== undefined ? Array.isArray(v) && v.includes(e.has) : !!v)) continue;
+      // the row stands at this place, by its own facts: the entry passes over it here
+      if (place !== null && e.stands_at !== undefined && Array.isArray(facts[e.stands_at]) && facts[e.stands_at].includes(place)) continue;
+      return e;
     }
     return null;
   };

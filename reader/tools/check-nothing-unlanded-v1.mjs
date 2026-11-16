@@ -31,7 +31,7 @@
 // Run: node tools/check-nothing-unlanded-v1.mjs [remote] [branch]
 
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync, rmSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { basename, dirname, join, relative } from "node:path";
 import { tmpdir } from "node:os";
@@ -55,6 +55,9 @@ const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok 
 // ghost, fetches answered from a stale shallow head, and the failures looked
 // like network trouble. Scratch goes where scratch lives.
 const SCRATCH = mkdtempSync(join(tmpdir(), "unlanded-"));
+// and it leaves with the run, whichever way the run ends: kept, every run left a
+// shallow copy of the branch behind (54 of them, 11 GB, by 16 November 2026)
+process.on("exit", () => { try { rmSync(SCRATCH, { recursive: true, force: true }); } catch { /* the temp dir is the system's to sweep */ } });
 const git = (...args) => execFileSync("git", args, { cwd: SCRATCH, encoding: "buffer", maxBuffer: 1 << 28, timeout: 120000 });
 let head = null;
 try {
