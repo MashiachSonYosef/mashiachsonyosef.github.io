@@ -33,3 +33,13 @@ Page lane (Elijah). The plan of the week (`wip/2026-11-16/PLAN-WEEK-OF-2026-11-1
 **A narrower rule, measured and set aside.** I measured whether a row of the lemma's entries should escape only the no-pointing hold, and not the hold on a row pointed otherwise (`logs/te-measure-narrower.json`, projected from a copy of the tools). It moves 245 leaders against 290, and Strong's concordance leads 151 of them against 169. Under these keys Strong's concordance's rows mostly carry no pointing, so both rules bring them back alike. The full rule stays: it is the entry gate the owner ruled (13 November), with the place's entry taken from MACULA's lemma, and it needs no exception in the ten readers that spare a row of the place's entry.
 
 **Lost and redone.** The worker restarted twice; the second restart killed the first round and a projection running beside it, which likely ran the container out of memory. The round wrote nothing before it died. It now runs alone (`tools/pipeline-8a.sh`, from 23:39Z): the whole round, every resting line against live, and the checks that model the gate. The suite and the gate wait on the line diff.
+
+## Item 2: a pointer leads no line, in the Bible books (task 137, first half)
+
+Item 1 does not reach these four lines. At 1 Samuel 22:13, אֵלָו takes H413 by its lemma, and the gate then withholds Strong's «behold» (H431) as another entry. But no row of H413 stands under the key אלו, so English Wiktionary's pointer (no entry) still leads.
+
+The line at rest prints the pointing's leader raw; the map's resolution reached only a ruled line and the card. Written as `tools/item2-pointer-line.py`, applied once item 1's round is done:
+- **The page** (pointer-line-rule-v1): the leader and its alternate print `formOfText`, the resolution with the pointer beside it, as the pill prints it, credited to the pointer's own source. A resolution that is a name stands aside at a place that is not one. Where the map has failed to arrive, `window.__formOf` is now set to null as well.
+- **The line recorder** (`tools/resting-lines-v1.mjs`) waits on the map as it waits on the lattice, so a line is never recorded before its resolution paints.
+- **check-form-of-v1 F15:** no resting line prints a pointer's own words where the map resolves it. A data law over the recordings and the zones; it is red on live's four lines.
+- **Not done here:** in the projector, the next reading that is not a pointer would lead where the map resolves nothing. In the Bible books every pointer that leads a line is resolved, so it would change nothing today. The Tikkunei Zohar's 1,261 wait on the corpus lane's map (card 3).
