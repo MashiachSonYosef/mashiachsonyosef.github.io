@@ -1,0 +1,669 @@
+diff --git a/reader/tools/check-entry-gate-v1.mjs b/reader/tools/check-entry-gate-v1.mjs
+index 3159cef962..674a1df9a7 100644
+--- a/reader/tools/check-entry-gate-v1.mjs
++++ b/reader/tools/check-entry-gate-v1.mjs
+@@ -1,6 +1,7 @@
+ #!/usr/bin/env node
+ // RUN: tree
+ // GUARDS: entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points
++// GUARDS: entry-by-lemma-rule-v1-where-step-gives-a-word-no-tag-the-place-takes-the-entries-of-the-rows-headed-by-maculas-lemma
+ // GUARDS: row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words
+ // LEDGER: -
+ // no frame letter. A check reads the ledger's pin, the store, the zones and
+@@ -93,7 +94,8 @@
+ //       this entry by its number and another by STEP's letter, and a row
+ //       with no number that names another of BDB's own entries, are
+ //       withheld and counted
+-//   E12 a word its place gives no tag is not gated
++//   E12 a word its place gives no tag, and MACULA's lemma no entry, is not
++//       gated
+ //   E13 where the place moves the leader, the line under the word and the
+ //       card's first pill are the place's leader
+ //   E14 where the pin names the list of rows its ledger moves (a reissue's
+@@ -109,6 +111,16 @@
+ //       the list's, each from the line's facts before to its facts after.
+ //       Without them that half is said and not judged
+ //
++//   E15 the entry where STEP gives no tag (entry-by-lemma-rule-v1): a plain
++//       word TAHOT does not tag carries the entries of MACULA's lemma (te)
++//       exactly where its lemma, one word and pointed, heads numbered rows
++//       of the store as the projector read it (at rest on a book the record
++//       of dictionary kinds rests shut), as the module reads them; one
++//       number or a list of several, never beside a tag; the page reads the
++//       gate's tags as the module does, and runs the gate under them side by
++//       side (E6). On the page, such a word whose key carries rows of
++//       another entry: its card withholds exactly those and names the
++//       lemma's entries, as E9 holds under a tag
+ // The words are found in the data, never named.
+ //
+ // Run: node tools/check-entry-gate-v1.mjs [--ledger <the pinned ledger>] [--ledger-was <the ledger it replaces>] [--lattice <dir>]
+@@ -119,7 +131,8 @@ import { createHash } from "node:crypto";
+ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { openRouteStore, factsOf, FACTS_SLOT, FACTS_WRITTEN_BY, readingKey } from "./gloss-store-v1.mjs";
+-import { ENTRY_GATE_RULE_ID, numberOf, tagOf, letteredOf, placeEntry, entrySaid, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
++import { ENTRY_GATE_RULE_ID, numberOf, tagOf, letteredOf, placeEntry, placeTags, lemmaEntries, entrySaid, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
++import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
+ import { nameWithheld } from "./names-gate-v1.mjs";
+ import { leadersKey, onlyLeaders, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
+ import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
+@@ -153,6 +166,9 @@ console.log(`— ${ENTRY_GATE_RULE_ID} —\n`);
+ if (!existsSync(join(PINS, "PIN.json"))) { console.log("SKIPPED — no row entries on this disk (data/row-entries/PIN.json)"); process.exit(3); }
+ const pin = JSON.parse(readFileSync(join(PINS, "PIN.json"), "utf8"));
+ const store = openRouteStore(STORE);
++// the store as the projector reads it on a book the record of dictionary kinds rests shut (E15)
++const restStore = openRouteStore(STORE, { atRest: true });
++const kindsRec = readKinds(join(STORE, "..")).rec;
+ const index = store.index;
+ const rec = index.row_entries || null;
+ 
+@@ -538,11 +554,11 @@ let page = null, pageWhy = "";
+ try {
+   const html = readFileSync(join(K3, "zone.html"), "utf8");
+   const grab = (head, end) => { const a = html.indexOf(head); if (a < 0 || html.indexOf(head, a + 1) >= 0) throw new Error(`zone.html does not hold exactly one "${head.trim()}"`); const b = html.indexOf(end, a); if (b < 0) throw new Error(`zone.html does not close "${head.trim()}"`); return html.slice(a, b); };
+-  page = new Function(`${grab("\n  const factsOf = (row) => ", ";\n")}${grab("\n  const numberOf = (tag) => ", "\n  window.__entryGate = ")}${grab("\n  const PLACE_IS_A_NAME = ", "\n  const versesOwn = ")}\n return { numberOf, tagOf, placeEntry, entrySaid, factsOf, bdbEntriesAt, entryVerdict, leadersKey, onlyLeaders };`)();
++  page = new Function(`${grab("\n  const factsOf = (row) => ", ";\n")}${grab("\n  const numberOf = (tag) => ", "\n  window.__entryGate = ")}${grab("\n  const PLACE_IS_A_NAME = ", "\n  const versesOwn = ")}\n return { numberOf, tagOf, placeEntry, placeTags, entrySaid, factsOf, bdbEntriesAt, entryVerdict, leadersKey, onlyLeaders };`)();
+ } catch (e) { pageWhy = e.message; }
+ 
+ const served = zonesServed().filter((z) => existsSync(join(ZONES, `${z}.lattice.bin`)));
+-const WANT = ["gated", "kept", "lettered", "bdb", "untagged"];
++const WANT = ["gated", "kept", "lettered", "bdb", "untagged", "lemma"];
+ // The words for the page, a few of each kind: a word the page joins to its neighbors in one cell (a run one license
+ // names) opens the cell's card and not its own, which only the page can say, so the first of a kind whose card is
+ // its own is the one judged.
+@@ -551,6 +567,7 @@ const picks = {};       // kind -> the words found for it, MOST at most
+ const more = (kind) => (picks[kind] || []).length < MOST;
+ const found = (kind, pick) => { (picks[kind] ||= []).push(pick); };
+ const leaders = new Map();   // E13's words: zone -> three at most, of four zones at most
++const e15 = { words: 0, carried: 0, faults: [] };
+ const e6 = { pairs: 0, rows: 0, faults: [] }, e7 = { tagged: 0, lists: 0, halves: 0, readWords: 0, faults: [], lattice: 0, latticeFaults: [], books: 0 }, e8 = { entries: 0, faults: [], spoken: 0 };
+ const asked = new Set();   // key, then the tags: judged once for E6
+ // a reading only rows of the given kind carry, among the key's rows: [text, a row carrying it] or null
+@@ -628,26 +645,52 @@ for (const z of served) {
+           if (!same(theirs2, mine.verdicts)) e6.faults.push(`${k} under ${tags.join(" ")}: row ${theirs2.findIndex((v, i) => v !== mine.verdicts[i]) + 1} of ${rows.length}`);
+         }
+       }
++      // E15: the entries of MACULA's lemma on a plain word TAHOT does not tag, as the module reads them off the store the
++      // projector read; and the page's gate under them, side by side with the module's, as E6 runs it under a tag
++      const lemmaHere = !h && !w.w && !w.kq && !w.kqw && w.k && typeof w.hp === "string" && w.hp.trim() && !/\s/u.test(w.hp.trim())
++        ? lemmaEntries(w.hp, (k) => (restsOffIn(kindsRec, zone) ? restStore : store).routesFor(k), factsOf) : [];
++      if (w.te !== undefined || lemmaHere.length) {
++        e15.words += 1;
++        const te = w.te === undefined ? [] : [].concat(w.te);
++        if (h || w.w || w.kq || w.kqw || !w.k) e15.faults.push(`${z} ${sec.label}: te on a word that is tagged, paired or has no key`);
++        else if (!same(te, lemmaHere)) e15.faults.push(`${z} ${sec.label}: ${w.k} carries ${te.join(" ") || "no te"}; MACULA's lemma gives ${lemmaHere.join(" ") || "none"} off the store`);
++        else if ((Array.isArray(w.te) && te.length < 2) || te.some((t) => typeof t !== "string" || !/^H[1-9]\d*$/u.test(t))) e15.faults.push(`${z} ${sec.label}: te ${JSON.stringify(w.te)} is not one number or a list of several`);
++        else if (page && (!page.placeTags || !same(page.placeTags(w), placeTags(w)))) e15.faults.push(`${z} ${sec.label}: the page reads the gate's tags otherwise`);
++        else {
++          e15.carried += 1;
++          const id = `${w.k}\u0001${te.join(" ")}`;
++          if (!asked.has(id)) {
++            asked.add(id);
++            const rows = rowsOf(w.k), mine = judge(rows, te);
++            if (mine && page) {
++              e6.pairs += 1; e6.rows += rows.length;
++              const pp = page.placeEntry(te), pb = pp ? page.bdbEntriesAt(pp, rows.map(page.factsOf)) : null;
++              if (!pp || !same(pp, mine.place) || !same([...pb].sort(), [...mine.bdbHere].sort())) e6.faults.push(`${w.k} under ${te.join(" ")} (MACULA's lemma): the place or BDB's entries there`);
++              else if (!same(rows.map((row) => page.entryVerdict(page.factsOf(row), pp, pb)), mine.verdicts)) e6.faults.push(`${w.k} under ${te.join(" ")} (MACULA's lemma): a row's verdict`);
++            }
++          }
++        }
++      }
+       // the kinds of place each form stands at: by its pointed surface (a read half's without the source's
+       // brackets), its own tags and whether its place is a name
+       for (const form of [w, ...(w.w || [])]) {
+         if (!form || typeof form.s !== "string" || !form.k) continue;
+         const s = form === w ? form.s : form.s.replace(/^\[+|\]+$/gu, "");
+-        const tags = form.tg ? [].concat(form.tg) : null;
++        const tags = placeTags(form);
+         (stoodUnder.get(s) || stoodUnder.set(s, new Map()).get(s)).set(leadersKey(tags, isName(w)), { tags, k: form.k, isName: isName(w) });
+       }
+       // the words for the page: one region, which its place does not divide, so the card opens on its whole form
+       if (!plainWord(words, e)) continue;
+       const here = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k };
+-      if (!w.tg) {
++      if (!placeTags(w)) {
+         if (more("untagged") && rowsOf(w.k).some((r) => (factsOf(r) || {}).n)) found("untagged", here);
+         continue;
+       }
+       const gr = grades[w.s];
+-      const tags = [].concat(w.tg);
++      const tags = placeTags(w);
+       const named = isName(w);
+       const wantsLeader = (leaders.has(z) ? leaders.get(z).length < 3 : leaders.size < 4) && gr && gr.e && gr.e[leadersKey(tags, named)];
+-      if (WANT.every((kind) => !more(kind) || kind === "untagged") && !wantsLeader) continue;
++      if (WANT.every((kind) => !more(kind) || kind === "untagged" || (kind === "lemma" && !w.te)) && !wantsLeader) continue;
+       const rows = rowsOf(w.k);
+       const j = rows.length ? judge(rows, tags) : null;
+       if (!j) continue;
+@@ -665,6 +708,10 @@ for (const z of served) {
+         const only = readingOnlyOf(rows, isOther, (row, i) => isOther(row, i) && !(factsOf(row).n || []).some((x) => j.place.numbers.includes(x)) && (factsOf(row).n || []).length > 0);
+         if (only) found("gated", { ...here, reading: only[0], m: String(only[1][3]) });
+       }
++      if (w.te && !w.tg && more("lemma") && j.other > 0 && someKept) {
++        const only = readingOnlyOf(rows, isOther, (row, i) => isOther(row, i) && !(factsOf(row).n || []).some((x) => j.place.numbers.includes(x)) && (factsOf(row).n || []).length > 0);
++        if (only) found("lemma", { ...here, reading: only[0], m: String(only[1][3]) });
++      }
+       if (more("lettered") && j.place.lettered && someKept) {
+         const byLetter = (row, i) => isOther(row, i) && (j.facts[i].n || []).some((x) => j.place.numbers.includes(x));
+         const only = rows.some(byLetter) ? readingOnlyOf(rows, isOther, byLetter) : null;
+@@ -759,12 +806,14 @@ else {
+     e7.latticeFaults.length ? `${nf(e7.latticeFaults.length)} · ${first(e7.latticeFaults)}` : `${nf(e7.lattice)} tagged places read against the lattice in ${e7.books} of ${served.length} books`);
+   if (e7.books < served.length) console.log(`  --  E7's second half was not judged for ${served.length - e7.books} of ${served.length} books: their positions file is not in ${LATTICE}`);
+ }
++check("E15 a plain word STEP gives no tag carries the entries of MACULA's lemma (te) exactly where the lemma, one word and pointed, heads numbered rows of the store the projector read; one number or a list of several, never beside a tag; the page reads the gate's tags as the module does", e15.carried > 0 && e15.faults.length === 0,
++  e15.faults.length ? `${nf(e15.faults.length)} · ${first(e15.faults)}` : `${nf(e15.carried)} words carry the entries of MACULA's lemma in ${served.length} zones`);
+ check("E8  the leaders at a kind of place speak for a place a word of their surface stands at, differ from the surface's own, and are credited to a row the place keeps that carries the reading; where the place withholds every row carrying the surface's own leader, it has leaders of its own", e8.entries > 0 && e8.faults.length === 0,
+   e8.faults.length ? `${nf(e8.faults.length)} · ${first(e8.faults)}` : `${nf(e8.entries)} surfaces and kinds of place with leaders of their own · ${nf(e8.spoken)} whose surface's own leader only withheld rows carry, each with its own`);
+ 
+ // ---- on the page -------------------------------------------------------------------------------
+ // the words found above, pressed and read (tools/gated-card-v1.mjs)
+-const lacking = WANT.filter((kind) => kind !== "untagged" && !picks[kind]);
++const lacking = WANT.filter((kind) => kind !== "untagged" && kind !== "lemma" && !picks[kind]);
+ if (lacking.length) check("E9–E11 on the page", false, `no served word was found for: ${lacking.join(", ")}`);
+ else {
+   const tree = await serveTree(K3);
+@@ -810,9 +859,14 @@ else {
+     if (!picks.untagged) console.log("  --  E12 was not judged: no served word of one region stands with no tag on a key whose rows carry a number");
+     else {
+       const [pick, got] = await own(picks.untagged);
+-      check("E12 a word its place gives no tag is not gated", !!pick && !got.fault && !!got.data && Number(got.data.entryWithheld) === 0 && got.data.entry === "" && got.entry === "" && !/of another entry/u.test(got.line),
++      check("E12 a word its place gives no tag, and MACULA's lemma no entry, is not gated", !!pick && !got.fault && !!got.data && Number(got.data.entryWithheld) === 0 && got.data.entry === "" && got.entry === "" && !/of another entry/u.test(got.line),
+         !pick ? JOINED(picks.untagged) : got.fault || `${where(pick)} · entry ${got.data ? got.data.entryWithheld : "?"} · "${got.line}" · ${got.said.length} pills`);
+     }
++    {
++      const [pick, got] = await own(picks.lemma);
++      check("E15 on the page: a word STEP gives no tag, whose key carries rows of another entry than its lemma's: its card withholds exactly those, says so naming the lemma's entries, and prints no reading only such rows carry", !!pick && !got.fault && counted(got, pick) && !pillOf(got, pick) && got.entry === pick.tags.join(" "),
++        !pick ? (picks.lemma ? JOINED(picks.lemma) : "no served word carrying the entries of MACULA's lemma stands where its card withholds rows of another entry") : got.fault || `${where(pick)} · ${pick.other} of ${pick.rows} rows are another entry's; the card says ${got.data ? got.data.entryWithheld : "nothing"} · "${got.line}" · «${String(pick.reading).slice(0, 40)}» (${pick.m}) ${pillOf(got, pick) ? "stands on a pill" : "is on no pill"}`);
++    }
+     if (!leaders.size) check("E13 where the place moves the leader, the line under the word and the card's first pill are the place's leader", false, "no served word of one region stands at a place that moves its leader");
+     else {
+       // read with the sources as the record rests them: the line is baked from the store's rows, and a dictionary
+diff --git a/reader/tools/check-masorah-toggle-v1.mjs b/reader/tools/check-masorah-toggle-v1.mjs
+index 8070da5e9c..827364687c 100644
+--- a/reader/tools/check-masorah-toggle-v1.mjs
++++ b/reader/tools/check-masorah-toggle-v1.mjs
+@@ -159,7 +159,7 @@ const only = await cardNow();
+ const gr = side.grades[target ? target.s : ""];
+ // the leaders under "only" at the word's own place: its own where its gates move them (its entry's tags
+ // and whether it is a name; a book whose places were not read for names reads every place as one)
+-const at = target ? await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i].__word; return { tags: w && w.tg ? [].concat(w.tg) : null, np: !!(w && w.np) }; }, target.i) : { tags: null, np: false };
++const at = target ? await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i].__word; return { tags: w && w.tg ? [].concat(w.tg) : w && w.te ? [].concat(w.te) : null, np: !!(w && w.np) }; }, target.i) : { tags: null, np: false };
+ const lead = onlyLeaders(gr, at.tags, !side.names || at.np);
+ 
+ // M2
+diff --git a/reader/tools/check-names-gate-v1.mjs b/reader/tools/check-names-gate-v1.mjs
+index 5d90b07525..116b0baebf 100644
+--- a/reader/tools/check-names-gate-v1.mjs
++++ b/reader/tools/check-names-gate-v1.mjs
+@@ -83,7 +83,7 @@ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { openRouteStore, factsOf, readingKey } from "./gloss-store-v1.mjs";
+ import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
+-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
++import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+ import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
+ import { openFollower, followedRecord, FollowFault } from "./row-strikes-follow-v1.mjs";
+ import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
+@@ -296,7 +296,7 @@ for (const z of served) {
+       const named = rows.some((r) => (factsOf(r) || {}).name);
+       if (!named && !pointers.length) continue;
+       // what the entry and the pointing do with each row here, as the page asks them
+-      const place = w.tg ? placeEntry([].concat(w.tg)) : null;
++      const place = placeTags(w) ? placeEntry(placeTags(w)) : null;
+       const facts = rows.map(factsOf);
+       const bdbHere = place ? bdbEntriesAt(place, facts) : null;
+       const verdicts = rows.map((r, i) => (place ? entryVerdict(facts[i], place, bdbHere) : "none"));
+@@ -309,7 +309,7 @@ for (const z of served) {
+       // (a row the entry, the pointing and the stem all leave)
+       const left = (row, i) => verdicts[i] !== "other" && (verdicts[i] === "this" || !attested || !heldByPointing(rowGrades[i])) && !otherStem(row);
+       const stands = (row, i) => nameLeft(row, i) && left(row, i);
+-      const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: w.tg ? [].concat(w.tg) : null, rows: rows.length, names: rows.filter(nameLeft).length };
++      const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: placeTags(w), rows: rows.length, names: rows.filter(nameLeft).length };
+       // N9: a pointer to a name whose own row, no name's, every other gate leaves here
+       const pointer = pointers.find((x) => rows.some((row, i) => String(row[3]) === x.m && !(facts[i] && facts[i].name) && store.carriersOf([row], x.t).length && left(row, i)));
+       if (pointer) (picks.pointer ||= []).push({ ...pick, pointer });
+diff --git a/reader/tools/check-names-pill-v1.mjs b/reader/tools/check-names-pill-v1.mjs
+index f4058086ce..0fb8433d08 100644
+--- a/reader/tools/check-names-pill-v1.mjs
++++ b/reader/tools/check-names-pill-v1.mjs
+@@ -94,7 +94,7 @@ const snap = () => p.evaluate((secs) => {
+       const g = wb.querySelector(":scope > .g"); if (!g) return;
+       const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
+       const k = words[wi].k, nn = (z.gloss_orders || {}).noname || {};
+-      out.push({ id: `${si}|${wi}`, k, s: words[wi].s, tg: words[wi].tg || null, np: !!words[wi].np, line: c.textContent.trim(), chip: ((g.querySelector(".g-lic") || {}).textContent || "").trim(), src: ((g.querySelector(".g-lic") || { dataset: {} }).dataset.line || ""),
++      out.push({ id: `${si}|${wi}`, k, s: words[wi].s, tg: words[wi].tg ? [].concat(words[wi].tg) : words[wi].te ? [].concat(words[wi].te) : null, np: !!words[wi].np, line: c.textContent.trim(), chip: ((g.querySelector(".g-lic") || {}).textContent || "").trim(), src: ((g.querySelector(".g-lic") || { dataset: {} }).dataset.line || ""),
+         owed: !!(k && z.gloss_names && Object.prototype.hasOwnProperty.call(z.gloss_names, k) && Object.prototype.hasOwnProperty.call(nn, k)), want: k && Object.prototype.hasOwnProperty.call(nn, k) ? nn[k] : null });
+     });
+   });
+diff --git a/reader/tools/check-pointing-gate-v1.mjs b/reader/tools/check-pointing-gate-v1.mjs
+index 9eea8c71c4..370a0f834c 100644
+--- a/reader/tools/check-pointing-gate-v1.mjs
++++ b/reader/tools/check-pointing-gate-v1.mjs
+@@ -69,7 +69,7 @@ import { gunzipSync } from "node:zlib";
+ import { gradeRow, isPointed, heldByPointing } from "./pointing-grade-v1.mjs";
+ import { STEM_FAMILY, isOtherStem } from "./stem-family-v1.mjs";
+ import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
+-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
++import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+ import { nameWithheld } from "./names-gate-v1.mjs";
+ import { openBesideTheStore, rowsBeside, besideAtAWord, restingOff } from "./rows-beside-the-store-v1.mjs";
+ import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
+@@ -91,7 +91,7 @@ const rowsOf = (k) => (store.routesFor(k) || []).filter((r) => store.index.m_sou
+ // asked its entry, and a book whose places were not read for names is not asked for names.
+ const gated = (w, rows, grades, isName) => {
+   const attested = grades.includes("m");
+-  const place = w.tg ? placeEntry([].concat(w.tg)) : null;
++  const place = placeTags(w) ? placeEntry(placeTags(w)) : null;
+   const facts = rows.map(factsOf);
+   const bdbHere = place ? bdbEntriesAt(place, facts) : null;
+   const verdicts = rows.map((r, j) => (place ? entryVerdict(facts[j], place, bdbHere) : "none"));
+diff --git a/reader/tools/check-pointing-grade-v1.mjs b/reader/tools/check-pointing-grade-v1.mjs
+index 4c91a07a12..c419b3d3aa 100644
+--- a/reader/tools/check-pointing-grade-v1.mjs
++++ b/reader/tools/check-pointing-grade-v1.mjs
+@@ -241,7 +241,7 @@ const target = await p.evaluate((grades) => {
+     const sec = wbs[i].closest("section.seg");
+     const all = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
+     const w = wbs[i].__word || {};
+-    return { i, s, ref: sec && sec.__sec ? sec.__sec.label : null, n: all.indexOf(wbs[i]) + 1, tags: w.tg ? [].concat(w.tg) : null, np: !!w.np };
++    return { i, s, ref: sec && sec.__sec ? sec.__sec.label : null, n: all.indexOf(wbs[i]) + 1, tags: w.tg ? [].concat(w.tg) : w.te ? [].concat(w.te) : null, np: !!w.np };
+   }
+   return null;
+ }, side.grades);
+diff --git a/reader/tools/check-read-words-v1.mjs b/reader/tools/check-read-words-v1.mjs
+index 887981d858..fe35b63814 100644
+--- a/reader/tools/check-read-words-v1.mjs
++++ b/reader/tools/check-read-words-v1.mjs
+@@ -233,7 +233,7 @@ const gateOf = (w) => gateUnder(w.letters, w.tag === null ? null : [w.tag]);
+ // the written half of a place: its regions, and the tags the card of its form is due (a form written as several words opens as a branch, asked under none)
+ const writtenOf = (word) => {
+   const regions = (word.w || []).filter((r) => r && r.role === "KETIV");
+-  return { regions, tags: regions.length === 1 && regions[0].tg ? [].concat(regions[0].tg) : null };
++  return { regions, tags: regions.length === 1 && regions[0].tg ? [].concat(regions[0].tg) : regions.length === 1 && regions[0].te ? [].concat(regions[0].te) : null };
+ };
+ /** IN THE PAGE. One place's card, moved to its read form, each read word's block pressed and read. Handed to the
+  *  browser whole. A block is read only while the card stands on it. `again` says the page opened the card anew
+diff --git a/reader/tools/check-same-product-v1.mjs b/reader/tools/check-same-product-v1.mjs
+index f367409cfd..60944195f8 100644
+--- a/reader/tools/check-same-product-v1.mjs
++++ b/reader/tools/check-same-product-v1.mjs
+@@ -141,6 +141,7 @@ import { zonesServed } from "./zones-on-disk-v1.mjs";
+ import { readingKey, openRouteStore } from "./gloss-store-v1.mjs";
+ import { DICTIONARY_KINDS_RULE_ID, restsOffIds, restsOffIn } from "./dictionary-kinds-v1.mjs";
+ import { onlyLeaders } from "./place-leaders-v1.mjs";
++import { placeTags } from "./entry-gate-v1.mjs";
+ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
+ const DIFF = arg("diff", ""); const diffLines = [];
+ const OLD = arg("old", ""), NEW = arg("new", ""), EVERY = Number(arg("every", "5")), CHAPTERS = Number(arg("chapters", "2"));
+@@ -252,7 +253,7 @@ const leadersRead = (build, w, keys) => {
+   const zone = build.zone || {}, side = build.side || null;
+   const g = side && side.grades ? side.grades[w.s] : null;
+   const graded = !!(g && g.o && Object.prototype.hasOwnProperty.call(g.o, "l"));
+-  const at = graded ? onlyLeaders(g, w.tg || null, !side.names || !!w.np) : null;
++  const at = graded ? onlyLeaders(g, placeTags(w), !side.names || !!w.np) : null;
+   if (at && Array.isArray(at.l)) out.push({ text: String(at.l[0]), by: (Array.isArray(at.l[4]) ? at.l[4] : []).map(String) });
+   if (!graded || (at && at.nl)) for (const kk of keys) { const m = (zone.gloss_m || {})[kk], t = (zone.gloss || {})[kk]; if (m && typeof t === "string") out.push({ text: t, by: (Array.isArray(m.by) ? m.by : []).map(String) }); }
+   return out;
+diff --git a/reader/tools/check-sense-openings-v1.mjs b/reader/tools/check-sense-openings-v1.mjs
+index b6d1e27b67..72e57dcb56 100644
+--- a/reader/tools/check-sense-openings-v1.mjs
++++ b/reader/tools/check-sense-openings-v1.mjs
+@@ -77,7 +77,7 @@ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { openRouteStore, factsOf, readingKey, routePrinted, senseOpened, SENSE_OPENINGS_RULE_ID, SENSE_OPENINGS_PRINT } from "./gloss-store-v1.mjs";
+ import { nameWithheld } from "./names-gate-v1.mjs";
+-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
++import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+ import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
+ import { rulingsPinned, rulingOf, cited } from "./rulings-v1.mjs";
+ import { openFollower, followedRecord, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
+@@ -342,7 +342,7 @@ for (const z of served) {
+       if (w.mark || !keysWithAMark.has(w.k) || !plainWord(words, e)) continue;
+       const rows = rowsOf(w.k);
+       const facts = rows.map(factsOf);
+-      const place = w.tg ? placeEntry([].concat(w.tg)) : null;
++      const place = placeTags(w) ? placeEntry(placeTags(w)) : null;
+       const bdbHere = place ? bdbEntriesAt(place, facts) : null;
+       const verdicts = rows.map((r, i) => (place ? entryVerdict(facts[i], place, bdbHere) : "none"));
+       const isName = !namesRead || !!w.np;
+@@ -361,7 +361,7 @@ for (const z of served) {
+       if (notesKept.length) placesWithANote += 1;
+       if (notesKept.length && !readingsKept) placesWithOnlyNotes += 1;
+       const said = (row) => { const o = senseOpened(row); return { m: String(row[3]), entry: o.entry, point: o.point, text: o.text }; };
+-      const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: w.tg ? [].concat(w.tg) : null, rows: rows.length,
++      const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: placeTags(w), rows: rows.length,
+         notes: notesKept.map(said), all: notesAll.map(said), alone: [...noteWordsOnly(w.k)] };
+       if (notesKept.length && readingsKept && notesKept.every((r) => noteWordsOnly(w.k).has(readingKey(senseOpened(r).text))) && more("withNotes")) (picks.withNotes ||= []).push(pick);
+       if (notesKept.length < notesAll.length && readingsKept && more("withheld")) (picks.withheld ||= []).push(pick);
+diff --git a/reader/tools/check-sign-does-not-lead-v1.mjs b/reader/tools/check-sign-does-not-lead-v1.mjs
+index 2e4c856a6c..f10ae5092e 100644
+--- a/reader/tools/check-sign-does-not-lead-v1.mjs
++++ b/reader/tools/check-sign-does-not-lead-v1.mjs
+@@ -83,7 +83,7 @@ import { licClass } from "./gloss-m-v1.mjs";
+ import { fnv1a } from "./lattice-lib-v1.mjs";
+ import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
+ import { isOtherStem } from "./stem-family-v1.mjs";
+-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
++import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+ import { nameWithheld } from "./names-gate-v1.mjs";
+ import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
+ 
+@@ -280,7 +280,7 @@ const plainIn = (groups) => groups.some((g) => !opensWithStrongSign(g.text));
+         const surface = form === word ? form.s : form.s.replace(/^\[+|\]+$/gu, "");
+         const gr = (s.grades || {})[surface];
+         if (!gr || gr.k !== form.k || !gr.e) continue;
+-        const tags = form.tg ? [].concat(form.tg) : null, key = leadersKey(tags, isName);
++        const tags = placeTags(form), key = leadersKey(tags, isName);
+         if (key === PLACE_IS_A_NAME || !gr.e[key] || asked.has(`${surface}\u0001${key}`)) continue;
+         asked.add(`${surface}\u0001${key}`);
+         const at = gr.e[key];
+diff --git a/reader/tools/check-source-switch-v1.mjs b/reader/tools/check-source-switch-v1.mjs
+index f2fd15d531..461ffd8d2c 100644
+--- a/reader/tools/check-source-switch-v1.mjs
++++ b/reader/tools/check-source-switch-v1.mjs
+@@ -295,7 +295,7 @@ check("S2  the receipt agrees with the chips and with gloss_m",
+ // a baked alternate, AND carry some other visible line with a second carrier
+ const visible = await p.evaluate(() => [...document.querySelectorAll("section.seg .he-text .wb")].slice(0, 120).map((wb, i) => {
+   const g = wb.querySelector(".g"); const w = wb.querySelector(".w");
+-  return { i, s: w ? w.textContent.trim() : "", tg: wb.__word && wb.__word.tg ? [].concat(wb.__word.tg) : null, np: !!(wb.__word && wb.__word.np), bare: !g || g.classList.contains("bare"), regions: wb.querySelectorAll(".wr").length, line: g ? g.textContent.replace(/\s+/g, " ").trim() : "" };
++  return { i, s: w ? w.textContent.trim() : "", tg: wb.__word && wb.__word.tg ? [].concat(wb.__word.tg) : wb.__word && wb.__word.te ? [].concat(wb.__word.te) : null, np: !!(wb.__word && wb.__word.np), bare: !g || g.classList.contains("bare"), regions: wb.querySelectorAll(".wr").length, line: g ? g.textContent.replace(/\s+/g, " ").trim() : "" };
+ }));
+ const kOf = (s) => { for (const sec of zone.sections) for (const w of sec.words || []) if (w.s === s) return w.k || (w.w && w.w[0] && w.w[0].k) || null; return null; };
+ const groups = new Map();
+diff --git a/reader/tools/check-stems-extension-v1.mjs b/reader/tools/check-stems-extension-v1.mjs
+index e4a38b6e13..2793318ad6 100644
+--- a/reader/tools/check-stems-extension-v1.mjs
++++ b/reader/tools/check-stems-extension-v1.mjs
+@@ -64,7 +64,7 @@ import { gunzipSync } from "node:zlib";
+ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { openRouteStore, factsOf, readingKey, printedForm } from "./gloss-store-v1.mjs";
+-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
++import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+ import { nameWithheld } from "./names-gate-v1.mjs";
+ import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
+ import { isOtherStem } from "./stem-family-v1.mjs";
+@@ -179,7 +179,7 @@ if (ext) {
+ const storeLeft = (w, rows, isName) => {
+   const grades = rows.map((r) => gradeRow(r, w.s));
+   const attested = grades.includes("m");
+-  const place = w.tg ? placeEntry([].concat(w.tg)) : null;
++  const place = placeTags(w) ? placeEntry(placeTags(w)) : null;
+   const facts = rows.map(factsOf);
+   const bdbHere = place ? bdbEntriesAt(place, facts) : null;
+   const verdicts = rows.map((r, j) => (place ? entryVerdict(facts[j], place, bdbHere) : "none"));
+diff --git a/reader/tools/entry-gate-v1.mjs b/reader/tools/entry-gate-v1.mjs
+index ef0bb70348..9f2c17f03f 100644
+--- a/reader/tools/entry-gate-v1.mjs
++++ b/reader/tools/entry-gate-v1.mjs
+@@ -57,6 +57,47 @@
+ // tools/apply-row-entries-v1.mjs. The page carries these functions under the
+ // same names, and check-entry-gate-v1 runs the two side by side.
+ export const ENTRY_GATE_RULE_ID = "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points";
++import { vowelForm, isPointed } from "./pointing-grade-v1.mjs";
++
++// THE ENTRY WHERE STEP GIVES NO TAG (entry-by-lemma-rule-v1; the plan of the
++// week of 17 November 2026, section 1, step 3, which the owner took on 16
++// November: «sounds smart. lets add it»). STEP gives no tag at 861 places of
++// the thirty-nine books that the store reads, and there the gate stood
++// aside: at 1 Samuel 2:10 the Classical Hebrew Words database's «unjust
++// one», pointed as the place, led the line, and Strong's «about» (H5922),
++// the word's own entry with no pointing of its own, rested held back. MACULA
++// names the word's lemma at those places (the zone's hp), and the store's
++// rows headed by that lemma, pointed as MACULA points it, file it under
++// their own entries. The projector writes those entries on the word as te,
++// beside tg and never in it, so a reader of tg still reads only what TAHOT
++// tags; the gate reads tg, else te (placeTags). A lemma of several words (a
++// name such as Eben-ezer) gives none, and neither does a word read one way
++// and written another. Measured on 16 November 2026: 754 of the 861 places
++// take one or more entries (wip/2026-11-16/the-entry-measure/).
++export const ENTRY_BY_LEMMA_RULE_ID = "entry-by-lemma-rule-v1-where-step-gives-a-word-no-tag-the-place-takes-the-entries-of-the-rows-headed-by-maculas-lemma";
++/** The tags the gate reads at a form: TAHOT's core tags (tg), else the entries of MACULA's lemma (te); null where neither. */
++export const placeTags = (form) => (form && form.tg ? [].concat(form.tg) : form && form.te ? [].concat(form.te) : null);
++/** The letters of a Hebrew text: its consonants, nothing else. */
++const lettersOf = (t) => [...String(t || "").normalize("NFD")].filter((c) => c >= "\u05D0" && c <= "\u05EA").join("");
++/** A headword carrying a cantillation mark is a form copied from a verse (MACULA's and STEP's rows head their renderings
++ * so), not a dictionary's headword: «he went in» (H5954) is headed by the accented form of Daniel's verb, which points as
++ * the preposition does. */
++const ACCENTED = /[\u0591-\u05AF]/u;
++/** The entries of MACULA's lemma: the numbers (facts n) of the rows under the lemma's letters that a pointed headword of
++ * their own heads exactly as the lemma is pointed, in the order of their digits; [] where the lemma is unpointed, of
++ * several words, or heads no numbered row. `routesFor` is the store's reader of a key's rows; `factsOf` its facts. */
++export const lemmaEntries = (lemma, routesFor, factsOfRow) => {
++  const l = String(lemma || "");
++  if (!l || /\s/u.test(l.trim()) || !isPointed(l)) return [];
++  const vf = vowelForm(l), out = new Set();
++  for (const row of routesFor(lettersOf(l)) || []) {
++    const heads = Array.isArray(row[6]) ? row[6] : [];
++    if (!heads.some((h) => typeof h === "string" && !ACCENTED.test(h) && isPointed(h) && vowelForm(h) === vf)) continue;
++    const f = factsOfRow(row);
++    for (const n of f && Array.isArray(f.n) ? f.n : []) if (numberOf(n)) out.add(numberOf(n));
++  }
++  return [...out].sort((a, b) => Number(a.slice(1)) - Number(b.slice(1)));
++};
+ 
+ /** The Strong's number in a tag or an entry id: H and the digits, leading noughts off; null where it holds none. */
+ export const numberOf = (tag) => { const x = /^[HA]?0*(\d+)/u.exec(String(tag)); return x && x[1] !== "0" ? `H${x[1]}` : null; };
+diff --git a/reader/tools/project-lattice-v12-v1.mjs b/reader/tools/project-lattice-v12-v1.mjs
+index a5a7fa810c..aa062fd6d4 100644
+--- a/reader/tools/project-lattice-v12-v1.mjs
++++ b/reader/tools/project-lattice-v12-v1.mjs
+@@ -148,7 +148,7 @@ import { gradeRow, heldByPointing, POINTING_GRADE_RULE_ID, UNPOINTED_ROW_RULE_ID
+ import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
+ import { readStemsExtension, stemsId, STEMS_EXTENSION_RULE_ID, STEMS_EXTENSION_HOME } from "./stems-extension-v1.mjs";
+ import { STEMS_CARRIED_RULE_ID, keysAskedWithStems } from "./stems-carried-v1.mjs";
+-import { ENTRY_GATE_RULE_ID, placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
++import { ENTRY_GATE_RULE_ID, ENTRY_BY_LEMMA_RULE_ID, placeEntry, placeTags, lemmaEntries, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+ import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
+ import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
+ import { readPinnedLines } from "./pinned-v1.mjs";
+@@ -433,6 +433,7 @@ const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows
+   ld: 0, grades: 0, verses_with_their_own_citations: 0, verses_held_j_not_sound: 0,
+   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
+   places_tagged: 0, places_with_no_core_tag: 0, places_whose_pieces_spell_no_key_of_the_word: 0,
++  places_untagged_asked_by_lemma: 0, places_entry_by_lemma: 0, places_entry_by_lemma_several: 0, places_lemma_of_several_words: 0,
+   name_places_listed: 0, name_places_marked: 0, name_places_with_no_word: 0, leaders_asked_at_a_kind_of_place: 0, leaders_the_place_moves: 0,
+   held_examples: [] };
+ const grades = {};          // pointed surface -> { k, g, n, o, v? }
+@@ -816,6 +817,25 @@ for (const sec of zone.sections || []) {
+   });
+ }
+ 
++// ---- the entry where STEP gives no tag (entry-by-lemma-rule-v1) -------------
++// A plain word (no halves, no read form apart) that carries no tag after the
++// join, in a verse joined or held, takes the entries of MACULA's lemma (hp),
++// read from the store's rows headed by the lemma as MACULA points it
++// (tools/entry-gate-v1.mjs, lemmaEntries). Written as te, apart from tg; the
++// gate reads tg, else te (placeTags). Cleared first on every word, so a word
++// a later projection tags carries no te of an earlier one.
++for (const sec of zone.sections || []) for (const w of sec.words || []) {
++  delete w.te;
++  if (w.mark || w.tg || w.w || w.kq || w.kqw || !w.k || typeof w.hp !== "string" || !w.hp) continue;
++  stats.places_untagged_asked_by_lemma += 1;
++  if (/\s/u.test(w.hp.trim())) { stats.places_lemma_of_several_words += 1; continue; }
++  const te = lemmaEntries(w.hp, (k) => store.routesFor(k), factsOf);
++  if (!te.length) continue;
++  w.te = te.length === 1 ? te[0] : te;
++  stats.places_entry_by_lemma += 1;
++  if (te.length > 1) stats.places_entry_by_lemma_several += 1;
++}
++
+ // ---- the leaders at each kind of place, asked once every surface is graded --
+ // Every word of the book, and at a place written one way and read another
+ // each half, is a form the page may read leaders for: by its pointed surface
+@@ -830,7 +850,7 @@ for (const sec of zone.sections || []) for (const w of sec.words || []) {
+     const surface = form === w ? form.s : form.s.replace(/^\[+|\]+$/gu, "");
+     const rec = grades[surface], held = surfaceRows.get(surface);
+     if (!rec || !held || rec.k !== form.k) continue;
+-    const tags = form.tg ? [].concat(form.tg) : null;
++    const tags = placeTags(form);
+     const key = leadersKey(tags, isName);
+     if (key === PLACE_IS_A_NAME || held.asked.has(key)) continue;   // no tag and a name: the surface's own leaders
+     held.asked.add(key);
+@@ -893,11 +913,11 @@ const sidecar = {
+   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
+   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats }, ...(signsStamp ? { signs_rest_last: signsStamp } : {}) },
+   routes: sideRoutes, grades,
+-  entry: { rule: ENTRY_GATE_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
++  entry: { rule: ENTRY_GATE_RULE_ID, by_lemma: ENTRY_BY_LEMMA_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
+   names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
+   // rule 6: the record the leaders were baked at rest under; absent where the book does not rest shut
+   ...(atRest ? { rests_off: { ...store.atRest, what: "every leader here baked from the store's rows (o.m, o.x, o.c, o.l, o.la, o.s, v[…].c, e[…], nl) read the rows that rest open under the record and no other; the lattice's own cards, grades and citations are the corpus lane's and were read whole; a word's hg (the zone's) is carried only where its card's source is not shut whole and gives that reading in a row that rests open" } } : {}),
+-  leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
++  leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The key of a place with no tag is the entries of MACULA's lemma where the word carries them (te). The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
+   ...(binyanFiles.length ? { stems: stemsCarried, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, carried: stemsCarriedSaid, ...(extensionSaid ? { extension: extensionSaid } : {}), ...(stemsFollowed ? { followed_through_retexts: { record: `reader/data/${RECORD_FILE}`, rows_on_this_books_keys: stemsFollowed, what: "rows of this book's keys whose stems the binyan files name by route text a round of the record has since retexted without folding: named here by the words the row serves now" } } : {}), kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each row on a key a card of this book asks them under (carried, stems-carried-rule-v1: a word's, a read half's or a piece's key whose pointed surface has a known stem here, or a graded surface's own key with one), by m, rank and route: the store's rows, and where the extension was read the rows of the dictionary beside the store that it names; on a key carried, a row not listed has no known stem" } } : {}),
+ };
+ writeFileSync(sidecarPath, gzipSync(Buffer.from(JSON.stringify(sidecar)), { level: 9 }));
+@@ -913,7 +933,7 @@ ef.toggles.lattice = {
+   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
+   counts: { ...stats },
+   names: namesSaid,
+-  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open, and the first card of the stack whose reading does not open with Strong's sign (the top card where every card's does; zone-gloss-rule-v8); ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
++  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; te: where the word carries no tag, is no pair and has no read form apart, the entries of MACULA's lemma (hp), the numbers of the store's rows headed by the lemma as MACULA points it, one or a list (entry-by-lemma-rule-v1), which the gate reads where tg is absent; hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open, and the first card of the stack whose reading does not open with Strong's sign (the top card where every card's does; zone-gloss-rule-v8); ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
+   pieces: {
+     rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
+     witnesses: pieceWitness,
+diff --git a/reader/zone.html b/reader/zone.html
+index 7e09fa05eb..c947ea1e51 100644
+--- a/reader/zone.html
++++ b/reader/zone.html
+@@ -3289,6 +3289,12 @@
+     return { tags, numbers, lettered: tags.every((t) => /[A-Za-z]$/u.test(t)) };
+   };
+   const entrySaid = (place) => (place.lettered ? [...new Set(place.tags)] : place.numbers);
++  // THE ENTRY WHERE STEP GIVES NO TAG (entry-by-lemma-rule-v1, in
++  // tools/entry-gate-v1.mjs, where its reasons stand): a word TAHOT tags
++  // carries its core tags (tg); a plain word it does not tag carries the
++  // entries of MACULA's lemma, as the projector read them from the store's
++  // rows headed by the lemma (te). The gate reads tg, else te.
++  const placeTags = (form) => (form && form.tg ? [].concat(form.tg) : form && form.te ? [].concat(form.te) : null);
+   const bdbEntriesAt = (place, factsOfRows) => {
+     const out = new Set();
+     for (const f of factsOfRows) if (f && Array.isArray(f.b) && Array.isArray(f.n) && f.n.some((x) => place.numbers.includes(x))) for (const e of f.b) out.add(e);
+@@ -3304,7 +3310,7 @@
+     const t = facts && Array.isArray(facts.t) ? facts.t : [];
+     return t.length && place.lettered && !t.some((x) => place.tags.includes(x)) ? "other" : "this";
+   };
+-  window.__entryGate = { numberOf, tagOf, placeEntry, entrySaid, factsOf, bdbEntriesAt, entryVerdict };
++  window.__entryGate = { numberOf, tagOf, placeEntry, placeTags, entrySaid, factsOf, bdbEntriesAt, entryVerdict };
+   // THE NAMES GATE (names-gate-rule-v1; the owner, 13 November 2026: «1-3. ok
+   // agree», ruling 8). «Bara», a man's name from one inscription, stood on
+   // the card of the verb "he created": pointed as the verb is and carrying
+@@ -3397,6 +3403,7 @@
+   let openVerse = null;                 // the label of the verse the open card stands in
+   let openPlaceWord = null;             // the word of the book the open card stands at
+   let openTags = null;                  // the core tags of that place, where the form standing open is the one they tag
++  let openByLemma = false;              // and whether they are the entries of MACULA's lemma (te), STEP giving the word no tag
+   let openName = null;                  // whether that place is a name; null where the card stands at no place of the book
+   const WORD_VERSE = new WeakMap();     // a word of the zone -> its verse's label
+   // THE WORD A POOL IS ASKED FOR. The card asks for the word standing open
+@@ -3439,17 +3446,17 @@
+   // carries no tag (the review of 15 November 2026; check-read-words-v1 R8).
+   const tagHolder = (word, key) => {
+     if (!word) return null;
+-    if (word.tg) return word;
++    if (word.tg || word.te) return word;
+     const tagged = (word.w || word.kqw || []).filter((r) => r && r.tg);
+     return tagged.find((r) => r.k === key) || tagged[0] || null;
+   };
+   const readWordOfSeveral = (word, r) => r !== word && r.role === "QERE" && (word.w || word.kqw || []).filter((x) => x && x.role === "QERE").length > 1;
+-  const tagsAt = (word, key) => { const h = tagHolder(word, key); return h && key && h.k === key && !readWordOfSeveral(word, h) ? [].concat(h.tg) : null; };
++  const tagsAt = (word, key) => { const h = tagHolder(word, key); return h && key && h.k === key && !readWordOfSeveral(word, h) ? placeTags(h) : null; };
+   const coreTagsAt = (word, key) => {
+     const h = tagHolder(word, key);
+     if (h && key && h.k === key && readWordOfSeveral(word, h)) return [].concat(h.tg);
+     const cores = h && Array.isArray(word.pg) ? word.pg.filter((x) => x && x.r === "core") : [];
+-    return h && key && cores.length === 1 && cores[0].k === key ? [].concat(h.tg) : null;
++    return h && key && cores.length === 1 && cores[0].k === key ? placeTags(h) : null;
+   };
+   // name: whether the asked word's place is a name (true where the book's
+   // places were not read for names), as the one who names the word says it
+@@ -3458,7 +3465,7 @@
+   const NO_WORD = { pointed: null, verse: null, tags: null, name: null };
+   const askedWord = (surface, named = null) => (named
+     ? (named.s && surface && surface === named.k ? { pointed: named.s, verse: named.v ?? null, tags: named.tg ? [].concat(named.tg) : null, name: typeof named.name === "boolean" ? named.name : null } : NO_WORD)
+-    : (openPointed && surface && surface === openKey ? { pointed: openPointed, verse: openVerse, tags: openTags, name: openName }
++    : (openPointed && surface && surface === openKey ? { pointed: openPointed, verse: openVerse, tags: openTags, name: openName, lemma: openByLemma }
+       : surface && surface !== openKey && openPlaceWord ? { pointed: null, verse: null, tags: coreTagsAt(openPlaceWord, surface), name: openName } : NO_WORD));
+   // THE LEADERS UNDER "ONLY" AT A PLACE (tools/place-leaders-v1.mjs, name for
+   // name): the place's own where its gates make them other than the
+@@ -6903,7 +6910,7 @@
+         // found until now it still finds; a ruled line goes straight there,
+         // as a ruling outranks the pointing as it outranks a switch.
+         if (!ruled && w.s) for (const k of keys) {
+-          const r = await attributionFor(k, asked, at, named, false, { s: w.s, k: w.k, v: sec.label ?? null, tg: w.tg ?? null, name: isNamePlace(w) });
++          const r = await attributionFor(k, asked, at, named, false, { s: w.s, k: w.k, v: sec.label ?? null, tg: placeTags(w), name: isNamePlace(w) });
+           if (!r.miss) { a = r; break; }
+         }
+         if (!a) for (const [k, every] of tries) {
+@@ -8465,7 +8472,7 @@
+     // entry as the place is asked (entrySaid): with STEP's letter where a
+     // row is asked by letter, since a row withheld by letter is its
+     // number's own.
+-    let withheldByEntry = 0, entryHere = null;
++    let withheldByEntry = 0, entryHere = null, entryByLemma = false;
+     const ofThisEntry = new Set();
+     if (pointingNow(W.pointed) === "only" && W.tags) {
+       const place = placeEntry(W.tags);
+@@ -8476,6 +8483,7 @@
+         withheldByEntry = all.length - routes.length;
+         all.forEach((row, i) => { if (verdicts[i] === "this") ofThisEntry.add(row); });
+         entryHere = entrySaid(place);
++        entryByLemma = !!W.lemma;
+       }
+     }
+     // WHETHER THE PLACE IS A NAME, WITH THE ENTRY (names-gate-rule-v1). Under
+@@ -8973,7 +8981,7 @@
+     // sort of it keeps the bake's order
+     const pool = sortPool(Object.assign([...groups.values()], { signsLast: signsLastOn(opts.bin || zone), spanAt: opts.spanAt || null }), surface, { ...W, begins: beginsWord });
+     pool.withheld = withheld; pool.withheldUnpointed = withheldUnpointed; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
+-    pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.withheldByName = withheldByName; pool.namesHeld = namesHeld;
++    pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.entryByLemma = entryByLemma; pool.withheldByName = withheldByName; pool.namesHeld = namesHeld;
+     pool.withheldBySense = withheldBySense; pool.sensesShown = sensesShown;
+     pool.withheldByKind = withheldByKind; pool.kindsShown = kindsShown;
+     pool.notes = notes;
+@@ -8992,7 +9000,7 @@
+   // carries is named here once, and a copy takes them all.
+   const carryWithheld = (to, from) => {
+     to.withheld = from.withheld; to.withheldUnpointed = from.withheldUnpointed; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
+-    to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.withheldByName = from.withheldByName; to.namesHeld = from.namesHeld;
++    to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.entryByLemma = from.entryByLemma; to.withheldByName = from.withheldByName; to.namesHeld = from.namesHeld;
+     to.withheldBySense = from.withheldBySense; to.sensesShown = from.sensesShown;
+     to.withheldByKind = from.withheldByKind; to.kindsShown = from.kindsShown;
+     to.notes = from.notes;
+@@ -9951,6 +9959,7 @@
+     // the entry at the open word's place, for the gate (entry-gate-rule-v1)
+     openPlaceWord = openSite ? openSite.wordOf || null : null;
+     openTags = tagsAt(openPlaceWord, openKey);
++    openByLemma = !!(openTags && openPlaceWord && !openPlaceWord.tg && openPlaceWord.te && openPlaceWord.k === openKey);
+     // and whether that place is a name, for the names gate (names-gate-rule-v1)
+     openName = openPlaceWord ? isNamePlace(openPlaceWord) : null;
+     // the tags this card is gated by, and what it takes its place for, for a check to read
+@@ -11653,7 +11662,7 @@
+           const nK = kindsHeldN(pool);
+           if (nK) bits.push(`${nK} reading${nK === 1 ? "" : "s"} shut at rest: ${pool.withheldByKind.map((x) => `${x.n} ${x.say}`).join(", ")} \u2014 the button opens them`);
+           if (pool.withheldBySense) bits.push(`${pool.withheldBySense} word sense${pool.withheldBySense === 1 ? "" : "s"} held back — Jastrow's note${pool.withheldBySense === 1 ? "" : "s"} on the word's sense, not a definition, shown under the word senses switch`);
+-          if (pool.withheldByEntry) bits.push(`${pool.withheldByEntry} record${pool.withheldByEntry === 1 ? "" : "s"} withheld by the entry — their own source files them under another entry than ${(pool.entry || []).join(" or ")}, which stands here`);
++          if (pool.withheldByEntry) bits.push(`${pool.withheldByEntry} record${pool.withheldByEntry === 1 ? "" : "s"} withheld by the entry — their own source files them under another entry than ${(pool.entry || []).join(" or ")}, ${pool.entryByLemma ? "the entries of MACULA's lemma here, where STEP gives the word no tag" : "which stands here"}`);
+           if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
+           if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
+           if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
+@@ -14552,7 +14561,7 @@
+         // lay the noname column over the table, so the name no longer is the
+         // line there, and the filter's leader answers as before.
+         // at this place: the leaders its own gates leave, by its entry and whether it is a name (entry-gate-rule-v1, names-gate-rule-v1)
+-        const here = onlyLeaders(gr, word.tg || null, isNamePlace(word));
++        const here = onlyLeaders(gr, placeTags(word), isNamePlace(word));
+         if (here.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
+           && zone.gloss[word.k] === zone.gloss_names[word.k] && !(gm && allOff(gm.by))) return null;
+         const l = here.l;
+@@ -15022,7 +15031,7 @@
+         // the pool for the word itself (repaintLive, askedWord)
+         ss: regions ? regions.map((r) => r.s || null) : (word.k ? [word.s || null] : []), v: WORD_VERSE.get(word) ?? null,
+         // and each key's own core tags, where the lattice gives its place any (entry-gate-rule-v1)
+-        ts: regions ? regions.map((r) => r.tg || null) : (word.k ? [word.tg || null] : []),
++        ts: regions ? regions.map((r) => r.tg || null) : (word.k ? [placeTags(word)] : []),
+         // and whether the place is a name (names-gate-rule-v1)
+         name: isNamePlace(word),
+         word: regions && regions.length > 1 ? null : word });
