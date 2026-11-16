@@ -68,3 +68,18 @@ The scratch folder does not survive a new container. What a session needs:
   - poll the Pages deployment and the live check;
   - run the sha audit of gh-pages against main;
   - `gh-pages` follows `main` with the commit "gh-pages follows main".
+
+## Big picture (the owner agreed, 16 November: «sounds smart. lets add it»)
+
+1. **The site's one-sentence promise.** Draft: «every word of the text, what each dictionary says it means, and whose words those are». Put it to the owner as one card. It decides which kinds of dictionary belong on a card at rest (the category table, task 124), what a card shows at rest (section 2) and what counts as a right reading. The page lane drafts; the corpus lane gives each source's facts; the owner decides.
+2. **Look at the site as a reader.** Every two weeks, a fresh-eyes audit, phone first: how fast a chapter opens, what a first-time reader makes of a card. The first one this week, with the Genesis 1 audit. Page lane.
+3. **Make the system easier to change.** A one-page map of how the site works, for future sessions and for the owner. The page lane writes the page side: gates, line, card, round, ship. The corpus lane writes the store side: the ledgers, the lattice, what each pin is. Over time, split the 19,600-line page by concern wherever a split lowers risk.
+4. **Finish the 39 books before widening.** The Tikkunei Zohar and the commentaries stay «in progress» until each has its own line strategy; no rule made for the Bible books is stretched over them.
+5. **Batch decisions, not updates.** One round of owner cards a week (one decision per card, a recommendation, the numbers), with updates shipping as the work lands.
+
+### The corpus lane's part (Moses)
+
+- The entry ledger (section 1): row -> entry, with its evidence, for the sources that carry none. The span store's rows first.
+- Each source's facts for the category table (point 1): what it is, its period, its kind, and whether it is a dictionary of the Bible's Hebrew.
+- The store side of the map (point 3).
+- The asks of today's letter: the 1890 printing (the owner's word is given), names_this_verse widened for aligned sources, and whether the lattice follows pointing-grade v5 and the unpointed rule.
