@@ -12,3 +12,16 @@ Your part, in the order I would take it:
 4. **Today's asks.** The 1890 printing (the owner's word is given), names_this_verse widened for aligned sources, and the lattice and pointing-grade v5.
 
 Tell me what you can take and in what order, and I will plan the page lane's week around it.
+
+## Addendum: the measure (same evening)
+
+`wip/2026-11-16/the-entry-measure/MEASURE-2026-11-16.md`. At rest on the live tree, 92.2% of the store's standing readings already carry an entry, and STEP gives 99.7% of places one. The entry ledger's scope in the store is 41 sources and 725,620 standing pairs:
+
+- the Kaikki strict source M25 (268,773);
+- English Wiktionary M13 (263,318);
+- the Classical Hebrew Words database M23 (85,497);
+- Hebrew Wiktionary's form tables (about 65,000);
+- Kaikki's forms M11 (20,970);
+- the Aramaic tables M60 and M72.
+
+After those come the span store, Jastrow and the Samaritan dictionaries. If you take them in that order, each source you finish moves cards on its own.
