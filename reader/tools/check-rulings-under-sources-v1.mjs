@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second
+// GUARDS: ruled-reading-stands-rule-v1-a-reading-the-reader-ruled-stays-on-the-card-wherever-the-ruling-stands-whatever-its-points
 // LEDGER: -
 // no frame letter. A check opens the page and reads what it draws; it is not
 // the ledger for anything.
@@ -175,6 +176,11 @@ for (const b of byPlaces) {
 }
 // U7: a form as U1's whose baked column (zone.gloss) is a divided reading, its «/» drawn as « + »
 let divisionWork = null;
+// every such form in the books' order, the first a work holds of each key, up to twelve: U9 asks the first, and U7
+// asks them in turn until one's whole form, pressed at rest, offers a reading (a row with no pointing of its own
+// qualifies for none under «only», the owner, 16 November 2026: Obadiah 1:8:2's whole form offered only Hebrew
+// Wiktionary's «staging» and «direction», with no pointing, and now offers none)
+const divisionWorks = [];
 for (const b of byPlaces) {
   const z = readGz(join(K3, "data", "zones", `${b}.bin`)), bf = readGz(join(DP, IX.books[b].file));
   const byKey = new Map();
@@ -186,10 +192,11 @@ for (const b of byPlaces) {
   }
   for (const ps of byKey.values()) {
     const B = ps.find((q) => q.label !== ps[0].label && lineAt(bf, q.n, "macula") !== lineAt(bf, ps[0].n, "macula"));
-    if (B) { divisionWork = { b, A: ps[0], B }; break; }
+    if (B) { divisionWorks.push({ b, A: ps[0], B }); if (divisionWorks.length >= 12) break; }
   }
-  if (divisionWork) break;
+  if (divisionWorks.length >= 12) break;
 }
+divisionWork = divisionWorks[0] || null;
 // U8: per source, TAHOT's readings across two words with the hyphen at the end of the first only, read in part
 const endOnly = {};   // source -> { b, pairs: [[the first word's address, the second's]] }
 for (const src of ["macula", "ubs", "bdb"]) {
@@ -487,11 +494,20 @@ try {
   // pressed again (STEP) and the card opened there again
   if (!divisionWork) check("U7", false, "no work on this disk holds a form as U1's whose baked column is a divided reading");
   else {
-    const { b, A, B } = divisionWork;
-    const { ctx, p } = await open(b);
-    await openCard(p, A.at);
-    const how = await pressWhole(p);
-    const c0 = await still(p);
+    // the forms in turn, until one's whole form pressed at rest offers a reading; each one passed over is said
+    let found = null, ctx = null, p = null, how = null, c0 = null;
+    const passed = [];
+    for (const dw of divisionWorks) {
+      ({ ctx, p } = await open(dw.b));
+      await openCard(p, dw.A.at);
+      how = await pressWhole(p);
+      c0 = await still(p);
+      if (how === "pressed" && c0.pressed.length === 1) { found = dw; break; }
+      passed.push(`${dw.b} ${dw.A.at} (${how !== "pressed" ? how || "no division row" : `its whole form pressed at rest offers no reading: ${said(c0.now)}`})`);
+      await ctx.close();
+    }
+    const { b, A, B } = found || divisionWorks[divisionWorks.length - 1];
+    if (!found) ({ ctx, p } = await open(b));
     await shut(p);
     const ruled = await lineOf(p, A.at), atB = await lineOf(p, B.at);
     const legs = [];
@@ -503,7 +519,8 @@ try {
       legs.push({ leg, before, card, after: [await lineOf(p, A.at), await lineOf(p, B.at)] });
     }
     const t = (l) => (l ? l.text : null);
-    const fault = how !== "pressed" ? `the card at ${A.at} at rest offered no whole form to press (${how || "no division row"})`
+    const fault = !found ? `no form's whole form, pressed at rest, offers a reading: ${passed.join("; ")}`
+      : how !== "pressed" ? `the card at ${A.at} at rest offered no whole form to press (${how || "no division row"})`
       : c0.pressed.length !== 1 ? `the whole form pressed, the card pressed ${c0.pressed.length} reading(s)`
         : t(atB) !== t(ruled) ? `the press drew ${said(t(ruled))} at ${A.at} and ${said(t(atB))} at ${B.at}`
           : legs.map(({ leg, before, card, after }) => (before.some((l) => t(l) !== t(ruled)) ? `${leg}: ${A.at} reads ${said(t(before[0]))}, ${B.at} ${said(t(before[1]))}, the press drew ${said(t(ruled))}`
@@ -511,7 +528,7 @@ try {
               : card.now !== c0.now ? `${leg}: the card at ${B.at} reads ${said(card.now)} over the line ${said(t(ruled))}, the press's card ${said(c0.now)}`
                 : !(card.pressed.length === 1 && card.pressed[0] === c0.pressed[0]) ? `${leg}: the card at ${B.at} presses ${card.pressed.map((x) => said(x)).join(", ") || "nothing"}, the press pressed ${said(c0.pressed[0])}` : "")).filter(Boolean).join(" \u00b7 ");
     check("U7  the whole form's division pressed alone at rest holds under MACULA and back on STEP at its form's card at another place: both lines read what the press drew, the card reads it and presses its pill, and the open paints nothing", !fault,
-      fault || `${b} ${A.at} and ${B.at}: the whole form pressed, ${said(t(ruled))} on both lines under MACULA and back on STEP`);
+      fault || `${b} ${A.at} and ${B.at}: the whole form pressed, ${said(t(ruled))} on both lines under MACULA and back on STEP${passed.length ? ` (passed over, their whole forms offering no reading at rest: ${passed.join("; ")})` : ""}`);
     await ctx.close();
   }
   // U8: by work, the lines at rest, then under each source chosen for it

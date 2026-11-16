@@ -60,7 +60,9 @@ const side = existsSync(`data/zones/${ZONE}.lattice.bin`) ? JSON.parse(gunzipSyn
 const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
 // WHAT THE LINE READS AND WHO CARRIES IT, for a word standing alone under
 // "oldest first" with the pointing kept ("only", the default): a graded
-// surface reads the sidecar's lenient leader, carried by the kept rows it
+// surface reads the sidecar's filter leader (o.l: since 16 November 2026,
+// unpointed-row-rule-v1, the rows the pointing keeps are those graded a
+// match wherever any row is), carried by the kept rows it
 // names, and falls to the filter's own alternate; a name that leads under
 // "only" (nl) is the table's line and is left out here, its carriage being
 // the table's and its alternate the leader's; an ungraded surface reads the

@@ -217,6 +217,18 @@
 > projection follows a row the binyan files name by its old words through
 > the retext to the words it serves now (`followed_through_retexts`).
 > `tools/check-words-back-v1.mjs` holds the landing.
+> Ship 7's span grade (relay v169, under the owner's card 1 of 16 November
+> 2026 and task 134) adds no step to the round. The lane's grade of every
+> row at every place where the span store joins words is kept byte for byte
+> (`data/span-grade/`), and `tools/apply-span-grade-v1.mjs`, a store step
+> run once, writes on each place of the span store's book files the rows it
+> holds back under «only this pointing» (`held`: a row with no pointing, and
+> a row pointed otherwise where STEP's own tags on the place's words name
+> separate entries), records itself under the span store index's
+> `span_grade` and writes `data/span-grade-receipt-v1.json`. The page reads
+> `held` off the place a run's card stands on, never off the key; a span
+> row is ordered as every row is; and a pointer (a form_of row) leads no
+> joined line. `tools/check-span-grade-v1.mjs` holds the grade and the cards.
 > `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record

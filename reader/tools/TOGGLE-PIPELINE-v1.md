@@ -194,7 +194,7 @@ under `build/route-store-v1-before-pointing/` (from git) so the landing
 guard's fold stays a proof and not a tautology.
 
 **The grade, computed from the row and never stored** —
-`tools/pointing-grade-v1.mjs`, `pointing-grade-rule-v4` (since 2026-11-06 neither a word-initial dagesh lene nor the qatan mark is a pointing). The corpus lane's
+`tools/pointing-grade-v1.mjs`, `pointing-grade-rule-v5` (since 2026-11-06 neither a word-initial dagesh lene nor the qatan mark is a pointing; since 16 November the text's own word, where the surface begins it, is read with and without the dagesh that joins it to the word before, whatever the letter save a vav's shureq and a he's mappiq, `textForm`, while a headword keeps its own). The gate's question of a grade stands beside it (`heldByPointing`, `unpointed-row-rule-v1`, 16 November: a row whose source gives no pointed headword qualifies for no pointing and rests held back where the gate acts, counted apart). The corpus lane's
 own two lines (`vowelForm`, `isPointed`: U+034F dropped before NFKD,
 cantillation and the non-vowel marks deleted, everything but vowel points,
 shin/sin dots, dagesh and letters removed; pointed = a vowel point U+05B0–05BB
@@ -222,7 +222,9 @@ headword is *other* (21,823). The corpus lane's 6.1% is on its own axis
 to the character by `check-pointing-grade-v1` P1:
 
 - `zone.html` `poolFor` under *only* — a row graded x by its own headwords
-  is withheld; a row without the slot falls to the lattice card's grade;
+  is withheld, and since 16 November 2026 a row graded n (or ungraded) is
+  held back and counted apart, where the gate acts (`heldByPointing`); a row
+  without the slot falls to the lattice card's grade;
   `sortPool` — the *masoretic* and *vowels differ* tiers take the same grade;
   every pill carries `data-grade`.
 - `project-lattice-v12-v1.mjs` — the baked leaders (`o.m`, `o.x`, `o.l`,

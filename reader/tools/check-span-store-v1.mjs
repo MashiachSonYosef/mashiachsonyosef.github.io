@@ -28,15 +28,31 @@
 //       and its inner place by the store's own keys: a rung piece written
 //       with a space is a key the store holds (the second review, 2026-10-17:
 //       the chain at Genesis 18:5 offered the place spaced)
-//   S6  a span card's pills stand in the store's own order (by_key: names
-//       first), each reading where its first row stands, wherever every pill
-//       is a span row's reading: a span row's year is said beside its credit
-//       and orders nothing (10 November 2026: the corpus lane's years list
-//       put years on 1,208 span rows, and the card's oldest-first sort led
-//       254 of the 1,047 book-and-key pairs with whichever source the list
-//       dates; a card where another store's row carries a reading too is
-//       not judged here, since that row keeps its own rank and year: the
-//       page says which readings stand on span rows alone, __poolOv)
+//   S6  a span card's pills stand in the page's order wherever every pill is
+//       a span row's reading: the tier before 1940, the dated before the
+//       undated, the year, then the rank, each reading with the oldest year
+//       and the lowest rank of the rows that print it. A span row is ordered
+//       as every row is (span-order-rule-v1, 16 November 2026: the corpus
+//       lane's v169, section 5, «order a span row as a store row is
+//       ordered», taken with the owner's card 1). From 10 November until
+//       then a span row's year was said and ordered nothing, and this law
+//       held the store's own order (by_key: names first). A card where
+//       another store's row carries a reading too is not judged here, since
+//       that row keeps its own rank and year: the page says which readings
+//       stand on span rows alone, __poolOv.
+//       Since call 3 (ships 5 and 6) a card opens on the word pressed wherever
+//       the run reads its words, so S6 judges only a card that still opens on
+//       the span whole; tools/check-span-grade-v1.mjs G9 presses the place's
+//       rung and judges the order there
+// THE SPAN GRADE (span-grade-rule-v1-a-joined-reading-with-no-pointing-or-
+// pointed-otherwise-where-step-tags-its-words-as-separate-entries-rests-held-back,
+// 16 November 2026). Under «only», the page's default, a row the place holds
+// back (its held, tools/apply-span-grade-v1.mjs) is no pill at that place and
+// reads on no line there; and a pointer (a form_of row) leads no line (v169,
+// section 5; span-line-rule-v1): S3 takes the line's row as the first row
+// that rests open, but a pointer and a row the place holds back, and the
+// pills from the rows the place keeps. tools/check-span-grade-v1.mjs judges
+// the grade itself.
 // THE DICTIONARIES THAT REST SHUT (dictionary-kinds-rule-v1). On a book
 // whose zone was baked at rest (its stamp), a span row the record rests
 // shut stands on no line, open or shut: S2 takes a cell's line from the
@@ -208,7 +224,8 @@ for (const book of BOOKS) {
     `${r2.laid} of ${r2.places} places laid [places]${r2.overlapped ? ` (${r2.overlapped} overlapping another, as the store marks them, not laid)` : ""} · ${r2.cells} cells on the page` + (r2.inner ? ` · ${r2.inner} inside another place, a rung of its cell` : "") + (r2.absorbed.length ? ` · ${r2.absorbed.length} drawn inside a maqaf compound's cell, the line word by word (open question): ${r2.absorbed.slice(0, 3).join(" | ")}` : "") + (r2.shutLine.length ? ` · ${r2.shutLine.length} whose every row rests shut, the line its pieces: ${r2.shutLine.slice(0, 3).join(" | ")}` : "") + (r2.wordByWord.length ? ` · ${r2.wordByWord.length} whose every word reads its own at the place, the line word by word (call 3): ${r2.wordByWord.slice(0, 2).join(" | ")}` : "") + (kindsSaid ? "" : ` · the page says the dictionaries that rest shut ${r2.kindsHere ? "act" : "do not act"} here, and the zone ${atRest ? "was" : "was not"} baked at rest`) + (r2.absorbedLoose.length ? ` · LOST, no cell and no compound: ${r2.absorbedLoose.slice(0, 3).join(" | ")}` : "") + (r2.skipped.length ? ` · skipped: ${r2.skipped.slice(0, 2).join(" | ")}` : "") + (r2.noCell.length ? ` · ink: ${r2.noCell.slice(0, 2).join(" | ")}` : "") + (r2.lineBad.length ? ` · line: ${r2.lineBad.slice(0, 2).join(" | ")}` : "") + (r2.chipBad.length ? ` · no chip: ${r2.chipBad.slice(0, 2).join(" | ")}` : "") + (r2.blobBad.length ? ` · blob: ${r2.blobBad.slice(0, 2).join(" | ")}` : ""));
   // S3: the first spaced place, the first maqaf place, the first nested place, each with a row that rests open
   const file = onDisk;
-  const restsOpen = (x) => (file.keys[x.key] || []).some((r) => !shutRow(r));
+  // (and, under «only», the page's default, some row the place does not hold back: span-grade-rule-v1)
+  const restsOpen = (x) => (file.keys[x.key] || []).some((r) => !shutRow(r) && !(x.held && x.held[r.row_id]));
   const laidAlone = (x) => !r2.skippedAt.includes(`${x.ref}\u0001${x.key}`) && !r2.absorbed.includes(`${x.ref} ${x.key}`) && restsOpen(x);
   const drawnAlone = (x) => laidAlone(x) && !ownAll.has(`${x.ref}\u0001${x.key}`);
   const ownPick = file.placesList.find((x) => laidAlone(x) && ownAll.has(`${x.ref}\u0001${x.key}`) && !x.inside_of && !x.contains.length);
@@ -235,7 +252,7 @@ for (const book of BOOKS) {
       const d = (h.querySelector(".d-text") || {}).textContent || "";
       const lit = ([...h.querySelectorAll('.r-pills button[aria-pressed="true"]')][0] || {}).textContent || "";
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-      return { cuts, cell, pills, d, lit: lit.trim(), off: [...(window.__sourcesOff || [])], pool: [...(window.__pool || [])], ov: [...(window.__poolOv || [])], kinds: window.__kinds || null };
+      return { cuts, cell, pills, d, lit: lit.trim(), off: [...(window.__sourcesOff || [])], pool: [...(window.__pool || [])], ov: [...(window.__poolOv || [])], kinds: window.__kinds || null, masorah: window.__masorah || null };
     }, pl);
     // a cell whose words read their own (call 3): the card opens on the word pressed, its own block pressed, the place a
     // rung of the card's row, a press away
@@ -251,9 +268,12 @@ for (const book of BOOKS) {
     const off = new Set(got.off || []);
     // and, on a book baked at rest, only the rows that rest open while they rest shut: a shut row is then no pill
     const shutNow = atRest && got.kinds !== "open";
-    const rows = (file.keys[pl.key] || []).filter((r) => !off.has(r.slots[3]) && !(shutNow && shutRow(r)));
-    // the line reads the first row that rests open, open or shut
-    const lineRows = rows.filter((r) => !shutRow(r));
+    // and under «only» a row the place holds back is no pill there (span-grade-rule-v1)
+    const heldHere = (r) => got.masorah === "only" && !!(pl.held && pl.held[r.row_id]);
+    const rows = (file.keys[pl.key] || []).filter((r) => !off.has(r.slots[3]) && !(shutNow && shutRow(r)) && !heldHere(r));
+    // the line reads the first row that rests open, open or shut, but a pointer (a form_of row leads no line: v169,
+    // section 5) and, under «only», a row the place holds back
+    const lineRows = (file.keys[pl.key] || []).filter((r) => !off.has(r.slots[3]) && !shutRow(r) && !r.form_of && !heldHere(r));
     const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
     // the pool lowercases to group (one reading, one pill), and a row's
     // readings are what the store gives it (gloss-store-v1 readingsOf: the
@@ -274,20 +294,29 @@ for (const book of BOOKS) {
     // ("outer + inner"), by its own key
     const rungsOk = pl.contains.every((k) => got.cuts.some((x) => x.t.split(" + ").includes(k)));
     const ok = !got.err && on && on.t === pl.key && lineRows.length > 0 && reads(lineRows[0], got.lit) && wantR.every(asPillsText) && dOk && rungsOk;
-    // S6: the store's readings in the store's order (a reading stands where its first row stands; one closing stop is not a
-    // different reading), against the pills that read them
+    // S6: the readings in the page's order (a span row is ordered as every row is: v169, section 5, 16 November
+    // 2026): the tier before 1940, the dated before the undated, the year, then the rank, each reading with the oldest
+    // year and the lowest rank of the rows that print it (one closing stop is not a different reading), against the
+    // pills that read them
     const stopless = (t) => low(t).replace(/\.$/u, "");
-    const storeOrder = []; for (const r of rows) for (const x of readingsOfRow(r)) { const k = stopless(x); if (!storeOrder.includes(k)) storeOrder.push(k); }
+    const yearOf = (r) => { const y = Number.parseInt(r.slots[4], 10); return Number.isInteger(y) ? y : Infinity; };
+    const byReading = new Map();
+    for (const r of rows) for (const x of readingsOfRow(r)) {
+      const k = stopless(x), g = byReading.get(k) || { k, year: Infinity, rank: Infinity, at: byReading.size };
+      g.year = Math.min(g.year, yearOf(r)); g.rank = Math.min(g.rank, Number(r.slots[0])); byReading.set(k, g);
+    }
+    const tier = (g) => (Number.isFinite(g.year) && g.year <= 1940 ? 0 : 1), dated = (g) => (Number.isFinite(g.year) ? 0 : 1);
+    const storeOrder = [...byReading.values()].sort((a, b) => tier(a) - tier(b) || dated(a) - dated(b) || (dated(a) ? 0 : a.year - b.year) || a.rank - b.rank || a.at - b.at).map((g) => g.k);
     // the pool as the page sorted it, and which of its readings stand on span rows alone (the page's own words: __pool,
     // __poolOv); a reading another store's row also carries keeps that row's rank and year, and its card is not judged
     const pillOrder = (got.pool || []).map(stopless);
     const allSpan = pillOrder.length > 0 && (got.ov || []).length === pillOrder.length && got.ov.every((x) => x === "span-store") && pillOrder.length === storeOrder.length;
     r6.push({ at: `${pl.ref} ${pl.key}`, judged: allSpan, ok: !allSpan || JSON.stringify(pillOrder) === JSON.stringify(storeOrder), pills: pillOrder, store: storeOrder });
-    r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}${pl.absorbed ? " (inside a maqaf compound's cell)" : ""}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the store's first: "${lineRows.length ? spanJoin(lineRows[0].slots[1]) : "none on"}") · ${wantR.filter(asPillsText).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
+    r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}${pl.absorbed ? " (inside a maqaf compound's cell)" : ""}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the line's row: "${lineRows.length ? spanJoin(lineRows[0].slots[1]) : "none on"}") · ${wantR.filter(asPillsText).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
   }
   check(`S3  ${book}: a cell's card opens on the span whole where its line reads it whole, its pills the rows' readings, the record the first row's D, an inner place a rung of the outer card; a cell whose words read their own opens on the word pressed, the place a press away`, r3.length > 0 && r3.every((x) => x.ok), r3.map((x) => x.say).join(" ‖ "));
-  check(`S6  ${book}: a span card's pills stand in the store's own order where every pill is a span row's reading (a span row's year is said and orders nothing)`, r6.every((x) => x.ok),
-    r6.map((x) => `${x.at}: ${!x.judged ? "another store's row carries a reading too, not judged" : x.ok ? `${x.pills.length} pills in the store's order` : `pills ${x.pills.join(" | ")} against the store's ${x.store.join(" | ")}`}`).join(" ‖ "));
+  check(`S6  ${book}: a span card's pills stand in the page's order where every pill is a span row's reading (the tier before 1940, the year, then the rank: a span row is ordered as every row is)`, r6.every((x) => x.ok),
+    r6.map((x) => `${x.at}: ${!x.judged ? "another store's row carries a reading too, not judged" : x.ok ? `${x.pills.length} pills in the page's order` : `pills ${x.pills.join(" | ")} against the page's order ${x.store.join(" | ")}`}`).join(" ‖ "));
   // S5: a nested place the ink writes as one maqaf chain, its first word's card
   const chainNest = file.placesList.find((x) => !/ /u.test(x.key) && (x.contains || []).length);
   if (chainNest) {

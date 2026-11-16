@@ -184,9 +184,11 @@
 //       and it says only what is true of the line as drawn (STEP's: what its
 //       layer is, the line as it rests, STEP's own words where its reading
 //       stands counted where the book has any, then the share where STEP has
-//       its own reading and that line stands; a source STEP's layer fills out is
-//       filled out by «the line as it rests»); a lit pill pressed again does
-//       what the plan says
+//       its own reading and that line stands; a source STEP fills out is
+//       filled out by STEP, named, and under another second STEP fills out
+//       last, its share of what both leave said by the index's rest_step:
+//       the owner, 16 November 2026); a lit pill pressed again does what the
+//       plan says
 //   D7  under each source, every line of w1-w3 and w5 is the model: a pair keeps
 //       today's line, a joined run keeps its line unless the source reads
 //       every word of it (a joined run: one today's lines still draw whole,
@@ -542,7 +544,9 @@ const leafLine = (leaf, src) => {
 /** The note's sentences, each share from its own count, said only of the line as drawn (the lead's rule of 14
  *  November 2026): STEP's layer is the line as it rests, so STEP's note says what that layer is and then the share
  *  where STEP has its own reading and that line stands (has.step, which leaves out a held place or a pair whose line
- *  rests bare), and a source filled out by STEP's layer is filled out by «the line as it rests»;
+ *  rests bare); a source filled out by STEP is filled out by STEP, named, and under a second other than STEP, STEP
+ *  fills out last, its share of what both leave the index's rest_step (the owner, 16 November 2026: the note said «the
+ *  line as it rests» and «today's line» for what is STEP's line, and the reader saw no STEP in it);
  *  `left` prints the share today's line keeps (the fault H6 prints it as a remainder). `macula` is the number of the
  *  book's words whose place pieces are MACULA's alone, which STEP's layer names. `stands` is the number of the book's
  *  places where STEP's own reading stands (the index's [n, words, 1], which D3 holds to this check's own count): STEP's
@@ -572,9 +576,14 @@ const noteSay = ({ first, second, auto, counts, work, left = leftOwn, macula = 0
     return t;
   }
   if (hx >= N) return `${X} reads every word of ${work}.`;
+  // STEP named, and STEP fills out last (the owner, 16 November 2026): a second other than STEP is followed by STEP's
+  // share of what both leave (the index's rest_step), and today's line is said only of what is left after it
+  const rs = second && second !== "step" ? Number(((counts.rest_step || {})[first] || {})[second]) || 0 : 0;
+  const lr = rs ? left(c - rs, b + rs, hx, N) : l;
   let s = `${X} is partial: its own reading at ${pct(hx, N)} of ${work}.`;
-  s += second ? ` ${second === "step" ? upFirst(AS_IT_RESTS) : PILL[second]} fills out ${pct(b, N)}${chosen}` : " No other source reads the rest.";
-  if (l) s += ` Today’s line stands at the other ${l}.`;
+  if (second) s += ` ${PILL[second]} fills out ${pct(b, N)}${second === auto ? ", chosen for this book" : ""}${rs ? `, then STEP ${pct(rs, N)}` : ""}.`;
+  else s += " No other source reads the rest.";
+  if (lr) s += ` Today’s line stands at the other ${lr}.`;
   return s;
 };
 // the fault H6: the share today's line keeps, printed as what the two shares before it leave of a hundred
@@ -1375,8 +1384,8 @@ const menu = async (s) => {
 };
 
 // ---- the model of a line ------------------------------------------------------------------------------------------
-/** The line a word reads from the default sources: X's own, else the second's, else none, which is today's line; a
- *  pair keeps today's line. The line under STEP, first or second, is today's line, or STEP's own words where today's
+/** The line a word reads from the default sources: X's own, else the second's, else STEP's as it rests (STEP fills
+ *  out last, the owner, 16 November 2026), else none, which is today's line; a pair keeps today's line. The line under STEP, first or second, is today's line, or STEP's own words where today's
  *  line is `bare` and the index carries them (step_words), under STEP's credit and drawn as a reading's packing; STEP's
  *  second fills only the places STEP leaves. Where STEP's own reading stands (steps-reading-stands-rule-v1, call 4 as
  *  the lead landed it: the index's [n, words, 1]) the line under STEP, first or second, is STEP's own words whatever
@@ -1395,8 +1404,11 @@ const layerAt = (b, X, Y, p, bare = false) => {
     return of(Y, leaf && Y ? leafLine(leaf, Y) : null, "second") || stepOwn("first");
   }
   const t1 = of(X, lineAt(bf, p, X), "first");
-  if (t1 || !Y) return t1;
-  return Y === "step" ? stepOwn("second") : of(Y, lineAt(bf, p, Y), "second");
+  if (t1) return t1;
+  if (Y === "step") return stepOwn("second");
+  // STEP FILLS OUT LAST (the owner, 16 November 2026): where neither X nor its second has a line, STEP's line as it
+  // rests, its own words where its reading stands (standsAt) or today's line is bare, as under STEP itself
+  return (Y ? of(Y, lineAt(bf, p, Y), "second") : null) || of("step", standsAt(bf, p, b) ?? (bare ? STEP_WORDS.get(b).get(p.n) || null : null), "rest");
 };
 /** A word of a reading the place gives across words takes a source's line only where that source has a line at every
  *  word of it, and else keeps today's line, as its neighbor does (the review of 15 November 2026: under MACULA and UBS

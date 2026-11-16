@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-16.
 
-**172 rules declared · 160 named by a check · 12 unguarded.**
+**182 rules declared · 170 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -49,7 +49,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
 | `door-filing-rule-v1-the-door-files-the-thirty-nine` | tools/door-filing-v1.mjs | **UNGUARDED** |
 | `edition-serve-rule-v1-the-edition-is-the-text-the-door-is-the-rights` | tools/serve-edition-v1.mjs | check-edition-serve-v1 |
-| `entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points` | tools/apply-row-entries-v1.mjs, tools/entry-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-entry-gate-v1, check-pointing-grade-v1 |
+| `entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points` | tools/apply-row-entries-v1.mjs, tools/entry-gate-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-entry-gate-v1, check-pointing-grade-v1 |
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | check-k-maqaf-preserved-v2 |
 | `exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf` | tools/k-normalization-v2.mjs | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1 |
 | `export-custody-rule-v1-what-leaves-carries-its-own-way-back` | zone.html | check-licence-leaves-v1 |
@@ -72,8 +72,9 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `hud-runs-rule-v1-a-stretch-the-record-puts-in-one-hud-wears-one-line` | tools/project-hud-runs-v1.mjs, zone.html | check-hud-runs-v1 |
 | `hud-toggles-rule-v1-a-part-of-the-family-turned-off-re-lays-the-huds-from-the-groups-that-stand` | tools/project-hud-toggles-v1.mjs, zone.html | check-hud-toggles-v1 |
 | `implicit-maqaf-rule-v1-a-joiner-is-not-a-word-and-not-a-q-site` | tools/check-implicit-maqaf-v1.mjs | check-implicit-maqaf-v1 |
-| `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/check-no-import-side-effects-v1.mjs | check-no-import-side-effects-v1 |
+| `import-side-effect-rule-v1-a-check-that-rebuilds-its-own-baseline-cannot-fail` | tools/bake-strongs-hedges-v1.mjs | check-no-import-side-effects-v1 |
 | `joint-switch-cost-rule-v1-a-set-of-switches-is-priced-thrown-together-and-read-by-its-own-ids` | tools/gloss-m-v1.mjs, zone.html | check-source-switch-v1 |
+| `kinds-rule-v1` | tools/check-span-grade-v1.mjs | check-span-grade-v1 |
 | `kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only` | tools/project-lattice-v12-v1.mjs, zone.html | check-kq-graded-v1 |
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs, tools/zone-lib-v1.mjs | check-kq-carried-v1, check-kq-lead-follows-switch-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
@@ -104,7 +105,9 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration` | tools/check-orders-registered-together-v1.mjs | check-orders-registered-together-v1 |
 | `overlay-book-counts-rule-v1-a-dictionary-beside-the-store-is-counted-per-book-like-every-other` | tools/bake-overlay-book-counts-v1.mjs | check-source-switch-v1 |
 | `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html, tools/apply-ledger-divisions-v1.mjs, tools/rows-beside-the-store-v1.mjs, tools/stems-extension-v1.mjs | check-overlays-v1, check-card-opens-on-the-line-v1, check-pointing-grade-v1, check-source-switch-v1, check-witnessed-order-v1 |
+| `own-pointing-rule-v1-a-row-whose-headwords-carry-no-points-takes-its-own-records-pointed-head-forms` | tools/apply-own-pointing-v1.mjs, tools/project-lattice-v12-v1.mjs | check-own-pointing-v1, check-audit-calls-v1, check-fold-strike-landing-v1 |
 | `partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing` | zone.html | check-partial-serve-declared-v1 |
+| `parts-a-press-away-rule-v1-a-whole-form-whose-every-reading-reads-it-in-its-parts-says-the-readings-of-its-parts-are-a-press-away` | zone.html | check-whole-form-parts-v1 |
 | `parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost` | zone.html | check-parts-read-right-to-left-v1 |
 | `paseq-place-rule-v1-a-paseq-the-edition-writes-inside-a-read-form-prints-there-and-not-after-the-place` | tools/apply-paseq-place-v1.mjs, zone.html | check-paseq-place-v1 |
 | `pass-through-rule-v1-a-sealed-layer-can-only-be-withheld-never-added` | tools/build-commentary-sidecar-v1.mjs, tools/build-commentary-sidecar-v2.mjs | check-sealed-layers-v1 |
@@ -114,11 +117,12 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `place-order-rule-v1-the-line-reads-what-the-source-gives-at-this-place` | tools/check-line-reads-the-place-v1.mjs | check-line-reads-the-place-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
 | `pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it` | tools/bake-form-of-pills-v1.mjs, zone.html, tools/card-readings-v1.mjs | check-form-of-v1, check-same-product-v1, check-card-opens-on-the-line-v1, check-default-picks-v1, check-line-reads-the-place-v1, check-names-pill-v1, check-ruled-equals-first-paint-v1, check-rulings-under-sources-v1, check-source-switch-v1, check-witnessed-order-v1 |
-| `pointing-grade-rule-v4-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1, check-sign-does-not-lead-v1 |
+| `pointing-grade-rule-v5-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing-and-the-texts-word-reads-without-the-dagesh-joining-it-to-the-word-before` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1, check-piece-class-v1, check-sign-does-not-lead-v1 |
 | `pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said` | tools/verify-pointing-store-v1.mjs | check-pointing-store-landing-v1 |
 | `pointing-store-landing-rule-v1-the-served-v2-is-the-served-v1-plus-one-slot-or-it-does-not-land` | tools/land-pointing-store-v2-v1.mjs, tools/gloss-store-v1.mjs | check-pointing-store-landing-v1 |
 | `proper-name-rule-v1-a-name-leads-with-the-name-when-the-witness-reading-the-place-and-the-entry-it-belongs-to-name-it-alike` | tools/proper-name-v1.mjs, tools/gloss-m-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/regloss-zone.mjs, zone.html | check-proper-name-v1, check-carrier-survives-v1, check-names-pill-v1 |
 | `provider-declaration-rule-v1-closed-set-ship-whole-by-default` | tools/declaration-v1.mjs, tools/declarations-v1.json | check-citations-v1, check-licence-leaves-v1, check-provider-characters-v1 |
+| `provider-note-rule-v1-the-providers-remark-on-its-own-file-prints-apart-from-the-text-it-stands-in` | tools/gloss-store-v1.mjs, zone.html, tools/apply-made-spaces-v1.mjs | check-made-spaces-v1 |
 | `read-form-offsets-rule-v1-a-read-forms-piece-without-letters-takes-the-lanes-alignment-or-none` | tools/bake-read-form-offsets-v1.mjs, zone.html | check-read-form-offsets-v1 |
 | `read-words-rule-v1-each-read-word-of-a-read-form-of-several-words-carries-its-own-entry-and-the-place-reads-their-pieces` | tools/apply-read-words-v1.mjs, tools/read-words-v1.mjs, zone.html | check-read-words-v1 |
 | `reader-orders-rule-v1-the-orders-the-store-defines-are-projected-with-the-table-on-every-projection` | tools/regloss-zone.mjs | **UNGUARDED** |
@@ -133,8 +137,9 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts` | tools/strike-rows-v1.mjs | check-audit-calls-v1, check-fold-strike-landing-v1, check-store-continuity-v1, check-words-back-v1, check-default-picks-v1, check-entry-gate-v1, check-made-spaces-v1, check-sense-openings-v1 |
 | `row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words` | tools/row-strikes-follow-v1.mjs, tools/apply-row-entries-v1.mjs, tools/apply-sense-openings-v1.mjs, tools/bake-default-picks-v1.mjs | check-entry-gate-v1, check-words-back-v1, check-default-picks-v1, check-sense-openings-v1 |
 | `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1 |
+| `ruled-reading-stands-rule-v1-a-reading-the-reader-ruled-stays-on-the-card-wherever-the-ruling-stands-whatever-its-points` | zone.html | check-rulings-under-sources-v1 |
 | `run-cards-rule-v1-one-card-for-a-run-a-license-names-and-its-rungs-are-every-tiling` | tools/project-run-cards-v1.mjs, zone.html | check-run-cards-v1, check-run-line-follows-division-v1, check-run-card-forms-v1 |
-| `run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away` | zone.html, tools/bake-default-picks-v1.mjs | check-audit-calls-v1, check-card-opens-on-the-line-v1, check-run-line-follows-division-v1, check-same-product-v1, check-default-picks-v1, check-dictionary-toggle-v1, check-span-store-v1 |
+| `run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away` | zone.html, tools/apply-span-grade-v1.mjs, tools/bake-default-picks-v1.mjs | check-audit-calls-v1, check-card-opens-on-the-line-v1, check-run-line-follows-division-v1, check-same-product-v1, check-default-picks-v1, check-dictionary-toggle-v1, check-span-store-v1 |
 | `script-admission-rule-v1-a-published-word-is-written-in-hebrew-script` | tools/check-script-admitted-v1.mjs | check-script-admitted-v1 |
 | `sense-openings-rule-v1-the-words-that-open-a-numbered-sense-print-as-a-note-beside-the-readings-and-not-as-a-pill` | tools/apply-sense-openings-v1.mjs, tools/gloss-store-v1.mjs, tools/bake-search-index-v1.mjs, tools/bake-witnessed-order-v1.mjs, tools/gated-card-v1.mjs, zone.html | check-sense-openings-v1, check-ledger-divisions-v1, check-made-spaces-v1, check-search-v1 |
 | `serve-from-body-rule-v1-the-verified-body-is-the-text-the-binding-is-the-rights` | tools/serve-from-body-v1.mjs | check-body-is-text-binding-is-rights-v1 |
@@ -151,7 +156,10 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `source-switch-rule-v1-a-reading-remembers-who-carried-it` | tools/gloss-store-v1.mjs, zone.html, tools/gloss-m-v1.mjs | check-carrier-survives-v1, check-line-follows-card-v1, check-source-switch-v1, check-proper-name-v1 |
 | `source-year-rule-v1-a-row-carries-its-sources-year-of-writing-and-an-older-witnesss-year-already-on-it-stands` | tools/apply-source-years-v1.mjs | check-source-years-v1 |
 | `span-carry-rule-v1-a-receipt-may-travel-only-to-a-table-proved-identical` | tools/carry-span-receipt-v1.mjs | check-span-receipt-carried-identical-v1 |
+| `span-grade-rule-v1-a-joined-reading-with-no-pointing-or-pointed-otherwise-where-step-tags-its-words-as-separate-entries-rests-held-back` | tools/apply-span-grade-v1.mjs, zone.html | check-span-grade-v1, check-span-store-v1 |
 | `span-ledger-rule-v1-a-zones-divisions-are-the-corpus-lanes-span-ledger-swapped-whole` | tools/apply-span-ledger-v1.mjs | check-respan-projection-v1 |
+| `span-line-rule-v1-a-pointer-leads-no-joined-line-and-under-only-nor-does-a-row-its-place-holds-back` | zone.html | check-span-grade-v1, check-span-store-v1 |
+| `span-order-rule-v1-a-span-row-is-ordered-as-every-row-is-the-tier-before-1940-the-year-then-the-rank` | zone.html | check-span-grade-v1, check-span-store-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
 | `stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words` | tools/stem-family-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-pointing-gate-v1 |
 | `stems-carried-rule-v1-a-key-carries-its-rows-stems-only-where-a-card-of-the-book-can-ask-them` | tools/stems-carried-v1.mjs, tools/project-lattice-v12-v1.mjs | check-stems-carried-v1, check-stems-extension-v1 |
@@ -159,6 +167,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `steps-reading-stands-rule-v1-where-step-spells-or-parts-the-word-otherwise-its-own-pick-1-is-the-line-credited-to-step` | tools/bake-default-picks-v1.mjs, zone.html | check-audit-calls-v1, check-same-product-v1, check-default-picks-v1 |
 | `store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed` | tools/check-store-continuity-v1.mjs | check-store-continuity-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
+| `strongs-hedges-rule-v1-where-strongs-derivation-of-a-word-hedges-his-own-words-stand-under-his-reading-as-a-note` | tools/bake-strongs-hedges-v1.mjs, zone.html | check-strongs-hedges-v1 |
 | `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs, tools/land-pointing-store-v2-v1.mjs | check-route-store-exact-k-v1 |
 | `suggested-title-rule-v1-a-guess-is-authored-by-name-and-witnessed-by-nothing` | tools/check-suggested-title-v1.mjs | check-suggested-title-v1 |
 | `title-from-c0-rule-v1-the-title-is-the-works-own-opening-words` | tools/build-zone.mjs | check-title-from-c0-v1 |
@@ -168,6 +177,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `toggle-push-rule-v1-the-driver-proposes-and-prints-and-never-chooses` | tools/push-toggles-v1.mjs | **UNGUARDED** |
 | `toggle-queue-rule-v1-a-delivery-is-named-in-the-open-until-a-receipt-can-name-it` | tools/push-toggles-v1.mjs | **UNGUARDED** |
 | `ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it` | tools/apply-ubs-collocations-v1.mjs, tools/derive-ubs-collocations-v1.mjs, zone.html | check-audit-calls-v1, check-dictionary-kinds-v1, check-same-product-v1 |
+| `unpointed-row-rule-v1-a-row-its-source-does-not-point-qualifies-for-no-pointing-and-rests-held-back-where-the-gate-acts` | tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/rows-beside-the-store-v1.mjs, zone.html | check-pointing-gate-v1, check-pointing-grade-v1, check-entry-gate-v1, check-lattice-projection-v1, check-masorah-toggle-v1, check-own-pointing-v1, check-sign-does-not-lead-v1, check-source-switch-v1 |
 | `v-ledger-counter-verification-rule-v1-an-anchor-is-checked-against-the-word-this-lane-draws` | tools/verify-v-ledger-v2-v1.mjs | **UNGUARDED** |
 | `v-volume-rule-v1-a-count-is-served-only-with-the-scope-it-was-counted-over` | tools/project-v-volume-v1.mjs, zone.html | check-v-volume-in-card-v1, check-v-volume-projection-v1 |
 | `variant-site-grouping-v1-one-alignment-rule-per-encoding-class` | tools/group-variant-sites-v1.mjs | check-variant-class-one-rule-v1 |
@@ -205,7 +215,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 42 of the 157 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 42 of the 160 tools that are not checks.
 
 Not called by any build stage:
 
@@ -213,12 +223,14 @@ Not called by any build stage:
 - `tools/apply-lone-letters-v1.mjs`
 - `tools/apply-made-spaces-v1.mjs`
 - `tools/apply-name-rows-v1.mjs`
+- `tools/apply-own-pointing-v1.mjs`
 - `tools/apply-paseq-place-v1.mjs`
 - `tools/apply-piece-store-patch-v1.mjs`
 - `tools/apply-route-delta-v1.mjs`
 - `tools/apply-row-entries-v1.mjs`
 - `tools/apply-sense-openings-v1.mjs`
 - `tools/apply-source-years-v1.mjs`
+- `tools/apply-span-grade-v1.mjs`
 - `tools/apply-span-ledger-v1.mjs`
 - `tools/apply-ubs-collocations-v1.mjs`
 - `tools/bake-blank-ledger-v1.mjs`
@@ -228,6 +240,7 @@ Not called by any build stage:
 - `tools/bake-read-form-offsets-v1.mjs`
 - `tools/bake-span-store-v1.mjs`
 - `tools/bake-span-store-v2.mjs`
+- `tools/bake-strongs-hedges-v1.mjs`
 - `tools/bookword-measure-v1.mjs`
 - `tools/build-commentary-sidecar-v2.mjs`
 - `tools/build-demonstrations-v1.mjs`

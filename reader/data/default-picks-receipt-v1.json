@@ -17,11 +17,11 @@
    "v1": "a9373b8d30ef",
    "v1_2": "4d1357b26ca5"
   },
-  "store_resolved": "3c0b0da7dc2f"
+  "store_resolved": "54416ff5785b"
  },
  "shape": {
   "book_file": "data/default-picks/<book>.bin: gzip -9 of minified JSON; places[n - 1] for WORD_N n is null at a mark or where no source picks, else [step, macula, ubs, bdb], each 0 where the source has no pick; step [[kind 0 r | 1 v | 2 a, words | 0, a variant's letter], ...]; macula its words, as given; ubs [line | 0, [[piece (from 0, in the ledger's list of the word's pieces), words], ...]], the picks of a piece in its order, numbered from 1 within the piece by the page; bdb [[sense marker, or \"\" for the entry, one-based index into bdb_words | 0], ...]",
-  "index": "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare; and [n, STEP's pick 1 words, 1], one per place where STEP's own reading stands, call 4's category, a pair among them: the line under STEP prints them whatever today's line is, steps_reading_stands); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source"
+  "index": "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, rest_step (for a first and a second that are not STEP, the places both leave where STEP's line as it rests draws one: STEP fills out last), step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare; and [n, STEP's pick 1 words, 1], one per place where STEP's own reading stands, call 4's category, a pair among them: the line under STEP prints them whatever today's line is, steps_reading_stands); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source"
  },
  "rows": {
   "named": 154583,
@@ -907,9 +907,9 @@
    "step_words": 23,
    "file": {
     "name": "genesis.bin",
-    "bytes": 258044,
+    "bytes": 258048,
     "raw_bytes": 1746517,
-    "sha256": "bd2919887d36afd48c10dafe11096bc741bb7a49c5180816015464e29f5881c9"
+    "sha256": "835e31cb0bbd8f489b4a24e86d287cd0deb9ce1944491570e5ed65e178010f13"
    }
   },
   "exodus": {
@@ -967,9 +967,9 @@
    "step_words": 31,
    "file": {
     "name": "exodus.bin",
-    "bytes": 198251,
+    "bytes": 198253,
     "raw_bytes": 1395455,
-    "sha256": "323cfbe324954fbd26c60fc3fd54799def2db5d7895cb37603e7ef2fd5a5ea06"
+    "sha256": "5ca1c825dd294cbf4bcca92150ae4e54112f70b4ab94e3fdc8bf8d9377f01815"
    }
   },
   "leviticus": {
@@ -1027,9 +1027,9 @@
    "step_words": 16,
    "file": {
     "name": "leviticus.bin",
-    "bytes": 125261,
+    "bytes": 125265,
     "raw_bytes": 976455,
-    "sha256": "2c86cfd427d82e3131ec595fdac36d1e1a90c83317bbd8c87aa29e52a5033ff0"
+    "sha256": "0a1abf233f7df3d1f5d658299a9616062b9f7fc8df85b2f6eb6b954a02b813db"
    }
   },
   "numbers": {
@@ -1087,9 +1087,9 @@
    "step_words": 31,
    "file": {
     "name": "numbers.bin",
-    "bytes": 178317,
+    "bytes": 178319,
     "raw_bytes": 1374599,
-    "sha256": "8ac9b959a0e42606cea34ad9209190cd9133d60a189fbfe93bb4daa76d4f77d9"
+    "sha256": "89f36389cccf89cd64b0e760b7cc1d678f1713f6b56ab6e330ab6ccdf313f4df"
    }
   },
   "deuteronomy": {
@@ -1147,9 +1147,9 @@
    "step_words": 57,
    "file": {
     "name": "deuteronomy.bin",
-    "bytes": 195085,
+    "bytes": 195087,
     "raw_bytes": 1250583,
-    "sha256": "eab4ce2ddc8fdf39259039a4ad905f759df3dc72e3d422be68a2b1ff83b73f73"
+    "sha256": "bfb6d2706ba684f2e2a1cf50b59e9d30f3b71552888bd9d19ead38f7ba22f78a"
    }
   },
   "joshua": {
@@ -1207,9 +1207,9 @@
    "step_words": 14,
    "file": {
     "name": "joshua.bin",
-    "bytes": 119763,
+    "bytes": 119764,
     "raw_bytes": 834861,
-    "sha256": "bea9a0b4e1ec4200ebd5caf2cb60efa9cbabc18f35dde23998a3661e84fd8eb9"
+    "sha256": "bfbdc0bdfa460a482fc20749a9b1d2b4b8750dcc5f15f8f14e618922ff4eb028"
    }
   },
   "judges": {
@@ -1267,9 +1267,9 @@
    "step_words": 32,
    "file": {
     "name": "judges.bin",
-    "bytes": 130415,
+    "bytes": 130417,
     "raw_bytes": 846471,
-    "sha256": "37f33624d82d6463f3b52373f0b2bf57f55517012f1188a58639f9d06240a6bc"
+    "sha256": "93379c18364729eab98e8d756db995de6bdffc78e00c2a78a7d90337b3a00edc"
    }
   },
   "ruth": {
@@ -1329,7 +1329,7 @@
     "name": "ruth.bin",
     "bytes": 19694,
     "raw_bytes": 117468,
-    "sha256": "bbb6a74467db7ff86aefc7bd34c5f4d4d4de3c22a0f4c84141114d61dbe3b969"
+    "sha256": "8eaab40b38e654d2aa86e5ffd6ef55a72ffbc59a5e0828058cfdf47645b55a7a"
    }
   },
   "i-samuel": {
@@ -1387,9 +1387,9 @@
    "step_words": 43,
    "file": {
     "name": "i-samuel.bin",
-    "bytes": 179264,
+    "bytes": 179266,
     "raw_bytes": 1136298,
-    "sha256": "8e463383ba8fff80dd0810b1029287baeaeaa0a130a99922dbdd9e9bdc70e11a"
+    "sha256": "ef930ca423b11c77c1c8bcd03da49238eef8556e16692155a7f78d738727524c"
    }
   },
   "ii-samuel": {
@@ -1447,9 +1447,9 @@
    "step_words": 43,
    "file": {
     "name": "ii-samuel.bin",
-    "bytes": 152667,
+    "bytes": 152669,
     "raw_bytes": 944303,
-    "sha256": "482cefae24c05bbe7aacfd3061bd83654cbe801eec65253ae4d3719b1ae49bb4"
+    "sha256": "ab6d2b90ebf3e22ef1efb756f85cd8e497e483266db83a12f263dd81febfaf32"
    }
   },
   "i-kings": {
@@ -1507,9 +1507,9 @@
    "step_words": 29,
    "file": {
     "name": "i-kings.bin",
-    "bytes": 162560,
+    "bytes": 162562,
     "raw_bytes": 1107652,
-    "sha256": "9f2603450880003ac8e342650c83146b30992724c8fc4b844f9d7ade358dbb08"
+    "sha256": "39a09a302c85b44380e94240ee9e55b0462988142231eb184002ff262522cde3"
    }
   },
   "ii-kings": {
@@ -1567,9 +1567,9 @@
    "step_words": 38,
    "file": {
     "name": "ii-kings.bin",
-    "bytes": 155347,
+    "bytes": 155348,
     "raw_bytes": 1055139,
-    "sha256": "21ff12150a072b379b4d41a0bc753e324169c44616a1077a6a66c2a377acd003"
+    "sha256": "f1ce0ae534c7b9b87892abe77ef138541b592b8c44e1507f4a321e168dfa874d"
    }
   },
   "i-chronicles": {
@@ -1627,9 +1627,9 @@
    "step_words": 30,
    "file": {
     "name": "i-chronicles.bin",
-    "bytes": 142089,
+    "bytes": 142092,
     "raw_bytes": 872891,
-    "sha256": "e225ed784b54a78e62cfefe9b3eb944e42c99b49117ee50bb74b814909cd853f"
+    "sha256": "cb21d39fa4421ed7a75c302978fdb0dd47d291e4359ddab504d4e1a23e7267ab"
    }
   },
   "ii-chronicles": {
@@ -1687,9 +1687,9 @@
    "step_words": 39,
    "file": {
     "name": "ii-chronicles.bin",
-    "bytes": 183814,
+    "bytes": 183816,
     "raw_bytes": 1125997,
-    "sha256": "a58f32cbcb674f981d937e344b893b39cc3a1525237b3d632d4a543a8ac6e1e1"
+    "sha256": "acc558a0c22c700cdbfd7d4996bb4eb70b5a2c66a32fd393e07eff6c99df2a86"
    }
   },
   "ezra": {
@@ -1747,9 +1747,9 @@
    "step_words": 20,
    "file": {
     "name": "ezra.bin",
-    "bytes": 54365,
+    "bytes": 54367,
     "raw_bytes": 314663,
-    "sha256": "f08df0fc87873962e5dc0255e35b0e9528f140b0a04475a36ef38e019b7b0e43"
+    "sha256": "85bae1293dc49f47e4181a3cbe12548986a569ba96caaba5f8cde38e719c6c4d"
    }
   },
   "nehemiah": {
@@ -1807,9 +1807,9 @@
    "step_words": 25,
    "file": {
     "name": "nehemiah.bin",
-    "bytes": 78958,
+    "bytes": 78961,
     "raw_bytes": 463117,
-    "sha256": "0e0a1a553e6248da1f0281339af69d1207a1f8c06ccc498dc7d18b57f6f798d0"
+    "sha256": "93ae29e7c496d81b34bb8dc0871c52caad79caa354cf73f53c326846ca84c397"
    }
   },
   "esther": {
@@ -1867,9 +1867,9 @@
    "step_words": 16,
    "file": {
     "name": "esther.bin",
-    "bytes": 41039,
+    "bytes": 41041,
     "raw_bytes": 260333,
-    "sha256": "a7d8c10b9d0fc288d582c4b7e34c3488f826782603c86c5f3aa7276d8588b8d8"
+    "sha256": "a631b88ecb4f1cfd5479ae0feb4463586d6855f7ca8c0e7037b6ce635f3dd924"
    }
   },
   "job": {
@@ -1927,9 +1927,9 @@
    "step_words": 60,
    "file": {
     "name": "job.bin",
-    "bytes": 166753,
+    "bytes": 166754,
     "raw_bytes": 779968,
-    "sha256": "26278d5cf922b9b1547985286103d1f2ccae60388547d649607ebe5b489f2c9e"
+    "sha256": "debbb4551bd284f86befbb4cf7ab9caca749e9b32ae1d42a965a102d9333c38c"
    }
   },
   "psalms": {
@@ -1987,9 +1987,9 @@
    "step_words": 77,
    "file": {
     "name": "psalms.bin",
-    "bytes": 351629,
+    "bytes": 351630,
     "raw_bytes": 1830528,
-    "sha256": "69d75dad70dda85dd0dc9827c732517799709e3733a12627a4b71352a9d0c2ee"
+    "sha256": "96d939074246b89caa98a77045151328e5e4f671a6dfbad6b90095834cb248b6"
    }
   },
   "proverbs": {
@@ -2047,9 +2047,9 @@
    "step_words": 42,
    "file": {
     "name": "proverbs.bin",
-    "bytes": 137677,
+    "bytes": 137679,
     "raw_bytes": 695440,
-    "sha256": "80e535c7ac5907f3f97cb1cbf37c3436343458780cb323597335372693eb8234"
+    "sha256": "709301c05894c7d09f0096371ee537c4563678a17792b9ff2ecf7f357788edb2"
    }
   },
   "ecclesiastes": {
@@ -2107,9 +2107,9 @@
    "step_words": 12,
    "file": {
     "name": "ecclesiastes.bin",
-    "bytes": 47764,
+    "bytes": 47766,
     "raw_bytes": 275652,
-    "sha256": "1a21461b4f13e9c24e5ed29e8f9899f2208f9d78f62f93057cf36454aacacddd"
+    "sha256": "ab8b0fd06a1c170a0601eacd2e6f985e27b2da1a9513c84a47b2f1b8ab2d33c0"
    }
   },
   "song-of-songs": {
@@ -2167,9 +2167,9 @@
    "step_words": 15,
    "file": {
     "name": "song-of-songs.bin",
-    "bytes": 25788,
+    "bytes": 25790,
     "raw_bytes": 116831,
-    "sha256": "1c6454192a2976b70c32b8b65890cf0ab88ad28664872e44a2b0efd5dee64f4d"
+    "sha256": "71aa4349fe37e11cade626a313cb7b686e17006b0e1ec66a45757d3bd465bfa4"
    }
   },
   "isaiah": {
@@ -2227,9 +2227,9 @@
    "step_words": 40,
    "file": {
     "name": "isaiah.bin",
-    "bytes": 308862,
+    "bytes": 308864,
     "raw_bytes": 1560379,
-    "sha256": "386b122214e6df190231105ede63e49a4139035eaeba4822d974d7bc5e7fe32c"
+    "sha256": "a7560db1f213b9fdeb25f078c5d576d7fb0d0e61a964db8ae82da746d7479c43"
    }
   },
   "jeremiah": {
@@ -2287,9 +2287,9 @@
    "step_words": 54,
    "file": {
     "name": "jeremiah.bin",
-    "bytes": 309098,
+    "bytes": 309102,
     "raw_bytes": 1868701,
-    "sha256": "be48616f323e9c6c7c4eaff5b3268bda377ae8935390e58800fc653486284409"
+    "sha256": "0b095e456d80a39668e912728ac2d98b9357fc416ad51553fd6d0ca601f9cb0b"
    }
   },
   "lamentations": {
@@ -2347,9 +2347,9 @@
    "step_words": 15,
    "file": {
     "name": "lamentations.bin",
-    "bytes": 33324,
+    "bytes": 33326,
     "raw_bytes": 147730,
-    "sha256": "a03ba5f91f784ac714fa07b416ada002ee8549267e5b3c20a9c66b06f29312ef"
+    "sha256": "9c2fc9a97e8dab053cfce2c693a79fa93a2e78e6a4e9cb2620427f1d69227081"
    }
   },
   "ezekiel": {
@@ -2407,9 +2407,9 @@
    "step_words": 101,
    "file": {
     "name": "ezekiel.bin",
-    "bytes": 240620,
+    "bytes": 240622,
     "raw_bytes": 1602598,
-    "sha256": "69bff7f80d18f5995ade2063d5d1a2a014189a6191eb6ddf288624cb5d9effad"
+    "sha256": "dc9d3792a1a73846177c4cfffa20cc9930f0d58646ce1faa6f6fc0662c6e992f"
    }
   },
   "daniel": {
@@ -2467,9 +2467,9 @@
    "step_words": 75,
    "file": {
     "name": "daniel.bin",
-    "bytes": 86945,
+    "bytes": 86946,
     "raw_bytes": 515885,
-    "sha256": "9e0f9be25b3e16bc84d53a0a42cd5907ff7d68c8c5f844b48f1e997d768b6ba0"
+    "sha256": "dac24e41593aa75e40930deb5014f830d3cab3f7648dcd6f91c712811a22ab1f"
    }
   },
   "hosea": {
@@ -2527,9 +2527,9 @@
    "step_words": 6,
    "file": {
     "name": "hosea.bin",
-    "bytes": 47290,
+    "bytes": 47292,
     "raw_bytes": 220129,
-    "sha256": "b1a706d1dd122ec49502228e9d5dc89be75de81d64310b59acad747f5cce5777"
+    "sha256": "a182f59a726fd3dc08c8755720a22f7cd3f37cff076fcf9f938b1dd09709e323"
    }
   },
   "joel": {
@@ -2587,9 +2587,9 @@
    "step_words": 0,
    "file": {
     "name": "joel.bin",
-    "bytes": 18967,
+    "bytes": 18969,
     "raw_bytes": 88307,
-    "sha256": "8605d45da9aaa438fd796bf88197fe7b85262e413970e364ae1701abcf257367"
+    "sha256": "f00dc4771374410404800c0d0b898379841f7aa1b6c2b22345d9383ce45e1324"
    }
   },
   "amos": {
@@ -2647,9 +2647,9 @@
    "step_words": 4,
    "file": {
     "name": "amos.bin",
-    "bytes": 37263,
+    "bytes": 37265,
     "raw_bytes": 184716,
-    "sha256": "cafefc10922011e3195261280378433d257ada68f78446190a76134d36ff7352"
+    "sha256": "d1f65eae322799e04eb60bb123955272d399673944ca4de5bb14e2017a7a9322"
    }
   },
   "obadiah": {
@@ -2709,7 +2709,7 @@
     "name": "obadiah.bin",
     "bytes": 6654,
     "raw_bytes": 27484,
-    "sha256": "fd231c19bd7c51de848af68c94ebcc9494ac24bdaf5fb4b932fb4b2f92df6008"
+    "sha256": "01673159a12d4e0fb337cb5d0fd46c3ba912dc23a4d5140a0903acaba5156dea"
    }
   },
   "jonah": {
@@ -2767,9 +2767,9 @@
    "step_words": 0,
    "file": {
     "name": "jonah.bin",
-    "bytes": 12295,
+    "bytes": 12296,
     "raw_bytes": 61162,
-    "sha256": "e157148b5bdb5780bb01a1b681e63f6b11c126f1a13c84c50a62264e0aad98ad"
+    "sha256": "ce8f37806751db2aa8671b4d2a379983646c9bf5fc60fe53f18fe89e55cf210f"
    }
   },
   "micah": {
@@ -2827,9 +2827,9 @@
    "step_words": 3,
    "file": {
     "name": "micah.bin",
-    "bytes": 31299,
+    "bytes": 31302,
     "raw_bytes": 135244,
-    "sha256": "bfec1c53fba01e6dbdbc0c0e60021002f514fedefd1f2d8e8e6a84c5470a05e8"
+    "sha256": "366043eafe012b4e0f4578ba794b9c09f0a81d30850bc231377ba99422563e7a"
    }
   },
   "nahum": {
@@ -2887,9 +2887,9 @@
    "step_words": 5,
    "file": {
     "name": "nahum.bin",
-    "bytes": 14984,
+    "bytes": 14985,
     "raw_bytes": 55435,
-    "sha256": "4cd4a864e99633bbe228c947886ba4cabaf948272a0c6343ba62e44d30b84a67"
+    "sha256": "72f1dda22d90850ae9db6a4d5b6e2318340c3334dd0579b0539ed32e5399bbe6"
    }
   },
   "habakkuk": {
@@ -2947,9 +2947,9 @@
    "step_words": 3,
    "file": {
     "name": "habakkuk.bin",
-    "bytes": 17649,
+    "bytes": 17651,
     "raw_bytes": 68567,
-    "sha256": "7e0544dbf6a453e07027602f4cbfd5a7ce41406cac1cd1ab5a4d6868736eb6cc"
+    "sha256": "64f41f4a31aae84fcb4f198194f95a722bb1bfdf6d40c285041343c2221fe7fa"
    }
   },
   "zephaniah": {
@@ -3007,9 +3007,9 @@
    "step_words": 2,
    "file": {
     "name": "zephaniah.bin",
-    "bytes": 16533,
+    "bytes": 16535,
     "raw_bytes": 72948,
-    "sha256": "cb5a2e2661cba06daff1e5bd91aa947fd877d3ccf0271ad8ed9e830d39ff80c6"
+    "sha256": "6fb752ad510543ecf9966ab143e2bdf1db278935cb038f6387774e8ee5928802"
    }
   },
   "haggai": {
@@ -3067,9 +3067,9 @@
    "step_words": 0,
    "file": {
     "name": "haggai.bin",
-    "bytes": 9423,
+    "bytes": 9425,
     "raw_bytes": 51895,
-    "sha256": "85204a5a33e00b0ff945f1d7217415350fc8c5e3b7d40dbdd6bfd22b9d1117cf"
+    "sha256": "b2eae1b1832c0ffc164b518985367e8edc31183cc1a0172f380811fd9136a738"
    }
   },
   "zechariah": {
@@ -3127,9 +3127,9 @@
    "step_words": 7,
    "file": {
     "name": "zechariah.bin",
-    "bytes": 47783,
+    "bytes": 47785,
     "raw_bytes": 275374,
-    "sha256": "acf1c3f33272ded955438e58edffc14f2819bd464719296f0032fb4ff8d81cd4"
+    "sha256": "24f0a4f40fc00d9d80f2cc6ab8ca9ba8facc6677b6719b805ccff1e548ac87cc"
    }
   },
   "malachi": {
@@ -3187,19 +3187,19 @@
    "step_words": 3,
    "file": {
     "name": "malachi.bin",
-    "bytes": 16973,
+    "bytes": 16974,
     "raw_bytes": 83876,
-    "sha256": "603c7806f0ea5882c439b3368bc1800fbc8aeba662a301e3821d392b795ac528"
+    "sha256": "904879b36eaff997646668fa4e7cbc8f529ac288ad83937faa39635699e038b3"
    }
   }
  },
  "index": {
   "file": "index.json",
-  "bytes": 43318,
-  "sha256": "db2b59135c7194f658e4a6dd8d401dda539660a1952c34861e17aa6a86c5be07"
+  "bytes": 47429,
+  "sha256": "9722f599ac06f8c5c9c3e8a3843b3afc0a064ecc0ee649d4ee7c6da210d2b37a"
  },
  "sizes": {
-  "book_files_bytes": 4360506,
+  "book_files_bytes": 4360581,
   "book_files_raw_bytes": 26541651
  }
 }

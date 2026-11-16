@@ -152,6 +152,23 @@ const closesOf = (row, field) => (Array.isArray(row[CLOSES_SLOT]) ? row[CLOSES_S
 /** A row's route text as it prints, and its record: the definition text, or the route where it has none. */
 export const routePrinted = (row) => closed(String(row[1] ?? ""), closesOf(row, 1));
 export const recordPrinted = (row) => (row[2] ? closed(String(row[2]), closesOf(row, 2)) : routePrinted(row));
+// THE PROVIDER'S NOTE ON ITS OWN FILE PRINTS APART FROM THE TEXT IT STANDS IN
+// (provider-note-rule-v1, 16 November 2026: the owner's «ok go ahead» to card
+// 3 of the four cards, wip/2026-11-16/the-four-cards/FOUR-CARDS-2026-11-16.md).
+// A list of the made spaces marks a provider's remark on its own file standing
+// inside a text (its `note`: Strong's "sister", H269, «[like 251 number 250,
+// corrected to 251 ]»), and gives the text as it prints without it
+// (`prints_without_the_note`). The print step takes the remark out with the
+// closes: the places slot 9 names for such a text are its closes, the note's
+// words, and the spaces our build made on either side of them (made spaces,
+// kept or closing), so every reader above prints the text without the note
+// and no reader changes. The remark rides on the row in slot 9's third place,
+// { words, by }: its words byte for byte, and the provider whose file it is,
+// as the made spaces' pin names it (note_print.by). The card prints it apart,
+// as the file's own note.
+export const PROVIDER_NOTE_RULE_ID = "provider-note-rule-v1-the-providers-remark-on-its-own-file-prints-apart-from-the-text-it-stands-in";
+/** The provider's note a row carries (slot 9's third place: { words, by }), or null. */
+export const providerNoteOf = (row) => { const x = Array.isArray(row[CLOSES_SLOT]) ? row[CLOSES_SLOT][2] : null; return x && typeof x === "object" && typeof x.words === "string" && x.words && typeof x.by === "string" && x.by ? x : null; };
 // WHAT THE CORPUS LANE'S LEDGERS SAY OF A ROW RIDES ON THE ROW (13 November
 // 2026): slot 10, an object, each key written by the tool of its own ledger
 // and by no other. Its keys so far:

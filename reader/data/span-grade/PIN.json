@@ -1,0 +1,37 @@
+{
+ "schema_version": "SPAN_GRADE_PIN_V1",
+ "what": "the corpus lane's grade of the span store's pointing: at every place where the span store joins words, each row that stands there graded same, same word, silent (no pointed headword) or otherwise (pointed otherwise than the place's words), with the steps that set a difference aside and, for otherwise, the words that differ. Kept here byte for byte in the folder the lane keeps it in, with its rule, its receipt, the lane's second count and its reconciliation with the page lane's table. tools/apply-span-grade-v1.mjs writes, on each place of the served span store, the rows the place holds back under «only this pointing» (held), and the reader leaves them out of a run's card there and counts them",
+ "relay": "v169",
+ "of": "12 November 2026",
+ "letter": "r2:mishkan/v2/letters/moses-span-grade-v1/FOR-ELIJAH-v169.md",
+ "letter_sha256": "f3d04dd86372b68fd05685505ba40f2256d72b7c81b3bec75f0e9c9a37147932",
+ "from": "r2:mishkan/v2/ledgers/all/span-grade/span-grade-v1/ (the private store)",
+ "folder": "span-grade-v1",
+ "rule": { "file": "RULE.md", "bytes": 8966, "sha256": "35bcf6a0e7af0891de429c82cef169dc61a3e49b4bdd529338279cc3a304c873" },
+ "list": { "file": "span-grade-v1.jsonl", "bytes": 1068722, "sha256": "07d566cff1754b3923e95acb3cf365e90092c9ec0a89026b2e856caea5a3200e", "lines": 2845 },
+ "receipt": { "file": "receipt-v1.json", "bytes": 31303, "sha256": "a983b66c2273625078e957f89fc07901ea378a9d29a3ee7958d50f594450aeeb" },
+ "beside": [
+  { "file": "verify-receipt-v1.json", "bytes": 1192, "sha256": "649c82528616d90d1def242a0ce31e6866f5622297cb6c3ff291637cffcdc201", "what": "the lane's second count of the list (verify-span-grade-v1.mjs, by the same hand, by another method): it agrees at 2,845 of 2,845 places and with the receipt's counts, verdict AGREE" },
+  { "file": "reconcile-v1.json", "bytes": 1044, "sha256": "fbf5aa660cb399e3e86ff4630a13d958adb5df88cd829139f6d43993b412f6b0", "what": "the list's leading row of each place set beside the page lane's table of 12 November 2026 (dumps/span-pointing.tsv), place by place" }
+ ],
+ "read_at": {
+  "span_store_books_sha256": "f8992b5392edb536c3ff16ef2762968bab4133056667a611bedb82bdbce40b26",
+  "span_store_index_sha256": "3980e7124623d3554dcd0e371b970e81b49fb3e8a0dbea771e2343ee8ea095f6",
+  "what": "the served span store the lane graded, as its receipt names it (inputs.span_store): its 39 book files by the sha256 of the lines «<file> <sha256 of the file>» in name order, and its index. The book files are those bytes still, each read with the places' held member taken out (tools/apply-span-grade-v1.mjs says so on every run); the index has moved since by the page's own records on it (the ledgers' divisions, 15 November 2026), none of which touches a place or a row's id"
+ },
+ "named_cards": [
+  { "book": "deuteronomy", "ref": "18:1", "words": [10, 11], "reads": "the Jewish people", "under_only": "held", "why": "graded otherwise (only a word before a maqaf differs: the text's עִם, «with», against the entry's עַם, «people»), and STEP tags the two words as two entries (H5973A, H3478)" },
+  { "book": "judges", "ref": "11:9", "words": [2, 3], "reads": "Jiphthah-el", "under_only": "held", "why": "graded otherwise (a word that is neither before a maqaf nor at a pause differs), and STEP tags the two words as two entries (H3316H, H0413): «Jephthah said to»" },
+  { "book": "genesis", "ref": "21:31", "words": [6, 7], "reads": "Beersheba", "under_only": "stands", "why": "graded otherwise (only a word at a pause differs: שָׁבַע against שֶׁבַע), and STEP tags both words as one entry (H0884), the place's own name" },
+  { "book": "amos", "ref": "1:4", "words": [7, 8], "reads": "Ben-Hadad", "under_only": "stands", "why": "graded otherwise (only a word at a pause differs: הֲדָד against הֲדַד), and STEP tags both words as one entry (H1130I), the place's own name" }
+ ],
+ "ruled": {
+  "of": "16 November 2026",
+  "the_owners_words": "ok go ahead (to recommendation card 1 of the four cards, task 92), and «if its no pointing why would that in your head auto qualify it for all pointings rather than none» (task 134)",
+  "card": "wip/2026-11-16/the-four-cards/FOUR-CARDS-2026-11-16.md on the notes branch, card 1, with its probe tools/span-tags.mjs and its log logs/span-tags.txt beside it",
+  "rule_id": "span-grade-rule-v1-a-joined-reading-with-no-pointing-or-pointed-otherwise-where-step-tags-its-words-as-separate-entries-rests-held-back",
+  "what": "under «only this pointing» a place holds back a row the list grades silent (no pointing), and a row it grades otherwise where STEP's own tags on the place's words (TAHOT's Strong's number on each word's core, its letter set aside) name no one entry over every word; an otherwise row stands where STEP tags every word with one entry, or where a word of the place carries no tag; a row graded same or same word stands. No guard: unlike a single word's rows, every joined reading of a place may rest held back, because its words one by one always remain on the card"
+ },
+ "not_kept": "the lane's scripts (build-span-grade-v1.mjs, 23,246 bytes, sha256 2fb6d61c2b38bee3752e89fa4931fc45a6666fef7ee47d6860d0f2dc9a4e0932; verify-span-grade-v1.mjs, 12,242 bytes, sha256 2dc13ce2de333a541bf8e5c61534cb9bbcff64ab05d0d0eb5ba4f269d6a168a2; reconcile-with-the-page-v1.mjs, 2,523 bytes, sha256 89cefc26ebe9a0367fad766d9b5c9d8911add44261de5745cc060d47bf6d62d4) and its ship folder (ship-v169/): nothing of another lane's is run in this tree, and the letter names each by its sha256",
+ "note": "every sha256 here is the one the relay's letter names for the file, and the bytes taken hash to it; the lane's receipt names the list (outputs) and the rule by the same figures, and its second count names the list and the receipt by them. The cards named here are the four the owner's card 1 and the page lane's brief of 16 November 2026 name, set here as data so neither the tool nor the check names a place in its code: the check presses each place's run card under «only» and «keep» and holds the reading to stand or rest held back as named, and refuses a named card the list and the zones do not give so"
+}

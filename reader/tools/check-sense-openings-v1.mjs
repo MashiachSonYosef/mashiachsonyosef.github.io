@@ -81,7 +81,7 @@ import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { rulingsPinned, rulingOf, cited } from "./rulings-v1.mjs";
 import { openFollower, followedRecord, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
-import { gradeRow, isPointed } from "./pointing-grade-v1.mjs";
+import { gradeRow, isPointed, heldByPointing } from "./pointing-grade-v1.mjs";
 import { fnv1a } from "./lattice-lib-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
 import { stemsId } from "./stems-extension-v1.mjs";
@@ -351,7 +351,7 @@ for (const z of served) {
       const gr = (side.grades || {})[w.s], rs = (side.stems || {})[w.k] || null;
       const otherStem = (row) => !!(rs && gr && Array.isArray(gr.st) && gr.st.length && isOtherStem(rs[stemsId(row[3], row[0], row[1])], gr.st));
       // what the card's switches keep, a first visit's sources all on: the entry, the name, the pointing, the stem
-      const kept = rows.map((row, i) => verdicts[i] !== "other" && !nameWithheld(facts[i], isName) && (verdicts[i] === "this" || !attested || grades[i] !== "x") && !otherStem(row));
+      const kept = rows.map((row, i) => verdicts[i] !== "other" && !nameWithheld(facts[i], isName) && (verdicts[i] === "this" || !attested || !heldByPointing(grades[i])) && !otherStem(row));
       const notesKept = rows.filter((row, i) => isMarked(row) && kept[i]);
       const notesAll = rows.filter(isMarked);
       // a reading the card can print: a row the gates keep that is not a note, a row beside the store, or the place's

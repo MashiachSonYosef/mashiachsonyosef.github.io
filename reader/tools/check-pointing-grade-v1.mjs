@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // RUN: page
-// GUARDS: pointing-grade-rule-v4-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
+// GUARDS: pointing-grade-rule-v5-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing-and-the-texts-word-reads-without-the-dagesh-joining-it-to-the-word-before
+// GUARDS: unpointed-row-rule-v1-a-row-its-source-does-not-point-qualifies-for-no-pointing-and-rests-held-back-where-the-gate-acts
 //
 // THE GRADE FROM THE ROW'S OWN HEADWORDS, HELD.
 //
@@ -9,32 +10,47 @@
 // grade when it does not. One definition, two copies (the module and the
 // page), one recount, and the card pressed:
 //
-//   P1  the page's vowelForm, isPointed, rowCarriesHeadwords and gradeRow are
-//       the module's, to the character
+//   P1  the page's vowelForm, textForm, isPointed, rowCarriesHeadwords,
+//       gradeRow and heldByPointing are the module's, to the character, each
+//       whole (a function written as a block, to its closing brace)
 //   P2  the module grades as the rule says: a pointed headword equal to the
 //       word is a match; a pointed headword that differs is a mismatch; no
 //       pointed headword is silence; no slot is ungraded; two headwords with
 //       one matching is a match (any of, never the first); U+034F and the
-//       cantillation never decide
-//   P3  every served lattice sidecar was projected under this rule, so the
-//       baked leaders rest on the same grade the card computes
+//       cantillation never decide; a word-initial dagesh lene never decides
+//       on either side; the text's word, where the surface begins it, is
+//       read with and without the dagesh that joins it to the word before
+//       (v5), save a vav's, which is the shureq, and a he's, which is the
+//       mappiq, while a piece after a prefix keeps its dagesh; a headword's
+//       own first-letter dagesh is the source's and decides; and the gate
+//       asks of a grade what unpointed-row-rule-v1 says: a match stands, a
+//       mismatch is withheld, silence and no grade are held back
+//   P2b in the data: at the words of the first served zone that carry no
+//       such dagesh, every row whose pointed headword is the word but for a
+//       first-letter dagesh of its own (a piece a source cut after the
+//       article, MACULA's yod of ha-yom) grades as pointing it otherwise
+//   P3  every served lattice sidecar was projected under this rule and under
+//       the gate's (unpointed-row-rule-v1), so the baked leaders rest on the
+//       same grade and the same question the card asks
 //   P4  the recount record (data/pointing-grade-recount-v1.json) was written
 //       against the store on disk, and one book recounted here lands on its
 //       numbers to the unit
 //   P5  in the browser: every pill carries its grade; under "only" a pill
-//       graded x survives only where the place keeps a row of its own entry
-//       that its source points otherwise (entry-gate-rule-v1: such a row
-//       stands whatever its points), and what the card says the pointing
-//       withheld is what this check counts from the shard with the same
-//       steps: the rows pointed otherwise among those the entry and the
-//       names gates leave, a row of the place's own entry not counted, and
-//       none where no row points the word as the text does
+//       graded x or n survives only where the place keeps a row of its own
+//       entry that its source points otherwise or not at all
+//       (entry-gate-rule-v1: such a row stands whatever its points), and what the card
+//       says the pointing withheld, and held back as not pointed by its
+//       source (unpointed-row-rule-v1), is what this check counts from the
+//       shard with the same steps: the rows pointed otherwise, and the rows
+//       not pointed, among those the entry and the names gates leave, a row
+//       of the place's own entry not counted, and none where no row points
+//       the word as the text does
 //
 // SKIPS by name when no served zone carries the lattice layer.
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
-import { vowelForm, isPointed, rowCarriesHeadwords, gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
+import { vowelForm, textForm, isPointed, rowCarriesHeadwords, gradeRow, heldByPointing, POINTING_GRADE_RULE_ID, UNPOINTED_ROW_RULE_ID } from "./pointing-grade-v1.mjs";
 import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
 import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
@@ -46,11 +62,20 @@ let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const cp = (...xs) => String.fromCodePoint(...xs);
 
-// P1 — the two copies, to the character (leading indentation aside)
-const body = (src, name) => { const m = src.match(new RegExp(`const ${name} = [\\s\\S]*?;\\n`, "u")); return m ? m[0].replace(/^[ \t]+/gmu, "") : null; };
+// P1 — the two copies, to the character (leading indentation and the module's export aside). A function written as
+// a block is read to its closing brace: read to its first semicolon, gradeRow was held by its first line alone
+const body = (src, name) => {
+  const at = src.search(new RegExp(`^[ \\t]*(?:export )?const ${name} = `, "mu"));
+  if (at < 0) return null;
+  const first = src.slice(at, src.indexOf("\n", at));
+  const indent = /^[ \t]*/u.exec(first)[0];
+  const close = first.trimEnd().endsWith("{") ? src.indexOf(`\n${indent}};\n`, at) : -1;
+  const end = close >= 0 ? close + indent.length + 4 : src.indexOf(";\n", at) + 2;
+  return src.slice(at, end).replace(/^[ \t]+/gmu, "").replace(/^export /u, "");
+};
 const page = readFileSync("zone.html", "utf8"), mod = readFileSync("tools/pointing-grade-v1.mjs", "utf8");
-const names = ["vowelForm", "isPointed", "rowCarriesHeadwords", "gradeRow"];
-const differ = names.filter((n) => !body(page, n) || body(page, n) !== body(mod, n).replace(/^export /u, ""));
+const names = ["vowelForm", "textForm", "isPointed", "rowCarriesHeadwords", "gradeRow", "heldByPointing"];
+const differ = names.filter((n) => !body(page, n) || body(page, n) !== body(mod, n));
 check("P1  the page's copy of the grade is the module's, to the character", differ.length === 0, differ.length ? `differ: ${differ.join(", ")}` : `${names.join(", ")}`);
 
 // P2 — the rule on fixtures: dalet-bet-resh under three pointings
@@ -69,7 +94,28 @@ const p2 = [
   // v2: a word-initial dagesh lene never decides; a dagesh inside the word does
   ["a word-initial dagesh lene never decides", gradeRow(row([cp(0x05d1, 0x05bc, 0x05b8, 0x05e8, 0x05b8, 0x05d0)]), cp(0x05d1, 0x05b8, 0x05e8, 0x05b8, 0x05d0)) === "m" && gradeRow(row([cp(0x05db, 0x05b7, 0x05dc, 0x05bc, 0x05b9, 0x05d5, 0x05ea)]), cp(0x05db, 0x05bc, 0x05b7, 0x05dc, 0x05bc, 0x05b9, 0x05d5, 0x05ea)) === "m"],
   ["a dagesh inside the word still decides", gradeRow(row([DIBBER]), cp(0x05d3, 0x05b4, 0x05d1, 0x05b5, 0x05e8)) === "x"],
-  ["a dagesh on a word-initial letter that is not bet, gimel, dalet, kaf, pe or tav still decides", gradeRow(row([cp(0x05de, 0x05bc, 0x05b4, 0x05df)]), cp(0x05de, 0x05b4, 0x05df)) === "x"],
+  // v5: the text's word, where the surface begins it, is read with and without the dagesh that joins it to the word
+  // before, whatever the letter (lamed, nun, shin), so a source's own entry written without it agrees, and so does a
+  // source that cites the verse's form, dot and all; a dagesh inside such a word still decides
+  ["the text's word is read without the dagesh that joins it to the word before, whatever the letter", gradeRow(row([cp(0x05dc, 0x05d5, 0x05b9)]), cp(0x05dc, 0x05bc, 0x05d5, 0x05b9)) === "m"
+    && gradeRow(row([cp(0x05e0, 0x05b8, 0x05d0)]), cp(0x05e0, 0x05bc, 0x05b8, 0x05d0)) === "m"
+    && gradeRow(row([cp(0x05e9, 0x05c1, 0x05b8, 0x05dd)]), cp(0x05e9, 0x05c1, 0x05bc, 0x05b8, 0x05dd)) === "m"
+    && textForm(cp(0x05dc, 0x05bc, 0x05d5, 0x05b9)) === cp(0x05dc, 0x05d5, 0x05b9)],
+  ["and as written, so a headword that keeps the verse's dot agrees too", gradeRow(row([cp(0x05dc, 0x05bc, 0x05d5, 0x05b9)]), cp(0x05dc, 0x05bc, 0x05d5, 0x05b9)) === "m"],
+  ["a dagesh inside a word whose first letter carries the joining dagesh still decides", gradeRow(row([cp(0x05dc, 0x05b0, 0x05da, 0x05b8)]), cp(0x05dc, 0x05bc, 0x05b0, 0x05da, 0x05bc, 0x05b8)) === "x"
+    && gradeRow(row([cp(0x05dc, 0x05b0, 0x05da, 0x05b8)]), cp(0x05dc, 0x05bc, 0x05b0, 0x05da, 0x05b8)) === "m"],
+  // a piece that begins after a prefix keeps its dagesh: the prefix's doubling, not the join
+  ["a piece after a prefix keeps its first letter's dagesh", gradeRow(row([cp(0x05dc, 0x05d5, 0x05b9)]), cp(0x05dc, 0x05bc, 0x05d5, 0x05b9), false) === "x"
+    && gradeRow(row([cp(0x05dc, 0x05bc, 0x05d5, 0x05b9)]), cp(0x05dc, 0x05bc, 0x05d5, 0x05b9), false) === "m"],
+  // a headword is the source's: its own first-letter dagesh (beyond the lene) is the doubling of the piece it was cut
+  // from, and decides (MACULA's yod of ha-yom against the day; a mem with dagesh against min)
+  ["a headword's own first-letter dagesh is the source's and decides", gradeRow(row([cp(0x05d9, 0x05bc, 0x05d5, 0x05b9, 0x05dd)]), cp(0x05d9, 0x05d5, 0x05b9, 0x05dd)) === "x"
+    && gradeRow(row([cp(0x05de, 0x05bc, 0x05b4, 0x05df)]), cp(0x05de, 0x05b4, 0x05df)) === "x"
+    && vowelForm(cp(0x05d9, 0x05bc, 0x05d5, 0x05b9, 0x05dd)) === cp(0x05d9, 0x05bc, 0x05d5, 0x05b9, 0x05dd)],
+  ["a vav's dagesh at a word's head is the shureq and still decides", gradeRow(row([cp(0x05d5, 0x05b0, 0x05d0)]), cp(0x05d5, 0x05bc, 0x05d0)) === "x" && textForm(cp(0x05d5, 0x05bc)) === cp(0x05d5, 0x05bc)],
+  ["a he's dagesh at a word's head is the mappiq and still decides", textForm(cp(0x05d4, 0x05bc)) === cp(0x05d4, 0x05bc) && textForm(cp(0x05d4, 0x05b7, 0x05bc)) === cp(0x05d4, 0x05b7, 0x05bc) && gradeRow(row([cp(0x05d4, 0x05b7)]), cp(0x05d4, 0x05b7, 0x05bc)) === "x"],
+  // the gate's question of a grade (unpointed-row-rule-v1)
+  ["a match stands, a mismatch is withheld, silence and no grade are held back", heldByPointing("m") === null && heldByPointing("x") === "x" && heldByPointing("n") === "n" && heldByPointing("-") === "n"],
   // v3: the qatan mark is a qamats (ve-khol with U+05C7 against ve-khol with
   // U+05B8), and it does not make a holam of a qamats
   ["the qatan mark reads as a qamats", gradeRow(row([cp(0x05d5, 0x05b0, 0x05db, 0x05b8, 0x05dc)]), cp(0x05d5, 0x05b0, 0x05db, 0x05c7, 0x05dc)) === "m"],
@@ -77,11 +123,43 @@ const p2 = [
 ];
 check("P2  the module grades as the rule says", p2.every((x) => x[1]), p2.filter((x) => !x[1]).map((x) => x[0]).join("; ") || `${p2.length} cases`);
 
+// P2b — in the data: a headword's own first-letter dagesh is the source's, and decides. At the words of the served
+// zones, in order, until one holds such a row: a word that carries no joining dagesh of its own, and a row of its key
+// whose pointed headwords do not hold its vowel form but one of them is that form with a dagesh at its first letter
+// (after the vowel form a dagesh lene is gone, so the dagesh is another: a piece cut after the article or the vav of
+// sequence). Read on both sides alike, the row would agree; it is the source's own doubling, and points otherwise.
+{
+  const JOIN = /^([\u05D0-\u05D3\u05D6-\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u;
+  const atRest = openRouteStore("data/route-store");
+  let pairs = 0, zoneRead = null;
+  const wrong = [], seen = [];
+  for (const z of zonesServed()) {
+    if (pairs || !existsSync(`data/zones/${z}.bin`)) continue;
+    const zz = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8"));
+    zoneRead = z;
+    for (const sec of zz.sections || []) for (const w of sec.words || []) {
+      if (w.mark || !w.k || typeof w.s !== "string" || !isPointed(w.s)) continue;
+      const vs = vowelForm(w.s);
+      if (JOIN.test(vs)) continue;
+      for (const r of atRest.routesFor(w.k) || []) {
+        if (!rowCarriesHeadwords(r)) continue;
+        const V = r[6].filter(isPointed).map(vowelForm);
+        if (V.includes(vs) || !V.some((h) => JOIN.test(h) && h.replace(JOIN, "$1") === vs)) continue;
+        pairs += 1;
+        if (seen.length < 3) seen.push(`${sec.label} ${r[3]} «${String(r[1]).slice(0, 30)}»`);
+        if (gradeRow(r, w.s) !== "x" && wrong.length < 3) wrong.push(`${sec.label} ${r[3]} «${String(r[1]).slice(0, 30)}» graded ${gradeRow(r, w.s)}`);
+      }
+    }
+  }
+  check("P2b in the data, a headword's own first-letter dagesh is the source's and decides at a word that carries none", pairs > 0 && wrong.length === 0,
+    pairs ? `${zoneRead}: ${pairs} row-and-word pairs${wrong.length ? ` · graded a match: ${wrong.join(" | ")}` : ` all graded otherwise · e.g. ${seen.join(" | ")}`}` : "no served zone holds such a row at such a word");
+}
+
 // P3 — every served sidecar under this rule
 const served = zonesServed().filter((z) => existsSync(`data/zones/${z}.lattice.bin`));
 if (!served.length) { console.log("SKIPPED — no served zone carries a lattice sidecar; nothing here to hold"); process.exit(3); }
-const notUnder = served.filter((z) => { const s = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.lattice.bin`)).toString("utf8")); return !(s.first_under && s.first_under.row_grade && s.first_under.row_grade.rule === POINTING_GRADE_RULE_ID); });
-check("P3  every served lattice sidecar was projected under this rule", notUnder.length === 0, notUnder.length ? `${notUnder.length} not: ${notUnder.slice(0, 5).join(", ")}` : `${served.length} sidecars`);
+const notUnder = served.filter((z) => { const s = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.lattice.bin`)).toString("utf8")); return !(s.first_under && s.first_under.row_grade && s.first_under.row_grade.rule === POINTING_GRADE_RULE_ID && s.first_under.gate && s.first_under.gate.rule === UNPOINTED_ROW_RULE_ID); });
+check("P3  every served lattice sidecar was projected under this rule and the gate's", notUnder.length === 0, notUnder.length ? `${notUnder.length} not: ${notUnder.slice(0, 5).join(", ")} (re-project: the round's zones step with --lattice)` : `${served.length} sidecars`);
 
 // P4 — the recount record, and one book recounted here
 const store = openRouteStore("data/route-store");
@@ -129,7 +207,8 @@ const overlayRowsFor = (key) => OVERLAYS.flatMap(({ id, ix }) => {
 // Before the grade is asked, the place's two gates (`at`: the word's tags and whether its place is a name): a row
 // of another entry and a row given as a name where the place is not one are out and are not the pointing's to
 // count; a row of the place's own entry stands whatever its points. And the pointing withholds nothing where no
-// row of the store points the word as the text does.
+// row of the store points the word as the text does. Where it acts, a row pointed otherwise is withheld (x) and a
+// row its source does not point, or no grade reaches, is held back (n), each counted apart (unpointed-row-rule-v1)
 const expectFor = (s, off, at) => {
   const gr = side.grades[s]; const lat = gr && side.routes[gr.k]; const rows = gr ? (store.routesFor(gr.k) || []) : [];
   const fp = lat ? new Map(lat.f.map((f, i) => [f, i])) : null;
@@ -142,12 +221,14 @@ const expectFor = (s, off, at) => {
   const named = (i) => verdicts[i] !== "other" && nameWithheld(facts[i], !at || at.isName);
   const left = (i) => verdicts[i] !== "other" && !named(i);
   const attested = grades.includes("m");
-  const x = attested ? grades.filter((g, i) => g === "x" && left(i) && verdicts[i] !== "this").length : 0;
+  const held = (cls) => (attested ? grades.filter((g, i) => heldByPointing(g) === cls && left(i) && verdicts[i] !== "this").length : 0);
+  const x = held("x"), n = held("n");
   const ov = gr ? overlayRowsFor(gr.k) : [];
-  const ovX = attested ? ov.filter((r) => !off.has(r[3]) && gradeRow(r, s) === "x").length : 0;
+  const ovHeld = (cls) => (attested ? ov.filter((r) => !off.has(r[3]) && heldByPointing(gradeRow(r, s)) === cls).length : 0);
+  const ovX = ovHeld("x"), ovN = ovHeld("n");
   const pc = target ? pieceRowsAt(target.ref, target.n, s) : 0;
-  return { rows: rows.length + ov.length + pc, piece: pc, x: x + ovX, fromHeadwords: rows.filter(rowCarriesHeadwords).length, overlay: ov.length, overlayX: ovX,
-    byEntry: verdicts.filter((v) => v === "other").length, byName: admitted.filter((r, i) => named(i)).length, ownAndOtherwise: grades.filter((g, i) => g === "x" && left(i) && verdicts[i] === "this").length };
+  return { rows: rows.length + ov.length + pc, piece: pc, x: x + ovX, n: n + ovN, fromHeadwords: rows.filter(rowCarriesHeadwords).length, overlay: ov.length, overlayX: ovX, overlayN: ovN,
+    byEntry: verdicts.filter((v) => v === "other").length, byName: admitted.filter((r, i) => named(i)).length, ownAndOtherwise: grades.filter((g, i) => heldByPointing(g) && left(i) && verdicts[i] === "this").length };
 };
 const target = await p.evaluate((grades) => {
   const wbs = [...document.querySelectorAll("section.seg .he-text .wb")];
@@ -176,7 +257,7 @@ check("  a word with a reading and a mismatch card stands on the page", !!target
 const cardNow = () => p.evaluate(() => {
   const h = document.querySelector("#hud"); if (!h || h.hidden) return null;
   const pills = h.querySelector(".r-pills"); if (!pills) return null;
-  return { grades: [...pills.querySelectorAll("button")].map((x) => x.dataset.grade || ""), withheld: Number(pills.dataset.withheld || 0), rows: Number(pills.dataset.rows || 0) };
+  return { grades: [...pills.querySelectorAll("button")].map((x) => x.dataset.grade || ""), withheld: Number(pills.dataset.withheld || 0), unpointed: Number(pills.dataset.unpointedWithheld || 0), rows: Number(pills.dataset.rows || 0) };
 });
 const press = async (pos) => {
   await p.evaluate(() => { const r = document.getElementById("rail"); if (r && !r.open) r.open = true; });
@@ -195,9 +276,11 @@ if (target) {
   const only = await cardNow();
   // the word's place: its tags, and whether it is a name (a book whose places were not read for names reads every place as one)
   const want = expectFor(target.s, new Set(await p.evaluate(() => window.__sourcesOff || [])), { tags: target.tags, isName: !side.names || target.np });
-  check("P5b under only, a pill graded x survives only where the place keeps a row of its own entry pointed otherwise, and the card's withheld count is this check's own count from the shard, after the place's gates",
-    pressed && only && (!only.grades.includes("x") || want.ownAndOtherwise > 0) && only.withheld === want.x && only.rows === want.rows,
-    only ? `withheld ${only.withheld} of ${only.rows} · counted ${want.x} of ${want.rows} (${want.overlayX} of ${want.overlay} overlay rows, ${want.piece} piece rows) · before the pointing is asked ${want.byEntry} are out as another entry's and ${want.byName} as a name's${target.tags ? ` (the place reads ${target.tags.join(" ")})` : " (the place carries no tag)"}; ${want.ownAndOtherwise} of its own entry stand though pointed otherwise, ${only.grades.filter((g) => g === "x").length} pill(s) graded x · ${want.fromHeadwords} store rows graded from their own headwords${v2 ? "" : " (v1 store: the lattice graded every row)"}` : "no card");
+  // a pill takes the best grade of the records behind it, so one graded x or n stands on such records alone: where
+  // the gate acts that is only a row of the place's own entry, which stands whatever its points
+  check("P5b under only, a pill graded x or n survives only where the place keeps a row of its own entry pointed otherwise or not pointed, and the card's counts of what the pointing withheld and held back are this check's own counts from the shard, after the place's gates",
+    pressed && only && (!only.grades.some((g) => g === "x" || g === "n") || want.ownAndOtherwise > 0) && only.withheld === want.x && only.unpointed === want.n && only.rows === want.rows,
+    only ? `withheld ${only.withheld} and held back ${only.unpointed} of ${only.rows} · counted ${want.x} pointed otherwise and ${want.n} not pointed of ${want.rows} (of ${want.overlay} overlay rows ${want.overlayX} and ${want.overlayN}; ${want.piece} piece rows) · before the pointing is asked ${want.byEntry} are out as another entry's and ${want.byName} as a name's${target.tags ? ` (the place reads ${target.tags.join(" ")})` : " (the place carries no tag)"}; ${want.ownAndOtherwise} of its own entry stand though pointed otherwise or not pointed, ${only.grades.filter((g) => g === "x").length} pill(s) graded x, ${only.grades.filter((g) => g === "n").length} graded n · ${want.fromHeadwords} store rows graded from their own headwords${v2 ? "" : " (v1 store: the lattice graded every row)"}` : "no card");
   await press("keep");
 }
 await b.close();
