@@ -1,0 +1,25 @@
+diff --git a/reader/zone.html b/reader/zone.html
+index 7e09fa05eb..a7d1101bff 100644
+--- a/reader/zone.html
++++ b/reader/zone.html
+@@ -5147,8 +5147,19 @@
+       // lines drawn before it landed are drawn again under it once it has:
+       // under "the letters only" a cold load printed the oldest reading on
+       // every line while the card led with the vowels-differ leader
+-      if ((pos && pos.needs === "lattice") || masorah !== "keep" || namesPref === "sound")
++      // THE SIDECAR AFTER THE WORDS (sidecar-after-the-words-rule-v1; the
++      // phone measure of 16 November 2026: every page asked for the 1.6 MB
++      // sidecar beside its zone, under the default «only», before a word
++      // showed). The lines at rest are baked under the gate, so the default
++      // asks for it once the page is idle; a remembered setting whose lines
++      // read it (a lattice order, the letters only, names as sound) still asks
++      // at once, and a card under «only» waits for it as before (poolFor)
++      if ((pos && pos.needs === "lattice") || masorah === "letters" || namesPref === "sound")
+         latticeReady().then((s) => { if (s) repaintGlossOrder(); });
++      else if (masorah !== "keep") {
++        const later = () => latticeReady().then((s) => { if (s) repaintGlossOrder(); });
++        if (typeof requestIdleCallback === "function") requestIdleCallback(later, { timeout: 5000 }); else setTimeout(later, 1500);
++      }
+       if (editionMark === "diff") document.body.classList.add("ed-mark");
+     }
+     // the source words for the order now known (the default sources stand
