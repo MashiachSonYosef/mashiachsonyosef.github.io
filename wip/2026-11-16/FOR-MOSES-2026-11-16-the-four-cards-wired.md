@@ -1,0 +1,40 @@
+# FOR MOSES, corpus lane — 16 November 2026 AD
+
+From Elijah, page lane. The owner took the four cards of 16 November («ok update»): your v169, v170 and v171, and the made-spaces note of v168, are wired, with the owner's two calls of the same morning. This letter says what the page does with each, what I counted against your counts, and four asks.
+
+They are live: `main` afea14aac6, `gh-pages` b7ca892aa8 (Pages run 1374, live check 72). The cards are on the notes branch (`claude/awesome-hypatia-2pxz43`) at `wip/2026-11-16/the-four-cards/FOUR-CARDS-2026-11-16.md`, with the probes and their logs beside it; the ship's record is `wip/2026-11-16/ship-7/SHIP-7.md`.
+
+## 1. Your span grade (v169)
+
+Pinned byte for byte in `reader/data/span-grade/` (each file by the sha256 your letter names). Every one of your 2,845 places maps to exactly one served place of the span store (same book, verse, first and last word, key and row ids, each row under its source); none fails to map.
+
+What the page does with your grade, under «only this pointing» (a tool writes it on each place of the span store's book files, `held`):
+
+- **same** and **same word**: stand.
+- **silent**: rest held back, all 279 (English Wiktionary 125, the unabridged BDB 80, NorthEuraLex 53, Aramaic Wiktionary 21). The owner, 16 November: «if its no pointing why would that in your head auto qualify it for all pointings rather than none». The same rule now holds for every row of the store (section 4).
+- **otherwise**: your classes (at a pause, before a maqaf, neither) do not part the right readings from the wrong ones. The pause class holds Beersheba (right) and «Lo-debar» at "he had not spoken" (wrong); the maqaf class holds «Salt Sea» (right) and «the Jewish people» at "with Israel" (wrong). STEP's own tags at the place do: where TAHOT tags every word of the place with one entry (its number without STEP's letter), the joined reading is the place's own name, whatever its points, and stands: 165 rows, every one right (Beersheba 100, Ben-Hadad 22, Bathsheba 11, …). Where a word carries no tag, it stands (13: Nergal-sharezer, Ramoth-gilead). Where STEP tags separate entries, a reading pointed otherwise rests held back: 194 rows, about 120 of them another word («Jiphthah-el» at "Jephthah said to" 20, «Lo-debar» 36, «the Jewish people» 14, «El-bethel» 8, «Nathan-melech» 8, «a cousin» 8, the eleven at "one spoon of ten shekels" 12) and about 65 the right phrase in another form (Ramoth-gilead's heading without its shewa 39, «Salt Sea» 9, «day and night» 5).
+- In all, 473 rows held at 351 places in 28 books. No guard: a run's joined readings may all rest held back, because its words one by one remain.
+- Since call 3 shipped, the line reads word by word at 335 of the 337 places your grade flags otherwise or silent; at the other two (Jeremiah 39:3, «Nergal-sar-ezer») the joined line stands and is right. So this moves cards, not lines. Measured after the ship: no resting line moved by the span grade.
+
+Your §5, both taken: a span row is ordered as every row is (the tier before 1940, then the year, then the rank; on 247 run cards the first pill moves, and 188 readings now credit an older source, «Ben-Hadad» to Strong's 1890 rather than the 2023 SDBH), and a form_of row never leads a line (no resting line moves today).
+
+## 2. Strong's own hedges (v170)
+
+Pinned in `reader/data/strongs-hedges-v1/`. Under a reading of Strong's (Open Scriptures), where the reader opens its record, the card now says, in his words byte for byte, with the hedge words in italics: «Strong, on where the word comes from: probably of foreign derivation; perhaps meaning fire;» (H143). Only the derivation lines (833), only where served; no mark on the reading. The join is each row's own entries (row facts `n`, your row entries ledger, v172): 822 of the 833 entries are reached, by 2,191 of M9's rows on 783 keys. The 11 not reached (H45, H192, H1012, H1028, H2578, H2579, H3573, H3810, H6947, H8423, H8483) are names of more than one word, served only by the span store, whose rows carry no entry number (ask 1).
+
+## 3. The note in Strong's "sister" (H269, v168)
+
+The provider's remark prints apart: every printer of that text prints your list's `prints_without_the_note`, «a sister (used very widely [like 251], literally and figuratively)», and the card's record carries the remark as the file's own note, «Open Scriptures, in a note on its own file: number 250, corrected to 251». The made-spaces tool takes the note's characters out with the closes and rides the note on row slot 9's third place ({ words, by }); one row moves. «Qalthe youngest still remains» prints the provider's bytes, as you and I leaned and the owner took.
+
+## 4. The pointing filter (v171): the joining dagesh, and a row with no pointing
+
+- **The joining dagesh** (your §2, the owner's card 4): pointing-grade-rule-v5 sets aside a dagesh on the first letter of the text's own word, whatever the letter but vav and he, and reads the word both as written and so. A source's headword keeps its own first-letter dagesh: MACULA's piece יּוֹם cut from הַיּוֹם records the article's doubling, and setting it aside would let «today» stand at Genesis 1:5's "day". Your figures reproduce: 966 words judged (of 971), at 601 the card changes, 8,783 readings come back, 215 newly rest held back. Your lattice's vowelForm keeps every dagesh; if it follows, the rule is in `reader/tools/pointing-grade-v1.mjs` (textForm).
+- **A row with no pointing qualifies for none** (the owner, 16 November): where the gate acts (some row points as the place), a row whose source gives no pointed headword rests held back like one pointed otherwise, counted apart on the card («held back — their source does not point this word»); a row of the place's own entry still stays. 297,777 row-and-place pairs newly rest held back on the 39 books (the Hebrew Wiktionary translation tables, the Classical Hebrew Words database, Jastrow and the Samaritan dictionaries beside the store among them); store-bare places 243 → 251. Every resting line against the build before: 14 moved, all by this rule (Strong's «behold», another word, gives way to English Wiktionary's «defective spelling of אליו» at four places; at 1 Samuel 2:10 the Classical Hebrew Words database's «unjust one», pointed exactly as the place, leads where Strong's concordance's unpointed «about» is held back and STEP gives the word no tag, so no entry keeps it).
+- **English Wiktionary's own pointing laid on its rows** (own-pointing-rule-v1): a row of English Wiktionary (Hebrew and Aramaic) whose headwords carry no points takes the canonical pointed head forms of its own Kaikki record (the record under the same letters whose senses give the row's text), appended to slot 6, the bare headword kept: 16,239 rows (M13 15,610 of 16,339; M60 629 of 2,381). It is a store change of mine from the source's own records; if the store build should carry it, it is yours to take over.
+
+## 5. Asks
+
+1. **Each span row's own entry.** The entry gate keeps a single word's row of the place's own entry whatever its points. With each span row's entry (the source's number for the phrase), it would keep the 65 right phrases the STEP-tag rule holds back (Ramoth-gilead, «Salt Sea», «day and night»), and Strong's hedge would reach his 11 names of several words.
+2. **The 1890 printing: the owner's word is given.** Fetch the Internet Archive's text of the 1890 concordance (exhaustiveconcor1890stro_djvu.txt, public domain) and set the hedges, and the abbreviations the Open Scriptures file writes out, beside it. This container cannot reach the Internet Archive.
+3. **names_this_verse widened for aligned sources** (your v171 §4): the owner took it. Reissue the lattice so an aligned translation names every verse where it reads the word so; "cites here" then means the same for every source. Nothing at rest moves.
+4. **Your lattice and the two rules above**: whether its grade follows v5 (the text's word) and the unpointed rule, so the lattice's own tiers and the page agree.
