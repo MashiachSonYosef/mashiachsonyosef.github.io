@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Synthesis lane · pointing-grade-rule-v4-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing
+// Synthesis lane · pointing-grade-rule-v5-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing-and-the-texts-word-reads-without-the-dagesh-joining-it-to-the-word-before
+// Synthesis lane · unpointed-row-rule-v1-a-row-its-source-does-not-point-qualifies-for-no-pointing-and-rests-held-back-where-the-gate-acts
 // LEDGER: -
 // no frame letter. This changes no letter of the text and no row of the
 // store: it is the one definition by which a store row earns its grade
@@ -12,7 +13,8 @@
 //
 //   V = { vowelForm(h) : h in row[6] where isPointed(h) }
 //   V empty                  -> n  NORMALIZED      the source is silent on pointing
-//   vowelForm(S) in V        -> m  VOWEL_MATCH     any one matching headword is enough
+//   vowelForm(S) in V, or textForm(S) in V where S begins the text's word (v5)
+//                            -> m  VOWEL_MATCH     any one matching headword is enough
 //   else                     -> x  VOWEL_MISMATCH
 //   no [6] on the row        -> -  ungraded here   (a v1 row; the lattice card's grade, if any, stands)
 //
@@ -30,8 +32,49 @@
 // NFKD, cantillation and the marks that are not vowels (meteg, maqaf, rafe,
 // paseq, U+05C3–05C7) deleted, then everything but the vowel points, shin and
 // sin dots, dagesh and the letters. Pointed means: a vowel point U+05B0–05BB
-// after NFKD, or a shureq. The same two functions stand in zone.html, to the
-// character; tools/check-pointing-grade-v1.mjs holds the two copies together.
+// after NFKD, or a shureq. textForm (v5) is the text's own word read without
+// the dagesh that joins it to the word before. The same functions stand in
+// zone.html, to the character; tools/check-pointing-grade-v1.mjs holds the
+// two copies together.
+//
+// v5 (16 November 2026): THE TEXT'S WORD IS READ WITHOUT THE DAGESH THAT
+// JOINS IT TO THE WORD BEFORE. Since v2 the grade set aside the dagesh lene
+// of a word-initial b g d k p t, and only that. At 971 words of the 39 books
+// the text's word carries another dagesh at its first letter: the one that
+// joins it to the word before (lamed 518, nun 114, shin 85, yod 75, zayin
+// 72, mem 41, tet 20, samekh 16, qof 15, resh 8, tsade 7: lekha, lo, zot).
+// It says where the word stands, not which form it is, and a dictionary's
+// own entry, written without it, graded as pointing the word otherwise
+// there. So where the surface graded begins the text's word (a whole word,
+// a read word, or a piece whose first letter is the word's own), the word
+// is read two ways, as written and with that dagesh set aside, whatever the
+// letter (textForm), and a headword pointed either way agrees: a source
+// that cites the verse's own form, dot and all, agrees as it did (read only
+// without the dot, 6 more readings were held back and, where such a source
+// alone had pointed the word as the text does, the gate stopped acting and
+// 22 came back that point it otherwise). Two letters
+// keep theirs: on a vav the dagesh is the shureq, a vowel (v4); on a he it
+// is the mappiq, which says the he is sounded (no word of the text begins
+// with either). A piece that begins after a prefix keeps its dagesh: that
+// one is the prefix's doubling (the yod of ha-yom), not the join. And a
+// HEADWORD IS THE SOURCE'S, read as v4 reads it (vowelForm): a first-letter
+// dagesh it carries, beyond the dagesh lene, records the doubling of the
+// piece it was cut from, and decides. A first draft of v5 set the dagesh
+// aside on both sides, and MACULA's «today» (its headword the yod of
+// ha-yom, doubled after the article) stood at Genesis 1:5's day, a reading
+// of another form brought back: 752 readings at words with no such dagesh
+// (MACULA 624, STEP's aligned translation 110, Hebrew Wiktionary's forms
+// 18), and 576 newly held back where that false match woke the gate (the
+// coordinator, the same day: "Card 4, as the owner took it, is about the
+// verse's own word"). Measured on live main (8797fa4d5b) with the page's
+// gates in order, at the 966 words judged: at 601 the card's rows at rest
+// change, 8,783 readings come back (English Wiktionary's senses of "to,
+// for" at lo, li, lanu and of "this" at zot the most) and 215 are newly
+// held back, where a reading now points as the place does and the gate
+// begins to act; no word is bare before or after; at every other word
+// nothing moves. The owner took it on 16 November 2026 («ok go ahead» to
+// card 4 of the four cards, task 84); the corpus lane's view is the same
+// (Moses, v171 section 2).
 //
 // v4 (7 November 2026): A SHUREQ IS A VOWEL. The corpus lane's line read a
 // headword as pointed only on a vowel point in U+05B0–05BB, and a shureq is
@@ -44,7 +87,8 @@
 // before a dagesh (21) on the same letter, so a vav followed at once by
 // U+05BC carries no vowel of its own: that is the shureq, and it points.
 //
-// v2 (2026-11-06), the one place this departs from the corpus lane's lines:
+// v2 (2026-11-06), the one place this departs from the corpus lane's lines
+// (v5 adds the text's joining dagesh, on the text's side only):
 // the dagesh of a word-initial bet, gimel, dalet, kaf, pe or tav is dropped.
 // That dagesh is lene: it stands after a pause and goes after a vowel, so
 // it says where the word stands, not which form it is. Under v1 a source
@@ -62,7 +106,7 @@
 // the word otherwise: 126,745 row grades on 7,363 words (ve-khol with the
 // qatan mark against the sources' ve-khol with a plain qamats). U+05C7 is
 // read as U+05B8 before anything else is done.
-export const POINTING_GRADE_RULE_ID = "pointing-grade-rule-v4-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-and-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing";
+export const POINTING_GRADE_RULE_ID = "pointing-grade-rule-v5-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing-and-the-texts-word-reads-without-the-dagesh-joining-it-to-the-word-before";
 
 export const vowelForm = (t) => String(t ?? "")
   .replace(/\u034F/g, "")
@@ -71,14 +115,49 @@ export const vowelForm = (t) => String(t ?? "")
   .replace(/[\u0591-\u05AF\u05BD\u05BE\u05BF\u05C0\u05C3\u05C4\u05C5\u05C6\u05C7]/g, "")
   .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "")
   .replace(/^([\u05D1\u05D2\u05D3\u05DB\u05E4\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
+// the text's word as v5 also reads it, where the surface begins the word: its vowel form with the dagesh that joins
+// it to the word before set aside, whatever the letter, save a vav's (the shureq) and a he's (the mappiq)
+export const textForm = (t) => vowelForm(t)
+  .replace(/^([\u05D0-\u05D3\u05D6-\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
 export const isPointed = (t) => /[\u05B0-\u05BB]|\u05D5\u05BC/.test(String(t ?? "").normalize("NFKD"));
 // a row carries headwords when its seventh slot is an array — the v2 shape;
 // an empty array is a source that names no headword and grades NORMALIZED
 export const rowCarriesHeadwords = (row) => Array.isArray(row) && Array.isArray(row[6]);
-export const gradeRow = (row, surface) => {
+// beginsWord: whether the surface begins the text's word (v5); a caller that grades a piece after a prefix says not
+export const gradeRow = (row, surface, beginsWord = true) => {
   if (!rowCarriesHeadwords(row)) return "-";
   const V = row[6].filter(isPointed).map(vowelForm);
   if (!V.length) return "n";
-  return V.includes(vowelForm(surface)) ? "m" : "x";
+  return V.includes(vowelForm(surface)) || (beginsWord && V.includes(textForm(surface))) ? "m" : "x";
 };
 export const GRADE_WORDS = { m: "VOWEL_MATCH", n: "NORMALIZED", x: "VOWEL_MISMATCH", "-": "ungraded" };
+
+// WHAT THE GATE ASKS OF A GRADE (unpointed-row-rule-v1; the owner, 16 November
+// 2026, task 134: «if its no pointing why would that in your head auto
+// qualify it for all pointings rather than none»). Under "only this
+// pointing", where the gate acts (some row of the store points the word as
+// the text does), a row stands on its grade only where the grade is a match.
+// A row its source points otherwise (x) is withheld, as since 6 November. A
+// row whose source gives no pointed headword (n), or that no grade reaches at
+// all (-), was kept until this day: unknown was not a mismatch, so a row with
+// no pointing qualified for every pointing. It qualifies for none now, and
+// rests held back, counted apart from the rows pointed otherwise (the card's
+// "their source does not point this word"); "keep" brings it back. What the
+// gate asks before the grade is the gate's, not this function's: a row of
+// the place's own entry stands whatever its grade (entry-gate-rule-v1), the
+// entry and the names gates are asked first, and where no row points the
+// word as the text does nothing is withheld for the pointing at all. On the
+// page a claim of the piece store stands too: it is made at this very
+// place, word and letters, the place's own reading, and carries no
+// headwords, so it grades "-" (297,628 claims at the whole word at 149,253
+// places of the 39 books, measured 16 November 2026); a span store row is
+// asked by the span grade. At rest no other row grades "-": every row of
+// the store carries the headword slot, and so does every row of the
+// dictionaries beside it.
+//   heldByPointing(grade)   null where the row stands, "x" where it is
+//                           withheld as pointed otherwise, "n" where it is
+//                           held back as not pointed (n or -)
+// The page carries the same function under the same name, to the character
+// (check-pointing-grade-v1 P1).
+export const UNPOINTED_ROW_RULE_ID = "unpointed-row-rule-v1-a-row-its-source-does-not-point-qualifies-for-no-pointing-and-rests-held-back-where-the-gate-acts";
+export const heldByPointing = (grade) => (grade === "m" ? null : grade === "x" ? "x" : "n");

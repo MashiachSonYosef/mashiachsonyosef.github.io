@@ -53,6 +53,7 @@ import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
 import { readStruckRanks } from "./emit-struck-ranks-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
+import { headwordsBeforeOwnPointing } from "./apply-own-pointing-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -157,7 +158,9 @@ const holes = (readStruckRanks(STORE) || { keys: {} }).keys;
       continue;
     }
     if (at.length !== 1) faults.push(`${where}: ${at.length} rows stand at its key and rank`);
-    if (row[2] !== x.definition || String(row[4]) !== x.year || (row[5] ?? null) !== (x.cut ?? null) || !same(row[6], x.headwords)) faults.push(`${where} stands with another definition, year, cut or headwords than the list gives it`);
+    // its headwords as the list gave them: English Wiktionary's own pointed forms, laid after them since 16 November
+    // 2026 (own-pointing-rule-v1), are that rule's, and check-own-pointing-v1 holds them
+    if (row[2] !== x.definition || String(row[4]) !== x.year || (row[5] ?? null) !== (x.cut ?? null) || !same(headwordsBeforeOwnPointing(row, store.index.m_sources), x.headwords)) faults.push(`${where} stands with another definition, year, cut or headwords than the list gives it`);
   }
   check("F4  every landed line stands once at its key and rank, and nothing else stands there: its route, its definition, its source, its year, its cut in slot 5 and its headwords; one a later round took, moved or retexted is named",
     landed.length > 0 && faults.length === 0, faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(landed.length)} rows under ${nf(new Set(landed.map((x) => x.key)).size)} keys · ${Object.values(cutsOf(landed)).reduce((a, c) => a + c, 0)} carry the cut${since.length ? ` · ${since.length} acted on since: ${first(since)}` : " · none acted on by a later round"} · store ${store.index.store_version}`);

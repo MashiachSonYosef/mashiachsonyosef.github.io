@@ -66,7 +66,7 @@ import { fileURLToPath } from "node:url";
 import { openRouteStore, factsOf, readingKey, printedForm } from "./gloss-store-v1.mjs";
 import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
-import { gradeRow } from "./pointing-grade-v1.mjs";
+import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
 import { readPinned, PinFault } from "./pinned-v1.mjs";
 import { rulingsPinned, rulingOf, cited } from "./rulings-v1.mjs";
@@ -183,7 +183,7 @@ const storeLeft = (w, rows, isName) => {
   const facts = rows.map(factsOf);
   const bdbHere = place ? bdbEntriesAt(place, facts) : null;
   const verdicts = rows.map((r, j) => (place ? entryVerdict(facts[j], place, bdbHere) : "none"));
-  return { attested, left: rows.filter((r, j) => verdicts[j] !== "other" && !nameWithheld(facts[j], isName) && (verdicts[j] === "this" || !attested || grades[j] !== "x")) };
+  return { attested, left: rows.filter((r, j) => verdicts[j] !== "other" && !nameWithheld(facts[j], isName) && (verdicts[j] === "this" || !attested || !heldByPointing(grades[j]))) };
 };
 const rowsOf = (k) => (store.routesFor(k) || []).filter((r) => store.index.m_sources[r[3]]);
 // a row beside the store prints its route whole where its dictionary's ledger wrote it no division

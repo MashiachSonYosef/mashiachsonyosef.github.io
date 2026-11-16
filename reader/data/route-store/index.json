@@ -1175,7 +1175,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 16187935,
+  "shard_bytes_total": 16252777,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "3c0b0da7dc2f",
+ "store_version": "54416ff5785b",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1604,6 +1604,18 @@
    "now": "3c0b0da7dc2f",
    "why": "ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say",
    "on": "2026-11-15T00:01:05.000Z"
+  },
+  {
+   "was": "3c0b0da7dc2f",
+   "now": "f0e7d6a18a4a",
+   "why": "made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it",
+   "on": "2026-11-16T18:00:00.000Z"
+  },
+  {
+   "was": "f0e7d6a18a4a",
+   "now": "54416ff5785b",
+   "why": "own-pointing-rule-v1-a-row-whose-headwords-carry-no-points-takes-its-own-records-pointed-head-forms",
+   "on": "2026-11-16T18:00:01.000Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -3735,7 +3747,7 @@
  },
  "made_spaces": {
   "rule_id": "made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it",
-  "applied_on": "2026-11-15T00:01:06.000Z",
+  "applied_on": "2026-11-16T18:00:00.000Z",
   "applied_by": "tools/apply-made-spaces-v1.mjs",
   "pin": "reader/data/made-spaces/PIN.json",
   "relays": [
@@ -3842,9 +3854,18 @@
    "rows_with_a_close": 88,
    "closes": 140
   },
-  "store_version_before": "093f85761eba",
-  "store_version": "5bee25fd9681",
-  "what": "a row of a source the corpus lane's made-spaces lists name carries, in slot 9, the places of its route text and of its definition text that close at print ([the route text's or null, the definition text's or null], UTF-16 units from 0), where its text is a line of its source's list with a close; the texts themselves are the served bytes, unchanged, and a reader takes the characters at those places out when it prints, after the ledger's division; a row with no close carries no such slot",
+  "provider_notes": {
+   "rule_id": "provider-note-rule-v1-the-providers-remark-on-its-own-file-prints-apart-from-the-text-it-stands-in",
+   "how": "apart",
+   "by": {
+    "openscriptures_strongs": "Open Scriptures"
+   },
+   "lines": 1,
+   "rows": 1
+  },
+  "store_version_before": "3c0b0da7dc2f",
+  "store_version": "f0e7d6a18a4a",
+  "what": "a row of a source the corpus lane's made-spaces lists name carries, in slot 9, the places of its route text and of its definition text that close at print ([the route text's or null, the definition text's or null], UTF-16 units from 0), where its text is a line of its source's list with a close; where its text is a line that holds the provider's note on its own file, the note's words and the spaces our build made beside them are among those places, so the text prints as the list's prints_without_the_note, and the note rides in a third place, { words, by } (provider-note-rule-v1); the texts themselves are the served bytes, unchanged, and a reader takes the characters at those places out when it prints, after the ledger's division; a row with no close and no note carries no such slot",
   "totals": {
    "sources": 3,
    "rows_of_listed_sources": 48108,
@@ -3855,6 +3876,7 @@
    "closes_on_definition_texts": 106411,
    "span_store_rows_of_listed_sources": 604,
    "span_store_rows_with_a_close": 0,
+   "rows_carrying_a_providers_note": 1,
    "rows_retexted_from_words_back": 740,
    "rows_closed_from_words_back": 88,
    "closes_from_words_back": 140
@@ -4153,5 +4175,168 @@
   "store_version_before": "ccec4fa3071b",
   "store_version": "5f5d184032a9",
   "what": "a row of the UBS dictionary on the derived list of its category (every meaning of its text UBS marks with a collocation, LEXCollocations, read through the catalog's route file; no name row) carries collocations, the collocations its meanings name, as UBS writes them, and, where UBS's own default pick names it, picked_at, the places (\"<book slug> <chapter>:<verse>:<word>\") in the facts slot (slot 10, an object). The texts are the served bytes, unchanged. The record of dictionary kinds rests such a row shut on the thirty-nine books (its entry ubs-collocation), but at a place its picked_at names, where it stands"
+ },
+ "own_pointing": {
+  "rule_id": "own-pointing-rule-v1-a-row-whose-headwords-carry-no-points-takes-its-own-records-pointed-head-forms",
+  "applied_on": "2026-11-16T18:00:01.000Z",
+  "applied_by": "tools/apply-own-pointing-v1.mjs",
+  "inputs": {
+   "dictionary_store": {
+    "index": "reader/data/dictionary-store/index.json",
+    "index_sha256": "af28cbde25679ec9b4b6150c8006aaba5df6c0b308e8e3be76672c159827b199",
+    "shards": 256,
+    "shards_sha256": "77171405cc060a9ede645fc76c2ad19868b3e768a848f54d7bb598a89fc7ff62",
+    "store_version": "cc890b8a7992"
+   }
+  },
+  "sources": {
+   "M13": {
+    "key": "kaikki_wiktionary_hebrew",
+    "label": "Kaikki machine-readable Hebrew dictionary from English Wiktionary",
+    "rows": 16340,
+    "rows_pointing_on_their_own": 1,
+    "rows_naming_no_headword": 0,
+    "rows_whose_own_headwords_carry_no_points": 16339,
+    "rows_carrying_their_records_forms": 15610,
+    "forms_carried": 15978,
+    "rows_with_two_or_more_forms": 293,
+    "rows_left_bare": {
+     "no_record_of_its_source_under_its_letters": 45,
+     "no_record_gives_its_text": 24,
+     "its_records_give_no_pointed_form": 660
+    }
+   },
+   "M25": {
+    "key": "kaikki_wiktionary_hebrew",
+    "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary",
+    "rows": 72133,
+    "rows_pointing_on_their_own": 72133,
+    "rows_naming_no_headword": 0,
+    "rows_whose_own_headwords_carry_no_points": 0,
+    "rows_carrying_their_records_forms": 0,
+    "forms_carried": 0,
+    "rows_with_two_or_more_forms": 0,
+    "rows_left_bare": {
+     "no_record_of_its_source_under_its_letters": 0,
+     "no_record_gives_its_text": 0,
+     "its_records_give_no_pointed_form": 0
+    }
+   },
+   "M11": {
+    "key": "kaikki_wiktionary_hebrew",
+    "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary",
+    "rows": 25205,
+    "rows_pointing_on_their_own": 14529,
+    "rows_naming_no_headword": 0,
+    "rows_whose_own_headwords_carry_no_points": 10676,
+    "rows_carrying_their_records_forms": 0,
+    "forms_carried": 0,
+    "rows_with_two_or_more_forms": 0,
+    "rows_left_bare": {
+     "no_record_of_its_source_under_its_letters": 10625,
+     "no_record_gives_its_text": 51,
+     "its_records_give_no_pointed_form": 0
+    }
+   },
+   "M60": {
+    "key": "kaikki_wiktionary_aramaic",
+    "label": "Kaikki machine-readable Aramaic dictionary from English Wiktionary",
+    "rows": 2388,
+    "rows_pointing_on_their_own": 7,
+    "rows_naming_no_headword": 0,
+    "rows_whose_own_headwords_carry_no_points": 2381,
+    "rows_carrying_their_records_forms": 629,
+    "forms_carried": 650,
+    "rows_with_two_or_more_forms": 19,
+    "rows_left_bare": {
+     "no_record_of_its_source_under_its_letters": 113,
+     "no_record_gives_its_text": 32,
+     "its_records_give_no_pointed_form": 1607
+    }
+   },
+   "M69": {
+    "key": "kaikki_wiktionary_hebrew",
+    "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit inflection-table forms from English Wiktionary",
+    "rows": 3709,
+    "rows_pointing_on_their_own": 1906,
+    "rows_naming_no_headword": 0,
+    "rows_whose_own_headwords_carry_no_points": 1803,
+    "rows_carrying_their_records_forms": 0,
+    "forms_carried": 0,
+    "rows_with_two_or_more_forms": 0,
+    "rows_left_bare": {
+     "no_record_of_its_source_under_its_letters": 1788,
+     "no_record_gives_its_text": 15,
+     "its_records_give_no_pointed_form": 0
+    }
+   },
+   "M50": {
+    "key": "kaikki_wiktionary_hebrew",
+    "label": "Kaikki machine-readable Hebrew dictionary strict source-explicit linked forms from English Wiktionary",
+    "rows": 6274,
+    "rows_pointing_on_their_own": 6274,
+    "rows_naming_no_headword": 0,
+    "rows_whose_own_headwords_carry_no_points": 0,
+    "rows_carrying_their_records_forms": 0,
+    "forms_carried": 0,
+    "rows_with_two_or_more_forms": 0,
+    "rows_left_bare": {
+     "no_record_of_its_source_under_its_letters": 0,
+     "no_record_gives_its_text": 0,
+     "its_records_give_no_pointed_form": 0
+    }
+   },
+   "M72": {
+    "key": "kaikki_wiktionary_aramaic",
+    "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+    "rows": 523,
+    "rows_pointing_on_their_own": 523,
+    "rows_naming_no_headword": 0,
+    "rows_whose_own_headwords_carry_no_points": 0,
+    "rows_carrying_their_records_forms": 0,
+    "forms_carried": 0,
+    "rows_with_two_or_more_forms": 0,
+    "rows_left_bare": {
+     "no_record_of_its_source_under_its_letters": 0,
+     "no_record_gives_its_text": 0,
+     "its_records_give_no_pointed_form": 0
+    }
+   },
+   "M177": {
+    "key": "kaikki_wiktionary_aramaic",
+    "label": "Kaikki machine-readable Aramaic dictionary strict source-explicit linked forms from English Wiktionary",
+    "rows": 14,
+    "rows_pointing_on_their_own": 14,
+    "rows_naming_no_headword": 0,
+    "rows_whose_own_headwords_carry_no_points": 0,
+    "rows_carrying_their_records_forms": 0,
+    "forms_carried": 0,
+    "rows_with_two_or_more_forms": 0,
+    "rows_left_bare": {
+     "no_record_of_its_source_under_its_letters": 0,
+     "no_record_gives_its_text": 0,
+     "its_records_give_no_pointed_form": 0
+    }
+   }
+  },
+  "totals": {
+   "sources": 11,
+   "rows": 126586,
+   "rows_pointing_on_their_own": 95387,
+   "rows_naming_no_headword": 0,
+   "rows_whose_own_headwords_carry_no_points": 31199,
+   "rows_carrying_their_records_forms": 16239,
+   "forms_carried": 16628,
+   "rows_left_bare": {
+    "no_record_of_its_source_under_its_letters": 12571,
+    "no_record_gives_its_text": 122,
+    "its_records_give_no_pointed_form": 2267
+   },
+   "records_read": 25663,
+   "records_whose_text_is_no_record": 0
+  },
+  "store_version_before": "f0e7d6a18a4a",
+  "store_version": "54416ff5785b",
+  "what": "a row of English Wiktionary's dictionaries (the sources under kaikki_wiktionary_hebrew and kaikki_wiktionary_aramaic) whose own headwords carry no points carries after them, in slot 6, the distinct pointed canonical forms of the records it belongs to (the dictionary store's records of its own m id under its letters whose own word is those letters and one of whose senses gives its route text as a gloss), verbatim and in the record's order; the headwords it carried stay as they were and where they were; the texts are the served bytes, unchanged; a row no record gives its text, or whose records give no pointed form, carries nothing more"
  }
 }

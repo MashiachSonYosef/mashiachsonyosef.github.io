@@ -144,7 +144,7 @@ import { join } from "node:path";
 
 import { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a } from "./lattice-lib-v1.mjs";
 import { openRouteStore, factsOf, opensWithStrongSign, signsRestLastStamp } from "./gloss-store-v1.mjs";
-import { gradeRow, POINTING_GRADE_RULE_ID } from "./pointing-grade-v1.mjs";
+import { gradeRow, heldByPointing, POINTING_GRADE_RULE_ID, UNPOINTED_ROW_RULE_ID } from "./pointing-grade-v1.mjs";
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
 import { readStemsExtension, stemsId, STEMS_EXTENSION_RULE_ID, STEMS_EXTENSION_HOME } from "./stems-extension-v1.mjs";
 import { STEMS_CARRIED_RULE_ID, keysAskedWithStems } from "./stems-carried-v1.mjs";
@@ -470,7 +470,9 @@ const sameList = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]
 // Its entry: a row whose own source files it under another entry than the
 // place's is withheld, a row of the place's entry stands whatever its
 // headword's points, and a row with no number goes to the pointing as
-// before. And whether the place is a name: where it is not, a row its own
+// before (since 16 November 2026 the pointing keeps such a row only where it
+// is graded a match, unpointed-row-rule-v1). And whether the place is a
+// name: where it is not, a row its own
 // source gives as a name is withheld. The leaders baked for the filter (o.l,
 // its alternate o.la, and nl, whether the name still leads) are computed
 // with the pointing and the stem alone, and they stay so: they are what a
@@ -484,7 +486,7 @@ const surfaceRows = new Map();   // pointed surface -> { srows, gradeOfRow, atte
 const leadersAt = ({ srows, gradeOfRow, attested, otherStem, nameText }, place, isName) => {
   const bdbHere = place ? bdbEntriesAt(place, srows.map(factsOf)) : null;
   const verdict = new Map(srows.map((row) => [row, place ? entryVerdict(factsOf(row), place, bdbHere) : "none"]));
-  const keeps = (row) => { const v = verdict.get(row); return v !== "other" && !nameWithheld(factsOf(row), isName) && (v === "this" || !attested || gradeOfRow(row) !== "x") && !otherStem(row); };
+  const keeps = (row) => { const v = verdict.get(row); return v !== "other" && !nameWithheld(factsOf(row), isName) && (v === "this" || !attested || !heldByPointing(gradeOfRow(row))) && !otherStem(row); };
   const leader = (omit) => {
     const kept = srows.filter((row) => store.index.m_sources[row[3]] && !(omit && omit.has(String(row[3]))) && keeps(row));
     const pool = store.readingPool(kept, "oldest");
@@ -616,7 +618,7 @@ for (const sec of zone.sections || []) {
       const rowIx = (row) => { const src = store.index.m_sources[row[3]]; const ix = src ? fpIx.get(fnv1a(`${row[1]}|${src.label}`)) : undefined; return ix === undefined ? -1 : ix; };
       const pool = store.readingPool(srows, "oldest");
       const TIER = { m: 0, n: 1, x: 2 };
-      // THE GRADE OF A ROW — pointing-grade-rule-v4, the same two steps the
+      // THE GRADE OF A ROW — pointing-grade-rule-v5, the same two steps the
       // page takes: a row that carries its source's own headwords at [6] is
       // graded by them against this pointed surface; a row that does not
       // falls to the lattice card's grade by fingerprint; "-" when neither
@@ -627,7 +629,8 @@ for (const sec of zone.sections || []) {
       const gradeOfRow = (row) => {
         if (gradeCache.has(row)) return gradeCache.get(row);
         let gc;
-        const sg = gradeRow(row, m.surface);
+        // a surface the lattice grades is a whole word: the form, or the read half (pointing-grade-rule-v5: it begins its word)
+        const sg = gradeRow(row, m.surface, true);
         if (sg !== "-") { stats.rows_graded_from_headwords += 1; gc = sg; }
         else { const ix = rowIx(row); if (ix < 0) { stats.rows_ungraded += 1; gc = "-"; } else { stats.rows_graded_from_lattice += 1; gc = g[ix] || "-"; } }
         gradeCache.set(row, gc); return gc;
@@ -660,19 +663,40 @@ for (const sec of zone.sections || []) {
       // the page does that row by row. So the leader baked for it has to be
       // computed row by row too, or the line under the word and the first
       // pill on the card say two different things:
-      //   l  lenient — rows graded VOWEL_MISMATCH withheld; a NORMALIZED row
-      //      (the source's headword is unpointed) and an ungraded row stay,
-      //      because silence is not contradiction and unknown is not later
+      //   l  lenient — rows graded VOWEL_MISMATCH withheld; until 16
+      //      November 2026 a NORMALIZED row (the source's headword is
+      //      unpointed) and an ungraded row stayed, because silence was not
+      //      contradiction and unknown was not later
       //   s  strict  — only rows graded VOWEL_MATCH stay
-      // Measured over the 39 books before this was written: lenient moves
-      // the printed line at 13.2% of graded words and bares 2.0%; strict
-      // moves 61.5% and bares 5.2%, blacking out the divine name at its
-      // Elohim-pointing, whose 60 cards hold 26 NORMALIZED and 0 matches.
+      // Measured over the 39 books before this was written (6 November
+      // 2026): lenient moves the printed line at 13.2% of graded words and
+      // bares 2.0%; strict moves 61.5% and bares 5.2%, blacking out the
+      // divine name at its Elohim-pointing, whose 60 cards hold 26
+      // NORMALIZED and 0 matches.
       // A POINTING NO SOURCE ATTESTS WITHHOLDS NOTHING (2026-11-06), as on the
       // page: the lenient filter applies only where some store row points the
       // word as the text does. And THE BINYAN: a row whose stems are known
       // and share no family with this surface's stems is withheld under both
       // filters, as the page withholds it.
+      // A ROW WITH NO POINTING QUALIFIES FOR NONE (unpointed-row-rule-v1;
+      // the owner, 16 November 2026: «if its no pointing why would that in
+      // your head auto qualify it for all pointings rather than none»).
+      // Where the filter acts, a NORMALIZED or ungraded row is held back as
+      // a VOWEL_MISMATCH row is withheld (heldByPointing), so l keeps only
+      // the rows graded VOWEL_MATCH there, and is "lenient" now only in that
+      // it withholds nothing where no row points the word as the text does
+      // (strict asks the match everywhere). A row of the place's own entry
+      // still stands whatever its grade (leadersAt, e[...]). The keys the
+      // page reads (l, la, nl, e) keep their names. Measured the same day
+      // against live main (8797fa4d5b), at rest over the 39 books, the
+      // store's rows the place's entry and the names gate leave, with the
+      // text's joining dagesh set aside (pointing-grade-rule-v5) and English
+      // Wiktionary's own pointed head forms laid on its bare rows
+      // (own-pointing-rule-v1): 713,285 row-and-place pairs withheld as
+      // pointed otherwise (517,418 before) and 297,777 held back as not
+      // pointed by their source (none before; 775,207 without the laid
+      // forms); 8,783 come back; the places whose card keeps no row of the
+      // store go from 243 to 251.
       const st = stemsBySurface.has(m.surface) ? [...stemsBySurface.get(m.surface)].sort() : null;
       const rs = st ? stemsByKey[m.key] || null : null;
       const otherStem = (row) => !!(rs && isOtherStem(rs[`${row[3]}\u0001${row[0]}\u0001${row[1]}`], st));
@@ -704,7 +728,7 @@ for (const sec of zone.sections || []) {
       // when the reader switches off every source carrying l, one step, as
       // the table's alternate is one step. Null where l is null, or where
       // nothing kept remains past l's carriers.
-      const lenient = (gc) => gc !== "x";
+      const lenient = (gc) => !heldByPointing(gc);
       const l = rowLeader(lenient, true, null, true);
       const o = {
         m: firstUnder((gi) => gi.tier, (gi) => gi.tier === 0),
@@ -726,7 +750,7 @@ for (const sec of zone.sections || []) {
       // under "oldest first" Amos's Israel read "he will rule as God".
       const nameText = zone.gloss_names && zone.gloss && Object.prototype.hasOwnProperty.call(zone.gloss_names, m.key) && zone.gloss[m.key] === zone.gloss_names[m.key]
         ? String(zone.gloss_names[m.key]) : null;
-      const nl = !!nameText && store.carriersOf(srows.filter((row) => (attested ? gradeOfRow(row) !== "x" : true) && !otherStem(row)), nameText).length > 0;
+      const nl = !!nameText && store.carriersOf(srows.filter((row) => (attested ? !heldByPointing(gradeOfRow(row)) : true) && !otherStem(row)), nameText).length > 0;
       if (nl) stats.surfaces_name_leads_under_only += 1;
       grades[m.surface] = { k: m.key, g: g.join(""), n: names, o, ...(st ? { st } : {}), ...(nl ? { nl: 1 } : {}) };
       if (st) stats.surfaces_with_stems += 1;
@@ -859,9 +883,10 @@ const sidecar = {
   grade_chars: { m: "VOWEL_MATCH", n: "NORMALIZED", x: "VOWEL_MISMATCH", "-": "ungraded" },
   first_under: {
     m: "masoretic — the oldest VOWEL_MATCH card", x: "vowels differ — the oldest VOWEL_MISMATCH card", c: "cites here — the oldest card naming this verse: o.c for the surface's first verse in the book, v[<verse>].c for every other verse whose citing cards differ",
-    l: "masorah · only (lenient) — the oldest reading among rows NOT graded VOWEL_MISMATCH: NORMALIZED and ungraded rows stay, computed row by row as the page filters; where no store row is graded VOWEL_MATCH the pointing withholds nothing; a row of another stem (the binyan ledger) is withheld",
-    s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row; a row of another stem is withheld",
+    l: "masorah · only (lenient) — the oldest reading among the rows the pointing keeps, computed row by row as the page filters: where some store row is graded VOWEL_MATCH, only rows graded VOWEL_MATCH (a row graded VOWEL_MISMATCH is withheld, and since 16 November 2026 a NORMALIZED or ungraded row is held back too: a row its source does not point qualifies for no pointing, unpointed-row-rule-v1); where none is, the pointing withholds nothing; a row of another stem (the binyan ledger) is withheld",
+    s: "masorah · only (strict) — the oldest reading among rows graded VOWEL_MATCH only, row by row, whether or not any row is; a row of another stem is withheld",
     la: "masorah · only (lenient), the alternate — the lenient leader among the kept rows with every carrier of l out: what the line reads when the reader switches off every source carrying l (or the name, where it led), one step, as gloss_m[k].alt is one step for the table; null where l is null or nothing kept remains",
+    gate: { rule: UNPOINTED_ROW_RULE_ID, says: "what l, la, nl and e[...] keep where some store row is graded VOWEL_MATCH: rows graded VOWEL_MATCH, and rows of the place's own entry (e[...]) whatever their grade; a row graded VOWEL_MISMATCH is withheld and a row graded NORMALIZED or ungraded is held back (heldByPointing, tools/pointing-grade-v1.mjs)" },
     shape: "[route text, source label, licence key, year] or null when the leading set is empty; l and la carry a fifth element, the sorted ids of the kept rows carrying the reading (the carriers a source switch removes)",
     row_grade: { rule: POINTING_GRADE_RULE_ID, from: "a store row that carries its source's own headwords at [6] is graded by them against this pointed surface, any one matching headword a match; a row without the slot takes the lattice card's grade by fingerprint; the leaders m, x, l, s all rest on that one grade — per source, not merged" },
   },

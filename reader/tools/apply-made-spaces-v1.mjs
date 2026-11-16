@@ -45,8 +45,10 @@
 //
 //   row[9] = [the route text's closes or null, the definition text's or null]
 //
-// on a row of a listed source whose route text or definition text is a line
-// of its source's list with at least one close, and on no other row. A row
+// (and a third place, the provider's note, where the row's text holds one:
+// THE PROVIDER'S NOTE, below) on a row of a listed source whose route text or
+// definition text is a line of its source's list with at least one close or
+// a note, and on no other row. A row
 // with no close carries none: the slot is absent, or stands empty where the
 // row carries a later one (its facts, slot 10). The readers take the characters at
 // those places out when they print (tools/gloss-store-v1.mjs: closed,
@@ -122,6 +124,29 @@
 // no served store is the one it read: its counts are held by the second
 // road, on every run.
 //
+// THE PROVIDER'S NOTE (provider-note-rule-v1, 16 November 2026). A line of
+// a list may carry a `note`: the provider's remark on its own file standing
+// inside the text (Strong's "sister", H269, «a sister (used very widely
+// [like 251 number 250, corrected to 251 ], literally and figuratively)»),
+// with the text as it prints without it (`prints_without_the_note`). The
+// owner took card 3 of the four cards (wip/2026-11-16/the-four-cards/
+// FOUR-CARDS-2026-11-16.md, «ok go ahead»): Strong's words print without the
+// remark everywhere the site prints that text, exactly as
+// prints_without_the_note, and the card shows the remark apart as the file's
+// own note, its words exactly the note's, credited to the provider. The pin
+// says so (note_print: how a note prints, whose file each listed source's
+// notes are on, and the ruling), and a list line with a note under a pin that
+// does not is refused. The note is taken out here, with the closes, so every
+// printer follows with no change: the places written for such a text are its
+// closes, the note's words (note.in_text) and the spaces our build made on
+// either side of them, kept or closing, which stood only where the remark's
+// tags met the text's; and the line's prints_without_the_note must be the text
+// with exactly those places taken out, or the line is refused. Its words ride
+// on the row in slot 9's third place, { words, by }. A note on a route text
+// the ledger divides or prints a part of is refused: nothing here says where a
+// note falls in a piece. The counts of rows holding a close stay the corpus
+// lane's: a note's places are not closes, and its rows are counted apart.
+//
 // Idempotent: a second run moves nothing and writes nothing. --dry prints
 // and writes nothing. --on gives the moment the run is recorded under
 // (tools/step-moment-v1.mjs); with none it is the clock's. Its last line of
@@ -132,7 +157,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
-import { MADE_SPACES_RULE_ID, CLOSES_SLOT, closed, setSlot } from "./gloss-store-v1.mjs";
+import { MADE_SPACES_RULE_ID, CLOSES_SLOT, PROVIDER_NOTE_RULE_ID, closed, setSlot } from "./gloss-store-v1.mjs";
 import { secondRoad, fallOf } from "./made-spaces-second-road-v1.mjs";
 import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { RECORD_FILE } from "./row-strikes-follow-v1.mjs";
@@ -161,6 +186,27 @@ if (!existsSync(pinPath)) refuse(`the pin of the made-spaces lists is missing ($
 const pin = JSON.parse(readFileSync(pinPath, "utf8"));
 if (pin.schema_version !== "MADE_SPACES_PIN_V3" || !Array.isArray(pin.relays) || !pin.relays.length) refuse(`the pin names no relays (${pinPath}: MADE_SPACES_PIN_V3 is one entry per relay whose lists are read)`);
 const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
+// how a provider's note prints, as the pin says the owner ruled (provider-note-rule-v1): apart, each listed source's
+// notes credited to the provider whose file they are on; null where the pin says nothing, and then a note is refused
+const NOTE_PRINT = (() => {
+  const np = pin.note_print;
+  if (np === undefined) return null;
+  if (!np || np.rule_id !== PROVIDER_NOTE_RULE_ID || np.how !== "apart" || !np.by || typeof np.by !== "object" || typeof np.ruling !== "string" || !np.ruling)
+    refuse(`the pin's note_print is not a ruling this tool reads (${PROVIDER_NOTE_RULE_ID}: how "apart", by { source key: the provider }, and the ruling)`);
+  for (const [k, v] of Object.entries(np.by)) if (typeof v !== "string" || !v.trim()) refuse(`the pin's note_print names no provider for ${k}`);
+  return np;
+})();
+// THE PLACES A NOTE TAKES OUT: the note's words, widened over the spaces our build made on either side of them (a
+// made space kept or closing, which stood where the remark's own tags met the text), with the text's closes
+const notePlaces = (l) => {
+  const made = new Set([...l.closes, ...(l.kept || [])]);
+  let [a, b] = l.note.in_text;
+  while (a > 0 && made.has(a - 1)) a -= 1;
+  while (b < l.text.length && made.has(b)) b += 1;
+  const places = new Set(l.closes);
+  for (let i = a; i < b; i += 1) places.add(i);
+  return [...places].sort((x, y) => x - y);
+};
 const pinned = (relay, p, folder = relay.folder) => {
   const name = `${folder}/${p.file}`, path = join(LISTS, folder, p.file);
   if (!existsSync(path)) refuse(`${name} is named in the pin and is not here`);
@@ -228,6 +274,21 @@ for (const relay of pin.relays) {
       });
       for (const c of l.kept || []) if (!Number.isInteger(c) || l.text[c] !== " " || l.closes.includes(c)) refuse(`${where}: the kept place ${c} is not a space of the text, or is one of its closes`);
       if (closed(l.text, l.closes) !== l.prints) refuse(`${where}: its prints is not its text with the closes taken out`);
+      // what the row carries: the places a reader takes out where the text prints, and the note that rides apart
+      l.places = l.closes;
+      l.slotNote = null;
+      if (l.note !== undefined) {
+        const nt = l.note, inT = nt && nt.in_text, inP = nt && nt.in_prints;
+        const at = (x, s) => Array.isArray(x) && x.length === 2 && Number.isInteger(x[0]) && Number.isInteger(x[1]) && x[0] >= 0 && x[0] < x[1] && x[1] <= s.length;
+        if (!nt || typeof nt.words !== "string" || !nt.words || !at(inT, l.text) || !at(inP, l.prints) || l.text.slice(inT[0], inT[1]) !== nt.words || l.prints.slice(inP[0], inP[1]) !== nt.words || typeof nt.prints_without_the_note !== "string")
+          refuse(`${where}: its note is not well formed (its words at in_text of the text and at in_prints of prints, and the text as it prints without it)`);
+        if (!NOTE_PRINT) refuse(`${where} carries the provider's note «${nt.words}», and the pin says nothing of how a note prints (note_print, ${PROVIDER_NOTE_RULE_ID})`);
+        const by = NOTE_PRINT.by[src.source_key];
+        if (typeof by !== "string" || !by) refuse(`${where} carries the provider's note «${nt.words}», and the pin's note_print names no provider for ${src.source_key}`);
+        l.places = notePlaces(l);
+        if (closed(l.text, l.places) !== nt.prints_without_the_note) refuse(`${where}: the text with its closes, the note's words and the made spaces beside them taken out is «${closed(l.text, l.places)}», and its prints_without_the_note is «${nt.prints_without_the_note}»`);
+        l.slotNote = { words: nt.words, by };
+      }
       lines.set(l.text, l);
     });
     LISTED.set(src.m_id, { key: src.source_key, label: src.label, relay: relay.relay, file: name, sha256: p.sha256, lines, theirs: src, readAt, readAtIs: relay.read_at || null });
@@ -253,8 +314,8 @@ for (const [m, L] of LISTED) {
   const N = NEVER.get(m);
   if (N) for (const [text, l] of L.lines) {
     const stands = N.places.get(text) || [];
-    const hit = l.closes.find((c) => stands.includes(c));
-    if (hit !== undefined) refuse(`${L.file}: the close at ${hit} of «${text.slice(0, 60)}» is a space ${N.file} says stands for words taken out`);
+    const hit = l.places.find((c) => stands.includes(c));
+    if (hit !== undefined) refuse(`${L.file}: the ${l.closes.includes(hit) ? "close" : "note's place"} at ${hit} of «${text.slice(0, 60)}» is a space ${N.file} says stands for words taken out`);
   }
 }
 
@@ -297,10 +358,15 @@ let wbList = null;
 const tally = {};
 const of = (m) => (tally[m] ||= { rows: 0, rows_with_a_close_on_the_route_text: 0, rows_with_a_close_on_the_definition_text: 0, rows_with_a_close_on_either: 0,
   closes_on_route_texts: 0, closes_on_definition_texts: 0, rows_a_ledger_divides_with_a_close_on_the_route_text: 0, closes_that_stand_at_a_ledgers_cut: 0,
-  rows_serving_a_text_with_words_taken_out: 0, rows_retexted_from_words_back: 0, rows_closed_from_words_back: 0, closes_from_words_back: 0, rows_moved: 0 });
+  rows_serving_a_text_with_words_taken_out: 0, rows_retexted_from_words_back: 0, rows_closed_from_words_back: 0, closes_from_words_back: 0,
+  rows_carrying_a_providers_note: 0, rows_moved: 0 });
 const served = new Map();   // m id -> Map(text -> [rows serving it as the route text, as the definition text])
 const texts = new Map();    // m id -> one line per row of the source: its key, its route text, its definition text
 const closesOf = (L, text) => { const l = L.lines.get(String(text ?? "")); return l && l.closes.length ? l.closes : null; };
+// the note a text's line carries for the row (provider-note-rule-v1), or null; and the places a reader takes out of the
+// text where it prints: its closes, and a note's words with the made spaces beside them
+const noteOf = (L, text) => { const l = L.lines.get(String(text ?? "")); return l ? l.slotNote : null; };
+const placesOf = (L, text) => { const l = L.lines.get(String(text ?? "")); return l && l.places.length ? l.places : null; };
 const shardNames = readdirSync(join(STORE, "shards")).filter((f) => f.endsWith(".bin")).sort();
 const touched = [];
 for (const name of shardNames) {
@@ -342,7 +408,13 @@ for (const name of shardNames) {
     }
     if (definition) { t.rows_with_a_close_on_the_definition_text += 1; t.closes_on_definition_texts += definition.length; }
     if (route || definition) t.rows_with_a_close_on_either += 1;
-    const want = route || definition ? [route, definition] : null;
+    // the provider's note (provider-note-rule-v1): taken out with the closes, its words riding in the slot's third place
+    const notes = [noteOf(L, row[1]), noteOf(L, row[2])].filter(Boolean);
+    if (notes.length === 2 && !same(notes[0], notes[1])) refuse(`${name} ${k} (${m}, rank ${row[0]}): its route text and its definition text carry two notes`);
+    if (noteOf(L, row[1]) && ((Array.isArray(row[7]) && row[7].length) || Array.isArray(row[8]))) refuse(`${name} ${k} (${m}, rank ${row[0]}): a note on a route text its ledger divides or prints a part of («${String(row[1]).slice(0, 60)}»): nothing here says where the note falls in a piece`);
+    if (notes.length) t.rows_carrying_a_providers_note += 1;
+    const routePlaces = placesOf(L, row[1]), definitionPlaces = placesOf(L, row[2]);
+    const want = routePlaces || definitionPlaces ? [routePlaces, definitionPlaces, ...(notes.length ? [notes[0]] : [])] : null;
     const has = row[CLOSES_SLOT] ?? null;
     if (same(has, want)) continue;
     t.rows_moved += 1; moved += 1;
@@ -362,7 +434,7 @@ if (existsSync(join(SPAN, "index.json"))) {
       const L = r && Array.isArray(r.slots) ? LISTED.get(String(r.slots[3])) : null;
       if (!L) continue;
       spanRows += 1;
-      if (closesOf(L, r.slots[1]) || closesOf(L, r.slots[2])) refuse(`the span store's ${f} holds a row of ${r.slots[3]} whose text is a list line with a close: «${String(r.slots[1]).slice(0, 60)}»`);
+      if (placesOf(L, r.slots[1]) || placesOf(L, r.slots[2])) refuse(`the span store's ${f} holds a row of ${r.slots[3]} whose text is a list line with a close or a note: «${String(r.slots[1]).slice(0, 60)}»`);
     }
   }
 }
@@ -461,11 +533,11 @@ const sum = (f) => Object.values(sources).reduce((a, s) => a + s[f], 0);
 const totals = { sources: LISTED.size, rows_of_listed_sources: sum("rows"), rows_carrying_the_slot: sum("rows_with_a_close_on_either"),
   rows_with_a_close_on_the_route_text: sum("rows_with_a_close_on_the_route_text"), rows_with_a_close_on_the_definition_text: sum("rows_with_a_close_on_the_definition_text"),
   closes_on_route_texts: sum("closes_on_route_texts"), closes_on_definition_texts: sum("closes_on_definition_texts"),
-  span_store_rows_of_listed_sources: spanRows, span_store_rows_with_a_close: 0,
+  span_store_rows_of_listed_sources: spanRows, span_store_rows_with_a_close: 0, rows_carrying_a_providers_note: sum("rows_carrying_a_providers_note"),
   ...(WB.size ? { rows_retexted_from_words_back: sum("rows_retexted_from_words_back"), rows_closed_from_words_back: sum("rows_closed_from_words_back"), closes_from_words_back: sum("closes_from_words_back") } : {}) };
 const moved = sum("rows_moved");
 const foundNone = FOUND_NONE.filter((s) => !LISTED.has(s.m));
-console.log(`made spaces · ${pin.relays.length} relays (${pin.relays.map((r) => r.relay).join(", ")}) · ${LISTED.size} sources with a list${foundNone.length ? `, ${foundNone.length} read with none (${foundNone.map((s) => s.m).join(", ")})` : ""} · ${n(totals.rows_of_listed_sources)} rows · ${n(totals.rows_carrying_the_slot)} carry the slot (${n(totals.rows_with_a_close_on_the_route_text)} close on the route text, ${n(totals.rows_with_a_close_on_the_definition_text)} on the definition text) · ${n(moved)} rows move (${touched.length} shards) · the span store's ${n(spanRows)} rows of these sources hold no close`);
+console.log(`made spaces · ${pin.relays.length} relays (${pin.relays.map((r) => r.relay).join(", ")}) · ${LISTED.size} sources with a list${foundNone.length ? `, ${foundNone.length} read with none (${foundNone.map((s) => s.m).join(", ")})` : ""} · ${n(totals.rows_of_listed_sources)} rows · ${n(totals.rows_carrying_the_slot)} carry the slot (${n(totals.rows_with_a_close_on_the_route_text)} close on the route text, ${n(totals.rows_with_a_close_on_the_definition_text)} on the definition text) · ${n(totals.rows_carrying_a_providers_note)} carry the provider's note, taken out and set apart (${PROVIDER_NOTE_RULE_ID.slice(0, 20)}…) · ${n(moved)} rows move (${touched.length} shards) · the span store's ${n(spanRows)} rows of these sources hold no close and no note`);
 // the run's figures, one line of JSON, for a script that holds a run to what was rehearsed
 console.log(`figures ${JSON.stringify({ store_version: index.store_version, relays: pin.relays.map((r) => r.relay), rows_moved: Object.fromEntries(Object.entries(sources).map(([m, s]) => [m, s.rows_moved])), shards_moved: touched.length,
   rows_carrying_the_slot: totals.rows_carrying_the_slot, closed_from_words_back: { rows_retexted: sum("rows_retexted_from_words_back"), rows: sum("rows_closed_from_words_back"), closes: sum("closes_from_words_back") }, counts_held: Object.fromEntries(Object.entries(sources).map(([m, s]) => [m, s.the_rows_are_the_rows_the_list_was_read_from ? "as read" : s.by_the_second_road ? "the second road" : "recorded, not held"])),
@@ -476,7 +548,9 @@ const record = { pin: `${HOME}/PIN.json`, relays: RELAYS,
   lists: [...LISTED.entries()].map(([m, L]) => ({ m, key: L.key, relay: L.relay, file: `${HOME}/${L.file}`, sha256: L.sha256 })),
   never_closed: [...NEVER.entries()].map(([m, N]) => ({ m, key: N.key, relay: N.relay, file: `${HOME}/${N.file}`, sha256: N.sha256, texts: N.places.size })),
   read_and_found_none: foundNone, sources: named,
-  ...(wbList ? { words_back: { ...wbList, rows: WB.size, rows_with_a_close: sum("rows_closed_from_words_back"), closes: sum("closes_from_words_back") } } : {}) };
+  ...(wbList ? { words_back: { ...wbList, rows: WB.size, rows_with_a_close: sum("rows_closed_from_words_back"), closes: sum("closes_from_words_back") } } : {}),
+  ...(NOTE_PRINT ? { provider_notes: { rule_id: PROVIDER_NOTE_RULE_ID, how: NOTE_PRINT.how, by: NOTE_PRINT.by,
+    lines: [...LISTED.values()].reduce((a, L) => a + [...L.lines.values()].filter((l) => l.slotNote).length, 0), rows: sum("rows_carrying_a_providers_note") } } : {}) };
 const had = index.made_spaces || null;
 if (!moved && had && Object.keys(record).every((k) => same(had[k], record[k]))) { console.log("nothing moves and the index names these relays, lists and rows — nothing written"); process.exit(0); }
 
@@ -488,7 +562,7 @@ const digest = createHash("sha256");
 let shardBytes = 0;
 for (const name of shardNames) { const b = readFileSync(join(STORE, "shards", name)); digest.update(b); shardBytes += b.length; }
 const was = index.store_version || null, now = digest.digest("hex").slice(0, 12);
-const WHAT = "a row of a source the corpus lane's made-spaces lists name carries, in slot 9, the places of its route text and of its definition text that close at print ([the route text's or null, the definition text's or null], UTF-16 units from 0), where its text is a line of its source's list with a close; the texts themselves are the served bytes, unchanged, and a reader takes the characters at those places out when it prints, after the ledger's division; a row with no close carries no such slot";
+const WHAT = "a row of a source the corpus lane's made-spaces lists name carries, in slot 9, the places of its route text and of its definition text that close at print ([the route text's or null, the definition text's or null], UTF-16 units from 0), where its text is a line of its source's list with a close; where its text is a line that holds the provider's note on its own file, the note's words and the spaces our build made beside them are among those places, so the text prints as the list's prints_without_the_note, and the note rides in a third place, { words, by } (provider-note-rule-v1); the texts themselves are the served bytes, unchanged, and a reader takes the characters at those places out when it prints, after the ledger's division; a row with no close and no note carries no such slot";
 // the versions on either side of this rule's last move of a shard: kept as they were when a run moves none
 const lastMove = now !== was || !had ? { store_version_before: was, store_version: now } : { store_version_before: had.store_version_before, store_version: had.store_version };
 index.made_spaces = { rule_id: MADE_SPACES_RULE_ID, applied_on: on, applied_by: "tools/apply-made-spaces-v1.mjs", ...record, ...lastMove, what: WHAT, totals };

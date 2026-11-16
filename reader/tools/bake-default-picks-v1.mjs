@@ -56,6 +56,12 @@
 //     counts it (its second does not fill it) and STEP fills nothing there,
 //     while the other sources' has and fills count it as anywhere else (the
 //     page prints their lines there);
+//   - rest_step[x][y] counts, for a first x and a second y that are not STEP,
+//     the places where neither x nor y has a line and STEP's line as it rests
+//     draws one: STEP is the last to fill out every source (the owner, 16
+//     November 2026: «shouldnt the other 3.3% just default to STEP?»), so the
+//     note names STEP's share by its count, and today's line only where
+//     STEP's line has nothing either;
 //   - STEP's leaves are the places where STEP has no pick (no line pick at
 //     pick 1, no pieces that answer) and the word is not kq. Its second
 //     source fills them, and only them (v1.2 leaves one, and no source picks
@@ -364,6 +370,8 @@ export const autoSecond = (fills, x) => {
 };
 const tiedSecond = (fills, x, best) => !!best && IDS.some((y) => y !== x && y !== best && fills[x][y] === fills[x][best]);
 const emptyFills = () => Object.fromEntries(IDS.map((x) => [x, Object.fromEntries(IDS.filter((y) => y !== x).map((y) => [y, 0]))]));
+// rest_step: for each first and each second that is not STEP, the places both leave where STEP's line as it rests draws one
+const emptyRestStep = () => Object.fromEntries(IDS.filter((x) => x !== "step").map((x) => [x, Object.fromEntries(IDS.filter((y) => y !== x && y !== "step").map((y) => [y, 0]))]));
 const bucket = (k) => (k >= 3 ? "3+" : String(k));
 const tally = (o, k) => { o[k] = (o[k] || 0) + 1; };
 // a carried text: no replacement character, no control character but a line feed
@@ -667,6 +675,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     const bdbAt = new Map();   // record -> its one-based index in bdb_words
     const has = Object.fromEntries(IDS.map((s) => [s, 0]));
     const fills = emptyFills();
+    const restStep = emptyRestStep();
     const leaves = [];
     const leafLabels = [];
     const stepWords = [];
@@ -924,6 +933,8 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
         // where STEP's line rests bare its second fills nothing (it fills the places STEP leaves, and only them)
         if (x === "step" && stepRestsBare) continue;
         for (const y of IDS) if (y !== x && line[y]) fills[x][y] += 1;
+        // what x and its second y both leave, STEP's line still reads (STEP the last to fill out)
+        if (x !== "step" && line.step) for (const y of IDS) if (y !== x && y !== "step" && !line[y]) restStep[x][y] += 1;
       }
       lineBits[n - 1] = IDS.reduce((a, x, j) => a | (line[x] ? 1 << j : 0), 0);
       const bdbLine = line.bdb ? [senseOf(b[0]), b[0][5]] : 0;
@@ -1059,7 +1070,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     };
     const raw = Buffer.from(JSON.stringify(bookFile), "utf8");
     const gz = gzipSync(raw, { level: 9 });
-    books.push({ book, work: zone.work || book, gz, raw: raw.length, entries: entries.length, places: placeAt.length, kq, has, fills, leaves, leafLabels, stepWords, answered, mendPlaces });
+    books.push({ book, work: zone.work || book, gz, raw: raw.length, entries: entries.length, places: placeAt.length, kq, has, fills, restStep, leaves, leafLabels, stepWords, answered, mendPlaces });
   }
 
   // 5 · what must hold across the books
@@ -1154,7 +1165,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     sources: SOURCES.map((s) => ({ id: s.id, pill: s.pill, m: s.m })),
     books: Object.fromEntries(books.map((x) => [x.book, {
       file: `${x.book}.bin`, bytes: x.gz.length, sha256: sha256(x.gz), entries: x.entries, places: x.places, kq: x.kq,
-      has: x.has, fills: x.fills, step_leaves: x.leaves, step_words: x.stepWords,
+      has: x.has, fills: x.fills, rest_step: x.restStep, step_leaves: x.leaves, step_words: x.stepWords,
     }])),
   };
   const indexBytes = Buffer.from(`${JSON.stringify(index)}\n`, "utf8");
@@ -1213,7 +1224,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     },
     shape: {
       book_file: "data/default-picks/<book>.bin: gzip -9 of minified JSON; places[n - 1] for WORD_N n is null at a mark or where no source picks, else [step, macula, ubs, bdb], each 0 where the source has no pick; step [[kind 0 r | 1 v | 2 a, words | 0, a variant's letter], ...]; macula its words, as given; ubs [line | 0, [[piece (from 0, in the ledger's list of the word's pieces), words], ...]], the picks of a piece in its order, numbered from 1 within the piece by the page; bdb [[sense marker, or \"\" for the entry, one-based index into bdb_words | 0], ...]",
-      index: "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare; and [n, STEP's pick 1 words, 1], one per place where STEP's own reading stands, call 4's category, a pair among them: the line under STEP prints them whatever today's line is, steps_reading_stands); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source",
+      index: "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, rest_step (for a first and a second that are not STEP, the places both leave where STEP's line as it rests draws one: STEP fills out last), step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare; and [n, STEP's pick 1 words, 1], one per place where STEP's own reading stands, call 4's category, a pair among them: the line under STEP prints them whatever today's line is, steps_reading_stands); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source",
     },
     rows: {
       named: rows.length, of_v1: pin.rows.lines, added_by_v1_1: pin.rows_added.lines, added_by_v1_2: pin.rows_added_v1_2.lines,

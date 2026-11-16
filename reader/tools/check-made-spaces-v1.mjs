@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // RUN: tree
-// GUARDS: made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it
+// GUARDS: made-spaces-rule-v1-a-space-our-build-put-where-a-tag-stood-closes-at-print-as-the-corpus-lanes-list-names-it, provider-note-rule-v1-the-providers-remark-on-its-own-file-prints-apart-from-the-text-it-stands-in
 // LEDGER: -
 // no frame letter. A check reads the lists, the store and the pages and
 // judges them; it is not the ledger for one.
@@ -31,11 +31,20 @@
 //       rising order; its `prints` is the text with them taken out; a kept
 //       place is a space that does not close. A never-closed line's places
 //       are spaces of its text, or its start or end, and no list closes a
-//       space that stands for words taken out
+//       space that stands for words taken out. A line with the provider's
+//       note (provider-note-rule-v1) holds the note's words where its
+//       in_text and in_prints say, and its prints_without_the_note is its
+//       `prints` less one run that holds the note; the pin says how a note
+//       prints and whose file each listed source's notes are on (note_print)
 //   M3  every row of the store, read again from the lists: a row of a listed
 //       source whose route text or definition text is a line with a close
 //       carries exactly those places in slot 9, and no other row carries the
-//       slot; no row carries a print slot and a close on its route text; no
+//       slot; a line with a note gives its text the places its
+//       prints_without_the_note leaves out (read here by a second road: the
+//       run that `prints` and prints_without_the_note do not share, placed
+//       back in the text past its closes), and the row carries the note's
+//       words and its provider, as the pin names it, in the slot's third
+//       place; no row carries a print slot and a close on its route text; no
 //       close stands at a mark its ledger divides at; the span store's rows
 //       of the listed sources hold no close. A row a round retexted from
 //       words back (relay v187, row-strike-rule-v7) is no line of a relay's
@@ -45,7 +54,9 @@
 //       it gives none; those rows are counted apart from a relay's
 //   M4  the store's index names the rule, the pin, the relays, the lists and
 //       the never-closed files, each source's rows as they stand now (the
-//       sha256 of their keys and texts) and totals that are a recount's; and
+//       sha256 of their keys and texts) and totals that are a recount's, and
+//       the pin's ruling on the provider's note with the lines and the rows
+//       that carry one, as recounted; and
 //       it says a source's rows are the rows its list was read from exactly
 //       where they stand as they stood when a run found them so (the second
 //       sha256 it keeps)
@@ -76,7 +87,9 @@
 //       own part of the road
 //   M6  by a second road, what prints: a row's route as printed is its line's
 //       `prints` (for a row that took its words back, the words-back list's
-//       line's); its record as printed is its definition line's; and its
+//       line's; for a line with the provider's note, its
+//       prints_without_the_note); its record as printed is its definition
+//       line's, read so; and its
 //       readings are that `prints` cut at the row's own marks, each mark's
 //       place less the closes before it, or none where the row's facts say it
 //       only opens a numbered sense of its entry (sense-openings-rule-v1)
@@ -87,7 +100,8 @@
 //       built door and run on the same rows
 //   M9  no line a zone bakes prints a made space: no reading in a zone's
 //       table, nor in a witnessed column, is a row's reading as it stood
-//       before closing where no row prints it so now
+//       before closing, or with the provider's note inline (a line's
+//       `prints`, where it has a note), where no row prints it so now
 //   M10 on the page: words whose cards hold such a row are pressed with every
 //       switch lifted, for each listed source rows whose route closes and
 //       rows whose definition alone does; no pill prints a reading as it
@@ -95,6 +109,13 @@
 //       to its source, the record under that pill is the definition as it
 //       prints, and the card calls the reading a piece of its record only
 //       where the store does
+//   M11 on the page, the provider's note (the owner's card 3 of 16 November
+//       2026, «ok go ahead»): a served word whose card holds a row whose text
+//       holds a note is pressed with every switch lifted; no pill prints the
+//       note's words, the pill of that row prints its line's
+//       prints_without_the_note, the record under it prints the same, and
+//       the record carries the note apart, its words exactly the line's
+//       note.words, credited to the provider the pin names
 //
 // Run: node tools/check-made-spaces-v1.mjs
 import { readFileSync, readdirSync, existsSync } from "node:fs";
@@ -102,7 +123,7 @@ import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { openRouteStore, MADE_SPACES_RULE_ID, CLOSES_SLOT, routePrinted, recordPrinted, readingKey, printedForm, factsOf } from "./gloss-store-v1.mjs";
+import { openRouteStore, MADE_SPACES_RULE_ID, PROVIDER_NOTE_RULE_ID, CLOSES_SLOT, routePrinted, recordPrinted, providerNoteOf, readingKey, printedForm, factsOf } from "./gloss-store-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { pageReading } from "./page-reading-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -194,6 +215,25 @@ check("M1  every relay's lists, rule, receipt, never-closed files and the files 
 // ---- M2: every line ---------------------------------------------------------------------------
 // the text with the characters at `places` taken out, typed here on its own: one character at a time
 const without = (text, places) => { let s = ""; for (let i = 0; i < text.length; i += 1) if (!places.includes(i)) s += text[i]; return s; };
+// how the pin says a provider's note prints (provider-note-rule-v1): apart, credited to the provider whose file it is
+const notePrint = pin.note_print && pin.note_print.rule_id === PROVIDER_NOTE_RULE_ID && pin.note_print.how === "apart" && pin.note_print.by && typeof pin.note_print.ruling === "string" ? pin.note_print : null;
+// THE PLACES A NOTE TAKES OUT, BY A SECOND ROAD. The tool widens the note's words over the spaces our build made beside
+// them; here the line's two prints are set side by side instead: prints_without_the_note is `prints` less one run, the
+// run they do not share (the longest prefix they share, then the rest of the difference), which must hold the note's
+// words; the run's places in `prints` are carried back to the text's past its closes, and joined to the closes. null
+// where the line is not so
+const notePlacesBySecondRoad = (l) => {
+  const P = l.prints, Q = l.note.prints_without_the_note, gone = P.length - Q.length;
+  if (gone <= 0) return null;
+  let a = 0;
+  while (a < Q.length && a < l.note.in_prints[0] && P[a] === Q[a]) a += 1;
+  const b = a + gone;
+  if (P.slice(0, a) + P.slice(b) !== Q || a > l.note.in_prints[0] || b < l.note.in_prints[1]) return null;
+  // the text's place of each place of `prints`: the text with its closes passed over
+  const back = [];
+  for (let i = 0; i < l.text.length; i += 1) if (!l.closes.includes(i)) back.push(i);
+  return [...new Set([...l.closes, ...back.slice(a, b)])].sort((x, y) => x - y);
+};
 const lineFaults = []; let lines = 0, closing = 0, closes = 0, kept = 0, noted = 0;
 const LISTED = new Map();   // m id -> { key, relay, file, sha256, lines: Map(text -> line), theirs, readAt }
 const NEVER = new Map();    // m id -> { key, relay, file, sha256, places: Map(text -> the spaces of the text that stand for words taken out) }
@@ -215,6 +255,19 @@ for (const { relay, name, p, src, text, entry } of raws) {
     if (without(l.text, l.closes) !== l.prints) lineFaults.push(`${where}: prints is not the text with its closes taken out`);
     if (l.closes.length) closing += 1;
     closes += l.closes.length; kept += (l.kept || []).length; if (l.note) noted += 1;
+    // the provider's note: its words where the line says, and the places its print without the note leaves out of the text
+    l.places = l.closes;
+    if (l.note !== undefined) {
+      const nt = l.note || {}, by = notePrint && notePrint.by ? notePrint.by[src.source_key] : null;
+      const said = (x, t) => Array.isArray(x) && x.length === 2 && t.slice(x[0], x[1]) === nt.words && x[0] < x[1];
+      if (typeof nt.words !== "string" || !nt.words || !said(nt.in_text, l.text) || !said(nt.in_prints, l.prints) || typeof nt.prints_without_the_note !== "string") lineFaults.push(`${where}: its note does not hold its words where in_text and in_prints say, or gives no print without it`);
+      else if (!notePrint || typeof by !== "string" || !by) lineFaults.push(`${where} carries the provider's note, and the pin says nothing of how it prints or whose file it is on (note_print, ${PROVIDER_NOTE_RULE_ID})`);
+      else {
+        const places = notePlacesBySecondRoad(l);
+        if (!places) lineFaults.push(`${where}: its prints_without_the_note is not its prints less one run that holds the note`);
+        else { l.places = places; l.slotNote = { words: nt.words, by }; }
+      }
+    }
     map.set(l.text, l);
   });
   LISTED.set(src.m_id, { key: src.source_key, relay, file: name, sha256: p.sha256, lines: map, theirs: src, readAt: readAtOf[relay], readAtIs: entry.read_at || null, meets: entry.meets ? join(LISTS, entry.folder, entry.meets.file) : null });
@@ -276,12 +329,16 @@ const wbOf = (k, row) => { const w = WB.get(`${row[3]}\u0001${k}\u0001${row[0]}`
 
 // ---- M3: every row of the store -------------------------------------------------------------
 const lineOf = (L, text) => { const l = L && L.lines.get(String(text ?? "")); return l && l.closes.length ? l : null; };
+// the line of a text whose row carries places: a close, or the provider's note (provider-note-rule-v1), whose places are
+// the closes and the note's run; a line's print, where it has a note, is its print without it
+const placedOf = (L, text) => { const l = L && L.lines.get(String(text ?? "")); return l && l.places && l.places.length ? l : null; };
+const printOf = (l) => (l.slotNote ? l.note.prints_without_the_note : l.prints);
 const lineAt = (L, k, row, slot) => { const w = wbOf(k, row); if (w && String(row[slot] ?? "") === w.text) return w.closes.length ? w : null; return lineOf(L, row[slot]); };
 const comma = / ,/u;
 const rowFaults = [];
 const slotted = [];   // [key, row] for every row that carries the slot
 const recount = {};   // m id -> { rows, route, definition, either, stillRoute, stillRecord, texts: one line per row, served: list text -> [rows serving it as the route text, as the definition text] }
-let storeRows = 0;
+let storeRows = 0, notedRows = 0;
 for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bin")).sort()) {
   const body = JSON.parse(gunzipSync(readFileSync(join(STORE, "shards", f))).toString("utf8"));
   for (const [k, rows] of Object.entries(body)) for (const row of rows) {
@@ -303,8 +360,14 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
       if (d) c.definition += 1;
       if (r || d) c.either += 1;
     }
-    const want = r || d ? [r ? r.closes : null, d ? d.closes : null] : null;
+    // what the slot holds: each text's places (a note's run with the closes) and, where a text holds the provider's note,
+    // the note in the third place; a row that took its words back holds the closes the words-back list gives
+    const pr = wb ? r : placedOf(L, row[1]), pd = wb ? d : placedOf(L, row[2]);
+    const note = wb ? null : (pd && pd.slotNote) || (pr && pr.slotNote) || null;
+    if (note) notedRows += 1;
+    const want = pr || pd ? [pr ? pr.places || pr.closes : null, pd ? pd.places || pd.closes : null, ...(note ? [note] : [])] : null;
     if (!same(has, want)) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): the lists give ${JSON.stringify(want)}, the row carries ${JSON.stringify(has)}`);
+    if (pr && pr.slotNote && ((Array.isArray(row[7]) && row[7].length) || Array.isArray(row[8]))) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): the provider's note on a route text its ledger divides or prints a part of`);
     if (r && Array.isArray(row[8])) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): a print slot and a close on the route text`);
     if (r && Array.isArray(row[7]) && r.closes.some((x) => row[7].includes(x))) rowFaults.push(`${f} ${k} (${m}, rank ${row[0]}): a close stands at a mark the ledger divides at`);
     if (has) slotted.push([k, row]);
@@ -333,7 +396,7 @@ if (existsSync(join(SPAN, "index.json"))) for (const f of readdirSync(SPAN).filt
 rowFaults.push(...wbFaults);
 for (const [id, w] of WB) if (w.met !== 1) rowFaults.push(`${id.split("\u0001").join(" ")}: a row retexted from words back stands ${w.met} times at its key and rank under its words back`);
 const total = (f) => Object.values(recount).reduce((a, c) => a + c[f], 0);
-check("M3  every store row carries exactly the closes the lists give its texts, and no other row carries the slot; none has a print slot with a route close, or a close at a ledger's mark; the span store's rows hold none", rowFaults.length === 0,
+check("M3  every store row carries exactly the closes the lists give its texts (and, where a text holds the provider's note, the note's run with them and the note itself), and no other row carries the slot; none has a print slot with a route close, or a close at a ledger's mark; the span store's rows hold none", rowFaults.length === 0,
   rowFaults.length ? `${rowFaults.length} · ${first(rowFaults)}` : `${nf(storeRows)} store rows read · ${nf(total("rows"))} of ${LISTED.size} listed sources · ${nf(total("either"))} carry the slot (${nf(total("route"))} close on the route text, ${nf(total("definition"))} on the definition text) · ${nf(spanRows)} span rows of those sources, none with a close`);
 
 // ---- M4: the index ------------------------------------------------------------------------------
@@ -357,6 +420,9 @@ else {
     else if (r.texts_are_as_read !== (typeof r.texts_sha256_as_read === "string" && r.texts_sha256_as_read === r.texts_sha256)) indexFaults.push(`the index says ${m}'s rows ${r.texts_are_as_read ? "are" : "are not"} the rows its list was read from, and its two records of them (as read ${String(r.texts_sha256_as_read).slice(0, 12)}, as they stand ${String(r.texts_sha256).slice(0, 12)}) say otherwise`);
   }
   for (const m of Object.keys(ms.sources || {})) if (!LISTED.has(m)) indexFaults.push(`the index records rows of ${m}, which no list names`);
+  // the provider's note (provider-note-rule-v1): the pin's ruling, and the lines and rows that carry one, recounted
+  const wantNotes = notePrint ? { rule_id: PROVIDER_NOTE_RULE_ID, how: notePrint.how, by: notePrint.by, lines: noted, rows: notedRows } : undefined;
+  if (!same(ms.provider_notes, wantNotes)) indexFaults.push(`the index records the provider's notes as ${JSON.stringify(ms.provider_notes)}, and the pin and a recount give ${JSON.stringify(wantNotes)}`);
   const t = ms.totals || {};
   if (t.rows_of_listed_sources !== total("rows") || t.rows_carrying_the_slot !== total("either") || t.rows_with_a_close_on_the_route_text !== total("route") || t.rows_with_a_close_on_the_definition_text !== total("definition"))
     indexFaults.push(`the index's totals (${t.rows_of_listed_sources}, ${t.rows_carrying_the_slot}, ${t.rows_with_a_close_on_the_route_text}, ${t.rows_with_a_close_on_the_definition_text}) are not a recount's (${total("rows")}, ${total("either")}, ${total("route")}, ${total("definition")})`);
@@ -467,15 +533,17 @@ else console.log(`  --  M5  said, not judged: no source's rows are the rows its 
 const printFaults = [];
 for (const [k, row] of slotted) {
   const L = LISTED.get(String(row[3]));
-  const r = lineAt(L, k, row, 1), d = lineAt(L, k, row, 2);
+  const wb = wbOf(k, row);
+  const r = wb ? lineAt(L, k, row, 1) : placedOf(L, row[1]), d = wb ? lineAt(L, k, row, 2) : placedOf(L, row[2]);
   const where = `${k} (${row[3]}, rank ${row[0]})`;
-  const route = r ? r.prints : String(row[1] ?? "");
+  // a line's print: its `prints`, or where it holds the provider's note, its prints_without_the_note
+  const route = r ? (wb ? r.prints : printOf(r)) : String(row[1] ?? "");
   if (routePrinted(row) !== route) printFaults.push(`${where}: the route prints «${routePrinted(row).slice(0, 50)}», its line says «${route.slice(0, 50)}»`);
-  const record = row[2] ? (d ? d.prints : String(row[2])) : route;
+  const record = row[2] ? (d ? (wb ? d.prints : printOf(d)) : String(row[2])) : route;
   if (recordPrinted(row) !== record) printFaults.push(`${where}: the record prints «${recordPrinted(row).slice(0, 50)}», its line says «${record.slice(0, 50)}»`);
   if (Array.isArray(row[8])) continue;   // a print slot's texts are the ledger's (and M3 refuses one beside a route close)
   // the readings: the printed route cut at the row's marks, each mark's place less the closes before it
-  const shut = r ? r.closes : [];
+  const shut = r ? r.places || r.closes : [];
   const cuts = (Array.isArray(row[7]) ? row[7] : []).map((i) => i - shut.filter((c) => c < i).length);
   const pieces = []; let from = 0;
   for (const i of cuts) { pieces.push(route.slice(from, i)); from = i + 1; }
@@ -484,8 +552,8 @@ for (const [k, row] of slotted) {
   const want = (factsOf(row) || {}).opens ? [] : pieces.map((x) => x.trim()).filter(Boolean);
   if (!same(store.readingsOf(row), want)) printFaults.push(`${where}: the readings are ${JSON.stringify(store.readingsOf(row)).slice(0, 80)}, the printed route cut at its marks gives ${JSON.stringify(want).slice(0, 80)}`);
 }
-check("M6  by a second road: a row's route and record print as their lines' `prints`, and its readings are that printed route cut at the row's own marks", printFaults.length === 0,
-  printFaults.length ? `${printFaults.length} · ${first(printFaults)}` : `${nf(slotted.length)} rows · ${slotted.filter(([, row]) => Array.isArray(row[7])).length} of them divided by a ledger`);
+check("M6  by a second road: a row's route and record print as their lines' `prints` (prints_without_the_note, where a line holds the provider's note), and its readings are that printed route cut at the row's own marks", printFaults.length === 0,
+  printFaults.length ? `${printFaults.length} · ${first(printFaults)}` : `${nf(slotted.length)} rows · ${slotted.filter(([, row]) => Array.isArray(row[7])).length} of them divided by a ledger · ${slotted.filter(([, row]) => Array.isArray(row[CLOSES_SLOT]) && row[CLOSES_SLOT][2]).length} printing without the provider's note`);
 
 // ---- M7: the page's functions -------------------------------------------------------------------
 {
@@ -533,6 +601,9 @@ const stale = new Map();
     for (const row of rows) {
       const text = String(row[1]), ends = [...(Array.isArray(row[7]) ? row[7] : []), text.length];
       ends.forEach((end, x) => { const piece = text.slice(x ? ends[x - 1] + 1 : 0, end).trim(); if (piece && !now.has(readingKey(piece))) was.add(readingKey(piece)); });
+      // a route text that holds the provider's note, as it printed with the note inline (its line's `prints`)
+      const l = placedOf(LISTED.get(String(row[3])), row[1]);
+      if (l && l.slotNote && !now.has(readingKey(l.prints.trim()))) was.add(readingKey(l.prints.trim()));
     }
     if (was.size) stale.set(k, was);
   }
@@ -557,7 +628,7 @@ const stale = new Map();
       }
     }
   }
-  check("M9  no reading a zone bakes, in its line's table or a witnessed column, is a row's reading as it stood before closing", files > 0 && faults.length === 0,
+  check("M9  no reading a zone bakes, in its line's table or a witnessed column, is a row's reading as it stood before closing, or with the provider's note inline", files > 0 && faults.length === 0,
     !files ? "no zone on this disk" : faults.length ? `${faults.length} · ${first(faults)}` : `${files} zone files · ${tables} tables · ${nf(readings)} readings · ${nf(stale.size)} keys hold a reading that closing changed`);
 }
 
@@ -664,6 +735,89 @@ else {
   const unjudged = ASKED.filter(([m, kind]) => !judged[tag(m, kind)]).map(([m, kind]) => tag(m, kind));
   check("M10 on the page, with every switch lifted: no pill prints a reading as it stood before closing; for each listed source the closed reading stands on a pill of its source, the record under it is the definition as it prints, and it is called a piece only where the store marks it one", faults.length === 0 && unjudged.length === 0,
     faults.length ? `${faults.length} · ${first(faults)}` : unjudged.length ? `no card showed the record of a row of: ${unjudged.join(", ")}` : `${picks.length} words pressed · ${nf(pills)} pills read · the record was read under ${ASKED.map(([m, kind]) => `${judged[tag(m, kind)]} of ${picks.filter((pick) => pick.kind === tag(m, kind)).length} ${m} rows whose ${kind.name} closes`).join(", ")}${seenOn.length ? ` (${seenOn[0]})` : ""}`);
+}
+
+// ---- M11: the provider's note, on the page ----------------------------------------------------------
+// the rows whose text holds the provider's note, each on the card of a served word under its key (found in the store
+// and the zones, never named here): pressed with every switch lifted, its pill and its record read, and the record's notes
+{
+  const noted = slotted.filter(([, r]) => providerNoteOf(r)).map(([k, row]) => {
+    const L = LISTED.get(String(row[3])), l = placedOf(L, row[2]) || placedOf(L, row[1]);
+    return { k, row, l, note: l && l.slotNote };
+  });
+  const asked = [];
+  if (noted.length) {
+    const want = new Map(noted.map((x) => [x.k, x]));
+    outer: for (const b of zonesServed()) {
+      const z = JSON.parse(gunzipSync(readFileSync(join(K3, "data", "zones", `${b}.bin`))).toString("utf8"));
+      for (const [si, sec] of (z.sections || []).entries()) for (const [e, w] of (sec.words || []).entries()) {
+        const x = w.k && !w.w ? want.get(w.k) : null;
+        if (!x || asked.some((y) => y.x === x)) continue;
+        asked.push({ x, book: b, section: si, entry: e, label: sec.label });
+        if (asked.length === want.size) break outer;
+      }
+    }
+  }
+  const lacking = noted.filter((x) => !x.note || !asked.some((y) => y.x === x));
+  if (!noted.length) check("M11 on the page, a text that holds the provider's note prints without it, and its record carries the note apart", false, "no row of the store carries the provider's note (slot 9's third place): the made spaces' tool has not laid the list's note, or the list holds none");
+  else if (lacking.length) check("M11 on the page, a text that holds the provider's note prints without it, and its record carries the note apart", false, `${lacking.length} row(s) carrying the note stand under no served word, or under no line with a note: ${lacking.map((x) => `${x.k} (${x.row[3]}, rank ${x.row[0]})`).join(", ")}`);
+  else {
+    const tree = await serveTree(K3);
+    const pw = await loadPlaywright();
+    const browser = await pw.chromium.launch(launchOptions());
+    const faults = [], said = [];
+    try {
+      for (const a of asked) {
+        const { row, l, note } = a.x, m = String(row[3]);
+        const printed = printedForm(routePrinted(row).trim()), record = printedForm(recordPrinted(row));
+        const where = `${a.book} ${a.label}, entry ${a.entry} (${a.x.k}, ${m} rank ${row[0]})`;
+        if (printed !== printedForm(printOf(l).trim())) faults.push(`${where}: the row's route prints «${printed.slice(0, 60)}», and its line without the note «${printOf(l).slice(0, 60)}»`);
+        const ctx = await browser.newContext({ viewport: { width: 412, height: 915 } });
+        try {
+          const p = await ctx.newPage();
+          const errors = [];
+          p.on("pageerror", (err) => errors.push(String(err && err.message)));
+          await p.goto(`${tree.base}/zone.html?b=${a.book}`, { waitUntil: "networkidle" });
+          await p.evaluate((kv) => { for (const [k2, v] of Object.entries(kv)) localStorage.setItem(k2, v); }, STATES.lifted.keep);
+          await p.reload({ waitUntil: "networkidle" });
+          await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+          await linesOnPage(p, { from: a.section, to: a.section + 1 });
+          const got = await p.evaluate(async ({ section, entry, m, printed }) => {
+            const hud = document.getElementById("hud");
+            const turn = () => new Promise((r) => { const c = new MessageChannel(); c.port1.onmessage = () => { c.port1.close(); r(); }; c.port2.postMessage(0); });
+            const settled = () => { const read = hud.querySelector(":scope > .rows > .b-read"); return !!(read && read.children.length && !read.querySelector(":scope > .r-wait")); };
+            const wb = (document.querySelectorAll("section.seg")[section] || document).querySelectorAll(".he-text .wb")[entry];
+            if (!wb) return { fault: "the word is not on the page" };
+            (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click();
+            const t0 = performance.now();
+            while (!settled() && performance.now() - t0 < 20000) await turn();
+            if (!settled()) return { fault: "the card's readings did not arrive" };
+            const buttons = [...hud.querySelectorAll(":scope > .rows > .b-read > .r-pills > button")];
+            const pills = buttons.map((x) => x.textContent);
+            const mine = buttons.find((x) => x.textContent === printed && (x.dataset.by || "").split(/[\s,]+/u).includes(m));
+            if (!mine) return { pills, found: false };
+            mine.click();
+            await turn(); await turn();
+            const d = hud.querySelector(".d-card .d-body .d-text");
+            const lines = [...hud.querySelectorAll(".d-card .d-body .sense-notes[data-notes-of=\"file\"]")].map((x) => ({ text: x.textContent, notes: [...x.querySelectorAll(".sense-note")].map((y) => [y.dataset.m || "", y.textContent]) }));
+            document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+            return { pills, found: true, record: d ? d.textContent : null, lines };
+          }, { section: a.section, entry: a.entry, m, printed });
+          if (errors.length) faults.push(`${where}: the page threw: ${errors[0]}`);
+          if (got.fault) { faults.push(`${where}: ${got.fault}`); continue; }
+          const inline = (got.pills || []).filter((t) => t.includes(note.words));
+          if (inline.length) faults.push(`${where}: a pill prints the provider's note inline: «${inline[0].slice(0, 70)}»`);
+          if (!got.found) { faults.push(`${where}: no pill credited to ${m} prints «${printed.slice(0, 70)}» (the card's pills: ${got.pills.slice(0, 6).map((t) => `«${t.slice(0, 30)}»`).join(", ")})`); continue; }
+          if (got.record !== record) faults.push(`${where}: the record prints «${String(got.record).slice(0, 70)}», and as printed it is «${record.slice(0, 70)}»`);
+          const wantLine = `${note.by}, in a note on its own file: ${note.words}`;
+          if (got.lines.length !== 1 || got.lines[0].text !== wantLine || !same(got.lines[0].notes, [[m, note.words]])) faults.push(`${where}: the record's notes of the file are ${JSON.stringify(got.lines).slice(0, 160)}, and the note is «${wantLine}»`);
+          else said.push(`${where}: «${got.record.slice(0, 50)}» · «${got.lines[0].text}»`);
+        } finally { await ctx.close(); }
+      }
+    } finally { await browser.close().catch(() => {}); await tree.close(); }
+    check("M11 on the page, with every switch lifted: a text that holds the provider's note prints without it on its pill and in its record, no pill prints the note, and the record carries the note apart, its words exactly the line's, credited to the provider the pin names", faults.length === 0,
+      faults.length ? `${faults.length} · ${first(faults)}` : `${asked.length} row(s) · ${said.join(" · ")}`);
+  }
 }
 
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

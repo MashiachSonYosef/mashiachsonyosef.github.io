@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // RUN: page
 // GUARDS: stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words
+// GUARDS: unpointed-row-rule-v1-a-row-its-source-does-not-point-qualifies-for-no-pointing-and-rests-held-back-where-the-gate-acts
 //
 // THE POINTING GATE ASKS WHAT THE SOURCES SAY, AND NOTHING MORE (2026-11-06).
 // Under "only this pointing", the default, two things withhold a record, and
@@ -13,7 +14,10 @@
 //   - the pointing: a record whose source points the word otherwise; but only
 //     where some record of the store points the word as the text does. Where
 //     none does (a word in pause, a headword pointed in half) the grade cannot
-//     tell a different form from this one, and nothing is withheld;
+//     tell a different form from this one, and nothing is withheld. Where it
+//     does, since 16 November 2026 a record its source does not point is
+//     held back too, counted apart (unpointed-row-rule-v1: a row with no
+//     pointing qualifies for none);
 //   - the stem: a record whose stems are known (the corpus lane's binyan
 //     ledger, version 2 of both files, v105.1, and its extension to three
 //     more dictionaries, v173) and none of them is in the family of the
@@ -28,13 +32,21 @@
 //       and those beside the store, after the place's gates and the pointing
 //       have withheld their own, and says so on its withheld line, naming
 //       the stem or stems the sidecar gives the word there
-//   G3  the same card under "keep" withholds nothing for the stem
+//   G3  the same card under "keep" withholds nothing for the stem, and
+//       nothing for the pointing, otherwise pointed or not pointed
 //   G4  a word no record of the store points as the text does: under the
-//       default its card withholds nothing for the pointing, and has readings
+//       default its card withholds nothing for the pointing and holds back
+//       nothing as not pointed, and has readings
 //   G5  a word its place divides, whose whole form carries records of another
 //       stem: with its whole-form division pressed, the card says the stem's
 //       count there too (the page keeps a filtered copy of the pool on that
 //       division, and until 13 November 2026 the copy dropped this count)
+//   G6  a word some record of the store points as the text does, with records
+//       whose source does not point it: under the default its card holds
+//       exactly those back, the store's and those beside the store, counts
+//       them apart from the records pointed otherwise (which it withholds,
+//       exactly, too), and says so on its withheld line
+//       (unpointed-row-rule-v1, 16 November 2026)
 //
 // VERSION 1 OF THE BINYAN FILES IS WITHDRAWN (the corpus lane, Moses,
 // 2026-11-06). A fresh reader checked both by hand and found them not fit to
@@ -54,7 +66,7 @@
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
-import { gradeRow, isPointed } from "./pointing-grade-v1.mjs";
+import { gradeRow, isPointed, heldByPointing } from "./pointing-grade-v1.mjs";
 import { STEM_FAMILY, isOtherStem } from "./stem-family-v1.mjs";
 import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
 import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
@@ -75,8 +87,8 @@ const rowsOf = (k) => (store.routesFor(k) || []).filter((r) => store.index.m_sou
 // what the place's gates and the pointing leave of a word's rows, as the page gates them: a row of another entry
 // than the place's is out; a row its source gives as a name is out where the place is not one; a row of the
 // place's own entry stays whatever its points; any other row is out where some row of the store points the word as
-// the text does and this one points it otherwise. A word with no tag is not asked its entry, and a book whose
-// places were not read for names is not asked for names.
+// the text does and this one points it otherwise or not at all (unpointed-row-rule-v1). A word with no tag is not
+// asked its entry, and a book whose places were not read for names is not asked for names.
 const gated = (w, rows, grades, isName) => {
   const attested = grades.includes("m");
   const place = w.tg ? placeEntry([].concat(w.tg)) : null;
@@ -85,8 +97,9 @@ const gated = (w, rows, grades, isName) => {
   const verdicts = rows.map((r, j) => (place ? entryVerdict(facts[j], place, bdbHere) : "none"));
   const left = (j) => verdicts[j] !== "other" && !nameWithheld(facts[j], isName);
   return {
-    kept: rows.filter((r, j) => left(j) && (verdicts[j] === "this" || !attested || grades[j] !== "x")),
-    byPointing: rows.filter((r, j) => left(j) && verdicts[j] === "none" && attested && grades[j] === "x").length,
+    kept: rows.filter((r, j) => left(j) && (verdicts[j] === "this" || !attested || !heldByPointing(grades[j]))),
+    byPointing: rows.filter((r, j) => left(j) && verdicts[j] === "none" && attested && heldByPointing(grades[j]) === "x").length,
+    byUnpointed: rows.filter((r, j) => left(j) && verdicts[j] === "none" && attested && heldByPointing(grades[j]) === "n").length,
   };
 };
 
@@ -95,10 +108,12 @@ const gated = (w, rows, grades, isName) => {
 const beside = openBesideTheStore(".");
 const restsOff = restingOff(".", [store.index, ...beside.map((x) => x.index)]);
 const besideOfAnotherStem = (w, attested, rs, st) => besideAtAWord(rowsBeside(beside, w.k), { surface: w.s, attested, rowStems: rs, wordStems: st, sourcesOff: restsOff }).ofAnotherStem.length;
+// and what their own pointing withholds and holds back there
+const besidePointing = (w, attested) => { const at = besideAtAWord(rowsBeside(beside, w.k), { surface: w.s, attested, sourcesOff: restsOff }); return { x: at.byPointing, n: at.byUnpointed }; };
 
 // ---- the words, from the data -----------------------------------------------
 const plain = (w) => w && !w.mark && w.k && typeof w.s === "string" && !w.kq && !w.s.includes("\u05BE") && isPointed(w.s);
-let ledgered = 0, verb = null, unattested = null, any = null, divided = null;
+let ledgered = 0, verb = null, unattested = null, any = null, divided = null, unpointedHere = null;
 const withdrawnIn = [];
 for (const z of zonesServed()) {
   const p = `data/zones/${z}.lattice.bin`;
@@ -109,7 +124,7 @@ for (const z of zonesServed()) {
     ledgered += 1;
     for (const f of side.binyan.files || []) if (WITHDRAWN.has(f.sha256)) withdrawnIn.push(`${z}: ${f.file}`);
   }
-  if (unattested && any && ((verb && divided) || !hasLedger)) continue;
+  if (unattested && any && unpointedHere && ((verb && divided) || !hasLedger)) continue;
   const zone = JSON.parse(gunzipSync(readFileSync(`data/zones/${z}.bin`)).toString("utf8"));
   // a place is a name where its word is marked; a book whose places were not read for names reads every place as one
   const namesRead = !!((((zone.emitted_from || {}).toggles || {}).lattice || {}).names);
@@ -140,10 +155,15 @@ for (const z of zonesServed()) {
         const ofTheStore = kept.filter((r) => isOtherStem(rs[`${r[3]}\u0001${r[0]}\u0001${r[1]}`], g.st)).length;
         if (ofTheStore > 0) { const besideIt = besideOfAnotherStem(w, attested, rs, g.st); divided = { zone: z, label: sec.label, s: w.s, k: w.k, st: g.st, other: ofTheStore + besideIt, ofTheStore, besideIt }; }
       }
+      // G6's word: one its place does not divide, the gate acting, with store records its source does not point
+      if (!unpointedHere && attested && !(Array.isArray(w.pg) && w.pg.length > 1)) {
+        const gt = gated(w, rows, grades, isName(w));
+        if (gt.byUnpointed > 0 && gt.kept.length > 0) { const bp = besidePointing(w, attested); unpointedHere = { zone: z, label: sec.label, s: w.s, k: w.k, x: gt.byPointing + bp.x, n: gt.byUnpointed + bp.n, storeX: gt.byPointing, storeN: gt.byUnpointed, besideX: bp.x, besideN: bp.n }; }
+      }
       // G4's word keeps a row once its place is asked, so its card has readings to show
       if (!unattested && !attested && grades.includes("x") && (w.pg || []).length === 0 && gated(w, rows, grades, isName(w)).kept.length > 0) unattested = { zone: z, label: sec.label, s: w.s, k: w.k, x: grades.filter((x) => x === "x").length, rows: rows.length };
     });
-    if (unattested && any && ((verb && divided) || !hasLedger)) break;
+    if (unattested && any && unpointedHere && ((verb && divided) || !hasLedger)) break;
   }
 }
 
@@ -189,6 +209,7 @@ const open = async (w, masorah, wholeForm = false) => {
       none: (document.querySelector("#hud > .rows > .b-read > p.sources-withheld") || {}).textContent || "",
       pills: pills ? pills.querySelectorAll("button").length : 0,
       withheld: pills ? Number(pills.dataset.withheld || 0) : -1,
+      unpointed: pills ? Number(pills.dataset.unpointedWithheld || 0) : -1,
       stem: pills ? Number(pills.dataset.stemWithheld || 0) : -1,
       stems: pills ? String(pills.dataset.stems || "") : "",
       line: (document.querySelector("#hud .withheld-line") || {}).textContent || "",
@@ -210,7 +231,7 @@ else if (!ledgered) {
     check("G2  the stem withholds nothing while the binyan files are withdrawn (Moses, 2026-11-06)", !r.error && r.stem === 0 && !/of another stem/u.test(r.line),
       r.error || `no served sidecar carries stems · ${any.zone} ${any.label} ${any.k}: stem ${r.stem} · "${r.line}"`);
     const k = await open(any, "keep");
-    check("G3  under \"keep\" the same card withholds nothing for the stem", !k.error && k.stem === 0 && k.withheld === 0, k.error || `stem ${k.stem} · pointing ${k.withheld} · ${k.pills} readings`);
+    check("G3  under \"keep\" the same card withholds nothing for the stem", !k.error && k.stem === 0 && k.withheld === 0 && k.unpointed === 0, k.error || `stem ${k.stem} · pointing ${k.withheld} · not pointed ${k.unpointed} · ${k.pills} readings`);
   }
 } else if (!verb) check("G2  a verb's card withholds exactly the records of another stem", false, "no word of a served zone has a record of another stem on its key");
 else {
@@ -223,13 +244,13 @@ else {
     && r.line.includes(`${verb.other} of another stem than ${verb.st.join(" or ")}, withheld`) && r.stems === verb.st.join("|"),
     r.error || `${verb.zone} ${verb.label} ${verb.k} (${verb.st.join(", ")}) · stem ${r.stem} of ${verb.other} (${verb.ofTheStore} of the store, ${verb.besideIt} beside it) · pointing ${r.withheld} (the store's own ${verb.pointed}) · "${r.line}"`);
   const k = await open(verb, "keep");
-  check("G3  under \"keep\" the same card withholds nothing for the stem", !k.error && k.stem === 0 && k.withheld === 0, k.error || `stem ${k.stem} · pointing ${k.withheld} · ${k.pills} readings`);
+  check("G3  under \"keep\" the same card withholds nothing for the stem, and nothing for the pointing", !k.error && k.stem === 0 && k.withheld === 0 && k.unpointed === 0, k.error || `stem ${k.stem} · pointing ${k.withheld} · not pointed ${k.unpointed} · ${k.pills} readings`);
 }
 if (!unattested) check("G4  a word no record points as the text does withholds nothing for the pointing", false, "no placeless word of a served zone is pointed as no record of the store points it");
 else {
   const u = await open(unattested);
-  check("G4  a word no record points as the text does withholds nothing for the pointing, and has readings", !u.error && u.withheld === 0 && u.pills > 0,
-    u.error || `${unattested.zone} ${unattested.label} ${unattested.k}: ${unattested.x} of ${unattested.rows} records point it otherwise and none as the text does · withheld ${u.withheld} · ${u.pills} readings`);
+  check("G4  a word no record points as the text does withholds nothing for the pointing, holds back nothing as not pointed, and has readings", !u.error && u.withheld === 0 && u.unpointed === 0 && u.pills > 0,
+    u.error || `${unattested.zone} ${unattested.label} ${unattested.k}: ${unattested.x} of ${unattested.rows} records point it otherwise and none as the text does · withheld ${u.withheld} · held back ${u.unpointed} · ${u.pills} readings`);
 }
 if (ledgered && !withdrawnIn.length) {
   if (!divided) check("G5  a divided word's whole form says what the stem withheld", false, "no served word its place divides has a record of another stem on its whole form");
@@ -242,6 +263,14 @@ if (ledgered && !withdrawnIn.length) {
     check("G5  a divided word's whole form says what the stem withheld, on its withheld line or in the sentence that says no record is left", !d.error && (onLine || inWords),
       d.error || `${divided.zone} ${divided.label} ${divided.k} (${divided.st.join(", ")}) · ${divided.other} of another stem (${divided.ofTheStore} of the store, ${divided.besideIt} beside it) · ${d.pills} readings · stem ${d.stem} · "${d.line || d.none}"`);
   }
+}
+if (!unpointedHere) check("G6  a word's card holds back the records their source does not point, and says how many", false, "no plain word of a served zone has, where some record points it as the text does, a record its source does not point");
+else {
+  const u = await open(unpointedHere);
+  const said = new RegExp(`(^|\\D)${unpointedHere.n} of \\d+ not pointed by their source, held back`, "u");
+  check("G6  where the gate acts, a word's card holds back exactly the records their source does not point, the store's and those beside it, withholds exactly those pointed otherwise, and says each apart on its withheld line",
+    !u.error && u.unpointed === unpointedHere.n && u.withheld === unpointedHere.x && said.test(u.line),
+    u.error || `${unpointedHere.zone} ${unpointedHere.label} ${unpointedHere.k}: held back ${u.unpointed} (counted ${unpointedHere.n}: ${unpointedHere.storeN} of the store, ${unpointedHere.besideN} beside it) · withheld ${u.withheld} (counted ${unpointedHere.x}: ${unpointedHere.storeX} and ${unpointedHere.besideX}) · "${u.line}"`);
 }
 await b.close();
 console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");

@@ -81,7 +81,7 @@ import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { carriesReaderHebrew } from "./zones-on-disk-v1.mjs";
 import { licClass } from "./gloss-m-v1.mjs";
 import { fnv1a } from "./lattice-lib-v1.mjs";
-import { gradeRow } from "./pointing-grade-v1.mjs";
+import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
 import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
@@ -225,7 +225,7 @@ const plainIn = (groups) => groups.some((g) => !opensWithStrongSign(g.text));
     for (const [k, m] of Object.entries(z.gloss_m || {})) if (m && m.alt && Array.isArray(m.by)) judge(w.name, "the table's alternate", k, m.alt.text, poolAt(k, new Set(m.by.map(String))));
     if (!w.sidecar) continue;
     const s = gz(w.sidecar), routes = s.routes || {}, stems = s.stems || {};
-    // the rows a surface's leaders were drawn from, graded as the projector grades them (pointing-grade-rule-v4: the
+    // the rows a surface's leaders were drawn from, graded as the projector grades them (pointing-grade-rule-v5: the
     // row's own headwords, else its lattice card's grade by fingerprint), kept as it keeps them
     const rowsOf = new Map();
     const heldOf = (surface, gr) => {
@@ -262,7 +262,9 @@ const plainIn = (groups) => groups.some((g) => !opensWithStrongSign(g.text));
       const signedRow = [o.l, o.la, o.s].some((x) => Array.isArray(x) && opensWithStrongSign(x[0]));
       if (signedRow) {
         const h = heldOf(surface, gr);
-        const lenient = (row) => (!h.attested || h.gradeOf(row) !== "x") && !h.otherStem(row);
+        // the filter's rows (unpointed-row-rule-v1): where some row points the word as the text does, a row pointed
+        // otherwise is withheld and a row its source does not point is held back
+        const lenient = (row) => (!h.attested || !heldByPointing(h.gradeOf(row))) && !h.otherStem(row);
         judge(w.name, "o.l", k, (o.l || [])[0], rest.readingPool(kept(h, lenient), "oldest"));
         if (Array.isArray(o.l)) judge(w.name, "o.la", k, (o.la || [])[0], rest.readingPool(kept(h, lenient, new Set(o.l[4].map(String))), "oldest"));
         judge(w.name, "o.s", k, (o.s || [])[0], rest.readingPool(kept(h, (row) => h.gradeOf(row) === "m" && !h.otherStem(row)), "oldest"));
@@ -285,7 +287,7 @@ const plainIn = (groups) => groups.some((g) => !opensWithStrongSign(g.text));
         if (![at.l, at.la].some((x) => Array.isArray(x) && opensWithStrongSign(x[0]))) { judge(w.name, "e[…].l", gr.k, (at.l || [])[0], []); judge(w.name, "e[…].la", gr.k, (at.la || [])[0], []); continue; }
         const h = heldOf(surface, gr), place = tags ? placeEntry(tags) : null;
         const bdbHere = place ? bdbEntriesAt(place, h.srows.map(factsOf)) : null;
-        const keeps = (row) => { const v = place ? entryVerdict(factsOf(row), place, bdbHere) : "none"; return v !== "other" && !nameWithheld(factsOf(row), isName) && (v === "this" || !h.attested || h.gradeOf(row) !== "x") && !h.otherStem(row); };
+        const keeps = (row) => { const v = place ? entryVerdict(factsOf(row), place, bdbHere) : "none"; return v !== "other" && !nameWithheld(factsOf(row), isName) && (v === "this" || !h.attested || !heldByPointing(h.gradeOf(row))) && !h.otherStem(row); };
         judge(w.name, "e[…].l", `${gr.k} at ${key}`, (at.l || [])[0], rest.readingPool(kept(h, keeps), "oldest"));
         if (Array.isArray(at.l)) judge(w.name, "e[…].la", `${gr.k} at ${key}`, (at.la || [])[0], rest.readingPool(kept(h, keeps, new Set(at.l[4].map(String))), "oldest"));
       }

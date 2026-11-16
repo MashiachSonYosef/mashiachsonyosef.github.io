@@ -125,6 +125,7 @@ import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { follower, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { routePrinted, factsOf, FACTS_WRITTEN_BY } from "./gloss-store-v1.mjs";
 import { readRecord, recordPath } from "./resting-lines-v1.mjs";
+import { headwordsBeforeOwnPointing } from "./apply-own-pointing-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -225,6 +226,7 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
   }
 }
 const standing = (m, key, rank, route) => (rowsAt.get(key) || []).filter((r) => r[0] === rank && String(r[3]) === m && r[1] === route);
+const storeSources = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8")).m_sources || {};
 
 // one round, under the pin's reason: the faults of a call's round that every call shares
 const roundFaults = (name, found, call) => {
@@ -270,7 +272,9 @@ check("A3  no key of the store ends in a maqaf", maqafKeys.length === 0, maqafKe
     if (again) since.push(`line ${line}: moved again to ${key} rank ${rank} by ${by}`);
     const rows = standing(e.m, key, rank, e.route), where = `line ${line}: ${e.m} «${String(e.route).slice(0, 40)}» at ${key} rank ${rank}`;
     if (rows.length !== 1) faults.push(`${where} stands ${rows.length} times`);
-    else if (!again && !same(rows[0][6], e.to_headwords)) faults.push(`${where} carries the headwords ${JSON.stringify(rows[0][6])}, not ${JSON.stringify(e.to_headwords)}`);
+    // its headwords as the line names them: English Wiktionary's own pointed forms, laid after them since 16 November
+    // 2026 (own-pointing-rule-v1), are that rule's, and check-own-pointing-v1 holds them
+    else if (!again && !same(headwordsBeforeOwnPointing(rows[0], storeSources), e.to_headwords)) faults.push(`${where} carries the headwords ${JSON.stringify(rows[0][6])}, not ${JSON.stringify(e.to_headwords)}`);
   }
   check("A4  the rows call 5 moved stand, each once under its plain key at the rank the round gave it, with its source, its words and the headwords its line names; where each stands now is the follower's answer: one a later round took or moved again is named, and one the follower refuses fails",
     moved.length > 0 && faults.length === 0, faults.length ? `${faults.length} · ${first(faults)}` : `${moved.length} rows · followed from store ${follow.readAt} through ${follow.rounds.length} round(s) of the record, call 5's the first${since.length ? ` · ${since.length} acted on since: ${first(since)}` : " · none acted on by a later round"}`);

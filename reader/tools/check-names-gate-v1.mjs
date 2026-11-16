@@ -86,7 +86,7 @@ import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
 import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { openFollower, followedRecord, FollowFault } from "./row-strikes-follow-v1.mjs";
-import { gradeRow } from "./pointing-grade-v1.mjs";
+import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -307,7 +307,7 @@ for (const z of served) {
       // a name's row the entry leaves; and one the pointing and the stem would leave too
       const nameLeft = (row, i) => !!(facts[i] && facts[i].name) && verdicts[i] !== "other";
       // (a row the entry, the pointing and the stem all leave)
-      const left = (row, i) => verdicts[i] !== "other" && (verdicts[i] === "this" || !attested || rowGrades[i] !== "x") && !otherStem(row);
+      const left = (row, i) => verdicts[i] !== "other" && (verdicts[i] === "this" || !attested || !heldByPointing(rowGrades[i])) && !otherStem(row);
       const stands = (row, i) => nameLeft(row, i) && left(row, i);
       const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: w.tg ? [].concat(w.tg) : null, rows: rows.length, names: rows.filter(nameLeft).length };
       // N9: a pointer to a name whose own row, no name's, every other gate leaves here

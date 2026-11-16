@@ -1,0 +1,1459 @@
+{
+ "name": "span grade v1: the span store's pointing grade, at every place where it joins words and for every row that stands there",
+ "written": "12 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "answers": "The serving lane's ask 1 of 12 November 2026 AD: a declared answer, per place and row, to \"is this entry these words as the text points them here\", with the steps that set a difference aside named.",
+ "current_effect": "NONE. The grade stands beside the span store. No row, no place and no served text is changed by it.",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 8966,
+  "sha256": "35bcf6a0e7af0891de429c82cef169dc61a3e49b4bdd529338279cc3a304c873"
+ },
+ "builder": {
+  "file": "build-span-grade-v1.mjs",
+  "bytes": 23246,
+  "sha256": "2fb6d61c2b38bee3752e89fa4931fc45a6666fef7ee47d6860d0f2dc9a4e0932"
+ },
+ "inputs": {
+  "span_store": {
+   "read_from": "https://fireandhail.com/reader/data/span-store/",
+   "read_on": "12 November 2026 AD",
+   "schema_version": "span-store-served-v1",
+   "from": "span-store-v2.1",
+   "index": {
+    "bytes": 15057,
+    "sha256": "3980e7124623d3554dcd0e371b970e81b49fb3e8a0dbea771e2343ee8ea095f6"
+   },
+   "books": 39,
+   "books_sha256": "f8992b5392edb536c3ff16ef2762968bab4133056667a611bedb82bdbce40b26"
+  },
+  "zones": {
+   "read_from": "https://fireandhail.com/reader/data/zones/",
+   "read_on": "12 November 2026 AD",
+   "books": 39,
+   "zones_sha256": "91717dd6f0491c441f53e9bfab5a510cfe941ecdc69d2f29aa752226c48da8e1"
+  },
+  "lattice_v12": {
+   "what": "the positions files of the 39 books, read only to count whose the zone's headwords are",
+   "files": 39,
+   "files_sha256": "b90b9ea59d8ed165322fb5f9bed2a73ed267f9c7d2f3d66077335af06a0037bb",
+   "on_the_store_at": "r2:mishkan/v2/corpus/lattice-v12/"
+  },
+  "sha256_of_a_set": "the sha256 of the lines \"<file> <sha256 of the file>\", one per file in name order, each ending in a line feed"
+ },
+ "the_count_the_rule_was_written_from": {
+  "what": "every character of the pointed headwords read and of the places' words, after step 1, by kind [characters]",
+  "pointed_headwords": {
+   "Hebrew letters": 22174,
+   "points: U+05BC": 3334,
+   "separator: space": 2971,
+   "points: U+05B7": 2296,
+   "points: U+05B5": 1999,
+   "points: U+05B8": 1751,
+   "points: U+05B0": 1750,
+   "points: U+05B6": 1721,
+   "points: U+05B4": 1590,
+   "points: U+05B9": 987,
+   "separator: maqaf": 823,
+   "points: U+05C1": 773,
+   "points: U+05B2": 448,
+   "taken out by step 2: U+05AB": 415,
+   "separator: bracket": 272,
+   "points: U+05C2": 220,
+   "taken out by step 2: U+05BD": 81,
+   "points: U+05BB": 57,
+   "points: U+05B1": 53,
+   "taken out by step 2: U+0591": 31,
+   "points: U+05C7": 24,
+   "points: U+05BA": 8,
+   "taken out by step 2: U+05BF": 5,
+   "taken out by step 2: U+0596": 4,
+   "taken out by step 2: U+05A5": 3,
+   "separator: no-break space": 2
+  },
+  "places_words": {
+   "Hebrew letters": 18918,
+   "points: U+05B8": 2397,
+   "points: U+05B0": 2393,
+   "points: U+05B5": 2166,
+   "points: U+05BC": 1972,
+   "points: U+05B4": 1615,
+   "separator: maqaf": 1346,
+   "points: U+05B7": 1211,
+   "points: U+05B9": 1138,
+   "taken out by step 2: U+05A5": 839,
+   "taken out by step 2: U+05A3": 825,
+   "points: U+05C2": 796,
+   "points: U+05B6": 714,
+   "taken out by step 2: U+05BD": 701,
+   "points: U+05C1": 568,
+   "taken out by step 2: U+0596": 568,
+   "taken out by step 2: U+0594": 357,
+   "taken out by step 2: U+0591": 279,
+   "taken out by step 2: U+0599": 261,
+   "points: U+05B2": 217,
+   "taken out by step 2: U+05A4": 191,
+   "taken out by step 2: U+0597": 173,
+   "taken out by step 2: U+059B": 154,
+   "taken out by step 2: U+05A8": 76,
+   "taken out by step 2: U+05A7": 55,
+   "taken out by step 2: U+059C": 53,
+   "points: U+05B1": 37,
+   "taken out by step 2: U+0595": 37,
+   "taken out by step 2: U+05A0": 36,
+   "points: U+05C7": 29,
+   "taken out by step 2: U+05A9": 29,
+   "taken out by step 2: U+0592": 28,
+   "taken out by step 2: U+059A": 28,
+   "taken out by step 2: U+05AD": 25,
+   "taken out by step 2: U+059E": 23,
+   "taken out by step 2: U+05A1": 22,
+   "taken out by step 2: U+05AE": 21,
+   "taken out by step 2: U+059D": 19,
+   "points: U+05BB": 13,
+   "taken out by step 2: U+05AB": 6,
+   "taken out by step 2: U+05A2": 3,
+   "taken out by step 2: U+0598": 2,
+   "taken out by step 2: U+05AC": 1
+  }
+ },
+ "the_zones_headwords": {
+  "what": "each word of the 39 zones (the scribes' marks left out), its headword hp set beside the lattice v12 lemma of the same word [words]",
+  "words": 305431,
+  "by_whose": {
+   "the lemmas agree in letters: the headword is MACULA's, and TAHOT points it the same": 246239,
+   "the lemmas agree in letters: the headword is MACULA's, and TAHOT points it otherwise": 46242,
+   "MACULA's and TAHOT's lemmas differ in letters (different): the zone has no headword": 11684,
+   "the lattice has no lemma, and the zone no headword": 939,
+   "the lemmas agree in letters, and the zone has no headword": 326,
+   "MACULA's and TAHOT's lemmas differ in letters (one_missing): the zone has no headword": 1
+  },
+  "h_and_hp": {
+   "h and hp": 292481,
+   "no h and no hp": 12950
+  }
+ },
+ "places": 2845,
+ "rows_graded": 9222,
+ "rows_by_grade": {
+  "same": 8189,
+  "same word": 382,
+  "otherwise": 372,
+  "silent": 279
+ },
+ "leading_rows_by_grade": {
+  "same": 2346,
+  "silent": 230,
+  "same word": 162,
+  "otherwise": 107
+ },
+ "places_where_some_row_is_same": 2462,
+ "places_where_some_row_is_same_or_same_word": 2510,
+ "places_where_every_row_is_otherwise": 93,
+ "places_where_the_leading_row_is_otherwise_and_a_later_row_same": 2,
+ "places_whose_rows_are_not_all_the_keys_rows": 15,
+ "steps_set_aside": {
+  "axis": "rows graded same, each step it needed",
+  "rows": {
+   "step 9": 1216,
+   "step 6": 825,
+   "step 5": 757,
+   "step 8": 245,
+   "step 7": 234,
+   "step 4": 183,
+   "step 3": 44
+  },
+  "leading_rows": {
+   "step 8": 245,
+   "step 5": 232,
+   "step 6": 181,
+   "step 9": 152,
+   "step 4": 66,
+   "step 3": 17,
+   "step 7": 2
+  }
+ },
+ "otherwise_by_class": {
+  "rows": {
+   "only words at a pause differ": 185,
+   "a word that is neither differs": 153,
+   "only words before a maqaf differ": 31,
+   "only words before a maqaf or at a pause differ": 2,
+   "the letters differ": 1
+  },
+  "leading_rows": {
+   "a word that is neither differs": 48,
+   "only words at a pause differ": 33,
+   "only words before a maqaf differ": 25,
+   "the letters differ": 1
+  }
+ },
+ "rows_by_source": {
+  "M13": {
+   "rows": 2785,
+   "otherwise": 71,
+   "label": null
+  },
+  "M197": {
+   "rows": 950,
+   "otherwise": 35,
+   "label": "STEP Bible TAHOT source-explicit Expanded Strong lexical definition frame"
+  },
+  "M19": {
+   "rows": 857,
+   "otherwise": 30,
+   "label": null
+  },
+  "M33": {
+   "rows": 839,
+   "otherwise": 45,
+   "label": null
+  },
+  "M2": {
+   "rows": 735,
+   "otherwise": 18,
+   "label": null
+  },
+  "M9": {
+   "rows": 497,
+   "otherwise": 50,
+   "label": null
+  },
+  "M18": {
+   "rows": 489,
+   "otherwise": 23,
+   "label": null
+  },
+  "M17": {
+   "rows": 444,
+   "otherwise": 17,
+   "label": null
+  },
+  "M199": {
+   "rows": 397,
+   "otherwise": 16,
+   "label": "ETCBC Biblia Hebraica Stuttgartensia Amstelodamensis context-free lexeme gloss"
+  },
+  "M5": {
+   "rows": 377,
+   "otherwise": 15,
+   "label": null
+  },
+  "M7": {
+   "rows": 336,
+   "otherwise": 27,
+   "label": null
+  },
+  "M46": {
+   "rows": 241,
+   "otherwise": 19,
+   "label": null
+  },
+  "M45": {
+   "rows": 165,
+   "otherwise": 6,
+   "label": null
+  },
+  "M64": {
+   "rows": 53,
+   "otherwise": 0,
+   "label": null
+  },
+  "M60": {
+   "rows": 50,
+   "otherwise": 0,
+   "label": null
+  },
+  "M14": {
+   "rows": 5,
+   "otherwise": 0,
+   "label": null
+  },
+  "M57": {
+   "rows": 1,
+   "otherwise": 0,
+   "label": null
+  },
+  "M43": {
+   "rows": 1,
+   "otherwise": 0,
+   "label": null
+  }
+ },
+ "leading_rows_otherwise_by_key": [
+  {
+   "key": "עם־ישראל",
+   "row_id": "0553ffddf427f784",
+   "m": "M13",
+   "reads": "the Jewish people; Jewry",
+   "class": "only words before a maqaf differ",
+   "first": "deuteronomy 18:1",
+   "places": 14,
+   "differs": [
+    {
+     "word": 1,
+     "place": "עִם",
+     "entry": "עַם",
+     "before_maqaf": true,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "רמת גלעד",
+   "row_id": "d12465af302cc973",
+   "m": "M33",
+   "reads": "Ramoth-gilead",
+   "class": "only words at a pause differ",
+   "first": "i-kings 22:3",
+   "places": 14,
+   "differs": [
+    {
+     "word": 2,
+     "place": "גִּלְעָד",
+     "entry": "גִּלעָד",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "אחת עשרה",
+   "row_id": "e9e283857fed9b5e",
+   "m": "M13",
+   "reads": "feminine of אַחַד עָשָׂר",
+   "class": "a word that is neither differs",
+   "first": "numbers 7:14",
+   "places": 12,
+   "differs": [
+    {
+     "word": 2,
+     "place": "עֲשָׂרָה",
+     "entry": "עֶשְׂרֵה",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "באר שבע",
+   "row_id": "0a85760fc0d1770b",
+   "m": "M19",
+   "reads": "Beersheba",
+   "class": "only words at a pause differ",
+   "first": "genesis 21:14",
+   "places": 9,
+   "differs": [
+    {
+     "word": 2,
+     "place": "שָׁבַע",
+     "entry": "שֶׁבַע",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "יומם ולילה",
+   "row_id": "bdb96349d0ce969b",
+   "m": "M13",
+   "reads": "day and night, continuously",
+   "class": "only words at a pause differ",
+   "first": "exodus 13:21",
+   "places": 5,
+   "differs": [
+    {
+     "word": 2,
+     "place": "וָלָיְלָה",
+     "entry": "וָלַיְלָה",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "ים המלח",
+   "row_id": "1834adac8fe88dc1",
+   "m": "M13",
+   "reads": "Dead Sea (a lake in the Middle East in Palestine and Jordan, noted for",
+   "class": "a word that is neither differs",
+   "first": "deuteronomy 3:17",
+   "places": 5,
+   "differs": [
+    {
+     "word": 1,
+     "place": "יָם",
+     "entry": "יַם",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "בכל־אשר",
+   "row_id": "9831b8f74c21da74",
+   "m": "M13",
+   "reads": "wherever",
+   "class": "only words before a maqaf differ",
+   "first": "genesis 24:2",
+   "places": 4,
+   "differs": [
+    {
+     "word": 1,
+     "place": "בְּכָל",
+     "entry": "בְּכֹל",
+     "before_maqaf": true,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "בן־דוד",
+   "row_id": "6c080759737675d8",
+   "m": "M13",
+   "reads": "A (male) cousin.",
+   "class": "a word that is neither differs",
+   "first": "ecclesiastes 1:1",
+   "places": 4,
+   "differs": [
+    {
+     "word": 2,
+     "place": "דָּוִד",
+     "entry": "דּוֹד",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "ים־המלח",
+   "row_id": "1834adac8fe88dc1",
+   "m": "M13",
+   "reads": "Dead Sea (a lake in the Middle East in Palestine and Jordan, noted for",
+   "class": "only words before a maqaf differ",
+   "first": "joshua 3:16",
+   "places": 4,
+   "differs": [
+    {
+     "word": 1,
+     "place": "יָם",
+     "entry": "יַם",
+     "before_maqaf": true,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "לא־דבר",
+   "row_id": "c9f070066c9f279c",
+   "m": "M17",
+   "reads": "Lodebar",
+   "class": "a word that is neither differs",
+   "first": "deuteronomy 32:47",
+   "places": 3,
+   "differs": [
+    {
+     "word": 2,
+     "place": "דָבָר",
+     "entry": "דְבָר",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "אל־בית־אל",
+   "row_id": "3e5768ccb2800327",
+   "m": "M19",
+   "reads": "El-bethel",
+   "class": "only words before a maqaf differ",
+   "first": "i-kings 13:1",
+   "places": 2,
+   "differs": [
+    {
+     "word": 1,
+     "place": "אֶל",
+     "entry": "אֵל",
+     "before_maqaf": true,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "בן־הדד",
+   "row_id": "ffae51fc95b17203",
+   "m": "M17",
+   "reads": "Ben-Hadad",
+   "class": "only words at a pause differ",
+   "first": "amos 1:4",
+   "places": 2,
+   "differs": [
+    {
+     "word": 2,
+     "place": "הֲדָד",
+     "entry": "הֲדַד",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "יפתח אל",
+   "row_id": "463140317d9a33c6",
+   "m": "M17",
+   "reads": "Valley of Iphtah El",
+   "class": "a word that is neither differs",
+   "first": "judges 11:9",
+   "places": 2,
+   "differs": [
+    {
+     "word": 1,
+     "place": "יִפְתָּח",
+     "entry": "יִפְתַּח",
+     "before_maqaf": false,
+     "at_pause": false
+    },
+    {
+     "word": 2,
+     "place": "אֶל",
+     "entry": "אֵל",
+     "before_maqaf": true,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "נרגל שראצר",
+   "row_id": "038ffeeb92471e8a",
+   "m": "M19",
+   "reads": "Nergal-sar-ezer",
+   "class": "a word that is neither differs",
+   "first": "jeremiah 39:3",
+   "places": 2,
+   "differs": [
+    {
+     "word": 1,
+     "place": "נֵרְגַל",
+     "entry": "נֵרְגַּל",
+     "before_maqaf": false,
+     "at_pause": false
+    },
+    {
+     "word": 2,
+     "place": "שַׂרְאֶצֶר",
+     "entry": "שַׁרְאֶצֶר",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "על־ידי",
+   "row_id": "c8f8d334749c8b75",
+   "m": "M13",
+   "reads": "by, via, at the hands of",
+   "class": "a word that is neither differs",
+   "first": "genesis 42:37",
+   "places": 2,
+   "differs": [
+    {
+     "word": 2,
+     "place": "יָדִי",
+     "entry": "יְדֵי",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "קו־קו",
+   "row_id": "c36bbe4c6811c3e2",
+   "m": "M9",
+   "reads": "stalwart",
+   "class": "a word that is neither differs",
+   "first": "isaiah 18:2",
+   "places": 2,
+   "differs": [
+    {
+     "word": 2,
+     "place": "קָו",
+     "entry": "קַו",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "אבי יתומים",
+   "row_id": "8a30f7006f57ac95",
+   "m": "M2",
+   "reads": "God (the 'father of orphans', from Psalm 68)",
+   "class": "a word that is neither differs",
+   "first": "psalms 68:6",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "אֲבִי",
+     "entry": "אבִי",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "אל־שדי",
+   "row_id": "5dccfb0930391e97",
+   "m": "M13",
+   "reads": "God Almighty",
+   "class": "only words before a maqaf differ",
+   "first": "job 13:3",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "אֶל",
+     "entry": "אֵל",
+     "before_maqaf": true,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "ארם דמשק",
+   "row_id": "5bd4362fe02afb1b",
+   "m": "M17",
+   "reads": "Arameans from Damascus",
+   "class": "a word that is neither differs",
+   "first": "isaiah 7:8",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "אֲרָם",
+     "entry": "אֲרַם",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "אשת איש",
+   "row_id": "ac51d230ea1fe1de",
+   "m": "M2",
+   "reads": "married woman",
+   "class": "a word that is neither differs",
+   "first": "leviticus 20:10",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "אֵשֶׁת",
+     "entry": "אֵשֶת",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "באר־שבע",
+   "row_id": "0a85760fc0d1770b",
+   "m": "M19",
+   "reads": "Beersheba",
+   "class": "only words at a pause differ",
+   "first": "amos 8:14",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "שָׁבַע",
+     "entry": "שֶׁבַע",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "בית־קברות",
+   "row_id": "206d5f353838de24",
+   "m": "M2",
+   "reads": "cemetery, place of burial",
+   "class": "a word that is neither differs",
+   "first": "nehemiah 2:3",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "קִבְרוֹת",
+     "entry": "קְבָרוֹת",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "בית־שן",
+   "row_id": "2eed81214f7f39de",
+   "m": "M197",
+   "reads": "Beth-shan",
+   "class": "a word that is neither differs",
+   "first": "ii-samuel 21:12",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "שַׁן",
+     "entry": "שָׁן",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "במות בעל",
+   "row_id": "7dc79276bf9189f0",
+   "m": "M17",
+   "reads": "Bamoth-baal",
+   "class": "only words at a pause differ",
+   "first": "numbers 22:41",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "בָּעַל",
+     "entry": "בַּעַל",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "בן מלך",
+   "row_id": "907309ab808d3a80",
+   "m": "M2",
+   "reads": "son of the king, Jewish male",
+   "class": "a word that is neither differs",
+   "first": "jeremiah 33:21",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "מֹלֵךְ",
+     "entry": "מֶלֶךְ",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "בת־שבע",
+   "row_id": "aa0e2634ff35766f",
+   "m": "M17",
+   "reads": "Bathsheba",
+   "class": "only words at a pause differ",
+   "first": "psalms 51:2",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "שָׁבַע",
+     "entry": "שֶׁבַע",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "חמת צובה",
+   "row_id": "4d351adcd31b6b08",
+   "m": "M19",
+   "reads": "Hamath-zobah",
+   "class": "a word that is neither differs",
+   "first": "ii-chronicles 8:3",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "חֲמָת",
+     "entry": "חֲמַת",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "יגר שהדותא",
+   "row_id": "07a7a77b57cb068f",
+   "m": "M9",
+   "reads": "Jegar-Sahadutha",
+   "class": "only words at a pause differ",
+   "first": "genesis 31:47",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "שָׂהֲדוּתָא",
+     "entry": "שַׂהֲדוּתָא",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "יהוה יראה",
+   "row_id": "975780955292428a",
+   "m": "M9",
+   "reads": "Jehovah-Jireh",
+   "class": "only words at a pause differ",
+   "first": "genesis 22:14",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "יֵרָאֶה",
+     "entry": "יִרְאֶה",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "לא דבר",
+   "row_id": "c9f070066c9f279c",
+   "m": "M17",
+   "reads": "Lodebar",
+   "class": "only words at a pause differ",
+   "first": "ezekiel 22:28",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "דִבֵּר",
+     "entry": "דְבָר",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "מה־טובו",
+   "row_id": "d854b2b063c3fc35",
+   "m": "M13",
+   "reads": "Ma Tovu (a prayer in Judaism, recited when entering a synagogue)",
+   "class": "a word that is neither differs",
+   "first": "zechariah 9:17",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "מַה",
+     "entry": "מָה",
+     "before_maqaf": true,
+     "at_pause": false
+    },
+    {
+     "word": 2,
+     "place": "טּוּבוֹ",
+     "entry": "טוֹבוּ",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "מצא חן בעיני",
+   "row_id": "ee735fdb974fcfd9",
+   "m": "M13",
+   "reads": "to please, be liked by, seem good to (lit. to find grace in the eyes o",
+   "class": "only words at a pause differ",
+   "first": "i-samuel 16:22",
+   "places": 1,
+   "differs": [
+    {
+     "word": 3,
+     "place": "בְּעֵינָי",
+     "entry": "בְּעֵינֵי",
+     "before_maqaf": false,
+     "at_pause": true
+    }
+   ]
+  },
+  {
+   "key": "נתן מלך",
+   "row_id": "797f0dce2e4be633",
+   "m": "M17",
+   "reads": "Nethan-Melech",
+   "class": "a word that is neither differs",
+   "first": "jeremiah 40:11",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "נָתַן",
+     "entry": "נְתַן",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "עין רמון",
+   "row_id": "ed73d9b3b57e109f",
+   "m": "M17",
+   "reads": "En-Rimmon",
+   "class": "a word that is neither differs",
+   "first": "joshua 19:7",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "עַיִן",
+     "entry": "עֵין",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "על־יד",
+   "row_id": "5f3631924ecae3f5",
+   "m": "M13",
+   "reads": "beside, near",
+   "class": "a word that is neither differs",
+   "first": "proverbs 13:11",
+   "places": 1,
+   "differs": [
+    {
+     "word": 2,
+     "place": "יָד",
+     "entry": "יַד",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  },
+  {
+   "key": "שלשים ותשעה",
+   "row_id": "eb3969aeafab8024",
+   "m": "M13",
+   "reads": "thirty-nine (male)",
+   "class": "the letters differ",
+   "first": "ezra 2:42",
+   "places": 1,
+   "differs": [],
+   "letters": {
+    "place": "שלשיםותשעה",
+    "entry": "שלושיםותשעה"
+   }
+  },
+  {
+   "key": "שם לב",
+   "row_id": "729f0a7105264771",
+   "m": "M13",
+   "reads": "to notice, to note",
+   "class": "a word that is neither differs",
+   "first": "deuteronomy 28:65",
+   "places": 1,
+   "differs": [
+    {
+     "word": 1,
+     "place": "שָׁם",
+     "entry": "שָׂם",
+     "before_maqaf": false,
+     "at_pause": false
+    }
+   ]
+  }
+ ],
+ "leading_rows_same_word_by_key": [
+  {
+   "key": "בן־אדם",
+   "row_id": "d8413cebeead1d29",
+   "m": "M2",
+   "reads": "human, common name of Homo sapiens, unique extant species of the genus",
+   "first": "daniel 8:17",
+   "places": 99,
+   "by_headword": [
+    {
+     "word": 1,
+     "place": "בֶּן",
+     "headword": "בֵּן",
+     "entry": "בֵּן"
+    }
+   ]
+  },
+  {
+   "key": "ים־סוף",
+   "row_id": "701724fb19b6c9a6",
+   "m": "M18",
+   "reads": "Sea of Reeds",
+   "first": "deuteronomy 1:40",
+   "places": 14,
+   "by_headword": [
+    {
+     "word": 1,
+     "place": "יַם",
+     "headword": "יָם",
+     "entry": "יָם"
+    }
+   ]
+  },
+  {
+   "key": "כלי בית",
+   "row_id": "d7f56408465f182a",
+   "m": "M13",
+   "reads": "housewares",
+   "first": "daniel 1:2",
+   "places": 12,
+   "by_headword": [
+    {
+     "word": 2,
+     "place": "בֵית",
+     "headword": "בַּיִת",
+     "entry": "בַּיִת"
+    }
+   ]
+  },
+  {
+   "key": "בית לחם",
+   "row_id": "2f1ee65cd805f07d",
+   "m": "M17",
+   "reads": "Bethlehem",
+   "first": "genesis 35:19",
+   "places": 11,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "בֵּיתלָחֶם",
+     "headword": "בֵּיתלֶחֶם",
+     "entry": "בֵּיתלֶחֶם"
+    }
+   ]
+  },
+  {
+   "key": "עשה חיל",
+   "row_id": "dde560b3d326c6c3",
+   "m": "M13",
+   "reads": "succeeded, excelled",
+   "first": "numbers 24:18",
+   "places": 3,
+   "by_headword": [
+    {
+     "word": 1,
+     "place": "עֹשֶׂה",
+     "headword": "עָשָׂה",
+     "entry": "עָשָׂה"
+    },
+    {
+     "word": 2,
+     "place": "חָיִל",
+     "headword": "חַיִל",
+     "entry": "חַיִל"
+    }
+   ]
+  },
+  {
+   "key": "בית־לחם",
+   "row_id": "2f1ee65cd805f07d",
+   "m": "M17",
+   "reads": "Bethlehem",
+   "first": "ezra 2:21",
+   "places": 2,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "בֵיתלָחֶם",
+     "headword": "בֵּיתלֶחֶם",
+     "entry": "בֵּיתלֶחֶם"
+    }
+   ]
+  },
+  {
+   "key": "הר סיני",
+   "row_id": "c51691c342019ccb",
+   "m": "M13",
+   "reads": "Mount Sinai",
+   "first": "exodus 19:11",
+   "places": 2,
+   "by_headword": [
+    {
+     "word": 2,
+     "place": "סִינָי",
+     "headword": "סִינַי",
+     "entry": "סִינַי"
+    }
+   ]
+  },
+  {
+   "key": "כלי עבודה",
+   "row_id": "a96810a1cb6795c6",
+   "m": "M2",
+   "reads": "work tool",
+   "first": "i-chronicles 28:14",
+   "places": 2,
+   "by_headword": [
+    {
+     "word": 1,
+     "place": "כְּלֵי",
+     "headword": "כְּלִי",
+     "entry": "כְּלִי"
+    }
+   ]
+  },
+  {
+   "key": "מה־טבו",
+   "row_id": "0b11f744094f55bb",
+   "m": "M13",
+   "reads": "alternative spelling of מה טובו",
+   "first": "numbers 24:5",
+   "places": 2,
+   "by_headword": [
+    {
+     "word": 1,
+     "place": "מַה",
+     "headword": "מָה",
+     "entry": "מָה"
+    }
+   ]
+  },
+  {
+   "key": "מי ים",
+   "row_id": "e51d9b495d013bc1",
+   "m": "M2",
+   "reads": "seawater",
+   "first": "deuteronomy 11:4",
+   "places": 2,
+   "by_headword": [
+    {
+     "word": 2,
+     "place": "יַם",
+     "headword": "יָם",
+     "entry": "יָם"
+    }
+   ]
+  },
+  {
+   "key": "מריב בעל",
+   "row_id": "8438b54329f7167a",
+   "m": "M17",
+   "reads": "Merib-Baal",
+   "first": "i-chronicles 8:34",
+   "places": 2,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "מְרִיבבָּעַל",
+     "headword": "מְרִיבבַּעַל",
+     "entry": "מְרִיבבַּעַל"
+    }
+   ]
+  },
+  {
+   "key": "אבן העזר",
+   "row_id": "b61528a5228e6e8a",
+   "m": "M17",
+   "reads": "Ebenezer",
+   "first": "i-samuel 7:12",
+   "places": 1,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "אֶבֶןהָעָזֶר",
+     "headword": "אֶבֶןהָעֵזֶר",
+     "entry": "אֶבֶןהָעֵזֶר"
+    }
+   ]
+  },
+  {
+   "key": "איש חיל",
+   "row_id": "5e7eb9826a2f0d79",
+   "m": "M9",
+   "reads": "Ishchail",
+   "first": "judges 3:29",
+   "places": 1,
+   "by_headword": [
+    {
+     "word": 2,
+     "place": "חָיִל",
+     "headword": "חַיִל",
+     "entry": "חַיִל"
+    }
+   ]
+  },
+  {
+   "key": "ארם נהרים",
+   "row_id": "323e4d7aa408bd69",
+   "m": "M17",
+   "reads": "Aram Naharaim",
+   "first": "judges 3:8",
+   "places": 1,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "אֲרַםנַהֲרָיִם",
+     "headword": "אֲרַםנַהֲרַיִם",
+     "entry": "אֲרַםנַהֲרַיִם"
+    }
+   ]
+  },
+  {
+   "key": "בית שמש",
+   "row_id": "74ff71a7bb0646eb",
+   "m": "M17",
+   "reads": "Beth-Shemesh",
+   "first": "i-samuel 6:12",
+   "places": 1,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "בֵּיתשָׁמֶשׁ",
+     "headword": "בֵּיתשֶׁמֶשׁ",
+     "entry": "בֵּיתשֶׁמֶשׁ"
+    }
+   ]
+  },
+  {
+   "key": "בית־הכרם",
+   "row_id": "8294d3951a1c5dd8",
+   "m": "M17",
+   "reads": "Beth-haccherem",
+   "first": "nehemiah 3:14",
+   "places": 1,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "בֵּיתהַכָּרֶם",
+     "headword": "בֵּיתהַכֶּרֶם",
+     "entry": "בֵּיתהַכֶּרֶם"
+    }
+   ]
+  },
+  {
+   "key": "כושן רשעתים",
+   "row_id": "5e63e0fb3461d4d4",
+   "m": "M17",
+   "reads": "Cushan-Rishataim",
+   "first": "judges 3:10",
+   "places": 1,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "כּוּשַׁןרִשְׁעָתָיִם",
+     "headword": "כּוּשַׁןרִשְׁעָתַיִם",
+     "entry": "כּוּשַׁןרִשְׁעָתַיִם"
+    }
+   ]
+  },
+  {
+   "key": "כף־רגל",
+   "row_id": "e3e726afba935501",
+   "m": "M2",
+   "reads": "foot",
+   "first": "deuteronomy 2:5",
+   "places": 1,
+   "by_headword": [
+    {
+     "word": 2,
+     "place": "רָגֶל",
+     "headword": "רֶגֶל",
+     "entry": "רֶגֶל"
+    }
+   ]
+  },
+  {
+   "key": "לפנות ערב",
+   "row_id": "a757cb8160335eea",
+   "m": "M13",
+   "reads": "shortly before sunset",
+   "first": "genesis 24:63",
+   "places": 1,
+   "by_headword": [
+    {
+     "word": 2,
+     "place": "עָרֶב",
+     "headword": "עֶרֶב",
+     "entry": "עֶרֶב"
+    }
+   ]
+  },
+  {
+   "key": "מה־יש",
+   "row_id": "159b97ce1518c21b",
+   "m": "M13",
+   "reads": "What's the matter?",
+   "first": "ii-kings 4:2",
+   "places": 1,
+   "by_headword": [
+    {
+     "word": 2,
+     "place": "יֶּשׁ",
+     "headword": "יֵשׁ",
+     "entry": "יֵּשׁ"
+    }
+   ]
+  },
+  {
+   "key": "עיר מבצר",
+   "row_id": "7e6bccf2be8bb016",
+   "m": "M13",
+   "reads": "fortified town or city",
+   "first": "joshua 19:29",
+   "places": 1,
+   "by_headword": [
+    {
+     "word": 2,
+     "place": "מִבְצַר",
+     "headword": "מִבְצָר",
+     "entry": "מִבְצָר"
+    }
+   ]
+  },
+  {
+   "key": "שמרון מראון",
+   "row_id": "70675d710cbd3786",
+   "m": "M17",
+   "reads": "Shimron-Meron",
+   "first": "joshua 12:20",
+   "places": 1,
+   "by_headword": [
+    {
+     "words": [
+      1,
+      2
+     ],
+     "place": "שִׁמְרוֹןמְרֹאון",
+     "headword": "שִׁמְרוֹןמְראוֹן",
+     "entry": "שִׁמְרוֹןמְראוֹן"
+    }
+   ]
+  }
+ ],
+ "genesis_1_the_four_days": [
+  {
+   "ref": "1:8",
+   "key": "יום שני",
+   "rows": [
+    {
+     "row_id": "caafacfc709774f1",
+     "m": "M13",
+     "reads": "Monday",
+     "grade": "same"
+    },
+    {
+     "row_id": "2b92fb24427538a3",
+     "m": "M64",
+     "reads": "MONDAY",
+     "grade": "silent"
+    }
+   ]
+  },
+  {
+   "ref": "1:13",
+   "key": "יום שלישי",
+   "rows": [
+    {
+     "row_id": "87caf54aa86b757c",
+     "m": "M13",
+     "reads": "Tuesday",
+     "grade": "same"
+    },
+    {
+     "row_id": "b429ca05d8f2576e",
+     "m": "M64",
+     "reads": "TUESDAY",
+     "grade": "silent"
+    }
+   ]
+  },
+  {
+   "ref": "1:19",
+   "key": "יום רביעי",
+   "rows": [
+    {
+     "row_id": "221a06513955b875",
+     "m": "M13",
+     "reads": "Wednesday",
+     "grade": "same"
+    },
+    {
+     "row_id": "9efb0310ebe35da3",
+     "m": "M64",
+     "reads": "WEDNESDAY",
+     "grade": "silent"
+    }
+   ]
+  },
+  {
+   "ref": "1:23",
+   "key": "יום חמישי",
+   "rows": [
+    {
+     "row_id": "516c824e4fe75a4b",
+     "m": "M13",
+     "reads": "Thursday",
+     "grade": "same"
+    },
+    {
+     "row_id": "ea787acf57bd709b",
+     "m": "M64",
+     "reads": "THURSDAY",
+     "grade": "silent"
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "check": "check 1: every place's words, joined by their gaps, are its key in bare letters",
+   "failures": 0
+  },
+  {
+   "check": "check 2: every row a place names stands under the place's key",
+   "failures": 0
+  },
+  {
+   "check": "check 3: every place stands in a verse of its zone with as many words",
+   "failures": 0
+  },
+  {
+   "check": "check 4: steps 1 to 4 are settled",
+   "failures": 0
+  },
+  {
+   "check": "check 5: no stray character",
+   "failures": 0
+  }
+ ],
+ "outputs": [
+  {
+   "file": "span-grade-v1.jsonl",
+   "bytes": 1068722,
+   "sha256": "07d566cff1754b3923e95acb3cf365e90092c9ec0a89026b2e856caea5a3200e",
+   "lines": 2845
+  }
+ ]
+}

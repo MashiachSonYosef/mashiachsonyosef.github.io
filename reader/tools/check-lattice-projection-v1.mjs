@@ -184,7 +184,7 @@ for (const { slug, z, t } of layered) {
   // L4
   const routes = s.routes || {}, grades = s.grades || {};
   let badLen = 0, badFirst = 0;
-  // since the pointing grade (now pointing-grade-rule-v4) a leader rests on
+  // since the pointing grade (now pointing-grade-rule-v5) a leader rests on
   // the row's own grade where the store row carries its headwords, and on
   // the lattice card's grade where it does not — so the tier a leader leads
   // must exist among the
@@ -221,6 +221,10 @@ for (const { slug, z, t } of layered) {
       // carded — so an all-mismatch grade string can still have a lenient
       // leader; there is nothing in g alone that refuses it. The first
       // draft refused it and was wrong at 92 surfaces across three books.
+      // Since 16 November 2026 (unpointed-row-rule-v1) lenient keeps only
+      // rows graded m where any row is, and every row where none is: still
+      // nothing in g alone refuses it, since the rows' own grades decide
+      // whether any row is m, not the lattice's cards.
       else if (ch === "s" && !has("m")) badFirst += 1;
       else if (!["c", "l", "la", "s"].includes(ch) && !has(ch)) badFirst += 1;
     }

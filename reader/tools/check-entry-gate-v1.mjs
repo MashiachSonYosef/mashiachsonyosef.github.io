@@ -124,7 +124,7 @@ import { nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, onlyLeaders, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { openFollower, followedRecord, sha16Of, twinKeyOf, FollowFault } from "./row-strikes-follow-v1.mjs";
-import { gradeRow } from "./pointing-grade-v1.mjs";
+import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
@@ -656,8 +656,8 @@ for (const z of served) {
       const rowGrades = rows.map((row) => gradeRow(row, w.s));
       const attested = rowGrades.includes("m");
       // a row the default keeps: not of another entry, not a name's where the place is not one, of this entry or
-      // not pointed otherwise, and not of another stem
-      const keptAt = (i) => j.verdicts[i] !== "other" && !nameWithheld(j.facts[i], named) && (j.verdicts[i] === "this" || !attested || rowGrades[i] !== "x") && !otherStem(rows[i]);
+      // pointed as the place (unpointed-row-rule-v1: neither pointed otherwise nor not pointed), and not of another stem
+      const keptAt = (i) => j.verdicts[i] !== "other" && !nameWithheld(j.facts[i], named) && (j.verdicts[i] === "this" || !attested || !heldByPointing(rowGrades[i])) && !otherStem(rows[i]);
       const someKept = rows.some((row, i) => keptAt(i));
       Object.assign(here, { tags, said: entrySaid(j.place), other: j.other, rows: rows.length });
       const isOther = (row, i) => j.verdicts[i] === "other";

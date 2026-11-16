@@ -15,14 +15,18 @@
 //       asked whether it becomes the default: "1 seems like it")
 //   M2  ONLY, the default, withholds: the card says how many records and why
 //       on one line under the readings, and its head says nothing (the
-//       default is the page's own statement, not a setting the reader made)
+//       default is the page's own statement, not a setting the reader made);
+//       since 16 November 2026 the records their source does not point are
+//       held back too and said apart (unpointed-row-rule-v1)
 //   M3  KEEP is the pointing as printed: the head shows the pointed word, no
-//       record is withheld, and the default's pool is never larger
+//       record is withheld or held back, and the default's pool is never
+//       larger
 //   M4  ONLY moves the line under the word to the sidecar's own row-level
 //       leader (o.l, or its place's own where the entry or the names gate
 //       moves it), and the card's first pill says the same — one answer,
 //       two places
-//   M4b the lenient leader names its carriers; with every one switched off
+//   M4b the filter's leader (o.l, "lenient" in the sidecar's words) names its
+//       carriers; with every one switched off
 //       the line reads the filter's own alternate (o.la) and the card opens
 //       pressed on it, or goes bare where no kept reading remains
 //   M5  LETTERS: the card's head is the word as the page writes it, once, in
@@ -107,6 +111,8 @@ const cardNow = () => p.evaluate(() => {
   return {
     pills: pills ? [...pills.querySelectorAll("button")].map((x) => x.textContent.trim()) : [],
     withheld: pills ? Number(pills.dataset.withheld || 0) : 0,
+    unpointed: pills ? Number(pills.dataset.unpointedWithheld || 0) : 0,
+    unpointedNote: (h.querySelector(".unpointed-withheld") || {}).textContent || "",
     rows: pills ? Number(pills.dataset.rows || 0) : 0,
     note: (h.querySelector(".masorah-withheld") || {}).textContent || "",
     headLine: (h.querySelector('.kq-role[data-masorah]') || {}).textContent || "",
@@ -159,19 +165,19 @@ const lead = onlyLeaders(gr, at.tags, !side.names || at.np);
 // M2
 check("M2  only, the default, withholds, and the card says how many and why, with nothing in its head",
   only && only.withheld > 0 && only.rows > only.withheld && /withheld/u.test(only.note) && /otherwise/u.test(only.note) && only.headLine === "",
-  only ? `${only.withheld} of ${only.rows} withheld · ${only.pills.length} readings · "${only.note}"` : "no card");
+  only ? `${only.withheld} of ${only.rows} withheld, ${only.unpointed} held back as not pointed · ${only.pills.length} readings · "${only.note}"${only.unpointedNote ? ` · "${only.unpointedNote}"` : ""}` : "no card");
 
 // M3
 const pressedKeep = await press("keep");
 check("  \"keep\" can be pressed", pressedKeep);
 await p.waitForTimeout(900);
 const keep = await cardNow();
-check("M3  keep is the pointing as printed: pointed head, nothing withheld, readings present",
-  keep && keep.pills.length > 0 && keep.withheld === 0 && keep.headMode === "" && keep.head === keep.surface,
+check("M3  keep is the pointing as printed: pointed head, nothing withheld or held back, readings present",
+  keep && keep.pills.length > 0 && keep.withheld === 0 && keep.unpointed === 0 && !keep.unpointedNote && keep.headMode === "" && keep.head === keep.surface,
   keep ? `${keep.pills.length} readings · head "${keep.head}"` : "no card");
 check("    and the default's pool is smaller or equal, never larger", only && keep && only.pills.length <= keep.pills.length, `${only ? only.pills.length : "?"} ≤ ${keep ? keep.pills.length : "?"}`);
 // M4
-check("M4  the line under the word is the sidecar's lenient leader at its place, and the first pill says the same",
+check("M4  the line under the word is the sidecar's filter leader (o.l) at its place, and the first pill says the same",
   only && lead.l && only.line.toLowerCase().startsWith(String(lead.l[0]).toLowerCase().slice(0, 12)) && only.pills[0] && only.pills[0].toLowerCase() === String(lead.l[0]).toLowerCase(),
   only ? `line "${only.line}" · pill "${only.pills[0]}" · the leader "${lead.l ? lead.l[0] : "—"}"${at.tags ? ` (at a place of ${at.tags.join(" ")})` : ""}` : "no card");
 
@@ -215,7 +221,7 @@ check("M4  the line under the word is the sidecar's lenient leader at its place,
   const ok = !!ids && !!r && onlyOff === 0 && (la
     ? norm(r.line) === norm(la[0]) && !!pressed && norm(pressed.t) === norm(la[0])
     : r.bare);
-  check("M4b the lenient leader names its carriers, and with every one switched off the line reads the filter's own alternate (o.la) and the card opens pressed on it, or goes bare where none remains",
+  check("M4b the filter's leader names its carriers, and with every one switched off the line reads the filter's own alternate (o.la) and the card opens pressed on it, or goes bare where none remains",
     ok, !ids ? "the sidecar's o.l names no carriers; re-project with tools/project-lattice-v12-v1.mjs" : !r ? "no card" : `off ${ids.join(",")} · line "${r.line}"${r.bare ? " (bare)" : ""} · pressed "${pressed ? pressed.t : "—"}" · o.la "${la ? la[0] : "—"}" · pills credited only to the off ids: ${onlyOff}`);
 }
 
@@ -241,7 +247,7 @@ const pressedOnly = await press("only this pointing");
 check("  \"only this pointing\" is live and can be pressed", pressedOnly);
 await p.waitForTimeout(700);
 const back = await cardNow();
-check("M7  only again, pressed, restores exactly the first pool and names the setting in the head", back && only && JSON.stringify(back.pills) === JSON.stringify(only.pills) && back.withheld === only.withheld && back.headMode === "" && /only readings of this pointing/u.test(back.headLine),
+check("M7  only again, pressed, restores exactly the first pool and names the setting in the head", back && only && JSON.stringify(back.pills) === JSON.stringify(only.pills) && back.withheld === only.withheld && back.unpointed === only.unpointed && back.headMode === "" && /only readings of this pointing/u.test(back.headLine),
   back ? `head "${back.headLine}"` : "no card");
 
 // M8 — no card carries a pointing switch of its own; the setting is the book's

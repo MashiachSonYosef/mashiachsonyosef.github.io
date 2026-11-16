@@ -14,6 +14,15 @@
 //       shewa, hiriq, segol, patah or qamats a prefix; with dagesh alone
 //       either; he with mappiq a suffix; with patah, hataf patah or segol a
 //       prefix; with qamats either; no vowel, or another letter, says nothing
+//   C1b and the classes read a one-letter headword as the grade's vowel form
+//       leaves it, and that form keeps its first letter's dagesh: since
+//       pointing-grade-rule-v5 (16 November 2026) the dagesh that joins a
+//       word to the one before is set aside on the text's own word only,
+//       never on a headword, and never a vav's (the shureq) or a he's (the
+//       mappiq). A one-letter headword's first letter is its last: the
+//       shureq alone reads either, the mappiq the suffix, with a patah or a
+//       qamats beside it the suffix still (six store rows head "her" so;
+//       with the mappiq set aside they would read as the article's)
 //   C2  a prefix vav's card, under the default, withholds exactly the store
 //       rows whose pointed headwords make the letter only a suffix, and its
 //       first pill is carried by a row pointed as a prefix
@@ -124,19 +133,25 @@ const openPiece = async (w, masorah) => {
       classes: window.__pieceClass ? Object.keys(window.__pieceClass) : null,
     };
   }, { s: w.s, piece: VAV });
-  const classes = await p.evaluate(() => {
+  const classes = await p.evaluate((formed) => {
     const P = window.__pieceClass; if (!P) return null;
     const V = "\u05D5", H = "\u05D4";
     const cases = [[V, "\u05B9", "suffix"], [V, "\u05B0", "prefix"], [V, "\u05B4", "prefix"], [V, "\u05B6", "prefix"], [V, "\u05B7", "prefix"], [V, "\u05B8", "prefix"], [V, "\u05BC", "either"], [V, "", null],
       [H, "\u05BC", "suffix"], [H, "\u05B7", "prefix"], [H, "\u05B2", "prefix"], [H, "\u05B6", "prefix"], [H, "\u05B8", "either"], [H, "", null]];
     const wrong = cases.filter(([l, m, want]) => P[l](l + m) !== want).map(([l, m, want]) => `${l}${m}: ${P[l](l + m)} not ${want}`);
     const other = P[V]("\u05D1\u05B8") === null && P[V](V + V) === null;
-    return { n: cases.length, wrong, other };
-  });
+    // C1b: one-letter headwords as the grade's vowel form leaves them, the form computed by the module beside the page
+    const wrongFormed = formed.filter(([l, v, want]) => P[l](v) !== want).map(([l, v, want]) => `${[...v].map((c) => c.codePointAt(0).toString(16)).join(" ")}: ${P[l](v)} not ${want}`);
+    return { n: cases.length, wrong, other, formed: formed.length, wrongFormed };
+  }, FORMED);
   await ctx.close();
   return { ...r, classCheck: classes };
 };
 
+// C1b's headwords: a vav with the shureq alone, a he with the mappiq alone, with a patah and with a qamats beside it,
+// each as the grade's vowel form leaves it, and the class the rule gives the letter's own marks
+const FORMED = [["\u05D5", "\u05D5\u05BC", "either"], ["\u05D4", "\u05D4\u05BC", "suffix"], ["\u05D4", "\u05D4\u05B7\u05BC", "suffix"], ["\u05D4", "\u05D4\u05BC\u05B8", "suffix"]]
+  .map(([l, h, want]) => [l, vowelForm(h), want]);
 const expectWithheld = (at) => vavRows.filter((row) => kindOf(row, at) === "other").length;
 const carriedBy = (pill, at) => vavRows.some((row) => kindOf(row, at) === "this" && String(row[1]).toLowerCase().split(/[;,]/u).map((x) => x.trim()).concat(String(row[1]).toLowerCase().trim()).includes(String(pill).toLowerCase()));
 
@@ -148,6 +163,7 @@ for (const at of ["prefix", "suffix"]) {
   if (!c1done && r.classCheck) {
     c1done = true;
     check("C1  the page's classes are the rule's", r.classCheck.wrong.length === 0 && r.classCheck.other, `${r.classCheck.n} cases${r.classCheck.wrong.length ? ` · ${r.classCheck.wrong.join(" | ")}` : ""}${r.classCheck.other ? "" : " · another letter was classed"}`);
+    check("C1b the classes read a one-letter headword as the grade's vowel form leaves it: the shureq and the mappiq stand", r.classCheck.wrongFormed.length === 0, `${r.classCheck.formed} headwords${r.classCheck.wrongFormed.length ? ` · ${r.classCheck.wrongFormed.join(" | ")}` : ""}`);
   }
   if (r.error) { check(`${at === "prefix" ? "C2" : "C3"}  a ${at} vav's card`, false, `${w.slug} ${w.label} ${w.k}: ${r.error}`); continue; }
   const want = expectWithheld(at);

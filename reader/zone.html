@@ -3021,9 +3021,14 @@
   //            corpus lane's vowel grade as a sort. Today's behaviour, exactly.
   //   only     the pointing gates. Rows whose source points the word
   //            OTHERWISE (the lattice's VOWEL_MISMATCH) are withheld before the
-  //            pool is built; a source whose headword carries no vowels is
-  //            silent, not contradicting, and stays; an ungraded row stays,
-  //            because unknown is not a mismatch. The card says how many it
+  //            pool is built. Until 16 November 2026 a source whose headword
+  //            carries no vowels was silent, not contradicting, and stayed, and
+  //            so did an ungraded row, because unknown was not a mismatch; the
+  //            owner that day: «if its no pointing why would that in your head
+  //            auto qualify it for all pointings rather than none». Such a row
+  //            now qualifies for none and rests held back, wherever some row
+  //            points the word as the text does (unpointed-row-rule-v1,
+  //            tools/pointing-grade-v1.mjs). The card says how many of each it
   //            withheld. The reading at this place still leads (placeLine):
   //            it is this pointing's own reading, at this very word. A
   //            one-letter piece at a word's head or end is graded as a prefix
@@ -3213,15 +3218,21 @@
     for (let i = 0; i < s.length; i += 1) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
     return h.toString(16).padStart(8, "0");
   };
-  // THE GRADE FROM THE ROW'S OWN HEADWORDS — pointing-grade-rule-v4 (since
+  // THE GRADE FROM THE ROW'S OWN HEADWORDS — pointing-grade-rule-v5 (since
   // 2026-11-06 neither a word-initial dagesh lene nor the qatan mark is a
   // pointing; since 7 November a shureq is a vowel, so a headword whose only
-  // vowel is a shureq, qum or hu, is pointed and graded; the reasons are in
-  // tools/pointing-grade-v1.mjs). A store row that carries the source's own
-  // pointed headwords at [6] is graded here, against the word standing open,
+  // vowel is a shureq, qum or hu, is pointed and graded; since 16 November the
+  // text's own word, where the surface begins it, is read with and without
+  // the dagesh that joins it to the word before, whatever the letter save a
+  // vav's shureq and a he's mappiq (textForm), while a headword keeps its own
+  // dagesh, the source's record of the doubling of the piece it was cut
+  // from; the reasons are in tools/pointing-grade-v1.mjs). A store row
+  // that carries the source's own pointed headwords at [6] is graded here,
+  // against the word standing open,
   // by the corpus lane's two lines
   // (vowelForm, isPointed: the same functions, to the character, as
-  // tools/pointing-grade-v1.mjs, which explains them). Any one matching
+  // tools/pointing-grade-v1.mjs, which explains them, with textForm and
+  // gradeRow). Any one matching
   // headword is a match; no pointed headword is silence, not contradiction;
   // a row without the slot is not graded here and keeps the lattice card's
   // grade, if the lattice graded it — so on a v1 store nothing here moves.
@@ -3232,6 +3243,8 @@
     .replace(/[\u0591-\u05AF\u05BD\u05BE\u05BF\u05C0\u05C3\u05C4\u05C5\u05C6\u05C7]/g, "")
     .replace(/[^\u05B0-\u05BC\u05C1\u05C2\u05D0-\u05EA]/g, "")
     .replace(/^([\u05D1\u05D2\u05D3\u05DB\u05E4\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
+  const textForm = (t) => vowelForm(t)
+    .replace(/^([\u05D0-\u05D3\u05D6-\u05EA][\u05B0-\u05BB\u05C1\u05C2]*)\u05BC/u, "$1");
   const isPointed = (t) => /[\u05B0-\u05BB]|\u05D5\u05BC/.test(String(t ?? "").normalize("NFKD"));
   // the binyan ledger's families (stem-family-rule-v2, tools/stem-family-v1.mjs):
   // a source may name a stem inside a family otherwise than the place does
@@ -3306,13 +3319,25 @@
   // for name.
   const nameWithheld = (facts, placeIsAName) => !!(facts && facts.name) && !placeIsAName;
   const rowCarriesHeadwords = (row) => Array.isArray(row) && Array.isArray(row[6]);
-  const gradeRow = (row, surface) => {
+  // beginsWord: whether the surface begins the text's word (v5): the open
+  // word, a read word or a word named by the line always does; a piece after
+  // a prefix does not, and keeps its dagesh, the prefix's doubling
+  const gradeRow = (row, surface, beginsWord = true) => {
     if (!rowCarriesHeadwords(row)) return "-";
     const V = row[6].filter(isPointed).map(vowelForm);
     if (!V.length) return "n";
-    return V.includes(vowelForm(surface)) ? "m" : "x";
+    return V.includes(vowelForm(surface)) || (beginsWord && V.includes(textForm(surface))) ? "m" : "x";
   };
   window.__gradeRow = gradeRow;
+  // WHAT THE GATE ASKS OF A GRADE (unpointed-row-rule-v1; the owner, 16
+  // November 2026: «if its no pointing why would that in your head auto
+  // qualify it for all pointings rather than none»): where the gate acts, a
+  // row stands on its grade only where it is a match; pointed otherwise (x)
+  // it is withheld, and with no pointing its source gives (n, or no grade at
+  // all) it is held back, counted apart. The function of
+  // tools/pointing-grade-v1.mjs, to the character (check-pointing-grade-v1 P1)
+  const heldByPointing = (grade) => (grade === "m" ? null : grade === "x" ? "x" : "n");
+  window.__heldByPointing = heldByPointing;
   // THE KIND A ONE-LETTER HEADWORD POINTS (piece-class-rule-v1), read from the
   // letter's own vowels after vowelForm: "prefix", "suffix", "either", or null
   // when the vowels say nothing (no vowel, or another letter in it).
@@ -3740,6 +3765,65 @@
   // what a reading that took the pointers resolving to it prints (pointer-one-pill-rule-v1, in poolFor): as
   // the pointer's own pill printed it, and with several, each pointer in the one bracket
   const formOfSaysAll = (es) => (es.length === 1 ? formOfSays(es[0]) : `${es[0].resolved.text} (${es.map((e) => `${e.relation} ${formOfTarget(e)}`).join("; ")})`);
+  // WHERE STRONG SAYS HE IS NOT SURE
+  // (strongs-hedges-rule-v1-where-strongs-derivation-of-a-word-hedges-his-own-words-stand-under-his-reading-as-a-note;
+  // the owner, 16 November 2026, card 2 of the four cards, «ok go ahead»).
+  // The corpus lane's ledger (relay v170) names every entry of Strong's
+  // dictionary whose derivation, where the word comes from, hedges in
+  // Strong's own words; tools/bake-strongs-hedges-v1.mjs takes the 833 the
+  // store serves into data/strongs-hedges-v1/derivation-hedges-v1.json, each
+  // entry's derivation byte for byte with the places of its hedges. Under a
+  // reading of that source the card's record carries the derivation as a
+  // note in his words, «Strong, on where the word comes from: probably of
+  // foreign derivation; perhaps meaning fire;» (H143): the hedge words in
+  // italics and never changed, and no mark on the pill, since a doubt about
+  // where a word comes from is not a doubt about what it means. A row is of
+  // an entry where its own facts say so (row[10].n: the entries its source
+  // files it under, the corpus lane's row entries ledger, relay v172); a row
+  // whose facts name none (a span store's row) has no derivation to give.
+  // The source is the file's by its key in the store's index, never an m id
+  // typed here. Only a card's record reads the file, so the first record
+  // drawn asks for it, once, and takes the note when it lands; the page's
+  // first paint and its lines never ask for it (a recording of the lines
+  // names every file its page asked for, and this one moves none of them).
+  let HEDGES = null, hedgesWait = null;
+  const hedgesReady = () => {
+    if (HEDGES) return Promise.resolve(HEDGES);
+    if (!hedgesWait) hedgesWait = fetch(`${ROOT}data/strongs-hedges-v1/derivation-hedges-v1.json`).then((r) => (r.ok ? r.json() : null))
+      .then((f) => {
+        HEDGES = f && f.schema_version === "STRONGS_HEDGES_PAGE_V1" && f.entries && f.source && f.source.key && f.by && f.says ? f : null;
+        window.__hedges = HEDGES ? { key: HEDGES.source.key, entries: Object.keys(HEDGES.entries).length } : null;
+        return HEDGES;
+      }).catch(() => null);
+    return hedgesWait;
+  };
+  // the derivations that hedge, of a reading's rows: each entry once, in the order its rows name them (mSources:
+  // the store's index's, which names each row's source by its key)
+  const hedgesOf = (records, mSources) => {
+    const out = [];
+    if (!HEDGES) return out;
+    for (const row of records || []) {
+      if ((mSources[row[3]] || {}).key !== HEDGES.source.key) continue;
+      const n = (factsOf(row) || {}).n;
+      for (const e of Array.isArray(n) ? n : []) {
+        if (!Object.hasOwn(HEDGES.entries, e) || out.some((x) => x.entry === e)) continue;
+        out.push({ m: row[3], entry: e, text: String(HEDGES.entries[e].text), hedges: Array.isArray(HEDGES.entries[e].hedges) ? HEDGES.entries[e].hedges : [] });
+      }
+    }
+    return out;
+  };
+  // THE PROVIDER'S NOTE ON ITS OWN FILE, SET APART
+  // (provider-note-rule-v1-the-providers-remark-on-its-own-file-prints-apart-from-the-text-it-stands-in;
+  // the owner, 16 November 2026, card 3 of the four cards, «ok go ahead»).
+  // Where the provider wrote a remark on its own file inside a text (Strong's
+  // "sister", H269: «[like 251 number 250, corrected to 251]»), the made
+  // spaces' print step takes the remark out with the spaces our build made
+  // beside it, so every printer prints the text as the corpus lane's list
+  // gives it without the note, and rides the remark on the row: slot 9's third
+  // place, { words, by } (tools/apply-made-spaces-v1.mjs). The record of such
+  // a row carries the remark as the file's own note, its words byte for byte,
+  // credited to the provider whose file it is.
+  const fileNoteOf = (row) => { const x = Array.isArray(row) && Array.isArray(row[9]) ? row[9][2] : null; return x && typeof x === "object" && typeof x.words === "string" && x.words && typeof x.by === "string" && x.by ? x : null; };
   // what the BSB means by a cell that is a sign, and why a place has none, in words
   const SUG_KIND_SAYS = { DASH: "the BSB leaves this word without English", THREE_DOTS: "the neighboring English carries it", VVV: "the neighboring English carries it", EMPTY: "the BSB's cell is empty" };
   const SUG_WHY_SAYS = { UNMATCHED_LETTERS_DIFFER: "the BSB's Hebrew spells this word otherwise", UNMATCHED_ONLY_OURS: "the BSB's Hebrew lacks this word", UNMATCHED_ORDER_DIFFERS: "the BSB's Hebrew orders these words otherwise", AMBIGUOUS: "the BSB's words could pair with this place more than one way", ONE_BSB_WORD_OVER_SEVERAL_PLACES: "one BSB word covers this place with its neighbor" };
@@ -4378,8 +4462,50 @@
   // store row carries its source's own M and no facts, so only a whole
   // source's entry reaches it
   const spanRowsOn = (key) => (SPAN_BY_KEY.get(key) || []).filter((r) => !sourcesOff.has(r.slots[3]) && !restsOff(r.slots));
+  // RULE: span-grade-rule-v1-a-joined-reading-with-no-pointing-or-pointed-otherwise-where-step-tags-its-words-as-separate-entries-rests-held-back
+  // THE PLACE A RUN STANDS ON, AND THE ROWS IT HOLDS BACK (the corpus lane's
+  // span grade, relay v169; the owner, 16 November 2026: «ok go ahead» to
+  // card 1 of the four cards, task 92, and that morning's call on a row with
+  // no pointing, task 134). One key stands at many places, and a joined
+  // reading may rest held back at one and stand at another («Ramoth-gilead»
+  // where STEP tags its two words as two entries, and at II Chronicles 18:2,
+  // where a word of it carries no tag), so what a run holds
+  // back is read off the place it stands on (held, which
+  // tools/apply-span-grade-v1.mjs writes on each place of the book's file),
+  // never off the key. A place is found by its words, its first and its last
+  // as the store numbers them (the verse's words, the scribes' marks not
+  // counted), and by its key
+  const SPAN_PLACE_AT = new Map();      // a place's first word -> [{ pl, last }]
+  const spanPlaceAt = (words, key) => {
+    const ws = (Array.isArray(words) ? words : []).filter((w) => w && !w.mark);
+    if (!ws.length || !key) return null;
+    const hit = (SPAN_PLACE_AT.get(ws[0]) || []).find((x) => x.pl.key === key && x.last === ws[ws.length - 1]);
+    return hit ? hit.pl : null;
+  };
+  // why the place holds a span row back under «only this pointing», or null:
+  // «otherwise», pointed otherwise where STEP tags the place's words as
+  // separate entries; «silent», no pointing
+  const spanHeldWhy = (place, row) => {
+    const why = place && place.held && row ? place.held[row.row_id] : null;
+    return why === "otherwise" || why === "silent" ? why : null;
+  };
+  // RULE: span-line-rule-v1-a-pointer-leads-no-joined-line-and-under-only-nor-does-a-row-its-place-holds-back
+  // THE ROW A JOINED LINE READS (span-store I2), one choice for the line, for
+  // the card that opens on it and for the sort that keeps it first: the first
+  // row of the key that rests open, in the store's order, but a pointer, and
+  // under «only» a row the place holds back. A FORM_OF ROW NEVER LEADS A LINE
+  // (the corpus lane's v169, section 5, taken with card 1 of 16 November
+  // 2026): «feminine of ...», «plural indefinite form of ...» is a pointer to
+  // another entry, not a reading, and on the card it stays the pointer it is.
+  // A row the place holds back under «only» reads on no line there, as it
+  // stands on no pill of the card there
+  const spanLineRow = (key, place = null, only = false) => spanRowsOn(key).find((r) => !r.form_of && !(only && spanHeldWhy(place, r))) || null;
+  // for a check to ask instead of a copy of it: the rows of a key that rest
+  // open, and the one a line over the key reads where no place holds a row
+  window.__spanLine = (key) => ({ rows: spanRowsOn(key).map((r) => r.row_id), line: (spanLineRow(key) || {}).row_id || null });
   const OVERLAYS = {};
   const OVERLAY_ROWS = new WeakMap();   // a row the card holds -> the overlay it came from
+  const SPAN_SERVED = new WeakMap();    // a span row the card holds -> the row as the span store serves it (its row_id)
   let OVERLAY_IX = [];
   // per book, what each overlay source gives (tools/bake-overlay-book-counts-v1.mjs)
   let OVERLAY_BOOKS = null;
@@ -4878,6 +5004,19 @@
     SPAN_BOOK = spanBookListed() ? await fetch(`${ROOT}data/span-store/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
     SPAN_BY_KEY.clear();
     if (SPAN_BOOK && SPAN_BOOK.book === BOOK && SPAN_BOOK.keys) for (const [k, rs] of Object.entries(SPAN_BOOK.keys)) SPAN_BY_KEY.set(k, rs);
+    // each place by its first word and its last (span-grade-rule-v1: spanPlaceAt)
+    SPAN_PLACE_AT.clear();
+    if (SPAN_BOOK && SPAN_BOOK.book === BOOK && Array.isArray(SPAN_BOOK.placesList)) {
+      const plainOf = new Map((zone.sections || []).map((sec) => [String(sec.label), (sec.words || []).filter((w) => !w.mark)]));
+      for (const pl of SPAN_BOOK.placesList) {
+        const plain = plainOf.get(String(pl.ref)) || [];
+        const first = plain[pl.first - 1], last = plain[pl.last - 1];
+        if (!first || !last) continue;
+        const at = SPAN_PLACE_AT.get(first) || [];
+        at.push({ pl, last });
+        SPAN_PLACE_AT.set(first, at);
+      }
+    }
     const spanCardsOf = () => {
       const out = [], skipped = [];
       if (!SPAN_BOOK || !Array.isArray(SPAN_BOOK.placesList)) return { cards: out, skipped };
@@ -5565,7 +5704,7 @@
     // where its source is under a ledger (apply-ledger-divisions-v1, 6
     // November 2026); sliced at seven they were lost, and the row printed
     // whole where its ledger cuts it
-    if (o.local) return (SPAN_BY_KEY.get(key) || []).map((r) => { const row = r.slots.slice(0, 9); OVERLAY_ROWS.set(row, o.id); return row; });
+    if (o.local) return (SPAN_BY_KEY.get(key) || []).map((r) => { const row = r.slots.slice(0, 9); OVERLAY_ROWS.set(row, o.id); SPAN_SERVED.set(row, r); return row; });
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(key));
     const shard = new Uint8Array(digest)[0].toString(16).padStart(2, "0");
     const ck = `${o.id}/${shard}`;
@@ -5919,7 +6058,8 @@
 
      TWO SWITCHES ARE SELECTIONS, by the owner's ruling of 2026-09-17, and
      each one says on the card how many records it withheld: the masorah
-     "only" position (a source that points the word otherwise is not asked)
+     "only" position (a source that points the word otherwise is not asked,
+     and since 16 November 2026 neither is one that does not point it)
      and the source switches (a source the reader turned off is not asked).
      Neither removes anything from the store or from the page; both reach
      the card and the English line under the word, and nothing else.
@@ -6229,10 +6369,16 @@
     const t1 = lineOf(first, n);
     if (t1) return at(made(first, t1, "first", null, dfltOwn(first, n)));
     const second = dfltSecond(first);
-    if (!second) return null;
     if (second === "step") return stepOwn("second", first);
-    const t2 = lineOf(second, n);
-    return t2 ? at(made(second, t2, "second", first, dfltOwn(second, n))) : null;
+    const t2 = second ? lineOf(second, n) : null;
+    if (t2) return at(made(second, t2, "second", first, dfltOwn(second, n)));
+    // STEP FILLS OUT LAST (the owner, 16 November 2026: «shouldnt the other
+    // 3.3% just default to STEP?»). Where neither the first nor its second
+    // has a line, the line is STEP's as it rests: today's line, and STEP's
+    // own words where STEP spells or parts the word otherwise or today's
+    // line is bare, as under STEP itself. Until then such a place kept
+    // today's line without STEP's own words
+    return dfltOn("step") ? stepOwn("rest", first) : null;
   };
   // CALL 4 AT A PAIR (steps-reading-stands-rule-v1): where STEP spells or
   // parts the word otherwise at a pair whose read form is one word (call 4's
@@ -6375,6 +6521,8 @@
     : r.layer === "pick" ? `${dfltPill(r.src)}’s own reading at this place (${dfltPill(r.src)} ${r.n})`
     : r.layer === "second"
       ? `${dfltPill(r.src)}’s own reading at this place, filling out ${dfltPill(r.of)}${r.auto ? ` — chosen for ${zone.work}` : ""}`
+      : r.layer === "rest"
+        ? `${dfltPill(r.src)}’s own reading at this place, ${r.stands ? `where ${dfltPill(r.src)} spells or parts the word otherwise` : "where today’s line has no words"}: neither ${dfltPill(r.of)} nor its second has a line here`
       : r.src === "step" ? `${dfltPill(r.src)}’s own reading at this place, ${r.stands ? `where ${dfltPill(r.src)} spells or parts the word otherwise` : "where today’s line has no words"}`
         : `${dfltPill(r.src)}’s own reading at this place, chosen on the row of sources`);
   // the credit a made row of a default source's words keeps (DFLT_MADE): its
@@ -6541,21 +6689,24 @@
   // the record shown, its M, its license and the line's credit stay theirs.
   // MACULA's records are dated 2022, which put them before every undated row
   // and the 2023 SDBH (review, 2026-10-17: Obadiah 1:1:2 credited MACULA).
-  // A SPAN ROW'S YEAR IS SAID, AND ORDERS NOTHING (10 November 2026). The
-  // span store's rows stand in the corpus lane's own order (its by_key rule:
-  // names first), and until the lane's years list reached them none carried
-  // a year, so the card's oldest-first sort left that order alone. With the
-  // years on the rows the sort would lead with whichever source the list
-  // happens to date. Measured over the 1,047 book-and-key pairs: the first
-  // pill moves at 254 (a PHRASE row of 1906 ahead of the NAME rows of a
-  // name; a spelling of 1890 ahead of the store's first), the card opens off
-  // its line's row at 36, and a later row takes a reading's credit from the
-  // first row at 114. The order is the store's rule and the years list did
-  // not change it: a span row's year is printed beside its credit (yearSaid)
-  // and neither dates its reading nor moves its record, until the corpus
-  // lane says how its order and the years combine. Infinity is "no year to
-  // order by", as an undated row's is.
-  const orderYearOf = (row) => { if (OVERLAY_ROWS.get(row) === "span-store") return Infinity; const y = Number.parseInt(row[4], 10); return Number.isInteger(y) ? y : Infinity; };
+  // RULE: span-order-rule-v1-a-span-row-is-ordered-as-every-row-is-the-tier-before-1940-the-year-then-the-rank
+  // A SPAN ROW IS ORDERED AS EVERY ROW IS (16 November 2026). From 10
+  // November a span row's year was said and ordered nothing: the span
+  // store's rows stood in the corpus lane's own order (its by_key rule, names
+  // first), «until the corpus lane says how its order and the years combine»
+  // (measured then over the 1,047 book-and-key pairs: ordered by the years,
+  // the first pill would move at 254). The lane has said (relay v169, section
+  // 5): «order a span row as a store row is ordered, by the page order (the
+  // tier before 1940, then the year, then the rank)», which puts the
+  // dictionaries of Biblical Hebrew above Wiktionary's and Wikidata's modern
+  // names; and the owner took it with card 1 of 16 November 2026 («span rows
+  // on the run card take the same order as every other row»). With the
+  // place's reading leading the line (run-reads-its-words-rule-v1) the
+  // store's order now orders only the line a run still reads joined
+  // (spanLineRow) and no card. A span row's year dates its reading and
+  // orders its records, as a store row's does; Infinity is "no year to order
+  // by", as an undated row's is.
+  const orderYearOf = (row) => { const y = Number.parseInt(row[4], 10); return Number.isInteger(y) ? y : Infinity; };
   const EARLIEST_FIRST = (a, c) => {
     const pa = OVERLAY_ROWS.get(a) === "piece-store" ? 1 : 0, pc = OVERLAY_ROWS.get(c) === "piece-store" ? 1 : 0;
     if (pa !== pc) return pa - pc;
@@ -6631,8 +6782,10 @@
     // (a space our own build put where a tag stood is not the source's, and
     // is closed here as it is on the card: made-spaces-rule-v1)
     // (own: a default source's own words where the page's line adds to them,
-    // the addition said apart as the page's, never inside the source's text)
-    const received = { mId, headwords: Array.isArray(lead[6]) ? lead[6].map(String) : [], route: routePrinted(lead), definition: lead[2] ? recordPrinted(lead) : "", own: DFLT_OWN.get(lead) || null };
+    // the addition said apart as the page's, never inside the source's text;
+    // note: the provider's remark on its own file, which prints apart from the
+    // text it stood in, as it does on the card: provider-note-rule-v1)
+    const received = { mId, headwords: Array.isArray(lead[6]) ? lead[6].map(String) : [], route: routePrinted(lead), definition: lead[2] ? recordPrinted(lead) : "", own: DFLT_OWN.get(lead) || null, note: fileNoteOf(lead) };
     return post.ok
       ? { ok: true, text: ownText, piece, received, label: m.label, posture: m.licensePosture,
           // two years, said apart (TWO YEARS, above): year is the edition's, for
@@ -6932,6 +7085,7 @@
         // source gives them, each piece's apart, and then what the page added
         for (const x of r.own && r.own.parts.length > 1 ? r.own.parts : [r.route]) head.push(`reading: ${x}`);
         if (r.definition && r.definition !== r.route) head.push(`definition: ${r.definition}`);
+        if (r.note) head.push(`note: ${r.note.words} (${r.note.by}, in a note on its own file, set apart from the text above)`);
         if (r.own && r.own.adds) head.push(`the page adds, in its own words: ${r.own.adds}`);
         L.push(`${i + 1}. ${head[0]}`);
         head.slice(1).forEach((h) => L.push(`    ${h}`));
@@ -8226,7 +8380,8 @@
   // two steps sortPool takes, for a check to read off the pill
   const rowGradeFor = (row, surface) => {
     const own = openPointed && surface && surface === openKey;
-    const sg = own ? gradeRow(row, openPointed) : "-";
+    // the open form, which begins its word (pointing-grade-rule-v5)
+    const sg = own ? gradeRow(row, openPointed, true) : "-";
     if (sg !== "-") return sg;
     const gr = own && latticeStore && latticeStore.grades ? latticeStore.grades[openPointed] : null;
     const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
@@ -8255,6 +8410,17 @@
   // where it came from and a check can tell them from the store's
   const PLACE_ROWS = new WeakSet();
   const poolFor = async (surface, opts = {}) => {
+    // A READING THE READER RULED STAYS WHEREVER THE RULING STANDS
+    // (ruled-reading-stands-rule-v1-a-reading-the-reader-ruled-stays-on-the-card-wherever-the-ruling-stands-whatever-its-points;
+    // 16 November 2026). A ruling is the form's, so it paints every place the
+    // form stands; the pointing gate is the place's, and two places of one
+    // form can point it otherwise (Nahum 1:14:2's masculine and 3:6:2's
+    // feminine «upon you»). Where the gate would hold back the reading the
+    // reader ruled, the line printed it and the card could not press it. So a
+    // row that gives the ruled reading stays under the pointing, as a row of
+    // the place's own entry does; every other gate still asks it
+    const ruledKey = opts.ruled && typeof opts.ruled.text === "string" ? readingKey(opts.ruled.text) : null;
+    const isRuledRow = (row) => !!ruledKey && readingsOfRow(row).some((r) => readingKey(r) === ruledKey);
     const stored = await routesFor(surface);
     let extra = [];
     if (!opts.storeOnly) for (const o of OVERLAY_DEFS) extra = extra.concat(await overlayRowsFor(o, surface, opts.piecePlace || null).catch(() => []));
@@ -8269,11 +8435,25 @@
     // enters the pool — it is not sorted late, it is withheld, and the card
     // says how many. A page that filtered readings after the pool was built
     // would be a page deciding what a source said; withholding the row is
-    // declining to ask that source about this pointing. Rows the lattice did
-    // not grade stay: unknown is not a mismatch. The same guard sortPool
-    // uses — the asked word's own pointed surface, and only that.
+    // declining to ask that source about this pointing. Until 16 November
+    // 2026 rows the lattice did not grade stayed: unknown was not a mismatch.
+    // A ROW WITH NO POINTING QUALIFIES FOR NONE (unpointed-row-rule-v1; the
+    // owner, 16 November 2026: «if its no pointing why would that in your
+    // head auto qualify it for all pointings rather than none»): a row whose
+    // source gives no pointed headword, or that no grade reaches, rests held
+    // back where the gate acts, a press away under "keep", and is counted
+    // apart (withheldUnpointed: "their source does not point this word").
+    // The same guard sortPool uses — the asked word's own pointed surface,
+    // and only that.
     const W = askedWord(surface, opts.word || null);
-    let routes = all, withheld = 0, attested = false;
+    // whether the surface asked begins the text's word (pointing-grade-rule-v5:
+    // the dagesh that joins a word to the one before is set aside only there):
+    // a cell of the word's own letters from its first (opts.piecePlace.a 0),
+    // the word itself, a read word, a word the line or the exporter names; a
+    // piece after a prefix (a > 0) never does. The gate grades only the open
+    // form today, which always begins its word; the flag says so where it asks
+    const beginsWord = !(opts.piecePlace && Number.isInteger(opts.piecePlace.a) && opts.piecePlace.a > 0);
+    let routes = all, withheld = 0, attested = false, withheldUnpointed = 0;
     // THE ENTRY AT THE PLACE, BEFORE THE POINTING (entry-gate-rule-v1). Under
     // "only", at a place the lattice tags: a row its own source files under
     // another entry than the place's never enters the pool, and the card
@@ -8332,7 +8512,7 @@
       const gr = latticeStore && latticeStore.grades && W.pointed ? latticeStore.grades[W.pointed] : null;
       const lat = gr && latticeStore.routes[gr.k] ? latticeStore.routes[gr.k] : null;
       // a row that carries its source's own headwords is graded here, by
-      // them, against the open word (pointing-grade-rule-v4); a row that does
+      // them, against the open word (pointing-grade-rule-v5); a row that does
       // not falls to the lattice card's grade, as before. A word with no
       // vowels of its own (a title from the catalog) gives the gate nothing to
       // gate on: graded against bare letters, every pointed row would read as
@@ -8341,7 +8521,7 @@
       if (lat || own) {
         const fpIdx = lat ? new Map(lat.f.map((fp, i) => [fp, i])) : null;
         const gradeOf = (row) => {
-          const sg = own ? gradeRow(row, W.pointed) : "-";
+          const sg = own ? gradeRow(row, W.pointed, beginsWord) : "-";
           if (sg !== "-") return sg;
           if (!fpIdx) return "-";
           const m = index.m_sources[row[3]];
@@ -8359,10 +8539,18 @@
         // asked, the overlays' are not: the line is baked from the store.
         attested = grades.includes("m");
         if (attested) {
-          // of the rows the entry left: a row of the place's own entry stays whatever its points
+          // of the rows the entry left: a row of the place's own entry stays
+          // whatever its points; of the others a row stands only where it
+          // points as the place does: pointed otherwise it is withheld, and
+          // with no pointing its source gives it is held back (heldByPointing)
           const gradeOfRow = new Map(all.map((row, i) => [row, grades[i]]));
-          const kept = routes.filter((row) => ofThisEntry.has(row) || gradeOfRow.get(row) !== "x");
-          withheld = routes.length - kept.length;
+          const kept = [];
+          for (const row of routes) {
+            const held = ofThisEntry.has(row) || isRuledRow(row) ? null : heldByPointing(gradeOfRow.get(row));
+            if (held === "x") withheld += 1;
+            else if (held) withheldUnpointed += 1;
+            else kept.push(row);
+          }
           routes = kept;
         }
       }
@@ -8480,6 +8668,30 @@
     // store carry no such mark.
     const notes = [];
     routes = routes.filter((row) => { const o = senseOpened(row); if (o && index.m_sources[row[3]]) notes.push({ ...o, m: row[3] }); return !o; });
+    // THE SPAN GRADE (span-grade-rule-v1; the corpus lane's relay v169, the
+    // owner's card 1 of 16 November 2026 and task 134). Under «only», at the
+    // place of the span store a run's card stands on (opts.spanAt: the
+    // card's spanPlaceOfCell, the place's own held, never the key's), a
+    // joined reading the place holds back never enters the pool: one the lane
+    // grades pointed otherwise where STEP tags the place's words as separate
+    // entries («the Jewish people» at «with Israel»), counted with the
+    // pointing's withheld, and one with no pointing, counted apart
+    // (withheldUnpointed). A row the source switches withheld is counted
+    // there, above, and not again. No guard: a single word's rows are held
+    // back only where some row points as the place does, so its card is never
+    // emptied; a run's joined readings may all rest held back, because its
+    // words one by one always remain on the card. Under «keep» and «letters»
+    // they stand. A pool asked with no place (the line's, the exporter's)
+    // holds none back
+    const spanHeld = { otherwise: 0, silent: 0 };
+    if (opts.spanAt && opts.spanAt.held && extra.length && pointingNow(W.pointed) === "only") {
+      extra = extra.filter((row) => {
+        const why = OVERLAY_ROWS.get(row) === "span-store" ? spanHeldWhy(opts.spanAt, SPAN_SERVED.get(row)) : null;
+        if (why) spanHeld[why] += 1;
+        return !why;
+      });
+      withheld += spanHeld.otherwise;
+    }
     // THE OVERLAYS' ROWS ARE ROWS LIKE THE STORE'S (the owner, 2026-10-03: "i
     // wouldnt autosort jastrow or samaritans last, no, just treat them normal,
     // we will add a toggle layer higher up to pull them out as modernity").
@@ -8488,10 +8700,21 @@
     // apart: one grouping, one sort, one credit order. Pulling them out is a
     // switch above this one, not a rule inside it.
     // overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores
+    // Asked as the store's are (unpointed-row-rule-v1): pointed otherwise,
+    // withheld; with no pointing of its own, held back. Two kinds of row
+    // beside the store are not asked their headwords here: a span store row
+    // is asked by the span grade, and a piece store row is a claim made at
+    // this very place, word and letters, the place's own reading, which
+    // stands as a row of the place's own entry does whatever its points
     if (extra.length) {
       const pointingOnly = attested && pointingNow(W.pointed) === "only" && W.pointed && isPointed(W.pointed);
-      const kept = pointingOnly ? extra.filter((row) => gradeRow(row, W.pointed) !== "x") : extra;
-      withheld += extra.length - kept.length;
+      const kept = pointingOnly ? extra.filter((row) => {
+        const ov = OVERLAY_ROWS.get(row);
+        if (ov === "span-store" || ov === "piece-store") return true;
+        const held = isRuledRow(row) ? null : heldByPointing(gradeRow(row, W.pointed, beginsWord));
+        if (held === "x") withheld += 1; else if (held) withheldUnpointed += 1;
+        return !held;
+      }) : extra;
       extra = kept;
       // and their stem, where the word's is known and a source names theirs
       if (ofAnotherStem) {
@@ -8748,12 +8971,16 @@
     // Strong's sign last where the word's own zone was baked so (signsLastOn):
     // carried on the pool, and on every copy of it (carryWithheld), so every
     // sort of it keeps the bake's order
-    const pool = sortPool(Object.assign([...groups.values()], { signsLast: signsLastOn(opts.bin || zone) }), surface, W);
-    pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
+    const pool = sortPool(Object.assign([...groups.values()], { signsLast: signsLastOn(opts.bin || zone), spanAt: opts.spanAt || null }), surface, { ...W, begins: beginsWord });
+    pool.withheld = withheld; pool.withheldUnpointed = withheldUnpointed; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
     pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.withheldByName = withheldByName; pool.namesHeld = namesHeld;
     pool.withheldBySense = withheldBySense; pool.sensesShown = sensesShown;
     pool.withheldByKind = withheldByKind; pool.kindsShown = kindsShown;
     pool.notes = notes;
+    // the span grade's: what the place held back, by why, and the place, so a
+    // sort of the pool again keeps the line's row first (sortPool's spanLine)
+    pool.withheldUnpointed = (pool.withheldUnpointed || 0) + spanHeld.silent;
+    pool.spanHeld = spanHeld; pool.spanAt = opts.spanAt || null;
     return pool;
   };
   // WHAT A POOL SAYS WAS WITHHELD RIDES WITH EVERY COPY OF IT. The card keeps
@@ -8764,12 +8991,18 @@
   // this code, 10 November 2026; fixed 13 November). Every count a pool
   // carries is named here once, and a copy takes them all.
   const carryWithheld = (to, from) => {
-    to.withheld = from.withheld; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
+    to.withheld = from.withheld; to.withheldUnpointed = from.withheldUnpointed; to.withheldBySources = from.withheldBySources; to.withheldByStem = from.withheldByStem; to.stems = from.stems; to.rows = from.rows;
     to.withheldByEntry = from.withheldByEntry; to.entry = from.entry; to.withheldByName = from.withheldByName; to.namesHeld = from.namesHeld;
     to.withheldBySense = from.withheldBySense; to.sensesShown = from.sensesShown;
     to.withheldByKind = from.withheldByKind; to.kindsShown = from.kindsShown;
     to.notes = from.notes;
     to.signsLast = from.signsLast;
+    // and how many readings the copy set aside as readings of the form in its
+    // parts (the whole form of a word its place divides, below), so the card
+    // can say where they stand (parts-a-press-away-rule-v1)
+    to.inParts = from.inParts;
+    // and what a span place held back, and the place (span-grade-rule-v1)
+    to.spanHeld = from.spanHeld; to.spanAt = from.spanAt;
     return to;
   };
   const oldestFirst = (a, b) => {
@@ -8816,10 +9049,10 @@
     const pieceLast = (a, b) => (pieceOnly(a) ? 1 : 0) - (pieceOnly(b) ? 1 : 0);
     const TIER = { m: 0, n: 1, x: 2 };
     // the grade of one record: its own headwords against the open word when
-    // it carries them (pointing-grade-rule-v4), the lattice card's grade
+    // it carries them (pointing-grade-rule-v5), the lattice card's grade
     // otherwise, "-" when neither can say
     const own = W.pointed;
-    const gradeOf = (row) => { const sg = own ? gradeRow(row, W.pointed) : "-"; if (sg !== "-") return sg; const i = idxOf(row); return i >= 0 ? (gr.g[i] || "-") : "-"; };
+    const gradeOf = (row) => { const sg = own ? gradeRow(row, W.pointed, W.begins !== false) : "-"; if (sg !== "-") return sg; const i = idxOf(row); return i >= 0 ? (gr.g[i] || "-") : "-"; };
     // whether anything here is graded at all: the lattice's card, or rows
     // that brought their own headwords
     const graded = !!gr || (own && list.some((r) => rk(r).some(rowCarriesHeadwords)));
@@ -8869,7 +9102,9 @@
     const wantClass = { pd: 0, by: 1, "by-sa": 2 }[licencePref];
     // A SPAN'S OWN LINE STAYS FIRST UNDER A LICENSE CLASS (licence-columns-rule-v1;
     // 16 November 2026). The line over a run the span store names reads the
-    // store's first row on (span-store I1: refreshJoinGloss's span branch), and
+    // line's row (spanLineRow: the store's first that rests open, but a
+    // pointer and, under «only», a row the place holds back; span-store I1:
+    // refreshJoinGloss's span branch), and
     // no license column moves it: the columns are baked for the table's keys,
     // and a span's key is none of them. So on the span's own pool the class
     // sorts every other reading under the line's, which the card opens on
@@ -8882,11 +9117,12 @@
     // opened a run's words; the live page the same)
     const spanLine = (() => {
       if (wantClass === undefined || !surface) return null;
-      const rows = spanRowsOn(surface);
-      if (!rows.length) return null;
-      const whole = readingKey(rows[0].slots[1]);
+      // the line's row (spanLineRow): no pointer, and under «only» none the place holds back
+      const row = spanLineRow(surface, list.spanAt || null, pointingNow(W.pointed) === "only");
+      if (!row) return null;
+      const whole = readingKey(row.slots[1]);
       if (list.some((r) => readingKey(r.text) === whole)) return whole;
-      const first = readingsOfRow(rows[0].slots)[0];
+      const first = readingsOfRow(row.slots)[0];
       return first ? readingKey(first) : whole;
     })();
     const spanLineFirst = (a, b) => (spanLine === null ? 0 : (readingKey(a.text) === spanLine ? 0 : 1) - (readingKey(b.text) === spanLine ? 0 : 1));
@@ -9039,7 +9275,7 @@
     if (runTakesDefault(run)) return false;
     // and so does a run whose every word reads its own place (runReadsItsWords), before the span's line
     if (runReadsItsWords(run)) return false;
-    if (!run.__table && spanRowsOn(run.__key).length) return true;
+    if (!run.__table && spanLineRow(run.__key, spanPlaceAt(run.__words, run.__key), masorah === "only")) return true;
     const table = run.__table || zone.gloss || {};
     const gmT = run.__table ? null : zone.gloss_m;
     return !!runWholeForms(run.__words.map((w) => w.k)).slice(0, 1).find((f) => {
@@ -9881,7 +10117,7 @@
       const mLine = document.createElement("p"); mLine.className = "kq-role"; mLine.dataset.masorah = cardPos;
       mLine.textContent = cardPos === "letters"
         ? "the letters only — the pointing stands on the page and is lifted here; every reading of these letters, and the ones whose source points this word otherwise lead"
-        : "only readings of this pointing — a source that points the word otherwise is not asked";
+        : "only readings of this pointing — a source that points the word otherwise, or does not point it, is not asked";
       head.append(mLine);
     }
     // THE CARD CARRIES NO POINTING SWITCH OF ITS OWN (the owner, 2026-10-03:
@@ -10195,7 +10431,7 @@
       // only where the shelf reads it (the line's own test: the baked table)
       // and the run's line reads it whole: a run whose every word reads its
       // own place opens on the word pressed (runReadsItsWords, as the line)
-      const asWritten = !runReadsItsWords({ __words: opts.run.words || [] }) && ((bin.gloss && bin.gloss[region.k]) || spanRowsOn(region.k).length) ? covers.find((c) => c.length === 1 && c[0].surface === region.k) : null;
+      const asWritten = !runReadsItsWords({ __words: opts.run.words || [] }) && ((bin.gloss && bin.gloss[region.k]) || spanLineRow(region.k, bin === zone ? spanPlaceAt(opts.run.words, region.k) : null, pointingNow() === "only")) ? covers.find((c) => c.length === 1 && c[0].surface === region.k) : null;
       // a named run opens the same way: the line reads it word by word, so
       // the card opens on the word pressed, and the whole run is one press away
       cover = asWritten || covers[covers.length - 1];
@@ -10314,6 +10550,16 @@
       const same = cover.filter((c) => c.surface === surface);
       return same.length === 1 && same[0].from === same[0].to ? placeOf(opts.run.words[same[0].from]) : null;
     };
+    // THE PLACE OF THE SPAN STORE A CELL OF A RUN'S CARD STANDS ON
+    // (span-grade-rule-v1): the place at the cell's words, under the cell's
+    // key (spanPlaceAt), whose held the cell's pool reads. A cell of letters
+    // the division open holds twice names none, and so do a pair's branch
+    // (its words are the branch's own) and a word's own card
+    const spanPlaceOfCell = (surface) => {
+      if (bin !== zone || !opts.run || !Array.isArray(opts.run.words) || !SPAN_BY_KEY.has(surface)) return null;
+      const same = cover.filter((c) => c.surface === surface);
+      return same.length === 1 ? spanPlaceAt(opts.run.words.slice(same[0].from, same[0].to + 1), surface) : null;
+    };
     // a block's pool is asked once per standing: the same letters stand for
     // the set's piece on the set's division and for themselves on any other,
     // and a cell the piece store answers is asked at its own place
@@ -10416,8 +10662,8 @@
     const textOfCell = (surface, at = null) => {
       const p = picked.get(surface);
       if (p) return p.read ? `${spanJoin(p.text)} (read ${p.read})` : spanJoin(p.text);
-      // a span the store names: its first row's reading, as the line reads it
-      { const rows = spanRowsOn(surface); if (rows.length) return spanJoin(rows[0].slots[1]); }
+      // a span the store names: its line's row's reading, as the line reads it (spanLineRow)
+      { const row = spanLineRow(surface, spanPlaceOfCell(surface), pointingNow() === "only"); if (row) return spanJoin(row.slots[1]); }
       // on the source's own division, a block the reader left alone reads
       // the source's piece at its position (piecesAt), never the letters'
       // own first word
@@ -10472,7 +10718,7 @@
     const readingsOfCell = (surface, at = null) => {
       const p = picked.get(surface);
       if (p) { const r = mOfPick(p); return r ? [r] : null; }
-      { const rows = spanRowsOn(surface); if (rows.length) return [readingOfRow(rows[0].slots)]; }
+      { const row = spanLineRow(surface, spanPlaceOfCell(surface), pointingNow() === "only"); if (row) return [readingOfRow(row.slots)]; }
       if (setCut && cover === setCut) { const i = cellAt(surface, at); const pc = i >= 0 ? word.pg[i] : null; if (pc && pc.g) { const r = readingOfPiece(pc.s); return r ? [r] : null; } }
       const lead = (pl) => (pl && pl.length && pl[0].records && pl[0].records[0] ? [readingOfRow(pl[0].records[0])] : []);
       if (setCut && surface === region.k) return lead(cache.get(poolKey(surface)));
@@ -11070,7 +11316,7 @@
       if (!n) return null;
       if (ruledLine(memKey, zone.gloss, word) !== null) return { n, on: null, piece: false, filling: null };
       const d = defaultAt(word), first = dfltFirstNow();
-      if (d) return { n, on: d.src, piece: false, filling: d.layer === "second" ? d.of : null };
+      if (d) return { n, on: d.src, piece: false, filling: d.layer === "second" || d.layer === "rest" ? d.of : null };
       // that the place's reading fills out the first is said only once the
       // first's file is here, as the label says it: before, the page cannot
       // know the first has none here (the review of 14 November 2026: «on the
@@ -11160,7 +11406,7 @@
         const row = [0, placeSet.text, placeSet.text, placeSet.mId, null, null, null];
         PLACE_ROWS.add(row);
         const one = [{ text: placeSet.text, year: Infinity, ledger: 0, records: [row], place: true, placeFirst: true }];
-        one.withheld = 0; one.withheldBySources = 0; one.rows = 1;
+        one.withheld = 0; one.withheldUnpointed = 0; one.withheldBySources = 0; one.rows = 1;
         cache.set(SET_KEY, one);
       }
       const wait = document.createElement("p"); wait.className = "r-wait"; wait.textContent = "Fetching one shard…";
@@ -11179,11 +11425,14 @@
       if (!cache.has(askKey)) {
         try {
           const at = placeOfCell(surface);
-          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace, bin, kindsAt: kindsAtCell, pills: true });
+          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace, bin, kindsAt: kindsAtCell, pills: true, spanAt: spanPlaceOfCell(surface), ruled: picked.get(surface) || null });
           // the whole form, where the set has its division: the set is not a
-          // reading of the form as one word, and stands on its division
+          // reading of the form as one word, and stands on its division; the
+          // copy counts what it set aside (inParts), which stands a press away
           if (got && setCut && surface === region.k) {
-            got = carryWithheld(got.filter((g) => !isDividedReading(g)), got);
+            const whole = carryWithheld(got.filter((g) => !isDividedReading(g)), got);
+            whole.inParts = got.length - whole.length;
+            got = whole;
           }
           // the written branch of a pair, defined by what is read (kq-declared-weld-v1)
           if (got && kqWeldHere(surface)) got = await kqWeld(got, surface);
@@ -11206,6 +11455,8 @@
         }
       }
       const pool = unreachable ? null : cache.get(poolKey(surface));
+      // the span place this cell stands on and what it held back, for a check to read (span-grade-rule-v1)
+      window.__spanHeld = pool && pool.spanAt ? { ref: pool.spanAt.ref, first: pool.spanAt.first, last: pool.spanAt.last, key: pool.spanAt.key, otherwise: (pool.spanHeld || {}).otherwise || 0, silent: (pool.spanHeld || {}).silent || 0 } : null;
       readRow.replaceChildren(label);
       const dfltHere = dfltHereNow();
       // the default source whose reading the place's line said (its pieces':
@@ -11396,7 +11647,7 @@
         // exists, and a block whose every row they withheld was read as a
         // block no dictionary gives — and its rung forgotten. It says what
         // withheld it, keeps the rung, and stands on no record meanwhile.
-        if (pool && (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || kindsHeldN(pool))) {
+        if (pool && (pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || kindsHeldN(pool))) {
           const bits = [];
           // what rests shut emptied it, in the record's words, with the press that opens them (dictionary-kinds-rule-v1)
           const nK = kindsHeldN(pool);
@@ -11406,6 +11657,7 @@
           if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
           if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
           if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
+          if (pool.withheldUnpointed) bits.push(`${pool.withheldUnpointed} record${pool.withheldUnpointed === 1 ? "" : "s"} held back — their source does not point this word`);
           if (pool.withheldByStem) bits.push(`${pool.withheldByStem} record${pool.withheldByStem === 1 ? "" : "s"} withheld by the stem — their source reads another stem of this verb than ${(pool.stems || []).join(" or ")}`);
           p.className = "kq-role sources-withheld";
           p.textContent = `${bits.join("; ")}. No record is left to read here. Nothing here says the shelf lacks it.`;
@@ -11414,19 +11666,35 @@
           readRow.append(p);
           { const nl = notesLine(); if (nl) readRow.append(nl); }
           dSlot.replaceChildren(); selectedRecordRef.m = null;
-          const onlyShut = nK && !(pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense);
+          const onlyShut = nK && !(pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense);
           paintNow(cover.map((c, i) => textOfCell(c.surface, i)).join(" + "), onlyShut ? "every record for this block rests shut" : "every record for this block is withheld by your switches");
           clampHud(); return;
         }
         // a rung of a run's lattice nothing on the shelf answers says so in
         // the run's own terms; the words one by one are always a press away
         const runWhole = !!(opts.run && cover.length === 1);
+        // THE WHOLE FORM OF A DIVIDED WORD SAYS WHERE ITS READINGS STAND
+        // (parts-a-press-away-rule-v1-a-whole-form-whose-every-reading-reads-it-in-its-parts-says-the-readings-of-its-parts-are-a-press-away;
+        // the owner, 16 November 2026, card 3 of the four cards, «ok go
+        // ahead»). On the whole form of a word its place divides, the readings
+        // that read the form in its parts are set aside: they stand on the
+        // set's division, with the readings of each part (the owner's ruling
+        // of 3 October). Where that left nothing and no switch withheld a
+        // record, the card said «No displayable route in the catalog for this
+        // form.» at about 40,000 places, and nothing of the readings a press
+        // away. It says, as a run's rung does, that no dictionary on this
+        // shelf gives the form whole and that the readings of its parts are a
+        // press away: only where the copy set readings aside (inParts), so
+        // the division holds them. A form the catalog has rows for and none
+        // it may display still says so, and a form it has no row for says that.
+        if (!runWhole && pool && pool.inParts) p.dataset.inParts = String(pool.inParts);
         p.textContent = runWhole
           ? (/ /u.test(surface)
             ? "No dictionary on this shelf gives these words as one entry yet. The words one by one are a press away."
             : surface === region.k
             ? "No dictionary on this shelf gives the run as written, maqaf and all. The words one by one are a press away."
             : "No dictionary on this shelf gives the run joined as one word. The words one by one are a press away.")
+          : pool && pool.inParts ? "No dictionary on this shelf gives this form whole. The readings of its parts are a press away."
           : pool ? "No displayable route in the catalog for this form." : "No exact route in the catalog for this form.";
         readRow.append(p);
         { const nl = notesLine(); if (nl) readRow.append(nl); }
@@ -11472,17 +11740,18 @@
       // opens, wherever the sort put it: a pressed pill that is not first
       // says the sort moved the row, and the line is still what it answers.
       const lineSaid = (() => {
-        // a span the store names opens on the store's first row, the one the
-        // line under the cell prints (span-store I1: by_key, in the store's
-        // order) — whatever the pool's sort put first among its rows. Where
-        // that row's ledger divides it, no pill reads the row whole, and the
-        // card opens on the row's first reading (10 November 2026: until
+        // a span the store names opens on the line's row, the one the line
+        // under the cell prints (span-store I1: by_key, in the store's order,
+        // but a pointer and, under «only», a row the place holds back:
+        // spanLineRow) — whatever the pool's sort put first among its rows.
+        // Where that row's ledger divides it, no pill reads the row whole, and
+        // the card opens on the row's first reading (10 November 2026: until
         // then nothing said so, and such a card opened on whatever the sort
         // put first, which was that reading only while no sort moved it)
-        { const rows = spanRowsOn(surface); if (rows.length) {
-          const whole = spanJoin(rows[0].slots[1]).toLowerCase();
+        { const row = spanLineRow(surface, spanPlaceOfCell(surface), pointingNow() === "only"); if (row) {
+          const whole = spanJoin(row.slots[1]).toLowerCase();
           if (pool.some((r) => spanJoin(r.text).toLowerCase() === whole)) return whole;
-          const first = readingsOfRow(rows[0].slots)[0];
+          const first = readingsOfRow(row.slots)[0];
           return first ? spanJoin(first).toLowerCase() : whole;
         } }
         // a named run's word opens on what the line under that word prints
@@ -11699,6 +11968,56 @@
         }
         // the card's notes, under the record held and before its corroboration (sense-openings-rule-v1)
         { const nl = notesLine(); if (nl) body.append(nl); }
+        // THE READING'S OWN NOTES, under the card's and drawn as they are: the
+        // provider's remark on its own file where a row of the reading carries
+        // one (provider-note-rule-v1), then Strong's derivation where a row of
+        // his names an entry whose derivation hedges (strongs-hedges-rule-v1).
+        // Each line says whose words follow and of what; the words themselves
+        // stand in the dictionary's blue, each line's data saying what it is
+        // (notesOf, and each note's source and entry) for a check to ask.
+        const fileNotes = [];
+        for (const row of selected.records) {
+          const v = fileNoteOf(row);
+          if (v && !fileNotes.some((y) => y.by === v.by && y.words === v.words)) fileNotes.push({ m: row[3], ...v });
+        }
+        for (const x of fileNotes) {
+          const line = document.createElement("p"); line.className = "sense-notes"; line.dataset.notesOf = "file";
+          line.append(`${x.by}, in a note on its own file: `);
+          const note = document.createElement("span"); note.className = "sense-note"; note.dataset.m = x.m; note.textContent = x.words;
+          line.append(note);
+          line.dataset.notes = "1";
+          body.append(line);
+        }
+        const hedgesAt = body.lastChild;
+        const putHedges = () => {
+          const hs = hedgesOf(selected.records, index.m_sources);
+          if (!hs.length) return 0;
+          const line = document.createElement("p"); line.className = "sense-notes"; line.dataset.notesOf = "derivation";
+          line.append(`${HEDGES.by}, on ${HEDGES.says}: `);
+          hs.forEach((x, i) => {
+            if (i) line.append(" \u00b7 ");
+            // where the reading's rows are of more entries than one with a derivation to give, each names its entry
+            if (hs.length > 1) line.append(`${x.entry} `);
+            const note = document.createElement("span"); note.className = "sense-note";
+            note.dataset.m = x.m; note.dataset.entry = x.entry;
+            // his words byte for byte, each hedge word in italics where the ledger places it
+            let at = 0;
+            for (const h of x.hedges) {
+              const [a, b] = Array.isArray(h.at) ? h.at : [-1, -1];
+              if (!(Number.isInteger(a) && Number.isInteger(b) && a >= at && b > a && b <= x.text.length)) continue;
+              if (a > at) note.append(x.text.slice(at, a));
+              note.append(Object.assign(document.createElement("i"), { textContent: x.text.slice(a, b) }));
+              at = b;
+            }
+            if (at < x.text.length) note.append(x.text.slice(at));
+            line.append(note);
+          });
+          line.dataset.notes = String(hs.length);
+          hedgesAt.after(line);
+          return hs.length;
+        };
+        if (HEDGES) putHedges();
+        else { const was = selected; hedgesReady().then((f) => { if (f && was === selected && hedgesAt.isConnected && putHedges()) clampHud(); }); }
         // The M is the one line that never scrolls: it is who says this, and a
         // reading whose source has scrolled out of sight is a reading standing
         // on nothing the reader can see. Everything else about the record —
@@ -11936,11 +12255,11 @@
         const RANK = { m: 0, n: 1, x: 2, "-": 3 };
         btn.dataset.grade = route.records.map((r) => rowGradeFor(r, surface)).sort((p, q) => RANK[p] - RANK[q])[0];
         const oldestM = index.m_sources[route.records[0][3]];
-        // the year the title says: the reading's oldest, or, where its lead
-        // record is a span row (whose year orders nothing: orderYearOf),
-        // that row's own year, said as every credit says it
+        // the year the title says: the reading's oldest, said as every credit
+        // says it (a span row's year dates its reading as a store row's does
+        // since 16 November 2026: orderYearOf)
         const leadRow = route.records[0];
-        const titleYear = Number.isFinite(route.year) ? route.year : (OVERLAY_ROWS.get(leadRow) === "span-store" && /^\d{3,4}$/u.test(String(leadRow[4])) ? Number(leadRow[4]) : null);
+        const titleYear = Number.isFinite(route.year) ? route.year : null;
         btn.title = [titleYear !== null ? yearSaid(leadRow[3], titleYear) : "no source year", oldestM ? oldestM.label : ""].filter(Boolean).join(" · ");
         // a default source's own pick says whose it is and its number at this place
         if (route.dfltPill) btn.title = `${route.dfltPill} ${route.dfltN} at this place \u00b7 pressing it rules this reading wherever this form stands`;
@@ -11980,7 +12299,7 @@
         // a copy is sorted each time, so returning to an order returns to
         // exactly its pool — a sort in place would carry the previous
         // order's tie-breaks along
-        const every = sortPool(Object.assign([...pool], { signsLast: !!pool.signsLast }), surface);
+        const every = sortPool(Object.assign([...pool], { signsLast: !!pool.signsLast, spanAt: pool.spanAt || null }), surface);
         // signs off: a reading carrying a source's own sign is not offered;
         // a card whose every reading carries one keeps them all rather than
         // stand empty, and says so
@@ -12013,6 +12332,9 @@
         // what the masorah filter withheld, on the row and exposed, so a
         // check can ask the page rather than recount the shard
         pills.dataset.withheld = String(pool.withheld || 0);
+        // and what the span place held back, by why (span-grade-rule-v1): pointed otherwise, no pointing
+        pills.dataset.spanHeld = `${(pool.spanHeld || {}).otherwise || 0},${(pool.spanHeld || {}).silent || 0}`;
+        pills.dataset.unpointedWithheld = String(pool.withheldUnpointed || 0);
         pills.dataset.stemWithheld = String(pool.withheldByStem || 0);
         pills.dataset.entryWithheld = String(pool.withheldByEntry || 0);
         pills.dataset.nameWithheld = String(pool.withheldByName || 0);
@@ -12036,13 +12358,15 @@
         // the source switches' count share a line, each its own span, so the
         // pointing standing by default costs the readings band no row
         let wLine = readRow.querySelector(".withheld-line");
-        if (pool.withheld || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || pool.sensesShown || kindsHeldN(pool) || pool.kindsShown) {
+        if (pool.withheld || pool.withheldUnpointed || pool.withheldByEntry || pool.withheldByName || pool.withheldByStem || pool.withheldBySources || pool.withheldBySense || pool.sensesShown || kindsHeldN(pool) || pool.kindsShown) {
           if (!wLine) { wLine = document.createElement("p"); wLine.className = "kq-role withheld-line"; readRow.append(wLine); }
           wLine.replaceChildren();
           const parts = [];
           if (pool.withheldByEntry) parts.push(Object.assign(document.createElement("span"), { className: "entry-withheld", textContent: `${pool.withheldByEntry} of another entry than ${(pool.entry || []).join(" or ")}, withheld` }));
           if (pool.withheldByName) parts.push(Object.assign(document.createElement("span"), { className: "name-withheld", textContent: `${pool.withheldByName} given as a name by ${pool.withheldByName === 1 ? "its" : "their"} source, withheld` }));
           if (pool.withheld) parts.push(Object.assign(document.createElement("span"), { className: "masorah-withheld", textContent: `${pool.withheld} of ${pool.rows} pointed otherwise, withheld` }));
+          // a record its source does not point qualifies for no pointing (unpointed-row-rule-v1), said apart
+          if (pool.withheldUnpointed) parts.push(Object.assign(document.createElement("span"), { className: "unpointed-withheld", textContent: `${pool.withheldUnpointed} of ${pool.rows} not pointed by their source, held back` }));
           if (pool.withheldByStem) parts.push(Object.assign(document.createElement("span"), { className: "stem-withheld", textContent: `${pool.withheldByStem} of another stem than ${(pool.stems || []).join(" or ")}, withheld` }));
           if (pool.withheldBySources) parts.push(Object.assign(document.createElement("span"), { className: "sources-withheld", textContent: `${pool.withheldBySources} withheld by your source switches (${sourcesOffSay()})` }));
           // the word senses' count is the switch itself: one press shows them, or holds them back again
@@ -12672,20 +12996,22 @@
     // entry names as one thing reads that entry's R under its M, one line and
     // one blob over all its words; several rows, the first by the store's
     // order (NAME rows first), a row whose source the reader switched off
-    // giving way to the next
+    // giving way to the next, and so does a pointer (a form_of row never
+    // leads a line, v169 section 5) and, under «only», a row the place the
+    // run stands on holds back (spanLineRow, span-grade-rule-v1)
     // A run the default source reads word by word (runTakesDefault) reads
     // its words' own lines, below, not a span's or a whole form's; and so does
     // a run whose every word has its own reading at the place (runReadsItsWords),
     // its joined reading a press away on the card
     if (heldRun === null && run.__key && !run.__table && SPAN_BY_KEY.has(run.__key) && !runTakesDefault(run) && !runReadsItsWords(run)) {
-      const rows = spanRowsOn(run.__key);
-      if (rows.length) {
+      const row = spanLineRow(run.__key, spanPlaceAt(run.__words, run.__key), masorah === "only");
+      if (row) {
         const l = lineEl();
         delete l.dataset.off; delete l.dataset.form;
-        const text = spanJoin(rows[0].slots[1]);
+        const text = spanJoin(row.slots[1]);
         l.replaceChildren(); l.textContent = text; l.title = text; l.classList.remove("bare", "parts");
         l.dataset.span = run.__key;
-        const chip = licenseChipFor([readingOfRow(rows[0].slots)]);
+        const chip = licenseChipFor([readingOfRow(row.slots)]);
         if (chip) l.append(chip);
         drawTies(run);
         return;
@@ -16441,9 +16767,15 @@
     const f = fills[first] || {};
     const b = second ? Number(f[second]) || 0 : 0;
     const c = N - hx - b;
-    // a second named in a sentence: STEP's layer as what it is, the line as
-    // it rests, and any other source by its name
-    const secondSaid = (y) => (y === "step" ? `${DFLT_AS_IT_RESTS[0].toUpperCase()}${DFLT_AS_IT_RESTS.slice(1)}` : dfltPill(y));
+    // a second named in a sentence by its name, STEP's too (the owner, 16
+    // November 2026: the note said «the line as it rests» and «today's line»
+    // for what is STEP's line at all but a few dozen of the 305,431 words of
+    // the thirty-nine books, so the reader saw no STEP in it)
+    const secondSaid = (y) => dfltPill(y);
+    // STEP FILLS OUT LAST: what the first and its second both leave, where
+    // STEP's line as it rests draws one (the index's rest_step), is STEP's
+    // share; today's line is said only of what is left after it
+    const rs = second && second !== "step" && dfltOn("step") ? Number((((DFLT_BOOK && DFLT_BOOK.rest_step) || {})[first] || {})[second]) || 0 : 0;
     if (first === "step") {
       // STEP's note says what its layer is, then the share where STEP has its
       // own reading and that line stands (has.step; the lead's rule: «STEP
@@ -16464,16 +16796,20 @@
     } else {
       if (hx >= N) { sayEl.textContent = `${X} reads every word of ${work}.`; putNote(made); return; }
       // the sentences, each share its own count: «BDB is partial: its own
-      // reading at 31.6% of Ruth. The line as it rests fills out 68.2%,
-      // chosen for this book. Today’s line stands at the other 0.2%.»
+      // reading at 31.6% of Ruth. STEP fills out 68.2%, chosen for this
+      // book. Today’s line stands at the other 0.2%.», and under a second
+      // the reader chose: «MACULA is partial: its own reading at 96.2% of
+      // Genesis. UBS fills out 0.3%, then STEP 3.3%.»
+      const kq = Number(DFLT_BOOK.kq) || 0;
+      const left = c - rs;
+      const why = `pairs written one way and read another (${kq.toLocaleString("en-US")} words of ${work}) keep today’s line under every source; joined words a dictionary reads as one keep its line unless ${X} reads every word of them; so do the words of a reading the place gives across words («Beth-» «-lehem»)`;
       sayEl.append(`${X} is partial: its own reading at `, dfltShare(hx, N), ` of ${work}.`);
-      if (second) sayEl.append(` ${secondSaid(second)} fills out `, dfltShare(b, N), dfltSecondIsAuto(first) ? ", chosen for this book." : ".");
-      else sayEl.append(" No other source reads the rest.");
-      if (c > 0) {
-        const kq = Number(DFLT_BOOK.kq) || 0;
-        sayEl.append(" Today’s line stands at the other ", dfltShare(c, N,
-          `pairs written one way and read another (${kq.toLocaleString("en-US")} words of ${work}) keep today’s line under every source; joined words a dictionary reads as one keep its line unless ${X} reads every word of them; so do the words of a reading the place gives across words («Beth-» «-lehem»)`), ".");
-      }
+      if (second) {
+        sayEl.append(` ${secondSaid(second)} fills out `, dfltShare(b, N), dfltSecondIsAuto(first) ? ", chosen for this book" : "");
+        if (rs > 0) sayEl.append(", then STEP ", left > 0 ? dfltShare(rs, N) : dfltShare(rs, N, why));
+        sayEl.append(".");
+      } else sayEl.append(" No other source reads the rest.");
+      if (left > 0) sayEl.append(" Today’s line stands at the other ", dfltShare(left, N, why), ".");
     }
     // the chooser of the second: every other source with what it would fill;
     // one that fills nothing here, or is switched off, cannot be pressed, and

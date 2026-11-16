@@ -207,7 +207,7 @@ if (spanIndex) {
   const spanRecount = recount && !!priorSpan && priorSpan.list_sha256 === pin.sha256;
   spanIndex.source_years = { rule_id: RULE_ID, applied_on: spanRecount ? priorSpan.applied_on : on, ...(spanRecount ? { recounted_on: on } : {}), applied_by: "tools/apply-source-years-v1.mjs", list_sha256: pin.sha256,
     what: "a span row of a source the years list names carries that source's year in its year slot (slot 4) as a store row does; the other slots are the lane's, byte for byte",
-    on_the_card: "a span row's year is said beside its credit and orders nothing: the span store's own order (by_key: names first) stands on the card, as the line reads the store's first row, until the corpus lane says how its order and the years combine (zone.html, orderYearOf; check-span-store-v1 S6)",
+    on_the_card: "a span row's year is said beside its credit and orders its reading as a store row's year does: the tier before 1940, then the year, then the rank (the corpus lane's v169, section 5, taken 16 November 2026; zone.html, orderYearOf; check-span-store-v1 S6). From 10 November until then it ordered nothing; the span store's own order (by_key: names first) now orders only the row a joined line reads (zone.html, spanLineRow)",
     years_moved: spanRecount ? priorSpan.years_moved : spanMoved, books_rewritten: spanRecount ? priorSpan.books_rewritten : spanFilesMoved };
   writeFileSync(spanIndexPath, JSON.stringify(spanIndex, null, 1));
 }

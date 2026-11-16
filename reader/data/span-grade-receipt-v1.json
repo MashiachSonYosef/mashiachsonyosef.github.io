@@ -1,0 +1,828 @@
+{
+ "schema_version": "SPAN_GRADE_RECEIPT_V1",
+ "rule_id": "span-grade-rule-v1-a-joined-reading-with-no-pointing-or-pointed-otherwise-where-step-tags-its-words-as-separate-entries-rests-held-back",
+ "applied_on": "2026-11-16T15:46:18.387Z",
+ "applied_by": "tools/apply-span-grade-v1.mjs",
+ "what": "a place of the span store names, under held, the rows it holds back under «only this pointing», each with why: «otherwise», a row the corpus lane grades pointed otherwise where STEP's own tags on the place's words (TAHOT's Strong's number on each word's core, its letter set aside) name no one entry over every word; «silent», a row with no pointed headword. A row graded same or same word stands, and so does one graded otherwise where STEP tags every word with one entry or a word carries no tag. Held is the place's own and never the key's: one key stands at many places. The reader leaves a held row out of the run's card at that place under «only» and counts it (pointed otherwise with the pointing's withheld, no pointing apart); under «keep» and «letters» it stands. A place that holds none carries no held; every other member of a place and every row is the lane's, byte for byte",
+ "ruled": {
+  "of": "16 November 2026",
+  "the_owners_words": "ok go ahead (to recommendation card 1 of the four cards, task 92), and «if its no pointing why would that in your head auto qualify it for all pointings rather than none» (task 134)",
+  "card": "wip/2026-11-16/the-four-cards/FOUR-CARDS-2026-11-16.md on the notes branch, card 1, with its probe tools/span-tags.mjs and its log logs/span-tags.txt beside it",
+  "rule_id": "span-grade-rule-v1-a-joined-reading-with-no-pointing-or-pointed-otherwise-where-step-tags-its-words-as-separate-entries-rests-held-back",
+  "what": "under «only this pointing» a place holds back a row the list grades silent (no pointing), and a row it grades otherwise where STEP's own tags on the place's words (TAHOT's Strong's number on each word's core, its letter set aside) name no one entry over every word; an otherwise row stands where STEP tags every word with one entry, or where a word of the place carries no tag; a row graded same or same word stands. No guard: unlike a single word's rows, every joined reading of a place may rest held back, because its words one by one always remain on the card"
+ },
+ "pin": {
+  "file": "data/span-grade/PIN.json",
+  "sha256": "19f6b36c62a9c5a37ed1f0bd8f45277e12d9633b521568b1996e3b5135bfc68d"
+ },
+ "inputs": {
+  "list": {
+   "file": "span-grade-v1/span-grade-v1.jsonl",
+   "sha256": "07d566cff1754b3923e95acb3cf365e90092c9ec0a89026b2e856caea5a3200e",
+   "lines": 2845,
+   "bytes": 1068722
+  },
+  "rule": {
+   "file": "span-grade-v1/RULE.md",
+   "bytes": 8966,
+   "sha256": "35bcf6a0e7af0891de429c82cef169dc61a3e49b4bdd529338279cc3a304c873"
+  },
+  "lanes_receipt": {
+   "file": "span-grade-v1/receipt-v1.json",
+   "bytes": 31303,
+   "sha256": "a983b66c2273625078e957f89fc07901ea378a9d29a3ee7958d50f594450aeeb"
+  },
+  "span_store": {
+   "books": 39,
+   "lane_books_sha256": "f8992b5392edb536c3ff16ef2762968bab4133056667a611bedb82bdbce40b26",
+   "what": "the book files read with every place's held taken out, each in the bake's own byte shape, by the sha256 of the lines «<file> <sha256 of the file>» in name order (the lane's receipts' own way)",
+   "the_lane_read": "f8992b5392edb536c3ff16ef2762968bab4133056667a611bedb82bdbce40b26",
+   "the_store_was_that_version": true
+  },
+  "step_tags": {
+   "words": 5745,
+   "sha256": "986ab07152d9e9b4054301c4c446f9c57ec71f5c98341d7a3ea0848f699ec22f",
+   "what": "STEP's tags read on every word of every place, one JSON line [book, verse, word number, tags] each, in the list's order (the zones themselves move with every round; the tags read are what the rule reads)"
+  }
+ },
+ "counts": {
+  "places": 2845,
+  "rows": 9222,
+  "rows_held": 473,
+  "rows_held_otherwise": 194,
+  "rows_held_silent": 279,
+  "places_holding_a_row": 351,
+  "places_holding_every_row": 315,
+  "by_grade": {
+   "same": {
+    "rows": 8189,
+    "held": 0
+   },
+   "same word": {
+    "rows": 382,
+    "held": 0
+   },
+   "silent": {
+    "rows": 279,
+    "held": 279
+   },
+   "otherwise": {
+    "rows": 372,
+    "held": 194
+   }
+  },
+  "otherwise_rows_by_step_tags": {
+   "one entry": 165,
+   "a word with no tag": 13,
+   "separate entries": 194
+  },
+  "otherwise_places_by_step_tags": {
+   "one entry": 31,
+   "a word with no tag": 3,
+   "separate entries": 86
+  },
+  "axis": "rows (a row at a place) and places (where the span store joins words)"
+ },
+ "by_source": {
+  "M13": {
+   "label": "Kaikki machine-readable Hebrew dictionary from English Wiktionary",
+   "rows": 2785,
+   "held_otherwise": 60,
+   "held_silent": 125,
+   "otherwise_kept_one_entry": 11,
+   "otherwise_kept_no_tag": 0
+  },
+  "M197": {
+   "label": "STEP Bible TAHOT source-explicit Expanded Strong lexical definition frame",
+   "rows": 950,
+   "held_otherwise": 10,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 21,
+   "otherwise_kept_no_tag": 4
+  },
+  "M19": {
+   "label": "STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column",
+   "rows": 857,
+   "held_otherwise": 10,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 18,
+   "otherwise_kept_no_tag": 2
+  },
+  "M33": {
+   "label": "Open Scriptures Hebrew Lexical Index",
+   "rows": 839,
+   "held_otherwise": 24,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 18,
+   "otherwise_kept_no_tag": 3
+  },
+  "M2": {
+   "label": "Wikidata Hebrew lexeme explicit English sense gloss",
+   "rows": 735,
+   "held_otherwise": 8,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 10,
+   "otherwise_kept_no_tag": 0
+  },
+  "M9": {
+   "label": "Strong's Hebrew Dictionary via Open Scriptures",
+   "rows": 497,
+   "held_otherwise": 24,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 23,
+   "otherwise_kept_no_tag": 3
+  },
+  "M18": {
+   "label": "UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses",
+   "rows": 489,
+   "held_otherwise": 10,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 13,
+   "otherwise_kept_no_tag": 0
+  },
+  "M17": {
+   "label": "Semantic Dictionary of Biblical Hebrew via HiperBiblia",
+   "rows": 444,
+   "held_otherwise": 14,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 3,
+   "otherwise_kept_no_tag": 0
+  },
+  "M199": {
+   "label": "ETCBC Biblia Hebraica Stuttgartensia Amstelodamensis context-free lexeme gloss",
+   "rows": 397,
+   "held_otherwise": 9,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 7,
+   "otherwise_kept_no_tag": 0
+  },
+  "M5": {
+   "label": "Brown-Driver-Briggs Hebrew Lexicon via Open Scriptures",
+   "rows": 377,
+   "held_otherwise": 2,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 13,
+   "otherwise_kept_no_tag": 0
+  },
+  "M7": {
+   "label": "unfoldingWord Hebrew-Aramaic Lexicon",
+   "rows": 336,
+   "held_otherwise": 15,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 11,
+   "otherwise_kept_no_tag": 1
+  },
+  "M46": {
+   "label": "Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source",
+   "rows": 241,
+   "held_otherwise": 5,
+   "held_silent": 80,
+   "otherwise_kept_one_entry": 14,
+   "otherwise_kept_no_tag": 0
+  },
+  "M45": {
+   "label": "BiblicalTools Living Lexicon exact Strong glosses and STEPBible Hebrew-Aramaic lemmas",
+   "rows": 165,
+   "held_otherwise": 3,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 3,
+   "otherwise_kept_no_tag": 0
+  },
+  "M64": {
+   "label": "Lexibank Analysed v2.2 NorthEuraLex literal Hebrew source values with Concepticon English glosses",
+   "rows": 53,
+   "held_otherwise": 0,
+   "held_silent": 53,
+   "otherwise_kept_one_entry": 0,
+   "otherwise_kept_no_tag": 0
+  },
+  "M60": {
+   "label": "Kaikki machine-readable Aramaic dictionary from English Wiktionary",
+   "rows": 50,
+   "held_otherwise": 0,
+   "held_silent": 21,
+   "otherwise_kept_one_entry": 0,
+   "otherwise_kept_no_tag": 0
+  },
+  "M14": {
+   "label": "Strong's Hebrew concordance with explicit source form lists via Hebrew Wikisource",
+   "rows": 5,
+   "held_otherwise": 0,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 0,
+   "otherwise_kept_no_tag": 0
+  },
+  "M43": {
+   "label": "Hebrew WordNet exact Princeton WordNet 3.0 synset alignment and English gloss",
+   "rows": 1,
+   "held_otherwise": 0,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 0,
+   "otherwise_kept_no_tag": 0
+  },
+  "M57": {
+   "label": "Hebrew WordNet PWN 3.0 alignment bridged to Open English WordNet 2025 by complete permanent-sense-key agreement",
+   "rows": 1,
+   "held_otherwise": 0,
+   "held_silent": 0,
+   "otherwise_kept_one_entry": 0,
+   "otherwise_kept_no_tag": 0
+  }
+ },
+ "otherwise_by_key": [
+  {
+   "key": "נרגל שראצר",
+   "step_tags": [
+    "H5371G",
+    null
+   ],
+   "step_says": "a word with no tag",
+   "otherwise_rows": 10,
+   "places": 1,
+   "first": "jeremiah 39:3"
+  },
+  {
+   "key": "רמת גלעד",
+   "step_tags": [
+    null,
+    "H1568M"
+   ],
+   "step_says": "a word with no tag",
+   "otherwise_rows": 3,
+   "places": 1,
+   "first": "ii-chronicles 18:2"
+  },
+  {
+   "key": "באר שבע",
+   "step_tags": [
+    "H0884",
+    "H0884"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 90,
+   "places": 9,
+   "first": "genesis 21:14"
+  },
+  {
+   "key": "בן־הדד",
+   "step_tags": [
+    "H1130I",
+    "H1130I"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 11,
+   "places": 1,
+   "first": "amos 1:4"
+  },
+  {
+   "key": "בן־הדד",
+   "step_tags": [
+    "H1130G",
+    "H1130G"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 11,
+   "places": 1,
+   "first": "jeremiah 49:27"
+  },
+  {
+   "key": "בת־שבע",
+   "step_tags": [
+    "H1339",
+    "H1339"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 11,
+   "places": 1,
+   "first": "psalms 51:2"
+  },
+  {
+   "key": "באר־שבע",
+   "step_tags": [
+    "H0884",
+    "H0884"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 10,
+   "places": 1,
+   "first": "amos 8:14"
+  },
+  {
+   "key": "אבל בית־מעכה",
+   "step_tags": [
+    "H0062",
+    "H0062",
+    "H0062"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 6,
+   "places": 2,
+   "first": "i-kings 15:20"
+  },
+  {
+   "key": "יערי ארגים",
+   "step_tags": [
+    "H3296",
+    "H3296"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 5,
+   "places": 1,
+   "first": "ii-samuel 21:19"
+  },
+  {
+   "key": "חמת צובה",
+   "step_tags": [
+    "H2578",
+    "H2578"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 4,
+   "places": 1,
+   "first": "ii-chronicles 8:3"
+  },
+  {
+   "key": "חצר התיכון",
+   "step_tags": [
+    "H2694",
+    "H2694"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 4,
+   "places": 1,
+   "first": "ezekiel 47:16"
+  },
+  {
+   "key": "כושן רשעתים",
+   "step_tags": [
+    "H3573",
+    "H3573"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 3,
+   "places": 2,
+   "first": "judges 3:8"
+  },
+  {
+   "key": "קו־קו",
+   "step_tags": [
+    "H6978",
+    "H6978"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 2,
+   "places": 2,
+   "first": "isaiah 18:2"
+  },
+  {
+   "key": "בית ארבאל",
+   "step_tags": [
+    "H1009",
+    "H1009"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "hosea 10:14"
+  },
+  {
+   "key": "בית דבלתים",
+   "step_tags": [
+    "H1015",
+    "H1015"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "jeremiah 48:22"
+  },
+  {
+   "key": "בית־שן",
+   "step_tags": [
+    "H1052",
+    "H1052"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "ii-samuel 21:12"
+  },
+  {
+   "key": "בני־יעקן",
+   "step_tags": [
+    "H1142H",
+    "H1142H"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "deuteronomy 10:6"
+  },
+  {
+   "key": "חמת דאר",
+   "step_tags": [
+    "H2576",
+    "H2576"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "joshua 21:32"
+  },
+  {
+   "key": "יגר שהדותא",
+   "step_tags": [
+    "H3026A",
+    "H3026B"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "genesis 31:47"
+  },
+  {
+   "key": "ישב בשבת",
+   "step_tags": [
+    "H3429",
+    "H3429"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "ii-samuel 23:8"
+  },
+  {
+   "key": "קיר־חרשת",
+   "step_tags": [
+    "H7025",
+    "H7025"
+   ],
+   "step_says": "one entry",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "isaiah 16:7"
+  },
+  {
+   "key": "רמת גלעד",
+   "step_tags": [
+    "H7418G",
+    "H1568M"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 36,
+   "places": 12,
+   "first": "i-kings 22:3"
+  },
+  {
+   "key": "יפתח אל",
+   "step_tags": [
+    "H3316H",
+    "H0413"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 20,
+   "places": 2,
+   "first": "judges 11:9"
+  },
+  {
+   "key": "לא־דבר",
+   "step_tags": [
+    "H3808",
+    "H1696G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 18,
+   "places": 2,
+   "first": "i-kings 22:28"
+  },
+  {
+   "key": "עם־ישראל",
+   "step_tags": [
+    "H5973A",
+    "H3478"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 14,
+   "places": 14,
+   "first": "deuteronomy 18:1"
+  },
+  {
+   "key": "אחת עשרה",
+   "step_tags": [
+    "H0259",
+    "H6235"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 12,
+   "places": 12,
+   "first": "numbers 7:14"
+  },
+  {
+   "key": "לא דבר",
+   "step_tags": [
+    "H3808",
+    "H1696G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 9,
+   "places": 1,
+   "first": "ezekiel 22:28"
+  },
+  {
+   "key": "לא־דבר",
+   "step_tags": [
+    "H3808",
+    "H1697G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 9,
+   "places": 1,
+   "first": "deuteronomy 32:47"
+  },
+  {
+   "key": "אל־בית־אל",
+   "step_tags": [
+    "H0413",
+    "H1008G",
+    "H1008G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 8,
+   "places": 2,
+   "first": "i-kings 13:1"
+  },
+  {
+   "key": "בן־דוד",
+   "step_tags": [
+    "H1121A",
+    "H1732"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 8,
+   "places": 3,
+   "first": "ecclesiastes 1:1"
+  },
+  {
+   "key": "נתן מלך",
+   "step_tags": [
+    "H5414G",
+    "H4428G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 8,
+   "places": 1,
+   "first": "jeremiah 40:11"
+  },
+  {
+   "key": "עין רמון",
+   "step_tags": [
+    "H5871H",
+    "H7417I"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 8,
+   "places": 1,
+   "first": "joshua 19:7"
+  },
+  {
+   "key": "יומם ולילה",
+   "step_tags": [
+    "H3119",
+    "H3915"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 5,
+   "places": 5,
+   "first": "exodus 13:21"
+  },
+  {
+   "key": "ים המלח",
+   "step_tags": [
+    "H3220G",
+    "H4417G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 5,
+   "places": 5,
+   "first": "deuteronomy 3:17"
+  },
+  {
+   "key": "בכל־אשר",
+   "step_tags": [
+    "H3605",
+    "H0834A"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 4,
+   "places": 4,
+   "first": "genesis 24:2"
+  },
+  {
+   "key": "במות בעל",
+   "step_tags": [
+    "H1120H",
+    "H1168I"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 4,
+   "places": 1,
+   "first": "numbers 22:41"
+  },
+  {
+   "key": "ים־המלח",
+   "step_tags": [
+    "H3220G",
+    "H4417G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 4,
+   "places": 4,
+   "first": "joshua 3:16"
+  },
+  {
+   "key": "בן מלך",
+   "step_tags": [
+    "H1121G",
+    "H4427A"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 3,
+   "places": 1,
+   "first": "jeremiah 33:21"
+  },
+  {
+   "key": "רמת גלעד",
+   "step_tags": [
+    "H7418G",
+    "H1568G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 3,
+   "places": 1,
+   "first": "i-kings 22:4"
+  },
+  {
+   "key": "ארם דמשק",
+   "step_tags": [
+    "H0758I",
+    "H1834"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 2,
+   "places": 1,
+   "first": "isaiah 7:8"
+  },
+  {
+   "key": "בית־קברות",
+   "step_tags": [
+    "H1004A",
+    "H6913"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 2,
+   "places": 1,
+   "first": "nehemiah 2:3"
+  },
+  {
+   "key": "יהוה יראה",
+   "step_tags": [
+    "H3068G",
+    "H7200G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 2,
+   "places": 1,
+   "first": "genesis 22:14"
+  },
+  {
+   "key": "על־ידי",
+   "step_tags": [
+    "H5921A",
+    "H3027G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 2,
+   "places": 2,
+   "first": "genesis 42:37"
+  },
+  {
+   "key": "אבי יתומים",
+   "step_tags": [
+    "H0001G",
+    "H3490"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "psalms 68:6"
+  },
+  {
+   "key": "אל־שדי",
+   "step_tags": [
+    "H0413",
+    "H7706"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "job 13:3"
+  },
+  {
+   "key": "אשת איש",
+   "step_tags": [
+    "H0802H",
+    "H0376G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "leviticus 20:10"
+  },
+  {
+   "key": "מה־טובו",
+   "step_tags": [
+    "H4100",
+    "H2898"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "zechariah 9:17"
+  },
+  {
+   "key": "מצא חן בעיני",
+   "step_tags": [
+    "H4672",
+    "H2580",
+    "H5869H"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "i-samuel 16:22"
+  },
+  {
+   "key": "על־יד",
+   "step_tags": [
+    "H5921A",
+    "H3027G"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "proverbs 13:11"
+  },
+  {
+   "key": "שלשים ותשעה",
+   "step_tags": [
+    "H7970",
+    "H8672"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "ezra 2:42"
+  },
+  {
+   "key": "שם לב",
+   "step_tags": [
+    "H8033G",
+    "H3820A"
+   ],
+   "step_says": "separate entries",
+   "otherwise_rows": 1,
+   "places": 1,
+   "first": "deuteronomy 28:65"
+  }
+ ],
+ "books_carrying_held": [
+  "amos.json",
+  "daniel.json",
+  "deuteronomy.json",
+  "ecclesiastes.json",
+  "esther.json",
+  "exodus.json",
+  "ezekiel.json",
+  "ezra.json",
+  "genesis.json",
+  "i-chronicles.json",
+  "i-kings.json",
+  "i-samuel.json",
+  "ii-chronicles.json",
+  "ii-kings.json",
+  "ii-samuel.json",
+  "isaiah.json",
+  "jeremiah.json",
+  "job.json",
+  "joshua.json",
+  "judges.json",
+  "leviticus.json",
+  "malachi.json",
+  "nehemiah.json",
+  "numbers.json",
+  "proverbs.json",
+  "psalms.json",
+  "song-of-songs.json",
+  "zechariah.json"
+ ]
+}

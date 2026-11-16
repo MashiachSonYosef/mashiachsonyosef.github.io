@@ -22,7 +22,10 @@
 //                is withheld, where the word is pointed and some row of the
 //                STORE points it as the text does (the store's rows decide
 //                whether the pointing is attested; the rows beside it are
-//                not asked that)
+//                not asked that); there, since 16 November 2026, a row
+//                whose source gives no pointed headword is held back too and
+//                counted apart (unpointed-row-rule-v1: a row with no pointing
+//                qualifies for none)
 //   the stem     of the rows the pointing leaves, a row whose known stems
 //                share no family with the word's is another stem's
 //
@@ -33,7 +36,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
-import { gradeRow, isPointed } from "./pointing-grade-v1.mjs";
+import { gradeRow, isPointed, heldByPointing } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
 import { stemsId } from "./stems-extension-v1.mjs";
 
@@ -76,7 +79,10 @@ export const restingOff = (readerDir, indexes) => {
 export const besideAtAWord = (rows, { surface, attested, rowStems = null, wordStems = null, sourcesOff = null }) => {
   const on = sourcesOff && sourcesOff.size ? rows.filter((row) => !sourcesOff.has(String(row[3]))) : rows;
   const asked = !!(attested && surface && isPointed(surface));
-  const left = asked ? on.filter((row) => gradeRow(row, surface) !== "x") : on;
+  const held = new Map(asked ? on.map((row) => [row, heldByPointing(gradeRow(row, surface))]) : []);
+  const left = asked ? on.filter((row) => !held.get(row)) : on;
   const ofAnotherStem = rowStems && wordStems ? left.filter((row) => isOtherStem(rowStems[stemsId(row[3], row[0], row[1])], wordStems)) : [];
-  return { rows: rows.length, bySources: rows.length - on.length, byPointing: on.length - left.length, ofAnotherStem, kept: left.filter((row) => !ofAnotherStem.includes(row)) };
+  // byPointing: pointed otherwise, withheld; byUnpointed: not pointed by their source, held back
+  const byPointing = [...held.values()].filter((h) => h === "x").length, byUnpointed = [...held.values()].filter((h) => h === "n").length;
+  return { rows: rows.length, bySources: rows.length - on.length, byPointing, byUnpointed, ofAnotherStem, kept: left.filter((row) => !ofAnotherStem.includes(row)) };
 };
