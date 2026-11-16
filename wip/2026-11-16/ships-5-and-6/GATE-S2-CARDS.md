@@ -1,0 +1,13 @@
+# Ships 5 and 6: the gate's S2 cards, each owed (16 November 2026)
+
+The gate (check-same-product-v1, live 8e91250da5 on 8914 against the ship tree on 8912) passed S1: 450 sampled lines moved, every one of an owed class, 0 that differ. S2 compared 54 first cards and accepted 3 as owed (1 run, 2 kinds); it failed 11. Each of the 11 was read on the page (scratch probes `S/v79/probe-*.mjs`) and in the store (`S/v79/probe-lost.mjs`, `probe-champ.mjs`, `probe-agod.mjs`), and each is a change the design owes that S2 does not yet model. S2 prints only its first three faults; the rest were read off `gate-diff.txt`.
+
+| Card | What changed | Why (class) |
+|---|---|---|
+| Exodus 1 card 1, Exodus 21 card 1 (1:1:1 אֵלֶּה) | «this» prints «this (masculine/feminine plural of זה)»; «a god» prints with its pointer and sits at 55, was 60 | question 12's fold (e): the English Wiktionary pointer (M13) joins the reading's pill; the pill's carriers now include the pointer's row, so its place in the order can move |
+| Exodus 21 card 3 (1:1:3 בְּנֵי) | the run «the Children of Israel» fell; the card opens on the word «[the] sons of» | call 3's runs (c); S2 reads the book's first verse on every chapter page (task 112) and only owes it on chapter 1's page, where the same card passed |
+| II Chronicles 1 and 19, Nehemiah 1 and 7, card 3 (1:1:3 בֶּן) | lost «one of the gates in Jerusalem …» and «the People's Gate»; «Benjaminite» prints «Benjaminite (see בֶּן־יְמִינִי)»; «(+) arrow», «(+) man», «(+) people» sort last | UBS's collocation rows rest shut where UBS's own pick does not name them (d: M18 ranks 78, 79, collocations, picked at one place elsewhere); question 12's fold of UBS's own cross-reference (e); Strong's sign alone in a bracket follows every plain reading (b, call 7a) |
+| Job 1 and 22, card 1 (1:1:1 אִישׁ) | lost nine UBS collocation pills («member of the tribe of Benjamin», «man of God», …); «champion» sorts after «a certain» | (d): the collocation rows rest shut at 1:1:1; «champion» was carried by UBS rank 77 too, now a collocation (אִישׁ בֵּנַיִם, picked at 1 Samuel 17), so it sorts where M9's own «champion» stands |
+| Job 1 and 22, card 3 (1:1:3 בְּאֶרֶץ) | lost «universe», «literally: distance of land …», «a more or less fixed phrase: the heavens and the earth …» | (d): UBS collocation rows of ארץ, resting shut at this place |
+
+What S2 lacks, for a follow-up with task 112: a pill whose order moves because a carrier rests shut at the card's place, or because Strong's sign sorts it last; a UBS cross-reference folded as a pointer (its pill exposes no pointer data); a run's word card on a chapter page other than the verse's own.
