@@ -105,8 +105,12 @@
 > through that record and answers one of: served as named, moved to another
 > key (with the name it has now), struck or withheld (with the round and its
 > list), or, for a row the store holds now, landed since (no line of such a
-> list is expected for it); a retext since is its seam, refused by name until
-> the tool that retexts lands. The tools that lay the lane's facts on the
+> list is expected for it), or retexted since, at its key and rank under the
+> words a round gave it (named by their sha16, with the words it was read
+> with: row-strikes-follow-rule-v2, since ship 6); a retext that folded the
+> row into another, a retext that names no words, and a row both moved to
+> another key and retexted since are refused by name. The tools that lay
+> the lane's facts on the
 > rows (`tools/apply-row-entries-v1.mjs`, `tools/apply-name-rows-v1.mjs`,
 > `tools/apply-sense-openings-v1.mjs`), the default picks' bake and the
 > checks of each read through it, record in the store's index what they
@@ -142,6 +146,77 @@
 > a whole source stays in it, and the page leaves it out while it rests
 > shut, on the page of any work, since every place the index answers is of
 > a book at rest.
+> Ship 5 (calls 7, 4 and 3 of the corpus lane's relay v189 and question 12,
+> as the lead landed them on 15 November 2026) adds no step to the round.
+> On the books the record holds, Strong's sign follows:
+> `openRouteStore(…, { atRest, signLast })` puts a reading that carries it (the source-signs ledger's
+> STRONG_SIGN at its head, or the sign held alone in a round bracket there,
+> «(+) archer», which the M14 declaration sets on that rendering;
+> `opensWithStrongSign`) after every reading that does not, the first key
+> of every order, a sort and never a filter (zone-gloss-rule-v8). The zones
+> step bakes the zone, its columns and its sidecar's leaders so (the sidecar's
+> o.m and o.x and the headword's line hg take the sign first too), and both
+> carry the stamp `emitted_from.signs_rest_last` (`signsRestLastStamp`); the
+> lattice step refuses a zone whose stamp is not the one it would make. The
+> witnessed bake refuses an entry whose row prints only signed renderings
+> where the key's pool at rest holds a plain one (its rule v2; the receipt
+> lists the keys, `strongs_sign_refused_keys`), so the line under that order
+> reads the table there. The page carries the same predicate between markers
+> and orders a card so in every position of the signs switch on a zone that
+> carries the stamp; the Tikkunei Zohar and a Targum beside a book keep
+> today's order (`tools/check-sign-does-not-lead-v1.mjs`). UBS's own
+> collocation mark is a kind of the record: `tools/derive-ubs-collocations-v1.mjs`
+> reads UBS's own file and the catalog's route file (both on the corpus
+> lane's store, named in `data/ubs-collocations/PIN.json` by their bytes and
+> sha256, and given on the command line) and the default picks' ledger, and
+> writes the rows of UBS's category with the places UBS's own pick names
+> each (`data/ubs-collocations/`, the bytes the pin names);
+> `tools/apply-ubs-collocations-v1.mjs` lays them on the rows as the facts
+> `collocations` and `picked_at`, through the row-strikes follower, and
+> records itself under the store index's `ubs_collocations`. The record's
+> entry `ubs-collocation` rests those rows shut and stands each at the places
+> its own `picked_at` names (`stands_at`): the bakes ask the rule with no
+> place, so no line reads such a row, and the card asks it at the place of
+> the word it is open on. The facts slot names its keys and the tool that
+> writes each (`FACTS_WRITTEN_BY`). The two run once, as store steps, before
+> the round and never by it, and the form-of record is baked again after
+> them (`tools/bake-form-of-pills-v1.mjs`, which reads the store at rest and
+> records question 12's one pill as `one_pill`; the page folds a pointer's
+> pill into the reading its resolution prints). Call 4: the default picks'
+> bake stands STEP's own pick 1 as the line under STEP, credited to STEP,
+> whatever today's line is, at the places STEP spells or parts the word
+> otherwise (the index's `step_words` rows `[n, words, 1]`; the places it
+> writes with « | », those the list makes no line of, and a read form of
+> several words are held by class, and its receipt counts them,
+> `steps_reading_stands`). Call 3 is the page's: a run keeps its joined line
+> only where some word of it has no reading of its own at the place (its
+> place pieces, or a place where STEP's reading stands), and every other run
+> reads word by word, the joined reading a press away; relay v181's list of
+> the lines over several words is kept in `data/audit-calls/lines-and-pills-v1/`.
+> `data/audit-calls/PIN.json` names how each of calls 7, 4 and 3 lands and
+> under which rule (its `rule_id` and `landings`), and
+> `tools/check-audit-calls-v1.mjs` (A10 to A12) and the gate read it.
+> Ship 6 (relay v187, the unabridged BDB's words back, under the owner's
+> questions 17 and 18 of 14 November 2026) moves no line and no pill, and
+> adds no step to the round. The lane's folder is kept byte for byte
+> (`data/made-spaces/words-back-v1/`). `tools/derive-words-back-v1.mjs`
+> proves every line of it again on the store it meets and derives, only as
+> the bytes `data/made-spaces/PIN.json` names (`words_back.derived`), the
+> rows that land and the rows held, the ones whose printed text sets a
+> Hebrew character directly against a Latin letter or a digit among them
+> (words-back-landing-rule-v1). `tools/strike-rows-v1.mjs` (row-strike-rule-v7)
+> lands that list as a retext from the slot `words_back`: the words in both
+> of the row's texts and its closes in slot 9, its facts and the rest of the
+> row kept, the old row recorded whole, never folded, and a line refused
+> whose words, closes or sense do not stand as it says. After it the ledgers'
+> divisions are derived again, `tools/apply-made-spaces-v1.mjs` takes a
+> retexted row's closes from the derived list (counted apart), the facts
+> tools lay their lists again through the follower, which finds each
+> retexted row under its new words, and the form-of record is baked again:
+> store steps, each run once before the round. In the round, the lattice
+> projection follows a row the binyan files name by its old words through
+> the retext to the words it serves now (`followed_through_retexts`).
+> `tools/check-words-back-v1.mjs` holds the landing.
 > `PIPELINE-MANIFEST.md` is generated from the code and the
 > published bins on every round and says what is declared, what is guarded,
 > and which tool wrote which bins. The sections below are kept as the record

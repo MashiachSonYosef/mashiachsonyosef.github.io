@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed
-// GUARDS: row-strike-rule-v6-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted
+// GUARDS: row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts
 //
 // THE ROWS ARE ACCOUNTED FOR END TO END, OR THE STORE LOST SOMETHING.
 //
@@ -42,7 +42,7 @@
 //       a list took from a hole that was already typed (a row that had
 //       landed where an earlier strike left a rank, taken in its turn) adds
 //       no rank to the record, and the row-strikes record counts those
-//       rows (ranks_already_typed, row-strike-rule-v6)
+//       rows (ranks_already_typed, as the strike tool's own rule counts them)
 //   C4  every version in the store's history moved for a reason the store can
 //       name, and a fold-identity move (the pointing store landing) moved no
 //       rows at all

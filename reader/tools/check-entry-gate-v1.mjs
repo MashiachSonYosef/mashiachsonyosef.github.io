@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points
-// GUARDS: row-strikes-follow-rule-v1-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed
+// GUARDS: row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words
 // LEDGER: -
 // no frame letter. A check reads the ledger's pin, the store, the zones and
 // the pages and judges them; it is not the ledger for one.
@@ -38,7 +38,9 @@
 //       the ledger was read is the row-strikes record's own, counted again
 //       here through tools/row-strikes-follow-v1.mjs (the lines whose row a
 //       round struck or withheld, the rows followed to another key, the rows
-//       landed since, which have no line); and no entry went with a struck
+//       retexted since and followed to the words they took, row-strike-rule-v7
+//       and row-strikes-follow-rule-v2, the rows landed since, which have no
+//       line); and no entry went with a struck
 //       row: where a row was struck as the twin of a row of its own source,
 //       that row carries every entry the struck row carried, and each twin
 //       the index says was given entries was given the struck row's own
@@ -49,7 +51,8 @@
 //       given a struck row's numbers are counted as they now stand
 //   E5  with the ledger on this machine (--ledger <file>, or
 //       ROW_ENTRIES_LEDGER): every line finds its row where the follower
-//       says it now stands, and every row its line, but the lines whose row
+//       says it now stands (a row retexted since under the sha16 of the
+//       words it took), and every row its line, but the lines whose row
 //       a round struck or withheld since and the rows a round landed since;
 //       and each row carries exactly the facts its line gives, a struck
 //       row's twin with the entries that row's line gave it. Without the
@@ -115,7 +118,7 @@ import { createInterface } from "node:readline";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { openRouteStore, factsOf, FACTS_SLOT, readingKey } from "./gloss-store-v1.mjs";
+import { openRouteStore, factsOf, FACTS_SLOT, FACTS_WRITTEN_BY, readingKey } from "./gloss-store-v1.mjs";
 import { ENTRY_GATE_RULE_ID, numberOf, tagOf, letteredOf, placeEntry, entrySaid, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, onlyLeaders, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
@@ -191,6 +194,9 @@ if (theirs) try {
 } catch (e) { if (e instanceof FollowFault) { follow = null; followWhy = e.message; } else throw e; }
 const ofRead = (list) => list.filter((x) => READ.has(x.name[2]));
 const GONE = follow ? ofRead(follow.gone) : [], REKEYED = follow ? ofRead(follow.rekeyed) : [], LANDED = follow ? ofRead(follow.landed) : [];
+// the rows a round since retexted (relay v187's words back, row-strike-rule-v7): at the same key and rank under the
+// words they took, followed so (row-strikes-follow-rule-v2), keeping their facts
+const RETEXTED = follow ? ofRead(follow.retexted) : [];
 // a struck row whose words still stand under another key: its twins there, rows of its own source and words, are
 // found in the walk below
 const twinOfStruck = new Map();   // the struck row's name -> { g, rows }
@@ -236,13 +242,17 @@ if (pin.moves) {
       const went = follow ? follow.nowOf([x.k, x.rank, x.m, sha16Of(x.text)]) : { state: "served", name: [x.k, x.rank] };
       if (went.state === "struck" || went.state === "withheld") { x.gone = went; continue; }
       [x.k_now, x.rank_now] = went.name;
+      // a row retexted since stands under the words it took
+      x.text_now = went.state === "retexted" ? went.text : x.text;
       (movesByKey.get(x.k_now) || movesByKey.set(x.k_now, []).get(x.k_now)).push(x);
     }
   } catch (e) { if (e instanceof PinFault || e instanceof SyntaxError || e instanceof FollowFault) movesFaults.push(e.message); else throw e; }
 }
 
 // ---- E2, E3, E4: every row of the store -------------------------------------------------------
-const KNOWN = new Set(["n", "t", "b", "name", "opens"]);
+// the facts some tool writes: the keys of the facts slot, as tools/gloss-store-v1.mjs names them in one place
+// (FACTS_WRITTEN_BY; ship 5 added UBS's collocations and picked_at)
+const KNOWN = new Set(Object.keys(FACTS_WRITTEN_BY));
 const tally = {};   // m id -> the recount
 const of = (m) => (tally[m] ||= { rows: 0, one: 0, several: 0, none: 0, t: 0, b: 0, slot: 0 });
 const byKeyId = new Map();   // for E5: key, then "rank m sha16" -> the facts the store's rows carry, as JSON
@@ -255,7 +265,7 @@ const mineOf = (f) => { if (!f) return null; const o = {}; for (const k of ["n",
     for (const [k, list] of Object.entries(body)) for (const row of list) {
       rows += 1;
       const m = String(row[3]);
-      for (const x of movesByKey.get(k) || []) if (x.rank_now === row[0] && x.m === m && x.text === String(row[1] ?? "")) { x.found += 1; x.got = factsOf(row); }
+      for (const x of movesByKey.get(k) || []) if (x.rank_now === row[0] && x.m === m && x.text_now === String(row[1] ?? "")) { x.found += 1; x.got = factsOf(row); }
       if (twinKeys.has(k)) for (const pair of twinsWanted.get(`${k}\u0001${m}\u0001${sha16Of(row[1])}`) || []) pair.rows.push(row);
       const where = `${k} (${m}, rank ${row[0]})`;
       if (row.length > 7 && (row[row.length - 1] === null || row[row.length - 1] === undefined)) faults.push(`${where}: ends in an empty slot`);
@@ -321,7 +331,7 @@ const FACTS = ["n", "t", "b"];
   const said = (rec && rec.followed) || {}, t = (rec && rec.totals) || {};
   if (!follow) faults.push(followWhy);
   else {
-    const mine = followedRecord(follow, { left: GONE, rekeyed: REKEYED, landed: LANDED });
+    const mine = followedRecord(follow, { left: GONE, rekeyed: REKEYED, retexted: RETEXTED, landed: LANDED });
     for (const key of Object.keys(mine)) if (!same(said[key], mine[key])) faults.push(`the index says followed.${key} is ${JSON.stringify(said[key] ?? null)} and the row-strikes record gives ${JSON.stringify(mine[key])}`);
     if (t.ledger_rows_with_no_store_row !== GONE.length) faults.push(`totals.ledger_rows_with_no_store_row says ${t.ledger_rows_with_no_store_row} and the record's rounds since took ${GONE.length} rows of the ledger's sources`);
     if (t.store_rows_with_no_line !== LANDED.length) faults.push(`totals.store_rows_with_no_line says ${t.store_rows_with_no_line} and the record's rounds since landed ${LANDED.length} rows of the ledger's sources`);
@@ -406,7 +416,8 @@ else {
       const went = follow.nowOf(name);
       if (went.state === "struck" || went.state === "withheld") { goneLines += 1; const key = twinKeyOf(name, went); if (key) struckTwins.push({ key, m: name[2], sha: name[3], facts }); continue; }
       const want = wantAt.get(went.name[0]) || wantAt.set(went.name[0], new Map()).get(went.name[0]);
-      const id = `${went.name[1]} ${r[1]} ${r[2]}`;
+      // under the name the row has now: a row retexted since by the sha16 of the words it took
+      const id = `${went.name[1]} ${r[1]} ${went.name[3]}`;
       (want.get(id) || want.set(id, []).get(id)).push(facts);
     }
     // a struck row's twin carries its own entries, then those of the struck row's line that it lacks

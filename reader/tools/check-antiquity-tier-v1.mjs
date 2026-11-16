@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // RUN: tree
-// GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
+// GUARDS: zone-gloss-rule-v8-printed-form-ledger-division-whole-without-a-ledger-at-rest-a-rendering-carrying-strongs-sign-after-every-plain-one-antiquity-1940-lastuary
 //
 // The year in the gloss rule's name decides nothing, and this proves it every
 // run.
 //
-// `zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary` puts a number in its
+// `zone-gloss-rule-v8-printed-form-ledger-division-whole-without-a-ledger-at-rest-a-rendering-carrying-strongs-sign-after-every-plain-one-antiquity-1940-lastuary` puts a number in its
 // own name and thereby advertises 1940 as the thing that chooses which reading
 // a reader meets first, across a corpus of 3.7 billion occurrences. It was
 // chosen by this project. Nothing attests it. And it is inert: the comparison

@@ -165,8 +165,12 @@ check("L3  and not the store's first stored row",
 // this is what would catch it.
 const engine = readFileSync(join(K3, "zone.html"), "utf8");
 const draw = (engine.match(/const drawPills = \(\) => \{[\s\S]*?\n {6}\};/) || [""])[0];
+// the pool is copied whole into the sort, bare or with the sign rule's flag
+// laid on the copy (gloss rule v8, ship 5 of 16 November 2026:
+// sortPool(Object.assign([...pool], { signsLast }), surface)); either way
+// every element of the pool goes in
 check("L4  the engine draws its pills from a sorted pool, whole",
-  /sortPool\(\[\.\.\.pool\]/.test(draw) && /sorted\.forEach\(/.test(draw)
+  /sortPool\((?:Object\.assign\()?\[\.\.\.pool\]/.test(draw) && /sorted\.forEach\(/.test(draw)
     && !/sorted\.slice\(1\)|sorted\.shift\(|pool\[0\]/.test(draw),
   draw ? "sortPool over the whole pool, every element appended, no head held out" : "drawPills not found — the draw moved and this law needs re-reading against it");
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
+// GUARDS: ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it
 // LEDGER: -
 // no frame letter. A check reads the record of dictionary kinds, the store's
 // index and shards, the overlays' indexes, the zones and the page, and
@@ -26,23 +27,35 @@
 //       each overlay's likewise in families of that overlay, and every
 //       resting entry shuts keys of the store and names no family beside it
 //       (restsOffOf refuses a record that does not). Every record a
-//       family's «where» names is in this tree. Every resting entry rests
-//       rows of the store: its keys, M ids and rows, counted from the
-//       shards. And the scope: of every zone on this disk a reader opens,
-//       it rests shut the thirty-nine books the door files
-//       (data/book-order-v1.json), each served, and no other.
+//       family's «where» names is in this tree. Every fact a resting entry
+//       names, and every fact it stands at, is a key of the facts slot
+//       (FACTS_WRITTEN_BY of tools/gloss-store-v1.mjs). Every resting entry
+//       rests rows of the store: its keys, M ids and rows, counted from the
+//       shards, and for an entry that stands at places, the rows that name
+//       places and how many; but an entry whose fact the store's index
+//       records no run of the tool that writes it is not judged, and the
+//       check says so and exits 3, never a pass: its fact is written by
+//       store steps that have not run on this store (ship 5's UBS
+//       collocations, between their entry's commit and the store steps).
+//       And the scope: of every zone on this disk a reader opens, it rests
+//       shut the thirty-nine books the door files (data/book-order-v1.json),
+//       each served, and no other.
 //   K2  one rule, one place: the page's restsOffOf and restsOffIds, read
 //       out of zone.html and run, answer as the module's do on every row of
-//       the store; on a row of every M id of the index, and of ids it does
-//       not name, bare and with facts, under the record and under records
-//       made here to reach what the record of the day does not (two entries
-//       over one row, a fact equal to a value, a fact that is a list holding
-//       one); they give the same ids over the index in either order; and
-//       they refuse the records the module refuses. The module's own two are
-//       lifted out of its source the same way and run first, which proves
-//       they reach nothing outside themselves. Until the page carries the
-//       rule (the design's part 2) K2 is not judged, the check says so, and
-//       it exits 3, never a pass.
+//       the store, asked with no place and, for a row whose facts name the
+//       places it stands at, at those places and at one outside them; on a
+//       row of every M id of the index, and of ids it does not name, bare
+//       and with facts, with no place and at places, under the record and
+//       under records made here to reach what the record of the day does not
+//       (two entries over one row, a fact equal to a value, a fact that is a
+//       list holding one, an entry that stands at the places its rows name,
+//       alone and with an entry after it); they give the same ids over the
+//       index in either order; and they refuse the records the module
+//       refuses, and a place that is not a place's name. The module's own
+//       two are lifted out of its source the same way and run first, which
+//       proves they reach nothing outside themselves. Until the page carries
+//       the rule (the design's part 2) K2 is not judged, the check says so,
+//       and it exits 3, never a pass.
 //
 //   K3  the bakes are at rest. Every zone the record rests shut carries the
 //       bake's stamp naming this record (emitted_from.rests_off: its rule,
@@ -56,7 +69,9 @@
 //       store's projection: rebuilt here over each zone's own keys, its
 //       table and its credits are the store's at rest on a book the record
 //       rests shut, and the store's whole on any other (the Tikkunei Zohar
-//       and the commentaries keep today's rest). Every lattice sidecar of a
+//       and the commentaries keep today's rest); on a book the record rests
+//       shut the store is read with Strong's sign last as well, the same
+//       scope (zone-gloss-rule-v8, tools/gloss-store-v1.mjs rule 7). Every lattice sidecar of a
 //       book at rest names the record, and no leader it bakes names a
 //       source shut whole or stands on rows that rest shut alone (the
 //       lattice's own cards are the corpus lane's, read whole); a sidecar of
@@ -92,7 +107,16 @@
 //       book at rest with a Targum beside it, a Targum word whose line
 //       stands on sources shut whole alone keeps today's rest on its card
 //       (its sidecar is out of the scope): nothing held back, no press, and
-//       its line's reading a pill of its card.
+//       its line's reading a pill of its card. And UBS's collocation rows
+//       (ship 5, the entry that stands a row where its facts name the
+//       place): on that book, at a place UBS's own pick names a row of the
+//       category, its reading stands on the word's card, uncounted and with
+//       no dotted edge, the dictionaries shut and open; at another place of
+//       the same key the same reading rests shut, counted, and opened it
+//       wears the dotted edge; and on a word of a run whose card opens on the
+//       word (a run that reads its words, call 3), the card stands at that
+//       word's place and such a row stands there the same way (until the
+//       store steps lay the facts, not judged, as K6).
 //   K5  the records and the chain books. Every record of the resting lines
 //       names this record among the files its page read, at its sha256; on
 //       a book the record rests shut it says it was read with the
@@ -102,6 +126,21 @@
 //       holds them open; no pill of a card at rest stands on sources shut
 //       whole alone, and lifted, the book's cards hold such pills again
 //       where its stamp says it carries their rows.
+//   K6  UBS's collocation mark at rest (ship 5; the entry that rests the
+//       UBS dictionary's collocation rows shut and stands them where UBS's
+//       own pick names them). The derived list (data/ubs-collocations/,
+//       made_here.list) is the bytes its pin names, and the store's index
+//       says the facts tool laid those bytes; every line of it names one row
+//       of the store, followed from the store the list was laid on through
+//       the row-strikes record (tools/row-strikes-follow-v1.mjs), and that
+//       row carries the line's collocations byte for byte and its places as
+//       picked_at (none where the line names none); the rule rests each such
+//       row shut with no place and at a place outside it, and stands it at
+//       each place it names; no other row of the store carries collocations
+//       or picked_at, and no row carries collocations beside a name. Until
+//       the store steps have run (the index holds no record of the tool that
+//       writes the facts) K6 is not judged: it says so, and the check exits
+//       3, never a pass.
 //
 // Run: node tools/check-dictionary-kinds-v1.mjs [--record-in <folder>] [--page <file>] [--only <work,...>]
 //   --record-in reads the record from another folder than data/, and
@@ -118,7 +157,9 @@ import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { factsOf, openRouteStore, readingKey } from "./gloss-store-v1.mjs";
+import { factsOf, openRouteStore, readingKey, FACTS_WRITTEN_BY } from "./gloss-store-v1.mjs";
+import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
+import { openFollower, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { glossMFor } from "./gloss-m-v1.mjs";
 import { DICTIONARY_KINDS_RULE_ID, DICTIONARY_KINDS_RECORD, readKinds, restsOffOf, restsOffIds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { zonesServed, carriesReaderHebrew } from "./zones-on-disk-v1.mjs";
@@ -219,11 +260,51 @@ for (const [name, c] of copies) if (c.fns) { try { ruleOf.set(name, c.fns.restsO
 
 // ---- one pass over every row of the store ---------------------------------------------------------------------------
 const rowsOfM = new Map();                                       // M id -> rows
-const per = new Map(rec.rests_off.map((e) => [e.id, { rows: 0, byFamily: new Map() }]));
+const per = new Map(rec.rests_off.map((e) => [e.id, { rows: 0, byFamily: new Map(), standing: 0, places: 0 }]));
 const familyOfKey = new Map(store.flatMap((f) => f.keys.map((k) => [k, f.id])));
 const differs = new Map(copies.map(([name]) => [name, []]));    // a copy -> where it answered otherwise than the module
-const answer = (fn, row) => { const e = fn(row); return e ? e.id : null; };
-let rows = 0;
+const answer = (fn, row, place = null) => { const e = fn(row, place); return e ? e.id : null; };
+// the facts that name where a row stands all the same, and a place no row names: a row that names places is asked at
+// them (its first three) and at that place too, by the module and by every copy
+const STANDS = [...new Set(rec.rests_off.map((e) => e.stands_at).filter((s) => typeof s === "string" && s))];
+const OUTSIDE = "nowhere 0:0:0";
+const placesOf = (row) => { const f = STANDS.length ? factsOf(row) : null; return f ? [...new Set(STANDS.flatMap((s) => (Array.isArray(f[s]) ? f[s] : [])))] : []; };
+let rows = 0, askedAt = 0;
+// K1: every fact a resting entry names, and every fact it stands at, is a key of the facts slot; and an entry whose
+// fact no tool has written on this store (the store's index records no run of the tool FACTS_WRITTEN_BY names) is
+// not judged on its rows: it is said, and the check does not pass
+const unknownFacts = rec.rests_off.flatMap((e) => [["fact", e.fact], ["stands_at", e.stands_at]]
+  .filter(([, f]) => f !== undefined && !Object.hasOwn(FACTS_WRITTEN_BY, f)).map(([w, f]) => `${e.id} names ${JSON.stringify(f)} as its ${w}, which is no key of the facts slot`));
+check("K1  every fact a resting entry names, and every fact it stands at, is a key of the facts slot (FACTS_WRITTEN_BY of tools/gloss-store-v1.mjs)", unknownFacts.length === 0,
+  unknownFacts.length ? first(unknownFacts) : `${rec.rests_off.filter((e) => e.fact).map((e) => `${e.id}: ${e.fact}${e.stands_at ? `, standing at ${e.stands_at}` : ""} (written by ${FACTS_WRITTEN_BY[e.fact]})`).join(" · ")}`);
+const notWritten = (e) => !!e.fact && Object.hasOwn(FACTS_WRITTEN_BY, e.fact) && index[FACTS_WRITTEN_BY[e.fact]] === undefined;
+let k1Waiting = [];
+// K6, read before the pass: the derived list of UBS's collocation rows, each line followed to where its row stands now
+const K6 = { entry: rec.rests_off.find((e) => e.fact === "collocations") || null, said: index.ubs_collocations || null, lines: [], faults: [], wanted: new Set(), found: new Map(), carrying: [], unjudged: null };
+{
+  const pinPath = join(READER, "data", "ubs-collocations", "PIN.json");
+  const pin = existsSync(pinPath) ? JSON.parse(readFileSync(pinPath, "utf8")) : null;
+  const made = pin && pin.made_here && pin.made_here.list;
+  if (!pin) K6.unjudged = "the tree holds no pin of UBS's collocations (data/ubs-collocations/PIN.json)";
+  else if (!K6.said) K6.unjudged = `the store's index holds no record of the tool that writes the facts collocations and picked_at (index.${pin.index_key || "ubs_collocations"}): the store steps have not run on this store`;
+  else if (!made) K6.faults.push("the pin names no derived list (made_here.list)");
+  else {
+    if (!K6.entry) K6.faults.push("the record of dictionary kinds names no entry that rests a row by its collocations");
+    try { K6.lines = readPinnedLines(join(READER, "data", "ubs-collocations", made.file), made, `data/ubs-collocations/${made.file}`); } catch (e) { if (!(e instanceof PinFault)) throw e; K6.faults.push(e.message); }
+    if (!K6.said.list || K6.said.list.sha256 !== made.sha256) K6.faults.push(`the store's index says the facts tool laid the list at ${String((K6.said.list || {}).sha256).slice(0, 12)}…, and the pin names ${String(made.sha256).slice(0, 12)}…`);
+    let f = null;
+    try { f = openFollower({ data: join(READER, "data"), index, readAt: K6.said.store_version || null }); } catch (e) { if (!(e instanceof FollowFault)) throw e; K6.faults.push(`the follower, read at the store the facts were laid on: ${e.message}`); }
+    if (f) K6.lines.forEach((l, i) => {
+      try {
+        const a = f.nowOf([l.k, l.rank, String(l.m), l.sha]);
+        if (a.state === "struck" || a.state === "withheld") { K6.faults.push(`line ${i + 1} (${l.m} ${l.k} rank ${l.rank}) names a row ${a.state} since the facts were laid`); return; }
+        l.now = a.name;
+        K6.wanted.add(a.name[0]);
+      } catch (e) { if (!(e instanceof FollowFault)) throw e; K6.faults.push(`line ${i + 1}: ${e.message}`); }
+    });
+  }
+}
+const k6Id = (key, row) => `${key}\u0001${row[0]}\u0001${row[3]}\u0001${sha16Of(row[1])}`;
 if (rule) {
   const names = readdirSync(join(STORE, "shards")).filter((f) => f.endsWith(".bin")).sort();
   if ((index.counts || {}).shards === 256 && names.length !== 256) { check("K1  the store's shards are all here", false, `${names.length} of the 256 the index counts`); console.log(`\n${bad} FAILED`); process.exit(1); }
@@ -232,11 +313,17 @@ if (rule) {
     for (const [key, list] of Object.entries(shard)) for (const row of list) {
       rows += 1;
       rowsOfM.set(row[3], (rowsOfM.get(row[3]) || 0) + 1);
+      // K6: the rows of the keys the list names, and every row that carries the mark's facts
+      if (K6.wanted.has(key)) K6.found.set(k6Id(key, row), row);
+      { const f6 = factsOf(row); if (f6 && (Object.hasOwn(f6, "collocations") || Object.hasOwn(f6, "picked_at"))) K6.carrying.push([key, row]); }
       const mine = rule(row);
+      const places = placesOf(row);
       if (mine) {
         const p = per.get(mine.id); p.rows += 1;
         const fam = familyOfKey.get((mSources[row[3]] || {}).key);
         p.byFamily.set(fam, (p.byFamily.get(fam) || 0) + 1);
+        const own = mine.stands_at && (factsOf(row) || {})[mine.stands_at];
+        if (Array.isArray(own) && own.length) { p.standing += 1; p.places += own.length; }
       }
       for (const [cname] of copies) {
         const theirs = ruleOf.get(cname);
@@ -244,19 +331,33 @@ if (rule) {
         const t = answer(theirs, row);
         if (t !== (mine ? mine.id : null) && differs.get(cname).length < 50) differs.get(cname).push(`${key} ${row[3]} «${String(row[1]).slice(0, 30)}»: ${t} where the module says ${mine ? mine.id : null}`);
       }
+      if (places.length) for (const place of [...places.slice(0, 3), OUTSIDE]) {
+        askedAt += 1;
+        const m2 = answer(rule, row, place);
+        for (const [cname] of copies) {
+          const theirs = ruleOf.get(cname);
+          if (typeof theirs !== "function") continue;
+          const t = answer(theirs, row, place);
+          if (t !== m2 && differs.get(cname).length < 50) differs.get(cname).push(`${key} ${row[3]} «${String(row[1]).slice(0, 30)}» at ${place}: ${t} where the module says ${m2}`);
+        }
+      }
     }
   }
-  const dead = rec.rests_off.filter((e) => !per.get(e.id).rows);
+  k1Waiting = rec.rests_off.filter((e) => !per.get(e.id).rows && notWritten(e));
+  const dead = rec.rests_off.filter((e) => !per.get(e.id).rows && !k1Waiting.includes(e));
   const said = rec.rests_off.map((e) => {
     const p = per.get(e.id);
     const keys = new Set();
     for (const f of store) if ((e.kinds || []).includes(f.kind) || (e.families || []).includes(f.id)) for (const k of f.keys) keys.add(k);
     const ms = Object.keys(mSources).filter((m) => keys.has(mSources[m].key));
     const fams = [...p.byFamily].sort((x, y) => y[1] - x[1]).map(([f, n]) => `${f} ${nf(n)}`).join(", ");
-    return `${e.id}: ${keys.size} keys, ${ms.length} M ids (${ms.filter((m) => rowsOfM.get(m)).length} with rows), ${nf(p.rows)} rows${e.fact ? ` carrying ${e.fact} (${fams})` : ""}`;
+    const named = keys.size <= 2 ? ` (${[...keys].join(", ")}; ${ms.join(", ")})` : "";
+    const waits = k1Waiting.includes(e) ? ` (not judged: the store's index records no run of ${FACTS_WRITTEN_BY[e.fact]}, the tool that writes ${e.fact})` : "";
+    return `${e.id}: ${keys.size} key${keys.size === 1 ? "" : "s"}, ${ms.length} M id${ms.length === 1 ? "" : "s"}${named} (${ms.filter((m) => rowsOfM.get(m)).length} with rows), ${nf(p.rows)} rows${e.fact ? ` carrying ${e.fact}${fams ? ` (${fams})` : ""}` : ""}${e.stands_at ? `, ${nf(p.standing)} of them naming ${nf(p.places)} places they stand at (${e.stands_at})` : ""}${waits}`;
   });
-  check("K1  every resting entry rests rows of the store (counted from the shards, the first entry in the record's order taking a row)", dead.length === 0,
+  check("K1  every resting entry rests rows of the store (counted from the shards, the first entry in the record's order taking a row), but one whose fact no tool has written on this store, which is not judged", dead.length === 0,
     `${dead.length ? `${dead.map((e) => e.id).join(", ")} rest${dead.length === 1 ? "s" : ""} no row · ` : ""}${said.join(" · ")} · of ${nf(rows)} rows`);
+  if (k1Waiting.length) side(`K1  not judged: ${k1Waiting.map((e) => e.id).join(", ")} rests no row of this store`, `${k1Waiting.map((e) => `its fact ${e.fact} is written by the tool that records its run at index.${FACTS_WRITTEN_BY[e.fact]}, and this store's index holds no such record: the store steps that write it have not run here`).join("; ")}; a law not judged is not passed`);
 }
 
 // ---- K1: the scope ----------------------------------------------------------------------------------------------------
@@ -290,26 +391,39 @@ if (rule && own.fns) {
   // it compares a value. So the copies are also run under records made here that do: two entries over one row (the
   // first in the record's order takes it), a fact equal to a value (is), a fact that is a list holding one (has).
   const probe = (id, fields) => ({ id, say: "a probe of this check", ruling: "none: a probe of this check", ...fields });
+  const standing = probe("probe-names-stand", { families: ["english-wiktionary-hebrew-entries"], fact: "name", stands_at: "picked_at" });
   const records = [
     ["the record", rec],
     ["two entries over one row", { ...rec, rests_off: [probe("probe-general-name", { kinds: ["general-with-entries"], fact: "name" }), probe("probe-hebrew-entries", { families: ["english-wiktionary-hebrew-entries"] })] }],
     ["a fact equal to a value", { ...rec, rests_off: [probe("probe-pos-prefix", { families: ["english-wiktionary-hebrew-entries"], fact: "pos", is: "prefix" })] }],
     ["a fact that is a list holding a value", { ...rec, rests_off: [probe("probe-labels-slang", { families: ["english-wiktionary-hebrew-entries", "hebrew-wiktionary"], fact: "labels", has: "slang" })] }],
+    ["an entry that stands at the places its rows name", { ...rec, rests_off: [standing] }],
+    ["an entry that stands at places, and an entry after it", { ...rec, rests_off: [standing, probe("probe-hebrew-entries", { families: ["english-wiktionary-hebrew-entries"] })] }],
   ];
-  // a row of every M id of the index, and of ids it does not name, bare and with facts each of those records reads
-  const FACTS = [null, { name: 1 }, { name: 0 }, { pos: "prefix" }, { pos: "noun" }, { pos: ["prefix"] }, { labels: ["slang", "colloquial"] }, { labels: "slang" }, { labels: ["colloquial"] }];
+  // a row of every M id of the index, and of ids it does not name, bare and with facts each of those records reads,
+  // asked with no place and at places: one its facts name, one they do not
+  const FACTS = [null, { name: 1 }, { name: 0 }, { pos: "prefix" }, { pos: "noun" }, { pos: ["prefix"] }, { labels: ["slang", "colloquial"] }, { labels: "slang" }, { labels: ["colloquial"] },
+    { name: 1, picked_at: ["genesis 1:1:1", "exodus 2:3:4"] }, { name: 1, picked_at: "genesis 1:1:1" }, { picked_at: ["genesis 1:1:1"] },
+    { collocations: ["a b"], picked_at: ["genesis 1:1:1"] }, { collocations: ["a b"] }, { collocations: ["a b"], picked_at: [] }];
+  const PLACES = [null, "genesis 1:1:1", "exodus 2:3:4"];
   const probes = [];
   for (const m of [...Object.keys(mSources), "M0", "MSAM2", "PIECE:TAHOT", "M197"]) for (const f of FACTS)
     probes.push([`${m} with ${f ? JSON.stringify(f) : "no facts"}`, f ? [null, null, null, m, null, null, null, null, null, null, f] : [null, null, null, m]]);
   // the index in its own order and turned around: the ids come out in one order whatever the index's
   const indexes = [["the index", mSources], ["the index turned around", Object.fromEntries(Object.entries(mSources).reverse())]];
   // records the module refuses: a key the store's index names that no family files, a family beside the store in an
-  // entry, an entry carrying a field the rule does not read
+  // entry, an entry carrying a field the rule does not read, an entry standing at a field that is not a name, an entry
+  // standing at places beside no fact
   const lacking = { ...rec, families: rec.families.filter((f) => f.id !== store[0].id) };
   const besides = { ...rec, rests_off: [{ ...rec.rests_off[0], families: [rec.families.find((f) => f.shelf === "overlay").id] }] };
   const unread = { ...rec, rests_off: [{ ...rec.rests_off[0], except: ["M1"] }] };
-  const refusals = [["a key filed by no family", lacking], ["an overlay's family in an entry", besides], ["a field the rule does not read", unread]];
+  const standsAtNoName = { ...rec, rests_off: [{ ...standing, stands_at: 5 }] };
+  const standsAtNoFact = { ...rec, rests_off: [probe("probe-hebrew-entries-stand", { families: ["english-wiktionary-hebrew-entries"], stands_at: "picked_at" })] };
+  const refusals = [["a key filed by no family", lacking], ["an overlay's family in an entry", besides], ["a field the rule does not read", unread],
+    ["an entry standing at a field that is not a name", standsAtNoName], ["an entry standing at places beside no fact", standsAtNoFact]];
   const throws = (fn) => { try { fn(); return false; } catch { return true; } };
+  // a place that is not a place's name is refused by the rule itself
+  const NOT_PLACES = [5, {}, ["genesis 1:1:1"]];
   const judge = (cname, fns) => {
     const faults = [...differs.get(cname)];
     if (typeof ruleOf.get(cname) !== "function") faults.unshift(`it refuses the record the module reads: ${ruleOf.get(cname)}`);
@@ -317,7 +431,8 @@ if (rule && own.fns) {
       let theirs;
       try { theirs = fns.restsOffOf(r, mSources, factsOf); } catch (e) { faults.push(`under ${rname} it refuses: ${e.message}`); continue; }
       const mine = restsOffOf(r, mSources, factsOf);
-      for (const [what, row] of probes) { const t = answer(theirs, row), m = answer(mine, row); if (t !== m) faults.push(`under ${rname}, ${what}: ${t} where the module says ${m}`); }
+      for (const [what, row] of probes) for (const place of PLACES) { const t = answer(theirs, row, place), m = answer(mine, row, place); if (t !== m) faults.push(`under ${rname}, ${what}${place ? ` at ${place}` : ""}: ${t} where the module says ${m}`); }
+      for (const p of NOT_PLACES) if (!throws(() => theirs(probes[0][1], p)) || !throws(() => mine(probes[0][1], p))) faults.push(`under ${rname}, the place ${JSON.stringify(p)} is not refused by both`);
     }
     for (const [iname, ix] of indexes) {
       let ids;
@@ -328,7 +443,7 @@ if (rule && own.fns) {
     for (const [what, r] of refusals) if (!throws(() => fns.restsOffOf(r, mSources, factsOf)) || !throws(() => restsOffOf(r, mSources, factsOf))) faults.push(`a record with ${what} is not refused by both`);
     return faults;
   };
-  const said = (cname) => `${nf(rows)} rows of the store under the record, and ${nf(probes.length)} probe rows under each of ${records.length} records, answered alike · the same ${restsOffIds(rec, mSources).length} ids shut whole over the index in either order · ${refusals.length} records refused by both`;
+  const said = (cname) => `${nf(rows)} rows of the store under the record (${nf(askedAt)} asks at the places rows name and outside them), and ${nf(probes.length)} probe rows at ${PLACES.length} places (none among them) under each of ${records.length} records, answered alike · the same ${restsOffIds(rec, mSources).length} ids shut whole over the index in either order · ${refusals.length} records and ${NOT_PLACES.length} places refused by both`;
   const o = judge("the module's own block", own.fns);
   check("K2  the module's rule runs on its own, lifted out of its source as the page's copy is, and answers as the module does", o.length === 0,
     o.length ? first(o) : `${said("the module's own block")} · ids ${first(restsOffIds(rec, mSources), 6)}`);
@@ -342,12 +457,48 @@ if (rule && own.fns) {
 const k2Unjudged = !page.fns && !page.fault;
 if (k2Unjudged) side("K2  not judged: the page does not carry the rule yet", `${PAGE} holds no line opening "const restsOffOf = (rec, mSources, factsOf) => ", so the page's part of the design has not landed and the rule stands in one place only`);
 
+// ---- K6: UBS's collocation mark at rest -------------------------------------------------------------------------------
+if (K6.unjudged) side("K6  not judged", `${K6.unjudged}; a law not judged is not passed`);
+else if (rule) {
+  const faults = [...K6.faults], listed = new Set();
+  let places = 0, withPlaces = 0;
+  K6.lines.forEach((l, i) => {
+    if (!l.now) return;
+    const where = `line ${i + 1} (${l.m} ${l.k} rank ${l.rank})`;
+    const id = `${l.now[0]}\u0001${l.now[1]}\u0001${l.now[2]}\u0001${l.now[3]}`;
+    const row = K6.found.get(id);
+    if (!row) { faults.push(`${where}: no row of the store stands under the name the follower gives it (${l.now[0]} rank ${l.now[1]})`); return; }
+    listed.add(id);
+    const f = factsOf(row) || {};
+    if (JSON.stringify(f.collocations) !== JSON.stringify(l.collocations)) faults.push(`${where}: the row carries the collocations ${JSON.stringify(f.collocations ?? null).slice(0, 60)}, the list ${JSON.stringify(l.collocations).slice(0, 60)}`);
+    const want = Array.isArray(l.picked_at) && l.picked_at.length ? l.picked_at : undefined;
+    if (JSON.stringify(f.picked_at) !== JSON.stringify(want)) faults.push(`${where}: the row stands at ${JSON.stringify(f.picked_at ?? null).slice(0, 60)}, the list names ${JSON.stringify(want ?? null).slice(0, 60)}`);
+    if (want) { withPlaces += 1; places += want.length; }
+    // the rule rests the row shut with no place and at a place outside it, and stands it at each place it names
+    if (K6.entry) {
+      const shut = rule(row), outside = rule(row, "nowhere 0:0:0");
+      if (!shut || shut.id !== K6.entry.id || !outside || outside.id !== K6.entry.id) faults.push(`${where}: the rule does not rest the row shut under ${K6.entry.id} with no place or at a place outside it`);
+      for (const place of want || []) if (rule(row, place)) { faults.push(`${where}: the rule rests the row shut at ${place}, a place its own pick names`); break; }
+    }
+  });
+  for (const [key, row] of K6.carrying) {
+    const f = factsOf(row) || {};
+    if (!listed.has(k6Id(key, row))) faults.push(`${key} ${row[3]} rank ${row[0]} «${String(row[1]).slice(0, 30)}» carries ${Object.hasOwn(f, "collocations") ? "collocations" : "picked_at"} and is no row of the list`);
+    if (Object.hasOwn(f, "name") && Object.hasOwn(f, "collocations")) faults.push(`${key} ${row[3]} rank ${row[0]} carries collocations beside a name`);
+  }
+  check("K6  UBS's collocation mark at rest: every line of the pinned derived list names one row of the store, which carries its collocations and its places as listed, rests shut by the rule but where its own pick names it; no other row carries the facts, and none beside a name",
+    K6.lines.length > 0 && faults.length === 0,
+    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(K6.lines.length)} rows on ${nf(new Set(K6.lines.map((l) => l.k)).size)} keys carry collocations, ${nf(withPlaces)} of them picked_at at ${nf(places)} places · followed from store ${K6.said.store_version}, laid by ${K6.said.applied_by} · no other row carries either fact`);
+}
+
 // ---- K3: the bakes are at rest ------------------------------------------------------------------------------------
 // The store twice: whole, and opened at rest (tools/gloss-store-v1.mjs reads the record beside the store and leaves
 // out every row it rests shut). A zone the record rests shut was baked over the second; any other over the first.
 const storeWhole = openRouteStore(STORE);
 let storeAtRest = null;
-try { storeAtRest = openRouteStore(STORE, { atRest: true }); } catch (e) { check("K3  the store reader opens the store at rest", false, e.message); }
+// a book the record rests shut is baked with Strong's sign last as well (zone-gloss-rule-v8: the same scope, the
+// store opened { atRest, signLast: atRest }), so its line is rebuilt from the store so opened
+try { storeAtRest = openRouteStore(STORE, { atRest: true, signLast: true }); } catch (e) { check("K3  the store reader opens the store at rest", false, e.message); }
 if (storeAtRest && !(storeAtRest.atRest && storeAtRest.atRest.sha256 === kinds.sha256 && typeof storeAtRest.routesWhole === "function")) {
   check("K3  the store reader opens the store at rest, under this record", false, storeAtRest.atRest ? `it read the record at sha256 ${String(storeAtRest.atRest.sha256).slice(0, 12)}…, this check ${kinds.sha256.slice(0, 12)}…` : "tools/gloss-store-v1.mjs takes no { atRest } and opened the store whole");
   storeAtRest = null;
@@ -750,6 +901,158 @@ if (rule) {
             `«${brought ? brought.slice(0, 30) : "no dotted pill"}» pressed · shut again: __kinds ${shut.kinds}, the card ${shut.card ? "still open" : "closed"} · the next card's focus: ${after.on}`);
         }
       }
+      // UBS'S COLLOCATION ROWS ON THE CARD (ship 5): at a place UBS's own pick names a row of the category, its
+      // reading stands on the word's card as any open reading does, uncounted and with no dotted edge, the
+      // dictionaries shut or open; at another place of the same key the same reading rests shut: counted, and with
+      // them open, on a pill with the dotted edge. The words are found in the data: two plain words of the book
+      // under one key, the place of one of them named by the row's picked_at and the other's not, where no row
+      // that stands open at the other place prints that reading
+      if (K6.unjudged || !K6.entry) side("K4  UBS's collocation rows on the card not judged", K6.unjudged || "the record names no entry that rests a row by its collocations");
+      else {
+        const z = gz(join(ZONES, `${BOOK}.bin`)), byKey = new Map();
+        for (const [si, sec] of (z.sections || []).entries()) {
+          const words = sec.words || [];
+          let n = 0;
+          for (const [e, x] of words.entries()) {
+            if (x.mark) continue;
+            n += 1;
+            if (!x.k || !plainWord(words, e)) continue;
+            (byKey.get(x.k) || byKey.set(x.k, []).get(x.k)).push({ section: si, entry: e, label: String(sec.label ?? ""), place: `${BOOK} ${sec.label}:${n}` });
+          }
+        }
+        const cands = [];
+        for (const [k, at] of byKey) {
+          if (cands.length >= 6 || at.length < 2) continue;
+          const rows = (storeWhole.routesFor(k) || []).filter((r) => mSources[r[3]]);
+          for (const r of rows) {
+            const f = factsOf(r) || {};
+            if (!Array.isArray(f.collocations) || !Array.isArray(f.picked_at)) continue;
+            const here = at.find((a) => f.picked_at.includes(a.place));
+            const texts = storeWhole.readingsOf(r);
+            if (!here || !texts.length) continue;
+            const t = texts[0], tk = readingKey(t);
+            const there = at.find((a) => !f.picked_at.includes(a.place) && !rows.some((o) => o !== r && !rule(o, a.place) && storeWhole.readingsOf(o).some((x) => readingKey(x) === tk)));
+            if (there) { cands.push({ k, here, there, text: t, m: String(r[3]), rank: r[0] }); break; }
+          }
+        }
+        const pillOf = (card, t) => card.pills.find(([x]) => readingKey(x) === readingKey(t)) || null;
+        let judgedUbs = null;
+        for (const c of cands) {
+          await p.setViewportSize({ width: 412, height: 915 });
+          await p.evaluate(() => { try { localStorage.setItem("fh.kinds", "shut"); } catch { /* a device that keeps nothing */ } });
+          await p.goto(`${tree.base}/zone.html?b=${BOOK}`, { waitUntil: "networkidle" });
+          await settle();
+          if ((await stateOf()).kinds !== "shut") continue;
+          // the words are found anywhere in the book: every section built, as a reader who scrolled to them finds it
+          await p.evaluate(() => window.__materialise(0));
+          await settle();
+          if (!(await pressWord(c.here))) continue;
+          const hereShut = await cardNow();
+          if (!(await pressWord(c.there))) continue;
+          const thereShut = await cardNow();
+          await pressSeen();
+          await p.waitForFunction(() => window.__kinds === "open", null, { timeout: 15000 }).catch(() => {});
+          await p.waitForTimeout(500);
+          const thereOpen = await cardNow();
+          await pressWord(c.here);
+          const hereOpen = await cardNow();
+          const s9 = await stateOf();
+          judgedUbs = { c, hereShut, thereShut, thereOpen, hereOpen, kindsOpen: s9.kinds };
+          // shut again, for what follows
+          await p.evaluate(() => { try { localStorage.setItem("fh.kinds", "shut"); } catch { /* as above */ } });
+          break;
+        }
+        if (!judgedUbs) check("K4  UBS's collocation rows on the card", false, cands.length ? `none of ${cands.length} pair(s) of words found in ${BOOK} could be pressed as a reader presses them` : `no two plain words of ${BOOK} under one key, one at a place a row of the category names and one at a place it does not`);
+        else {
+          const { c, hereShut, thereShut, thereOpen, hereOpen, kindsOpen } = judgedUbs;
+          const a = pillOf(hereShut, c.text), b = pillOf(thereShut, c.text), bo = pillOf(thereOpen, c.text), ao = pillOf(hereOpen, c.text);
+          const says = (x) => (x ? `«${x[0].slice(0, 30)}» [${x[1]}]${x[2] === "1" ? " dotted" : ""}` : "no pill");
+          check(`K4  UBS's collocation rows: at ${c.here.place}, a place UBS's own pick names ${c.m} rank ${c.rank} of ${c.k}, its reading stands on the card uncounted and with no dotted edge, the dictionaries shut and open; at ${c.there.place} it rests shut, counted, and opened it wears the dotted edge`,
+            !!a && a[2] !== "1" && !!ao && ao[2] !== "1" && !b && thereShut.held > 0 && !!bo && bo[2] === "1" && kindsOpen === "open",
+            `«${c.text.slice(0, 40)}» · at the place picked, shut: ${says(a)}, open: ${says(ao)} · at the other place, shut: ${says(b)} with ${thereShut.held} held back, open: ${says(bo)} · __kinds ${kindsOpen}`);
+        }
+        // AND ON A WORD OF A RUN (the review of 16 November 2026): a run whose every word has its own reading at the
+        // place reads word by word (call 3), and its card opens on the word pressed; a cell of one word stands at that
+        // word's place, so a row of the category stands there where UBS's own pick names that place, as it does on a
+        // plain word's card (the card of the run at Genesis 14:3:8-9 opened on its first word and named no place, and
+        // rested shut the row UBS's pick names there). The words are found in the data: a word whose own key holds a
+        // row of the category UBS's pick names at its place, where no row of the key that rests open with no place
+        // named prints that reading (a card naming no place rests it shut); the first found standing in a run on the
+        // page, whose card opens on the word's own block when it is pressed, is judged, its card read shut and open
+        const runCands = [];
+        for (const [si, sec] of (z.sections || []).entries()) {
+          const words = sec.words || [];
+          let n = 0;
+          for (const [e, x] of words.entries()) {
+            if (x.mark) continue;
+            n += 1;
+            if (runCands.length >= 24 || !x.k) continue;
+            const place = `${BOOK} ${sec.label}:${n}`;
+            const rows = (storeWhole.routesFor(x.k) || []).filter((r) => mSources[r[3]]);
+            for (const r of rows) {
+              const f = factsOf(r) || {};
+              if (!Array.isArray(f.collocations) || !Array.isArray(f.picked_at) || !f.picked_at.includes(place)) continue;
+              const texts = storeWhole.readingsOf(r);
+              if (!texts.length) continue;
+              const tk = readingKey(texts[0]);
+              if (rows.some((o) => o !== r && !rule(o) && storeWhole.readingsOf(o).some((y) => readingKey(y) === tk))) continue;
+              runCands.push({ section: si, entry: e, k: x.k, place, text: texts[0], m: String(r[3]), rank: r[0] });
+              break;
+            }
+          }
+        }
+        // the word pressed as a reader presses it, where a run holds it: the block its card stands on, and the place
+        const pressRunWord = (pick) => p.evaluate(async ({ section, entry }) => {
+          const hud = document.getElementById("hud");
+          document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+          const wb = (document.querySelectorAll("section.seg")[section] || document.body).querySelectorAll(".he-text .wb")[entry];
+          if (!wb || !wb.closest(".wjoin")) return null;
+          wb.scrollIntoView({ block: "center" });
+          (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click();
+          const t0 = performance.now();
+          const settled = () => { const read = hud.querySelector(":scope > .rows > .b-read"); return !!(read && read.children.length && !read.querySelector(":scope > .r-wait")); };
+          while (!settled() && performance.now() - t0 < 20000) await new Promise((r) => setTimeout(r, 25));
+          if (!settled()) return null;
+          const on = [...hud.querySelectorAll(":scope > .rows .b-cell .s-pills button")].find((x) => x.getAttribute("aria-pressed") === "true");
+          return { block: on ? on.textContent.trim() : "", place: typeof window.__cardPlace === "string" ? window.__cardPlace : "" };
+        }, pick);
+        // the book at rest with the dictionaries shut, or opened for this record's version, every section built
+        const loadAt = async (kindsAt) => {
+          await p.evaluate((v) => { try { localStorage.setItem("fh.kinds", v); } catch { /* a device that keeps nothing */ } }, kindsAt === "open" ? `open@${rec.version}` : "shut");
+          await p.goto(`${tree.base}/zone.html?b=${BOOK}`, { waitUntil: "networkidle" });
+          await settle();
+          await p.evaluate(() => window.__materialise(0));
+          await settle();
+          return (await stateOf()).kinds;
+        };
+        let judgedRun = null, notInRun = 0, notOnWord = 0;
+        if (runCands.length && (await loadAt("shut")) === "shut") {
+          for (const c of runCands) {
+            const shutAt = await pressRunWord(c);
+            if (!shutAt) { notInRun += 1; continue; }
+            if (shutAt.block !== c.k) { notOnWord += 1; continue; }
+            const shut = await cardNow();
+            const kindsOpen = await loadAt("open");
+            const openAt = await pressRunWord(c);
+            const open = openAt ? await cardNow() : null;
+            judgedRun = { c, shutAt, shut, openAt, open, kindsOpen };
+            await p.evaluate(() => { try { localStorage.setItem("fh.kinds", "shut"); } catch { /* as above */ } });
+            break;
+          }
+        }
+        if (!judgedRun) {
+          side("K4  UBS's collocation rows on a word of a run not judged", runCands.length
+            ? `of the ${runCands.length} word(s) of ${BOOK} found, ${notInRun} stand in no run on the page and ${notOnWord} open their run's card on another block`
+            : `no word of ${BOOK} stands at a place UBS's own pick names a row of its key that a card naming no place would rest shut`);
+        } else {
+          const { c, shutAt, shut, openAt, open, kindsOpen } = judgedRun;
+          const a = pillOf(shut, c.text), ao = open ? pillOf(open, c.text) : null;
+          const says = (x) => (x ? `«${x[0].slice(0, 30)}» [${x[1]}]${x[2] === "1" ? " dotted" : ""}` : "no pill");
+          check(`K4  UBS's collocation rows on a word of a run: at ${c.place}, a word whose run's card opens on its own block, the card stands at the word's place, and ${c.m} rank ${c.rank} of ${c.k}, which UBS's own pick names there, stands on it uncounted and with no dotted edge, the dictionaries shut and open`,
+            shutAt.place === c.place && !!a && a[2] !== "1" && !!openAt && openAt.place === c.place && !!ao && ao[2] !== "1" && kindsOpen === "open",
+            `«${c.text.slice(0, 40)}» · the card stands at ${shutAt.place || "no place the page names"} on the block ${shutAt.block} · shut: ${says(a)} with ${shut.held} held back · open: ${says(ao)}${openAt ? ` at ${openAt.place || "no place"}` : ", no card"} · __kinds ${kindsOpen}`);
+        }
+      }
       await ctx.close();
       // the other work: nothing of the kinds drawn, and a shut source's pill still stands there
       if (!OTHER) side("K4  the other work not judged: every served work rests shut");
@@ -926,5 +1229,6 @@ if (rule) {
     chainFaults.length ? `${nf(chainFaults.length)} · ${first(chainFaults)}` : `${booksRead} chain books · ${nf(restPills)} pills at rest · ${nf(liftedShut)} pills lifted that sources shut whole alone carry`);
 }
 
-console.log(bad ? `\n${bad} FAILED` : k2Unjudged ? "\nSKIPPED — K1 holds; K2 is not judged until the page carries the rule, and a law not judged is not passed" : "\nall checks passed");
-process.exit(bad ? 1 : k2Unjudged ? 3 : 0);
+const unjudged = [...(k1Waiting.length ? [`K1 is not judged on the rows of ${k1Waiting.map((e) => e.id).join(", ")} until the store carries the fact its tool writes`] : []), ...(k2Unjudged ? ["K2 is not judged until the page carries the rule"] : []), ...(K6.unjudged ? ["K6 is not judged until the store steps lay UBS's collocations"] : [])];
+console.log(bad ? `\n${bad} FAILED` : unjudged.length ? `\nSKIPPED — the rest holds; ${unjudged.join("; ")}, and a law not judged is not passed` : "\nall checks passed");
+process.exit(bad ? 1 : unjudged.length ? 3 : 0);

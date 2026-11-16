@@ -14,7 +14,10 @@
 //       letters a label of ours quotes; a gold-mark leaf draws its letters in
 //       the red
 //   C2  a dictionary's words are the blue, the regular: the D record, its lit
-//       sense, the reading pills and the reading the line shows; Hebrew a
+//       sense, the reading pills, the reading the line shows and the opening
+//       of a numbered sense printed as a note (the unabridged BDB's, ruling 4
+//       of 14 November 2026; since ship 6 of 16 November 2026 gave BDB its
+//       own words back, such an opening can quote Hebrew); Hebrew a
 //       dictionary quotes is its words and stays in its blue, and a line
 //       saying a reading is absent is the page speaking
 //   C3  the lit sense of the record is the blue worn bold
@@ -44,7 +47,7 @@ const read = (p) => p.evaluate(() => {
   const ink = (v) => { const e = document.createElement("i"); e.style.color = `var(${v})`; document.body.append(e); const c = getComputedStyle(e).color; e.remove(); return c; };
   const RED = ink("--shani"), BLUE = ink("--tekhelet");
   const HE = /[\u05D0-\u05EA]/u, LAT = /[A-Za-z]/u;
-  const DICT = ".d-text, .r-pills button, .r-now .v";
+  const DICT = ".d-text, .r-pills button, .r-now .v, .sense-notes .sense-note";
   const r = { he: 0, heBad: [], dict: 0, dictBad: [], lit: [], pressedDiv: [], other: [], label: 0, menu: 0, table: !!hud.querySelector(".dict-tab") };
   const where = (el) => { const a = []; for (let e = el; e && e !== hud && a.length < 3; e = e.parentElement) a.unshift(e.tagName.toLowerCase() + (typeof e.className === "string" && e.className.trim() ? "." + e.className.trim().split(/\s+/u).join(".") : "")); return a.join(">"); };
   const w = document.createTreeWalker(hud, NodeFilter.SHOW_TEXT);

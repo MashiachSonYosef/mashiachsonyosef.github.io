@@ -41,6 +41,7 @@ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 const pw = await loadPlaywright();
 import { defaultZoneUrl, zonesServed } from "./zones-on-disk-v1.mjs";
 import { onlyLeaders } from "./place-leaders-v1.mjs";
+import { lineOfPill } from "./card-readings-v1.mjs";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 
@@ -327,11 +328,12 @@ const leadOf = (i) => p.evaluate(async ([i, ov]) => {
   const t0 = Date.now(); while (Date.now() - t0 < 5000 && !document.querySelector("#hud .r-pills button")) await new Promise((r) => setTimeout(r, 50));
   await new Promise((r) => setTimeout(r, 300));
   const ovs = new Set(ov);
-  const first = (([...document.querySelectorAll("#hud .r-pills button")].find((b) => !String(b.dataset.by || "").split(" ").some((m) => ovs.has(m))) || {}).textContent || "").trim();
+  const lead = [...document.querySelectorAll("#hud .r-pills button")].find((b) => !String(b.dataset.by || "").split(" ").some((m) => ovs.has(m))) || {};
+  const first = (lead.textContent || "").trim(), firstBy = (lead.dataset && lead.dataset.pointerBy) || "";
   const x = document.querySelector("#hud .head button"); if (x) x.click();
   await new Promise((r) => setTimeout(r, 200));
   const g = wb.querySelector(".g").cloneNode(true); g.querySelectorAll(".g-lic").forEach((c) => c.remove());
-  return { first, line: g.textContent.replace(/\s+/g, " ").trim() };
+  return { first, firstBy, line: g.textContent.replace(/\s+/g, " ").trim() };
 }, [i, OV_IDS]);
 const sharedBefore = pick ? await leadOf(pick.shared.i) : null;
 const heBefore = await inkOf();
@@ -355,7 +357,9 @@ check("S3  the solely-carried line moved to its alternate, and its chip names th
 // the card now says. It never goes dark, and it moves only with the card.
 const sharedAfter = pick ? await leadOf(pick.shared.i) : null;
 const same = (a, b) => String(a).trim().toLowerCase() === String(b).trim().toLowerCase();
-const s4 = pick && sharedBefore && sharedAfter && !after[1].bare && same(sharedAfter.line, sharedAfter.first)
+// a reading that took the pointers resolving to it prints them beside it on its pill alone (pointer-one-pill-rule-v1,
+// ship 5): a first pill is read as the line prints it (lineOfPill)
+const s4 = pick && sharedBefore && sharedAfter && !after[1].bare && same(sharedAfter.line, lineOfPill(sharedAfter.first, sharedAfter.firstBy))
   && (same(sharedBefore.first, sharedAfter.first) ? after[1].line === pick.shared.line : true);
 check("S4  the shared line stays carried: never dark, its card's first pill, and still unless the card's lead moved", s4,
   pick && sharedAfter ? `"${pick.shared.line}" (carriers ${pick.shared.model.by.join(",")}) -> "${after[1].line}" · card led "${sharedBefore.first}", now "${sharedAfter.first}" · line "${sharedAfter.line}" bare ${after[1].bare}` : "");
@@ -368,14 +372,14 @@ const card = await p.evaluate((ov) => {
   const pills = h.querySelector(".r-pills");
   const ovs = new Set(ov);
   const firstStore = [...pills.querySelectorAll("button")].find((b) => !String(b.dataset.by || "").split(" ").some((m) => ovs.has(m)));
-  return { withheld: Number(pills.dataset.withheldBySources || 0), rows: Number(pills.dataset.rows || 0), note: (h.querySelector(".sources-withheld") || {}).textContent || "", first: (firstStore || {}).textContent || "", bys: [...pills.querySelectorAll("button")].map((x) => x.dataset.by || "") };
+  return { withheld: Number(pills.dataset.withheldBySources || 0), rows: Number(pills.dataset.rows || 0), note: (h.querySelector(".sources-withheld") || {}).textContent || "", first: (firstStore || {}).textContent || "", firstBy: ((firstStore || {}).dataset || {}).pointerBy || "", bys: [...pills.querySelectorAll("button")].map((x) => x.dataset.by || "") };
 }, OV_IDS);
 const off = new Set(pick ? pick.ids : []);
 const creditsOff = card ? card.bys.filter((by) => by.split(" ").every((m) => off.has(m))).length : -1;
 check("S5  the card says how many records the switch withheld, and no pill is carried only by the switched-off ids",
   card && card.withheld > 0 && /withheld by your source switch/u.test(card.note) && creditsOff === 0,
   card ? `${card.withheld} of ${card.rows} withheld · "${card.note}" · pills credited only to the off ids: ${creditsOff}` : "no card");
-check("    and the card's first pill no overlay source carries is the line", card && pick && card.first.trim().toLowerCase() === after[0].line.replace(/\s*(CC|Public|License).*$/u, "").trim().toLowerCase(), card ? `pill "${card.first}" · line "${after[0].line}"` : "");
+check("    and the card's first pill no overlay source carries is the line", card && pick && lineOfPill(card.first.trim(), card.firstBy).toLowerCase() === after[0].line.replace(/\s*(CC|Public|License).*$/u, "").trim().toLowerCase(), card ? `pill "${card.first}" · line "${after[0].line}"` : "");
 
 // S6
 const heAfter = await inkOf();

@@ -96,6 +96,7 @@ import { gunzipSync } from "node:zlib";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
 import { DEFAULT_PICKS_RULE_ID } from "./bake-default-picks-v1.mjs";
+import { lineOfPill } from "./card-readings-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -315,8 +316,15 @@ const openCard = async (p, at) => {
 };
 const shut = async (p) => { await p.keyboard.press("Escape"); await p.waitForTimeout(300); };
 const pressRow = async (p, id) => { await p.evaluate((x) => document.getElementById(x).click(), id); await p.waitForTimeout(600); await ready(p); await p.waitForTimeout(1200); };
-/** Press, on the open card, the first reading not pressed and not divided («+»); answer its words. */
-const pressOther = (p) => p.evaluate(() => { const x = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].find((y) => y.getAttribute("aria-pressed") !== "true" && !y.textContent.includes("+")); if (!x) return null; x.click(); return x.textContent.trim(); });
+/** Press, on the open card, the first reading not pressed and not divided («+»); answer its words as the pill prints
+ *  them, and, as reads, the words it puts on the line: a reading that took the pointers resolving to it prints them
+ *  beside it on its pill alone (pointer-one-pill-rule-v1, ship 5: lineOfPill). */
+const pressOther = async (p) => {
+  const x = await p.evaluate(() => { const y = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].find((z) => z.getAttribute("aria-pressed") !== "true" && !z.textContent.includes("+")); if (!y) return null; y.click(); return { t: y.textContent.trim(), by: y.dataset.pointerBy || "" }; });
+  return x ? { t: x.t, reads: lineOfPill(x.t, x.by), folded: !!x.by } : null;
+};
+/** Whether a line reads the words a pressed pill puts on it (a folded pill's reading with the case folded). */
+const lineReads = (line, took) => (took.folded ? String(line).toLowerCase().includes(took.reads.replace(/\s+/gu, " ").toLowerCase()) : String(line).includes(took.reads.replace(/\s+/gu, " ")));
 const pressPressed = (p) => p.evaluate(() => { const x = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].find((y) => y.getAttribute("aria-pressed") === "true"); if (!x) return null; x.click(); return x.textContent.trim(); });
 /** Press, on the open card, the division that is the whole form (one block, no «+»), where it is not pressed. */
 const pressWhole = (p) => p.evaluate(() => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((y) => !y.textContent.includes("+")); if (!x) return null; if (x.getAttribute("aria-pressed") === "true") return "already"; x.click(); return "pressed"; });
@@ -362,7 +370,8 @@ try {
     {
       const { ctx, p } = await open(b);
       await openCard(p, A.at);
-      const took = await pressOther(p);
+      const pill = await pressOther(p);
+      const took = pill ? pill.t : null;
       await p.waitForTimeout(800); await shut(p);
       const ruled = await lineOf(p, A.at);
       await pressRow(p, "default-macula");
@@ -370,7 +379,7 @@ try {
       await shut(p);
       const la = await lineOf(p, A.at), lb = await lineOf(p, B.at);
       const fault = !took ? "no reading to press on the card at rest"
-        : !ruled || !ruled.text.includes(took.replace(/\s+/gu, " ")) ? `pressed ${said(took)}, the line reads ${said(ruled && ruled.text)}`
+        : !ruled || !lineReads(ruled.text, pill) ? `pressed ${said(took)}${pill.folded ? ` (it reads ${said(pill.reads)} on the line)` : ""}, the line reads ${said(ruled && ruled.text)}`
           : la.text !== ruled.text || lb.text !== ruled.text ? `under MACULA, the card at ${B.at} opened: ${A.at} reads ${said(la.text)}, ${B.at} ${said(lb.text)}, ruled ${said(ruled.text)}`
             : card.now !== ruled.text ? `the card at ${B.at} reads ${said(card.now)}, ruled ${said(ruled.text)}`
               : !(card.pressed.length === 1 && card.pressed[0] === took) ? `the card at ${B.at} presses ${card.pressed.map((x) => said(x)).join(", ") || "nothing"}, the block ruled ${said(took)}` : "";

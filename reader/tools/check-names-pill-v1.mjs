@@ -40,6 +40,7 @@ import { gunzipSync } from "node:zlib";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl, zoneIdOf, zonesOnDisk } from "./zones-on-disk-v1.mjs";
 import { onlyLeaders } from "./place-leaders-v1.mjs";
+import { lineOfPill } from "./card-readings-v1.mjs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  -  " + d : ""}`); };
 const URL0 = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "");
@@ -167,11 +168,14 @@ if (mv.length) {
   await p.evaluate(([si, wi]) => { const s = document.querySelectorAll("section.seg")[si]; s.scrollIntoView(); s.querySelectorAll(".he-text .wb")[wi].querySelector(".w").click(); }, [si, wi]);
   await p.waitForSelector("#hud > .rows .b-read .r-pills button", { timeout: 15000 }).catch(() => {});
   await p.waitForTimeout(700);
-  const card = await p.evaluate(() => { const pills = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].map((x) => ({ t: x.textContent.trim(), on: x.getAttribute("aria-pressed") === "true" })); return { pressed: pills.filter((x) => x.on).map((x) => x.t), all: pills.map((x) => x.t), nameSentence: !!document.querySelector("#hud .r-piece, #hud .kq-role") && [...document.querySelectorAll("#hud .r-piece, #hud .kq-role")].some((x) => /name/u.test(x.textContent) && /lead/u.test(x.textContent)) }; });
+  const card = await p.evaluate(() => { const pills = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")].map((x) => ({ t: x.textContent.trim(), by: x.dataset.pointerBy || "", on: x.getAttribute("aria-pressed") === "true" })); return { pressed: pills.filter((x) => x.on), all: pills, nameSentence: !!document.querySelector("#hud .r-piece, #hud .kq-role") && [...document.querySelectorAll("#hud .r-piece, #hud .kq-role")].some((x) => /name/u.test(x.textContent) && /lead/u.test(x.textContent)) }; });
   const fold = (t) => String(t).replace(/\.$/u, "").trim().toLowerCase();   // the card's pill may differ by case alone
+  // a reading that took the pointers resolving to it prints them beside it on its pill alone (pointer-one-pill-rule-v1,
+  // ship 5): a pill is read as the line prints it (lineOfPill)
+  const reads = (x) => fold(lineOfPill(x.t, x.by));
   check("P3 the card opens pressed on what the line now says, the name is still among its pills, and the card no longer says the name leads",
-    card.pressed.length === 1 && fold(card.pressed[0]) === fold(now) && card.all.some((t) => fold(t) === fold(was)) && !card.nameSentence,
-    `line "${now}" · pressed ${JSON.stringify(card.pressed)} · the name "${was}" on the card ${card.all.some((t) => fold(t) === fold(was))} · says the name leads ${card.nameSentence}`);
+    card.pressed.length === 1 && reads(card.pressed[0]) === fold(now) && card.all.some((x) => reads(x) === fold(was)) && !card.nameSentence,
+    `line "${now}" · pressed ${JSON.stringify(card.pressed.map((x) => x.t))} · the name "${was}" on the card ${card.all.some((x) => reads(x) === fold(was))} · says the name leads ${card.nameSentence}`);
   await p.keyboard.press("Escape"); await p.waitForTimeout(200);
 } else check("P3 the card opens pressed on what the line now says", false, "no line moved");
 await railPress("the name leads");

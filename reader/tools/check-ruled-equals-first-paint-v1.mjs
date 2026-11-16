@@ -20,7 +20,10 @@
 //       on its line, and still reads it after the page lays the section again:
 //       the reading was remembered under the block with no division, and the
 //       first repaint printed the baked line back over it (found 14 November
-//       2026: «in + understanding + his» back to «in + heart + his»)
+//       2026: «in + understanding + his» back to «in + heart + his»). A pill
+//       that took the pointers resolving to its reading prints them beside
+//       it and rules the reading (pointer-one-pill-rule-v1, ship 5), so the
+//       line owes the reading (lineOfPill)
 // And once more in the Hebrew reader under the UBS dictionary's own readings
 // (?default=ubs, default-picks-rule-v1): its line is the source's words, and a
 // ruling made under it is laid again as it was. Its cards open on the whole
@@ -30,6 +33,7 @@
 // Usage: node tools/check-ruled-equals-first-paint-v1.mjs [url]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { lineOfPill } from "./card-readings-v1.mjs";
 let bad = 0;
 const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
 const URL = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.argv[2] : "");
@@ -92,8 +96,11 @@ for (const [mode, dflt] of [["he", null], ["en", null], ["he", "ubs"]]) {
     // block is not one (its one pill is the set's), and is let go
     if (t.kind === "core") ok = await p.evaluate(() => !!document.querySelector('#hud .b-cell .s-pills button[aria-pressed="true"]'));
     if (ok && t.kind === "core") {
-      t.took = await p.evaluate(() => { const xs = [...document.querySelectorAll("#hud .b-read .r-pills button")]; const x = xs.find((y) => y.getAttribute("aria-pressed") !== "true" && !y.textContent.includes("+")); if (x) x.click(); return x ? x.textContent.trim() : null; });
+      const x = await p.evaluate(() => { const xs = [...document.querySelectorAll("#hud .b-read .r-pills button")]; const y = xs.find((z) => z.getAttribute("aria-pressed") !== "true" && !z.textContent.includes("+")); if (y) y.click(); return y ? { t: y.textContent.trim(), by: y.dataset.pointerBy || "" } : null; });
       await p.waitForTimeout(900);
+      // a reading that took a pointer puts the reading on the line, the pointer beside it on the pill alone
+      // (pointer-one-pill-rule-v1: lineOfPill)
+      if (x) { t.took = lineOfPill(x.t, x.by); t.tookPill = x.by ? x.t : null; }
       ok = !!t.took;
     } else if (ok && t.kind !== "open") ok = await pressed("#hud .b-read .r-pills button", "const now = (document.querySelector('#hud .r-now .v') || {}).textContent || ''; const s = xs.filter((x) => !x.textContent.includes('+') && x.textContent.trim() !== now.trim()).sort((a, c) => c.textContent.length - a.textContent.length); return s[0];");
     await p.keyboard.press("Escape"); await p.waitForTimeout(700);
@@ -124,8 +131,9 @@ for (const [mode, dflt] of [["he", null], ["en", null], ["he", "ubs"]]) {
   check(`E3  ${reader}: the page never scrolls sideways`, docW1 === docW0 && docW0 === 412, `${docW0}px → ${docW1}px`);
   // E4: each core word's line read the reading pressed, and reads it after the section is laid again
   const cores = ruled.map((t, k) => ({ t, a: after[k], f: fresh[k] })).filter((x) => x.t.kind === "core");
-  const lost = cores.filter((x) => !x.a || !x.f || !x.a.text.includes(x.t.took) || x.f.text !== x.a.text)
-    .map((x) => `${x.t.label}#${x.t.i}: pressed «${x.t.took}», the line read «${x.a ? x.a.text : "?"}», laid again «${x.f ? x.f.text : "?"}»`);
+  const reads = (line, t) => (t.tookPill ? line.toLowerCase().includes(t.took.toLowerCase()) : line.includes(t.took));
+  const lost = cores.filter((x) => !x.a || !x.f || !reads(x.a.text, x.t) || x.f.text !== x.a.text)
+    .map((x) => `${x.t.label}#${x.t.i}: pressed «${x.t.took}»${x.t.tookPill ? ` (the pill «${x.t.tookPill}»)` : ""}, the line read «${x.a ? x.a.text : "?"}», laid again «${x.f ? x.f.text : "?"}»`);
   // under a source other than STEP a card opens on a block only where the source has nothing at the word
   if (dflt && !cores.length) console.log(`  --  E4  ${reader}: not judged here: no split word's card in the first sections opened on a block (${dflt.toUpperCase()} reads them, and their cards open on the whole form)`);
   else check(`E4  ${reader}: a reading pressed on the block a card opened on, no division pressed, stands on the line when the section is laid again`, relayed && cores.length >= 1 && !lost.length,

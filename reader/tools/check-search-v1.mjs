@@ -66,6 +66,9 @@
 // so the model does too (its ids from the record and the store's index as
 // served; whether they stand shut and the record held, from the page's own
 // state).
+// THE WORDS THAT OPEN A NUMBERED SENSE (sense-openings-rule-v1) are a note on
+// the card and no pill: the index takes none of them, and the model leaves
+// them out too (opensSense, below).
 // The words are found on the page or in the data, never named here
 // (check-scope-derived S1).
 // Usage: node tools/check-search-v1.mjs [url]
@@ -119,6 +122,18 @@ const piecesOf = (row, src) => {
   if (src.ledger) { if (Array.isArray(row[8])) return row[8].map((x) => String(x)); const cuts = Array.isArray(row[7]) ? row[7] : []; const out = []; let from = 0; for (const i of cuts) { out.push(part(from, i)); from = i + 1; } out.push(part(from, t.length)); return out.map((x) => x.trim()).filter(Boolean); }
   return [part(0, t.length).trim()].filter(Boolean);
 };
+// THE WORDS THAT OPEN A NUMBERED SENSE ARE A NOTE, NOT A READING
+// (sense-openings-rule-v1, 13 November 2026): a row whose facts name the
+// sense it opens (opens: the entry and the point, as the unabridged BDB names
+// them) gives no pill; the card prints it among its notes, and the index
+// takes none of it (the bake asks the page's own senseOpened). The model
+// leaves such a row out wherever it reads a row with its facts, after the
+// rows a category rests shut (which S18 counts), as the bake does. Until 16
+// November 2026 it did not: the unabridged BDB opens a sense of four names
+// with «in Judah», and those four rows counted four Hebrew words the page
+// rightly does not answer with (41 against the page's 37), which S12 met once
+// «<in> + Judah» came to be its odd input. Typed here, as the pieces are.
+const opensSense = (row) => { const o = (factsOf(row) || {}).opens; return typeof o === "string" && o.length > 0; };
 // a ketiv/qere place reads "(ketiv) [qere]": its pointing is the qere's, and
 // the ketiv's letters stand there too
 const kqOf = (s) => {
@@ -208,6 +223,7 @@ const loadModel = async (DATA) => {
         const m = row[3], src = (rix.m_sources || {})[m];
         if (!src || struck.has(m)) continue;
         if (restsFact(row)) { kinds.factRows += 1; continue; }
+        if (opensSense(row)) continue;
         const nd = isNoDerivs(src.licensePosture);
         const pieces = piecesOf(row, src);
         for (const piece of pieces) {
@@ -270,6 +286,7 @@ const loadModel = async (DATA) => {
         const row = r.slots || [], m = row[3], src = (rix.m_sources || {})[m];
         if (!src || struck.has(m)) continue;
         if (restsFact(row)) { kinds.factRows += 1; continue; }
+        if (opensSense(row)) continue;
         const pieces = piecesOf(row, src);
         for (const piece of pieces) {
           const f = fold(spanJoin(piece));

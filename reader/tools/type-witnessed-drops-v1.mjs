@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// GUARDS: witnessed-order-bake-rule-v1-three-columns-as-shipped-each-reading-with-its-own-credit
+// GUARDS: witnessed-order-bake-rule-v2-three-columns-as-shipped-each-reading-with-its-own-credit-an-entry-whose-row-prints-only-strongs-signed-renderings-is-refused-where-the-pool-holds-a-plain-one
 //
 // THE DROPS A PROJECTION LOST, TYPED BACK FROM THE ZONE'S OWN HISTORY. On
 // 2026-10-17 regloss-zone dropped from the witnessed columns every reading

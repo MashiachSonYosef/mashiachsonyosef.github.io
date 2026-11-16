@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // RUN: page
 // GUARDS: ledger-division-rule-v2-a-ledgered-row-divides-prints-a-part-or-prints-no-pill-only-as-its-ledger-and-the-owner-say
-// GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary
+// GUARDS: zone-gloss-rule-v8-printed-form-ledger-division-whole-without-a-ledger-at-rest-a-rendering-carrying-strongs-sign-after-every-plain-one-antiquity-1940-lastuary
 //
 // THE PAGE READS THE LEDGER'S DIVISION, AND THE DIVISION IS THE LEDGER'S.
 //
@@ -24,7 +24,16 @@
 //       classifier: row[7] is exactly the marks whose shape divides under the
 //       index's answers, row[8] is exactly what the print step (ledger-print-v1)
 //       gives under the branch the owner answered, and no row of an unledgered
-//       source carries either slot
+//       source carries either slot. And every row of every ledgered source
+//       re-classified: a row its classifier has no shape for (uncovered: it
+//       throws, gives no marks, or gives a shape its declaration lacks) is a
+//       row that only opens a numbered sense of its entry (its facts' opens,
+//       sense-openings-rule-v1), which prints as a note and gives no reading,
+//       so its whole text stands for no line; and the receipt counts each
+//       source's uncovered rows as this re-count does. Since relay v187's
+//       words back (ship 6) the unabridged BDB's openings carry BDB's own
+//       Hebrew points, for which its ledger has no shape: the design of ships
+//       5 and 6 put the question back to the corpus lane (put-back 4)
 //   D4  the store's readingsOf and the page's readingsOfRow, read out of
 //       zone.html as bake-search-index reads the page's functions, give the
 //       same readings for every sampled row, ledgered or not
@@ -81,8 +90,9 @@ for (const f of readdirSync(join(STORE, "shards")).filter((x) => x.endsWith(".bi
     const m = String(row[3]); rowsOfM[m] = (rowsOfM[m] || 0) + 1;
     const src = index.m_sources[m]; if (!src) continue;
     if (!src.ledger) { if (Array.isArray(row[7]) || Array.isArray(row[8])) slotOnUnledgered.push(`${m} ${k}#${row[0]}`); continue; }
-    const s = (sample[src.ledger] ||= { n: 0, rows: [] });
+    const s = (sample[src.ledger] ||= { n: 0, rows: [], all: [] });
     s.n += 1;
+    s.all.push([k, row]);
     // every PER-th row, and every row with a slot, so a division or a print is never unsampled
     const slotted = Array.isArray(row[7]) || Array.isArray(row[8]);
     if (slotted || s.n % Math.max(1, Math.ceil(s.n / PER)) === 0 || s.rows.length < PER) { if (s.rows.length < PER * 3 || slotted) s.rows.push([k, row]); }
@@ -133,6 +143,7 @@ if (!ONLY || ONLY === "D2" || ONLY === "D3" || ONLY === "D8") {
       if (M[what].sha256 !== want) faults.push(`${key}: ${what} manifest ${M[what].sha256.slice(0, 10)}…, index ${String(want).slice(0, 10)}…`);
     }
     const decl = JSON.parse(readFileSync(join(K3, M.declaration.file), "utf8"));
+    const shapeIds = new Set((decl.shapes || []).map((x) => x.id));
     const dividing = new Set();
     const printing = new Map();   // shape -> the print step's entry (source:branch) for the branch the owner answered
     const options = new Map();    // the entry -> the option, where the declaration carries the step itself (ask v1.2)
@@ -154,7 +165,7 @@ if (!ONLY || ONLY === "D2" || ONLY === "D3" || ONLY === "D8") {
     }
     const idxDiv = new Set(S.shapes_dividing || []);
     if ([...dividing].sort().join() !== [...idxDiv].sort().join()) faults.push(`${key}: the dividing shapes the index names differ from the declaration under its answers`);
-    classifiers.set(key, { dividing, printing, options, cls: join(K3, M.classifier.file) });
+    classifiers.set(key, { shapeIds,  dividing, printing, options, cls: join(K3, M.classifier.file) });
   }
   check("D2  each ledger's files are the bytes the index and the manifest pin, and every branch answer is the answers file's or the resting option", faults.length === 0,
     faults.length ? faults.slice(0, 4).join(" · ") : `${classifiers.size} ledgers · answers file ${existsSync(answersPath) ? "present" : "absent (every branch at rest)"}`);
@@ -192,6 +203,26 @@ if (!ONLY || ONLY === "D3") {
     }
   }
   if (slotOnUnledgered.length) faults.push(`${slotOnUnledgered.length} rows of unledgered sources carry a slot: ${slotOnUnledgered.slice(0, 3).join(", ")}`);
+  // every row of every ledgered source: an uncovered row is a sense-mark row, and the receipt counts them so
+  const unc = [], byKey = {};
+  for (const [key, C] of classifiers) {
+    const { classify } = await import(pathToFileURL(resolve(C.cls)).href);
+    for (const [k, row] of (sample[key] || { all: [] }).all) {
+      let marks, why = null;
+      try { marks = classify(String(row[1])); } catch (e) { why = String((e && e.message) || e).slice(0, 60); }
+      if (!why && !Array.isArray(marks)) why = "no marks";
+      if (!why && marks.some((g) => !C.shapeIds.has(g.shape))) why = "a shape its declaration lacks";
+      if (!why) continue;
+      byKey[key] = (byKey[key] || 0) + 1;
+      const f = row.length > 10 && row[10] && typeof row[10] === "object" ? row[10] : null;
+      if (!(f && f.opens)) unc.push(`${key} ${k}#${row[0]} «${String(row[1]).slice(0, 40)}» (${why})`);
+    }
+  }
+  const receiptPath = join(K3, "data", "ledger-divisions-receipt-v1.json");
+  const said = existsSync(receiptPath) ? JSON.parse(readFileSync(receiptPath, "utf8")).sources || {} : null;
+  const offCount = said ? [...new Set([...Object.keys(byKey), ...Object.keys(said)])].filter((key) => classifiers.has(key) && (said[key] || {}).uncovered !== (byKey[key] || 0)).map((key) => `${key}: the receipt counts ${(said[key] || {}).uncovered} uncovered rows, a re-count ${byKey[key] || 0}`) : ["the receipt of the ledgers' divisions is not here"];
+  check("D3  every row of every ledgered source that its classifier has no shape for is a row that only opens a numbered sense of its entry, and the receipt counts each source's uncovered rows as a re-count does", unc.length === 0 && offCount.length === 0,
+    unc.length || offCount.length ? `${unc.length ? `${nf(unc.length)} uncovered rows open no sense: ${unc.slice(0, 3).join(" · ")}` : ""}${unc.length && offCount.length ? " · " : ""}${offCount.slice(0, 3).join(" · ")}` : `${nf(Object.values(byKey).reduce((a, n) => a + n, 0))} uncovered rows (${Object.entries(byKey).map(([key, n]) => `${key} ${n}`).join(", ") || "none"}), each a sense-mark row`);
   check("D3  every sampled row's slots are exactly the marks its source's own classifier divides at and the texts the print step gives under the index's answers; no unledgered row carries one", faults.length === 0,
     faults.length ? faults.slice(0, 4).join(" · ") : `${nf(rows)} rows re-classified over ${classifiers.size} ledgers · ${nf(divided)} divided · ${nf(printed)} print a part · ${nf(noPill)} print no pill · ${nf(rowsSeen)} rows walked`);
 }

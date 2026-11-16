@@ -1,0 +1,3423 @@
+{
+ "name": "audit, lines and pills v1: the line under every word and every pill of the recorded cards, held to what the source itself says at that place",
+ "written": "13 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "asked_by": "the owner, 13 November 2026 AD: a full adversarial audit; this is its part 1",
+ "current_effect": "NONE. Nothing served is changed; the files count what the page records that it prints.",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 9108,
+  "sha256": "5e6bd1e3c351c8d9432a37dee4e138174eb4dde4eb5a0d745fffdb9fa7a65893"
+ },
+ "builder": {
+  "file": "build-lines-and-pills-v1.mjs",
+  "bytes": 28960,
+  "sha256": "fa84ee6c7254742cd11105e1ee9f5d794d5c1597faa9c439140ce150ec66b754"
+ },
+ "inputs": {
+  "recordings_read_from": "https://fireandhail.com/",
+  "resting_lines": [
+   {
+    "file": "reader/data/resting-lines/genesis.json.gz",
+    "bytes": 105714,
+    "sha256": "f2d2c44709b01588513449faf4d30ceea66afebae17f02de84bbe370bbe83eb1"
+   },
+   {
+    "file": "reader/data/resting-lines/exodus.json.gz",
+    "bytes": 84742,
+    "sha256": "b02e8e588b356cdd0262883df5c5d58a5fcdc53d2c44fef8c2560a3850241fe4"
+   },
+   {
+    "file": "reader/data/resting-lines/leviticus.json.gz",
+    "bytes": 56599,
+    "sha256": "89875344767ccda34ceafd3effd3aecf36d586929aa1d8a971980082cb3f2c77"
+   },
+   {
+    "file": "reader/data/resting-lines/numbers.json.gz",
+    "bytes": 78359,
+    "sha256": "8f9dd5ce4c485efd60c152f286dffd222a5421dbe3626bdeb82e16d16461f433"
+   },
+   {
+    "file": "reader/data/resting-lines/deuteronomy.json.gz",
+    "bytes": 76872,
+    "sha256": "9a2444037d81368e814e47db2359599b14b7cb7bf0da01c7b04c0bf309ce3215"
+   },
+   {
+    "file": "reader/data/resting-lines/joshua.json.gz",
+    "bytes": 52760,
+    "sha256": "e2b36c6f743aebf21663a90032b674b8167f0ef2d187f1cfe4dc54a578c3032f"
+   },
+   {
+    "file": "reader/data/resting-lines/judges.json.gz",
+    "bytes": 53742,
+    "sha256": "db5524c57d6b2f6d5c53fc5a5090dca0bc46cd5b3de35b5a3b77bf8e733526ca"
+   },
+   {
+    "file": "reader/data/resting-lines/ruth.json.gz",
+    "bytes": 10299,
+    "sha256": "b02953741a9108328835409d491856017b7e537df3a1a953ec98cc60c7b9fd8c"
+   },
+   {
+    "file": "reader/data/resting-lines/i-samuel.json.gz",
+    "bytes": 71731,
+    "sha256": "beebf708e109093f3b37ab7a07718f8315891b848802c7762ff966b226c390c2"
+   },
+   {
+    "file": "reader/data/resting-lines/ii-samuel.json.gz",
+    "bytes": 60778,
+    "sha256": "d48ac3e92cfcba2001dd3fd9c520b83e9b6cea0b4b683efa4e9741c8246a3279"
+   },
+   {
+    "file": "reader/data/resting-lines/i-kings.json.gz",
+    "bytes": 68193,
+    "sha256": "c97b71ba11c7ee8cd48539661d69e4c0ce0f82b33f19bb38b2385bcd6eebfc3b"
+   },
+   {
+    "file": "reader/data/resting-lines/ii-kings.json.gz",
+    "bytes": 63990,
+    "sha256": "f67c2e22fa21411298262ac9d9a18f3a1b7ba16e8072e56f31ce6b2f1fcdb760"
+   },
+   {
+    "file": "reader/data/resting-lines/i-chronicles.json.gz",
+    "bytes": 58373,
+    "sha256": "1f4954f233985aae4c6afa9b370d19b1346099df7d9919b7799f8756c2dbe736"
+   },
+   {
+    "file": "reader/data/resting-lines/ii-chronicles.json.gz",
+    "bytes": 73533,
+    "sha256": "ee2f05948f80602a11d12ca8aba97e30533bc4002ec43cb18332ced69582e96e"
+   },
+   {
+    "file": "reader/data/resting-lines/ezra.json.gz",
+    "bytes": 23349,
+    "sha256": "dbafd5513e553b53c4cda5b565144927f962b3265cc9594b9fd387cb6e1a9a71"
+   },
+   {
+    "file": "reader/data/resting-lines/nehemiah.json.gz",
+    "bytes": 32580,
+    "sha256": "2e6f59bb865c89dcdc5fb368fd9455197b67aba08c23e335661e2ee51edec39d"
+   },
+   {
+    "file": "reader/data/resting-lines/esther.json.gz",
+    "bytes": 18608,
+    "sha256": "9dfacb6b6c7d924ef6b7e9b65c260e145bcb311670dbbd08fb4f324ea39c2177"
+   },
+   {
+    "file": "reader/data/resting-lines/job.json.gz",
+    "bytes": 54179,
+    "sha256": "b62fd77044e903826b92b379f796f36ee2e57a6110c2bc838c93d046f1cee700"
+   },
+   {
+    "file": "reader/data/resting-lines/psalms.json.gz",
+    "bytes": 119513,
+    "sha256": "d86f3b4ec2d316f05d7132a996d9b628ecc47c12e9c72391a850967e9eb78b1e"
+   },
+   {
+    "file": "reader/data/resting-lines/proverbs.json.gz",
+    "bytes": 44387,
+    "sha256": "c99605231b33ac9de14e48d6f976e989299fd816d4be13e325b5d220211397f3"
+   },
+   {
+    "file": "reader/data/resting-lines/ecclesiastes.json.gz",
+    "bytes": 19390,
+    "sha256": "6c5d3f441619707fa00911c504341e53030d1597276346c8df3010915bf7649e"
+   },
+   {
+    "file": "reader/data/resting-lines/song-of-songs.json.gz",
+    "bytes": 10893,
+    "sha256": "711af21cf13c4a8a7f2b3ed373bad5f0bb2ece157ff1a9efbe97bfebb85fc5b1"
+   },
+   {
+    "file": "reader/data/resting-lines/isaiah.json.gz",
+    "bytes": 106007,
+    "sha256": "0c03e51472625373334e3ef9d428bd014b541beac9ae68fc6b6652b123d48361"
+   },
+   {
+    "file": "reader/data/resting-lines/jeremiah.json.gz",
+    "bytes": 119892,
+    "sha256": "14f9d9b569ae25d508cb6645447284c12662e1514c4bba435455269f2c73ee4f"
+   },
+   {
+    "file": "reader/data/resting-lines/lamentations.json.gz",
+    "bytes": 12896,
+    "sha256": "61351e4edf351fec31dc32efd7129340c90af2f2a7a3cc78b8f5198fd0d306a4"
+   },
+   {
+    "file": "reader/data/resting-lines/ezekiel.json.gz",
+    "bytes": 98215,
+    "sha256": "55e25b13ea40318d68ffaa2555e3246b7fda3a3fbf7ae0778922a6fa56344afa"
+   },
+   {
+    "file": "reader/data/resting-lines/daniel.json.gz",
+    "bytes": 35222,
+    "sha256": "29061473bf064e96dc8c04d1f4a4d68a0dd90382178cfdc3836aaac5915e5f13"
+   },
+   {
+    "file": "reader/data/resting-lines/hosea.json.gz",
+    "bytes": 17682,
+    "sha256": "45b6f6332e0c91cec51db02a535bba492556c5de99861851928d0e249c598caa"
+   },
+   {
+    "file": "reader/data/resting-lines/joel.json.gz",
+    "bytes": 8625,
+    "sha256": "a7187e99dae40317e51089a91f085642921363cb9c1492641c3c79fefd88a0af"
+   },
+   {
+    "file": "reader/data/resting-lines/amos.json.gz",
+    "bytes": 14524,
+    "sha256": "c9967dcf66698b65051181721688090df3892801f0b59f8b91e222ece39297b5"
+   },
+   {
+    "file": "reader/data/resting-lines/obadiah.json.gz",
+    "bytes": 4519,
+    "sha256": "4599b8fdeb60c73557b19e6e9f581a273b145eb570c15f782c75b816d8d5f643"
+   },
+   {
+    "file": "reader/data/resting-lines/jonah.json.gz",
+    "bytes": 6667,
+    "sha256": "2095581f63018f55df6f9e14ec9f6b96297e27fde7c5d6a29d75939e9f00017c"
+   },
+   {
+    "file": "reader/data/resting-lines/micah.json.gz",
+    "bytes": 12002,
+    "sha256": "2d35baae0499c3b7c1e924139581c524e2c722ef8bd650ec95e659a72ab24714"
+   },
+   {
+    "file": "reader/data/resting-lines/nahum.json.gz",
+    "bytes": 6948,
+    "sha256": "a4f0cd16eef93c767bbf2131abc9c4b824b918d8c10996fb278d7cdeaa12de95"
+   },
+   {
+    "file": "reader/data/resting-lines/habakkuk.json.gz",
+    "bytes": 7611,
+    "sha256": "70bd9fe49ac6140aa3c8072712c9d2e0774ae26807a261586bb6c67af2c3429c"
+   },
+   {
+    "file": "reader/data/resting-lines/zephaniah.json.gz",
+    "bytes": 7771,
+    "sha256": "d2948b9e9892004629ad9d3993af29f9f56b2f50b0cd60352abffba92186bb2e"
+   },
+   {
+    "file": "reader/data/resting-lines/haggai.json.gz",
+    "bytes": 5994,
+    "sha256": "4b04893027f4fe720f61a20c112f73fae31613702d5acc8cc71e67ff54047041"
+   },
+   {
+    "file": "reader/data/resting-lines/zechariah.json.gz",
+    "bytes": 19942,
+    "sha256": "aef3749303dd3c070229a83e058bb55eb6a2233ad564a1814485c16a05fe09f8"
+   },
+   {
+    "file": "reader/data/resting-lines/malachi.json.gz",
+    "bytes": 8256,
+    "sha256": "70e54f83a912cc8a16d8cc808a2c782ac0a08a7feb4150592c96705ed688c487"
+   }
+  ],
+  "chain_books": [
+   {
+    "file": "chain/hosea/chain-v1.json.gz",
+    "bytes": 2122877,
+    "sha256": "13b395046831a0bd202aa571844689e227001d75ec9bf9dc05ac2e95cd779ee3"
+   },
+   {
+    "file": "chain/joel/chain-v1.json.gz",
+    "bytes": 1175343,
+    "sha256": "b5860bdb485690e248d05377281aa6a97c8d3bc9e0f126b1122e4f76f3cccfdf"
+   },
+   {
+    "file": "chain/amos/chain-v1.json.gz",
+    "bytes": 1685635,
+    "sha256": "fd4f0978a27529733d02171293ab09d932ebbbdfcb38a7dc7747d876eff4c1a5"
+   },
+   {
+    "file": "chain/obadiah/chain-v1.json.gz",
+    "bytes": 428121,
+    "sha256": "48337841be2e88aee6a415a8cc45d10f805d4ddde578050b05f21f7a559eabc5"
+   },
+   {
+    "file": "chain/jonah/chain-v1.json.gz",
+    "bytes": 774219,
+    "sha256": "8f5e938267f1c49a05facb9d5c05c8f520a7bd219f474619a813b36b10901667"
+   },
+   {
+    "file": "chain/micah/chain-v1.json.gz",
+    "bytes": 1602157,
+    "sha256": "9b42573770134fbb60c386950d4c2a2b0715b319e650e8fd725841f660e26346"
+   },
+   {
+    "file": "chain/nahum/chain-v1.json.gz",
+    "bytes": 883711,
+    "sha256": "1cef48ce751a3b8fcabf3082bcf16f173090607aaca8adadeb49fe3591e03fec"
+   },
+   {
+    "file": "chain/habakkuk/chain-v1.json.gz",
+    "bytes": 1001411,
+    "sha256": "95bff057ba5d56c364c78bca6d6f7a2a146f4b8a4c2e97db8b61bd7a2229b967"
+   },
+   {
+    "file": "chain/zephaniah/chain-v1.json.gz",
+    "bytes": 937026,
+    "sha256": "d3dde8203ffa6889cc15fe423208b299fa108dd8fa7224cb380ccf32a95c3054"
+   },
+   {
+    "file": "chain/haggai/chain-v1.json.gz",
+    "bytes": 649020,
+    "sha256": "95da537ab7a209de46ff9158997e46292c34deb52c5933820e735d9be7e261c0"
+   },
+   {
+    "file": "chain/zechariah/chain-v1.json.gz",
+    "bytes": 2265220,
+    "sha256": "d5306562d796999b8b1a36b39a58eb649b84bca10272e4bdfb8f681235634365"
+   },
+   {
+    "file": "chain/malachi/chain-v1.json.gz",
+    "bytes": 1076363,
+    "sha256": "d079f641621a44b7150ebd6fc2e20e85d4ac6251a079bbb1ec7e15e68a14431b"
+   }
+  ],
+  "other_indexes": [
+   {
+    "file": "reader/data/piece-store/index.json",
+    "bytes": 6379,
+    "sha256": "63fe03cf688a052dfc8fae078a1cb3d9340e5004c0885e7040501964ece57333"
+   },
+   {
+    "file": "reader/data/overlays/jastrow/index.json",
+    "bytes": 25348,
+    "sha256": "c9075f11f2c8466d444681050a9d3f730a1752d5a454df92aedb90c813866b10"
+   },
+   {
+    "file": "reader/data/span-store/index.json",
+    "bytes": 15057,
+    "sha256": "0b410c6ea8bd6159e7c0d6dd3f0d9cc73ea47d570ff6e0d828b6d644d03e49cc"
+   }
+  ],
+  "the_state_the_lines_were_read_in": [
+   {
+    "reader": "the Hebrew reader",
+    "pointing": "only",
+    "signs": "off",
+    "names": "lead",
+    "sources_off": [
+     "MSAM2"
+    ]
+   }
+  ],
+  "the_states_the_cards_were_read_in": [
+   {
+    "rest": {
+     "says": "at rest: a first visit, nothing kept on the device, every switch where the page sets it",
+     "page": {
+      "reader": "the Hebrew reader",
+      "pointing": "only",
+      "signs": "off",
+      "names": "lead",
+      "sources_off": [
+       "MSAM2"
+      ]
+     }
+    },
+    "lifted": {
+     "says": "lifted: every switch that withholds a reading lifted — the pointing kept whatever a source points, a source's own signs printed, every source on",
+     "page": {
+      "reader": "the Hebrew reader",
+      "pointing": "keep",
+      "signs": "printed",
+      "names": "lead",
+      "sources_off": []
+     }
+    }
+   }
+  ],
+  "route_store": {
+   "store_version": "a9373b8d30ef",
+   "index": {
+    "bytes": 148980,
+    "sha256": "3187be43a3468164a2ae99c129fc55478f442bff0f74d7792b4d6639af573f24"
+   },
+   "rows_read": 652954
+  },
+  "default_picks": {
+   "file": "corpus-lane-builds/moses-default-picks-v1/default-picks-v1/receipt-v1.json",
+   "bytes": 28573,
+   "sha256": "89b2a4b618cd8339fe981c3fac9836979d437ed17c9a2ba48bb23ed08a438116"
+  },
+  "tahot": [
+   {
+    "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Gen-Deu - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 18190455,
+    "sha256": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b"
+   },
+   {
+    "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Jos-Est - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 24500317,
+    "sha256": "195fee1dc3653bab33701f170734eb894ed647c10cd08cc61749375fe8b73775"
+   },
+   {
+    "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Job-Sng - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 9540133,
+    "sha256": "84e118a97e5725e3847cdfdd593873513021c790c63cc91a0d41fca2b5db2ed5"
+   },
+   {
+    "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Isa-Mal - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+    "bytes": 17977518,
+    "sha256": "f3ded203d2a74d6368932c97ae550d1d0754b271af491dc0dedf36fe3ba0bcc5"
+   }
+  ],
+  "tbesh": {
+   "file": "ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Lexicons/TBESH - Translators Brief lexicon of Extended Strongs for Hebrew - STEPBible.org CC BY.txt",
+   "bytes": 3288045,
+   "sha256": "464dccadd95fd8620dd05fa0d7a4caba58ec3c4d5db3ebf38e43d046ca25b591",
+   "read_by": "its second column, the number TAHOT names",
+   "numbers_read": 11674,
+   "lines_with_no_number_in_the_second_column": 0,
+   "lines_whose_number_was_already_read": 0
+  },
+  "macula": {
+   "file": "ledgers/work/ldmprs/source-cache/macula-hebrew-2026-07-15/macula-hebrew.tsv",
+   "bytes": 84382719,
+   "sha256": "965cb0599beed2fe31283b615bcc369178141c0e718a66d97518d94309cfc124"
+  },
+  "lattice": "corpus-lane-builds/moses-lattice-ledger-v1/candidate/positions-<book>-v12.jsonl.gz",
+  "word_numbering": "corpus-lane-builds/moses-word-numbering-v1/build/numbering-v1/<book>.jsonl"
+ },
+ "part_a_the_lines": {
+  "axis": "lines the page draws under the words of the 39 books at rest",
+  "books": 39,
+  "lines": 302959,
+  "words": 305431,
+  "classes": {
+   "STEPS_READING_HERE / IN_STEPS_WORDS": 299868,
+   "OVER_SEVERAL_WORDS": 2177,
+   "A_ROW_BY_LETTERS": 849,
+   "MACULAS_READING_HERE": 54,
+   "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 11
+  },
+  "credits": {
+   "PIECE:TAHOT": 299879,
+   "M13": 1098,
+   "M2": 514,
+   "M4": 376,
+   "M17": 336,
+   "M14": 260,
+   "M9": 107,
+   "M46": 86,
+   "M19": 65,
+   "PIECE:MACULA": 54,
+   "M18": 30,
+   "M25": 25,
+   "M3": 19,
+   "M21": 18,
+   "M33": 17,
+   "M60": 14,
+   "M1": 9,
+   "M5": 6,
+   "M64": 6,
+   "M10": 5,
+   "M199": 5,
+   "M9 M14": 5,
+   "M11": 4,
+   "M14 M4": 4,
+   "M197": 3,
+   "M28": 2,
+   "M43": 2,
+   "M1 M14": 1,
+   "M23": 1,
+   "M29": 1,
+   "M4 M9 M14": 1,
+   "M45": 1,
+   "M53": 1,
+   "M57": 1,
+   "M76": 1,
+   "M80": 1,
+   "M9 M4": 1
+  },
+  "one_word_lines_by_class_and_tie": {
+   "STEPS_READING_HERE / IN_STEPS_WORDS | SAME / main": 298836,
+   "STEPS_READING_HERE / IN_STEPS_WORDS | SHIFTED / main": 618,
+   "A_ROW_BY_LETTERS | SAME / open-q11": 603,
+   "STEPS_READING_HERE / IN_STEPS_WORDS | VERSE_DIFFERS / main": 396,
+   "A_ROW_BY_LETTERS | NO_TAHOT_LINE / no STEP line": 175,
+   "A_ROW_BY_LETTERS | MAQAF / open-q1": 36,
+   "MACULAS_READING_HERE | NO_TAHOT_LINE / no STEP line": 32,
+   "A_ROW_BY_LETTERS | MAQAF / main": 15,
+   "STEPS_READING_HERE / IN_STEPS_WORDS | KETIV_QERE / main": 10,
+   "A_ROW_BY_LETTERS | KETIV_QERE / open-q14": 9,
+   "MACULAS_READING_HERE | KETIV_QERE / main": 8,
+   "MACULAS_READING_HERE | MAQAF / main": 7,
+   "STEPS_READING_HERE / DRAWN_DIFFERENTLY | SAME / main": 7,
+   "STEPS_READING_HERE / IN_STEPS_WORDS | SAME / open-q14": 7,
+   "MACULAS_READING_HERE | OTHER / main": 6,
+   "A_ROW_BY_LETTERS | KETIV_QERE / main": 4,
+   "STEPS_READING_HERE / DRAWN_DIFFERENTLY | KETIV_QERE / open-q14": 3,
+   "A_ROW_BY_LETTERS | SAME / open-q14": 2,
+   "A_ROW_BY_LETTERS | SHIFTED / open-q11": 2,
+   "A_ROW_BY_LETTERS | OTHER / main": 1,
+   "A_ROW_BY_LETTERS | OTHER / open-q1": 1,
+   "A_ROW_BY_LETTERS | SAME / main": 1,
+   "MACULAS_READING_HERE | SAME / main": 1,
+   "STEPS_READING_HERE / DRAWN_DIFFERENTLY | SAME / open-q14": 1,
+   "STEPS_READING_HERE / IN_STEPS_WORDS | SAME / open-q1": 1
+  },
+  "lines_that_are_not_steps_reading_in_steps_words_by_cause": {
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | SAME / open-q11": 407,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has STEP's words | SAME / open-q11": 196,
+   "A_ROW_BY_LETTERS | STEP does not read the place | NO_TAHOT_LINE / no STEP line": 175,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | MAQAF / open-q1": 36,
+   "MACULAS_READING_HERE | STEP does not read the place | NO_TAHOT_LINE / no STEP line": 32,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | MAQAF / main": 15,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | KETIV_QERE / open-q14": 9,
+   "MACULAS_READING_HERE | STEP reads the place, and the line has other words | KETIV_QERE / main": 8,
+   "MACULAS_READING_HERE | STEP reads the place, and the line has other words | MAQAF / main": 7,
+   "STEPS_READING_HERE / DRAWN_DIFFERENTLY | drawn differently | SAME / main": 7,
+   "MACULAS_READING_HERE | STEP reads the place, and the line has other words | OTHER / main": 6,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | KETIV_QERE / main": 4,
+   "STEPS_READING_HERE / DRAWN_DIFFERENTLY | drawn differently | KETIV_QERE / open-q14": 3,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | SAME / open-q14": 2,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | SHIFTED / open-q11": 2,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | OTHER / main": 1,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | OTHER / open-q1": 1,
+   "A_ROW_BY_LETTERS | STEP reads the place, and the line has other words | SAME / main": 1,
+   "MACULAS_READING_HERE | STEP reads the place, and the line has other words | SAME / main": 1,
+   "STEPS_READING_HERE / DRAWN_DIFFERENTLY | drawn differently | SAME / open-q14": 1
+  },
+  "over_several_words": {
+   "lines": 2177,
+   "words": 4402,
+   "by_credit": {
+    "M13": 1097,
+    "M2": 514,
+    "M17": 331,
+    "M46": 83,
+    "M19": 64,
+    "M18": 24,
+    "M9": 18,
+    "M33": 17,
+    "M60": 14,
+    "M64": 6,
+    "M199": 5,
+    "M197": 3,
+    "M57": 1
+   }
+  },
+  "words_under_no_line": {
+   "words": 247,
+   "of_them_step_reads_the_place": 187,
+   "by_cause": {
+    "STEP reads the place | SAME / open-q11": 177,
+    "STEP does not read the place | NO_TAHOT_LINE / no STEP line": 60,
+    "STEP reads the place | MAQAF / open-q1": 6,
+    "STEP reads the place | MAQAF / main": 2,
+    "STEP reads the place | OTHER / open-q1": 1,
+    "STEP reads the place | SHIFTED / open-q11": 1
+   }
+  },
+  "per_book": {
+   "genesis": {
+    "lines": 20470,
+    "words": 20612,
+    "words_under_no_line": 3,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 20316,
+     "OVER_SEVERAL_WORDS": 128,
+     "A_ROW_BY_LETTERS": 20,
+     "MACULAS_READING_HERE": 5,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 1
+    }
+   },
+   "exodus": {
+    "lines": 16577,
+    "words": 16713,
+    "words_under_no_line": 4,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 16416,
+     "OVER_SEVERAL_WORDS": 130,
+     "A_ROW_BY_LETTERS": 27,
+     "MACULAS_READING_HERE": 3,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 1
+    }
+   },
+   "leviticus": {
+    "lines": 11904,
+    "words": 11950,
+    "words_under_no_line": 4,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 11852,
+     "OVER_SEVERAL_WORDS": 39,
+     "A_ROW_BY_LETTERS": 12,
+     "MACULAS_READING_HERE": 1
+    }
+   },
+   "numbers": {
+    "lines": 16189,
+    "words": 16408,
+    "words_under_no_line": 1,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 15938,
+     "OVER_SEVERAL_WORDS": 216,
+     "A_ROW_BY_LETTERS": 34,
+     "MACULAS_READING_HERE": 1
+    }
+   },
+   "deuteronomy": {
+    "lines": 14229,
+    "words": 14294,
+    "words_under_no_line": 6,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 14119,
+     "OVER_SEVERAL_WORDS": 58,
+     "A_ROW_BY_LETTERS": 51,
+     "MACULAS_READING_HERE": 1
+    }
+   },
+   "joshua": {
+    "lines": 9882,
+    "words": 10031,
+    "words_under_no_line": 3,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 9731,
+     "OVER_SEVERAL_WORDS": 140,
+     "A_ROW_BY_LETTERS": 11
+    }
+   },
+   "judges": {
+    "lines": 9763,
+    "words": 9885,
+    "words_under_no_line": 11,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 9629,
+     "OVER_SEVERAL_WORDS": 109,
+     "A_ROW_BY_LETTERS": 22,
+     "MACULAS_READING_HERE": 3
+    }
+   },
+   "ruth": {
+    "lines": 1291,
+    "words": 1296,
+    "words_under_no_line": 2,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 1275,
+     "A_ROW_BY_LETTERS": 9,
+     "MACULAS_READING_HERE": 4,
+     "OVER_SEVERAL_WORDS": 3
+    }
+   },
+   "i-samuel": {
+    "lines": 13186,
+    "words": 13258,
+    "words_under_no_line": 13,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 13089,
+     "OVER_SEVERAL_WORDS": 59,
+     "A_ROW_BY_LETTERS": 35,
+     "MACULAS_READING_HERE": 3
+    }
+   },
+   "ii-samuel": {
+    "lines": 10955,
+    "words": 11032,
+    "words_under_no_line": 8,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 10834,
+     "OVER_SEVERAL_WORDS": 69,
+     "A_ROW_BY_LETTERS": 48,
+     "MACULAS_READING_HERE": 3,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 1
+    }
+   },
+   "i-kings": {
+    "lines": 13040,
+    "words": 13139,
+    "words_under_no_line": 7,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 12928,
+     "OVER_SEVERAL_WORDS": 89,
+     "A_ROW_BY_LETTERS": 23
+    }
+   },
+   "ii-kings": {
+    "lines": 12179,
+    "words": 12275,
+    "words_under_no_line": 7,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 12039,
+     "OVER_SEVERAL_WORDS": 88,
+     "A_ROW_BY_LETTERS": 44,
+     "MACULAS_READING_HERE": 7,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 1
+    }
+   },
+   "i-chronicles": {
+    "lines": 10622,
+    "words": 10740,
+    "words_under_no_line": 6,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 10479,
+     "OVER_SEVERAL_WORDS": 111,
+     "A_ROW_BY_LETTERS": 32
+    }
+   },
+   "ii-chronicles": {
+    "lines": 13238,
+    "words": 13314,
+    "words_under_no_line": 7,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 13136,
+     "OVER_SEVERAL_WORDS": 69,
+     "A_ROW_BY_LETTERS": 33
+    }
+   },
+   "ezra": {
+    "lines": 3698,
+    "words": 3754,
+    "words_under_no_line": 7,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 3636,
+     "OVER_SEVERAL_WORDS": 49,
+     "A_ROW_BY_LETTERS": 13
+    }
+   },
+   "nehemiah": {
+    "lines": 5260,
+    "words": 5312,
+    "words_under_no_line": 7,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 5196,
+     "OVER_SEVERAL_WORDS": 45,
+     "A_ROW_BY_LETTERS": 19
+    }
+   },
+   "esther": {
+    "lines": 3022,
+    "words": 3045,
+    "words_under_no_line": 5,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 2992,
+     "OVER_SEVERAL_WORDS": 18,
+     "A_ROW_BY_LETTERS": 11,
+     "MACULAS_READING_HERE": 1
+    }
+   },
+   "job": {
+    "lines": 8295,
+    "words": 8339,
+    "words_under_no_line": 17,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 8222,
+     "A_ROW_BY_LETTERS": 47,
+     "OVER_SEVERAL_WORDS": 26
+    }
+   },
+   "psalms": {
+    "lines": 19495,
+    "words": 19583,
+    "words_under_no_line": 25,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 19371,
+     "OVER_SEVERAL_WORDS": 63,
+     "A_ROW_BY_LETTERS": 59,
+     "MACULAS_READING_HERE": 2
+    }
+   },
+   "proverbs": {
+    "lines": 6868,
+    "words": 6914,
+    "words_under_no_line": 10,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 6803,
+     "A_ROW_BY_LETTERS": 33,
+     "OVER_SEVERAL_WORDS": 29,
+     "MACULAS_READING_HERE": 3
+    }
+   },
+   "ecclesiastes": {
+    "lines": 2976,
+    "words": 2987,
+    "words_under_no_line": 3,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 2959,
+     "A_ROW_BY_LETTERS": 9,
+     "OVER_SEVERAL_WORDS": 8
+    }
+   },
+   "song-of-songs": {
+    "lines": 1241,
+    "words": 1250,
+    "words_under_no_line": 2,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 1223,
+     "A_ROW_BY_LETTERS": 11,
+     "OVER_SEVERAL_WORDS": 7
+    }
+   },
+   "isaiah": {
+    "lines": 16794,
+    "words": 16923,
+    "words_under_no_line": 7,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 16627,
+     "OVER_SEVERAL_WORDS": 120,
+     "A_ROW_BY_LETTERS": 42,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 3,
+     "MACULAS_READING_HERE": 2
+    }
+   },
+   "jeremiah": {
+    "lines": 21659,
+    "words": 21831,
+    "words_under_no_line": 7,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 21434,
+     "OVER_SEVERAL_WORDS": 163,
+     "A_ROW_BY_LETTERS": 55,
+     "MACULAS_READING_HERE": 6,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 1
+    }
+   },
+   "lamentations": {
+    "lines": 1530,
+    "words": 1540,
+    "words_under_no_line": 4,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 1512,
+     "A_ROW_BY_LETTERS": 10,
+     "OVER_SEVERAL_WORDS": 6,
+     "MACULAS_READING_HERE": 1,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 1
+    }
+   },
+   "ezekiel": {
+    "lines": 18510,
+    "words": 18729,
+    "words_under_no_line": 35,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 18255,
+     "OVER_SEVERAL_WORDS": 180,
+     "A_ROW_BY_LETTERS": 68,
+     "MACULAS_READING_HERE": 6,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 1
+    }
+   },
+   "daniel": {
+    "lines": 5882,
+    "words": 5923,
+    "words_under_no_line": 23,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 5814,
+     "A_ROW_BY_LETTERS": 49,
+     "OVER_SEVERAL_WORDS": 18,
+     "STEPS_READING_HERE / DRAWN_DIFFERENTLY": 1
+    }
+   },
+   "hosea": {
+    "lines": 2360,
+    "words": 2381,
+    "words_under_no_line": 1,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 2335,
+     "OVER_SEVERAL_WORDS": 20,
+     "A_ROW_BY_LETTERS": 5
+    }
+   },
+   "joel": {
+    "lines": 957,
+    "words": 957,
+    "words_under_no_line": 0,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 957
+    }
+   },
+   "amos": {
+    "lines": 2022,
+    "words": 2042,
+    "words_under_no_line": 3,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 2004,
+     "OVER_SEVERAL_WORDS": 17,
+     "A_ROW_BY_LETTERS": 1
+    }
+   },
+   "obadiah": {
+    "lines": 291,
+    "words": 291,
+    "words_under_no_line": 0,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 290,
+     "A_ROW_BY_LETTERS": 1
+    }
+   },
+   "jonah": {
+    "lines": 687,
+    "words": 688,
+    "words_under_no_line": 0,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 686,
+     "OVER_SEVERAL_WORDS": 1
+    }
+   },
+   "micah": {
+    "lines": 1389,
+    "words": 1396,
+    "words_under_no_line": 1,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 1381,
+     "OVER_SEVERAL_WORDS": 6,
+     "A_ROW_BY_LETTERS": 2
+    }
+   },
+   "nahum": {
+    "lines": 553,
+    "words": 558,
+    "words_under_no_line": 2,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 547,
+     "A_ROW_BY_LETTERS": 3,
+     "OVER_SEVERAL_WORDS": 3
+    }
+   },
+   "habakkuk": {
+    "lines": 665,
+    "words": 671,
+    "words_under_no_line": 1,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 657,
+     "OVER_SEVERAL_WORDS": 5,
+     "A_ROW_BY_LETTERS": 2,
+     "MACULAS_READING_HERE": 1
+    }
+   },
+   "zephaniah": {
+    "lines": 764,
+    "words": 767,
+    "words_under_no_line": 1,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 761,
+     "OVER_SEVERAL_WORDS": 2,
+     "A_ROW_BY_LETTERS": 1
+    }
+   },
+   "haggai": {
+    "lines": 587,
+    "words": 600,
+    "words_under_no_line": 0,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 574,
+     "OVER_SEVERAL_WORDS": 13
+    }
+   },
+   "zechariah": {
+    "lines": 3079,
+    "words": 3127,
+    "words_under_no_line": 3,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 3028,
+     "OVER_SEVERAL_WORDS": 45,
+     "A_ROW_BY_LETTERS": 5,
+     "MACULAS_READING_HERE": 1
+    }
+   },
+   "malachi": {
+    "lines": 850,
+    "words": 876,
+    "words_under_no_line": 1,
+    "classes": {
+     "STEPS_READING_HERE / IN_STEPS_WORDS": 823,
+     "OVER_SEVERAL_WORDS": 25,
+     "A_ROW_BY_LETTERS": 2
+    }
+   }
+  }
+ },
+ "part_b_the_pills": {
+  "axis": "pills of the cards of the twelve recorded books, each counted once for each of the four place-naming sources among its sources",
+  "books": [
+   "hosea",
+   "joel",
+   "amos",
+   "obadiah",
+   "jonah",
+   "micah",
+   "nahum",
+   "habakkuk",
+   "zephaniah",
+   "haggai",
+   "zechariah",
+   "malachi"
+  ],
+  "four_sources": {
+   "M4": "STEP Bible Translators Amalgamated Hebrew OT aligned component translation",
+   "M19": "STEP Bible Translators Brief Lexicon Hebrew scholar-created Gloss column",
+   "M3": "MACULA exact Hebrew morph surfaces with Cherith English definitions",
+   "M18": "UBS Dictionary of Biblical Hebrew v0.9.2 exact definitions and glosses",
+   "M46": "Unabridged Brown-Driver-Briggs Hebrew Lexicon structured source"
+  },
+  "total": {
+   "rest": {
+    "words": 14354,
+    "words_with_a_card": 14341,
+    "pills": 431006,
+    "pills_of_a_source_not_read": 1207,
+    "by_source": {
+     "M14": 79979,
+     "M3": 76765,
+     "M9": 53944,
+     "M4": 27758,
+     "M18": 24855,
+     "M13": 21318,
+     "M21": 20081,
+     "M46": 17356,
+     "M5": 17263,
+     "M12": 16286,
+     "M42": 12981,
+     "M17": 11248,
+     "M23": 9158,
+     "M25 or M50": 5804,
+     "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 4621,
+     "M32": 3709,
+     "M1": 3612,
+     "M43": 2990,
+     "M49 or M106": 2363,
+     "M37": 2316,
+     "M19": 2191,
+     "M10 or M28 or M48 or M53 or M138 or M194": 1899,
+     "M6 or M62": 1668,
+     "M60": 1466,
+     "M22": 1437,
+     "M39 or M75": 1314,
+     "a label no index names": 1193,
+     "M15": 992,
+     "M45": 913,
+     "M11 or M69": 795,
+     "PIECE:MACULA": 726,
+     "M2 or M61 or M73 or M76 or M81 or M87 or M94": 516,
+     "M57": 390,
+     "M64": 295,
+     "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 287,
+     "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 124,
+     "M7": 107,
+     "M34": 106,
+     "M33": 60,
+     "M97": 43,
+     "M72 or M112 or M177": 34,
+     "M199": 18,
+     "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 15,
+     "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 10
+    },
+    "four": {
+     "M4": {
+      "ITS_OWN_READING_HERE": 10527,
+      "NOT_ITS_READING_HERE": 17499,
+      "THE_SOURCE_IS_SILENT_HERE": 6
+     },
+     "M19": {
+      "ITS_OWN_READING_HERE": 1225,
+      "NOT_ITS_READING_HERE": 2978,
+      "THE_SOURCE_IS_SILENT_HERE": 4
+     },
+     "M3": {
+      "ITS_OWN_READING_HERE": 2987,
+      "NOT_ITS_READING_HERE": 87373,
+      "THE_SOURCE_IS_SILENT_HERE": 1345
+     },
+     "M18": {
+      "ITS_OWN_READING_HERE": 3049,
+      "NOT_ITS_READING_HERE": 21464,
+      "THE_SOURCE_IS_SILENT_HERE": 663
+     },
+     "M46": {
+      "ITS_OWN_READING_HERE": 1286,
+      "NOT_ITS_READING_HERE": 4530,
+      "THE_SOURCE_IS_SILENT_HERE": 24337
+     }
+    },
+    "cards_with_a_pill_that_is_not_its_sources_reading_here": 6590,
+    "words_in_a_run_one_card_joins": 3724,
+    "marked": {
+     "PIECE:TAHOT": {
+      "pills": 7285,
+      "found_here_too": 7285,
+      "not_found": []
+     },
+     "PIECE:MACULA": {
+      "pills": 7212,
+      "found_here_too": 7202,
+      "not_found": [
+       "hosea 11:7:5",
+       "amos 1:5:7",
+       "amos 1:5:11",
+       "amos 5:5:9",
+       "amos 5:5:17",
+       "amos 5:6:14",
+       "amos 6:13:3",
+       "micah 1:10:8",
+       "zechariah 7:2:6"
+      ]
+     }
+    }
+   },
+   "lifted": {
+    "words": 14354,
+    "words_with_a_card": 14341,
+    "pills": 728474,
+    "pills_of_a_source_not_read": 7822,
+    "by_source": {
+     "M3": 115701,
+     "M14": 109285,
+     "M4": 104583,
+     "M9": 101508,
+     "M18": 40957,
+     "M12": 38683,
+     "M5": 32145,
+     "M46": 28002,
+     "M21": 24949,
+     "M13": 19292,
+     "M17": 18114,
+     "M42": 16186,
+     "M23": 15722,
+     "M25 or M50": 14714,
+     "a label no index names": 7761,
+     "M43": 5645,
+     "M19": 5484,
+     "M32": 4864,
+     "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 4195,
+     "M11 or M69": 3029,
+     "M10 or M28 or M48 or M53 or M138 or M194": 2801,
+     "M37": 2623,
+     "M39 or M75": 1872,
+     "M1": 1761,
+     "M6 or M62": 1611,
+     "M60": 1320,
+     "M45": 1214,
+     "M15": 814,
+     "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 742,
+     "M57": 560,
+     "M49 or M106": 540,
+     "M2 or M61 or M73 or M76 or M81 or M87 or M94": 472,
+     "M22": 359,
+     "M7": 284,
+     "M34": 175,
+     "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 124,
+     "M72 or M112 or M177": 97,
+     "M33": 89,
+     "M64": 73,
+     "M97": 43,
+     "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 38,
+     "M199": 18,
+     "PIECE:MACULA": 14,
+     "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 11
+    },
+    "four": {
+     "M4": {
+      "ITS_OWN_READING_HERE": 10398,
+      "NOT_ITS_READING_HERE": 94749,
+      "THE_SOURCE_IS_SILENT_HERE": 12
+     },
+     "M19": {
+      "ITS_OWN_READING_HERE": 1759,
+      "NOT_ITS_READING_HERE": 8631,
+      "THE_SOURCE_IS_SILENT_HERE": 4
+     },
+     "M3": {
+      "ITS_OWN_READING_HERE": 3869,
+      "NOT_ITS_READING_HERE": 128832,
+      "THE_SOURCE_IS_SILENT_HERE": 5014
+     },
+     "M18": {
+      "ITS_OWN_READING_HERE": 4354,
+      "NOT_ITS_READING_HERE": 32637,
+      "THE_SOURCE_IS_SILENT_HERE": 4630
+     },
+     "M46": {
+      "ITS_OWN_READING_HERE": 2061,
+      "NOT_ITS_READING_HERE": 11602,
+      "THE_SOURCE_IS_SILENT_HERE": 36585
+     }
+    },
+    "cards_with_a_pill_that_is_not_its_sources_reading_here": 7235,
+    "words_in_a_run_one_card_joins": 3724,
+    "marked": {
+     "PIECE:TAHOT": {
+      "pills": 7285,
+      "found_here_too": 7285,
+      "not_found": []
+     },
+     "PIECE:MACULA": {
+      "pills": 7271,
+      "found_here_too": 7260,
+      "not_found": [
+       "hosea 11:7:5",
+       "amos 1:5:7",
+       "amos 1:5:11",
+       "amos 5:5:9",
+       "amos 5:5:17",
+       "amos 5:6:14",
+       "amos 6:13:3",
+       "micah 1:10:8",
+       "zechariah 7:2:6",
+       "zechariah 7:7:2"
+      ]
+     }
+    }
+   }
+  },
+  "per_book": {
+   "hosea": {
+    "rest": {
+     "words": 2381,
+     "words_with_a_card": 2380,
+     "pills": 69154,
+     "pills_of_a_source_not_read": 159,
+     "by_source": {
+      "M14": 13845,
+      "M3": 12566,
+      "M9": 9011,
+      "M4": 4439,
+      "M13": 3386,
+      "M18": 3337,
+      "M46": 2984,
+      "M21": 2898,
+      "M5": 2747,
+      "M12": 2346,
+      "M42": 2076,
+      "M17": 1680,
+      "M23": 1251,
+      "M25 or M50": 1077,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 681,
+      "M32": 599,
+      "M1": 534,
+      "M43": 507,
+      "M19": 384,
+      "M37": 325,
+      "M49 or M106": 298,
+      "M10 or M28 or M48 or M53 or M138 or M194": 269,
+      "M22": 242,
+      "M6 or M62": 242,
+      "M39 or M75": 224,
+      "M60": 216,
+      "M15": 174,
+      "a label no index names": 155,
+      "M45": 152,
+      "M11 or M69": 142,
+      "PIECE:MACULA": 104,
+      "M57": 61,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 57,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 37,
+      "M64": 37,
+      "M7": 19,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 15,
+      "M34": 12,
+      "M199": 10,
+      "M33": 8,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 5,
+      "M72 or M112 or M177": 2
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 1742,
+       "NOT_ITS_READING_HERE": 2739,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 190,
+       "NOT_ITS_READING_HERE": 456,
+       "THE_SOURCE_IS_SILENT_HERE": 2
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 543,
+       "NOT_ITS_READING_HERE": 14577,
+       "THE_SOURCE_IS_SILENT_HERE": 168
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 495,
+       "NOT_ITS_READING_HERE": 2792,
+       "THE_SOURCE_IS_SILENT_HERE": 105
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 245,
+       "NOT_ITS_READING_HERE": 1025,
+       "THE_SOURCE_IS_SILENT_HERE": 3722
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 1123,
+     "words_in_a_run_one_card_joins": 568,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 1247,
+       "found_here_too": 1247,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 1237,
+       "found_here_too": 1236,
+       "not_found": [
+        "hosea 11:7:5"
+       ]
+      }
+     }
+    },
+    "lifted": {
+     "words": 2381,
+     "words_with_a_card": 2380,
+     "pills": 113482,
+     "pills_of_a_source_not_read": 1213,
+     "by_source": {
+      "M14": 18585,
+      "M3": 18447,
+      "M4": 15648,
+      "M9": 15611,
+      "M12": 5979,
+      "M18": 5270,
+      "M5": 4829,
+      "M46": 4514,
+      "M21": 3697,
+      "M13": 3059,
+      "M25 or M50": 2661,
+      "M17": 2535,
+      "M42": 2533,
+      "M23": 2297,
+      "a label no index names": 1201,
+      "M43": 903,
+      "M19": 878,
+      "M32": 783,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 639,
+      "M11 or M69": 568,
+      "M10 or M28 or M48 or M53 or M138 or M194": 437,
+      "M37": 372,
+      "M39 or M75": 345,
+      "M1": 264,
+      "M6 or M62": 230,
+      "M45": 213,
+      "M60": 191,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 172,
+      "M15": 150,
+      "M57": 109,
+      "M49 or M106": 92,
+      "M22": 67,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 61,
+      "M7": 49,
+      "M34": 26,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 15,
+      "M64": 12,
+      "M33": 11,
+      "M72 or M112 or M177": 11,
+      "M199": 10,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 7,
+      "PIECE:MACULA": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 1724,
+       "NOT_ITS_READING_HERE": 14004,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 259,
+       "NOT_ITS_READING_HERE": 1247,
+       "THE_SOURCE_IS_SILENT_HERE": 2
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 682,
+       "NOT_ITS_READING_HERE": 20896,
+       "THE_SOURCE_IS_SILENT_HERE": 616
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 672,
+       "NOT_ITS_READING_HERE": 4023,
+       "THE_SOURCE_IS_SILENT_HERE": 681
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 376,
+       "NOT_ITS_READING_HERE": 2173,
+       "THE_SOURCE_IS_SILENT_HERE": 5298
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 1248,
+     "words_in_a_run_one_card_joins": 568,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 1247,
+       "found_here_too": 1247,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 1251,
+       "found_here_too": 1250,
+       "not_found": [
+        "hosea 11:7:5"
+       ]
+      }
+     }
+    }
+   },
+   "joel": {
+    "rest": {
+     "words": 957,
+     "words_with_a_card": 957,
+     "pills": 29961,
+     "pills_of_a_source_not_read": 64,
+     "by_source": {
+      "M14": 5775,
+      "M3": 5263,
+      "M9": 3942,
+      "M4": 1977,
+      "M18": 1691,
+      "M13": 1415,
+      "M21": 1309,
+      "M46": 1291,
+      "M5": 1107,
+      "M12": 1084,
+      "M42": 922,
+      "M17": 709,
+      "M23": 630,
+      "M25 or M50": 439,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 315,
+      "M32": 253,
+      "M1": 223,
+      "M43": 193,
+      "M49 or M106": 185,
+      "M19": 184,
+      "M37": 138,
+      "M6 or M62": 134,
+      "M10 or M28 or M48 or M53 or M138 or M194": 132,
+      "M22": 76,
+      "M60": 73,
+      "M45": 72,
+      "M15": 71,
+      "a label no index names": 63,
+      "PIECE:MACULA": 61,
+      "M39 or M75": 59,
+      "M11 or M69": 43,
+      "M64": 32,
+      "M57": 26,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 24,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 17,
+      "M34": 12,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 10,
+      "M97": 4,
+      "M33": 3,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 2,
+      "M7": 1,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 727,
+       "NOT_ITS_READING_HERE": 1273,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 76,
+       "NOT_ITS_READING_HERE": 256,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 219,
+       "NOT_ITS_READING_HERE": 6118,
+       "THE_SOURCE_IS_SILENT_HERE": 72
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 188,
+       "NOT_ITS_READING_HERE": 1468,
+       "THE_SOURCE_IS_SILENT_HERE": 43
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 84,
+       "NOT_ITS_READING_HERE": 236,
+       "THE_SOURCE_IS_SILENT_HERE": 1946
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 456,
+     "words_in_a_run_one_card_joins": 205,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 516,
+       "found_here_too": 516,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 512,
+       "found_here_too": 512,
+       "not_found": []
+      }
+     }
+    },
+    "lifted": {
+     "words": 957,
+     "words_with_a_card": 957,
+     "pills": 49398,
+     "pills_of_a_source_not_read": 513,
+     "by_source": {
+      "M3": 8024,
+      "M14": 7691,
+      "M4": 7258,
+      "M9": 6701,
+      "M18": 2872,
+      "M12": 2399,
+      "M5": 2012,
+      "M46": 1890,
+      "M21": 1515,
+      "M13": 1311,
+      "M25 or M50": 1214,
+      "M17": 1156,
+      "M42": 1097,
+      "M23": 1028,
+      "a label no index names": 511,
+      "M19": 363,
+      "M32": 318,
+      "M43": 304,
+      "M11 or M69": 284,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 279,
+      "M10 or M28 or M48 or M53 or M138 or M194": 200,
+      "M37": 158,
+      "M6 or M62": 131,
+      "M1": 125,
+      "M39 or M75": 121,
+      "M45": 90,
+      "M60": 68,
+      "M15": 57,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 51,
+      "M57": 40,
+      "M49 or M106": 35,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 28,
+      "M22": 20,
+      "M34": 12,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 10,
+      "M64": 9,
+      "M72 or M112 or M177": 5,
+      "M97": 4,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 2,
+      "M33": 2,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 2,
+      "M7": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 721,
+       "NOT_ITS_READING_HERE": 6587,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 102,
+       "NOT_ITS_READING_HERE": 565,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 290,
+       "NOT_ITS_READING_HERE": 9068,
+       "THE_SOURCE_IS_SILENT_HERE": 264
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 279,
+       "NOT_ITS_READING_HERE": 2314,
+       "THE_SOURCE_IS_SILENT_HERE": 308
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 135,
+       "NOT_ITS_READING_HERE": 663,
+       "THE_SOURCE_IS_SILENT_HERE": 2644
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 498,
+     "words_in_a_run_one_card_joins": 205,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 516,
+       "found_here_too": 516,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 516,
+       "found_here_too": 516,
+       "not_found": []
+      }
+     }
+    }
+   },
+   "amos": {
+    "rest": {
+     "words": 2042,
+     "words_with_a_card": 2039,
+     "pills": 61344,
+     "pills_of_a_source_not_read": 205,
+     "by_source": {
+      "M3": 11433,
+      "M14": 11140,
+      "M9": 7770,
+      "M4": 3911,
+      "M21": 3133,
+      "M13": 2902,
+      "M5": 2712,
+      "M18": 2664,
+      "M46": 2396,
+      "M12": 2316,
+      "M42": 1945,
+      "M23": 1442,
+      "M17": 1429,
+      "M25 or M50": 844,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 636,
+      "M1": 558,
+      "M43": 500,
+      "M32": 488,
+      "M37": 379,
+      "M10 or M28 or M48 or M53 or M138 or M194": 287,
+      "M19": 280,
+      "M49 or M106": 243,
+      "M60": 239,
+      "M6 or M62": 214,
+      "a label no index names": 204,
+      "M22": 203,
+      "M39 or M75": 188,
+      "M11 or M69": 171,
+      "M15": 149,
+      "M45": 125,
+      "PIECE:MACULA": 108,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 88,
+      "M57": 75,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 43,
+      "M7": 41,
+      "M64": 35,
+      "M33": 22,
+      "M34": 18,
+      "M72 or M112 or M177": 8,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 4,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 1443,
+       "NOT_ITS_READING_HERE": 2491,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 188,
+       "NOT_ITS_READING_HERE": 443,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 462,
+       "NOT_ITS_READING_HERE": 12782,
+       "THE_SOURCE_IS_SILENT_HERE": 274
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 459,
+       "NOT_ITS_READING_HERE": 2110,
+       "THE_SOURCE_IS_SILENT_HERE": 142
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 160,
+       "NOT_ITS_READING_HERE": 579,
+       "THE_SOURCE_IS_SILENT_HERE": 3682
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 1012,
+     "words_in_a_run_one_card_joins": 558,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 1107,
+       "found_here_too": 1107,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 1076,
+       "found_here_too": 1069,
+       "not_found": [
+        "amos 1:5:7",
+        "amos 1:5:11",
+        "amos 5:5:9",
+        "amos 5:5:17",
+        "amos 5:6:14",
+        "amos 6:13:3"
+       ]
+      }
+     }
+    },
+    "lifted": {
+     "words": 2042,
+     "words_with_a_card": 2039,
+     "pills": 103294,
+     "pills_of_a_source_not_read": 1153,
+     "by_source": {
+      "M3": 16838,
+      "M4": 15474,
+      "M14": 15350,
+      "M9": 13981,
+      "M12": 5308,
+      "M18": 4579,
+      "M5": 4483,
+      "M21": 4265,
+      "M46": 3732,
+      "M13": 2644,
+      "M42": 2482,
+      "M23": 2457,
+      "M17": 2330,
+      "M25 or M50": 2058,
+      "a label no index names": 1141,
+      "M43": 950,
+      "M19": 705,
+      "M32": 656,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 595,
+      "M11 or M69": 460,
+      "M37": 421,
+      "M10 or M28 or M48 or M53 or M138 or M194": 390,
+      "M39 or M75": 386,
+      "M1": 263,
+      "M60": 219,
+      "M6 or M62": 209,
+      "M45": 168,
+      "M15": 130,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 124,
+      "M49 or M106": 110,
+      "M57": 106,
+      "M22": 68,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 67,
+      "M7": 41,
+      "M33": 31,
+      "M34": 28,
+      "M72 or M112 or M177": 23,
+      "M64": 8,
+      "PIECE:MACULA": 6,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 4,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 3,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 1422,
+       "NOT_ITS_READING_HERE": 14101,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 266,
+       "NOT_ITS_READING_HERE": 1196,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 604,
+       "NOT_ITS_READING_HERE": 18281,
+       "THE_SOURCE_IS_SILENT_HERE": 1043
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 651,
+       "NOT_ITS_READING_HERE": 3420,
+       "THE_SOURCE_IS_SILENT_HERE": 582
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 278,
+       "NOT_ITS_READING_HERE": 1511,
+       "THE_SOURCE_IS_SILENT_HERE": 5097
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 1116,
+     "words_in_a_run_one_card_joins": 558,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 1107,
+       "found_here_too": 1107,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 1083,
+       "found_here_too": 1076,
+       "not_found": [
+        "amos 1:5:7",
+        "amos 1:5:11",
+        "amos 5:5:9",
+        "amos 5:5:17",
+        "amos 5:6:14",
+        "amos 6:13:3"
+       ]
+      }
+     }
+    }
+   },
+   "obadiah": {
+    "rest": {
+     "words": 291,
+     "words_with_a_card": 291,
+     "pills": 8016,
+     "pills_of_a_source_not_read": 29,
+     "by_source": {
+      "M14": 1917,
+      "M3": 1406,
+      "M9": 849,
+      "M4": 589,
+      "M18": 420,
+      "M13": 368,
+      "M21": 354,
+      "M46": 262,
+      "M42": 247,
+      "M12": 238,
+      "M5": 229,
+      "M17": 161,
+      "M23": 152,
+      "M25 or M50": 140,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 74,
+      "M1": 72,
+      "M32": 63,
+      "M11 or M69": 51,
+      "M49 or M106": 47,
+      "M6 or M62": 43,
+      "M10 or M28 or M48 or M53 or M138 or M194": 40,
+      "M19": 40,
+      "M43": 39,
+      "M37": 37,
+      "a label no index names": 27,
+      "M39 or M75": 26,
+      "M15": 23,
+      "M22": 22,
+      "M60": 21,
+      "M45": 17,
+      "PIECE:MACULA": 16,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 10,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 6,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 4,
+      "M64": 3,
+      "M57": 2,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 221,
+       "NOT_ITS_READING_HERE": 371,
+       "THE_SOURCE_IS_SILENT_HERE": 3
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 23,
+       "NOT_ITS_READING_HERE": 50,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 56,
+       "NOT_ITS_READING_HERE": 1533,
+       "THE_SOURCE_IS_SILENT_HERE": 46
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 62,
+       "NOT_ITS_READING_HERE": 360,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 11,
+       "NOT_ITS_READING_HERE": 34,
+       "THE_SOURCE_IS_SILENT_HERE": 388
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 131,
+     "words_in_a_run_one_card_joins": 87,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 147,
+       "found_here_too": 147,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 145,
+       "found_here_too": 145,
+       "not_found": []
+      }
+     }
+    },
+    "lifted": {
+     "words": 291,
+     "words_with_a_card": 291,
+     "pills": 13825,
+     "pills_of_a_source_not_read": 125,
+     "by_source": {
+      "M14": 2545,
+      "M3": 2345,
+      "M4": 2091,
+      "M9": 1578,
+      "M18": 743,
+      "M12": 598,
+      "M5": 487,
+      "M21": 479,
+      "M46": 450,
+      "M25 or M50": 377,
+      "M17": 335,
+      "M13": 324,
+      "M42": 317,
+      "M23": 273,
+      "a label no index names": 122,
+      "M19": 107,
+      "M32": 103,
+      "M43": 93,
+      "M11 or M69": 92,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 67,
+      "M10 or M28 or M48 or M53 or M138 or M194": 52,
+      "M37": 43,
+      "M6 or M62": 43,
+      "M39 or M75": 30,
+      "M1": 27,
+      "M45": 22,
+      "M15": 21,
+      "M60": 20,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 10,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 10,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 6,
+      "M57": 6,
+      "M49 or M106": 4,
+      "M22": 3,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 1,
+      "M33": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 222,
+       "NOT_ITS_READING_HERE": 1879,
+       "THE_SOURCE_IS_SILENT_HERE": 3
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 39,
+       "NOT_ITS_READING_HERE": 161,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 72,
+       "NOT_ITS_READING_HERE": 2529,
+       "THE_SOURCE_IS_SILENT_HERE": 176
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 90,
+       "NOT_ITS_READING_HERE": 583,
+       "THE_SOURCE_IS_SILENT_HERE": 77
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 24,
+       "NOT_ITS_READING_HERE": 133,
+       "THE_SOURCE_IS_SILENT_HERE": 607
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 147,
+     "words_in_a_run_one_card_joins": 87,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 147,
+       "found_here_too": 147,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 146,
+       "found_here_too": 146,
+       "not_found": []
+      }
+     }
+    }
+   },
+   "jonah": {
+    "rest": {
+     "words": 688,
+     "words_with_a_card": 688,
+     "pills": 21591,
+     "pills_of_a_source_not_read": 72,
+     "by_source": {
+      "M14": 4680,
+      "M3": 3897,
+      "M9": 2327,
+      "M18": 1244,
+      "M4": 1201,
+      "M13": 1153,
+      "M5": 1030,
+      "M21": 932,
+      "M46": 886,
+      "M12": 763,
+      "M42": 617,
+      "M17": 495,
+      "M23": 408,
+      "M25 or M50": 322,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 233,
+      "M1": 161,
+      "M32": 161,
+      "M49 or M106": 129,
+      "M19": 114,
+      "M43": 109,
+      "M6 or M62": 94,
+      "M37": 88,
+      "a label no index names": 72,
+      "M10 or M28 or M48 or M53 or M138 or M194": 71,
+      "M39 or M75": 66,
+      "M22": 60,
+      "M60": 51,
+      "M45": 49,
+      "M15": 42,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 34,
+      "PIECE:MACULA": 33,
+      "M64": 17,
+      "M57": 16,
+      "M97": 10,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 7,
+      "M11 or M69": 6,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 6,
+      "M34": 4,
+      "M33": 1,
+      "M7": 1,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 505,
+       "NOT_ITS_READING_HERE": 702,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 74,
+       "NOT_ITS_READING_HERE": 149,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 123,
+       "NOT_ITS_READING_HERE": 4551,
+       "THE_SOURCE_IS_SILENT_HERE": 72
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 115,
+       "NOT_ITS_READING_HERE": 1137,
+       "THE_SOURCE_IS_SILENT_HERE": 13
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 36,
+       "NOT_ITS_READING_HERE": 134,
+       "THE_SOURCE_IS_SILENT_HERE": 1421
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 284,
+     "words_in_a_run_one_card_joins": 208,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 316,
+       "found_here_too": 316,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 315,
+       "found_here_too": 315,
+       "not_found": []
+      }
+     }
+    },
+    "lifted": {
+     "words": 688,
+     "words_with_a_card": 688,
+     "pills": 37775,
+     "pills_of_a_source_not_read": 553,
+     "by_source": {
+      "M3": 6041,
+      "M14": 5805,
+      "M4": 5652,
+      "M9": 5289,
+      "M18": 2301,
+      "M5": 1902,
+      "M12": 1589,
+      "M46": 1581,
+      "M21": 1063,
+      "M13": 1050,
+      "M17": 940,
+      "M42": 762,
+      "M25 or M50": 741,
+      "M23": 734,
+      "a label no index names": 553,
+      "M19": 279,
+      "M32": 216,
+      "M43": 206,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 202,
+      "M10 or M28 or M48 or M53 or M138 or M194": 143,
+      "M11 or M69": 117,
+      "M6 or M62": 92,
+      "M37": 88,
+      "M1": 79,
+      "M39 or M75": 65,
+      "M45": 61,
+      "M60": 43,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 38,
+      "M15": 32,
+      "M49 or M106": 31,
+      "M57": 20,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 15,
+      "M97": 10,
+      "M22": 8,
+      "M72 or M112 or M177": 8,
+      "M34": 6,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 6,
+      "M64": 4,
+      "M33": 1,
+      "M7": 1,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 496,
+       "NOT_ITS_READING_HERE": 5176,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 84,
+       "NOT_ITS_READING_HERE": 475,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 156,
+       "NOT_ITS_READING_HERE": 6930,
+       "THE_SOURCE_IS_SILENT_HERE": 264
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 200,
+       "NOT_ITS_READING_HERE": 1567,
+       "THE_SOURCE_IS_SILENT_HERE": 588
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 66,
+       "NOT_ITS_READING_HERE": 525,
+       "THE_SOURCE_IS_SILENT_HERE": 2198
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 309,
+     "words_in_a_run_one_card_joins": 208,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 316,
+       "found_here_too": 316,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 315,
+       "found_here_too": 315,
+       "not_found": []
+      }
+     }
+    }
+   },
+   "micah": {
+    "rest": {
+     "words": 1396,
+     "words_with_a_card": 1395,
+     "pills": 42863,
+     "pills_of_a_source_not_read": 97,
+     "by_source": {
+      "M14": 7732,
+      "M3": 7252,
+      "M9": 5456,
+      "M18": 2981,
+      "M4": 2728,
+      "M13": 2159,
+      "M21": 2075,
+      "M46": 1736,
+      "M5": 1721,
+      "M12": 1434,
+      "M42": 1226,
+      "M17": 1225,
+      "M23": 892,
+      "M25 or M50": 670,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 485,
+      "M32": 374,
+      "M1": 314,
+      "M43": 304,
+      "M19": 211,
+      "M37": 208,
+      "M49 or M106": 205,
+      "M10 or M28 or M48 or M53 or M138 or M194": 185,
+      "M22": 167,
+      "M6 or M62": 165,
+      "M60": 146,
+      "M11 or M69": 140,
+      "M39 or M75": 137,
+      "a label no index names": 96,
+      "M15": 93,
+      "M45": 85,
+      "PIECE:MACULA": 70,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 37,
+      "M57": 34,
+      "M64": 33,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 15,
+      "M7": 15,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 14,
+      "M97": 13,
+      "M34": 12,
+      "M199": 6,
+      "M33": 6,
+      "M72 or M112 or M177": 4,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 2
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 1054,
+       "NOT_ITS_READING_HERE": 1695,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 129,
+       "NOT_ITS_READING_HERE": 312,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 288,
+       "NOT_ITS_READING_HERE": 8423,
+       "THE_SOURCE_IS_SILENT_HERE": 52
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 305,
+       "NOT_ITS_READING_HERE": 2671,
+       "THE_SOURCE_IS_SILENT_HERE": 45
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 178,
+       "NOT_ITS_READING_HERE": 531,
+       "THE_SOURCE_IS_SILENT_HERE": 2226
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 661,
+     "words_in_a_run_one_card_joins": 310,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 727,
+       "found_here_too": 727,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 716,
+       "found_here_too": 715,
+       "not_found": [
+        "micah 1:10:8"
+       ]
+      }
+     }
+    },
+    "lifted": {
+     "words": 1396,
+     "words_with_a_card": 1395,
+     "pills": 70450,
+     "pills_of_a_source_not_read": 680,
+     "by_source": {
+      "M3": 10814,
+      "M14": 10496,
+      "M4": 9787,
+      "M9": 9691,
+      "M18": 4448,
+      "M12": 3614,
+      "M5": 3213,
+      "M46": 2703,
+      "M21": 2654,
+      "M13": 1945,
+      "M17": 1875,
+      "M42": 1495,
+      "M25 or M50": 1475,
+      "M23": 1474,
+      "a label no index names": 678,
+      "M43": 639,
+      "M19": 544,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 446,
+      "M32": 437,
+      "M11 or M69": 348,
+      "M10 or M28 or M48 or M53 or M138 or M194": 301,
+      "M37": 242,
+      "M1": 178,
+      "M39 or M75": 172,
+      "M6 or M62": 162,
+      "M60": 129,
+      "M45": 109,
+      "M15": 74,
+      "M57": 48,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 45,
+      "M49 or M106": 40,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 38,
+      "M22": 33,
+      "M34": 24,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 15,
+      "M7": 15,
+      "M97": 13,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 9,
+      "M33": 7,
+      "M72 or M112 or M177": 7,
+      "M199": 6,
+      "M64": 6,
+      "PIECE:MACULA": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 1035,
+       "NOT_ITS_READING_HERE": 8799,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 185,
+       "NOT_ITS_READING_HERE": 869,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 373,
+       "NOT_ITS_READING_HERE": 12364,
+       "THE_SOURCE_IS_SILENT_HERE": 198
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 423,
+       "NOT_ITS_READING_HERE": 3719,
+       "THE_SOURCE_IS_SILENT_HERE": 375
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 265,
+       "NOT_ITS_READING_HERE": 1358,
+       "THE_SOURCE_IS_SILENT_HERE": 3350
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 705,
+     "words_in_a_run_one_card_joins": 310,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 727,
+       "found_here_too": 727,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 725,
+       "found_here_too": 724,
+       "not_found": [
+        "micah 1:10:8"
+       ]
+      }
+     }
+    }
+   },
+   "nahum": {
+    "rest": {
+     "words": 558,
+     "words_with_a_card": 556,
+     "pills": 15722,
+     "pills_of_a_source_not_read": 41,
+     "by_source": {
+      "M14": 2774,
+      "M3": 2484,
+      "M9": 2063,
+      "M18": 1292,
+      "M4": 965,
+      "M13": 763,
+      "M5": 627,
+      "M21": 611,
+      "M12": 601,
+      "M17": 533,
+      "M46": 525,
+      "M42": 418,
+      "M23": 373,
+      "M25 or M50": 258,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 221,
+      "M32": 137,
+      "M43": 119,
+      "M1": 111,
+      "M37": 99,
+      "M19": 97,
+      "M49 or M106": 92,
+      "M60": 80,
+      "M10 or M28 or M48 or M53 or M138 or M194": 79,
+      "M6 or M62": 67,
+      "M39 or M75": 55,
+      "M22": 46,
+      "a label no index names": 41,
+      "M11 or M69": 40,
+      "M15": 34,
+      "M45": 27,
+      "PIECE:MACULA": 25,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 15,
+      "M57": 13,
+      "M64": 10,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 7,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 7,
+      "M72 or M112 or M177": 6,
+      "M34": 3,
+      "M33": 2,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 1,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 411,
+       "NOT_ITS_READING_HERE": 564,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 54,
+       "NOT_ITS_READING_HERE": 119,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 164,
+       "NOT_ITS_READING_HERE": 2758,
+       "THE_SOURCE_IS_SILENT_HERE": 6
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 135,
+       "NOT_ITS_READING_HERE": 1113,
+       "THE_SOURCE_IS_SILENT_HERE": 52
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 58,
+       "NOT_ITS_READING_HERE": 228,
+       "THE_SOURCE_IS_SILENT_HERE": 679
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 254,
+     "words_in_a_run_one_card_joins": 89,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 308,
+       "found_here_too": 308,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 308,
+       "found_here_too": 308,
+       "not_found": []
+      }
+     }
+    },
+    "lifted": {
+     "words": 558,
+     "words_with_a_card": 556,
+     "pills": 25696,
+     "pills_of_a_source_not_read": 225,
+     "by_source": {
+      "M3": 3755,
+      "M14": 3704,
+      "M9": 3605,
+      "M4": 3253,
+      "M12": 1803,
+      "M18": 1704,
+      "M5": 1209,
+      "M46": 860,
+      "M21": 787,
+      "M17": 747,
+      "M13": 701,
+      "M25 or M50": 676,
+      "M23": 608,
+      "M42": 497,
+      "a label no index names": 217,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 210,
+      "M43": 206,
+      "M19": 176,
+      "M32": 167,
+      "M11 or M69": 118,
+      "M37": 108,
+      "M10 or M28 or M48 or M53 or M138 or M194": 96,
+      "M39 or M75": 77,
+      "M60": 69,
+      "M1": 65,
+      "M6 or M62": 63,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 44,
+      "M45": 35,
+      "M15": 30,
+      "M49 or M106": 24,
+      "M72 or M112 or M177": 20,
+      "M57": 16,
+      "M22": 11,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 7,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 7,
+      "M34": 5,
+      "M64": 5,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 5,
+      "M33": 4,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 1,
+      "M7": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 406,
+       "NOT_ITS_READING_HERE": 2864,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 63,
+       "NOT_ITS_READING_HERE": 261,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 188,
+       "NOT_ITS_READING_HERE": 4155,
+       "THE_SOURCE_IS_SILENT_HERE": 22
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 175,
+       "NOT_ITS_READING_HERE": 1441,
+       "THE_SOURCE_IS_SILENT_HERE": 106
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 86,
+       "NOT_ITS_READING_HERE": 610,
+       "THE_SOURCE_IS_SILENT_HERE": 1042
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 285,
+     "words_in_a_run_one_card_joins": 89,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 308,
+       "found_here_too": 308,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 308,
+       "found_here_too": 308,
+       "not_found": []
+      }
+     }
+    }
+   },
+   "habakkuk": {
+    "rest": {
+     "words": 671,
+     "words_with_a_card": 670,
+     "pills": 19880,
+     "pills_of_a_source_not_read": 49,
+     "by_source": {
+      "M3": 3272,
+      "M14": 3201,
+      "M9": 2615,
+      "M18": 1733,
+      "M4": 1281,
+      "M13": 977,
+      "M21": 831,
+      "M5": 801,
+      "M46": 757,
+      "M12": 715,
+      "M17": 638,
+      "M42": 554,
+      "M23": 422,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 316,
+      "M25 or M50": 235,
+      "M32": 201,
+      "M1": 150,
+      "M43": 149,
+      "M49 or M106": 127,
+      "M19": 117,
+      "M10 or M28 or M48 or M53 or M138 or M194": 94,
+      "M37": 94,
+      "M39 or M75": 93,
+      "M60": 73,
+      "M22": 72,
+      "M6 or M62": 69,
+      "M15": 52,
+      "a label no index names": 49,
+      "M45": 45,
+      "PIECE:MACULA": 37,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 20,
+      "M57": 20,
+      "M64": 19,
+      "M34": 11,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 10,
+      "M97": 10,
+      "M11 or M69": 8,
+      "M33": 5,
+      "M7": 5,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 1,
+      "M72 or M112 or M177": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 525,
+       "NOT_ITS_READING_HERE": 767,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 78,
+       "NOT_ITS_READING_HERE": 143,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 175,
+       "NOT_ITS_READING_HERE": 3767,
+       "THE_SOURCE_IS_SILENT_HERE": 24
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 167,
+       "NOT_ITS_READING_HERE": 1558,
+       "THE_SOURCE_IS_SILENT_HERE": 13
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 89,
+       "NOT_ITS_READING_HERE": 314,
+       "THE_SOURCE_IS_SILENT_HERE": 945
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 309,
+     "words_in_a_run_one_card_joins": 129,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 355,
+       "found_here_too": 355,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 351,
+       "found_here_too": 351,
+       "not_found": []
+      }
+     }
+    },
+    "lifted": {
+     "words": 671,
+     "words_with_a_card": 670,
+     "pills": 32588,
+     "pills_of_a_source_not_read": 311,
+     "by_source": {
+      "M3": 5080,
+      "M9": 4716,
+      "M4": 4480,
+      "M14": 4426,
+      "M18": 2227,
+      "M12": 1912,
+      "M5": 1480,
+      "M46": 1098,
+      "M21": 1043,
+      "M17": 933,
+      "M13": 886,
+      "M23": 713,
+      "M42": 674,
+      "M25 or M50": 620,
+      "a label no index names": 308,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 296,
+      "M43": 272,
+      "M19": 239,
+      "M32": 223,
+      "M10 or M28 or M48 or M53 or M138 or M194": 121,
+      "M39 or M75": 120,
+      "M37": 117,
+      "M1": 99,
+      "M6 or M62": 66,
+      "M60": 63,
+      "M45": 59,
+      "M11 or M69": 58,
+      "M7": 51,
+      "M15": 46,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 34,
+      "M57": 28,
+      "M49 or M106": 26,
+      "M22": 20,
+      "M34": 18,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 10,
+      "M97": 10,
+      "M33": 8,
+      "M64": 6,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 1,
+      "M72 or M112 or M177": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 519,
+       "NOT_ITS_READING_HERE": 3984,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 109,
+       "NOT_ITS_READING_HERE": 318,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 215,
+       "NOT_ITS_READING_HERE": 5738,
+       "THE_SOURCE_IS_SILENT_HERE": 88
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 216,
+       "NOT_ITS_READING_HERE": 1940,
+       "THE_SOURCE_IS_SILENT_HERE": 90
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 162,
+       "NOT_ITS_READING_HERE": 708,
+       "THE_SOURCE_IS_SILENT_HERE": 1271
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 337,
+     "words_in_a_run_one_card_joins": 129,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 355,
+       "found_here_too": 355,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 354,
+       "found_here_too": 354,
+       "not_found": []
+      }
+     }
+    }
+   },
+   "zephaniah": {
+    "rest": {
+     "words": 767,
+     "words_with_a_card": 766,
+     "pills": 25179,
+     "pills_of_a_source_not_read": 57,
+     "by_source": {
+      "M14": 4806,
+      "M3": 4659,
+      "M9": 3712,
+      "M4": 1548,
+      "M18": 1179,
+      "M13": 1159,
+      "M21": 1103,
+      "M46": 1036,
+      "M5": 913,
+      "M12": 871,
+      "M42": 809,
+      "M17": 588,
+      "M23": 567,
+      "M25 or M50": 276,
+      "M1": 224,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 216,
+      "M32": 199,
+      "M43": 183,
+      "M37": 150,
+      "M19": 136,
+      "M49 or M106": 119,
+      "M10 or M28 or M48 or M53 or M138 or M194": 109,
+      "M22": 81,
+      "M6 or M62": 80,
+      "M60": 72,
+      "M39 or M75": 60,
+      "a label no index names": 56,
+      "M15": 54,
+      "M45": 52,
+      "PIECE:MACULA": 47,
+      "M11 or M69": 26,
+      "M57": 22,
+      "M64": 18,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 15,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 14,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 10,
+      "M34": 5,
+      "M33": 2,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 1,
+      "M7": 1,
+      "M72 or M112 or M177": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 560,
+       "NOT_ITS_READING_HERE": 1012,
+       "THE_SOURCE_IS_SILENT_HERE": 3
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 64,
+       "NOT_ITS_READING_HERE": 218,
+       "THE_SOURCE_IS_SILENT_HERE": 1
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 168,
+       "NOT_ITS_READING_HERE": 5309,
+       "THE_SOURCE_IS_SILENT_HERE": 77
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 172,
+       "NOT_ITS_READING_HERE": 976,
+       "THE_SOURCE_IS_SILENT_HERE": 39
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 89,
+       "NOT_ITS_READING_HERE": 231,
+       "THE_SOURCE_IS_SILENT_HERE": 1491
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 388,
+     "words_in_a_run_one_card_joins": 210,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 428,
+       "found_here_too": 428,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 425,
+       "found_here_too": 425,
+       "not_found": []
+      }
+     }
+    },
+    "lifted": {
+     "words": 767,
+     "words_with_a_card": 766,
+     "pills": 41400,
+     "pills_of_a_source_not_read": 407,
+     "by_source": {
+      "M14": 6751,
+      "M3": 6598,
+      "M9": 6062,
+      "M4": 5654,
+      "M18": 2534,
+      "M12": 1981,
+      "M5": 1676,
+      "M46": 1602,
+      "M21": 1317,
+      "M13": 1039,
+      "M42": 986,
+      "M17": 943,
+      "M23": 912,
+      "M25 or M50": 792,
+      "a label no index names": 406,
+      "M43": 295,
+      "M19": 292,
+      "M32": 270,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 192,
+      "M11 or M69": 168,
+      "M37": 168,
+      "M10 or M28 or M48 or M53 or M138 or M194": 150,
+      "M1": 111,
+      "M6 or M62": 80,
+      "M39 or M75": 72,
+      "M45": 67,
+      "M60": 67,
+      "M15": 43,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 34,
+      "M49 or M106": 31,
+      "M22": 29,
+      "M57": 26,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 15,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 15,
+      "M34": 6,
+      "M64": 6,
+      "M72 or M112 or M177": 4,
+      "M33": 2,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 2,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 1,
+      "M7": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 560,
+       "NOT_ITS_READING_HERE": 5133,
+       "THE_SOURCE_IS_SILENT_HERE": 9
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 91,
+       "NOT_ITS_READING_HERE": 515,
+       "THE_SOURCE_IS_SILENT_HERE": 1
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 224,
+       "NOT_ITS_READING_HERE": 7332,
+       "THE_SOURCE_IS_SILENT_HERE": 286
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 269,
+       "NOT_ITS_READING_HERE": 2125,
+       "THE_SOURCE_IS_SILENT_HERE": 162
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 125,
+       "NOT_ITS_READING_HERE": 571,
+       "THE_SOURCE_IS_SILENT_HERE": 2161
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 422,
+     "words_in_a_run_one_card_joins": 210,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 428,
+       "found_here_too": 428,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 426,
+       "found_here_too": 426,
+       "not_found": []
+      }
+     }
+    }
+   },
+   "haggai": {
+    "rest": {
+     "words": 600,
+     "words_with_a_card": 600,
+     "pills": 16685,
+     "pills_of_a_source_not_read": 66,
+     "by_source": {
+      "M14": 2982,
+      "M3": 2710,
+      "M9": 1956,
+      "M4": 1238,
+      "M18": 948,
+      "M13": 907,
+      "M21": 902,
+      "M12": 812,
+      "M46": 691,
+      "M5": 638,
+      "M42": 508,
+      "M17": 439,
+      "M23": 352,
+      "M32": 184,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 172,
+      "M1": 141,
+      "M37": 113,
+      "M49 or M106": 110,
+      "M19": 95,
+      "M6 or M62": 94,
+      "M25 or M50": 86,
+      "M43": 85,
+      "M10 or M28 or M48 or M53 or M138 or M194": 75,
+      "M22": 67,
+      "M39 or M75": 67,
+      "a label no index names": 66,
+      "M60": 51,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 45,
+      "PIECE:MACULA": 33,
+      "M45": 26,
+      "M15": 25,
+      "M57": 18,
+      "M11 or M69": 14,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 14,
+      "M64": 8,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 6,
+      "M34": 4,
+      "M72 or M112 or M177": 2,
+      "M33": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 436,
+       "NOT_ITS_READING_HERE": 825,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 46,
+       "NOT_ITS_READING_HERE": 129,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 101,
+       "NOT_ITS_READING_HERE": 3030,
+       "THE_SOURCE_IS_SILENT_HERE": 53
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 122,
+       "NOT_ITS_READING_HERE": 833,
+       "THE_SOURCE_IS_SILENT_HERE": 13
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 65,
+       "NOT_ITS_READING_HERE": 232,
+       "THE_SOURCE_IS_SILENT_HERE": 877
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 254,
+     "words_in_a_run_one_card_joins": 243,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 272,
+       "found_here_too": 272,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 272,
+       "found_here_too": 272,
+       "not_found": []
+      }
+     }
+    },
+    "lifted": {
+     "words": 600,
+     "words_with_a_card": 600,
+     "pills": 31079,
+     "pills_of_a_source_not_read": 356,
+     "by_source": {
+      "M9": 4809,
+      "M4": 4611,
+      "M14": 4462,
+      "M3": 4361,
+      "M18": 2002,
+      "M12": 1814,
+      "M5": 1316,
+      "M46": 1312,
+      "M21": 1028,
+      "M13": 826,
+      "M17": 807,
+      "M42": 647,
+      "M23": 635,
+      "M25 or M50": 516,
+      "a label no index names": 356,
+      "M19": 281,
+      "M32": 221,
+      "M43": 199,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 151,
+      "M37": 116,
+      "M10 or M28 or M48 or M53 or M138 or M194": 112,
+      "M6 or M62": 93,
+      "M11 or M69": 66,
+      "M1": 62,
+      "M60": 47,
+      "M45": 44,
+      "M39 or M75": 41,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 38,
+      "M57": 21,
+      "M15": 20,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 18,
+      "M49 or M106": 16,
+      "M22": 10,
+      "M34": 7,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 6,
+      "M72 or M112 or M177": 5,
+      "M64": 2,
+      "M33": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 429,
+       "NOT_ITS_READING_HERE": 4217,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 80,
+       "NOT_ITS_READING_HERE": 475,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 132,
+       "NOT_ITS_READING_HERE": 4850,
+       "THE_SOURCE_IS_SILENT_HERE": 198
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 189,
+       "NOT_ITS_READING_HERE": 1559,
+       "THE_SOURCE_IS_SILENT_HERE": 296
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 98,
+       "NOT_ITS_READING_HERE": 660,
+       "THE_SOURCE_IS_SILENT_HERE": 1452
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 272,
+     "words_in_a_run_one_card_joins": 243,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 272,
+       "found_here_too": 272,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 273,
+       "found_here_too": 273,
+       "not_found": []
+      }
+     }
+    }
+   },
+   "zechariah": {
+    "rest": {
+     "words": 3127,
+     "words_with_a_card": 3124,
+     "pills": 91213,
+     "pills_of_a_source_not_read": 278,
+     "by_source": {
+      "M3": 17079,
+      "M14": 16503,
+      "M9": 10468,
+      "M4": 5882,
+      "M18": 5378,
+      "M13": 4680,
+      "M21": 4271,
+      "M5": 3635,
+      "M46": 3600,
+      "M12": 3557,
+      "M42": 2781,
+      "M17": 2417,
+      "M23": 1976,
+      "M25 or M50": 1146,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 934,
+      "M1": 900,
+      "M32": 818,
+      "M49 or M106": 602,
+      "M43": 568,
+      "M37": 524,
+      "M10 or M28 or M48 or M53 or M138 or M194": 410,
+      "M19": 398,
+      "M6 or M62": 358,
+      "M22": 342,
+      "M60": 323,
+      "a label no index names": 277,
+      "M39 or M75": 275,
+      "M45": 205,
+      "M15": 198,
+      "PIECE:MACULA": 144,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 128,
+      "M11 or M69": 110,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 86,
+      "M57": 85,
+      "M64": 59,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 34,
+      "M7": 24,
+      "M34": 13,
+      "M33": 10,
+      "M72 or M112 or M177": 7,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 5,
+      "M199": 2,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 2278,
+       "NOT_ITS_READING_HERE": 3672,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 212,
+       "NOT_ITS_READING_HERE": 519,
+       "THE_SOURCE_IS_SILENT_HERE": 1
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 504,
+       "NOT_ITS_READING_HERE": 19210,
+       "THE_SOURCE_IS_SILENT_HERE": 408
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 605,
+       "NOT_ITS_READING_HERE": 4646,
+       "THE_SOURCE_IS_SILENT_HERE": 185
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 173,
+       "NOT_ITS_READING_HERE": 635,
+       "THE_SOURCE_IS_SILENT_HERE": 5365
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 1333,
+     "words_in_a_run_one_card_joins": 883,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 1428,
+       "found_here_too": 1428,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 1423,
+       "found_here_too": 1422,
+       "not_found": [
+        "zechariah 7:2:6"
+       ]
+      }
+     }
+    },
+    "lifted": {
+     "words": 3127,
+     "words_with_a_card": 3124,
+     "pills": 159340,
+     "pills_of_a_source_not_read": 1743,
+     "by_source": {
+      "M3": 25783,
+      "M4": 23329,
+      "M14": 22600,
+      "M9": 22378,
+      "M18": 9296,
+      "M12": 8391,
+      "M5": 7291,
+      "M46": 6338,
+      "M21": 5217,
+      "M13": 4206,
+      "M17": 4134,
+      "M42": 3626,
+      "M23": 3410,
+      "M25 or M50": 2696,
+      "a label no index names": 1734,
+      "M19": 1314,
+      "M43": 1238,
+      "M32": 1175,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 820,
+      "M37": 614,
+      "M10 or M28 or M48 or M53 or M138 or M194": 602,
+      "M11 or M69": 555,
+      "M39 or M75": 386,
+      "M1": 378,
+      "M6 or M62": 336,
+      "M60": 299,
+      "M45": 272,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 156,
+      "M15": 150,
+      "M7": 118,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 112,
+      "M57": 112,
+      "M49 or M106": 84,
+      "M22": 75,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 34,
+      "M34": 26,
+      "M33": 17,
+      "M64": 11,
+      "M72 or M112 or M177": 10,
+      "M133 or M145 or M148 or M154 or M160 or M161 or M167 or M180 or M191": 5,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 5,
+      "PIECE:MACULA": 5,
+      "M199": 2
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 2244,
+       "NOT_ITS_READING_HERE": 21242,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 356,
+       "NOT_ITS_READING_HERE": 2071,
+       "THE_SOURCE_IS_SILENT_HERE": 1
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 700,
+       "NOT_ITS_READING_HERE": 28346,
+       "THE_SOURCE_IS_SILENT_HERE": 1507
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 901,
+       "NOT_ITS_READING_HERE": 7341,
+       "THE_SOURCE_IS_SILENT_HERE": 1211
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 305,
+       "NOT_ITS_READING_HERE": 1809,
+       "THE_SOURCE_IS_SILENT_HERE": 8988
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 1471,
+     "words_in_a_run_one_card_joins": 883,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 1428,
+       "found_here_too": 1428,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 1440,
+       "found_here_too": 1438,
+       "not_found": [
+        "zechariah 7:2:6",
+        "zechariah 7:7:2"
+       ]
+      }
+     }
+    }
+   },
+   "malachi": {
+    "rest": {
+     "words": 876,
+     "words_with_a_card": 875,
+     "pills": 29398,
+     "pills_of_a_source_not_read": 90,
+     "by_source": {
+      "M3": 4744,
+      "M14": 4624,
+      "M9": 3775,
+      "M4": 1999,
+      "M18": 1988,
+      "M21": 1662,
+      "M12": 1549,
+      "M13": 1449,
+      "M46": 1192,
+      "M5": 1103,
+      "M17": 934,
+      "M42": 878,
+      "M23": 693,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 338,
+      "M25 or M50": 311,
+      "M43": 234,
+      "M32": 232,
+      "M1": 224,
+      "M49 or M106": 206,
+      "M37": 161,
+      "M10 or M28 or M48 or M53 or M138 or M194": 148,
+      "M19": 135,
+      "M60": 121,
+      "M6 or M62": 108,
+      "a label no index names": 87,
+      "M15": 77,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 69,
+      "M39 or M75": 64,
+      "M22": 59,
+      "M45": 58,
+      "PIECE:MACULA": 48,
+      "M11 or M69": 44,
+      "M64": 24,
+      "M57": 18,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 13,
+      "M34": 12,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 6,
+      "M97": 6,
+      "M72 or M112 or M177": 3,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 2
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 625,
+       "NOT_ITS_READING_HERE": 1388,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 91,
+       "NOT_ITS_READING_HERE": 184,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 184,
+       "NOT_ITS_READING_HERE": 5315,
+       "THE_SOURCE_IS_SILENT_HERE": 93
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 224,
+       "NOT_ITS_READING_HERE": 1800,
+       "THE_SOURCE_IS_SILENT_HERE": 13
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 98,
+       "NOT_ITS_READING_HERE": 351,
+       "THE_SOURCE_IS_SILENT_HERE": 1595
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 385,
+     "words_in_a_run_one_card_joins": 234,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 434,
+       "found_here_too": 434,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 432,
+       "found_here_too": 432,
+       "not_found": []
+      }
+     }
+    },
+    "lifted": {
+     "words": 876,
+     "words_with_a_card": 875,
+     "pills": 50147,
+     "pills_of_a_source_not_read": 543,
+     "by_source": {
+      "M3": 7615,
+      "M4": 7346,
+      "M9": 7087,
+      "M14": 6870,
+      "M12": 3295,
+      "M18": 2981,
+      "M5": 2247,
+      "M46": 1922,
+      "M21": 1884,
+      "M17": 1379,
+      "M13": 1301,
+      "M23": 1181,
+      "M42": 1070,
+      "M25 or M50": 888,
+      "a label no index names": 534,
+      "M43": 340,
+      "M19": 306,
+      "M27 or M29 or M38 or M54 or M55 or M59 or M79 or M80 or M90 or M93 or M129 or M139 or M142 or M151 or M155 or M162 or M164 or M170 or M171 or M183": 298,
+      "M32": 295,
+      "M10 or M28 or M48 or M53 or M138 or M194": 197,
+      "M11 or M69": 195,
+      "M37": 176,
+      "M1": 110,
+      "M6 or M62": 106,
+      "M60": 105,
+      "M45": 74,
+      "M15": 61,
+      "M39 or M75": 57,
+      "M2 or M61 or M73 or M76 or M81 or M87 or M94": 48,
+      "M49 or M106": 47,
+      "M36 or M41 or M58 or M74 or M92 or M96 or M102 or M105 or M110 or M128 or M134 or M144 or M152 or M174 or M179 or M182 or M188 or M189 or M196": 39,
+      "M57": 28,
+      "M34": 17,
+      "M22": 15,
+      "M44 or M68 or M85 or M86 or M95 or M116 or M130 or M135 or M149 or M157 or M165 or M173 or M185 or M186 or M187 or M192 or M195": 6,
+      "M7": 6,
+      "M97": 6,
+      "M33": 4,
+      "M64": 4,
+      "M71 or M98 or M111 or M123 or M132 or M137 or M150 or M163 or M169 or M190": 3,
+      "M72 or M112 or M177": 3,
+      "PIECE:MACULA": 1
+     },
+     "four": {
+      "M4": {
+       "ITS_OWN_READING_HERE": 620,
+       "NOT_ITS_READING_HERE": 6763,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M19": {
+       "ITS_OWN_READING_HERE": 125,
+       "NOT_ITS_READING_HERE": 478,
+       "THE_SOURCE_IS_SILENT_HERE": 0
+      },
+      "M3": {
+       "ITS_OWN_READING_HERE": 233,
+       "NOT_ITS_READING_HERE": 8343,
+       "THE_SOURCE_IS_SILENT_HERE": 352
+      },
+      "M18": {
+       "ITS_OWN_READING_HERE": 289,
+       "NOT_ITS_READING_HERE": 2605,
+       "THE_SOURCE_IS_SILENT_HERE": 154
+      },
+      "M46": {
+       "ITS_OWN_READING_HERE": 141,
+       "NOT_ITS_READING_HERE": 881,
+       "THE_SOURCE_IS_SILENT_HERE": 2477
+      }
+     },
+     "cards_with_a_pill_that_is_not_its_sources_reading_here": 425,
+     "words_in_a_run_one_card_joins": 234,
+     "marked": {
+      "PIECE:TAHOT": {
+       "pills": 434,
+       "found_here_too": 434,
+       "not_found": []
+      },
+      "PIECE:MACULA": {
+       "pills": 434,
+       "found_here_too": 434,
+       "not_found": []
+      }
+     }
+    }
+   }
+  }
+ },
+ "checks": [
+  {
+   "check": "check 1: every verse of a recording has the entries the lattice gives it, and every recorded word has a place in the numbering",
+   "failures": 0
+  },
+  {
+   "check": "check 2: the lines of each book are the count the recording states, and the cards' words are the count each chain book states",
+   "failures": 0
+  },
+  {
+   "check": "check 3: the classes of Part A add up to the lines; every pill of Part B is counted once per state",
+   "failures": 0
+  },
+  {
+   "check": "check 4: the recordings read are named with their sha256, and the store's version is the one each chain book names",
+   "failures": 0
+  },
+  {
+   "check": "check 5: every row default picks v1 names stands in the served store",
+   "failures": 0
+  }
+ ],
+ "outputs": [
+  {
+   "file": "lines-not-steps-reading-v1.jsonl",
+   "bytes": 235368,
+   "sha256": "6459f9398c66289c02bcf61958bae02545d5172bf4cd6cecf806fd06f0075477",
+   "lines": 914
+  },
+  {
+   "file": "lines-over-several-words-v1.jsonl",
+   "bytes": 384463,
+   "sha256": "12228dc4e7ab9566f3c809500ccc63aeece0f0244480644fc2a779509b0d778a",
+   "lines": 2177
+  },
+  {
+   "file": "words-under-no-line-v1.jsonl",
+   "bytes": 33860,
+   "sha256": "06329b1b273561f0637cd834164eb70f955647c8312224a3a2efa6c8fab621b2",
+   "lines": 247
+  },
+  {
+   "file": "pills-by-place-v1.jsonl",
+   "bytes": 1972353,
+   "sha256": "85e3ece7951490b187dfcdcb7d8c72ad3da76b9709bdc5dc20e01703001a900c",
+   "lines": 14354
+  }
+ ]
+}

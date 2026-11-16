@@ -1,5 +1,5 @@
 // RUN: given
-// GUARDS: default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
+// GUARDS: default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut, audit-calls-landing-rule-v1-each-call-lands-as-its-landing-says-rows-through-the-row-strikes-tool-a-rule-under-its-own-id-or-held-with-the-reason, steps-reading-stands-rule-v1-where-step-spells-or-parts-the-word-otherwise-its-own-pick-1-is-the-line-credited-to-step, zone-gloss-rule-v8-printed-form-ledger-division-whole-without-a-ledger-at-rest-a-rendering-carrying-strongs-sign-after-every-plain-one-antiquity-1940-lastuary, run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away, ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it, form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill, pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it
 // LEDGER: -
 // no frame letter. A check reads what is served and judges it; it is not the ledger for one.
 // SAME PRODUCT (the rebuild, 2026-10-23: "a full rebuild, same product,
@@ -74,10 +74,56 @@
 // the record does not rest shut is compared as before, line for line and
 // pill for pill. --expect may be given twice, and each file is told by its
 // own rule_id; a file of another rule is refused, never guessed.
+// SHIP 5'S LANDINGS (the design of ships 5 and 6, section 8; the lead's calls
+// of 15 November 2026). Each is owed only where its expectation is given, and
+// a moved line or card no class explains is a difference as before:
+//   (a) call 4's stands (steps-reading-stands-rule-v1; with the default
+//       picks' index, its step_words whose third element is 1): under the
+//       STEP layer (every switch but a source pressed), the line is STEP's
+//       words drawn as the page draws them under STEP's chip, whatever the
+//       old line was; under MACULA, UBS or BDB pressed, only where the pressed
+//       source has no line at the place and its second is STEP (the page's
+//       defaultAtWord; a pair keeps today's line there); under «no names» a
+//       name that yields to the table's noname column is not the layer's.
+//       Said «stands:». On S2 the word's card may gain STEP's reading and
+//       open on it, its line having moved so
+//   (b) call 7's Strong's sign (zone-gloss-rule-v8; with the audit-calls pin,
+//       data/audit-calls/PIN.json, whose call-7 landing names the rule), on a
+//       book whose new zone was baked with the sign last (its
+//       emitted_from.signs_rest_last): a piece of the old line that opens
+//       with Strong's sign (gloss-store's opensWithStrongSign, the bracketed
+//       sign of the lead's call 1 too), where the same piece of the new line
+//       does not and a row under the word's keys in the new store prints it,
+//       every other piece the same. Said «strongs sign:». On S2 the card of
+//       such a word may lose the old line's signed reading, the pill it
+//       opened on, and opens on the new line's
+//   (c) call 3's runs (run-reads-its-words-rule-v1; with the audit-calls pin
+//       and relay v181's list it pins, held to its sha256): a word drawn under
+//       the run's one line over the very words a line of v181 covers, where
+//       every word of it has its own reading at the place (its place's pieces
+//       all say something, or call 4's stands), now reads its own: at rest
+//       its place's pieces as the page draws them, under a chip; under any
+//       other switch anything but a run's one line. Said «runs:». On S2 the
+//       first card of such a word differs as it will, opened on the word
+//       itself (the page's window.__cardPlace is the word's place, or, a card
+//       of the run's cell, the word's own block is the one pressed)
+//   (d) the dictionaries that rest shut (with the kinds record): a lost
+//       pill's carrier of a family a fact entry rests shut in part excuses it
+//       only where each row of it that prints the reading rests shut at the
+//       card's own place (UBS's collocation rows stand at the places UBS's
+//       own pick names them, ubs-collocations-rule-v1), so such a place still
+//       owes the pill; S1's «a reading on rows a category rests shut» asks
+//       the word's place the same way
+//   (e) question 12's one pill (pointer-one-pill-rule-v1; with the form-of
+//       record under form-of-pills-rule-v3, which carries one_pill): on S2 a
+//       card may lose a plain pill whose English a pill of the new card
+//       prints with a pointer beside it (data-pointer) and names the
+//       pointer's rows (data-pointer-by); that pill stands where the plain
+//       one stood, the pointer's own pill of the old card joining it
 // The sample: every fifth served book with a chapter page, the first and the
 // last among them, chapter 1 and the middle chapter of each; no book is
 // named here (check-scope-derived S1). Without two origins the check skips.
-// Usage: node tools/check-same-product-v1.mjs --old <origin> --new <origin> [--every 5] [--chapters 2] [--diff <path>] [--expect <data/default-picks/index.json>] [--expect <data/dictionary-kinds-v1.json>]
+// Usage: node tools/check-same-product-v1.mjs --old <origin> --new <origin> [--every 5] [--chapters 2] [--diff <path>] [--expect <data/default-picks/index.json>] [--expect <data/dictionary-kinds-v1.json>] [--expect <data/audit-calls/PIN.json>] [--expect <data/form-of-pills-v1.json>]
 //   --diff writes every differing card in full (old pills, new pills, the
 //   pills only one build carries) and, after the cards, every differing line
 //   (old and new, with their chips), one per "line:" entry, so a batch that
@@ -88,7 +134,8 @@ import { existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { autoSecond } from "./bake-default-picks-v1.mjs";
-import { SIGN_GAP, signOnly, signsOff } from "./gloss-store-v1.mjs";
+import { SIGN_GAP, signOnly, signsOff, opensWithStrongSign, GLOSS_RULE_ID } from "./gloss-store-v1.mjs";
+import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { readingKey, openRouteStore } from "./gloss-store-v1.mjs";
@@ -118,15 +165,39 @@ const STATES = [["default", null, null], ["no blanks", "blanksPill", "blanksPill
 // a tie to the earlier pill
 // --expect, as often as given, each file told by its own rule_id
 const DEFAULT_PICKS_RULE = "default-picks-rule-v1-";
-let EXPECT = "", KINDS = null;
+// the audit calls' pin (how calls 7, 4 and 3 land) and the form-of record (question 12's one pill), each by its rule
+const AUDIT_CALLS_RULE = "audit-calls-landing-rule-v1-each-call-lands-as-its-landing-says-rows-through-the-row-strikes-tool-a-rule-under-its-own-id-or-held-with-the-reason";
+const RUNS_RULE = "run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away";
+const FORM_OF_RULE = "form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill";
+const ONE_PILL_RULE = "pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it";
+let EXPECT = "", KINDS = null, AUDIT = null, FORM_OF = null;
+const refuse = (why) => { console.log(`REFUSED — ${why}`); process.exit(2); };
 for (const [i, a] of process.argv.entries()) {
   if (a !== "--expect") continue;
   const path = process.argv[i + 1] || "";
   let rec = null;
-  try { rec = JSON.parse(readFileSync(path, "utf8")); } catch (e) { console.log(`REFUSED — --expect ${path}: not a file of JSON this check can read (${e.message})`); process.exit(2); }
-  if (String(rec.rule_id || "").startsWith(DEFAULT_PICKS_RULE)) { if (EXPECT) { console.log(`REFUSED — --expect names two files of ${DEFAULT_PICKS_RULE}…`); process.exit(2); } EXPECT = path; }
-  else if (rec.rule_id === DICTIONARY_KINDS_RULE_ID) { if (KINDS) { console.log(`REFUSED — --expect names two records of ${DICTIONARY_KINDS_RULE_ID}`); process.exit(2); } KINDS = { rec, path }; }
-  else { console.log(`REFUSED — --expect ${path}: its rule_id ${JSON.stringify(rec.rule_id || null)} is not an expectation this check knows (${DEFAULT_PICKS_RULE}…, ${DICTIONARY_KINDS_RULE_ID})`); process.exit(2); }
+  try { rec = JSON.parse(readFileSync(path, "utf8")); } catch (e) { refuse(`--expect ${path}: not a file of JSON this check can read (${e.message})`); }
+  if (String(rec.rule_id || "").startsWith(DEFAULT_PICKS_RULE)) { if (EXPECT) refuse(`--expect names two files of ${DEFAULT_PICKS_RULE}…`); EXPECT = path; }
+  else if (rec.rule_id === DICTIONARY_KINDS_RULE_ID) { if (KINDS) refuse(`--expect names two records of ${DICTIONARY_KINDS_RULE_ID}`); KINDS = { rec, path }; }
+  else if (rec.rule_id === AUDIT_CALLS_RULE) { if (AUDIT) refuse(`--expect names two pins of ${AUDIT_CALLS_RULE}`); AUDIT = { rec, path }; }
+  else if (rec.rule_id === FORM_OF_RULE) {
+    if (FORM_OF) refuse(`--expect names two records of ${FORM_OF_RULE}`);
+    if (!rec.one_pill || rec.one_pill.rule !== ONE_PILL_RULE) refuse(`--expect ${path}: the form-of record under ${FORM_OF_RULE} carries no one_pill under ${ONE_PILL_RULE}`);
+    FORM_OF = { rec, path };
+  }
+  else refuse(`--expect ${path}: its rule_id ${JSON.stringify(rec.rule_id || null)} is not an expectation this check knows (${DEFAULT_PICKS_RULE}…, ${DICTIONARY_KINDS_RULE_ID}, ${AUDIT_CALLS_RULE}, ${FORM_OF_RULE})`);
+}
+// (b) and (c) from the audit-calls pin: call 7 lands under the gloss rule, call 3 under its own rule, held to relay
+// v181's list of the lines over several words, read here byte for byte against the pin
+let SIGN = false, RUNS = null;
+if (AUDIT) {
+  const lands = Array.isArray(AUDIT.rec.landings) ? AUDIT.rec.landings : [];
+  SIGN = lands.some((l) => l.call === 7 && l.rule_id === GLOSS_RULE_ID);
+  if (!SIGN) refuse(`--expect ${AUDIT.path}: no landing of call 7 names ${GLOSS_RULE_ID}`);
+  if (!lands.some((l) => l.call === 3 && l.rule_id === RUNS_RULE)) refuse(`--expect ${AUDIT.path}: no landing of call 3 names ${RUNS_RULE}`);
+  const p3 = AUDIT.rec.call3_lines_over_several_words_v181;
+  if (!p3 || !p3.list) refuse(`--expect ${AUDIT.path}: the pin names no list of relay v181's lines over several words`);
+  try { RUNS = readPinnedLines(join(dirname(AUDIT.path), p3.folder, p3.list.file), p3.list, `${p3.folder}/${p3.list.file}`); } catch (e) { if (e instanceof PinFault) refuse(`--expect ${AUDIT.path}: ${e.message}`); throw e; }
 }
 // THE DICTIONARIES THAT REST SHUT, as the new build's store and zones hold them: the ids the record rests shut
 // whole; the ids of the families a fact entry rests shut in part; which works it rests shut; and the old build's
@@ -148,9 +219,17 @@ const restsHere = (z) => {
 // reading in the store whole and in no row that rests open (a source shut whole, or a category its own data marks)
 let STORES = null;
 const storesOf = () => { if (!STORES) { const dir = join(SITE, "reader", "data", "route-store"); STORES = [openRouteStore(dir), openRouteStore(dir, { atRest: true })]; } return STORES; };
-const stoodShut = (keys, text, ids) => {
+// At a place (the card's or the word's, «<book> <c:v:w>», the marks not counted), a row stands open where its own
+// facts name the place (stands_at: UBS's collocation rows at the places UBS's own pick names them), so there an id
+// stood shut only where every row of it under the keys that prints the reading rests shut at that place (class (d))
+const stoodShut = (keys, text, ids, place = null) => {
   if (typeof text !== "string" || !text || !Array.isArray(ids) || !ids.length) return false;
   const [whole, rest] = storesOf();
+  if (place !== null) {
+    if (typeof rest.restsOff !== "function") return false;
+    const rows = keys.flatMap((kk) => whole.carriersOf(whole.routesFor(kk) || [], text));
+    return ids.map(String).some((id) => { const of = rows.filter((row) => String(row[3]) === id); return of.length > 0 && of.every((row) => rest.restsOff(row, place) !== null); });
+  }
   const of = (st) => new Set(keys.flatMap((kk) => st.carriersOf(st.routesFor(kk) || [], text).map((row) => String(row[3]))));
   const w = of(whole), o = of(rest);
   return ids.map(String).some((id) => w.has(id) && !o.has(id));
@@ -191,7 +270,7 @@ const kindsMovedWhy = (was, now, shut, factIds, stood) => {
   return null;
 };
 const idsOf = (chipLine) => String(chipLine || "").split(/[\s,]+/u).filter(Boolean);
-const FILLED = new Map(), STEP_WORDS = new Map();
+const FILLED = new Map(), STEP_WORDS = new Map(), STANDS = new Map();
 // the M a source's line is credited to (STEP's reading: its TAHOT translation's)
 const M_OF = new Map();
 // STEP's words as the page draws a reading: its "/" a joint, a closing stop dropped (spanJoin)
@@ -203,8 +282,9 @@ const blank = (t) => !String(t || "").replace(/\u200b/gu, "").trim();
 // November 2026: this file kept its own copy of the five helpers)
 // STEP's words as the line draws them at rest
 const drawnStep = (t) => signsOff(packed(t));
+const EXPECT_IX = EXPECT ? JSON.parse(readFileSync(EXPECT, "utf8")) : null;
 if (EXPECT) {
-  const ix = JSON.parse(readFileSync(EXPECT, "utf8"));
+  const ix = EXPECT_IX;
   const ids = (ix.sources || []).map((x) => x.id);
   for (const s of ix.sources || []) M_OF.set(s.id, typeof s.m === "string" ? s.m : (s.m || {}).r || null);
   for (const [book, e] of Object.entries(ix.books || {})) {
@@ -216,9 +296,108 @@ if (EXPECT) {
       if (t) at.set(leaf[0], { text: String(t).trim().replace(/\.$/u, ""), m: M_OF.get(y) });
     }
     FILLED.set(book, at);
-    STEP_WORDS.set(book, new Map((e.step_words || []).map(([n, w]) => [n, drawnStep(w)])));
+    // STEP's own words where today's line is bare; and call 4's stands (third element 1), owed whatever the old line
+    STEP_WORDS.set(book, new Map((e.step_words || []).filter((r) => r[2] !== 1).map(([n, w]) => [n, drawnStep(w)])));
+    STANDS.set(book, new Map((e.step_words || []).filter((r) => r[2] === 1).map(([n, w]) => [n, drawnStep(w)])));
   }
 }
+// a book's entry in the index and its book file, and whether a source has a line at a place (WORD_N) as the page
+// counts one: the one counting rule, a pick's words hold a letter or a digit and are not the UBS dictionary's «NO DATA
+// YET»
+const PICKS = new Map();
+const HELD_SLOT = { macula: 1, ubs: 2, bdb: 3 };
+const picksOf = (z) => {
+  if (!EXPECT) return null;
+  if (!PICKS.has(z)) {
+    const e = (EXPECT_IX.books || {})[z];
+    const path = e ? join(dirname(EXPECT), e.file) : "";
+    if (!e || !existsSync(path)) PICKS.set(z, null);
+    else {
+      const bf = JSON.parse(gunzipSync(readFileSync(path)).toString("utf8"));
+      const linePick = (t) => typeof t === "string" && /[\p{L}\p{N}]/u.test(t) && t !== "NO DATA YET";
+      const lineAt = (n, x) => {
+        const at = bf.places[n - 1], slot = at && HELD_SLOT[x] ? at[HELD_SLOT[x]] : 0;
+        if (!slot) return false;
+        if (x === "macula") return linePick(slot);
+        if (x === "ubs") return linePick(slot[0]);
+        return linePick(slot[0] && slot[0][1] ? bf.bdb_words[slot[0][1] - 1] : null);
+      };
+      PICKS.set(z, { e, bf, lineAt });
+    }
+  }
+  return PICKS.get(z);
+};
+// THE NEW BUILD'S WORDS, from its zone: a word by its section id and its entry, its keys (its own and its run's rows';
+// with pieces, its place pieces' too), and its place «<book> <c:v:w>», the marks not counted, as the page names a card's
+// place
+const wordAt = (z, secId, i) => { const zone = newOf(z).zone; const sec = zone && zone.sections ? zone.sections[Number(String(secId).slice(1))] : null; return sec ? (sec.words || [])[i] || null : null; };
+const keysOfWord = (w, pieces = false) => (w ? [w.k, ...(Array.isArray(w.w) ? w.w.map((r) => r && r.k) : []), ...(pieces && Array.isArray(w.pg) ? w.pg.map((p) => p && p.k) : [])].filter(Boolean) : []);
+const placeAt = (z, secId, i) => {
+  const zone = newOf(z).zone; const sec = zone && zone.sections ? zone.sections[Number(String(secId).slice(1))] : null;
+  if (!sec || !(sec.words || [])[i] || sec.words[i].mark) return null;
+  return `${z} ${sec.label}:${sec.words.slice(0, i + 1).filter((w) => !w.mark).length}`;
+};
+// (a) whether call 4's stands are the layer's at a word under a switch: the STEP layer under every switch but a
+// source pressed (under «no names» a name that yields to the table's noname column is not the layer's: placeYields);
+// under a source pressed, only where it has no line at the place and its second is STEP, and never at a pair
+const standsOwed = (z, name, n, w) => {
+  if (!w) return false;
+  const src = SRC_OF_STATE.get(name);
+  if (!src) {
+    const zone = newOf(z).zone || {};
+    const yields = name === "no names" && !!w.k && !!zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, w.k)
+      && !!(zone.gloss_orders && zone.gloss_orders.noname) && Object.prototype.hasOwnProperty.call(zone.gloss_orders.noname, w.k);
+    return !yields;
+  }
+  if (w.kq) return false;
+  const pk = picksOf(z);
+  return !!pk && !pk.lineAt(n, src) && autoSecond(pk.e.fills, src) === "step";
+};
+// (b) a line whose pieces that opened with Strong's sign no longer do, each printed by a row under the word's keys in
+// the new store, every other piece the same
+const signMovedOver = (was, now, keys) => {
+  const a = String(was).split(" + "), c = String(now).split(" + ");
+  if (a.length !== c.length || !keys.length) return false;
+  const [whole] = storesOf();
+  let moved = 0;
+  for (let j = 0; j < a.length; j += 1) {
+    if (a[j] === c[j]) continue;
+    const pa = a[j].trim(), pc = c[j].trim();
+    if (!opensWithStrongSign(pa) || opensWithStrongSign(pc) || !keys.some((kk) => whole.carriersOf(whole.routesFor(kk) || [], pc).length > 0)) return false;
+    moved += 1;
+  }
+  return moved > 0;
+};
+const signsLastIn = (z) => { const zone = newOf(z).zone; const st = zone && zone.emitted_from ? zone.emitted_from.signs_rest_last : null; return !!st && st.rule === GLOSS_RULE_ID; };
+// (c) relay v181's lines over several words, per book: each word of a line whose every word has its own reading at the
+// place (its place's pieces all say something, or call 4's stands) -> the line, its words' entries in the section,
+// and the word's own reading as the page draws it at rest (STEP's words where they stand, else its place's pieces)
+const FELL = new Map();
+const piecesSaid = (w) => (w && Array.isArray(w.pg) && w.pg.length && w.pg.every((p) => p && String(p.g || "").trim()) ? w.pg.map((p) => String(p.g).trim()).join("/") : "");
+const fellIn = (z) => {
+  if (!RUNS) return null;
+  if (!FELL.has(z)) {
+    const out = new Map();
+    FELL.set(z, out);
+    const zone = newOf(z).zone, stands = STANDS.get(z) || new Map();
+    if (!zone || !zone.sections) return out;
+    const at = new Map(); let n = 0;
+    zone.sections.forEach((sec, si) => { let w = 0; (sec.words || []).forEach((x, e) => { n += 1; if (!x.mark) { w += 1; at.set(`${sec.label}:${w}`, { si, e, n }); } }); });
+    for (const l of RUNS) {
+      if (l.book !== z) continue;
+      const a = at.get(String(l.first)), b = at.get(String(l.last));
+      if (!a || !b || a.si !== b.si || b.e <= a.e) continue;
+      const words = zone.sections[a.si].words.slice(a.e, b.e + 1).map((w, j) => ({ w, e: a.e + j, n: a.n + j })).filter((q) => !q.w.mark);
+      const own = words.map((q) => (stands.has(q.n) ? stands.get(q.n) : piecesSaid(q.w) ? drawnStep(piecesSaid(q.w)) : null));
+      if (own.some((t) => t === null)) continue;
+      const entries = words.map((q) => q.e);
+      words.forEach((q, j) => out.set(`s${a.si}\u0001${q.e}`, { line: l.line, own: own[j], entries }));
+    }
+  }
+  return FELL.get(z);
+};
+// the same line, its spaces and its closing stop aside, as the pool keys a reading
+const sameLine = (p, q) => readingKey(String(p || "").replace(/\u200b/gu, " ").replace(/\s+/gu, " ").trim()) === readingKey(String(q || "").replace(/\u200b/gu, " ").replace(/\s+/gu, " ").trim());
 // A READING ACROSS WORDS STANDS OR GOES WHOLE (zone.html dfltHalvesOf; the review of the toggles fixes, 15 November
 // 2026: S1 green on a tree read the shipped engine, and the round's door, which builds the tree's own, would have met
 // these lines as differences). Under a source pressed on the row, a word of a reading the place gives across words
@@ -231,7 +410,6 @@ if (EXPECT) {
 const HELD = new Map();
 // and per book, per source, the units a source reads at every word of them (heldIn, below)
 const UNITS = new Map();
-const HELD_SLOT = { macula: 1, ubs: 2, bdb: 3 };
 const SRC_OF_STATE = new Map(STATES.filter(([, id]) => /^default-(?!step$)/u.test(id || "")).map(([nm, id]) => [nm, id.slice("default-".length)]));
 let heldSeen = 0, apartSeen = 0;
 const heldIn = (z, src) => {
@@ -239,20 +417,10 @@ const heldIn = (z, src) => {
   if (!HELD.has(z)) {
     const bySrc = new Map();
     HELD.set(z, bySrc);
-    const e = (JSON.parse(readFileSync(EXPECT, "utf8")).books || {})[z];
-    const bookAt = e ? join(dirname(EXPECT), e.file) : "";
-    if (!e || !existsSync(bookAt)) return null;
+    const pk = picksOf(z);
+    if (!pk) return null;
+    const { e, bf, lineAt } = pk;
     const zone = JSON.parse(gunzipSync(readFileSync(join(SITE, "reader", "data", "zones", `${z}.bin`))).toString("utf8"));
-    const bf = JSON.parse(gunzipSync(readFileSync(bookAt)).toString("utf8"));
-    // the one counting rule: a pick's words hold a letter or a digit and are not the UBS dictionary's «NO DATA YET»
-    const linePick = (t) => typeof t === "string" && /[\p{L}\p{N}]/u.test(t) && t !== "NO DATA YET";
-    const lineAt = (n, x) => {
-      const at = bf.places[n - 1], slot = at && HELD_SLOT[x] ? at[HELD_SLOT[x]] : 0;
-      if (!slot) return false;
-      if (x === "macula") return linePick(slot);
-      if (x === "ubs") return linePick(slot[0]);
-      return linePick(slot[0] && slot[0][1] ? bf.bdb_words[slot[0][1] - 1] : null);
-    };
     const said = (w) => (Array.isArray(w.pg) && w.pg.length && w.pg.every((p) => p && String(p.g || "").trim()) ? w.pg.map((p) => String(p.g).trim()).join("/") : "");
     const groups = [];
     let n = 0;
@@ -363,9 +531,10 @@ const read = async (origin, z, ch) => {
       const out = {};
       ids.map((id) => document.getElementById(id)).filter(Boolean).forEach((sec) => {
         const wbs = [...sec.querySelectorAll(".he-text .wb")]; if (!wbs.length) return;
-        // [the word, its line, its chip as it reads, the M the chip names, the run it stands in or ""]: the line drawn
-        // over the word, as resting-lines-v1 reads it: its own, or in words one card joins the run's part under it
-        // (none: drawn bare) or the run's one line over all of them
+        // [the word, its line, its chip as it reads, the M the chip names, the run it stands in or "", which line it is:
+        // "run" (the run's one line over all of its words), "part" (the run's part under it), "own" or ""]: the line
+        // drawn over the word, as resting-lines-v1 reads it: its own, or in words one card joins the run's part under
+        // it (none: drawn bare) or the run's one line over all of them
         const runs = [...sec.querySelectorAll(".he-text .wjoin")];
         // drawn: nothing between it and the section's text is hidden
         const he = sec.querySelector(".he-text");
@@ -374,13 +543,13 @@ const read = async (origin, z, ch) => {
           const said = wb.querySelector(".w")?.textContent || "";
           const run = wb.closest(".wjoin"), runG = run ? run.querySelector(":scope > .g") : null, rg = runG && drawnEl(runG) ? runG : null;
           const key = run ? `r${runs.indexOf(run)}` : "";
-          let g = wb.querySelector(":scope > .g");
-          if (rg && rg.classList.contains("parts")) { const wi = [...run.querySelectorAll(".wb")].indexOf(wb); g = [...rg.querySelectorAll(":scope > .g-part")].find((x) => Number(x.dataset.wi) <= wi && wi < Number(x.dataset.wi) + Number(x.dataset.wn || 1)) || null; }
-          else if (rg) g = rg;
-          if (!g) return [said, "", "", "", key];
+          let g = wb.querySelector(":scope > .g"), kind = "own";
+          if (rg && rg.classList.contains("parts")) { const wi = [...run.querySelectorAll(".wb")].indexOf(wb); g = [...rg.querySelectorAll(":scope > .g-part")].find((x) => Number(x.dataset.wi) <= wi && wi < Number(x.dataset.wi) + Number(x.dataset.wn || 1)) || null; kind = "part"; }
+          else if (rg) { g = rg; kind = "run"; }
+          if (!g) return [said, "", "", "", key, ""];
           const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
           const chip = g.querySelector(".g-lic");
-          return [said, c.textContent.trim(), chip ? chip.textContent || "" : "", chip ? chip.dataset.line || "" : "", key];
+          return [said, c.textContent.trim(), chip ? chip.textContent || "" : "", chip ? chip.dataset.line || "" : "", key, kind];
         });
       });
       return out;
@@ -399,13 +568,18 @@ const read = async (origin, z, ch) => {
       if (!ok) break;
       await p.waitForSelector("#hud > .rows .b-read .r-pills button", { timeout: 15000 }).catch(() => {});
       await p.waitForTimeout(700);
-      // each pill as "*text" where pressed, with its carriers; what the card holds back as resting shut; the word's
-      // section and its place among the section's entries, so a moved pressed pill can be held to its word's line
+      // each pill as "*text" where pressed, with its carriers and the pointer it carries (its text, its rows: class (e));
+      // what the card holds back as resting shut; the word's section and its place among the section's entries, so a
+      // moved pressed pill can be held to its word's line; the place the card stands at, where the page says it, and
+      // the block pressed on its row of blocks (a run's card opened on one of its words names no place, and presses
+      // that word's block)
       out.cards.push(await p.evaluate((i) => {
         const wb = document.querySelectorAll("section.seg .he-text .wb:not(.mark)")[i], sec = wb ? wb.closest("section.seg") : null;
         const box = document.querySelector("#hud > .rows .b-read .r-pills");
         const pills = [...document.querySelectorAll("#hud > .rows .b-read .r-pills button")];
         return { said: pills.map((x) => `${x.getAttribute("aria-pressed") === "true" ? "*" : ""}${x.textContent.trim()}`), by: pills.map((x) => x.dataset.by || ""),
+          ptr: pills.map((x) => x.dataset.pointer || ""), ptrBy: pills.map((x) => x.dataset.pointerBy || ""), place: typeof window.__cardPlace === "string" ? window.__cardPlace : "",
+          cell: ([...document.querySelectorAll("#hud > .rows .b-cell .s-pills button")].find((x) => x.getAttribute("aria-pressed") === "true") || {}).textContent || "",
           held: box ? Number(box.dataset.kindWithheld || 0) : 0, at: sec ? [sec.id, [...sec.querySelectorAll(".he-text .wb")].indexOf(wb)] : null };
       }, i));
       await p.keyboard.press("Escape"); await p.waitForTimeout(200);
@@ -434,6 +608,9 @@ let linesCompared = 0, cardsCompared = 0, filledSeen = 0, neighborsSeen = 0;
 // pill), and cards that held back what rests shut
 const kindsMoved = { "a shut source's line": 0, "a shut source's run line": 0, "a rank a shut co-carrier gave": 0, "a reading on rows a category rests shut": 0 }, kindsLines = new Set();
 let kindsCards = 0, kindsPillsLost = 0;
+// ship 5's classes: the lines each moved as owed (under every switch), and the default lines that moved, by word, for S2
+const owedSeen = { stands: 0, "strongs sign": 0, runs: 0 }, standsLines = new Map(), signLines = new Set(), runWords = new Set();
+const owedCards = { stands: 0, "strongs sign": 0, runs: 0, "the pointer fold": 0 };
 for (const { z, ch } of pages) {
   const [a, c] = [await read(OLD, z, ch), await read(NEW, z, ch)];
   if (a.failed || c.failed) { failed.push(`${z} ${ch}: ${a.failed || ""}${c.failed ? ` / new: ${c.failed}` : ""}`); continue; }
@@ -460,7 +637,7 @@ for (const { z, ch } of pages) {
       }
       for (let i = 0; i < n; i += 1) {
         linesCompared += 1;
-        const x = A[k][i] || ["", "", "", "", ""], y = C[k][i] || ["", "", "", "", ""];
+        const x = A[k][i] || ["", "", "", "", "", ""], y = C[k][i] || ["", "", "", "", "", ""];
         const at = `${z} ${ch} ${name === "default" ? "" : `${name} `}${k} #${i + 1}`;
         // a fill at rest the batch makes on purpose: the new line is the second's words under its chip, whatever the old one was
         const want = filled ? filled.get(nOf(i)) : undefined;
@@ -469,6 +646,19 @@ for (const { z, ch } of pages) {
           const owed = y[1] === want.text && y[3] === want.m && x[0] === y[0];
           if (owed) { if (x[1] !== y[1] && DIFF) diffLines.push(`fill: ${z} ${ch} ${name} ${k} #${i + 1}: "${x[1]}" [${x[2]}] → "${y[1]}" [${y[2]}]`); continue; }
           expected.push(`${at}: "${y[1]}" [${y[3]}], the fill owed "${want.text}" [${want.m}]`);
+          continue;
+        }
+        // (a) call 4's stands: STEP's own words, under STEP's chip, whatever the old line was, where the layer is STEP's
+        const standsHere = STANDS.get(z), stands = standsHere ? standsHere.get(nOf(i)) : undefined;
+        if (stands !== undefined && x[0] === y[0] && standsOwed(z, name, nOf(i), wordAt(z, k, i))) {
+          const owed = y[1] === stands && y[3] === M_OF.get("step");
+          if (owed) {
+            owedSeen.stands += 1;
+            if (name === "default" && (x[1] !== y[1] || x[3] !== y[3])) standsLines.set(`${z} ${ch} ${k} #${i + 1}`, stands);
+            if (x[1] !== y[1] && DIFF) diffLines.push(`stands: ${z} ${ch} ${name} ${k} #${i + 1}: "${x[1]}" [${x[2]}] → "${y[1]}" [${y[2]}]`);
+            continue;
+          }
+          expected.push(`${at}: "${y[1]}" [${y[3]}], STEP's own words owed where STEP spells or parts the word otherwise "${stands}" [${M_OF.get("step")}]`);
           continue;
         }
         // STEP's own words where the old line is bare: the new line is STEP's words as the page draws them, under STEP's chip
@@ -504,6 +694,27 @@ for (const { z, ch } of pages) {
           expected.push(`${at}: "${y[1]}" [${y[3]}], the hidden sign's gap owed beside STEP's words in its run [${x[3]}]`);
           continue;
         }
+        // (c) call 3: a word drawn under the run's one line over the very words a line of v181 covers, where every word
+        // of it has its own reading at the place, reads its own: at rest its place's pieces as the page draws them under
+        // a chip, under any other switch anything but a run's one line
+        const fell = RUNS ? fellIn(z).get(`${k}\u0001${i}`) : null;
+        if (fell && x[5] === "run" && x[0] === y[0]) {
+          const runOf = A[k].map((r, j) => (r[4] === x[4] && !(wordAt(z, k, j) || {}).mark ? j : -1)).filter((j) => j >= 0);
+          if (JSON.stringify(runOf) === JSON.stringify(fell.entries)) {
+            if (name === "default") runWords.add(`${z} ${ch} ${k} #${i + 1}`);
+            const owed = y[5] !== "run" && (name !== "default" || (sameLine(y[1], fell.own) && !!y[3]));
+            if (owed) { owedSeen.runs += 1; if (DIFF) diffLines.push(`runs: ${z} ${ch} ${name} ${k} #${i + 1}: "${x[1]}" [${x[2]}] → "${y[1]}" [${y[2]}]`); continue; }
+            expected.push(`${at}: "${y[1]}" [${y[3]}] (${y[5] || "no line"}), a word of v181's «${String(fell.line).slice(0, 40)}», whose every word reads its own at the place, owes ${name === "default" ? `its own reading "${fell.own}" under a chip` : "anything but the run's one line"}`);
+            continue;
+          }
+        }
+        // (b) call 7: a piece of the old line that opened with Strong's sign no longer does, on a book baked so
+        if (SIGN && x[0] === y[0] && x[1] !== y[1] && signsLastIn(z) && signMovedOver(x[1], y[1], keysOfWord(wordAt(z, k, i), true))) {
+          owedSeen["strongs sign"] += 1;
+          if (name === "default") signLines.add(`${z} ${ch} ${k} #${i + 1}`);
+          if (DIFF) diffLines.push(`strongs sign: ${z} ${ch} ${name} ${k} #${i + 1}: "${x[1]}" [${x[2]}] → "${y[1]}" [${y[2]}]`);
+          continue;
+        }
         // THE DICTIONARIES THAT REST SHUT (--expect data/dictionary-kinds-v1.json), on a book the record rests shut
         const differs = x[0] !== y[0] || x[1] !== y[1] || x[2] !== y[2];
         if (KINDS && restsHere(z)) {
@@ -516,7 +727,8 @@ for (const { z, ch } of pages) {
             const wordOf = (build) => (build.zone && build.zone.sections ? ((build.zone.sections[si] || {}).words || [])[i] : null);
             const w = wordOf(old);
             const keys = w ? (Array.isArray(w.w) ? w.w.map((r) => r && r.k).filter(Boolean) : [w.k].filter(Boolean)) : [];
-            why = kindsMovedWhy(leadersRead(old, w, keys), leadersRead(neu, wordOf(neu), keys), SHUT, FACT_IDS, (t, ids) => stoodShut(keys, t, ids));
+            const place = placeAt(z, k, i);
+            why = kindsMovedWhy(leadersRead(old, w, keys), leadersRead(neu, wordOf(neu), keys), SHUT, FACT_IDS, (t, ids) => stoodShut(keys, t, ids, place));
           }
           if (why) {
             if (differs && x[0] === y[0] && !newIds.some((id) => SHUT.has(id))) {
@@ -535,38 +747,87 @@ for (const { z, ch } of pages) {
   const n = Math.max(a.cards.length, c.cards.length);
   for (let i = 0; i < n; i += 1) {
     cardsCompared += 1;
-    const A = (a.cards[i] || { said: [], by: [], held: 0, at: null }), C = (c.cards[i] || { said: [], by: [], held: 0, at: null });
+    const none = { said: [], by: [], ptr: [], ptrBy: [], place: "", cell: "", held: 0, at: null };
+    const A = a.cards[i] || none, C = c.cards[i] || none;
     const x = A.said.join(" | "), y = C.said.join(" | ");
     if (x === y) continue;
-    // THE DICTIONARIES THAT REST SHUT on a book the record rests shut: the card may lose pills of theirs alone
-    let owed = null;
-    if (KINDS && restsHere(z)) {
-      const key = (t) => readingKey(String(t).replace(/^\*/u, ""));
-      const aKeys = A.said.map(key), cKeys = C.said.map(key), cSet = new Set(cKeys), aSet = new Set(aKeys);
-      const lost = A.said.map((t, j) => [t, idsOf(A.by[j])]).filter(([t]) => !cSet.has(key(t)));
-      const faults = [];
-      for (const [t, ids] of lost) if (!ids.length || !ids.every((id) => SHUT.has(id) || FACT_IDS.has(id))) faults.push(`it lost «${t}» [${ids.join(" ")}], not carried by sources that rest shut alone`);
-      if (cKeys.some((t) => !aSet.has(t))) faults.push(`it carries ${C.said.filter((t) => !aSet.has(key(t))).map((t) => `«${t}»`).join(", ")}, which the old card lacks`);
-      if (JSON.stringify(aKeys.filter((t) => cSet.has(t))) !== JSON.stringify(cKeys.filter((t) => aSet.has(t)))) faults.push("the pills both carry do not keep their order");
-      if (C.held < lost.length) faults.push(`it lost ${lost.length} pill(s) and says it holds back ${C.held}`);
-      const pressedA = A.said.find((t) => t.startsWith("*")), pressedC = C.said.find((t) => t.startsWith("*"));
-      const lineMoved = !!C.at && kindsLines.has(`${z} ${ch} ${C.at[0]} #${C.at[1] + 1}`);
-      if ((pressedA ? key(pressedA) : null) !== (pressedC ? key(pressedC) : null) && !lineMoved) faults.push(`its pressed pill moved from ${pressedA || "none"} to ${pressedC || "none"}, and its word's line did not move as owed`);
-      if (!faults.length) { owed = lost.length; kindsCards += 1; kindsPillsLost += lost.length; }
-      else s2.push(`${z} ${ch} card ${i + 1}: ${faults.join("; ")}`);
+    const key = (t) => readingKey(String(t).replace(/^\*/u, ""));
+    const word = C.at ? `${z} ${ch} ${C.at[0]} #${C.at[1] + 1}` : "";
+    const own = C.at ? placeAt(z, C.at[0], C.at[1]) : null;
+    // (c) the first card of a word of a run that fell differs as it will, opened on the word itself: the card stands at
+    // the word's place, or, a card of the run's cell, presses the word's own block
+    if (runWords.has(word)) {
+      const wk = String(((C.at ? wordAt(z, C.at[0], C.at[1]) : null) || {}).k || "");
+      if ((own && C.place === own) || (!!wk && String(C.cell || "").trim() === wk)) { owedCards.runs += 1; if (DIFF) diffLines.push(`== ${z} ${ch} card ${i + 1} (runs: a word of a run that fell, its card opened on ${own})\n  old: ${x}\n  new: ${y}`); }
+      else s2.push(`${z} ${ch} card ${i + 1}: a word of a run that fell, and its card stands at ${C.place || "no place the page names"} with the block ${C.cell || "none"} pressed, not on the word (${own || "?"}, ${wk || "?"})`);
+      continue;
     }
-    if (DIFF) diffLines.push(`== ${z} ${ch} card ${i + 1}${owed !== null ? ` (kinds: ${owed} pill(s) of the dictionaries that rest shut, held back ${C.held})` : ""}\n  old: ${x}\n  new: ${y}\n  only old: ${A.said.filter((t) => !C.said.includes(t)).join(" | ")}\n  only new: ${C.said.filter((t) => !A.said.includes(t)).join(" | ")}`);
-    if (owed === null && !(KINDS && restsHere(z))) s2.push(`${z} ${ch} card ${i + 1}: ${x.slice(0, 80)} → ${y.slice(0, 80)}`);
+    // what the old card owes, by class: each old pill keyed as the card groups them (its printed form, case folded)
+    let olds = A.said.map((t, j) => ({ t, k: key(t), by: idsOf(A.by[j]), ptr: (A.ptr || [])[j] || "", pressed: t.startsWith("*") }));
+    const news = C.said.map((t, j) => ({ t, k: key(t), by: idsOf(C.by[j]), ptr: (C.ptr || [])[j] || "", ptrBy: (C.ptrBy || [])[j] || "", pressed: t.startsWith("*") }));
+    const newKeys = new Set(news.map((q) => q.k)), why = [], faults = [];
+    // (e) the pointer fold: an old plain pill whose English a new pill prints with a pointer beside it, naming the
+    // pointer's rows, is that pill, where it stood; the old pointer pill that prints the same joins it
+    if (FORM_OF) for (const q of news) {
+      if (!q.ptr || !q.ptrBy) continue;
+      const raw = String(q.t).replace(/^\*/u, "").toLowerCase();
+      const plain = olds.find((o) => !o.ptr && !newKeys.has(o.k) && (raw.startsWith(`${String(o.t).replace(/^\*/u, "").toLowerCase()} (`) || q.k.startsWith(`${o.k} (`)));
+      if (!plain) continue;
+      why.push(`the pointer fold: «${String(plain.t).replace(/^\*/u, "")}» prints the pointer «${q.ptr}» beside it (${q.ptrBy})`);
+      const joined = olds.some((o) => o !== plain && o.k === q.k && o.pressed);
+      olds = olds.filter((o) => o === plain || o.k !== q.k).map((o) => (o === plain ? { ...o, k: q.k, pressed: o.pressed || joined } : o));
+    }
+    // (b) the card of a word whose line moved off Strong's sign may lose the signed reading it opened on
+    const signMoved = signLines.has(word);
+    if (signMoved) {
+      const pa = olds.find((o) => o.pressed);
+      if (pa && !newKeys.has(pa.k) && opensWithStrongSign(String(pa.t).replace(/^\*/u, ""))) { why.push(`strongs sign: the old line's «${String(pa.t).replace(/^\*/u, "")}» held back`); olds = olds.filter((o) => o !== pa); }
+    }
+    // (a) the card of a word whose line is STEP's own words, where they stand, may carry STEP's reading and open on it
+    const standsMoved = standsLines.has(word);
+    const gainOk = (q) => standsMoved && sameLine(q.t.replace(/^\*/u, ""), standsLines.get(word));
+    // (d) the dictionaries that rest shut: a lost pill whose every old carrier is a source the record rests shut
+    // whole, or of a family a fact entry rests shut in part whose rows printing it rest shut at this card's place
+    let shutLost = 0;
+    if (KINDS && restsHere(z)) {
+      const keys = keysOfWord(C.at ? wordAt(z, C.at[0], C.at[1]) : null);
+      for (const o of olds) {
+        if (newKeys.has(o.k)) continue;
+        const text = String(o.t).replace(/^\*/u, "");
+        if (o.by.length && o.by.every((id) => SHUT.has(id) || (FACT_IDS.has(id) && stoodShut(keys, text, [id], own)))) { o.shut = true; shutLost += 1; }
+      }
+      if (shutLost && C.held < shutLost) faults.push(`it lost ${shutLost} pill(s) of the dictionaries that rest shut and says it holds back ${C.held}`);
+      olds = olds.filter((o) => !o.shut);
+    }
+    // what is left is the new card: no pill lost, none gained but as owed, the pills both carry in the same order, the
+    // same one pressed but where its word's line moved as owed
+    const oldKeys = new Set(olds.map((o) => o.k));
+    for (const o of olds) if (!newKeys.has(o.k)) faults.push(`it lost «${o.t}» [${o.by.join(" ")}]${KINDS && restsHere(z) ? ", not carried by sources that rest shut alone at this place" : ""}`);
+    const gained = news.filter((q) => !oldKeys.has(q.k));
+    if (gained.some((q) => !gainOk(q))) faults.push(`it carries ${gained.filter((q) => !gainOk(q)).map((q) => `«${q.t}»`).join(", ")}, which the old card lacks`);
+    if (JSON.stringify(olds.map((o) => o.k).filter((t) => newKeys.has(t))) !== JSON.stringify(news.map((q) => q.k).filter((t) => oldKeys.has(t)))) faults.push("the pills both carry do not keep their order");
+    const pressedA = olds.find((o) => o.pressed) || null, pressedC = news.find((q) => q.pressed) || null;
+    const lineMoved = signMoved || standsMoved || (!!C.at && kindsLines.has(word));
+    if ((pressedA ? pressedA.k : null) !== (pressedC ? pressedC.k : null) && !lineMoved) faults.push(`its pressed pill moved from ${pressedA ? pressedA.t : "none"} to ${pressedC ? pressedC.t : "none"}, and its word's line did not move as owed`);
+    if (faults.length) { s2.push(`${z} ${ch} card ${i + 1}: ${faults.join("; ")}`); if (DIFF) diffLines.push(`== ${z} ${ch} card ${i + 1}\n  old: ${x}\n  new: ${y}\n  only old: ${A.said.filter((t) => !C.said.includes(t)).join(" | ")}\n  only new: ${C.said.filter((t) => !A.said.includes(t)).join(" | ")}`); continue; }
+    if (shutLost) { kindsCards += 1; kindsPillsLost += shutLost; why.push(`kinds: ${shutLost} pill(s) of the dictionaries that rest shut, held back ${C.held}`); }
+    if (why.some((w) => w.startsWith("the pointer fold"))) owedCards["the pointer fold"] += 1;
+    if (signMoved) owedCards["strongs sign"] += 1;
+    if (standsMoved) owedCards.stands += 1;
+    if (DIFF) diffLines.push(`== ${z} ${ch} card ${i + 1}${why.length ? ` (${why.join("; ")})` : ""}\n  old: ${x}\n  new: ${y}\n  only old: ${A.said.filter((t) => !C.said.includes(t)).join(" | ")}\n  only new: ${C.said.filter((t) => !A.said.includes(t)).join(" | ")}`);
   }
 }
 // the lines that moved as heldIn owes them, said apart (a line held whole that differs from the old build's)
 if (EXPECT) console.log(`readings across words (S1): under a source pressed, ${heldSeen} line(s) at a word of one no one source reads at every word moved to the line as it rests, as owed; ${apartSeen} at a word of one unit a source reads at every word of it, its words standing apart`);
 await b.close();
 const kindsSaid = KINDS ? ` · the dictionaries that rest shut (${KINDS.path}): ${Object.entries(kindsMoved).map(([why, nn]) => `${nn} ${why}`).join(", ")}, each as owed` : "";
-check(`S1 every sampled line and its chip are the same on both builds, under every switch both carry${EXPECT ? ", but the fills at rest the index names, each reading the second's words, STEP's own words where the old line is bare, and the hidden sign's gap beside them in their run" : ""}${KINDS ? ", and on a book the record rests shut, the lines a source it rests shut carried or ranked, each moved to a source it does not" : ""}`, !failed.length && pages.length > 0 && !s1.length && !expected.length,
-  `${linesCompared.toLocaleString("en-US")} lines compared on ${pages.length} pages${EXPECT ? ` · ${filledSeen} fill(s) and STEP's words at rest on them, ${neighborsSeen} gap(s) beside them${expected.length ? `, ${expected.length} not as owed: ${expected.slice(0, 3).join("; ")}` : ", each as owed"}` : ""}${kindsSaid}${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
-check(`S2 the first cards of every sampled chapter carry the same pills, the same one pressed${KINDS ? ", but on a book the record rests shut, the pills of the sources it rests shut alone, held back and counted" : ""}`, !failed.length && cardsCompared > 0 && !s2.length,
-  `${cardsCompared} cards compared${KINDS ? ` · ${kindsCards} card(s) lost ${kindsPillsLost} pill(s) of the dictionaries that rest shut, each held back` : ""}${s2.length ? ` · ${s2.length} differ: ${s2.slice(0, 3).join("; ")}` : ""}`);
+// ship 5's classes, said with what they were read from
+const shipSaid = [EXPECT ? `${owedSeen.stands} line(s) where STEP's own words stand (call 4)` : "", SIGN ? `${owedSeen["strongs sign"]} line(s) off Strong's sign (call 7)` : "", RUNS ? `${owedSeen.runs} line(s) of words of a run that fell (call 3, ${RUNS.length.toLocaleString("en-US")} lines of v181)` : ""].filter(Boolean);
+const shipCards = Object.entries(owedCards).filter(([, nn]) => nn > 0).map(([why, nn]) => `${nn} ${why}`);
+check(`S1 every sampled line and its chip are the same on both builds, under every switch both carry${EXPECT ? ", but the fills at rest the index names, each reading the second's words, STEP's own words where the old line is bare or where STEP spells or parts the word otherwise, and the hidden sign's gap beside them in their run" : ""}${KINDS ? ", and on a book the record rests shut, the lines a source it rests shut carried or ranked, each moved to a source it does not" : ""}${SIGN ? ", the lines whose pieces opened with Strong's sign, each moved to a plain reading" : ""}${RUNS ? ", and the words of a run whose every word reads its own at the place, each reading its own" : ""}`, !failed.length && pages.length > 0 && !s1.length && !expected.length,
+  `${linesCompared.toLocaleString("en-US")} lines compared on ${pages.length} pages${EXPECT ? ` · ${filledSeen} fill(s) and STEP's words at rest on them, ${neighborsSeen} gap(s) beside them${expected.length ? `, ${expected.length} not as owed: ${expected.slice(0, 3).join("; ")}` : ", each as owed"}` : ""}${shipSaid.length ? ` · ${shipSaid.join(", ")}, each as owed` : ""}${kindsSaid}${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
+check(`S2 the first cards of every sampled chapter carry the same pills, the same one pressed${KINDS ? ", but on a book the record rests shut, the pills of the sources it rests shut alone at the card's place, held back and counted" : ""}${FORM_OF ? ", a plain pill whose English a pill prints with its pointer beside it" : ""}${SIGN || EXPECT ? ", the reading a word's line moved from as owed" : ""}${RUNS ? ", and the card of a word of a run that fell, opened on the word" : ""}`, !failed.length && cardsCompared > 0 && !s2.length,
+  `${cardsCompared} cards compared${KINDS ? ` · ${kindsCards} card(s) lost ${kindsPillsLost} pill(s) of the dictionaries that rest shut, each held back` : ""}${shipCards.length ? ` · cards that differ as owed: ${shipCards.join(", ")}` : ""}${s2.length ? ` · ${s2.length} differ: ${s2.slice(0, 3).join("; ")}` : ""}`);
 console.log(bad ? `\n${bad} failing` : "\nall checks passed");
 // every differing line too (7 November 2026): "line: <book> <chapter> <switch> <section> #<n> <surface>: "<old>" [<chip>] → "<new>" [<chip>]", so an accounting can read every move, not the four the summary names
 // (the moves owed at rest, "fill:", "step's words:" and "gap beside STEP's words:", are written as they are met and

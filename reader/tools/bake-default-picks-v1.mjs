@@ -86,6 +86,27 @@
 // lane's file, kept in this tree byte for byte (data/audit-calls/calls-v1/)
 // and held to its pin (held_split_v189).
 //
+// STEP'S OWN READING STANDS WHERE STEP SPELLS OR PARTS THE WORD OTHERWISE
+// (steps-reading-stands-rule-v1, 15 November 2026: the corpus lane's call 4
+// of relay v189, accepted by the owner, «where STEP spells or parts the word
+// otherwise (853 places), STEP's reading stands»; question 4, «the line under
+// STEP is always credited to STEP»). The same list names the places by STEP's
+// own tie there (open-q11, open-q1, open-q14), never by their name. A place of
+// it stands where the list's action is steps_words_are_the_line, STEP's words
+// hold no « | » (held, above), and the zone word is not a pair whose read form
+// is several words (the zone's own kq.words_read: the read words of relay
+// v192 carry those places). At a place that stands, the line under STEP is
+// STEP's own pick 1, credited to STEP, whatever today's line is: the index
+// carries it as [n, words, 1] (a pair among them), it never rests bare, and
+// it is counted as printing; the rows it replaces stay on the card. Held by
+// class and counted: the list's « | » places, its places whose action is
+// none, and its pairs whose read form is several words. Refused: a place of
+// the list whose zone word does not carry the list's letters (s), a place
+// that stands where STEP's pick 1 after the mends is not the list's words
+// byte for byte, and an action the list does not define. Question 3's words
+// (STEP's words wherever STEP has a pick) stay held: only the list's
+// category stands.
+//
 // THE LINE AS IT RESTS. STEP's layer is the line as it rests: TAHOT's reading
 // at the place, STEP's own words where today's line is bare, and elsewhere
 // today's line, whose chip names its own source. So STEP's line is counted
@@ -208,8 +229,12 @@
 // each row of call5_repoints is as v1.2 read it, or went where its line says
 // (struck with a row to point to, moved with none); and each pick that waits
 // on call 5's re-key (picks_waiting) names a row that is still under its key
-// with a maqaf, or now stands under the plain key its line names. A retext
-// since is the follower's seam (relay v187), refused there until it lands.
+// with a maqaf, or now stands under the plain key its line names. A row a
+// round retexted since (relay v187, the words our build took out given back:
+// row-strikes-follow-rule-v2) keeps its key and rank and is found under the
+// name of the words it took; its text, as the card prints it, is the one
+// what prints a pill's words reads (picks_printed), and it is counted apart
+// (rows_retexted_and_found_under_their_new_name).
 //
 // COUNTED, in data/default-picks-receipt-v1.json: per book and per source, has
 // and fills; the rest fills (STEP's leaves its second fills), each with its
@@ -283,6 +308,10 @@ const V12_OUT = ["mend_v1_2", "bdb_mend_v1_2", "rows_added_v1_2", "picks_waiting
 const BROKEN_BAR = "a second variant behind a broken bar";
 // how call 4 (relay v189) writes STEP's words where STEP reads one written word as two TAHOT words
 const SPLIT = " | ";
+// call 4's action where STEP's words are the line, and the rule the places of that category stand under
+const STANDS_ACTION = "steps_words_are_the_line";
+const STANDS_ACTIONS = new Set([STANDS_ACTION, "none"]);
+export const STEPS_READING_STANDS_RULE_ID = "steps-reading-stands-rule-v1-where-step-spells-or-parts-the-word-otherwise-its-own-pick-1-is-the-line-credited-to-step";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -394,6 +423,16 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
   const call4 = readPinnedLines(join(dirname(pinPath), hs.file), hs);
   if (call4.some((d) => !d || typeof d.book !== "string" || typeof d.p !== "string" || !(d.steps_words === null || typeof d.steps_words === "string"))) throw new Refused(`${hs.file} has a line that is not {book, p, steps_words}`);
   const heldSplit = new Set(call4.filter((d) => typeof d.steps_words === "string" && d.steps_words.includes(SPLIT)).map((d) => `${d.book} ${d.p}`));
+  // every place of call 4, by book and place, for its letters, its class and, where it stands, its words (the stands)
+  const call4At = new Map();
+  for (const [i, d] of call4.entries()) {
+    if (!STANDS_ACTIONS.has(d.action)) throw new Refused(`${hs.file} line ${i + 1} names the action ${JSON.stringify(d.action)}, which this bake does not know (${[...STANDS_ACTIONS].join(", ")})`);
+    if (typeof d.s !== "string" || !d.s) throw new Refused(`${hs.file} line ${i + 1} names no letters (s)`);
+    if (d.action === STANDS_ACTION && typeof d.steps_words !== "string") throw new Refused(`${hs.file} line ${i + 1} makes STEP's words the line and names none`);
+    const id = `${d.book} ${d.p}`;
+    if (call4At.has(id)) throw new Refused(`${hs.file} names ${id} twice`);
+    call4At.set(id, d);
+  }
   const outputs = Array.isArray(r1.outputs) ? r1.outputs : [];
   if (!outputs.length || outputs.some((o) => !o || !/^[a-z0-9-]+\.jsonl$/.test(o.file || "") || !Number.isInteger(o.lines))) throw new Refused("receipt-v1 names no book files in outputs[]");
   const v1Dir = dirname(pin.receipt.file);
@@ -451,7 +490,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
   let follow;
   try { follow = openFollower({ data: dirname(store), index: storeIx, readAt: ((in12.page_store || {}).store_version) || null }); }
   catch (e) { if (e instanceof FollowFault) throw new Refused(e.message); throw e; }
-  const followedTo = new Map(), struckSince = new Map(), withheldSince = new Map();   // row number -> the follower's answer
+  const followedTo = new Map(), retextedTo = new Map(), struckSince = new Map(), withheldSince = new Map();   // row number -> the follower's answer
   const refCount = new Int32Array(rows.length);   // how many picks name each row, counted in the pass below
   const namedAt = new Map();                      // a struck row -> the first places naming it
   {
@@ -462,11 +501,13 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       try { went = follow.nowOf(rows[i]); } catch (e) { if (e instanceof FollowFault) throw new Refused(e.message); throw e; }
       if (went.state === "struck") { struckSince.set(i, went); namedAt.set(i, []); continue; }
       if (went.state === "withheld") { withheldSince.set(i, went); continue; }
-      const found = went.state === "re-keyed" ? rowsUnder(served(went.name[0]), went.name) : [];
+      // a row moved to another key, or given other words, is found under the name it has now
+      const found = went.state === "re-keyed" || went.state === "retexted" ? rowsUnder(served(went.name[0]), went.name) : [];
       if (found.length !== 1) { missing.set(i, []); continue; }   // the record says nothing of it, or the store does not hold it where the record says
-      followedTo.set(i, went);
+      (went.state === "retexted" ? retextedTo : followedTo).set(i, went);
       rowM[i] = rows[i][2];
-      rowText[i] = found[0][1];
+      // its text as the card prints it (made spaces closed), as a row found as named is read above
+      rowText[i] = routePrinted(found[0]);
     }
   }
 
@@ -556,6 +597,9 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
   };
   const stepWordsC = { count: 0, naming_no_row: 0, by_waiting_status: {}, entry_gate: {}, entry_gate_after_call5: 0, angle_mark_only: 0,
     held_split: { listed: heldSplit.size, held: 0, places: [] } };
+  // call 4's places, by the class the bake reads at each (STEPS_READING_STANDS_RULE_ID)
+  const standsC = { listed: call4At.size, met: 0, letters_equal: 0, by_class: { stands: 0, read_form_of_several_words: 0, held_split: 0, none: 0 },
+    stands: { places: 0, plain_words: 0, pairs: 0, whose_place_pieces_answer: 0, words_equal: 0, were_bare_before: 0 } };
   const linePicks = Object.fromEntries(IDS.map((s) => [s, { picks: 0, naming_no_row: 0, first_row_another_sources: 0, first_row_by_m: {} }]));
   const slashes = { macula: 0, ubs: 0, bdb: 0 };
   // BDB's line is its record's highlighted words and « · sense N»; bdb_words counts the highlighted words alone
@@ -843,7 +887,28 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       // line there is bare and so is STEP's (THE LINE AS IT RESTS)
       const stepPicks = stepPick1 || pgAnswers;
       const isHeld = heldSplit.has(`${book} ${label}`);
-      const stepRestsBare = stepPick1 && !pgAnswers && (isKq || isHeld) && !underALine(si, ei);
+      // call 4 at this place: its letters are the zone word's, and its class (STEP'S OWN READING STANDS)
+      const c4 = call4At.get(id) || null;
+      let isStands = false;
+      if (c4) {
+        standsC.met += 1;
+        if (w.s !== c4.s) refuse(`${book} ${label}: call 4 names this place by letters the zone word does not carry`);
+        else standsC.letters_equal += 1;
+        const readsSeveral = !!(w.kq && Number(w.kq.words_read) > 1);
+        const cls = c4.action !== STANDS_ACTION ? "none" : readsSeveral ? "read_form_of_several_words" : c4.steps_words.includes(SPLIT) ? "held_split" : "stands";
+        standsC.by_class[cls] += 1;
+        if (cls === "stands") {
+          isStands = true;
+          if (!(st.length && st[0][4] === c4.steps_words)) refuse(`${book} ${label}: STEP's reading stands here (call 4), and STEP's pick 1 after the mends is not call 4's words byte for byte`);
+          else standsC.stands.words_equal += 1;
+          standsC.stands.places += 1;
+          standsC.stands[isKq ? "pairs" : "plain_words"] += 1;
+          if (pgAnswers) standsC.stands.whose_place_pieces_answer += 1;
+          if (stepPick1 && !pgAnswers && (isKq || isHeld) && !underALine(si, ei)) standsC.stands.were_bare_before += 1;
+        }
+      }
+      // a place where STEP's reading stands never rests bare: its own words are drawn there, a pair among them
+      const stepRestsBare = stepPick1 && !pgAnswers && (isKq || isHeld) && !isStands && !underALine(si, ei);
       if (stepRestsBare) {
         restsBare[isKq ? "pair" : "held_split"] += 1;
         restsBare.places.push({ book, place: label, n, why: isKq ? "a pair: its line keeps today's, which is bare" : "call 4 writes STEP's words here with « | »: held, and today's line is bare" });
@@ -883,8 +948,28 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
         bdb: [line.bdb ? pillOf(bdbText(b[0]), b[0][4], OWN_M.bdb, keys) : null, tally4(bdbMore)],
       };
       if (!stepPick1 && pgAnswers && !isKq) answered.push([book, label, n, [...new Set(pg.map((x) => String((x && x.g) || "").trim() ? String((x && x.s) || "") : ""))].sort().join("+"), line.macula ? 1 : 0]);
+      // what the receipt says of the pick whose words the index carries at this place
+      const sayStepWords = () => {
+        stepWordsC.count += 1;
+        if (ANGLE_MARK.test(st[0][4])) stepWordsC.angle_mark_only += 1;
+        if (!(Array.isArray(st[0][5]) && st[0][5].length)) stepWordsC.naming_no_row += 1;
+        const W = L ? L.waiting.find((x) => x.n === 1) : null;
+        if (W) tally(stepWordsC.by_waiting_status, String(W.status));
+        const G = L ? L.gate.find((x) => x.entry === st[0][2] && x.words === st[0][4]) : null;
+        if (G) tally(stepWordsC.entry_gate, String(G.bake));
+        if (L && L.gate5.some((x) => x.n === 1)) stepWordsC.entry_gate_after_call5 += 1;
+      };
+      // STEP's own reading stands (call 4): its pick 1 is the line under STEP, credited to STEP, whatever today's line
+      // is, a pair among them; the index marks the row so ([n, words, 1]), and it prints
+      if (isStands) {
+        if (st[0][1] !== "r") refuse(`${book} ${label}: STEP's reading stands here (call 4), and its pick 1 is of kind ${st[0][1]}, which the line's credit (M4, STEP's reading) does not name`);
+        else {
+          stepWords.push([n, st[0][4], 1]);
+          stepWordsAt[n - 1] = 2;
+          sayStepWords();
+        }
       // STEP's own words, where the page's own line may be bare: its reading, credited to TAHOT
-      if (stepPick1 && !pgAnswers && !isKq && heldSplit.has(`${book} ${label}`)) {
+      } else if (stepPick1 && !pgAnswers && !isKq && heldSplit.has(`${book} ${label}`)) {
         stepWordsC.held_split.held += 1;
         stepWordsC.held_split.places.push(`${book} ${label}`);
       } else if (stepPick1 && !pgAnswers && !isKq) {
@@ -900,14 +985,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
           const u = lineOver(si, ei);
           const drawn = u && u[1] === 1 ? String(u[2]) : null;
           if (!u || (drawn === drawnStep(st[0][4]) && u[3] === OWN_M.r && !keys.some((k) => servedUnder(k).some(([m, t]) => m === OWN_M.r && drawnStep(t) === drawn)))) stepWordsAt[n - 1] = 2;
-          stepWordsC.count += 1;
-          if (ANGLE_MARK.test(st[0][4])) stepWordsC.angle_mark_only += 1;
-          if (!(Array.isArray(st[0][5]) && st[0][5].length)) stepWordsC.naming_no_row += 1;
-          const W = L ? L.waiting.find((x) => x.n === 1) : null;
-          if (W) tally(stepWordsC.by_waiting_status, String(W.status));
-          const G = L ? L.gate.find((x) => x.entry === st[0][2] && x.words === st[0][4]) : null;
-          if (G) tally(stepWordsC.entry_gate, String(G.bake));
-          if (L && L.gate5.some((x) => x.n === 1)) stepWordsC.entry_gate_after_call5 += 1;
+          sayStepWords();
         }
       }
 
@@ -993,14 +1071,17 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     else if (read.has(m.book) && !m.used) refuse(`${what} names ${id}, a place v1 lacks`);
   }
   for (const [id, l] of listed) if (read.has(l.book) && !l.used) refuse(`a list beside v1.2's picks names ${id}, a place v1 lacks`);
+  // every place of call 4 is a zone word (STEP'S OWN READING STANDS)
+  if (books.length === outputs.length && standsC.met !== standsC.listed) refuse(`call 4 names ${n0(standsC.listed)} places and ${n0(standsC.met)} of them are words of the zones`);
   for (const [i, where] of missing) refuse(`row ${n0(i)} (${rows[i][2]}, rank ${rows[i][1]}) is not in the served store under its key with its text, and the row-strikes record does not say where it went${where.length ? `; named at ${where.join(", ")}` : "; no place names it"}`);
   // a row a round struck since: v1.2 re-pointed its picks, so none names it; one that does is refused
   for (const [i, where] of namedAt) if (where.length) refuse(`row ${n0(i)} (${rows[i][2]}, rank ${rows[i][1]}) was struck by ${struckSince.get(i).by.list} since the store v1.2 read, and ${n0(refCount[i])} pick(s) still name it (${where.join(", ")})`);
   const refsOf = (map) => [...map.keys()].reduce((a, i) => a + refCount[i], 0);
   const bySource = (map) => { const o = {}; for (const i of map.keys()) tally(o, rows[i][2]); return o; };
   const rowsFollowed = {
-    ...followedRecord(follow, { left: [...struckSince.values(), ...withheldSince.values()], rekeyed: [...followedTo.values()] }),
+    ...followedRecord(follow, { left: [...struckSince.values(), ...withheldSince.values()], rekeyed: [...followedTo.values()], retexted: [...retextedTo.values()] }),
     rows_re_keyed_and_found_under_their_new_name: { rows: followedTo.size, picks_naming_them: refsOf(followedTo), by_source: bySource(followedTo) },
+    ...(retextedTo.size ? { rows_retexted_and_found_under_their_new_name: { rows: retextedTo.size, picks_naming_them: refsOf(retextedTo), by_source: bySource(retextedTo) } } : {}),
     rows_struck_since_that_no_pick_names: struckSince.size,
     rows_withheld_since: { rows: withheldSince.size, picks_naming_them: refsOf(withheldSince), by_source: bySource(withheldSince) },
   };
@@ -1132,7 +1213,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     },
     shape: {
       book_file: "data/default-picks/<book>.bin: gzip -9 of minified JSON; places[n - 1] for WORD_N n is null at a mark or where no source picks, else [step, macula, ubs, bdb], each 0 where the source has no pick; step [[kind 0 r | 1 v | 2 a, words | 0, a variant's letter], ...]; macula its words, as given; ubs [line | 0, [[piece (from 0, in the ledger's list of the word's pieces), words], ...]], the picks of a piece in its order, numbered from 1 within the piece by the page; bdb [[sense marker, or \"\" for the entry, one-based index into bdb_words | 0], ...]",
-      index: "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source",
+      index: "data/default-picks/index.json: sources (id, pill, M ids) and per book file, bytes, sha256, entries, places, kq, has, fills, step_leaves ([n, MACULA's line | 0, UBS's line | 0, [BDB's sense, BDB's words] | 0], one per place STEP leaves that is not ketiv/qere) and step_words ([n, STEP's pick 1 words], one per place that is not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading, and not where the corpus lane's call 4 writes STEP's words with « | »: the line under STEP prints them where the page's own line there is bare; and [n, STEP's pick 1 words, 1], one per place where STEP's own reading stands, call 4's category, a pair among them: the line under STEP prints them whatever today's line is, steps_reading_stands); has.step counts the places where the line under STEP as it rests draws a line (step_line_rests_bare); no second source",
     },
     rows: {
       named: rows.length, of_v1: pin.rows.lines, added_by_v1_1: pin.rows_added.lines, added_by_v1_2: pin.rows_added_v1_2.lines,
@@ -1181,10 +1262,15 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       places: restFills.map(([book, label, n, src, t]) => ({ book, place: label, n, source: src, line: t })),
     },
     step_words: {
-      what: "places that are not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading (kind r), and that the corpus lane's call 4 (relay v189) does not write with « | »: the index carries each with its words, and the line under STEP prints them, credited to STEP (M4), where the page's own line there is bare (the owner's question 2 of 14 November, recommendation B); a pick naming no row, or naming a row the entry gate withholds, prints so too (relay v195, sections 2 and 8). Which of them are bare is the page's: today's line is worked out on the page. HELD (held_split): where call 4 writes STEP's words with « | », STEP reads one written word as two TAHOT words and its pick 1 is the first of them only, so the index carries no STEP words there and the line keeps today's until the lane says how STEP's line reads (its open question 1); held counts those places that would else be here, listed the places call 4 writes so; where today's line at one of them is bare, the line under STEP draws nothing there (step_line_rests_bare)",
+      what: "places that are not ketiv/qere, whose zone place pieces do not answer, where STEP's pick 1 is a line pick of its reading (kind r), and that the corpus lane's call 4 (relay v189) does not write with « | »: the index carries each with its words, and the line under STEP prints them, credited to STEP (M4), where the page's own line there is bare (the owner's question 2 of 14 November, recommendation B); a pick naming no row, or naming a row the entry gate withholds, prints so too (relay v195, sections 2 and 8). Which of them are bare is the page's: today's line is worked out on the page. HELD (held_split): where call 4 writes STEP's words with « | », STEP reads one written word as two TAHOT words and its pick 1 is the first of them only, so the index carries no STEP words there and the line keeps today's until the lane says how STEP's line reads (its open question 1); held counts those places that would else be here, listed the places call 4 writes so; where today's line at one of them is bare, the line under STEP draws nothing there (step_line_rests_bare). The places where STEP's own reading stands (call 4's category, steps_reading_stands) are among them too, each whatever its pieces and at a pair as well, with its words marked as standing",
       ...stepWordsC,
       books: books.filter((x) => x.stepWords.length).length,
       by_book: Object.fromEntries(books.filter((x) => x.stepWords.length).map((x) => [x.book, x.stepWords.length])),
+    },
+    steps_reading_stands: {
+      rule_id: STEPS_READING_STANDS_RULE_ID,
+      what: "the places of the corpus lane's call 4 (relay v189: data/audit-calls/calls-v1/, held to data/default-picks/PIN.json's held_split_v189), each by the class the bake reads at the zone word: stands where the list's action is steps_words_are_the_line, STEP's words hold no « | » and the zone word is not a pair whose read form is several words (kq.words_read); there the line under STEP is STEP's own pick 1, credited to STEP, whatever today's line is, and the index carries it as [n, words, 1]. Held by class: held_split (« | »: the owner's question 2, put back to the lane), none (the list's action), read_form_of_several_words (v192's read words carry those places). letters_equal: the zone word carries the list's letters; words_equal: at a place that stands, STEP's pick 1 after the mends is the list's words byte for byte; were_bare_before: the places that stand where the line under STEP rested bare before (pairs whose record draws no line)",
+      ...standsC,
     },
     step_line_rests_bare: {
       what: "places where STEP has a pick (its pick 1 a line pick) and its line as it rests draws nothing: its own words are never drawn at a pair (ketiv/qere: the pair keeps today's line) or at a place call 4 writes with « | » (held), and where the place pieces do not answer, today's line stands there; where the record of the resting lines holds no line over the word, that line is bare. Such a place is not counted in has.step, is no place STEP leaves (its second does not fill it), and counts in no fill of STEP's or by STEP; the other sources' has and fills count it as anywhere else, as the page prints their lines there. Read off the records as they stand (records); the default sources move nothing at these places, so the record's line there is today's whether or not it was read with them laid",
@@ -1197,7 +1283,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       by_first: Object.fromEntries(IDS.map((x) => [x, Object.fromEntries(Object.entries(picksPrinted[x]).map(([y, t]) => [y, { pills: t[0] + t[1] + t[2], ...Object.fromEntries(PRINTED.map((k, c) => [k, t[c]])) }]))])),
     },
     runs_read_whole: {
-      what: "the lines at rest over more than one word (a joined run's one line, as the records of the resting lines keep it), with the words under them, and for each source at how many of those lines it has a line at every word, at some, or at none; on the page a source other than STEP takes such a run only where it has a line at every word, and under STEP the run's own line stands",
+      what: "the lines at rest over more than one word (a joined run's one line, as the records of the resting lines keep it), with the words under them, and for each source at how many of those lines it has a line at every word, at some, or at none. A run keeps its joined line at rest only where some word of it has no reading of its own at the place (its place pieces, or STEP's words where STEP's own reading stands; a bridged mark set aside): every other run reads its words one by one, the joined reading a press away (run-reads-its-words-rule-v1, question 8, taken). So these are the runs held so; on the page a source other than STEP takes such a run only where it has a line at every word, and under STEP the run's own line stands",
       run_lines: runs.lines, words: runs.words, by_source: runs.by_source,
     },
     place_reading_answers: {
@@ -1268,10 +1354,13 @@ if (startedAs(import.meta.url)) {
     console.log(`  rows followed since the store v1.2 read (${RF.read_at_store_version}), ${RF.rounds_since.length} round(s): ${followedSaid(RF)} · ${n0(RF.rows_re_keyed_and_found_under_their_new_name.rows)} found under the key a round moved them to (${n0(RF.rows_re_keyed_and_found_under_their_new_name.picks_naming_them)} picks name them) · ${n0(RF.rows_struck_since_that_no_pick_names)} struck and named by no pick · ${n0(RF.rows_withheld_since.rows)} withheld (${n0(RF.rows_withheld_since.picks_naming_them)} picks name them) · call 5's re-point list: ${n0(RP.rows_struck_since)} rows struck, ${RP.rows_re_keyed_since} moved, ${n0(RP.rows_as_v1_2_read_them)} as v1.2 read them · picks waiting on call 5's re-key: ${n0(WC.picks)} on ${WC.rows} rows, ${n0(WC.picks_whose_row_now_stands_under_its_plain_key)} of them now with a row under the plain key (${WC.rows_now_under_their_plain_key} rows)`);
     console.log(`figures ${JSON.stringify({ store_version: r.index.store_version, rows_named: r.rows.length, found_once: r.foundOnce, found_more_than_once: r.doubles.length,
       rows_re_keyed_and_found: RF.rows_re_keyed_and_found_under_their_new_name.rows, picks_naming_re_keyed_rows: RF.rows_re_keyed_and_found_under_their_new_name.picks_naming_them,
+      rows_retexted_and_found: (RF.rows_retexted_and_found_under_their_new_name || { rows: 0 }).rows, picks_naming_retexted_rows: (RF.rows_retexted_and_found_under_their_new_name || { picks_naming_them: 0 }).picks_naming_them,
       rows_struck_since_that_no_pick_names: RF.rows_struck_since_that_no_pick_names, rows_withheld_since: RF.rows_withheld_since.rows, picks_naming_withheld_rows: RF.rows_withheld_since.picks_naming_them,
       repoints_struck: RP.rows_struck_since, repoints_re_keyed: RP.rows_re_keyed_since, repoints_as_read: RP.rows_as_v1_2_read_them,
       waiting_on_call5_picks: WC.picks, waiting_on_call5_rows: WC.rows, waiting_on_call5_picks_now_with_a_row: WC.picks_whose_row_now_stands_under_its_plain_key, waiting_on_call5_rows_now_under_their_plain_key: WC.rows_now_under_their_plain_key,
-      has: receipt.totals.has, step_leaves: receipt.step_leaves.count, rest_fills: receipt.rest_fills.count, step_words: receipt.step_words.count, index_sha256: receipt.index.sha256 })}`);
+      has: receipt.totals.has, step_leaves: receipt.step_leaves.count, rest_fills: receipt.rest_fills.count, step_words: receipt.step_words.count,
+      stands: receipt.steps_reading_stands.by_class.stands, stands_by_class: receipt.steps_reading_stands.by_class, stands_pairs: receipt.steps_reading_stands.stands.pairs, stands_were_bare_before: receipt.steps_reading_stands.stands.were_bare_before,
+      step_line_rests_bare: receipt.step_line_rests_bare.count, run_lines: receipt.runs_read_whole.run_lines, run_words: receipt.runs_read_whole.words, index_sha256: receipt.index.sha256 })}`);
     console.log(`  mend v1.1: ${n0(m11.places)} places · alternatives ${n0(m11.changed.a)} and variants ${n0(m11.changed.v)} changed · ${m11.merged.a + m11.merged.v} fall together (a ${m11.merged.a}, v ${m11.merged.v}) · after it ${k3(kinds.v1_1)} (receipt-v1 says v ${n0(receipt.mend.v1_1.receipt_v1_says.variant_picks)}, a ${n0(receipt.mend.v1_1.receipt_v1_says.alternative_picks)}: not held, question 2)`);
     console.log(`  mend v1.2: ${n0(m12.places)} places · ${n0(m12.gained.places)} gain STEP picks (${k3(m12.gained.picks)}) · ${m12.broken_bar} variant behind a broken bar where v1.1 has picks · BDB ${n0(bm.places)} places, ${n0(bm.picks_before)} picks before, ${n0(bm.picks_after)} after · after it ${k3(kinds.v1_2)} · no STEP pick at ${n0(receipt.mend.places_with_no_step_pick.v1_1)} places, then ${n0(receipt.mend.places_with_no_step_pick.v1_2)}`);
     const L2 = receipt.lists_beside_v1_2;
@@ -1290,6 +1379,8 @@ if (startedAs(import.meta.url)) {
     if (receipt.rest_fills.count) console.log(`  rest fills by book: ${Object.entries(receipt.rest_fills.by_book).sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).map(([b, k]) => `${b} ${k}`).join(", ")}`);
     const SW = receipt.step_words;
     console.log(`  STEP's words where the page's line may be bare: ${n0(SW.count)} places in ${SW.books} books · naming no row ${SW.naming_no_row} ${JSON.stringify(SW.by_waiting_status)} · on the entry gate's lists ${JSON.stringify(SW.entry_gate)} and ${SW.entry_gate_after_call5} · only a mark ${SW.angle_mark_only} · held where call 4 writes STEP's words with « | » ${SW.held_split.held} (of ${SW.held_split.listed} it lists so)`);
+    const SR = receipt.steps_reading_stands;
+    console.log(`  STEP's own reading stands (call 4): ${n0(SR.by_class.stands)} of ${n0(SR.listed)} places (${n0(SR.stands.plain_words)} words, ${n0(SR.stands.pairs)} pairs; ${n0(SR.stands.were_bare_before)} rested bare before) · held: « | » ${SR.by_class.held_split}, none ${SR.by_class.none}, a read form of several words ${SR.by_class.read_form_of_several_words} · letters equal ${n0(SR.letters_equal)}, words equal ${n0(SR.stands.words_equal)}`);
     const RB = receipt.step_line_rests_bare;
     console.log(`  STEP has a pick and its line as it rests is bare at ${RB.count} places (pairs ${RB.pair}, held where call 4 writes with « | » ${RB.held_split}): not in has.step, no leaf, in no fill of STEP's or by STEP${RB.count ? `; ${RB.places.map((x) => `${x.book} ${x.place}`).join(", ")}` : ""} · records of the resting lines read ${RB.records.read} (${RB.records.of_the_zone_on_disk} of the zone on disk${RB.records.of_another_zone.length ? `, of another zone: ${RB.records.of_another_zone.join(", ")}` : ""})`);
     const PP = receipt.picks_printed.by_first;

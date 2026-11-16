@@ -215,7 +215,7 @@
       else filed.set(k, f);
     }
     for (const m of Object.keys(mSources)) if (!filed.has((mSources[m] || {}).key)) said.push(`the index's ${m} (${(mSources[m] || {}).key}) is filed by no family of the store`);
-    const reads = ["id", "say", "kinds", "families", "fact", "is", "has", "ruling"];
+    const reads = ["id", "say", "kinds", "families", "fact", "is", "has", "stands_at", "ruling"];
     const entries = (Array.isArray(rec.rests_off) ? rec.rests_off : []).map((e) => {
       const keys = new Set();
       for (const field of Object.keys(e)) if (!reads.includes(field)) said.push(`the entry ${e.id} carries ${field}, which this rule does not read`);
@@ -231,11 +231,14 @@
       if (!keys.size) said.push(`the entry ${e.id} shuts no source key of the store`);
       if ((e.is !== undefined || e.has !== undefined) && !e.fact) said.push(`the entry ${e.id} compares a value and names no fact`);
       if (e.is !== undefined && e.has !== undefined) said.push(`the entry ${e.id} reads both is and has`);
+      if (e.stands_at !== undefined && (typeof e.stands_at !== "string" || !e.stands_at)) said.push(`the entry ${e.id} stands at ${JSON.stringify(e.stands_at)}, which is not the name of a fact`);
+      else if (e.stands_at !== undefined && !e.fact) said.push(`the entry ${e.id} stands at the places its rows name and names no fact`);
       return { e, keys };
     });
     if (said.length) throw new Error(`the record of dictionary kinds does not hold over this store's index: ${said.join("; ")}`);
     const byM = new Map();   // M id -> the entries whose keys hold its source's key, in the record's order
-    return (row) => {
+    return (row, place = null) => {
+      if (place !== null && typeof place !== "string") throw new Error(`the rule of dictionary kinds was asked at ${JSON.stringify(place)}, which is not a place's name: refusing`);
       const m = row[3];
       const source = Object.hasOwn(mSources, m) ? mSources[m] : null;
       if (!source) return null;
@@ -243,8 +246,12 @@
       if (!list) { list = entries.filter((x) => x.keys.has(source.key)).map((x) => x.e); byM.set(m, list); }
       for (const e of list) {
         if (!e.fact) return e;
-        const v = (factsOf(row) || {})[e.fact];
-        if (e.is !== undefined ? v === e.is : e.has !== undefined ? Array.isArray(v) && v.includes(e.has) : !!v) return e;
+        const facts = factsOf(row) || {};
+        const v = facts[e.fact];
+        if (!(e.is !== undefined ? v === e.is : e.has !== undefined ? Array.isArray(v) && v.includes(e.has) : !!v)) continue;
+        // the row stands at this place, by its own facts: the entry passes over it here
+        if (place !== null && e.stands_at !== undefined && Array.isArray(facts[e.stands_at]) && facts[e.stands_at].includes(place)) continue;
+        return e;
       }
       return null;
     };
@@ -815,10 +822,45 @@
   // THE SIGNS A SOURCE PRINTS ON ITS READINGS (the corpus lane's source-signs
   // ledger v1, 3 Oct 2026: Strong's X, × and + before a rendering, STEP's
   // \u00bf, <...> and [...], MACULA's ~ where an object goes). They are the
-  // source's own bytes and are never removed or respelled; the switch only
-  // orders them. Resting: as printed, in the card's own order. Below: a
-  // reading carrying a sign follows the plain ones. The patterns are the
-  // ledger's own, written before its count.
+  // source's own bytes and are never removed or respelled. The switch's
+  // three positions: «printed», every reading offered and its signs drawn,
+  // in the pool's own order; «below», every sign of the ledger after the
+  // plain readings; «off», where it rests (below), a reading carrying a sign
+  // not offered unless the line reads it or every reading carries one, and
+  // on the line a piece that is a sign and nothing else not drawn. The
+  // patterns are the ledger's own, written before its count.
+  // RULE: signed-rendering-rule-v1-on-the-books-the-kinds-record-reaches-a-rendering-that-opens-with-strongs-sign-follows-every-plain-one-in-every-order
+  // STRONG'S SIGN FOLLOWS EVERY PLAIN READING, IN EVERY POSITION (the lead's
+  // calls of 15 November 2026 on call 7 of relay v189; zone-gloss-rule-v8 in
+  // tools/gloss-store-v1.mjs). On a book the record of dictionary kinds
+  // reaches, whose zone the bake stamped so (emitted_from.signs_rest_last,
+  // signsLastOn: the thirty-nine books; the Tikkunei Zohar and a Targum
+  // beside a book keep today's order, his call 2), a reading that carries
+  // Strong's sign sorts after every reading that does not, as the bake
+  // ordered the pool its line was drawn from. Strong's sign is the ledger's
+  // STRONG_SIGN at a rendering's head, or the sign held alone in a round
+  // bracket there, «(+) archer», which the M14 declaration's
+  // open_paren.holds_sign_alone sets on that rendering (his call 1); a
+  // bracket that sets it on an optional word, «(X great) delight», is
+  // plain. It is a key of the pool's own order in every position of the
+  // switch (his call 3): «printed» decides how the signs are drawn and which
+  // readings are offered, never the order, so no card disagrees with its
+  // line. A sort, not a filter: a pool whose every reading carries the sign
+  // keeps its order, and nothing leaves a card. «off» still offers by the
+  // ledger's own patterns (SOURCE_SIGN), and the bracket is not among them.
+  // ONE RULE, ONE PLACE: the four lines from the one that declares
+  // STRONG_SIGN to the one that closes them are the module's
+  // (tools/gloss-store-v1.mjs) but for "export", and the check of the sign
+  // rule lifts both out and runs them over every reading of the store;
+  // nothing between them reaches outside them.
+  const STRONG_SIGN = /^(X|\u00d7|\+) /u;
+  const STRONG_SIGN_ALONE = /^\(\s*(X|\u00d7|\+)\s*\)/u;
+  const opensWithStrongSign = (t) => { const s = String(t ?? ""); return STRONG_SIGN.test(s) || STRONG_SIGN_ALONE.test(s); };
+  // end of Strong's sign (tools/gloss-store-v1.mjs)
+  // on a word of this zone, or of the sidecar a word was drawn from (bin), the
+  // rule above is in force where the bake stamped that zone so, as the
+  // dictionaries that rest shut act by the stamp (kindsActOn)
+  const signsLastOn = (bin) => !!(bin && bin.emitted_from && bin.emitted_from.signs_rest_last);
   // THE PILLS THAT LEFT THE ROW (no blanks and no names, parked on the rail
   // and /toggles/ on 2026-10-24): a preference pressed on a pill that is gone
   // would stand with nothing on the row to show it (the owner, 2026-10-30, of
@@ -850,7 +892,8 @@
   let nonamesPref = (() => { try { if (parkedFresh) { localStorage.removeItem(NONAMES_KEY); return "lead"; } return localStorage.getItem(NONAMES_KEY) === "yield" ? "yield" : "lead"; } catch { return "lead"; } })();
   let paintNames = null;    // no pill in the row since the evening of 2026-10-23 (the owner: "just have it on /toggles/ for now"); the rail's row is the switch
   Object.defineProperty(window, "__nonames", { get: () => nonamesPref });
-  const SOURCE_SIGN = [/^(X|\u00d7|\+) /u, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
+  // the ledger's patterns, the first of them Strong's (STRONG_SIGN, above, byte for byte the ledger's)
+  const SOURCE_SIGN = [STRONG_SIGN, /\u00bf/u, /<[^>]*>/u, /\[[^\]]*\]/u, / ~ /u];
   const hasSourceSign = (t) => SOURCE_SIGN.some((re) => re.test(String(t)));
   // a piece of a reading that is a sign and nothing else
   const signOnly = (t) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(String(t).trim());
@@ -1037,6 +1080,9 @@
   const formOfSays = (e) => (e && e.resolved ? `${e.resolved.text} (${e.relation} ${formOfTarget(e)})` : null);
   // a line's text, the pointer resolved where the map resolves it (nameHeld: formOfResolves)
   const formOfText = (key, text, nameHeld = false) => { const e = formOfFor(key, null, text); return formOfResolves(e, nameHeld) ? formOfSays(e) : text; };
+  // what a reading that took the pointers resolving to it prints (pointer-one-pill-rule-v1, in poolFor): as
+  // the pointer's own pill printed it, and with several, each pointer in the one bracket
+  const formOfSaysAll = (es) => (es.length === 1 ? formOfSays(es[0]) : `${es[0].resolved.text} (${es.map((e) => `${e.relation} ${formOfTarget(e)}`).join("; ")})`);
   // what the BSB means by a cell that is a sign, and why a place has none, in words
   const SUG_KIND_SAYS = { DASH: "the BSB leaves this word without English", THREE_DOTS: "the neighboring English carries it", VVV: "the neighboring English carries it", EMPTY: "the BSB's cell is empty" };
   const SUG_WHY_SAYS = { UNMATCHED_LETTERS_DIFFER: "the BSB's Hebrew spells this word otherwise", UNMATCHED_ONLY_OURS: "the BSB's Hebrew lacks this word", UNMATCHED_ORDER_DIFFERS: "the BSB's Hebrew orders these words otherwise", AMBIGUOUS: "the BSB's words could pair with this place more than one way", ONE_BSB_WORD_OVER_SEVERAL_PLACES: "one BSB word covers this place with its neighbor" };
@@ -1214,15 +1260,27 @@
   // STEP's own pick 1 prints there, credited to STEP (the page lane's
   // recommendation on the owner's question 2 of 14 November, which stands
   // unless the owner rules otherwise; the index carries those words,
-  // step_words); its second fills only the places STEP leaves. STEP's own
-  // words never replace a line another dictionary gives: where today's line
-  // is another dictionary's reading and STEP has its own (157 words of the
-  // 39 books, «archer» [M14] at Psalms 10:5:2, «bride» [M11] at Ruth 1:7:8),
-  // that line stands at rest, and under MACULA, UBS or BDB the source's own
-  // line takes it as it takes any word (the owner's question 3 of 14
-  // November, held so until the owner answers it). A sign or a
-  // stop alone is no source's line. A ruling outranks a source, and a pair
-  // keeps today's line under every source.
+  // step_words); its second fills only the places STEP leaves. WHERE STEP
+  // SPELLS OR PARTS THE WORD OTHERWISE, STEP'S READING STANDS (call 4 of the
+  // corpus lane's relay v189, taken by the owner; the lead's landing of 15
+  // November 2026), under
+  // steps-reading-stands-rule-v1-where-step-spells-or-parts-the-word-otherwise-its-own-pick-1-is-the-line-credited-to-step:
+  // at the places STEP's own tie gives so (785 in the thirty-nine books,
+  // six of them pairs whose read form is one word; the index marks them,
+  // DFLT_STEP_STANDS), STEP's own pick 1 is the line under STEP, credited to
+  // STEP, whatever today's line is, and the rows it replaces stay on the
+  // card. Held: where STEP writes its words with « | » (46 places), and a
+  // pair whose read form is several words (v192's pieces carry those).
+  // Elsewhere STEP's own words never replace a line another dictionary
+  // gives: where today's line is another dictionary's reading and STEP has
+  // its own (157 words of the 39 books, «archer» [M14] at Psalms 10:5:2;
+  // not Ruth 1:7:8's «bride» [M11], a place where STEP spells the word
+  // otherwise), that line stands at rest, and under
+  // MACULA, UBS or BDB the source's own line takes it as it takes any word
+  // (the owner's question 3 of 14 November, held so until the owner answers
+  // it). A sign or a stop alone is no source's line. A ruling outranks a
+  // source, and a pair keeps today's line under every source but at those
+  // six, under STEP (dfltPairStands).
   // Kept on this device; ?default= and ?second= set them for one load.
   const DFLT_KEY = "fh.defaults", DFLT_SECOND_KEY = "fh.defaults.second";
   const DFLT_IDS = ["step", "macula", "ubs", "bdb"];
@@ -1246,11 +1304,17 @@
     return out;
   })();
   let DFLT_IX = null, DFLT_BOOK = null, DFLT_LEAVES = null, DFLT_STEP_WORDS = null, DEFAULT_PICKS = null, dfltWait = null, dfltFailed = false, dfltNote = false;
+  // the places where STEP spells or parts the word otherwise and its own words
+  // are the line whatever today's line is (call 4's stands; the index's
+  // step_words rows marked [n, words, 1]), by their number (WORD_N)
+  let DFLT_STEP_STANDS = new Set();
   let reopenForDefaults = () => {};     // the switch answered on the page (set after the sections' relay, below)
   let paintDefaultPills = () => {};     // the row's four pills and the note under them (set with the row's other pills, below)
   let dfltRailRows = () => {};          // the rail's two rows of them drawn again where they stand (set with the rail's rows, below)
   let dfltReadsHere = () => {};         // the reads switch set to «the source here» (set with that switch, below)
   let dfltTodayBare = () => false;      // whether today's line draws no words at a word (set with lineUnder, below)
+  let readsItsPlace = () => false;      // whether a word's own place pieces give its line (placeLine; set with it, below)
+  let dfltPairStands = () => null;      // STEP's own words at a pair where they stand, under STEP (set with the default layer, below)
   const SOURCE_WORDS_RULED = new Set(); // the "/"-bearing texts the reader ruled from a source's own pill (SOURCE_WORDS)
   // a row made of a default source's own words where the page's line adds
   // to them: those words, and the page's addition said apart (dfltOwn), for
@@ -1326,7 +1390,8 @@
   // its places by WORD_N): each with its number in the source's own order
   // (UBS's from 1 in each piece), its words as the source gives them, byte
   // for byte, or null where the pick has none, and what the card says after
-  // them. The line takes pick 1; STEP's pick 1 prints only where today's line has no words (step_words).
+  // them. The line takes pick 1; STEP's pick 1 prints where today's line has no words, and where STEP spells or
+  // parts the word otherwise whatever today's line is (step_words, the stands marked).
   const DFLT_SLOT = { step: 0, macula: 1, ubs: 2, bdb: 3 };
   const DFLT_KIND = ["r", "v", "a"];
   // BDB's line: the record's highlighted words, and the sense's number after them where it files the verse under one
@@ -1793,7 +1858,7 @@
     // as the row's four pills and the note's chooser under them, lit as the
     // row lights them (the first in force, none under another order); on the
     // second's row the first source's own position is drawn dead.
-    { id: "defaults", voice: "them", lab: "default source", why: "which source the line under each word reads: MACULA’s own reading, the UBS dictionary’s or the unabridged BDB’s, each as the source gives it, or STEP: the line as it rests, which is the place’s own reading (TAHOT’s, or MACULA’s where the place’s pieces are MACULA’s), STEP’s own words only where today’s line was bare, and elsewhere today’s line, whose chip names its own source; where the source chosen has none a second source fills it out, and where neither has one the line stands as it is",
+    { id: "defaults", voice: "them", lab: "default source", why: "which source the line under each word reads: MACULA’s own reading, the UBS dictionary’s or the unabridged BDB’s, each as the source gives it, or STEP: the line as it rests, which is the place’s own reading (TAHOT’s, or MACULA’s where the place’s pieces are MACULA’s), STEP’s own words where STEP spells or parts the word otherwise and where today’s line was bare, and elsewhere today’s line, whose chip names its own source; where the source chosen has none a second source fills it out, and where neither has one the line stands as it is",
       positions: [{ id: "step", lab: "STEP" }, { id: "macula", lab: "MACULA" }, { id: "ubs", lab: "UBS" }, { id: "bdb", lab: "BDB" }],
       live: () => !!DFLT_BOOK, waits: "the corpus lane’s default picks laid on this book (tools/bake-default-picks-v1.mjs)",
       get: () => dfltFirstNow(), set: (id) => chooseDefault(id), now: () => sayDefault() },
@@ -1856,7 +1921,7 @@
       get: () => namesPref,
       set: (id) => { namesPref = id; try { localStorage.setItem(NAMES_KEY, id); } catch { /* the choice still stands on this page */ } if (id === "sound" && !latticeStore) latticeReady().then(() => { if (redrawReadings) redrawReadings(); }); if (redrawReadings) redrawReadings(); },
       now: () => (namesPref === "sound" ? "as sound" : "as meaning") },
-    { id: "signs", voice: "arrange", lab: "source signs", why: "a source's own marks on a reading: Strong's X and +, STEP's \u00bf, < > and [ ], MACULA's ~ \u2014 printed as the source printed them, never removed",
+    { id: "signs", voice: "arrange", lab: "source signs", why: "a source's own marks on a reading: Strong's X and +, STEP's \u00bf, < > and [ ], MACULA's ~ \u2014 printed as the source printed them, never removed; on the thirty-nine books a reading that carries Strong's sign follows every plain reading, whatever this switch says",
       positions: [{ id: "off", lab: "off" }, { id: "printed", lab: "as printed" }, { id: "below", lab: "after plain readings" }],
       live: () => true,
       waits: "",
@@ -2239,8 +2304,14 @@
     DFLT_BOOK = DFLT_IX && DFLT_IX.schema_version === "DEFAULT_PICKS_INDEX_V1" && DFLT_IX.books && DFLT_IX.books[BOOK] || null;
     DFLT_LEAVES = new Map((DFLT_BOOK && Array.isArray(DFLT_BOOK.step_leaves) ? DFLT_BOOK.step_leaves : []).map((r) => [r[0], r]));
     // and STEP's own pick 1 words at the places they may fill ([n, words]: no
-    // pair, the zone's place pieces do not answer, a line pick of its reading)
+    // pair, the zone's place pieces do not answer, a line pick of its reading),
+    // n -> words (the shape the units read, dfltUnitOf); and the places where
+    // they stand whatever today's line is ([n, words, 1]: where STEP spells or
+    // parts the word otherwise, a pair whose read form is one word among them;
+    // steps-reading-stands-rule-v1, tools/bake-default-picks-v1.mjs)
     DFLT_STEP_WORDS = new Map((DFLT_BOOK && Array.isArray(DFLT_BOOK.step_words) ? DFLT_BOOK.step_words : []).map((r) => [r[0], r[1]]));
+    DFLT_STEP_STANDS = new Set((DFLT_BOOK && Array.isArray(DFLT_BOOK.step_words) ? DFLT_BOOK.step_words : []).filter((r) => r[2] === 1).map((r) => r[0]));
+    window.__stepStands = DFLT_STEP_STANDS.size;
     if (DFLT_BOOK && dfltFirst !== "step") await defaultPicksReady().catch(() => {});
     if (!(SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK])) SUGGESTED_IX = null;
     // the book's file (744 KB on Genesis) is fetched by the first card that
@@ -2252,6 +2323,8 @@
     // off the page it is checking proves only that the page is consistent
     // with itself.
     window.__zone = zone;
+    // whether this book's cards put Strong's sign last (signsLastOn), for a check to read
+    window.__signsLast = signsLastOn(zone);
     for (const sec of zone.sections || []) for (const w of sec.words || []) if (w && typeof w === "object") WORD_VERSE.set(w, sec.label);
     // which orders this book can answer: the lattice ones where its sidecar
     // rides beside it, the corpus one where the corpus record loaded — and a
@@ -2926,11 +2999,16 @@
   // 2026, in five places that each pressed the word again in their own
   // words. One function now, and a half the reader chose on the card is
   // opened again as they chose it (openNav, set by openHud). The line is not
-  // touched: it reads from the half it read from.
-  const reopenCard = () => {
+  // touched: it reads from the half it read from. keep: the card is built
+  // again for nothing the reader did (a file landing: reopenCardFree), so it
+  // stays where the reader put it, as a card built for another word does
+  // (closeHud's release): the review of 16 November 2026 found a card the
+  // reader had dragged aside at Amos 1:1:22 put back at its word, from 153
+  // by 223 to 403 by 163, when the pointer map landed and folded its pills
+  const reopenCard = (keep = false) => {
     if (!activeEl) return;
     const wb = activeEl, nav = openNav;
-    closeHud();
+    closeHud(!keep);
     if (nav) nav(); else (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click();
   };
   // Anchor the HUD to whatever was tapped. Three surfaces open it now — a
@@ -3225,6 +3303,8 @@
       where the source does not read the place, or spells neither half. */
   const kqPlace = (word, regions, table) => {
     if (!word || !regions || table !== zone.gloss) return null;
+    // where STEP's own words stand at this pair (call 4), they back the read half (dfltPairStands)
+    { const st = dfltPairStands(word); const i = st ? regions.findIndex((r) => r && r.role === "QERE") : -1; if (i >= 0) return { i, at: st }; }
     const at = placeLine(word);
     if (!at) return null;
     const spelled = word.pg.map((x) => (x && x.k) || "").join("");
@@ -3289,6 +3369,9 @@
     const done = (gi, extra) => ({ i: gi >= 0 ? groups[gi].idx[0] : -1, is: gi >= 0 ? groups[gi].idx : [], g: gi, text: gi >= 0 ? gParts[gi] : "",
       keys: gi >= 0 ? groups[gi].regions.map((r) => r.k) : [], rk: ruledAtom >= 0 ? kqMemKey(regions[ruledAtom], word) : (gi >= 0 ? kqMemKey(groups[gi].regions[0], word) : null), ...extra });
     if (ruledAtom >= 0) return done(groups.findIndex((g) => g.idx.includes(ruledAtom)), { fellFrom: null });
+    // where STEP's own words stand at this pair (call 4), they back the read branch (dfltPairStands): at
+    // Lamentations 4:3:10 the place's pieces spell the written branch's two words joined, and STEP reads the one read word
+    { const st = table === zone.gloss ? dfltPairStands(word) : null; const gi = st ? groups.findIndex((g) => g.role === "QERE") : -1; if (gi >= 0) return done(gi, { fellFrom: null, at: st }); }
     const at0 = table === zone.gloss ? placeLine(word) : null;
     if (at0) {
       const spelled = word.pg.map((x) => (x && x.k) || "").join("");
@@ -3469,8 +3552,17 @@
     const at = (d) => (d ? Object.assign(d, { n }) : null);
     // the line under STEP, first or second: today's line, or STEP's own pick
     // 1 words where today's line has none (drawn as a reading's packing, a
-    // "/" a joint, so never among the source words)
-    const stepOwn = (layer, of = null) => (DFLT_STEP_WORDS.has(n) && dfltTodayBare(word) ? at(made("step", DFLT_STEP_WORDS.get(n), layer, of)) : null);
+    // "/" a joint, so never among the source words); and STEP's own words,
+    // whatever today's line is, where STEP spells or parts the word otherwise
+    // (call 4's stands, DFLT_STEP_STANDS), said so on the chip
+    const stepOwn = (layer, of = null) => {
+      if (!DFLT_STEP_WORDS.has(n)) return null;
+      const stands = DFLT_STEP_STANDS.has(n);
+      if (!stands && !dfltTodayBare(word)) return null;
+      const d = made("step", DFLT_STEP_WORDS.get(n), layer, of);
+      if (d && stands) { d.stands = true; d.rs[0].stands = true; }
+      return at(d);
+    };
     if (first === "step") {
       // the places STEP leaves (it has no pick there) are filled by its second
       const leaf = DFLT_LEAVES.get(n);
@@ -3484,6 +3576,21 @@
     if (second === "step") return stepOwn("second", first);
     const t2 = lineOf(second, n);
     return t2 ? at(made(second, t2, "second", first, dfltOwn(second, n))) : null;
+  };
+  // CALL 4 AT A PAIR (steps-reading-stands-rule-v1): where STEP spells or
+  // parts the word otherwise at a pair whose read form is one word (call 4's
+  // stands: six pairs of the thirty-nine books), under STEP its own pick 1
+  // is the pair's line, credited to STEP and said so on the chip, and backs
+  // the half STEP reads: the read half, by STEP's own row at each (its
+  // marker =Q(K) or =Q(k)). A ruling outranks it; everywhere else, and under
+  // another source, a pair keeps today's line (kqPick)
+  dfltPairStands = (word) => {
+    const n = word && word.kq ? WORD_N.get(word) : null;
+    if (!n || !DFLT_STEP_STANDS.has(n) || !DFLT_STEP_WORDS.has(n) || dfltLayerNow() !== "step" || placeYields(word)) return null;
+    const d = made("step", DFLT_STEP_WORDS.get(n), "first");
+    if (!d) return null;
+    d.stands = true; d.rs[0].stands = true;
+    return Object.assign(d, { n });
   };
   // THE PLACE'S READING ACROSS WORDS STANDS OR GOES WHOLE (the review of 15
   // November 2026). Where the place's own reading of a word ends with a
@@ -3528,10 +3635,16 @@
     return DFLT_HALVES.get(word) || null;
   };
   // (the source's line at a word with such a reading held whole: dfltAcross; defaultAt, below, also holds one unit)
+  // A NEIGHBOR READ BY ITS OWN PLACE PIECES IS READ BY STEP: STEP's layer is
+  // the line as it rests, the place's own reading, so where STEP's own words
+  // stand at a word (call 4's stands) beside a word its own pieces read, STEP
+  // reads every word of the reading across them, and its words stand
+  // (II Samuel 6:10:15-16: «Obed-» from the pieces, «Edom» STEP's own; the
+  // only such place among the 1,015 where STEP's words may print)
   const dfltAcross = (word) => {
     const d = defaultAtWord(word);
     const across = d ? dfltHalvesOf(word) : null;
-    return !across || across.every((w) => w === word || (defaultAtWord(w) || {}).src === d.src) ? d : null;
+    return !across || across.every((w) => w === word || (defaultAtWord(w) || {}).src === d.src || (d.src === "step" && readsItsPlace(w))) ? d : null;
   };
   // the words of one unit its source reads at every word of it, where they
   // stand apart on the page, for a word of it, or null (set with dfltUnitOf,
@@ -3548,16 +3661,51 @@
   // stands, and STEP, today's line, never takes one
   const runTakesDefault = (run) => !!(run && run.__words && run.__words.length && dfltLayerNow() !== "step"
     && run.__words.every((w) => { const d = defaultAt(w); return !!d && d.layer === "first"; }));
+  // RULE: run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away
+  // A RUN READS ITS WORDS (question 8 of 14 November 2026, taken: «each word
+  // of a run of several words shows its own reading, and the joined reading
+  // ... is a press away»; call 3 of the corpus lane's relay v189, landed by
+  // the lead on 15 November). A run keeps its joined line, the span store's
+  // or a whole form's, only where some word of it has no reading of its own
+  // at the place: its own place pieces (placeLine), or STEP's own words
+  // where they stand (call 4: DFLT_STEP_STANDS), both of which yield where
+  // the place yields. A mark inside the run (a bridged paseq, appendWord) is
+  // no word of it. The rule runs over every run, a run card's and a HUD run's
+  // too once a reader lays them; the joined reading stays the run's whole
+  // rung, one press away on the card of any of its words. Held so by it: the
+  // runs where STEP gives one reading for two words (Daniel 1:13 and 1:15,
+  // Song of Songs 6:12) or writes them with « | » (Jeremiah 39:3)
+  const runReadsItsWords = (run) => !!(run && run.__table == null && Array.isArray(run.__words)
+    && run.__words.some((w) => w && !w.mark)
+    && run.__words.filter((w) => w && !w.mark).every((w) => readsItsPlace(w) || (!placeYields(w) && DFLT_STEP_STANDS.has(WORD_N.get(w)))));
   // a place by its number (WORD_N) as a reader cites it: the work, the verse
   // and the word's count in it, the marks not counted (the card's own address)
   let DFLT_PLACES = null;
-  const dfltPlaceSaid = (n) => {
+  // every place's address by its number less one: the verse and the word's
+  // count in it, the marks not counted (a mark has none), as the bake of the
+  // default picks labels a place (tools/bake-default-picks-v1.mjs)
+  const dfltPlaces = () => {
     if (!DFLT_PLACES) {
       DFLT_PLACES = [];
       for (const sec of zone.sections || []) { let k = 0; for (const w of sec.words || []) DFLT_PLACES.push(w.mark ? null : `${sec.label}:${++k}`); }
     }
-    const at = n ? DFLT_PLACES[n - 1] : null;
+    return DFLT_PLACES;
+  };
+  const dfltPlaceSaid = (n) => {
+    const at = n ? dfltPlaces()[n - 1] : null;
     return at ? `${zone.work} ${at}` : "another place of this form";
+  };
+  // A PLACE BY ITS NAME, for what a row's own facts say of the places it
+  // stands at (the record of dictionary kinds' stands_at; picked_at, written
+  // by tools/apply-ubs-collocations-v1.mjs under
+  // ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it):
+  // the book's slug and the place's address, «i-samuel 6:10:15», one name
+  // for the bake, the facts and the page. Null for a word with no place of
+  // the book (a mark, a word of a sidecar)
+  const placeOf = (word) => {
+    const n = word ? WORD_N.get(word) : null;
+    const at = n ? dfltPlaces()[n - 1] : null;
+    return at ? `${BOOK} ${at}` : null;
   };
   // what a line's chip says of a source's own reading
   // (a pick after the first, made on the card and chosen there, by its number)
@@ -3570,14 +3718,14 @@
     : r.layer === "pick" ? `${dfltPill(r.src)}’s own reading at this place (${dfltPill(r.src)} ${r.n})`
     : r.layer === "second"
       ? `${dfltPill(r.src)}’s own reading at this place, filling out ${dfltPill(r.of)}${r.auto ? ` — chosen for ${zone.work}` : ""}`
-      : r.src === "step" ? `${dfltPill(r.src)}’s own reading at this place, where today’s line has no words`
+      : r.src === "step" ? `${dfltPill(r.src)}’s own reading at this place, ${r.stands ? `where ${dfltPill(r.src)} spells or parts the word otherwise` : "where today’s line has no words"}`
         : `${dfltPill(r.src)}’s own reading at this place, chosen on the row of sources`);
   // the credit a made row of a default source's words keeps (DFLT_MADE): its
   // line's, or a later pick's number, and the place it was made at (at)
   const dfltCredit = (place, n = 1) => {
     const r = place && place.rs && place.rs[0];
     if (!r || r.reads !== "default") return null;
-    return n > 1 ? { reads: "default", src: r.src, layer: "pick", n, at: place.n } : { reads: "default", src: r.src, layer: r.layer, of: r.of, auto: r.auto, at: place.n };
+    return n > 1 ? { reads: "default", src: r.src, layer: "pick", n, at: place.n } : { reads: "default", src: r.src, layer: r.layer, of: r.of, auto: r.auto, at: place.n, ...(r.stands ? { stands: true } : {}) };
   };
   // a record of the store (or an overlay's) by its m_id; the place's own
   // row (PLACE_ROWS: no store row prints the place's reading) by its pieces',
@@ -5406,12 +5554,15 @@
   };
 
   // The readings for one cell surface, as the reader's law has them
-  // (zone-gloss-rule-v7, 7 November 2026): a row divides into readings only as
+  // (zone-gloss-rule-v8, 15 November 2026): a row divides into readings only as
   // its source's own ledger says, and a source with no ledger is one reading
   // as written, whole; each reading is its own pill. Pills dedupe by the
   // printed form, case folded, merging the oldest year
   // and lowest rank; oldest source leads, sources after the era cut (ERA_CUT_AD,
-  // the 57th/58th-century line in AM) and unyeared sources last.
+  // the 57th/58th-century line in AM) and unyeared sources last; and on a book
+  // the record of dictionary kinds rests, a reading carrying Strong's sign
+  // follows every reading that does not (opensWithStrongSign, the pool's
+  // order: sortPool's signLast).
   // the grade of one store row for the card's surface, as the pill exposes
   // it: the row's own headwords against the open word when it carries them,
   // the lattice card's grade otherwise, "-" when neither can say — the same
@@ -5438,6 +5589,11 @@
   // exporter only. A reading the reader chose outranks the switch that would
   // withhold it, so the line can show a record the switched pool no longer
   // holds, and the file has to find that record to cite what the line shows.
+  // opts.kindsAt: the place a card stands at, by its name (placeOf), for the
+  // rows that stand where their own facts name the place (stands_at); and
+  // opts.pills: the pool a card draws as pills, where a pointer's pill joins
+  // the reading it resolves to (pointer-one-pill-rule-v1). Both are the
+  // card's alone: the line, the exporter and the masthead give neither.
   // the rows the page stands up for a place's own reading, so a record can say
   // where it came from and a check can tell them from the store's
   const PLACE_ROWS = new WeakSet();
@@ -5643,10 +5799,19 @@
     // the masthead's name (everyKind). Counted below, in pills, once the open
     // rows' pills are known. A word drawn from a sidecar the bake left whole
     // (opts.bin: a Targum's words) is not gated and not counted (kindsActOn).
+    // AT THE PLACE THE CARD STANDS AT (opts.kindsAt: placeOf, given by the
+    // card alone): a row whose own facts name this place among those it
+    // stands at (an entry's stands_at: UBS's collocation rows at the places
+    // UBS's own pick names them, question 10 of 14 November 2026, taken)
+    // stands here, open or shut, is not counted and wears no dotted edge;
+    // at any other place of the same key it rests shut. A run's card, the
+    // line read live and the exporter name no place, so the line never
+    // reads such a row: the bakes ask the rule with no place either
+    const kindsAt = typeof opts.kindsAt === "string" && !opts.storeOnly && !opts.word ? opts.kindsAt : null;
     const kindsAct = kindsActOn(opts.bin || zone);
     const kindsGate = kindsAct && !opts.everySource && !opts.everyKind && (kindsPref === "shut" || !!opts.storeOnly);
     const shutRows = [];
-    const shutAway = (rows) => rows.filter((row) => { if (!restsOff(row)) return true; shutRows.push(row); return false; });
+    const shutAway = (rows) => rows.filter((row) => { if (!restsOff(row, kindsAt)) return true; shutRows.push(row); return false; });
     if (kindsGate) routes = shutAway(routes);
     // THE WORDS THAT OPEN A NUMBERED SENSE ARE NOTES (sense-openings-rule-v1,
     // 13 November 2026). Such a row gives no reading, so no pill stands on
@@ -5768,6 +5933,50 @@
       });
       for (const g of groups.values()) g.records.sort(EARLIEST_FIRST);
     }
+    // RULE: pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it
+    // ONE READING, ONE PILL, A POINTER'S TOO (question 12 of relay v189,
+    // taken: «pointer pills now print the same English as another reading on
+    // the card ... Recommended: one pill»; the lead's call 8 of 15 November
+    // 2026: any source, every card). On a card (opts.pills), once the map is
+    // here (FORM_OF), a group every record of which is a pointer row the map
+    // resolves (formOfResolves, the names gate as it stands here) joins the
+    // group that prints its resolution, whatever that group's source: one
+    // pill, printing the reading with the pointer beside it, as a pointer pill
+    // prints (formOfSays), several pointers in one bracket. Both stand behind
+    // what it prints, so its carriers are both groups' rows, the reading's
+    // first (the credit, the record shown); the pointer's own text and rows
+    // ride apart on it (pointers), so the pill names them apart. And it
+    // answers to the pointer's own reading key (alias), so a card whose line
+    // is the pointer opens on it. A source switched off is not asked: with
+    // the pointer's source off the plain reading stands alone, with the
+    // reading's off the pointer's pill stands as before. The line's own pool,
+    // the exporter's and the masthead's are not folded: no line moves
+    if (opts.pills && FORM_OF && FORM_OF.keys[surface]) {
+      const entries = FORM_OF.keys[surface];
+      const plain = new Map();   // the printed form -> the group that prints it (no NoDerivatives group)
+      for (const [gk, g] of groups) if (!gk.startsWith("\u0001nd\u0001") && !plain.has(drawn(g.text))) plain.set(drawn(g.text), g);
+      const ptr = new Map();     // a pointer group's key -> its entry
+      for (const [gk, g] of groups) {
+        if (gk.startsWith("\u0001nd\u0001") || !g.records.length) continue;
+        const e = formOfFor(surface, g.records.map((row) => row[3]), g.text);
+        if (!formOfResolves(e, namesHeld)) continue;
+        if (!g.records.every((row) => entries.some((x) => x.m === String(row[3]) && readingKey(x.t) === drawn(g.text)))) continue;
+        ptr.set(gk, e);
+      }
+      const isPtr = new Set([...ptr.keys()].map((gk) => groups.get(gk)));
+      for (const [gk, e] of ptr) {
+        const g = groups.get(gk), to = plain.get(drawn(e.resolved.text));
+        // a line holds the pointer as written, or as the page prints it once the
+        // map is here (the table's lead and a ruled line: formOfSays), so a
+        // pointer's pill answers to both, folded or not
+        if (!to || to === g || isPtr.has(to)) { g.alias = [drawn(formOfSays(e))]; continue; }
+        (to.pointers || (to.pointers = [])).push({ e, text: g.text, rows: [...g.records] });
+        (to.alias || (to.alias = [])).push(drawn(g.text), drawn(formOfSays(e)));
+        for (const row of g.records) if (!to.records.includes(row)) to.records.push(row);
+        to.year = Math.min(to.year, g.year); to.ledger = Math.min(to.ledger, g.ledger);
+        groups.delete(gk);
+      }
+    }
     // which pills stand on overlay rows alone, for a check to read off the pool
     for (const g of groups.values()) { const ovs = g.records.map((row) => OVERLAY_ROWS.get(row)); if (ovs.every(Boolean)) g.ov = ovs[0]; }
     // AT THIS PLACE, TAHOT's reading for the word standing open: where no row
@@ -5861,12 +6070,12 @@
     if (kindsAct && !opts.storeOnly) {
       if (shutRows.length) {
         const open = new Set();
-        for (const [gk, g] of groups) open.add(gk.startsWith("\u0001nd\u0001") ? gk : drawn(g.text));
+        for (const [gk, g] of groups) { open.add(gk.startsWith("\u0001nd\u0001") ? gk : drawn(g.text)); for (const x of g.alias || []) open.add(x); }
         const counted = new Set();
         for (const e of KINDS_REC.rests_off) {
           let n = 0;
           for (const row of shutRows) {
-            if (restsOff(row) !== e || !index.m_sources[row[3]] || senseOpened(row)) continue;
+            if (restsOff(row, kindsAt) !== e || !index.m_sources[row[3]] || senseOpened(row)) continue;
             const nd = isNoDerivs(index.m_sources[row[3]].licensePosture);
             for (const x of nd ? [routePrinted(row)] : readingsOfRow(row)) {
               const key = nd ? `\u0001nd\u0001${row[3]}\u0001${x}` : drawn(x);
@@ -5877,9 +6086,12 @@
           if (n) withheldByKind.push({ id: e.id, say: e.say, n });
         }
       }
-      if (kindsPref === "open") kindsShown = [...groups.values()].filter((g) => g.records.length && g.records.every((row) => restsOff(row))).length;
+      if (kindsPref === "open") kindsShown = [...groups.values()].filter((g) => g.records.length && g.records.every((row) => restsOff(row, kindsAt))).length;
     }
-    const pool = sortPool([...groups.values()], surface, W);
+    // Strong's sign last where the word's own zone was baked so (signsLastOn):
+    // carried on the pool, and on every copy of it (carryWithheld), so every
+    // sort of it keeps the bake's order
+    const pool = sortPool(Object.assign([...groups.values()], { signsLast: signsLastOn(opts.bin || zone) }), surface, W);
     pool.withheld = withheld; pool.withheldBySources = withheldBySources; pool.withheldByStem = withheldByStem; pool.stems = stemsHere; pool.rows = asked;
     pool.withheldByEntry = withheldByEntry; pool.entry = entryHere; pool.withheldByName = withheldByName; pool.namesHeld = namesHeld;
     pool.withheldBySense = withheldBySense; pool.sensesShown = sensesShown;
@@ -5900,6 +6112,7 @@
     to.withheldBySense = from.withheldBySense; to.sensesShown = from.sensesShown;
     to.withheldByKind = from.withheldByKind; to.kindsShown = from.kindsShown;
     to.notes = from.notes;
+    to.signsLast = from.signsLast;
     return to;
   };
   const oldestFirst = (a, b) => {
@@ -5997,7 +6210,30 @@
       return 0;
     };
     const wantClass = { pd: 0, by: 1, "by-sa": 2 }[licencePref];
-    const licPref = (a, b) => (wantClass === undefined ? 0 : (lic(a) === wantClass ? 0 : 1) - (lic(b) === wantClass ? 0 : 1));
+    // A SPAN'S OWN LINE STAYS FIRST UNDER A LICENSE CLASS (licence-columns-rule-v1;
+    // 16 November 2026). The line over a run the span store names reads the
+    // store's first row on (span-store I1: refreshJoinGloss's span branch), and
+    // no license column moves it: the columns are baked for the table's keys,
+    // and a span's key is none of them. So on the span's own pool the class
+    // sorts every other reading under the line's, which the card opens on
+    // (lineSaid: the row whole where a pill reads it so, else its first
+    // reading) and now also puts first, and the line and the card answer as
+    // one. Until now the class led there with a reading of its own: under
+    // "public domain first" the card of Amos 1:4 led with "Benhadad", which a
+    // public-domain source carries, while the line read "Ben-Hadad", the
+    // store's first row (check-card-opens-on-the-line C2, met once the check
+    // opened a run's words; the live page the same)
+    const spanLine = (() => {
+      if (wantClass === undefined || !surface) return null;
+      const rows = spanRowsOn(surface);
+      if (!rows.length) return null;
+      const whole = readingKey(rows[0].slots[1]);
+      if (list.some((r) => readingKey(r.text) === whole)) return whole;
+      const first = readingsOfRow(rows[0].slots)[0];
+      return first ? readingKey(first) : whole;
+    })();
+    const spanLineFirst = (a, b) => (spanLine === null ? 0 : (readingKey(a.text) === spanLine ? 0 : 1) - (readingKey(b.text) === spanLine ? 0 : 1));
+    const licPref = (a, b) => (wantClass === undefined ? 0 : spanLineFirst(a, b) || (lic(a) === wantClass ? 0 : 1) - (lic(b) === wantClass ? 0 : 1));
     const namePref = (a, b) => (namesPref === "sound" && lat ? tr(a) - tr(b) : 0);
     // THE NAME LEADS (proper-name-rule-v1). Where the line is the entry's own
     // name — baked into the table by regloss-zone, listed in gloss_names —
@@ -6033,8 +6269,16 @@
     const placeRank = (g) => (defOrder !== "place" ? Infinity : g.dfltRank || (g.placeFirst ? 1 : Infinity));
     const placeLead = (a, b) => { const ra = placeRank(a), rb = placeRank(b); return ra === rb ? 0 : ra < rb ? -1 : 1; };
     // the source signs, after plain readings where the reader asked so (an
-    // order, never a filter: every reading stays on the card as printed)
-    const signLast = (a, b) => (signsPref !== "below" ? 0 : (hasSourceSign(a.text) ? 1 : 0) - (hasSourceSign(b.text) ? 1 : 0));
+    // order, never a filter: every reading stays on the card as printed);
+    // and on a book whose zone was baked with Strong's sign last (the pool's
+    // signsLast, set by poolFor from the word's own zone: signsLastOn), a
+    // reading carrying Strong's sign after every plain one in every position
+    // of the switch, as the bake ordered the pool the line was drawn from
+    // (signed-rendering-rule-v1); under «below» the ledger's other signs
+    // come between, after the plain readings and before Strong's
+    const signsLast = !!list.signsLast;
+    const signedKey = (t) => (signsLast && opensWithStrongSign(t) ? 2 : signsPref === "below" && hasSourceSign(t) ? 1 : 0);
+    const signLast = (a, b) => signedKey(a.text) - signedKey(b.text);
     // a one-letter piece's own kind first, under the pointing (piece-class-rule-v1)
     const cmpN = (x, y) => (x === y ? 0 : x < y ? -1 : 1);
     const kindLead = (a, b) => cmpN(a.pk ?? 1, b.pk ?? 1)
@@ -6136,8 +6380,9 @@
     if (m && m.cut) return !m.cut.includes("+");
     // a run the default source reads word by word opens the pressed word's card
     if (runTakesDefault(run)) return false;
+    // and so does a run whose every word reads its own place (runReadsItsWords), before the span's line
+    if (runReadsItsWords(run)) return false;
     if (!run.__table && spanRowsOn(run.__key).length) return true;
-    if (run.__table == null && run.__words.every((w) => placeLine(w))) return false;
     const table = run.__table || zone.gloss || {};
     const gmT = run.__table ? null : zone.gloss_m;
     return !!runWholeForms(run.__words.map((w) => w.k)).slice(0, 1).find((f) => {
@@ -6818,6 +7063,15 @@
     // the tags this card is gated by, and what it takes its place for, for a check to read
     window.__cardEntry = openTags ? openTags.join(" ") : "";
     window.__cardName = openName === null ? "" : openName ? "a name" : "not a name";
+    // THE PLACE THIS CARD STANDS AT, BY ITS NAME (placeOf), for a row that
+    // stands where its own facts name the place (the record of dictionary
+    // kinds' stands_at): the open word's place, for its own key and its
+    // pieces' keys alike; a word of a sidecar has no place of the book. A
+    // run's card names its places cell by cell (kindsAtOf, below): a cell of
+    // one word stands at that word's place, a cell over several words at
+    // none. Exposed for a check, and set again for the cell the card stands on
+    const kindsAt = opts.run ? null : placeOf(openPlaceWord);
+    window.__cardPlace = kindsAt || "";
     // Only the atoms tile the occurrence, so only the atoms may be laid out in
     // the header. Drawing the whole lattice printed each joined interval again
     // between its own halves. When a joined interval is what was opened, every
@@ -7282,7 +7536,9 @@
     if (opts.run && !mem.cut) {
       // the as-written rung is always on the card now; the card opens on it
       // only where the shelf reads it (the line's own test: the baked table)
-      const asWritten = (bin.gloss && bin.gloss[region.k]) || spanRowsOn(region.k).length ? covers.find((c) => c.length === 1 && c[0].surface === region.k) : null;
+      // and the run's line reads it whole: a run whose every word reads its
+      // own place opens on the word pressed (runReadsItsWords, as the line)
+      const asWritten = !runReadsItsWords({ __words: opts.run.words || [] }) && ((bin.gloss && bin.gloss[region.k]) || spanRowsOn(region.k).length) ? covers.find((c) => c.length === 1 && c[0].surface === region.k) : null;
       // a named run opens the same way: the line reads it word by word, so
       // the card opens on the word pressed, and the whole run is one press away
       cover = asWritten || covers[covers.length - 1];
@@ -7350,8 +7606,9 @@
       // the set stands whole on its division, never on the whole form and
       // never piece by piece
       if (setCut) return null;
-      // the default source chosen on the row reads the word whole, as its line does
-      return surface === region.k ? defaultAt(word) || placeLine(word) : null;
+      // the default source chosen on the row reads the word whole, as its line does;
+      // at a pair where STEP's own words stand (call 4), its read half reads them, as the pair's line does
+      return surface === region.k ? defaultAt(word) || (region.role === "QERE" ? dfltPairStands(word) : null) || placeLine(word) : null;
     };
     // THE CELL'S OWN PLACE, for the piece store: the word under the cell (its
     // number in the verse as written), the cell's letters [a, b] in it, and
@@ -7381,6 +7638,24 @@
       // t: the word's letters, so a pool can tell a prefix from a suffix
       const t = cover.reduce((sum, x) => sum + lettersIn(x.surface).length, 0);
       return L ? { ref: openSite.ref, n, a, b: a + L - 1, t, reading: role === "ketiv" || role === "qere" ? role : "form" } : null;
+    };
+    // THE PLACE A CELL STANDS AT FOR THE DICTIONARIES THAT REST SHUT (kindsAt):
+    // on a word's card the open word's, for its own key and its pieces' keys
+    // alike; on a run's card the word under a cell of one word, found as
+    // piecePlaceOf finds it, so a row stands on that cell where its own facts
+    // name that word's place (the review of 16 November 2026: call 3 reads
+    // the named run at Genesis 14:3:8-9 word by word and its card opens on
+    // the word pressed, and UBS's row r24 of \u05d9\u05dd, which UBS's own
+    // pick names at 14:3:8, rested shut there, counted and dotted, where the
+    // same row stands on the card of a plain word UBS's pick names). A cell
+    // over several words, or letters standing twice in the division open,
+    // name no place: no claim spans words. A pair's branch is no run of the
+    // book's words (its words are the branch's own), and names none, as before
+    const kindsAtOf = (surface) => {
+      if (!opts.run) return kindsAt;
+      if (bin !== zone || !Array.isArray(opts.run.words)) return null;
+      const same = cover.filter((c) => c.surface === surface);
+      return same.length === 1 && same[0].from === same[0].to ? placeOf(opts.run.words[same[0].from]) : null;
     };
     // a block's pool is asked once per standing: the same letters stand for
     // the set's piece on the set's division and for themselves on any other,
@@ -7446,7 +7721,7 @@
       for (const r of reads) {
         const qk = r.k;
         let qp = null;
-        try { const at = placeOfCell(qk); qp = await poolFor(qk, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(qk), bin }); } catch { qp = null; }
+        try { const at = placeOfCell(qk); qp = await poolFor(qk, { ...(at ? { place: at } : {}), piecePlace: piecePlaceOf(qk), bin, kindsAt: kindsAtOf(surface), pills: true }); } catch { qp = null; }
         if (!qp) continue;
         heldSenses += qp.withheldBySense || 0;
         for (const x of qp.withheldByKind || []) { const h = heldKinds.get(x.id); if (h) h.n += x.n; else heldKinds.set(x.id, { ...x }); }
@@ -7455,10 +7730,10 @@
           const d = drawnOf(g.text);
           if (have.has(d)) continue;
           have.add(d);
-          kept.push({ text: g.text, year: g.year, ledger: g.ledger, records: g.records, ov: g.ov, kqRead: read, kqKey: qk });
+          kept.push({ text: g.text, year: g.year, ledger: g.ledger, records: g.records, ov: g.ov, kqRead: read, kqKey: qk, ...(g.pointers ? { pointers: g.pointers, alias: g.alias } : {}) });
         }
       }
-      const out = sortPool(kept, surface);
+      const out = sortPool(Object.assign(kept, { signsLast: signsLastOn(bin) }), surface);
       carryWithheld(out, pool);
       // the word senses are the read word's: its readings print here, and the
       // written letters' are withheld by the weld itself (word-senses-rule-v1;
@@ -7467,7 +7742,7 @@
       out.withheldBySense = heldSenses;
       out.sensesShown = out.filter((g) => g.records.length && g.records.every((x) => SENSE_ROWS.has(x))).length;
       out.withheldByKind = kindsOn ? KINDS_REC.rests_off.map((e) => heldKinds.get(e.id)).filter(Boolean) : [];
-      out.kindsShown = kindsOn && kindsPref === "open" ? out.filter((g) => g.records.length && g.records.every((x) => restsOff(x))).length : 0;
+      out.kindsShown = kindsOn && kindsPref === "open" ? out.filter((g) => g.records.length && g.records.every((x) => restsOff(x, kindsAtOf(surface)))).length : 0;
       out.kqWithheld = heldGroups.length;
       out.kqWithheldRows = heldGroups.reduce((n, g) => n + g.records.length, 0);
       // the read form as the source carries it, joiner and all
@@ -7696,8 +7971,9 @@
     // turned off, or shut, gives it back (forgetSensePicks, forgetKindPicks)
     const underOf = (prev) => (prev ? (prev.sense || prev.kind ? prev.under || null : prev) : null);
     // a reading that stands on rows resting shut alone, pressed, is remembered
-    // as one, so shutting the switch forgets it (dictionary-kinds-rule-v1)
-    const kindPick = (records, prev) => (kindsOn && records.length && records.every((x) => restsOff(x)) ? { kind: true, under: underOf(prev) } : {});
+    // as one, so shutting the switch forgets it (dictionary-kinds-rule-v1); at:
+    // the place its cell stands at (kindsAtOf)
+    const kindPick = (records, prev, at) => (kindsOn && records.length && records.every((x) => restsOff(x, at)) ? { kind: true, under: underOf(prev) } : {});
     if (opts.run && opts.run.on && cover.length > 1 && cutKey(cover) === opts.run.on && mem.cut !== opts.run.on) { mem.cut = opts.run.on; markRuled(); }
 
     // ONE PAINT PATH (the owner, 2026-10-17, of the cells after a pick: "the
@@ -8209,6 +8485,10 @@
     };
     const renderReadings = async () => {
       const surface = setWhole ? SET_KEY : cover[cellIdx].surface;
+      // the place this cell stands at for the dictionaries that rest shut
+      // (kindsAtOf), read once before the fetch, and said as the card's
+      const kindsAtCell = kindsAtOf(surface);
+      window.__cardPlace = kindsAtCell || "";
       readRow.replaceChildren();
       const label = document.createElement("p"); label.className = "r-label";
       // the label is the page speaking and the block it names is the corpus's
@@ -8242,7 +8522,7 @@
       if (!cache.has(askKey)) {
         try {
           const at = placeOfCell(surface);
-          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace, bin });
+          let got = await poolFor(surface, { ...(at ? { place: at } : {}), piecePlace: askPlace, bin, kindsAt: kindsAtCell, pills: true });
           // the whole form, where the set has its division: the set is not a
           // reading of the form as one word, and stands on its division
           if (got && setCut && surface === region.k) {
@@ -8588,7 +8868,8 @@
         const t = led ? led.text : bin.gloss[surface];
         return t ? spanJoin(t).toLowerCase() : null;
       })();
-      const lineFirst = lineSaid ? pool.find((r) => spanJoin(r.text).toLowerCase() === lineSaid) : null;
+      // (a reading that took a pointer answers to the pointer's own words too: its alias, pointer-one-pill-rule-v1)
+      const lineFirst = lineSaid ? pool.find((r) => spanJoin(r.text).toLowerCase() === lineSaid) || pool.find((r) => (r.alias || []).includes(lineSaid)) || null : null;
       let selected = (remembered && pool.find((r) => routeKey(r) === remembered.key)) || lemmaFirst || lineFirst || pool[0];
       const pills = document.createElement("div"); pills.className = "r-pills";
       // what the sort put first, said on the row so a check can read the
@@ -8636,7 +8917,9 @@
         const senseGroup = selected.records.length > 0 && selected.records.every((r) => SENSE_ROWS.has(r));
         const plainText = senseGroup && String(selected.text).startsWith(SENSE_PRINTS) ? String(selected.text).slice(SENSE_PRINTS.length) : selected.text;
         const bracketed = (r) => (/\[/u.test(String(r[2] || "")) ? 1 : 0);
-        const recordOrder = (a, b) => (senseGroup ? bracketed(b) - bracketed(a) : 0) || EARLIEST_FIRST(a, b);
+        // a reading that took a pointer shows its own records first, the pointer's after them (pointer-one-pill-rule-v1)
+        const ptrRows = new Set((selected.pointers || []).flatMap((x) => x.rows));
+        const recordOrder = (a, b) => ((ptrRows.has(a) ? 1 : 0) - (ptrRows.has(b) ? 1 : 0)) || (senseGroup ? bracketed(b) - bracketed(a) : 0) || EARLIEST_FIRST(a, b);
         const leadRow = [...selected.records].sort(recordOrder)[0];
         const cutNote = (selected.records.some((r) => r[5] === 1) || (leadRow && spanJoin(routePrinted(leadRow)).toLowerCase() !== spanJoin(plainText).toLowerCase()))
           ? Object.assign(document.createElement("span"), { className: "d-cut", textContent: "this reading is a piece cut out of the record above" })
@@ -8851,7 +9134,7 @@
             selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
               place: PLACE_ROWS.has(row) && !DFLT_MADE.has(row), ...(DFLT_MADE.has(row) ? { dflt: DFLT_MADE.get(row), own: DFLT_OWN.get(row) || null } : {}),
               cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}),
-              ...(group.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}), ...kindPick(group.records, picked.get(surface)) });
+              ...(group.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}), ...kindPick(group.records, picked.get(surface), kindsAtCell) });
             if (surface !== SET_KEY) mem.cells.delete(SET_KEY);
             [...pills.children].forEach((x) => x.setAttribute("aria-pressed", String((x.dataset.pointer || x.textContent) === group.text || x.textContent === spanJoin(group.text))));
             rungRuled(); markRuled(); selectedRecordRef.m = index.m_sources[row[3]] || null;
@@ -8948,7 +9231,7 @@
         // a source's own words, ruled, print whole after the source is switched away (SOURCE_WORDS)
         if (SOURCE_WORDS.has(String(route.text))) SOURCE_WORDS_RULED.add(String(route.text));
         selected = route; picked.set(surface, { key: routeKey(route), text: route.text, mId: route.records[0][3], wy: route.records[0][4],
-          ...(route.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}), ...kindPick(route.records, picked.get(surface)),
+          ...(route.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}), ...kindPick(route.records, picked.get(surface), kindsAtCell),
           // a place's own row stands on its pieces' line; a default source's own row made there keeps its own credit,
           // and its own words where the line adds to them (DFLT_OWN), so the row is made again where the ruling reaches
           place: PLACE_ROWS.has(route.records[0]) && !DFLT_MADE.has(route.records[0]), ...(DFLT_MADE.has(route.records[0]) ? { dflt: DFLT_MADE.get(route.records[0]), own: DFLT_OWN.get(route.records[0]) || null } : {}),
@@ -8970,6 +9253,15 @@
         // its own text rides on the pill, for a check and for the eye
         // (a pointer whose target is a name prints as itself where the names gate stands: formOfResolves)
         { const fo = formOfFor(surface, route.records.map((r) => r[3]), route.text); if (formOfResolves(fo, !!pool.namesHeld)) { btn.dataset.pointer = spanJoin(route.text); btn.textContent = formOfSays(fo); } }
+        // ONE READING, ONE PILL, A POINTER'S TOO (pointer-one-pill-rule-v1): a
+        // reading that took the pointers resolving to it prints them beside
+        // it, as their own pill printed them; their own text rides on the
+        // pill, and their rows' sources apart (data-by names every carrier)
+        if (route.pointers && route.pointers.length) {
+          btn.textContent = formOfSaysAll(route.pointers.map((x) => x.e));
+          btn.dataset.pointer = route.pointers.map((x) => spanJoin(x.text)).join(" \u00b7 ");
+          btn.dataset.pointerBy = [...new Set(route.pointers.flatMap((x) => x.rows.map((r) => r[3])))].sort().join(" ");
+        }
         // a read word's reading on the written branch of a pair says which read
         // word it reads (kq-declared-weld-v1); its own text rides on the pill
         if (route.kqRead) { btn.dataset.pointer = spanJoin(route.text); btn.dataset.read = route.kqRead; btn.textContent = `${spanJoin(route.text)} (read ${route.kqRead})`; }
@@ -8980,7 +9272,7 @@
         // pill wears the page's purple and says so (word-senses-rule-v1)
         if (route.records.every((row) => SENSE_ROWS.has(row))) { btn.classList.add("sense"); btn.dataset.sense = "1"; }
         // a reading the dictionaries opened from rest brought wears a dotted edge (dictionary-kinds-rule-v1)
-        if (kindsOn && route.records.length && route.records.every((row) => restsOff(row))) { btn.classList.add("rests"); btn.dataset.rests = "1"; }
+        if (kindsOn && route.records.length && route.records.every((row) => restsOff(row, kindsAtCell))) { btn.classList.add("rests"); btn.dataset.rests = "1"; }
         // and its grade against the open word — the best any record under
         // it earned (m match · n silent · x otherwise · - ungraded), exposed
         // so a check can ask the page how it graded rather than regrade
@@ -8997,6 +9289,20 @@
         if (route.dfltPill) btn.title = `${route.dfltPill} ${route.dfltN} at this place \u00b7 pressing it rules this reading wherever this form stands`;
         // a source's own reading the reader ruled, made again here (withRuledMade), says where it is that source's own
         else if (route.ruledMade) btn.title = dfltSays({ ...route.ruledMade, ruled: true });
+        // WHAT A KIND OF ITS SOURCE'S OWN SAYS OF IT (dictionary-kinds-rule-v1):
+        // a reading of a row the record files under a kind its own facts name
+        // (UBS's collocation rows: the collocations fact, UBS's own field
+        // LEXCollocations, byte for byte) says so in its title, in the record's
+        // own words, with what the source gives it under, wherever it stands
+        { const said = new Map();
+          for (const row of route.records) {
+            const e = restsOff(row), f = factsOf(row) || {};
+            const v = e && e.fact ? f[e.fact] : null;
+            if (!Array.isArray(v) || !v.length) continue;
+            if (!said.has(e.say)) said.set(e.say, new Set());
+            for (const x of v) said.get(e.say).add(String(x));
+          }
+          for (const [say, xs] of said) btn.title += ` · a reading ${say}: ${[...xs].join(" · ")}`; }
         btn.setAttribute("aria-pressed", String(route === selected));
         btn.addEventListener("click", () => {
           pills.querySelectorAll("button").forEach((q) => q.setAttribute("aria-pressed", "false"));
@@ -9017,7 +9323,7 @@
         // a copy is sorted each time, so returning to an order returns to
         // exactly its pool — a sort in place would carry the previous
         // order's tie-breaks along
-        const every = sortPool([...pool], surface);
+        const every = sortPool(Object.assign([...pool], { signsLast: !!pool.signsLast }), surface);
         // signs off: a reading carrying a source's own sign is not offered;
         // a card whose every reading carries one keeps them all rather than
         // stand empty, and says so
@@ -9711,8 +10017,10 @@
     // order (NAME rows first), a row whose source the reader switched off
     // giving way to the next
     // A run the default source reads word by word (runTakesDefault) reads
-    // its words' own lines, below, not a span's or a whole form's
-    if (heldRun === null && run.__key && !run.__table && SPAN_BY_KEY.has(run.__key) && !runTakesDefault(run)) {
+    // its words' own lines, below, not a span's or a whole form's; and so does
+    // a run whose every word has its own reading at the place (runReadsItsWords),
+    // its joined reading a press away on the card
+    if (heldRun === null && run.__key && !run.__table && SPAN_BY_KEY.has(run.__key) && !runTakesDefault(run) && !runReadsItsWords(run)) {
       const rows = spanRowsOn(run.__key);
       if (rows.length) {
         const l = lineEl();
@@ -9726,7 +10034,7 @@
         return;
       }
     }
-    if (heldRun === null && run.__key && run.__words && !(run.__table == null && run.__words.every((w) => placeLine(w))) && !runTakesDefault(run)) {
+    if (heldRun === null && run.__key && run.__words && !runReadsItsWords(run) && !runTakesDefault(run)) {
       const table = run.__table || zone.gloss || {};
       const gmT = run.__table ? null : zone.gloss_m;
       const form = runWholeForms(run.__words.map((w) => w.k)).slice(0, 1).find((f) => {
@@ -11222,6 +11530,7 @@
     if (rs.some((r) => r && r.mId && sourcesOff.has(r.mId))) return null;
     return { text: parts.join("/"), rs: rs.every(Boolean) ? rs : [], why: "place", mId: rs[0] ? rs[0].mId : null };
   };
+  readsItsPlace = (word) => !!placeLine(word);
   // (beneath: the line as it stands without the default sources' layer, for
   // whether today's line has words at all, dfltTodayBare)
   const lineUnder = (word, table, beneath = false) => {
@@ -13336,7 +13645,8 @@
   // November 2026; the review's critic: the title said «STEP’s own reading
   // at each word» over Psalms 10:5:2 «archer», a Strong's line). STEP's
   // layer is the line as it rests: TAHOT's reading at the place, STEP's own
-  // words where today's line was bare, and elsewhere today's line, whose
+  // words where STEP spells or parts the word otherwise (call 4's stands)
+  // and where today's line was bare, and elsewhere today's line, whose
   // chip names its own source. The line is never said to be STEP's where
   // its chip names another source. STEP's share is the index's has.step,
   // the places where STEP has its own reading (its pick 1, or the place's
@@ -13349,8 +13659,10 @@
   // Said of this book: where the place's own pieces are MACULA's (PIECE:
   // MACULA, at 56 words of 21 books) the place's reading is MACULA's, not
   // TAHOT's, so the words say so where the book has any; STEP's words stand
-  // only where today's line was bare, and not at every such word (a few
-  // are held back), so the words say «only where».
+  // where STEP spells or parts the word otherwise (the book's count of them
+  // said, where it has any) and where today's line was bare, and not at
+  // every such word (a few are held back); a book with none of the first
+  // says «only where today's line was bare».
   const DFLT_AS_IT_RESTS = "the line as it rests";
   let dfltMaculaPlaces = null;
   const dfltStepLayer = () => {
@@ -13359,7 +13671,10 @@
       for (const sec of zone.sections || []) for (const w of sec.words || []) if (pieceSource(w.pg) === "macula") dfltMaculaPlaces += 1;
     }
     const at = dfltMaculaPlaces ? `the place’s own reading (TAHOT’s, and MACULA’s at ${dfltMaculaPlaces.toLocaleString("en-US")} word${dfltMaculaPlaces === 1 ? "" : "s"})` : "TAHOT’s reading at the place";
-    return `${DFLT_AS_IT_RESTS}: ${at}, STEP’s own words only where today’s line was bare, and elsewhere today’s line, whose chip names its own source`;
+    // and where STEP spells or parts the word otherwise its words stand whatever today's line is (call 4's stands)
+    const stands = DFLT_STEP_STANDS.size;
+    const own = stands ? `STEP’s own words where STEP spells or parts the word otherwise (${stands.toLocaleString("en-US")} word${stands === 1 ? "" : "s"}) and where today’s line was bare` : "STEP’s own words only where today’s line was bare";
+    return `${DFLT_AS_IT_RESTS}: ${at}, ${own}, and elsewhere today’s line, whose chip names its own source`;
   };
   const DFLT_TITLES = {
     macula: "MACULA’s own words at each word, as MACULA gives them",
@@ -16005,8 +16320,8 @@
   // the pointer over the card, the focus in it, or a finger's last press on
   // it or on the word that opened it (a finger has no hover). There the card
   // stands as it is until the hand leaves (the pointer off it, the focus out
-  // of it, a press anywhere else), and is built again then; a card closed or
-  // built again meanwhile is let be.
+  // of it, a press anywhere else), and is built again then, where the reader
+  // put it (reopenCard's keep); a card closed or built again meanwhile is let be.
   let dfltHeld = false;
   // a finger's last press (a pen's too; a mouse's hand is its hover): the
   // word whose card it pressed, where it pressed a card, and what it pressed
@@ -16017,13 +16332,13 @@
     const wordOf = (x) => (x && x.closest ? x.closest(".wb") : null);
     const onHand = () => hud.matches(":hover") || hud.contains(document.activeElement)
       || !!(dfltFinger && activeEl && (dfltFinger.on === activeEl || activeEl.contains(dfltFinger.at) || (!!wordOf(dfltFinger.at) && wordOf(dfltFinger.at) === wordOf(activeEl))));
-    if (!onHand()) { reopenCard(); return; }
+    if (!onHand()) { reopenCard(true); return; }
     if (dfltHeld) return;
     const gen = hudGen, h = {};
     const stop = () => { hud.removeEventListener("pointerleave", h.look); hud.removeEventListener("focusout", h.look); document.removeEventListener("click", h.look, true); dfltHeld = false; };
     h.look = () => setTimeout(() => {
       if (gen !== hudGen || hud.hidden) stop();
-      else if (!onHand()) { stop(); reopenCard(); }
+      else if (!onHand()) { stop(); reopenCard(true); }
     }, 0);
     dfltHeld = true;
     hud.addEventListener("pointerleave", h.look); hud.addEventListener("focusout", h.look); document.addEventListener("click", h.look, true);
@@ -16168,7 +16483,9 @@
   // lines it resolves are painted again when it is here (the owner's rule:
   // never lead a line or a card with a reading that is only Hebrew)
   { const later = window.requestIdleCallback || ((f) => setTimeout(f, 300));
-    later(() => formOfReady().then((f) => { if (!f) return; applyGlossOrder(defOrder); repaintGlossOrder(); if (redrawReadings) redrawReadings(); })); }
+    // and a card drawn before it is built again, its pointers folded (pointer-one-pill-rule-v1), once the
+    // reader's hand is off it (reopenCardFree)
+    later(() => formOfReady().then((f) => { if (!f) return; applyGlossOrder(defOrder); repaintGlossOrder(); if (!hud.hidden) reopenCardFree(); else if (redrawReadings) redrawReadings(); })); }
   // where the arrival landed, at which line, in which chapter, and whether
   // on the kept place: THE READING PLACE, below, works from these
   let landedEl = null, landedLine = 0, landedCh = "", landedKept = false;

@@ -47,6 +47,12 @@
 // no row pass, and would have taken the mark off every row a round had
 // moved; it is gone, and naming it is refused.
 //
+// A ROW RETEXTED SINCE IS FOUND BY THE WORDS IT TOOK (relay v187, the words
+// our build took out given back, ship 6; row-strikes-follow-rule-v2). The
+// retext keeps the row's key, rank and facts and gives it new words, so a
+// line whose row a round retexted is asked at its key and rank by the text
+// the follower names (the row's route text now), and the row keeps its mark.
+//
 // REFUSED, each in words and with nothing written:
 //   - a list, rule or receipt that is not the bytes its pin names, or no
 //     one pinned ruling on the list, or a ruling that sets another print
@@ -56,8 +62,7 @@
 //   - a ruling whose ledger no source of the store is under;
 //   - a store the record cannot be followed to from the version the list
 //     was read at, or a row a round since did something to that the follower
-//     does not name (a retext among them: relay v187 gives these very rows
-//     their words back, and lands with the tool that retexts);
+//     does not name;
 //   - a line that finds no row and that no round struck or withheld since,
 //     or a line that finds more rows than one: the record does not explain
 //     it, and nothing is guessed.
@@ -120,7 +125,7 @@ const follow = following(() => openFollower({ data: dirname(STORE), index, readA
 // since stands under its new key and rank; one a round struck or withheld is not here
 const listed = new Map();
 const named = new Set();
-const goneLines = [], rekeyedLines = [];   // the follower's answers for the lines whose row a round since took, and for those followed to a moved row
+const goneLines = [], rekeyedLines = [], retextedLines = [];   // the follower's answers for the lines whose row a round since took, and for those followed to a moved or retexted row
 const idOf = (rank, route) => `${rank}\u0001${route}`;
 lines.forEach((l, at) => {
   const where = `${pin.openings.file} line ${at + 1}`;
@@ -137,9 +142,11 @@ lines.forEach((l, at) => {
   const went = acted[0] || { state: "served", name: [l.key, l.rank] };
   if (went.state === "struck" || went.state === "withheld") { goneLines.push(went); return; }
   if (went.state === "re-keyed") rekeyedLines.push(went);
+  if (went.state === "retexted") retextedLines.push(went);
   const [k, rankNow] = went.name;
   const rows = listed.get(k) || listed.set(k, new Map()).get(k);
-  rows.set(idOf(rankNow, l.route), { opens: l.entries[0], met: 0 });
+  // a row retexted since is asked by the route text it took
+  rows.set(idOf(rankNow, went.state === "retexted" ? went.text : l.route), { opens: l.entries[0], met: 0 });
 });
 
 // ---- every row of the store, read first and written only when every line has found its row ---
@@ -177,7 +184,7 @@ for (const [k, rows] of listed) for (const [id, x] of rows) if (!x.met) { unmet 
 const sources = [...ruled].sort().map((m) => `${m} ${(index.m_sources[m] || {}).key}`);
 // lines_that_find_no_row: the lines whose row a round since struck or withheld (a line the record does not explain is refused below)
 const totals = { rows_listed: lines.length, rows_marked: marked, rows_of_the_ruled_sources: ruledRows, lines_that_find_no_row: goneLines.length, lines_that_find_more_than_one_row: twice.length };
-const followed = followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines });
+const followed = followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines, retexted: retextedLines });
 const shardsRewritten = touched.length, movedNow = moved;
 console.log(`sense openings · relay ${pin.relay}, ruling ${ruling.n} of relay ${ruling.relay_of_the_ruling} («${ruling.the_owners_words}») · ${n(lines.length)} rows listed (read from the store at ${readAt}) · ${n(marked)} marked among the ${n(ruledRows)} rows of ${sources.join(", ")} in the store of ${n(storeRows)} · followed through ${follow.rounds.length} round(s) since: ${followedSaid(followed)} · unexplained: ${unmet} lines find no row, ${twice.length} find more than one · ${n(movedNow)} rows to move in ${shardsRewritten} shards`);
 if (unmet || twice.length) refuse(`${unmet} line(s) find no row that no round of the row-strikes record struck, withheld or moved since the store was ${readAt}${firstUnmet.length ? ` (first: ${firstUnmet[0]})` : ""}, and ${twice.length} find more than one${twice.length ? ` (first: ${twice[0]})` : ""}. The record does not explain them, and nothing is guessed`);
@@ -190,7 +197,7 @@ const nothingToWrite = !movedNow && !!had && Object.keys(record).every((k) => sa
 const count = (o) => Object.values(o || {}).reduce((a, c) => a + c, 0);
 console.log(`figures ${JSON.stringify({ relay: pin.relay, list_sha256: pin.openings.sha256, read_at_store_version: readAt, store_version: index.store_version || null, ...totals, rounds_since: follow.rounds.length,
   lines_whose_row_was_struck: count(followed.lines_whose_row_was_struck), lines_whose_row_was_withheld: count(followed.lines_whose_row_was_withheld), rows_re_keyed_and_followed: count(followed.rows_re_keyed_and_followed),
-  rows_moved: movedNow, shards_moved: shardsRewritten, the_index_names_this_run: nothingToWrite })}`);
+  rows_retexted_and_followed: count(followed.rows_retexted_and_followed), rows_moved: movedNow, shards_moved: shardsRewritten, the_index_names_this_run: nothingToWrite })}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 if (nothingToWrite) { console.log("nothing moves and the index names this list as it is followed — nothing written"); process.exit(0); }
 if (movedNow) walk(true);

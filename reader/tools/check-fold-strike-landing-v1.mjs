@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: fold-strike-landing-rule-v1-a-line-lands-at-the-hole-its-struck-row-left-unless-a-row-under-its-key-now-prints-its-words
-// GUARDS: row-strike-rule-v6-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted
+// GUARDS: row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts
 // LEDGER: -
 // no frame letter. A check reads the lists, the record and the store and
 // judges them; it is not the ledger for one.

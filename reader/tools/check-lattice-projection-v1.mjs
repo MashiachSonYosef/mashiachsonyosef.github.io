@@ -34,6 +34,19 @@
 //       lane's lattice is on this machine (--lattice <dir>, or LATTICE_DIR)
 //       every graded word place reads exactly the cards that name its own
 //       verse. Without the lattice that half says it was not judged.
+//   L4d the two leaders that rank the whole pool by the pointing (o.m, the
+//       first group a matching card carries; o.x, the first a contradicting
+//       one does) are rebuilt by this check's own road: every group of the
+//       store's pool for the key, its tier the best grade of any row carrying
+//       it (the row's own headwords, else its lattice card's grade by
+//       fingerprint), sorted by that rank and the pool's own order, the
+//       leader the top group where it is of the tier the order asks and none
+//       where it is not, credited to its oldest carrier. On a book the record
+//       of dictionary kinds reaches (its scope, the thirty-nine books) the
+//       pool is read with Strong's sign last and the sign is the first key
+//       of that sort (zone-gloss-rule-v8, the lead's calls of 15 November
+//       2026), so a group carrying the sign does not lead because its tier
+//       ranks better; on any other book, today's order
 //   L5  the fingerprints join the store: for the keys the sidecar carries,
 //       the store's rows find their lattice card by fingerprint — and where
 //       one does not, the count is on the record, never a guess
@@ -60,7 +73,7 @@ import { gunzipSync, createGunzip } from "node:zlib";
 import { createInterface } from "node:readline";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { openRouteStore } from "./gloss-store-v1.mjs";
+import { openRouteStore, opensWithStrongSign } from "./gloss-store-v1.mjs";
 import { gradeRow } from "./pointing-grade-v1.mjs";
 import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { fnv1a, LATTICE_RULE_ID, SIDECAR_SCHEMA } from "./lattice-lib-v1.mjs";
@@ -94,7 +107,8 @@ if (!existsSync(ZONES)) { console.log(`\nSKIPPED — no zones at ${ZONES}`); pro
 const load = (f) => { try { return JSON.parse(gunzipSync(readFileSync(join(ZONES, f))).toString("utf8")); } catch { return null; } };
 const store = openRouteStore(join(K3, "data", "route-store"));
 const kinds = readKinds(join(K3, "data"));
-const storeAtRest = openRouteStore(join(K3, "data", "route-store"), { atRest: true });
+// a book the record rests shut is baked with Strong's sign last as well (zone-gloss-rule-v8): the same scope
+const storeAtRest = openRouteStore(join(K3, "data", "route-store"), { atRest: true, signLast: true });
 const labels = new Set(Object.values(store.index.m_sources || {}).map((m) => m.label));
 const pins = existsSync(join(K3, "data", "zone-store-v1.json")) ? (JSON.parse(readFileSync(join(K3, "data", "zone-store-v1.json"), "utf8")).pins || {}) : {};
 const layered = [];
@@ -106,7 +120,8 @@ for (const f of readdirSync(ZONES).filter((x) => x.endsWith(".bin") && !isSideca
 if (!layered.length) { console.log("\nSKIPPED — no zone on this shelf carries the lattice layer"); process.exit(bad ? 1 : 3); }
 console.log(`\n— ${layered.length} zones carry the lattice layer —`);
 
-const l2 = [], l3 = [], l4 = [], l4b = [], l4c = [], l5 = [], l6 = [], l8 = [];
+const l2 = [], l3 = [], l4 = [], l4b = [], l4c = [], l4d = [], l5 = [], l6 = [], l8 = [];
+let rebuiltLeaders = 0, signedFirstBooks = 0;
 let leadersHeld = 0, versesOwn = 0, placesRead = 0, booksRead = 0;
 const labelOfRow = (row) => (store.index.m_sources[row[3]] || {}).label;
 const yearOfRow = (row) => { const y = store.wordingYear(row); return Number.isFinite(y) ? y : null; };
@@ -228,6 +243,37 @@ for (const { slug, z, t } of layered) {
     if (notACarrier) note(l4b, `${slug}: ${notACarrier} leaders credited to a row that does not carry the reading`);
     if (notTheOldest) note(l4b, `${slug}: ${notTheOldest} leaders of a whole-pool order credited to another carrier than the oldest`);
   }
+  // L4d — o.m and o.x, rebuilt by the check's own road: the pool's groups ranked by the best grade any carrier earns,
+  // Strong's sign first on a book of the scope
+  {
+    const signFirst = baked === storeAtRest && baked.signLast;
+    if (signFirst) signedFirstBooks += 1;
+    const TIER = { m: 0, n: 1, x: 2 };
+    let off = 0, ex = "";
+    for (const [surface, gr] of Object.entries(grades)) {
+      const r = routes[gr.k];
+      if (!r || !gr.o) continue;
+      const srows = baked.routesFor(gr.k) || [], fps = new Map((r.f || []).map((fp, ix) => [fp, ix]));
+      const gradeOf = (row) => { const sg = gradeRow(row, surface); if (sg !== "-") return sg; const lab = labelOfRow(row); const ix = lab ? fps.get(fnv1a(`${row[1]}|${lab}`)) : undefined; return ix === undefined ? "-" : gr.g[ix] || "-"; };
+      const info = baked.readingPool(srows, "oldest").map((grp, at) => {
+        const carriers = baked.carriersOf(srows, grp.text);
+        let tier = 3;
+        for (const row of carriers) { const t = TIER[gradeOf(row)]; if (t !== undefined && t < tier) tier = t; }
+        return { text: grp.text, tier, carriers, at, sg: signFirst && opensWithStrongSign(grp.text) ? 1 : 0 };
+      });
+      const firstUnder = (rank, only) => {
+        const top = [...info].sort((a, b) => a.sg - b.sg || rank(a) - rank(b) || a.at - b.at)[0];
+        if (!top || !only(top) || !top.carriers.length) return null;
+        const row = top.carriers[0], src = store.index.m_sources[row[3]];
+        return [top.text, src.label, src.licensePosture, yearOfRow(row)];
+      };
+      for (const [ch, want] of [["m", firstUnder((g) => g.tier, (g) => g.tier === 0)], ["x", firstUnder((g) => ({ 2: 0, 1: 1, 0: 2 })[g.tier] ?? 3, (g) => g.tier === 2)]]) {
+        rebuiltLeaders += 1;
+        if (JSON.stringify(gr.o[ch] ?? null) !== JSON.stringify(want)) { off += 1; if (!ex) ex = `${surface} o.${ch}: the sidecar ${JSON.stringify(gr.o[ch] ?? null).slice(0, 60)}, rebuilt ${JSON.stringify(want).slice(0, 60)}`; }
+      }
+    }
+    if (off) note(l4d, `${slug}: ${off} of o.m and o.x are not the first group under the pointing's rank${signFirst ? ", Strong's sign first" : ""} (${ex})`);
+  }
   // L4c — the verse's own citations, as written
   {
     let malformed = 0;
@@ -297,6 +343,8 @@ check("L4b every leader is credited to a carrier of its reading by the store's o
   l4b.length ? few(l4b) : `${leadersHeld.toLocaleString("en-US")} leaders`);
 check("L4c the citations are the verse's: every per-verse entry lists its key's cards, differs from the first verse's, and names a held leader", !l4c.length,
   l4c.length ? few(l4c) : `${versesOwn.toLocaleString("en-US")} verses carry their own list beside their surface's first${booksRead ? `; ${placesRead.toLocaleString("en-US")} graded word places on ${booksRead} books read against the lattice, each its own verse's cards` : ""}`);
+check("L4d o.m and o.x are the first group of the store's pool under the pointing's rank, rebuilt by this check's own road, Strong's sign first on a book the record's scope reaches", !l4d.length,
+  l4d.length ? few(l4d) : `${rebuiltLeaders.toLocaleString("en-US")} leaders rebuilt on ${layered.length} books, ${signedFirstBooks} of them with Strong's sign first`);
 if (!booksRead) console.log(`  --  L4c's second half was not judged here: the corpus lane's lattice is not on this machine (--lattice <dir> or LATTICE_DIR), so no word place was read against the lattice's own list for its verse`);
 else if (booksRead < layered.length) console.log(`  --  L4c's second half was not judged for ${layered.length - booksRead} of ${layered.length} books: their positions file is not in ${LATTICE}`);
 check("L5  the fingerprints join the store", !l5.length && joinHits > 0, l5.length ? few(l5) : `${joinHits.toLocaleString()} of ${joinRows.toLocaleString()} store rows find their lattice card (${(100 * joinHits / Math.max(1, joinRows)).toFixed(1)}%); the rest sort after the graded ones, never dropped`);

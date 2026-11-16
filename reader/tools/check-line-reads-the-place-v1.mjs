@@ -22,7 +22,10 @@
 //   P3  each card opens pressed on its line, and the line's reading is its
 //       first pill; a card whose line reads the source's set opens on the
 //       set's core block (core-block-rule-v1, the owner, 14 November 2026),
-//       the set, its line, said on top, pressed on the line's piece there
+//       the set, its line, said on top, pressed on the line's piece there.
+//       A pill that took the pointers resolving to its reading prints them
+//       beside it and puts the reading on the line (pointer-one-pill-rule-v1,
+//       ship 5), so it is read as the line prints it (lineOfPill)
 //   P4  a word whose reading here no row of the store prints still opens on
 //       it, as TAHOT's own row (the page stands it up from the piece gloss);
 //       a card that opens on a block of the set's division is read on the set
@@ -35,6 +38,7 @@
 // Run: node tools/check-line-reads-the-place-v1.mjs [url]
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+import { lineOfPill } from "./card-readings-v1.mjs";
 
 const pw = await loadPlaywright();
 let bad = 0;
@@ -127,17 +131,23 @@ const ready = async (p) => {
       const drawn = (t) => (t && window.__signs === "off" ? joinD(trim(t.split(" + "))) : t);
       const blocks = [...document.querySelectorAll("#hud .b-cell .s-pills button")];
       const top = document.querySelector("#hud .r-piece:not(.r-sug) b")?.textContent.trim();
-      return { pressed: drawn(document.querySelector('#hud .r-pills button[aria-pressed="true"]')?.textContent.trim()), first: drawn(document.querySelector("#hud .r-pills button")?.textContent.trim()),
+      const on = document.querySelector('#hud .r-pills button[aria-pressed="true"]'), lead = document.querySelector("#hud .r-pills button");
+      return { pressed: drawn(on?.textContent.trim()), pressedBy: on?.dataset.pointerBy || "", first: drawn(lead?.textContent.trim()), firstBy: lead?.dataset.pointerBy || "",
         blockAt: blocks.length > 1 ? blocks.findIndex((x) => x.getAttribute("aria-pressed") === "true") : -1, top: top ? drawn(top) : null };
     });
     n += 1;
+    // a reading that took a pointer prints it beside the reading on its pill, and puts the reading on the line
+    // (pointer-one-pill-rule-v1: lineOfPill), so the pill is read as the line prints it, the case folded
+    const pressed = lineOfPill(r.pressed, r.pressedBy), first = lineOfPill(r.first, r.firstBy);
+    const is = (t, by, want) => (by ? String(t || "").toLowerCase() === want.toLowerCase() : t === want);
+    const tookSaid = (t, raw, by) => (by ? `"${t}" (the pill "${raw}")` : `"${t}"`);
     if (r.blockAt >= 0) {
       // on the core block of the set: the set on top is the line, the pill pressed is the line's piece there
       onCore += 1;
       const piece = (pieces.length > r.blockAt ? pieces[r.blockAt] : line.split(" + ")[r.blockAt] || "").trim();
-      if (r.top === line && String(r.pressed || "").toLowerCase() === piece.toLowerCase()) same += 1;
-      else if (diff.length < 3) diff.push(`line "${line}" · on its core block, the set on top "${r.top}" · pressed "${r.pressed}", owed the line's piece "${piece}"`);
-    } else if (r.pressed === line && r.first === line) same += 1; else if (diff.length < 3) diff.push(`line "${line}" · pressed "${r.pressed}" · first "${r.first}"`);
+      if (r.top === line && String(pressed || "").toLowerCase() === piece.toLowerCase()) same += 1;
+      else if (diff.length < 3) diff.push(`line "${line}" · on its core block, the set on top "${r.top}" · pressed ${tookSaid(pressed, r.pressed, r.pressedBy)}, owed the line's piece "${piece}"`);
+    } else if (is(pressed, r.pressedBy, line) && is(first, r.firstBy, line)) same += 1; else if (diff.length < 3) diff.push(`line "${line}" · pressed ${tookSaid(pressed, r.pressed, r.pressedBy)} · first ${tookSaid(first, r.first, r.firstBy)}`);
     await p.keyboard.press("Escape"); await p.waitForTimeout(40);
   }
   check("P3  each card opens pressed on its line, and the line's reading is its first pill", n > 0 && same === n, `${same} of ${n}, ${onCore} of them on the core block of their set${diff.length ? ` · ${diff.join(" | ")}` : ""}`);

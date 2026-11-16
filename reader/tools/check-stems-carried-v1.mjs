@@ -29,7 +29,12 @@
 //       found here as the page finds them, and not through the rule's own
 //       module, so a rule that left a key out is caught and not agreed with:
 //       a word's own key, or a read half's, where that form's pointed surface
-//       (the half's inside its brackets) has a known stem in the book.
+//       (the half's inside its brackets) has a known stem in the book. A line
+//       the file names by route text a round of the row-strikes record has
+//       since retexted, without folding the row, is asked by the words the
+//       row serves now, as the page asks it (ship 6 of 16 November 2026: the
+//       unabridged BDB's openings that took their words back): followed here
+//       from the record itself, round by round, not through the projector.
 //       Without the file this is said and not judged
 //
 // The extension's rows are held to their lines at the same keys by
@@ -48,6 +53,19 @@ import { zonesServed } from "./zones-on-disk-v1.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
 const ZONES = join(K3, "data", "zones");
+// the retexts of the row-strikes record that left a row at its key and rank under other words, in the record's
+// order: `${key}\u0001${m}\u0001${rank}` -> [[route, to_text], ...] (a retext that folded the row took it off)
+const RETEXTS = new Map();
+{
+  const rec = join(K3, "data", "row-strikes-v1.json");
+  if (existsSync(rec)) for (const r of JSON.parse(readFileSync(rec, "utf8")).rounds || []) for (const x of r.rows || []) {
+    if (x.action !== "retext" || x.folded_into || typeof x.to_text !== "string") continue;
+    const at = `${x.key}\u0001${x.m}\u0001${x.rank}`;
+    (RETEXTS.get(at) || RETEXTS.set(at, []).get(at)).push([x.route, x.to_text]);
+  }
+}
+/** The words a row the file names by `route` serves now: followed through every retext since, in order. */
+const routeNow = (key, m, rank, route) => { let now = route; for (const [from, to] of RETEXTS.get(`${key}\u0001${m}\u0001${rank}`) || []) if (now === from) now = to; return now; };
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const FILE = arg("row-stems", process.env.ROW_STEMS || null);
 let bad = 0;
@@ -140,7 +158,7 @@ for (const z of zonesServed()) {
     const held = side.stems[k] || {};
     for (const l of lines.get(k)) {
       c3.lines += 1;
-      const got = held[stemsId(l.m, l.rank, l.route)];
+      const got = held[stemsId(l.m, l.rank, routeNow(k, l.m, l.rank, l.route))];
       if (!same(got, l.stems) && c3.faults.length < 40) c3.faults.push(`${z} «${k}» ${l.m} rank ${l.rank}: its line gives ${l.stems.join("+")} and the sidecar holds ${got ? got.join("+") : "nothing"}`);
     }
   }

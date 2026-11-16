@@ -34,7 +34,7 @@
 // A BOOK THE RECORD OF WHAT EACH DICTIONARY IS RESTS SHUT (dictionary-kinds-
 // rule-v1: the thirty-nine books) was baked over the store at rest, the rows
 // that rest shut left out, and N1 and N3 ask the rule of the store as that
-// book was baked (openRouteStore(…, { atRest: true })); any other book, of the
+// book was baked (openRouteStore(…, { atRest: true, signLast: true })); any other book, of the
 // store whole. N4 and N5 read the card with those dictionaries open
 // (?kinds=open): this holds the names lead, not them, and the line under the
 // word is baked at rest and does not move with them.
@@ -63,7 +63,8 @@ const NAME_FORM = /^[A-Z][A-Za-z'À-ſ-]+\.?$/u;
 const store = openRouteStore(join(K3, "data", "route-store"));
 // the store a book was baked over: at rest where the record rests the book shut, whole for any other
 const kinds = readKinds(join(K3, "data"));
-const storeAtRest = openRouteStore(join(K3, "data", "route-store"), { atRest: true });
+// with Strong's sign last as well on those books (zone-gloss-rule-v8: the same scope, as regloss-zone opens it)
+const storeAtRest = openRouteStore(join(K3, "data", "route-store"), { atRest: true, signLast: true });
 const storeOf = (z) => (restsOffIn(kinds.rec, z) ? storeAtRest : store);
 const stamped = [];
 for (const f of readdirSync(ZONES)) {

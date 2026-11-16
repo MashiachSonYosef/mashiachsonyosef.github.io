@@ -91,7 +91,11 @@ export const CHAIN_RULE_ID = "chain-book-rule-v2-the-same-book-with-the-meaning-
 
 // the press that opens the dictionaries that rest shut, as the page keeps it: "open@" the record's version, read
 // from the record beside the store of this tree (readKinds refuses, in one sentence, a record missing or not holding)
-const KINDS_OPEN = `open@${readKinds(join(dirname(fileURLToPath(import.meta.url)), "..", "data")).rec.version}`;
+const KINDS_REC = readKinds(join(dirname(fileURLToPath(import.meta.url)), "..", "data")).rec;
+const KINDS_OPEN = `open@${KINDS_REC.version}`;
+// what a pill's title says after its label where a resting entry files the pill's rows by a fact of their own (the
+// page's makePill, ship 5: UBS's collocations), in the record's own words: " · a reading <the entry's say>: ..."
+const KIND_NOTES = (Array.isArray(KINDS_REC.rests_off) ? KINDS_REC.rests_off : []).map((e) => ` · a reading ${e.say}: `);
 
 /** THE TWO STATES. `keep` is what a visit keeps on the device before the page
  *  draws: nothing at rest; for lifted, the page's own switches at the
@@ -292,9 +296,15 @@ export const readCards = async (browser, base, work, stateName, { from = 0, to =
  *  it is the longest label an index holds that the title ends in. Returns
  *  { year, mark, label }, the year a number or null where the title says the
  *  source gives none, the mark any words the title sets beside the year; or
- *  null where the title is not of that shape. */
+ *  null where the title is not of that shape. Where a resting entry of the
+ *  record of dictionary kinds files the pill's rows by a fact of their own,
+ *  the page says so after the label, in the record's words (KIND_NOTES:
+ *  UBS's collocations, ship 5), and the title is read up to the first such
+ *  note. */
 export const titleOf = (title, knownLongestFirst) => {
-  const t = String(title || "");
+  const whole = String(title || "");
+  const note = Math.min(...KIND_NOTES.map((n) => { const at = whole.indexOf(n); return at < 0 ? Infinity : at; }));
+  const t = Number.isFinite(note) ? whole.slice(0, note) : whole;
   const label = knownLongestFirst.find((l) => t === l || t.endsWith(` · ${l}`));
   if (label === undefined) return null;
   const said = t === label ? "" : t.slice(0, t.length - label.length - 3);
@@ -315,6 +325,24 @@ export const chipLabelOf = (title, knownLongestFirst) => knownLongestFirst.find(
 export const suggestedCellOf = (readingTitle) => {
   const m = /byte for byte: ("(?:[^"\\]|\\.)*")/u.exec(String(readingTitle || ""));
   return m ? JSON.parse(m[1]) : null;
+};
+
+/** WHAT A PILL PUTS ON THE LINE ONCE PRESSED, read off its text and its
+ *  data-pointer-by. A reading that took the pointers resolving to it
+ *  (pointer-one-pill-rule-v1, ship 5: zone.html's poolFor folds them on a
+ *  card's pool alone, and formOfSaysAll prints them) prints the reading with
+ *  the pointers beside it, in one bracket at its end, and names the pointers'
+ *  rows apart (data-pointer-by). Pressed, it rules that reading, and the
+ *  line, whose pool is not folded, prints the reading as its own rows give
+ *  it: the pill's text less that bracket, as the resolution writes it, which
+ *  the fold matched to the reading by its printed form, case aside. Every
+ *  other pill is given back as it prints: a pointer's own pill prints its
+ *  resolution with the pointer beside it on the pill and on the line alike
+ *  (form-of-pills-rule-v3). A check that sets a pill beside a line reads the
+ *  pill here, and compares a folded one with the case folded. */
+export const lineOfPill = (text, pointerBy) => {
+  const t = String(text ?? "");
+  return String(pointerBy || "").trim() ? t.replace(/ \([^()]*\)$/u, "") : t;
 };
 
 /** EVERY NAME A CARD CAN CARRY, with the label the catalog gives it: the

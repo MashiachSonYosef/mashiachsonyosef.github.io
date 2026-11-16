@@ -12,7 +12,7 @@
 // So: re-project each zone over the store on disk and see whether anything
 // moves. Nothing should. This reads the artifacts, not a served page, so it
 // takes no URL.
-// GUARDS: zone-gloss-rule-v7-printed-form-ledger-division-whole-without-a-ledger-antiquity-1940-lastuary, regloss-rule-v1-project-the-store-over-a-zones-own-keys
+// GUARDS: zone-gloss-rule-v8-printed-form-ledger-division-whole-without-a-ledger-at-rest-a-rendering-carrying-strongs-sign-after-every-plain-one-antiquity-1940-lastuary, regloss-rule-v1-project-the-store-over-a-zones-own-keys
 //
 import { execFileSync } from "node:child_process";
 import { readFileSync, mkdtempSync } from "node:fs";

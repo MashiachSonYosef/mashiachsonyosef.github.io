@@ -6,17 +6,23 @@
 //       places pointing at rows the file holds, every row's M a licensed
 //       source the page can name
 //   S2  every place of a book is laid as one cell whose ink is the key, with
-//       one line reading the store's first row under a chip, and one blob;
+//       one line reading the store's first row under a chip, and one blob,
+//       but a place whose every word has its own reading at the place reads
+//       word by word (call 3, below): its cell and its blob stand, its line
+//       its words' own, never the store's row;
 //       a place whose first or last word is half of a maqaf compound is
 //       drawn inside the compound's cell, its line word by word, and is
 //       counted and named here, not passed in silence (an open question for
 //       the owner, 2026-10-17: 650 of the 2,845 places)
-//   S3  a cell's card opens on the span whole: the pills are the rows'
-//       readings, the record under the first is that row's D, and a place
-//       inside another's is a rung of the longer cell's card, by its own
-//       key; a place drawn inside a compound's cell opens the same card from
-//       its first word. Places the page does not lay (overlapping a laid
-//       one, as the store marks them) are not picked
+//   S3  a cell's card opens on the span whole where its line reads it whole:
+//       the pills are the rows' readings, the record under the first is that
+//       row's D, and a place inside another's is a rung of the longer cell's
+//       card, by its own key; a place drawn inside a compound's cell opens
+//       the same card from its first word. A cell whose words read their own
+//       opens on the word pressed, its own block pressed, the place a rung
+//       of the card's row (the joined reading a press away). Places the page
+//       does not lay (overlapping a laid one, as the store marks them) are
+//       not picked
 //   S4  the two sources the shelf lacked (M197, M199) resolve with a license
 //   S5  the chain at the top of a word's card names a place the store holds
 //       and its inner place by the store's own keys: a rung piece written
@@ -41,6 +47,13 @@
 // them, open or shut. The page must say they act where the stamp is, and
 // nowhere else. The rule is the record's (tools/dictionary-kinds-v1.mjs),
 // asked of each row: a span row carries its source's own M and no facts.
+// A RUN READS ITS WORDS (run-reads-its-words-rule-v1, call 3 of relay v189 as
+// the lead landed it, 15 November 2026): a run keeps its joined line only
+// where some word of it has no reading of its own at the place; a word's own
+// reading is its place's pieces, every one saying something, or a place where
+// STEP's own words stand (call 4's stands, the default picks' index: step_words
+// whose third element is 1). Found here from the zone and the index, never
+// from the page; the marks are set aside.
 // The books are found in the data, never named here (check-scope-derived
 // S1): the first served book with places, and the first whose nested place
 // holds an inner key written with a maqaf inside an outer written with a
@@ -59,6 +72,24 @@ const DIR = "data/span-store";
 const spanBooks = zonesServed("data/zones").filter((bk) => existsSync(`${DIR}/${bk}.json`));
 const placesOf = (bk) => JSON.parse(readFileSync(`${DIR}/${bk}.json`, "utf8")).placesList || [];
 const firstWithPlaces = spanBooks.find((bk) => placesOf(bk).length > 0);
+// call 3: per book, each place whose every word reads its own at the place, «<ref>\u0001<key>» -> its first word's key
+const STANDS_BY_BOOK = (() => {
+  try { const dp = JSON.parse(readFileSync("data/default-picks/index.json", "utf8")); return new Map(Object.entries(dp.books || {}).map(([bk, e]) => [bk, new Set((e.step_words || []).filter((r) => r[2] === 1).map((r) => r[0]))])); } catch { return new Map(); }
+})();
+const readsItsWordsIn = (bk) => {
+  const out = new Map(), f = `data/zones/${bk}.bin`;
+  if (!existsSync(f)) return out;
+  const z = JSON.parse(gunzipSync(readFileSync(f)).toString("utf8"));
+  const stands = STANDS_BY_BOOK.get(bk) || new Set();
+  const says = (w) => Array.isArray(w.pg) && w.pg.length > 0 && w.pg.every((x) => x && String(x.g || "").trim());
+  const byRef = new Map(); let n = 0;
+  for (const sec of z.sections || []) { const ws = []; for (const w of sec.words || []) { n += 1; if (!w.mark) ws.push({ w, n }); } byRef.set(String(sec.label), ws); }
+  for (const pl of placesOf(bk)) {
+    const ws = (byRef.get(String(pl.ref)) || []).slice(pl.first - 1, pl.last);
+    if (ws.length && ws.every((q) => says(q.w) || stands.has(q.n))) out.set(`${pl.ref}\u0001${pl.key}`, ws[0].w.k || "");
+  }
+  return out;
+};
 const firstMaqafInner = spanBooks.find((bk) => placesOf(bk).some((x) => / /u.test(x.key) && (x.contains || []).some((k) => k.includes("\u05be"))));
 const firstChainNest = spanBooks.find((bk) => placesOf(bk).some((x) => !/ /u.test(x.key) && (x.contains || []).length));
 const BOOKS = arg("books", "") ? arg("books", "").split(",") : [...new Set([firstWithPlaces, firstMaqafInner, firstChainNest].filter(Boolean))];
@@ -109,12 +140,14 @@ for (const book of BOOKS) {
   const atRest = stampedAtRest(book);
   const shutRow = (r) => atRest && !!restsOff(r.slots);
   const keyRows = Object.fromEntries(Object.entries(onDisk.keys || {}).map(([k, rs]) => [k, rs.map((r) => [r.slots[3], shutRow(r)])]));
-  const r2 = await p.evaluate(({ placesList, keyRows }) => {
+  const ownAll = readsItsWordsIn(book);
+  const r2 = await p.evaluate(({ placesList, keyRows, ownAll }) => {
     const st = window.__spanStore || { places: 0, laid: 0, skipped: [] };
     const file = window.__spanBook || null;
     // two places the store itself marks as overlapping (neither inside the
     // other) cannot both be cells: the first laid stands, the other is skipped
-    const out = { skippedAt: st.skipped.map((x) => `${x.ref}\u0001${x.key}`), absorbed: [], absorbedLoose: [], inner: 0, places: st.places, laid: st.laid, overlapped: st.skipped.filter((x) => x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length).length, skipped: st.skipped.filter((x) => !(x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length)).map((x) => `${x.ref} ${x.key}: ${x.why}`), cells: 0, noCell: [], lineBad: [], blobBad: [], chipBad: [], shutLine: [], kindsHere: !!window.__kindsHere, kinds: window.__kinds || null };
+    const out = { skippedAt: st.skipped.map((x) => `${x.ref}\u0001${x.key}`), absorbed: [], absorbedLoose: [], inner: 0, places: st.places, laid: st.laid, overlapped: st.skipped.filter((x) => x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length).length, skipped: st.skipped.filter((x) => !(x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length)).map((x) => `${x.ref} ${x.key}: ${x.why}`), cells: 0, noCell: [], lineBad: [], blobBad: [], chipBad: [], shutLine: [], wordByWord: [], kindsHere: !!window.__kindsHere, kinds: window.__kinds || null };
+    const readsWords = new Set(ownAll);
     const off = new Set(window.__sourcesOff || []);
     const letters = (t) => [...String(t || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
     const spanJoin = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
@@ -132,7 +165,13 @@ for (const book of BOOKS) {
       // its line is its pieces, never a shut row's
       const ms = keyRows[key] || [];
       const restsShut = ms.length > 0 && ms.some(([, shut]) => shut) && ms.every(([m, shut]) => shut || off.has(m));
-      if (restsShut) { if (g && g.dataset.span === key) out.lineBad.push(`${c.__run.label} ${key}: line "${text}" read from a row that rests shut`); else out.shutLine.push(`${c.__run.label} ${key}`); }
+      // a place whose every word reads its own at the place (call 3): its words' own lines, word by word, never the store's row
+      if (readsWords.has(`${c.__run.label}\u0001${key}`)) {
+        if (g && g.dataset.span === key) out.lineBad.push(`${c.__run.label} ${key}: every word reads its own at the place, and the line reads the store's row "${text}"`);
+        else if (g && !g.classList.contains("parts")) out.lineBad.push(`${c.__run.label} ${key}: every word reads its own at the place, and the line "${text}" is not drawn word by word`);
+        else out.wordByWord.push(`${c.__run.label} ${key}`);
+      }
+      else if (restsShut) { if (g && g.dataset.span === key) out.lineBad.push(`${c.__run.label} ${key}: line "${text}" read from a row that rests shut`); else out.shutLine.push(`${c.__run.label} ${key}`); }
       else if (!g || g.dataset.span !== key) out.lineBad.push(`${c.__run.label} ${key}: line "${text}" not the store's`);
       if (g && !g.querySelector(".g-lic")) out.chipBad.push(`${c.__run.label} ${key}`);
       if (c.querySelectorAll(":scope > svg.wj-tie").length !== 1) out.blobBad.push(`${c.__run.label} ${key}: ${c.querySelectorAll(":scope > svg.wj-tie").length} blobs`);
@@ -162,17 +201,20 @@ for (const book of BOOKS) {
       else out.absorbedLoose.push(`${pl.ref} ${pl.key}`);
     }
     return out;
-  }, { placesList: onDisk.placesList, keyRows });
+  }, { placesList: onDisk.placesList, keyRows, ownAll: [...ownAll.keys()] });
   // the page says the dictionaries that rest shut act on this book exactly where its zone was baked at rest
   const kindsSaid = r2.kindsHere === atRest;
-  check(`S2  ${book}: every place laid as one cell whose ink is the key, one line from the store under a chip, one blob`, kindsSaid && r2.laid + r2.overlapped === r2.places && r2.skipped.length === 0 && r2.absorbedLoose.length === 0 && r2.noCell.length === 0 && r2.lineBad.length === 0 && r2.chipBad.length === 0 && r2.blobBad.length === 0,
-    `${r2.laid} of ${r2.places} places laid [places]${r2.overlapped ? ` (${r2.overlapped} overlapping another, as the store marks them, not laid)` : ""} · ${r2.cells} cells on the page` + (r2.inner ? ` · ${r2.inner} inside another place, a rung of its cell` : "") + (r2.absorbed.length ? ` · ${r2.absorbed.length} drawn inside a maqaf compound's cell, the line word by word (open question): ${r2.absorbed.slice(0, 3).join(" | ")}` : "") + (r2.shutLine.length ? ` · ${r2.shutLine.length} whose every row rests shut, the line its pieces: ${r2.shutLine.slice(0, 3).join(" | ")}` : "") + (kindsSaid ? "" : ` · the page says the dictionaries that rest shut ${r2.kindsHere ? "act" : "do not act"} here, and the zone ${atRest ? "was" : "was not"} baked at rest`) + (r2.absorbedLoose.length ? ` · LOST, no cell and no compound: ${r2.absorbedLoose.slice(0, 3).join(" | ")}` : "") + (r2.skipped.length ? ` · skipped: ${r2.skipped.slice(0, 2).join(" | ")}` : "") + (r2.noCell.length ? ` · ink: ${r2.noCell.slice(0, 2).join(" | ")}` : "") + (r2.lineBad.length ? ` · line: ${r2.lineBad.slice(0, 2).join(" | ")}` : "") + (r2.chipBad.length ? ` · no chip: ${r2.chipBad.slice(0, 2).join(" | ")}` : "") + (r2.blobBad.length ? ` · blob: ${r2.blobBad.slice(0, 2).join(" | ")}` : ""));
+  check(`S2  ${book}: every place laid as one cell whose ink is the key, one line from the store under a chip, one blob, but a place whose every word reads its own at the place, its line word by word`, kindsSaid && r2.laid + r2.overlapped === r2.places && r2.skipped.length === 0 && r2.absorbedLoose.length === 0 && r2.noCell.length === 0 && r2.lineBad.length === 0 && r2.chipBad.length === 0 && r2.blobBad.length === 0,
+    `${r2.laid} of ${r2.places} places laid [places]${r2.overlapped ? ` (${r2.overlapped} overlapping another, as the store marks them, not laid)` : ""} · ${r2.cells} cells on the page` + (r2.inner ? ` · ${r2.inner} inside another place, a rung of its cell` : "") + (r2.absorbed.length ? ` · ${r2.absorbed.length} drawn inside a maqaf compound's cell, the line word by word (open question): ${r2.absorbed.slice(0, 3).join(" | ")}` : "") + (r2.shutLine.length ? ` · ${r2.shutLine.length} whose every row rests shut, the line its pieces: ${r2.shutLine.slice(0, 3).join(" | ")}` : "") + (r2.wordByWord.length ? ` · ${r2.wordByWord.length} whose every word reads its own at the place, the line word by word (call 3): ${r2.wordByWord.slice(0, 2).join(" | ")}` : "") + (kindsSaid ? "" : ` · the page says the dictionaries that rest shut ${r2.kindsHere ? "act" : "do not act"} here, and the zone ${atRest ? "was" : "was not"} baked at rest`) + (r2.absorbedLoose.length ? ` · LOST, no cell and no compound: ${r2.absorbedLoose.slice(0, 3).join(" | ")}` : "") + (r2.skipped.length ? ` · skipped: ${r2.skipped.slice(0, 2).join(" | ")}` : "") + (r2.noCell.length ? ` · ink: ${r2.noCell.slice(0, 2).join(" | ")}` : "") + (r2.lineBad.length ? ` · line: ${r2.lineBad.slice(0, 2).join(" | ")}` : "") + (r2.chipBad.length ? ` · no chip: ${r2.chipBad.slice(0, 2).join(" | ")}` : "") + (r2.blobBad.length ? ` · blob: ${r2.blobBad.slice(0, 2).join(" | ")}` : ""));
   // S3: the first spaced place, the first maqaf place, the first nested place, each with a row that rests open
   const file = onDisk;
   const restsOpen = (x) => (file.keys[x.key] || []).some((r) => !shutRow(r));
-  const drawnAlone = (x) => !r2.skippedAt.includes(`${x.ref}\u0001${x.key}`) && !r2.absorbed.includes(`${x.ref} ${x.key}`) && restsOpen(x);
+  const laidAlone = (x) => !r2.skippedAt.includes(`${x.ref}\u0001${x.key}`) && !r2.absorbed.includes(`${x.ref} ${x.key}`) && restsOpen(x);
+  const drawnAlone = (x) => laidAlone(x) && !ownAll.has(`${x.ref}\u0001${x.key}`);
+  const ownPick = file.placesList.find((x) => laidAlone(x) && ownAll.has(`${x.ref}\u0001${x.key}`) && !x.inside_of && !x.contains.length);
   const absorbedPick = file.placesList.find((x) => r2.absorbed.includes(`${x.ref} ${x.key}`) && !x.inside_of && !x.contains.length && restsOpen(x));
-  const picks = [file.placesList.find((x) => drawnAlone(x) && x.key.includes(" ") && !x.inside_of && !x.contains.length), file.placesList.find((x) => drawnAlone(x) && x.key.includes("\u05be") && !x.inside_of && !x.contains.length), (file.placesList.find((x) => drawnAlone(x) && / /u.test(x.key) && (x.contains || []).some((k) => k.includes("\u05be"))) || file.placesList.find((x) => drawnAlone(x) && x.contains && x.contains.length)), absorbedPick ? { ...absorbedPick, absorbed: true } : null].filter(Boolean);
+  const picks = [file.placesList.find((x) => drawnAlone(x) && x.key.includes(" ") && !x.inside_of && !x.contains.length), file.placesList.find((x) => drawnAlone(x) && x.key.includes("\u05be") && !x.inside_of && !x.contains.length), (file.placesList.find((x) => drawnAlone(x) && / /u.test(x.key) && (x.contains || []).some((k) => k.includes("\u05be"))) || file.placesList.find((x) => drawnAlone(x) && x.contains && x.contains.length)), absorbedPick && !ownAll.has(`${absorbedPick.ref}\u0001${absorbedPick.key}`) ? { ...absorbedPick, absorbed: true } : null,
+    ownPick ? { ...ownPick, words: ownAll.get(`${ownPick.ref}\u0001${ownPick.key}`) } : null].filter(Boolean);
   const r3 = [], r6 = [];
   for (const pl of picks) {
     const got = await p.evaluate(async (pl) => {
@@ -187,12 +229,22 @@ for (const book of BOOKS) {
       const h = document.getElementById("hud");
       const row = h.querySelector(".b-chain") || h.querySelector(".b-cut");
       const cuts = [...(row ? row.querySelectorAll(".s-pills button") : [])].map((x) => ({ t: x.textContent, on: x.getAttribute("aria-pressed") === "true" }));
+      // the block pressed on the card's row of blocks, where it has one (a word of the cell, opened on itself)
+      const cell = ([...h.querySelectorAll(".b-cell .s-pills button")].find((x) => x.getAttribute("aria-pressed") === "true") || {}).textContent || "";
       const pills = [...h.querySelectorAll(".r-pills button")].map((x) => x.textContent.trim());
       const d = (h.querySelector(".d-text") || {}).textContent || "";
       const lit = ([...h.querySelectorAll('.r-pills button[aria-pressed="true"]')][0] || {}).textContent || "";
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-      return { cuts, pills, d, lit: lit.trim(), off: [...(window.__sourcesOff || [])], pool: [...(window.__pool || [])], ov: [...(window.__poolOv || [])], kinds: window.__kinds || null };
+      return { cuts, cell, pills, d, lit: lit.trim(), off: [...(window.__sourcesOff || [])], pool: [...(window.__pool || [])], ov: [...(window.__poolOv || [])], kinds: window.__kinds || null };
     }, pl);
+    // a cell whose words read their own (call 3): the card opens on the word pressed, its own block pressed, the place a
+    // rung of the card's row, a press away
+    if (pl.words !== undefined) {
+      const on = got.cuts && got.cuts.find((x) => x.on);
+      const ok = !got.err && !!on && on.t !== pl.key && got.cuts.some((x) => x.t === pl.key) && got.cell === pl.words;
+      r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key} (every word reads its own at the place): opens on ${on ? on.t : "nothing"}, the block ${got.cell || "none"} pressed (its first word ${pl.words}), the place ${got.cuts.some((x) => x.t === pl.key) ? "a rung a press away" : "not offered"}` });
+      continue;
+    }
     // the rows whose source the page has on; identical readings stand as one
     // pill with every record beneath (one-reading-one-pill), so the record
     // shown is that of a row reading as the lit pill reads
@@ -233,7 +285,7 @@ for (const book of BOOKS) {
     r6.push({ at: `${pl.ref} ${pl.key}`, judged: allSpan, ok: !allSpan || JSON.stringify(pillOrder) === JSON.stringify(storeOrder), pills: pillOrder, store: storeOrder });
     r3.push({ ok, say: got.err ? `${pl.ref} ${pl.key}: ${got.err}` : `${pl.ref} ${pl.key}${pl.absorbed ? " (inside a maqaf compound's cell)" : ""}: opens on ${on ? on.t : "nothing"} · lit "${got.lit}" (the store's first: "${lineRows.length ? spanJoin(lineRows[0].slots[1]) : "none on"}") · ${wantR.filter(asPillsText).length} of ${wantR.length} readings among ${got.pills.length} pills · D ${dOk ? "a row's of the lit reading" : "not a row's"}${pl.contains.length ? ` · rungs ${pl.contains.join(",")} ${rungsOk ? "offered" : "missing"}` : ""}` });
   }
-  check(`S3  ${book}: a cell's card opens on the span whole, its pills the rows' readings, the record the first row's D, an inner place a rung of the outer card`, r3.length > 0 && r3.every((x) => x.ok), r3.map((x) => x.say).join(" ‖ "));
+  check(`S3  ${book}: a cell's card opens on the span whole where its line reads it whole, its pills the rows' readings, the record the first row's D, an inner place a rung of the outer card; a cell whose words read their own opens on the word pressed, the place a press away`, r3.length > 0 && r3.every((x) => x.ok), r3.map((x) => x.say).join(" ‖ "));
   check(`S6  ${book}: a span card's pills stand in the store's own order where every pill is a span row's reading (a span row's year is said and orders nothing)`, r6.every((x) => x.ok),
     r6.map((x) => `${x.at}: ${!x.judged ? "another store's row carries a reading too, not judged" : x.ok ? `${x.pills.length} pills in the store's order` : `pills ${x.pills.join(" | ")} against the store's ${x.store.join(" | ")}`}`).join(" ‖ "));
   // S5: a nested place the ink writes as one maqaf chain, its first word's card
