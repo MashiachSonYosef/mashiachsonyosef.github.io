@@ -33,3 +33,28 @@ Question 12 (commit 9c3bb7b856): data/form-of-pills-v1.json rule_id form-of-pill
   one_pill { rule: pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it, what, store {version, at_rest}, counts }
   counts over the store at rest: 806 pills at 665 keys (r5's figure); check-form-of-v1:101 holds the v2 id today (the checks builder's)
   the bake now reads the store at rest (--store): run it after the store changes (the store steps do)
+
+Ship 6, the words back (commits 23415f9322, 081d74e7c1, c5252c2219; 27fba80ee0 the lane's files; 0121d43eb7 the follower's consumers)
+  derive: tools/derive-words-back-v1.mjs, WORDS_BACK_LANDING_RULE_ID = words-back-landing-rule-v1-the-lanes-words-back-land-by-key-and-rank-held-where-the-printed-text-sets-a-hebrew-character-against-a-latin-letter-or-a-digit
+    exports seamsOf(text) -> [{ at, kind: "letter" | "digit" }] (a character U+0590-U+05FF directly beside [A-Za-z0-9])
+    pin: data/made-spaces/PIN.json words_back.derived { folder land-v187-v1, by, rule_id, derived_at_store_version ccec4fa3071b,
+      retext { retext-v1.jsonl, 740 lines, 309,923 bytes, 29e42245... }, held { held-v1.jsonl, 49 lines, 12,698 bytes, c83ebba9... },
+      landed_by { tool tools/strike-rows-v1.mjs, rule_id (strike v7), list "retext", reason }, what }
+    both lists are written by store step 3 only (not kept in the tree); the derive refuses once the retext has landed (the follower answers retexted)
+    retext line: { action "retext", m "M46", key, rank, route (as served), to_text (words_back), from_slot "words_back", closes, route_closes ([] for none), prints, opens, status, from { relay, list, line } }
+    held line: { m, key, rank, route, status, held_because ("seam" or the lane's status), seam { made, kinds, at } where a seam, from }
+    figures: lines 789, retexted 740 (512 done + 228 settled), held 49 (seam 11: 8 in words_back, 3 by a close; 36 unsettled; 2 damaged), rows_with_closes 88, closes 140, lost_none_standing 132
+  strike: tools/strike-rows-v1.mjs ROW_STRIKE_RULE_ID = row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts
+    (check-fold-strike-landing:4, check-audit-calls:4, check-store-continuity:4 and :45 still name v6: the checks builder's)
+    a words-back retext row in data/row-strikes-v1.json: { action "retext", key, rank, m, route (old), row (old, whole, all 11 slots), to_text, from_slot "words_back", to_closes (the closes, [] for none) }; never folded_into
+    the row after: slots 1 and 2 = to_text; slot 9 = [closes, closes] or null; slots 7 and 8 cleared; slots 0, 3-6, 10 as before
+    figures line gains retexts_from_words_back (740); by_action.retext 740, retext_folded 0
+  made spaces: tools/apply-made-spaces-v1.mjs counts the words-back rows apart: per source rows_retexted_from_words_back, rows_closed_from_words_back, closes_from_words_back;
+    totals (only when any) the same three; figures closed_from_words_back { rows_retexted 740, rows 88, closes 140 }; index.made_spaces.words_back { list, sha256, round { ran_at, list }, rows 740, rows_with_a_close 88, closes 140 }
+    second road: by_the_second_road.<m>.rows_retexted_since (M46 740); the rows holding a close fall by the retexted rows' old texts (M46: 137 -> 59 on either)
+    rows_carrying_the_slot (23,397 after) does not count the 88: check-made-spaces M3/M4 must count them apart
+  stems: the lattice sidecar's binyan.followed_through_retexts { record, rows_on_this_books_keys, what }, present only where a row was followed (Amos after the steps: 43)
+  ledger divisions after the retext: 2 slots move, 650 rows of unabridged_bdb_1906 uncovered (0 before): all retexted sense openings (BDB's v109.2 classifier has no shape for a Hebrew point)
+
+Store steps: scratchpad/v78/tools-bakes/ship56-store-steps.sh <tree> [<day>] [--through <n>] (--through 2 is ship 5 alone); rehearsal table ship56-store-sha256.txt beside it
+  moments: <day>T00:01:<step>.000Z (after ship 4's T00:00:01-06); store versions: ccec4fa3071b -> 5f5d184032a9 (step 2) -> 25243b6db66f (step 4) -> 3c0b0da7dc2f (step 5, the end)
