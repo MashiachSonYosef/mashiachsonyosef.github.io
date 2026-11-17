@@ -572,24 +572,29 @@ index a5a7fa810c..aa062fd6d4 100644
      rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
      witnesses: pieceWitness,
 diff --git a/reader/tools/resting-lines-v1.mjs b/reader/tools/resting-lines-v1.mjs
-index d7ae5e09ff..0ee4260903 100644
+index d7ae5e09ff..f23afb3d4f 100644
 --- a/reader/tools/resting-lines-v1.mjs
 +++ b/reader/tools/resting-lines-v1.mjs
-@@ -155,6 +155,14 @@ export const linesOnPage = async (p, { from = 0, to = Infinity, settleMs = 350,
-     while (Date.now() - t0 < 30000) { landed = await p.evaluate(() => { const d = window.__default; return !!(d && (d.ready || d.failed)); }); if (landed) break; await p.waitForTimeout(100); }
-     if (!landed) throw new Error("a default source other than STEP is in force and its book's file did not arrive: the lines would be read before they are its");
-   }
-+  // the pointer map (pointer-line-rule-v1): a line a pointer the map resolves would lead prints the resolution once
-+  // the map is here, so the lines are read once it is, or said not to be (window.__formOf: the map's counts, or null)
-+  {
-+    const t0 = Date.now();
-+    let landed = false;
-+    while (Date.now() - t0 < 30000) { landed = await p.evaluate(() => window.__formOf !== undefined); if (landed) break; await p.waitForTimeout(100); }
-+    if (!landed) throw new Error("the pointer map did not arrive: a line a pointer leads would be read before its resolution prints");
-+  }
-   const range = [from, Number.isFinite(to) ? Math.min(to, total) : total, seen];
-   let last = null, got = null, tries = 0;
-   for (; tries < 20; tries += 1) {
+@@ -182,6 +182,19 @@ export const readAtRest = async (browser, base, work, opts = {}) => {
+     p.on("pageerror", (e) => errors.push(String(e && e.message)));
+     await p.goto(`${base}/zone.html?b=${work}`, { waitUntil: "networkidle" });
+     await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
++    // the pointer map (pointer-line-rule-v1): where the pointing's leader is a pointer the lane's map resolves, the
++    // line prints the resolution once the map is here, so a work whose lines the lattice leads is read once it is, or
++    // said not to be (window.__formOf: the map's counts, or null). Here, where the round records the lines at rest,
++    // and not in linesOnPage, which the checks also use with the map held back on purpose (check-form-of-v1 F12 and
++    // F14). A work with no lattice has no such leader, and the Tikkunei Zohar, opened so, does not ask for the map at
++    // all (17 November 2026)
++    const leadsByLattice = await p.evaluate(() => window.__masorah !== "keep" && !!(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice));
++    if (leadsByLattice) {
++      const t0 = Date.now();
++      let landed = false;
++      while (Date.now() - t0 < 60000) { landed = await p.evaluate(() => window.__formOf !== undefined); if (landed) break; await p.waitForTimeout(100); }
++      if (!landed) throw new Error("the pointer map did not arrive: a line a pointer leads would be read before its resolution prints");
++    }
+     const got = await linesOnPage(p, opts);
+     if (errors.length) throw new Error(`the page threw while it drew: ${errors[0]}`);
+     return got;
 diff --git a/reader/tools/run-checks-v1.mjs b/reader/tools/run-checks-v1.mjs
 index 183eacb898..cc7e80fa5f 100644
 --- a/reader/tools/run-checks-v1.mjs
@@ -651,7 +656,7 @@ index 183eacb898..cc7e80fa5f 100644
  
    const failed = results.filter((r) => r.verdict === "FAILED").map((r) => r.label).sort();
 diff --git a/reader/zone.html b/reader/zone.html
-index 7e09fa05eb..5e3955e10e 100644
+index 7e09fa05eb..594c81d113 100644
 --- a/reader/zone.html
 +++ b/reader/zone.html
 @@ -3289,6 +3289,12 @@
@@ -784,7 +789,7 @@ index 7e09fa05eb..5e3955e10e 100644
            if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
            if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
            if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
-@@ -14552,13 +14561,24 @@
+@@ -14552,13 +14561,26 @@
          // lay the noname column over the table, so the name no longer is the
          // line there, and the filter's leader answers as before.
          // at this place: the leaders its own gates leave, by its entry and whether it is a name (entry-gate-rule-v1, names-gate-rule-v1)
@@ -798,8 +803,10 @@ index 7e09fa05eb..5e3955e10e 100644
 +        // task 137; the owner's card 1 of 16 November 2026: «a reading like
 +        // «feminine of …» never leads a line»; span-line-rule-v1 holds it for
 +        // joined readings). Where the pointing's leader is a pointer the
-+        // lane's map resolves («defective spelling of אליו» at Ezekiel 9:4,
-+        // 40:34 and 40:36 and 1 Samuel 22:13), the line prints what its pill
++        // lane's map resolves (English Wiktionary's «defective spelling of …»,
++        // at Ezekiel 9:4, 40:34 and 40:36 and 1 Samuel 22:13, and its plural
++        // and imperative pointers at 2 Kings 6:25 and Psalms 9:1), the line
++        // prints what its pill
 +        // prints, the resolution with the pointer beside it, credited to the
 +        // pointer's own source (formOfText, as a ruled line does). Until the
 +        // map is here, and where it resolves nothing, the pointer's own words
@@ -813,7 +820,7 @@ index 7e09fa05eb..5e3955e10e 100644
          if (l) return { text: "", rs: [], why: "sources-bare" };
          // graded, and nothing survives the filter: the word goes bare here,
          // which the frame calls a finding and not an error
-@@ -15022,7 +15042,7 @@
+@@ -15022,7 +15044,7 @@
          // the pool for the word itself (repaintLive, askedWord)
          ss: regions ? regions.map((r) => r.s || null) : (word.k ? [word.s || null] : []), v: WORD_VERSE.get(word) ?? null,
          // and each key's own core tags, where the lattice gives its place any (entry-gate-rule-v1)
