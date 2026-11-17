@@ -12,12 +12,12 @@ Page lane (Elijah), 16 November 2026 AD, at `main` afea14aac6. The store side (l
 ## Where each comes from
 
 - **The text: `data/zones/<book>.bin`.** Gzip JSON: sections, then words. Each word has its surface `s`, key `k` (letters), STEP's pieces `pg`, STEP's tag `tg`, MACULA's lemma `h`/`hp`, and name `np`. Built once from the corpus lane's sealed text. The round re-projects what a zone says about its words. Beside it: `<book>.lattice.bin`, the corpus lane's grades per card (tools/project-lattice-v12-v1.mjs).
-- **The line at rest:** each default source's own pick at the place, STEP first. Its own reading there is TAHOT's pieces, then the second source's, then STEP's again (task 135). The picks are baked per book in `data/default-picks/` (tools/bake-default-picks-v1.mjs, from the corpus lane's picks ledger). A run of words reads word by word; the span store's joined line stands only where a word has no reading of its own. The plain list under a chapter is a recording of these lines read off the page (`data/resting-lines/`).
+- **The line at rest:** each default source's own pick at the place, STEP first, then the place's own reading, then the pointing's leader from the sidecar (`lineUnder`); a leader that is a pointer the lane's map resolves prints the resolution with the pointer beside it, as its pill does (pointer-line-rule-v1, ship 8). Its own reading there is TAHOT's pieces, then the second source's, then STEP's again (task 135). The picks are baked per book in `data/default-picks/` (tools/bake-default-picks-v1.mjs, from the corpus lane's picks ledger). A run of words reads word by word; the span store's joined line stands only where a word has no reading of its own. The plain list under a chapter is a recording of these lines read off the page (`data/resting-lines/`).
 - **The card: `poolFor(surface)` in `zone.html`.**
   - It gathers the rows: the route store's rows under the key, plus the rows beside the store (span store, piece store, Jastrow, the Samaritan dictionaries).
   - It holds rows back in this order, each counted on the card:
     1. the source switches;
-    2. the entry gate (STEP's tag at the place against each row's own entries, its facts `n`);
+    2. the entry gate (STEP's tag at the place against each row's own entries, its facts `n`; where STEP gives the word no tag, the entries of MACULA's lemma, `te`, written by the projector, read by `placeTags`; entry-by-lemma-rule-v1, ship 8);
     3. the names gate;
     4. the pointing gate. It grades each row by its own headwords: `gradeRow`, pointing-grade v5. It acts only where some row points as the place does. A row pointed otherwise is withheld, and one with no pointing is held back. A row of the place's own entry, or giving the reading the reader ruled, stays.
     5. the piece class (one-letter pieces);
@@ -50,7 +50,7 @@ Page lane (Elijah), 16 November 2026 AD, at `main` afea14aac6. The store side (l
 3. **Proof:**
    - every resting line against live, each move explained;
    - the checks the change touches;
-   - the suite: `tools/run-checks-v1.mjs`, 172 checks, each check's `GUARDS:` line naming the rules it holds;
+   - the suite: `tools/run-checks-v1.mjs`, 172 checks, each check's `GUARDS:` line naming the rules it holds; a check stopped for time under load runs again alone (ship 8);
    - the gate: `tools/check-same-product-v1.mjs`, live against new; S1 the lines, S2 the first cards.
 4. **Ship:**
    - one commit on `main`; `gh-pages` follows `main` with the commit "gh-pages follows main";

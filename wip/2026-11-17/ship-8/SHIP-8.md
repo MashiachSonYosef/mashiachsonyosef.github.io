@@ -95,3 +95,12 @@ Net: the gate now keeps the place's own entry at 936 untagged places, and the li
 - **It failed again, and the cause is narrower.** Opened as the round opens it (a phone's window, every section built at once), the Zohar page never asks for the pointer map; with a desktop window it asks at 8.6 s. The leader item 2 resolves is the pointing's, which stands only on a work the lattice leads: the 39 books, not the Zohar. So the recorder now waits on the map only where it waits on the lattice, up to a minute. Open question for later: why the Zohar, opened so, never asks for the map (no line of it changes, since the map holds none of its keys).
 - **The door refused the page** («zone.html itself carries Hebrew»): item 2's comment quoted the pointer's Hebrew. The comment now names it in English, and no changed file carries a Hebrew character. The pass runs again from the lines step (00:59Z).
 - **The machine rebooted during the chain step (about 01:05Z)** after the lines were recorded whole: 40 records, the six pointer lines among them. `tools/pipeline-8c.sh` resumes from the chain books, two at a time (the round runs three), then the door, every resting line against live, F15, the checks, the suite (two at a time) and the gate. Each step that finishes leaves a mark, and a rerun skips it.
+
+## The second pass (resumed 01:07Z)
+
+- The chain books (986 s, two at a time; 632,114 links at rest) and the door passed.
+- **Every resting line against live** (`logs/lines-diff-ship8.json`): 90 entries moved in 40 works, 5 of them credit only. These are item 1's 86 and the four live pointer lines, which now print what their pills print:
+  - «to, towards, into (defective spelling of אליו)» at Ezekiel 9:4, 40:34 and 40:36 and 1 Samuel 22:13;
+  - item 1's two: «pigeon, dove (plural indefinite form of יוֹנָה)» at 2 Kings 6:25 and «Dead, having died. (Masculine singular imperative of מֵת)» at Psalms 9:1;
+  - English Wiktionary's «which?», at four of Ezekiel 40's "its pillars", is no pointer and stands (wrong to wrong, item 1).
+- **F15 alone:** 85,602 resting lines at keys the map holds, in 40 books; no fault (six before item 2).
