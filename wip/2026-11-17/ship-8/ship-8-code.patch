@@ -179,6 +179,53 @@ index 3159cef962..674a1df9a7 100644
      if (!leaders.size) check("E13 where the place moves the leader, the line under the word and the card's first pill are the place's leader", false, "no served word of one region stands at a place that moves its leader");
      else {
        // read with the sources as the record rests them: the line is baked from the store's rows, and a dictionary
+diff --git a/reader/tools/check-form-of-v1.mjs b/reader/tools/check-form-of-v1.mjs
+index 40beb114d2..c8fa12c663 100644
+--- a/reader/tools/check-form-of-v1.mjs
++++ b/reader/tools/check-form-of-v1.mjs
+@@ -1,4 +1,5 @@
+ // RUN: page
++// GUARDS: pointer-line-rule-v1-a-pointer-that-would-lead-a-line-prints-the-resolution-its-pill-prints
+ // GUARDS: form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill, pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it
+ // A READING THAT POINTS AT ANOTHER WORD'S READING (the corpus lane's map of
+ // pointer readings: its relay v175 of 13 November 2026, map v1.3, and its
+@@ -148,6 +149,36 @@ check("F1  the record, under the rule this check guards: a map by route key of p
+     && (rec.counts.resolved_by || {}).the_ruled_print === ruledPrinted.length,
+   rec ? `${rec.rule_id === RULE_ID ? "rule v3" : `rule "${rec.rule_id}"`} · ${Object.keys(rec.keys).length} keys · ${entries.length} pointers carried (record says ${rec.counts.carried} of ${rec.counts.pills} read) · ${resolved.length} resolved (record says ${rec.counts.resolved}), ${ruledPrinted.length} of them by a ruled print (record says ${(rec.counts.resolved_by || {}).the_ruled_print}) · well formed ${wellFormed}` : "no record");
+ if (!rec) { console.log("\nFAIL"); process.exit(1); }
++// F15 a pointer leads no line (pointer-line-rule-v1, task 137): no resting line of a book the map covers prints a
++// pointer's own words where the map resolves it, at a word whose key the map holds; a resolution that is a name stands
++// aside at a place that is not one (formOfResolves), so such a pointer is not asked. The lines are the recordings the
++// round reads off the page (data/resting-lines/), the words the zones' own.
++{
++  const { readdirSync } = await import("node:fs");
++  const plain = (t) => String(t).trim().replace(/\.$/u, "").split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
++  const faults = [];
++  let lines = 0, books = 0;
++  for (const f of readdirSync("data/resting-lines").filter((x) => x.endsWith(".json.gz")).sort()) {
++    const book = f.replace(/\.json\.gz$/u, "");
++    if (!existsSync(`data/zones/${book}.bin`)) continue;
++    const z = JSON.parse(gunzipSync(readFileSync(`data/zones/${book}.bin`)).toString("utf8"));
++    const rl = JSON.parse(gunzipSync(readFileSync(`data/resting-lines/${f}`)).toString("utf8"));
++    const secs = new Map((z.sections || []).map((s) => [s.label, s.words || []]));
++    books += 1;
++    for (const [label, entries] of rl.sections || []) {
++      const words = secs.get(label) || [];
++      for (const [i, , text] of entries) {
++        const w = words[i];
++        if (!w || !w.k || !rec.keys[w.k]) continue;
++        lines += 1;
++        const e = rec.keys[w.k].find((x) => x.resolved && !x.resolved.name && plain(x.t) === plain(text));
++        if (e) faults.push(`${book} ${label} word ${i + 1}: «${text}» (${e.m}), which the map resolves to «${e.resolved.text}»`);
++      }
++    }
++  }
++  check("F15 a pointer leads no line: no resting line prints a pointer's own words where the map resolves it", books > 0 && lines > 0 && faults.length === 0,
++    faults.length ? `${faults.length} · ${faults.slice(0, 4).join(" · ")}` : `${lines.toLocaleString("en-US")} resting lines at keys the map holds, in ${books} books`);
++}
+ // F13, the record: the page's rule for the fold, and the fold over the store at rest derived again as the record
+ // counts it (bake-form-of-pills-v1, head): for every key of the map whose rows rest open, each group of the key's
+ // resting pool whose every row is a pointer of its own source that resolves to one English another group prints
 diff --git a/reader/tools/check-masorah-toggle-v1.mjs b/reader/tools/check-masorah-toggle-v1.mjs
 index 8070da5e9c..827364687c 100644
 --- a/reader/tools/check-masorah-toggle-v1.mjs
@@ -524,8 +571,87 @@ index a5a7fa810c..aa062fd6d4 100644
    pieces: {
      rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
      witnesses: pieceWitness,
+diff --git a/reader/tools/resting-lines-v1.mjs b/reader/tools/resting-lines-v1.mjs
+index d7ae5e09ff..0ee4260903 100644
+--- a/reader/tools/resting-lines-v1.mjs
++++ b/reader/tools/resting-lines-v1.mjs
+@@ -155,6 +155,14 @@ export const linesOnPage = async (p, { from = 0, to = Infinity, settleMs = 350,
+     while (Date.now() - t0 < 30000) { landed = await p.evaluate(() => { const d = window.__default; return !!(d && (d.ready || d.failed)); }); if (landed) break; await p.waitForTimeout(100); }
+     if (!landed) throw new Error("a default source other than STEP is in force and its book's file did not arrive: the lines would be read before they are its");
+   }
++  // the pointer map (pointer-line-rule-v1): a line a pointer the map resolves would lead prints the resolution once
++  // the map is here, so the lines are read once it is, or said not to be (window.__formOf: the map's counts, or null)
++  {
++    const t0 = Date.now();
++    let landed = false;
++    while (Date.now() - t0 < 30000) { landed = await p.evaluate(() => window.__formOf !== undefined); if (landed) break; await p.waitForTimeout(100); }
++    if (!landed) throw new Error("the pointer map did not arrive: a line a pointer leads would be read before its resolution prints");
++  }
+   const range = [from, Number.isFinite(to) ? Math.min(to, total) : total, seen];
+   let last = null, got = null, tries = 0;
+   for (; tries < 20; tries += 1) {
+diff --git a/reader/tools/run-checks-v1.mjs b/reader/tools/run-checks-v1.mjs
+index 183eacb898..cc7e80fa5f 100644
+--- a/reader/tools/run-checks-v1.mjs
++++ b/reader/tools/run-checks-v1.mjs
+@@ -38,6 +38,15 @@
+ // failed. Three run at a time by default (--jobs); the chains this replaced
+ // ran three abreast for a month.
+ //
++// A CHECK STOPPED FOR TIME UNDER LOAD RUNS AGAIN ALONE (task 125). Several
++// checks drive a browser each, and three abreast they can starve one
++// another: on 16 November 2026 check-run-card-forms-v1 gave no verdict in
++// 1,500 s under the suite's load and passed every law alone in 39 s. A check
++// the limit stops is run once more when the others are done, alone, under
++// the same limit, and its verdict is that run's, said as such («alone, after
++// no verdict under load»). A check that fails alone has failed; one that
++// times out alone has failed; nothing is skipped or retried twice.
++//
+ // A LAW NOT JUDGED IS NAMED. A check that passes may still hold a law it
+ // could not judge on this machine (the zone it wanted is held off the door;
+ // no work of the kind it presses is on this disk). The checks print such a
+@@ -147,6 +156,7 @@ if (startedAs(import.meta.url)) {
+     const t0 = process.hrtime.bigint();
+     const child = spawn("node", [j.file, ...j.args], { cwd: READER, stdio: ["ignore", "pipe", "pipe"] });
+     let out = ""; let timedOut = false;
++    const again = !!j.alone;
+     child.stdout.on("data", (d) => { out += d; }); child.stderr.on("data", (d) => { out += d; });
+     const timer = setTimeout(() => { timedOut = true; child.kill("SIGKILL"); }, TIMEOUT_S * 1000);
+     child.on("close", (code) => {
+@@ -156,7 +166,7 @@ if (startedAs(import.meta.url)) {
+       writeFileSync(join(LOGS, `${j.name}${j.tag ? `.${j.tag}` : ""}.log`), out);
+       const lines = out.split("\n");
+       let verdict, say;
+-      if (timedOut) { verdict = "FAILED"; say = [`    ¦ no verdict in ${TIMEOUT_S} s; stopped`]; }
++      if (timedOut) { verdict = "FAILED"; say = [`    ¦ no verdict in ${TIMEOUT_S} s${again ? " alone, after none under load" : ""}; stopped`]; }
+       // a check that could not reach its inputs says why on a line of its own
+       // that begins SKIPPED; some print a heading above it
+       else if (code === 3) { verdict = "skipped"; say = [(lines.find((l) => /^SKIPPED\b/u.test(l)) || lines.find((l) => l.trim()) || "").replace(/^SKIPPED\s*(—|-|:)?\s*/u, "")]; }
+@@ -165,7 +175,8 @@ if (startedAs(import.meta.url)) {
+       else if (code === 0) { verdict = "ok"; const n = lines.filter((l) => /^ {2}ok {1,2}/u.test(l)).length; say = [n ? `${n} assertions` : `no law printed as judged · ${(lines.filter((l) => l.trim()).pop() || "(it printed nothing)").trim()}`]; }
+       else { verdict = "FAILED"; const f = lines.filter((l) => /^FAIL|PAGE ERROR/u.test(l)); say = (f.length ? f : lines.filter((l) => l.trim()).slice(-3).map((l) => `¦ ${l}`)).map((l) => `    ${l}`); }
+       const unjudged = lines.filter((l) => /^ {2}-- {2}/u.test(l) && /\bnot (judged|read|witnessed|asked|counted as passed)\b|\bskipped\b|\bunread\b/iu.test(l)).map((l) => l.trim().replace(/^--\s+/u, ""));
+-      results.push({ label, name: j.name, verdict, say, seconds, unjudged });
++      if (again && verdict !== "FAILED") say = say.map((l, i) => (i ? l : `${l} · alone, after no verdict under load`));
++      results.push({ label, name: j.name, verdict, say, seconds, unjudged, timedOut, job: j });
+       if (verdict === "FAILED") { console.log(`${label.padEnd(44)} FAILED  (${seconds.toFixed(0)} s)`); for (const l of say) console.log(l.slice(0, 600)); }
+       else console.log(`${label.padEnd(44)} ${verdict === "ok" ? "ok  " : "skipped —"} ${say[0].slice(0, 300)}${verdict === "ok" ? `  (${seconds.toFixed(0)} s)` : ""}`);
+       done();
+@@ -175,6 +186,12 @@ if (startedAs(import.meta.url)) {
+   const worker = async () => { while (next < jobs.length) { const j = jobs[next]; next += 1; await runOne(j); } };
+   const began = Date.now();
+   await Promise.all(Array.from({ length: Math.min(JOBS, jobs.length) }, worker));
++  // each check the limit stopped under load, once more, alone (above)
++  const stopped = results.filter((r) => r.timedOut && !r.job.alone);
++  if (stopped.length && JOBS > 1) {
++    console.log(`\n${stopped.length} check(s) gave no verdict under load; each runs again alone`);
++    for (const r of stopped) { results.splice(results.indexOf(r), 1); await runOne({ ...r.job, alone: true }); }
++  }
+   stop();
+ 
+   const failed = results.filter((r) => r.verdict === "FAILED").map((r) => r.label).sort();
 diff --git a/reader/zone.html b/reader/zone.html
-index 7e09fa05eb..c947ea1e51 100644
+index 7e09fa05eb..5e3955e10e 100644
 --- a/reader/zone.html
 +++ b/reader/zone.html
 @@ -3289,6 +3289,12 @@
@@ -588,6 +714,15 @@ index 7e09fa05eb..c947ea1e51 100644
        : surface && surface !== openKey && openPlaceWord ? { pointed: null, verse: null, tags: coreTagsAt(openPlaceWord, surface), name: openName } : NO_WORD));
    // THE LEADERS UNDER "ONLY" AT A PLACE (tools/place-leaders-v1.mjs, name for
    // name): the place's own where its gates make them other than the
+@@ -3726,7 +3733,7 @@
+   const formOfReady = () => {
+     if (FORM_OF) return Promise.resolve(FORM_OF);
+     if (!formOfWait) formOfWait = fetch(`${ROOT}data/form-of-pills-v1.json`).then((r) => (r.ok ? r.json() : null))
+-      .then((f) => { FORM_OF = f && f.keys ? f : null; window.__formOf = FORM_OF ? { keys: Object.keys(FORM_OF.keys).length, pills: FORM_OF.counts.pills, resolved: FORM_OF.counts.resolved } : null; return FORM_OF; }).catch(() => null);
++      .then((f) => { FORM_OF = f && f.keys ? f : null; window.__formOf = FORM_OF ? { keys: Object.keys(FORM_OF.keys).length, pills: FORM_OF.counts.pills, resolved: FORM_OF.counts.resolved } : null; return FORM_OF; }).catch(() => { window.__formOf = null; return null; });
+     return formOfWait;
+   };
+   // the pointer entry for a reading: by the route key, then the source where
 @@ -6903,7 +6910,7 @@
          // found until now it still finds; a ruled line goes straight there,
          // as a ruling outranks the pointing as it outranks a switch.
@@ -649,7 +784,7 @@ index 7e09fa05eb..c947ea1e51 100644
            if (pool.withheldByName) bits.push(`${pool.withheldByName} record${pool.withheldByName === 1 ? "" : "s"} withheld as a name — their own source gives ${pool.withheldByName === 1 ? "it" : "them"} as a name, and the word here is not one`);
            if (pool.withheldBySources) bits.push(`${pool.withheldBySources} record${pool.withheldBySources === 1 ? "" : "s"} withheld by your source switches — ${sourcesOffSay()}`);
            if (pool.withheld) bits.push(`${pool.withheld} record${pool.withheld === 1 ? "" : "s"} withheld by the pointing — their source points this word otherwise`);
-@@ -14552,7 +14561,7 @@
+@@ -14552,13 +14561,24 @@
          // lay the noname column over the table, so the name no longer is the
          // line there, and the filter's leader answers as before.
          // at this place: the leaders its own gates leave, by its entry and whether it is a name (entry-gate-rule-v1, names-gate-rule-v1)
@@ -657,8 +792,28 @@ index 7e09fa05eb..c947ea1e51 100644
 +        const here = onlyLeaders(gr, placeTags(word), isNamePlace(word));
          if (here.nl && nonamesPref === "lead" && word.k && zone.gloss_names && Object.prototype.hasOwnProperty.call(zone.gloss_names, word.k)
            && zone.gloss[word.k] === zone.gloss_names[word.k] && !(gm && allOff(gm.by))) return null;
-         const l = here.l;
-@@ -15022,7 +15031,7 @@
+-        const l = here.l;
+-        if (l && !allOff(l[4])) return { text: l[0], rs: [{ posture: l[2], m: l[1], y: l[3], ya: "wording", by: l[4] }], why: "masorah" };
++        // A POINTER LEADS NO LINE (pointer-line-rule-v1-a-pointer-that-would-lead-a-line-prints-the-resolution-its-pill-prints;
++        // task 137; the owner's card 1 of 16 November 2026: «a reading like
++        // «feminine of …» never leads a line»; span-line-rule-v1 holds it for
++        // joined readings). Where the pointing's leader is a pointer the
++        // lane's map resolves («defective spelling of אליו» at Ezekiel 9:4,
++        // 40:34 and 40:36 and 1 Samuel 22:13), the line prints what its pill
++        // prints, the resolution with the pointer beside it, credited to the
++        // pointer's own source (formOfText, as a ruled line does). Until the
++        // map is here, and where it resolves nothing, the pointer's own words
++        // stand: the map holds the thirty-nine books' keys and none of the
++        // Tikkunei Zohar's, whose lines wait on the corpus lane.
++        const l = here.l, nameHeld = !isNamePlace(word);
++        if (l && !allOff(l[4])) return { text: formOfText(word.k, l[0], nameHeld), rs: [{ posture: l[2], m: l[1], y: l[3], ya: "wording", by: l[4] }], why: "masorah" };
+         const la = here.la;
+-        if (la && !allOff(la[4])) return { text: la[0], rs: [{ posture: la[2], m: la[1], y: la[3], ya: "wording", by: la[4] }], why: "masorah" };
++        if (la && !allOff(la[4])) return { text: formOfText(word.k, la[0], nameHeld), rs: [{ posture: la[2], m: la[1], y: la[3], ya: "wording", by: la[4] }], why: "masorah" };
+         if (l) return { text: "", rs: [], why: "sources-bare" };
+         // graded, and nothing survives the filter: the word goes bare here,
+         // which the frame calls a finding and not an error
+@@ -15022,7 +15042,7 @@
          // the pool for the word itself (repaintLive, askedWord)
          ss: regions ? regions.map((r) => r.s || null) : (word.k ? [word.s || null] : []), v: WORD_VERSE.get(word) ?? null,
          // and each key's own core tags, where the lattice gives its place any (entry-gate-rule-v1)

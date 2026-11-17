@@ -1,6 +1,6 @@
 # Ship 8, in progress (16 November 2026 AD, night)
 
-Page lane (Elijah). The plan of the week (`wip/2026-11-16/PLAN-WEEK-OF-2026-11-17.md`) and its design (`wip/2026-11-16/SHIP-8-DESIGN.md`), taken top down. Tree: `S/s8`, branch `ship8` from live `main` afea14aac6. The working patch is `entry-by-lemma-wip.patch` (refreshed as the work moves).
+Page lane (Elijah). The plan of the week (`wip/2026-11-16/PLAN-WEEK-OF-2026-11-17.md`) and its design (`wip/2026-11-16/SHIP-8-DESIGN.md`), taken top down. Tree: `S/s8`, branch `ship8` from live `main` afea14aac6. The code patch is `ship-8-code.patch` (zone.html and tools only, refreshed as the work moves).
 
 ## Item 1: the entry where STEP gives no tag, from MACULA's lemma (task 138)
 
@@ -83,3 +83,11 @@ The whole round passed in 2,098 s (40 records, the chain books, the door). Every
 - **Credit only** (5): «Iddo» at "his hand" (Leviticus 9:22, 16:21; Ezekiel 43:26), «Hamonah», «Sharezer». Iddo is a name standing where the place is not one, live as well (the names gate's ledger).
 
 Net: the gate now keeps the place's own entry at 936 untagged places, and the lines show it.
+
+## Items 2 and 4 applied; the second pass (from 00:34Z)
+
+- **Item 1's checks** (`tools/pipeline-8a.sh`, all 14 pass):
+  - check-entry-gate-v1: E6, 60,028 keys and 1,170,258 verdicts agree, the lemma's included; E15 on the zone, 936 words; E15 on the page, Daniel 2:5's card withholds 7 of its 8 rows as another entry's, under H4405 and H4406; E12 picks a word with neither tag nor lemma;
+  - the projection, the names gate, the pointing gate, the sign, the sense openings, the stems extension, the Masorah switch, the source switch, the names pill, the pointing grade, the read words, form-of and the rulings.
+- **F15, dry, on item 1's lines** (`tools/f15-dry.mjs`): 6 faults, exactly the pointer lines: live's four «defective spelling of אליו» and item 1's two. The map resolves all six: «to, towards, into», «pigeon, dove» (2 Kings 6:25), «Dead, having died.» (Psalms 9:1).
+- **Items 2 and 4 applied** (`tools/item2-pointer-line.py`, `tools/item4-suite-alone.py`). `tools/pipeline-8b.sh` then runs the round's page steps again, every resting line against live, F15 alone, form-of, the rulings and the entry gate, the whole suite under the new runner, and the gate.
