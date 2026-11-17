@@ -43,3 +43,43 @@ The line at rest prints the pointing's leader raw; the map's resolution reached 
 - **The line recorder** (`tools/resting-lines-v1.mjs`) waits on the map as it waits on the lattice, so a line is never recorded before its resolution paints.
 - **check-form-of-v1 F15:** no resting line prints a pointer's own words where the map resolves it. A data law over the recordings and the zones; it is red on live's four lines.
 - **Not done here:** in the projector, the next reading that is not a pointer would lead where the map resolves nothing. In the Bible books every pointer that leads a line is resolved, so it would change nothing today. The Tikkunei Zohar's 1,261 wait on the corpus lane's map (card 3).
+
+## Item 1, the round (17 November, 00:15Z)
+
+The whole round passed in 2,098 s (40 records, the chain books, the door). Every resting line against live (`logs/lines-diff-item1.json`): 86 entries moved in 40 works; 5 of them change only the credit. Read one by one:
+
+- **Right where they were wrong** (about 45):
+  - Ezekiel 40:9 to 40:37, «and + woe! to + him», «and + an antelope» and «and + if» → «and + pillars + its» and «and + chambers + its» (8 lines); also «came up + it» → «stairways + its» (40:26) and «when + came out + he» → «swamps + its» (47:11);
+  - Daniel 4:16 and 4:21: «form» → «O lord + my», «lord + my»;
+  - Deuteronomy 22:23 and 22:28: «boy» → «girl»; 22:26: «servant» → «young woman»;
+  - Exodus 27:11: «and + they will stand» → «and + pillars + its»;
+  - «build» → «child» at "his sons" (Deuteronomy 2:33, 33:9, 1 Samuel 30:6);
+  - «abolish» → «under» (2 Samuel 2:23, 3:12, 16:8; Job 9:13);
+  - «archer» → «way + its» (Job 26:14, Psalms 10:5);
+  - «charm(- er)» → «companion» (Ezekiel 37:16 twice, 37:19);
+  - 1 Samuel 2:10: «unjust one» → «concerning»;
+  - 1 Samuel 26:7, 26:11, 26:16: «more than + beginning + his» → «place of head + his»;
+  - 2 Samuel 7:22: «The Lord» → «God»; 2 Samuel 20:8: «go up» → «over + it»;
+  - 1 Kings 18:42: «bless» → «knee»; 2 Kings 9:25: «Shilshah» → «captain»; Ezekiel 12:14: «Ezrah» → «aid»;
+  - Job 15:15: «sanctuary» → «holy [ones]»; Job 15:31: «shamed» → «worthlessness»; Job 38:41: «bear» → «a (male) child»;
+  - Joshua 8:11: «consider» → «between + himself»; Lamentations 3:39: «bear the blame» → «sin + his»;
+  - Obadiah 1:11: «be (horribly) afraid» → «gateway (entrance)»; Proverbs 22:25: «allowance + his» → «ways + his»; Psalms 58:8: «divide» → «arrow + his»;
+  - Jeremiah 17:24: «Hephzi-bah» → «on + it»; Jeremiah 22:4: «they will serve» → «servant + his»;
+  - Isaiah 27:2: «fermenting» → «delight»; Job 6:21: «without» → «no(t)»;
+  - Ezra 4:7 and 4:23: a description → «Artaxerxes»; Numbers 2:12 and 10:19: «my rock is Shadday» → «Zurishaddai»;
+  - a name for a word: «Tsepho» → «behold» (Isaiah 56:10, "his watchmen"), «Seth» → «apply» (Psalms 90:8). The right entry, but Strong's concordance's first rendering in alphabetical order.
+- **Wrong before and after** (about 15):
+  - «woe! to + him» → English Wiktionary's «which?» (Ezekiel 40:24, 40:26, 40:31, 40:37);
+  - «transgress» → «to embezzle» (Ezekiel 40:31, 40:34, 40:37), where the word is "its steps";
+  - «stripe» → «buffalo» (Ezekiel 40:36);
+  - «city + towards» → «town» (Genesis 49:11, "his colt");
+  - «from + Gaza» → «to dare» (Daniel 11:10);
+  - «desire» → «abide» (1 Kings 21:29, "I will bring");
+  - «arm (self)» → «to rescue» (Job 31:20); «be afraid» → «dread of + him» (Job 40:17, "his thighs");
+  - «Most High» → «height» (Psalms 9:1); «tower» → «advance» (Psalms 18:51);
+  - Genesis 13:3: «Oholah, a symbolic name for Samaria» → «Oholah», where the word is "his tent".
+- **Worse, mildly:** «(here-)after» → «behind» at "after this" (1 Chronicles 20:4, 2 Chronicles 20:1, 24:4); rows of the entry pointed as the dictionary points them come back and sort first.
+- **A pointer now leads** (task 137's class): 2 Kings 6:25 «plural indefinite form of יוֹנָה (yoná)», where «dove» stood; Psalms 9:1 «Masculine singular imperative of מֵת (mét).», where «kill» stood. Item 2 prints the map's resolution where the map holds one.
+- **Credit only** (5): «Iddo» at "his hand" (Leviticus 9:22, 16:21; Ezekiel 43:26), «Hamonah», «Sharezer». Iddo is a name standing where the place is not one, live as well (the names gate's ledger).
+
+Net: the gate now keeps the place's own entry at 936 untagged places, and the lines show it.
