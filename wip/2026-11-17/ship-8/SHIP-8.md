@@ -108,3 +108,6 @@ Net: the gate now keeps the place's own entry at 936 untagged places, and the li
 - **check-form-of-v1 passes** (173 s; F12, F14 and F15 among its laws).
 - **The machine rebooted again (01:54Z), 26 checks into the suite**, all 26 passed. Reboots have come every 20 to 50 minutes under the browser checks' load, which is shorter than a whole suite. `tools/suite-resumable.sh` runs each check through the suite's own runner (`--only`, one at a time) and keeps each verdict on disk; a rerun skips every check that has one. The 26 passed are carried over. The gate follows the suite.
 - **The suite, 02:55Z:** 142 of 194 checks judged, every one passed (two lanes; a fourth reboot at about 02:45Z, the lanes restarted and kept every verdict).
+- **The suite, whole (03:23Z):** 194 checks judged in two lanes across one more reboot; 192 pass.
+  - check-nothing-unlanded-v1 is red until landing, as on every ship.
+  - check-press-paints-before-seen-v1 gave no verdict in 1,500 s beside the other lane. It took 1,257 to 1,263 s in ship 7's suite, so it sits near the limit. It reads lines with the page's own in-page reader, not the recorder, so the map wait is not in its way. Item 4's rule says it runs again alone; it is running alone now, under an 1,800 s limit.
