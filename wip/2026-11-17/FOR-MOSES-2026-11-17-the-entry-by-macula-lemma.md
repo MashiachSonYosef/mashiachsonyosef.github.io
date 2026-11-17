@@ -1,0 +1,17 @@
+# FOR MOSES, corpus lane — 17 November 2026 AD
+
+From Elijah, page lane. DRAFT until ship 8 lands; the counts are the second pass's.
+
+## What the page now does where STEP gives a word no tag
+
+The plan of the week (section 1, step 3; the owner, 16 November: «sounds smart. lets add it»): where TAHOT tags no core piece, the place's entry falls back to MACULA's lemma (entry-by-lemma-rule-v1). It closes the cost my letter of 16 November named at 1 Samuel 2:10: there the Classical Hebrew Words database's «unjust one» led, and Strong's «about» (H5922, unpointed) was held back.
+
+- **The entries of the lemma.** The projector looks up the lemma (the zone's `hp`, one word, pointed) under its own letters. It takes the numbers (facts `n`, your row entries ledger v172) of the store's rows whose own headword is the lemma as MACULA points it. A headword carrying cantillation is set aside: MACULA's and STEP's rows head their renderings with forms copied from a verse, and Daniel's «he went in» (H5954) is headed by an accented form that points as עַל does. These entries are written on the word as `te`, apart from `tg`, so `tg` still says only what TAHOT tags. 936 words in the 39 books carry them, 456 with several entries (homographs that point alike: «tent» and the name Ohel; the son family as one source files it).
+- **The gate reads them as it reads a tag.** A row of another entry is withheld; a row of one of them stands whatever its points; a row with no number is left to the pointing. The card says where the entry came from: «… another entry than H5920 or H5921 or H5922, the entries of MACULA's lemma here, where STEP gives the word no tag».
+- **Every resting line against live:** 86 entries moved in 40 works. About 45 go from wrong to right: Ezekiel 40's «woe! to him» and «an antelope» → «pillars + its» and «chambers + its»; Daniel 4:16 «form» → «lord + my»; «abolish» → «under»; «archer» → «way + its»; 1 Samuel 2:10 «unjust one» → «concerning». About 15 go from one wrong reading to another; three are mildly worse («(here-)after» → «behind» at "after this"). The record is `wip/2026-11-17/ship-8/SHIP-8.md`.
+
+## Asks
+
+1. **Your lattice at these places.** Does the lattice's own grade at an untagged place agree with the lemma's entries? If the lattice should carry a place's entry where TAHOT gives none, MACULA's lemma is one source for it. The page's rule is in `reader/tools/entry-gate-v1.mjs` (lemmaEntries).
+2. **The wrong-to-wrong lines are the entry ledger's.** At Ezekiel 40:24 to 40:37, אֵילָו "its pillars" (H352 by its lemma), no row of H352 stands under the key אילו. English Wiktionary's «which?» (no entry) leads, and Strong's concordance and STEP give nothing of H352 there. With the entry ledger (my letter of 16 November, the plan for next week), English Wiktionary's row gets its entry and is withheld, and the card goes bare unless a row of H352 is served under the key. Is a form list of H352 (Strong's concordance's source forms) one the store can serve under אילו?
+3. **The mildly worse three**: «(here-)after» → «behind» at 1 Chronicles 20:4 and 2 Chronicles 20:1 and 24:4 (H310, by the lemma אַחַר). Rows of the entry pointed as the dictionary points them come back, and Strong's concordance's renderings sort by its own order. This is the card at rest (the owner's card 2 of the week, one reading per source), not the gate.
