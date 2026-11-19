@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // RUN: tree
 // GUARDS: entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points
+// GUARDS: entry-by-lemma-rule-v1-where-step-gives-a-word-no-tag-the-place-takes-the-entries-of-the-rows-headed-by-maculas-lemma
 // GUARDS: row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words
 // LEDGER: -
 // no frame letter. A check reads the ledger's pin, the store, the zones and
@@ -93,7 +94,8 @@
 //       this entry by its number and another by STEP's letter, and a row
 //       with no number that names another of BDB's own entries, are
 //       withheld and counted
-//   E12 a word its place gives no tag is not gated
+//   E12 a word its place gives no tag, and MACULA's lemma no entry, is not
+//       gated
 //   E13 where the place moves the leader, the line under the word and the
 //       card's first pill are the place's leader
 //   E14 where the pin names the list of rows its ledger moves (a reissue's
@@ -109,6 +111,16 @@
 //       the list's, each from the line's facts before to its facts after.
 //       Without them that half is said and not judged
 //
+//   E15 the entry where STEP gives no tag (entry-by-lemma-rule-v1): a plain
+//       word TAHOT does not tag carries the entries of MACULA's lemma (te)
+//       exactly where its lemma, one word and pointed, heads numbered rows
+//       of the store as the projector read it (at rest on a book the record
+//       of dictionary kinds rests shut), as the module reads them; one
+//       number or a list of several, never beside a tag; the page reads the
+//       gate's tags as the module does, and runs the gate under them side by
+//       side (E6). On the page, such a word whose key carries rows of
+//       another entry: its card withholds exactly those and names the
+//       lemma's entries, as E9 holds under a tag
 // The words are found in the data, never named.
 //
 // Run: node tools/check-entry-gate-v1.mjs [--ledger <the pinned ledger>] [--ledger-was <the ledger it replaces>] [--lattice <dir>]
@@ -119,7 +131,8 @@ import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore, factsOf, FACTS_SLOT, FACTS_WRITTEN_BY, readingKey } from "./gloss-store-v1.mjs";
-import { ENTRY_GATE_RULE_ID, numberOf, tagOf, letteredOf, placeEntry, entrySaid, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { ENTRY_GATE_RULE_ID, numberOf, tagOf, letteredOf, placeEntry, placeTags, lemmaEntries, entrySaid, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, onlyLeaders, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
@@ -153,6 +166,9 @@ console.log(`— ${ENTRY_GATE_RULE_ID} —\n`);
 if (!existsSync(join(PINS, "PIN.json"))) { console.log("SKIPPED — no row entries on this disk (data/row-entries/PIN.json)"); process.exit(3); }
 const pin = JSON.parse(readFileSync(join(PINS, "PIN.json"), "utf8"));
 const store = openRouteStore(STORE);
+// the store as the projector reads it on a book the record of dictionary kinds rests shut (E15)
+const restStore = openRouteStore(STORE, { atRest: true });
+const kindsRec = readKinds(join(STORE, "..")).rec;
 const index = store.index;
 const rec = index.row_entries || null;
 
@@ -538,11 +554,11 @@ let page = null, pageWhy = "";
 try {
   const html = readFileSync(join(K3, "zone.html"), "utf8");
   const grab = (head, end) => { const a = html.indexOf(head); if (a < 0 || html.indexOf(head, a + 1) >= 0) throw new Error(`zone.html does not hold exactly one "${head.trim()}"`); const b = html.indexOf(end, a); if (b < 0) throw new Error(`zone.html does not close "${head.trim()}"`); return html.slice(a, b); };
-  page = new Function(`${grab("\n  const factsOf = (row) => ", ";\n")}${grab("\n  const numberOf = (tag) => ", "\n  window.__entryGate = ")}${grab("\n  const PLACE_IS_A_NAME = ", "\n  const versesOwn = ")}\n return { numberOf, tagOf, placeEntry, entrySaid, factsOf, bdbEntriesAt, entryVerdict, leadersKey, onlyLeaders };`)();
+  page = new Function(`${grab("\n  const factsOf = (row) => ", ";\n")}${grab("\n  const numberOf = (tag) => ", "\n  window.__entryGate = ")}${grab("\n  const PLACE_IS_A_NAME = ", "\n  const versesOwn = ")}\n return { numberOf, tagOf, placeEntry, placeTags, entrySaid, factsOf, bdbEntriesAt, entryVerdict, leadersKey, onlyLeaders };`)();
 } catch (e) { pageWhy = e.message; }
 
 const served = zonesServed().filter((z) => existsSync(join(ZONES, `${z}.lattice.bin`)));
-const WANT = ["gated", "kept", "lettered", "bdb", "untagged"];
+const WANT = ["gated", "kept", "lettered", "bdb", "untagged", "lemma"];
 // The words for the page, a few of each kind: a word the page joins to its neighbors in one cell (a run one license
 // names) opens the cell's card and not its own, which only the page can say, so the first of a kind whose card is
 // its own is the one judged.
@@ -551,6 +567,7 @@ const picks = {};       // kind -> the words found for it, MOST at most
 const more = (kind) => (picks[kind] || []).length < MOST;
 const found = (kind, pick) => { (picks[kind] ||= []).push(pick); };
 const leaders = new Map();   // E13's words: zone -> three at most, of four zones at most
+const e15 = { words: 0, carried: 0, faults: [] };
 const e6 = { pairs: 0, rows: 0, faults: [] }, e7 = { tagged: 0, lists: 0, halves: 0, readWords: 0, faults: [], lattice: 0, latticeFaults: [], books: 0 }, e8 = { entries: 0, faults: [], spoken: 0 };
 const asked = new Set();   // key, then the tags: judged once for E6
 // a reading only rows of the given kind carry, among the key's rows: [text, a row carrying it] or null
@@ -628,26 +645,52 @@ for (const z of served) {
           if (!same(theirs2, mine.verdicts)) e6.faults.push(`${k} under ${tags.join(" ")}: row ${theirs2.findIndex((v, i) => v !== mine.verdicts[i]) + 1} of ${rows.length}`);
         }
       }
+      // E15: the entries of MACULA's lemma on a plain word TAHOT does not tag, as the module reads them off the store the
+      // projector read; and the page's gate under them, side by side with the module's, as E6 runs it under a tag
+      const lemmaHere = !h && !w.w && !w.kq && !w.kqw && w.k && typeof w.hp === "string" && w.hp.trim() && !/\s/u.test(w.hp.trim())
+        ? lemmaEntries(w.hp, (k) => (restsOffIn(kindsRec, zone) ? restStore : store).routesFor(k), factsOf) : [];
+      if (w.te !== undefined || lemmaHere.length) {
+        e15.words += 1;
+        const te = w.te === undefined ? [] : [].concat(w.te);
+        if (h || w.w || w.kq || w.kqw || !w.k) e15.faults.push(`${z} ${sec.label}: te on a word that is tagged, paired or has no key`);
+        else if (!same(te, lemmaHere)) e15.faults.push(`${z} ${sec.label}: ${w.k} carries ${te.join(" ") || "no te"}; MACULA's lemma gives ${lemmaHere.join(" ") || "none"} off the store`);
+        else if ((Array.isArray(w.te) && te.length < 2) || te.some((t) => typeof t !== "string" || !/^H[1-9]\d*$/u.test(t))) e15.faults.push(`${z} ${sec.label}: te ${JSON.stringify(w.te)} is not one number or a list of several`);
+        else if (page && (!page.placeTags || !same(page.placeTags(w), placeTags(w)))) e15.faults.push(`${z} ${sec.label}: the page reads the gate's tags otherwise`);
+        else {
+          e15.carried += 1;
+          const id = `${w.k}\u0001${te.join(" ")}`;
+          if (!asked.has(id)) {
+            asked.add(id);
+            const rows = rowsOf(w.k), mine = judge(rows, te);
+            if (mine && page) {
+              e6.pairs += 1; e6.rows += rows.length;
+              const pp = page.placeEntry(te), pb = pp ? page.bdbEntriesAt(pp, rows.map(page.factsOf)) : null;
+              if (!pp || !same(pp, mine.place) || !same([...pb].sort(), [...mine.bdbHere].sort())) e6.faults.push(`${w.k} under ${te.join(" ")} (MACULA's lemma): the place or BDB's entries there`);
+              else if (!same(rows.map((row) => page.entryVerdict(page.factsOf(row), pp, pb)), mine.verdicts)) e6.faults.push(`${w.k} under ${te.join(" ")} (MACULA's lemma): a row's verdict`);
+            }
+          }
+        }
+      }
       // the kinds of place each form stands at: by its pointed surface (a read half's without the source's
       // brackets), its own tags and whether its place is a name
       for (const form of [w, ...(w.w || [])]) {
         if (!form || typeof form.s !== "string" || !form.k) continue;
         const s = form === w ? form.s : form.s.replace(/^\[+|\]+$/gu, "");
-        const tags = form.tg ? [].concat(form.tg) : null;
+        const tags = placeTags(form);
         (stoodUnder.get(s) || stoodUnder.set(s, new Map()).get(s)).set(leadersKey(tags, isName(w)), { tags, k: form.k, isName: isName(w) });
       }
       // the words for the page: one region, which its place does not divide, so the card opens on its whole form
       if (!plainWord(words, e)) continue;
       const here = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k };
-      if (!w.tg) {
+      if (!placeTags(w)) {
         if (more("untagged") && rowsOf(w.k).some((r) => (factsOf(r) || {}).n)) found("untagged", here);
         continue;
       }
       const gr = grades[w.s];
-      const tags = [].concat(w.tg);
+      const tags = placeTags(w);
       const named = isName(w);
       const wantsLeader = (leaders.has(z) ? leaders.get(z).length < 3 : leaders.size < 4) && gr && gr.e && gr.e[leadersKey(tags, named)];
-      if (WANT.every((kind) => !more(kind) || kind === "untagged") && !wantsLeader) continue;
+      if (WANT.every((kind) => !more(kind) || kind === "untagged" || (kind === "lemma" && !w.te)) && !wantsLeader) continue;
       const rows = rowsOf(w.k);
       const j = rows.length ? judge(rows, tags) : null;
       if (!j) continue;
@@ -664,6 +707,10 @@ for (const z of served) {
       if (more("gated") && j.other > 0 && someKept) {
         const only = readingOnlyOf(rows, isOther, (row, i) => isOther(row, i) && !(factsOf(row).n || []).some((x) => j.place.numbers.includes(x)) && (factsOf(row).n || []).length > 0);
         if (only) found("gated", { ...here, reading: only[0], m: String(only[1][3]) });
+      }
+      if (w.te && !w.tg && more("lemma") && j.other > 0 && someKept) {
+        const only = readingOnlyOf(rows, isOther, (row, i) => isOther(row, i) && !(factsOf(row).n || []).some((x) => j.place.numbers.includes(x)) && (factsOf(row).n || []).length > 0);
+        if (only) found("lemma", { ...here, reading: only[0], m: String(only[1][3]) });
       }
       if (more("lettered") && j.place.lettered && someKept) {
         const byLetter = (row, i) => isOther(row, i) && (j.facts[i].n || []).some((x) => j.place.numbers.includes(x));
@@ -759,12 +806,14 @@ else {
     e7.latticeFaults.length ? `${nf(e7.latticeFaults.length)} · ${first(e7.latticeFaults)}` : `${nf(e7.lattice)} tagged places read against the lattice in ${e7.books} of ${served.length} books`);
   if (e7.books < served.length) console.log(`  --  E7's second half was not judged for ${served.length - e7.books} of ${served.length} books: their positions file is not in ${LATTICE}`);
 }
+check("E15 a plain word STEP gives no tag carries the entries of MACULA's lemma (te) exactly where the lemma, one word and pointed, heads numbered rows of the store the projector read; one number or a list of several, never beside a tag; the page reads the gate's tags as the module does", e15.carried > 0 && e15.faults.length === 0,
+  e15.faults.length ? `${nf(e15.faults.length)} · ${first(e15.faults)}` : `${nf(e15.carried)} words carry the entries of MACULA's lemma in ${served.length} zones`);
 check("E8  the leaders at a kind of place speak for a place a word of their surface stands at, differ from the surface's own, and are credited to a row the place keeps that carries the reading; where the place withholds every row carrying the surface's own leader, it has leaders of its own", e8.entries > 0 && e8.faults.length === 0,
   e8.faults.length ? `${nf(e8.faults.length)} · ${first(e8.faults)}` : `${nf(e8.entries)} surfaces and kinds of place with leaders of their own · ${nf(e8.spoken)} whose surface's own leader only withheld rows carry, each with its own`);
 
 // ---- on the page -------------------------------------------------------------------------------
 // the words found above, pressed and read (tools/gated-card-v1.mjs)
-const lacking = WANT.filter((kind) => kind !== "untagged" && !picks[kind]);
+const lacking = WANT.filter((kind) => kind !== "untagged" && kind !== "lemma" && !picks[kind]);
 if (lacking.length) check("E9–E11 on the page", false, `no served word was found for: ${lacking.join(", ")}`);
 else {
   const tree = await serveTree(K3);
@@ -810,8 +859,13 @@ else {
     if (!picks.untagged) console.log("  --  E12 was not judged: no served word of one region stands with no tag on a key whose rows carry a number");
     else {
       const [pick, got] = await own(picks.untagged);
-      check("E12 a word its place gives no tag is not gated", !!pick && !got.fault && !!got.data && Number(got.data.entryWithheld) === 0 && got.data.entry === "" && got.entry === "" && !/of another entry/u.test(got.line),
+      check("E12 a word its place gives no tag, and MACULA's lemma no entry, is not gated", !!pick && !got.fault && !!got.data && Number(got.data.entryWithheld) === 0 && got.data.entry === "" && got.entry === "" && !/of another entry/u.test(got.line),
         !pick ? JOINED(picks.untagged) : got.fault || `${where(pick)} · entry ${got.data ? got.data.entryWithheld : "?"} · "${got.line}" · ${got.said.length} pills`);
+    }
+    {
+      const [pick, got] = await own(picks.lemma);
+      check("E15 on the page: a word STEP gives no tag, whose key carries rows of another entry than its lemma's: its card withholds exactly those, says so naming the lemma's entries, and prints no reading only such rows carry", !!pick && !got.fault && counted(got, pick) && !pillOf(got, pick) && got.entry === pick.tags.join(" "),
+        !pick ? (picks.lemma ? JOINED(picks.lemma) : "no served word carrying the entries of MACULA's lemma stands where its card withholds rows of another entry") : got.fault || `${where(pick)} · ${pick.other} of ${pick.rows} rows are another entry's; the card says ${got.data ? got.data.entryWithheld : "nothing"} · "${got.line}" · «${String(pick.reading).slice(0, 40)}» (${pick.m}) ${pillOf(got, pick) ? "stands on a pill" : "is on no pill"}`);
     }
     if (!leaders.size) check("E13 where the place moves the leader, the line under the word and the card's first pill are the place's leader", false, "no served word of one region stands at a place that moves its leader");
     else {

@@ -38,6 +38,15 @@
 // failed. Three run at a time by default (--jobs); the chains this replaced
 // ran three abreast for a month.
 //
+// A CHECK STOPPED FOR TIME UNDER LOAD RUNS AGAIN ALONE (task 125). Several
+// checks drive a browser each, and three abreast they can starve one
+// another: on 16 November 2026 check-run-card-forms-v1 gave no verdict in
+// 1,500 s under the suite's load and passed every law alone in 39 s. A check
+// the limit stops is run once more when the others are done, alone, under
+// the same limit, and its verdict is that run's, said as such («alone, after
+// no verdict under load»). A check that fails alone has failed; one that
+// times out alone has failed; nothing is skipped or retried twice.
+//
 // A LAW NOT JUDGED IS NAMED. A check that passes may still hold a law it
 // could not judge on this machine (the zone it wanted is held off the door;
 // no work of the kind it presses is on this disk). The checks print such a
@@ -147,6 +156,7 @@ if (startedAs(import.meta.url)) {
     const t0 = process.hrtime.bigint();
     const child = spawn("node", [j.file, ...j.args], { cwd: READER, stdio: ["ignore", "pipe", "pipe"] });
     let out = ""; let timedOut = false;
+    const again = !!j.alone;
     child.stdout.on("data", (d) => { out += d; }); child.stderr.on("data", (d) => { out += d; });
     const timer = setTimeout(() => { timedOut = true; child.kill("SIGKILL"); }, TIMEOUT_S * 1000);
     child.on("close", (code) => {
@@ -156,7 +166,7 @@ if (startedAs(import.meta.url)) {
       writeFileSync(join(LOGS, `${j.name}${j.tag ? `.${j.tag}` : ""}.log`), out);
       const lines = out.split("\n");
       let verdict, say;
-      if (timedOut) { verdict = "FAILED"; say = [`    ¦ no verdict in ${TIMEOUT_S} s; stopped`]; }
+      if (timedOut) { verdict = "FAILED"; say = [`    ¦ no verdict in ${TIMEOUT_S} s${again ? " alone, after none under load" : ""}; stopped`]; }
       // a check that could not reach its inputs says why on a line of its own
       // that begins SKIPPED; some print a heading above it
       else if (code === 3) { verdict = "skipped"; say = [(lines.find((l) => /^SKIPPED\b/u.test(l)) || lines.find((l) => l.trim()) || "").replace(/^SKIPPED\s*(—|-|:)?\s*/u, "")]; }
@@ -165,7 +175,8 @@ if (startedAs(import.meta.url)) {
       else if (code === 0) { verdict = "ok"; const n = lines.filter((l) => /^ {2}ok {1,2}/u.test(l)).length; say = [n ? `${n} assertions` : `no law printed as judged · ${(lines.filter((l) => l.trim()).pop() || "(it printed nothing)").trim()}`]; }
       else { verdict = "FAILED"; const f = lines.filter((l) => /^FAIL|PAGE ERROR/u.test(l)); say = (f.length ? f : lines.filter((l) => l.trim()).slice(-3).map((l) => `¦ ${l}`)).map((l) => `    ${l}`); }
       const unjudged = lines.filter((l) => /^ {2}-- {2}/u.test(l) && /\bnot (judged|read|witnessed|asked|counted as passed)\b|\bskipped\b|\bunread\b/iu.test(l)).map((l) => l.trim().replace(/^--\s+/u, ""));
-      results.push({ label, name: j.name, verdict, say, seconds, unjudged });
+      if (again && verdict !== "FAILED") say = say.map((l, i) => (i ? l : `${l} · alone, after no verdict under load`));
+      results.push({ label, name: j.name, verdict, say, seconds, unjudged, timedOut, job: j });
       if (verdict === "FAILED") { console.log(`${label.padEnd(44)} FAILED  (${seconds.toFixed(0)} s)`); for (const l of say) console.log(l.slice(0, 600)); }
       else console.log(`${label.padEnd(44)} ${verdict === "ok" ? "ok  " : "skipped —"} ${say[0].slice(0, 300)}${verdict === "ok" ? `  (${seconds.toFixed(0)} s)` : ""}`);
       done();
@@ -175,6 +186,12 @@ if (startedAs(import.meta.url)) {
   const worker = async () => { while (next < jobs.length) { const j = jobs[next]; next += 1; await runOne(j); } };
   const began = Date.now();
   await Promise.all(Array.from({ length: Math.min(JOBS, jobs.length) }, worker));
+  // each check the limit stopped under load, once more, alone (above)
+  const stopped = results.filter((r) => r.timedOut && !r.job.alone);
+  if (stopped.length && JOBS > 1) {
+    console.log(`\n${stopped.length} check(s) gave no verdict under load; each runs again alone`);
+    for (const r of stopped) { results.splice(results.indexOf(r), 1); await runOne({ ...r.job, alone: true }); }
+  }
   stop();
 
   const failed = results.filter((r) => r.verdict === "FAILED").map((r) => r.label).sort();

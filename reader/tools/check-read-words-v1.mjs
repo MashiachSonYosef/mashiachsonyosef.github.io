@@ -233,7 +233,7 @@ const gateOf = (w) => gateUnder(w.letters, w.tag === null ? null : [w.tag]);
 // the written half of a place: its regions, and the tags the card of its form is due (a form written as several words opens as a branch, asked under none)
 const writtenOf = (word) => {
   const regions = (word.w || []).filter((r) => r && r.role === "KETIV");
-  return { regions, tags: regions.length === 1 && regions[0].tg ? [].concat(regions[0].tg) : null };
+  return { regions, tags: regions.length === 1 && regions[0].tg ? [].concat(regions[0].tg) : regions.length === 1 && regions[0].te ? [].concat(regions[0].te) : null };
 };
 /** IN THE PAGE. One place's card, moved to its read form, each read word's block pressed and read. Handed to the
  *  browser whole. A block is read only while the card stands on it. `again` says the page opened the card anew

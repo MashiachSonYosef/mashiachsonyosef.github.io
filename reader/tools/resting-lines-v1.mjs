@@ -170,6 +170,24 @@ export const linesOnPage = async (p, { from = 0, to = Infinity, settleMs = 350, 
   return { ...got, readings: tries + 1 };
 };
 
+/** THE POINTER MAP, WAITED FOR (pointer-line-rule-v1). Where the pointing's leader is a pointer the lane's map
+ *  resolves, the line prints the resolution once the map is here, so the line at rest of a work whose lines the
+ *  lattice leads is read once the page says the map is here, or that it is not (window.__formOf: the map's counts,
+ *  or null). The round's recorder (readAtRest) and a check that reads the first paint as the line at rest
+ *  (check-press-paints-before-seen-v1) wait on it; linesOnPage does not, since checks also read it with the map held
+ *  back on purpose (check-form-of-v1 F12 and F14). A work with no lattice has no such leader, and the Tikkunei
+ *  Zohar, opened as the round opens it, does not ask for the map at all (17 November 2026). Throws, in words, where
+ *  the map is not said in time. */
+export const pointerMapSaid = async (p, ms = 60000) => {
+  const leadsByLattice = await p.evaluate(() => window.__masorah !== "keep" && !!(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice));
+  if (!leadsByLattice) return;
+  for (const t0 = Date.now(); Date.now() - t0 < ms;) {
+    if (await p.evaluate(() => window.__formOf !== undefined)) return;
+    await p.waitForTimeout(100);
+  }
+  throw new Error("the pointer map did not arrive: a line a pointer leads would be read before its resolution prints");
+};
+
 /** Open a work as a first visit opens it and read its lines: nothing kept on
  *  the device, the page's own defaults, every section (or the stretch asked
  *  for) read as linesOnPage reads it. Throws, in words, where the page could
@@ -182,6 +200,7 @@ export const readAtRest = async (browser, base, work, opts = {}) => {
     p.on("pageerror", (e) => errors.push(String(e && e.message)));
     await p.goto(`${base}/zone.html?b=${work}`, { waitUntil: "networkidle" });
     await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+    await pointerMapSaid(p);
     const got = await linesOnPage(p, opts);
     if (errors.length) throw new Error(`the page threw while it drew: ${errors[0]}`);
     return got;

@@ -57,6 +57,47 @@
 // tools/apply-row-entries-v1.mjs. The page carries these functions under the
 // same names, and check-entry-gate-v1 runs the two side by side.
 export const ENTRY_GATE_RULE_ID = "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points";
+import { vowelForm, isPointed } from "./pointing-grade-v1.mjs";
+
+// THE ENTRY WHERE STEP GIVES NO TAG (entry-by-lemma-rule-v1; the plan of the
+// week of 17 November 2026, section 1, step 3, which the owner took on 16
+// November: «sounds smart. lets add it»). STEP gives no tag at 861 places of
+// the thirty-nine books that the store reads, and there the gate stood
+// aside: at 1 Samuel 2:10 the Classical Hebrew Words database's «unjust
+// one», pointed as the place, led the line, and Strong's «about» (H5922),
+// the word's own entry with no pointing of its own, rested held back. MACULA
+// names the word's lemma at those places (the zone's hp), and the store's
+// rows headed by that lemma, pointed as MACULA points it, file it under
+// their own entries. The projector writes those entries on the word as te,
+// beside tg and never in it, so a reader of tg still reads only what TAHOT
+// tags; the gate reads tg, else te (placeTags). A lemma of several words (a
+// name such as Eben-ezer) gives none, and neither does a word read one way
+// and written another. Measured on 16 November 2026: 754 of the 861 places
+// take one or more entries (wip/2026-11-16/the-entry-measure/).
+export const ENTRY_BY_LEMMA_RULE_ID = "entry-by-lemma-rule-v1-where-step-gives-a-word-no-tag-the-place-takes-the-entries-of-the-rows-headed-by-maculas-lemma";
+/** The tags the gate reads at a form: TAHOT's core tags (tg), else the entries of MACULA's lemma (te); null where neither. */
+export const placeTags = (form) => (form && form.tg ? [].concat(form.tg) : form && form.te ? [].concat(form.te) : null);
+/** The letters of a Hebrew text: its consonants, nothing else. */
+const lettersOf = (t) => [...String(t || "").normalize("NFD")].filter((c) => c >= "\u05D0" && c <= "\u05EA").join("");
+/** A headword carrying a cantillation mark is a form copied from a verse (MACULA's and STEP's rows head their renderings
+ * so), not a dictionary's headword: «he went in» (H5954) is headed by the accented form of Daniel's verb, which points as
+ * the preposition does. */
+const ACCENTED = /[\u0591-\u05AF]/u;
+/** The entries of MACULA's lemma: the numbers (facts n) of the rows under the lemma's letters that a pointed headword of
+ * their own heads exactly as the lemma is pointed, in the order of their digits; [] where the lemma is unpointed, of
+ * several words, or heads no numbered row. `routesFor` is the store's reader of a key's rows; `factsOf` its facts. */
+export const lemmaEntries = (lemma, routesFor, factsOfRow) => {
+  const l = String(lemma || "");
+  if (!l || /\s/u.test(l.trim()) || !isPointed(l)) return [];
+  const vf = vowelForm(l), out = new Set();
+  for (const row of routesFor(lettersOf(l)) || []) {
+    const heads = Array.isArray(row[6]) ? row[6] : [];
+    if (!heads.some((h) => typeof h === "string" && !ACCENTED.test(h) && isPointed(h) && vowelForm(h) === vf)) continue;
+    const f = factsOfRow(row);
+    for (const n of f && Array.isArray(f.n) ? f.n : []) if (numberOf(n)) out.add(numberOf(n));
+  }
+  return [...out].sort((a, b) => Number(a.slice(1)) - Number(b.slice(1)));
+};
 
 /** The Strong's number in a tag or an entry id: H and the digits, leading noughts off; null where it holds none. */
 export const numberOf = (tag) => { const x = /^[HA]?0*(\d+)/u.exec(String(tag)); return x && x[1] !== "0" ? `H${x[1]}` : null; };

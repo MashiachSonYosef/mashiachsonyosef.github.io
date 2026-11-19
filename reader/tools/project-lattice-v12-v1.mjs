@@ -148,7 +148,7 @@ import { gradeRow, heldByPointing, POINTING_GRADE_RULE_ID, UNPOINTED_ROW_RULE_ID
 import { isOtherStem, stemsOfPlaceLine, STEM_FAMILY_RULE_ID } from "./stem-family-v1.mjs";
 import { readStemsExtension, stemsId, STEMS_EXTENSION_RULE_ID, STEMS_EXTENSION_HOME } from "./stems-extension-v1.mjs";
 import { STEMS_CARRIED_RULE_ID, keysAskedWithStems } from "./stems-carried-v1.mjs";
-import { ENTRY_GATE_RULE_ID, placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { ENTRY_GATE_RULE_ID, ENTRY_BY_LEMMA_RULE_ID, placeEntry, placeTags, lemmaEntries, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
 import { readPinnedLines } from "./pinned-v1.mjs";
@@ -433,6 +433,7 @@ const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows
   ld: 0, grades: 0, verses_with_their_own_citations: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
   places_tagged: 0, places_with_no_core_tag: 0, places_whose_pieces_spell_no_key_of_the_word: 0,
+  places_untagged_asked_by_lemma: 0, places_entry_by_lemma: 0, places_entry_by_lemma_several: 0, places_lemma_of_several_words: 0,
   name_places_listed: 0, name_places_marked: 0, name_places_with_no_word: 0, leaders_asked_at_a_kind_of_place: 0, leaders_the_place_moves: 0,
   held_examples: [] };
 const grades = {};          // pointed surface -> { k, g, n, o, v? }
@@ -816,6 +817,25 @@ for (const sec of zone.sections || []) {
   });
 }
 
+// ---- the entry where STEP gives no tag (entry-by-lemma-rule-v1) -------------
+// A plain word (no halves, no read form apart) that carries no tag after the
+// join, in a verse joined or held, takes the entries of MACULA's lemma (hp),
+// read from the store's rows headed by the lemma as MACULA points it
+// (tools/entry-gate-v1.mjs, lemmaEntries). Written as te, apart from tg; the
+// gate reads tg, else te (placeTags). Cleared first on every word, so a word
+// a later projection tags carries no te of an earlier one.
+for (const sec of zone.sections || []) for (const w of sec.words || []) {
+  delete w.te;
+  if (w.mark || w.tg || w.w || w.kq || w.kqw || !w.k || typeof w.hp !== "string" || !w.hp) continue;
+  stats.places_untagged_asked_by_lemma += 1;
+  if (/\s/u.test(w.hp.trim())) { stats.places_lemma_of_several_words += 1; continue; }
+  const te = lemmaEntries(w.hp, (k) => store.routesFor(k), factsOf);
+  if (!te.length) continue;
+  w.te = te.length === 1 ? te[0] : te;
+  stats.places_entry_by_lemma += 1;
+  if (te.length > 1) stats.places_entry_by_lemma_several += 1;
+}
+
 // ---- the leaders at each kind of place, asked once every surface is graded --
 // Every word of the book, and at a place written one way and read another
 // each half, is a form the page may read leaders for: by its pointed surface
@@ -830,7 +850,7 @@ for (const sec of zone.sections || []) for (const w of sec.words || []) {
     const surface = form === w ? form.s : form.s.replace(/^\[+|\]+$/gu, "");
     const rec = grades[surface], held = surfaceRows.get(surface);
     if (!rec || !held || rec.k !== form.k) continue;
-    const tags = form.tg ? [].concat(form.tg) : null;
+    const tags = placeTags(form);
     const key = leadersKey(tags, isName);
     if (key === PLACE_IS_A_NAME || held.asked.has(key)) continue;   // no tag and a name: the surface's own leaders
     held.asked.add(key);
@@ -893,11 +913,11 @@ const sidecar = {
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats }, ...(signsStamp ? { signs_rest_last: signsStamp } : {}) },
   routes: sideRoutes, grades,
-  entry: { rule: ENTRY_GATE_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
+  entry: { rule: ENTRY_GATE_RULE_ID, by_lemma: ENTRY_BY_LEMMA_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
   names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
   // rule 6: the record the leaders were baked at rest under; absent where the book does not rest shut
   ...(atRest ? { rests_off: { ...store.atRest, what: "every leader here baked from the store's rows (o.m, o.x, o.c, o.l, o.la, o.s, v[…].c, e[…], nl) read the rows that rest open under the record and no other; the lattice's own cards, grades and citations are the corpus lane's and were read whole; a word's hg (the zone's) is carried only where its card's source is not shut whole and gives that reading in a row that rests open" } } : {}),
-  leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
+  leaders_at_a_place: "grades[surface].e[<key>] = { l, la, nl }: the leaders under \"only\" at a kind of place, where the place's gates make them other than o.l, o.la and nl. The key is the place's core tags as the lattice writes them, joined by a space (none where the place carries no tag), with \"|n\" after them where the place is a name: at a place that is not a name a row its source gives as a name is withheld, and at a tagged place a row of another entry is. A place whose key e does not hold, and a place with no tag that is a name, reads o.l, o.la and nl. The key of a place with no tag is the entries of MACULA's lemma where the word carries them (te). The word carries its place's tags (tg) and its name mark (np); where the tree holds no list of name places every place is read as a name",
   ...(binyanFiles.length ? { stems: stemsCarried, binyan: { rule: STEM_FAMILY_RULE_ID, files: binyanFiles, carried: stemsCarriedSaid, ...(extensionSaid ? { extension: extensionSaid } : {}), ...(stemsFollowed ? { followed_through_retexts: { record: `reader/data/${RECORD_FILE}`, rows_on_this_books_keys: stemsFollowed, what: "rows of this book's keys whose stems the binyan files name by route text a round of the record has since retexted without folding: named here by the words the row serves now" } } : {}), kq: { rule: "kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only", ...kqStems }, what: "grades[surface].st: the stems of the surface's places in this book (both sources' where they disagree); stems[key]: the known stems of each row on a key a card of this book asks them under (carried, stems-carried-rule-v1: a word's, a read half's or a piece's key whose pointed surface has a known stem here, or a graded surface's own key with one), by m, rank and route: the store's rows, and where the extension was read the rows of the dictionary beside the store that it names; on a key carried, a row not listed has no known stem" } } : {}),
 };
 writeFileSync(sidecarPath, gzipSync(Buffer.from(JSON.stringify(sidecar)), { level: 9 }));
@@ -913,7 +933,7 @@ ef.toggles.lattice = {
   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
   counts: { ...stats },
   names: namesSaid,
-  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open, and the first card of the stack whose reading does not open with Strong's sign (the top card where every card's does; zone-gloss-rule-v8); ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
+  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; te: where the word carries no tag, is no pair and has no read form apart, the entries of MACULA's lemma (hp), the numbers of the store's rows headed by the lemma as MACULA points it, one or a list (entry-by-lemma-rule-v1), which the gate reads where tg is absent; hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open, and the first card of the stack whose reading does not open with Strong's sign (the top card where every card's does; zone-gloss-rule-v8); ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
   pieces: {
     rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
     witnesses: pieceWitness,

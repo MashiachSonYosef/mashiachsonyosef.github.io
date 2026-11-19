@@ -38,7 +38,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
-import { linesInPage } from "./resting-lines-v1.mjs";
+import { linesInPage, pointerMapSaid } from "./resting-lines-v1.mjs";
 import { DEFAULT_PICKS_RULE_ID } from "./bake-default-picks-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -78,6 +78,9 @@ const open = async (b, query = "") => {
   // stand at once (a build that does not say so at rest is waited for a while and read: its lines need no file)
   const waits = /default=(?!step)/u.test(query);
   if (!(await said0(p, waits ? 120000 : 20000)) && waits) throw new Error(`${b}${query}: the page did not say its lines stand`);
+  // the line at rest waits on the pointer map where the lattice leads it (pointer-line-rule-v1): a first paint read
+  // before the map is here would hold a pointer's own words its resolution then paints over (Psalms 9:1, 19 November)
+  await pointerMapSaid(p);
   const n = await p.evaluate(() => window.__materialise());
   if (!(await said0(p, waits ? 180000 : 20000)) && waits) throw new Error(`${b}${query}: built whole, the page did not say its lines stand`);
   await p.waitForTimeout(600);

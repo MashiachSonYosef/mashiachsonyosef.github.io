@@ -295,7 +295,7 @@ check("S2  the receipt agrees with the chips and with gloss_m",
 // a baked alternate, AND carry some other visible line with a second carrier
 const visible = await p.evaluate(() => [...document.querySelectorAll("section.seg .he-text .wb")].slice(0, 120).map((wb, i) => {
   const g = wb.querySelector(".g"); const w = wb.querySelector(".w");
-  return { i, s: w ? w.textContent.trim() : "", tg: wb.__word && wb.__word.tg ? [].concat(wb.__word.tg) : null, np: !!(wb.__word && wb.__word.np), bare: !g || g.classList.contains("bare"), regions: wb.querySelectorAll(".wr").length, line: g ? g.textContent.replace(/\s+/g, " ").trim() : "" };
+  return { i, s: w ? w.textContent.trim() : "", tg: wb.__word && wb.__word.tg ? [].concat(wb.__word.tg) : wb.__word && wb.__word.te ? [].concat(wb.__word.te) : null, np: !!(wb.__word && wb.__word.np), bare: !g || g.classList.contains("bare"), regions: wb.querySelectorAll(".wr").length, line: g ? g.textContent.replace(/\s+/g, " ").trim() : "" };
 }));
 const kOf = (s) => { for (const sec of zone.sections) for (const w of sec.words || []) if (w.s === s) return w.k || (w.w && w.w[0] && w.w[0].k) || null; return null; };
 const groups = new Map();

@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-16.
 
-**182 rules declared · 170 named by a check · 12 unguarded.**
+**184 rules declared · 172 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -49,6 +49,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
 | `door-filing-rule-v1-the-door-files-the-thirty-nine` | tools/door-filing-v1.mjs | **UNGUARDED** |
 | `edition-serve-rule-v1-the-edition-is-the-text-the-door-is-the-rights` | tools/serve-edition-v1.mjs | check-edition-serve-v1 |
+| `entry-by-lemma-rule-v1-where-step-gives-a-word-no-tag-the-place-takes-the-entries-of-the-rows-headed-by-maculas-lemma` | tools/entry-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-entry-gate-v1 |
 | `entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points` | tools/apply-row-entries-v1.mjs, tools/entry-gate-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-entry-gate-v1, check-pointing-grade-v1 |
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | check-k-maqaf-preserved-v2 |
 | `exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf` | tools/k-normalization-v2.mjs | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1 |
@@ -116,6 +117,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `pipeline-manifest-rule-v1-a-rule-with-no-guard-is-printed-as-having-none` | tools/pipeline-manifest-v1.mjs | check-manifest-prints-unguarded-v1 |
 | `place-order-rule-v1-the-line-reads-what-the-source-gives-at-this-place` | tools/check-line-reads-the-place-v1.mjs | check-line-reads-the-place-v1 |
 | `plan-rule-v1-the-build-is-derived-and-every-fact-prints-its-basis` | tools/plan-build-v1.mjs | check-build-derived-v1 |
+| `pointer-line-rule-v1-a-pointer-that-would-lead-a-line-prints-the-resolution-its-pill-prints` | zone.html, tools/resting-lines-v1.mjs | check-form-of-v1 |
 | `pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it` | tools/bake-form-of-pills-v1.mjs, zone.html, tools/card-readings-v1.mjs | check-form-of-v1, check-same-product-v1, check-card-opens-on-the-line-v1, check-default-picks-v1, check-line-reads-the-place-v1, check-names-pill-v1, check-ruled-equals-first-paint-v1, check-rulings-under-sources-v1, check-source-switch-v1, check-witnessed-order-v1 |
 | `pointing-grade-rule-v5-a-row-is-graded-by-its-own-headwords-a-shureq-is-a-vowel-neither-a-word-initial-dagesh-lene-nor-the-qatan-mark-is-a-pointing-and-the-texts-word-reads-without-the-dagesh-joining-it-to-the-word-before` | tools/emit-pointing-grade-recount-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/proper-name-v1.mjs, zone.html | check-pointing-grade-v1, check-lattice-projection-v1, check-piece-class-v1, check-sign-does-not-lead-v1 |
 | `pointing-store-counter-verification-rule-v1-a-shipment-is-what-this-side-measured-not-what-it-said` | tools/verify-pointing-store-v1.mjs | check-pointing-store-landing-v1 |

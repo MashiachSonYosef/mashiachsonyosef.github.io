@@ -1,4 +1,5 @@
 // RUN: page
+// GUARDS: pointer-line-rule-v1-a-pointer-that-would-lead-a-line-prints-the-resolution-its-pill-prints
 // GUARDS: form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill, pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it
 // A READING THAT POINTS AT ANOTHER WORD'S READING (the corpus lane's map of
 // pointer readings: its relay v175 of 13 November 2026, map v1.3, and its
@@ -148,6 +149,36 @@ check("F1  the record, under the rule this check guards: a map by route key of p
     && (rec.counts.resolved_by || {}).the_ruled_print === ruledPrinted.length,
   rec ? `${rec.rule_id === RULE_ID ? "rule v3" : `rule "${rec.rule_id}"`} · ${Object.keys(rec.keys).length} keys · ${entries.length} pointers carried (record says ${rec.counts.carried} of ${rec.counts.pills} read) · ${resolved.length} resolved (record says ${rec.counts.resolved}), ${ruledPrinted.length} of them by a ruled print (record says ${(rec.counts.resolved_by || {}).the_ruled_print}) · well formed ${wellFormed}` : "no record");
 if (!rec) { console.log("\nFAIL"); process.exit(1); }
+// F15 a pointer leads no line (pointer-line-rule-v1, task 137): no resting line of a book the map covers prints a
+// pointer's own words where the map resolves it, at a word whose key the map holds; a resolution that is a name stands
+// aside at a place that is not one (formOfResolves), so such a pointer is not asked. The lines are the recordings the
+// round reads off the page (data/resting-lines/), the words the zones' own.
+{
+  const { readdirSync } = await import("node:fs");
+  const plain = (t) => String(t).trim().replace(/\.$/u, "").split("/").map((x) => x.trim()).filter(Boolean).join(" + ");
+  const faults = [];
+  let lines = 0, books = 0;
+  for (const f of readdirSync("data/resting-lines").filter((x) => x.endsWith(".json.gz")).sort()) {
+    const book = f.replace(/\.json\.gz$/u, "");
+    if (!existsSync(`data/zones/${book}.bin`)) continue;
+    const z = JSON.parse(gunzipSync(readFileSync(`data/zones/${book}.bin`)).toString("utf8"));
+    const rl = JSON.parse(gunzipSync(readFileSync(`data/resting-lines/${f}`)).toString("utf8"));
+    const secs = new Map((z.sections || []).map((s) => [s.label, s.words || []]));
+    books += 1;
+    for (const [label, entries] of rl.sections || []) {
+      const words = secs.get(label) || [];
+      for (const [i, , text] of entries) {
+        const w = words[i];
+        if (!w || !w.k || !rec.keys[w.k]) continue;
+        lines += 1;
+        const e = rec.keys[w.k].find((x) => x.resolved && !x.resolved.name && plain(x.t) === plain(text));
+        if (e) faults.push(`${book} ${label} word ${i + 1}: «${text}» (${e.m}), which the map resolves to «${e.resolved.text}»`);
+      }
+    }
+  }
+  check("F15 a pointer leads no line: no resting line prints a pointer's own words where the map resolves it", books > 0 && lines > 0 && faults.length === 0,
+    faults.length ? `${faults.length} · ${faults.slice(0, 4).join(" · ")}` : `${lines.toLocaleString("en-US")} resting lines at keys the map holds, in ${books} books`);
+}
 // F13, the record: the page's rule for the fold, and the fold over the store at rest derived again as the record
 // counts it (bake-form-of-pills-v1, head): for every key of the map whose rows rest open, each group of the key's
 // resting pool whose every row is a pointer of its own source that resolves to one English another group prints

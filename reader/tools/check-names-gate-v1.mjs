@@ -83,7 +83,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore, factsOf, readingKey } from "./gloss-store-v1.mjs";
 import { NAMES_GATE_RULE_ID, nameWithheld } from "./names-gate-v1.mjs";
-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { openFollower, followedRecord, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
@@ -296,7 +296,7 @@ for (const z of served) {
       const named = rows.some((r) => (factsOf(r) || {}).name);
       if (!named && !pointers.length) continue;
       // what the entry and the pointing do with each row here, as the page asks them
-      const place = w.tg ? placeEntry([].concat(w.tg)) : null;
+      const place = placeTags(w) ? placeEntry(placeTags(w)) : null;
       const facts = rows.map(factsOf);
       const bdbHere = place ? bdbEntriesAt(place, facts) : null;
       const verdicts = rows.map((r, i) => (place ? entryVerdict(facts[i], place, bdbHere) : "none"));
@@ -309,7 +309,7 @@ for (const z of served) {
       // (a row the entry, the pointing and the stem all leave)
       const left = (row, i) => verdicts[i] !== "other" && (verdicts[i] === "this" || !attested || !heldByPointing(rowGrades[i])) && !otherStem(row);
       const stands = (row, i) => nameLeft(row, i) && left(row, i);
-      const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: w.tg ? [].concat(w.tg) : null, rows: rows.length, names: rows.filter(nameLeft).length };
+      const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: placeTags(w), rows: rows.length, names: rows.filter(nameLeft).length };
       // N9: a pointer to a name whose own row, no name's, every other gate leaves here
       const pointer = pointers.find((x) => rows.some((row, i) => String(row[3]) === x.m && !(facts[i] && facts[i].name) && store.carriersOf([row], x.t).length && left(row, i)));
       if (pointer) (picks.pointer ||= []).push({ ...pick, pointer });
