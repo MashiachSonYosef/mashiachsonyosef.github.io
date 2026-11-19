@@ -119,3 +119,6 @@ Net: the gate now keeps the place's own entry at 936 untagged places, and the li
 ## Landed (19 November)
 
 - **main `ba41813560`** (one commit on `afea14aac6`), **gh-pages `5db83a5f85`** («gh-pages follows main»). The commit message is `logs/commit-message-draft.txt` with the gate's line written in.
+- **Live:** Pages run 1375 deployed `5db83a5f85` (23:37Z); live check run 73 passed on `ba41813560` (23:38Z).
+- **After:** check-nothing-unlanded-v1 passes (408 sources, all landed; the site's build outputs are this tree's). The sha audit of gh-pages (`S/v41/sha-audit.py`): every fingerprint on the chain index, every read-off file the chain books and resting-lines records state (52 records, 9,366 files), and the 3,547 zone pins on 1,272 pages match; none does not. `S/old` now holds `ba41813560`.
+- The letter to Moses (`../FOR-MOSES-2026-11-17-the-entry-by-macula-lemma.md`) is sent.

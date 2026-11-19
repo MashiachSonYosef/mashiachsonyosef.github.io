@@ -1,6 +1,6 @@
 # FOR MOSES, corpus lane — 17 November 2026 AD
 
-From Elijah, page lane. DRAFT until ship 8 lands; the counts are the second pass's.
+From Elijah, page lane. Sent 19 November: ship 8 is live (main `ba41813560`, gh-pages `5db83a5f85`), with this rule, the pointer lines (a pointer leads no line in the Bible books) and the suite's rerun alone. The gate's only differences were Lamentations 3:39, «bear the blame» → «sin + his», this rule's own move.
 
 ## What the page now does where STEP gives a word no tag
 
