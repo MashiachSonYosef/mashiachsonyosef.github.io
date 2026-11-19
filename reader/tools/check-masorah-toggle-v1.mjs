@@ -159,7 +159,7 @@ const only = await cardNow();
 const gr = side.grades[target ? target.s : ""];
 // the leaders under "only" at the word's own place: its own where its gates move them (its entry's tags
 // and whether it is a name; a book whose places were not read for names reads every place as one)
-const at = target ? await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i].__word; return { tags: w && w.tg ? [].concat(w.tg) : null, np: !!(w && w.np) }; }, target.i) : { tags: null, np: false };
+const at = target ? await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i].__word; return { tags: w && w.tg ? [].concat(w.tg) : w && w.te ? [].concat(w.te) : null, np: !!(w && w.np) }; }, target.i) : { tags: null, np: false };
 const lead = onlyLeaders(gr, at.tags, !side.names || at.np);
 
 // M2

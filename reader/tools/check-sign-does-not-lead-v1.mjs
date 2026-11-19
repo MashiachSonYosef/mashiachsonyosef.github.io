@@ -83,7 +83,7 @@ import { licClass } from "./gloss-m-v1.mjs";
 import { fnv1a } from "./lattice-lib-v1.mjs";
 import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
 import { leadersKey, PLACE_IS_A_NAME } from "./place-leaders-v1.mjs";
 
@@ -280,7 +280,7 @@ const plainIn = (groups) => groups.some((g) => !opensWithStrongSign(g.text));
         const surface = form === word ? form.s : form.s.replace(/^\[+|\]+$/gu, "");
         const gr = (s.grades || {})[surface];
         if (!gr || gr.k !== form.k || !gr.e) continue;
-        const tags = form.tg ? [].concat(form.tg) : null, key = leadersKey(tags, isName);
+        const tags = placeTags(form), key = leadersKey(tags, isName);
         if (key === PLACE_IS_A_NAME || !gr.e[key] || asked.has(`${surface}\u0001${key}`)) continue;
         asked.add(`${surface}\u0001${key}`);
         const at = gr.e[key];

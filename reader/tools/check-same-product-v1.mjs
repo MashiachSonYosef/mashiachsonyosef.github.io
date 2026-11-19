@@ -141,6 +141,7 @@ import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { readingKey, openRouteStore } from "./gloss-store-v1.mjs";
 import { DICTIONARY_KINDS_RULE_ID, restsOffIds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { onlyLeaders } from "./place-leaders-v1.mjs";
+import { placeTags } from "./entry-gate-v1.mjs";
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const DIFF = arg("diff", ""); const diffLines = [];
 const OLD = arg("old", ""), NEW = arg("new", ""), EVERY = Number(arg("every", "5")), CHAPTERS = Number(arg("chapters", "2"));
@@ -252,7 +253,7 @@ const leadersRead = (build, w, keys) => {
   const zone = build.zone || {}, side = build.side || null;
   const g = side && side.grades ? side.grades[w.s] : null;
   const graded = !!(g && g.o && Object.prototype.hasOwnProperty.call(g.o, "l"));
-  const at = graded ? onlyLeaders(g, w.tg || null, !side.names || !!w.np) : null;
+  const at = graded ? onlyLeaders(g, placeTags(w), !side.names || !!w.np) : null;
   if (at && Array.isArray(at.l)) out.push({ text: String(at.l[0]), by: (Array.isArray(at.l[4]) ? at.l[4] : []).map(String) });
   if (!graded || (at && at.nl)) for (const kk of keys) { const m = (zone.gloss_m || {})[kk], t = (zone.gloss || {})[kk]; if (m && typeof t === "string") out.push({ text: t, by: (Array.isArray(m.by) ? m.by : []).map(String) }); }
   return out;

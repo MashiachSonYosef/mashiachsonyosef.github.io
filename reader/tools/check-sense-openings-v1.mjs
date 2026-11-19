@@ -77,7 +77,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore, factsOf, readingKey, routePrinted, senseOpened, SENSE_OPENINGS_RULE_ID, SENSE_OPENINGS_PRINT } from "./gloss-store-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { rulingsPinned, rulingOf, cited } from "./rulings-v1.mjs";
 import { openFollower, followedRecord, sha16Of, FollowFault } from "./row-strikes-follow-v1.mjs";
@@ -342,7 +342,7 @@ for (const z of served) {
       if (w.mark || !keysWithAMark.has(w.k) || !plainWord(words, e)) continue;
       const rows = rowsOf(w.k);
       const facts = rows.map(factsOf);
-      const place = w.tg ? placeEntry([].concat(w.tg)) : null;
+      const place = placeTags(w) ? placeEntry(placeTags(w)) : null;
       const bdbHere = place ? bdbEntriesAt(place, facts) : null;
       const verdicts = rows.map((r, i) => (place ? entryVerdict(facts[i], place, bdbHere) : "none"));
       const isName = !namesRead || !!w.np;
@@ -361,7 +361,7 @@ for (const z of served) {
       if (notesKept.length) placesWithANote += 1;
       if (notesKept.length && !readingsKept) placesWithOnlyNotes += 1;
       const said = (row) => { const o = senseOpened(row); return { m: String(row[3]), entry: o.entry, point: o.point, text: o.text }; };
-      const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: w.tg ? [].concat(w.tg) : null, rows: rows.length,
+      const pick = { zone: z, section: si, entry: e, label: sec.label, s: w.s, k: w.k, tags: placeTags(w), rows: rows.length,
         notes: notesKept.map(said), all: notesAll.map(said), alone: [...noteWordsOnly(w.k)] };
       if (notesKept.length && readingsKept && notesKept.every((r) => noteWordsOnly(w.k).has(readingKey(senseOpened(r).text))) && more("withNotes")) (picks.withNotes ||= []).push(pick);
       if (notesKept.length < notesAll.length && readingsKept && more("withheld")) (picks.withheld ||= []).push(pick);

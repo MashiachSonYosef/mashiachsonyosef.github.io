@@ -64,7 +64,7 @@ import { gunzipSync } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore, factsOf, readingKey, printedForm } from "./gloss-store-v1.mjs";
-import { placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { placeEntry, placeTags, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { nameWithheld } from "./names-gate-v1.mjs";
 import { gradeRow, heldByPointing } from "./pointing-grade-v1.mjs";
 import { isOtherStem } from "./stem-family-v1.mjs";
@@ -179,7 +179,7 @@ if (ext) {
 const storeLeft = (w, rows, isName) => {
   const grades = rows.map((r) => gradeRow(r, w.s));
   const attested = grades.includes("m");
-  const place = w.tg ? placeEntry([].concat(w.tg)) : null;
+  const place = placeTags(w) ? placeEntry(placeTags(w)) : null;
   const facts = rows.map(factsOf);
   const bdbHere = place ? bdbEntriesAt(place, facts) : null;
   const verdicts = rows.map((r, j) => (place ? entryVerdict(facts[j], place, bdbHere) : "none"));

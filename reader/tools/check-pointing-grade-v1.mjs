@@ -241,7 +241,7 @@ const target = await p.evaluate((grades) => {
     const sec = wbs[i].closest("section.seg");
     const all = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
     const w = wbs[i].__word || {};
-    return { i, s, ref: sec && sec.__sec ? sec.__sec.label : null, n: all.indexOf(wbs[i]) + 1, tags: w.tg ? [].concat(w.tg) : null, np: !!w.np };
+    return { i, s, ref: sec && sec.__sec ? sec.__sec.label : null, n: all.indexOf(wbs[i]) + 1, tags: w.tg ? [].concat(w.tg) : w.te ? [].concat(w.te) : null, np: !!w.np };
   }
   return null;
 }, side.grades);

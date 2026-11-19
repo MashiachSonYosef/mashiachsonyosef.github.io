@@ -94,7 +94,7 @@ const snap = () => p.evaluate((secs) => {
       const g = wb.querySelector(":scope > .g"); if (!g) return;
       const c = g.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove());
       const k = words[wi].k, nn = (z.gloss_orders || {}).noname || {};
-      out.push({ id: `${si}|${wi}`, k, s: words[wi].s, tg: words[wi].tg || null, np: !!words[wi].np, line: c.textContent.trim(), chip: ((g.querySelector(".g-lic") || {}).textContent || "").trim(), src: ((g.querySelector(".g-lic") || { dataset: {} }).dataset.line || ""),
+      out.push({ id: `${si}|${wi}`, k, s: words[wi].s, tg: words[wi].tg ? [].concat(words[wi].tg) : words[wi].te ? [].concat(words[wi].te) : null, np: !!words[wi].np, line: c.textContent.trim(), chip: ((g.querySelector(".g-lic") || {}).textContent || "").trim(), src: ((g.querySelector(".g-lic") || { dataset: {} }).dataset.line || ""),
         owed: !!(k && z.gloss_names && Object.prototype.hasOwnProperty.call(z.gloss_names, k) && Object.prototype.hasOwnProperty.call(nn, k)), want: k && Object.prototype.hasOwnProperty.call(nn, k) ? nn[k] : null });
     });
   });
