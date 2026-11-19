@@ -38,3 +38,10 @@ Page lane (Elijah). The owner read Isaiah 1 to 20 on live (`main` afea14aac6, sh
 1. Ship 8 (the slow check alone, the gate, the ship).
 2. Ship 9, from this list: the header's metals, the drawing faults (5, 8, 14), the hidden sign's slot (11), Strong's «Compare» pairs at the gate (3), and the 12 dictionaries at rest, each measured.
 3. A letter to Moses: BDB's name bracket (2), Strong's definition clause (3), entries for Jastrow (7), STEP's pieces at the 861 places (15).
+
+## The owner's answers (19 November, evening)
+
+- «ok so 12 it is lets go with that for now»: on the 39 books only the 12 Bible dictionaries stand at rest. Everything else rests shut, a press away, nothing deleted: English Wiktionary's Hebrew and Aramaic entries, Hebrew Wiktionary, Jastrow, Kethoneth Yoseph, Classical Hebrew Words, English Wikipedia's openings, the Samaritan works. The word lists and knowledge bases already rest shut. Ship 9.
+- «from what youre telling me it just sounds like we need to think through each dictionary rule even better»: a rule pass over the 12, one dictionary at a time (task 124), with BDB's name bracket and Strong's definition clause first.
+- The verse label's letters: «no», they stay purple.
+- The circles on «FORCE» and «attested ▸» in the header: not answered; left as they are.
