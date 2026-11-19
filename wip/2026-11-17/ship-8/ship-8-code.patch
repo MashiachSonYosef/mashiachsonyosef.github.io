@@ -318,6 +318,29 @@ index 4c91a07a12..c419b3d3aa 100644
    }
    return null;
  }, side.grades);
+diff --git a/reader/tools/check-press-paints-before-seen-v1.mjs b/reader/tools/check-press-paints-before-seen-v1.mjs
+index 81664c7582..d55d884756 100644
+--- a/reader/tools/check-press-paints-before-seen-v1.mjs
++++ b/reader/tools/check-press-paints-before-seen-v1.mjs
+@@ -38,7 +38,7 @@ import { dirname, join } from "node:path";
+ import { fileURLToPath } from "node:url";
+ import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+ import { serveTree } from "./serve-tree-v1.mjs";
+-import { linesInPage } from "./resting-lines-v1.mjs";
++import { linesInPage, pointerMapSaid } from "./resting-lines-v1.mjs";
+ import { DEFAULT_PICKS_RULE_ID } from "./bake-default-picks-v1.mjs";
+ 
+ const HERE = dirname(fileURLToPath(import.meta.url));
+@@ -78,6 +78,9 @@ const open = async (b, query = "") => {
+   // stand at once (a build that does not say so at rest is waited for a while and read: its lines need no file)
+   const waits = /default=(?!step)/u.test(query);
+   if (!(await said0(p, waits ? 120000 : 20000)) && waits) throw new Error(`${b}${query}: the page did not say its lines stand`);
++  // the line at rest waits on the pointer map where the lattice leads it (pointer-line-rule-v1): a first paint read
++  // before the map is here would hold a pointer's own words its resolution then paints over (Psalms 9:1, 19 November)
++  await pointerMapSaid(p);
+   const n = await p.evaluate(() => window.__materialise());
+   if (!(await said0(p, waits ? 180000 : 20000)) && waits) throw new Error(`${b}${query}: built whole, the page did not say its lines stand`);
+   await p.waitForTimeout(600);
 diff --git a/reader/tools/check-read-words-v1.mjs b/reader/tools/check-read-words-v1.mjs
 index 887981d858..fe35b63814 100644
 --- a/reader/tools/check-read-words-v1.mjs
@@ -572,26 +595,39 @@ index a5a7fa810c..aa062fd6d4 100644
      rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
      witnesses: pieceWitness,
 diff --git a/reader/tools/resting-lines-v1.mjs b/reader/tools/resting-lines-v1.mjs
-index d7ae5e09ff..f23afb3d4f 100644
+index d7ae5e09ff..4d51298c38 100644
 --- a/reader/tools/resting-lines-v1.mjs
 +++ b/reader/tools/resting-lines-v1.mjs
-@@ -182,6 +182,19 @@ export const readAtRest = async (browser, base, work, opts = {}) => {
+@@ -170,6 +170,24 @@ export const linesOnPage = async (p, { from = 0, to = Infinity, settleMs = 350,
+   return { ...got, readings: tries + 1 };
+ };
+ 
++/** THE POINTER MAP, WAITED FOR (pointer-line-rule-v1). Where the pointing's leader is a pointer the lane's map
++ *  resolves, the line prints the resolution once the map is here, so the line at rest of a work whose lines the
++ *  lattice leads is read once the page says the map is here, or that it is not (window.__formOf: the map's counts,
++ *  or null). The round's recorder (readAtRest) and a check that reads the first paint as the line at rest
++ *  (check-press-paints-before-seen-v1) wait on it; linesOnPage does not, since checks also read it with the map held
++ *  back on purpose (check-form-of-v1 F12 and F14). A work with no lattice has no such leader, and the Tikkunei
++ *  Zohar, opened as the round opens it, does not ask for the map at all (17 November 2026). Throws, in words, where
++ *  the map is not said in time. */
++export const pointerMapSaid = async (p, ms = 60000) => {
++  const leadsByLattice = await p.evaluate(() => window.__masorah !== "keep" && !!(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice));
++  if (!leadsByLattice) return;
++  for (const t0 = Date.now(); Date.now() - t0 < ms;) {
++    if (await p.evaluate(() => window.__formOf !== undefined)) return;
++    await p.waitForTimeout(100);
++  }
++  throw new Error("the pointer map did not arrive: a line a pointer leads would be read before its resolution prints");
++};
++
+ /** Open a work as a first visit opens it and read its lines: nothing kept on
+  *  the device, the page's own defaults, every section (or the stretch asked
+  *  for) read as linesOnPage reads it. Throws, in words, where the page could
+@@ -182,6 +200,7 @@ export const readAtRest = async (browser, base, work, opts = {}) => {
      p.on("pageerror", (e) => errors.push(String(e && e.message)));
      await p.goto(`${base}/zone.html?b=${work}`, { waitUntil: "networkidle" });
      await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
-+    // the pointer map (pointer-line-rule-v1): where the pointing's leader is a pointer the lane's map resolves, the
-+    // line prints the resolution once the map is here, so a work whose lines the lattice leads is read once it is, or
-+    // said not to be (window.__formOf: the map's counts, or null). Here, where the round records the lines at rest,
-+    // and not in linesOnPage, which the checks also use with the map held back on purpose (check-form-of-v1 F12 and
-+    // F14). A work with no lattice has no such leader, and the Tikkunei Zohar, opened so, does not ask for the map at
-+    // all (17 November 2026)
-+    const leadsByLattice = await p.evaluate(() => window.__masorah !== "keep" && !!(window.__zone && window.__zone.emitted_from && window.__zone.emitted_from.toggles && window.__zone.emitted_from.toggles.lattice));
-+    if (leadsByLattice) {
-+      const t0 = Date.now();
-+      let landed = false;
-+      while (Date.now() - t0 < 60000) { landed = await p.evaluate(() => window.__formOf !== undefined); if (landed) break; await p.waitForTimeout(100); }
-+      if (!landed) throw new Error("the pointer map did not arrive: a line a pointer leads would be read before its resolution prints");
-+    }
++    await pointerMapSaid(p);
      const got = await linesOnPage(p, opts);
      if (errors.length) throw new Error(`the page threw while it drew: ${errors[0]}`);
      return got;
