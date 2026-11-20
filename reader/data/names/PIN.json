@@ -1,15 +1,60 @@
 {
  "schema_version": "NAMES_PIN_V1",
- "what": "the corpus lane's two lists for the names gate, kept here byte for byte in the folder the lane keeps them in: the word places of the thirty-nine books that are a name, and the served rows whose every entry its own source marks as a name. tools/apply-name-rows-v1.mjs marks the rows; tools/project-lattice-v12-v1.mjs marks the places on each word",
- "relay": "v177",
- "of": "13 November 2026",
- "letter": "r2:mishkan/v2/letters/moses-names-gate-v1/FOR-ELIJAH-v177.md",
- "from": "r2:mishkan/v2/ledgers/all/names/names-v1/ (the private store)",
- "folder": "names-v1",
- "rule": { "file": "RULE.md", "bytes": 4359, "sha256": "1186af4468ba2a5e85dba21f885a02ec3bb883a34763d26b77b716b8da6ac4c4" },
- "receipt": { "file": "receipt-v1.json", "bytes": 7633, "sha256": "ad6f6b8978aacf5b8f6fc09c7ea06d52b4bde4fd5342b90490438bfa74ea0f85" },
- "place_names": { "file": "place-names-v1.jsonl", "bytes": 2797970, "sha256": "c931f6bd4f70aabd6ba4ecae11486175fb7948210ae8c6b70e8fd9736b8f9b75", "lines": 34577 },
- "name_rows": { "file": "name-rows-v1.jsonl", "bytes": 682537, "sha256": "753217669da4c71da71959383cc598a0b314bbe07e3115f4d64d592da0f87f58", "lines": 7412 },
+ "what": "the corpus lane's two lists for the names gate, each kept here byte for byte in the folder the lane keeps it in. The served rows whose every entry its own source marks as a name are names v2's (relay v198: every dictionary that marks a name, by its own mark; it takes the place of names v1's list of rows). The word places of the thirty-nine books that are a name stay names v1's (relay v177), as the lane's letter says. tools/apply-name-rows-v1.mjs marks the rows; tools/project-lattice-v12-v1.mjs marks the places on each word",
+ "relay": "v198",
+ "of": "20 November 2026",
+ "letter": "r2:mishkan/v2/letters/moses-names-gate-v1/FOR-ELIJAH-v198.md",
+ "from": "r2:mishkan/v2/ledgers/all/names/names-v2/ (the private store)",
+ "folder": "names-v2",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 20124,
+  "sha256": "25dd42e35ffe71d239ba5bded395c0029e42ab2f12c2f8e05ac35e1ecce04b14"
+ },
+ "receipt": {
+  "file": "receipt-v2.json",
+  "bytes": 338737,
+  "sha256": "33110941a1ec09d44d789dc69c12d0e0a34e4ea8baf010ef1a971b8a10fa9324"
+ },
+ "name_rows": {
+  "file": "name-rows-v2.jsonl",
+  "bytes": 2576833,
+  "sha256": "a04e4c60859d0f33d82396c02da1039b42c3208d902ddb4f139bb639da80f0cb",
+  "lines": 21292
+ },
+ "place_names": {
+  "folder": "names-v1",
+  "relay": "v177",
+  "of": "13 November 2026",
+  "letter": "r2:mishkan/v2/letters/moses-names-gate-v1/FOR-ELIJAH-v177.md",
+  "from": "r2:mishkan/v2/ledgers/all/names/names-v1/ (the private store)",
+  "file": "place-names-v1.jsonl",
+  "bytes": 2797970,
+  "sha256": "c931f6bd4f70aabd6ba4ecae11486175fb7948210ae8c6b70e8fd9736b8f9b75",
+  "lines": 34577,
+  "rule": {
+   "file": "RULE.md",
+   "bytes": 4359,
+   "sha256": "1186af4468ba2a5e85dba21f885a02ec3bb883a34763d26b77b716b8da6ac4c4"
+  },
+  "receipt": {
+   "file": "receipt-v1.json",
+   "bytes": 7633,
+   "sha256": "ad6f6b8978aacf5b8f6fc09c7ea06d52b4bde4fd5342b90490438bfa74ea0f85"
+  }
+ },
+ "superseded": {
+  "what": "names v1's list of name rows, which names v2's takes the place of: 7,377 of its 7,412 rows are in names v2's list, and 35 leave it, all the UBS dictionary's, whose base form names a name and another part of speech at once (names v2 reads such an entry as partly a name, and the rows stand). Kept in the lane's folder beside the list of places; no tool reads it",
+  "relay": "v177",
+  "folder": "names-v1",
+  "name_rows": {
+   "file": "name-rows-v1.jsonl",
+   "bytes": 682537,
+   "sha256": "753217669da4c71da71959383cc598a0b314bbe07e3115f4d64d592da0f87f58",
+   "lines": 7412
+  }
+ },
+ "not_kept_here": "names v2's four other lists stay on the lane's store (r2:mishkan/v2/ledgers/all/names/names-v2/): the rows partly a name (3,345), the rows its source marks a people's name (829), the rows of another mark or none (8,891) and the common words (526,847; 32.6 MB). Nothing on a card reads them; each is named with its sha256 in the lane's receipt kept here",
  "addendum": {
   "what": "the 26 served rows names v1 counted and did not list: 22 whose own source gives part of them as a name and part not, 4 that its reading of the sources did not reach. None is a name row: tools/apply-name-rows-v1.mjs never reads this list and no row of it carries the mark, which tools/check-names-gate-v1.mjs holds (N7). It is the list of rows a gate asked the other way would have to leave alone",
   "relay": "v194",
@@ -18,9 +63,22 @@
   "letter_sha256": "e52e428bfaf83f18099994caf4ee263b892ef1828d99cd510c58c532667bdcc1",
   "from": "r2:mishkan/v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/ (the private store)",
   "folder": "names-v177-addendum-v1",
-  "rule": { "file": "RULE.md", "bytes": 12395, "sha256": "7b7a0408394189a6dc0dbad59c2551fc2b85dda2082ab05931696bbeb26008b3" },
-  "receipt": { "file": "names-addendum-receipt-v1.json", "bytes": 1417, "sha256": "9f0bf4a5e08afb3976c340eaf5eca9a7a93c333459f18de388016f5d3dca4344" },
-  "list": { "file": "names-v177-addendum-v1.jsonl", "bytes": 10331, "sha256": "99a414fb7c7ccfc53cfd4ae4526174a66c1a2ffdeaa76f22e2badff5ba880321", "lines": 26 },
+  "rule": {
+   "file": "RULE.md",
+   "bytes": 12395,
+   "sha256": "7b7a0408394189a6dc0dbad59c2551fc2b85dda2082ab05931696bbeb26008b3"
+  },
+  "receipt": {
+   "file": "names-addendum-receipt-v1.json",
+   "bytes": 1417,
+   "sha256": "9f0bf4a5e08afb3976c340eaf5eca9a7a93c333459f18de388016f5d3dca4344"
+  },
+  "list": {
+   "file": "names-v177-addendum-v1.jsonl",
+   "bytes": 10331,
+   "sha256": "99a414fb7c7ccfc53cfd4ae4526174a66c1a2ffdeaa76f22e2badff5ba880321",
+   "lines": 26
+  },
   "note": "each sha256 is the one the letter names for the file (its lines 69, 74 and 75), and the bytes taken hash to it; the rule is the relay's one RULE.md for all its answers, of which section 2 is this list's"
  },
  "note": "every sha256 here is the one the relay's letter names for the file, and the bytes taken hash to it"

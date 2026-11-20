@@ -115,29 +115,47 @@ const index = store.index;
 const rec = index.name_rows || null;
 
 // ---- N1: the pinned bytes ---------------------------------------------------------------------
-let theirs = null, places = [], rowLines = [];
+// THE TWO LISTS MAY COME FROM TWO RELAYS (ship 11, 20 November 2026). Names v2 (relay v198) takes the place of names
+// v1's list of name rows, and «the places stay v1's» (the lane's letter). So the pin gives the list of places its own
+// folder, rule and receipt where they are not the rows', and each list is held to the receipt of its own relay:
+// theirs is the receipt beside the rows, theirsPlaces the one beside the places (the same file where the pin gives
+// the places none of their own). The two receipts are of two shapes, read here by what each says:
+//   the rows' list      names v1: rows.file          names v2: lists.name
+//   the sources read    names v1: rows.m_ids_read    names v2: m_ids_read (by m id)
+//   the rows by source  names v1: rows.name_rows     names v2: by_m[m].name
+let theirs = null, theirsPlaces = null, places = [], rowLines = [];
+const placesFolder = (pin.place_names && pin.place_names.folder) || pin.folder;
+const placesRelay = (pin.place_names && pin.place_names.relay) || pin.relay;
 {
   const faults = [];
   if (pin.schema_version !== "NAMES_PIN_V1" || !pin.place_names || !pin.name_rows || !pin.rule || !pin.receipt) faults.push("the pin names no lists, rule or receipt");
   else {
+    const ownOfPlaces = !!(pin.place_names.rule || pin.place_names.receipt);
+    if (ownOfPlaces && !(pin.place_names.rule && pin.place_names.receipt && pin.place_names.folder)) faults.push("the pin gives the list of places a rule or a receipt of its own, and not its folder, its rule and its receipt together");
     try {
       readPinned(join(PINS, pin.folder, pin.rule.file), pin.rule, `${pin.folder}/${pin.rule.file}`);
       theirs = JSON.parse(readPinned(join(PINS, pin.folder, pin.receipt.file), pin.receipt, `${pin.folder}/${pin.receipt.file}`).toString("utf8"));
-      places = readPinnedLines(join(PINS, pin.folder, pin.place_names.file), pin.place_names, `${pin.folder}/${pin.place_names.file}`);
+      if (ownOfPlaces && pin.place_names.rule && pin.place_names.receipt) {
+        readPinned(join(PINS, placesFolder, pin.place_names.rule.file), pin.place_names.rule, `${placesFolder}/${pin.place_names.rule.file}`);
+        theirsPlaces = JSON.parse(readPinned(join(PINS, placesFolder, pin.place_names.receipt.file), pin.place_names.receipt, `${placesFolder}/${pin.place_names.receipt.file}`).toString("utf8"));
+      } else theirsPlaces = theirs;
+      places = readPinnedLines(join(PINS, placesFolder, pin.place_names.file), pin.place_names, `${placesFolder}/${pin.place_names.file}`);
       rowLines = readPinnedLines(join(PINS, pin.folder, pin.name_rows.file), pin.name_rows, `${pin.folder}/${pin.name_rows.file}`);
     } catch (e) { if (e instanceof PinFault) faults.push(e.message); else throw e; }
     const named = (f, p) => !!f && f.file === p.file && f.sha256 === p.sha256 && f.lines === p.lines && f.bytes === p.bytes;
-    if (theirs && !named((theirs.places || {}).file, pin.place_names)) faults.push("the lane's receipt names another list of name places than the pin");
-    if (theirs && !named((theirs.rows || {}).file, pin.name_rows)) faults.push("the lane's receipt names another list of name rows than the pin");
+    const rowsFileSaid = theirs ? (theirs.rows || {}).file || (theirs.lists || {}).name || null : null;
+    if (theirsPlaces && !named((theirsPlaces.places || {}).file, pin.place_names)) faults.push("the lane's receipt names another list of name places than the pin");
+    if (theirs && !named(rowsFileSaid, pin.name_rows)) faults.push("the lane's receipt names another list of name rows than the pin");
     if (theirs && (theirs.rule || {}).sha256 !== pin.rule.sha256) faults.push("the lane's receipt names another rule than the pin");
+    if (theirsPlaces && theirsPlaces !== theirs && (theirsPlaces.rule || {}).sha256 !== pin.place_names.rule.sha256) faults.push("the lane's receipt of the places names another rule than the pin gives them");
   }
-  check("N1  the lists, their rule and their receipt are the bytes their pin names, and the corpus lane's receipt names both lists as the pin does", faults.length === 0,
-    faults.length ? first(faults) : `relay ${pin.relay} · ${nf(pin.place_names.lines)} name places (${String(pin.place_names.sha256).slice(0, 12)}…) · ${nf(pin.name_rows.lines)} name rows (${String(pin.name_rows.sha256).slice(0, 12)}…)`);
+  check("N1  the lists, their rules and their receipts are the bytes their pin names, and the corpus lane's receipt of each list names it as the pin does", faults.length === 0,
+    faults.length ? first(faults) : `${nf(pin.place_names.lines)} name places of relay ${placesRelay} (${String(pin.place_names.sha256).slice(0, 12)}…) · ${nf(pin.name_rows.lines)} name rows of relay ${pin.relay} (${String(pin.name_rows.sha256).slice(0, 12)}…)`);
 }
 
 // ---- N2: the lists themselves -----------------------------------------------------------------
 const placesOf = new Map();   // book -> verse label -> the word numbers that are a name
-const READ_FOR_NAMES = new Set(((theirs || {}).rows || {}).m_ids_read || []);
+const READ_FOR_NAMES = (() => { const r = ((theirs || {}).rows || {}).m_ids_read || (theirs || {}).m_ids_read || []; return new Set(Array.isArray(r) ? r : Object.keys(r)); })();
 const listed = new Map();     // key -> "rank m sha16" -> the line
 {
   const faults = [];
@@ -156,9 +174,9 @@ const listed = new Map();     // key -> "rank m sha16" -> the line
     const book = placesOf.get(l.book) || placesOf.set(l.book, new Map()).get(l.book);
     (book.get(verse) || book.set(verse, new Set()).get(verse)).add(n);
   });
-  const said = (theirs || {}).places || {};
-  if (theirs && said.names !== places.length) faults.push(`the lane's receipt counts ${said.names} name places and the list holds ${places.length}`);
-  if (theirs && !same(Object.fromEntries(Object.entries(said.by || {}).sort()), Object.fromEntries(Object.entries(by).sort()))) faults.push(`by the sources that say so the list counts ${JSON.stringify(by)} and the lane's receipt ${JSON.stringify(said.by)}`);
+  const said = (theirsPlaces || {}).places || {};
+  if (theirsPlaces && said.names !== places.length) faults.push(`the lane's receipt counts ${said.names} name places and the list holds ${places.length}`);
+  if (theirsPlaces && !same(Object.fromEntries(Object.entries(said.by || {}).sort()), Object.fromEntries(Object.entries(by).sort()))) faults.push(`by the sources that say so the list counts ${JSON.stringify(by)} and the lane's receipt ${JSON.stringify(said.by)}`);
   rowLines.forEach((l, at) => {
     const where = `${pin.name_rows.file} line ${at + 1}`;
     if (typeof l.k !== "string" || !Number.isInteger(l.rank) || typeof l.m !== "string" || !/^[0-9a-f]{16}$/u.test(String(l.sha))) { faults.push(`${where} names no key, rank, m id or hash`); return; }
@@ -171,7 +189,8 @@ const listed = new Map();     // key -> "rank m sha16" -> the line
   // the lane's receipt counts the name rows source by source
   const rowsBy = {};
   for (const l of rowLines) if (typeof l.m === "string") rowsBy[l.m] = (rowsBy[l.m] || 0) + 1;
-  const saidBy = (theirs && theirs.rows && theirs.rows.name_rows) || null;
+  const saidBy = (theirs && theirs.rows && theirs.rows.name_rows)
+    || (theirs && theirs.by_m && typeof theirs.by_m === "object" ? Object.fromEntries(Object.entries(theirs.by_m).filter(([, v]) => v && v.name).map(([m, v]) => [m, v.name])) : null);
   if (theirs && (!saidBy || typeof saidBy !== "object" || !same(Object.fromEntries(Object.entries(saidBy).sort()), Object.fromEntries(Object.entries(rowsBy).sort()))))
     faults.push(`source by source the list holds ${JSON.stringify(rowsBy)} name rows and the lane's receipt counts ${JSON.stringify(saidBy)}`);
   check("N2  every listed place is a book, a verse and a word number, listed once and counted as the lane's receipt counts them; every listed row is a key, a rank, an m id and a hash, listed once, of a source the lane read for names",
@@ -396,8 +415,9 @@ check("N5  in every book the list names, each listed place marks the word of tha
   }
   // names v1's own receipt counted these rows and did not list them: partly a name, and unreached
   const sorted = (o) => Object.fromEntries(Object.entries(o || {}).sort());
-  const said = (theirs && theirs.rows) || {};
-  if (theirs && (!same(sorted(byKind["partly a name"]), sorted(said.partly_a_name)) || !same(sorted(byKind["not reached"]), sorted(said.unreached)) || Object.keys(byKind).some((kind) => kind !== "partly a name" && kind !== "not reached")))
+  // (the addendum is names v1's: its counts stand in names v1's receipt, the one beside the places)
+  const said = (theirsPlaces && theirsPlaces.rows) || {};
+  if (theirsPlaces && (!same(sorted(byKind["partly a name"]), sorted(said.partly_a_name)) || !same(sorted(byKind["not reached"]), sorted(said.unreached)) || Object.keys(byKind).some((kind) => kind !== "partly a name" && kind !== "not reached")))
     faults.push(`by kind and source the addendum holds ${JSON.stringify(byKind)}, and names v1's receipt counts partly a name ${JSON.stringify(said.partly_a_name)} and unreached ${JSON.stringify(said.unreached)}`);
   check("N7  the addendum of rows names v1 counted and did not list: its list, rule and receipt are the bytes the pin names; every line is listed once and on no line of the name rows, finds exactly one row of the store with its own route and definition, and that row carries no mark; the lines are counted as names v1's receipt counts its rows partly a name and unreached", !!a && lines.length > 0 && faults.length === 0,
     faults.length ? `${nf(faults.length)} · ${first(faults)}` : `relay ${a.relay} · ${lines.length} lines (${String(a.list.sha256).slice(0, 12)}…) · ${stand} rows stand, none marked · ${Object.entries(byKind).map(([kind, by]) => `${kind} ${Object.values(by).reduce((x, y) => x + y, 0)}`).join(", ")} · read at store ${f2 ? f2.readAt : "?"}, ${f2 ? f2.rounds.length : 0} round(s) since`);

@@ -26,8 +26,12 @@
 //   W2  each row the words-back round retexted stands once at its key and
 //       rank with its source, the list's words back in both its texts, slot
 //       9 as the list gives it (its closes on both halves, or none), slots
-//       0, 3 to 6 and 10 byte for byte the row the round took, and it prints
-//       (as the note of the sense it opens) the list's printed text
+//       0 and 3 to 6 byte for byte the row the round took, slot 10 its facts
+//       as the round took them but for a fact whose own writer has run since
+//       the round (FACTS_WRITTEN_BY names the writer, the store's index the
+//       day it last ran: names v2 of 20 November marks 259 of these rows a
+//       name; that fact is its writer's check's to judge), and it prints (as
+//       the note of the sense it opens) the list's printed text
 //   W3  exactly one round of the row-strikes record took the derived list,
 //       under row-strike-rule-v7, with no line left off: every row of it a
 //       retext from words_back of a line of the list, the old row recorded
@@ -64,7 +68,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { follower, sha16Of, FollowFault, RECORD_FILE } from "./row-strikes-follow-v1.mjs";
-import { routePrinted, CLOSES_SLOT, FACTS_SLOT } from "./gloss-store-v1.mjs";
+import { routePrinted, factsOf, CLOSES_SLOT, FACTS_WRITTEN_BY } from "./gloss-store-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -139,6 +143,9 @@ const standing = (m, key, rank) => (rowsAt.get(key) || []).filter((r) => r[0] ==
 {
   const faults = [];
   let met = 0, closed = 0;
+  // a fact its own writer has laid again since the round is that writer's to answer for, and its check's to judge
+  const writtenSince = (fact) => { const by = FACTS_WRITTEN_BY[fact], at = by && index[by] ? index[by].applied_on : null; return !!R && !!at && String(at) > String(R.ran_at); };
+  const since = {};
   if (!R) faults.push(`${ROUNDS.length} round(s) of the row-strikes record retexted rows from words back`);
   for (const [i, l] of RETEXT.entries()) {
     const where = `line ${i + 1} (${l.m} ${l.key} rank ${l.rank})`;
@@ -152,12 +159,18 @@ const standing = (m, key, rank) => (rowsAt.get(key) || []).filter((r) => r[0] ==
     const want9 = Array.isArray(l.closes) && l.closes.length ? [l.closes, l.closes] : null;
     if (!same(row[CLOSES_SLOT] ?? null, want9)) faults.push(`${where}: slot 9 is ${JSON.stringify(row[CLOSES_SLOT] ?? null)}, the list gives ${JSON.stringify(want9)}`);
     if (want9) closed += 1;
-    for (const s of [0, 3, 4, 5, 6, FACTS_SLOT]) if (!same(row[s] ?? null, old[s] ?? null)) faults.push(`${where}: slot ${s} is not the row the round took (${JSON.stringify(row[s] ?? null).slice(0, 40)} for ${JSON.stringify(old[s] ?? null).slice(0, 40)})`);
+    for (const s of [0, 3, 4, 5, 6]) if (!same(row[s] ?? null, old[s] ?? null)) faults.push(`${where}: slot ${s} is not the row the round took (${JSON.stringify(row[s] ?? null).slice(0, 40)} for ${JSON.stringify(old[s] ?? null).slice(0, 40)})`);
+    const has = factsOf(row) || {}, had = factsOf(old) || {};
+    for (const fact of new Set([...Object.keys(has), ...Object.keys(had)])) {
+      if (same(has[fact], had[fact])) continue;
+      if (writtenSince(fact)) { since[fact] = (since[fact] || 0) + 1; continue; }
+      faults.push(`${where}: its fact ${fact} is not the row the round took (${JSON.stringify(has[fact] ?? null).slice(0, 40)} for ${JSON.stringify(had[fact] ?? null).slice(0, 40)}), and no run of its writer since the round accounts for it`);
+    }
     if (routePrinted(row) !== l.prints) faults.push(`${where}: it prints «${String(routePrinted(row)).slice(0, 50)}», the list «${String(l.prints).slice(0, 50)}»`);
   }
-  check("W2  each row the round retexted stands once at its key and rank with the list's words back in both texts, slot 9 as the list gives it, slots 0, 3 to 6 and 10 the row the round took, and it prints the list's printed text",
+  check("W2  each row the round retexted stands once at its key and rank with the list's words back in both texts, slot 9 as the list gives it, slots 0 and 3 to 6 the row the round took, its facts the round's but for a fact its own writer has laid since, and it prints the list's printed text",
     !!R && faults.length === 0 && met === RETEXT.length && met > 0,
-    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(met)} rows · ${nf(closed)} carry closes`);
+    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(met)} rows · ${nf(closed)} carry closes · ${Object.keys(since).length ? Object.keys(since).sort().map((f) => `${nf(since[f])} carry another ${f} than the round took, laid since by ${FACTS_WRITTEN_BY[f]}`).join(" · ") : "every fact as the round took it"}`);
 }
 
 // ---- W3: the round ---------------------------------------------------------------------------------------------------

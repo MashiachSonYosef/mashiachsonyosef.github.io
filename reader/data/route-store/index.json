@@ -1175,7 +1175,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 16252777,
+  "shard_bytes_total": 16432868,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "54416ff5785b",
+ "store_version": "96aa8d171a16",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1616,6 +1616,24 @@
    "now": "54416ff5785b",
    "why": "own-pointing-rule-v1-a-row-whose-headwords-carry-no-points-takes-its-own-records-pointed-head-forms",
    "on": "2026-11-16T18:00:01.000Z"
+  },
+  {
+   "was": "54416ff5785b",
+   "now": "15909b6c523c",
+   "why": "names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name",
+   "on": "2026-11-20T20:00:00.000Z"
+  },
+  {
+   "was": "15909b6c523c",
+   "now": "828c5c617bc6",
+   "why": "ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it",
+   "on": "2026-11-20T20:00:01.000Z"
+  },
+  {
+   "was": "828c5c617bc6",
+   "now": "96aa8d171a16",
+   "why": "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points",
+   "on": "2026-11-20T21:00:00.000Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -3884,22 +3902,22 @@
  },
  "row_entries": {
   "rule_id": "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points",
-  "applied_on": "2026-11-15T00:01:07.000Z",
+  "applied_on": "2026-11-20T21:00:00.000Z",
   "applied_by": "tools/apply-row-entries-v1.mjs",
   "pin": "reader/data/row-entries/PIN.json",
-  "relay": "v190",
-  "letter": "r2:mishkan/v2/letters/moses-row-entries-v1/FOR-ELIJAH-v190.md",
-  "from": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1.1/ (the private store)",
-  "rule": "reader/data/row-entries/row-entries-v1.1/RULE.md",
-  "receipt": "reader/data/row-entries/row-entries-v1.1/receipt-v1.1.json",
+  "relay": "v197",
+  "letter": "r2:mishkan/v2/letters/moses-row-entries-v1/FOR-ELIJAH-v197.md",
+  "from": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1.2/ (the private store)",
+  "rule": "reader/data/row-entries/row-entries-v1.2/RULE.md",
+  "receipt": "reader/data/row-entries/row-entries-v1.2/receipt-v1.2.json",
   "ledger": {
-   "file": "row-entries-v1.1.jsonl",
-   "bytes": 25207542,
-   "sha256": "e63c2402ceb655dda6789f91d0a96c3cb22729dedbbee8dd59ba06984875754e",
-   "lines": 52793,
-   "kept": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1.1/row-entries-v1.1.jsonl (the private store); not in this tree"
+   "file": "row-entries-v1.2.jsonl",
+   "bytes": 25003288,
+   "sha256": "d13879e80cd45db5e49a92f958bf3cafe6e5e655006efbd4ee8588927f14c5fc",
+   "lines": 50267,
+   "kept": "r2:mishkan/v2/ledgers/all/row-entries/row-entries-v1.2/row-entries-v1.2.jsonl (the private store); not in this tree"
   },
-  "read_at_store_version": "90d9eb8e7082",
+  "read_at_store_version": "54416ff5785b",
   "partings": [
    {
     "name": "STEP's letters",
@@ -3919,48 +3937,34 @@
   ],
   "totals": {
    "sources": 15,
-   "keys_in_the_ledger": 52793,
-   "rows_in_the_ledger": 382258,
+   "keys_in_the_ledger": 50267,
+   "rows_in_the_ledger": 380633,
    "store_rows_of_those_sources": 380633,
-   "rows_carrying_the_slot": 370021,
-   "rows_with_a_number": 369151,
-   "rows_with_several_numbers": 67756,
-   "rows_with_no_number": 8443,
-   "rows_carrying_steps_letters": 37675,
-   "rows_carrying_bdbs_entries": 15228,
-   "store_rows_with_no_line": 3039,
-   "ledger_rows_with_no_store_row": 4664
+   "rows_carrying_the_slot": 372850,
+   "rows_with_a_number": 371979,
+   "rows_with_several_numbers": 67878,
+   "rows_with_no_number": 8654,
+   "rows_carrying_steps_letters": 37738,
+   "rows_carrying_bdbs_entries": 15447,
+   "store_rows_with_no_line": 0,
+   "ledger_rows_with_no_store_row": 0
   },
   "followed": {
    "rule_id": "row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words",
    "record": "reader/data/row-strikes-v1.json",
-   "read_at_store_version": "90d9eb8e7082",
-   "rounds_since": [
-    {
-     "ran_at": "2026-11-15T00:00:01.000Z",
-     "list": "call5-maqaf-keys-v1.jsonl"
-    },
-    {
-     "ran_at": "2026-11-15T00:00:02.000Z",
-     "list": "land-v188-v1.jsonl"
-    },
-    {
-     "ran_at": "2026-11-15T00:01:04.000Z",
-     "list": "retext-v1.jsonl"
-    }
-   ],
-   "lines_whose_row_was_struck": {
-    "call5-maqaf-keys-v1.jsonl": 4664
-   },
+   "read_at_store_version": "54416ff5785b",
+   "rounds_since": [],
+   "lines_whose_row_was_struck": {},
    "lines_whose_row_was_withheld": {},
-   "rows_re_keyed_and_followed": {
-    "call5-maqaf-keys-v1.jsonl": 45
-   },
-   "rows_retexted_and_followed": {
-    "retext-v1.jsonl": 740
-   },
-   "rows_landed_since_with_no_line": {
-    "land-v188-v1.jsonl": 3039
+   "rows_re_keyed_and_followed": {},
+   "rows_landed_since_with_no_line": {},
+   "lines_of_rows_struck_before_the_ledger_was_read": {
+    "file": "reader/data/row-entries/row-entries-v1.2/struck-lines-v1.2.jsonl",
+    "sha256": "8d942ddc872b183b3b67bf4b1172c5689ff0a416555de2698f50d8a754afaa2e",
+    "lines": 4664,
+    "by_list": {
+     "call5-maqaf-keys-v1.jsonl": 4664
+    }
    },
    "struck_rows_with_a_twin_of_their_own_source": 4061,
    "entries_given_to_a_twin": [
@@ -4012,57 +4016,199 @@
     }
    ]
   },
-  "store_version_before": "5bee25fd9681",
-  "store_version": "ccec4fa3071b",
-  "what": "a row with a line in the corpus lane's row entries ledger carries, in the facts slot (slot 10, an object), n: the Strong's numbers of the entries its own source files it under, where it has any; t: for a row of a source whose entries are STEP's own tags, those that carry STEP's letter; b: for a row of a source that names BDB's own entries, those entries. A row whose same-source twin under a key ending in a maqaf was struck carries, after its own, the entries of that twin's line that it lacked (followed.entries_given_to_a_twin names each pair). The texts are the served bytes, unchanged. At a place the gate reads these against the tag of the word's core piece"
+  "lists": [
+   {
+    "name": "English Wiktionary",
+    "relay": "v203",
+    "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v203.md",
+    "from": "r2:mishkan/v2/ledgers/all/entry-ledger/wiktionary-v1/ (the private store)",
+    "rule": "reader/data/row-entries/entry-ledger-wiktionary-v1/RULE.md",
+    "receipt": "reader/data/row-entries/entry-ledger-wiktionary-v1/receipt-v1.json",
+    "list": {
+     "file": "facts-slot-wiktionary-v1.tsv",
+     "bytes": 8923109,
+     "sha256": "4cb9e9ce6b30331e04eecbdd35ff945c302ceafa354f4a4b7deeecaef0cbd99e",
+     "lines": 54261,
+     "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/wiktionary-v1/facts-slot-wiktionary-v1.tsv (the private store); not in this tree"
+    },
+    "read_at_store_version": "54416ff5785b",
+    "facts_landed": [
+     "n"
+    ],
+    "sources": {
+     "M11": "kaikki_wiktionary_hebrew",
+     "M13": "kaikki_wiktionary_hebrew",
+     "M25": "kaikki_wiktionary_hebrew",
+     "M50": "kaikki_wiktionary_hebrew",
+     "M60": "kaikki_wiktionary_aramaic",
+     "M69": "kaikki_wiktionary_hebrew",
+     "M72": "kaikki_wiktionary_aramaic",
+     "M177": "kaikki_wiktionary_aramaic"
+    },
+    "totals": {
+     "sources": 8,
+     "lines": 54261,
+     "lines_whose_row_was_struck_or_withheld_since": {},
+     "store_rows_of_its_sources": 126586,
+     "rows_carrying_an_entry": 53601,
+     "rows_with_several_numbers": 3290,
+     "rows_of_its_sources_with_no_line": 72325,
+     "lines_whose_facts_are_not_landed": 660,
+     "facts_not_landed": {
+      "t": 16273,
+      "b": 53092
+     }
+    }
+   },
+   {
+    "name": "Classical Hebrew Words and Hebrew Wiktionary",
+    "relay": "v204",
+    "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v204.md",
+    "from": "r2:mishkan/v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/ (the private store)",
+    "rule": "reader/data/row-entries/entry-ledger-classical-and-hebrew-wiktionary-v1/RULE.md",
+    "receipt": "reader/data/row-entries/entry-ledger-classical-and-hebrew-wiktionary-v1/receipt-v1.json",
+    "list": {
+     "file": "facts-slot-v1.tsv",
+     "bytes": 965238,
+     "sha256": "5bc044bad2003f468592933fb5cf9c5f0ccbc54a608973ce4b466c351a6f1aeb",
+     "lines": 9192,
+     "kept": "reader/data/row-entries/entry-ledger-classical-and-hebrew-wiktionary-v1/facts-slot-v1.tsv (in this tree)"
+    },
+    "read_at_store_version": "54416ff5785b",
+    "facts_landed": [
+     "n"
+    ],
+    "sources": {
+     "M23": "classical_hebrew_words",
+     "M27": "hewiktionary_hebrew_exact_english_translation",
+     "M29": "hewiktionary_hebrew_exact_english_translation",
+     "M38": "hewiktionary_hebrew_exact_english_translation",
+     "M54": "hewiktionary_hebrew_exact_english_translation",
+     "M55": "hewiktionary_hebrew_exact_english_translation",
+     "M59": "hewiktionary_hebrew_exact_english_translation",
+     "M79": "hewiktionary_hebrew_exact_english_translation",
+     "M80": "hewiktionary_hebrew_exact_english_translation",
+     "M90": "hewiktionary_hebrew_exact_english_translation",
+     "M93": "hewiktionary_hebrew_exact_english_translation",
+     "M129": "hewiktionary_hebrew_exact_english_translation",
+     "M139": "hewiktionary_hebrew_exact_english_translation",
+     "M142": "hewiktionary_hebrew_exact_english_translation",
+     "M151": "hewiktionary_hebrew_exact_english_translation",
+     "M155": "hewiktionary_hebrew_exact_english_translation",
+     "M162": "hewiktionary_hebrew_exact_english_translation",
+     "M164": "hewiktionary_hebrew_exact_english_translation",
+     "M170": "hewiktionary_hebrew_exact_english_translation",
+     "M171": "hewiktionary_hebrew_exact_english_translation",
+     "M183": "hewiktionary_hebrew_exact_english_translation",
+     "M36": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M41": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M58": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M74": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M92": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M96": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M102": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M105": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M110": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M128": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M134": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M144": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M152": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M174": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M179": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M182": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M188": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M189": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M196": "hewiktionary_hebrew_explicit_inflection_english_translation",
+     "M71": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M98": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M111": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M123": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M132": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M137": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M150": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M163": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M169": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M190": "hewiktionary_hebrew_explicit_inflection_recovery_english_translation",
+     "M44": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M68": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M85": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M86": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M95": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M116": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M130": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M135": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M149": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M157": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M165": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M173": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M185": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M186": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M187": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M192": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M195": "hewiktionary_hebrew_explicit_full_spelling_english_translation",
+     "M133": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+     "M145": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+     "M148": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+     "M154": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+     "M160": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+     "M161": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+     "M167": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+     "M180": "hewiktionary_hebrew_explicit_heading_alternate_english_translation",
+     "M191": "hewiktionary_hebrew_explicit_heading_alternate_english_translation"
+    },
+    "totals": {
+     "sources": 76,
+     "lines": 9192,
+     "lines_whose_row_was_struck_or_withheld_since": {},
+     "store_rows_of_its_sources": 33041,
+     "rows_carrying_an_entry": 9156,
+     "rows_with_several_numbers": 442,
+     "rows_of_its_sources_with_no_line": 23849,
+     "lines_whose_facts_are_not_landed": 36,
+     "facts_not_landed": {
+      "b": 9192
+     }
+    }
+   }
+  ],
+  "store_version_before": "828c5c617bc6",
+  "store_version": "96aa8d171a16",
+  "what": "a row with a line in the corpus lane's row entries ledger carries, in the facts slot (slot 10, an object), n: the Strong's numbers of the entries its own source files it under, where it has any; t: for a row of a source whose entries are STEP's own tags, those that carry STEP's letter; b: for a row of a source that names BDB's own entries, those entries. A row whose same-source twin under a key ending in a maqaf was struck carries, after its own, the entries of that twin's line that it lacked (followed.entries_given_to_a_twin names each pair). The texts are the served bytes, unchanged. At a place the gate reads these against the tag of the word's core piece. A row of a further source named by a list of the pin (lists) carries n as its line gives it: the numbers of the Bible dictionaries' entries its own pointed head form and kind of word meet, joined by the corpus lane"
  },
  "name_rows": {
   "rule_id": "names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name",
-  "applied_on": "2026-11-15T00:01:08.000Z",
+  "applied_on": "2026-11-20T20:00:00.000Z",
   "applied_by": "tools/apply-name-rows-v1.mjs",
   "pin": "reader/data/names/PIN.json",
-  "relay": "v177",
-  "letter": "r2:mishkan/v2/letters/moses-names-gate-v1/FOR-ELIJAH-v177.md",
-  "from": "r2:mishkan/v2/ledgers/all/names/names-v1/ (the private store)",
-  "rule": "reader/data/names/names-v1/RULE.md",
-  "receipt": "reader/data/names/names-v1/receipt-v1.json",
+  "relay": "v198",
+  "letter": "r2:mishkan/v2/letters/moses-names-gate-v1/FOR-ELIJAH-v198.md",
+  "from": "r2:mishkan/v2/ledgers/all/names/names-v2/ (the private store)",
+  "rule": "reader/data/names/names-v2/RULE.md",
+  "receipt": "reader/data/names/names-v2/receipt-v2.json",
   "name_rows": {
-   "file": "reader/data/names/names-v1/name-rows-v1.jsonl",
-   "sha256": "753217669da4c71da71959383cc598a0b314bbe07e3115f4d64d592da0f87f58",
-   "lines": 7412
+   "file": "reader/data/names/names-v2/name-rows-v2.jsonl",
+   "sha256": "a04e4c60859d0f33d82396c02da1039b42c3208d902ddb4f139bb639da80f0cb",
+   "lines": 21292
   },
-  "read_at_store_version": "90d9eb8e7082",
+  "read_at_store_version": "54416ff5785b",
   "totals": {
-   "sources": 17,
-   "rows_listed": 7412,
-   "rows_marked": 7412,
+   "sources": 53,
+   "rows_listed": 21292,
+   "rows_marked": 21292,
    "lines_that_find_no_row": 0,
    "lines_that_find_more_than_one_row": 0
   },
   "followed": {
    "rule_id": "row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words",
    "record": "reader/data/row-strikes-v1.json",
-   "read_at_store_version": "90d9eb8e7082",
-   "rounds_since": [
-    {
-     "ran_at": "2026-11-15T00:00:01.000Z",
-     "list": "call5-maqaf-keys-v1.jsonl"
-    },
-    {
-     "ran_at": "2026-11-15T00:00:02.000Z",
-     "list": "land-v188-v1.jsonl"
-    },
-    {
-     "ran_at": "2026-11-15T00:01:04.000Z",
-     "list": "retext-v1.jsonl"
-    }
-   ],
+   "read_at_store_version": "54416ff5785b",
+   "rounds_since": [],
    "lines_whose_row_was_struck": {},
    "lines_whose_row_was_withheld": {},
    "rows_re_keyed_and_followed": {}
   },
-  "store_version_before": "fe4481a5366e",
-  "store_version": "43acd0b3d9a3",
+  "store_version_before": "54416ff5785b",
+  "store_version": "15909b6c523c",
   "what": "a row the corpus lane's list of name rows names carries name: 1 in the facts slot (slot 10, an object): every entry its own source gives it is marked a name there. The texts are the served bytes, unchanged. At a place that is not a name such a row is withheld and counted; at a place that is a name it stands"
  },
  "sense_openings": {
@@ -4133,7 +4279,7 @@
  },
  "ubs_collocations": {
   "rule_id": "ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it",
-  "applied_on": "2026-11-15T00:01:02.000Z",
+  "applied_on": "2026-11-20T20:00:01.000Z",
   "applied_by": "tools/apply-ubs-collocations-v1.mjs",
   "pin": "reader/data/ubs-collocations/PIN.json",
   "rule": "ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it",
@@ -4147,18 +4293,18 @@
   },
   "list": {
    "file": "reader/data/ubs-collocations/ubs-collocation-rows-v1.jsonl",
-   "sha256": "694d3fcd096b31dc6420cd44733dfc41a11e43057c78da6888fe9068d1f074c1",
-   "lines": 2649
+   "sha256": "a334f5791196f93a7c3d406910ed6865013dbd8f92cf60631dedbd17aedfdb2d",
+   "lines": 2646
   },
   "receipt": {
    "file": "reader/data/ubs-collocations/ubs-collocation-rows-receipt-v1.json",
-   "sha256": "8bca4d34d7d7dad96472c6964b7bb8aaf516de52c08e145c83ad44fe5e666334"
+   "sha256": "1c4201a2e7619e45f9112a2ba487781fbeb6849628fa1315a30bbb0bad6f0c80"
   },
-  "read_at_store_version": "ccec4fa3071b",
+  "read_at_store_version": "15909b6c523c",
   "totals": {
-   "rows_listed": 2649,
+   "rows_listed": 2646,
    "rows_listed_with_places": 2643,
-   "rows_marked": 2649,
+   "rows_marked": 2646,
    "rows_given_picked_at": 2643,
    "lines_that_find_no_row": 0,
    "lines_that_find_more_than_one_row": 0
@@ -4166,14 +4312,14 @@
   "followed": {
    "rule_id": "row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words",
    "record": "reader/data/row-strikes-v1.json",
-   "read_at_store_version": "ccec4fa3071b",
+   "read_at_store_version": "15909b6c523c",
    "rounds_since": [],
    "lines_whose_row_was_struck": {},
    "lines_whose_row_was_withheld": {},
    "rows_re_keyed_and_followed": {}
   },
-  "store_version_before": "ccec4fa3071b",
-  "store_version": "5f5d184032a9",
+  "store_version_before": "15909b6c523c",
+  "store_version": "828c5c617bc6",
   "what": "a row of the UBS dictionary on the derived list of its category (every meaning of its text UBS marks with a collocation, LEXCollocations, read through the catalog's route file; no name row) carries collocations, the collocations its meanings name, as UBS writes them, and, where UBS's own default pick names it, picked_at, the places (\"<book slug> <chapter>:<verse>:<word>\") in the facts slot (slot 10, an object). The texts are the served bytes, unchanged. The record of dictionary kinds rests such a row shut on the thirty-nine books (its entry ubs-collocation), but at a place its picked_at names, where it stands"
  },
  "own_pointing": {

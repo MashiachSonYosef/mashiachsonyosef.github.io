@@ -96,11 +96,29 @@
 //   - a row that carries facts of this tool's and is of a source the ledger
 //     does not read.
 //
+// THE ROWS STRUCK BEFORE THE LEDGER WAS READ (row entries v1.2, relay v197, 20 November 2026). A reissue read from
+// the store as served holds a line for every served row and none for a row a round struck before it was read: the
+// follower finds no round since, so it names no struck row. The lines of those rows are kept beside the ledger
+// (pin.struck_lines: the replaced ledger's line of each, with the round that took it), and the twin clause above
+// reads them as it reads a line whose row a round struck since. Found by recount over every such line.
+//
+// FACTS LISTS OF FURTHER SOURCES (pin.lists; relays v203 and v204, the entry ledgers). A source that names no entry
+// of its own has no line in the ledger. The corpus lane joins such a source's rows to the Bible dictionaries'
+// entries by the row's own pointed head form and kind of word, and sends the rows that meet one as a list: key,
+// rank, m id, route text (and its sha16 where the list gives it), and the facts the row would carry. Each list is
+// named on the command line (--list <file>, once for each list of the pin) and read only if it is the bytes its pin
+// entry names. Of a list's facts only those its pin entry lands (facts) are written: the numbers (n), which the gate
+// itself reads. STEP's letters and BDB's own entries are the two partings of ruling 6, which names the sources whose
+// rows they read; on a joined row they are counted (facts_not_landed) and not written. A row of a list's source
+// with no line carries nothing. A line is followed through the row-strikes record from the store its list was read
+// at, as a line of the ledger is. Refused: a list that is not its pin's bytes, a pinned list not named, a line of a
+// source its pin entry does not read or of a source the ledger reads, a line that finds no row no round took.
+//
 // Idempotent: a second run moves nothing and writes nothing. --dry prints
 // and writes nothing. --on gives the moment the run is recorded under
 // (tools/step-moment-v1.mjs); with none it is the clock's. The summary ends
 // in one line of its figures as JSON (`figures {...}`), dry or not.
-// Usage: node tools/apply-row-entries-v1.mjs --ledger <the ledger data/row-entries/PIN.json names> [--store data/route-store] [--on <moment>] [--dry]
+// Usage: node tools/apply-row-entries-v1.mjs --ledger <the ledger data/row-entries/PIN.json names> [--list <a list the pin names>]... [--store data/route-store] [--on <moment>] [--dry]
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -119,6 +137,7 @@ const DRY = process.argv.includes("--dry");
 const STORE = arg("store", join(K3, "data", "route-store"));
 const PINS = arg("pin", join(K3, "data", "row-entries"));
 const LEDGER = arg("ledger", null);
+const LISTS = process.argv.flatMap((a, i) => (a === "--list" && process.argv[i + 1] ? [process.argv[i + 1]] : []));
 const RECEIPT = arg("receipt", join(K3, "data", "row-entries-receipt-v1.json"));
 const HOME = "reader/data/row-entries";
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
@@ -134,13 +153,27 @@ try { GIVEN_ON = givenMoment(); } catch (e) { refuse(e.message); }
 const following = (ask) => { try { return ask(); } catch (e) { if (e instanceof FollowFault) refuse(e.message); throw e; } };
 
 // ---- the ledger, as the corpus lane wrote it --------------------------------------------
-let pin, lines, theirs;
+let pin, lines, theirs, struckBefore = [];
+const listBytes = new Map();   // sha256 -> the bytes of a file named with --list
+for (const path of LISTS) { if (!existsSync(path)) refuse(`--list ${path} is not here`); const b = readFileSync(path); listBytes.set(sha256(b), b); }
 try {
   pin = JSON.parse(readFileSync(join(PINS, "PIN.json"), "utf8"));
   if (pin.schema_version !== "ROW_ENTRIES_PIN_V1" || !pin.ledger) throw new PinFault(`the pin names no ledger (${join(PINS, "PIN.json")})`);
   readPinned(join(PINS, pin.folder, pin.rule.file), pin.rule, `${pin.folder}/${pin.rule.file}`);
   theirs = JSON.parse(readPinned(join(PINS, pin.folder, pin.receipt.file), pin.receipt, `${pin.folder}/${pin.receipt.file}`).toString("utf8"));
   lines = readPinnedLines(LEDGER, pin.ledger, pin.ledger.file);
+  if (pin.struck_lines) struckBefore = readPinnedLines(join(PINS, pin.folder, pin.struck_lines.file), pin.struck_lines, `${pin.folder}/${pin.struck_lines.file}`);
+  for (const l of pin.lists || []) {
+    if (!l.name || !l.folder || !l.rule || !l.receipt || !l.list || !Array.isArray(l.facts) || !l.facts.length || l.facts.some((f) => !["n", "t", "b"].includes(f)) || !l.sources || !l.read_at_store_version)
+      throw new PinFault(`a list of the pin (${l.name || "unnamed"}) does not name its folder, rule, receipt, list, the facts it lands, its sources and the store it was read at`);
+    readPinned(join(PINS, l.folder, l.rule.file), l.rule, `${l.folder}/${l.rule.file}`);
+    const receipt = readPinned(join(PINS, l.folder, l.receipt.file), l.receipt, `${l.folder}/${l.receipt.file}`).toString("utf8");
+    if (!receipt.includes(`"${l.read_at_store_version}"`)) throw new PinFault(`the receipt of the list "${l.name}" does not name ${l.read_at_store_version}, the store the pin says the list was read at`);
+    const bytes = listBytes.get(l.list.sha256);
+    if (!bytes) throw new PinFault(`the pin names the list ${l.list.file} (${l.name}, relay ${l.relay}) and no --list names those bytes: a run without it would take its entries off the rows`);
+    if (bytes.length !== l.list.bytes) throw new PinFault(`${l.list.file} is ${bytes.length} bytes and its pin says ${l.list.bytes}`);
+  }
+  if (listBytes.size !== (pin.lists || []).length) throw new PinFault(`${listBytes.size} file(s) are named with --list and the pin names ${(pin.lists || []).length} list(s): a --list names bytes no list of the pin names, or one twice`);
 } catch (e) { if (e instanceof PinFault) refuse(e.message); throw e; }
 const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
 const readAt = (((theirs.inputs || {}).route_store || {}).store_version) || null;
@@ -172,6 +205,7 @@ const MINE = ["n", "t", "b"];   // the facts this tool writes and no other does
 // the ledger's rows, each under the name its row has NOW: key -> Map(rank m sha16 -> [facts, ...], one per time the
 // ledger lists the row). A row a round moved since stands under its new key and rank; one a round took is not here
 const ledger = new Map();
+const GIVEN_BY_THE_LEDGER = new Set();   // the sources some line of the ledger gives a fact
 const keysRead = new Set();
 const SOURCES = new Set();
 // the follower's answers for the lines whose row a round since struck or withheld, and for those followed to a moved
@@ -190,6 +224,7 @@ for (const x of lines) {
     SOURCES.add(m); ledgerRows += 1;
     const t = of(m); t.ledger_rows += 1;
     const name = [x.k, rank, m, sha], facts = factsFor(m, entries, numbers);
+    if (facts) GIVEN_BY_THE_LEDGER.add(m);
     const went = following(() => follow.nowOf(name));
     if (went.state === "struck" || went.state === "withheld") {
       goneLines.push(went);
@@ -205,6 +240,19 @@ for (const x of lines) {
     const id = `${rankNow} ${m} ${shaNow}`;
     (rows.get(id) || rows.set(id, []).get(id)).push(facts);
   }
+}
+// the lines of the rows a round struck before the ledger was read (pin.struck_lines): each a line of the ledger this
+// one replaces, with the round that took its row; a row struck as a twin gives what its line alone said, as above
+const struckBeforeBy = {};
+for (const [i, x] of struckBefore.entries()) {
+  const r = x && x.row, by = x && x.taken;
+  if (!x || typeof x.k !== "string" || !Array.isArray(r) || r.length !== 6 || !Array.isArray(r[4]) || !Array.isArray(r[5]) || !by || typeof by.list !== "string") refuse(`${pin.struck_lines.file} line ${i + 1} is not a key, the ledger's six slots and the round that took the row`);
+  const [rank, m, sha, , entries, numbers] = r;
+  if (!(index.m_sources || {})[m]) refuse(`${pin.struck_lines.file} line ${i + 1} names a row of ${m}, and the store holds no such source`);
+  struckBeforeBy[by.list] = (struckBeforeBy[by.list] || 0) + 1;
+  const name = [x.k, rank, m, sha];
+  const twinKey = twinKeyOf(name, { state: by.action === "strike" ? "struck" : by.action, by: { kind: by.kind ?? null } });
+  if (twinKey) twinLines.push({ from: name, key: twinKey, facts: factsFor(m, entries, numbers), by: { list: by.list } });
 }
 // A STRUCK ROW'S TWIN TAKES WHAT ITS LINE ALONE SAID: the same source's row of the same words under the key the
 // struck row's words still stand under carries its own entries first, then those of the struck row's line it lacks
@@ -224,6 +272,61 @@ for (const t of twinLines) {
   given.push({ from: t.from, to: [t.key, Number(ids[0].split(" ")[0]), t.from[2], t.from[3]], gave: gains[0], struck_by: t.by.list });
 }
 
+// ---- the facts lists of further sources (pin.lists) ---------------------------------------------
+const LIST_OF = new Map();    // m id -> the pin entry of the list that reads it
+const listed = new Map();     // key now -> "rank m sha16" -> [facts or null, ...], one per time a list names the row
+const listRuns = [];          // per list, in the pin's order: what it gave
+for (const l of pin.lists || []) {
+  const text = listBytes.get(l.list.sha256).toString("utf8");
+  if (!text.endsWith("\n")) refuse(`${l.list.file} does not end in a line end`);
+  const [head, ...body] = text.slice(0, -1).split("\n");
+  const cols = head.split("\t");
+  const iS = cols.indexOf("sha16"), iT = cols.indexOf("route_text"), iF = cols.findIndex((c) => /^facts_under_/u.test(c));
+  if (cols[0] !== "key" || cols[1] !== "rank" || cols[2] !== "m_id" || iT < 0 || iF < 0) refuse(`${l.list.file} opens with another header: ${cols.join(" | ")}`);
+  if (body.length !== l.list.lines) refuse(`${l.list.file} holds ${body.length} lines and its pin says ${l.list.lines}`);
+  for (const [m, key] of Object.entries(l.sources)) {
+    const mine = (index.m_sources || {})[m];
+    if (!mine || mine.key !== key) refuse(`the pin's list "${l.name}" reads ${m} as ${key}, and the store holds ${mine ? mine.key : "no source"} under ${m}`);
+    if (LIST_OF.has(m)) refuse(`two lists of the pin read ${m}`);
+    LIST_OF.set(m, l);
+  }
+  const followL = following(() => openFollower({ data: dirname(STORE), index, readAt: l.read_at_store_version }));
+  const run = { l, lines: body.length, gone: [], facts_not_landed: {}, by_m: {} };
+  for (const [i, line] of body.entries()) {
+    const c = line.split("\t"), where = `${l.list.file} line ${i + 2}`;
+    if (c.length !== cols.length) refuse(`${where} holds ${c.length} fields`);
+    const m = c[2], rank = Number(c[1]);
+    if (LIST_OF.get(m) !== l) refuse(`${where} names a row of ${m}, which its pin entry does not read`);
+    if (!Number.isInteger(rank)) refuse(`${where}: its rank is not a number`);
+    const sha = sha256(Buffer.from(c[iT], "utf8")).slice(0, 16);
+    if (iS >= 0 && c[iS] !== sha) refuse(`${where}: its sha16 is not its route text's`);
+    let under = null;
+    try { under = JSON.parse(c[iF]); } catch { refuse(`${where}: its facts are not JSON`); }
+    const facts = {};
+    for (const key of MINE) {
+      if (!(key in under)) continue;
+      if (!Array.isArray(under[key]) || !under[key].length || under[key].some((y) => typeof y !== "string" || !y)) refuse(`${where}: ${key} is not a list of entries`);
+      if (l.facts.includes(key)) facts[key] = under[key];
+      else run.facts_not_landed[key] = (run.facts_not_landed[key] || 0) + 1;
+    }
+    if (facts.n && facts.n.some((y) => !/^H[1-9]\d*$/u.test(y))) refuse(`${where} carries a number that is not H and digits: ${JSON.stringify(facts.n)}`);
+    const went = following(() => followL.nowOf([c[0], rank, m, sha]));
+    if (went.state === "struck" || went.state === "withheld") { run.gone.push(went); continue; }
+    const [k, rankNow, , shaNow] = went.name;
+    const rows = listed.get(k) || listed.set(k, new Map()).get(k);
+    const id = `${rankNow} ${m} ${shaNow}`;
+    (rows.get(id) || rows.set(id, []).get(id)).push(Object.keys(facts).length ? facts : null);
+  }
+  listRuns.push(run);
+}
+const listTally = new Map((pin.lists || []).map((l) => [l, { store_rows_of_its_sources: 0, lines_met: 0, rows_carrying_an_entry: 0, rows_with_several_numbers: 0, rows_moved: 0 }]));
+// A SOURCE THE LEDGER READS AND GIVES NOTHING MAY BE READ BY A LIST. The ledger holds a line for every row of a
+// source that names no entry of its own (Classical Hebrew Words), each giving nothing; a list may give such a row
+// the entry its head form meets. Where a line of the ledger gives a row of a list's source any fact, which of the
+// two speaks is not decided, and the run is refused.
+const READ_BY_BOTH = [...LIST_OF.keys()].filter((m) => SOURCES.has(m));
+for (const m of READ_BY_BOTH) if (GIVEN_BY_THE_LEDGER.has(m)) refuse(`${m} is read by the pin's list "${LIST_OF.get(m).name}" and the ledger's own lines give its rows entries: which gives a row its entries is not decided`);
+
 // ---- every row of the store ----------------------------------------------------------------
 const mineOf = (row) => { const f = factsOf(row); if (!f) return null; const out = {}; for (const k of MINE) if (k in f) out[k] = f[k]; return Object.keys(out).length ? out : null; };
 const shardNames = readdirSync(join(STORE, "shards")).filter((f) => f.endsWith(".bin")).sort();
@@ -234,7 +337,21 @@ let storeRows = 0, linesMet = 0;
 const walk = (write) => {
   touched = []; noLine = []; unlistedWithFacts = []; landedRows = []; storeRows = 0; linesMet = 0;
   for (const t of Object.values(tally)) for (const k of Object.keys(t)) if (k !== "ledger_rows") t[k] = 0;
+  for (const lt of listTally.values()) for (const k of Object.keys(lt)) lt[k] = 0;
   const taken = new Map();   // key, then the row's id -> how many of the ledger's lines for it are taken
+  // what a list of the pin gives a row (its list's tally with it), or null where no list reads the row's source
+  const listLine = (k, m, id) => {
+    const l = LIST_OF.get(m);
+    if (!l) return null;
+    const lt = listTally.get(l); lt.store_rows_of_its_sources += 1;
+    const list = (listed.get(k) || new Map()).get(id) || null;
+    const key = `a list\u0001${k}\u0001${id}`, at = taken.get(key) || 0;
+    const met = !!list && at < list.length;
+    if (met) { taken.set(key, at + 1); lt.lines_met += 1; }
+    const want = met ? list[at] : null;
+    if (want) { lt.rows_carrying_an_entry += 1; if (want.n && want.n.length > 1) lt.rows_with_several_numbers += 1; }
+    return { lt, want };
+  };
   for (const name of shardNames) {
     const path = join(STORE, "shards", name);
     const body = JSON.parse(gunzipSync(readFileSync(path)).toString("utf8"));
@@ -245,7 +362,15 @@ const walk = (write) => {
         storeRows += 1;
         const m = String(row[3]);
         const has = mineOf(row);
-        if (!SOURCES.has(m)) { if (has) unlistedWithFacts.push(`${name} ${k} (${m}, rank ${row[0]})`); continue; }
+        if (!SOURCES.has(m)) {
+          // a row of a list's source: the facts its line gives, or nothing where it has no line
+          const got = listLine(k, m, `${row[0]} ${m} ${sha256(Buffer.from(String(row[1] ?? ""), "utf8")).slice(0, 16)}`);
+          if (!got) { if (has) unlistedWithFacts.push(`${name} ${k} (${m}, rank ${row[0]})`); continue; }
+          if (same(has, got.want)) continue;
+          got.lt.rows_moved += 1; moved += 1;
+          if (write) setFacts(row, Object.fromEntries(MINE.map((key) => [key, got.want && key in got.want ? got.want[key] : null])));
+          continue;
+        }
         const t = of(m); t.store_rows += 1;
         const sha = sha256(Buffer.from(String(row[1] ?? ""), "utf8")).slice(0, 16);
         const id = `${row[0]} ${m} ${sha}`;
@@ -266,9 +391,13 @@ const walk = (write) => {
           if (want.b) t.rows_carrying_bdbs_entries += 1;
           t.rows_carrying_the_slot += 1;
         }
-        if (same(has, want)) continue;
-        t.rows_moved += 1; moved += 1;
-        if (write) setFacts(row, Object.fromEntries(MINE.map((key) => [key, want && key in want ? want[key] : null])));
+        // a source the ledger reads and gives nothing may be read by a list of the pin: the row carries what its list line gives
+        const got = listLine(k, m, id);
+        const give = got && got.want ? got.want : want;
+        if (same(has, give)) continue;
+        if (got && got.want) got.lt.rows_moved += 1; else t.rows_moved += 1;
+        moved += 1;
+        if (write) setFacts(row, Object.fromEntries(MINE.map((key) => [key, give && key in give ? give[key] : null])));
       }
     }
     if (moved) { touched.push(name); if (write) writeFileSync(path, gzipSync(Buffer.from(JSON.stringify(body)), { level: 9 })); }
@@ -287,22 +416,42 @@ const totals = { sources: SOURCES.size, keys_in_the_ledger: lines.length, rows_i
   store_rows_with_no_line: landedRows.length, ledger_rows_with_no_store_row: goneLines.length };
 // how the store differs from the one the ledger was read at, as the row-strikes record says and this run found it
 const followed = { ...followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines, retexted: retextedLines, landed: landedRows }),
+  ...(pin.struck_lines ? { lines_of_rows_struck_before_the_ledger_was_read: { file: `${HOME}/${pin.folder}/${pin.struck_lines.file}`, sha256: pin.struck_lines.sha256, lines: struckBefore.length, by_list: struckBeforeBy } } : {}),
   struck_rows_with_a_twin_of_their_own_source: struckWithATwin, entries_given_to_a_twin: given };
-const moved = sum("rows_moved"), shardsRewritten = touched.length;
+// what each list gave, as the walk found it, and what of it the record does not explain
+const count = (o) => Object.values(o || {}).reduce((a, c) => a + c, 0);
+const lists = listRuns.map((run) => {
+  const l = run.l, lt = listTally.get(l), gone = {};
+  for (const g of run.gone) gone[g.by.list] = (gone[g.by.list] || 0) + 1;
+  return { name: l.name, relay: l.relay, letter: l.letter, from: l.from, rule: `${HOME}/${l.folder}/${l.rule.file}`, receipt: `${HOME}/${l.folder}/${l.receipt.file}`,
+    list: { file: l.list.file, bytes: l.list.bytes, sha256: l.list.sha256, lines: l.list.lines, kept: l.list.kept }, read_at_store_version: l.read_at_store_version,
+    facts_landed: l.facts, sources: l.sources,
+    totals: { sources: Object.keys(l.sources).length, lines: run.lines, lines_whose_row_was_struck_or_withheld_since: gone, store_rows_of_its_sources: lt.store_rows_of_its_sources,
+      rows_carrying_an_entry: lt.rows_carrying_an_entry, rows_with_several_numbers: lt.rows_with_several_numbers, rows_of_its_sources_with_no_line: lt.store_rows_of_its_sources - lt.lines_met,
+      lines_whose_facts_are_not_landed: run.lines - run.gone.length - lt.rows_carrying_an_entry, facts_not_landed: run.facts_not_landed } };
+});
+const listLinesWithNoRow = listRuns.map((run) => run.lines - run.gone.length - listTally.get(run.l).lines_met);
+const listMoved = [...listTally.values()].reduce((a, lt) => a + lt.rows_moved, 0);
+const moved = sum("rows_moved") + listMoved, shardsRewritten = touched.length;
 console.log(`row entries · relay ${pin.relay} · ${n(ledgerRows)} rows of ${SOURCES.size} sources in the ledger (read from the store at ${readAt}) · ${n(totals.store_rows_of_those_sources)} rows of them in the store of ${n(storeRows)} · ${n(totals.rows_carrying_the_slot)} carry the slot (${n(totals.rows_with_a_number)} with a number, ${n(totals.rows_carrying_steps_letters)} with STEP's letters, ${n(totals.rows_carrying_bdbs_entries)} with BDB's entries) · followed through ${follow.rounds.length} round(s) since: ${followedSaid(followed)} · ${n(struckWithATwin)} struck rows have a twin of their own source, ${given.length} of them given entries · unexplained: ${n(rowsWithNoLine)} rows with no line, ${n(linesWithNoRow)} lines with no row · ${n(moved)} rows move (${touched.length} shards)`);
 for (const g of given) console.log(`  given: the row of ${g.from[2]} at rank ${g.from[1]} (${g.from[3]}), struck by ${g.struck_by}, gives ${JSON.stringify(g.gave)} to its twin at rank ${g.to[1]} under the key its words still stand under`);
+if (pin.struck_lines) console.log(`  the lines of ${n(struckBefore.length)} rows struck before the ledger was read are kept beside it (${Object.entries(struckBeforeBy).map(([list, c]) => `${n(c)} by ${list}`).join(", ")}); the twins above are found among them`);
+for (const [i, x] of lists.entries()) console.log(`  list · ${x.name} (relay ${x.relay}) · ${n(x.totals.lines)} lines of ${x.totals.sources} source(s), read from the store at ${x.read_at_store_version} · lands ${x.facts_landed.join(", ")} · ${n(x.totals.rows_carrying_an_entry)} rows carry an entry (${n(x.totals.rows_with_several_numbers)} several numbers) of ${n(x.totals.store_rows_of_its_sources)} rows of its sources · not landed: ${Object.entries(x.totals.facts_not_landed).map(([k, c]) => `${k} on ${n(c)} lines`).join(", ") || "nothing"}${x.totals.lines_whose_facts_are_not_landed ? ` (${n(x.totals.lines_whose_facts_are_not_landed)} lines give nothing that lands)` : ""}${count(x.totals.lines_whose_row_was_struck_or_withheld_since) ? ` · ${n(count(x.totals.lines_whose_row_was_struck_or_withheld_since))} lines name a row a round took since` : ""} · unexplained: ${n(listLinesWithNoRow[i])} lines with no row · ${n(listTally.get(listRuns[i].l).rows_moved)} rows move`);
+if (listLinesWithNoRow.some(Boolean)) refuse(`${listLinesWithNoRow.reduce((a, c) => a + c, 0)} line(s) of the pin's lists find no row that no round struck, withheld or moved since their list was read. The record does not explain them, and nothing is guessed`);
 if (rowsWithNoLine || linesWithNoRow) refuse(`${rowsWithNoLine} row(s) of the ledger's sources have no line and no round of the row-strikes record landed them, and ${linesWithNoRow} line(s) find no row that no round struck, withheld or moved, since the store was ${readAt}; first row without a line: ${noLine[0] || "none"}. The record does not explain them, and nothing is guessed`);
 const record = { pin: `${HOME}/PIN.json`, relay: pin.relay, letter: pin.letter, from: pin.from, rule: `${HOME}/${pin.folder}/${pin.rule.file}`, receipt: `${HOME}/${pin.folder}/${pin.receipt.file}`,
   ledger: { file: pin.ledger.file, bytes: pin.ledger.bytes, sha256: pin.ledger.sha256, lines: pin.ledger.lines, kept: pin.ledger.kept }, read_at_store_version: readAt,
-  partings: (pin.partings || []).map((p) => ({ name: p.name, fact: p.fact, sources: p.sources })), totals, followed };
+  partings: (pin.partings || []).map((p) => ({ name: p.name, fact: p.fact, sources: p.sources })), totals, followed, ...(lists.length ? { lists } : {}) };
 const had = index.row_entries || null;
-const nothingToWrite = !moved && !!had && Object.keys(record).every((k) => same(had[k], record[k]));
+const nothingToWrite = !moved && !!had && Object.keys(record).every((k) => same(had[k], record[k])) && !("lists" in had && !lists.length);
 // the run's figures, one line of JSON, for a script that holds a run to what was rehearsed
-const count = (o) => Object.values(o || {}).reduce((a, c) => a + c, 0);
 console.log(`figures ${JSON.stringify({ relay: pin.relay, ledger_sha256: pin.ledger.sha256, read_at_store_version: readAt, store_version: index.store_version || null, ...totals,
   rounds_since: follow.rounds.length, lines_whose_row_was_struck: count(followed.lines_whose_row_was_struck), lines_whose_row_was_withheld: count(followed.lines_whose_row_was_withheld),
   rows_re_keyed_and_followed: count(followed.rows_re_keyed_and_followed), rows_retexted_and_followed: count(followed.rows_retexted_and_followed), rows_landed_since_with_no_line: count(followed.rows_landed_since_with_no_line),
-  struck_rows_with_a_twin_of_their_own_source: struckWithATwin, entries_given_to_a_twin: given.length, rows_moved: moved, shards_moved: touched.length, the_index_names_this_run: nothingToWrite })}`);
+  struck_rows_with_a_twin_of_their_own_source: struckWithATwin, entries_given_to_a_twin: given.length,
+  ...(pin.struck_lines ? { lines_of_rows_struck_before_the_ledger_was_read: struckBefore.length } : {}),
+  ...(lists.length ? { lists: lists.map((x) => ({ relay: x.relay, list_sha256: x.list.sha256, lines: x.totals.lines, rows_carrying_an_entry: x.totals.rows_carrying_an_entry, facts_not_landed: x.totals.facts_not_landed })), list_rows_moved: listMoved } : {}),
+  rows_moved: moved, shards_moved: touched.length, the_index_names_this_run: nothingToWrite })}`);
 if (DRY) { console.log("dry run — nothing written"); process.exit(0); }
 if (nothingToWrite) { console.log("nothing moves and the index names this ledger as it is followed — nothing written"); process.exit(0); }
 const sources = JSON.parse(JSON.stringify(tally));   // the counts of the reading walk, which the receipt keeps: the writing walk finds nothing left to move
@@ -314,7 +463,7 @@ const digest = createHash("sha256");
 let shardBytes = 0;
 for (const name of shardNames) { const b = readFileSync(join(STORE, "shards", name)); digest.update(b); shardBytes += b.length; }
 const was = index.store_version || null, now = digest.digest("hex").slice(0, 12);
-const WHAT = "a row with a line in the corpus lane's row entries ledger carries, in the facts slot (slot 10, an object), n: the Strong's numbers of the entries its own source files it under, where it has any; t: for a row of a source whose entries are STEP's own tags, those that carry STEP's letter; b: for a row of a source that names BDB's own entries, those entries. A row whose same-source twin under a key ending in a maqaf was struck carries, after its own, the entries of that twin's line that it lacked (followed.entries_given_to_a_twin names each pair). The texts are the served bytes, unchanged. At a place the gate reads these against the tag of the word's core piece";
+const WHAT = "a row with a line in the corpus lane's row entries ledger carries, in the facts slot (slot 10, an object), n: the Strong's numbers of the entries its own source files it under, where it has any; t: for a row of a source whose entries are STEP's own tags, those that carry STEP's letter; b: for a row of a source that names BDB's own entries, those entries. A row whose same-source twin under a key ending in a maqaf was struck carries, after its own, the entries of that twin's line that it lacked (followed.entries_given_to_a_twin names each pair). The texts are the served bytes, unchanged. At a place the gate reads these against the tag of the word's core piece. A row of a further source named by a list of the pin (lists) carries n as its line gives it: the numbers of the Bible dictionaries' entries its own pointed head form and kind of word meet, joined by the corpus lane";
 const lastMove = now !== was || !had ? { store_version_before: was, store_version: now } : { store_version_before: had.store_version_before, store_version: had.store_version };
 index.row_entries = { rule_id: ENTRY_GATE_RULE_ID, applied_on: on, applied_by: "tools/apply-row-entries-v1.mjs", ...record, ...lastMove, what: WHAT };
 index.counts = { ...(index.counts || {}), shard_bytes_total: shardBytes };
@@ -322,5 +471,5 @@ if (now !== was) { index.store_version = now; index.store_version_history = [...
 writeFileSync(join(STORE, "index.json"), JSON.stringify(index, null, 1));
 const prior = existsSync(RECEIPT) ? JSON.parse(readFileSync(RECEIPT, "utf8")) : null;
 writeFileSync(RECEIPT, JSON.stringify({ schema_version: "ROW_ENTRIES_RECEIPT_V1", rule_id: ENTRY_GATE_RULE_ID, what: WHAT, pin: { file: `${HOME}/PIN.json`, relay: pin.relay, letter: pin.letter },
-  runs: [...((prior && prior.runs) || []), { ran_at: on, store_version: { was, now }, followed, shards_rewritten: shardsRewritten, rows_moved: moved, totals, sources }] }, null, 1) + "\n");
+  runs: [...((prior && prior.runs) || []), { ran_at: on, store_version: { was, now }, followed, shards_rewritten: shardsRewritten, rows_moved: moved, totals, sources, ...(lists.length ? { lists } : {}) }] }, null, 1) + "\n");
 console.log(`written · store ${was} -> ${now}${now === was ? " (no shard moved)" : ""} · shards weigh ${n(shardBytes)} bytes · index.row_entries names the ledger · receipt ${RECEIPT}`);

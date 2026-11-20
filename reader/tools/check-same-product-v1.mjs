@@ -87,6 +87,31 @@
 // this rule itself: a line under a source pressed, at a word of one unit that
 // source reads at every word of it, reads as it rests once the words stand
 // apart, which the default picks' expectation already holds (unitsIn).
+// THE NAMES GATE OVER A NEW LIST OF NAME ROWS (names-gate-rule-v1; ship 11 of
+// 20 November 2026, names v2). With --expect data/name-rows-receipt-v1.json
+// (the receipt of the tool that lays the name mark, told by its rule_id):
+// at a place the new build's zone does not mark a name, a row its source
+// gives as a name is withheld, so what such rows alone carried is owed gone.
+// On S1, a line that differs, on the same word, is owed where every row
+// that carried its old reading under the word's keys, of each source its old
+// chip names, is a name row in the new build's store. On S2, a card may
+// lose a pill every carrier of which is so (or rests shut, where the kinds
+// record is given too), and says it holds back more by name than the old
+// card did (data-name-withheld); its pressed pill may move where its word's
+// line moved so. Asked of the new build's store and zone, never named.
+// THE ENTRY GATE OVER A NEW LEDGER (entry-gate-rule-v1; ship 11 of 20 November
+// 2026, row entries v1.2). With --expect data/row-entries-receipt-v1.json (the
+// receipt of the tool that lays the entries, told by its rule_id): the rows
+// whose entries the pinned ledger moves are the lines of the pin's list of
+// moves (data/row-entries/PIN.json, moves), and what they alone change is
+// owed. On S2, a card may gain a pill that such a row carries under the
+// word's keys where the row is now of the place's own entry (it stands
+// whatever its points), and may lose a pill every carrying row of which is
+// such a row, now of another entry than the place's. On S1, a line that
+// differs, on the same word, is owed where every row that carried its old
+// reading, of each source its old chip names, is such a row, now of another
+// entry. A row's verdict is the gate's own (tools/entry-gate-v1.mjs), asked
+// with the new build's facts at the new zone's tags for the word.
 // SHIP 5'S LANDINGS (the design of ships 5 and 6, section 8; the lead's calls
 // of 15 November 2026). Each is owed only where its expectation is given, and
 // a moved line or card no class explains is a difference as before:
@@ -151,10 +176,12 @@ import { SIGN_GAP, signOnly, signsOff, opensWithStrongSign, GLOSS_RULE_ID } from
 import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
-import { readingKey, openRouteStore } from "./gloss-store-v1.mjs";
+import { readingKey, openRouteStore, factsOf } from "./gloss-store-v1.mjs";
+import { NAMES_GATE_RULE_ID } from "./names-gate-v1.mjs";
 import { DICTIONARY_KINDS_RULE_ID, restsOffIds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { onlyLeaders } from "./place-leaders-v1.mjs";
-import { placeTags } from "./entry-gate-v1.mjs";
+import { ENTRY_GATE_RULE_ID, placeTags, placeEntry, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
+import { readPinned } from "./pinned-v1.mjs";
 const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > 0 ? process.argv[i + 1] : d; };
 const DIFF = arg("diff", ""); const diffLines = [];
 const OLD = arg("old", ""), NEW = arg("new", ""), EVERY = Number(arg("every", "5")), CHAPTERS = Number(arg("chapters", "2"));
@@ -184,7 +211,7 @@ const AUDIT_CALLS_RULE = "audit-calls-landing-rule-v1-each-call-lands-as-its-lan
 const RUNS_RULE = "run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away";
 const FORM_OF_RULE = "form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill";
 const ONE_PILL_RULE = "pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it";
-let EXPECT = "", KINDS = null, AUDIT = null, FORM_OF = null;
+let EXPECT = "", KINDS = null, AUDIT = null, FORM_OF = null, NAMES = null, ENTRIES = null;
 const refuse = (why) => { console.log(`REFUSED — ${why}`); process.exit(2); };
 for (const [i, a] of process.argv.entries()) {
   if (a !== "--expect") continue;
@@ -199,7 +226,27 @@ for (const [i, a] of process.argv.entries()) {
     if (!rec.one_pill || rec.one_pill.rule !== ONE_PILL_RULE) refuse(`--expect ${path}: the form-of record under ${FORM_OF_RULE} carries no one_pill under ${ONE_PILL_RULE}`);
     FORM_OF = { rec, path };
   }
-  else refuse(`--expect ${path}: its rule_id ${JSON.stringify(rec.rule_id || null)} is not an expectation this check knows (${DEFAULT_PICKS_RULE}…, ${DICTIONARY_KINDS_RULE_ID}, ${AUDIT_CALLS_RULE}, ${FORM_OF_RULE})`);
+  else if (rec.rule_id === NAMES_GATE_RULE_ID) {
+    if (NAMES) refuse(`--expect names two receipts of ${NAMES_GATE_RULE_ID}`);
+    if (!Array.isArray(rec.runs) || !rec.runs.length) refuse(`--expect ${path}: the receipt under ${NAMES_GATE_RULE_ID} records no run`);
+    NAMES = { rec, path };
+  }
+  else if (rec.rule_id === ENTRY_GATE_RULE_ID) {
+    if (ENTRIES) refuse(`--expect names two receipts of ${ENTRY_GATE_RULE_ID}`);
+    if (!Array.isArray(rec.runs) || !rec.runs.length) refuse(`--expect ${path}: the receipt under ${ENTRY_GATE_RULE_ID} records no run`);
+    // the rows the pinned ledger moves: the pin's list of moves, each line a key, a rank, a source and the row's words
+    const pinDir = join(dirname(path), "row-entries");
+    let pin = null;
+    try { pin = JSON.parse(readFileSync(join(pinDir, "PIN.json"), "utf8")); } catch (e) { refuse(`--expect ${path}: the pin of the row entries beside it is not read (${e.message})`); }
+    if (!pin.moves) refuse(`--expect ${path}: the pin of the row entries names no list of the rows its ledger moves`);
+    const moved = new Map();
+    try {
+      const body = readPinned(join(pinDir, pin.folder, pin.moves.file), pin.moves, `${pin.folder}/${pin.moves.file}`).toString("utf8").split("\n").slice(1).filter(Boolean);
+      for (const line of body) { const c = line.split("\t"); (moved.get(c[0]) || moved.set(c[0], new Set()).get(c[0])).add(`${c[2]}\u0001${c[3]}`); }
+    } catch (e) { if (e instanceof PinFault) refuse(`--expect ${path}: ${e.message}`); throw e; }
+    ENTRIES = { rec, path, moved, list: pin.moves.file };
+  }
+  else refuse(`--expect ${path}: its rule_id ${JSON.stringify(rec.rule_id || null)} is not an expectation this check knows (${DEFAULT_PICKS_RULE}…, ${DICTIONARY_KINDS_RULE_ID}, ${AUDIT_CALLS_RULE}, ${FORM_OF_RULE}, ${NAMES_GATE_RULE_ID}, ${ENTRY_GATE_RULE_ID})`);
 }
 // (b) and (c) from the audit-calls pin: call 7 lands under the gloss rule, call 3 under its own rule, held to relay
 // v181's list of the lines over several words, read here byte for byte against the pin
@@ -256,6 +303,32 @@ const stoodShut = (keys, text, ids, place = null) => {
   const of = (st) => new Set(keys.flatMap((kk) => st.carriersOf(st.routesFor(kk) || [], text).map((row) => String(row[3]))));
   const w = of(whole), o = of(rest);
   return ids.map(String).some((id) => w.has(id) && !o.has(id));
+};
+// THE NAMES GATE (--expect the name rows' receipt): whether every row that carries a reading under the keys, of each
+// source named, is a name row in the new build's store (and at least one source is named and carries it)
+const nameRowsAlone = (keys, text, ids) => {
+  if (typeof text !== "string" || !text || !Array.isArray(ids) || !ids.length) return false;
+  const [whole] = storesOf();
+  const rows = keys.flatMap((kk) => whole.carriersOf(whole.routesFor(kk) || [], text));
+  return ids.map(String).every((id) => { const of = rows.filter((row) => String(row[3]) === id); return of.length > 0 && of.every((row) => !!(factsOf(row) || {}).name); });
+};
+// THE ENTRY GATE OVER A NEW LEDGER (--expect the row entries' receipt): the rows that carry a reading under a word's
+// keys, of the sources named, each with whether the pinned list of moves names it and the gate's verdict on it at the
+// word's place, asked with the new build's facts
+const entryRowsAt = (w, keys, text, ids) => {
+  if (!ENTRIES || !w || typeof text !== "string" || !text || !Array.isArray(ids) || !ids.length) return [];
+  const [whole] = storesOf();
+  const place = placeEntry(placeTags(w));
+  const out = [];
+  for (const kk of keys) {
+    const routes = whole.routesFor(kk) || [];
+    const bdbHere = place ? bdbEntriesAt(place, routes.map((row) => factsOf(row))) : new Set();
+    for (const row of whole.carriersOf(routes, text)) {
+      if (!ids.map(String).includes(String(row[3]))) continue;
+      out.push({ moved: (ENTRIES.moved.get(kk) || new Set()).has(`${row[3]}\u0001${row[1]}`), verdict: place ? entryVerdict(factsOf(row), place, bdbHere) : "none" });
+    }
+  }
+  return out;
 };
 const fetchGz = async (u) => { try { const r = await fetch(u); return r.ok ? JSON.parse(gunzipSync(Buffer.from(await r.arrayBuffer())).toString("utf8")) : null; } catch { return null; } };
 const oldOf = async (z) => { if (!oldMemo.has(z)) oldMemo.set(z, { zone: await fetchGz(`${OLD}/reader/data/zones/${z}.bin`), side: await fetchGz(`${OLD}/reader/data/zones/${z}.lattice.bin`) }); return oldMemo.get(z); };
@@ -603,7 +676,7 @@ const read = async (origin, z, ch) => {
         return { said: pills.map((x) => `${x.getAttribute("aria-pressed") === "true" ? "*" : ""}${x.textContent.trim()}`), by: pills.map((x) => x.dataset.by || ""),
           ptr: pills.map((x) => x.dataset.pointer || ""), ptrBy: pills.map((x) => x.dataset.pointerBy || ""), place: typeof window.__cardPlace === "string" ? window.__cardPlace : "",
           cell: ([...document.querySelectorAll("#hud > .rows .b-cell .s-pills button")].find((x) => x.getAttribute("aria-pressed") === "true") || {}).textContent || "",
-          held: box ? Number(box.dataset.kindWithheld || 0) : 0, at: sec ? [sec.id, [...sec.querySelectorAll(".he-text .wb")].indexOf(wb)] : null,
+          held: box ? Number(box.dataset.kindWithheld || 0) : 0, nameHeld: box ? Number(box.dataset.nameWithheld || 0) : 0, at: sec ? [sec.id, [...sec.querySelectorAll(".he-text .wb")].indexOf(wb)] : null,
           // whether the word pressed stands in a joined cell (a chain's, a place's), as the page draws it
           joined: !!(wb && wb.closest(".wjoin")) };
       }, i));
@@ -639,6 +712,10 @@ const kindsMoved = { "a shut source's line": 0, "a shut source's run line": 0, "
 let kindsCards = 0, kindsPillsLost = 0;
 // ship 5's classes: the lines each moved as owed (under every switch), and the default lines that moved, by word, for S2
 const owedSeen = { stands: 0, "strongs sign": 0, runs: 0 }, standsLines = new Map(), signLines = new Set(), runWords = new Set();
+let namesMoved = 0, namesCards = 0, namesPillsLost = 0;
+let entriesMoved = 0, entryCards = 0, entryPillsGained = 0, entryPillsLost = 0;
+const entryLines = new Set();   // the default lines the entry gate moved over the new ledger, by word, for S2's pressed pill
+const namesLines = new Set();   // the default lines the names gate moved, by word, for S2's pressed pill
 const owedCards = { stands: 0, "strongs sign": 0, runs: 0, "the pointer fold": 0, "a word that left a joined cell, its own card": 0 };
 for (const { z, ch } of pages) {
   const [a, c] = [await read(OLD, z, ch), await read(NEW, z, ch)];
@@ -769,6 +846,29 @@ for (const { z, ch } of pages) {
             if (!differs || newIds.some((id) => SHUT.has(id))) { s1.push(`${at} ${x[0]}: "${x[1]}" [${x[2]} · ${x[3]}] → "${y[1]}" [${y[2]} · ${y[3]}]: ${!differs ? "credited to a source the record rests shut, and it stands" : "its new chip names a source the record rests shut"}`); if (s1.length > 400) break; continue; }
           }
         }
+        // THE ENTRY GATE over a new ledger: every row that carried the old reading is a row the ledger moves, now of
+        // another entry than the place's
+        if (ENTRIES && differs && x[0] === y[0]) {
+          const w = wordAt(z, k, i);
+          const rows = w && !w.mark ? entryRowsAt(w, keysOfWord(w, true), x[1], idsOf(x[3])) : [];
+          if (rows.length && rows.every((r) => r.moved && r.verdict === "other")) {
+            entriesMoved += 1;
+            if (name === "default") entryLines.add(`${z} ${ch} ${k} #${i + 1}`);
+            if (DIFF) diffLines.push(`entries: ${z} ${ch} ${name} ${k} #${i + 1} ${x[0]}: "${x[1]}" [${x[2]} · ${x[3]}] → "${y[1]}" [${y[2]} · ${y[3]}]`);
+            continue;
+          }
+        }
+        // THE NAMES GATE over a new list of name rows: the old reading was carried by name rows alone, at a place that
+        // is not a name
+        if (NAMES && differs && x[0] === y[0]) {
+          const w = wordAt(z, k, i);
+          if (w && !w.mark && !w.np && nameRowsAlone(keysOfWord(w, true), x[1], idsOf(x[3]))) {
+            namesMoved += 1;
+            if (name === "default") namesLines.add(`${z} ${ch} ${k} #${i + 1}`);
+            if (DIFF) diffLines.push(`names: ${z} ${ch} ${name} ${k} #${i + 1} ${x[0]}: "${x[1]}" [${x[2]} · ${x[3]}] → "${y[1]}" [${y[2]} · ${y[3]}]`);
+            continue;
+          }
+        }
         if (differs) { s1.push(`${at} ${x[0]}: "${x[1]}" [${x[2]}] → "${y[1]}" [${y[2]}]`); if (s1.length > 400) break; }
       }
     }
@@ -776,7 +876,7 @@ for (const { z, ch } of pages) {
   const n = Math.max(a.cards.length, c.cards.length);
   for (let i = 0; i < n; i += 1) {
     cardsCompared += 1;
-    const none = { said: [], by: [], ptr: [], ptrBy: [], place: "", cell: "", held: 0, at: null };
+    const none = { said: [], by: [], ptr: [], ptrBy: [], place: "", cell: "", held: 0, nameHeld: 0, at: null };
     const A = a.cards[i] || none, C = c.cards[i] || none;
     const x = A.said.join(" | "), y = C.said.join(" | ");
     if (x === y) continue;
@@ -854,6 +954,38 @@ for (const { z, ch } of pages) {
         o.k = q.k;
       }
     }
+    // (h) the names gate over a new list of name rows: at a place that is not a name, a lost pill every carrier of
+    // which carried it in name rows alone (or rests shut, where the kinds record is given), one of them at least by
+    // name; the card says it holds back more by name than the old card did
+    let nameLost = 0;
+    if (NAMES && C.at) {
+      const w = wordAt(z, C.at[0], C.at[1]);
+      if (w && !w.mark && !w.np) {
+        const keys = keysOfWord(w), shutToo = KINDS && restsHere(z);
+        for (const o of olds) {
+          if (newKeys.has(o.k) || !o.by.length) continue;
+          const text = String(o.t).replace(/^\*/u, "");
+          const byName = o.by.filter((id) => nameRowsAlone(keys, text, [id]));
+          if (byName.length && o.by.every((id) => byName.includes(id) || (shutToo && (SHUT.has(id) || (FACT_IDS.has(id) && stoodShut(keys, text, [id], own)))))) { o.named = true; nameLost += 1; }
+        }
+        if (nameLost && !(C.nameHeld > A.nameHeld)) faults.push(`it lost ${nameLost} pill(s) name rows alone carried and says it holds back ${C.nameHeld} by name, as the old card said ${A.nameHeld}`);
+        olds = olds.filter((o) => !o.named);
+      }
+    }
+    // (i) the entry gate over a new ledger: a lost pill every carrying row of which the ledger moves, each now of
+    // another entry than the place's; and (below) a gained pill that such a row carries, now of the place's own entry
+    let entryLost = 0;
+    const wHere = ENTRIES && C.at ? wordAt(z, C.at[0], C.at[1]) : null;
+    if (wHere && !wHere.mark) {
+      const keys = keysOfWord(wHere);
+      for (const o of olds) {
+        if (newKeys.has(o.k) || !o.by.length) continue;
+        const rows = entryRowsAt(wHere, keys, String(o.t).replace(/^\*/u, ""), o.by);
+        if (rows.length && rows.every((r) => r.moved && r.verdict === "other")) { o.entered = true; entryLost += 1; }
+      }
+      olds = olds.filter((o) => !o.entered);
+    }
+    const entryGain = (q) => !!wHere && !wHere.mark && entryRowsAt(wHere, keysOfWord(wHere), String(q.t).replace(/^\*/u, ""), q.by).some((r) => r.moved && r.verdict === "this");
     // (g) and a pill a source that rests shut carried beside others may stand elsewhere in the order, its sort key now
     // the others' (Amos אשר: «that», English Wiktionary's among others): the order is asked of the pills whose
     // carriers kept every source
@@ -863,14 +995,17 @@ for (const { z, ch } of pages) {
     const oldKeys = new Set(olds.map((o) => o.k));
     for (const o of olds) if (!newKeys.has(o.k)) faults.push(`it lost «${o.t}» [${o.by.join(" ")}]${KINDS && restsHere(z) ? ", not carried by sources that rest shut alone at this place" : ""}`);
     const gained = news.filter((q) => !oldKeys.has(q.k));
-    if (gained.some((q) => !gainOk(q))) faults.push(`it carries ${gained.filter((q) => !gainOk(q)).map((q) => `«${q.t}»`).join(", ")}, which the old card lacks`);
+    const byEntry = gained.filter((q) => !gainOk(q) && entryGain(q));
+    if (gained.some((q) => !gainOk(q) && !byEntry.includes(q))) faults.push(`it carries ${gained.filter((q) => !gainOk(q) && !byEntry.includes(q)).map((q) => `«${q.t}»`).join(", ")}, which the old card lacks`);
     if (JSON.stringify(olds.map((o) => o.k).filter((t) => newKeys.has(t) && !moved.has(t))) !== JSON.stringify(news.map((q) => q.k).filter((t) => oldKeys.has(t) && !moved.has(t)))) faults.push("the pills both carry do not keep their order");
     else if (moved.size && JSON.stringify(olds.map((o) => o.k).filter((t) => newKeys.has(t))) !== JSON.stringify(news.map((q) => q.k).filter((t) => oldKeys.has(t)))) why.push(`the order: ${moved.size} pill(s) a source that rests shut carried beside others stand where their other carriers sort them`);
     const pressedA = olds.find((o) => o.pressed) || null, pressedC = news.find((q) => q.pressed) || null;
-    const lineMoved = signMoved || standsMoved || (!!C.at && kindsLines.has(word));
+    const lineMoved = signMoved || standsMoved || (!!C.at && kindsLines.has(word)) || (!!C.at && namesLines.has(word)) || nameLost > 0 || (!!C.at && entryLines.has(word)) || entryLost > 0;
     if ((pressedA ? pressedA.k : null) !== (pressedC ? pressedC.k : null) && !lineMoved) faults.push(`its pressed pill moved from ${pressedA ? pressedA.t : "none"} to ${pressedC ? pressedC.t : "none"}, and its word's line did not move as owed`);
     if (faults.length) { s2.push(`${z} ${ch} card ${i + 1}: ${faults.join("; ")}`); if (DIFF) diffLines.push(`== ${z} ${ch} card ${i + 1}\n  old: ${x}\n  new: ${y}\n  only old: ${A.said.filter((t) => !C.said.includes(t)).join(" | ")}\n  only new: ${C.said.filter((t) => !A.said.includes(t)).join(" | ")}`); continue; }
     if (shutLost) { kindsCards += 1; kindsPillsLost += shutLost; why.push(`kinds: ${shutLost} pill(s) of the dictionaries that rest shut, held back ${C.held}`); }
+    if (entryLost || byEntry.length) { entryCards += 1; entryPillsLost += entryLost; entryPillsGained += byEntry.length; why.push(`entries: ${byEntry.length ? `gained ${byEntry.map((q) => `«${String(q.t).replace(/^\*/u, "")}»`).join(", ")}, a row the ledger moves, now of the place's own entry` : ""}${byEntry.length && entryLost ? "; " : ""}${entryLost ? `lost ${entryLost} pill(s) of rows the ledger moves, now of another entry` : ""}`); }
+    if (nameLost) { namesCards += 1; namesPillsLost += nameLost; why.push(`names: ${nameLost} pill(s) name rows alone carried, at a place that is no name; held back by name ${A.nameHeld} → ${C.nameHeld}`); }
     if (why.some((w) => w.startsWith("the pointer fold"))) owedCards["the pointer fold"] += 1;
     if (signMoved) owedCards["strongs sign"] += 1;
     if (standsMoved) owedCards.stands += 1;
@@ -884,10 +1019,10 @@ const kindsSaid = KINDS ? ` · the dictionaries that rest shut (${KINDS.path}): 
 // ship 5's classes, said with what they were read from
 const shipSaid = [EXPECT ? `${owedSeen.stands} line(s) where STEP's own words stand (call 4)` : "", SIGN ? `${owedSeen["strongs sign"]} line(s) off Strong's sign (call 7)` : "", RUNS ? `${owedSeen.runs} line(s) of words of a run that fell (call 3, ${RUNS.length.toLocaleString("en-US")} lines of v181)` : ""].filter(Boolean);
 const shipCards = Object.entries(owedCards).filter(([, nn]) => nn > 0).map(([why, nn]) => `${nn} ${why}`);
-check(`S1 every sampled line and its chip are the same on both builds, under every switch both carry${EXPECT ? ", but the fills at rest the index names, each reading the second's words, STEP's own words where the old line is bare or where STEP spells or parts the word otherwise, and the hidden sign's gap beside them in their run" : ""}${KINDS ? ", and on a book the record rests shut, the lines a source it rests shut carried or ranked, each moved to a source it does not" : ""}${SIGN ? ", the lines whose pieces opened with Strong's sign, each moved to a plain reading" : ""}${RUNS ? ", and the words of a run whose every word reads its own at the place, each reading its own" : ""}`, !failed.length && pages.length > 0 && !s1.length && !expected.length,
-  `${linesCompared.toLocaleString("en-US")} lines compared on ${pages.length} pages${EXPECT ? ` · ${filledSeen} fill(s) and STEP's words at rest on them, ${neighborsSeen} gap(s) beside them${expected.length ? `, ${expected.length} not as owed: ${expected.slice(0, 3).join("; ")}` : ", each as owed"}` : ""}${shipSaid.length ? ` · ${shipSaid.join(", ")}, each as owed` : ""}${kindsSaid}${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
-check(`S2 the first cards of every sampled chapter carry the same pills, the same one pressed${KINDS ? ", but on a book the record rests shut, the pills of the sources it rests shut alone at the card's place, held back and counted" : ""}${FORM_OF ? ", a plain pill whose English a pill prints with its pointer beside it" : ""}${SIGN || EXPECT ? ", the reading a word's line moved from as owed" : ""}${RUNS ? ", and the card of a word of a run that fell, opened on the word" : ""}${WSA ? ", and the card of a word that stood in a joined cell and stands alone on the new build, the word's own card with its gates: no pill gained, the same reading pressed" : ""}`, !failed.length && cardsCompared > 0 && !s2.length,
-  `${cardsCompared} cards compared${KINDS ? ` · ${kindsCards} card(s) lost ${kindsPillsLost} pill(s) of the dictionaries that rest shut, each held back` : ""}${shipCards.length ? ` · cards that differ as owed: ${shipCards.join(", ")}` : ""}${s2.length ? ` · ${s2.length} differ: ${s2.slice(0, 3).join("; ")}` : ""}`);
+check(`S1 every sampled line and its chip are the same on both builds, under every switch both carry${EXPECT ? ", but the fills at rest the index names, each reading the second's words, STEP's own words where the old line is bare or where STEP spells or parts the word otherwise, and the hidden sign's gap beside them in their run" : ""}${KINDS ? ", and on a book the record rests shut, the lines a source it rests shut carried or ranked, each moved to a source it does not" : ""}${SIGN ? ", the lines whose pieces opened with Strong's sign, each moved to a plain reading" : ""}${RUNS ? ", and the words of a run whose every word reads its own at the place, each reading its own" : ""}${NAMES ? ", and at a place that is not a name, the lines name rows alone carried, each moved off them" : ""}${ENTRIES ? ", and the lines carried by rows the new ledger moves to another entry than the place's, each moved off them" : ""}`, !failed.length && pages.length > 0 && !s1.length && !expected.length,
+  `${linesCompared.toLocaleString("en-US")} lines compared on ${pages.length} pages${EXPECT ? ` · ${filledSeen} fill(s) and STEP's words at rest on them, ${neighborsSeen} gap(s) beside them${expected.length ? `, ${expected.length} not as owed: ${expected.slice(0, 3).join("; ")}` : ", each as owed"}` : ""}${shipSaid.length ? ` · ${shipSaid.join(", ")}, each as owed` : ""}${kindsSaid}${NAMES ? ` · ${namesMoved} line(s) the names gate moved, each as owed` : ""}${ENTRIES ? ` · ${entriesMoved} line(s) the entry gate moved over ${ENTRIES.list}, each as owed` : ""}${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
+check(`S2 the first cards of every sampled chapter carry the same pills, the same one pressed${KINDS ? ", but on a book the record rests shut, the pills of the sources it rests shut alone at the card's place, held back and counted" : ""}${FORM_OF ? ", a plain pill whose English a pill prints with its pointer beside it" : ""}${SIGN || EXPECT ? ", the reading a word's line moved from as owed" : ""}${RUNS ? ", and the card of a word of a run that fell, opened on the word" : ""}${WSA ? ", and the card of a word that stood in a joined cell and stands alone on the new build, the word's own card with its gates: no pill gained, the same reading pressed" : ""}${NAMES ? ", and at a place that is not a name, the pills name rows alone carried, held back and counted" : ""}${ENTRIES ? ", and the pills of rows the new ledger moves: gained where the row is now of the place's own entry, lost where it is now of another" : ""}`, !failed.length && cardsCompared > 0 && !s2.length,
+  `${cardsCompared} cards compared${KINDS ? ` · ${kindsCards} card(s) lost ${kindsPillsLost} pill(s) of the dictionaries that rest shut, each held back` : ""}${NAMES ? ` · ${namesCards} card(s) lost ${namesPillsLost} pill(s) name rows alone carried, each held back by name` : ""}${ENTRIES ? ` · ${entryCards} card(s) moved by rows the ledger moves: ${entryPillsGained} pill(s) gained, ${entryPillsLost} lost` : ""}${shipCards.length ? ` · cards that differ as owed: ${shipCards.join(", ")}` : ""}${s2.length ? ` · ${s2.length} differ: ${s2.slice(0, 3).join("; ")}` : ""}`);
 console.log(bad ? `\n${bad} failing` : "\nall checks passed");
 // every differing line too (7 November 2026): "line: <book> <chapter> <switch> <section> #<n> <surface>: "<old>" [<chip>] → "<new>" [<chip>]", so an accounting can read every move, not the four the summary names
 // (the moves owed at rest, "fill:", "step's words:" and "gap beside STEP's words:", are written as they are met and
