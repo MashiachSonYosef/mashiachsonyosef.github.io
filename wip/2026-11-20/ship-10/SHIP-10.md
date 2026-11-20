@@ -112,3 +112,7 @@ The six run again (the four, the new check and the default picks' check): all pa
 One thing this shows about the rule as built, said plainly: the places set aside are set aside **at rest only**. With the dictionaries that rest shut opened, every place of the span store is laid as it was before this ship, also a place whose every row the pointing holds back under «only this pointing» (its card says what it held back). At rest such a place is words. Kept so on purpose in this pass: the opened page is the page every earlier check of the span cells was written against, and the owner's direction was about the rest.
 
 The last records pass (`S/s10w/pipe6`) began 15:20 UTC on the final page (zone.html 275e0ba815014b93); the whole suite follows it.
+
+### The last records pass (pipe6, 15:20 to 15:42 UTC, zone.html 275e0ba815014b93)
+
+Lines 275 s, the chain books 974 s, the door 37 s, the switches page 14 s. Every resting line against live: the same two entries moved, one place, Psalm 9:1 («alumoth» and «labben» → «‘To die for the son’», the lexical index's row over both); nothing else in 40 works. The manifest is emitted again. An independent read of the page's whole diff (422 lines) is running beside the gate, before the final suite's verdicts are taken.
