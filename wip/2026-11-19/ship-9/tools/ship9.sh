@@ -3,7 +3,8 @@
 set -euo pipefail
 S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad
 cd $S/s9
-pgrep -f "pipeline-9[ab].sh" > /dev/null && { echo "a pipeline is still running; stop"; exit 1; }
+grep -q "^DONE" $S/s9w/pipe3/pipeline.log || { echo "the third pass has not ended; stop"; exit 1; }
+pkill -f "http.server 89(12|14|99|21) --bind" || true
 git fetch -q origin +refs/heads/main:refs/remotes/origin/main +refs/heads/gh-pages:refs/remotes/origin/gh-pages
 BASE=$(git rev-parse ba41813560)
 [ "$(git rev-parse origin/main)" = "$BASE" ] || { echo "origin/main moved past our base; stop"; exit 1; }
