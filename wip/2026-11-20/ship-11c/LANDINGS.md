@@ -77,5 +77,30 @@ Five laws under landings-rule-v1, run on the sandbox:
 
 Proved able to fail: on a copy of the store with three landed rows spoiled (one's number changed, one's headword dropped, one taken out) G4 names each of the three.
 
-Still to build for this ship: a new version of the strike rule's name, since a landing now writes facts; the pipeline's steps and PIPELINE.md; then, on the ship tree after ship 11, the round, the lines read one by one, gate, suite, ship.
+(What was still to build then is built: the next section.)
+
+## The whole sequence, run on a fresh copy of the ship tree (22:37 UTC)
+
+One script applies the ship to a tree in order (`tools/apply-11c.sh`; the store steps in `tools/store-steps-11c.sh`; its log on a fresh copy of ship 11's tree is `the-whole-sequence-on-a-fresh-copy.txt`):
+
+1. **The tools.** The patches above; `derive-landings-v1` and `check-landings-v1` (new); the strike rule's next name, **version 8**: «a landing writes the entries its line names» (`tools/patch-strike-rule-v8.py`: the tool's rule id, header and summary, and the GUARDS lines of the five checks that guard the rule; the words-back round of 15 November keeps version 7, the version it ran under).
+2. **The pin and the three landings**, each derived on the store it meets: 15, 1,296 and 164 rows; 651,752 → 653,227 rows.
+3. **The store steps after a landing**, in the order ships 5 and 6 set:
+   - the ledgers' divisions: 46 slots move (the landed rows' cuts);
+   - the sources' years: none moves (held, not written);
+   - the made spaces: 5 rows take their closes (BDB's rows among the returns);
+   - the own pointing: 3 rows of English Wiktionary's take their records' pointed forms;
+   - the entries: the 4 twins as above, nothing else;
+   - the names, the sense openings: nothing moves, each records the rounds since;
+   - UBS's collocations: the category derived again is the pin's bytes (no name moved, no row of UBS's landed), then laid: nothing moves.
+   Each tool run once more dry has nothing left to write.
+
+**Two things the fresh run found.**
+
+- **The made spaces' second road refused the returns.** Its counts are the receipt's (read at «4d1357b26ca5+v188») less the rows gone since and the lines not landed; a row landed since by any other list shut the road («a row the store the receipt read never held»). Eight of v200's returns are BDB's: rows the receipt's store did hold, under the key with the maqaf, struck by call 5 and now back. The road now counts a row another list landed since as a row more, its texts gaining it as a struck row's texts lose it (`tools/patch-second-road-back.py`: the road, the tool and the check together). With it the tool holds every line and the check's M3 to M5 pass.
+- **The landings check read the headwords too strictly.** The own-pointing rule lays a record's pointed forms after a bare row's own headwords; G4 now reads a row's headwords as they stood before that rule (`headwordsBeforeOwnPointing`, as the check of v188's landing does).
+
+On the fresh copy afterward: `check-landings-v1`, `check-store-continuity-v1`, `check-fold-strike-landing-v1`, `check-own-pointing-v1` pass, and every store law of `check-entry-gate-v1`, `check-made-spaces-v1`, `check-sense-openings-v1`, `check-ledger-divisions-v1` and `check-names-gate-v1`. What stays red there are page laws only: the copy holds no zones and no door.
+
+**Left for the real tree, after ship 11 is out:** PIPELINE.md's paragraph; the round; every moved line read (the five names-v2 places are expected to read STEP's words); the gate, with a class for the landings if a first card moves; the suite; the ship.
 

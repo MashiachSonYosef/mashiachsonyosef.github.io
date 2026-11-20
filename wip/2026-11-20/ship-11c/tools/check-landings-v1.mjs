@@ -15,8 +15,9 @@
 //       order, one right after another
 //   G4  each landed line stands as one row of the store under its key, at its rank, of its source: the line's
 //       words, definition, year and headwords, and the entries (n, t, b) the line names, with what the index of
-//       the row entries says a struck row's line gave it as that row's twin and nothing else. A row a later round
-//       took, moved or retexted is followed there by the row-strikes record and counted, never guessed
+//       the row entries says a struck row's line gave it as that row's twin and nothing else (the pointed forms
+//       own-pointing-rule-v1 lays after a bare row's own headwords are that rule's). A row a later round took,
+//       moved or retexted is followed there by the row-strikes record and counted, never guessed
 //   G5  each line not landed names the rows of its own source that print its words under its key, and such a
 //       row stands there now
 //
@@ -28,6 +29,7 @@ import { fileURLToPath } from "node:url";
 import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
 import { readPinned, readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { openFollower, sha16Of, FollowFault, RECORD_FILE } from "./row-strikes-follow-v1.mjs";
+import { headwordsBeforeOwnPointing } from "./apply-own-pointing-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -179,7 +181,8 @@ const ROUND_OF = new Map();   // a list's id -> its round
       if (rows.length !== 1) { faults.push(`${where}: its words stand ${rows.length} times under its key from its source`); continue; }
       const row = rows[0];
       if (row[0] !== x.rank) { faults.push(`${where}: its row stands at rank ${row[0]}`); continue; }
-      if (row[2] !== x.definition || row[4] !== x.year || !same(row[6], x.headwords)) faults.push(`${where}: its row does not carry the line's definition, year and headwords`);
+      // the pointed forms the own-pointing rule lays after a bare row's own headwords are that rule's, and its check's
+      if (row[2] !== x.definition || row[4] !== x.year || !same(headwordsBeforeOwnPointing(row, index.m_sources), x.headwords)) faults.push(`${where}: its row does not carry the line's definition, year and headwords`);
       const gave = given.get([x.key, x.rank, x.m, sha16Of(x.route)].join(sep)) || null;
       const want = {};
       for (const k of FACTS) { const all = [...((x.facts || {})[k] || []), ...((gave || {})[k] || [])]; if (all.length) want[k] = all; }
