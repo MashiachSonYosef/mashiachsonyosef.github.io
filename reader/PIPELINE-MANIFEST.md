@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-16.
 
-**184 rules declared · 172 named by a check · 12 unguarded.**
+**185 rules declared · 173 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -44,7 +44,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `demo-verse-rule-v1` | tools/build-front-door-v1.mjs | check-clean-address-v1, check-nothing-hand-typed-v1 |
 | `derived-work-ranges-rule-v1-the-atlas-names-every-range-so-none-is-typed` | tools/emit-derived-work-ranges-v1.mjs | check-derived-ranges-v1 |
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
-| `dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut` | tools/bake-search-index-v1.mjs, tools/card-readings-v1.mjs, tools/dictionary-kinds-v1.mjs, tools/gated-card-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/regloss-zone.mjs, tools/resting-lines-v1.mjs, zone.html, tools/gloss-store-v1.mjs | check-chain-book-v2, check-dictionary-kinds-v1, check-same-product-v1, check-search-v1, check-card-opens-on-the-line-v1, check-carrier-survives-v1, check-entry-gate-v1, check-lattice-projection-v1, check-names-gate-v1, check-names-pill-v1, check-overlays-v1, check-run-card-forms-v1, check-sense-openings-v1, check-span-store-v1, check-stems-extension-v1, check-witnessed-order-v1 |
+| `dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut` | tools/bake-search-index-v1.mjs, tools/card-readings-v1.mjs, tools/dictionary-kinds-v1.mjs, tools/gated-card-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/regloss-zone.mjs, tools/resting-lines-v1.mjs, zone.html, tools/gloss-store-v1.mjs | check-chain-book-v2, check-dictionary-kinds-v1, check-same-product-v1, check-search-v1, check-words-stand-alone-v1, check-card-opens-on-the-line-v1, check-carrier-survives-v1, check-entry-gate-v1, check-lattice-projection-v1, check-names-gate-v1, check-names-pill-v1, check-overlays-v1, check-run-card-forms-v1, check-sense-openings-v1, check-span-store-v1, check-stems-extension-v1, check-witnessed-order-v1 |
 | `division-evidence-rule-v1-a-division-we-have-not-established-is-not-offered` | tools/check-division-established-v1.mjs | check-division-established-v1 |
 | `doc-currency-rule-v1-an-undated-document-names-only-what-is-here` | tools/check-docs-name-what-is-here-v1.mjs | check-docs-name-what-is-here-v1 |
 | `door-filing-rule-v1-the-door-files-the-thirty-nine` | tools/door-filing-v1.mjs | **UNGUARDED** |
@@ -191,6 +191,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `word-senses-rule-v1-a-word-sense-is-not-a-definition-and-prints-only-under-the-word-senses-switch-which-rests-off` | tools/bake-word-senses-v2.mjs, zone.html, tools/bake-search-index-v1.mjs | check-word-senses-v1, check-search-v1 |
 | `wordmark-rule-v2-the-name-is-the-mark-woven-of-the-dyes-and-the-metals-with-a-flame-and-a-hailstone-for-its-dots` | tools/check-woven-name-v1.mjs | check-woven-name-v1 |
 | `words-back-landing-rule-v1-the-lanes-words-back-land-by-key-and-rank-held-where-the-printed-text-sets-a-hebrew-character-against-a-latin-letter-or-a-digit` | tools/derive-words-back-v1.mjs | check-words-back-v1 |
+| `words-stand-alone-rule-v1-at-rest-each-word-is-its-own-cell-and-card-and-a-joined-cell-stands-only-where-a-dictionary-that-stands-files-it` | zone.html | check-maqaf-pair-drawn-v1, check-same-product-v1, check-words-stand-alone-v1, check-card-channels-v1, check-card-opens-on-the-line-v1, check-compspan-coverage-v1, check-hud-runs-v1, check-line-reads-the-place-v1, check-ruled-equals-first-paint-v1, check-run-card-forms-v1, check-run-cards-v1, check-span-grade-v1, check-span-store-v1 |
 | `work-attachment-rule-v1-parallel-numbering-is-not-intent` | tools/emit-work-attachment-v1.mjs | check-work-attachment-v1 |
 | `work-record-rule-v1-a-ledger-wins-and-a-typed-entry-dies-the-day-one-lands` | tools/check-build-derived-v1.mjs | check-build-derived-v1 |
 | `work-status-rule-v1-a-work-the-owner-calls-in-progress-says-so-on-the-door-and-on-every-page-of-it` | tools/build-front-door-v1.mjs, zone.html | check-catalog-case-v1, check-work-status-v1 |

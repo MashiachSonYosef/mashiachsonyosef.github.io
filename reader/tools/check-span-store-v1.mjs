@@ -5,7 +5,12 @@
 //   S1  the served store: the index's counts on their axes, every book file's
 //       places pointing at rows the file holds, every row's M a licensed
 //       source the page can name
-//   S2  every place of a book is laid as one cell whose ink is the key, with
+//   S2  (since 20 November 2026, words-stand-alone-rule-v1: at rest a place
+//       is a cell only where a row of it stands, of a dictionary that does
+//       not rest shut, no pointer, not held back by the place; the others
+//       are set aside, their words words, and are counted here against the
+//       page's own count, never called lost)
+//       every place of a book is laid as one cell whose ink is the key, with
 //       one line reading the store's first row under a chip, and one blob,
 //       but a place whose every word has its own reading at the place reads
 //       word by word (call 3, below): its cell and its blob stand, its line
@@ -155,14 +160,14 @@ for (const book of BOOKS) {
   // each key's rows as [their source, whether the record rests the row shut on this book]
   const atRest = stampedAtRest(book);
   const shutRow = (r) => atRest && !!restsOff(r.slots);
-  const keyRows = Object.fromEntries(Object.entries(onDisk.keys || {}).map(([k, rs]) => [k, rs.map((r) => [r.slots[3], shutRow(r)])]));
+  const keyRows = Object.fromEntries(Object.entries(onDisk.keys || {}).map(([k, rs]) => [k, rs.map((r) => [r.slots[3], shutRow(r), r.row_id, !!r.form_of])]));
   const ownAll = readsItsWordsIn(book);
   const r2 = await p.evaluate(({ placesList, keyRows, ownAll }) => {
     const st = window.__spanStore || { places: 0, laid: 0, skipped: [] };
     const file = window.__spanBook || null;
     // two places the store itself marks as overlapping (neither inside the
     // other) cannot both be cells: the first laid stands, the other is skipped
-    const out = { skippedAt: st.skipped.map((x) => `${x.ref}\u0001${x.key}`), absorbed: [], absorbedLoose: [], inner: 0, places: st.places, laid: st.laid, overlapped: st.skipped.filter((x) => x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length).length, skipped: st.skipped.filter((x) => !(x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length)).map((x) => `${x.ref} ${x.key}: ${x.why}`), cells: 0, noCell: [], lineBad: [], blobBad: [], chipBad: [], shutLine: [], wordByWord: [], kindsHere: !!window.__kindsHere, kinds: window.__kinds || null };
+    const out = { skippedAt: st.skipped.map((x) => `${x.ref}\u0001${x.key}`), absorbed: [], absorbedLoose: [], inner: 0, places: st.places, laid: st.laid, rested: st.rested || 0, aside: 0, asideCell: [], overlapped: st.skipped.filter((x) => x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length).length, skipped: st.skipped.filter((x) => !(x.why === "overlaps a laid span" && x.overlaps && x.overlaps.length)).map((x) => `${x.ref} ${x.key}: ${x.why}`), cells: 0, noCell: [], lineBad: [], blobBad: [], chipBad: [], shutLine: [], wordByWord: [], kindsHere: !!window.__kindsHere, kinds: window.__kinds || null };
     const readsWords = new Set(ownAll);
     const off = new Set(window.__sourcesOff || []);
     const letters = (t) => [...String(t || "")].filter((c) => c >= "\u05d0" && c <= "\u05ea").join("");
@@ -197,9 +202,19 @@ for (const book of BOOKS) {
     // of a compound, or it is lost
     const skippedAt = new Set(out.skippedAt);
     const spanCells = new Set(cells.map((c) => `${c.__run.label}\u0001${c.__run.spanKey}`));
+    // a cell named by its place: the verse, the place's first word and its key. A verse may hold one key at two
+    // places, one standing and one set aside (Genesis 22:14, words 6-7 and 12-13, the second holding both its rows
+    // back as pointed otherwise), and the cell of the one is not the other's
+    const spanCellsAt = new Set(cells.filter((c) => c.__run.span).map((c) => `${c.__run.span.ref}\u0001${c.__run.span.first}\u0001${c.__run.spanKey}`));
+    // THE PLACES SET ASIDE AT REST (words-stand-alone-rule-v1): where the dictionaries that rest shut are shut on a
+    // book baked at rest, a place none of whose rows stands (resting open, no source of it switched off, no pointer,
+    // not held back by the place under «only this pointing») is no cell: its words are words
+    const atRestNow = !!window.__kindsHere && window.__kinds === "shut", onlyNow = (window.__masorah || "only") === "only";
+    const stands = (pl) => (keyRows[pl.key] || []).some(([m, shut, id, pointer]) => !shut && !off.has(m) && !pointer && !(onlyNow && pl.held && (pl.held[id] === "otherwise" || pl.held[id] === "silent")));
     const secOf = new Map([...document.querySelectorAll("section.seg")].map((s) => [(s.querySelector(".vnum") || {}).textContent, s]));
     for (const pl of placesList) {
       const at = `${pl.ref}\u0001${pl.key}`;
+      if (atRestNow && !stands(pl)) { out.aside += 1; if (spanCellsAt.has(`${pl.ref}\u0001${pl.first}\u0001${pl.key}`)) out.asideCell.push(`${pl.ref} ${pl.first}-${pl.last} ${pl.key}`); continue; }
       if (skippedAt.has(at) || spanCells.has(at)) continue;
       const sec = secOf.get(pl.ref);
       const wbs = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
@@ -220,8 +235,8 @@ for (const book of BOOKS) {
   }, { placesList: onDisk.placesList, keyRows, ownAll: [...ownAll.keys()] });
   // the page says the dictionaries that rest shut act on this book exactly where its zone was baked at rest
   const kindsSaid = r2.kindsHere === atRest;
-  check(`S2  ${book}: every place laid as one cell whose ink is the key, one line from the store under a chip, one blob, but a place whose every word reads its own at the place, its line word by word`, kindsSaid && r2.laid + r2.overlapped === r2.places && r2.skipped.length === 0 && r2.absorbedLoose.length === 0 && r2.noCell.length === 0 && r2.lineBad.length === 0 && r2.chipBad.length === 0 && r2.blobBad.length === 0,
-    `${r2.laid} of ${r2.places} places laid [places]${r2.overlapped ? ` (${r2.overlapped} overlapping another, as the store marks them, not laid)` : ""} · ${r2.cells} cells on the page` + (r2.inner ? ` · ${r2.inner} inside another place, a rung of its cell` : "") + (r2.absorbed.length ? ` · ${r2.absorbed.length} drawn inside a maqaf compound's cell, the line word by word (open question): ${r2.absorbed.slice(0, 3).join(" | ")}` : "") + (r2.shutLine.length ? ` · ${r2.shutLine.length} whose every row rests shut, the line its pieces: ${r2.shutLine.slice(0, 3).join(" | ")}` : "") + (r2.wordByWord.length ? ` · ${r2.wordByWord.length} whose every word reads its own at the place, the line word by word (call 3): ${r2.wordByWord.slice(0, 2).join(" | ")}` : "") + (kindsSaid ? "" : ` · the page says the dictionaries that rest shut ${r2.kindsHere ? "act" : "do not act"} here, and the zone ${atRest ? "was" : "was not"} baked at rest`) + (r2.absorbedLoose.length ? ` · LOST, no cell and no compound: ${r2.absorbedLoose.slice(0, 3).join(" | ")}` : "") + (r2.skipped.length ? ` · skipped: ${r2.skipped.slice(0, 2).join(" | ")}` : "") + (r2.noCell.length ? ` · ink: ${r2.noCell.slice(0, 2).join(" | ")}` : "") + (r2.lineBad.length ? ` · line: ${r2.lineBad.slice(0, 2).join(" | ")}` : "") + (r2.chipBad.length ? ` · no chip: ${r2.chipBad.slice(0, 2).join(" | ")}` : "") + (r2.blobBad.length ? ` · blob: ${r2.blobBad.slice(0, 2).join(" | ")}` : ""));
+  check(`S2  ${book}: every place laid as one cell whose ink is the key, one line from the store under a chip, one blob, but a place whose every word reads its own at the place, its line word by word`, kindsSaid && r2.laid + r2.overlapped + r2.aside === r2.places && r2.rested === r2.aside && r2.asideCell.length === 0 && r2.skipped.length === 0 && r2.absorbedLoose.length === 0 && r2.noCell.length === 0 && r2.lineBad.length === 0 && r2.chipBad.length === 0 && r2.blobBad.length === 0,
+    `${r2.laid} of ${r2.places} places laid [places]${r2.overlapped ? ` (${r2.overlapped} overlapping another, as the store marks them, not laid)` : ""}${r2.aside || r2.rested ? ` · ${r2.aside} set aside at rest, no row of theirs standing (the page says ${r2.rested})` : ""}${r2.asideCell.length ? ` · A CELL WHERE NO ROW STANDS: ${r2.asideCell.slice(0, 3).join(" | ")}` : ""} · ${r2.cells} cells on the page` + (r2.inner ? ` · ${r2.inner} inside another place, a rung of its cell` : "") + (r2.absorbed.length ? ` · ${r2.absorbed.length} drawn inside a maqaf compound's cell, the line word by word (open question): ${r2.absorbed.slice(0, 3).join(" | ")}` : "") + (r2.shutLine.length ? ` · ${r2.shutLine.length} whose every row rests shut, the line its pieces: ${r2.shutLine.slice(0, 3).join(" | ")}` : "") + (r2.wordByWord.length ? ` · ${r2.wordByWord.length} whose every word reads its own at the place, the line word by word (call 3): ${r2.wordByWord.slice(0, 2).join(" | ")}` : "") + (kindsSaid ? "" : ` · the page says the dictionaries that rest shut ${r2.kindsHere ? "act" : "do not act"} here, and the zone ${atRest ? "was" : "was not"} baked at rest`) + (r2.absorbedLoose.length ? ` · LOST, no cell and no compound: ${r2.absorbedLoose.slice(0, 3).join(" | ")}` : "") + (r2.skipped.length ? ` · skipped: ${r2.skipped.slice(0, 2).join(" | ")}` : "") + (r2.noCell.length ? ` · ink: ${r2.noCell.slice(0, 2).join(" | ")}` : "") + (r2.lineBad.length ? ` · line: ${r2.lineBad.slice(0, 2).join(" | ")}` : "") + (r2.chipBad.length ? ` · no chip: ${r2.chipBad.slice(0, 2).join(" | ")}` : "") + (r2.blobBad.length ? ` · blob: ${r2.blobBad.slice(0, 2).join(" | ")}` : ""));
   // S3: the first spaced place, the first maqaf place, the first nested place, each with a row that rests open
   const file = onDisk;
   // (and, under «only», the page's default, some row the place does not hold back: span-grade-rule-v1)

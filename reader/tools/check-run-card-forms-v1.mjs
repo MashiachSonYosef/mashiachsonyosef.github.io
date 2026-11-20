@@ -105,7 +105,9 @@ const BASE = defaultZoneUrl(/^https?:/u.test(process.argv[2] || "") ? process.ar
 const b = await pw.chromium.launch(launchOptions());
 const p = await b.newPage({ viewport: { width: 412, height: 915 } });
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
-await p.addInitScript(() => { try { localStorage.clear(); } catch { /* fresh reader */ } });
+// (a fresh reader who asked for the joined words as written: since 20 November 2026 they rest as separate words,
+// words-stand-alone-rule-v1, and a chain's card with its forms is the reader's to ask for)
+await p.addInitScript(() => { try { localStorage.clear(); localStorage.setItem("fh.maqaf-join", "maqaf"); } catch { /* fresh reader */ } });
 // THE ORDER THESE CLAIMS ARE WRITTEN AGAINST: oldest first. The owner made
 // "at this place" the default (2026-10-03: "we dont do blanket oldest first
 // anymore thats a subtoggle"); it leads wherever TAHOT reads the word, and it

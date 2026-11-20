@@ -35,7 +35,9 @@ for (const book of books) {
   const file = JSON.parse(readFileSync(`data/hud-runs/${book}.json`, "utf8"));
   const p = await b.newPage({ viewport: { width: 412, height: 900 } });
   // the license runs rest off since 2026-10-14; this check reads the ledger laid under the switch
-  await p.addInitScript(() => { try { localStorage.setItem("fh.runs", "own"); } catch { /* a device that remembers nothing still reads */ } });
+  // (the joined words as written too: since 20 November 2026 they rest as separate words, words-stand-alone-rule-v1,
+  // and the HUD record's runs, cut with every part on, are the reader's to ask for)
+  await p.addInitScript(() => { try { localStorage.setItem("fh.runs", "own"); localStorage.setItem("fh.maqaf-join", "maqaf"); } catch { /* a device that remembers nothing still reads */ } });
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(`http://127.0.0.1:${PORT}/zone.html?b=${book}`, { waitUntil: "networkidle", timeout: 90000 });
   await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });

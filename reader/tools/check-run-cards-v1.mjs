@@ -85,7 +85,9 @@ const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
 const p = await ctx.newPage();
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 // the run cards are off by default this week (the owner, 2026-10-15: "not serving extraneous things we arent ready to serve yet"); this check judges the file's cards themselves, so it switches them on, the entry's own
-await p.addInitScript(() => { try { localStorage.setItem("fh.runs", "own"); } catch { /* a device that remembers nothing still reads */ } });
+// (the joined words as written too: since 20 November 2026 they rest as separate words, words-stand-alone-rule-v1,
+// and a run's card over a chain is the reader's to ask for, as the license runs are)
+await p.addInitScript(() => { try { localStorage.setItem("fh.runs", "own"); localStorage.setItem("fh.maqaf-join", "maqaf"); } catch { /* a device that remembers nothing still reads */ } });
 
 // the whole book built, so every card's words exist on the page
 // the HUD record's runs (data/hud-runs, check-hud-runs-v1) ride the same lane;

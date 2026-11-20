@@ -1123,6 +1123,15 @@
      at (.g, 11em), so a run is at most the sum of its bounded parts and
      never the row; the row's own cap stays as the second wall. */
   .wjoin > .g.parts .g-part { display: inline-flex; flex-direction: column; align-items: center; direction: ltr; unicode-bidi: isolate; white-space: normal; min-width: 0; max-width: 11em; overflow-wrap: anywhere; margin: 0; }
+  /* A PART THAT PRINTS ITS PLACE'S PIECES IS AS WIDE AS THEY ARE, as a single
+     word's line is (.he-text > .wb > .g:has(> .g-pcs), below). The pieces
+     stand on one line and do not wrap, so held to a cell's width they ran
+     past their own part and were cut at its edge (the owner's drawing of 19
+     November 2026 at Isaiah 2:9, «anc» for «and»: 27 rows of Isaiah, every
+     one a joined cell's). The row still wraps at the cell and never passes
+     the page (its own cap, above); a part ruled to a long reading keeps the
+     cell's width. */
+  .wjoin > .g.parts .g-part:has(> .g-pcs) { max-width: none; }
   .wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); align-self: flex-start; }
   /* THE TIE: a soft gold shape behind each word of a run, as wide as the
      word at the letters, hugging their top, flowing down to sit around the

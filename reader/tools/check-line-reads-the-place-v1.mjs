@@ -202,10 +202,15 @@ const ready = async (p) => {
     await p.goto(url, { waitUntil: "networkidle", timeout: 90000 });
     await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
     await p.waitForTimeout(1200);
-    const r = await p.evaluate(async (s) => {
+    const r = await p.evaluate(async ({ s, label }) => {
       const MARKS = new RegExp("[\\u0591-\\u05C7]", "g");
       const strip = (t) => String(t || "").replace(MARKS, "").trim();
-      const wb = [...document.querySelectorAll("section.seg .he-text .wb")].find((x) => !x.closest(".wjoin") && strip(x.querySelector(".w")?.textContent) === strip(s));
+      // the word in its own verse: the same letters stand at other places of the page, and a word a stroke joins to
+      // the next is its own cell at rest (words-stand-alone-rule-v1), so the first of them on the page is no longer
+      // the candidate's (Daniel 4:5's «he came in» was pressed as an earlier verse's «on»)
+      const sec = [...document.querySelectorAll("section.seg")].find((x) => x.__sec && String(x.__sec.label) === String(label));
+      const wb = [...(sec || document).querySelectorAll(".he-text .wb")].find((x) => !x.closest(".wjoin") && x.__word && x.__word.s === s)
+        || [...(sec || document).querySelectorAll(".he-text .wb")].find((x) => !x.closest(".wjoin") && strip(x.querySelector(".w")?.textContent) === strip(s));
       if (!wb) return null;
       (wb.querySelector(".w span") || wb.querySelector(".w")).click();
       const t0 = Date.now();
@@ -216,7 +221,7 @@ const ready = async (p) => {
         if (blk && cut && document.querySelectorAll("#hud .b-cell .s-pills button").length > 1) { cut.click(); await new Promise((x) => setTimeout(x, 900)); } }
       return { first: (window.__pool || [])[0], lead: (window.__poolLead || [])[0], placeRow: (window.__poolPlace || [])[0],
         pressed: document.querySelector('#hud .r-pills button[aria-pressed="true"]')?.textContent.trim() };
-    }, found.s);
+    }, { s: found.s, label: found.label });
     await ctx.close();
     if (r) results.push({ ...found, ...r });
   }

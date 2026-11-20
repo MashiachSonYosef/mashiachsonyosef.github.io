@@ -23,7 +23,10 @@
 //   C3  the lit sense of the record is the blue worn bold
 //   C4  a pressed division pill is the red worn bold
 //   C5  the word of a chain or a pair the card is not open on is the red at
-//       the regular weight, beside the open word's bold
+//       the regular weight, beside the open word's bold. Since 20 November
+//       2026 a word of a chain opens its own card at rest
+//       (words-stand-alone-rule-v1), so a chain's head is met on the first
+//       page asked «as written» (?maqaf=maqaf), read once more for it
 //   C6  with the concordance hud on, its table and its dropdown hold to C1
 //       and C2
 // Every facet has to have been met at least once, or it fails as unexercised.
@@ -93,14 +96,16 @@ const take = (r, tag) => {
 };
 
 let cards = 0;
-for (const [k, url] of URLS.entries()) for (const dict of k === 0 ? ["off", "on"] : ["off"]) {
+// the first page with the concordance off and on, and once more asked «as written», for the chains' heads (C5)
+const LOADS = URLS.flatMap((url, k) => (k === 0 ? [[url, "off"], [url, "on"], [`${url}${url.includes("?") ? "&" : "?"}maqaf=maqaf`, "off"]] : [[url, "off"]]));
+for (const [url, dict] of LOADS) {
   const p = await ctx.newPage();
   p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
   await p.goto(`${url}${url.includes("?") ? "&" : "?"}dict=${dict}`, { waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   const total = await p.evaluate(() => document.querySelectorAll(".he-text .wb:not(.mark)").length);
   for (let i = 0; i < Math.min(dict === "on" ? 8 : PER, total); i += 1) {
-    const tag = `${url.split("b=")[1] || url} word ${i + 1}${dict === "on" ? " concordance" : ""}`;
+    const tag = `${(url.split("b=")[1] || url).replace("&maqaf=maqaf", " as written")} word ${i + 1}${dict === "on" ? " concordance" : ""}`;
     const ok = await p.evaluate((i) => { const wb = document.querySelectorAll(".he-text .wb:not(.mark)")[i]; if (!wb) return false; wb.scrollIntoView({ block: "center" }); (wb.querySelector(".w span") || wb.querySelector(".w")).click(); return true; }, i);
     if (!ok) continue;
     await p.waitForTimeout(450);
