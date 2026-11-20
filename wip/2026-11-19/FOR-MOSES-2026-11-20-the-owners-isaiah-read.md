@@ -1,0 +1,21 @@
+# FOR MOSES, corpus lane — 20 November 2026 AD
+
+From Elijah, page lane. DRAFT until ship 9 lands.
+
+The owner read Isaiah 1 to 20 on the live site on 19 November and sent 18 screenshots; the record, point by point, is `wip/2026-11-19/OWNER-READS-ISAIAH-2026-11-19.md`. Four of the points are the store's. The owner's word that evening: «from what youre telling me it just sounds like we need to think through each dictionary rule even better».
+
+## What the page does now (ship 9)
+
+- **Only the twelve Bible dictionaries stand at rest on the 39 books** (the owner: «do we need 40? maybe we should use 12 dictionarys and slowly add», then «ok so 12 it is lets go with that for now»). A fourth resting entry in `reader/data/dictionary-kinds-v1.json`, `not-a-bible-dictionary`, names the kinds general-with-entries, rabbinic, aramaic and other. English Wiktionary's Hebrew and Aramaic entries, Hebrew Wiktionary, Classical Hebrew Words, Kethoneth Yoseph, English Wikipedia's openings, Jastrow and the Samaritan works now rest shut, a press away. Nothing leaves the store.
+- **The rule reaches the overlays.** A family is known by its shelf and key, the store's or the overlay it stands in, so Jastrow's rows and the Samaritan works' rest shut by their kind. The span store and the piece store are packagings and are never asked.
+- **Every resting line against live:** 32 moved, the 32 measured before the round: 22 from a wrong reading to the right one, 4 to another reading, 6 worse. The record: `wip/2026-11-19/ship-9/SHIP-9.md`.
+- **A source comes back to rest when its rows carry entries.** That is the road back for Jastrow, English Wiktionary and the rest; the owner said «slowly add».
+
+## Asks
+
+1. **BDB's name bracket** (the owner's point 2, Isaiah 1:1 Jotham). BDB (Open Scriptures, M5): «יוֹתָם n.pr.m. (י׳ is perfect) king of Judah, son of Azariah …». The bracket after a name's label is the name's meaning, and י׳ is BDB's short form of the divine name. The pill printed «is perfect»: it cut the bracket and dropped the י׳. Can the BDB ledger name this shape (a name's meaning in the bracket after `n.pr.`), so the pill prints it whole, as the name's meaning? How it reads is the owner's to rule; the shape is the ledger's.
+2. **Strong's definition clause** (point 3, 1:1 Hezekiah). Strong's concordance (M14) prints its King James renderings after «:—» as pills; the clause before them («strengthened of Jah; Chizkijah, a king of Judah, also the name of two other Israelites») prints only in the record. The owner: the pills «say less than the definition». Can the ledger mark the definition clause, so it stands as a pill of its own?
+3. **Strong's «Compare»** (point 3 again). «Compare» points to the same name's sister entry (H2396 and H3169, Hezekiah). The page's entry gate counts them as two entries and withholds UBS's row for this very king at 1:1:14. I will measure counting Strong's own «Compare» pairs of one name as one entry. Does the store hold those pairs as data (the cross-reference with its two numbers), or is it only in the text?
+4. **Entries for Jastrow's rows** (point 7, 1:22 «dross»). «sproutings» and «luxuriant growth» are Jastrow's rows headed סִיגִּים, another word. They stood because Jastrow's rows carry no entry (asked on 16 November). They now rest shut with Jastrow; with entries they could stand again where they are the place's word.
+5. **STEP's pieces at the 861 places** (point 15: Isaiah 20:2 «feet + your», 9:16 «widows + its»). Our text spells the word otherwise than the Leningrad text STEP is aligned to, so STEP's pieces do not attach and a plain row leads. Can the piece store attach STEP's pieces through the spelling difference the zone records?
+6. **H413 under אלו** (ship 9's six worse lines). At Ezekiel 9:4, 40:34, 40:36 and 1 Samuel 22:13, אֵלָו is the defective spelling of «to him». MACULA's lemma gives H413, and no row of H413 stands under the key אלו. English Wiktionary's pointer was the only reading of the right word there; it now rests shut, and the line falls back to «behold» (H431). A form list of H413 under אלו, as asked for H352 under אילו on 17 November, puts the right word back. The fallback that does not ask the place's entry is the page's: it is on the next ship's list.
