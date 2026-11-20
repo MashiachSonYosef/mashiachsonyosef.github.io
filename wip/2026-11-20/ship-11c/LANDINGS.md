@@ -64,3 +64,18 @@ Still to build for this ship: a check for the landings; a new version of the str
 - So a row landed back under the key a struck row's words stand under is that row's twin, and takes what the struck row's line alone said, as a twin with a line does (`tools/patch-landed-twin.py`, the tool and the check together). The two rows gain H8478K and H5414H; the pair is recorded in `followed.entries_given_to_a_twin` with `landed_since`. Without it «under» would be judged another entry's at the two places STEP tags H8478K.
 - After it, on the sandbox (`check-entry-gate-in-the-sandbox.txt`): E1 to E5, E14 and E16 pass; 4,664 struck rows have a twin; 4 twins given entries (two with a line, as before, and these two). The page laws are skipped there by design (the sandbox holds no zones).
 - For Moses: v200's facts at these two rows are the store's of 15 November, older than ledger v1.1's line. Nothing is asked; it is said so he can read it.
+
+## The check for the landings (`tools/check-landings-v1.mjs`, new; 22:45 UTC)
+
+Five laws under landings-rule-v1, run on the sandbox:
+
+- **G1** the pin and its bytes: each list's rule, receipt and list, and the two lists derived from it. 15, 1,296 and 167 lines; 15, 1,296 and 164 rows land; none not landed.
+- **G2** every line accounted for once: 1,478 lines made 1,475 rows, 3 lines gathered into the row of the same source and words, each row carrying its lines' facts and headwords.
+- **G3** one round per list took its derived list whole, in the pin's order, one right after another (rounds 20, 21, 22 of the record).
+- **G4** each landed line stands as one row under its key, at its rank, with the line's words, definition, year, headwords and entries, and what a struck row's line gave it as that row's twin: 1,475 rows stand, 782 carry entries, 2 given a struck row's entries. A row a later round takes or moves is followed by the record and counted.
+- **G5** a line not landed is printed by its own source (none today).
+
+Proved able to fail: on a copy of the store with three landed rows spoiled (one's number changed, one's headword dropped, one taken out) G4 names each of the three.
+
+Still to build for this ship: a new version of the strike rule's name, since a landing now writes facts; the pipeline's steps and PIPELINE.md; then, on the ship tree after ship 11, the round, the lines read one by one, gate, suite, ship.
+
