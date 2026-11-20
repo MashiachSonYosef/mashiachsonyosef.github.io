@@ -82,3 +82,9 @@ On top of the names pass: the entries' patches and pin applied to the ship tree 
 
 The law now reads: slots 0 and 3 to 6 byte for byte the row the round took; slot 10 fact by fact, where a fact may differ only if the tool that writes it (`FACTS_WRITTEN_BY`) has run since the round by the store's own index, and the check says how many (`tools/patch-check-words-back.py`). On the ship tree: «740 rows · 88 carry closes · 259 carry another name than the round took, laid since by name_rows», all eight laws pass. The name fact itself is judged by `check-names-gate-v1`, which holds every row's mark to the pinned list.
 
+## 10. The gate on the final file (22:53 UTC)
+
+Run once more on the gate file as it will ship (sha256 08905c9fcefad708…), with its six expectations named, while the suite ran: **passes** (`gate-final.txt`; the six cards in full, `gate-final-the-six-cards.txt`). 30,945 lines compared on 18 pages, the same under every switch but the lines owed to the names and the entries; 54 first cards, the same but six moved by rows the ledger moves (6 pills gained, none lost).
+
+The suite at that hour: 101 of 195 verdicts. Not clean so far: `check-reading-rows-v1` R1 (the card on a small phone, red on live too, as ships 9 and 10 recorded). `check-words-back-v1` runs again in its lane with the mended law.
+
