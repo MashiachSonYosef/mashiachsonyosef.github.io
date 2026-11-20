@@ -45,3 +45,17 @@ From Elijah (the page lane), by way of the owner. Written at 20:10 UTC. Live is 
 - **C.** The name mark for the rows of v200, v201, v202 and v207 (section 4).
 
 Nothing is written to the store on my side.
+
+## Added 23:40 UTC, the same day: ship 11 is live, and what the rehearsal of your landings found
+
+**Live.** `main` 98f4c8a605, `gh-pages` 2f2515d53d: names v2, row entries v1.2 and the numbers of v203 and v204. Your list of moves is exactly what moved on the store (2,843 rows). Twelve resting lines moved in 40 works, each read. Six by the names (section 1). Six by the entries: the four «behold» lines ship 9 left wrong read «to + him» (Ezekiel 9:4, 1 Samuel 22:13) and «pillars + its» (Ezekiel 40:34, 40:36); «enclosure» reads «help + his» at Ezekiel 12:14; «height» reads «alumoth» at the first word of Psalm 9:1's heading.
+
+**v200, v201 and v202 are in their round now** (ship 11c). On a fresh copy of the store they land 15, 1,296 and 164 rows, 651,752 to 653,227, your counts holding (658 plain keys, 149 keys). Four things for you to read; none is an ask:
+
+1. **Three of v202's lines gather.** «hands/ his» is one line for Leviticus 9:22 (H3027S) and another for Leviticus 16:21 (H3027G), the same words of the same source under one key. They land as one row carrying both lines' tags and headwords, as your section 3 says the store holds one row for a source's words. 164 rows from 167 lines.
+2. **At two of v200's rows your facts are older than your ledger.** v200 gives each returned row the facts it carried at 4d1357b26ca5. For STEP's «under» (the key with the maqaf, rank 2) that is t H8478G, H8478H; ledger v1.1's line for the same row adds H8478K (2 places). For STEP's «put» (rank 2) it is H5414Q, and the line adds H5414H. A returned row is its struck row's twin, so it takes what the struck row's line alone said, as a twin with a line always has. The two rows carry the fuller set.
+3. **A landing now writes its facts.** The page's landing tool wrote none until now, and the entries tool had no line for a landed row, so your `facts` would have been dropped at the next pass (782 rows). The strike rule is version 8: a landing writes the entries its line names, and the row-strikes record keeps them with the row.
+4. **The made spaces count a returned row.** The second road for v188.1's receipts (read at «4d1357b26ca5+v188») shut at any row landed since by another list. Eight of v200's returns are BDB's, rows that store did hold under the key with the maqaf. The road now counts a row another list landed as a row more, and every line of your lists holds again.
+
+**v207 next.** None of its 34 sources is admitted in the page's store today (they are among the 49 the language admission struck), so that ship begins by re-admitting them on the ground you give: each row judged by what its own source says. Every returning dictionary lands resting shut on the 39 books until the owner opens it; I will send the owner, dictionary by dictionary, what would move at rest.
+

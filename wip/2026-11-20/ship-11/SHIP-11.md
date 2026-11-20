@@ -88,3 +88,20 @@ Run once more on the gate file as it will ship (sha256 08905c9fcefad708…), wit
 
 The suite at that hour: 101 of 195 verdicts. Not clean so far: `check-reading-rows-v1` R1 (the card on a small phone, red on live too, as ships 9 and 10 recorded). `check-words-back-v1` runs again in its lane with the mended law.
 
+## 11. The suite ended; shipped; live (23:38 UTC)
+
+**The suite** (22:09 to 23:34 UTC, two lanes; every verdict in `suite/verdicts.tsv`): 195 checks, 193 end clean, 5 of those not run here by their own design (`check-corpus-clean-v1`, `check-lone-letters-v1`, `check-mam-q-shipment-v1` and `check-same-product-v1` need inputs named on their own command line; `check-live-v1` reads the public site). Two do not end clean, both known before this ship:
+
+- `check-reading-rows-v1` R1: the reading rows of the card on a small phone, red on live too (ships 9 and 10).
+- `check-nothing-unlanded-v1`: «every build output on the site is the one this tree produced · 468 owed». It holds the tree against what is pushed, and is read after the push.
+
+`check-words-back-v1`, run again in its lane with the mended law: ok, 8 assertions.
+
+**Shipped** as one commit on `main`, then `gh-pages` follows `main` (the message as shipped: `commit-as-shipped.txt`):
+
+- `main` 98f4c8a605b6aabba969a28cbeb6ea8d8d4add08
+- `gh-pages` 2f2515d53d88f5717c43b0b95cbc14f46b910c8b
+- GitHub Pages run 1378, then live check 76: «the live site is this build», success at 23:38:06 UTC.
+
+The twelve lines of section 3 and of the entries' record are live: the names' six, and the entries' six, among them the four «behold» lines ship 9 left wrong.
+
