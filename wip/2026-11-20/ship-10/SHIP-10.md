@@ -168,3 +168,7 @@ The same reader read the mends against the page as they had first read it. The m
 The reader also noted what follows from leaving the 30 three-word cells as they stand: the mends for the search's hit and the address key off a cell having no key, so they do not reach those cells; a hit there still opens a card headed by the three words, as live's «as written» does. Said, and left for the next pass with the rest of that shape.
 
 Eight checks nearest these mends run again, all pass (the kinds check 34 of 34, the selection check 25 of 25, the run cards and their forms, the HUD runs, the source switch, the pointing switch, the new check 9 of 9). Pass 7 of the records was stopped unfinished (its page had changed under it); pass 8 began 16:57 UTC on the final page (zone.html 6e64901072afb4cd).
+
+### Records pass 8, on the final page (16:57 to 17:17 UTC, zone.html 6e64901072afb4cd)
+
+Lines 213 s, the chain books 912 s, the door 34 s, the switches page 14 s. Every resting line against live: the same two entries, one place, Psalm 9:1; nothing else in 40 works. The manifest is emitted again. The gate began 17:18 UTC with its four expectations; the whole suite follows it.
