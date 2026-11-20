@@ -183,4 +183,4 @@ The whole suite began 17:29 UTC, two lanes, on the final build.
 
 - The whole suite on the final build, two lanes, 17:29 to 18:58 UTC: **195 checks, 193 end clean** (5 of those are not run here by their own design and say so). The two that do not were known before: `check-reading-rows-v1` R1 (red on live too; R3 passes) and `check-nothing-unlanded-v1`, which passes after the push (run again on the shipped tree: 3 of 3).
 - `main` **501a8b3bbb** (one commit on e3f36d287c), `gh-pages` **a25caceb53** («gh-pages follows main»). The commit message as shipped: `commit-final.txt`.
-- Pages run 1377: success (19:02:35 to 19:03:41 UTC). The live check, run 75, began 19:03:38 UTC.
+- Pages run 1377: success (19:02:35 to 19:03:41 UTC). The live check, run 75: success, «the live site is this build» (19:04:18 UTC).
