@@ -40,6 +40,16 @@ Over the 39 books, counted without a browser by the rule the page reads (`tools/
 
 Cards (`tools/card-probe.mjs`): at 2:9 the two words of the joined pair each open their own card, gated by their own entry (H8213, H0376I), with no chain at the top. At 1:9 «Yahweh» opens its own card under H3068G as a name; on live that press opened the run's card with no entry at all.
 
+## Against live, every resting line (the second pass's records, `S/s7w/lines-diff.mjs`)
+
+Three entries moved in 40 works on the second pass. One was a fault of the pass and is mended: at II Kings 16:17 a word written one way and read another, whose read form is the object marker, drew «<obj.>» alone; such a word now stays beside the word its stroke joins it to as any other does (the gap, as on live). The other two are one place and are the rule at work: Psalm 9:1, «מוּת לַבֵּן» in the psalm's heading. On live its two words stood inside a longer chain's cell, which had no line of its own, and read «alumoth» (STEP's aligned translation, by key) and «labben» (STEP's own piece). The chain is no cell now, so the place stands as its own: the Open Scriptures Hebrew Lexical Index, one of the twelve, files the two words as one entry, and the line over both reads its row, «‘To die for the son’».
+
+## Small things done with it
+
+- The signs switch lays the cells again when it moves (a sign's cell is laid by the switch as it stands when a section is built), at once where no card is open, else when the card closes.
+- A closed card stands on no run: the run's words are forgotten with it, so nothing after it is asked as that run's word.
+- The switch's own description on the rail and on /toggles/ says where it rests.
+
 ## Before and after, for the owner
 
 `shots/isaiah-1-6-before-after.png`, `shots/isaiah-2-9-before-after.png`, `shots/isaiah-12-2-before-after.png`: a Pixel 7's Chrome, live on the left, this tree on the right.
