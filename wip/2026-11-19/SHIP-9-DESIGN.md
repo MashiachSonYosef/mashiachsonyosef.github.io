@@ -47,3 +47,8 @@ Each dictionary's print rule, read against its own text, its ledger and the owne
 - STEP's pieces at the 861 places our text spells otherwise than STEP's (Isaiah 20:2 «feet + your», 9:16 «widows + its»).
 
 Order: 1 first (the owner's call, and the largest change at rest), measured; then 3 (no reading moves); 2 as the ledgers come.
+
+## For ship 10 (measured 20 November, read-only, `ship-9/tools/compare-measure.mjs`)
+
+- **Strong's «Compare»:** 431 Strong's entries carry a «Compare» note (M14 240, M9 191). The Open Scriptures edition (M9) names the other entry by number («Hezekiah, Hizkiah, Hizkijah. Compare 3169»): 191 links, 23 of them mutual pairs (H2396 and H3169 among them). The concordance edition (M14) names the other word in Hebrew. Not every pair is one name in two spellings (H3780 and H3680, H4357 and H4356 are not names), so the gate's rule is: a mutual «Compare» pair in which both entries are names counts as one entry. Measure the lines and cards it moves before the ship.
+- **The key's line under the place's entry:** where the place's entry (tg or te) leaves no row at the place, the line falls back to the key's own line without asking the entry (ship 9's «behold» at four places of אֵלָו). Measure how many resting lines stand on such a fallback whose credit the place's entry would withhold.
