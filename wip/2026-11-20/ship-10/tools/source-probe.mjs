@@ -1,0 +1,21 @@
+// Ship 10a: the cells follow a source switched off on the rail and on again (Genesis 3:1, the unabridged BDB's row alone)
+import { createRequire } from "node:module";
+const { chromium } = createRequire(import.meta.url)("playwright");
+const base = process.argv[2] || "http://127.0.0.1:8915/reader";
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1280, height: 900 } });
+const errs = []; p.on("pageerror", (e) => errs.push(e.message));
+await p.goto(`${base}/zone.html?b=genesis`, { waitUntil: "load" });
+await p.waitForSelector("section.seg .he-text .wb", { timeout: 120000 });
+await p.waitForFunction(() => !!window.__hudToggles, null, { timeout: 60000 });
+await p.waitForTimeout(1200);
+const at31 = () => p.evaluate(() => { const sec = [...document.querySelectorAll("section.seg")].find((s) => s.__sec && s.__sec.label === "3:1"); if (sec.__body && window.__materialise) { const i = [...document.querySelectorAll("section.seg")].indexOf(sec); window.__materialise(i, i + 1); } return { cells: [...sec.querySelectorAll(".he-text .wjoin")].filter((j) => j.__run && j.__run.spanKey).map((j) => j.__run.span.first), rested: window.__spanStore.rested, relaid: window.__hudRelaid || 0, words: [...sec.querySelectorAll(".he-text .wb:not(.mark)")].slice(13, 15).map((w) => (w.querySelector(":scope > .g") || {}).textContent || "(in a cell)") }; });
+const press = (key) => p.evaluate((key) => { const c = [...document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp')].find((x) => x.dataset.key === key); if (c) c.click(); return c ? c.getAttribute("aria-pressed") : null; }, key);
+const out = { before: await at31() };
+out.pressedOff = await press("unabridged_bdb_1906"); await p.waitForTimeout(2500);
+out.off = await at31();
+out.pressedOn = await press("unabridged_bdb_1906"); await p.waitForTimeout(2500);
+out.onAgain = await at31();
+out.errors = errs;
+console.log(JSON.stringify(out, null, 1));
+await b.close();
