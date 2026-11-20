@@ -22,7 +22,11 @@
 //   - a line with no rank takes the highest rank under its key plus one, in the list's order (the lane's own words
 //     in v200 and v202), counting the rows this derivation has ranked before it; under a key new to the store, 1;
 //   - the facts the line names for its row (n, t, b: what its own source says of the row, as the store carried
-//     them before or as STEP's own tags give them) go with it, for the landing to write.
+//     them before or as STEP's own tags give them) go with it, for the landing to write;
+//   - lines of one source with the same words under one key are ONE row (the store holds one row of a source for a
+//     key and its words, and gathers on it what the source says at each place: relay v202, section 3). They land as
+//     one row at the first line's rank, carrying every line's facts and headwords, each once, in the lines' order,
+//     and the row names every line it gathers. Lines that disagree on the definition or the year are refused.
 //
 // REFUSED, in words and with nothing written: a pinned file that is not its bytes; a list whose turn it is not (the
 // row-strikes record's last round must be the landing of the list it lands after, or, for the first, no landing of
@@ -91,6 +95,7 @@ const store = openRouteStore(STORE);
 const landed = [], notLanded = [];
 const nextRank = new Map();   // key -> the highest rank under it, with the rows ranked here
 const newKeys = new Set(), byKind = {}, bySource = {};
+let gathered = 0;   // the lines that joined the row an earlier line of the same source made for the same words
 const from = (i) => ({ relay: L.relay, list: L.list.file, line: i + 1 });
 lines.forEach((e, i) => {
   const where = `${L.list.file} line ${i + 1} (${e.m} ${e.key})`;
@@ -122,26 +127,35 @@ lines.forEach((e, i) => {
     return;
   }
   if (!nextRank.has(e.key)) { nextRank.set(e.key, rows.reduce((a, r) => Math.max(a, Number(r[0]) || 0), 0)); if (!rows.length) newKeys.add(e.key); }
+  // one row for a source's words under a key: a later line with the same words joins the row an earlier line made
+  const sameWords = landed.find((x) => x.key === e.key && x.m === e.m && x.route === e.route);
+  if (sameWords) {
+    if (sameWords.definition !== e.definition || sameWords.year !== e.year || (e.rank !== null && e.rank !== sameWords.rank_named)) refuse(`${where}: an earlier line (${sameWords.from.line}) lands the same words of the same source under the same key, and the two do not agree on the definition, the year or the rank`);
+    for (const h of e.headwords) if (!sameWords.headwords.includes(h)) sameWords.headwords.push(h);
+    if (facts) { sameWords.facts = sameWords.facts || {}; for (const k of FACTS) if (facts[k]) sameWords.facts[k] = [...(sameWords.facts[k] || []), ...facts[k].filter((y) => !(sameWords.facts[k] || []).includes(y))]; sameWords.facts = Object.fromEntries(FACTS.filter((k) => sameWords.facts[k]).map((k) => [k, sameWords.facts[k]])); }
+    sameWords.from.gathers = [...(sameWords.from.gathers || [sameWords.from.line]), i + 1];
+    gathered += 1;
+    return;
+  }
   let rank = e.rank, rankFrom = "the list names the rank: its record's other rows stand there";
   if (rank === null) { rank = nextRank.get(e.key) + 1; nextRank.set(e.key, rank); rankFrom = "the highest rank under the key plus one, in the list's order"; }
   else if (!rows.some((r) => Number(r[0]) === rank && String(r[3]) === e.m)) refuse(`${where}: it names rank ${rank}, and no row of ${e.m} stands at that rank under its key: where it lands is not decided`);
   byKind[e.kind || "none"] = (byKind[e.kind || "none"] || 0) + 1;
   bySource[e.m] = (bySource[e.m] || 0) + 1;
-  landed.push({ action: "land", m: e.m, key: e.key, rank, rank_from: rankFrom, route: e.route, place: "after", definition: e.definition, headwords: e.headwords, year: e.year, cut: e.cut ?? null, facts,
+  landed.push({ action: "land", m: e.m, key: e.key, rank, rank_named: e.rank, rank_from: rankFrom, route: e.route, place: "after", definition: e.definition, headwords: [...e.headwords], year: e.year, cut: e.cut ?? null, facts,
     kind: e.kind ?? null, why: e.why ?? null, record_loc: e.record_loc ?? null, record_file: e.record_file ?? null, from: from(i) });
 });
-// no two lines land the same words of one source under one key
-{ const seen = new Set(); for (const x of landed) { const id = `${x.key}\u0001${x.m}\u0001${x.route}`; if (seen.has(id)) refuse(`${L.list.file} line ${x.from.line} (${x.m} ${x.key}): an earlier line lands the same words of the same source under the same key`); seen.add(id); } }
+for (const x of landed) delete x.rank_named;
 
 // ---- what is written, held to the pin ----------------------------------------------------------
 const bytesOf = (list) => Buffer.from(list.map((x) => JSON.stringify(x)).join("\n") + (list.length ? "\n" : ""), "utf8");
 const out = [[derived.landed, bytesOf(landed), landed.length], [derived.not_landed, bytesOf(notLanded), notLanded.length]];
 const pinned = out.map(([p, b, count]) => heldToPin(b, count, p));
 const figures = { list: ID, relay: L.relay, store_version: store.index.store_version, lines: lines.length, landed: landed.length, not_landed: notLanded.length,
-  keys: new Set(landed.map((x) => x.key)).size, keys_new_to_the_store: newKeys.size, ranked_here: landed.filter((x) => x.rank_from.startsWith("the highest")).length,
+  lines_gathered_into_an_earlier_lines_row: gathered, keys: new Set(landed.map((x) => x.key)).size, keys_new_to_the_store: newKeys.size, ranked_here: landed.filter((x) => x.rank_from.startsWith("the highest")).length,
   with_facts: landed.filter((x) => x.facts).length, by_kind: byKind, by_source: bySource,
   files: out.map(([p, b, count]) => ({ file: `${derived.folder}/${p.file}`, bytes: b.length, sha256: sha256Of(b), lines: count })), the_pin_names_these_bytes: pinned.every(Boolean) };
-console.log(`landings · ${ID} (relay ${L.relay}) · ${n(lines.length)} lines read on store ${store.index.store_version}${at > 0 ? `, after the landing of ${pin.lists[at - 1].id}` : ""} · ${n(landed.length)} land under ${n(figures.keys)} keys (${n(newKeys.size)} new to the store), ${n(figures.ranked_here)} ranked here, ${n(figures.with_facts)} with facts · ${n(notLanded.length)} not landed (their own source prints their words under their key)`);
+console.log(`landings · ${ID} (relay ${L.relay}) · ${n(lines.length)} lines read on store ${store.index.store_version}${at > 0 ? `, after the landing of ${pin.lists[at - 1].id}` : ""} · ${n(landed.length)} rows land${gathered ? ` (${n(gathered)} more lines gathered into a row of the same source and words)` : ""} under ${n(figures.keys)} keys (${n(newKeys.size)} new to the store), ${n(figures.ranked_here)} ranked here, ${n(figures.with_facts)} with facts · ${n(notLanded.length)} not landed (their own source prints their words under their key)`);
 for (const [p, b, count] of out) console.log(`  ${derived.folder}/${p.file} · ${count} lines · ${b.length} bytes · sha256 ${sha256Of(b)}`);
 console.log(`figures ${JSON.stringify(figures)}`);
 if (DRY) { console.log(`dry run — nothing written · the pin ${figures.the_pin_names_these_bytes ? "names these bytes" : "names other bytes, or none"}`); process.exit(0); }

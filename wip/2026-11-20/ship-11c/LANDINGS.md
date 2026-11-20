@@ -23,9 +23,23 @@ One pin for all such lists (`data/landings/PIN.json`, written by `tools/make-lan
 
 Rehearsed on the sandbox's store for the first list: 15 land under 15 keys, all with their facts, none refused. The second and third refuse until the one before has landed, as they should.
 
-## Still to build
+## Still to build (item 1 is done in the sandbox)
 
 1. **`strike-rows-v1`'s landing writes the facts its line names.** Today a landing writes none (which is why v188's landed rows waited for row entries v1.2).
 2. **The tools that lay the lane's facts leave a landed row's facts to its landing.** `apply-row-entries-v1` gives a row landed since the ledger was read nothing, so it would take the landing's facts off again; it has to give such a row what its landing line names, read from the row-strikes record. The same holds for the name mark: none of these lines carries one, so a name among them stands unmarked until the next names list reads it (to say to Moses).
 3. A check for the landings (each derived list is its pin's bytes, each landed line stands as a row with its facts, each line not landed is printed by its own source).
 4. Then the round, the lines read one by one (the five above are expected), gate, suite, ship.
+
+## Rehearsed to the end in a sandbox (20:45 UTC)
+
+On a second copy of the store with ship 11's entries applied (`S/s13w/sb`; `tools/rehearse-landings.sh`), each list derived when its turn came and landed by `strike-rows-v1` with the facts patch (`tools/patch-strike-rows-facts.py`: a landing writes the facts its line names, and the row-strikes record keeps them with the row):
+
+| list | lines | rows landed | keys | new keys | with facts | not landed |
+|---|---|---|---|---|---|---|
+| `whole-renderings-v1` (v201) | 15 | 15 | 15 | 0 | 15 | 0 |
+| `call5-returns-v1` (v200) | 1,296 | 1,296 | 658 | 0 | 603 | 0 |
+| `bridge-form-rows-v1` (v202) | 167 | 164 | 149 | 46 | 164 | 0 |
+
+The store goes from 651,752 rows to 653,227 (+1,475). Moses's own counts hold: 658 plain keys for v200, 149 keys for v202.
+
+**One rule the rehearsal added.** Three of v202's lines name words another of its lines already lands for the same source under the same key: «hands/ his» is one line for Leviticus 9:22 (STEP's tag H3027S) and another for Leviticus 16:21 (H3027G). The store holds one row of a source for a key and its words, and the landing counts a second as already held, so the second line's tag would have been lost and the row withheld by its letter at Leviticus 16:21. Such lines now land as one row carrying every line's facts and headwords, each once, in the lines' order, and the row names the lines it gathers. As landed in the sandbox: «hands/ his» at rank 36 under the letters of «his hand», with both tags; «tent/ his» at rank 16 with its four pointed forms.
