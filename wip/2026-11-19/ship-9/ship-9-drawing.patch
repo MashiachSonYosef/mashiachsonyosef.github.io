@@ -1,0 +1,269 @@
+diff --git a/reader/data/color-contract-v1.json b/reader/data/color-contract-v1.json
+index 40fb44a841..1e07db0c00 100644
+--- a/reader/data/color-contract-v1.json
++++ b/reader/data/color-contract-v1.json
+@@ -45,11 +45,11 @@
+     },
+     "masoretic_marks": {
+       "material": "gold",
+-      "carries": "The Masoretic marks, the vowel points and the accents, wherever the page draws them by their class (masoretic-marks-rule-v1-every-mark-is-gold-by-its-class-never-by-a-code-point-range): on the line and at the head of a card. The letters under them keep the corpus's red. Nothing else on the page is gold.",
++      "carries": "The Masoretic marks, the vowel points and the accents, wherever the page draws them by their class (masoretic-marks-rule-v1-every-mark-is-gold-by-its-class-never-by-a-code-point-range): on the line and at the head of a card. The letters under them keep the corpus's red. And the figures the held edition counted, the Leningrad Codex, whose scribes kept those marks, where the count sets them beside ours (the owner, 2026-11-19: \"gold is usually the masoretics language but if leningrad practices their technique he is gold too so id put his count in gold\"). Nothing else on the page is gold.",
+       "final": true,
+       "why": "The owner, 2026-11-15: \"gold as masoretic signs switching back to that\" (the marks have been gold since 2026-10-11: \"every mark gold, vowels included\"), and of its shade: \"i still prefer the pale/real gold, not the orangey one\".",
+       "borne_as": "ink",
+-      "reads_as": "the ink of the vowel points and the accents, and of nothing else: a real gold, never the orange one, over letters that keep the corpus's red",
++      "reads_as": "the ink of the vowel points and the accents, and of the held edition's own figures in the count, and of nothing else: a real gold, never the orange one, over letters that keep the corpus's red",
+       "in_exodus": "The first metal named (25:3), and the one the holiest things are made of or covered with: the ark, the mercy seat and its cherubim, the table, the lampstand (chapter 25). The one metal worked into the cloth itself: beaten into thin plates and cut into threads, to be worked into the tekhelet, the argaman, the tola'at shani and the shesh (39:3). Thread, never a ground. Exodus never says what it looked like."
+     },
+     "structure": {
+@@ -69,7 +69,7 @@
+       "final": false,
+       "why": "The owner, 2026-11-15: \"maybe silver would be like outlining all the compspan boxes since that's kind of our layering?\" … \"oh interesting you're saying blobing is our commentary, yea i guess that is the big one, true\".",
+       "borne_as": "line",
+-      "reads_as": "line work only: the outline of a blob and the frame around joined words, never ink and never a ground; the blob's own ground is the pressed linen; and, in its regular, the ink of the card numbers, our own mark on every word (a word's address on its card, the card numbers on the line: the owner, 2026-11-15, \"i would do card numbers silver that was our mark\"), which were gold ink before and bronze for a morning",
++      "reads_as": "line work only: the outline of a blob and the frame around joined words, never ink and never a ground; the blob's own ground is the pressed linen; and, in its regular, the ink of the card numbers, our own mark on every word (a word's address on its card, the card numbers on the line: the owner, 2026-11-15, \"i would do card numbers silver that was our mark\"), which were gold ink before and bronze for a morning; and the figures this project counted on the page, where the count sets them beside the witnesses' (the owner, 2026-11-19: \"silver is our language so id use that for the counted words on the page by us\")",
+       "in_exodus": "The tabernacle's footing and its fastenings: the sockets under the boards of the tabernacle (26:19–25), the hooks and bands of the court's pillars (27:10–11; 38:10–12, 17, 19), and the silver of those counted, cast into the sockets of the sanctuary and the veil and made into the hooks, the caps and the bands (38:25–28). Exodus never says what it looked like."
+     },
+     "reader_selection": {
+diff --git a/reader/tools/check-color-channels-v1.mjs b/reader/tools/check-color-channels-v1.mjs
+index 571d327186..33833cadc3 100755
+--- a/reader/tools/check-color-channels-v1.mjs
++++ b/reader/tools/check-color-channels-v1.mjs
+@@ -454,6 +454,12 @@ if (commentaryHere) {
+       // head is the same word made large and wears the same gold (the
+       // owner, 2026-10-10). Nothing else on the page is excused by it.
+       if (e.closest('.he-text .mg, .he-text .mg-all, #hud .head .mg, #hud .head .mg-all')) continue;
++      // and the held edition's own figures in the count (the owner, 19
++      // November 2026: «gold is usually the masoretics language but if
++      // leningrad practices their technique he is gold too so id put his
++      // count in gold»; masoretic_marks.carries): its column «theirs», on
++      // the rows of the held edition alone
++      if (e.closest('#stamp tr.held td.num.theirs')) continue;
+       if (![...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
+       // the ink a glyph is filled with, which is its color unless a fill
+       // says otherwise: a gold fill under a red color is a gold glyph
+@@ -611,9 +617,12 @@ if (commentaryHere) {
+     const INKS = ["--shani", "--shani-dim", "--tekhelet", "--tekhelet-dim", "--argaman", "--argaman-dim", "--mark-ink"];
+     const inks = Object.fromEntries(INKS.map((t) => [as("color", `var(${t})`), t]));
+     // the card numbers (a word's address on its card) are written in the
+-    // regular silver, our own mark, and nothing else is: the one place a metal
+-    // other than the marks' gold is ink (color-channel-rule-v3, our_layering.reads_as)
+-    const NUMBERS = "#hud .head .wn";
++    // regular silver, our own mark, and so are the figures this project
++    // counted on the page, in the count (the owner, 19 November 2026: «silver
++    // is our language so id use that for the counted words on the page by
++    // us»), and nothing else is: the places a metal other than the marks'
++    // gold is ink (color-channel-rule-v3, our_layering.reads_as)
++    const NUMBERS = "#hud .head .wn, #stamp .toc-n .ours, #stamp .desk .v, #stamp td.num.ours";
+     const numberInk = as("color", "var(--silver)");
+     const ground = { bg: as("backgroundColor", "var(--bg)"), cell: as("backgroundColor", "var(--cell-wash)"), press: as("backgroundColor", "var(--press-wash)") };
+     probe.remove();
+diff --git a/reader/tools/check-sign-gap-joiner-v1.mjs b/reader/tools/check-sign-gap-joiner-v1.mjs
+index ad41d9b2a5..4596100535 100644
+--- a/reader/tools/check-sign-gap-joiner-v1.mjs
++++ b/reader/tools/check-sign-gap-joiner-v1.mjs
+@@ -27,7 +27,9 @@
+ //       them, on the tree this check serves itself, the shortest first among those whose recordings hold all three
+ //       shapes, until runs and laid lines with a gap have both been judged; once a work's lines are at rest, every
+ //       separator of every run and every laid line shows "+" exactly where a joiner stands between two pieces that
+-//       print, and shows nothing beside a gap; every gap keeps its slot; and a joiner the page does not draw moves
++//       print, and shows nothing beside a gap; every gap stays in its row and takes no width there (the owner,
++//       19 November 2026, reading Isaiah 2:22: «spacing», at «from  +  humankind»: the slot a gap kept from 14
++//       November read as a fault, and closed); and a joiner the page does not draw moves
+ //       nothing it draws: each run is fitted to its column again by the page's own redraw with the hidden joiners in
+ //       place and with them taken out, and comes out the same size both times (on 14 November 2026 a hidden joiner
+ //       was counted as a second row of its run, and every run that holds a gap was drawn at four fifths of its size)
+@@ -104,11 +106,12 @@ check("G2  the rule is met where it matters: a run's cell that is a gap, a gap a
+ 
+ // ---- G3: the joiners between the pieces the page lays, read on the page ----------------------------------------
+ /** IN THE PAGE. Every separator of every maqaf run laid in cells and of every line laid in its pieces, judged by the
+- *  rule against the pieces beside it; and every gap, whether it keeps its slot. Handed to the browser whole. */
++ *  rule against the pieces beside it; and every gap, whether it stays in its row and takes no width there. Handed
++ *  to the browser whole. */
+ const joinersInPage = () => {
+   const G = String.fromCharCode(0x200b);
+   const showing = (el) => getComputedStyle(el).display !== "none";
+-  const r = { signs: window.__signs || null, runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithoutSlot: 0, faults: [] };
++  const r = { signs: window.__signs || null, runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithSlot: 0, faults: [] };
+   const where = (el) => { const sec = el.closest("section.seg"); return (sec && sec.querySelector(".vnum") || {}).textContent || "?"; };
+   const judge = (box, pieceClass, sepClass, joiner) => {
+     const kids = [...box.children];
+@@ -116,7 +119,14 @@ const joinersInPage = () => {
+     const gap = pieces.map((k) => k.classList.contains("gap") || (k.textContent || "").trim() === G);
+     let at = 0;
+     for (const k of kids) {
+-      if (k.classList.contains(pieceClass)) { if (gap[at] && (!showing(k) || k.getBoundingClientRect().width <= 0)) r.gapsWithoutSlot += 1; at += 1; continue; }
++      if (k.classList.contains(pieceClass)) {
++        // a gap stays in the row (its piece is drawn), and takes no width there: no slot (19 November 2026)
++        if (gap[at] && (!showing(k) || k.getBoundingClientRect().width > 0.5)) {
++          r.gapsWithSlot += 1;
++          if (r.faults.length < 6) r.faults.push(`${where(box)}: the gap at piece ${at + 1} ${!showing(k) ? "is not drawn in its row" : `keeps a slot ${Math.round(k.getBoundingClientRect().width * 10) / 10}px wide`}`);
++        }
++        at += 1; continue;
++      }
+       if (!k.classList.contains(sepClass)) continue;
+       r.separators += 1;
+       const stands = !gap[at] && gap.slice(0, at).some((g) => !g);
+@@ -171,7 +181,7 @@ const blobsDrawn = async (p) => {
+   await p.waitForFunction(() => !window.__tiePending, null, { timeout: 60000 });
+   return p.evaluate(blobsInPage);
+ };
+-const g3 = { opened: [], runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithoutSlot: 0, faults: [], notOff: [], refitted: 0, noRedraw: [] };
++const g3 = { opened: [], runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithSlot: 0, faults: [], notOff: [], refitted: 0, noRedraw: [] };
+ /** IN THE PAGE. Every run's line, where it stands and the size it is drawn at. */
+ const runSizes = () => [...document.querySelectorAll(".he-text .wjoin > .g.parts")].map((g) => { const sec = g.closest("section.seg"); return [(sec && sec.querySelector(".vnum") || {}).textContent || "?", getComputedStyle(g).fontSize]; });
+ const candidates = shapes.filter((x) => x.cell > 0 && x.atEnd > 0 && x.between > 0).sort((a, b) => a.lines - b.lines || (a.work < b.work ? -1 : 1));
+@@ -209,7 +219,7 @@ try {
+           if (size !== other && g3.faults.length < 12) g3.faults.push(`${work} ${label}: a run drawn at ${size} with the joiners the page hides and at ${other} without them`);
+         });
+       }
+-      for (const k of ["runs", "runsWithGap", "laid", "laidWithGap", "separators", "gapsWithoutSlot"]) g3[k] += got[k];
++      for (const k of ["runs", "runsWithGap", "laid", "laidWithGap", "separators", "gapsWithSlot"]) g3[k] += got[k];
+       for (const x of got.faults) if (g3.faults.length < 12) g3.faults.push(`${work} ${x}`);
+     } finally { await ctx.close(); }
+   }
+@@ -225,13 +235,13 @@ try {
+     } finally { await ctx.close(); }
+   }
+ } finally { await browser.close(); await tree.close(); }
+-check("G3  on the page, each separator between the pieces of a run or a laid line shows only between two pieces that print, every gap keeps its slot, and a hidden joiner moves nothing drawn",
+-  g3.opened.length > 0 && !g3.notOff.length && !g3.noRedraw.length && g3.runsWithGap > 0 && g3.laidWithGap > 0 && g3.refitted > 0 && !g3.faults.length && !g3.gapsWithoutSlot,
++check("G3  on the page, each separator between the pieces of a run or a laid line shows only between two pieces that print, every gap stays in its row and takes no width there, and a hidden joiner moves nothing drawn",
++  g3.opened.length > 0 && !g3.notOff.length && !g3.noRedraw.length && g3.runsWithGap > 0 && g3.laidWithGap > 0 && g3.refitted > 0 && !g3.faults.length && !g3.gapsWithSlot,
+   !g3.opened.length ? "no work's recording holds all three shapes of a gap, so no page was opened"
+     : g3.notOff.length ? `the signs switch was not off: ${first(g3.notOff)}`
+     : g3.noRedraw.length ? `the page offers no __drawAllTies to fit its runs again: ${first(g3.noRedraw)}`
+     : g3.faults.length ? `${g3.faults.length}${g3.faults.length >= 12 ? " or more" : ""} · ${first(g3.faults, 3).split(GAP).join("[gap]")}`
+-    : `${g3.opened.join(", ")} · ${nf(g3.runs)} runs, ${nf(g3.runsWithGap)} with a gap · ${nf(g3.laid)} laid lines, ${nf(g3.laidWithGap)} with a gap · ${nf(g3.separators)} separators · ${nf(g3.gapsWithoutSlot)} gaps without their slot · ${nf(g3.refitted)} runs fitted again, each the same size without the hidden joiners`);
++    : `${g3.opened.join(", ")} · ${nf(g3.runs)} runs, ${nf(g3.runsWithGap)} with a gap · ${nf(g3.laid)} laid lines, ${nf(g3.laidWithGap)} with a gap · ${nf(g3.separators)} separators · ${nf(g3.gapsWithSlot)} gaps keeping a slot or not drawn · ${nf(g3.refitted)} runs fitted again, each the same size without the hidden joiners`);
+ check("G4  a hidden sign's letters wear a blob of their own, closed around their ink, tied to no English; every other blob reaches over its English",
+   g4.readers.length >= 2 && g4.gapBlobs > 0 && g4.gapPieces > 0 && !g4.faults.length,
+   g4.readers.length < 2 ? `blobs were judged under ${g4.readers.length} reader(s), not both: ${first(g4.readers)}`
+diff --git a/reader/zone.html b/reader/zone.html
+index 594c81d113..bfd458ecb8 100644
+--- a/reader/zone.html
++++ b/reader/zone.html
+@@ -572,6 +572,17 @@
+     #stamp td { padding-right: 0.45rem; }
+   }
+   #stamp .stamp-note { color: var(--faint); font-style: italic; margin: 0.3rem 0 0; }
++  /* THE COUNT'S METALS (the owner, 19 November 2026, reading Isaiah: «silver
++     is our language so id use that for the counted words on the page by us,
++     and gold is usually the masoretics language but if leningrad practices
++     their technique he is gold too so id put his count in gold»). What this
++     project counted on the page is in silver, its own mark, as the card
++     numbers are: the desk's figures, the table's «ours» and the verses on the
++     shut line. What the held edition counted, the Leningrad Codex, whose
++     scribes kept the Masorah, is in gold, the Masorah's own metal: its
++     figure in the table's «theirs». Every other witness keeps the ink. */
++  #stamp .desk .v, #stamp td.num.ours, #stamp .toc-n .ours { color: var(--silver); }
++  #stamp tr.held td.num.theirs { color: var(--gold); }
+   #stamp .stamp-warn { color: var(--argaman-dim); margin: 0.3rem 0 0; }
+   #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman-dim); line-height: 1.55; }
+   #statusLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman-dim); line-height: 1.55; }
+@@ -1148,11 +1159,18 @@
+   .g-pcs { display: inline-flex; direction: rtl; align-items: baseline; justify-content: center; white-space: nowrap; }
+   .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
+   .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
+-  .g-pc.gap, .g-part.gap { display: inline-block; min-width: 0.55em; }   /* a hidden sign's place */
++  /* A HIDDEN SIGN TAKES NO SLOT IN THE ENGLISH ROW (the owner, 19 November
++     2026, reading Isaiah 2:22: «spacing», at «from  +  humankind» and «for  +
++     how?»; the page lane's answer, taken: close the slot, and the blob still
++     marks the letters). From 14 November the gap kept a little width, its
++     place in the line, and with the joiner beside it gone it read as a fault.
++     The piece stays in the row, so the line's text and its pieces are as
++     they were; it takes no width, and the hidden sign's letters keep their
++     blob, closed around the Hebrew alone (drawPairs). A run's cell that is a
++     hidden sign whole takes none either. */
++  .g-pc.gap, .g-part.gap { display: inline-block; min-width: 0; }
+   .g-pp.at-gap, .g-sep.at-gap { display: none; }   /* and no joiner beside it (2026-11-14) */
+-  /* and a run's cell keeps that place too: the run's own cells take min-width 0 so a long reading wraps inside
+-     its cell, which held a gap's cell to nothing; with no joiner beside it to mark the spot, it holds its slot */
+-  .wjoin > .g.parts .g-part.gap { min-width: 0.55em; }
++  .wjoin > .g.parts .g-part.gap { min-width: 0; }
+   /* THE ENGLISH READER KEEPS ITS OWN ORDER (the owner, 2026-10-10, on the
+      first word of Genesis: "for hebrew reader it would be non zig zag. for
+      english reader it would be zig zag"). In the Hebrew reader a split
+@@ -2381,6 +2399,10 @@
+      record, so the export, the copy guard and the checks read it, and the
+      card says every reading's license in full; the line itself shows none. */
+   .he-text .g .g-lic { display: none; }
++  /* nor the book title's (the owner, 19 November 2026, crossing out the chip
++     under the book title's English on Isaiah's page): the title is a word of
++     the corpus like any other, and its card says the license in full */
++  header.top h1 .he-t .title-row .g .g-lic { display: none; }
+   /* a source under two terms names both ("WordNet Notices + CC BY 4.0"), and
+      under a narrow word that chip stood wider than the word and was cut; it
+      breaks between the terms, never inside one */
+@@ -5404,7 +5426,7 @@
+       el.append(desk);
+       const table = document.createElement("table");
+       st.rows.forEach((r, i) => {
+-        const tr = document.createElement("tr"); tr.className = String(r.verdict || "").toLowerCase();
++        const tr = document.createElement("tr"); tr.className = String(r.verdict || "").toLowerCase() + (r.class === "HELD_EDITION" ? " held" : "");
+         tr.style.animationDelay = `${Math.min(i, 14) * 70}ms`;
+         const td = (cls, text, title) => { const c = document.createElement("td"); c.className = cls; c.textContent = text; if (title) c.title = title; tr.append(c); return c; };
+         const wit = td("wit", "", [r.witness || "", r.note || ""].filter(Boolean).join(" \u2014 "));
+@@ -5433,7 +5455,9 @@
+       const witnesses = new Set(st.rows.map((r) => r.witness).filter(Boolean)).size;
+       const differs = st.rows.filter((r) => r.verdict === "DIFFERS").length;
+       const nSlot = box.querySelector(".toc-n");
+-      nSlot.textContent = `${n(st.ours.verses)} verses · ${witnesses} witness${witnesses === 1 ? "" : "es"} · `;
++      // the verses are our own count, in silver (THE COUNT'S METALS, above)
++      nSlot.replaceChildren(Object.assign(document.createElement("span"), { className: "ours", textContent: n(st.ours.verses) }),
++        ` verses · ${witnesses} witness${witnesses === 1 ? "" : "es"} · `);
+       const verdict = document.createElement("span");
+       verdict.className = differs ? "differs" : "";
+       verdict.textContent = differs
+@@ -13496,6 +13520,21 @@
+   // the box the line sets an English reading's letters in, the license chip
+   // apart: its pieces where it stands in pieces, else its text whole
+   const rectOf = (el) => unionOf([...el.getClientRects()].filter((r) => r.width > 0));
++  // A GAP IS STILL A PIECE (the owner, 2026-10-23, of the object marker's
++  // word in a chain, its sign undrawn under the signs switch, standing with
++  // no blob beside words that wore one: "2 examples of a missing blob"): the
++  // gap has no ink to measure, so it is measured as a hair's breadth where it
++  // stands, and the letters keep their shape. Since 2026-11-14 the letters'
++  // blob closes around them and ties to nothing (drawPairs); the hair still
++  // says where the gap stands among the pieces. Since 19 November 2026 a gap
++  // takes no width in the row, in a word's pieces as in a run's cells, so a
++  // piece is measured so too, never by its own box
++  const hairOf = (el) => {
++    const q = el.getBoundingClientRect();
++    if (!q.height) return null;
++    const cx = q.left + q.width / 2;
++    return { L: cx - 4, R: cx + 4, T: q.top, B: q.bottom };
++  };
+   const enWhole = (el) => {
+     if (!el) return null;
+     const row = el.querySelector(":scope > .g-pcs");
+@@ -13506,17 +13545,8 @@
+     const rg = inkRange(tn, a, tn, b);
+     const box = unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
+     if (box) return box;
+-    // A GAP IS STILL A PIECE (the owner, 2026-10-23, of the object marker's
+-    // word in a chain, its sign undrawn under the signs switch, standing
+-    // with no blob beside words that wore one: "2 examples of a missing
+-    // blob"): the gap has no ink to measure, so it is measured as a hair's
+-    // breadth where it stands, and the letters keep their shape. Since
+-    // 2026-11-14 the letters' blob closes around them and ties to nothing
+-    // (drawPairs); the hair still says where the gap stands among the pieces
+-    const q = el.getBoundingClientRect();
+-    if (!q.height) return null;
+-    const cx = q.left + q.width / 2;
+-    return { L: cx - 4, R: cx + 4, T: q.top, B: q.bottom };
++    // a gap, measured as a hair's breadth where it stands (hairOf, above)
++    return hairOf(el);
+   };
+   // a word to its English: one pair per piece where the reading stands in
+   // pieces, or one for the word whole
+@@ -13542,7 +13572,8 @@
+     const counts = row ? String(row.dataset.counts || "").split(",").map(Number) : null;
+     const spans = counts && counts.length === pcs.length && counts.length > 1 ? pieceSpans(map.text, counts) : null;
+     const boxes = spans ? spans.map(([a, b]) => inkBox(map, a, b)) : null;
+-    const enBoxes = spans ? pcs.map(rectOf) : null;
++    // a gap's piece takes no width in the row: it is measured as a hair where it stands (hairOf)
++    const enBoxes = spans ? pcs.map((pc) => (pc.classList.contains("gap") ? hairOf(pc) : rectOf(pc))) : null;
+     if (!boxes || boxes.some((x) => !x) || enBoxes.some((x) => !x)) { const e = enWhole(enEl); return e ? [{ he: whole, en: e, wi, piece: 0, n: 1, gap: !!(enEl && enEl.classList.contains("gap")) }] : []; }
+     // one height for the word, its ink's; a maqaf belongs to the piece it stands in
+     for (const x of boxes) { x.T = whole.T; x.B = whole.B; x.maqafs = whole.maqafs.filter((m) => m.R > x.L && m.L < x.R); }

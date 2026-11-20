@@ -1,0 +1,16 @@
+import { createRequire } from "node:module";
+const { chromium } = createRequire(import.meta.url)("playwright");
+const [url, out, w = "412", h = "915"] = process.argv.slice(2);
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: +w, height: +h } });
+await p.goto(url, { waitUntil: "networkidle" });
+await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 }).catch(() => {});
+await p.waitForTimeout(800);
+const info = await p.evaluate(() => { const s = document.getElementById("stamp"); const btn = s && (s.querySelector("summary") || s.querySelector("button")); if (btn) btn.click(); return s ? s.outerHTML.slice(0, 600) : null; });
+await p.waitForTimeout(1500);
+const el = await p.$("#stamp");
+if (el) await el.screenshot({ path: out });
+console.log(info);
+const cls = await p.evaluate(() => [...document.querySelectorAll("#stamp tr")].map((tr) => [tr.className, tr.querySelector(".cls") && tr.querySelector(".cls").textContent, tr.querySelector(".wit") && tr.querySelector(".wit").textContent.slice(0, 80)]));
+console.log(JSON.stringify(cls));
+await b.close();
