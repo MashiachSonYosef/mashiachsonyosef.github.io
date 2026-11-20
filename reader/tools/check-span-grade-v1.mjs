@@ -41,7 +41,11 @@
 //       leaves out every reading only rows the place holds back print, keeps
 //       every reading a row it keeps prints (as «keep» shows it), and counts
 //       what it held back by why (window.__spanHeld); the named reading is
-//       absent or stands as the pin names it
+//       absent or stands as the pin names it. Since 20 November 2026
+//       (words-stand-alone-rule-v1) a place none of whose rows stands under
+//       «only» is no cell there: its words are words, its card is its
+//       word's own and offers no rung of the key, and it is a cell again
+//       under «keep»
 //   G7  under «keep» the same cards hold nothing back, and every reading the
 //       place holds back stands (one the record of dictionary kinds rests shut
 //       at rest aside: under «keep» it rests shut as before, the named reading
@@ -302,6 +306,8 @@ else if (cards.length) {
     const ready = () => !h.querySelector(".r-wait") && !!h.querySelector(".r-pills button, .sources-withheld, .b-read p:not(.r-label)");
     let t = Date.now(); await sleep(150); while (Date.now() - t < 12000 && !ready()) await sleep(50);
     const rung = [...h.querySelectorAll(".b-chain .s-pills button, .b-cut .s-pills button")].find((x) => x.textContent.trim() === c.key);
+    // no cell at the place and no rung of its key on the word's own card: the place set aside (words-stand-alone-rule-v1)
+    if (!rung && !cell) { document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })); await sleep(150); return { noCell: true, pool: [], ov: [], pills: [], held: null, said: "" }; }
     if (!rung) return { fault: "the card offers no rung of the place's key" };
     if (rung.getAttribute("aria-pressed") !== "true") { rung.click(); t = Date.now(); await sleep(250); while (Date.now() - t < 12000 && !ready()) await sleep(50); }
     await sleep(300);
@@ -311,12 +317,12 @@ else if (cards.length) {
     await sleep(150);
     return out;
   }, { ref: c.pl.ref, first: c.pl.first, key: c.pl.key });
-  const open = async (book, masorah) => {
+  const open = async (book, masorah, query = "") => {
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     const errors = [];
     page.on("pageerror", (e) => errors.push(e.message));
     await page.addInitScript((m) => { try { localStorage.clear(); localStorage.setItem("fh.pointing-stands-2026-11-06", "1"); localStorage.setItem("fh.masorah", m); } catch { /* a fresh reader */ } }, masorah);
-    await page.goto(`${tree.base}/zone.html?b=${book}`, { waitUntil: "networkidle" });
+    await page.goto(`${tree.base}/zone.html?b=${book}${query}`, { waitUntil: "networkidle" });
     await page.waitForSelector("section.seg .he-text .wb");
     return { page, errors };
   };
@@ -346,10 +352,45 @@ else if (cards.length) {
         if (errors.length) (m === "only" ? g6 : g7).push({ ok: false, say: `${book}: page error ${errors[0]}` });
         await page.close();
       }
+      // A PLACE NO ROW OF WHICH RESTS OPEN IS NO CELL UNDER EITHER POSITION (words-stand-alone-rule-v1): its words
+      // are words, and its card is judged where its rows stand, with the dictionaries that rest shut opened for
+      // the load. Opened, every place is laid, as before the rule (Deuteronomy 18:1's «the Jewish people», English
+      // Wiktionary's one row, held back as pointed otherwise: a cell under «only» whose card holds the row back
+      // and says so, a cell under «keep» that reads it)
+      const rowsOf = (c) => books.get(book).file.keys[c.pl.key] || [];
+      const heldBy = (c, r) => ["otherwise", "silent"].includes((c.pl.held || {})[r.row_id]);
+      const aside = here.filter((c) => !rowsOf(c).some((r) => !shut(book, r) && !r.form_of));
+      const opened = { only: new Map(), keep: new Map() };
+      if (aside.length) for (const m of ["only", "keep"]) {
+        const { page, errors } = await open(book, m, "&kinds=open");
+        for (const c of aside) opened[m].set(c, await press(page, c));
+        if (errors.length) g6.push({ ok: false, say: `${book} (the dictionaries that rest shut opened): page error ${errors[0]}` });
+        await page.close();
+      }
       here.forEach((c, i) => {
         const only = got.only[i], keep = got.keep[i];
         const at = `${book} ${c.pl.ref} ${c.pl.first}-${c.pl.last} (${c.why})`;
         if (only.fault || keep.fault) { g6.push({ ok: false, say: `${at}: ${only.fault || keep.fault}` }); return; }
+        // whether a row of the place stands: resting open and no pointer; under «only», not held back by the place
+        const standsKeep = rowsOf(c).some((r) => !shut(book, r) && !r.form_of);
+        const standsOnly = rowsOf(c).some((r) => !shut(book, r) && !r.form_of && !heldBy(c, r));
+        if (!!keep.noCell !== !standsKeep) { g6.push({ ok: false, say: `${at}: ${standsKeep ? "a row of the place rests open, and the page lays no cell there under «keep»" : "no row of the place rests open, and the page lays a cell there under «keep»"}` }); return; }
+        if (!!only.noCell !== !standsOnly) { g6.push({ ok: false, say: `${at}: ${standsOnly ? "a row of the place stands under «only», and the page lays no cell there" : "no row of the place stands under «only», and the page lays a cell there"}` }); return; }
+        if (keep.noCell) {
+          const o = opened.only.get(c), k = opened.keep.get(c);
+          const all = new Set([...c.kept, ...c.heldOnly]);
+          const poolO = new Set(((o && o.pool) || []).map(low)), poolK = new Set(((k && k.pool) || []).map(low));
+          const wantHeld = { otherwise: Object.values(c.held).filter((w) => w === "otherwise").length, silent: Object.values(c.held).filter((w) => w === "silent").length };
+          const fault = !o || !k ? "not pressed with the dictionaries opened" : o.fault || k.fault
+            || (o.noCell || k.noCell ? `opened, the page lays no cell at the place under ${o.noCell ? "«only»" : "«keep»"}` : null)
+            || ((c.under_only === "held" ? poolO.has(low(c.reads)) : !poolO.has(low(c.reads))) ? `opened, under «only» «${c.reads}» ${poolO.has(low(c.reads)) ? "stands" : "is absent"} (named ${c.under_only})` : null)
+            || (!o.held || o.held.otherwise !== wantHeld.otherwise || o.held.silent !== wantHeld.silent ? `opened, under «only» the card says it held back ${o.held ? `${o.held.otherwise} pointed otherwise, ${o.held.silent} with no pointing` : "nothing"} (the place: ${wantHeld.otherwise}, ${wantHeld.silent})` : null)
+            || (all.has(low(c.reads)) && !poolK.has(low(c.reads)) ? `opened, under «keep» «${c.reads}» is absent` : null);
+          g6.push({ ok: !fault, say: `${at}: no row of the place rests open, so the place is no cell under either position and its words are words; ${fault || `with the dictionaries that rest shut opened, a cell under «only», «${c.reads}» ${poolO.has(low(c.reads)) ? "standing" : "held back"} (held back ${o.held.otherwise} pointed otherwise, ${o.held.silent} with no pointing), and a cell under «keep» that reads «${c.reads}»`}` });
+          g7.push({ ok: !c.restsOpen.includes(low(c.reads)), say: `${at}: «${c.reads}» absent (only rows that rest shut print it, and the place is no cell)` });
+          g9.push({ judged: false, ok: true, say: `${at}: no cell at rest, nothing to order` });
+          return;
+        }
         const poolOnly = new Set(only.pool.map(low)), poolKeep = new Set(keep.pool.map(low));
         // a reading only held rows print, on a pill that stands on span rows alone, is gone under «only»
         const spanOnlyOnly = new Set(only.pool.filter((x, j) => only.ov[j] === "span-store").map(low));
@@ -358,7 +399,8 @@ else if (cards.length) {
         const wantHeld = { otherwise: Object.values(c.held).filter((w) => w === "otherwise").length, silent: Object.values(c.held).filter((w) => w === "silent").length };
         const counted = !!only.held && only.held.otherwise === wantHeld.otherwise && only.held.silent === wantHeld.silent;
         const named = c.under_only === "held" ? !poolOnly.has(low(c.reads)) : poolOnly.has(low(c.reads));
-        g6.push({ ok: !leaked.length && !lost.length && counted && named,
+        if (only.noCell) g6.push({ ok: true, say: `${at}: no row of the place stands under «only» (it holds back ${wantHeld.otherwise} pointed otherwise, ${wantHeld.silent} with no pointing), so the place is no cell there and its words are words; a cell again under «keep»` });
+        else g6.push({ ok: !leaked.length && !lost.length && counted && named,
           say: `${at}: «${c.reads}» ${poolOnly.has(low(c.reads)) ? "stands" : "absent"} (named ${c.under_only}) · ${only.pool.length} readings · held back ${only.held ? `${only.held.otherwise} pointed otherwise, ${only.held.silent} no pointing` : "nothing said"} (the place: ${wantHeld.otherwise}, ${wantHeld.silent})${leaked.length ? ` · held readings still on the card: ${leaked.join(", ")}` : ""}${lost.length ? ` · kept readings gone: ${lost.join(", ")}` : ""}` });
         const back = c.heldOpen.filter((x) => !poolKeep.has(x));
         const keepHeld = !!keep.held && keep.held.otherwise === 0 && keep.held.silent === 0;

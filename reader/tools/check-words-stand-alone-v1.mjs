@@ -1,0 +1,441 @@
+#!/usr/bin/env node
+// RUN: page
+// GUARDS: words-stand-alone-rule-v1-at-rest-each-word-is-its-own-cell-and-card-and-a-joined-cell-stands-only-where-a-dictionary-that-stands-files-it, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
+// LEDGER: -
+// no frame letter. A check reads the page and judges it; it is not the
+// ledger for one.
+//
+// THE WORDS STAND ALONE AT REST (the owner, 20 November 2026, of the run
+// cards once only the twelve Bible dictionaries stood at rest: «part of the
+// strip down to 12 might as well just be follow their convention to not do
+// run words at all i assume and we add those when we add other dictionarys
+// that allow it carefully if it actually makes sense, vs shotgunning them
+// all in and slowly pruning out»). The twelve read word by word. So on a
+// first visit to a book baked at rest no stroke joins a chain into one cell,
+// and a place the span store names is one cell only where a row of it
+// stands: of a dictionary that does not rest shut, no pointer, and not held
+// back by the place. Everything else is a word, with its own cell, its own
+// line and its own card. And a card that does stand on a run asks each word
+// of the run as its own word, where before it asked them with no pointing
+// and no entry (Amos 2:11: the line «young + he will rule as God», the run's
+// card «Bani + Israel»).
+//
+// The owner drew three faults on a phone on 19 November (Isaiah 1:6, 2:9,
+// 12:2): English cut at the row's edge, a shape through the letters. All
+// three sat on a joined pair's row; 27 of Isaiah's 18,773 English rows were
+// cut by their own row, every one a run's. A5 holds the count at none.
+//
+//   A1  on a first visit the page says the joined words rest as separate
+//       words, draws no chain as one cell, and does not ask for the book's
+//       run file, which it lays nothing from. A joined cell is a place of
+//       the span store, or a sign's cell: a word whose whole line is a sign
+//       (the object marker's) stays beside the word its stroke joins it to,
+//       its sign a gap in the row, so the hidden sign keeps its place and no
+//       word stands with nothing under it; such a cell has no key and no
+//       card of its own
+//   A2  the cells that stand are the places where a row stands: recounted
+//       here from the book's span file and the page's own answer on which
+//       rows rest open, against what the page laid and what it set aside
+//   A3  with the dictionaries that rest shut opened for the load, every
+//       place is a cell again; with the joined words asked as written, the
+//       chains are joined again
+//   A4  a card standing on a run asks each word of it as its own word: its
+//       own pointed form, its place's entry, whether its place is a name;
+//       a word of a place set aside opens its own card, gated by its own
+//       entry, with no chain at its top; and so does each word of a sign's
+//       cell
+//   A5  on a phone no English row is cut by its own row, anywhere in the book
+//   A6  the reader opens the dictionaries that rest shut from a card: the
+//       card stays, and the places set aside are cells once it is closed
+//   A7  a word of a sign's cell is one word: landed on as a search's hit
+//       lands (the word's own opener) or pressed, its card has no chain at
+//       its top and wears the word's own address, never the cell's first to
+//       last (the independent review of 20 November 2026: the landing opened
+//       a chain's card whose rungs had no key, and both words of 6,586 cells
+//       wore a two-word address)
+//   A8  nothing is laid under an open card, and what a switch moved is paid
+//       when the card closes by any road: the dictionaries opened from a
+//       card, the card closed by the English pill, and the places set aside
+//       are cells (the review: only a press away and Escape paid)
+//   A9  the cells follow a source's switch: the source that alone stands at
+//       the most places, switched off on the rail, sets those places aside,
+//       and on again brings them back (the review: they stayed until a load)
+//
+// What this does NOT prove: that a reading is right; that every book reads
+// so (it reads one book, Isaiah, whole: 139 places and 1,761 chains); that
+// a switch moved by itself is followed (the pointing settling at «keep»
+// under another switch: read by hand, Deuteronomy 8:2); what
+// the switch's other position draws beyond A3 (check-maqaf-pair-drawn-v1 L2
+// to L4, check-run-card-forms-v1).
+//
+// Run: node tools/check-words-stand-alone-v1.mjs <served zone url>
+import { readFileSync, existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
+import { defaultZoneUrl } from "./zones-on-disk-v1.mjs";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+const K3 = join(HERE, "..");
+const URL_ARG = defaultZoneUrl();
+if (!/^https?:/u.test(URL_ARG)) { console.log("SKIPPED — needs a served zone url"); process.exit(3); }
+const BOOK = "isaiah";
+const spanPath = join(K3, "data", "span-store", `${BOOK}.json`);
+if (!existsSync(join(K3, "data", "zones", `${BOOK}.bin`)) || !existsSync(spanPath)) { console.log(`SKIPPED — this tree holds no ${BOOK} with a span file`); process.exit(3); }
+const urlFor = (extra = "") => `${URL_ARG.replace(/\?.*$/u, "")}?b=${BOOK}${extra}`;
+
+let bad = 0;
+const check = (n, ok, d = "") => { if (!ok) bad += 1; console.log(`${ok ? "  ok  " : "FAIL  "}${n}${d ? "  ·  " + d : ""}`); };
+const few = (l, n = 3) => l.slice(0, n).join(" · ");
+const esc = (s) => String(s).replace(/[\u0590-\u05ff]/gu, (c) => "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0"));
+
+const span = JSON.parse(readFileSync(spanPath, "utf8"));
+const places = Array.isArray(span.placesList) ? span.placesList : [];
+
+const pw = await loadPlaywright();
+const b = await pw.chromium.launch(launchOptions());
+const ctx = await b.newContext({ viewport: { width: 412, height: 915 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
+const page = await ctx.newPage();
+const errs = []; page.on("pageerror", (e) => errs.push(e.message));
+let runFileAsked = 0;
+page.on("request", (r) => { if (r.url().includes(`/data/hud-toggles/${BOOK}.json`)) runFileAsked += 1; });
+const open = async (p, url) => {
+  await p.goto(url, { waitUntil: "networkidle" });
+  await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
+};
+await open(page, urlFor());
+await page.evaluate(async () => { if (window.__materialise) await window.__materialise(); });
+await page.waitForTimeout(1500);
+
+const read = (keys) => page.evaluate((keys) => {
+  const cells = [];
+  const isSign = (t) => /^(<[^>]*>|\[[^\]]*\]|\u00bf|~|X|\u00d7|\+)$/u.test(String(t).trim());
+  let rows = 0; const cut = [];
+  for (const s of document.querySelectorAll("section.seg")) {
+    const label = s.__sec ? String(s.__sec.label) : "";
+    for (const j of s.querySelectorAll(".he-text .wjoin")) {
+      // a word's own line, kept in the cell undrawn: is it a sign and nothing else
+      const own = [...j.querySelectorAll(".wj-ink > .wb")].map((wb) => { const g = wb.querySelector(":scope > .g"); if (!g) return ""; const c = g.cloneNode(true); c.querySelectorAll(".g-lic, .g-pcs-lic").forEach((y) => y.remove()); return c.textContent.replace(/\s+/g, " ").trim(); });
+      cells.push({ label, key: j.__key || null, chain: !!j.__chain, span: !!(j.__run && j.__run.spanKey), n: (j.__words || []).length,
+        // a word whose every piece is a sign; and of those, the ones that are one sign, which the row draws as a gap
+        signs: own.filter((t) => t && t.split(" + ").every(isSign)).length, oneSign: own.filter((t) => isSign(t)).length, gaps: j.querySelectorAll(":scope > .g .g-part.gap").length, joinedByStroke: (j.__words || []).slice(0, -1).every((w) => w && w.presentation_join && w.presentation_join.join_next_without_separator) });
+    }
+    for (const g of s.querySelectorAll(".he-text .wb > .g, .he-text .wjoin > .g")) {
+      if (g.classList.contains("bare")) continue;
+      rows += 1;
+      const gb = g.getBoundingClientRect(); let over = 0;
+      for (const t of g.querySelectorAll(".g-pc, .g-part")) {
+        if (t.querySelector(".g-pc, .g-part")) continue;
+        const rg = document.createRange(); rg.selectNodeContents(t);
+        for (const q of rg.getClientRects()) { if (q.width < 1) continue; over = Math.max(over, gb.left - q.left, q.right - gb.right); }
+      }
+      if (over > 0.5) cut.push(`${label} by ${Math.round(over)}px${g.parentElement.classList.contains("wjoin") ? " (a joined cell)" : ""}`);
+    }
+  }
+  const openRows = {};
+  for (const k of keys) openRows[k] = window.__spanLine ? window.__spanLine(k).rows : null;
+  return { toggles: window.__hudToggles || null, kindsHere: !!window.__kindsHere, kinds: window.__kinds || null, masorah: window.__masorah || null,
+    store: window.__spanStore ? { places: window.__spanStore.places, cards: window.__spanStore.cards, laid: window.__spanStore.laid, rested: window.__spanStore.rested, skipped: (window.__spanStore.skipped || []).map((x) => ({ key: x.key, ref: x.ref, first: x.first, why: x.why })) } : null,
+    sections: document.querySelectorAll("section.seg").length, cells, rows, cut, openRows };
+}, keys);
+const keys = Object.keys(span.keys || {});
+const rest = await read(keys);
+if (!rest.kindsHere || rest.kinds !== "shut" || !rest.store) {
+  console.log(`SKIPPED — ${BOOK} is not drawn at rest here (the record of what rests shut ${rest.kindsHere ? "holds" : "does not act on it"}, the switch stands ${rest.kinds}): A1 to A6 had nothing to judge`);
+  await b.close(); process.exit(3);
+}
+
+// A1
+{
+  const a1 = [];
+  if (!rest.toggles || rest.toggles.maqaf !== "pieces") a1.push(`the page says the joined words rest ${rest.toggles ? rest.toggles.maqaf : "(nothing)"}`);
+  const chains = rest.cells.filter((c) => c.chain);
+  if (chains.length) a1.push(`${chains.length} chain(s) drawn as one cell, first at ${chains[0].label}`);
+  // a sign's cell: no key of its own, its words joined by the stroke, one of them a sign alone and drawn as a gap, another carrying the reading
+  const signCell = (c) => !c.span && !c.chain && !c.key && c.joinedByStroke && c.signs >= 1 && c.signs < c.n && c.gaps === c.oneSign;
+  const stray = rest.cells.filter((c) => !c.span && !signCell(c));
+  if (stray.length) a1.push(`${stray.length} joined cell(s) that are neither a place of the span store nor a sign's cell, first at ${stray[0].label} (${stray[0].n} words, ${stray[0].signs} all signs, ${stray[0].oneSign} one sign, ${stray[0].gaps} gaps drawn)`);
+  if (runFileAsked) a1.push(`the book's run file was asked for ${runFileAsked} time(s) and nothing is laid from it`);
+  check("A1  a first visit: the joined words rest as separate words, no chain is one cell, the run file is not asked for", a1.length === 0, a1.length ? few(a1) : `${rest.sections} sections, ${rest.cells.filter((c) => c.span).length} cells that are a place of the span store, ${rest.cells.filter(signCell).length} where a sign keeps its place beside its word`);
+}
+
+// A2 · the standing places, recounted
+const HELD = new Set(["otherwise", "silent"]);
+const stands = (pl) => {
+  const open = new Set(rest.openRows[pl.key] || []);
+  return (span.keys[pl.key] || []).some((r) => open.has(r.row_id) && !r.form_of && !(rest.masorah === "only" && pl.held && HELD.has(pl.held[r.row_id])));
+};
+const standing = places.filter(stands), aside = places.filter((pl) => !stands(pl));
+{
+  const a2 = [];
+  const st = rest.store;
+  if (st.places !== places.length) a2.push(`the page counts ${st.places} places and the file holds ${places.length}`);
+  if (st.rested !== aside.length) a2.push(`the page set ${st.rested} places aside and ${aside.length} have no row standing`);
+  if (st.cards + st.rested + st.skipped.length !== places.length) a2.push(`${st.cards} laid + ${st.rested} set aside + ${st.skipped.length} not laid is not the file's ${places.length}`);
+  if (st.laid !== st.cards) a2.push(`${st.cards} places were to be laid and ${st.laid} stand as a cell or inside one`);
+  const want = new Set(standing.map((pl) => `${pl.ref}|${pl.key}`));
+  const wrong = rest.cells.filter((c) => c.span && !want.has(`${c.label}|${c.key}`));
+  if (wrong.length) a2.push(`${wrong.length} cell(s) stand where no row stands, first ${wrong[0].label} ${esc(wrong[0].key)}`);
+  const drawn = new Set(rest.cells.filter((c) => c.span).map((c) => `${c.label}|${c.key}`));
+  const notLaid = new Set(st.skipped.map((x) => `${x.ref}|${x.key}`));
+  // a place inside a longer standing place stands in that place's cell, as a rung of it
+  const inside = (pl) => standing.some((q) => q !== pl && q.ref === pl.ref && q.first <= pl.first && q.last >= pl.last && (q.last - q.first) > (pl.last - pl.first));
+  const missing = standing.filter((pl) => !drawn.has(`${pl.ref}|${pl.key}`) && !notLaid.has(`${pl.ref}|${pl.key}`) && !inside(pl));
+  if (missing.length) a2.push(`${missing.length} place(s) with a row standing are no cell, first ${missing[0].ref} ${esc(missing[0].key)}`);
+  check("A2  the cells that stand are the places where a row stands, recounted from the span file and the rows the page says rest open", a2.length === 0, a2.length ? few(a2) : `${places.length} places: ${standing.length} with a row standing (${rest.cells.filter((c) => c.span).length} cells drawn), ${aside.length} set aside`);
+}
+
+// A5 · no English row is cut by its own row (the owner's faults of 19 November)
+check("A5  on a phone no English row is cut by its own row", rest.cut.length === 0, rest.cut.length ? `${rest.cut.length} of ${rest.rows} rows — ${few(rest.cut)}` : `${rest.rows} rows at 412 wide, none cut`);
+
+// A4 · the asked words
+{
+  const a4 = [];
+  const cardNow = () => page.evaluate(() => { const h = document.querySelector("#hud"); return !h || h.hidden ? null : { chain: !!h.querySelector(".b-chain"), entry: window.__cardEntry || "", b: ((h.querySelector(".head b") || {}).textContent || "").trim() }; });
+  // (a) cards standing on a run: each word asked as its own word
+  const asked = await page.evaluate(async (max) => {
+    const out = [];
+    const namesMarked = [...document.querySelectorAll("section.seg .he-text .wb")].some((wb) => wb.__word && wb.__word.np);
+    const cells = [...document.querySelectorAll("section.seg .he-text .wjoin")].filter((j) => j.__run && j.__run.spanKey).slice(0, max);
+    for (const j of cells) {
+      const wbs = [...j.querySelectorAll(".wj-ink > .wb")];
+      const first = wbs[0] && (wbs[0].querySelector(":scope > .w span") || wbs[0].querySelector(":scope > .w"));
+      if (!first) continue;
+      first.scrollIntoView({ block: "center" }); first.click();
+      await new Promise((r) => setTimeout(r, 900));
+      const hud = document.querySelector("#hud");
+      const rec = { key: j.__key, open: !!hud && !hud.hidden, words: [] };
+      const ws = wbs.map((wb) => wb.__word).filter(Boolean);
+      for (const w of ws) {
+        if (!w.k || w.kq || w.w) continue;
+        if (ws.filter((x) => x.k === w.k).length > 1) continue;
+        const a = window.__askedWord ? window.__askedWord(w.k) : null;
+        rec.words.push({ k: w.k, s: w.s, tags: w.tg ? [].concat(w.tg) : w.te ? [].concat(w.te) : null, name: !namesMarked || !!w.np, asked: a });
+      }
+      out.push(rec);
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      await new Promise((r) => setTimeout(r, 200));
+    }
+    return out;
+  }, 6);
+  let wordsAsked = 0;
+  for (const c of asked) {
+    if (!c.open) { a4.push(`no card opened on the cell ${esc(c.key)}`); continue; }
+    for (const w of c.words) {
+      wordsAsked += 1;
+      if (!w.asked) { a4.push("the page does not answer what it asks a word as (window.__askedWord)"); break; }
+      if (w.asked.pointed !== w.s) a4.push(`${esc(c.key)}: ${esc(w.k)} is asked pointed ${w.asked.pointed === null ? "not at all" : esc(w.asked.pointed)}, and stands ${esc(w.s)}`);
+      if (JSON.stringify(w.asked.tags || null) !== JSON.stringify(w.tags || null)) a4.push(`${esc(c.key)}: ${esc(w.k)} is asked with the entry ${w.asked.tags ? w.asked.tags.join(" ") : "(none)"}, and its place's is ${w.tags ? w.tags.join(" ") : "(none)"}`);
+      if (w.asked.name !== w.name) a4.push(`${esc(c.key)}: ${esc(w.k)} is asked as ${w.asked.name ? "a name" : w.asked.name === false ? "no name" : "(nothing)"}, and its place is ${w.name ? "a name" : "no name"}`);
+    }
+  }
+  if (!asked.length) a4.push("no cell stands to open a run's card on");
+  // (b) a word of a place set aside opens its own card
+  let own = 0;
+  for (const pl of aside.slice(0, 40)) {
+    if (own >= 3) break;
+    const got = await page.evaluate(async ([ref, first]) => {
+      const s = [...document.querySelectorAll("section.seg")].find((x) => x.__sec && String(x.__sec.label) === ref);
+      if (!s) return null;
+      const wb = [...s.querySelectorAll(".he-text .wb:not(.mark)")][first - 1];
+      if (!wb || !wb.__word || wb.__word.kq || wb.__word.w || wb.closest(".wjoin")) return null;
+      const w = wb.__word, t = wb.querySelector(":scope > .w span") || wb.querySelector(":scope > .w");
+      t.scrollIntoView({ block: "center" }); t.click();
+      await new Promise((r) => setTimeout(r, 900));
+      return { s: w.s, tags: w.tg ? [].concat(w.tg) : w.te ? [].concat(w.te) : null };
+    }, [pl.ref, pl.first]);
+    if (!got) continue;
+    const c = await cardNow();
+    if (!c) a4.push(`${pl.ref}: no card opened on the first word of ${esc(pl.key)}`);
+    else {
+      if (c.chain) a4.push(`${pl.ref}: the word's card carries a chain at its top`);
+      if (c.entry !== (got.tags ? got.tags.join(" ") : "")) a4.push(`${pl.ref}: the word's card is gated by ${c.entry || "(no entry)"}, and its place's entry is ${got.tags ? got.tags.join(" ") : "(none)"}`);
+      own += 1;
+    }
+    await page.keyboard.press("Escape"); await page.waitForTimeout(200);
+  }
+  if (aside.length && !own) a4.push("no word of a place set aside could be opened");
+  // (c) each word of a sign's cell opens its own card
+  const signs = await page.evaluate(async () => {
+    const out = [];
+    const cell = [...document.querySelectorAll("section.seg .he-text .wjoin")].find((j) => !j.__key && !j.__chain && !(j.__run && j.__run.spanKey) && j.querySelector(":scope > .g .g-part.gap"));
+    if (!cell) return out;
+    for (const wb of cell.querySelectorAll(".wj-ink > .wb")) {
+      const w = wb.__word, t = wb.querySelector(":scope > .w span") || wb.querySelector(":scope > .w");
+      t.scrollIntoView({ block: "center" }); t.click();
+      await new Promise((r) => setTimeout(r, 900));
+      const h = document.querySelector("#hud");
+      out.push({ s: w ? w.s : "", open: !!h && !h.hidden, b: h && !h.hidden ? ((h.querySelector(".head b") || {}).textContent || "").trim() : "", chain: !!(h && h.querySelector(".b-chain")), run: !!(h && /one card for the run/iu.test(h.textContent)) });
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+      await new Promise((r) => setTimeout(r, 200));
+    }
+    return out;
+  });
+  const bare = (x) => String(x).replace(/\u05be[\u0591-\u05c7]*$/u, "");
+  for (const c of signs) {
+    if (!c.open) { a4.push(`no card opened on ${esc(c.s)} of a sign's cell`); continue; }
+    if (c.b !== c.s && c.b !== bare(c.s)) a4.push(`in a sign's cell the card of ${esc(c.s)} is headed ${esc(c.b)}`);
+    if (c.chain || c.run) a4.push(`in a sign's cell the card of ${esc(c.s)} is a run's, or carries a chain at its top`);
+  }
+  if (new Set(signs.map((c) => c.b)).size !== signs.length) a4.push("two words of a sign's cell opened one card");
+  check("A4  a run's card asks each word as its own word, and a word of a place set aside opens its own card under its own entry", a4.length === 0, a4.length ? few(a4) : `${wordsAsked} words of ${asked.length} runs, ${own} words of places set aside, ${signs.length} words of a sign's cell`);
+}
+
+// A6 · the shut dictionaries opened from a card: the card stays, the cells follow once it closes
+{
+  const a6 = [];
+  const before = rest.cells.filter((c) => c.span).length;
+  let pressed = false;
+  for (let i = 0; i < 24 && !pressed; i += 1) {
+    const ok = await page.evaluate(async (i) => {
+      const wb = [...document.querySelectorAll("section.seg .he-text .wb:not(.mark)")][i];
+      if (!wb || wb.closest(".wjoin")) return false;
+      const t = wb.querySelector(":scope > .w span") || wb.querySelector(":scope > .w");
+      t.scrollIntoView({ block: "center" }); t.click();
+      await new Promise((r) => setTimeout(r, 900));
+      const sw = document.querySelector("#hud .kinds-switch");
+      if (!sw) { document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })); await new Promise((r) => setTimeout(r, 150)); return false; }
+      sw.click();
+      await new Promise((r) => setTimeout(r, 1500));
+      return true;
+    }, i);
+    pressed = ok;
+  }
+  if (!pressed) a6.push("no card among the first words offers the dictionaries that rest shut");
+  else {
+    const mid = await page.evaluate(() => ({ open: !document.querySelector("#hud").hidden, kinds: window.__kinds, cells: [...document.querySelectorAll("section.seg .he-text .wjoin")].filter((j) => j.__run && j.__run.spanKey).length }));
+    if (!mid.open) a6.push("the card closed under its own switch");
+    if (mid.kinds !== "open") a6.push(`the switch stands ${mid.kinds} after its press`);
+    if (mid.cells !== before) a6.push(`the cells moved under an open card (${before} to ${mid.cells})`);
+    await page.keyboard.press("Escape"); await page.waitForTimeout(2500);
+    const after = await page.evaluate(() => ({ rested: window.__spanStore ? window.__spanStore.rested : null, cards: window.__spanStore ? window.__spanStore.cards : null, cells: [...document.querySelectorAll("section.seg .he-text .wjoin")].filter((j) => j.__run && j.__run.spanKey).length }));
+    if (after.rested !== 0) a6.push(`${after.rested} places are still set aside with the dictionaries opened`);
+    if (aside.length && !(after.cells > before)) a6.push(`the built sections were not laid again: ${before} cells before, ${after.cells} after`);
+    if (!a6.length) a6.ok = `${before} cells, then ${after.cells} once the card closed`;
+  }
+  check("A6  opened from a card, the dictionaries that rest shut keep the card, and the places set aside are cells once it closes", a6.length === 0, a6.length ? few(a6) : a6.ok);
+}
+await ctx.close();
+
+// A3 · the other positions, asked for one load
+{
+  const a3 = [];
+  const ctx2 = await b.newContext({ viewport: { width: 412, height: 915 } });
+  const p2 = await ctx2.newPage();
+  p2.on("pageerror", (e) => errs.push(e.message));
+  await open(p2, urlFor("&kinds=open&maqaf=maqaf"));
+  await p2.waitForTimeout(800);
+  const o = await p2.evaluate(() => ({ toggles: window.__hudToggles || null, store: window.__spanStore ? { cards: window.__spanStore.cards, rested: window.__spanStore.rested, skipped: (window.__spanStore.skipped || []).length, places: window.__spanStore.places } : null,
+    chains: [...document.querySelectorAll("section.seg .he-text .wjoin")].filter((j) => j.__chain).length }));
+  if (!o.store || o.store.rested !== 0) a3.push(`${o.store ? o.store.rested : "?"} places set aside with the dictionaries that rest shut opened`);
+  if (o.store && o.store.cards + o.store.skipped !== o.store.places) a3.push(`${o.store.cards} laid + ${o.store.skipped} not laid is not the ${o.store.places} places`);
+  if (!o.toggles || o.toggles.maqaf !== "maqaf") a3.push(`asked as written, the page says ${o.toggles ? o.toggles.maqaf : "(nothing)"}`);
+  if (!o.chains) a3.push("asked as written, no chain is joined in the sections built at the page's opening");
+  check("A3  opened for the load, every place is a cell again; asked as written, the chains are joined again", a3.length === 0, a3.length ? few(a3) : `${o.store.cards} places laid, ${o.chains} chains joined in the first sections`);
+  await ctx2.close();
+}
+// A7, A8, A9 · the review's findings of 20 November 2026, on a fresh visit
+{
+  const ctx3 = await b.newContext({ viewport: { width: 1280, height: 900 } });
+  const p3 = await ctx3.newPage();
+  p3.on("pageerror", (e) => errs.push(e.message));
+  await open(p3, urlFor());
+  await p3.waitForFunction(() => !!window.__hudToggles, null, { timeout: 60000 });
+  await p3.waitForTimeout(1000);
+  // A7
+  const a7 = [];
+  const cellWords = await p3.evaluate(async () => {
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const cell = [...document.querySelectorAll("section.seg .he-text .wjoin")].find((j) => !j.__key && j.__ink);
+    if (!cell) return null;
+    const sec = cell.closest("section.seg"), all = [...sec.querySelectorAll(".he-text .wb:not(.mark)")], h = document.getElementById("hud");
+    const said = () => ({ chain: !!h.querySelector(".b-chain"), wn: ((h.querySelector(".wn") || {}).textContent || "").trim(), open: !h.hidden });
+    const out = [];
+    for (const wb of cell.__ink.querySelectorAll(":scope > .wb")) {
+      const j = [...cell.__ink.querySelectorAll(":scope > .wb")].indexOf(wb), n = all.indexOf(wb) + 1;
+      wb.scrollIntoView({ block: "center" });
+      wb.__openWord(j); await sleep(900);
+      out.push({ how: "landed on", n, label: sec.__sec ? String(sec.__sec.label) : "", ...said() });
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })); await sleep(200);
+      (wb.querySelector(":scope > .w span") || wb.querySelector(":scope > .w")).click(); await sleep(900);
+      out.push({ how: "pressed", n, label: sec.__sec ? String(sec.__sec.label) : "", ...said() });
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })); await sleep(200);
+    }
+    return out;
+  });
+  if (!cellWords || !cellWords.length) a7.push("no cell without a key among the sections built at the page's opening");
+  else for (const w of cellWords) {
+    if (!w.open) a7.push(`${w.label}:${w.n} ${w.how}: no card`);
+    else if (w.chain) a7.push(`${w.label}:${w.n} ${w.how}: a chain stands at the top of its card`);
+    else if (!w.wn.startsWith(`${w.label}:${w.n} `)) a7.push(`${w.label}:${w.n} ${w.how}: its card wears the address «${w.wn}»`);
+  }
+  check("A7  a word of a sign's cell, landed on or pressed, opens its own card under its own address", a7.length === 0, a7.length ? few(a7) : `${cellWords.length / 2} words of the cell at ${cellWords[0].label}, each landed on and pressed`);
+  // A8
+  const a8 = [];
+  const cellsNow = () => p3.evaluate(() => ({ rested: window.__spanStore ? window.__spanStore.rested : null, cells: [...document.querySelectorAll("section.seg .he-text .wjoin")].filter((j) => j.__run && j.__run.spanKey).length, open: !document.getElementById("hud").hidden, kinds: window.__kinds }));
+  const before = await cellsNow();
+  const pressed = await p3.evaluate(async () => {
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    for (const wb of [...document.querySelectorAll("section.seg .he-text .wb:not(.mark)")].slice(0, 30)) {
+      if (wb.closest(".wjoin")) continue;
+      const t = wb.querySelector(":scope > .w span") || wb.querySelector(":scope > .w");
+      t.scrollIntoView({ block: "center" }); t.click(); await sleep(900);
+      const sw = document.querySelector("#hud .kinds-switch");
+      if (sw) { sw.click(); await sleep(1500); return true; }
+      document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })); await sleep(150);
+    }
+    return false;
+  });
+  if (!pressed) a8.push("no card among the first words offers the dictionaries that rest shut");
+  else {
+    const mid = await cellsNow();
+    if (!mid.open) a8.push("the card closed under its own switch");
+    if (mid.rested !== before.rested || mid.cells !== before.cells) a8.push(`the lanes were laid under an open card (${before.rested} set aside and ${before.cells} cells before, ${mid.rested} and ${mid.cells} with the card open)`);
+    await p3.evaluate(() => document.getElementById("modeEn").click());
+    await p3.waitForTimeout(2500);
+    const after = await cellsNow();
+    if (after.open) a8.push("the English pill left the card open");
+    if (after.rested !== 0) a8.push(`${after.rested} places still set aside once the English pill closed the card`);
+    if (aside.length && !(after.cells > before.cells)) a8.push(`the built sections were not laid again: ${before.cells} cells before, ${after.cells} after`);
+    if (!a8.length) a8.ok = `${before.rested} set aside and ${before.cells} cells with the card open, none set aside and ${after.cells} cells once the English pill closed it`;
+  }
+  check("A8  nothing is laid under an open card, and the cells follow when it closes by another road than a press away or Escape", a8.length === 0, a8.length ? few(a8) : a8.ok);
+  await ctx3.close();
+  // A9, on its own visit
+  const a9 = [];
+  const mKey = (() => { const out = new Map(); for (const f of [join(K3, "data", "route-store", "index.json"), join(K3, "data", "span-store", "index.json")]) { if (!existsSync(f)) continue; const ms = JSON.parse(readFileSync(f, "utf8")).m_sources || {}; for (const [m, v] of Object.entries(ms)) if (v && v.key && !out.has(m)) out.set(m, v.key); } return out; })();
+  const sole = new Map();
+  for (const pl of standing) {
+    const open = new Set(rest.openRows[pl.key] || []);
+    const ks = new Set((span.keys[pl.key] || []).filter((r) => open.has(r.row_id) && !r.form_of && !(rest.masorah === "only" && pl.held && HELD.has(pl.held[r.row_id]))).map((r) => mKey.get(r.slots[3]) || r.slots[3]));
+    if (ks.size === 1) { const k = [...ks][0]; sole.set(k, (sole.get(k) || 0) + 1); }
+  }
+  const pick = [...sole.entries()].sort((x, y) => y[1] - x[1] || (x[0] < y[0] ? -1 : 1))[0] || null;
+  if (!pick) console.log(`  --  A9  not judged here: no place of ${BOOK} stands on one source alone`);
+  else {
+    const ctx4 = await b.newContext({ viewport: { width: 1280, height: 900 } });
+    const p4 = await ctx4.newPage();
+    p4.on("pageerror", (e) => errs.push(e.message));
+    await open(p4, urlFor());
+    await p4.waitForFunction(() => !!window.__hudToggles && document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp').length > 0, null, { timeout: 60000 }).catch(() => {});
+    await p4.waitForTimeout(800);
+    const restedNow = () => p4.evaluate(() => (window.__spanStore ? window.__spanStore.rested : null));
+    const press = () => p4.evaluate((key) => { const c = [...document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp')].find((x) => x.dataset.key === key); if (c) c.click(); return !!c; }, pick[0]);
+    const r0 = await restedNow();
+    if (!(await press())) a9.push(`the rail offers no switch for ${pick[0]}`);
+    else {
+      await p4.waitForTimeout(2500);
+      const r1 = await restedNow();
+      if (r1 !== r0 + pick[1]) a9.push(`${pick[0]} off: ${r1} places set aside, and ${r0} + the ${pick[1]} it alone stands at were owed`);
+      await press(); await p4.waitForTimeout(2500);
+      const r2 = await restedNow();
+      if (r2 !== r0) a9.push(`${pick[0]} on again: ${r2} places set aside, ${r0} before`);
+    }
+    await ctx4.close();
+    check("A9  a source switched off on the rail sets aside the places it alone stands at, and on again brings them back", a9.length === 0, a9.length ? few(a9) : `${pick[0]}, alone at ${pick[1]} places`);
+  }
+}
+if (errs.length) check("  no page error", false, errs[0].slice(0, 160));
+await b.close();
+console.log(bad ? `\n${bad} FAILED` : "\nall checks passed");
+process.exit(bad ? 1 : 0);

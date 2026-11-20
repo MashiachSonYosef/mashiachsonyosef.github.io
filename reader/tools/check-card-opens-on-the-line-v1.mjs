@@ -141,7 +141,9 @@ for (const [k, v, bakeOnly] of passes) {
       // any it names: the runs call 3 takes to their words), and the first whose one line reads it whole, each opened on
       // its first two words
       const alone = [...document.querySelectorAll("section.seg .he-text .wb:has(.g:not(.bare))")].filter((w) => !w.closest(".wjoin")).slice(0, n);
-      const runsNow = () => [...document.querySelectorAll("section.seg .he-text .wjoin")].filter((r) => { const rg = r.querySelector(":scope > .g"); return !!rg && !rg.classList.contains("bare"); });
+      // (a cell with no key of its own is no run: a word whose whole line is a hidden sign stands beside the word its
+      // stroke joins it to, one breath and two cards, words-stand-alone-rule-v1; its gap is no reading to press)
+      const runsNow = () => [...document.querySelectorAll("section.seg .he-text .wjoin")].filter((r) => { const rg = r.querySelector(":scope > .g"); return !!r.__key && !!rg && !rg.classList.contains("bare"); });
       const inParts = (r) => r.querySelector(":scope > .g").classList.contains("parts");
       const spanKey = (r) => (r.__run && r.__run.spanKey) || "";
       const spaced = (r) => inParts(r) && / /u.test(spanKey(r));
