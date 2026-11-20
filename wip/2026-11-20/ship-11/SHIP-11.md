@@ -50,3 +50,11 @@ Ten checks on the finished round (pass 1): nine pass (`check-names-gate-v1` with
 - UBS's collocation category holds no name row (ubs-collocations-rule-v1: «The Bible dictionaries' own name entries keep the gate as it is: they stand where the text's word is a name»). The three are rows relay v188 landed. Names v1 was read from the store of 12 November and never saw them, so the category took them. Names v2 reads landed rows and marks them, by UBS's own part of speech.
 - So the category is derived again on the store with names v2 (`tools/derive-ubs-collocations-v1.mjs`): **2,646 rows on 762 keys (were 2,649 on 764); 428 name rows are not of it (were 425)**. The pin names the new bytes (`tools/patch-ubs-pin.py`), and `apply-ubs-collocations-v1` takes the facts off exactly the three rows (rehearsed: 3 rows move, 3 taken off, 3 shards). No pick named any of the three, so until now they rested shut everywhere; as name rows they stand where the word is a name.
 - **The order is now part of the pass** (`tools/pipeline-11a.sh`): the names, then UBS's collocation rows derived and laid, then the round. Pass 2 (`pipe2`) is running on it; pass 1's records are superseded.
+
+## 5. Pass 2 (the names, then UBS's collocation rows, then the round)
+
+Ended 20:37 UTC, every step clean (round 1,151 s, lines 215 s, chain books 1,007 s). **Every resting line against live: the same six entries as pass 1, and no other.** Taking the collocation mark off the three UBS name rows moves no line. `lines-diff-names-v2.json` is pass 2's.
+
+After it, by themselves (`tools/after-pass.sh`): PIPELINE.md says what the names pin holds and that the collocation rows follow the names; the manifest; the gate; the ten nearest checks.
+
+**The gate learns the names gate as an expectation** (`tools/patch-gate-names.py`; `--expect data/name-rows-receipt-v1.json`, told by its rule): at a place the new build does not mark a name, a line or a card's pill that name rows alone carried is owed gone, and the card must say it holds back more by name than the old card did. Asked of the new build's store and zone, never named. Without it any sampled card that lost a name pill would read as a difference.
