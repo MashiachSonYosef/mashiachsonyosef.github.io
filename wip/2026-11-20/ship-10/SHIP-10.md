@@ -89,3 +89,20 @@ The fifteen that did not, and where each stands:
 - Moved to the new rest, or asked «as written», the check's own text changed (11): check-card-channels-v1, check-card-opens-on-the-line-v1, check-compspan-coverage-v1 (C4 in two halves: at rest no chain at the top of a chain word's card, asked as written the chain's lattice), check-hud-runs-v1, check-line-reads-the-place-v1 (P4 found its word by the first of its letters on the page; it finds it in its own verse now), check-manifest-prints-unguarded-v1 (the manifest emitted again; a rule's name I had wrapped across two comment lines), check-run-card-forms-v1, check-run-cards-v1, check-span-grade-v1, check-span-store-v1, and the two new ones stand as they were.
 - The page mended (4): check-selection-v1 (the copy), check-ruled-equals-first-paint-v1 (the sign's cell laid by the zone's pieces), check-rulings-under-sources-v1 (the held line), and check-reading-rows-v1 R3. R3 is the floor of 23 October («R pills never being less than a row»): on a phone held sideways (640 by 360) the card of a word that carries a note in its head, its record opened whole, showed no reading at all. The floor's code passed over a region squeezed to nothing; a chain word's card always had the chain's two bands in that region, so live never met it. The floor engages on a region of no height now. (R1 fails on live too, as ship 9 recorded.)
 - After the push only (1): check-nothing-unlanded-v1.
+
+### The sixteen run again after the mends (two at a time), and the last four
+
+Eleven of the sixteen passed at once. Five did not; each read again:
+
+| check | what it said | cause | mend |
+|---|---|---|---|
+| check-reading-rows-v1 R1 | «390x664 word at 120px: 2 of 40 rows» | fails on live too (the reading rows card, on ship 10's later list) | none in this pass; R3, which was this ship's, passes |
+| check-ruled-equals-first-paint-v1 E1, E4 | cells «not found», one word's line under another's number | **the check**: it lays the sections again by moving the «joined words» switch to «as separate words» and back to «as written», and left the page «as written», which is no longer where it rests, so its cell numbers named other cells | it reads where the switch stands, moves it away and back (`tools/check-ruled-equals-first-paint-v1.mjs`) |
+| check-rulings-under-sources-v1 U10 | «the card says «»» at Daniel 1:8:8 under MACULA and UBS | **the page**: the line was mended (the held line) and the card was not. The card of a word of a unit held apart stood on no reading at all, «No exact route in the catalog for this form», under a line that had one | one function, `dfltHeldLine`, read by the line, the card (its pill, its «on the line» mark, the layer it remembers) and the export's citation (`tools/patch-7.py`) |
+| check-span-grade-v1 G6 | «deuteronomy 18:1 10-11 (named): no cell at the place under «keep»» | **the check**: the place's one row is English Wiktionary's «the Jewish people», which rests shut, so the place is no cell under either position | the check holds that, and judges the named card where its row stands, with the dictionaries that rest shut opened for the load: no cell under «only» (the row is held back as pointed otherwise), a cell under «keep» that reads it |
+| check-span-store-v1 S2 (genesis) | «A CELL WHERE NO ROW STANDS: 22:14» | **the check**: Genesis 22:14 holds one key at two places, words 6-7 (standing) and 12-13 (both rows held back as pointed otherwise). The check named a cell by verse and key, so it took the first place's cell for the second's | a cell is named by its verse, its place's first word and its key |
+
+Daniel 1:8:8 on the card, before and after (the first word of the king's food, which the text writes as two words with a stroke; MACULA, UBS and BDB each read the two as one):
+
+- live, «as separate words» chosen, MACULA first: the line blank; the card «no reading in the catalog for this form», no pill.
+- this build, at rest, MACULA first: the line «with + [the] delicaci[es] of»; the card's label «reading · STEP at this place · MACULA reads these 2 words as one, and they stand apart»; one pill, the line's reading; «here STEP reads … · on the line».

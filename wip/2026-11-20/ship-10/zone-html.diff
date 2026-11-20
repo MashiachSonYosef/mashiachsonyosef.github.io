@@ -1,5 +1,5 @@
 diff --git a/reader/zone.html b/reader/zone.html
-index 12b2232a68..f279387d3e 100644
+index 12b2232a68..6cf8e36005 100644
 --- a/reader/zone.html
 +++ b/reader/zone.html
 @@ -1143,6 +1143,15 @@
@@ -217,7 +217,29 @@ index 12b2232a68..f279387d3e 100644
      const t1 = lineOf(first, n);
      if (t1) return at(made(first, t1, "first", null, dfltOwn(first, n)));
      const second = dfltSecond(first);
-@@ -7755,7 +7831,11 @@
+@@ -6508,6 +6584,12 @@
+   const dfltHalfHeld = (word) => (word && !defaultAt(word) && !dfltApartUnit(word) ? (dfltHalvesOf(word) ? defaultAtWord(word) : null) : null);
+   // and at a word of one unit whose words stand apart, with those words (said on the card), or null
+   const dfltUnitHeld = (word) => { const ws = word ? dfltApartUnit(word) : null, d = ws ? dfltAcross(word) : null; return d ? { d, ws } : null; };
++  // THE LINE SUCH A WORD KEEPS WHERE NOTHING ELSE DRAWS IT (20 November 2026): STEP's own words, where today's
++  // line is bare there or STEP's reading stands (defaultAtWord, held), or null where the place's own line or the
++  // table's answers. One function for the line (lineUnder), the card that opens on it (its pill, its «on the
++  // line» mark) and the export's citation, so the three cannot part: the line alone read it at first, and the
++  // card at Daniel 1:8:8 under MACULA stood on no reading under a line that had one
++  const dfltHeldLine = (word) => (word && dfltApartUnit(word) ? defaultAtWord(word, true) : null);
+   // a joined run takes the source's line only where the first source itself
+   // reads every word of it (the brief's call 5); elsewhere the run's own line
+   // stands, and STEP, today's line, never takes one
+@@ -6914,7 +6996,7 @@
+       if (w.k && shown && shown !== "—") {
+         // the default source's line, or the place's own reading (a source's
+         // words are printed whole, so the signs switch does not reach them)
+-        const at = defaultAt(w) || placeLine(w);
++        const at = defaultAt(w) || dfltHeldLine(w) || placeLine(w);
+         const drawn = at && (at.why === "default" ? at : placeShown(at));
+         // the reading whole where the line drew part of it: the place's sign
+         // pieces left undrawn (placeShown), or a default source's words with
+@@ -7755,7 +7837,11 @@
      // opened whole yields the same way, its text still whole a scroll away
      // inside its own slot.
      delete hud.dataset.readFloor;
@@ -230,7 +252,7 @@ index 12b2232a68..f279387d3e 100644
        const sy = (() => { const hb = hud.getBoundingClientRect().height; const k = hud.offsetHeight && hb ? hb / hud.offsetHeight : 1; return Math.abs(k - 1) < 0.002 ? 1 : k; })();
        const shortOfRow = () => { const r0 = rowsOf(read)[0]; return r0 ? r0.bottom - rowsEl.clientHeight : 0; };
        if (shortOfRow() > 0.5) { hud.classList.add("floor"); handOut(); lastResort = true; }
-@@ -10006,6 +10086,8 @@
+@@ -10006,6 +10092,8 @@
      openByLemma = !!(openTags && openPlaceWord && !openPlaceWord.tg && openPlaceWord.te && openPlaceWord.k === openKey);
      // and whether that place is a name, for the names gate (names-gate-rule-v1)
      openName = openPlaceWord ? isNamePlace(openPlaceWord) : null;
@@ -239,7 +261,53 @@ index 12b2232a68..f279387d3e 100644
      // the tags this card is gated by, and what it takes its place for, for a check to read
      window.__cardEntry = openTags ? openTags.join(" ") : "";
      window.__cardName = openName === null ? "" : openName ? "a name" : "not a name";
-@@ -14450,8 +14532,23 @@
+@@ -10454,7 +10542,7 @@
+     const ruledOnPieces = bin === zone && !opts.run && !!word && !!region && Array.isArray(word.pg) && word.pg.length > 1
+       && !!(setRuling(mem) || placeCutOf(mem, region.k, word) || (mem.cut && mem.cut === word.pg.map((x) => (x && x.k) || "").join("+")));
+     const ruledWhole = bin === zone && !opts.run && !!word && !!region && !mem.cut && !ruledOnPieces && mem.cells.has(region.k);
+-    const placeSet = (ruledOnPieces || !defaultAt(word)) && bin === zone && !opts.run && word && Array.isArray(word.pg) && word.pg.length > 1 && region
++    const placeSet = (ruledOnPieces || !(defaultAt(word) || dfltHeldLine(word))) && bin === zone && !opts.run && word && Array.isArray(word.pg) && word.pg.length > 1 && region
+       && word.pg.map((x) => (x && x.k) || "").join("") === region.k ? placeLine(word) : null;
+     const setCut = placeSet && placeSet.mId && index.m_sources[placeSet.mId]
+       ? covers.find((c) => c.length === word.pg.length && c.every((x, i) => x.surface === word.pg[i].k)) || null : null;
+@@ -10546,7 +10634,7 @@
+         const ws = opts.run.words;
+         const cell = ws ? cover.find((c) => c.surface === surface && c.from === c.to) : null;
+         const w = cell ? ws[cell.from] : null;
+-        return w && w.k === surface ? defaultAt(w) || placeLine(w) : null;
++        return w && w.k === surface ? defaultAt(w) || dfltHeldLine(w) || placeLine(w) : null;
+       }
+       if (!word) return null;
+       // the set stands whole on its division, never on the whole form and
+@@ -10554,7 +10642,7 @@
+       if (setCut) return null;
+       // the default source chosen on the row reads the word whole, as its line does;
+       // at a pair where STEP's own words stand (call 4), its read half reads them, as the pair's line does
+-      return surface === region.k ? defaultAt(word) || (region.role === "QERE" ? dfltPairStands(word) : null) || placeLine(word) : null;
++      return surface === region.k ? defaultAt(word) || dfltHeldLine(word) || (region.role === "QERE" ? dfltPairStands(word) : null) || placeLine(word) : null;
+     };
+     // THE CELL'S OWN PLACE, for the piece store: the word under the cell (its
+     // number in the verse as written), the cell's letters [a, b] in it, and
+@@ -10819,7 +10907,7 @@
+     // second filling out the first where the first has none, or TAHOT's own
+     // reading where neither has one and the place reads it
+     const dAt = !opts.run && bin === zone && word ? defaultAt(word) : null;
+-    hudLayer = !opts.run && bin === zone && word ? { word, d: dAt ? dAt.text : null } : null;
++    hudLayer = !opts.run && bin === zone && word ? { word, d: ((dAt || dfltHeldLine(word)) || {}).text || null } : null;
+     const placeHere = !opts.run && bin === zone && !!word && !!placeLine(word);
+     const atPlace = !!dAt || placeHere;
+     // WHOSE THE PLACE'S PIECES ARE, worked out once for the card (pieceSource:
+@@ -11370,6 +11458,9 @@
+       if (ruledLine(memKey, zone.gloss, word) !== null) return { n, on: null, piece: false, filling: null };
+       const d = defaultAt(word), first = dfltFirstNow();
+       if (d) return { n, on: d.src, piece: false, filling: d.layer === "second" || d.layer === "rest" ? d.of : null };
++      // a word of a unit held apart whose line is STEP's own words: STEP's are on the line, and they fill out
++      // no one (the first has a reading here, held, as the label says)
++      { const h = dfltHeldLine(word); if (h) return { n, on: h.src, piece: false, filling: null }; }
+       // that the place's reading fills out the first is said only once the
+       // first's file is here, as the label says it: before, the page cannot
+       // know the first has none here (the review of 14 November 2026: «on the
+@@ -14450,8 +14541,23 @@
      // the words it holds, and the ink's own joiner stands in the text either
      // way (no space is written where the scribes wrote none)
      const maqafOn = maqafJoin !== "pieces" || !HUD_TOGGLES_IX;
@@ -265,7 +333,7 @@ index 12b2232a68..f279387d3e 100644
      if (joinPrev && host.__wjoin) {
        if (!pjPrev) { const sp = document.createElement("span"); sp.className = "wj-sp"; sp.textContent = " "; host.__wjoin.__ink.append(sp); }
        host.__wjoin.__ink.append(built.wb); host.__wjoin.__words.push(word); host.__wjoin.__runs.push((link && link.rc) || null);
-@@ -14593,7 +14690,16 @@
+@@ -14593,7 +14699,16 @@
        return { text: word.hg, rs: word.hm ? [{ posture: word.hm.lic, m: word.hm.m, y: word.hm.y, ya: "wording" }] : [], why: "headword" };
      // the default source chosen on the row (defaultAt), where it reads this
      // place; above the pointing's filter, as the place's own reading stands
@@ -278,12 +346,12 @@ index 12b2232a68..f279387d3e 100644
 +      // them, and the word stood blank: Daniel 1:8 under MACULA, UBS or BDB, the first word of the king's food
 +      // (check-rulings-under-sources-v1 U10). Rare while a stroke joined such words into one cell; at rest now
 +      // each is its own (words-stand-alone-rule-v1)
-+      if (dfltApartUnit(word)) { const r = defaultAtWord(word, true); if (r) return r; }
++      { const r = dfltHeldLine(word); if (r) return r; }
 +    }
      { const at = placeLine(word); if (at) return placeShown(at); }
      // THE POINTING'S OWN LEADER, AND ITS OWN ALTERNATE. Under "only this
      // pointing" the card withholds the rows whose source points the word
-@@ -15139,6 +15245,11 @@
+@@ -15139,6 +15254,11 @@
      joined.forEach((r) => standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 }));
      if (wasRuled) wb.classList.add("chosen");
      return { wb, regionEls, markEls, joined, glossParts: parts, strokeEl,
@@ -295,7 +363,7 @@ index 12b2232a68..f279387d3e 100644
        kqStand: word.kq && regions && regions.length > 1 ? { regions, parts, table, word } : null };
    };
  
-@@ -15411,9 +15522,9 @@
+@@ -15411,9 +15531,9 @@
      // card, made from where the control lives. Closing on it would mean the
      // reader could only change the order with nothing open to see it change.
      if (hud.contains(e.target) || e.target.closest(".wb") || e.target.closest("#rail")) return;
@@ -307,7 +375,16 @@ index 12b2232a68..f279387d3e 100644
  
    // Hebrew / English reader toggle. Same words, same order, same receipts —
    // the English mode flips the flow LTR and lets the gloss line lead.
-@@ -17358,7 +17469,9 @@
+@@ -15835,7 +15955,7 @@
+         // default source answered, or answers now, is built again under the
+         // order, as the card opened there is (its made pills, labels and
+         // the source's own words are the source's, not this order's)
+-        if (activeEl && hudLayer && ((defaultAt(hudLayer.word) || {}).text || null) !== hudLayer.d) reopenCard();
++        if (activeEl && hudLayer && ((defaultAt(hudLayer.word) || dfltHeldLine(hudLayer.word) || {}).text || null) !== hudLayer.d) reopenCard();
+         else if (redrawReadings) redrawReadings();
+         railSay();
+         // a lattice order fetches its sidecar the first time it is chosen,
+@@ -17358,7 +17478,9 @@
      for (const g of groups) {
        const t = g.text.replace(/\s+/g, " ").trim();
        if (!t) continue;
@@ -318,7 +395,7 @@ index 12b2232a68..f279387d3e 100644
        out += t;
        prev = g;
      }
-@@ -19320,6 +19433,7 @@
+@@ -19320,6 +19442,7 @@
      return relaid;
    };
    HUD_LANES.relaySections = relayBuiltSections;
@@ -326,7 +403,7 @@ index 12b2232a68..f279387d3e 100644
    // A WORD SENSE PRESSED IS HELD BACK WITH THE REST (word-senses-rule-v1). A
    // reading the reader pressed outranks every switch (THE ORDER TOGGLES, the
    // precedence), but a word sense prints only while its switch is on. Turned
-@@ -19380,6 +19494,16 @@
+@@ -19380,6 +19503,16 @@
      if (kb) drawKinds(kb);
      railSay();
      reopenCard();
