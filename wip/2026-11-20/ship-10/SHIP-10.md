@@ -167,4 +167,4 @@ The same reader read the mends against the page as they had first read it. The m
 
 The reader also noted what follows from leaving the 30 three-word cells as they stand: the mends for the search's hit and the address key off a cell having no key, so they do not reach those cells; a hit there still opens a card headed by the three words, as live's «as written» does. Said, and left for the next pass with the rest of that shape.
 
-Eight checks nearest these mends run again, all pass (the kinds check 34 of 34, the selection check 25 of 25, the run cards and their forms, the HUD runs, the source switch, the pointing switch, the new check 9 of 9). Pass 7 of the records was stopped unfinished (its page had changed under it); pass 8 began 17:05 UTC on the final page.
+Eight checks nearest these mends run again, all pass (the kinds check 34 of 34, the selection check 25 of 25, the run cards and their forms, the HUD runs, the source switch, the pointing switch, the new check 9 of 9). Pass 7 of the records was stopped unfinished (its page had changed under it); pass 8 began 16:57 UTC on the final page (zone.html 6e64901072afb4cd).
