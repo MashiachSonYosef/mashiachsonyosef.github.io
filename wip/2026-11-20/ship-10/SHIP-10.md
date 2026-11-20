@@ -172,3 +172,9 @@ Eight checks nearest these mends run again, all pass (the kinds check 34 of 34, 
 ### Records pass 8, on the final page (16:57 to 17:17 UTC, zone.html 6e64901072afb4cd)
 
 Lines 213 s, the chain books 912 s, the door 34 s, the switches page 14 s. Every resting line against live: the same two entries, one place, Psalm 9:1; nothing else in 40 works. The manifest is emitted again. The gate began 17:18 UTC with its four expectations; the whole suite follows it.
+
+### The gate on the final build (17:18 to 17:29 UTC): passes
+
+«S1 … 30,945 lines compared on 18 pages … 58 line(s) where STEP's own words stand (call 4) … each as owed» and, said apart, «4 at a word of one unit a source reads at every word of it, its words standing apart» (the four BDB lines at Amos 5:5 and 5:6). «S2 … 54 cards compared … cards that differ as owed: 2 a word that left a joined cell, its own card» (Exodus 1:1's «sons of», read from two chapter pages). Nothing else differs from live in the sample. Every differing line and card in full: `gate-diff-final.txt`.
+
+The whole suite began 17:29 UTC, two lanes, on the final build.
