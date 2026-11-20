@@ -48,4 +48,19 @@ The store goes from 651,752 rows to 653,227 (+1,475). Moses's own counts hold: 6
 
 Measured first on the sandbox with the three lists landed: as the tool stood, it would have taken the entries off **782 rows** it had no line for (15 of v201, 603 of v200, 164 of v202: the landed rows of the fifteen sources the ledger reads). With `tools/patch-entries-landed.py` a row a round landed since the ledger or a list was read carries exactly what its landing named, read from the row-strikes record: the same run moves **0 rows**, and counts 782 landed rows carrying their landing's facts, every one with a number.
 
-Still to build for this ship: the check's side of that clause (`check-entry-gate-v1` E2 to E5 count a landed row as carrying nothing today); a check for the landings; a new version of the strike rule's name, since a landing now writes facts; then the round.
+Still to build for this ship: a check for the landings; a new version of the strike rule's name, since a landing now writes facts; then the round. (The check's side of the clause is done, below.)
+
+## The check follows, and a row brought back is its struck row's twin (22:30 UTC)
+
+`tools/patch-check-entry-gate-landed.py` gives `check-entry-gate-v1` the tool's clause: a row landed since carries what its landing named (E2, E3, E4, E5, E16). Run on the sandbox it left one law red, the twin law under E3, and the fault was real:
+
+- Call 5 struck a row under a key that ends in a maqaf, and the entries tool has always given such a row's entries to its twin: the row of its own source and words under the plain key. Until now a twin was a row the ledger has a line for. v200 lands 603 of the struck rows back under their plain keys, each with the facts it carried at the store v189 was read at (4d1357b26ca5). The check finds twins by walking the store, so it counted them (4,664 struck rows with a twin; the tool said 4,061), and at two of them the returned row carries fewer of STEP's letters than the ledger's line for the struck row gave:
+
+| row | struck under | the ledger's line for the struck row | v200's facts |
+|---|---|---|---|
+| STEP's «under» | the key with the maqaf, rank 2 | H8478G (13 places), H8478K (2), H8478H (1) | t: H8478G, H8478H |
+| STEP's «put» | the key with the maqaf, rank 2 | H5414Q (1), H5414H (1) | t: H5414Q |
+
+- So a row landed back under the key a struck row's words stand under is that row's twin, and takes what the struck row's line alone said, as a twin with a line does (`tools/patch-landed-twin.py`, the tool and the check together). The two rows gain H8478K and H5414H; the pair is recorded in `followed.entries_given_to_a_twin` with `landed_since`. Without it «under» would be judged another entry's at the two places STEP tags H8478K.
+- After it, on the sandbox (`check-entry-gate-in-the-sandbox.txt`): E1 to E5, E14 and E16 pass; 4,664 struck rows have a twin; 4 twins given entries (two with a line, as before, and these two). The page laws are skipped there by design (the sandbox holds no zones).
+- For Moses: v200's facts at these two rows are the store's of 15 November, older than ledger v1.1's line. Nothing is asked; it is said so he can read it.

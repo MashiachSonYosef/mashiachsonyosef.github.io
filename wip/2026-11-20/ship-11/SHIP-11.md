@@ -75,3 +75,10 @@ On top of the names pass: the entries' patches and pin applied to the ship tree 
 - The ten nearest checks pass on pass 3 (`check-entry-gate-v1` 25 laws).
 - **The gate** (`gate-final.txt`; its four standing expectations, the names receipt and the entries receipt): passes. 30,945 lines under every switch the same; 54 first cards the same but six, each of which gained one pill a row of Moses's list of moves carries, now of its place's own entry by the gate's own verdict («anyone» at Job 1:1, «promised» and «YHWH» at Zephaniah 1:1, each read on both of its book's sampled pages). One line of the gate's diff writer was taken out after that run (it wrote each of those cards twice); the gate runs once more on the final file before the ship.
 - The whole suite began 22:09 UTC in two lanes (`S/s11w/suite`), with the ledger v1.2 and the larger list named to it (`entries/tools/env.sh`). The commit message as drafted: `commit-draft.txt`.
+
+## 9. What the suite found first: the words-back law (22:20 UTC)
+
+`check-words-back-v1` W2 failed at 259 rows: «slot 10 is not the row the round took». The words-back round of 15 November retexted 740 rows and its law held each row's facts byte for byte to the row the round took. Names v2 marks 259 of them a name (all the unabridged BDB's, which names v1 did not read). The rows are right; the law was written before a fact could be laid again by its own writer.
+
+The law now reads: slots 0 and 3 to 6 byte for byte the row the round took; slot 10 fact by fact, where a fact may differ only if the tool that writes it (`FACTS_WRITTEN_BY`) has run since the round by the store's own index, and the check says how many (`tools/patch-check-words-back.py`). On the ship tree: «740 rows · 88 carry closes · 259 carry another name than the round took, laid since by name_rows», all eight laws pass. The name fact itself is judged by `check-names-gate-v1`, which holds every row's mark to the pinned list.
+
