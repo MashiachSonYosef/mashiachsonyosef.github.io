@@ -511,7 +511,10 @@ if (existsSync(join(namesDir, "PIN.json"))) {
   const pin = JSON.parse(readFileSync(join(namesDir, "PIN.json"), "utf8"));
   if (pin.schema_version !== "NAMES_PIN_V1" || !pin.place_names) { console.error(`the pin of the names names no list of name places (${join(namesDir, "PIN.json")})`); process.exit(1); }
   const here = new Map();   // verse label -> the numbers of its words that are a name
-  for (const l of readPinnedLines(join(namesDir, pin.folder, pin.place_names.file), pin.place_names, `${pin.folder}/${pin.place_names.file}`)) {
+  // the list of places stands in its own folder where the pin says so (names v1's places beside names v2's rows,
+  // relay v198: «the places stay v1's»), else in the pin's
+  const placesFolder = pin.place_names.folder || pin.folder;
+  for (const l of readPinnedLines(join(namesDir, placesFolder, pin.place_names.file), pin.place_names, `${placesFolder}/${pin.place_names.file}`)) {
     if (l.book !== slug) continue;
     const cut = String(l.place).lastIndexOf(":");
     const verse = String(l.place).slice(0, cut), n = Number(String(l.place).slice(cut + 1));
@@ -526,7 +529,7 @@ if (existsSync(join(namesDir, "PIN.json"))) {
     for (const n of listed) { if (words[n - 1]) { words[n - 1].np = 1; stats.name_places_marked += 1; } }
   }
   stats.name_places_with_no_word = stats.name_places_listed - stats.name_places_marked;
-  namesSaid = { rule: NAMES_GATE_RULE_ID, relay: pin.relay, place_names: { file: pin.place_names.file, sha256: pin.place_names.sha256, lines: pin.place_names.lines },
+  namesSaid = { rule: NAMES_GATE_RULE_ID, relay: pin.place_names.relay || pin.relay, place_names: { file: pin.place_names.file, sha256: pin.place_names.sha256, lines: pin.place_names.lines },
     listed_for_this_book: stats.name_places_listed, marked: stats.name_places_marked, with_no_word: stats.name_places_with_no_word };
 }
 // a place is a name where the list marks it; a book whose places were not read for names treats every place as one,
@@ -913,7 +916,7 @@ const sidecar = {
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats }, ...(signsStamp ? { signs_rest_last: signsStamp } : {}) },
   routes: sideRoutes, grades,
-  entry: { rule: ENTRY_GATE_RULE_ID, by_lemma: ENTRY_BY_LEMMA_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256 } : null },
+  entry: { rule: ENTRY_GATE_RULE_ID, by_lemma: ENTRY_BY_LEMMA_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256, ...(store.index.row_entries.lists ? { lists: store.index.row_entries.lists.map((l) => ({ relay: l.relay, list_sha256: l.list.sha256 })) } : {}) } : null },
   names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
   // rule 6: the record the leaders were baked at rest under; absent where the book does not rest shut
   ...(atRest ? { rests_off: { ...store.atRest, what: "every leader here baked from the store's rows (o.m, o.x, o.c, o.l, o.la, o.s, v[…].c, e[…], nl) read the rows that rest open under the record and no other; the lattice's own cards, grades and citations are the corpus lane's and were read whole; a word's hg (the zone's) is carried only where its card's source is not shut whole and gives that reading in a row that rests open" } } : {}),

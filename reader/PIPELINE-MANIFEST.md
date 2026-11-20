@@ -50,7 +50,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `door-filing-rule-v1-the-door-files-the-thirty-nine` | tools/door-filing-v1.mjs | **UNGUARDED** |
 | `edition-serve-rule-v1-the-edition-is-the-text-the-door-is-the-rights` | tools/serve-edition-v1.mjs | check-edition-serve-v1 |
 | `entry-by-lemma-rule-v1-where-step-gives-a-word-no-tag-the-place-takes-the-entries-of-the-rows-headed-by-maculas-lemma` | tools/entry-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-entry-gate-v1 |
-| `entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points` | tools/apply-row-entries-v1.mjs, tools/entry-gate-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-entry-gate-v1, check-pointing-grade-v1 |
+| `entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points` | tools/apply-row-entries-v1.mjs, tools/entry-gate-v1.mjs, tools/pointing-grade-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-entry-gate-v1, check-pointing-grade-v1, check-same-product-v1 |
 | `exact-k-rule-frame-38-rule-7-maqaf-preserved` | tools/k-normalization-v1.mjs | check-k-maqaf-preserved-v2 |
 | `exact-k-rule-v2-ascii-abbreviation-marks-and-boundary-maqaf` | tools/k-normalization-v2.mjs | check-k-maqaf-preserved-v2, check-maqaf-pair-drawn-v1 |
 | `export-custody-rule-v1-what-leaves-carries-its-own-way-back` | zone.html | check-licence-leaves-v1 |
@@ -99,7 +99,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `masoretic-marks-rule-v1-every-mark-is-gold-by-its-class-never-by-a-code-point-range` | tools/project-masoretic-marks-v1.mjs, zone.html | check-masoretic-gold-v1, check-color-channels-v1 |
 | `megacompspan-rule-v1-one-maqaf-run-one-card` | tools/check-maqaf-pair-drawn-v1.mjs | check-maqaf-pair-drawn-v1, check-run-card-forms-v1, check-choice-memory-v1 |
 | `mishkan-serve-rule-v1-verify-once-serve-many-oracle-checked` | tools/mishkan-serve-v1.mjs | check-serve-oracle-checked-v1 |
-| `names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name` | tools/apply-name-rows-v1.mjs, tools/names-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-names-gate-v1 |
+| `names-gate-rule-v1-a-row-its-own-source-gives-as-a-name-is-withheld-where-the-word-on-the-page-is-not-a-name` | tools/apply-name-rows-v1.mjs, tools/names-gate-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-names-gate-v1, check-same-product-v1 |
 | `no-names-rule-v1-the-reading-a-name-displaced-is-kept-beside-the-name-so-a-switch-puts-it-back-on-that-line-alone` | tools/regloss-zone.mjs | check-names-pill-v1 |
 | `nothing-welds-rule-v1-a-mark-is-a-position-and-a-reading-is-a-word` | tools/check-nothing-welded-v1.mjs | check-nothing-welded-v1 |
 | `numbering-gap-rule-v1-a-witnessed-gap-is-a-fact-not-a-fault` | tools/build-zone.mjs | check-numbering-gap-witnessed-v1 |

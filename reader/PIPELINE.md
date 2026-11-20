@@ -30,9 +30,19 @@
 > also carries a slot of facts: the entry its own source files it under
 > (`tools/apply-row-entries-v1.mjs`, from the corpus lane's row entries
 > ledger, which stays on the lane's store and is named in
-> `data/row-entries/` by its size and sha256) and whether its source gives
+> `data/row-entries/` by its size and sha256; since 20 November 2026 the
+> ledger is v1.2, relay v197, read from the store as served, with the lines
+> of the rows struck before it was read kept beside it for the twin of a
+> struck row; and from the facts lists the pin names under `lists`, the
+> entry ledgers of relays v203 and v204, which give a row of a source that
+> names no entry the numbers of the Bible dictionaries' entries its own
+> pointed head form meets: the numbers land, and STEP's letters and BDB's
+> entries from a list are counted and not written, as the pin says) and whether its source gives
 > it as a name (`tools/apply-name-rows-v1.mjs`, from the lists kept in
-> `data/names/`). The round's projection writes on each word the entry that
+> `data/names/`: since 20 November 2026 the list of name rows is names
+> v2's, relay v198, every dictionary that marks a name read by its own
+> mark, and the list of name places is still names v1's; the pin gives each
+> its own folder, rule and receipt). The round's projection writes on each word the entry that
 > stands at its place and whether the place is a name. The reader asks both
 > of the place before it asks the pointing: a row of another entry than the
 > word's is withheld, a row of the word's own entry stands whatever its
@@ -182,7 +192,12 @@
 > the round and never by it, and the form-of record is baked again after
 > them (`tools/bake-form-of-pills-v1.mjs`, which reads the store at rest and
 > records question 12's one pill as `one_pill`; the page folds a pointer's
-> pill into the reading its resolution prints). Call 4: the default picks'
+> pill into the reading its resolution prints). The category holds no
+> name row, so a new list of name rows is followed by the category derived
+> and laid again, before the round (names v2: three rows relay v188 landed
+> were marked names and left it, 2,646 rows on 762 keys);
+> `tools/check-dictionary-kinds-v1.mjs` K6 refuses a store where a row
+> carries its collocations beside a name. Call 4: the default picks'
 > bake stands STEP's own pick 1 as the line under STEP, credited to STEP,
 > whatever today's line is, at the places STEP spells or parts the word
 > otherwise (the index's `step_words` rows `[n, words, 1]`; the places it
