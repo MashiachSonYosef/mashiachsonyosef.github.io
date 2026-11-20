@@ -64,3 +64,20 @@ Three entries moved in 40 works on the second pass. One was a fault of the pass 
 ## Still on ship 10's list, not in this pass
 
 The key's line under the place's entry (the «behold» lines; Moses's v202 form rows), Strong's «Compare» pairs and v196's names' meanings and definition rows, the rail's count, the reading rows card, a Hebrew web font. The owner's open questions: how a name's meaning reads on a card; a second read of Isaiah.
+
+## The suite's first run on the build (two lanes, begun 13:06 UTC), and what it sends back
+
+Pass 5 of the records (`S/s10w/pipe5`, zone.html 36882e0440d3) is the tree the suite reads. Failures as they came, each read:
+
+| check | what failed | cause | mend |
+|---|---|---|---|
+| check-card-channels-v1 C5 | no head with another word met | at rest no card's head holds a chain | the check reads its first page once more asked «as written» (done) |
+| check-span-store-v1 S2 | places «lost» | the check wanted every place laid | the check counts the places set aside against the page's count (done) |
+| check-span-grade-v1 G6 | «the card offers no rung» | a place none of whose rows stands under «only» is no cell | the check holds exactly that, and a cell again under «keep» (done) |
+| check-card-opens-on-the-line-v1 C1 | a sign's gap against a pressed pill | the check took a sign's cell for a run | a cell with no key is no run (done) |
+| check-run-cards-v1, check-run-card-forms-v1 | runs not drawn | they test the chain's card | they ask for the joined words as written (done) |
+| check-selection-v1 | a space after a stroke in the copy | **the page**: two cells copied with a space between | the copy writes no space after a word that ends in the stroke |
+| check-ruled-equals-first-paint-v1 E1, E4 | cells shift after a ruling is laid again | **the page**: a sign's cell was laid by the word's line, which a ruling moves | lay it by the place's own pieces (the zone's data), which nothing the reader does moves |
+| check-rulings-under-sources-v1 U10 | a blank under a word with MACULA, UBS or BDB first | **the page**, in the «as separate words» position since October: a unit held apart «as it rests» lost a line that at rest is STEP's own words | the held line asks STEP's layer |
+
+Page changes owed before the last pass, from this run: the copy; the sign's cell by the place's pieces; the held line; and the pointing switch laying the cells again as the signs and kinds switches do.
