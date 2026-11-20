@@ -44,7 +44,8 @@
 //       absent or stands as the pin names it
 //   G7  under «keep» the same cards hold nothing back, and every reading the
 //       place holds back stands (one the record of dictionary kinds rests shut
-//       at rest aside: under «keep» it rests shut as before)
+//       at rest aside: under «keep» it rests shut as before, the named reading
+//       too where only rows that rest shut print it)
 //   G8  the line's row: on each book opened, for every key of its file, the
 //       row a joined line over the key reads (window.__spanLine) is the first
 //       of the key's resting rows that is no pointer (form_of): a pointer never
@@ -244,13 +245,14 @@ const placeIn = (book, ref, a, z) => { const b = books.get(book); return b ? b.f
 const readingsAt = (book, pl) => {
   const rows = new Map((books.get(book).file.keys[pl.key] || []).map((r) => [r.row_id, r]));
   const held = (want.get(pl) || {}).held || {};
-  const heldR = new Set(), keptR = new Set(), openR = new Set();
+  const heldR = new Set(), keptR = new Set(), openR = new Set(), restsOpenR = new Set();
   for (const id of pl.row_ids) {
     const r = rows.get(id); if (!r) continue;
-    for (const x of store.readingsOf(r.slots)) { (held[id] ? heldR : keptR).add(low(x)); if (held[id] && !shut(book, r)) openR.add(low(x)); }
+    for (const x of store.readingsOf(r.slots)) { (held[id] ? heldR : keptR).add(low(x)); if (held[id] && !shut(book, r)) openR.add(low(x)); if (!shut(book, r)) restsOpenR.add(low(x)); }
   }
-  // heldOnly: printed by no row the place keeps; heldOpen: and by a held row that rests open, so «keep» shows it
-  return { heldOnly: [...heldR].filter((x) => !keptR.has(x)), heldOpen: [...openR].filter((x) => !keptR.has(x)), kept: [...keptR], held };
+  // heldOnly: printed by no row the place keeps; heldOpen: and by a held row that rests open, so «keep» shows it;
+  // restsOpen: every reading a row of the place that rests open prints, held or kept
+  return { heldOnly: [...heldR].filter((x) => !keptR.has(x)), heldOpen: [...openR].filter((x) => !keptR.has(x)), kept: [...keptR], restsOpen: [...restsOpenR], held };
 };
 const cards = [];
 {
@@ -372,8 +374,12 @@ else if (cards.length) {
         const order = [...groups.values()].sort((a, b) => tier(a) - tier(b) || dated(a) - dated(b) || (dated(a) ? 0 : a.year - b.year) || a.rank - b.rank).map((g) => g.k);
         const pills = keep.pool.map(stopless), judged = pills.length > 1 && keep.ov.length === pills.length && keep.ov.every((x) => x === "span-store") && pills.length === order.length;
         g9.push({ judged, ok: !judged || JSON.stringify(pills) === JSON.stringify(order), say: `${at}: ${!judged ? (pills.length > 1 ? "another store's row carries a reading too, not judged" : "one reading, nothing to order") : JSON.stringify(pills) === JSON.stringify(order) ? `${pills.length} pills in the page's order` : `pills ${pills.join(" | ")} against the page's order ${order.join(" | ")}`}` });
-        g7.push({ ok: !back.length && keepHeld && poolKeep.has(low(c.reads)),
-          say: `${at}: «${c.reads}» ${poolKeep.has(low(c.reads)) ? "stands" : "absent"} · ${keep.pool.length} readings · held back ${keep.held ? `${keep.held.otherwise}+${keep.held.silent}` : "nothing said"}${back.length ? ` · held readings missing: ${back.join(", ")}` : ""}` });
+        // the named reading stands under «keep» where a row of the place that rests open prints it, and is absent
+        // where only rows that rest shut print it (Deuteronomy 18:1's «the Jewish people», English Wiktionary's,
+        // since the owner's twelve of 19 November 2026)
+        const namedOpen = c.restsOpen.includes(low(c.reads));
+        g7.push({ ok: !back.length && keepHeld && poolKeep.has(low(c.reads)) === namedOpen,
+          say: `${at}: «${c.reads}» ${poolKeep.has(low(c.reads)) ? "stands" : "absent"}${namedOpen ? "" : " (only rows that rest shut print it)"} · ${keep.pool.length} readings · held back ${keep.held ? `${keep.held.otherwise}+${keep.held.silent}` : "nothing said"}${back.length ? ` · held readings missing: ${back.join(", ")}` : ""}` });
       });
     }
   } finally { await browser.close().catch(() => {}); await tree.close(); }

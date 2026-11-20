@@ -454,6 +454,12 @@ if (commentaryHere) {
       // head is the same word made large and wears the same gold (the
       // owner, 2026-10-10). Nothing else on the page is excused by it.
       if (e.closest('.he-text .mg, .he-text .mg-all, #hud .head .mg, #hud .head .mg-all')) continue;
+      // and the held edition's own figures in the count (the owner, 19
+      // November 2026: «gold is usually the masoretics language but if
+      // leningrad practices their technique he is gold too so id put his
+      // count in gold»; masoretic_marks.carries): its column «theirs», on
+      // the rows of the held edition alone
+      if (e.closest('#stamp tr.held td.num.theirs')) continue;
       if (![...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
       // the ink a glyph is filled with, which is its color unless a fill
       // says otherwise: a gold fill under a red color is a gold glyph
@@ -611,9 +617,12 @@ if (commentaryHere) {
     const INKS = ["--shani", "--shani-dim", "--tekhelet", "--tekhelet-dim", "--argaman", "--argaman-dim", "--mark-ink"];
     const inks = Object.fromEntries(INKS.map((t) => [as("color", `var(${t})`), t]));
     // the card numbers (a word's address on its card) are written in the
-    // regular silver, our own mark, and nothing else is: the one place a metal
-    // other than the marks' gold is ink (color-channel-rule-v3, our_layering.reads_as)
-    const NUMBERS = "#hud .head .wn";
+    // regular silver, our own mark, and so are the figures this project
+    // counted on the page, in the count (the owner, 19 November 2026: «silver
+    // is our language so id use that for the counted words on the page by
+    // us»), and nothing else is: the places a metal other than the marks'
+    // gold is ink (color-channel-rule-v3, our_layering.reads_as)
+    const NUMBERS = "#hud .head .wn, #stamp .toc-n .ours, #stamp .desk .v, #stamp td.num.ours";
     const numberInk = as("color", "var(--silver)");
     const ground = { bg: as("backgroundColor", "var(--bg)"), cell: as("backgroundColor", "var(--cell-wash)"), press: as("backgroundColor", "var(--press-wash)") };
     probe.remove();

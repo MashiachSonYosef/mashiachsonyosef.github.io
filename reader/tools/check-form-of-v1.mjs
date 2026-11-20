@@ -644,8 +644,12 @@ else {
     if (!alias.ok) faults.push(`${said(c)} with «by-sa» chosen: the line is the pointer, and ${h.one ? `the one pill «${h.one.t.slice(0, 40)}» is not pressed` : `${h.printing.length} pills print its English`}; the card opens on ${pressed ? `«${pressed.t.slice(0, 40)}»${pressed.pointerBy ? "" : " (no data-pointer-by)"}` : "no pill"}`);
     break;
   }
-  check("F13 one reading, one pill: with every switch lifted, where a pointer's resolution prints as another reading of the card, one pill prints it with the pointer beside it, carrying the pointer's text and naming its rows apart; and with «by-sa» chosen a card whose line is the pointer opens on that pill",
-    judged.length > 0 && !!alias && faults.length === 0,
+  // the alias is judged where the data holds one: since 19 November 2026 (the owner's twelve) English Wiktionary,
+  // whose pointers led the «by-sa» lines, rests shut on the thirty-nine books, and no line at rest is a pointer there;
+  // a word found and not judged is still a fault
+  if (!aliases.length) console.log("  --  F13 the alias not judged: no word's «by-sa» line at rest is a pointer of the map (English Wiktionary, whose pointers led them, rests shut on the thirty-nine books since 19 November 2026)");
+  check("F13 one reading, one pill: with every switch lifted, where a pointer's resolution prints as another reading of the card, one pill prints it with the pointer beside it, carrying the pointer's text and naming its rows apart; and with «by-sa» chosen a card whose line is the pointer opens on that pill, where the data holds one",
+    judged.length > 0 && (!!alias || !aliases.length) && faults.length === 0,
     `${faults.length ? `${faults.length} fault(s): ${faults.slice(0, 3).join(" | ")} · ` : ""}${judged.length} card(s) judged of ${folds.length} found${judged.length ? `: ${judged.slice(0, 2).join(" | ")}` : ""} · ${alias ? `the alias at ${alias.c.id} ${alias.c.label}, entry ${alias.c.entry}: the line «${alias.line.slice(0, 40)}», the card opens on «${alias.pressed ? alias.pressed.t.slice(0, 40) : "no pill"}»${alias.ok ? ", the one pill" : ", not the one pill"}` : `no alias judged among ${aliases.length} word(s) found`}${passed.length ? ` · passed by: ${passed.slice(0, 2).join(" | ")}` : ""}`);
 
   // F14: the card dragged aside while the map is on its way, the hand taken off it, then the map let through; a word

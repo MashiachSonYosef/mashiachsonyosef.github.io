@@ -124,6 +124,8 @@ const lineAt = (bf, n, src) => {
   const p = slot[0], words = p && p[1] ? bf.bdb_words[p[1] - 1] : null;
   return linePick(words) ? words : null;
 };
+/** The pieces of a pieced word other than its core, as TAHOT reads them at the place. */
+const othersOf = (w) => w.pg.filter((x) => x.r !== "core").map((x) => `${x.k}\u0000${String(x.g || "").trim()}`).join("\u0001");
 const pieced = (w) => Array.isArray(w.pg) && w.pg.length > 1 && w.pg.every((p) => p && String(p.g || "").trim() && p.k);
 /** A zone's words with their place number (WORD_N: one-based over every entry, marks included) and address. */
 const placesOf = (z) => {
@@ -147,12 +149,14 @@ for (const b of byPlaces) {
     if (w.pg.filter((x) => x.r === "core").length !== 1 || !lineAt(bf, p.n, "macula")) continue;
     (byKey.get(w.k) || byKey.set(w.k, []).get(w.k)).push(p);
   }
-  // the other place in another verse, where MACULA reads the form otherwise (so its line there is not the ruling)
+  // the other place in another verse, where MACULA reads the form otherwise (so its line there is not the ruling),
+  // and where the pieces the ruling leaves alone read as at the first: TAHOT reads each place's own pieces (Obadiah
+  // 1:8:2 «on the» + day, 1:11:1 «on» + [the] day), and a line is the ruling only where the rest of it is the same
   for (const ps of byKey.values()) {
-    const B = ps.find((q) => q.label !== ps[0].label && lineAt(bf, q.n, "macula") !== lineAt(bf, ps[0].n, "macula"));
+    const B = ps.find((q) => q.label !== ps[0].label && othersOf(q.w) === othersOf(ps[0].w) && lineAt(bf, q.n, "macula") !== lineAt(bf, ps[0].n, "macula"));
     if (B) candidates.push({ b, A: ps[0], B });
   }
-  if (new Set(candidates.map((c) => c.b)).size >= 3) break;
+  if (new Set(candidates.map((c) => c.b)).size >= 8) break;
 }
 const rulingWork = candidates[0] || null;
 // U5: TAHOT's readings across two words, one word read by the source and not the other, for MACULA and for UBS
@@ -176,7 +180,9 @@ for (const b of byPlaces) {
 }
 // U7: a form as U1's whose baked column (zone.gloss) is a divided reading, its «/» drawn as « + »
 let divisionWork = null;
-// every such form in the books' order, the first a work holds of each key, up to twelve: U9 asks the first, and U7
+// every such form in the books' order, the first a work holds of each key, up to forty (twelve until 19 November 2026,
+// when every dictionary but the twelve Bible dictionaries came to rest shut, and many a whole form with them): U9 asks
+// the first, and U7
 // asks them in turn until one's whole form, pressed at rest, offers a reading (a row with no pointing of its own
 // qualifies for none under «only», the owner, 16 November 2026: Obadiah 1:8:2's whole form offered only Hebrew
 // Wiktionary's «staging» and «direction», with no pointing, and now offers none)
@@ -192,9 +198,9 @@ for (const b of byPlaces) {
   }
   for (const ps of byKey.values()) {
     const B = ps.find((q) => q.label !== ps[0].label && lineAt(bf, q.n, "macula") !== lineAt(bf, ps[0].n, "macula"));
-    if (B) { divisionWorks.push({ b, A: ps[0], B }); if (divisionWorks.length >= 12) break; }
+    if (B) { divisionWorks.push({ b, A: ps[0], B }); if (divisionWorks.length >= 40) break; }
   }
-  if (divisionWorks.length >= 12) break;
+  if (divisionWorks.length >= 40) break;
 }
 divisionWork = divisionWorks[0] || null;
 // U8: per source, TAHOT's readings across two words with the hyphen at the end of the first only, read in part
@@ -371,7 +377,21 @@ const exportOf = async (p, label) => {
 try {
   if (!rulingWork) for (const k of ["U1", "U2", "U3", "U4"]) check(k, false, "no work on this disk holds a form at two places with a set of TAHOT's pieces that MACULA reads at both");
   else {
-    const { b, A, B } = rulingWork;
+    // the candidates in turn, until one's card at rest offers another reading of its block to press (since 19 November
+    // 2026 only the twelve Bible dictionaries stand at rest, and many a block holds the place's own reading alone);
+    // each one passed over is said
+    let chosen = null;
+    const passedU1 = [];
+    for (const c of candidates.slice(0, 24)) {
+      const { ctx, p } = await open(c.b);
+      await openCard(p, c.A.at);
+      const pill = await pressOther(p);
+      await ctx.close();
+      if (pill) { chosen = c; break; }
+      passedU1.push(`${c.b} ${c.A.at}`);
+    }
+    if (passedU1.length) console.log(`  --  U1, U2: ${passedU1.length} form(s) passed over, no other reading of the block at rest: ${passedU1.slice(0, 4).join(", ")}${passedU1.length > 4 ? ", …" : ""}`);
+    const { b, A, B } = chosen || rulingWork;
     const where = `${b} ${A.at} and ${B.at}`;
     // U1: a block of the pieces ruled at rest, MACULA pressed, the card at the other place
     {
@@ -494,17 +514,24 @@ try {
   // pressed again (STEP) and the card opened there again
   if (!divisionWork) check("U7", false, "no work on this disk holds a form as U1's whose baked column is a divided reading");
   else {
-    // the forms in turn, until one's whole form pressed at rest offers a reading; each one passed over is said
-    let found = null, ctx = null, p = null, how = null, c0 = null;
+    // the forms in turn, until one's whole form pressed at rest offers a reading; each one passed over is said. Since
+    // 19 November 2026 only the twelve Bible dictionaries stand at rest on the thirty-nine books, and they read a whole
+    // form undivided in its own pointing nowhere in the twelve Minor Prophets books, Ruth or Lamentations (none of
+    // 3,208 forms): where the first twelve offer none at rest, the forms are asked again with the dictionaries that rest
+    // shut opened for the load (?kinds=open, as a reader's press opens them), which the law does not turn on
+    let found = null, ctx = null, p = null, how = null, c0 = null, q = "";
     const passed = [];
-    for (const dw of divisionWorks) {
-      ({ ctx, p } = await open(dw.b));
-      await openCard(p, dw.A.at);
-      how = await pressWhole(p);
-      c0 = await still(p);
-      if (how === "pressed" && c0.pressed.length === 1) { found = dw; break; }
-      passed.push(`${dw.b} ${dw.A.at} (${how !== "pressed" ? how || "no division row" : `its whole form pressed at rest offers no reading: ${said(c0.now)}`})`);
-      await ctx.close();
+    for (const [query, forms] of [["", divisionWorks.slice(0, 12)], ["&kinds=open", divisionWorks]]) {
+      for (const dw of forms) {
+        ({ ctx, p } = await open(dw.b, query));
+        await openCard(p, dw.A.at);
+        how = await pressWhole(p);
+        c0 = await still(p);
+        if (how === "pressed" && c0.pressed.length === 1) { found = dw; q = query; break; }
+        passed.push(`${dw.b} ${dw.A.at}${query ? " opened" : ""} (${how !== "pressed" ? how || "no division row" : `its whole form pressed ${query ? "with them open" : "at rest"} offers no reading: ${said(c0.now)}`})`);
+        await ctx.close();
+      }
+      if (found) break;
     }
     const { b, A, B } = found || divisionWorks[divisionWorks.length - 1];
     if (!found) ({ ctx, p } = await open(b));
@@ -519,7 +546,7 @@ try {
       legs.push({ leg, before, card, after: [await lineOf(p, A.at), await lineOf(p, B.at)] });
     }
     const t = (l) => (l ? l.text : null);
-    const fault = !found ? `no form's whole form, pressed at rest, offers a reading: ${passed.join("; ")}`
+    const fault = !found ? `no form's whole form, pressed at rest or with the dictionaries that rest shut opened, offers a reading: ${passed.join("; ")}`
       : how !== "pressed" ? `the card at ${A.at} at rest offered no whole form to press (${how || "no division row"})`
       : c0.pressed.length !== 1 ? `the whole form pressed, the card pressed ${c0.pressed.length} reading(s)`
         : t(atB) !== t(ruled) ? `the press drew ${said(t(ruled))} at ${A.at} and ${said(t(atB))} at ${B.at}`
@@ -528,7 +555,7 @@ try {
               : card.now !== c0.now ? `${leg}: the card at ${B.at} reads ${said(card.now)} over the line ${said(t(ruled))}, the press's card ${said(c0.now)}`
                 : !(card.pressed.length === 1 && card.pressed[0] === c0.pressed[0]) ? `${leg}: the card at ${B.at} presses ${card.pressed.map((x) => said(x)).join(", ") || "nothing"}, the press pressed ${said(c0.pressed[0])}` : "")).filter(Boolean).join(" \u00b7 ");
     check("U7  the whole form's division pressed alone at rest holds under MACULA and back on STEP at its form's card at another place: both lines read what the press drew, the card reads it and presses its pill, and the open paints nothing", !fault,
-      fault || `${b} ${A.at} and ${B.at}: the whole form pressed, ${said(t(ruled))} on both lines under MACULA and back on STEP${passed.length ? ` (passed over, their whole forms offering no reading at rest: ${passed.join("; ")})` : ""}`);
+      fault || `${b} ${A.at} and ${B.at}${q ? ", the dictionaries that rest shut opened (none of the first twelve forms offers a whole reading at rest)" : ""}: the whole form pressed, ${said(t(ruled))} on both lines under MACULA and back on STEP${passed.length ? ` (passed over: ${passed.slice(0, 6).join("; ")}${passed.length > 6 ? `; and ${passed.length - 6} more` : ""})` : ""}`);
     await ctx.close();
   }
   // U8: by work, the lines at rest, then under each source chosen for it

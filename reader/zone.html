@@ -572,6 +572,17 @@
     #stamp td { padding-right: 0.45rem; }
   }
   #stamp .stamp-note { color: var(--faint); font-style: italic; margin: 0.3rem 0 0; }
+  /* THE COUNT'S METALS (the owner, 19 November 2026, reading Isaiah: «silver
+     is our language so id use that for the counted words on the page by us,
+     and gold is usually the masoretics language but if leningrad practices
+     their technique he is gold too so id put his count in gold»). What this
+     project counted on the page is in silver, its own mark, as the card
+     numbers are: the desk's figures, the table's «ours» and the verses on the
+     shut line. What the held edition counted, the Leningrad Codex, whose
+     scribes kept the Masorah, is in gold, the Masorah's own metal: its
+     figure in the table's «theirs». Every other witness keeps the ink. */
+  #stamp .desk .v, #stamp td.num.ours, #stamp .toc-n .ours { color: var(--silver); }
+  #stamp tr.held td.num.theirs { color: var(--gold); }
   #stamp .stamp-warn { color: var(--argaman-dim); margin: 0.3rem 0 0; }
   #demoLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman-dim); line-height: 1.55; }
   #statusLine { margin: 0.35rem 0 0; font-size: 0.82rem; color: var(--argaman-dim); line-height: 1.55; }
@@ -1148,11 +1159,18 @@
   .g-pcs { display: inline-flex; direction: rtl; align-items: baseline; justify-content: center; white-space: nowrap; }
   .g-pcs > .g-pc { direction: ltr; unicode-bidi: isolate; }
   .g-pcs > .g-pp { white-space: pre; color: var(--tekhelet-dim); }
-  .g-pc.gap, .g-part.gap { display: inline-block; min-width: 0.55em; }   /* a hidden sign's place */
+  /* A HIDDEN SIGN TAKES NO SLOT IN THE ENGLISH ROW (the owner, 19 November
+     2026, reading Isaiah 2:22: «spacing», at «from  +  humankind» and «for  +
+     how?»; the page lane's answer, taken: close the slot, and the blob still
+     marks the letters). From 14 November the gap kept a little width, its
+     place in the line, and with the joiner beside it gone it read as a fault.
+     The piece stays in the row, so the line's text and its pieces are as
+     they were; it takes no width, and the hidden sign's letters keep their
+     blob, closed around the Hebrew alone (drawPairs). A run's cell that is a
+     hidden sign whole takes none either. */
+  .g-pc.gap, .g-part.gap { display: inline-block; min-width: 0; }
   .g-pp.at-gap, .g-sep.at-gap { display: none; }   /* and no joiner beside it (2026-11-14) */
-  /* and a run's cell keeps that place too: the run's own cells take min-width 0 so a long reading wraps inside
-     its cell, which held a gap's cell to nothing; with no joiner beside it to mark the spot, it holds its slot */
-  .wjoin > .g.parts .g-part.gap { min-width: 0.55em; }
+  .wjoin > .g.parts .g-part.gap { min-width: 0; }
   /* THE ENGLISH READER KEEPS ITS OWN ORDER (the owner, 2026-10-10, on the
      first word of Genesis: "for hebrew reader it would be non zig zag. for
      english reader it would be zig zag"). In the Hebrew reader a split
@@ -2381,6 +2399,10 @@
      record, so the export, the copy guard and the checks read it, and the
      card says every reading's license in full; the line itself shows none. */
   .he-text .g .g-lic { display: none; }
+  /* nor the book title's (the owner, 19 November 2026, crossing out the chip
+     under the book title's English on Isaiah's page): the title is a word of
+     the corpus like any other, and its card says the license in full */
+  header.top h1 .he-t .title-row .g .g-lic { display: none; }
   /* a source under two terms names both ("WordNet Notices + CC BY 4.0"), and
      under a narrow word that chip stood wider than the word and was cut; it
      breaks between the terms, never inside one */
@@ -2865,42 +2887,55 @@
   const restsOffOf = (rec, mSources, factsOf) => {
     const said = [];
     const all = Array.isArray(rec.families) ? rec.families : [];
-    const store = all.filter((f) => f.shelf === "store");
-    const filed = new Map();   // source key -> the family of the store that files it
-    for (const f of store) for (const k of f.keys) {
-      if (filed.has(k)) said.push(`${k} is filed by two families (${filed.get(k).id}, ${f.id})`);
-      else filed.set(k, f);
+    // a family's shelf: "" for the store, else the overlay it stands in; a source key is known on its shelf
+    const shelfOf = (f) => (f.shelf === "overlay" ? String(f.overlay) : "");
+    const filedOverlays = new Set(all.filter((f) => f.shelf === "overlay").map(shelfOf));
+    const slot = (shelf, key) => `${shelf}\u0000${key}`;
+    const filed = new Map();   // a shelf's source key -> the family that files it
+    for (const f of all) for (const k of f.keys) {
+      const s = slot(shelfOf(f), k);
+      if (filed.has(s)) said.push(`${k} is filed by two families (${filed.get(s).id}, ${f.id})`);
+      else filed.set(s, f);
     }
-    for (const m of Object.keys(mSources)) if (!filed.has((mSources[m] || {}).key)) said.push(`the index's ${m} (${(mSources[m] || {}).key}) is filed by no family of the store`);
+    // a source of the index stands on the store, or on the overlay it names; an overlay the record files no family
+    // of (the span store, the piece store: packagings, not dictionaries) is never asked
+    const shelfOfSource = (src) => (src && src.overlay !== undefined ? String(src.overlay) : "");
+    for (const m of Object.keys(mSources)) {
+      const src = mSources[m] || {}, shelf = shelfOfSource(src);
+      if (shelf && !filedOverlays.has(shelf)) continue;
+      if (!filed.has(slot(shelf, src.key))) said.push(shelf ? `the index's ${m} (${src.key}) is filed by no family of the overlay ${shelf}` : `the index's ${m} (${src.key}) is filed by no family of the store`);
+    }
     const reads = ["id", "say", "kinds", "families", "fact", "is", "has", "stands_at", "ruling"];
     const entries = (Array.isArray(rec.rests_off) ? rec.rests_off : []).map((e) => {
       const keys = new Set();
       for (const field of Object.keys(e)) if (!reads.includes(field)) said.push(`the entry ${e.id} carries ${field}, which this rule does not read`);
       for (const k of e.kinds || []) {
         if (!rec.kinds || !rec.kinds[k]) said.push(`the entry ${e.id} names the kind ${k}, which the record does not hold`);
-        for (const f of store) if (f.kind === k) for (const x of f.keys) keys.add(x);
+        for (const f of all) if (f.kind === k) for (const x of f.keys) keys.add(slot(shelfOf(f), x));
       }
       for (const id of e.families || []) {
         const f = all.find((x) => x.id === id);
-        if (!f || f.shelf !== "store") said.push(`the entry ${e.id} names ${id}, which is no family of the store`);
-        else for (const x of f.keys) keys.add(x);
+        if (!f) said.push(`the entry ${e.id} names ${id}, which is no family of the record`);
+        else for (const x of f.keys) keys.add(slot(shelfOf(f), x));
       }
-      if (!keys.size) said.push(`the entry ${e.id} shuts no source key of the store`);
+      if (!keys.size) said.push(`the entry ${e.id} shuts no source key`);
       if ((e.is !== undefined || e.has !== undefined) && !e.fact) said.push(`the entry ${e.id} compares a value and names no fact`);
       if (e.is !== undefined && e.has !== undefined) said.push(`the entry ${e.id} reads both is and has`);
       if (e.stands_at !== undefined && (typeof e.stands_at !== "string" || !e.stands_at)) said.push(`the entry ${e.id} stands at ${JSON.stringify(e.stands_at)}, which is not the name of a fact`);
       else if (e.stands_at !== undefined && !e.fact) said.push(`the entry ${e.id} stands at the places its rows name and names no fact`);
       return { e, keys };
     });
-    if (said.length) throw new Error(`the record of dictionary kinds does not hold over this store's index: ${said.join("; ")}`);
-    const byM = new Map();   // M id -> the entries whose keys hold its source's key, in the record's order
+    if (said.length) throw new Error(`the record of dictionary kinds does not hold over this index: ${said.join("; ")}`);
+    const byM = new Map();   // M id -> the entries whose keys hold its source's key on its shelf, in the record's order
     return (row, place = null) => {
       if (place !== null && typeof place !== "string") throw new Error(`the rule of dictionary kinds was asked at ${JSON.stringify(place)}, which is not a place's name: refusing`);
       const m = row[3];
       const source = Object.hasOwn(mSources, m) ? mSources[m] : null;
       if (!source) return null;
+      const shelf = shelfOfSource(source);
+      if (shelf && !filedOverlays.has(shelf)) return null;
       let list = byM.get(m);
-      if (!list) { list = entries.filter((x) => x.keys.has(source.key)).map((x) => x.e); byM.set(m, list); }
+      if (!list) { list = entries.filter((x) => x.keys.has(slot(shelf, source.key))).map((x) => x.e); byM.set(m, list); }
       for (const e of list) {
         if (!e.fact) return e;
         const facts = factsOf(row) || {};
@@ -4846,33 +4881,16 @@
       ...OVERLAY_DEFS.map((o) => fetch(`${ROOT}${o.dir}index.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null)),
     ]);
     // THE DICTIONARIES THAT REST SHUT (dictionary-kinds-rule-v1): the rule is
-    // read over the store's own index, before the overlays' ids join it below
-    // (an overlay's dictionary is filed in the record beside the store, and no
-    // resting entry reaches it), and acts only where this book's zone was
-    // baked at rest (its stamp). A record that did not arrive, or does not hold
-    // over this index, shuts nothing on this visit, and the rail says so; the
-    // line stands right whatever the card does, since it was baked at rest.
+    // read over the index once the overlays' ids have joined it, below (an
+    // overlay's dictionary is filed in the record beside the store, under the
+    // overlay it stands in, and a resting entry that names its kind reaches
+    // it: the owner's twelve, 19 November 2026; the span store and the piece
+    // store are packagings and are never asked), and acts only where this
+    // book's zone was baked at rest (its stamp). A record that did not arrive,
+    // or does not hold over this index, shuts nothing on this visit, and the
+    // rail says so; the line stands right whatever the card does, since it was
+    // baked at rest.
     if (KINDS_REC && !kindsAsked) kindsPref = kindsKept === `open@${KINDS_REC.version}` ? "open" : "shut";
-    // The ids shut whole are the record's wherever it holds, on any page: the
-    // search answers places of the thirty-nine books from every page, and
-    // every one of them rests shut, so it leaves those sources out from a
-    // work the record does not rest shut too, as the card it opens does (the
-    // review of 15 November 2026: «peru» on the Tikkunei Zohar's page found
-    // Genesis 1:22's word by ConceptNet and OmegaWiki, and opened a card that
-    // held them back). The cards act only where this book's zone says it
-    // was baked at rest.
-    const kindsStamped = !!(zone && zone.emitted_from && zone.emitted_from.rests_off);
-    if (KINDS_REC || kindsStamped) {
-      try {
-        if (!KINDS_REC) throw new Error("the record of what rests shut did not arrive");
-        const own = { ...index.m_sources };
-        const rule = restsOffOf(KINDS_REC, own, factsOf);
-        RESTS_OFF_IDS = new Set(restsOffIds(KINDS_REC, own));
-        if (kindsStamped) { restsOff = rule; kindsHere = true; }
-      } catch (e) { restsOff = () => null; RESTS_OFF_IDS = new Set(); window.__kindsFailed = true; window.__kindsFault = String((e && e.message) || e); }
-    }
-    window.__kinds = kindsPref; window.__kindsHere = kindsHere;
-    window.__restsOffIds = [...RESTS_OFF_IDS]; window.__kindsVersion = KINDS_REC ? KINDS_REC.version : null;
     // an overlay's sources join the index's under their own ids, which the store
     // does not use; a store source is never overwritten
     OVERLAY_DEFS.forEach((o, i) => {
@@ -4892,6 +4910,28 @@
       } catch { /* nothing remembered, nothing to carry */ }
     });
     window.__overlays = Object.keys(OVERLAYS);
+    // the rule of what rests shut, over the index the overlays have joined
+    // (above, THE DICTIONARIES THAT REST SHUT)
+    // The ids shut whole are the record's wherever it holds, on any page: the
+    // search answers places of the thirty-nine books from every page, and
+    // every one of them rests shut, so it leaves those sources out from a
+    // work the record does not rest shut too, as the card it opens does (the
+    // review of 15 November 2026: «peru» on the Tikkunei Zohar's page found
+    // Genesis 1:22's word by ConceptNet and OmegaWiki, and opened a card that
+    // held them back). The cards act only where this book's zone says it
+    // was baked at rest.
+    const kindsStamped = !!(zone && zone.emitted_from && zone.emitted_from.rests_off);
+    if (KINDS_REC || kindsStamped) {
+      try {
+        if (!KINDS_REC) throw new Error("the record of what rests shut did not arrive");
+        const own = index && index.m_sources ? { ...index.m_sources } : {};
+        const rule = restsOffOf(KINDS_REC, own, factsOf);
+        RESTS_OFF_IDS = new Set(restsOffIds(KINDS_REC, own));
+        if (kindsStamped) { restsOff = rule; kindsHere = true; }
+      } catch (e) { restsOff = () => null; RESTS_OFF_IDS = new Set(); window.__kindsFailed = true; window.__kindsFault = String((e && e.message) || e); }
+    }
+    window.__kinds = kindsPref; window.__kindsHere = kindsHere;
+    window.__restsOffIds = [...RESTS_OFF_IDS]; window.__kindsVersion = KINDS_REC ? KINDS_REC.version : null;
     // whether the record of word senses was baked against the served overlay (word-senses-rule-v1), for a check
     window.__sensesFit = !!(WORD_SENSES && WORD_SENSES.overlay && OVERLAYS.jastrow && WORD_SENSES.overlay.store_version === OVERLAYS.jastrow.store_version);
     // the record's resting-off sources, once per version for this reader
@@ -5404,7 +5444,7 @@
       el.append(desk);
       const table = document.createElement("table");
       st.rows.forEach((r, i) => {
-        const tr = document.createElement("tr"); tr.className = String(r.verdict || "").toLowerCase();
+        const tr = document.createElement("tr"); tr.className = String(r.verdict || "").toLowerCase() + (r.class === "HELD_EDITION" ? " held" : "");
         tr.style.animationDelay = `${Math.min(i, 14) * 70}ms`;
         const td = (cls, text, title) => { const c = document.createElement("td"); c.className = cls; c.textContent = text; if (title) c.title = title; tr.append(c); return c; };
         const wit = td("wit", "", [r.witness || "", r.note || ""].filter(Boolean).join(" \u2014 "));
@@ -5433,7 +5473,9 @@
       const witnesses = new Set(st.rows.map((r) => r.witness).filter(Boolean)).size;
       const differs = st.rows.filter((r) => r.verdict === "DIFFERS").length;
       const nSlot = box.querySelector(".toc-n");
-      nSlot.textContent = `${n(st.ours.verses)} verses · ${witnesses} witness${witnesses === 1 ? "" : "es"} · `;
+      // the verses are our own count, in silver (THE COUNT'S METALS, above)
+      nSlot.replaceChildren(Object.assign(document.createElement("span"), { className: "ours", textContent: n(st.ours.verses) }),
+        ` verses · ${witnesses} witness${witnesses === 1 ? "" : "es"} · `);
       const verdict = document.createElement("span");
       verdict.className = differs ? "differs" : "";
       verdict.textContent = differs
@@ -8732,8 +8774,10 @@
       }
     }
     // a span store row carries its source's own M and rests shut with it; an
-    // overlay's own sources are filed beside the store, and no resting entry
-    // reaches them (restsOff answers null for an id the store's index lacks)
+    // overlay's own sources are filed beside the store under the overlay they
+    // stand in, and rest shut by their kind (Jastrow, the Samaritan works); a
+    // packaging's own sources (the span store's, the piece store's) are never
+    // asked (restsOff answers null for them)
     if (kindsGate && extra.length) extra = shutAway(extra);
     // WORD SENSES (word-senses-rule-v1): a row of Jastrow's that is a word
     // sense is held back while the switch rests off, and counted; on, it
@@ -11573,7 +11617,18 @@
       // card opened again when it is here, as the switch does
       if (suggested === "bsb" && !SUGGESTED && !suggestedWait && SUGGESTED_IX && SUGGESTED_IX.books && SUGGESTED_IX.books[BOOK] && word && !(opts && opts.run && !opts.run.kqBranch)) {
         const wb = activeEl;
-        suggestedReady().then((f) => { if (f && activeEl && activeEl === wb) { closeHud(); if (wb.__reopen) wb.__reopen(); else (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click(); } });
+        // and a press of one of the card's two switches that holds the focus
+        // when the file lands holds it on the card built again, as the press
+        // does on its own card (kindsFocus, sensesFocus): the file landed after
+        // a «show» had built the card again, and the focus fell to the page
+        // (check-dictionary-kinds-v1 K4, 20 November 2026)
+        suggestedReady().then((f) => {
+          if (!(f && activeEl && activeEl === wb)) return;
+          const a = document.activeElement, held = !!(a && a.classList && hud.contains(a));
+          if (held && a.classList.contains("kinds-switch")) kindsFocus = true;
+          if (held && a.classList.contains("senses-switch")) sensesFocus = true;
+          closeHud(); if (wb.__reopen) wb.__reopen(); else (wb.querySelector(".w span") || wb.querySelector(".w") || wb).click();
+        });
       }
       if (suggested === "bsb" && SUGGESTED && word && !(opts && opts.run && !opts.run.kqBranch)) {
         const n = WORD_N.get(word);
@@ -13496,6 +13551,21 @@
   // the box the line sets an English reading's letters in, the license chip
   // apart: its pieces where it stands in pieces, else its text whole
   const rectOf = (el) => unionOf([...el.getClientRects()].filter((r) => r.width > 0));
+  // A GAP IS STILL A PIECE (the owner, 2026-10-23, of the object marker's
+  // word in a chain, its sign undrawn under the signs switch, standing with
+  // no blob beside words that wore one: "2 examples of a missing blob"): the
+  // gap has no ink to measure, so it is measured as a hair's breadth where it
+  // stands, and the letters keep their shape. Since 2026-11-14 the letters'
+  // blob closes around them and ties to nothing (drawPairs); the hair still
+  // says where the gap stands among the pieces. Since 19 November 2026 a gap
+  // takes no width in the row, in a word's pieces as in a run's cells, so a
+  // piece is measured so too, never by its own box
+  const hairOf = (el) => {
+    const q = el.getBoundingClientRect();
+    if (!q.height) return null;
+    const cx = q.left + q.width / 2;
+    return { L: cx - 4, R: cx + 4, T: q.top, B: q.bottom };
+  };
   const enWhole = (el) => {
     if (!el) return null;
     const row = el.querySelector(":scope > .g-pcs");
@@ -13506,17 +13576,8 @@
     const rg = inkRange(tn, a, tn, b);
     const box = unionOf([...rg.getClientRects()].filter((r) => r.width > 0));
     if (box) return box;
-    // A GAP IS STILL A PIECE (the owner, 2026-10-23, of the object marker's
-    // word in a chain, its sign undrawn under the signs switch, standing
-    // with no blob beside words that wore one: "2 examples of a missing
-    // blob"): the gap has no ink to measure, so it is measured as a hair's
-    // breadth where it stands, and the letters keep their shape. Since
-    // 2026-11-14 the letters' blob closes around them and ties to nothing
-    // (drawPairs); the hair still says where the gap stands among the pieces
-    const q = el.getBoundingClientRect();
-    if (!q.height) return null;
-    const cx = q.left + q.width / 2;
-    return { L: cx - 4, R: cx + 4, T: q.top, B: q.bottom };
+    // a gap, measured as a hair's breadth where it stands (hairOf, above)
+    return hairOf(el);
   };
   // a word to its English: one pair per piece where the reading stands in
   // pieces, or one for the word whole
@@ -13542,7 +13603,8 @@
     const counts = row ? String(row.dataset.counts || "").split(",").map(Number) : null;
     const spans = counts && counts.length === pcs.length && counts.length > 1 ? pieceSpans(map.text, counts) : null;
     const boxes = spans ? spans.map(([a, b]) => inkBox(map, a, b)) : null;
-    const enBoxes = spans ? pcs.map(rectOf) : null;
+    // a gap's piece takes no width in the row: it is measured as a hair where it stands (hairOf)
+    const enBoxes = spans ? pcs.map((pc) => (pc.classList.contains("gap") ? hairOf(pc) : rectOf(pc))) : null;
     if (!boxes || boxes.some((x) => !x) || enBoxes.some((x) => !x)) { const e = enWhole(enEl); return e ? [{ he: whole, en: e, wi, piece: 0, n: 1, gap: !!(enEl && enEl.classList.contains("gap")) }] : []; }
     // one height for the word, its ink's; a maqaf belongs to the piece it stands in
     for (const x of boxes) { x.T = whole.T; x.B = whole.B; x.maqafs = whole.maqafs.filter((m) => m.R > x.L && m.L < x.R); }
@@ -15788,23 +15850,41 @@
   // entry, the M ids it held shut on this book's keys, the keys and the rows),
   // in the record's order: each entry with its rows here and, for an entry
   // that shuts whole sources (it names no fact), those sources by their key,
-  // in the record's family order, each with its family
+  // in the record's family order, each with its family. The dictionaries
+  // beside the store (Jastrow, the Samaritan works) are not the bake's: an
+  // overlay's source the rule shuts whole under an entry joins it from the
+  // overlays' own counts for this book (overlay-book-counts-v1), where it
+  // gives something here, with its rows
   const kindsOnBook = () => {
     const stamp = zone && zone.emitted_from && zone.emitted_from.rests_off;
     if (!kindsHere || !stamp || !stamp.entries) return [];
     const familyOf = new Map(), rank = new Map();
-    KINDS_REC.families.forEach((f, i) => { if (f.shelf === "store") for (const k of f.keys) { familyOf.set(k, f); rank.set(k, i); } });
+    KINDS_REC.families.forEach((f, i) => { for (const k of f.keys) { const at = `${f.shelf === "overlay" ? f.overlay : ""}\u0000${k}`; familyOf.set(at, f); rank.set(at, i); } });
+    const slotOf = (s) => `${s.overlay || ""}\u0000${s.key}`;
+    const ovBook = (OVERLAY_BOOKS && OVERLAY_BOOKS.books && OVERLAY_BOOKS.books[BOOK]) || {};
     return KINDS_REC.rests_off.map((e) => {
       const at = stamp.entries[e.id] || {};
+      let rows = Number(at.rows) || 0;
       const byKey = new Map();
-      if (!e.fact) for (const [m, n] of Object.entries(at.ids || {})) {
-        const s = index.m_sources[m];
-        if (!n || !s || !familyOf.has(s.key)) continue;
-        if (!byKey.has(s.key)) byKey.set(s.key, { key: s.key, ids: [], family: familyOf.get(s.key), label: s.label });
-        byKey.get(s.key).ids.push(m);
+      const add = (m, s) => {
+        const k = slotOf(s);
+        if (!byKey.has(k)) byKey.set(k, { key: s.key, slot: k, ids: [], family: familyOf.get(k), label: s.label });
+        byKey.get(k).ids.push(m);
+      };
+      if (!e.fact) {
+        for (const [m, n] of Object.entries(at.ids || {})) {
+          const s = index.m_sources[m];
+          if (!n || !s || s.overlay || !familyOf.has(slotOf(s))) continue;
+          add(m, s);
+        }
+        for (const [m, c] of Object.entries(ovBook)) {
+          const s = index.m_sources[m];
+          if (!c || !c.carries || !s || !s.overlay || !familyOf.has(slotOf(s)) || restsOff([null, null, null, m]) !== e) continue;
+          add(m, s); rows += Number(c.rows) || 0;
+        }
       }
-      const groups = [...byKey.values()].sort((a, b) => rank.get(a.key) - rank.get(b.key) || (a.key < b.key ? -1 : 1));
-      return { e, rows: Number(at.rows) || 0, groups };
+      const groups = [...byKey.values()].sort((a, b) => rank.get(a.slot) - rank.get(b.slot) || (a.key < b.key ? -1 : 1));
+      return { e, rows, groups };
     });
   };
   // the rail's one-line summary: the word each toggle is standing at
@@ -16330,8 +16410,12 @@
     }
     // THE OVERLAYS' SOURCES, chips like the rest, from their per-book counts.
     // A source that gives nothing on this book draws no chip.
+    // An overlay's source the record rests shut whole on this book stands in
+    // the block above the strip (Shut at rest), as a store source the bake
+    // left out of the table does, and is no chip of the strip
     for (const [id, e] of Object.entries(bookOverlays)) {
       if (!isOverlayId(id) || !e.carries) continue;
+      if (kindsHere && RESTS_OFF_IDS.has(id)) continue;
       const gk = e.key || id;
       const lic = (POSTURES && POSTURES.postures && POSTURES.postures[e.posture] && POSTURES.postures[e.posture].name) || e.posture || "";
       const g = groups.get(gk) || { key: gk, ids: [], labels: [], lic, y: e.y, leads: 0, carries: 0, changes: 0, darkens: 0, overlay: e.overlay };

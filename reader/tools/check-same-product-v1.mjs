@@ -207,7 +207,16 @@ let SHUT = new Set(), FACT_IDS = new Set();
 const scopeMemo = new Map(), oldMemo = new Map();
 if (KINDS) {
   const ix = JSON.parse(readFileSync(join(SITE, "reader", "data", "route-store", "index.json"), "utf8"));
-  SHUT = new Set(restsOffIds(KINDS.rec, ix.m_sources));
+  // over the index the page joins (zone.html, OVERLAY_DEFS): the store's ids, then each overlay's, marked with the
+  // overlay it stands in, a store id never overwritten; Jastrow and the Samaritan works rest shut by their kind since
+  // the owner's twelve (19 November 2026), the span store and the piece store, packagings, are never asked
+  const joined = { ...ix.m_sources };
+  for (const [o, dir] of [["jastrow", ["overlays", "jastrow"]], ["samaritan", ["overlays", "samaritan"]], ["span-store", ["span-store"]], ["piece-store", ["piece-store"]]]) {
+    const pth = join(SITE, "reader", "data", ...dir, "index.json");
+    if (!existsSync(pth)) continue;
+    for (const [id, x] of Object.entries(JSON.parse(readFileSync(pth, "utf8")).m_sources || {})) if (!joined[id]) joined[id] = { ...x, overlay: o };
+  }
+  SHUT = new Set(restsOffIds(KINDS.rec, joined));
   const factKeys = new Set(KINDS.rec.rests_off.filter((e) => e.fact).flatMap((e) => e.families || []).flatMap((id) => (KINDS.rec.families.find((f) => f.id === id) || { keys: [] }).keys));
   FACT_IDS = new Set(Object.entries(ix.m_sources).filter(([, x]) => factKeys.has(x.key)).map(([m]) => m));
 }
@@ -799,14 +808,29 @@ for (const { z, ch } of pages) {
       }
       if (shutLost && C.held < shutLost) faults.push(`it lost ${shutLost} pill(s) of the dictionaries that rest shut and says it holds back ${C.held}`);
       olds = olds.filter((o) => !o.shut);
+      // (f) the pointer unfolded: an old pill that printed a pointer beside its reading, the pointer's source one the
+      // record rests shut (English Wiktionary's «this (masculine/feminine plural of …)», Exodus 1:1), prints its plain
+      // reading, where the other sources carry it (the owner's twelve, 19 November 2026)
+      for (const o of olds) {
+        if (newKeys.has(o.k) || !o.by.some((id) => SHUT.has(id))) continue;
+        const q = news.find((x) => !x.ptr && o.k.startsWith(`${x.k} (`) && !olds.some((y) => y !== o && y.k === x.k));
+        if (!q) continue;
+        why.push(`the pointer unfolded: «${String(o.t).replace(/^\*/u, "")}» prints «${String(q.t).replace(/^\*/u, "")}», its pointer's source resting shut`);
+        o.k = q.k;
+      }
     }
+    // (g) and a pill a source that rests shut carried beside others may stand elsewhere in the order, its sort key now
+    // the others' (Amos אשר: «that», English Wiktionary's among others): the order is asked of the pills whose
+    // carriers kept every source
+    const moved = new Set(KINDS && restsHere(z) ? olds.filter((o) => o.by.some((id) => SHUT.has(id))).map((o) => o.k) : []);
     // what is left is the new card: no pill lost, none gained but as owed, the pills both carry in the same order, the
     // same one pressed but where its word's line moved as owed
     const oldKeys = new Set(olds.map((o) => o.k));
     for (const o of olds) if (!newKeys.has(o.k)) faults.push(`it lost «${o.t}» [${o.by.join(" ")}]${KINDS && restsHere(z) ? ", not carried by sources that rest shut alone at this place" : ""}`);
     const gained = news.filter((q) => !oldKeys.has(q.k));
     if (gained.some((q) => !gainOk(q))) faults.push(`it carries ${gained.filter((q) => !gainOk(q)).map((q) => `«${q.t}»`).join(", ")}, which the old card lacks`);
-    if (JSON.stringify(olds.map((o) => o.k).filter((t) => newKeys.has(t))) !== JSON.stringify(news.map((q) => q.k).filter((t) => oldKeys.has(t)))) faults.push("the pills both carry do not keep their order");
+    if (JSON.stringify(olds.map((o) => o.k).filter((t) => newKeys.has(t) && !moved.has(t))) !== JSON.stringify(news.map((q) => q.k).filter((t) => oldKeys.has(t) && !moved.has(t)))) faults.push("the pills both carry do not keep their order");
+    else if (moved.size && JSON.stringify(olds.map((o) => o.k).filter((t) => newKeys.has(t))) !== JSON.stringify(news.map((q) => q.k).filter((t) => oldKeys.has(t)))) why.push(`the order: ${moved.size} pill(s) a source that rests shut carried beside others stand where their other carriers sort them`);
     const pressedA = olds.find((o) => o.pressed) || null, pressedC = news.find((q) => q.pressed) || null;
     const lineMoved = signMoved || standsMoved || (!!C.at && kindsLines.has(word));
     if ((pressedA ? pressedA.k : null) !== (pressedC ? pressedC.k : null) && !lineMoved) faults.push(`its pressed pill moved from ${pressedA ? pressedA.t : "none"} to ${pressedC ? pressedC.t : "none"}, and its word's line did not move as owed`);

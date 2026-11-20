@@ -18,7 +18,8 @@
 //       different word: al-pi "according to" welds to a verb "to faint"),
 //       and the line under the run never reads one
 //   R4  where the run as written, joiner kept, is published, the line reads
-//       it and the card opens on it
+//       it and the card opens on it (on a book baked at rest, published by a
+//       row that rests open)
 //   R5  a reading chosen for one word of a run is the run's line and is
 //       lit again when that word is pressed again; the line is never a dash
 //       (read as one form, a run ruled cell by cell printed "—" whole)
@@ -66,6 +67,13 @@ const arg = (n, d) => { const i = process.argv.indexOf(`--${n}`); return i > -1 
 const ZONE = arg("zone", "amos");
 const zone = JSON.parse(gunzipSync(readFileSync(`data/zones/${ZONE}.bin`)).toString("utf8"));
 const store = openRouteStore("data/route-store");
+// AND THE STORE AT REST, on a book baked at rest (dictionary-kinds-rule-v1; since 19 November 2026 only the twelve
+// Bible dictionaries stand at rest on the thirty-nine books): a form only a dictionary that rests shut published is
+// still a rung of the card (R1), its readings a press away, but the line does not read it and the card does not open
+// on it (R4), and its switches empty nothing at rest (R9). Amos's על־כן: «therefore» only from dictionaries that are
+// not Bible dictionaries, so at rest its line reads its words, «over + thus»
+const AT_REST = !!(zone.emitted_from || {}).rests_off;
+const storeAtRest = AT_REST ? openRouteStore("data/route-store", { atRest: true, signLast: true }) : store;
 
 // the runs, from the zone's own join records
 const runs = [];
@@ -79,8 +87,9 @@ for (const sec of zone.sections || []) {
       const keys = run.map((x) => x.k);
       const forms = formsOfRun(keys).filter((f) => f.form !== "pieces");
       const published = forms.filter((f) => (store.routesFor(f.key) || []).length).map((f) => ({ ...f }));
+      const atRest = forms.filter((f) => (storeAtRest.routesFor(f.key) || []).length).map((f) => ({ ...f }));
       const weld = forms.find((f) => f.form === "weld");
-      runs.push({ keys, key: keys.join(MAQAF), weld: weld ? weld.key : keys.join(""), forms, published, words: run.map((x) => x),
+      runs.push({ keys, key: keys.join(MAQAF), weld: weld ? weld.key : keys.join(""), forms, published, atRest, words: run.map((x) => x),
         folds: published.filter((f) => f.form !== "maqaf" && f.form !== "weld").map((f) => f.key) });
     }
     run = [];
@@ -151,7 +160,7 @@ for (const run of sample) {
   // its card opens on the run (span-store I1, I2), whatever the zone's own
   // table published; the as-written rule judges the rest
   if (c.span) { if (c.span !== run.key || !onWhole) r4.push(`${run.key}: the store names it, yet line "${c.span}", card on ${onWhole ? onWhole.t : "the words"}`); continue; }
-  const asWritten = run.published.find((f) => f.form === "maqaf");
+  const asWritten = run.atRest.find((f) => f.form === "maqaf");
   if (asWritten && (c.form !== run.key || !onWhole)) r4.push(`${run.key}: published as written but line "${c.form || "words"}", card on ${onWhole ? onWhole.t : "the words"}`);
   if (!asWritten && onWhole) r4.push(`${run.key}: not published as written, yet the card opened on ${onWhole.t}`);
 }
@@ -356,7 +365,7 @@ check("R7  the run's ink is one word: no line drawn between its words, no paddin
 // whose as-written form a dictionary published (the closed-up form this
 // once used is no rung since 2026-10-17)
 {
-  const weldRun = runs.find((r) => r.published.some((f) => f.form === "maqaf"));
+  const weldRun = runs.find((r) => r.atRest.some((f) => f.form === "maqaf"));
   if (weldRun) weldRun.weld = weldRun.key;
   if (weldRun) {
     await p.reload({ waitUntil: "networkidle" });
