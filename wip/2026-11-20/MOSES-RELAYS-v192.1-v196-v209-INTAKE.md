@@ -36,3 +36,10 @@ Ship 9's record and its commit say four lines went from right to wrong at the pl
 
 1. Ship 10: words stand alone at rest (the cards and the drawing), with v209 and v205 for the two-word entries; v202's form rows and pieces; the fallback; then v196 (the names' meanings, Strong's definition, the «Compare» pairs at the gate).
 2. After it, in the order they unblock the owner's «slowly add»: the entry ledgers (v203, v204), names v2 (v198), the marks (v199); then the put-backs (v207, v200, v201), the lattice delta (v208), the read words (v192.1), row entries v1.2 (v197).
+
+## Since the intake (20 November, later)
+
+- The owner relayed Moses's note on v209 a second time (17:27 UTC): every ask of 14 to 20 November has its relay; the owner's word on the 1890 printing and HebrewLexicon.pdf is still to come in Moses's own chat.
+- **Fetched and matched to the letters' hashes (read-only):** v209 `spans-v1/` (RULE, spans-v1.jsonl, twice-words-v1.jsonl, both receipts) in `S/dl-v209-data`; v205 `span-store-v1/` (RULE, the five lists, both receipts) in `S/dl-v205-data`; v203 `wiktionary-v1/` (RULE, the kinds table, both facts lists, both receipts; not the 35 MB ledger) in `S/dl-v203-data`.
+- **Read in full since:** v198, v203, v205. Skimmed for what they land: v197, v199, v204.
+- **v209 and v205 are measured against ship 10a** in `ship-10/next-pass/SCOPE-two-word-entries.md`: the four sources read 966 runs of two or more words; 553 are cells ship 10a keeps, 412 are names the span store has no place for (a name with a prefix on its first word), 201 of ship 10a's cells are read as one by no source's own line (mostly «if: except», 135).
