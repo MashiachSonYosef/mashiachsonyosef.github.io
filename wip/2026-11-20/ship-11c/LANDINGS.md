@@ -43,3 +43,9 @@ On a second copy of the store with ship 11's entries applied (`S/s13w/sb`; `tool
 The store goes from 651,752 rows to 653,227 (+1,475). Moses's own counts hold: 658 plain keys for v200, 149 keys for v202.
 
 **One rule the rehearsal added.** Three of v202's lines name words another of its lines already lands for the same source under the same key: «hands/ his» is one line for Leviticus 9:22 (STEP's tag H3027S) and another for Leviticus 16:21 (H3027G). The store holds one row of a source for a key and its words, and the landing counts a second as already held, so the second line's tag would have been lost and the row withheld by its letter at Leviticus 16:21. Such lines now land as one row carrying every line's facts and headwords, each once, in the lines' order, and the row names the lines it gathers. As landed in the sandbox: «hands/ his» at rank 36 under the letters of «his hand», with both tags; «tent/ his» at rank 16 with its four pointed forms.
+
+## The entries tool leaves a landed row's entries to its landing (item 2, done in the sandbox, 21:00 UTC)
+
+Measured first on the sandbox with the three lists landed: as the tool stood, it would have taken the entries off **782 rows** it had no line for (15 of v201, 603 of v200, 164 of v202: the landed rows of the fifteen sources the ledger reads). With `tools/patch-entries-landed.py` a row a round landed since the ledger or a list was read carries exactly what its landing named, read from the row-strikes record: the same run moves **0 rows**, and counts 782 landed rows carrying their landing's facts, every one with a number.
+
+Still to build for this ship: the check's side of that clause (`check-entry-gate-v1` E2 to E5 count a landed row as carrying nothing today); a check for the landings; a new version of the strike rule's name, since a landing now writes facts; then the round.
