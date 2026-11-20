@@ -1,0 +1,87 @@
+diff --git a/reader/tools/check-same-product-v1.mjs b/reader/tools/check-same-product-v1.mjs
+index 49574b29a6..5b3267fe59 100644
+--- a/reader/tools/check-same-product-v1.mjs
++++ b/reader/tools/check-same-product-v1.mjs
+@@ -74,6 +74,19 @@
+ // the record does not rest shut is compared as before, line for line and
+ // pill for pill. --expect may be given twice, and each file is told by its
+ // own rule_id; a file of another rule is refused, never guessed.
++// THE WORDS STAND ALONE AT REST (words-stand-alone-rule-v1, ship 10 of 20
++// November 2026). Owed with no file named: the rule is the page's own, so it
++// is read from the two pages, and holds only where the new build's zone.html
++// declares the rule and the old build's does not. On S2, the first card of a
++// word that stood in a joined cell on the old build (a chain's, or a place's
++// the new build sets aside) is the word's own card: the joined cell's card
++// asked its words with no pointing and no entry, so the word's own card,
++// which passes its gates, may lose pills. It stands at the word's own place,
++// it gains no pill, and the same reading stays pressed; the order of a pool
++// its gates filtered is its own and is not asked. On S1 nothing is owed by
++// this rule itself: a line under a source pressed, at a word of one unit that
++// source reads at every word of it, reads as it rests once the words stand
++// apart, which the default picks' expectation already holds (unitsIn).
+ // SHIP 5'S LANDINGS (the design of ships 5 and 6, section 8; the lead's calls
+ // of 15 November 2026). Each is owed only where its expectation is given, and
+ // a moved line or card no class explains is a difference as before:
+@@ -590,7 +603,9 @@ const read = async (origin, z, ch) => {
+         return { said: pills.map((x) => `${x.getAttribute("aria-pressed") === "true" ? "*" : ""}${x.textContent.trim()}`), by: pills.map((x) => x.dataset.by || ""),
+           ptr: pills.map((x) => x.dataset.pointer || ""), ptrBy: pills.map((x) => x.dataset.pointerBy || ""), place: typeof window.__cardPlace === "string" ? window.__cardPlace : "",
+           cell: ([...document.querySelectorAll("#hud > .rows .b-cell .s-pills button")].find((x) => x.getAttribute("aria-pressed") === "true") || {}).textContent || "",
+-          held: box ? Number(box.dataset.kindWithheld || 0) : 0, at: sec ? [sec.id, [...sec.querySelectorAll(".he-text .wb")].indexOf(wb)] : null };
++          held: box ? Number(box.dataset.kindWithheld || 0) : 0, at: sec ? [sec.id, [...sec.querySelectorAll(".he-text .wb")].indexOf(wb)] : null,
++          // whether the word pressed stands in a joined cell (a chain's, a place's), as the page draws it
++          joined: !!(wb && wb.closest(".wjoin")) };
+       }, i));
+       await p.keyboard.press("Escape"); await p.waitForTimeout(200);
+     }
+@@ -612,6 +627,10 @@ const read = async (origin, z, ch) => {
+   await ctx.close();
+   return out;
+ };
++// words-stand-alone-rule-v1, read from the two pages: owed only where the new page declares it and the old does not
++const WSA_RULE = "words-stand-alone-rule-v1-at-rest-each-word-is-its-own-cell-and-card-and-a-joined-cell-stands-only-where-a-dictionary-that-stands-files-it";
++const pageDeclares = async (origin, rule) => { try { const r = await fetch(`${origin}/reader/zone.html`); return r.ok && (await r.text()).includes(`RULE: ${rule}`); } catch { return false; } };
++const WSA = (await pageDeclares(NEW, WSA_RULE)) && !(await pageDeclares(OLD, WSA_RULE));
+ const s1 = [], s2 = [], skipped = [], failed = [], expected = [];
+ let linesCompared = 0, cardsCompared = 0, filledSeen = 0, neighborsSeen = 0;
+ // the moves the record of what rests shut owes: lines by class, the default lines that moved (for S2's pressed
+@@ -620,7 +639,7 @@ const kindsMoved = { "a shut source's line": 0, "a shut source's run line": 0, "
+ let kindsCards = 0, kindsPillsLost = 0;
+ // ship 5's classes: the lines each moved as owed (under every switch), and the default lines that moved, by word, for S2
+ const owedSeen = { stands: 0, "strongs sign": 0, runs: 0 }, standsLines = new Map(), signLines = new Set(), runWords = new Set();
+-const owedCards = { stands: 0, "strongs sign": 0, runs: 0, "the pointer fold": 0 };
++const owedCards = { stands: 0, "strongs sign": 0, runs: 0, "the pointer fold": 0, "a word that left a joined cell, its own card": 0 };
+ for (const { z, ch } of pages) {
+   const [a, c] = [await read(OLD, z, ch), await read(NEW, z, ch)];
+   if (a.failed || c.failed) { failed.push(`${z} ${ch}: ${a.failed || ""}${c.failed ? ` / new: ${c.failed}` : ""}`); continue; }
+@@ -772,6 +791,22 @@ for (const { z, ch } of pages) {
+       else s2.push(`${z} ${ch} card ${i + 1}: a word of a run that fell, and its card stands at ${C.place || "no place the page names"} with the block ${C.cell || "none"} pressed, not on the word (${own || "?"}, ${wk || "?"})`);
+       continue;
+     }
++    // words-stand-alone-rule-v1: the first card of a word that stood in a joined cell on the old build and whose card
++    // on the new stands at the word's own place is the word's own card, gated as any word's: it may lose pills the
++    // joined cell's card carried ungated, it gains none, and the same reading stays pressed
++    if (WSA && C.at && A.at && A.at[0] === C.at[0] && A.at[1] === C.at[1] && own && C.place === own) {
++      // (read from the card's own word, as the old page drew it: a chapter page's first cards may stand in a verse
++      // whose lines this page's sample does not read)
++      if (A.joined) {
++        const oldK = new Set(A.said.map(key)), gainedW = C.said.filter((t) => !oldK.has(key(t)));
++        const pa = A.said.find((t) => t.startsWith("*")), pc = C.said.find((t) => t.startsWith("*"));
++        if (!gainedW.length && (pa ? key(pa) : null) === (pc ? key(pc) : null)) {
++          owedCards["a word that left a joined cell, its own card"] += 1;
++          if (DIFF) diffLines.push(`== ${z} ${ch} card ${i + 1} (words stand alone: its word stood in a joined cell, and the card is the word's own at ${own}; ${A.said.length - C.said.length} pill(s) fewer, none gained, the same reading pressed)\n  old: ${x}\n  new: ${y}\n  only old: ${A.said.filter((t) => !C.said.includes(t)).join(" | ")}`);
++          continue;
++        }
++      }
++    }
+     // what the old card owes, by class: each old pill keyed as the card groups them (its printed form, case folded)
+     let olds = A.said.map((t, j) => ({ t, k: key(t), by: idsOf(A.by[j]), ptr: (A.ptr || [])[j] || "", pressed: t.startsWith("*") }));
+     const news = C.said.map((t, j) => ({ t, k: key(t), by: idsOf(C.by[j]), ptr: (C.ptr || [])[j] || "", ptrBy: (C.ptrBy || [])[j] || "", pressed: t.startsWith("*") }));
+@@ -851,7 +886,7 @@ const shipSaid = [EXPECT ? `${owedSeen.stands} line(s) where STEP's own words st
+ const shipCards = Object.entries(owedCards).filter(([, nn]) => nn > 0).map(([why, nn]) => `${nn} ${why}`);
+ check(`S1 every sampled line and its chip are the same on both builds, under every switch both carry${EXPECT ? ", but the fills at rest the index names, each reading the second's words, STEP's own words where the old line is bare or where STEP spells or parts the word otherwise, and the hidden sign's gap beside them in their run" : ""}${KINDS ? ", and on a book the record rests shut, the lines a source it rests shut carried or ranked, each moved to a source it does not" : ""}${SIGN ? ", the lines whose pieces opened with Strong's sign, each moved to a plain reading" : ""}${RUNS ? ", and the words of a run whose every word reads its own at the place, each reading its own" : ""}`, !failed.length && pages.length > 0 && !s1.length && !expected.length,
+   `${linesCompared.toLocaleString("en-US")} lines compared on ${pages.length} pages${EXPECT ? ` · ${filledSeen} fill(s) and STEP's words at rest on them, ${neighborsSeen} gap(s) beside them${expected.length ? `, ${expected.length} not as owed: ${expected.slice(0, 3).join("; ")}` : ", each as owed"}` : ""}${shipSaid.length ? ` · ${shipSaid.join(", ")}, each as owed` : ""}${kindsSaid}${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
+-check(`S2 the first cards of every sampled chapter carry the same pills, the same one pressed${KINDS ? ", but on a book the record rests shut, the pills of the sources it rests shut alone at the card's place, held back and counted" : ""}${FORM_OF ? ", a plain pill whose English a pill prints with its pointer beside it" : ""}${SIGN || EXPECT ? ", the reading a word's line moved from as owed" : ""}${RUNS ? ", and the card of a word of a run that fell, opened on the word" : ""}`, !failed.length && cardsCompared > 0 && !s2.length,
++check(`S2 the first cards of every sampled chapter carry the same pills, the same one pressed${KINDS ? ", but on a book the record rests shut, the pills of the sources it rests shut alone at the card's place, held back and counted" : ""}${FORM_OF ? ", a plain pill whose English a pill prints with its pointer beside it" : ""}${SIGN || EXPECT ? ", the reading a word's line moved from as owed" : ""}${RUNS ? ", and the card of a word of a run that fell, opened on the word" : ""}${WSA ? ", and the card of a word that stood in a joined cell and stands alone on the new build, the word's own card with its gates: no pill gained, the same reading pressed" : ""}`, !failed.length && cardsCompared > 0 && !s2.length,
+   `${cardsCompared} cards compared${KINDS ? ` · ${kindsCards} card(s) lost ${kindsPillsLost} pill(s) of the dictionaries that rest shut, each held back` : ""}${shipCards.length ? ` · cards that differ as owed: ${shipCards.join(", ")}` : ""}${s2.length ? ` · ${s2.length} differ: ${s2.slice(0, 3).join("; ")}` : ""}`);
+ console.log(bad ? `\n${bad} failing` : "\nall checks passed");
+ // every differing line too (7 November 2026): "line: <book> <chapter> <switch> <section> #<n> <surface>: "<old>" [<chip>] → "<new>" [<chip>]", so an accounting can read every move, not the four the summary names

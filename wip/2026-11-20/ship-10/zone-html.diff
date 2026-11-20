@@ -1,5 +1,5 @@
 diff --git a/reader/zone.html b/reader/zone.html
-index 12b2232a68..6cf8e36005 100644
+index 12b2232a68..b3cb342884 100644
 --- a/reader/zone.html
 +++ b/reader/zone.html
 @@ -1143,6 +1143,15 @@
@@ -18,7 +18,15 @@ index 12b2232a68..6cf8e36005 100644
    .wjoin > .g.parts .g-sep { color: var(--tekhelet-dim); align-self: flex-start; }
    /* THE TIE: a soft gold shape behind each word of a run, as wide as the
       word at the letters, hugging their top, flowing down to sit around the
-@@ -3440,6 +3449,7 @@
+@@ -3182,6 +3191,7 @@
+     for (const x of document.querySelectorAll('.rail .row[data-toggle="masorah"] .dfp')) { const on = x.textContent === lab; x.classList.toggle("on", on); x.setAttribute("aria-pressed", String(on)); }
+     const reopen = () => { repaintGlossOrder(); reopenCard(); };
+     if (masorah === "only" && !latticeStore) latticeReady().then(reopen); else reopen();
++    cellsFollow();
+   };
+   window.__masorah = masorah;
+   const DEF_POS = [
+@@ -3440,6 +3450,7 @@
    let openTags = null;                  // the core tags of that place, where the form standing open is the one they tag
    let openByLemma = false;              // and whether they are the entries of MACULA's lemma (te), STEP giving the word no tag
    let openName = null;                  // whether that place is a name; null where the card stands at no place of the book
@@ -26,7 +34,7 @@ index 12b2232a68..6cf8e36005 100644
    const WORD_VERSE = new WeakMap();     // a word of the zone -> its verse's label
    // THE WORD A POOL IS ASKED FOR. The card asks for the word standing open
    // (openPointed, openKey, openVerse, set as it opens). The line a source
-@@ -3498,10 +3508,32 @@
+@@ -3498,10 +3509,32 @@
    // (isNamePlace); null where no place is known, and the names gate is then
    // not asked
    const NO_WORD = { pointed: null, verse: null, tags: null, name: null };
@@ -59,7 +67,7 @@ index 12b2232a68..6cf8e36005 100644
    // THE LEADERS UNDER "ONLY" AT A PLACE (tools/place-leaders-v1.mjs, name for
    // name): the place's own where its gates make them other than the
    // surface's, else the surface's. The sidecar keeps them in grades[s].e by
-@@ -3880,11 +3912,28 @@
+@@ -3880,11 +3913,28 @@
    // the ink as one cell, or each word its own) and license runs (P2: off,
    // the entry's own naming, or any naming the record admits). The owner,
    // 8 October 2026: "each megacompspan-family part as its own toggle
@@ -92,49 +100,61 @@ index 12b2232a68..6cf8e36005 100644
    // THE LICENSE RUNS REST OFF (the owner, 2026-10-14, of YHWH tseva'ot, Kadesh Barnea (Deuteronomy 1:2)
    // and kekhol asher-tsivanu (Deuteronomy 1:41): "i think for now all the double word underlines need to
    // go we just dont seem to grasp it as a concept well enough"; "the weld of
-@@ -3982,6 +4031,8 @@
+@@ -3982,6 +4032,12 @@
    // 6,462 Targum word places, over the 21 sidecars).
    const kindsActOn = (bin) => kindsHere && !!(bin && bin.emitted_from && bin.emitted_from.rests_off);
    let reopenForKinds = () => {};          // the switch answered on the page (set after the sections' relay, below)
-+  let lanesOwed = false;                  // the cells are to be laid again once no card stands open (payLanes)
-+  let payLanes = () => {};                // lays them, where they are owed and no card stands open (set beside the relay)
++  let lanesOwed = false;                  // the cells are to follow a switch once no card stands open (cellsFollow)
++  let lanesAll = false;                   // and every built section is owed whatever the lanes say (the signs switch)
++  let LANES_SIG = "";                     // the places set aside as the lanes were last laid, to tell a lay that moved a cell
++  let LANES_N = 0;                        // how many times the lanes were laid, to tell a lay that ended within its call
++  let cellsFollow = () => {};             // the lanes laid again and the built sections with them (set beside the relay)
++  let payLanes = () => {};                // the same, where it is owed and no card stands open (asked as a card closes)
    let kindsFocus = false;                 // the card's press was the switch: its rebuilt press takes the focus
    const chooseKinds = (id) => {
      if ((id !== "open" && id !== "shut") || !kindsHere) return;
-@@ -4619,6 +4670,11 @@
+@@ -4619,6 +4675,9 @@
          // after the sidecar is here, never before, or it rebuilds unfiltered
          const reopen = () => { repaintGlossOrder(); reopenCard(); };
          if (id === "only" && !latticeStore) latticeReady().then(reopen); else reopen();
 +        // the cells follow the switch (words-stand-alone-rule-v1): a place the span store names is a cell where a row
-+        // of it stands, and a row the place holds back under «only this pointing» stands under the other positions.
-+        // The lanes are laid again, and the built sections where the places set aside moved: at once where no card
-+        // stands open, and otherwise when the card closes (payLanes)
-+        if (kindsHere && HUD_LANES.lay) { const was = window.__spanStore ? window.__spanStore.rested || 0 : 0; HUD_LANES.lay().then(() => { if ((window.__spanStore ? window.__spanStore.rested || 0 : 0) !== was) { lanesOwed = true; payLanes(); } }); }
++        // of it stands, and a row the place holds back under «only this pointing» stands under the other positions
++        cellsFollow();
        },
        now: () => ({ keep: "pointing kept", only: "only this pointing", letters: "the letters only" })[masorah] },
      // THE SOURCE SWITCHES — see the note above SOURCES_KEY. Its row is its own
-@@ -4712,7 +4768,7 @@
+@@ -4654,6 +4713,9 @@
+         rebuildSourceWords(); paintDefaultPills(); dfltRailRows(); dfltSay();
+         repaintGlossOrder();
+         reopenCard();
++        // and the cells follow (words-stand-alone-rule-v1): a place whose only standing row is this source's is
++        // words while it is off (54 places of the 39 books stand on one source alone)
++        cellsFollow();
+       },
+       now: () => (sourcesOff.size ? `${sourcesOff.size} source id${sourcesOff.size === 1 ? "" : "s"} off` : "every source") },
+     { id: "pairs", voice: "text", lab: "pairs", why: "places where the scribes kept one form and read another: which half the English reads from",
+@@ -4712,7 +4774,7 @@
      // re-laying the cells from the lattice the corpus lane cut for that
      // setting. The joined and folded spellings a dictionary used for a chain
      // (the pills, part P4) are not carried on the page yet.
 -    { id: "maqaf", voice: "text", lab: "joined words", why: "the scribes join words with a small stroke: read the chain as one word with one line and one card, or each of its words as its own; a chain a dictionary names inside a run stays in that run either way. The joined or folded spelling a dictionary used for a chain waits on the weld ledger",
-+    { id: "maqaf", voice: "text", lab: "joined words", why: "the scribes join words with a small stroke: read the chain as one word with one line and one card, or each of its words as its own, which is where the page rests (a word that is only a hidden sign stays beside the word it is joined to); a place a dictionary that stands files over two words is one cell either way. The joined or folded spelling a dictionary used for a chain waits on the weld ledger",
++    { id: "maqaf", voice: "text", lab: "joined words", why: "the scribes join words with a small stroke: read the chain as one word with one line and one card, or each of its words as its own, which is where a book this switch is live on rests (a word that is only a hidden sign stays beside the word it is joined to); a place a dictionary that stands files over two words is one cell either way. The joined or folded spelling a dictionary used for a chain waits on the weld ledger",
        positions: [{ id: "maqaf", lab: "as written" }, { id: "pieces", lab: "as separate words" }],
        live: () => !!HUD_TOGGLES_IX, waits: "the corpus lane’s megacompspan toggle ledger laid on this book (tools/project-hud-toggles-v1.mjs)",
        get: () => maqafJoin, set: (id) => chooseHudToggle("maqaf", id),
-@@ -4751,7 +4807,10 @@
+@@ -4751,7 +4813,10 @@
        live: () => true,
        waits: "",
        get: () => signsPref,
 -      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); if (paintBlanks) paintBlanks(); },
 +      // the cells follow the switch too (words-stand-alone-rule-v1): a word whose whole line is a sign stands beside the
 +      // word its stroke joins it to only while the signs are off, and that is laid as a section is built; so the built
-+      // sections are laid again, at once where no card stands open and otherwise when the card closes (payLanes)
-+      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); if (paintBlanks) paintBlanks(); if (maqafJoin === "pieces" && HUD_TOGGLES_IX) { lanesOwed = true; payLanes(); } },
++      // sections are laid again, at once where no card stands open and otherwise when the card closes (cellsFollow)
++      set: (id) => { signsPref = id; try { localStorage.setItem(SIGNS_KEY, id); } catch { /* the choice still stands on this page */ } repaintGlossOrder(); if (redrawReadings) redrawReadings(); if (paintBlanks) paintBlanks(); if (maqafJoin === "pieces" && HUD_TOGGLES_IX) cellsFollow(true); },
        now: () => ({ off: "signs off", below: "signs after plain" })[signsPref] || "signs as printed" },
      // NAMES LEAD, OR THE READING THE NAME DISPLACED (the owner, 2026-10-23,
      // "no names"): a row pill was this switch for a day; the owner took it
-@@ -5065,13 +5124,23 @@
+@@ -5065,13 +5130,23 @@
        }
      }
      const spanCardsOf = () => {
@@ -160,7 +180,7 @@ index 12b2232a68..6cf8e36005 100644
          const numbered = []; let n = 0;
          (sec.words || []).forEach((w, i) => { if (!w.mark) { n += 1; numbered.push({ i, n }); } });
          const idx = numbered.filter((x) => x.n >= pl.first && x.n <= pl.last).map((x) => x.i);
-@@ -5091,7 +5160,7 @@
+@@ -5091,7 +5166,7 @@
          taken.set(sec.unit, m);
          out.push(rc);
        }
@@ -169,7 +189,7 @@ index 12b2232a68..6cf8e36005 100644
      };
      // the toggle ledger's runs of one lattice, in the HUD runs' own shape
      const hudToggleCards = new Map();
-@@ -5112,7 +5181,9 @@
+@@ -5112,7 +5187,9 @@
      HUD_LANES.lay = async () => {
        const name = hudSetFor();
        let cards = hudRunCards;
@@ -180,16 +200,29 @@ index 12b2232a68..6cf8e36005 100644
        // AN UNDERLINE IS ONE READING (the owner, 2026-10-14 and 16: a
        // double-word underline stands only where "a single license defining
        // both words" stands under it; "the weld of a non maqaf is not
-@@ -5130,7 +5201,7 @@
+@@ -5130,7 +5207,8 @@
        // a place is laid as its own cell, or stands inside the cell of a
        // longer place the store names over its words (I3: both drawn)
        const laidSpans = spans.cards.filter((rc) => { const m = RUNS_AT.get(rc.unit); const at = m && m.get(rc.idx[0]); return !!at && (at === rc || (!!at.spanKey && rc.idx.every((i) => at.idx.includes(i)))); }).length;
 -      window.__spanStore = { places: SPAN_BOOK ? SPAN_BOOK.places : 0, cards: spans.cards.length, laid: laidSpans, skipped: spans.skipped };
 +      window.__spanStore = { places: SPAN_BOOK ? SPAN_BOOK.places : 0, cards: spans.cards.length, laid: laidSpans, skipped: spans.skipped, rested: spans.rested.length };
++      LANES_SIG = spans.rested.map((pl) => `${pl.ref}:${pl.first}`).join(" "); LANES_N += 1;
        window.__hudToggles = { maqaf: HUD_TOGGLES_IX ? maqafJoin : "maqaf", runs: HUD_TOGGLES_IX ? runsPref : "own", set: name || "hud-runs", laid, file: !!HUD_TOGGLES };
        return laid;
      };
-@@ -5828,6 +5899,8 @@
+@@ -5186,8 +5264,9 @@
+       // 2026-10-03); a position the reader chose is kept
+       const placeLive = DEF_POS.some((p) => p.id === "place" && p.live);
+       defOrder = DEF_POS.some((p) => p.id === held && p.live) ? held : placeLive ? "place" : "oldest";
+-      // the pointing's default, once the order and the lattice are known
+-      settleDefaultPointing();
++      // the pointing's default, once the order and the lattice are known; the lanes were laid before it settled, and
++      // the places a row holds back under «only this pointing» are not the ones under the other positions
++      if (settleDefaultPointing() && HUD_LANES.lay) await HUD_LANES.lay();
+       const pos = DEF_POS.find((p) => p.id === defOrder);
+       // a remembered setting that reads the lattice — a lattice order, the
+       // masorah switch, names as sound — fetches the sidecar now, and the
+@@ -5828,11 +5907,17 @@
      // again, before anything has measured it; the tether starts the pop
      hud.classList.remove("pop");
      activeEl = null; hudAnchor = null; openNav = null;
@@ -198,7 +231,16 @@ index 12b2232a68..6cf8e36005 100644
      if (release) { hudMoved = false; hud.classList.remove("moved"); }
      // a card may have been opened from a whole block or from one W inside it,
      // so both marks are cleared rather than the one we happen to remember
-@@ -6389,7 +6462,9 @@
+     document.querySelectorAll(".wb.active, .wjoin.active").forEach((w) => w.classList.remove("active"));
+     document.querySelectorAll(".wr.on").forEach((r) => r.classList.remove("on"));
++    // the cells a switch moved while the card stood open follow now, by whatever road it closed (a press away,
++    // Escape, the English pill, the reset, an export's menu); once this turn is over, so a card built again in
++    // the same turn (reopenCard) keeps them owed
++    if (lanesOwed) setTimeout(() => payLanes(), 0);
+   };
+   // THE OPEN CARD, BUILT AGAIN UNDER A SWITCH THAT CHANGED WHAT IT HOLDS (the
+   // pointing, a source, the dictionary pill, the source-suggested row). The
+@@ -6389,7 +6474,9 @@
      return { text, rs: [{ ...r, reads: "default", src, layer, of, auto: layer === "second" && dfltSecondIsAuto(of) }], why: "default", src, layer, of, mId: M, own };
    };
    // (the source's line at one word, its neighbors not asked: defaultAt, below, holds a reading across words together)
@@ -209,15 +251,15 @@ index 12b2232a68..6cf8e36005 100644
      if (!DFLT_BOOK || !word || word.kq || placeYields(word)) return null;
      // the layer drawn: the first in force, or STEP's while another waits for its book file (dfltLayerNow)
      const n = WORD_N.get(word), first = dfltLayerNow();
-@@ -6415,6 +6490,7 @@
+@@ -6415,6 +6502,7 @@
        const second = leaf ? dfltSecond(first) : null;
        return (second ? at(made(second, leafLine(leaf, second), "second", first, dfltOwn(second, n, leaf))) : null) || stepOwn("first");
      }
-+    if (held) return dfltOn("step") ? stepOwn("rest", first) : null;
++    if (held) return dfltOn("step") ? stepOwn("held", first) : null;
      const t1 = lineOf(first, n);
      if (t1) return at(made(first, t1, "first", null, dfltOwn(first, n)));
      const second = dfltSecond(first);
-@@ -6508,6 +6584,12 @@
+@@ -6508,6 +6596,12 @@
    const dfltHalfHeld = (word) => (word && !defaultAt(word) && !dfltApartUnit(word) ? (dfltHalvesOf(word) ? defaultAtWord(word) : null) : null);
    // and at a word of one unit whose words stand apart, with those words (said on the card), or null
    const dfltUnitHeld = (word) => { const ws = word ? dfltApartUnit(word) : null, d = ws ? dfltAcross(word) : null; return d ? { d, ws } : null; };
@@ -230,7 +272,16 @@ index 12b2232a68..6cf8e36005 100644
    // a joined run takes the source's line only where the first source itself
    // reads every word of it (the brief's call 5); elsewhere the run's own line
    // stands, and STEP, today's line, never takes one
-@@ -6914,7 +6996,7 @@
+@@ -6570,6 +6664,8 @@
+     : r.layer === "pick" ? `${dfltPill(r.src)}’s own reading at this place (${dfltPill(r.src)} ${r.n})`
+     : r.layer === "second"
+       ? `${dfltPill(r.src)}’s own reading at this place, filling out ${dfltPill(r.of)}${r.auto ? ` — chosen for ${zone.work}` : ""}`
++      : r.layer === "held"
++        ? `${dfltPill(r.src)}’s own reading at this place, ${r.stands ? `where ${dfltPill(r.src)} spells or parts the word otherwise` : "where today’s line has no words"}: the line as it rests, ${dfltPill(r.of)} reading these words as one where they stand apart`
+       : r.layer === "rest"
+         ? `${dfltPill(r.src)}’s own reading at this place, ${r.stands ? `where ${dfltPill(r.src)} spells or parts the word otherwise` : "where today’s line has no words"}: neither ${dfltPill(r.of)} nor its second has a line here`
+       : r.src === "step" ? `${dfltPill(r.src)}’s own reading at this place, ${r.stands ? `where ${dfltPill(r.src)} spells or parts the word otherwise` : "where today’s line has no words"}`
+@@ -6914,7 +7010,7 @@
        if (w.k && shown && shown !== "—") {
          // the default source's line, or the place's own reading (a source's
          // words are printed whole, so the signs switch does not reach them)
@@ -239,7 +290,7 @@ index 12b2232a68..6cf8e36005 100644
          const drawn = at && (at.why === "default" ? at : placeShown(at));
          // the reading whole where the line drew part of it: the place's sign
          // pieces left undrawn (placeShown), or a default source's words with
-@@ -7755,7 +7837,11 @@
+@@ -7755,7 +7851,11 @@
      // opened whole yields the same way, its text still whole a scroll away
      // inside its own slot.
      delete hud.dataset.readFloor;
@@ -252,7 +303,7 @@ index 12b2232a68..6cf8e36005 100644
        const sy = (() => { const hb = hud.getBoundingClientRect().height; const k = hud.offsetHeight && hb ? hb / hud.offsetHeight : 1; return Math.abs(k - 1) < 0.002 ? 1 : k; })();
        const shortOfRow = () => { const r0 = rowsOf(read)[0]; return r0 ? r0.bottom - rowsEl.clientHeight : 0; };
        if (shortOfRow() > 0.5) { hud.classList.add("floor"); handOut(); lastResort = true; }
-@@ -10006,6 +10092,8 @@
+@@ -10006,6 +10106,8 @@
      openByLemma = !!(openTags && openPlaceWord && !openPlaceWord.tg && openPlaceWord.te && openPlaceWord.k === openKey);
      // and whether that place is a name, for the names gate (names-gate-rule-v1)
      openName = openPlaceWord ? isNamePlace(openPlaceWord) : null;
@@ -261,7 +312,18 @@ index 12b2232a68..6cf8e36005 100644
      // the tags this card is gated by, and what it takes its place for, for a check to read
      window.__cardEntry = openTags ? openTags.join(" ") : "";
      window.__cardName = openName === null ? "" : openName ? "a name" : "not a name";
-@@ -10454,7 +10542,7 @@
+@@ -10041,7 +10143,9 @@
+     {
+       const sec = el && el.closest ? el.closest("section.seg") : null;
+       const all = sec ? [...sec.querySelectorAll(".he-text .wb:not(.mark)")] : [];
+-      const host = el && el.closest ? (el.closest(".wjoin") || el.closest(".wb")) : null;
++      // (a cell with no key is no run: a word's card there is one word's, and is numbered so)
++      const cellOf = el && el.closest ? el.closest(".wjoin") : null;
++      const host = el && el.closest ? ((cellOf && (cellOf.__key || !el.closest(".wb")) ? cellOf : null) || el.closest(".wb") || cellOf) : null;
+       const mine = host ? (host.classList.contains("wjoin") ? [...host.querySelectorAll(".wb:not(.mark)")] : [host]) : [];
+       const nums = mine.map((x) => all.indexOf(x) + 1).filter((n) => n > 0);
+       if (nums.length) {
+@@ -10454,7 +10558,7 @@
      const ruledOnPieces = bin === zone && !opts.run && !!word && !!region && Array.isArray(word.pg) && word.pg.length > 1
        && !!(setRuling(mem) || placeCutOf(mem, region.k, word) || (mem.cut && mem.cut === word.pg.map((x) => (x && x.k) || "").join("+")));
      const ruledWhole = bin === zone && !opts.run && !!word && !!region && !mem.cut && !ruledOnPieces && mem.cells.has(region.k);
@@ -270,7 +332,7 @@ index 12b2232a68..6cf8e36005 100644
        && word.pg.map((x) => (x && x.k) || "").join("") === region.k ? placeLine(word) : null;
      const setCut = placeSet && placeSet.mId && index.m_sources[placeSet.mId]
        ? covers.find((c) => c.length === word.pg.length && c.every((x, i) => x.surface === word.pg[i].k)) || null : null;
-@@ -10546,7 +10634,7 @@
+@@ -10546,7 +10650,7 @@
          const ws = opts.run.words;
          const cell = ws ? cover.find((c) => c.surface === surface && c.from === c.to) : null;
          const w = cell ? ws[cell.from] : null;
@@ -279,7 +341,7 @@ index 12b2232a68..6cf8e36005 100644
        }
        if (!word) return null;
        // the set stands whole on its division, never on the whole form and
-@@ -10554,7 +10642,7 @@
+@@ -10554,7 +10658,7 @@
        if (setCut) return null;
        // the default source chosen on the row reads the word whole, as its line does;
        // at a pair where STEP's own words stand (call 4), its read half reads them, as the pair's line does
@@ -288,7 +350,7 @@ index 12b2232a68..6cf8e36005 100644
      };
      // THE CELL'S OWN PLACE, for the piece store: the word under the cell (its
      // number in the verse as written), the cell's letters [a, b] in it, and
-@@ -10819,7 +10907,7 @@
+@@ -10819,7 +10923,7 @@
      // second filling out the first where the first has none, or TAHOT's own
      // reading where neither has one and the place reads it
      const dAt = !opts.run && bin === zone && word ? defaultAt(word) : null;
@@ -297,7 +359,7 @@ index 12b2232a68..6cf8e36005 100644
      const placeHere = !opts.run && bin === zone && !!word && !!placeLine(word);
      const atPlace = !!dAt || placeHere;
      // WHOSE THE PLACE'S PIECES ARE, worked out once for the card (pieceSource:
-@@ -11370,6 +11458,9 @@
+@@ -11370,6 +11474,9 @@
        if (ruledLine(memKey, zone.gloss, word) !== null) return { n, on: null, piece: false, filling: null };
        const d = defaultAt(word), first = dfltFirstNow();
        if (d) return { n, on: d.src, piece: false, filling: d.layer === "second" || d.layer === "rest" ? d.of : null };
@@ -307,7 +369,7 @@ index 12b2232a68..6cf8e36005 100644
        // that the place's reading fills out the first is said only once the
        // first's file is here, as the label says it: before, the page cannot
        // know the first has none here (the review of 14 November 2026: «on the
-@@ -14450,8 +14541,23 @@
+@@ -14450,8 +14557,23 @@
      // the words it holds, and the ink's own joiner stands in the text either
      // way (no space is written where the scribes wrote none)
      const maqafOn = maqafJoin !== "pieces" || !HUD_TOGGLES_IX;
@@ -333,7 +395,7 @@ index 12b2232a68..6cf8e36005 100644
      if (joinPrev && host.__wjoin) {
        if (!pjPrev) { const sp = document.createElement("span"); sp.className = "wj-sp"; sp.textContent = " "; host.__wjoin.__ink.append(sp); }
        host.__wjoin.__ink.append(built.wb); host.__wjoin.__words.push(word); host.__wjoin.__runs.push((link && link.rc) || null);
-@@ -14593,7 +14699,16 @@
+@@ -14593,7 +14715,16 @@
        return { text: word.hg, rs: word.hm ? [{ posture: word.hm.lic, m: word.hm.m, y: word.hm.y, ya: "wording" }] : [], why: "headword" };
      // the default source chosen on the row (defaultAt), where it reads this
      // place; above the pointing's filter, as the place's own reading stands
@@ -351,7 +413,7 @@ index 12b2232a68..6cf8e36005 100644
      { const at = placeLine(word); if (at) return placeShown(at); }
      // THE POINTING'S OWN LEADER, AND ITS OWN ALTERNATE. Under "only this
      // pointing" the card withholds the rows whose source points the word
-@@ -15139,6 +15254,11 @@
+@@ -15139,6 +15270,11 @@
      joined.forEach((r) => standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 }));
      if (wasRuled) wb.classList.add("chosen");
      return { wb, regionEls, markEls, joined, glossParts: parts, strokeEl,
@@ -363,7 +425,18 @@ index 12b2232a68..6cf8e36005 100644
        kqStand: word.kq && regions && regions.length > 1 ? { regions, parts, table, word } : null };
    };
  
-@@ -15411,9 +15531,9 @@
+@@ -15220,6 +15356,10 @@
+       // chain's head its other half was a chain press that reopened the
+       // lead half, and the ketiv never opened
+       if (built.kqStand && !runEl.__key) { openRegion(lead, target); return; }
++      // and so any word of a cell with no key (a hidden sign's cell, words-stand-alone-rule-v1; a plain word beside
++      // such a pair): the cell is no run and has no card, so a search's hit opens the word's own card, as a press
++      // does. It opened a chain's card headed by the two words, whose rungs had no key (the review of 20 November)
++      if (!runEl.__key) { openAt(lead, target); return; }
+       const rc = built.wb.__run && chainIs(built.wb.__run, runEl) ? built.wb.__run : null;
+       // the span's own keys ride with its rungs, so the chain at the top of
+       // the word's card names the place and its inner place as the store does
+@@ -15411,9 +15551,9 @@
      // card, made from where the control lives. Closing on it would mean the
      // reader could only change the order with nothing open to see it change.
      if (hud.contains(e.target) || e.target.closest(".wb") || e.target.closest("#rail")) return;
@@ -375,7 +448,7 @@ index 12b2232a68..6cf8e36005 100644
  
    // Hebrew / English reader toggle. Same words, same order, same receipts —
    // the English mode flips the flow LTR and lets the gloss line lead.
-@@ -15835,7 +15955,7 @@
+@@ -15835,7 +15975,7 @@
          // default source answered, or answers now, is built again under the
          // order, as the card opened there is (its made pills, labels and
          // the source's own words are the source's, not this order's)
@@ -384,7 +457,16 @@ index 12b2232a68..6cf8e36005 100644
          else if (redrawReadings) redrawReadings();
          railSay();
          // a lattice order fetches its sidecar the first time it is chosen,
-@@ -17358,7 +17478,9 @@
+@@ -15932,7 +16072,7 @@
+     if (which === "maqaf") { if (!["maqaf", "pieces"].includes(id)) return; maqafJoin = id; try { localStorage.setItem(MAQAF_JOIN_KEY, id); } catch { /* the choice still stands on this page */ } }
+     else { if (!["off", "own", "all"].includes(id)) return; runsPref = id; try { localStorage.setItem(RUNS_KEY, id); } catch { /* same */ } }
+     if (!HUD_LANES.lay) return;
+-    HUD_LANES.lay().then(() => { if (HUD_LANES.relaySections) HUD_LANES.relaySections(); });
++    HUD_LANES.lay().then(() => { lanesOwed = false; lanesAll = false; if (HUD_LANES.relaySections) HUD_LANES.relaySections(); });
+   };
+   const segRow = (t, positions, current, onPick) => {
+     const seg = document.createElement("span"); seg.className = "def-order"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
+@@ -17358,7 +17498,9 @@
      for (const g of groups) {
        const t = g.text.replace(/\s+/g, " ").trim();
        if (!t) continue;
@@ -395,28 +477,47 @@ index 12b2232a68..6cf8e36005 100644
        out += t;
        prev = g;
      }
-@@ -19320,6 +19442,7 @@
+@@ -19320,6 +19462,30 @@
      return relaid;
    };
    HUD_LANES.relaySections = relayBuiltSections;
-+  payLanes = () => { if (!lanesOwed || activeEl) return; lanesOwed = false; relayBuiltSections(); };
++  // THE CELLS FOLLOW A SWITCH (words-stand-alone-rule-v1). Which places stand as cells is read from the switches
++  // as the lanes are laid (the dictionaries that rest shut, the pointing, the sources: spanCardsOf), and a sign's
++  // cell from the signs switch as a section is built. When one of them moves, the lanes are laid again, and the
++  // built sections with them where a cell moved (all: whatever the lanes say, the signs switch). Never under an
++  // open card: the lanes and the cells on the page do not part, and a press of the card's own switch keeps its
++  // card. What is owed is paid when the card closes, by whatever road (closeHud). The independent review of 20
++  // November 2026: the lanes were laid at the press and the sections at the close, and only a press away or
++  // Escape paid; the pointing moving by itself and the sources did not ask at all
++  cellsFollow = (all = false) => {
++    if (!HUD_LANES.lay) return;
++    if (all) lanesAll = true;
++    if (activeEl) { lanesOwed = true; return; }
++    const must = lanesAll, was = LANES_SIG, n0 = LANES_N;
++    lanesOwed = false; lanesAll = false;
++    const follow = () => { if (must || LANES_SIG !== was) relayBuiltSections(); };
++    const laying = HUD_LANES.lay();
++    // the lanes are laid within the call where no file is to be fetched (the license runs resting off, or their
++    // file here already), and the built sections follow in the same turn: a card closed and a word pressed at once
++    // opens on the cells as they now stand, as it did while the lanes were laid at the press. Where the lay waited
++    // on a file and a card was opened meanwhile, the card is left standing and the sections are owed whole
++    if (LANES_N !== n0) follow();
++    else laying.then(() => { if (activeEl) { lanesOwed = true; lanesAll = true; } else follow(); });
++  };
++  payLanes = () => { if (lanesOwed && !activeEl) cellsFollow(); };
    // A WORD SENSE PRESSED IS HELD BACK WITH THE REST (word-senses-rule-v1). A
    // reading the reader pressed outranks every switch (THE ORDER TOGGLES, the
    // precedence), but a word sense prints only while its switch is on. Turned
-@@ -19380,6 +19503,16 @@
+@@ -19380,6 +19546,12 @@
      if (kb) drawKinds(kb);
      railSay();
      reopenCard();
 +    // THE CELLS FOLLOW THE SWITCH (words-stand-alone-rule-v1): a place the
 +    // span store names is a cell where a row of it stands, and which rows
-+    // stand moved with this switch. The lanes are laid again; the built
-+    // sections are laid again into them at once where no card stands open,
-+    // and otherwise when the reader closes the card (payLanes), so a press
-+    // of the card's own switch keeps its card
-+    if (HUD_LANES.lay) {
-+      const was = window.__spanStore ? window.__spanStore.rested || 0 : 0;
-+      HUD_LANES.lay().then(() => { if (was || (window.__spanStore && window.__spanStore.rested)) { lanesOwed = true; payLanes(); } });
-+    }
++    // stand moved with this switch: at once where no card stands open, and
++    // otherwise when the reader closes the card, so a press of the card's
++    // own switch keeps its card (cellsFollow)
++    cellsFollow();
      // the focus the card's press asked for is the card's built again here,
      // and no other's: where laying the sections again closed the card (a
      // reading of theirs pressed, then forgotten), no card was built, and the

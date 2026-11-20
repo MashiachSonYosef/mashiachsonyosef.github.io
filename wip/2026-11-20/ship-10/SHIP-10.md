@@ -151,3 +151,9 @@ The mechanism after the mends, in one place (`cellsFollow`, beside the relay): w
 `check-words-stand-alone-v1` holds the mends now: A7 (a word of a sign's cell, landed on or pressed, its own card and address), A8 (nothing laid under an open card; paid when the English pill closes it), A9 (a source off sets aside the places it alone stands at, and on again brings them back). Nine of nine on this build.
 
 This costs one more records pass, gate and suite; a fault at 6,586 cells on every book was not one to ship and mend after.
+
+### A fault of the mend itself, caught by the quick pass before the records (16:40 UTC)
+
+Twelve checks nearest the mended behaviors were run before the long build. Eleven passed; `check-dictionary-kinds-v1` K4 failed: with a card open and the dictionaries opened from it, a card closed and another word pressed in the same instant opened the new card and then lost it. Patch 8 had made every re-lay wait a turn, so the built verses were laid again after the new card had opened, which closed it. A reader pressing Escape and then a word a moment later would not meet it; a script does, and so could a fast double press. Mended (`tools/patch-9.py`): where no file is to be fetched (the license runs resting off, which is the rest), the lanes are laid within the call and the verses follow in the same turn, as before patch 8; where a lay waited on a file and a card opened meanwhile, the card is left standing and the verses are owed. Six checks run again, all pass (the kinds check 34 of 34, the new check 9 of 9, the run cards, the first-paint check, the card-opens-on-the-line check).
+
+The records pass on the final page began after it (`S/s10w/pipe7`).
