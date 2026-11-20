@@ -28,6 +28,12 @@
 //       and every reading they add is carried by one of their sources
 //   O5  the line under every word is the same with the chips on and off
 //   O6  an overlay's reading, opened, names its overlay in the card
+//   (Since 19 November 2026 the overlays rest shut by their kind on a book of the
+//   thirty-nine (dictionary-kinds-rule-v1, the owner's twelve), a press away, and
+//   their chips stand in the rail's «Shut at rest» block, not on the strip. So
+//   every pass here opens the dictionaries that rest shut first, as a reader does
+//   with «show», and O2 reads an overlay's chips where they stand: on the strip,
+//   or in that block. What rests shut, and how, is check-dictionary-kinds-v1's.)
 //   O7  an overlay's reading is one pill: it joins the pill that prints the same and
 //       never stands beside it, so the chips add no reading printed twice (the store's
 //       own period-split pills, "womb" and "womb.", wait on the bake and are counted)
@@ -81,25 +87,29 @@ const ctx = await b.newContext({ viewport: { width: 412, height: 915 } });
 const p = await ctx.newPage();
 p.on("pageerror", (e) => { console.log("PAGE ERROR:", e.message); bad += 1; });
 const SAMPLE = 30;
+// the dictionaries that rest shut stand open for every pass (see the header): the record's version, as the page keeps it
+const KINDS_OPEN = existsSync(join("data", "dictionary-kinds-v1.json")) ? `open@${JSON.parse(readFileSync(join("data", "dictionary-kinds-v1.json"), "utf8")).version}` : null;
+const CHIPS = '.rail .row[data-toggle="sources"] .dfp[data-ids], #kindsRow .kind-chip[data-ids]';
 
 const pass = async (state) => {
   await p.goto(`${BASE}?b=${BOOK}`, { waitUntil: "networkidle" });
-  await p.evaluate(({ ovs, ids, off, ver }) => {
+  await p.evaluate(({ ovs, ids, off, ver, kinds }) => {
     for (const id of ovs) localStorage.removeItem(`fh.overlay.${id}`);
     // a reader who has seen the resting-off defaults (source-defaults-rule-v1)
     // and set every chip as this pass asks
     localStorage.setItem("fh.sources.defaults", ver);
     localStorage.setItem("fh.sources.off", JSON.stringify(off ? ids : []));
-  }, { ovs: OVERLAYS, ids: OV_IDS, off: state === "off", ver: DEFAULTS_VER });
+    if (kinds) localStorage.setItem("fh.kinds", kinds);
+  }, { ovs: OVERLAYS, ids: OV_IDS, off: state === "off", ver: DEFAULTS_VER, kinds: KINDS_OPEN });
   await p.reload({ waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   // the sources row is drawn once the page's records have arrived, which can
   // be after the first words are on screen: wait for its chips, not a clock
-  await p.waitForFunction(() => document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp').length > 0, null, { timeout: 20000 }).catch(() => {});
+  await p.waitForFunction((sel) => document.querySelectorAll(sel).length > 0, CHIPS, { timeout: 20000 }).catch(() => {});
   await p.waitForTimeout(500);
   const lines = await p.evaluate(() => [...document.querySelectorAll(".wb > .g, .wjoin > .g")].slice(0, 400).map((g) => g.textContent));
-  const meta = await p.evaluate(() => ({ overlays: window.__overlays || [],
-    chips: [...document.querySelectorAll('.rail .row[data-toggle="sources"] .dfp[data-ids]')].map((c) => ({ ids: c.dataset.ids.split(" "), on: c.getAttribute("aria-pressed") === "true" })) }));
+  const meta = await p.evaluate((sel) => ({ overlays: window.__overlays || [], kinds: window.__kinds || null,
+    chips: [...document.querySelectorAll(sel)].map((c) => ({ ids: c.dataset.ids.split(" "), on: c.getAttribute("aria-pressed") === "true" })) }), CHIPS);
   const cards = [];
   const n = await p.evaluate(() => document.querySelectorAll("section.seg .he-text .wb").length);
   for (let i = 0; i < Math.min(SAMPLE, n); i += 1) {
@@ -167,7 +177,7 @@ const pick = on.cards.findIndex((c) => c.ov.some(Boolean));
 if (pick < 0) check("O6  an overlay's reading names its overlay in the card", false, `no overlay reading among the first ${SAMPLE} cards of ${BOOK}`);
 else {
   await p.goto(`${BASE}?b=${BOOK}`, { waitUntil: "networkidle" });
-  await p.evaluate((ver) => { localStorage.setItem("fh.sources.defaults", ver); localStorage.setItem("fh.sources.off", "[]"); }, DEFAULTS_VER);
+  await p.evaluate(({ ver, kinds }) => { localStorage.setItem("fh.sources.defaults", ver); localStorage.setItem("fh.sources.off", "[]"); if (kinds) localStorage.setItem("fh.kinds", kinds); }, { ver: DEFAULTS_VER, kinds: KINDS_OPEN });
   await p.reload({ waitUntil: "networkidle" });
   await p.waitForSelector("section.seg .he-text .wb");
   const want = on.cards[pick].pool[on.cards[pick].ov.findIndex(Boolean)];

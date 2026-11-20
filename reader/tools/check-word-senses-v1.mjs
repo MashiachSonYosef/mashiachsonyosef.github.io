@@ -242,6 +242,13 @@ const openAt = async (p, q, test) => { await p.keyboard.press("Escape"); await p
 // W5's steps on a page standing open at `at`, a word whose word senses the card holds back: a word sense pressed,
 // a reading pressed on a word beside it, the switch off; the line under it is read before and after
 const w5Run = async (p, at, where) => {
+  // the reset (W4) shuts the dictionaries that rest shut again, Jastrow with them: they are opened again from the
+  // rail's switch, as a reader opens them, where the page holds them shut
+  if (await p.evaluate(() => window.__kinds === "shut" && !!window.__kindsHere)) {
+    await p.evaluate(() => { const b = document.querySelector('#kindsRow .kinds-opt[data-kinds="open"]'); if (b) b.click(); });
+    await p.waitForFunction(() => window.__kinds === "open", null, { timeout: 15000 }).catch(() => {});
+    await p.waitForTimeout(800);
+  }
   const atRest = await lineAt(p, at);
   await openAt(p, at, (s) => s.open && !!s.btn);
   await press(p);
@@ -304,7 +311,10 @@ try {
       // the records of word senses the first page asks for, and how each was answered
       if (w2.said === null) p.on("response", (q) => { const u = new URL(q.url()); if (u.pathname.startsWith("/data/word-senses/")) w2.asked.push(`${u.pathname} ${q.status()}`); });
       await p.addInitScript(() => { try { if (!sessionStorage.getItem("ws-check")) { localStorage.clear(); sessionStorage.setItem("ws-check", "1"); } } catch { /* a page with no memory is a first visit */ } });
-      await p.goto(`${tree.base}/zone.html?b=${id}`, { waitUntil: "networkidle", timeout: 120000 });
+      // the dictionaries that rest shut opened for the load (?kinds=open, as a reader's «show» opens them): Jastrow,
+      // whose rows the word senses are, rests shut on the thirty-nine books since 19 November 2026 (the owner's
+      // twelve), and the switch of word senses acts on its rows the same whether they stand at rest or were opened
+      await p.goto(`${tree.base}/zone.html?b=${id}&kinds=open`, { waitUntil: "networkidle", timeout: 120000 });
       await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
       if (w2.said === null) {
         w2.said = await p.evaluate(() => window.__senses); w2.fit = await p.evaluate(() => window.__sensesFit); w2.kept = await p.evaluate(() => { try { return localStorage.getItem("fh.senses"); } catch { return null; } });
@@ -402,7 +412,7 @@ try {
     try {
       const p = await ctx.newPage();
       await p.addInitScript(() => { try { if (!sessionStorage.getItem("ws-check5")) { localStorage.clear(); sessionStorage.setItem("ws-check5", "1"); } } catch { /* a page with no memory is a first visit */ } });
-      await p.goto(`${tree.base}/zone.html?b=${w5.work}&default=ubs`, { waitUntil: "networkidle", timeout: 120000 });
+      await p.goto(`${tree.base}/zone.html?b=${w5.work}&default=ubs&kinds=open`, { waitUntil: "networkidle", timeout: 120000 });
       await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
       // the page says when every line stands as the sources in force draw it (window.__default.ready: under UBS once
       // its book file is here; failed where it could not be fetched); a page that does not say so in 30 s is a fault
@@ -452,7 +462,7 @@ const legendPlaces = (id, most) => {
         // the pointing lifted ("keep"), so Jastrow's records reach the cards where the verse points the word
         // otherwise than Jastrow's headword; the legend is asked of the record printed, whatever withheld others
         await p.addInitScript(() => { try { if (!sessionStorage.getItem("ws-check6")) { localStorage.clear(); localStorage.setItem("fh.pointing-stands-2026-11-06", "1"); localStorage.setItem("fh.masorah", "keep"); sessionStorage.setItem("ws-check6", "1"); } } catch { /* a first visit */ } });
-        await p.goto(`${tree6.base}/zone.html?b=${id}`, { waitUntil: "networkidle", timeout: 120000 });
+        await p.goto(`${tree6.base}/zone.html?b=${id}&kinds=open`, { waitUntil: "networkidle", timeout: 120000 });
         await p.waitForSelector("section.seg .he-text .wb", { timeout: 60000 });
         for (const at of places) {
           if (w6.shown.length >= 3 || w6.cards >= 80) break;

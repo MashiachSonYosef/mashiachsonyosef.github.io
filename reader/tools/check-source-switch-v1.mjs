@@ -91,8 +91,11 @@ const modelOf = (surface, k, tags = null, np = false) => {
 const ovRec = existsSync("data/overlay-book-counts-v1.json") ? JSON.parse(readFileSync("data/overlay-book-counts-v1.json", "utf8")) : null;
 const ovBook = Object.fromEntries(Object.entries((ovRec && ovRec.books && ovRec.books[ZONE]) || {})
   .filter(([, e]) => e.carries > 0 && (existsSync(`data/overlays/${e.overlay}/index.json`) || existsSync(`data/${e.overlay}/index.json`))));
-const ovIds = new Set(Object.keys(ovBook));
-const ovKeys = new Set(Object.entries(ovBook).map(([id, e]) => e.key || id));
+// (an overlay's source the record of dictionary kinds rests shut whole on a
+// book at rest stands in the rail's «Shut at rest» block, not on the strip:
+// the owner's twelve, 19 November 2026; read off the page once it has loaded)
+let ovIds = new Set(Object.keys(ovBook));
+let ovKeys = new Set(Object.entries(ovBook).map(([id, e]) => e.key || id));
 
 const BASE = (defaultZoneUrl()).split("?")[0];
 const b = await pw.chromium.launch(launchOptions());
@@ -111,6 +114,13 @@ await p.goto(`${BASE}?b=${ZONE}`, { waitUntil: "networkidle" });
 await p.waitForSelector("section.seg .he-text .wb");
 await p.waitForTimeout(600);
 console.log(`— ${ZONE} —`);
+{
+  const shutWhole = new Set(await p.evaluate(() => (window.__kindsHere ? window.__restsOffIds || [] : [])));
+  const kept = Object.entries(ovBook).filter(([id]) => !shutWhole.has(id));
+  if (kept.length !== Object.keys(ovBook).length) console.log(`  --  ${Object.keys(ovBook).length - kept.length} overlay source(s) rest shut whole here and stand in the «Shut at rest» block, not on the strip`);
+  ovIds = new Set(kept.map(([id]) => id));
+  ovKeys = new Set(kept.map(([id, e]) => e.key || id));
+}
 
 // S0 · THE SOURCES THAT REST OFF (source-defaults-rule-v1). A fresh reader is
 // given the record's defaults: the sources it rests off are off, every other
@@ -214,7 +224,10 @@ check("S1b every chip wears a short name from the record",
 
 // S1c · THREE SHELVINGS, ONE STRIP. The chooser offers century, language and
 // license; under each the same chips stand with the same ids — a shelving is a
-// way of reading the strip, not a different set of switches.
+// way of reading the strip, not a different set of switches. A shelving may
+// hold every chip on one shelf (since 19 November 2026 only the Bible
+// dictionaries stand on the strip of a book at rest, so «language» is one
+// shelf, the Bible's Hebrew), and at least one shelving divides the strip.
 const under = async (id) => p.evaluate((sid) => {
   const row = document.querySelector('.rail .row[data-toggle="sources"]');
   const b = row && row.querySelector(`.shelve-opt[data-shelving="${sid}"]`); if (!b) return null;
@@ -227,7 +240,8 @@ for (const id of ["century", "language", "license"]) byShelving[id] = await unde
 const sameChips = ["language", "license"].every((id) => byShelving[id] && byShelving.century && JSON.stringify(byShelving[id].chips) === JSON.stringify(byShelving.century.chips));
 check("S1c the chooser offers three shelvings and each regroups the same chips with the same ids",
   rail && JSON.stringify(rail.shelvings) === JSON.stringify(["century", "language", "license"]) && sameChips
-    && Object.values(byShelving).every((v) => v && v.shelves.length >= 2 && v.shelves.reduce((a, x) => a + x.n, 0) === rail.n),
+    && Object.values(byShelving).every((v) => v && v.shelves.length >= 1 && v.shelves.reduce((a, x) => a + x.n, 0) === rail.n)
+    && Object.values(byShelving).some((v) => v && v.shelves.length >= 2),
   Object.entries(byShelving).map(([k, v]) => `${k}: ${v ? v.shelves.map((x) => `${x.title} ${x.n}`).join(" · ") : "?"}`).join("  |  "));
 
 // S1d · the century shelves are cut where the reading order cuts its era

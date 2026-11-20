@@ -27,7 +27,9 @@
 //       them, on the tree this check serves itself, the shortest first among those whose recordings hold all three
 //       shapes, until runs and laid lines with a gap have both been judged; once a work's lines are at rest, every
 //       separator of every run and every laid line shows "+" exactly where a joiner stands between two pieces that
-//       print, and shows nothing beside a gap; every gap keeps its slot; and a joiner the page does not draw moves
+//       print, and shows nothing beside a gap; every gap stays in its row and takes no width there (the owner,
+//       19 November 2026, reading Isaiah 2:22: «spacing», at «from  +  humankind»: the slot a gap kept from 14
+//       November read as a fault, and closed); and a joiner the page does not draw moves
 //       nothing it draws: each run is fitted to its column again by the page's own redraw with the hidden joiners in
 //       place and with them taken out, and comes out the same size both times (on 14 November 2026 a hidden joiner
 //       was counted as a second row of its run, and every run that holds a gap was drawn at four fifths of its size)
@@ -104,11 +106,12 @@ check("G2  the rule is met where it matters: a run's cell that is a gap, a gap a
 
 // ---- G3: the joiners between the pieces the page lays, read on the page ----------------------------------------
 /** IN THE PAGE. Every separator of every maqaf run laid in cells and of every line laid in its pieces, judged by the
- *  rule against the pieces beside it; and every gap, whether it keeps its slot. Handed to the browser whole. */
+ *  rule against the pieces beside it; and every gap, whether it stays in its row and takes no width there. Handed
+ *  to the browser whole. */
 const joinersInPage = () => {
   const G = String.fromCharCode(0x200b);
   const showing = (el) => getComputedStyle(el).display !== "none";
-  const r = { signs: window.__signs || null, runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithoutSlot: 0, faults: [] };
+  const r = { signs: window.__signs || null, runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithSlot: 0, faults: [] };
   const where = (el) => { const sec = el.closest("section.seg"); return (sec && sec.querySelector(".vnum") || {}).textContent || "?"; };
   const judge = (box, pieceClass, sepClass, joiner) => {
     const kids = [...box.children];
@@ -116,7 +119,14 @@ const joinersInPage = () => {
     const gap = pieces.map((k) => k.classList.contains("gap") || (k.textContent || "").trim() === G);
     let at = 0;
     for (const k of kids) {
-      if (k.classList.contains(pieceClass)) { if (gap[at] && (!showing(k) || k.getBoundingClientRect().width <= 0)) r.gapsWithoutSlot += 1; at += 1; continue; }
+      if (k.classList.contains(pieceClass)) {
+        // a gap stays in the row (its piece is drawn), and takes no width there: no slot (19 November 2026)
+        if (gap[at] && (!showing(k) || k.getBoundingClientRect().width > 0.5)) {
+          r.gapsWithSlot += 1;
+          if (r.faults.length < 6) r.faults.push(`${where(box)}: the gap at piece ${at + 1} ${!showing(k) ? "is not drawn in its row" : `keeps a slot ${Math.round(k.getBoundingClientRect().width * 10) / 10}px wide`}`);
+        }
+        at += 1; continue;
+      }
       if (!k.classList.contains(sepClass)) continue;
       r.separators += 1;
       const stands = !gap[at] && gap.slice(0, at).some((g) => !g);
@@ -171,7 +181,7 @@ const blobsDrawn = async (p) => {
   await p.waitForFunction(() => !window.__tiePending, null, { timeout: 60000 });
   return p.evaluate(blobsInPage);
 };
-const g3 = { opened: [], runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithoutSlot: 0, faults: [], notOff: [], refitted: 0, noRedraw: [] };
+const g3 = { opened: [], runs: 0, runsWithGap: 0, laid: 0, laidWithGap: 0, separators: 0, gapsWithSlot: 0, faults: [], notOff: [], refitted: 0, noRedraw: [] };
 /** IN THE PAGE. Every run's line, where it stands and the size it is drawn at. */
 const runSizes = () => [...document.querySelectorAll(".he-text .wjoin > .g.parts")].map((g) => { const sec = g.closest("section.seg"); return [(sec && sec.querySelector(".vnum") || {}).textContent || "?", getComputedStyle(g).fontSize]; });
 const candidates = shapes.filter((x) => x.cell > 0 && x.atEnd > 0 && x.between > 0).sort((a, b) => a.lines - b.lines || (a.work < b.work ? -1 : 1));
@@ -209,7 +219,7 @@ try {
           if (size !== other && g3.faults.length < 12) g3.faults.push(`${work} ${label}: a run drawn at ${size} with the joiners the page hides and at ${other} without them`);
         });
       }
-      for (const k of ["runs", "runsWithGap", "laid", "laidWithGap", "separators", "gapsWithoutSlot"]) g3[k] += got[k];
+      for (const k of ["runs", "runsWithGap", "laid", "laidWithGap", "separators", "gapsWithSlot"]) g3[k] += got[k];
       for (const x of got.faults) if (g3.faults.length < 12) g3.faults.push(`${work} ${x}`);
     } finally { await ctx.close(); }
   }
@@ -225,13 +235,13 @@ try {
     } finally { await ctx.close(); }
   }
 } finally { await browser.close(); await tree.close(); }
-check("G3  on the page, each separator between the pieces of a run or a laid line shows only between two pieces that print, every gap keeps its slot, and a hidden joiner moves nothing drawn",
-  g3.opened.length > 0 && !g3.notOff.length && !g3.noRedraw.length && g3.runsWithGap > 0 && g3.laidWithGap > 0 && g3.refitted > 0 && !g3.faults.length && !g3.gapsWithoutSlot,
+check("G3  on the page, each separator between the pieces of a run or a laid line shows only between two pieces that print, every gap stays in its row and takes no width there, and a hidden joiner moves nothing drawn",
+  g3.opened.length > 0 && !g3.notOff.length && !g3.noRedraw.length && g3.runsWithGap > 0 && g3.laidWithGap > 0 && g3.refitted > 0 && !g3.faults.length && !g3.gapsWithSlot,
   !g3.opened.length ? "no work's recording holds all three shapes of a gap, so no page was opened"
     : g3.notOff.length ? `the signs switch was not off: ${first(g3.notOff)}`
     : g3.noRedraw.length ? `the page offers no __drawAllTies to fit its runs again: ${first(g3.noRedraw)}`
     : g3.faults.length ? `${g3.faults.length}${g3.faults.length >= 12 ? " or more" : ""} · ${first(g3.faults, 3).split(GAP).join("[gap]")}`
-    : `${g3.opened.join(", ")} · ${nf(g3.runs)} runs, ${nf(g3.runsWithGap)} with a gap · ${nf(g3.laid)} laid lines, ${nf(g3.laidWithGap)} with a gap · ${nf(g3.separators)} separators · ${nf(g3.gapsWithoutSlot)} gaps without their slot · ${nf(g3.refitted)} runs fitted again, each the same size without the hidden joiners`);
+    : `${g3.opened.join(", ")} · ${nf(g3.runs)} runs, ${nf(g3.runsWithGap)} with a gap · ${nf(g3.laid)} laid lines, ${nf(g3.laidWithGap)} with a gap · ${nf(g3.separators)} separators · ${nf(g3.gapsWithSlot)} gaps keeping a slot or not drawn · ${nf(g3.refitted)} runs fitted again, each the same size without the hidden joiners`);
 check("G4  a hidden sign's letters wear a blob of their own, closed around their ink, tied to no English; every other blob reaches over its English",
   g4.readers.length >= 2 && g4.gapBlobs > 0 && g4.gapPieces > 0 && !g4.faults.length,
   g4.readers.length < 2 ? `blobs were judged under ${g4.readers.length} reader(s), not both: ${first(g4.readers)}`

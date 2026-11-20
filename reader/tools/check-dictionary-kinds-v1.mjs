@@ -24,9 +24,13 @@
 //       is silent; each resting entry's words, without a Hebrew letter; the
 //       scope). Every source key of the store's index is filed by exactly
 //       one family of the store and every family's keys are its index's,
-//       each overlay's likewise in families of that overlay, and every
-//       resting entry shuts keys of the store and names no family beside it
-//       (restsOffOf refuses a record that does not). Every record a
+//       each overlay's likewise in families of that overlay (every overlay
+//       on this disk is filed), and every resting entry shuts keys of the
+//       store or of an overlay beside it (restsOffOf refuses a record that
+//       does not, over the store's index and over the index the page joins:
+//       the store's ids and the overlays' under their own, each marked with
+//       its overlay; the span store and the piece store are packagings and
+//       are never asked; the owner's twelve, 19 November 2026). Every record a
 //       family's «where» names is in this tree. Every fact a resting entry
 //       names, and every fact it stands at, is a key of the facts slot
 //       (FACTS_WRITTEN_BY of tools/gloss-store-v1.mjs). Every resting entry
@@ -47,10 +51,11 @@
 //       row of every M id of the index, and of ids it does not name, bare
 //       and with facts, with no place and at places, under the record and
 //       under records made here to reach what the record of the day does not
-//       (two entries over one row, a fact equal to a value, a fact that is a
+//       (an entry naming an overlay's family, two entries over one row, a fact equal to a value, a fact that is a
 //       list holding one, an entry that stands at the places its rows name,
 //       alone and with an entry after it); they give the same ids over the
-//       index in either order; and they refuse the records the module
+//       index in either order, the store's and the one the page joins, over
+//       which every probe is asked again; and they refuse the records the module
 //       refuses, and a place that is not a place's name. The module's own
 //       two are lifted out of its source the same way and run first, which
 //       proves they reach nothing outside themselves. Until the page carries
@@ -95,7 +100,8 @@
 //       focus; a reload keeps it open, and the rail's chips are switches;
 //       reset shuts them again and leaves the reader's own source switches
 //       as they were; the rail's block stands with its chips shut, one per
-//       source the stamp holds shut whole, and the rail's line counts as off
+//       source the stamp holds shut whole and one per source beside the
+//       store the rule shuts whole where it gives something on the book, and the rail's line counts as off
 //       only the reader's own; the rail's switch pressed from the keyboard
 //       keeps the focus; and a reading the press brought, pressed and then
 //       shut away with its card, leaves no focus owed to the next card a
@@ -205,13 +211,30 @@ check("K1  the record is one of its schema: its kinds, its families and their ow
 
 const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
 const mSources = index.m_sources;
-let rule = null;
+// THE INDEX AS THE PAGE JOINS IT (zone.html, OVERLAY_DEFS): the store's ids, then each overlay's under its own ids,
+// marked with the overlay it stands in, in the page's order; a store id is never overwritten. The dictionaries beside
+// the store (data/overlays/<id>/) are filed in the record and rest shut by their kind; the span store and the piece
+// store are packagings, never filed and never asked (the owner's twelve, 19 November 2026)
+const OVERLAY_DIRS = [["jastrow", join("data", "overlays", "jastrow")], ["samaritan", join("data", "overlays", "samaritan")], ["span-store", join("data", "span-store")], ["piece-store", join("data", "piece-store")]];
+const JOINED = { ...mSources };
+for (const [o, dir] of OVERLAY_DIRS) {
+  const pth = join(READER, dir, "index.json");
+  if (!existsSync(pth)) continue;
+  for (const [id, s] of Object.entries(JSON.parse(readFileSync(pth, "utf8")).m_sources || {})) if (!JOINED[id]) JOINED[id] = { ...s, overlay: o };
+}
+let rule = null, ruleJoined = null;
 {
   const faults = [];
   try { rule = restsOffOf(rec, mSources, factsOf); } catch (e) { faults.push(e.message); }
+  try { ruleJoined = restsOffOf(rec, JOINED, factsOf); } catch (e) { faults.push(`over the index the page joins: ${e.message}`); }
   const indexKeys = new Set(Object.values(mSources).map((s) => s.key));
   for (const f of store) for (const k of f.keys) if (!indexKeys.has(k)) faults.push(`${f.id} files ${k}, which the store's index does not name`);
-  const overlays = new Map();   // overlay -> the keys its index names
+  const overlays = new Map();   // overlay -> the keys its index names: every overlay on this disk, and every one a family names
+  const ovDir = join(READER, "data", "overlays");
+  for (const o of existsSync(ovDir) ? readdirSync(ovDir).filter((d) => existsSync(join(ovDir, d, "index.json"))).sort() : []) {
+    overlays.set(o, new Set(Object.values(JSON.parse(readFileSync(join(ovDir, o, "index.json"), "utf8")).m_sources || {}).map((s) => s.key)));
+    if (!rec.families.some((f) => f.shelf === "overlay" && f.overlay === o)) faults.push(`the overlay ${o} stands on this disk and no family of the record is filed in it`);
+  }
   for (const f of rec.families.filter((x) => x.shelf === "overlay")) {
     if (!overlays.has(f.overlay)) {
       const p = join(READER, "data", "overlays", f.overlay, "index.json");
@@ -223,8 +246,8 @@ let rule = null;
   }
   for (const [o, keys] of overlays) for (const k of keys || []) if (!rec.families.some((f) => f.shelf === "overlay" && f.overlay === o && f.keys.includes(k))) faults.push(`the overlay ${o}'s key ${k} is filed by no family of it`);
   const nOverlayKeys = [...overlays.values()].reduce((n, s) => n + (s ? s.size : 0), 0);
-  check("K1  every source key of the store's index is filed by exactly one family of the store, every family's keys are its index's (an overlay's in its own), and every resting entry shuts keys of the store and names no family beside it", faults.length === 0,
-    faults.length ? first(faults) : `${indexKeys.size} keys of the store (${Object.keys(mSources).length} M ids) in ${store.length} families · ${nOverlayKeys} keys of ${overlays.size} overlays in ${rec.families.length - store.length} families`);
+  check("K1  every source key of the store's index is filed by exactly one family of the store, every family's keys are its index's, every overlay on this disk is filed and each overlay's keys in its own families, and every resting entry shuts keys of the store or of an overlay beside it, over the store's index and over the index the page joins", faults.length === 0,
+    faults.length ? first(faults) : `${indexKeys.size} keys of the store (${Object.keys(mSources).length} M ids) in ${store.length} families · ${nOverlayKeys} keys of ${overlays.size} overlays in ${rec.families.length - store.length} families · ${restsOffIds(rec, JOINED).length - restsOffIds(rec, mSources).length} ids of the overlays shut whole over the joined index`);
 }
 {
   const missing = [];
@@ -399,6 +422,7 @@ if (rule && own.fns) {
     ["a fact that is a list holding a value", { ...rec, rests_off: [probe("probe-labels-slang", { families: ["english-wiktionary-hebrew-entries", "hebrew-wiktionary"], fact: "labels", has: "slang" })] }],
     ["an entry that stands at the places its rows name", { ...rec, rests_off: [standing] }],
     ["an entry that stands at places, and an entry after it", { ...rec, rests_off: [standing, probe("probe-hebrew-entries", { families: ["english-wiktionary-hebrew-entries"] })] }],
+    ["an entry naming an overlay's family", { ...rec, rests_off: [probe("probe-jastrow", { families: ["jastrow"] })] }],
   ];
   // a row of every M id of the index, and of ids it does not name, bare and with facts each of those records reads,
   // asked with no place and at places: one its facts name, one they do not
@@ -407,19 +431,20 @@ if (rule && own.fns) {
     { collocations: ["a b"], picked_at: ["genesis 1:1:1"] }, { collocations: ["a b"] }, { collocations: ["a b"], picked_at: [] }];
   const PLACES = [null, "genesis 1:1:1", "exodus 2:3:4"];
   const probes = [];
-  for (const m of [...Object.keys(mSources), "M0", "MSAM2", "PIECE:TAHOT", "M197"]) for (const f of FACTS)
+  for (const m of [...new Set([...Object.keys(JOINED), "M0", "MSAM2", "PIECE:TAHOT", "M197"])]) for (const f of FACTS)
     probes.push([`${m} with ${f ? JSON.stringify(f) : "no facts"}`, f ? [null, null, null, m, null, null, null, null, null, null, f] : [null, null, null, m]]);
   // the index in its own order and turned around: the ids come out in one order whatever the index's
-  const indexes = [["the index", mSources], ["the index turned around", Object.fromEntries(Object.entries(mSources).reverse())]];
+  const indexes = [["the index", mSources], ["the index turned around", Object.fromEntries(Object.entries(mSources).reverse())],
+    ["the index the page joins", JOINED], ["the joined index turned around", Object.fromEntries(Object.entries(JOINED).reverse())]];
   // records the module refuses: a key the store's index names that no family files, a family beside the store in an
   // entry, an entry carrying a field the rule does not read, an entry standing at a field that is not a name, an entry
   // standing at places beside no fact
   const lacking = { ...rec, families: rec.families.filter((f) => f.id !== store[0].id) };
-  const besides = { ...rec, rests_off: [{ ...rec.rests_off[0], families: [rec.families.find((f) => f.shelf === "overlay").id] }] };
+  const unheld = { ...rec, rests_off: [{ ...rec.rests_off[0], families: ["no-such-family-of-the-record"] }] };
   const unread = { ...rec, rests_off: [{ ...rec.rests_off[0], except: ["M1"] }] };
   const standsAtNoName = { ...rec, rests_off: [{ ...standing, stands_at: 5 }] };
   const standsAtNoFact = { ...rec, rests_off: [probe("probe-hebrew-entries-stand", { families: ["english-wiktionary-hebrew-entries"], stands_at: "picked_at" })] };
-  const refusals = [["a key filed by no family", lacking], ["an overlay's family in an entry", besides], ["a field the rule does not read", unread],
+  const refusals = [["a key filed by no family", lacking], ["a family the record does not hold in an entry", unheld], ["a field the rule does not read", unread],
     ["an entry standing at a field that is not a name", standsAtNoName], ["an entry standing at places beside no fact", standsAtNoFact]];
   const throws = (fn) => { try { fn(); return false; } catch { return true; } };
   // a place that is not a place's name is refused by the rule itself
@@ -432,6 +457,11 @@ if (rule && own.fns) {
       try { theirs = fns.restsOffOf(r, mSources, factsOf); } catch (e) { faults.push(`under ${rname} it refuses: ${e.message}`); continue; }
       const mine = restsOffOf(r, mSources, factsOf);
       for (const [what, row] of probes) for (const place of PLACES) { const t = answer(theirs, row, place), m = answer(mine, row, place); if (t !== m) faults.push(`under ${rname}, ${what}${place ? ` at ${place}` : ""}: ${t} where the module says ${m}`); }
+      // and over the index the page joins, where the overlays' own ids are asked too
+      let theirsJ;
+      try { theirsJ = fns.restsOffOf(r, JOINED, factsOf); } catch (e) { faults.push(`under ${rname}, over the joined index, it refuses: ${e.message}`); continue; }
+      const mineJ = restsOffOf(r, JOINED, factsOf);
+      for (const [what, row] of probes) for (const place of PLACES) { const t = answer(theirsJ, row, place), m = answer(mineJ, row, place); if (t !== m) faults.push(`under ${rname}, over the joined index, ${what}${place ? ` at ${place}` : ""}: ${t} where the module says ${m}`); }
       for (const p of NOT_PLACES) if (!throws(() => theirs(probes[0][1], p)) || !throws(() => mine(probes[0][1], p))) faults.push(`under ${rname}, the place ${JSON.stringify(p)} is not refused by both`);
     }
     for (const [iname, ix] of indexes) {
@@ -443,7 +473,7 @@ if (rule && own.fns) {
     for (const [what, r] of refusals) if (!throws(() => fns.restsOffOf(r, mSources, factsOf)) || !throws(() => restsOffOf(r, mSources, factsOf))) faults.push(`a record with ${what} is not refused by both`);
     return faults;
   };
-  const said = (cname) => `${nf(rows)} rows of the store under the record (${nf(askedAt)} asks at the places rows name and outside them), and ${nf(probes.length)} probe rows at ${PLACES.length} places (none among them) under each of ${records.length} records, answered alike · the same ${restsOffIds(rec, mSources).length} ids shut whole over the index in either order · ${refusals.length} records and ${NOT_PLACES.length} places refused by both`;
+  const said = (cname) => `${nf(rows)} rows of the store under the record (${nf(askedAt)} asks at the places rows name and outside them), and ${nf(probes.length)} probe rows at ${PLACES.length} places (none among them) under each of ${records.length} records over the store's index and over the one the page joins, answered alike · the same ${restsOffIds(rec, mSources).length} ids shut whole over the store's index in either order, ${restsOffIds(rec, JOINED).length} over the joined one · ${refusals.length} records and ${NOT_PLACES.length} places refused by both`;
   const o = judge("the module's own block", own.fns);
   check("K2  the module's rule runs on its own, lifted out of its source as the page's copy is, and answers as the module does", o.length === 0,
     o.length ? first(o) : `${said("the module's own block")} · ids ${first(restsOffIds(rec, mSources), 6)}`);
@@ -720,7 +750,7 @@ if (rule) {
   // the sources off for a reader who has set nothing: the record of defaults, over the store's index and the overlays'
   const overlayIx = existsSync(join(READER, "data", "overlays")) ? readdirSync(join(READER, "data", "overlays")).sort().map((d) => join(READER, "data", "overlays", d, "index.json")).filter(existsSync).map((f) => JSON.parse(readFileSync(f, "utf8"))) : [];
   const OFF_AT_REST = [...restingOff(READER, [index, ...overlayIx])].sort();
-  const IDS = restsOffIds(rec, mSources);
+  const IDS = restsOffIds(rec, JOINED);
   if (!BOOK) check("K4  the page at rest", false, "no book the door files rests shut on this shelf");
   else {
     const picks = wordsOf(BOOK, 8), others = OTHER ? wordsOf(OTHER, 4) : [];
@@ -732,6 +762,13 @@ if (rule) {
       const ctx = await browser.newContext({ viewport: { width: 412, height: 915 } });
       const p = await ctx.newPage();
       p.on("pageerror", (e) => errors.push(String(e && e.message)));
+      // the BSB's file for the book (source suggested) is held until the press below has been pressed: its landing
+      // builds the first card again, and a landing after a «show» dropped the press's focus to the page (20 November
+      // 2026: K4 failed on a slow machine and passed on a quiet one). Held, the landing comes after the press every run.
+      let releaseSuggested = () => {};
+      const suggestedHeld = new Promise((r) => { releaseSuggested = r; });
+      let suggestedAsked = 0;
+      await p.route((u) => u.pathname.endsWith(`/data/source-suggested/${BOOK}.json`), async (r) => { suggestedAsked += 1; await suggestedHeld; await r.continue(); });
       // where the page says it stands: the switch, the record, the reader's sources, the live asks, the rail
       const stateOf = () => p.evaluate(() => {
         const tok = document.querySelector('#railNow [data-toggle="sources"]');
@@ -818,7 +855,15 @@ if (rule) {
         await pressSeen();
         await p.waitForFunction(() => { const b = document.querySelector("#hud .kinds-switch"); return !!b && b.getAttribute("aria-pressed") === "true"; }, null, { timeout: 15000 }).catch(() => {});
         await p.waitForTimeout(500);
+        // the BSB's file lands now, after the press, and the card it builds again is the card read below
+        const landedAfter = suggestedAsked > 0;
+        releaseSuggested();
+        if (landedAfter) {
+          await p.waitForFunction(() => !!document.querySelector("#hud .r-sug"), null, { timeout: 15000 }).catch(() => {});
+          await p.waitForTimeout(500);
+        }
         const opened = await cardNow();
+        opened.landing = landedAfter ? `the BSB's file landed after the press${(await p.evaluate(() => !!document.querySelector("#hud .r-sug"))) ? " and its line stands on the card built again" : ", and no line of it stands on the card"}` : "the BSB's file was not asked";
         const s1 = await stateOf();
         const wasKey = new Set(rest.pills.map(([t]) => readingKey(t)));
         const brought = opened.pills.filter(([t]) => !wasKey.has(readingKey(t)));
@@ -828,9 +873,10 @@ if (rule) {
           `${brought.length} pills came for ${rest.held} held back (${brought.slice(0, 4).map(([t, by]) => `«${t.slice(0, 30)}» [${by}]`).join(", ")}${brought.length > 4 ? ", …" : ""}) · ${brought.filter(([, , d]) => d === "1").length} dotted · «${opened.sw ? opened.sw.text : "no press"}» pressed ${opened.sw ? opened.sw.pressed : "-"} · __kinds ${s1.kinds} · kept ${s1.kept}`);
         // and the card built again shows its press, which holds the focus the press had: a «show» that made the card
         // tight folded its own «hide» away, and the focus fell to the page (the review of 15 November 2026)
-        check("K4  after the press, the card built again shows its press, pressed, where a reader can press it, and it holds the focus",
+        // and so does the card a file landing after the press builds again (the BSB's, held above until the press)
+        check("K4  after the press, the card built again shows its press, pressed, where a reader can press it, and it holds the focus, a file landing after the press too",
           opened.seen.length === 1 && opened.seen[0].where === (opened.tight ? "label" : "line") && opened.seen[0].pressed === "true" && opened.seen[0].focused,
-          sayPress(opened));
+          `${sayPress(opened)} · ${opened.landing}`);
         await p.reload({ waitUntil: "networkidle" });
         await settle();
         const s2 = await stateOf();
@@ -845,12 +891,15 @@ if (rule) {
         const stamp = (gz(join(ZONES, `${BOOK}.bin`)).emitted_from || {}).rests_off || {};
         const wantKeys = new Set();
         for (const e of rec.rests_off.filter((x) => !x.fact)) for (const [m, n] of Object.entries(((stamp.entries || {})[e.id] || {}).ids || {})) if (n > 0 && mSources[m]) wantKeys.add(mSources[m].key);
+        // and the overlays' sources the rule shuts whole, where their counts for the book say they give something
+        const ovCounts = existsSync(join(READER, "data", "overlay-book-counts-v1.json")) ? ((JSON.parse(readFileSync(join(READER, "data", "overlay-book-counts-v1.json"), "utf8")).books || {})[BOOK] || {}) : {};
+        for (const [m, c] of Object.entries(ovCounts)) if (c && c.carries && JOINED[m] && JOINED[m].overlay && ruleJoined && ruleJoined([null, null, null, m])) wantKeys.add(JOINED[m].key);
         const chips = s3.block ? s3.block.chips : [];
         const chipKeys = new Set(chips.map((c) => c.key));
         const keysSame = chipKeys.size === wantKeys.size && [...wantKeys].every((k) => chipKeys.has(k));
         check("K4  the rail's block stands with one chip per source the stamp holds shut whole on the book, each shut and switching nothing while shut, never a source chip of the strip",
-          !!s3.block && !s3.block.hidden && s3.block.opts.shut === "true" && chips.length > 0 && keysSame && chips.every((c) => c.disabled && c.ids.length && c.ids.every((id) => SHUT_IDS.has(id)) && !/\bdfp\b/u.test(c.cls)),
-          s3.block ? `${chips.length} chips (${chips.filter((c) => c.disabled).length} shut) for ${wantKeys.size} keys the stamp holds${keysSame ? "" : `; the chips' keys ${[...chipKeys].slice(0, 4).join(", ")} …`}` : "no block on the rail");
+          !!s3.block && !s3.block.hidden && s3.block.opts.shut === "true" && chips.length > 0 && keysSame && chips.every((c) => c.disabled && c.ids.length && c.ids.every((id) => SHUT_IDS.has(id) || IDS.includes(id)) && !/\bdfp\b/u.test(c.cls)),
+          s3.block ? `${chips.length} chips (${chips.filter((c) => c.disabled).length} shut) for ${wantKeys.size} keys the stamp and the overlays' counts hold${keysSame ? "" : `; the chips' keys ${[...chipKeys].slice(0, 4).join(", ")} …`}` : "no block on the rail");
         const offN = (/(\d+) off\b/u.exec(s3.railText || "") || [])[1];
         const shutN = (/(\d+) more rest shut/u.exec(s3.railTitle || "") || [])[1];
         check("K4  the rail's line counts as off only the reader's own switches, and its title says how many more rest shut",
