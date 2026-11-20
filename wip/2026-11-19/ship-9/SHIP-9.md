@@ -107,3 +107,7 @@ Checks the rest made out of date, each fixed and run again by the forward lane:
 - **Shipped (05:14Z):** `main` e3f36d287c (one commit over ba41813560), `gh-pages` 11a3629098 («gh-pages follows main»). check-nothing-unlanded-v1 on the shipped tree: passes (the branch carries this tree, every build output in step). `S/old` moved to e3f36d287c for the next gate. Pages run 1376 deploying; the live check follows it.
 - The letter to Moses goes with this push (`FOR-MOSES-2026-11-20-the-owners-isaiah-read.md`, its DRAFT line dropped).
 - **Live:** Pages run 1376 succeeded (05:15Z); live check 74 passes («the live site is this build», e3f36d287c, 05:16Z).
+
+## Correction, 20 November (from Moses's v202)
+
+Of the six lines counted as right → wrong, two were not right before: at Ezekiel 40:34 and 40:36 אֵלָו is «pillars + its» (STEP's tag H0352B; MACULA's lemma אַיִל), so «to, towards, into» was wrong there too. «To him» is right at 1 Samuel 22:13 and Ezekiel 9:4 (and at Zechariah 2:8, which did not move). The 32 moved lines are: 22 wrong → right, 6 one reading for another, 4 right → wrong. v202's form rows under אלו («to/ him», «pillars/ its») put the right word at every one of these places; they land in ship 10. See `wip/2026-11-20/MOSES-RELAYS-v192.1-v196-v209-INTAKE.md`.
