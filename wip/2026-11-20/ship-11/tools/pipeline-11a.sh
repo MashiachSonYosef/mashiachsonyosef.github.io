@@ -1,6 +1,8 @@
 #!/bin/bash
-# Ship 11, first pass in S/s11 (branch ship11 from 501a8b3bbb): names v2 (the corpus lane's relay v198) takes the
-# place of names v1's list of name rows. The store step, then the whole round, the form-of record baked again over
+# Ship 11, in S/s11 (branch ship11 from 501a8b3bbb): names v2 (the corpus lane's relay v198) takes the
+# place of names v1's list of name rows. The store steps (the names; then UBS's collocation rows, whose category
+# holds no name row, derived and laid again: pass 1 ran without that and check-dictionary-kinds-v1 K6 said so),
+# then the whole round, the form-of record baked again over
 # the store as it now stands, the chain books, the door, the switches page, and every resting line against live
 # (S/old, 501a8b3bbb, on 8914). Resumable: each step that finishes leaves a mark in $O/done.
 S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad; O=$S/s11w/${PASS:-pipe1}; P=$O/pipeline.log
@@ -21,6 +23,11 @@ curl -sf -o /dev/null http://127.0.0.1:8914/reader/zone.html || stop "serve (liv
 PICKS=$S/v54/picks-v1-2/ledger
 ROUND=(bash tools/round-v1.sh --stamp 2026-11-16 --lattice $LATTICE_DIR --stems $S/dl-v2/v2/corpus/binyan-ledger/build-r2 --stems-extension $STEMS_EXTENSION --default-picks $PICKS)
 step store-names node tools/apply-name-rows-v1.mjs --on 2026-11-20T20:00:00.000Z || stop store-names
+# UBS's collocation rows follow the names: the category holds no name row (ubs-collocations-rule-v1), so with a new
+# list of name rows the category is derived again (the bytes data/ubs-collocations/PIN.json names) and laid again.
+UBS="${UBS_SOURCE_CACHE:-$S/v77/ship56-design/call7-signs/dl-ubs/old-local-999-footsteps/ledgers/work/ldmprs/source-cache/ubs-sdbh-hebrew-2026-07-15}"
+step store-ubs-derive node tools/derive-ubs-collocations-v1.mjs --dictionary "$UBS/UBSHebrewDic-v0.9.2-en.JSON" --routes "$UBS/ubs-sdbh-hebrew-definition-routes-v1.csv.gz" --ledger "$PICKS" || stop store-ubs-derive
+step store-ubs-apply node tools/apply-ubs-collocations-v1.mjs --on 2026-11-20T20:00:01.000Z || stop store-ubs-apply
 if [ ! -e $O/done/round ]; then
   step round "${ROUND[@]}" --steps zones,stamps,search,defaults,records || {
     if grep -q "the default picks' receipt was not written\|the default picks do not hold over the records just read" $O/round.log; then

@@ -40,3 +40,13 @@ The entry ledgers (v203 English Wiktionary 54,261 rows, v204 Classical Hebrew Wo
 | Ezekiel 27:6, word 11 | Kittim | «Kittim» (Strong's concordance list) | «Chittim» (the same list) | the list files both renderings under one number at one rank. «Kittim» led because MACULA's row of the same wording stood beside it at rank 1; that row is a name row now and the place is no name by either source (a people's name there), so the two tie and the catalog's order puts «Chittim» first |
 
 Five are a name giving way to the word at a place that is no name, which is what the gate is for. The sixth stays inside one source's own two renderings. None is a reading lost: every one of the six withheld rows stands on its card, counted as withheld by the names gate.
+
+**Asked of the page** (`tools/six-probe.mjs`, on the new build): each of the six lines reads as the table says, and each card says what it holds back: «1 given as a name by its source, withheld» at the five, «2 given as a name by their source, withheld» at Ezekiel 27:6 (MACULA's «Kittim» and «Cyprus»), whose card still offers both «Chittim» and «Kittim».
+
+## 4. The checks nearest the names, and what one of them found
+
+Ten checks on the finished round (pass 1): nine pass (`check-names-gate-v1` with its two relays, 12 laws; `check-entry-gate-v1`, `check-form-of-v1`, `check-names-pill-v1`, `check-proper-name-v1`, `check-default-picks-v1`, the three store checks). **`check-dictionary-kinds-v1` K6 fails, and it is right:** three rows of the UBS dictionary carry its collocation mark beside a name mark: «Jehoram», «Jehosheba» and «Beersheba» (under the spelling of «seven», for Genesis 26:33's well).
+
+- UBS's collocation category holds no name row (ubs-collocations-rule-v1: «The Bible dictionaries' own name entries keep the gate as it is: they stand where the text's word is a name»). The three are rows relay v188 landed. Names v1 was read from the store of 12 November and never saw them, so the category took them. Names v2 reads landed rows and marks them, by UBS's own part of speech.
+- So the category is derived again on the store with names v2 (`tools/derive-ubs-collocations-v1.mjs`): **2,646 rows on 762 keys (were 2,649 on 764); 428 name rows are not of it (were 425)**. The pin names the new bytes (`tools/patch-ubs-pin.py`), and `apply-ubs-collocations-v1` takes the facts off exactly the three rows (rehearsed: 3 rows move, 3 taken off, 3 shards). No pick named any of the three, so until now they rested shut everywhere; as name rows they stand where the word is a name.
+- **The order is now part of the pass** (`tools/pipeline-11a.sh`): the names, then UBS's collocation rows derived and laid, then the round. Pass 2 (`pipe2`) is running on it; pass 1's records are superseded.
