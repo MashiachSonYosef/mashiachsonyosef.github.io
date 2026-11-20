@@ -25,3 +25,18 @@ The entry ledgers (v203 English Wiktionary 54,261 rows, v204 Classical Hebrew Wo
 **The store step ran** (19:08 UTC, 6 s): the rows carry the mark as the list names them; the store's version moves on from 54416ff5785b. The round follows it in the same pass.
 
 **The names check, taught the two relays** (`tools/patch-check-names.py`, not yet run on the finished round): the pin may give the list of places its own folder, rule and receipt; N1 holds each list to the receipt of its own relay; the sources read and the rows by source are read from whichever shape the rows' receipt has (names v1's `rows.m_ids_read` and `rows.name_rows`, names v2's `m_ids_read` and `by_m[m].name`); N7's addendum is counted against names v1's receipt, the one beside the places.
+
+## 3. Every resting line against live: six entries move in 40 works
+
+`lines-diff-names-v2.json` (the lines as the round built them, against `S/old`). Each was read from the two stores (`tools/rows-of.mjs`, `tools/rows-all.mjs`) and from the list of name places.
+
+| place | word | on live | now | why |
+|---|---|---|---|---|
+| Leviticus 9:22, word 4 | his hand | «Iddo» (MACULA) | «hand + his» (STEP) | MACULA's row «Iddo» under this spelling is a name row in names v2 (it was in no list of v1); the place is no name by MACULA or TAHOT, so the row is withheld there |
+| Leviticus 16:21, word 5 | his hand | «Iddo» | «hand + his» | the same row |
+| Ezekiel 43:26, word 9 | his hand | «Iddo» | «hand + his» | the same row |
+| Ezekiel 32:31, word 7 | his multitude | «Hamonah» (MACULA) | «multitude + its» (STEP) | MACULA's «Hamonah», a name row now; the place is no name |
+| Genesis 13:3, word 12 | his tent | «Oholah» (MACULA) | «tent + towards» (STEP) | MACULA's «Oholah», a name row now; the place is no name. STEP's row under this spelling is the one filed for «to the tent»: the right word with another ending, where live had a woman's name |
+| Ezekiel 27:6, word 11 | Kittim | «Kittim» (Strong's concordance list) | «Chittim» (the same list) | the list files both renderings under one number at one rank. «Kittim» led because MACULA's row of the same wording stood beside it at rank 1; that row is a name row now and the place is no name by either source (a people's name there), so the two tie and the catalog's order puts «Chittim» first |
+
+Five are a name giving way to the word at a place that is no name, which is what the gate is for. The sixth stays inside one source's own two renderings. None is a reading lost: every one of the six withheld rows stands on its card, counted as withheld by the names gate.
