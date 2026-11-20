@@ -14,10 +14,14 @@ Moses, v198: «`name-rows-v2.jsonl` takes the place of `names-v1/name-rows-v1.js
 
 **Rehearsed without writing** (`node tools/apply-name-rows-v1.mjs --dry`): 21,292 rows listed, read from the store at 54416ff5785b, which is the store as served; every line finds exactly one row of the store's 651,752; no round since has moved a row it names; **13,950 rows move** (13,915 gain the mark, 35 lose it), in all 256 shards.
 
-**Running:** `S/s11w/pipeline-11a.sh` (pass `pipe1`, begun 19:20 UTC): the store step, the whole round, the form-of record baked again (it reads the name rows), the lines, the chain books, the door, the switches page, every resting line against live. The lines that move are read one by one before anything ships.
+**Running:** `S/s11w/pipeline-11a.sh` (pass `pipe1`, begun 19:08 UTC): the store step, the whole round, the form-of record baked again (it reads the name rows), the lines, the chain books, the door, the switches page, every resting line against live. The lines that move are read one by one before anything ships.
 
 **Owed before it ships:** `check-names-gate-v1` reads names v1's receipt in several laws (the sources read, the rows by source, the addendum's counts); it is to read the rows' laws from names v2's receipt and the places' from names v1's. Then the suite and the gate.
 
 ## 2. After it, in order
 
 The entry ledgers (v203 English Wiktionary 54,261 rows, v204 Classical Hebrew Words and Hebrew Wiktionary 9,192 rows): facts lists in the shape of v190's, to be laid by a tool written beside `apply-row-entries-v1.mjs`. Then v199, v207, v200, v201, v208, v192.1, v197.
+
+**The store step ran** (19:08 UTC, 6 s): the rows carry the mark as the list names them; the store's version moves on from 54416ff5785b. The round follows it in the same pass.
+
+**The names check, taught the two relays** (`tools/patch-check-names.py`, not yet run on the finished round): the pin may give the list of places its own folder, rule and receipt; N1 holds each list to the receipt of its own relay; the sources read and the rows by source are read from whichever shape the rows' receipt has (names v1's `rows.m_ids_read` and `rows.name_rows`, names v2's `m_ids_read` and `by_m[m].name`); N7's addendum is counted against names v1's receipt, the one beside the places.
