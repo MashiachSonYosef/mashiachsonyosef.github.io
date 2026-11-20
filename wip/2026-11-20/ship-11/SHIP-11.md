@@ -68,3 +68,10 @@ After it, by themselves (`tools/after-pass.sh`): PIPELINE.md says what the names
 ## 7. The entries pass (pass 3), begun 20:57 UTC
 
 On top of the names pass: the entries' patches and pin applied to the ship tree (the tool and the check are byte for byte the sandbox's), the store step rehearsed there with the same figures (65,600 rows move: 2,843 of the ledger's, 53,601 and 9,156 of the lists'). Running: the store step, the whole round, the lines (against the names pass and against live), the chain books, the door, the switches page; then the gate and the nearest checks. The record of this half is `entries/ENTRIES.md`.
+
+## 8. The entries pass ended; the gate passes with both expectations; the suite is running (22:09 UTC)
+
+- Pass 3 ended 21:36 UTC, every step clean. Against the names pass six more lines move, each read on the store and the page (`entries/ENTRIES.md`): four are ship 9's «behold» lines, now «to + him» and «pillars + its»; «enclosure» to «help + his» at Ezekiel 12:14; «height» to «alumoth» at Psalm 9:1. **Against live the ship moves twelve entries in 40 works** (`lines-diff-against-live.json`).
+- The ten nearest checks pass on pass 3 (`check-entry-gate-v1` 25 laws).
+- **The gate** (`gate-final.txt`; its four standing expectations, the names receipt and the entries receipt): passes. 30,945 lines under every switch the same; 54 first cards the same but six, each of which gained one pill a row of Moses's list of moves carries, now of its place's own entry by the gate's own verdict («anyone» at Job 1:1, «promised» and «YHWH» at Zephaniah 1:1, each read on both of its book's sampled pages). One line of the gate's diff writer was taken out after that run (it wrote each of those cards twice); the gate runs once more on the final file before the ship.
+- The whole suite began 22:09 UTC in two lanes (`S/s11w/suite`), with the ledger v1.2 and the larger list named to it (`entries/tools/env.sh`). The commit message as drafted: `commit-draft.txt`.
