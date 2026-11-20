@@ -157,3 +157,14 @@ This costs one more records pass, gate and suite; a fault at 6,586 cells on ever
 Twelve checks nearest the mended behaviors were run before the long build. Eleven passed; `check-dictionary-kinds-v1` K4 failed: with a card open and the dictionaries opened from it, a card closed and another word pressed in the same instant opened the new card and then lost it. Patch 8 had made every re-lay wait a turn, so the built verses were laid again after the new card had opened, which closed it. A reader pressing Escape and then a word a moment later would not meet it; a script does, and so could a fast double press. Mended (`tools/patch-9.py`): where no file is to be fetched (the license runs resting off, which is the rest), the lanes are laid within the call and the verses follow in the same turn, as before patch 8; where a lay waited on a file and a card opened meanwhile, the card is left standing and the verses are owed. Six checks run again, all pass (the kinds check 34 of 34, the new check 9 of 9, the run cards, the first-paint check, the card-opens-on-the-line check).
 
 The records pass on the final page began after it (`S/s10w/pipe7`).
+
+### The second read, of the mends themselves (16:37 to 16:50 UTC)
+
+The same reader read the mends against the page as they had first read it. The mends for findings 1, 3, 4, 5, 6, 7 and 9 hold as written. Two low faults, both of the mends' own making, both mended (`tools/patch-10.py`):
+
+1. **With the license runs switched on, a switch pressed where no cell moved left named runs' cards half working.** The lanes were laid again at every such press, and a lay makes the run cards' maps of their words anew, which only a relay fills; with no relay following, a named run's card opened on the sort's first reading and lit no word. Not at rest (the runs rest off). Now nothing is laid where nothing would follow: the places the switches would set aside are asked first, and where they are the ones laid, the lanes stand.
+2. **A triple press that closed a card owing a relay lost the line it had just selected**, a turn later. A relay now waits for a selection the reader holds, and follows once it is let go.
+
+The reader also noted what follows from leaving the 30 three-word cells as they stand: the mends for the search's hit and the address key off a cell having no key, so they do not reach those cells; a hit there still opens a card headed by the three words, as live's «as written» does. Said, and left for the next pass with the rest of that shape.
+
+Eight checks nearest these mends run again, all pass (the kinds check 34 of 34, the selection check 25 of 25, the run cards and their forms, the HUD runs, the source switch, the pointing switch, the new check 9 of 9). Pass 7 of the records was stopped unfinished (its page had changed under it); pass 8 began 17:05 UTC on the final page.
