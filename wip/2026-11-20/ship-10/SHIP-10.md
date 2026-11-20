@@ -21,16 +21,22 @@ Measured on the live tree, Isaiah on a phone (Pixel 7), the switch moved by hand
 
 So the three faults the owner drew go by the drawing itself, and no word's line moves.
 
-## What the page does now (four changes, `tools/patch-1.py`)
+## What the page does now (`tools/patch-1.py` to `patch-4.py`; the whole of it in `zone-html.diff`)
 
 Rule: `words-stand-alone-rule-v1-at-rest-each-word-is-its-own-cell-and-card-and-a-joined-cell-stands-only-where-a-dictionary-that-stands-files-it`.
 
 1. **The switch rests at «as separate words».** A reader who chose «as written» on their device keeps it; `?maqaf=` sets it for one load (the checks ask it). The stroke stays in the text on the word that carries it.
 2. **A place the span store names is one cell only where a row of it stands**: of a dictionary that does not rest shut and that no switch has off, no pointer, and not held back by the place under «only this pointing» (the row a joined line reads, `spanLineRow`). Elsewhere its words are words. Opened, the dictionaries that rest shut bring every place back: at once where no card stands open, and when the card closes where the press was a card's own (so the card stays).
-3. **A card that does stand on a run asks each word as its own word**: its own pointed form, its place's entry, whether its place is a name. Before, a run's card asked its words with no pointing and no entry, so their cells skipped the gates the baked line passed (ship 9's known fault: Amos 2:11, the line «young + he will rule as God», the run's card «Bani + Israel»).
+3. **A card that does stand on a run asks each word as its own word**: its own pointed form, its place's entry, whether its place is a name. Before, a run's card asked its words with no pointing and no entry, so their cells skipped the gates the baked line passed (ship 9's known fault: Amos 2:11, the line «young + he will rule as God», the run's card «Bani + Israel»). `check-card-opens-on-the-line-v1` passes again (it failed on live under «masoretic» and «oldest»).
 4. **The book's run file is not asked for** while the license runs rest off, since nothing is laid from it (222 KB for Isaiah on every first visit until now).
+5. **A hidden sign keeps its place beside the word its stroke joins it to.** Found by the build (the default picks' law D5, 7 places) and then on the page: with every word alone, the object marker joined by a stroke drew «<obj.>» under itself, where the page has always left a gap in the pair's row. Two of the owner's rulings meet here: a hidden sign keeps its place as a gap (16 October, «rather than leave stuff out»), and no word is left with nothing under it (3 October, the fourth word of Genesis). Alone in a cell such a word could keep only one of them. So a word whose whole line is a sign stays in the cell of the word its stroke joins it to, drawn as it is on live; the cell has no key, so it is no run and has no card, and each of its two words opens its own. Amos: 33 such words, none showing its sign, as on live.
+6. **A part that prints its place's pieces is as wide as they are** (one style rule). The pieces stand on one line and do not wrap; held to a cell's width they ran past their own part and were cut at its edge. This was the cause of the owner's «anc» for «and» at Isaiah 2:9, in either position of the switch.
 
-On Isaiah at rest after the change (`tools/rest-probe.mjs`): 24 joined cells of the 139 places, 115 set aside, no row cut, every word's line as on live in all 1,291 verses. The 24: Immanuel (twice), Maher-shalal-hash-baz, Shear-jashub (twice), Kir of Moab, Kir-hareseth, Eglath-shelishiyah, Esar-haddon, Merodach-baladan, Hephzi-bah, «that + except» (7), «for + except», «that + though», «strength of + strength» (2), «re- + -lease». «Yahweh of hosts» (53 places) is two words again: its one joined row is from a source that rests shut.
+On Isaiah at rest after the change (`tools/rest-probe.mjs`, `tools/width-probe.mjs`): 163 joined cells (24 places of the span store, 139 where a sign keeps its place), no chain; no row cut at 412 or 360 wide, no cell past the page, no sideways scroll; every word's own line as on live in all 1,291 verses. Asked «as written» on the same build: no row cut either (27 on live).
+
+The 24 places: Immanuel (twice), Maher-shalal-hash-baz, Shear-jashub (twice), Kir of Moab, Kir-hareseth, Eglath-shelishiyah, Esar-haddon, Merodach-baladan, Hephzi-bah, «that + except» (7), «for + except», «that + though», «strength of + strength» (2), «re- + -lease». «Yahweh of hosts» (53 places) is two words again: its one joined row is from a source that rests shut.
+
+Over the 39 books, counted without a browser by the rule the page reads (`tools/places-at-rest.mjs`, `places-at-rest.tsv`): of 2,845 places, **754 stand as a cell at rest** (262 distinct keys) and 2,091 are set aside: 1,985 because every row of theirs rests shut, 106 because the place holds its standing row back. The row a standing place's line reads is the SDBH's at 419, STEP's TBESH at 232, the UBS dictionary's at 36, Strong's at 22, BDB's at 21, the lexical index's at 13, others at 11.
 
 Cards (`tools/card-probe.mjs`): at 2:9 the two words of the joined pair each open their own card, gated by their own entry (H8213, H0376I), with no chain at the top. At 1:9 «Yahweh» opens its own card under H3068G as a name; on live that press opened the run's card with no entry at all.
 
@@ -41,7 +47,8 @@ Cards (`tools/card-probe.mjs`): at 2:9 the two words of the joined pair each ope
 ## The checks
 
 - `check-maqaf-pair-drawn-v1`: L5 added (at rest no wrapper joins a pair; each word its own cell and card, headed by that word, no chain at its top); L2 to L4 are the laws of «as written» and are held on the page asked with `?maqaf=maqaf` (`tools/patch-check-pair.py`).
-- `check-words-stand-alone-v1` (new; draft copy in `tools/`): A1 the rest; A2 the standing places recounted from the span file; A3 the other positions; A4 the asked words; A5 no row cut on a phone; A6 the dictionaries opened from a card.
+- `check-words-stand-alone-v1` (new; a copy in `tools/`): A1 the rest, and what a joined cell may be (a place of the span store, or a sign's cell); A2 the standing places recounted from the span file; A3 the other positions; A4 the asked words, and each word of a sign's cell its own card; A5 no row cut on a phone; A6 the dictionaries opened from a card. On Isaiah: 6 of 6.
+- Both fail on the live build, as they must (A1 to A6 all six; L5), and pass on this one.
 - Next: the records (`tools/pipeline-10a.sh`: the lines, the chain books, the door, the switches page, every resting line against live), the whole suite in two lanes, the checks that held the chain's card at rest moved to `?maqaf=maqaf` or to the new rest, then the gate.
 
 ## Still on ship 10's list, not in this pass
