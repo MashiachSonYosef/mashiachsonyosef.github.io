@@ -97,3 +97,10 @@ Checks the rest made out of date, each fixed and run again by the forward lane:
   - **the order:** a pill that a source now resting shut carried beside others sorts by its other carriers, so it may stand elsewhere (Amos 1:1's אשר: «that», English Wiktionary's among others, moves down the card).
   - **the pointer unfolded:** a pill that printed a pointer beside its reading, the pointer English Wiktionary's, prints its plain reading where the other sources carry it (Exodus 1:1: «this (masculine/feminine plural of זה)» [M13 M14 M9] → «this» [M14 M9]).
 - check-same-product-v1 S2 now owes both on a book the record rests shut: the order is asked of the pills whose carriers kept every source, and the unfolded pill is that pill. Second run follows.
+- **Second run (722 s):** still 22. Amos's order and Exodus 1:1's «to curse» [M12]: Jastrow's id, which the gate's shut ids missed, built over the store's index alone. They are now built over the index the page joins (the overlays' ids beside the store's), as check-dictionary-kinds-v1 builds them.
+- **Third run (708 s), passes:** S1 30,945 lines on 18 pages, only the moves owed. S2 54 first cards: 36 of them hold back 274 pills of the dictionaries that rest shut, each counted; the order owed on 10 cards; the pointer unfolded on 4 (Exodus 1:1 «this (masculine/feminine plural of זה)» → «this»; «son (plural construct state form of בֵּן; …)» → «son»). `logs/gate-9.log`, `logs/gate-diff.txt`.
+- **check-press-paints-before-seen-v1 alone, with no limit: passes** (L1, L2 on Obadiah and on Psalms, L0) in 1,598 s, the gate running beside it (`logs/press-paints-alone.log`). The suite: **191 of 194**, the three named above.
+
+## Shipping (05:15Z)
+
+`tools/ship9.sh`: one commit on `main` over ba41813560 (the message `logs/commit-message-draft.txt`), then `gh-pages` follows `main`.
