@@ -178,3 +178,9 @@ Lines 213 s, the chain books 912 s, the door 34 s, the switches page 14 s. Every
 «S1 … 30,945 lines compared on 18 pages … 58 line(s) where STEP's own words stand (call 4) … each as owed» and, said apart, «4 at a word of one unit a source reads at every word of it, its words standing apart» (the four BDB lines at Amos 5:5 and 5:6). «S2 … 54 cards compared … cards that differ as owed: 2 a word that left a joined cell, its own card» (Exodus 1:1's «sons of», read from two chapter pages). Nothing else differs from live in the sample. Every differing line and card in full: `gate-diff-final.txt`.
 
 The whole suite began 17:29 UTC, two lanes, on the final build.
+
+## Shipped (19:02 UTC, 20 November)
+
+- The whole suite on the final build, two lanes, 17:29 to 18:58 UTC: **195 checks, 193 end clean** (5 of those are not run here by their own design and say so). The two that do not were known before: `check-reading-rows-v1` R1 (red on live too; R3 passes) and `check-nothing-unlanded-v1`, which passes after the push (run again on the shipped tree: 3 of 3).
+- `main` **501a8b3bbb** (one commit on e3f36d287c), `gh-pages` **a25caceb53** («gh-pages follows main»). The commit message as shipped: `commit-final.txt`.
+- Pages run 1377: success (19:02:35 to 19:03:41 UTC). The live check, run 75, began 19:03:38 UTC.
