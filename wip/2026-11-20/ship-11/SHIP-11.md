@@ -58,3 +58,13 @@ Ended 20:37 UTC, every step clean (round 1,151 s, lines 215 s, chain books 1,007
 After it, by themselves (`tools/after-pass.sh`): PIPELINE.md says what the names pin holds and that the collocation rows follow the names; the manifest; the gate; the ten nearest checks.
 
 **The gate learns the names gate as an expectation** (`tools/patch-gate-names.py`; `--expect data/name-rows-receipt-v1.json`, told by its rule): at a place the new build does not mark a name, a line or a card's pill that name rows alone carried is owed gone, and the card must say it holds back more by name than the old card did. Asked of the new build's store and zone, never named. Without it any sampled card that lost a name pill would read as a difference.
+
+## 6. The names pass: the gate passes, the ten nearest checks pass
+
+- **The gate** (`gate-names-pass.txt`; live against pass 2, 18 pages of 9 books, its four standing expectations and the names receipt): 30,945 lines under every switch the same, 54 first cards the same. None of the six moved lines stands on a sampled page, so the names class was not called on; it is there for the day one does.
+- **The ten nearest checks**: all pass, `check-dictionary-kinds-v1` with them (34 laws; K6 holds now that the three UBS name rows carry no collocation mark).
+- The names pass is committed on the local ship branch (`ship11`, 0710839773) as a place to fall back to: if the entries bring trouble, the names ship alone from there.
+
+## 7. The entries pass (pass 3), begun 20:57 UTC
+
+On top of the names pass: the entries' patches and pin applied to the ship tree (the tool and the check are byte for byte the sandbox's), the store step rehearsed there with the same figures (65,600 rows move: 2,843 of the ledger's, 53,601 and 9,156 of the lists'). Running: the store step, the whole round, the lines (against the names pass and against live), the chain books, the door, the switches page; then the gate and the nearest checks. The record of this half is `entries/ENTRIES.md`.
