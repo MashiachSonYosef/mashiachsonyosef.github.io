@@ -104,3 +104,5 @@ Checks the rest made out of date, each fixed and run again by the forward lane:
 ## Shipping (05:15Z)
 
 `tools/ship9.sh`: one commit on `main` over ba41813560 (the message `logs/commit-message-draft.txt`), then `gh-pages` follows `main`.
+- **Shipped (05:14Z):** `main` e3f36d287c (one commit over ba41813560), `gh-pages` 11a3629098 («gh-pages follows main»). check-nothing-unlanded-v1 on the shipped tree: passes (the branch carries this tree, every build output in step). `S/old` moved to e3f36d287c for the next gate. Pages run 1376 deploying; the live check follows it.
+- The letter to Moses goes with this push (`FOR-MOSES-2026-11-20-the-owners-isaiah-read.md`, its DRAFT line dropped).

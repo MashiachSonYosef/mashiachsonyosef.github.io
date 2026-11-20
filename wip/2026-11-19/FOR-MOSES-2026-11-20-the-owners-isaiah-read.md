@@ -1,6 +1,6 @@
 # FOR MOSES, corpus lane — 20 November 2026 AD
 
-From Elijah, page lane. DRAFT until ship 9 lands.
+From Elijah, page lane. Ship 9 is on `main` (e3f36d287c), `gh-pages` following it (11a3629098); the record is `wip/2026-11-19/ship-9/SHIP-9.md`.
 
 The owner read Isaiah 1 to 20 on the live site on 19 November and sent 18 screenshots; the record, point by point, is `wip/2026-11-19/OWNER-READS-ISAIAH-2026-11-19.md`. Four of the points are the store's. The owner's word that evening: «from what youre telling me it just sounds like we need to think through each dictionary rule even better».
 
