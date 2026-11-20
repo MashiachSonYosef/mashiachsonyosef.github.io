@@ -1,5 +1,5 @@
 diff --git a/reader/zone.html b/reader/zone.html
-index 12b2232a68..8b608e6b53 100644
+index 12b2232a68..f279387d3e 100644
 --- a/reader/zone.html
 +++ b/reader/zone.html
 @@ -1143,6 +1143,15 @@
@@ -101,7 +101,19 @@ index 12b2232a68..8b608e6b53 100644
    let kindsFocus = false;                 // the card's press was the switch: its rebuilt press takes the focus
    const chooseKinds = (id) => {
      if ((id !== "open" && id !== "shut") || !kindsHere) return;
-@@ -4712,7 +4763,7 @@
+@@ -4619,6 +4670,11 @@
+         // after the sidecar is here, never before, or it rebuilds unfiltered
+         const reopen = () => { repaintGlossOrder(); reopenCard(); };
+         if (id === "only" && !latticeStore) latticeReady().then(reopen); else reopen();
++        // the cells follow the switch (words-stand-alone-rule-v1): a place the span store names is a cell where a row
++        // of it stands, and a row the place holds back under «only this pointing» stands under the other positions.
++        // The lanes are laid again, and the built sections where the places set aside moved: at once where no card
++        // stands open, and otherwise when the card closes (payLanes)
++        if (kindsHere && HUD_LANES.lay) { const was = window.__spanStore ? window.__spanStore.rested || 0 : 0; HUD_LANES.lay().then(() => { if ((window.__spanStore ? window.__spanStore.rested || 0 : 0) !== was) { lanesOwed = true; payLanes(); } }); }
+       },
+       now: () => ({ keep: "pointing kept", only: "only this pointing", letters: "the letters only" })[masorah] },
+     // THE SOURCE SWITCHES — see the note above SOURCES_KEY. Its row is its own
+@@ -4712,7 +4768,7 @@
      // re-laying the cells from the lattice the corpus lane cut for that
      // setting. The joined and folded spellings a dictionary used for a chain
      // (the pills, part P4) are not carried on the page yet.
@@ -110,7 +122,7 @@ index 12b2232a68..8b608e6b53 100644
        positions: [{ id: "maqaf", lab: "as written" }, { id: "pieces", lab: "as separate words" }],
        live: () => !!HUD_TOGGLES_IX, waits: "the corpus lane’s megacompspan toggle ledger laid on this book (tools/project-hud-toggles-v1.mjs)",
        get: () => maqafJoin, set: (id) => chooseHudToggle("maqaf", id),
-@@ -4751,7 +4802,10 @@
+@@ -4751,7 +4807,10 @@
        live: () => true,
        waits: "",
        get: () => signsPref,
@@ -122,7 +134,7 @@ index 12b2232a68..8b608e6b53 100644
        now: () => ({ off: "signs off", below: "signs after plain" })[signsPref] || "signs as printed" },
      // NAMES LEAD, OR THE READING THE NAME DISPLACED (the owner, 2026-10-23,
      // "no names"): a row pill was this switch for a day; the owner took it
-@@ -5065,13 +5119,23 @@
+@@ -5065,13 +5124,23 @@
        }
      }
      const spanCardsOf = () => {
@@ -148,7 +160,7 @@ index 12b2232a68..8b608e6b53 100644
          const numbered = []; let n = 0;
          (sec.words || []).forEach((w, i) => { if (!w.mark) { n += 1; numbered.push({ i, n }); } });
          const idx = numbered.filter((x) => x.n >= pl.first && x.n <= pl.last).map((x) => x.i);
-@@ -5091,7 +5155,7 @@
+@@ -5091,7 +5160,7 @@
          taken.set(sec.unit, m);
          out.push(rc);
        }
@@ -157,7 +169,7 @@ index 12b2232a68..8b608e6b53 100644
      };
      // the toggle ledger's runs of one lattice, in the HUD runs' own shape
      const hudToggleCards = new Map();
-@@ -5112,7 +5176,9 @@
+@@ -5112,7 +5181,9 @@
      HUD_LANES.lay = async () => {
        const name = hudSetFor();
        let cards = hudRunCards;
@@ -168,7 +180,7 @@ index 12b2232a68..8b608e6b53 100644
        // AN UNDERLINE IS ONE READING (the owner, 2026-10-14 and 16: a
        // double-word underline stands only where "a single license defining
        // both words" stands under it; "the weld of a non maqaf is not
-@@ -5130,7 +5196,7 @@
+@@ -5130,7 +5201,7 @@
        // a place is laid as its own cell, or stands inside the cell of a
        // longer place the store names over its words (I3: both drawn)
        const laidSpans = spans.cards.filter((rc) => { const m = RUNS_AT.get(rc.unit); const at = m && m.get(rc.idx[0]); return !!at && (at === rc || (!!at.spanKey && rc.idx.every((i) => at.idx.includes(i)))); }).length;
@@ -177,7 +189,7 @@ index 12b2232a68..8b608e6b53 100644
        window.__hudToggles = { maqaf: HUD_TOGGLES_IX ? maqafJoin : "maqaf", runs: HUD_TOGGLES_IX ? runsPref : "own", set: name || "hud-runs", laid, file: !!HUD_TOGGLES };
        return laid;
      };
-@@ -5828,6 +5894,8 @@
+@@ -5828,6 +5899,8 @@
      // again, before anything has measured it; the tether starts the pop
      hud.classList.remove("pop");
      activeEl = null; hudAnchor = null; openNav = null;
@@ -186,7 +198,39 @@ index 12b2232a68..8b608e6b53 100644
      if (release) { hudMoved = false; hud.classList.remove("moved"); }
      // a card may have been opened from a whole block or from one W inside it,
      // so both marks are cleared rather than the one we happen to remember
-@@ -10006,6 +10074,8 @@
+@@ -6389,7 +6462,9 @@
+     return { text, rs: [{ ...r, reads: "default", src, layer, of, auto: layer === "second" && dfltSecondIsAuto(of) }], why: "default", src, layer, of, mId: M, own };
+   };
+   // (the source's line at one word, its neighbors not asked: defaultAt, below, holds a reading across words together)
+-  const defaultAtWord = (word) => {
++  // (held: the source's line at this word is held back, one unit whose words stand apart, and the word keeps its
++  // line as it rests; that line is STEP's own words where today's line is bare, which no other layer draws)
++  const defaultAtWord = (word, held = false) => {
+     if (!DFLT_BOOK || !word || word.kq || placeYields(word)) return null;
+     // the layer drawn: the first in force, or STEP's while another waits for its book file (dfltLayerNow)
+     const n = WORD_N.get(word), first = dfltLayerNow();
+@@ -6415,6 +6490,7 @@
+       const second = leaf ? dfltSecond(first) : null;
+       return (second ? at(made(second, leafLine(leaf, second), "second", first, dfltOwn(second, n, leaf))) : null) || stepOwn("first");
+     }
++    if (held) return dfltOn("step") ? stepOwn("rest", first) : null;
+     const t1 = lineOf(first, n);
+     if (t1) return at(made(first, t1, "first", null, dfltOwn(first, n)));
+     const second = dfltSecond(first);
+@@ -7755,7 +7831,11 @@
+     // opened whole yields the same way, its text still whole a scroll away
+     // inside its own slot.
+     delete hud.dataset.readFloor;
+-    if (read && read.children.length && rowsEl.clientHeight > 0) {
++    // (a region squeezed to nothing is the shortest region there is, and is still the card's: it was passed over
++    // here, so on a phone held sideways the card of a word that carries a note in its head, its record opened whole,
++    // kept the note and showed no reading at all. Found once such a word opened its own card at rest, 20 November
++    // 2026: check-reading-rows-v1 R3 at 640 by 360)
++    if (read && read.children.length && (rowsEl.clientHeight > 0 || rowsEl.getClientRects().length)) {
+       const sy = (() => { const hb = hud.getBoundingClientRect().height; const k = hud.offsetHeight && hb ? hb / hud.offsetHeight : 1; return Math.abs(k - 1) < 0.002 ? 1 : k; })();
+       const shortOfRow = () => { const r0 = rowsOf(read)[0]; return r0 ? r0.bottom - rowsEl.clientHeight : 0; };
+       if (shortOfRow() > 0.5) { hud.classList.add("floor"); handOut(); lastResort = true; }
+@@ -10006,6 +10086,8 @@
      openByLemma = !!(openTags && openPlaceWord && !openPlaceWord.tg && openPlaceWord.te && openPlaceWord.k === openKey);
      // and whether that place is a name, for the names gate (names-gate-rule-v1)
      openName = openPlaceWord ? isNamePlace(openPlaceWord) : null;
@@ -195,7 +239,7 @@ index 12b2232a68..8b608e6b53 100644
      // the tags this card is gated by, and what it takes its place for, for a check to read
      window.__cardEntry = openTags ? openTags.join(" ") : "";
      window.__cardName = openName === null ? "" : openName ? "a name" : "not a name";
-@@ -14450,8 +14520,23 @@
+@@ -14450,8 +14532,23 @@
      // the words it holds, and the ink's own joiner stands in the text either
      // way (no space is written where the scribes wrote none)
      const maqafOn = maqafJoin !== "pieces" || !HUD_TOGGLES_IX;
@@ -221,16 +265,37 @@ index 12b2232a68..8b608e6b53 100644
      if (joinPrev && host.__wjoin) {
        if (!pjPrev) { const sp = document.createElement("span"); sp.className = "wj-sp"; sp.textContent = " "; host.__wjoin.__ink.append(sp); }
        host.__wjoin.__ink.append(built.wb); host.__wjoin.__words.push(word); host.__wjoin.__runs.push((link && link.rc) || null);
-@@ -15139,6 +15224,8 @@
+@@ -14593,7 +14690,16 @@
+       return { text: word.hg, rs: word.hm ? [{ posture: word.hm.lic, m: word.hm.m, y: word.hm.y, ya: "wording" }] : [], why: "headword" };
+     // the default source chosen on the row (defaultAt), where it reads this
+     // place; above the pointing's filter, as the place's own reading stands
+-    if (!beneath) { const d = defaultAt(word); if (d) return d; }
++    if (!beneath) {
++      const d = defaultAt(word); if (d) return d;
++      // A UNIT HELD APART KEEPS ITS LINE AS IT RESTS, STEP'S OWN WORDS TOO (20 November 2026). Where a source reads
++      // one unit at every word of it and the words stand apart, its line is held and each word keeps the line it
++      // rests on. At a word whose resting line is STEP's own words (today's line bare there), nothing below draws
++      // them, and the word stood blank: Daniel 1:8 under MACULA, UBS or BDB, the first word of the king's food
++      // (check-rulings-under-sources-v1 U10). Rare while a stroke joined such words into one cell; at rest now
++      // each is its own (words-stand-alone-rule-v1)
++      if (dfltApartUnit(word)) { const r = defaultAtWord(word, true); if (r) return r; }
++    }
+     { const at = placeLine(word); if (at) return placeShown(at); }
+     // THE POINTING'S OWN LEADER, AND ITS OWN ALTERNATE. Under "only this
+     // pointing" the card withholds the rows whose source points the word
+@@ -15139,6 +15245,11 @@
      joined.forEach((r) => standAt(r.k, { wb, glossEl: ge, glossParts: null, partIndex: -1 }));
      if (wasRuled) wb.classList.add("chosen");
      return { wb, regionEls, markEls, joined, glossParts: parts, strokeEl,
-+      // the word's whole line is a sign and nothing else (appendWord: such a word stays beside the word its stroke joins it to)
-+      signAlone: !!line && String(line).split(" + ").every((x) => signOnly(x)),
++      // the place's own reading is a sign and nothing else, every piece of it (appendWord: such a word stays beside
++      // the word its stroke joins it to). Read from the zone's pieces, never from the line as it now stands: a
++      // reading the reader pressed, or another first source, moves the line and must not move a cell's edge (a
++      // ruled cell is laid as the page lays it at first paint, check-ruled-equals-first-paint-v1 E1)
++      signAlone: Array.isArray(word.pg) && word.pg.length > 0 && word.pg.every((x) => !!x && signOnly(String(x.g || ""))),
        kqStand: word.kq && regions && regions.length > 1 ? { regions, parts, table, word } : null };
    };
  
-@@ -15411,9 +15498,9 @@
+@@ -15411,9 +15522,9 @@
      // card, made from where the control lives. Closing on it would mean the
      // reader could only change the order with nothing open to see it change.
      if (hud.contains(e.target) || e.target.closest(".wb") || e.target.closest("#rail")) return;
@@ -242,7 +307,18 @@ index 12b2232a68..8b608e6b53 100644
  
    // Hebrew / English reader toggle. Same words, same order, same receipts —
    // the English mode flips the flow LTR and lets the gloss line lead.
-@@ -19320,6 +19407,7 @@
+@@ -17358,7 +17469,9 @@
+     for (const g of groups) {
+       const t = g.text.replace(/\s+/g, " ").trim();
+       if (!t) continue;
+-      if (out) out += prev && g.line && prev.line === g.line ? " " : "\n";
++      // (a word the scribes joined to the next with their stroke is copied touching it, as the text writes it: each
++      // is its own cell at rest, words-stand-alone-rule-v1, and the copy put a space after the stroke)
++      if (out) out += prev && g.line && prev.line === g.line ? (/\u05be[\u0591-\u05c7]*$/u.test(out) ? "" : " ") : "\n";
+       out += t;
+       prev = g;
+     }
+@@ -19320,6 +19433,7 @@
      return relaid;
    };
    HUD_LANES.relaySections = relayBuiltSections;
@@ -250,7 +326,7 @@ index 12b2232a68..8b608e6b53 100644
    // A WORD SENSE PRESSED IS HELD BACK WITH THE REST (word-senses-rule-v1). A
    // reading the reader pressed outranks every switch (THE ORDER TOGGLES, the
    // precedence), but a word sense prints only while its switch is on. Turned
-@@ -19380,6 +19468,16 @@
+@@ -19380,6 +19494,16 @@
      if (kb) drawKinds(kb);
      railSay();
      reopenCard();

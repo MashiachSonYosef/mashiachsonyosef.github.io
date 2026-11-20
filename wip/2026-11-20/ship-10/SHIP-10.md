@@ -81,3 +81,11 @@ Pass 5 of the records (`S/s10w/pipe5`, zone.html 36882e0440d3) is the tree the s
 | check-rulings-under-sources-v1 U10 | a blank under a word with MACULA, UBS or BDB first | **the page**, in the «as separate words» position since October: a unit held apart «as it rests» lost a line that at rest is STEP's own words | the held line asks STEP's layer |
 
 Page changes owed before the last pass, from this run: the copy; the sign's cell by the place's pieces; the held line; and the pointing switch laying the cells again as the signs and kinds switches do.
+
+### The run's end (14:36 UTC): 180 of 195 pass
+
+The fifteen that did not, and where each stands:
+
+- Moved to the new rest, or asked «as written», the check's own text changed (11): check-card-channels-v1, check-card-opens-on-the-line-v1, check-compspan-coverage-v1 (C4 in two halves: at rest no chain at the top of a chain word's card, asked as written the chain's lattice), check-hud-runs-v1, check-line-reads-the-place-v1 (P4 found its word by the first of its letters on the page; it finds it in its own verse now), check-manifest-prints-unguarded-v1 (the manifest emitted again; a rule's name I had wrapped across two comment lines), check-run-card-forms-v1, check-run-cards-v1, check-span-grade-v1, check-span-store-v1, and the two new ones stand as they were.
+- The page mended (4): check-selection-v1 (the copy), check-ruled-equals-first-paint-v1 (the sign's cell laid by the zone's pieces), check-rulings-under-sources-v1 (the held line), and check-reading-rows-v1 R3. R3 is the floor of 23 October («R pills never being less than a row»): on a phone held sideways (640 by 360) the card of a word that carries a note in its head, its record opened whole, showed no reading at all. The floor's code passed over a region squeezed to nothing; a chain word's card always had the chain's two bands in that region, so live never met it. The floor engages on a region of no height now. (R1 fails on live too, as ship 9 recorded.)
+- After the push only (1): check-nothing-unlanded-v1.
