@@ -148,5 +148,15 @@ Why. At these places our text spells the word otherwise than the Leningrad text 
 - D7: under MACULA at Daniel 1:8, word 8, the page keeps STEP's line (ship 10: a unit held apart keeps the line it rests on); the model owes none.
 - D13: a BDB pick with a sense and no words reads «1 (no words given) (sense 2)» on the card; the model drops «(no words given)» where a note stands.
 
-Task 148 carries the mend.
+The mend is in this ship (below).
 
+## The default picks check, mended (01:13 UTC)
+
+Every fault listed on the live tree with Daniel named (`default-picks-d7-every-fault-on-live.txt`): D7's 29 are three kinds, and with D5 and D13 there are four clauses in all. In each the page is right by a rule already written down, and the check's page model was behind it (`tools/patch-check-default-picks-daniel.py`):
+
+1. **A unit held apart rests on STEP's own words where today's line is bare** (9 faults: Daniel 1:8 word 8 and 1:16 words 5 and 6, under MACULA, UBS and BDB). Ship 10's page rule, `dfltHeldLine`. The model deleted the line.
+2. **A sign alone beside STEP's own words is the hidden sign's gap** (D5's one fault and 3 of D7's: Daniel 1:16 word 4). The check's own node law holds the records to it; the page model now does too.
+3. **A source's words are read with no space left at the end once the closing stop is dropped** (17 faults under BDB: «there is, are. . .»).
+4. **A pick with no words says so before its note** (D13's 3: «1 (no words given) (sense 2)»). The page's own comment says why: the review of 14 November read a bare «1 (sense 2)» as BDB's reading.
+
+With the four, on the ship tree: all 26 laws pass, the third work Daniel. Task 148 is closed by it.
