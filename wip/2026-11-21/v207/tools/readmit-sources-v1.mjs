@@ -45,6 +45,7 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
+import { classify } from "./strike-language-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -160,7 +161,8 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   // the admission's record
   for (const s of rec.sources) struckRec.get(s.m).readmitted = { on: STAMP, rule_id: rec.rule_id, relay: rec.relay, returns: s.returns, ground: s.ground, says: s.says, languages: [...s.languages], rows_listed: s.rows_listed };
   const kept = (admission.kept_sources || []).filter((k) => !ids.includes(k.m_id));
-  for (const s of rec.sources) kept.push({ m_id: s.m, reason: "READMITTED_ON_WHAT_ITS_OWN_SOURCE_SAYS", evidence: s.languages.filter((w) => w !== "English").join(" + "), label: s.entry.label });
+  // listed as the admission itself decides an entry that carries its languages (classify), so the strike tool run again writes the same
+  for (const s of rec.sources) { const d = classify(entryOf(rec, s)); if (!d.admitted) refuse(`${s.m}: the languages the record gives it (${s.languages.join(", ")}) are not admitted by the admission's own rule (${d.reason})`); kept.push({ m_id: s.m, reason: d.reason, evidence: d.evidence, label: s.entry.label }); }
   admission.kept_sources = kept.sort((a, b) => num(a.m_id) - num(b.m_id));
   admission.readmissions = [...(admission.readmissions || []), { on: STAMP, rule_id: rec.rule_id, relay: rec.relay, record: READMISSION_RECORD, readmitted: ids, rows_listed: figures.rows_listed, stay_struck: rest }];
   writeFileSync(admissionPath, JSON.stringify(admission, null, 1));

@@ -86,3 +86,27 @@ I had told the owner all 35 sources return in this ship, Davidson open and the o
 Everything built for the whole return stays: the gzipped pin, the hole a strike left, the re-admission, the headword door. Built in trial 1 and set aside until the held list lands: the kinds' resting entry for Bible dictionaries not yet among the twelve, and the ledger tool's word for a row two print steps meet on (`tools/for-later-two-print-steps.diff`).
 
 **Trial 2** (from 07:14 UTC): the cut ship applied by one script (`tools/apply-12.sh`: the store 653,227 to 657,693 rows, every store step with nothing left to write), then the round and every line against live.
+
+## Trial 2 (07:14 to 07:52 UTC): the cut ship, and exactly what moves
+
+`trial-2-lines-diff-against-live.json`, `trial-2-every-moved-group-by-cause.txt`. One script applied it (`tools/apply-12.sh`): 16 sources re-admitted, 4,466 rows landed (4,302 at the hole the strike left, 9 whose hole another row holds now, 155 with no rank named), the store 653,227 to 657,693 rows, every store step with nothing left to write. Then the round whole.
+
+**62 resting lines move, all in the Tikkunei Zohar, in six spellings.** In the thirty-nine books none.
+
+| places | the line | whose row | read |
+|---|---|---|---|
+| 33 | bare to «throne» | the translation tables (Aramaic) | right |
+| 20 | bare to «wolf» | PanLex (Aramaic) | the letters do spell the Aramaic word for a wolf; in the Zohar they are «of the father», a prefix and a word. The Zohar's prefix split is an open ruling (task 6), and until it is made a whole spelling reads as one word there, as it does at every other such place |
+| 4 | «month» to «month» | PanLex | the credit alone |
+| 3 | bare to «in the manner of» | Harkavy | right |
+| 1 | bare to «jolting» | Harkavy | right |
+| 1 | bare to «bed» | the translation tables | right |
+
+## The checks, mended or new (each run on the trial tree)
+
+- `check-landings-v1` G2 learns a list of holes (`tools/patch-06-check-landings-holes.py`): the struck-ranks record holds the line's rank for its source under its key; the row is at the hole, or another row stands there and the row is past the key's last typed hole. Before the mend it named exactly the 9 lines whose hole is taken.
+- `check-language-admitted-v1` (`patch-07`): a source that stands re-admitted is judged by the languages its own source names, as the strike tool reads them; every other source by its label, as before. The strike's cumulative figures count the sources struck now with the re-admitted (33 and 16 are the 49).
+- `check-readmission-v1`, new, four laws: R1 the record against the pin's lists; R2 the index (each entry as the record returns it; the struck and the re-admitted together the 49); R3 the admission's record; R4 every row of a returning source is a landed line's, so a source back for its listed rows alone carries no other (PanLex 3,956, the translation tables 134), and a struck or held source carries none. On the trial tree R3 failed, rightly: that tree's record was written before the tool listed a kept source as the strike tool does.
+- `tools/strike-language-v1.mjs` keeps a re-admission (`patch-08`): run again it rebuilt its record without the re-admissions and wrote all 49 ids back into the index's struck list. Run dry after the mend: 162 sources to 162, 0 rows struck.
+- The lane state and its check name the re-admitted beside the struck (`patch-10`).
+- Passing unchanged on the trial tree: the store's continuity, the exact ranks, the fold landing, the ledgers' divisions and declarations, the years, the licenses, the made spaces, the words back, the kinds, the zones' receipts, the search.
