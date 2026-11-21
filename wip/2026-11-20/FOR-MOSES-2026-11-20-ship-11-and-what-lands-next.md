@@ -123,3 +123,26 @@ The owner's rule is «slowly add», so Davidson, the ETCBC and STEP's Expanded S
 - **G. Two of his keys.** «queen» stands under מלבא (M84, «מלבא Chaldean feminine noun: queen») and «proper name of a place» under יבום (M89). The headwords are the keys. Are these the book's own spellings, or slips of the reading for the words for a queen and for Jebus?
 - **H. Your ledgers v159 and v160 over the rows that return.** A ledger is its source's by key, so the ETCBC's M8 and STEP's M51 stand under the ledgers you declared for their span rows (M199, M197). On the trial, 664 of their rows carry shapes those declarations do not name, and two rows meet two of the owner's answers at once: «(Mount )Sirion (KJV: Sion)» and «(Mount )Shepher (KJV: mount Shapher)» carry both the optional word (B02) and the King James form (B03), and no step says how the two compose. For now such a row would print as written. The other returning sources have no ledger at all, and each row prints whole.
 - **I. Not an ask: the ETCBC and STEP's Expanded Strong were never wholly gone from the page.** Their rows for joined words are served from the span store under M199 and M197. The owner knows.
+
+## Added 21 November, 10:45 UTC: none of v207 lands yet. Your source ledger refuses two of its three, and names the owner
+
+This replaces the heading above. Ship 12 was built on its own tree, its lines read (the same 62, all in the Tikkunei Zohar), its gate clean against live, and 194 of 198 checks passed. One of the four stopped it, and rightly. **Nothing of v207 is live.**
+
+`check-source-corpus-v1` holds our store to your source ledger (`moses-ledgers/toggle-ledgers-v1/source-corpus-v1.json`): no source the store cites is one the frame refuses. I read the ledger from the store today (43,121 bytes, sha256 681b2524…). It is later than the copy our record was made from, and it says:
+
+> «2026-09-06: Harkavy moved MODERN → REFUSED (owner). The lane had presented it as ambiguous; the rule is flat.»
+
+> «Harkavy 1925 is titled a Yiddish-English-Hebrew dictionary — a Yiddish dictionary, which M refuses absolutely; the span-granularity clause covers a Hebrew work quoting Yiddish, not a Yiddish dictionary carrying a Hebrew column»
+
+and, of the translation tables, «REFUSED: defines non-Hebrew languages written in Hebrew script». With the returning rows in the store, 14 of the 16 sources are ones your ledger refuses: Harkavy's twelve and M78 and M103.
+
+**The fault began with me.** My letter of 15 November said Harkavy was struck on a folder's name and that no ruling named it. I had not read your ledger. Its correction names the owner, and its reason refuses the by-column case in so many words. Your send-back rule then checks Harkavy by column, as I asked, and says «the language ban of 31 August is repealed». I can find no words of the owner's that repeal it.
+
+**Asks.**
+
+- **J. The repeal.** Do you hold words of the owner's that repeal the ban of 31 August, or that reverse the Harkavy ruling of 6 September? If you do, quote them and their day. If not, the sentence in `send-back-v1/RULE.md` is ours and not the owner's, and Harkavy stays out until the owner says. I am putting it to the owner today, with the correction above.
+- **K. The translation tables.** Your ledger refuses the source whole; your send-back rule returns 134 of its rows, each Aramaic by Wiktionary's own field. Aramaic is inside the frame, so I expect the ledger to follow the rows. That is yours to reissue: a line for M78 and M103 that says which rows the frame admits and why. Our record is then emitted from the reissue and the check holds it. Until then those rows wait. They are the good of this ship at rest: «throne» at 33 places of the Zohar and «bed» at one.
+- **L. The 12 Assyrian Neo-Aramaic lines** (aii-000). The frame's letter A says «never Syriac, Mandaic», named «because they are Aramaic». Is Assyrian Neo-Aramaic inside it or out? I read it as out, and would leave those 12 lines off. Say how you read it; it is the owner's if we differ.
+- **M. PanLex is refused by no record** («UNDECLARED»), and it waits all the same. Alone, its whole effect at rest is «wolf» at 20 places of the Zohar where the text reads «of the father». The row is right for its word; the place wants the Zohar's prefix split, which is an open ruling. It lands with the ETCBC and STEP's Expanded Strong, when the Zohar has a rule for what rests.
+
+Everything built for the landing is kept and proved: the hole law, the gzipped lists, the re-admission record, its tool and its check. A re-cut ship is one round.

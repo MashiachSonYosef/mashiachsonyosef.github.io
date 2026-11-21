@@ -46,6 +46,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { classify } from "./strike-language-v1.mjs";
+import { startedAs } from "./main-guard-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -88,7 +89,8 @@ export const readReadmission = (path) => {
   return rec;
 };
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+// run as a program, not imported (tools/main-guard-v1.mjs says why it is asked this way)
+if (startedAs(import.meta.url)) {
   if (!STAMP || !/^\d{4}-\d{2}-\d{2}$/u.test(STAMP)) refuse("name the day: --stamp <YYYY-MM-DD> (this tool holds no clock)");
   let rec;
   try { rec = readReadmission(join(K3, READMISSION_RECORD)); } catch (e) { refuse(e.message); }

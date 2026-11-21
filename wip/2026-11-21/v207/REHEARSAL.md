@@ -110,3 +110,59 @@ Everything built for the whole return stays: the gzipped pin, the hole a strike 
 - `tools/strike-language-v1.mjs` keeps a re-admission (`patch-08`): run again it rebuilt its record without the re-admissions and wrote all 49 ids back into the index's struck list. Run dry after the mend: 162 sources to 162, 0 rows struck.
 - The lane state and its check name the re-admitted beside the struck (`patch-10`).
 - Passing unchanged on the trial tree: the store's continuity, the exact ranks, the fold landing, the ledgers' divisions and declarations, the years, the licenses, the made spaces, the words back, the kinds, the zones' receipts, the search.
+
+## The ship tree (08:05 to 10:20 UTC): built, gate clean, and HELD at the suite's line
+
+**Nothing of v207 is shipped.** Live stays ship 11d (main 340cff8e3b). The record: `ship-tree/`.
+
+The cut ship was built again from live on its own tree by the one script. The round's lines against live are trial 2's byte for byte (62 entries, all in the Tikkunei Zohar). The gate against live: S1 and S2 pass, 30,945 lines and 54 cards compared on 18 pages, 0 cards differ (`ship-tree/gate.log`). The suite: 198 checks, 194 pass (`ship-tree/suite/verdicts.tsv`). Four did not:
+
+| check | what it said | whose |
+|---|---|---|
+| `check-reading-rows-v1` R1 | the short card at 390 by 664 | known; red on live |
+| `check-nothing-unlanded-v1` | 726 outputs owed to the site | known; it passes only after a push |
+| `check-no-import-side-effects-v1` | `readmit-sources-v1.mjs` does file work at import, and the new check imports it | this ship's. Mended: the tool asks through `main-guard-v1.mjs` like every other. The check passes; the tool run again writes nothing |
+| `check-source-corpus-v1` L1 | 16 witnesses the store cites are in no record: re-emit the record | this ship's, and it is the finding below |
+
+### What re-emitting the record shows
+
+`data/source-corpus-v1.json` is this lane's copy of the corpus lane's source ledger: for every source the store cites, what body of text the source says it describes. The check's second law is the frame's own line: no witness this shelf cites is one M refuses.
+
+The ledger was read from the store today (`r2:mishkan/moses-ledgers/toggle-ledgers-v1/source-corpus-v1.json`, 43,121 bytes, sha256 681b2524…; `ship-tree/the-corpus-lanes-source-ledger-as-it-stands.json`). It is not the file our record was emitted from (sha256 8ac20dc9…). It carries a correction our copy never took:
+
+> «2026-09-06: Harkavy moved MODERN → REFUSED (owner). The lane had presented it as ambiguous; the rule is flat.»
+
+and for each of Harkavy's twelve sources:
+
+> «Harkavy 1925 is titled a Yiddish-English-Hebrew dictionary — a Yiddish dictionary, which M refuses absolutely; the span-granularity clause covers a Hebrew work quoting Yiddish, not a Yiddish dictionary carrying a Hebrew column»
+
+It refuses fifteen sources now, where our copy says three: Harkavy's twelve, Wiktionary's Yiddish dictionary, its Arabic one, and the translation tables («defines non-Hebrew languages written in Hebrew script»). PanLex's four labels are «UNDECLARED: general-purpose word list; declares no corpus».
+
+Emitted on the two stores (`ship-tree/source-corpus-emitted-on-*.json`):
+
+- the live store: 119 witnesses cited, 118 classified, 0 refused. Live is clean against the ledger as it stands.
+- the ship tree: 135 cited, **14 refused**: Harkavy's twelve (376 rows) and the translation tables' two (M78, M103; 134 rows). The second law would fail. PanLex's two are undeclared, as Jastrow's is.
+
+### What I had wrong
+
+On 15 November I filed Harkavy's strike as our own rule: «struck because our cache folder's name held "yiddish"; no row was checked», and «the owner's "Provenance outranks label" is general and never names Harkavy». I had read our tree and not the corpus lane's ledger. That ledger records the owner naming Harkavy on 6 September, and its reason answers the by-column case in so many words: a Yiddish dictionary carrying a Hebrew column is refused. I hold no words of the owner's for it; the ledger says «(owner)».
+
+Relay v207's rule says «the language ban of 31 August is repealed: language is judged at the word». I find no words of the owner's that repeal it. The owner's two sentences of 15 November, which the rule quotes, do not say so; one of them says removing is no more taboo than wrongly adding. The repeal is the two lanes' reading, and it began with my letter.
+
+So on 21 November I told the owner Harkavy was one of four dictionaries that should not have been removed. That stands withdrawn until the owner says.
+
+### Why each of the three is held
+
+| source | rows | at rest it would move | held because |
+|---|---|---|---|
+| Harkavy 1925 | 376 | 4 Zohar lines, right | the owner's ruling of 6 September, as the corpus lane's ledger records it. Only the owner reverses it |
+| the translation tables (M78, M103) | 134, each Aramaic by Wiktionary's own field | 34 Zohar lines, right («throne» at 33, «bed» at 1) | the corpus lane's ledger refuses the source whole, and its send-back rule returns these rows by their own language. The two records of one lane disagree. Aramaic is inside the frame, so I expect the ledger to follow the rows; it is the corpus lane's to reissue, and then our record is emitted from it |
+| PanLex (M24, M82) | 3,956, each Hebrew or Aramaic by PanLex's own field | 24 Zohar lines: «wolf» at 20, where the Zohar reads «of the father», and 4 credits | no record refuses it. Alone its whole effect at rest is the 20 wrong lines. It waits for the Zohar's prefix split or resting rule, with the ETCBC and STEP's expanded Strong |
+
+The suite's law did what it was written for on 6 September: «a witness the corpus lane refuses can never be served whatever else changes».
+
+### What is kept
+
+- The ship tree (`s12`, branch `ship12`, uncommitted) and every tool, script and patch (`tools/`), each proven by the round, the gate and the suite. A re-cut ship is the record of who returns (`make-readmission-record.py`), the pin's lists, and one round.
+- To land one source of a list and not another, the derivation needs one more clause (a list's line is landed only for a source the re-admission record returns). Not written yet.
+- For the next ship, whatever it is: emit `data/source-corpus-v1.json` from the ledger as it stands, so our copy names the fifteen and the ledger's hash. On live it changes no verdict.
