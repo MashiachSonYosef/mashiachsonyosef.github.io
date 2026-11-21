@@ -112,6 +112,14 @@
 // reading, of each source its old chip names, is such a row, now of another
 // entry. A row's verdict is the gate's own (tools/entry-gate-v1.mjs), asked
 // with the new build's facts at the new zone's tags for the word.
+// THE SPELLING BRIDGE (spelling-bridge-rule-v1; ship 11d of 21 November 2026).
+// With --expect data/spelling-bridge/PIN.json (the pin of the corpus lane's
+// list, told by its rule_id): at a place the pin lays, found on the new
+// build's zone as the tool that lays it finds it, a line that differs, on the
+// same word, is owed where the new line is the place's own pieces as the page
+// draws them with the signs at rest, credited to the pieces' source. Under a
+// switch where the place's reading does not lead the line is the old line,
+// and nothing is owed. No place is named here: the pin and the zone say them.
 // SHIP 5'S LANDINGS (the design of ships 5 and 6, section 8; the lead's calls
 // of 15 November 2026). Each is owed only where its expectation is given, and
 // a moved line or card no class explains is a difference as before:
@@ -161,7 +169,7 @@
 // The sample: every fifth served book with a chapter page, the first and the
 // last among them, chapter 1 and the middle chapter of each; no book is
 // named here (check-scope-derived S1). Without two origins the check skips.
-// Usage: node tools/check-same-product-v1.mjs --old <origin> --new <origin> [--every 5] [--chapters 2] [--diff <path>] [--expect <data/default-picks/index.json>] [--expect <data/dictionary-kinds-v1.json>] [--expect <data/audit-calls/PIN.json>] [--expect <data/form-of-pills-v1.json>]
+// Usage: node tools/check-same-product-v1.mjs --old <origin> --new <origin> [--every 5] [--chapters 2] [--diff <path>] [--expect <data/default-picks/index.json>] [--expect <data/dictionary-kinds-v1.json>] [--expect <data/audit-calls/PIN.json>] [--expect <data/form-of-pills-v1.json>] [--expect <data/spelling-bridge/PIN.json>]
 //   --diff writes every differing card in full (old pills, new pills, the
 //   pills only one build carries) and, after the cards, every differing line
 //   (old and new, with their chips), one per "line:" entry, so a batch that
@@ -176,7 +184,8 @@ import { SIGN_GAP, signOnly, signsOff, opensWithStrongSign, GLOSS_RULE_ID } from
 import { readPinnedLines, PinFault } from "./pinned-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { zonesServed } from "./zones-on-disk-v1.mjs";
-import { readingKey, openRouteStore, factsOf } from "./gloss-store-v1.mjs";
+import { readingKey, openRouteStore, factsOf, printedForm } from "./gloss-store-v1.mjs";
+import { SPELLING_BRIDGE_RULE_ID, PIECE_SOURCE, readBridge, laidOf, findBridgePlace } from "./spelling-bridge-v1.mjs";
 import { NAMES_GATE_RULE_ID } from "./names-gate-v1.mjs";
 import { DICTIONARY_KINDS_RULE_ID, restsOffIds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { onlyLeaders } from "./place-leaders-v1.mjs";
@@ -211,7 +220,7 @@ const AUDIT_CALLS_RULE = "audit-calls-landing-rule-v1-each-call-lands-as-its-lan
 const RUNS_RULE = "run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away";
 const FORM_OF_RULE = "form-of-pills-rule-v3-the-pointer-stays-the-sources-bytes-the-resolution-rides-beside-it-a-pure-pointer-prints-the-english-the-lanes-map-carries-one-reading-one-pill";
 const ONE_PILL_RULE = "pointer-one-pill-rule-v1-a-pointer-whose-resolution-prints-as-another-reading-of-the-card-is-that-readings-pill-the-pointer-beside-it";
-let EXPECT = "", KINDS = null, AUDIT = null, FORM_OF = null, NAMES = null, ENTRIES = null;
+let EXPECT = "", KINDS = null, AUDIT = null, FORM_OF = null, NAMES = null, ENTRIES = null, BRIDGE = null;
 const refuse = (why) => { console.log(`REFUSED — ${why}`); process.exit(2); };
 for (const [i, a] of process.argv.entries()) {
   if (a !== "--expect") continue;
@@ -246,7 +255,14 @@ for (const [i, a] of process.argv.entries()) {
     } catch (e) { if (e instanceof PinFault) refuse(`--expect ${path}: ${e.message}`); throw e; }
     ENTRIES = { rec, path, moved, list: pin.moves.file };
   }
-  else refuse(`--expect ${path}: its rule_id ${JSON.stringify(rec.rule_id || null)} is not an expectation this check knows (${DEFAULT_PICKS_RULE}…, ${DICTIONARY_KINDS_RULE_ID}, ${AUDIT_CALLS_RULE}, ${FORM_OF_RULE}, ${NAMES_GATE_RULE_ID}, ${ENTRY_GATE_RULE_ID})`);
+  else if (rec.rule_id === SPELLING_BRIDGE_RULE_ID) {
+    if (BRIDGE) refuse(`--expect names two pins of ${SPELLING_BRIDGE_RULE_ID}`);
+    // the places the pin lays, read as the tool that lays them reads them; a list that does not hold is refused, never half read
+    let laid = null;
+    try { const got = laidOf(readBridge(path)); if (got.faults.length) refuse(`--expect ${path}: ${got.faults[0]}`); laid = got.laid; } catch (e) { if (e instanceof PinFault) refuse(`--expect ${path}: ${e.message}`); throw e; }
+    BRIDGE = { rec, path, laid, byBook: new Map(), credit: `PIECE:${PIECE_SOURCE.toUpperCase()}` };
+  }
+  else refuse(`--expect ${path}: its rule_id ${JSON.stringify(rec.rule_id || null)} is not an expectation this check knows (${DEFAULT_PICKS_RULE}…, ${DICTIONARY_KINDS_RULE_ID}, ${AUDIT_CALLS_RULE}, ${FORM_OF_RULE}, ${NAMES_GATE_RULE_ID}, ${ENTRY_GATE_RULE_ID}, ${SPELLING_BRIDGE_RULE_ID})`);
 }
 // (b) and (c) from the audit-calls pin: call 7 lands under the gloss rule, call 3 under its own rule, held to relay
 // v181's list of the lines over several words, read here byte for byte against the pin
@@ -426,6 +442,24 @@ const picksOf = (z) => {
 // THE NEW BUILD'S WORDS, from its zone: a word by its section id and its entry, its keys (its own and its run's rows';
 // with pieces, its place pieces' too), and its place «<book> <c:v:w>», the marks not counted, as the page names a card's
 // place
+// THE SPELLING BRIDGE'S PLACES IN A BOOK (--expect its pin): section and entry -> the place's pieces as the page draws
+// them with the signs at rest. Each laid place is found on the new build's zone as the tool finds it; one that is not
+// found is no place here, and check-spelling-bridge-v1 B2 says so
+const bridgeIn = (z) => {
+  if (!BRIDGE) return null;
+  if (!BRIDGE.byBook.has(z)) {
+    const m = new Map(), zone = newOf(z).zone;
+    for (const place of BRIDGE.laid) {
+      if (place.book !== z || !zone) continue;
+      const found = findBridgePlace(zone, place);
+      if (!found.fault) m.set(`s${found.si}\u0001${found.at}`, signsOff(printedForm(place.pieces.map((x) => String(x.g).trim()).join("/"))));
+    }
+    BRIDGE.byBook.set(z, m);
+  }
+  return BRIDGE.byBook.get(z);
+};
+let bridgeMoved = 0;
+const bridgeLines = new Set();   // the default lines the bridge's pieces moved, by word, for S2's pressed pill
 const wordAt = (z, secId, i) => { const zone = newOf(z).zone; const sec = zone && zone.sections ? zone.sections[Number(String(secId).slice(1))] : null; return sec ? (sec.words || [])[i] || null : null; };
 const keysOfWord = (w, pieces = false) => (w ? [w.k, ...(Array.isArray(w.w) ? w.w.map((r) => r && r.k) : []), ...(pieces && Array.isArray(w.pg) ? w.pg.map((p) => p && p.k) : [])].filter(Boolean) : []);
 const placeAt = (z, secId, i) => {
@@ -745,6 +779,18 @@ for (const { z, ch } of pages) {
         linesCompared += 1;
         const x = A[k][i] || ["", "", "", "", "", ""], y = C[k][i] || ["", "", "", "", "", ""];
         const at = `${z} ${ch} ${name === "default" ? "" : `${name} `}${k} #${i + 1}`;
+        // THE SPELLING BRIDGE: at a place the pin lays, a line that differs is the place's own pieces under their chip
+        const bridged = BRIDGE ? (bridgeIn(z) || new Map()).get(`${k}\u0001${i}`) : undefined;
+        if (bridged !== undefined && x[0] === y[0] && (x[1] !== y[1] || x[2] !== y[2] || x[3] !== y[3])) {
+          if (y[1] === bridged && y[3] === BRIDGE.credit) {
+            bridgeMoved += 1;
+            if (name === "default") bridgeLines.add(`${z} ${ch} ${k} #${i + 1}`);
+            if (DIFF) diffLines.push(`bridge: ${z} ${ch} ${name} ${k} #${i + 1} ${x[0]}: "${x[1]}" [${x[2]} · ${x[3]}] → "${y[1]}" [${y[2]} · ${y[3]}]`);
+            continue;
+          }
+          expected.push(`${at}: "${y[1]}" [${y[3]}], the place's own pieces owed at a place the spelling bridge lays "${bridged}" [${BRIDGE.credit}]`);
+          continue;
+        }
         // a fill at rest the batch makes on purpose: the new line is the second's words under its chip, whatever the old one was
         const want = filled ? filled.get(nOf(i)) : undefined;
         if (want !== undefined) {
@@ -1000,7 +1046,7 @@ for (const { z, ch } of pages) {
     if (JSON.stringify(olds.map((o) => o.k).filter((t) => newKeys.has(t) && !moved.has(t))) !== JSON.stringify(news.map((q) => q.k).filter((t) => oldKeys.has(t) && !moved.has(t)))) faults.push("the pills both carry do not keep their order");
     else if (moved.size && JSON.stringify(olds.map((o) => o.k).filter((t) => newKeys.has(t))) !== JSON.stringify(news.map((q) => q.k).filter((t) => oldKeys.has(t)))) why.push(`the order: ${moved.size} pill(s) a source that rests shut carried beside others stand where their other carriers sort them`);
     const pressedA = olds.find((o) => o.pressed) || null, pressedC = news.find((q) => q.pressed) || null;
-    const lineMoved = signMoved || standsMoved || (!!C.at && kindsLines.has(word)) || (!!C.at && namesLines.has(word)) || nameLost > 0 || (!!C.at && entryLines.has(word)) || entryLost > 0;
+    const lineMoved = signMoved || standsMoved || (!!C.at && kindsLines.has(word)) || (!!C.at && namesLines.has(word)) || nameLost > 0 || (!!C.at && entryLines.has(word)) || entryLost > 0 || (!!C.at && bridgeLines.has(word));
     if ((pressedA ? pressedA.k : null) !== (pressedC ? pressedC.k : null) && !lineMoved) faults.push(`its pressed pill moved from ${pressedA ? pressedA.t : "none"} to ${pressedC ? pressedC.t : "none"}, and its word's line did not move as owed`);
     if (faults.length) { s2.push(`${z} ${ch} card ${i + 1}: ${faults.join("; ")}`); if (DIFF) diffLines.push(`== ${z} ${ch} card ${i + 1}\n  old: ${x}\n  new: ${y}\n  only old: ${A.said.filter((t) => !C.said.includes(t)).join(" | ")}\n  only new: ${C.said.filter((t) => !A.said.includes(t)).join(" | ")}`); continue; }
     if (shutLost) { kindsCards += 1; kindsPillsLost += shutLost; why.push(`kinds: ${shutLost} pill(s) of the dictionaries that rest shut, held back ${C.held}`); }
@@ -1019,8 +1065,8 @@ const kindsSaid = KINDS ? ` · the dictionaries that rest shut (${KINDS.path}): 
 // ship 5's classes, said with what they were read from
 const shipSaid = [EXPECT ? `${owedSeen.stands} line(s) where STEP's own words stand (call 4)` : "", SIGN ? `${owedSeen["strongs sign"]} line(s) off Strong's sign (call 7)` : "", RUNS ? `${owedSeen.runs} line(s) of words of a run that fell (call 3, ${RUNS.length.toLocaleString("en-US")} lines of v181)` : ""].filter(Boolean);
 const shipCards = Object.entries(owedCards).filter(([, nn]) => nn > 0).map(([why, nn]) => `${nn} ${why}`);
-check(`S1 every sampled line and its chip are the same on both builds, under every switch both carry${EXPECT ? ", but the fills at rest the index names, each reading the second's words, STEP's own words where the old line is bare or where STEP spells or parts the word otherwise, and the hidden sign's gap beside them in their run" : ""}${KINDS ? ", and on a book the record rests shut, the lines a source it rests shut carried or ranked, each moved to a source it does not" : ""}${SIGN ? ", the lines whose pieces opened with Strong's sign, each moved to a plain reading" : ""}${RUNS ? ", and the words of a run whose every word reads its own at the place, each reading its own" : ""}${NAMES ? ", and at a place that is not a name, the lines name rows alone carried, each moved off them" : ""}${ENTRIES ? ", and the lines carried by rows the new ledger moves to another entry than the place's, each moved off them" : ""}`, !failed.length && pages.length > 0 && !s1.length && !expected.length,
-  `${linesCompared.toLocaleString("en-US")} lines compared on ${pages.length} pages${EXPECT ? ` · ${filledSeen} fill(s) and STEP's words at rest on them, ${neighborsSeen} gap(s) beside them${expected.length ? `, ${expected.length} not as owed: ${expected.slice(0, 3).join("; ")}` : ", each as owed"}` : ""}${shipSaid.length ? ` · ${shipSaid.join(", ")}, each as owed` : ""}${kindsSaid}${NAMES ? ` · ${namesMoved} line(s) the names gate moved, each as owed` : ""}${ENTRIES ? ` · ${entriesMoved} line(s) the entry gate moved over ${ENTRIES.list}, each as owed` : ""}${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
+check(`S1 every sampled line and its chip are the same on both builds, under every switch both carry${EXPECT ? ", but the fills at rest the index names, each reading the second's words, STEP's own words where the old line is bare or where STEP spells or parts the word otherwise, and the hidden sign's gap beside them in their run" : ""}${KINDS ? ", and on a book the record rests shut, the lines a source it rests shut carried or ranked, each moved to a source it does not" : ""}${SIGN ? ", the lines whose pieces opened with Strong's sign, each moved to a plain reading" : ""}${RUNS ? ", and the words of a run whose every word reads its own at the place, each reading its own" : ""}${NAMES ? ", and at a place that is not a name, the lines name rows alone carried, each moved off them" : ""}${ENTRIES ? ", and the lines carried by rows the new ledger moves to another entry than the place's, each moved off them" : ""}${BRIDGE ? ", and at a place the spelling bridge lays, the place's own pieces" : ""}`, !failed.length && pages.length > 0 && !s1.length && !expected.length,
+  `${linesCompared.toLocaleString("en-US")} lines compared on ${pages.length} pages${EXPECT ? ` · ${filledSeen} fill(s) and STEP's words at rest on them, ${neighborsSeen} gap(s) beside them${expected.length ? `, ${expected.length} not as owed: ${expected.slice(0, 3).join("; ")}` : ", each as owed"}` : ""}${shipSaid.length ? ` · ${shipSaid.join(", ")}, each as owed` : ""}${kindsSaid}${NAMES ? ` · ${namesMoved} line(s) the names gate moved, each as owed` : ""}${ENTRIES ? ` · ${entriesMoved} line(s) the entry gate moved over ${ENTRIES.list}, each as owed` : ""}${BRIDGE ? ` · ${bridgeMoved} line(s) at a place the spelling bridge lays, each the place's own pieces` : ""}${!EXPECT && expected.length ? ` · ${expected.length} not as owed: ${expected.slice(0, 3).join("; ")}` : ""}${s1.length ? ` · ${s1.length} differ: ${s1.slice(0, 4).join("; ")}` : ""}${skipped.length ? ` · not compared: ${[...new Set(skipped.map((x) => x.split(": ")[1]))].join(", ")} (${skipped.length})` : ""}${failed.length ? ` · failed to read: ${failed.slice(0, 3).join("; ")}` : ""}`);
 check(`S2 the first cards of every sampled chapter carry the same pills, the same one pressed${KINDS ? ", but on a book the record rests shut, the pills of the sources it rests shut alone at the card's place, held back and counted" : ""}${FORM_OF ? ", a plain pill whose English a pill prints with its pointer beside it" : ""}${SIGN || EXPECT ? ", the reading a word's line moved from as owed" : ""}${RUNS ? ", and the card of a word of a run that fell, opened on the word" : ""}${WSA ? ", and the card of a word that stood in a joined cell and stands alone on the new build, the word's own card with its gates: no pill gained, the same reading pressed" : ""}${NAMES ? ", and at a place that is not a name, the pills name rows alone carried, held back and counted" : ""}${ENTRIES ? ", and the pills of rows the new ledger moves: gained where the row is now of the place's own entry, lost where it is now of another" : ""}`, !failed.length && cardsCompared > 0 && !s2.length,
   `${cardsCompared} cards compared${KINDS ? ` · ${kindsCards} card(s) lost ${kindsPillsLost} pill(s) of the dictionaries that rest shut, each held back` : ""}${NAMES ? ` · ${namesCards} card(s) lost ${namesPillsLost} pill(s) name rows alone carried, each held back by name` : ""}${ENTRIES ? ` · ${entryCards} card(s) moved by rows the ledger moves: ${entryPillsGained} pill(s) gained, ${entryPillsLost} lost` : ""}${shipCards.length ? ` · cards that differ as owed: ${shipCards.join(", ")}` : ""}${s2.length ? ` · ${s2.length} differ: ${s2.slice(0, 3).join("; ")}` : ""}`);
 console.log(bad ? `\n${bad} failing` : "\nall checks passed");

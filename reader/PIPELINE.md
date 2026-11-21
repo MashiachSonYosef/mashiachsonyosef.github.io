@@ -89,7 +89,21 @@
 > spells another word than its read word) carries neither, as before. The
 > lattice projection clears the tags it finds, so the round lays them again
 > after it, each time; the write is typed on each zone it changes and
-> expires with the lane's next lattice, which carries them itself.
+> expires with the lane's next lattice, which carries them itself. At 206
+> places where our text spells a word otherwise than the Leningrad text STEP
+> follows, and STEP's own spelling column names our spelling, a zone carries
+> since 21 November the place's pieces: our letters as the corpus lane's
+> spelling bridge cuts them, and for each piece STEP's own words for the
+> place, as STEP writes them (`tools/apply-spelling-bridge-v1.mjs`, from the
+> list kept in `data/spelling-bridge/`, read through
+> `tools/spelling-bridge-v1.mjs`). The lattice reads STEP under the
+> Leningrad spelling and gives these places nothing, so the line there was
+> whatever row led under the key; with the pieces it is the place's own
+> reading, as everywhere else. The pin says which of the list's classes are
+> laid and why each of the others is not. The round lays the pieces first in
+> its zones step, before the line is read again: that reading takes a name's
+> lead from a place's pieces, and so does the lattice projection. No tag is
+> written.
 > Since 15 November the rows call 5 of the corpus lane's audit calls names
 > are struck or moved to their word's key by `tools/strike-rows-v1.mjs` from
 > the lane's list, kept here byte for byte with the other calls'
