@@ -77,3 +77,35 @@ A fifth builder, **cards**, has second reader 2, 4, 9, 10, 11, 12 and 13.
 
 Seen in passing by that helper and not examined: with every source switched off, the Genesis 12:8 cell still reads «Bethel» with a license chip. Filed to look at after this ship.
 
+## The five patches, read and put together (21 November, 22:30 to 23:40 UTC)
+
+Each builder's report is kept whole in `builders/<name>/REPORT.md` with its patch and its check. I read every page diff before it went anywhere.
+
+| builder | findings | replacements in the page | laws (red on live, green mended) |
+|---|---|---|---|
+| rail | third reader 3, 4, 6, 9, 13, 15 | 15 | 6 |
+| pairs | first reader 1, 4, 9 (and 1's sibling at Deuteronomy 33:2) | 11 | 4 |
+| place | the card that moves (task 130) | 3 | 1 |
+| load | first reader 5, 6, 7, 10, 11 | 16 | 6 |
+| cards | second reader 2, 4, 9, 10 (by half), 11, 12, 13 | 11 | 7 |
+
+- **Stacked in that order** on an integration copy first. Every replacement was found exactly once on top of the others, so no two patches touch the same text. The stacked page holds no Hebrew letter and no non-ASCII character the shipped page lacks. All 24 laws hold on the full stack (`measures/full-stack/`).
+- **On the ship tree** the same five patches give the integration copy's page byte for byte (`zone.html` 6875eafc24174f3e).
+- **One repository law is amended with a mend:** `check-dictionary-kinds-v1` K4 held the panel's count line to the ledger ids off, which is the very line the third reader's finding 9 reports. It now counts the chips a reader sees off (`builders/rail/patch-check-kinds.py`).
+- **The five checks are the repository's now** (`tools/adopt-checks.py`): `tools/check-readers-faults-rail-v1.mjs`, `-pairs-`, `-place-`, `-load-`, `-cards-`. Each serves the tree itself, or reads another build with `--base` or `SERVE_BASE`. All 24 laws hold on the ship tree (`measures/adopted-on-the-ship-tree/`).
+- **Found by the pre-flight:** `check-scope-derived-v1` forbids a check naming a work by a zone's path or by a slug of the plan, and the load check did both (Genesis; Amos's bin). The check now asks the served run indexes for the first book both list (`tools/patch-02-load-check-derives-its-works.py`). I did not loosen the law.
+- **The source ledger's v2 address** is in `data/source-corpus-v1.json`: one line changes, the address; the hash and every count are the same.
+
+What a reader will notice at rest: the panel's line no longer says «1 off» with every chip on; a card opens at its word and stays there when a pill is pressed; a book page asks for two files fewer before it draws. No line under a word and no card's readings are meant to change; the gate says whether that is so.
+
+Left for the owner or for later, from the builders' worries:
+
+- A pair whose reading's carriers and its alternate's are all switched off goes bare, unmarked (pairs).
+- Finding 7's mend repairs nobody already stamped; that needs the record of defaults' version moved (load).
+- The second reader's finding 10 is half closed: a division pressed with nothing picked still leaves the line word by word (cards).
+- A dictionary opened from «Shut at rest» and then switched off is counted by neither of the panel's lines (rail).
+
+## The round, the gate and the suite
+
+Started 23:38 UTC on page 6875eafc24174f3e (`S/s18w/chain.sh p1 suite1`).
+
