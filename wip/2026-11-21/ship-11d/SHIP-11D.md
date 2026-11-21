@@ -49,7 +49,7 @@ Run as `tools/pipeline-11d.sh` on branch `ship11d` from ship 11c as shipped (f88
 **206 entries move in 40 works, and they are exactly the 206 places** (`lines-diff-against-live.json`). Nothing else moves.
 
 - **118 keep their words and change their credit**, from STEP's row or STEP's fill to the place's own pieces.
-- **88 change their words** (`every-line-whose-words-move.txt`; every one read). 52 read another of STEP's own rows before, 33 Strong's concordance list, 2 MACULA's, 1 another. Each reads STEP's own words for the place now.
+- **88 change their words** (`every-line-whose-words-move.txt`; every one read). 52 read another of STEP's own rows before, 33 Strong's concordance list (Hebrew Wikisource), 2 MACULA's, 1 Strong's dictionary (Open Scriptures). Each reads STEP's own words for the place now.
 
 The three known lines of ship 11c:
 
