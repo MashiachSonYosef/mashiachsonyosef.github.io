@@ -25,3 +25,38 @@ So nothing to mend. `check-ruled-equals-first-paint-v1`, the check that first me
 ## The readers' faults, proven again
 
 Three read-only helpers, one per reader's report of the page script, each told to decide in a browser and to answer «gone» as readily as «still present» (`tools/readers-again-brief.md`). Their reports land in `readers-again/`.
+
+### What came back (two of three, 21 November, about 22:00 UTC)
+
+The reports as handed back, with every probe: `readers-again/a/REPORT.md` (the first reader's part of the page) and `readers-again/c/REPORT.md` (the third's). The second reader's part is still being read.
+
+| finding | what a reader meets | on live today |
+|---|---|---|
+| first reader 1 | a ruling on the written half of a pair is lost at any repaint; a ruling on a plain word spelled like it takes the pair's line | still present (Daniel 2:43) |
+| first reader 9 | a ruled written form's chip comes out empty after a repaint | still present |
+| first reader 4 | a pair's line and chip ignore the source switches | still present (Ruth: 6 of 12 pairs still name STEP TAHOT with its chip off) |
+| first reader 5 | the pointing gate reads the last card's word | the live line is right now; an exported verse is still gated by the last card (Amos 4:10) |
+| first reader 6 | run files fetched and thrown away at rest | two of three still asked before the page draws (76 KB on Genesis) |
+| first reader 7 | a resting-off default stamped though its source's file failed | still present |
+| first reader 10 | a still press on the card's head parks the card | still present |
+| first reader 11 | a network fault said as «No book is published on this page yet» | still present; four loaders keep one failure for the whole visit |
+| third reader 3 | reset redraws the panel of switches without its dictionary strip | gone; the scribes' marks button is lost after a redraw, behind `&rail=all` |
+| third reader 4 | the box on a «whole source» line does nothing | still present, at rest |
+| third reader 9 | the panel's line counts ledger ids | still present: «13 dictionaries · 1 off» on a fresh load with every chip on |
+| both readers | «only this pointing» lit on a work with no lattice | gone |
+| third reader 15 | the search asks for the letters as typed | still present, in a changed shape |
+| third reader 6 | a relay leaves an empty bar row and loses an opened commentary | still present, behind `&commentary=on` |
+| third reader 13 | two registries never pruned | still present; nothing a reader sees |
+| task 130 (1) | a card moves when a second pill is pressed on a phone | still present, and larger: 80px at Obadiah 1:1 word 1 |
+
+### How the mends are being built
+
+Four builders, each in its own light copy of the page (`tools/mk-shadow.sh`: its own `zone.html`, its own `tools/`, the rest by symlink, its own port), so the ship tree stays as shipped until I apply what I have read. Each hands back a patch of exact replacements, a browser check that is red on live and green on its copy, and a report (`tools/builders-brief.md`).
+
+- **pairs:** first reader 1, 9 and 4.
+- **load:** first reader 5 (the export), 6, 7, 10 and 11.
+- **rail:** third reader 4, 9, 15, 13, 6 and 3.
+- **place:** the card that moves (task 130).
+
+I read every patch before it goes on the tree, then the round, the gate and the whole suite as on every ship.
+
