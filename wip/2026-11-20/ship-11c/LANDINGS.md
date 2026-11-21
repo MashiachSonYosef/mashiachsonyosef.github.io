@@ -160,3 +160,6 @@ Every fault listed on the live tree with Daniel named (`default-picks-d7-every-f
 4. **A pick with no words says so before its note** (D13's 3: «1 (no words given) (sense 2)»). The page's own comment says why: the review of 14 November read a bare «1 (sense 2)» as BDB's reading.
 
 With the four, on the ship tree: all 26 laws pass, the third work Daniel. Task 148 is closed by it.
+
+One more from the check's own self-test (it is run by hand, not by the suite): its H14 plants a sign back into a record and expects the law to name it once. It used to land on Exodus 22:4; with STEP's row landed there it lands on Daniel 1:16, where the object marker stands beside a word of two entries, each carrying STEP's words, and the law names it twice. H14 now holds every fault to the planted word (`tools/patch-check-default-picks-h14.py`). The node self-test passes; on the live tree as shipped it passed on Exodus.
+
