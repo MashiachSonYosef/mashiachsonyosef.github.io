@@ -475,11 +475,14 @@ for (const [m, L] of LISTED) {
     // stays a row of the source, with other words, so its old texts lose it and the rows do not
     const moved = (second.retexted && second.retexted.get(m)) || [];
     const lost = [...off, ...moved];
+    // and the rows another list landed since (the corpus lane's returns, relay v200): each a row more, its texts gain it
+    const on = (second.back && second.back.get(m)) || [];
     const routeOf = (x) => { const l = lineOf(L, x.route); return l ? l.prints : x.route; }, recordOf = (x) => { if (!x.definition) return routeOf(x); const l = lineOf(L, x.definition); return l ? l.prints : x.definition; };
-    const less = { route: lost.filter((x) => lineOf(L, x.route)).length, definition: lost.filter((x) => lineOf(L, x.definition)).length, either: lost.filter((x) => lineOf(L, x.route) || lineOf(L, x.definition)).length,
-      stillRoute: lost.filter((x) => comma.test(routeOf(x))).length, stillRecord: lost.filter((x) => x.definition && comma.test(recordOf(x))).length };
+    const net = (test) => lost.filter(test).length - on.filter(test).length;
+    const less = { route: net((x) => lineOf(L, x.route)), definition: net((x) => lineOf(L, x.definition)), either: net((x) => lineOf(L, x.route) || lineOf(L, x.definition)),
+      stillRoute: net((x) => comma.test(routeOf(x))), stillRecord: net((x) => x.definition && comma.test(recordOf(x))) };
     const faults = pairsLess(less).filter(([, here, there]) => here !== there).map(([what, here, there]) => `${m}: ${what} ${here} here, ${there} by the second road`);
-    if (c.rows !== stated.rows - off.length) faults.push(`${m}: ${nf(c.rows)} rows here, ${nf(stated.rows - off.length)} by the second road (the receipt's ${nf(stated.rows)} less ${off.length})`);
+    if (c.rows !== stated.rows - off.length + on.length) faults.push(`${m}: ${nf(c.rows)} rows here, ${nf(stated.rows - off.length + on.length)} by the second road (the receipt's ${nf(stated.rows)} less ${off.length}${on.length ? `, and ${on.length} landed since` : ""})`);
     let heldLines = 0;
     for (const [text, l] of L.lines) {
       const [r1, r2] = c.served.get(text) || [0, 0], [f1, f2] = fallOf(second, m, text);
@@ -488,7 +491,7 @@ for (const [m, L] of LISTED) {
       else faults.push(null);
     }
     countFaults.push(...faults.filter(Boolean));
-    judgedSources.push(`${said} (by the second road: the receipt's counts at «${L.readAt}», less ${(second.gone.get(m) || []).length} rows gone since ${second.base} and ${(second.notLanded.get(m) || []).length} lines of relay ${second.landing.relay} not landed${moved.length ? `, ${moved.length} rows retexted since off their old texts` : ""}; ${nf(heldLines)} of ${nf(L.lines.size)} lines hold)`);
+    judgedSources.push(`${said} (by the second road: the receipt's counts at «${L.readAt}», less ${(second.gone.get(m) || []).length} rows gone since ${second.base} and ${(second.notLanded.get(m) || []).length} lines of relay ${second.landing.relay} not landed${moved.length ? `, ${moved.length} rows retexted since off their old texts` : ""}${on.length ? `, and ${on.length} rows another list landed since` : ""}; ${nf(heldLines)} of ${nf(L.lines.size)} lines hold)`);
   }
   else saidOnly.push(`${said}${differing.length ? ` (${differing.length} of the corpus lane's counts differ now)` : ""}, its rows have moved on from ${L.readAt}`);
 }

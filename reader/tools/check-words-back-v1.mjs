@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // RUN: tree
-// GUARDS: words-back-landing-rule-v1-the-lanes-words-back-land-by-key-and-rank-held-where-the-printed-text-sets-a-hebrew-character-against-a-latin-letter-or-a-digit, row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts, row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words
+// GUARDS: words-back-landing-rule-v1-the-lanes-words-back-land-by-key-and-rank-held-where-the-printed-text-sets-a-hebrew-character-against-a-latin-letter-or-a-digit, row-strike-rule-v8-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts-a-landing-writes-the-entries-its-line-names, row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words
 // LEDGER: -
 // no frame letter. A check reads the pins, the derived lists, the row-strikes
 // record, the store and the lattice sidecars, and judges them; it is not the

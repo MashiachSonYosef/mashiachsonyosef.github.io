@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-16.
 
-**185 rules declared · 173 named by a check · 12 unguarded.**
+**188 rules declared · 176 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -79,6 +79,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `kq-grade-rule-v1-the-read-half-is-graded-by-its-own-vowels-the-written-half-by-letters-only` | tools/project-lattice-v12-v1.mjs, zone.html | check-kq-graded-v1 |
 | `kq-rule-v1-both-halves-as-written` | tools/make-kq-fixture-zone-v1.mjs, tools/zone-lib-v1.mjs | check-kq-carried-v1, check-kq-lead-follows-switch-v1, check-kq-presentation-v1 |
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
+| `landings-rule-v1-a-landing-list-lands-as-its-own-rule-reads-on-the-store-it-meets-each-line-at-the-rank-its-list-gives-or-after-the-last-row-of-its-key-and-a-line-its-own-source-already-prints-is-named-not-landed` | tools/derive-landings-v1.mjs | check-landings-v1 |
 | `lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving` | tools/emit-lane-state-v1.mjs | check-lane-state-v1 |
 | `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
 | `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-parts-in-card-v1, check-lattice-projection-v1 |
@@ -106,7 +107,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `orders-registered-together-rule-v1-a-reading-column-and-its-credit-column-are-one-registration` | tools/check-orders-registered-together-v1.mjs | check-orders-registered-together-v1 |
 | `overlay-book-counts-rule-v1-a-dictionary-beside-the-store-is-counted-per-book-like-every-other` | tools/bake-overlay-book-counts-v1.mjs | check-source-switch-v1 |
 | `overlay-rule-v2-an-overlay-row-is-a-row-like-the-stores` | zone.html, tools/apply-ledger-divisions-v1.mjs, tools/rows-beside-the-store-v1.mjs, tools/stems-extension-v1.mjs | check-overlays-v1, check-card-opens-on-the-line-v1, check-pointing-grade-v1, check-source-switch-v1, check-witnessed-order-v1 |
-| `own-pointing-rule-v1-a-row-whose-headwords-carry-no-points-takes-its-own-records-pointed-head-forms` | tools/apply-own-pointing-v1.mjs, tools/project-lattice-v12-v1.mjs | check-own-pointing-v1, check-audit-calls-v1, check-fold-strike-landing-v1 |
+| `own-pointing-rule-v1-a-row-whose-headwords-carry-no-points-takes-its-own-records-pointed-head-forms` | tools/apply-own-pointing-v1.mjs, tools/project-lattice-v12-v1.mjs | check-own-pointing-v1, check-audit-calls-v1, check-fold-strike-landing-v1, check-landings-v1 |
 | `partial-serve-rule-v1-a-work-served-in-part-says-so-where-the-part-is-missing` | zone.html | check-partial-serve-declared-v1 |
 | `parts-a-press-away-rule-v1-a-whole-form-whose-every-reading-reads-it-in-its-parts-says-the-readings-of-its-parts-are-a-press-away` | zone.html | check-whole-form-parts-v1 |
 | `parts-direction-rule-v1-the-first-part-of-a-hebrew-row-is-the-rightmost` | zone.html | check-parts-read-right-to-left-v1 |
@@ -136,7 +137,9 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `route-delta-landing-rule-v1-a-row-the-rebuild-wrote-lands-by-content-under-the-shape-the-store-has-now` | tools/apply-route-delta-v1.mjs | **UNGUARDED** |
 | `route-store-rule-v1-catalog-compact-top5` | tools/build-route-store.mjs | check-route-store-exact-k-v1 |
 | `route-store-rule-v3-declared-reading` | tools/check-nothing-invented-v1.mjs | check-nothing-invented-v1 |
-| `row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts` | tools/strike-rows-v1.mjs | check-audit-calls-v1, check-fold-strike-landing-v1, check-store-continuity-v1, check-words-back-v1, check-default-picks-v1, check-entry-gate-v1, check-made-spaces-v1, check-sense-openings-v1 |
+| `row-strike-rule-v` | tools/check-landings-v1.mjs | check-landings-v1 |
+| `row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts` | tools/check-words-back-v1.mjs | check-words-back-v1, check-audit-calls-v1, check-default-picks-v1, check-entry-gate-v1, check-made-spaces-v1, check-sense-openings-v1 |
+| `row-strike-rule-v8-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts-a-landing-writes-the-entries-its-line-names` | tools/strike-rows-v1.mjs | check-audit-calls-v1, check-fold-strike-landing-v1, check-landings-v1, check-store-continuity-v1, check-words-back-v1 |
 | `row-strikes-follow-rule-v2-a-name-read-at-an-older-store-is-followed-through-the-rounds-since-and-never-guessed-a-retexted-row-is-followed-to-its-new-words` | tools/row-strikes-follow-v1.mjs, tools/apply-row-entries-v1.mjs, tools/apply-sense-openings-v1.mjs, tools/bake-default-picks-v1.mjs | check-entry-gate-v1, check-words-back-v1, check-default-picks-v1, check-sense-openings-v1 |
 | `rule-demonstration-rule-v1-a-demonstration-is-the-reader-on-a-passage-never-a-drawing-of-one` | tools/build-demonstrations-v1.mjs | check-demonstrations-v1 |
 | `ruled-reading-stands-rule-v1-a-reading-the-reader-ruled-stays-on-the-card-wherever-the-ruling-stands-whatever-its-points` | zone.html | check-rulings-under-sources-v1 |
@@ -218,7 +221,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 42 of the 160 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 42 of the 161 tools that are not checks.
 
 Not called by any build stage:
 
@@ -256,6 +259,7 @@ Not called by any build stage:
 - `tools/count-stamp-v1.mjs`
 - `tools/declaration-v1.mjs`
 - `tools/derive-fold-strike-landing-v1.mjs`
+- `tools/derive-landings-v1.mjs`
 - `tools/derive-ubs-collocations-v1.mjs`
 - `tools/derive-words-back-v1.mjs`
 - `tools/dictionary-kinds-v1.mjs`
