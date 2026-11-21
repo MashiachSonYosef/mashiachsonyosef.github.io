@@ -22,6 +22,14 @@ License postures as they stood: 29 public domain (Davidson 1855, Harkavy 1925), 
 5. **What rests open.** See section 3.
 6. The store steps after a landing (ship 11c's sequence), the round, every resting line against live, the gate, the suite.
 
+### What the admission record itself says about this
+
+`data/language-admission-v1.json` holds, on every source struck for silence, this note: «admission is affirmative: a source answers for a Hebrew or Aramaic span only if it says that is what it is answering about. If this source is a Hebrew or Aramaic lexicon, the fix is a label at the source naming what its own title page names, not an exception here.» Davidson's one source still in the store (M97) was kept because its label names «Hebrew and Chaldee»; his other seventeen were struck because theirs did not, though they are the same book. v207 is that fix made by the corpus lane, row by row: each line's `why` quotes the source's own title or the row's own language field. So the third round is not an exception to the rule. It is the rule's own remedy, with the evidence the rule asked for, and the record should say it in those words.
+
+The returning sources are admitted **for the rows the lane lists**, not wholesale: PanLex returns 3,956 of its rows and 10,052 stay out by their own language field (Yiddish 9,654, Ladino 228, and others).
+
+Davidson's entries carried `sourceYear` 1855 before the strike. M97 carries «S_NO_SOURCE_YEAR» today, by the years ruling (relay v165), and the lane gives every returning line the same. The returning entries follow the years ledger, not the old index.
+
 ## 3. What rests open is the owner's twelve, so two things follow
 
 The owner's ruling of 19 November: «12 it is lets go with that for now», and «slowly add». The twelve are the families of kind `bible` in the kinds record. Davidson's Analytical Lexicon is one of them (one key of his is in the store now and rests open).
