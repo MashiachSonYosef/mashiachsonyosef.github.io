@@ -47,3 +47,34 @@ Not in this ship: a line the list says reads one word other than the one it is f
 ## What a reader will see
 
 At rest, nothing. With UBS first: «Kadesh-Barnea» once over a joined pair instead of «Kadesh-Barnea» «Barnea»; where the two words stand apart, «Kadesh» «Barnea» as at rest, and the card of either says UBS reads the two as «Kadesh-Barnea». With BDB first: «Beersheba» once.
+
+## Built (16:25 to 16:50 UTC), on a tree of live (`S/s13`, branch `ship10b` from 9017d8f9c6)
+
+- **The one reading of the list:** `tools/default-spans-v1.mjs` (new). The pin `data/default-picks/spans-v1/PIN.json`, with the lane's rule and two receipts kept byte for byte. The list (1.7 MB) stays on the lane's store beside the default picks and is read through `--ledger`.
+- **What lands:** a source's first pick whose span is two words or more. UBS 771 lines, 761 units (3 nested in a longer one, 4 lines filed beside their words); BDB 640 lines, 313 units; MACULA 12 lines, 6 units. Filed with a line of the source, so the page can print them: UBS 760, BDB 135, MACULA 6.
+- **The bake** (`tools/patch-01-bake-spans.py`): each book's file carries `spans`, by word number. Every line that lands is proved to be the source's first pick at its place as the default picks give it (UBS by the piece and the meaning's id, BDB by record and meaning). None refused in 39 books. The index is untouched but for the files' bytes.
+- **The page** (`tools/patch-02-page-spans.py`): `dfltSpanUnit`. A word of a unit takes the unit's one line, read at the place it is filed; `dfltUnitOf` answers the unit from the data before the old marks are asked; a line filed beside its words is not printed where it is filed; the card names the unit's reading as «one reading of these N words».
+- **Found on the way, on live too:** a joined run's card said a unit's reading at every cell, «Bethel · sense 1 + Bethel · sense 1» at Amos 3:14:10 under BDB, over a line that read it once. Mended (`tools/patch-03-page-run-card-says-a-unit-once.py`): the card says a unit once.
+
+## Read again on the built tree (`measures/spans-on-the-ship-tree-*.txt`)
+
+| | UBS first | BDB first | MACULA first |
+|---|---|---|---|
+| one line over the whole span, the source's | 441 (was 8) | 174 (was 128) | 4 |
+| every word as it rests, the words apart | 332 | 243 | 8 |
+| every word as it rests, one cell | 2 | 220 | 0 |
+| the source's line under each word | 73 | 0 (was 82) | 0 |
+| the name twice | 3 (was 413) | 2 | 0 (was 2) |
+
+What is left is the source's own filing, not a doubled name:
+
+- UBS's 73 and its 3: the two-word lemma is UBS's *second* pick there. Its first pick reads one word by the list («Sea of Reeds / Gulf of Aqaba» is its sense of «sea» at Deuteronomy 1:40:7, and «cattails / bulrushes» its own line at the next word). The line prints the first pick.
+- BDB's 2 (II Kings 9:27:7): the two-word record has no highlighted words, so no line; the word before carries another record's.
+- BDB's 220 in one cell that rest: records with no highlighted words. Nothing to print.
+- UBS's 2 in one cell that rest (Jeremiah 7:32, 19:6): a two-word unit inside a three-word one whose first word stands apart.
+
+## The check (`tools/check-default-spans-v1.mjs`, new; `measures/check-default-spans-v1.txt`)
+
+S1 the pin and the receipts. S2 every book's spans, and with the list on the machine a recount through the one reading (1,423 lines in 39 books). S3 on the page under each source, every book: no name stands twice at any unit filed with a line (UBS 435 units as one line and 325 resting; BDB 87 and 48; MACULA 2 and 4). S4 the card: a unit drawn as one line is said once; a unit resting apart is said as the source's one reading of its words. All pass, 3 min 20 s.
+
+Still to do: the older check's page model (`check-default-picks-v1`), the gate's expectation for lines that move under a source pressed, the pipeline's documents, then the round, the gate and the whole suite.
