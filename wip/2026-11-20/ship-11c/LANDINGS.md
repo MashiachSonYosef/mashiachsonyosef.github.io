@@ -185,3 +185,27 @@ Read at each place (`tools/read-the-line-where-a-word-gains-a-card.mjs`): at the
 - The count: the record said «1,623 sites in 39 books», typed on 3 September. Live stood at 1,897 in 37 books; this tree has 1,829 in 36. The record says the measure. **Follow-up, not in this ship:** the door prints this count from the record, so it goes stale at every landing that gives a word a card (v207 will give many). The door should count it from the shelf, or the check should hold the count. Every `sites` in that record is typed (17 of them).
 - Amos 3:11's note said «two of the fourteen words in this verse have no reading». One of its thirteen words has none, on live too (the fourteenth item is the verse's end mark). The note says so.
 - The door built again: only `demonstrations/index.html` moves.
+
+## Shipped (21 November, 02:31 UTC)
+
+The eight checks nearest the two mends ran clean after them (`check-demonstrations-v1`, `check-nothing-hand-typed-v1`, `check-landings-v1`, `check-c0-refusals-v1`, `check-clean-address-v1`, `check-form-of-v1`, `check-page-agrees-with-its-record-v1`, `check-default-picks-v1`, 26 laws). The gate was not run again: the mends touch one tool's string literal, one record and the door's demonstrations page, and no zone, no sidecar and no line of the reader.
+
+- `main` f88c4df6e1436e03b99e44deb9b7a619aaf3bcdd, one commit on ship 11 (`commit-as-shipped.txt`).
+- `gh-pages` af3540bf5d2491b079e1c49bf31e1f164ccd6d91, «gh-pages follows main».
+- Pages run 1379: success (02:32:57 UTC).
+- `check-nothing-unlanded-v1`, read after the push: ok, 3 laws.
+
+## What I read at the bridge's places, for the next ship (02:35 UTC)
+
+`the-bridge-against-steps-own-words.txt` (`tools/bridge-vs-steps-words.py`): v202's 1,173 places against the default picks' own record of STEP's words and against the resting line.
+
+- **784 are call 4's stands.** Call 4's list sits inside the bridge. (One stand and one fill of the picks are not bridge places.)
+- **235 carry STEP's own words only as a fill for a bare line.** 206 are `STEP_WRITES_OUR_SPELLING`, 23 `THE_SOURCES_JOIN_OUR_WORDS`, 5 `THROUGH_ONE_LETTER`, 1 held at a seam. The line is STEP's words at 118, another of STEP's own rows at 62, another source's row at 55. The 62 are the class of the three known lines.
+- **154 carry no words of STEP's**; 93 of them have the bridge's pieces. At 17 of the 93 the resting line is already the pieces' words (the lattice's own pieces, MACULA's mostly).
+
+**Two roads to the mend, and the one I take.**
+
+1. Mark the 206 as standing, under call 4's rule («where STEP spells or parts the word otherwise, STEP's reading stands»). The bake's own header says the owner took that for the list's category only («only the list's category stands»), so widening it to the bridge's class is a call for the corpus lane or the owner, not mine. Put to Moses as a question.
+2. **A row that names its verse leads at that verse.** That is the standing rule everywhere the lattice has a reading (`names_this_verse`, the sidecar's `n` and `c`). The bridge's places have none because the lattice reads the Leningrad spelling. v202's form rows say which places each line is for (220 places), so the landed row can name its verse by the lane's own data, and no ruling is needed. And the bridge's pieces give each of 1,035 places its tag, so the entry gate reads the place's own entry there.
+
+The next ship is road 2: the bridge's pieces and the form rows' places, carried into the sidecar as the lattice's own facts are.

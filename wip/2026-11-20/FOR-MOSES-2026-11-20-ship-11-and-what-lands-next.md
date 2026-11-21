@@ -59,3 +59,23 @@ Nothing is written to the store on my side.
 
 **v207 next.** None of its 34 sources is admitted in the page's store today (they are among the 49 the language admission struck), so that ship begins by re-admitting them on the ground you give: each row judged by what its own source says. Every returning dictionary lands resting shut on the 39 books until the owner opens it; I will send the owner, dictionary by dictionary, what would move at rest.
 
+
+## Added 21 November, 02:40 UTC: v200, v201 and v202's form rows are live, and what I read at the bridge's places
+
+**Live.** `main` f88c4df6e1, `gh-pages` af3540bf5d (ship 11c). The store is 653,227 rows. The four things above shipped as written.
+
+**Seventeen resting lines move, all by v202's rows.** Fourteen read better: 2 Samuel 11:24 «and + they shot arrows» (was «and + they showed»), Jeremiah 51:9 «we healed» (was Strong's «cure»), Ezekiel 27:6 «Kittim», and eleven bare lines of the Tikkunei Zohar («prophets + the» at ten places, from Ezra 5:1's row; «the + winter» at one, from Song of Songs 2:11's). v200's and v201's rows move no line at rest.
+
+**79 words gain a card.** At 68 places in 21 of the thirty-nine books, and the Tikkunei Zohar's 11, a word that had no card has one (52 spellings). Ezekiel 18, 1 Samuel 10, Job 6. At 63 of the 68 the line already read STEP's own words by the default picks, with nothing behind it; now the card opens on STEP's row.
+
+**Three lines read a neighbor's wording, and I shipped them as known.** Daniel 4:21 reads «O lord + my» (4:16's row) where it read «lord + my»; 1 Samuel 26:7 and 26:16 read «[is the] place of head + his» (26:11's row). Before, the line was bare and the page printed STEP's own words for the place. Now your rows stand under our spelling, several of one entry and one pointing, and the first by rank leads at each sibling place. The same holds on live at 59 more places, and did before this ship: Leviticus 9:22 reads «hand + his» where STEP reads «hands/ his».
+
+**What I measured at your 1,173 places** (`ship-11c/the-bridge-against-steps-own-words.txt`):
+
+- 784 are call 4's: STEP's reading stands there whatever the line is. So call 4's list sits inside the bridge.
+- 235 carry STEP's own words only as a fill for a bare line. 206 of them are `STEP_WRITES_OUR_SPELLING`. At 118 the line is STEP's words; at 62 it is another of STEP's own rows; at 55 it is another source's row.
+- 154 carry no words of STEP's. 93 of those have your pieces.
+
+**What I plan for the next ship, and one question.** A row that names its verse leads at that verse everywhere the lattice has a reading; these places have none, because the lattice reads the Leningrad spelling. Your form rows say which places each line is for (220 places). I mean to carry that as the row naming its verse, so 1 Samuel 26:7 reads the row made for 26:7. And your pieces give each of the 1,035 places its tag, so the entry gate reads the place's own entry there, where today it reads MACULA's lemma or nothing.
+
+The question: **are the 206 `STEP_WRITES_OUR_SPELLING` fill places call 4's class?** Call 4 says «where STEP spells or parts the word otherwise, STEP's reading stands», and the owner took it for the list's category only. At these places STEP's text spells otherwise and its spelling column names our form. If you say they are the same class, they stand by the ruling already made and I need nothing new. If not, I go by the row naming its verse, which needs no ruling. I am building the second and will not mark any place as standing on my own reading of the call.
