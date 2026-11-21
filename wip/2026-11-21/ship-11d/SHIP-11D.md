@@ -87,3 +87,9 @@ So on the first round the pieces arrived after both had run, and the name places
 **Pass 2** (`tools/pass2.sh`), running now: the zones put back as ship 11c shipped them, the whole pipeline once, then the zones and stamps steps again, with the same bytes owed in every zone file. The lines above are pass 1's and are read again from pass 2.
 
 **The read words have the same order.** `apply-read-words-v1` lays its 13 places' pieces after the projection too. Every zone already carries them, so a round today gives the same bytes; a zone built from nothing would need two rounds for a name among them. Not this ship's: filed.
+
+## Pass 2 (03:39 to 04:29 UTC): one round from ship 11c's zones, and the same bytes on a second
+
+`pass2.log`. The zones were put back as ship 11c shipped them (none differing from HEAD), and the pipeline ran whole with the bridge first in the zones step: 206 places laid, 451 pieces; every step clean. Then the zones and stamps steps ran again: **the same bytes in all 147 zone files.** So one round on a tree without the pieces reaches the state a second round keeps.
+
+The resting lines against live are pass 1's, entry for entry: 206 entries move, the 206 places, 88 changing their words (`every-line-whose-words-move.txt` and `lines-diff-against-live.json` are pass 2's files). What the name's lead changed at Genesis 49:10 is in the sidecar and the zone's table, and moves no resting line: «Shiloh» reads «Shiloh» by the place's pieces either way.
