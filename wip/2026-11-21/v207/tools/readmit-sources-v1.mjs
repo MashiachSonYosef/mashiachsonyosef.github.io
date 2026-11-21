@@ -11,10 +11,10 @@
 // record says of every source struck for silence that «the fix is a label at the source naming what its own title
 // page names, not an exception here», and tools/strike-language-v1.mjs says the way back is for the source to carry
 // the languages its own source names. The corpus lane's relay v207 (20 November 2026) is that fix, made row by
-// row: every line of its three lists quotes the source's own title (Davidson, the ETCBC, STEP's Expanded Strong
-// tags), the row's own language field (PanLex, English Wiktionary's translation tables), or the dictionary's own
-// columns (Harkavy). data/readmission-v1.json names the 35 sources, each with what its own source says, the
-// languages that names, and its index entry as the store held it before the strike.
+// row: every line of its lists quotes the source's own title, the row's own language field (PanLex, English
+// Wiktionary's translation tables), or the dictionary's own columns (Harkavy). data/readmission-v1.json names the
+// sources that return, each with what its own source says, the languages that names, and its index entry as the
+// store held it before the strike; and it names the sources of the relay that wait for the owner's word, with why.
 //
 // This tool puts that into effect, and only that:
 //

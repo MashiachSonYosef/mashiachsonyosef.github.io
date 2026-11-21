@@ -1,10 +1,10 @@
 #!/bin/bash
-# Ship 12: derive and land relay v207's three lists in the pin's order, each derived dry, pinned, derived, landed.
+# Ship 12: derive and land the two lists of relay v207 that land now, in the pin's order, each derived dry, pinned, derived, landed.
 # Usage: [LAND_AT=<moment, less its last digit and .000Z>] rehearse-landings-12.sh <reader dir> <log dir>
 S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad; R=${1:?reader dir}; O=${2:?log dir}; mkdir -p $O
 cd $R
 n=0
-for id in send-back-own-language-v1 send-back-bible-dictionaries-v1 send-back-harkavy-v1; do
+for id in send-back-own-language-v1 send-back-harkavy-v1; do
   n=$((n+1))
   node tools/derive-landings-v1.mjs --list $id --dry > $O/derive-$id-dry.log 2>&1 || { echo "derive $id (dry) refused:"; tail -2 $O/derive-$id-dry.log | cut -c1-500; exit 1; }
   grep "^figures " $O/derive-$id-dry.log | sed 's/^figures //' > $O/fig-$id.json

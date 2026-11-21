@@ -1,5 +1,6 @@
-# Ship 12: the corpus lane's three lists of relay v207 into data/landings/send-back-v1/ (each kept gzipped, weighed as
-# its own bytes), and their entries in data/landings/PIN.json. The derived entries are filled by --derived <figures
+# Ship 12: the two lists of the corpus lane's relay v207 that land now into data/landings/send-back-v1/ (each kept
+# gzipped, weighed as its own bytes), and their entries in data/landings/PIN.json. The relay's third list, the Bible
+# dictionaries (Davidson, the ETCBC, STEP's Expanded Strong tags), is held for the owner's word and is not pinned here. The derived entries are filled by --derived <figures
 # file> after a dry derivation of that list. Usage: pin-add-send-back.py <reader> <send-back-v1 dir> [--derived id figures.json]
 import io, sys, os, json, gzip, hashlib, shutil
 R, D = sys.argv[1], sys.argv[2]
@@ -10,7 +11,6 @@ def weigh(path):
     b = open(path, "rb").read(); return {"bytes": len(b), "sha256": hashlib.sha256(b).hexdigest()}, b
 LISTS = [
   ("send-back-own-language-v1", "landing-own-language-v1.jsonl", "PanLex's rows and English Wiktionary's translation tables' rows whose own language field names Hebrew or Aramaic (4,090 lines: PanLex 3,956, the translation tables 134), each back under its key"),
-  ("send-back-bible-dictionaries-v1", "landing-bible-dictionaries-v1.jsonl", "the rows of three Bible dictionaries struck because our label named no language, back whole by each one's own title (18,164 lines: Davidson's Analytical Lexicon 12,487, the ETCBC's glosses 4,246, STEP's Expanded Strong tags 1,431)"),
   ("send-back-harkavy-v1", "landing-harkavy-v1.jsonl", "Harkavy's rows, each a word of his Hebrew column with his English column (376 lines), struck because a cache folder's name held «yiddish»"),
 ]
 if "--derived" in sys.argv:

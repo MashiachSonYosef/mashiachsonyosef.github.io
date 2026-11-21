@@ -1,0 +1,64 @@
+// Synthesis lane · a file another lane wrote is read only as the bytes its pin names
+// LEDGER: -
+// no frame letter. It reads a pinned file and writes nothing.
+//
+// A FILE ANOTHER LANE WROTE IS READ ONLY AS THE BYTES ITS PIN NAMES.
+//
+// The corpus lane's lists, maps and rulings are kept in this tree byte for
+// byte, each beside a PIN.json that names it by its size and its sha256 (the
+// figures the lane's own letter gives). A tool that builds from one, and a
+// check that judges one, reads it through here: the file is opened, weighed
+// against its pin, and handed over only if it is those bytes. A file that is
+// missing or is other bytes is said in words (PinFault), and the caller
+// decides what that means: a tool refuses and writes nothing, a check counts
+// a fault and goes on.
+//
+//   pin entry   { file, bytes, sha256 }, and `lines` for a file of JSON lines
+//   readPinned(path, entry, name)        -> Buffer
+//   readPinnedLines(path, entry, name)   -> one parsed value per line
+//
+// A FILE THIS LANE DERIVES FROM PINNED FILES IS PINNED TOO (15 November
+// 2026): the list a landing lands, derived from the corpus lane's list and
+// the store it meets, is named in its pin by the bytes its derivation gave
+// when it was reviewed, and the tool that derives it writes it only where it
+// gives those bytes again.
+//
+//   heldToPin(bytes, lines, entry)       -> whether these bytes are the entry's
+//
+// A LARGE LIST IS KEPT GZIPPED AND WEIGHED AS WHAT IT HOLDS (21 November
+// 2026, the corpus lane's v207: three lists of 38 MB). A pin entry that says
+// `stored: "gzip"` names a file kept gzipped in this tree; its `bytes` and
+// `sha256` are still the list's own, the figures the lane's letter gives, so
+// the file is unzipped and then weighed. The zipped bytes are not pinned:
+// they are a way of keeping the list, and two zips of one list differ.
+//
+//   bytesToKeep(bytes, entry)            -> the bytes to write for an entry (zipped where it says so)
+import { readFileSync, existsSync } from "node:fs";
+import { gunzipSync, gzipSync } from "node:zlib";
+import { createHash } from "node:crypto";
+
+export const sha256Of = (bytes) => createHash("sha256").update(bytes).digest("hex");
+export class PinFault extends Error {}
+
+export const readPinned = (path, entry, name = entry.file) => {
+  if (!existsSync(path)) throw new PinFault(`${name} is named in its pin and is not here`);
+  let bytes = readFileSync(path);
+  if (entry.stored !== undefined && entry.stored !== "gzip") throw new PinFault(`${name}: its pin says it is stored as "${entry.stored}", and a pinned file is kept as it is or gzipped`);
+  if (entry.stored === "gzip") { try { bytes = gunzipSync(bytes); } catch (e) { throw new PinFault(`${name} is pinned as a gzipped file and does not unzip (${e.message})`); } }
+  const sha = sha256Of(bytes);
+  if (bytes.length !== entry.bytes || sha !== entry.sha256) throw new PinFault(`${name} is not the bytes its pin names (${bytes.length} bytes, ${sha}; the pin: ${entry.bytes}, ${entry.sha256})`);
+  return bytes;
+};
+
+// a pinned file of JSON lines: it ends in a line end, and holds the number of lines its pin says
+export const readPinnedLines = (path, entry, name = entry.file) => {
+  const text = readPinned(path, entry, name).toString("utf8");
+  if (!text.endsWith("\n")) throw new PinFault(`${name} does not end in a line end`);
+  const raw = text.slice(0, -1).split("\n");
+  if (raw.length !== entry.lines) throw new PinFault(`${name} holds ${raw.length} lines and its pin says ${entry.lines}`);
+  return raw.map((s, at) => { try { return JSON.parse(s); } catch (e) { throw new PinFault(`${name} line ${at + 1} is not JSON (${e.message})`); } });
+};
+
+// bytes made here against the pin entry that names them: the same size and sha256, and the same count of lines where the entry counts them
+export const bytesToKeep = (bytes, entry) => (entry && entry.stored === "gzip" ? gzipSync(bytes, { level: 9 }) : bytes);
+export const heldToPin = (bytes, lines, entry) => !!entry && entry.bytes === bytes.length && entry.sha256 === sha256Of(bytes) && (entry.lines === undefined || entry.lines === lines);

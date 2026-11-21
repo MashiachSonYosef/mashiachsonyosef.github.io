@@ -1,0 +1,78 @@
+diff --git a/reader/tools/apply-ledger-divisions-v1.mjs b/reader/tools/apply-ledger-divisions-v1.mjs
+index 40ef8ccd4b..bce7dfa445 100644
+--- a/reader/tools/apply-ledger-divisions-v1.mjs
++++ b/reader/tools/apply-ledger-divisions-v1.mjs
+@@ -204,20 +204,26 @@ const slotsOf = (L, text) => {
+   const cuts = [...new Set(dividing.map((g) => g.i))].sort((a, b) => a - b);
+   const byShape = {}; for (const g of dividing) byShape[g.shape] = (byShape[g.shape] || 0) + 1;
+   const printRules = new Set(marks.map((g) => L.shapes.get(g.shape).prints).filter(Boolean));
+-  let prints = null, ruleKey = null, conflict = null;
++  let prints = null, ruleKey = null, conflict = null, twoSteps = null;
+   if (printRules.size) {
+     // a row that renders nothing has no pill whatever else its marks say (so each branch's own words)
+     const kindOfRule = (r) => (DATA_RULES.has(r) ? DATA_RULES.get(r).kind : PRINT_RULES[r].kind);
+     const none = [...printRules].find((r) => kindOfRule(r) === "none");
+-    if (printRules.size > 1 && !none) conflict = `two print steps on one row (${[...printRules].join(", ")})`;
+-    else {
++    // TWO ANSWERED STEPS ON ONE ROW (21 November 2026: two of STEP's Expanded Strong rows that returned carry both an
++    // optional word and a King James form). No declaration says how two steps compose, so this is refused, unless the
++    // manifest says, for that source, that such a row is one reading as written (where_two_print_steps_meet): then it
++    // prints whole, as both branches rest, and the receipt names the row
++    if (printRules.size > 1 && !none) {
++      if (((manifest.where_two_print_steps_meet || {})[L.key] || {}).prints === "as written") twoSteps = [...printRules].sort();
++      else conflict = `two print steps on one row (${[...printRules].join(", ")})`;
++    } else {
+       ruleKey = none || [...printRules][0];
+       const branchMarks = marks.filter((g) => L.shapes.get(g.shape).prints === ruleKey);
+       try { const r = DATA_RULES.has(ruleKey) ? printUnder(DATA_RULES.get(ruleKey).option, text, branchMarks, cuts) : printOf(ruleKey, text, branchMarks, cuts); if (r) { prints = r.texts; notePrintCuts(ruleKey, text, r); } else conflict = `the print step ${ruleKey} does not reach a row its branch's shapes mark`; }
+       catch (e) { conflict = e.message; }
+     }
+   }
+-  return { marks: marks.length, marksDividing: dividing.length, byShape, cuts, prints, ruleKey, conflict };
++  return { marks: marks.length, marksDividing: dividing.length, byShape, cuts, prints, ruleKey, conflict, twoSteps };
+ };
+ const newCounts = () => ({ rows: 0, rows_dividing: 0, rows_printing_a_part: 0, rows_no_pill: 0, marks: 0, marks_dividing: 0, by_shape: {}, by_print_rule: {}, uncovered: 0 });
+ const count = (c, r) => {
+@@ -245,6 +251,7 @@ const setSlots = (row, cuts, prints) => {
+ const per = {};   // source key -> counts
+ const uncovered = [];
+ const conflicts = [];
++const twoStepRows = [];   // rows two answered print steps meet on, printed as written where the manifest says so for their source
+ const touched = new Set();
+ let rowsSeen = 0, rowsDividing = 0, rowsChanged = 0, rowsPrinting = 0, rowsNoPill = 0;
+ for (const [shardName, body] of shards) {
+@@ -261,7 +268,7 @@ for (const [shardName, body] of shards) {
+       if (r.uncovered) { c.uncovered += 1; if (uncovered.length < 400) uncovered.push({ source: L.key, key: k, m: String(row[3]), rank: row[0], route: text, error: r.uncovered }); }
+       else {
+         if (r.conflict) conflicts.push(`${L.key} ${k}#${row[0]}: ${r.conflict} «${text.slice(0, 60)}»`);
+-        else { count(c, r); cuts = r.cuts; prints = r.prints; }
++        else { count(c, r); cuts = r.cuts; prints = r.prints; if (r.twoSteps) twoStepRows.push({ source: L.key, key: k, m: String(row[3]), rank: row[0], route: text, steps: r.twoSteps }); }
+       }
+       if (setSlots(row, cuts, prints)) { rowsChanged += 1; touched.add(shardName); }
+       if (cuts.length) rowsDividing += 1;
+@@ -305,7 +312,7 @@ if (existsSync(join(SPAN, "index.json"))) {
+       const res = slotsOf(L, text);
+       let cuts = [], prints = null;
+       if (res.uncovered) { bs.uncovered += 1; spanCounts.uncovered += 1; if (spanUncovered.length < 200) spanUncovered.push({ source: key, book: file.book || f, key: k, m: String(row[3]), row_id: r.row_id || null, route: text, error: res.uncovered }); }
+-      else if (res.conflict) conflicts.push(`${key} span ${file.book || f} ${k} (${r.row_id || "?"}): ${res.conflict} «${text.slice(0, 60)}»`);
++      else if (res.conflict || res.twoSteps) conflicts.push(`${key} span ${file.book || f} ${k} (${r.row_id || "?"}): ${res.conflict || `two print steps on one row (${res.twoSteps.join(", ")})`} «${text.slice(0, 60)}»`);
+       else { cuts = res.cuts; prints = res.prints; }
+       if (setSlots(row, cuts, prints)) moved += 1;
+       if (cuts.length) { bs.rows_dividing += 1; spanCounts.rows_dividing += 1; }
+@@ -375,7 +382,7 @@ if (existsSync(OVERLAYS_DIR)) for (const d of readdirSync(OVERLAYS_DIR).sort())
+       const res = slotsOf(L, text);
+       let cuts = [], prints = null;
+       if (res.uncovered) { bs.uncovered += 1; c.uncovered += 1; if (overlayUncovered.length < 200) overlayUncovered.push({ overlay: d, source: key, key: k, m: String(row[3]), route: text, error: res.uncovered }); }
+-      else if (res.conflict) conflicts.push(`${key} overlay ${d} ${k}: ${res.conflict} «${text.slice(0, 60)}»`);
++      else if (res.conflict || res.twoSteps) conflicts.push(`${key} overlay ${d} ${k}: ${res.conflict || `two print steps on one row (${res.twoSteps.join(", ")})`} «${text.slice(0, 60)}»`);
+       else { cuts = res.cuts; prints = res.prints; }
+       if (setOverlaySlots(row, cuts, prints)) { moved.add(f); c.rows_whose_slot_moved += 1; }
+       if (cuts.length) { bs.rows_dividing += 1; c.rows_dividing += 1; }
+@@ -441,6 +448,7 @@ index.ledgers = {
+   answers: answersBytes ? { file: "reader/data/ledger-branch-answers-v1.json", sha256: sha256(answersBytes) } : null,
+   excluded: Object.fromEntries(Object.entries(manifest.excluded || {}).map(([k, why]) => [k, { why, rows: unledgeredRows[k] || 0 }])),
+   untabled: manifest.untabled || {},
++  ...(manifest.where_two_print_steps_meet ? { where_two_print_steps_meet: Object.fromEntries(Object.entries(manifest.where_two_print_steps_meet).map(([k, v]) => [k, { ...v, rows: twoStepRows.filter((x) => x.source === k).map(({ source, ...x }) => x) }])) } : {}),
+   unledgered: unledgered(),
+   what: "every source under a ledger divides its route text only where the ledger's shapes divide under the owner's answers, at the marks row[7] names, and prints a part of itself or no pill only where a branch the owner answered says so, the texts row[8] names (ledger-print-v1); a row with neither slot is one reading as the source wrote it; a source with no ledger is one reading as written, whole (7 November 2026: the comma rule the page had guessed retired), and those are only the dictionaries beside the store and the span store's own sources, named in unledgered, until their ledgers land",
+   print_step: `the declaration's own step (tools/ledger-print-from-declaration-v1.mjs, ask v1.2) for ${DATA_RULES.size} branch${DATA_RULES.size === 1 ? "" : "es"}; ${HAND_TABLE_WORDS}`,
