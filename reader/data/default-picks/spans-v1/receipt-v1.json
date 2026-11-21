@@ -1,0 +1,2106 @@
+{
+ "name": "spans v1: the first and last word each default-pick line reads",
+ "written": "20 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "asked_by": "the serving lane, letter of 15 November 2026 AD, ask 7 (spans)",
+ "current_effect": "NONE. Nothing served is changed; the serving lane lands the list.",
+ "rule": {
+  "file": "RULE.md",
+  "sha256": "85b5ad5235eceadb4876ed3ff9343b223624ad6100555dad9fe8f9415ea5ef35"
+ },
+ "builder": {
+  "file": "build-spans-v1.mjs",
+  "sha256": "2cfcdd46e5bda7ee1b4808f5309acf2784cae03e0fb786442bbe8db36e786e8c"
+ },
+ "inputs": [
+  {
+   "what": "list of bytes: source-manifest-v1.json",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/ubs-sdbh-hebrew-2026-07-15/source-manifest-v1.json",
+   "bytes": 3611,
+   "sha256": "8906c0bdc3a29a1d89847ecfe6a4eaf610a27cf4c8ac56f80e340360b6bb5c9c"
+  },
+  {
+   "what": "UBS dictionary v0.9.2 (English JSON)",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/ubs-sdbh-hebrew-2026-07-15/UBSHebrewDic-v0.9.2-en.JSON",
+   "bytes": 23110129,
+   "sha256": "1686a25dd31dc9afb7b932927e160070667c73caedad11aa7e4482c21f800e8e",
+   "agrees_with": "UBS's source manifest"
+  },
+  {
+   "what": "UBS README (the encoding of references)",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/ubs-sdbh-hebrew-2026-07-15/README.md",
+   "bytes": 3193,
+   "sha256": "f18eab18a4bad4a83f45981064139f89a96cb4ae97e0e72833d709ae2fb52940",
+   "agrees_with": "UBS's source manifest"
+  },
+  {
+   "what": "list of bytes: source-manifest-v1.json",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/macula-hebrew-2026-07-15/source-manifest-v1.json",
+   "bytes": 4834,
+   "sha256": "3f0c9e968409af4f7dd5ec85b92b2af25935ea472d7c783596385c3d58e8c9c5"
+  },
+  {
+   "what": "MACULA Hebrew TSV",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/macula-hebrew-2026-07-15/macula-hebrew.tsv",
+   "bytes": 84382719,
+   "sha256": "965cb0599beed2fe31283b615bcc369178141c0e718a66d97518d94309cfc124",
+   "agrees_with": "MACULA's source manifest"
+  },
+  {
+   "what": "list of bytes: acquisition-manifest.json",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/acquisition-manifest.json",
+   "bytes": 4415,
+   "sha256": "fe5ef644c31fdcb790359f50aa162e2fb94d5ffb3d920f797807fc60321ba22d"
+  },
+  {
+   "what": "TAHOT Gen-Deu",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Gen-Deu - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+   "bytes": 18190455,
+   "sha256": "e9b8546ee48fe0bfc57c3b70f5f40e98d96580e803526d19026224e31753368b",
+   "agrees_with": "STEP's acquisition manifest"
+  },
+  {
+   "what": "TAHOT Jos-Est",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Jos-Est - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+   "bytes": 24500317,
+   "sha256": "195fee1dc3653bab33701f170734eb894ed647c10cd08cc61749375fe8b73775",
+   "agrees_with": "STEP's acquisition manifest"
+  },
+  {
+   "what": "TAHOT Job-Sng",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Job-Sng - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+   "bytes": 9540133,
+   "sha256": "84e118a97e5725e3847cdfdd593873513021c790c63cc91a0d41fca2b5db2ed5",
+   "agrees_with": "STEP's acquisition manifest"
+  },
+  {
+   "what": "TAHOT Isa-Mal",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/stepbible-data-2026-07-14/Translators Amalgamated OT+NT/TAHOT Isa-Mal - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
+   "bytes": 17977518,
+   "sha256": "f3ded203d2a74d6368932c97ae550d1d0754b271af491dc0dedf36fe3ba0bcc5",
+   "agrees_with": "STEP's acquisition manifest"
+  },
+  {
+   "what": "list of bytes: acquisition-manifest.json",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/unabridged-bdb-2026-07-14/acquisition-manifest.json",
+   "bytes": 1373,
+   "sha256": "df34f6fb7406da905ff2d5a7ce47644525be25dc477b057d21d8971a68e97a30"
+  },
+  {
+   "what": "unabridged BDB (zip)",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/unabridged-bdb-2026-07-14/unabridged-BDB-Hebrew-lexicon.csv.zip",
+   "bytes": 6735645,
+   "sha256": "056276bd606cb394a8b5026dfd3401c3a8e27e9d3f858e45a20a48ce520a98e6",
+   "agrees_with": "the unabridged BDB's acquisition manifest"
+  },
+  {
+   "what": "unabridged BDB (CSV)",
+   "path": "<999 footsteps>/ledgers/work/ldmprs/source-cache/unabridged-bdb-2026-07-14/unabridged-BDB-Hebrew-lexicon.csv",
+   "bytes": 33717788,
+   "sha256": "5e865974edbc704b58e6b33c2ccf96690fe1e2cda2fbc3442d2a30e8b2292ccc",
+   "agrees_with": "the member of the zip its manifest lists"
+  },
+  {
+   "what": "list of bytes: RECEIPT-word-numbering-v1.1.json",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/RECEIPT-word-numbering-v1.1.json",
+   "bytes": 26056,
+   "sha256": "5c4f7c5b557f531f3232faf45f215acc74115d1c067e899aa68a82873a3c140a"
+  },
+  {
+   "what": "list of bytes: receipt-v1.json",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/receipt-v1.json",
+   "bytes": 28573,
+   "sha256": "89b2a4b618cd8339fe981c3fac9836979d437ed17c9a2ba48bb23ed08a438116"
+  },
+  {
+   "what": "list of bytes: receipt-v1.1.json",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1.1/receipt-v1.1.json",
+   "bytes": 4854,
+   "sha256": "daf37748afdedcd9eeea5cfe9056345437363275cb85115d647131f481ab6a8c"
+  },
+  {
+   "what": "list of bytes: receipt-v1.2.json",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1.2/receipt-v1.2.json",
+   "bytes": 14063,
+   "sha256": "652d933d08438e54ca004d4d7157590cac3fda75f1f7db743735b52c1627c285"
+  },
+  {
+   "what": "list of bytes: receipt-v1.json",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/receipt-v1.json",
+   "bytes": 34754,
+   "sha256": "000df41d914f50b313956eaf02bcd39f68a048ab631dbebcd74a18dd40eab74d"
+  },
+  {
+   "what": "word numbering v1.1: genesis",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/genesis.jsonl",
+   "bytes": 23457107,
+   "sha256": "bb04aab1b6c45e1e9d3c68e2f7a987674f88f86ea6a05139eb9470e0c690660a",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: exodus",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/exodus.jsonl",
+   "bytes": 18964207,
+   "sha256": "f5782fab8d224b8859c9602146223d50e85035cad05a72d8569303ec51466788",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: leviticus",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/leviticus.jsonl",
+   "bytes": 13645266,
+   "sha256": "86640759f36a653adf749bf17a8d796789f8cd8f80f7f5a4c090b9a8f4bdea1f",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: numbers",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/numbers.jsonl",
+   "bytes": 18383119,
+   "sha256": "ec066b20cd29a141561ae9b7cbbe58a977c4e38efb34362f8197299d32a50e7d",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: deuteronomy",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/deuteronomy.jsonl",
+   "bytes": 17114393,
+   "sha256": "223d7e10a77b3d6e07e6cb54075b289d1ecb60e818a40f241738eebda72af080",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: joshua",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/joshua.jsonl",
+   "bytes": 11591972,
+   "sha256": "e4f485aac8382117681089e942862c4d9100d5e6221ea53270b41cdf51a238a3",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: judges",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/judges.jsonl",
+   "bytes": 11211894,
+   "sha256": "b1a58e158d31f7bc177297cac8ae4277931b1d6071e6141cf437abd136707369",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: ruth",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/ruth.jsonl",
+   "bytes": 1438063,
+   "sha256": "b52ba5f512ba57a1a716786c57f20a6f7d57356437a4d27159cb78580cedb928",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: i-samuel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/i-samuel.jsonl",
+   "bytes": 15133183,
+   "sha256": "111a7c55f942ca357bb3457733629e044e16315d5b7ff343a726ac8026938feb",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: ii-samuel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/ii-samuel.jsonl",
+   "bytes": 12468916,
+   "sha256": "828797c8cbb7b0a40f56ed326c38dca233c34c1cc14d796a35201e0371fcae38",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: i-kings",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/i-kings.jsonl",
+   "bytes": 14825926,
+   "sha256": "16328c28d6ccaa78528298c32fe2b174dcbd17ae90926cd81a769f0e904beef5",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: ii-kings",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/ii-kings.jsonl",
+   "bytes": 13674121,
+   "sha256": "0e0bd50090780e7223fb006ffb0cd9a3c8053cf194152037de462c1f9ad820e9",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: i-chronicles",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/i-chronicles.jsonl",
+   "bytes": 12275111,
+   "sha256": "5eea75c9c97c822259c343c52c1b04cda98f944d8e5608407ede9482ab38898c",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: ii-chronicles",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/ii-chronicles.jsonl",
+   "bytes": 15770193,
+   "sha256": "5c7256ee7d58a16438df4f9fda13034d0b83db59f8761884f55a17ac232dd99e",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: ezra",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/ezra.jsonl",
+   "bytes": 4346445,
+   "sha256": "9f5353aefa3b57f2b3bf20381163bb4bead260fdf0b16c90a068ef71a7674fac",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: nehemiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/nehemiah.jsonl",
+   "bytes": 6318174,
+   "sha256": "6d52b0d63e527f69e072db265747437eb95bbc9eebacebbbd0c51873beb4d95a",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: esther",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/esther.jsonl",
+   "bytes": 3530808,
+   "sha256": "5250f19d8e9fcb1e42ec8e9b79004736939e0c96553a9325f3da47fbdfc544a1",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: job",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/job.jsonl",
+   "bytes": 9223493,
+   "sha256": "3ad35653b33c6e1ddc7acadd206b840e2d99e8c373c8a63bd1ae2cc45ef11a4e",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: psalms",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/psalms.jsonl",
+   "bytes": 22424659,
+   "sha256": "9a479ed67e6fb80a56f0d7bbb1a060804805f49da075baa2a827930e533db273",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: proverbs",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/proverbs.jsonl",
+   "bytes": 7242921,
+   "sha256": "07d27e0f1172baa17a835b806ab49b3e6344eacf8989b917a20030577d9a9b4b",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: ecclesiastes",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/ecclesiastes.jsonl",
+   "bytes": 3286700,
+   "sha256": "49e8fe7a155886dde3f51734aeb36159558a9592b216bf49507e30bad75c3786",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: song-of-songs",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/song-of-songs.jsonl",
+   "bytes": 1426678,
+   "sha256": "d72604b3b6cfb9040ac69dc5b8db4fed0ee2c56487eb32c581a93cc7784fee90",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: isaiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/isaiah.jsonl",
+   "bytes": 18833332,
+   "sha256": "055523e27a1b119edbdc678f00d66d22952fad038350c71d0e0da583e108ac26",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: jeremiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/jeremiah.jsonl",
+   "bytes": 24130221,
+   "sha256": "3d20367e1f442999e2f0e59337ab24d9e03245d96ea635e4a433f30b41e5325c",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: lamentations",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/lamentations.jsonl",
+   "bytes": 1641539,
+   "sha256": "fd418da0483cc19cbc5f63e648d53f395be2b52e6a9a79b86abb5597303bd824",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: ezekiel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/ezekiel.jsonl",
+   "bytes": 21788953,
+   "sha256": "77f6fa31f12f6ac5beb5d6cd4f9200909676a392129e72537ec660cce6ac0d68",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: daniel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/daniel.jsonl",
+   "bytes": 7131800,
+   "sha256": "92fe2ad936ff8f9be833a030bf1f49bfe82ba1cce89bbf8522518afad7533eee",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: hosea",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/hosea.jsonl",
+   "bytes": 2660024,
+   "sha256": "a0a07d52063f38d8e69c6c033b4f9ccb3b7c7e2822d4b5086ee7852260147c01",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: joel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/joel.jsonl",
+   "bytes": 1061838,
+   "sha256": "21195a9dc1dfa375f3f3c8c667bc6ecd6cf1e3dbeea210d2cf9a7a9d873b5ebb",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: amos",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/amos.jsonl",
+   "bytes": 2175164,
+   "sha256": "d712b80968f1d5d9f7313acad3e3b4db210602a9188ed4d3389e095b68dfe2bf",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: obadiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/obadiah.jsonl",
+   "bytes": 311771,
+   "sha256": "f6792fb925b1926afa3cacd24cbe45197bfbea734ecb5ed3be91feaba693ec49",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: jonah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/jonah.jsonl",
+   "bytes": 783894,
+   "sha256": "e921fcc4022a32a88af3178e7f0c275adf7918b0372d0628afd985e26b9e977a",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: micah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/micah.jsonl",
+   "bytes": 1534864,
+   "sha256": "6df30c69308a4d46d0209a80b7431d50eea6b34ff89350268e61541fb494e0f9",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: nahum",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/nahum.jsonl",
+   "bytes": 614726,
+   "sha256": "89a8abf4499bf6ab1e9f0de2f01b4e337e4757a135bef9fa26c16def19194c29",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: habakkuk",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/habakkuk.jsonl",
+   "bytes": 727231,
+   "sha256": "c10606775976fe0140829210a3c8355401a53bd232303b476e5c772040a97ceb",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: zephaniah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/zephaniah.jsonl",
+   "bytes": 822758,
+   "sha256": "00bd56c5dad251c7dfc4f8f1e24be51286b6f9bfdeeb8c9ff0e7e4ad4fcda134",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: haggai",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/haggai.jsonl",
+   "bytes": 659290,
+   "sha256": "d364968205d065a5513dafe26dc0684fd833c997d837ec568112dfa5d1ed3597",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: zechariah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/zechariah.jsonl",
+   "bytes": 3517087,
+   "sha256": "c3be4eab6f0b91d28db35d9f6422827ceb8c73af535d1272639d61547b6291aa",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "word numbering v1.1: malachi",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-word-numbering-v1/build-v1.1/numbering-v1.1/malachi.jsonl",
+   "bytes": 964812,
+   "sha256": "1060c996006aaea7521d41f9a4caff88cbd1256017a7cbf6adb41e1b2f3a96c0",
+   "agrees_with": "the word numbering v1.1 receipt"
+  },
+  {
+   "what": "default picks v1: genesis",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/genesis.jsonl",
+   "bytes": 6161589,
+   "sha256": "02b6958991c1da516b4318d1214ed42f2c6348eb2a2f4fd8bc0869f870b7eb7b",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: exodus",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/exodus.jsonl",
+   "bytes": 4937383,
+   "sha256": "fb809e5dfa17c76385b245956ee01b9239a1fc58a5f66a1a7be4fdf3cd27048c",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: leviticus",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/leviticus.jsonl",
+   "bytes": 3531630,
+   "sha256": "7bc240a2cfabce7be4f7b29803c66f768fd2f9054e4f3090e0c357320389184d",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: numbers",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/numbers.jsonl",
+   "bytes": 4871377,
+   "sha256": "2e93a2df3a4fabbb8cfbd88d55f3682df5f092acd3362b991531444b0c57f7e5",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: deuteronomy",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/deuteronomy.jsonl",
+   "bytes": 4267488,
+   "sha256": "1bd4abedce0a0d1415b75265c2bac372b946dc51cfec2afe3788db97d77ed820",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: joshua",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/joshua.jsonl",
+   "bytes": 2967481,
+   "sha256": "828d037c3a7806137eda054c2133c7b82825eb55af9a3b554f1fe58f756083cb",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: judges",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/judges.jsonl",
+   "bytes": 2929410,
+   "sha256": "af45e3e3fa23f5eeadc3842ba124d8faffbd0834eb93f27db395bf43da39aa00",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: ruth",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/ruth.jsonl",
+   "bytes": 388143,
+   "sha256": "0b1bfcabe76d0892f6602fdccdcdf429c4e92bf4bd21c9b4f6ee06b9377b3d29",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: i-samuel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/i-samuel.jsonl",
+   "bytes": 3908824,
+   "sha256": "90a5c9dd2dabcb0712aaaa26571573df01acb1f3ac8b46c4d0ccb0afd4fd7a37",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: ii-samuel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/ii-samuel.jsonl",
+   "bytes": 3212141,
+   "sha256": "e794afa8e90f032f03b3cda832507947c0010817f7dcf9ade2423cb726f8670e",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: i-kings",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/i-kings.jsonl",
+   "bytes": 3859347,
+   "sha256": "0cc354b46af8deacb4c26ea66d39ecbd75103927cd165efc8387b67a9ae2afb6",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: ii-kings",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/ii-kings.jsonl",
+   "bytes": 3610175,
+   "sha256": "9fde9e32637e4a4c9cfac88b82fe66ced0bc949303dd027965104f0ecaaa607b",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: i-chronicles",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/i-chronicles.jsonl",
+   "bytes": 3172937,
+   "sha256": "0fd74405fbec638329197456594141b27f3ee36733c5ae003988bf71893d68f4",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: ii-chronicles",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/ii-chronicles.jsonl",
+   "bytes": 3944606,
+   "sha256": "e80a6eeba4d3b742ea2649fcad3ed87f5cde3537002384843cb5d8f95c9700f2",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: ezra",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/ezra.jsonl",
+   "bytes": 1134955,
+   "sha256": "24e7c93a1b2bad14963988beb4a5041400d0ef84d86b21c4c76f44fa52bc2ff8",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: nehemiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/nehemiah.jsonl",
+   "bytes": 1627356,
+   "sha256": "c5f2759cea73dc122d847238c360551fc2a01e0d46be7c238bbc4008d095c8e1",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: esther",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/esther.jsonl",
+   "bytes": 907167,
+   "sha256": "bf8a26ebbf90df5d54ba0708c1153a957edd69c0d63c77fe5422ccb51215bccd",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: job",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/job.jsonl",
+   "bytes": 2588928,
+   "sha256": "1b85d1a7147121cb8d2d16dab89e925e20a2f2aa7f09e7a80781e98db0a8c7f2",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: psalms",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/psalms.jsonl",
+   "bytes": 6175522,
+   "sha256": "edbaa94a312606b90a47655997a89fb23495d24daf5c1069acc353c013084e09",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: proverbs",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/proverbs.jsonl",
+   "bytes": 2211408,
+   "sha256": "8fed4d8e6dd7f65fcceb69a714e84313e82d2cdb387d6afc92422e5f3a27d384",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: ecclesiastes",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/ecclesiastes.jsonl",
+   "bytes": 905625,
+   "sha256": "d0bdcee91b635ed46810620b5a183b1d0636823e7456f76ba8836c87f65ac508",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: song-of-songs",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/song-of-songs.jsonl",
+   "bytes": 404176,
+   "sha256": "93bd30dc376917370a6e2f398bec65087b548a9d10d99314ebd2c6bdd3fbc339",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: isaiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/isaiah.jsonl",
+   "bytes": 5303710,
+   "sha256": "fb76971363c6ab65732c177758c0c2c43117abb6eda10a65746973cbb37a4ff7",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: jeremiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/jeremiah.jsonl",
+   "bytes": 6390614,
+   "sha256": "0f6ff731e60e52b75b66afced37f259f55adc2f65b9f9c02beab5306d342a3f0",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: lamentations",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/lamentations.jsonl",
+   "bytes": 477938,
+   "sha256": "af992f8345f250231732a0718a20c28f68362eeeadb024fb00e0b37e56e521c2",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: ezekiel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/ezekiel.jsonl",
+   "bytes": 5596772,
+   "sha256": "d216af8d8904a43304bc4a4f6612aa2c885c2633f2fad1bc84e71061a1659fa5",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: daniel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/daniel.jsonl",
+   "bytes": 1820353,
+   "sha256": "2ebce61889e5dd995c0229bee1ccdbb8fd80851eb64f959e97f23403d3107115",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: hosea",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/hosea.jsonl",
+   "bytes": 737858,
+   "sha256": "b98625802adc196cae67d926a3893c91b6fb6e71c7a0e437c65c812030fc4bec",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: joel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/joel.jsonl",
+   "bytes": 291071,
+   "sha256": "263e01fe29d267c361cfbae43977ae9d5c8be4201f42cbb86da1118fa305018a",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: amos",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/amos.jsonl",
+   "bytes": 622251,
+   "sha256": "cbfe4d0e3e29d05928b9d315865bf4761c80dfdd18a18fe8f98ba96064803af5",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: obadiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/obadiah.jsonl",
+   "bytes": 87948,
+   "sha256": "dd0ac7dfe917eb1142e726bbf113c27e45640ec2aa4933b869dec99908f5d4b9",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: jonah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/jonah.jsonl",
+   "bytes": 201633,
+   "sha256": "95f710400ad78af957ee96218ff9915045dafa2d6b8e86f50a4677d8278c24b3",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: micah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/micah.jsonl",
+   "bytes": 439888,
+   "sha256": "d02da0f9e2deb4be8686038bcec947b69c9a3ed7b0267426fe3254cadeab0289",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: nahum",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/nahum.jsonl",
+   "bytes": 178955,
+   "sha256": "61e2e31355ddba8ee873739bfecbbd272589d7c16186ddfc91294fe70601b0c8",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: habakkuk",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/habakkuk.jsonl",
+   "bytes": 213428,
+   "sha256": "fada615e281cf0276e8ed493d1c687eb4d2bdd41d4506df271f932d2ddbce18b",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: zephaniah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/zephaniah.jsonl",
+   "bytes": 232232,
+   "sha256": "0802bfe18d29f53b58afb13cd3248e1e935749cb1f8e21d9455abead32435873",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: haggai",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/haggai.jsonl",
+   "bytes": 177918,
+   "sha256": "d11869e00ce9137ed0290981af961792329aceef33fdc332c6693e3e6e3d9ab8",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: zechariah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/zechariah.jsonl",
+   "bytes": 923180,
+   "sha256": "e1e5e0be84cac8a733aaf85b027b6471ecb7554d7123beb9d468f10175c4174e",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1: malachi",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1/malachi.jsonl",
+   "bytes": 264984,
+   "sha256": "94ad6396ae0f7d164790d37276371c949420ae7b9d1cfee228c0d1495005dd07",
+   "agrees_with": "default picks v1's receipt"
+  },
+  {
+   "what": "default picks v1.1: step mend",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1.1/step-mend-v1.1.jsonl",
+   "bytes": 187094,
+   "sha256": "29953b99d886881465432319790c67573634710afd469cb475d3364b3c59e03b",
+   "agrees_with": "its receipt"
+  },
+  {
+   "what": "default picks v1.2: step mend",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1.2/step-mend-v1.2.jsonl",
+   "bytes": 3847362,
+   "sha256": "b160d8cd55cf28ace1e42a27b1211507927055f60df222265fa3e031c97d6f5b",
+   "agrees_with": "its receipt"
+  },
+  {
+   "what": "default picks v1.2: bdb mend",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/default-picks-v1.2/bdb-mend-v1.2.jsonl",
+   "bytes": 20708,
+   "sha256": "1148f2cff668a5ba03d5204db7ea2ba6df4e6c29d0fafd7ec561924967a48133",
+   "agrees_with": "its receipt"
+  },
+  {
+   "what": "Jastrow's default picks: genesis",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/genesis.jsonl",
+   "bytes": 193304,
+   "sha256": "f2fda0d5c504f6957e582f5aea02edfcd06f61b3b02082ae745ba64375b005c7",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: exodus",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/exodus.jsonl",
+   "bytes": 137992,
+   "sha256": "83ebd7200dc858525591a717fbb8f0dae65c2c18c5df7e559f95d122bdb1aeda",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: leviticus",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/leviticus.jsonl",
+   "bytes": 146310,
+   "sha256": "09b9baa0d21f8eb30ae64dd510ef6c3b060ab2623f750a8e4a4cd59d9b1f187b",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: numbers",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/numbers.jsonl",
+   "bytes": 80144,
+   "sha256": "14066e5b0ffaae221b098c92a7a80b56d9d097d10b90a3951cc51d6ab2f5f6a5",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: deuteronomy",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/deuteronomy.jsonl",
+   "bytes": 132839,
+   "sha256": "f69fbfc6c16e0d2ec1724dfb6f77270510e2d084ce5a715826922e5d641902ce",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: joshua",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/joshua.jsonl",
+   "bytes": 16944,
+   "sha256": "bd9a26e01e703980ff7ad0f146a877edcaa957ff286e57b9a3f11d16c45540c2",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: judges",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/judges.jsonl",
+   "bytes": 24889,
+   "sha256": "ca4f2ccf5db4ffc3466572df1aad58471bd5edf1284b29906e16a0dca55c162e",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: ruth",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/ruth.jsonl",
+   "bytes": 4864,
+   "sha256": "3d852ff88cf310f8de7b79665039ff6e2824e57b5cdf0e9376beadf099c6d8ca",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: i-samuel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/i-samuel.jsonl",
+   "bytes": 30312,
+   "sha256": "c094996ff7f0ab2ddd01a04fcd91d44cbd1cf7a816c864c274ac5b542c4a1317",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: ii-samuel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/ii-samuel.jsonl",
+   "bytes": 24807,
+   "sha256": "12e937e83c7430929f68c8bf3660eb8ef9cd4b2bfd84eb0d46e0adfd462cd4f2",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: i-kings",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/i-kings.jsonl",
+   "bytes": 25161,
+   "sha256": "6199f1fdf5222660190118b5599ec96c8b618c0a2aead02190c2674400e7cb3d",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: ii-kings",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/ii-kings.jsonl",
+   "bytes": 20067,
+   "sha256": "0027bb3028a655aa563afe597e27a4f459ca1e1b662115bc94bdf4ab8c166728",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: i-chronicles",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/i-chronicles.jsonl",
+   "bytes": 13000,
+   "sha256": "3b8dbe46b288ad01b9baaa1cff9921f60873ff39dc8cd54b4192acffe39f037a",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: ii-chronicles",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/ii-chronicles.jsonl",
+   "bytes": 9663,
+   "sha256": "9628b15d13ad0aa42f3338833e9b8df049f7b7a2226f571e532af3e10faa09ed",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: ezra",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/ezra.jsonl",
+   "bytes": 17480,
+   "sha256": "e552da5fedd71b94d023a9a36fcd90ded8c0f3882317cee0d65d1105aa003f1e",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: nehemiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/nehemiah.jsonl",
+   "bytes": 4136,
+   "sha256": "50edc46ae2136959ed3b1f775f4e6371a660f4537f04c3c5cb4c0330c7dec4b4",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: esther",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/esther.jsonl",
+   "bytes": 12285,
+   "sha256": "c547b56a60fdbdd901ad0234fcf4982349fd3279dce89dd5fe52dee9e1df015c",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: job",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/job.jsonl",
+   "bytes": 69089,
+   "sha256": "ee68d217ac1f2c83df8f7a125c060d379ee22ddc35f23217e0a8524c9b7626da",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: psalms",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/psalms.jsonl",
+   "bytes": 144801,
+   "sha256": "a24f5235987652e86744c79e521bbd6ec1e8329d4718007a87b4a32c25a1ad2a",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: proverbs",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/proverbs.jsonl",
+   "bytes": 74644,
+   "sha256": "60dbe18c0461c2a29127162afc459ad69b8b8a6ffc52e5c45f74234f80784030",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: ecclesiastes",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/ecclesiastes.jsonl",
+   "bytes": 15461,
+   "sha256": "6ac66cf175aefc648c13f6f0cd16c731a0e707feb4974401ed13b7f497e3ef94",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: song-of-songs",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/song-of-songs.jsonl",
+   "bytes": 15740,
+   "sha256": "14b25f03afcc4ad8efc5e0a0edd4cd8c53408364cd88b1115de2fb3fd51c3170",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: isaiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/isaiah.jsonl",
+   "bytes": 86338,
+   "sha256": "6b269c86ca5b61e6149bbf8c78f02dfd0d757db3caf6d10181da6c380b284051",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: jeremiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/jeremiah.jsonl",
+   "bytes": 32744,
+   "sha256": "d9a21f20c02f973a0ad9e4ea9c0f841baa1fa58366f52056473fa4d0cf7a75c3",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: lamentations",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/lamentations.jsonl",
+   "bytes": 7287,
+   "sha256": "7611786331334d39ec0726565d7cbf8319d228cf4ecb8c675b418f9841ca39ce",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: ezekiel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/ezekiel.jsonl",
+   "bytes": 38334,
+   "sha256": "6f2f71179f9952f33a6acddc868f3a14df0bc1c194040b8076edac58dfdc5baa",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: daniel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/daniel.jsonl",
+   "bytes": 41666,
+   "sha256": "87f925d9769020561e97a80e32aa5a751a3e814f1dd812eabe951eb59f908d45",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: hosea",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/hosea.jsonl",
+   "bytes": 9354,
+   "sha256": "e432056aea8d8039db7636552b442abcc9bf45fe5597d681023b197e741098be",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: joel",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/joel.jsonl",
+   "bytes": 1090,
+   "sha256": "3a811021c9c8fa5d6a58d22ff64a320b531b82f712bbb7bcde1dede1a1f0540d",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: amos",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/amos.jsonl",
+   "bytes": 11654,
+   "sha256": "8992a8ce7678b5ae98fa2e13604ee890ff97015fdb1d459adf78c745d20e632f",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: obadiah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/obadiah.jsonl",
+   "bytes": 1019,
+   "sha256": "12bcc4e99c4be32541417e022ac8b9b27b149da2bd78dca63e7aada5a20a7863",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: jonah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/jonah.jsonl",
+   "bytes": 2838,
+   "sha256": "2b37526944c475c71c6385ca968134c3e863ef0b7b9bf14808083a1de00de3f5",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: micah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/micah.jsonl",
+   "bytes": 4596,
+   "sha256": "533f16781033b79dd0677121667337dad1d9e46835b935a1ed090e073757ca9d",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: nahum",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/nahum.jsonl",
+   "bytes": 1490,
+   "sha256": "b74ce5fa8477ee4deb6543724dc24391e078e372a7e225ec29368e01aa79bc99",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: habakkuk",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/habakkuk.jsonl",
+   "bytes": 2731,
+   "sha256": "a3d7eaeabb441c0b3ca48e74d213af677c51bba32e5cec4c929db5e563e22bf8",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: zephaniah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/zephaniah.jsonl",
+   "bytes": 3683,
+   "sha256": "9804c77eea3cc4fd6c0bdbb12b0a48707731ceac294e60843cf5ac1fd1096c40",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: haggai",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/haggai.jsonl",
+   "bytes": 1092,
+   "sha256": "9b9d80e4d4a9df2970f1c71332a64a1ee980baedd9072a5245440c983728691d",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: zechariah",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/zechariah.jsonl",
+   "bytes": 16398,
+   "sha256": "b8862a5d2cb693025bfb8ebcf8d8314bacf0fabd5c9d76e3743237450017f7d3",
+   "agrees_with": "Jastrow's default picks' receipt"
+  },
+  {
+   "what": "Jastrow's default picks: malachi",
+   "path": "<the Tabernacle>/corpus-lane-builds/moses-default-picks-v1/jastrow-default-v1/malachi.jsonl",
+   "bytes": 7764,
+   "sha256": "ecbd1fb1b168af65720d7b9c7f46a9613c798fa43e3e76cc173cb2dfec9b6abb",
+   "agrees_with": "Jastrow's default picks' receipt"
+  }
+ ],
+ "places": 305431,
+ "mends_applied": {
+  "step_v1_1": 1265,
+  "step_v1_2": 43219,
+  "bdb_v1_2": 165
+ },
+ "ubs_encoding_evidence": {
+  "references": 260813,
+  "nothing_after_the_fourteen_digits": 258116,
+  "a_footnote_mark_after_them": {
+   "!{N:000}": 1,
+   "{N:-000}": 1,
+   "{N:000}": 2694,
+   "{N:000}{N:000}": 1
+  },
+  "books_named": 39,
+  "segment_00": 260813,
+  "word_even": 260813,
+  "verse_held_by_macula": 260813,
+  "one_word_forms_whose_letters_stand_on_exactly_one_macula_word": 201434,
+  "that_word_is_the_counted_word": 187925,
+  "that_word_stands_earlier_by": {
+   "1": 3389,
+   "2": 2269,
+   "3": 358,
+   "4 or more": 192
+  },
+  "that_word_stands_later_by": {
+   "1": 5832,
+   "2": 724,
+   "3": 365,
+   "4 or more": 380
+  },
+  "pronoun_endings_set_aside": 47442
+ },
+ "ubs_references": {
+  "placed_at_the_counted_word": 242514,
+  "placed_near_it": 17627,
+  "placed_by_the_count": 658,
+  "beyond_the_verse": 14,
+  "placed_on_a_macula_word_no_place_ties": 81,
+  "spans_of_references": {
+   "HOLDS_THE_FILED_WORD": 260357,
+   "NEAREST_THE_COUNTED_WORD": 47,
+   "NONE": 313,
+   "NONE_RUN_READ_BY_A_NEARER_REFERENCE": 1
+  },
+  "lines": 259334,
+  "lines_with_two_or_more_references": 1371,
+  "lines_with_other_forms_that_fit": 81
+ },
+ "step_rows": {
+  "rows_read": 305652,
+  "rows_given_by_english": 305481,
+  "rows_given_by_tag_only": 0,
+  "marks_inside_their_row": 1
+ },
+ "macula": {
+  "words_whose_dictionary_form_holds_a_space": 1186,
+  "note": "each prints its own english, so its line reads one word"
+ },
+ "lines_by_class": {
+  "step": {
+   "SPAN_NOT_READABLE_NEXT_WORD_NOT_PLACED": 0,
+   "TAG_COVERS_NEXT_WORD": 808,
+   "TAG_COVERED_FROM_WORD_BEFORE": 783,
+   "ROW_SPANS_WORDS": 78,
+   "ONE_WORD": 310124
+  },
+  "macula": {
+   "MACULA_WORD_SPANS_WORDS": 12,
+   "ONE_WORD": 296454
+  },
+  "ubs": {
+   "SPAN_NOT_READABLE_REFERENCES_DISAGREE": 0,
+   "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 15,
+   "ONE_WORD_BY_THE_COUNT": 298,
+   "LEMMA_SPANS_WORDS_FILED_BESIDE": 5,
+   "LEMMA_SPANS_WORDS": 846,
+   "ONE_WORD_FILED_BESIDE": 34,
+   "ONE_WORD": 258136
+  },
+  "bdb": {
+   "SPAN_NOT_READABLE_NO_HEADWORD": 0,
+   "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 153,
+   "HEADWORD_SPANS_WORDS": 643,
+   "ONE_WORD": 120192
+  },
+  "jastrow": {
+   "ONE_WORD": 4096
+  }
+ },
+ "lines_reading_more_than_one_word": {
+  "step": {
+   "lines": 1669,
+   "books": 26,
+   "filed_beside_their_span": 0
+  },
+  "macula": {
+   "lines": 12,
+   "books": 3,
+   "filed_beside_their_span": 0
+  },
+  "ubs": {
+   "lines": 851,
+   "books": 27,
+   "filed_beside_their_span": 39
+  },
+  "bdb": {
+   "lines": 643,
+   "books": 25,
+   "filed_beside_their_span": 0
+  },
+  "jastrow": {
+   "lines": 0,
+   "books": 0,
+   "filed_beside_their_span": 0
+  }
+ },
+ "listed_lines": 3675,
+ "listed_by_book": {
+  "genesis": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 54,
+    "TAG_COVERS_NEXT_WORD": 60
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 61,
+    "ONE_WORD_BY_THE_COUNT": 13,
+    "ONE_WORD_FILED_BESIDE": 2
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 69,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 6
+   }
+  },
+  "exodus": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 5,
+    "TAG_COVERS_NEXT_WORD": 5
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 9,
+    "ONE_WORD_BY_THE_COUNT": 5
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 4,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 7
+   }
+  },
+  "leviticus": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 2
+   }
+  },
+  "numbers": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 35,
+    "TAG_COVERS_NEXT_WORD": 35
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 34,
+    "ONE_WORD_BY_THE_COUNT": 3,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 5
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 34,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 19
+   }
+  },
+  "deuteronomy": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 19,
+    "TAG_COVERS_NEXT_WORD": 20
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 18,
+    "ONE_WORD_BY_THE_COUNT": 5
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 18,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 2
+   }
+  },
+  "joshua": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 123,
+    "TAG_COVERS_NEXT_WORD": 123
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 139,
+    "ONE_WORD_BY_THE_COUNT": 1,
+    "ONE_WORD_FILED_BESIDE": 1,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 2
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 134,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 24
+   }
+  },
+  "judges": {
+   "step": {
+    "ROW_SPANS_WORDS": 4,
+    "TAG_COVERED_FROM_WORD_BEFORE": 62,
+    "TAG_COVERS_NEXT_WORD": 62
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 71,
+    "ONE_WORD_BY_THE_COUNT": 4,
+    "ONE_WORD_FILED_BESIDE": 1,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 2
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 47,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 7
+   }
+  },
+  "ruth": {
+   "step": {
+    "ROW_SPANS_WORDS": 8,
+    "TAG_COVERED_FROM_WORD_BEFORE": 8,
+    "TAG_COVERS_NEXT_WORD": 8
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 7,
+    "ONE_WORD_BY_THE_COUNT": 1
+   }
+  },
+  "i-samuel": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 50,
+    "TAG_COVERS_NEXT_WORD": 50
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 42,
+    "LEMMA_SPANS_WORDS_FILED_BESIDE": 1,
+    "ONE_WORD_BY_THE_COUNT": 19,
+    "ONE_WORD_FILED_BESIDE": 2
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 42,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 4
+   }
+  },
+  "ii-samuel": {
+   "step": {
+    "ROW_SPANS_WORDS": 10,
+    "TAG_COVERED_FROM_WORD_BEFORE": 58,
+    "TAG_COVERS_NEXT_WORD": 63
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 54,
+    "LEMMA_SPANS_WORDS_FILED_BESIDE": 2,
+    "ONE_WORD_BY_THE_COUNT": 16,
+    "ONE_WORD_FILED_BESIDE": 1,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 35,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 6
+   }
+  },
+  "i-kings": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 53,
+    "TAG_COVERS_NEXT_WORD": 55
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 54,
+    "LEMMA_SPANS_WORDS_FILED_BESIDE": 1,
+    "ONE_WORD_BY_THE_COUNT": 6,
+    "ONE_WORD_FILED_BESIDE": 1,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 16,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 2
+   }
+  },
+  "ii-kings": {
+   "step": {
+    "ROW_SPANS_WORDS": 18,
+    "TAG_COVERED_FROM_WORD_BEFORE": 46,
+    "TAG_COVERS_NEXT_WORD": 47
+   },
+   "macula": {
+    "MACULA_WORD_SPANS_WORDS": 2
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 49,
+    "ONE_WORD_BY_THE_COUNT": 13,
+    "ONE_WORD_FILED_BESIDE": 2
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 24,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 5
+   }
+  },
+  "i-chronicles": {
+   "step": {
+    "ROW_SPANS_WORDS": 2,
+    "TAG_COVERED_FROM_WORD_BEFORE": 74,
+    "TAG_COVERS_NEXT_WORD": 75
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 73,
+    "ONE_WORD_BY_THE_COUNT": 6,
+    "ONE_WORD_FILED_BESIDE": 3,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 52,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 15
+   }
+  },
+  "ii-chronicles": {
+   "step": {
+    "ROW_SPANS_WORDS": 6,
+    "TAG_COVERED_FROM_WORD_BEFORE": 27,
+    "TAG_COVERS_NEXT_WORD": 27
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 31,
+    "ONE_WORD_BY_THE_COUNT": 7,
+    "ONE_WORD_FILED_BESIDE": 5
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 20,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 8
+   }
+  },
+  "ezra": {
+   "step": {
+    "ROW_SPANS_WORDS": 2,
+    "TAG_COVERED_FROM_WORD_BEFORE": 14,
+    "TAG_COVERS_NEXT_WORD": 14
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 14,
+    "ONE_WORD_BY_THE_COUNT": 9,
+    "ONE_WORD_FILED_BESIDE": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 20,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 2
+   }
+  },
+  "nehemiah": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 24,
+    "TAG_COVERS_NEXT_WORD": 25
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 24,
+    "ONE_WORD_BY_THE_COUNT": 4,
+    "ONE_WORD_FILED_BESIDE": 5,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 23,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 2
+   }
+  },
+  "esther": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 1
+   }
+  },
+  "job": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 2,
+    "TAG_COVERS_NEXT_WORD": 2
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 2,
+    "ONE_WORD_BY_THE_COUNT": 18
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 2,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 3
+   }
+  },
+  "psalms": {
+   "step": {
+    "ROW_SPANS_WORDS": 4,
+    "TAG_COVERED_FROM_WORD_BEFORE": 15,
+    "TAG_COVERS_NEXT_WORD": 16
+   },
+   "macula": {
+    "MACULA_WORD_SPANS_WORDS": 2
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 14,
+    "LEMMA_SPANS_WORDS_FILED_BESIDE": 1,
+    "ONE_WORD_BY_THE_COUNT": 20
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 2,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 8
+   }
+  },
+  "proverbs": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 10
+   },
+   "bdb": {
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 3
+   }
+  },
+  "ecclesiastes": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 2
+   }
+  },
+  "song-of-songs": {
+   "step": {
+    "ROW_SPANS_WORDS": 6,
+    "TAG_COVERED_FROM_WORD_BEFORE": 3,
+    "TAG_COVERS_NEXT_WORD": 3
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 3,
+    "ONE_WORD_BY_THE_COUNT": 2
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 4
+   }
+  },
+  "isaiah": {
+   "step": {
+    "ROW_SPANS_WORDS": 2,
+    "TAG_COVERED_FROM_WORD_BEFORE": 16,
+    "TAG_COVERS_NEXT_WORD": 20
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 18,
+    "ONE_WORD_BY_THE_COUNT": 29,
+    "ONE_WORD_FILED_BESIDE": 3
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 12,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 14
+   }
+  },
+  "jeremiah": {
+   "step": {
+    "ROW_SPANS_WORDS": 8,
+    "TAG_COVERED_FROM_WORD_BEFORE": 34,
+    "TAG_COVERS_NEXT_WORD": 37
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 55,
+    "ONE_WORD_BY_THE_COUNT": 35,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 37,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 6
+   }
+  },
+  "lamentations": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 1
+   }
+  },
+  "ezekiel": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 12,
+    "TAG_COVERS_NEXT_WORD": 12
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 10,
+    "ONE_WORD_BY_THE_COUNT": 21,
+    "ONE_WORD_FILED_BESIDE": 4,
+    "SPAN_NOT_READABLE_NAME_NOT_SPELLED": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 12,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 4
+   }
+  },
+  "daniel": {
+   "step": {
+    "ROW_SPANS_WORDS": 8,
+    "TAG_COVERED_FROM_WORD_BEFORE": 17,
+    "TAG_COVERS_NEXT_WORD": 17
+   },
+   "macula": {
+    "MACULA_WORD_SPANS_WORDS": 8
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 26,
+    "ONE_WORD_BY_THE_COUNT": 5,
+    "ONE_WORD_FILED_BESIDE": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 8,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 1
+   }
+  },
+  "hosea": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 11,
+    "TAG_COVERS_NEXT_WORD": 11
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 13,
+    "ONE_WORD_BY_THE_COUNT": 10
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 16
+   }
+  },
+  "joel": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 3
+   }
+  },
+  "amos": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 13,
+    "TAG_COVERS_NEXT_WORD": 13
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 14,
+    "ONE_WORD_BY_THE_COUNT": 1,
+    "ONE_WORD_FILED_BESIDE": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 6,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 2
+   }
+  },
+  "jonah": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 1
+   }
+  },
+  "micah": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 5,
+    "TAG_COVERS_NEXT_WORD": 5
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 6,
+    "ONE_WORD_BY_THE_COUNT": 6
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 4,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 1
+   }
+  },
+  "nahum": {
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 1,
+    "ONE_WORD_BY_THE_COUNT": 2
+   }
+  },
+  "habakkuk": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 2
+   }
+  },
+  "zephaniah": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 4
+   },
+   "bdb": {
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 1
+   }
+  },
+  "zechariah": {
+   "step": {
+    "TAG_COVERED_FROM_WORD_BEFORE": 3,
+    "TAG_COVERS_NEXT_WORD": 3
+   },
+   "ubs": {
+    "LEMMA_SPANS_WORDS": 4,
+    "ONE_WORD_BY_THE_COUNT": 10,
+    "ONE_WORD_FILED_BESIDE": 1
+   },
+   "bdb": {
+    "HEADWORD_SPANS_WORDS": 2,
+    "SPAN_NOT_READABLE_HEADWORD_NOT_SPELLED": 1
+   }
+  },
+  "malachi": {
+   "ubs": {
+    "ONE_WORD_BY_THE_COUNT": 1
+   }
+  }
+ },
+ "words_that_print_twice_without_the_span": {
+  "step": {
+   "NO_LINE_OF_THIS_SOURCE": {
+    "words": 0,
+    "books": 0,
+    "by_book": {}
+   },
+   "THE_SAME_LINE_AGAIN": {
+    "words": 1625,
+    "books": 26,
+    "by_book": {
+     "genesis": 111,
+     "exodus": 10,
+     "numbers": 70,
+     "deuteronomy": 37,
+     "joshua": 246,
+     "judges": 126,
+     "ruth": 20,
+     "i-samuel": 100,
+     "ii-samuel": 122,
+     "i-kings": 108,
+     "ii-kings": 99,
+     "i-chronicles": 151,
+     "ii-chronicles": 60,
+     "ezra": 30,
+     "nehemiah": 48,
+     "job": 4,
+     "psalms": 35,
+     "song-of-songs": 8,
+     "isaiah": 38,
+     "jeremiah": 72,
+     "ezekiel": 24,
+     "daniel": 42,
+     "hosea": 22,
+     "amos": 26,
+     "micah": 10,
+     "zechariah": 6
+    }
+   },
+   "ANOTHER_LINE_OF_THIS_SOURCE": {
+    "words": 5,
+    "books": 3,
+    "by_book": {
+     "genesis": 1,
+     "ii-samuel": 3,
+     "nehemiah": 1
+    }
+   }
+  },
+  "macula": {
+   "NO_LINE_OF_THIS_SOURCE": {
+    "words": 0,
+    "books": 0,
+    "by_book": {}
+   },
+   "THE_SAME_LINE_AGAIN": {
+    "words": 12,
+    "books": 3,
+    "by_book": {
+     "ii-kings": 2,
+     "psalms": 2,
+     "daniel": 8
+    }
+   },
+   "ANOTHER_LINE_OF_THIS_SOURCE": {
+    "words": 0,
+    "books": 0,
+    "by_book": {}
+   }
+  },
+  "ubs": {
+   "NO_LINE_OF_THIS_SOURCE": {
+    "words": 737,
+    "books": 26,
+    "by_book": {
+     "genesis": 55,
+     "exodus": 4,
+     "numbers": 29,
+     "deuteronomy": 15,
+     "joshua": 129,
+     "judges": 62,
+     "ruth": 7,
+     "i-samuel": 41,
+     "ii-samuel": 46,
+     "i-kings": 50,
+     "ii-kings": 39,
+     "i-chronicles": 65,
+     "ii-chronicles": 28,
+     "ezra": 15,
+     "nehemiah": 26,
+     "job": 2,
+     "psalms": 8,
+     "song-of-songs": 3,
+     "isaiah": 21,
+     "jeremiah": 29,
+     "ezekiel": 12,
+     "daniel": 18,
+     "hosea": 11,
+     "amos": 12,
+     "micah": 6,
+     "zechariah": 4
+    },
+    "of_them_tahots_reading_marks_the_name_across": {
+     "words": 643,
+     "books": 26
+    },
+    "of_them_tahots_reading_does_not": {
+     "words": 94,
+     "books": 22,
+     "by_book": {
+      "genesis": 13,
+      "numbers": 2,
+      "joshua": 11,
+      "judges": 11,
+      "i-samuel": 2,
+      "ii-samuel": 6,
+      "i-kings": 3,
+      "ii-kings": 5,
+      "i-chronicles": 4,
+      "ii-chronicles": 5,
+      "ezra": 1,
+      "nehemiah": 6,
+      "job": 1,
+      "psalms": 1,
+      "isaiah": 6,
+      "jeremiah": 7,
+      "ezekiel": 4,
+      "daniel": 1,
+      "hosea": 1,
+      "amos": 2,
+      "micah": 1,
+      "zechariah": 1
+     }
+    }
+   },
+   "THE_SAME_LINE_AGAIN": {
+    "words": 16,
+    "books": 4,
+    "by_book": {
+     "ii-kings": 2,
+     "i-chronicles": 4,
+     "psalms": 2,
+     "daniel": 8
+    }
+   },
+   "ANOTHER_LINE_OF_THIS_SOURCE": {
+    "words": 157,
+    "books": 21,
+    "by_book": {
+     "genesis": 11,
+     "exodus": 5,
+     "numbers": 5,
+     "deuteronomy": 4,
+     "joshua": 16,
+     "judges": 10,
+     "i-samuel": 5,
+     "ii-samuel": 14,
+     "i-kings": 9,
+     "ii-kings": 13,
+     "i-chronicles": 7,
+     "ii-chronicles": 8,
+     "nehemiah": 3,
+     "psalms": 6,
+     "isaiah": 4,
+     "jeremiah": 26,
+     "ezekiel": 4,
+     "daniel": 1,
+     "hosea": 2,
+     "amos": 3,
+     "nahum": 1
+    }
+   }
+  },
+  "bdb": {
+   "NO_LINE_OF_THIS_SOURCE": {
+    "words": 1,
+    "books": 1,
+    "by_book": {
+     "jeremiah": 1
+    }
+   },
+   "THE_SAME_LINE_AGAIN": {
+    "words": 641,
+    "books": 25,
+    "by_book": {
+     "genesis": 69,
+     "exodus": 4,
+     "numbers": 34,
+     "deuteronomy": 18,
+     "joshua": 134,
+     "judges": 47,
+     "i-samuel": 42,
+     "ii-samuel": 35,
+     "i-kings": 16,
+     "ii-kings": 24,
+     "i-chronicles": 52,
+     "ii-chronicles": 20,
+     "ezra": 20,
+     "nehemiah": 22,
+     "job": 2,
+     "psalms": 2,
+     "song-of-songs": 4,
+     "isaiah": 12,
+     "jeremiah": 36,
+     "ezekiel": 12,
+     "daniel": 8,
+     "hosea": 16,
+     "amos": 6,
+     "micah": 4,
+     "zechariah": 2
+    }
+   },
+   "ANOTHER_LINE_OF_THIS_SOURCE": {
+    "words": 1,
+    "books": 1,
+    "by_book": {
+     "nehemiah": 1
+    }
+   }
+  },
+  "jastrow": {
+   "NO_LINE_OF_THIS_SOURCE": {
+    "words": 0,
+    "books": 0,
+    "by_book": {}
+   },
+   "THE_SAME_LINE_AGAIN": {
+    "words": 0,
+    "books": 0,
+    "by_book": {}
+   },
+   "ANOTHER_LINE_OF_THIS_SOURCE": {
+    "words": 0,
+    "books": 0,
+    "by_book": {}
+   }
+  }
+ },
+ "bdb_one_word_lines_whose_record_stands_at_a_neighbouring_word_too": {
+  "what": "BDB lines of class ONE_WORD (their headword is one word) whose same record and meaning the ledger also placed at the word before or after in the verse: each line reads its own word, but the record prints at both",
+  "lines": 3747,
+  "books": 37,
+  "by_book": {
+   "genesis": 236,
+   "exodus": 201,
+   "leviticus": 257,
+   "numbers": 182,
+   "deuteronomy": 148,
+   "joshua": 158,
+   "judges": 139,
+   "ruth": 25,
+   "i-samuel": 168,
+   "ii-samuel": 140,
+   "i-kings": 161,
+   "ii-kings": 151,
+   "i-chronicles": 150,
+   "ii-chronicles": 93,
+   "ezra": 22,
+   "nehemiah": 44,
+   "esther": 34,
+   "job": 32,
+   "psalms": 217,
+   "proverbs": 48,
+   "ecclesiastes": 20,
+   "song-of-songs": 28,
+   "isaiah": 280,
+   "jeremiah": 236,
+   "lamentations": 16,
+   "ezekiel": 307,
+   "daniel": 87,
+   "hosea": 28,
+   "joel": 15,
+   "amos": 40,
+   "obadiah": 2,
+   "micah": 14,
+   "nahum": 10,
+   "habakkuk": 2,
+   "zephaniah": 4,
+   "zechariah": 50,
+   "malachi": 2
+  }
+ },
+ "examples": {
+  "aram_zoba_ii_samuel_10_6_15": {
+   "book": "ii-samuel",
+   "p": "10:6:15",
+   "source": "ubs",
+   "n": 1,
+   "id": "000699001001000",
+   "class": "LEMMA_SPANS_WORDS_FILED_BESIDE",
+   "first_word": "10:6:16",
+   "last_word": "10:6:17"
+  },
+  "paddan_aram_lines": [
+   {
+    "book": "genesis",
+    "p": "25:20:12",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "25:20:12",
+    "last_word": "25:20:13"
+   },
+   {
+    "book": "genesis",
+    "p": "28:2:3",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "28:2:3",
+    "last_word": "28:2:4"
+   },
+   {
+    "book": "genesis",
+    "p": "28:5:6",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "28:5:6",
+    "last_word": "28:5:7"
+   },
+   {
+    "book": "genesis",
+    "p": "28:6:10",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "28:6:10",
+    "last_word": "28:6:11"
+   },
+   {
+    "book": "genesis",
+    "p": "28:7:8",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "28:7:8",
+    "last_word": "28:7:9"
+   },
+   {
+    "book": "genesis",
+    "p": "31:18:14",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "31:18:14",
+    "last_word": "31:18:15"
+   },
+   {
+    "book": "genesis",
+    "p": "33:18:10",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "33:18:10",
+    "last_word": "33:18:11"
+   },
+   {
+    "book": "genesis",
+    "p": "35:9:7",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "35:9:7",
+    "last_word": "35:9:8"
+   },
+   {
+    "book": "genesis",
+    "p": "35:26:13",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "35:26:13",
+    "last_word": "35:26:14"
+   },
+   {
+    "book": "genesis",
+    "p": "46:15:7",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "46:15:7",
+    "last_word": "46:15:8"
+   }
+  ],
+  "kiriath_arba_lines": [
+   {
+    "book": "genesis",
+    "p": "23:2:3",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "23:2:3",
+    "last_word": "23:2:4"
+   },
+   {
+    "book": "genesis",
+    "p": "35:27:7",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "35:27:7",
+    "last_word": "35:27:8"
+   },
+   {
+    "book": "joshua",
+    "p": "14:15:4",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "14:15:4",
+    "last_word": "14:15:5"
+   },
+   {
+    "book": "joshua",
+    "p": "15:13:14",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "15:13:14",
+    "last_word": "15:13:15"
+   },
+   {
+    "book": "joshua",
+    "p": "15:54:2",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "15:54:2",
+    "last_word": "15:54:3"
+   },
+   {
+    "book": "joshua",
+    "p": "20:7:12",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "20:7:12",
+    "last_word": "20:7:13"
+   },
+   {
+    "book": "joshua",
+    "p": "21:11:4",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "21:11:4",
+    "last_word": "21:11:5"
+   },
+   {
+    "book": "judges",
+    "p": "1:10:10",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "1:10:10",
+    "last_word": "1:10:11"
+   },
+   {
+    "book": "nehemiah",
+    "p": "11:25:7",
+    "class": "LEMMA_SPANS_WORDS",
+    "first_word": "11:25:7",
+    "last_word": "11:25:8"
+   }
+  ],
+  "step_aram_zobah_alternative_ii_samuel_10_6_16": {
+   "book": "ii-samuel",
+   "p": "10:6:16",
+   "source": "step",
+   "n": 3,
+   "id": [
+    "a",
+    "H0760"
+   ],
+   "class": "TAG_COVERS_NEXT_WORD",
+   "first_word": "10:6:16",
+   "last_word": "10:6:17"
+  },
+  "step_aram_zobah_alternative_ii_samuel_10_6_17": {
+   "book": "ii-samuel",
+   "p": "10:6:17",
+   "source": "step",
+   "n": 3,
+   "id": [
+    "a",
+    "H0760"
+   ],
+   "class": "TAG_COVERED_FROM_WORD_BEFORE",
+   "first_word": "10:6:16",
+   "last_word": "10:6:17"
+  },
+  "step_tubal_cain_genesis_4_22_6": {
+   "book": "genesis",
+   "p": "4:22:6",
+   "source": "step",
+   "n": 1,
+   "id": [
+    "r",
+    "H8423"
+   ],
+   "class": "TAG_COVERS_NEXT_WORD",
+   "first_word": "4:22:6",
+   "last_word": "4:22:7"
+  },
+  "macula_daniel_1_8_8": {
+   "book": "daniel",
+   "p": "1:8:8",
+   "source": "macula",
+   "n": null,
+   "id": [
+    "o270010080081",
+    "o270010080082"
+   ],
+   "class": "MACULA_WORD_SPANS_WORDS",
+   "first_word": "1:8:8",
+   "last_word": "1:8:9"
+  },
+  "bdb_beth_rehob_ii_samuel_10_6_13": {
+   "book": "ii-samuel",
+   "p": "10:6:13",
+   "source": "bdb",
+   "n": 1,
+   "id": [
+    "BDB1087",
+    "the entry"
+   ],
+   "class": "ONE_WORD",
+   "first_word": "10:6:13",
+   "last_word": "10:6:13"
+  }
+ },
+ "checks": [
+  {
+   "check": "check 1: every input is the bytes its manifest or receipt lists",
+   "failures": 0
+  },
+  {
+   "check": "check 2: every reference has the shape of RULE §2, and the figures it states are recounted",
+   "failures": 0
+  },
+  {
+   "check": "check 3: UBS's placement made again gives v1's ubs arrays at every place",
+   "failures": 0
+  },
+  {
+   "check": "check 4: every line in exactly one class, the classes add up, every span consecutive places of one verse",
+   "failures": 0
+  },
+  {
+   "check": "check 5: every STEP pick has a row, every variant its reference, no Jastrow headword two words",
+   "failures": 0
+  },
+  {
+   "check": "check 6: the examples hold",
+   "failures": 0
+  },
+  {
+   "check": "check 7: no path of this machine and no name of its owner in any file written",
+   "failures": 0
+  }
+ ],
+ "outputs": [
+  {
+   "file": "spans-v1.jsonl",
+   "bytes": 1737216,
+   "sha256": "e700f6e3a479200e7b4567ce74ad3db6df53c3075122116beb939f6656bceb47",
+   "lines": 3675
+  },
+  {
+   "file": "twice-words-v1.jsonl",
+   "bytes": 504915,
+   "sha256": "3c9b221e933f134812b36c0e4b3661817a31f620da7978c6233b156d1a24c8ea",
+   "lines": 3195
+  }
+ ]
+}

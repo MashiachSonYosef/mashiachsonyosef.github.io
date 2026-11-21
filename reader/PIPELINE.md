@@ -239,6 +239,20 @@
 > `data/audit-calls/PIN.json` names how each of calls 7, 4 and 3 lands and
 > under which rule (its `rule_id` and `landings`), and
 > `tools/check-audit-calls-v1.mjs` (A10 to A12) and the gate read it.
+> The words a source's line reads (`default-spans-rule-v1`, relay v209): the
+> corpus lane's spans list gives, for every default-pick line, the first and
+> the last word the line reads by its own source's data. Its rule and
+> receipts are kept in `data/default-picks/spans-v1/` and named by the pin
+> there; the list stays on the lane's store beside the default picks and is
+> read through `--default-picks` (`spans-v1/`), by `tools/default-spans-v1.mjs`
+> alone. The default picks' bake lays, in each book's file, the units of two
+> or more words that MACULA's, UBS's and BDB's first pick reads (`spans`),
+> each line proved to be the pick the bake read at its place. The page reads
+> a unit's words as one under that source set first: one line over them in
+> one cell, each word as it rests where they stand apart. Nothing at rest
+> moves. `tools/check-default-spans-v1.mjs` holds the pin, the book files
+> and the page under each source, and the gate takes the spans as owed
+> lines under a source pressed.
 > Ship 6 (relay v187, the unabridged BDB's words back, under the owner's
 > questions 17 and 18 of 14 November 2026) moves no line and no pill, and
 > adds no step to the round. The lane's folder is kept byte for byte

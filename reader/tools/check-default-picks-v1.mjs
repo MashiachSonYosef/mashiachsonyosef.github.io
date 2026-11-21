@@ -216,7 +216,13 @@
 //       one run of the page: one part over all its words, the run's only part
 //       where it is the whole run (the completeness critic of 15 November
 //       2026: BDB's «Bethel · sense 1» under both words of Amos 3:14:10-11);
-//       where they stand apart each keeps today's line
+//       where they stand apart each keeps today's line. A unit the book's
+//       file gives from the source's own data (spans, default-spans-rule-v1:
+//       the words its first pick's line reads) is that unit before these
+//       marks are asked: its words take its one line, read where it is
+//       filed, and a line filed beside the words it reads is not printed
+//       where it is filed (tools/check-default-spans-v1.mjs holds the spans
+//       themselves and reads every book)
 //   D8  the second can be changed: the lines that move are the model's, the
 //       note follows, the choice is kept for that source, reset brings auto
 //   D9  a ruling outranks a source, across switching, across joined words
@@ -1396,6 +1402,31 @@ const menu = async (s) => {
  *  today's line is, and at a pair among those places it is so under STEP's layer alone (X is STEP, as at rest and while
  *  another source waits for its book file: the page's dfltPairStands); under another source the pair keeps today's
  *  line. `line` is the text as the page draws it. */
+/** THE WORDS A SOURCE'S LINE READS (default-spans-rule-v1; zone.html dfltSpans, dfltSpanRead, dfltSpanWhole): per
+ *  book and source, the units the book's file gives that are filed with a line of the source (lineAt: the first
+ *  place it is filed where the source prints one, a pair not asked, as the page's lineOf), each place of a unit to
+ *  its unit, and each place a unit's line is filed at that is none of its words. `whole`: no word of it a pair. */
+const spansIn = new Map();
+const spansOf = (b, X) => {
+  if (!spansIn.has(b)) {
+    const bf = bookRead(b), ps = slim(b).places, by = {};
+    for (const src of ["macula", "ubs", "bdb"]) {
+      const at = new Map(), beside = new Map(), units = [];
+      for (const u of ((bf.spans || {})[src]) || []) {
+        if (!Array.isArray(u) || !Array.isArray(u[0]) || !Array.isArray(u[1]) || u[0].length < 2) continue;
+        const lineN = u[1].find((n) => ps[n - 1] && lineAt(bf, ps[n - 1], src, false, false) !== null) || null;
+        if (!lineN) continue;
+        const unit = { src, ns: u[0], filed: u[1], lineAt: lineN, whole: u[0].every((n) => ps[n - 1] && !ps[n - 1].mark && !ps[n - 1].kq) };
+        units.push(unit);
+        for (const n of unit.ns) at.set(n, unit);
+        for (const n of unit.filed) if (!unit.ns.includes(n)) beside.set(n, unit);
+      }
+      by[src] = { at, beside, units };
+    }
+    spansIn.set(b, by);
+  }
+  return spansIn.get(b)[X] || { at: new Map(), beside: new Map(), units: [] };
+};
 const layerAt = (b, X, Y, p, bare = false) => {
   if (!p || p.mark) return null;
   const bf = bookRead(b);
@@ -1407,7 +1438,11 @@ const layerAt = (b, X, Y, p, bare = false) => {
     const leaf = IX.books[b].step_leaves.find((r) => r[0] === p.n);
     return of(Y, leaf && Y ? leafLine(leaf, Y) : null, "second") || stepOwn("first");
   }
-  const t1 = of(X, lineAt(bf, p, X), "first");
+  // a word of a unit of X's takes the unit's one line, read where it is filed; a unit with a pair in it is not
+  // read, and a line filed beside the words it reads is not this word's (zone.html defaultAtWord)
+  const sp = spansOf(b, X), u = sp.at.get(p.n) || null;
+  if (u && u.whole) { const t = of(X, lineAt(bf, slim(b).places[u.lineAt - 1], X, false, false), "first"); if (t) return Object.assign(t, { unit: u }); }
+  const t1 = u || sp.beside.has(p.n) ? null : of(X, lineAt(bf, p, X), "first");
   if (t1) return t1;
   if (Y === "step") return stepOwn("second");
   // STEP FILLS OUT LAST (the owner, 16 November 2026): where neither X nor its second has a line, STEP's line as it
@@ -1421,6 +1456,8 @@ const layerAt = (b, X, Y, p, bare = false) => {
  *  pieces read holds no half alone (the page's dfltAcross, ship 5: II Samuel 6:10:15-16, «Obed-» from the pieces and
  *  «Edom» where STEP's own reading stands). d: the word's own layer (layerAt). */
 const wholeAcross = (b, X, Y, p, d) => {
+  // a unit of the source's own data is read by it at every word (zone.html dfltAcross)
+  if (d && d.unit) return d;
   const across = d ? acrossOf(b, p) : null;
   return !across || across.every((q) => q === p || (layerAt(b, X, Y, q) || {}).src === d.src || (d.src === "step" && q.pgA)) ? d : null;
 };
@@ -1456,8 +1493,14 @@ const modelOf = (b, X, Y, base) => besideSteps(b, sectionsOf(b).map((sec, i) => 
     for (let e = f; e < f + c; e += 1) covered.add(e);
     if (c > 1) {
       const run = Array.from({ length: c }, (_, j) => placeAt(b, i, f + j));
-      const takes = X !== "step" && run.every((p) => p && !p.mark && !p.kq && lineAt(bookRead(b), p, X) !== null);
-      if (takes) for (const p of run) m.set(p.e, [p.e, 1, drawn(lineAt(bookRead(b), p, X)), MOF(X)]);
+      // X's own line at a word of the run, a unit's line where the word is one of a unit's (and then only where the
+      // whole unit stands in this run: a unit with a word outside it stands apart, and its words rest)
+      const firstOf = (p) => {
+        const d = p && !p.mark && !p.kq ? layerAt(b, X, Y, p) : null;
+        return d && d.layer === "first" && d.src === X && !(d.unit && !d.unit.ns.every((n) => run.some((q) => q && q.n === n))) ? d : null;
+      };
+      const takes = X !== "step" && run.every((p) => firstOf(p) !== null);
+      if (takes) for (const p of run) m.set(p.e, [p.e, 1, firstOf(p).line, MOF(X)]);
       else m.set(f, u);
       continue;
     }
@@ -1534,12 +1577,16 @@ const runsInPage = () => [...document.querySelectorAll("section.seg")].map((s) =
  *  keeps its own line either way. */
 const unitsOnce = (b, X, Y, model, runs, base) => {
   const bf = bookRead(b);
-  for (const g of unitGroupsOf(b)) {
+  // the units the book's file gives from the source's own data come first (zone.html dfltUnitOf asks them first),
+  // each marked as its unit; a group told by the older marks is no unit where a word of it is one of those
+  const told = spansOf(b, X).units.filter((u) => u.whole).map((u) => Object.assign(u.ns.map((n) => slim(b).places[n - 1]), { unit: u }));
+  for (const g of [...told, ...unitGroupsOf(b)]) {
     if (!g.length || g.some((p) => !p || p.i !== g[0].i)) continue;
     const ds = g.map((p) => wholeAcross(b, X, Y, p, layerAt(b, X, Y, p)));
     if (!ds[0] || ds[0].src === "step" || ds.some((d) => !d || d.src !== ds[0].src || d.layer !== ds[0].layer)) continue;
+    if (g.unit ? ds.some((d) => d.unit !== g.unit) : ds.some((d) => d.unit)) continue;
     const pick = (p) => JSON.stringify((bf.places[p.n - 1] || [])[SLOT[ds[0].src]]);
-    if (g.some((p) => pick(p) !== pick(g[0]))) continue;
+    if (!g.unit && g.some((p) => pick(p) !== pick(g[0]))) continue;
     const m = model[g[0].i], es = g.map((p) => p.e);
     if (!m) continue;
     const single = (e) => { const u = m.get(e); return !!u && u[1] === 1; };

@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-16.
 
-**190 rules declared · 178 named by a check · 12 unguarded.**
+**191 rules declared · 179 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -41,6 +41,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one` | tools/build-zone.mjs, tools/count-stamp-v1.mjs, tools/emit-masorah-witnesses-v1.mjs, tools/restamp-zone-v1.mjs | check-bookword-count-v1, check-c0-refusals-v1 |
 | `declarations-branch-rule-v1-a-branch-is-what-the-source-says-about-itself-and-a-reserved-token-is-never-a-branch` | tools/project-declarations-v1.mjs | check-declarations-branch-v1 |
 | `default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second` | tools/bake-default-picks-v1.mjs, zone.html, tools/bake-resting-lines-v1.mjs, tools/card-readings-v1.mjs, tools/resting-lines-v1.mjs | check-concordance-counts-the-line-v1, check-default-picks-v1, check-landing-holds-the-card-v1, check-press-paints-before-seen-v1, check-row-and-card-name-sources-v1, check-rulings-under-sources-v1, check-same-product-v1, check-card-opens-on-the-line-v1, check-chain-book-v2, check-line-follows-card-v1, check-live-v1, check-menu-switches-v1, check-page-fetches-v1, check-reset-pill-v1, check-ruled-equals-first-paint-v1, check-word-senses-v1 |
+| `default-spans-rule-v1-a-default-sources-line-that-reads-several-words-is-one-unit-of-those-words-read-from-the-sources-own-data` | tools/default-spans-v1.mjs, zone.html, tools/bake-default-picks-v1.mjs, tools/round-v1.sh | check-default-spans-v1, check-default-picks-v1, check-same-product-v1 |
 | `demo-verse-rule-v1` | tools/build-front-door-v1.mjs | check-clean-address-v1, check-nothing-hand-typed-v1 |
 | `derived-work-ranges-rule-v1-the-atlas-names-every-range-so-none-is-typed` | tools/emit-derived-work-ranges-v1.mjs | check-derived-ranges-v1 |
 | `dibbur-hamatchil-rule-v2-the-window-is-the-verse` | tools/generate-attachment-map-v2.mjs | check-nothing-hard-wired-v1 |
@@ -223,7 +224,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 44 of the 164 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 45 of the 165 tools that are not checks.
 
 Not called by any build stage:
 
@@ -260,6 +261,7 @@ Not called by any build stage:
 - `tools/commentary-span-findings-v1.mjs`
 - `tools/count-stamp-v1.mjs`
 - `tools/declaration-v1.mjs`
+- `tools/default-spans-v1.mjs`
 - `tools/derive-fold-strike-landing-v1.mjs`
 - `tools/derive-landings-v1.mjs`
 - `tools/derive-ubs-collocations-v1.mjs`
