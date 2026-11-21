@@ -78,3 +78,11 @@ What is left is the source's own filing, not a doubled name:
 S1 the pin and the receipts. S2 every book's spans, and with the list on the machine a recount through the one reading (1,423 lines in 39 books). S3 on the page under each source, every book: no name stands twice at any unit filed with a line (UBS 435 units as one line and 325 resting; BDB 87 and 48; MACULA 2 and 4). S4 the card: a unit drawn as one line is said once; a unit resting apart is said as the source's one reading of its words. All pass, 3 min 20 s.
 
 Still to do: the older check's page model (`check-default-picks-v1`), the gate's expectation for lines that move under a source pressed, the pipeline's documents, then the round, the gate and the whole suite.
+
+## The round, and the gate against live (17:03 to 17:53 UTC)
+
+- **The round** (`measures/pipeline-first-pass.log`): every step exit 0, done 17:42 on page `327b2def1b11efac`.
+- **Every resting line against live** (`measures/lines-diff-against-live.json`): 0 entries move in 40 works. Nothing at rest moves, as meant.
+- **The gate**, live (ship 13) against this tree (`measures/gate-first-round.log`): S1 and S2 pass. 30,945 lines compared on 18 pages under every switch both builds carry; 0 differ. 26 moved as owed, all under UBS pressed (`measures/gate-first-round-owed-lines.txt`): 20 to a unit's one line («Beth-» «-lehem» to «Bethlehem» at Ruth 1; «Hadad» to «Ben-Hadad» at Amos 1), 6 to the line as it rests where the unit's words stand apart («Beersheba + Beersheba» «Beersheba» to «and + Beer» «Sheba» at Amos 5). 54 cards compared, none differing.
+
+The whole suite began 17:53 UTC.
