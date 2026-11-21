@@ -2,7 +2,7 @@
 // RUN: tree
 // GUARDS: audit-calls-rule-v1-a-call-lands-as-its-list-names-each-row-and-the-record-says-where-each-row-went
 // GUARDS: audit-calls-landing-rule-v1-each-call-lands-as-its-landing-says-rows-through-the-row-strikes-tool-a-rule-under-its-own-id-or-held-with-the-reason, steps-reading-stands-rule-v1-where-step-spells-or-parts-the-word-otherwise-its-own-pick-1-is-the-line-credited-to-step, run-reads-its-words-rule-v1-a-run-whose-every-word-has-its-own-reading-at-the-place-reads-word-by-word-the-joined-reading-a-press-away, ubs-collocations-rule-v1-a-row-carries-the-collocations-its-ubs-meanings-name-and-the-places-ubs-own-pick-names-it
-// GUARDS: row-strike-rule-v7-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts
+// GUARDS: row-strike-rule-v8-a-named-list-strikes-withholds-re-keys-rejoins-re-heads-retexts-restores-or-lands-a-row-the-hole-is-typed-and-a-landed-cut-is-counted-a-retext-from-words-back-keeps-the-rows-closes-and-facts-a-landing-writes-the-entries-its-line-names
 // LEDGER: -
 // no frame letter. A check reads the lists, the record and the store and
 // judges them; it is not the ledger for one.

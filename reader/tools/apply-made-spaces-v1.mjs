@@ -507,12 +507,15 @@ for (const [m, L] of LISTED) {
       if (r1 === (l.rows_field_1 || 0) - f1 && r2 === (l.rows_field_2 || 0) - f2) held += 1;
       else unheld.push({ text: text.slice(0, 80), list: [l.rows_field_1 || 0, l.rows_field_2 || 0], less: [f1, f2], store: [r1, r2] });
     }
-    const less = { rows: off.length, route: lost.filter((x) => closesOf(L, x.route)).length, definition: lost.filter((x) => closesOf(L, x.definition)).length, either: lost.filter((x) => closesOf(L, x.route) || closesOf(L, x.definition)).length };
+    // and with the rows another list landed since (the corpus lane's returns, relay v200), each a row more
+    const on = (second.back && second.back.get(m)) || [];
+    const less = { rows: off.length - on.length, route: lost.filter((x) => closesOf(L, x.route)).length - on.filter((x) => closesOf(L, x.route)).length, definition: lost.filter((x) => closesOf(L, x.definition)).length - on.filter((x) => closesOf(L, x.definition)).length,
+      either: lost.filter((x) => closesOf(L, x.route) || closesOf(L, x.definition)).length - on.filter((x) => closesOf(L, x.route) || closesOf(L, x.definition)).length };
     const byRoad = { rows: [t.rows, stated.rows - less.rows], route: [counts.route[0], counts.route[1] - less.route], definition: [counts.definition[0], counts.definition[1] - less.definition], either: [counts.either[0], counts.either[1] - less.either] };
     if (unheld.length) refuse(`${L.file}: ${unheld.length} line(s) state row counts that, less the rows gone since ${second.base} and the lines of relay ${second.landing.relay} not landed, are not this store's (the second road; the receipt read «${L.readAt}»); first: ${JSON.stringify(unheld[0])}`);
     if (!Object.values(byRoad).every(([a, b]) => a === b)) refuse(`${m}: its rows, and its rows holding a close on the route text, the definition text and either, are ${JSON.stringify(byRoad)} (here; the corpus lane's receipt less the rows gone since ${second.base} and the lines of relay ${second.landing.relay} not landed): the second road does not hold (the receipt read «${L.readAt}»)`);
     bySecondRoad[m] = { the_receipt_read: L.readAt, a_served_store: second.base, with_the_landing_of_relay: second.landing.relay, rounds_of_the_row_strikes_record_since: second.rounds.map((r) => r.list),
-      rows_gone_since: (second.gone.get(m) || []).length, lines_of_the_landing_not_landed: (second.notLanded.get(m) || []).length, ...(re.length ? { rows_retexted_since: re.length } : {}), lines_whose_row_counts_are_the_receipts_less_those: held,
+      rows_gone_since: (second.gone.get(m) || []).length, lines_of_the_landing_not_landed: (second.notLanded.get(m) || []).length, ...(re.length ? { rows_retexted_since: re.length } : {}), ...(on.length ? { rows_landed_since_by_another_list: on.length } : {}), lines_whose_row_counts_are_the_receipts_less_those: held,
       rows_and_rows_with_a_close_here_and_by_the_road: byRoad };
   }
   const noted = [...L.lines.values()].filter((l) => l.note);

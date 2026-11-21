@@ -1,0 +1,113 @@
+{
+ "name": "call 5 returns v1",
+ "written": "20 November 2026 AD",
+ "lane": "corpus lane (Moses)",
+ "current_effect": "NONE. Nothing served is changed; the serving lane lands the list.",
+ "rule": {
+  "file": "RULE.md",
+  "sha256": "8633ff2adc6e2d1aba3272ae63281cbf46c254b2684ca72c051d158a0d8d7131"
+ },
+ "builder": {
+  "file": "build-call5-returns-v1.mjs",
+  "sha256": "720865ee73da0dffc673d17b38228fe09f7c5328b66d28eaf06af3ca2f0c8268"
+ },
+ "inputs": {
+  "call5_list": {
+   "file": "<the Tabernacle>/corpus-lane-builds/moses-audit-calls-v1/calls-v1/call5-maqaf-keys-v1.jsonl",
+   "bytes": 3126366,
+   "sha256": "7c1778fe7b5270194281e2f80cc936b3d15b94c406309e6ae0bd75ef84a52d0c"
+  },
+  "v188_landing": {
+   "file": "<the Tabernacle>/corpus-lane-builds/moses-fold-strike-landing-v1/landing-v1/landing-fold-strike-v1.jsonl",
+   "bytes": 11581861,
+   "sha256": "c199049388e47991e1b3d8af0c22708f516ebb773cbbdad367efe2928c6ade4f"
+  },
+  "store_v189_read": {
+   "store_version": "4d1357b26ca5",
+   "index_sha256": "1cd2e558127d6269adf5bafc2842e8e6adab723877e1fa87d6223ae226b4e19a"
+  },
+  "store_now": {
+   "store_version": "54416ff5785b",
+   "index_sha256": "b0316573a1afbb83fd298c6d27e1b416c13d4a6076a7ae20980c6f0d11552b3a"
+  },
+  "catalog": {
+   "file": "definition-poc/output/structured-evidence-catalog-v86.csv.gz",
+   "bytes": 136280475,
+   "sha256": "a563c2f33f07e26ada3cbe57e5924dfac710532b434978bc07b31b46bff8fedf"
+  }
+ },
+ "counts": {
+  "call5_other_source_lines": 1294,
+  "v188_lines_under_a_maqaf_key": [
+   961,
+   1881,
+   1983
+  ],
+  "landing_lines": 1296,
+  "landing_by_kind": {
+   "call5_return": 1294,
+   "fold_strike_whole": 2
+  },
+  "landing_by_source": {
+   "M4": 593,
+   "M74": 101,
+   "M41": 299,
+   "M11": 66,
+   "M71": 14,
+   "M36": 104,
+   "M69": 12,
+   "M96": 18,
+   "M98": 25,
+   "M111": 1,
+   "M92": 10,
+   "M59": 2,
+   "M60": 1,
+   "M21": 4,
+   "M37": 4,
+   "M58": 8,
+   "M44": 1,
+   "M123": 8,
+   "M42": 1,
+   "M45": 1,
+   "M5": 8,
+   "M14": 1,
+   "M163": 1,
+   "M50": 4,
+   "M25": 5,
+   "M105": 3,
+   "M34": 1
+  },
+  "keys": 658,
+  "not_landed": 1,
+  "not_landed_by_from": {
+   "v188": 1
+  },
+  "call5_rows_with_no_catalog_card": 0
+ },
+ "checks": [
+  {
+   "check": "check 1: every call-5 row stands in the store v189 read",
+   "failures": 0
+  },
+  {
+   "check": "check 2: every landing key is the plain key and no row of its own source prints its words there now",
+   "failures": 0
+  },
+  {
+   "check": "check 4: no path of this machine and no name of its owner in any file written",
+   "failures": 0
+  }
+ ],
+ "outputs": [
+  {
+   "file": "call5-returns-v1.jsonl",
+   "bytes": 1249336,
+   "sha256": "f40f39f5e923dd583f19b04a8543e04933b0786dfe16f9ee1fcfaaf1dc7e75c8"
+  },
+  {
+   "file": "not-landed-v1.jsonl",
+   "bytes": 189,
+   "sha256": "ac70317a430fe8f64bd8702da21bfe0cce411d0de3f38b52d6fe6c5a77fc8c05"
+  }
+ ]
+}

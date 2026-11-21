@@ -114,6 +114,13 @@
 // at, as a line of the ledger is. Refused: a list that is not its pin's bytes, a pinned list not named, a line of a
 // source its pin entry does not read or of a source the ledger reads, a line that finds no row no round took.
 //
+// A ROW LANDED SINCE CARRIES WHAT ITS LANDING GAVE IT (ship 11c, the corpus lane's v200, v201 and v202). A landing
+// list names, for each row it lands, the entries its own source gives the row, and tools/strike-rows-v1.mjs writes
+// them onto the row and into the row-strikes record. Such a row has no line in a ledger or a list read before it
+// landed. It was given nothing here until now, which took its entries off again. It now carries exactly the facts
+// its landing named (n, t, b), read from the record through the follower, and is counted
+// (rows_landed_since_carrying_their_landings_facts); a row landed with none still carries none.
+//
 // Idempotent: a second run moves nothing and writes nothing. --dry prints
 // and writes nothing. --on gives the moment the run is recorded under
 // (tools/step-moment-v1.mjs); with none it is the clock's. The summary ends
@@ -260,10 +267,19 @@ const lacks = (own, line) => { const out = {}; for (const key of MINE) { const a
 const withGiven = (own, gave) => { const out = {}; for (const key of MINE) { const all = [...((own || {})[key] || []), ...(gave[key] || [])]; if (all.length) out[key] = all; } return out; };
 const given = [];   // each pair: the struck row, its twin, what the twin was given
 let struckWithATwin = 0;
+// the struck rows no line of the ledger answers under their twin key: a round may have landed their words back there
+// since the ledger was read (the corpus lane's returns, relay v200); the walk meets such a row and gives it the same
+const twinsAwaited = new Map();   // the twin key, source and words -> those struck rows' lines
+let landedTwins = new Map();      // a struck row's line -> the ranks of the rows landed since that are its twins
+let givenAtLanding = [];          // each pair, as above, whose twin is a row landed since
 for (const t of twinLines) {
   const rows = ledger.get(t.key) || new Map();
   const ids = [...rows.keys()].filter((id) => id.endsWith(` ${t.from[2]} ${t.from[3]}`));
-  if (!ids.length) continue;   // no row of its own source carries its words there: the strike took the source's credit with it
+  if (!ids.length) {   // no line of its own source carries its words there: the strike took the source's credit with it, unless a round landed it back since
+    const id = `${t.key}\u0001${t.from[2]}\u0001${t.from[3]}`;
+    (twinsAwaited.get(id) || twinsAwaited.set(id, []).get(id)).push(t);
+    continue;
+  }
   struckWithATwin += 1;
   const gains = ids.flatMap((id) => rows.get(id).map((own) => lacks(own, t.facts)));
   if (!gains.some(Boolean)) continue;
@@ -276,6 +292,7 @@ for (const t of twinLines) {
 const LIST_OF = new Map();    // m id -> the pin entry of the list that reads it
 const listed = new Map();     // key now -> "rank m sha16" -> [facts or null, ...], one per time a list names the row
 const listRuns = [];          // per list, in the pin's order: what it gave
+const listFollow = new Map(); // a list's pin entry -> the follower from the store it was read at
 for (const l of pin.lists || []) {
   const text = listBytes.get(l.list.sha256).toString("utf8");
   if (!text.endsWith("\n")) refuse(`${l.list.file} does not end in a line end`);
@@ -291,6 +308,7 @@ for (const l of pin.lists || []) {
     LIST_OF.set(m, l);
   }
   const followL = following(() => openFollower({ data: dirname(STORE), index, readAt: l.read_at_store_version }));
+  listFollow.set(l, followL);
   const run = { l, lines: body.length, gone: [], facts_not_landed: {}, by_m: {} };
   for (const [i, line] of body.entries()) {
     const c = line.split("\t"), where = `${l.list.file} line ${i + 2}`;
@@ -336,6 +354,7 @@ let storeRows = 0, linesMet = 0;
 // and once more writing. A row the store holds twice takes the ledger's lines for it in order, one each.
 const walk = (write) => {
   touched = []; noLine = []; unlistedWithFacts = []; landedRows = []; storeRows = 0; linesMet = 0;
+  landedTwins = new Map(); givenAtLanding = [];
   for (const t of Object.values(tally)) for (const k of Object.keys(t)) if (k !== "ledger_rows") t[k] = 0;
   for (const lt of listTally.values()) for (const k of Object.keys(lt)) lt[k] = 0;
   const taken = new Map();   // key, then the row's id -> how many of the ledger's lines for it are taken
@@ -348,7 +367,13 @@ const walk = (write) => {
     const key = `a list\u0001${k}\u0001${id}`, at = taken.get(key) || 0;
     const met = !!list && at < list.length;
     if (met) { taken.set(key, at + 1); lt.lines_met += 1; }
-    const want = met ? list[at] : null;
+    let want = met ? list[at] : null;
+    if (!met) {
+      // no line: where a round landed the row since the list was read, it carries what its landing gave it
+      const [rank, , sha] = id.split(" ");
+      const then = listFollow.get(l).thenOf([k, Number(rank), m, sha]);
+      if (then.state === "landed after") { lt.rows_landed_since_with_no_line = (lt.rows_landed_since_with_no_line || 0) + 1; want = Array.isArray(then.row) ? mineOf(then.row) : null; if (want) { lt.rows_landed_since_carrying_their_landings_facts = (lt.rows_landed_since_carrying_their_landings_facts || 0) + 1; return { lt, want, landed: true }; } }
+    }
     if (want) { lt.rows_carrying_an_entry += 1; if (want.n && want.n.length > 1) lt.rows_with_several_numbers += 1; }
     return { lt, want };
   };
@@ -377,15 +402,30 @@ const walk = (write) => {
         const list = mine ? mine.get(id) : null;
         const at = taken.get(`${k}\u0001${id}`) || 0;
         const met = !!list && at < list.length;
-        const want = met ? list[at] : null;
+        let want = met ? list[at] : null;
         if (met) { taken.set(`${k}\u0001${id}`, at + 1); linesMet += 1; }
         else {
           // a row with no line: one a round landed since the ledger was read, or one the record does not explain
           const then = follow.thenOf([k, row[0], m, sha]);
-          if (then.state === "landed after") { landedRows.push(then); t.rows_landed_since_with_no_line = (t.rows_landed_since_with_no_line || 0) + 1; }
+          if (then.state === "landed after") {
+            landedRows.push(then); t.rows_landed_since_with_no_line = (t.rows_landed_since_with_no_line || 0) + 1;
+            // it carries what its landing gave it
+            want = Array.isArray(then.row) ? mineOf(then.row) : null;
+            // landed back under the key a struck row's words stand under, it is that row's twin: its landing's
+            // entries first, then those of the struck row's line that it lacks
+            for (const s of twinsAwaited.get(`${k}\u0001${m}\u0001${sha}`) || []) {
+              (landedTwins.get(s) || landedTwins.set(s, []).get(s)).push(row[0]);
+              const gain = lacks(want, s.facts);
+              if (!gain) continue;
+              want = withGiven(want, gain);
+              givenAtLanding.push({ from: s.from, to: [k, row[0], m, sha], gave: gain, struck_by: s.by.list, landed_since: true });
+            }
+            if (want) t.rows_landed_since_carrying_their_landings_facts = (t.rows_landed_since_carrying_their_landings_facts || 0) + 1;
+            if (want && want.n) t.rows_landed_since_with_a_number = (t.rows_landed_since_with_a_number || 0) + 1;
+          }
           else { if (noLine.length < 12) noLine.push(`${name} ${k} (${m}, rank ${row[0]}) «${String(row[1]).slice(0, 50)}»`); t.rows_with_no_line = (t.rows_with_no_line || 0) + 1; }
         }
-        if (met) { if (want && want.n) { t.rows_with_a_number += 1; if (want.n.length > 1) t.rows_with_several_numbers += 1; } else t.rows_with_no_number += 1; }
+        if (want && want.n) { t.rows_with_a_number += 1; if (want.n.length > 1) t.rows_with_several_numbers += 1; } else if (met) t.rows_with_no_number += 1;
         if (want) {
           if (want.t) t.rows_carrying_steps_letters += 1;
           if (want.b) t.rows_carrying_bdbs_entries += 1;
@@ -393,9 +433,9 @@ const walk = (write) => {
         }
         // a source the ledger reads and gives nothing may be read by a list of the pin: the row carries what its list line gives
         const got = listLine(k, m, id);
-        const give = got && got.want ? got.want : want;
+        const give = got && got.want && !got.landed ? got.want : want;
         if (same(has, give)) continue;
-        if (got && got.want) got.lt.rows_moved += 1; else t.rows_moved += 1;
+        if (got && got.want && !got.landed) got.lt.rows_moved += 1; else t.rows_moved += 1;
         moved += 1;
         if (write) setFacts(row, Object.fromEntries(MINE.map((key) => [key, give && key in give ? give[key] : null])));
       }
@@ -404,6 +444,8 @@ const walk = (write) => {
   }
 };
 following(() => walk(false));
+for (const [s, ranks] of landedTwins) if (ranks.length > 1 && givenAtLanding.some((g) => g.from === s.from)) refuse(`the line of the row of ${s.from[2]} at rank ${s.from[1]} (${s.from[3]}), struck by ${s.by.list}, gives entries to its twin, and ${ranks.length} rows of ${s.from[2]} landed since carry its words under the key they stand under: which takes them is not decided`);
+const twinsCounted = () => struckWithATwin + landedTwins.size, givenAll = () => [...given, ...givenAtLanding];
 if (unlistedWithFacts.length) refuse(`${unlistedWithFacts.length} row(s) of a source the ledger does not read carry this tool's facts; first: ${unlistedWithFacts[0]}`);
 const sum = (f) => Object.values(tally).reduce((a, s) => a + (s[f] || 0), 0);
 // what the record does not explain: a row with no line that no round landed, a line (of those whose row no round took) with no row
@@ -413,11 +455,12 @@ for (const [m, t] of Object.entries(tally).sort((a, b) => b[1].ledger_rows - a[1
 const totals = { sources: SOURCES.size, keys_in_the_ledger: lines.length, rows_in_the_ledger: ledgerRows, store_rows_of_those_sources: sum("store_rows"), rows_carrying_the_slot: sum("rows_carrying_the_slot"),
   rows_with_a_number: sum("rows_with_a_number"), rows_with_several_numbers: sum("rows_with_several_numbers"), rows_with_no_number: sum("rows_with_no_number"),
   rows_carrying_steps_letters: sum("rows_carrying_steps_letters"), rows_carrying_bdbs_entries: sum("rows_carrying_bdbs_entries"),
-  store_rows_with_no_line: landedRows.length, ledger_rows_with_no_store_row: goneLines.length };
+  store_rows_with_no_line: landedRows.length, ledger_rows_with_no_store_row: goneLines.length,
+  ...(sum("rows_landed_since_carrying_their_landings_facts") ? { rows_landed_since_carrying_their_landings_facts: sum("rows_landed_since_carrying_their_landings_facts"), rows_landed_since_with_a_number: sum("rows_landed_since_with_a_number") } : {}) };
 // how the store differs from the one the ledger was read at, as the row-strikes record says and this run found it
 const followed = { ...followedRecord(follow, { left: goneLines, rekeyed: rekeyedLines, retexted: retextedLines, landed: landedRows }),
   ...(pin.struck_lines ? { lines_of_rows_struck_before_the_ledger_was_read: { file: `${HOME}/${pin.folder}/${pin.struck_lines.file}`, sha256: pin.struck_lines.sha256, lines: struckBefore.length, by_list: struckBeforeBy } } : {}),
-  struck_rows_with_a_twin_of_their_own_source: struckWithATwin, entries_given_to_a_twin: given };
+  struck_rows_with_a_twin_of_their_own_source: twinsCounted(), entries_given_to_a_twin: givenAll() };
 // what each list gave, as the walk found it, and what of it the record does not explain
 const count = (o) => Object.values(o || {}).reduce((a, c) => a + c, 0);
 const lists = listRuns.map((run) => {
@@ -428,13 +471,14 @@ const lists = listRuns.map((run) => {
     facts_landed: l.facts, sources: l.sources,
     totals: { sources: Object.keys(l.sources).length, lines: run.lines, lines_whose_row_was_struck_or_withheld_since: gone, store_rows_of_its_sources: lt.store_rows_of_its_sources,
       rows_carrying_an_entry: lt.rows_carrying_an_entry, rows_with_several_numbers: lt.rows_with_several_numbers, rows_of_its_sources_with_no_line: lt.store_rows_of_its_sources - lt.lines_met,
+      ...(lt.rows_landed_since_with_no_line ? { rows_landed_since_with_no_line: lt.rows_landed_since_with_no_line, rows_landed_since_carrying_their_landings_facts: lt.rows_landed_since_carrying_their_landings_facts || 0 } : {}),
       lines_whose_facts_are_not_landed: run.lines - run.gone.length - lt.rows_carrying_an_entry, facts_not_landed: run.facts_not_landed } };
 });
 const listLinesWithNoRow = listRuns.map((run) => run.lines - run.gone.length - listTally.get(run.l).lines_met);
 const listMoved = [...listTally.values()].reduce((a, lt) => a + lt.rows_moved, 0);
 const moved = sum("rows_moved") + listMoved, shardsRewritten = touched.length;
 console.log(`row entries · relay ${pin.relay} · ${n(ledgerRows)} rows of ${SOURCES.size} sources in the ledger (read from the store at ${readAt}) · ${n(totals.store_rows_of_those_sources)} rows of them in the store of ${n(storeRows)} · ${n(totals.rows_carrying_the_slot)} carry the slot (${n(totals.rows_with_a_number)} with a number, ${n(totals.rows_carrying_steps_letters)} with STEP's letters, ${n(totals.rows_carrying_bdbs_entries)} with BDB's entries) · followed through ${follow.rounds.length} round(s) since: ${followedSaid(followed)} · ${n(struckWithATwin)} struck rows have a twin of their own source, ${given.length} of them given entries · unexplained: ${n(rowsWithNoLine)} rows with no line, ${n(linesWithNoRow)} lines with no row · ${n(moved)} rows move (${touched.length} shards)`);
-for (const g of given) console.log(`  given: the row of ${g.from[2]} at rank ${g.from[1]} (${g.from[3]}), struck by ${g.struck_by}, gives ${JSON.stringify(g.gave)} to its twin at rank ${g.to[1]} under the key its words still stand under`);
+for (const g of givenAll()) console.log(`  given: the row of ${g.from[2]} at rank ${g.from[1]} (${g.from[3]}), struck by ${g.struck_by}, gives ${JSON.stringify(g.gave)} to its twin at rank ${g.to[1]} under the key its words ${g.landed_since ? "were landed back under" : "still stand under"}`);
 if (pin.struck_lines) console.log(`  the lines of ${n(struckBefore.length)} rows struck before the ledger was read are kept beside it (${Object.entries(struckBeforeBy).map(([list, c]) => `${n(c)} by ${list}`).join(", ")}); the twins above are found among them`);
 for (const [i, x] of lists.entries()) console.log(`  list · ${x.name} (relay ${x.relay}) · ${n(x.totals.lines)} lines of ${x.totals.sources} source(s), read from the store at ${x.read_at_store_version} · lands ${x.facts_landed.join(", ")} · ${n(x.totals.rows_carrying_an_entry)} rows carry an entry (${n(x.totals.rows_with_several_numbers)} several numbers) of ${n(x.totals.store_rows_of_its_sources)} rows of its sources · not landed: ${Object.entries(x.totals.facts_not_landed).map(([k, c]) => `${k} on ${n(c)} lines`).join(", ") || "nothing"}${x.totals.lines_whose_facts_are_not_landed ? ` (${n(x.totals.lines_whose_facts_are_not_landed)} lines give nothing that lands)` : ""}${count(x.totals.lines_whose_row_was_struck_or_withheld_since) ? ` · ${n(count(x.totals.lines_whose_row_was_struck_or_withheld_since))} lines name a row a round took since` : ""} · unexplained: ${n(listLinesWithNoRow[i])} lines with no row · ${n(listTally.get(listRuns[i].l).rows_moved)} rows move`);
 if (listLinesWithNoRow.some(Boolean)) refuse(`${listLinesWithNoRow.reduce((a, c) => a + c, 0)} line(s) of the pin's lists find no row that no round struck, withheld or moved since their list was read. The record does not explain them, and nothing is guessed`);
@@ -448,7 +492,7 @@ const nothingToWrite = !moved && !!had && Object.keys(record).every((k) => same(
 console.log(`figures ${JSON.stringify({ relay: pin.relay, ledger_sha256: pin.ledger.sha256, read_at_store_version: readAt, store_version: index.store_version || null, ...totals,
   rounds_since: follow.rounds.length, lines_whose_row_was_struck: count(followed.lines_whose_row_was_struck), lines_whose_row_was_withheld: count(followed.lines_whose_row_was_withheld),
   rows_re_keyed_and_followed: count(followed.rows_re_keyed_and_followed), rows_retexted_and_followed: count(followed.rows_retexted_and_followed), rows_landed_since_with_no_line: count(followed.rows_landed_since_with_no_line),
-  struck_rows_with_a_twin_of_their_own_source: struckWithATwin, entries_given_to_a_twin: given.length,
+  struck_rows_with_a_twin_of_their_own_source: twinsCounted(), entries_given_to_a_twin: givenAll().length,
   ...(pin.struck_lines ? { lines_of_rows_struck_before_the_ledger_was_read: struckBefore.length } : {}),
   ...(lists.length ? { lists: lists.map((x) => ({ relay: x.relay, list_sha256: x.list.sha256, lines: x.totals.lines, rows_carrying_an_entry: x.totals.rows_carrying_an_entry, facts_not_landed: x.totals.facts_not_landed })), list_rows_moved: listMoved } : {}),
   rows_moved: moved, shards_moved: touched.length, the_index_names_this_run: nothingToWrite })}`);

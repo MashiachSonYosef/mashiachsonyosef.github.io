@@ -172,6 +172,9 @@
 //   D4  a first visit: «STEP» alone is pressed, the pills are the index's in
 //       its order, the note is hidden, nothing is kept, the second is the one
 //       counted here, and the Menu mirrors the four pills and no chooser
+//   (The page model: a word of a unit held apart rests on STEP's own words where today's line is bare, and a sign
+//   alone beside STEP's own words is the hidden sign's gap, as the page draws both; first met at Daniel, 21 November
+//   2026, when the landings of ship 11c made Daniel the smallest work with a fill on a bare word.)
 //   D5  at rest every line is today's, byte for byte, except exactly at the
 //       places STEP leaves that its second fills, at the places today's line
 //       draws bare where STEP's words may fill, and at the places where STEP's
@@ -344,8 +347,9 @@ const pct = (c, all) => {
   if (c * 1000 >= 999 * all) return ">99.9%";
   return `${(Math.floor((1000 * c) / all) / 10).toFixed(1)}%`;
 };
-// the text the page draws for a source's own words: whole (the source words of spanJoin), a closing stop dropped
-const drawn = (t) => String(t).trim().replace(/\.$/u, "");
+// the text the page draws for a source's own words: whole (the source words of spanJoin), a closing stop dropped,
+// and read off the page with no space left at its end (BDB's «there is, are. . .»)
+const drawn = (t) => String(t).trim().replace(/\.$/u, "").trim();
 // the text the page draws for STEP's own words: a reading's packing, each "/" a joint (spanJoin), as the place
 // reading's pieces are drawn, a closing stop dropped
 const packed = (t) => String(t).split("/").map((x) => x.trim()).filter(Boolean).join(" + ").replace(/\.$/u, "");
@@ -1420,11 +1424,32 @@ const wholeAcross = (b, X, Y, p, d) => {
   const across = d ? acrossOf(b, p) : null;
   return !across || across.every((q) => q === p || (layerAt(b, X, Y, q) || {}).src === d.src || (d.src === "step" && q.pgA)) ? d : null;
 };
+/** BESIDE STEP'S WORDS, THE HIDDEN SIGN'S GAP, in the model as on the page: where the model draws STEP's own words at
+ *  a place under STEP's credit, each word a maqaf joins to that place whose own reading is a sign alone, drawn as its
+ *  sign in the model, is drawn as the hidden sign's gap under the credit it had (the run's parts under the signs
+ *  switch at rest; judgeGaps holds the records to the same). Daniel 1:16: the object marker beside «delicaci[es] +
+ *  their». */
+const besideSteps = (b, model) => {
+  const ps = slim(b).places, own = STEP_WORDS.get(b);
+  for (const [n, t] of own) {
+    const p = ps[n - 1], u = p && model[p.i] ? model[p.i].get(p.e) : null;
+    if (!u || u[1] !== 1 || u[3] !== MOF("step") || u[2] !== drawnStep(t)) continue;
+    const chain = [];
+    for (let j = p.n - 2; j >= 0 && ps[j].i === p.i && ps[j].jn; j -= 1) chain.push(ps[j]);
+    for (let j = p.n - 1; j + 1 < ps.length && ps[j].jn && ps[j + 1].i === p.i; j += 1) chain.push(ps[j + 1]);
+    for (const q of chain) {
+      if (q.mark || q.kq || q.signAlone === null) continue;
+      const v = model[q.i].get(q.e);
+      if (v && v[1] === 1 && !blank(v[2]) && signOnly(v[2])) model[q.i].set(q.e, [v[0], 1, SIGN_GAP, v[3]]);
+    }
+  }
+  return model;
+};
 /** Every line of a work under X with its second Y, from today's lines (`base`, the page read with no default layer):
  *  per section, its units by their first entry, as linesOnPage gives them. A joined run keeps its line unless X
  *  reads every word of it, and then each word reads X's line; a word of a reading the place gives across words keeps
  *  its line unless one source has a line at every word of it (wholeAcross). */
-const modelOf = (b, X, Y, base) => sectionsOf(b).map((sec, i) => {
+const modelOf = (b, X, Y, base) => besideSteps(b, sectionsOf(b).map((sec, i) => {
   const m = new Map(), covered = new Set();
   for (const u of (base.sections[i] || { units: [] }).units) {
     const [f, c] = u;
@@ -1445,7 +1470,7 @@ const modelOf = (b, X, Y, base) => sectionsOf(b).map((sec, i) => {
     if (d) m.set(e, [e, 1, d.line, d.m]);
   }
   return m;
-});
+}));
 /** w5: the smallest work where each source other than STEP reads a reading the place gives across words in part, a
  *  word of it with that source's line as the model has it and the hold taking it back to today's line (wholeAcross),
  *  every word of the reading under a line of its own in the record of the resting lines, so outside any run drawn
@@ -1525,9 +1550,18 @@ const unitsOnce = (b, X, Y, model, runs, base) => {
       continue;
     }
     const rest = new Map((base.sections[g[0].i] || { units: [] }).units.filter((u) => u[1] === 1).map((u) => [u[0], u]));
-    for (const e of es) if (single(e)) { if (rest.has(e)) m.set(e, rest.get(e)); else m.delete(e); }
+    // the line a word rests on is today's, and STEP's own words where today's line is bare (zone.html dfltHeldLine,
+    // ship 10: Daniel 1:8, the first word of the king's food, stood blank under MACULA, UBS and BDB)
+    for (const p of g) {
+      const e = p.e;
+      if (!single(e)) continue;
+      const r = rest.get(e) || null, t = !r || blank(r[2]) ? STEP_WORDS.get(b).get(p.n) || null : null;
+      if (t) m.set(e, [e, 1, drawnStep(t), MOF("step")]);
+      else if (r) m.set(e, r);
+      else m.delete(e);
+    }
   }
-  return model;
+  return besideSteps(b, model);
 };
 /** Where a reading differs from the model, each said by its verse and entry. */
 const differ = (b, model, got, skip = new Set()) => {
@@ -1621,7 +1655,8 @@ if (PAGE || HARNESS_PAGE) {
 const moreWant = (b, n, src) => {
   const bf = bookRead(b), at = bf.places[n - 1], slot = at ? at[SLOT[src]] : 0;
   if (!slot) return [];
-  const one = (k, w, note) => ` · ${k}${w ? ` «${w}»` : ""}${note ? ` (${note})` : w ? "" : " (no words given)"}`;
+  // a pick with no words says so before its note, never a bare note (zone.html dfltMore; the review of 14 November 2026)
+  const one = (k, w, note) => ` · ${k}${w ? ` «${w}»` : " (no words given)"}${note ? ` (${note})` : ""}`;
   // a reading after STEP's first (kind r again) is the word read in more than one, said so: «STEP reads this word as two»
   const rs = src === "step" ? slot.filter((x) => x[0] === 0).length : 0, rFirst = src === "step" ? slot.findIndex((x) => x[0] === 0) : -1;
   const asMany = rs > 1 ? `STEP reads this word as ${["", "one", "two", "three", "four"][rs] || rs}` : "";
@@ -2334,14 +2369,16 @@ if (SELF_TEST) {
     went("H13", !D3.faults.length, h13.faults.length > 0, `an index whose has.step counts the ${h13At[1]} place(s) of ${h13At[0]} where STEP's line rests bare: D3 finds ${h13.faults.length} fault(s) · ${first(h13.faults, 1)}`);
   }
   // H14: D5's law beside STEP's words on a record whose gap beside them is written back as its sign, as the page drew
-  // it before STEP's words stood there (in memory: the first place whose gap stands only because STEP's words do)
+  // it before STEP's words stood there (in memory: the first place whose gap stands only because STEP's words do).
+  // The law names the word once for each place of STEP's words it stands beside (two at Daniel 1:16, a word of two
+  // entries), so every fault is held to the planted word and there is at least one
   const g14 = GAPS.beside.alone[0] || GAPS.beside.bare[0] || GAPS.beside.today[0] || null;
   if (!g14) side("H14 not judged here", "no record draws a word beside STEP's words whose own reading is a sign alone");
   else {
     const rec14 = structuredClone(recordOf(g14.b)), u14 = recordLineOver(rec14, g14.q);
     if (u14) u14[2] = g14.q.signAlone;
     const h14 = judgeGaps((b) => (b === g14.b ? rec14 : recordOf(b)));
-    went("H14", !GAPS.faults.length, h14.faults.length === 1 && h14.faults[0].startsWith(`${g14.b} ${g14.q.label} `), `${g14.b} ${g14.q.label}, beside STEP's words at ${g14.p.label}, drawn ${said(g14.q.signAlone)} in its record: D5 finds ${h14.faults.length} · ${first(h14.faults, 1)}`);
+    went("H14", !GAPS.faults.length, h14.faults.length >= 1 && h14.faults.every((f) => f.startsWith(`${g14.b} ${g14.q.label} `)), `${g14.b} ${g14.q.label}, beside STEP's words at ${g14.p.label}, drawn ${said(g14.q.signAlone)} in its record: D5 finds ${h14.faults.length} · ${first(h14.faults, 1)}`);
   }
   // H15: D20 on a receipt one of whose cells by the rows a pill's pick names is one off (with the ledger)
   const c15 = RECEIPT && RECEIPT.picks_printed && RECEIPT.picks_printed.by_first ? IDS.flatMap((x) => Object.keys(RECEIPT.picks_printed.by_first[x] || {}).map((y) => [x, y])).find(([x, y]) => (RECEIPT.picks_printed.by_first[x][y].names_no_row || 0) > 0) : null;

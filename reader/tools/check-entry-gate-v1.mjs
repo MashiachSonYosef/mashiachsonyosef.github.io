@@ -139,6 +139,12 @@
 // keeps those rows' lines (struck_lines: the replaced ledger's line of each,
 // with the round that took it), and the laws of a struck row's twin (under
 // E3, and in E4 and E5) read them as they read a row a round struck since.
+// A ROW LANDED SINCE CARRIES WHAT ITS LANDING GAVE IT (ship 11c). A landing
+// names the entries its own source gives the row, and the row-strikes
+// record keeps them with the row. Such a row has no line in a ledger or a
+// list read before it landed: E3 and E4 count it by the numbers its landing
+// named, E5 holds it to exactly those facts, and E2 and E16 let a row of a
+// list's source that was landed since carry them.
 // The words are found in the data, never named.
 //
 // Run: node tools/check-entry-gate-v1.mjs [--ledger <the pinned ledger>] [--ledger-was <the ledger it replaces>] [--list <a list the pin names>]... [--lattice <dir>]
@@ -197,6 +203,13 @@ const FACT_OF = new Map();   // m id -> the fact a parting reads on its rows
 let STRUCK_BEFORE = [];      // the lines of the rows a round struck before the ledger was read (pin.struck_lines)
 const LIST_M = new Map();    // m id -> the pin entry of the list that reads it
 const listFaults = [];       // E16: what the lists' pinned bytes and sources do not hold
+const listFollowers = new Map();   // a list's pin entry -> the follower from the store it was read at (null where it cannot be opened)
+const listFollowOf = (l) => {
+  if (!listFollowers.has(l)) { let f = null; try { f = openFollower({ data: dirname(STORE), index, readAt: l.read_at_store_version }); } catch (e) { if (!(e instanceof FollowFault)) throw e; } listFollowers.set(l, f); }
+  return listFollowers.get(l);
+};
+// whether a round landed a row of a list's source since its list was read
+const landedSinceItsList = (l, k, row) => { const f = listFollowOf(l); return !!f && f.thenOf([k, row[0], String(row[3]), sha16Of(row[1])]).state === "landed after"; };
 {
   const faults = [];
   if (pin.schema_version !== "ROW_ENTRIES_PIN_V1" || !pin.ledger || !pin.rule || !pin.receipt) faults.push("the pin names no ledger, rule or receipt");
@@ -356,7 +369,7 @@ const mineOf = (f) => { if (!f) return null; const o = {}; for (const k of ["n",
         if ("opens" in f && (typeof f.opens !== "string" || !/^\S+( \S+)?$/u.test(f.opens))) faults.push(`${where}: opens is not an entry and its point`);
         const lm = LIST_M.get(m);
         if (mineOf(f) && !READ.has(m) && !lm) faults.push(`${where}: an entry on a row of a source neither the ledger nor a list of the pin reads`);
-        if (lm) for (const key of Object.keys(mineOf(f) || {})) if (!lm.facts.includes(key)) faults.push(`${where}: ${key} on a row of a source whose list (${lm.name}) does not land it`);
+        if (lm) { const beyond = Object.keys(mineOf(f) || {}).filter((key) => !lm.facts.includes(key)); if (beyond.length && !landedSinceItsList(lm, k, row)) faults.push(`${where}: ${beyond.join(", ")} on a row of a source whose list (${lm.name}) does not land it, and no round landed the row since`); }
       }
       // a row of a list's source: what it carries is its list's, counted list by list (E16); where the ledger reads the
       // source too (it names no entry of its own, and the ledger's lines give it none) the ledger's part of the row is nothing
@@ -401,7 +414,8 @@ const sum = (f) => Object.values(tally).reduce((a, t) => a + t[f], 0);
       rows_carrying_steps_letters: sum("t"), rows_carrying_bdbs_entries: sum("b") };
     for (const [k, v] of Object.entries(mine)) if (t[k] !== v) faults.push(`totals.${k} says ${t[k]} and a recount gives ${v}`);
     if (t.keys_in_the_ledger !== pin.ledger.lines) faults.push("totals.keys_in_the_ledger is not the ledger's lines");
-    if (t.rows_with_no_number !== sum("none") - (t.store_rows_with_no_line || 0)) faults.push(`totals.rows_with_no_number says ${t.rows_with_no_number} and a recount gives ${sum("none") - (t.store_rows_with_no_line || 0)}`);
+    const landedWithNone = (t.store_rows_with_no_line || 0) - (t.rows_landed_since_with_a_number || 0);   // a row landed since carries what its landing named
+    if (t.rows_with_no_number !== sum("none") - landedWithNone) faults.push(`totals.rows_with_no_number says ${t.rows_with_no_number} and a recount gives ${sum("none") - landedWithNone}`);
   }
   check("E3  the store's index names the rule, the pin, the ledger and totals that are a recount's", faults.length === 0,
     faults.length ? first(faults) : `${nf(sum("rows"))} rows of ${READ.size} sources · ${nf(sum("slot"))} carry the slot · ${nf(sum("one") + sum("several"))} a number (${nf(sum("several"))} several) · STEP's letters on ${nf(sum("t"))} · BDB's entries on ${nf(sum("b"))}`);
@@ -452,13 +466,13 @@ const FACTS = ["n", "t", "b"];
 }
 {
   // exactly: the lane's counts, less the rows a round took since (each by the numbers it carried), plus the rows
-  // landed since (they carry none), each twin given a struck row's numbers counted as it now stands
+  // landed since (each by the numbers its landing named), each twin given a struck row's numbers counted as it now stands
   const classOf = (numbers) => (numbers.length > 1 ? "several" : numbers.length === 1 ? "one" : "none");
   const numbersOf = (row) => (mineOf(factsOf(row)) || {}).n || [];
   const moves = {};
   const of2 = (m) => (moves[m] ||= { rows: 0, one: 0, several: 0, none: 0 });
   for (const g of GONE) { const a = of2(g.name[2]); a.rows -= 1; a[classOf(numbersOf(g.row))] -= 1; }
-  for (const l of LANDED) { const a = of2(l.name[2]); a.rows += 1; a.none += 1; }
+  for (const l of LANDED) { const a = of2(l.name[2]); a.rows += 1; a[classOf(Array.isArray(l.row) ? numbersOf(l.row) : [])] += 1; }
   let recounted = 0;
   for (const p of givenSaid) {
     const pair = Array.isArray(p.from) ? twinOfStruck.get(p.from.join("\u0001")) : null;
@@ -532,7 +546,20 @@ else {
   if (follow) try {
     for (const [k, held] of byKeyId) for (const [id, got] of held) {
       const [rank, m, sha] = id.split(" ");
-      if (follow.thenOf([k, Number(rank), m, sha]).state === "landed after") landedSince += got.length;
+      const then = follow.thenOf([k, Number(rank), m, sha]);
+      if (then.state === "landed after") {
+        landedSince += got.length;
+        // what its landing named, then what the index says a struck row's line gave it as that row's twin
+        let named = Array.isArray(then.row) ? mineOf(factsOf(then.row)) : null;
+        for (const p of givenSaid) {
+          if (!Array.isArray(p.to) || p.to[0] !== k || p.to[1] !== Number(rank) || String(p.to[2]) !== m || p.to[3] !== sha) continue;
+          const out = {};
+          for (const key of FACTS) { const all = [...((named || {})[key] || []), ...((p.gave || {})[key] || [])]; if (all.length) out[key] = all; }
+          named = out; twinsGiven += 1;
+        }
+        named = JSON.stringify(named);
+        if (got.some((g) => g !== named)) { wrong += 1; if (faults.length < 6) faults.push(`${k} ${id}: a row landed since carries ${got[0]}, and its landing and its struck row's line name ${named}`); }
+      }
       else { noLine += got.length; if (faults.length < 6) faults.push(`${k} ${id}: a row with no line, which no round of the row-strikes record landed`); }
     }
   } catch (e) { if (e instanceof FollowFault) faults.push(e.message); else throw e; }
@@ -635,7 +662,8 @@ else {
   for (const [i, l] of pin.lists.entries()) {
     const s = said[i] || {}, lt = listTally.get(l) || { rows: 0, entry: 0, several: 0 }, st = s.totals || {};
     if (s.relay !== l.relay || !same(s.list, { file: l.list.file, bytes: l.list.bytes, sha256: l.list.sha256, lines: l.list.lines, kept: l.list.kept }) || !same(s.facts_landed, l.facts) || !same(s.sources, l.sources) || s.read_at_store_version !== l.read_at_store_version) faults.push(`the index's record of the list "${l.name}" is not the pin's`);
-    if (st.store_rows_of_its_sources !== lt.rows || st.rows_carrying_an_entry !== lt.entry || st.rows_with_several_numbers !== lt.several) faults.push(`the index says ${st.rows_carrying_an_entry} of ${st.store_rows_of_its_sources} rows of the sources of "${l.name}" carry an entry (${st.rows_with_several_numbers} several numbers), and a recount gives ${lt.entry} of ${lt.rows} (${lt.several})`);
+    const landedWith = st.rows_landed_since_carrying_their_landings_facts || 0;   // rows of its sources landed since, carrying their landing's facts
+    if (st.store_rows_of_its_sources !== lt.rows || st.rows_carrying_an_entry + landedWith !== lt.entry || (!landedWith && st.rows_with_several_numbers !== lt.several)) faults.push(`the index says ${st.rows_carrying_an_entry} of ${st.store_rows_of_its_sources} rows of the sources of "${l.name}" carry an entry (${st.rows_with_several_numbers} several numbers), and a recount gives ${lt.entry} of ${lt.rows} (${lt.several})`);
     told.push(`${l.name} (relay ${l.relay}): ${nf(lt.entry)} of ${nf(lt.rows)} rows of ${Object.keys(l.sources).length} source(s) carry ${l.facts.join(", ")}`);
   }
   check("E16 the facts lists of further sources: each list's rule and receipt are the bytes its pin entry names, its sources are the store's, and the index's record of each is the pin's and a recount's", faults.length === 0,
@@ -688,7 +716,11 @@ else {
       for (const [k, held] of listRows) for (const [id, got] of held) {
         if (LIST_M.get(id.split(" ")[1]) !== l) continue;
         const carried = got.filter((x) => x !== "null").length, wanted = ((want.get(k) || new Map()).get(id) || []).length;
-        if (carried > wanted) { extra += carried - wanted; if (faults2.length < 6) faults2.push(`${k} ${id}: a row of the list's sources carries an entry no line gives it`); }
+        if (carried > wanted) {
+          const [rank, mm, sha] = id.split(" ");
+          if (followL.thenOf([k, Number(rank), mm, sha]).state === "landed after") continue;   // a row landed since carries what its landing named
+          extra += carried - wanted; if (faults2.length < 6) faults2.push(`${k} ${id}: a row of the list's sources carries an entry no line gives it`);
+        }
       }
     } catch (e) { if (e instanceof PinFault || e instanceof SyntaxError || e instanceof FollowFault) faults2.push(e.message); else throw e; }
     check(`    and the list "${l.name}", line by line: each line that gives a landed fact names a row of the store that carries exactly it, and no other row of its sources carries an entry`, faults2.length === 0 && lines > 0,
