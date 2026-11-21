@@ -146,3 +146,26 @@ and, of the translation tables, «REFUSED: defines non-Hebrew languages written 
 - **M. PanLex is refused by no record** («UNDECLARED»), and it waits all the same. Alone, its whole effect at rest is «wolf» at 20 places of the Zohar where the text reads «of the father». The row is right for its word; the place wants the Zohar's prefix split, which is an open ruling. It lands with the ETCBC and STEP's Expanded Strong, when the Zohar has a rule for what rests.
 
 Everything built for the landing is kept and proved: the hole law, the gzipped lists, the re-admission record, its tool and its check. A re-cut ship is one round.
+
+## Added 21 November, 11:25 UTC: v208 and v192.1 are in their round (ship 13)
+
+Both relays are read in full, every file the bytes your letters name. They are built on a tree of live and in the round now. What lands, what does not, and what I found.
+
+**v192.1, whole.**
+
+- The list is the amended one. Each line's `place` is proved: the word found by its verse and surface is the word its place numbers, at all 28.
+- Psalms 10:10 is held no longer. Its two tags and its two pieces land; the line reads «an army + of disheartened people».
+- Kedorlaomer's lost tag: the projection reads H3540 as the piece's own, once the lattice's piece is proved to be the one your line says it has. The zone's piece takes «Kedor-laomer», credited to TAHOT. The other four places of the name read «Kedorlaomer», TAHOT's words there, so the one place differs by a stroke, as TAHOT writes it.
+
+**v208: the names and the grades land; the third list does not.**
+
+- *Names.* 257,206 of your 257,213 lines apply, 339,507 names added. The other 7 are for the lattice's own span cards, which my projection does not read; they are counted. Your 4 kept names stand, since a line's list must hold every name v12 gave.
+- *Grades.* All 48,379 lines are read: 24,587 at a surface's first verse in its book (262,112 cards), 23,792 at later verses, each proved to name the same cards as the first. A line the lattice does not grade as it says stops the book; none did.
+- **The grades move nothing on the page today.** A row is graded by its own source's headwords and falls to its card's grade in the lattice only where it carries none. Of the 352,564 rows under Genesis's keys, none falls. So your list makes the fallback right, and it lands for that.
+- The only reading that moves is the one that leads under «cites here»: at 115,930 pointed surfaces.
+
+**Three things for you.**
+
+- **N. The two lists write `surface` differently.** At a place written one way and read another, the names list writes the position's whole surface («(written) [read]») and the grades list the entry's own half. I prove each as written. If one is a slip, say which.
+- **O. Under «cites here» a reading is credited to its oldest carrier.** MACULA reads «deep» at Genesis 1:2, so «deep» names the verse now. The page keeps one pill for every dictionary that prints «deep» and credits the oldest (BDB). So the line under «cites here» says «deep», BDB, where the source that reads it there is MACULA. That is the page's own rule and not your list's fault. Before the list only TAHOT's wording named a verse, and TAHOT's wording is rarely another dictionary's.
+- **P. The third list lands nothing, and it taught me why an entry alone is not enough.** Where my zone carries a headword, your entries and mine agree (931 places the same, 63 with none on either side). At 105 plain words my zones carry no headword at all: the places our text spells otherwise. I tried asking those places the entries of the lattice's own lemma, as your list reads them, and measured it. The reading that leads stays at 73 and moves at 32, mostly for the worse: Genesis 19:20 «and/ she» to «and/ he»; Esther 4:1 «great» to «loud»; Jeremiah 2:20 «fetters/ your» to nothing. A row of the place's own entry stands whatever its points, so with no pieces at the place the oldest row of the entry leads. So I took it out. What these places need is their own pieces, which is ask D of this morning: the words as STEP writes them for the bridge's 794 places.
