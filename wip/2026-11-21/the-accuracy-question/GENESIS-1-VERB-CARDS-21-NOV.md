@@ -28,3 +28,20 @@ Uncut, each entry would be one long pill, which the reader called «bundled» an
 ## On the card the owner asked about (Genesis 1:1, word 4)
 
 MACULA's «against» is a row of its own as it came, not a piece the page cut. So is «well as» beside it, a fragment of «as well as» that arrived in the store that way.
+
+## «If we only included definitions for words cut by the STEP default» (the owner, 21 November)
+
+Measured on the same fourteen cards as live now, under four readings of «only STEP's» (`tools/step-cut-filters.py`, `measures/step-cut-filters.txt`). The reader's calls of 12 November; a pill the reader never saw is counted apart.
+
+| what stays on the card | pills | graded: right, not right | share right | right pills that leave |
+|---|---|---|---|---|
+| as live now | 187 | 103, 59 | 63.6% | 0 |
+| only pills STEP itself carries (TAHOT, TBESH) | 26 | 20, 0 | 100% | 83 |
+| only a default source's own pick at the place (STEP, MACULA, UBS, BDB) | 49 | 43, 0 | 100% | 60 |
+| any dictionary's pill, where STEP itself renders the place's entry with every word of it | 65 | 53, 2 | 96.4% | 50 |
+| the same, with some word of it | 100 | 68, 16 | 81.0% | 35 |
+
+- STEP's renderings of an entry are TAHOT's words at every place of the 39 books it tags that entry, and TBESH's gloss, from the default picks' ledger. The match is by word stems and is crude.
+- The two not right that the third reading keeps: «cut down» at Genesis 1:1 (STEP renders the entry so elsewhere) and «(make to) multiply» at 1:22.
+- What the strict readings cost is right pills: «shape», «fashion», «flutter», «divide (asunder)», «gather (together)», «bring forth», «creep», the UBS dictionary's and the SDBH's definitions.
+- Fourteen cards, one reader. A sample.
