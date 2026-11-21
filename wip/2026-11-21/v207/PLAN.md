@@ -47,3 +47,19 @@ So at rest this ship can move a line only through Davidson's rows.
 ## 5. Order
 
 Ship 11d (the bridge's pieces) first; it is in its round. Then this, measured in a sandbox before the ship tree is touched.
+
+## 6. The lists against today's store (measured 21 November, on ship 11c's store 88fec6d59737)
+
+`the-lists-against-todays-store.txt` (`measure-v207.mjs`; it reads and writes nothing).
+
+| list | lines | hole empty | hole taken since | no rank | key not in the store | another source prints the words |
+|---|---|---|---|---|---|---|
+| own language (PanLex 3,956, translation tables 134) | 4,090 | 3,961 | 7 | 122 | 84 | 190 |
+| Bible dictionaries (Davidson 12,487, ETCBC 4,246, STEP's expanded Strong 1,431) | 18,164 | 15,679 | 116 | 2,369 | 285 | 2,967 |
+| Harkavy | 376 | 341 | 2 | 33 | 60 | 42 |
+
+- **125 holes were taken since the lane read them** (it read at 54416ff5785b; ship 11c's landings took them). By the lane's own words those lines land as a null rank: after the last row of their key.
+- 19,981 lines land at the hole the strike left. 2,524 name no rank.
+- 429 lines land under a key the store does not hold now: those words gain a card.
+- No line's own source prints its words now, and no two lines are one source's same words under one key, so nothing is gathered and nothing is left unlanded by that rule.
+- 359 lines of the Bible dictionaries carry a bracket: ETCBC's 340 descriptions («<town>») and 19 others. 99 lines carry a cut.
