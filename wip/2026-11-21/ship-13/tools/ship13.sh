@@ -1,7 +1,7 @@
 #!/bin/bash
 # Ship the ship-13 tree (scratch s13, branch ship13) as ONE commit on main, then gh-pages follows main.
 set -euo pipefail
-S=<scratch>
+S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad
 cd $S/s13
 PIPE=${PIPE:?name the pipeline pass whose records this tree holds}
 PIPELOG=${PIPELOG:-$S/s16w/$PIPE/pipeline.log}

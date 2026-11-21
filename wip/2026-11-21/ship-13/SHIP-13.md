@@ -125,3 +125,26 @@ Not examined: the «letters» switch pressed over an open card, where the line r
 The alternative to the mend was to hold the names list back (the pin's `lands: false`) and ship the rest. I did not take it: the fault is on live with or without the list, and the list is what the relay is for.
 
 A page change means the round, the gate and the whole suite run again on the mended tree. The third pass began 13:50 UTC on page `ae85878d3917c9a3`.
+
+## The second round, on the mended page (13:50 to 16:14 UTC)
+
+- **The third pass** (13:50 to 14:31; `measures/pipeline-third-pass.log`): every step exit 0. Its record of the lines at rest against live is the same bytes as the first round's (`measures/lines-diff-against-live.json`): the same two entries move, Genesis 14:17 word 9 and Psalms 10:10 word 5.
+- **What a page change moves beside the page.** The engine file is cut again from the page: `reader/engine-4d2d464a131b.js` takes the place of `engine-5588f29444c3.js`, and the 1,272 pages that load it name the new one. Nothing in the tree names the old one.
+- **The gate** against live, ship 11d (14:32 to 14:43; `measures/gate-second-round.log`): S1 and S2 pass. 30,945 lines compared on 18 pages under every switch both builds carry, 0 differ, none moved as owed. 54 cards compared, none differing. The two lines that move are on none of the gate's pages.
+- **The whole suite** (14:43 to 16:14, two lanes; `measures/suite-3/`): 198 checks, 196 clean. `check-lattice-orders-v1` passes with 24 assertions. The two not clean are the two known ones: `check-reading-rows-v1` R1 (red on live) and `check-nothing-unlanded-v1` (before a push).
+
+The watcher I set over the pass, the gate and the suite ended at its two-hour limit while the suite ran. The lanes run on their own and lost nothing; a second watcher read the end.
+
+## Shipped (16:15 UTC, 21 November 2026)
+
+- `main` 9017d8f9c6ff83ae717cd57ef13e45fc627d293e: one commit on ship 11d (340cff8e3b), 1,437 files. Its message is `commit-message.txt`.
+- `gh-pages` b5e239be175081b3b9aff5bee0ffb5873cf6bd3c, «gh-pages follows main».
+- Pages run 1381: success (16:15:35 to 16:16:43 UTC). Live check 79 on the main commit: success (16:16:39 to 16:17:08 UTC).
+- `check-nothing-unlanded-v1` after the push: ok, 3 assertions (`measures/nothing-unlanded-after-push.log`).
+- The tree the next gate compares against (scratch `old`) stands on the new main.
+
+## Left by this ship
+
+- Task 154: a lattice order with a second switch off its rest (the pointing held by hand, a license preference), where the line and the card answer to different switches. A call on which switch wins on the card comes before a mend. The «letters» switch pressed over an open card is not yet read.
+- The third list's 105 plain words with no headword on the zone: measured, not landed (above); with the corpus lane.
+- Ship 12 stays held as it was. Ship 10b is next (task 143).
