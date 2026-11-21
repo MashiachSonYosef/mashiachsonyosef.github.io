@@ -16,20 +16,18 @@ swap("""        // the reading standing on the line keeps its pill whatever it c
 """, """        // the reading standing on the line keeps its pill whatever it carries:
         // the line reads it, so the card must offer it to press. That is the
         // reading the card opened on, and, where a lattice order pressed
-        // since moved the line (lineUnder reads the order's baked leader for
-        // the word), that leader too: until 21 November 2026 only the first
-        // was kept, so "cites here" pressed over an open card moved the line
-        // of the first word of Amos to STEP's "[the] words of" while the card
-        // offered no such pill
+        // since moved the line, the reading the line says it reads now
+        // (lineUnder, asked as the card asked it when it opened, and heard
+        // only where its answer is a lattice order's): until 21 November
+        // 2026 only the first was kept, so "cites here" pressed over an open
+        // card moved the line of the first word of Amos to STEP's
+        // "[the] words of" while the card offered no such pill
         const lineNow = (() => {
-          const at = DEF_POS.find((q) => q.id === defOrder);
-          if (!at || at.needs !== "lattice") return null;
-          const W = askedWord(surface);
-          const gr = latticeStore && latticeStore.grades && W.pointed ? latticeStore.grades[W.pointed] : null;
-          const first = latticeLeader(gr, at.lattice, W.verse);
-          return first ? readingKey(first[0]) : null;
+          if (opts.run || bin !== zone || !word || surface !== region.k) return null;
+          const led = lineUnder(word, zone.gloss);
+          return led && led.text && DEF_POS.some((q) => q.needs === "lattice" && q.id === led.why) ? readingKey(led.text) : null;
         })();
-        const unsigned = signsPref === "off" ? every.filter((r) => r === selected || (lineNow !== null && readingKey(r.text) === lineNow) || !hasSourceSign(r.text)) : every;
+        const unsigned = signsPref === "off" ? every.filter((r) => r === selected || (lineNow !== null && (readingKey(r.text) === lineNow || (r.alias || []).includes(lineNow))) || !hasSourceSign(r.text)) : every;
 """, "the signs filter")
 swap("""        pills.dataset.withheld = String(pool.withheld || 0);
 """, """        pills.dataset.withheld = String(pool.withheld || 0);

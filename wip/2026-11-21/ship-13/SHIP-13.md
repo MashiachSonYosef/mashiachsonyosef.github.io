@@ -97,16 +97,31 @@ Why it never failed before: on live the lattice named no card for that word at i
 
 Why the two disagree: STEP's reading carries a source's own sign (the square brackets). With the signs switch at rest the card offers no pill for a signed reading, except the one reading the card opened on («the reading standing on the line keeps its pill whatever it carries»). Pressing an order over an open card moves the line to the order's leader but does not change which reading the card opened on. So the line moved to a reading the card did not offer.
 
-This is not new with the delta. It is on the live site today wherever the leader under «cites here» is a signed reading: 17,447 of the 61,118 words that have such a leader at their first verse, and 1,802 of 3,546 at a later verse (`measures/signed-leaders-under-cites-on-live.txt`, `tools/signed-leaders-under-cites.py`). The check sat on a word where it could not show. It needs the card open while the order is pressed; a card opened after the order is set opens on the line's reading and keeps its pill.
+This is not new with the delta. It is on the live site today wherever an order's leader is a signed reading. Under «cites here» alone: 17,447 of the 61,118 words that have such a leader at their first verse, and 1,802 of 3,546 at a later verse (`measures/signed-leaders-under-cites-on-live.txt`, `tools/signed-leaders-under-cites.py`). The check sat on a word where it could not show. It needs the card open while the order is pressed; a card opened after the order is set opens on the line's reading and keeps its pill.
 
 ### The mend (a page change, small)
 
-`tools/patch-11-page-line-keeps-its-pill.py`, in the card's pill drawing: with the signs at rest, the reading the line reads now under a lattice order keeps its pill too, found the same way the line finds it (the order's baked leader for the word at its verse). The row also says how many readings the signs switch has off (`data-signs-off`), the number the card already prints in words.
+`tools/patch-11-page-line-keeps-its-pill.py`, in the card's pill drawing: with the signs at rest, the reading the line reads now under a lattice order keeps its pill too. The card asks the function that draws the line (`lineUnder`), the way it asked when it opened, and hears the answer only where the line says a lattice order put it there. So it is exact whatever else is switched. The row also says how many readings the signs switch has off (`data-signs-off`), the number the card already prints in words.
+
+My first form of the mend looked the order's leader up in the sidecar directly. It gave the same answer at rest but would have kept a pill the line does not read wherever a second switch (the pointing held, a license preference) decides the line. I stopped the second round four minutes in, rewrote it to ask the line itself, and began again.
 
 `tools/patch-12-check-lattice-orders.py`: the check's same-pool law counted pills, and the pills under such an order are now one more than at rest. The law counts the pool whole, the pills and the readings the signs switch has off together, and a second law holds that no pill is new but the one the line reads.
 
-On the mended tree, before the second round: all 24 of the check's laws pass. At the first word of Amos, 110 pills and 40 off at rest; under «cites here» 111 and 39, first pill «[the] words of», the line the same.
+On the mended tree: all 24 of the check's laws pass. At the first word of Amos, 110 pills and 40 off at rest; under «cites here» 111 and 39, first pill «[the] words of», the line the same.
 
-The alternative was to hold the names list back (the pin's `lands: false`) and ship the rest. I did not take it: the fault is on live with or without the list, and the list is what the relay is for.
+### Read wider than the check reads (`tools/orders-line-and-pill.mjs`, `measures/line-against-first-pill-under-the-orders.txt`)
 
-A page change means the round, the gate and the whole suite run again on the mended tree. Started 13:34 UTC.
+The check presses the orders over one word. I pressed them over the first 60 words of Amos, on the mended tree and on live:
+
+- Mended: 54 cards, three orders each, and the line and the first pill say the same at every one. Nine times the line's own reading gained its pill (six under «cites here», two under «masoretic», one under «vowels differ»). No other pill is new. Back at oldest first every card is as it was.
+- Live: the two differ at four of those (two under «masoretic», one under «vowels differ», one under «cites here»). So the fault was never «cites here» alone.
+
+### Found beside it and not mended here (task 154)
+
+With a lattice order pressed and a second switch moved off its rest, the line and the card answer to different switches: the line follows the pointing's own leader or the license column, the card sorts by the order. Under «only this pointing» the two differ at 10 of 36 cards for «masoretic» and 13 for «vowels differ», on live and on this tree alike. Under «cites here» it is 1 on live and 12 on this tree, because the delta's names make that order move the card at many more words. A reader reaches it only by pressing a lattice order and then setting the pointing back by hand, since the pointing rests at «keep» under a lattice order. It is older than this ship and it is a call about which switch wins on the card, so it is filed, not folded in. The mend adds no pill there that the line does not read: counted, none.
+
+Not examined: the «letters» switch pressed over an open card, where the line reads the lattice's vowels-differ leader.
+
+The alternative to the mend was to hold the names list back (the pin's `lands: false`) and ship the rest. I did not take it: the fault is on live with or without the list, and the list is what the relay is for.
+
+A page change means the round, the gate and the whole suite run again on the mended tree. The third pass began 13:50 UTC on page `ae85878d3917c9a3`.
