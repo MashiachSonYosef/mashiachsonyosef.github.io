@@ -63,3 +63,7 @@ Ship 11d (the bridge's pieces) first; it is in its round. Then this, measured in
 - 429 lines land under a key the store does not hold now: those words gain a card.
 - No line's own source prints its words now, and no two lines are one source's same words under one key, so nothing is gathered and nothing is left unlanded by that rule.
 - 359 lines of the Bible dictionaries carry a bracket: ETCBC's 340 descriptions («<town>») and 19 others. 99 lines carry a cut.
+
+## 7. Who reads the list of struck sources (the re-admission must hold for each)
+
+`index.language_admission.struck_m_ids` is read by: the route delta (`apply-route-delta-v1`), the dictionary store's bake, the search index's bake, the pointing store's landing (`land-pointing-store-v2-v1`), the zone gloss redrive, the struck-ranks record (`emit-struck-ranks-v1`: it covers the struck ids' ranks, and v207's holes are read from it), the lane state, and six checks (`check-language-admitted-v1`, `check-route-store-exact-k-v1`, `check-search-v1`, `check-store-continuity-v1`, `check-lane-state-v1`, `check-zone-single-pass-receipts-v1`, which holds each zone to the struck list it was emitted under). Each must be read before the list changes: some filter an outside file by it (the lattice's cards, the pointing store's rows), and a source that returns only for its listed rows must not let its other rows in by that door.
