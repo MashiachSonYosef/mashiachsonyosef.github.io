@@ -41,3 +41,32 @@ In ship 11c's record I wrote that this mend would carry the form rows' places as
 ## The gate learns the expectation (`tools/patch-gate-bridge.py`)
 
 Five of the 206 places stand on pages the gate samples (Job 1:4 and 1:21, Ruth 3:14, Lamentations 3:39, Nehemiah 1:1). `check-same-product-v1` takes `--expect data/spelling-bridge/PIN.json`, told by the pin's rule id: at a place the pin lays, found on the new build's zone as the tool finds it, a line that differs on the same word is owed where the new line is the place's own pieces as the page draws them with the signs at rest, credited to the pieces. Under a switch where the place's reading does not lead, the line is the old line and nothing is owed. No place is named in the gate.
+
+## On the real tree: the round, and every resting line against live (21 November, 03:21 UTC)
+
+Run as `tools/pipeline-11d.sh` on branch `ship11d` from ship 11c as shipped (f88c4df6e1); live for the comparison is ship 11c. The round, the form-of record, the lines, the chain books, the door and the switches page ended clean (`pipeline.log`). The round's zones step laid 206 places, 451 pieces.
+
+**206 entries move in 40 works, and they are exactly the 206 places** (`lines-diff-against-live.json`). Nothing else moves.
+
+- **118 keep their words and change their credit**, from STEP's row or STEP's fill to the place's own pieces.
+- **88 change their words** (`every-line-whose-words-move.txt`; every one read). 52 read another of STEP's own rows before, 33 Strong's concordance list, 2 MACULA's, 1 another. Each reads STEP's own words for the place now.
+
+The three known lines of ship 11c:
+
+| place | ship 11c | now |
+|---|---|---|
+| Daniel 4:21 | «O lord + my» | «lord + my» |
+| 1 Samuel 26:7 | «[is the] place of head + his» | «[the] place of head + his» |
+| 1 Samuel 26:16 | «[is the] place of head + his» | «[was the] place of head + his» |
+
+Some of the others, as a reader meets them:
+
+- The plurals the Leningrad text spells out and ours does not: Leviticus 9:22 and 16:21 «hands + his» (was «hand + his»); Deuteronomy 7:9 and 8:2 «commandments + his»; 2 Samuel 13:34 «eyes + his»; Ezekiel 18:21 «sins + his»; Lamentations 3:39 «sins + his».
+- Strong's list gave way to the place: Numbers 12:3 «[was] humble» (was «poor»); Job 1:21 «I came out» (was «appear»); 1 Kings 21:21 «[am] about to bring» (was «abide»); Isaiah 30:5 «he will be ashamed» (was «(make to) be abhorred (had in abomination, loathsome, odious)»); Psalm 148:2 «hosts + his» (was «assemble»); Genesis 49:11 «robe + his» (was «clothes»).
+- Genesis 13:3 «tent + his» (was «tent + towards»), the line ship 11 named.
+- Nehemiah 1:1 «Kislev» (was «Chisleu»).
+- Job 40:17 «thighs + its» (was «dread of + him»): another entry's row led there.
+
+STEP's own marks print as they do at every other place: «righteousness<es> + his» (Ezekiel 18:24), as 1,783 lines on live already do.
+
+`check-spelling-bridge-v1` B1 to B4 pass on the tree: 206 lines are their place's pieces, the six named readings among them.
