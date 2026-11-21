@@ -78,3 +78,35 @@ Each with the lattice and the delta's lists on the machine, so nothing was left 
 - `check-read-words-v1`: 28 places on 15 zones; R9 Genesis 14:17 word 9, H3540, «Kedor-laomer».
 - `check-source-corpus-v1` with the ledger: the record is the ledger's; fifteen refused, none cited.
 - `check-no-import-side-effects-v1`.
+
+## The gate and the whole suite on the first round (11:50 to 13:32 UTC)
+
+The gate against live (ship 11d served beside this tree): S1 and S2 pass, no differing card at the default switches (`measures/gate-first-round.log`).
+
+The suite, all 198 checks in two lanes (`measures/suite-1/`): 195 clean, three not.
+
+- `check-nothing-unlanded-v1`: the known one. It compares the tree with the pushed branch, so it fails before a push and passes after.
+- `check-reading-rows-v1` R1: the known one. It is red on live too.
+- `check-lattice-orders-v1`: **this ship's**, and real. Below.
+
+## What the suite found: the line and the card disagreed under «cites here»
+
+The check opens the first word of Amos oldest first, presses each lattice order with the card open, and holds that the line under the word and the card's first pill say the same reading. Under «cites here» the line read STEP's «[the] words of» and the card's first pill said «Dibri».
+
+Why it never failed before: on live the lattice named no card for that word at its verse, so the sidecar baked no leader there and the check had nothing to hold. The delta's names give it two, the leader is STEP's reading, and the law ran for the first time.
+
+Why the two disagree: STEP's reading carries a source's own sign (the square brackets). With the signs switch at rest the card offers no pill for a signed reading, except the one reading the card opened on («the reading standing on the line keeps its pill whatever it carries»). Pressing an order over an open card moves the line to the order's leader but does not change which reading the card opened on. So the line moved to a reading the card did not offer.
+
+This is not new with the delta. It is on the live site today wherever the leader under «cites here» is a signed reading: 17,447 of the 61,118 words that have such a leader at their first verse, and 1,802 of 3,546 at a later verse (`measures/signed-leaders-under-cites-on-live.txt`, `tools/signed-leaders-under-cites.py`). The check sat on a word where it could not show. It needs the card open while the order is pressed; a card opened after the order is set opens on the line's reading and keeps its pill.
+
+### The mend (a page change, small)
+
+`tools/patch-11-page-line-keeps-its-pill.py`, in the card's pill drawing: with the signs at rest, the reading the line reads now under a lattice order keeps its pill too, found the same way the line finds it (the order's baked leader for the word at its verse). The row also says how many readings the signs switch has off (`data-signs-off`), the number the card already prints in words.
+
+`tools/patch-12-check-lattice-orders.py`: the check's same-pool law counted pills, and the pills under such an order are now one more than at rest. The law counts the pool whole, the pills and the readings the signs switch has off together, and a second law holds that no pill is new but the one the line reads.
+
+On the mended tree, before the second round: all 24 of the check's laws pass. At the first word of Amos, 110 pills and 40 off at rest; under «cites here» 111 and 39, first pill «[the] words of», the line the same.
+
+The alternative was to hold the names list back (the pin's `lands: false`) and ship the rest. I did not take it: the fault is on live with or without the list, and the list is what the relay is for.
+
+A page change means the round, the gate and the whole suite run again on the mended tree. Started 13:34 UTC.

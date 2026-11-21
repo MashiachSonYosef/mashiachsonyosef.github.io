@@ -2,8 +2,8 @@
 # ship 13's suite, resumable, in two lanes (the list forward and backward), each check through the suite's own runner
 # (--only), its verdict kept in suite/v/<check>.verdict; a check with a verdict is skipped, and a check another lane
 # holds is skipped (a lock in /dev/shm, which a reboot clears). Usage: suite-lanes.sh [fwd|rev]
-S=<scratch>; O=$S/s16w/suite
-T=$S/s13; LOCK=/dev/shm/s13suite
+S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad; O=$S/s16w/${SUITE:-suite}
+T=$S/s13; LOCK=/dev/shm/s13${SUITE:-suite}
 mkdir -p $O/v $O/logs $LOCK
 . $S/s16w/env.sh
 cd $T/reader

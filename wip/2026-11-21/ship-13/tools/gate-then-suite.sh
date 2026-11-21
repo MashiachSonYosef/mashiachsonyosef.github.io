@@ -1,9 +1,9 @@
 #!/bin/bash
 # Ship 13: the manifest and the gate (after-12.sh, the gate alone), then the whole suite in two lanes; waits for both lanes.
-S=<scratch>; O=$S/s16w/suite
-GATE_ONLY=1 bash $S/s16w/after-13.sh p1
-tail -3 $S/s16w/after-p1.log
-grep -E "^  ok  |^FAIL|all checks passed|failing" $S/s16w/gate-p1.log | cut -c1-200
+S=/tmp/claude-0/-home-user-mashiachsonyosef-github-io/c72302ec-11e7-5b6d-a5ab-47bb077585fe/scratchpad; PASSN=${1:-p1}; export SUITE=${SUITE:-suite}; O=$S/s16w/$SUITE
+GATE_ONLY=1 bash $S/s16w/after-13.sh $PASSN
+tail -3 $S/s16w/after-$PASSN.log
+grep -E "^  ok  |^FAIL|all checks passed|failing" $S/s16w/gate-$PASSN.log | cut -c1-200
 mkdir -p $O; echo "suite start $(date -u +%FT%TZ)" >> $O/run.log
 bash $S/s16w/suite-start.sh
 sleep 30
