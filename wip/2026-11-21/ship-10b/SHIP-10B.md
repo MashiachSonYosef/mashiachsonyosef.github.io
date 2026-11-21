@@ -85,4 +85,44 @@ Still to do: the older check's page model (`check-default-picks-v1`), the gate's
 - **Every resting line against live** (`measures/lines-diff-against-live.json`): 0 entries move in 40 works. Nothing at rest moves, as meant.
 - **The gate**, live (ship 13) against this tree (`measures/gate-first-round.log`): S1 and S2 pass. 30,945 lines compared on 18 pages under every switch both builds carry; 0 differ. 26 moved as owed, all under UBS pressed (`measures/gate-first-round-owed-lines.txt`): 20 to a unit's one line («Beth-» «-lehem» to «Bethlehem» at Ruth 1; «Hadad» to «Ben-Hadad» at Amos 1), 6 to the line as it rests where the unit's words stand apart («Beersheba + Beersheba» «Beersheba» to «and + Beer» «Sheba» at Amos 5). 54 cards compared, none differing.
 
-The whole suite began 17:53 UTC.
+## The whole suite (17:53 to 19:20 UTC), and one law of an older check mended
+
+199 checks, 196 clean (`measures/suite-verdicts.txt`). The three that were not:
+
+- `check-reading-rows-v1` R1: the small phone's rows. Known, red on live too.
+- `check-nothing-unlanded-v1`: red until pushed, as on every ship. Clean after the push (`measures/check-nothing-unlanded-v1-after-push.txt`).
+- `check-rulings-under-sources-v1` U8: **this ship's own** (`measures/suite-check-rulings-under-sources-v1-red.txt`).
+
+**What U8 held, and why it went red.** The law is from the review of 15 November: a reading the place gives across two words with the hyphen at the end of the first only («Tubal-» «Cain»), which a source reads at one word and not the other, keeps the line as it rests at both words. At Song of Songs 7:5:9-10 under UBS the tree drew «Bath-Rabbim» once over both words, where the law expected «Bath-» «Rabbim» as at rest. The page is right: UBS's line is filed at the first word and reads both by the list, which is the very thing this ship lands. The law's choice of pairs did not know the list.
+
+**Measured, every book** (`measures/u8-pairs-by-unit.txt`, `tools/u8-pairs-and-spans.mjs`): of the pairs of this kind, UBS holds 164 and its own unit reads both words at 131; MACULA 36 and none; BDB 88 and none. No pair is half inside a unit.
+
+**The mend** (`tools/patch-07-rulings-u8-knows-units.py`, the check alone):
+
+- A pair the source's own unit reads whole, the unit filed with a line, owes one line over both words that begins with the unit's line, or both words as they rest where the page holds the unit back.
+- A pair read in part owes what it did.
+- The work read for a source is the first that holds a pair read in part, so the law's first subject is always read. For UBS that is now Nehemiah (it was Song of Songs, whose two pairs are both units).
+- The check's reader of a drawn line can ask for the part a unit prints over several words; asked the old way it reads as before.
+
+**After the mend** (`measures/check-rulings-under-sources-v1-after-patch-07.txt`): all eleven laws hold, 2 min 50 s. U8: MACULA Song of Songs 1 held as it rests; UBS Nehemiah 1 held as it rests («eight-» «teen») and 6 units under one line; BDB Habakkuk 1.
+
+**Why the round was not run again.** The mend touches one check and nothing the round reads or writes:
+
+- the page is the same bytes (`327b2def1b11efac`, the hash the round's log names);
+- the pipeline's manifest written again comes to the same bytes (the check names no new rule);
+- no built file pins the check's hash, and the round does not run it;
+- the eight checks that read the tools' own text were run again and hold (`check-k-maqaf-preserved-v2`, `check-ledger-declared-v1`, `check-manifest-prints-unguarded-v1`, `check-no-import-side-effects-v1`, `check-nothing-hand-typed-v1`, `check-nothing-hard-wired-v1`, `check-scope-derived-v1`, `check-sidecars-all-named-v1`).
+
+## Shipped (19:30 UTC)
+
+- `main` c1ed776b65af7ad939fdd1884ece035640a478f3, one commit over ship 13 (9017d8f9c6). The message as shipped: `commit-as-shipped.txt`.
+- `gh-pages` 3ca98db399994b7eab268d184e380cee23b2d4e8, "gh-pages follows main".
+- Pages run 1382: success (19:31 UTC). Live check 80: success, «the live site is this build» (19:31 UTC).
+- `check-nothing-unlanded-v1` after the push: the branch carries this tree, and every build output on the site is the one this tree produced.
+- Scratch: the ship's tree is `S/s13` (clean, on the commit); `S/old` stands on the new main for the next gate; scripts and logs `S/s17w`.
+
+## Left open by this ship
+
+- UBS's 3 doubled names and 73 lines under each word: UBS's two-word lemma is its second pick there. A change to the picks' order, if wanted, is the corpus lane's (ask Q in the letter).
+- The 34 lines the list says read one word other than the one they are filed at; the list's 81 branches; any pick after the first.
+- STEP's own marks across words, and the joining of about 400 two-word names at rest: the owner's word first.

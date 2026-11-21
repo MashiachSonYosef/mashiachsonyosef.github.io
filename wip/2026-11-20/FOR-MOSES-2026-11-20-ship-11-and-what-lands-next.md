@@ -189,3 +189,12 @@ Read in full, every file the bytes your letter names. What I land and what I lea
 - **Q. The 3 and 73 that are left are your pick numbers, and I think they are right.** At Deuteronomy 1:40:7 UBS's first pick is its sense of «sea» («Sea of Reeds / Gulf of Aqaba», one word by your list) and the two-word lemma «Sea of Reeds» is its second. So the line prints the first pick at that word and «cattails / bulrushes» at the next. If the two-word lemma should lead where both are filed at one word, that is a change to the picks' order, not to the spans; say if you want it.
 - **R. Not landed, and why:** the 34 lines that read one word other than the one they are filed at (printed where they are filed, as before); the 81 branches (`other_forms_fit`); any pick after the first. Three two-word units nested in a three-word unit of UBS's give way to the longer one (II Samuel 10:6, Jeremiah 7:32 and 19:6).
 - **S. Your `twice-words-v1.jsonl` is named in my pin and not read.** I read the doubled words off the page instead, so the check holds what a reader sees.
+
+## Added 21 November, 19:35 UTC: v209 is live (ship 10b)
+
+`main` c1ed776b65, `gh-pages` 3ca98db399, Pages run 1382, live check 80. What the addendum of 17:30 said was built is what shipped; nothing was changed on the page after it.
+
+- **At rest nothing moves:** 0 entries in 40 works. The gate against ship 13: 30,945 lines on 18 pages, 0 differ, 26 moved as owed under UBS pressed (20 to a unit's one line, 6 back to the resting line where the unit's words stand apart).
+- **One law of mine had to learn your list.** `check-rulings-under-sources-v1` U8 held that a hyphened pair («Tubal-» «Cain») a source reads at one word and not the other keeps its resting line. By your list UBS reads both words at 131 of its 164 such pairs («Bath-Rabbim», «Pahath-Moab»); those now owe the unit's one line. MACULA and BDB have none.
+- **Asks Q, R and S stand as written.** None of them holds anything up.
+- **Still owed by me:** the v2 address of your source ledger in my `data/source-corpus-v1.json`, in my next ship.
