@@ -1,5 +1,10 @@
 #!/usr/bin/env node
+// RUN: tree
 // GUARDS: landings-rule-v1-a-landing-list-lands-as-its-own-rule-reads-on-the-store-it-meets-each-line-at-the-rank-its-list-gives-or-after-the-last-row-of-its-key-and-a-line-its-own-source-already-prints-is-named-not-landed
+// LEDGER: -
+// no frame letter. A check reads the pin, the lane's lists, the lists derived from them, the row-strikes record
+// and the store, and judges them; it is not the ledger for one.
+//
 // check-landings-v1 — the corpus lane's landing lists that need no ruling, each derived on the store it met and
 // landed in its turn (tools/derive-landings-v1.mjs, tools/strike-rows-v1.mjs; data/landings/PIN.json).
 //

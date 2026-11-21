@@ -134,3 +134,19 @@ Why. At these places our text spells the word otherwise than the Leningrad text 
 
 **The mend is the next ship's, and it is the corpus lane's own list.** v202 names these places (1,173 where our text spells a word otherwise) and gives STEP's pieces cut onto our letters at 1,035 of them. With the place's own pieces landed, the line reads the place's own reading, as it does everywhere the lattice has one. That is one ship with the pieces; it mends the three above and the fifty-nine others of the class, which read so on live too.
 
+## The gate, the nearest checks, and one check that changed its book (21 November, 00:40 to 01:00 UTC)
+
+(The container restarted at 00:27 and took the first gate run with it. Nothing on disk was lost. The pass is kept as a local commit on `ship11c`, c19827ee9e, against a lost scratch folder; the ship is still one commit on `main`.)
+
+**The gate** (`gate-against-live.txt`): passes with its four standing expectations and no new one. 30,945 lines compared on 18 pages, every one the same; 54 first cards, every one the same. None of the seventeen moved lines stands on a page the gate samples; they are read above.
+
+**The nearest checks** (`nearest-checks.txt`): 18 of 19 pass, among them `check-landings-v1` (5 laws), `check-entry-gate-v1` (25), `check-made-spaces-v1` (11), `check-sense-openings-v1`, `check-ledger-divisions-v1`, `check-own-pointing-v1`, `check-names-gate-v1`, `check-dictionary-kinds-v1` (34), `check-words-back-v1`, `check-store-continuity-v1`, `check-fold-strike-landing-v1`, `check-audit-calls-v1`.
+
+**`check-default-picks-v1` fails three laws, and they fail on live too.** D5 (1 fault), D7 (29), D13 (3), all at Daniel, the same alone as under load. The baked picks for Daniel are the bytes they were but for the store's version. What moved is the book the check reads: its third work is «the smallest work with a fill at a word today's line draws bare», found from the page. With STEP's rows landed under our spelling, that is Daniel now. Asked of the live tree with Daniel named (`default-picks-on-live-with-daniel-named.txt`), the same three laws fail with the same faults. So the landings showed a difference between the check's model and the page that ship 11 already had:
+
+- D5: at Daniel 1:16, word 4, the object marker beside a place of STEP's own words, the page draws the hidden sign's gap; the page law's model owes «<obj.>». The check's own node law (D5, beside STEP's words) says the gap is right.
+- D7: under MACULA at Daniel 1:8, word 8, the page keeps STEP's line (ship 10: a unit held apart keeps the line it rests on); the model owes none.
+- D13: a BDB pick with a sense and no words reads «1 (no words given) (sense 2)» on the card; the model drops «(no words given)» where a note stands.
+
+Task 148 carries the mend.
+
