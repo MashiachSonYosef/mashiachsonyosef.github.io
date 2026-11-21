@@ -1,0 +1,45 @@
+Ship 10b: a default source's line that reads several words is one unit of those words, read from the source's own data (relay v209); nothing at rest moves
+
+With UBS set first a two-word name stood twice: «Kadesh-Barnea» under its first word and STEP's «Barnea» under the second. With BDB first «Beersheba» stood under both words. This ship reads the corpus lane's spans list (relay v209 of 20 November 2026, asked for on 15 November) and prints such a line once. At rest, under STEP, nothing changes. The record: wip/2026-11-21/ship-10b/SHIP-10B.md.
+
+WHAT WAS WRONG, MEASURED ON LIVE
+
+- A source's line may read more than the word it is filed at: UBS's lemma of two words, filed at the first word and at no other; BDB's headword of two words, filed at both; a MACULA word our text writes as two. The page printed each line under the word it is filed at.
+- Every book was opened under each source and every line read at the spans the list gives. Under UBS the name stood twice at 413 lines (the source's line under one word, another source's reading under the next). Under BDB its own line stood under each word at 82 lines. Under MACULA, 2.
+- The page could tell such a unit only from marks that are not the source's: TAHOT's hyphen at the end of a piece, the lattice's headword running across two words. Its own comment said what it lacked: the words each meaning covers, which the corpus lane's ledger would have to give.
+
+THE SPANS (default-spans-rule-v1, new)
+
+- data/default-picks/spans-v1/ pins the list: its rule and two receipts kept byte for byte, the list named by size and sha256. The list stays on the lane's store beside the default picks and is read through --default-picks. tools/default-spans-v1.mjs is the one reading of it.
+- What lands: a line that is its source's first pick and reads two or more places. UBS 771 lines in 761 units (three nested in a longer unit give way to it; four lines are filed beside the words they read), BDB 640 lines in 313 units, MACULA 12 lines in 6. STEP's own mark across words is the line at rest and is not read.
+- tools/bake-default-picks-v1.mjs lays each source's units in the book's file (spans), by the page's word numbers. Every line that lands is proved to be the pick the bake read at its place: UBS's by the piece and the meaning's id, BDB's by record and meaning. None is refused in 39 books. The index carries nothing new.
+
+THE PAGE
+
+- The words of a unit take the unit's one line, read at the place it is filed. Standing in one cell (a stroke joins them, or a run holds them) the line prints once over them. Standing apart, each keeps the line as it rests and the card says what the source reads across them. This is what the page already did at the units it could tell; the unit is now told by the source's data first.
+- A line filed beside the words it reads (UBS's «Aram Zoba» at the object marker of II Samuel 10:6) is not printed under the word it is filed at.
+- A unit that holds a pair, or a word that yields to a switch, is not read as one: none of its words takes the source's line.
+- The card of a word of a unit gives the unit's reading as «one reading of these N words», and the source's other picks at that very word after it.
+- Found on the way, on the site before this ship: a joined run's card said a unit's reading at every cell, «Bethel · sense 1 + Bethel · sense 1» at Amos 3:14:10 under BDB, over a line that read it once. The card says a unit once.
+
+READ AGAIN ON THIS TREE, EVERY BOOK UNDER EACH SOURCE
+
+- UBS: one line over the whole span at 441 lines (8 before); the name twice at 3 (413 before).
+- BDB: one line at 174 (128 before); its own line under each word at none (82 before).
+- What is left is the source's own filing. At UBS's 3, and at 73 lines where UBS prints a line under each word, the two-word lemma is UBS's second pick; its first pick reads one word by the list, and the line prints the first pick. At BDB's 2 the two-word record has no highlighted words and so no line.
+
+THE CHECKS
+
+- check-default-spans-v1, new: S1 the pin and the receipts; S2 every book's spans, and with the list on the machine a recount through the one reading; S3 on the page under each of MACULA, UBS and BDB, every book: at every unit filed with a line, no name stands twice, and no line is printed where it is filed beside its words; S4 the card of a unit drawn as one line says it once, and of a unit resting apart says the source's one reading of its words.
+- check-default-picks-v1: its model of the page reads the spans as the page does (the unit's line at each word, a run taking the source where every word's first line is the source's, a unit drawn once or resting apart). D7, D8 and D9 hold line by line under every source.
+- check-same-product-v1 (the gate): under a source pressed, a word of a unit is owed the unit's one line where its words stand in one cell, and the line as it rests where they stand apart, where the unit holds a pair, and where the line is filed beside its words.
+- tools/round-v1.sh holds the spans' node laws with the default picks'; PIPELINE.md says where the spans come from.
+
+NOT IN THIS SHIP
+
+- STEP's own marks across words, and the joining of about 400 places at rest: the owner's word first, as before.
+- A line the list says reads one word other than the one it is filed at (UBS, 34 lines); the list's branches; a second source's spans.
+
+@@GATE@@
+
+@@SUITE@@
