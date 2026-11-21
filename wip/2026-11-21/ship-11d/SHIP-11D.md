@@ -93,3 +93,31 @@ So on the first round the pieces arrived after both had run, and the name places
 `pass2.log`. The zones were put back as ship 11c shipped them (none differing from HEAD), and the pipeline ran whole with the bridge first in the zones step: 206 places laid, 451 pieces; every step clean. Then the zones and stamps steps ran again: **the same bytes in all 147 zone files.** So one round on a tree without the pieces reaches the state a second round keeps.
 
 The resting lines against live are pass 1's, entry for entry: 206 entries move, the 206 places, 88 changing their words (`every-line-whose-words-move.txt` and `lines-diff-against-live.json` are pass 2's files). What the name's lead changed at Genesis 49:10 is in the sidecar and the zone's table, and moves no resting line: «Shiloh» reads «Shiloh» by the place's pieces either way.
+
+## The gate (04:30 to 04:41 UTC): passed, with the bridge's expectation
+
+`gate-pipe2.log`, `gate-diff-pipe2.txt`. Live (ship 11c) against the tree, 18 pages of 9 books, the four standing expectations and `--expect data/spelling-bridge/PIN.json`:
+
+- S1 and S2 ok. **0 lines differ; 11 lines moved as owed, every one told as a bridge line**; 54 cards compared, none differing.
+- The eleven are the five laid places the sample reaches, under the switches it reads: Job 1:4 «sisters + their» and Ruth 3:14 «feet + his» (the credit alone, to the place's pieces), Job 1:21 «appear» to «I came out», Lamentations 3:39 «sin + his» to «sins + his», Nehemiah 1:1 «Chisleu» to «Kislev».
+
+## The suite found my new check's card law wrong, not the page (05:45 to 05:52 UTC)
+
+`check-spelling-bridge-v1` B5 failed in the suite at all six named places: «the card stands on «bolster», and the line reads «[the] place of head + his»». The line half of the law held at every laid place of the five books it opens (49 lines). The card half was an assumption of mine that I had never run: that the card of such a place stands on the line's whole reading, one pill pressed, STEP's row behind it.
+
+**What the page does, and has done since 14 November** (core-block-rule-v1, the owner): a card of a place the line reads in pieces opens on the place's own division with its core block pressed. The place's reading is said whole above the pills («here STEP reads …», under the pieces' credit), and the pills are the block's own, the dictionaries'. The pill pressed is the line's own piece for the block where a pill of the block reads it, and the block's first where none does (`lineFirst || pool[0]` in the page). I read the cards at the six places (`tools/cards-at-named.mjs`):
+
+| place | said above the pills | pressed on the core block |
+|---|---|---|
+| Daniel 4:21 | «lord + my» | «lord», the line's piece |
+| Leviticus 9:22 | «hands + his» | «hands», the line's piece |
+| Genesis 13:3 | «tent + his» | «tent», the line's piece |
+| Deuteronomy 7:9 | «commandments + his» | «commandments», the line's piece (MACULA's row) |
+| 1 Samuel 26:7 | «[the] place of head + his» | «bolster», the block's first: its three pills are Strong's list's «bolster», «head», «pillow» |
+| 1 Samuel 26:16 | «[was the] place of head + his» | «bolster», the same |
+
+So at 1 Samuel 26:7 the card says STEP's reading of the place above the pills and stands on Strong's «bolster» for the block, because no dictionary reads the block as STEP's piece does. That is the page's rule at every place of the thirty-nine books where the dictionaries do not hold the piece's wording (the owner's rule of 20 September: a piece pressed alone is the dictionaries'); it is not the bridge's. Nothing in the page or the zones changes.
+
+**Mend** (`tools/patch-b5-card-law.py`). B5's card law is the page's rule: the card opens on the place's own division with its core block pressed; it says the place's reading above its pills as the line prints it, under the pieces' credit; and it presses the line's own piece where a pill of the block reads it, the block's first where none does. The check says which of the two each card is. Run alone on the tree it passes, B1 to B5; its verdict in the suite is cleared and its lane runs it again.
+
+Lesson kept: a law I have not run is a guess. B5 was written while the tree was still building and went into the suite unrun.
