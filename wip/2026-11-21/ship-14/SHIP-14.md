@@ -60,3 +60,20 @@ Four builders, each in its own light copy of the page (`tools/mk-shadow.sh`: its
 
 I read every patch before it goes on the tree, then the round, the gate and the whole suite as on every ship.
 
+### The second reader's part (back at about 22:25 UTC; `readers-again/b/REPORT.md`)
+
+| finding | what a reader meets | on live today |
+|---|---|---|
+| second reader 2 | a reading chosen through its witness line is remembered under a key that never matches | still present, at rest (Ruth 1:2 word 3 reopens on another pill) |
+| second reader 4 | a failed dictionary shard is asked again with no pause | still present in the concordance: about 1,500 requests in five seconds from one press |
+| second reader 8 | the label names TAHOT over MACULA's pieces | gone (0 of the 55 words) |
+| second reader 9 | the card's redraw keeps the previous block's withheld notes | still present, behind `&rail=all` |
+| second reader 10 | a pick on the maqaf-joined inner block of a spaced run | the line half still present at rest (Genesis 35:7); the other half gone |
+| second reader 11 | only the first head word bold on a run's card | only with joined words as written |
+| second reader 12 | a let-down run line keeps its small size | the code is unchanged; its visible form could not be produced |
+| second reader 13 | a bare run line keeps its title | only with joined words as written |
+
+A fifth builder, **cards**, has second reader 2, 4, 9, 10, 11, 12 and 13.
+
+Seen in passing by that helper and not examined: with every source switched off, the Genesis 12:8 cell still reads «Bethel» with a license chip. Filed to look at after this ship.
+
