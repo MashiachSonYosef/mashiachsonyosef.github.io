@@ -133,3 +133,5 @@ Lesson kept: a law I have not run is a guess. B5 was written while the tree was 
 - The checks that read the tools or the manifest and had run before the mend were run again (`suite/after-the-mend.log`): eight, all clean.
 
 **Shipped** (`commit-as-shipped.txt`): `main` 340cff8e3bcf1b816a4101925878e2ac3fa88231, one commit on f88c4df6e1 (978 files; `zone.html` untouched). `gh-pages` a7eee946878c06d720c738b7df0a52687924f2c7, «gh-pages follows main». Pages run 1380: success (06:09:36 UTC).
+
+**Live and verified.** Live check 78: success (06:10:09 UTC), «the live site is this build». `check-nothing-unlanded-v1` run after the push: ok. The comparison tree (`old`) stands on 340cff8e3b for the next ship.
