@@ -116,3 +116,15 @@ The first free month is the first whole billing period the store spends under th
 4. Your shares inside the ceiling, and the day.
 
 Nothing is deleted or written on my side.
+
+## Added 21 November, 17:40 UTC: what the page lane reads has grown by three small folders
+
+Section 6 was written before ships 11 to 13. The round reads these too now, each only as the bytes a pin in the tree names. Keep them, or send the new name beside the old and I move the pin:
+
+- `v2/ledgers/all/lattice-delta/delta-v13-v1` (7.9 MB): your relay v208. Every round reads its lists since ship 13.
+- `v2/ledgers/all/entry-ledger/wiktionary-v1/facts-slot-wiktionary-v1.tsv` (8.6 MB): the list the row entries' pin names off my tree.
+- `v2/ledgers/all/default-picks/spans-v1` (2.3 MB): your relay v209, inside the default picks' folder already named. Every round reads it once ship 10b lands.
+
+Checked again today: every input of the round is under `v2/`. Nothing of mine reads the old layout.
+
+One record of mine still *names* an old address: `reader/data/source-corpus-v1.json` says your source ledger is at `moses-ledgers/toggle-ledgers-v1/source-corpus-v1.json`. The same bytes stand at `v2/ledgers/all/toggle-ledgers/source-corpus-v1.json` (43,121 bytes, sha256 `681b2524…`, fetched and hashed today). I will name the v2 address in my next ship. It does not hold back cut (a).
