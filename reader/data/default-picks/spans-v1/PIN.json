@@ -1,0 +1,58 @@
+{
+ "schema_version": "DEFAULT_SPANS_PIN_V1",
+ "rule_id": "default-spans-rule-v1-a-default-sources-line-that-reads-several-words-is-one-unit-of-those-words-read-from-the-sources-own-data",
+ "what": "the corpus lane's spans list (relay v209): for every default-pick line, the first and the last word the line reads, judged by its own source's data. The rule and the two receipts are kept here byte for byte in the folder the lane keeps them in. The list stays on the lane's store beside the default picks and is read through --ledger (<ledger>/spans-v1/) only as the bytes named here. tools/bake-default-picks-v1.mjs lays the units that land in each book's file (spans), and tools/default-spans-v1.mjs is the one reading of the list",
+ "relay": "v209",
+ "of": "20 November 2026",
+ "asked": "the page lane's letter of 15 November 2026, ask 7 (spans)",
+ "letter": "r2:mishkan/v2/letters/moses-default-picks-v1/FOR-ELIJAH-v209.md",
+ "letter_sha256": "2acf11ecd24d4076295577efeb64622fbed376e16ea19d5fe5a723696b0a8091",
+ "from": "r2:mishkan/v2/ledgers/all/default-picks/spans-v1/ (the private store)",
+ "folder": "spans-v1",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 22786,
+  "sha256": "85b5ad5235eceadb4876ed3ff9343b223624ad6100555dad9fe8f9415ea5ef35"
+ },
+ "receipt": {
+  "file": "receipt-v1.json",
+  "bytes": 66964,
+  "sha256": "6172dc8fff8d6f36eaa87ecfce03d84931dfd0e34eac0166de25b326c6b1258f"
+ },
+ "verify_receipt": {
+  "file": "verify-receipt-v1.json",
+  "bytes": 1600,
+  "sha256": "6d441b6a3c829b786cff134555b6898428bfd6eabd93e83cf37314a2cd8e46c0"
+ },
+ "spans": {
+  "file": "spans-v1.jsonl",
+  "bytes": 1737216,
+  "sha256": "e700f6e3a479200e7b4567ce74ad3db6df53c3075122116beb939f6656bceb47",
+  "lines": 3675
+ },
+ "twice_words": {
+  "file": "twice-words-v1.jsonl",
+  "bytes": 504915,
+  "sha256": "3c9b221e933f134812b36c0e4b3661817a31f620da7978c6233b156d1a24c8ea",
+  "lines": 3195,
+  "read": false,
+  "says": "the lane's own list of the words that print twice without the span, named here by its bytes and not read: the page's lines are read off the page (tools/check-default-spans-v1.mjs), not off this list"
+ },
+ "lands": {
+  "sources": [
+   "macula",
+   "ubs",
+   "bdb"
+  ],
+  "lines": "a line of the list lands where it is its source's first pick at its place (n 1; MACULA gives one pick and no number) and the list gives it two or more places; those places are one unit, the place the line is filed at kept with it",
+  "nested": "a unit whose every place stands inside a longer unit of the same source gives way to the longer and is counted",
+  "refused": "two units of one source that share a place where neither holds the other",
+  "not_landed": {
+   "step": "STEP's own mark across words is the line at rest; nothing at rest moves by this list, and the joining of words at rest waits for the owner's word",
+   "one_word_filed_beside": "a line the list says reads one word other than the one it is filed at (UBS, 34 lines): it is printed where it is filed, as before",
+   "span_not_readable": "a line whose span its source's data cannot give (the list says why): printed where it is filed, as before",
+   "other_forms_fit": "the list's branches, off at rest",
+   "later_picks": "any pick after a source's first: the line prints the first"
+  }
+ }
+}

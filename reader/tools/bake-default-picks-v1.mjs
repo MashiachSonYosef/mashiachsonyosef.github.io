@@ -143,7 +143,14 @@
 //               store_read, store_resolved },
 //     bdb_words: [ each BDB record's highlighted words, once per record ],
 //     places: [ for WORD_N n at places[n - 1]: null at a mark or where no
-//               source picks, else [step, macula, ubs, bdb] ] }
+//               source picks, else [step, macula, ubs, bdb] ],
+//     spans: { rule_id, macula: [...], ubs: [...], bdb: [...] }: where the
+//               tree pins the corpus lane's spans list (relay v209,
+//               data/default-picks/spans-v1/PIN.json), each source's units
+//               of two or more words its first pick's line reads, as
+//               [[n, ...the unit's words], [n, ...where the line is filed]]
+//               in the order of their first word (tools/default-spans-v1.mjs
+//               says which lines land); absent where the tree pins none }
 // where each slot is 0 where the source has no pick, or
 //   step    [[kind (0 r, 1 v, 2 a), words | 0, the variant's letter], ...]:
 //           the ledger's words byte for byte after the mends; a variant's
@@ -281,6 +288,7 @@ import { startedAs } from "./main-guard-v1.mjs";
 import { readRecord, RESTING_DIR } from "./resting-lines-v1.mjs";
 import { openFollower, followedRecord, followedSaid, FollowFault } from "./row-strikes-follow-v1.mjs";
 import { printedForm, routePrinted, signsOff } from "./gloss-store-v1.mjs";
+import { readDefaultSpans, unitsOfBook, SPAN_SOURCES, DEFAULT_SPANS_RULE_ID, DEFAULT_SPANS_HOME } from "./default-spans-v1.mjs";
 
 export const DEFAULT_PICKS_RULE_ID = "default-picks-rule-v1-each-source-prints-its-own-pick-and-the-source-that-fills-most-of-what-it-leaves-is-its-second";
 
@@ -631,6 +639,12 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
   // per first source, its pills and its second's where the line is theirs, by what prints their words
   const picksPrinted = Object.fromEntries(IDS.map((x) => [x, {}]));
   const books = [];
+  // THE WORDS A SOURCE'S LINE READS (default-spans-rule-v1): the corpus lane's spans list, where this tree pins it,
+  // read beside the default picks only as the bytes its pin names
+  const spansPin = join(dirname(pinPath), "spans-v1", "PIN.json");
+  let spansRead = null;
+  try { spansRead = readDefaultSpans(spansPin, ledger); } catch (e) { if (e instanceof PinFault) throw new Refused(`the spans list: ${e.message}`); throw e; }
+  const spanCount = Object.fromEntries(SPAN_SOURCES.map((x) => [x, { lines: 0, units: 0, words: 0, nested: 0, filed_beside: 0, filed_with_a_line: 0 }]));
 
   for (const o of outputs) {
     const book = o.file.replace(/\.jsonl$/, "");
@@ -667,6 +681,8 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     // per place, what the tallies after the pass need: which sources have a line, whether STEP's words may fill it,
     // and what prints each source's pills there (pick 1, then picks 2..n with words)
     const lineBits = new Uint8Array(entries.length);
+    // each source's first pick at a place, by the id its ledger gives it (a span line is proved to be that pick)
+    const firstPick = new Array(entries.length).fill(null);
     const stepWordsAt = new Uint8Array(entries.length);
     const pillsAt = new Array(entries.length).fill(null);
 
@@ -1012,6 +1028,11 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
 
       const slots = [stepSlot.length ? stepSlot : 0, macWords || 0, ubsPicks.length ? [ubsLine || 0, ubsPicks] : 0, bdbSlot.length ? bdbSlot : 0];
       places[n - 1] = slots.every((s) => s === 0) ? null : slots;
+      firstPick[n - 1] = {
+        macula: !!mac,
+        ubs: new Map(pieces.filter((pc) => Array.isArray(pc) && Array.isArray(pc[2]) && Array.isArray(pc[2][0])).map((pc) => [pc[0], pc[2][0][1]])),
+        bdb: Array.isArray(b[0]) ? [b[0][1], b[0][2]] : null,
+      };
     }
 
     // THE PILLS THE CARD PRINTS FOR A SOURCE, under each first source with its second for this book (every source
@@ -1059,6 +1080,34 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     });
 
     const labels = placeAt.map((i) => entries[i].label);
+    // THE UNITS OF THE SPANS LIST (default-spans-rule-v1), by WORD_N. Every line that lands is proved to be the pick
+    // this bake has just read at its place: MACULA's pick, UBS's first pick of the piece the line names by that
+    // meaning's id, BDB's first pick by its record and meaning. A line that is not refuses the book
+    let spansOut = null;
+    if (spansRead) {
+      const nOf = new Map(placeAt.map((i) => [entries[i].label, i + 1]));
+      const spanLines = spansRead.byBook.get(book) || [];
+      for (const r of spanLines) {
+        const n = nOf.get(r.p), fp = n ? firstPick[n - 1] : null;
+        if (!fp) { refuse(`${book} ${r.p}: the spans list files a line of ${r.source} at a place the zone does not hold`); continue; }
+        const ok = r.source === "macula" ? fp.macula
+          : r.source === "ubs" ? typeof r.piece === "string" && fp.ubs.get(r.piece) === r.id
+            : Array.isArray(r.id) && Array.isArray(fp.bdb) && fp.bdb[0] === r.id[0] && fp.bdb[1] === r.id[1];
+        if (!ok) refuse(`${book} ${r.p}: the spans list's line of ${r.source} (${JSON.stringify(r.id)}) is not that source's first pick at the place as the default picks give it`);
+      }
+      let units = null;
+      try { units = unitsOfBook(book, spanLines, nOf); } catch (e) { if (!(e instanceof PinFault)) throw e; refuse(e.message); }
+      if (units) {
+        spansOut = { rule_id: DEFAULT_SPANS_RULE_ID };
+        for (const x of SPAN_SOURCES) {
+          spansOut[x] = units[x].units.map((u) => [u.places.map((p) => nOf.get(p)), u.filed.map((p) => nOf.get(p))]);
+          const c = spanCount[x];
+          c.lines += units[x].lines; c.units += units[x].units.length; c.nested += units[x].nested; c.filed_beside += units[x].filed_beside;
+          c.words += units[x].units.reduce((a, u) => a + u.places.length, 0);
+          c.filed_with_a_line += units[x].units.filter((u) => u.filed.some((p) => has1(nOf.get(p), x))).length;
+        }
+      }
+    }
     const bookFile = {
       schema_version: "DEFAULT_PICKS_BOOK_V1",
       rule_id: DEFAULT_PICKS_RULE_ID,
@@ -1067,6 +1116,7 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
       ledger: { file: o.file, sha256: o.sha256, mend_places: mendPlaces, store_read: ((in12.page_store || {}).store_version) || null, store_resolved: storeIx.store_version || null },
       bdb_words: bdbWords,
       places,
+      ...(spansOut ? { spans: spansOut } : {}),
     };
     const raw = Buffer.from(JSON.stringify(bookFile), "utf8");
     const gz = gzipSync(raw, { level: 9 });
@@ -1326,6 +1376,13 @@ export const bakeDefaultPicks = ({ ledger, zones, store, pinPath, records = join
     lines_over_40_characters: long,
     line_feeds: { count: C.line_feeds.length, places: C.line_feeds.map(([book, where, src]) => ({ book, place: where, source: src })) },
     hebrew_in_carried_texts: C.hebrew_in_texts,
+    ...(spansRead ? { spans: {
+      rule_id: DEFAULT_SPANS_RULE_ID,
+      what: "the words each source's line reads, from the corpus lane's spans list (relay v209), laid in each book's file as spans: per source, the units of two or more words its first pick's line reads, each with the words it is filed at, by WORD_N. Every line that lands was proved to be the pick the bake read at its place. filed_with_a_line counts the units some filed place of which has a line of the source, which are the units the page can print; the others are laid and inert",
+      pin: { file: `${DEFAULT_SPANS_HOME}/PIN.json`, sha256: sha256(readFileSync(spansPin)), relay: spansRead.pin.relay, list: { file: spansRead.pin.spans.file, bytes: spansRead.pin.spans.bytes, sha256: spansRead.pin.spans.sha256, lines: spansRead.pin.spans.lines } },
+      lines_by_class: spansRead.classes,
+      by_source: spanCount,
+    } } : {}),
     books: perBook,
     index: { file: "index.json", bytes: indexBytes.length, sha256: sha256(indexBytes) },
     sizes: { book_files_bytes: books.reduce((a, x) => a + x.gz.length, 0), book_files_raw_bytes: books.reduce((a, x) => a + x.raw, 0) },

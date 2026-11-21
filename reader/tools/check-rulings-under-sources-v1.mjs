@@ -48,7 +48,11 @@
 //       two words with the hyphen at the end of the first only (TAHOT's
 //       «Tubal-» «Cain», «fif-» «teen»), that source reading one word of it and
 //       not the other, both words keep the line as it rests (the same review:
-//       held only where both hyphens stood, «Baal-Hamon» «Hamon» under UBS)
+//       held only where both hyphens stood, «Baal-Hamon» «Hamon» under UBS);
+//       where the source's line, filed at one word, reads both by the source's
+//       own data (the units the book's default picks carry, relay v209: UBS's
+//       «Pahath-Moab»), that is no reading in part: one line stands over both
+//       words, or both rest as they do where the page holds the unit back
 //   U9  the guard an open keeps over a ruled line: U7's division pressed
 //       alone, its card shut before its readings came (the catalog's shard of
 //       the form held back until then), so the ruling is the division alone
@@ -203,18 +207,26 @@ for (const b of byPlaces) {
   if (divisionWorks.length >= 40) break;
 }
 divisionWork = divisionWorks[0] || null;
-// U8: per source, TAHOT's readings across two words with the hyphen at the end of the first only, read in part
-const endOnly = {};   // source -> { b, pairs: [[the first word's address, the second's]] }
+// U8: per source, TAHOT's readings across two words with the hyphen at the end of the first only, the source holding a
+// line at one word and not the other: read in part, or read whole where a unit of the source's own (the spans the
+// book's default picks carry), filed with a line, holds both words. The work is the first holding one read in part
+const endOnly = {};   // source -> { b, pairs: [[the first word's address, the second's]], whole: the first word's address -> the unit's line }
 for (const src of ["macula", "ubs", "bdb"]) {
   for (const b of byPlaces) {
     const z = readGz(join(K3, "data", "zones", `${b}.bin`)), bf = readGz(join(DP, IX.books[b].file));
     const text = (w) => (Array.isArray(w.pg) && w.pg.length && w.pg.every((p) => p && String(p.g || "").trim()) ? w.pg.map((p) => String(p.g).trim()).join("/") : "");
-    const ps = placesOf(z), pairs = [];
+    const units = ((bf.spans || {})[src] || []).map((u) => ({ ns: new Set(u[0]), filed: u[1] || [] }));
+    const kqAt = new Map(placesOf(z).map((q) => [q.n, !!q.w.kq]));
+    const ps = placesOf(z), pairs = [], whole = new Map();
     for (let i = 0; i + 1 < ps.length; i += 1) {
       if (ps[i].label !== ps[i + 1].label || !/-$/u.test(text(ps[i].w)) || /^-/u.test(text(ps[i + 1].w))) continue;
-      if ((!ps[i].w.kq && !!lineAt(bf, ps[i].n, src)) !== (!ps[i + 1].w.kq && !!lineAt(bf, ps[i + 1].n, src))) pairs.push([ps[i].at, ps[i + 1].at]);
+      if ((!ps[i].w.kq && !!lineAt(bf, ps[i].n, src)) === (!ps[i + 1].w.kq && !!lineAt(bf, ps[i + 1].n, src))) continue;
+      pairs.push([ps[i].at, ps[i + 1].at]);
+      const u = units.find((x) => x.ns.has(ps[i].n) && x.ns.has(ps[i + 1].n));
+      const line = u ? u.filed.filter((f) => !kqAt.get(f)).map((f) => lineAt(bf, f, src)).find(Boolean) || null : null;
+      if (line) whole.set(ps[i].at, line);
     }
-    if (pairs.length) { endOnly[src] = { b, pairs }; break; }
+    if (pairs.length > whole.size) { endOnly[src] = { b, pairs, whole }; break; }
   }
 }
 // U10: per source, the units it reads at every word of one reading across words or of one entry across words, the
@@ -343,7 +355,7 @@ const pressPressed = (p) => p.evaluate(() => { const x = [...document.querySelec
 const pressWhole = (p) => p.evaluate(() => { const x = [...document.querySelectorAll("#hud .b-cut .s-pills button")].find((y) => !y.textContent.includes("+")); if (!x) return null; if (x.getAttribute("aria-pressed") === "true") return "already"; x.click(); return "pressed"; });
 /** The line drawn over each word at the addresses, with the chip's line: its own, or in a run drawn in parts the
  *  run's part under it; «the run's one line» where the run draws one line over its words. */
-const drawnAt = (p, ats) => p.evaluate(({ ats, f }) => {
+const drawnAt = (p, ats, over = false) => p.evaluate(({ ats, f, over }) => {
   const find = (0, eval)(`(${f})`);
   const txt = (el) => { const c = el.cloneNode(true); c.querySelectorAll(".g-lic").forEach((x) => x.remove()); return c.textContent.trim(); };
   return ats.map((at) => {
@@ -351,12 +363,14 @@ const drawnAt = (p, ats) => p.evaluate(({ ats, f }) => {
     if (!wb) return null;
     const run = wb.closest(".wjoin"), rg = run ? run.querySelector(":scope > .g") : null;
     if (rg && !rg.classList.contains("parts")) return "the run's one line";
-    const g = rg ? rg.querySelector(`:scope > .g-part[data-wi="${[...run.querySelectorAll(".wb")].indexOf(wb)}"]`) : wb.querySelector(":scope > .g");
+    // the part over the word: its own (data-wi), or, asked with over, the part a unit prints over several words (data-wn)
+    const wi = run ? [...run.querySelectorAll(".wb")].indexOf(wb) : -1;
+    const g = rg ? (over ? [...rg.querySelectorAll(":scope > .g-part")].find((x) => Number(x.dataset.wi) <= wi && wi < Number(x.dataset.wi) + Number(x.dataset.wn || 1)) || null : rg.querySelector(`:scope > .g-part[data-wi="${wi}"]`)) : wb.querySelector(":scope > .g");
     if (!g) return "";
     const chip = g.querySelector(".g-lic");
     return `${txt(g)} [${chip ? chip.dataset.line || "" : ""}]`;
   });
-}, { ats, f: findWb.toString() });
+}, { ats, f: findWb.toString(), over });
 /** The verse holding a place exported (Hebrew and English), and what its file says was withheld. */
 const exportOf = async (p, label) => {
   const id = await p.evaluate((label) => { const secs = [...document.querySelectorAll("section.seg")]; const i = secs.findIndex((s) => s.__sec && s.__sec.label === label); if (i < 0) return null; window.__materialise(i, i + 1); const s = secs[i]; s.id = s.id || `rus-sec-${i}`; s.scrollIntoView(); return s.id; }, label);
@@ -573,20 +587,29 @@ try {
         await ready(p);
         const on = await p.evaluate(() => window.__default && window.__default.on);
         const got = await drawnAt(p, ats);
+        const over = await drawnAt(p, ats, true);
         await ctx.close();
         if (on !== src) { faults.push(`?default=${src} stood on ${on}`); continue; }
-        let held = 0;
+        let held = 0, once = 0, rested = 0;
         for (const [x, y] of endOnly[src].pairs) {
           const i = ats.indexOf(x), j = ats.indexOf(y);
           if ([rest[i], rest[j], got[i], got[j]].includes("the run's one line")) continue;
+          if (endOnly[src].whole.has(x)) {
+            // the source's own unit reads both words: one line over both, the unit's, or both as they rest (the unit held back)
+            const line = endOnly[src].whole.get(x);
+            if (got[i] === rest[i] && got[j] === rest[j]) rested += 1;
+            else if (over[i] && over[i] === over[j] && over[i].startsWith(`${line} [`)) once += 1;
+            else faults.push(`${b} ${x}-${y.split(":")[2]} under ${src.toUpperCase()}, whose own unit reads both words as ${said(line, 40)}: ${said(over[i])} ${said(over[j])}, as it rests ${said(rest[i])} ${said(rest[j])}`);
+            continue;
+          }
           held += 1;
           if (got[i] !== rest[i] || got[j] !== rest[j]) faults.push(`${b} ${x}-${y.split(":")[2]} under ${src.toUpperCase()}: ${said(got[i])} ${said(got[j])}, as it rests ${said(rest[i])} ${said(rest[j])}`);
         }
         if (!held) faults.push(`${b}: no reading of the kind that ${src.toUpperCase()} reads in part is drawn word by word`);
-        saw.push(`${src.toUpperCase()} ${b} ${held}`);
+        saw.push(`${src.toUpperCase()} ${b} ${held}${once || rested ? ` (and of the readings its own unit reads whole, ${once} under one line, ${rested} as they rest)` : ""}`);
       }
     }
-    check("U8  under MACULA, UBS and BDB, a reading across two words with the hyphen at the end of the first only, read in part by the source, keeps the line as it rests at both words", !faults.length,
+    check("U8  under MACULA, UBS and BDB, a reading across two words with the hyphen at the end of the first only, read in part by the source, keeps the line as it rests at both words; one the source's own unit reads whole stands under one line", !faults.length,
       faults.length ? faults.slice(0, 4).join(" \u00b7 ") : `held whole: ${saw.join(", ")}`);
   }
   // U9: U7's division pressed alone, the catalog's shard of the form held back until its card is shut
