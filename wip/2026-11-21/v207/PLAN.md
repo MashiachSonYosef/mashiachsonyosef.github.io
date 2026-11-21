@@ -67,3 +67,22 @@ Ship 11d (the bridge's pieces) first; it is in its round. Then this, measured in
 ## 7. Who reads the list of struck sources (the re-admission must hold for each)
 
 `index.language_admission.struck_m_ids` is read by: the route delta (`apply-route-delta-v1`), the dictionary store's bake, the search index's bake, the pointing store's landing (`land-pointing-store-v2-v1`), the zone gloss redrive, the struck-ranks record (`emit-struck-ranks-v1`: it covers the struck ids' ranks, and v207's holes are read from it), the lane state, and six checks (`check-language-admitted-v1`, `check-route-store-exact-k-v1`, `check-search-v1`, `check-store-continuity-v1`, `check-lane-state-v1`, `check-zone-single-pass-receipts-v1`, which holds each zone to the struck list it was emitted under). Each must be read before the list changes: some filter an outside file by it (the lattice's cards, the pointing store's rows), and a source that returns only for its listed rows must not let its other rows in by that door.
+
+## 8. The readers of the struck list, read (21 November, 06:05 UTC)
+
+A read-only pass over the ship tree's tools (a helper's report; the three claims marked "read" I checked in the code myself, the rest are to be checked as each is touched).
+
+**The way back the strike tool itself names** (read: `strike-language-v1.mjs`, the comment over its `languages` clause): «the way back for a struck-but-Hebrew source is to carry the field [`languages`], which is a smaller and more honest edit than rewriting a prose label». A declared `languages` on an index entry is read before the label. Without it the tool, run again, strikes the 35 again, and its repair path writes the record's 49 ids back into the index. So the re-admission must leave the record and the index in a state that tool keeps.
+
+**Doors that open when the 35 stand in `m_sources` again:**
+
+1. `project-lattice-v12-v1.mjs` (read): a lattice card heads a headword stack where its source's label is held, with no row asked. The tool's own note says the struck sources' cards head 8,352 headword stacks on the thirty-nine books. With the labels held again, such a card becomes the line under «the headword» whether or not a landed row carries its words. PanLex returns 3,956 rows of 14,008, so this is a real door. To be closed by asking a served row of that source for the card's words under the key, and measured.
+2. `land-pointing-store-v2-v1.mjs`: drops rows by `m_sources`; a rebuild of its candidate would take every row of a returning source. The candidate is not served and its proof would fail. Not run by the round.
+3. `bake-dictionary-store-v1.mjs`: refuses a lane build by the struck list, whole sources. Latent: the served dictionary store holds none of the 49.
+4. `bake-search-index-v1.mjs`: filters the span store by the struck list. Latent: no span row is on any of the 49 today.
+
+**Laws that a third round must keep true** (as reported): `check-language-admitted-v1` judges every index entry by its label alone (read), so 23 of the 35 fail it as labeled; it also ties the index's count of struck sources, the struck-ranks record's covered ids (49, which never shrinks) and the count of rounds to one another. `check-lane-state-v1` S2, S3, S5. `check-store-continuity-v1` C1 to C3: the returning rows must be counted as landed in the row-strikes record, which is what the landing tool writes; lowering the struck total instead breaks C3. `check-route-store-exact-k-v1` L7: no row may stand on a struck id, so the ids leave the list in the same step the rows land.
+
+**So the order inside the ship:** the record's third round and the index's list first (with each returning entry carrying what its own source says it is), then the rows, then the round; and the lattice's door closed before the round reads the lattice.
+
+**Holes already taken.** Ship 9's fold landing put other sources' rows at 2,601 of the returning sources' holes (ETCBC 2,072). The lane's lists already give those lines no rank (2,524 lines), and my measure found 125 more taken since by ship 11c: all land after the last row of their key, never at a taken hole.
