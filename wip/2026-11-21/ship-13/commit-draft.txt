@@ -1,0 +1,40 @@
+Ship 13: the corpus lane's delta over the lattice (v208) and the read words' amendment (v192.1); two lines move
+
+Two relays of 20 November 2026 land. Both are lists over lattice v12, not a new lattice. The store holds the same rows; the page's code is the same. The record: wip/2026-11-21/ship-13/SHIP-13.md.
+
+THE LATTICE DELTA (relay v208), rule lattice-delta-rule-v1
+
+- data/lattice-delta/ pins the delta: its rule and two receipts kept byte for byte, its three lists named by size and sha256. The lists stay on the lane's store, as the lattice does, and are handed to the round with --lattice-delta. tools/lattice-delta-v1.mjs is the one reading of them.
+- The projection (tools/project-lattice-v12-v1.mjs, rule 8) reads a listed entry's cards that name its verse from the delta's list, whole: TAHOT's and MACULA's readings at the verse, where the lattice read part of TAHOT's alone. 257,206 of 257,213 lines apply and add 339,507 names; the other 7 are for the lattice's own span cards, which this projection does not read. Each line is proved to be the lattice's entry, and to hold every name the lattice gave.
+- Each card the delta grades otherwise carries the page's grade (pointing grade v5) in the sidecar: 48,379 lines, 262,112 cards, each proved against the grade the lattice gives the card. A row is graded by its own source's headwords and falls to its card's grade only where it carries none, and every row of the store carries them, so this moves no reading today: it makes the fallback right.
+- A tree that pins the delta is never projected without it, and one that pins none is never handed one.
+- What a reader sees: under the order «cites here», more readings count as naming the verse, and the reading that leads there moves at 115,930 pointed surfaces. Under every other order, and at rest, nothing of the delta shows. The sidecars grow from 30.1 MB to 31.2 MB.
+- The third list (the places STEP gives no tag) lands nothing, and the pin says why. Where a zone carries a headword the lane's entries are this lane's. At 105 plain words the zones carry none; asking those the entries of the lattice's lemma was built, measured and taken out: the reading that leads would move at 32 of them, mostly for the worse (Genesis 19:20 «and/ she» to «and/ he»).
+
+THE READ WORDS' AMENDMENT (relay v192.1)
+
+- The pin's list is the amended one, kept with the amendment's rule and receipts in its own folder; the list it amends is named by its bytes and leaves the tree. Every line names its place's own word number, and the word found on the zone is held to it.
+- Psalms 10:10 is held no longer: the amended piece carries the edition's letters, so the place's pieces spell its read words. Its two tags and two pieces land.
+- The tag a lattice piece lost (Genesis 14:17, where TAHOT writes its mark inside the word): the projection reads H3540 as the piece's own (rule 9), once the lattice's piece is proved to be the one the list names, and tools/apply-read-words-v1.mjs lays TAHOT's words for the place on the zone's piece.
+
+EVERY RESTING LINE AGAINST LIVE: TWO ENTRIES MOVE IN 40 WORKS
+
+- Psalms 10:10, the fifth word: «common + broken» to «an army + of disheartened people», the place's own pieces.
+- Genesis 14:17, the ninth word: «Chedorlaomer» to «Kedor-laomer», STEP's words for the place where MACULA's stood.
+
+Each was read on the page: the card says «here STEP reads» the line, and stands on it.
+
+ALSO
+
+- data/source-corpus-v1.json is emitted again from the corpus lane's source ledger as it stands on its store. The ledger's correction of 6 September refuses fifteen sources; the copy in this tree was older and said three. The store cites none of the fifteen, before or after.
+
+THE CHECKS
+
+- check-lattice-delta-v1, new: D1 the pin and its receipts; D2 every sidecar says the delta it was read with, by the pin's bytes, and the books' lines are the lists'; D3 with the lattice and the lists on the machine, each graded surface carries the lattice's grades with the delta's line applied, and the counts are a recount's; D4 the third list lands nothing and is read beside the zones.
+- check-lattice-projection-v1 L4c reads a listed entry's names from the delta's list, place by place.
+- check-entry-gate-v1 E7 reads a lost tag as the lattice piece's own.
+- check-read-words-v1: R1 holds the amendment's receipts and every line's word place; R3 the word found is the one its place numbers; R5 the zone's record names the amendment and its lost tags; R9, new, holds the lost tag's place on its zone and in the record of the lines at rest.
+
+@@GATE@@
+
+@@SUITE@@

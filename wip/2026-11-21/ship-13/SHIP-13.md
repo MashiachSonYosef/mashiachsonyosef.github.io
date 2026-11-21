@@ -54,3 +54,27 @@ Where a zone does carry a headword the two readings agree: the same entries at 9
 - `check-lattice-projection-v1` L4c reads a listed entry's names from the delta's list, place by place.
 - `check-entry-gate-v1` E7 reads a lost tag as the lattice piece's own.
 - `check-read-words-v1`: R1 the amendment's receipts and every line's word place; R3 the word found is the one its word place numbers; R5 the zone's record names the amendment and its lost tags; R9, new, the lost tag's place on its zone and in the record of the lines at rest.
+
+## The round (11:00 to 11:40 UTC), and every resting line against live
+
+The round whole on the ship tree, with the form-of record, the lines, the chain books, the door and the switches page (`measures/pipeline.log`). `zone.html` is live's, byte for byte: no page code moved.
+
+**Two entries move in 40 works** (`measures/lines-diff-against-live.json`):
+
+| place | was | is |
+|---|---|---|
+| Psalms 10:10, word 5 | «common + broken» (Strong's dictionary, BDB's index) | «an army + of disheartened people», the place's own pieces (STEP) |
+| Genesis 14:17, word 9 | «Chedorlaomer», the piece as MACULA reads it | «Kedor-laomer», the piece as STEP reads it |
+
+Both cards were read on the page (`tools/cards-at-the-two-places.mjs`). Each says «here STEP reads» its line and stands on it. At Genesis 14:17 the six other readings stand as before («Chedorlaomer» among them, and STEP's «Kedorlaomer» from the other four places of the name). At Psalms 10:10 the card opens on the read words' division, as the other 27 such places do.
+
+## The six nearest checks, on the round's tree (11:42 to 11:52 UTC): all pass
+
+Each with the lattice and the delta's lists on the machine, so nothing was left unjudged (`measures/check-*.txt`):
+
+- `check-lattice-delta-v1`: 39 sidecars; 180,273 graded surfaces carry the lattice's grades with the delta's line applied; of the third list's 1,159 places 968 are asked by their own headword, the list's lemma, with the list's entries at 964.
+- `check-lattice-projection-v1` L4c: 306,470 graded word places read against the lattice and the delta, each its own verse's cards.
+- `check-entry-gate-v1` E7: 304,262 tagged places read against the lattice, one of them by the lost tag.
+- `check-read-words-v1`: 28 places on 15 zones; R9 Genesis 14:17 word 9, H3540, «Kedor-laomer».
+- `check-source-corpus-v1` with the ledger: the record is the ledger's; fifteen refused, none cited.
+- `check-no-import-side-effects-v1`.
