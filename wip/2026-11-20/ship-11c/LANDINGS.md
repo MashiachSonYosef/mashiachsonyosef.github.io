@@ -104,3 +104,33 @@ On the fresh copy afterward: `check-landings-v1`, `check-store-continuity-v1`, `
 
 **Left for the real tree, after ship 11 is out:** PIPELINE.md's paragraph; the round; every moved line read (the five names-v2 places are expected to read STEP's words); the gate, with a class for the landings if a first card moves; the suite; the ship.
 
+## On the real tree: the round, and every resting line against live (21 November, 00:14 UTC)
+
+Run as `tools/pipeline-11c.sh` (pass `pipe4`) on branch `ship11c` from ship 11 as shipped (98f4c8a605); live for the comparison is ship 11. The store side ended on the same store as both rehearsals (9d3491c7292a after the made spaces and the own pointing, 88fec6d59737 after the entries). The round, the form-of record, the lines, the chain books, the door, the switches page: all ended clean.
+
+**Seventeen entries move in 40 works** (`lines-diff-against-live.json`). Every one is by a row of v202, STEP's own row under our text's spelling; v200's and v201's rows move no resting line. Read on the two stores, and the Bible places asked of both pages:
+
+Fourteen read better.
+
+| place | was | now | the landed row |
+|---|---|---|---|
+| 2 Samuel 11:24, word 1 | «and + they showed» | «and + they shot arrows» | STEP's row for this very place (H3384A): the archers shot |
+| Jeremiah 51:9, word 1 | «cure» (Strong's) | «we healed» | STEP's row for this place (H7495) |
+| Ezekiel 27:6, word 11 | «Chittim» (Strong's) | «Kittim» | STEP's row for this place (H3794H); ship 11 said it would come |
+| Tikkunei Zohar, ten places of the Aramaic «the prophets» (31b twice, 32a three times, 32b, 54b, 74b, 107a, 116a) | bare | «prophets + the» | STEP's row from Ezra 5:1 (H5029) |
+| Tikkunei Zohar 144a, «the winter» | bare | «the + winter» | STEP's row from Song of Songs 2:11 (H5638) |
+
+Three read a neighbor's wording, and are **known**:
+
+| place | was | now |
+|---|---|---|
+| Daniel 4:21, word 10 («upon my lord the king») | «lord + my» | «O lord + my» |
+| 1 Samuel 26:7, word 15 | «[the] place of head + his» | «[is the] place of head + his» |
+| 1 Samuel 26:16, word 30 | «[was the] place of head + his» | «[is the] place of head + his» |
+
+Why. At these places our text spells the word otherwise than the Leningrad text STEP follows, the lattice has no reading of the place, and no row of STEP's stood under our spelling. The line was bare, so the page printed STEP's own words for the place (the owner's question 2 of 14 November: STEP's own pick where the line is bare). v202 lands STEP's rows under our spelling: for Daniel two rows of one entry and one pointing («O lord/ my» for 4:16, «lord/ my» for 4:21), for 1 Samuel three (26:11, 26:7, 26:16). The line is no longer bare, so the fill no longer prints, and the first row by rank leads at each of the sibling places. The card holds both pills, and the right one is a press away. The same entry, the same word, STEP's own rendering of it two verses off.
+
+**What the same measure showed on live** (`tools/measure-steps-own-words.py`, `steps-own-words-against-the-line.txt`). Of the 1,021 places where STEP's own words may stand, 785 are call 4's (STEP's reading stands whatever the line is). At the other 236 the line is STEP's pick at 118, another of STEP's own rows at 62 (60 on live before this ship), and another source's row at 56 (58 on live). The 62 are the same class as the three: Leviticus 9:22 reads «hand + his» where STEP reads «hands/ his»; Deuteronomy 7:9 «commandment + his» for «commandments/ his»; 2 Samuel 22:23 «plan + its» for «judgments/ his»; Genesis 13:3 «tent + towards» for «tent/ his». So the landing by itself does not make these places read STEP's reading, which I had expected of the five places ship 11's names moved: the row is under the key now, and an older row of STEP's still outranks it.
+
+**The mend is the next ship's, and it is the corpus lane's own list.** v202 names these places (1,173 where our text spells a word otherwise) and gives STEP's pieces cut onto our letters at 1,035 of them. With the place's own pieces landed, the line reads the place's own reading, as it does everywhere the lattice has one. That is one ship with the pieces; it mends the three above and the sixty that were there before.
+
