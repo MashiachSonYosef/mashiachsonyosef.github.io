@@ -1,0 +1,11 @@
+import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
+import { join } from "node:path";
+const [A, B, ORDER] = process.argv.slice(2);
+const files = JSON.parse(readFileSync(ORDER, "utf8")).files;
+const open = (d, b) => JSON.parse(gunzipSync(readFileSync(join(d, `${b}.bin`))).toString("utf8"));
+const count = (d) => { let sites = 0, verses = 0, books = 0; const per = {}; for (const b of files) { const z = open(d, b), gl = z.gloss || {}; let s = 0, v = 0; for (const sec of z.sections || []) { const n = (sec.words || []).filter((w) => w.k && gl[w.k] === undefined).length; if (n) { v += 1; s += n; } } if (s) books += 1; sites += s; verses += v; per[b] = s; } return { sites, verses, books, per }; };
+const a = count(A), b = count(B);
+console.log("live: sites", a.sites, "verses", a.verses, "books", a.books);
+console.log("ship: sites", b.sites, "verses", b.verses, "books", b.books);
+console.log("books that move:", files.filter((f) => a.per[f] !== b.per[f]).map((f) => `${f} ${a.per[f]}→${b.per[f]}`).join(", "));

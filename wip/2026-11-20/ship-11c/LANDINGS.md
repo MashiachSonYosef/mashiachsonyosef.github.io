@@ -163,3 +163,25 @@ With the four, on the ship tree: all 26 laws pass, the third work Daniel. Task 1
 
 One more from the check's own self-test (it is run by hand, not by the suite): its H14 plants a sign back into a record and expects the law to name it once. It used to land on Exodus 22:4; with STEP's row landed there it lands on Daniel 1:16, where the object marker stands beside a word of two entries, each carrying STEP's words, and the law names it twice. H14 now holds every fault to the planted word (`tools/patch-check-default-picks-h14.py`). The node self-test passes; on the live tree as shipped it passed on Exodus.
 
+
+## The suite (00:58 to 02:21 UTC), and the two things it found
+
+196 checks in two lanes; `suite/verdicts.tsv`. 192 clean at the first pass. Four not:
+
+- `check-reading-rows-v1` R1: the card's reading rows on a small phone. Known, red on live (ships 9, 10 and 11).
+- `check-nothing-unlanded-v1`: it holds the tree against what is pushed, and is read after the push. Known.
+- `check-nothing-hand-typed-v1`: **mine.** `tools/derive-landings-v1.mjs` wrote the maqaf as a glyph in a string literal (line 60). Written as its code point now. The tool's derived lists are held by the pin's bytes, and `check-landings-v1` passes again after the change.
+- `check-demonstrations-v1` L8: **the landings' doing, and good news.** The demonstrations' record named Amos 9:6 as a verse with a word of no card. Its third word has STEP's row now.
+
+### Words that gain a card
+
+Following that one address: `words-that-gain-a-card.txt` (`tools/count-words-with-no-card.mjs`, `tools/count-words-that-gain-a-card.mjs`). **At 79 places (52 spellings) a word that had no card has one**: 68 in 21 of the thirty-nine books and 11 in the Tikkunei Zohar. Ezekiel 18, 1 Samuel 10, Job 6, Exodus, 2 Samuel and Ezra 4 each, 2 Kings, Jeremiah and Proverbs 3 each, 1 Chronicles 2, and one each in Numbers, Joshua, 1 Kings, Amos, Habakkuk, Psalms, Song of Songs, Ruth, Lamentations, Daniel and 2 Chronicles. The words with no card in the thirty-nine books go from 1,897 to 1,829; Habakkuk has none left.
+
+Read at each place (`tools/read-the-line-where-a-word-gains-a-card.mjs`): at the 68 in the thirty-nine books the resting line is the same on live and here. At 63 it already read STEP's own words for the place, by the default picks, and at 5 the place's pieces (MACULA 4, TAHOT 1), with no card behind it: pressed, the word said «no reading in the catalog for this form». Now the card opens on STEP's row. The Tikkunei Zohar's 11 were bare lines and are eleven of the seventeen that move.
+
+### The record's mend (`tools/patch-after-the-suite.py`)
+
+- Amos 9:6 → Amos 6:3 (its fourth word has no card on this tree).
+- The count: the record said «1,623 sites in 39 books», typed on 3 September. Live stood at 1,897 in 37 books; this tree has 1,829 in 36. The record says the measure. **Follow-up, not in this ship:** the door prints this count from the record, so it goes stale at every landing that gives a word a card (v207 will give many). The door should count it from the shelf, or the check should hold the count. Every `sites` in that record is typed (17 of them).
+- Amos 3:11's note said «two of the fourteen words in this verse have no reading». One of its thirteen words has none, on live too (the fourteenth item is the verse's end mark). The note says so.
+- The door built again: only `demonstrations/index.html` moves.

@@ -57,7 +57,7 @@ const refuse = (why) => { console.log(`REFUSED — ${why}`); process.exit(1); };
 const n = (x) => Number(x).toLocaleString("en-US");
 const spaced = (t) => String(t).replace(/\s+/gu, " ").trim();
 const sha16 = (t) => sha256Of(Buffer.from(String(t), "utf8")).slice(0, 16);
-const MAQAF = "־";
+const MAQAF = "\u05BE";
 const FACTS = ["n", "t", "b"];
 
 // ---- the pin, the lane's list ------------------------------------------------------------------
