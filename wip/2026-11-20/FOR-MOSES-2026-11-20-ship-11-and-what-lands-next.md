@@ -101,3 +101,25 @@ No tag is written in this pass. Your core piece's number is already among the en
 2. **On the card, a piece pressed alone is still the dictionaries'.** At 1 Samuel 26:7 the card says «[the] place of head + his» above its pills, as your pieces read the place, and its core block stands on Strong's «bolster», because no dictionary row reads that block as your piece does. That is the page's rule at every such place, not the bridge's.
 
 Asks D and E above stand as written. The 794 other places with new pieces carry none yet.
+
+
+## Added 21 November, 08:15 UTC: v207 lands in part, and why the rest waits
+
+**In its round now (ship 12): your first and third lists.** PanLex's and the translation tables' rows by their own language field (4,090) and Harkavy's (376). On the ship tree the store goes from 653,227 rows to 657,693, your counts holding line for line: 4,302 rows at the hole the strike left, 9 whose hole another row holds now, 155 with no rank named, none left unlanded, none gathered. Sixteen sources stand re-admitted, each on what you quote of its own source; the strike's own figures stand (49 struck, 33 struck now, 16 back).
+
+**Your second list is proved and held for the owner's word.** I landed all three lists on a trial copy and read every resting line:
+
+- In the thirty-nine books nothing moves.
+- In the Tikkunei Zohar, which the owner's rest does not reach, 1,276 lines move, and 1,111 of them by the ETCBC's rows. They come back at the low ranks they held, and among readings of one year the lower rank leads: «not» for «power» at 288 places, «Zaccur» for «remember» at 21; also «Elijah» for «Elihu» and «Isaiah» for «Jeshaiah».
+- About a fifth of Davidson's rows are a description of a word and not a reading of it, by a rough test (2,720 of 12,487): «a masculine proper name» (445 rows), «the proper name of a place», «according to others», «used only in the plural», «Joshua 10:3». He is one of the owner's twelve, so open they would stand as pills at about 101,700 word places of the books.
+
+The owner's rule is «slowly add», so Davidson, the ETCBC and STEP's Expanded Strong each wait for the owner to add them. Nothing of yours is refused; each lands by one command.
+
+**One departure from your letter, for you to judge.** You say a null rank takes «the highest served rank under the key plus one». Read so, six null-rank lines of your first list took holes that later lines of the same list name: a hole past the key's last served row. A hole by strike is kept for the row that left it, so here a row with no hole of its own stands after the last row and the last typed hole of its key, and every line with a free hole gets it. Say if you read it otherwise.
+
+**Asks, each for when the held list lands.**
+
+- **F. Davidson's rows that describe.** Can you mark, from the book's own entry, which of his rows are a description, a grammar note or a reference and not a reading? As the UBS dictionary's collocation rows are a kind its source states, these could rest apart by their own mark. Ask C of 20 November (the name mark for the rows about to land) stands with it: no returning row carries one.
+- **G. Two of his keys.** «queen» stands under מלבא (M84, «מלבא Chaldean feminine noun: queen») and «proper name of a place» under יבום (M89). The headwords are the keys. Are these the book's own spellings, or slips of the reading for the words for a queen and for Jebus?
+- **H. Your ledgers v159 and v160 over the rows that return.** A ledger is its source's by key, so the ETCBC's M8 and STEP's M51 stand under the ledgers you declared for their span rows (M199, M197). On the trial, 664 of their rows carry shapes those declarations do not name, and two rows meet two of the owner's answers at once: «(Mount )Sirion (KJV: Sion)» and «(Mount )Shepher (KJV: mount Shapher)» carry both the optional word (B02) and the King James form (B03), and no step says how the two compose. For now such a row would print as written. The other returning sources have no ledger at all, and each row prints whole.
+- **I. Not an ask: the ETCBC and STEP's Expanded Strong were never wholly gone from the page.** Their rows for joined words are served from the span store under M199 and M197. The owner knows.
