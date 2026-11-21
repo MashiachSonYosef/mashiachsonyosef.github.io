@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-16.
 
-**188 rules declared · 176 named by a check · 12 unguarded.**
+**189 rules declared · 177 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -36,7 +36,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `commentary-scope-rule-v2` | zone.html | check-commentary-in-line-v1 |
 | `commentary-words-rule-v1-separate-at-the-spaces-the-author-typed` | tools/build-commentary-sidecar-v1.mjs | check-commentary-in-line-v1 |
 | `compspan-coverage-rule-v1-a-word-its-source-divides-opens-with-its-divisions` | tools/check-compspan-coverage-v1.mjs | check-compspan-coverage-v1 |
-| `core-block-rule-v1-a-card-whose-one-pill-is-the-places-set-opens-on-its-core-block-the-set-still-on-top` | zone.html | check-card-opens-on-the-line-v1, check-citations-v1, check-compspan-coverage-v1, check-dictionary-toggle-v1, check-line-follows-card-v1, check-line-reads-the-place-v1, check-piece-store-v1, check-reading-language-v1, check-ruled-equals-first-paint-v1 |
+| `core-block-rule-v1-a-card-whose-one-pill-is-the-places-set-opens-on-its-core-block-the-set-still-on-top` | zone.html | check-card-opens-on-the-line-v1, check-citations-v1, check-compspan-coverage-v1, check-dictionary-toggle-v1, check-line-follows-card-v1, check-line-reads-the-place-v1, check-piece-store-v1, check-reading-language-v1, check-ruled-equals-first-paint-v1, check-spelling-bridge-v1 |
 | `count-gate-rule-v1` | tools/check-clean-address-v1.mjs | check-clean-address-v1, check-front-door-three-counts-v1, check-nothing-hand-typed-v1 |
 | `count-stamp-rule-v1-the-count-is-stamped-beside-the-witnesses-that-published-one` | tools/build-zone.mjs, tools/count-stamp-v1.mjs, tools/emit-masorah-witnesses-v1.mjs, tools/restamp-zone-v1.mjs | check-bookword-count-v1, check-c0-refusals-v1 |
 | `declarations-branch-rule-v1-a-branch-is-what-the-source-says-about-itself-and-a-reserved-token-is-never-a-branch` | tools/project-declarations-v1.mjs | check-declarations-branch-v1 |
@@ -166,6 +166,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `span-line-rule-v1-a-pointer-leads-no-joined-line-and-under-only-nor-does-a-row-its-place-holds-back` | zone.html | check-span-grade-v1, check-span-store-v1 |
 | `span-order-rule-v1-a-span-row-is-ordered-as-every-row-is-the-tier-before-1940-the-year-then-the-rank` | zone.html | check-span-grade-v1, check-span-store-v1 |
 | `span-slice-rule-v1-compspan-template-exact-key` | tools/span-slice-v1.mjs | check-record-pinned-v1, check-usable-card-v1 |
+| `spelling-bridge-rule-v1-where-our-text-spells-a-word-otherwise-and-step-names-our-spelling-the-place-reads-steps-own-words-for-it-cut-on-our-letters` | tools/apply-spelling-bridge-v1.mjs, tools/spelling-bridge-v1.mjs | check-spelling-bridge-v1, check-same-product-v1 |
 | `stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words` | tools/stem-family-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-pointing-gate-v1 |
 | `stems-carried-rule-v1-a-key-carries-its-rows-stems-only-where-a-card-of-the-book-can-ask-them` | tools/stems-carried-v1.mjs, tools/project-lattice-v12-v1.mjs | check-stems-carried-v1, check-stems-extension-v1 |
 | `stems-extension-rule-v1-three-more-dictionaries-name-their-stems-as-the-owner-set-their-branches-and-a-row-beside-the-store-is-asked-its-stem-too` | tools/stems-extension-v1.mjs, zone.html | check-stems-extension-v1 |
@@ -221,7 +222,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 42 of the 161 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 44 of the 163 tools that are not checks.
 
 Not called by any build stage:
 
@@ -313,7 +314,6 @@ Not called by any build stage:
 - `tools/project-source-suggested-v1.mjs`
 - `tools/project-toggle-headword-v1.mjs`
 - `tools/project-v-volume-v1.mjs`
-- `tools/proper-name-v1.mjs`
 - `tools/pull-zones-from-store-v1.mjs`
 - `tools/push-toggles-v1.mjs`
 - `tools/read-words-v1.mjs`
@@ -333,6 +333,7 @@ Not called by any build stage:
 - `tools/serve-from-stream-v2.mjs`
 - `tools/serve-tree-v1.mjs`
 - `tools/span-slice-v1.mjs`
+- `tools/spelling-bridge-v1.mjs`
 - `tools/stem-family-v1.mjs`
 - `tools/stems-carried-v1.mjs`
 - `tools/stems-extension-v1.mjs`
@@ -358,7 +359,7 @@ again from a checkout by a build file alone.
 
 | kind | bins | route or schema | built by | written after its build by |
 |---|---|---|---|---|
-| zone | 40 | MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, EDITION_DOOR_SERVE__BUILT_STREAM | tools/build-zone.mjs (run by build.sh) | tools/apply-paseq-place-v1.mjs (12; **no build file runs it**); tools/apply-read-words-v1.mjs (15; run by tools/round-v1.sh); tools/apply-span-ledger-v1.mjs (39; **no build file runs it**); tools/bake-witnessed-order-v1.mjs (39; run by tools/round-v1.sh); tools/project-lattice-v12-v1.mjs (39; run by tools/round-v1.sh); tools/project-piece-gloss-v1.mjs (39; **no build file runs it**); tools/project-toggle-headword-v1.mjs (39; **no build file runs it**); tools/regloss-zone.mjs (40; run by tools/round-v1.sh); tools/respan-zone-v1.mjs (39; **no build file runs it**); tools/restamp-zone-v1.mjs (39; run by tools/round-v1.sh); tools/strike-source-v1.mjs (23; **no build file runs it**); tools/type-witnessed-drops-v1.mjs (3; **no build file runs it**) |
+| zone | 40 | MAM_RESTORE_V5_SERVE__POSITIONAL_PROTOTYPE, EDITION_DOOR_SERVE__BUILT_STREAM | tools/build-zone.mjs (run by build.sh) | tools/apply-paseq-place-v1.mjs (12; **no build file runs it**); tools/apply-read-words-v1.mjs (15; run by tools/round-v1.sh); tools/apply-span-ledger-v1.mjs (39; **no build file runs it**); tools/apply-spelling-bridge-v1.mjs (28; run by tools/round-v1.sh); tools/bake-witnessed-order-v1.mjs (39; run by tools/round-v1.sh); tools/project-lattice-v12-v1.mjs (39; run by tools/round-v1.sh); tools/project-piece-gloss-v1.mjs (39; **no build file runs it**); tools/project-toggle-headword-v1.mjs (39; **no build file runs it**); tools/regloss-zone.mjs (40; run by tools/round-v1.sh); tools/respan-zone-v1.mjs (39; **no build file runs it**); tools/restamp-zone-v1.mjs (39; run by tools/round-v1.sh); tools/strike-source-v1.mjs (23; **no build file runs it**); tools/type-witnessed-drops-v1.mjs (3; **no build file runs it**) |
 | commentary | 21 | ZONE_COMMENTARY_V2 | tools/build-commentary-sidecar-v2.mjs (no build file runs it) | tools/regloss-zone.mjs (21; run by tools/round-v1.sh); tools/strike-source-v1.mjs (20; **no build file runs it**) |
 | lattice | 39 | ZONE_LATTICE_V1 | tools/project-lattice-v12-v1.mjs (run by tools/round-v1.sh) | — |
 | volume | 39 | V_VOLUME_V1 | tools/project-v-volume-v1.mjs (no build file runs it) | — |

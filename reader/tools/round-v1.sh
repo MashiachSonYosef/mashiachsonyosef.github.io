@@ -27,6 +27,14 @@
 # and, where the lattice gave the place no pieces, the place its pieces. It
 # reads only this tree, and over zones that carry its work it writes nothing.
 #
+# THE ZONES STEP BEGINS WITH THE SPELLING BRIDGE (data/spelling-bridge/, relay
+# v202): tools/apply-spelling-bridge-v1.mjs gives a place our text spells
+# otherwise than the Leningrad text, where STEP names our spelling, STEP's own
+# words for the place as its pieces. It runs first because the line read
+# again reads a name's lead off a place's pieces (tools/proper-name-v1.mjs)
+# and the lattice projection reads them too. It reads only this tree, and
+# over zones that carry its work it writes nothing.
+#
 # WHAT IT NEEDS FROM OUTSIDE THE TREE, and only these: the corpus lane's
 # lattice (one file per book), its two binyan files and their extension to
 # three more dictionaries (pinned in data/stems-extension/ by its size and
@@ -99,6 +107,14 @@ mkdir -p "$WORK"
 served() { node --input-type=module -e 'import { zonesServed } from "./tools/zones-on-disk-v1.mjs"; console.log(zonesServed().join("\n"));'; }
 
 if has zones; then
+  echo "── zones · where our text spells a word otherwise, STEP's own words for the place ─"
+  # first: the line read again reads a name's lead off the place's pieces, and
+  # so does the lattice projection. A zone that carries the list's pieces is
+  # counted and left as it is
+  node tools/apply-spelling-bridge-v1.mjs --stamp "$STAMP" > "$WORK/spelling-bridge.log" 2>&1 \
+    || { echo "round-v1: the spelling bridge's pieces were not laid" >&2; grep -E "^FAIL" "$WORK/spelling-bridge.log" >&2 || true; tail -2 "$WORK/spelling-bridge.log" >&2; exit 1; }
+  grep -E "^  pieces:" "$WORK/spelling-bridge.log" | sed 's/^  /   /' || true
+
   echo "── zones · the witnessed columns baked, the line read again ────────────"
   rm -rf "$WORK/zones" && mkdir -p "$WORK/zones"
   for b in $(served); do
