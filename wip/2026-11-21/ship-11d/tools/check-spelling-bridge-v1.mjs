@@ -28,8 +28,7 @@
 //       names is the list's
 //   B2  every laid place is found on its zone by its verse, its number
 //       among the verse's words and the lattice's surface, a plain word
-//       under the list's key, and carries exactly the list's pieces, the
-//       word's last field
+//       under the list's key, and carries exactly the list's pieces
 //   B3  nothing else is written: each zone's record names the list and its
 //       laid places as a recount gives them, and its write is typed; a zone
 //       with no laid place carries no record; and a place of the list the
@@ -121,9 +120,8 @@ const saidOf = (p) => `${p.book} ${p.place}`;
     at.push({ place, found });
     const carried = carriedAt(found.word, place);
     if (carried !== "the list's") faults.push(`${saidOf(place)}: the word carries ${carried === "none" ? "no pieces" : `other pieces (${JSON.stringify(found.word.pg)})`}`);
-    else if (Object.keys(found.word).pop() !== "pg") faults.push(`${saidOf(place)}: its pieces are not the word's last field`);
   }
-  check("B2  every laid place is found on its zone by its verse, its number among the verse's words and the lattice's surface, a plain word under the list's key, and carries exactly the list's pieces, the word's last field",
+  check("B2  every laid place is found on its zone by its verse, its number among the verse's words and the lattice's surface, a plain word under the list's key, and carries exactly the list's pieces",
     faults.length === 0 && at.length === laid.length,
     faults.length ? `${faults.length} · ${first(faults)}` : `${nf(at.length)} places on ${zoneOf.size} zones, ${nf(at.reduce((s, x) => s + x.place.pieces.length, 0))} pieces`);
 }

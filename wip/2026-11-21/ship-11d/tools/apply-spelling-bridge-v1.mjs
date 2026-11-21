@@ -19,9 +19,8 @@
 //
 // WHAT THIS WRITES, place by place. On the word of a laid place, pg: its
 // pieces in order, each as a zone writes a piece (our letters, STEP's English
-// as STEP writes it, its source, its role), laid as the word's last field
-// whatever the zone held before, so the same inputs give the same bytes. At
-// a place the pin does not lay, nothing.
+// as STEP writes it, its source, its role). At a place the pin does not lay,
+// nothing.
 //
 // WHAT IT PROVES FIRST, every one a refusal that writes nothing. The pin's
 // files are the bytes it names, and the lane's receipt names the three lists
@@ -34,9 +33,14 @@
 // under the list's key, carrying no pieces or these pieces. Anything else, a
 // laid place that carries other pieces, is a refusal.
 //
-// IT IS RUN BY THE ROUND, after the lattice projection and the read words
-// (tools/round-v1.sh), and whenever the place's pieces are laid again. Run
-// over zones that carry its work it writes nothing.
+// IT IS RUN BY THE ROUND, FIRST IN ITS ZONES STEP (tools/round-v1.sh), and
+// whenever the place's pieces are laid again. First, because two tools of
+// that step read a place's pieces: the line read again takes a name's lead
+// from the piece of STEP's that is the word's core (tools/proper-name-v1.mjs),
+// and the lattice projection takes the name's lead under "only" and the stems
+// a card can ask. Laid after them, a first round left Genesis 49:10's
+// «Shiloh» without its name's lead until a second round. Run over zones that
+// carry its work it writes nothing.
 //
 // The lane's next lattice may read these places under our spelling and give
 // them pieces itself. A zone that carries other pieces at a laid place is
@@ -98,8 +102,6 @@ if (faults.length) refuse();
 // ── what there is to do ─────────────────────────────────────────────────
 const all = [...zones.values()].flatMap((z) => z.here);
 const toLay = all.filter((h) => h.carried === "none");
-// the pieces are the word's last field: a projection that writes the word's entry again after them leaves them out of place
-const outOfPlace = all.filter((h) => h.carried !== "none" && Object.keys(h.found.word).pop() !== "pg");
 const recordOf = (here) => ({
   rule_id: SPELLING_BRIDGE_RULE_ID,
   applied_by: SPELLING_BRIDGE_TOOL,
@@ -114,17 +116,16 @@ const recordOf = (here) => ({
 // a zone whose record is not the recount is written again, though its pieces stand
 const stale = [...zones.values()].filter((z) => z && z.here.length && (() => { const has = (z.zone.emitted_from || {}).spelling_bridge; if (!has) return true; const { applied_on, ...rest } = has; return JSON.stringify(rest) !== JSON.stringify(recordOf(z.here)); })());
 console.log(`${n(bridge.places.length)} places listed · ${[...counts].filter(([k]) => (bridge.pin.laid || []).some((e) => k === `${e.class} · ${e.use}`)).map(([k, v]) => `${n(v)} of ${k}`).join(", ")} laid, on ${zones.size} zones (${n(all.reduce((s, h) => s + h.place.pieces.length, 0))} pieces)`);
-console.log(`  pieces: ${n(toLay.length)} place(s) to lay (${n(toLay.reduce((s, h) => s + h.place.pieces.length, 0))} pieces) · ${n(all.length - toLay.length)} already laid, the same${outOfPlace.length ? ` (${n(outOfPlace.length)} to lay again as the word's last field)` : ""}`);
+console.log(`  pieces: ${n(toLay.length)} place(s) to lay (${n(toLay.reduce((s, h) => s + h.place.pieces.length, 0))} pieces) · ${n(all.length - toLay.length)} already laid, the same`);
 if (process.argv.includes("--list")) for (const h of all) console.log(`  ${h.place.book} ${h.place.place} · ${h.place.pieces.map((x) => `${x.k} «${x.g.trim()}»`).join(" + ")}${h.carried === "none" ? "" : " · laid"}`);
-if (!toLay.length && !stale.length && !outOfPlace.length) { console.log("nothing to write"); process.exit(0); }
+if (!toLay.length && !stale.length) { console.log("nothing to write"); process.exit(0); }
 if (DRY) { console.log("--dry: nothing written"); process.exit(0); }
 
 // ── the write ───────────────────────────────────────────────────────────
 for (const { zone, zPath, here } of zones.values()) {
   if (!here.length) continue;
-  if (!here.some((h) => h.carried === "none" || outOfPlace.includes(h)) && !stale.some((z) => z.zone === zone)) continue;
-  // the pieces, the word's last field: laid again where the zone carried them, so no earlier run shows in the bytes
-  for (const { place, found } of here) { delete found.word.pg; found.word.pg = place.pieces.map((x) => ({ k: x.k, g: x.g, s: x.s, r: x.r })); }
+  if (!here.some((h) => h.carried === "none") && !stale.some((z) => z.zone === zone)) continue;
+  for (const { place, found, carried } of here) if (carried === "none") found.word.pg = place.pieces.map((x) => ({ k: x.k, g: x.g, s: x.s, r: x.r }));
   const ef = zone.emitted_from || (zone.emitted_from = {});
   const { rule_id, ...rest } = recordOf(here);
   ef.spelling_bridge = { rule_id, applied_on: STAMP, ...rest };

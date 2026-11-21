@@ -70,3 +70,20 @@ Some of the others, as a reader meets them:
 STEP's own marks print as they do at every other place: «righteousness<es> + his» (Ezekiel 18:24), as 1,783 lines on live already do.
 
 `check-spelling-bridge-v1` B1 to B4 pass on the tree: 206 lines are their place's pieces, the six named readings among them.
+
+## The round run twice found a fault of order, and it was mine (03:55 UTC)
+
+Before the gate I ran the round's zones step a second time over the built tree, to prove a tool that had just joined the round gives the same bytes. It did not: four files differed (Genesis's zone and its lattice sidecar, Ezekiel's and Nehemiah's zones).
+
+**Cause.** I had put the bridge's step last in the zones step, after the lattice projection, where the read words are laid. But two tools earlier in that step read a place's pieces:
+
+- the line read again (`regloss-zone`, through `tools/proper-name-v1.mjs`) takes a name's lead from the piece of STEP's that is the word's core;
+- the lattice projection takes the name's lead under «only» and the stems a card can ask.
+
+So on the first round the pieces arrived after both had run, and the name places among the 206 waited for a second round: Genesis 49:10's «Shiloh» gained its name's lead only then (188 keys lead with their name, 187 before; the sidecar's count 499 to 500).
+
+**Mend** (`tools/patch-bridge-first-in-the-round.py`). The bridge's step is first in the zones step, and the round's header and PIPELINE.md say why. The tool no longer moves the pieces to be the word's last field (that was only needed when it ran last), and B2 no longer holds it.
+
+**Pass 2** (`tools/pass2.sh`), running now: the zones put back as ship 11c shipped them, the whole pipeline once, then the zones and stamps steps again, with the same bytes owed in every zone file. The lines above are pass 1's and are read again from pass 2.
+
+**The read words have the same order.** `apply-read-words-v1` lays its 13 places' pieces after the projection too. Every zone already carries them, so a round today gives the same bytes; a zone built from nothing would need two rounds for a name among them. Not this ship's: filed.
