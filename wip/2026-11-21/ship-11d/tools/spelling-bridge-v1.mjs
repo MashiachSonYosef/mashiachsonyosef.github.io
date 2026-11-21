@@ -62,6 +62,7 @@ export const readBridge = (pinPath) => {
   if (!existsSync(pinPath)) throw new PinFault(`${pinPath} is not here`);
   const pin = JSON.parse(readFileSync(pinPath, "utf8"));
   if (pin.schema_version !== "SPELLING_BRIDGE_PIN_V1") throw new PinFault(`${pinPath}: schema ${pin.schema_version}, not SPELLING_BRIDGE_PIN_V1`);
+  if (pin.rule_id !== SPELLING_BRIDGE_RULE_ID) throw new PinFault(`${pinPath}: its rule_id is not ${SPELLING_BRIDGE_RULE_ID}`);
   for (const k of ["rule", "receipt", "places", "form_rows_not_landed"]) if (!pin[k] || !pin[k].file) throw new PinFault(`${pinPath} names no ${k}`);
   if (!pin.form_rows || !pin.form_rows.at) throw new PinFault(`${pinPath} names no form rows`);
   const home = dirname(pinPath);

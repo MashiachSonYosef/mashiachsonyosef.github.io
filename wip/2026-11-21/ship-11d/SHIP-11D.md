@@ -33,3 +33,11 @@ At 1,173 places our text spells a word otherwise than the Leningrad text STEP an
 - `tools/check-spelling-bridge-v1.mjs`, five laws: B1 the pin, the receipt, the recount, each laid place proven against its form row; B2 each laid place carries exactly the list's pieces; B3 nothing else is written (each zone's record recounts; the 794 new-piece places the pin does not lay carry none); B4 the record of the lines at rest reads each laid place's pieces, credited to them; B5 on the page, the lines of every laid place in the books of the named readings, and the card of each named place standing on the same reading.
 
 On a sandbox copy of the zones: 206 places laid on 28 zones, 451 pieces; a second run writes nothing; B1 to B3 pass.
+
+## A correction to what I wrote at 02:35
+
+In ship 11c's record I wrote that this mend would carry the form rows' places as «the row naming its verse» (the sidecar's `names_this_verse`). Reading the page showed the plainer road. The reader's line at a place is the place's pieces before it is any row's lead, and a zone word carries them as `pg`. The read words of relay v192 were laid the same way on 15 November (`tools/apply-read-words-v1.mjs`). So nothing new is taught to the page or the sidecar: the 206 places gain what every other place has.
+
+## The gate learns the expectation (`tools/patch-gate-bridge.py`)
+
+Five of the 206 places stand on pages the gate samples (Job 1:4 and 1:21, Ruth 3:14, Lamentations 3:39, Nehemiah 1:1). `check-same-product-v1` takes `--expect data/spelling-bridge/PIN.json`, told by the pin's rule id: at a place the pin lays, found on the new build's zone as the tool finds it, a line that differs on the same word is owed where the new line is the place's own pieces as the page draws them with the signs at rest, credited to the pieces. Under a switch where the place's reading does not lead, the line is the old line and nothing is owed. No place is named in the gate.
