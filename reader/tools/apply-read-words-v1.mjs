@@ -67,6 +67,14 @@
 // (the list's rule, section 8). A zone projected from it is refused here,
 // and the pin is retired then; it is never to be run past a refusal.
 //
+// A LOST TAG'S PLACE (relay v192.1). Where the lattice's piece lost TAHOT's
+// tag and English (Genesis 14:17, the one line of the amendment's list), the
+// projection reads the tag as the piece's own, and this tool lays TAHOT's
+// words for the place on the zone's piece, which carried MACULA's: the place
+// then reads STEP's own words as every other place of the word does. The word
+// is the one its word place numbers; its piece is the one piece as it stood
+// (written) or as set (nothing to do), and anything else is refused.
+//
 // The write is typed on each zone it changes (single-pass-exemption-v1,
 // tools/zone-post-build-v1.mjs), with what the zone carries in
 // emitted_from.read_words.
@@ -81,6 +89,7 @@ import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 import {
   READ_WORDS_RULE_ID, READ_WORDS_HOME, READ_WORDS_TOOL, PASEQ_PLACE_HOME, readReadWords, readPaseqList, receiptAgainst, latticeRead,
   placesOf, findPlace, wordNumberOf, carriedAt, piecesDue, HOLDS, holdsWhole, severalReadWords, strokesAgainst,
+  lostTagsOf, findLostTag, lostTagCarried, pinnedAt,
 } from "./read-words-v1.mjs";
 
 const arg = (name, dflt = null) => { const i = process.argv.indexOf(`--${name}`); return i > 0 ? process.argv[i + 1] : dflt; };
@@ -101,21 +110,26 @@ const { places, faults: listFaults } = placesOf(read);
 for (const f of listFaults) fault(f);
 for (const h of Array.isArray(read.pin.pieces_held) ? read.pin.pieces_held : []) if (!HOLDS.includes(h.holds ?? "pieces")) fault(`the pin holds ${JSON.stringify(h.holds)} at ${h.book} ${h.ref}, and an entry holds ${HOLDS.map((x) => `"${x}"`).join(" or ")}`);
 for (const f of strokesAgainst(read.strokes, paseq.lines, places)) fault(f);
+const { tags: lostTags, faults: lostFaults } = lostTagsOf(read);
+for (const f of lostFaults) fault(f);
 if (faults.length) refuse();
 
 // ── each place, on its zone ─────────────────────────────────────────────
-const zones = new Map();   // book -> { zone, zPath, here: [{ place, found, carried, due }] }
-for (const place of places) {
-  if (!zones.has(place.book)) {
-    const zPath = join(ZONES, `${place.book}.bin`);
-    if (!existsSync(zPath)) { fault(`${place.book}: ${zPath} is not on disk`); zones.set(place.book, null); continue; }
+const zones = new Map();   // book -> { zone, zPath, here: [{ place, found, carried, due }], lost: [{ lost, found, carried }] }
+// a book's zone, opened once: the lists are keyed to the lattice's positions, so the zone must be projected from the file the lane read
+const zoneOf = (book) => {
+  if (!zones.has(book)) {
+    const zPath = join(ZONES, `${book}.bin`);
+    if (!existsSync(zPath)) { fault(`${book}: ${zPath} is not on disk`); zones.set(book, null); return null; }
     const zone = gz(zPath);
-    // the list is keyed to the lattice's positions: the zone must be projected from the file the lane read
     const from = (((((zone.emitted_from || {}).toggles || {}).lattice || {}).source || {}).positions || {}).sha256 || null;
-    if (!from || from !== latticeRead(read.receipt, place.book)) { fault(`${place.book}: the zone is projected from lattice positions ${String(from).slice(0, 12)}, and the lane read its list from ${String(latticeRead(read.receipt, place.book)).slice(0, 12)}`); zones.set(place.book, null); continue; }
-    zones.set(place.book, { zone, zPath, here: [] });
+    if (!from || from !== latticeRead(read.receipt, book)) { fault(`${book}: the zone is projected from lattice positions ${String(from).slice(0, 12)}, and the lane read its list from ${String(latticeRead(read.receipt, book)).slice(0, 12)}`); zones.set(book, null); return null; }
+    zones.set(book, { zone, zPath, here: [], lost: [] });
   }
-  const held = zones.get(place.book);
+  return zones.get(book);
+};
+for (const place of places) {
+  const held = zoneOf(place.book);
   if (!held) continue;
   const where = `${place.book} ${place.ref}`;
   const found = findPlace(held.zone, place);
@@ -127,6 +141,18 @@ for (const place of places) {
   if (due === "held" && carried.pieces !== "none") { fault(`${where}: the pin holds the place's pieces back, and the zone carries ${JSON.stringify(found.word.pg)}`); continue; }
   if (due === "written" && carried.pieces === "other") { fault(`${where}: the zone carries pieces that are not the list's (${JSON.stringify(found.word.pg)})`); continue; }
   held.here.push({ place, found, carried, due, whole });
+}
+// each lost tag, on its zone: the word its word place numbers, tagged by the projection, its one piece as it stood or as set
+for (const lost of lostTags) {
+  const held = zoneOf(lost.book);
+  if (!held) continue;
+  const where = `${lost.book} ${lost.ref} word ${lost.word_number}`;
+  const found = findLostTag(held.zone, lost);
+  if (found.fault) { fault(`${where}: ${found.fault}`); continue; }
+  if (found.word.tg !== lost.tag) { fault(`${where}: the projection gave the word the tag ${JSON.stringify(found.word.tg ?? null)}, and the list sets ${lost.tag} (tools/project-lattice-v12-v1.mjs reads the lost tag; run it first)`); continue; }
+  const carried = lostTagCarried(found.word, lost);
+  if (carried === "other") { fault(`${where}: the zone's pieces are neither the piece as it stood nor as set (${JSON.stringify(found.word.pg ?? null)})`); continue; }
+  held.lost.push({ lost, found, carried });
 }
 // a place that does not stand as the list has it is said once: what follows is judged on the places as they all stand
 if (faults.length) refuse();
@@ -149,7 +175,8 @@ for (const book of zonesOnDisk(ZONES)) {
 if (faults.length) refuse();
 
 // ── what there is to do ─────────────────────────────────────────────────
-const all = [...zones.values()].flatMap((z) => z.here);
+const all = [...zones.values()].flatMap((z) => z.here), allLost = [...zones.values()].flatMap((z) => z.lost);
+const toSet = allLost.filter((h) => h.carried === "as it stood");
 // a place the pin holds whole is given nothing: no tag and no piece
 const toTag = all.filter((h) => !h.whole && h.carried.tags === "none"), toLay = all.filter((h) => h.due === "written" && h.carried.pieces === "none");
 const heldWhole = all.filter((h) => h.whole);
@@ -159,14 +186,17 @@ console.log(`${read.lines.length} lines · ${places.length} places on ${zones.si
 console.log(`  tags: ${count(toTag, tagged)} to write at ${toTag.length} place(s) · ${count(all.filter((h) => !h.whole && h.carried.tags === "the list's"), tagged)} already written, the same · ${count(heldWhole, tagged)} at ${heldWhole.length} place(s) held whole by the pin${heldWhole.length ? ` (${heldWhole.map((h) => `${h.place.book} ${h.place.ref}`).join(", ")})` : ""}`);
 console.log(`  pieces: ${toLay.length} place(s) to lay (${count(toLay, (h) => h.place.pieces.length)} pieces) · ${all.filter((h) => h.due === "written" && h.carried.pieces === "the list's").length} already laid, the same · ${all.filter((h) => h.due === "tied").length} place(s) whose own pieces are the list's (${count(all.filter((h) => h.due === "tied"), (h) => h.place.pieces.length)} pieces) · ${all.filter((h) => h.due === "held").length} held back by the pin${all.some((h) => h.due === "held") ? ` (${all.filter((h) => h.due === "held").map((h) => `${h.place.book} ${h.place.ref}`).join(", ")})` : ""}`);
 console.log(`  strokes: ${read.strokes.length} of ${paseq.lines.length} lines equal relay ${paseq.pin.relay}'s list; nothing to write`);
+if (read.pin.lost_tags) console.log(`  lost tags: ${allLost.length} place(s) · ${toSet.length} piece(s) to set with TAHOT's words · ${allLost.length - toSet.length} already set, the same${allLost.map((h) => ` · ${h.lost.book} ${h.lost.ref} word ${h.lost.word_number} ${h.lost.tag}: «${h.lost.was.g}» to «${h.lost.piece.g}»`).join("")}`);
 for (const h of all) console.log(`  ${h.place.book} ${h.place.ref} · word ${wordNumberOf(h.found.sec, h.found.at)} · ${h.place.words.map((w) => `${w.letters} ${w.tag ?? "no main tag"}`).join(" · ")} · ${h.whole ? "held whole by the pin: no tag, no piece" : `pieces ${h.due}${h.due === "written" ? `: ${h.place.pieces.map((x) => x.g).join(" / ")}` : ""}`}`);
-if (!toTag.length && !toLay.length) { console.log("nothing to write"); process.exit(0); }
+if (!toTag.length && !toLay.length && !toSet.length) { console.log("nothing to write"); process.exit(0); }
 if (DRY) { console.log("--dry: nothing written"); process.exit(0); }
 
 // ── the write ───────────────────────────────────────────────────────────
-const toDo = new Set([...toTag, ...toLay]);
-for (const { zone, zPath, here } of zones.values()) {
-  if (!here.some((h) => toDo.has(h))) continue;
+const toDo = new Set([...toTag, ...toLay, ...toSet]);
+for (const { zone, zPath, here, lost } of zones.values()) {
+  if (!here.some((h) => toDo.has(h)) && !lost.some((h) => toDo.has(h))) continue;
+  // a lost tag's piece: TAHOT's words for the place, in the piece's own place among the word's fields
+  for (const { lost: l, found } of lost) found.word.pg = [{ k: l.piece.k, g: l.piece.g, s: l.piece.s, r: l.piece.r }];
   for (const { place, found, due, whole } of here) {
     if (!whole) found.reads.forEach((r, i) => { if (place.words[i].tag !== null) r.tg = place.words[i].tag; });
     // the pieces, the word's last field: laid again where the zone carried them, so no earlier run shows in the bytes
@@ -181,7 +211,9 @@ for (const { zone, zPath, here } of zones.values()) {
     pin: `${READ_WORDS_HOME}/PIN.json`,
     relay: read.pin.relay,
     letter: read.pin.letter,
-    list: { file: `${read.pin.folder}/${read.pin.read_words.file}`, sha256: read.pin.read_words.sha256, lines: read.pin.read_words.lines },
+    ...(read.pin.amendment ? { amended_by: { relay: read.pin.amendment.relay, letter: read.pin.amendment.letter } } : {}),
+    list: { file: pinnedAt(read.pin, read.pin.read_words), sha256: read.pin.read_words.sha256, lines: read.pin.read_words.lines },
+    ...(lost.length ? { lost_tags: { file: pinnedAt(read.pin, read.pin.lost_tags), sha256: read.pin.lost_tags.sha256, here: lost.map((h) => ({ ref: h.lost.ref, section_word: h.found.at, word: h.lost.word_number, tag: h.lost.tag, piece: h.lost.piece.g, stood: h.lost.was.g })) } } : {}),
     counts: {
       places: here.length, read_words: count(here, (h) => h.place.words.length), read_words_tagged: count(here.filter((h) => !h.whole), tagged),
       places_laid_with_the_lists_pieces: laid.length, places_whose_own_pieces_are_the_lists: here.filter((h) => h.due === "tied").length, places_whose_pieces_are_held_back: here.filter((h) => h.due === "held").length,
@@ -191,13 +223,16 @@ for (const { zone, zPath, here } of zones.values()) {
     what: [
       "each of these places is written one way and read as two or three words. Each read word's own region carries its main tag as TAHOT writes it (tg; none where TAHOT gives none), so the reader asks each read word its own entry. Where the lattice gave the place no pieces, the word carries the read words' pieces in order (pg), and the reader draws the place's line from them; where it gave pieces, they stand and equal the list's; where the pin holds them back, the word carries none",
       ...(wholeHere.length ? ["Where the pin holds a place whole (its tags held), its read words carry no tag and the word no pieces, as before the list"] : []),
+      ...(lost.length ? ["At a lost tag's place the lattice's piece carried no tag and no English of TAHOT's, because TAHOT writes its mark inside the word and the lattice's reader stopped at it; the projection reads the tag as the piece's own, and the word's piece carries TAHOT's words for the place where it carried MACULA's"] : []),
       "No word, position, count or key moved",
     ].join(". "),
   };
   typePostBuildWrite(zone, {
     tool: READ_WORDS_TOOL,
-    fields: ["emitted_from.read_words", "sections[].words[].w[].tg", ...(laid.length ? ["sections[].words[].pg"] : [])],
-    why: "a read form of two or three words carried no tag for any of its words in the lattice the zone was projected from, and at some places no pieces; the corpus lane's list (relay v192) gives each read word its main tag and its pieces",
+    fields: ["emitted_from.read_words", ...(here.length ? ["sections[].words[].w[].tg"] : []), ...(laid.length || lost.length ? ["sections[].words[].pg"] : [])],
+    why: here.length
+      ? `a read form of two or three words carried no tag for any of its words in the lattice the zone was projected from, and at some places no pieces; the corpus lane's list (relay v192${read.pin.amendment ? `, amended by relay ${read.pin.amendment.relay}` : ""}) gives each read word its main tag and its pieces${lost.length ? "; and a lattice piece that lost TAHOT's tag and English takes TAHOT's words for its place" : ""}`
+      : "a lattice piece lost TAHOT's tag and English where TAHOT writes its mark inside the word; the corpus lane's list of lost tags gives the piece TAHOT's words for its place",
     expires: "with this zone's projection from the corpus lane's next lattice, which carries each read word's tag and pieces itself",
     stamp: STAMP,
   });

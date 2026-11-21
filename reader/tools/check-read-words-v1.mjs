@@ -16,9 +16,15 @@
 // What a zone carries for a listed place is said once, in
 // tools/read-words-v1.mjs, and judged by it here. The laws:
 //
-//   R1  the pin's five files are the bytes it names; the lane's receipt
-//       names the two lists, the counts and the rule the same, and read the
-//       strokes against the list the paseq pin names; the list is well
+//   R1  the pin's files are the bytes it names (since relay v192.1 the
+//       list is the amended one, kept with the list of lost tags and the
+//       amendment's rule and receipts in the amendment's own folder); the
+//       lane's receipt names the two lists, the counts and the rule the
+//       same (the list being the one the pin's list amends), and read the
+//       strokes against the list the paseq pin names; the amendment's
+//       receipt names the amended list and the lost tags by the pin's
+//       bytes, read the list it amends, and its second count agrees; every
+//       line names its place's own word number; the list is well
 //       formed and recounts to the lane's own counts; and the pin holds a
 //       place's pieces, or the place whole (its entry holds «tags and
 //       pieces»), nothing else
@@ -28,7 +34,8 @@
 //       places that carry a stroke; and at such a place the word found by
 //       its surface is the word relay v179 numbers
 //   R3  every listed place is found once on its zone, by its verse and the
-//       lattice's surface, with the list's read words letter for letter;
+//       lattice's surface, the word its own word place numbers, with the
+//       list's read words letter for letter;
 //       each read word's own region carries its main tag and the one TAHOT
 //       gives no main tag carries none, and at a place the pin holds whole
 //       no read word carries a tag; no other read word of a read form of
@@ -37,10 +44,11 @@
 //   R4  the pieces: a place the lattice gave none carries the list's, in
 //       read-word order; a place it gave its own carries those, equal to
 //       the list's; a place whose pieces the pin holds back carries none
-//   R5  each zone's record names the list and what its places carry, as a
-//       recount gives it (a place the pin holds whole with its tags held),
-//       and its write is typed; a zone whose every place is held whole is
-//       not written, and carries no record
+//   R5  each zone's record names the list, the amendment and what its
+//       places carry, as a recount gives it (a place the pin holds whole
+//       with its tags held; a lost tag's place with its tag and its piece),
+//       and its write is typed; a zone whose every place is held whole and
+//       that holds no lost tag is not written, and carries no record
 //   R6  on the page as a first visit opens it, the line under every place
 //       whose pieces stand is its read words' pieces in order, credited to
 //       the source the zone names for them, and each reading the pin names
@@ -64,6 +72,13 @@
 //       read word: at II Samuel 8:3 the written form has the letters of read
 //       word 1 of the read form, and the card asked by those letters was
 //       gated under that read word's tag until 15 November 2026
+//   R9  the tag a lattice piece lost (relay v192.1): the list's lines are
+//       as the amendment's rule has them; each names a plain word of its
+//       zone, the word its word place numbers, which carries the tag the
+//       list sets (tg, written by the projection; no entry of a lemma
+//       beside it) and, as its one piece, TAHOT's words for the place,
+//       credited to TAHOT; and the record of the lines at rest draws that
+//       place's line from the piece
 //
 // Run: node tools/check-read-words-v1.mjs
 import { readFileSync, existsSync } from "node:fs";
@@ -75,12 +90,13 @@ import { zonesOnDisk, zonesServed } from "./zones-on-disk-v1.mjs";
 import { openRouteStore, factsOf, printedForm } from "./gloss-store-v1.mjs";
 import { placeEntry, entrySaid, bdbEntriesAt, entryVerdict } from "./entry-gate-v1.mjs";
 import { EXEMPTION_RULE_ID } from "./zone-post-build-v1.mjs";
-import { linesOnPage } from "./resting-lines-v1.mjs";
+import { linesOnPage, readRecord, RESTING_DIR } from "./resting-lines-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
 import {
   READ_WORDS_RULE_ID, READ_WORDS_HOME, READ_WORDS_TOOL, PASEQ_PLACE_HOME, readReadWords, readPaseqList, receiptAgainst,
   placesOf, namedReadings, findPlace, wordNumberOf, carriedAt, piecesDue, HOLDS, holdsWhole, severalReadWords, strokesAgainst,
+  lostTagsOf, findLostTag, lostTagCarried, pinnedAt,
 } from "./read-words-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -121,7 +137,7 @@ let read = null, paseq = null, places = [];
     if ((L.with_no_main_tag || []).length !== words.length - mine.with_one_main_tag) faults.push(`the lane counts ${(L.with_no_main_tag || []).length} read word(s) with no main tag and the list holds ${words.length - mine.with_one_main_tag}`);
     if (S.listed !== read.strokes.length || S.among_the_listed_places !== read.strokes.filter((s) => s.among_the_listed_places).length) faults.push("the lane's count of stroke lines, or of those among the listed places, is not the stroke file's");
   }
-  check("R1  the pin's five files are the bytes it names, the lane's receipt names them the same and read the strokes against the paseq pin's list, the list is well formed and recounts to the lane's own counts, and the pin holds a place's pieces or the place whole, nothing else", !!read && !!paseq && faults.length === 0,
+  check("R1  the pin's files are the bytes it names, the lane's receipts name them the same (the amendment's having read the list it amends) and read the strokes against the paseq pin's list, every line names its word place, the list is well formed and recounts to the lane's own counts, and the pin holds a place's pieces or the place whole, nothing else", !!read && !!paseq && faults.length === 0,
     faults.length ? `${faults.length} · ${first(faults)}` : `relay ${read.pin.relay} · list ${read.pin.read_words.sha256.slice(0, 12)} · ${places.length} places, ${read.lines.length} read words (${places.flatMap((p) => p.words).filter((w) => w.tag !== null).length} with a main tag) · ${places.filter((p) => p.use === "NEW_PIECES").length} places the lattice gave no pieces, ${places.filter((p) => p.use === "TIES_EXISTING_PIECES").length} it gave its own · ${places.filter((p) => p.held).length} held back by the pin, ${places.filter(holdsWhole).length} of them whole`);
 }
 if (!read || !paseq) { console.log(`\n${bad} FAILED`); process.exit(1); }
@@ -197,9 +213,13 @@ const saidOf = (x) => `${x.place.book} ${x.place.ref}`;
 {
   const faults = [];
   // a zone is written, and carries a record, where a place of it is not held whole
-  const books = [...new Set(at.filter((x) => !x.whole).map((x) => x.place.book))];
+  const lostList = lostTagsOf(read).tags;
+  const books = [...new Set([...at.filter((x) => !x.whole).map((x) => x.place.book), ...lostList.map((l) => l.book)])];
   for (const book of books) {
     const zone = readZone(book), here = at.filter((x) => x.place.book === book);
+    if (!zone) { faults.push(`${book}: its zone is not on disk`); continue; }
+    // the lost tags of the book, as the zone's record names them
+    const lostHere = lostList.filter((l) => l.book === book).map((l) => { const f = findLostTag(zone, l); return f.fault ? null : { ref: l.ref, section_word: f.at, word: l.word_number, tag: l.tag, piece: l.piece.g, stood: l.was.g }; });
     const rec = (zone.emitted_from || {}).read_words, pb = (zone.emitted_from || {}).post_build;
     const count = (f) => here.reduce((n, x) => n + f(x), 0);
     const mine = {
@@ -210,11 +230,41 @@ const saidOf = (x) => `${x.place.book} ${x.place.ref}`;
     if (!rec || rec.rule_id !== READ_WORDS_RULE_ID || rec.applied_by !== READ_WORDS_TOOL || rec.relay !== read.pin.relay || !rec.list || rec.list.sha256 !== read.pin.read_words.sha256 || rec.list.lines !== read.pin.read_words.lines)
       faults.push(`${book}: the zone's record ${rec ? `names list ${String((rec.list || {}).sha256).slice(0, 12)} of relay ${rec.relay}` : "is missing"}`);
     else if (!same(rec.here, mine.here) || !same(rec.counts, mine.counts)) faults.push(`${book}: the zone's record says ${JSON.stringify(rec.counts)} and a recount gives ${JSON.stringify(mine.counts)}${same(rec.counts, mine.counts) ? ", and its places are not the recount's" : ""}`);
+    else if (rec.list.file !== pinnedAt(read.pin, read.pin.read_words) || !same(rec.amended_by ?? null, read.pin.amendment ? { relay: read.pin.amendment.relay, letter: read.pin.amendment.letter } : null)) faults.push(`${book}: the zone's record names the list's file or the amendment otherwise than the pin`);
+    else if (!same(rec.lost_tags ?? null, lostHere.length ? { file: pinnedAt(read.pin, read.pin.lost_tags), sha256: read.pin.lost_tags.sha256, here: lostHere } : null)) faults.push(`${book}: the zone's record of its lost tags is not the list's (${JSON.stringify(rec.lost_tags ?? null).slice(0, 160)})`);
     if (!pb || pb.rule_id !== EXEMPTION_RULE_ID || !(pb.wrote || []).includes("emitted_from.read_words") || !String(pb.by).includes(READ_WORDS_TOOL)) faults.push(`${book}: the write is not typed on the zone (emitted_from.post_build)`);
   }
   for (const book of zonesOnDisk(ZONES)) if (!books.includes(book) && (readZone(book).emitted_from || {}).read_words) faults.push(`${book}: carries a record of read words and ${at.some((x) => x.place.book === book) ? "the pin holds every place of it whole" : "the list names no place of it"}`);
-  check("R5  each zone's record names the list and what its places carry, as a recount gives it (a place the pin holds whole with its tags held), and its write is typed", faults.length === 0 && books.length > 0,
+  check("R5  each zone's record names the list, the amendment and what its places carry, as a recount gives it (a place the pin holds whole with its tags held; a lost tag's place with its tag and piece), and its write is typed", faults.length === 0 && books.length > 0,
     faults.length ? `${faults.length} · ${first(faults)}` : `${books.length} zones, each with its record and its typed write`);
+}
+
+// ---- R9: the tag a lattice piece lost ----------------------------------------------------------------
+{
+  const faults = [], said = [];
+  const { tags, faults: listFaults } = lostTagsOf(read);
+  faults.push(...listFaults);
+  if (!!read.pin.lost_tags !== !!read.pin.amendment) faults.push("the pin names lost tags and no amendment, or an amendment and no lost tags");
+  for (const l of tags) {
+    const where = `${l.book} ${l.ref} word ${l.word_number}`, zone = readZone(l.book);
+    if (!zone) { faults.push(`${where}: its zone is not on disk`); continue; }
+    const found = findLostTag(zone, l);
+    if (found.fault) { faults.push(`${where}: ${found.fault}`); continue; }
+    const w = found.word;
+    if (w.tg !== l.tag || w.te !== undefined || w.tl !== undefined) { faults.push(`${where}: carries tg ${JSON.stringify(w.tg ?? null)}${w.te !== undefined ? ` and te ${JSON.stringify(w.te)}` : ""}, and the list sets ${l.tag} as the piece's own`); continue; }
+    if (lostTagCarried(w, l) !== "set") { faults.push(`${where}: its pieces are ${JSON.stringify(w.pg ?? null)}, and the list sets ${JSON.stringify(l.piece)}`); continue; }
+    // the record of the lines at rest: the place's line is its piece, as the page draws it, credited to the piece's source
+    const rec = readRecord(join(K3, RESTING_DIR, `${l.book}.json.gz`));
+    const sec = rec ? (rec.sections || []).find((s) => s[0] === l.ref) : null;
+    const unit = sec ? (sec[1] || []).find((u) => u[0] <= found.at && found.at < u[0] + Math.max(1, u[1])) || null : null;
+    const want = printedForm(l.piece.g), who = `PIECE:${l.piece.s.toUpperCase()}`;
+    if (!rec) { faults.push(`${l.book}: no record of its lines at rest`); continue; }
+    if (!unit || unit[1] !== 1 || unit[2] !== want || unit[3] !== who) { faults.push(`${where}: the record's line reads ${unit ? `«${unit[2]}» (${unit[3] || "no credit"})` : "nothing"}, and its piece reads «${want}» (${who})`); continue; }
+    said.push(`${zone.work || l.book} ${l.ref} word ${l.word_number} ${l.tag} «${unit[2]}»`);
+  }
+  check("R9  a tag a lattice piece lost: the word its word place numbers carries the tag as its own and TAHOT's words for the place as its one piece, and the record of the lines at rest draws its line from the piece",
+    faults.length === 0 && said.length === tags.length,
+    faults.length ? `${faults.length} · ${first(faults)}` : tags.length ? said.join(" · ") : "the pin names no lost tag");
 }
 
 // ---- R6, R7: the page -----------------------------------------------------------------------------

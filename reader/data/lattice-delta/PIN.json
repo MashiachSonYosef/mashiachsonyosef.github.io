@@ -1,0 +1,53 @@
+{
+ "schema_version": "LATTICE_DELTA_PIN_V1",
+ "what": "the corpus lane's delta over lattice v12 (relay v208): three lists keyed to the lattice's own lines by book, position (j) and entry. The rule and the two receipts are kept here byte for byte in the folder the lane keeps them in. The lists stay on the lane's store, as the lattice does, and are read through --lattice-delta only as the bytes named here. tools/project-lattice-v12-v1.mjs applies the lists that land as it reads each position, and each book's sidecar says what it applied",
+ "relay": "v208",
+ "of": "20 November 2026",
+ "letter": "r2:mishkan/v2/letters/moses-lattice-delta-v1/FOR-ELIJAH-v208.md",
+ "letter_sha256": "5efce06d7b9d4de9a7bf0102a1a40f156748feffd3655bde840f1426a551ef35",
+ "from": "r2:mishkan/v2/ledgers/all/lattice-delta/delta-v13-v1/ (the private store)",
+ "over": "lattice v12 (r2:mishkan/moses-ledgers/lattice-v12/), each book's files as its own receipt names them",
+ "folder": "delta-v13-v1",
+ "rule": {
+  "file": "RULE.md",
+  "bytes": 22403,
+  "sha256": "f81e20f07551c47bbd14128e7ce34de5511473239b5654e3dcb7b40138cf021f"
+ },
+ "receipt": {
+  "file": "receipt-v1.json",
+  "bytes": 37383,
+  "sha256": "db14579fe021123066391508e5871139052abeabf147601dd5ea761b83a07f31"
+ },
+ "verify_receipt": {
+  "file": "verify-receipt-v1.json",
+  "bytes": 1816,
+  "sha256": "b0a751e634264c63fc7a34984f92eebc0c4157a5d8af34deb52696dbdfa63378"
+ },
+ "lists": {
+  "names_this_verse": {
+   "file": "names-this-verse-delta-v1.jsonl.gz",
+   "bytes": 5175194,
+   "sha256": "b948a49a48523eb41eea6bd1aa308dab600f9d2fc1c20869d68154acca4098ac",
+   "lines": 257213,
+   "lands": true,
+   "says": "one line for each entry or span card of lattice v12 that gains a name: the whole widened list of the cards that name the verse (TAHOT's and MACULA's readings at the verse, each by the row it was read from). The projection reads a listed entry's list in place of lattice v12's"
+  },
+  "grade_v5": {
+   "file": "grade-v5-delta-v1.jsonl.gz",
+   "bytes": 1625170,
+   "sha256": "4088af406fb5b752e226ebbefaab5df4bf4fb62f65b2ee192ce41cfcaf4138f5",
+   "lines": 48379,
+   "lands": true,
+   "says": "one line for each entry of lattice v12 some card of which the page's pointing grade v5 grades otherwise than the lattice: each card, its grade in the lattice and its grade by the page's rule. The projection moves each named card to the page's grade"
+  },
+  "untagged_places": {
+   "file": "untagged-places-v1.jsonl",
+   "bytes": 1338112,
+   "sha256": "447cb1c2e96303e9df44096fec5663304e7b7758e74e2414e3f43012e652e0a1",
+   "lines": 1159,
+   "lands": false,
+   "says": "one line for each place of lattice v12 whose core carries no tag, with the entries of MACULA's lemma as the lane reads them from this lane's rule",
+   "why_not": "this lane's projection writes the entries of MACULA's lemma itself (te, entry-by-lemma-rule-v1, 18 November 2026) from the store as served, at a word that carries a headword of its own; the list was read from the store of 20 November, so it is counted beside the zones and written nowhere. The list also names a lemma at 105 plain words the zones give no headword (the places our text spells otherwise than the text MACULA follows). Asking those places the entries of that lemma was measured on 21 November 2026 and not landed: the reading that leads there would move at 32 of them, and mostly for the worse (Genesis 19:20 «and/ she» to «and/ he», Esther 4:1 «great» to «loud»), because a row of the place's entry stands whatever its points and these places carry no pieces of their own to lead. They wait for their pieces (the spelling bridge, relay v202)"
+  }
+ }
+}
