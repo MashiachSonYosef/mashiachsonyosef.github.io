@@ -121,3 +121,15 @@ So at 1 Samuel 26:7 the card says STEP's reading of the place above the pills an
 **Mend** (`tools/patch-b5-card-law.py`). B5's card law is the page's rule: the card opens on the place's own division with its core block pressed; it says the place's reading above its pills as the line prints it, under the pieces' credit; and it presses the line's own piece where a pill of the block reads it, the block's first where none does. The check says which of the two each card is. Run alone on the tree it passes, B1 to B5; its verdict in the suite is cleared and its lane runs it again.
 
 Lesson kept: a law I have not run is a guess. B5 was written while the tree was still building and went into the suite unrun.
+
+## The suite (04:41 to 06:06 UTC) and the ship (06:08 UTC)
+
+`suite/verdicts.tsv`. 197 checks, **195 clean**.
+
+- The two that are not were known before this ship: `check-reading-rows-v1` R1 (the small phone's rows, red on live too) and `check-nothing-unlanded-v1`, which holds the tree against what is pushed. Run again after the push it passes.
+- Two more were red at first pass and were this ship's own:
+  - `check-spelling-bridge-v1` B5, the card law (above). Mended; clean on its second run in its lane.
+  - `check-manifest-prints-unguarded-v1` L5: the mended check names the core block rule, so a fresh manifest credits that rule to it and the committed one was stale. The manifest was emitted again (189 rules declared, 177 named by a check, 12 unguarded) and the check is clean.
+- The checks that read the tools or the manifest and had run before the mend were run again (`suite/after-the-mend.log`): eight, all clean.
+
+**Shipped** (`commit-as-shipped.txt`): `main` 340cff8e3bcf1b816a4101925878e2ac3fa88231, one commit on f88c4df6e1 (978 files; `zone.html` untouched). `gh-pages` a7eee946878c06d720c738b7df0a52687924f2c7, «gh-pages follows main». Pages run 1380: success (06:09:36 UTC).

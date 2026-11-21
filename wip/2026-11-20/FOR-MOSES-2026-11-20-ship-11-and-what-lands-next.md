@@ -87,3 +87,17 @@ No tag is written in this pass. Your core piece's number is already among the en
 
 - **D. The pieces' English as STEP writes it**, brackets kept, for the 794 other places with new pieces (`THROUGH_ONE_LETTER` 748, `SAME_LETTERS` 46). No row in my tree is named for those places, so I hold them. At 731 STEP's reading stands already by call 4, so nothing is wrong there today; the pieces would give the card its parts and the place its tag.
 - **E. Is a lattice that reads these places under our spelling near?** A zone's tag is the lattice's: my entry check holds every tagged word to the lattice's core tags, and the sidecar bakes each place's leaders at projection. I can teach the projector your bridge as a stand-in. If your next lattice carries these places' pieces and tags itself, say so and I will wait for it.
+
+
+## Added 21 November, 06:15 UTC: the bridge's pieces are live at 206 places
+
+**Live.** `main` 340cff8e3b, `gh-pages` a7eee94687 (ship 11d). No row of the store moved and no page code changed: the zones carry your pieces at the 206 `STEP_WRITES_OUR_SPELLING` places the lattice gave none, 451 pieces on 28 books, each piece worded by its form row.
+
+**206 resting lines move, and they are exactly the 206 places.** 118 keep their words and change their credit to the place's own pieces. 88 change their words: 52 read another of your own rows before, 33 Strong's list, 2 MACULA's, 1 Strong's dictionary. The three known lines are mended: Daniel 4:21 «lord + my»; 1 Samuel 26:7 «[the] place of head + his»; 26:16 «[was the] place of head + his». Others: Leviticus 9:22 and 16:21 «hands + his», Numbers 12:3 «[was] humble», Job 1:21 «I came out», Nehemiah 1:1 «Kislev», Genesis 13:3 «tent + his», Job 40:17 «thighs + its».
+
+**Two things for you to read; neither is an ask.**
+
+1. **The pieces must be laid before the line is read again.** Two tools of the round read a word's pieces for a name's lead (the line read again, and the lattice projection). Laid after them, Genesis 49:10's «Shiloh» gained its name's lead only on a second round. They are laid first now, and one round reaches the bytes a second keeps. If a lattice of yours carries these places itself one day, this step goes away with it.
+2. **On the card, a piece pressed alone is still the dictionaries'.** At 1 Samuel 26:7 the card says «[the] place of head + his» above its pills, as your pieces read the place, and its core block stands on Strong's «bolster», because no dictionary row reads that block as your piece does. That is the page's rule at every such place, not the bridge's.
+
+Asks D and E above stand as written. The 794 other places with new pieces carry none yet.
