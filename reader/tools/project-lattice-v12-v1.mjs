@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Synthesis lane · lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store
-// GUARDS: lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut
+// GUARDS: lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store, dictionary-kinds-rule-v1-each-dictionary-is-filed-by-what-it-says-it-is-and-a-kind-or-a-category-it-marks-in-its-own-data-may-rest-shut, lattice-delta-rule-v1-a-listed-entry-of-the-lattice-takes-the-corpus-lanes-own-later-names-and-grades-and-every-other-entry-stands-as-the-lattice-has-it
 // LEDGER: R D
 // R because every order this tool projects is a SELECTION over readings the
 // store already holds — masoretic, vowels differ, cites here, licence,
@@ -132,10 +132,35 @@
 //      (emitted_from.signs_rest_last); a zone of the scope without it, or
 //      with another, and a zone outside the scope that carries one, are
 //      refused. Every other zone keeps today's order and carries none.
+//   8. THE CORPUS LANE'S DELTA IS READ OVER THE LATTICE (lattice-delta-rule-v1,
+//      tools/lattice-delta-v1.mjs; relay v208, 20 November 2026). Where the
+//      tree pins the delta (data/lattice-delta/PIN.json) the projection is
+//      handed the folder of its lists (--delta) and reads each list that
+//      lands only as the bytes the pin names. A listed entry's cards that
+//      name its verse are the delta's list, whole (TAHOT's and MACULA's
+//      readings at the verse, where v12 read TAHOT's alone and passed over
+//      its rows with a second verse number); and each card the delta grades
+//      otherwise moves from the lattice's grade to the page's (pointing
+//      grade v5), so a row that carries no headwords of its own and falls to
+//      its card's grade is graded as a row that carries them is. A line that
+//      is not the lattice's entry (its verse, surface and key; a name the
+//      lattice gave and the list lost; a grade the lattice does not give the
+//      card) refuses the book. The grades of a surface are read at its first
+//      verse, so the lines of one surface must name the same cards; one that
+//      does not refuses the book. A tree that pins the delta is never
+//      projected without it, and a tree that pins none is never handed one.
+//      The sidecar says what was applied (delta).
+//   9. A LOST TAG IS THE PIECE'S OWN (read-words-rule-v1, the amendment of
+//      relay v192.1). Where the pin of the read words names a lattice piece
+//      that lost TAHOT's tag (data/read-words/, its list of lost tags), the
+//      piece is read with the tag the list sets, proved first to be the
+//      piece as the list says the lattice has it: the place then carries tg
+//      as any tagged place does, and no entry of MACULA's lemma (te).
 //
 // Run: node tools/project-lattice-v12-v1.mjs --zone data/zones/genesis.bin
 //        --lattice <dir with positions-<book>-v12.jsonl.gz, routes-<book>-v12.jsonl.gz, lattice-<book>-v12.json>
 //        --stamp YYYY-MM-DD --out build/lattice/genesis.bin [--sidecar data/zones/genesis.lattice.bin]
+//        [--delta <the folder holding the lists data/lattice-delta/PIN.json names>]
 import { readFileSync, writeFileSync, createReadStream, statSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync, gunzipSync, createGunzip } from "node:zlib";
@@ -155,6 +180,8 @@ import { readPinnedLines } from "./pinned-v1.mjs";
 import { RECORD_FILE } from "./row-strikes-follow-v1.mjs";
 import { typePostBuildWrite, writeZone } from "./zone-post-build-v1.mjs";
 import { readKinds, restsOffIn, restsOffIds, DICTIONARY_KINDS_RECORD } from "./dictionary-kinds-v1.mjs";
+import { LATTICE_DELTA_RULE_ID, LATTICE_DELTA_HOME, readLatticeDelta, namesFault, gradesFault, sameChanges } from "./lattice-delta-v1.mjs";
+import { READ_WORDS_HOME, readReadWords, lostTagsOf } from "./read-words-v1.mjs";
 export { LATTICE_RULE_ID, SIDECAR_SCHEMA, fnv1a };
 const GRADE_CHAR = { VOWEL_MATCH: "m", NORMALIZED: "n", VOWEL_MISMATCH: "x" };
 
@@ -437,6 +464,33 @@ const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows
   name_places_listed: 0, name_places_marked: 0, name_places_with_no_word: 0, leaders_asked_at_a_kind_of_place: 0, leaders_the_place_moves: 0,
   held_examples: [] };
 const grades = {};          // pointed surface -> { k, g, n, o, v? }
+// ---- the corpus lane's delta over the lattice (rule 8) ----------------------
+const dataDir = join(zonePath.replace(/data\/zones\/.*$/u, ""), "data");
+const deltaPin = join(dataDir, LATTICE_DELTA_HOME.replace(/^data\//u, ""), "PIN.json");
+const deltaDir = arg("--delta");
+let delta = null;
+if (existsSync(deltaPin)) {
+  if (!deltaDir) { console.error(`REFUSED — this tree pins the corpus lane's lattice delta (${LATTICE_DELTA_HOME}/PIN.json): name the folder of its lists with --delta`); process.exit(1); }
+  try { delta = readLatticeDelta(deltaPin, deltaDir, slug); } catch (e) { console.error(`REFUSED — the lattice delta: ${String((e && e.message) || e)}`); process.exit(1); }
+  Object.assign(stats, { delta_names_lines: delta.listed.names_this_verse ?? 0, delta_names_lines_applied: 0, delta_names_added: 0, delta_names_lines_for_span_cards: delta.spans.length,
+    delta_grade_lines: delta.listed.grade_v5 ?? 0, delta_grade_lines_applied: 0, delta_cards_regraded: 0, delta_grade_lines_of_a_surface_graded_at_an_earlier_verse: 0 });
+} else if (deltaDir) { console.error(`REFUSED — --delta names a folder, and this tree pins no lattice delta (${LATTICE_DELTA_HOME}/PIN.json)`); process.exit(1); }
+const deltaRefused = (what, why) => { console.error(`REFUSED — the lattice delta's ${what}: ${why}`); process.exit(1); };
+const NO_LINES = new Map();
+const deltaGradesAt = new Map();   // pointed surface -> the delta's grades line read at its first verse, or null
+const GRADE_NAME = { m: "VOWEL_MATCH", n: "NORMALIZED", x: "VOWEL_MISMATCH" };
+// ---- the lost tags of the read words' amendment (rule 9) --------------------
+const lostTagAt = new Map();       // lattice position j -> the lost tag
+{
+  const pinPath = join(dataDir, READ_WORDS_HOME.replace(/^data\//u, ""), "PIN.json");
+  if (existsSync(pinPath)) {
+    let lostList = null;
+    try { lostList = lostTagsOf(readReadWords(pinPath)); } catch (e) { console.error(`REFUSED — the read words' pin: ${String((e && e.message) || e)}`); process.exit(1); }
+    if (lostList.faults.length) { console.error(`REFUSED — the read words' list of lost tags: ${lostList.faults[0]}`); process.exit(1); }
+    for (const l of lostList.tags) if (l.book === slug) lostTagAt.set(l.lattice.j, l);
+    if (lostList.tags.length) Object.assign(stats, { lost_tags_listed_for_this_book: lostTagAt.size, lost_tags_set: 0 });
+  }
+}
 // what the sidecar prints of a reading's credit: its text, its oldest
 // carrier's label and license key, and that row's wording year
 const credit = (text, row) => { const src = store.index.m_sources[row[3]]; const y = store.wordingYear(row); return [text, src.label, src.licensePosture, Number.isFinite(y) ? y : null]; };
@@ -572,23 +626,48 @@ for (const sec of zone.sections || []) {
   stats.verses_joined += 1;
   on.forEach((w, i) => {
     const p = rows[i];
+    // rule 9: a piece that lost TAHOT's tag is read with it, once it is proved to be the piece the list names
+    const lost = lostTagAt.get(p.j) || null;
+    let pieces = p.pieces || [];
+    if (lost) {
+      const has = pieces[lost.index] || null, m0 = (p.megacompspan || [])[0] || {};
+      const same = !!has && ["role", "hebrew", "consonants", "english_tahot", "english_macula", "tag", "macula_class", "source"].every((k) => (has[k] ?? "") === (lost.now[k] ?? ""));
+      if (sec.label !== lost.ref || m0.surface !== lost.surface || !same || i + 1 !== lost.word_number && on.length === (sec.words || []).filter((x) => !x.mark).length) {
+        console.error(`REFUSED — the read words' lost tag at ${slug} ${lost.ref} word ${lost.word_number}: lattice position ${p.j} is ${sec.label} ${m0.surface}, piece ${lost.index} ${JSON.stringify(has)}, and the list names ${lost.surface} with the piece ${JSON.stringify(lost.now)}`); process.exit(1);
+      }
+      pieces = pieces.map((x, at) => (at === lost.index ? { ...x, tag: lost.tag } : x));
+      stats.lost_tags_set += 1;
+    }
     // the entry at the place: the tags of its core pieces, on the word, or on the half the pieces spell
-    const cores = (p.pieces || []).filter((x) => x && x.role === "core" && x.tag).map((x) => String(x.tag));
-    const spelled = (p.pieces || []).map((x) => (x && x.consonants) || "").join("");
+    const cores = pieces.filter((x) => x && x.role === "core" && x.tag).map((x) => String(x.tag));
+    const spelled = pieces.map((x) => (x && x.consonants) || "").join("");
     const tagged = !cores.length ? null : w.w ? w.w.find((r) => r.k === spelled) || null : w.k === spelled ? w : null;
     if (tagged) { tagged.tg = cores.length === 1 ? cores[0] : cores; stats.places_tagged += 1; }
     else if (cores.length) stats.places_whose_pieces_spell_no_key_of_the_word += 1;
     else stats.places_with_no_core_tag += 1;
     // rule 4 · the grades, per pointed surface, over the lattice's own order
-    for (const m of p.megacompspan || []) {
+    for (const [ei, m] of (p.megacompspan || []).entries()) {
       const rg = m.route_grades;
       const list = routes.get(m.key);
       if (!rg || !list) continue;
-      const names = (rg.names_this_verse || []).filter((ix) => ix < list.length);
+      // rule 8: the cards that name the verse are the delta's list where it lists the entry
+      const dn = delta ? (delta.names.get(p.j) || NO_LINES).get(ei) || null : null;
+      if (dn) {
+        const why = namesFault(dn, { ref: sec.label, surface: p.surface, reading: m.reading, key: m.key, was: rg.names_this_verse || [] });
+        if (why) deltaRefused(`names line for ${slug} position ${p.j} entry ${ei}`, why);
+        stats.delta_names_lines_applied += 1; stats.delta_names_added += dn.added.length;
+      }
+      const names = ((dn ? dn.names_this_verse : rg.names_this_verse) || []).filter((ix) => ix < list.length);
+      const dg = delta ? (delta.grades.get(p.j) || NO_LINES).get(ei) || null : null;
       // the surface is graded already, at its first verse: this verse adds
       // only what is its own, the cards that name it, where they are not
       // the first verse's
       if (grades[m.surface]) {
+        // rule 8: a grade repeats wherever the surface does, so this verse's line names the cards the first verse's did
+        if (delta && grades[m.surface].k === m.key) {
+          if (!sameChanges(deltaGradesAt.get(m.surface), dg)) deltaRefused(`grades line for ${slug} position ${p.j} entry ${ei}`, `it grades ${m.surface} otherwise than the line of the surface's first verse in the book does`);
+          if (dg) stats.delta_grade_lines_of_a_surface_graded_at_an_earlier_verse += 1;
+        }
         const base = grades[m.surface];
         if (!sameList(base.n, names) && !(base.v && Object.prototype.hasOwnProperty.call(base.v, sec.label))) {
           (base.v ||= {})[sec.label] = { n: names, c: citesLeader(m.key, list, names) };
@@ -598,6 +677,14 @@ for (const sec of zone.sections || []) {
       }
       const g = new Array(list.length).fill("-");
       for (const [tier, idxs] of Object.entries(rg.grade_of_index || {})) for (const ix of idxs) if (ix < g.length) g[ix] = GRADE_CHAR[tier] || "-";
+      // rule 8: each card the delta grades otherwise moves from the lattice's grade, proved to be the one the line names, to the page's
+      if (dg) {
+        const why = gradesFault(dg, { ref: sec.label, surface: m.surface, reading: m.reading, key: m.key, gradeOf: (ix) => (ix < g.length ? GRADE_NAME[g[ix]] || null : null) });
+        if (why) deltaRefused(`grades line for ${slug} position ${p.j} entry ${ei}`, why);
+        for (const [ix, , to] of dg.changes) g[ix] = GRADE_CHAR[to];
+        stats.delta_grade_lines_applied += 1; stats.delta_cards_regraded += dg.changes.length;
+      }
+      if (delta) deltaGradesAt.set(m.surface, dg);
       // THE LINE MOVES, NOT ONLY THE CARD (owner, 2026-09-09): under each
       // lattice order the first card is baked here — the oldest card of the
       // order's leading set, ties in lattice order — so the reading under the
@@ -916,6 +1003,12 @@ const sidecar = {
   counts: { keys: Object.keys(sideRoutes).length, cards: routeCards, transliteration_cards: trCards, surfaces_graded: Object.keys(grades).length, lattice_route_lines: routeLines, lattice_positions: posLines, lattice_on: posOn },
   emitted_from: { rule: LATTICE_RULE_ID, projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs", join: { ...stats }, ...(signsStamp ? { signs_rest_last: signsStamp } : {}) },
   routes: sideRoutes, grades,
+  // rule 8: the corpus lane's delta read over the lattice; absent where the tree pins none
+  ...(delta ? { delta: { rule: LATTICE_DELTA_RULE_ID, relay: delta.pin.relay, pin: `${LATTICE_DELTA_HOME}/PIN.json`,
+    lists: Object.fromEntries(Object.entries(delta.pin.lists).map(([k, d]) => [k, { file: d.file, sha256: d.sha256, lands: d.lands }])),
+    names: { lines_for_this_book: stats.delta_names_lines, applied: stats.delta_names_lines_applied, names_added: stats.delta_names_added, lines_for_span_cards: stats.delta_names_lines_for_span_cards },
+    grades: { lines_for_this_book: stats.delta_grade_lines, applied_at_a_surfaces_first_verse: stats.delta_grade_lines_applied, cards_regraded: stats.delta_cards_regraded, lines_of_a_surface_graded_at_an_earlier_verse: stats.delta_grade_lines_of_a_surface_graded_at_an_earlier_verse },
+    what: "a listed entry's cards that name its verse (n, v[<verse>].n) are the delta's list in place of lattice v12's; each card the delta grades otherwise carries the page's grade in g in place of the lattice's. A line whose verse the projection held or did not find, or whose entry the store's routes do not reach, is not applied; a line for one of the lattice's own span cards is counted and not read" } } : {}),
   entry: { rule: ENTRY_GATE_RULE_ID, by_lemma: ENTRY_BY_LEMMA_RULE_ID, row_entries: store.index.row_entries ? { relay: store.index.row_entries.relay, ledger_sha256: store.index.row_entries.ledger.sha256, ...(store.index.row_entries.lists ? { lists: store.index.row_entries.lists.map((l) => ({ relay: l.relay, list_sha256: l.list.sha256 })) } : {}) } : null },
   names: namesSaid ? { rule: NAMES_GATE_RULE_ID, relay: namesSaid.relay, place_names_sha256: namesSaid.place_names.sha256, name_rows: store.index.name_rows ? { relay: store.index.name_rows.relay, list_sha256: store.index.name_rows.name_rows.sha256 } : null } : null,
   // rule 6: the record the leaders were baked at rest under; absent where the book does not rest shut
@@ -936,7 +1029,7 @@ ef.toggles.lattice = {
   projected_on: stamp, projected_by: "tools/project-lattice-v12-v1.mjs",
   counts: { ...stats },
   names: namesSaid,
-  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; te: where the word carries no tag, is no pair and has no read form apart, the entries of MACULA's lemma (hp), the numbers of the store's rows headed by the lemma as MACULA points it, one or a list (entry-by-lemma-rule-v1), which the gate reads where tg is absent; hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open, and the first card of the stack whose reading does not open with Strong's sign (the top card where every card's does; zone-gloss-rule-v8); ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
+  what_the_word_carries: "np: 1 where the place is a name by the corpus lane's list of name places (names-gate-rule-v1), absent where it is not or where the tree holds no list; tg: the tag of the word's core piece as the lattice writes it, the entry TAHOT reads at this place (on a place written one way and read another, on the half whose letters the pieces spell), which the entry gate reads against each row's own entries; te: where the word carries no tag, is no pair and has no read form apart, the entries of MACULA's lemma (hp), the numbers of the store's rows headed by the lemma as MACULA points it, one or a list (entry-by-lemma-rule-v1), which the gate reads where tg is absent; a tag the read words' pin lists as lost from its lattice piece is read as the piece's own (tg); hg: the headword's first reading under lemma-sort v3, with hm (source, license key, year) — only where h is the lattice's lemma, the stack is in routes and the served store still holds that reading's source, and on a book the record of dictionary kinds rests shut, only where that source is not shut whole and gives the reading in a row that rests open, and the first card of the stack whose reading does not open with Strong's sign (the top card where every card's does; zone-gloss-rule-v8); ld: the Leningrad difference where the codex spells the word otherwise; pc: the word's own pieces with their roles and BOTH witnesses' English, on words the catalog answers nothing for and on no others",
   pieces: {
     rule: "a word with no English under its form or its headword carries its pieces, so the card can show the reader what the two witnesses say about each part. The LINE is untouched: a bare word stays bare, because composing a definition out of pieces would supply the displayed answer for a key no source answered (the frame's folded-edge rule, and its ruling that a word with no admissible definition is a finding, not an error).",
     witnesses: pieceWitness,
@@ -958,6 +1051,8 @@ console.log(`${outPath} · ${s.hg.toLocaleString()} of ${s.words_on.toLocaleStri
 console.log(`  ${sidecarPath} · ${Object.keys(sideRoutes).length.toLocaleString()} keys, ${routeCards.toLocaleString()} cards (${trCards} transliterations) · ${Object.keys(grades).length.toLocaleString()} pointed surfaces graded · ${(statSync(sidecarPath).size / 1024).toFixed(0)} KB`);
 console.log(`  parts: ${s.pc} of ${s.bare} words with no English of their own carry their pieces (${s.pc_pieces} pieces, ${s.pc_both_witnesses} with both witnesses) · ${s.bare_without_pieces} bare words the lattice has no pieces for · ${s.pc_skipped_word_has_an_english.toLocaleString()} words answered by the catalog and not carried`);
 console.log(`  hg skipped: ${s.hg_skipped_no_h} no headword · ${s.hg_skipped_witnesses_differ} witnesses differ · ${s.hg_skipped_lemma_differs_from_h} lemma is not h · ${s.hg_skipped_same_as_form} headword is the form · ${s.hg_skipped_lemma_not_in_routes} stack has no cards in this book · ${s.hg_skipped_source_not_held} source not held${atRest ? ` · ${s.hg_skipped_rests_shut} rest shut` : ""}${store.signLast ? ` · ${s.hg_stepped_past_a_signed_card} stepped past a card carrying Strong's sign` : ""}`);
+if (delta) console.log(`  delta ${delta.pin.relay}: names ${s.delta_names_lines_applied.toLocaleString()} of ${s.delta_names_lines.toLocaleString()} lines applied (${s.delta_names_added.toLocaleString()} names added; ${s.delta_names_lines_for_span_cards} for span cards, not read) · grades ${s.delta_grade_lines_applied.toLocaleString()} lines applied at a surface's first verse (${s.delta_cards_regraded.toLocaleString()} cards), ${s.delta_grade_lines_of_a_surface_graded_at_an_earlier_verse.toLocaleString()} more of surfaces graded already, of ${s.delta_grade_lines.toLocaleString()}`);
+if (s.lost_tags_listed_for_this_book) console.log(`  lost tags: ${s.lost_tags_set} of ${s.lost_tags_listed_for_this_book} set`);
 console.log(`  places: ${s.places_tagged.toLocaleString()} carry their entry's tag · ${namesSaid ? `${s.name_places_marked.toLocaleString()} of ${s.name_places_listed.toLocaleString()} listed name places marked` : "no list of name places in this tree"} · leaders asked at ${s.leaders_asked_at_a_kind_of_place.toLocaleString()} kinds of place, ${s.leaders_the_place_moves.toLocaleString()} moved`);
 if (s.held_examples.length) console.log(`  held: ${s.held_examples.join(" | ")}`);
 if (stemsFollowed) console.log(`  stems: ${stemsFollowed} row(s) of this book's keys named by the binyan files under words a round has since retexted, followed to the words they serve now`);

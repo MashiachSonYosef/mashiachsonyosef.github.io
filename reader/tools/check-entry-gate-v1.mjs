@@ -72,8 +72,10 @@
 //       its list): the zone's record of the read words counts those. With
 //       the lattice on this machine (--lattice <dir>, or LATTICE_DIR) each
 //       tag the lattice gives is the core tags of the lattice's own
-//       position, and its pieces spell the tagged form. Without the
-//       lattice that half is said and not judged
+//       position, and its pieces spell the tagged form (a piece the
+//       read words' pin lists as having lost its tag is read with the tag
+//       the list sets, as the projection reads it: relay v192.1). Without
+//       the lattice that half is said and not judged
 //   E8  the leaders at a kind of place (grades[surface].e): each speaks for
 //       a kind of place a word of that surface stands at in the book,
 //       differs from the surface's own leaders, and is credited to a row
@@ -167,6 +169,7 @@ import { zonesServed } from "./zones-on-disk-v1.mjs";
 import { loadPlaywright, launchOptions } from "./playwright-v1.mjs";
 import { serveTree } from "./serve-tree-v1.mjs";
 import { plainWord, openGatedCard } from "./gated-card-v1.mjs";
+import { READ_WORDS_HOME, readReadWords, lostTagsOf } from "./read-words-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -740,7 +743,12 @@ const more = (kind) => (picks[kind] || []).length < MOST;
 const found = (kind, pick) => { (picks[kind] ||= []).push(pick); };
 const leaders = new Map();   // E13's words: zone -> three at most, of four zones at most
 const e15 = { words: 0, carried: 0, faults: [] };
-const e6 = { pairs: 0, rows: 0, faults: [] }, e7 = { tagged: 0, lists: 0, halves: 0, readWords: 0, faults: [], lattice: 0, latticeFaults: [], books: 0 }, e8 = { entries: 0, faults: [], spoken: 0 };
+// the tags the read words' pin lists as lost from a lattice piece (relay v192.1): E7's lattice half reads them as the projection does
+let lostTags = [];
+if (existsSync(join(K3, READ_WORDS_HOME, "PIN.json"))) {
+  try { const l = lostTagsOf(readReadWords(join(K3, READ_WORDS_HOME, "PIN.json"))); if (!l.faults.length) lostTags = l.tags; } catch (e) { if (!(e instanceof PinFault)) throw e; }
+}
+const e6 = { pairs: 0, rows: 0, faults: [] }, e7 = { tagged: 0, lists: 0, halves: 0, readWords: 0, faults: [], lattice: 0, lostTags: 0, latticeFaults: [], books: 0 }, e8 = { entries: 0, faults: [], spoken: 0 };
 const asked = new Set();   // key, then the tags: judged once for E6
 // a reading only rows of the given kind carry, among the key's rows: [text, a row carrying it] or null
 const readingOnlyOf = (rows, isOfKind, wanted) => {
@@ -762,6 +770,8 @@ for (const z of served) {
   const namesRead = !!((((zone.emitted_from || {}).toggles || {}).lattice || {}).names);
   const isName = (w) => !namesRead || !!w.np;
   const stoodUnder = new Map();   // surface -> the kinds of place its forms stand at in this book, by the leaders' key
+  // the tags the read words' pin lists as lost from a lattice piece of this book, by position
+  const lostAt = new Map(lostTags.filter((l) => l.book === z).map((l) => [l.lattice.j, l]));
   // the lattice's own positions, by verse, where it is here
   let byRef = null;
   if (LATTICE && existsSync(join(LATTICE, `positions-${z}-v12.jsonl.gz`))) {
@@ -790,9 +800,11 @@ for (const z of served) {
         if (!h.k || !tags.length || (Array.isArray(h.tg) && tags.length < 2) || tags.some((t) => typeof t !== "string" || !TAG.test(t))) e7.faults.push(`${z} ${sec.label}: ${JSON.stringify(h.tg)} is not a tag or a list of several`);
         if (theirsHere) {
           const at = on.indexOf(w), p = theirsHere.length === on.length ? theirsHere[at] : null;
-          const cores = p ? (p.pieces || []).filter((x) => x && x.role === "core" && x.tag).map((x) => String(x.tag)) : null;
-          const spelled = p ? (p.pieces || []).map((x) => (x && x.consonants) || "").join("") : null;
-          e7.lattice += 1;
+          const lost = p ? lostAt.get(p.j) || null : null;
+          const pieces = p ? (p.pieces || []).map((x, ix) => (lost && ix === lost.index && x && !x.tag ? { ...x, tag: lost.tag } : x)) : null;
+          const cores = p ? pieces.filter((x) => x && x.role === "core" && x.tag).map((x) => String(x.tag)) : null;
+          const spelled = p ? pieces.map((x) => (x && x.consonants) || "").join("") : null;
+          e7.lattice += 1; if (lost) e7.lostTags += 1;
           if (!p) e7.latticeFaults.push(`${z} ${sec.label}: a tagged word in a verse the lattice counts otherwise`);
           else if (!same(cores, tags) || spelled !== h.k) e7.latticeFaults.push(`${z} ${sec.label} word ${at + 1}: carries ${tags.join(" ")} on ${h.k}; the lattice's core tags are ${cores.join(" ") || "none"} and its pieces spell ${spelled}`);
         }
@@ -975,7 +987,7 @@ check("E7  a word's tags are a tag or a list of several, on a word with a key or
 if (!e7.books) console.log("  --  E7's second half was not judged here: the corpus lane's lattice is not on this machine (--lattice <dir> or LATTICE_DIR), so no word's tags were read against the lattice's own position");
 else {
   check("    and each is the core tags of the lattice's own position, whose pieces spell the tagged form", e7.latticeFaults.length === 0,
-    e7.latticeFaults.length ? `${nf(e7.latticeFaults.length)} · ${first(e7.latticeFaults)}` : `${nf(e7.lattice)} tagged places read against the lattice in ${e7.books} of ${served.length} books`);
+    e7.latticeFaults.length ? `${nf(e7.latticeFaults.length)} · ${first(e7.latticeFaults)}` : `${nf(e7.lattice)} tagged places read against the lattice in ${e7.books} of ${served.length} books${e7.lostTags ? ` (${e7.lostTags} of them by a tag the read words' pin lists as lost from its piece)` : ""}`);
   if (e7.books < served.length) console.log(`  --  E7's second half was not judged for ${served.length - e7.books} of ${served.length} books: their positions file is not in ${LATTICE}`);
 }
 check("E15 a plain word STEP gives no tag carries the entries of MACULA's lemma (te) exactly where the lemma, one word and pointed, heads numbered rows of the store the projector read; one number or a list of several, never beside a tag; the page reads the gate's tags as the module does", e15.carried > 0 && e15.faults.length === 0,

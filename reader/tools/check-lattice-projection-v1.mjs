@@ -33,7 +33,13 @@
 //       list, and names a leader the store holds; and where the corpus
 //       lane's lattice is on this machine (--lattice <dir>, or LATTICE_DIR)
 //       every graded word place reads exactly the cards that name its own
-//       verse. Without the lattice that half says it was not judged.
+//       verse. Without the lattice that half says it was not judged. Where
+//       the sidecar says it was read with the corpus lane's delta over the
+//       lattice (lattice-delta-rule-v1, relay v208), the cards that name a
+//       listed entry's verse are the delta's list, read from the lists
+//       where this machine holds them (--lattice-delta <dir>, or
+//       LATTICE_DELTA_DIR); a book whose sidecar says the delta is not
+//       judged without them, and that is said.
 //   L4d the two leaders that rank the whole pool by the pointing (o.m, the
 //       first group a matching card carries; o.x, the first a contradicting
 //       one does) are rebuilt by this check's own road: every group of the
@@ -78,6 +84,8 @@ import { gradeRow } from "./pointing-grade-v1.mjs";
 import { readKinds, restsOffIn } from "./dictionary-kinds-v1.mjs";
 import { fnv1a, LATTICE_RULE_ID, SIDECAR_SCHEMA } from "./lattice-lib-v1.mjs";
 import { isSidecar } from "./zones-on-disk-v1.mjs";
+import { PinFault } from "./pinned-v1.mjs";
+import { LATTICE_DELTA_HOME, readLatticeDelta } from "./lattice-delta-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -86,6 +94,10 @@ const ZONES = arg("zones", join(K3, "data", "zones"));
 // the corpus lane's lattice, where this machine holds it (it is too large to
 // keep beside the door): L4c's second half reads it
 const LATTICE = arg("lattice", process.env.LATTICE_DIR || null);
+// the lists of the delta over it, where this machine holds them: L4c reads a listed entry's names from them
+const LATTICE_DELTA = arg("lattice-delta", process.env.LATTICE_DELTA_DIR || null);
+const NO_LINES = new Map();
+let booksNotReadForTheDelta = 0;
 const PROJECTOR = join(HERE, "project-lattice-v12-v1.mjs");
 
 let bad = 0;
@@ -295,7 +307,14 @@ for (const { slug, z, t } of layered) {
     if (malformed) note(l4c, `${slug}: ${malformed} per-verse entries are not a list of the key's cards that differs from the first verse's, with a leader the store holds`);
   }
   // ... and against the lattice itself, place by place, where it is here
-  if (LATTICE && existsSync(join(LATTICE, `positions-${slug}-v12.jsonl.gz`))) {
+  // a sidecar read with the delta names a listed entry's cards from the delta's list: read here too, or the book is not judged
+  let deltaNames = null, deltaUnread = false;
+  if (s.delta && ((s.delta.lists || {}).names_this_verse || {}).lands) {
+    if (!LATTICE_DELTA || !existsSync(LATTICE_DELTA)) deltaUnread = true;
+    else { try { deltaNames = readLatticeDelta(join(K3, LATTICE_DELTA_HOME, "PIN.json"), LATTICE_DELTA, slug).names; } catch (e) { if (!(e instanceof PinFault)) throw e; note(l4c, `${slug}: ${e.message}`); deltaUnread = true; } }
+  }
+  if (deltaUnread && LATTICE && existsSync(join(LATTICE, `positions-${slug}-v12.jsonl.gz`))) booksNotReadForTheDelta += 1;
+  if (!deltaUnread && LATTICE && existsSync(join(LATTICE, `positions-${slug}-v12.jsonl.gz`))) {
     booksRead += 1;
     let wrong = 0;
     const rl = createInterface({ input: createReadStream(join(LATTICE, `positions-${slug}-v12.jsonl.gz`)).pipe(createGunzip()), crlfDelay: Infinity });
@@ -303,11 +322,12 @@ for (const { slug, z, t } of layered) {
       if (!line) continue;
       const p = JSON.parse(line);
       if (p.c0 !== "ON") continue;
-      for (const m of p.megacompspan || []) {
+      for (const [ei, m] of (p.megacompspan || []).entries()) {
         const gr = grades[m.surface], rg = m.route_grades, r = routes[m.key];
         if (!gr || !rg || !r) continue;
         placesRead += 1;
-        const theirs = (rg.names_this_verse || []).filter((ix) => ix < r.f.length);
+        const listed = deltaNames ? (deltaNames.get(p.j) || NO_LINES).get(ei) || null : null;
+        const theirs = ((listed ? listed.names_this_verse : rg.names_this_verse) || []).filter((ix) => ix < r.f.length);
         const ours = gr.v && Object.prototype.hasOwnProperty.call(gr.v, p.ref) ? gr.v[p.ref].n : (gr.n || []);
         if (JSON.stringify(theirs) !== JSON.stringify(ours)) wrong += 1;
       }
@@ -349,7 +369,8 @@ check("L4c the citations are the verse's: every per-verse entry lists its key's 
   l4c.length ? few(l4c) : `${versesOwn.toLocaleString("en-US")} verses carry their own list beside their surface's first${booksRead ? `; ${placesRead.toLocaleString("en-US")} graded word places on ${booksRead} books read against the lattice, each its own verse's cards` : ""}`);
 check("L4d o.m and o.x are the first group of the store's pool under the pointing's rank, rebuilt by this check's own road, Strong's sign first on a book the record's scope reaches", !l4d.length,
   l4d.length ? few(l4d) : `${rebuiltLeaders.toLocaleString("en-US")} leaders rebuilt on ${layered.length} books, ${signedFirstBooks} of them with Strong's sign first`);
-if (!booksRead) console.log(`  --  L4c's second half was not judged here: the corpus lane's lattice is not on this machine (--lattice <dir> or LATTICE_DIR), so no word place was read against the lattice's own list for its verse`);
+if (booksNotReadForTheDelta) console.log(`  --  L4c's second half was not judged for ${booksNotReadForTheDelta} book(s) whose sidecar was read with the lattice delta: its lists are not on this machine (--lattice-delta <dir> or LATTICE_DELTA_DIR)`);
+else if (!booksRead) console.log(`  --  L4c's second half was not judged here: the corpus lane's lattice is not on this machine (--lattice <dir> or LATTICE_DIR), so no word place was read against the lattice's own list for its verse`);
 else if (booksRead < layered.length) console.log(`  --  L4c's second half was not judged for ${layered.length - booksRead} of ${layered.length} books: their positions file is not in ${LATTICE}`);
 check("L5  the fingerprints join the store", !l5.length && joinHits > 0, l5.length ? few(l5) : `${joinHits.toLocaleString()} of ${joinRows.toLocaleString()} store rows find their lattice card (${(100 * joinHits / Math.max(1, joinRows)).toFixed(1)}%); the rest sort after the graded ones, never dropped`);
 check("L6  the sidecar's sources are the sealed lattice files, by hash, as the receipt records them", !l6.length, l6.length ? few(l6) : "positions and routes sha256 agree on every layered zone");

@@ -11,6 +11,19 @@
 // Leningrad codex spells otherwise. Every position is a re-order of the same
 // pool: the count of readings never changes.
 //
+// THE POOL IS COUNTED WHOLE (21 November 2026). With the signs switch at rest
+// the card offers no pill for a reading that carries a source's own sign,
+// except the reading the line reads: the one the card opened on and, since
+// this day, the leader a lattice order pressed over the open card moved the
+// line to. Until then the line of the first word of Amos read STEP's
+// "[the] words of" under "cites here" while the card's first pill said
+// "Dibri", and this check, which had skipped the law wherever the lattice
+// named no card for the verse, went red the day the corpus lane's later
+// names landed. So the pills under such an order can be one more than at
+// rest, and the count that never changes is the pills and the readings the
+// signs switch has off together (the row says the second:
+// dataset.signsOff).
+//
 // THE SAME POOL UNDER THE SAME POINTING (10 November 2026). Since 6 November
 // the pointing's default follows the order: "only this pointing" under the
 // two default orders, "keep" under a lattice order, and the two withhold
@@ -54,6 +67,11 @@ const pillsNow = () => p.evaluate(() => {
   const h = document.querySelector("#hud"); if (!h || h.hidden) return null;
   return [...h.querySelectorAll(".r-pills button")].map((x) => x.textContent.trim());
 });
+// the readings the signs switch has off, as the row says them
+const signsOffNow = () => p.evaluate(() => {
+  const row = document.querySelector("#hud .r-pills"); if (!row || row.dataset.signsOff === undefined) return null;
+  return Number(row.dataset.signsOff);
+});
 const pressOrder = async (id) => {
   await p.evaluate(() => { const r = document.getElementById("rail"); if (r && !r.open) r.open = true; });
   const ok = await p.evaluate((id) => {
@@ -78,7 +96,10 @@ check("  a word with a reading stands on the page", !!target, target ? `word ${t
 await p.evaluate((i) => { const w = document.querySelectorAll("section.seg .he-text .wb")[i]; (w.querySelector(".w span") || w.querySelector(".w")).click(); }, target ? target.i : 0);
 await p.waitForTimeout(600);
 const base = await pillsNow();
+const baseOff = await signsOffNow();
 check("  the card opened with its readings", !!base && base.length > 0, base ? `${base.length} readings, first "${base[0]}"` : "no card");
+check("  and the row says how many readings the signs switch has off", baseOff !== null && Number.isInteger(baseOff) && baseOff >= 0, `${baseOff}`);
+const whole = (base ? base.length : 0) + (baseOff || 0);
 
 // the lattice orders
 for (const [lab, tierChar, key] of [["masoretic", "m", "m"], ["vowels differ", "x", "x"], ["cites here", null, "c"]]) {
@@ -96,10 +117,13 @@ for (const [lab, tierChar, key] of [["masoretic", "m", "m"], ["vowels differ", "
     const surface = wb ? wb.querySelector(".w").textContent.trim() : null;
     const gr = s.grades[surface] || null;
     const line = wb ? wb.querySelector(".g").textContent.replace(/\s+/g, " ").trim() : null;
-    return { loaded: true, pills, surface, graded: !!gr, first: gr && gr.o ? gr.o : null, line, tierChar };
+    const row = h.querySelector(".r-pills");
+    return { loaded: true, pills, off: row && row.dataset.signsOff !== undefined ? Number(row.dataset.signsOff) : null, surface, graded: !!gr, first: gr && gr.o ? gr.o : null, line, tierChar };
   }, tierChar);
   check(`    the sidecar loaded and this surface is graded`, r.loaded && r.graded, r.surface || "");
-  check(`    the pool is the same pool, re-ordered`, r.pills && base && r.pills.length === base.length, `${r.pills ? r.pills.length : "?"} vs ${base.length}`);
+  check(`    the pool is the same pool, re-ordered`, r.pills && base && r.off !== null && r.pills.length + r.off === whole, `${r.pills ? r.pills.length : "?"} pills and ${r.off} the signs switch has off vs ${base.length} and ${baseOff}`);
+  // a pill more than at rest is the line's own reading and nothing else
+  check(`    and no pill is new but the one the line reads`, r.pills && base && r.pills.filter((x) => !base.includes(x)).every((x) => r.line && r.line.toLowerCase().startsWith(x.toLowerCase().slice(0, 12))), `${r.pills ? r.pills.filter((x) => !base.includes(x)).map((x) => `"${x}"`).join(" ") || "none new" : "?"}`);
   if (r.first && r.first[key]) {
     const want = String(r.first[key][0]).toLowerCase();
     check(`    the line under the word moved to the order's first card`, r.line && r.line.toLowerCase().startsWith(want.slice(0, 12)), `line "${r.line}" · first "${r.first[key][0]}"`);
