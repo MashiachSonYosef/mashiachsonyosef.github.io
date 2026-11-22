@@ -560,7 +560,7 @@ let heldSeen = 0, apartSeen = 0;
 // read as one -> { ns, lineAt }, and the places owed the line as it rests (a unit's words where it holds a pair, a
 // place its line is filed beside its words)
 const SPANS = new Map();
-const spanSeen = { one: 0, rests: 0 };
+const spanSeen = { one: 0, rests: 0, stands: 0 };
 const heldIn = (z, src) => {
   if (!EXPECT) return null;
   if (!HELD.has(z)) {
@@ -882,6 +882,15 @@ for (const { z, ch } of pages) {
           }
           if (y[3] === m) { expected.push(`${at}: "${y[1]}" [${y[3]}], one line of ${name} owed over the ${span.ns.length} words of a unit its own data gives, the words it prints where the line is filed`); continue; }
         }
+        // AND WHERE BOTH BUILDS PRINT IT (ship 14, 22 November 2026): since ship 10b the older build reads the spans
+        // too, so the unit's one line stands on both and nothing moves. The same line on both builds, at every word of
+        // the unit in the new one, the source's: owed, as it stands. (Left to the law below, such a word was held to
+        // the line as it rests, which neither build prints: 8 lines of the sample at the first gate of ship 14.)
+        if (span && x[0] === y[0] && x[1] === y[1] && x[2] === y[2] && x[3] === y[3] && y[3] === M_OF.get(SRC_OF_STATE.get(name))
+          && span.ns.every((w) => { const r = C[k][w - firstN(z, k) - 1] || null; return !!r && r[1] === y[1] && r[2] === y[2] && r[3] === y[3]; })) {
+          spanSeen.stands += 1;
+          continue;
+        }
         const spanRests = !!spans && spans.rests.has(nOf(i));
         if (((holds && holds.has(nOf(i))) || apart || spanRests) && x[0] === y[0]) {
           const rest = c.states.default && c.states.default[k] ? c.states.default[k][i] : null;
@@ -1113,7 +1122,7 @@ for (const { z, ch } of pages) {
   }
 }
 // the lines that moved as heldIn owes them, said apart (a line held whole that differs from the old build's)
-if (EXPECT) console.log(`readings across words (S1): under a source pressed, ${heldSeen} line(s) at a word of one no one source reads at every word moved to the line as it rests, as owed; ${apartSeen} at a word of one unit a source reads at every word of it, its words standing apart; at a word of a unit a source's own data gives (spans), ${spanSeen.one} moved to the unit's one line and ${spanSeen.rests} to the line as it rests`);
+if (EXPECT) console.log(`readings across words (S1): under a source pressed, ${heldSeen} line(s) at a word of one no one source reads at every word moved to the line as it rests, as owed; ${apartSeen} at a word of one unit a source reads at every word of it, its words standing apart; at a word of a unit a source's own data gives (spans), ${spanSeen.one} moved to the unit's one line and ${spanSeen.rests} to the line as it rests, and ${spanSeen.stands} stand as the unit's one line on both builds`);
 await b.close();
 const kindsSaid = KINDS ? ` · the dictionaries that rest shut (${KINDS.path}): ${Object.entries(kindsMoved).map(([why, nn]) => `${nn} ${why}`).join(", ")}, each as owed` : "";
 // ship 5's classes, said with what they were read from

@@ -2856,6 +2856,21 @@
     }
     return JSON.parse(await new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).text());
   };
+  // A FAULT IS NOT AN ABSENCE (21 November 2026; a shard that did not arrive
+  // is not an empty shard, routesFor, and neither is anything else). A file
+  // the shelf does not hold is an answer, and it is kept: fetchBin's own word
+  // for a bin the record does not pin, or the shelf's 404. A fetch that
+  // failed on the way, or that the shelf answered with anything else, is no
+  // answer: the load said «No book is published on this page yet» of a
+  // dropped connection and of a 503, and the lattice, the source-suggested
+  // file, the map of pointers and the toggle ledger each kept one failed
+  // fetch as an absence for the rest of the visit. So binAbsent says which
+  // of fetchBin's refusals is an absence, and fetchJson gives a file's JSON,
+  // null where the shelf holds none, and throws where it did not arrive; a
+  // loader that keeps its fetch lets go of one that threw, and what needs
+  // the file next asks for it again
+  const binAbsent = (e) => /: (?:not on this shelf|404)$/u.test(String((e && e.message) || ""));
+  const fetchJson = (url) => fetch(url).then((r) => { if (r.ok) return r.json(); if (r.status === 404) return null; throw new Error(`${url}: ${r.status}`); });
   // MADE SPACES CLOSE AT PRINT (made-spaces-rule-v1, 13 November 2026). Our
   // own build put one space where each tag of a provider's XML stood, so the
   // store serves «Amos , an Israelite prophet» where the provider wrote
@@ -3248,11 +3263,17 @@
   // verse — lattice-projection-rule-v1. It is fetched the first time an
   // order that needs it is chosen, never before, and a book without one
   // simply keeps those orders dead with their reason.
-  let latticeStore = null, latticePromise = null;
+  // (a fetch that failed on the way is not kept: A FAULT IS NOT AN ABSENCE,
+  // beside fetchBin. A refusal, and a book with no lattice on the shelf, are
+  // answers and stay. The next pool, card or switch that needs the lattice
+  // asks again (poolFor, openHud), and when it lands after a fault the lines
+  // drawn without it are drawn again under it, as they are when it lands at
+  // the load)
+  let latticeStore = null, latticePromise = null, latticeMissed = false;
   const latticeReady = () => {
     if (!latticePromise) latticePromise = fetchBin(`${BOOK}.lattice`)
-      .then((s) => { latticeStore = s; window.__latticeStore = s; return s; })
-      .catch((e) => { if (String((e && e.message) || "").startsWith("REFUSED")) { window.__latticeRefused = e.message; console.error(e.message); } return null; });
+      .then((s) => { latticeStore = s; window.__latticeStore = s; if (latticeMissed) { latticeMissed = false; setTimeout(() => repaintGlossOrder(), 0); } return s; })
+      .catch((e) => { if (String((e && e.message) || "").startsWith("REFUSED")) { window.__latticeRefused = e.message; console.error(e.message); } else if (!binAbsent(e)) { latticePromise = null; latticeMissed = true; } return null; });
     return latticePromise;
   };
   // the fingerprint a store row and a lattice card share: FNV-1a over the
@@ -3743,8 +3764,9 @@
   const WORD_N = new WeakMap();   // each word of the zone -> its place: one-based over every entry, marks included, in section order
   const suggestedReady = () => {
     if (SUGGESTED) return Promise.resolve(SUGGESTED);
-    if (!suggestedWait) suggestedWait = fetch(`${ROOT}data/source-suggested/${BOOK}.json`).then((r) => (r.ok ? r.json() : null))
-      .then((f) => { SUGGESTED = f && f.book === BOOK && Array.isArray(f.places) ? f : null; window.__suggested = { on: suggested, laid: SUGGESTED ? SUGGESTED.counts.laid : 0 }; return SUGGESTED; }).catch(() => null);
+    // (a fetch that failed is let go, and the next card asks again: A FAULT IS NOT AN ABSENCE, beside fetchBin)
+    if (!suggestedWait) suggestedWait = fetchJson(`${ROOT}data/source-suggested/${BOOK}.json`)
+      .then((f) => { SUGGESTED = f && f.book === BOOK && Array.isArray(f.places) ? f : null; window.__suggested = { on: suggested, laid: SUGGESTED ? SUGGESTED.counts.laid : 0 }; return SUGGESTED; }).catch(() => { suggestedWait = null; return null; });
     return suggestedWait;
   };
   // The reader's display law: route texts pack morpheme spans with "/"; the
@@ -3797,11 +3819,15 @@
   // not hold those. The map is fetched once, after the first paint, and the
   // lines it touches are painted again when it is here. JUDGMENT and
   // USAGE_NOTE pointers wait on the owner's branch and are not in the map.
-  let FORM_OF = null, formOfWait = null;
+  // (a fetch that failed is let go: A FAULT IS NOT AN ABSENCE, beside
+  // fetchBin. The map is asked for once, after the first paint, so nothing
+  // would ask again: the next card that opens does, formOfAsk, and the lines
+  // and that card follow as they do when the map lands the first time)
+  let FORM_OF = null, formOfWait = null, formOfMissed = false, formOfAsk = null;
   const formOfReady = () => {
     if (FORM_OF) return Promise.resolve(FORM_OF);
-    if (!formOfWait) formOfWait = fetch(`${ROOT}data/form-of-pills-v1.json`).then((r) => (r.ok ? r.json() : null))
-      .then((f) => { FORM_OF = f && f.keys ? f : null; window.__formOf = FORM_OF ? { keys: Object.keys(FORM_OF.keys).length, pills: FORM_OF.counts.pills, resolved: FORM_OF.counts.resolved } : null; return FORM_OF; }).catch(() => { window.__formOf = null; return null; });
+    if (!formOfWait) formOfWait = fetchJson(`${ROOT}data/form-of-pills-v1.json`)
+      .then((f) => { FORM_OF = f && f.keys ? f : null; window.__formOf = FORM_OF ? { keys: Object.keys(FORM_OF.keys).length, pills: FORM_OF.counts.pills, resolved: FORM_OF.counts.resolved } : null; return FORM_OF; }).catch(() => { window.__formOf = null; formOfWait = null; formOfMissed = true; return null; });
     return formOfWait;
   };
   // the pointer entry for a reading: by the route key, then the source where
@@ -4461,8 +4487,9 @@
   const HUD_LANES = { lay: null, relaySections: null };
   const hudTogglesReady = () => {
     if (HUD_TOGGLES) return Promise.resolve(HUD_TOGGLES);
-    if (!hudTogglesWait) hudTogglesWait = fetch(`${ROOT}data/hud-toggles/${BOOK}.json`).then((r) => (r.ok ? r.json() : null))
-      .then((f) => { HUD_TOGGLES = f && f.book === BOOK && Array.isArray(f.runs) && f.sets ? f : null; return HUD_TOGGLES; }).catch(() => null);
+    // (a fetch that failed is let go, and the next lay that needs the file asks again: A FAULT IS NOT AN ABSENCE, beside fetchBin)
+    if (!hudTogglesWait) hudTogglesWait = fetchJson(`${ROOT}data/hud-toggles/${BOOK}.json`)
+      .then((f) => { HUD_TOGGLES = f && f.book === BOOK && Array.isArray(f.runs) && f.sets ? f : null; return HUD_TOGGLES; }).catch(() => { hudTogglesWait = null; return null; });
     return hudTogglesWait;
   };
   // which lattice the two switches reach: null is the served HUD runs file
@@ -5005,15 +5032,35 @@
       let seen = null; try { seen = localStorage.getItem(DEFAULTS_KEY); } catch { /* a reader with no memory gets the defaults every visit */ }
       if (seen !== ver) {
         for (const [id, m] of Object.entries(index.m_sources)) if (m && SOURCE_DEFAULTS.off[m.key]) sourcesOff.add(id);
-        try { localStorage.setItem(SOURCES_KEY, JSON.stringify([...sourcesOff])); localStorage.setItem(DEFAULTS_KEY, ver); } catch { /* the choice still stands on this page */ }
+        // THE DEFAULTS ARE STAMPED AS GIVEN ONCE EVERY SOURCE THEY NAME COULD BE
+        // MET (21 November 2026). An overlay's sources join the index from the
+        // overlay's own file (above), and the version was stamped as given
+        // whether or not that file had arrived: on a first visit where the
+        // Samaritan overlay's index failed once, Uhlemann's Latin met no id,
+        // the stamp was written all the same, and it never rested off for
+        // that reader again. So while a source the record rests off has met
+        // no id and an overlay's index did not arrive, the stamp waits and the
+        // next visit gives the defaults again. A source no file carries does
+        // not hold the stamp back once every overlay's index is here
+        const met = new Set(Object.values(index.m_sources).map((m) => m && m.key));
+        const owed = Object.keys(SOURCE_DEFAULTS.off).some((k) => SOURCE_DEFAULTS.off[k] && !met.has(k)) && OVERLAY_IX.some((ix) => !ix);
+        try { localStorage.setItem(SOURCES_KEY, JSON.stringify([...sourcesOff])); if (!owed) localStorage.setItem(DEFAULTS_KEY, ver); } catch { /* the choice still stands on this page */ }
         window.__sourcesOff = [...sourcesOff];
       }
     }
     // the run cards, by section and word; a card for another book, or whose
     // words are not this zone's words, is not drawn
-    if (RUN_CARDS && RUN_CARDS.books && RUN_CARDS.books[BOOK])
-      RUN_CARDS = await fetch(`${ROOT}data/run-cards/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    else RUN_CARDS = null;
+    // THE RUN FILES ARE ASKED FOR WHEN A RUN IS TO BE LAID (21 November 2026).
+    // The book's run cards and its HUD runs were both asked for here, before
+    // the first word was drawn, and at rest neither is laid: the license runs
+    // rest off, and off lays no run of either file (HUD_LANES.lay, below).
+    // Genesis asked for 22,708 and 53,278 bytes on every visit and laid none
+    // of them. So only whether the indexes list the book is kept here; the
+    // lay asks for the two files the first time the switches call for a run
+    // of them (runFilesReady, below) and waits for them, so a reader who
+    // kept the runs on has them under the first paint as before
+    const runCardsListed = !!(RUN_CARDS && RUN_CARDS.books && RUN_CARDS.books[BOOK]);
+    RUN_CARDS = null;
     // THE RUN LANES, laid as one and laid again when a switch moves them.
     // First the run cards (data/run-cards: a run a dictionary names, with its
     // names), then THE HUD RECORD'S RUNS (hud-runs-rule-v1; the corpus lane's
@@ -5102,9 +5149,22 @@
       window.__runCards = countRunCards();
       return hudLaid;
     };
-    HUD_RUNS = HUD_RUNS && HUD_RUNS.books && HUD_RUNS.books[BOOK] && HUD_RUNS.books[BOOK].runs
-      ? await fetch(`${ROOT}data/hud-runs/${BOOK}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null) : null;
-    const hudRunCards = HUD_RUNS && HUD_RUNS.book === BOOK && Array.isArray(HUD_RUNS.cards) ? HUD_RUNS.cards : [];
+    const hudRunsListed = !!(HUD_RUNS && HUD_RUNS.books && HUD_RUNS.books[BOOK] && HUD_RUNS.books[BOOK].runs);
+    HUD_RUNS = null;
+    let hudRunCards = [];
+    // the two run files, asked for together the first time a lay needs them
+    // (THE RUN FILES, above). A fetch that failed is let go, neither file is
+    // taken, and the next lay that needs them asks again (A FAULT IS NOT AN
+    // ABSENCE, beside fetchBin); until then no run of them is laid
+    let runFilesHere = !(runCardsListed || hudRunsListed), runFilesWait = null;
+    const runFilesReady = () => {
+      if (!runFilesWait) runFilesWait = Promise.all([
+        runCardsListed ? fetchJson(`${ROOT}data/run-cards/${BOOK}.json`) : null,
+        hudRunsListed ? fetchJson(`${ROOT}data/hud-runs/${BOOK}.json`) : null,
+      ]).then(([rc, hr]) => { RUN_CARDS = rc; HUD_RUNS = hr; hudRunCards = HUD_RUNS && HUD_RUNS.book === BOOK && Array.isArray(HUD_RUNS.cards) ? HUD_RUNS.cards : []; runFilesHere = true; })
+        .catch(() => { runFilesWait = null; });
+      return runFilesWait;
+    };
     // THE SPAN STORE'S PLACES, AS CELLS (I1: underline a span only where the
     // store's by_key has the ink's key; I3: a place inside another key's
     // place is drawn too, as a named rung of the longer cell). A place is
@@ -5187,6 +5247,12 @@
     // lay the lanes for the switches as they stand; a switch away from the
     // default waits for the book's file first, so the sections build into it
     HUD_LANES.lay = async () => {
+      // the run files, where a run of them is to be laid and they are not
+      // here yet (THE RUN FILES, above): the run cards stand with the license
+      // runs on, or on a book the toggle ledger does not reach, and the HUD
+      // runs with the license runs on. At rest nothing is waited for, and the
+      // lanes are laid within the call (cellsFollow)
+      if (!runFilesHere && (runsPref !== "off" || !hudSetFor())) await runFilesReady();
       const name = hudSetFor();
       let cards = hudRunCards;
       // with the license runs off no run of the book's file is laid (below),
@@ -5285,9 +5351,16 @@
   } catch (e) {
     // a refusal is not an absence: a bin that failed its seal says so in the
     // refusal's own words, and a page with no book keeps the honest silence
+    // and a fault is not an absence (beside fetchBin, 21 November 2026):
+    // only a book the shelf does not hold is said to be unpublished. Whatever
+    // else stopped the load, a dropped connection, a 503, a file that could
+    // not be read, is said as a fault, with its own words
+    const said = String((e && e.message) || "");
     document.getElementById("meta").textContent =
-      String((e && e.message) || "").startsWith("REFUSED")
+      said.startsWith("REFUSED")
         ? e.message
+        : !binAbsent(e)
+        ? `This book could not be loaded: something the page asked for did not arrive, or could not be read (${said || "no reason given"}). That is a fault on the way, not the shelf: nothing here says the book is not published. Nothing is shown; load the page again.`
         : "No book is published on this page yet — no walk has landed. The page takes its name from the zone when one arrives; nothing is shown, and nothing is named, that has not come through the pipeline.";
     return;
   }
@@ -6082,9 +6155,15 @@
     return m.cut || surfaces.some((sf) => m.cells.has(sf)) ? surfaces : null;
   };
   // the readings a ruled line shows, block by block as ruledLine reads them
-  const ruledMs = (k, table, word) => {
-    const m = pickedByForm.get(k);
+  // A PAIR'S WRITTEN FORM IS READ UNDER ITS LETTERS HERE TOO (21 November
+  // 2026). Its ruling is remembered under a key of its own (kqMemKey) and its
+  // cells under the letters, which is how ruledLine0 reads them. Asked under
+  // the key whole, no cell was found, and the ruled line lost its chip at the
+  // first repaint (Daniel 2:43 word 1; Lamentations 1:6 word 2)
+  const ruledMs = (kIn, table, word) => {
+    const m = pickedByForm.get(kIn);
     if (!m || (!m.cut && !m.cells.size)) return null;
+    const k = String(kIn).split("\u0000")[0];
     const set = setRuling(m);
     if (set) { const r = mOfPick(set); return r ? [r] : null; }
     const surfaces = ruledSurfaces(m, k, table, word);
@@ -6299,15 +6378,28 @@
   const kqPickG = (regions, parts, table, word) => {
     const groups = kqGroupsOf(word, regions);
     if (!groups) {
-      const p = kqPick(regions, parts, table, word);
-      const ra = latestRuled(kqMemRegions(regions, word), table);
+      // THE RULED HALF OF A ONE-WORD PAIR IS ASKED UNDER THE PAIR'S MEMORY
+      // KEYS (21 November 2026), as it is where a branch has several words
+      // (below). kqPick asked under the letters: a ketiv ruled on its card
+      // was not found, so the next repaint gave the line back to the read
+      // half (Daniel 2:43 word 1), and a ruling on a plain word spelled like
+      // the ketiv (2:8) was found, and took the pair's line over
+      const mem = kqMemRegions(regions, word);
+      const p = kqPick(regions, parts, table, word, mem);
+      const ra = latestRuled(mem, table);
       return { ...p, is: p.i >= 0 ? [p.i] : [], text: p.i >= 0 ? parts[p.i] : "", keys: p.i >= 0 ? [regions[p.i].k] : [], rk: ra >= 0 ? kqMemKey(regions[ra], word) : (p.i >= 0 ? kqMemKey(regions[p.i], word) : null) };
     }
     const gParts = groups.map((g) => (g.idx.every((i) => parts[i] && parts[i] !== "\u2014") ? g.idx.map((i) => parts[i]).join(" + ") : "\u2014"));
     const gRegions = groups.map((g) => ({ role: g.role, k: g.k, s: g.regions.map((r) => r.s).join(g.joiner) }));
     const ruledAtom = latestRuled(kqMemRegions(regions, word), table);
+    // (rk under a ruling on a word of a written branch of several words: none,
+    // 21 November 2026. The line prints the branch whole, its other words'
+    // readings too, and the card that makes the ruling paints it with no chip.
+    // The ruled word's chip alone would name one source for all of it, and
+    // since ruledMs reads a written form under its letters it would be found:
+    // absent over wrong, as the line stood until then)
     const done = (gi, extra) => ({ i: gi >= 0 ? groups[gi].idx[0] : -1, is: gi >= 0 ? groups[gi].idx : [], g: gi, text: gi >= 0 ? gParts[gi] : "",
-      keys: gi >= 0 ? groups[gi].regions.map((r) => r.k) : [], rk: ruledAtom >= 0 ? kqMemKey(regions[ruledAtom], word) : (gi >= 0 ? kqMemKey(groups[gi].regions[0], word) : null), ...extra });
+      keys: gi >= 0 ? groups[gi].regions.map((r) => r.k) : [], rk: ruledAtom >= 0 ? (gi >= 0 && groups[gi].role === "KETIV" && groups[gi].regions.length > 1 ? null : kqMemKey(regions[ruledAtom], word)) : (gi >= 0 ? kqMemKey(groups[gi].regions[0], word) : null), ...extra });
     if (ruledAtom >= 0) return done(groups.findIndex((g) => g.idx.includes(ruledAtom)), { fellFrom: null });
     // where STEP's own words stand at this pair (call 4), they back the read branch (dfltPairStands): at
     // Lamentations 4:3:10 the place's pieces spell the written branch's two words joined, and STEP reads the one read word
@@ -6319,10 +6411,18 @@
       if (gi < 0) gi = groups.findIndex((g) => g.regions.map((r) => r.k).join("") === spelled);
       if (gi >= 0) return done(gi, { fellFrom: null, at: placeShown(at0) });
     }
-    const p = kqPick(gRegions, gParts, table, word);
+    // A WRITTEN BRANCH OF ONE WORD IS ASKED UNDER ITS MEMORY KEY HERE TOO (21
+    // November 2026). Asked under its letters, a ruling on a plain word
+    // spelled like it took the pair's line wherever the place's source does
+    // not read the pair (Deuteronomy 33:2 word 15, with the slopes of 3:17
+    // ruled and STEP's translation switched off). A branch of several words
+    // keeps the key its own card remembers a whole rung under
+    const p = kqPick(gRegions, gParts, table, word, gRegions.map((g, gi) => (groups[gi].regions.length === 1 ? { ...g, k: kqMemKey(g, word) } : g)));
     return done(p.i, { fellFrom: p.fellFrom });
   };
-  const kqPick = (regions, parts, table, word) => {
+  // (mem: the regions under the keys their rulings are remembered by, where
+  // the caller holds them: a pair's one-word halves, kqPickG)
+  const kqPick = (regions, parts, table, word, mem = regions) => {
     // THE WRITTEN HALF IS NEVER BACKED BY THE CATALOG'S LEAD FOR ITS LETTERS
     // (kq-declared-weld-v1; the owner, 2026-10-30). Where the pair has a read
     // half, the baked lead under the written letters is a reading of another
@@ -6333,7 +6433,7 @@
     // says it fell. A pair with no read half keeps its one half.
     const hasRead = regions.some((r) => r && r.role === "QERE");
     const usable = (i) => i >= 0 && parts[i] && parts[i] !== "—" && !(hasRead && regions[i] && regions[i].role === "KETIV");
-    const ruledIdx = latestRuled(regions, table);
+    const ruledIdx = latestRuled(mem, table);
     if (ruledIdx >= 0) return { i: ruledIdx, fellFrom: null };
     const pl = kqPlace(word, regions, table);
     if (pl) return { i: pl.i, fellFrom: null, at: pl.at };
@@ -6352,6 +6452,21 @@
   const licChipFor = (ks) => {
     if (!ks || !ks.length || !zone.gloss_m) return null;
     return licenseChipFor(ks.map((k) => zone.gloss_m[k] || null));
+  };
+  // A PAIR FOLLOWS THE SOURCE SWITCHES (21 November 2026). A pair's line reads
+  // one half from the baked column, and the switches never reached it: in
+  // Ruth, with STEP's translation switched off, 6 of the 12 pairs still
+  // printed its words under its chip, and with Strong's forms off, 4:5 still
+  // named it. So a half whose reading has every carrier switched off reads
+  // its baked alternate, or nothing, as a block left alone on a ruled line
+  // does (switchedReading, where the pair's halves are read), and its chip
+  // names whose reading that is (switchedReadings). With no carrier of the
+  // line off, the chip is made as it always was.
+  const licChipSwitched = (ks) => {
+    if (!ks || !ks.some((k) => carriersOff(k))) return licChipFor(ks);
+    const rs = [];
+    for (const k of ks) { const r = switchedReadings(k, zone.gloss[k]); if (!r) return null; rs.push(...r); }
+    return rs.length ? licenseChipFor(rs) : null;
   };
   // TWO YEARS, SAID APART. Since the year repair (store 3411c86e94e7) a row's
   // own year is the year its WORDING was written — a collector repeating an
@@ -6794,7 +6909,8 @@
         const held = ruledLine(kqMemKey(r, s.word), s.table);
         if (held !== null) return held;
         const g = s.table ? s.table[r.k] : null;
-        return g ? spanJoin(g) : "\u2014";
+        // under the source switches (licChipSwitched)
+        return g ? (s.table === zone.gloss ? switchedReading(r.k, g) : spanJoin(g)) : "\u2014";
       });
       const pick = kqPickG(s.regions, s.parts, s.table, s.word);
       const { i, fellFrom, at } = pick;
@@ -6804,7 +6920,7 @@
       s.ge.title = line;
       const ruled = s.regions.findIndex((r) => ruledLine(kqMemKey(r, s.word), s.table) !== null) >= 0;
       if (line && !ruled && s.table === zone.gloss) {
-        const chip = at ? licenseChipFor(at.rs) : licChipFor(pick.keys);
+        const chip = at ? licenseChipFor(at.rs) : licChipSwitched(pick.keys);
         if (chip) s.ge.append(chip);
       } else if (line && ruled && i >= 0 && s.table === zone.gloss) {
         const chip = ruledChip(pick.rk, s.table);
@@ -7120,7 +7236,17 @@
         if (!a) for (const [k, every] of tries) {
           // a ruled line that is a default source's own made reading is asked of
           // a pool that makes its row again (ruledMadeAt), wherever it stands
-          const r = await attributionFor(k, asked, (ruled && ruledMadeAt(k, w)) || at, named, every);
+          // THE WHOLE POOL IS ASKED FOR NO WORD (21 November 2026). This ask
+          // named no word, and a pool asked with no word named reads the open
+          // card's from the page's memory (askedWord), which a closed card
+          // leaves standing: the file was gated by the pointing of whichever
+          // card was opened last on the same letters. With Amos 4:10's third
+          // word ruled «plague» and the card at 3:7's sixth word, the same
+          // letters pointed otherwise, opened and shut, the file listed the
+          // ruled reading as withheld, matching no record in the store. So
+          // the ask says it is for no word, and no card's pointing, entry or
+          // name gates it, as on a visit where no card was opened
+          const r = await attributionFor(k, asked, (ruled && ruledMadeAt(k, w)) || at, named, every, NO_WORD);
           if (!r.miss) { a = r; break; }
           // the reason kept is the most telling one: a reading found without
           // the record the line credits says more than a reading not found
@@ -7992,7 +8118,57 @@
   // press caught five pills sliced by the readings band. So the placement now
   // ends by snapping, in the same call, and the loop keeps its own pass for
   // what happens after — a window resized, a band re-wrapped under a drag.
-  const placeInBounds = (...a) => { placeInBoundsOnly(...a); snapBandsNow(); };
+  // AND THE CLAMP LEAVES THE CARD AT ITS WORD (21 November 2026). The
+  // placement stands a card 8px from its word, and a press inside the card
+  // changes what it measured to do so: the record drawn for another reading
+  // is another height, its "the record, whole" control arrives a frame later
+  // and the card is fitted again, the reading under the word wraps or stops
+  // wrapping. The clamp kept the card's top, so a card standing above its
+  // word that came out shorter stood away from it (Obadiah 1:1, the second
+  // pill pressed on a phone: 688px to 768 and placed again for that, then
+  // 668, and 108px of page between the card and its word), and a card
+  // beneath a word whose line lost a row stood a row under it. So the clamp
+  // looks before it fits. A card the page placed, standing at its word, is
+  // held, and stays held while the page has not scrolled, or has scrolled
+  // and left the word where it stood (the browser keeping the reader's
+  // place, the pin under the reset pill's line). A held card the fit and
+  // the snap leave away from its word goes back to it: one standing above a
+  // word that has not moved is stood on its foot again, where the foot was,
+  // nothing fitted anew; any other is placed again under the whole law. A
+  // card the reader moved is the reader's, and so is a page the reader
+  // scrolled: the card is not brought after a word scrolled away from it. A
+  // card come onto its word is the clamp's own case, below, as it was.
+  let hudHeld = null;
+  // the placed card and its word, in the layout's own pixels, as the clamp
+  // reads them (the pop draws the card scaled): where the word's block
+  // stands in the window, the card's foot where it stands above the block,
+  // and how far it stands from the block on its side of it (null: on the
+  // word). Nothing where there is no word to stand at.
+  const cardAtWord = () => {
+    if (hud.hidden || hudMoved || !hudAnchor || !hudAnchor.isConnected) return null;
+    const a = ((hudAnchor.closest && hudAnchor.closest(".wb")) || hudAnchor).getBoundingClientRect();
+    if (!a.width && !a.height) return null;
+    const top = parseFloat(hud.style.top) || 0, foot = top + (hud.offsetHeight || 0);
+    const above = foot <= a.top + 0.5;
+    return { word: a.top, foot: above ? foot : null, gap: above ? a.top - foot : top >= a.bottom - 0.5 ? top - a.bottom : null };
+  };
+  // at its word: the placement's own 8px, and 4px more, as the clamp lets a
+  // card come 4px nearer its word before it places it again (a fit that
+  // takes a pixel or three off a card moves nothing: the records drawer
+  // opened took one, and the card held still)
+  const AT_WORD = 12;
+  const holdCard = (c) => { if (c && c.gap !== null && c.gap <= AT_WORD) hudHeld = { y: window.scrollY, word: c.word, foot: c.foot }; };
+  const placeInBounds = (...a) => {
+    const was = cardAtWord();
+    holdCard(was);
+    const held = was && hudHeld && (hudHeld.y === window.scrollY || Math.abs(hudHeld.word - was.word) <= 1) ? hudHeld : null;
+    placeInBoundsOnly(...a); snapBandsNow();
+    const now = held ? cardAtWord() : null;
+    if (!now || !(now.gap > AT_WORD)) return;
+    const top = held.foot !== null && Math.abs(held.word - now.word) <= 1 ? held.foot - (hud.offsetHeight || 0) : 0;
+    if (top >= 8) hud.style.top = `${top}px`;
+    else { placeHud(); snapBandsNow(); }
+  };
   // THE FONT ARRIVES AFTER THE FIT. The readings' face loads with swap, so a
   // card fitted in the fallback face held rows measured in it; when the face
   // arrived its pills stood taller and the band cut them through the middle
@@ -8448,6 +8624,8 @@
     hud.style.left = `${Math.max(pad, Math.min(window.innerWidth - w - pad, rect.left - 100))}px`;
     // the bands were fitted to whatever height the card had a moment ago
     fitBands();
+    // placed at its word, the card is held there by the clamp (placeInBounds)
+    hudHeld = null; holdCard(cardAtWord());
   };
   // Moving the card. Pointer events so a finger and a mouse take the same
   // path; the close button and any control in the head are excluded so the
@@ -8459,12 +8637,24 @@
     const head = e.target.closest(".head");
     if (!head || !hud.contains(head) || e.target.closest("button, input, label, select, a")) return;
     drag = { dx: e.clientX - (parseFloat(hud.style.left) || 0),
-             dy: e.clientY - (parseFloat(hud.style.top) || 0) };
+             dy: e.clientY - (parseFloat(hud.style.top) || 0),
+             x: e.clientX, y: e.clientY, far: false };
     head.setPointerCapture(e.pointerId);
     e.preventDefault();
   });
+  // A STILL PRESS IS NOT A DRAG (21 November 2026). Every press on the head
+  // ended as a move: the card was marked as taken hold of, and the next
+  // word's card opened where this one stood and not under its word (one
+  // press on the head's Hebrew word, by mouse or by finger, and the next
+  // card stood 161px under its word). The card follows the pointer, and is
+  // the reader's to park, only once the pointer has traveled DRAG_SLOP
+  // pixels from where it went down; a press that never does moves nothing
+  // and parks nothing, and a card already parked stays parked
+  const DRAG_SLOP = 6;
   hud.addEventListener("pointermove", (e) => {
     if (!drag) return;
+    if (!drag.far && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < DRAG_SLOP) return;
+    drag.far = true;
     hud.style.left = `${e.clientX - drag.dx}px`;
     hud.style.top = `${e.clientY - drag.dy}px`;
   });
@@ -8475,7 +8665,10 @@
   let justDragged = false;
   const endDrag = () => {
     if (!drag) return;
-    drag = null; justDragged = true;
+    const far = drag.far; drag = null;
+    // a still press: nothing moved, so nothing is parked (above)
+    if (!far) return;
+    justDragged = true;
     hudMoved = true; hud.classList.add("moved"); clampHud();
   };
   hud.addEventListener("pointerup", endDrag);
@@ -9696,9 +9889,17 @@
     // when none does.
     let byText = whole.bt, readsAt = whole.ra;
     const blockEntries = new Map();    // letters -> filed entry; null while the store is asked
-    // a block whose shard did not arrive: asked again on the next paint, and
-    // said so meanwhile, never counted as 0 (a shard that did not arrive is not
-    // an empty shard)
+    // a block whose shard did not arrive: said so, never counted as 0 (a shard
+    // that did not arrive is not an empty shard), and asked again when the
+    // reader presses the block again, as the table says, and not before.
+    // ONE FAILURE IS ONE REQUEST (21 November 2026). The block was asked again
+    // on the next paint, and its failure paints, so a shard that failed was
+    // asked again from inside its own failure with no pause: about 1,500
+    // requests in five seconds from one press of a block, for as long as the
+    // card stood open. A failed block now keeps its place in blockEntries
+    // (null, as while the store is asked), so no paint asks for it; the block
+    // pressed again gives the place up (below, where the card's rows are
+    // watched), and the paint that follows that press asks once more
     const blockFailed = new Set();
     const blockButtons = () => [...hud.querySelectorAll(":scope > .rows .b-cell .s-pills button")];
     // the line under the word as it reads now: the whole, or, with a block
@@ -10006,7 +10207,7 @@
       if (bl && !blockEntries.has(bl)) {
         blockEntries.set(bl, null);
         const done = (bv) => { const f = filed(); for (const g of (bv && bv.readings) || []) for (const q of g.places) f.file(g, q); blockEntries.set(bl, f); blockFailed.delete(bl); if (gen === hudGen) paint(); };
-        dictKey(bl).then((r) => done(r && r.v), () => { blockEntries.delete(bl); blockFailed.add(bl); if (gen === hudGen) paint(); });
+        dictKey(bl).then((r) => done(r && r.v), () => { blockFailed.add(bl); if (gen === hudGen) paint(); });
       }
       const scope = bl ? blockEntries.get(bl) : whole;
       byText = scope ? scope.bt : new Map(); readsAt = scope ? scope.ra : new Map();
@@ -10118,12 +10319,30 @@
     });
     const rowsEl = hud.querySelector(":scope > .rows");
     if (rowsEl) mo.observe(rowsEl, { childList: true, subtree: true, attributes: true, attributeFilter: ["aria-pressed"] });
+    // A FAILED BLOCK PRESSED AGAIN IS ASKED AGAIN (blockFailed, above; 21
+    // November 2026). The press is heard here on its way to the card's own
+    // button, the dropdown's press with it (it presses the card's), and gives
+    // the block's place in blockEntries up, so the paint that follows the
+    // card's redraw asks the store once more. The rows are this card's: the
+    // listener goes with them when the card closes
+    if (rowsEl) rowsEl.addEventListener("click", (e) => {
+      const pressed = e.target && e.target.closest ? e.target.closest(".b-cell .s-pills button") : null;
+      const L = pressed ? lettersOf(pressed.textContent) : null;
+      if (L && blockFailed.has(L)) blockEntries.delete(L);
+    }, true);
     placeHud();
   };
   const openHud = async (el, region, unitId, wordPos, opts = {}) => {
     closeHud(false);
     const myGen = ++hudGen;
     activeEl = el;
+    // what a fault kept away is asked for again by the next card (A FAULT IS
+    // NOT AN ABSENCE, beside fetchBin): the map of pointers (formOfReady), and
+    // the lattice, since under «the letters only», or a lattice order with
+    // the pointing kept, no pool waits for it and nothing else would ask; the
+    // card is sorted again when it lands
+    if (formOfMissed && !FORM_OF && !formOfWait && formOfAsk) formOfAsk();
+    if (latticeMissed && !latticeStore && !latticePromise) latticeReady().then((s) => { if (s && redrawReadings) redrawReadings(); });
     // how this card was opened, so a reopen that is not the reader's (the
     // BSB layer arriving) opens the same card again: on a pair, the branch
     // that stood open, not the half the line reads from
@@ -10194,7 +10413,10 @@
       ? w.w.filter((r) => !String((r.s || r.k) || "").includes("\u05be"))
       : null;
     const regions = opts.headRegions || atomsOf(word) || [region];
-    const openSurfaces = String((region && (region.s || region.k)) || "").split("\u05be");
+    // (each piece without the space beside it, 21 November 2026: the card of a named run that is exactly a
+    // maqaf chain names its words with a space after each joiner, openNamedRun, so only the first piece
+    // matched its word and the run's own card lit its first word alone, the others at the regular weight)
+    const openSurfaces = String((region && (region.s || region.k)) || "").split("\u05be").map((x) => x.trim());
     if (opts.mark) opts.mark();
     placeHud(el);
 
@@ -10594,7 +10816,10 @@
     // it wherever it stands, as its own card does, and its own card opens on
     // it. A piece of several words is remembered by the run.
     const wordsOwn = !!(opts.run && opts.run.named && !opts.run.chain) || !!(opts.run && opts.run.kqBranch);
-    const cellMap = (sf) => (wordsOwn && !/ /u.test(sf) ? memoryOf(kqCellKey(sf)).cells : mem.cells);
+    // (a named run's piece joined by a maqaf is several words too, 21 November 2026: «Beth-el» inside «El
+    // Beth-el» at Genesis 35:7 was taken for one word, and a reading pressed on it went into the memory of
+    // the chain that stands alone elsewhere, where neither this run's line nor that chain's reads it)
+    const cellMap = (sf) => (wordsOwn && !/ /u.test(sf) && !(opts.run.named && sf.includes("\u05be")) ? memoryOf(kqCellKey(sf)).cells : mem.cells);
     const picked = wordsOwn ? { get: (sf) => cellMap(sf).get(sf), set: (sf, v) => cellMap(sf).set(sf, v) } : mem.cells;
     let cover = covers[0];
     // THE SET IS FILED UNDER ITS DIVISION (the owner, 2026-10-03, on the
@@ -11632,6 +11857,17 @@
       lab.append(at);
     };
     const renderReadings = async () => {
+      // THE REDRAW HOOK IS LET GO WHEN A BLOCK IS READ AGAIN (21 November 2026).
+      // The page's switches redraw the open card through the hook the last
+      // block's pills set (redrawReadings, below), and a block with no pills
+      // to draw (no reading, every record withheld, the catalog not reached)
+      // returns before it sets its own. The hook left standing drew the block
+      // before it into this band: at Ruth 1:1 word 4, the whole form pressed
+      // and then «names: as sound», the last block's «3 readings carrying a
+      // source's own sign switched off» and «4 of another entry than H8199,
+      // withheld» stood under «No dictionary on this shelf gives this form
+      // whole.» A block whose pills are drawn sets the hook again, as before
+      redrawReadings = null;
       const surface = setWhole ? SET_KEY : cover[cellIdx].surface;
       // the place this cell stands at for the dictionaries that rest shut
       // (kindsAtOf), read once before the fetch, and said as the card's
@@ -12368,8 +12604,16 @@
             // remembered as a pill press is (choose): a place's own row stands
             // on its pieces' line, and TAHOT's set on the division it was
             // chosen on
+            // THE KEY IS THE READING'S, AS A PILL'S PRESS KEEPS IT (21 November
+            // 2026). It was asked of the reading's first record, a row with no
+            // text and no records of its own, so every witness pressed was
+            // remembered under one key that no reading answers to: the line
+            // read the witness's reading and the card opened again on another
+            // pill (Ruth 1:2 word 3, «Elimelech» chosen through its witness:
+            // the card reopened on «[was] Elimelech»). The credit stays the
+            // witness pressed: mId and wy are its row's
             if (SOURCE_WORDS.has(String(group.text))) SOURCE_WORDS_RULED.add(String(group.text));   // a source's own words, ruled, print whole
-            selected = group; picked.set(surface, { key: routeKey(group.records[0]), text: group.text, mId: row[3], wy: row[4],
+            selected = group; picked.set(surface, { key: routeKey(group), text: group.text, mId: row[3], wy: row[4],
               place: PLACE_ROWS.has(row) && !DFLT_MADE.has(row), ...(DFLT_MADE.has(row) ? { dflt: DFLT_MADE.get(row), own: DFLT_OWN.get(row) || null } : {}),
               cut: surface === SET_KEY ? cutKey(cover) : null, ...(group.kqRead ? { read: group.kqRead } : {}),
               ...(group.records.every((x) => SENSE_ROWS.has(x)) ? { sense: true, under: underOf(picked.get(surface)) } : {}), ...kindPick(group.records, picked.get(surface), kindsAtCell) });
@@ -13338,7 +13582,31 @@
     }
     const parts = [];
     if (heldRun !== null) run.classList.add("chosen");
+    // A BLOCK OF SEVERAL WORDS THE READER RULED PRINTS ONCE OVER ITS WORDS (21 November 2026). A run ruled on a
+    // division one of whose blocks is several words (a run named inside the run) keeps the reading pressed on
+    // that block under the block's own letters, and this line asked each word for its own: at Genesis 35:7
+    // words 6 to 8 the card said «El + Beth-el» and the line stayed «El + Beth- + -el». The division's blocks
+    // are laid against the run's words, and a block of several words with a reading pressed on it draws one
+    // part over them all (data-wn, tied to all their ink as a unit's part is), with the chip of the record it
+    // was pressed on. A block left alone, a block of one word, and every run nobody ruled read as before
+    const blockAt = new Map(), blockSkip = new Set();
+    if (memRun && memRun.cut && memRun.cut.includes("+") && run.__words && run.__words.length === wbs.length) {
+      let at = 0;
+      for (const sf of memRun.cut.split("+")) {
+        const ks = sf.split(/[ \u05be]/u);
+        if (!ks.every((k, x) => run.__words[at + x] && run.__words[at + x].k === k)) break;
+        const p = ks.length > 1 ? memRun.cells.get(sf) : null;
+        if (p && p.text) { blockAt.set(at, { p, n: ks.length }); for (let x = 1; x < ks.length; x += 1) blockSkip.add(at + x); }
+        at += ks.length;
+      }
+    }
     for (const [j, wb] of wbs.entries()) {
+      if (blockSkip.has(j)) continue;
+      if (blockAt.has(j)) {
+        const { p, n } = blockAt.get(j), wm = mOfPick(p);
+        parts.push({ t: spanJoin(p.text), lic: wm ? licenseChipFor([wm]) : null, wi: j, wn: n });
+        continue;
+      }
       const chosen = memRun && run.__words && run.__words[j] ? memRun.cells.get(run.__words[j].k) : null;
       if (chosen && chosen.text) {
         const wm = mOfPick(chosen);
@@ -13385,6 +13653,10 @@
     if (unreached) line.dataset.off = "unreachable"; else delete line.dataset.off;
     if (!parts.some((p) => p.t)) {
       line.textContent = " ";
+      // a bare line says nothing, in its title either (21 November 2026: a line that went bare where it stood
+      // kept the title of the reading it last drew, «top + before» over an empty line at Genesis 1:2 with
+      // every source switched off); a line that never had a title is left as it was made
+      line.removeAttribute("title");
       line.classList.add("bare");
       line.classList.remove("parts");
       drawTies(run);
@@ -14303,6 +14575,13 @@
   };
   const fitRunLine = (run) => {
     const line = run && run.__gloss;
+    // A LINE THAT IS A ROW OF PARTS NO LONGER GIVES ITS SMALLER SIZE BACK (21 November 2026). The size a row is
+    // let down to is set on the line itself, and it was taken off only below, which a line that is not a row of
+    // two parts or more never reaches: a row let down to fit and then left with one reading printed that one
+    // reading at the row's smaller size (Genesis 3:3 words 4 to 5 on a narrow screen, joined words as written:
+    // the row let down, the shelf «no year given» switched off, «garden» alone at the smaller size beside its
+    // neighbors' full one), and so would a run then read whole. A line with no such size is not touched
+    if (line && line.style.fontSize && !(line.classList.contains("parts") && line.children.length >= 2)) line.style.fontSize = "";
     if (!line || !line.isConnected || !line.classList.contains("parts") || line.children.length < 2) return;
     const col = run.parentElement;
     const colW = col ? col.clientWidth : 0;
@@ -15276,7 +15555,9 @@
       // position with two forms on it keeps its forms
       if (!(regions && regions.length > 1)) { const ov = lineUnder(word, table); if (ov) { lineMoved = ov; return spanJoin(ov.text); } }
       const g = table ? table[shownKey(r)] : null;
-      return g ? spanJoin(g) : "—";
+      // a pair's half under the source switches, in a section built after
+      // the switch moved too (licChipSwitched)
+      return g ? (word.kq && table === zone.gloss ? switchedReading(shownKey(r), g) : spanJoin(g)) : "—";
     });
     // a ruling made on a joined interval spoke for the whole line
     const heldJoint = joined.map((r) => ruledLine(r.k, table)).find((x) => x != null);
@@ -15327,7 +15608,7 @@
         : word.k ? [shownKey({ k: word.k })] : [];
       // a moved line wears the M of what it now says, or no chip at all —
       // absent over wrong, always
-      const chip = lineMoved ? licenseChipFor(lineMoved.rs) : licChipFor(ks);
+      const chip = lineMoved ? licenseChipFor(lineMoved.rs) : word.kq ? licChipSwitched(ks) : licChipFor(ks);
       if (chip) ge.append(chip);
     } else if (line && wasRuled && heldJoint != null && table === zone.gloss) {
       // a ruling on a joined interval speaks for the line, with its own chip
@@ -16158,8 +16439,14 @@
     const reads = TOGGLES.find((t) => t.id === "reads");
     if (reads) { const o = document.createElement("b"); o.dataset.toggle = "order"; o.textContent = reads.now() || reads.lab; o.hidden = true; now.append(o); }
     const drawn = window.__sourcesShelved || 0;
+    // THE LINE COUNTS CHIPS, AS THE FOLD DOES (21 November 2026). It counted
+    // ledger ids: a chip of two ids switched off said "2 off" over a fold
+    // saying "1 switched off", and an id that rests off and draws no chip on
+    // the strip said "1 off" on a fresh load with every chip on. What is said
+    // off here is what a reader can see switched off, the fold's own count.
+    const offN = window.__sourcesShelvedOff || 0;
     const s = document.createElement("b"); s.dataset.toggle = "sources";
-    s.textContent = `${drawn ? `${drawn} ` : ""}dictionaries${sourcesOff.size ? ` \u00b7 ${sourcesOff.size} off` : ""} \u25BE`;
+    s.textContent = `${drawn ? `${drawn} ` : ""}dictionaries${offN ? ` \u00b7 ${offN} off` : ""} \u25BE`;
     // the sources that rest shut are not the reader's switches, and the line
     // does not count them (dictionary-kinds-rule-v1); its title says them,
     // since a word more wraps the rail's one line on a phone, a line of the
@@ -16318,7 +16605,7 @@
   };
   // one expression: the sentence, the source's own values inside it, and the
   // address folded away — a reader wants to know WHAT it says before WHERE
-  const declBranch = (b, klass, showWork, stemKey) => {
+  const declBranch = (b, klass, showWork, stemKey, srcOff) => {
     const box = document.createElement("div"); box.className = "decl-branch"; box.dataset.aspect = b.aspect;
     if (klass) box.dataset.klass = klass;
     // EVERY EXPRESSION CARRIES ITS OWN BOX (owner, 2026-09-20). Layer two of
@@ -16340,11 +16627,29 @@
     const whole = !klass && coversEverything(b);
     const bx = document.createElement("button");
     bx.type = "button"; bx.className = "dfp decl-bx";
-    bx.setAttribute("aria-pressed", "true");
+    // a live box stands where its source's switch stands (srcOff), as the chip does
+    bx.setAttribute("aria-pressed", String(!(whole && srcOff)));
     if (whole) {
-      bx.setAttribute("aria-label", `turn off: ${sayFor(b.aspect)}`);
+      bx.setAttribute("aria-label", `turn ${srcOff ? "on" : "off"}: ${sayFor(b.aspect)}`);
       bx.title = "the source declares this over every record it has — this is the source's own switch";
-      bx.addEventListener("click", (ev) => { ev.stopPropagation(); const t = box.closest(".src-row"); const s2 = t && t.querySelector(".dfp:not(.decl-bx)"); if (s2) s2.click(); });
+      // THE BOX FINDS ITS SOURCE'S CHIP ON THE STRIP, AND ITS PANEL STAYS OPEN (21 November 2026). The panel hangs
+      // on the chip's shelf, under the strip, never inside the chip's own row, so the chip looked for above the box
+      // was not found and a press did nothing. The chip is the one that carries the panel's key. Its press draws
+      // the shelves again, which takes the panel down with them, so the panel is opened again by the source's name
+      // (the declarations are in hand: nothing is waited for), its boxes drawn where the switch now stands, and
+      // the box the reader pressed keeps the focus.
+      bx.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        const host = document.getElementById("sourcesRow"), panel = box.closest(".decl");
+        const chipBox = host && panel && [...host.querySelectorAll(".src-row > .dfp")].find((x) => x.dataset.key === stemKey);
+        if (!chipBox) return;
+        const at = [...panel.querySelectorAll(".decl-bx")].indexOf(bx), held = document.activeElement === bx;
+        chipBox.click();
+        const name = [...host.querySelectorAll(".src-open")].find((x) => x.dataset.key === stemKey);
+        if (name && name.getAttribute("aria-expanded") !== "true") name.click();
+        const again = host.querySelectorAll(".decl .decl-bx")[at];
+        if (held && again) again.focus({ preventScroll: true });
+      });
     } else {
       bx.disabled = true;
       bx.setAttribute("aria-label", `${sayFor(b.aspect)} — not switchable on its own yet`);
@@ -16400,7 +16705,7 @@
     if (!klass && coversEverything(b)) {
       const reach = document.createElement("p"); reach.className = "decl-reach";
       reach.dataset.reach = "source";
-      reach.textContent = "the whole source says this — the box above turns it off";
+      reach.textContent = `the whole source says this — the box above turns it ${srcOff ? "back on" : "off"}`;
       box.append(reach);
     }
     // the address, folded
@@ -16480,7 +16785,9 @@
           : `the box switches ${switchable} of these — the other ${rest} read only`;
       wrap.append(reach);
     }
-    stem.branches.forEach((b) => wrap.append(declBranch(b, null, many, g.key)));
+    // where the source's switch stands, for its whole-source boxes: off when every id of its chip is off
+    const srcOff = g.ids.every((id) => sourcesOff.has(id));
+    stem.branches.forEach((b) => wrap.append(declBranch(b, null, many, g.key, srcOff)));
     stem.channels.forEach((b) => wrap.append(declBranch(b, b.klass || "CHANNEL_NOT_A_BRANCH", many, g.key)));
     if (!n) {
       const p = document.createElement("p"); p.className = "decl-none";
@@ -16708,6 +17015,7 @@
     const seg = document.createElement("div"); seg.className = "def-order src-list"; seg.setAttribute("role", "group"); seg.setAttribute("aria-label", t.lab);
     const sayFold = () => {
       const off = ordered.filter(isOff).length;
+      window.__sourcesShelvedOff = off;   // for the rail's indicator, which says the same count
       sum.textContent = off ? `${ordered.length} sources · ${off} switched off` : `${ordered.length} sources, all on`;
     };
 
@@ -16830,6 +17138,13 @@
   const railSwitch = () => {
     const rows = document.getElementById("railRows");
     if (!rows) return;
+    // THE MARKS' BUTTON IS TAKEN BEFORE THE ROWS ARE CLEARED (21 November 2026).
+    // It is one button, moved into the fold below at the first draw. A later
+    // draw cleared it away with the rows and then looked for it in a page that
+    // no longer held it, so after any switch that draws the rail again (the
+    // word senses, the source signs, the names lead, the reset) the scribes'
+    // marks had no button until the page was loaded again.
+    const marks = document.getElementById("marksToggle");
     rows.replaceChildren();
     // THE SOURCES LEAD, ALONE. The owner's ruling (2026-09-23): the strip of
     // sources is the main thing in this box and stands at the top; every
@@ -16880,8 +17195,8 @@
     }
     // the scribes' marks wait under the fold with the rest (the owner,
     // 2026-10-03: "not sure if we are ready to highlight that"); the button
-    // is the same one, moved, and works as it did
-    const marks = document.getElementById("marksToggle");
+    // is the same one, moved, and works as it did (it is taken above, before
+    // the rows are cleared)
     if (marks) {
       const mrow = document.createElement("div"); mrow.className = "row marks-row";
       const mlab = document.createElement("span"); mlab.className = "lab"; mlab.textContent = "the scribes\u2019 marks";
@@ -17249,7 +17564,19 @@
   const paintReset = () => {
     const n = picksNow(), at = switchesAtDefault();
     resetPill.disabled = !n && at;
-    resetState.textContent = n ? `${n} picked` : at ? "default" : "";
+    // THE LINE COMES AND GOES WITHOUT MOVING THE WORD OF AN OPEN CARD (21
+    // November 2026). The first reading picked on a page writes "1 picked"
+    // under the pill, and where the line stood empty the row of switches
+    // grows by it: on a phone at the top of a book the Hebrew moved 16px
+    // down, out from under the card the pick was made in. Farther down the
+    // page a browser that keeps the reader's place holds the text itself;
+    // at the top of the page it does not. So the open card's word is pinned
+    // as a section is when its commentary opens (holdingSection): where it
+    // stood in the window before the line was written, it stands after.
+    const say = n ? `${n} picked` : at ? "default" : "";
+    const word = !hud.hidden && hudAnchor && hudAnchor.isConnected ? hudAnchor : null;
+    if (word && resetState.textContent !== say) holdingSection(word, () => { resetState.textContent = say; });
+    else resetState.textContent = say;
   };
   resetPill.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -17501,7 +17828,12 @@
           let reads = null;
           if (r.exact) {
             try {
-              const { v } = await dictKey(L);
+              // THE READINGS ARE THE FOUND WORD'S (21 November 2026). The letters typed are not always the
+              // word's own: typed without its final letter a word is still found (hebrew, above), and the
+              // dictionary was then asked for the letters as typed. Under those the store holds nothing, or the
+              // same letters where they stand inside longer words, so the hit showed no readings or another
+              // key's. The hit's own letters are asked, as the hit itself asks them when it is opened (go).
+              const { v } = await dictKey(r.exact[0]);
               const n = new Map();
               for (const g of (v && v.readings) || []) { const t = spanJoin(g.reading); n.set(t, (n.get(t) || 0) + g.places.filter((q) => q.kind !== "piece").length); }
               reads = [...n].sort((a, b) => b[1] - a[1]).slice(0, 4).map(([t]) => t).join(" \u00b7 ");
@@ -19560,11 +19892,25 @@
     let relaid = 0;
     for (const { el } of sectionEls) {
       if (el.__body || !el.__rebuild || (only && !only.has(el))) continue;
-      for (const x of [...el.children]) if (["he-text", "c-bar", "c-slot", "xp-row"].some((c) => x.classList.contains(c))) x.remove();
+      // THE BAR'S ROW GOES WITH THE TEXT, AND AN OPENED COMMENTARY COMES BACK (21 November 2026). The row the
+      // commentary bar stands in was not taken down, and the build makes a new one and moves the bar into it: every
+      // relay left an empty row, with its margins, in the section. The slot was taken down with the commentary
+      // opened in it while the section was still remembered as holding it built, so the bar said open over nothing
+      // and no press built it again. Which commentaries stood open is read before the slot goes; the section is
+      // forgotten as built; and after the build they are built again and shown as they were.
+      const shown = [...el.querySelectorAll(".c-inline")].map((x) => !x.hidden);
+      for (const x of [...el.children]) if (["he-text", "c-bar", "c-barrow", "c-slot", "xp-row"].some((c) => x.classList.contains(c))) x.remove();
+      inlineBuilt.delete(el);
       el.__body = el.__rebuild;
       if (materialise(el)) relaid += 1;
+      if (shown.some(Boolean)) { buildSectionInline(el.__sec, el); el.querySelectorAll(".c-inline").forEach((x, i) => { x.hidden = !shown[i]; }); }
     }
     for (let i = GLOSS_STANDS.length - 1; i >= 0; i -= 1) if (!GLOSS_STANDS[i].ge || !GLOSS_STANDS[i].ge.isConnected) GLOSS_STANDS.splice(i, 1);
+    // AND THE TWO OTHER LEDGERS FORGET THEM TOO (21 November 2026). The pairs' ledger (KQ_STANDS) and the ledger of
+    // every place a form stands (standsOf) were never pruned: each relay left its sections' old elements in both,
+    // kept from the collector and painted again, off the page, at every change of order and every ruling.
+    for (let i = KQ_STANDS.length - 1; i >= 0; i -= 1) if (!KQ_STANDS[i].ge || !KQ_STANDS[i].ge.isConnected) KQ_STANDS.splice(i, 1);
+    for (const list of standsOf.values()) for (let i = list.length - 1; i >= 0; i -= 1) if (!list[i].wb || !list[i].wb.isConnected) list.splice(i, 1);
     placeAllHandles();
     drawAllTies();
     window.__hudRelaid = (window.__hudRelaid || 0) + relaid;
@@ -19871,7 +20217,8 @@
   { const later = window.requestIdleCallback || ((f) => setTimeout(f, 300));
     // and a card drawn before it is built again, its pointers folded (pointer-one-pill-rule-v1), once the
     // reader's hand is off it (reopenCardFree)
-    later(() => formOfReady().then((f) => { if (!f) return; applyGlossOrder(defOrder); repaintGlossOrder(); if (!hud.hidden) reopenCardFree(); else if (redrawReadings) redrawReadings(); })); }
+    formOfAsk = () => formOfReady().then((f) => { if (!f) return; applyGlossOrder(defOrder); repaintGlossOrder(); if (!hud.hidden) reopenCardFree(); else if (redrawReadings) redrawReadings(); });
+    later(() => formOfAsk()); }
   // where the arrival landed, at which line, in which chapter, and whether
   // on the kept place: THE READING PLACE, below, works from these
   let landedEl = null, landedLine = 0, landedCh = "", landedKept = false;

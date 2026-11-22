@@ -45,7 +45,7 @@ const STORE = arg("store", join(K3, "data", "route-store"));
 const OUT = arg("out", join(K3, "data", "source-corpus-v1.json"));
 // Where the ledger came from, said as the address the other lane ships to and
 // never as a path on whatever machine ran this.
-const LEDGER_AT = "r2:mishkan/moses-ledgers/toggle-ledgers-v1/source-corpus-v1.json";
+const LEDGER_AT = "r2:mishkan/v2/ledgers/all/toggle-ledgers/source-corpus-v1.json";
 
 const ledgerBytes = readFileSync(LEDGER);
 const ledger = JSON.parse(ledgerBytes.toString("utf8"));
