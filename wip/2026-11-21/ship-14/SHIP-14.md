@@ -107,5 +107,17 @@ Left for the owner or for later, from the builders' worries:
 
 ## The round, the gate and the suite
 
-Started 23:38 UTC on page 6875eafc24174f3e (`S/s18w/chain.sh p1 suite1`).
+- **The round** (23:38 to 00:19 UTC, `measures/pipeline-first-pass.log`): every step exit 0 on page `6875eafc24174f3e`.
+- **Every resting line against live** (`measures/lines-diff-against-live.json`): 0 entries move. Nothing at rest moves, as meant.
 
+### The gate's first run went red, and the fault was the gate's (00:19 to 00:30 UTC)
+
+S2 held: 54 cards, none differing. S1 failed with **0 lines differing between the builds** and 8 lines called «not as owed», all under UBS pressed: Amos 5 «Bethel», Nehemiah 7 «Pahath-moab» and «Bethlehem». Each is a unit's one line, which live has printed since ship 10b and this tree prints the same.
+
+Why: ship 10b taught the gate the unit's one line as a *move* (ship 13 printed the words apart). Now both builds print it, nothing moves, and such a word fell through to the older law, which holds a reading across words the source does not read whole to the line as it rests. Neither build prints that line there.
+
+The mend (`tools/patch-03-gate-spans-stand-on-both-builds.py`, the gate alone): where both builds print the same line at a word of a unit the source's own data gives, and the new build prints it at every word of the unit under the source's credit, the line stands as owed and is counted. The gate is running again.
+
+### The suite did not start, and why
+
+The scripts for this ship were made by copying ship 10b's through a filter, which left them without the mark that lets them run. The two lanes of the suite are started by name, so neither started and the wait behind them never ended; I found it two hours later when the wait's own limit ran out. Nothing was lost but the time. The mark is set, and the suite starts when the gate is clean.
