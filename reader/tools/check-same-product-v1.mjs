@@ -134,6 +134,11 @@
 // draws them with the signs at rest, credited to the pieces' source. Under a
 // switch where the place's reading does not lead the line is the old line,
 // and nothing is owed. No place is named here: the pin and the zone say them.
+// Since ship 17 (22 November 2026: bridge v1.1, relay v214) the pin lays the
+// other places of new pieces too, read by the same reading
+// (tools/spelling-bridge-v1.mjs, laidOf), so nothing here changes. A place
+// where call 4 of relay v189 makes STEP's own reading stand is held by the pin
+// and owed nothing.
 // SHIP 5'S LANDINGS (the design of ships 5 and 6, section 8; the lead's calls
 // of 15 November 2026). Each is owed only where its expectation is given, and
 // a moved line or card no class explains is a difference as before:

@@ -27,10 +27,12 @@
 # and, where the lattice gave the place no pieces, the place its pieces. It
 # reads only this tree, and over zones that carry its work it writes nothing.
 #
-# THE ZONES STEP BEGINS WITH THE SPELLING BRIDGE (data/spelling-bridge/, relay
-# v202): tools/apply-spelling-bridge-v1.mjs gives a place our text spells
-# otherwise than the Leningrad text, where STEP names our spelling, STEP's own
-# words for the place as its pieces. It runs first because the line read
+# THE ZONES STEP BEGINS WITH THE SPELLING BRIDGE (data/spelling-bridge/, relays
+# v202 and v214): tools/apply-spelling-bridge-v1.mjs gives a place our text
+# spells otherwise than the Leningrad text, where the corpus lane's list cuts
+# STEP's pieces onto our letters, STEP's own words for the place, as STEP
+# writes them, as its pieces (since 22 November 2026, ship 17, at the other
+# places of new pieces too, from bridge v1.1). It runs first because the line read
 # again reads a name's lead off a place's pieces (tools/proper-name-v1.mjs)
 # and the lattice projection reads them too. It reads only this tree, and
 # over zones that carry its work it writes nothing.
