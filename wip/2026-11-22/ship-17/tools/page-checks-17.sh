@@ -21,8 +21,17 @@ run check-line-reads-the-place-v1.song-of-songs tools/check-line-reads-the-place
 run check-piece-store-v1 tools/check-piece-store-v1.mjs
 run check-read-words-v1 tools/check-read-words-v1.mjs
 run check-entry-gate-v1 tools/check-entry-gate-v1.mjs
+run check-compspan-coverage-v1 tools/check-compspan-coverage-v1.mjs
+run check-rulings-under-sources-v1 tools/check-rulings-under-sources-v1.mjs
+# the cause shown: the stands places of the two reds laid back by hand, both checks again, then put back byte for byte
+mkdir -p $L/cause; for b in amos esther; do cp -p data/zones/$b.bin $L/cause/$b.bin; done
+node $S/s22w/tools/exp-lay.mjs "$C" "$C/data/spelling-bridge/bridge-v1.1/bridge-places-v1.1.jsonl" amos 1:10:6 > $L/cause/lay.log 2>&1
+node $S/s22w/tools/exp-lay.mjs "$C" "$C/data/spelling-bridge/bridge-v1.1/bridge-places-v1.1.jsonl" esther 9:17:2 9:18:5 >> $L/cause/lay.log 2>&1
+node tools/emit-zone-store-v1.mjs > /dev/null
+run cause.check-compspan-coverage-v1 tools/check-compspan-coverage-v1.mjs
+run cause.check-rulings-under-sources-v1 tools/check-rulings-under-sources-v1.mjs
+for b in amos esther; do cp -p $L/cause/$b.bin data/zones/$b.bin; cmp -s data/zones/$b.bin $SRC/data/zones/$b.bin && echo "  $b put back, the sandbox's bytes"; done
+node tools/emit-zone-store-v1.mjs > /dev/null
 kill $SRV; wait $SRV 2>/dev/null; echo "server on 8931 stopped"
-node $S/s22w/tools/probe-sections.mjs "$C" psalms 44:15,57:10,102:4,108:4,149:7 > $L/call4-psalms.json 2>/dev/null
-node $S/s22w/tools/probe-sections.mjs "$C" job 18:15 > $L/call4-job.json 2>/dev/null
 $S/s22w/tools/tests-17.sh "$C" $L/tests B5 > /dev/null 2>&1; echo "tests done"
 echo PAGE-CHECKS-DONE

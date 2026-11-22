@@ -2,7 +2,9 @@
 # bridge v1.1 (relay v214) beside v1. It holds v1.1 to v1 line by line, words the places of new pieces by STEP's part
 # as written (the 206 by their form rows, as ship 11d laid them, each held to its part as written byte for byte), and
 # holds within a class the places whose pieces carry STEP's «}+» tag, the places that are pairs, and the places call 4
-# of relay v189 holds as they rest, read as the hold itself is read (the page lane's call, 22 November 2026).
+# of relay v189 holds as they rest, read as the hold itself is read (the page lane's call, 22 November 2026), and the
+# places where call 4 makes STEP's own reading stand (ship 17's suite, the same day: read two ways, the card and a
+# reading across words disagreed with the line).
 # Each replacement's old text must occur once; a replacement whose new text stands already is passed.
 # Usage: python3 -I patch-17-01-reading.py <reader dir>
 import io, sys
@@ -110,6 +112,20 @@ swap("""//   tags     none are written. A zone's tag is the lattice's, and the p
 //            own pin, every place whose STEP's words hold « | » (the bake's
 //            SPLIT). When the lane answers call 4 and the hold is lifted, the
 //            same rule lets them in.
+//   a_place_where_steps_reading_stands   call 4 makes STEP's own pick 1 the
+//            line at the place whatever today's line is (its action
+//            steps_words_are_the_line, STEP's words holding no « | »; the
+//            default picks' bake marks the place so and the page asks it before
+//            the place's pieces). Laid there, the pieces left the line as it was
+//            and read the place a second way beside it (ship 17's suite, 22
+//            November 2026): the card opened on the whole word, STEP's pick
+//            pressed, with the place's pieces said above it as «here STEP
+//            reads» (check-compspan-coverage-v1 C3, Amos 1:10), and under a
+//            source pressed a reading across two words kept the pieces where
+//            the line as it rests is STEP's words (check-rulings-under-sources-v1
+//            U8, Esther 9:18). The place waits until the page lane says how a
+//            place both read is drawn. Read from the same record as the hold
+//            above: call 4's list, while its landing lands that action.
 //
 """)
 
@@ -189,7 +205,11 @@ const call4HoldOf = (home, pin, pinPath) => {
   // the hold stands while call 4's landing still holds the class of STEP's words written with « | »
   const holding = (Array.isArray(landing.holds) ? landing.holds : []).some((h) => String((h && h.class) || "").includes(`«${CALL4_SPLIT}»`));
   const places = new Set(holding ? list.filter((d) => d && typeof d.steps_words === "string" && d.steps_words.includes(CALL4_SPLIT)).map((d) => `${d.book} ${d.p}`) : []);
-  return { places, holding, file: `${audit.folder}/${entry.file}`, sha256: entry.sha256, listed: list.length };
+  // where STEP's reading stands: the action the pin names, while call 4's landing lands it, STEP's words holding no « | »
+  if (typeof c.stands_action !== "string" || !c.stands_action) throw new PinFault(`${pinPath} names no action of call 4 that makes STEP's reading stand (held_with_call_4.stands_action)`);
+  const landing_stands = String(landing.lands || "").includes(c.stands_action);
+  const stands = new Set(landing_stands ? list.filter((d) => d && d.action === c.stands_action && typeof d.steps_words === "string" && !d.steps_words.includes(CALL4_SPLIT)).map((d) => `${d.book} ${d.p}`) : []);
+  return { places, holding, stands, landing_stands, file: `${audit.folder}/${entry.file}`, sha256: entry.sha256, listed: list.length };
 };
 
 /** Where the lane's receipts and the pin part: v1's receipt names its three lists by the pin's bytes and sha256; v1.1's
@@ -240,6 +260,7 @@ export const HELD = {
   a_piece_whose_tag_is_not_plain: "a piece's tag is not «H», digits and letters (STEP's «}+»; the lane mends it in bridge v1.2, relay v218)",
   a_pair: "the lattice's surface writes a pair, and the bridge lays pieces on a plain word only",
   a_place_call_4_holds: "call 4 of relay v189 writes STEP's words here with « | », and the house holds the line as it rests until the corpus lane says how STEP's line reads there",
+  a_place_where_steps_reading_stands: "call 4 of relay v189 makes STEP's own pick 1 the line here, and the page asks it before the place's pieces: laid, the place would be read two ways, its card and a reading across words disagreeing with its line, until the page lane says how a place both read is drawn",
 };
 const PLAIN_TAG = /^H[0-9A-Za-z]+$/u;
 const PAIR_MARKS = /[()\\[\\]]/u;
@@ -251,6 +272,8 @@ export const heldOf = (l, call4) => {
   if (PAIR_MARKS.test(String((l.lattice_v12 || {}).surface || ""))) return "a_pair";
   if (!call4 || !(call4.places instanceof Set)) throw new PinFault("call 4's hold was not read, so a place it holds cannot be told");
   if (call4.places.has(`${l.book} ${l.place}`)) return "a_place_call_4_holds";
+  if (!(call4.stands instanceof Set)) throw new PinFault("call 4's standing places were not read, so a place where STEP's reading stands cannot be told");
+  if (call4.stands.has(`${l.book} ${l.place}`)) return "a_place_where_steps_reading_stands";
   return null;
 };
 // THE ROADS A LAID CLASS IS WORDED BY (WHAT A ZONE CARRIES, above), by their names in the pin

@@ -65,3 +65,18 @@ The gate and the whole suite follow in the same chain.
 
 Not shipped on a red I cannot explain. Both are sent back to the helper to find the cause (a page that draws a laid place two ways, or a law that does not know a laid place) and to mend it with every law as strict as it is.
 
+## The cause, and the hold (14:40 UTC)
+
+Both reds come from one thing, and the laws are right. **At a place where call 4 makes STEP's own reading stand at rest, the page asks STEP's reading (credited to STEP's row) before the place's pieces.** Before this ship only one such place also carried pieces (2 Samuel 6:10, handled by name in the page). The first build laid pieces at 724 of them. The line at rest stayed the same, but the place gained a second reading beside it, and a reader would meet it two ways:
+
+- **Amos 1:10, at rest:** live opens the card on the whole word with STEP's «fortresses + its» pressed. With the pieces laid it still does, but it also offers the place's division unopened and says «here STEP reads fortresses + its» under the pieces' credit: STEP's reading twice, under two credits.
+- **Esther 9:18, under UBS:** the reading across two words («thir-» / «teen») should keep its line as it rests; word 5 went from STEP's row to the pieces, the same words under another credit.
+
+Which of the two readings governs the card at such a place touches call 4's credit and the core-block rule, so it is not this ship's to settle. **The 724 are held as a class found from call 4's own list** (the action `steps_words_are_the_line`, the bake's own term, for as long as call 4's landing lands it), matched against the default picks' index at all 724. Laying two of them back by hand reproduced both failures word for word; a deliberate test (pieces at Amos 1:10) fails B3.
+
+**Laid now: 211 places (the 206 and the 5 that move), 461 pieces on 28 zones.** The same 5 lines move. `apply-17.sh` ran twice on each of the two trees; the second run writes nothing. On a copy re-pinned with the moving lines recorded again, both former reds pass, and B1 to B6, the line-reads, piece-store, read-words and entry-gate checks pass.
+
+**For the owner, later, with a recommendation:** at those 724 places the place's pieces are STEP's own words, cut into its parts. One reading could govern: the place's pieces (the card opening on the core block, as everywhere else), which would change the credit of 724 resting lines and no word. I will put it with its measure.
+
+Run 2 on the real tree began 14:41 UTC (`S/s23w/p2`).
+

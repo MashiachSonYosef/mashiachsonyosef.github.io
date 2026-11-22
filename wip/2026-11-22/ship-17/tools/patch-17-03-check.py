@@ -34,12 +34,15 @@ swap("""// for the place writes it. What a zone carries for a laid place is said
 // piece worded by its part of STEP's column as written, its ends trimmed;
 // it holds within their class the places whose pieces carry STEP's «}+» tag,
 // the places that are pairs, and the places call 4 of relay v189 holds as they
-// rest (STEP's words written with « | »). At most of the new places STEP's own
-// reading already stands at rest (call 4 of relay v189): the page asks the
-// default source's layer before the place's pieces, so there the line at
-// rest stays STEP's words under STEP's credit, the same words as the pieces
-// drawn, and the pieces move the card alone. B4 and B5 owe that line there,
-// and hold its words to be the pieces'. The laws:
+// rest (STEP's words written with « | »), and the places where call 4 makes
+// STEP's own reading stand. Those were laid in ship 17's first build: the
+// page asks the default source's layer before the place's pieces, so the line
+// at rest stayed STEP's words under STEP's credit, and the pieces read the
+// place a second way beside it, on its card (check-compspan-coverage-v1 C3)
+// and across words under a source pressed (check-rulings-under-sources-v1
+// U8). They wait for the page lane. B4 and B5 still owe, at any laid place the
+// default picks' index marks as standing, STEP's words under STEP's credit,
+// and hold them to be the pieces drawn. The laws:
 //
 //   B1  the pin's files are the bytes it names, v1's and v1.1's, and the
 //       lane's receipts name the lists the same, v1.1's reading v1's files
@@ -72,8 +75,8 @@ swap("""//   B3  nothing else is written: each zone's record names the list and 
 //       write is typed; a zone with no laid place carries no record; and
 //       every place of the list the lattice gives no pieces that the pin
 //       does not lay carries none, each place held within its class found
-//       on its zone (STEP's «}+» places, the pairs and the places call 4
-//       holds among them)
+//       on its zone (STEP's «}+» places, the pairs, the places call 4
+//       holds and the places where call 4 makes STEP's reading stand)
 //   B4  in the record of the lines at rest, the line over every laid place
 //       is its pieces in order as the page draws them with the signs at
 //       rest, under that word alone, credited to the pieces' source; but
@@ -140,7 +143,7 @@ swap("""  check("B1  the pin's files are the bytes it names and the lane's recei
   const held = bridge ? (bridge.places11 || []).filter(heldBy) : [];
   check("B1  the pin's files are the bytes it names, v1's and v1.1's, and the lane's receipts name the lists the same; each line of v1.1, its added fields off, is v1's line; the list recounts to the lane's own counts; every kind is named by the pin, laid or not, with the list's count; each laid place's pieces are STEP's and spell our letters, each piece's part as v1.1 writes it is its row's column cut at the stroke and the marks off it give v1's English; a place worded by its form row has one, whose parts are the parts as v1.1 writes them byte for byte; each named reading is the list's",
     !!bridge && faults.length === 0,
-    faults.length ? `${faults.length} · ${first(faults)}` : `relays ${bridge.pin.relay} and ${bridge.pin.v1_1.relay} · list v1.1 ${bridge.pin.v1_1.places.sha256.slice(0, 12)}, extending v1 ${bridge.pin.places.sha256.slice(0, 12)} · ${nf(bridge.places11.length)} places in ${counts.size} kinds · ${nf(laid.length)} laid (${nf(laid.reduce((s, p) => s + p.pieces.length, 0))} pieces; by class ${by(laid, (p) => p.cls)}; worded ${by(laid, (p) => p.worded)}; ${laid.filter((p) => /[\\[<]/u.test(p.words)).length} whose words carry a bracket of STEP's) · held within a class: ${by(held, heldBy)} (call 4's hold read from ${bridge.call4.file} ${bridge.call4.sha256.slice(0, 12)}, ${bridge.call4.holding ? `${nf(bridge.call4.places.size)} places it holds` : "its landing holds nothing now"}) · at the ${nf(rowWorded.length)} worded by their form rows each part is v1.1's byte for byte (${nf(rowPieces.length)} pieces, ${nf(rowPieces.filter((q) => q.g !== q.g.trim()).length)} keeping STEP's space at an end, which the page trims) · ${namedReadings(bridge.pin).length} readings named`);
+    faults.length ? `${faults.length} · ${first(faults)}` : `relays ${bridge.pin.relay} and ${bridge.pin.v1_1.relay} · list v1.1 ${bridge.pin.v1_1.places.sha256.slice(0, 12)}, extending v1 ${bridge.pin.places.sha256.slice(0, 12)} · ${nf(bridge.places11.length)} places in ${counts.size} kinds · ${nf(laid.length)} laid (${nf(laid.reduce((s, p) => s + p.pieces.length, 0))} pieces; by class ${by(laid, (p) => p.cls)}; worded ${by(laid, (p) => p.worded)}; ${laid.filter((p) => /[\\[<]/u.test(p.words)).length} whose words carry a bracket of STEP's) · held within a class: ${by(held, heldBy)} (call 4's hold read from ${bridge.call4.file} ${bridge.call4.sha256.slice(0, 12)}, ${bridge.call4.holding ? `${nf(bridge.call4.places.size)} places it holds` : "its landing holds nothing now"}, ${bridge.call4.landing_stands ? `${nf(bridge.call4.stands.size)} where STEP's reading stands` : "its landing makes none stand now"}) · at the ${nf(rowWorded.length)} worded by their form rows each part is v1.1's byte for byte (${nf(rowPieces.length)} pieces, ${nf(rowPieces.filter((q) => q.g !== q.g.trim()).length)} keeping STEP's space at an end, which the page trims) · ${namedReadings(bridge.pin).length} readings named`);
 }""")
 
 swap("""    if (rec.rule_id !== SPELLING_BRIDGE_RULE_ID || rec.applied_by !== SPELLING_BRIDGE_TOOL || rec.relay !== bridge.pin.relay || (rec.list || {}).sha256 !== bridge.pin.places.sha256 || (rec.list || {}).lines !== bridge.pin.places.lines)

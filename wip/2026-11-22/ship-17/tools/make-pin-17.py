@@ -41,7 +41,7 @@ PAIR_MARKS = re.compile(r"[()\[\]]")
 # call 4's hold, read as the house makes it (tools/spelling-bridge-v1.mjs, call4HoldOf): call 4's landing in the
 # audit calls' pin, while it holds the class of STEP's words written with « | », and the list it names, the bytes the
 # default picks' pin names for the bake; every place whose STEP's words hold « | » (the bake's SPLIT)
-CALL4 = {"audit_calls_pin": "../audit-calls/PIN.json", "call": 4, "tool_pin": "../default-picks/PIN.json", "tool_entry": "held_split_v189"}
+CALL4 = {"audit_calls_pin": "../audit-calls/PIN.json", "call": 4, "tool_pin": "../default-picks/PIN.json", "tool_entry": "held_split_v189", "stands_action": "steps_words_are_the_line"}
 SPLIT = " | "
 ap = os.path.normpath(os.path.join(HOME, CALL4["audit_calls_pin"])); audit = json.load(open(ap, encoding="utf-8"))
 tool = json.load(open(os.path.normpath(os.path.join(HOME, CALL4["tool_pin"])), encoding="utf-8"))
@@ -53,12 +53,17 @@ if len(lb) != lentry["bytes"] or hashlib.sha256(lb).hexdigest() != lentry["sha25
 te = tool.get(CALL4["tool_entry"]) or {}
 if te.get("sha256") != lentry["sha256"] or te.get("bytes") != lentry["bytes"]: fail("the default picks' pin reads call 4's list as other bytes")
 holding = any(f"«{SPLIT}»" in str(h.get("class", "")) for h in landing.get("holds", []))
-call4 = {(d["book"], d["p"]) for d in (json.loads(x) for x in lb.decode("utf-8").splitlines() if x.strip()) if holding and isinstance(d.get("steps_words"), str) and SPLIT in d["steps_words"]}
+rows4 = [json.loads(x) for x in lb.decode("utf-8").splitlines() if x.strip()]
+call4 = {(d["book"], d["p"]) for d in rows4 if holding and isinstance(d.get("steps_words"), str) and SPLIT in d["steps_words"]}
+# where call 4 makes STEP's reading stand: the action named, while the landing lands it, STEP's words holding no « | »
+lands = CALL4["stands_action"] in str(landing.get("lands", ""))
+stands4 = {(d["book"], d["p"]) for d in rows4 if lands and d.get("action") == CALL4["stands_action"] and isinstance(d.get("steps_words"), str) and SPLIT not in d["steps_words"]}
 def held_of(l):
     if l.get("use") != "NEW_PIECES": return None
     if any(not PLAIN_TAG.match(str((x or {}).get("tag") or "")) for x in (l.get("pieces") or [])): return "a_piece_whose_tag_is_not_plain"
     if PAIR_MARKS.search(str((l.get("lattice_v12") or {}).get("surface") or "")): return "a_pair"
     if (l["book"], l["place"]) in call4: return "a_place_call_4_holds"
+    if (l["book"], l["place"]) in stands4: return "a_place_where_steps_reading_stands"
     return None
 count = {}
 for l in L:
@@ -67,13 +72,14 @@ for l in L:
 
 WHY_LAID = {
     ("STEP_WRITES_OUR_SPELLING", "NEW_PIECES"): ("form_row", None),
-    ("THROUGH_ONE_LETTER", "NEW_PIECES"): ("as_written", "our letters and the Leningrad text's differ by one letter, and the corpus lane's bridge cuts STEP's pieces onto ours through it. Bridge v1.1 (relay v214) gives each piece its part of STEP's Translation column as STEP writes it, brackets and all; the piece's English is that part with the spaces taken off its ends, as the lane's letter says to do when the pieces are joined, and the marks taken off the part give v1's English for the piece, held so at every piece. Where STEP's own reading already stands at rest (call 4 of relay v189), the page asks it first, and the line at rest keeps STEP's words, the pieces' own; the card says the place's reading above its pills"),
+    ("THROUGH_ONE_LETTER", "NEW_PIECES"): ("as_written", "our letters and the Leningrad text's differ by one letter, and the corpus lane's bridge cuts STEP's pieces onto ours through it. Bridge v1.1 (relay v214) gives each piece its part of STEP's Translation column as STEP writes it, brackets and all; the piece's English is that part with the spaces taken off its ends, as the lane's letter says to do when the pieces are joined, and the marks taken off the part give v1's English for the piece, held so at every piece. The places where call 4 of relay v189 makes STEP's own reading stand are held (not_laid)"),
     ("SAME_LETTERS", "NEW_PIECES"): ("as_written", "our letters are the Leningrad text's, and our one word is two of STEP's rows; worded as THROUGH_ONE_LETTER is, from bridge v1.1"),
 }
 WHY_HELD = {
     "a_piece_whose_tag_is_not_plain": "a piece's tag is STEP's «{…}+», one tag going on over the next Hebrew word, which v1 cut to «…}+»: the piece is not read as the word's own, and at some places the roles move (relay v214, section 5). Bridge v1.2 (relay v218) mends it, and until then the place is not read around the fault",
     "a_pair": "the place is a pair in our text: the lattice's surface writes a written form and a read form (round and square brackets), the zone's word there is a pair, whose line a zone carries by its own rule, and the bridge lays pieces on a plain word only",
     "a_place_call_4_holds": "call 4 of relay v189 writes STEP's words here with « | », one written word read as two of STEP's, and the house holds the place's line as it rests until the corpus lane says how STEP's line reads there (the owner's question 2, put back to the lane; the audit calls' pin, call 4's holds). The bridge does not lay pieces past that hold (the page lane's call, 22 November 2026): at Psalms 44:15 they would print «not + peoples» where the word reads «among the peoples». Read as the hold is read (held_with_call_4), so that when the lane answers call 4 the same rule lets them in",
+    "a_place_where_steps_reading_stands": "call 4 of relay v189 makes STEP's own pick 1 the line here whatever today's line is, and the page asks it before the place's pieces. Laid in ship 17's first build, the pieces left the line as it was and read the place a second way beside it: the card opened on the whole word, STEP's pick pressed, with the place's pieces said above it (check-compspan-coverage-v1 C3, Amos 1:10), and under a source pressed a reading across two words kept the pieces where the line as it rests is STEP's words (check-rulings-under-sources-v1 U8, Esther 9:18). The place waits until the page lane says how a place both read is drawn (22 November 2026). Read from call 4's list as the hold above is, while its landing lands the action named (held_with_call_4.stands_action)",
 }
 old_laid = {(e["class"], e["use"]): e for e in pin.get("laid", []) if not e.get("held")}
 old_not = {(e["class"], e["use"]): e for e in pin.get("not_laid", []) if not e.get("held")}
@@ -118,7 +124,7 @@ new["v1_1"] = {
     "not_kept": not_kept,
     "why_not_kept": "as for v1: the lane's folder also holds its answer, its builder, its second count with that count's receipt and two runs, and its checker's recount; no tool reads them, and each is named here by the bytes and sha256 the relay's letter gives",
 }
-new["held_with_call_4"] = {**CALL4, "why": "the places call 4 holds as they rest are read where the hold itself is read: call 4's landing in the audit calls' pin, while it still holds the class of STEP's words written with « | », and the list it names, the same bytes the default picks' bake reads through its own pin (held_split_v189); every place whose STEP's words hold « | », the bake's own rule. Never a list of places of its own (22 November 2026)"}
+new["held_with_call_4"] = {**CALL4, "why": "the places call 4 holds as they rest are read where the hold itself is read: call 4's landing in the audit calls' pin, while it still holds the class of STEP's words written with « | », and the list it names, the same bytes the default picks' bake reads through its own pin (held_split_v189); every place whose STEP's words hold « | », the bake's own rule; and, while that landing lands the action stands_action, every place of the list with that action whose STEP's words hold no « | », where STEP's own reading stands. Never a list of places of its own (22 November 2026)"}
 new["laid"] = laid
 new["not_laid"] = not_laid
 new["named_readings"] = pin["named_readings"]

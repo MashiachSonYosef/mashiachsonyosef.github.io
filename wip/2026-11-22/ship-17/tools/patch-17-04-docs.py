@@ -35,10 +35,9 @@ patch("tools/check-same-product-v1.mjs", [("""// switch where the place's readin
 // and nothing is owed. No place is named here: the pin and the zone say them.
 // Since ship 17 (22 November 2026: bridge v1.1, relay v214) the pin lays the
 // other places of new pieces too, read by the same reading
-// (tools/spelling-bridge-v1.mjs, laidOf), so nothing here changes. Where STEP's
-// own reading stands at such a place (call 4 of relay v189), the default
-// source's layer leads the line on both builds, STEP's own words, the same as
-// the pieces drawn: the line does not differ there, and nothing is owed.
+// (tools/spelling-bridge-v1.mjs, laidOf), so nothing here changes. A place
+// where call 4 of relay v189 makes STEP's own reading stand is held by the pin
+// and owed nothing.
 """)])
 
 patch("PIPELINE.md", [("""> projected without it. At 206
@@ -74,17 +73,18 @@ patch("PIPELINE.md", [("""> projected without it. At 206
 > nothing laid there moves. The lattice reads STEP under the Leningrad
 > spelling and gives these places nothing, so the line there was whatever row
 > led under the key; with the pieces it is the place's own reading, as
-> everywhere else, except where STEP's own reading already stands at rest
-> (call 4 of relay v189): the page asks the default source's layer first, so
-> there the line keeps STEP's words, which are the pieces', and the card says
-> the place's reading above its pills. The pin says which of the list's kinds
-> are laid and why each of the others is not; the places whose pieces carry
-> STEP's «}+» tag wait for bridge v1.2 (relay v218), the places that are
-> pairs keep a pair's line, and the places call 4 of relay v189 holds as they
-> rest (STEP's words written with « | ») keep their line until the corpus lane
-> says how STEP reads them: they are read where the hold itself is read, the
-> audit calls' pin and the list the default picks' bake reads, never listed
-> (22 November 2026). The rule's id and the pin's shape keep their
+> everywhere else. The pin says which of the list's kinds are laid and why
+> each of the others is not; the places whose pieces carry STEP's «}+» tag
+> wait for bridge v1.2 (relay v218), the places that are pairs keep a pair's
+> line, and two kinds wait on call 4 of relay v189, read where call 4 itself
+> is read (the audit calls' pin and the list the default picks' bake reads),
+> never listed (22 November 2026): the places call 4 holds as they rest
+> (STEP's words written with « | ») keep their line until the corpus lane
+> says how STEP reads them, and the places where call 4 makes STEP's own
+> reading stand keep it: the page asks STEP's reading before the place's
+> pieces, so laid there the pieces read the place a second way beside the
+> line, on its card and across words, until the page lane says how such a
+> place is drawn. The rule's id and the pin's shape keep their
 > versions (22 November 2026): no rule of the house asks either to move when a
 > pin lays more of a list it names; the id's words name the class it was first
 > laid at, and the pin names every class laid now. The round lays the pieces

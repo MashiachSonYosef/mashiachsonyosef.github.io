@@ -25,9 +25,11 @@ swap("""// IT IS RUN BY THE ROUND, FIRST IN ITS ZONES STEP (tools/round-v1.sh), 
 // with its added fields taken off is v1's line, and that the marks off each
 // laid piece's part give v1's English (tools/spelling-bridge-v1.mjs). Nothing
 // laid at the 206 moves: each form row's part is the part as v1.1 writes it.
-// At most new places STEP's reading already stands at rest (call 4 of relay
-// v189, the default picks' index), and there the line at rest does not move:
-// the card says the place's reading above its pills.
+// Where call 4 of relay v189 makes STEP's own reading stand, the place is held
+// too (ship 17's suite, 22 November 2026): the page asks STEP's reading before
+// the place's pieces, and laid there the pieces read the place a second way,
+// on its card and across words, until the page lane says how such a place is
+// drawn.
 //
 // IT IS RUN BY THE ROUND, FIRST IN ITS ZONES STEP (tools/round-v1.sh), and
 """)
