@@ -46,3 +46,21 @@ The page's «language» shelf (and its mirror in `gloss-m-v1`) knows ARAMAIC and
 ## What moves, to read after the round
 
 A read-only probe (`S/s20w/logs/probe-unrested-lines.json`) found 22 keys whose lines the returning rows can change: on the Tikkunei Zohar 3 keys at 34 places («throne» 33, «bed» 1, as ship 12's trial 2 found), and on the Targum sidecars 19 keys bare today that gain a translation-table reading at about 19 places («honey», «bed», «hand», «threshing floor», «co-wife», «plummet», «zaatar», «necromancy»). Ship 12's comparison did not count the Targum lines. Each is to be read after the round, before shipping.
+
+## The shelf mend (done)
+
+`patch-16-08-language-shelf-by-row.py`: the source record writes, for each BY_ROW witness, what its admitted lines count as (`rows_count_as`, counted from the list's own lines: M78 Aramaic 114, M103 Aramaic 12), and one function, `shelfCorpusOf`, the same in the page and in `gloss-m-v1`, shelves a BY_ROW witness whose lines all count as Aramaic as Aramaic, with no «+ Aramaic» tag. It feeds the shelf and its tag alone; the era orders and every other reader of the value are as they were. `check-source-corpus-v1` L4 recounts the field from the lines (a deliberate test, M78 changed to Aramaic 113 and Hebrew 1, failed it, then was undone). I read the page's diff.
+
+## Run 1 on the real tree (S/s13, ship 15 + ship 16), 08:00 to 08:44 UTC
+
+Every step exit 0 (`measures/run1/pipeline.log`, `measures/run1/apply.log`). Store 0072121276a0 (ship 15) → c7b18a753d0e, 653,353 rows.
+
+**Every resting line against live: 34 move, all on the Tikkunei Zohar, each bare before** (`measures/run1/lines-diff-against-live.json`): «throne» at 33 places (karsaya) and «bed» at 1 (mishkava, where the edition prints «(משכונא)» beside it). All right, as ship 12's trial 2 found.
+
+**Outside the rest, the commentary zones** (the Targum beside each book; the kinds do not rest them shut): 22 places, every one bare on live, now read a translation-table row (`measures/run1/commentary-lines-that-move.tsv`, made by `tools/commentary-gloss-diff.mjs`, which reads both trees and writes nothing). I read each in its verse.
+
+- Right at 16: «honey» (Deuteronomy, Judges twice, Song of Songs 4:11), «bed» in «the bedroom» (1 Kings, 2 Samuel twice, Judges three times), «plummet» (Isaiah 28:17), «Lord» at Malachi 3:1 («the Lord whom you seek»), «hand» as a measure at 1 Kings 7:26 («its thickness a handbreadth»; English Wiktionary's sense 8 of «hand»).
+- **Wrong at 6.** «necromancy» for the Targum's word for «leader» at 4: Judges 2:18 («all the days of the leader»), Judges 2:19 («when the leader died»), and Targum Ruth's «Ibzan the leader» twice. «zaatar», the herb, at 2 places where the word is plenty or water (Isaiah's commentary; Nahum 3:14, «strengthen your cities, increase ...»).
+
+Bare is better than wrong, as with PanLex's «wolf». So **the two lines are held, each by its line, with its places as the reason, and the corpus lane is asked.** The gate and the suite of run 1 were stopped; the tree was reset to ship 15 for run 2. The mend: the pin may name lines it holds back one by one, each with its own not-landed kind and reason, and `check-landings-v1` G5 accepts that kind only where the pin names that exact line with that reason (sent back to the helper).
+
