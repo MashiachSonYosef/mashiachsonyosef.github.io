@@ -29,7 +29,9 @@
 //   E2  every row's facts are well formed: an object of known facts only,
 //       none empty; n a list of Strong's numbers with no repeat; t a list of
 //       lettered tags, each of a number in n, on a row of the first
-//       parting's sources only; b a list of entries, on a row of the second
+//       parting's sources, or of a source whose list of the pin lands t
+//       (relay v211: English Wiktionary's, its letters read from TBESH's own
+//       columns, 22 November 2026); b a list of entries, on a row of the second
 //       parting's only; opens an entry and the point of the numbered sense
 //       the row opens (tools/apply-sense-openings-v1.mjs; which rows carry it
 //       is check-sense-openings-v1's to hold); and no row ends in an empty
@@ -365,7 +367,7 @@ const mineOf = (f) => { if (!f) return null; const o = {}; for (const k of ["n",
         for (const key of ["n", "t", "b"]) if (key in f && (!Array.isArray(f[key]) || !f[key].length || new Set(f[key]).size !== f[key].length || f[key].some((x) => typeof x !== "string" || !x))) faults.push(`${where}: ${key} is not a list of distinct entries`);
         if (Array.isArray(f.n) && f.n.some((x) => !/^H[1-9]\d*$/u.test(x))) faults.push(`${where}: a number that is not H and digits`);
         if (Array.isArray(f.t)) {
-          if (FACT_OF.get(m) !== "t") faults.push(`${where}: STEP's letters on a row of a source the parting does not read`);
+          if (FACT_OF.get(m) !== "t" && !(((LIST_M.get(m) || {}).facts) || []).includes("t")) faults.push(`${where}: STEP's letters on a row of a source neither the parting reads nor a list of the pin lands them on`);
           if (f.t.some((x) => letteredOf(x) !== x || !(f.n || []).includes(numberOf(x)))) faults.push(`${where}: a lettered tag that is not one, or whose number the row does not carry`);
         }
         if (Array.isArray(f.b) && FACT_OF.get(m) !== "b") faults.push(`${where}: BDB's entries on a row of a source the parting does not read`);
