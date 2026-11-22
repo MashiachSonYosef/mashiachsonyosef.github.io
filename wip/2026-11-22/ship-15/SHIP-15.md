@@ -27,6 +27,15 @@ Rehearsed without writing (`--dry`): 54,261 lines, every one finds its row, none
 
 Run as the first step of the pass (`measures/store-entries.log`): exit 0, 13 s. The round, every resting line against live, the gate and the whole suite follow in the same chain (`S/s19w/chain.sh p1 suite1`, begun 05:28 UTC).
 
+The round (05:28 to 06:08 UTC): every step exit 0. Every resting line against live: **moved 0**.
+
 ## What I expect at rest
 
 English Wiktionary rests shut on every book (it is not one of the twelve), so no line under a word should move. A card's count of what it holds back may change where a row is now of another entry by its letter. The gate says.
+
+## The gate
+
+Against live (571e4a449a on port 8914, this tree on 8912), 06:08 to 06:21 UTC, exit 0: **30,945 lines compared on 18 pages, 0 differ**; S1 and S2 ok. As expected: English Wiktionary rests shut, so its rows' new letters move nothing a reader sees at rest.
+
+The whole suite began at 06:22 UTC in its two lanes.
+
