@@ -29,3 +29,11 @@ Each as always: the round from the start, every resting line against live, the g
 - **Moses asks your yes in his chat** to the store's delete list (with the files that are nowhere else named), and asks you to set the lifecycle rules in the store's dashboard. Nothing is deleted before your yes. If it comes by 30 November, December is the first free month.
 - **Davidson.** v217 now says, from his book's own marks, which of his 12,487 rows are readings, names, references and grammar notes. I will measure what he would move at rest under those kinds and put it to you with the list; until then he waits.
 - **The ETCBC and STEP's expanded Strong** still wait on your word, as before. Reading the ETCBC's own part of speech would need a download, which Moses says is yours to allow.
+
+## Where it stands (22 November, 11:40 UTC)
+
+- **Ship 15: live** (`main` b0f147b6b0, Pages run 1384, live check 82). `t` v1.1; no resting line moved.
+- **Ship 16: live** (`main` 36e111edc2, Pages run 1385, live check 83). The translation tables' 124 lines; two held by their line (wrong at the Targum's places; Moses asked); 34 Zohar lines and 16 Targum places gain their reading.
+- **Ship 17: in its round** on ship 16. 729 new places laid; 5 lines move at rest; the «}+» places, the pairs and call 4's bare places held.
+- Next: v218 (`b`, the 22 name marks, bridge v1.2), then v219 and v220.
+

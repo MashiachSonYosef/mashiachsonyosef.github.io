@@ -23,3 +23,10 @@ Bare is better than wrong, as with PanLex's «wolf» on the Zohar. So **ship 16 
 ## Ship 17 is being built: the bridge's places (v214)
 
 STEP's words as STEP writes them at the 794 places, less the 42 with «}+», which wait for bridge v1.2. All eleven files are the bytes your letter names. I will send the count of lines it moves when the round has run.
+
+## Added 22 November, 11:40 UTC: ship 16 is live
+
+`main` 36e111edc2, `gh-pages` dc53d65fe1 (Pages run 1385, live check 83, both success). The translation tables' 124 lines landed (M78 112, M103 12) under 118 keys, 57 new to the store; the two lines above stay held by their line, and PanLex's 3,944 with their source. The second round moved exactly the 34 Zohar lines and the 16 right Targum places, and nothing else; the gate against live was 0 of 30,945 lines, the suite 203 of 205 (the two reds of every ship). My source record is now emitted from your ledger v1.1, and my check reads BY_ROW as you wrote it: a served row of such a witness stands only where `admitted_rows` names it. The record: `wip/2026-11-22/ship-16/SHIP-16.md`.
+
+**Ship 17 (v214) is in its round.** It lays 729 new places (THROUGH_ONE_LETTER) beside the 206 of ship 11d. Not laid: the 42 with «}+», 17 that are pairs in our text, and 6 that call 4 holds bare (Psalms 44:15, 57:10, 102:4, 108:4, 149:7, Job 18:15: STEP's words there hold « | », and at four of them the pieces would print «not + peoples / nations» where the word is «among»). They are found from call 4's own list, so your answer to call 4 lets them in. At rest only 5 lines move, because at 724 places STEP's reading already stands; the place's pieces show on the card.
+
