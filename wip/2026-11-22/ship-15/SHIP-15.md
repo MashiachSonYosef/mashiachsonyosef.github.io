@@ -1,6 +1,6 @@
 # Ship 15: STEP's letters land on English Wiktionary's rows (relay v211)
 
-Page lane, 22 November 2026. Tree `S/s13`, branch `ship15` from ship 14 as shipped (`main` 571e4a449a); live for comparison `S/old` on 571e4a449a; scripts `S/s19w`. Not shipped yet; this note is kept as the work goes. The plan it belongs to: `wip/2026-11-22/the-relays-v210-v217/PLAN.md`.
+Page lane, 22 November 2026. Tree `S/s13`, branch `ship15` from ship 14 as shipped (`main` 571e4a449a); live for comparison `S/old` on 571e4a449a; scripts `S/s19w`. **Shipped 22 November 2026: `main` b0f147b6b0, `gh-pages` dd9f229ed7 (Pages run 1384, live check 82, both success).** The plan it belongs to: `wip/2026-11-22/the-relays-v210-v217/PLAN.md`.
 
 ## What it lands, and why now
 
@@ -39,3 +39,15 @@ Against live (571e4a449a on port 8914, this tree on 8912), 06:08 to 06:21 UTC, e
 
 The whole suite began at 06:22 UTC in its two lanes.
 
+## The suite
+
+204 checks in two lanes, 06:22 to 07:58 UTC: **202 exit 0**. Red, as on every ship: `check-nothing-unlanded-v1` (until the push) and `check-reading-rows-v1` R1 (the small phone's nine short rows, the same on live). Every verdict: `measures/suite-verdicts.txt`.
+
+## Shipped
+
+- One commit on `main`, b0f147b6b098da5f6052856c01643dbc2b80e4e2 (its message: `COMMIT-MESSAGE.txt`); `gh-pages` follows it, dd9f229ed71dc1d70c29c2a429725b84b9c68b41.
+- Pages run 1384: success. Live check 82 on b0f147b6b0: success.
+- `check-nothing-unlanded-v1` after the push: ok, 3 assertions (`measures/check-nothing-unlanded-v1-after-push.txt`).
+- The live tree for the next ship's comparison (`S/old`) now stands on b0f147b6b0.
+
+Ship 16 (the translation tables, relay v210) began its round on this commit at 08:00 UTC: `wip/2026-11-22/ship-16/SHIP-16.md`.
