@@ -27,3 +27,17 @@ Ship 11d laid bridge v1 at the 206 places of the class STEP_WRITES_OUR_SPELLING,
 | Psalms 102:4, Job 18:15 | bare | «like + a hearth», «because + not + [belonging] to + him» | right in sense |
 
 The six bare words are call 4's « | » places, which the house holds bare until the corpus lane says how STEP reads them. The bridge must not lift that hold by another road, so they are held as one more class, found from the record the hold reads (sent back to the helper). With them held, 5 lines move, all right.
+
+## Call 4's bare places held (the build as it goes to the round)
+
+The pin's new entry `held_with_call_4` points at the audit calls' pin: call 4's landing still holds the class «STEP's words hold « | »» and names its list, `call4-steps-reading-stands-v1.jsonl`, which is read only as the bytes both the audit calls' pin and the default picks' pin name (the bake reads the same list). The rule is the bake's own: no piece is laid at a place whose STEP's words hold « | ». **6 places**: Psalms 44:15, 57:10, 102:4, 108:4, 149:7 and Job 18:15. When the corpus lane answers call 4 and that class leaves the landing, the same rule lets them in (the pin is then made again by its script). All 55 places call 4 holds are bridge places; the 46 SAME_LETTERS places with new pieces are among them.
+
+- **Laid:** 935 places (the 206 and THROUGH_ONE_LETTER 729), 1,726 pieces on 36 zones. **Not laid with new pieces:** 65 (42 «}+», 17 pairs, 6 call 4).
+- `apply-17.sh` on main b0f147b6b0 and on main with ship 16, twice each: the second run writes nothing; the two trees' outputs are the same bytes but for `PIPELINE.md`, where they already differed.
+- `check-spelling-bridge-v1` B1 to B6 (B6 new: the words as written on the zones, by its own reading of the two lists) on a copy re-pinned and with the moving books' lines recorded again; `check-line-reads-the-place-v1`, `check-piece-store-v1`, `check-read-words-v1`, `check-entry-gate-v1`, `check-nothing-hand-typed-v1`, `check-no-import-side-effects-v1`, `check-ledger-declared-v1`: pass. Each changed law failed once on a deliberate fault (the new one: pieces laid by hand at Psalms 44:15 fail B3), each put back byte for byte. The gate's expectation, its own code run on the new pin, owes a line at all 935 and names no place.
+- **5 lines move at rest, all right** (`lines-that-move-sandbox.tsv`): 2 Kings 9:25 «captain» → «officer + his» and Isaiah 56:10 «behold» → «watchmen + its» (both were Strong's concordance list), Proverbs 27:20 «and + it will perish» → «and + destruction + its» (was STEP's row); the credit only at Isaiah 27:2 and Job 6:21. Nothing appears at a bare word.
+
+Left as they are, and why: the rule id keeps its words, though «and STEP names our spelling» now names only the 206's class (no house rule moves an id for a widening; `PIPELINE.md` says so, dated); at 724 places STEP's reading stands before the place's pieces (call 4), so the pieces show on the card and not on the line, which is the page's order and not this ship's to change.
+
+The round's scripts: `S/s23w` (from ship 16's, with `apply-17.sh` as the first step).
+

@@ -64,3 +64,11 @@ Every step exit 0 (`measures/run1/pipeline.log`, `measures/run1/apply.log`). Sto
 
 Bare is better than wrong, as with PanLex's «wolf». So **the two lines are held, each by its line, with its places as the reason, and the corpus lane is asked.** The gate and the suite of run 1 were stopped; the tree was reset to ship 15 for run 2. The mend: the pin may name lines it holds back one by one, each with its own not-landed kind and reason, and `check-landings-v1` G5 accepts that kind only where the pin names that exact line with that reason (sent back to the helper).
 
+## The two lines held by their line (`patch-16-09`)
+
+A pin's list may name lines it holds one by one (`held_lines`: m, key, route, why), each matched to exactly one line of the list and not of a source held whole. The derivation writes each as not landed, kind `held_by_its_line`, with its why; `check-landings-v1` G5 accepts that kind only where the pin names that exact line with that reason. The re-admission record and its check count M78's served rows as 112 of the 114 the ledger names; the source record names the admitted lines not served (`admitted_lines_not_served`), and L4 recounts them from the lines, the store and the pin. The pin finds each line by its own fields (no letter typed), and each why names the places: Targum Jonathan on Judges 2:18 and 2:19 and the Aramaic Targum to Ruth 1:6 and 4:21 for «necromancy»; Targum Jonathan on Isaiah 28:20 and Nahum 3:14 for «zaatar». A deliberate test (one why changed in the pin) failed G5 and was undone. The corpus lane is asked: `wip/2026-11-22/FOR-MOSES-2026-11-22-ship-15-live-two-lines-of-v210.md`.
+
+## Run 2 on the real tree, 09:00 to 09:44 UTC
+
+Every step exit 0 (`measures/run2/`). Store 0072121276a0 → 105bcd11a72c, 653,351 rows (124 landed). **Every resting line against live: the same 34 Zohar lines, all right, and nothing else.** The commentaries: the 16 right places of run 1 and none of the 6 wrong ones (`measures/run2/commentary-lines-that-move.tsv`). The gate and the whole suite follow.
+
