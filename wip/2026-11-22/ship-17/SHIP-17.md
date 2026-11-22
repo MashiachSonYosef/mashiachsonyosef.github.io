@@ -56,3 +56,12 @@ The round's scripts: `S/s23w` (from ship 16's, with `apply-17.sh` as the first s
 
 The gate and the whole suite follow in the same chain.
 
+## The gate and the suite (run 1)
+
+- The gate against live (ship 16), 12:13 to 12:25 UTC: **30,945 lines compared on 18 pages, 0 differ** (`measures/gate.log`).
+- The whole suite, 205 checks, 12:25 to 14:01 UTC: **201 exit 0** (`measures/suite-verdicts-run1.txt`). Beside the two reds of every ship (`check-nothing-unlanded-v1`, `check-reading-rows-v1` R1), **two new reds, both at places this ship lays**, clean on ship 16's suite:
+  - `check-compspan-coverage-v1` C3 at Amos 1:10 («fortresses + its»): the card opens on the whole word where the law owes the core block, and the whole form offers two readings.
+  - `check-rulings-under-sources-v1` U8 at Esther 9:18 words 5 and 6 («on + [day] thir-» / «teen»): under UBS the line keeps its words but is credited to the place's pieces, where at rest it is STEP's row; the law holds the line as it rests.
+
+Not shipped on a red I cannot explain. Both are sent back to the helper to find the cause (a page that draws a laid place two ways, or a law that does not know a laid place) and to mend it with every law as strict as it is.
+
