@@ -1,4 +1,4 @@
-Ship 14: twenty-one faults readers reported, proven on the live page and mended; @@REST@@
+Ship 14: twenty-one faults readers reported, proven on the live page and mended; no line under a word moves
 
 Five readers went through the page's script on 10 November 2026 and reported faults I had not yet proven (the review, section 1). Each was decided again in a browser on the live build (c1ed776b65) before anything was changed, with one more from a later note (a card that moves when a second pill is pressed): of the 24, 3 were gone and 21 still stood in whole or in part. This ship mends the 21, and what was left of one of the three. The record: wip/2026-11-21/ship-14/SHIP-14.md, with every report, probe and patch.
 
@@ -45,6 +45,8 @@ THE CHECKS
 
 - Five new checks, 24 laws, one scenario per fault, each red on the build before and holding after: check-readers-faults-pairs-v1, -place-v1, -load-v1, -rail-v1, -cards-v1.
 - check-dictionary-kinds-v1 K4 held the panel's line to the ledger ids off, the very line the fault reports. It now counts the chips a reader sees off.
+- check-same-product-v1 (the gate) learned in ship 10b that a unit's one line is owed where the older build printed its words apart. Live prints that line too now, nothing moves, and such a word fell through to an older law that held it to the line as it rests: 8 lines called not as owed with 0 lines differing. The line standing on both builds, at every word of the unit under the source's credit, is owed as it stands.
+- The new load check asks the served run indexes for a book both list; check-scope-derived-v1 forbids a check naming a work by a zone's path or by a slug of the plan, and that law stands as it was.
 
 HOW IT WAS BUILT
 
@@ -57,6 +59,11 @@ NOT IN THIS SHIP
 - Readers already stamped with the defaults before the stamp's mend keep what they have; that needs the record's version moved.
 - With every source switched off, the Genesis 12:8 cell still prints «Bethel» (task 156, not examined).
 
-@@GATE@@
+THE ROUND, THE GATE AND THE SUITE
 
-@@SUITE@@
+- The round was run from the start on this page. Its record of the lines at rest, set against live: no entry moves. The page's engine file is cut again from the page (reader/engine-64a4725e3cf3.js, in place of reader/engine-52af171151ef.js) and the 1,272 pages that load it name it.
+- The gate, live (ship 10b) against this tree, with the standing expectations: 30,945 lines compared on 18 pages under every switch both carry, 0 differ and none moved; 26 stand as a unit's one line on both builds. 54 cards compared, none differing. Its first run was red for the gate's own reason, above; the gate alone was mended and run again.
+- The suite: 204 checks, 202 clean. The two that are not were known before this ship: check-reading-rows-v1 R1 (the small phone's rows, red on live too, the same nine) and check-nothing-unlanded-v1 (it passes once pushed). The suite ran after the gate's mend, on the tree as shipped.
+
+Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01YaByYdukgpv1g24zxvj3Td

@@ -2,7 +2,7 @@
 
 Page lane, 21 November 2026, after ship 10b went live (`main` c1ed776b65). Tree `S/s13`, branch `ship14`; live for comparison `S/old` on c1ed776b65; scripts `S/s18w`.
 
-Not shipped yet. This note is kept as the work goes.
+**Shipped 22 November, 04:06 UTC: `main` 571e4a449a, `gh-pages` 4efd8478f6, Pages run 1383, live check 81.** The last section says how. This note was kept as the work went.
 
 ## What it is meant to carry
 
@@ -127,4 +127,40 @@ The scripts for this ship were made by copying ship 10b's through a filter, whic
 S1 and S2 hold. 30,945 lines compared on 18 pages under every switch both builds carry: 0 differ, 0 moved. 26 lines stand as a unit's one line on both builds, counted by the mended law. 54 cards compared, none differing.
 
 The whole suite began at 02:34 UTC, both lanes running this time.
+
+### The whole suite (02:34 to 04:04 UTC, `measures/suite-verdicts.txt`)
+
+204 checks, 202 clean. The two that are not were known before this ship:
+
+- `check-reading-rows-v1` R1: the small phone's rows, the same nine short as on live.
+- `check-nothing-unlanded-v1`: red until pushed. Clean after the push (`measures/check-nothing-unlanded-v1-after-push.txt`).
+
+The five new checks hold in the suite: rail 6 laws, pairs 4, place 1, load 6, cards 7. `check-dictionary-kinds-v1` holds with its amended law (34), `check-levels-v1` holds (21). The suite ran after the gate's mend, on the tree as shipped.
+
+## Shipped (22 November, 04:06 UTC)
+
+- `main` 571e4a449a76d20448041073ed7faaafc5c18998, one commit over ship 10b (c1ed776b65). The message as shipped: `commit-as-shipped.txt`.
+- `gh-pages` 4efd8478f6dbdc2039516701321828f8556f75ac, "gh-pages follows main".
+- Pages run 1383: success (04:07 UTC). Live check 81: success on 571e4a449a.
+- `check-nothing-unlanded-v1` after the push: the branch carries this tree, and every build output on the site is the one this tree produced.
+- The page's engine file is `reader/engine-64a4725e3cf3.js`; the 1,272 pages that load it name it.
+- Scratch: the ship's tree is `S/s13` (clean, on the commit); `S/old` stands on the new main for the next gate; scripts and logs `S/s18w`.
+
+## What this ship cost, and two mistakes of mine
+
+- Eight helpers in all: three to decide the findings again, five to mend. Each read the page in its own context, so mine held their reports and the diffs, not the page. Every diff was read by me before it went on the tree.
+- **The suite's false start cost two hours.** I copied the last ship's scripts through a filter and did not look at whether the copies could run. From now on a copied script is run once, or its mark checked, before anything waits behind it.
+- **The gate's hole was mine from ship 10b.** I taught it the unit's one line only as a move, and did not ask what it would say once live printed that line too. A law added to the gate for a move needs its standing form in the same patch.
+
+## Left open by this ship
+
+- The other half of the second reader's finding 10: a division pressed with nothing picked leaves a run's line word by word (also at Genesis 16:14).
+- A pair whose reading's carriers and its alternate's are all switched off goes bare, unmarked; pairs read the baked alternate and never ask the live pool as plain words do.
+- Readers stamped with the defaults before the stamp's mend keep what they have; mending them needs the record of defaults' version moved.
+- A dictionary opened from «Shut at rest» and then switched off is counted by neither of the panel's lines.
+- The concordance's table says «neither the card nor the store has a reading» when the store failed and the card has no pill.
+- No pause between retries of a failed fetch.
+- Task 156: with every source switched off, the Genesis 12:8 cell still prints «Bethel».
+- Seen in passing by a builder: Genesis 32:27 with joined words as written, a named run inside a larger cell, its whole rung ruled, and the cell's line does not change.
+- Tasks 150 and 151 stay filed; neither was in this ship.
 

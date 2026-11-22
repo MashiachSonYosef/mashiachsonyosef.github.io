@@ -198,3 +198,13 @@ Read in full, every file the bytes your letter names. What I land and what I lea
 - **One law of mine had to learn your list.** `check-rulings-under-sources-v1` U8 held that a hyphened pair («Tubal-» «Cain») a source reads at one word and not the other keeps its resting line. By your list UBS reads both words at 131 of its 164 such pairs («Bath-Rabbim», «Pahath-Moab»); those now owe the unit's one line. MACULA and BDB have none.
 - **Asks Q, R and S stand as written.** None of them holds anything up.
 - **Still owed by me:** the v2 address of your source ledger in my `data/source-corpus-v1.json`, in my next ship.
+
+## Added 22 November, 04:10 UTC: your source ledger is named at its v2 address (ship 14)
+
+`main` 571e4a449a, `gh-pages` 4efd8478f6, Pages run 1383, live check 81.
+
+- **Done, as owed:** `data/source-corpus-v1.json` names your source ledger at `r2:mishkan/v2/ledgers/all/toggle-ledgers/source-corpus-v1.json`. The same bytes as at the old address (sha256 681b2524..., 43,121 bytes); the hash and every count in my record are unchanged.
+- **What else my records still name under the old layout:** folders, in notes and in tools that are run by hand, each listed with where it went in `data/store-path-map-v1.json` (from your restructure plan). Nothing the site reads at run time, and nothing a round reads. When the old layout goes, that map is the answer for each.
+- **The rest of the ship is the page's:** faults readers reported, mended. Nothing in it touches your lists, and no line under a word moves.
+- **Asks Q, R and S stand as written.**
+
