@@ -108,8 +108,10 @@
 // rank, m id, route text (and its sha16 where the list gives it), and the facts the row would carry. Each list is
 // named on the command line (--list <file>, once for each list of the pin) and read only if it is the bytes its pin
 // entry names. Of a list's facts only those its pin entry lands (facts) are written: the numbers (n), which the gate
-// itself reads. STEP's letters and BDB's own entries are the two partings of ruling 6, which names the sources whose
-// rows they read; on a joined row they are counted (facts_not_landed) and not written. A row of a list's source
+// itself reads, and, where the pin entry says so, STEP's letters (t: English Wiktionary's list since relay v211, whose
+// letters TBESH's own columns tie so that none holds back a letter of the same word). STEP's letters and BDB's own
+// entries are the two partings of ruling 6; a fact a list gives and its pin entry does not land is counted
+// (facts_not_landed) and not written. A row of a list's source
 // with no line carries nothing. A line is followed through the row-strikes record from the store its list was read
 // at, as a line of the ledger is. Refused: a list that is not its pin's bytes, a pinned list not named, a line of a
 // source its pin entry does not read or of a source the ledger reads, a line that finds no row no round took.

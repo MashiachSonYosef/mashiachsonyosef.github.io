@@ -1175,7 +1175,7 @@
   "refused_routes": 0,
   "refused_m_records": 0,
   "shards": 256,
-  "shard_bytes_total": 16455236,
+  "shard_bytes_total": 16536777,
   "routes_separated_on_a_declared_mark": 16776,
   "pieces_those_routes_divided_into": 144612,
   "routes_shipped_whole": 629665,
@@ -1245,7 +1245,7 @@
   }
  ],
  "declarations_sha256": "d235ed2a6d9761d6538b7f28fbf9d9cdcb05327e157684b6e67c33de37a97e62",
- "store_version": "88fec6d59737",
+ "store_version": "0072121276a0",
  "language_admission": {
   "rule_id": "language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a",
   "admitted_languages": [
@@ -1676,6 +1676,12 @@
    "now": "88fec6d59737",
    "why": "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points",
    "on": "2026-11-20T23:40:13.000Z"
+  },
+  {
+   "was": "88fec6d59737",
+   "now": "0072121276a0",
+   "why": "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points",
+   "on": "2026-11-22T06:00:00.000Z"
   }
  ],
  "fold_to_v1": "delete [6]; then if [5] is null delete it; JSON.stringify — equals the v1 shard's JSON bytes",
@@ -3944,7 +3950,7 @@
  },
  "row_entries": {
   "rule_id": "entry-gate-rule-v1-a-row-of-another-entry-than-the-words-is-withheld-and-a-row-of-its-own-entry-stands-whatever-its-points",
-  "applied_on": "2026-11-20T23:40:13.000Z",
+  "applied_on": "2026-11-22T06:00:00.000Z",
   "applied_by": "tools/apply-row-entries-v1.mjs",
   "pin": "reader/data/row-entries/PIN.json",
   "relay": "v197",
@@ -4122,21 +4128,22 @@
   "lists": [
    {
     "name": "English Wiktionary",
-    "relay": "v203",
-    "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v203.md",
-    "from": "r2:mishkan/v2/ledgers/all/entry-ledger/wiktionary-v1/ (the private store)",
-    "rule": "reader/data/row-entries/entry-ledger-wiktionary-v1/RULE.md",
-    "receipt": "reader/data/row-entries/entry-ledger-wiktionary-v1/receipt-v1.json",
+    "relay": "v211",
+    "letter": "r2:mishkan/v2/letters/moses-entry-ledger-v1/FOR-ELIJAH-v211.md",
+    "from": "r2:mishkan/v2/ledgers/all/entry-ledger/tbesh-letters-v1/ (the private store)",
+    "rule": "reader/data/row-entries/entry-ledger-tbesh-letters-v1/RULE.md",
+    "receipt": "reader/data/row-entries/entry-ledger-tbesh-letters-v1/receipt-v1.json",
     "list": {
-     "file": "facts-slot-wiktionary-v1.tsv",
-     "bytes": 8923109,
-     "sha256": "4cb9e9ce6b30331e04eecbdd35ff945c302ceafa354f4a4b7deeecaef0cbd99e",
+     "file": "facts-slot-t-v1.1.tsv",
+     "bytes": 10087100,
+     "sha256": "a6e3271cbf7a328ae53d4ce38ea4459662d98c76c334a96f5bc4290684b2344e",
      "lines": 54261,
-     "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/wiktionary-v1/facts-slot-wiktionary-v1.tsv (the private store); not in this tree"
+     "kept": "r2:mishkan/v2/ledgers/all/entry-ledger/tbesh-letters-v1/facts-slot-t-v1.1.tsv (the private store); not in this tree"
     },
-    "read_at_store_version": "54416ff5785b",
+    "read_at_store_version": "88fec6d59737",
     "facts_landed": [
-     "n"
+     "n",
+     "t"
     ],
     "sources": {
      "M11": "kaikki_wiktionary_hebrew",
@@ -4156,11 +4163,8 @@
      "rows_carrying_an_entry": 53601,
      "rows_with_several_numbers": 3290,
      "rows_of_its_sources_with_no_line": 72413,
-     "rows_landed_since_with_no_line": 88,
-     "rows_landed_since_carrying_their_landings_facts": 0,
      "lines_whose_facts_are_not_landed": 660,
      "facts_not_landed": {
-      "t": 16273,
       "b": 53092
      }
     }
@@ -4278,8 +4282,8 @@
     }
    }
   ],
-  "store_version_before": "9d3491c7292a",
-  "store_version": "88fec6d59737",
+  "store_version_before": "88fec6d59737",
+  "store_version": "0072121276a0",
   "what": "a row with a line in the corpus lane's row entries ledger carries, in the facts slot (slot 10, an object), n: the Strong's numbers of the entries its own source files it under, where it has any; t: for a row of a source whose entries are STEP's own tags, those that carry STEP's letter; b: for a row of a source that names BDB's own entries, those entries. A row whose same-source twin under a key ending in a maqaf was struck carries, after its own, the entries of that twin's line that it lacked (followed.entries_given_to_a_twin names each pair). The texts are the served bytes, unchanged. At a place the gate reads these against the tag of the word's core piece. A row of a further source named by a list of the pin (lists) carries n as its line gives it: the numbers of the Bible dictionaries' entries its own pointed head form and kind of word meet, joined by the corpus lane"
  },
  "name_rows": {

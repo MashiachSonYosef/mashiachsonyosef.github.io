@@ -36,8 +36,11 @@
 > struck row; and from the facts lists the pin names under `lists`, the
 > entry ledgers of relays v203 and v204, which give a row of a source that
 > names no entry the numbers of the Bible dictionaries' entries its own
-> pointed head form meets: the numbers land, and STEP's letters and BDB's
-> entries from a list are counted and not written, as the pin says) and whether its source gives
+> pointed head form meets: the numbers land; STEP's letters land from
+> English Wiktionary's list since 22 November 2026, as relay v211 widens
+> them by TBESH's own columns so that none holds back a letter of the same
+> word; BDB's entries from a list are counted and not written until relay
+> v218, as the pin says) and whether its source gives
 > it as a name (`tools/apply-name-rows-v1.mjs`, from the lists kept in
 > `data/names/`: since 20 November 2026 the list of name rows is names
 > v2's, relay v198, every dictionary that marks a name read by its own
