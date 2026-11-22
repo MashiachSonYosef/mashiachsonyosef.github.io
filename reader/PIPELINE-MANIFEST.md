@@ -6,7 +6,7 @@ of writing, so this file cannot drift the way a hand-written one does.
 
 Read on 2026-11-16.
 
-**191 rules declared · 179 named by a check · 12 unguarded.**
+**192 rules declared · 180 named by a check · 12 unguarded.**
 **6 published artifacts · 6 with a build step · 0 without.**
 
 ## The rules
@@ -82,7 +82,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `landed-rule-v1-work-that-exists-only-on-this-machine-does-not-exist` | tools/check-nothing-unlanded-v1.mjs | check-nothing-unlanded-v1 |
 | `landings-rule-v1-a-landing-list-lands-as-its-own-rule-reads-on-the-store-it-meets-each-line-at-the-rank-its-list-gives-or-after-the-last-row-of-its-key-and-a-line-its-own-source-already-prints-is-named-not-landed` | tools/derive-landings-v1.mjs | check-landings-v1 |
 | `lane-state-rule-v1-one-fetch-says-what-this-lane-is-serving` | tools/emit-lane-state-v1.mjs | check-lane-state-v1 |
-| `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs | check-language-admitted-v1 |
+| `language-admission-rule-v1-a-source-that-is-not-hebrew-or-aramaic-cannot-define-an-a` | tools/emit-language-sweep-record-v1.mjs, tools/redrive-zone-gloss-v1.mjs, tools/strike-language-v1.mjs, tools/readmit-sources-v1.mjs | check-language-admitted-v1 |
 | `lattice-delta-rule-v1-a-listed-entry-of-the-lattice-takes-the-corpus-lanes-own-later-names-and-grades-and-every-other-entry-stands-as-the-lattice-has-it` | tools/lattice-delta-v1.mjs, tools/project-lattice-v12-v1.mjs | check-lattice-delta-v1, check-lattice-projection-v1 |
 | `lattice-projection-rule-v1-the-lattice-is-projected-over-a-zones-own-positions-and-never-replaces-the-store` | tools/lattice-lib-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-lattice-orders-v1, check-lattice-parts-in-card-v1, check-lattice-projection-v1 |
 | `ledger-division-rule-v1` | zone.html | **UNGUARDED** |
@@ -132,6 +132,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `read-words-rule-v1-each-read-word-of-a-read-form-of-several-words-carries-its-own-entry-and-the-place-reads-their-pieces` | tools/apply-read-words-v1.mjs, tools/read-words-v1.mjs, zone.html, tools/project-lattice-v12-v1.mjs | check-read-words-v1 |
 | `reader-orders-rule-v1-the-orders-the-store-defines-are-projected-with-the-table-on-every-projection` | tools/regloss-zone.mjs | **UNGUARDED** |
 | `reading-order-rule-v1-the-first-reading-is-the-sorted-pools-first-and-not-the-stores-first-stored-row` | tools/check-card-opens-on-the-line-v1.mjs | check-card-opens-on-the-line-v1, check-first-reading-is-sorted-v1 |
+| `readmission-rule-v1-a-source-our-own-label-struck-returns-on-what-its-own-source-says-it-is-for-the-rows-the-corpus-lane-lists` | tools/readmit-sources-v1.mjs, tools/emit-lane-state-v1.mjs, tools/project-lattice-v12-v1.mjs, tools/strike-language-v1.mjs | check-readmission-v1, check-language-admitted-v1 |
 | `refusals-gate-rule-v1-a-book-is-served-when-no-line-of-the-frame-refuses-a-position-of-it` | tools/build-front-door-v1.mjs, tools/emit-zone-store-v1.mjs, tools/zones-on-disk-v1.mjs | check-c0-refusals-v1, check-nothing-unlanded-v1 |
 | `regloss-rule-v1-project-the-store-over-a-zones-own-keys` | tools/regloss-zone.mjs | check-page-agrees-with-store-v1 |
 | `respan-rule-v1-project-the-compspan-template-over-a-zones-own-keys` | tools/respan-zone-v1.mjs | check-respan-projection-v1 |
@@ -176,7 +177,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed` | tools/check-store-continuity-v1.mjs | check-store-continuity-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
 | `strongs-hedges-rule-v1-where-strongs-derivation-of-a-word-hedges-his-own-words-stand-under-his-reading-as-a-note` | tools/bake-strongs-hedges-v1.mjs, zone.html | check-strongs-hedges-v1 |
-| `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs, tools/land-pointing-store-v2-v1.mjs | check-route-store-exact-k-v1 |
+| `struck-rank-rule-v1-a-hole-by-strike-is-typed-and-a-hole-by-bug-alarms` | tools/emit-struck-ranks-v1.mjs, tools/derive-landings-v1.mjs, tools/land-pointing-store-v2-v1.mjs | check-route-store-exact-k-v1 |
 | `suggested-title-rule-v1-a-guess-is-authored-by-name-and-witnessed-by-nothing` | tools/check-suggested-title-v1.mjs | check-suggested-title-v1 |
 | `title-from-c0-rule-v1-the-title-is-the-works-own-opening-words` | tools/build-zone.mjs | check-title-from-c0-v1 |
 | `title-key-rule-v1-only-what-the-store-already-attests` | tools/build-zone.mjs, tools/name-the-titles-v1.mjs, tools/run-restore-v5-fleet-v1.mjs, zone.html | check-clean-address-v1, check-door-word-card-v1, check-front-door-opens-title-v1 |
@@ -224,7 +225,7 @@ machine it was made on is gone, so is the ability to make it again.
 
 ## Stages
 
-The build files (`build.sh`, `tools/round-v1.sh`) call 45 of the 165 tools that are not checks.
+The build files (`build.sh`, `tools/round-v1.sh`) call 45 of the 166 tools that are not checks.
 
 Not called by any build stage:
 
@@ -321,6 +322,7 @@ Not called by any build stage:
 - `tools/pull-zones-from-store-v1.mjs`
 - `tools/push-toggles-v1.mjs`
 - `tools/read-words-v1.mjs`
+- `tools/readmit-sources-v1.mjs`
 - `tools/redrive-zone-gloss-v1.mjs`
 - `tools/respan-zone-v1.mjs`
 - `tools/resting-lines-v1.mjs`

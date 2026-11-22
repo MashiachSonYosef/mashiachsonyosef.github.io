@@ -15,6 +15,10 @@
 //       earlier line of the same source made for the same words under the same key, or is named not landed; a
 //       landed row gathers only lines of its own key, source and words, and carries each line's facts and
 //       headwords, each once, in the lines' order
+//       In a list of holes (the pin: a_named_rank_is "the hole the strike left"; the corpus lane's v207) a line
+//       that names a rank names the hole its row left when its source was struck: the struck-ranks record holds
+//       that rank for that source under that key, and the row lands at it, or, where a row of another record
+//       stands at the hole now, past every row and every typed hole its key had before the list landed
 //   G3  one round of the row-strikes record took each derived list whole (its bytes, every line, none left off),
 //       every row of it a landing of a line of the list with the row recorded, and the rounds ran in the pin's
 //       order, one right after another
@@ -24,11 +28,18 @@
 //       own-pointing-rule-v1 lays after a bare row's own headwords are that rule's). A row a later round took,
 //       moved or retexted is followed there by the row-strikes record and counted, never guessed
 //   G5  each line not landed names the rows of its own source that print its words under its key, and such a
-//       row stands there now
+//       row stands there now. Or it is held with its source (22 November 2026, the corpus lane's v210: a list's pin
+//       may hold sources back, held_sources, each with why): such a line stands only where the pin's list holds
+//       that source back with that very reason, every line of a held source in the list is so named, and no row
+//       of a held source lands. Or it is held by its line (22 November 2026: the pin's list may hold back single
+//       lines, held_lines, each its source, key, words and why): it stands only where the pin's list names that
+//       very line with that very reason, each line the pin so names is exactly one line of the list and is named
+//       not landed once, so, and no row of it lands
 //
 // The words are found in the data, never named. A tree with no pin of the landings is skipped (exit 3).
 // Run: node tools/check-landings-v1.mjs [--store data/route-store]
 import { readFileSync, existsSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore, factsOf } from "./gloss-store-v1.mjs";
@@ -86,6 +97,18 @@ const READ = new Map();   // a list's id -> { lane, landed, notLanded }
     faults.length ? `${nf(faults.length)} · ${first(faults)}` : lists.map((l) => `${l.id} (relay ${l.relay}): ${nf(READ.get(l.id).lane.length)} lines, ${nf(READ.get(l.id).landed.length)} rows land, ${nf(READ.get(l.id).notLanded.length)} not landed`).join(" · "));
 }
 
+// the ranks the struck-ranks record types, key by key, each with the source that stood there (read once, when a list of holes asks)
+const HOLE = "the hole the strike left";
+let struckRanks = null;
+const struckAt = () => {
+  if (struckRanks) return struckRanks;
+  struckRanks = new Map();
+  const sp = join(STORE, "struck-ranks-v1.json.gz");
+  if (existsSync(sp)) for (const [k, v] of Object.entries(JSON.parse(gunzipSync(readFileSync(sp)).toString("utf8")).keys || {})) struckRanks.set(k, new Set(v.map((y) => `${y[0]}\u0001${y[1]}`)));
+  return struckRanks;
+};
+let atHole = 0, holeTaken = 0, noRank = 0;
+
 // ---- G2: every line accounted for once ---------------------------------------------------------------------------------
 {
   const faults = [];
@@ -106,7 +129,21 @@ const READ = new Map();   // a list's id -> { lane, landed, notLanded }
         if (!e) return;
         if (at) gathered += 1;
         if (e.m !== x.m || e.key !== x.key || e.route !== x.route || e.definition !== x.definition || e.year !== x.year) faults.push(`${where}: line ${n} is not its key, source, words, definition and year`);
-        if (e.rank !== null && e.rank !== x.rank) faults.push(`${where}: line ${n} names rank ${e.rank}, and the row lands at ${x.rank}`);
+        if (l.a_named_rank_is === HOLE) {
+          // a list of holes: the hole is this source's by the record of the strike; the row is at it, or the hole is another row's now
+          if (e.rank !== null) {
+            const holeKey = typeof e.from_key === "string" && e.from_key ? e.from_key : e.key;
+            if (!(struckAt().get(holeKey) || new Set()).has(`${e.rank}\u0001${e.m}`)) faults.push(`${where}: line ${n} names rank ${e.rank} as the hole its row left, and the struck-ranks record holds no such rank of ${e.m} under its key`);
+            else if (e.rank === x.rank) { if (holeKey !== e.key) faults.push(`${where}: line ${n} was moved off the key of its hole and lands at the hole's rank all the same`); else atHole += 1; }
+            else {
+              const typed = [...(struckAt().get(e.key) || [])].map((y) => Number(y.split("\u0001")[0]));
+              const taker = (store.routesWhole(e.key) || []).some((row) => Number(row[0]) === e.rank && !(String(row[3]) === e.m && row[1] === e.route));
+              if (holeKey === e.key && !taker) faults.push(`${where}: line ${n} names rank ${e.rank}, the row lands at ${x.rank}, and no other row stands at the hole`);
+              else if (typed.some((t) => t >= x.rank)) faults.push(`${where}: line ${n} lands at ${x.rank}, which is not past the last typed hole of its key (${Math.max(...typed)})`);
+              else holeTaken += 1;
+            }
+          } else noRank += 1;
+        } else if (e.rank !== null && e.rank !== x.rank) faults.push(`${where}: line ${n} names rank ${e.rank}, and the row lands at ${x.rank}`);
         for (const h of e.headwords || []) if (!wantHeads.includes(h)) wantHeads.push(h);
         for (const k of FACTS) for (const y of ((e.facts || {})[k] || [])) { if (!(wantFacts[k] || (wantFacts[k] = [])).includes(y)) wantFacts[k].push(y); }
       });
@@ -124,7 +161,7 @@ const READ = new Map();   // a list's id -> { lane, landed, notLanded }
     for (const x of got.landed) { const id = [x.key, x.m, x.route].join(sep); if (names.has(id)) faults.push(`${l.id}: two rows land the same words of ${x.m} under one key`); names.add(id); }
   }
   check("G2  every line of a lane's list made a landed row, was gathered into the row of the same source and words under its key, or is named not landed, each once; a landed row carries its lines' facts and headwords", faults.length === 0 && READ.size > 0,
-    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf([...READ.values()].reduce((a, g) => a + g.lane.length, 0))} lines of ${READ.size} lists · ${nf([...READ.values()].reduce((a, g) => a + g.landed.length, 0))} rows · ${nf(gathered)} lines gathered · ${nf([...READ.values()].reduce((a, g) => a + g.notLanded.length, 0))} not landed`);
+    faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf([...READ.values()].reduce((a, g) => a + g.lane.length, 0))} lines of ${READ.size} lists · ${nf([...READ.values()].reduce((a, g) => a + g.landed.length, 0))} rows · ${nf(gathered)} lines gathered · ${nf([...READ.values()].reduce((a, g) => a + g.notLanded.length, 0))} not landed${atHole + holeTaken + noRank ? ` · in the lists of holes: ${nf(atHole)} rows at the hole the strike left, ${nf(holeTaken)} whose hole another row holds now, ${nf(noRank)} with no rank named` : ""}`);
 }
 
 // ---- G3: one round per list, in the pin's order ------------------------------------------------------------------------
@@ -200,19 +237,61 @@ const ROUND_OF = new Map();   // a list's id -> its round
     faults.length ? `${nf(faults.length)} · ${first(faults)}` : `${nf(stand)} rows stand · ${nf(withFacts)} carry entries · ${nf(twins)} given a struck row's entries as its twin${moved ? ` · ${moved}` : ""}`);
 }
 
-// ---- G5: each line not landed is printed by its own source -----------------------------------------------------------
+// ---- G5: each line not landed is printed by its own source, or held with its source ---------------------------------
+// A line held with its source is not landed for its source's sake, not its own, so it names no row that prints it:
+// what holds it back is the pin's list, which must hold that source back with the reason the line gives.
 {
   const faults = [];
-  let lines = 0;
-  for (const l of lists) for (const [i, x] of ((READ.get(l.id) || {}).notLanded || []).entries()) {
-    lines += 1;
-    const where = `${l.id}, line not landed ${i + 1} (${x.m})`;
-    if (x.kind !== "printed_under_its_key_by_its_own_source" || !Array.isArray(x.printed_by) || !x.printed_by.length) { faults.push(`${where} does not name the rows that print its words`); continue; }
-    const own = (store.routesWhole(x.key) || []).filter((row) => String(row[3]) === x.m && (row[1] === x.route || spaced(row[1]) === spaced(x.route)));
-    if (!own.length) faults.push(`${where}: no row of its own source prints its words under its key now`);
+  let lines = 0, held = 0, heldLines = 0;
+  const heldBy = {}, byLine = {};
+  for (const l of lists) {
+    const got = READ.get(l.id) || {};
+    const hs = (l.held_sources && typeof l.held_sources === "object" && !Array.isArray(l.held_sources)) ? l.held_sources : {};
+    const holds = (m) => Object.prototype.hasOwnProperty.call(hs, m) && typeof hs[m] === "string" && hs[m].trim() !== "";
+    const heldHere = {};
+    const hl = Array.isArray(l.held_lines) ? l.held_lines : [];
+    const sameLine = (h, x) => !!h && !!x && h.m === x.m && h.key === x.key && h.route === x.route;
+    const lineHeld = new Map();   // a held line of the pin (its index) -> times it is named not landed, held by its line
+    for (const [i, x] of (got.notLanded || []).entries()) {
+      lines += 1;
+      const where = `${l.id}, line not landed ${i + 1} (${x.m})`;
+      if (x.kind === "held_with_its_source") {
+        if (!holds(x.m)) { faults.push(`${where} is held with its source, and the pin's list holds no source ${x.m} back`); continue; }
+        if (x.not_landed_because !== hs[x.m]) { faults.push(`${where} is held with its source for another reason than the pin's list gives`); continue; }
+        heldHere[x.m] = (heldHere[x.m] || 0) + 1; heldBy[x.m] = (heldBy[x.m] || 0) + 1; held += 1;
+        continue;
+      }
+      if (x.kind === "held_by_its_line") {
+        const at = hl.map((h, j) => (sameLine(h, x) ? j : -1)).filter((j) => j >= 0);
+        if (at.length !== 1) { faults.push(`${where} is held by its line, and the pin's list ${at.length ? "holds that line back more than once" : "holds no such line back"}`); continue; }
+        if (typeof hl[at[0]].why !== "string" || !hl[at[0]].why.trim() || x.not_landed_because !== hl[at[0]].why) { faults.push(`${where} is held by its line for another reason than the pin's list gives`); continue; }
+        lineHeld.set(at[0], (lineHeld.get(at[0]) || 0) + 1); byLine[x.m] = (byLine[x.m] || 0) + 1; heldLines += 1;
+        continue;
+      }
+      if (holds(x.m)) { faults.push(`${where}: the pin's list holds ${x.m} back, and the line is named not landed for another cause`); continue; }
+      if (x.kind !== "printed_under_its_key_by_its_own_source" || !Array.isArray(x.printed_by) || !x.printed_by.length) { faults.push(`${where} does not name the rows that print its words`); continue; }
+      const own = (store.routesWhole(x.key) || []).filter((row) => String(row[3]) === x.m && (row[1] === x.route || spaced(row[1]) === spaced(x.route)));
+      if (!own.length) faults.push(`${where}: no row of its own source prints its words under its key now`);
+    }
+    for (const m of Object.keys(hs)) {
+      if (!holds(m)) { faults.push(`${l.id}: the pin's list holds back ${m} and does not say why in words`); continue; }
+      const listed = (got.lane || []).filter((e) => e && e.m === m).length;
+      if (!listed) faults.push(`${l.id}: the pin's list holds back ${m}, and the list holds no line of it`);
+      else if ((heldHere[m] || 0) !== listed) faults.push(`${l.id}: ${nf(listed)} lines of ${m} are in the list and ${nf(heldHere[m] || 0)} are named held with their source`);
+    }
+    for (const x of got.landed || []) if (holds(x.m)) faults.push(`${l.id}: a row of ${x.m} lands, and the pin's list holds that source back`);
+    if (l.held_lines !== undefined && (!Array.isArray(l.held_lines) || !l.held_lines.length)) faults.push(`${l.id}: the pin's held_lines are not a list of lines`);
+    hl.forEach((h, j) => {
+      if (!h || typeof h.m !== "string" || typeof h.key !== "string" || typeof h.route !== "string" || typeof h.why !== "string" || !h.why.trim()) { faults.push(`${l.id}: held line ${j + 1} of the pin does not name its source, key, words and why`); return; }
+      if (holds(h.m)) faults.push(`${l.id}: held line ${j + 1} of the pin is of ${h.m}, a source it holds back whole`);
+      const listed = (got.lane || []).filter((e) => sameLine(h, e)).length;
+      if (listed !== 1) faults.push(`${l.id}: held line ${j + 1} of the pin is ${listed} lines of the list, not one`);
+      if ((lineHeld.get(j) || 0) !== 1) faults.push(`${l.id}: held line ${j + 1} of the pin is named not landed, held by its line, ${lineHeld.get(j) || 0} times`);
+      if ((got.landed || []).some((x) => sameLine(h, x))) faults.push(`${l.id}: held line ${j + 1} of the pin lands all the same`);
+    });
   }
-  check("G5  each line not landed names the rows of its own source that print its words under its key, and such a row stands there now", faults.length === 0,
-    faults.length ? `${nf(faults.length)} · ${first(faults)}` : lines ? `${nf(lines)} lines, each printed by its own source` : "no line of the pin's lists is held back: every line lands");
+  check("G5  each line not landed names the rows of its own source that print its words under its key, and such a row stands there now; or it is held with its source, where the pin's list holds that source back with that reason, every line of it so named and none landed; or it is held by its line, where the pin's list names that exact line with that reason", faults.length === 0,
+    faults.length ? `${nf(faults.length)} · ${first(faults)}` : lines ? [lines - held - heldLines ? `${nf(lines - held - heldLines)} lines, each printed by its own source` : "", held ? `${nf(held)} held with their source (${Object.entries(heldBy).map(([m, k]) => `${m} ${nf(k)}`).join(", ")}), each as its pin's list holds it` : "", heldLines ? `${nf(heldLines)} held by their line (${Object.entries(byLine).map(([m, k]) => `${m} ${nf(k)}`).join(", ")}), each as its pin's list names it` : ""].filter(Boolean).join(" · ") : "no line of the pin's lists is held back: every line lands");
 }
 
 console.log(bad ? `\n${bad} check(s) FAILED` : "\nall checks passed");

@@ -206,7 +206,9 @@ const ACTIONS = ["strike", "withhold", "re-key", "headword", "rejoin", "retext",
 const leaveOff = args("leave-off").map((s) => { const [m, key, ...why] = String(s).split("|"); return { m, key, why: why.join("|") }; });
 if (leaveOff.some((l) => !l.m || !l.key || !l.why)) refuse("a --leave-off names its m, its key and why: \"<m>|<key>|<why it stays off>\"");
 if (!existsSync(LIST)) refuse(`the list is not here (${LIST})`);
-const listBytes = readFileSync(LIST);
+// a list kept gzipped (the landings' large lists, 21 November 2026) is read as the list it holds: its lines and its
+// sha256 are the list's own, the bytes the landings' pin names
+const listBytes = /\.gz$/u.test(LIST) ? gunzipSync(readFileSync(LIST)) : readFileSync(LIST);
 const leftOff = [];
 const asked = [];
 listBytes.toString("utf8").split("\n").forEach((l, i) => {

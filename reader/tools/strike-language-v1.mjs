@@ -329,6 +329,11 @@ if (startedAs(import.meta.url)) {
     })(),
     kept_sources: Object.entries(decisions).filter(([, d]) => d.admitted)
       .map(([m, d]) => ({ m_id: m, reason: d.reason, evidence: d.evidence, label: d.label })),
+    // THE RE-ADMISSIONS ARE CARRIED FORWARD (21 November 2026, readmission-rule-v1: tools/readmit-sources-v1.mjs
+    // writes them). A source struck here on its label and back since on what its own source names stays among
+    // struck_sources, marked `readmitted`, because that it was struck, and why, stays said; this run rebuilds the
+    // record and must not drop what the re-admission wrote
+    ...(prior && Array.isArray(prior.readmissions) ? { readmissions: prior.readmissions } : {}),
     // EVERY COUNT SAYS WHAT IT WAS COUNTED OVER.
     //
     // This block held six numbers describing ONE round, sitting beside a
@@ -531,7 +536,9 @@ if (startedAs(import.meta.url)) {
     // reader on every page load, which makes it the most public thing this
     // lane publishes and the one a peer lane reads — and the unlabelled 27
     // and 79,095 it carried are the numbers that actually travelled.
-    const want = record.struck_sources.map((s) => s.m_id);
+    // the struck list is the sources struck and not re-admitted since: a source the record marks re-admitted is in
+    // the index again, and writing it back here made the index call one source struck and served at once
+    const want = record.struck_sources.filter((s) => !s.readmitted).map((s) => s.m_id);
     const summary = {
       ...cur,
       rule_id: ADMISSION_RULE_ID,
@@ -604,7 +611,7 @@ if (startedAs(import.meta.url)) {
     rule_id: ADMISSION_RULE_ID,
     admitted_languages: ADMITTED_LANGUAGES,
     record: "data/language-admission-v1.json",
-    struck_m_ids: record.struck_sources.map((s) => s.m_id),
+    struck_m_ids: record.struck_sources.filter((s) => !s.readmitted).map((s) => s.m_id),
     struck_this_round: [...struck],
     rounds: record.rounds.length,
     counts: record.counts,

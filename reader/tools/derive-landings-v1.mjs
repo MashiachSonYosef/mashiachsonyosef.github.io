@@ -21,6 +21,27 @@
 //     whole rendering beside its record's other renderings), and such rows must stand there, or the line is refused;
 //   - a line with no rank takes the highest rank under its key plus one, in the list's order (the lane's own words
 //     in v200 and v202), counting the rows this derivation has ranked before it; under a key new to the store, 1;
+//   - in a list whose pin says its ranks are HOLES (`a_named_rank_is: "the hole the strike left"`, the corpus lane's
+//     v207: the rows of a source struck whole, back at the rank each stood at), a named rank is the hole the row
+//     left when its source was struck. The struck-ranks record must hold that rank for that source under that key,
+//     or the line is refused. The row lands at the hole where no row stands at that rank under the key now and no
+//     line derived before it here took it; where one does (a later landing put another source's row there), it
+//     lands as a line with no rank does (the lane's own words: «if a list you land before this one takes it, land
+//     that line as a null rank»). A line with no rank, in such a list, stands after the last row AND the last typed
+//     hole of its key: a hole by strike is kept for the row that left it (struck-rank-rule-v1), so no line of these
+//     lists takes a hole a later line names;
+//   - a list's pin may name sources it HOLDS BACK (`held_sources`, each source with why, in words: 22 November 2026,
+//     the corpus lane's v210, whose own-language list carries PanLex's rows beside the translation tables' while
+//     PanLex waits on a ruling). A line of such a source is proved as a landing with the fields a landing reads, as
+//     every line is, and is then written to the list of lines not landed with its own kind, "held_with_its_source",
+//     and the pin's reason for its source. Nothing of it lands, and it takes no rank and no hole. Whether the store
+//     admits its source is not asked, since it does not land. A pin that holds back a source the list holds no line
+//     of is refused: it names what it does not hold;
+//   - and it may name single LINES it holds back (`held_lines`, each its source, key and words and why: 22 November
+//     2026, two of v210's rows that read wrongly at the Targum's places, where the page is bare today). Each must be
+//     exactly one line of the list, by its source, key and words, and not of a source the pin holds back whole. It is
+//     proved as every line is and written to the list of lines not landed with its own kind, "held_by_its_line",
+//     and the pin's reason; nothing of it lands, and it takes no rank and no hole;
 //   - the facts the line names for its row (n, t, b: what its own source says of the row, as the store carried
 //     them before or as STEP's own tags give them) go with it, for the landing to write;
 //   - lines of one source with the same words under one key are ONE row (the store holds one row of a source for a
@@ -28,7 +49,9 @@
 //     one row at the first line's rank, carrying every line's facts and headwords, each once, in the lines' order,
 //     and the row names every line it gathers. Lines that disagree on the definition or the year are refused.
 //
-// REFUSED, in words and with nothing written: a pinned file that is not its bytes; a list whose turn it is not (the
+// REFUSED, in words and with nothing written: a pinned file that is not its bytes; a source the pin holds back with
+// no reason in words, or of which the list holds no line; a line it holds back that is not exactly one line of the
+// list, or names no reason; a list whose turn it is not (the
 // row-strikes record's last round must be the landing of the list it lands after, or, for the first, no landing of
 // any of the pin's lists); a line that is no landing or lacks a field; a source the store names otherwise; a key
 // that ends in a maqaf; a rank named where no row of the line's own source stands; the two lists as derived that
@@ -42,7 +65,8 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openRouteStore } from "./gloss-store-v1.mjs";
-import { readPinned, readPinnedLines, heldToPin, sha256Of, PinFault } from "./pinned-v1.mjs";
+import { gunzipSync } from "node:zlib";
+import { readPinned, readPinnedLines, heldToPin, bytesToKeep, sha256Of, PinFault } from "./pinned-v1.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const K3 = join(HERE, "..");
@@ -76,6 +100,35 @@ try {
   if (L.receipt) readPinned(join(HOME, L.folder, L.receipt.file), L.receipt, `${L.folder}/${L.receipt.file}`);
   lines = readPinnedLines(join(HOME, L.folder, L.list.file), L.list, `${L.folder}/${L.list.file}`);
 } catch (e) { if (e instanceof PinFault) refuse(e.message); throw e; }
+// the sources the pin's list holds back, each with why: every line of such a source is named not landed, held with it
+const HELD_KIND = "held_with_its_source";
+const HELD = new Map();
+if (L.held_sources !== undefined) {
+  const h = L.held_sources;
+  if (!h || typeof h !== "object" || Array.isArray(h) || !Object.keys(h).length) refuse(`the pin's list "${ID}" names held_sources, and they are not a source id for each source it holds back with why`);
+  for (const [m, why] of Object.entries(h)) {
+    if (!/^M[1-9]\d*$/u.test(m) || typeof why !== "string" || !why.trim()) refuse(`the pin's list "${ID}" holds back "${m}" and does not say why in words`);
+    if (!lines.some((e) => e && e.m === m)) refuse(`the pin's list "${ID}" holds back ${m}, and the list holds no line of it`);
+    HELD.set(m, why);
+  }
+}
+const heldBySource = {};
+// the single lines the pin's list holds back, each matched to exactly one line of the list (its index -> why)
+const LINE_KIND = "held_by_its_line";
+const HELD_LINES = new Map();
+if (L.held_lines !== undefined) {
+  if (!Array.isArray(L.held_lines) || !L.held_lines.length) refuse(`the pin's list "${ID}" names held_lines, and they are not a list of the lines it holds back`);
+  L.held_lines.forEach((h, j) => {
+    if (!h || typeof h.m !== "string" || typeof h.key !== "string" || !h.key || typeof h.route !== "string" || !h.route || typeof h.why !== "string" || !h.why.trim()) refuse(`the pin's list "${ID}" holds back a line (${j + 1}) and does not name its source, key, words and why`);
+    if (HELD.has(h.m)) refuse(`the pin's list "${ID}" holds back a line of ${h.m}, a source it holds back whole`);
+    const at = [];
+    lines.forEach((e, i) => { if (e && e.m === h.m && e.key === h.key && e.route === h.route) at.push(i); });
+    if (at.length !== 1) refuse(`the pin's list "${ID}" holds back a line of ${h.m} (\u00ab${h.route}\u00bb), and ${at.length} lines of the list are it: a line held back is one line`);
+    if (HELD_LINES.has(at[0])) refuse(`the pin's list "${ID}" holds back line ${at[0] + 1} twice`);
+    HELD_LINES.set(at[0], h.why);
+  });
+}
+const heldByLine = {};
 
 // ---- the store this is derived on: after the list before it has landed, and before this one has ----------------
 if (!existsSync(RECORD)) refuse(`the row-strikes record is not here (${RECORD})`);
@@ -90,12 +143,25 @@ if (at > 0) {
   if (r !== rounds.length - 1) refuse(`${rounds.length - 1 - r} round(s) of the row-strikes record ran after the landing of "${before.id}": "${ID}" is derived on the store as it stands right after it`);
 }
 const store = openRouteStore(STORE);
+// a list of holes: the ranks the struck-ranks record holds, key by key, each with the source that stood there
+const HOLES = L.a_named_rank_is === "the hole the strike left";
+if (L.a_named_rank_is !== undefined && !HOLES) refuse(`the pin's list "${ID}" says a named rank is "${L.a_named_rank_is}", and a named rank is its record's rows' rank or "the hole the strike left"`);
+const struckAt = new Map();   // key -> Set of "rank\u0001m"
+if (HOLES) {
+  const sp = join(STORE, "struck-ranks-v1.json.gz");
+  if (!existsSync(sp)) refuse(`"${ID}" lands at the holes a strike left, and the struck-ranks record is not here (${sp})`);
+  const sr = JSON.parse(gunzipSync(readFileSync(sp)).toString("utf8"));
+  if (!sr.keys || typeof sr.keys !== "object") refuse(`${sp} is not a struck-ranks record (it holds no keys)`);
+  for (const [k, v] of Object.entries(sr.keys)) struckAt.set(k, new Set(v.map((x) => `${x[0]}\u0001${x[1]}`)));
+}
+const takenHere = new Map();  // key -> Set of the ranks lines derived here stand at
 
 // ---- every line, proved again -------------------------------------------------------------------
 const landed = [], notLanded = [];
 const nextRank = new Map();   // key -> the highest rank under it, with the rows ranked here
 const newKeys = new Set(), byKind = {}, bySource = {};
 let gathered = 0;   // the lines that joined the row an earlier line of the same source made for the same words
+let holesTaken = 0, holesMoved = 0;   // in a list of holes: the lines whose hole a row stands at now, and those the list moved off their hole's key
 const from = (i) => ({ relay: L.relay, list: L.list.file, line: i + 1 });
 lines.forEach((e, i) => {
   const where = `${L.list.file} line ${i + 1} (${e.m} ${e.key})`;
@@ -103,6 +169,20 @@ lines.forEach((e, i) => {
   if (typeof e.m !== "string" || typeof e.key !== "string" || !e.key || typeof e.route !== "string" || !e.route.trim() || typeof e.definition !== "string" || !e.definition.trim()
     || !Array.isArray(e.headwords) || !e.headwords.length || e.headwords.some((h) => typeof h !== "string" || !h) || typeof e.year !== "string" || !(e.rank === null || (Number.isInteger(e.rank) && e.rank >= 1))
     || (e.cut !== undefined && e.cut !== null && e.cut !== 1)) refuse(`${where} does not name what a landing reads: its source, key, route, definition, headwords, year, a rank or none, and a cut that is 1 or nothing`);
+  if (HELD.has(e.m)) {
+    // held with its source: proved as a landing, and not landed; it takes no rank and no hole
+    notLanded.push({ m: e.m, key: e.key, rank: e.rank, route: e.route, definition: e.definition, from: from(i), kind: HELD_KIND,
+      not_landed_because: HELD.get(e.m), held_by: "the pin's list holds this source back (held_sources): no line of it lands" });
+    heldBySource[e.m] = (heldBySource[e.m] || 0) + 1;
+    return;
+  }
+  if (HELD_LINES.has(i)) {
+    // held by its line: proved as a landing, and not landed; it takes no rank and no hole
+    notLanded.push({ m: e.m, key: e.key, rank: e.rank, route: e.route, definition: e.definition, from: from(i), kind: LINE_KIND,
+      not_landed_because: HELD_LINES.get(i), held_by: "the pin's list holds this line back (held_lines): it does not land" });
+    heldByLine[e.m] = (heldByLine[e.m] || 0) + 1;
+    return;
+  }
   const mine = store.index.m_sources[e.m];
   if (!mine) refuse(`${where}: the store admits no source ${e.m}`);
   if (typeof e.source === "string" && mine.key !== e.source) refuse(`${where}: the line names ${e.m} as ${e.source}, and the store holds ${mine.key} there`);
@@ -138,8 +218,26 @@ lines.forEach((e, i) => {
     return;
   }
   let rank = e.rank, rankFrom = "the list names the rank: its record's other rows stand there";
-  if (rank === null) { rank = nextRank.get(e.key) + 1; nextRank.set(e.key, rank); rankFrom = "the highest rank under the key plus one, in the list's order"; }
-  else if (!rows.some((r) => Number(r[0]) === rank && String(r[3]) === e.m)) refuse(`${where}: it names rank ${rank}, and no row of ${e.m} stands at that rank under its key: where it lands is not decided`);
+  const here = takenHere.get(e.key) || takenHere.set(e.key, new Set()).get(e.key);
+  if (HOLES && rank !== null) {
+    // the hole is this source's, by the record of the strike: under the line's own key, or the key the list moved it off
+    const holeKey = typeof e.from_key === "string" && e.from_key ? e.from_key : e.key;
+    if (!(struckAt.get(holeKey) || new Set()).has(`${rank}\u0001${e.m}`)) refuse(`${where}: it names rank ${rank} as the hole its row left, and the struck-ranks record holds no rank ${rank} of ${e.m} under ${holeKey}`);
+    if (holeKey !== e.key) { rank = null; holesMoved += 1; }
+    else if (rows.some((r) => Number(r[0]) === rank) || here.has(rank)) { rank = null; holesTaken += 1; }
+    else rankFrom = "the hole the strike left: the struck-ranks record holds this rank for this source under this key, and no row stands at it";
+  }
+  if (rank === null) {
+    // in a list of holes a row with no hole of its own to take stands after the key's last row AND its last typed hole:
+    // a hole by strike is kept for the row that left it (struck-rank-rule-v1), so a later line of these lists finds its own
+    rank = Math.max(nextRank.get(e.key), ...here, ...(HOLES ? [...(struckAt.get(e.key) || [])].map((x) => Number(x.split("\u0001")[0])) : [])) + 1; nextRank.set(e.key, rank);
+    rankFrom = HOLES && e.rank === null ? "no rank is named: after the last row and the last typed hole of its key, in the list's order"
+      : e.rank === null ? "the highest rank under the key plus one, in the list's order"
+      : typeof e.from_key === "string" && e.from_key && e.from_key !== e.key ? "the hole stood under the key the list moved the row off: after the last row and the last typed hole of its key, in the list's order"
+        : "a row stands at the hole the strike left: after the last row and the last typed hole of its key, in the list's order";
+  }
+  else if (!HOLES && !rows.some((r) => Number(r[0]) === rank && String(r[3]) === e.m)) refuse(`${where}: it names rank ${rank}, and no row of ${e.m} stands at that rank under its key: where it lands is not decided`);
+  here.add(rank);
   byKind[e.kind || "none"] = (byKind[e.kind || "none"] || 0) + 1;
   bySource[e.m] = (bySource[e.m] || 0) + 1;
   landed.push({ action: "land", m: e.m, key: e.key, rank, rank_named: e.rank, rank_from: rankFrom, route: e.route, place: "after", definition: e.definition, headwords: [...e.headwords], year: e.year, cut: e.cut ?? null, facts,
@@ -152,14 +250,15 @@ const bytesOf = (list) => Buffer.from(list.map((x) => JSON.stringify(x)).join("\
 const out = [[derived.landed, bytesOf(landed), landed.length], [derived.not_landed, bytesOf(notLanded), notLanded.length]];
 const pinned = out.map(([p, b, count]) => heldToPin(b, count, p));
 const figures = { list: ID, relay: L.relay, store_version: store.index.store_version, lines: lines.length, landed: landed.length, not_landed: notLanded.length,
-  lines_gathered_into_an_earlier_lines_row: gathered, keys: new Set(landed.map((x) => x.key)).size, keys_new_to_the_store: newKeys.size, ranked_here: landed.filter((x) => x.rank_from.startsWith("the highest")).length,
-  with_facts: landed.filter((x) => x.facts).length, by_kind: byKind, by_source: bySource,
+  lines_gathered_into_an_earlier_lines_row: gathered, keys: new Set(landed.map((x) => x.key)).size, keys_new_to_the_store: newKeys.size, ranked_here: landed.filter((x) => !x.rank_from.startsWith("the list names") && !x.rank_from.startsWith("the hole the strike left")).length,
+  ...(HOLES ? { at_the_hole_the_strike_left: landed.filter((x) => x.rank_from.startsWith("the hole the strike left")).length, hole_taken_now: holesTaken, moved_off_the_holes_key: holesMoved } : {}),
+  with_facts: landed.filter((x) => x.facts).length, by_kind: byKind, by_source: bySource, ...(HELD.size ? { held_with_their_source: heldBySource } : {}), ...(HELD_LINES.size ? { held_by_their_line: heldByLine } : {}),
   files: out.map(([p, b, count]) => ({ file: `${derived.folder}/${p.file}`, bytes: b.length, sha256: sha256Of(b), lines: count })), the_pin_names_these_bytes: pinned.every(Boolean) };
-console.log(`landings · ${ID} (relay ${L.relay}) · ${n(lines.length)} lines read on store ${store.index.store_version}${at > 0 ? `, after the landing of ${pin.lists[at - 1].id}` : ""} · ${n(landed.length)} rows land${gathered ? ` (${n(gathered)} more lines gathered into a row of the same source and words)` : ""} under ${n(figures.keys)} keys (${n(newKeys.size)} new to the store), ${n(figures.ranked_here)} ranked here, ${n(figures.with_facts)} with facts · ${n(notLanded.length)} not landed (their own source prints their words under their key)`);
+console.log(`landings · ${ID} (relay ${L.relay}) · ${n(lines.length)} lines read on store ${store.index.store_version}${at > 0 ? `, after the landing of ${pin.lists[at - 1].id}` : ""} · ${n(landed.length)} rows land${gathered ? ` (${n(gathered)} more lines gathered into a row of the same source and words)` : ""} under ${n(figures.keys)} keys (${n(newKeys.size)} new to the store), ${n(figures.ranked_here)} ranked here, ${n(figures.with_facts)} with facts · ${n(notLanded.length)} not landed (${HELD.size || HELD_LINES.size ? `${n(notLanded.filter((x) => x.kind !== HELD_KIND && x.kind !== LINE_KIND).length)} their own source prints under their key, ${n(notLanded.filter((x) => x.kind === HELD_KIND).length)} held with their source, ${n(notLanded.filter((x) => x.kind === LINE_KIND).length)} held by their line` : "their own source prints their words under their key"})`);
 for (const [p, b, count] of out) console.log(`  ${derived.folder}/${p.file} · ${count} lines · ${b.length} bytes · sha256 ${sha256Of(b)}`);
 console.log(`figures ${JSON.stringify(figures)}`);
 if (DRY) { console.log(`dry run — nothing written · the pin ${figures.the_pin_names_these_bytes ? "names these bytes" : "names other bytes, or none"}`); process.exit(0); }
 out.forEach(([p, , count], i) => { if (!pinned[i]) refuse(`${derived.folder}/${p.file} as derived (${count} lines, ${figures.files[i].bytes} bytes, ${figures.files[i].sha256}) is not the bytes the pin names (${p.lines} lines, ${p.bytes} bytes, ${p.sha256})`); });
 mkdirSync(join(HOME, derived.folder), { recursive: true });
-for (const [p, b] of out) writeFileSync(join(HOME, derived.folder, p.file), b);
+for (const [p, b] of out) writeFileSync(join(HOME, derived.folder, p.file), bytesToKeep(b, p));
 console.log(`written · ${out.map(([p]) => `${derived.folder}/${p.file}`).join(" and ")}, the bytes the pin names`);
