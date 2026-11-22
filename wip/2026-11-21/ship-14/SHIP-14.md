@@ -121,3 +121,10 @@ The mend (`tools/patch-03-gate-spans-stand-on-both-builds.py`, the gate alone): 
 ### The suite did not start, and why
 
 The scripts for this ship were made by copying ship 10b's through a filter, which left them without the mark that lets them run. The two lanes of the suite are started by name, so neither started and the wait behind them never ended; I found it two hours later when the wait's own limit ran out. Nothing was lost but the time. The mark is set, and the suite starts when the gate is clean.
+
+### The gate's second run is clean (02:22 to 02:34 UTC, `measures/gate-second-run.log`)
+
+S1 and S2 hold. 30,945 lines compared on 18 pages under every switch both builds carry: 0 differ, 0 moved. 26 lines stand as a unit's one line on both builds, counted by the mended law. 54 cards compared, none differing.
+
+The whole suite began at 02:34 UTC, both lanes running this time.
+
