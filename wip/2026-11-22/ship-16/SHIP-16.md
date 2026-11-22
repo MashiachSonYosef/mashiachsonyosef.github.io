@@ -1,6 +1,6 @@
 # Ship 16: the translation tables return under the source ledger v1.1 (relay v210)
 
-Page lane, 22 November 2026. Built in the sandbox `S/s12` (branch `ship16` from ship 14 as shipped, `main` 571e4a449a) by a helper, from the brief `S/s20w/BRIEF.md`; the one script that applies it is `S/s20w/apply-16.sh <reader> <moment prefix> <log dir>`. Not shipped. It goes on top of ship 15, with its own round, gate and suite. The plan it belongs to: `wip/2026-11-22/the-relays-v210-v217/PLAN.md`.
+Page lane, 22 November 2026. Built in the sandbox `S/s12` (branch `ship16` from ship 14 as shipped, `main` 571e4a449a) by a helper, from the brief `S/s20w/BRIEF.md`; the one script that applies it is `S/s20w/apply-16.sh <reader> <moment prefix> <log dir>`. **Shipped 22 November 2026 on top of ship 15: `main` 36e111edc2, `gh-pages` dc53d65fe1 (Pages run 1385, live check 83, both success).** The plan it belongs to: `wip/2026-11-22/the-relays-v210-v217/PLAN.md`.
 
 ## What it lands, and what it does not
 
@@ -71,4 +71,22 @@ A pin's list may name lines it holds one by one (`held_lines`: m, key, route, wh
 ## Run 2 on the real tree, 09:00 to 09:44 UTC
 
 Every step exit 0 (`measures/run2/`). Store 0072121276a0 → 105bcd11a72c, 653,351 rows (124 landed). **Every resting line against live: the same 34 Zohar lines, all right, and nothing else.** The commentaries: the 16 right places of run 1 and none of the 6 wrong ones (`measures/run2/commentary-lines-that-move.tsv`). The gate and the whole suite follow.
+
+## The gate and the suite (run 2)
+
+- The gate against live (ship 15), 09:44 to 09:55 UTC: **30,945 lines compared on 18 pages, 0 differ**; S1 and S2 ok (`measures/run2/gate.log`).
+- The whole suite, 205 checks (`check-readmission-v1` new), two lanes, 09:55 to 11:30 UTC: **203 exit 0**. Red, as on every ship: `check-nothing-unlanded-v1` (until the push) and `check-reading-rows-v1` R1 (the small phone's nine short rows, the same on live). Every verdict: `measures/run2/suite-verdicts.txt`.
+
+## Shipped
+
+- One commit on `main`, 36e111edc206bb3f5a5d4a6ca3302ee0d3db36be (its message: `COMMIT-MESSAGE.txt`); `gh-pages` follows it, dc53d65fe100f6995a2f0f31838112711fde7f08.
+- Pages run 1385: success. Live check 83 on 36e111edc2: success.
+- `check-nothing-unlanded-v1` after the push: ok, 3 assertions.
+- `S/old` now stands on 36e111edc2. Ship 17 began its round on this commit at 11:32 UTC.
+
+## What waits
+
+- The two lines held by their line: the corpus lane's answer.
+- PanLex (M24, M82): the Zohar's prefix split.
+- Harkavy: out. The Bible dictionaries list: the owner.
 
