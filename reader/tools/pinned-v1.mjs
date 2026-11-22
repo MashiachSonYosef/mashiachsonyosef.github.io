@@ -24,7 +24,17 @@
 // gives those bytes again.
 //
 //   heldToPin(bytes, lines, entry)       -> whether these bytes are the entry's
+//
+// A LARGE LIST IS KEPT GZIPPED AND WEIGHED AS WHAT IT HOLDS (21 November
+// 2026, the corpus lane's v207: three lists of 38 MB). A pin entry that says
+// `stored: "gzip"` names a file kept gzipped in this tree; its `bytes` and
+// `sha256` are still the list's own, the figures the lane's letter gives, so
+// the file is unzipped and then weighed. The zipped bytes are not pinned:
+// they are a way of keeping the list, and two zips of one list differ.
+//
+//   bytesToKeep(bytes, entry)            -> the bytes to write for an entry (zipped where it says so)
 import { readFileSync, existsSync } from "node:fs";
+import { gunzipSync, gzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 
 export const sha256Of = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -32,7 +42,9 @@ export class PinFault extends Error {}
 
 export const readPinned = (path, entry, name = entry.file) => {
   if (!existsSync(path)) throw new PinFault(`${name} is named in its pin and is not here`);
-  const bytes = readFileSync(path);
+  let bytes = readFileSync(path);
+  if (entry.stored !== undefined && entry.stored !== "gzip") throw new PinFault(`${name}: its pin says it is stored as "${entry.stored}", and a pinned file is kept as it is or gzipped`);
+  if (entry.stored === "gzip") { try { bytes = gunzipSync(bytes); } catch (e) { throw new PinFault(`${name} is pinned as a gzipped file and does not unzip (${e.message})`); } }
   const sha = sha256Of(bytes);
   if (bytes.length !== entry.bytes || sha !== entry.sha256) throw new PinFault(`${name} is not the bytes its pin names (${bytes.length} bytes, ${sha}; the pin: ${entry.bytes}, ${entry.sha256})`);
   return bytes;
@@ -48,4 +60,5 @@ export const readPinnedLines = (path, entry, name = entry.file) => {
 };
 
 // bytes made here against the pin entry that names them: the same size and sha256, and the same count of lines where the entry counts them
+export const bytesToKeep = (bytes, entry) => (entry && entry.stored === "gzip" ? gzipSync(bytes, { level: 9 }) : bytes);
 export const heldToPin = (bytes, lines, entry) => !!entry && entry.bytes === bytes.length && entry.sha256 === sha256Of(bytes) && (entry.lines === undefined || entry.lines === lines);

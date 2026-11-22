@@ -7,6 +7,16 @@
 // struck list — so a catalog shipped tomorrow carrying a Yiddish, Ladino or
 // Judeo-Arabic lexicon fails here rather than reaching a page.
 //
+// A SOURCE THAT STANDS RE-ADMITTED IS JUDGED BY WHAT ITS OWN SOURCE NAMES
+// (21 November 2026, readmission-rule-v1). The strike judged a source by the
+// label this project gave it, and its own record says the way back is what
+// the source itself names. A source in the index's list of the re-admitted
+// carries those languages on its entry, and is judged by them exactly as the
+// strike tool reads them (classify, on the entry whole); any other source is
+// judged by its label, as before, whatever its entry carries. That the list
+// of the re-admitted is the re-admission's record, and that every row of
+// such a source is a row the corpus lane listed, is check-readmission-v1's.
+//
 // Three places a non-admitted source could stand:
 //   1. the store index, as an M record
 //   2. a store shard, as a route pointing at an M the index no longer holds
@@ -35,6 +45,10 @@ console.log(`— ${ADMISSION_RULE_ID} —`);
 console.log(`  admitted: ${ADMITTED_LANGUAGES.join(", ")}\n`);
 
 const index = JSON.parse(readFileSync(join(STORE, "index.json"), "utf8"));
+const reAdmitted = new Set((index.language_admission || {}).readmitted_m_ids || []);
+const decide = (m, v) => (reAdmitted.has(m) && Array.isArray(v.languages) && v.languages.length ? classify(v) : classify(v.label));
+// a zone's credit names its source by its label: the labels of the re-admitted sources the law admits
+const reAdmittedLabels = new Set(Object.entries(index.m_sources).filter(([m, v]) => reAdmitted.has(m) && decide(m, v).admitted).map(([, v]) => v.label));
 
 // 0 · the strike is on record, with its reasoning, where anyone can read it
 const RECORD = join(K3, "data", "language-admission-v1.json");
@@ -49,11 +63,11 @@ if (existsSync(RECORD)) {
 
 // 1 · the index
 const inIndex = Object.entries(index.m_sources)
-  .map(([m, v]) => [m, v.label, classify(v.label)])
+  .map(([m, v]) => [m, v.label, decide(m, v)])
   .filter(([, , d]) => !d.admitted);
 check("no source in the store index names a language outside Hebrew and Aramaic",
   inIndex.length === 0,
-  inIndex.length ? inIndex.map(([m, , d]) => `${m} (${d.evidence})`).join(" · ") : `${Object.keys(index.m_sources).length} sources, all admitted`);
+  inIndex.length ? inIndex.map(([m, , d]) => `${m} (${d.evidence})`).join(" · ") : `${Object.keys(index.m_sources).length} sources, all admitted${reAdmitted.size ? ` (${reAdmitted.size} re-admitted, each by the languages its own source names)` : ""}`);
 
 // 2 · the shards
 let routes = 0; const orphaned = new Map();
@@ -78,7 +92,7 @@ for (const f of bins) {
   zonesRead += 1;
   for (const [k, v] of Object.entries(z.gloss_m || {})) {
     glossesRead += 1;
-    if (classify(v.m || "").admitted) continue;
+    if (classify(v.m || "").admitted || reAdmittedLabels.has(v.m)) continue;
     offenderCount += 1;
     if (offenders.length < 10)
       offenders.push(`${z.work} · ${k} = "${(z.gloss || {})[k] || ""}" from ${classify(v.m || "").evidence}`);
@@ -119,8 +133,9 @@ check("no published zone prints a reading from a non-admitted source",
   // rather than filled with the nearest number to hand.
   const cum = la.cumulative || {};
   check("  a cumulative figure stands beside them, covering every round",
-    Number.isInteger(cum.sources_struck) && cum.sources_struck === (la.struck_m_ids || []).length,
-    `cumulative says ${cum.sources_struck} source(s) struck; the struck list holds ${(la.struck_m_ids || []).length}`);
+    Number.isInteger(cum.sources_struck) && cum.sources_struck === (la.struck_m_ids || []).length + reAdmitted.size
+      && !(la.struck_m_ids || []).some((m) => reAdmitted.has(m)),
+    `cumulative says ${cum.sources_struck} source(s) struck; the struck list holds ${(la.struck_m_ids || []).length}${reAdmitted.size ? ` and ${reAdmitted.size} stand re-admitted since` : ""}`);
   // A cumulative route figure is either measured and says where from, or it is
   // null and says why. What it may never be is a number with nothing behind
   // it — which is how a one-round count came to stand for a whole strike in
@@ -135,8 +150,8 @@ check("no published zone prints a reading from a non-admitted source",
   // And it must cover the whole strike, not a part of it wearing the word
   // "cumulative" — the exact substitution this section exists to stop.
   check("  and it covers every struck source, not a subset",
-    cum.routes_struck === null || (from && from.covers_m_ids === (la.struck_m_ids || []).length),
-    from ? `covers ${from.covers_m_ids} of ${(la.struck_m_ids || []).length} struck ids` : "no source named");
+    cum.routes_struck === null || (from && from.covers_m_ids === (la.struck_m_ids || []).length + reAdmitted.size),
+    from ? `covers ${from.covers_m_ids} of ${(la.struck_m_ids || []).length + reAdmitted.size} ids ever struck${reAdmitted.size ? ` (${(la.struck_m_ids || []).length} struck now, ${reAdmitted.size} re-admitted)` : ""}` : "no source named");
 
   // A round is a delta. The total written down as an event is not a round, and
   // the shelf carried one for a fortnight: three rounds of 10, 39 and 49 for a

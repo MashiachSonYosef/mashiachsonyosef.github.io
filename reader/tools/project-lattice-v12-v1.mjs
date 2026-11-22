@@ -264,6 +264,15 @@ const routes = new Map();   // key -> [{ fp, text, src, lic, year, corpus, tr }]
 // the wording year the served store gives a source's own row for a reading
 const labelOf = new Map(Object.entries(store.index.m_sources || {}).map(([id, s]) => [id, s.label || ""]));
 const heldLabels = new Set(labelOf.values());
+// A SOURCE THAT RETURNED FOR ITS LISTED ROWS ALONE IS HELD FOR THOSE ROWS ALONE (readmission-rule-v1, 21 November
+// 2026). A source can come back for the rows whose own language field names Hebrew or Aramaic, its other rows left
+// out (English Wiktionary's translation tables, 22 November 2026: the rows the source ledger v1.1 admits). The
+// lattice is the corpus lane's own
+// catalog and still carries a card for every row such a source ever had, so the label being held again is not
+// enough: a card of such a source is the headword's line only where a served row of that source speaks the card's
+// words under the card's key. A source that returned whole is held like any other.
+const listedRowsAloneLabels = new Set(Object.values(store.index.m_sources || {}).filter((src) => src.readmitted && src.readmitted.returns !== "whole").map((src) => src.label || ""));
+const cardHasItsRow = (key, card) => (store.routesWhole(key) || []).some((r) => labelOf.get(r[3]) === card.src && String(r[1]) === String(card.text));
 // RULE 6 FOR THE HEADWORD'S READING: on a book at rest, a lattice card whose source the record rests shut whole, or
 // whose source gives its reading under the headword only in rows that rest shut, is not the headword's line; off the
 // scope nothing here holds a card back
@@ -456,7 +465,7 @@ if (stemsByPlace.size) for (const sec of zone.sections || []) {
 // ---- rule 2 · the join, verse by verse, proved by the key ------------------
 const stats = { rows_graded_from_headwords: 0, rows_graded_from_lattice: 0, rows_ungraded: 0, verses: 0, verses_joined: 0, verses_held: 0, verses_absent_from_lattice: 0, words_on: 0,
   surfaces_unattested: 0, surfaces_with_stems: 0, surfaces_name_leads_under_only: 0, surfaces_with_lenient_leader: 0, surfaces_with_lenient_alternate: 0,
-  hg: 0, hm_year_unsaid: 0, ...(store.signLast ? { hg_stepped_past_a_signed_card: 0 } : {}), hg_skipped_source_not_held: 0, ...(atRest ? { hg_skipped_rests_shut: 0 } : {}), hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
+  hg: 0, hm_year_unsaid: 0, ...(store.signLast ? { hg_stepped_past_a_signed_card: 0 } : {}), hg_skipped_source_not_held: 0, ...(listedRowsAloneLabels.size ? { hg_skipped_no_listed_row_of_its_source: 0 } : {}), ...(atRest ? { hg_skipped_rests_shut: 0 } : {}), hg_skipped_same_as_form: 0, hg_skipped_lemma_not_in_routes: 0, hg_skipped_lemma_differs_from_h: 0, hg_skipped_no_h: 0, hg_skipped_witnesses_differ: 0,
   ld: 0, grades: 0, verses_with_their_own_citations: 0, verses_held_j_not_sound: 0,
   bare: 0, bare_without_pieces: 0, pc: 0, pc_pieces: 0, pc_both_witnesses: 0, pc_skipped_word_has_an_english: 0,
   places_tagged: 0, places_with_no_core_tag: 0, places_whose_pieces_spell_no_key_of_the_word: 0,
@@ -876,6 +885,7 @@ for (const sec of zone.sections || []) {
       // carries no hg, and the line under "the headword" reads the headword's
       // own baked column, as at every other word without one.
       if (top && !heldLabels.has(top.src)) stats.hg_skipped_source_not_held += 1;
+      else if (top && listedRowsAloneLabels.has(top.src) && !cardHasItsRow(L.key, top)) stats.hg_skipped_no_listed_row_of_its_source += 1;
       // and on a book at rest, a card of a source the record rests shut whole, or of rows that rest shut alone, is
       // not the line under the headword either (rule 6): the word carries no hg, as above
       else if (top && restsShutAtRest(L.key, top)) stats.hg_skipped_rests_shut += 1;

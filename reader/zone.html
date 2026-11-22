@@ -3061,6 +3061,15 @@
   // name fall back, and nothing else on the page notices
   let LANG_REC = null, SHORT_REC = null;
   const CORPUS_OF = (m) => (CORPUS_REC && CORPUS_REC.witnesses && CORPUS_REC.witnesses[m] || {}).corpus || null;
+  // THE LANGUAGE SHELF OF A WITNESS JUDGED ROW BY ROW (22 November 2026, the corpus lane's source ledger v1.1). A
+  // BY_ROW witness is neither admitted nor refused whole, so its value names no language and fell to «Hebrew in
+  // general»; the record says what its admitted lines count as (rows_count_as, recounted by the emitter from the
+  // list's own lines). Where every one of them counts as Aramaic it is shelved as Aramaic, and so wears no «+ Aramaic»
+  // tag; any other BY_ROW witness falls back as before. Only the language shelf asks this: the era and outside-the-era
+  // orders read the witness's value as the record gives it (BY_ROW is not the Bible's and is outside, as ARAMAIC is).
+  // tools/gloss-m-v1.mjs carries the same function under the same name, and prices the shelves it draws.
+  const shelfCorpusOf = (w) => { if (!w) return null; const c = w.rows_count_as; return w.corpus === "BY_ROW" && c && typeof c === "object" && !Array.isArray(c) && Object.keys(c).length === 1 && Object.keys(c)[0] === "Aramaic" ? "ARAMAIC" : w.corpus || null; };
+  const SHELF_CORPUS_OF = (m) => shelfCorpusOf(CORPUS_REC && CORPUS_REC.witnesses && CORPUS_REC.witnesses[m]);
   const DEF_KEY = "fh.def.order";
   // THE MASORAH · masorah-toggle-rule-v1-the-pointing-is-kept-the-gate-or-lifted-and-the-page-never-changes
   //
@@ -16856,7 +16865,7 @@
       of: (g) => (g.wcMain && g.wcMain !== "none" ? `${ordinal(Number(g.wcMain))} century AM` : "no year given"),
       rank: (title) => (title === "no year given" ? 1e9 : parseInt(title, 10)) },
     { id: "language", lab: "language",
-      of: (g) => { const ov = g.overlay && OVERLAY_DEFS.find((o) => o.id === g.overlay); if (ov) return ov.shelf; const c = g.corpus; return c === "ARAMAIC" ? "Aramaic" : c === "BIBLICAL" ? "the Bible’s Hebrew" : "Hebrew in general"; },
+      of: (g) => { const ov = g.overlay && OVERLAY_DEFS.find((o) => o.id === g.overlay); if (ov) return ov.shelf; const c = g.shelfCorpus; return c === "ARAMAIC" ? "Aramaic" : c === "BIBLICAL" ? "the Bible’s Hebrew" : "Hebrew in general"; },
       rank: (title) => ({ "the Bible’s Hebrew": 0, "Hebrew in general": 1, "Aramaic": 2 })[title] ?? (() => { const i = OVERLAY_DEFS.findIndex((o) => o.shelf === title); return i < 0 ? 9 : 3 + i; })() },
     { id: "license", lab: "license",
       of: (g) => licShelf(g.lic),
@@ -16997,6 +17006,7 @@
     }
     for (const g of groups.values()) {
       g.corpus = g.ids.map((id) => CORPUS_OF(id)).find(Boolean) || "UNDECLARED";
+      g.shelfCorpus = g.ids.map((id) => SHELF_CORPUS_OF(id)).find(Boolean) || "UNDECLARED";
       g.lang = [...new Set(g.ids.map(LANG_OF).filter(Boolean))].sort().join(" + ");
       g.label = [...g.labels].sort((a, b) => a.length - b.length)[0] || g.key;
       const short = SHORT_REC && SHORT_REC.names && SHORT_REC.names[g.key];
@@ -17057,7 +17067,7 @@
       open.setAttribute("aria-expanded", "false"); open.dataset.key = g.key;
       const name = document.createElement("span"); name.className = "src-name"; name.textContent = g.short;
       open.append(name);
-      if (shelveBy === "language" && g.corpus !== "ARAMAIC" && /Aramaic|Chaldee/.test(g.lang)) {
+      if (shelveBy === "language" && g.shelfCorpus !== "ARAMAIC" && /Aramaic|Chaldee/.test(g.lang)) {
         const tag = document.createElement("i"); tag.className = "src-tag"; tag.textContent = "+ Aramaic"; open.append(tag);
       }
       open.title = `${g.labels.map((l, i) => `${g.ids[i]} ${l}`).join("\n")}\n${g.lic}\n${g.costs}${g.wcSay ? `\n${g.wcSay}` : ""}\nleads ${g.leads.toLocaleString()} of this book's lines, carries a reading at ${g.carries.toLocaleString()} keys`;

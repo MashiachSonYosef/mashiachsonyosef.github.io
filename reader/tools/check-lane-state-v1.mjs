@@ -77,12 +77,17 @@ check("S2  the store it names is the store on disk",
 // S3 · the strike, and the one thing about it that must be cumulative. This
 // number is the reason the file exists: it is what a peer lane differences its
 // own store against.
+// (a source struck and back since stays in the cumulative figure and leaves the struck list: the lane state names the
+// re-admitted beside the struck, as the index does, and the two together are every source ever struck)
+const backSince = la.readmitted_m_ids || [];
 check("S3  the strike it reports is cumulative and matches the record",
-  s.language_admission.sources_struck === (la.struck_m_ids || []).length
+  s.language_admission.sources_struck === (la.struck_m_ids || []).length + backSince.length
+    && JSON.stringify(s.language_admission.readmitted_m_ids || []) === JSON.stringify(backSince)
+    && JSON.stringify(s.language_admission.struck_m_ids || []) === JSON.stringify(la.struck_m_ids || [])
     && s.language_admission.sources_struck === cum.sources_struck
     && s.language_admission.routes_struck === (Object.prototype.hasOwnProperty.call(cum, "routes_struck") ? cum.routes_struck : null)
     && s.language_admission.rounds === la.rounds,
-  `${s.language_admission.sources_struck} sources · ${(s.language_admission.routes_struck || 0).toLocaleString()} routes · ${s.language_admission.rounds} round(s)`);
+  `${s.language_admission.sources_struck} sources · ${(s.language_admission.routes_struck || 0).toLocaleString()} routes · ${s.language_admission.rounds} round(s)${backSince.length ? ` · ${(la.struck_m_ids || []).length} struck now, ${backSince.length} re-admitted since` : ""}`);
 // the store may have moved since the strike by a move that changes no row —
 // the pointing store landing, whose fold the index proves — and the pair the
 // strike was measured between still stands; the history names the chain

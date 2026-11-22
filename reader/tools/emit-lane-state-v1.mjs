@@ -169,6 +169,11 @@ export const laneState = (day = null) => {
         ? { before: cum.routes_and_keys_from.before_store_version, after: cum.routes_and_keys_from.after_store_version }
         : null,
       struck_m_ids: la.struck_m_ids || [],
+      // A SOURCE STRUCK AND BACK SINCE (readmission-rule-v1, 21 November 2026): sources_struck above is every source
+      // the admission ever struck, which is what a peer lane differences its own store against; the sources struck
+      // now are struck_m_ids, and the ones back on what their own source names are these. Said only once any is
+      ...((la.readmitted_m_ids || []).length ? { readmitted_m_ids: la.readmitted_m_ids, sources_readmitted: la.readmitted_m_ids.length, sources_struck_now: (la.struck_m_ids || []).length,
+        readmission: la.readmission ? { rule_id: la.readmission.rule_id, record: `reader/${la.readmission.record}`, relay: la.readmission.relay, rows_listed: la.readmission.rows_listed } : null } : {}),
       record: "reader/data/language-admission-v1.json",
       // Named, because it is the difference between "these are the sources this
       // lane rejected" and "these are the sources this lane could not serve".

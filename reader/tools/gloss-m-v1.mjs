@@ -246,6 +246,14 @@ const ordinal = (n) => `${n}${(n % 100 >= 11 && n % 100 <= 13) ? "th" : ({ 1: "s
 export const JOINT_COST_RULE_ID = "joint-switch-cost-rule-v1-a-set-of-switches-is-priced-thrown-together-and-read-by-its-own-ids";
 // weights: key -> the positions on the book that read under that key, so a
 // price can be said in LINES a reader sees as well as in distinct forms
+// THE LANGUAGE SHELF OF A WITNESS JUDGED ROW BY ROW (22 November 2026, the corpus lane's source ledger v1.1). A
+// BY_ROW witness is neither admitted nor refused whole, so its value names no language and fell to «Hebrew in
+// general»; the record says what its admitted lines count as (rows_count_as, recounted by the emitter from the
+// list's own lines). Where every one of them counts as Aramaic it is shelved as Aramaic, and so wears no «+ Aramaic»
+// tag; any other BY_ROW witness falls back as before. Only the language shelf asks this: the era and outside-the-era
+// orders read the witness's value as the record gives it (BY_ROW is not the Bible's and is outside, as ARAMAIC is).
+// The page (zone.html) carries the same function under the same name, so a shelf priced here is the shelf it draws.
+export const shelfCorpusOf = (w) => { if (!w) return null; const c = w.rows_count_as; return w.corpus === "BY_ROW" && c && typeof c === "object" && !Array.isArray(c) && Object.keys(c).length === 1 && Object.keys(c)[0] === "Aramaic" ? "ARAMAIC" : w.corpus || null; };
 export const jointSwitchCosts = (store, gloss, gm, table, corpusRec, weights = null) => {
   // the chips: ids grouped by the source's own key
   const byKey = new Map();
@@ -255,11 +263,12 @@ export const jointSwitchCosts = (store, gloss, gm, table, corpusRec, weights = n
     const cs = Object.entries(wc).sort((a, b) => b[1] - a[1] || (a[0] === "none") - (b[0] === "none") || Number(a[0]) - Number(b[0]));
     const wcMain = cs.length ? cs[0][0] : "none";
     const corpus = ids.map((id) => ((corpusRec && corpusRec.witnesses && corpusRec.witnesses[id]) || {}).corpus || null).find(Boolean) || "UNDECLARED";
-    return { key, ids: [...ids].sort(), wcMain, corpus, lic: table[ids[0]].lic };
+    const shelfCorpus = ids.map((id) => shelfCorpusOf(corpusRec && corpusRec.witnesses && corpusRec.witnesses[id])).find(Boolean) || "UNDECLARED";
+    return { key, ids: [...ids].sort(), wcMain, corpus, shelfCorpus, lic: table[ids[0]].lic };
   });
   const shelfOf = {
     century: (g) => (g.wcMain && g.wcMain !== "none" ? `${ordinal(Number(g.wcMain))} century AM` : "no year given"),
-    language: (g) => (g.corpus === "ARAMAIC" ? "Aramaic" : g.corpus === "BIBLICAL" ? "the Bible\u2019s Hebrew" : "Hebrew in general"),
+    language: (g) => (g.shelfCorpus === "ARAMAIC" ? "Aramaic" : g.shelfCorpus === "BIBLICAL" ? "the Bible\u2019s Hebrew" : "Hebrew in general"),
     license: (g) => licShelf(g.lic),
   };
   const sets = new Map();   // ids key -> { ids, what }
