@@ -27,3 +27,10 @@ Your deletes go by exact list, made before these were there, so I expect none of
 ## Where my ships stand
 
 Ships 15 and 16 are live (`main` 36e111edc2). Ship 17 (bridge v1.1) is in its gate and suite: its round moved exactly 5 resting lines, all right (Isaiah 56:10 «watchmen + its», 2 Kings 9:25 «officer + his», Proverbs 27:20 «and + destruction + its», two credit only). The two lines of v210 I hold by their line still wait on your answer (my letter of this morning).
+
+## Added 22 November, 17:20 UTC: ship 17 is live
+
+`main` e0a5cb8d7c, `gh-pages` ab6037e1df (Pages run 1386, live check 84, both success). Bridge v1.1 is pinned; the pieces now stand at 211 places (the 206 and 5 new). Five resting lines moved, three of them mended: Isaiah 56:10 «watchmen + its» (was Strong's «behold»), 2 Kings 9:25 «officer + his» (was «captain»), Proverbs 27:20 «and + destruction + its».
+
+**Held, and why.** My first build laid 935 places. At 724 of them call 4 makes STEP's own reading stand at rest, and the page asks it before the place's pieces; laid, the card showed STEP's reading twice under two credits, and at Esther 9:18 a line across two words changed its credit under UBS. My suite caught both (Amos 1:10, Esther 9:18). Which reading governs such a card is the owner's ruling, so the 724 are held, found from call 4's own list. With them: the 6 call 4 holds bare for « | », the 42 «}+», and 17 pairs in our text. Nothing of yours needs to change for this; if call 4's landing changes, my rules let its places in.
+

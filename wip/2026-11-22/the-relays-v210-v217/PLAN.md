@@ -36,4 +36,5 @@ Each as always: the round from the start, every resting line against live, the g
 - **Ship 16: live** (`main` 36e111edc2, Pages run 1385, live check 83). The translation tables' 124 lines; two held by their line (wrong at the Targum's places; Moses asked); 34 Zohar lines and 16 Targum places gain their reading.
 - **Ship 17: in its round** on ship 16. 729 new places laid; 5 lines move at rest; the «}+» places, the pairs and call 4's bare places held.
 - Next: v218 (`b`, the 22 name marks, bridge v1.2), then v219 and v220.
+- **Ship 17: live** (`main` e0a5cb8d7c, Pages run 1386, live check 84). Bridge v1.1: 211 places; 5 lines move, three mended. The 724 places where STEP's reading stands are held for the owner's ruling (17:20 UTC).
 

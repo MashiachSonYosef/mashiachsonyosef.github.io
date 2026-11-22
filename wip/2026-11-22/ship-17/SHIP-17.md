@@ -1,6 +1,6 @@
 # Ship 17: the spelling bridge's pieces at the other places (relay v214, bridge v1.1)
 
-Page lane, 22 November 2026. Built in the sandbox `S/s11` (branch `ship17` from ship 15 as shipped, `main` b0f147b6b0) by a helper, from the brief `S/s22w/BRIEF.md`; the script that applies it is `S/s22w/apply-17.sh <reader> <log dir>`, which applies on main and on main with ship 16. Not shipped; it goes after ship 16, with its own round, gate and suite.
+Page lane, 22 November 2026. Built in the sandbox `S/s11` (branch `ship17` from ship 15 as shipped, `main` b0f147b6b0) by a helper, from the brief `S/s22w/BRIEF.md`; the script that applies it is `S/s22w/apply-17.sh <reader> <log dir>`, which applies on main and on main with ship 16. **Shipped 22 November 2026 on top of ship 16: `main` e0a5cb8d7c, `gh-pages` ab6037e1df (Pages run 1386, live check 84, both success).** What it lays in the end: 211 places (the 206 and 5 new); the 724 places where STEP's reading stands are held for a ruling (below).
 
 ## What it lands
 
@@ -79,4 +79,21 @@ Which of the two readings governs the card at such a place touches call 4's cred
 **For the owner, later, with a recommendation:** at those 724 places the place's pieces are STEP's own words, cut into its parts. One reading could govern: the place's pieces (the card opening on the core block, as everywhere else), which would change the credit of 724 resting lines and no word. I will put it with its measure.
 
 Run 2 on the real tree began 14:41 UTC (`S/s23w/p2`).
+
+## Run 2 on the real tree, 14:41 to 17:11 UTC
+
+- The round, ship 17 applied first: every step exit 0. **Every resting line against live: the same 5** (`measures/run2/lines-diff-against-live.json`).
+- The gate against live (ship 16): **30,945 lines compared on 18 pages, 0 differ**.
+- The whole suite, 205 checks: **203 exit 0**; `check-compspan-coverage-v1` (4 assertions) and `check-rulings-under-sources-v1` (11) pass, and `check-spelling-bridge-v1` (6). Red, as on every ship: `check-nothing-unlanded-v1` (until the push), `check-reading-rows-v1` R1 (`measures/run2/suite-verdicts.txt`).
+
+## Shipped
+
+- One commit on `main`, e0a5cb8d7c007339366e207de598af7210deaced (`COMMIT-MESSAGE.txt`); `gh-pages` follows it, ab6037e1dfe40c8291325b3d3efa2d62da52ffb0.
+- Pages run 1386: success. Live check 84 on e0a5cb8d7c: success.
+- `check-nothing-unlanded-v1` after the push: ok, 3 assertions. `S/old` now stands on e0a5cb8d7c.
+
+## What waits
+
+- The 724 places where STEP's reading stands: the owner's ruling on which reading governs the card (my recommendation above: the place's pieces; credit only moves, at 724 resting lines).
+- Call 4's 6 bare places and the 42 «}+» places: the corpus lane (call 4; bridge v1.2 with v218).
 
