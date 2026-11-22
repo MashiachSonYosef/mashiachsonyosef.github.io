@@ -778,6 +778,9 @@ if (rule) {
           ids: window.__restsOffIds || null, version: window.__kindsVersion || null, off: [...(window.__sourcesOff || [])].map(String).sort(),
           kept: kept("fh.kinds"), keptOff: kept("fh.sources.off"), live: window.__liveLines || 0, pending: window.__livePending || 0,
           railText: tok ? tok.textContent : null, railTitle: tok ? tok.title : null,
+          // the chips of the strip a reader sees switched off, which the rail's line counts (21 November 2026: it
+          // counted ledger ids, and said one off at rest for a source that draws no chip on the strip)
+          stripOff: document.querySelectorAll("#sourcesRow .src-row.off").length,
           block: k ? { hidden: !!k.hidden, chips: [...k.querySelectorAll(".kind-chip")].map((c) => ({ key: c.dataset.key || "", ids: (c.dataset.ids || "").split(" ").filter(Boolean), disabled: c.disabled, cls: c.className })),
             opts: Object.fromEntries([...k.querySelectorAll(".kinds-opt")].map((b) => [b.dataset.kinds, b.getAttribute("aria-pressed")])) } : null,
           reset: (() => { const r = document.getElementById("resetPill"); return r ? !!r.disabled : null; })() };
@@ -903,7 +906,7 @@ if (rule) {
         const offN = (/(\d+) off\b/u.exec(s3.railText || "") || [])[1];
         const shutN = (/(\d+) more rest shut/u.exec(s3.railTitle || "") || [])[1];
         check("K4  the rail's line counts as off only the reader's own switches, and its title says how many more rest shut",
-          s3.railText !== null && Number(offN || 0) === s3.off.length && !/shut/u.test(s3.railText) && Number(shutN) === chips.length,
+          s3.railText !== null && Number(offN || 0) === s3.stripOff && !/shut/u.test(s3.railText) && Number(shutN) === chips.length,
           `«${String(s3.railText).trim()}» · title «${String(s3.railTitle).slice(-80)}»`);
         // the rail's switch from the keyboard: each press draws the block anew, and the focus stays on the switch the
         // reader stands on (the review of 15 November 2026: it fell to the page on every press, at 1280, 412 and 320)
