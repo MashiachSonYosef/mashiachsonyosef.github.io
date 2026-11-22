@@ -106,21 +106,42 @@
 > delta's list, which reads MACULA's readings and every TAHOT row where the
 > lattice read part of TAHOT's alone, and each card the delta grades
 > otherwise carries the page's grade. A tree that pins the delta is never
-> projected without it. At 206
+> projected without it. At the
 > places where our text spells a word otherwise than the Leningrad text STEP
-> follows, and STEP's own spelling column names our spelling, a zone carries
-> since 21 November the place's pieces: our letters as the corpus lane's
-> spelling bridge cuts them, and for each piece STEP's own words for the
-> place, as STEP writes them (`tools/apply-spelling-bridge-v1.mjs`, from the
-> list kept in `data/spelling-bridge/`, read through
-> `tools/spelling-bridge-v1.mjs`). The lattice reads STEP under the
-> Leningrad spelling and gives these places nothing, so the line there was
-> whatever row led under the key; with the pieces it is the place's own
-> reading, as everywhere else. The pin says which of the list's classes are
-> laid and why each of the others is not. The round lays the pieces first in
-> its zones step, before the line is read again: that reading takes a name's
-> lead from a place's pieces, and so does the lattice projection. No tag is
-> written.
+> follows and the corpus lane's spelling bridge cuts STEP's pieces onto our
+> letters, a zone carries the place's pieces: our letters as the bridge cuts
+> them, and for each piece STEP's own words for the place, as STEP writes them
+> (`tools/apply-spelling-bridge-v1.mjs`, from the lists kept in
+> `data/spelling-bridge/`, read through `tools/spelling-bridge-v1.mjs`).
+> Since 21 November, at the 206 places where STEP's own spelling column names
+> our spelling, each piece is worded by the form row named for the place.
+> Since 22 November (ship 17), at the other places of new pieces too: bridge
+> v1.1 (relay v214) gives each piece its part of STEP's column as STEP writes
+> it, brackets kept, and the piece is worded by that part with its ends
+> trimmed. v1.1 is read only where each of its lines, its added fields taken
+> off, is v1's line, and only where the marks taken off each part give v1's
+> English; at the 206 each form row's part is v1.1's part byte for byte, so
+> nothing laid there moves. The lattice reads STEP under the Leningrad
+> spelling and gives these places nothing, so the line there was whatever row
+> led under the key; with the pieces it is the place's own reading, as
+> everywhere else. The pin says which of the list's kinds are laid and why
+> each of the others is not; the places whose pieces carry STEP's «}+» tag
+> wait for bridge v1.2 (relay v218), the places that are pairs keep a pair's
+> line, and two kinds wait on call 4 of relay v189, read where call 4 itself
+> is read (the audit calls' pin and the list the default picks' bake reads),
+> never listed (22 November 2026): the places call 4 holds as they rest
+> (STEP's words written with « | ») keep their line until the corpus lane
+> says how STEP reads them, and the places where call 4 makes STEP's own
+> reading stand keep it: the page asks STEP's reading before the place's
+> pieces, so laid there the pieces read the place a second way beside the
+> line, on its card and across words, until the page lane says how such a
+> place is drawn. The rule's id and the pin's shape keep their
+> versions (22 November 2026): no rule of the house asks either to move when a
+> pin lays more of a list it names; the id's words name the class it was first
+> laid at, and the pin names every class laid now. The round lays the pieces
+> first in its zones step, before the line is read again: that reading takes a
+> name's lead from a place's pieces, and so does the lattice projection. No tag
+> is written.
 > Since 15 November the rows call 5 of the corpus lane's audit calls names
 > are struck or moved to their word's key by `tools/strike-rows-v1.mjs` from
 > the lane's list, kept here byte for byte with the other calls'

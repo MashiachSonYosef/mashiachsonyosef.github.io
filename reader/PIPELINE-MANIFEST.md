@@ -173,7 +173,7 @@ whoever is working remembers it, and stops holding the moment they do not.
 | `stem-family-rule-v2-a-reading-of-another-stem-is-one-whose-stems-share-no-family-with-the-words` | tools/stem-family-v1.mjs, tools/project-lattice-v12-v1.mjs, zone.html | check-pointing-gate-v1 |
 | `stems-carried-rule-v1-a-key-carries-its-rows-stems-only-where-a-card-of-the-book-can-ask-them` | tools/stems-carried-v1.mjs, tools/project-lattice-v12-v1.mjs | check-stems-carried-v1, check-stems-extension-v1 |
 | `stems-extension-rule-v1-three-more-dictionaries-name-their-stems-as-the-owner-set-their-branches-and-a-row-beside-the-store-is-asked-its-stem-too` | tools/stems-extension-v1.mjs, zone.html | check-stems-extension-v1 |
-| `steps-reading-stands-rule-v1-where-step-spells-or-parts-the-word-otherwise-its-own-pick-1-is-the-line-credited-to-step` | tools/bake-default-picks-v1.mjs, zone.html | check-audit-calls-v1, check-same-product-v1, check-default-picks-v1 |
+| `steps-reading-stands-rule-v1-where-step-spells-or-parts-the-word-otherwise-its-own-pick-1-is-the-line-credited-to-step` | tools/bake-default-picks-v1.mjs, zone.html | check-audit-calls-v1, check-same-product-v1, check-default-picks-v1, check-spelling-bridge-v1 |
 | `store-continuity-rule-v1-every-row-the-store-lost-is-a-row-a-rule-removed` | tools/check-store-continuity-v1.mjs | check-store-continuity-v1 |
 | `store-manifest-rule-v1-what-ships-is-pinned` | tools/emit-store-manifest-v1.mjs | check-store-pinned-v1 |
 | `strongs-hedges-rule-v1-where-strongs-derivation-of-a-word-hedges-his-own-words-stand-under-his-reading-as-a-note` | tools/bake-strongs-hedges-v1.mjs, zone.html | check-strongs-hedges-v1 |
