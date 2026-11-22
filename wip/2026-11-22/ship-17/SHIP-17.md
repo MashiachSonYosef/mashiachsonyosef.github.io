@@ -41,3 +41,18 @@ Left as they are, and why: the rule id keeps its words, though «and STEP names 
 
 The round's scripts: `S/s23w` (from ship 16's, with `apply-17.sh` as the first step).
 
+## On the real tree (S/s13, ship 16 as shipped, 36e111edc2), 11:32 to 12:13 UTC
+
+`apply-17.sh` first (B4 waited for the round, its faults the 5 lines that move), then the round, the form-of record, the lines, the chain books, the door and the switches page: every step exit 0 (`measures/pipeline.log`, `measures/apply.log`).
+
+**Every resting line against live: 5 move, exactly the five read in the sandbox** (`measures/lines-diff-against-live.json`):
+
+| place | live | now |
+|---|---|---|
+| 2 Kings 9:25 | «captain» (Strong's concordance list) | «officer + his» (the place's pieces) |
+| Isaiah 56:10 | «behold» (Strong's concordance list) | «watchmen + its» |
+| Proverbs 27:20 | «and + it will perish» (STEP's row) | «and + destruction + its» |
+| Isaiah 27:2, Job 6:21 | «delight», «it» (STEP's row) | the same words, credited to the place's pieces |
+
+The gate and the whole suite follow in the same chain.
+
