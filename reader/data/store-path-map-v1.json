@@ -9,7 +9,7 @@
   "relay_sha256": "a1320a4764337b3b5f67e01e1790f94513c9d8d2ee968daab8856eef6f09465c"
  },
  "how": "every row of the plan whose source is r2:mishkan/<folder>/…, grouped by the v2 folder its file went under (the v2 path less the part of the path the file keeps); a folder's letters went to v2/letters/<folder> and its work to the first path given",
- "standing": "the old layout still stands on the store (nothing is deleted until the proofs pass and the owner says go); when it goes, this is the map",
+ "standing": "the old layout still stands on the store (nothing is deleted until the proofs pass and the owner says go); when it goes, this is the map; the corpus lane's store cut of 22 November 2026 compressed the kept text files and moved some into parts: see after_the_cut",
  "folders": {
   "corpus-lane-builds/moses-binyan-ledger-v1": {
    "named_in_the_repository_at_main_3c282b48": false,
@@ -3504,5 +3504,942 @@
   "folders": 32,
   "named_in_the_repository": 28,
   "with_no_file_in_the_plan": 3
+ },
+ "after_the_cut": {
+  "recorded_on": "2026-11-23",
+  "what": "where each store address this repository names stands after the corpus lane's store cut (the act of relay v216, its step 3 done on 22 November 2026): the kept text files went up compressed, and their old names go at the act's step 5, after this record",
+  "from": {
+   "renames": {
+    "file": "data/store-path-map/page-lane-renames-v1.tsv",
+    "bytes": 549901,
+    "sha256": "d88e9eb3d068ff4264b2bf7d70650354b1d53e2b59d9a67ad6e727dae60c3511",
+    "lines": 2780,
+    "on_the_store": "r2:mishkan/v2/ledgers/all/store-free/inventory-v1/page-lane-renames-v1.tsv"
+   },
+   "also_held": {
+    "file": "data/store-path-map/page-lane-also-held-v2.tsv",
+    "bytes": 78531,
+    "sha256": "ba70a5f5522063648c7413eedddf6517306a16d1816bde30d07b04d2c6d8d8da",
+    "lines": 220,
+    "on_the_store": "r2:mishkan/v2/ledgers/all/store-free/act-v1/page-lane-also-held-v2.tsv"
+   },
+   "note": "the corpus lane's note of 22 November 2026, relayed by the owner: step 3 done, these two lists the new names"
+  },
+  "rule": [
+   "an address of the renames list stands as the same address with .gz after it: the same bytes, compressed",
+   "an address of the also-held list packed into a part stands as a member of that part (a .tar.gz), named below",
+   "an address of the also-held list that leaves the store (16, superseded) stands in this repository or on the corpus lane's disk, named below",
+   "every other address this repository names stands under its own name"
+  ],
+  "checked": {
+   "on": "2026-11-23",
+   "how": "every object of the two lists read from the store, unpacked, and held to the list's byte count and md5; then each unpacked file's sha256 looked for among the sha256 values this repository's records hold; then every r2:mishkan/v2/ address this repository names outside wip/ classified, from the lists and a listing of the store",
+   "files": 3000,
+   "by_home": {
+    "gz": 2780,
+    "packed": 204,
+    "left": 16
+   },
+   "the_same_bytes_at_the_new_home": 2984,
+   "of_which_a_record_here_names_the_sha256": 376,
+   "faults": 0,
+   "addresses_this_repository_names": 85,
+   "addresses_by_where_they_stand": {
+    "folder_the_lists_cover": 33,
+    "folder_standing_under_its_own_name": 3,
+    "stands_under_its_own_name": 6,
+    "gz": 38,
+    "packed": 5
+   },
+   "addresses_not_found": 0,
+   "ships_15_to_17": "pin nothing the cut touched: their files keep their names (the corpus lane's pins check, 0 hits)"
+  },
+  "packed": {
+   "v2/ledgers/all/audit-calls/call5-returns-v1/RULE.md": {
+    "part": "v2/ledgers/all/audit-calls/call5-returns-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/audit-calls/call5-returns-v1/build-call5-returns-v1.mjs": {
+    "part": "v2/ledgers/all/audit-calls/call5-returns-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-call5-returns-v1.mjs"
+   },
+   "v2/ledgers/all/audit-calls/call5-returns-v1/call5-returns-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/call5-returns-v1/TEXT-PART-v1.tar.gz",
+    "member": "call5-returns-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/call5-returns-v1/not-landed-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/call5-returns-v1/TEXT-PART-v1.tar.gz",
+    "member": "not-landed-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/call5-returns-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/audit-calls/call5-returns-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/audit-calls/call5-returns-v1/verify-call5-returns-v1.mjs": {
+    "part": "v2/ledgers/all/audit-calls/call5-returns-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-call5-returns-v1.mjs"
+   },
+   "v2/ledgers/all/audit-calls/call5-returns-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/audit-calls/call5-returns-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/RULE.md": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/build-calls-v1.mjs": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-calls-v1.mjs"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call2-bdb-openings-not-withheld-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call2-bdb-openings-not-withheld-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call2-withhold-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call2-withhold-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call4-steps-reading-stands-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call4-steps-reading-stands-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call5-maqaf-keys-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call5-maqaf-keys-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call6-bdb-point-words-not-printed-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call6-bdb-point-words-not-printed-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call6-picks-words-withheld-too-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call6-picks-words-withheld-too-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call6-withhold-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call6-withhold-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call7a-strongs-sign-a-press-away-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call7a-strongs-sign-a-press-away-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call7b-ubs-phrases-a-press-away-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call7b-ubs-phrases-a-press-away-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call7c-ubs-one-word-senses-at-rest-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call7c-ubs-one-word-senses-at-rest-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call7d-sdbh-held-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call7d-sdbh-held-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/call7e-ubs-phrase-rows-named-by-a-ubs-pick-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "call7e-ubs-phrase-rows-named-by-a-ubs-pick-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/counts-v1.json": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "counts-v1.json"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/verify-calls-v1.mjs": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-calls-v1.mjs"
+   },
+   "v2/ledgers/all/audit-calls/calls-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/audit-calls/calls-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/RULE.md": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/build-lines-and-pills-v1.mjs": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-lines-and-pills-v1.mjs"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/lines-not-steps-reading-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "lines-not-steps-reading-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/lines-over-several-words-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "lines-over-several-words-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/pills-by-place-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "pills-by-place-v1.jsonl"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/verify-lines-and-pills-v1.mjs": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-lines-and-pills-v1.mjs"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/words-under-no-line-v1.jsonl": {
+    "part": "v2/ledgers/all/audit-lines-and-pills/lines-and-pills-v1/TEXT-PART-v1.tar.gz",
+    "member": "words-under-no-line-v1.jsonl"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/RULE.md": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/build-word-senses-v2.mjs": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "build-word-senses-v2.mjs"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/cards-with-an-aside-v2.jsonl": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "cards-with-an-aside-v2.jsonl"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/legend-cards-v2.jsonl": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "legend-cards-v2.jsonl"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/legends-v2.json": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "legends-v2.json"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/verify-receipt-v2.json": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v2.json"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/verify-word-senses-v2.mjs": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "verify-word-senses-v2.mjs"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/word-senses-receipt-v2.json": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "word-senses-receipt-v2.json"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/word-senses-v2.jsonl": {
+    "part": "v2/ledgers/all/coverage-trial/jastrow-word-senses-v2/TEXT-PART-v1.tar.gz",
+    "member": "word-senses-v2.jsonl"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/README.md": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "README.md"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/RULE.md": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/build-names-addendum-v1.mjs": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-names-addendum-v1.mjs"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/count-made-spaces-v188-v1.mjs": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "count-made-spaces-v188-v1.mjs"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/evidence-v1.json": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "evidence-v1.json"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/gather-evidence-v1.mjs": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "gather-evidence-v1.mjs"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/lib-v1.mjs": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "lib-v1.mjs"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/made-spaces-v188-count-v1.json": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "made-spaces-v188-count-v1.json"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/made-spaces-v188-texts-in-no-list-v1.jsonl": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "made-spaces-v188-texts-in-no-list-v1.jsonl"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/names-addendum-receipt-v1.json": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "names-addendum-receipt-v1.json"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/names-v177-addendum-v1.jsonl": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "names-v177-addendum-v1.jsonl"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/stem-family-amendment-v1.txt": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "stem-family-amendment-v1.txt"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/verify-answers-v1.mjs": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-answers-v1.mjs"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/write-stem-amendment-v1.mjs": {
+    "part": "v2/ledgers/all/elijah-asks-2026-11-14/answers-v1/TEXT-PART-v1.tar.gz",
+    "member": "write-stem-amendment-v1.mjs"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/RULE.md": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/build-entry-ledger-v1.mjs": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-entry-ledger-v1.mjs"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/entry-ledger-v1.jsonl": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "entry-ledger-v1.jsonl"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/facts-slot-held-v1.tsv": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "facts-slot-held-v1.tsv"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/facts-slot-v1.tsv": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "facts-slot-v1.tsv"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/pos-tables-v1.json": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "pos-tables-v1.json"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/pos-values-v1.json": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "pos-values-v1.json"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/source-entries-v1.jsonl": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "source-entries-v1.jsonl"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/verify-entry-ledger-v1.mjs": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-entry-ledger-v1.mjs"
+   },
+   "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/entry-ledger/classical-and-hebrew-wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/RULE.md": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/build-entry-ledger-wiktionary-v1.mjs": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-entry-ledger-wiktionary-v1.mjs"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/entry-ledger-wiktionary-v1.jsonl": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "entry-ledger-wiktionary-v1.jsonl"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/facts-slot-root-branch-wiktionary-v1.tsv": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "facts-slot-root-branch-wiktionary-v1.tsv"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/pos-agreement-v1.json": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "pos-agreement-v1.json"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/verify-entry-ledger-wiktionary-v1.mjs": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-entry-ledger-wiktionary-v1.mjs"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/entry-ledger/wiktionary-v1/wiktionary-units-v1.jsonl": {
+    "part": "v2/ledgers/all/entry-ledger/wiktionary-v1/TEXT-PART-v1.tar.gz",
+    "member": "wiktionary-units-v1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/RULE.md": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/counts-v1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "counts-v1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/landing-fold-strike-v1.jsonl": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "landing-fold-strike-v1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/landing.mjs": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "landing.mjs"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/left-out-v1.jsonl": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "left-out-v1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/lib.mjs": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "lib.mjs"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/replicate.mjs": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "replicate.mjs"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/replication-sample-v1.jsonl": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "replication-sample-v1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/replication-test-v1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "replication-test-v1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/second-count-v1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "second-count-v1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/landing-v1/second-count.mjs": {
+    "part": "v2/ledgers/all/fold-strike-landing/landing-v1/TEXT-PART-v1.tar.gz",
+    "member": "second-count.mjs"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/RULE.md": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/changes-after-v188-v1.jsonl": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "changes-after-v188-v1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/lane-verify-receipt-v1.1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "lane-verify-receipt-v1.1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/lane-verify-receipt-v2.1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "lane-verify-receipt-v2.1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/meets-v1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "meets-v1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/meets-v1.mjs": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "meets-v1.mjs"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/openscriptures_bdb_1906.made-spaces-v1.1.jsonl": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "openscriptures_bdb_1906.made-spaces-v1.1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/openscriptures_strongs.made-spaces-v1.1.jsonl": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "openscriptures_strongs.made-spaces-v1.1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/receipt-v1.1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/receipt-v2.1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v2.1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/run-lane-builders-v1.mjs": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "run-lane-builders-v1.mjs"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/run-receipt-v1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "run-receipt-v1.json"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/unabridged_bdb_1906.made-spaces-v2.1.jsonl": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "unabridged_bdb_1906.made-spaces-v2.1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/unabridged_bdb_1906.words-taken-out-v2.1.jsonl": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "unabridged_bdb_1906.words-taken-out-v2.1.jsonl"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/verify-new-texts-v1.mjs": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-new-texts-v1.mjs"
+   },
+   "v2/ledgers/all/fold-strike-landing/made-spaces-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/fold-strike-landing/made-spaces-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/made-spaces/made-spaces-v2/RULE.md": {
+    "part": "v2/ledgers/all/made-spaces/made-spaces-v2/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/made-spaces/made-spaces-v2/build-made-spaces-v2.mjs": {
+    "part": "v2/ledgers/all/made-spaces/made-spaces-v2/TEXT-PART-v1.tar.gz",
+    "member": "build-made-spaces-v2.mjs"
+   },
+   "v2/ledgers/all/made-spaces/made-spaces-v2/receipt-v2.json": {
+    "part": "v2/ledgers/all/made-spaces/made-spaces-v2/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v2.json"
+   },
+   "v2/ledgers/all/made-spaces/made-spaces-v2/unabridged_bdb_1906.made-spaces-v2.jsonl": {
+    "part": "v2/ledgers/all/made-spaces/made-spaces-v2/TEXT-PART-v1.tar.gz",
+    "member": "unabridged_bdb_1906.made-spaces-v2.jsonl"
+   },
+   "v2/ledgers/all/made-spaces/made-spaces-v2/unabridged_bdb_1906.words-taken-out-v2.jsonl": {
+    "part": "v2/ledgers/all/made-spaces/made-spaces-v2/TEXT-PART-v1.tar.gz",
+    "member": "unabridged_bdb_1906.words-taken-out-v2.jsonl"
+   },
+   "v2/ledgers/all/made-spaces/made-spaces-v2/verify-made-spaces-v2.mjs": {
+    "part": "v2/ledgers/all/made-spaces/made-spaces-v2/TEXT-PART-v1.tar.gz",
+    "member": "verify-made-spaces-v2.mjs"
+   },
+   "v2/ledgers/all/made-spaces/made-spaces-v2/verify-receipt-v2.json": {
+    "part": "v2/ledgers/all/made-spaces/made-spaces-v2/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v2.json"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/RULE.md": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/build-words-back-v1.mjs": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-words-back-v1.mjs"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/check-page-store-v1.mjs": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "check-page-store-v1.mjs"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/in-921-lost-none-v1.jsonl": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "in-921-lost-none-v1.jsonl"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/page-store-check-v1.json": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "page-store-check-v1.json"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/receipt-road1-v1.json": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-road1-v1.json"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/settle-hebrew-order-v1.mjs": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "settle-hebrew-order-v1.mjs"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/settle-receipt-v1.json": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "settle-receipt-v1.json"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/verify-words-back-v1.mjs": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-words-back-v1.mjs"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/words-back-final-v1.jsonl": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "words-back-final-v1.jsonl"
+   },
+   "v2/ledgers/all/made-spaces/words-back-v1/words-back-v1.jsonl": {
+    "part": "v2/ledgers/all/made-spaces/words-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "words-back-v1.jsonl"
+   },
+   "v2/ledgers/all/names/names-v1/RULE.md": {
+    "part": "v2/ledgers/all/names/names-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/names/names-v1/build-names-v1.mjs": {
+    "part": "v2/ledgers/all/names/names-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-names-v1.mjs"
+   },
+   "v2/ledgers/all/names/names-v1/name-rows-v1.jsonl": {
+    "part": "v2/ledgers/all/names/names-v1/TEXT-PART-v1.tar.gz",
+    "member": "name-rows-v1.jsonl"
+   },
+   "v2/ledgers/all/names/names-v1/place-names-v1.jsonl": {
+    "part": "v2/ledgers/all/names/names-v1/TEXT-PART-v1.tar.gz",
+    "member": "place-names-v1.jsonl"
+   },
+   "v2/ledgers/all/names/names-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/names/names-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/names/names-v1/verify-names-v1.mjs": {
+    "part": "v2/ledgers/all/names/names-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-names-v1.mjs"
+   },
+   "v2/ledgers/all/names/names-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/names/names-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/names/names-v2/RULE.md": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/names/names-v2/build-names-v2.mjs": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "build-names-v2.mjs"
+   },
+   "v2/ledgers/all/names/names-v2/common-word-rows-v2.jsonl": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "common-word-rows-v2.jsonl"
+   },
+   "v2/ledgers/all/names/names-v2/gentilic-rows-v2.jsonl": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "gentilic-rows-v2.jsonl"
+   },
+   "v2/ledgers/all/names/names-v2/name-rows-v2.jsonl": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "name-rows-v2.jsonl"
+   },
+   "v2/ledgers/all/names/names-v2/other-rows-v2.jsonl": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "other-rows-v2.jsonl"
+   },
+   "v2/ledgers/all/names/names-v2/partly-a-name-rows-v2.jsonl": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "partly-a-name-rows-v2.jsonl"
+   },
+   "v2/ledgers/all/names/names-v2/receipt-v2.json": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v2.json"
+   },
+   "v2/ledgers/all/names/names-v2/verify-names-v2.mjs": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "verify-names-v2.mjs"
+   },
+   "v2/ledgers/all/names/names-v2/verify-receipt-v2.json": {
+    "part": "v2/ledgers/all/names/names-v2/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v2.json"
+   },
+   "v2/ledgers/all/names/rulings-v2/make-rulings-options-v1.mjs": {
+    "part": "v2/ledgers/all/names/rulings-v2/TEXT-PART-v1.tar.gz",
+    "member": "make-rulings-options-v1.mjs"
+   },
+   "v2/ledgers/all/names/rulings-v2/rulings-2026-11-13-options-v1.json": {
+    "part": "v2/ledgers/all/names/rulings-v2/TEXT-PART-v1.tar.gz",
+    "member": "rulings-2026-11-13-options-v1.json"
+   },
+   "v2/ledgers/all/paseq-place/paseq-v1/RULE.md": {
+    "part": "v2/ledgers/all/paseq-place/paseq-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/paseq-place/paseq-v1/build-paseq-place-v1.mjs": {
+    "part": "v2/ledgers/all/paseq-place/paseq-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-paseq-place-v1.mjs"
+   },
+   "v2/ledgers/all/paseq-place/paseq-v1/paseq-in-the-read-form-v1.jsonl": {
+    "part": "v2/ledgers/all/paseq-place/paseq-v1/TEXT-PART-v1.tar.gz",
+    "member": "paseq-in-the-read-form-v1.jsonl"
+   },
+   "v2/ledgers/all/paseq-place/paseq-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/paseq-place/paseq-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/paseq-place/paseq-v1/verify-paseq-place-v1.mjs": {
+    "part": "v2/ledgers/all/paseq-place/paseq-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-paseq-place-v1.mjs"
+   },
+   "v2/ledgers/all/paseq-place/paseq-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/paseq-place/paseq-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/pieces/pieces-v1/RULE.md": {
+    "part": "v2/ledgers/all/pieces/pieces-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/pieces/pieces-v1/chw-proper-names-v1.jsonl": {
+    "part": "v2/ledgers/all/pieces/pieces-v1/TEXT-PART-v1.tar.gz",
+    "member": "chw-proper-names-v1.jsonl"
+   },
+   "v2/ledgers/all/pieces/pieces-v1/count-pieces-v1.mjs": {
+    "part": "v2/ledgers/all/pieces/pieces-v1/TEXT-PART-v1.tar.gz",
+    "member": "count-pieces-v1.mjs"
+   },
+   "v2/ledgers/all/pieces/pieces-v1/numbered-sense-openings-v1.jsonl": {
+    "part": "v2/ledgers/all/pieces/pieces-v1/TEXT-PART-v1.tar.gz",
+    "member": "numbered-sense-openings-v1.jsonl"
+   },
+   "v2/ledgers/all/pieces/pieces-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/pieces/pieces-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/pieces/pieces-v1/verify-pieces-v1.mjs": {
+    "part": "v2/ledgers/all/pieces/pieces-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-pieces-v1.mjs"
+   },
+   "v2/ledgers/all/pieces/pieces-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/pieces/pieces-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-entries-v1/RULE.md": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-entries-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-entries-v1/build-pointer-entries-v1.mjs": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-entries-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-pointer-entries-v1.mjs"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-entries-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-entries-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-entries-v1/verify-pointer-entries-v1.mjs": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-entries-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-pointer-entries-v1.mjs"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-entries-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-entries-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-entries-v1/zone-pills-v1.3.jsonl": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-entries-v1/TEXT-PART-v1.tar.gz",
+    "member": "zone-pills-v1.3.jsonl"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/RULE.md": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/against-the-draft-receipt-v1.4.json": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "against-the-draft-receipt-v1.4.json"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/against-the-draft-v1.4.jsonl": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "against-the-draft-v1.4.jsonl"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/against-the-draft-v1.4.mjs": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "against-the-draft-v1.4.mjs"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/build-pointer-map-v1.4.mjs": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "build-pointer-map-v1.4.mjs"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/naming-changes-v1.4.jsonl": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "naming-changes-v1.4.jsonl"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/pointer-resolutions-v1.4.jsonl": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "pointer-resolutions-v1.4.jsonl"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/receipt-v1.4.json": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.4.json"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/the-458-v1.4.jsonl": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "the-458-v1.4.jsonl"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/verify-pointer-map-v1.4.mjs": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "verify-pointer-map-v1.4.mjs"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/verify-receipt-v1.4.json": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.4.json"
+   },
+   "v2/ledgers/all/pointer-entries/pointer-map-v1.4/zone-pills-v1.4.changed.jsonl": {
+    "part": "v2/ledgers/all/pointer-entries/pointer-map-v1.4/TEXT-PART-v1.tar.gz",
+    "member": "zone-pills-v1.4.changed.jsonl"
+   },
+   "v2/ledgers/all/read-words/read-words-v1.1/RULE.md": {
+    "part": "v2/ledgers/all/read-words/read-words-v1.1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/read-words/read-words-v1.1/build-read-words-v1.1.mjs": {
+    "part": "v2/ledgers/all/read-words/read-words-v1.1/TEXT-PART-v1.tar.gz",
+    "member": "build-read-words-v1.1.mjs"
+   },
+   "v2/ledgers/all/read-words/read-words-v1.1/lost-tags-v1.1.jsonl": {
+    "part": "v2/ledgers/all/read-words/read-words-v1.1/TEXT-PART-v1.tar.gz",
+    "member": "lost-tags-v1.1.jsonl"
+   },
+   "v2/ledgers/all/read-words/read-words-v1.1/read-word-tags-v1.1.jsonl": {
+    "part": "v2/ledgers/all/read-words/read-words-v1.1/TEXT-PART-v1.tar.gz",
+    "member": "read-word-tags-v1.1.jsonl"
+   },
+   "v2/ledgers/all/read-words/read-words-v1.1/receipt-v1.1.json": {
+    "part": "v2/ledgers/all/read-words/read-words-v1.1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.1.json"
+   },
+   "v2/ledgers/all/read-words/read-words-v1.1/verify-read-words-v1.1.mjs": {
+    "part": "v2/ledgers/all/read-words/read-words-v1.1/TEXT-PART-v1.tar.gz",
+    "member": "verify-read-words-v1.1.mjs"
+   },
+   "v2/ledgers/all/read-words/read-words-v1.1/verify-receipt-v1.1.json": {
+    "part": "v2/ledgers/all/read-words/read-words-v1.1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.1.json"
+   },
+   "v2/ledgers/all/rulings/rulings-v1/make-rulings-v1.mjs": {
+    "part": "v2/ledgers/all/rulings/rulings-v1/TEXT-PART-v1.tar.gz",
+    "member": "make-rulings-v1.mjs"
+   },
+   "v2/ledgers/all/rulings/rulings-v1/rulings-2026-11-13-v1.json": {
+    "part": "v2/ledgers/all/rulings/rulings-v1/TEXT-PART-v1.tar.gz",
+    "member": "rulings-2026-11-13-v1.json"
+   },
+   "v2/ledgers/all/send-back/send-back-v1/landing-bible-dictionaries-v1.jsonl": {
+    "part": "v2/ledgers/all/send-back/send-back-v1/TEXT-PART-v1.tar.gz",
+    "member": "landing-bible-dictionaries-v1.jsonl"
+   },
+   "v2/ledgers/all/span-grade/span-grade-v1/RULE.md": {
+    "part": "v2/ledgers/all/span-grade/span-grade-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/span-grade/span-grade-v1/build-span-grade-v1.mjs": {
+    "part": "v2/ledgers/all/span-grade/span-grade-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-span-grade-v1.mjs"
+   },
+   "v2/ledgers/all/span-grade/span-grade-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/span-grade/span-grade-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/span-grade/span-grade-v1/reconcile-v1.json": {
+    "part": "v2/ledgers/all/span-grade/span-grade-v1/TEXT-PART-v1.tar.gz",
+    "member": "reconcile-v1.json"
+   },
+   "v2/ledgers/all/span-grade/span-grade-v1/reconcile-with-the-page-v1.mjs": {
+    "part": "v2/ledgers/all/span-grade/span-grade-v1/TEXT-PART-v1.tar.gz",
+    "member": "reconcile-with-the-page-v1.mjs"
+   },
+   "v2/ledgers/all/span-grade/span-grade-v1/span-grade-v1.jsonl": {
+    "part": "v2/ledgers/all/span-grade/span-grade-v1/TEXT-PART-v1.tar.gz",
+    "member": "span-grade-v1.jsonl"
+   },
+   "v2/ledgers/all/span-grade/span-grade-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/span-grade/span-grade-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/span-grade/span-grade-v1/verify-span-grade-v1.mjs": {
+    "part": "v2/ledgers/all/span-grade/span-grade-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-span-grade-v1.mjs"
+   },
+   "v2/ledgers/all/store-lists/whole-renderings-v1/RULE.md": {
+    "part": "v2/ledgers/all/store-lists/whole-renderings-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/all/store-lists/whole-renderings-v1/build-whole-renderings-v1.mjs": {
+    "part": "v2/ledgers/all/store-lists/whole-renderings-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-whole-renderings-v1.mjs"
+   },
+   "v2/ledgers/all/store-lists/whole-renderings-v1/receipt-v1.json": {
+    "part": "v2/ledgers/all/store-lists/whole-renderings-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/all/store-lists/whole-renderings-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/all/store-lists/whole-renderings-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/store-lists/whole-renderings-v1/verify-whole-renderings-v1.mjs": {
+    "part": "v2/ledgers/all/store-lists/whole-renderings-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-whole-renderings-v1.mjs"
+   },
+   "v2/ledgers/all/store-lists/whole-renderings-v1/whole-renderings-v1.jsonl": {
+    "part": "v2/ledgers/all/store-lists/whole-renderings-v1/TEXT-PART-v1.tar.gz",
+    "member": "whole-renderings-v1.jsonl"
+   },
+   "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/RULE.md": {
+    "part": "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/TEXT-PART-v1.tar.gz",
+    "member": "RULE.md"
+   },
+   "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/build-strongs-hedges-v1.mjs": {
+    "part": "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/TEXT-PART-v1.tar.gz",
+    "member": "build-strongs-hedges-v1.mjs"
+   },
+   "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/receipt-v1.json": {
+    "part": "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/TEXT-PART-v1.tar.gz",
+    "member": "receipt-v1.json"
+   },
+   "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/strongs-hedges-v1.jsonl": {
+    "part": "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/TEXT-PART-v1.tar.gz",
+    "member": "strongs-hedges-v1.jsonl"
+   },
+   "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/verify-receipt-v1.json": {
+    "part": "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-receipt-v1.json"
+   },
+   "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/verify-strongs-hedges-v1.mjs": {
+    "part": "v2/ledgers/openscriptures_strongs/hedges/strongs-hedges-v1/TEXT-PART-v1.tar.gz",
+    "member": "verify-strongs-hedges-v1.mjs"
+   }
+  },
+  "left_the_store": {
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v1/RULE.md": {
+    "in_this_repository": [
+     "reader/data/word-senses/jastrow-word-senses-v1/RULE.md"
+    ]
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v1/build-word-senses-v1.mjs": {
+    "on_the_corpus_lane_disk_only": "<the Tabernacle>/corpus-lane-builds/moses-coverage-trial-v1/jastrow-word-senses-v1/build-word-senses-v1.mjs"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v1/cards-with-an-aside-v1.jsonl": {
+    "in_this_repository": [
+     "reader/data/word-senses/jastrow-word-senses-v1/cards-with-an-aside-v1.jsonl"
+    ]
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v1/legends-v1.json": {
+    "in_this_repository": [
+     "reader/data/word-senses/jastrow-word-senses-v1/legends-v1.json"
+    ]
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v1/verify-receipt-v1.json": {
+    "on_the_corpus_lane_disk_only": "<the Tabernacle>/corpus-lane-builds/moses-coverage-trial-v1/jastrow-word-senses-v1/verify-receipt-v1.json"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v1/verify-word-senses-v1.mjs": {
+    "on_the_corpus_lane_disk_only": "<the Tabernacle>/corpus-lane-builds/moses-coverage-trial-v1/jastrow-word-senses-v1/verify-word-senses-v1.mjs"
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v1/word-senses-receipt-v1.json": {
+    "in_this_repository": [
+     "reader/data/word-senses/jastrow-word-senses-v1/word-senses-receipt-v1.json"
+    ]
+   },
+   "v2/ledgers/all/coverage-trial/jastrow-word-senses-v1/word-senses-v1.jsonl": {
+    "in_this_repository": [
+     "reader/data/word-senses/jastrow-word-senses-v1/word-senses-v1.jsonl"
+    ]
+   },
+   "v2/ledgers/all/read-words/read-words-v1/RULE.md": {
+    "in_this_repository": [
+     "reader/data/read-words/read-words-v1/RULE.md"
+    ]
+   },
+   "v2/ledgers/all/read-words/read-words-v1/build-read-words-v1.mjs": {
+    "on_the_corpus_lane_disk_only": "<the Tabernacle>/corpus-lane-builds/moses-read-words-v1/read-words-v1/build-read-words-v1.mjs"
+   },
+   "v2/ledgers/all/read-words/read-words-v1/counts-v1.json": {
+    "in_this_repository": [
+     "reader/data/read-words/read-words-v1/counts-v1.json"
+    ]
+   },
+   "v2/ledgers/all/read-words/read-words-v1/read-word-tags-v1.jsonl": {
+    "on_the_corpus_lane_disk_only": "<the Tabernacle>/corpus-lane-builds/moses-read-words-v1/read-words-v1/read-word-tags-v1.jsonl"
+   },
+   "v2/ledgers/all/read-words/read-words-v1/receipt-v1.json": {
+    "in_this_repository": [
+     "reader/data/read-words/read-words-v1/receipt-v1.json"
+    ]
+   },
+   "v2/ledgers/all/read-words/read-words-v1/stroke-facts-v1.jsonl": {
+    "in_this_repository": [
+     "reader/data/read-words/read-words-v1/stroke-facts-v1.jsonl"
+    ]
+   },
+   "v2/ledgers/all/read-words/read-words-v1/verify-read-words-v1.mjs": {
+    "on_the_corpus_lane_disk_only": "<the Tabernacle>/corpus-lane-builds/moses-read-words-v1/read-words-v1/verify-read-words-v1.mjs"
+   },
+   "v2/ledgers/all/read-words/read-words-v1/verify-receipt-v1.json": {
+    "on_the_corpus_lane_disk_only": "<the Tabernacle>/corpus-lane-builds/moses-read-words-v1/read-words-v1/verify-receipt-v1.json"
+   }
+  },
+  "the_shelf": "serving-lane/shelf/ stays where it is (3,594 objects on 23 November 2026): the store record's backup of the zones, read by tools/restore-shelf-from-history-v1.mjs"
  }
 }
